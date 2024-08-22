@@ -1,115 +1,112 @@
-Return-Path: <devicetree+bounces-95726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6DA95AE6F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:10:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59A5595AF2D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:23:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74E6E281E99
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:10:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA911B25A85
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A6B36AFE;
-	Thu, 22 Aug 2024 07:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B78117D377;
+	Thu, 22 Aug 2024 07:19:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F17233EA;
-	Thu, 22 Aug 2024 07:10:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FAB1684AE
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 07:19:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724310644; cv=none; b=fdk4z70Q3pONg26RTPRkNkEfJkdfhFfz41Rdw4zKFqYGUUJA3+pQQeSy3pZ5vSOibRmk1Rc4VG93V3wK1WyniQ74xyGinJx/zqFl6PS1nlZsPJQa/wRHmV12YXWqsao7RZ/f9nX9BF7BtMEQDbtBmCMGUMiucIrAcGoxrTgEtPc=
+	t=1724311148; cv=none; b=lGdZ0Dsky13G0p8vA05O4R9B69Ro8WG1kFQhUoQ803WeyvEU75LT1wW+t6iIKAE3F1qAmq+5GUj6E5lXbAgQg/9llPuZEL8nbK9Ez4xHOIlgbZlAZDoNkYXB5l108Dyfk5zfz43mv7XR22qaIO2FKWuFSn3DiKAdE3UCVhV6xHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724310644; c=relaxed/simple;
-	bh=w/J5Bic5tv3Or0sd62UrBFfcKPFWqaU06HdsfJQJCRM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYygAh+QFPPrZJ6To/WHATWqWb/J19yMo9KCwqPs2mrSqB6KM+5OGjW2KIqSxCZ9J79Y2ZyJfrjuVm2GpZf/CWz5V79CPGdqI9tsqSdq43N9+RruQOmBvWnHapIHnGQn65Hu7dxiE2/3CyOvJGLzI9FwQesr5yuthFFmVbbCChU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-428e0d18666so2553715e9.3;
-        Thu, 22 Aug 2024 00:10:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724310641; x=1724915441;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WJLS+VMzjQh/qW23wkGqqs7vCL2z1TRLs+avsxI9g9U=;
-        b=H1CJGsYtUMzN6psxU63B/mlq/DXGhGIyfVCj2sMpa6qU0yXsSuXZ7W2Ys3Qj0rgmBa
-         RtJHBi4KPnaKNp1n9Oi9U+gtAaUvlIwhNyu/ajlYQYMmzJkCBV2C3MBMiWTwi321knDo
-         Lr5b2tPFhjkxNQpKYD0CgAswZJUp2g2n83qwODI3k+x5N5abSMVxYQT4Gu1pFb+42B3B
-         xnAiayiTO0er51vnd38v5+HyNKg/5X0UKTQIB6jreVa0RbMW+bjuHQTbyYh9Uqy6BYar
-         E5J2dTlluA+ZGZTlWeL6MxFnb+08A5pFW6XiB/O2mkVdcBUez7d4S69Gh22PORRo6gWo
-         FWLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUFiQgc5YmUCNL/30DDFVrdkOEGLkogT6XaX4FFhKoeuCjBlvlBI58cWPQ29KlKP9uENkeusDHPvgZ2@vger.kernel.org, AJvYcCXLFGn+TYaIa9uR0f40XiH4NqiA1oQvbBmSmjjuRZcid5N6Hnq7rHA9PatB2bbi7Y9UP+cRk/8l0z5r@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuwV71nrwmxuhO3VLWZJmtuqJPwb9tl01Xc2rFv87TqAsX6ggj
-	cZ4KtpvnjiptOaaattBks/yFBtPp4pw2GK//er0VSaCm0NhaMVAy
-X-Google-Smtp-Source: AGHT+IGhVPATLSo8mqmfADnE2rN+0EPjvp3o+g8b3YIlLtzolWkMDw+jE12kniXWaVfmPiUENvKPmw==
-X-Received: by 2002:a05:600c:a0e:b0:427:ac40:d4b1 with SMTP id 5b1f17b1804b1-42abd244b8bmr27855965e9.27.1724310640800;
-        Thu, 22 Aug 2024 00:10:40 -0700 (PDT)
-Received: from krzk-bin ([178.197.222.82])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42abef81a5esm50053995e9.28.2024.08.22.00.10.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 00:10:40 -0700 (PDT)
-Date: Thu, 22 Aug 2024 09:10:37 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ilya Orazov <ilordash02@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aswath Govindraju <a-govindraju@ti.com>, linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/1] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6561
-Message-ID: <txb77x3lkk6gnhzavx5j7ahqg6wjdm2zjpk2fe3z7vopit5kvg@pxom5ang6izt>
-References: <20240821215357.20224-1-ilordash02@gmail.com>
- <20240821215357.20224-2-ilordash02@gmail.com>
+	s=arc-20240116; t=1724311148; c=relaxed/simple;
+	bh=Xays7bld+bCbbiXsEDuwx1Ur7OWw3FT7eghZQVYCbwI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=REmbwcGwAZWCzG48MWEpiElxjlPD4kbTraFYZw9pUIK09vTZc0OepcYG0Eg0i1wjYVql009ZNNCrkCR8sOnA3LQ3Zqm0pcTzKsni4J5JIrwG5RZ3KZE1oZAstYQuqnubUj5k0eAq4HH/ZgyqfDLCezVQFFFZIhKqRbSxH5GyBaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.19.163.48])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4WqDzH0MffzhY3M;
+	Thu, 22 Aug 2024 15:16:59 +0800 (CST)
+Received: from kwepemh500013.china.huawei.com (unknown [7.202.181.146])
+	by mail.maildlp.com (Postfix) with ESMTPS id 06A6F18009B;
+	Thu, 22 Aug 2024 15:19:00 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemh500013.china.huawei.com
+ (7.202.181.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 22 Aug
+ 2024 15:18:59 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <robh@kernel.org>, <saravanak@google.com>, <devicetree@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH -next] of: resolver: Simplify with scoped for each OF child loop
+Date: Thu, 22 Aug 2024 15:26:29 +0800
+Message-ID: <20240822072629.3549426-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240821215357.20224-2-ilordash02@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ kwepemh500013.china.huawei.com (7.202.181.146)
 
-On Thu, Aug 22, 2024 at 12:53:57AM +0300, Ilya Orazov wrote:
-> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> It is pin-compatible with TI TCAN1042 and has a compatible programming
-> model, therefore use ti,tcan1042 as fallback compatible.
-> 
-> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
-> ---
+Use scoped for_each_child_of_node_scoped() when iterating over device
+nodes to make code a bit simpler.
 
-Where is the changelog?
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+---
+ drivers/of/resolver.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-Where is the tag you received?
-
-Why sending it again without any of the above?
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation: Please add
-Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
-or above your Signed-off-by tag. Tag is "received", when provided
-in a message replied to you on the mailing list. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for tags received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
-Best regards,
-Krzysztof
+diff --git a/drivers/of/resolver.c b/drivers/of/resolver.c
+index 2780928764a4..5cf96776dd7d 100644
+--- a/drivers/of/resolver.c
++++ b/drivers/of/resolver.c
+@@ -150,7 +150,7 @@ static int node_name_cmp(const struct device_node *dn1,
+ static int adjust_local_phandle_references(struct device_node *local_fixups,
+ 		struct device_node *overlay, int phandle_delta)
+ {
+-	struct device_node *child, *overlay_child;
++	struct device_node *overlay_child;
+ 	struct property *prop_fix, *prop;
+ 	int err, i, count;
+ 	unsigned int off;
+@@ -194,7 +194,7 @@ static int adjust_local_phandle_references(struct device_node *local_fixups,
+ 	 * The roots of the subtrees are the overlay's __local_fixups__ node
+ 	 * and the overlay's root node.
+ 	 */
+-	for_each_child_of_node(local_fixups, child) {
++	for_each_child_of_node_scoped(local_fixups, child) {
+ 
+ 		for_each_child_of_node(overlay, overlay_child)
+ 			if (!node_name_cmp(child, overlay_child)) {
+@@ -202,17 +202,13 @@ static int adjust_local_phandle_references(struct device_node *local_fixups,
+ 				break;
+ 			}
+ 
+-		if (!overlay_child) {
+-			of_node_put(child);
++		if (!overlay_child)
+ 			return -EINVAL;
+-		}
+ 
+ 		err = adjust_local_phandle_references(child, overlay_child,
+ 				phandle_delta);
+-		if (err) {
+-			of_node_put(child);
++		if (err)
+ 			return err;
+-		}
+ 	}
+ 
+ 	return 0;
+-- 
+2.34.1
 
 
