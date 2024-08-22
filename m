@@ -1,196 +1,107 @@
-Return-Path: <devicetree+bounces-95924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FB4E95BE9F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 21:02:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0366695BEF0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 21:31:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC20A285806
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 19:02:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A18861F2393A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 19:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80CB13CFBB;
-	Thu, 22 Aug 2024 19:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AFDE1D1F52;
+	Thu, 22 Aug 2024 19:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9bADXjh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y5kCDyUw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F763EC5;
-	Thu, 22 Aug 2024 19:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6748F1D0DFF;
+	Thu, 22 Aug 2024 19:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724353363; cv=none; b=RyT0Lp07TeR88ShRkVxWSt0WbPoi/TJVro0nldKmXxFBHC5QwQLieLkYbPsounm6xPt2cftBv+h3+8Fmuot+UMXTQ50Vhd6Jd/Ghs0Q/8gxc95UBdVSxlczt56RFr+pSxRoU1VlutaBb9Ue7aDRSjfLcaPsZWXAjN8iXAu5NxSA=
+	t=1724354921; cv=none; b=R3PwlzALcyipMsUpRjaxXIAasZcxjJ1kcfrWlDrvbasXtOy+qZSkWFYzDi+HUivPxRyx0q1nOxxbwgHCtigb1RFog51ZQk7XCRNLt3dcpZDSAdGg/zKaSriC6k+uVkkGmOJpPcc0T7RvWrU9ZOJbcS6AkbV+ZDTnx2u0jZioxaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724353363; c=relaxed/simple;
-	bh=xkJxuhgb78n4FuOPdIwcmBi1eA/Yu0psL+bwoB8zMA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=chmTomIwjaAeurm66TWqzAEXInvk6b60AiZCsMnvKgD5PJq+8keu1SrucU1sNBj1b3HAOfN4AE2Tr1oDZZtYePjLT99b8cNzsQvvlVutA+YBDdn+ldCocIh1i2i87aRmp7kOt9YOCGtF9ieljBVskMKLykbY+xSsqHS1j3Q34hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9bADXjh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD4C2C32782;
-	Thu, 22 Aug 2024 19:02:42 +0000 (UTC)
+	s=arc-20240116; t=1724354921; c=relaxed/simple;
+	bh=fGRxk6UbXKFSx34H54JxOG55A9SXa9LNifaF9L2xmls=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=QJNVQxvS7RBVvzodzco5b9dViFAxulcGlpknYjXiYFSVYY4GYc6VUeXHlYCuY63/vUR8fic/ReXXQdXzzynSnH/OtVj3WfjppvJNnj6q3SdMEHz9sO6II64prB8qpJkIaXGXHcd8QYr3rJ7w3S+hc2XrICgpTC0Ais3mYvfZnYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y5kCDyUw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A07DBC32782;
+	Thu, 22 Aug 2024 19:28:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724353363;
-	bh=xkJxuhgb78n4FuOPdIwcmBi1eA/Yu0psL+bwoB8zMA4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t9bADXjhnhFV9D6FC7d7Oi2kbTHMS/q2RGBnT9miyH5POy5PnigNWky8RoFcgQAYl
-	 K5IZ0zonP123H8Qt0k08l5k71aPOfRWXbAV6z0zqGi5wwmSlxq8lU5r8G7VrDgxodr
-	 h9nsHwJWs1S74Z94y27or9ExB0VM5JYK8GbdacOQpPRM1gB3Pl1Q1KjzKHMCeYGI99
-	 eWFleMcUDJS4IFArGb3Sn+jwUKkw/fZeL50V0mbGloBi5E/2wd9FOKOFqwFQJ0tMVu
-	 09iYREQP2HP9yK/Ia34b/rdngLyAS3rVAS0r3yqYskdSHDQJEVS7bKXr/QygBECsGM
-	 ciB6LN4o7mF6Q==
-Date: Thu, 22 Aug 2024 21:02:39 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1724354921;
+	bh=fGRxk6UbXKFSx34H54JxOG55A9SXa9LNifaF9L2xmls=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Y5kCDyUw+6QFk1lEpiWdG4V2cjaCcSKGrSuUBoZdE+pyvjc0Q5kSQw4QTvgEhZcE4
+	 31tnowmTAt+LqlmqyHv0kxsqBt4V8fD3oxRdbbj8Gj5e552dtFU+8K796nS4nvLVVT
+	 +BbeeDvWVKc18k2kJkbN7LdNxPK+ZHhbECyvJoUEAsETLp+Z79k9i0pqfzh/BaeN5T
+	 HERU41Da+JIGFMT2Grjm88Ft+fu1kZ261a2bqvCxtUwnZqml1eFAQC94AELqehux+Q
+	 D+SVlMiRZ9L34O/obBekjjpfqCqy96VBR9s1ShPH2bU88gzUpqfh+KxFsn/UGpIFaH
+	 Y+jSfNZvksYIA==
+Date: Thu, 22 Aug 2024 14:28:38 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-Message-ID: <ZseLT2roso_L7UG4@lore-desk>
-References: <20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org>
- <20240822-en7581-pinctrl-v2-1-ba1559173a7f@kernel.org>
- <20240822-taste-deceptive-03d0ad56ae2e@spud>
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	andersson@kernel.org, quic_vbadigan@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 4/8] PCI: Change the parent to correctly represent
+ pcie hierarchy
+Message-ID: <20240822192838.GA346474@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="diazt744lIJbkc3n"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240822-taste-deceptive-03d0ad56ae2e@spud>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MeWFs+M+2kpotRqmcbPgXx8xCWEa-DqatGxWUAcixQb2g@mail.gmail.com>
 
+On Tue, Aug 13, 2024 at 09:15:06PM +0200, Bartosz Golaszewski wrote:
+> On Sat, Aug 3, 2024 at 5:23 AM Krishna chaitanya chundru
+> <quic_krichai@quicinc.com> wrote:
+> >
+> > Currently the pwrctl driver is child of pci-pci bridge driver,
+> > this will cause issue when suspend resume is introduced in the pwr
+> > control driver. If the supply is removed to the endpoint in the
+> > power control driver then the config space access by the
+> > pci-pci bridge driver can cause issues like Timeouts.
+> >
+> > For this reason change the parent to controller from pci-pci bridge.
+> >
+> > Fixes: 4565d2652a37 ("PCI/pwrctl: Add PCI power control core code")
+> > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> > ---
+> 
+> Tested-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Bjorn,
+> 
+> I think this should go into v6.11 as it does indeed better represent
+> the underlying logic.
 
---diazt744lIJbkc3n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is this patch independent of the rest?  I don't think the whole series
+looks like v6.11 material, but if this patch can be applied
+independently, *and* we can make a case in the commit log for why it
+is v6.11 material, we can do that.
 
-On Aug 22, Conor Dooley wrote:
-> On Thu, Aug 22, 2024 at 11:40:52AM +0200, Lorenzo Bianconi wrote:
-> > Introduce device-tree binding documentation for Airoha EN7581 pinctrl
-> > controller.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > +  reg:
-> > +    items:
-> > +      - description: IOMUX base address
-> > +      - description: LED IOMUX base address
-> > +      - description: GPIO flash mode base address
-> > +      - description: GPIO flash mode extended base address
-> > +      - description: IO pin configuration base address
-> > +      - description: PCIE reset open-drain base address
-> > +      - description: GPIO bank0 register base address
-> > +      - description: GPIO bank0 second control register base address
-> > +      - description: GPIO bank1 second control register base address
-> > +      - description: GPIO bank1 register base address
->=20
-> > +      pinctrl@1fa20214 {
-> > +        compatible =3D "airoha,en7581-pinctrl";
-> > +        reg =3D <0x0 0x1fa20214 0x0 0x30>,
-> > +              <0x0 0x1fa2027c 0x0 0x8>,
-> > +              <0x0 0x1fbf0234 0x0 0x4>,
-> > +              <0x0 0x1fbf0268 0x0 0x4>,
-> > +              <0x0 0x1fa2001c 0x0 0x50>,
-> > +              <0x0 0x1fa2018c 0x0 0x4>,
-> > +              <0x0 0x1fbf0200 0x0 0x18>,
-> > +              <0x0 0x1fbf0220 0x0 0x4>,
-> > +              <0x0 0x1fbf0260 0x0 0x8>,
-> > +              <0x0 0x1fbf0270 0x0 0x28>;
-> > +        reg-names =3D "iomux", "led-iomux",
-> > +                    "gpio-flash-mode", "gpio-flash-mode-ext",
-> > +                    "ioconf", "pcie-rst-od",
-> > +                    "gpio-bank0", "gpio-ctrl1",
-> > +                    "gpio-ctrl2", "gpio-bank1";
->=20
-> before looking at v1:
-> I would really like to see an explanation for why this is a correct
-> model of the hardware as part of the commit message. To me this screams
-> syscon/MFD and instead of describing this as a child of a syscon and
-> using regmap to access it you're doing whatever this is...
->=20
-> after looking at v1:
-> AFAICT the PWM driver does not currently exist in mainline, so I am now
-> doubly of the opinion that this needs to be an MFD and a wee bit annoyed
-> that you didn't include any rationale in your cover letter or w/e for
-> not going with an MFD given there was discussion on the topic in v1.
+Right now the commit log doesn't tell me enough to justify a
+post-merge window change.
 
-based on the reply from Rob I was thinking it is fine to just reduce the nu=
-mber
-of IO mappings, sorry for that.
-
->=20
-> Thanks,
-> Conor.
-
-clock, pinctrl and pwm controllers need to map 3 main memory areas:
-- chip-scu: <0x0 0x1fa20000 0x0 0x384>
-  it is used by the clock driver for fixed freq clock configuration,
-  by the pinctrl driver for io-muxing (and by the future pon drivers)
-- scu: <0x1fb00020 0x0 0x94c>
-  it is used by the clock/rst driver
-- gpio: <0x1fbf0200 0x0 0xbc>
-  it is used by the pinctrl driver to implement gpio/irq controller and
-  by the pwm driver.
-
-I guess we can model chip_scu as single syscon node used by clock and pinct=
-rl
-while pwm can be a child of the pinctrl node. Something like:
-
-=2E..
-
-chip_scu: chip-scu@1fa20000 {
-	compatible =3D "airoha,en7581-chip-scu", "syscon";
-	reg =3D <0x0 0x1fa20000 0x0 0x384>;
-};
-
-scuclk: clock-controller@1fb00020 {
-	compatible =3D "airoha,en7581-scu";
-	reg =3D <0x1fb00020 0x0 0x94c>;
-	airoha,chip-scu =3D <&chip_scu>;
-	...
-};
-
-pio: pinctrl@1fbf0200 {
-	compatible =3D "airoha,en7581-pinctrl", "simple-mfd", "syscon";
-	reg =3D <0x1fbf0200 0x0 0xbc>;
-	airoha,chip-scu =3D <&chip_scu>;
-	....
-
-	pwm {
-		compatible =3D "airoha,en7581-pwm";
-		...
-	};
-};
-
-=2E..
-
-Does it work for you?
-
-Regards,
-Lorenzo
-
---diazt744lIJbkc3n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZseLTwAKCRA6cBh0uS2t
-rGKnAQCZ+o4MIMWsRuzvGOZSrG1NdV6hktrlDyjEJQ5C2jFzYAEAu4nxBgW+EpZW
-RRqyuyYxUDBvOoQ4vFB7hMODbQlKmQo=
-=1h0o
------END PGP SIGNATURE-----
-
---diazt744lIJbkc3n--
+Bjorn
 
