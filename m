@@ -1,125 +1,84 @@
-Return-Path: <devicetree+bounces-95789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D695895B318
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:43:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC8695B326
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:46:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D17D1C22DBD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:43:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9ED471C22D1E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5D517F4F6;
-	Thu, 22 Aug 2024 10:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HxLmPgeo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C254917BB26;
+	Thu, 22 Aug 2024 10:46:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B37014A0B8;
-	Thu, 22 Aug 2024 10:43:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9188A558BB;
+	Thu, 22 Aug 2024 10:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724323396; cv=none; b=kw6pTQU0D0/TK2LP54bxx7r3KowPy0AIAnMRCjcmJ2CHqbQ+dFKDR4U/K7QJBJHCPnweakJ/SXi/Dv30KLV0Fq8UDPkFTX7fSnBs9hPOaYZS+L/Mu0VVOGm4wZpdjWvZ+E4UTlMnnwOaKKYYrXHWGk1Gr/1vOHhraMGWcXSQSNk=
+	t=1724323589; cv=none; b=QBGya03DBgEF9t2vEwRCjfsOl61l/H2sF6Lb+WKTpVj2TjhgDQBL8YdlcBUMY1y0hmQ3q9Pc4dfaXz0zVWSA0vwPhKJK+5wmB0/i6pDpHHuqVq8Nq5Tt86q+PRSWRtQqKtG29NJkivte34ss5WJ7Yz5ovHdTuJdbmWiMd388Kvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724323396; c=relaxed/simple;
-	bh=fpVem33D+69grzXobRjgZMqRFbVQXeX7AgxHmOmo6qc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LmZXyWcIcRph51DcyFe5uYKptDKPUsZzOvbyjnEAcTgJsgbWEz9UupfQRmaZLkAgxCXgwWiW56mSraL3DlSmmMNRjktBke+E8krv3qXr1Nj0f1hgFPt+0B3arBy6szNaZB9AlDNSCPEKEeOgET8u9uKnDmQiRyIi3xCv+LFLHfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HxLmPgeo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47MAEgjv019074;
-	Thu, 22 Aug 2024 10:43:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cQyW5VfaY0Obw4r4NigChgacwm6QBnZfPZ/0IXOPeQ8=; b=HxLmPgeoR2cELSUW
-	Xv4SAwFEbZOmYg08QAiOBNbum+qfhzy7TO8JcpQJYgjrPHKB3h/BT+6sgzdaEaE5
-	fyDPsNLqgMcN4C5RgE+Boy6r5/5PeWbqtF45tOYDN2QY7c4b8AbC7AzcEbT4VGAt
-	f6sOqPIml97H0Lq+xBm2FfbvyHbtmQFVfUgHm6CGn+JwE1GzWlgnEgUgFg2Ddsz2
-	hp9F5jcTFMW0HXekJlvj57Q4caCEc0q8A9QjevvgnBW8pqkapSDYmcElpF8q19Fq
-	Gfc8C9XgfR9CQnhKx/tn77dIZTXrfwI5nCa/lYmAfjhPJVXFxs1BvHVeX7mnUkFz
-	kGAC2w==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 415vsah8pg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Aug 2024 10:43:11 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47MAhBO4008204
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Aug 2024 10:43:11 GMT
-Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 22 Aug
- 2024 03:43:06 -0700
-Message-ID: <807c9315-bf88-4a0a-9632-2ce471b329b6@quicinc.com>
-Date: Thu, 22 Aug 2024 16:13:03 +0530
+	s=arc-20240116; t=1724323589; c=relaxed/simple;
+	bh=BjCJ2f3C0Qm7+dwJ1Eu4/pVt4gO9Ij0T2x4Sc9HO9+U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hW1m9PUfEZpa3uMj20P5Pmp4MFxfG/xKVIQeOx277WQTyjoqR657JpQSjC0XX6Pqsc7Dekf/pf7GOoO1sZY/Sm2PbzNGxDpqpItkYHgLMxLaMHsFyKuYobQG2daFzWGfWi36hoSh0pSPUD/hdCavmJF//CTftxURbVEKcqAeYrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ED9C9DA7;
+	Thu, 22 Aug 2024 03:46:52 -0700 (PDT)
+Received: from bogus (e107155-lin.cambridge.arm.com [10.1.198.42])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 14CDE3F66E;
+	Thu, 22 Aug 2024 03:46:23 -0700 (PDT)
+Date: Thu, 22 Aug 2024 11:46:21 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list),
+	arm-scmi@vger.kernel.org (open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE),
+	justin.chen@broadcom.com, opendmb@gmail.com,
+	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH v3 2/2] firmware: arm_scmi: Support 'reg-io-width'
+ property for shared memory
+Message-ID: <ZscW_E33YXF8Nx7r@bogus>
+References: <20240816224221.3256455-1-florian.fainelli@broadcom.com>
+ <20240816224221.3256455-3-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add new driver for WCSS secure PIL loading
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_viswanat@quicinc.com>, <quic_mmanikan@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
-References: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
- <4d1c0d17-20b8-4989-9757-61031e9f03a4@kernel.org>
-Content-Language: en-US
-From: Gokul Sriram P <quic_gokulsri@quicinc.com>
-In-Reply-To: <4d1c0d17-20b8-4989-9757-61031e9f03a4@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mJwCyVfArXUEWTriWtdPqJgoudWRntI3
-X-Proofpoint-ORIG-GUID: mJwCyVfArXUEWTriWtdPqJgoudWRntI3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-22_03,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 spamscore=0 clxscore=1015 phishscore=0 priorityscore=1501
- bulkscore=0 mlxscore=0 mlxlogscore=945 malwarescore=0 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408220080
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240816224221.3256455-3-florian.fainelli@broadcom.com>
 
+Hi Florian,
 
-On 8/20/2024 4:42 PM, Krzysztof Kozlowski wrote:
-> On 20/08/2024 10:55, Gokul Sriram Palanisamy wrote:
->> This series depends on q6 clock removal series [1].
-> How? So this cannot be tested and merged?
+Sorry for getting late to this party, I wasn't able to review this before.
+Overall changes look correct. But my main concern is that is SCMI the right
+place to have such IO accessors. It is better to run it through Arnd if
+he is happy with it before I send him the pull request containing these.
 
-Yes. Though TrustZone enables these clocks, since Linux Kernel will 
-consider these clock as unused.
-These clock will be disabled so we cannot bring Q6 out of reset. So we 
-have the dependency set.
-I posted this as a separate series because [1] 'remove unnecessary q6 
-clocks' series was already reviewed for some
-versions.
+On Fri, Aug 16, 2024 at 03:42:21PM -0700, Florian Fainelli wrote:
+> Some shared memory areas might only support a certain access width,
+> such as 32-bit, which memcpy_{from,to}_io() does not adhere to at least
+> on ARM64 by making both 8-bit and 64-bit accesses to such memory.
+>
 
-[1] 
-https://patchwork.kernel.org/project/linux-arm-msm/cover/20240820055618.267554-1-quic_gokulsri@quicinc.com/
+Is this limitation on the hardware for both read and writes ?
+The reason I ask is I see arm64 does have memcpy_toio_aligned() or
+__iowrite32_copy_full() for 32 bit aligned writes.
 
+-- 
 Regards,
-
-Gokul
-
-> That's second patchset to day with some totally bogus dependencies.
-> People, stop it.
->
->
-> Best regards,
-> Krzysztof
->
+Sudeep
 
