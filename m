@@ -1,78 +1,60 @@
-Return-Path: <devicetree+bounces-95744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57FF695B0B4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:41:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2389895B0E2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:47:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 860C31C227E8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:41:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56EA91C20506
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF2A15855A;
-	Thu, 22 Aug 2024 08:41:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C215175D26;
+	Thu, 22 Aug 2024 08:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ImlOSxZq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iGqKWZfm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E934819470;
-	Thu, 22 Aug 2024 08:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E223170853;
+	Thu, 22 Aug 2024 08:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724316078; cv=none; b=fqmCElwMwJUx5Ks7jDlNnP3pJxsU3kehpusM7O+MnGz+R7VWgTPUpQtwi8/s4UUiy8WSbaZfkmxpkgR1rqTyNYqYLwxwpEffsp9fYdKMkyBh3zPbpmuUmhxODYzdWQFCTyZGG1WkluswbVoQ22QbU509Fh6hhAJ6Kg7MG/+WhRw=
+	t=1724316427; cv=none; b=j/hASQx8irnV9VlLfqfYvzleVvz8eT4zkdn2u32JhzlUi2nQrAcvdx7XvVOAkoOLzA7BPW79xT9d5HMbKpadiTv7YIO+3HaTCB5OvYX6mo95snWr0/PyQ6p+t7Ga8Ew7t5AzBNV1mQ/NsyujQbmdawGm27Wib75/12hc0j/YO4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724316078; c=relaxed/simple;
-	bh=qfCsE2TARh/0Jkqs1tOSCtPuFozHgbbnBIGeahfVo4w=;
+	s=arc-20240116; t=1724316427; c=relaxed/simple;
+	bh=3bWwL4T8vaWlqowHbIFp0xSD2EoKy+6F8vUXq842G/Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=taNK2d5HpxQh46kqE/rBN9QzMs9YEJNDYC6KXhzAdwUvXJLrpn37MCEWe/Ns4D5ZvGWLkS1wyNXMzYb+9j+INfZ/3JMynQCUbMnDgwPyyLVkPPvfTcfOu+/t4XS+Zh0cObgAIkQbz8R2W2+D4WuXx9UXsKNGKYKZ/8B3KsY7Xy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ImlOSxZq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AA19C4AF09;
-	Thu, 22 Aug 2024 08:41:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VFAVMqaZUl7PvFTBQnbMkQVMIr5ulmDO3OpuoxU6nh5AgmikCqgkKZy13WLa7UeYltq9hDHgCiwpjFtr3NRbRhaBdE4pdIUIUNvYLes4IxTPZnpwgFEUuv2hQ8gjjXNicFzbstdmrhpczWgPdtt+fLdInp9sN7u10W6AmuB4P0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iGqKWZfm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B39D8C4AF0B;
+	Thu, 22 Aug 2024 08:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724316077;
-	bh=qfCsE2TARh/0Jkqs1tOSCtPuFozHgbbnBIGeahfVo4w=;
+	s=k20201202; t=1724316426;
+	bh=3bWwL4T8vaWlqowHbIFp0xSD2EoKy+6F8vUXq842G/Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ImlOSxZqPU2Q0pU6PiB1Lrd06gaA6GAh3l9ygooynVI9lp1GJn398Le0w3DFW2Dc4
-	 beVWkktTt4Ktr+VfuPtaDtr0xhQJq7Q/ImOyeTHo+bWYI9R/TQhkaoDL+3Fm7C+qKP
-	 QyaX1MbnL1XzNmNx5fXaQI2L5vdYywsXzOTQJ3hf0SCp4Xp9tJfercshJir8dD0SmA
-	 Lc8RIj1kG3pg7b7crOFi8GCrlgGQ6Pp23KsGG1NqIk8BYibZ1ySXDAWTbRz3cKLwOj
-	 saAUZAyKd4AlPGd42RImlnWsxCSX/t7IBSzfRlgRprdFs2UEfrKb2YWCVHrV27OVMU
-	 dNIoNoGWLm/0Q==
-Date: Thu, 22 Aug 2024 09:41:10 +0100
+	b=iGqKWZfmrWv5MCpqshWHHwVdsGQHbO/KwP4dCJymAzE4ZUAEnioLZeZde+7fmqAEb
+	 BCMuxe/SFy3Y4SD7xa3o/i49gX8NuGxnZSCfKvpKFzRPuHdla4yZPrtblRIecwSIsj
+	 bb6rQ16gwbQ/IMxzHBWcvX6T0npNKIXTiZlBtm/GUz/2JTreMvNqOgAkI2MNftzuqG
+	 ET5a2Q1TYpPhcgCD0cGh819bBuRrhON5OoSFLsFUNYHpB5NvDia1pOIIwjiLLlRCMK
+	 KYophYe+kHbvLL0d91qku1c8hopFDwTN686uELsxv7ggpSjuBVaOduvVnb7YB1x740
+	 J4dSn6XIB7gdw==
+Date: Thu, 22 Aug 2024 09:47:01 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Yao <markyao0591@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
-	Luis de Arquer <ldearquer@gmail.com>
-Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
- RK3588 HDMI TX Controller
-Message-ID: <20240822-pushchair-premises-f4055779216a@spud>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
- <2085e998-a453-4893-9e80-3be68b0fb13d@collabora.com>
- <4167579.6PsWsQAL7t@diego>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
+	hkallweit1@gmail.com, linux@armlinux.org.uk,
+	andrei.botila@oss.nxp.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 2/3] net: phy: tja11xx: replace
+ "nxp,rmii-refclk-in" with "nxp,phy-output-refclk"
+Message-ID: <20240822-headed-sworn-877211c3931f@spud>
+References: <20240822013721.203161-1-wei.fang@nxp.com>
+ <20240822013721.203161-3-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,44 +62,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Z+weBBqJ58Bi1CtB"
+	protocol="application/pgp-signature"; boundary="7Iw/ddfuE8M/V2WC"
 Content-Disposition: inline
-In-Reply-To: <4167579.6PsWsQAL7t@diego>
+In-Reply-To: <20240822013721.203161-3-wei.fang@nxp.com>
 
 
---Z+weBBqJ58Bi1CtB
-Content-Type: text/plain; charset=iso-8859-1
+--7Iw/ddfuE8M/V2WC
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 22, 2024 at 09:01:34AM +0200, Heiko St=FCbner wrote:
-> @Conor: just for me, did some shift happen in our understanding of dt-
-> best-practices in terms of syscon via phandle vs. syscon via compatible?
+On Thu, Aug 22, 2024 at 09:37:20AM +0800, Wei Fang wrote:
+> As the new property "nxp,phy-output-refclk" is added to instead of
+> the "nxp,rmii-refclk-in" property, so replace the "nxp,rmii-refclk-in"
+> property used in the driver with the "nxp,reverse-mode" property and
+> make slight modifications.
+
+Can you explain what makes this backwards compatible please?
+
 >=20
-> Because Rockchip boards are referencing their GRFs via phandes forever
-> but similar to the soc vs non-soc node thing, I'd like to stay on top of
-> best-practices ;-)
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+> V2 changes:
+> 1. Changed the property name.
+> ---
+>  drivers/net/phy/nxp-tja11xx.c | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/net/phy/nxp-tja11xx.c b/drivers/net/phy/nxp-tja11xx.c
+> index 2c263ae44b4f..7aa0599c38c3 100644
+> --- a/drivers/net/phy/nxp-tja11xx.c
+> +++ b/drivers/net/phy/nxp-tja11xx.c
+> @@ -78,8 +78,7 @@
+>  #define MII_COMMCFG			27
+>  #define MII_COMMCFG_AUTO_OP		BIT(15)
+> =20
+> -/* Configure REF_CLK as input in RMII mode */
+> -#define TJA110X_RMII_MODE_REFCLK_IN       BIT(0)
+> +#define TJA11XX_REVERSE_MODE		BIT(0)
+> =20
+>  struct tja11xx_priv {
+>  	char		*hwmon_name;
+> @@ -274,10 +273,10 @@ static int tja11xx_get_interface_mode(struct phy_de=
+vice *phydev)
+>  		mii_mode =3D MII_CFG1_REVMII_MODE;
+>  		break;
+>  	case PHY_INTERFACE_MODE_RMII:
+> -		if (priv->flags & TJA110X_RMII_MODE_REFCLK_IN)
+> -			mii_mode =3D MII_CFG1_RMII_MODE_REFCLK_IN;
+> -		else
+> +		if (priv->flags & TJA11XX_REVERSE_MODE)
+>  			mii_mode =3D MII_CFG1_RMII_MODE_REFCLK_OUT;
+> +		else
+> +			mii_mode =3D MII_CFG1_RMII_MODE_REFCLK_IN;
+>  		break;
+>  	default:
+>  		return -EINVAL;
+> @@ -517,8 +516,8 @@ static int tja11xx_parse_dt(struct phy_device *phydev)
+>  	if (!IS_ENABLED(CONFIG_OF_MDIO))
+>  		return 0;
+> =20
+> -	if (of_property_read_bool(node, "nxp,rmii-refclk-in"))
+> -		priv->flags |=3D TJA110X_RMII_MODE_REFCLK_IN;
+> +	if (of_property_read_bool(node, "nxp,phy-output-refclk"))
+> +		priv->flags |=3D TJA11XX_REVERSE_MODE;
+> =20
+>  	return 0;
+>  }
+> --=20
+> 2.34.1
+>=20
 
-If IP blocks, and thus drivers, are going to be reused between devices,
-using the phandles makes sense given that it is unlikely that syscon
-nodes can make use of fallback compatibles due to bits within that "glue"
-changing between devices. It also makes sense when there are multiple
-instances of an IP on the device, which need to use different syscons.
-My goal is to ask people why they are using these type of syscons
-phandle properties, cos often they are not required at all - for example
-with clocks where you effectively need a whole new driver for every
-single soc and having a phandle property buys you nothing.
-
---Z+weBBqJ58Bi1CtB
+--7Iw/ddfuE8M/V2WC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsb5pgAKCRB4tDGHoIJi
-0rLhAQDqY1gu1PD4V30d8emILN4UQA7IqbfNHPYXVGBNqADBXwEAj497+bHi0qU5
-bnjxze+ZiZvdByZ4C9o+h+n3wfVJhQA=
-=vu81
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsb7BQAKCRB4tDGHoIJi
+0k/DAQCFn021AFv8ijQoyazYsqV/JdrjdyG3BnG8U2HSTy/K9QEAxWHlTnKsNl0y
+HE+P6/H6FIKNyfSn1mnYOhwRzWwQLA4=
+=hJz4
 -----END PGP SIGNATURE-----
 
---Z+weBBqJ58Bi1CtB--
+--7Iw/ddfuE8M/V2WC--
 
