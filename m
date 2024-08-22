@@ -1,206 +1,120 @@
-Return-Path: <devicetree+bounces-95946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B9D95C010
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 23:08:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12E2095C019
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 23:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DEC628239E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 21:08:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4662A1C2280E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 21:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC55A1C9ECE;
-	Thu, 22 Aug 2024 21:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310FB1D0DF2;
+	Thu, 22 Aug 2024 21:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="Im6rq60i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UIdAJoFK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB90EC5
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 21:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33912AD00;
+	Thu, 22 Aug 2024 21:13:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724360886; cv=none; b=MXHxrE69hIUs6PuVw1sQfVXznb2/1QqgDXTb8hWnFsx8PFqvC6ySyabxCFRyups+KrCUjSc7mHg2nWplc1rf6LXb/2VxoO/2XcQu1wyqQey3f9XKD/sZ/LaJmxXOkCj8JeBLd3CGt02h4PaO7NFQYZApuMA6nE10CIAxpgIlByY=
+	t=1724361219; cv=none; b=rnXXwTpPEedj9sdzkBZGMq2pJoTBBzxevCWiZb6GcBfAa58lFs/gV0KYZgYQantfPIJ6DcNs5i7v8gVPwJeeIStQrlO7Z+9wwyfASZM0n4evIc/rLwVApAsTZeUDnW6m+1WfynST/Ph+hWYD0ufEOT/f/Km4xN94V7TqzH/P0LI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724360886; c=relaxed/simple;
-	bh=03N4/tGExftX2vMsr2+DXzPkGWqHMGM2nEZzRrdG9oU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YJn8jGzwv0YaxiFF0hSrdiMP1sDKCVQA0BUj6tF/PzoOCVUBgwdoySRNUDPFpL3GoOrkrJ4cbwLHzAXRG0on3bXks8473MbRbgC9KRnquCpuHn+gm0ROGo/J7Cv/Yhfig6jJAT1SbUIzzhmAtkkuGHaHmnz/GEG3EKdCW0ZaiPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=Im6rq60i; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1724360879;
- bh=4tP9VmGTaewIrqRGDE2dhUdaQkLMhws7PNGMCn9dZtk=;
- b=Im6rq60iCckgkj8fiAKg8XHPHFA8Fe0AUmsSozLD/cOaxGePEBEXp7QEgI1aMughZ2jUGq+3k
- EmKLJSzsHHIjWOrYSZDl8wV+i8LUMHJj+LHEXhlFtf6PbJKcYPuyf3zZmKYbsAKe8OPJ206wayx
- tGAe6udP3FjXn5b3mO830ORINVuEn29ujHRBgIWpMIrxLIWsaijgLaVBJw3rtbRtlWnd171mJ+l
- S9crwX8nUkjYCnwA0LVjGyc6lJQp6IpQoTZgojX6IMtTGsieNl8zfqvtovjMhCD9Ow2Bg5CC5I4
- /izCi/pWxVxmzGKU7sFc3UbLaI/AWw/4J/VEem+5COvg==
-Message-ID: <13942328-84bf-4b9f-a88f-287b233c1654@kwiboo.se>
-Date: Thu, 22 Aug 2024 23:07:54 +0200
+	s=arc-20240116; t=1724361219; c=relaxed/simple;
+	bh=mTBgG3Ma68htfIo38K+TfYoh4pQFiUyFdbvudorGaXQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=cuJc9GCBEc6S/60/aFqDzc7T3jfW0d8n/9ESSHLOOAUJiCk2MbvQUVnEERX0KugHNoHpWIjgh8iwDaUEMhag1ACrrlPX1TZOyzHJxQeBuLCjIv6r39vZyjt+fU69HANpkwPTFROK/HeVDzhy0rg4bjTKsojWS5NSRKsjuFoMHDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UIdAJoFK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D1A7C32782;
+	Thu, 22 Aug 2024 21:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724361218;
+	bh=mTBgG3Ma68htfIo38K+TfYoh4pQFiUyFdbvudorGaXQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=UIdAJoFKyUrY6k1SVSCNgFxRcKhr3Q5ZDOWajIilSTCXlT83kTV/nykP+UuimYLyE
+	 zOS7U9Q+s4Y+p3Y2PGIkYlwlx7sW51ny40FP0cLIFpSWYJ7Ynvo665hiRLShDnx1ht
+	 b76D3im0Ef+MHz9z2s/X2om/rqCkbXq75YG9OCzClVuT9vIzo0Ar9NepkWq3KYFRaI
+	 5PZG1XbgvQ1fCRvBuXiMbVZkTxy0KX6gdlqaFEhodtlPZI8swE3dFYrnz58DvkTApW
+	 G/Mz1rtdZXG0wp9fIC2KMjzg6BsOh1FqG+VyHcNtzRvSE3dAahQE3yBcr8PVA+EEsj
+	 OVgolAFc7OkgQ==
+Date: Thu, 22 Aug 2024 16:13:36 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	andersson@kernel.org, quic_vbadigan@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 4/8] PCI: Change the parent to correctly represent
+ pcie hierarchy
+Message-ID: <20240822211336.GA349622@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/8] arm64: dts: rockchip: enable USB-C on NanoPC-T6
-To: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20240822-friendlyelec-nanopc-t6-lts-v4-0-892aebcec0c6@linaro.org>
- <20240822-friendlyelec-nanopc-t6-lts-v4-7-892aebcec0c6@linaro.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20240822-friendlyelec-nanopc-t6-lts-v4-7-892aebcec0c6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 66c7a8ae9c6972850a4e9ce9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=Mcrrhagqykg6eXXkVJ2dYAm5ViLtwL=VKTn8i72UY12Zg@mail.gmail.com>
 
-Hi Marcin,
-
-On 2024-08-22 15:32, Marcin Juszkiewicz wrote:
-> Enable the USB-C port on FriendlyELEC NanoPC-T6.
+On Thu, Aug 22, 2024 at 10:01:04PM +0200, Bartosz Golaszewski wrote:
+> On Thu, Aug 22, 2024 at 9:28 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> >
+> > On Tue, Aug 13, 2024 at 09:15:06PM +0200, Bartosz Golaszewski wrote:
+> > > On Sat, Aug 3, 2024 at 5:23 AM Krishna chaitanya chundru
+> > > <quic_krichai@quicinc.com> wrote:
+> > > >
+> > > > Currently the pwrctl driver is child of pci-pci bridge driver,
+> > > > this will cause issue when suspend resume is introduced in the pwr
+> > > > control driver. If the supply is removed to the endpoint in the
+> > > > power control driver then the config space access by the
+> > > > pci-pci bridge driver can cause issues like Timeouts.
+> > > >
+> > > > For this reason change the parent to controller from pci-pci bridge.
+> > > >
+> > > > Fixes: 4565d2652a37 ("PCI/pwrctl: Add PCI power control core code")
+> > > > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> > > > ---
+> > >
+> > > Tested-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >
+> > > Bjorn,
+> > >
+> > > I think this should go into v6.11 as it does indeed better represent
+> > > the underlying logic.
+> >
+> > Is this patch independent of the rest?  I don't think the whole series
+> > looks like v6.11 material, but if this patch can be applied
+> > independently, *and* we can make a case in the commit log for why it
+> > is v6.11 material, we can do that.
+> >
+> > Right now the commit log doesn't tell me enough to justify a
+> > post-merge window change.
 > 
-> Works one way so far but still better than before.
-> 
-> Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 71 ++++++++++++++++++++++
->  1 file changed, 71 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> index 74dc1b490ca3..e63b2faee3b5 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> @@ -135,6 +135,8 @@ vbus5v0_typec: vbus5v0-typec-regulator {
->  		gpio = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&typec5v_pwren>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
+> Please, apply this patch independently. FYI I have a WiP branch[1]
+> with a v3 of the fixes series rebased on top of this one. Manivannan
+> and I are working on fixing one last remaining issue and I'll resend
+> it. This should go into v6.11.
 
-This should probably not be always-on/boot-on, the connector is
-described as power-role = "dual" and try-power-role = "sink", so should
-probably be possible to disable the vbus supply.
+OK.  I just need to be able to justify *why* we need it in v6.11, so I
+can apply it as soon as somebody supplies that kind of text for the
+commit log.  I.e., what is broken without this change?  What bad
+things happen if we defer it to v6.12?
 
-Regards,
-Jonas
-
->  		regulator-name = "vbus5v0_typec";
->  		regulator-min-microvolt = <5000000>;
->  		regulator-max-microvolt = <5000000>;
-> @@ -384,6 +386,32 @@ connector {
->  			source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
->  			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
->  			op-sink-microwatt = <1000000>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					usbc0_hs: endpoint {
-> +						remote-endpoint = <&usb_host0_xhci_drd_sw>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					usbc0_ss: endpoint {
-> +						remote-endpoint = <&usbdp_phy0_typec_ss>;
-> +					};
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +					usbc0_sbu: endpoint {
-> +						remote-endpoint = <&usbdp_phy0_typec_sbu>;
-> +					};
-> +				};
-> +			};
->  		};
->  	};
->  
-> @@ -927,6 +955,14 @@ &uart2 {
->  	status = "okay";
->  };
->  
-> +&u2phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy0_otg {
-> +	status = "okay";
-> +};
-> +
->  &u2phy2_host {
->  	phy-supply = <&vdd_4g_3v3>;
->  	status = "okay";
-> @@ -944,6 +980,29 @@ &u2phy3 {
->  	status = "okay";
->  };
->  
-> +&usbdp_phy0 {
-> +	mode-switch;
-> +	orientation-switch;
-> +	sbu1-dc-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
-> +	sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
-> +	status = "okay";
-> +
-> +	port {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		usbdp_phy0_typec_ss: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&usbc0_ss>;
-> +		};
-> +
-> +		usbdp_phy0_typec_sbu: endpoint@1 {
-> +			reg = <1>;
-> +			remote-endpoint = <&usbc0_sbu>;
-> +		};
-> +	};
-> +};
-> +
->  &usb_host0_ehci {
->  	status = "okay";
->  };
-> @@ -952,6 +1011,18 @@ &usb_host0_ohci {
->  	status = "okay";
->  };
->  
-> +&usb_host0_xhci {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +	usb-role-switch;
-> +
-> +	port {
-> +		usb_host0_xhci_drd_sw: endpoint {
-> +			remote-endpoint = <&usbc0_hs>;
-> +		};
-> +	};
-> +};
-> +
->  &usb_host1_ehci {
->  	status = "okay";
->  };
-> 
-
+> [1] https://git.codelinaro.org/bartosz_golaszewski/linux/-/tree/topic/pci-pwrctl-fixes
 
