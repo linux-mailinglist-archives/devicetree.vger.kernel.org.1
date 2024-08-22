@@ -1,132 +1,130 @@
-Return-Path: <devicetree+bounces-95825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262D895B693
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:27:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D3595B6D9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:33:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55B0F1C2316D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:27:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7B19B254B1
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:33:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185D61CBEA1;
-	Thu, 22 Aug 2024 13:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ygVBahdR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88FB61CB30B;
+	Thu, 22 Aug 2024 13:32:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from muminek.juszkiewicz.com.pl (muminek.juszkiewicz.com.pl [213.251.184.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846661CBE96
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 13:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4921C9DC6
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 13:32:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.251.184.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724333235; cv=none; b=XDNEYYESD2Hmfz/nTIoQjpbLQe9I7syIT7xUcEadykaPdz90XyPNDtDEDddR/pRVcYEuSHYTFQTO44hWfmyyzF7NONbCIbnlEVn+1zrOBPubE9xBr8Ohk/Oa2b+wqBoDisndbhBGaYBpY+iyIdQWibEpAsiXmiA8uTd2ib/SX6c=
+	t=1724333553; cv=none; b=V2Mt/GjyHtu5/mhjOZY7Up5VVpZZvmTPOKdG42rEHaB7BRTPDNexoM7QSc9Q/w4fFkOeWzRmU5CnBgbYjuy+B+q+Bpuo9tzFSTLJ59xmia39VLDZUKGzKUHimU/HpOw5fFglU0QJKhGS6TIFTi971my5YNcKFMhy+ZQV1lMaov8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724333235; c=relaxed/simple;
-	bh=mmPcytjB8m6exAvgg/oZ+VjBw5w/3yH5XfcO1PfEurs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SlJ5GmaXpky4w9iZ/E7GfwdbT8OfeySLIc+sjJx2/ldBUd+YO8y4V2WOqCucryoaAc+cQ0sr7vVDvMiQckDkn5FAAqNgkjIYfiwyQYQjRV371vmzuU3Efmav3wddF2nVipJzwxHp/sWZSb+56+9iAVjyilDj5RSEGJpV8KlJ/ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ygVBahdR; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3718ea278a8so143092f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 06:27:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724333232; x=1724938032; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=heGIarr05MZ0K7mmp6CHQvn8aVfPPIQkNf3ZJw1FViw=;
-        b=ygVBahdRZrMMH078Cx/+YPBzs7VsrQ5/y9GrsF76ck7YDWbs4boVqT7Xl55J+qOZG6
-         Wza9kBLB5KLt1Y+p21AQP+o+aoW2OwfHJ4/pBsTd7Y2usqfIN6tozFDzaBpdjg4WZSE8
-         GwoWIG0oyezZqg19Uk9AQ2lpUdWHXqHzekohjabE5ZTBJyXoP/xH6IIa8Kvm42d4J1wE
-         otk1r0ZH9WEf0N6IWxyHjD58wtV4kJx0/SzjCGjnlywd2dnvQ+325A7GCLMwKOZNaFCY
-         ku9O5LeKqJ5J1J2RXZribDEBwCAP+ww/xUAiwjHpKa300mZ1dass6NcPLe5OCGQbXqo6
-         FudA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724333232; x=1724938032;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=heGIarr05MZ0K7mmp6CHQvn8aVfPPIQkNf3ZJw1FViw=;
-        b=D56YPHkjpOuz1VEV0euXgkME2wYyR+GqKyp/6bVYaEwM/u8u0Szx38mPA3yH4cNILB
-         1iZYNuEcgaZtyfLrEUJuogEV/Kvy40k5I+mVic7HC2UYnGY0pRLivBo2tLBFna1UFZ1t
-         FZTZlT5+ti8eYzskOjK5jcxr4QudQUSFBcuTo+rnUXICz0OCbnBD0X/eyH3smBhFGepR
-         edDUxnLEs1ft42x8p5WYOuM8MSKpqaRq663RJ0WFdwt+Bg/hpNotRAGC+K7bIEcp7bLS
-         u1UFWpRhz/0Fe3bl5kMYh/Bi3KdWRPPMXqdJFb0nZIFgMDs9TqSbp3W9dJ4YiMzh22/U
-         K0sg==
-X-Forwarded-Encrypted: i=1; AJvYcCV0LM2SLS+w0fgFSJEauE5wZYV52sJ6wFIC/osrJid2yLID6dnFfhVX8xQ9WAwoX8dyFyHiADBsU6hm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaHTFhZAwKw3M+he7pRapa0N0wkLHymbd7NmUKYfYXOy/hEodr
-	DUiRaeZj3cnKITKw7b9f4NRvk2p6dtPZoCaumSuikL9FOkaBgquEvF4aC2fcSqM=
-X-Google-Smtp-Source: AGHT+IHnNSVQHM2d9IRfmql1uFIKdsWiicdATDg1EWg6EFTqcFXlV2endQY0D9GvUsxJ5J4dgUJ6zQ==
-X-Received: by 2002:a5d:6d89:0:b0:364:8215:7142 with SMTP id ffacd0b85a97d-372fd584d52mr2486942f8f.1.1724333231717;
-        Thu, 22 Aug 2024 06:27:11 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730810fb6bsm1703531f8f.21.2024.08.22.06.27.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 06:27:11 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Brendan Higgins <brendan.higgins@linux.dev>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Rayn Chen <rayn_chen@aspeedtech.com>,
-	linux-i2c@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: i2c: aspeed: drop redundant multi-master
-Date: Thu, 22 Aug 2024 15:27:08 +0200
-Message-ID: <20240822132708.51884-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1724333553; c=relaxed/simple;
+	bh=T6zBpNngbSptJI3YAcqQUUP/MNzWMbP+8GYLKei6XkE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VsJWaEixXRVL2tLxt3NqJWxL1Sv6RcUwoFU6dCGLl4QQeRfH7a1k0kgxTrpzGD8vcnYCmFRELLQzCCTk3JlHJ22gM+suci7BwLLRX1PmjsGMOHOMcmLLEL275V5S/r2rBPW5cpNQ1gomy+vr+uET/Sm2qZHv6ADuw8NZbjc+g50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org; spf=fail smtp.mailfrom=linaro.org; arc=none smtp.client-ip=213.251.184.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=linaro.org
+Received: from localhost (localhost [127.0.0.1])
+	by muminek.juszkiewicz.com.pl (Postfix) with ESMTP id 07F1B2602F0;
+	Thu, 22 Aug 2024 15:32:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavis at juszkiewicz.com.pl
+Received: from muminek.juszkiewicz.com.pl ([127.0.0.1])
+ by localhost (muminek.juszkiewicz.com.pl [127.0.0.1]) (amavis, port 10024)
+ with ESMTP id xmkMRkxh2gQE; Thu, 22 Aug 2024 15:32:21 +0200 (CEST)
+Received: from puchatek.local (83.25.211.12.ipv4.supernova.orange.pl [83.25.211.12])
+	by muminek.juszkiewicz.com.pl (Postfix) with ESMTPSA id A899726018D;
+	Thu, 22 Aug 2024 15:32:20 +0200 (CEST)
+From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
+Subject: [PATCH v4 0/8] FriendlyELEC NanoPC-T6 improvements
+Date: Thu, 22 Aug 2024 15:32:04 +0200
+Message-Id: <20240822-friendlyelec-nanopc-t6-lts-v4-0-892aebcec0c6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANQ9x2YC/43OTW7DIBAF4KtErDvWAJbtdJV7VF3AeJzQUnDAc
+ f7ku5cki7abKsv3NPreXEXm5DiL19VVJJ5ddjGUUL+sBO1M2DK4vmShUNXYKYShnIfen9kzQTA
+ hjgRTA37KgEht03akbd+KAoyJB3e642/vj5x4fygb00+5c3mK6Xx/YJa39qmtWYKE3kjVatKMH
+ W8+Dvny6fjo6FJR/KpGL27+rH6b8l9TAQKj1J21ErFWG++CSbGKafuw9POWLpZmGsx63VjL+Md
+ aluUbBM8IgnoBAAA=
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+ Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.0
 
-'multi-master' property is defined by core i2c-controller schema in
-dtschema package, so binding which references it and has
-unevaluatedProperties:false, does not need to mention it.  It is
-completely redundant here.
+This series updates FriendlyELEC NanoPC-T6 situation. There is non-LTS
+(2301) version of a board and LTS (2310) version.
 
-Suggested-by: Andi Shyti <andi.shyti@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series creates common DTSI for both boards and then separate
+NanoPC-T6 and NanoPC-T6 LTS DTS files. This way T6 gets MiniPCIe section
+and T6-LTS gets USB20 section.
+
+Then set of changes for both versions are done:
+
+- enable USB-C port (one orientation only)
+- enable Mali GPU
+- enable IR receiver (not tested)
+- enable SPI flash (present on LTS, optional on non-LTS)
+- enable Mask Rom button as input device
+
+Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 
 ---
+Changes in v4:
+- added Acked-by to dt-bindings patch
+- create common dtsi for both board versions
+- nanopc-t6.dts has minipcie items
+- nanopc-t6-lts.dts has usb 2.0 host enablement
+- Link to v3: https://lore.kernel.org/r/20240821-friendlyelec-nanopc-t6-lts-v3-0-3ecfa996bbe0@linaro.org
 
-Reference:
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/i2c/i2c-controller.yaml#L114
+Changes in v3:
+- create separate NanoPC-T6 LTS devicetree as suggested
+- Link to v2: https://lore.kernel.org/r/20240821-friendlyelec-nanopc-t6-lts-v2-0-e0138bb10042@linaro.org
+
+Changes in v2:
+- merged changes into NanoPC-T6 dts file
+- add SPI flash pinctl for SPI M1
+- enable SPI on NanoPC-T6 LTS
+- enable USB-C port (one orientation only)
+- enable Mali GPI
+- enable IR receiver (not tested)
+- Link to v1: https://lore.kernel.org/r/20240820-friendlyelec-nanopc-t6-lts-v1-1-da1273c3e08e@juszkiewicz.com.pl
+
 ---
- Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml | 5 -----
- 1 file changed, 5 deletions(-)
+Marcin Juszkiewicz (8):
+      arm64: dts: rockchip: define pinctl for SPI M1
+      dt-bindings: arm: rockchip: Add NanoPC-T6 LTS
+      arm64: dts: rockchip: add NanoPC-T6 LTS
+      arm64: dts: rockchip: add SPI flash on NanoPC-T6
+      arm64: dts: rockchip: add IR-receiver to NanoPC-T6
+      arm64: dts: rockchip: enable GPU on NanoPC-T6
+      arm64: dts: rockchip: enable USB-C on NanoPC-T6
+      arm64: dts: rockchip: add Mask Rom key on NanoPC-T6
 
-diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-index 6df27b47b922..5b9bd2feda3b 100644
---- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-@@ -44,11 +44,6 @@ properties:
-     description: frequency of the bus clock in Hz defaults to 100 kHz when not
-       specified
- 
--  multi-master:
--    type: boolean
--    description:
--      states that there is another master active on this bus
--
- required:
-   - reg
-   - compatible
+ .../devicetree/bindings/arm/rockchip.yaml          |   6 +-
+ arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+ .../boot/dts/rockchip/rk3588-base-pinctrl.dtsi     |  17 +
+ .../boot/dts/rockchip/rk3588-nanopc-t6-lts.dts     |  61 ++
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts  | 910 +--------------------
+ ...{rk3588-nanopc-t6.dts => rk3588-nanopc-t6.dtsi} | 136 ++-
+ 6 files changed, 206 insertions(+), 925 deletions(-)
+---
+base-commit: 6e4436539ae182dc86d57d13849862bcafaa4709
+change-id: 20240820-friendlyelec-nanopc-t6-lts-00c7678c3bd7
+
+Best regards,
 -- 
-2.43.0
+Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 
 
