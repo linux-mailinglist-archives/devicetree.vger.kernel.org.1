@@ -1,135 +1,193 @@
-Return-Path: <devicetree+bounces-95879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9B895BA8A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:35:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF5595BA82
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0E46B29ADC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:33:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08D541C23E49
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6294E1D1F6E;
-	Thu, 22 Aug 2024 15:28:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11721CCB2C;
+	Thu, 22 Aug 2024 15:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="eNET13nc"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b="Dh42t0xb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1CC1D1F49
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 15:28:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724340533; cv=none; b=mOYcwEUklGHHDS6EU1JzvJWJ0p9yEvRwHI0CQUQs346+viqpvNdUxJFbe5mxdRr0616WifUxv5OFRtvKu8pPI39Ol5F/4/ChXqFLfG0Dj7U5th+5qCztmZNrHLjdPa076XrXYNvk9G+rMxY7P5qNl/lpywT62Wioxtl5lqOsKoA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724340533; c=relaxed/simple;
-	bh=EuKZSKvEQCXDCZNoMj0d43yKeS+Y83/X3kJnCx6rqMY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Zw44P873qSBtS76C2dx92pfxXSR2NOH8MElfKoLJDFlnY+5wvK5jLI+T43YZldrDC3r7Be9Smdj3JfMXFgSE6KPGfG2PqTO7uxZ9+1osk3Qj+RL7m1qxng/m6/Mvdny3mCtzGy9sTr7uUJcozGyxirzBkvBHSr5fgnqEUt+ROOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=eNET13nc; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42ab99fb45dso9504765e9.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 08:28:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1724340530; x=1724945330; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YzzVJZseYqmAj3uluQhRMecpWI1dTsj4zEH1FZKD0d4=;
-        b=eNET13ncH98OLgbcdG0m6G74QdeBkl8ixJZo/ljhZqeBccGQmKVF2xjxOfTCK9JqF6
-         jskjXJaLSX7pARiTsCNZstW3xjf2GH+X03ldyAeJjGcAc5nUkmOy/mBnGw1utLurYAkS
-         du7Rt4CBkpic6xozXZ6BCihFhHIHyfzVGS2u3PZghi9I7RI9OUHy8hAxENHmVmwZFFNC
-         wpCTHMj97ffi4DP6tpXp34qtdAke1+gnCtc88qDa+74iGJCcSqaXI32t/7PDWlkTJIaG
-         Qt2Px8RBAoaWVk72CUoWckj5vp6z5z0m1AE37fhec+fuSEdOy8R8oTCIfy31Tb/bF1Kw
-         3uFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724340530; x=1724945330;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YzzVJZseYqmAj3uluQhRMecpWI1dTsj4zEH1FZKD0d4=;
-        b=e7IkpSyvDFkwLcKuPzdG+3t/cdA6p31h2ZE4xVRvxoT4L0sVo+88h9b9XyuaINCi4e
-         a3trxBtbesCUyWkilZxrs62LCKmQXALRFwuG2Kryu6dxIJU+umRy42pEfVWSwlCuiUAm
-         TQzbw3Y+M+5Ut6KUtWODI7K4Kmq7eeYCYiMXJJcO4STp81Svj69vlJt0qHDaEWngyWhO
-         MvzRWJeDE4e8zk5NQCF3xAyp5XZhM+ZVbJzbPl7If0NZqxckGg96/RaeZkTr6NbEXAfi
-         dFOY9i5n/hj7XkpWt1LpEogd0KeD59Wmy/MK+S6vGZ1wYLjpY7evryfvng7iudCz91kY
-         WCzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRGhoGBlXcvitUEhtF5X2xY65ZTmSij1QfxHT9FCdQ+YlyWHHaq05eSPp9OiwdiACaw8axkGAulqd9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxH6mQmPqko/Qh5jo1BpocVPT+KOibTLPYFo8EtAk3NFgxihcd
-	Fmf2Yk0a1KcHHl4PzPpvyU6rO9JWisjQjqirsGwBx0FdzpIQQeOQYj3Y2NDUSI0=
-X-Google-Smtp-Source: AGHT+IHCUCn+biQIAnOUlxWOCjXAVeKX8ey9d7uY1NWlOsuugSxvOZNpC2pcgsn0KfGk8KOYuf8lZQ==
-X-Received: by 2002:adf:a416:0:b0:36b:3395:5363 with SMTP id ffacd0b85a97d-37308c1826emr1937317f8f.16.1724340529907;
-        Thu, 22 Aug 2024 08:28:49 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f484dc5sm134189166b.171.2024.08.22.08.28.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 08:28:49 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	gregkh@linuxfoundation.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	yoshihiro.shimoda.uh@renesas.com,
-	biju.das.jz@bp.renesas.com,
-	ulf.hansson@linaro.org
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	claudiu.beznea@tuxon.dev,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 16/16] arm64: defconfig: Enable RZ/G3S SYSC reset driver
-Date: Thu, 22 Aug 2024 18:28:01 +0300
-Message-Id: <20240822152801.602318-17-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17721CB30F;
+	Thu, 22 Aug 2024 15:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724340786; cv=pass; b=REf2P89/Gq0oD2XW8w8knE7yfzojOuf+5arsWwufwgwuU5uC0QWMbLHj+9uMhOoliDZssaVnFli+PIlWDaaoA3qtNrQ+5k1EGRczLeVm9n42Lz79wiPMjqUPh2Kxygj/JfchXh5GrzCQXviLDic0iaa6GZtficbGSef5nGCdTYg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724340786; c=relaxed/simple;
+	bh=CyC4Jd87GaLPha/s+2aYDHeC7vXeAzjbKPjewvlljdc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qDyXh+qP8dr/7JkU/9dc+de1o4dlhBXFxrBb/tg5dsXY9i6spefDwgckdrx2zzympWYJt3tjop1Tgoh8WOOzJx0InlX3Lj39pEbFgNetuse5XJ/zao/mlBH/cTOC16vxcTM0o/I6+e15agr2LOfpdnaojuE8WYaqde1nb/5t3gU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b=Dh42t0xb; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: nfraprado@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724340769; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=a7AUM2Xbxn4Eof2YYSDtDTHdvd0McWkZt01OmEg6CgIsGm5c9LXrIZe5PnH60OgVNlCbcy/x7hnLUhWDx02zuiD4PmC/fpbBC1Qy7lqXS4QYoIdMRRLVaWIZvjbWTs2jO2/H/kqtJTKfMtTR8fkaIFOdaEi06y2mmoR3m2LiRPc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724340769; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=GYmsMO86M+MRWiuSffdR3RZ+erob4a0FODJM/LZV2Xk=; 
+	b=GWoMp+tNXjBNDLmNdWJHV1aJjfDIRBJCNf3tXBNCjr6TcvyehGapuEsoLpAgiARm7CtNcPhhNsSwngpLrRQ0ADi2aGUoJW+HlJ99ptNq25ITk1lF8+/hVIQoCcSFHCae4FZ/qICQSx1EZBfV2S3S2UWiBfi8jn2vCl08Qqu3h/w=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.fricke@collabora.com;
+	dmarc=pass header.from=<sebastian.fricke@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724340769;
+	s=zohomail; d=collabora.com; i=sebastian.fricke@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=GYmsMO86M+MRWiuSffdR3RZ+erob4a0FODJM/LZV2Xk=;
+	b=Dh42t0xbRWLCxW8F/S+l3+cGdiaONmsgqzKhPpkFvWgV00U9Ola2pFyK5IUqbmln
+	M1bvoYPZYshyS50jbWdLQDW+VTSO8acHmPzprwIJ9XdByer014S4QfoLHLrEm5qmikT
+	21NlW+22JIjnZ5iD/akskU/YrRqQwFXZbOWLmdEE=
+Received: by mx.zohomail.com with SMTPS id 172434076798266.91759029586126;
+	Thu, 22 Aug 2024 08:32:47 -0700 (PDT)
+Date: Thu, 22 Aug 2024 17:32:42 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4 2/7] media: mediatek: vcodec: change flush decode
+ order when stream off
+Message-ID: <20240822153242.sewrferyfh3u5g4h@basti-XPS-13-9310>
+References: <20240807082444.21280-1-yunfei.dong@mediatek.com>
+ <20240807082444.21280-3-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240807082444.21280-3-yunfei.dong@mediatek.com>
+X-ZohoMailClient: External
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hey Yunfei,
 
-Enable RZ/G3S SYSC reset driver. This exports the control to 2 signals
-(one for USB, one for PCI).
+On 07.08.2024 16:24, Yunfei Dong wrote:
+>The buffer remove and buffer done of output queue is separated into
+>two works, the value of owned_by_drv_count isn't zero when output
+>queue stream off before flush decode.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+You have to try this again, I cannot make sense out of your message.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 7d32fca64996..4720367a41ea 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1510,6 +1510,7 @@ CONFIG_RESET_IMX7=y
- CONFIG_RESET_QCOM_AOSS=y
- CONFIG_RESET_QCOM_PDC=m
- CONFIG_RESET_RZG2L_USBPHY_CTRL=y
-+CONFIG_RESET_RZG3S_SYSC=y
- CONFIG_RESET_TI_SCI=y
- CONFIG_PHY_XGENE=y
- CONFIG_PHY_CAN_TRANSCEIVER=m
--- 
-2.39.2
+What do you mean with:
+"The buffer remove and buffer done of output queue is separated into two works"
 
+I suppose this:
+the value of owned_by_drv_count isn't zero when output queue stream off
+before flush decode.
+
+should be:
+therefore the value of `owned_by_drv_count` isn't zero while flushing
+the decoder in the STREAMOFF(OUTPUT queue) IOCTL.
+
+right?
+
+>Changing the flush decode from capture to output when stream off to
+>make sure all the output queue buffers are set to done list.
+
+I'd change this section to:
+
+Flushing the decoder during STREAMOFF(OUTPUT) instead of during
+STREAMOFF(CAPTURE) makes sure that all buffers on the OUTPUT queue are
+set done.
+
+The rest looks fine.
+
+Regards,
+Sebastian Fricke
+
+>
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 45 +++++++++----------
+> 1 file changed, 22 insertions(+), 23 deletions(-)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>index 2b787e60a1f9..7080ca3e18b0 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>@@ -893,32 +893,31 @@ void vb2ops_vdec_stop_streaming(struct vb2_queue *q)
+> 				v4l2_m2m_buf_done(src_buf, VB2_BUF_STATE_ERROR);
+> 			}
+> 		}
+>-		return;
+>-	}
+>-
+>-	if (ctx->state >= MTK_STATE_HEADER) {
+>-
+>-		/* Until STREAMOFF is called on the CAPTURE queue
+>-		 * (acknowledging the event), the driver operates
+>-		 * as if the resolution hasn't changed yet, i.e.
+>-		 * VIDIOC_G_FMT< etc. return previous resolution.
+>-		 * So we update picinfo here
+>-		 */
+>-		ctx->picinfo = ctx->last_decoded_picinfo;
+>
+>-		mtk_v4l2_vdec_dbg(2, ctx,
+>-				  "[%d]-> new(%d,%d), old(%d,%d), real(%d,%d)",
+>-				  ctx->id, ctx->last_decoded_picinfo.pic_w,
+>-				  ctx->last_decoded_picinfo.pic_h,
+>-				  ctx->picinfo.pic_w, ctx->picinfo.pic_h,
+>-				  ctx->last_decoded_picinfo.buf_w,
+>-				  ctx->last_decoded_picinfo.buf_h);
+>+		if (ctx->state >= MTK_STATE_HEADER) {
+>+			/*
+>+			 * The resolution hasn't been changed when STREAMOFF is called.
+>+			 * Update the picinfo here with previous resolution if VIDIOC_G_FMT
+>+			 * is called.
+>+			 */
+>+			ctx->picinfo = ctx->last_decoded_picinfo;
+>+
+>+			mtk_v4l2_vdec_dbg(2, ctx,
+>+					  "[%d]-> new(%d,%d), old(%d,%d), real(%d,%d)",
+>+					  ctx->id, ctx->last_decoded_picinfo.pic_w,
+>+					  ctx->last_decoded_picinfo.pic_h,
+>+					  ctx->picinfo.pic_w, ctx->picinfo.pic_h,
+>+					  ctx->last_decoded_picinfo.buf_w,
+>+					  ctx->last_decoded_picinfo.buf_h);
+>+
+>+			ret = ctx->dev->vdec_pdata->flush_decoder(ctx);
+>+			if (ret)
+>+				mtk_v4l2_vdec_err(ctx, "DecodeFinal failed, ret=%d", ret);
+>+		}
+>
+>-		ret = ctx->dev->vdec_pdata->flush_decoder(ctx);
+>-		if (ret)
+>-			mtk_v4l2_vdec_err(ctx, "DecodeFinal failed, ret=%d", ret);
+>+		ctx->state = MTK_STATE_FLUSH;
+>+		return;
+> 	}
+>-	ctx->state = MTK_STATE_FLUSH;
+>
+> 	while ((dst_buf = v4l2_m2m_dst_buf_remove(ctx->m2m_ctx))) {
+> 		vb2_set_plane_payload(&dst_buf->vb2_buf, 0, 0);
+>-- 
+>2.46.0
+>
+>
 
