@@ -1,181 +1,157 @@
-Return-Path: <devicetree+bounces-95700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CAC95AD5A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:22:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9937995AD5C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:22:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA72D1C21B8A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 06:22:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 558ED28699C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 06:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF231369B6;
-	Thu, 22 Aug 2024 06:21:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33546137930;
+	Thu, 22 Aug 2024 06:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ps6ERRIb"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Aj6dlKNz";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="lJT/kkIx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA71D81727
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 06:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1584B81727;
+	Thu, 22 Aug 2024 06:22:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724307718; cv=none; b=FL/mlYPF15+vt3oHnRG33k5V4LbUfhYqRC4eW8NdyWhNiU/wqDVbAdlqVz9HoH0/8t3dIpgX+2kh3oROr8j4qCb54MGBZKY2Unz5r3jneEPvgSCh3lI6/Yq2VLPJD7bGinKNYTmfnW6IytM8P9ln1Q+GhpOcHDEW/IRu7uYiU4E=
+	t=1724307736; cv=none; b=QtcLZy3hLrD01ufA3jnfxdqcSP8Tru5/1yN+hPvwEZFnc+4OcwrTI2Ed0ZJ3RdD89qV5EbcILJloHMHKIcCkBVkkvnGH6REnKkCXxpnfoFJzxddbI4edXN/dvpnqD1lHR/8YKbDXXfoqq91LGtWoe5ZEZSRq8n+McYE0o9hhFuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724307718; c=relaxed/simple;
-	bh=OP443SSTh/VgDQFvUdEeIwWO/Vhljo7Vkax9zdxHmoM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cSBAdtQ+Y8mbd2dFkbRsI7nq965OBqetCRZUH7SVQYXQfmerwKi5mtKIOEd6nJ6XSyq8fnOtY3OMYgl3+At1tm/6YBmgzIfWe1Y9g0rWhyMNKZdHz+74gASzU7D0pHn65qkjsGeDn3UPLmQZB9cN2OnqDNNXXNXHpyf0bnDlU5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ps6ERRIb; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-428098e2b3bso329795e9.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 23:21:56 -0700 (PDT)
+	s=arc-20240116; t=1724307736; c=relaxed/simple;
+	bh=csktVlUd6zjngU+kiQAqMkHQ0LItDogAIQxKiC3ue38=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KkZ6CWhjbeDUsOGHgvYJhTgYbdkGGW/zdkuPo7xPojVrsV8mDq7c3RoCnpZt9suUv8gMR021oV1FJmp+b/YYkESADHyE4Kj9bhClnd5IATRzs8Idvc6rcDTp/Jd1jqoZzKGD5NAk7YjlmDh+w6j8KJDvqQPK3+BH8xD7a40/uoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Aj6dlKNz; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=lJT/kkIx reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724307715; x=1724912515; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Th4fxbOrXi4rtluaN/trD8ZFCHj52Mic7foOWV6/DNQ=;
-        b=ps6ERRIbU07kVMwyWyXgAwjufRMnTqKhzRwdKUeCUP+wrEReu/dAdLz4IZIzDuCyZe
-         PDY7RIsNQZqt9kYprd12YxNPBTKE5p2pVwZ272p8jrsUzd75UMzN4D/FZxw2+7ciRwKL
-         gQQ/o+nZ8GOCpo1fxrWSLHyWSm2bzYeswwILl8XZXJZ/J+qQLv/UmHdzJzyoh+keTUhI
-         lmKavsSlFxSgqdZpPm10Gsxir+G+9WyWPcZoJvdFf1fsa/0yAo7R7hCjphyxasdWJWeI
-         Z8jSmxIB36wXgD21SRwU8Q3OxAc75fU/kBpdOFDOMPTjIa+nikz4n33XzbNfWJRXZpJ1
-         nGAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724307715; x=1724912515;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Th4fxbOrXi4rtluaN/trD8ZFCHj52Mic7foOWV6/DNQ=;
-        b=syEITQqoQjD2pYBSA/1pZjJlo+fvyMMQoByFpoxBZElHlGnSqHT05HobpUceVnKLyY
-         RTH7ByQp8sPElWLpdCk3S2Y5AW8TGH44Avmf6cGohfh3r4E7oTzkvT4WDPv+4HiZVBkL
-         rM5IadfOFR2H1E9qe6/S1kfB/FQrs0TbAWKMslOC435OEznmnUSx3JPPb7/sGY1qw3F5
-         ES0rL9xkGmFCFUCUnmekrZQ0yZURcb281CRE24cMmE4vz0g8nUc0Tf/mzbzFyAtAH8uE
-         NxH26aZGuSscHX0819VCGEiigxcg+9m+XVY3E4d4MRpqki88tMGAMLOF3wOkLxv1afPF
-         kCgw==
-X-Gm-Message-State: AOJu0YyVAsaycssL+OYJHxbzQIVUCpK6Urp6fp3wFJCUdbWsmWWGjaM6
-	Id4WIZr6SWPetXyA56Z80POlFOqh+xPpmz8drEyC8KqJKitbdPJ3mwOANQ10b/I=
-X-Google-Smtp-Source: AGHT+IGZ3dTQ7X/ih2+ZP1ZcY+1uIFZ+jEuS197/12xOVUcTyJYPZIciuYIw4NCT+K7rkUoENswVgQ==
-X-Received: by 2002:a05:6000:154d:b0:362:4aac:8697 with SMTP id ffacd0b85a97d-372fd4d1195mr1844120f8f.0.1724307715046;
-        Wed, 21 Aug 2024 23:21:55 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37308274aacsm786804f8f.111.2024.08.21.23.21.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Aug 2024 23:21:54 -0700 (PDT)
-Message-ID: <2e38f14b-41f4-401f-915e-fe3a4c1bfbe8@linaro.org>
-Date: Thu, 22 Aug 2024 08:21:52 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1724307732; x=1755843732;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=HcacUbyWZpubuOZfhpUp0O/XtbHaSh9hAtoPucDtrT8=;
+  b=Aj6dlKNzkNYTgj1uNGaZVqdFqTSq9dw/cU+lVf7xxskYxJ2vaxuAXU2I
+   zbXUsspLHjatq17TX9G9zd8KW/HIz0sy1Y3W3XdaoXga9s0+/Xiejt1bI
+   tn+HNWHKjZPUJMn7nY7wrAHPHRT63RJzrymWYJqaJw/uiLgNl7MqVxRrf
+   lM85yR7cH5m/b4uqfg2OlRK9VmsocmYQqBupySM3fug5rVy7GoTh1hL20
+   b/M7sJBqOp9T4RndoY+sIJfQYTik2LylwAVCqdwaVN13siPhatZ37DBlJ
+   yteWr6CbskWh17tW5C6BVEI7zsB2UwEoq/N/a2z6nyPy91pVbGcmmgN7s
+   g==;
+X-CSE-ConnectionGUID: E6tHCRO9QM2p7DUS4trJQw==
+X-CSE-MsgGUID: /jOy0pFhQ4SItQ8rvlmKdQ==
+X-IronPort-AV: E=Sophos;i="6.10,166,1719871200"; 
+   d="scan'208";a="38527603"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 22 Aug 2024 08:22:09 +0200
+X-CheckPoint: {66C6D911-3F-C661815F-E221238E}
+X-MAIL-CPID: 816D29BFA19136B10F9B9F48EDBA3AC2_1
+X-Control-Analysis: str=0001.0A782F16.66C6D911.0129,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D51C9169465;
+	Thu, 22 Aug 2024 08:22:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1724307725;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=HcacUbyWZpubuOZfhpUp0O/XtbHaSh9hAtoPucDtrT8=;
+	b=lJT/kkIxxTFg3RbJfT65e8khXpzaNFX2GY/oZ40cpYo4wu0AwYVTgHngkgZbLmEfD1oCHy
+	l9FDur+S3iSfUNi3qsbukLP+pX8cyOgdSQlpI8pGQEYmHM7JYG19IKBnokwsEFQ3TbNH6I
+	QnqZ8M2dzkGWDzXZgFjsyPE0VCoLRLmsE8qRz7RheYg4V8HqEGH6o11Ja7wVAeI4lsrM/j
+	bc+HDus/QTMAcuG9gtGJK82nDXOmGYRCDF10i32Y1l4NReqJFGI3rTQps/m2sdnbKXlgA6
+	VAqyfswpLVQ5KZbbeumTAJ6cL6OTtraIilnC4thVQysBr/Xb8FfGACJGQGhO2Q==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: krzk+dt@kernel.org, festevam@gmail.com, shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: tarang.raval@siliconsignals.io, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Tarang Raval <tarang.raval@siliconsignals.io>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals Support
+Date: Thu, 22 Aug 2024 08:22:03 +0200
+Message-ID: <1979640.PYKUYFuaPT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240821135817.56393-1-tarang.raval@siliconsignals.io>
+References: <20240821135817.56393-1-tarang.raval@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: exynosautov9: Add dpum SysMMU
-To: Kwanghoon Son <k.son@samsung.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CGME20240819075546epcas1p355a3c85ffcea2c43e8f1b2c69a0f3b4e@epcas1p3.samsung.com>
- <20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
- <172423973836.252925.2617927566866963313.b4-ty@linaro.org>
- <754863f6-0fc3-4223-940a-4ca33bfbe633@linaro.org>
- <62304fa0bdbc76cb006927b6d40c670c4843f83f.camel@samsung.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <62304fa0bdbc76cb006927b6d40c670c4843f83f.camel@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 22/08/2024 04:16, Kwanghoon Son wrote:
-> On Wed, 2024-08-21 at 13:29 +0200, Krzysztof Kozlowski wrote:
->> On 21/08/2024 13:28, Krzysztof Kozlowski wrote:
->>>
->>> On Mon, 19 Aug 2024 16:55:45 +0900, Kwanghoon Son wrote:
->>>> Add System Memory Management Unit(SysMMU) for dpum also called iommu.
->>>>
->>>> This sysmmu is version 7.4, which has same functionality as exynos850.
->>>>
->>>> DPUM has 4 dma channel, each channel is mapped to one iommu.
->>>>
->>>>
->>>> [...]
->>>
->>> Applied, thanks!
->>>
->>> [1/1] arm64: dts: exynosautov9: Add dpum SysMMU
->>>       (no commit info)
->>
->> I should reply here - unapplied. Does not build.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> I apologize for the inconvenience.
-> 
-> This should come after
-> https://lore.kernel.org/linux-samsung-soc/20240809-clk_dpum-v3-0-359decc30fe2@samsung.com/
-> patch (already merged in next) as 'next'.
-> 
-> Would it be okay to you if I write 'next' on title and required patch
-> in cover-letter? or anything more make you more easy to review.
+Hi,
 
-'next' has no meaning. It is impossible to apply patches on next.
+Am Mittwoch, 21. August 2024, 15:58:17 CEST schrieb Tarang Raval:
+> Add following peripherals support for the Emtop i.MX8M Mini Baseboard
+>=20
+>     * Wi-Fi
+>     * Audio
+>     * SD card
+>     * RTC
+>     * CAN bus
+>     * USB OTG
+>=20
+> Signed-off-by: Tarang Raval <tarang.raval@siliconsignals.io>
+> ---
+>=20
+> Changes in v2:
+>=20
+> 1. Updated the node name and pinctrl name
+> 2. Removed the 'regulators' container
+> 3. Removed a stray blank line
+> 4. Removed non-existent properties
+> 5. Removed unused node and pinctrl
+>    - modem-reset
+>    - pinctrl_uart1
+> 6. Defined the CAN transceiver reset GPIO separately
+> ---
+>  .../dts/freescale/imx8mm-emtop-baseboard.dts  | 323 ++++++++++++++++++
+>  1 file changed, 323 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts b/a=
+rch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
+> index 7d2cb74c64ee..322338e626ce 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
+> @@ -11,6 +11,113 @@ / {
+>  	model =3D "Emtop Embedded Solutions i.MX8M Mini Baseboard V1";
+>  	compatible =3D "ees,imx8mm-emtop-baseboard", "ees,imx8mm-emtop-som",
+>  		"fsl,imx8mm";
+> +
+> +	extcon_usb: extcon-usbotg1 {
+> +	        compatible =3D "linux,extcon-usb-gpio";
 
-You should document the dependency in changelog or cover letter.
+Please refer to Documentation/devicetree/bindings/extcon/extcon-usb-gpio.ya=
+ml:
+> Deprecated, use USB connector node instead.
+>
+> deprecated: true
+
+Switch to connectors instead.
+
+> +	        pinctrl-names =3D "default";
+> +	        pinctrl-0 =3D <&pinctrl_extcon_usb>;
+> +	        id-gpio =3D <&gpio1 10 GPIO_ACTIVE_HIGH>;
+> +	        enable-gpio =3D <&gpio1 12 GPIO_ACTIVE_LOW>;
+
+Use id-gpios and enable-gpios.
+
+> +	};
+> +
 
 Best regards,
-Krzysztof
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
