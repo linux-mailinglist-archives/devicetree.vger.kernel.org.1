@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-95842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA0C95B7C1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:58:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2FAA95B7C6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:58:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1508E1F25B12
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:58:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F160E1C23D39
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90B91CBE94;
-	Thu, 22 Aug 2024 13:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221491CBE87;
+	Thu, 22 Aug 2024 13:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XBxMu/Qq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ipZpBq3t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B7F1C9449;
-	Thu, 22 Aug 2024 13:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06861CB136;
+	Thu, 22 Aug 2024 13:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724334858; cv=none; b=uJnxiqDdIa1sLeh02Fd5qsFpXLBATUBn5uq7zrFN+vLgx81fp9Lw+WprpFQqkDszoF3PefjZDXovr4LSdumbL/MWHppRD/UpfFCOZi0GO9C75dwfO0PIAHs98TAsW48PVZWf0UXtJzX5ajPyM2DpY11SGEbmUhd3vm3dnK4fbew=
+	t=1724334975; cv=none; b=WCu7E1hZG07Oi5vzLCdIQdIHUhdmT1kTsFtigJr6vBM6dl4y1xODliTmHWChxD5JWj2iQQ6MMXk50MPjgUC7UDhayOnmWJds/qCYrJYUf97riXjOWsiWk9jKUv6xujicQXjU7HpJgAATtix8WMRhSaWExbvjBScSOVFvHC3fgwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724334858; c=relaxed/simple;
-	bh=6WD4597q5Hvbt9P6xZ0ON6oN0TTnndPGmI59xwiWKqc=;
+	s=arc-20240116; t=1724334975; c=relaxed/simple;
+	bh=83y5mAvMFwb/52T/dC15P2ISdACxMzr45hpeGSISWD8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=JulUHf1smT3jBDRx3LqL6ZHQiKMscxbMrF6USi1FaM76dLM8gza1ofNHZ3ZOtlYzbwlUsI8F5kQPt/t4kFtcw2uiBv73PGiMgkd4FjmVSHNgW2ybNAPIRRTEqBambPBBLiDh9OqRcYiw2crVPRfM2dLTIaz6FP0bUG//a5Y4/rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XBxMu/Qq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E107C32782;
-	Thu, 22 Aug 2024 13:54:13 +0000 (UTC)
+	 MIME-Version:Content-Type; b=MkHjyEvfhtcZgA8JJiuJD9l+muc5E3Tw+Xc839zNAwmQW8rvc4EZKmWN3gOOFv0skgnd0G9K63XnDgeLGcv641lZwAp3hREVON+V4yy+DD09scseTqEf925xo69klCEh8xi3mvKup9EF2rv1wVwZmLw1gaixM1PtcirjR3TGdhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ipZpBq3t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61420C32782;
+	Thu, 22 Aug 2024 13:56:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724334858;
-	bh=6WD4597q5Hvbt9P6xZ0ON6oN0TTnndPGmI59xwiWKqc=;
+	s=k20201202; t=1724334974;
+	bh=83y5mAvMFwb/52T/dC15P2ISdACxMzr45hpeGSISWD8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=XBxMu/QqDQ4cGB8jQFs1IuSkBYSIxCFS3goNt5UkG1qfywV9HMJKJn3vGjSfSmUfl
-	 IhHn6hRwgI8+BpGkioxnq2VTS5iuilqM/YBZ1PPJuluU9hrm2hQ8CNXkWAAEe8V3Dt
-	 B3alQjdqHvQPf40OzSHlmvHpVTbG/TZx5l0z7Ah5NeX6oXVSOXm7a8zx7uuHDdSWBt
-	 FDaM9kEKQ6NYtMzjaF8GJ2JXA/BCggqwpzq6Ah6zIRzd7DmT3BH4pl4GKAIHkiv3Oi
-	 sNLndTaZdVtCWsXn2U8OdkO8HrkUV1HD2oPtMLEwcWu6Ft3him2oste9xccH+cwUBy
-	 Siz3hYaYy5PVQ==
+	b=ipZpBq3tm2GQv9RGU3hlSvWehe61/Q77a7ysRbHQN5spD04G3ghAj1boBChAgppr7
+	 JvfbzIje+j7tPsQyZ0SUGuPww2IjGFp2MSlhw5PMtYdhY5KrOmDfj3R0+YKBs+d1NC
+	 1EnuvPbEfU1dmlJFkAxRP+QP4vXpltAcUQ2HXEY7cWcq0zqBRaUcZxRKVog8wcNOVo
+	 saeo1bs4dQMuJ3pdI/Kg5VigfYuKoPDK0P5USfy1K+ELmrrG+4uLCblE2K0mBdezb9
+	 powIMiXoDHV+TBtG4LcgEMyhIzRFP9J+tquRJV8i5ytMdDfCTXJzED9oKmcWttDUNd
+	 rn4cu2TND8P+A==
 From: Lee Jones <lee@kernel.org>
-To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
- quentin.schulz@free-electrons.com, mripard@kernel.org, 
- tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com, 
- u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org, 
- jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org, 
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de, 
- jic23@kernel.org, jonathan.cameron@huawei.com, 
- Chris Morgan <macromorgan@hotmail.com>
-In-Reply-To: <20240821215456.962564-12-macroalpha82@gmail.com>
-References: <20240821215456.962564-1-macroalpha82@gmail.com>
- <20240821215456.962564-12-macroalpha82@gmail.com>
-Subject: Re: (subset) [PATCH V4 11/15] mfd: axp20x: Add ADC, BAT, and USB
- cells for AXP717
-Message-Id: <172433485381.1334876.7027428905035727559.b4-ty@kernel.org>
-Date: Thu, 22 Aug 2024 14:54:13 +0100
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>, 
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev
+In-Reply-To: <20240821222001.591111-1-Frank.Li@nxp.com>
+References: <20240821222001.591111-1-Frank.Li@nxp.com>
+Subject: Re: (subset) [PATCH v3 1/1] dt-bindings: leds: convert
+ leds-lm3692x to yaml format
+Message-Id: <172433497215.1336217.1502532437864116817.b4-ty@kernel.org>
+Date: Thu, 22 Aug 2024 14:56:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,17 +64,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.13.0
 
-On Wed, 21 Aug 2024 16:54:52 -0500, Chris Morgan wrote:
-> Add support for the AXP717 PMIC to utilize the ADC (for reading
-> voltage, current, and temperature information from the PMIC) as well
-> as the USB charger and battery.
+On Wed, 21 Aug 2024 18:20:00 -0400, Frank Li wrote:
+> Convert binding doc leds-lm3592x to yaml format.
+> Additional change:
+> - Add ref to common.yaml for child node.
+> - Add i2c node at example.
 > 
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb: /soc@0/bus@30800000/i2c@30a40000/backlight@36:
+> 	failed to match any schema with compatible: ['ti,lm36922']
 > 
+> [...]
 
 Applied, thanks!
 
-[11/15] mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
-        commit: e1043ad46060c181ffb8f981ccb25d9f698b2f09
+[1/1] dt-bindings: leds: convert leds-lm3692x to yaml format
+      commit: e5ae4083d32d9ba196c7452814bed5e5aa0731ec
 
 --
 Lee Jones [李琼斯]
