@@ -1,121 +1,166 @@
-Return-Path: <devicetree+bounces-95845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8204695B7CE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:59:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3BAB95B7DA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:02:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B15C61C23F16
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:59:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 063FD2879E0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:02:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9B81CC892;
-	Thu, 22 Aug 2024 13:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5321CB301;
+	Thu, 22 Aug 2024 14:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VZ718OJ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A9E1CC8B6;
-	Thu, 22 Aug 2024 13:56:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD31A1C9EBB;
+	Thu, 22 Aug 2024 14:02:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724335019; cv=none; b=RCjK2a+tw1Cb42ODO4tEKQWlTPDmSP5QdZBIAhj0GPHv1Omzq/AdsYI62kG/CSlJOJtm9QA2yQ8SMHIUAWffyyqplXKzTnyjwcTSwHMjW0U35UW3/tlpL+HEfCMRrswp9SyawLx6JJyTyP/a8AKFQWFMVYRQSuXb9dwuMLOxUa0=
+	t=1724335322; cv=none; b=LW9xSaufWVLNu+r+ABe4HVB8fM5xRXGvsHBoRQJQl+qhAQx6gKed1IZ0DhiDimzXEgUuQ702JFLKugSjB/v5p63tRqZR82TAJn1JVmLnYdMDdY1zvYejbl/JAVCZkcR5/BRJ3zq/dFE33Edap99xV4Sd4apabiFf+SjxQN98RHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724335019; c=relaxed/simple;
-	bh=y2NXUkyC4MnG3RtLIalqyshDZ4CtN1eyDWcP1JHSfgA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i1ZewSI9MVFB4F3PV+O3+nIH3UR/TemOrHDVpKLTUoslnK0Gb4j7IqJKNrutoSll3WiuHK3o7b2/V5blGmx3yq9TXFx60uq2d4ffiXjLV5BAWUagVFZEH9aD8cDMG8psDV+e54/a+DiT3jbXd0sUKMbUmeMVjSt+RthvEftXHfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e116ec43a4aso959426276.0;
-        Thu, 22 Aug 2024 06:56:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724335016; x=1724939816;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7ytMkPQTJJYRxn+j5gkRUGKU7llpfgAiAs0z5sajtyE=;
-        b=NRBQ2AGwQSvgv4wXqTIJjzF+vidOo45oMmm13KxRq1Yu6iPwlE/P+zEEbDCj8HZhg0
-         BjYy7/0bwxZwmiRwNq3g/0ChiN45OV2z5/P4QrdBFMPZqQEnTzSfAZJ447Wo+DJZY8pB
-         iHCjOCuM29kMlWLptglS+tS11bU10J8f/KBXBIgM+EY6Yb7d9WeKqJI1PhZmtMDjx/pq
-         IG5Gz8ZLcFY9RF8tNwAqpYpozK9l7xtMjUonX8U7OclGwCoEQfILE5IK5pY4Cf6PhcEg
-         xvj+z4LY+c54MZ3q1D6E8nFOJGdESIsTyTlUems4HFS5SElMTPLK69D/Gg5Ayz6+OegV
-         1UDw==
-X-Forwarded-Encrypted: i=1; AJvYcCVRPy7DX10n4eaJJnaLJs2iPKkz6bJ57NmzQpPh487r4w0OQke1K8lEMTI9x08/HEBll7oj+fvLfm6AEcjximzcfhU=@vger.kernel.org, AJvYcCWrTJFhoICOCfyFEPe0WqePXpdfgIKL6hf0xMLEt5O0SaGpVqL9/uVB/Ti2tT2UDNU90vhY1AWiavUX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzfwKAKIFABEfOKmteMZe6l6yIViH33uVK/5Z408MQu1+117eL
-	eMnMBKCG+oUlXaDk9JNmIps77KwCifG2avovKixIzlQ9z7s6O8BgwN9SFhcK
-X-Google-Smtp-Source: AGHT+IH6zxJ09PD8B/vahveB0E1zyFRLYiiBWpvYSfRCNpWuXO1MdT2oux5Axzncj4WxW758vc02ig==
-X-Received: by 2002:a05:6902:2405:b0:e0b:b85b:b8c3 with SMTP id 3f1490d57ef6-e16664a5285mr5745221276.39.1724335016077;
-        Thu, 22 Aug 2024 06:56:56 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e178e4638d0sm279295276.17.2024.08.22.06.56.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Aug 2024 06:56:55 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6c0ac97232bso7460987b3.1;
-        Thu, 22 Aug 2024 06:56:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVH1iH47G4A1gs7ZtaxEhIcpkTk2+G8498Nj8uekbjllZVmMJaH4mCWwMUCmGZyTdHKH4TTjfbPNlm1KOai1cBzGYg=@vger.kernel.org, AJvYcCWnOBajQPCEii8/pT7RfiB+UyFz3OY0VEQ4YXTzZpRg+KFsSmi3QoeBNPBs6aNJBjKgxFTJrPWeIrEH@vger.kernel.org
-X-Received: by 2002:a05:690c:fca:b0:646:fe8e:f03b with SMTP id
- 00721157ae682-6c0faba08f7mr67090137b3.2.1724335015679; Thu, 22 Aug 2024
- 06:56:55 -0700 (PDT)
+	s=arc-20240116; t=1724335322; c=relaxed/simple;
+	bh=DYajc8AW19c7b03Ic4Cd1e/BodGn5ZQSh80teMscdVc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BQBPGPzfnorsTnnbtnZf8fgkdFYnGidzW0UsyOv7D3Vua+An6g3upo63P1HK7VSJ1DbB8SH4iI/wLAdOK56J8qF48M6xOF0pZjXy3pthe/cKbVecuW6w8DTyjEQAW/+wKAzwR/P/gacpVPc0lk8fZigBUXtF1Ev+fqjzctLw4gI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VZ718OJ8; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724335321; x=1755871321;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DYajc8AW19c7b03Ic4Cd1e/BodGn5ZQSh80teMscdVc=;
+  b=VZ718OJ8/Pse7EFzTr6bPXuAk0V1B/R+4zLcoBcpmy7c0OTfhFJixnXo
+   Tag914afA/hA4ABnpitfY5nrpkKxPMvjlkEMsAcguizX4bLssi/Jiaahl
+   hvJiD+UUTAw6WMXuMA/kKnFaBgVcxd9Yq69MxRrIYWe4RjVvaMCXYLd8D
+   +N4WeuDg47IeJeONxd+b07q0s89RNDXnvlZwiE+qyojD8pbBKxjmTRZ6i
+   9DST6Td7i3fCo9X/8ZzhcYY0auWnpa9fk7HomR3FaeBAVB/Orw7eG0cid
+   5JIuEdq09Q2NfnOW3XYCBCqmrDBpzunuQ3kz7Tv/BGiJzvPUEv1YxVPZP
+   w==;
+X-CSE-ConnectionGUID: rjyWNdc+SO+SgC4jVQBXIg==
+X-CSE-MsgGUID: P+HZ8MKhTcmdmuxwo1NS5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22619639"
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; 
+   d="scan'208";a="22619639"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2024 07:02:00 -0700
+X-CSE-ConnectionGUID: wtMnhjT5Q7OY5YzBoCs16Q==
+X-CSE-MsgGUID: GpBRurRkQOykwsj44mUesQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; 
+   d="scan'208";a="66347601"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2024 07:01:56 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sh8Nt-00000000TMP-0QuL;
+	Thu, 22 Aug 2024 17:01:53 +0300
+Date: Thu, 22 Aug 2024 17:01:52 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v5 06/10] i2c: Introduce OF component probe function
+Message-ID: <ZsdE0PxKnGRjzChl@smile.fi.intel.com>
+References: <20240822092006.3134096-1-wenst@chromium.org>
+ <20240822092006.3134096-7-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com> <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
-In-Reply-To: <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 22 Aug 2024 15:56:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
-Message-ID: <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
- to mdio node
-To: Marek Vasut <marex@denx.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240822092006.3134096-7-wenst@chromium.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Marek,
+On Thu, Aug 22, 2024 at 05:19:59PM +0800, Chen-Yu Tsai wrote:
+> Some devices are designed and manufactured with some components having
+> multiple drop-in replacement options. These components are often
+> connected to the mainboard via ribbon cables, having the same signals
+> and pin assignments across all options. These may include the display
+> panel and touchscreen on laptops and tablets, and the trackpad on
+> laptops. Sometimes which component option is used in a particular device
+> can be detected by some firmware provided identifier, other times that
+> information is not available, and the kernel has to try to probe each
+> device.
+> 
+> This change attempts to make the "probe each device" case cleaner. The
+> current approach is to have all options added and enabled in the device
+> tree. The kernel would then bind each device and run each driver's probe
+> function. This works, but has been broken before due to the introduction
+> of asynchronous probing, causing multiple instances requesting "shared"
+> resources, such as pinmuxes, GPIO pins, interrupt lines, at the same
+> time, with only one instance succeeding. Work arounds for these include
+> moving the pinmux to the parent I2C controller, using GPIO hogs or
+> pinmux settings to keep the GPIO pins in some fixed configuration, and
+> requesting the interrupt line very late. Such configurations can be seen
+> on the MT8183 Krane Chromebook tablets, and the Qualcomm sc8280xp-based
+> Lenovo Thinkpad 13S.
+> 
+> Instead of this delicate dance between drivers and device tree quirks,
+> this change introduces a simple I2C component probe. function For a
+> given class of devices on the same I2C bus, it will go through all of
+> them, doing a simple I2C read transfer and see which one of them responds.
+> It will then enable the device that responds.
+> 
+> This requires some minor modifications in the existing device tree. The
+> status for all the device nodes for the component options must be set
+> to "failed-needs-probe". This makes it clear that some mechanism is
+> needed to enable one of them, and also prevents the prober and device
+> drivers running at the same time.
 
-On Fri, Aug 2, 2024 at 7:16=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
-> On 8/2/24 10:33 AM, Geert Uytterhoeven wrote:
-> > What is your stance on this?
+...
 
-> > On Thu, Jul 4, 2024 at 5:26=E2=80=AFPM Niklas S=C3=B6derlund
-> > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> >> When creating a dedicated mdio node to describe the bus the gpio reset
-> >> property was erroneously left in the phy node. The reason for adding
-> >> mdio nodes on WhiteHawk was to ensure the PHYs where reset before they
-> >> were probed, keeping the property in the phy node prevented this.
->
-> If the PHYs should be reset before they are probed, that is something
-> the PHY driver should take care of, right ? The PHY driver can bind to
-> the PHY via compatible string. Does the PHY driver not reset the PHYs ?
+> --- a/drivers/i2c/Makefile
+> +++ b/drivers/i2c/Makefile
+> @@ -9,6 +9,7 @@ i2c-core-objs 			:= i2c-core-base.o i2c-core-smbus.o
+>  i2c-core-$(CONFIG_ACPI)		+= i2c-core-acpi.o
+>  i2c-core-$(CONFIG_I2C_SLAVE) 	+= i2c-core-slave.o
+>  i2c-core-$(CONFIG_OF) 		+= i2c-core-of.o
+> +i2c-core-$(CONFIG_OF_DYNAMIC) 	+= i2c-core-of-prober.o
 
-AFAIK, there is no requirement to reset the PHY before it is probed.
-However, the reset signal may be in asserted state when the PHY is
-probed (e.g. after unbind from the Ethernet driver, or during kexec).
-Identifying the PHY by reading the ID register requires deasserting
-the reset first.
+Seems like all the above (except ACPI) have the same issue, i.e. TABs/spaces
+mixture.
 
-Gr{oetje,eeting}s,
+...
 
-                        Geert
+> +	ret = of_changeset_apply(ocs);
+> +	if (!ret) {
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Why not positive conditional?
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +		/*
+> +		 * ocs is intentionally kept around as it needs to
+> +		 * exist as long as the change is applied.
+> +		 */
+> +		void *ptr __always_unused = no_free_ptr(ocs);
+> +	} else {
+> +		/* ocs needs to be explicitly cleaned up before being freed. */
+> +		of_changeset_destroy(ocs);
+> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
