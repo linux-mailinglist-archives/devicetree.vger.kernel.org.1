@@ -1,59 +1,93 @@
-Return-Path: <devicetree+bounces-95713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8D095ADE0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:45:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF60995ADE5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:47:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 757201F23083
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 06:45:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B7CE28157C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 06:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B21139D05;
-	Thu, 22 Aug 2024 06:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D2A481727;
+	Thu, 22 Aug 2024 06:47:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jTwL27bv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A8F13B5AE;
-	Thu, 22 Aug 2024 06:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122718BF3
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 06:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724309107; cv=none; b=be08twyOUxWfkXXrX+pFNG7e22JI/ScYgO/5ZSMadqFVHRbFBxqon00yF4d41wJpY7g28LElAd55i2jtJ4s9S2GPeEjzYaxDlRU88hrwVusW4RJE7764sJbR3WPt0+RF5BBdDVj+gmpmxnQmY5gqgd5RotZudsPFR2y+iUbtL6E=
+	t=1724309221; cv=none; b=urCeiY/2KC4zolunirgtzsJ3KmfbHAIZM0r9W68U4oiz9JIwpj0lFVdrfHJzv8slg5XpZctab9IcbqY1NJsc4f9nygu81ZiOXgUE7eK2uFkRBF5L7FumEip1KHxbkoAJHt4MghXiKX+qlMYsqCk6kUgxJcxbV760pGLBcyTdAUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724309107; c=relaxed/simple;
-	bh=aqNBSgQKzAEbwDNJ0nI1ru/kNAPD8mR5CqdbrpPcrGE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Lbgloom9WH7Ox3zHTkbeF5TlYWsqOQCCKYqtgYnJ6qD3GH2dpBMNeRs5pILj4xiH4ttYcIVNkFyAS17Nx+pMyBRRHkfM8yZFzANcaPGG4ZDCUSMgcXZRy2alhLfDfl5qhKMdvh2tGqxfpSKPvll88WF5b4T90hFeTeiwPf17tqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-IronPort-AV: E=Sophos;i="6.10,166,1719846000"; 
-   d="scan'208";a="216265998"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 22 Aug 2024 15:45:01 +0900
-Received: from localhost.localdomain (unknown [10.166.13.99])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id D28704188DE7;
-	Thu, 22 Aug 2024 15:45:01 +0900 (JST)
-From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To: marek.vasut+renesas@gmail.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
+	s=arc-20240116; t=1724309221; c=relaxed/simple;
+	bh=cHOgrWJ+n48M9IJC/fbxbOS6OOu1RKAgV8a9R2Ksfe0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QjbUY5g1ZYva0hUfUlleov+5pihUdaukFw13iYhiJgsGJSyeecRuHgb9TnFtIvcXM1FMTM4ix0HumVKvKj/THZWCQ4yCMOxlh1yjQsFSKqdUvO45yqLiqAFf0uJpSXVPoVR9ccxiKbSafIftXEchNVgGuqLl4Ltu7Sx4CZNUzMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jTwL27bv; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-202146e9538so4146595ad.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 23:46:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1724309219; x=1724914019; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8PKT7sjGktvi1hrrMiQcV4qsyDxjdMEYuTJhST1ej0Q=;
+        b=jTwL27bvDN1aRneU+Jmm0uvHyQmvJf5/zFhSXoncI+YMJtPfYu4RY5xmLE+3OrDw00
+         RJ1x6pRDGmeuQIXmzUlL0F7H2mCULi7GGCUuH4u2uuEK5PLROMMGd9E5gtwBb+jUCRYW
+         MIIssS+89drP5NgY1rcH4rWx++gXN6H+L0BlA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724309219; x=1724914019;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8PKT7sjGktvi1hrrMiQcV4qsyDxjdMEYuTJhST1ej0Q=;
+        b=XTE3a0KsF+oY5VHfK7MFqY5PXoL2Ii8YHMCrl+bTdIg1HAGLaKEcfIx+XPSnaXATcM
+         UN2UlxdIgfhS5Y4lJFjfAY5Iem9nYT6DW23D4MTBK++3W4JZlSJ2A/ik6eq/CpC67buF
+         kEBZ8vUcziCF2fNGrZ5wYmCIJPJzU8JmAiNwoV2hmzcBXDPmRCLoJtvxyWIvE0SQLtD7
+         ocIP8pOsmjsPGwLYD51AO+Ct1oeFjIIrLIke+u4toFqfAw4ihG4IB5ELufgP5QnCJzRp
+         zvcaYYdOX+/XS/ZQkfh8b0+6IsWfxVkF8w1OOGGji7TyTNyQjzg7hNO5zQOQMuGb31lV
+         ircg==
+X-Forwarded-Encrypted: i=1; AJvYcCVuEhyag2EcsjC0niSx3qwP7BKSc+FdCDwsNTtJzAacxAq04xwI9CLWNmSR3EHGBnTTEf5h2+xkvcWu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFtmpB5tCMf+mx09kyZxvcqMkCIDjpz4a7SZ3VRrnTx9N2CokU
+	YET5WtrGYQYryJvrnBSbSLMTzAL/WkUlRDir8RwJPTXKt6d7C8U4EHRg0N9FFFXdeTsSrb+jzQY
+	=
+X-Google-Smtp-Source: AGHT+IF05n9K3CL+M63P08MGc6+22/ERQOuhVD94PT0FR2/G0i0HFMNVwflN0PwwvODsfTnybf75Vw==
+X-Received: by 2002:a17:902:c94e:b0:202:1547:66ad with SMTP id d9443c01a7336-20388e34ce7mr10308775ad.65.1724309219112;
+        Wed, 21 Aug 2024 23:46:59 -0700 (PDT)
+Received: from localhost (185.174.143.34.bc.googleusercontent.com. [34.143.174.185])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2038558137csm6046845ad.99.2024.08.21.23.46.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Aug 2024 23:46:58 -0700 (PDT)
+From: Rohit Agarwal <rohiagar@chromium.org>
+To: chunkuang.hu@kernel.org,
+	p.zabel@pengutronix.de,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
 	robh@kernel.org,
-	bhelgaas@google.com,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com
-Cc: linux-pci@vger.kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	ck.hu@mediatek.com,
+	jitao.shi@mediatek.com
+Cc: dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH 2/2] dt-bindings: PCI: rcar-gen4-pci-ep: Add R-Car V4M compatible
-Date: Thu, 22 Aug 2024 15:44:59 +0900
-Message-Id: <20240822064459.1133748-3-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240822064459.1133748-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20240822064459.1133748-1-yoshihiro.shimoda.uh@renesas.com>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Rohit Agarwal <rohiagar@chromium.org>
+Subject: [PATCH v3 0/3] Devicetree updates for MT8186
+Date: Thu, 22 Aug 2024 06:46:47 +0000
+Message-ID: <20240822064650.1473930-1-rohiagar@chromium.org>
+X-Mailer: git-send-email 2.46.0.295.g3b9ea8a38a-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +96,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document bindings for R-Car V4M (R8A779H0) PCIe endpoint module.
+Hi,
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v3:
+ - Update some formatting errors in the bindings patch.
 
-diff --git a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-index 91b81ac75592..b23293314a6d 100644
---- a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-+++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-@@ -19,6 +19,7 @@ properties:
-       - enum:
-           - renesas,r8a779f0-pcie-ep      # R-Car S4-8
-           - renesas,r8a779g0-pcie-ep      # R-Car V4H
-+          - renesas,r8a779h0-pcie-ep      # R-Car V4M
-       - const: renesas,rcar-gen4-pcie-ep  # R-Car Gen4
- 
-   reg:
+Changes in v2:
+ - Update the binding to include power domain in only some
+   specific variants.
+
+This series updates the DPI node to add power domain and
+adds the Mediatek SVS node as well to MT8186.
+
+Thanks,
+Rohit.
+
+Rohit Agarwal (3):
+  dt-bindings: display: mediatek: dpi: Add power domains
+  arm64: dts: mediatek: mt8186: Add power domain for DPI
+  arm64: dts: mediatek: mt8186: Add svs node
+
+ .../display/mediatek/mediatek,dpi.yaml        | 17 +++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 21 +++++++++++++++++++
+ 2 files changed, 38 insertions(+)
+
 -- 
-2.25.1
+2.46.0.295.g3b9ea8a38a-goog
 
 
