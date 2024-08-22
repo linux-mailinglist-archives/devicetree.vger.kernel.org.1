@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-95898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E5495BBED
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:28:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C03D95BBCC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:23:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1E44B26310
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:28:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA7CA1C21CB2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:23:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1139C1CCECF;
-	Thu, 22 Aug 2024 16:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB92E1CCEC8;
+	Thu, 22 Aug 2024 16:23:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A780D1CC8BA;
-	Thu, 22 Aug 2024 16:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 943C31D130F;
+	Thu, 22 Aug 2024 16:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724344119; cv=none; b=SmOP+1hZ3r5dC1BmrI9j8xoePXx9zoWl5F46FA3ZUivs3I4F7Zhm1ca+/cn5mTVLeDWSp+odocDLfeQDfdaQol4BsIlvQ4XCag9t8zPmtvAGD1eJstP7eBdQnPTMhXI1PpPEvQ8qjS4UB3Cl6vboS7CjIByH5TKa3NPnw55EsMM=
+	t=1724343827; cv=none; b=F8xUs/qZPLewyxQO5oBqFZPp08DtN/ZynnOUIQVcIHiBqbo0qdlj58AJUA1sLGAbuQnTH0Bkb3xrMxYbupCWWImEDVb2x1ZsbP6dWxyBmK4jWZufaUAET/Qf95pb8gSMVLM2AT3pBpq6CUqTR7j8T7j+E4Gqez9Y+Gwc/x8OQTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724344119; c=relaxed/simple;
-	bh=o/KOq/nHYT0ugpWxb8b6BMIFszQPiryYq8qRnakk31I=;
+	s=arc-20240116; t=1724343827; c=relaxed/simple;
+	bh=Oc8/+VAy1Ja4fHdZh/lh7QlxwHGmLjB2s9ZhIlgkOFM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rkDdvDAgCJtNl/kvBcKLrmW59hUiKumkwKWQPD3j+5LNqYCnYbvsp0QxCJSMy79dl/6lnIEx0hcJ9KPxyHx/TNliY52ZlpGhGjg2UwyhWefKHDBxCKNUrOvC3W6PO4wkQFLU0MYo94l1ObmEHhg0MIuuKAASZGHE/JWDahNSoqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+	 MIME-Version; b=XYjrCbjV4YRV1MLMdmlTl0qA1BiffvxxyF5xkoKU+2VS/KXyrIAc6wqECFSaE+Axj3PuGw+ofWp12CZ2G441sQx0vbo34Njd4YHgwF3x+SXxhD81nUXqviMBHuJoKZu0CqKqI7QnR19XoKVstjwGSt66ibNyAlxjz0PditB8MV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
 X-IronPort-AV: E=Sophos;i="6.10,167,1719846000"; 
-   d="scan'208";a="216311613"
+   d="scan'208";a="220284625"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 23 Aug 2024 01:23:33 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 23 Aug 2024 01:23:44 +0900
 Received: from localhost.localdomain (unknown [10.226.92.15])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id A712C4007CF2;
-	Fri, 23 Aug 2024 01:23:28 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4484B4007CF2;
+	Fri, 23 Aug 2024 01:23:39 +0900 (JST)
 From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 1/4] dt-bindings: display: renesas,rzg2l-du: Document RZ/G2UL DU bindings
-Date: Thu, 22 Aug 2024 17:23:14 +0100
-Message-ID: <20240822162320.5084-2-biju.das.jz@bp.renesas.com>
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Subject: [PATCH v4 3/4] arm64: dts: renesas: r9a07g043u: Add DU node
+Date: Thu, 22 Aug 2024 17:23:16 +0100
+Message-ID: <20240822162320.5084-4-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240822162320.5084-1-biju.das.jz@bp.renesas.com>
 References: <20240822162320.5084-1-biju.das.jz@bp.renesas.com>
@@ -67,93 +67,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document DU found in RZ/G2UL SoC. The DU block is identical to RZ/G2L
-SoC, but has only DPI interface.
+Add DU node to RZ/G2UL SoC DTSI.
 
-While at it, add missing required property port@1 for RZ/G2L and RZ/V2L
-SoCs. Currently there is no user for the DPI interface and hence there
-won't be any ABI breakage for adding port@1 as required property for
-RZ/G2L and RZ/V2L SoCs.
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
 v3->v4:
- * Restored the ports property for RZ/G2UL and described port@0 for the
+ * Restored ports property and used port@0 for connected
    DPI interface.
- * Restored tags from Geert and Conor as the change is trivial
-   (Replaced port 1->0 from v2).
 v2->v3:
- * Replaced ports->port property for RZ/G2UL as it supports only DPI.
-   and retained ports property for RZ/{G2L,V2L} as it supports both DSI
-   and DPI output interface.
- * Added missing blank line before example.
- * Dropped tags from Conor and Geert as there are new changes.
+ * Dropped ports->port as it supports only DPI
+ * Added Rb tag from Laurent.
 v1->v2:
- * Updated commit description related to non ABI breakage.
- * Added Ack from Conor.
+ * No change.
 ---
- .../bindings/display/renesas,rzg2l-du.yaml    | 32 +++++++++++++++++--
- 1 file changed, 29 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/renesas/r9a07g043u.dtsi | 25 +++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-index 08e5b9478051..95e3d5e74b87 100644
---- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-+++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-@@ -18,6 +18,7 @@ properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - renesas,r9a07g043u-du # RZ/G2UL
-           - renesas,r9a07g044-du # RZ/G2{L,LC}
-       - items:
-           - enum:
-@@ -60,9 +61,6 @@ properties:
-         $ref: /schemas/graph.yaml#/properties/port
-         unevaluatedProperties: false
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+index d88bf23b0782..c3865e4c5f17 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+@@ -153,6 +153,31 @@ fcpvd: fcp@10880000 {
+ 		resets = <&cpg R9A07G043_LCDC_RESET_N>;
+ 	};
  
--    required:
--      - port@0
--
-     unevaluatedProperties: false
- 
-   renesas,vsps:
-@@ -88,6 +86,34 @@ required:
- 
- additionalProperties: false
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a07g043u-du
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@0:
-+              description: DPI
++	du: display@10890000 {
++		compatible = "renesas,r9a07g043u-du";
++		reg = <0 0x10890000 0 0x10000>;
++		interrupts = <SOC_PERIPHERAL_IRQ(152) IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cpg CPG_MOD R9A07G043_LCDC_CLK_A>,
++			 <&cpg CPG_MOD R9A07G043_LCDC_CLK_P>,
++			 <&cpg CPG_MOD R9A07G043_LCDC_CLK_D>;
++		clock-names = "aclk", "pclk", "vclk";
++		power-domains = <&cpg>;
++		resets = <&cpg R9A07G043_LCDC_RESET_N>;
++		renesas,vsps = <&vspd 0>;
++		status = "disabled";
 +
-+          required:
-+            - port@0
-+    else:
-+      properties:
-+        ports:
-+          properties:
-+            port@0:
-+              description: DSI
-+            port@1:
-+              description: DPI
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+          required:
-+            - port@0
-+            - port@1
++			port@0 {
++				reg = <0>;
++				du_out_rgb: endpoint {
++				};
++			};
++		};
++	};
 +
- examples:
-   # RZ/G2L DU
-   - |
+ 	irqc: interrupt-controller@110a0000 {
+ 		compatible = "renesas,r9a07g043u-irqc",
+ 			     "renesas,rzg2l-irqc";
 -- 
 2.43.0
 
