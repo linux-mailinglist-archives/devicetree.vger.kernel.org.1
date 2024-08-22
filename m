@@ -1,106 +1,193 @@
-Return-Path: <devicetree+bounces-95816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B6795B50C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:32:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8BD95B542
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:46:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD2D2289137
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:32:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3726A1C233D9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:46:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C94178372;
-	Thu, 22 Aug 2024 12:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7E11C9EBD;
+	Thu, 22 Aug 2024 12:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="STdO9ocB"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="K9Dr0N76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96BF1DFD1;
-	Thu, 22 Aug 2024 12:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A30C1C9DF0
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 12:45:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724329940; cv=none; b=GXZR0++DXhbiWRPuiZLNvZBKXR0q5U2fEO9zGG0lJci2yUj4VPT5BOZO6waaWm2NA8RpfzT+XZvBbYagxphDaqBa6DiGou8Q+wR8j6otRMP9xv8IdMDRpAqVVOCQ9HYnci4nK+TF9D0ccGaoebJHt+0kz8WsOCkUE7tTgBFTHGY=
+	t=1724330751; cv=none; b=d//JtjWvVfyLaofuCgQW6782VwdjEAJ+3CN2dH7EQzPX24i0J+2mAXmOiWdkwJFihTw7oP1vbLGQC8m3RaP3yK81ODM/nHAbpdcgFX/7Mwlk9VTUGGs6N5FkhhaQyCGgZZjiV+dbLfvSQ/J5TrvKWfQLv2fkNULXRRyVa0CeeNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724329940; c=relaxed/simple;
-	bh=3af2BVUg7wf877z1PfuGs3wFXkF2Hf6gkN6iUlwzOPg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rUDhnp4rB9b4gAW+yo+9wXT3m+MXKVxy8ftD+tn42H9xSU013jVliiuNJ/DR5r2UAB9gAJEIjGpK3kWTcQl2YCkDjLRWajeDANZTtoWmyIaAZPR6wKPQmjErNj2Dq7G61X4Emp5UZH8VHsNQChZwg3ltuF/w8+hZOH6ugTeRH7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=STdO9ocB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DF54C32782;
-	Thu, 22 Aug 2024 12:32:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724329939;
-	bh=3af2BVUg7wf877z1PfuGs3wFXkF2Hf6gkN6iUlwzOPg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=STdO9ocBpTjzpKc8UC4eKGeTy6TjNmDSlWh9cjUoEzDxaESh2iNtis8wfxPGAkMVZ
-	 76wEdNXGmhRcmra25HKud7KEnicPW4ToYN0YAxLTd2dL/3KQAUUeDwvwIykOZWnxuI
-	 JbcPxtTSYjcQNngj7VufVPWLMY23zng8VmBY2tK5PX3unKNDXIoe48couPBQl97QEL
-	 UWxSuEX+KkiLzxErvdzvaPx8CjgzFqIVdv6PPflokB87v+RqjmFWf3tRwfjdQdwm6Q
-	 0TVKKjREqlhDcDFqtgcVtBf+qvz5vMByRv7lGQtt/IHV1A3xilmueBLcDZiEMtbIwT
-	 IOQhypjKqhXPA==
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5342109d726so74522e87.0;
-        Thu, 22 Aug 2024 05:32:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUOcMUHOAWX1UtM0fMHEUE7/1VVKEvBEJEsiv9vjStFpanXUdHrBjc3txABWgg+b3QCpQzA0WuHJQG2@vger.kernel.org, AJvYcCWoXGjqublbXyNRytC92WAoWx0INM5FF92qDGjhtdBcL3xUxpF7K54h+xbOFLN5zbYiAiatJqYzpgDty8IV@vger.kernel.org, AJvYcCXj6Fvgm9u/Q/cxlb4XZ03QHGDA7LdirnjOdXRDmCrF5M8oAhsAnw6oFg9lLVfjxD1uCwqnkE+D+uCx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6Cp5bZGmqBWXpP5Y3k2YzOo7aiYJHkFF15az2oYjVEr8Sm8Tl
-	zxpwXAbvcYEPD29O9+vLhVkHH4WnzEmsx14yjSNW+iVyhvKLAs7EqUE8GpUDpPcoJOS+6k/PzhE
-	w16sPsChlf8EM1OfK1rY5J9XXsg==
-X-Google-Smtp-Source: AGHT+IELJMuJDkhpPsO12MEEDtrpTV6xfsgInNXMN2DkC/1JY0q8qFL3c0BlEZIxWu6oS9dghQSXPb+CLV+6LMPxZ6c=
-X-Received: by 2002:a05:6512:1095:b0:533:4517:5363 with SMTP id
- 2adb3069b0e04-5334cab22d9mr1028392e87.21.1724329937988; Thu, 22 Aug 2024
- 05:32:17 -0700 (PDT)
+	s=arc-20240116; t=1724330751; c=relaxed/simple;
+	bh=yoETc8josiIKxYd6PCEzQLh0A57oAlHqLJq3xfUOsqk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hK8OtsOk8WxOa8UDw1cQxF6M4OaakABtXPIqFHpT2NfB/875OgDsJxub/99GAn/Vig75/9jY+zSCqR+qph9Z6P6muZMtIXG8ZCcZ4l/YJFh2OREyWiZyc5zvzmUJ3IVPXjPC4EiEsYMPYvlVVAL1jFtikJqW6gfPdqJ5U1mVqPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=K9Dr0N76; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-428ec6c190eso5496615e9.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 05:45:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724330747; x=1724935547; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TziPBUOm9WXx2RorriSSxIgK2odcIsd7J/hDhpc2D5o=;
+        b=K9Dr0N76uobB6o5KpDQbECDRii0wiHSWjTTPEQiUrfX2Yo/p1/npzJAbYAaOcosVE1
+         2FkIpmiMAehPjMZFXt8D+G7SpeHjI7T0ZlVBIcjB/W/KneNgQSFvPBsIEWb4rqlNSIxc
+         lQPvRfLD9csBsD7cWKqAQ15KBL5YZCHHPuA+R45hlFh25F45ad2OiNZ/0oZD7T5DU/6b
+         OzScG1NPG8LyxLe+lfz30VZyGwQw6m3ETaU3lWDVMlvEwlyphTCyblmgT+C5qD7vAMvJ
+         gnYnCxCyXwi2N1FSWL/YIhTSTOXBoz1aknRiK43rpniOBTENEWwCzssnakVPZ9Zq36x2
+         0yIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724330747; x=1724935547;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TziPBUOm9WXx2RorriSSxIgK2odcIsd7J/hDhpc2D5o=;
+        b=EkrWMmmC1qxJbHalm78PMsHqv57V5h15FIr0keqy+q5cHZlTvOMaIRKBCVGnoX91Lv
+         aGwHTJuDn0wsu9hbFAmpa7CsBxF0rt/U76Hn4yvPICvZg7vMg1hvCvdPMBCvQNyV+RH1
+         necE4EDWj09mAoipWksxc5uxeTBSGghIlIElOuRRDbiRHkW1b0tO9+SddRjewumXJ+5w
+         Ap4JlaaBN49ijEsU8MKrOwWXV4CduizL2dh4iVIgLiBSvB/elIx2HV+8RUSg5PuRfqtb
+         sPEYrJ/RR0E2+Jb0202OGaO4P/tCFHoVPUn5RKgHev/UGi8jcWIO57lK/n3WvphclgIy
+         EmRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVq75biYJNMd3kNMb6TFulben9++NXK6xp9x4riJm6/XMQPDjb05Uv1px6iBI67XiToIvTG2wgoKkzh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzErNS+V5NSnM5bKfgKrjj9qqDftbjOKDzebc0HAAd9v0mPxB8j
+	e1KfS9wwI3ttEdNVZLnZwXjCkTHHB3fWP/pUKEbVO7QNUM+gQRtz+p86jAWCjX4=
+X-Google-Smtp-Source: AGHT+IH0tUq78bCn9f3nkkiY/CPIRenPfJA7C5++cEDXkitHmsonwTgrf4H0CBGWrdvPatL9StsXdg==
+X-Received: by 2002:a05:600c:1992:b0:426:6ee7:c05a with SMTP id 5b1f17b1804b1-42abd23061amr38113545e9.15.1724330746830;
+        Thu, 22 Aug 2024 05:45:46 -0700 (PDT)
+Received: from [127.0.0.1] ([2a01:e0a:448:76e0:8da6:6d6d:c8ed:16c5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ac514e269sm24032195e9.2.2024.08.22.05.45.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2024 05:45:46 -0700 (PDT)
+From: Esteban Blanc <eblanc@baylibre.com>
+Subject: [PATCH 0/6] iio: adc: ad4030: new driver for AD4030 and similar
+ ADCs
+Date: Thu, 22 Aug 2024 14:45:16 +0200
+Message-Id: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822092006.3134096-1-wenst@chromium.org> <20240822092006.3134096-2-wenst@chromium.org>
-In-Reply-To: <20240822092006.3134096-2-wenst@chromium.org>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 22 Aug 2024 07:32:05 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJuiB8+PdH9SVum4CTNb8uM7Kzt3r2Y33yNE2yMGFVbug@mail.gmail.com>
-Message-ID: <CAL_JsqJuiB8+PdH9SVum4CTNb8uM7Kzt3r2Y33yNE2yMGFVbug@mail.gmail.com>
-Subject: Re: [PATCH v5 01/10] of: dynamic: Add of_changeset_update_prop_string
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Saravana Kannan <saravanak@google.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANwyx2YC/32NzQrCMBAGX6XkbGQ3DQn15HtIkfxsbaC2kkiwl
+ L67afHiQWEv88HMLixRDJTYqVpYpBxSmMYCeKiY6814Ix58YSZASFBCcrKDGR03Xqoarhk5GtA
+ SGk22QVa0R6QuvPbkpS3ch/Sc4rx/yLitf2LlgCtvlJYOayvpbM08BBvp6Kb7lv+4+ofbeQcKw
+ Ynawrfbruv6BvomNZnvAAAA
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: Michael Hennerich <michael.hennerich@analog.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
+ linux-doc@vger.kernel.org, Esteban Blanc <eblanc@baylibre.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openssh-sha256; t=1724330718; l=2951;
+ i=eblanc@baylibre.com; s=yubikey; h=from:subject:message-id;
+ bh=yoETc8josiIKxYd6PCEzQLh0A57oAlHqLJq3xfUOsqk=;
+ b=U1NIU0lHAAAAAQAAAhcAAAAHc3NoLXJzYQAAAAMBAAEAAAIBALJZcW6pLD4ksSdWnXd5r65Ze
+ 5Qc5pH7+DmmbKJasOXeVYRPFEmnORS7pwhURG11AMVFmnCVYWj+wPYrbCEeM7XKfO4oQzc66kYB
+ 7y0RrFwjoWKofytjI026zV5b2pn1JAItgu0Ijth+TSa6KVOTSXqqiVzOTDM1WL0hAIIzpkhE3Vt
+ AVJrFDsh/nWed9OpeSS+S6e3ZxyJtlnhqbVIemcDmjwMihtFgTKeJWlxP7KGY/RQKPF/Ef7pS+O
+ AckOrxuqGKvpOiNVCmuQEUQM0+r4uvwtja4zRSl+huqW+g1nLyReoZPzFwfJWREd+89dtTJTXN7
+ xmmFNdX6KzRKBLVw1RY/R3mhAd+MkrdiNaRNKj+LO1QIxPoW90cPG9WpdVDUZf1VxhdciB6Hlxn
+ lfEDFuCxU0n5H+kC4eiZvw+c9D4xX7iVdjPTMEaE6GBQNnMncdljBwA5NVN8WcaUhnAQnq7qhcz
+ 85L2Br7MPqe3q3J/PHIe0nHO56j7tTY6cFFs/ckqcQSTJigh2rA7InN1d7GqZFLzlewRTGaCY+M
+ 93d7DCIuxTxJWRpVm7NW1FBeX6d00+dAcQ/dS+jmA3kcdRoWtH160jmmYYvOgrsQTcMIQrPtK+B
+ rULRmmIvEIJMF5UfNmxruWmWn6MM/xeejTNszoKqrORpbr7q3BnkKt2y/KdAAAABnBhdGF0dAAA
+ AAAAAAAGc2hhNTEyAAACFAAAAAxyc2Etc2hhMi01MTIAAAIAOcwMZFiJqxgsZdycbbpIOFEaiRS
+ iTgFrNXG6NQKEOjEjm0Nt5hnzf93DqlhFL9FKnRwptCQMORJaxvUBNwEn5gYJ+f1VIHqdG++kbU
+ hZMzHFU+49QD2RxUgakRshe+wECARgW3B/7t/XH5Vnvh6I1+GhcmoHCi2NnXjRCX+8x9p5joJvO
+ c2QXAJk6FQordb0snje9m9xElhbQMuBY2yF5LIaKSf1nI4fPreEpcbwt8s/5r/WGX+cf0RDOoqc
+ jwbOkX9l4IJNCfL35tUjbH0eHWpTmCRj3nBUheLw3ayDaxm5kCLMxaOqi/+4T6hqQ3WuFdV0OYT
+ aRk8P/vOYKqwaY6+SV8mf/HDbct+zHbP5IG5fwqHm8BS1Y/+WCRssHgMu1vcwbAIyDReOmJ5Mjs
+ s2zaLi0Jt0ZA963WoW1OLZ7RhZKj6nGd8JYwcaZDUgG3bIskj08Y27GE47aYHOHzdkv/hNR9PKK
+ 6ztj/y/310XHqLg8GTOIS6cwfS5+HaPexDW0K7Z9JgE23bpMoHRb+iZRhZ+zYcbIAnV5s3Egr9b
+ 2+p2aOw2MwYM/dNa3WfINFqH+0+oQk7b2EojqgWkl3Ht+uINcv6Yf2Wnh7vr/HFBGPYDyE3ZLVk
+ t78fDKB9asOz5lTOoUaCXXfgyqUyFoLgJ8WGw0mErwQvZeRN0xEDBL2A=
+X-Developer-Key: i=eblanc@baylibre.com; a=openssh;
+ fpr=SHA256:LOxhPHcL6HLuSaOVHuI2Yq7hvD2blbngN1ohWi2rJOw
 
-On Thu, Aug 22, 2024 at 4:20=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> Add a helper function to add string property updates to an OF changeset.
-> This is similar to of_changeset_add_prop_string(), but instead of adding
-> the property (and failing if it exists), it will update the property.
->
-> This shall be used later in the DT hardware prober.
->
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
-> Changes since v4:
-> - Use modern designated initializer for |prop|
->
-> Changes since v3:
-> - Use new __of_prop_free() helper
-> - Add new line before header declaration
->
-> Changes since v2:
-> - New patch added in v3
-> ---
->  drivers/of/dynamic.c | 44 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/of.h   |  4 ++++
->  2 files changed, 48 insertions(+)
+This is adding DT bindings and a new driver for AD4030, AD4630 and
+AD4632 ADCs.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+This work is being done in collaboration with Analog Devices Inc.,
+hence they are listed as maintainers rather than me.
+
+The code has been tested on a Zedboard with an EVAL-AD4030-24FMCZ,
+an EVAL-AD4630-24FMCZ and an EVAL-AD4630-16FMCZ. As there is no eval
+board for AD4632 the support can't be tested at the moment. The main
+difference is the reduced throughput.
+
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Michael Hennerich <Michael.Hennerich@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Nuno Sa <nuno.sa@analog.com>
+To: Jonathan Corbet <corbet@lwn.net>
+Cc: Michael Hennerich <michael.hennerich@analog.com>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: David Lechner <dlechner@baylibre.com>
+Cc: linux-doc@vger.kernel.org
+Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
+
+Changes since RFC:
+- Reorder IIO channels to have the common byte channel next to its differential
+  channel.
+- Extended names for IIO channels.
+- Diffrential data channels are marked as differential channels on IIO
+  side.
+- Use get/put_unaligned_be24 for offset and sign extend it.
+- Common byte channel now has 32 realbits. This will be the same as what the
+  FPGA will return, avoiding different channel layouts.
+- Fix missing newline in some error messages.
+- Add comment for the use of spi_sync_transfer instead of
+  spi_write_then_read in ad4030_spi_read.
+- Use DMA safe buffers for regmap operations.
+- Clarify calculation for number of bytes to read from the device during
+  conversion.
+- Formating fixes.
+- Add documentation page.
+- Link to RFC: https://lore.kernel.org/r/20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com
+
+---
+Esteban Blanc (6):
+      dt-bindings: iio: adc: add ADI ad4030, ad4630 and ad4632
+      iio: adc: ad4030: add driver for ad4030-24
+      iio: adc: ad4030: add averaging support
+      iio: adc: ad4030: add support for ad4630-24 and ad4630-16
+      iio: adc: ad4030: add support for ad4632-16 and ad4632-24
+      docs: iio: ad4030: add documentation
+
+ .../devicetree/bindings/iio/adc/adi,ad4030.yaml    |  113 ++
+ Documentation/iio/ad4030.rst                       |  129 +++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   10 +
+ drivers/iio/adc/Kconfig                            |   13 +
+ drivers/iio/adc/Makefile                           |    1 +
+ drivers/iio/adc/ad4030.c                           | 1141 ++++++++++++++++++++
+ 7 files changed, 1408 insertions(+)
+---
+base-commit: 3545ef5c627c761c76bbdf71e4b4d423fe30e51b
+change-id: 20240624-eblanc-ad4630_v1-1a074097eb91
+
+Best regards,
+-- 
+Esteban Blanc <eblanc@baylibre.com>
+
 
