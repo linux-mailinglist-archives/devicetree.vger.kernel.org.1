@@ -1,86 +1,137 @@
-Return-Path: <devicetree+bounces-95850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7271B95B832
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:21:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E44F895B882
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:34:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93B351C235F7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:20:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3F75B25145
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B4C1CBE94;
-	Thu, 22 Aug 2024 14:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CDF1CBEAD;
+	Thu, 22 Aug 2024 14:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FLb1bdj/"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="KlMgK1+Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E99501C93DF;
-	Thu, 22 Aug 2024 14:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0271CBE9B
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 14:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724336451; cv=none; b=a8+44wGuB9QZ6j3oOnfjxALJphuLAwHlGau1VvKW1rFF2prVsj0EMVl2gJ1wi8nlXLTYgiGMc8/ulaHGLH7kBCyDhmLCEruykVjgUAhr3eVYYuXYydcCYQjs8nhMPTsSE8CXQqMURjro1twAUTGugEttKMmrJPTsZy4JVUb49qI=
+	t=1724337197; cv=none; b=SB2CF8mN8ggmd8TwJZTK3E2unU76MtdsjNkOVdoCWfiZ/cGACUzGc7gMXdrTtpJzhmLqPTwN/+UMR9eLaeDQttRkte+3EoWyFpaJzeMw1gVF3tQHsJmqnh5aVU27Un9vSMMl+FTx2aqIhH4xgwShLDESyKODHDzhq9JAeKe27Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724336451; c=relaxed/simple;
-	bh=DbkNI2FbaBywilWppugkB1Yz7W1BXd9eW/krIM7n1Lg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WtI6BAynISPIqVzi/qpVox1TipfOVeGXOQul4qnuDgbmmPcOfa1iVHJ5XZ+ZTfznSpkGLybC5+iT2c0KXHJKWTq1boMzuoXnOusk6Necy0gUzNj/eZawh0SKydvvdhpIJyT/l1kuyxH5wh3D3oLKLK/PBj29PzBKknJ0mF+lHjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FLb1bdj/; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724336450; x=1755872450;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DbkNI2FbaBywilWppugkB1Yz7W1BXd9eW/krIM7n1Lg=;
-  b=FLb1bdj/uyIRegGVz9DaoxdPm8jav5Rc5GgKJsOmAEyiPO7VC83R28sf
-   ZSbN5+OSyhA6urxwaBk/NLa4+PIpDQTy9ZkJELgJEVKN6rScnKOkjnkvS
-   3Q5vgjGUIueNA3Tavxpn4gxPHg1AuZs2GMauS3rLkXOvjiK1dkf08NTSw
-   4piTaqvAZpeY3aL1rw60a7qN6sLYaQgzxbGPu5ntMb48GecXwrPRmC0/D
-   pZYFE/c8HNfsAa4H/pQhvPBPhgJzYDR8GqNK9ffqCN/SID3S0zd19v76G
-   rB1V+DiW4iCK4mkPq3zRD6UowSR1BpOQZSrSLhNGgyNjcbHpy4F0h/W25
-   A==;
-X-CSE-ConnectionGUID: 2jNETJlQQH6VvK1gDQkVdw==
-X-CSE-MsgGUID: 4T3h9FnwRImNoduJLnsuuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="40264409"
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; 
-   d="scan'208";a="40264409"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2024 07:20:49 -0700
-X-CSE-ConnectionGUID: Xgwb6QXRS7q1FUsK/fMpdg==
-X-CSE-MsgGUID: DY2HQ1VIR2i4q8kjbVJB5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; 
-   d="scan'208";a="61465764"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2024 07:20:45 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sh8g6-00000000TfG-10aA;
-	Thu, 22 Aug 2024 17:20:42 +0300
-Date: Thu, 22 Aug 2024 17:20:41 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v5 08/10] i2c: of-prober: Add GPIO support
-Message-ID: <ZsdJOUe44hiGur-s@smile.fi.intel.com>
-References: <20240822092006.3134096-1-wenst@chromium.org>
- <20240822092006.3134096-9-wenst@chromium.org>
+	s=arc-20240116; t=1724337197; c=relaxed/simple;
+	bh=lJiyZmPpFea0ifOYh7ueNldJecB7Zjvj1rYiFraP0eY=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mJTTgP7Otlxh2en3MrnR/bjfZsuEEZxvT9adtuwFoIPOyH5ob4BgWqs//eyHCx3J9JVE+Lx74O+ksPLAQRoHpktt02ZBhMeRv0GqTAG7zBor+bL0Yy3XTe9AJ69tiJJB0BW7GrtCw86q6kCclLck5YT+51nOJYdoVFqpHGi5ucQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=KlMgK1+Z; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5334879ba28so1145877e87.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 07:33:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1724337193; x=1724941993; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=u+CLCXO1loNtRQ1zQxG3QmaE354XOPvXqx3+a/56H5k=;
+        b=KlMgK1+ZJX2PwEjc15lymt9JjPEEkJLEpJ5Jbh0XYP1aCy4sKK8iu0d7fNB2hfHG5q
+         BSEFRBHH3N/KqFGaCjF4x6sHeB3XZpGEP1x630+kuFZwpqR8UPj6fwx5/xWe5pqIs8Ki
+         aR0do2b0QAngexNeJpL3b+PAKvzqvx2XqJtR+gnElIOdIt2bE+8Bbp7BVp6WdhuXK1vp
+         H5Gg+4MpJthkwgwAPRO/bnshHgeTggRao+NqNasZaQd8xq0RGVI1thyC11M4NUfGQnO9
+         aP9rSQfv72u7mmOMDuAlCcarbqqPnX0nnTA5lhAvmBu1GqCpdIGG5f2EI/8o2HS2rw7l
+         7SLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724337193; x=1724941993;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u+CLCXO1loNtRQ1zQxG3QmaE354XOPvXqx3+a/56H5k=;
+        b=XnR1DanumCUXc2psNkDtWVV+d4IeW4guAZ4x2/MxjVICIood6nQmZj+fQpugzucZfy
+         3elQmU5W3VeB75D5xeA4J80j7QTtWv+iC24KhFtT7URNrINBHkHxGxyQdk16Y1vMTCeb
+         mIKL1VUe+Lm0fj5IzeF+gobqg10/xQ6ROb9jTHxHlizVKy3rNb7euLe9Fcspp4j3MHmN
+         kZBxwYR+konjZe7j3VizXLZPhdDfUCLOjWxtzlSxKngP8aMWQAKiURRA02793BwNuU8H
+         0GZN7LijIwPMYbD0sQwpcKEOjRlXdi9gg9LXQMfZXd4akYhYD1siM5GGDJHRoidbnSrP
+         JDlw==
+X-Forwarded-Encrypted: i=1; AJvYcCVm30jQUjEpqdroJpXbZegLpVuniWdMc5ovvJ4Vmm7sSN9EWERKMz67hzJ0xnaGg+wuFSlQg6wdvWZu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTls3buweAMY+a//AAU64aZOl79XV/V8Ko4xAVfHAKW2PMKRYu
+	U0SWQfA0D9M0llLZpOtbZ/t2hNQJNe9fhOxl4rpbLuNwNicLe9KhHbPfRJqp5O4=
+X-Google-Smtp-Source: AGHT+IHoBb72Bk0r3OFdWAjawuoYWFCtIMjCbazUFrv8zVo0YW75cua2rVkEy/AiDyfokhDrVrMdgw==
+X-Received: by 2002:a05:6512:159d:b0:52c:9906:fa33 with SMTP id 2adb3069b0e04-53348592143mr3936405e87.43.1724337192756;
+        Thu, 22 Aug 2024 07:33:12 -0700 (PDT)
+Received: from localhost ([87.13.33.30])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f222af5sm128629666b.41.2024.08.22.07.33.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2024 07:33:12 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 22 Aug 2024 16:33:18 +0200
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <ZsdMLgf2U-CRpnH4@apocalypse>
+Mail-Followup-To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+ <lrv7cpbt2n7eidog5ydhrbyo5se5l2j23n7ljxvojclnhykqs2@nfeu4wpi2d76>
+ <400486cd-e23c-4501-98c0-aa999aa45f75@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,126 +140,117 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240822092006.3134096-9-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <400486cd-e23c-4501-98c0-aa999aa45f75@kernel.org>
 
-On Thu, Aug 22, 2024 at 05:20:01PM +0800, Chen-Yu Tsai wrote:
-> This adds GPIO management to the I2C OF component prober.
-> Components that the prober intends to probe likely require their
-> regulator supplies be enabled, and GPIOs be toggled to enable them or
-> bring them out of reset before they will respond to probe attempts.
-> regulator support was added in the previous patch.
+Hi Krzysztof,
+
+On 16:20 Wed 21 Aug     , Krzysztof Kozlowski wrote:
+> On 21/08/2024 10:38, Krzysztof Kozlowski wrote:
+> > On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
 > 
-> Without specific knowledge of each component's resource names or
-> power sequencing requirements, the prober can only enable the
-> regulator supplies all at once, and toggle the GPIOs all at once.
-> Luckily, reset pins tend to be active low, while enable pins tend to
-> be active high, so setting the raw status of all GPIO pins to high
-> should work. The wait time before and after resources are enabled
-> are collected from existing drivers and device trees.
+> ...
 > 
-> The prober collects resources from all possible components and enables
-> them together, instead of enabling resources and probing each component
-> one by one. The latter approach does not provide any boot time benefits
-> over simply enabling each component and letting each driver probe
-> sequentially.
+> >>  drivers/misc/Kconfig                  |   1 +
+> >>  drivers/misc/Makefile                 |   1 +
+> >>  drivers/misc/rp1/Kconfig              |  20 ++
+> >>  drivers/misc/rp1/Makefile             |   3 +
+> >>  drivers/misc/rp1/rp1-pci.c            | 333 ++++++++++++++++++++++++++
+> >>  drivers/misc/rp1/rp1-pci.dtso         |   8 +
+> >>  drivers/pci/quirks.c                  |   1 +
+> >>  include/linux/pci_ids.h               |   3 +
+> >>  10 files changed, 524 insertions(+)
+> >>  create mode 100644 arch/arm64/boot/dts/broadcom/rp1.dtso
+> >>  create mode 100644 drivers/misc/rp1/Kconfig
+> >>  create mode 100644 drivers/misc/rp1/Makefile
+> >>  create mode 100644 drivers/misc/rp1/rp1-pci.c
+> >>  create mode 100644 drivers/misc/rp1/rp1-pci.dtso
+> >>
+> >> diff --git a/MAINTAINERS b/MAINTAINERS
+> >> index 67f460c36ea1..1359538b76e8 100644
+> >> --- a/MAINTAINERS
+> >> +++ b/MAINTAINERS
+> >> @@ -19119,9 +19119,11 @@ F:	include/uapi/linux/media/raspberrypi/
+> >>  RASPBERRY PI RP1 PCI DRIVER
+> >>  M:	Andrea della Porta <andrea.porta@suse.com>
+> >>  S:	Maintained
+> >> +F:	arch/arm64/boot/dts/broadcom/rp1.dtso
+> >>  F:	Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
+> >>  F:	Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> >>  F:	drivers/clk/clk-rp1.c
+> >> +F:	drivers/misc/rp1/
+> >>  F:	drivers/pinctrl/pinctrl-rp1.c
+> >>  F:	include/dt-bindings/clock/rp1.h
+> >>  F:	include/dt-bindings/misc/rp1.h
+> >> diff --git a/arch/arm64/boot/dts/broadcom/rp1.dtso b/arch/arm64/boot/dts/broadcom/rp1.dtso
+> >> new file mode 100644
+> >> index 000000000000..d80178a278ee
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/broadcom/rp1.dtso
+> >> @@ -0,0 +1,152 @@
+> >> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> >> +
+> >> +#include <dt-bindings/gpio/gpio.h>
+> >> +#include <dt-bindings/interrupt-controller/irq.h>
+> >> +#include <dt-bindings/clock/rp1.h>
+> >> +#include <dt-bindings/misc/rp1.h>
+> >> +
+> >> +/dts-v1/;
+> >> +/plugin/;
+> >> +
+> >> +/ {
+> >> +	fragment@0 {
+> >> +		target-path="";
+> >> +		__overlay__ {
+> >> +			#address-cells = <3>;
+> >> +			#size-cells = <2>;
+> >> +
+> >> +			rp1: rp1@0 {
+> >> +				compatible = "simple-bus";
+> >> +				#address-cells = <2>;
+> >> +				#size-cells = <2>;
+> >> +				interrupt-controller;
+> >> +				interrupt-parent = <&rp1>;
+> >> +				#interrupt-cells = <2>;
+> >> +
+> >> +				// ranges and dma-ranges must be provided by the includer
+> >> +				ranges = <0xc0 0x40000000
+> >> +					  0x01/*0x02000000*/ 0x00 0x00000000
+> >> +					  0x00 0x00400000>;
+> > 
+> > Are you 100% sure you do not have here dtc W=1 warnings?
 > 
-> The prober will also deduplicate the resources, since on a component
-> swap out or co-layout design, the resources are always the same.
-> While duplicate regulator supplies won't cause much issue, shared
-> GPIOs don't work reliably, especially with other drivers. For the
-> same reason, the prober will release the GPIOs before the successfully
-> probed component is actually enabled.
+> One more thing, I do not see this overlay applied to any target, which
+> means it cannot be tested. You miss entry in Makefile.
+>
 
-...
+The dtso is intended to be built from driver/misc/rp1/Makefile as it will
+be included in the driver obj:
 
-> +	struct fwnode_handle *fwnode = of_fwnode_handle(node);
-> +	struct gpio_descs *gpiods;
-> +	struct gpio_desc *gpiod;
-> +	char con[32]; /* 32 is max size of property name */
+--- /dev/null
++++ b/drivers/misc/rp1/Makefile
+@@ -0,0 +1,3 @@
++# SPDX-License-Identifier: GPL-2.0-only
++rp1-pci-objs                   := rp1-pci.o rp1-pci.dtbo.o
++obj-$(CONFIG_MISC_RP1)         += rp1-pci.o
 
-Use 'propname' to be aligned with GPIO library usages.
+and not as part of the dtb system, hence it's m issing in
+arch/arm64/boot/dts/broadcom/Makefile.
 
-> +	char *con_id = NULL;
-> +	size_t new_size;
-> +	int len;
+On the other hand:
 
-...
+#> make W=1 CHECK_DTBS=y broadcom/rp1.dtbo
+  DTC     arch/arm64/boot/dts/broadcom/rp1.dtbo
+arch/arm64/boot/dts/broadcom/rp1.dtso:37.24-42.7: Warning (simple_bus_reg): /fragment@0/__overlay__/rp1@0/clk_xosc: missing or empty reg/ranges property
+arch/arm64/boot/dts/broadcom/rp1.dtso:44.26-49.7: Warning (simple_bus_reg): /fragment@0/__overlay__/rp1@0/macb_pclk: missing or empty reg/ranges property
+arch/arm64/boot/dts/broadcom/rp1.dtso:51.26-56.7: Warning (simple_bus_reg): /fragment@0/__overlay__/rp1@0/macb_hclk: missing or empty reg/ranges property
+arch/arm64/boot/dts/broadcom/rp1.dtso:14.15-173.5: Warning (avoid_unnecessary_addr_size): /fragment@0/__overlay__: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
 
-> +	if (len >= sizeof(con) - 1) {
+seems to do the checks, unless I'm missing something.
 
-This can be transformed to check the returned value from strscpy().
+Thanks,
+Andrea
 
-> +		pr_err("%pOF: length of GPIO name \"%s\" exceeds current limit\n",
-> +		       node, prop->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (len > 0) {
-> +		strscpy(con, prop->name, len + 1);
-
-The correct (robust) call is with destination size. Which means here that you
-may use 2-argument strscpy().
-
-> +		con_id = con;
-> +	}
-
-...
-
-> +	if (!data->gpiods)
-> +		return 0;
-
-If it comes a new code (something else besides GPIOs and regulators) this will be a (small) impediment. Better to have a helper for each case and do
-
-	ret = ..._gpiods();
-	if (ret)
-		...
-
-Same for regulators and anything else in the future, if any.
-
-> +		/*
-> +		 * reset GPIOs normally have opposite polarity compared to
-
-"reset"
-
-> +		 * enable GPIOs. Instead of parsing the flags again, simply
-
-"enable"
-
-> +		 * set the raw value to high.
-
-This is quite a fragile assumption. Yes, it would work in 98% cases, but will
-break if it's not true somewhere else.
-
-> +		 */
-
-...
-
-> +	/* largest post-reset-deassert delay seen in tree for Elan I2C HID */
-> +	msleep(300);
-
-Same Q, how do you monitor _all_ the drivers?
-
-...
-
-> +disable_gpios:
-> +	for (gpio_i--; gpio_i >= 0; gpio_i--)
-> +		gpiod_set_raw_value_cansleep(data->gpiods->desc[gpio_i], 0);
-
-Can't you call the _array() variant here?
-
-...
-
-> -	dev_dbg(dev, "Resources: # of regulator supplies = %d\n", probe_data.regulators_num);
-> +	dev_dbg(dev, "Resources: # of GPIOs = %d, # of regulator supplies = %d\n",
-> +		probe_data.gpiods ? probe_data.gpiods->ndescs : 0,
-> +		probe_data.regulators_num);
-
-I would issue one message per class of the devices (GPIOs, regulators, ...)
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Best regards,
+> Krzysztof
+> 
 
