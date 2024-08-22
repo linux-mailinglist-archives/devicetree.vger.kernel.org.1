@@ -1,83 +1,49 @@
-Return-Path: <devicetree+bounces-95773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E3695B1D8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:38:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F8595B213
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A68B1F23343
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:38:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63523286098
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A609179206;
-	Thu, 22 Aug 2024 09:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99E518453C;
+	Thu, 22 Aug 2024 09:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fWONRY/9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O3RqG3Fi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99166171092
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 09:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8146E17D377;
+	Thu, 22 Aug 2024 09:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724319516; cv=none; b=DqEWPGioOT+UXgzpGeGbEYRGZ5AEDbJ7uGNhRvlnumx7KaSP4fTPmq52XnH/T7fdgNRolYKyFsuCINpCS8FoIF+hzlZUAUSak6mS4xEiDqRhgZhfmTKDUvxWepUfiF5vYbh+V6USBWjoN62t2MpMb3T8w+2geptTflyyx+Ozroc=
+	t=1724319689; cv=none; b=Y4tzuOk6JAvoJPOvAHLvCHD56ukJD5FlchM/iv7FPm49ll+UYQDMJ6nj50cyjxi90Zz2AWC7sOVAArH9jrw8ivJhU1SBEMpIp1kdrVNsxD9/hc+f9jXBA1zH8fV8TLz20qYfFJR4cAesguzbt5jQnqu9uoBVQH40tRGL2CKD2n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724319516; c=relaxed/simple;
-	bh=111O/5/1ojVV7OI8NIPGIbmOFNtTVFkol4UsxQyR9uU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=gOaZ0ufig7zAVcBkHxsVonhoP1wmeg+drw+A7dHvrCPh8VLgkDHXTGmmyl2SKDaqEG5oJml6kfPGJb2Cn+VzHQ0p5VXpi4Paondyjql5qO5Sd+KZa7vNFvmiCeI3hR7x+CGBB9I5WdTCWBoAuE1R5xXI15dj5BcL64RJLOq95kU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fWONRY/9; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-428098e2b3bso539445e9.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 02:38:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724319513; x=1724924313; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kcAP1+UzidHHBut/wkiIQwc08/qanMcQw9/HOzcokdI=;
-        b=fWONRY/9UMTzGG2Qzqvg0H7UBr3TB1U+gX5960uBT4/SWB360FJTy7nM/VXeoqAKQ2
-         94cVylOhpoJ+8qh+jovXrAPviM5FaGdMQgarRt//YbuzpR6VMQPrXt5KKizz9K37WkJ9
-         NT794Gzmzebjzbznq8rHw3dQnjBF/T/cIm3ddqWArD6wq/y2ol9SdbfmVXBUU72AZoaL
-         X9N2fb2WtQDXGiBzkvhvZwyQ/ooOIEbbMBCD2P2epP4CnyGqtKvRBhcNJY78tBfqB4W7
-         olua1koQa4puJthRGptKzKCgY02bGzzVOfogOGcVbymO6X78KGMIMoUNhZXBKmMlIiad
-         zTWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724319513; x=1724924313;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kcAP1+UzidHHBut/wkiIQwc08/qanMcQw9/HOzcokdI=;
-        b=Rr/AckEO2Fm+/FIYcTIiUjB6ARXabHRwjK/2pzQPzw2tsfhxd7z382AgzYEKQzu3+J
-         MFqXyrO+AmZoc8CJCRJfx3qP4ioXpsw+QnXHTIzlX/K335xfu4fjBg/kBs5mh3snjmPG
-         JLNa88qzz3YcYAoWyMgHSwy/27Ikninx/ZFLVvLqLFUgZ11gT8jCrBfB6r9tkSU7UyYc
-         Ohsha4jEWKxRTp5d3vNIeqMcrLJHhmS29wlIYkpHorF1HHHTNv1tsoRSzT1ie/wKxo+N
-         aW+hj11Pz5EZqxGFBgOfTEgDQCEBCwXKvQ3gTdnbVO6QAMqE/cLL7h0MhgJUAymaEE5Z
-         qpmg==
-X-Gm-Message-State: AOJu0Ywy/4K8cvDgFQPOpqWZEFCQOMBthKda++Q+r4Krr4wYuDE6dwhb
-	aNN9KBJtIo4OtSyTITQvrzPsgk1cPinqv5LJN6UTGvGCBmvKKIPwWx3U2m5eL4A=
-X-Google-Smtp-Source: AGHT+IFJFErUAThi7f4GEL5kxSEupuPH+kbml2cXMv40hedr33cHGawmpp718dh+i0XjTApnjQJUxQ==
-X-Received: by 2002:a5d:5e0f:0:b0:36b:b2a1:ef74 with SMTP id ffacd0b85a97d-372fd82f725mr1321582f8f.8.1724319512802;
-        Thu, 22 Aug 2024 02:38:32 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730817a5acsm1221805f8f.64.2024.08.22.02.38.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 02:38:32 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Kwanghoon Son <k.son@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
-References: <CGME20240819075546epcas1p355a3c85ffcea2c43e8f1b2c69a0f3b4e@epcas1p3.samsung.com>
- <20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
-Subject: Re: [PATCH] arm64: dts: exynosautov9: Add dpum SysMMU
-Message-Id: <172431951098.22090.17586720049616945954.b4-ty@linaro.org>
-Date: Thu, 22 Aug 2024 11:38:30 +0200
+	s=arc-20240116; t=1724319689; c=relaxed/simple;
+	bh=SKjq0zl1AD3TiA8BotE+oEROoOlk7o+58wKeW4muaVs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=K9iaTdDDP21cXKvLL7ozw0oWeCOaYYpHrEpEyI1znT5QbJ1++Gl/wmgpTw/cINuDtaBZARuVSZ1tNwERGLikziwBHJknWLn1PLQ7BVTvouiLHAISQjOyGe/v9EXuL6gwBfAu4zjkzs0AeJMBBoHEL5en9uzI6DjIgtbNNAejgzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O3RqG3Fi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7884C4AF0C;
+	Thu, 22 Aug 2024 09:41:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724319689;
+	bh=SKjq0zl1AD3TiA8BotE+oEROoOlk7o+58wKeW4muaVs=;
+	h=From:Subject:Date:To:Cc:From;
+	b=O3RqG3FiLdw4loGbbg6kIvjj+HdMDMbo1sO+h9qRYZmvP5TM0M76yFWQ+IU0/30Uz
+	 qTGzMmA+ivNjje949iZWk62Grxw7+JZd4mZr3f8cq1bmulxpl5Je4cn+GFI3Kxqw/t
+	 SugcmBQUVi7Fy68BFEibo6PX2LCZG65F626BL7W1up9DX2DlmQtTZQnfiKvQ+P38pm
+	 G8HcHYEdaeEnhVKNKbFZMVXASv9DT+ng0eUzy+C7Wchl1O1hxFbFB3mp3QFZX60DVl
+	 XtnQvf4Z87DhPsbucHEZczveADHhzXh8AzfwpxCc0iXlO5aQ4mEMAJUUzLuyT2TQFM
+	 RS4RA9UotANcQ==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH v2 0/2] Add pinctrl support to EN7581 SoC
+Date: Thu, 22 Aug 2024 11:40:51 +0200
+Message-Id: <20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,26 +52,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+X-B4-Tracking: v=1; b=H4sIAKMHx2YC/0WPwW7DIBBEfyXiXCxYLwZy6n9UORi8OKguuGs3i
+ hLl30vTSj2+w8y8uYuNONMmjoe7YLrkLdfSAF4OIp7HMpPMU2MBClA57SQVa5yWay5x50XqkDQ
+ obTCQEi20MqV8fRa+nRonrh9yPzONzxo1md6Sc2FAhzZEJPTWDAHQB6A0xYTOBw+dttD3HhCxm
+ /PeLZWp3OrrO3Ghpas8/40xfX416f138d+5XfgxtsrIVFkOUmsZ1iTHHj2lqNyU3PEC4vR4fAM
+ 0H0o4BAEAAA==
+To: Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com
+X-Mailer: b4 0.14.0
 
+Introduce pinctrl driver for EN7581 SoC. Current EN7581 pinctrl driver
+supports the following functionalities:
+- pin multiplexing
+- pin pull-up, pull-down, open-drain, current strength,
+  {input,output}_enable, output_{low,high}
+- gpio controller
+- irq controller
 
-On Mon, 19 Aug 2024 16:55:45 +0900, Kwanghoon Son wrote:
-> Add System Memory Management Unit(SysMMU) for dpum also called iommu.
-> 
-> This sysmmu is version 7.4, which has same functionality as exynos850.
-> 
-> DPUM has 4 dma channel, each channel is mapped to one iommu.
-> 
-> 
-> [...]
+---
+Changes in v2:
+- Fix compilation errors
+- Collapse some register mappings for gpio and irq controllers
+- update dt-bindings according to new register mapping
+- fix some dt-bindings errors
+- Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
 
-Applied, thanks!
+---
+Lorenzo Bianconi (2):
+      dt-bindings: pinctrl: airoha: Add EN7581 pinctrl controller
+      pinctrl: airoha: Add support for EN7581 SoC
 
-[1/1] arm64: dts: exynosautov9: Add dpum SysMMU
-      https://git.kernel.org/krzk/linux/c/71e0b08ed2a98e5ab5eb255fc86cda04205b141e
+ .../bindings/pinctrl/airoha,en7581-pinctrl.yaml    |  454 +++
+ MAINTAINERS                                        |    7 +
+ drivers/pinctrl/mediatek/Kconfig                   |   16 +-
+ drivers/pinctrl/mediatek/Makefile                  |    1 +
+ drivers/pinctrl/mediatek/pinctrl-airoha.c          | 3031 ++++++++++++++++++++
+ 5 files changed, 3508 insertions(+), 1 deletion(-)
+---
+base-commit: defaf1a2113a22b00dfa1abc0fd2014820eaf065
+change-id: 20240818-en7581-pinctrl-1bf120154be0
+prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
 
 Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Lorenzo Bianconi <lorenzo@kernel.org>
 
 
