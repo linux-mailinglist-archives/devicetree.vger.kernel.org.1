@@ -1,128 +1,152 @@
-Return-Path: <devicetree+bounces-95697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC4295ACED
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:36:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9136395AD06
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:45:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CF9028158B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 05:36:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9D9DB20AF8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 05:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4574255885;
-	Thu, 22 Aug 2024 05:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910444D8A3;
+	Thu, 22 Aug 2024 05:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UwJGGL/V"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kUsu7kwv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610C12E3EE;
-	Thu, 22 Aug 2024 05:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B5B23CB;
+	Thu, 22 Aug 2024 05:45:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724304955; cv=none; b=ZrpKMyM7Yc7HaKpBZH2m8UncmlJJi2SSiccG113rCCU7jj6twbpe4mNH7ZScA5Ul8A5U+fi0EbCE0metC42Cssul2+mFbqt8+jnfSKoxPdQrLnvDu8GcQKHd4/2fabeDRsKzlILK3hKo+nQ4ZQPjce8R62FCl+Saq0dUOOe1ICw=
+	t=1724305539; cv=none; b=Fwp/lAgbYORDj+v4HdMoH+ulI9hHTF3Vu3pRlW3p/68AXdPtqT3VU4UjPgpdepyM44Z46Jl+iK/5ITpoRcprv7gjuCwdpNBUIsfnEOtQv4a4ygxM9ZjvSRXjqp8cICZVvpYaIPoyBopexsMDeMPge35i7ItMo5xnhw7d7FTHz48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724304955; c=relaxed/simple;
-	bh=CtEq7g1d94vXFrvgU8cst6cdSd/EbtYFYxOLd205oZw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RWSON6zmERqu0OnD2aC7fioK0KsXwe7FPs9xYZLO2CeHhPiNjtFM8erkDFJoAwq9PxB6+dZQRliSC6/MqOe4PyXiZEaNA7lSYzoryKRT5Rtj9FcggO/m21e9obBod/U5IkEqLCBpq0Rt/+gljAWc6x/7iri0lPiytbGUeKSgvoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UwJGGL/V; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47M5Ze9Z120376;
-	Thu, 22 Aug 2024 00:35:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724304940;
-	bh=3G/831VZMPg/EVxycyligIipdeBJkvkoKP5/tNrzULg=;
-	h=From:To:CC:Subject:Date;
-	b=UwJGGL/VSqUVmoz8nyp0T6sEhyc10NVwUCYcbEt9lrbSf6ZjnHpmR+hpCjA3oVUsh
-	 Kb0ry/0UX7qfTfA7/Y05LvQ2NQG5fmjFBKn+jsrM8p7i3ljRVxNYWRZhlVPonb/EI4
-	 NVgbDBoU3YWyjaMsQeil7CaBHFfv8xNBiTZwvZS4=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47M5ZeLq002632
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 22 Aug 2024 00:35:40 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
- Aug 2024 00:35:40 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 22 Aug 2024 00:35:40 -0500
-Received: from localhost ([10.249.128.135])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47M5ZcHY042740;
-	Thu, 22 Aug 2024 00:35:39 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <b-kapoor@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j722s-evm: Describe main_uart5
-Date: Thu, 22 Aug 2024 11:05:38 +0530
-Message-ID: <20240822053538.10475-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1724305539; c=relaxed/simple;
+	bh=mbw4YAzVjFnzGAgTXBPme5sjYYqYEkad5Ia1Ud9ihko=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=t2WTy2n2dNXm3ZPloqazRDt2OsYB4AgQ8t25FUGM5wGMJRbXwJZVP7zdOhwAO/R3EbMNqCYFSJCkgskiCgzbVHxvuNC6C8j1x8YeiM7xhii8HjfAqB00UexgyXPJTlZ+JnXqbHO4b8SfMyY6nLjwvZ6Ec5LT58y3dX5J86AOJoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kUsu7kwv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47M12cl9002130;
+	Thu, 22 Aug 2024 05:45:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=kpcdL7lq7iEq3+tqaYjH8jTl6UjYdvs2yWw00QhlvdU=; b=kU
+	su7kwvXV3n7ZKclDe+iKrEeuqpQy594zqpv2Q2SSevm42aCD+9yY5v7vgUAfjc2l
+	arknfL88oeoeCyM585lIxfeuJTqctCRDdYale27eyJRbkWCToIlNnRDEDLOUVzhY
+	ggfKooznVUc+r4ipVgcDFaskZxOFGsYh51MIx1WbyxXOnmS/tPLVFlQK2j3UU005
+	JtxO4e6NMVON5C+n9BKcV+/y54qN1mM1fPyygvosULy3uESbGzsu+kjZmxrODGm2
+	tjFLYl0aRp4IuOQi3+vvL0DWgTi13J4+HoKndbmUxfn2lQQLJ3/eAX4gZgv0ItI7
+	FsVEers9vXBudN9ww6fA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pdmxx3b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Aug 2024 05:45:20 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47M5jJFS010320
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 Aug 2024 05:45:19 GMT
+Received: from hu-sachgupt-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 21 Aug 2024 22:45:14 -0700
+From: Sachin Gupta <quic_sachgupt@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_nitirawa@quicinc.com>,
+        <quic_bhaskarv@quicinc.com>, <quic_narepall@quicinc.com>,
+        <quic_rampraka@quicinc.com>, <quic_sartgarg@quicinc.com>,
+        <quic_mapa@quicinc.com>, <quic_cang@quicinc.com>,
+        <quic_nguyenb@quicinc.com>
+Subject: [PATCH V2] arm64: dts: qcom: Add SD Card node for qcm6490-idp
+Date: Thu, 22 Aug 2024 11:14:57 +0530
+Message-ID: <20240822054457.16314-1-quic_sachgupt@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MisUgbL5UwD7g1gvxB8FGRsbc4KGJ0Wa
+X-Proofpoint-GUID: MisUgbL5UwD7g1gvxB8FGRsbc4KGJ0Wa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-22_02,2024-08-19_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 adultscore=0 mlxlogscore=673 bulkscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1011
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408220040
 
-main_uart5 in J722S platform is used by the firmware. Thus,
-describe it for completeness, adding the pinmux and mark
-it as reserved.
+Add SD Card node for Qualcomm qcm6490-idp Board.
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
 ---
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 27 ++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index 24e9f2ea509b..5addf1c0afc2 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -20,6 +20,7 @@ / {
- 	aliases {
- 		serial0 = &wkup_uart0;
- 		serial2 = &main_uart0;
-+		serial3 = &main_uart5;
- 		mmc0 = &sdhci0;
- 		mmc1 = &sdhci1;
- 	};
-@@ -211,6 +212,13 @@ J722S_IOPAD(0x01cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
- 		bootph-all;
- 	};
- 
-+	main_uart5_pins_default: main-uart5-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0108, PIN_INPUT, 3)       /* (J27) UART5_RXD */
-+			J722S_IOPAD(0x010c, PIN_OUTPUT, 3)      /* (H27) UART5_TXD */
-+		>;
-+	};
-+
- 	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
- 		pinctrl-single,pins = <
- 			J722S_IOPAD(0x0120, PIN_INPUT, 7) /* (F27) MMC2_CMD.GPIO0_70 */
-@@ -330,6 +338,12 @@ &main_uart0 {
- 	bootph-all;
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index a0668f767e4b..8cfbb42af6a3 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -641,6 +641,21 @@
+ 	status = "okay";
  };
  
-+&main_uart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart5_pins_default>;
-+	status = "reserved";
++&sdc2_clk {
++	bias-disable;
++	drive-strength = <16>;
 +};
 +
- &mcu_pmx0 {
++&sdc2_cmd {
++	bias-pull-up;
++	drive-strength = <10>;
++};
++
++&sdc2_data {
++	bias-pull-up;
++	drive-strength = <10>;
++};
++
+ &sdhc_1 {
+ 	non-removable;
+ 	no-sd;
+@@ -652,6 +667,18 @@
+ 	status = "okay";
+ };
  
- 	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
++&sdhc_2 {
++	status = "okay";
++
++	pinctrl-0 = <&sdc2_clk>, <&sdc2_cmd>, <&sdc2_data>, <&sd_cd>;
++	pinctrl-1 = <&sdc2_clk_sleep>, <&sdc2_cmd_sleep>, <&sdc2_data_sleep>, <&sd_cd>;
++
++	vmmc-supply = <&vreg_l9c_2p96>;
++	vqmmc-supply = <&vreg_l6c_2p96>;
++
++	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
++};
++
+ &tlmm {
+ 	gpio-reserved-ranges = <32 2>, /* ADSP */
+ 			       <48 4>; /* NFC */
 -- 
-2.34.1
+2.17.1
 
 
