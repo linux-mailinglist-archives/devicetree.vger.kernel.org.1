@@ -1,241 +1,250 @@
-Return-Path: <devicetree+bounces-95955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2AD95C091
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 00:01:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B823C95C11F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 00:50:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 784A21F24771
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 22:01:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E00F5B211BE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 22:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB051D1F61;
-	Thu, 22 Aug 2024 22:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653E01D0DF0;
+	Thu, 22 Aug 2024 22:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=est.tech header.i=@est.tech header.b="ayQA1A7j"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="cuwZamvk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2074.outbound.protection.outlook.com [40.107.249.74])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C608F1D1F50;
-	Thu, 22 Aug 2024 22:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724364087; cv=fail; b=aijsCcrEwyaowcHC3OdY8uPzrD9VWR6Zi+ldZuDEH/an95RDsb8LxnZhpQUWWj6OpYIZGJ6fYeW97AFYJSv+TZxOHCPCrFZwynKBz2q6crko0XAmVB1f/hLmCaPMZLCpuNfsz3DiJJvtHRv3xLMl9pDQ5X6A7BrpochbRtUgcRM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724364087; c=relaxed/simple;
-	bh=xLbJpuX9HhNR0ZV7nGzIbn+qa8rhRWpmZ/L+/G5WYUg=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=V03nZvHPeBFkcJRZ0xNihKgxNyStbWwePKcXOIqRxPl4016TN48Rr5s9xRK3gz/G/gJvHSsrwTQZE2d3uZ7T4iReBxO8UbR7PUySb+/xbLAvV5D2EtcGjcgJucvQZWFYnjGdFcaf1fwFlm7gjhGnL8Ikwof6GkgLzL08eVT+gfg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=est.tech; spf=pass smtp.mailfrom=est.tech; dkim=pass (1024-bit key) header.d=est.tech header.i=@est.tech header.b=ayQA1A7j; arc=fail smtp.client-ip=40.107.249.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=est.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=est.tech
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wS0wLU4S35gjUNc4Ad8rTW3NOc5L8KvuFWv8DUERg317HC1mz/VcsIGRlyGXdJFKLqVYWB/3tl6UxXQeEeHV8GMtXbHEt+QpVHavmJQRC+ZXpqNpB5kYPpgN8cEHBMAcnTaat9zeesKTKAe2kOB8tj3+aPsZMl05dyb+VHuMsA78vWINV2ecHkshW2BIh/dH0atJjZkOYcmWgH0pUnfZQWSjLgiaDv3aot0SxlJps5wOdwUpBD6M3hBE1eD0DxpbHsO8iYX8sl7dcCc6nfEnVcNjOwbvyW1ZVz1HhtgbsaVmiMPosdQbDw7NUqx4RV5ftaA8mOWXRzTXZF+aMNyP0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M1+c90ViFgnoHYXSMmljfEgNQKRL7U0g9sqAaPhSrrc=;
- b=Ia1OZqcQByxkrH5nr2thWr4QESO1fEfMQ4kPdHPGXm2oOg6FPavTprpVNScwn8K9yRKfX357NdtonJaXglLu7c7e2zZ/fHpH16aV2/vsFe2DOh9yA21HO9HwJyz5Wj//S6jutwYSBecbBzFK7LUDNQkDKwMsydAVxTaIG/ZOCg0Og3KvZ7upnj257QuF8XvQn/9+1Gmyui1tSjE+gNSqgYyI+66CjeoFyIZb2bsMwvdzOg0Iss2Yp2c/W8FeaLKNYnFBPshcZKfHa/KEy2Eh+es/7JKeGMNSb+jax9Qv4K9a5kuBM9fBkX6NBUDtILyJTbhpe07rp9Rzgp/cxBrz7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=est.tech; dmarc=pass action=none header.from=est.tech;
- dkim=pass header.d=est.tech; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=est.tech; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M1+c90ViFgnoHYXSMmljfEgNQKRL7U0g9sqAaPhSrrc=;
- b=ayQA1A7jihzevWY7lWzsmqAcotYZOUITgYqZXVvo9vxYaxPKdSGI62Ki0rhzpcvu3aysGzpLgYJa193DpUOygFmk2J/msZ1gdf6AMTQKqgVHfmy987LKWbHG/n5EcZBCET66zgrd62euXDmoxvCgpsnnLhKCX4Mpv0H56bYOPeA=
-Received: from AM7P189MB0807.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:115::19)
- by PRAP189MB1828.EURP189.PROD.OUTLOOK.COM (2603:10a6:102:27a::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Thu, 22 Aug
- 2024 22:01:22 +0000
-Received: from AM7P189MB0807.EURP189.PROD.OUTLOOK.COM
- ([fe80::53cd:a2f6:34be:7dab]) by AM7P189MB0807.EURP189.PROD.OUTLOOK.COM
- ([fe80::53cd:a2f6:34be:7dab%6]) with mapi id 15.20.7897.014; Thu, 22 Aug 2024
- 22:01:22 +0000
-From: Kyle Swenson <kyle.swenson@est.tech>
-To: "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
-	"kory.maincent@bootlin.com" <kory.maincent@bootlin.com>,
-	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
-	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>, Kyle Swenson
-	<kyle.swenson@est.tech>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH net-next v2 2/2] net: pse-pd: tps23881: Support reset-gpios
-Thread-Topic: [PATCH net-next v2 2/2] net: pse-pd: tps23881: Support
- reset-gpios
-Thread-Index: AQHa9N7ToI4XRfgfPE60nFrdlScw3w==
-Date: Thu, 22 Aug 2024 22:01:22 +0000
-Message-ID: <20240822220100.3030184-3-kyle.swenson@est.tech>
-References: <20240822220100.3030184-1-kyle.swenson@est.tech>
-In-Reply-To: <20240822220100.3030184-1-kyle.swenson@est.tech>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=est.tech;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM7P189MB0807:EE_|PRAP189MB1828:EE_
-x-ms-office365-filtering-correlation-id: 5b9cdd57-2629-4e03-be97-08dcc2f5f593
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?cSfKsSVSLTnbc+HPT56z0xyKTX4dpyK/YY4dZGb0YqnjaAzyu3OQo8cBEP?=
- =?iso-8859-1?Q?6cfLU57oA37LuQN944wbz5rAELpDrcarLsTZYOzjqjJ39AWbv4SaqtP5AM?=
- =?iso-8859-1?Q?XS3XLm4TRtsomkRHpxHZ1BN7lZ9yVuqjHUjv5ZH0y99yylPe/niGdKiWBj?=
- =?iso-8859-1?Q?zE2l4ZYvf3zRkMSz33FPyvu4dyNPafV9l09s2dERjEkpZI9mZ0cC3ppXoq?=
- =?iso-8859-1?Q?s2Vl9RltpOOP7YpSjWo2THY4Cu3MSrVgZi5q/TAkAWM2oy9NxGmZ6w48x5?=
- =?iso-8859-1?Q?APZvoeLmCHf/Sgq7MSDJ0fL93aUSiTwz/MfObO3lGau35Kqw9mPKZ5Zoqr?=
- =?iso-8859-1?Q?URWJV8FzsNO1RWlr4gTgOXz+XP5wy7TENdnOv4h4K2QgP44fPm4ivpZxcQ?=
- =?iso-8859-1?Q?AqshlcHnHCXlTf+pvlHDr+k4TbsY1Sp0XufZyemPcQsStsJiHZiDX+je+4?=
- =?iso-8859-1?Q?dCLknsg6fZO3n9cYA+Zq4J5NSG06zB26H5fCtXiciIeJbgOea51NAjvKqL?=
- =?iso-8859-1?Q?snRKnaXtpn2IdiT/uUlb/PX6p6LFVDhtWM3GakDe3/MP6nbq2NWeZ4zmy0?=
- =?iso-8859-1?Q?vvhJYsxbG2sLWWGTwl+p8YjFuHBZeu7+OBunff1AQf3JmZxkRyXN1cTxMi?=
- =?iso-8859-1?Q?1H5nVKhgHV3Qab1im+MPuEyKcrlS47iKo6YIHI3tsMijag5wPOAR4zwYc6?=
- =?iso-8859-1?Q?AdSt5IKda/vuNBskT6U+rJkubqXcVF3kvVA+z5jZOLfoa5qtFjsTDocUlZ?=
- =?iso-8859-1?Q?XwEJTxQgl5zJsXbn50/eStvrwtdwEZu9hbv7T0dmnTBsuC9/g1Ui8N7Isr?=
- =?iso-8859-1?Q?NUk8pNNzd77eCXoG8NdIjnn31zYzBt4WL2u53sc4QNh5vb90bOPldIr2QX?=
- =?iso-8859-1?Q?kfpS9JKaPxKe/qeSuvCI8+0n44onUpnx+UDb/SZG/gvIMZ23W/H9I4MH2y?=
- =?iso-8859-1?Q?6KxGFZwdtFrYHhsODPhv6RItnl+7Selvvlgb0GbaLWRqjlv7+n+ijiZLqA?=
- =?iso-8859-1?Q?rfk6DIKl4vIgJg/399MjRygbIObDS6cA7Y72Oip3/8PFV8cjkvQjzzU+QC?=
- =?iso-8859-1?Q?gQONdMDoYSuQT2jStiNAQG8gz/Bb4oFLcDCXm1ufe6WEE3gKi693xAPEpP?=
- =?iso-8859-1?Q?ecPXZS7JQFX8IM2D50s4FxxUrONFhqZkvlkD3YA1/Qzvy4Ig5OQRLSAXGF?=
- =?iso-8859-1?Q?ubwXtfSb+OrxEJh5cvXjU44Vi5hgponhbNHQEIg2c/2IS5NA1gSwyqnhFw?=
- =?iso-8859-1?Q?aiArUUWmVKDZVUXwGN2BywUzB4SgZ9ChtpxBwt2HDYpfIER2WJIlKS7wDZ?=
- =?iso-8859-1?Q?EvuU4qPiJqJ0qQ1PQUJh4cmNvMWp8mlfpAMqextSAHg+Lso1q73c5xO4gV?=
- =?iso-8859-1?Q?SRi09JT2+nIakEC1ovcG9RikfoKInQuLDHomXcKDSRddfSPk93CWugngQ0?=
- =?iso-8859-1?Q?8NNmBcGcLiCDySUiaHBsYu5GvSljKTxu2gvqdw=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7P189MB0807.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?k+82PZXaHGHX+C3s/IhKY1byb8xrkzDXg+zqNjqNQcUuRobXZpEjsq0JO+?=
- =?iso-8859-1?Q?5grKBBDP0+qd7WwgiEAu6/kfGlXX0tXdBKHD7lPHJjsZrHGUwQq/IxWSWc?=
- =?iso-8859-1?Q?1p8nQny3B3ZmHYvNyaNMGrCTw0Wy6te07icfCLBhLOId41gxTcWHOrE2vh?=
- =?iso-8859-1?Q?IrbcsYRwIR5Poe14dAMaeKCeHpswAR0mVvN2nD+4YvThFFi054Z13U23jy?=
- =?iso-8859-1?Q?2pipB5vsET2wne6NZ+U+RsuJCOrvXrz6Z9AAknZ4f4weUH6OO2ZwqCUhB/?=
- =?iso-8859-1?Q?GYhybDbgfdw0nHwYZhdKI1as8n5DFDZXcT77bUn+RISFyvCLElVH5a1H9f?=
- =?iso-8859-1?Q?Mr/S1fTYyvRztHyJhvEd0Gi+dpBiDFl0RUqIK5gunmGToK59zK4ooiJsXU?=
- =?iso-8859-1?Q?xoLhHSoaZUrvEVt58TaXXq2bGB5lVbh/ECnJvORqwYel+km1MgJNJ0gUVp?=
- =?iso-8859-1?Q?bKDNkVA/sA9gguG17OUpGs98Wnu8R22PiptoepRV/JAABresGq6JPtK6ZL?=
- =?iso-8859-1?Q?8kSxDILwvcsCYXsnuikhBL6SWeKauuMhx9+2V5y09L2vmZVTQDtZwDFRAD?=
- =?iso-8859-1?Q?C+xxTFe7fsvvdXHNszRa3PWn+2oGQj+XYmcmGac0zbYjpmsutzart0kmfI?=
- =?iso-8859-1?Q?Yjta9jwKVYqwEUaS2N9FqZwWeZzOt1BVBHkHfV6PT7S6AmRZ+gpiHWWbdT?=
- =?iso-8859-1?Q?uR35T+p3BsrbwhPgPrhD7eGmbmvPzRbQaVs4Y7z2KZT1ZURBArRhuLkGCP?=
- =?iso-8859-1?Q?9T71IslIeYqAVIsI/fHFHc4GVm2rJ42D3WY6Kgf/lqe2vUNgV2EhtIsyFo?=
- =?iso-8859-1?Q?x41s38CMxHFynReYYikzjs4DPE25wEFOHI8nu0GVajLf7KyGeSQKtSmgMk?=
- =?iso-8859-1?Q?DHsiZ8zyDlZ5MgmR7y4rwSY4Nj6nFa0TvUZd47qj9QJLGkcxuf3iUm4Iq1?=
- =?iso-8859-1?Q?FEmQObodpezj1Sh4vfCr1cG3KwGc3QLIUKCld63Gk2sRtu02zMkCGN5wXm?=
- =?iso-8859-1?Q?fKeNVOxhEzHcBR1xnPbcqWH5n0L2hApsOb5mowJvWgeg2j8yeD3XS2rZrM?=
- =?iso-8859-1?Q?R51WfBCaWfBcrCJ5XQr+zDwarT2Fu/1NJiNFu2/hM8G6XvxJyMQBq7j2Vm?=
- =?iso-8859-1?Q?I8KAyEbb2XIsxLWyiioocAKTAGYF/s0l8VhMKmlXFiJn6WG6ukvc9Cseuf?=
- =?iso-8859-1?Q?/1z/C5NkVsjcFsvP4eAnWHiJ8cTWJbEE4uekUerqtMPV6mvp8RAXl2hv2c?=
- =?iso-8859-1?Q?BoysHo+QxnGDvWfpODKOZvADdwQ+t9jhDPaaGwFC/PKOhfD7i7700hg3FX?=
- =?iso-8859-1?Q?W5egW541B9QkzgbzNnwKbgV2iUUkXcWvUXIknO5p3PF4/2OwasKXbii1bM?=
- =?iso-8859-1?Q?gE7oPS9mzLqdfCRJ4xLNE2CgPYFHi4OX8MBSBTv2R4xHrZmfsclbDLjqse?=
- =?iso-8859-1?Q?1Caezz2e+04aOPcbxKdM/9gCRwSPgo0Qjncr9zxgL1jMGy4YbKwCfB1sex?=
- =?iso-8859-1?Q?2dayiIuPDoQfvFBTkiLE10I76Ul6vf0TkT5KEC9oTjdpAj4Yew+OhdCc6T?=
- =?iso-8859-1?Q?8If3ldEptszgYsbUkhYY9o8IX1j0Y+0mdceybr+4lS8SOGc4ICLHncoBFR?=
- =?iso-8859-1?Q?5x+CmcyutrLU4VCH7BVApWGywQ0n93SrnjLeBKCrKyV3tWIGjMbuA8zg?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC52B17E006
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 22:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724367008; cv=none; b=mgiy8Cs+08z+SYTGR2BslkL0M9SiZJaEbHUpooIp8xs3YWkbFx7lhu+If86KNVRBpXTuuKyZ4vTogDMOPqiKOjv0/ZFsqLjNwY8FR/KbJBjKZ0ZyFB1yzI6bk1EUXn20Elu42GEsR4yjt9XcHUbwwyjyfVtVD0WPTbJE7Ctdb48=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724367008; c=relaxed/simple;
+	bh=oYtS2rcf7OFCRH9CwmT4584HB1yPYflg6BijR7xb+2s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E+BoOlzkEZQvCmaMN2M0SKqCWJb76tbqAEYc6jDZIfDaAEfxhtSB8JfpCYtusUepmGLOvLoL7XYTuRpLGBTo78phf4sX8xdMPwp5927jiIh4fxw4aB4pMhI5/WpEIe5dU8EVOpiEBm30TciVe0fTVaeomwXad1TQ8+b7nRSxOsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=cuwZamvk; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7cd9cfe4748so829875a12.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 15:50:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1724367006; x=1724971806; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=RxNjKinkqwLfidKToMeOZNU0vXvDNGFrw9+p08YBIlM=;
+        b=cuwZamvkebwLfrU/tKq/C3ukTAjgecPYa6feaiiqen1Yr4BSERqLRjd8hWmtjleMTB
+         RPx8O3NduY3xojqjVcwkuDFqxEtrcFmlU3u3nwLxkCX2h+HfeNZ08yfNl80h8sODBdYS
+         Wy5TycbkH6ULOdbfIJODb3yVJyMT/BCJg2QOk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724367006; x=1724971806;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RxNjKinkqwLfidKToMeOZNU0vXvDNGFrw9+p08YBIlM=;
+        b=M72PIU3uYzjVcUMNO5Hi8+zIMzAdU07SWWA6Sb1jZqs3kI+fmkxliWtBjyEgzwk1HN
+         Cv1GMNpo5TrCf03sQz27YJOZkUyklZuK3kGmmrM+NIDp5F7ulE87R35XcD4OFNDwhHJe
+         0MToLbQ2gLF7sa4RSqqKXPowM+0uUE+OEBgxZ/wiWARLEedNBqY2nSSEjRYVGPffUlDn
+         uBgLJpcgNPjvcP9RkPl0T5E4u6Sv/jLEeF2W4+n5ufD55mBMcHv5ZyIlBjajeL7RVXG7
+         nDAeVRDbujKtEE43itZM9Sp6oZGhh2ur6Q2ni6jcNcegvbYdqRoefals9xJgW1nXj7pp
+         MBbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbzIFW/bdD7pCm7Ao+8TzYy6/gSc+VIGU2yfbMZy5KD9mp5y7aliZGtzSzjYjZ73GR469+B+FjfsDP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxh32wPcMeIlL2x7fQfF1D+eQ+7xaEutMSkKaSWSU/siWHkKsKg
+	jq1Tcv7VDnr/i1vSPR+A6dY3wpd1B9ISAVB7aywF6Tpgxbsr+37hKCoNJ3YP3Q==
+X-Google-Smtp-Source: AGHT+IHOEF0hiQab41QuNo3MnvSCcDrKTChsVdcKNB3csU17laJnFOUwO4poC/pQI2sZfvxXohbIqA==
+X-Received: by 2002:a05:6a20:4394:b0:1c6:9fe9:c425 with SMTP id adf61e73a8af0-1cc8b61b4b7mr526163637.45.1724367005761;
+        Thu, 22 Aug 2024 15:50:05 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-203855664e2sm17414465ad.30.2024.08.22.15.50.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Aug 2024 15:50:04 -0700 (PDT)
+Message-ID: <078bc5ee-e591-427b-a9fe-9386738a847f@broadcom.com>
+Date: Thu, 22 Aug 2024 15:50:03 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: est.tech
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB0807.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b9cdd57-2629-4e03-be97-08dcc2f5f593
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2024 22:01:22.2114
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d2585e63-66b9-44b6-a76e-4f4b217d97fd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qzAWgKrLxP1K3cgr3M3IAYoAiJL33OrrPJQerKrek7mqH9BTnxfkHtIkT8oucKvA10SksjI/tlxg+HYBmdhhBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAP189MB1828
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] firmware: arm_scmi: Support 'reg-io-width'
+ property for shared memory
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Cristian Marussi <cristian.marussi@arm.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ "open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE"
+ <arm-scmi@vger.kernel.org>, justin.chen@broadcom.com, opendmb@gmail.com,
+ kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com
+References: <20240816224221.3256455-1-florian.fainelli@broadcom.com>
+ <20240816224221.3256455-3-florian.fainelli@broadcom.com>
+ <ZscW_E33YXF8Nx7r@bogus>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <ZscW_E33YXF8Nx7r@bogus>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The TPS23880/1 has an active-low reset pin that some boards connect to
-the SoC to control when the TPS23880 is pulled out of reset.
+On 8/22/24 03:46, Sudeep Holla wrote:
+> Hi Florian,
+> 
+> Sorry for getting late to this party, I wasn't able to review this before.
+> Overall changes look correct. But my main concern is that is SCMI the right
+> place to have such IO accessors. It is better to run it through Arnd if
+> he is happy with it before I send him the pull request containing these.
 
-Add support for this via a reset-gpios property in the DTS.
+Sure, would definitively want more eyes to review.
 
-Signed-off-by: Kyle Swenson <kyle.swenson@est.tech>
----
- drivers/net/pse-pd/tps23881.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+> 
+> On Fri, Aug 16, 2024 at 03:42:21PM -0700, Florian Fainelli wrote:
+>> Some shared memory areas might only support a certain access width,
+>> such as 32-bit, which memcpy_{from,to}_io() does not adhere to at least
+>> on ARM64 by making both 8-bit and 64-bit accesses to such memory.
+>>
+> 
+> Is this limitation on the hardware for both read and writes ?
 
-diff --git a/drivers/net/pse-pd/tps23881.c b/drivers/net/pse-pd/tps23881.c
-index 2ea75686a319..5c4e88be46ee 100644
---- a/drivers/net/pse-pd/tps23881.c
-+++ b/drivers/net/pse-pd/tps23881.c
-@@ -6,10 +6,11 @@
-  */
-=20
- #include <linux/bitfield.h>
- #include <linux/delay.h>
- #include <linux/firmware.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/pse-pd/pse.h>
-@@ -735,10 +736,11 @@ static int tps23881_flash_sram_fw(struct i2c_client *=
-client)
-=20
- static int tps23881_i2c_probe(struct i2c_client *client)
- {
- 	struct device *dev =3D &client->dev;
- 	struct tps23881_priv *priv;
-+	struct gpio_desc *reset;
- 	int ret;
- 	u8 val;
-=20
- 	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
- 		dev_err(dev, "i2c check functionality failed\n");
-@@ -747,10 +749,29 @@ static int tps23881_i2c_probe(struct i2c_client *clie=
-nt)
-=20
- 	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
-=20
-+	reset =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(reset))
-+		return dev_err_probe(&client->dev, PTR_ERR(reset), "Failed to get reset =
-GPIO\n");
-+
-+	if (reset) {
-+		/* TPS23880 datasheet (Rev G) indicates minimum reset pulse is 5us */
-+		usleep_range(5, 10);
-+		gpiod_set_value_cansleep(reset, 0); /* De-assert reset */
-+
-+		/* TPS23880 datasheet indicates the minimum time after power on reset
-+		 * should be 20ms, but the document describing how to load SRAM ("How
-+		 * to Load TPS2388x SRAM and Parity Code over I2C" (Rev E))
-+		 * indicates we should delay that programming by at least 50ms. So
-+		 * we'll wait the entire 50ms here to ensure we're safe to go to the
-+		 * SRAM loading proceedure.
-+		 */
-+		msleep(50);
-+	}
-+
- 	ret =3D i2c_smbus_read_byte_data(client, TPS23881_REG_DEVID);
- 	if (ret < 0)
- 		return ret;
-=20
- 	if (FIELD_GET(TPS23881_REG_DEVID_MASK, ret) !=3D TPS23881_DEVICE_ID) {
---=20
-2.43.0
+This applies to both reads and writes. We have to make accesses on a 4 
+byte boundary and of exactly 4 bytes in size.
+
+> The reason I ask is I see arm64 does have memcpy_toio_aligned() or
+> __iowrite32_copy_full() for 32 bit aligned writes.
+> 
+
+That appears to work nicely on ARM64 and ARM 32-bit, thanks for the 
+suggestion! One needs to be careful that __io{read,write}32_copy takes 
+32-bit units, not bytes!
+
+FWIW, here is my diff between v3 and v4:
+
+diff --git a/drivers/firmware/arm_scmi/common.h 
+b/drivers/firmware/arm_scmi/common.h
+index 73bb496fac01..a13f79b37c99 100644
+--- a/drivers/firmware/arm_scmi/common.h
++++ b/drivers/firmware/arm_scmi/common.h
+@@ -319,9 +319,9 @@ enum scmi_bad_msg {
+  /* Used for compactness and signature validation of the function 
+pointers being
+   * passed.
+   */
+-typedef void (*shmem_copy_toio_t)(volatile void __iomem *to, const void 
+*from,
++typedef void (*shmem_copy_toio_t)(void __iomem *to, const void *from,
+                                   size_t count);
+-typedef void (*shmem_copy_fromio_t)(void *to, const volatile void 
+__iomem *from,
++typedef void (*shmem_copy_fromio_t)(void *to, const void __iomem *from,
+                                     size_t count);
+
+  /**
+diff --git a/drivers/firmware/arm_scmi/shmem.c 
+b/drivers/firmware/arm_scmi/shmem.c
+index aded5f1cd49f..e9f30ab671a8 100644
+--- a/drivers/firmware/arm_scmi/shmem.c
++++ b/drivers/firmware/arm_scmi/shmem.c
+@@ -35,33 +35,25 @@ struct scmi_shared_mem {
+  };
+
+  static inline void shmem_memcpy_fromio32(void *to,
+-                                        const volatile void __iomem *from,
++                                        const void __iomem *from,
+                                          size_t count)
+  {
+-       while (count) {
+-               *(u32 *)to = __raw_readl(from);
+-               from += 4;
+-               to += 4;
+-               count -= 4;
+-       }
++       WARN_ON(!IS_ALIGNED((unsigned long)from, 4) ||
++               !IS_ALIGNED((unsigned long)to, 4) ||
++               count % 4);
+
+-       /* Ensure all reads from I/O have completed */
+-       rmb();
++       __ioread32_copy(to, from, count / 4);
+  }
+
+-static inline void shmem_memcpy_toio32(volatile void __iomem *to,
++static inline void shmem_memcpy_toio32(void __iomem *to,
+                                        const void *from,
+                                        size_t count)
+  {
+-       while (count) {
+-               __raw_writel(*(u32 *)from, to);
+-               from += 4;
+-               to += 4;
+-               count -= 4;
+-       }
++       WARN_ON(!IS_ALIGNED((unsigned long)to, 4) ||
++               !IS_ALIGNED((unsigned long)from, 4) ||
++               count % 4);
+
+-       /* Ensure all writes to I/O have completed */
+-       wmb();
++       __iowrite32_copy(to, from, count / 4);
+  }
+
+  static struct scmi_shmem_io_ops shmem_io_ops32 = {
+@@ -73,13 +65,13 @@ static struct scmi_shmem_io_ops shmem_io_ops32 = {
+   * pre-processor.
+   */
+  static inline void shmem_memcpy_fromio(void *to,
+-                                      const volatile void __iomem *from,
++                                      const void __iomem *from,
+                                        size_t count)
+  {
+         memcpy_fromio(to, from, count);
+  }
+
+-static inline void shmem_memcpy_toio(volatile void __iomem *to,
++static inline void shmem_memcpy_toio(void __iomem *to,
+                                      const void *from,
+                                      size_t count)
+  {
+
+-- 
+Florian
+
 
