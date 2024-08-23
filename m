@@ -1,194 +1,160 @@
-Return-Path: <devicetree+bounces-96207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D0A95D210
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:53:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2172095D218
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:54:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DF69B23465
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:51:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46AE41C21D6B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4121885BE;
-	Fri, 23 Aug 2024 15:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D705189509;
+	Fri, 23 Aug 2024 15:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bP/gAoXf"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rGt1E5cn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A091586D3;
-	Fri, 23 Aug 2024 15:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6191885BE
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 15:54:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724428273; cv=none; b=ElbqH8xHV5WheODkgss1P3cflYlyP5Mx33vbRcoJwR0MvVg77+0k62U5ojg260LTc/IvJBiR+Ml0t3h8FZ0bFIUa86WUazIcL0FOEWgf3E8mP/9JZ4o3cEEwfSrvw7n9ZC0WjXAARhhF9gXOfTixVoRW6UkSFFxIGWleBBx/fL8=
+	t=1724428486; cv=none; b=nehLAud21AUqTCLImC+jb0pnpPyTjrXSteMM8sqvIVxhu8jRAWJ18BPQo/V3u7C4dENZRB2kE5VUq0srPDu/WfBuMNlWBIdWzPAuD55+LE9jIsgBpw8VmptnuGO/lkc/zHDZwchNey20mN/FWvxU4IhyXlc2a5J2fnrkZ2UJl4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724428273; c=relaxed/simple;
-	bh=UJ8y9SbdyQJ2cpOyfwD7iZtYNXEMcqBlR4gxzqHEGxI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tZX+spkZFgsptPC28GbdMW+/yCURsdcYcC94l6Y1NC+v7jrubNAAHKSZ4a1jKFi0oL1RnE7wcaMCrKaFV+ZEb+5/ToEDRiUxDGBL+15VUtqm/tmIkQ+fWdUYDq0h6OOsR2vh/nXLeGfMDrxy2lIgkX+nLwK4SQCOquqQNoi5j6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bP/gAoXf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C04A3C32786;
-	Fri, 23 Aug 2024 15:51:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724428272;
-	bh=UJ8y9SbdyQJ2cpOyfwD7iZtYNXEMcqBlR4gxzqHEGxI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bP/gAoXfI7Pog1TUdgOKN8s4SexOQTEN3/DKLmgzdIN7SXK+xlz+Cthyv9su1mGGk
-	 fMvwB1aVkboO3i9jKv4q2NL7YTh5eK+mlVgbJgFfmKJAJFkXMoR36JaAJ7kbwe6H/C
-	 ovTT++QqSEY9UCr8rwN/AIWGL0X4uiWDGyQir2eqwnWUY2voEpnJ5tADF8YPdq+lWC
-	 +W2ehjaR780BCokbQUzzqXlyMBjCY9EdItqnv6IdArAecyDWh+Y2D58x5m/94jPH8Q
-	 U8jjy+ZeqMBnk/nvj2fLQyAx7wS3yUpvjez5KbQYigJ9n+Y6MlMvfUxBhyOqvrvx/7
-	 pB6uqMUfCqB/w==
-Date: Fri, 23 Aug 2024 16:51:08 +0100
-From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Yiting Deng <yiting.deng@amlogic.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add Amlogic A311L2 and A113X2 rtc
-Message-ID: <20240823-rotunda-machinist-4f8dabbff479@spud>
-References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
- <20240823-rtc-v1-1-6f70381da283@amlogic.com>
+	s=arc-20240116; t=1724428486; c=relaxed/simple;
+	bh=HtH6qdjMIdNtGGtymO0i5WzD6uli6CQK2z4uzaNG4FU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=t1Xt+nF/TQ/sPzGcxsdJN5uZkFf0JOlVFaNbikQuDVC3a2x92mvkdwtpZKIoZbPHSMDmxRf1w2hqvpvAkgrtYHG0+dxOEqzEw0BheXTJB90ysyEaQACwOx0uJLHPkVfcREljPXzyJNKrirz0eAtiv5c19IP9Od6WHmEhE9wCO4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rGt1E5cn; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-842f1dd60deso671284241.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:54:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724428483; x=1725033283; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HtH6qdjMIdNtGGtymO0i5WzD6uli6CQK2z4uzaNG4FU=;
+        b=rGt1E5cn2AxIdVu6Tsk37EKwsewAAstndYElxOF86jIeDZtfyzwfWTNE+vWgHXIzaD
+         xnvYxFW13cYqqihZC86i7UtkxWwARXNcmdo+AI3r/XXrZnOPhcMiTh/ZHJWOwGA8k3c/
+         kcHIQ2cB51pE3gtBH0FLYtqHLSKLcMXp6o0blRxgdJ9GhgwzdkzexUenMAHBleFcPUmG
+         t6EdMzzV46M5CZdX3bvauNDhAN3dnj6/zIITNkyzuNhcXJeAo+Zbi/WvZdU04DyzHpy5
+         n0FJwrho670O2swnnUtcCH2VDMkE1iIzN6snalb4XQweFir3TlB1SSnr4EbykgKDJDFy
+         SNgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724428483; x=1725033283;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HtH6qdjMIdNtGGtymO0i5WzD6uli6CQK2z4uzaNG4FU=;
+        b=KR+xG+ck61B13GohlXgZ3WxVS8/paxzNY/v+LtH0nOp4ZbggM8ZLmwGRVG/GFCKJM6
+         yF+3e61kvejTgWVVbjem4ubkQY+drEFguObQmyciEdRf7T9CrM2v79Q9GDHip3cOaqm4
+         t9Qa4lJn8l54uycYdetfAVo2GuSuhR2qFeyWNvYJPh9X+vbcYhsUH7NFb4UmtKlbnD9q
+         5E3qRUvRniW9BbR0mfxtXlBxccfe6jdrwnac7KZ8CZdK0LP6MW20z3nXagjqrQr7OFeq
+         ZHtyEs7aMXOm7mEjeySWURmNWB0OSNxCHr2+FcKg8W//d+e/iLf9hzQw7/WDq1c4PQkW
+         cfGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUyppzQ8BAaz/0++PFlvMxWI6kssaOOaJeIrFVO3wAKtcpcVMUmZL1A+muMhgkL0R6xIAxioC3uycTH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyh46pqKdBenIzImLOcA/Z9Cn2+mKJMYYrM6z0E+n2wRKolz1aO
+	EbppVSrUhTmmrYrOCBSqOCTwr8gh95xMYUyJ1aYCGcJCmpiynzo3o+T8uza4ls4lWFiQjK17lK+
+	cJbYyoytuK257VPMx3k0xAbVrtp/t/N+VGRHzvw==
+X-Google-Smtp-Source: AGHT+IG1JZThU0IKB0v806PR64JcpLViiPaNVXo5A6m1YTr+RoSCgI0tMbvBD/tvM/LTvUHRsK0DDSy3l7BR399yJcQ=
+X-Received: by 2002:a05:6102:3907:b0:493:ce48:a2ed with SMTP id
+ ada2fe7eead31-498f4c4190amr2791122137.29.1724428482611; Fri, 23 Aug 2024
+ 08:54:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pFpN10RskjPDX7Mw"
-Content-Disposition: inline
-In-Reply-To: <20240823-rtc-v1-1-6f70381da283@amlogic.com>
-
-
---pFpN10RskjPDX7Mw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240819064721.91494-1-aardelean@baylibre.com>
+ <20240819064721.91494-8-aardelean@baylibre.com> <3c4edf41-fd3b-4258-9b9e-a81b25568403@baylibre.com>
+In-Reply-To: <3c4edf41-fd3b-4258-9b9e-a81b25568403@baylibre.com>
+From: Alexandru Ardelean <aardelean@baylibre.com>
+Date: Fri, 23 Aug 2024 18:54:31 +0300
+Message-ID: <CA+GgBR9H66u0mB-cQt_6tT2kh9TCW0Bm_BiHEUyVGvmGHBGEJg@mail.gmail.com>
+Subject: Re: [PATCH 7/7] iio: adc: ad7606: add support for AD7606C-{16,18} parts
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
+	gstols@baylibre.com, Mark Brown <broonie@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 23, 2024 at 05:19:44PM +0800, Xianwei Zhao via B4 Relay wrote:
-> From: Yiting Deng <yiting.deng@amlogic.com>
->=20
-> Add documentation describing the Amlogic A113L2 and A113X2 rtc controller.
->=20
-> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../bindings/rtc/amlogic,amlogic-rtc.yaml          | 66 ++++++++++++++++=
-++++++
->  1 file changed, 66 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.ya=
-ml b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
-> new file mode 100644
-> index 000000000000..fa3d7838022e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
+On Mon, Aug 19, 2024 at 6:33=E2=80=AFPM David Lechner <dlechner@baylibre.co=
+m> wrote:
+>
+> On 8/19/24 1:47 AM, Alexandru Ardelean wrote:
+> > The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
+> > The main difference between AD7606C-16 & AD7606C-18 is the precision in
+> > bits (16 vs 18).
+> > Because of that, some scales need to be defined for the 18-bit variants=
+, as
+> > they need to be computed against 2**18 (vs 2**16 for the 16 bit-variant=
+s).
+> >
+> > Because the AD7606C-16,18 also supports bipolar & differential channels=
+,
+> > for SW-mode, the default range of 10 V or =C2=B110V should be set at pr=
+obe.
+> > On reset, the default range (in the registers) is set to value 0x3 whic=
+h
+> > corresponds to '=C2=B110 V single-ended range', regardless of bipolar o=
+r
+> > differential configuration.
+> >
+> > Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
+> >
+> > And the AD7606C-18 variant offers 18-bit precision. The unfortunate eff=
+ect
+> > of this 18-bit sample size, is that there is no simple/neat way to get =
+the
+> > samples into a 32-bit array without having to do a home-brewed bit-buff=
+er.
+> > The ADC must read all samples (from all 8 channels) in order to get the
+> > N-th sample (this could be reworked to do up-to-N-th sample for scan-di=
+rect).
+> > There doesn't seem to be any quick-trick to be usable to pad the sample=
+s
+> > up to at least 24 bits.
+> > Even the optional status-header is 8-bits, which would mean 26-bits of =
+data
+> > per sample.
+> > That means that when using a simple SPI controller (which can usually r=
+ead
+> > 8 bit multiples) a simple bit-buffer trick is required.
+> >
+> Maybe it would be better to just use .bits_per_word =3D 18 for the 18-bit
+> ADC and not worry about "simple" SPI controller support for that one?
+>
 
-Filename matching a compatible please.
++cc Mark Brown for some input on the SPI stuff
 
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/amlogic,amlogic-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Real Time Clock controller include a4, a5
-> +
-> +maintainers:
-> +  - Yiting Deng <yiting.deng@amlogic.com>
-> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-> +
-> +description:
-> +  The Amlogic new chips used RTC module.
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,a4-rtc
-> +      - amlogic,a5-rtc
+I'm generally fine with choosing to not support SPI controllers that
+can't do padding to 16/32 bit arrays
 
-The names you have chosen here do not match the patch description. What
-is going on there?
+But, at the same time: would it be an interesting topic to implement
+(in the SPI framework) some SW implementation for padding a series of
+18-bit samples to 32-bit arrays?
+(Similarly, this could work for 10-15 bit samples into 16 bit arrays).
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: RTC clock source, available 24M or 32K crystal
-> +          oscillator source. when using 24M, need to divide 24M into 32K.
-> +      - description: RTC module accesses the clock of the apb bus.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: rtc_osc
-> +      - const: rtc_sys_clk
+Apologies if this is already implemented and I missed it.
 
-s/_clk//, they're all clocks.
+But if there isn't such a functionality (padding done in SW inside the
+SPI framework), then I could probably spin-up a proposal.
+I think that the functionality could be spun-up in a separate
+patch-set/discussion; and this patchset would just go with
+"bits_per_word =3D 18".
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    apb {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        rtc: rtc@8e600 {
+It could be done as a new field in the "struct spi_transfer", or
+something else like "spi_pad_rx_to_nbits(struct spi_device *)"
+Or other suggestions welcome
 
-And the label here can go, you've got no references to it :)
-
-Thanks,
-Conor.
-
-> +            compatible =3D "amlogic,a4-rtc";
-> +            interrupts =3D <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>;
-> +            reg =3D <0x0 0x8e600 0x0 0x38>;
-> +            clocks =3D <&xtal_32k>, <&clkc_periphs 1>;
-> +            clock-names =3D "rtc_osc", "rtc_sys_clk";
-> +        };
-> +    };
->=20
-> --=20
-> 2.37.1
->=20
->=20
-
---pFpN10RskjPDX7Mw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsiv7AAKCRB4tDGHoIJi
-0pRTAQCos2kfCyu1HmMLs3vUDMHuAt4FObAjJDqXmI50lj4prAEAoCkTanOgaIFf
-mgPp56m+d+FLEo2EuVyr4VMVi4sgkAo=
-=N36O
------END PGP SIGNATURE-----
-
---pFpN10RskjPDX7Mw--
+Thanks
+Alex
 
