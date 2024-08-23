@@ -1,171 +1,154 @@
-Return-Path: <devicetree+bounces-96201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CA1C95D1A8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:39:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 449CF95D091
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:00:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C134D1C21F55
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:39:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 629581F21C3E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479A318BB8D;
-	Fri, 23 Aug 2024 15:37:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA8F188923;
+	Fri, 23 Aug 2024 15:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="RRxns7tD"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="L2XBhFKN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic308-20.consmr.mail.sg3.yahoo.com (sonic308-20.consmr.mail.sg3.yahoo.com [106.10.241.210])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A8618A6DD
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 15:37:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=106.10.241.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83309185B4B;
+	Fri, 23 Aug 2024 15:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724427442; cv=none; b=B62NOMl+YDro+6X38XTT5gDw6Gsx/ktWJux373VNOgwqt9XxirB7GQgRw5Rzdu5IeE8b8UYFolx6BoSBseNyZuwbPJ58m8ozqYBpLarGqCAEhSt4hJ7g/t3CRaLEp33+u+vop/R/25hF+ivMTodMyZIS+5CnfSEwHvht9LRhZ6Q=
+	t=1724425218; cv=none; b=kfFN1nN4SLchcFNducPKDgo+F8/8w5pFcPKWU7vw3dryeYNH/2NJasfl6Q2QK5qXXcYKRq4o73Yy7/+iA5GDIA1lBhB3WzfYeRAJpXsYPUPWMHazyP03ht0uiHHlnjOo47paVmezyuAPKlN8IQSknyYdI1XdYCsCA6T5KwRLdws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724427442; c=relaxed/simple;
-	bh=EvWnEstgQATqKW3BUa2ZbWYElOR368N4CPw+/7ahwHA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=sj5d7QCrGnM/CoKap4TATIFz8E+rr50C3vq4fqaFL3kdlK6iMHmDPbcZqHSAzLALEE4axA+H/3wK2SsdVnmUPDj6XubE1EE0qOQ8zMpjQ4IhW1pQ//t/R5xBcutCUk0I/vaHapD/NrTSPEq0h7vRung7yApD0FQ7eQT1Rm9gjJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=RRxns7tD; arc=none smtp.client-ip=106.10.241.210
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1724427438; bh=EvWnEstgQATqKW3BUa2ZbWYElOR368N4CPw+/7ahwHA=; h=Subject:From:To:Cc:Date:In-Reply-To:References:From:Subject:Reply-To; b=RRxns7tDuueSwscuKSlErrmKODM5jKga5t3TgNxR47E95Umg9kixOK9bBs0OAgsEYcUhAXTLzDRydBnjPxcnhFEcIcry9hQ2Sieu3yvaPqX/nLbShNgtWxxVEU957qbYPbpHh1HlD8HcB0MRkzOAwaLtDI2NZI0IQlHg+zI8URvs2lKCxC93c2ef1EtwXQSG24SNo/2x+pnSjOwc177oIdAr0Gs93vE+1hJeHELr8QvKC8f2DFtwU3Zqxl+cjRsoCosfafP4Z/ZBnZXT87b7bQlFO0MhOfx5zhD7cisdC75v+P7fisX2dY0S3BBaCSex2eezomPuk03juhSJ+J5AZw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1724427438; bh=bnctnjCB6gkgIiYYwqsIunLBCc7NrIMAtIGBPtWJAfC=; h=X-Sonic-MF:Subject:From:To:Date:From:Subject; b=T9h4WtMo691L25uc8z9Cy3O5cTVFfuPPx1MU4HFC9bANmfXFWRKVSdhnySME5AD7PIe0boEdmVjU32PNKlMluUfXt68/PPKS54KrXb67PoWhMabTtvxzUq/54QMeBXDwBs3UA248IWL7lmDYSXPCVNlpBKInOVKuLT6OOJigywPmyQ/K703XoRC7vIS8hj/0L66kH6HDjNRI6iJBc0OxkhjOIrVfSm73NeTaRffYzEM4WcicIWPPnHPEi+/3Y4mXJ576LWGPVBYN+71mSY9tbZzyGHeP0oyCtvM4k1VGigXlfYfaqX1uBNdrEIuamse8e+i8xFCjBoTec0M6fgR0yA==
-X-YMail-OSG: EwKlNdEVM1nqzMuBm_EYd08MufrKnsg5aedQ51_js20FBOjW2nez9Krtr4wCsiN
- sXB1ls7CSQhPfapGwXyV_eoffEcJfRmxI4tbHEjOZYI04nQUmHn2UkmgzGkIH6MGjYsGktWT1DZ9
- 02pDL4zDYirSqMaGtvGyhH8ZKq7HtQv57LAhf40eoKq9UK_5M5GogkvaMZswcLVLlqwiVIutlV_w
- vIvSpK3w33nzF0vopPBfbkXdCk8.37ovYp23mYCG4RAt_HTVsTEqNQDm6kspyYc_OP6ytHZkxpXr
- 1navpOBD37Z6GPgPLmbm4dgxmKAtaXHSsgfEIQRJZKmEgLa9QqAIFYuoJQoo.3N_crTRKzx.vO94
- YE4KWBcn.YR.dKd_1MzDytplepT_tuRkBku93rcvBtVJHxAwHod11PRcIXQykiSxHHPczQr9suEk
- BJP9CytNfYS0QislIAUHzM3N0R4Tt0he0BjgODrjZGjjY3XawVi8Aiu2xQRLjTEy6tTYqylLbrxU
- oyEhyEiOmgcHJMNVMuPp1UaIO2oBCygTQwpOX_zDC9QNDIX_.WwakamjmJhY8jdnScl8_9Z_aaKs
- Ngb5_dNTiZ1oaFG_ph3E6O0TqXfJFD43yeC2k2TJcfQ8lM1B_4ZWfjXXk_2mjYJgxuUldloslmKb
- EvpfGpk6fVTatDT5GwaJHNv4MPfaPsTvtwuOO64pWR2vsJfj4RjGDASC3Kkw08XsNoboPQvPrHTM
- 3QfRMBUMLor8uG5pnxsNkw97pJdnmW_Sf87U8wRWz4QgxEaaEF1uU0vNRy3fmlLtb63bnPV.vKwE
- btJPpfX5NPrJEZ_nuHJGSYO2HUO.4ssMXaMjbAxWcBj9GdlV6ATquzJ_v.GCaFht.I4SQTpVlux3
- bRXLfQArzXssBgrp8HyC15O9bxyG.OtJvTlPrWtt1He10WU3fpFHNEMJyC.CUPdRuK8Ad1VCIowG
- zPaulu0SVFAY36gaLhBPrmWZT1QlotnK2NJgmoZr8hvOddPFh_3IAK8r6bGYrPJ0Dvs3gw1CfRyL
- vK36k3LB2tIC7ZF5SA5aX6To6PrP6QI.aPopvitFnyXa8a_NGz1vnz8CPmAmamka2YGKYe6cI9Qt
- wJiUaZVUN9pA2OjyVQ7PlQInLApC9qK72T_6oz6Y5cQGDpCvw7sadgAjFE28lWJhkisIVeNrYkVr
- bA05Vmd4QQCDInIalvjbbCGpsyFhOOQhdOUAtSXZdW_fq87AEnP.KmoJ_zdPMTFJtnCo.Rns.rhF
- rzbzxnLpFW_MgKe0aTF_7eGdgyZ9xzAaOOvsz8q1tWDjnWNi2IPOEwz5WojPYGUNy9PTaHXJ04cq
- Pr37AapW4XCX6r8MgysJ53IGNH1.SJuoTuHuw4IQqMQEzhbviWf1O_wBeUTHto7TD4vbdoQVYhIe
- 31v9asil8ouwWJrHwE71iPJX_CNN6d0j9VKUPZ79RCszjLUzDDWBSlYO3l3pk6Mhjje.8SlzFaCE
- JLb4uOT0ZimfXkj5I1s771bhjg6WWQNoeAmdaq3m0j40soiVI6BfmtxgPHi1CwcrirxMk3NpihYd
- 4YIcID04vkx1O_Ip.xZo.AttatSSPW588XwpfvMQe0I9ldkl82AB7oHXC5HtXNNIpXpLF5huMrFK
- 7VQi_xwhmXsLPQ58bpKIQUz.4V_UHzBlMPgPn_M5Ow68B.ombwcHdSBwDYdoEqvSPOJd5Vrlk1bT
- s5i9zTb99hqfmp6riVG9z1LWVdQek_9k2qUSGbMBCpTCiBFnwza9Gn84u5SatXWfwqzZwf.oaKMU
- agQiala.GrxSDA.MNzVh9G147xU0hxteykBHk03koSAUgaQ9q4X96KfSC0xNCQt6rPtHyjWHhvNh
- V0a3rgp49.x4dbxKMOovZ1q1BYEIPCFP2Yn2tYdkIUxhX3p9ZCk40kHZqIVt47y214b0rNruvPVr
- vUHZEi10WA7WbKCRYktHRPPal.rMY8WZJcuN2_1MdXAendKouS9Nhb8fWQjOujIP6EG.LO4xxyGq
- o3gDBr59H0v0ZU6OujM9pBuF_6.RUiRAUFVH7KLzw96WUfMpM9nPXkNTAxAZxCWN1q5r2j7vft8r
- tPBKN1PDwmLDdo_nycQPFcjFenFl9hsZr1PUg1Bhblfq6VAXSODLsXJhO27CUbhzN4dqSRQrGK2w
- TQBtQhv9FgMFQZnqZY9OigI7IKekUFXV9iHlvI0eQk_f6nZL.Rf4lZTYO_aUFdVWIGP3UGCQk4S7
- _D3I-
-X-Sonic-MF: <kwangson@yahoo.com>
-X-Sonic-ID: 647f6439-d939-4880-9632-587122546a1b
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.sg3.yahoo.com with HTTP; Fri, 23 Aug 2024 15:37:18 +0000
-Received: by hermes--production-sg3-fc85cddf6-pbnn7 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID c6e6e65d284067638db024485a1b538d;
-          Fri, 23 Aug 2024 14:56:42 +0000 (UTC)
-Message-ID: <337666703c41856e61f4cc2dee7e69c276d5102b.camel@yahoo.com>
-Subject: Re: [PATCH v3 0/3] dpum clock support for Exynos Auto v9 SoC
-From: Kwanghoon Son <kwangson@yahoo.com>
-To: David Virag <virag.david003@gmail.com>, Kwanghoon Son
- <k.son@samsung.com>,  Krzysztof Kozlowski <krzk@kernel.org>, Sylwester
- Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Chanho Park
- <chanho61.park@samsung.com>, Tomasz Figa <tomasz.figa@gmail.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>,
- Jaewon Kim <jaewon02.kim@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Fri, 23 Aug 2024 23:56:39 +0900
-In-Reply-To: <2e4d3d180f535e57d9cb98e7bac1d14b51ffc5d4.camel@gmail.com>
-References: <CGME20240809115500epcas1p44cb69cea78a73833de38eab552b204fc@epcas1p4.samsung.com>
-	 <20240809-clk_dpum-v3-0-359decc30fe2@samsung.com>
-	 <2e4d3d180f535e57d9cb98e7bac1d14b51ffc5d4.camel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1724425218; c=relaxed/simple;
+	bh=YkmBvbKKvOT2foHk9kjYnWyxl+Yyk92fG2PXKbQaMMY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pq/kfV6iMZ5A2COTk56KgH4nMokclCT3rvvrn8r8mYnC9v+lXxoQj8nm2yu3+r8WvKZiNGUojNLG5xtoXkTOtESIBUBjsZzOMEJKK6Rh0iRM7+P8SWHWdqlcN1dcCG6OTPRAs5F9iSKhZBSs4n+HMjAlCFj/L9PLySTyQRT5G8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=L2XBhFKN; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ACC45497;
+	Fri, 23 Aug 2024 16:59:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1724425149;
+	bh=YkmBvbKKvOT2foHk9kjYnWyxl+Yyk92fG2PXKbQaMMY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L2XBhFKNsMQhI1WMQk8jBRBtFoBby9nJsvqc+jl1WtVcPAC03u2Rb2p9uiPEtwN6K
+	 06cLn8DaD3gpBUDDkNUizwQ6lbDL45luxRQkZLerk5rf7H7hSZlq4nSXACwzP2qBug
+	 izxXFWUyF4ieLX67xXbdEkLpSsT7+jlUHJW5n4IM=
+Date: Fri, 23 Aug 2024 18:00:11 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"biju.das.au" <biju.das.au@gmail.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH v4 0/4] Add support for RZ/G2UL Display Unit
+Message-ID: <20240823150011.GO26098@pendragon.ideasonboard.com>
+References: <20240822162320.5084-1-biju.das.jz@bp.renesas.com>
+ <20240823131516.GD26098@pendragon.ideasonboard.com>
+ <TY3PR01MB11346F4E01D1FA2688D2799F586882@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.22645 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TY3PR01MB11346F4E01D1FA2688D2799F586882@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
-On Thu, 2024-08-22 at 20:59 +0200, David Virag wrote:
-> Hi Kwanghoon,
->=20
-> On Fri, 2024-08-09 at 20:54 +0900, Kwanghoon Son wrote:
-> > DPUM (Display Processing Unit Main) is main dpu for Exynosautov9.
-> > =C2=A0=C2=A0=C2=A0=20
-> > This patches enable clock for dpum, sysmmu(iommu).
-> >=20
-> > I tested using sysmmu, DPP, DECON, DP on sdk board (modetest works).
->=20
-> Does this mean you are working on mainline drivers for these?
+Hi Biju,
 
-Yes. I working on decon exynosautov9 now. (maybe exynosautov920 in
-future..)
+On Fri, Aug 23, 2024 at 01:52:14PM +0000, Biju Das wrote:
+> On Friday, August 23, 2024 2:15 PM, Laurent Pinchart wrote:
+> > On Thu, Aug 22, 2024 at 05:23:13PM +0100, Biju Das wrote:
+> > > This patch series aims to add support for RZ/G2UL DU.
+> > >
+> > > The LCD controller is composed of Frame Compression Processor (FCPVD),
+> > > Video Signal Processor (VSPD), and Display Unit (DU).
+> > >
+> > > The output of LCDC is connected display parallel interface (DPI) and
+> > > supports a maximum resolution of WXGA along with 2 RPFs to support the
+> > > blending of two picture layers and raster operations (ROPs)
+> > >
+> > > It is similar to LCDC IP on RZ/G2L SoCs, but does not have DSI interface.
+> > >
+> > > v3->v4:
+> > >  * Restored the ports property for RZ/G2UL and described port@0 for the
+> > >    DPI interface in bindings patch.
+> > >  * Restored tags from Geert and Conor as the change is trivial
+> > >    (Replaced port 1->0 from v2).
+> > >  * Used "&" instead of "==" in rzg2l_du_start_stop() for scalability.
+> > >  * Restored port variable in struct rzg2l_du_output_routing
+> > >  * Updated rzg2l_du_encoders_init() to handle port based on hardware indices.
+> > >  * Restored ports property in du node and used port@0 for connected
+> > >    DPI interface.
+> > > v2->v3:
+> > >  * Split patch series based on subsystem from DU patch series [1].
+> > >  * Replaced ports->port property for RZ/G2UL as it supports only DPI
+> > >    and retained ports property for RZ/{G2L,V2L} as it supports both DSI
+> > >    and DPI output interface.
+> > >  * Added missing blank line before example.
+> > >  * Dropped tags from Conor and Geert as there are new changes in bindings
+> > >  * Avoided the line break in rzg2l_du_start_stop() for rstate.
+> > >  * Replaced port->du_output in  struct rzg2l_du_output_routing and
+> > >    dropped using the port number to indicate the output type in
+> > >    rzg2l_du_encoders_init().
+> > >  * Updated rzg2l_du_r9a07g043u_info and rzg2l_du_r9a07g044_info.
+> > >
+> > >  [1] https://lore.kernel.org/all/20240709135152.185042-1-biju.das.jz@bp.renesas.com/
+> > > v1->v2:
+> > >  * Updated cover letter header "DU IP->Display Unit".
+> > >  * Updated commit description related to non ABI breakage for patch#3.
+> > >  * Added Ack from Conor for binding patches.
+> > >
+> > > Biju Das (4):
+> > >   dt-bindings: display: renesas,rzg2l-du: Document RZ/G2UL DU bindings
+> > >   drm: renesas: rz-du: Add RZ/G2UL DU Support
+> > 
+> > The first two patches look good to me. Do you have access to drm-misc, will you push them yourself, or
+> > do you expect a maintainer to pick them up ?
+> 
+> I don’t have access to drm-misc. I expect a maintainer to pick it up(Maybe via rcar-du tree or 
+> drm-misc tree), or else if it is ok, what is the procedure to get access for drm-misc tree??
 
-> If you don't mind me asking, what state are these in?
+You can find instructions to request drm-misc commit access at
+https://drm.pages.freedesktop.org/maintainer-tools/committer/commit-access.html
 
-I'm glad to.
-I shift vendor code to mainline. vendor code had split directory, now I
-merged to proper mainline drm directory. And it work with modetest. But
-a lot of todo.. It's 'somehow' works level.
+Tomi, to avoid delays, could you push the first two patches to drm-misc
+?
 
-> Is DSIM being worked on?
+> > >   arm64: dts: renesas: r9a07g043u: Add DU node
+> > >   arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
+> > >
+> > >  .../bindings/display/renesas,rzg2l-du.yaml    |  32 ++++-
+> > >  arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   |  25 ++++
+> > >  .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 ++++++++++++++++++
+> > >  drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c |   8 +-
+> > >  drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  11 ++
+> > >  drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |   3 +-
+> > >  6 files changed, 185 insertions(+), 5 deletions(-)
 
-For now No. Exynosauto series support DP, MIPI both, but SDK board is
-shape of easy to test with DP. For now only modetest works through DP
-port interface.
+-- 
+Regards,
 
-> I am asking these, because I am also working on some drivers for DPP,
-> DECON, and DSIM on the Exynos7885.
-
-Ah, that's nice. But actually I'm not involved with exynosauto or the
-hardware team. (But I get board and information from them to upstream.)
-So I have no idea what the Exynos7885 drm hardware has.
-
-> Now, my DPP and DECON drivers are not even close to complete, they just
-> have the bare minimum for output and vsync, using them as initialized
-> by the bootloader, but I do have a semi-functional DSIM driver (well,
-> existing mainline DSIM driver patched up to work on 7885) that is
-> enough for controlling the DSI panel attached to my phone.
-
-For now, I don't understands how your display works because I really
-don't know about 7885. But my DPP and decon also far to complete.
-(really ugly code.)
-
-> If you are working on DPP and DECON drivers, I won't spend much time
-> with those for now, as your driver for ExynosAutoV9 may help a lot with
-> 7885 as well.
-
-Here is my suggestion. I will share my code after clean up with NO-
-MERGE or WIP tag ASAP. But mind that I only code kernel when have spare
-time..
-
-Could you share your code also? even It's not ready.
-
-> If you are not working on a DSIM driver, I'll keep working on it for
-> 7885. If you are, I'll have to think about how to move forward.
->=20
-> Best regards,
-> David
-
-+ I added Sam Protsenko <semen.protsenko@linaro.org>
-Because I also want to know maybe he has some process for drm, since he
-worked on exynos850 sysmmu.
-
-+ Alim Akhtar, Do you know some information around theses?
-Especially between 7885, exynosauto?
-
+Laurent Pinchart
 
