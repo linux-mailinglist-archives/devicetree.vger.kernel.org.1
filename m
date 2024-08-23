@@ -1,221 +1,401 @@
-Return-Path: <devicetree+bounces-95990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D9D95C55B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:23:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC18B95C561
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8F59283432
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:23:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71FC22821DD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355855381E;
-	Fri, 23 Aug 2024 06:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F9B06F2FE;
+	Fri, 23 Aug 2024 06:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YYVf2b5H"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="KtXsF0Qs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2103.outbound.protection.outlook.com [40.107.117.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0762241746;
-	Fri, 23 Aug 2024 06:23:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724394207; cv=none; b=YaZrvxxjJCur6CorxY0bHa5FVWEy4xlhgg6UxAt2sAlkcm1c3zHpGhZgDwhiu8wfPAzmTbQ+3oyZ288d4VlA423VW0Ci6iZn9okrrsJ6Far5Z/2ga3bgVTmHlkpUYeYgN/0zcQl1ZEqxYPhPoNjZvEZguhpYftiwEL3jd+IN6/s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724394207; c=relaxed/simple;
-	bh=F9j6/99Wp8zwbHk0+R/u1d0bSQKJJlhKEVeaCimqaFg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hQ41NO2DEgawlNLQL2a28DuDp1q6xmUNcYWONan2PPNmLJaW98heatHr+yFzR2+Ux2B4TcZn9rzp3dt+vWBqcsFi3q7PkX2t3hjTaLg6UNKSk/C4X6NBoNrt+6+SGFqpPbHKR1bvCKMMWprwn3sxiJtERT1Ym+JE0sk/Mi6MXEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YYVf2b5H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54F9EC32786;
-	Fri, 23 Aug 2024 06:23:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724394206;
-	bh=F9j6/99Wp8zwbHk0+R/u1d0bSQKJJlhKEVeaCimqaFg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YYVf2b5HSPWz4aJRASqJsNkzn7bFqCTToBYapTv9Rw983fP0EESsFc3CMELlAvGei
-	 KqyMcYpRV5bfk8w3sNY5GP70N7D9r1K4Hy9hynA8Q2ihlaX2KvcrVyyjkjCqKORtvr
-	 tt1KH6YzJA1/WhtW65unj6oLbCJcmNUKa1gf3wsu9/tYnTMASiPoaHYmEk9g7xF91x
-	 zURpEvUENgS8Nt6x49YagRKhTOA4rnMt/DofUL1OMSEpyahDCE9Gk6F1r0x9Mt6zxN
-	 eWmqouvDKD2KE65hM2vVSGYG2CTDANgw6nm3kwMg2PjHuqLjaFOG3g/k12+EOhyMc7
-	 8X7rb5EFcgX5A==
-Date: Fri, 23 Aug 2024 08:23:17 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com, 
-	Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org, sudeep.holla@arm.com, 
-	robin.murphy@arm.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
- Systems remote processors
-Message-ID: <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
-References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
- <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
- <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B7F63F9F9;
+	Fri, 23 Aug 2024 06:23:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.103
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724394244; cv=fail; b=oiCF98t7OYJJTLFSXl+nWvnjfrx0ODrMFBahJKrnJCzW5KbnCp2H0ENLhnnL6gIPRb0XTjXQ9T2LnO4BZINBMK8wGYozAyuyV6Y2mexsOGEhiX5irBGUX9B5jdfIrUsvXfRofQzmPztPQLloXdfZmOpnzn38dIF31QfCnIQjVCg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724394244; c=relaxed/simple;
+	bh=R/21dd7w3rVysAK3/KthXnJocOxJUqx2HqfTIWnDY7E=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=A2PmpdMkkO6Q+XTdwsaDFFPK0TzS5ZJpkakHaFVxmCB+ugM2/51L2p1icy96rtnwB1lSGnW5wAtLFPlNism5F2xtAM805LTBtLJBCeHYl3Bta75XM8k6IV9ju1k+VcsvWukaV1SpJvQQBuLMkRA8GRgPRrLQftzWK4tOysYl2Ak=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=KtXsF0Qs; arc=fail smtp.client-ip=40.107.117.103
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kOx10aedKa4mTF2UwxV1OPVV5gf7CVrJZJnOaFmnXVG/dCqvGJv7W0mnO4ZMcdVINFJEv3AnPtwSB+R9HEithowkGLkywvlChK9z91YKYoZOn04FNQt/2XQI4/jEPRSwAygRgPoCGxNwMp3GgMsFRzjvScO/lt4QMAuQnkOhoLihRdsC1A2usbFqjtLpm0tzoqOExONWh9bYKm9irwEGP6Tu/sE9kpRQ4bISeNmKjZK8BBnGSZ5zJT6rh83IfQcBcBqMqwSuDD1vSDj6IkPJbEznpP8jrFhd84lERZZuIYpxoUwgZzobChwtDjL0eb6x3R/I9v395+L2YRSWY4Au1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PX4Abp43m/babbT5xL4hZJEVo3xCGLWRyiio7u1Wkgk=;
+ b=VT5aoZy4YpYqGwtVWRLAFRDDmUp0+Bu2hIk52L8CADgy3AezCjwZOERFaHqWlzt1hf6tzMM3jt0GzZVuqSiyvp/3yazoYhdf8BbP33kbmwBDbKCUD9b6YP94KPjSIxP/MIGEgwxeDO9DkxR3boyAJOE+8tQjXtg3RTmC3Rl8wlAKh/uUWqwth8H3kunS4kWnU1NRUo6cKyHdN+wUvKvs1DIVFtxQ0SFpuG6leKHT3BpZrJhd4OI6iMcHNdIx2uW/B736BHusRWWc/Vni2vWcC0vVh331vjzCOXhORZZnulYsEsEJK73K/Fnbf4st0FAp2xDsPZC6jqxHkrmBctI2hA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PX4Abp43m/babbT5xL4hZJEVo3xCGLWRyiio7u1Wkgk=;
+ b=KtXsF0Qs+Mz3jO7EpeQT/elt8GZ7AfmlAGO9BDhTE9GLr9GOjX+brWFj6tOY4QHzsDUdG8I25t8mqk/41bEMIhxhTAhNBXlUIcqeqnnEjJvMuJwLLZBv9jfD6XCb3wKykSDEa9nVI9El8LpqFT3CXOtZ1Jyj7VQI/md3n63VKKBtetcFXG5Ps6qdhnoqtpA/o5jPSVzhZE/Jd2RBA0IYlB2iAgbm8mydAZrxYfp/MGTXPq0OIdlpq9X2K3a+xarIWxpFas3zW4UTipKu1NjQqva9IHaGVW3kk1iOGsOhK+D9AwHSIr8fTI4h7vKSc6eYoQdeSNTO8juR+37Qz0JxDw==
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
+ by KL1PR06MB5942.apcprd06.prod.outlook.com (2603:1096:820:de::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Fri, 23 Aug
+ 2024 06:23:54 +0000
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11%5]) with mapi id 15.20.7875.019; Fri, 23 Aug 2024
+ 06:23:54 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
+	"benh@kernel.crashing.org" <benh@kernel.crashing.org>, "joel@jms.id.au"
+	<joel@jms.id.au>, "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+Thread-Topic: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+Thread-Index:
+ AQHa8ho4oLFWUX2yC0qHT9Kfp3UIaLIuoMcAgAJo7hCAAJOvgIAA5YcAgADIa4CAARTpgA==
+Date: Fri, 23 Aug 2024 06:23:54 +0000
+Message-ID:
+ <OS8PR06MB75419F3E3A222AE941DE3007F2882@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
+ <20240819092850.1590758-3-ryan_chen@aspeedtech.com>
+ <ZsNT7LPZ7-szrgBJ@smile.fi.intel.com>
+ <OS8PR06MB7541EE5BA5B400445FE0295EF28E2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <ZsXVU2qy0GIANFrc@smile.fi.intel.com>
+ <OS8PR06MB7541945591A62B956DA28AD9F28F2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <Zsc9_UddBybdnM1Z@smile.fi.intel.com>
+In-Reply-To: <Zsc9_UddBybdnM1Z@smile.fi.intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|KL1PR06MB5942:EE_
+x-ms-office365-filtering-correlation-id: 1df2a51c-254a-4f81-7633-08dcc33c299d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|1800799024|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?NYkqazPXtW/WZgpCQJJQDI/pyfsxz6GYDPSu0aqGRZC2bhKIvRttd90cfLO9?=
+ =?us-ascii?Q?PBuj0bnCj60aKT13j7bqDyPzXow/JcCTX8eB4JXsOnffMagkvc7T8Qv5Im7a?=
+ =?us-ascii?Q?qw0H5XraJxigeJSh9keNq2DiX0+vp9NPFr6kh+xS8yUJa85i9B6HbzlLwplT?=
+ =?us-ascii?Q?cI4focibGMYttwFe486F+Ty39YNGPi2NTKfMf2Djg947MwjcxJZloCUvFtbL?=
+ =?us-ascii?Q?FY2O0F/FjCh+4fwLDfJ8jlru1+y44TDZ+k1hnW9IU8ooTFffOTpX1ykml/xx?=
+ =?us-ascii?Q?Hxszws0DARVHBzmnQvAKg4++aKy5jbHsrbXC0hCPJ8RfdOjqpy/EvPZ+IbzT?=
+ =?us-ascii?Q?pxvERm3uXC+XVbceXg6em0kMyUkZv5/PxthesbAurGtlWmZB/gbSlq3GBEWC?=
+ =?us-ascii?Q?esv4aeJvC+ZyZnfuq6jxHStJW6aTT/QxZLmZk/MmqekkRL3ghKhJtUa5coTi?=
+ =?us-ascii?Q?BEj3XaSYCGuSP33bKyjCCbWIqOI7Jr31A9UEUnAtFPVtjQSlWC3wwxZ0UAH9?=
+ =?us-ascii?Q?130QIiX+r1sMuB0iJnBmIiUmdfirNJkFwwAGWPFhxZ6gCjnRnOmZ0N4HQQ9y?=
+ =?us-ascii?Q?F7qiir5pXLKlF0qzIkiH8LYfRMkkllGNVIQm6HJ2B3D7FvHnSjSFqeRAEkUg?=
+ =?us-ascii?Q?++wBuOEC0Fog/45Wa88BCPekTbcdBjT8Vcus//w3Uoux/e/NEwl3xDku7AS1?=
+ =?us-ascii?Q?qPO8zKs7spE/rcKvshZ3PDhCUFhJzzUcv4wkqUeoq5xtXQtx/drIrNLeqNSN?=
+ =?us-ascii?Q?76ZDRXMDqOd7aEZHyMismG1GWrd5d+eSkQKOh/sG0H/vYF3AdS98ClGCybkE?=
+ =?us-ascii?Q?bMhSxB2/i6v3N6P5k/Dx3mL1nIuDW1XaWHhf03dHdreAA9jKPwPmiDpdkf9r?=
+ =?us-ascii?Q?KXs/2RZ6TI4NJZzb64RhvP+NDks+RGU7pF2m6zUAqWBvB9GNi9u8SWxOHai5?=
+ =?us-ascii?Q?OmiHZeG2HDtWF0VBgZ/pPIacXJDzQeiLH1svwpZG0sz+wVTrHNG8ogfWgDc1?=
+ =?us-ascii?Q?o9/nijlqu9C0qDx/9FTazqIevCflSrmOHsH0XS+3zZmn9q9T0+ae6ipMVGDL?=
+ =?us-ascii?Q?F9/10B7NdXXwmNzcQolNx/hCkkPp3/iycwB+EKhRpLshen2MzLi1VNrFI3CG?=
+ =?us-ascii?Q?KVwvBdXAmu1RRXmJvXscSXA0sE6VcMOp/1tyXHwsPZAPlmlnAjT03S1hHx72?=
+ =?us-ascii?Q?BMRMwj6k/3hRAwIPjSev0bGua3Xfs67ubUEooZQBjuBvg3hYSRbFsMWA/9Ui?=
+ =?us-ascii?Q?sZjjXLdL/H5ajqw2tTh7gGDWJy/dmTAniw3071OQO+d7yG8jh6cZED74Smls?=
+ =?us-ascii?Q?ItuIr4eiDGoLypBPhEtSJDTa/N9hV3I3X06TlYKpQWzTpV/BLPBi+JVtOw0k?=
+ =?us-ascii?Q?fvHaHt3fRSBEwmNTtHhTMu4MBGc/XG4KSEHdyFk6fpSm5VXswA=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?C6EtPt3a6xYhkTNQYvgCwh+3yL6t2F+y4bMpfiwUoe9DGw+n4fjDGuJLrp6j?=
+ =?us-ascii?Q?O/dkV3yM8Ptgm0xqBeZ6IbaQzyNgpGVNOKhFT01GEXPBKBiCDsUKkbFSuXFb?=
+ =?us-ascii?Q?uG8gZZAq1s8TS79H9MbSxqJ+H0HwWQTwUbBEb7PpMC1Jkc+8cCwnGrNK6ipM?=
+ =?us-ascii?Q?fr646SiVMAIq2+Uj6ukB63U2L7g6YQBjQyK5NJ78lhpZm2SgBMaZDs7pyB4s?=
+ =?us-ascii?Q?U+H77ar/NZ8som/wU3kUVyXtJPQLcHVLXcB8FLvvnMG/MjTSU7voSWp1SUCQ?=
+ =?us-ascii?Q?0uQ8V1XSxmaSubmFCwZ+cF7UjM8l6/H0NCrxB3qy6e7SWT+eksiAAiarkCpp?=
+ =?us-ascii?Q?8vo7FwhjNDMkxyhFFLsurBwHtLO/eW9d5aPHGhhtiW1ygKnNZKcj69Sz6IhN?=
+ =?us-ascii?Q?rwr7VM10TsSAJ7zEKT2F77fI64F1tqkzQVCm6dD3dtYgmaXWND+WeNP00UWx?=
+ =?us-ascii?Q?decH/i7qBOUNdiiwvbZ5LtBK6oALFpYYfGnRcPX8UUB/o5EtfUF+fbyXuTMU?=
+ =?us-ascii?Q?OjuF+QIVlBssyfSxpg5wMPTiaqCi7GaTGLEb0S0dhMkK4TxWH2HnTkiIx8wz?=
+ =?us-ascii?Q?kS9YVvL3jF8M9HRPRzduDMRwUoFPTv90uPFyUGETEfwuPSCh6dA7K8gHXGOw?=
+ =?us-ascii?Q?K7lugD+T1n0VYmrZSQGD+9nnlE+Hg8+PNYknaKG17qsmrQ5Do75cLc+SB8Dg?=
+ =?us-ascii?Q?BE36pqCRW64MxfHZHe9lb3jaUrCDJBhQ5gC35zGuhi34oqP1TnnIG+wCRSds?=
+ =?us-ascii?Q?JMC+Ui8EamL2hbUmSJZDw5HvkK6ScZc+pZqelaiBPdvPnJkadxYd2fJZYb8/?=
+ =?us-ascii?Q?xBOIWpC+rgAmUZEsByhilASdu8PvGqeXra6Bau+k+ma4zBd+uhOyI0AIzKh4?=
+ =?us-ascii?Q?GDAXKgpSrQssJuOimzn6wQbYfAEe8f2WxMUluYibIlg1A9H6pSEx/jj2FpbO?=
+ =?us-ascii?Q?Tw0+TexIaL2FAuWEsrfKO4cbpFCHG9RZRS36a18RaZsQ3xHxKczemK3AZPJV?=
+ =?us-ascii?Q?6cGhWKkAJMDYcMUorTz6KVCEg28ccRXfNGIGPQGjE/8jE2GN6WTqeCMctedj?=
+ =?us-ascii?Q?MMNUOD8k9AXKm6Tu6YHEq56TvQv7bcsKbwirZdGPaKwuVPRYG6PbJnWp75Wk?=
+ =?us-ascii?Q?xBtr+K0foKuTCGALUcCZ1VASaYGUcVhJfqoy0m8Bz1ruchqLhzwGP40nxER1?=
+ =?us-ascii?Q?gZMYAA2fU/8RIKorzZL7lxef/+F9LSIvwBwDibw7+jU00uI1XWUa1Cspgz+8?=
+ =?us-ascii?Q?kOmXAGoPahBhZADdDgnaw15DAVMdruNko0tXk+pFioqiWkdPC1UFVXGo9gVK?=
+ =?us-ascii?Q?TH/HoI8i9Y1/Hh4dimPGLmNVag5ztOxFug4OtBJhMiWa8KTTdDdweQjnfIa4?=
+ =?us-ascii?Q?Gmc/T4eyn/CHKYS8tAcezkEVGX1lAGujf1uieY+3k+dI1PRpRTgeBEtTeVub?=
+ =?us-ascii?Q?qgq5bXPTtHdsmwF9ZGQ8ZeGD2KlksVzgULqbVRd5nQayBOBu//nY8tlm9BUR?=
+ =?us-ascii?Q?JudFmUOKCVkDIFJcP4fhoPyQeCSGcvq+V5045drfL+1pBJkddoMZeeILf46k?=
+ =?us-ascii?Q?B0rEHRHTrkHAlYOwHpKGYusLMYs7FHjMY+9ls9Ag?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1df2a51c-254a-4f81-7633-08dcc33c299d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2024 06:23:54.2888
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2tWtjMwbUzCIrNOE67uG7Rg9M+KLRfzjeakPPz7M8FJszDKUvx9jcNPMJa8cLERp+Rj+WwSDiHV5jW59UfxKNaLrp2IQpOyMpGe3nW1oLi4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB5942
 
-On Thu, Aug 22, 2024 at 06:09:47PM +0100, Abdellatif El Khlifi wrote:
-> Add devicetree binding schema for the External Systems remote processors
-> 
-> The External Systems remote processors are provided on the Corstone-1000
-> IoT Reference Design Platform via the SSE-710 subsystem.
-> 
-> For more details about the External Systems, please see Corstone SSE-710
-> subsystem features [1].
-> 
+> Subject: Re: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new registe=
+r
+> mode driver
+>=20
+> On Thu, Aug 22, 2024 at 02:24:26AM +0000, Ryan Chen wrote:
+> > > On Wed, Aug 21, 2024 at 06:43:01AM +0000, Ryan Chen wrote:
+> > > > > On Mon, Aug 19, 2024 at 05:28:49PM +0800, Ryan Chen wrote:
+>=20
+> ...
+>=20
+> > > > > > +	/* Check 0x14's SDA and SCL status */
+> > > > > > +	state =3D readl(i2c_bus->reg_base +
+> AST2600_I2CC_STS_AND_BUFF);
+> > > > > > +	if (!(state & AST2600_I2CC_SDA_LINE_STS) && (state &
+> > > > > AST2600_I2CC_SCL_LINE_STS)) {
+> > > > > > +		writel(AST2600_I2CM_RECOVER_CMD_EN,
+> i2c_bus->reg_base
+> > > +
+> > > > > AST2600_I2CM_CMD_STS);
+> > > > > > +		r =3D
+> wait_for_completion_timeout(&i2c_bus->cmd_complete,
+> > > > > i2c_bus->adap.timeout);
+> > > > > > +		if (r =3D=3D 0) {
+> > > > > > +			dev_dbg(i2c_bus->dev, "recovery timed out\n");
+> > > > > > +			ret =3D -ETIMEDOUT;
+> > > > > > +		} else {
+> > > > > > +			if (i2c_bus->cmd_err) {
+> > > > > > +				dev_dbg(i2c_bus->dev, "recovery error\n");
+> > > > > > +				ret =3D -EPROTO;
+> > > > > > +			}
+> > > > > > +		}
+> > > > > > +	}
+> > > > >
+> > > > > ret is set but maybe overridden.
+> > > >
+> > > > If will modify by following.
+> > > > 		if (r =3D=3D 0) {
+> > > > 			dev_dbg(i2c_bus->dev, "recovery timed out\n");
+> > > > 			ret =3D -ETIMEDOUT;
+> > > > 		} else if (i2c_bus->cmd_err) {
+> > > > 			dev_dbg(i2c_bus->dev, "recovery error\n");
+> > > > 			ret =3D -EPROTO;
+> > > > 		}
+> > > > If no error keep ret =3D 0;
+> > >
+> > > It doesn't change the behaviour. Still ret can be overridden below...
+> >
+> > Yes, it is expectable, previous is issue recovery command out then the
+> > following is double confirm the bus status.
+> > If bus still busy, the function still return recovery fail.
+> >
+> > Or should I modify by following?
+> > 	/* Check 0x14's SDA and SCL status */
+> > 	state =3D readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
+> > 	if (!(state & AST2600_I2CC_SDA_LINE_STS) && (state &
+> AST2600_I2CC_SCL_LINE_STS)) {
+> > 		writel(AST2600_I2CM_RECOVER_CMD_EN, i2c_bus->reg_base +
+> AST2600_I2CM_CMD_STS);
+> > 		r =3D wait_for_completion_timeout(&i2c_bus->cmd_complete,
+> i2c_bus->adap.timeout);
+> > 		if (r =3D=3D 0) {
+> > 			dev_dbg(i2c_bus->dev, "recovery timed out\n");
+>=20
+> > 			ret =3D -ETIMEDOUT;
+>=20
+> This assignment doesn't make sense.
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
+>=20
+> > 		} else if (i2c_bus->cmd_err) {
+> > 				dev_dbg(i2c_bus->dev, "recovery error\n");
+> > 				ret =3D -EPROTO;
+> > 		}
+> > 		/* check bus status */
+> > 		state =3D readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
+> > 		if (state & AST2600_I2CC_BUS_BUSY_STS) {
+> > 			dev_dbg(i2c_bus->dev, "Can't recover bus [%x]\n", state);
+> > 			ret =3D -EPROTO;
+> > 		}
+> > 	}
+>=20
+> > > > > > +	/* Recovery done */
+> > > > >
+> > > > > Even if it fails above?
+> > > >
+> > > > This will keep check the bus status, if bus busy, will give ret =3D
+> > > > -EPROTO;
+> > > >
+> > > > > > +	state =3D readl(i2c_bus->reg_base +
+> AST2600_I2CC_STS_AND_BUFF);
+> > > > > > +	if (state & AST2600_I2CC_BUS_BUSY_STS) {
+> > > > > > +		dev_dbg(i2c_bus->dev, "Can't recover bus [%x]\n", state);
+> > > > > > +		ret =3D -EPROTO;
+> > >
+> > > ...here.
+>=20
+> See above.
+OH, I understand now.
+I will modify following
 
-> [1]: https://developer.arm.com/documentation/102360/0000/Overview-of-Corstone-1000/Corstone-SSE-710-subsystem-features
-> 
-> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> ---
->  .../remoteproc/arm,sse710-extsys.yaml         | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
-> new file mode 100644
-> index 000000000000..827ba8d962f1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/arm,sse710-extsys.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SSE-710 External System Remote Processor
-> +
-> +maintainers:
-> +  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> +  - Hugues Kamba Mpiana <hugues.kambampiana@arm.com>
-> +
-> +description: |
+	if (!(state & AST2600_I2CC_SDA_LINE_STS) && (state & AST2600_I2CC_SCL_LINE=
+_STS)) {
+		writel(AST2600_I2CM_RECOVER_CMD_EN, i2c_bus->reg_base + AST2600_I2CM_CMD_=
+STS);
+		r =3D wait_for_completion_timeout(&i2c_bus->cmd_complete, i2c_bus->adap.t=
+imeout);
+		if (r =3D=3D 0) {
+			dev_dbg(i2c_bus->dev, "recovery timed out\n");
+++			writel(ctrl, i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
+++			return -ETIMEDOUT;
+		} else {
+			if (i2c_bus->cmd_err) {
+				dev_dbg(i2c_bus->dev, "recovery error\n");
+				ret =3D -EPROTO;
+			}
+		}
 
-dt-preserve-formatting
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	/* restore original master/slave setting */
+> > > > > > +	writel(ctrl, i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
+> > > > > > +	return ret;
+>=20
+> ...
+>=20
+> > > > > > +		i2c_bus->master_dma_addr =3D
+> > > > > > +			dma_map_single(i2c_bus->dev,
+> i2c_bus->master_safe_buf,
+> > > > > > +				       msg->len, DMA_TO_DEVICE);
+> > > > >
+> > > > > > +		if (dma_mapping_error(i2c_bus->dev,
+> > > i2c_bus->master_dma_addr))
+> > > > > {
+> > > > > > +
+> 	i2c_put_dma_safe_msg_buf(i2c_bus->master_safe_buf,
+> > > msg,
+> > > > > false);
+> > > > > > +			i2c_bus->master_safe_buf =3D NULL;
+> > > > >
+> > > > > > +			return -ENOMEM;
+> > > > >
+> > > > > Why is the dma_mapping_error() returned error code shadowed?
+> > > >
+> > > > Sorry, please point me why you are think it is shadowed?
+> > > > As I know dma_mapping_error() will return 0 or -ENOMEM. So I check
+> > > > if it
+> > > is !=3D0.
+> > > > Than return -ENOMEM.
+> > >
+> > > First of all, it is a bad style to rely on the implementation
+> > > details where it's not crucial. Second, today it may return only
+> > > ENOMEM, tomorrow it can return a different code or codes. And in
+> > > general, one should not shadow an error code without justification.
+> > >
+> > Understood, The following is better, am I right? (if yest, those will
+> > update in driver)
+>=20
+> Yes.
+Thanks.
+>=20
+> > 		Int ret;
+> > 		.....
+> > 		ret =3D dma_mapping_error(i2c_bus->dev,
+> i2c_bus->master_dma_addr)
+> > 		if (ret) {
+> > 			i2c_put_dma_safe_msg_buf(i2c_bus->master_safe_buf, msg,
+> false);
+> > 			i2c_bus->master_safe_buf =3D NULL;
+> > 			return ret;
+> > 		}
+> >
+> > > > > > +		}
+>=20
+> ...
+>=20
+> > > > > > +	if (i2c_bus->mode =3D=3D BUFF_MODE) {
+> > > > > > +		i2c_bus->buf_base =3D
+> > > > > devm_platform_get_and_ioremap_resource(pdev, 1, &res);
+> > > > > > +		if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
+> > > > > > +			i2c_bus->buf_size =3D resource_size(res) / 2;
+> > > > > > +		else
+> > > > > > +			i2c_bus->mode =3D BYTE_MODE;
+> > > > >
+> > > > > What's wrong with positive conditional? And is it even possible
+> > > > > to have NULL here?
+> > > > >
+> > > > Yes, if dtsi fill not following yaml example have reg 1, that will
+> > > > failure at buffer
+> > > mode.
+> > > > And I can swith to byte mode.
+> > > >
+> > > > reg =3D <0x80 0x80>, <0xc00 0x20>;
+> > >
+> > > I was asking about if (!IS_ERR_OR_NULL(...)) line:
+> > > 1) Why 'if (!foo) {} else {}' instead of 'if (foo) {} else {}'?
+> > I will update to following.
+> > 		if (IS_ERR(i2c_bus->buf_base))
+> > 			i2c_bus->mode =3D BYTE_MODE;
+> > 		else
+> > 			i2c_bus->buf_size =3D resource_size(res) / 2;
+> >
+> > > 2) Why _NULL?
+> > 	If dtsi file is claim only 1 reg offset. reg =3D <0x80 0x80>; that wil=
+l goto byte
+> mode.
+> > 	reg =3D <0x80 0x80>, <0xc00 0x20>; can support buffer mode.
+> > 	due to 2nd is buffer register offset.
+>=20
+> I have asked why IS_ERR_OR_NULL() and not IS_ERR().
+>=20
+OH, I will doing by this.
+		if (IS_ERR_OR_NULL(i2c_bus->buf_base))
+			i2c_bus->mode =3D BYTE_MODE;
+		else
+			i2c_bus->buf_size =3D resource_size(res) / 2;
 
-> +  SSE-710 is an heterogeneous subsystem supporting up to two remote
-> +  processors aka the External Systems.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - arm,sse710-extsys
-> +
-> +  firmware-name:
-> +    description:
-> +      The default name of the firmware to load to the remote processor.
-> +
-> +  '#extsys-id':
-
-'#' is not correct for sure, that's not a cell specifier.
-
-But anyway, we do not accept in general instance IDs.
-
-> +    description:
-> +      The External System ID.
-
-This tells me nothing. You basically copied property name.
-
-> +    enum: [0, 1]
-> +
-> +  mbox-names:
-> +    items:
-> +      - const: txes0
-> +      - const: rxes0
-> +
-> +  mboxes:
-> +    description:
-> +      The list of Message Handling Unit (MHU) channels used for bidirectional
-> +      communication. This property is only required if the virtio-based Rpmsg
-> +      messaging bus is used. For more details see the Arm MHUv2 Mailbox
-> +      Controller at devicetree/bindings/mailbox/arm,mhuv2.yaml
-> +
-
-Drop blank line
-
-> +    minItems: 2
-
-This is redundant if equals to maxItemns, drop.
-
-> +    maxItems: 2
-> +
-> +  memory-region:
-> +    description:
-> +      If present, a phandle for a reserved memory area that used for vdev
-> +      buffer, resource table, vring region and others used by the remote
-> +      processor.
-> +    minItems: 2
-> +    maxItems: 32
-> +
-> +required:
-> +  - compatible
-> +  - firmware-name
-> +  - '#extsys-id'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    reserved-memory {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        extsys0_vring0: vdev0vring0@82001000 {
-> +            reg = <0 0x82001000 0 0x8000>;
-> +            no-map;
-> +        };
-> +
-> +        extsys0_vring1: vdev0vring1@82009000 {
-> +            reg = <0 0x82009000 0 0x8000>;
-> +            no-map;
-> +        };
-> +    };
-
-Drop, it is fairly common.
-
-> +
-> +    syscon@1a010000 {
-> +        compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
-> +        reg = <0x1a010000 0x1000>;
-
-So this is a part of other block? Then make one complete example in the
-parent device bindings.
-
-> +
-> +        extsys0 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-e.g. remoteproc
-
-
-> +            compatible = "arm,sse710-extsys";
-> +            #extsys-id = <0>;
-> +            firmware-name = "es_flashfw.elf";
-> +            mbox-names = "txes0", "rxes0";
-> +            mboxes = <&mhu0_hes0 0 1>, <&mhu0_es0h 0 1>;
-
-First go mboxes, then mbox-names. The same in the binding, BTW.
-
-Best regards,
-Krzysztof
+>=20
+> --
+> With Best Regards,
+> Andy Shevchenko
+>=20
 
 
