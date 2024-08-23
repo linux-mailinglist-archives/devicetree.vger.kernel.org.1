@@ -1,155 +1,323 @@
-Return-Path: <devicetree+bounces-96107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C895A95C9D9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:02:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 797F095CA64
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0758E1C21281
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:02:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31F7C281F06
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7AD146A8A;
-	Fri, 23 Aug 2024 10:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE44185E7A;
+	Fri, 23 Aug 2024 10:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="dSAVNjjj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448A128EA;
-	Fri, 23 Aug 2024 10:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE73178372
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 10:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724407358; cv=none; b=DHIPB9DegOg8K+atkOzpltedsq6yUHexMfSRb63FrO8Unj+MXwSLY+EstzGf3uUr0k9A1grJk5vlhQFoprbjwKXN+CsqAbdQ7UumfWakKuvzNDHaahjXwP5fZrSi2twa4TgpPKQ9oWwNuAsno6Lf7pLsLcvNtjYFjqhRzXS/1t4=
+	t=1724408495; cv=none; b=KY0S601+GGJoRwozKeK0CDGnLEn/B3zD+1CpTeKPXe+TPHiwz3r87vzuaReqeDSYAt+0b5arlalrxaJNvXoUdj35YzHZzRlbgYXqFpc/bFU6UXEclpYOpseXasIFFOrXg45ZC+PLZuICBkQKB35trDWlINYfw+Fa08UwiMEttWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724407358; c=relaxed/simple;
-	bh=oiYKzaGj7xrlWfmhZHg5Hat7MAkPd2ergf45bH1IXOU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dAu+0XTpAdaiBVTh0DqXBWp7U4G1yy/ldkdu1O7ZclbLbtNhsiWl8TSI5dXdxjmR5pyvpCh6329oAezeUSqJFnk8OeKjqHmkI+fEzleaJRiEOxTJyzxfKaiogcydUqov0SrJCHPNDhDIiE7yhUvrNzWm22la010ZIQ3EVniPVeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6b5c37a3138so16709347b3.1;
-        Fri, 23 Aug 2024 03:02:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724407355; x=1725012155;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+	s=arc-20240116; t=1724408495; c=relaxed/simple;
+	bh=wDw2GrU+mZYcRmTdJ3qd7qyGbvFGP3vTu6hsDr93i3s=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u2mx6BUUCPWkDFUjXr9k58A6Kl1kZDqzIu9pizVKQ5j89FK4oStOt5gzzQBMO5eWG4f23t8uPJS9RFnvqyaqGi8T+pz1Z3tGYOu5JIMB/pVlXFa0G4StSw0BpSBxTJlHB4Y/hQY6LYCerjncsuco3q7Qt0QFlVTN78cpeCxi4M8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=dSAVNjjj; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a8679f534c3so220590766b.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 03:21:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1724408490; x=1725013290; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/StzLHVzGIe2hAzWOEh0nBxaHg45IwWO5eMFJW/nYrQ=;
-        b=AucMRNy5npNYHI/iTZ2GIaE4V+zUCV+AjHiuTfqvIveQO5FN0k7AIgcdvEJ/byehT8
-         RVazeH3hJ5W9vgdRaBIvihwDlZNsnxWNXgMAuCu20jWvt+MeT/Y6E/n/0lIVN6Q8oA3C
-         uMF8ZOElVOuLmrpPjk5XMyOwOnaxLzCV90F+wdxTPAn7ECEkPgUD9PC95+lnL2okpWJ9
-         964Y0fjWHp10XkCmvf2pkDiDEvjyyqfpsb8+nDSJYNG6/+1EzLKpnL/K5koV3lWzwPsK
-         1gqOpSatxKI9hPd/VwWs3XXgoEstJpQtrji5SyN6nRWfTrO2Vyeyy+Rllnah5Wa/DFqX
-         GMeA==
-X-Forwarded-Encrypted: i=1; AJvYcCUg6KxJv3lBvve+DFu7tl6gbUIYKAuAuqwAX2KGww0FZ4lx0lMmH4B1SV5ZH8C1+MuEaHztma7aAQOFtLk=@vger.kernel.org, AJvYcCUwUZgF+mdD4O10RC99eBmBVrUVkA/Ck/uRAj8AWX2Z1GQ72S1i20RbxeOPvpAe8NcleiiWDWJKR+vrY0GhG6pE4J8=@vger.kernel.org, AJvYcCVKwPluRC9kFlTXcBmpJ389JeFfXgUbFKXaXq5E8KjPwNzVhFV/FN2xHBnAmTE44XaUS/hfJIkxtHG7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxve+ATyB7W5UIMWJYWIBe/RNyXdrCB9fgH0BOlOCu3iUYkOErU
-	AMqEzOYuuFSe/qwQsUTi+16/19rp/ns9JoHeVzTW9FCwcFuKx29SkmTYXlkJ
-X-Google-Smtp-Source: AGHT+IGtpP5lKFtWxufcpa1bwEy4pbPv3bWWOt/4qwDT6d1JB2vvn6eAHmJR3tIhEZz80KkiXxTKfQ==
-X-Received: by 2002:a05:690c:4585:b0:6b0:488a:5056 with SMTP id 00721157ae682-6c6263ee1c8mr15321077b3.22.1724407355525;
-        Fri, 23 Aug 2024 03:02:35 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c399cb53f6sm5002797b3.3.2024.08.23.03.02.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 03:02:35 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-690e9001e01so17161727b3.3;
-        Fri, 23 Aug 2024 03:02:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVGMOu5/wZ7bm5mngVVECdJrG82jlJUt2lCBzLXUGZDyF5rhIaofJ2yxKQR0xg5dBALIYEewNppCTIr2BfL3C7xPsw=@vger.kernel.org, AJvYcCXDTSVswxBppOi0HhIXuTD7zouH6rzMlpqnUQBlyDIBEW0jjVmi4NJ1eBV50Hb6AObw3GSC8Qj5HlYe@vger.kernel.org, AJvYcCXTk2g1bfzojaOsH8FOT2UJfVeCgqEAuQibqaecM2HxXPVpb0e/aiuirfSBcsiIwK0LrYfZlpiTvQhy034=@vger.kernel.org
-X-Received: by 2002:a05:690c:2e8a:b0:6ad:f6ae:768b with SMTP id
- 00721157ae682-6c62924f5dcmr14634597b3.31.1724407354945; Fri, 23 Aug 2024
- 03:02:34 -0700 (PDT)
+        bh=Uy9tQ1TYcZbcuxiuWon4EXX8Ukt9Xc78KSZT2kpFAzw=;
+        b=dSAVNjjj9V9KUVn2jvCxZfZAt/LqYbO24HHYYHwNhsE7z7K3sfXjgiuiTSSBvUsQxE
+         jMe/3gyvIZWsn3QwqhqLQ0QxC6UQDb/HyYyYYd7RMXeC4GX+gWPGScTvXujcS+N46yE7
+         bexwmWVwKj2A5JlpOdhPLuX8uxrn22D8rhm4N+mrQ1LYWs6jLeaEII5N7o+rkGqPX7Nh
+         dWI37kup0B8XPBmSMb+hqFj233pyC8QnZP2KE2lhbcDg5aDWjiTir+2TVmmSM+EGqC92
+         hZPYfrE4sO8UEFg7llX5mezmQXiND1uN4853HvqIMYHy/Zh/QlVMaKaJrZSNauZHDA2V
+         aufQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724408490; x=1725013290;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uy9tQ1TYcZbcuxiuWon4EXX8Ukt9Xc78KSZT2kpFAzw=;
+        b=scJM3iH71YMBtSOTPhAtn6djPlwXfBHxBJpX/CI9AQtEzeZq+JB58K5MWwmK8JEr2D
+         XJYLJC2bPQ4TechuBWwJBcDu4Nz5kw5oWHMNXvnuzaVoxnnt7Eon6cT35FUpmTHlU+O1
+         ooAXm7UqIO8vZV6H2J25YkOqo7cXm6cFcyd8sy3L/Z/Bw9Me2HLqqV0E3iR8jqZDJeUI
+         c9dEgbG+xa6yjmFCJmOJTsG9abJGOYYavXPQgGUODu99U5zbdujcU24uJmQLzVJmj45n
+         4+nn4SD7ZrhgRB6x+DTkRL1rFNhBDgBwM7et/fIRb8FIIOma8yChWX0h0fhoPqmBxLRX
+         QR0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUrPovtCMprsV8h/+hn/sZmQhDAPhsSvXE6RfbBsM0Ima499swvUmopwH2Nu7quK512zh25BZYu8Kln@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdqPgB67KOnHqQbhJmP7nlQ8k6c4jDJxBjVu8zkhGyJhmpHlKc
+	lhIOA5hi0eKdZan1YRMPKnQAfYwyLfXYF7eV13CbIEBc8C5RoHh9bCisK5BV8PY=
+X-Google-Smtp-Source: AGHT+IEsqzlf61vWm+813vG7vMkMePBztenb+9XkV5XyCVO9mztSFfT2RcUPMSZK6WV+NNZgP3DJpQ==
+X-Received: by 2002:a17:907:7e95:b0:a86:94e2:2a47 with SMTP id a640c23a62f3a-a86a51b24b5mr152679166b.15.1724408490036;
+        Fri, 23 Aug 2024 03:21:30 -0700 (PDT)
+Received: from localhost ([87.13.33.30])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f436322sm240714966b.117.2024.08.23.03.21.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 03:21:29 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 23 Aug 2024 12:21:36 +0200
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <ZshisKww97hhGh-Y@apocalypse>
+Mail-Followup-To: Bjorn Helgaas <helgaas@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+References: <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+ <20240821165541.GA254124@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240725084559.13127-1-biju.das.jz@bp.renesas.com> <20240725084559.13127-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240725084559.13127-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 23 Aug 2024 12:02:23 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXwtrCyCA6A2AZwFgQedQt+sXr9iXoVogvo2N2iY9fjMA@mail.gmail.com>
-Message-ID: <CAMuHMdXwtrCyCA6A2AZwFgQedQt+sXr9iXoVogvo2N2iY9fjMA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: rzg2lc-smarc: Enable HDMI audio
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240821165541.GA254124@bhelgaas>
 
-Hi Biju,
+On 11:55 Wed 21 Aug     , Bjorn Helgaas wrote:
+> On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
+> > The RaspberryPi RP1 is ia PCI multi function device containing
+> 
+> s/ia/a/
+> 
+> > peripherals ranging from Ethernet to USB controller, I2C, SPI
+> > and others.
+> 
+> Add blank lines between paragraphs.
+> 
+> > Implement a bare minimum driver to operate the RP1, leveraging
+> > actual OF based driver implementations for the on-borad peripherals
+> 
+> s/on-borad/on-board/
+> 
+> > by loading a devicetree overlay during driver probe.
+> > The peripherals are accessed by mapping MMIO registers starting
+> > from PCI BAR1 region.
+> > As a minimum driver, the peripherals will not be added to the
+> > dtbo here, but in following patches.
+> 
+> > +config MISC_RP1
+> > +        tristate "RaspberryPi RP1 PCIe support"
+> > +        depends on PCI && PCI_QUIRKS
+> > +        select OF
+> > +        select OF_OVERLAY
+> > +        select IRQ_DOMAIN
+> > +        select PCI_DYNAMIC_OF_NODES
+> > +        help
+> > +          Support for the RP1 peripheral chip found on Raspberry Pi 5 board.
+> > +          This device supports several sub-devices including e.g. Ethernet controller,
+> > +          USB controller, I2C, SPI and UART.
+> > +          The driver is responsible for enabling the DT node once the PCIe endpoint
+> > +          has been configured, and handling interrupts.
+> > +          This driver uses an overlay to load other drivers to support for RP1
+> > +          internal sub-devices.
+> 
+> s/support for/support/
+> 
+> Add blank lines between paragraphs.  Consider wrapping to fit in 80
+> columns.  Current width of 86 seems random.
+> 
+> > diff --git a/drivers/misc/rp1/Makefile b/drivers/misc/rp1/Makefile
+> > new file mode 100644
+> > index 000000000000..e83854b4ed2c
+> > --- /dev/null
+> > +++ b/drivers/misc/rp1/Makefile
+> > @@ -0,0 +1,3 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +rp1-pci-objs			:= rp1-pci.o rp1-pci.dtbo.o
+> > +obj-$(CONFIG_MISC_RP1)		+= rp1-pci.o
+> > diff --git a/drivers/misc/rp1/rp1-pci.c b/drivers/misc/rp1/rp1-pci.c
+> > new file mode 100644
+> > index 000000000000..a6093ba7e19a
+> > --- /dev/null
+> > +++ b/drivers/misc/rp1/rp1-pci.c
+> > @@ -0,0 +1,333 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2018-22 Raspberry Pi Ltd.
+> 
+> s/22/24/ ?
+> 
+> > +#define RP1_B0_CHIP_ID		0x10001927
+> > +#define RP1_C0_CHIP_ID		0x20001927
+> 
+> Drop; both unused.
+> 
+> > +#define RP1_PLATFORM_ASIC	BIT(1)
+> > +#define RP1_PLATFORM_FPGA	BIT(0)
+> 
+> Drop; both unused.
+> 
+> > +#define RP1_SYSCLK_RATE		200000000
+> > +#define RP1_SYSCLK_FPGA_RATE	60000000
+> 
+> Drop; both unused.
+> 
+> > +enum {
+> > +	SYSINFO_CHIP_ID_OFFSET	= 0,
+> > +	SYSINFO_PLATFORM_OFFSET	= 4,
+> > +};
+> 
+> Drop; unused.
+> 
+> > +/* MSIX CFG registers start at 0x8 */
+> 
+> s/MSIX/MSI-X/
+> 
+> > +#define MSIX_CFG_TEST           BIT(1)
+> 
+> Unused.
+> 
+> > +#define INTSTATL		0x108
+> > +#define INTSTATH		0x10c
+> 
+> Drop; both unused.
+> 
+> > +static void dump_bar(struct pci_dev *pdev, unsigned int bar)
+> > +{
+> > +	dev_info(&pdev->dev,
+> > +		 "bar%d len 0x%llx, start 0x%llx, end 0x%llx, flags, 0x%lx\n",
+> 
+> %pR does most of this for you.
+> 
+> > +static int rp1_irq_set_type(struct irq_data *irqd, unsigned int type)
+> > +{
+> > +	struct rp1_dev *rp1 = irqd->domain->host_data;
+> > +	unsigned int hwirq = (unsigned int)irqd->hwirq;
+> > +	int ret = 0;
+> > +
+> > +	switch (type) {
+> > +	case IRQ_TYPE_LEVEL_HIGH:
+> > +		dev_dbg(rp1->dev, "MSIX IACK EN for irq %d\n", hwirq);
+> > +		msix_cfg_set(rp1, hwirq, MSIX_CFG_IACK_EN);
+> > +		rp1->level_triggered_irq[hwirq] = true;
+> > +	break;
+> > +	case IRQ_TYPE_EDGE_RISING:
+> > +		msix_cfg_clr(rp1, hwirq, MSIX_CFG_IACK_EN);
+> > +		rp1->level_triggered_irq[hwirq] = false;
+> > +		break;
+> > +	default:
+> > +		ret = -EINVAL;
+> 
+> If you "return -EINVAL" directly here, I think you can drop "ret" and
+> just "return 0" below.
+> 
+> > +		break;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> 
+> > +static int rp1_irq_xlate(struct irq_domain *d, struct device_node *node,
+> > +			 const u32 *intspec, unsigned int intsize,
+> > +			 unsigned long *out_hwirq, unsigned int *out_type)
+> > +{
+> > +	struct rp1_dev *rp1 = d->host_data;
+> > +	struct irq_data *pcie_irqd;
+> > +	unsigned long hwirq;
+> > +	int pcie_irq;
+> > +	int ret;
+> > +
+> > +	ret = irq_domain_xlate_twocell(d, node, intspec, intsize,
+> > +				       &hwirq, out_type);
+> > +	if (!ret) {
+> > +		pcie_irq = pci_irq_vector(rp1->pdev, hwirq);
+> > +		pcie_irqd = irq_get_irq_data(pcie_irq);
+> > +		rp1->pcie_irqds[hwirq] = pcie_irqd;
+> > +		*out_hwirq = hwirq;
+> > +	}
+> > +
+> > +	return ret;
+> 
+>   if (ret)
+>     return ret;
+> 
+>   ...
+>   return 0;
+> 
+> would make this easier to read and unindent the normal path.
+> 
+> > +	rp1->bar1 = pci_iomap(pdev, 1, 0);
+> 
+> pcim_iomap()
+> 
+> > +	if (!rp1->bar1) {
+> > +		dev_err(&pdev->dev, "Cannot map PCI bar\n");
+> 
+> s/bar/BAR/
+> 
+> > +#define PCI_VENDOR_ID_RPI		0x1de4
+> > +#define PCI_DEVICE_ID_RP1_C0		0x0001
+> 
+> Device ID should include "RPI" as well.
 
-On Thu, Jul 25, 2024 at 10:46=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
-> Enable HDMI audio on RZ/G2LC SMARC EVK. Set SW 1.5 to OFF
-> position on the SoM module to turn on HDMI audio.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Ack to all suggestions. Fixed in the next release, thanks.
 
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-> @@ -48,10 +58,16 @@ &canfd {
->  };
->  #endif
->
-> +#if (!SW_I2S0_I2S1)
->  &cpu_dai {
->         sound-dai =3D <&ssi0>;
->  };
->
-> +&ssi0 {
-> +       /delete-node/ port;
-
-Which submode does this delete?
-The conditional one below which is only added when SW_I2S0_I2S1=3D=3D1?
-
-> +};
-> +#endif
-> +
->  &dsi {
->         status =3D "okay";
->
-
-> @@ -177,6 +202,18 @@ &ssi0 {
->         pinctrl-names =3D "default";
->
->         status =3D "okay";
-> +
-> +#if (SW_I2S0_I2S1)
-> +       i2s2_port: port {
-> +               i2s2_cpu_endpoint: endpoint {
-> +                       remote-endpoint =3D <&codec_endpoint>;
-> +                       dai-format =3D "i2s";
-> +
-> +                       bitclock-master =3D <&i2s2_cpu_endpoint>;
-> +                       frame-master =3D <&i2s2_cpu_endpoint>;
-> +               };
-> +       };
-> +#endif
->  };
->
->  #if (SW_RSPI_CAN)
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Andrea
 
