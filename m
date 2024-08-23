@@ -1,192 +1,222 @@
-Return-Path: <devicetree+bounces-96004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2B9295C60B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:04:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E5D95C612
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:05:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6964B2852EF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:04:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 983FE285437
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9F613C918;
-	Fri, 23 Aug 2024 07:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7FA913A409;
+	Fri, 23 Aug 2024 07:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V+ncnovi"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Oqqril0p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 807C813AD18
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 07:04:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B993F139CE3
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 07:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724396672; cv=none; b=LBxFrgUwwaYu6/QITTH8Y0uLoLIY8VHqieeueroWneVqoLRuiJ1nprjfSGWkZuG0On8bSOqw+8TDC7Ssay3/yrPXTqPLZlYxzeQHj5YVqkbCeRN5duM60r+qsyXpCFf1jIYJl+9ALtNt1YElKo56CCUUJTQV1sXN0yGuhlOj+yU=
+	t=1724396737; cv=none; b=UHRAlqUlfxVm6PGtQkeg75VCmBUoKqypJQh1G9J7i/5B6/pGGbakEeodqu5MNiyCcg815A6I6cQ82NDjaO0CrXp/ri5DuD1qxiVZye/qX0sMexQvwUjHyjVoBIItclajFs5gGD8s/W/ClAay67csmRsEEq9B2feyAlCtRCNAplU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724396672; c=relaxed/simple;
-	bh=b5lp9G5kmgGElPkC1EMZU1PTPbFZTnN0DYN7a06Uff8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NLofBv5suJWDrJNbzAaJ53Q4GdMxLxTAtCDF9LOIQhnBT0GGJ9d+HJX9JW2Pc8jVjKgl3tfLYWGGYTvBI9sGVOZCOtQvHxJWNel2C8lAxXfb6tSCVb2wT3b5x/EonlQEQzWzCIZZM/9Y8iaOuV1Rfo3HmJ2qEkZHBLIBDhGFfV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V+ncnovi; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5becfd14353so1930459a12.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 00:04:30 -0700 (PDT)
+	s=arc-20240116; t=1724396737; c=relaxed/simple;
+	bh=0DkaIH/nX+twHmI7wfMWeM8/bOcrhMdeBUghxa7zFeQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BP6qQWfEg0khadz+T9F9vBjeXhujX3wEYb1gdJlRk8LSAYvFr7mAt8j4hQpPPEtP4M+Xr2LgUH5XMKibnv9h6V85VhTuOXjHtsS5vYqaOYwRwYDEMATeIochpa3wJWVezR9a7p9VanXQPGX96mjCss7g4Yk7LRmAWYY+gLzOazo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Oqqril0p; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f025b94e07so14475351fa.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 00:05:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724396669; x=1725001469; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K9EVzof5rnrF7mBTDm9cmpbs8lruT3c0ahwVf6GsTNQ=;
-        b=V+ncnoviX4lLCl15ftJ84isJc3HzghtM6+b4ULjdfuplmHoyHzABJ0e9BSHkc5xfyq
-         lbMrWsdrWdLim1k7+/zRabor+o5XWhTRpZp01hrPcTEi6j3w7W3fF8L7orscjqJtKxqE
-         Rslmdc0zLCU+O1aSWW1S3P3hyVTRmis5515Cces9RNOcuUcvy/LbYg8Bm+87K42M0HQk
-         +V+yFtHPndxdUz8ak4XEzFLbN7zUlVmP60LgSIJMfGaaUUbV2fs/Jv0hzlNMdeRcKwaX
-         UHE4wicoXKh9dkG9NxCmZxf1BbMoE7mheBhnXenWX8ZVKO5M6U43dDa36eWe+TG89YIV
-         gdbg==
+        d=chromium.org; s=google; t=1724396733; x=1725001533; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NSqREulePxg8CKTf5awNX/HJBRiZ4QLVJ8cgBAYKHIo=;
+        b=Oqqril0pwWbrDLYHVb19g0n4ysk6Ew+49EnB5G90SoC/8wogTZNwTF2acdsS6cd+72
+         h4e76rsqt6uoQ9Y05QIioPqogkxw26xtDbUHiQdxUVMlDXlbG39jlqOetBJdOR1UsVY2
+         2rO0tNpIfOIagEdlSm38P3QYkXyKU/vUVVLe0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724396669; x=1725001469;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1724396733; x=1725001533;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K9EVzof5rnrF7mBTDm9cmpbs8lruT3c0ahwVf6GsTNQ=;
-        b=qqscMtfLMDJmzZK6Eg1YWkflD9u5iUwbQKUzOznYcowKYQeQXWdvDtrNcyTZYAnAaG
-         Z/D3oXH4ijdkgwWZUyls8MgFpIQRyY/E3in2jVeWpiubU6vRJOmj65qDRf45gf9QvzYC
-         HMtnOMO1+Eqq8VjHJD9km6dWeceiS/5+vnviV63goopwMFmSDMfncEVffI6o9EShCO2M
-         4XtAI3mKMAgIiyE1KKt7I5XVNsIZj7NV7CScupliphygSi6zDypILIsAss7J8lbRgW+b
-         Yb6MFQp8sJxVy/TL9g4jmsSZAMVCCdUOIn9sGM/PQ3aWSi5jOUYVZPZ4cso9BeRHH94b
-         CysA==
-X-Forwarded-Encrypted: i=1; AJvYcCVXk841EMLzXOGbA9+Nk49yoZmXZBplqekXkjdAYtsNavveR9NiKNaMh/3tE3zS98zo/nt2SeiH5TWn@vger.kernel.org
-X-Gm-Message-State: AOJu0YztSxjCXuMMvkXyBmkUp/KeqhO3ok1p7FzsQlPHSdeQmaOxTov/
-	6FbMP+P6cTBftp03FQSAhhIBaDy46S/1wlKsmFNOKeRYsK9tt266qro4li7fmr0=
-X-Google-Smtp-Source: AGHT+IHjg4XmnO2sOWE82GNncjVHJpDpCtPri9+DoItYKOfnkhp4FmhI1YIfIFnKycH3bCttR0tviA==
-X-Received: by 2002:a17:907:9604:b0:a7a:b561:3564 with SMTP id a640c23a62f3a-a86a54be101mr86976466b.61.1724396668635;
-        Fri, 23 Aug 2024 00:04:28 -0700 (PDT)
-Received: from [127.0.1.1] ([82.79.186.176])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f48ae0dsm214820766b.184.2024.08.23.00.04.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2024 00:04:28 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 23 Aug 2024 10:04:16 +0300
-Subject: [PATCH v3 2/2] phy: qcom: qmp-pcie: Add Gen4 4-lanes mode for
- X1E80100
+        bh=NSqREulePxg8CKTf5awNX/HJBRiZ4QLVJ8cgBAYKHIo=;
+        b=kQILgITTvmD94ns2vExj3EhMLlzfGOsMAEGkKgr365K+tIRtNMh2eqbDeDWLasp7KG
+         HXdLT2Dlpn9ZqVj8xGsX/yUyS/Gne1gLV1BUSrfkoRu0NhPJSL0UqCDcGtjMzWyaYz1X
+         5m10gQ6h3tHN90YwlAMS1bUftBTQyTplEPwMUBpwscONzDt3/Aoz6tUXHrebYjr+K/J0
+         IZGe+Ajf9aCkG8mkYuT5K5xt4UXkUEnbC4gfUyk8y+vpl4ySVxLUzM9DT0hA2bguGlai
+         IYs+9O8WCBDySxq/xqNLOm2YuHIEb78AApw8Cx5ZHxB1Ba+oXuS4SGt7njLj7jzfJjWt
+         iyng==
+X-Forwarded-Encrypted: i=1; AJvYcCV5RuDpx2UoYv2NIiLCUCF+mws6pRTaR1hIbu50ZkD5Ms9ro7pi2Iry08V82lbD26WIx7TIuBqogX4f@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa6k4y0qgsOntJ2tqS2FhQLFv3eWIQxZum5MBPn5Tql+reU90G
+	nCGJvEnGeqd6Rsl6zCeSkwNCpJ2X98crqqaHkFUg+aND7uEfgITaUOA9nrM14NtpHzOXhN8YgKc
+	z08LKsVBd4zFabohC5OaPLC8WlKHaMPOy50o+
+X-Google-Smtp-Source: AGHT+IGNtTDEfjRQCAU7zqH2LB9KdSvjRzwWhHcPb4xis4wVU2lVsZpgq0JMxBRDIb+KkRoJXAdbfiGPaOxPwtfJ6oc=
+X-Received: by 2002:a05:6512:695:b0:530:b871:eb9a with SMTP id
+ 2adb3069b0e04-534387baca6mr662910e87.47.1724396733400; Fri, 23 Aug 2024
+ 00:05:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240823-x1e80100-phy-add-gen4x4-v3-2-b7765631ca01@linaro.org>
-References: <20240823-x1e80100-phy-add-gen4x4-v3-0-b7765631ca01@linaro.org>
-In-Reply-To: <20240823-x1e80100-phy-add-gen4x4-v3-0-b7765631ca01@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
- Johan Hovold <johan+linaro@kernel.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3189; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=b5lp9G5kmgGElPkC1EMZU1PTPbFZTnN0DYN7a06Uff8=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmyDR3wFDJ2SAY4MkWDE3DejDh7JtRUTNDkC8+C
- cysi5JuaJKJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZsg0dwAKCRAbX0TJAJUV
- VtAKD/9ALd2gF6a+o75iynnVAYMk+/sCqHJj/Lm/vd8KJA6Rv50EAV+Ucc+pnncbyxUR2jyLsdz
- NIzmWgJgNpSHR7tY52Rz/BvSlX5ES1ZhWpwny8x+4QbJ0MQ0hKk00/i7Mw0iVQ2wFiVE3hxCPWu
- cwMBKR5urOs8/pgRikupMduEMxkJigCvZZFCCb11l/2Tr5Iq3qVyaMEJU2npG+fpFF7DBmrAHUK
- ArD3BYWWRYb3OZ7UJzV4wpsST7X/fGnjoySuYsEEnStg2/QP+8FzfAK2pR0kTADK/Vz8meVozkn
- l5dzJU7iLkPSgaNA+7gGRWv+vS06pxP+9lrxzcurBxzlTstlIsF4Qcb3Eq3S4YwOCpr3djX0PqT
- wO/egk4w3OWaM2z8EoKOijbQWFoILcGcANtcxDy/v+Tcfx69q/p1tmKe4lClxOSsRLDu81f1m1P
- StCrHmNtoLVssS+j+0W0cB8Q6sW784OzxfNMr71WPxhMBiogEKDAi5V8dLTRvlUZLIkHJFxFYaf
- BKSIUBWUW5bNJ14lTnKdHt4Qsxx+cubXamOhQ0PMSnN+alZcwkQswIVh57jfMsLF7kSi558rqwQ
- xbPwFyb1e+wq5CV44sH1BV2LZeZgW9crVdXes2uR2ardI3gWp76L1NeZHoGRZMl+NQ0kumOF4n5
- Is4Fv3x0l51MqJg==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+References: <20240822092006.3134096-1-wenst@chromium.org> <20240822092006.3134096-5-wenst@chromium.org>
+ <ZsdC8wkgsdsMJuAL@smile.fi.intel.com>
+In-Reply-To: <ZsdC8wkgsdsMJuAL@smile.fi.intel.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 23 Aug 2024 15:05:22 +0800
+Message-ID: <CAGXv+5H3RvWFTg6dnMR6QBG-gLnv29fEC_5icdHE7Tjfy7fvxA@mail.gmail.com>
+Subject: Re: [PATCH v5 04/10] regulator: Do pure DT regulator lookup in of_regulator_bulk_get_all()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The sixth PCIe controller on X1E80100 can be used in either
-4-lanes mode or 2-lanes mode. Add the configuration and compatible
-for the 4-lane mode.
+On Thu, Aug 22, 2024 at 9:54=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Aug 22, 2024 at 05:19:57PM +0800, Chen-Yu Tsai wrote:
+> > The to-be-introduced I2C component prober needs to enable regulator
+> > supplies (and toggle GPIO pins) for the various components it intends
+> > to probe. To support this, a new "pure DT lookup" method for getting
+> > regulator supplies is needed, since the device normally requesting
+> > the supply won't get created until after the component is probed to
+> > be available.
+> >
+> > Convert the existing of_regulator_bulk_get_all() for this purpose.
+> > This function has no in-tree users, as the original patch [1] that
+> > used it was never landed. This patch changes the function ABI, but
+> > it is straightforward to convert users.
+> >
+> > The underlying code that supports the existing regulator_get*()
+> > functions has been reworked in previous patches to support this
+> > specific case. An internal OF-specific version of regulator_get(),
+> > of_regulator_get_optional(), is added for this.
+>
+> > [1] https://lore.kernel.org/all/20231220203537.83479-2-jernej.skrabec@g=
+mail.com/
+>
+> Make it Link tag
+>
+> Link: https://lore.kernel.org/all/20231220203537.83479-2-jernej.skrabec@g=
+mail.com/ [1]
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>
+> ...
+>
+> >       /* first do a dt based lookup */
+> >       if (dev && dev->of_node) {
+>
+>         if (dev_of_node())
+>
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 42 ++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+Not part of the original change, but I don't see why not.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-index a7e2ce0c500d..f71787fb4d7e 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-@@ -1242,6 +1242,10 @@ static const struct qmp_phy_init_tbl x1e80100_qmp_gen4x2_pcie_serdes_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_VCO_DC_LEVEL_CTRL, 0x0f),
- };
- 
-+static const struct qmp_phy_init_tbl x1e80100_qmp_gen4x4_pcie_serdes_4ln_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN, 0x1c),
-+};
-+
- static const struct qmp_phy_init_tbl x1e80100_qmp_gen4x2_pcie_ln_shrd_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V6_LN_SHRD_RXCLK_DIV2_CTRL, 0x01),
- 	QMP_PHY_INIT_CFG(QSERDES_V6_LN_SHRD_DFE_DAC_ENABLE1, 0x88),
-@@ -3654,6 +3658,41 @@ static const struct qmp_phy_cfg x1e80100_qmp_gen4x2_pciephy_cfg = {
- 		.ln_shrd		= x1e80100_qmp_gen4x2_pcie_ln_shrd_tbl,
- 		.ln_shrd_num		= ARRAY_SIZE(x1e80100_qmp_gen4x2_pcie_ln_shrd_tbl),
- 	},
-+
-+	.reset_list		= sdm845_pciephy_reset_l,
-+	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-+	.vreg_list		= sm8550_qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
-+	.regs			= pciephy_v6_regs_layout,
-+
-+	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-+	.phy_status		= PHYSTATUS_4_20,
-+	.has_nocsr_reset	= true,
-+};
-+
-+static const struct qmp_phy_cfg x1e80100_qmp_gen4x4_pciephy_cfg = {
-+	.lanes = 4,
-+
-+	.offsets		= &qmp_pcie_offsets_v6_20,
-+
-+	.tbls = {
-+		.serdes			= x1e80100_qmp_gen4x2_pcie_serdes_tbl,
-+		.serdes_num		= ARRAY_SIZE(x1e80100_qmp_gen4x2_pcie_serdes_tbl),
-+		.tx			= x1e80100_qmp_gen4x2_pcie_tx_tbl,
-+		.tx_num			= ARRAY_SIZE(x1e80100_qmp_gen4x2_pcie_tx_tbl),
-+		.rx			= x1e80100_qmp_gen4x2_pcie_rx_tbl,
-+		.rx_num			= ARRAY_SIZE(x1e80100_qmp_gen4x2_pcie_rx_tbl),
-+		.pcs			= x1e80100_qmp_gen4x2_pcie_pcs_tbl,
-+		.pcs_num		= ARRAY_SIZE(x1e80100_qmp_gen4x2_pcie_pcs_tbl),
-+		.pcs_misc		= x1e80100_qmp_gen4x2_pcie_pcs_misc_tbl,
-+		.pcs_misc_num		= ARRAY_SIZE(x1e80100_qmp_gen4x2_pcie_pcs_misc_tbl),
-+		.ln_shrd		= x1e80100_qmp_gen4x2_pcie_ln_shrd_tbl,
-+		.ln_shrd_num		= ARRAY_SIZE(x1e80100_qmp_gen4x2_pcie_ln_shrd_tbl),
-+	},
-+
-+	.serdes_4ln_tbl		= x1e80100_qmp_gen4x4_pcie_serdes_4ln_tbl,
-+	.serdes_4ln_num		= ARRAY_SIZE(x1e80100_qmp_gen4x4_pcie_serdes_4ln_tbl),
-+
- 	.reset_list		= sdm845_pciephy_reset_l,
- 	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
- 	.vreg_list		= sm8550_qmp_phy_vreg_l,
-@@ -4436,6 +4475,9 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,x1e80100-qmp-gen4x2-pcie-phy",
- 		.data = &x1e80100_qmp_gen4x2_pciephy_cfg,
-+	}, {
-+		.compatible = "qcom,x1e80100-qmp-gen4x4-pcie-phy",
-+		.data = &x1e80100_qmp_gen4x4_pciephy_cfg,
- 	},
- 	{ },
- };
+> > -             r =3D of_regulator_dev_lookup(dev, supply);
+> > +             r =3D of_regulator_dev_lookup(dev, dev->of_node, supply);
+>
+>         dev_of_node()
 
--- 
-2.34.1
+Ack.
 
+> >               if (!IS_ERR(r))
+> >                       return r;
+> >               if (PTR_ERR(r) =3D=3D -EPROBE_DEFER)
+>
+> ...
+>
+> >  /**
+> >   * of_get_regulator - get a regulator device node based on supply name
+> > - * @dev: Device pointer for the consumer (of regulator) device
+> > + * @dev: Device pointer for dev_printk messages
+>
+> dev_printk()
+
+Ack.
+
+> > + * @node: Device node pointer for supply property lookup
+> >   * @supply: regulator supply name
+> >   *
+> >   * Extract the regulator device node corresponding to the supply name.
+> >   * returns the device node corresponding to the regulator if found, el=
+se
+> >   * returns NULL.
+> >   */
+>
+> ...
+>
+> >  /** of_regulator_dev_lookup - lookup a regulator device with device tr=
+ee only
+> > - * @dev: Device pointer for regulator supply lookup.
+> > + * @dev: Device pointer for dev_printk messages.
+>
+> Ditto.
+
+Ack.
+
+> > + * @node: Device node pointer for regulator supply lookup.
+> >   * @supply: Supply name or regulator ID.
+> >   *
+> >   * If successful, returns a struct regulator_dev that corresponds to t=
+he name
+> > @@ -636,13 +639,13 @@ static struct regulator_dev *of_find_regulator_by=
+_node(struct device_node *np)
+> >   * -ENODEV if lookup fails permanently, -EPROBE_DEFER if lookup could =
+succeed
+> >   * in the future.
+> >   */
+>
+> ...
+>
+> > +/**
+> > + * of_regulator_get_optional - get optional regulator via device tree =
+lookup
+> > + * @dev: device used for dev_printk messages
+>
+> Ditto.
+
+Ack.
+
+> > + * @node: device node for regulator "consumer"
+> > + * @id: Supply name
+> > + *
+> > + * Returns a struct regulator corresponding to the regulator producer,
+> > + * or IS_ERR() condition containing errno.
+> > + *
+> > + * This is intended for use by consumers that want to get a regulator
+> > + * supply directly from a device node, and can and want to deal with
+> > + * absence of such supplies. This will _not_ consider supply aliases.
+> > + * See regulator_dev_lookup().
+>
+> Fix kernel-doc warning.
+
+Ack.
+
+
+Thanks
+ChenYu
+
+> > + */
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
