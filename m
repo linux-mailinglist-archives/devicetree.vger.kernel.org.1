@@ -1,160 +1,170 @@
-Return-Path: <devicetree+bounces-96208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2172095D218
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:54:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F2F95D230
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:58:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46AE41C21D6B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:54:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D979B266E7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D705189509;
-	Fri, 23 Aug 2024 15:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA90018A94E;
+	Fri, 23 Aug 2024 15:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rGt1E5cn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L++hseRD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6191885BE
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 15:54:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DAA71885BE;
+	Fri, 23 Aug 2024 15:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724428486; cv=none; b=nehLAud21AUqTCLImC+jb0pnpPyTjrXSteMM8sqvIVxhu8jRAWJ18BPQo/V3u7C4dENZRB2kE5VUq0srPDu/WfBuMNlWBIdWzPAuD55+LE9jIsgBpw8VmptnuGO/lkc/zHDZwchNey20mN/FWvxU4IhyXlc2a5J2fnrkZ2UJl4w=
+	t=1724428578; cv=none; b=BP6wWuc2lbkyV3mt2OTDL5V/N8FwSvgw4S7gzxmQ3Q+iOPAjyswTizHt0GO0UEwMjFagPR+I03PL3d3+BcBaxUF1Bo9DrVrdgGr8Wrcyh3elutQNzYA2nbxvRbgmzxq/Ts5/063Y2lWBtfPY+XRmAknZwuJH63lM+zeUf2rltsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724428486; c=relaxed/simple;
-	bh=HtH6qdjMIdNtGGtymO0i5WzD6uli6CQK2z4uzaNG4FU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t1Xt+nF/TQ/sPzGcxsdJN5uZkFf0JOlVFaNbikQuDVC3a2x92mvkdwtpZKIoZbPHSMDmxRf1w2hqvpvAkgrtYHG0+dxOEqzEw0BheXTJB90ysyEaQACwOx0uJLHPkVfcREljPXzyJNKrirz0eAtiv5c19IP9Od6WHmEhE9wCO4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rGt1E5cn; arc=none smtp.client-ip=209.85.222.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-842f1dd60deso671284241.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724428483; x=1725033283; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HtH6qdjMIdNtGGtymO0i5WzD6uli6CQK2z4uzaNG4FU=;
-        b=rGt1E5cn2AxIdVu6Tsk37EKwsewAAstndYElxOF86jIeDZtfyzwfWTNE+vWgHXIzaD
-         xnvYxFW13cYqqihZC86i7UtkxWwARXNcmdo+AI3r/XXrZnOPhcMiTh/ZHJWOwGA8k3c/
-         kcHIQ2cB51pE3gtBH0FLYtqHLSKLcMXp6o0blRxgdJ9GhgwzdkzexUenMAHBleFcPUmG
-         t6EdMzzV46M5CZdX3bvauNDhAN3dnj6/zIITNkyzuNhcXJeAo+Zbi/WvZdU04DyzHpy5
-         n0FJwrho670O2swnnUtcCH2VDMkE1iIzN6snalb4XQweFir3TlB1SSnr4EbykgKDJDFy
-         SNgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724428483; x=1725033283;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HtH6qdjMIdNtGGtymO0i5WzD6uli6CQK2z4uzaNG4FU=;
-        b=KR+xG+ck61B13GohlXgZ3WxVS8/paxzNY/v+LtH0nOp4ZbggM8ZLmwGRVG/GFCKJM6
-         yF+3e61kvejTgWVVbjem4ubkQY+drEFguObQmyciEdRf7T9CrM2v79Q9GDHip3cOaqm4
-         t9Qa4lJn8l54uycYdetfAVo2GuSuhR2qFeyWNvYJPh9X+vbcYhsUH7NFb4UmtKlbnD9q
-         5E3qRUvRniW9BbR0mfxtXlBxccfe6jdrwnac7KZ8CZdK0LP6MW20z3nXagjqrQr7OFeq
-         ZHtyEs7aMXOm7mEjeySWURmNWB0OSNxCHr2+FcKg8W//d+e/iLf9hzQw7/WDq1c4PQkW
-         cfGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUyppzQ8BAaz/0++PFlvMxWI6kssaOOaJeIrFVO3wAKtcpcVMUmZL1A+muMhgkL0R6xIAxioC3uycTH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyh46pqKdBenIzImLOcA/Z9Cn2+mKJMYYrM6z0E+n2wRKolz1aO
-	EbppVSrUhTmmrYrOCBSqOCTwr8gh95xMYUyJ1aYCGcJCmpiynzo3o+T8uza4ls4lWFiQjK17lK+
-	cJbYyoytuK257VPMx3k0xAbVrtp/t/N+VGRHzvw==
-X-Google-Smtp-Source: AGHT+IG1JZThU0IKB0v806PR64JcpLViiPaNVXo5A6m1YTr+RoSCgI0tMbvBD/tvM/LTvUHRsK0DDSy3l7BR399yJcQ=
-X-Received: by 2002:a05:6102:3907:b0:493:ce48:a2ed with SMTP id
- ada2fe7eead31-498f4c4190amr2791122137.29.1724428482611; Fri, 23 Aug 2024
- 08:54:42 -0700 (PDT)
+	s=arc-20240116; t=1724428578; c=relaxed/simple;
+	bh=1DkFpRNUuvVbzXLS5nkNQsNUzpujVqKCccs30oDKFrc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uc44QoY7+kP9R5FSJ3oGTVieT2c84voqPbHvaSkVPQJaivl6wGuCaMQilwNxi0QSFL6fcmHwocTjA/PXePEUaDZH2K4ewJ44bZUFCdabtAoYncypeNI3q4byKWQluDrUlLouuK1viUXQoKWjxAUVEhkVlFuqZm475+Wt+4DeUWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L++hseRD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAE18C32786;
+	Fri, 23 Aug 2024 15:56:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724428578;
+	bh=1DkFpRNUuvVbzXLS5nkNQsNUzpujVqKCccs30oDKFrc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L++hseRDfFgMHYM7kN/OSwY2n/VFOY9WAkhxVgygTfLGjpOn3h9ikwZWu6iOkZQGU
+	 paEtjPZC8USZsoLM8HldgNs1hFg4l3bsZR842s9jveupLAvAf0AbWHmUrXLMwUzYTj
+	 s+gf4fWCYhMtQBxyJE7LR69snXLXQ7N7OXKlncHaE2BtDP4yo/YnhH+fy2vH6zkex6
+	 Eg0jcSlFsu3gBH/qd5Qj6B9mCrsJY67di2SC5NtR9RtbWId9Ab8iRS7JsDOYEUoHVt
+	 8DwZ4/5XnW+W2mRIP8DIEulSgH4I5lWQMI0H7VaJbljNG3zNmjy5j5McPTN+GMpQ4V
+	 kG8XvsO7wvizA==
+Date: Fri, 23 Aug 2024 16:56:12 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@lunn.ch" <andrew@lunn.ch>,
+	"f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+	"Andrei Botila (OSS)" <andrei.botila@oss.nxp.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 net-next 2/3] net: phy: tja11xx: replace
+ "nxp,rmii-refclk-in" with "nxp,phy-output-refclk"
+Message-ID: <20240823-jersey-conducive-70863dd6fd27@spud>
+References: <20240822013721.203161-1-wei.fang@nxp.com>
+ <20240822013721.203161-3-wei.fang@nxp.com>
+ <20240822-headed-sworn-877211c3931f@spud>
+ <PAXPR04MB85107F19C846ABDB74849086888F2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <20240822-passerby-cupcake-a8d43f391820@spud>
+ <PAXPR04MB85109CB5538707701F52246E88882@PAXPR04MB8510.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240819064721.91494-1-aardelean@baylibre.com>
- <20240819064721.91494-8-aardelean@baylibre.com> <3c4edf41-fd3b-4258-9b9e-a81b25568403@baylibre.com>
-In-Reply-To: <3c4edf41-fd3b-4258-9b9e-a81b25568403@baylibre.com>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Fri, 23 Aug 2024 18:54:31 +0300
-Message-ID: <CA+GgBR9H66u0mB-cQt_6tT2kh9TCW0Bm_BiHEUyVGvmGHBGEJg@mail.gmail.com>
-Subject: Re: [PATCH 7/7] iio: adc: ad7606: add support for AD7606C-{16,18} parts
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
-	gstols@baylibre.com, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ANYxDycCsQyo/fXE"
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB85109CB5538707701F52246E88882@PAXPR04MB8510.eurprd04.prod.outlook.com>
+
+
+--ANYxDycCsQyo/fXE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 19, 2024 at 6:33=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> On 8/19/24 1:47 AM, Alexandru Ardelean wrote:
-> > The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
-> > The main difference between AD7606C-16 & AD7606C-18 is the precision in
-> > bits (16 vs 18).
-> > Because of that, some scales need to be defined for the 18-bit variants=
-, as
-> > they need to be computed against 2**18 (vs 2**16 for the 16 bit-variant=
-s).
-> >
-> > Because the AD7606C-16,18 also supports bipolar & differential channels=
-,
-> > for SW-mode, the default range of 10 V or =C2=B110V should be set at pr=
-obe.
-> > On reset, the default range (in the registers) is set to value 0x3 whic=
-h
-> > corresponds to '=C2=B110 V single-ended range', regardless of bipolar o=
-r
-> > differential configuration.
-> >
-> > Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
-> >
-> > And the AD7606C-18 variant offers 18-bit precision. The unfortunate eff=
-ect
-> > of this 18-bit sample size, is that there is no simple/neat way to get =
-the
-> > samples into a 32-bit array without having to do a home-brewed bit-buff=
-er.
-> > The ADC must read all samples (from all 8 channels) in order to get the
-> > N-th sample (this could be reworked to do up-to-N-th sample for scan-di=
-rect).
-> > There doesn't seem to be any quick-trick to be usable to pad the sample=
-s
-> > up to at least 24 bits.
-> > Even the optional status-header is 8-bits, which would mean 26-bits of =
-data
-> > per sample.
-> > That means that when using a simple SPI controller (which can usually r=
-ead
-> > 8 bit multiples) a simple bit-buffer trick is required.
-> >
-> Maybe it would be better to just use .bits_per_word =3D 18 for the 18-bit
-> ADC and not worry about "simple" SPI controller support for that one?
->
+On Fri, Aug 23, 2024 at 01:31:02AM +0000, Wei Fang wrote:
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: 2024=E5=B9=B48=E6=9C=8823=E6=97=A5 0:14
+> > To: Wei Fang <wei.fang@nxp.com>
+> > Cc: davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
+> > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; andrew@lunn.ch; f.fainelli@gmail.com;
+> > hkallweit1@gmail.com; linux@armlinux.org.uk; Andrei Botila (OSS)
+> > <andrei.botila@oss.nxp.com>; netdev@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v2 net-next 2/3] net: phy: tja11xx: replace
+> > "nxp,rmii-refclk-in" with "nxp,phy-output-refclk"
+> >=20
+> > On Thu, Aug 22, 2024 at 09:37:11AM +0000, Wei Fang wrote:
+> > > > -----Original Message-----
+> > > > From: Conor Dooley <conor@kernel.org>
+> > > > Sent: 2024=E5=B9=B48=E6=9C=8822=E6=97=A5 16:47
+> > > > To: Wei Fang <wei.fang@nxp.com>
+> > > > Cc: davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
+> > > > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
+> > > > conor+dt@kernel.org; andrew@lunn.ch; f.fainelli@gmail.com;
+> > > > hkallweit1@gmail.com; linux@armlinux.org.uk; Andrei Botila (OSS)
+> > > > <andrei.botila@oss.nxp.com>; netdev@vger.kernel.org;
+> > > > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > > > Subject: Re: [PATCH v2 net-next 2/3] net: phy: tja11xx: replace
+> > > > "nxp,rmii-refclk-in" with "nxp,phy-output-refclk"
+> > > >
+> > > > On Thu, Aug 22, 2024 at 09:37:20AM +0800, Wei Fang wrote:
+> > > > > As the new property "nxp,phy-output-refclk" is added to instead of
+> > > > > the "nxp,rmii-refclk-in" property, so replace the "nxp,rmii-refcl=
+k-in"
+> > > > > property used in the driver with the "nxp,reverse-mode" property
+> > > > > and make slight modifications.
+> > > >
+> > > > Can you explain what makes this backwards compatible please?
+> > > >
+> > > It does not backward compatible, the related PHY nodes in DTS also
+> > > need to be updated. I have not seen "nxp,rmii-refclk-in" used in the
+> > > upstream.
+> >=20
+> > Since you have switched the polarity, devicestrees that contain
+> > "nxp,rmii-refclk-in" would actually not need an update to preserve
+> > functionality. However...
+> >=20
+> > > For nodes that do not use " nxp,rmii-refclk-in", they need to be
+> > > updated, but unfortunately I cannot confirm which DTS use TJA11XX PHY,
+> > > and there may be no relevant nodes in upstream DTS.
+> >=20
+> > ...as you say here, all tja11xx phy nodes that do not have the property=
+ would
+> > need to be updated to retain functionality. Given you can't even determ=
+ine
+> > which devicetrees would need to be updated, I'm going to have to NAK th=
+is
+> > change as an unnecessary ABI break.
+> >=20
+>=20
+> Okay, that make sense, "nxp,rmii-refclk-in" was added only for TJA1100 and
+> TJA1101, although it does not seem to be a suitable property now, it cann=
+ot
+> be changed at present. :(
+> Since TJA1103/TJA1104/TJA1120/TJA1121 use different driver than TJA1100
+> and TJA1101, which is nxp-c4-tja11xx. I think it's fine to add " nxp,phy-=
+output-refclk "
+> for these PHYs, so I will remove this patch from the patch set.
 
-+cc Mark Brown for some input on the SPI stuff
+If they use a different binding, then yeah, you can add use the new
+name/polarity for those devices.
 
-I'm generally fine with choosing to not support SPI controllers that
-can't do padding to 16/32 bit arrays
+--ANYxDycCsQyo/fXE
+Content-Type: application/pgp-signature; name="signature.asc"
 
-But, at the same time: would it be an interesting topic to implement
-(in the SPI framework) some SW implementation for padding a series of
-18-bit samples to 32-bit arrays?
-(Similarly, this could work for 10-15 bit samples into 16 bit arrays).
+-----BEGIN PGP SIGNATURE-----
 
-Apologies if this is already implemented and I missed it.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsixHAAKCRB4tDGHoIJi
+0nW9AP4vV2xl618F6KsrE008fW2eV6kz0eQzNzhu8RDFinWI3AD/ZypQb+ffi0tz
+aNX9IUGBoNG3hT1ntEDsKLnvSfZIKgw=
+=iFaS
+-----END PGP SIGNATURE-----
 
-But if there isn't such a functionality (padding done in SW inside the
-SPI framework), then I could probably spin-up a proposal.
-I think that the functionality could be spun-up in a separate
-patch-set/discussion; and this patchset would just go with
-"bits_per_word =3D 18".
-
-It could be done as a new field in the "struct spi_transfer", or
-something else like "spi_pad_rx_to_nbits(struct spi_device *)"
-Or other suggestions welcome
-
-Thanks
-Alex
+--ANYxDycCsQyo/fXE--
 
