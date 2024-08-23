@@ -1,148 +1,109 @@
-Return-Path: <devicetree+bounces-96123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E568695CB84
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:37:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D7095CB9F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 476C3B259C9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:37:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6601C20316
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2BD187FE6;
-	Fri, 23 Aug 2024 11:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="thRBMQ4P"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44760187FEB;
+	Fri, 23 Aug 2024 11:43:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D608217C211
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 11:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD74B187FE1;
+	Fri, 23 Aug 2024 11:42:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724412989; cv=none; b=Td8uIXW1oQm9XhdLWb6mc9TgJpO39GXkjCc50UrqnI3sStUjKaQqnYZwxDOaANtudU6KX28se1phSOEsS5ZOEzEzRxhT0IahkpNVGgrg2u2WVfKu4PVwzpuVk69310ch0AQH99OPQ3hQ3FYS0NX12z3Wup1G0IvyRwq+oSXYygU=
+	t=1724413380; cv=none; b=cNXCrrAQ7xrEp+cn7qww3AX9siCBkj8T0kjNVndZRo/XTVC7BkhnhxP+j/d+EcC1lGxzepIrDprOTgdYiT8zTLHNjxtDTBruf4w9D9+ymgIakmYhjyTPAm7De9vdQ7Y530qm76gtjvr6yshHYw5m6qrS9N/6dAKl28bCL1kxhYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724412989; c=relaxed/simple;
-	bh=Ntv6MZ9lCiHnA25uIJN5WCBiRmqOIGg+IIBDR5T364Y=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=LLddrIjns1VTz/FoETDM0E+zWf6fuMExg9BXeKxVynhYBGxu7ab2nfIXhyxMbBwtvmfMqW9LVbs9lxfOjt1AnZ9YMm3KX3v3PiTAxgTVI9rtuoEhy3uEIVhwAkbA1mroQOupuLwUiz2Ck0rCx8M13KSNCBzS1SjRD8JftnTq6/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=thRBMQ4P; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1724412983; x=1727004983;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Ntv6MZ9lCiHnA25uIJN5WCBiRmqOIGg+IIBDR5T364Y=;
-	b=thRBMQ4PyIHkz9hqpclNgmgiSu/a9m6KHpyQ7lYOcaM2ktXd15rWFwOBweK57Ta8
-	Oc4t9rIpYBKahmbfCHcqIhKF3arwJOb8Bzg7f+RqLuvsdyNSd0E/TfohxoK6P6wp
-	5ojGk7cOkbBlkzcRm659qF1XXRgN7DmrpcjPVfluqjc=;
-X-AuditID: ac14000a-03e52700000021bc-96-66c87437ecf3
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 31.91.08636.73478C66; Fri, 23 Aug 2024 13:36:23 +0200 (CEST)
-Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 23 Aug
- 2024 13:36:23 +0200
-Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
- Fri, 23 Aug 2024 13:36:23 +0200
-From: Yannic Moog <Y.Moog@phytec.de>
-To: Benjamin Hahn <B.Hahn@phytec.de>, "kernel@pengutronix.de"
-	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "robh@kernel.org"
-	<robh@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, Teresa Remmet <T.Remmet@phytec.de>
-CC: "imx@lists.linux.dev" <imx@lists.linux.dev>, PHYTEC Upstream
-	<upstream@lists.phytec.de>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [Upstream] [PATCH v3] arm64: dts: imx8mp-phyboard-pollux-rdk: Add
- support for PCIe
-Thread-Topic: [Upstream] [PATCH v3] arm64: dts: imx8mp-phyboard-pollux-rdk:
- Add support for PCIe
-Thread-Index: AQHa9TKynCp8C599ik6LNabc/uY/i7I0lW+A
-Date: Fri, 23 Aug 2024 11:36:23 +0000
-Message-ID: <233e5f32932cd420e6ca8d90e23c25f5740f89ee.camel@phytec.de>
-References: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
-In-Reply-To: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <10EC0176492E3F43B709DC2060609F7C@phytec.de>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1724413380; c=relaxed/simple;
+	bh=de4sSGgK/JfuIiF7rPZg3T9szUVyXwDQ7eUTFYV74hw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DKxceuaetdkYAVA8cqQa6gfoFUZyApTLodwfhJflQwSEY0Ws/cY5C5fV+rZSuS+0d9qSyC6iinaz/FlI5S3wpsJ5+ywJbqE/67bDfa/RCU5fMCB42dICl0BmPR7hhHS2vWelmzVJmFR/kxr3gMNuPwMLYcfgkMleEIUaCjVKA7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e179c28d5e8so1449517276.1;
+        Fri, 23 Aug 2024 04:42:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724413377; x=1725018177;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q64X2Z9uUa8iiu0OnuXm3o7cbkb9WLeS/msXrQjm13E=;
+        b=nmXnLt2S7jQry6feGm7ykouWgsevg6lxhuleUhG9c0KCOeEyNwH2lyJmwuD/0quTYg
+         766Xza2/os6z6lGaUk5mq6cVoFLIe8etleF2Eqjv7Mk0RN2TFqjuRpXNSyZvoZ1MoLez
+         gSefeIT2K7CroiM6r737EiMKZYH6WIGWBlkZdRqtfFeVsUn4ZYdOtfwQyabUArNGnchI
+         xP208oYzi75H/wnVKHI7ueQzMKp0k84hEY6QdzRNDoUxbi2CeGWiWhJ/NFpeyUyY5I2q
+         8TIVmQXUbQCm01lUxV+o3mAYWhpIgvxMbNcWt0mpaZ3HICLwjegVOqiW3MV/2owXGMzO
+         BuiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU9pe/okY7mD6Q+uWEBILXYJlheMb6TVLtAgdOIDQRoMe9kUxj8zZ2VQP9RV91lBasb7Ntn+KmfiFKE@vger.kernel.org, AJvYcCUSdeEzVDwRefXwAubZAXNeAZkT2MZSlHbHj4lyKe0xrbHmgAm3OapieNVhi9Y4x9Gwf2or9v2faeD3vFHj@vger.kernel.org, AJvYcCWNC8CkpkvMa6PFlOPZiGWNQwrnC5XGOo7P56vIHy6TxVocHKt0ifi8ladvNHN/wCZeTaMKoNSLl5DK@vger.kernel.org, AJvYcCWvQ1CfafbqBoYGLv+qdH2GpaYyjmANBM6vjDlpjhAtRwZwvIVnD1sDUpzOZtoq16TLaXVWXRyibGUmE79YhMz+BKo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxn/0rBhkrQXAD9W2OAAN31NepXAqInlry2TGD/3EUY+CY6/BAy
+	d9p8nXqaCX20Kqur5Flj7zB9S3Fa1HzrHtlrQrBvjpxQrsUXpMoHdi4sHHF2
+X-Google-Smtp-Source: AGHT+IEEmnlE1LJXJD6ZpiA1Hj2mE0JiG0725MxD2lblUBB5y3Zxcl+HpBIYPxNThtxRlK68zbujbw==
+X-Received: by 2002:a05:6902:2191:b0:e13:e674:5530 with SMTP id 3f1490d57ef6-e17a864dc44mr2183648276.40.1724413377280;
+        Fri, 23 Aug 2024 04:42:57 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e178e4637bfsm647628276.23.2024.08.23.04.42.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Aug 2024 04:42:57 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6b8f13f28fbso16707327b3.1;
+        Fri, 23 Aug 2024 04:42:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUpLkpmAbuBF5nK4HMo1FMxuOpt3FPHzjpnYbzDttwxhU+jaK/eD1N4urTkE8HwN9XD7kfgBqEUStLuGsyCa09I6js=@vger.kernel.org, AJvYcCVSxTrL1L7mVdQxMnX1+J/2hjlfYWQumyO5rDzv23C2XWENZHRdUunVur42C/wXjTAxLGu3oSTvmnsq5Vpp@vger.kernel.org, AJvYcCWX3qbvc0CbTbC1LrcgfTU5Fguliv4FwTGj97ulUqY3w7ypctVRT2vCjLyPsxYaoGXNkl6rtLswVSKy@vger.kernel.org, AJvYcCXqUm8DnAVXwI0pSNuG8D14VRL+Ute1LeYxXg4tMs9OKW1weVOBNF/ryon/Dg0ZAeke9dIDFAyBxJCb@vger.kernel.org
+X-Received: by 2002:a05:690c:768c:b0:6b2:7bd8:d7a4 with SMTP id
+ 00721157ae682-6c629fd7875mr20458467b3.41.1724413376825; Fri, 23 Aug 2024
+ 04:42:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEIsWRmVeSWpSXmKPExsWyRpKBR9e85ESawZ6pxhZr9p5jsph/5Byr
-	xcOr/hYz77WyWayaupPF4uWse2wWmx5fY7W4vGsOm8X/PTvYLf5u38Ri8WKLuEX3O3UHHo+d
-	s+6ye2xa1cnmsXlJvceLzTMZPfq7W1g9+v8aeHzeJBfAHsVlk5Kak1mWWqRvl8CV0ft6B2PB
-	E6mKvssfWBsYe6S6GDk5JARMJBZ1tTKB2EICS5gk2hptuhi5gOz7jBLrrz5jgXA2MEr8/TmH
-	GaSKTUBF4uSMS4wgtohAN7PEvSY3kCJmgTVMErcvrmEFSQgLJEosu/6CBaIoSaJpWTdUg5HE
-	ikv72UFsFgFViYlnH7GB2LwCbhLvb1xghDjDV+Le0VlgNqeAn8SbzVPBbEYBWYkNG86DHcEs
-	IC6x6dl3VogXBCSW7IGISwiISrx8/A8qLi9x4tY0oNc4gOo1Jdbv0ocwLSR6FopDTFGUmNL9
-	kB3iAkGJkzOfsExgFJ+FZMEshOZZCM2zkDTPQtK8gJF1FaNQbmZydmpRZrZeQUZlSWqyXkrq
-	JkZQvIswcO1g7JvjcYiRiYPxEKMEB7OSCG/SvaNpQrwpiZVVqUX58UWlOanFhxilOViUxHlX
-	dwSnCgmkJ5akZqemFqQWwWSZODilGhg7bj1c65+TM2edzuP00Gn9K9pUd7rPyEq0XPEutHRh
-	9Znqd0LPbJ4Y9K1yTjnO4HrTb/eFs5uZ/3Noxns1SPC/UNFcViQ887XZmqSrnhf2WgR1qfue
-	vr+waPbk24Hpu76pcAnbl3IzHg7tEWmctkvdK6Nkg7eNqe77mfPWhWzYXl/U5JV92lmJpTgj
-	0VCLuag4EQAoeePK5QIAAA==
+References: <20240820101918.2384635-1-claudiu.beznea.uj@bp.renesas.com> <20240820101918.2384635-10-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240820101918.2384635-10-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 23 Aug 2024 13:42:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUkHfEwMy+FNGXppdLW32nooQc7-_V_g7C77Lq1pTGeqw@mail.gmail.com>
+Message-ID: <CAMuHMdUkHfEwMy+FNGXppdLW32nooQc7-_V_g7C77Lq1pTGeqw@mail.gmail.com>
+Subject: Re: [PATCH v5 09/11] arm64: dts: renesas: r9a08g045: Add I2C nodes
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-T24gRnJpLCAyMDI0LTA4LTIzIGF0IDEwOjAxICswMjAwLCBCZW5qYW1pbiBIYWhuIHdyb3RlOg0K
-PiBBZGQgc3VwcG9ydCBmb3IgdGhlIE1pbmkgUENJZSBzbG90Lg0KPiANCj4gU2lnbmVkLW9mZi1i
-eTogQmVuamFtaW4gSGFobiA8Qi5IYWhuQHBoeXRlYy5kZT4NClJldmlld2VkLWJ5OiBZYW5uaWMg
-TW9vZyA8eS5tb29nQHBoeXRlYy5kZT4NCg0KPiAtLS0NCj4gQ2hhbmdlcyBpbiB2MzoNCj4gLSBj
-aGFuZ2Ugb3JkZXIgb2YgcHJvcGVydGllcyBmb3IgcGNpZSBwaHkgbm9kZQ0KPiAtIExpbmsgdG8g
-djI6DQo+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyNDA4MjEtd2lwLWJoYWhuLWFkZF9w
-Y2llX3N1cHBvcnQtdjItMS05YzkyZDg0ODhhYjJAcGh5dGVjLmRlDQo+IA0KPiBDaGFuZ2VzIGlu
-IHYyOg0KPiAtIGNoYW5nZSBwY2llIHJlZ3VsYXRvciB0byByZWdfdmNjXzN2M19zdw0KPiAtIGFk
-ZCB3YWtlIGdwaW8gdG8gcGNpZSBwaW5jdHJsIGFuZCBvcmRlciB0aGUgZ3Bpb3MNCj4gLSBMaW5r
-IHRvIHYxOg0KPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9yLzIwMjQwODEzLXdpcC1iaGFobi1h
-ZGRfcGNpZV9zdXBwb3J0LXYxLTEtYzFiYjA2MmI0ZTFmQHBoeXRlYy5kZQ0KPiAtLS0NCj4gwqAu
-Li4vZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdHPCoMKgIHwgMjcg
-KysrKysrKysrKysrKysrKysrKysrKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAyNyBpbnNlcnRpb25z
-KCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14
-OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzDQo+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
-c2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzDQo+IGluZGV4IDAwYTI0MDQ4NGMy
-NS4uYmVhNDc5YjUyMDNhIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
-Y2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdHMNCj4gKysrIGIvYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzDQo+IEBAIC02
-LDYgKzYsNyBAQA0KPiDCoA0KPiDCoC9kdHMtdjEvOw0KPiDCoA0KPiArI2luY2x1ZGUgPGR0LWJp
-bmRpbmdzL3BoeS9waHktaW14OC1wY2llLmg+DQo+IMKgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2xl
-ZHMvbGVkcy1wY2E5NTMyLmg+DQo+IMKgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3B3bS9wd20uaD4N
-Cj4gwqAjaW5jbHVkZSAiaW14OG1wLXBoeWNvcmUtc29tLmR0c2kiDQo+IEBAIC0xOTUsNiArMTk2
-LDIzIEBAICZzbnZzX3B3cmtleSB7DQo+IMKgCXN0YXR1cyA9ICJva2F5IjsNCj4gwqB9Ow0KPiDC
-oA0KPiArJnBjaWVfcGh5IHsNCj4gKwljbG9ja3MgPSA8JmhzaW9fYmxrX2N0cmw+Ow0KPiArCWNs
-b2NrLW5hbWVzID0gInJlZiI7DQo+ICsJZnNsLHJlZmNsay1wYWQtbW9kZSA9IDxJTVg4X1BDSUVf
-UkVGQ0xLX1BBRF9PVVRQVVQ+Ow0KPiArCWZzbCxjbGtyZXEtdW5zdXBwb3J0ZWQ7DQo+ICsJc3Rh
-dHVzID0gIm9rYXkiOw0KPiArfTsNCj4gKw0KPiArLyogTWluaSBQQ0llICovDQo+ICsmcGNpZSB7
-DQo+ICsJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCj4gKwlwaW5jdHJsLTAgPSA8JnBpbmN0
-cmxfcGNpZTA+Ow0KPiArCXJlc2V0LWdwaW8gPSA8JmdwaW8xIDggR1BJT19BQ1RJVkVfTE9XPjsN
-Cj4gKwl2cGNpZS1zdXBwbHkgPSA8JnJlZ192Y2NfM3YzX3N3PjsNCj4gKwlzdGF0dXMgPSAib2th
-eSI7DQo+ICt9Ow0KPiArDQo+IMKgJnB3bTMgew0KPiDCoAlzdGF0dXMgPSAib2theSI7DQo+IMKg
-CXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+IEBAIC0zNjYsNiArMzg0LDE1IEBAIE1YOE1Q
-X0lPTVVYQ19TRDJfV1BfX0dQSU8yX0lPMjAJCTB4MTINCj4gwqAJCT47DQo+IMKgCX07DQo+IMKg
-DQo+ICsJcGluY3RybF9wY2llMDogcGNpZTBncnAgew0KPiArCQlmc2wscGlucyA9IDwNCj4gKwkJ
-CU1YOE1QX0lPTVVYQ19HUElPMV9JTzA4X19HUElPMV9JTzA4wqDCoMKgwqAgMHg0MA0KPiArCQkJ
-TVg4TVBfSU9NVVhDX0dQSU8xX0lPMTBfX0dQSU8xX0lPMTDCoMKgwqDCoCAweDYwDQo+ICsJCQlN
-WDhNUF9JT01VWENfR1BJTzFfSU8xMV9fR1BJTzFfSU8xMQkweDYwIC8qIG9wZW4gZHJhaW4sIHB1
-bGwgdXAgKi8NCj4gKwkJCU1YOE1QX0lPTVVYQ19HUElPMV9JTzE0X19HUElPMV9JTzE0wqDCoMKg
-wqAgMHg0MA0KPiArCQk+Ow0KPiArCX07DQo+ICsNCj4gwqAJcGluY3RybF9wd20zOiBwd20zZ3Jw
-IHsNCj4gwqAJCWZzbCxwaW5zID0gPA0KPiDCoAkJCU1YOE1QX0lPTVVYQ19TUERJRl9UWF9fUFdN
-M19PVVQJCTB4MTINCj4gDQo+IC0tLQ0KPiBiYXNlLWNvbW1pdDogN2M2MjZjZTRiYWUxYWMxNGY2
-MDA3NmQwMGVhZmU3MWFmMzA0NTBiYQ0KPiBjaGFuZ2UtaWQ6IDIwMjQwODEzLXdpcC1iaGFobi1h
-ZGRfcGNpZV9zdXBwb3J0LWI5YmQ3NWZjNGQ5OA0KPiANCj4gQmVzdCByZWdhcmRzLA0KDQo=
+On Tue, Aug 20, 2024 at 12:19=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev>=
+ wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The Renesas RZ/G3S has 4 I2C channels. Add DT nodes for it.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.12.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
