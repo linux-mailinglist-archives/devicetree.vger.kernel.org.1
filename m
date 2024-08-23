@@ -1,109 +1,194 @@
-Return-Path: <devicetree+bounces-96206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E18295D1FF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:48:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D0A95D210
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:53:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0E3E1C20A42
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:48:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DF69B23465
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B82C1885BE;
-	Fri, 23 Aug 2024 15:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4121885BE;
+	Fri, 23 Aug 2024 15:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OxuRE89G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bP/gAoXf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692541885AF
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 15:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A091586D3;
+	Fri, 23 Aug 2024 15:51:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724428093; cv=none; b=F7qFOeDeha+Sd4Q3oM0eKIi6Tzg2yyoHHm/kd/7F2HavdJUMF9IT55tD2WyoKOW23oeiyuDb6yFYVl+yHj5H1EvAD/XwqOXlr+BJ/BOYdifi9w+fAohr7r7I93NMpiGuwmIdS4Q+aUfN+O02wbTqEK1h7yWILC7OOmcDutV898k=
+	t=1724428273; cv=none; b=ElbqH8xHV5WheODkgss1P3cflYlyP5Mx33vbRcoJwR0MvVg77+0k62U5ojg260LTc/IvJBiR+Ml0t3h8FZ0bFIUa86WUazIcL0FOEWgf3E8mP/9JZ4o3cEEwfSrvw7n9ZC0WjXAARhhF9gXOfTixVoRW6UkSFFxIGWleBBx/fL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724428093; c=relaxed/simple;
-	bh=LmPjT004Pu+b0lGXNhjt9mxzluLGxiZs+Qgq47unh9M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A4IQKonBM2Uvf9rfvlHTQL1EgmxltCVutylXnbns7WVPE/WoKyhThNrP6jKMBp5q0bgXefZKGDowVWGZ2irisU0KF2LBLuI3S5MRARRoRS1gA6CsUMGW3K9ET4DNI7QBv4iAN9tJJWAaOIZEQdSeXeceArhfjnKGOyxZQKNxevs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OxuRE89G; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-533488ffaddso2752806e87.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:48:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724428089; x=1725032889; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LmPjT004Pu+b0lGXNhjt9mxzluLGxiZs+Qgq47unh9M=;
-        b=OxuRE89GlU3SEWYQpWlwh5UrcHuh/xEyEGicpZHNvWmbW5BSSEgMNh72jWOMPtEPlq
-         tQXi/9JvQTugSgUDmnjHvzE89vWSyu6VLEFxC1tvEyVDvcSe+WfckfHd/J/N8djZaw4Y
-         h0g1CJx60joy5/ERAqNPmbHldffa77rSI4Obj+4pIGGseW4jB2gIxHZAD+ZljUzfRXOq
-         p7A6w0oFKMdqJVVamEsv/K0Zgb1B92j7by1HCC+ZyR80iOp5rQsQq89h070t4F6E3IeN
-         cv7nales0LHYXO22IGLgZKtt6+vwh7nWaCNCnrnfRiIBjqCMiMCQYeDlUX+1gtDbmlks
-         i1Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724428089; x=1725032889;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LmPjT004Pu+b0lGXNhjt9mxzluLGxiZs+Qgq47unh9M=;
-        b=pr/eia6XJ0SpoKaCR/WypFa92VJXS9ZS+TynZ/+VIueYLlAkt134K1NatIT9qXP/hq
-         P4yb6sWw/tVfJYiP7ZOeBzds8WBKm0nNU29DxIQKDxNEL+H7Jfu3rVZkfU25KCCZM7bt
-         zhZJVRcghofbFHA83nyOWb1V1ttoEP0yyZhvNUZNjUV8P9vpCifrSakAg8ivhIyEahlV
-         gKtguoKQeEtYbHDQaknCmmMsjO0ZXeT4r3eqWCNajkSWe2IIlfTiF/PEAr0ndxLb07g/
-         Z+QDo6L7MG8gcMV3qnOobwX/FQ7ydS+wf98BsW63Y+eohNfzFiRcoDH+H4deQTFmf8qg
-         yHHA==
-X-Forwarded-Encrypted: i=1; AJvYcCVC9Llwwk7jQQGNgAgmOG/J4Uk8tS0KIinP71k5Tk/435KnkHGndo+GxpDlGCrFzDvWasBNC/SNzNOE@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywjzq6VlbtyQEuPj1J0Uuq7tzoI/ND4tBiLH/eAeFW6+6Y6RjUZ
-	fdhRgleCGA+pRVEqm9s7prdU2/zuufb5ZbYTBnpmpNTwJxhDvwJeLOIQXBKj+pzQ4Lx1w1U6ixF
-	LWUaXztqotJZslbaGF4/xJW8SltKeLrOA7qsOTA==
-X-Google-Smtp-Source: AGHT+IGPIsPltYDrMbENTRG8ZR5qzvz5WC80feYuFQqeN6sGzjfgHPtnsMGj6lpcAU4PIZVuuR1kVHhNrtGIoL9x7eA=
-X-Received: by 2002:a05:6512:4016:b0:533:ad6:8119 with SMTP id
- 2adb3069b0e04-534387786e0mr2117298e87.14.1724428089108; Fri, 23 Aug 2024
- 08:48:09 -0700 (PDT)
+	s=arc-20240116; t=1724428273; c=relaxed/simple;
+	bh=UJ8y9SbdyQJ2cpOyfwD7iZtYNXEMcqBlR4gxzqHEGxI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tZX+spkZFgsptPC28GbdMW+/yCURsdcYcC94l6Y1NC+v7jrubNAAHKSZ4a1jKFi0oL1RnE7wcaMCrKaFV+ZEb+5/ToEDRiUxDGBL+15VUtqm/tmIkQ+fWdUYDq0h6OOsR2vh/nXLeGfMDrxy2lIgkX+nLwK4SQCOquqQNoi5j6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bP/gAoXf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C04A3C32786;
+	Fri, 23 Aug 2024 15:51:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724428272;
+	bh=UJ8y9SbdyQJ2cpOyfwD7iZtYNXEMcqBlR4gxzqHEGxI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bP/gAoXfI7Pog1TUdgOKN8s4SexOQTEN3/DKLmgzdIN7SXK+xlz+Cthyv9su1mGGk
+	 fMvwB1aVkboO3i9jKv4q2NL7YTh5eK+mlVgbJgFfmKJAJFkXMoR36JaAJ7kbwe6H/C
+	 ovTT++QqSEY9UCr8rwN/AIWGL0X4uiWDGyQir2eqwnWUY2voEpnJ5tADF8YPdq+lWC
+	 +W2ehjaR780BCokbQUzzqXlyMBjCY9EdItqnv6IdArAecyDWh+Y2D58x5m/94jPH8Q
+	 U8jjy+ZeqMBnk/nvj2fLQyAx7wS3yUpvjez5KbQYigJ9n+Y6MlMvfUxBhyOqvrvx/7
+	 pB6uqMUfCqB/w==
+Date: Fri, 23 Aug 2024 16:51:08 +0100
+From: Conor Dooley <conor@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Yiting Deng <yiting.deng@amlogic.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add Amlogic A311L2 and A113X2 rtc
+Message-ID: <20240823-rotunda-machinist-4f8dabbff479@spud>
+References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
+ <20240823-rtc-v1-1-6f70381da283@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822195706.920567-1-detlev.casanova@collabora.com>
-In-Reply-To: <20240822195706.920567-1-detlev.casanova@collabora.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 23 Aug 2024 17:47:58 +0200
-Message-ID: <CACRpkdZW+g4_szvMhuYXFHCjoekYKdux8s9u6zXkhDSDuF_i1A@mail.gmail.com>
-Subject: Re: [PATCH v4 0/4] Add pinctrl support for rk3576
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Shresth Prasad <shresthprasad7@gmail.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="pFpN10RskjPDX7Mw"
+Content-Disposition: inline
+In-Reply-To: <20240823-rtc-v1-1-6f70381da283@amlogic.com>
+
+
+--pFpN10RskjPDX7Mw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 22, 2024 at 9:57=E2=80=AFPM Detlev Casanova
-<detlev.casanova@collabora.com> wrote:
+On Fri, Aug 23, 2024 at 05:19:44PM +0800, Xianwei Zhao via B4 Relay wrote:
+> From: Yiting Deng <yiting.deng@amlogic.com>
+>=20
+> Add documentation describing the Amlogic A113L2 and A113X2 rtc controller.
+>=20
+> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../bindings/rtc/amlogic,amlogic-rtc.yaml          | 66 ++++++++++++++++=
+++++++
+>  1 file changed, 66 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.ya=
+ml b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
+> new file mode 100644
+> index 000000000000..fa3d7838022e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
 
-> Add support for the pinctrl core on the rk3576 SoC.
-> The patch from downstream has been rebased.
->
-> The grf driver is added support for the rk3576 default values:
-> - enable i3c weakpull SW control
-> - disable jtag on sdmmc IO lines
->
-> Changes since v3:
-> - Set GRF bits through the GRF driver
-> - Drop the rockchip,sys-grf phandle
+Filename matching a compatible please.
 
-Patches 3 & 4 applied to the pinctrl tree!
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/amlogic,amlogic-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Real Time Clock controller include a4, a5
+> +
+> +maintainers:
+> +  - Yiting Deng <yiting.deng@amlogic.com>
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +description:
+> +  The Amlogic new chips used RTC module.
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,a4-rtc
+> +      - amlogic,a5-rtc
+
+The names you have chosen here do not match the patch description. What
+is going on there?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: RTC clock source, available 24M or 32K crystal
+> +          oscillator source. when using 24M, need to divide 24M into 32K.
+> +      - description: RTC module accesses the clock of the apb bus.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: rtc_osc
+> +      - const: rtc_sys_clk
+
+s/_clk//, they're all clocks.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    apb {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        rtc: rtc@8e600 {
+
+And the label here can go, you've got no references to it :)
 
 Thanks,
-Linus Walleij
+Conor.
+
+> +            compatible =3D "amlogic,a4-rtc";
+> +            interrupts =3D <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>;
+> +            reg =3D <0x0 0x8e600 0x0 0x38>;
+> +            clocks =3D <&xtal_32k>, <&clkc_periphs 1>;
+> +            clock-names =3D "rtc_osc", "rtc_sys_clk";
+> +        };
+> +    };
+>=20
+> --=20
+> 2.37.1
+>=20
+>=20
+
+--pFpN10RskjPDX7Mw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsiv7AAKCRB4tDGHoIJi
+0pRTAQCos2kfCyu1HmMLs3vUDMHuAt4FObAjJDqXmI50lj4prAEAoCkTanOgaIFf
+mgPp56m+d+FLEo2EuVyr4VMVi4sgkAo=
+=N36O
+-----END PGP SIGNATURE-----
+
+--pFpN10RskjPDX7Mw--
 
