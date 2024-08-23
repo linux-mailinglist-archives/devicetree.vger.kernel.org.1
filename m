@@ -1,138 +1,103 @@
-Return-Path: <devicetree+bounces-96133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 292D295CC66
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:33:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA02B95CC6C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:34:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E2C7283456
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:33:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7A7F1C21A5D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB1D185B64;
-	Fri, 23 Aug 2024 12:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCEAF18593B;
+	Fri, 23 Aug 2024 12:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="1oDYwBqT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE285185941;
-	Fri, 23 Aug 2024 12:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A371850AF;
+	Fri, 23 Aug 2024 12:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724416395; cv=none; b=N0ZAw/PrTePnNgJSMPBpomCXj2JriH3iJoEtqPHndNhy5Ioj4AFzsevXSQyFvv3cPAtbdJS2ybD829OFR4qb9JzrvG9i7xVKOydcQxsu33gDCLCGJ6cTExy4HcLQfUOnoCul+5M+XVnGYBPMAfLqMqMrvyMTLrq+g2iq4BcwWZQ=
+	t=1724416489; cv=none; b=WY1Whutiie7HGGwIuQRZyPQjJ7ZJh7QjdSF6XZ8ElgxwonuTw7EwsL3Dv2UuC/LmKKP7pmNW5/6Brz09EtLOOQlV/IbusjklikxMBFB8vRM5um1lObNn6GHR4eN1RJO72w7I1r9OoKUMCmCUFFG3i03Wb3heImKQx55KBIBHnFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724416395; c=relaxed/simple;
-	bh=03rpMEAPkNqtwnDbfq91Teoq4v7JaWyGu9ZP2Xm8doA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DWR6MjFH8HMom84bzXvIDj/xZswo3236xqIBv/oIgfWW0YN2pKqlKtBpqzHFRllx2MHfqt3fygpnjtxY5cgpxr5lWKNjjyOIRseRK5U8BTgW/IxnUx9sAJA1ObVcFqjAtwE55Dw5B2XgfOGZW5ykPC8uhPqlEFbccuKOWKtawOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e116b591e15so1957610276.3;
-        Fri, 23 Aug 2024 05:33:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724416391; x=1725021191;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3Yvty6X76xoXM74eMaH2RxI9/zAHTVxZi7P/oGKdhlw=;
-        b=oFTRZRcKF//pYoal5JM1uD9ZF4pksYcrn5IKxwYRBSAXHkLwChg7DUdIRjRMCGD4N9
-         2bmEOV7SJqOwyr94FJd8dJQp0tocQbFVYmsWsqSYwHBBb3XSNsoCVWSn9xXDRbFLab6c
-         3TGdOJwU8gwQNrmVRvFC7Zb/9Mjwo4olON/15HEUyupr8v3HW77zptClV5GNGobSoi1d
-         9fP1L5VwBeiJ0DdCBaroYc+M++wdStLj3hrmSBaj24OD1TecPY4Hhe35zhnxTOFgNiZt
-         IYjpaoBrL6t0wBHvfJt1lxQXYtp+Px3g1rSyfZumUqvsGXAq5PbXcpkkSr+lyK3pVNAB
-         cS4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXaCwv9a5t96ByY1DJuMBNPK6LxUCh6jvt7HtDau+DAnwmlksS9wZkfKt4mQUZiljaTGc3Ter9UJ30DfrmfmxA33MQ=@vger.kernel.org, AJvYcCXwHmbpCzf9ldcUBteS+2vEoxE/ZV0VwlXVNZOEXr14H3egRbRVM+28NF0WgHaqH2/j6WjVTJQ+PYEk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxf0MioNDWcPdRT2vUerXNRWdEva/YqE3SnixqlpradZDoYMumf
-	yVT3UThFAANTzNPrUv7IrraYc7aml355j0sBuMN2lJbubSq50CmEOffBwM3p
-X-Google-Smtp-Source: AGHT+IEchlkIO+5gtqC1N+WIqldkAaPNVKD1QUZRtFHv3zqYJPK54ceEEDQRC7a0NvERLlhHWaIeUQ==
-X-Received: by 2002:a05:6902:2182:b0:e13:dd6a:1592 with SMTP id 3f1490d57ef6-e17a8c459b2mr1979660276.49.1724416391154;
-        Fri, 23 Aug 2024 05:33:11 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e178e4638dbsm635669276.14.2024.08.23.05.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 05:33:10 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-690aabe2600so18205567b3.0;
-        Fri, 23 Aug 2024 05:33:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVBYd3gg8ZMPgdctzG3Jkp6cMXujBMOotCrUECIA1K+yW7q4smMR/zfF/joVRg7FnKZfYF73vhPBkCh@vger.kernel.org, AJvYcCXsHNOxVH8m4nGR4jwg7kGstG6eIWcVO25+puL042d2r/kzI8U+z7+38+irEiPPgSQg2kcqUn7rCdbY1oqyMtXuBYU=@vger.kernel.org
-X-Received: by 2002:a05:690c:95:b0:64b:69f0:f8f2 with SMTP id
- 00721157ae682-6c62441920amr20013277b3.3.1724416390350; Fri, 23 Aug 2024
- 05:33:10 -0700 (PDT)
+	s=arc-20240116; t=1724416489; c=relaxed/simple;
+	bh=SbZ2XwhxXiEK21m52VQejON5kHLWb7eAOFmyH/wPO2c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CL73DuxoudeHWVwWkApBu7w0rvV1Z+RYoloh5fVe/jXGSq+ow7XPqNtCJtSkX8ze0rJmM70ldX6viFQMuRhS54GsbZVKp/x141CB6JdEkoMOXPKEhZCWtxz6+CsuIzGKAyzcW2EVc2X9WHMe/og1Z4hd+dYhvducuJqseZYK7pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=1oDYwBqT; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=IL8m+tZRH0NH7TTs3Y3T6ZKZMW0ktdt17CP3zTeJE78=; b=1oDYwBqTlDD8oyW4lxmsQ9JX+q
+	x7WCVI6a0TNOq4R9fUha8rmSOcrIMYtWYy6oQCcAcZ65ECjJ8dCFNShmnRQZ9HePbHH8DbFo016zj
+	P4p4SWA4pqWDABOpjRQmiEsOzoc+ZQhHChjzSu4SeaHHFdqno2zo3eOwn51icxBAs9MqndcQprx0D
+	M9ttVQXXcCzkxtxV7GuUydx6y6J1N4uv9tbxUfAkVsfaQ+jXPjE/Jt8AMcZPyeMCdzkngCv5yQ5Hy
+	7AE65LRbU2KJBuE+rhnQ5JkA4EacOp8qqx1Yc2Z0nMIect6BU2G735I28DsEzOqLbYqUZunKPk4PB
+	wWSCtrww==;
+Received: from i5e861933.versanet.de ([94.134.25.51] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1shTV2-0004zK-0B; Fri, 23 Aug 2024 14:34:40 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+	linux-kernel@vger.kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	kernel@collabora.com,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v4 0/4] Add pinctrl support for rk3576
+Date: Fri, 23 Aug 2024 14:34:37 +0200
+Message-ID: <172441646605.877570.8075942261050000.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240822195706.920567-1-detlev.casanova@collabora.com>
+References: <20240822195706.920567-1-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822162320.5084-1-biju.das.jz@bp.renesas.com> <20240822162320.5084-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240822162320.5084-5-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 23 Aug 2024 14:32:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU3b29rZaKNiX8ikDfd1OLThnpYVcdeYnaWeVuvyER=6g@mail.gmail.com>
-Message-ID: <CAMuHMdU3b29rZaKNiX8ikDfd1OLThnpYVcdeYnaWeVuvyER=6g@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
+On Thu, 22 Aug 2024 15:53:35 -0400, Detlev Casanova wrote:
+> Add support for the pinctrl core on the rk3576 SoC.
+> The patch from downstream has been rebased.
+> 
+> The grf driver is added support for the rk3576 default values:
+> - enable i3c weakpull SW control
+> - disable jtag on sdmmc IO lines
+> 
+> [...]
 
-On Thu, Aug 22, 2024 at 6:23=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Enable DU and link with the HDMI add-on board connected with
-> the parallel connector on RZ/G2UL SMARC EVK.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v4:
->  * Restored ports property in du node and port@0 for DPI interface.
+Applied, thanks!
 
-Thanks for the update!
+[1/4] dt-bindings: soc: rockchip: Add rk3576 syscon compatibles
+      commit: 4261b5804661f75408a8e2b63038308d2aae1f31
+[2/4] grf: rk3576: Add default GRF values
+      commit: e1aaecacfa135cd264a0db331d3ab8b2a04a54a3
 
-> --- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-> @@ -35,4 +35,115 @@
->  / {
->         model =3D "Renesas SMARC EVK based on r9a07g043u11";
->         compatible =3D "renesas,smarc-evk", "renesas,r9a07g043u11", "rene=
-sas,r9a07g043";
-> +
-> +       hdmi-out {
-> +               compatible =3D "hdmi-connector";
-
-[...]
-
-> +&i2c1 {
-> +       adv7513: adv7513@39 {
-> +               compatible =3D "adi,adv7513";
-
-The HDMI connector and ADV7513 bridge are not present on the SMARC
-Carrier board, but on a separate board.  Hence I think this should be
-moved to a separate DT overlay .dtso, with a suitable Makefile rule
-to build a DTS for SMARC Carrier + HDMI add-on board.
-
-The actual DT description LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
