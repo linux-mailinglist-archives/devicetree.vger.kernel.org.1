@@ -1,85 +1,158 @@
-Return-Path: <devicetree+bounces-96006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B11495C654
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 484C895C65F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:16:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB4E5285426
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:15:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFCD82855C1
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3876F099;
-	Fri, 23 Aug 2024 07:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB37413C83D;
+	Fri, 23 Aug 2024 07:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dC+ig9bo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Mw+6YZ1N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3943E1F94D;
-	Fri, 23 Aug 2024 07:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9DB13B7BC;
+	Fri, 23 Aug 2024 07:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724397329; cv=none; b=mG9Ko7wk8hMs7P6PLpeMAhP9deF3WWkYXX9qpyKfKaCLBblD/g6dmTUy9WwD2tmaCrNdaaBpZRv8oP3W2PkL3pM6UqmZfvDyu96Tv1EXXH16ySlV3l8VvCVM4wbEM7n7RVBg9bs10AZrvFOTJXI7E+R+UcgzwFgmPBTyP8FSYgg=
+	t=1724397396; cv=none; b=tjW98l4AWXe7gj1k4+Ssi1mhHqlGEpXH3dXkOqGpmG+UqHpPP7Wm806KjUOghb/tb24Qe/6pwm+mHMn50bYSa52YssFwC933F6z/It38yv48nuEO7caSyZU+Ku9qgS23a+XkDnRztY32VBDMxo1qk6KCI7/I9Yrqol1Lb9ZTCIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724397329; c=relaxed/simple;
-	bh=QyCcTe4msHaqfiC+96ztmrrkM0zY+X6wSGRlFtH4bMA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OLggVc43/16bPdGmYysfZ+DxlVoVWTmECsN5ClHlRfvp2CsHnxuIKZVMX3CVWamanlGUOvYPKOSZ0itw+ThjaUG4nk4s8IU7C2HtWwyipo+/MogtouaIE2v9i57WjXiOL89bSdkfKi4aYx39gu8LCdYZXBTuk3ifDi/h5gsK8EI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dC+ig9bo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FAF3C32786;
-	Fri, 23 Aug 2024 07:15:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724397328;
-	bh=QyCcTe4msHaqfiC+96ztmrrkM0zY+X6wSGRlFtH4bMA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dC+ig9bokeCIZz28A0VmS4yeNf9cfatW193Y0Y6P+XjjwWqYnUP7uxfgrYQreE0ND
-	 tAAuhIQlXAsN3FodGpST0dAaCW8DrXSS2fHC71e5u2q/nFLpnWySM3gBd04s0b/bLt
-	 obNkVD9H2j1o2HRB8PLz7/S9Hy87OqunqWzEJAfj/+nfMTbrDW4hQNBlvGK3/HRO5q
-	 BM9cnqQhYBMiY0B3T4R6FRJ3matftWnbE4N6P+bb3e+Ddqemmx755xTWiF2s4Ynhxu
-	 +BqC2Nf02HzPBSxtitUsKfYeiyXBUD5R5jVqqBWTaby/Aw+Df5uAn3GJbUjLowKy0I
-	 fVVwLeOq9FA7A==
-Date: Fri, 23 Aug 2024 09:15:20 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sunyeal Hong <sunyeal.hong@samsung.com>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 2/4] arm64: dts: exynos: add initial CMU clock nodes
- in ExynosAuto v920
-Message-ID: <bailwkwaxw27rtzgvjkapmmhjwearm7pjlstzc52qr4dgbaxsk@unpiayefy4py>
-References: <20240821232652.1077701-1-sunyeal.hong@samsung.com>
- <CGME20240821232656epcas2p2fa72bd9565570c26616aaa640d75eef3@epcas2p2.samsung.com>
- <20240821232652.1077701-3-sunyeal.hong@samsung.com>
+	s=arc-20240116; t=1724397396; c=relaxed/simple;
+	bh=SmD2pAgg2Cga/t5bFDBOFnKZxjdDUcoMeuUuhKrJUN8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UcMvcc11ZmZMOWgLBiq7wArKKtiFkIlJNravfPzaey2RCg6uDxH0Ii/KSB/ahJ+8C9bPymaVFE1/Azvd00JJhE6qnrj3x1ccq9EGBXcpHL4ySh+l0rZXXSY6+ulXlwb9FagjMejCNTzoHQkG0mYv9+brhnY2zqWLwaX4nYS7REs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Mw+6YZ1N; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47N0q4wX001725;
+	Fri, 23 Aug 2024 07:16:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pvvmRzjjGmzJRu2QtaD2yqG7o8BFSxdAfyKmQ8OGQcs=; b=Mw+6YZ1N8M8rR9Jf
+	X8NPvg30YWIm0tHNwHZvEUkQ+IKOcKW+6n5qnurlXoSM9/9RLC+ER1cDDdOP4NH/
+	sR9P/86A1MTReubX3cLFbk7J48xoc671SOrEEYT6ljwZCydeKuJbDxWCHEmuuGqX
+	qCAQj/dfromoGUbp9JV8rglWvbeLloiUy1kVgaiMzy5ChFcFC4x3zuxMqSsCUUnM
+	LBwRet/APr+IlYv3HdLpoIlL+UV4oTEIl+I5prdGkZM1q/b5WbgWm9/57g5ZxEbh
+	rl+dzuzgyzhsdzMgOaaS1qos9kE5cKplrH7k/dsUqHGV3iqu4s1XkY34w8ot3Djb
+	c51yMw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pdn2fdd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Aug 2024 07:16:14 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47N7GD8O029109
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Aug 2024 07:16:13 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 23 Aug
+ 2024 00:16:10 -0700
+Message-ID: <13ac63cb-8ef8-41e4-8758-82635cbfade4@quicinc.com>
+Date: Fri, 23 Aug 2024 15:16:07 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240821232652.1077701-3-sunyeal.hong@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add qcom,qmi-id for remote etm
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Alexander
+ Shishkin <alexander.shishkin@linux.intel.com>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20240822064122.5231-1-quic_jinlmao@quicinc.com>
+ <20240822064122.5231-2-quic_jinlmao@quicinc.com>
+ <x45dqaramqjwqjmwf5fbagzsrzb4f4qaohpaaohrdfjkmq2oil@x3sz4jeqnmj5>
+Content-Language: en-US
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <x45dqaramqjwqjmwf5fbagzsrzb4f4qaohpaaohrdfjkmq2oil@x3sz4jeqnmj5>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: OyOa49kwiLNuUPASs-1kIOjy-lAoPgOG
+X-Proofpoint-GUID: OyOa49kwiLNuUPASs-1kIOjy-lAoPgOG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-23_04,2024-08-22_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 adultscore=0 mlxlogscore=999 bulkscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1011
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408230051
 
-On Thu, Aug 22, 2024 at 08:26:50AM +0900, Sunyeal Hong wrote:
-> Add cmu_top, cmu_peric0 clock nodes and
-> switch USI clocks instead of dummy fixed-rate-clock.
+
+
+On 2024/8/22 15:41, Krzysztof Kozlowski wrote:
+> On Wed, Aug 21, 2024 at 11:41:18PM -0700, Mao Jinlong wrote:
+>> qcom,qmi-id is the instance id used by qmi API to communicate with
+>> remote processor.
+>>
+>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>> ---
+>>   .../bindings/arm/qcom,coresight-remote-etm.yaml        | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+>> index 4fd5752978cd..27e5f18bfedf 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+>> @@ -20,6 +20,13 @@ properties:
+>>     compatible:
+>>       const: qcom,coresight-remote-etm
+>>   
+>> +  qcom,qmi-id:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      This id is used by qmi API to communicate with remote processor for
+>> +      enabling and disabling remote etm. Each processor has its unique instance
+>> +      id.
+>> +
+>>     out-ports:
+>>       $ref: /schemas/graph.yaml#/properties/ports
+>>       additionalProperties: false
+>> @@ -31,6 +38,7 @@ properties:
+>>   
+>>   required:
+>>     - compatible
+>> +  - qcom,qmi-id
 > 
-> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
-> ---
->  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 40 +++++++++++++------
->  1 file changed, 27 insertions(+), 13 deletions(-)
+> That's an ABI break.
+> 
+> Best regards,
+> Krzysztof
+Hi Krzysztof,
 
-In the future, please remember about correct order of patches. Nothing
-can depend on the DTS, thus DTS is always the last. No need to resend
-for that.
+Sorry, I didn't get your point.
+Could you please share more details ?
 
-Best regards,
-Krzysztof
+Thanks
+Jinlong Mao
 
+> 
+> 
 
