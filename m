@@ -1,222 +1,202 @@
-Return-Path: <devicetree+bounces-96135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB7D95CC79
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:39:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BF1995CC86
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7F171F21231
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:39:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FDBB1C21BDA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A349D18562A;
-	Fri, 23 Aug 2024 12:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F25B185B55;
+	Fri, 23 Aug 2024 12:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="rqwqE8+y"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b="Q5w8vDGc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010063.outbound.protection.outlook.com [52.101.229.63])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2D0566A;
-	Fri, 23 Aug 2024 12:39:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.63
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2AB185B43;
+	Fri, 23 Aug 2024 12:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724416769; cv=fail; b=l48ODmA5kD3O0+RE8oPLMmrt4iPJaAFYiGIpbhKVBmR1jj9dJZ1I5LGKK/LDpj15TMsf8ZIBoSlt00MhpQByMqhwD6UdwxJ+5SVN3qATnX0tR28ezBBst03CkpWdmfo15ZE39tTof3nG/ogtUTxwJLQM8EAYYaMwiMCn/1oyJzA=
+	t=1724416857; cv=pass; b=fzQMl0L8T2TBypRPR8pVO8CEFWSt/dj4rM5UWeJyGzauhofSe9NycmAYoy9cks3PVxVdlGFa0dXSlQy7ygaZKGIc7SaWIx9PJAqgKj5XLtX2Qs4sr5cSMEH5cCusHZdqEKFWs5h6y8fO2Qyp7R9ztFVV6+GM/aBnkaN4/9DzHWM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724416769; c=relaxed/simple;
-	bh=YBLNm5fsHkHlWaT+Lf6sexTDvpZcud4A/aGAyTVABak=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=IkWWzz3JeN3wnexRnpx+3YtaTtd45VlQ+sEVPLnT+9WuW4nh9jOTvzWIexadYLQLUrS4SI2awf3YCoMxPkV4p3VhXPP9gSDr7RlksRe/EjbOQRMY1PSsiguC6Xn6TQulpRRqXMPWx8RPL/AN9316VavjvLOLjZzAI9BWMKrCw/Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=rqwqE8+y; arc=fail smtp.client-ip=52.101.229.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nri0Nd5H6l3OsfqqJxdm68YSIjjUba/hSUKMyyUMZMZTdrF6c1qZYkn6nA9Pw/IQy4i+O4jt0ItxuPpFgnAbIcg7m/GSgOu3iwvwsIQ+Rl+n3oo/Ha0LulALEW+mulOjntbPsAhTe+pDexltBb7WDbY3QOhxMZMaSip5MDQ36DdgSTFaI8TYC5tIeAKKt5w8yWu/hqDam7j5qcq1OCuid/N4nn3vDsLVUz6ggN11AH+a8JkYd//0quXYClflepBB7o5a5tNGwWqGspGOlg0TdnhpT8y7feUftoFuc1PfHDc2ls15sLbZr4xQhrAC9qh0c44KPQO5vF7NTOX/+3ED1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YBLNm5fsHkHlWaT+Lf6sexTDvpZcud4A/aGAyTVABak=;
- b=GgBYLYTwwrRu6ME2PsFQwDSYYn0SypHQMhy4Ehm/rpyQ62POujO6p3y0S1VEsuMfOLzUrv7+k5XcZyNkPE1dry6v+eTm98cCtmWXn6URttj1Rvwp/g2BeKiEQh5dAJd4a+e/8BKeekBovzm6H1TvnniC+b545hzfQe2zr6L4Z/PhYeBfF9vILCtar8h4Yy8e1B9Ot9q1yR5U7cb6nC0em81Q7MPSjDP/Yr60CZyeXVPhNGsg9r0TCBo5zlKrtZx3hsH+6Y1jOT6RyngNanIXe6atFr9BMtVKKFM9Vq4jV95C0NxTvG0XeE8KIjihqA6M9tFYw/9byQWcE2GwwCFEmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YBLNm5fsHkHlWaT+Lf6sexTDvpZcud4A/aGAyTVABak=;
- b=rqwqE8+yWX3lsLHo/CDKWbeq/btV3q5vYKHX/Ms+Bo8Fbvom7znuNLcMzpmQ/YvbVV9v7s3lCtBqgA391dbMrlDwwgvAJ0OeM2RhUN2FyH9oUjtNxemobSciwr0W+HmxSaT7VWMOHS7clx4BPnCGc58zMVHSBWq8AbP4Jj1g6Mk=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by OS3PR01MB8145.jpnprd01.prod.outlook.com (2603:1096:604:173::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.17; Fri, 23 Aug
- 2024 12:39:24 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.7897.021; Fri, 23 Aug 2024
- 12:39:24 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>, Kieran Bingham
-	<kieran.bingham+renesas@ideasonboard.com>, Magnus Damm
-	<magnus.damm@gmail.com>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>
-Subject: RE: [PATCH v4 4/4] arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
-Thread-Topic: [PATCH v4 4/4] arm64: dts: renesas: r9a07g043u11-smarc: Enable
- DU
-Thread-Index: AQHa9K+t/PJRSNtMYUehL1ksjCIBc7I0x8wAgAAAvGA=
-Date: Fri, 23 Aug 2024 12:39:24 +0000
-Message-ID:
- <TY3PR01MB11346F763B72B7D3E790DECD486882@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20240822162320.5084-1-biju.das.jz@bp.renesas.com>
- <20240822162320.5084-5-biju.das.jz@bp.renesas.com>
- <CAMuHMdU3b29rZaKNiX8ikDfd1OLThnpYVcdeYnaWeVuvyER=6g@mail.gmail.com>
-In-Reply-To:
- <CAMuHMdU3b29rZaKNiX8ikDfd1OLThnpYVcdeYnaWeVuvyER=6g@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS3PR01MB8145:EE_
-x-ms-office365-filtering-correlation-id: 5e2b7863-763a-4c72-7f22-08dcc3709e6d
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?TjRIQWpFV3poZzFoNm5HQTFSTmRqSE53RTFFZ3I1d3hUSEUrc0oxNE5kanZL?=
- =?utf-8?B?dG5CZGtBckpkYitQc2xuS05nL01oZStOdG8xZ1Q0SzY5Nld6Z2FuYng3TlQ4?=
- =?utf-8?B?Y0x1SzBnRkppUlA0blU0dllSa0dRQzBVcGUrWVpacjNBOFBaaTh4Z1F0UWI3?=
- =?utf-8?B?Mm8xV3lYNTJKZWZ6elFnQ3doSWJzM0VuMFBQYzFMZ3NKbXRVcjZRbDdpTmpj?=
- =?utf-8?B?SDhDaEhvRkc2WW1BNFFIeWFVQUdNL3lHZ3BoSTFEZE1xZ0ZjQ05EamlNNmFU?=
- =?utf-8?B?SVBwQUFUQW1RVzdNQ29tYUsyVHFSazM1NC9lSGpSTWJ6bzEwekVuZ28vMTJ6?=
- =?utf-8?B?WGlLczA4eGY3TExTMmpMWElxMzcyZWRtc3BaZ0RacFhzSCs5OUJEckNBT1Fv?=
- =?utf-8?B?Ri96eW1EWEc3c0VRSGJjT2xkSnJvcGhTeDNYa216RmhOTEVnb1dmSE8zN2ZE?=
- =?utf-8?B?SlYySVQxd2kwajJNQkQ3ZDZmNkVQZE9VMlJxYm5VRG9OUjFCMTJyQkxJYlBx?=
- =?utf-8?B?SjNxYTBaQUNybU1lZjZ2WUIzYzIvWGgzT2YrSEhsVWhJTzE4U1diMkxiN0Yx?=
- =?utf-8?B?RXlmc1ZWQk9oM0Z5TFdoRHpVSmJlUEV4bkFkNTdmM1RtSENUbi8rOEFpbk9P?=
- =?utf-8?B?QTJLSCtmdWdlNmtJNktNbkJwWG4zZ2FnM01TZjBEbG5UVEhFVW5Ndzd5OTBz?=
- =?utf-8?B?ZFplZjh0MExIai9hKzR1N29FbkxHbGhhUURUWHNWN2ZtOW1hYzZaQm5NQ05n?=
- =?utf-8?B?SElyRWdSL09mcmxQc2kvb21aYXloMHlTU21WNEg5NHVURkYweDF3c3l1dmhJ?=
- =?utf-8?B?TzJrcnNaYTk1N2k2UE04aUtPOXFYOEQzR2NzU2FDU1UxTSt5S1lWaWZjTzl2?=
- =?utf-8?B?bktkL0IxdUVGMEFabGRTQXU0WGphdlpReFowQ1ZZSjY4UHlTVUh6UXorQjNp?=
- =?utf-8?B?NjRTZzU4UmZheUgvSUszQjM1VytPaHJRaTBWMTgwbjhFbmxHbXZMQ1Vib0h6?=
- =?utf-8?B?UFBCNmZmblU4cTBCdld3b1VKdHE1TURMc0JUcDJDcHZFTVRlajF3NDdGV2JF?=
- =?utf-8?B?RXdDbHY5T0VYa0VnRkppYm9NUUFVZUZIVHcrY2dJWTkvWTFtK2VVOEdVNTlB?=
- =?utf-8?B?Wmh4U1BENFBnd0l1dGxDdWZKUE1Mc2RGVjRDZDN3NXVFWEdybXV6UXY1TjV1?=
- =?utf-8?B?YTdRL0cvVFR6dHl4cnhEQVp2ZW5oUVk0YWdEM3JUcldVZ0Rzb2JFZk1tY1J1?=
- =?utf-8?B?YjRqREZNQ0dUZUpkMWwxMUJuZWZ5ZDhZaWtWV0k0OUpJTlRSSXAzUFB2YWlR?=
- =?utf-8?B?N0Y0UnNvN3ZOT2lOaW4vMzlzeFF6ZHBJSU1tbFdwdDNCM1pWTi9pbVZCWGk1?=
- =?utf-8?B?cWZQTElaY0N4VWcxTHdRL3hqeW1vZkF3RFBqNnNJYll3cHl0VEFhMFo0dWhE?=
- =?utf-8?B?QlYzRDdodzE5bXNDMGhtREJLZU02Qnd5NWZxYmZtSUV3b1Aya0s4KzA3MzBM?=
- =?utf-8?B?MnAxWDdPMHFKSVZETkdjb0tsaXpuY0kzV2tTOHRjaXBSeCtmbHlaRXBZTHBG?=
- =?utf-8?B?M0FMZUtLSUdBdTdoa0pVb1h5cmswQkQ0S2NkQkpaSTljUW9FSTBVdU1rYlNm?=
- =?utf-8?B?WnNFSitqeDVVQytPaXMzS1p6TEhMZmdid2ZWNjVraEVqNWxrQ1pDYkJUZisx?=
- =?utf-8?B?aVJCdnVCSHA1YW1rVy9uVFVHeUNFbUwwWEk5dGVvbG5kL1RoQ0pQTnJ4WWoz?=
- =?utf-8?B?c3JpelE1b1RJRGZjc3NMVnptSWI4NXhlZG04dXAxK2JQZVNYTEx0bml2NXJw?=
- =?utf-8?B?ZFErR2UwSEh6YkxUQ3FOckFJdDJNY3pKREFoV0wwNWZxVkVMa0ZHcmQzVzZ1?=
- =?utf-8?B?YnplWFErZTVwVXhQaGVvMFZUWVVZUTRKeC9JYzI5cmZCMEE9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?T0tXczZlMktxbTVwTU1RVk0yUWNiRHRDZ1VWM3hDczd5bGxiZmlKcDJvcnFN?=
- =?utf-8?B?WEd4N3loWHRBS2NPN2tQWXhCajBhT1pWc21Tajl2T0k3K1FKWEpIVVdpOFVu?=
- =?utf-8?B?NnVzUjlKTTRlVUlvTnpBQlZVRTBlOE9GUXhsUnFtUDk4ZmlTL3dxRU1BWmxY?=
- =?utf-8?B?WXRDZGJjcHZDbGpSR04vbnREcW51K2k5U0QyYVdjR28renUxNy9jQ2Zkc29n?=
- =?utf-8?B?YXdUWnlOQ1AwOFdTdWJHYVR5VGZWMXlYcXNOR2czbm9GWkpyaE1tYnRoUlIz?=
- =?utf-8?B?emUrWk80bWpnbUovTWdpRXMyRWlMeklrOTEzWHVmbTRDRW9vU1F5bkFTaVJz?=
- =?utf-8?B?NEVaRnpjWENIK25aU3dzdGpsL0FVQi9ES1dxeUJDbEJZdUJVS2t5dXlJazNK?=
- =?utf-8?B?RVpJZS9oSTFzS3lXUnNjclM1UDFXZjVVeWVwWksvK2RGTmcrYUZ3aUcxdWov?=
- =?utf-8?B?Y21WejJJWk9UZ290Y3ZHR05pTkVLRTJjR3l5TUhzdmtoMVhYME5QcFF1OUVt?=
- =?utf-8?B?ajhnS1l0MW5mRTRxSEFsdmZrcitZd3crdDFXZTFYU2hFQjMxYkhGSnNISDY5?=
- =?utf-8?B?VjJJYzdOMU90eWNLa0srRnJSMU5yT2Mvd1B3NjJZR2NrKyt4VjhLRWNXRWcz?=
- =?utf-8?B?YVRHcXdNR1RTNWMzc2pFdlNsaE9WSFRoZ29EOVhidy92T1pXWERVZXVEbmov?=
- =?utf-8?B?cmwyWktnRy9sbTRKVlBEaTBFU2VERHFMV3dreTBvdStlc3JJSGhyeDYwR1k4?=
- =?utf-8?B?ZitxQ054WHZnWFRvUlRnM1hOTUtNNVA5eSsweGJSUlR6NGZtZmY5cFlxRkp2?=
- =?utf-8?B?eklTYVB4bVZYdCtaY0FoUHJwOUJxY0RCVTBaeTNwQ2RCa3lkUFFtcGFKUmFy?=
- =?utf-8?B?TzRGOUVDSUNmQW9kd1FJQkYvajJVRXdYUzNxOXlWNEtYNTJCU3JNeCtuTDBO?=
- =?utf-8?B?c1kvUEFOYW1zUERldVdrUGt1d1ZlblBCdUFYNStFNEpmNE4yWGFpais2YWpJ?=
- =?utf-8?B?bTdKTEdJUmd4K1ZvL29ZSDY5MzhEU2g1Ujc0ZjNEeW9Tc1JBenhiNXBXeXFs?=
- =?utf-8?B?aXRieGxPVE13Snk5TnJqT21KYTkzaThtUWpQTnBXSHVKTU9YSkp2REMzMGVi?=
- =?utf-8?B?MUIyLzNRVEROWG9HZkh2UEhTRUR3bXdaVFhDaFdaQWlTb3BLYVozRTQ2dzBI?=
- =?utf-8?B?UEtqbHJNaXRuRTBYYTZleU5GQmdXVjVtQkZWV211ak1lOWNjeXFvc0V6Y0s2?=
- =?utf-8?B?Ty91RTNWWXFQZ0xPWWl2NFpLazNlOG5IVWl2SGluVDRLRTlzVmNVdUJGci9Z?=
- =?utf-8?B?aWZqUHRjclhLU0srbjVKU1hQRXFHRzBEVWRRemZZbUx6Ni80Sis4M3pNeGlJ?=
- =?utf-8?B?dkpzZVRGV0Z2N1RKWVVlTU8vaHlZTEpRN0JhT3dLeUcwbGlTMWdBeWhsa1dM?=
- =?utf-8?B?R3FRWHhJR2pDU0I1UnhydFFMMXNqMWV6MFdLVDBRZ2w1eURCdDJZbEY5RFRz?=
- =?utf-8?B?MXpyU1JHMXdMcmMra29PQ0o4dk1jU003UGdFWW5Oc0pHSUZJS3ZVeUczSnk4?=
- =?utf-8?B?RWJQK1ZKUlhQVXRqVDA0ZWVBT0h2SXhTWTlRa1FKckxjS1hmYXNGS0RCU2lh?=
- =?utf-8?B?aE5sUlAyTzR4V3BpQ1MrTVVNWVozbTFEdHl1dHZ4a1V0WnIvOGtoYm1hTTJv?=
- =?utf-8?B?TE9KTHkrNUYxbEp3TTZ1eldHc0dDSXFBMzFVeHp3a1BHa1dHR0F4N2UwRE80?=
- =?utf-8?B?K3l3YW9UWFBJTVRnYTB3akVTYVRvbCtEbjJtRFhqL2ZqT2lUNjJvZFNQMmxL?=
- =?utf-8?B?eFdoT2t4a0hGcmttN3R0MFozY2dHVGgxL2F2YkVmeTB4b0R0YndCWGovSTFp?=
- =?utf-8?B?eHJLSCtWNXF4ZzhOR1p0RzhWRWd1R2U5aEdvRDdZSFRjQi9lYk1uSjM3cmc2?=
- =?utf-8?B?Mms1S1N2ejVqOFoxVDFHWFMyMkJRbWtyMXdWelNHcEdIbFNRaEZGN0pTYXE4?=
- =?utf-8?B?V2FsWVoxNys1Y1RLZzNaS285WDBKZTN1MGsySExrZlNReHFBUytDSE5pL1Ri?=
- =?utf-8?B?d0krNnR2UFV5dmp4UjRRSzl3R0JCc1J0VmMvU2xKcjNOY2o2cG94SXM2eEsy?=
- =?utf-8?B?NW9lbXUyMFp1TXI0ejBURWpvT201OGJRR0JtVlJ1aHIyc1BlbHkzeE9GK2pY?=
- =?utf-8?B?c0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1724416857; c=relaxed/simple;
+	bh=alWyxxtutQB1Iit1K6IkF1VFmfKgMsw4+F/w0BJLL00=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g5uOcK/GSJBzeDUP8XjKAHVtU9kkXUfsNXWukuAdb10RUZ0y8Ygcy3cYtAKBstGhoO4CIaqRkp+6gd5Qpp8x7I/ZBK8FyKya4iW4ZHN1jx6LJbR6p65QmyYuYYNmJQV5Y8v75Zc1lp/VmaRIVELalOJGyEZKdoX1+2XNzNa9TT0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b=Q5w8vDGc; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: nfraprado@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724416831; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=lFoGHoIkT/mAibpILBItN6WgjmX/CI0oZ6D/NUXN2bKsfLT4+OvekFfrS4tKyAg6cgQa4YwYvPimxdicYZLp1IxTFi4jcRrP2EVb9A3sNMF0WuqNS75XVhT+ZBvwyj71T9QHWmz6bELKUN0qvQOSrySiwxsHUeBaSt2YPsE4t38=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724416831; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=XidCKBwilQdKIAPfiY223u/XUs5Gi5LF34Sh5zMVqVQ=; 
+	b=WFmfAEFUVjd4vCnIncMyG6Pf7iUuLDiniGT4Q6rPomrCSJlCEGjbBmyofIbH2qkDUAzLE7cw3HeP3VqIO6E9zUU3ZUrjlmnDUsGvUlEpktZpEb/QhvuRU5jgMwnxmZXNxy3pDQnAY2PxLWV96SBhYG7dwfJKvcP9z8YopDtynNU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.fricke@collabora.com;
+	dmarc=pass header.from=<sebastian.fricke@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724416831;
+	s=zohomail; d=collabora.com; i=sebastian.fricke@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=XidCKBwilQdKIAPfiY223u/XUs5Gi5LF34Sh5zMVqVQ=;
+	b=Q5w8vDGcEiBTiX8f4Im0x0qNGvTrpQS657ZHR7GoEs+6v1pol95+beKfAoTFV/R+
+	TczIkqqSKULDusEO/Yafth2OdM6KTLRhnWdGGPbs0iZCq7VDq3baveMZjtiB1i19wck
+	h7ITkEmLdCcZra27DyGwlUT1M04aH2NfNUqkBh3o=
+Received: by mx.zohomail.com with SMTPS id 1724416828944996.9773317618417;
+	Fri, 23 Aug 2024 05:40:28 -0700 (PDT)
+Date: Fri, 23 Aug 2024 14:40:23 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4 4/7] media: mediatek: vcodec: using input information
+ to get vb2 buffer
+Message-ID: <20240823124023.uhypfcixfsget26q@basti-XPS-13-9310>
+References: <20240807082444.21280-1-yunfei.dong@mediatek.com>
+ <20240807082444.21280-5-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e2b7863-763a-4c72-7f22-08dcc3709e6d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2024 12:39:24.1172
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QIjSmy/pHxrEg2ptzysfSwtbl2jV5Wj5jXxQyKo9efGSExlMT0UBU6iZFX10/d98vfXUG/6V1j0GqULnVQYis2u6NBxBCP56coQ6rqmbrSw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8145
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240807082444.21280-5-yunfei.dong@mediatek.com>
+X-ZohoMailClient: External
 
-SGkgR2VlcnQsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogR2VlcnQg
-VXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9yZz4NCj4gU2VudDogRnJpZGF5LCBBdWd1
-c3QgMjMsIDIwMjQgMTozMyBQTQ0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY0IDQvNF0gYXJtNjQ6
-IGR0czogcmVuZXNhczogcjlhMDdnMDQzdTExLXNtYXJjOiBFbmFibGUgRFUNCj4gDQo+IEhpIEJp
-anUsDQo+IA0KPiBPbiBUaHUsIEF1ZyAyMiwgMjAyNCBhdCA2OjIz4oCvUE0gQmlqdSBEYXMgPGJp
-anUuZGFzLmp6QGJwLnJlbmVzYXMuY29tPiB3cm90ZToNCj4gPiBFbmFibGUgRFUgYW5kIGxpbmsg
-d2l0aCB0aGUgSERNSSBhZGQtb24gYm9hcmQgY29ubmVjdGVkIHdpdGggdGhlDQo+ID4gcGFyYWxs
-ZWwgY29ubmVjdG9yIG9uIFJaL0cyVUwgU01BUkMgRVZLLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1i
-eTogQmlqdSBEYXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29tPg0KPiA+IC0tLQ0KPiA+IHYz
-LT52NDoNCj4gPiAgKiBSZXN0b3JlZCBwb3J0cyBwcm9wZXJ0eSBpbiBkdSBub2RlIGFuZCBwb3J0
-QDAgZm9yIERQSSBpbnRlcmZhY2UuDQo+IA0KPiBUaGFua3MgZm9yIHRoZSB1cGRhdGUhDQo+IA0K
-PiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9yOWEwN2cwNDN1MTEtc21hcmMu
-ZHRzDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9yZW5lc2FzL3I5YTA3ZzA0M3UxMS1z
-bWFyYy5kdHMNCj4gPiBAQCAtMzUsNCArMzUsMTE1IEBADQo+ID4gIC8gew0KPiA+ICAgICAgICAg
-bW9kZWwgPSAiUmVuZXNhcyBTTUFSQyBFVksgYmFzZWQgb24gcjlhMDdnMDQzdTExIjsNCj4gPiAg
-ICAgICAgIGNvbXBhdGlibGUgPSAicmVuZXNhcyxzbWFyYy1ldmsiLCAicmVuZXNhcyxyOWEwN2cw
-NDN1MTEiLA0KPiA+ICJyZW5lc2FzLHI5YTA3ZzA0MyI7DQo+ID4gKw0KPiA+ICsgICAgICAgaGRt
-aS1vdXQgew0KPiA+ICsgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImhkbWktY29ubmVjdG9y
-IjsNCj4gDQo+IFsuLi5dDQo+IA0KPiA+ICsmaTJjMSB7DQo+ID4gKyAgICAgICBhZHY3NTEzOiBh
-ZHY3NTEzQDM5IHsNCj4gPiArICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhZGksYWR2NzUx
-MyI7DQo+IA0KPiBUaGUgSERNSSBjb25uZWN0b3IgYW5kIEFEVjc1MTMgYnJpZGdlIGFyZSBub3Qg
-cHJlc2VudCBvbiB0aGUgU01BUkMgQ2FycmllciBib2FyZCwgYnV0IG9uIGEgc2VwYXJhdGUNCj4g
-Ym9hcmQuICBIZW5jZSBJIHRoaW5rIHRoaXMgc2hvdWxkIGJlIG1vdmVkIHRvIGEgc2VwYXJhdGUg
-RFQgb3ZlcmxheSAuZHRzbywgd2l0aCBhIHN1aXRhYmxlIE1ha2VmaWxlDQo+IHJ1bGUgdG8gYnVp
-bGQgYSBEVFMgZm9yIFNNQVJDIENhcnJpZXIgKyBIRE1JIGFkZC1vbiBib2FyZC4NCg0KT0ssIHdp
-bGwgc2VuZCBEVCBvdmVybGF5IGluIHRoZSBuZXh0IHZlcnNpb24uIFRoZSBvbmx5IHJlYXNvbiBm
-b3Igc2VuZGluZyBsaWtlIHRoaXMgaXMgVkxQIHBhY2thZ2UgdXNpbmcgY2lwIGtlcm5lbA0Kc3Rp
-bGwgZG9uJ3QgdXNlIERUIG92ZXJsYXkuIFNvLCB0aGUgYmFja3BvcnRpbmcgd2lsbCBiZSBzdHJh
-aWdodCBmb3J3YXJkIGZvciB0aGUgdXNlcnMgb2YgVkxQIHBhY2thZ2UuDQoNCkNoZWVycywNCkJp
-anUNCg0KPiANCj4gVGhlIGFjdHVhbCBEVCBkZXNjcmlwdGlvbiBMR1RNLg0K
+Hey Yunfei,
+
+I would rename the title to something like this:
+
+media: mediatek: vcodec: Get SRC buffer from bitstream instead of M2M
+
+On 07.08.2024 16:24, Yunfei Dong wrote:
+>vb2 buffer may be removed from ready list when lat try to get next
+>src buffer, leading to vb2 buffer not the current one. Need to get
+>vb2 buffer according to current input memory information.
+
+And I would rewrite the commit log like this:
+
+Getting the SRC buffer from the M2M buffer-queue risks picking a
+different SRC buffer than the one used for the current decode operation.
+Get the SRC buffer therefore from the bitstream data, which was set up
+earlier during the decode.
+
+Did I get that right?
+
+Also could you explain why this change is required in this series?
+
+Regards,
+Sebastian Fricke
+
+>
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c     | 13 +++++++------
+> .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c     | 15 +++++++--------
+> 2 files changed, 14 insertions(+), 14 deletions(-)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
+>index 90217cc8e242..a744740ba5f1 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
+>@@ -1062,19 +1062,20 @@ static inline void vdec_av1_slice_vsi_to_remote(struct vdec_av1_slice_vsi *vsi,
+>
+> static int vdec_av1_slice_setup_lat_from_src_buf(struct vdec_av1_slice_instance *instance,
+> 						 struct vdec_av1_slice_vsi *vsi,
+>+						 struct mtk_vcodec_mem *bs,
+> 						 struct vdec_lat_buf *lat_buf)
+> {
+>-	struct vb2_v4l2_buffer *src;
+>+	struct mtk_video_dec_buf *src_buf_info;
+> 	struct vb2_v4l2_buffer *dst;
+>
+>-	src = v4l2_m2m_next_src_buf(instance->ctx->m2m_ctx);
+>-	if (!src)
+>+	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
+>+	if (!src_buf_info)
+> 		return -EINVAL;
+>
+>-	lat_buf->vb2_v4l2_src = src;
+>+	lat_buf->vb2_v4l2_src = &src_buf_info->m2m_buf.vb;
+>
+> 	dst = &lat_buf->ts_info;
+>-	v4l2_m2m_buf_copy_metadata(src, dst, true);
+>+	v4l2_m2m_buf_copy_metadata(lat_buf->vb2_v4l2_src, dst, true);
+> 	vsi->frame.cur_ts = dst->vb2_buf.timestamp;
+>
+> 	return 0;
+>@@ -1724,7 +1725,7 @@ static int vdec_av1_slice_setup_lat(struct vdec_av1_slice_instance *instance,
+> 	struct vdec_av1_slice_vsi *vsi = &pfc->vsi;
+> 	int ret;
+>
+>-	ret = vdec_av1_slice_setup_lat_from_src_buf(instance, vsi, lat_buf);
+>+	ret = vdec_av1_slice_setup_lat_from_src_buf(instance, vsi, bs, lat_buf);
+> 	if (ret)
+> 		return ret;
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+>index 3dceb668ba1c..c50a454ab4f7 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+>@@ -712,19 +712,18 @@ int vdec_vp9_slice_setup_single_from_src_to_dst(struct vdec_vp9_slice_instance *
+> }
+>
+> static int vdec_vp9_slice_setup_lat_from_src_buf(struct vdec_vp9_slice_instance *instance,
+>+						 struct mtk_vcodec_mem *bs,
+> 						 struct vdec_lat_buf *lat_buf)
+> {
+>-	struct vb2_v4l2_buffer *src;
+>-	struct vb2_v4l2_buffer *dst;
+>+	struct mtk_video_dec_buf *src_buf_info;
+>
+>-	src = v4l2_m2m_next_src_buf(instance->ctx->m2m_ctx);
+>-	if (!src)
+>+	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
+>+	if (!src_buf_info)
+> 		return -EINVAL;
+>
+>-	lat_buf->vb2_v4l2_src = src;
+>+	lat_buf->vb2_v4l2_src = &src_buf_info->m2m_buf.vb;
+>
+>-	dst = &lat_buf->ts_info;
+>-	v4l2_m2m_buf_copy_metadata(src, dst, true);
+>+	v4l2_m2m_buf_copy_metadata(lat_buf->vb2_v4l2_src, &lat_buf->ts_info, true);
+> 	return 0;
+> }
+>
+>@@ -1154,7 +1153,7 @@ static int vdec_vp9_slice_setup_lat(struct vdec_vp9_slice_instance *instance,
+> 	struct vdec_vp9_slice_vsi *vsi = &pfc->vsi;
+> 	int ret;
+>
+>-	ret = vdec_vp9_slice_setup_lat_from_src_buf(instance, lat_buf);
+>+	ret = vdec_vp9_slice_setup_lat_from_src_buf(instance, bs, lat_buf);
+> 	if (ret)
+> 		goto err;
+>
+>-- 
+>2.46.0
+>
+>
 
