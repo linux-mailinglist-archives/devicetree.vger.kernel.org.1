@@ -1,194 +1,149 @@
-Return-Path: <devicetree+bounces-96001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4856D95C5EF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:01:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A149E95C605
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:04:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E51F31F235BF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:01:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F07B0B24170
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67524CDE0;
-	Fri, 23 Aug 2024 07:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4809B139CE3;
+	Fri, 23 Aug 2024 07:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NDs+9ZSx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RRZtDSNZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D747110953;
-	Fri, 23 Aug 2024 07:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B9AB55E58
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 07:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724396462; cv=none; b=Fld3gaqIk+JdKQE++MBuyJX31mKzJUXEqEGyqZShtzKpxd+FBgN9xBHXl2gzs5BDKbI4TckJx0gT+mjMrKeFMNuC6QwWFgPo6WijRETLJ/PI8hz8+oVexjgXyGInY0wKlj3940mteaO8r3cMIiefQcra92dTArZ5BgpyH15hz/s=
+	t=1724396669; cv=none; b=m++ibFGbB6IgdCu4at9PQWjKdujZrCHCIRwIluQm9BW3WKn0eDieFux385YJsONotFFQm4kauOdCYMWSRe+R+Wuu/h5Iw4OxecaxJziT4WGctVuJNgBiAe1ovbd5YM+/MrsmPeembtMXty6dFEQGhzKXJ8PV4yRQUfKwQPt8TQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724396462; c=relaxed/simple;
-	bh=jGshhhvgJvPItJvLyz9xeVPpG2akmVY+mzhE2S2mbXI=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=HM0BzLgD8PsnDi7IyzUQDTnqNdZC5PQSEQI6282YA8SXME8AxM0kZ5dmVd0twz1Kqc/7QR2P1jJd3hnZNPmYTG/3QjQ6zN1Y4FAZBP4xpS9ODRg5pYGovwm98nUrV9qcXKO9HCAPYy4biKMf3PihxGppUsRyR+wlXSI60CfhtIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NDs+9ZSx; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1724396669; c=relaxed/simple;
+	bh=jRHGY5HSVFsSc0uY4ShHAU9jyUHZAPRynwLu81wTfI4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=C5GLzZTITSGcqk6WqUhomwHh8/KCJ0PEg7O1fV+C3XJmGT7/DlxrMwGtaqX2z97C+m+XVsXQP3vltDtByAyVQ3r4ArCvpvunpv+ngB1tcNgDYYXCoj+ojt80cwV5U3nYEcVOfmshJJxvzoTOt0JSvbPLOXPE5jjHRGTy/AJH+1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RRZtDSNZ; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a86933829dcso191909866b.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 00:04:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724396666; x=1725001466; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tfbhFy6Ox66uvahUJonALEn87DK7o7CG+5xtuFswxJo=;
+        b=RRZtDSNZ4EewVkustUQiX2NO5jPsmN3R6FvIWMDlWlL+3YXdGzvG3PVFNgswEjciHd
+         2WYrbkDQ9MdFBJDYrC/BNL5zZ6oPo81B1rjJ+hNbuZ+kIjQ6qs66u9/Iu9CPgDRW5Ieh
+         qmzo1zimuwOj658D/1G8FhnRrn+Z6qb7nda6i3luBOriSxsjQqiRUA5kBw1eXckftzZV
+         3h6OrX/eAK6ywMsASPzKCmEu71NDJgSbqi9Z6D9aUMT5BA2+nTRng8DDwbtt6vcBzTex
+         KjQXyD8IF5E4YqwarIqRxqHL74xcLb1LjUhtHjAKlU2F3WO2ieGs3TgN9/xAUEgHtxot
+         6lBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724396666; x=1725001466;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tfbhFy6Ox66uvahUJonALEn87DK7o7CG+5xtuFswxJo=;
+        b=xKK+6NK82GJDTiKdvTDkI4Ajao+RpC4hWGP0oQf1dWbL2ndKuoJRZiMfn61RhMlATA
+         0iomnao1tC3IYRbj94oKAy4ifh4p1t4raKBFjtTAJ9FFN3PF5fvOP7r62oNqssQfrVgC
+         Hz7VhLrVpoEc0zzd0P8gnM+s5yIsJleEYba/R542WpGzWfQSwvkZnoj34+W4Aw0cZltW
+         gDDIJbhlcLSsW5OnQ1oLioKvghFPzcLv9hRge29XV8fSpqszi0ewo32pG9FVWNWl5zmA
+         +yhHhqL9IQog5eTKlxBvBIbMgoltgviAyzPEO06qyiY3CirsUqhw4r0woC+/ShTnzlwX
+         I25g==
+X-Forwarded-Encrypted: i=1; AJvYcCWovURom8zalITxWYgbPy6D3fwxZwb3bfuFbNb3+RmVF159Joqcl8g220M2P2PxVhBhFFEAV/ke0I4+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlBkjz85FqHR/Vps9V/ixTJJLsmKOJ2jlY+zLSmFK7mTmP4zTP
+	BzKDHdzaLMQSB37Sdpiwx5WT8m39OMz/Orax2nJbuh85y9L0F1LdUA30kjtGUuI=
+X-Google-Smtp-Source: AGHT+IElMbJWNLHHHW/KhCmSKBNkv041eSXQbeeUNDsxk+eZV8ACwE7C1am0WTGxRumdS8jZtECbfg==
+X-Received: by 2002:a17:907:d59a:b0:a86:91c3:9517 with SMTP id a640c23a62f3a-a86a52eb66bmr92555766b.35.1724396665642;
+        Fri, 23 Aug 2024 00:04:25 -0700 (PDT)
+Received: from [127.0.1.1] ([82.79.186.176])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f48ae0dsm214820766b.184.2024.08.23.00.04.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 00:04:25 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v3 0/2] phy: qcom: qmp-pcie: Add support for Gen4 4-lane
+ mode for X1E80100
+Date: Fri, 23 Aug 2024 10:04:14 +0300
+Message-Id: <20240823-x1e80100-phy-add-gen4x4-v3-0-b7765631ca01@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1724396457;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FPZmmM60tSAujVzmtKbajvXbMMgpiHTPo/2dvKyDtNI=;
-	b=NDs+9ZSxY/ek6dPLsXqeuOJwsBeoXV7+MBLiCrJILOstP+qpC9oJCnYApU8E9VQTBKQTiA
-	SzzLCqknuhMjQaZOfkGQ7OymI3u66L7WTuHgNAKkBtGF+6DOujeCaz/il9mGWaVfxFs7rd
-	4+mKHEVDbJeWypUJeELQzBCMCLgB5a9OZ77fBuVt9A+5smmmVU0+qDKMe2ABjTFasXzpEN
-	oYUBKaEn2f49AYOvIVXEYRU64f6GeFPpE09zT/vsfq0SYbiv/xgb4maPHljXE+f32M6HBI
-	4xJQo+08F2rxCgrrVe71jq8S9XMc4AHxKFaRKQ6GyN0BODyvntXF9iFChi42FA==
-Date: Fri, 23 Aug 2024 09:00:57 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jaehoon
- Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v4 4/4] mmc: dw_mmc-rockchip: Add support for rk3576 SoCs
-In-Reply-To: <20240822212418.982927-5-detlev.casanova@collabora.com>
-References: <20240822212418.982927-1-detlev.casanova@collabora.com>
- <20240822212418.982927-5-detlev.casanova@collabora.com>
-Message-ID: <26fe259f390a8015c3f08c6dc027711c@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-B4-Tracking: v=1; b=H4sIAG40yGYC/4XNTQ6CMBCG4auQrh0z/dPqynsYF4UO0MQU0poGQ
+ ri7hY1xo8v3S+aZhSWKnhK7VguLlH3yQyghDxVrehs6Au9KM4FCoZYcJk4GOSKM/QzWOegoqEl
+ Ba41EqzXq+sTK9Rip9dMu3x+le59eQ5z3R5lv638zc0DQjVHcWTobjbenDzYOxyF2bEOz+EBG/
+ IBEgRqpXK2EkEiXL2hd1zcueKS7CAEAAA==
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Johan Hovold <johan+linaro@kernel.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1508; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=jRHGY5HSVFsSc0uY4ShHAU9jyUHZAPRynwLu81wTfI4=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmyDRv3soJLtO+to1Vi/NQ+VyaleD+TpvmEDHpG
+ t40ToIBjuyJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZsg0bwAKCRAbX0TJAJUV
+ VjBDD/9tCC91GzYpK3PNiRzU/xHsv3KPMM7FGmo31HX7Exg7gkknLgcNLz9EEN5GaXvh/pJR3rb
+ l06/UZT91L5ZwGzMg/UYkCW2I8gDdiiynW5sbYpZQ1OvGXvKqc4wC3GSRizWLGSWvqYjsYeusJa
+ +2FKh9NFPUZ1pP+4vkUfsgNlTS5AWkYsDc4Y0acg63L6mRDuTYwEXRd2RmyGiy5SzNLv3XmNd7F
+ rMVk3JH2mPTfRwu5opSsYZ+oJ7/GF+U5Lkf0WiXGM8G2U+Gv/+88CPL2DLZDkl4j+mN+Dy1OY15
+ 4N0xY0CwcECNo7uyG31YyQYSZeQLE7vq2V2mn7zOWIBvYhbhPSIv7pD71pU21I72TxcHv9bxAQl
+ RVngwfEGrvqhmFeYCNqeRDxXczXgjwAoddogu2tBijffIctOon2/LMMCjE5zdPaNHp22r8ih0TD
+ rURPraRAqef5JIsE8jGOrXSbaTvXafh3s+q3gP3bScGEs4/Qf8JIpSu9SvjFUey/22l1wOUAlcL
+ BKA2BNQAf2jyWZ/axEuiTqjmLsABJ8KkJ7QHjDN/HACIJ7K2dMcP2I7vNMDnbidCB60z9WcuiwM
+ 3CGYgaB1kjFQdxqCpcyY1JgRA3NK6Atc5t1yn9kOorkae0ZuAwQZDN0bEFp/RuhT4pF+VT2p1z/
+ fq6mzcK8a0hJ/8A==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Hello Detlev,
+On all X Elite boards currently supported upstream, the NVMe sits
+on the PCIe 6. Until now that has been configured in dual lane mode
+only. The schematics reveal that the NVMe is actually using 4 lanes.
+So add support for the 4-lane mode and document the compatible for it.
 
-Please see a comment below.
+This patchset depends on:
+https://lore.kernel.org/all/20240805-phy-qcom-qmp-pcie-write-all-tbls-second-port-v3-1-6967c6bf61d1@linaro.org/
 
-On 2024-08-22 23:15, Detlev Casanova wrote:
-> On rk3576 the tunable clocks are inside the controller itself, removing
-> the need for the "ciu-drive" and "ciu-sample" clocks.
-> 
-> That makes it a new type of controller that has its own dt_parse 
-> function.
-> 
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
->  drivers/mmc/host/dw_mmc-rockchip.c | 48 ++++++++++++++++++++++++++----
->  1 file changed, 43 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/dw_mmc-rockchip.c
-> b/drivers/mmc/host/dw_mmc-rockchip.c
-> index 1458cb5fd5c7..7c8ccf5e71bc 100644
-> --- a/drivers/mmc/host/dw_mmc-rockchip.c
-> +++ b/drivers/mmc/host/dw_mmc-rockchip.c
-> @@ -410,7 +410,7 @@ static int dw_mci_rk3288_execute_tuning(struct
-> dw_mci_slot *slot, u32 opcode)
->  	return ret;
->  }
-> 
-> -static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
-> +static int dw_mci_common_parse_dt(struct dw_mci *host)
->  {
->  	struct device_node *np = host->dev->of_node;
->  	struct dw_mci_rockchip_priv_data *priv;
-> @@ -420,13 +420,29 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci 
-> *host)
->  		return -ENOMEM;
-> 
->  	if (of_property_read_u32(np, "rockchip,desired-num-phases",
-> -					&priv->num_phases))
-> +				 &priv->num_phases))
->  		priv->num_phases = 360;
-> 
->  	if (of_property_read_u32(np, "rockchip,default-sample-phase",
-> -					&priv->default_sample_phase))
-> +				 &priv->default_sample_phase))
->  		priv->default_sample_phase = 0;
-> 
-> +	host->priv = priv;
-> +
-> +	return 0;
-> +}
-> +
-> +static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
-> +{
-> +	struct dw_mci_rockchip_priv_data *priv;
-> +	int err;
-> +
-> +	err = dw_mci_common_parse_dt(host);
-> +	if (err)
-> +		return err;
-> +
-> +	priv = host->priv;
-> +
->  	priv->drv_clk = devm_clk_get(host->dev, "ciu-drive");
->  	if (IS_ERR(priv->drv_clk))
->  		dev_dbg(host->dev, "ciu-drive not available\n");
-> @@ -435,13 +451,25 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci 
-> *host)
->  	if (IS_ERR(priv->sample_clk))
->  		dev_dbg(host->dev, "ciu-sample not available\n");
-> 
-> -	host->priv = priv;
-> -
->  	priv->internal_phase = false;
-> 
->  	return 0;
->  }
-> 
-> +static int dw_mci_rk3576_parse_dt(struct dw_mci *host)
-> +{
-> +	struct dw_mci_rockchip_priv_data *priv;
-> +	int err = dw_mci_common_parse_dt(host);
-> +	if (err)
-> +		return err;
-> +
-> +	priv = host->priv;
-> +
-> +	priv->internal_phase = true;
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v3:
+- Moved the x1e80100_qmp_gen4x4_pcie_serdes_4ln_tbl right after
+  proper serdes table, like Johan suggested
+- Picked Johan's R-b tags
+- Link to v2: https://lore.kernel.org/r/20240821-x1e80100-phy-add-gen4x4-v2-0-c34db42230e9@linaro.org
 
-Defining priv, assigning it and using it seems rather redundant,
-when all that's needed is simple "host->priv->internal_phase = true"
-assignment instead.
+Changes in v2:
+- Re-worded the commit message following Johan's suggestions.
+- Picked up Krzysztof's R-b tag for the bindings patch
+- Link to v1: https://lore.kernel.org/r/20240531-x1e80100-phy-add-gen4x4-v1-0-5c841dae7850@linaro.org
 
-> +
-> +	return 0;
-> +}
-> +
->  static int dw_mci_rockchip_init(struct dw_mci *host)
->  {
->  	int ret, i;
-> @@ -483,11 +511,21 @@ static const struct dw_mci_drv_data 
-> rk3288_drv_data = {
->  	.init			= dw_mci_rockchip_init,
->  };
-> 
-> +static const struct dw_mci_drv_data rk3576_drv_data = {
-> +	.common_caps		= MMC_CAP_CMD23,
-> +	.set_ios		= dw_mci_rk3288_set_ios,
-> +	.execute_tuning		= dw_mci_rk3288_execute_tuning,
-> +	.parse_dt		= dw_mci_rk3576_parse_dt,
-> +	.init			= dw_mci_rockchip_init,
-> +};
-> +
->  static const struct of_device_id dw_mci_rockchip_match[] = {
->  	{ .compatible = "rockchip,rk2928-dw-mshc",
->  		.data = &rk2928_drv_data },
->  	{ .compatible = "rockchip,rk3288-dw-mshc",
->  		.data = &rk3288_drv_data },
-> +	{ .compatible = "rockchip,rk3576-dw-mshc",
-> +		.data = &rk3576_drv_data },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, dw_mci_rockchip_match);
+---
+Abel Vesa (2):
+      dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the X1E80100 QMP PCIe PHY Gen4 x4
+      phy: qcom: qmp-pcie: Add Gen4 4-lanes mode for X1E80100
+
+ .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |  3 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 42 ++++++++++++++++++++++
+ 2 files changed, 45 insertions(+)
+---
+base-commit: 81528d2de965dafd6911a0f9a975fc30b25e7080
+change-id: 20240531-x1e80100-phy-add-gen4x4-fa830a5505b6
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
