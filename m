@@ -1,335 +1,119 @@
-Return-Path: <devicetree+bounces-96118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B65B995CB4E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:23:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3ACF95CB52
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 149E0B23F49
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:23:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0C56283564
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71396187336;
-	Fri, 23 Aug 2024 11:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5C9pyqL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585F3187323;
+	Fri, 23 Aug 2024 11:24:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C084F88C;
-	Fri, 23 Aug 2024 11:23:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C661E89C;
+	Fri, 23 Aug 2024 11:24:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724412195; cv=none; b=iOONNm+oc28lGYUvs+q9r2Y5dpdY1j9l7ylas6Pn39tmr1oJs2yo6A0rPGfCvFSjWPHhOTBFkeFap5L1e0D72Ofdjdx/kmDbux1hp6dpHUGbvlY2npnRsQeCFDOgWCj61kYhCm2NOBovsdD3+4SyXdhIrGPx+BEbwEH0CWFTQX0=
+	t=1724412256; cv=none; b=mzctsttSlxS0d88V85CYGOooln/b/HYhb8l5uuWG2Fjk6nWzkw7mDVNhXSe2Ey3E4XzkTgv7AYMvgobs5eK3k3KjprDc9U5GwfWGm7AuH2vcRp1bNjdb7Hy0sHvc6qM7ASR2dsAVfmR6Tlnoza78/yUOvL93xEXvJ46SY+/mOUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724412195; c=relaxed/simple;
-	bh=xQE216ocBHq+xIY/QMEPgFRg/QumScGZ2C4WlmFG3d4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bm8/juLvbrEqf/YgpgA/Ioba9ssD36SmEVIh2Ju+6BBdAfitX/pJA0EqBZmt43D7qmfAIUMxym5uKrbFlqOa9aeqo+pNXCMBNit8fnnrKgB21iHwo9uMbZyR6Gb9u8ihy6rc9Ru2gwBvSARCBTNPMnTp8WRocnrTCdgwOV6iXdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5C9pyqL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 248AFC32786;
-	Fri, 23 Aug 2024 11:23:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724412194;
-	bh=xQE216ocBHq+xIY/QMEPgFRg/QumScGZ2C4WlmFG3d4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G5C9pyqL7N7Dy3J08b9Qjhhoy/4zzUYpFnzvZwIuZdzUOBIarktytWsxmxQy5Lknd
-	 2Ui+18KzXS7tPeBQmSuCN/P0+3u7Io5RA2mMPQ7C1IM8Q+qe5rGiHk9uYr2lJfPkWW
-	 7EFYpaRtmXcSIwLvNC6M/tYhgSWaARfLf9+j34xKEH6kBKoA5mfVLidFtoVqFejw0A
-	 Y6DsjPFQtjFXm3JJuI3dPaCjcvi0uASCzdQBZjt83NTnn/OTm+7byudLbDzeZl0zwx
-	 kpjYTas/G+MJoNRoYlgkSd9bn1oHIlRgyzdIoXKCpBISzCTeAjMbVrUXCqRVo8UMZK
-	 QFzqK18QwsHLw==
-Message-ID: <2774e7e5-8c03-4f38-90c3-b414bc6af255@kernel.org>
-Date: Fri, 23 Aug 2024 14:23:07 +0300
+	s=arc-20240116; t=1724412256; c=relaxed/simple;
+	bh=Vyx/TlcmDNCHy0FXHrijGVUjSihnYDxjMgJaB2QEmhU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iOezKp6MLAP0J9gTOD1IeRlYS1VfrjzPjwsFri5i4t7OcUdz6gFNIRjxbUGOE6D2UfOL5xqnTNBB1h9OQjqCU3r30GMTqxoq7PhMC89f2dH271lKuL+25bsNeHxLLVVEA/9kuMsTgTvmGBmsPtrVtIVKAAybPr8eCXN1mMrCLGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-691bb56eb65so16923317b3.0;
+        Fri, 23 Aug 2024 04:24:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724412253; x=1725017053;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dj5VovZ20bk+QpLNOLkrMw84voMi0CVYaIroeUtSYtE=;
+        b=EWz2V1lUxfp//+jJ6s9CfhOt3EvHbG3aqGUlelvY4DP7qmbI0VBfRrxhzBo6iARGkp
+         KPGu/lbaOQAiPD853WE1+ecaYQiqMCvM6Fh7+flT8StDu48EqfPTA8omrY/wVEViYjP3
+         eLEpQF8C+q5L/OdRSAhTRhcUshVIobbesZp/8w27waVDxcO6cY8BaCzO/RoAurgngTPS
+         4kKp3vmJ4ON0WC71fbfwXPYyIDRHEbsBVKVqkjACduWNCwY039IyQ3dMRMs7VREFnBfV
+         jRuDfq/gdWZy2o4IV/2Kc6tH34eyTKopH9mDGu5nVepMuGGUyNXG6ZQgAvRFaPJ0Iq9y
+         r9Ng==
+X-Forwarded-Encrypted: i=1; AJvYcCV/bm3f3N7g7KL6qY4hGJeh8g+rAs0uyeNLEHDppdq8rB52zLgLXs/kJRA4TippAGmkL2XHc360eyqWVJjUhtQSZ00=@vger.kernel.org, AJvYcCXJETkj6xJm2wt7VRFk6PyMiX5at65ZREJF5pbRwF66re1ligDQ+TVQqNPaWVJn5o5eIT2x8lxz37Ii@vger.kernel.org, AJvYcCXsLNCpnBEH5MAnID9Krtc0o9HyNEavl43WV5Fa7f4pAp1A3OM4ORiM3sUhiTOJfaOikFYGahIxlV0nbLMQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywpm49/ahTQZLuxJYZCoMqP4P+C1jXb8k48/Foaa0gCQhMOUXQq
+	KmFqtyFvYbgxjCIWmapx2vPoFAfrgRVP5mq4YLxykXAJr65cxTFygZKmjV+G
+X-Google-Smtp-Source: AGHT+IGahmQMjaCOt34Do1O0gLmbCxGtXuqdtk1WktGE6WVeKMVzc7OdF94n4MLQ8x10lQiTlW2LzQ==
+X-Received: by 2002:a05:690c:f94:b0:6ae:1e27:c993 with SMTP id 00721157ae682-6c625390575mr22003937b3.7.1724412252865;
+        Fri, 23 Aug 2024 04:24:12 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c39d3a9a93sm5142737b3.89.2024.08.23.04.24.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Aug 2024 04:24:12 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6b59a67ba12so18175217b3.1;
+        Fri, 23 Aug 2024 04:24:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVN+NxRpppJsVKSUJn3GIw3ykYs++xHfQaKnxQSeqsbWesF7Vr4/9pn4gy5BokFxjQxeXntRm2o7WNRy+it3RCn9Ds=@vger.kernel.org, AJvYcCVWovh2PF5kD3AXeXlJMAoejdHz3AHamsHBmR2CH8RPbCqjm/OSoOnoc26XqM6oNVprmFG8TMzwLUsiMyo3@vger.kernel.org, AJvYcCVcL+1BZve9EREOI1GZiXiBeU6S3llN5jRo2QyobzBKYKTwPUbu83pzsmFfZHnvYst7ZmrHyZdO/f+2@vger.kernel.org
+X-Received: by 2002:a05:690c:6611:b0:64b:7500:2e9 with SMTP id
+ 00721157ae682-6c6253900fdmr21154827b3.9.1724412252461; Fri, 23 Aug 2024
+ 04:24:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: Add k3-am67a-beagley-ai
-To: Robert Nelson <robertcnelson@gmail.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
- Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>,
- Jai Luthra <j-luthra@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>,
- Jared McArthur <j-mcarthur@ti.com>, Jason Kridner
- <jkridner@beagleboard.org>, Deepak Khatri <lorforlinux@beagleboard.org>,
- Drew Fustini <drew@beagleboard.org>
-References: <20240822170440.265055-1-robertcnelson@gmail.com>
- <20240822170440.265055-2-robertcnelson@gmail.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240822170440.265055-2-robertcnelson@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240730122436.350013-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240730122436.350013-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 23 Aug 2024 13:24:00 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWB+v7WCn3YqfPaShCHvPEcwu9vrXVugFpyc9vyMJZApg@mail.gmail.com>
+Message-ID: <CAMuHMdWB+v7WCn3YqfPaShCHvPEcwu9vrXVugFpyc9vyMJZApg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] arm64: dts: renesas: Correct GICD and GICR sizes
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Marc Zyngier <maz@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Prabhakar,
 
-On 22/08/2024 20:04, Robert Nelson wrote:
-> BeagleBoard.org BeagleY-AI is an easy to use, affordable open source
-> hardware single board computer based on the Texas Instruments AM67A,
-> which features a quad-core 64-bit Arm CPU subsystem, 2 general-purpose
-> digital-signal-processors (DSP) and matrix-multiply-accelerators (MMA),
-> GPU, vision and deep learning accelerators, and multiple Arm Cortex-R5
-> cores for low-power, low-latency GPIO control.
-> 
-> https://beagley-ai.org/
-> https://openbeagle.org/beagley-ai/beagley-ai
-> 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Vignesh Raghavendra <vigneshr@ti.com>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Andrew Davis <afd@ti.com>
-> CC: Jai Luthra <j-luthra@ti.com>
-> CC: Roger Quadros <rogerq@kernel.org>
-> CC: Siddharth Vadapalli <s-vadapalli@ti.com>
-> CC: Jared McArthur <j-mcarthur@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> CC: Drew Fustini <drew@beagleboard.org>
-> CC: linux-arm-kernel@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> ---
-> Changes since v2:
->  - added led indictors
->  - sdhci1 use MMC1_SDCD.GPIO1_48 for card detect
->  - cleaned up order of status = "okay"
->  - wkup_i2c0 moved to 100000
->  - eeprom added atmel,24c32
->  - rtc added dallas,ds1340
->  - sdhci1 use ti,fails-without-test-cd
-> Changes since v1:
->  - fixed incorrect vdd-3v3-sd-pins-default name
->  - updated hdmi VDD_1V2 regulator for production pcb
->  - switched device tree name from k3-j722s-beagley-ai to k3-am67a-beagley-ai
->  - removed cpsw_port2 node
->  - enable UHS support for MMCSD
-> ---
->  arch/arm64/boot/dts/ti/Makefile               |   1 +
->  .../arm64/boot/dts/ti/k3-am67a-beagley-ai.dts | 406 ++++++++++++++++++
->  2 files changed, 407 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index e20b27ddf901..c89c9b8bab38 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -110,6 +110,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
->  
->  # Boards with J722s SoC
-> +dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
->  
->  # Boards with J784s4 SoC
-> diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-> new file mode 100644
-> index 000000000000..c8cbb875d4c7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-> @@ -0,0 +1,406 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
+On Tue, Jul 30, 2024 at 2:26=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> This patch series aims to correct GICD and GICR sizes on RZ/G2L(LC),
+> RZ/G2UL, RZ/V2L and RZ/G3S SoCs. These SoCs are equipped with GIC-600.
+>
+> GIC-600 supports MBI by default, so GICD size is set to 128kB.
+> On RZ/G2UL and RZ/G3S SoC despite being single core the GICR size is set
+> to 256kB as dumping the GICR_IIDR register shows it has two instances of
+> GICR.
+>
+> v1->v2
+> - Dropped changes for single core
+> - Updated commit message
 
-<snip>
+Thanks for your series!
+I have to trust you on this, and will queue this series in
+renesas-devel for v6.12, with s/kB/KiB/g.
 
-> +
-> +&cpsw3g {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&rgmii1_pins_default>, <&gbe_pmx_obsclk>;
+Gr{oetje,eeting}s,
 
-Why do you need OBSCLK for Ethernet MAC?
-The OBSCLK is connected to the Ethernet PHY via C406 which is not even populated.
-It seems that the PHY is clocked by a crystal oscillator X5 so doesn't really
-need OBSCLK in the stock configuration?
+                        Geert
 
-> +
-> +	assigned-clocks = <&k3_clks 227 0>;
-> +	assigned-clock-parents = <&k3_clks 227 6>;
-> +	status = "okay";
-> +};
-> +
-> +&cpsw3g_mdio {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mdio_pins_default>;
-> +	status = "okay";
-> +
-> +	cpsw3g_phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +		ti,min-output-impedance;
-> +	};
-> +};
-> +
-> +&cpsw_port1 {
-> +	phy-mode = "rgmii-rxid";
-> +	phy-handle = <&cpsw3g_phy0>;
-> +	status = "okay";
-> +};
-> +
-> +&main_gpio1 {
-> +	status = "okay";
-> +};
-> +
-> +&main_uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_uart0_pins_default>;
-> +	bootph-all;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_pmx0 {
-> +
-> +	wkup_uart0_pins_default: wkup-uart0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-> +			J722S_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (C6) WKUP_UART0_RTSn */
-> +			J722S_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (D8) WKUP_UART0_RXD */
-> +			J722S_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
-> +		>;
-> +		bootph-all;
-> +	};
-> +
-> +	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_MCU_IOPAD(0x04c, PIN_INPUT_PULLUP, 0)	/* (C7) WKUP_I2C0_SCL */
-> +			J722S_MCU_IOPAD(0x050, PIN_INPUT_PULLUP, 0)	/* (C6) WKUP_I2C1_SDA */
-> +		>;
-> +		bootph-all;
-> +	};
-> +
-> +	gbe_pmx_obsclk: gbe-pmx-obsclk-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_MCU_IOPAD(0x0004, PIN_OUTPUT, 1) /* (A10) MCU_SPI0_CS1.MCU_OBSCLK0 */
-> +		>;
-> +	};
-> +};
-> +
-> +&wkup_uart0 {
-> +	/* WKUP UART0 is used by Device Manager firmware */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_uart0_pins_default>;
-> +	bootph-all;
-> +	status = "reserved";
-> +};
-> +
-> +&wkup_i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_i2c0_pins_default>;
-> +	clock-frequency = <100000>;
-> +	bootph-all;
-> +	status = "okay";
-> +
-> +	tps65219: pmic@30 {
-> +		compatible = "ti,tps65219";
-> +		reg = <0x30>;
-> +		buck1-supply = <&vsys_5v0>;
-> +		buck2-supply = <&vsys_5v0>;
-> +		buck3-supply = <&vsys_5v0>;
-> +		ldo1-supply = <&vdd_3v3>;
-> +		ldo3-supply = <&vdd_3v3>;
-> +		ldo4-supply = <&vdd_3v3>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_irq_pins_default>;
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +
-> +		system-power-controller;
-> +		ti,power-button;
-> +		bootph-all;
-> +
-> +		regulators {
-> +			buck1_reg: buck1 {
-> +				regulator-name = "VDD_3V3";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck2_reg: buck2 {
-> +				regulator-name = "VDD_1V8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1_reg: ldo1 {
-> +				regulator-name = "VDDSHV5_SDIO";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-allow-bypass;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2_reg: ldo2 {
-> +				regulator-name = "VDD_1V2";
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <1200000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3_reg: ldo3 {
-> +				regulator-name = "VDDA_PHY_1V8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4_reg: ldo4 {
-> +				regulator-name = "VDDA_PLL_1V8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c32";
-> +		reg = <0x50>;
-> +	};
-> +
-> +	rtc: rtc@68 {
-> +		compatible = "dallas,ds1340";
-> +		reg = <0x68>;
-> +	};
-> +};
-> +
-> +&sdhci1 {
-> +	/* SD/MMC */
-> +	vmmc-supply = <&vdd_mmc1>;
-> +	vqmmc-supply = <&vdd_sd_dv>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mmc1_pins_default>;
-> +	disable-wp;
-> +	cd-gpios = <&main_gpio1 48 GPIO_ACTIVE_LOW>;
-> +	cd-debounce-delay-ms = <100>;
-> +	ti,fails-without-test-cd;
-> +	bootph-all;
-> +	status = "okay";
-> +};
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
--- 
-cheers,
--roger
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
