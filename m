@@ -1,119 +1,83 @@
-Return-Path: <devicetree+bounces-96119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3ACF95CB52
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:24:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF46C95CB5E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0C56283564
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:24:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 756BA1F2473E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585F3187323;
-	Fri, 23 Aug 2024 11:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFA8187347;
+	Fri, 23 Aug 2024 11:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t+bGUCpZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C661E89C;
-	Fri, 23 Aug 2024 11:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB2E1E89C;
+	Fri, 23 Aug 2024 11:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724412256; cv=none; b=mzctsttSlxS0d88V85CYGOooln/b/HYhb8l5uuWG2Fjk6nWzkw7mDVNhXSe2Ey3E4XzkTgv7AYMvgobs5eK3k3KjprDc9U5GwfWGm7AuH2vcRp1bNjdb7Hy0sHvc6qM7ASR2dsAVfmR6Tlnoza78/yUOvL93xEXvJ46SY+/mOUI=
+	t=1724412568; cv=none; b=D5GYnwjyqZBtfgI0xSh1aNpQJVmIaqBgr4ZLSypFpBOznGdIxUhDHLqfXKGtvm8ZDWE+rK3GV7R0XrR9QeyBiHWZyInhPpuPMI0jyDa1lHoDNcZLkRnOmYn6JOYV4Smez0vY4jReamcDQf/3c8xpTareyzVCp31n1t/XWIxbj1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724412256; c=relaxed/simple;
-	bh=Vyx/TlcmDNCHy0FXHrijGVUjSihnYDxjMgJaB2QEmhU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iOezKp6MLAP0J9gTOD1IeRlYS1VfrjzPjwsFri5i4t7OcUdz6gFNIRjxbUGOE6D2UfOL5xqnTNBB1h9OQjqCU3r30GMTqxoq7PhMC89f2dH271lKuL+25bsNeHxLLVVEA/9kuMsTgTvmGBmsPtrVtIVKAAybPr8eCXN1mMrCLGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-691bb56eb65so16923317b3.0;
-        Fri, 23 Aug 2024 04:24:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724412253; x=1725017053;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dj5VovZ20bk+QpLNOLkrMw84voMi0CVYaIroeUtSYtE=;
-        b=EWz2V1lUxfp//+jJ6s9CfhOt3EvHbG3aqGUlelvY4DP7qmbI0VBfRrxhzBo6iARGkp
-         KPGu/lbaOQAiPD853WE1+ecaYQiqMCvM6Fh7+flT8StDu48EqfPTA8omrY/wVEViYjP3
-         eLEpQF8C+q5L/OdRSAhTRhcUshVIobbesZp/8w27waVDxcO6cY8BaCzO/RoAurgngTPS
-         4kKp3vmJ4ON0WC71fbfwXPYyIDRHEbsBVKVqkjACduWNCwY039IyQ3dMRMs7VREFnBfV
-         jRuDfq/gdWZy2o4IV/2Kc6tH34eyTKopH9mDGu5nVepMuGGUyNXG6ZQgAvRFaPJ0Iq9y
-         r9Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCV/bm3f3N7g7KL6qY4hGJeh8g+rAs0uyeNLEHDppdq8rB52zLgLXs/kJRA4TippAGmkL2XHc360eyqWVJjUhtQSZ00=@vger.kernel.org, AJvYcCXJETkj6xJm2wt7VRFk6PyMiX5at65ZREJF5pbRwF66re1ligDQ+TVQqNPaWVJn5o5eIT2x8lxz37Ii@vger.kernel.org, AJvYcCXsLNCpnBEH5MAnID9Krtc0o9HyNEavl43WV5Fa7f4pAp1A3OM4ORiM3sUhiTOJfaOikFYGahIxlV0nbLMQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywpm49/ahTQZLuxJYZCoMqP4P+C1jXb8k48/Foaa0gCQhMOUXQq
-	KmFqtyFvYbgxjCIWmapx2vPoFAfrgRVP5mq4YLxykXAJr65cxTFygZKmjV+G
-X-Google-Smtp-Source: AGHT+IGahmQMjaCOt34Do1O0gLmbCxGtXuqdtk1WktGE6WVeKMVzc7OdF94n4MLQ8x10lQiTlW2LzQ==
-X-Received: by 2002:a05:690c:f94:b0:6ae:1e27:c993 with SMTP id 00721157ae682-6c625390575mr22003937b3.7.1724412252865;
-        Fri, 23 Aug 2024 04:24:12 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c39d3a9a93sm5142737b3.89.2024.08.23.04.24.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 04:24:12 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6b59a67ba12so18175217b3.1;
-        Fri, 23 Aug 2024 04:24:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVN+NxRpppJsVKSUJn3GIw3ykYs++xHfQaKnxQSeqsbWesF7Vr4/9pn4gy5BokFxjQxeXntRm2o7WNRy+it3RCn9Ds=@vger.kernel.org, AJvYcCVWovh2PF5kD3AXeXlJMAoejdHz3AHamsHBmR2CH8RPbCqjm/OSoOnoc26XqM6oNVprmFG8TMzwLUsiMyo3@vger.kernel.org, AJvYcCVcL+1BZve9EREOI1GZiXiBeU6S3llN5jRo2QyobzBKYKTwPUbu83pzsmFfZHnvYst7ZmrHyZdO/f+2@vger.kernel.org
-X-Received: by 2002:a05:690c:6611:b0:64b:7500:2e9 with SMTP id
- 00721157ae682-6c6253900fdmr21154827b3.9.1724412252461; Fri, 23 Aug 2024
- 04:24:12 -0700 (PDT)
+	s=arc-20240116; t=1724412568; c=relaxed/simple;
+	bh=dbi93srXX6X5aWWuq12x79CNXXVv2vecJLvSMnG6F4M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h29ONcEQ2G3/UFyozTzOa/lujlEPcaRcYfXuA/QicQZButQuT2D50aPvpFgG4QbXaIjmAF57vqxq5xoKezffZ1YegxkkZXIzsA50Ny89BKMUWISmbRm4bnDKMmZ7ZKOJD2k0ptHbDWS2q4Q0UQXKh7xFAsr3UX1KYoeB6Gr5ly0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t+bGUCpZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBF36C4AF0B;
+	Fri, 23 Aug 2024 11:29:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724412567;
+	bh=dbi93srXX6X5aWWuq12x79CNXXVv2vecJLvSMnG6F4M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t+bGUCpZDRf6ro2Ng9S11mg5W2HOreP0wuOt9pV6jT/Ifu3HhFUcFYG0wzbxH7m00
+	 eRAGyZh+SMLE4KdOMNU00PjUul+i7fhj0qfRUjtUijGZyOGphlyyaq4+Zizl4XlYmu
+	 jpkbvo0cjesqRLFjRWFWYYLk62WuYKz66mrVB067m+j79ZFO3iZ7MEl9+LpZ5B1Gy7
+	 PC4FV9i6LzmuYIxhmFMfMIqyTFrVasoKG7aEutU3oSA7Q/YmSu/xpEYpKmCBb0DwGi
+	 D18STdFLYaNT8/VSK4iYPyK6XTIvzCwnwe8gLQIsiXOudtciGOEhA47kGxAKWbxXPB
+	 Hbw1PfwjBC0kQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1shSU1-000000003A4-3w4m;
+	Fri, 23 Aug 2024 13:29:34 +0200
+Date: Fri, 23 Aug 2024 13:29:33 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v3 2/2] phy: qcom: qmp-pcie: Add Gen4 4-lanes mode for
+ X1E80100
+Message-ID: <Zshync9EgQJ_Kfqn@hovoldconsulting.com>
+References: <20240823-x1e80100-phy-add-gen4x4-v3-0-b7765631ca01@linaro.org>
+ <20240823-x1e80100-phy-add-gen4x4-v3-2-b7765631ca01@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240730122436.350013-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240730122436.350013-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 23 Aug 2024 13:24:00 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWB+v7WCn3YqfPaShCHvPEcwu9vrXVugFpyc9vyMJZApg@mail.gmail.com>
-Message-ID: <CAMuHMdWB+v7WCn3YqfPaShCHvPEcwu9vrXVugFpyc9vyMJZApg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] arm64: dts: renesas: Correct GICD and GICR sizes
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Marc Zyngier <maz@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240823-x1e80100-phy-add-gen4x4-v3-2-b7765631ca01@linaro.org>
 
-Hi Prabhakar,
+On Fri, Aug 23, 2024 at 10:04:16AM +0300, Abel Vesa wrote:
+> The sixth PCIe controller on X1E80100 can be used in either
+> 4-lanes mode or 2-lanes mode. Add the configuration and compatible
+> for the 4-lane mode.
+> 
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-On Tue, Jul 30, 2024 at 2:26=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> This patch series aims to correct GICD and GICR sizes on RZ/G2L(LC),
-> RZ/G2UL, RZ/V2L and RZ/G3S SoCs. These SoCs are equipped with GIC-600.
->
-> GIC-600 supports MBI by default, so GICD size is set to 128kB.
-> On RZ/G2UL and RZ/G3S SoC despite being single core the GICR size is set
-> to 256kB as dumping the GICR_IIDR register shows it has two instances of
-> GICR.
->
-> v1->v2
-> - Dropped changes for single core
-> - Updated commit message
-
-Thanks for your series!
-I have to trust you on this, and will queue this series in
-renesas-devel for v6.12, with s/kB/KiB/g.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Tested-by: Johan Hovold <johan+linaro@kernel.org>
 
