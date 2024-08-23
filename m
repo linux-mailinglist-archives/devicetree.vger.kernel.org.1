@@ -1,159 +1,109 @@
-Return-Path: <devicetree+bounces-96205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7BE095D1F1
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:46:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E18295D1FF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:48:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 188D11C21AD9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:46:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0E3E1C20A42
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1CA18A6C7;
-	Fri, 23 Aug 2024 15:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B82C1885BE;
+	Fri, 23 Aug 2024 15:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b="HfrO7R0+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OxuRE89G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590F6189B87;
-	Fri, 23 Aug 2024 15:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724427943; cv=pass; b=dALhG4i2ezRHNNUWUhXND02eE/oqlZCKwo37lGrn2bIcfRyUf+4WQbU2nGEyiGUG95jdNeSI8wQwNgtmKQRzYe4HPQ9M6H0k4sNlNRoriTSrNCfcsu3NSRp7kiKOHitGVphQnBgUei0J8Av4LhTkCD+7+17RBojsxjdVg95m5wI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724427943; c=relaxed/simple;
-	bh=SbTZ5jUd18sDORERkkplbV0CCxMr8pO8Ee8Ao1aiFd8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z2u7YbWInSB8ZXEEXR0NGikaiSDsVgc0y8r526BQ3zR8VnmzTuBEG7K++gnQCAcEc69RP/ObVTDS7ti2VZftD5uW98WWKlgA+hryvlrv5BBTDVHGUbI1OGTvJPrXs2tWv61PdJJdZFgxowwdlGj7NXhkWVF3lMiM5rZhQ5ikgzY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b=HfrO7R0+; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: nfraprado@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724427930; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ZpWRIXfx5JAWcNDBsiSv5hE91EAiPNui/gKAuJZKKA5w94+WDufEL/6AgUh7oavRIguleCu+x0/bio5oiDe/WGLW3pH1/p5VQZQnv00KDmcGgpm5WUPoXeRAa71adpdFOfLewqzDc023l9Z4CFylaGXytzdsZFWfZW2vyn/ifRY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724427930; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=jjRlTDki3GkTErS0Ge0MuLopk0eojhlCbmXkL45WmuQ=; 
-	b=Xv6xEqOSLx9VHjLCOb9OW3yiC8NHjTkq/xyIkjMuRIaJU0o9XeSK05arJCIJhDuzO8ZlMcLIGuPbjBLuDnJj4g/Cn73VFX9K/GCkyvtytPSCgc5FZwG1a3gHSqQIvEFJybwYmTYlkeV/UyVaLJm5AajIHMUwRLX5ctHzxV+mMSg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.fricke@collabora.com;
-	dmarc=pass header.from=<sebastian.fricke@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724427930;
-	s=zohomail; d=collabora.com; i=sebastian.fricke@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=jjRlTDki3GkTErS0Ge0MuLopk0eojhlCbmXkL45WmuQ=;
-	b=HfrO7R0+qzI9ALPjs4zyDBXi0KETzRfCfuVdVVksD43xuiO/KM4hAti+yxXZef9d
-	9xGB0yAzY3APNfmRPxxLpHQqwngodEuQW287/xHtIYSkt8PwtPia+J8EXIQzSiCZuK3
-	hs0inY0Z8J4JSeTc5AVlvO5FUf6NmH/wmNYLncUs=
-Received: by mx.zohomail.com with SMTPS id 1724427929068728.6124036633798;
-	Fri, 23 Aug 2024 08:45:29 -0700 (PDT)
-Date: Fri, 23 Aug 2024 17:45:23 +0200
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Nathan Hebert <nhebert@chromium.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v4 0/7] media: mediatek: vcodec: fix
- v4l2_ctrl_request_complete fail
-Message-ID: <20240823154523.fucqvc4cnqk5jrlg@basti-XPS-13-9310>
-References: <20240807082444.21280-1-yunfei.dong@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692541885AF
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 15:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724428093; cv=none; b=F7qFOeDeha+Sd4Q3oM0eKIi6Tzg2yyoHHm/kd/7F2HavdJUMF9IT55tD2WyoKOW23oeiyuDb6yFYVl+yHj5H1EvAD/XwqOXlr+BJ/BOYdifi9w+fAohr7r7I93NMpiGuwmIdS4Q+aUfN+O02wbTqEK1h7yWILC7OOmcDutV898k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724428093; c=relaxed/simple;
+	bh=LmPjT004Pu+b0lGXNhjt9mxzluLGxiZs+Qgq47unh9M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A4IQKonBM2Uvf9rfvlHTQL1EgmxltCVutylXnbns7WVPE/WoKyhThNrP6jKMBp5q0bgXefZKGDowVWGZ2irisU0KF2LBLuI3S5MRARRoRS1gA6CsUMGW3K9ET4DNI7QBv4iAN9tJJWAaOIZEQdSeXeceArhfjnKGOyxZQKNxevs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OxuRE89G; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-533488ffaddso2752806e87.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724428089; x=1725032889; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LmPjT004Pu+b0lGXNhjt9mxzluLGxiZs+Qgq47unh9M=;
+        b=OxuRE89GlU3SEWYQpWlwh5UrcHuh/xEyEGicpZHNvWmbW5BSSEgMNh72jWOMPtEPlq
+         tQXi/9JvQTugSgUDmnjHvzE89vWSyu6VLEFxC1tvEyVDvcSe+WfckfHd/J/N8djZaw4Y
+         h0g1CJx60joy5/ERAqNPmbHldffa77rSI4Obj+4pIGGseW4jB2gIxHZAD+ZljUzfRXOq
+         p7A6w0oFKMdqJVVamEsv/K0Zgb1B92j7by1HCC+ZyR80iOp5rQsQq89h070t4F6E3IeN
+         cv7nales0LHYXO22IGLgZKtt6+vwh7nWaCNCnrnfRiIBjqCMiMCQYeDlUX+1gtDbmlks
+         i1Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724428089; x=1725032889;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LmPjT004Pu+b0lGXNhjt9mxzluLGxiZs+Qgq47unh9M=;
+        b=pr/eia6XJ0SpoKaCR/WypFa92VJXS9ZS+TynZ/+VIueYLlAkt134K1NatIT9qXP/hq
+         P4yb6sWw/tVfJYiP7ZOeBzds8WBKm0nNU29DxIQKDxNEL+H7Jfu3rVZkfU25KCCZM7bt
+         zhZJVRcghofbFHA83nyOWb1V1ttoEP0yyZhvNUZNjUV8P9vpCifrSakAg8ivhIyEahlV
+         gKtguoKQeEtYbHDQaknCmmMsjO0ZXeT4r3eqWCNajkSWe2IIlfTiF/PEAr0ndxLb07g/
+         Z+QDo6L7MG8gcMV3qnOobwX/FQ7ydS+wf98BsW63Y+eohNfzFiRcoDH+H4deQTFmf8qg
+         yHHA==
+X-Forwarded-Encrypted: i=1; AJvYcCVC9Llwwk7jQQGNgAgmOG/J4Uk8tS0KIinP71k5Tk/435KnkHGndo+GxpDlGCrFzDvWasBNC/SNzNOE@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywjzq6VlbtyQEuPj1J0Uuq7tzoI/ND4tBiLH/eAeFW6+6Y6RjUZ
+	fdhRgleCGA+pRVEqm9s7prdU2/zuufb5ZbYTBnpmpNTwJxhDvwJeLOIQXBKj+pzQ4Lx1w1U6ixF
+	LWUaXztqotJZslbaGF4/xJW8SltKeLrOA7qsOTA==
+X-Google-Smtp-Source: AGHT+IGPIsPltYDrMbENTRG8ZR5qzvz5WC80feYuFQqeN6sGzjfgHPtnsMGj6lpcAU4PIZVuuR1kVHhNrtGIoL9x7eA=
+X-Received: by 2002:a05:6512:4016:b0:533:ad6:8119 with SMTP id
+ 2adb3069b0e04-534387786e0mr2117298e87.14.1724428089108; Fri, 23 Aug 2024
+ 08:48:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240807082444.21280-1-yunfei.dong@mediatek.com>
-X-ZohoMailClient: External
+References: <20240822195706.920567-1-detlev.casanova@collabora.com>
+In-Reply-To: <20240822195706.920567-1-detlev.casanova@collabora.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 23 Aug 2024 17:47:58 +0200
+Message-ID: <CACRpkdZW+g4_szvMhuYXFHCjoekYKdux8s9u6zXkhDSDuF_i1A@mail.gmail.com>
+Subject: Re: [PATCH v4 0/4] Add pinctrl support for rk3576
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Shresth Prasad <shresthprasad7@gmail.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hey Yunfei,
+On Thu, Aug 22, 2024 at 9:57=E2=80=AFPM Detlev Casanova
+<detlev.casanova@collabora.com> wrote:
 
-given this new series by Hans:
-https://patchwork.linuxtv.org/project/linux-media/list/?series=13427
+> Add support for the pinctrl core on the rk3576 SoC.
+> The patch from downstream has been rebased.
+>
+> The grf driver is added support for the rk3576 default values:
+> - enable i3c weakpull SW control
+> - disable jtag on sdmmc IO lines
+>
+> Changes since v3:
+> - Set GRF bits through the GRF driver
+> - Drop the rockchip,sys-grf phandle
 
-we might actually be able to find a more performant solution of the
-problem, I'll work on that a bit and give you feedback.
+Patches 3 & 4 applied to the pinctrl tree!
 
-Regards,
-Sebastian
-
-On 07.08.2024 16:24, Yunfei Dong wrote:
->v4l2_m2m_buf_done is called in lat work queue, v4l2_ctrl_request_complete
->is called in core queue. The request status of output queue will be set to
->MEDIA_REQUEST_STATE_COMPLETE when v4l2_m2m_buf_done is called, leading to
->output queue request complete fail. Must move v4l2_ctrl_request_complete
->in front of v4l2_m2m_buf_done.
->
->Patch 1 setting request complete before buffer done
->Patch 2 change flush decode order when stream off
->Patch 3 flush decoder before stream off
->Patch 4 using input information to get vb2 buffer
->Patch 5 store source vb2 buffer
->Patch 6 replace v4l2_m2m_next_src_buf with v4l2_m2m_src_buf_remove
->Patch 7 remove media request checking
->
->---
->compared with v3:
->- fix flush decoder issue when userspace stream off capture queue firstly
->- fluster test result same with v3
->
->compared with v2:
->- add patch 5/6/7 to fix decode again issue
->- add fluster test result with mt8195 platform(same with no changed):
->  1> ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0 -j1 -t 90
->     VP8-TEST-VECTORS 59/61
->  2> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0 -j1 -t 90
->     VP9-TEST-VECTORS 276/305
->  3> ./fluster.py run -d GStreamer-AV1-V4L2SL-Gst1.0 -j1 -t 90
->     AV1-TEST-VECTORS 237/239
->  4> ./fluster.py run -d GStreamer-H.264-V4L2SL-Gst1.0 -j1 -t 90
->     JVT-AVC_V1       95/135
->  5> ./fluster.py run -d GStreamer-H.265-V4L2SL-Gst1.0 -j1 -t 90
->     JCT-VC-HEVC_V1   142/147
->
->compared with v1:
->- add patch 2/3/4 to fix timing issue.
->---
->Yunfei Dong (7):
->  media: mediatek: vcodec: setting request complete before buffer done
->  media: mediatek: vcodec: change flush decode order when stream off
->  media: mediatek: vcodec: flush decoder before stream off
->  media: mediatek: vcodec: using input information to get vb2 buffer
->  media: mediatek: vcodec: store source vb2 buffer
->  media: mediatek: vcodec: replace v4l2_m2m_next_src_buf with
->    v4l2_m2m_src_buf_remove
->  media: mediatek: vcodec: remove media request checking
->
-> .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 44 ++++++++---------
-> .../vcodec/decoder/mtk_vcodec_dec_drv.h       |  4 +-
-> .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 48 ++++++++++++++-----
-> .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c | 18 +++----
-> .../decoder/vdec/vdec_h264_req_multi_if.c     |  4 +-
-> .../decoder/vdec/vdec_hevc_req_multi_if.c     |  4 +-
-> .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 19 ++++----
-> .../mediatek/vcodec/decoder/vdec_msg_queue.h  |  4 +-
-> 8 files changed, 85 insertions(+), 60 deletions(-)
->
->-- 
->2.46.0
->
->
+Thanks,
+Linus Walleij
 
