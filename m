@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-96046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC02D95C78D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:10:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30E5795C792
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:11:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B2961C24C8F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:10:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC48628792F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0131513D897;
-	Fri, 23 Aug 2024 08:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727C114375C;
+	Fri, 23 Aug 2024 08:10:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4BB13959D;
-	Fri, 23 Aug 2024 08:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C646213FD99;
+	Fri, 23 Aug 2024 08:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724400600; cv=none; b=dIdZ+z+Ng8UnU69whrelwQL89PyZyOwxpgcBHaP9WPTFgyI2oaRLTYbsZ3HNd/QggYeXUs1+S9mCHApof+X07ySKavA3xu6PyMsDLOmnQhj6/IV6FUcoS51FPQlTn4hkH2j1wzSu3aF6Ge3BIeRDh4cJrOWGtj8odsBO90mrZ1U=
+	t=1724400631; cv=none; b=uZyzjkSaES1XMMtQkQyA5/JkiiCIAAG855xKJ2lua7AlT2bfjsQ1F+U5lGEGyLitwOEc0FchQax2KSsJmPOjsbZV2ydEk/KVt85MRWzGj+ij4/8iF0zGdvajtlsJ5beGabIra0uEZv2+R6KIBckT0O5/2YErs83DnJqeVdI6ZPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724400600; c=relaxed/simple;
-	bh=CqhXeth05I90w+NiWTFVafxVnpFNhBLSGhpyudV2OQ4=;
+	s=arc-20240116; t=1724400631; c=relaxed/simple;
+	bh=4qRV8LjaXlxs8iK8DO4QVzv6Tqvxltp922psqJqgA6A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m6V9qFJTBPEQ4DE78xam23ROL13aQ/UpWHJvSYAOCrJhGFdgOKrQ6cUc8+vWXXq4gdKBYg51TcYsJViSeEdCnfGuuK8tK/KCJNFkvakz/B3Vry6qsTMn8TMAmbjdBiTC87EhZPl+qQ8ioDyok5BYq3qNYXFWMzmLAphwS08gGpA=
+	 In-Reply-To:Content-Type; b=I3tEBhZkjodTiksoS+hnWKENzf0MJztHx7OYI0Wj5eIayuAU7mfRq8ZBVxdyFd83aKaDNN3FGMNgA8pOfGlhzYtzaN0oei5F2fnvw+tbhAcPDCh9aoFjvoVp7Bho5JcurEdamV0gAnutsFQe7kmuNTPjcFHIdJbWIgWrcZbwX4k=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
 Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4Wqt5x5wGXz9sRr;
-	Fri, 23 Aug 2024 10:09:57 +0200 (CEST)
+	by localhost (Postfix) with ESMTP id 4Wqt6X0kbKz9sRr;
+	Fri, 23 Aug 2024 10:10:28 +0200 (CEST)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from pegase2.c-s.fr ([172.26.127.65])
 	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id U6rWnzw2F71U; Fri, 23 Aug 2024 10:09:57 +0200 (CEST)
+	with ESMTP id 6fEcinwE3CeY; Fri, 23 Aug 2024 10:10:28 +0200 (CEST)
 Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4Wqt5x51wDz9rvV;
-	Fri, 23 Aug 2024 10:09:57 +0200 (CEST)
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4Wqt6W73mYz9rvV;
+	Fri, 23 Aug 2024 10:10:27 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 9ADDF8B77D;
-	Fri, 23 Aug 2024 10:09:57 +0200 (CEST)
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id E0BCE8B77D;
+	Fri, 23 Aug 2024 10:10:27 +0200 (CEST)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from messagerie.si.c-s.fr ([127.0.0.1])
 	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id yKYBB4Lb-Wax; Fri, 23 Aug 2024 10:09:57 +0200 (CEST)
+	with ESMTP id aOnz-ziVcxln; Fri, 23 Aug 2024 10:10:27 +0200 (CEST)
 Received: from [192.168.233.10] (PO24418.IDSI0.si.c-s.fr [192.168.233.10])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 1860C8B763;
-	Fri, 23 Aug 2024 10:09:57 +0200 (CEST)
-Message-ID: <7cc60804-0c93-4d29-8358-31771bdab246@csgroup.eu>
-Date: Fri, 23 Aug 2024 10:09:56 +0200
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 611238B763;
+	Fri, 23 Aug 2024 10:10:27 +0200 (CEST)
+Message-ID: <5721db08-5139-49a3-8614-0fcd674a762c@csgroup.eu>
+Date: Fri, 23 Aug 2024 10:10:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 20/36] soc: fsl: cpm1: qmc: Remove unneeded parenthesis
+Subject: Re: [PATCH v2 21/36] soc: fsl: cpm1: qmc: Fix 'transmiter' typo
 To: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
@@ -67,60 +67,49 @@ Cc: linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 References: <20240808071132.149251-1-herve.codina@bootlin.com>
- <20240808071132.149251-21-herve.codina@bootlin.com>
+ <20240808071132.149251-22-herve.codina@bootlin.com>
 Content-Language: fr-FR
 From: Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <20240808071132.149251-21-herve.codina@bootlin.com>
+In-Reply-To: <20240808071132.149251-22-herve.codina@bootlin.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
 
 Le 08/08/2024 à 09:11, Herve Codina a écrit :
-> checkpatch.pl raises the following issue in several places
->    CHECK: Unnecessary parenthesis around ...
+> checkpatch.pl raises the following issue
+>    CHECK: 'transmiter' may be misspelled - perhaps 'transmitter'?
 > 
-> Remove them.
+> Indeed, fix it.
 > 
 > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
 Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 
 > ---
->   drivers/soc/fsl/qe/qmc.c | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
+>   drivers/soc/fsl/qe/qmc.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/soc/fsl/qe/qmc.c b/drivers/soc/fsl/qe/qmc.c
-> index 44bd9b949770..04466e735302 100644
+> index 04466e735302..2d54d7400d2d 100644
 > --- a/drivers/soc/fsl/qe/qmc.c
 > +++ b/drivers/soc/fsl/qe/qmc.c
-> @@ -359,8 +359,8 @@ int qmc_chan_set_param(struct qmc_chan *chan, const struct qmc_chan_param *param
+> @@ -1715,7 +1715,7 @@ static int qmc_probe(struct platform_device *pdev)
+>   	if (ret < 0)
+>   		goto err_disable_intr;
 >   
->   	switch (param->mode) {
->   	case QMC_HDLC:
-> -		if ((param->hdlc.max_rx_buf_size % 4) ||
-> -		    (param->hdlc.max_rx_buf_size < 8))
-> +		if (param->hdlc.max_rx_buf_size % 4 ||
-> +		    param->hdlc.max_rx_buf_size < 8)
->   			return -EINVAL;
+> -	/* Enable transmiter and receiver */
+> +	/* Enable transmitter and receiver */
+>   	qmc_setbits32(qmc->scc_regs + SCC_GSMRL, SCC_GSMRL_ENR | SCC_GSMRL_ENT);
 >   
->   		qmc_write16(chan->qmc->scc_pram + QMC_GBL_MRBLR,
-> @@ -1152,7 +1152,7 @@ static int qmc_check_chans(struct qmc *qmc)
->   	if (ret)
->   		return ret;
+>   	platform_set_drvdata(pdev, qmc);
+> @@ -1742,7 +1742,7 @@ static void qmc_remove(struct platform_device *pdev)
+>   {
+>   	struct qmc *qmc = platform_get_drvdata(pdev);
 >   
-> -	if ((info.nb_tx_ts > 64) || (info.nb_rx_ts > 64)) {
-> +	if (info.nb_tx_ts > 64 || info.nb_rx_ts > 64) {
->   		dev_err(qmc->dev, "Number of TSA Tx/Rx TS assigned not supported\n");
->   		return -EINVAL;
->   	}
-> @@ -1161,7 +1161,7 @@ static int qmc_check_chans(struct qmc *qmc)
->   	 * If more than 32 TS are assigned to this serial, one common table is
->   	 * used for Tx and Rx and so masks must be equal for all channels.
->   	 */
-> -	if ((info.nb_tx_ts > 32) || (info.nb_rx_ts > 32)) {
-> +	if (info.nb_tx_ts > 32 || info.nb_rx_ts > 32) {
->   		if (info.nb_tx_ts != info.nb_rx_ts) {
->   			dev_err(qmc->dev, "Number of TSA Tx/Rx TS assigned are not equal\n");
->   			return -EINVAL;
+> -	/* Disable transmiter and receiver */
+> +	/* Disable transmitter and receiver */
+>   	qmc_setbits32(qmc->scc_regs + SCC_GSMRL, 0);
+>   
+>   	/* Disable interrupts */
 
