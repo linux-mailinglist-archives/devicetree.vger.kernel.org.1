@@ -1,133 +1,194 @@
-Return-Path: <devicetree+bounces-96000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C1F95C5DC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:54:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4856D95C5EF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:01:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85377B23160
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:54:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E51F31F235BF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364E11369B1;
-	Fri, 23 Aug 2024 06:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67524CDE0;
+	Fri, 23 Aug 2024 07:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="l5eBf03t"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NDs+9ZSx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC6C82486
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 06:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D747110953;
+	Fri, 23 Aug 2024 07:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724396079; cv=none; b=Ucpfn3fWb6zFk5XTyPdmi5eravCxUwvb4XbllqG0LfrbBytETDPOeWpxlwLONTVIt6t9AP9N+F53WAwV6CWWzqXkxjXt4LYSL36kfpC2WjJyct3tstRYkdiZVWIbPvFpJ+rKb5EwMi6Evhm0vUokyoVnF0v6BAQ+Ls0mkyFFRbA=
+	t=1724396462; cv=none; b=Fld3gaqIk+JdKQE++MBuyJX31mKzJUXEqEGyqZShtzKpxd+FBgN9xBHXl2gzs5BDKbI4TckJx0gT+mjMrKeFMNuC6QwWFgPo6WijRETLJ/PI8hz8+oVexjgXyGInY0wKlj3940mteaO8r3cMIiefQcra92dTArZ5BgpyH15hz/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724396079; c=relaxed/simple;
-	bh=b7cBKZ3aiovvpcnd82a//jTwAitemyJStikYa58pHQc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BUojXmqsXutpbQGFSDgjHuEj1OoxHFliSGP52ROJtW0ZfJr/f40i+veNd4bEnH/+TuL0H+a1pxZrhxxk/ZQHs+z/kbUT0aRKjfANUf/z+aL7VoST2cp28IIUOOSmvx9A1bqyFI5ZUoSb7O5SIi18+DDSXUOMaSYgrWsLuzzLPuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=l5eBf03t; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53343bf5eddso2144548e87.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 23:54:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1724396075; x=1725000875; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DYlhEmPtRTYor0AL9cAnJrQT3p974t5Lzi77Eaz87M4=;
-        b=l5eBf03t+B4cTIRsh4zABzzWRLDgy3hvAaTLEIP21MEzxih/MD35FQo9jgF50fyTxk
-         NvQ6/9qIQ7gyiKo6gISOSe00cTslOpOzhxwnt2FUzpRIuhZRNAl/AresT6e4vF/ZZuvR
-         UC4ecLuUDRqIcPfkTlrU3Zjx9UGLBs69lk8x0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724396075; x=1725000875;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DYlhEmPtRTYor0AL9cAnJrQT3p974t5Lzi77Eaz87M4=;
-        b=ck6sSkOPKXsu+vto1A7KwI+sniqrrfpU0dsn1L7NoRzg3Q9UX4rGOHBrOdeeGS8hlU
-         L9nGCBocnB8itcRRjTLzp2gLYO3SmhlBQEa/cU4cEnylbP2X1X599ky/oeFE7wqLvWkd
-         lfenZCBUBVT2clk+46wwpV/oi76AxuqihVycktNOwhlkQyRQghkCSY1m4c5uUB94SBDh
-         kkjphdyNwGwkpdoxJIuF2ljN5rVHrbHLhwInFsbzZHzIsVWIRo6RlUnqVxDDoDRPyudo
-         NBX3V/OYmhtLEe41leK/Y3dcHI+ihDcxkVmfhoq0FTAgx08gfNR55z24EnTViKLubre9
-         OVnA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAJRxk0ZgWr9Wz0mDDOi5ZDe2rm6KRxrS7FGmvLv7AQv2gsob37hp3jC6Btvi4XmUyUpeezh1u8hHj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLPyjLoOjH7IQ81Z3nQ31qkfqML4emCprSRdj24XmcXXs5AlWQ
-	+rUCeUO73AxRaVlDK39dQXZ1l+TWLL0TDH7mcpd9F1POXLXaWe+I0XtF2rrANkNwDGMLe+lX3JX
-	3VAvtwscVqftmr7ki4mxdaw4W6CamnJNV0QoE
-X-Google-Smtp-Source: AGHT+IGDC0WWTfFgI9QnQzvX49/NewGmGwj3Cz1KMtz32yMSQX3nF9dwL9fql5Pr3fEZyw3lnpJjTa3uuZm7Vkpw1m4=
-X-Received: by 2002:a05:6512:3b82:b0:52f:154:661b with SMTP id
- 2adb3069b0e04-534387681c5mr853124e87.11.1724396075319; Thu, 22 Aug 2024
- 23:54:35 -0700 (PDT)
+	s=arc-20240116; t=1724396462; c=relaxed/simple;
+	bh=jGshhhvgJvPItJvLyz9xeVPpG2akmVY+mzhE2S2mbXI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=HM0BzLgD8PsnDi7IyzUQDTnqNdZC5PQSEQI6282YA8SXME8AxM0kZ5dmVd0twz1Kqc/7QR2P1jJd3hnZNPmYTG/3QjQ6zN1Y4FAZBP4xpS9ODRg5pYGovwm98nUrV9qcXKO9HCAPYy4biKMf3PihxGppUsRyR+wlXSI60CfhtIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NDs+9ZSx; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822092006.3134096-1-wenst@chromium.org> <20240822092006.3134096-4-wenst@chromium.org>
- <ZsdB1vsEe0atW88_@smile.fi.intel.com>
-In-Reply-To: <ZsdB1vsEe0atW88_@smile.fi.intel.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 23 Aug 2024 14:54:24 +0800
-Message-ID: <CAGXv+5Ew1tQKmuKckovfHCgH-ja0qSmqJWOk2qowQC4k_1tvYQ@mail.gmail.com>
-Subject: Re: [PATCH v5 03/10] regulator: Split up _regulator_get()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1724396457;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FPZmmM60tSAujVzmtKbajvXbMMgpiHTPo/2dvKyDtNI=;
+	b=NDs+9ZSxY/ek6dPLsXqeuOJwsBeoXV7+MBLiCrJILOstP+qpC9oJCnYApU8E9VQTBKQTiA
+	SzzLCqknuhMjQaZOfkGQ7OymI3u66L7WTuHgNAKkBtGF+6DOujeCaz/il9mGWaVfxFs7rd
+	4+mKHEVDbJeWypUJeELQzBCMCLgB5a9OZ77fBuVt9A+5smmmVU0+qDKMe2ABjTFasXzpEN
+	oYUBKaEn2f49AYOvIVXEYRU64f6GeFPpE09zT/vsfq0SYbiv/xgb4maPHljXE+f32M6HBI
+	4xJQo+08F2rxCgrrVe71jq8S9XMc4AHxKFaRKQ6GyN0BODyvntXF9iFChi42FA==
+Date: Fri, 23 Aug 2024 09:00:57 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jaehoon
+ Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 4/4] mmc: dw_mmc-rockchip: Add support for rk3576 SoCs
+In-Reply-To: <20240822212418.982927-5-detlev.casanova@collabora.com>
+References: <20240822212418.982927-1-detlev.casanova@collabora.com>
+ <20240822212418.982927-5-detlev.casanova@collabora.com>
+Message-ID: <26fe259f390a8015c3f08c6dc027711c@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Thu, Aug 22, 2024 at 9:49=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Aug 22, 2024 at 05:19:56PM +0800, Chen-Yu Tsai wrote:
-> > _regulator_get() contains a lot of common code doing checks prior to th=
-e
-> > regulator lookup and housekeeping work after the lookup. Almost all the
-> > code could be shared with a OF-specific variant of _regulator_get().
-> >
-> > Split out the common parts so that they can be reused. The OF-specific
-> > version of _regulator_get() will be added in a subsequent patch.
-> > No functional changes were made.
->
-> > +/**
-> > + * _regulator_get_common - Common code for regulator requests
-> > + * @rdev: regulator device pointer as returned by *regulator_dev_looku=
-p()
-> > + *       Its reference count is expected to have been incremented.
-> > + * @dev: device used for dev_printk messages
-> > + * @id: Supply name or regulator ID
-> > + * @get_type: enum regulator_get_type value corresponding to type of r=
-equest
-> > + *
-> > + * Returns a struct regulator corresponding to @rdev,
-> > + * or IS_ERR() condition containing errno.
-> > + *
-> > + * This function should be chained with *regulator_dev_lookup() functi=
-ons.
->
-> kernel-doc will warn here: No "Return" section.
+Hello Detlev,
 
-Will fix.
+Please see a comment below.
 
-ChenYu
+On 2024-08-22 23:15, Detlev Casanova wrote:
+> On rk3576 the tunable clocks are inside the controller itself, removing
+> the need for the "ciu-drive" and "ciu-sample" clocks.
+> 
+> That makes it a new type of controller that has its own dt_parse 
+> function.
+> 
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  drivers/mmc/host/dw_mmc-rockchip.c | 48 ++++++++++++++++++++++++++----
+>  1 file changed, 43 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/dw_mmc-rockchip.c
+> b/drivers/mmc/host/dw_mmc-rockchip.c
+> index 1458cb5fd5c7..7c8ccf5e71bc 100644
+> --- a/drivers/mmc/host/dw_mmc-rockchip.c
+> +++ b/drivers/mmc/host/dw_mmc-rockchip.c
+> @@ -410,7 +410,7 @@ static int dw_mci_rk3288_execute_tuning(struct
+> dw_mci_slot *slot, u32 opcode)
+>  	return ret;
+>  }
+> 
+> -static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
+> +static int dw_mci_common_parse_dt(struct dw_mci *host)
+>  {
+>  	struct device_node *np = host->dev->of_node;
+>  	struct dw_mci_rockchip_priv_data *priv;
+> @@ -420,13 +420,29 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci 
+> *host)
+>  		return -ENOMEM;
+> 
+>  	if (of_property_read_u32(np, "rockchip,desired-num-phases",
+> -					&priv->num_phases))
+> +				 &priv->num_phases))
+>  		priv->num_phases = 360;
+> 
+>  	if (of_property_read_u32(np, "rockchip,default-sample-phase",
+> -					&priv->default_sample_phase))
+> +				 &priv->default_sample_phase))
+>  		priv->default_sample_phase = 0;
+> 
+> +	host->priv = priv;
+> +
+> +	return 0;
+> +}
+> +
+> +static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
+> +{
+> +	struct dw_mci_rockchip_priv_data *priv;
+> +	int err;
+> +
+> +	err = dw_mci_common_parse_dt(host);
+> +	if (err)
+> +		return err;
+> +
+> +	priv = host->priv;
+> +
+>  	priv->drv_clk = devm_clk_get(host->dev, "ciu-drive");
+>  	if (IS_ERR(priv->drv_clk))
+>  		dev_dbg(host->dev, "ciu-drive not available\n");
+> @@ -435,13 +451,25 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci 
+> *host)
+>  	if (IS_ERR(priv->sample_clk))
+>  		dev_dbg(host->dev, "ciu-sample not available\n");
+> 
+> -	host->priv = priv;
+> -
+>  	priv->internal_phase = false;
+> 
+>  	return 0;
+>  }
+> 
+> +static int dw_mci_rk3576_parse_dt(struct dw_mci *host)
+> +{
+> +	struct dw_mci_rockchip_priv_data *priv;
+> +	int err = dw_mci_common_parse_dt(host);
+> +	if (err)
+> +		return err;
+> +
+> +	priv = host->priv;
+> +
+> +	priv->internal_phase = true;
 
-> > + */
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+Defining priv, assigning it and using it seems rather redundant,
+when all that's needed is simple "host->priv->internal_phase = true"
+assignment instead.
+
+> +
+> +	return 0;
+> +}
+> +
+>  static int dw_mci_rockchip_init(struct dw_mci *host)
+>  {
+>  	int ret, i;
+> @@ -483,11 +511,21 @@ static const struct dw_mci_drv_data 
+> rk3288_drv_data = {
+>  	.init			= dw_mci_rockchip_init,
+>  };
+> 
+> +static const struct dw_mci_drv_data rk3576_drv_data = {
+> +	.common_caps		= MMC_CAP_CMD23,
+> +	.set_ios		= dw_mci_rk3288_set_ios,
+> +	.execute_tuning		= dw_mci_rk3288_execute_tuning,
+> +	.parse_dt		= dw_mci_rk3576_parse_dt,
+> +	.init			= dw_mci_rockchip_init,
+> +};
+> +
+>  static const struct of_device_id dw_mci_rockchip_match[] = {
+>  	{ .compatible = "rockchip,rk2928-dw-mshc",
+>  		.data = &rk2928_drv_data },
+>  	{ .compatible = "rockchip,rk3288-dw-mshc",
+>  		.data = &rk3288_drv_data },
+> +	{ .compatible = "rockchip,rk3576-dw-mshc",
+> +		.data = &rk3576_drv_data },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_mci_rockchip_match);
 
