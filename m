@@ -1,169 +1,105 @@
-Return-Path: <devicetree+bounces-96088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC8BA95C8DB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:09:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7635695C913
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:19:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F23471C221AB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:09:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CE651F2148C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392D3149E01;
-	Fri, 23 Aug 2024 09:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECEB214B08C;
+	Fri, 23 Aug 2024 09:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OCgt+uDS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J7gLxvXO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E3A4149C79;
-	Fri, 23 Aug 2024 09:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90C114A0AD;
+	Fri, 23 Aug 2024 09:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724404156; cv=none; b=I7sZSryRaUZDfhDaV5jC8zjYtw0e1N/2CKCiIrUk2azRzOJdgGvBwtygp24Ojn+rYVz1KjQtgwOP0+GSj9iSofoecXgAZufy8IzMavmiiubjGH/n5qg94rg6/ImCSYKTv/Z7ga3ma6WmqyqILPLCdFXTGSDYYO+qXZm1NLeGEp4=
+	t=1724404787; cv=none; b=sSMBSqAKvcf9edNyP38EnfiJeCTWfFeKLupGbKC3GAhrQlk4RXh7BKj2RLNrH1hSTxn7FbLYwLCGWM+LnoTKf4m365ituw2fIM6dPxQeSW3sDeAPZ/kW41Ck2QZ6xSyM28jSnofVLPEy14P30f7B6YKgoruSMeZ8iedc3OJKN4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724404156; c=relaxed/simple;
-	bh=pWVW/DKrRF/+sVlMcTSKkgOJkDnCjGIovyZ27nyrLs4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i67b6GYADHwE33wgyM2MZI2HttMx6pCzZ/6lIouTmTdDHRZ/2k2Y4sbz3wAetIEjoiXrvqnNZUWY023UlyGzMboE53vm8a78JBJ9kMSd5qdri4vpFP0J1+AjWXy4dZ0kV/ew1kMgJol4MJxVcO/g4qc3Fi9MaIdx/R8yF5LNG5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OCgt+uDS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD55EC32786;
-	Fri, 23 Aug 2024 09:09:11 +0000 (UTC)
+	s=arc-20240116; t=1724404787; c=relaxed/simple;
+	bh=KhN+NQf/vdSEEkKAVXu1CtJtcHLdjhi4HZJpa/pUdy4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZRkZQiTcpuKREKWZD18lhN2aMb9CL+5m+x7rwGskN4Zm1U/TEmSN/eo3C85kkAwbPOs//WPnW0Cp0BPn1cbF1k0YGxcrT2FF1WTGKavSRqv1FgQMBiK6xDRSPivvJWirH0pccG1lE8T65+Xb0uwaHOXLj9mR46tzkZYbNf6J6a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J7gLxvXO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 48572C32786;
+	Fri, 23 Aug 2024 09:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724404155;
-	bh=pWVW/DKrRF/+sVlMcTSKkgOJkDnCjGIovyZ27nyrLs4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OCgt+uDS0N2lw/qclh3LAkT4zfKSNtONT9mnxq5NzY24VfaIngVmwtcrfR89wq/i+
-	 XnU/A1beEmk8w+IeYvHFwKwGwTuNpi0T4AyLpIiOpSCi79yX+Uanp053iwoag9vlpT
-	 CSJpEe1Qt7UjN03+QqC7t0S7LdA1gVwsagDaNUScXJNEijwXhrtC0/ItB4mpDYtlVr
-	 +P0XHwcCjEIE76G6UkKHRwlugabef48VxDUVEjpPmAOuzFQbCdSrVnhTTKh7vHyGEw
-	 uBN+uEphEKEGl979evy9IROdaO00MsUAupdLx2hS1DIK+i0ZqTDCzxN76vKyJHyWhp
-	 Z7aTsaF48Ki1g==
-Message-ID: <46153017-9ab2-4a2f-afe6-9321e0f65f03@kernel.org>
-Date: Fri, 23 Aug 2024 11:09:08 +0200
+	s=k20201202; t=1724404787;
+	bh=KhN+NQf/vdSEEkKAVXu1CtJtcHLdjhi4HZJpa/pUdy4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=J7gLxvXOn4aeIF7NFISf1/JDSUeB1BUVaekOwiLso82LgXmHjOQjxUDp3986i+AiQ
+	 iJoCWGm/BRexqJB75wJ6r+H/8tAHuuI7Cx0l1JlPO5RVXXJ0nuvtmrVOmejndXV0A5
+	 o/e3K08o1JQJUfLGMqTXfQlnm8RxHMNKYXJ2+qL/e1aXy7IHric+DNRiQKPN0zx8tq
+	 TbyY2PfE1oH8zUv+yTLHyxp7R+kHDlpzk3zr2+jtTk4uuoNECQMYHwFA1CSC/grqBE
+	 S0J6RuZ5M5JwtCBjo6QFwmN5aw0PCEeN+r/4zKGHkLvnEyw+RYcO8UBHwwRAIkFOEv
+	 JJDcONpnQBdWg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C9B3C531DC;
+	Fri, 23 Aug 2024 09:19:47 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/3] support for amlogic rtc
+Date: Fri, 23 Aug 2024 17:19:43 +0800
+Message-Id: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] dt-bindings: iio: adc: add adi,ad7606c-{16,18}
- compatible strings
-To: Jonathan Cameron <jic23@kernel.org>,
- Alexandru Ardelean <aardelean@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- lars@metafoo.de, michael.hennerich@analog.com, gstols@baylibre.com
-References: <20240819064721.91494-1-aardelean@baylibre.com>
- <20240819064721.91494-7-aardelean@baylibre.com>
- <zuvwoy5wtdel7qgkz6wa6valwjwajpwoqnizyoooiawghrxvc3@cuoswu32h4fl>
- <CA+GgBR_V8r0Vz1PeKxwD6ovwHXxGM6=Z6XVd03ehokT5C3zjnQ@mail.gmail.com>
- <20240821212606.6981eae1@jic23-huawei>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240821212606.6981eae1@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC9UyGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDCyNj3aKSZF1DI/PkFAtDS6NEQ2MloMqCotS0zAqwKdGxtbUAA60T+FU
+ AAAA=
+To: Yiting Deng <yiting.deng@amlogic.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724404784; l=839;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=KhN+NQf/vdSEEkKAVXu1CtJtcHLdjhi4HZJpa/pUdy4=;
+ b=HsWgzJib2xTeA8gPpNPJiGUQhNPcfsMJfbZcceA8byJwSKYLP9/PfVVJ32Xkd/3txvcwOEw6o
+ 2DM3LDAMKS+Dt84agCJgAMYxbroDNzqH9v7mHjfL6C3XJeTD0HiZATj
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On 21/08/2024 22:26, Jonathan Cameron wrote:
-> 
->>>> +    type: object
->>>> +    $ref: adc.yaml
->>>> +    unevaluatedProperties: false
->>>> +
->>>> +    properties:
->>>> +      reg:
->>>> +        description: The channel number.
->>>> +        minimum: 0
->>>> +        maximum: 7
->>>> +
->>>> +      diff-channel:
->>>> +        description: Channel is bipolar differential.  
->>>
->>> There is diff-channels property, why do we need one more?  
->>
->> Yeah, I wanted to use that.
->> Maybe I will try another spin at that.
->> The thing with "diff-channels" is that it requires 2 ints.
->> So,  diff-channels = <0 0>.
->> To use it here, a rule would need to be put in place where  "reg ==
->> diff-channels[0] && reg == diff-channels[1]".
->> That also works from my side.
->> Part of the reason for this patchset, was to also get some feedback
->> (if this is the correct direction).
->>
-> So I 'think' this is a datasheet matching thing.
-> In many cases, even for strictly differential devices, the pin
-> naming allows for a clear A - B channel description. Here
-> in the non differential modes, the negative pins are effectively
-> not used (from a really quick look at the datasheet)
-> 
-> So we 'could' introduce magic channels (give them high numbers) for
-> the negative ends. I think we may want to do that for the
-> userspace ABI (0-0 on the few times it has come up has been a
-> calibration / self check mode not what you have here - it
-> wires the actual inputs together).  Alternative is just present
-> them as a simple voltage and don't worry about the differential aspect
-> as it's not hugely different to bipolar (where the zero level is
-> effectively the negative input of a differential ADC.
-> 
-> For the binding I'm fine with the binding using A, A as you suggest
-> with an update to adc.yaml to cover this corner.
+Add rtc driver and bindigns for the amlogic A113L2 and A113X2 SoCs
 
-Yep, let's add it to adc.yaml.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Yiting Deng (3):
+      dt-bindings: rtc: Add Amlogic A311L2 and A113X2 rtc
+      rtc: support for the Amlogic on-chip RTC
+      MAINTAINERS: Add an entry for Amlogic RTC driver
 
-> 
-> We never (I think) have bindings for the self check case where the input
-> is wired to both sides. It's just a mode that is applied to
-> any inputs that are wired. 
-> 
+ .../bindings/rtc/amlogic,amlogic-rtc.yaml          |  66 +++
+ MAINTAINERS                                        |   8 +
+ drivers/rtc/Kconfig                                |  12 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-amlogic.c                          | 589 +++++++++++++++++++++
+ 5 files changed, 676 insertions(+)
+---
+base-commit: dff71e5c6076314f3eefe700abd6af834c57bd64
+change-id: 20240823-rtc-127cd8192a13
+
 Best regards,
-Krzysztof
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
