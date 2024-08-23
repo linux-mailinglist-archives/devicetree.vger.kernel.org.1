@@ -1,108 +1,148 @@
-Return-Path: <devicetree+bounces-96122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58A5E95CB7A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:35:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E568695CB84
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:37:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 130B7287086
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:35:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 476C3B259C9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C7C4187FE6;
-	Fri, 23 Aug 2024 11:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2BD187FE6;
+	Fri, 23 Aug 2024 11:36:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="thRBMQ4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06D8187872;
-	Fri, 23 Aug 2024 11:34:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D608217C211
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 11:36:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724412864; cv=none; b=Y2xedW6mn2xlnvICvc0qESh9gbBt5whl+xsPaPfscAACPuoxmPjCAAU+mjY1PG+2GWUEhIqgY80dkwkzhSomJUKoAzp5B6mHmQwhXFp2oUhoYZf6vNHLpyZUnYGvx1IxrsvcOwpyPrVON9V9GGd0syLCPNX91AN7ri9rpYDRg70=
+	t=1724412989; cv=none; b=Td8uIXW1oQm9XhdLWb6mc9TgJpO39GXkjCc50UrqnI3sStUjKaQqnYZwxDOaANtudU6KX28se1phSOEsS5ZOEzEzRxhT0IahkpNVGgrg2u2WVfKu4PVwzpuVk69310ch0AQH99OPQ3hQ3FYS0NX12z3Wup1G0IvyRwq+oSXYygU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724412864; c=relaxed/simple;
-	bh=hwdZw53aRmWyr02nOJ7UsLzScnq8hEu/dIJyR08ZILU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cbuie4q7BatcjpNU+1O6mRjaJnEiICr/wb1OOtRi7a8V67iJx61Mz9Qxl3P2FhanKdL02qYQ6lSAuV1S8b534k0FR7t1yTSmF8+VObBacLFE2cUdYY+R+GiF2rbWdtmKDNWsxZebMOXALdnImgpseLyprX9GsKVj/r6EwizVeHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e162df8bab4so1736560276.0;
-        Fri, 23 Aug 2024 04:34:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724412861; x=1725017661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M2cn+9V+XMv8NqXeoQt5WrF+DgwWZxe3WPOmxNdiUeo=;
-        b=Sk8C0usIfZyz1R2CRtq+ZY9rhybtHqZG/4omAFoD2J+x4N1MB3Nl/pjyNonfg68siH
-         6Z65IuPxI/QTBmLh9J0TT5lW470M6Hcc4u74FQFeRuC5dita4sAP+hRvX8LWVjs1cTH+
-         DK3XlaaTPGC+SsxWG+ATrh+uM5FhFdSYaYi/dcoJfl1eooOMO8kabnwpmiQHOMy4J8Ap
-         L0NmPKGTKCl4tyzgmYA8sR+5mETmwoFI0r2pJDf7O7BMpufh7INXhpXH6P3AMFLaO4WM
-         +JWLJerqu7lTR0Y7S+6+sqXSHlm8tWUjdhlHcDoTNsHzdpUsymvHmTYchOMjNiFkolzy
-         Kv3g==
-X-Forwarded-Encrypted: i=1; AJvYcCUJbP8cn5dA5e/CgOHDXbrdx8Glhnco66tQ+yHAfaCE4Ki2VYf7O899whtjj8/6t4O4XrtEoIPLwAfdd9Lh@vger.kernel.org, AJvYcCUx2t3aE8445lkni0X0RqLIUzQqyDWVcE6XrZQmHpjf8MaV9oIFDMmmU5nkE+JHRC85NRVBgtam2oCk@vger.kernel.org, AJvYcCXNnPyBM4Nzy4BSmhv+wdYuEDzAvxyMh0L0G/6xBjFvXz5kuw6aolLtKXvYis2mK+VCzIi4ltBCCWR1ST+LkFrDS58=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFqh+ao00+p2jkW6TKnp1A8PUHxkk1W8jin4t0scu0V0YlHm1C
-	hIRHgeea0BsmoXckW42bg8KI+iQS+n2kLB3Yp3ZLoPkLewYBIiYnFvfo7gOz
-X-Google-Smtp-Source: AGHT+IGqpcdYW9sk0ccgn9E6wT69Bm3WtYq1jNx+Cd7Bl9viTiHgtou6Vm6DkjN5aYG3x4VuywkVbQ==
-X-Received: by 2002:a05:6902:e04:b0:e16:6785:1a5b with SMTP id 3f1490d57ef6-e17a83d4abemr2155581276.14.1724412860593;
-        Fri, 23 Aug 2024 04:34:20 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e178e43f3afsm622250276.10.2024.08.23.04.34.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 04:34:20 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-69df49d92b8so16765677b3.3;
-        Fri, 23 Aug 2024 04:34:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUglMYhCWwZ68HQBq3ol3n6NgDoCFBDWZBjF0jKBFO8Af/Z0hldedD8dxKa0KD4bFc+KYNVqOEaZJjOPTwq@vger.kernel.org, AJvYcCUkYCwSKvWtskTHwgFTTEw8e0mJf7bzwxtHsDMqQbQ7a4CHt3ZQsqj8Iz19xrL1DQGUmwQ8lo0qLjs7vOx7aDETtP4=@vger.kernel.org, AJvYcCXEpb2D12pkizz2CEf0mFh/m0IN/f/KOwOSNeego1aPZ7Yb41/adS7HMo5embHobesBIQY7LAg5lVU1@vger.kernel.org
-X-Received: by 2002:a05:690c:d85:b0:6be:28ab:d87f with SMTP id
- 00721157ae682-6c62538cf94mr22613127b3.2.1724412859901; Fri, 23 Aug 2024
- 04:34:19 -0700 (PDT)
+	s=arc-20240116; t=1724412989; c=relaxed/simple;
+	bh=Ntv6MZ9lCiHnA25uIJN5WCBiRmqOIGg+IIBDR5T364Y=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=LLddrIjns1VTz/FoETDM0E+zWf6fuMExg9BXeKxVynhYBGxu7ab2nfIXhyxMbBwtvmfMqW9LVbs9lxfOjt1AnZ9YMm3KX3v3PiTAxgTVI9rtuoEhy3uEIVhwAkbA1mroQOupuLwUiz2Ck0rCx8M13KSNCBzS1SjRD8JftnTq6/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=thRBMQ4P; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1724412983; x=1727004983;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Ntv6MZ9lCiHnA25uIJN5WCBiRmqOIGg+IIBDR5T364Y=;
+	b=thRBMQ4PyIHkz9hqpclNgmgiSu/a9m6KHpyQ7lYOcaM2ktXd15rWFwOBweK57Ta8
+	Oc4t9rIpYBKahmbfCHcqIhKF3arwJOb8Bzg7f+RqLuvsdyNSd0E/TfohxoK6P6wp
+	5ojGk7cOkbBlkzcRm659qF1XXRgN7DmrpcjPVfluqjc=;
+X-AuditID: ac14000a-03e52700000021bc-96-66c87437ecf3
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 31.91.08636.73478C66; Fri, 23 Aug 2024 13:36:23 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 23 Aug
+ 2024 13:36:23 +0200
+Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
+ Fri, 23 Aug 2024 13:36:23 +0200
+From: Yannic Moog <Y.Moog@phytec.de>
+To: Benjamin Hahn <B.Hahn@phytec.de>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "robh@kernel.org"
+	<robh@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, Teresa Remmet <T.Remmet@phytec.de>
+CC: "imx@lists.linux.dev" <imx@lists.linux.dev>, PHYTEC Upstream
+	<upstream@lists.phytec.de>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [Upstream] [PATCH v3] arm64: dts: imx8mp-phyboard-pollux-rdk: Add
+ support for PCIe
+Thread-Topic: [Upstream] [PATCH v3] arm64: dts: imx8mp-phyboard-pollux-rdk:
+ Add support for PCIe
+Thread-Index: AQHa9TKynCp8C599ik6LNabc/uY/i7I0lW+A
+Date: Fri, 23 Aug 2024 11:36:23 +0000
+Message-ID: <233e5f32932cd420e6ca8d90e23c25f5740f89ee.camel@phytec.de>
+References: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
+In-Reply-To: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <10EC0176492E3F43B709DC2060609F7C@phytec.de>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240818172930.121898-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240818172930.121898-1-krzysztof.kozlowski@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 23 Aug 2024 13:34:08 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVhPNDhtNRGwT8FjFQ-BJvpdFha=3Cz-ZtbkdUSDvHOFA@mail.gmail.com>
-Message-ID: <CAMuHMdVhPNDhtNRGwT8FjFQ-BJvpdFha=3Cz-ZtbkdUSDvHOFA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: memory-controllers: renesas,rpc-if: add
- top-level constraints
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Sergei Shtylyov <sergei.shtylyov@gmail.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEIsWRmVeSWpSXmKPExsWyRpKBR9e85ESawZ6pxhZr9p5jsph/5Byr
+	xcOr/hYz77WyWayaupPF4uWse2wWmx5fY7W4vGsOm8X/PTvYLf5u38Ri8WKLuEX3O3UHHo+d
+	s+6ye2xa1cnmsXlJvceLzTMZPfq7W1g9+v8aeHzeJBfAHsVlk5Kak1mWWqRvl8CV0ft6B2PB
+	E6mKvssfWBsYe6S6GDk5JARMJBZ1tTKB2EICS5gk2hptuhi5gOz7jBLrrz5jgXA2MEr8/TmH
+	GaSKTUBF4uSMS4wgtohAN7PEvSY3kCJmgTVMErcvrmEFSQgLJEosu/6CBaIoSaJpWTdUg5HE
+	ikv72UFsFgFViYlnH7GB2LwCbhLvb1xghDjDV+Le0VlgNqeAn8SbzVPBbEYBWYkNG86DHcEs
+	IC6x6dl3VogXBCSW7IGISwiISrx8/A8qLi9x4tY0oNc4gOo1Jdbv0ocwLSR6FopDTFGUmNL9
+	kB3iAkGJkzOfsExgFJ+FZMEshOZZCM2zkDTPQtK8gJF1FaNQbmZydmpRZrZeQUZlSWqyXkrq
+	JkZQvIswcO1g7JvjcYiRiYPxEKMEB7OSCG/SvaNpQrwpiZVVqUX58UWlOanFhxilOViUxHlX
+	dwSnCgmkJ5akZqemFqQWwWSZODilGhg7bj1c65+TM2edzuP00Gn9K9pUd7rPyEq0XPEutHRh
+	9Znqd0LPbJ4Y9K1yTjnO4HrTb/eFs5uZ/3Noxns1SPC/UNFcViQ887XZmqSrnhf2WgR1qfue
+	vr+waPbk24Hpu76pcAnbl3IzHg7tEWmctkvdK6Nkg7eNqe77mfPWhWzYXl/U5JV92lmJpTgj
+	0VCLuag4EQAoeePK5QIAAA==
 
-On Sun, Aug 18, 2024 at 7:29=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> Properties with variable number of items per each device are expected to
-> have widest constraints in top-level "properties:" block and further
-> customized (narrowed) in "if:then:".  Add missing top-level constraints
-> for clocks.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+T24gRnJpLCAyMDI0LTA4LTIzIGF0IDEwOjAxICswMjAwLCBCZW5qYW1pbiBIYWhuIHdyb3RlOg0K
+PiBBZGQgc3VwcG9ydCBmb3IgdGhlIE1pbmkgUENJZSBzbG90Lg0KPiANCj4gU2lnbmVkLW9mZi1i
+eTogQmVuamFtaW4gSGFobiA8Qi5IYWhuQHBoeXRlYy5kZT4NClJldmlld2VkLWJ5OiBZYW5uaWMg
+TW9vZyA8eS5tb29nQHBoeXRlYy5kZT4NCg0KPiAtLS0NCj4gQ2hhbmdlcyBpbiB2MzoNCj4gLSBj
+aGFuZ2Ugb3JkZXIgb2YgcHJvcGVydGllcyBmb3IgcGNpZSBwaHkgbm9kZQ0KPiAtIExpbmsgdG8g
+djI6DQo+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyNDA4MjEtd2lwLWJoYWhuLWFkZF9w
+Y2llX3N1cHBvcnQtdjItMS05YzkyZDg0ODhhYjJAcGh5dGVjLmRlDQo+IA0KPiBDaGFuZ2VzIGlu
+IHYyOg0KPiAtIGNoYW5nZSBwY2llIHJlZ3VsYXRvciB0byByZWdfdmNjXzN2M19zdw0KPiAtIGFk
+ZCB3YWtlIGdwaW8gdG8gcGNpZSBwaW5jdHJsIGFuZCBvcmRlciB0aGUgZ3Bpb3MNCj4gLSBMaW5r
+IHRvIHYxOg0KPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9yLzIwMjQwODEzLXdpcC1iaGFobi1h
+ZGRfcGNpZV9zdXBwb3J0LXYxLTEtYzFiYjA2MmI0ZTFmQHBoeXRlYy5kZQ0KPiAtLS0NCj4gwqAu
+Li4vZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdHPCoMKgIHwgMjcg
+KysrKysrKysrKysrKysrKysrKysrKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAyNyBpbnNlcnRpb25z
+KCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14
+OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzDQo+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
+c2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzDQo+IGluZGV4IDAwYTI0MDQ4NGMy
+NS4uYmVhNDc5YjUyMDNhIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdHMNCj4gKysrIGIvYXJjaC9hcm02NC9i
+b290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzDQo+IEBAIC02
+LDYgKzYsNyBAQA0KPiDCoA0KPiDCoC9kdHMtdjEvOw0KPiDCoA0KPiArI2luY2x1ZGUgPGR0LWJp
+bmRpbmdzL3BoeS9waHktaW14OC1wY2llLmg+DQo+IMKgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2xl
+ZHMvbGVkcy1wY2E5NTMyLmg+DQo+IMKgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3B3bS9wd20uaD4N
+Cj4gwqAjaW5jbHVkZSAiaW14OG1wLXBoeWNvcmUtc29tLmR0c2kiDQo+IEBAIC0xOTUsNiArMTk2
+LDIzIEBAICZzbnZzX3B3cmtleSB7DQo+IMKgCXN0YXR1cyA9ICJva2F5IjsNCj4gwqB9Ow0KPiDC
+oA0KPiArJnBjaWVfcGh5IHsNCj4gKwljbG9ja3MgPSA8JmhzaW9fYmxrX2N0cmw+Ow0KPiArCWNs
+b2NrLW5hbWVzID0gInJlZiI7DQo+ICsJZnNsLHJlZmNsay1wYWQtbW9kZSA9IDxJTVg4X1BDSUVf
+UkVGQ0xLX1BBRF9PVVRQVVQ+Ow0KPiArCWZzbCxjbGtyZXEtdW5zdXBwb3J0ZWQ7DQo+ICsJc3Rh
+dHVzID0gIm9rYXkiOw0KPiArfTsNCj4gKw0KPiArLyogTWluaSBQQ0llICovDQo+ICsmcGNpZSB7
+DQo+ICsJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCj4gKwlwaW5jdHJsLTAgPSA8JnBpbmN0
+cmxfcGNpZTA+Ow0KPiArCXJlc2V0LWdwaW8gPSA8JmdwaW8xIDggR1BJT19BQ1RJVkVfTE9XPjsN
+Cj4gKwl2cGNpZS1zdXBwbHkgPSA8JnJlZ192Y2NfM3YzX3N3PjsNCj4gKwlzdGF0dXMgPSAib2th
+eSI7DQo+ICt9Ow0KPiArDQo+IMKgJnB3bTMgew0KPiDCoAlzdGF0dXMgPSAib2theSI7DQo+IMKg
+CXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+IEBAIC0zNjYsNiArMzg0LDE1IEBAIE1YOE1Q
+X0lPTVVYQ19TRDJfV1BfX0dQSU8yX0lPMjAJCTB4MTINCj4gwqAJCT47DQo+IMKgCX07DQo+IMKg
+DQo+ICsJcGluY3RybF9wY2llMDogcGNpZTBncnAgew0KPiArCQlmc2wscGlucyA9IDwNCj4gKwkJ
+CU1YOE1QX0lPTVVYQ19HUElPMV9JTzA4X19HUElPMV9JTzA4wqDCoMKgwqAgMHg0MA0KPiArCQkJ
+TVg4TVBfSU9NVVhDX0dQSU8xX0lPMTBfX0dQSU8xX0lPMTDCoMKgwqDCoCAweDYwDQo+ICsJCQlN
+WDhNUF9JT01VWENfR1BJTzFfSU8xMV9fR1BJTzFfSU8xMQkweDYwIC8qIG9wZW4gZHJhaW4sIHB1
+bGwgdXAgKi8NCj4gKwkJCU1YOE1QX0lPTVVYQ19HUElPMV9JTzE0X19HUElPMV9JTzE0wqDCoMKg
+wqAgMHg0MA0KPiArCQk+Ow0KPiArCX07DQo+ICsNCj4gwqAJcGluY3RybF9wd20zOiBwd20zZ3Jw
+IHsNCj4gwqAJCWZzbCxwaW5zID0gPA0KPiDCoAkJCU1YOE1QX0lPTVVYQ19TUERJRl9UWF9fUFdN
+M19PVVQJCTB4MTINCj4gDQo+IC0tLQ0KPiBiYXNlLWNvbW1pdDogN2M2MjZjZTRiYWUxYWMxNGY2
+MDA3NmQwMGVhZmU3MWFmMzA0NTBiYQ0KPiBjaGFuZ2UtaWQ6IDIwMjQwODEzLXdpcC1iaGFobi1h
+ZGRfcGNpZV9zdXBwb3J0LWI5YmQ3NWZjNGQ5OA0KPiANCj4gQmVzdCByZWdhcmRzLA0KDQo=
 
