@@ -1,105 +1,187 @@
-Return-Path: <devicetree+bounces-96211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A1B95D247
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:00:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 176F995D24C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:02:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FB462840AF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:00:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A411A2830C5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD4918BBAC;
-	Fri, 23 Aug 2024 16:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66905185E7B;
+	Fri, 23 Aug 2024 16:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Iiwad0iV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kSm0hgM6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0174B18BB97
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 16:00:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB3E1DA4C;
+	Fri, 23 Aug 2024 16:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724428807; cv=none; b=XBMFUkI/ItBC7Zai3OfKTAYtIuW2BWFt37+Ajoq77eG4oJIQ0lc5y79yxDXjK17BTPGl8nqUCEeDv/Wifh2iAbsEzqtmouJVDdKyzxfUu5ek71XRsnxluDbXwBIftVnaPvvP+Xl9fWxSHe4Zj62Fwac73K4/mgHz4sJJmPMoV2M=
+	t=1724428969; cv=none; b=RnsEnSO+Ywko+KLhGFNM356pVUc2VC8COi9QwZPuIVg8/tbhD8I47V6AyYaYRhLG2ERWPP8BPWWR7/5Jsd3rRLGlD7AFDbl0+LlICsw8Lsgyu9Hh0DCaXIfmD1gTiHaltoDWM5OYNOxyyeyDbQFVUCZfoVhAKo+iFKGoY6E4Ji8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724428807; c=relaxed/simple;
-	bh=N9Q+HfstvZrc3Uyj8dpSq40+6yhOtXrkXeQ5BkBE9Xc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kgtGtuasuDggjNzVVEQLGAAfVlM5WlpYWsErcZgotfq/PAZvTmHfTvkd8zSCsCeIOvzvzgib3h84kuPpF+TLIwXc8mYrxmVlCVAwc+vaQDh5/irhNN0Wi+G60koAhbPfyXajG3DtTXm1qfuvpyBofy/2Mas7XV+AjnQeNn7qWRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Iiwad0iV; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53438aa64a4so968833e87.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 09:00:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724428803; x=1725033603; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N9Q+HfstvZrc3Uyj8dpSq40+6yhOtXrkXeQ5BkBE9Xc=;
-        b=Iiwad0iVu258zc/Oqitvsvpcp77cYcfVRtrErPCrrzbY1n7eWb0M4IWsouWyn/FVMD
-         QC0evnXVtfiTNNkndOJniMSABAjTrilzlrxkM2yF8w+/mlQDkmSJWvQZC6nW4UosyNpK
-         y22ZhrScMOXJVw4rRjW3a5QFd7qcJtkfPXO1dx6ofEZl7FoQebvE6RTCNbRSz27IrtSx
-         DSFsx2K/WWCfyYZ9pSPzNrbU7B2U8gXsUvhvNl8JqAyFT+kLqX/6cKjzf2xREr4w8/Um
-         iQGSM/a1QFsJNIwkRD2DnJVMsXAgSCwMZcMP2Fu9jeT31owhD1hQExuSxljO42SJyKrj
-         /jzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724428803; x=1725033603;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N9Q+HfstvZrc3Uyj8dpSq40+6yhOtXrkXeQ5BkBE9Xc=;
-        b=Lu6Gzt7Iat/4vyDODivhrAUFTVGSYKrIHipaJ/FKzZI+j2B89Kla6Uu6JvE+SK1fPM
-         HUFsF+MXCTuqN70anhAd8DZfWWU6tI23lNhE6X28rNg6Z84iM2GUb2FUVeOC7i7QNR73
-         dFElJwjoHx7Os2wadMVhrs9TLAOH/WkyX4zDi8UM3XB7cJbUL8mqcotSqVpIpnr9FIe2
-         /ACoXuk8hDX86ARCJ0HKxaarOaafs+Imb+yBuCHn+4gUcKbya91wBnEuOYbJnIE7b+EB
-         JD3x1cRxOQJFRbsrkgexeW1CxW0BCcehy5MxQtJrRY/2th6C1vpgtuASAsAW1YYJz5rq
-         qYjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUmQpCgFOBolFeN3z6TmNwWniTcUeqrnnIaXqLSmLzKtSFDCKCeQe3eAYVRCMmJC2BCBTutbCu3yqWM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWZOqI6YG6h21rqoCKW4IABAMAE0Xy9Bjl+c3eHpcFZr3sqBWu
-	zy0oUfLX+/jJ3v9h1cuRf/b4MyJewhG/XJV8JIgm6Z1tl36Jx9gEUYh6JcKwJgHXSWlCCiB6Uwc
-	vtqa8Va2U+ywqw+yhdA8mIkLhfwpZ2NB80kY7vw==
-X-Google-Smtp-Source: AGHT+IH08LPEDFU5VHx7AqFMaGHbX23x27JBvOmuBNgaED1KnPIFyOCr2R1LWU/ISWTOYE+H7pGSrEdTHvtQQQj5kqg=
-X-Received: by 2002:a05:6512:3088:b0:52c:9e82:a971 with SMTP id
- 2adb3069b0e04-5343882d1ccmr1899018e87.7.1724428802573; Fri, 23 Aug 2024
- 09:00:02 -0700 (PDT)
+	s=arc-20240116; t=1724428969; c=relaxed/simple;
+	bh=+J5v2a1KYipoTMfE/Qk79+k0+U/RnOiCO1QF6+MROOg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GRieTcnjo0/XegGjxT4FGz2YQ5lTasyB0B8KBH6VgsQg+6PpBmt0frsPGuJtmd/gjRNaVtT5LSTyuco6mvT+jCiBkvQKKzhpug/I72Bl0fVfc9hMc8cCIUsLJiUvPrUTDQN47UoxT6X344GqnZEj556IH9NJYaHOPYc5H4aJ1HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kSm0hgM6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62512C4AF09;
+	Fri, 23 Aug 2024 16:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724428968;
+	bh=+J5v2a1KYipoTMfE/Qk79+k0+U/RnOiCO1QF6+MROOg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kSm0hgM6IJekKLoVVE4ON58EmoKIOJoNWoxufF4+bNJCT+g/pUd3wbRhW9P+J3VsW
+	 fnGGRjDaXr/tZL+228+l2+0IFrz6qcMxcLs8//zybPvjRTkyK7Bz2vgcR72ZDAV50u
+	 CQuV1ZVGFQ6p/rQ4SV7TuntA62tP3i88VsDCslQiBM+5gQRgN/9KUPWVFsbZVRGSLN
+	 GsJkCgGYKV4Vrb7i/FIs7cs0Ob2isoRA+fO8AdHDroZTA9YahiaIY5Mdmp73ywISI/
+	 L2UykFD9Yrr1rToETOdzTrEDkUP6B1fGBCMu+N1/L7uhVvLFj6UXpW9t9Iaz8T7Vpl
+	 wi50RmyyR6eOw==
+Date: Fri, 23 Aug 2024 17:02:41 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andy Yan <andyshrk@163.com>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Yao <markyao0591@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+	Luis de Arquer <ldearquer@gmail.com>
+Subject: Re: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema
+ for RK3588 HDMI TX Controller
+Message-ID: <20240823-swifter-smugly-c51447514f96@spud>
+References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
+ <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
+ <2085e998-a453-4893-9e80-3be68b0fb13d@collabora.com>
+ <4167579.6PsWsQAL7t@diego>
+ <20240822-pushchair-premises-f4055779216a@spud>
+ <7fc8cbc3-43d0-43d2-9272-350ac556e2b2@collabora.com>
+ <4140b55c.a48.1917cc1095f.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240807082843.352937-1-ivo.ivanov.ivanov1@gmail.com> <20240807082843.352937-7-ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20240807082843.352937-7-ivo.ivanov.ivanov1@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 23 Aug 2024 17:59:51 +0200
-Message-ID: <CACRpkdYdJn3jSmur6q3+NrURFTQJO5tcxV=aTGXk7JfPyN1=ng@mail.gmail.com>
-Subject: Re: [PATCH v1 06/10] dt-bindings: pinctrl: samsung: add
- exynos8895-wakeup-eint compatible
-To: ivo.ivanov.ivanov1@gmail.com
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Rob Herring <robh+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tX5i8q7vWJU61EV6"
+Content-Disposition: inline
+In-Reply-To: <4140b55c.a48.1917cc1095f.Coremail.andyshrk@163.com>
+
+
+--tX5i8q7vWJU61EV6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 7, 2024 at 10:28=E2=80=AFAM <ivo.ivanov.ivanov1@gmail.com> wrot=
-e:
+On Fri, Aug 23, 2024 at 09:01:51AM +0800, Andy Yan wrote:
+>=20
+> Hi=EF=BC=8C
+>=20
+> =E5=9C=A8 2024-08-22 19:59:43=EF=BC=8C"Cristian Ciocaltea" <cristian.cioc=
+altea@collabora.com> =E5=86=99=E9=81=93=EF=BC=9A
+> >On 8/22/24 11:41 AM, Conor Dooley wrote:
+> >> On Thu, Aug 22, 2024 at 09:01:34AM +0200, Heiko St=C3=BCbner wrote:
+> >>> @Conor: just for me, did some shift happen in our understanding of dt-
+> >>> best-practices in terms of syscon via phandle vs. syscon via compatib=
+le?
+> >>>
+> >>> Because Rockchip boards are referencing their GRFs via phandes forever
+> >>> but similar to the soc vs non-soc node thing, I'd like to stay on top=
+ of
+> >>> best-practices ;-)
+> >>=20
+> >> If IP blocks, and thus drivers, are going to be reused between devices,
+> >> using the phandles makes sense given that it is unlikely that syscon
+> >> nodes can make use of fallback compatibles due to bits within that "gl=
+ue"
+> >> changing between devices. It also makes sense when there are multiple
+> >> instances of an IP on the device, which need to use different syscons.
+> >> My goal is to ask people why they are using these type of syscons
+> >> phandle properties, cos often they are not required at all - for examp=
+le
+> >> with clocks where you effectively need a whole new driver for every
+> >> single soc and having a phandle property buys you nothing.
+> >
+> >That would be also the case for this HDMI controller - need to check the
+> >specs for the newer RK3576 SoC, but I expect the syscons would be quite
+> >different when compared to RK3588, hence we should keep making use of
+> >the phandles.
+>=20
+>=20
+> Yes=EF=BC=8Cfor rk3576=EF=BC=8Cit shares the same HDMI IP block=EF=BC=88h=
+dmi controller and PHY=EF=BC=89=EF=BC=8C
+> of course reuse the driver of rk3588=EF=BC=8C but it has different GRF to=
+ depends on[0]:
+> which calls ioc_grf and vo0_grf:
+>=20
+> I also believe that makeing use of phandle beneficial for different devic=
+es to reuse the same code.
+>=20
+> hdmi: hdmi@27da0000 {
+>                 compatible =3D "rockchip,rk3576-dw-hdmi";
+>                 reg =3D <0x0 0x27da0000 0x0 0x10000>, <0x0 0x27db0000 0x0=
+ 0x10000>;
+>                 interrupts =3D <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
+>                              <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>,
+>                              <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>,
+>                              <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
+>                              <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>;
+> ,            rockchip,grf =3D <&ioc_grf>;
+>              rockchip,vo0_grf =3D <&vo0_grf>;
 
-> From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->
-> Add a dedicated compatible for exynos8895.
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+btw, I don't particularly like this naming - on another soc in the
+future "vo0_grf" could be "vo1_grf". It is better to name them after
+what they are providing to the hdmi controller, rather than what the grf
+itself is called.
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+That said, if the grf is changing between socs, the offset within the
+grf and what it provides to the hdmi controller may vary completely,
+which makes having generic grf reference properties redundant.
 
-I expect that Krzysztof pick these up unless he has already.
+>              phys =3D <&hdptxphy_hdmi>;
+>              phy-names =3D "hdmi";
+>=20
+>=20
+> [0]https://github.com/armbian/linux-rockchip/blob/rk-6.1-rkr3/arch/arm64/=
+boot/dts/rockchip/rk3576.dtsi#L3122C2-L3123C33
+>=20
+> >
+> >_______________________________________________
+> >Linux-rockchip mailing list
+> >Linux-rockchip@lists.infradead.org
+> >http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
-Yours,
-Linus Walleij
+--tX5i8q7vWJU61EV6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsiyoQAKCRB4tDGHoIJi
+0oGzAP41PotnHGP7pOq28w8lA6nlhNpPPnf7XLGOSlUCEoZ4HwEAp3PJGursxfJy
+RIkB52Ug7Xev2iSA98QEF4jPYJGtKw4=
+=eT1G
+-----END PGP SIGNATURE-----
+
+--tX5i8q7vWJU61EV6--
 
