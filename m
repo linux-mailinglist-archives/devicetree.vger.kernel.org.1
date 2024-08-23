@@ -1,61 +1,89 @@
-Return-Path: <devicetree+bounces-96148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC08E95CE3A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:42:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6180495CE3E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:43:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2E51C214E9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:42:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E8B2281CA7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A854187FE9;
-	Fri, 23 Aug 2024 13:42:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E89187FE1;
+	Fri, 23 Aug 2024 13:43:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="u36CbmL2"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RvKoed14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DC334430;
-	Fri, 23 Aug 2024 13:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04049186E55;
+	Fri, 23 Aug 2024 13:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724420571; cv=none; b=ZigU9577wtMf4NRJhhVOdhl2BXWMGU6sJJ04j52fWKIADRbMnaUVoVPkYfRA53c+XYW+b2bwrFqpbDvbWwLyIWczOkMDaA/l0qvZNnzlMfT4/Lc5bj3fFi712zRqZeVxVliCDJDyvxlgx6xCzh6tyH4y/2/LrC6y++CmCd61zGE=
+	t=1724420611; cv=none; b=EHq9k2aOUfJiN7wUa7gP6G58+kU0Fg0yWimbMThrrantpkSlUeh5egBYAnahIr27Xaz/Jiyzdn7Wydo7d+Mw1sJvOh8XEslRs53ospnvj+ZvMpDR3zR9Gkyn2x8qc1zu3aFSvE5sNc1KGC/xmgDE4Xta3Q6FFJGXliRElkg/nMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724420571; c=relaxed/simple;
-	bh=uPf1FEqDRDZ587fNXRrYBb3EjdY4z83iy4gjjmDNIjA=;
+	s=arc-20240116; t=1724420611; c=relaxed/simple;
+	bh=ib4sJFch59+GHVbbNODHxykPpCp6swAnQhqC1AHvoNM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PKr4jxqTl53S1eIFO1OGQIw0dWRVsWvB5LyxThPSCKIZWG+0NbVmGhkbRn3yaF6NADC8SEI3HWLCWU0Joe4QebtCpYg2FQCRBR5PXfEPmNriziJ6OjaHrthF7lCU4JGfkJC2Tr+RKv1hgNiYtpxosnInpThLQiVWq+fNAdxKsNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=u36CbmL2; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 135542D5;
-	Fri, 23 Aug 2024 15:41:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1724420504;
-	bh=uPf1FEqDRDZ587fNXRrYBb3EjdY4z83iy4gjjmDNIjA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u36CbmL2qugMtBhx2jxqAmmILKrihYQRYPrJIm5JRCsdZrYJa5WIemnHzTmq4RGTC
-	 Cq+cFdIxVE1yk0ZTUK+sOxE3IOdXkwHWpS1FG7K3jEOlwe0z53k7sb+XgZI/25ABIr
-	 F0MStKEBHkKuNnerM/vblFBjq7gV+7ZZ3dipYLfA=
-Date: Fri, 23 Aug 2024 16:42:45 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 6/6] arm64: dts: renesas: r8a779h0: Add family
- fallback for VIN IP
-Message-ID: <20240823134245.GJ26098@pendragon.ideasonboard.com>
-References: <20240704161620.1425409-1-niklas.soderlund+renesas@ragnatech.se>
- <20240704161620.1425409-7-niklas.soderlund+renesas@ragnatech.se>
+	 Content-Type:Content-Disposition:In-Reply-To; b=m1+wSPbP5aMX5YgZLh3hNkT2ayhivwKi7zH3WEjXRhB8qjsWCyC5NprWuHHmnA6deJy4He8tB4e0xIYSV1jd4MjUNgpFEOtTx4WXFNhEB3zgzYc9gZCtXZlccpfuYLgi5z8inwB7meTkmCeBNclwHLDvYh0MKJ2X9xLfHRTXkjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RvKoed14; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724420610; x=1755956610;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ib4sJFch59+GHVbbNODHxykPpCp6swAnQhqC1AHvoNM=;
+  b=RvKoed14wIVS7WWbe2RILh/yRicWZ0WL0A0AW+JtRxsAgrgaGMyF9dl4
+   vzwOcfjh1GHgL65wPAffcZDDaZpeUCNol5EOiq0FVE9ISLml8wEtaTrBR
+   CcriEG7eMwWEiI7WR8QIUeYmN0XY4PMFMQMLj+HPvFZYn3QcH9mhRtnvz
+   aKdtqZ1A5Q7I8OmwUaz25InCGlCDFTtmUbxRhdLSSseujcf6yNlOF5U32
+   h2AHepGNGEj5ze+lj/WtaaxyhOGlAymFzbm3FzH2F05QozLXGSoNCraMZ
+   Z3dS9f3AveHvYs6Xx/nUadlBZKP+V/Y7o/eFNUmMblU3VfkGXBzMoAGlw
+   A==;
+X-CSE-ConnectionGUID: BoaZ8bdPTb+OjzvpNWABUw==
+X-CSE-MsgGUID: ZSNoBZc3T76LAXnOXVDy2w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="40352809"
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; 
+   d="scan'208";a="40352809"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 06:43:29 -0700
+X-CSE-ConnectionGUID: S+vBFfveTkGCT/5A9bwGUw==
+X-CSE-MsgGUID: IoLQjP50Q9K73aFOWBIlnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; 
+   d="scan'208";a="84980367"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 06:43:25 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1shUZW-00000000oAz-2JFe;
+	Fri, 23 Aug 2024 16:43:22 +0300
+Date: Fri, 23 Aug 2024 16:43:22 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v5 02/10] regulator: Move OF-specific regulator lookup
+ code to of_regulator.c
+Message-ID: <ZsiR-kizxnvZufgR@smile.fi.intel.com>
+References: <20240822092006.3134096-1-wenst@chromium.org>
+ <20240822092006.3134096-3-wenst@chromium.org>
+ <ZsdBddTDuvNasHNq@smile.fi.intel.com>
+ <CAGXv+5FjwxGQgV6SdLfTeNRYbpcgwkEnCWvaZiWh4rs3bhs-2A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,200 +93,65 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240704161620.1425409-7-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <CAGXv+5FjwxGQgV6SdLfTeNRYbpcgwkEnCWvaZiWh4rs3bhs-2A@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Niklas,
+On Fri, Aug 23, 2024 at 02:49:59PM +0800, Chen-Yu Tsai wrote:
+> On Thu, Aug 22, 2024 at 9:47 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Thu, Aug 22, 2024 at 05:19:55PM +0800, Chen-Yu Tsai wrote:
 
-Thank you for the patch.
+...
 
-On Thu, Jul 04, 2024 at 06:16:20PM +0200, Niklas Söderlund wrote:
-> The usage of the V4M VIN bindings where merged before the bindings where
-
-s/where/were/g
-
-> approved. At that time the family fallback compatible where not part of
-> the bindings, add them.
+> > > +/**
+> > > + * of_get_child_regulator - get a child regulator device node
+> > > + * based on supply name
+> > > + * @parent: Parent device node
+> > > + * @prop_name: Combination regulator supply name and "-supply"
+> > > + *
+> > > + * Traverse all child nodes.
+> > > + * Extract the child regulator device node corresponding to the supply name.
+> > > + * returns the device node corresponding to the regulator if found, else
+> > > + * returns NULL.
+> >
+> > At the same time you may fix kernel-doc warnings (no "Return" section) in these
+> > three (on your wish you may fix others in a separate change, but it's not
+> > related to this series).
 > 
-> Fixes: 2bb78d9fb7c9 ("arm64: dts: renesas: r8a779h0: Add video capture nodes")
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> As you said some other functions are missing it as well, so I'll do a
+> patch separate from this series to fix them all.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+But you need to fix them in this patch series. We do not add patches with known
+issues, which are really easy to fix beforehand.
 
-> ---
-> * Changes since v3
-> - New in v4.
-> ---
->  arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 48 +++++++++++++++--------
->  1 file changed, 32 insertions(+), 16 deletions(-)
+(And below seems you indirectly agrees on that)
+
+> > > + */
+
+...
+
+> > > +/** of_regulator_dev_lookup - lookup a regulator device with device tree only
+> >
+> > Something went wrong with the indentation.
 > 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-> index 8f5763b5f267..b9f49288a115 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-> @@ -945,7 +945,8 @@ msiof5: spi@e6c28000 {
->  		};
->  
->  		vin00: video@e6ef0000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef0000 0 0x1000>;
->  			interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 730>;
-> @@ -973,7 +974,8 @@ vin00isp0: endpoint@0 {
->  		};
->  
->  		vin01: video@e6ef1000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef1000 0 0x1000>;
->  			interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 731>;
-> @@ -1001,7 +1003,8 @@ vin01isp0: endpoint@0 {
->  		};
->  
->  		vin02: video@e6ef2000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef2000 0 0x1000>;
->  			interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 800>;
-> @@ -1029,7 +1032,8 @@ vin02isp0: endpoint@0 {
->  		};
->  
->  		vin03: video@e6ef3000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef3000 0 0x1000>;
->  			interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 801>;
-> @@ -1057,7 +1061,8 @@ vin03isp0: endpoint@0 {
->  		};
->  
->  		vin04: video@e6ef4000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef4000 0 0x1000>;
->  			interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 802>;
-> @@ -1085,7 +1090,8 @@ vin04isp0: endpoint@0 {
->  		};
->  
->  		vin05: video@e6ef5000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef5000 0 0x1000>;
->  			interrupts = <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 803>;
-> @@ -1113,7 +1119,8 @@ vin05isp0: endpoint@0 {
->  		};
->  
->  		vin06: video@e6ef6000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef6000 0 0x1000>;
->  			interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 804>;
-> @@ -1141,7 +1148,8 @@ vin06isp0: endpoint@0 {
->  		};
->  
->  		vin07: video@e6ef7000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef7000 0 0x1000>;
->  			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 805>;
-> @@ -1169,7 +1177,8 @@ vin07isp0: endpoint@0 {
->  		};
->  
->  		vin08: video@e6ef8000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef8000 0 0x1000>;
->  			interrupts = <GIC_SPI 537 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 806>;
-> @@ -1197,7 +1206,8 @@ vin08isp1: endpoint@1 {
->  		};
->  
->  		vin09: video@e6ef9000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6ef9000 0 0x1000>;
->  			interrupts = <GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 807>;
-> @@ -1225,7 +1235,8 @@ vin09isp1: endpoint@1 {
->  		};
->  
->  		vin10: video@e6efa000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6efa000 0 0x1000>;
->  			interrupts = <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 808>;
-> @@ -1253,7 +1264,8 @@ vin10isp1: endpoint@1 {
->  		};
->  
->  		vin11: video@e6efb000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6efb000 0 0x1000>;
->  			interrupts = <GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 809>;
-> @@ -1281,7 +1293,8 @@ vin11isp1: endpoint@1 {
->  		};
->  
->  		vin12: video@e6efc000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6efc000 0 0x1000>;
->  			interrupts = <GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 810>;
-> @@ -1309,7 +1322,8 @@ vin12isp1: endpoint@1 {
->  		};
->  
->  		vin13: video@e6efd000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6efd000 0 0x1000>;
->  			interrupts = <GIC_SPI 542 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 811>;
-> @@ -1337,7 +1351,8 @@ vin13isp1: endpoint@1 {
->  		};
->  
->  		vin14: video@e6efe000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6efe000 0 0x1000>;
->  			interrupts = <GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 812>;
-> @@ -1365,7 +1380,8 @@ vin14isp1: endpoint@1 {
->  		};
->  
->  		vin15: video@e6eff000 {
-> -			compatible = "renesas,vin-r8a779h0";
-> +			compatible = "renesas,vin-r8a779h0",
-> +				     "renesas,rcar-gen4-vin";
->  			reg = <0 0xe6eff000 0 0x1000>;
->  			interrupts = <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&cpg CPG_MOD 813>;
+> Will fix, and also add a "Return" section.
+
+Thank you!
+
+> > > + * @dev: Device pointer for regulator supply lookup.
+> > > + * @supply: Supply name or regulator ID.
+> > > + *
+> > > + * If successful, returns a struct regulator_dev that corresponds to the name
+> > > + * @supply and with the embedded struct device refcount incremented by one.
+> > > + * The refcount must be dropped by calling put_device().
+> > > + * On failure one of the following ERR-PTR-encoded values is returned:
+> > > + * -ENODEV if lookup fails permanently, -EPROBE_DEFER if lookup could succeed
+> > > + * in the future.
+> > > + */
 
 -- 
-Regards,
+With Best Regards,
+Andy Shevchenko
 
-Laurent Pinchart
+
 
