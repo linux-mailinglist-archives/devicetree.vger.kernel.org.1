@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B2395C521
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:06:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7165D95C52F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD583282F93
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:06:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 935F21C21CD4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 786CE558BA;
-	Fri, 23 Aug 2024 06:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F467172F;
+	Fri, 23 Aug 2024 06:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3Y6fe+S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="URLhT2TU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459328493;
-	Fri, 23 Aug 2024 06:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA00357CA6;
+	Fri, 23 Aug 2024 06:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724393183; cv=none; b=WZVaFonfMQcXBoYik48B2AucikmVgRi3VGXOnTT2yep1tU/KLb/h8dGlKUkg63fGexX2JvFDHkvkGAGSj0zceeh9D0qIeDGI4SrlNpm+/gk/L+FL2R8B1tT6qLC3tz7ZMZef6TZ4aU4bN0/annzpQWaP1WOaiDb5LtVIu1VoYB4=
+	t=1724393457; cv=none; b=lM0M/bW+UuC5n0Wg0rOBHKkTkfaOQaop3RoJOyIyRn1lRjmoolJ/2B6K7imVNPGHk6jx1H6QNNDYKLPvcRTyz2db4EYNuw+LP4RbBlKPsQHg8Qz7RufgIeWyrgYhDNRsB92m9lgp9WxT8vByNxrHbVOqUcaqxLJf2jsgbRKVx/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724393183; c=relaxed/simple;
-	bh=jmbLtTkZS/y57ZDd6J/B0tGDIHosHbqAOSgVT8+XvuA=;
+	s=arc-20240116; t=1724393457; c=relaxed/simple;
+	bh=GgTRe1j1dYYnmWj0lPD0688gdnIvxvqvWXPfj37La2Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nTpYowAohdJ2wce2v3/uv7x+Hi06ccpM3YiEQPtRZ1Ks1rQDSfDgkuOeam3hDQP/mKxSyxh9HUzlnUcE7eUcP6KKdnTVCbzKHHHZqZmJWKI8RaGb3ndeJRaavYvWct/efzVcgYFLKS0kXfIDwynfAYsiIc8ecQzhTGrigFcM9vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S3Y6fe+S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47B21C32786;
-	Fri, 23 Aug 2024 06:06:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MTFiXiTSU0ESrAEyuXnY5j/jkmw9tK1UYOmZBQl9Jm00z/e2dXaeu7WMcrXKTKlkClHO20Uner62k2DJWKRx43bbw8yMQ0VhlCVjN0yimUfwq/PjKb0GAQMaENlNr1j/e1G0YHkKfzkrdYMNIEql3k0NwP8tk2Gc94mDxvwz79g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=URLhT2TU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 983EDC32786;
+	Fri, 23 Aug 2024 06:10:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724393182;
-	bh=jmbLtTkZS/y57ZDd6J/B0tGDIHosHbqAOSgVT8+XvuA=;
+	s=k20201202; t=1724393456;
+	bh=GgTRe1j1dYYnmWj0lPD0688gdnIvxvqvWXPfj37La2Y=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S3Y6fe+Sf4IUbcX9ee9QTUF+Tm3+Op8ikmwcnwzW/r/XLzX4GqahNw6Dp+kUBV1Jo
-	 lI747BUr+FeKDn0hmp+UMyrevOxEwiqWSLfb6JtwzIYuE71Pi0f8cOSdwmIc7/gug/
-	 wCdkmhn+yp3unun/b/a88hNtitP7lpLVBoLt1WZJ1IXBnS2GDmmwgH8CPGlBc14xrg
-	 QaJ/PsnBlTxQphz/6GuSHW/aDrpHQuZ9KxdkTrK3mHaGzBHjuAKaDme25VBPKBabxm
-	 23u4+VPoQtRc5mZhPye8oPwqoUchRLfup67PTapGdiy9Jmipg+O7Um6hjylooKyYHP
-	 T1Wxkang8YfMA==
-Message-ID: <0afadefb-ecb1-4ec8-a862-bfa06d171457@kernel.org>
-Date: Fri, 23 Aug 2024 08:06:17 +0200
+	b=URLhT2TUPUuRqTmcvLV4NMkbknqbMg2IZ6eZhzUQAr0ZD4jA05rYkOIV95e8tssro
+	 7fUOJKuJ9aq/ZvDvDyXfglaGJ85gIoFsOyGWMjSglI6Oxnw8Ig4RIu256GbucXx0vb
+	 mpIcumyIiqERaBsASFfkmSCcfmI7tFeIujp0ii8kG69Iwrqh3l1tPkdJP89MUGh4s0
+	 Y+wJALlIfxyt2RnLiXkJkfAK6gcCHFjkIfUWyfBuIvk6OyB5L4/I4bKQGkGx1emPfX
+	 mrUK0WPlSw920vrARz0BbP6Awk0RmH2c9CmwQsW+aEBoOoa5+kqWQgzxi7MCW7ywzw
+	 EmMaa+TdHIaOw==
+Message-ID: <bfd89207-5dd5-4b89-bd54-aa490d34c590@kernel.org>
+Date: Fri, 23 Aug 2024 08:10:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/14] Input: samsung-keypad - use guard notation to
- acquire mutex
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
-References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
- <20240819045813.2154642-7-dmitry.torokhov@gmail.com>
- <e6xkutxnpu7acvm5qfyyces4estm4ihc3rzczqpnxrbrkptdm2@6lwrlssvtt3v>
- <Zsd-aVM6504L_hqi@google.com>
+Subject: Re: [PATCH 1/2] dt-bindings: wireless: wilc1000: Document WILC3000
+ compatible string
+To: Marek Vasut <marex@denx.de>
+Cc: linux-wireless@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240821184356.163816-1-marex@denx.de>
+ <ztc4h7rgsli2jltrdgu5twnma6dbbt3kbbbo3i4eevb3whkqkv@oabtuskiz7km>
+ <8031c3ef-3b16-4200-83aa-0776bdfa8b45@denx.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,40 +111,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Zsd-aVM6504L_hqi@google.com>
+In-Reply-To: <8031c3ef-3b16-4200-83aa-0776bdfa8b45@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/08/2024 20:07, Dmitry Torokhov wrote:
-> On Thu, Aug 22, 2024 at 05:48:33PM +0200, Krzysztof Kozlowski wrote:
->> On Sun, Aug 18, 2024 at 09:58:03PM -0700, Dmitry Torokhov wrote:
->>> Guard notation is more compact and ensures that the mutex will be
->>> released when control leaves the function.
->>>
->>> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
->>> ---
->>>  drivers/input/keyboard/samsung-keypad.c | 8 ++------
->>>  1 file changed, 2 insertions(+), 6 deletions(-)
->>>
+On 23/08/2024 03:38, Marek Vasut wrote:
+> On 8/22/24 10:07 AM, Krzysztof Kozlowski wrote:
+> 
+> Hi,
+> 
+>>> diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+>>> index 2460ccc082371..1bf3496c21e64 100644
+>>> --- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+>>> @@ -16,7 +16,9 @@ description:
+>>>   
+>>>   properties:
+>>>     compatible:
+>>> -    const: microchip,wilc1000
+>>> +    enum:
+>>> +      - microchip,wilc1000
+>>> +      - microchip,wilc3000
 >>
->> You need to include cleanup.h (unless some other patch already did it
->> and I missed it?)
+>> Your driver change suggests device type is fully auto-detectable
 > 
-> Guard for mutexes defined in mutex.h which is pulled in indirectly, and
-
-guard() is not in mutex.h and in general we are including headers for
-the things directly used in the unit.
-
-> cleanup.h is included there.
+> It seems that way, yes.
 > 
-> If we want to list all the headers that we need instead of relying on
+>> , thus
+>> they are compatible.
+> 
+> I _think_ the hardware is internally somewhat different, the WILC1000 is 
+> WiFi-only device and the WILC3000 has some extra Bluetooth part (which 
+> is currently not supported).
+> 
+> Maybe a fallback compatible string would be better here ?
 
-Fixing existing code is another thing. I only propose to add new code
-with the header.
-
-I don't have strong opinion anyway, so:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, that's what I meant by compatibility. 3000 followed by 1000.
 
 Best regards,
 Krzysztof
