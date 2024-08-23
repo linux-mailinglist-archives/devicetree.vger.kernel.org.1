@@ -1,506 +1,271 @@
-Return-Path: <devicetree+bounces-96109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9485295CA69
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB0495CA80
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:32:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAD981C20E2F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:23:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 926031C2165C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEBD165EFC;
-	Fri, 23 Aug 2024 10:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7758D18308E;
+	Fri, 23 Aug 2024 10:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="fyXmXgAB"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="apKd8pYw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2917613AA3F;
-	Fri, 23 Aug 2024 10:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF81183CD8
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 10:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724408629; cv=none; b=AZWAxqUsotinFrwR7HMeGXhLtDWPuguUX4XEI/gjA3RdnQC4eS5/2xwIMt8sZQRRhf6z1WnOkQXsSAQrNuy9Y7qHxN66bMimCONqSZsEZVGP2YjL4se7sGxaKAKWWIJgWwQuXLo7N3adyfAl/WTMp9yh0RmdaOGEVw9lJfaQ/Q0=
+	t=1724409151; cv=none; b=HISFQcg5/nxdw1VHXU+C9wFyETU222wk8GPKmUbCtyY7c5X7jzvUhehlNvffQzLDmCuyw5APg8rR8Lu1Dm6aSaFl20dJkXm2sluauKPYvxj0BMkiXeiknT5hyNNal7YrBF4wVUQVKRYZM8vzwvvJrvkTRTe5xy0I5+5RaxbDhpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724408629; c=relaxed/simple;
-	bh=5w0PuAf2dn+tyeHO5aWFHVFpSW8XfutqJEA69g9uqdc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=lSD5/in0yzUHGBoYYfOM/RzOs8sAeS/cfXlZTT8ITmcZKwS5m3eosIVrv+iDe26YSRT0IkhjcX34yDHRezcchvVHsxYoljsOIVvsI1EMtSQ7J+hKZg1y4bIdDzeRxWONnsJQO2vuZRYfMpa4HhwxMQO3p5XBbHwz1IOfvfYjyU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=fyXmXgAB; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1724408592; x=1725013392; i=wahrenst@gmx.net;
-	bh=oIqtFp6Ae6TJ9QLXtvERW/6PR6LExiVmN9pDVUvAEz0=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=fyXmXgABcnMvOyVxfzX2SjCailLb3/UF0bm05ANMFDSwdaB6qPlEoE7ruPHuWp1e
-	 zVmJ4R3ddss2jx5g4tlEQYLkqcQ7c1QCYAyDLYxnS4HgvP0+GcxtwFLTnffG1OcUS
-	 VmFnbydYZIf0b+kOZ06vUaa6MjNSQEWOKQ0iYHlurWYp5mg+usRnWQQisgJdR8q+z
-	 6mPTawGV/1E22PpWA7eVR61B9W+W7ltsUGuGIFMzEry3qxFvKG2CCJCUEOCywHcGn
-	 IxrybYoilVb5jvzveld+dVpKCWXoPDWUp6V6GFEr7cHw0+X5HYpyP4YYPdW5ktoa5
-	 vdbRT2b/uxFHKejWJg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MOREi-1sTeUL2oRS-00JOWa; Fri, 23
- Aug 2024 12:23:11 +0200
-Message-ID: <015a0dd9-7a13-45b7-971a-19775a6bdd04@gmx.net>
-Date: Fri, 23 Aug 2024 12:23:09 +0200
+	s=arc-20240116; t=1724409151; c=relaxed/simple;
+	bh=IIacz7qfDLLOfGIR7Qsfd8HV7WiOO9Y8+iUqvYoBVfY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JlHwWRTxoDtTNnQOJny0sM/c34zHRjdMQXu3wPerhIC/L90F5oZ/+GFALEpWzMDkzvUNKesY7L4/Zx8yxiZxWpVrPE9GWsrg2M+nmTYPdJfozBbkQBkS8wnzHkld9HA+usZWN3t9lj4AEX1x+PPar4B5yzdYOlm2WC2rKtsvnog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=apKd8pYw; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2f029e9c9cfso22099751fa.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 03:32:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1724409148; x=1725013948; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=msee6vptApu2Z/Zxm5KrwvjqOV+8m1GWJRTDYPaGTQ0=;
+        b=apKd8pYwWmqlUAKBQXt1eoO3jMqCV8VA5HqpRLyFVEjKgMUj+mQiG8dQHZDcd+RihB
+         1YGJkY5E626TJV7+WbBXHY84iBH/osN7GyKtG8TJsdIOPMy+zeszeyqfjsrtyaxFG9Dt
+         P/crhCUsH7/rYaqLJaoNry51EW65kVrUpZAZs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724409148; x=1725013948;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=msee6vptApu2Z/Zxm5KrwvjqOV+8m1GWJRTDYPaGTQ0=;
+        b=U1PQHZo0sBVWLJH1u6zZnUDn5xLCuiCcN+86XeiCnGAaUyd2tKFMt+IgIYuOllUyGX
+         TOq+5S0KsoSLMUY7clHptQByWhhFjAGHPZlUtGRTi8obCv6eVzM1pNsStcrYtXAeqymt
+         pxl4R6YBg9kJs9CyOqhv2r5hEkyeePQYRN+gZJkQ0F4wL1lyc+v/0pqty31ZPl2ShZWR
+         jFvCGOLglY15/7PxjRHtmVOa1vH2vNGcerZItb8Aq5xHTRqYTTXg/kKCP6v8kpN1V9va
+         iSc9QO3wdbIf+B7I5pWKbHSL6JoSDE4k6XZqLHejdNXtweXsN07f8YRa9Qy6rT2mQNzD
+         8awQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIuKHuCKriH5lki8+jrXRY3FcXeJjh6IELiGXa/UFMiMZkC1vLX8Hfo3+g59XjUXHaY65IkwBw6uMt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzyp7EWdbJO2cgAlBUNRH2WawbjhKzULwbR73E6K5dXSrvjKFxM
+	WwjXr8fXmi7GcmvVvMX8ljgT0QaQPiIZD8Ng2Q+LwDBGAjqRKErUs6EpTVqT9Ja7tcpA4VVVknU
+	fMf//7MYByB8HT1Pm0rBwbnCZXTo94kBBZOhI
+X-Google-Smtp-Source: AGHT+IHeN+Mw9mA2FjlysvQEEAUELAjuWivKbkYmYOUv0QR8Nac49Wn18na13i/jZffEieHV1XNO2MlM81/zZrEAaDU=
+X-Received: by 2002:a05:6512:1111:b0:530:e0fd:4a97 with SMTP id
+ 2adb3069b0e04-534387e89d7mr1529511e87.0.1724409147414; Fri, 23 Aug 2024
+ 03:32:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
-To: Andrea della Porta <andrea.porta@suse.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arch@vger.kernel.org, Lee Jones <lee@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
- <98c570cb-c2ca-4816-9ca4-94033f7fb3fb@gmx.net> <ZshZ6yAmyFoiF5qu@apocalypse>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <ZshZ6yAmyFoiF5qu@apocalypse>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20240822092006.3134096-1-wenst@chromium.org> <20240822092006.3134096-9-wenst@chromium.org>
+ <ZsdJOUe44hiGur-s@smile.fi.intel.com>
+In-Reply-To: <ZsdJOUe44hiGur-s@smile.fi.intel.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 23 Aug 2024 18:32:16 +0800
+Message-ID: <CAGXv+5G7h08Pvd24_6LoUB_8w_Cd0RntRSjNdn_FjrRH1ZF5oQ@mail.gmail.com>
+Subject: Re: [PATCH v5 08/10] i2c: of-prober: Add GPIO support
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:QXUuOY/TM0ugscRQoAdiK8sxMBwrqmfjC9t2Lu8KjCCI1nit/4f
- S5AKf2AZcmT0mQ2eEpsex8Do5aEVMDViYj+M/Z1LWkw++OCtw4Qbi83zSwJxq3ecLTGlb2I
- C2C1LH7bHZt7EMNVJFuYPpoW/kL9XCuzQdAIRkrrIOpheFn0gUlXHF/1uxMAVO2fEwDPaPn
- dvBgAESmdSuXRCHD67QpQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:FNtuci7freo=;EhUAmBhEQMhnhHQSvbFdcKOI46o
- rd3gHkc9m4Aykz3PvhW0/4GRy319YUKbqt0Kn07n6jLfwrE380csipSuslKBOP7mI/ZIj/3Tk
- mt1UMdmtPjRtnPAhkoBSH5npB+chR3fGG9U3qfvv0UQt6rZMoUWrFwDQcI77Qs7+ZO9Dr5q5Z
- dVW3fIX1NzQrDzKZqGxwpr5tOougJWW5/OddNIVRbuyBE4rCamekuEVNBxZRq0xyfsIX0C3Kf
- /TLhkF+2E6g3mqFV73v7TxUraSeqsmD6JQsKPJ5B+vie2aCmqIwX5hiSOcClNpWK2wQDLkBQw
- IFZKd5H+s/TRm4oE1L2aF++q4rs8KySJvTCpDhrACo/pwq9qg8aMzseRAE8KMICNetfbrz6Ba
- ioqzZFLdPDDVXhDrWWKGkBVOvJli4mRIVabH2/WYwiln163JThh9tm+VJ0DIsWkMc3n98QjpR
- saXxAGUPG2joDIhMJfdkgdqwn2ZnBpUmgHTqpCFU+6JTvvHDjGxO40jPJxLwqFM1Uw+wGIsLH
- 2PuHiFiPLSBbIJzIfki6v7BbhrJXU00rqdlBaBzuCJMC1m0cIWZQKb1sQDipRXyqS8QbCOldj
- yKNBYFUpLOXK4jMDuCKECkEVBbf20AD0KPvw0PlN7PgtYDLA0rfm1V/JvKjw6VlzqOp2lNJeo
- XaXS2ZN/taqBh0ZpODV2+aHGRbhP9ECukkr6WO2oHP3iZRCcFdpzB2EMsrNG4jmbhpE12pVI7
- 5qdwQJ9XkVGjGJrfPFBpa8jbLI91uVAWWYg9ju24vUJbDu5aR+F6Z3m7TP5sGa8aEDWNNx7bA
- MpoQ3JVHHusKFXXC6qtUV2H8UOhPYLeRq5jM+akIgFBEM=
 
-Hi Andrea,
+On Thu, Aug 22, 2024 at 10:20=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Aug 22, 2024 at 05:20:01PM +0800, Chen-Yu Tsai wrote:
+> > This adds GPIO management to the I2C OF component prober.
+> > Components that the prober intends to probe likely require their
+> > regulator supplies be enabled, and GPIOs be toggled to enable them or
+> > bring them out of reset before they will respond to probe attempts.
+> > regulator support was added in the previous patch.
+> >
+> > Without specific knowledge of each component's resource names or
+> > power sequencing requirements, the prober can only enable the
+> > regulator supplies all at once, and toggle the GPIOs all at once.
+> > Luckily, reset pins tend to be active low, while enable pins tend to
+> > be active high, so setting the raw status of all GPIO pins to high
+> > should work. The wait time before and after resources are enabled
+> > are collected from existing drivers and device trees.
+> >
+> > The prober collects resources from all possible components and enables
+> > them together, instead of enabling resources and probing each component
+> > one by one. The latter approach does not provide any boot time benefits
+> > over simply enabling each component and letting each driver probe
+> > sequentially.
+> >
+> > The prober will also deduplicate the resources, since on a component
+> > swap out or co-layout design, the resources are always the same.
+> > While duplicate regulator supplies won't cause much issue, shared
+> > GPIOs don't work reliably, especially with other drivers. For the
+> > same reason, the prober will release the GPIOs before the successfully
+> > probed component is actually enabled.
+>
+> ...
+>
+> > +     struct fwnode_handle *fwnode =3D of_fwnode_handle(node);
+> > +     struct gpio_descs *gpiods;
+> > +     struct gpio_desc *gpiod;
+> > +     char con[32]; /* 32 is max size of property name */
+>
+> Use 'propname' to be aligned with GPIO library usages.
 
-Am 23.08.24 um 11:44 schrieb Andrea della Porta:
-> Hi Stefan,
->
-> On 18:20 Wed 21 Aug     , Stefan Wahren wrote:
->> Hi Andrea,
->>
->> Am 20.08.24 um 16:36 schrieb Andrea della Porta:
->>> The RaspberryPi RP1 is ia PCI multi function device containing
->>> peripherals ranging from Ethernet to USB controller, I2C, SPI
->>> and others.
->> sorry, i cannot provide you a code review, but just some comments. mult=
-i
->> function device suggests "mfd" subsystem or at least "soc" . I won't
->> recommend misc driver here.
-> It's true that RP1 can be called an MFD but the reason for not placing
-> it in mfd subsystem are twofold:
->
-> - these discussions are quite clear about this matter: please see [1]
->    and [2]
-> - the current driver use no mfd API at all
->
-> This RP1 driver is not currently addressing any aspect of ARM core in th=
-e
-> SoC so I would say it should not stay in drivers/soc / either, as also
-> condifirmed by [2] again and [3] (note that Microchip LAN966x is a very
-> close fit to what we have here on RP1).
-thanks i was aware of these discussions. A pointer to them or at least a
-short statement in the cover letter would be great.
->
->>> Implement a bare minimum driver to operate the RP1, leveraging
->>> actual OF based driver implementations for the on-borad peripherals
->>> by loading a devicetree overlay during driver probe.
->> Can you please explain why this should be a DT overlay? The RP1 is
->> assembled on the Raspberry Pi 5 PCB. DT overlays are typically for loos=
-e
->> connections like displays or HATs. I think a DTSI just for the RP1 woul=
-d
->> fit better and is easier to read.
-> The dtsi solution you proposed is the one adopted downstream. It has its
-> benefits of course, but there's more.
-> With the overlay approach we can achieve more generic and agnostic appro=
-ach
-> to managing this chipset, being that it is a PCI endpoint and could be
-> possibly be reused in other hw implementations. I believe a similar
-> reasoning could be applied to Bootlin's Microchip LAN966x patchset as
-> well, and they also choose to approach the dtb overlay.
-Could please add this point in the commit message. Doesn't introduce
-(maintainence) issues in case U-Boot needs a RP1 driver, too?
-> Plus, a solution that can (althoguh proabbly in teh long run) cope
-> with both DT or ACPI based system has been kindly requested, plase see [=
-4]
-> for details.
-> IMHO the approach proposed from RH et al. of using dtbo for this 'specia=
-l'
-> kind of drivers makes a lot of sense (see [5]).
->
->>> The peripherals are accessed by mapping MMIO registers starting
->>> from PCI BAR1 region.
->>> As a minimum driver, the peripherals will not be added to the
->>> dtbo here, but in following patches.
->>>
->>> Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
->>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
->>> ---
->>>    MAINTAINERS                           |   2 +
->>>    arch/arm64/boot/dts/broadcom/rp1.dtso | 152 ++++++++++++
->>>    drivers/misc/Kconfig                  |   1 +
->>>    drivers/misc/Makefile                 |   1 +
->>>    drivers/misc/rp1/Kconfig              |  20 ++
->>>    drivers/misc/rp1/Makefile             |   3 +
->>>    drivers/misc/rp1/rp1-pci.c            | 333 +++++++++++++++++++++++=
-+++
->>>    drivers/misc/rp1/rp1-pci.dtso         |   8 +
->>>    drivers/pci/quirks.c                  |   1 +
->>>    include/linux/pci_ids.h               |   3 +
->>>    10 files changed, 524 insertions(+)
->>>    create mode 100644 arch/arm64/boot/dts/broadcom/rp1.dtso
->>>    create mode 100644 drivers/misc/rp1/Kconfig
->>>    create mode 100644 drivers/misc/rp1/Makefile
->>>    create mode 100644 drivers/misc/rp1/rp1-pci.c
->>>    create mode 100644 drivers/misc/rp1/rp1-pci.dtso
->>>
->> ...
->>> +
->>> +				rp1_clocks: clocks@c040018000 {
->>> +					compatible =3D "raspberrypi,rp1-clocks";
->>> +					#clock-cells =3D <1>;
->>> +					reg =3D <0xc0 0x40018000 0x0 0x10038>;
->>> +					clocks =3D <&clk_xosc>;
->>> +					clock-names =3D "xosc";
->>> +
->>> +					assigned-clocks =3D <&rp1_clocks RP1_PLL_SYS_CORE>,
->>> +							  <&rp1_clocks RP1_PLL_AUDIO_CORE>,
->>> +							  // RP1_PLL_VIDEO_CORE and dividers are now managed by VEC,DP=
-I drivers
->>> +							  <&rp1_clocks RP1_PLL_SYS>,
->>> +							  <&rp1_clocks RP1_PLL_SYS_SEC>,
->>> +							  <&rp1_clocks RP1_PLL_SYS_PRI_PH>,
->>> +							  <&rp1_clocks RP1_CLK_ETH_TSU>;
->>> +
->>> +					assigned-clock-rates =3D <1000000000>, // RP1_PLL_SYS_CORE
->>> +							       <1536000000>, // RP1_PLL_AUDIO_CORE
->>> +							       <200000000>,  // RP1_PLL_SYS
->>> +							       <125000000>,  // RP1_PLL_SYS_SEC
->>> +							       <100000000>,  // RP1_PLL_SYS_PRI_PH
->>> +							       <50000000>;   // RP1_CLK_ETH_TSU
->>> +				};
->>> +
->>> +				rp1_gpio: pinctrl@c0400d0000 {
->>> +					reg =3D <0xc0 0x400d0000  0x0 0xc000>,
->>> +					      <0xc0 0x400e0000  0x0 0xc000>,
->>> +					      <0xc0 0x400f0000  0x0 0xc000>;
->>> +					compatible =3D "raspberrypi,rp1-gpio";
->>> +					gpio-controller;
->>> +					#gpio-cells =3D <2>;
->>> +					interrupt-controller;
->>> +					#interrupt-cells =3D <2>;
->>> +					interrupts =3D <RP1_INT_IO_BANK0 IRQ_TYPE_LEVEL_HIGH>,
->>> +						     <RP1_INT_IO_BANK1 IRQ_TYPE_LEVEL_HIGH>,
->>> +						     <RP1_INT_IO_BANK2 IRQ_TYPE_LEVEL_HIGH>;
->>> +					gpio-line-names =3D
->>> +						"ID_SDA", // GPIO0
->>> +						"ID_SCL", // GPIO1
->>> +						"GPIO2", // GPIO2
->>> +						"GPIO3", // GPIO3
->>> +						"GPIO4", // GPIO4
->>> +						"GPIO5", // GPIO5
->>> +						"GPIO6", // GPIO6
->>> +						"GPIO7", // GPIO7
->>> +						"GPIO8", // GPIO8
->>> +						"GPIO9", // GPIO9
->>> +						"GPIO10", // GPIO10
->>> +						"GPIO11", // GPIO11
->>> +						"GPIO12", // GPIO12
->>> +						"GPIO13", // GPIO13
->>> +						"GPIO14", // GPIO14
->>> +						"GPIO15", // GPIO15
->>> +						"GPIO16", // GPIO16
->>> +						"GPIO17", // GPIO17
->>> +						"GPIO18", // GPIO18
->>> +						"GPIO19", // GPIO19
->>> +						"GPIO20", // GPIO20
->>> +						"GPIO21", // GPIO21
->>> +						"GPIO22", // GPIO22
->>> +						"GPIO23", // GPIO23
->>> +						"GPIO24", // GPIO24
->>> +						"GPIO25", // GPIO25
->>> +						"GPIO26", // GPIO26
->>> +						"GPIO27", // GPIO27
->>> +						"PCIE_RP1_WAKE", // GPIO28
->>> +						"FAN_TACH", // GPIO29
->>> +						"HOST_SDA", // GPIO30
->>> +						"HOST_SCL", // GPIO31
->>> +						"ETH_RST_N", // GPIO32
->>> +						"", // GPIO33
->>> +						"CD0_IO0_MICCLK", // GPIO34
->>> +						"CD0_IO0_MICDAT0", // GPIO35
->>> +						"RP1_PCIE_CLKREQ_N", // GPIO36
->>> +						"", // GPIO37
->>> +						"CD0_SDA", // GPIO38
->>> +						"CD0_SCL", // GPIO39
->>> +						"CD1_SDA", // GPIO40
->>> +						"CD1_SCL", // GPIO41
->>> +						"USB_VBUS_EN", // GPIO42
->>> +						"USB_OC_N", // GPIO43
->>> +						"RP1_STAT_LED", // GPIO44
->>> +						"FAN_PWM", // GPIO45
->>> +						"CD1_IO0_MICCLK", // GPIO46
->>> +						"2712_WAKE", // GPIO47
->>> +						"CD1_IO1_MICDAT1", // GPIO48
->>> +						"EN_MAX_USB_CUR", // GPIO49
->>> +						"", // GPIO50
->>> +						"", // GPIO51
->>> +						"", // GPIO52
->>> +						""; // GPIO53
->> GPIO line names are board specific, so this should go to the Raspberry
->> Pi 5 file.
-> Could we instead just name them with generic GPIO'N' where N is the numb=
-er
-> of the gpio? Much like many of that pins already are... in this way we
-> don't add a dependency in the board dts to the rp1_gpio node, which is n=
-ot
-> even there when the main dts is parsed at boot, since the dtbo will be
-> added only on PCI enumeration of the RP1 device.
-I think we should avoid user space incompatibilities with the vendor tree.
-> Or even better: since we don't explicitly use the gpio names to address
-> them (e.g. phy-reset-gpios in rp1_eth node is addressing the ETH_RST_N
-> gpio by number), can we just get rid of the gpio-line-names property?
-> Also Bootlin's Microchip gpio node seems to avoid naming them...
-As i said above the gpio lines are for user space, honestly nobody likes
-to go to cryptic interfaces of gpiochips and gpio numbers.
+Ack.
 
-Maybe ETH_RST_N isn't good example because this not interesting from
-user space. For example RP1_STAT_LED is a better one. Nobody can predict
-the future use cases of the RP1 and its pins. So i think we should have
-the flexibilty to specify the GPIOs on the board level for user
-friendliness.
+> > +     char *con_id =3D NULL;
+> > +     size_t new_size;
+> > +     int len;
+>
+> ...
+>
+> > +     if (len >=3D sizeof(con) - 1) {
+>
+> This can be transformed to check the returned value from strscpy().
 
-Isn't it possible to specify almost empty rp1 node with the gpio line
-names for the RPi 5 and apply the rp1 overlay on top?
->
->>> +				};
->>> +			};
->>> +		};
->>> +	};
->>> +};
->>> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
->>> index 41c3d2821a78..02405209e6c4 100644
->>> --- a/drivers/misc/Kconfig
->>> +++ b/drivers/misc/Kconfig
->>> @@ -618,4 +618,5 @@ source "drivers/misc/uacce/Kconfig"
->>>    source "drivers/misc/pvpanic/Kconfig"
->>>    source "drivers/misc/mchp_pci1xxxx/Kconfig"
->>>    source "drivers/misc/keba/Kconfig"
->>> +source "drivers/misc/rp1/Kconfig"
->>>    endmenu
->>> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
->>> index c2f990862d2b..84bfa866fbee 100644
->>> --- a/drivers/misc/Makefile
->>> +++ b/drivers/misc/Makefile
->>> @@ -71,3 +71,4 @@ obj-$(CONFIG_TPS6594_PFSM)	+=3D tps6594-pfsm.o
->>>    obj-$(CONFIG_NSM)		+=3D nsm.o
->>>    obj-$(CONFIG_MARVELL_CN10K_DPI)	+=3D mrvl_cn10k_dpi.o
->>>    obj-y				+=3D keba/
->>> +obj-$(CONFIG_MISC_RP1)		+=3D rp1/
->>> diff --git a/drivers/misc/rp1/Kconfig b/drivers/misc/rp1/Kconfig
->>> new file mode 100644
->>> index 000000000000..050417ee09ae
->>> --- /dev/null
->>> +++ b/drivers/misc/rp1/Kconfig
->>> @@ -0,0 +1,20 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +#
->>> +# RaspberryPi RP1 misc device
->>> +#
->>> +
->>> +config MISC_RP1
->>> +        tristate "RaspberryPi RP1 PCIe support"
->>> +        depends on PCI && PCI_QUIRKS
->>> +        select OF
->>> +        select OF_OVERLAY
->>> +        select IRQ_DOMAIN
->>> +        select PCI_DYNAMIC_OF_NODES
->>> +        help
->>> +          Support for the RP1 peripheral chip found on Raspberry Pi 5=
- board.
->>> +          This device supports several sub-devices including e.g. Eth=
-ernet controller,
->>> +          USB controller, I2C, SPI and UART.
->>> +          The driver is responsible for enabling the DT node once the=
- PCIe endpoint
->>> +          has been configured, and handling interrupts.
->>> +          This driver uses an overlay to load other drivers to suppor=
-t for RP1
->>> +          internal sub-devices.
->>> diff --git a/drivers/misc/rp1/Makefile b/drivers/misc/rp1/Makefile
->>> new file mode 100644
->>> index 000000000000..e83854b4ed2c
->>> --- /dev/null
->>> +++ b/drivers/misc/rp1/Makefile
->>> @@ -0,0 +1,3 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +rp1-pci-objs			:=3D rp1-pci.o rp1-pci.dtbo.o
->>> +obj-$(CONFIG_MISC_RP1)		+=3D rp1-pci.o
->>> diff --git a/drivers/misc/rp1/rp1-pci.c b/drivers/misc/rp1/rp1-pci.c
->>> new file mode 100644
->>> index 000000000000..a6093ba7e19a
->>> --- /dev/null
->>> +++ b/drivers/misc/rp1/rp1-pci.c
->>> @@ -0,0 +1,333 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2018-22 Raspberry Pi Ltd.
->>> + * All rights reserved.
->>> + */
->>> +
->>> +#include <linux/clk.h>
->>> +#include <linux/clkdev.h>
->>> +#include <linux/clk-provider.h>
->>> +#include <linux/err.h>
->>> +#include <linux/interrupt.h>
->>> +#include <linux/irq.h>
->>> +#include <linux/irqchip/chained_irq.h>
->>> +#include <linux/irqdomain.h>
->>> +#include <linux/module.h>
->>> +#include <linux/msi.h>
->>> +#include <linux/of_platform.h>
->>> +#include <linux/pci.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/reset.h>
->>> +
->>> +#include <dt-bindings/misc/rp1.h>
->>> +
->>> +#define RP1_B0_CHIP_ID		0x10001927
->>> +#define RP1_C0_CHIP_ID		0x20001927
->>> +
->>> +#define RP1_PLATFORM_ASIC	BIT(1)
->>> +#define RP1_PLATFORM_FPGA	BIT(0)
->>> +
->>> +#define RP1_DRIVER_NAME		"rp1"
->>> +
->>> +#define RP1_ACTUAL_IRQS		RP1_INT_END
->>> +#define RP1_IRQS		RP1_ACTUAL_IRQS
->>> +#define RP1_HW_IRQ_MASK		GENMASK(5, 0)
->>> +
->>> +#define RP1_SYSCLK_RATE		200000000
->>> +#define RP1_SYSCLK_FPGA_RATE	60000000
->>> +
->>> +enum {
->>> +	SYSINFO_CHIP_ID_OFFSET	=3D 0,
->>> +	SYSINFO_PLATFORM_OFFSET	=3D 4,
->>> +};
->>> +
->>> +#define REG_SET			0x800
->>> +#define REG_CLR			0xc00
->>> +
->>> +/* MSIX CFG registers start at 0x8 */
->>> +#define MSIX_CFG(x) (0x8 + (4 * (x)))
->>> +
->>> +#define MSIX_CFG_IACK_EN        BIT(3)
->>> +#define MSIX_CFG_IACK           BIT(2)
->>> +#define MSIX_CFG_TEST           BIT(1)
->>> +#define MSIX_CFG_ENABLE         BIT(0)
->>> +
->>> +#define INTSTATL		0x108
->>> +#define INTSTATH		0x10c
->>> +
->>> +extern char __dtbo_rp1_pci_begin[];
->>> +extern char __dtbo_rp1_pci_end[];
->>> +
->>> +struct rp1_dev {
->>> +	struct pci_dev *pdev;
->>> +	struct device *dev;
->>> +	struct clk *sys_clk;
->>> +	struct irq_domain *domain;
->>> +	struct irq_data *pcie_irqds[64];
->>> +	void __iomem *bar1;
->>> +	int ovcs_id;
->>> +	bool level_triggered_irq[RP1_ACTUAL_IRQS];
->>> +};
->>> +
->>> +
->> ...
->>> +
->>> +static const struct pci_device_id dev_id_table[] =3D {
->>> +	{ PCI_DEVICE(PCI_VENDOR_ID_RPI, PCI_DEVICE_ID_RP1_C0), },
->>> +	{ 0, }
->>> +};
->>> +
->>> +static struct pci_driver rp1_driver =3D {
->>> +	.name		=3D RP1_DRIVER_NAME,
->>> +	.id_table	=3D dev_id_table,
->>> +	.probe		=3D rp1_probe,
->>> +	.remove		=3D rp1_remove,
->>> +};
->>> +
->>> +module_pci_driver(rp1_driver);
->>> +
->>> +MODULE_AUTHOR("Phil Elwell <phil@raspberrypi.com>");
->> Module author & Copyright doesn't seem to match with this patch author.
->> Please clarify/fix
-> My intention here is that, even if the code has been heavily modified by=
- me,
-> the core original code is still there so I just wanted to tribute it to =
-the
-> original author.
-> I'll synchronize this with RaspberryPi guys and coem up with a unified s=
-olution.
-That would be nice to mention in the commit message and add your copyright=
-.
-> Just in case: would multiple MODULE_AUTHOR entries (one with my name and=
- one
-> with original authors name) be accepetd?
-Sure
+Ack.
 
-Best regards
+> > +             pr_err("%pOF: length of GPIO name \"%s\" exceeds current =
+limit\n",
+> > +                    node, prop->name);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     if (len > 0) {
+> > +             strscpy(con, prop->name, len + 1);
 >
-> Many thanks,
-> Andrea
->
-> References:
->
-> - [1]: https://lore.kernel.org/all/20240612140208.GC1504919@google.com/
-> - [2]: https://lore.kernel.org/all/83f7fa09-d0e6-4f36-a27d-cee08979be2a@=
-app.fastmail.com/
-> - [3]: https://lore.kernel.org/all/2024081356-mutable-everyday-6f9d@greg=
-kh/
-> - [4]: https://lore.kernel.org/all/ba8cdf39-3ba3-4abc-98f5-d394d6867f95@=
-gmx.net/
-> - [5]: https://lpc.events/event/17/contributions/1421/attachments/1337/2=
-680/LPC2023%20Non-discoverable%20devices%20in%20PCI.pdf
+> The correct (robust) call is with destination size. Which means here that=
+ you
+> may use 2-argument strscpy().
 
+Ack.
+
+> > +             con_id =3D con;
+> > +     }
+>
+> ...
+>
+> > +     if (!data->gpiods)
+> > +             return 0;
+>
+> If it comes a new code (something else besides GPIOs and regulators) this=
+ will be a (small) impediment. Better to have a helper for each case and do
+>
+>         ret =3D ..._gpiods();
+>         if (ret)
+>                 ...
+>
+> Same for regulators and anything else in the future, if any.
+
+I'm not sure I follow. Do you mean wrap each individual type in a wrapper
+and call those here, like the following?
+
+    i2c_of_probe_enable_res(...)
+    {
+        ret =3D i2c_of_probe_enable_regulators(...)
+        if (ret)
+              return ret;
+
+        ret =3D i2c_of_probe_enable_gpios(...)
+        if (ret)
+              goto error_disable_regulators;
+
+        ...
+    }
+
+> > +             /*
+> > +              * reset GPIOs normally have opposite polarity compared t=
+o
+>
+> "reset"
+>
+> > +              * enable GPIOs. Instead of parsing the flags again, simp=
+ly
+>
+> "enable"
+>
+> > +              * set the raw value to high.
+>
+> This is quite a fragile assumption. Yes, it would work in 98% cases, but =
+will
+> break if it's not true somewhere else.
+
+Well, this seems to be the de facto standard. Or it would have to remember
+what each GPIO descriptor's name is, and try to classify those into either
+"enable" or "reset", and set their respective logical values to 1 or 0.
+And then you run into a peripheral with a broken binding that has its
+"reset" GPIO inverted, i.e. it's driver behavior needs to follow the
+"enable" GPIO style. The class of devices this prober targets are
+consumer electronics (laptops, tablets, phones) that at least have gone
+through some component selection where the options won't have conflicting
+requirements.
+
+And if the polarities of the possible components don't line up, then this
+probe structure can't really do anything. One would need something that
+power sequences each component separately and probes it. I would really
+like to avoid that if possible, as it makes the boot time (to peripheral
+available) dependent on which component you have and how far down the
+list it is. We have Chromebooks that have 4 touchscreen components
+introduced over the years. In that case something more like Doug's
+original proposal would work better: something that forces mutual
+exclusivity among a class of devices.
+
+> > +              */
+>
+> ...
+>
+> > +     /* largest post-reset-deassert delay seen in tree for Elan I2C HI=
+D */
+> > +     msleep(300);
+>
+> Same Q, how do you monitor _all_ the drivers?
+
+Discussion in the previous patch.
+
+> ...
+>
+> > +disable_gpios:
+> > +     for (gpio_i--; gpio_i >=3D 0; gpio_i--)
+> > +             gpiod_set_raw_value_cansleep(data->gpiods->desc[gpio_i], =
+0);
+>
+> Can't you call the _array() variant here?
+
+I thought that without |struct gpio_array| the _array() variant wouldn't
+help, i.e. it would still be a loop internally. Looks like I was wrong.
+
+> ...
+>
+> > -     dev_dbg(dev, "Resources: # of regulator supplies =3D %d\n", probe=
+_data.regulators_num);
+> > +     dev_dbg(dev, "Resources: # of GPIOs =3D %d, # of regulator suppli=
+es =3D %d\n",
+> > +             probe_data.gpiods ? probe_data.gpiods->ndescs : 0,
+> > +             probe_data.regulators_num);
+>
+> I would issue one message per class of the devices (GPIOs, regulators, ..=
+.)
+
+Ack.
+
+
+Thank you for the review.
+ChenYu
 
