@@ -1,115 +1,113 @@
-Return-Path: <devicetree+bounces-96092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9302595C916
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:19:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C4095C91D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50C31283A2E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:19:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23E3A1C22495
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E26D14B97A;
-	Fri, 23 Aug 2024 09:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hwizPeTb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D12314A088;
+	Fri, 23 Aug 2024 09:20:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB60714A088;
-	Fri, 23 Aug 2024 09:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3A713D2A4;
+	Fri, 23 Aug 2024 09:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724404788; cv=none; b=uhfDtAH8EUS1K0sQuEvTTPQ1Q771jr3T/4yIPo0/yerj/YWZe3C+tu8bi8CpG0fwuNsmvNpPVSybYxDEDwJaWSY/C26aJvjkJ25xdPrHQX36f2G6b0n8HL//Rp4jr0oMOXnq3UpQC305pMAZx/RkedXlOBN+XtnIoLkEVOOjacA=
+	t=1724404854; cv=none; b=B0m7ffl8cYPIBpSyBHSScqTMlnNfkSprD+mJkRbFKnwq6WQ+vS5UbZ5ulsNS86FnX1HLa1GOdkLzZElzOm+07DFPoTcDtJPi+Gwn4EFc2MuzAoWqQyeQEThVLtmx3xuO7kfZa2CDIChP3JlUPJvt1VVXFp/tsb/ba/wUzYC4KC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724404788; c=relaxed/simple;
-	bh=4xDHigoIyATc3IDZe3/YKW1ddkaLez4W2M1ZcQdYvcQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NI5larmB3LgRcS6ErW9AFqD7j85am5wYusnNsVIXXA8ie+cAgv9huQ0TkIV+XyXTwR50VhcG5hWWvaqDomfqXoDXL9mE1SojAvjUm5pLKjxljHxg7tn7ibsrPdESUWpSH1bnSA8rEj8ta3zRLEC53FgtdwFuvfRMauCcjTVuRX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hwizPeTb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 76741C4AF12;
-	Fri, 23 Aug 2024 09:19:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724404787;
-	bh=4xDHigoIyATc3IDZe3/YKW1ddkaLez4W2M1ZcQdYvcQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=hwizPeTbbiP+l8mb31tumqmYjeb6ictmuKc8+kQFeowO5Vp4Wbh9Ukh/dVUjrS87w
-	 R+rxyAusVZXYw2EmOEaoqdTeFeLrOr+UEMn3EwFfTGqel28dUSGUsM2KSlaL8oN43M
-	 VjiKpCb8GkRd13YitkpPFZ5K3yGjWFF6S8zxF/+FOw89JfLuOaTj1ksCI2uRlMn1zA
-	 RR6aj5tccTVkSd/bcH+JJc2t1yPg7w8zDUYF08TyJ+JKjCYlylXZtbANbBgm066wDJ
-	 wrlBtToSOmxUMITCHL1sCjeWyPqXIvrqTlHcXrKOgWTbFVvUt6jFJ8vQrcKqHV6CIE
-	 yhF8HT+episAQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B003C5472C;
-	Fri, 23 Aug 2024 09:19:47 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 23 Aug 2024 17:19:46 +0800
-Subject: [PATCH 3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
+	s=arc-20240116; t=1724404854; c=relaxed/simple;
+	bh=xFtq7QeEwgD2qvok2vQnG2iAprUceZxWken4WChJ6Ps=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KLisMnxBoyEekaFm6iZdHfo++Y/9Vx7W94nPRpjqoyDCL0uISHVUkZAdyLgcNum1AS6pI/+Af/dSUgYIwe2uhjJb5oT9/KadPmr7V7/n9uKoyh9w50jVY5BgCOOis8M5Kt5cnY58c1O9fpof4MFgbJeqAbzP1t2x2z5a5yLxjHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-699ac6dbf24so17404377b3.3;
+        Fri, 23 Aug 2024 02:20:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724404851; x=1725009651;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j2ScnV+wwS+7I+lqBK9JTv8VTMQNtsosc0DpVVDpiq4=;
+        b=EYIGmitqOeuv3pmnxCGUd+gUXrxDEtHy2dgEJ1cL+PutRL+FwXS60qgwafERm2DPkx
+         r8bjFnHUsXx3eMd+o+3PnV61/Y9B+jXjXbXb0gB/z75kuttbhOt9LxLAissmu3DSFOOk
+         t8dale5YVczMTD341xKyQeKjLRCUkf+RJKbh82RuOBzDpRTGnyaJWWFeiVmPUyGEoSMa
+         tPbiTV2c1NiC2mfUJzcfXRzczPOyK4loAy4fo1rst76R+34qlby+k5z1y6E8sVFmsozQ
+         IJDojNLGxAddbXRkRkSDt1ttDnJrlnfnuYsKFFLVCZvMFuVtjpu11pzbRql0T2kzNwLR
+         /Gpg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/Yde+Cd4zqbtNMevke4ldcEctoRxeHkRkGX3kYXMg/hp+vGZCG70aAsGq+7a5wWvW/GmJgAQUVKMLsKiAAUxQhlU=@vger.kernel.org, AJvYcCX6Y5xGvgYo3jgiZI8Ondwm91MjF1w/l4EFW7Za4eBAflIZsoP4CiJ/Om+msealwCeTmW96j9BNP7BD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKNQd/2nEGiosRU8MT6RJlpKsFZuLJuQUd3M5Dq2lqKcwDT0ey
+	BchIfnVgaQgJvknAoZ8lPcc/tg+GYa137MTvgfWKGM+x3yC8sN4TLnhl9MPU
+X-Google-Smtp-Source: AGHT+IHgwFvMeba61OBSXYVbJS/23a5xRWtjYFFHVM99YWM1etMPtCI4B6BR8vlqXIS6SSX5EluJ5Q==
+X-Received: by 2002:a05:690c:2889:b0:6ad:feb0:e6c9 with SMTP id 00721157ae682-6c625f1e713mr14647467b3.23.1724404851218;
+        Fri, 23 Aug 2024 02:20:51 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c39e50179bsm4861977b3.138.2024.08.23.02.20.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Aug 2024 02:20:50 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6c1ed19b25fso15686307b3.2;
+        Fri, 23 Aug 2024 02:20:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXKZOuzDLc0PmN1Hl4RJTHLotFtEPEWcE8qo0W9WHBTxz/a+yZeVzssAnTlrnoXrr8anRklhwSudrNbMG4hw6tq0DU=@vger.kernel.org, AJvYcCXePjik/0ufE4Ablmpseo5szZlXxMmzsuLxFTiMp+5/QuEixazZVCbm/2fXWqAMHwegroDDlnl3Q2/f@vger.kernel.org
+X-Received: by 2002:a05:690c:2f05:b0:62c:dcb2:a75b with SMTP id
+ 00721157ae682-6c62943b023mr15447867b3.38.1724404849962; Fri, 23 Aug 2024
+ 02:20:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240823-rtc-v1-3-6f70381da283@amlogic.com>
-References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
-In-Reply-To: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724404784; l=878;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=kKfAM48i5NM35z09vCTUkBfuWRf4o7vOPs0ZFkbUpAc=;
- b=oEyXPyxBt9+Kn3pBRu72Bhb7+F7ejh4pwpgFy4LjcjGyHpZpH3LLZti0ow50n/x3xKQjuP1Jc
- oluZXV1U07tDHuIwUCT1eUeBl0YDZJqQrfw3ZPRm8rz1oGwHajfr66y
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+References: <20240805131709.101679-1-biju.das.jz@bp.renesas.com> <20240805131709.101679-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240805131709.101679-2-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 23 Aug 2024 11:20:38 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWVRC51Kmcw53fvDshST2aV6DTAy+sWANGuoyjBx8-8_A@mail.gmail.com>
+Message-ID: <CAMuHMdWVRC51Kmcw53fvDshST2aV6DTAy+sWANGuoyjBx8-8_A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: renesas: r9a07g043u: Add fcpvd node
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Yiting Deng <yiting.deng@amlogic.com>
+On Mon, Aug 5, 2024 at 3:17=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
+> wrote:
+> Add fcpvd node to RZ/G2UL SoC DTSI.
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v2->v3:
+>  * Reordered the patch as vspd needs fcpvd handle, so added fcpvd node
+>    first
+>  * Added Rb tag from Laurent.
 
-Add Amlogic RTC entry to MAINTAINERS to clarify the maintainers
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.12.
 
-Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 42decde38320..672290dddaaa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2481,6 +2481,14 @@ F:	drivers/irqchip/irq-mvebu-*
- F:	drivers/pinctrl/mvebu/
- F:	drivers/rtc/rtc-armada38x.c
- 
-+ARM/Amlogic RTC Driver
-+M:	Yiting Deng <yiting.deng@amlogic.com>
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
-+F:	drivers/rtc/rtc-amlogic.c
-+
- ARM/Mediatek RTC DRIVER
- M:	Eddie Huang <eddie.huang@mediatek.com>
- M:	Sean Wang <sean.wang@mediatek.com>
+                        Geert
 
--- 
-2.37.1
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
