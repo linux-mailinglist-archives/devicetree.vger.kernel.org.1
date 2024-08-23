@@ -1,194 +1,117 @@
-Return-Path: <devicetree+bounces-95993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBAF395C576
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:28:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17C895C5B3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:43:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80BFA1F224A5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:28:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A9A81F23F93
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6F374BF8;
-	Fri, 23 Aug 2024 06:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771AE80C02;
+	Fri, 23 Aug 2024 06:43:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="FxtpdeRA";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Qnw9Ikln"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qtn2tGBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0E93F9F9;
-	Fri, 23 Aug 2024 06:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD4E47A60;
+	Fri, 23 Aug 2024 06:43:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724394498; cv=none; b=e+YcKXKeWbmt+7dmhAAINsAbqEAPmIXXi/+vXenDfOL//Js1vNdJLaIVWeQPwacS5zCjJkXuiake0GLo/dRe7f7pNbBiVYDidZMX1+GY6iCHEkmVxPDnss0OgdeXTf/YKWU4cuUjpqmYmdUv1yT+HfTn4r7Eqx2zQHSXK6LCv3g=
+	t=1724395412; cv=none; b=A0OEw23zxNH1gNeerC6ykENAMbEV+wQvi1JWTJt8Qq49oyKkIcDCK2feCMBzub2xGTM/cVAkZ1MW0qaPBfuCopSdE5/gINfEHY/2ixWXfDHMa3cNOkweVzZ4tyYvztnjo9FYyHErPwgbSwmxuZTUuHDR9+O9Y1YdpAfjl5R83Hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724394498; c=relaxed/simple;
-	bh=lA9bKhtjUQMECgS6x1OcRtqEQn4zIHoANXSOuPPLqcU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kzt0B9v2PRqXqP6Ff4ppF3qB4ro0Gux/eOgjkgK7IUnqoV3/takDKyT+zce/jfRFWSnKQ897dxNb8J+1PgbjVOR4UMfBatEuc+icALof8x2waybaghGjm3Hh2f5x2aRnrOtOlk1BKm5zYfx4PcPCqBgPU867CCyaFVJC8OITk4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=FxtpdeRA; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Qnw9Ikln reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1724395412; c=relaxed/simple;
+	bh=1sJ5+FOd+4XmIQMm4djzaZijr+Y+QcP7+2Ob1OpEWG8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hI1n8YbnVGNvSyl7ECwXj2lEKi7HM0DkrZLzp2vB7tLwD6EgAlqU1MqqM1WkZuUQJ/PpUZiFfRLPAzQ1DGLJNSRKRIe2YHP/cSjB6dR2byRAREUfklqoxnqm9YTEG0kNrLkIm+Sx1cPy2CcOzZtToSOq6ChlXRqturMOh7NQlW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qtn2tGBr; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-201fae21398so12699055ad.1;
+        Thu, 22 Aug 2024 23:43:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1724394495; x=1755930495;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Xbast0cN6Jy/gxT6Fnxt08kJvl3a05tYYkEiG/y3n8M=;
-  b=FxtpdeRAGQLxdKXEBISJN78XPvjBKSrsDB+jndvjZ43YSD+qcyAs9ryO
-   CH0IUJVaU6eSAb2jthh2P6wLo6mCmx4MOj9jhr/YkQb1q9nxOGDPlTxoC
-   0i7xAERN27XWuf5qLzq5F83iWPvWSrEPa++E+sxOt/3rBZDYsdFdOFLpl
-   ohZIYICSZbwYgpGLEbCQMtzlHQ4FNR72rcea0zUsrW6bXrWRFOMxnW7ZF
-   hluKh+woGeqT+Ejp/BYFvlWIdpRA+jDCTMqmWttA6OXDqnBYpky3fpiSF
-   Jz6ZXGFUQjHWKP3MOyhUDE29Ml2mGI9cU49LCjZoS6J7ipVQtfZFpGAA1
-   A==;
-X-CSE-ConnectionGUID: QN9sJb91SxGvOdTBMTyRbA==
-X-CSE-MsgGUID: xYziBBf3T7yxRojJJkYtUA==
-X-IronPort-AV: E=Sophos;i="6.10,169,1719871200"; 
-   d="scan'208";a="38551070"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 23 Aug 2024 08:28:07 +0200
-X-CheckPoint: {66C82BF7-A-6568578B-E2E34638}
-X-MAIL-CPID: 18533A58E4AB3FE89540CAEF9C99C5D7_3
-X-Control-Analysis: str=0001.0A782F1E.66C82BF7.007B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AB1651695DA;
-	Fri, 23 Aug 2024 08:28:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1724394482;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Xbast0cN6Jy/gxT6Fnxt08kJvl3a05tYYkEiG/y3n8M=;
-	b=Qnw9IklnrgLnz06bCXzMx5lQubSVpPYNb0E6lk7e5zpE5kcA3P7WbUs1852x+Bo/cdNv6G
-	Ux7suOlzV2I0Swp/ojdv18Q3fs9H+fJUMfSqFvMQMZO1c5veAubxzae5+L+xEpl9PBUrtT
-	a9xFqWQljZNr+Tm/xOnt0fbVuo4w7DHIPd1bJ6KJyi4jx1XBdd1GwYFu1bN5c27jURun+N
-	ucRKj0zhU7ZAlLlOwwyAnQD5mrThfDJhoN3KxqDL8L8uuvO4k/xGARwZ4JOyK0Xf8ZvDId
-	OE4hkdKOHVaBP58SwLFM1jkw+23prAAJW93M/j77DrD0jKxlfd07XDr/H1lepQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
-Subject: Re: [PATCH v2] arm64: dts: imx8mp-evk: Add native HDMI output
-Date: Fri, 23 Aug 2024 08:28:00 +0200
-Message-ID: <3242009.5fSG56mABF@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240823021257.1067054-1-victor.liu@nxp.com>
-References: <20240823021257.1067054-1-victor.liu@nxp.com>
+        d=gmail.com; s=20230601; t=1724395409; x=1725000209; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0LIGiCqAT5XD49+SAqkLUK5mOjqO4w1JHNemNZLGIEM=;
+        b=Qtn2tGBrF73eZlZ7NIGSZXpvYFTQA2EiVv97RErkd4DrIMyRmrCMKl/VWaJ6tc8t+a
+         Kaje55C5hadTGG7nh9LlMJnGDvaAMfHC5upN4fCALZ5/bd23buDOGOL2wRUVC4iUbohJ
+         6ISV1vg1gT7CyV/oxKzuNgNLqtpJwgvfXg4wHuTcM2rBtJL/V+1Mak6o7T5Jr1QxgEMD
+         4oA7hiCB8yuBws5LZKb7DgBuu2whWsmiTSlzzB1RlPrYUGcwsMrDT80pZpha3LrEsnZ3
+         h7P0scdQ0RAaEqgSCkGRRcwiH/GVqdSJUstF8e72yWmpWrE7zC9NgtdAVpVvmCfOb/U0
+         Zu1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724395409; x=1725000209;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0LIGiCqAT5XD49+SAqkLUK5mOjqO4w1JHNemNZLGIEM=;
+        b=MClnYYQdu3YzN18eRRcaqkEqgfTNyW8keOfA45eZX/BhxSE/1UnOnjYExY3rn8En56
+         mgyCW72NTTzoJyXyIK2uE1IsZJR6JFe+3f9SmxUXC/mjP9yYdz7+x7K8nbIkV/B+LOFo
+         cCZJ8HvvUXi33ZUEPtVerGi4sVqjznPgTVJuVXQ24izIumup0ThnmMjf6UXpUu+DhiFP
+         GbDhYKimVYB+1EmEvziFtqpIBN0kW/b1jZ1NvjqLxow2iIOtQxA0MvqKlAxOFvic6262
+         LSu6krhFadQYsmB5zR2Awks1wJVtoWejqfL/Wl6BuOr7Mt69vqb/5iFZ+HJNt6n/LTb7
+         6R6w==
+X-Forwarded-Encrypted: i=1; AJvYcCUj4Mr6HjEzvi+GYYjwpN9F6FT+YT5kqZ+UObq/tpqPE8VAhTkE2KcusnIKHiLCS5kpfKu1APSEboiyq9Q=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkHk5g2XjlloYzrBu96uaJolUF4kWl5OZ+PlNm0Vuf5qqpRzOd
+	6DPECLDxv5CzECXEggGDBsfth/t2RLc9iSxgGTCGzJW+5jum5LzqrZ993g==
+X-Google-Smtp-Source: AGHT+IFtonOLbg2TSwnqYkGI74mkskP4aGUv7SwsG/OQ5GZrOBat4xRdE/gdHqCe0HJmkGAqBe7ESQ==
+X-Received: by 2002:a17:902:e54e:b0:201:eb57:dfaa with SMTP id d9443c01a7336-2039e4d86d7mr14245815ad.17.1724395409209;
+        Thu, 22 Aug 2024 23:43:29 -0700 (PDT)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20385565468sm22339945ad.11.2024.08.22.23.43.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2024 23:43:28 -0700 (PDT)
+From: Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH 0/2] ARM: dts: aspeed: catalina: update IOEXP nodes
+Date: Fri, 23 Aug 2024 14:41:09 +0800
+Message-Id: <20240823-catalina-ioexp-update-v1-0-4bfd8dad819c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAUvyGYC/x3MQQqAIBBA0avErBsojaiuEi2GHGsgTLRCkO6et
+ HyL/zNEDsIRpipD4EeinK6grStYd3Ibo5hiUI3qmkFpXOmiQxyhnJw83t7Qxah7tqbvDNlhhNL
+ 6wFbS/52X9/0AEGK2F2cAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Potin Lai <potin.lai.pt@gmail.com>, Potin Lai <potin.lai@quantatw.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724395406; l=571;
+ i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
+ bh=1sJ5+FOd+4XmIQMm4djzaZijr+Y+QcP7+2Ob1OpEWG8=;
+ b=M0rdWdkV3BFq7RD1ttVS27ZrTQGjfIoWy0GFg8FNGLL3loWhwKQv2B2eOD4sN5BftAfs+hYXt
+ 6XfWebX6T8CCufD+lECxPOyl7wxmK6rtcPxcFFv3f82c+waEaJe3MkC
+X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
+ pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
-Hi,
+Add new IOEXP nodes and revise the line names.
 
-Am Freitag, 23. August 2024, 04:12:57 CEST schrieb Liu Ying:
-> J17 on i.MX8mp EVK base board is a HDMI type A connector.
-> It connects with i.MX8mp HDMI PHY.  Add support for it.
->=20
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+---
+Potin Lai (2):
+      ARM: dts: aspeed: catalina: add pdb cpld io expander
+      ARM: dts: aspeed: catalina: update io_expander7 & io_expander8 line name
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+ .../dts/aspeed/aspeed-bmc-facebook-catalina.dts    | 135 ++++++++++++++++++++-
+ 1 file changed, 133 insertions(+), 2 deletions(-)
+---
+base-commit: 471e7c75d0e5c2bf1d65e384b48f625a59ceed45
+change-id: 20240823-catalina-ioexp-update-36efd64daf89
 
-> ---
-> v2:
-> * Change label hdmi_out to hdmi_in. (Alexander)
->=20
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 46 ++++++++++++++++++++
->  1 file changed, 46 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/bo=
-ot/dts/freescale/imx8mp-evk.dts
-> index 938347704136..d26930f1a9e9 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -56,6 +56,18 @@ memory@40000000 {
->  		      <0x1 0x00000000 0 0xc0000000>;
->  	};
-> =20
-> +	native-hdmi-connector {
-> +		compatible =3D "hdmi-connector";
-> +		label =3D "HDMI OUT";
-> +		type =3D "a";
-> +
-> +		port {
-> +			hdmi_in: endpoint {
-> +				remote-endpoint =3D <&hdmi_tx_out>;
-> +			};
-> +		};
-> +	};
-> +
->  	pcie0_refclk: pcie0-refclk {
->  		compatible =3D "fixed-clock";
->  		#clock-cells =3D <0>;
-> @@ -408,6 +420,28 @@ &flexcan2 {
->  	status =3D "disabled";/* can2 pin conflict with pdm */
->  };
-> =20
-> +&hdmi_pvi {
-> +	status =3D "okay";
-> +};
-> +
-> +&hdmi_tx {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_hdmi>;
-> +	status =3D "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			hdmi_tx_out: endpoint {
-> +				remote-endpoint =3D <&hdmi_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&hdmi_tx_phy {
-> +	status =3D "okay";
-> +};
-> +
->  &i2c1 {
->  	clock-frequency =3D <400000>;
->  	pinctrl-names =3D "default";
-> @@ -604,6 +638,10 @@ &lcdif1 {
->  	status =3D "okay";
->  };
-> =20
-> +&lcdif3 {
-> +	status =3D "okay";
-> +};
-> +
->  &micfil {
->  	#sound-dai-cells =3D <0>;
->  	pinctrl-names =3D "default";
-> @@ -858,6 +896,14 @@ MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x140
->  		>;
->  	};
-> =20
-> +	pinctrl_hdmi: hdmigrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x1c2
-> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x1c2
-> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x10
-> +		>;
-> +	};
-> +
->  	pinctrl_hog: hoggrp {
->  		fsl,pins =3D <
->  			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000010
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Best regards,
+-- 
+Potin Lai <potin.lai.pt@gmail.com>
 
 
