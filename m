@@ -1,107 +1,166 @@
-Return-Path: <devicetree+bounces-96100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E705F95C98A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A56295C99C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:50:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CD3C1F223B3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:49:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2475F1F24DA0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E2814B97A;
-	Fri, 23 Aug 2024 09:48:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="aFalVEeg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C4C14F9F7;
+	Fri, 23 Aug 2024 09:50:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from out28-148.mail.aliyun.com (out28-148.mail.aliyun.com [115.124.28.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C672D3BBC2;
-	Fri, 23 Aug 2024 09:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A2523BBC2;
+	Fri, 23 Aug 2024 09:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724406535; cv=none; b=bNwB37awEY3/dxKaUaN/gydapM6FXAk5MnxD0mDCCDtkKe7D2kuZQqB3dIA+Q9osL8bf5dz/Zl4o73umVS4vG0FAlsL4iEV3lqXKB/1NLbFdTqH98yzApnGpV99X/bxFscauCy4MqV5+L/8Ht9rDvROYeoKomg3EMfc4hZPfR+g=
+	t=1724406612; cv=none; b=VzaMqkydKoBk15qWSvOHe+5N6NMUxhK19HhHwMQmfkw50GjThBNSt4YOo2VUDYieQ6CIdcfLdPy60QxFPjM2qY1bhmHEhz0j6KzZr7NS1GMvPVQXUD/7DcuytGTzjHKt6YFgZZlzbF9/x2Z89ueyGz4wPesr084+CdKb5CtwlCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724406535; c=relaxed/simple;
-	bh=h1xWXPHzrXPLCdrB79AAp1D1069JKR0kkedffJdQ448=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SlAJ8GBYsHN2Knxmrx68qdo0iGKGV25IsVnb0D2Rnf6LixE5OLpECsF0kSNweIqxRpN4tbdi2p4ZwngavsDImIo5UbguftwnJKb8PtiNxeqCs2fdRc9TUWVyL8ojaxSgivd8tJBs6s3Ag1OBIL1UHbcMJGAV6lb/WnMpWvetAWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=aFalVEeg; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=nYMPr8WyjPeQWRWVZs2WMwxKYUMtLVmh6JMdsc9vbyA=; b=aFalVEegxwCLNqld3X5vkG1HsK
-	EYWFqDLp26dS1grO0wAxG8dhG1/2CnBU/TD7SbwVEnWo0YBtSekR8q0BtuY2CIFEF8VM5BIjYPmEh
-	D8o2fEQZI2GxD8OY1/1x//Wc2N9qNyLD+OPfGNviL6EEbd8INkuZ4k+Q/6x3albeZftISnBNUbWSU
-	PsGBBFB85gnwLEmYsDDHHODWsZ5s0miwSTLNp8xfq5Tz0kIV6/vEyGgM/M965Yy5d+0sCcSt1lSPL
-	62r38r6OSWSK6MEhWlRoYO99nfspsiUH7w5S+oRDiChQHzfDBGwx29f0kheWFrP1CfBEseqVkf+Qo
-	LOYdfaMQ==;
-Received: from i5e861933.versanet.de ([94.134.25.51] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1shQuX-0003xF-Hz; Fri, 23 Aug 2024 11:48:49 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Shresth Prasad <shresthprasad7@gmail.com>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v4 3/4] dt-bindings: pinctrl: Add rk3576 pinctrl support
-Date: Fri, 23 Aug 2024 11:49:30 +0200
-Message-ID: <22692139.hxa6pUQ8Du@diego>
-In-Reply-To: <20240822195706.920567-4-detlev.casanova@collabora.com>
-References:
- <20240822195706.920567-1-detlev.casanova@collabora.com>
- <20240822195706.920567-4-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1724406612; c=relaxed/simple;
+	bh=C6duMpSDvRjWg9U/QynDC5ewoCqeJ2at9ZD1JLGn8kI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QcSxdWUUE99PFUvGITMfr+LVxm4oxIDk+zgjJzQwNZTNhLkXktDKajqydzP2AavKwCBO07xf+A7FeEG1wOpgdZ8rmnyHHPWWcGkun+KtnYQj91B0eePhBepRF8q8K7ni/6908Y6BRMZOvjTsST/89NJa6piqa+ew7AmaPTXFz6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.Z.nW34p_1724406591)
+          by smtp.aliyun-inc.com;
+          Fri, 23 Aug 2024 17:49:57 +0800
+From: wangshuaijie@awinic.com
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	kees@kernel.org,
+	gustavoars@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Cc: wangshuaijie@awinic.com,
+	liweilei@awinic.com,
+	kangjiajun@awinic.com
+Subject: [PATCH V8 0/2] Add support for aw96103/aw96105 proximity sensor
+Date: Fri, 23 Aug 2024 09:49:44 +0000
+Message-ID: <20240823094947.3511730-1-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Am Donnerstag, 22. August 2024, 21:53:38 CEST schrieb Detlev Casanova:
-> Add the compatible string for the rk3576 SoC.
-> 
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+From: shuaijie wang <wangshuaijie@awinic.com>
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Add drivers that support Awinic aw96103/aw96105 proximity sensors.
 
-> ---
->  Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> index 20e806dce1ec..6a23d845f1f2 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> @@ -45,6 +45,7 @@ properties:
->        - rockchip,rk3368-pinctrl
->        - rockchip,rk3399-pinctrl
->        - rockchip,rk3568-pinctrl
-> +      - rockchip,rk3576-pinctrl
->        - rockchip,rk3588-pinctrl
->        - rockchip,rv1108-pinctrl
->        - rockchip,rv1126-pinctrl
-> 
+The aw9610x series are high-sensitivity capacitive proximity detection
+sensors. This device detects human proximity and assists electronic devices
+in reducing specific absorption rate (SAR) to pass SAR related certifications.
+The device reduces RF power and reduces harm when detecting human proximity. 
+Increase power and improve signal quality when the human body is far away.
+
+The specific absorption rate (SAR) is a metric that measures the degree of
+absorption of electromagnetic radiation emitted by wireless devices,
+such as mobile phones and tablets, by human tissue.
+
+This patch implements device initialization, registration,
+I/O operation handling and interrupt handling, and passed basic testing.
+
+v1->v2:
+-------
+ - Remove unnecessary log printing.
+ - Optimize comment style.
+ - Issues with modifying the device tree.
+ - Optimize code style.
+
+v2->v3:
+-------
+ - Add a description about the hardware device.
+ - Remove inappropriate configuration items.
+ - Modify the formatting issues.
+ - Modify the structure of the driver.
+ - Change the style of the driver's comments.
+ - Remove unnecessary log printing.
+ - Modify the function used for memory allocation.
+ - Modify the driver registration process.
+ - Remove the functionality related to updating firmware.
+ - Change the input subsystem in the driver to the iio subsystem.
+ - Modify the usage of the interrupt pin.
+ 
+v3->v4:
+-------
+The changes in this patch version are quite significant, and I concur
+with Krzysztof's viewpoint that this driver is indeed overly complex for
+the proximity sensor. Therefore, I have removed the compatibility for the
+aw963xx series, and the driver will now exclusively support the aw9610x series.
+
+ - Modify the software architecture to remove compatibility for
+   the aw963xx series.
+ - Optimize the parsing of register configuration files (.bin).
+ - Remove unnecessary log printing.
+ - Delete redefinition of true and false.
+ - Remove unnecessary interfaces.
+ - Optimize regulator usage.
+ - Convert the I2C communication interface to regmap.
+
+v4->v5:
+-------
+ - Solve errors that occur when executing the make dt_binding_check DT_SCHEMA_FILES.
+
+v5->v6:
+-------
+ - Rename AW9610X to aw96103.
+ - Remove the encapsulation of the i2c communication interface.
+ - Delete the update node.
+ - Modify the usage of regulator.
+ - Delete the remove and shutdown interfaces.
+ - Add iio's event-related interfaces.
+ - Modify the initialization process of iio.
+ - Delete power_supply-related operations.
+ - Modify the register names.
+
+v6->v7:
+-------
+ - Use __free(kfree) when allocating memory.
+ - Modify the way to request the register configuration file,
+   using request_firmware_nowait to request the configuration file.
+
+v7->v8:
+-------
+ - Delete aw96103.h.
+ - Remove the function of dynamically allocating IIO-related resources.
+ - Remove non-essential members from the aw96103 structure.
+ - Add some comments.
+ - Delete the aw96103_interrupt_clear function.
+ - Delete the aw96103_version_init function.
+ - Optimize code logic.
+ - Modify attribute descriptions in the YAML file.
+
+shuaijie wang (2):
+  dt-bindings: iio: aw96103: Add bindings for aw96103/aw96105 sensor
+  iio: proximity: aw96103: Add support for aw96103/aw96105 proximity
+    sensor
+
+ .../iio/proximity/awinic,aw96103.yaml         |  61 ++
+ drivers/iio/proximity/Kconfig                 |  11 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/aw96103.c               | 880 ++++++++++++++++++
+ 4 files changed, 953 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/awinic,aw96103.yaml
+ create mode 100644 drivers/iio/proximity/aw96103.c
 
 
-
+base-commit: b78b25f69a1dfa79798f684ad34707b1da10a48f
+-- 
+2.45.1
 
 
