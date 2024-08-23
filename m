@@ -1,289 +1,205 @@
-Return-Path: <devicetree+bounces-96262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 281B095D608
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 21:25:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95ED795D65E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 22:02:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2BC5284AF4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 19:25:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BC97B227D0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 20:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434ED1922C6;
-	Fri, 23 Aug 2024 19:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3525193092;
+	Fri, 23 Aug 2024 20:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QwVj9nkw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OIPbGLHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8774D8F6B;
-	Fri, 23 Aug 2024 19:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A6E192D6F;
+	Fri, 23 Aug 2024 20:01:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724441117; cv=none; b=Xjd5uVljwrR7hMV2yGA7llSfMxtEfZAN1coOlZwcvxU+iP2o+sYHNnxNzU8xM5yaP83qsG8tHn8gf2T6ZiuyItp+NpEx3VwvTd4jdpO4k/HmjTUmqDlnVcj94g50vcytWFFJAnkfte0qAjAaB07Os8AKzFVzB4VMnCZcOEeiXDQ=
+	t=1724443300; cv=none; b=FDTVBVwyj6N9sOBn0t/2QqdcUhehciuQHg49z1CDJN1A2GWkAwTiGgtOpQJs5/yN5D5WGkjYUOgLUoQ6GUGV4C30RDI17RZU1MlG1jaRIkxNFkngAnrO5tIOu+B5pASCKqodG6C7CBaTFF8cUIzFJ70rAZGAN8syozL/y62g8So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724441117; c=relaxed/simple;
-	bh=DFlFWR7lXMyjsZyyLCuvccHNpt67WGrdixy/Ulp6tTA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O3yPFzRI5aStpTZulRVIo3EVaGl5uDAHLq9K3yWBbMvmFvsRAzD4B047mpWT5MCMIxGvDV9JjwB+vDUt3gf7206sUyw+AdI/Ehw+23R3bzGPGtU+vbumXUL+0HmqtuANKI4XNVyP7mtLF0IlPfIZ1K7aO5LkQ4oQYOVsHxLpaGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QwVj9nkw; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724441116; x=1755977116;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DFlFWR7lXMyjsZyyLCuvccHNpt67WGrdixy/Ulp6tTA=;
-  b=QwVj9nkwzvTCPI0pj6fbnAstJAobG740cmkAtXTNnp1rvJwPoxFa0ZhH
-   gTsB1byGtuuiKU9rN9u9igSDCfYqd03WqQaz8kQDjP1gvSbOuAZiuQYEF
-   wtjzRhQgf2jak5+98cVupwfW2Kv/3Jh1WSUq04BSHyhwrllRi1ZAGBzSR
-   UNjpNSnT3qBI7Ja+i8QEuYO30tY2xwv3/B963BMP9irpxHw6/ZqkjwnT5
-   fCTYI81F0Ddab/E3bBV33tTSUDHSGNDLMeWsa96QVeIKJxXlv6IiwJwYu
-   8oYpxVyyO7o5jWIao3BYpsnqGwUHS4y8nDIg/mv/s4ozC/Q/ak5SsxtVE
-   w==;
-X-CSE-ConnectionGUID: MtKvJTP0RjCBNl1DVvulfQ==
-X-CSE-MsgGUID: nroJss6hSPO5glxeYYU1vw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="25821208"
-X-IronPort-AV: E=Sophos;i="6.10,171,1719903600"; 
-   d="scan'208";a="25821208"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 12:25:10 -0700
-X-CSE-ConnectionGUID: uPUZA1ArRSi0UnqKNpqUJA==
-X-CSE-MsgGUID: sX/8HsmNTFq89skPVLyMbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,171,1719903600"; 
-   d="scan'208";a="66699466"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 12:25:06 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1shZu9-000000010IY-2PdN;
-	Fri, 23 Aug 2024 22:25:01 +0300
-Date: Fri, 23 Aug 2024 22:25:01 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/7] iio: pressure: bmp280: Use sleep and forced mode
- for oneshot captures
-Message-ID: <ZsjiDaZjcA-oopWB@smile.fi.intel.com>
-References: <20240823181714.64545-1-vassilisamir@gmail.com>
- <20240823181714.64545-5-vassilisamir@gmail.com>
+	s=arc-20240116; t=1724443300; c=relaxed/simple;
+	bh=aw59SIunqFIELS5Fh0+Q8lxZNWNSMCUFa1CSIJx6JvQ=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DO07kbhYVQ+e6sqGf3gfVJ0rpdK1cn/G7/4Q+0h312GIZWojzp8V5wD7sFdTh7R1vDSs3Us6PElpko0yo9xxI4MDWLlO+iOhuAyu3AsrmTX+Jf9cs8KtHadMbfkpDeeH0FTHPbQs6omZhz3S6zJU3KeT7/TVgb1lGX/wbHdhjtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OIPbGLHg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47NBD2wA009021;
+	Fri, 23 Aug 2024 20:01:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=EbpUGdZYWaz1gSCzAD70ouF4
+	KW64zbhrUQmGahwL2ZM=; b=OIPbGLHgBM/uSttHDcD7BY9T0AzRWDNJiCh1Nb0E
+	AIsFU6Qkyr1/Fk+f53/xKcjJtWUVHo9QakbjSrzCqK5maP5X0us2BeAFOZSgSxAP
+	29pbePjghq92Ugo9lrtSeGcQ8Cg9NWeqFe2A8R53BjgsrFsGUxD/jwnEn8Sq77C4
+	Ovh0u9ow2so3sXIPId56HS+zdp0Bbrf1wqaEz9T2FLcDWL+H5UXsZC73HEUer5Lm
+	+LyJUDs3MTrp/ELNGssKgIIxaJ2HXXQTz1oVjH+lygpFE34VE8zcvaQMC2QmG3Na
+	MzbPfd9A0bK9U98LJbvFkwAtRdu+ljT7wEKwRhir/ORENg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pe5v8ch-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Aug 2024 20:01:16 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47NK1EVG008329
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 Aug 2024 20:01:14 GMT
+Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 23 Aug 2024 13:01:14 -0700
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <tiwai@suse.com>, <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>
+Subject: [PATCH v25 04/33] usb: xhci: Allow for secondary interrupter to set IMOD
+Date: Fri, 23 Aug 2024 13:00:32 -0700
+Message-ID: <20240823200101.26755-5-quic_wcheng@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20240823200101.26755-1-quic_wcheng@quicinc.com>
+References: <20240823200101.26755-1-quic_wcheng@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240823181714.64545-5-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kUAMkixSalBMAvNgxvAJbo6QLoj3pMjW
+X-Proofpoint-GUID: kUAMkixSalBMAvNgxvAJbo6QLoj3pMjW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-23_16,2024-08-23_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ mlxscore=0 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 clxscore=1015 spamscore=0 mlxlogscore=675 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408230147
 
-On Fri, Aug 23, 2024 at 08:17:11PM +0200, Vasileios Amoiridis wrote:
-> This commit adds forced mode support in sensors BMP28x, BME28x, BMP3xx
-> and BMP58x. Sensors BMP18x and BMP085 are old and do not support this
-> feature so their operation is not affected at all.
-> 
-> Essentially, up to now, the rest of the sensors were used in normal mode
-> all the time. This means that they are continuously doing measurements
-> even though these measurements are not used. Even though the sensor does
-> provide PM support, to cover all the possible use cases, the sensor needs
-> to go into sleep mode and wake up whenever necessary.
-> 
-> This commit, adds sleep and forced mode support. Essentially, the sensor
-> sleeps all the time except for when a measurement is requested. When there
-> is a request for a measurement, the sensor is put into forced mode, starts
-> the measurement and after it is done we read the output and we put it again
-> in sleep mode.
-> 
-> For really fast and more deterministic measurements, the triggered buffer
-> interface can be used, since the sensor is still used in normal mode for
-> that use case.
-> 
-> This commit does not add though support for DEEP STANDBY, Low Power NORMAL
-> and CONTINUOUS modes, supported only by the BMP58x version.
+When creating a secondary interrupter, add an argument for XHCI sideband
+clients to specify an interrupt moderation value for the interrupter
+context.
 
-...
+Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+---
+ drivers/usb/host/xhci-mem.c       | 4 +++-
+ drivers/usb/host/xhci-sideband.c  | 4 ++--
+ drivers/usb/host/xhci.c           | 2 +-
+ drivers/usb/host/xhci.h           | 5 ++++-
+ include/linux/usb/xhci-sideband.h | 2 +-
+ 5 files changed, 11 insertions(+), 6 deletions(-)
 
-> +static const u8 bmp280_operation_mode[] = { BMP280_MODE_SLEEP,
-> +					    BMP280_MODE_FORCED,
-> +					    BMP280_MODE_NORMAL };
-
-Better style is
-
-static const u8 bmp280_operation_mode[] = {
-	BMP280_MODE_SLEEP, BMP280_MODE_FORCED, BMP280_MODE_NORMAL,
-};
-
-Also note comma at the end.
-
-...
-
-> +static int bmp280_wait_conv(struct bmp280_data *data)
-> +{
-> +	unsigned int reg;
-> +	int ret, meas_time;
-> +
-> +	meas_time = BMP280_MEAS_OFFSET;
-> +
-> +	/* Check if we are using a BME280 device */
-> +	if (data->oversampling_humid)
-> +		meas_time += (1 << data->oversampling_humid) * BMP280_MEAS_DUR +
-
-		BIT(data->oversampling_humid)
-
-> +			       BMP280_PRESS_HUMID_MEAS_OFFSET;
-
-> +	/* Pressure measurement time */
-> +	meas_time += (1 << data->oversampling_press) * BMP280_MEAS_DUR +
-
-Ditto.
-
-> +		      BMP280_PRESS_HUMID_MEAS_OFFSET;
-
-> +	/* Temperature measurement time */
-> +	meas_time += (1 << data->oversampling_temp) * BMP280_MEAS_DUR;
-
-Ditto.
-
-> +	usleep_range(meas_time, meas_time * 12 / 10);
-
-fsleep() ?
-
-> +	ret = regmap_read(data->regmap, BMP280_REG_STATUS, &reg);
-> +	if (ret) {
-> +		dev_err(data->dev, "failed to read status register\n");
-> +		return ret;
-> +	}
-> +	if (reg & BMP280_REG_STATUS_MEAS_BIT) {
-> +		dev_err(data->dev, "Measurement cycle didn't complete\n");
-> +		return -EBUSY;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static const u8 bmp380_operation_mode[] = { BMP380_MODE_SLEEP,
-> +					    BMP380_MODE_FORCED,
-> +					    BMP380_MODE_NORMAL };
-
-As per above.
-
-...
-
-> +static int bmp380_wait_conv(struct bmp280_data *data)
-> +{
-
-As per above comments against bmp280_wait_conv().
-
-> +	ret = regmap_read(data->regmap, BMP380_REG_STATUS, &reg);
-> +	if (ret) {
-> +		dev_err(data->dev, "failed to read status register\n");
-> +		return ret;
-> +	}
-
-> +
-
-Choose one style (with or without blank line), as in the above you have no
-blank line in the similar situation.
-
-> +	if (!(reg & BMP380_STATUS_DRDY_PRESS_MASK) ||
-> +	    !(reg & BMP380_STATUS_DRDY_TEMP_MASK)) {
-> +		dev_err(data->dev, "Measurement cycle didn't complete.\n");
-> +		return -EBUSY;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +		usleep_range(data->start_up_time, data->start_up_time + 500);
-
-fsleep() ? Comment?
-
-...
-
-> +static const u8 bmp580_operation_mode[] = { BMP580_MODE_SLEEP,
-> +					    BMP580_MODE_FORCED,
-> +					    BMP580_MODE_NORMAL };
-
-As per above.
-
-...
-
-> +	switch (mode) {
-> +	case BMP280_SLEEP:
-> +		break;
-> +	case BMP280_FORCED:
-> +		ret = regmap_set_bits(data->regmap, BMP580_REG_DSP_CONFIG,
-> +				      BMP580_DSP_IIR_FORCED_FLUSH);
-> +		if (ret) {
-> +			dev_err(data->dev,
-> +				"Could not flush IIR filter constants.\n");
-> +			return ret;
-> +		}
-> +		break;
-> +	case BMP280_NORMAL:
-> +		break;
-
-Can be unified with _SLEEP case.
-
-> +	default:
-> +		return -EINVAL;
-> +	}
-
-...
-
-> +static int bmp580_wait_conv(struct bmp280_data *data)
-> +{
-> +	/*
-> +	 * Taken from datasheet, Section 2 "Specification, Table 3 "Electrical
-> +	 * characteristics
-
-Missing period.
-
-> +	 */
-> +	static const int time_conv_press[] = { 0, 1050, 1785, 3045, 5670, 10920, 21420,
-> +					42420, 84420};
-> +	static const int time_conv_temp[] = { 0, 1050, 1105, 1575, 2205, 3465, 6090,
-> +				       11340, 21840};
-
-Please, start values on the next line after {. Also make }; to be on a separate line.
-
-> +	int meas_time;
-> +
-> +	meas_time = 4000 + time_conv_temp[data->oversampling_temp] +
-> +			   time_conv_press[data->oversampling_press];
-
-4 * USEC_PER_MSEC ?
-
-> +	usleep_range(meas_time, meas_time * 12 / 10);
-
-Comment? fsleep() ?
-
-> +	return 0;
-> +}
-
-...
-
-> +	usleep_range(2500, 3000);
-
-fsleep() ?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
+index 3100219d6496..2ca5937b73f4 100644
+--- a/drivers/usb/host/xhci-mem.c
++++ b/drivers/usb/host/xhci-mem.c
+@@ -2334,7 +2334,8 @@ xhci_add_interrupter(struct xhci_hcd *xhci, struct xhci_interrupter *ir,
+ }
+ 
+ struct xhci_interrupter *
+-xhci_create_secondary_interrupter(struct usb_hcd *hcd, unsigned int segs)
++xhci_create_secondary_interrupter(struct usb_hcd *hcd, unsigned int segs,
++					u32 imod_interval)
+ {
+ 	struct xhci_hcd *xhci = hcd_to_xhci(hcd);
+ 	struct xhci_interrupter *ir;
+@@ -2367,6 +2368,7 @@ xhci_create_secondary_interrupter(struct usb_hcd *hcd, unsigned int segs)
+ 		return NULL;
+ 	}
+ 
++	xhci_set_interrupter_moderation(ir, imod_interval);
+ 	xhci_dbg(xhci, "Add secondary interrupter %d, max interrupters %d\n",
+ 		 i, xhci->max_interrupters);
+ 
+diff --git a/drivers/usb/host/xhci-sideband.c b/drivers/usb/host/xhci-sideband.c
+index 281ab4c1fc42..f06bb49ede4d 100644
+--- a/drivers/usb/host/xhci-sideband.c
++++ b/drivers/usb/host/xhci-sideband.c
+@@ -259,7 +259,7 @@ EXPORT_SYMBOL_GPL(xhci_sideband_get_event_buffer);
+  */
+ int
+ xhci_sideband_create_interrupter(struct xhci_sideband *sb, int num_seg,
+-				 bool ip_autoclear)
++				 bool ip_autoclear, u32 imod_interval)
+ {
+ 	int ret = 0;
+ 
+@@ -273,7 +273,7 @@ xhci_sideband_create_interrupter(struct xhci_sideband *sb, int num_seg,
+ 	}
+ 
+ 	sb->ir = xhci_create_secondary_interrupter(xhci_to_hcd(sb->xhci),
+-			num_seg);
++			num_seg, imod_interval);
+ 	if (!sb->ir) {
+ 		ret = -ENOMEM;
+ 		goto out;
+diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
+index 3a051ed32907..0b22342bbff1 100644
+--- a/drivers/usb/host/xhci.c
++++ b/drivers/usb/host/xhci.c
+@@ -347,7 +347,7 @@ static int xhci_disable_interrupter(struct xhci_interrupter *ir)
+ }
+ 
+ /* interrupt moderation interval imod_interval in nanoseconds */
+-static int xhci_set_interrupter_moderation(struct xhci_interrupter *ir,
++int xhci_set_interrupter_moderation(struct xhci_interrupter *ir,
+ 					   u32 imod_interval)
+ {
+ 	u32 imod;
+diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+index 58236b435e1c..a2db8250b1fd 100644
+--- a/drivers/usb/host/xhci.h
++++ b/drivers/usb/host/xhci.h
+@@ -1832,7 +1832,8 @@ struct xhci_container_ctx *xhci_alloc_container_ctx(struct xhci_hcd *xhci,
+ void xhci_free_container_ctx(struct xhci_hcd *xhci,
+ 		struct xhci_container_ctx *ctx);
+ struct xhci_interrupter *
+-xhci_create_secondary_interrupter(struct usb_hcd *hcd, unsigned int segs);
++xhci_create_secondary_interrupter(struct usb_hcd *hcd, unsigned int segs,
++					u32 imod_interval);
+ void xhci_remove_secondary_interrupter(struct usb_hcd
+ 				       *hcd, struct xhci_interrupter *ir);
+ 
+@@ -1872,6 +1873,8 @@ int xhci_alloc_tt_info(struct xhci_hcd *xhci,
+ 		struct xhci_virt_device *virt_dev,
+ 		struct usb_device *hdev,
+ 		struct usb_tt *tt, gfp_t mem_flags);
++int xhci_set_interrupter_moderation(struct xhci_interrupter *ir,
++					   u32 imod_interval);
+ 
+ /* xHCI ring, segment, TRB, and TD functions */
+ dma_addr_t xhci_trb_virt_to_dma(struct xhci_segment *seg, union xhci_trb *trb);
+diff --git a/include/linux/usb/xhci-sideband.h b/include/linux/usb/xhci-sideband.h
+index a03f0958ebed..dd4b1a27c08d 100644
+--- a/include/linux/usb/xhci-sideband.h
++++ b/include/linux/usb/xhci-sideband.h
+@@ -56,7 +56,7 @@ xhci_sideband_get_event_buffer(struct xhci_sideband *sb);
+ 
+ int
+ xhci_sideband_create_interrupter(struct xhci_sideband *sb, int num_seg,
+-				 bool ip_autoclear);
++				 bool ip_autoclear, u32 imod_interval);
+ 
+ void
+ xhci_sideband_remove_interrupter(struct xhci_sideband *sb);
 
