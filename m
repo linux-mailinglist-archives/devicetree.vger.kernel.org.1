@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-96064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BE8A95C7EC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:22:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5EC95C800
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:25:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0F381F26039
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:22:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D1471C210EF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559D71428E8;
-	Fri, 23 Aug 2024 08:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80407142E9D;
+	Fri, 23 Aug 2024 08:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JOQXpQGm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I+Rejjqv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F0813FD72
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC410143C69
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724401348; cv=none; b=fEHBerWPMq1SufVDN3sxtxVNLvM5j4WJqqUauloqrBKfh2TS64xiRHovI6RKJRgSVF7Xfqt2ccFYdOdRVCOE+jMPc3z26JXfcfD1pyaM1J2ZB64XFKo5NsMDlhh2syfhWgWSsfAIWqIJHrle/XejHjyiki7D7cszzlMcpE20+I0=
+	t=1724401512; cv=none; b=KpC4CKbl2V4P8QgSdcRNy/gmak/QTzSIdhhkXzplIwaq8cMF2UJSVTFjkA49fl6NbUe+aiWTsqAT9p/CLRcbkeSIqXMUWiVV+vph2rxNW5/KBR3Dyf1Z7yS1gIyaQ9ulBsjrHl9QNWjI8SLLOEllnCqPtZuvlpcFh/iH0BoPCZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724401348; c=relaxed/simple;
-	bh=olwfkoaRr08oCOtlFmtAAvZb9ypgjhs6SyDGIPi1veA=;
+	s=arc-20240116; t=1724401512; c=relaxed/simple;
+	bh=Prv6E+ScHb0LyR5CQ4A+EbhLnomA5f/3GEtpmq6Z++Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nha+vADfjK78c0jpw7HziEfgitJL9llmqFWbgTZAiJsYOkCoTs1tdWCUtH29GRSuUc5+jvufleYdevEh+Qnb6l81XacEzwdzM6rn1rM3KZ+bB85y2aOdQAYJg6CNNkmIduRI6cWojiyV7pUFKam82aHvolLDW6qWh4uRiriYNE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JOQXpQGm; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:Content-Type; b=i8Zz1ANUw8UlRMWu2JHT2qI0ui/WzD8gMVFdQr7L8Il1//qzfXTMCzt9vNp0/OChTA9j/Ar6ZJLkaUspC8FVhJv8MHaHd8C8d1AtFqAtuJwqfF5oG2pICDrx2JT+dyHDszrR+y0y+vHD8MAy3Cxg0/4mEEDVINoJfwiUBqeTt7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I+Rejjqv; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5bed68129a7so2309413a12.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 01:22:26 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-534366c194fso991427e87.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 01:25:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724401345; x=1725006145; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1724401509; x=1725006309; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gjHxTMy2Nb4CqjIIWZfncgAo/x9JF7WsLmBVhhpHbs4=;
-        b=JOQXpQGm6Pp6jZ9cCaJA3Xngud+ey1rvJu00SGRy5TVewO7zGspjyqPcB7xvBSLOhf
-         bi2pt8dx+Ei5IGAfWZqlhFv7HL+aa5fBZ70k1tip+Jazu9vskHiU7SUqGNSrB0GMlaZL
-         lF7BHnkfswiKXHVG0V/I+s7p4Z6cZgMz1MhlsEjm8shdx9XEIcirbpfvk6wHDDuWr7Ir
-         s5YSMGiR+ClfIEEA6ETDtXzncnUARw6t6QNEnqrrqPD8XNNodBVoUmS0LONlRi+QgY2/
-         Qhn3Wwj8Bj/nDPzI3TTVolBv8MQlEZv2xqe8cvA/89CeUK+C1utFryxtvXiemweG77Hi
-         1QTA==
+        bh=RNVXRGnKpS8kF6YfpZzWwrX8JQATANezy1mHf5Ikppo=;
+        b=I+Rejjqvc5MXi9BMhhIPULuEQgjyb654UuAQs+OEaXFYsCSDH9R0yzcbLbi3/UWKE5
+         Iqf5b9DEBJthmaz+bV9gLB9p25tkhsK/vl2cZ1RpDNwK63fAkBC85j59l68QHAznWFWL
+         7yuOcR0h7f4hD4y0QZUVc7XYg1/YlUghOLMZgKhC0lhXbfB4Fpj4FrbyI6nMp5Suq90C
+         1YqwJrLosZEMQpt2VH24s44JozeHu5PlvO3zEZwN+jQwop+zcp3Bxc3z4GAu73DNUl2a
+         j6FBKG6HLUhCWxqV2yALrBh19x50IwzRlEpZ82K6cKD1ocl0acG2uhWun6rGo8dLEmms
+         nV1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724401345; x=1725006145;
+        d=1e100.net; s=20230601; t=1724401509; x=1725006309;
         h=content-transfer-encoding:in-reply-to:organization:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gjHxTMy2Nb4CqjIIWZfncgAo/x9JF7WsLmBVhhpHbs4=;
-        b=fAQMHqSHCWAYEEf8KrbnhcZT8NguK3EhYh3Ljn+vYXklyaIkQ0CTa2o3MAPYAKYKER
-         6dAVvVphPQK1Qbgxf2Dol0ZC2/jWoyrEVMU3vMAcFt6YGIf79CNztpihqWJTUmSZppIL
-         vaQ/CC0559fiS4XdDJKKcpqzi6RpRal3kU3tVHyeRfi8Pn3CslkJds4s03GfLbzlpZWP
-         oM2/m5+6YF91ACBe/S1I70skQPKG+6lw7meNhwFm5M9kEtO7l/Gx/B13aRSStin99YAP
-         qq3DJlOSYCu3YBEhXR63DJQkWI8NCpoC+PGDrltg8eEIxMmM4dcW1o4cNZAfRm4msZ74
-         /fvA==
-X-Forwarded-Encrypted: i=1; AJvYcCVTApQu7YYj+fYGXduPYMEtRz5oKlFKbnOOwltmMM+mP3woAMbMwT0SA1+PNor7LgCQazxYpx8DfTy3@vger.kernel.org
-X-Gm-Message-State: AOJu0YygkBgtpZOGAbJABX1quZlrSl6YiTKaQJi0LjCa3dC5zzR9y0Da
-	oxqDfsIRgyy10g6HGiHNwp/DNobibqJfYEhev5JP2ARrVIIjf3pjjWFksPndpVw=
-X-Google-Smtp-Source: AGHT+IE9ppracdAv81Pivu6h9pYjNfT03Szj3V/OWKCxV2uZxK94QYzAMcFCesft7Qb0HDUBmenfyw==
-X-Received: by 2002:a05:6402:430a:b0:5bf:a2c:4f35 with SMTP id 4fb4d7f45d1cf-5c0891663fbmr945656a12.10.1724401344444;
-        Fri, 23 Aug 2024 01:22:24 -0700 (PDT)
+        bh=RNVXRGnKpS8kF6YfpZzWwrX8JQATANezy1mHf5Ikppo=;
+        b=iKDHFEWikiwqa7vXnnjgR2fFGg2PMKW3CTQ6SVsbDF8DsGLACU/xNieXpj3ppygglF
+         ZwFFwxEX2t16UReWDvNEsBd4VvRITrZitnI+eXnk8rFS5zdqW+aGWk4jjuhAIIzSVY7A
+         2f2ulUtVEIlZvKTSnfc+xrnv2R6PE5A7dftufA1Ruk7CNsS102+3RsTDB67IpQ6kCbGx
+         ByX/S3/HIoQM0pBg1wzkVYsaSgeMl7HJYaxOlsmmuDL3sQOaW01Bkh0q12UXD3jiM6J1
+         /JJa0c1bvRlf07VLXsFdJeIQ3N04kRQkiUk5UaPlSFAB+EzY+Upiq3koITUWkN0/kQRU
+         UHWA==
+X-Forwarded-Encrypted: i=1; AJvYcCXKePtlbBu145aI0BBf6uLfuADIywwI5rr4aCySPjNlHSyQua9jMb6t7xX+BmCbZOvY4F+ZnNRV5O97@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZYF4fbU6TalosJK5+4Z4QhN9pHleBVcICJxtkMKL5Q3KtXni/
+	t8TwhnhaJi0ZdoO3UDIlJNppWx4w/lQLQTAHsYXhsB5QQzZdu5pYEZkR4Ld39Qjy4zoeSckLeTm
+	MOwQ=
+X-Google-Smtp-Source: AGHT+IH6bCoEMQoChtaCyFYQylFJNLu2M2f6XFz5Fuwdk8LQw+EOz+A9GFqvb1SnY/XWcQktSzz4Qg==
+X-Received: by 2002:a05:6512:10c9:b0:533:88d:48ca with SMTP id 2adb3069b0e04-534387c47f5mr883420e87.55.1724401508256;
+        Fri, 23 Aug 2024 01:25:08 -0700 (PDT)
 Received: from [192.168.200.25] (83.25.211.12.ipv4.supernova.orange.pl. [83.25.211.12])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c04a3c9dd9sm1796897a12.26.2024.08.23.01.22.23
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f4365b4sm224742166b.113.2024.08.23.01.25.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 01:22:23 -0700 (PDT)
-Message-ID: <6a39f1bc-7372-48bd-adb7-00b9db1419de@linaro.org>
-Date: Fri, 23 Aug 2024 10:22:22 +0200
+        Fri, 23 Aug 2024 01:25:07 -0700 (PDT)
+Message-ID: <21067aa4-47ae-4208-82ac-b0232d20d5ca@linaro.org>
+Date: Fri, 23 Aug 2024 10:25:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,51 +78,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/8] arm64: dts: rockchip: add IR-receiver to NanoPC-T6
+Subject: Re: [PATCH v4 7/8] arm64: dts: rockchip: enable USB-C on NanoPC-T6
 To: Jonas Karlman <jonas@kwiboo.se>
 Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org,
  devicetree@vger.kernel.org
 References: <20240822-friendlyelec-nanopc-t6-lts-v4-0-892aebcec0c6@linaro.org>
- <20240822-friendlyelec-nanopc-t6-lts-v4-5-892aebcec0c6@linaro.org>
- <50d768c7-56f1-4a60-b6bd-e31fe7448f33@kwiboo.se>
+ <20240822-friendlyelec-nanopc-t6-lts-v4-7-892aebcec0c6@linaro.org>
+ <13942328-84bf-4b9f-a88f-287b233c1654@kwiboo.se>
 From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 Content-Language: pl-PL, en-GB
 Organization: Linaro
-In-Reply-To: <50d768c7-56f1-4a60-b6bd-e31fe7448f33@kwiboo.se>
+In-Reply-To: <13942328-84bf-4b9f-a88f-287b233c1654@kwiboo.se>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 22.08.2024 22:59, Jonas Karlman wrote:
-> Hi Marcin,
-> 
-> On 2024-08-22 15:32, Marcin Juszkiewicz wrote:
->> FriendlyELEC NanoPC-T6 has IR receiver connected to PWM3_IR_M0 line
->> which ends as GPIO0_D4.
->>
->> Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 14 +++++++++++++-
->>   1 file changed, 13 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
->> index 292022a56332..fcea11ff2af2 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
->> @@ -25,6 +25,11 @@ chosen {
->>   		stdout-path = "serial2:1500000n8";
->>   	};
->>   
->> +	ir-receiver {
->> +		compatible = "gpio-ir-receiver";
->> +		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
-> 
-> I would expect to see pinctrl here that configure pin for gpio func use.
+On 22.08.2024 23:07, Jonas Karlman wrote:
+>> @@ -135,6 +135,8 @@ vbus5v0_typec: vbus5v0-typec-regulator {
+>>   		gpio = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
+>>   		pinctrl-names = "default";
+>>   		pinctrl-0 = <&typec5v_pwren>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
 
-Thanks. I based on rk3588-friendlyelec-cm3588-nas.dts which has 
-ir-receiver done this way. Will copy from rk3588-orangepi-5-plus.dts 
-which is more like you describe.
+> This should probably not be always-on/boot-on, the connector is
+> described as power-role = "dual" and try-power-role = "sink", so should
+> probably be possible to disable the vbus supply.
 
-Have to find a way to test it too.
+At same time it is not used for powering the board so probably need to 
+change 'power-role' to something else.
 
