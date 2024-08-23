@@ -1,159 +1,125 @@
-Return-Path: <devicetree+bounces-96236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67EF795D432
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 19:21:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A476795D26A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:07:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 987661C21433
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:21:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6E9A1C211DC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:07:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5692A18E035;
-	Fri, 23 Aug 2024 17:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37421189538;
+	Fri, 23 Aug 2024 16:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TnJ/IDvs"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Qj8k0qIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6A641C69;
-	Fri, 23 Aug 2024 17:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724433683; cv=none; b=d9AxIIvOevO938aq51rzguryhT2yOicZBWKs2DrmnItHTbDFfL8xXCJDb02Yy4AmrRRbE9JlQEamfDRmfxBIkhk6SzP1D6IqzRZVac/coUC3N6S2zJKk8yXHzxvQ6iZUVc84iHKSOkJoq4XkHAdlPdHA70JycWZDxLeN0nLyX9E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724433683; c=relaxed/simple;
-	bh=CkO9IvqsG0iFWnRGdPmM5Qwes7ubF2O3wr/bx0vRq20=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pv9GyHJBjq63reUXQET4/50R/CXwCzqx6M+VkPpWWiHA0NrQiQajdv6v1+3gEHEv75fAcFqSyCeFZpTEmX7iUNkL9Blve5mhAl7K8IROVXdD1ZqGKUacVk7xjdRuRcZki+VmBfAq+U/Mq1/vuLTNreTsWmSdTpdl9P87sRM1FhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TnJ/IDvs; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-428243f928cso17941695e9.3;
-        Fri, 23 Aug 2024 10:21:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724433680; x=1725038480; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=93UYZNtsycP6f+B131FhdRCqvOk5pQ/dX6SuPovTZMM=;
-        b=TnJ/IDvsye+76dyOH5dqUvRYztYBnBLWDo34RwvirXZXn4+SvloP/AhNPR14jx6qsG
-         mVYj4b96JKmSVPjQCNOF0nUutdvDV2HTxLJKryz1fcdLgBbhbt4xFoSOR74wZI/a/Cfp
-         MsjJ1MhsVu9lTNNoSyj55Lb18Jv0bojZ5LNP08FZ7F70nBHhJ1IxW4fjJCa6gxKNut67
-         cIiFTxqgNnUq39SpTucwMRfhNC2aTLhDFERHqydWClhEyz57m8XadlcDeaAJYzx3mJzB
-         4EX2tl3LIxTPEeY11EzibjvwtTxc1sGmIfG4s7Zn0WLM4eMw0JRG2CoI2Q9tR4+4v6iQ
-         KrYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724433680; x=1725038480;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=93UYZNtsycP6f+B131FhdRCqvOk5pQ/dX6SuPovTZMM=;
-        b=cGwCEogjgxe8rWl8bNQyXqNSbNcOIzr81E8Wf/6tfK9N6hryTR/RKkQz6exFZSF2v/
-         iHMmorUqskAbKqw4fTxrmhIvc71RTBP4+0dBMcGwxE2NIFUOEWsKUWvaqOWxflZv6RiF
-         tu2YBdrHPpE5//OtF+c2lNUSMR6eBUwKrpa1znwwfP2PPy5OvnMjhx6V00/7akl7FcHQ
-         zY6hOC093mcOpkmbpL7ZBnOec9RBpeVonxkJoJq2rlNjx+XP6oVnveUNkrFgas2hpeVK
-         UDPXQ3/kCHJUR2ZqDkrQk4YzfkX9ifWjks4jPpeQggXqyvpSJ9PfwUm9TZJ97wjL69TQ
-         KOqg==
-X-Forwarded-Encrypted: i=1; AJvYcCWY2bhgNXB19KSlEkCKefgPY8Rp4CJVuRvVA2CqGXDpw/x+i/Sis3XPIpzVGxJ4M/TwdcKvou8Mgx9WiA==@vger.kernel.org, AJvYcCX5vTpLYgNSKyo+cAdO+HEOgMROucVyMjO9jJbZS5Mrfr3h/5CQd0/REXINlHphaerGFI5zD1weCCnR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmLlFRc12dlZDJerEP4pAMeM+csGZtBmGtgQB3u7kdWMgXx68o
-	rP+8MSpJwq6B94785Y1XPY/W8Oa6dWcEJNveKAlVFg/RXBsr0kiU
-X-Google-Smtp-Source: AGHT+IGref40zkb0IUvtDNwA0TYFbk5k0+fa5r9I46BPr609ayqKWhEfTU0CKdcojT+tg6DFwoXrFg==
-X-Received: by 2002:a05:600c:1f87:b0:421:7bed:5274 with SMTP id 5b1f17b1804b1-42acc8ddcdcmr25250625e9.10.1724433679578;
-        Fri, 23 Aug 2024 10:21:19 -0700 (PDT)
-Received: from Ansuel-XPS. (host-87-1-209-141.retail.telecomitalia.it. [87.1.209.141])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abee8d1d9sm104140345e9.22.2024.08.23.10.21.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2024 10:21:19 -0700 (PDT)
-Message-ID: <66c8c50f.050a0220.d7871.f209@mx.google.com>
-X-Google-Original-Message-ID: <ZsimBSqlc_NeRhZB@Ansuel-XPS.>
-Date: Fri, 23 Aug 2024 17:08:53 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-References: <20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org>
- <20240822-en7581-pinctrl-v2-1-ba1559173a7f@kernel.org>
- <20240822-taste-deceptive-03d0ad56ae2e@spud>
- <aef3188d-5aaf-4f6d-addf-60066065ef9b@genexis.eu>
- <20240823-darkened-cartload-d2621f33eab8@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D5818593A;
+	Fri, 23 Aug 2024 16:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724429217; cv=pass; b=b/1aLozzKfzaoF/j/7pKTfxFQJ+HIZX4HABPN/U8CcNuzuWY0Dx4Y2Mi/QtdbHXg+SFjfLpci5bBUnqjzTtKvC11fm2fECQXpMUpUDFJxPzSG9tChyOwRdvo7xMRIjJbkOmX1/uUlk5EL1SMk0x29Ax95TtjVkehMQ/O+ktAa7k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724429217; c=relaxed/simple;
+	bh=tBB3izCPMfNbf0TqYcL+j5sUi5mpYAci9rH5LDp8q24=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iBKeDnfL0aeb23kZQj19opSgUoTtJm17yz3BrMn5EQG5wkSbBjEmgwFxU6jgdnUkQcWS9hZJy5sldKeyg4kcF2Fl17+YJLWXuyGdXNsE7pBN0YPZWU2+gwUMlnMgNFK4/MaWIaPD9xzlOFgmN5tWoV4qI+SikLzD7huIWQvtz+4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Qj8k0qIq; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724429133; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=MjRK1FoJsuHsyIVh4RKCCc54M6gWCjzayDtGsNTo97lxPTlzEHOzuPiovQrrjUJmaJ5s90+XuamKSaXVKuWxZOVAH3Bh2dfB0YO4s8YRjLu8ROWo/SjA7TonfQN/Nxp1DL+/sOlJlYLuPLtZN6+b0yztkrjX95/53JgMg+gFheM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724429133; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=wDoypvfwN342dAKyLY44n6dnwxz7IYCMVu0LjSVZLls=; 
+	b=OkalxmebjQXK/KNBLiMUpyfDZY3yUF9lxpQHzS6JQq9nyIuQYPz4dFPFV1Mzz0HywvcQffmaRmLuZrYdktRgoBTNbajEvjSvM3UrBAkfFiCvscC+NH6RBWSuvHd1pTFv5OkD9rV2dyTAk2JQGc/KjmvS9E//46qYImoKkcQKgcY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724429133;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=wDoypvfwN342dAKyLY44n6dnwxz7IYCMVu0LjSVZLls=;
+	b=Qj8k0qIq4exUkeUJptd26SKuPlitb5ZgBqC7E3rk4WordXlOwH+24duUcyGUL9O2
+	hLBr5QB77BbIfluvvtyxmmART4/PB3WKPu7qNXu6jHnrxIWlG1XOTc9OHwqoWm7H8JP
+	Z+4ldmd5ncaGMTv2H6RjCcptwCTfFGlpoRk6G05s=
+Received: by mx.zohomail.com with SMTPS id 1724429132247991.7209561127088;
+	Fri, 23 Aug 2024 09:05:32 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Andi Shyti <andi.shyti@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Andy Yan <andyshrk@163.com>,
+ Muhammed Efe Cetin <efectn@protonmail.com>, Jagan Teki <jagan@edgeble.ai>,
+ Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Alexey Charkov <alchark@gmail.com>,
+ Elon Zhang <zhangzj@rock-chips.com>, Elaine Zhang <zhangqing@rock-chips.com>,
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+ Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ Jisheng Zhang <jszhang@kernel.org>, Jamie Iles <jamie@jamieiles.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel@collabora.com
+Subject: [PATCH v2 10/12] dt-bindings: spi: Add rockchip,rk3576-spi compatible
+Date: Fri, 23 Aug 2024 12:07:10 -0400
+Message-ID: <1995660.usQuhbGJ8B@trenzalore>
+In-Reply-To: <20240823150057.56141-1-detlev.casanova@collabora.com>
+References: <20240823150057.56141-1-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240823-darkened-cartload-d2621f33eab8@spud>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Fri, Aug 23, 2024 at 05:14:30PM +0100, Conor Dooley wrote:
-> On Thu, Aug 22, 2024 at 10:50:52PM +0200, Benjamin Larsson wrote:
-> > On 22/08/2024 18:06, Conor Dooley wrote:
-> > 
-> > 
-> > Hi.
-> > 
-> > > before looking at v1:
-> > > I would really like to see an explanation for why this is a correct
-> > > model of the hardware as part of the commit message. To me this screams
-> > > syscon/MFD and instead of describing this as a child of a syscon and
-> > > using regmap to access it you're doing whatever this is...
-> > 
-> > Can you post a link to a good example dts that uses syscon/MFD ?
-> > 
-> > It is not only pinctrl, pwm and gpio that are entangled in each other. A
-> > good example would help with developing a proper implementation.
-> 
-> Off the top of my head, no unfortunately. Maybe Rob or Krzk have a good
-> example. I would suggest to start by looking at drivers within gpio or
-> pinctrl that use syscon_to_regmap() where the argument is sourced from
-> either of_node->parent or dev.parent->of_node (which you use depends on
-> whether or not you have a child node or not).
-> 
-> I recently had some questions myself for Rob about child nodes for mfd
-> devices and when they were suitable to use:
-> https://lore.kernel.org/all/20240815200003.GA2956351-robh@kernel.org/
-> 
-> Following Rob's line of thought, I'd kinda expect an mfd driver to create
-> the devices for gpio and pwm using devm_mfd_add_devices() and the
-> pinctrl to have a child node.
+It is compatible with the rockchip,rk3066-spi SPI core.
 
-Just to not get confused and staring to focus on the wrong kind of
-API/too complex solution, I would suggest to check the example from
-Lorenzo.
+Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+---
+ Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-The pinctrl/gpio is an entire separate block and is mapped separately.
-What is problematic is that chip SCU is a mix and address are not in
-order and is required by many devices. (clock, pinctrl, gpio...)
-
-IMHO a mfd is overkill and wouldn't suite the task. MDF still support a
-single big region and in our case we need to map 2 different one (gpio
-AND chip SCU) (or for clock SCU and chip SCU)
-
-Similar problem is present in many other place and syscon is just for
-the task.
-
-Simple proposed solution is:
-- chip SCU entirely mapped and we use syscon
-- pinctrl mapped and reference chip SCU by phandle
-- pwm a child of pinctrl as it's scrambled in the pinctrl mapped regs
-
-Hope this can clear any confusion.
-
+diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/
+Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+index e4941e9212d13..46d9d6ee09234 100644
+--- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+@@ -35,6 +35,7 @@ properties:
+               - rockchip,rk3368-spi
+               - rockchip,rk3399-spi
+               - rockchip,rk3568-spi
++              - rockchip,rk3576-spi
+               - rockchip,rk3588-spi
+               - rockchip,rv1126-spi
+           - const: rockchip,rk3066-spi
 -- 
-	Ansuel
+2.46.0
+
+
+
 
