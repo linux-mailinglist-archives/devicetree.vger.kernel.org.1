@@ -1,177 +1,144 @@
-Return-Path: <devicetree+bounces-96024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1063795C72F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:02:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1CB95C737
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:03:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53C66B23CBE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:02:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68089B22908
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A19C13AD18;
-	Fri, 23 Aug 2024 08:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="EfWSmyBV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FEE13B7AE;
+	Fri, 23 Aug 2024 08:03:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B6913C9B8
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD9E2AE95;
+	Fri, 23 Aug 2024 08:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724400116; cv=none; b=aLYur0oL2LXcMUSjslY5i0cGi/Qc7wDRsnt3KhYzg4eJ7CtYHQSK/gIXeeazHmyvCrsA/Lgum3sOiqtjQ9URR7Q6tadDx3768O/Ou56Mx4hhpj6g5nNvb0qcYoRMismQhopkWYcW00oiICy+9LELNHB4XcfIxWGbQcwNHwu+dFY=
+	t=1724400220; cv=none; b=D1lNVG+p9pTK8l+RfaBbJ6UzvCr3e5JzdNZiC/K9o1imHZbCcb+9n3S/B0PAs/UMkTjZ6OPnBtDIObJTrsinelPWcIRnGjJ6oqKrtLnE7G/iOsp4mQ8kCPTGAjqWQoxvhTmGlFGn1k8b8QWJTk2aOhGuFn/RVlVysBxGpo/jW34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724400116; c=relaxed/simple;
-	bh=4hDm5FWWVa0YyBbMM+VE/PXVEM468xqIq17Z0T8yXgk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=DgLzOyR7hZCuAVh7plDmP/kVkEdk+vo2E1y0P07sgZYSSZqameQr2g+ZQYSj3dPrm/qXeXO/YY2BcE06XBtryqyleWrT719q5oRP7tOHIjDonrRuf88Z78iwcmxl7pty7Z6FEC+aHYFIa2nNdJwfjxipGsishyDWWe9I5l5aK3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=EfWSmyBV; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1724400103; x=1726992103;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=4hDm5FWWVa0YyBbMM+VE/PXVEM468xqIq17Z0T8yXgk=;
-	b=EfWSmyBV22bnWbP49p53nZN0ezft4g5KiEthlkGX66guM92ygIUqTPIqpIQPO2a0
-	mXv0dQ87sxSnBW17bVFb5V0W6xOlrqdVROokQiDjCaYfDmlJIx9RlmTcAYeV23pY
-	urc0MOtMcH0QYgkcmJwgO80d0sVYv4XK/4QubHbDcTg=;
-X-AuditID: ac14000a-03251700000021bc-fc-66c841e605bc
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 5C.20.08636.6E148C66; Fri, 23 Aug 2024 10:01:42 +0200 (CEST)
-Received: from llp-hahn.hahn.test (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 23 Aug
- 2024 10:01:42 +0200
-From: Benjamin Hahn <B.Hahn@phytec.de>
-Date: Fri, 23 Aug 2024 10:01:32 +0200
-Subject: [PATCH v3] arm64: dts: imx8mp-phyboard-pollux-rdk: Add support for
- PCIe
+	s=arc-20240116; t=1724400220; c=relaxed/simple;
+	bh=iF8iUihmF2dJh3FkshOnChMP04Ma/3/oZnTUDTsXBCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jSgWeP2DkTobLFts4RKOht04ve2lYTk/ygyJihsZkcwz/SQtss5eScO2bHY/8c6CuMoewJdzqw+0XqCNAwipZguwdRBIAHZoWrRuk25CBoYQXcYOBe3jvHgTzUH7ztXix8hhew9w423BHsltpxSrJKVt/I//pPHIRh1U5oHOJWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+	by localhost (Postfix) with ESMTP id 4WqsyV5TkTz9sRr;
+	Fri, 23 Aug 2024 10:03:30 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id s4XLifoY12ly; Fri, 23 Aug 2024 10:03:30 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4WqsyV4NkMz9rvV;
+	Fri, 23 Aug 2024 10:03:30 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 8447F8B77D;
+	Fri, 23 Aug 2024 10:03:30 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id Ca1iEuO7cMiA; Fri, 23 Aug 2024 10:03:30 +0200 (CEST)
+Received: from [192.168.233.10] (PO24418.IDSI0.si.c-s.fr [192.168.233.10])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id E4AE58B763;
+	Fri, 23 Aug 2024 10:03:29 +0200 (CEST)
+Message-ID: <834e0fdd-bc87-481d-bed1-1c8295d5a2be@csgroup.eu>
+Date: Fri, 23 Aug 2024 10:03:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
-X-B4-Tracking: v=1; b=H4sIANtByGYC/43NvQ6CMBiF4Vshna2hpWrr5H0YQ/rzYb8Fmharh
- HDvFiYm4/ie4TkzSRARErlWM4mQMeHQl2gOFbFe90+g6EoTXnNRS9bQNwZqvPY91c61wSK06RX
- CEEdqlHGXU2eFU5IUIETo8LPh90dpj2kc4rR9Zbauf7GZUUYtM6Y+cyOAdbfgpxHs0QFZ2cx3F
- Gc/KV4oZRV3UkipDd9Ty7J8AcnSatUPAQAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Teresa Remmet
-	<t.remmet@phytec.de>
-CC: <upstream@lists.phytec.de>, <devicetree@vger.kernel.org>,
-	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Benjamin Hahn <B.Hahn@phytec.de>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724400102; l=2246;
- i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
- bh=4hDm5FWWVa0YyBbMM+VE/PXVEM468xqIq17Z0T8yXgk=;
- b=/b8AKjwwccuG7USDnR92yOsjjCXaVrVrQ9F4gv/kcw1lUb+8tF+6Z2V+DWQ5y3Mxc6lL0K/8n
- yh+O0Qb9zykBpamy3wSJEkvJv2wyeOiTZ4KQLzCaSYedLeL60bgSWD9
-X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
- pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphkeLIzCtJLcpLzFFi42JZI8nAo/vM8USawd4LxhZr9p5jsph/5Byr
-	xcOr/hYz77WyWayaupPF4uWse2wWmx5fY7W4vGsOm8X/PTvYLf5u38Ri8WKLuEX3O3UHHo+d
-	s+6ye2xa1cnmsXlJvceLzTMZPfq7W1g9+v8aeHzeJBfAHsVlk5Kak1mWWqRvl8CVsbPpN3PB
-	CcGKKb9uszUw3uPrYuTkkBAwkXi7q5Wxi5GLQ0hgCZNEw5lLzBDOQ0aJZ683sYNUsQmoSex6
-	85oVxGYRUJVoX3KTGcQWFgiSaP31lwXE5hUQlDg58wmQzcHBLKApsX6XPkiYWUBeYvvbOcwQ
-	Jb4Sx/+dY4ZY3M0kcbWBC8QWEdjBJPG43xBkL7PAQUaJP+sfsEMUCUt83r2GDSQhIbCbSWLf
-	yxZmkAUSAokSO1/LgdQICchK3Dy/hQ2iXl5i2rnXUAtCJY5sWs00gVF4FpLzZiGcNwvJeQsY
-	mVcxCuVmJmenFmVm6xVkVJakJuulpG5iBMWYCAPXDsa+OR6HGJk4GA8xSnAwK4nwJt07mibE
-	m5JYWZValB9fVJqTWnyIUZqDRUmcd3VHcKqQQHpiSWp2ampBahFMlomDU6qBcbWK1q8KrobI
-	XV/fqS9nlX66bX/y6jRR3W61Q+aPb54/x2G/1mha+RqD7BM3/5yP6jRj+jIx+EOJkzWjr2rQ
-	xp4t66dqiK0+lFDFlSTMX/GxjX9x3+wS1kW8L98ourKFMOwT7bvacklqZo6jDWN5smmYWuLH
-	sHWT5v87/yZTcMu6CZ7iDQ1hSizFGYmGWsxFxYkAL+taIp8CAAA=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/36] soc: fsl: cpm1: qmc: Update TRNSYNC only in
+ transparent mode
+To: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
+ Li Yang <leoyang.li@nxp.com>, Mark Brown <broonie@kernel.org>
+Cc: linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
+References: <20240808071132.149251-1-herve.codina@bootlin.com>
+ <20240808071132.149251-2-herve.codina@bootlin.com>
+Content-Language: fr-FR
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+In-Reply-To: <20240808071132.149251-2-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add support for the Mini PCIe slot.
 
-Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
----
-Changes in v3:
-- change order of properties for pcie phy node
-- Link to v2: https://lore.kernel.org/r/20240821-wip-bhahn-add_pcie_support-v2-1-9c92d8488ab2@phytec.de
 
-Changes in v2:
-- change pcie regulator to reg_vcc_3v3_sw
-- add wake gpio to pcie pinctrl and order the gpios
-- Link to v1: https://lore.kernel.org/r/20240813-wip-bhahn-add_pcie_support-v1-1-c1bb062b4e1f@phytec.de
----
- .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Le 08/08/2024 à 09:10, Herve Codina a écrit :
+> The TRNSYNC feature is available (and enabled) only in transparent mode.
+> 
+> Since commit 7cc9bda9c163 ("soc: fsl: cpm1: qmc: Handle timeslot entries
+> at channel start() and stop()") TRNSYNC register is updated in
+> transparent and hdlc mode. In hdlc mode, the address of the TRNSYNC
+> register is used by the QMC for other internal purpose. Even if no weird
+> results were observed in hdlc mode, touching this register in this mode
+> is wrong.
+> 
+> Update TRNSYNC only in transparent mode.
+> 
+> Fixes: 7cc9bda9c163 ("soc: fsl: cpm1: qmc: Handle timeslot entries at channel start() and stop()")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-index 00a240484c25..bea479b5203a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
- #include <dt-bindings/leds/leds-pca9532.h>
- #include <dt-bindings/pwm/pwm.h>
- #include "imx8mp-phycore-som.dtsi"
-@@ -195,6 +196,23 @@ &snvs_pwrkey {
- 	status = "okay";
- };
- 
-+&pcie_phy {
-+	clocks = <&hsio_blk_ctrl>;
-+	clock-names = "ref";
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_OUTPUT>;
-+	fsl,clkreq-unsupported;
-+	status = "okay";
-+};
-+
-+/* Mini PCIe */
-+&pcie {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	reset-gpio = <&gpio1 8 GPIO_ACTIVE_LOW>;
-+	vpcie-supply = <&reg_vcc_3v3_sw>;
-+	status = "okay";
-+};
-+
- &pwm3 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -366,6 +384,15 @@ MX8MP_IOMUXC_SD2_WP__GPIO2_IO20		0x12
- 		>;
- 	};
- 
-+	pinctrl_pcie0: pcie0grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO08__GPIO1_IO08     0x40
-+			MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10     0x60
-+			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x60 /* open drain, pull up */
-+			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14     0x40
-+		>;
-+	};
-+
- 	pinctrl_pwm3: pwm3grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SPDIF_TX__PWM3_OUT		0x12
+Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 
----
-base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
-change-id: 20240813-wip-bhahn-add_pcie_support-b9bd75fc4d98
-
-Best regards,
--- 
-Benjamin Hahn <B.Hahn@phytec.de>
-
+> ---
+>   drivers/soc/fsl/qe/qmc.c | 24 ++++++++++++++----------
+>   1 file changed, 14 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/soc/fsl/qe/qmc.c b/drivers/soc/fsl/qe/qmc.c
+> index 76bb496305a0..bacabf731dcb 100644
+> --- a/drivers/soc/fsl/qe/qmc.c
+> +++ b/drivers/soc/fsl/qe/qmc.c
+> @@ -940,11 +940,13 @@ static int qmc_chan_start_rx(struct qmc_chan *chan)
+>   		goto end;
+>   	}
+>   
+> -	ret = qmc_setup_chan_trnsync(chan->qmc, chan);
+> -	if (ret) {
+> -		dev_err(chan->qmc->dev, "chan %u: setup TRNSYNC failed (%d)\n",
+> -			chan->id, ret);
+> -		goto end;
+> +	if (chan->mode == QMC_TRANSPARENT) {
+> +		ret = qmc_setup_chan_trnsync(chan->qmc, chan);
+> +		if (ret) {
+> +			dev_err(chan->qmc->dev, "chan %u: setup TRNSYNC failed (%d)\n",
+> +				chan->id, ret);
+> +			goto end;
+> +		}
+>   	}
+>   
+>   	/* Restart the receiver */
+> @@ -982,11 +984,13 @@ static int qmc_chan_start_tx(struct qmc_chan *chan)
+>   		goto end;
+>   	}
+>   
+> -	ret = qmc_setup_chan_trnsync(chan->qmc, chan);
+> -	if (ret) {
+> -		dev_err(chan->qmc->dev, "chan %u: setup TRNSYNC failed (%d)\n",
+> -			chan->id, ret);
+> -		goto end;
+> +	if (chan->mode == QMC_TRANSPARENT) {
+> +		ret = qmc_setup_chan_trnsync(chan->qmc, chan);
+> +		if (ret) {
+> +			dev_err(chan->qmc->dev, "chan %u: setup TRNSYNC failed (%d)\n",
+> +				chan->id, ret);
+> +			goto end;
+> +		}
+>   	}
+>   
+>   	/*
 
