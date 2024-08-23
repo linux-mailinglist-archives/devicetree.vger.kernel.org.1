@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7165D95C52F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:11:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58BDF95C537
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 935F21C21CD4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:11:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FEBE2819E8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F467172F;
-	Fri, 23 Aug 2024 06:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20B174BE1;
+	Fri, 23 Aug 2024 06:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="URLhT2TU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HaF0J47J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA00357CA6;
-	Fri, 23 Aug 2024 06:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AA060275;
+	Fri, 23 Aug 2024 06:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724393457; cv=none; b=lM0M/bW+UuC5n0Wg0rOBHKkTkfaOQaop3RoJOyIyRn1lRjmoolJ/2B6K7imVNPGHk6jx1H6QNNDYKLPvcRTyz2db4EYNuw+LP4RbBlKPsQHg8Qz7RufgIeWyrgYhDNRsB92m9lgp9WxT8vByNxrHbVOqUcaqxLJf2jsgbRKVx/4=
+	t=1724393618; cv=none; b=c0daGQLrDfJwFNUj5W074L4yefl+qvxYUB1cuYZpQq0TYtPNW2RxKEg75zJXarNNrfvmvLaNEBB0fnbwUpNi/NWHFzBFpWMjsd138MxP+PucYP1WTGpfm5G3p9FkPceBTF3TVVRDzPFt/1PLNVyuKJ/i5HPA5tlub098SAGYL3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724393457; c=relaxed/simple;
-	bh=GgTRe1j1dYYnmWj0lPD0688gdnIvxvqvWXPfj37La2Y=;
+	s=arc-20240116; t=1724393618; c=relaxed/simple;
+	bh=OauzdjmkbOQWPCLsFNZYoGG+GUmWKfyl6f9sqcIXs1o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MTFiXiTSU0ESrAEyuXnY5j/jkmw9tK1UYOmZBQl9Jm00z/e2dXaeu7WMcrXKTKlkClHO20Uner62k2DJWKRx43bbw8yMQ0VhlCVjN0yimUfwq/PjKb0GAQMaENlNr1j/e1G0YHkKfzkrdYMNIEql3k0NwP8tk2Gc94mDxvwz79g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=URLhT2TU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 983EDC32786;
-	Fri, 23 Aug 2024 06:10:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LusARxOmo4J7VfKz7vMcFBD1QZTRP5106AWwEfRRtvA1+viq0ZCh/W58kKWYNUM+TI96w2f8kqgYse8zJzB++k/LIeLZtsUrrN7HsOcBgvob+N7nRZD2kvOeeifc7o5+3pSe01XFpWeqPG4jODQe0OiLAg6GVSh6M9IdFgBmJ7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HaF0J47J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB31FC32786;
+	Fri, 23 Aug 2024 06:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724393456;
-	bh=GgTRe1j1dYYnmWj0lPD0688gdnIvxvqvWXPfj37La2Y=;
+	s=k20201202; t=1724393618;
+	bh=OauzdjmkbOQWPCLsFNZYoGG+GUmWKfyl6f9sqcIXs1o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=URLhT2TUPUuRqTmcvLV4NMkbknqbMg2IZ6eZhzUQAr0ZD4jA05rYkOIV95e8tssro
-	 7fUOJKuJ9aq/ZvDvDyXfglaGJ85gIoFsOyGWMjSglI6Oxnw8Ig4RIu256GbucXx0vb
-	 mpIcumyIiqERaBsASFfkmSCcfmI7tFeIujp0ii8kG69Iwrqh3l1tPkdJP89MUGh4s0
-	 Y+wJALlIfxyt2RnLiXkJkfAK6gcCHFjkIfUWyfBuIvk6OyB5L4/I4bKQGkGx1emPfX
-	 mrUK0WPlSw920vrARz0BbP6Awk0RmH2c9CmwQsW+aEBoOoa5+kqWQgzxi7MCW7ywzw
-	 EmMaa+TdHIaOw==
-Message-ID: <bfd89207-5dd5-4b89-bd54-aa490d34c590@kernel.org>
-Date: Fri, 23 Aug 2024 08:10:49 +0200
+	b=HaF0J47J6xS9YTkrzO/0yNW9pUQJLD8dkTlyF2NvftWeAYpE3IXqZLeOtjh8CKudM
+	 4BRuE5iygqJvjn4VPKvuKfMn0+I8URerX637fIEGLjzNPIshakA65zxUoClVlJanHR
+	 RgkDJT96tKPGVra6gUQMUOLdcTfdnxL87Sedrx8TBwFYkhPAT761ZiOtpwyWQEOW3m
+	 EDr1tRG3268kQvnqaNPoJ/5MmHiya02fOl99y8iyao+4WCO3NnNPdtnR6t/aXjhIlJ
+	 o2WcWwiXBZSbIIR9BDIdCbdrfueDhbEKt2UN38MwxjEpv0cFL/TipoeGfHkH91MY1H
+	 QAM6tP64aoZsg==
+Message-ID: <a17f963e-0e6d-4132-817f-2e663268ee2d@kernel.org>
+Date: Fri, 23 Aug 2024 08:13:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: wireless: wilc1000: Document WILC3000
- compatible string
-To: Marek Vasut <marex@denx.de>
-Cc: linux-wireless@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240821184356.163816-1-marex@denx.de>
- <ztc4h7rgsli2jltrdgu5twnma6dbbt3kbbbo3i4eevb3whkqkv@oabtuskiz7km>
- <8031c3ef-3b16-4200-83aa-0776bdfa8b45@denx.de>
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: Add aspeed,video binding
+To: Jammy Huang <jammy_huang@aspeedtech.com>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "eajames@linux.ibm.com" <eajames@linux.ibm.com>,
+ "mchehab@kernel.org" <mchehab@kernel.org>, "joel@jms.id.au"
+ <joel@jms.id.au>, "andrew@aj.id.au" <andrew@aj.id.au>,
+ "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
+ "pmenzel@molgen.mpg.de" <pmenzel@molgen.mpg.de>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240819080859.1304671-1-jammy_huang@aspeedtech.com>
+ <20240819080859.1304671-2-jammy_huang@aspeedtech.com>
+ <nnjcjt2kuplsy5bbxujuubkn2xdtpifjeiqt5qfvktdmaorzuz@x444p5ezcoch>
+ <TYZPR06MB6568AB9E260263DBB1ED474DF1882@TYZPR06MB6568.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,42 +116,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <8031c3ef-3b16-4200-83aa-0776bdfa8b45@denx.de>
+In-Reply-To: <TYZPR06MB6568AB9E260263DBB1ED474DF1882@TYZPR06MB6568.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/08/2024 03:38, Marek Vasut wrote:
-> On 8/22/24 10:07 AM, Krzysztof Kozlowski wrote:
+On 23/08/2024 03:11, Jammy Huang wrote:
+
 > 
-> Hi,
-> 
->>> diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
->>> index 2460ccc082371..1bf3496c21e64 100644
->>> --- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
->>> +++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
->>> @@ -16,7 +16,9 @@ description:
->>>   
->>>   properties:
->>>     compatible:
->>> -    const: microchip,wilc1000
->>> +    enum:
->>> +      - microchip,wilc1000
->>> +      - microchip,wilc3000
 >>
->> Your driver change suggests device type is fully auto-detectable
-> 
-> It seems that way, yes.
-> 
->> , thus
->> they are compatible.
-> 
-> I _think_ the hardware is internally somewhat different, the WILC1000 is 
-> WiFi-only device and the WILC3000 has some extra Bluetooth part (which 
-> is currently not supported).
-> 
-> Maybe a fallback compatible string would be better here ?
+>>> @@ -0,0 +1,81 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/arm/aspeed/aspeed,video.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: ASPEED Video Engine
+>>
+>> ASPEED or Aspeed?
+> I prefer ASPEED.
 
-Yes, that's what I meant by compatibility. 3000 followed by 1000.
+What is the name of the company? How is it called in all bindings? Is it
+an acronym?
+
+> 
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Eddie James <eajames@linux.ibm.com>
+>>> +  - Jammy Huang <jammy_huang@aspeedtech.com>
+>>> +
+>>> +descriptio
+
+
+...
+
+> 
+>>
+>>> +           compatible = "aspeed,ast2600-video-engine";
+>>
+>> Fix indentation, this is supposed 4 spaces.
+> OK
+> ************* Email Confidentiality Notice ********************
+> 免責聲明:
+> 本信件(或其附件)可能包含機密資訊，並受法律保護。如 台端非指定之收件者，請以電子郵件通知本電子郵件之發送者, 並請立即刪除本電子郵件及其附件和銷毀所有複印件。謝謝您的合作!
+> 
+> DISCLAIMER:
+> This message (and any attachments) may contain legally privileged and/or other confidential information. If you have received it in error, please notify the sender by reply e-mail and immediately delete the e-mail and any attachments without copying or disclosing the contents. Thank you.
+
+
+Every damn time from Aspeed. People, fix it finally. If you keep sending
+confidential data, I will be rejecting/NAKing and deleting your messages
+as requested.
+
+<form letter>
+Maybe I am the intended recipient of your message, maybe not. I don't
+want to have any legal questions regarding upstream, public
+collaboration, thus probably I should just remove your messages.
+
+Please talk with your IT that such disclaimers in open-source are not
+desired (and maybe even harmful).
+If you do not understand why, please also see:
+https://www.youtube.com/live/fMeH7wqOwXA?si=GY7igfbda6vnjXlJ&t=835
+
+If you need to go around company SMTP server, then consider using b4
+web-relay: https://b4.docs.kernel.org/en/latest/contributor/send.html
+
+Please be informed that by responding to this email you agree that all
+communications from you and/or your company is made public. In other
+words, all messages originating from you and/or your company will be
+made public.
+<form letter>
 
 Best regards,
 Krzysztof
