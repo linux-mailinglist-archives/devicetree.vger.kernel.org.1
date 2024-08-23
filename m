@@ -1,180 +1,177 @@
-Return-Path: <devicetree+bounces-96023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927D995C726
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1063795C72F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:02:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E052FB24BEF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:00:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53C66B23CBE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE510143C4C;
-	Fri, 23 Aug 2024 07:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A19C13AD18;
+	Fri, 23 Aug 2024 08:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="DoNc3Nrf"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="EfWSmyBV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF3A13D897
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 07:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B6913C9B8
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724399987; cv=none; b=EMnp/bufN5AgS8kbzjGjVWBXLpvBrg1HJmPR23oUcFK5nZf0xu08UADQLmkHH434NFNPrnl8351lfN6uYmXzdAOlHUwjfYg6CDrCGSqrycvHSKJnmqpwVoMhXrpSPBo9xRz5fgfWNcPs6sx7QqJ2hD0js5yWuSFLnBtgTgdQcxE=
+	t=1724400116; cv=none; b=aLYur0oL2LXcMUSjslY5i0cGi/Qc7wDRsnt3KhYzg4eJ7CtYHQSK/gIXeeazHmyvCrsA/Lgum3sOiqtjQ9URR7Q6tadDx3768O/Ou56Mx4hhpj6g5nNvb0qcYoRMismQhopkWYcW00oiICy+9LELNHB4XcfIxWGbQcwNHwu+dFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724399987; c=relaxed/simple;
-	bh=dGHVx+hFfK2LkEEUaLJJzkbk61htvECuf2CwQAdYmPw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RtlpGI+Vv9nf/3Ku7/iSlIRr6DtYY40Ifa67P2yKkBO9C+4KjjdLJgAELA0IQ3uKQlg1rfKNalkeQyTak4p5mfkYMVvmqoWIxfRuFKOSJJpTj4VTeRLanxBLvJViqyPYhvxBDmCOwN9adxKJfKxe4yhCV5pErfqWrxuZ2NAbcx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=DoNc3Nrf; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a7aa086b077so196023566b.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 00:59:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1724399983; x=1725004783; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9cyUaWQ/RfElk/9t5oBKQMBDU3FsVlRw3b+jDEVNsQM=;
-        b=DoNc3NrfHp1s2iwmcPndsIbFpdoJkTTwmbp2qyy23PXfUfDARwhZGFQZug8yaiMowb
-         j+b+L3x8L29ezFlBfmmAeMgNjqpYpABtTI+0s3HwUnPC7xOjOoIWcnHrZuOpXnpgPFBz
-         JzibB354DlcDKzxdAzffbDTMq+gMXw9yksz0J1Y9WiS9OyNS89A3NcZPoXqRE4Dp9FLS
-         PMb45DR155zLEUvVeMEqZQpRJJrF0I9pzk2IFYFbgj648VLp4nRC0GLp+lyiH03EBlwD
-         Rm0FjLQziaYUeKzqq/Sfbk/TgdDLuOOgatKg9uS6/HpyIfxKPQoqOOk5+iJllniPiSEE
-         SZCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724399983; x=1725004783;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9cyUaWQ/RfElk/9t5oBKQMBDU3FsVlRw3b+jDEVNsQM=;
-        b=fpIRclNegy9n5yrjad3bFXBOkXNqb60G6Cct5g/7TCT6Eitp3dRwSdYAIgq9pcrn0N
-         iqI8bs7fNhx9uZWDRfmBfleLnkpLlHvH6bk+eVSWD+QLkMhEjfSDCt7ybFSHavIUdcT8
-         alGIuAgl3JrovxNU71rPEXN06AYLf5PB6vzhpSCjbVz65GEHakzPoHZ0U0uexOyvXOdv
-         puBnAeGDjK7v8URoAz+ktH596Nt2Oj48R5tjdCYIXdHYU3ERcr7LUrGyYlfnzLVtrIEY
-         Me5iEHjjj999BDVVKo8pYWVq2yy8G3/KohLYxyCvEHPAktPj6udfSbGGdduvJLBWg6pS
-         2CGg==
-X-Forwarded-Encrypted: i=1; AJvYcCXw+W+tShe+daDhwPOv8SkDkrOXsPss8JIAQyvivwS3OCCap4NXXeshbxVYJj99cu3kSppu6KkrFc3s@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIjyirhMUBeHRzqMvZVvwa1rpWhYXHfnzc2VPCxoP3TuEVXCuB
-	J7W8Q0V1DdC6I3BLPofxZCAdtOwNwCMSWjGhMVoeiTf/uAq/KSYwHAzHnPRrcL8=
-X-Google-Smtp-Source: AGHT+IFALanES9BGD/uHrel10X5aoBTS5/4uaV/A+E4WAJMOHgg5/BTkzR0yFcRw4eCRtDATN+BsLQ==
-X-Received: by 2002:a17:907:6d0d:b0:a86:938f:e84c with SMTP id a640c23a62f3a-a86a54df8d3mr78450566b.66.1724399982571;
-        Fri, 23 Aug 2024 00:59:42 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f48aac4sm219597466b.185.2024.08.23.00.59.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 00:59:42 -0700 (PDT)
-Message-ID: <e0308678-c031-41e1-8d07-d2b78504180f@tuxon.dev>
-Date: Fri, 23 Aug 2024 10:59:39 +0300
+	s=arc-20240116; t=1724400116; c=relaxed/simple;
+	bh=4hDm5FWWVa0YyBbMM+VE/PXVEM468xqIq17Z0T8yXgk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=DgLzOyR7hZCuAVh7plDmP/kVkEdk+vo2E1y0P07sgZYSSZqameQr2g+ZQYSj3dPrm/qXeXO/YY2BcE06XBtryqyleWrT719q5oRP7tOHIjDonrRuf88Z78iwcmxl7pty7Z6FEC+aHYFIa2nNdJwfjxipGsishyDWWe9I5l5aK3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=EfWSmyBV; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1724400103; x=1726992103;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=4hDm5FWWVa0YyBbMM+VE/PXVEM468xqIq17Z0T8yXgk=;
+	b=EfWSmyBV22bnWbP49p53nZN0ezft4g5KiEthlkGX66guM92ygIUqTPIqpIQPO2a0
+	mXv0dQ87sxSnBW17bVFb5V0W6xOlrqdVROokQiDjCaYfDmlJIx9RlmTcAYeV23pY
+	urc0MOtMcH0QYgkcmJwgO80d0sVYv4XK/4QubHbDcTg=;
+X-AuditID: ac14000a-03251700000021bc-fc-66c841e605bc
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 5C.20.08636.6E148C66; Fri, 23 Aug 2024 10:01:42 +0200 (CEST)
+Received: from llp-hahn.hahn.test (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 23 Aug
+ 2024 10:01:42 +0200
+From: Benjamin Hahn <B.Hahn@phytec.de>
+Date: Fri, 23 Aug 2024 10:01:32 +0200
+Subject: [PATCH v3] arm64: dts: imx8mp-phyboard-pollux-rdk: Add support for
+ PCIe
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/16] dt-bindings: soc: renesas: renesas,rzg2l-sysc: Add
- #reset-cells for RZ/G3S
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
- magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com,
- sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com,
- biju.das.jz@bp.renesas.com, ulf.hansson@linaro.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
- <20240822152801.602318-3-claudiu.beznea.uj@bp.renesas.com>
- <20240822-vanilla-enigmatic-f0b05ecca4b6@spud>
- <20240822-mountain-hurdle-dd1f08b96f64@spud>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240822-mountain-hurdle-dd1f08b96f64@spud>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
+X-B4-Tracking: v=1; b=H4sIANtByGYC/43NvQ6CMBiF4Vshna2hpWrr5H0YQ/rzYb8Fmharh
+ HDvFiYm4/ie4TkzSRARErlWM4mQMeHQl2gOFbFe90+g6EoTXnNRS9bQNwZqvPY91c61wSK06RX
+ CEEdqlHGXU2eFU5IUIETo8LPh90dpj2kc4rR9Zbauf7GZUUYtM6Y+cyOAdbfgpxHs0QFZ2cx3F
+ Gc/KV4oZRV3UkipDd9Ty7J8AcnSatUPAQAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Teresa Remmet
+	<t.remmet@phytec.de>
+CC: <upstream@lists.phytec.de>, <devicetree@vger.kernel.org>,
+	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Benjamin Hahn <B.Hahn@phytec.de>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724400102; l=2246;
+ i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
+ bh=4hDm5FWWVa0YyBbMM+VE/PXVEM468xqIq17Z0T8yXgk=;
+ b=/b8AKjwwccuG7USDnR92yOsjjCXaVrVrQ9F4gv/kcw1lUb+8tF+6Z2V+DWQ5y3Mxc6lL0K/8n
+ yh+O0Qb9zykBpamy3wSJEkvJv2wyeOiTZ4KQLzCaSYedLeL60bgSWD9
+X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
+ pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphkeLIzCtJLcpLzFFi42JZI8nAo/vM8USawd4LxhZr9p5jsph/5Byr
+	xcOr/hYz77WyWayaupPF4uWse2wWmx5fY7W4vGsOm8X/PTvYLf5u38Ri8WKLuEX3O3UHHo+d
+	s+6ye2xa1cnmsXlJvceLzTMZPfq7W1g9+v8aeHzeJBfAHsVlk5Kak1mWWqRvl8CVsbPpN3PB
+	CcGKKb9uszUw3uPrYuTkkBAwkXi7q5Wxi5GLQ0hgCZNEw5lLzBDOQ0aJZ683sYNUsQmoSex6
+	85oVxGYRUJVoX3KTGcQWFgiSaP31lwXE5hUQlDg58wmQzcHBLKApsX6XPkiYWUBeYvvbOcwQ
+	Jb4Sx/+dY4ZY3M0kcbWBC8QWEdjBJPG43xBkL7PAQUaJP+sfsEMUCUt83r2GDSQhIbCbSWLf
+	yxZmkAUSAokSO1/LgdQICchK3Dy/hQ2iXl5i2rnXUAtCJY5sWs00gVF4FpLzZiGcNwvJeQsY
+	mVcxCuVmJmenFmVm6xVkVJakJuulpG5iBMWYCAPXDsa+OR6HGJk4GA8xSnAwK4nwJt07mibE
+	m5JYWZValB9fVJqTWnyIUZqDRUmcd3VHcKqQQHpiSWp2ampBahFMlomDU6qBcbWK1q8KrobI
+	XV/fqS9nlX66bX/y6jRR3W61Q+aPb54/x2G/1mha+RqD7BM3/5yP6jRj+jIx+EOJkzWjr2rQ
+	xp4t66dqiK0+lFDFlSTMX/GxjX9x3+wS1kW8L98ourKFMOwT7bvacklqZo6jDWN5smmYWuLH
+	sHWT5v87/yZTcMu6CZ7iDQ1hSizFGYmGWsxFxYkAL+taIp8CAAA=
 
+Add support for the Mini PCIe slot.
 
+Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
+---
+Changes in v3:
+- change order of properties for pcie phy node
+- Link to v2: https://lore.kernel.org/r/20240821-wip-bhahn-add_pcie_support-v2-1-9c92d8488ab2@phytec.de
 
-On 22.08.2024 19:44, Conor Dooley wrote:
-> On Thu, Aug 22, 2024 at 05:42:57PM +0100, Conor Dooley wrote:
->> On Thu, Aug 22, 2024 at 06:27:47PM +0300, Claudiu wrote:
->>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>
->>> The RZ/G3S System controller has registers to control signals that need
->>> to be de-asserted/asserted before/after different SoC areas are power
->>> on/off. This signals are implemented as reset signals. For this document
->>> the #reset-cells property.
->>>
->>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>> ---
->>>  .../bindings/soc/renesas/renesas,rzg2l-sysc.yaml | 16 ++++++++++++++++
->>>  1 file changed, 16 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
->>> index 4386b2c3fa4d..6b0bb34485d9 100644
->>> --- a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
->>> @@ -42,12 +42,28 @@ properties:
->>>        - const: cm33stbyr_int
->>>        - const: ca55_deny
->>>  
->>> +  "#reset-cells":
->>> +    const: 1
->>> +
->>>  required:
->>>    - compatible
->>>    - reg
->>>  
->>>  additionalProperties: false
->>>  
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: renesas,r9a08g045-sysc
->>> +    then:
->>> +      required:
->>> +        - "#reset-cells"
->>
->> Given this is new required property on an existing platform, I'd expect
->> some mention of why it used to be okay to not have this but is now
->> required. Did firmware or a bootloader stage take things out of reset?
-> 
-> Reading a bit more into the series, the peripherals in question were
-> just never used nor did a driver for the sysc exist, so there's neither
+Changes in v2:
+- change pcie regulator to reg_vcc_3v3_sw
+- add wake gpio to pcie pinctrl and order the gpios
+- Link to v1: https://lore.kernel.org/r/20240813-wip-bhahn-add_pcie_support-v1-1-c1bb062b4e1f@phytec.de
+---
+ .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 27 ++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-Exactly.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+index 00a240484c25..bea479b5203a 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+@@ -6,6 +6,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ #include <dt-bindings/leds/leds-pca9532.h>
+ #include <dt-bindings/pwm/pwm.h>
+ #include "imx8mp-phycore-som.dtsi"
+@@ -195,6 +196,23 @@ &snvs_pwrkey {
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	clocks = <&hsio_blk_ctrl>;
++	clock-names = "ref";
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_OUTPUT>;
++	fsl,clkreq-unsupported;
++	status = "okay";
++};
++
++/* Mini PCIe */
++&pcie {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio1 8 GPIO_ACTIVE_LOW>;
++	vpcie-supply = <&reg_vcc_3v3_sw>;
++	status = "okay";
++};
++
+ &pwm3 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+@@ -366,6 +384,15 @@ MX8MP_IOMUXC_SD2_WP__GPIO2_IO20		0x12
+ 		>;
+ 	};
+ 
++	pinctrl_pcie0: pcie0grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO08__GPIO1_IO08     0x40
++			MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10     0x60
++			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x60 /* open drain, pull up */
++			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14     0x40
++		>;
++	};
++
+ 	pinctrl_pwm3: pwm3grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SPDIF_TX__PWM3_OUT		0x12
 
-> explanation of prior behaviour nor concerns about compatibility?
+---
+base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
+change-id: 20240813-wip-bhahn-add_pcie_support-b9bd75fc4d98
 
-The newly introduced sysc driver is probed only for RZ/G3S and used to
-control the USB, PCIe signals though reset control driver (registered by
-sysc driver on auxiliary bus) and to identify the chip. The intention is to
-later migrate the chip identification support for the rest of RZ/G2 devices
-to this new driver and add more functionalities, when/if needed.
+Best regards,
+-- 
+Benjamin Hahn <B.Hahn@phytec.de>
 
-Thank you,
-Claudiu Beznea
-
-> 
->>
->>> +    else:
->>> +      properties:
->>> +        "#reset-cells": false
->>> +
->>>  examples:
->>>    - |
->>>      #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> -- 
->>> 2.39.2
->>>
-> 
-> 
 
