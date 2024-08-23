@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-96060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD1195C7C7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:14:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B3D095C7CA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E596C1C25646
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:14:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F3AD1C257DA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6855D142E9D;
-	Fri, 23 Aug 2024 08:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB901428E3;
+	Fri, 23 Aug 2024 08:14:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5187613D24D;
-	Fri, 23 Aug 2024 08:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32ED4142651;
+	Fri, 23 Aug 2024 08:14:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724400879; cv=none; b=LJzPyi9LFCYlmMFwS6bekVvZ8hoUQAEdzkPf7e5vvRaVwZNEPJQ2ZVCokU9AuJ03PYUoo66kVy8VUgEt2KuEaw8GJ4VnJgD5E1y9ik05JF0suLjRCDQj2dCoobjq+Jo32XbYy5qyRm9Zjpjek8kep38dLFYpvaoL8S9VgKDY5fw=
+	t=1724400895; cv=none; b=CjtQmOLBUhjPc2fkI+a7CIXHxN2D96Tzh2mSbdzRSuuqJOwNWbUzsvyFsbR7LF0kAptbgm2D74HCYuKI8KF0AJDf5L0eUIqTfwTXRBjm7ls7M2EUZiYHjTDS6II1Lc1CEQ1IBdI40EjJ2o7A9WcUO+ifvSyTczGQKWfSMHZo0Ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724400879; c=relaxed/simple;
-	bh=z+YniUybXtg2gj0fSYjHwfKRjyevSKni5rnO9yfxV8o=;
+	s=arc-20240116; t=1724400895; c=relaxed/simple;
+	bh=ecWROLQSnLWpqxI7nA6r3VNRB1/7r8Hp2sj0ZUUU32Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=THnjRsjq4uDE/YjXfN90b87UV/hkbtOOPHhYbiogfIadukjvKJUZ3dRiJa2aDcCF+jvHCImWKVMX7nxQVDpA2cKFwHJHhrN/mkgB6lKAXmi2K0j3ReCXgCso60Uc0c7x2l2P5uFT7wbt0906GxyYWSa6oEDaLqfhDJFyVODR/R4=
+	 In-Reply-To:Content-Type; b=W/qRpZbfqBVul4RdxOf46FKMveQKLw0riFejkk1EksoTjTDGgKl5KX1/HrzCZbKXBNtcCbNqY5Q1hAaI/KdGDgYld4RxFIeQ03jGavO8pNHjPdii2Tmjilwl4AtGHD+enU+B/k6jdpntUl7ZNr60GZVq5wTstx5SSxOyffwY2NA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
 Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4WqtCH48bPz9sRr;
-	Fri, 23 Aug 2024 10:14:35 +0200 (CEST)
+	by localhost (Postfix) with ESMTP id 4WqtCc62WQz9sRr;
+	Fri, 23 Aug 2024 10:14:52 +0200 (CEST)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from pegase2.c-s.fr ([172.26.127.65])
 	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rmBw-5KNRs2O; Fri, 23 Aug 2024 10:14:35 +0200 (CEST)
+	with ESMTP id J4X30XlS6JER; Fri, 23 Aug 2024 10:14:52 +0200 (CEST)
 Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4WqtCH2z51z9rvV;
-	Fri, 23 Aug 2024 10:14:35 +0200 (CEST)
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4WqtCc5B7kz9rvV;
+	Fri, 23 Aug 2024 10:14:52 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 536C68B77D;
-	Fri, 23 Aug 2024 10:14:35 +0200 (CEST)
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id A2F518B77D;
+	Fri, 23 Aug 2024 10:14:52 +0200 (CEST)
 X-Virus-Scanned: amavisd-new at c-s.fr
 Received: from messagerie.si.c-s.fr ([127.0.0.1])
 	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id jiQWCn7DIRyZ; Fri, 23 Aug 2024 10:14:35 +0200 (CEST)
+	with ESMTP id j0NpDRdrK9od; Fri, 23 Aug 2024 10:14:52 +0200 (CEST)
 Received: from [192.168.233.10] (PO24418.IDSI0.si.c-s.fr [192.168.233.10])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id A38C68B763;
-	Fri, 23 Aug 2024 10:14:34 +0200 (CEST)
-Message-ID: <44115cf1-232c-41db-a66d-8e6989f20ac9@csgroup.eu>
-Date: Fri, 23 Aug 2024 10:14:33 +0200
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 112898B763;
+	Fri, 23 Aug 2024 10:14:52 +0200 (CEST)
+Message-ID: <b3323a47-6b57-48ef-ad68-9d457a33a8a3@csgroup.eu>
+Date: Fri, 23 Aug 2024 10:14:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,8 +58,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 34/36] soc: fsl: cpm1: qmc: Add support for QUICC
- Engine (QE) implementation
+Subject: Re: [PATCH v2 35/36] soc: fsl: cpm1: qmc: Handle QUICC Engine (QE)
+ soft-qmc firmware
 To: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
@@ -68,413 +68,119 @@ Cc: linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 References: <20240808071132.149251-1-herve.codina@bootlin.com>
- <20240808071132.149251-35-herve.codina@bootlin.com>
+ <20240808071132.149251-36-herve.codina@bootlin.com>
 Content-Language: fr-FR
 From: Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <20240808071132.149251-35-herve.codina@bootlin.com>
+In-Reply-To: <20240808071132.149251-36-herve.codina@bootlin.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
 
 Le 08/08/2024 à 09:11, Herve Codina a écrit :
-> Add support for the QMC (QUICC Multichannel Controller) available in
-> some PowerQUICC SoC that uses a QUICC Engine (QE) block such as MPC8321.
+> The QUICC Engine (QE) QMC can use a firmware to have the QMC working in
+> 'soft-qmc' mode.
 > 
-> This QE QMC is similar to the CPM QMC except that it uses UCCs (Unified
-> Communication Controllers) instead of SCCs (Serial Communication
-> Controllers). Also, compared against the CPM QMC, this QE QMC does not
-> use a fixed area for the UCC/SCC parameters area but it uses a dynamic
-> area allocated and provided to the hardware at runtime.
+> Handle this optional 'soft-qmc' firmware.
 > 
 > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
 Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 
 > ---
->   drivers/soc/fsl/qe/Kconfig |   9 +-
->   drivers/soc/fsl/qe/qmc.c   | 209 +++++++++++++++++++++++++++++++++++--
->   2 files changed, 204 insertions(+), 14 deletions(-)
+>   drivers/soc/fsl/qe/qmc.c | 67 ++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 67 insertions(+)
 > 
-> diff --git a/drivers/soc/fsl/qe/Kconfig b/drivers/soc/fsl/qe/Kconfig
-> index 734744874730..5e3c996eb19e 100644
-> --- a/drivers/soc/fsl/qe/Kconfig
-> +++ b/drivers/soc/fsl/qe/Kconfig
-> @@ -17,7 +17,7 @@ config QUICC_ENGINE
->   
->   config UCC_SLOW
->   	bool
-> -	default y if SERIAL_QE
-> +	default y if SERIAL_QE || (CPM_QMC && QUICC_ENGINE)
->   	help
->   	  This option provides qe_lib support to UCC slow
->   	  protocols: UART, BISYNC, QMC
-> @@ -46,12 +46,13 @@ config CPM_TSA
->   	  controller
->   
->   config CPM_QMC
-> -	tristate "CPM QMC support"
-> +	tristate "CPM/QE QMC support"
->   	depends on OF && HAS_IOMEM
-> -	depends on CPM1 || (FSL_SOC && CPM && COMPILE_TEST)
-> +	depends on CPM1 || QUICC_ENGINE || \
-> +		   (FSL_SOC && (CPM || QUICC_ENGINE) && COMPILE_TEST)
->   	depends on CPM_TSA
->   	help
-> -	  Freescale CPM QUICC Multichannel Controller
-> +	  Freescale CPM/QE QUICC Multichannel Controller
->   	  (QMC)
->   
->   	  This option enables support for this
 > diff --git a/drivers/soc/fsl/qe/qmc.c b/drivers/soc/fsl/qe/qmc.c
-> index 8ff7eaaa4c50..b3a9534441ee 100644
+> index b3a9534441ee..3dffebb48b0d 100644
 > --- a/drivers/soc/fsl/qe/qmc.c
 > +++ b/drivers/soc/fsl/qe/qmc.c
-> @@ -19,24 +19,29 @@
->   #include <linux/platform_device.h>
->   #include <linux/slab.h>
->   #include <soc/fsl/cpm.h>
-> +#include <soc/fsl/qe/ucc_slow.h>
-> +#include <soc/fsl/qe/qe.h>
->   #include <sysdev/fsl_soc.h>
->   #include "tsa.h"
->   
-> -/* SCC general mode register high (32 bits) */
-> +/* SCC general mode register low (32 bits) (GUMR_L in QE) */
->   #define SCC_GSMRL	0x00
->   #define SCC_GSMRL_ENR		BIT(5)
->   #define SCC_GSMRL_ENT		BIT(4)
->   #define SCC_GSMRL_MODE_MASK	GENMASK(3, 0)
->   #define SCC_CPM1_GSMRL_MODE_QMC	FIELD_PREP_CONST(SCC_GSMRL_MODE_MASK, 0x0A)
-> +#define SCC_QE_GSMRL_MODE_QMC	FIELD_PREP_CONST(SCC_GSMRL_MODE_MASK, 0x02)
->   
-> -/* SCC general mode register low (32 bits) */
-> +/* SCC general mode register high (32 bits) (identical to GUMR_H in QE) */
->   #define SCC_GSMRH	0x04
->   #define   SCC_GSMRH_CTSS	BIT(7)
->   #define   SCC_GSMRH_CDS		BIT(8)
->   #define   SCC_GSMRH_CTSP	BIT(9)
->   #define   SCC_GSMRH_CDP		BIT(10)
-> +#define   SCC_GSMRH_TTX		BIT(11)
-> +#define   SCC_GSMRH_TRX		BIT(12)
->   
-> -/* SCC event register (16 bits) */
-> +/* SCC event register (16 bits) (identical to UCCE in QE) */
->   #define SCC_SCCE	0x10
->   #define   SCC_SCCE_IQOV		BIT(3)
->   #define   SCC_SCCE_GINT		BIT(2)
-> @@ -45,6 +50,10 @@
->   
->   /* SCC mask register (16 bits) */
->   #define SCC_SCCM	0x14
-> +
-> +/* UCC Extended Mode Register (8 bits, QE only) */
-> +#define SCC_QE_UCC_GUEMR	0x90
-> +
->   /* Multichannel base pointer (32 bits) */
->   #define QMC_GBL_MCBASE		0x00
->   /* Multichannel controller state (16 bits) */
-> @@ -75,6 +84,15 @@
->   #define QMC_GBL_TSATTX		0x60
->   /* CRC constant (16 bits) */
->   #define QMC_GBL_C_MASK16	0xA0
-> +/* Rx framer base pointer (16 bits, QE only) */
-> +#define QMC_QE_GBL_RX_FRM_BASE	0xAC
-> +/* Tx framer base pointer (16 bits, QE only) */
-> +#define QMC_QE_GBL_TX_FRM_BASE	0xAE
-> +/* A reserved area (0xB0 -> 0xC3) that must be initialized to 0 (QE only) */
-> +#define QMC_QE_GBL_RSV_B0_START	0xB0
-> +#define QMC_QE_GBL_RSV_B0_SIZE	0x14
-> +/* QMC Global Channel specific base (32 bits, QE only) */
-> +#define QMC_QE_GBL_GCSBASE	0xC4
->   
->   /* TSA entry (16bit entry in TSATRX and TSATTX) */
->   #define QMC_TSA_VALID		BIT(15)
-> @@ -217,6 +235,7 @@ struct qmc_chan {
->   
->   enum qmc_version {
->   	QMC_CPM1,
-> +	QMC_QE,
->   };
->   
->   struct qmc_data {
-> @@ -237,6 +256,8 @@ struct qmc {
->   	void __iomem *scc_pram;
->   	void __iomem *dpram;
->   	u16 scc_pram_offset;
-> +	u32 dpram_offset;
-> +	u32 qe_subblock;
->   	cbd_t __iomem *bd_table;
->   	dma_addr_t bd_dma_addr;
->   	size_t bd_size;
-> @@ -249,6 +270,11 @@ struct qmc {
->   	struct qmc_chan *chans[64];
->   };
->   
-> +static void qmc_write8(void __iomem *addr, u8 val)
-> +{
-> +	iowrite8(val, addr);
-> +}
-> +
->   static void qmc_write16(void __iomem *addr, u16 val)
->   {
->   	iowrite16be(val, addr);
-> @@ -289,6 +315,14 @@ static void qmc_setbits32(void __iomem *addr, u32 set)
->   	qmc_write32(addr, qmc_read32(addr) | set);
+> @@ -10,6 +10,7 @@
+>   #include <soc/fsl/qe/qmc.h>
+>   #include <linux/bitfield.h>
+>   #include <linux/dma-mapping.h>
+> +#include <linux/firmware.h>
+>   #include <linux/hdlc.h>
+>   #include <linux/interrupt.h>
+>   #include <linux/io.h>
+> @@ -1649,6 +1650,66 @@ static irqreturn_t qmc_irq_handler(int irq, void *priv)
+>   	return IRQ_HANDLED;
 >   }
 >   
-> +static bool qmc_is_qe(const struct qmc *qmc)
+> +static int qmc_qe_soft_qmc_init(struct qmc *qmc, struct device_node *np)
 > +{
-> +	if (IS_ENABLED(CONFIG_QUICC_ENGINE) && IS_ENABLED(CONFIG_CPM))
-> +		return qmc->data->version == QMC_QE;
-> +
-> +	return IS_ENABLED(CONFIG_QUICC_ENGINE);
-> +}
-> +
->   int qmc_chan_get_info(struct qmc_chan *chan, struct qmc_chan_info *info)
->   {
->   	struct tsa_serial_info tsa_info;
-> @@ -806,6 +840,13 @@ static int qmc_chan_cpm1_command(struct qmc_chan *chan, u8 qmc_opcode)
->   	return cpm_command(chan->id << 2, (qmc_opcode << 4) | 0x0E);
->   }
->   
-> +static int qmc_chan_qe_command(struct qmc_chan *chan, u32 cmd)
-> +{
-> +	if (!qe_issue_cmd(cmd, chan->qmc->qe_subblock, chan->id, 0))
-> +		return -EIO;
-> +	return 0;
-> +}
-> +
->   static int qmc_chan_stop_rx(struct qmc_chan *chan)
->   {
->   	unsigned long flags;
-> @@ -820,7 +861,9 @@ static int qmc_chan_stop_rx(struct qmc_chan *chan)
->   	}
->   
->   	/* Send STOP RECEIVE command */
-> -	ret = qmc_chan_cpm1_command(chan, 0x0);
-> +	ret = qmc_is_qe(chan->qmc) ?
-> +		qmc_chan_qe_command(chan, QE_QMC_STOP_RX) :
-> +		qmc_chan_cpm1_command(chan, 0x0);
->   	if (ret) {
->   		dev_err(chan->qmc->dev, "chan %u: Send STOP RECEIVE failed (%d)\n",
->   			chan->id, ret);
-> @@ -857,7 +900,9 @@ static int qmc_chan_stop_tx(struct qmc_chan *chan)
->   	}
->   
->   	/* Send STOP TRANSMIT command */
-> -	ret = qmc_chan_cpm1_command(chan, 0x1);
-> +	ret = qmc_is_qe(chan->qmc) ?
-> +		qmc_chan_qe_command(chan, QE_QMC_STOP_TX) :
-> +		qmc_chan_cpm1_command(chan, 0x1);
->   	if (ret) {
->   		dev_err(chan->qmc->dev, "chan %u: Send STOP TRANSMIT failed (%d)\n",
->   			chan->id, ret);
-> @@ -1627,9 +1672,62 @@ static int qmc_cpm1_init_resources(struct qmc *qmc, struct platform_device *pdev
->   	return 0;
->   }
->   
-> +static int qmc_qe_init_resources(struct qmc *qmc, struct platform_device *pdev)
-> +{
-> +	struct resource *res;
-> +	int ucc_num;
-> +	s32 info;
-> +
-> +	qmc->scc_regs = devm_platform_ioremap_resource_byname(pdev, "ucc_regs");
-> +	if (IS_ERR(qmc->scc_regs))
-> +		return PTR_ERR(qmc->scc_regs);
-> +
-> +	ucc_num = tsa_serial_get_num(qmc->tsa_serial);
-> +	if (ucc_num < 0)
-> +		return dev_err_probe(qmc->dev, ucc_num, "Failed to get UCC num\n");
-> +
-> +	qmc->qe_subblock = ucc_slow_get_qe_cr_subblock(ucc_num);
-> +	if (qmc->qe_subblock == QE_CR_SUBBLOCK_INVALID) {
-> +		dev_err(qmc->dev, "Unsupported ucc num %u\n", ucc_num);
-> +		return -EINVAL;
-> +	}
-> +	/* Allocate the 'Global Multichannel Parameters' and the
-> +	 * 'Framer parameters' areas. The 'Framer parameters' area
-> +	 * is located right after the 'Global Multichannel Parameters'.
-> +	 * The 'Framer parameters' need 1 byte per receive and transmit
-> +	 * channel. The maximum number of receive or transmit channel
-> +	 * is 64. So reserve 2 * 64 bytes for the 'Framer parameters'.
-> +	 */
-> +	info = devm_qe_muram_alloc(qmc->dev, UCC_SLOW_PRAM_SIZE + 2 * 64,
-> +				   ALIGNMENT_OF_UCC_SLOW_PRAM);
-> +	if (IS_ERR_VALUE(info)) {
-> +		dev_err(qmc->dev, "cannot allocate MURAM for PRAM");
-> +		return -ENOMEM;
-> +	}
-> +	if (!qe_issue_cmd(QE_ASSIGN_PAGE_TO_DEVICE, qmc->qe_subblock,
-> +			  QE_CR_PROTOCOL_UNSPECIFIED, info)) {
-> +		dev_err(qmc->dev, "QE_ASSIGN_PAGE_TO_DEVICE cmd failed");
-> +		return -EIO;
-> +	}
-> +	qmc->scc_pram = qe_muram_addr(info);
-> +	qmc->scc_pram_offset = info;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dpram");
-> +	if (!res)
-> +		return -EINVAL;
-> +	qmc->dpram_offset = res->start - qe_muram_dma(qe_muram_addr(0));
-> +	qmc->dpram = devm_ioremap_resource(qmc->dev, res);
-> +	if (IS_ERR(qmc->scc_pram))
-> +		return PTR_ERR(qmc->scc_pram);
-> +
-> +	return 0;
-> +}
-> +
->   static int qmc_init_resources(struct qmc *qmc, struct platform_device *pdev)
->   {
-> -	return qmc_cpm1_init_resources(qmc, pdev);
-> +	return qmc_is_qe(qmc) ?
-> +		qmc_qe_init_resources(qmc, pdev) :
-> +		qmc_cpm1_init_resources(qmc, pdev);
->   }
->   
->   static int qmc_cpm1_init_scc(struct qmc *qmc)
-> @@ -1656,9 +1754,69 @@ static int qmc_cpm1_init_scc(struct qmc *qmc)
->   	return 0;
->   }
->   
-> +static int qmc_qe_init_ucc(struct qmc *qmc)
-> +{
-> +	u32 val;
+> +	struct qe_firmware_info *qe_fw_info;
+> +	const struct qe_firmware *qe_fw;
+> +	const struct firmware *fw;
+> +	const char *filename;
 > +	int ret;
 > +
-> +	/* Set the UCC in slow mode */
-> +	qmc_write8(qmc->scc_regs + SCC_QE_UCC_GUEMR,
-> +		   UCC_GUEMR_SET_RESERVED3 | UCC_GUEMR_MODE_SLOW_RX | UCC_GUEMR_MODE_SLOW_TX);
-> +
-> +	/* Connect the serial (UCC) to TSA */
-> +	ret = tsa_serial_connect(qmc->tsa_serial);
-> +	if (ret)
-> +		return dev_err_probe(qmc->dev, ret, "Failed to connect TSA serial\n");
-> +
-> +	/* Initialize the QMC tx startup addresses */
-> +	if (!qe_issue_cmd(QE_PUSHSCHED, qmc->qe_subblock,
-> +			  QE_CR_PROTOCOL_UNSPECIFIED, 0x80)) {
-> +		dev_err(qmc->dev, "QE_CMD_PUSH_SCHED tx cmd failed");
-> +		ret = -EIO;
-> +		goto err_tsa_serial_disconnect;
+> +	ret = of_property_read_string(np, "fsl,soft-qmc", &filename);
+> +	switch (ret) {
+> +	case 0:
+> +		break;
+> +	case -EINVAL:
+> +		/* fsl,soft-qmc property not set -> Simply do nothing */
+> +		return 0;
+> +	default:
+> +		dev_err(qmc->dev, "%pOF: failed to read fsl,soft-qmc\n",
+> +			np);
+> +		return ret;
 > +	}
 > +
-> +	/* Initialize the QMC rx startup addresses */
-> +	if (!qe_issue_cmd(QE_PUSHSCHED, qmc->qe_subblock | 0x00020000,
-> +			  QE_CR_PROTOCOL_UNSPECIFIED, 0x82)) {
-> +		dev_err(qmc->dev, "QE_CMD_PUSH_SCHED rx cmd failed");
-> +		ret = -EIO;
-> +		goto err_tsa_serial_disconnect;
+> +	qe_fw_info = qe_get_firmware_info();
+> +	if (qe_fw_info) {
+> +		if (!strstr(qe_fw_info->id, "Soft-QMC")) {
+> +			dev_err(qmc->dev, "Another Firmware is already loaded\n");
+> +			return -EALREADY;
+> +		}
+> +		dev_info(qmc->dev, "Firmware already loaded\n");
+> +		return 0;
 > +	}
 > +
-> +	/* Re-init RXPTR and TXPTR with the content of RX_S_PTR and
-> +	 * TX_S_PTR (RX_S_PTR and TX_S_PTR are initialized during
-> +	 * qmc_setup_tsa() call
-> +	 */
-> +	val = qmc_read16(qmc->scc_pram + QMC_GBL_RX_S_PTR);
-> +	qmc_write16(qmc->scc_pram + QMC_GBL_RXPTR, val);
-> +	val = qmc_read16(qmc->scc_pram + QMC_GBL_TX_S_PTR);
-> +	qmc_write16(qmc->scc_pram + QMC_GBL_TXPTR, val);
+> +	dev_info(qmc->dev, "Using firmware %s\n", filename);
 > +
-> +	/* Init GUMR_H and GUMR_L registers (SCC GSMR_H and GSMR_L) */
-> +	val = SCC_GSMRH_CDS | SCC_GSMRH_CTSS | SCC_GSMRH_CDP | SCC_GSMRH_CTSP |
-> +	      SCC_GSMRH_TRX | SCC_GSMRH_TTX;
-> +	qmc_write32(qmc->scc_regs + SCC_GSMRH, val);
+> +	ret = request_firmware(&fw, filename, qmc->dev);
+> +	if (ret) {
+> +		dev_err(qmc->dev, "Failed to request firmware %s\n", filename);
+> +		return ret;
+> +	}
 > +
-> +	/* enable QMC mode */
-> +	qmc_write32(qmc->scc_regs + SCC_GSMRL, SCC_QE_GSMRL_MODE_QMC);
+> +	qe_fw = (const struct qe_firmware *)fw->data;
 > +
-> +	/* Disable and clear interrupts */
-> +	qmc_write16(qmc->scc_regs + SCC_SCCM, 0x0000);
-> +	qmc_write16(qmc->scc_regs + SCC_SCCE, 0x000F);
+> +	if (fw->size < sizeof(qe_fw->header) ||
+> +	    be32_to_cpu(qe_fw->header.length) != fw->size) {
+> +		dev_err(qmc->dev, "Invalid firmware %s\n", filename);
+> +		ret = -EINVAL;
+> +		goto end;
+> +	}
 > +
-> +	return 0;
+> +	ret = qe_upload_firmware(qe_fw);
+> +	if (ret) {
+> +		dev_err(qmc->dev, "Failed to load firmware %s\n", filename);
+> +		goto end;
+> +	}
 > +
-> +err_tsa_serial_disconnect:
-> +	tsa_serial_disconnect(qmc->tsa_serial);
+> +	ret = 0;
+> +end:
+> +	release_firmware(fw);
 > +	return ret;
 > +}
 > +
->   static int qmc_init_xcc(struct qmc *qmc)
+>   static int qmc_cpm1_init_resources(struct qmc *qmc, struct platform_device *pdev)
 >   {
-> -	return qmc_cpm1_init_scc(qmc);
-> +	return qmc_is_qe(qmc) ?
-> +		qmc_qe_init_ucc(qmc) :
-> +		qmc_cpm1_init_scc(qmc);
->   }
->   
->   static void qmc_exit_xcc(struct qmc *qmc)
-> @@ -1742,6 +1900,22 @@ static int qmc_probe(struct platform_device *pdev)
->   	qmc_write32(qmc->scc_pram + QMC_GBL_C_MASK32, 0xDEBB20E3);
->   	qmc_write16(qmc->scc_pram + QMC_GBL_C_MASK16, 0xF0B8);
+>   	struct resource *res;
+> @@ -1855,6 +1916,12 @@ static int qmc_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return ret;
 >   
 > +	if (qmc_is_qe(qmc)) {
-> +		/* Zeroed the reserved area */
-> +		memset_io(qmc->scc_pram + QMC_QE_GBL_RSV_B0_START, 0,
-> +			  QMC_QE_GBL_RSV_B0_SIZE);
-> +
-> +		qmc_write32(qmc->scc_pram + QMC_QE_GBL_GCSBASE, qmc->dpram_offset);
-> +
-> +		/* Init 'framer parameters' area and set the base addresses */
-> +		memset_io(qmc->scc_pram + UCC_SLOW_PRAM_SIZE, 0x01, 64);
-> +		memset_io(qmc->scc_pram + UCC_SLOW_PRAM_SIZE + 64, 0x01, 64);
-> +		qmc_write16(qmc->scc_pram + QMC_QE_GBL_RX_FRM_BASE,
-> +			    qmc->scc_pram_offset + UCC_SLOW_PRAM_SIZE);
-> +		qmc_write16(qmc->scc_pram + QMC_QE_GBL_TX_FRM_BASE,
-> +			    qmc->scc_pram_offset + UCC_SLOW_PRAM_SIZE + 64);
+> +		ret = qmc_qe_soft_qmc_init(qmc, np);
+> +		if (ret)
+> +			return ret;
 > +	}
 > +
->   	ret = qmc_init_tsa(qmc);
+>   	/* Parse channels informationss */
+>   	ret = qmc_of_parse_chans(qmc, np);
 >   	if (ret)
->   		return ret;
-> @@ -1757,7 +1931,7 @@ static int qmc_probe(struct platform_device *pdev)
->   	if (ret)
->   		return ret;
->   
-> -	/* Init SCC */
-> +	/* Init SCC (CPM1) or UCC (QE) */
->   	ret = qmc_init_xcc(qmc);
->   	if (ret)
->   		return ret;
-> @@ -1811,7 +1985,7 @@ static void qmc_remove(struct platform_device *pdev)
->   	/* Disable interrupts */
->   	qmc_write16(qmc->scc_regs + SCC_SCCM, 0);
->   
-> -	/* Exit SCC */
-> +	/* Exit SCC (CPM1) or UCC (QE) */
->   	qmc_exit_xcc(qmc);
->   }
->   
-> @@ -1825,8 +1999,23 @@ static const struct qmc_data qmc_data_cpm1 = {
->   	.rpack = 0x00000000,
->   };
->   
-> +static const struct qmc_data qmc_data_qe = {
-> +	.version = QMC_QE,
-> +	.tstate = 0x30000000,
-> +	.rstate = 0x30000000,
-> +	.zistate = 0x00000200,
-> +	.zdstate_hdlc = 0x80FFFFE0,
-> +	.zdstate_transp = 0x003FFFE2,
-> +	.rpack = 0x80000000,
-> +};
-> +
->   static const struct of_device_id qmc_id_table[] = {
-> +#if IS_ENABLED(CONFIG_CPM1)
->   	{ .compatible = "fsl,cpm1-scc-qmc", .data = &qmc_data_cpm1 },
-> +#endif
-> +#if IS_ENABLED(CONFIG_QUICC_ENGINE)
-> +	{ .compatible = "fsl,qe-ucc-qmc", .data = &qmc_data_qe },
-> +#endif
->   	{} /* sentinel */
->   };
->   MODULE_DEVICE_TABLE(of, qmc_id_table);
-> @@ -1986,5 +2175,5 @@ struct qmc_chan *devm_qmc_chan_get_bychild(struct device *dev,
->   EXPORT_SYMBOL(devm_qmc_chan_get_bychild);
->   
->   MODULE_AUTHOR("Herve Codina <herve.codina@bootlin.com>");
-> -MODULE_DESCRIPTION("CPM QMC driver");
-> +MODULE_DESCRIPTION("CPM/QE QMC driver");
->   MODULE_LICENSE("GPL");
 
