@@ -1,326 +1,208 @@
-Return-Path: <devicetree+bounces-96096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60AB95C953
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:36:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C2895C965
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 11:40:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FF4AB20F24
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:36:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF9DB1F250E7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4739214D431;
-	Fri, 23 Aug 2024 09:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B1E14F9D4;
+	Fri, 23 Aug 2024 09:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="STJAmEAr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TXcAiR0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B4414B963
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 09:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A6314A092
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 09:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724405774; cv=none; b=q1vB6fC0AqP603tYRBIG8Wct0IPqCxLizcyW+nwQnlJoWHpv1sdK6/jCCQQgpi8Yq9W6MTDs7/p5U8ZF6+PYFcOozwSXWZEY/SpPxlCLpD1j+fDvNgs5cDEF7OsV9Cb88VAqa2Npq3JR4zhtLRWybLNr/JKe5FmCxJrCdnFA4Sw=
+	t=1724406048; cv=none; b=gRmUxY07hqJvpdIZlqtw0UD0DI2et4RVMah7xbvrJQFxxprPHmRZDsmC7dXoWhqhHqmZfGZzR6EHZRPv23q5DKfvSvoSxXyP1p3zWT5porbt1mTRWMoTW2p43cSdFE7lzfB5h456Z3JPFQ2vjgJjOphAFJ8LyU3MyY3/0FBd+B8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724405774; c=relaxed/simple;
-	bh=shF/qqqOiqstk81XmXkkiNOvhN8dscyG9qUExLpBsDQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H0KhrHwpWBis/qaqREAMnAKO1siEk8i71eb9+zZCCYYmrmelauxpQSznWofYo9oaR3JgP0w4k61QAnHbaKyXCs/NmFX9SCxo+bC21waSllrmTzkZkz2y+opMwIv5Pa8iqLgli8cErq91otPIbvZTkwahyZqBPjUxoA7Xr1bz33g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=STJAmEAr; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5334c4cc17fso2387452e87.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 02:36:12 -0700 (PDT)
+	s=arc-20240116; t=1724406048; c=relaxed/simple;
+	bh=QYKrgYPSt+PzLBYRBlCaV98ntftxVKjhU9ZHUca4mVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TqU9jM4HyMEUFT3KJww8RS6ng50uEi5RRLzMXO7hraNGC5jvm+gzmfgHx6NdFDyh4OdDV75IYXBH4RzYFmyzgHGf0TdiVmoIjyFhIbgBxNVsMc9lPeyZzUDWtAkZJqF8jOAUkpRdnnsbOuxJXvSEhnN/zzRQtjYwyfX7OovgAbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TXcAiR0s; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71423273c62so1371999b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 02:40:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1724405770; x=1725010570; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M99BvE0ak8pOlurdL9IHAiYs0yZwQ7ZlfzDedMoUuTo=;
-        b=STJAmEArsIRFsEaAUOOUEMHtLqZAcd3UH9A5OOXGYcYxnDiA1K/fMs+uhdQjaDF0Vg
-         G9R2vc3nJhuotaaiX7SbGu8vSh97Zoq0LZF9nThDolYgB+25FSaJCKDZsQ3Bm0iKlwrs
-         2452UC/xoKE1OKdRj3oLHxQzaE0wQTwpNKX4g=
+        d=linaro.org; s=google; t=1724406046; x=1725010846; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=I126+cKdGYbZIz3R6I4V2r9+Vz0iXJ8BxplRUfjmS60=;
+        b=TXcAiR0sz/g6kZ02mOdW+P0V+CjOU3uCvuTtsZZ6DeTi17acFp/vMjlJxuMtQY6EjF
+         zcJqARm+PyWcQBR6ggCUsanJBslV2EiFNnXwOv6Iyj2B+CQtoQs+DyShvA+xV672lpyd
+         K9PjnnD4i0OsRjeXoY8ceaO3RxmLxokYV7QW2NpvxUozC/eqKvdGo13KKdBD/NWX90HN
+         /ZDBG4/GZZWbwX+B8UbQgbSjEKuATW83qpM0XI+8ziIII24WOKsTVuWgLW6CdhVfElPv
+         xReixBgQa9VWJmQB7xpREUeCxafOJnloaiJvIxbXQa+yRDx9QPUqEZaAdHD4McJNbbTV
+         WWdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724405770; x=1725010570;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M99BvE0ak8pOlurdL9IHAiYs0yZwQ7ZlfzDedMoUuTo=;
-        b=oBNSuK7iStOTQc8hB9wkU/s09uip5K/fAEBbJrSzyPz4pI0DfmPFrdrVu8WPNloxle
-         wn5TcTzOC6PZ3ZGDQRCHZIdYeoFeOV3BGO3mVNeLTYwkewyudDM5/3va5Il0wkxPP2kB
-         rMq1HZMriN7Krcr6+eASsziHNoM7a7zAb8fe3ieTpWGkLVTZEiVWU0UtSVBitxf+Ug4a
-         R4YKaIPb9xSUPM7I+TeKoRsNQ+Uz74BQP6oB/KTfVF1iHPe0/MpcmfhlYH0sZpZ8iLC6
-         tLVDdi/6RfNwZo6F/pTIR1DMlClPAJxd7GokW756a1nP88ljpcs/pG3jTjKlu1ZIdbWW
-         S67Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXx5b0thvnE2pRADeImNdZI8cPy0sG0yKP1noHUani6RfG+C4Y3BIvcRwiw6rCeXRqk97ChtkyCtLbZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWyLMUfoHABAP1h4VACnPR3leO77ErJqhd8MdCcCedE3BcHYXm
-	YYm33rjZxUtL78mvwW3n+Zqax9owD2vt/adJRaPqlLxLrw9ZlKwqYtFep39eA5yclVCvff6VKY6
-	ycZPjPh+tNfVy7cETDnahdq2fhWOiRRKUvT7p
-X-Google-Smtp-Source: AGHT+IF8+5/bPoCsCz59rChJbumZ9VHK/EHdKiSLptyL22YMjMEjXODaeoJvtP8nB6l8BDKCdUWw053JwFUxmGAyPbY=
-X-Received: by 2002:a05:6512:ba0:b0:52e:91ff:4709 with SMTP id
- 2adb3069b0e04-53438772179mr1273014e87.21.1724405770181; Fri, 23 Aug 2024
- 02:36:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724406046; x=1725010846;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I126+cKdGYbZIz3R6I4V2r9+Vz0iXJ8BxplRUfjmS60=;
+        b=W1S57Y9MEjQb29l2PESWnZ1smFmH/GWlXJI4wxzLooZpqONY3hNQP15OSAKzEuQWpQ
+         s6te0jngocW9pRO4/TRj/I/41q8qijCEpB0HrXe1Sv7lJrHZChhrIGJACYN3xGK5rp5C
+         c9VqRNlOD9Vhg2838697UeRE4MKXd6MROSFot5qcXqMIEIEQletWjdJW2WiouEjkrMv5
+         aTQD+O4RC3HzD8MHrHTJHeYirzqT21S0PwiFH8KJxSCVuEhmFE5ttm/z+IFR4lY6etjj
+         90O4QvFYll0W9gpSfweegjHIVPDRo65ycSnz/52aXCgNe8MsybSh3mx2goW3Au4IfHkI
+         chmg==
+X-Forwarded-Encrypted: i=1; AJvYcCXJL/tw96nqlKLa8JL3alnOUmizNwl3Lxb5vamzzY/45B/0HtnlbTwn6yM/XQvfTnVL0BKX3Q7a9ZGj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmwkqbAOgT3MucP6RK55rwUFiw/qyL6X6e0Npv7W/9CmBX7Qkw
+	X0mhD3SG0n9fAsZnhGnKjmChnLAirIu0D/O84LqCT3h0TkeeDm824NcmubgGzA==
+X-Google-Smtp-Source: AGHT+IEZ7oVQVdI6VEXdebOFtS4lQUtfFu5fTDd3UmD/IV+0quZsPl84jbflNGtuVTHo4x2PWVlhRw==
+X-Received: by 2002:a05:6a21:4a4c:b0:1c4:b302:ad14 with SMTP id adf61e73a8af0-1cc8b49b962mr1602960637.24.1724406045766;
+        Fri, 23 Aug 2024 02:40:45 -0700 (PDT)
+Received: from thinkpad ([120.60.60.148])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20385580810sm24903965ad.105.2024.08.23.02.40.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 02:40:45 -0700 (PDT)
+Date: Fri, 23 Aug 2024 15:10:28 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Jingoo Han <jingoohan1@gmail.com>, andersson@kernel.org,
+	quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: PCI: Add binding for qps615
+Message-ID: <20240823094028.7xul4eoiexey5xjm@thinkpad>
+References: <5f65905c-f1e4-4f52-ba7c-10c1a4892e30@kernel.org>
+ <f8985c98-82a5-08c3-7095-c864516b66b9@quicinc.com>
+ <ZrEGypbL85buXEsO@hu-bjorande-lv.qualcomm.com>
+ <90582c92-ca50-4776-918d-b7486cf942b0@kernel.org>
+ <20240808120109.GA18983@thinkpad>
+ <cb69c01b-08d0-40a1-9ea2-215979fb98c8@kernel.org>
+ <20240808124121.GB18983@thinkpad>
+ <c5bae58c-4200-40d3-94c6-669d2ee131d4@kernel.org>
+ <20240822140956.unt45fgpleqwniwa@thinkpad>
+ <7969b2e6-1046-4bd4-bdfe-d2bc12a1db1b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822092006.3134096-1-wenst@chromium.org> <20240822092006.3134096-8-wenst@chromium.org>
- <ZsdGlMyq4pwWAOk4@smile.fi.intel.com>
-In-Reply-To: <ZsdGlMyq4pwWAOk4@smile.fi.intel.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 23 Aug 2024 17:35:59 +0800
-Message-ID: <CAGXv+5FWaN4gGksCF7k3emuDyCmAtx7+DBwHHbFhf_FLpP+=aw@mail.gmail.com>
-Subject: Re: [PATCH v5 07/10] i2c: of-prober: Add regulator support
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7969b2e6-1046-4bd4-bdfe-d2bc12a1db1b@kernel.org>
 
-On Thu, Aug 22, 2024 at 10:09=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Aug 22, 2024 at 05:20:00PM +0800, Chen-Yu Tsai wrote:
-> > This adds regulator management to the I2C OF component prober.
-> > Components that the prober intends to probe likely require their
-> > regulator supplies be enabled, and GPIOs be toggled to enable them or
-> > bring them out of reset before they will respond to probe attempts.
-> > GPIOs will be handled in the next patch.
-> >
-> > Without specific knowledge of each component's resource names or
-> > power sequencing requirements, the prober can only enable the
-> > regulator supplies all at once, and toggle the GPIOs all at once.
-> > Luckily, reset pins tend to be active low, while enable pins tend to
-> > be active high, so setting the raw status of all GPIO pins to high
-> > should work. The wait time before and after resources are enabled
-> > are collected from existing drivers and device trees.
-> >
-> > The prober collects resources from all possible components and enables
-> > them together, instead of enabling resources and probing each component
-> > one by one. The latter approach does not provide any boot time benefits
-> > over simply enabling each component and letting each driver probe
-> > sequentially.
-> >
-> > The prober will also deduplicate the resources, since on a component
-> > swap out or co-layout design, the resources are always the same.
-> > While duplicate regulator supplies won't cause much issue, shared
-> > GPIOs don't work reliably, especially with other drivers. For the
-> > same reason, the prober will release the GPIOs before the successfully
-> > probed component is actually enabled.
->
-> ...
->
-> >  /*
->
-> >   * address responds.
-> >   *
-> >   * TODO:
-> > - * - Support handling common regulators and GPIOs.
-> > + * - Support handling common GPIOs.
->
-> You can split this to two lines in the first place and have less churn in=
- this
-> patch and the other one.
+On Fri, Aug 23, 2024 at 11:06:28AM +0200, Krzysztof Kozlowski wrote:
+> On 22/08/2024 16:09, Manivannan Sadhasivam wrote:
+> > On Thu, Aug 08, 2024 at 03:06:28PM +0200, Krzysztof Kozlowski wrote:
+> >> On 08/08/2024 14:41, Manivannan Sadhasivam wrote:
+> >>> On Thu, Aug 08, 2024 at 02:13:01PM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 08/08/2024 14:01, Manivannan Sadhasivam wrote:
+> >>>>> On Mon, Aug 05, 2024 at 07:18:04PM +0200, Krzysztof Kozlowski wrote:
+> >>>>>> On 05/08/2024 19:07, Bjorn Andersson wrote:
+> >>>>>>> On Mon, Aug 05, 2024 at 09:41:26AM +0530, Krishna Chaitanya Chundru wrote:
+> >>>>>>>> On 8/4/2024 2:23 PM, Krzysztof Kozlowski wrote:
+> >>>>>>>>> On 03/08/2024 05:22, Krishna chaitanya chundru wrote:
+> >>>>>>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,qps615.yaml b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
+> >>>>>>> [..]
+> >>>>>>>>>> +  qps615,axi-clk-freq-hz:
+> >>>>>>>>>> +    description:
+> >>>>>>>>>> +      AXI clock which internal bus of the switch.
+> >>>>>>>>>
+> >>>>>>>>> No need, use CCF.
+> >>>>>>>>>
+> >>>>>>>> ack
+> >>>>>>>
+> >>>>>>> This is a clock that's internal to the QPS615, so there's no clock
+> >>>>>>> controller involved and hence I don't think CCF is applicable.
+> >>>>>>
+> >>>>>> AXI does not sound that internal.
+> >>>>>
+> >>>>> Well, AXI is applicable to whatever entity that implements it. We mostly seen it
+> >>>>> in ARM SoCs (host), but in this case the PCIe switch also has a microcontroller
+> >>>>> /processor of some sort, so AXI is indeed relevant for it. The naming actually
+> >>>>> comes from the switch's i2c register name that is being configured in the driver
+> >>>>> based on this property value.
+> >>>>>
+> >>>>>> DT rarely needs to specify internal
+> >>>>>> clock rates. What if you want to define rates for 20 clocks? Even
+> >>>>>> clock-frequency is deprecated, so why this would be allowed?
+> >>>>>> bus-frequency is allowed for buses, but that's not the case here, I guess?
+> >>>>>>
+> >>>>>
+> >>>>> This clock frequency is for the switch's internal AXI bus that runs at default
+> >>>>> 200MHz. And this property is used to specify a frequency that is configured over
+> >>>>> the i2c interface so that the switch's AXI bus can operate in a low frequency
+> >>>>> there by reducing the power consumption of the switch.
+> >>>>>
+> >>>>> It is not strictly needed for the switch operation, but for power optimization.
+> >>>>> So this property can also be dropped for the initial submission and added later
+> >>>>> if you prefer.
+> >>>>
+> >>>> So if the clock rate can change, why this is static in DTB? Or why this
+> >>>> is configurable per-board?
+> >>>>
+> >>>
+> >>> Because, board manufacturers can change the frequency depending on the switch
+> >>> configuration (enablement of DSP's etc...)
+> >>>
+> >>>> There is a reason why clock-frequency property is not welcomed and you
+> >>>> are re-implementing it.
+> >>>>
+> >>>
+> >>> Hmm, I'm not aware that 'clock-frequency' is not encouraged these days. So you
+> >>> are suggesting to change the rate in the driver itself based on the switch
+> >>> configuration? If so, what difference does it make?
+> >>
+> >> Based on the switch, other clocks, votes etc. whatever is reasonable
+> >> there. In most cases, not sure if this one here as well, devices can
+> >> operate on different clock frequencies thus specifying fixed frequency
+> >> in the DTS is simplification and lack of flexibility. It is chosen by
+> >> people only because it is easier for them but then they come back with
+> >> ABI issues when it turns out they need to switch to some dynamic control.
+> >>
+> > 
+> > Atleast for this device, this frequency is going to be static. Because, the
+> > device itself cannot change the frequency, only the host driver can. That too is
+> > only possible before enumerating the device. So there is no way the frequency is
+> > going to change dynamically.
+> 
+> We have assigned-clocks properties for this... but there are no clock
+> inputs here, so maybe it is not applicable? What generates this internal
+> AXI clock? Does it have internal oscillator?
+> 
 
-Ack.
+I do not have access to the device schematics, but based on my knowledge there
+should be an internal oscillator for the device. But the device also gets the
+refclk from PCIe bus, but I don't know if that is somehow used as a parent of
+AXI bus or not.
 
-> >   * - Support I2C muxes
-> >   */
->
-> ..
->
-> > +/* Returns number of regulator supplies found for node, or error. */
-> > +static int i2c_of_probe_get_regulator(struct device *dev, struct devic=
-e_node *node,
-> > +                                   struct i2c_of_probe_data *data)
-> > +{
-> > +     struct regulator_bulk_data *tmp, *new_regulators;
-> > +     int ret;
-> > +
-> > +     ret =3D of_regulator_bulk_get_all(dev, node, &tmp);
-> > +     if (ret <=3D 0)
-> > +             return ret;
->
-> I would split this and explain 0 case.
+Going by the AXI bus terminology, I would assume that the frequency of this come
+from the internal oscillator in the device.
 
-Ack.
+And this is common on many PCIe devices, but they never mentioned in DT (well we
+do not define PCIe devices in DT usually), but Qcom wants to control the
+frequency of the device's internal clock to optimize the power consumption of
+the device. Unfortunately, the device firmware is not doing its job as expected.
 
-> > +     if (!data->regulators) {
-> > +             data->regulators =3D tmp;
-> > +             data->regulators_num =3D ret;
-> > +             return ret;
-> > +     };
-> > +
-> > +     new_regulators =3D krealloc(data->regulators,
-> > +                               sizeof(*tmp) * (data->regulators_num + =
-ret),
->
-> krealloc_array()
+- Mani
 
-Ack. Somehow I didn't find this function while I was rewriting the code.
-
-> > +                               GFP_KERNEL);
-> > +     if (!new_regulators) {
-> > +             regulator_bulk_free(ret, tmp);
-> > +             return -ENOMEM;
-> > +     }
-> > +
-> > +     data->regulators =3D new_regulators;
->
-> > +     for (unsigned int i =3D 0; i < ret; i++)
-> > +             memcpy(&data->regulators[data->regulators_num++], &tmp[i]=
-, sizeof(*tmp));
->
-> Seems like copying array to array, no? If so, can't be done in a single m=
-emcpy() call?
-
-Ack.
-
-> > +     return ret;
-> > +}
->
-> ...
->
-> > +static int i2c_of_probe_get_res(struct device *dev, struct device_node=
- *node,
-> > +                             struct i2c_of_probe_data *data)
-> > +{
-> > +     struct property *prop;
-> > +     int ret;
-> > +
-> > +     ret =3D i2c_of_probe_get_regulator(dev, node, data);
-> > +     if (ret < 0) {
-> > +             dev_err_probe(dev, ret, "Failed to get regulator supplies=
- from %pOF\n", node);
-> > +             goto err_cleanup;
-> > +     }
-> > +
-> > +     return 0;
-> > +
-> > +err_cleanup:
-> > +     i2c_of_probe_free_res(data);
-> > +     return ret;
-> > +}
->
-> Hmm... why not
->
-> static int i2c_of_probe_get_res(struct device *dev, struct device_node *n=
-ode,
->                                 struct i2c_of_probe_data *data)
-> {
->         struct property *prop;
->         int ret;
->
->         ret =3D i2c_of_probe_get_regulator(dev, node, data);
->         if (ret < 0) {
->                 i2c_of_probe_free_res(data);
->                 return dev_err_probe(dev, ret, "Failed to get regulator s=
-upplies from %pOF\n", node);
->         }
->
->         return 0;
-> }
->
-> ...
-
-That would be more churn in the next patch, which introduces another
-error condition requiring the same cleanup.
-
-> > +static int i2c_of_probe_enable_res(struct device *dev, struct i2c_of_p=
-robe_data *data)
-> > +{
-> > +     int ret =3D 0;
->
-> Redundant assignment.
-
-Ack.
-
-> > +     dev_dbg(dev, "Enabling regulator supplies\n");
-> > +
-> > +     ret =3D regulator_bulk_enable(data->regulators_num, data->regulat=
-ors);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     /* largest post-power-on pre-reset-deassert delay seen among driv=
-ers */
-> > +     msleep(500);
->
-> How would we monitor if any [new] driver wants to use bigger timeout?
-
-The assumption is that the person doing the integration should test for
-this. This prober doesn't get called everywhere. It needs a driver to
-call it, and that driver is written by someone for some specific platform.
-Maybe I should explicitly spell that out in the function description?
-Or even make it a parameter?
-
-Also, having an arbitrarily large number here doesn't help platforms that
-want to minimize boot time. On that front I'm also thinking about whether
-it is possible to do a handover to the actual driver so that the latter
-doesn't have to go through the whole power sequence again.
-
-> > +     return 0;
-> > +}
->
-> ...
->
-> >       struct i2c_adapter *i2c;
-> > +     struct i2c_of_probe_data probe_data =3D {0};
->
-> Reversed xmas tree order?
-
-OK...
-
-> '0' is not needed.
-
-Ack.
-
-> ...
->
-> > +     /* Grab resources */
-> > +     for_each_child_of_node_scoped(i2c_node, node) {
-> > +             u32 addr;
-> > +
-> > +             if (!of_node_name_prefix(node, type))
-> > +                     continue;
->
-> Is it third or fourth copy of this code? At some point you probably want
->
-> #define for_each_child_of_node_with_prefix_scoped()
->         for_each_if(...)
->
-> (or equivalent)
-
-Ack.
-
-
-Thank you for the review.
-
-ChenYu
-
-> > +             if (of_property_read_u32(node, "reg", &addr))
-> > +                     continue;
-> > +
-> > +             dev_dbg(dev, "Requesting resources for %pOF\n", node);
-> > +             ret =3D i2c_of_probe_get_res(dev, node, &probe_data);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+-- 
+மணிவண்ணன் சதாசிவம்
 
