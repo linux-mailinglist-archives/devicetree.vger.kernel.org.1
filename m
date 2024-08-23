@@ -1,111 +1,160 @@
-Return-Path: <devicetree+bounces-96065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5EC95C800
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:25:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 403BE95C815
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 10:30:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D1471C210EF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:25:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8A3C2816ED
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80407142E9D;
-	Fri, 23 Aug 2024 08:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E603F143744;
+	Fri, 23 Aug 2024 08:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I+Rejjqv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tih7epZ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC410143C69
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498497346D
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:30:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724401512; cv=none; b=KpC4CKbl2V4P8QgSdcRNy/gmak/QTzSIdhhkXzplIwaq8cMF2UJSVTFjkA49fl6NbUe+aiWTsqAT9p/CLRcbkeSIqXMUWiVV+vph2rxNW5/KBR3Dyf1Z7yS1gIyaQ9ulBsjrHl9QNWjI8SLLOEllnCqPtZuvlpcFh/iH0BoPCZ8=
+	t=1724401816; cv=none; b=fh8kepNPEMvRtkcHlJViXzg+Ae/AOGIUP2x7/3J5J7fnQFHRUuwIdX0uchofkWDALOMpOMH8OKeBW4yx8wlf/WDippzfFckjqjCYsb1wpfZj5f4DgKp49V8kK4YCrsxxRiUDUQswM+Lf4imPBEs/cCHwb2IAnqWdTxuPEOZ+ctY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724401512; c=relaxed/simple;
-	bh=Prv6E+ScHb0LyR5CQ4A+EbhLnomA5f/3GEtpmq6Z++Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i8Zz1ANUw8UlRMWu2JHT2qI0ui/WzD8gMVFdQr7L8Il1//qzfXTMCzt9vNp0/OChTA9j/Ar6ZJLkaUspC8FVhJv8MHaHd8C8d1AtFqAtuJwqfF5oG2pICDrx2JT+dyHDszrR+y0y+vHD8MAy3Cxg0/4mEEDVINoJfwiUBqeTt7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I+Rejjqv; arc=none smtp.client-ip=209.85.167.54
+	s=arc-20240116; t=1724401816; c=relaxed/simple;
+	bh=bqqGn/FT9f2u5+YF1xX/+JxI1FyqgycSOXAqnxCCfzE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qhFWYPl8/UybT+6K5/toXUuIuLWOUdSl6RRjYXHBNe0DN7YCFifLgXq+qetXO1X6mkd+MbDmDICAHmmOKUeWmYSEY0r9YWcAbThnHBfw1yG4CqOCgiES8aDAtaYIv2x/uKk4TRJ8kXKZIKD9UIUEjSF5lnepjMgMm2ao9FSnZeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Tih7epZ4; arc=none smtp.client-ip=209.85.210.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-534366c194fso991427e87.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 01:25:10 -0700 (PDT)
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7141285db14so1568241b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 01:30:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724401509; x=1725006309; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RNVXRGnKpS8kF6YfpZzWwrX8JQATANezy1mHf5Ikppo=;
-        b=I+Rejjqvc5MXi9BMhhIPULuEQgjyb654UuAQs+OEaXFYsCSDH9R0yzcbLbi3/UWKE5
-         Iqf5b9DEBJthmaz+bV9gLB9p25tkhsK/vl2cZ1RpDNwK63fAkBC85j59l68QHAznWFWL
-         7yuOcR0h7f4hD4y0QZUVc7XYg1/YlUghOLMZgKhC0lhXbfB4Fpj4FrbyI6nMp5Suq90C
-         1YqwJrLosZEMQpt2VH24s44JozeHu5PlvO3zEZwN+jQwop+zcp3Bxc3z4GAu73DNUl2a
-         j6FBKG6HLUhCWxqV2yALrBh19x50IwzRlEpZ82K6cKD1ocl0acG2uhWun6rGo8dLEmms
-         nV1g==
+        d=linaro.org; s=google; t=1724401814; x=1725006614; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1g5yFnddqJtpT5ZB7dI72xoCG8cY+pVqMM33pT3uyxE=;
+        b=Tih7epZ44tqAEYygHvbeielnnWKp6BqwLVbZmz5IDCdPbg5MnVSVqyt9DIPIM3sKXF
+         cxOwbpVMR94Wi+iB0STTrIt5IOZk0vtveuEP/eL5JizkCSBWwzknuZCJdDZO5xecNAB1
+         mZuTBSwbx1hleQRxOglnKWMtSv0SeIX3DY1rVXzJN49sxd0pyUCYJtEwpvt2ZHjbA+M3
+         s0L7UWehzujQAhYIcjvcN8PgZM1H1dQISJyXpLUYL/kHZ4pUc418vqvdsOAw9SZUwDDn
+         m8WExYfnm5ZHweN2B4tAjh6A9wMkIgEmspIz2aJVrn6iTe/1SnblR7orP3QnAdBzhs3j
+         k4Fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724401509; x=1725006309;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RNVXRGnKpS8kF6YfpZzWwrX8JQATANezy1mHf5Ikppo=;
-        b=iKDHFEWikiwqa7vXnnjgR2fFGg2PMKW3CTQ6SVsbDF8DsGLACU/xNieXpj3ppygglF
-         ZwFFwxEX2t16UReWDvNEsBd4VvRITrZitnI+eXnk8rFS5zdqW+aGWk4jjuhAIIzSVY7A
-         2f2ulUtVEIlZvKTSnfc+xrnv2R6PE5A7dftufA1Ruk7CNsS102+3RsTDB67IpQ6kCbGx
-         ByX/S3/HIoQM0pBg1wzkVYsaSgeMl7HJYaxOlsmmuDL3sQOaW01Bkh0q12UXD3jiM6J1
-         /JJa0c1bvRlf07VLXsFdJeIQ3N04kRQkiUk5UaPlSFAB+EzY+Upiq3koITUWkN0/kQRU
-         UHWA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKePtlbBu145aI0BBf6uLfuADIywwI5rr4aCySPjNlHSyQua9jMb6t7xX+BmCbZOvY4F+ZnNRV5O97@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZYF4fbU6TalosJK5+4Z4QhN9pHleBVcICJxtkMKL5Q3KtXni/
-	t8TwhnhaJi0ZdoO3UDIlJNppWx4w/lQLQTAHsYXhsB5QQzZdu5pYEZkR4Ld39Qjy4zoeSckLeTm
-	MOwQ=
-X-Google-Smtp-Source: AGHT+IH6bCoEMQoChtaCyFYQylFJNLu2M2f6XFz5Fuwdk8LQw+EOz+A9GFqvb1SnY/XWcQktSzz4Qg==
-X-Received: by 2002:a05:6512:10c9:b0:533:88d:48ca with SMTP id 2adb3069b0e04-534387c47f5mr883420e87.55.1724401508256;
-        Fri, 23 Aug 2024 01:25:08 -0700 (PDT)
-Received: from [192.168.200.25] (83.25.211.12.ipv4.supernova.orange.pl. [83.25.211.12])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f4365b4sm224742166b.113.2024.08.23.01.25.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 01:25:07 -0700 (PDT)
-Message-ID: <21067aa4-47ae-4208-82ac-b0232d20d5ca@linaro.org>
-Date: Fri, 23 Aug 2024 10:25:06 +0200
+        d=1e100.net; s=20230601; t=1724401814; x=1725006614;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1g5yFnddqJtpT5ZB7dI72xoCG8cY+pVqMM33pT3uyxE=;
+        b=w6QndPE1r4b0E9WzuJ46ir0d1sdGzM57iHq25QNVxuBDoP7zkTlkczsk1BxpmqUWJf
+         dU3yNl7odq7Kva8PQ3egqMGWNCbtBWCmUx0B/qCLwsi/nooFtKcBDw7aVurQ/cwUDI2L
+         OufRvH34Iz6lDLrBOfGaYp+a+cDIucog82UflfY+Kc+rARsm48AJ1QkfMUbebmlxtyEQ
+         pKJzFZDkHhbKXEnR817mwMiPzJq0tSxD0WC3kCJbiqMNIEPcIAFCFIGMqfGzkZFF7kDB
+         X+5LSzTvVbnzCEloYiKFOinb62LxuRr3FK/i8nP2VdmcoeDckzuxxSZRt8JOAV+gs/RA
+         Mbow==
+X-Forwarded-Encrypted: i=1; AJvYcCU2TAUfXaqPbuX9FkHZhPiP7gg7WYnjKIevDsL7W1cKJ6G0lo4M3uZ/S3U7WwD79/s6xDMcvvUNcyaH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCCr+uqL2KLLMdkXill13hygUMlBYi5m8IHsTSavCzEz1w0r6A
+	9lyhIQfEPq2IDU6Dif/5B5JF8A8XIdQACp1a19UT3iHezKEEqf+IMfLYTCAtrQ==
+X-Google-Smtp-Source: AGHT+IFQHY7q9Pde3Vur1+ysnnW4dBHdUMSQBiVLGfF9YoHEBmVFtYzNOhvQUkAYxKs9nYASM4Cjdw==
+X-Received: by 2002:a05:6a20:d523:b0:1c4:7dbc:d21a with SMTP id adf61e73a8af0-1cc8b520264mr1524117637.32.1724401814409;
+        Fri, 23 Aug 2024 01:30:14 -0700 (PDT)
+Received: from thinkpad ([120.60.60.148])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d5eba2353csm5668143a91.26.2024.08.23.01.30.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 01:30:13 -0700 (PDT)
+Date: Fri, 23 Aug 2024 14:00:04 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>, andersson@kernel.org,
+	quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 4/8] PCI: Change the parent to correctly represent
+ pcie hierarchy
+Message-ID: <20240823083004.rzylgm66yaw3rlyi@thinkpad>
+References: <CAMRc=Mcrrhagqykg6eXXkVJ2dYAm5ViLtwL=VKTn8i72UY12Zg@mail.gmail.com>
+ <20240822211336.GA349622@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/8] arm64: dts: rockchip: enable USB-C on NanoPC-T6
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20240822-friendlyelec-nanopc-t6-lts-v4-0-892aebcec0c6@linaro.org>
- <20240822-friendlyelec-nanopc-t6-lts-v4-7-892aebcec0c6@linaro.org>
- <13942328-84bf-4b9f-a88f-287b233c1654@kwiboo.se>
-From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Content-Language: pl-PL, en-GB
-Organization: Linaro
-In-Reply-To: <13942328-84bf-4b9f-a88f-287b233c1654@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240822211336.GA349622@bhelgaas>
 
-On 22.08.2024 23:07, Jonas Karlman wrote:
->> @@ -135,6 +135,8 @@ vbus5v0_typec: vbus5v0-typec-regulator {
->>   		gpio = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
->>   		pinctrl-names = "default";
->>   		pinctrl-0 = <&typec5v_pwren>;
->> +		regulator-always-on;
->> +		regulator-boot-on;
+On Thu, Aug 22, 2024 at 04:13:36PM -0500, Bjorn Helgaas wrote:
+> On Thu, Aug 22, 2024 at 10:01:04PM +0200, Bartosz Golaszewski wrote:
+> > On Thu, Aug 22, 2024 at 9:28 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > >
+> > > On Tue, Aug 13, 2024 at 09:15:06PM +0200, Bartosz Golaszewski wrote:
+> > > > On Sat, Aug 3, 2024 at 5:23 AM Krishna chaitanya chundru
+> > > > <quic_krichai@quicinc.com> wrote:
+> > > > >
+> > > > > Currently the pwrctl driver is child of pci-pci bridge driver,
+> > > > > this will cause issue when suspend resume is introduced in the pwr
+> > > > > control driver. If the supply is removed to the endpoint in the
+> > > > > power control driver then the config space access by the
+> > > > > pci-pci bridge driver can cause issues like Timeouts.
+> > > > >
+> > > > > For this reason change the parent to controller from pci-pci bridge.
+> > > > >
+> > > > > Fixes: 4565d2652a37 ("PCI/pwrctl: Add PCI power control core code")
+> > > > > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> > > > > ---
+> > > >
+> > > > Tested-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > >
+> > > > Bjorn,
+> > > >
+> > > > I think this should go into v6.11 as it does indeed better represent
+> > > > the underlying logic.
+> > >
+> > > Is this patch independent of the rest?  I don't think the whole series
+> > > looks like v6.11 material, but if this patch can be applied
+> > > independently, *and* we can make a case in the commit log for why it
+> > > is v6.11 material, we can do that.
+> > >
+> > > Right now the commit log doesn't tell me enough to justify a
+> > > post-merge window change.
+> > 
+> > Please, apply this patch independently. FYI I have a WiP branch[1]
+> > with a v3 of the fixes series rebased on top of this one. Manivannan
+> > and I are working on fixing one last remaining issue and I'll resend
+> > it. This should go into v6.11.
+> 
+> OK.  I just need to be able to justify *why* we need it in v6.11, so I
+> can apply it as soon as somebody supplies that kind of text for the
+> commit log.  I.e., what is broken without this change?  What bad
+> things happen if we defer it to v6.12?
+> 
 
-> This should probably not be always-on/boot-on, the connector is
-> described as power-role = "dual" and try-power-role = "sink", so should
-> probably be possible to disable the vbus supply.
+I'm not sure if this is a 6.11 material as this patch is not fixing any crash or
+potential breakage in 6.11. This patch changes the hierarchy in such a way that
+the suspend/resume could work fine once added in the pwrctl drivers.
 
-At same time it is not used for powering the board so probably need to 
-change 'power-role' to something else.
+At the same time, I'd like to get it merged separately for 6.12 instead of
+bundling it in this same series.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
