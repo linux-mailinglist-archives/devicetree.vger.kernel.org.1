@@ -1,139 +1,193 @@
-Return-Path: <devicetree+bounces-96140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9AC95CD87
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:15:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB1295CD9F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:19:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AFCE1C228AD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:15:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2D151C22872
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 13:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1482F186E32;
-	Fri, 23 Aug 2024 13:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90D8186611;
+	Fri, 23 Aug 2024 13:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rMM0u8aZ"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="g0HtSX6i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE9E186612;
-	Fri, 23 Aug 2024 13:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724418923; cv=none; b=Fcug7mm2+d3xlc2Tl/rET5w00oYUhtmkCkmxoi23JrMOiANzgna6vS+YRN9oT+OA4kY+h9xAHCmq1gQAWeRHYeUWNItWnvYer5MMAGO7wu5JvURbMnPJm+faf8LaLwj1ibrR9M7tZLDqBlVkfSxAQj25v+8iOI4hwuMQQmycF6s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724418923; c=relaxed/simple;
-	bh=0J1A20zaaxasXrjQbzzkc87YPheUgUJeOswx8vmbDaQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jq0zceYZUXg1OK3gMw02e2LrUhx/yNUEIYSknbM+eCfkp8c2isKzn1OxpOvTpaYp0zpF633vHejO/6md3AYo7WbK85ag1bTT9D8+FnoOfS2tvkjCnvoD2KRBnwHzJGg/tPTS5kYCK0/JzYNXJW9HBpeLWrQqCsVNymfuh2ug1Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=rMM0u8aZ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DF26A2D5;
-	Fri, 23 Aug 2024 15:14:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1724418855;
-	bh=0J1A20zaaxasXrjQbzzkc87YPheUgUJeOswx8vmbDaQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rMM0u8aZAbb6nlpTeDOwd9oZ+izXYvVDR76S4mM7MrNiUu7yZu9tUQU0o5Y0yTX5B
-	 omLuiCp5ofFltu5hL8Ck1EgPv38qBg3HT7rTZ+QQnrJ8///w3jH9guaoDA3UQot0wb
-	 B4B/dO6jostqRTr6ZFTKXzgryA7BLDmNYI/+GuDs=
-Date: Fri, 23 Aug 2024 16:15:16 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: Re: [PATCH v4 0/4] Add support for RZ/G2UL Display Unit
-Message-ID: <20240823131516.GD26098@pendragon.ideasonboard.com>
-References: <20240822162320.5084-1-biju.das.jz@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3076F18562A;
+	Fri, 23 Aug 2024 13:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724419183; cv=pass; b=ciD03yCrPDZXJ2867FuT6VA4fSlSpB6U+8b9rPc+M9hHbhEo8Xgn2DQ86rjD364wiNqj6lQqR5lcnu/qzlfxMSf+TCteIBFjbQ6LI63o27fKniHjfnHnzZc6vNSDffeefBTWo+upLoDe4p38da+vT6VbLiYptuhF4A/q9q8E62Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724419183; c=relaxed/simple;
+	bh=Vy6+x51p1S7kTEcTlXe6/7SsOO5i45PUg87sjGHGunE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SxzXw8BETrX4dzg40BhgaYc86XusL3oH56fFviw3q70n8nv3rr7LY+EuHsu1vnT82N0jwGbsiqvptzM2foKqgy9FfgyRWF5VONbr9Phsf6ERmxP1pQUcJYmg1q86fixvaNuZFXZGrBKh+gKk5bK1cnKdkMmE8aBqFvMVl9IYraU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=g0HtSX6i; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724419152; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=CP6mR9nhLYaIveKpyLaeZ46q9sUT63lbSfiMIuaWfs7yx9M+FNNim+JoIotArBcgoed75YdHxptkraEtr19QO/CcqQArxJfW93c3amEoan5N/e/2pu1AsDKlPd6KKbMPLyvqkRzPPQPHjj5LMHrCtzV0dWyrkprbdJF5aUalctw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724419152; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=hZhy927uMS7MJX4gbRwhbG85sBlv12sTezrKNZF+Sjo=; 
+	b=a6JpAMOErhsOFMfZlM+H4x08BtZKGRkFsCGjhOiu3744h0qPwB4XIgU7hEEFkPdWm20KoJwNqK5sS4/v6xrzvuwa5weoFH5ICsohdVfuQvdoqMzod0YuzHhfSfEvHUXxnkI8mr/63f6w8AS2WL8TRBdTU5IWrf9EKSHXKkzLAIw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724419152;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=hZhy927uMS7MJX4gbRwhbG85sBlv12sTezrKNZF+Sjo=;
+	b=g0HtSX6iROSiuef6fVy/H2/AVyaw27pgU7AiuzuYnBVDsvfDHPdrlums9H7gC0tQ
+	PjS2YqPH00fG1/6Dha5knVdpJy9nUnISGH3CSCb3gE1LioE1z+x0hzBizXynA7a2Nwm
+	SnjueHAAxM5G9HSRGeXZj03yVaWJKXNV4GFcKe8M=
+Received: by mx.zohomail.com with SMTPS id 1724419149648671.8521035840524;
+	Fri, 23 Aug 2024 06:19:09 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 4/4] mmc: dw_mmc-rockchip: Add support for rk3576 SoCs
+Date: Fri, 23 Aug 2024 09:20:50 -0400
+Message-ID: <5808226.DvuYhMxLoT@trenzalore>
+In-Reply-To: <26fe259f390a8015c3f08c6dc027711c@manjaro.org>
+References:
+ <20240822212418.982927-1-detlev.casanova@collabora.com>
+ <20240822212418.982927-5-detlev.casanova@collabora.com>
+ <26fe259f390a8015c3f08c6dc027711c@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240822162320.5084-1-biju.das.jz@bp.renesas.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-Hi Biju,
+Hi Dragan,
 
-On Thu, Aug 22, 2024 at 05:23:13PM +0100, Biju Das wrote:
-> This patch series aims to add support for RZ/G2UL DU.
+On Friday, 23 August 2024 03:00:57 EDT Dragan Simic wrote:
+> Hello Detlev,
 > 
-> The LCD controller is composed of Frame Compression Processor (FCPVD),
-> Video Signal Processor (VSPD), and Display Unit (DU).
+> Please see a comment below.
 > 
-> The output of LCDC is connected display parallel interface (DPI) and
-> supports a maximum resolution of WXGA along with 2 RPFs to support the
-> blending of two picture layers and raster operations (ROPs)
+> On 2024-08-22 23:15, Detlev Casanova wrote:
+> > On rk3576 the tunable clocks are inside the controller itself, removing
+> > the need for the "ciu-drive" and "ciu-sample" clocks.
+> > 
+> > That makes it a new type of controller that has its own dt_parse
+> > function.
+> > 
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> > 
+> >  drivers/mmc/host/dw_mmc-rockchip.c | 48 ++++++++++++++++++++++++++----
+> >  1 file changed, 43 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/mmc/host/dw_mmc-rockchip.c
+> > b/drivers/mmc/host/dw_mmc-rockchip.c
+> > index 1458cb5fd5c7..7c8ccf5e71bc 100644
+> > --- a/drivers/mmc/host/dw_mmc-rockchip.c
+> > +++ b/drivers/mmc/host/dw_mmc-rockchip.c
+[...]
+> > @@ -435,13 +451,25 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci
+> > *host)
+> > 
+> >  	if (IS_ERR(priv->sample_clk))
+> >  	
+> >  		dev_dbg(host->dev, "ciu-sample not available\n");
+> > 
+> > -	host->priv = priv;
+> > -
+> > 
+> >  	priv->internal_phase = false;
+> >  	
+> >  	return 0;
+> >  
+> >  }
+> > 
+> > +static int dw_mci_rk3576_parse_dt(struct dw_mci *host)
+> > +{
+> > +	struct dw_mci_rockchip_priv_data *priv;
+> > +	int err = dw_mci_common_parse_dt(host);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	priv = host->priv;
+> > +
+> > +	priv->internal_phase = true;
 > 
-> It is similar to LCDC IP on RZ/G2L SoCs, but does not have DSI interface.
-> 
-> v3->v4:
->  * Restored the ports property for RZ/G2UL and described port@0 for the
->    DPI interface in bindings patch.
->  * Restored tags from Geert and Conor as the change is trivial
->    (Replaced port 1->0 from v2).
->  * Used "&" instead of "==" in rzg2l_du_start_stop() for scalability.
->  * Restored port variable in struct rzg2l_du_output_routing
->  * Updated rzg2l_du_encoders_init() to handle port based on hardware indices.
->  * Restored ports property in du node and used port@0 for connected
->    DPI interface.
-> v2->v3:
->  * Split patch series based on subsystem from DU patch series [1].
->  * Replaced ports->port property for RZ/G2UL as it supports only DPI
->    and retained ports property for RZ/{G2L,V2L} as it supports both DSI
->    and DPI output interface.
->  * Added missing blank line before example.
->  * Dropped tags from Conor and Geert as there are new changes in bindings
->  * Avoided the line break in rzg2l_du_start_stop() for rstate.
->  * Replaced port->du_output in  struct rzg2l_du_output_routing and
->    dropped using the port number to indicate the output type in
->    rzg2l_du_encoders_init().
->  * Updated rzg2l_du_r9a07g043u_info and rzg2l_du_r9a07g044_info.
-> 
->  [1] https://lore.kernel.org/all/20240709135152.185042-1-biju.das.jz@bp.renesas.com/
-> v1->v2:
->  * Updated cover letter header "DU IP->Display Unit".
->  * Updated commit description related to non ABI breakage for patch#3.
->  * Added Ack from Conor for binding patches.
-> 
-> Biju Das (4):
->   dt-bindings: display: renesas,rzg2l-du: Document RZ/G2UL DU bindings
->   drm: renesas: rz-du: Add RZ/G2UL DU Support
+> Defining priv, assigning it and using it seems rather redundant,
+> when all that's needed is simple "host->priv->internal_phase = true"
+> assignment instead.
 
-The first two patches look good to me. Do you have access to drm-misc,
-will you push them yourself, or do you expect a maintainer to pick them
-up ?
+Yes, that's what I did at first, but host->priv is declared as void*, which 
+means it needs to be cast to struct dw_mci_rockchip_priv_data * and I felt 
+that 
 
->   arm64: dts: renesas: r9a07g043u: Add DU node
->   arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
-> 
->  .../bindings/display/renesas,rzg2l-du.yaml    |  32 ++++-
->  arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   |  25 ++++
->  .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 ++++++++++++++++++
->  drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c |   8 +-
->  drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  11 ++
->  drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |   3 +-
->  6 files changed, 185 insertions(+), 5 deletions(-)
+((struct dw_mci_rockchip_priv_data *)host->priv)->internal_phase = true;
 
--- 
-Regards,
+is not very pretty and harder to read.
 
-Laurent Pinchart
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > 
+> >  static int dw_mci_rockchip_init(struct dw_mci *host)
+> >  {
+> >  
+> >  	int ret, i;
+> > 
+> > @@ -483,11 +511,21 @@ static const struct dw_mci_drv_data
+> > rk3288_drv_data = {
+> > 
+> >  	.init			= dw_mci_rockchip_init,
+> >  
+> >  };
+> > 
+> > +static const struct dw_mci_drv_data rk3576_drv_data = {
+> > +	.common_caps		= MMC_CAP_CMD23,
+> > +	.set_ios		= dw_mci_rk3288_set_ios,
+> > +	.execute_tuning		= dw_mci_rk3288_execute_tuning,
+> > +	.parse_dt		= dw_mci_rk3576_parse_dt,
+> > +	.init			= dw_mci_rockchip_init,
+> > +};
+> > +
+> > 
+> >  static const struct of_device_id dw_mci_rockchip_match[] = {
+> >  
+> >  	{ .compatible = "rockchip,rk2928-dw-mshc",
+> >  	
+> >  		.data = &rk2928_drv_data },
+> >  	
+> >  	{ .compatible = "rockchip,rk3288-dw-mshc",
+> >  	
+> >  		.data = &rk3288_drv_data },
+> > 
+> > +	{ .compatible = "rockchip,rk3576-dw-mshc",
+> > +		.data = &rk3576_drv_data },
+> > 
+> >  	{},
+> >  
+> >  };
+> >  MODULE_DEVICE_TABLE(of, dw_mci_rockchip_match);
+
+
+
+
 
