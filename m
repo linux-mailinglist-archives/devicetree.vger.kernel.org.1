@@ -1,187 +1,194 @@
-Return-Path: <devicetree+bounces-96158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB93A95CEA7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF2F795CED5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FA92B246CB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:02:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D726B27A1F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA86718951B;
-	Fri, 23 Aug 2024 14:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC61A1925AA;
+	Fri, 23 Aug 2024 14:02:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kfw37oXP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9IuNfTg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB157188900;
-	Fri, 23 Aug 2024 14:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8125E1925AC;
+	Fri, 23 Aug 2024 14:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724421703; cv=none; b=kXPp4pfXYj71ijgkaLNK6YGDXehjTKAJ/D8AldABbptRocFBW/xJkcpUxtLag9yu+2dhvFQIXSQOrIOz3K1JnCEjJPGSi+T15t6v4eWqECw0cItv5tltzqNCmSVr5thxBppHfrQLt44NdPJQTlycQW925N0qZnI6LyHHywMEuq0=
+	t=1724421741; cv=none; b=YKHOLNfKvpG0VHOXA+/Hx5rbI//Vu2UqDIcjFfFWgjlUFLbGnH5C9C2Vcdq02l5B8zUfldpZ3SekbrGtF2ZhiF0LY6NjsJERTqwd7sqaOUNeV3v7lf/u0fJ8AqNzvJpJ4NoOhiG1T0G7Qv/34YqLU3NglnbuTlrHpK4KAOM4WRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724421703; c=relaxed/simple;
-	bh=3yHP9wBn0SJcAbqYl8E8vpjlCd39wZV+iP+REGMWKgE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u1iO6FT7NesuGde+Kw5pHSjPUmFW51XMjEuCZsflxo+wCh2lWKtYwRfCmSvOCKDi/awrer7VBZzRJu4hOhd5nBZKrbebDxgaPS3MVyL2XSGn+l/w8TSEBPJayhEMnwBUYD3BmhevaCP3xHfeFBy9EMeWN2W6MXmyTbWDFv4Pqec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kfw37oXP; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724421702; x=1755957702;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=3yHP9wBn0SJcAbqYl8E8vpjlCd39wZV+iP+REGMWKgE=;
-  b=Kfw37oXPUywYLPIzQ53EfH1++vjO4jqaH3MpjrWgDhzz0UHaoWlQDrna
-   Zgb7hdYtsI2jpljtZHk6nf7xeR7Y6xcD+lZVRSCsw+buZYNi81UHHI3AR
-   YNuwYMhFgEBJw1636TM1+mAWO9ArLTGjM/1KznHsvPqNBp5Pxd2gxHzNV
-   181odqVXf69L6NBnHmdh1Iv4cGhV6DnNpzSCusZv9NJptHyglCBvQR5zW
-   JvX3em/GAUjksXIwEg0IA+h9xViy54iopQlTzGz8VI2miG51fRuqrioCF
-   mefUYzuYPivXTjRs8jL86UchOqYmgUDft+UbYgQBcL+hkPJ73toiW+CzP
-   w==;
-X-CSE-ConnectionGUID: Fcx9II/fTHm2l61ghHPvrw==
-X-CSE-MsgGUID: nz8NJHZGTbacXoxNmiwkTw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22412167"
-X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; 
-   d="scan'208";a="22412167"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 07:01:41 -0700
-X-CSE-ConnectionGUID: gY6ksg/lRlC/GHXXERowJA==
-X-CSE-MsgGUID: DSzI+E0EQtK7ef5AaKdSkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; 
-   d="scan'208";a="66726448"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 07:01:36 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1shUqs-00000000oRR-3UOF;
-	Fri, 23 Aug 2024 17:01:18 +0300
-Date: Fri, 23 Aug 2024 17:00:32 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v5 08/10] i2c: of-prober: Add GPIO support
-Message-ID: <ZsiWALpt1IpTHsKg@smile.fi.intel.com>
-References: <20240822092006.3134096-1-wenst@chromium.org>
- <20240822092006.3134096-9-wenst@chromium.org>
- <ZsdJOUe44hiGur-s@smile.fi.intel.com>
- <CAGXv+5G7h08Pvd24_6LoUB_8w_Cd0RntRSjNdn_FjrRH1ZF5oQ@mail.gmail.com>
+	s=arc-20240116; t=1724421741; c=relaxed/simple;
+	bh=asFl3Y6roD0Y86OAD+/7ty21Ij7hRU/U/1UtppqlXTo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=I9crgGF7GdtJUSOebI+KLRAe3zANm4UrAFq+rWqgfI7bQ+EhGJ8a/xGe2XATYIqrhHI0rJ3jEtdSCgsRADhgHsxc1hmula9ZvQ/eHoq371uTzeR6zle3MoURdmcq3P9bQKvVb+eMH+A/K30tsr23dfLIy2AcOr89n3ZxpdPF+pI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9IuNfTg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 441C1C4AF0B;
+	Fri, 23 Aug 2024 14:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724421741;
+	bh=asFl3Y6roD0Y86OAD+/7ty21Ij7hRU/U/1UtppqlXTo=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=M9IuNfTgUNtfq4C3N0TfYnBgfeLG9pnong1ZAebOSn4nlsX2du3dtoDbiyNgPTq2i
+	 wSZsP0WKh1F394cM9nzFA6sxSWTFoxQXGtRKW2KCOUzYJOeoEUTW7oZTvrjT0VAQFk
+	 PyB2ceS8z0KSY7lCNQKrjP+ftsWnHNunFhlIHBuUpcjOWOgQO2hbkk3Q7iOHkJ92yj
+	 2ohsO6gslog9CAww5P4UZvDqEmcJqGH2OSf1lLePf3KXgiE6jXy8tLf403DuLSV4XJ
+	 UTFAqdCmuReLqEPLMdfGopIVSwhDMyoIZWqNhQF0bAGJD/NPglR5DoE6KzpAsxa2Xu
+	 JtG501VWiziYA==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Stefan Wiehler <stefan.wiehler@nokia.com>,
+	Rob Herring <robh@kernel.org>,
+	Sasha Levin <sashal@kernel.org>,
+	saravanak@google.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.10 19/24] of/irq: Prevent device address out-of-bounds read in interrupt map walk
+Date: Fri, 23 Aug 2024 10:00:41 -0400
+Message-ID: <20240823140121.1974012-19-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240823140121.1974012-1-sashal@kernel.org>
+References: <20240823140121.1974012-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.10.6
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGXv+5G7h08Pvd24_6LoUB_8w_Cd0RntRSjNdn_FjrRH1ZF5oQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Aug 23, 2024 at 06:32:16PM +0800, Chen-Yu Tsai wrote:
-> On Thu, Aug 22, 2024 at 10:20 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Thu, Aug 22, 2024 at 05:20:01PM +0800, Chen-Yu Tsai wrote:
+From: Stefan Wiehler <stefan.wiehler@nokia.com>
 
-...
+[ Upstream commit b739dffa5d570b411d4bdf4bb9b8dfd6b7d72305 ]
 
-> > > +     if (!data->gpiods)
-> > > +             return 0;
-> >
-> > If it comes a new code (something else besides GPIOs and regulators) this
-> > will be a (small) impediment. Better to have a helper for each case and do
-> >
-> >         ret = ..._gpiods();
-> >         if (ret)
-> >                 ...
-> >
-> > Same for regulators and anything else in the future, if any.
-> 
-> I'm not sure I follow. Do you mean wrap each individual type in a wrapper
-> and call those here, like the following?
-> 
->     i2c_of_probe_enable_res(...)
->     {
->         ret = i2c_of_probe_enable_regulators(...)
->         if (ret)
->               return ret;
-> 
->         ret = i2c_of_probe_enable_gpios(...)
->         if (ret)
->               goto error_disable_regulators;
-> 
->         ...
->     }
+When of_irq_parse_raw() is invoked with a device address smaller than
+the interrupt parent node (from #address-cells property), KASAN detects
+the following out-of-bounds read when populating the initial match table
+(dyndbg="func of_irq_parse_* +p"):
 
-Yes.
+  OF: of_irq_parse_one: dev=/soc@0/picasso/watchdog, index=0
+  OF:  parent=/soc@0/pci@878000000000/gpio0@17,0, intsize=2
+  OF:  intspec=4
+  OF: of_irq_parse_raw: ipar=/soc@0/pci@878000000000/gpio0@17,0, size=2
+  OF:  -> addrsize=3
+  ==================================================================
+  BUG: KASAN: slab-out-of-bounds in of_irq_parse_raw+0x2b8/0x8d0
+  Read of size 4 at addr ffffff81beca5608 by task bash/764
 
-...
+  CPU: 1 PID: 764 Comm: bash Tainted: G           O       6.1.67-484c613561-nokia_sm_arm64 #1
+  Hardware name: Unknown Unknown Product/Unknown Product, BIOS 2023.01-12.24.03-dirty 01/01/2023
+  Call trace:
+   dump_backtrace+0xdc/0x130
+   show_stack+0x1c/0x30
+   dump_stack_lvl+0x6c/0x84
+   print_report+0x150/0x448
+   kasan_report+0x98/0x140
+   __asan_load4+0x78/0xa0
+   of_irq_parse_raw+0x2b8/0x8d0
+   of_irq_parse_one+0x24c/0x270
+   parse_interrupts+0xc0/0x120
+   of_fwnode_add_links+0x100/0x2d0
+   fw_devlink_parse_fwtree+0x64/0xc0
+   device_add+0xb38/0xc30
+   of_device_add+0x64/0x90
+   of_platform_device_create_pdata+0xd0/0x170
+   of_platform_bus_create+0x244/0x600
+   of_platform_notify+0x1b0/0x254
+   blocking_notifier_call_chain+0x9c/0xd0
+   __of_changeset_entry_notify+0x1b8/0x230
+   __of_changeset_apply_notify+0x54/0xe4
+   of_overlay_fdt_apply+0xc04/0xd94
+   ...
 
-> > > +             /*
-> > > +              * reset GPIOs normally have opposite polarity compared to
-> >
-> > "reset"
-> >
-> > > +              * enable GPIOs. Instead of parsing the flags again, simply
-> >
-> > "enable"
-> >
-> > > +              * set the raw value to high.
-> >
-> > This is quite a fragile assumption. Yes, it would work in 98% cases, but will
-> > break if it's not true somewhere else.
-> 
-> Well, this seems to be the de facto standard. Or it would have to remember
-> what each GPIO descriptor's name is, and try to classify those into either
-> "enable" or "reset", and set their respective logical values to 1 or 0.
-> And then you run into a peripheral with a broken binding that has its
-> "reset" GPIO inverted, i.e. it's driver behavior needs to follow the
-> "enable" GPIO style. The class of devices this prober targets are
-> consumer electronics (laptops, tablets, phones) that at least have gone
-> through some component selection where the options won't have conflicting
-> requirements.
+  The buggy address belongs to the object at ffffff81beca5600
+   which belongs to the cache kmalloc-128 of size 128
+  The buggy address is located 8 bytes inside of
+   128-byte region [ffffff81beca5600, ffffff81beca5680)
 
-I'm talking from real life example(s) :-)
+  The buggy address belongs to the physical page:
+  page:00000000230d3d03 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x1beca4
+  head:00000000230d3d03 order:1 compound_mapcount:0 compound_pincount:0
+  flags: 0x8000000000010200(slab|head|zone=2)
+  raw: 8000000000010200 0000000000000000 dead000000000122 ffffff810000c300
+  raw: 0000000000000000 0000000000200020 00000001ffffffff 0000000000000000
+  page dumped because: kasan: bad access detected
 
-Recently I looked at the OV7251 sensor driver that expects "enable" GPIO while
-all users supply "reset"-as-"enable" with the exact trouble I described.
-Yet it's pure software / ABI issue in that case, but who knows what PCB
-engineers may come up with.
+  Memory state around the buggy address:
+   ffffff81beca5500: 04 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+   ffffff81beca5580: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+  >ffffff81beca5600: 00 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+                        ^
+   ffffff81beca5680: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+   ffffff81beca5700: 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc fc
+  ==================================================================
+  OF:  -> got it !
 
-> And if the polarities of the possible components don't line up, then this
-> probe structure can't really do anything. One would need something that
-> power sequences each component separately and probes it. I would really
-> like to avoid that if possible, as it makes the boot time (to peripheral
-> available) dependent on which component you have and how far down the
-> list it is. We have Chromebooks that have 4 touchscreen components
-> introduced over the years. In that case something more like Doug's
-> original proposal would work better: something that forces mutual
-> exclusivity among a class of devices.
+Prevent the out-of-bounds read by copying the device address into a
+buffer of sufficient size.
 
-Maybe. I just pointed out the potential problem.
+Signed-off-by: Stefan Wiehler <stefan.wiehler@nokia.com>
+Link: https://lore.kernel.org/r/20240812100652.3800963-1-stefan.wiehler@nokia.com
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/of/irq.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-> > > +              */
-
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index c94203ce65bb3..8fd63100ba8f0 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -344,7 +344,8 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
+ 	struct device_node *p;
+ 	const __be32 *addr;
+ 	u32 intsize;
+-	int i, res;
++	int i, res, addr_len;
++	__be32 addr_buf[3] = { 0 };
+ 
+ 	pr_debug("of_irq_parse_one: dev=%pOF, index=%d\n", device, index);
+ 
+@@ -353,13 +354,19 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
+ 		return of_irq_parse_oldworld(device, index, out_irq);
+ 
+ 	/* Get the reg property (if any) */
+-	addr = of_get_property(device, "reg", NULL);
++	addr = of_get_property(device, "reg", &addr_len);
++
++	/* Prevent out-of-bounds read in case of longer interrupt parent address size */
++	if (addr_len > (3 * sizeof(__be32)))
++		addr_len = 3 * sizeof(__be32);
++	if (addr)
++		memcpy(addr_buf, addr, addr_len);
+ 
+ 	/* Try the new-style interrupts-extended first */
+ 	res = of_parse_phandle_with_args(device, "interrupts-extended",
+ 					"#interrupt-cells", index, out_irq);
+ 	if (!res)
+-		return of_irq_parse_raw(addr, out_irq);
++		return of_irq_parse_raw(addr_buf, out_irq);
+ 
+ 	/* Look for the interrupt parent. */
+ 	p = of_irq_find_parent(device);
+@@ -389,7 +396,7 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
+ 
+ 
+ 	/* Check if there are any interrupt-map translations to process */
+-	res = of_irq_parse_raw(addr, out_irq);
++	res = of_irq_parse_raw(addr_buf, out_irq);
+  out:
+ 	of_node_put(p);
+ 	return res;
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
