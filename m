@@ -1,115 +1,187 @@
-Return-Path: <devicetree+bounces-96128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522CC95CC34
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D12C095CC4F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:28:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85AB11C21A83
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:15:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2FF01C2177F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 12:28:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7591B56B7C;
-	Fri, 23 Aug 2024 12:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583F218593E;
+	Fri, 23 Aug 2024 12:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Taxvtad9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A473A28D;
-	Fri, 23 Aug 2024 12:15:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C64185606;
+	Fri, 23 Aug 2024 12:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724415325; cv=none; b=g6KXq1am3/wgWnz6VjiceqUu+m4govVoYUnooJf6xYW6GOSIp4LppnFQlvBSkcEXqrIZiegs8O475PXoKgU0FD7BYy3mS4z/fsygajTgUazb5HT4pTnBJQk//7GEUanG1iBtxrFaDIJfyV2qK5pFVx1nXMIHc/IcMFJBs8/yTvQ=
+	t=1724416077; cv=none; b=M77yjyLxSdovcuC/I2+CmauvTI07r53CCq2h40WYFA7RQmfyFLoVXBcnNj/JRXwoforcHlc0JCKFRsTL0BgTL4nQX3FxToLu5ixZLw0/dv9t60UtDu0FE9HkgEx/w7ARb5t+IBP5qoE2LSQuh9CplGbdHdftoWdZTdOqpjJltjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724415325; c=relaxed/simple;
-	bh=9Gvond4EpUbd/5LCrfoZSP6X0bn+M70kRVMuJnjnLcg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iw10iYyEL6zYGjifPW5rWyf3g88i2d3iLflBh5NAn6Pv2o8Jv3ipSFBK8NfnApvCANDieLsfKG7I1GHDI2xUQa1Jh9GIIb/K2B7A7I7qWtHAkPa3o1rcVh8Jb1HsoW1XKUDubinVMEMM4kWvfLP3OrVf6vSDbjhRgg5yntRI5U0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-68d30057ae9so17535737b3.1;
-        Fri, 23 Aug 2024 05:15:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724415321; x=1725020121;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q9McJyguLm8xtxOWd0nGrC2vXxRJ8FqFdeFHw/GUufw=;
-        b=Gg0VLQtWNBYxRlPQ4KHdBgPkW+t0e8tZIIlacf4oZsekFUWqZuAE4d6R9lXrxcKjUf
-         crrd8Wva0gpjpPLi1CuGg2NOmr2g7dQ4V9s8hCJ647EDsymj9UvNAcQrdNB6ndDV2gbu
-         ppSOJIr8P1JzYjINbzv6tg7scyhdWw4a8C4dJ8HJZx8AJKxaewBM5mdUHtmXy8QJ7PGv
-         Rrk67WSRUOvp678Naj+G1i90maxrNd6+aaIOJIG0CWYIAZVY8CfuPkI6IIIsY6d7AfWX
-         i9Ar1p8KsnGZVzc3N9o+HkGZX5JRGN3xIfXXZnTHZ8KHCfeeMStC+DB1DzUHemE017Sg
-         XcNw==
-X-Forwarded-Encrypted: i=1; AJvYcCWfB5aoi3ZTISkgpT1VLa7B2R018xE6JW/unNTI32TbKyw7VGjYMAkSfULLYDMf+Pj1GZZdqwmM4Mrm@vger.kernel.org, AJvYcCWoaRWiItsEpbnLZZzQJf+vqg/wOjSTrvAlfMfN0d8RM8SevC7CK8bN4m9K++rnXs4IFT8tAHRmF+BFn9kAvlOZESs=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYy53ruuXLh6rOqLIRUSWcf0rIeudHsqV8hNJQiMQVb0LHfnhC
-	5dfLL06L7E3zIOeYo4Mi2lm3zDRMw0OhFv+LQzDjRjmU29H32PNnNJ0sN868
-X-Google-Smtp-Source: AGHT+IG6qLUjE/4pg11khN22ayEEHO0V0oUhn5LbhRueSoRooJntj5jRWAmRA8ZDXw3DFzZCeDKW8g==
-X-Received: by 2002:a05:690c:ec9:b0:64a:9832:486 with SMTP id 00721157ae682-6c624419031mr22859477b3.1.1724415321259;
-        Fri, 23 Aug 2024 05:15:21 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c39d3a9de7sm5276247b3.79.2024.08.23.05.15.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2024 05:15:21 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e026a2238d8so2072835276.0;
-        Fri, 23 Aug 2024 05:15:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV7ImV1HFeQ8FakMopJ+zPkKfhymT9oBbMpuHYGafRsPeL8QpSKm/VrmcJwtI8puJVFA0K5gxtzNv9NY9wY6mxGU94=@vger.kernel.org, AJvYcCXSh9PWMeBfCrIzIYfjuH3xUzl5MXrDZfc98rQXzdEiI8yUzkmiEaarrtezZikEf/SbWUe1mAHJknl+@vger.kernel.org
-X-Received: by 2002:a05:690c:288f:b0:6b0:e813:753b with SMTP id
- 00721157ae682-6c6288aa364mr17322387b3.38.1724415320673; Fri, 23 Aug 2024
- 05:15:20 -0700 (PDT)
+	s=arc-20240116; t=1724416077; c=relaxed/simple;
+	bh=bMnoAKpPCIVQRex724ASfJoSY6zASK62deCO9e3JAHI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f06wJqitNCWC8vCSJ3CF0Vb5pMc7lAqFJSjFxZbZ2WB20x+TY7jnwJqKmy59m8NVC6UUN2k7A+z2i20T8If7dzxDLr65bvn+idqsA5GZzCMZ52F053AYzGEDg1xV3iVOUqKO7sLppfrA0W1FwX7cWiif4/kpnxrjt7GEmiRUmkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Taxvtad9; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1724416075; x=1755952075;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=bMnoAKpPCIVQRex724ASfJoSY6zASK62deCO9e3JAHI=;
+  b=Taxvtad9tmvHLMkqiHt7NtO86MWzHZe9jNhBCQOaE0kh0QaMDovJFIxt
+   ROsUvOOagD14dyTZKm7VS5gSDbSYRIjglQ6Kz998H1TfD+OtN7Q2j8DSK
+   vVLCMAbnsbnue8WLRfZmcb5ImmnFXYAthGX6SH3Uq+0GBVcM8qBt5fAqU
+   4PReJwvrSAcaTYZ5jebi4w3XjFDDpyu5Z2YgH0PiPtC4sbbFrNRVYfBUz
+   vaJUQdjCNcFgjsNP6geiz0yViF0rnRLD/Y8kHNnWj5xjzErxsalr/7ybx
+   oKKR3+ZvpCBthZD1gnWmKi4Vm9HAPaA11aQlHC2yQxYmQOZWafna7bUOT
+   A==;
+X-CSE-ConnectionGUID: rDZOZxKYRGu2u+L6hg58hQ==
+X-CSE-MsgGUID: N2EUElwYRp2RS+7dariFpA==
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; 
+   d="scan'208";a="198251692"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Aug 2024 05:27:53 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 23 Aug 2024 05:27:27 -0700
+Received: from daire-X570.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 23 Aug 2024 05:27:25 -0700
+From: <daire.mcnamara@microchip.com>
+To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <conor.dooley@microchip.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<robh@kernel.org>, <bhelgaas@google.com>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <daire.mcnamara@microchip.com>,
+	<ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v9 0/3] Fix address translations on MPFS PCIe controller
+Date: Fri, 23 Aug 2024 13:27:14 +0100
+Message-ID: <20240823122717.1159133-1-daire.mcnamara@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822162320.5084-1-biju.das.jz@bp.renesas.com> <20240822162320.5084-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240822162320.5084-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 23 Aug 2024 14:15:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUmUbi9ZyxGJPZKKwXT96KB=mrkTMxhdg0TTDAcT3kxvA@mail.gmail.com>
-Message-ID: <CAMuHMdUmUbi9ZyxGJPZKKwXT96KB=mrkTMxhdg0TTDAcT3kxvA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] arm64: dts: renesas: r9a07g043u: Add DU node
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Aug 22, 2024 at 6:23=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Add DU node to RZ/G2UL SoC DTSI.
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v4:
->  * Restored ports property and used port@0 for connected
->    DPI interface.
+From: Daire McNamara <daire.mcnamara@microchip.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.12.
+Hi all,
 
-Gr{oetje,eeting}s,
+On Microchip PolarFire SoC (MPFS), the PCIe controller is connected to the
+CPU via one of three Fabric Interface Connectors (FICs).  Each FIC present
+to the CPU complex as 64-bit AXI-M and 64-bit AXI-S.  To preserve
+compatibility with other PolarFire family members, the PCIe controller is
+connected to its encapsulating FIC via a 32-bit AXI-M and 32-bit AXI-S
+interface.
 
-                        Geert
+Each FIC is implemented in FPGA logic and can incorporate logic along its 64-bit
+AXI-M to 32-bit AXI-M chain (including address translation) and, likewise, along
+its 32-bit AXI-S to 64-bit AXI-S chain (again including address translation).
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+In order to reduce the potential support space for the PCIe controller in
+this environment, MPFS supports certain reference designs for these address
+translations: reference designs for cache-coherent memory accesses
+and reference designs for non-cache-coherent memory accesses. The precise
+details of these reference designs and associated customer guidelines
+recommending that customers adhere to the addressing schemes used in those
+reference designs are available from Microchip, but the implication for the
+PCIe controller address translation between CPU-space and PCIe-space are:
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+For outbound address translation, the PCIe controller address translation tables
+are treated as if they are 32-bit only.  Any further address translation must
+be done in FPGA fabric.
+
+For inbound address translation, the PCIe controller is configurable for two
+cases:
+* In the case of cache-coherent designs, the base of the AXI-S side of the
+  address translation must be set to 0 and the size should be 4 GiB wide. The
+  FPGA fabric must complete any address translations based on that 0-based
+  address translation.
+* In the case of non-cache coherent designs, the base of AXI-S side of the
+  address translation must be set to 0x8000'0000 and the size shall be 2 GiB
+  wide.  The FPGA fabric must complete any address translation based on that
+  0x80000000 base.
+
+So, for example, in the non-cache-coherent case, with a device tree property
+that maps an inbound range from 0x10'0000'0000 in PCIe space to 0x10'0000'0000
+in CPU space, the PCIe rootport will translate a PCIe address of 0x10'0000'0000
+to an intermediate 32-bit AXI-S address of 0x8000'0000 and the FIC is
+responsible for translating that intermediate 32-bit AXI-S address of
+0x8000'0000 to a 64-bit AXI-S address of 0x10'0000'0000.
+
+And similarly, for example, in the cache-coherent case, with a device tree
+property that maps an inbound range from 0x10'0000'0000 in PCIe space to
+0x10'0000'0000 in CPU space, the PCIe rootport will translate a PCIe address
+of 0x10'0000'0000 to an intermediate 32-bit AXI-S address of 0x0000'0000 and
+the FIC is responsible for translating that intermediate 32-bit AXI-S address
+of 0x0000'0000 to a 64-bit AXI-S address of 0x10'0000'0000.
+
+See https://lore.kernel.org/all/20220902142202.2437658-1-daire.mcnamara@microchip.com/T/
+for backstory.
+
+Changes since v8:
+- Edits suggested by BHelgass and Ilpo Jarvinen
+- Dropped the setup_inbound_atr u64 change (passing on openrisc 32-bit without it)
+
+Changes since v7:
+- Rebased on top of 6.11rc1
+
+Changes since v6:
+- Added Reviewed-by: Ilpo tag to outbound patch
+- Fixed typos/capitalisation/etc as suggested by Ilpo
+
+Changes since v5:
+- Reverted setup_inbound_atr size parameter to u64 as ci system reported
+  SZ_4G getting truncated to 0 on mips when I try to use size_t or resource_size_t.
+  Added Acked-by tags
+
+Changes since v4:
+- Added more cleanups suggested by Ilpo Jarvinen
+  Added cleanups for inbound v4 and outbound v3.
+
+Changes since v3:
+- Added nice cleanups suggested by Ilpo Jarvinen
+
+Changes since v2:
+- Added <Signed-off-by: tag>
+
+Changes since v1:
+- added bindings patch to allow dma-noncoherent
+- changed a size_t to u64 to pass 32-bit compile tests
+- allowed 64-bit outbound pcie translations
+- tied PCIe side of eCAM translation table to 0
+
+Conor Dooley (1):
+  dt-bindings: PCI: microchip,pcie-host: allow dma-noncoherent
+
+Daire McNamara (2):
+  PCI: microchip: Fix outbound address translation tables
+  PCI: microchip: Fix inbound address translation tables
+
+ .../bindings/pci/microchip,pcie-host.yaml     |   2 +
+ .../pci/controller/plda/pcie-microchip-host.c | 123 +++++++++++++++++-
+ drivers/pci/controller/plda/pcie-plda-host.c  |  17 ++-
+ drivers/pci/controller/plda/pcie-plda.h       |   6 +-
+ drivers/pci/controller/plda/pcie-starfive.c   |   3 +
+ 5 files changed, 142 insertions(+), 9 deletions(-)
+
+
+base-commit: 8400291e289ee6b2bf9779ff1c83a291501f017b
+-- 
+2.34.1
+
 
