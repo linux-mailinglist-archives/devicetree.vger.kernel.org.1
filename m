@@ -1,194 +1,160 @@
-Return-Path: <devicetree+bounces-96160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D163A95CF22
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:13:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FEC95CF39
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:14:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FF49B29CF4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:12:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69710B2A7FE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 14:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF00199E93;
-	Fri, 23 Aug 2024 14:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6397718BC1D;
+	Fri, 23 Aug 2024 14:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VbTpB7f0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FEImtkXY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538EF199E8D;
-	Fri, 23 Aug 2024 14:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAA3118BBBA;
+	Fri, 23 Aug 2024 14:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724421835; cv=none; b=TfKkLTjf1rK8R0DjIY9zhQS1QiLXgGQj4PsER3Mo5LiKlXoFzzo7zVNrzhIOd9+AxChGl/DARO8bywrjMpz1oB+GcGCfoIU/AGCtN5xZ/wyk+/kP83P8wGgOcXYLnldPunhnF3EWRriMY0ZwkvYj1oR2/hwyYJdzThv7YE0QfVE=
+	t=1724421870; cv=none; b=dOC7ZCLOTfQrO3dQuLC1kn5XhKU6ZYUCgFaA/8zIeWCG7qMQJy4hnLQunEWSc9IbWRaCM7/Ueya8+Ra8V/7hvIKDCUVjf1iJdgi9wWS8zkipM1NiKiB17LOTTZ4pN1t8nTW7/7dey5iKllkB252SsW8kv11/i7uZ0G6IWMk0/B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724421835; c=relaxed/simple;
-	bh=asFl3Y6roD0Y86OAD+/7ty21Ij7hRU/U/1UtppqlXTo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HQFdszTkA0Am94ZLlLYyrPUav9K/AQfPtMrgl1/syqMFdJQReVAJZz6cicME5TRQpBsY5iL1Z0pAlrloUyhmTM87qwMH7nx40hkj3Ug8qBZ1T61SZBhXTT4bfgvnqmrONfYRmNDbf8yn5YwEb2BWQc5da4KCSlxbs4XRDS2dvZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VbTpB7f0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50410C32786;
-	Fri, 23 Aug 2024 14:03:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724421835;
-	bh=asFl3Y6roD0Y86OAD+/7ty21Ij7hRU/U/1UtppqlXTo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VbTpB7f0+SVeLZQXs6qkeb6Imc2Xr+KAp4DmXDo59UTKFkYHQ4YIDMkCor96lP1ZT
-	 cTow7Op+Rie2/rfiNxIbFmVJ3QTAMeQCkk1yu5mo9JaztVTz1DsZwmkD1Dwyj/9x/V
-	 L+5GFopsyVrpMrGRoi3BrZK/nwgx1IQSpmwZGDFlds8CLDaLG2rQyhchBvqVha9o+O
-	 wGPnwvDeHAMrTuATovkigdkeyIH5Zj1R4rkw1g+RNn74WJP3y+ReyFaNuHUQJACG+l
-	 tMEG+9TFKlWE+sAaXWgizOgFR6VEUKyItuQvt2hzRB5afXusywCMKRQL7hOTUhe4PN
-	 ddbksx/BGGFcw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Stefan Wiehler <stefan.wiehler@nokia.com>,
-	Rob Herring <robh@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	saravanak@google.com,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 17/20] of/irq: Prevent device address out-of-bounds read in interrupt map walk
-Date: Fri, 23 Aug 2024 10:02:31 -0400
-Message-ID: <20240823140309.1974696-17-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240823140309.1974696-1-sashal@kernel.org>
-References: <20240823140309.1974696-1-sashal@kernel.org>
+	s=arc-20240116; t=1724421870; c=relaxed/simple;
+	bh=RarjRljA012H8GjcXE0795+YxS0vJ/uKSKtUTKIt+3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gOMSKq4LD0R6aCYRSQFbln/u5mJRa4jwE8hOUaCHIyIJBXdc+lCkyhosg8fjOlHqCzFc6K92ynhE+zJ/xp2n1j6ZPtXJOTKOoQO8WHToVJhBGl8yaJmQIKhX5sYCvnkFD6cmhikFVj1ybF6vZpnlL4KPKsQhRSACsGsYX/XJnQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FEImtkXY; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724421870; x=1755957870;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RarjRljA012H8GjcXE0795+YxS0vJ/uKSKtUTKIt+3k=;
+  b=FEImtkXYtBgaB7Rgy0+5vIGvWwWDe2GkC9acX/H88KrLIrKLipQGOQyO
+   7P2PIRjSBJKgVp/acltwcVtVB3bFE4V9clTSOqP14C1Ysm+kvxmqbFhra
+   ryzVTZmFB3w3SmkPr8Mf72H8GoPnbdf7gmgUOmq9YhLD5imYcau86fgkV
+   3UlaXvnQDJ1hN4VHPFDPyKWgeIUDS4efwIJbmi77G6PJGykl8bu3YE11h
+   Wl8Zle+3cu63lT2ljhvfu04mEOgMfL82GTx0rDT50phXv9CEQRwkQEsFX
+   lhPL/8EGddbqLPMl7vF79C8gvRXhSg1UEV3b6XNjNMGR4Db6J/84UelMY
+   Q==;
+X-CSE-ConnectionGUID: KVLbtHE7QqeAnr+SJJ0f8w==
+X-CSE-MsgGUID: OJwEWCdnR0qKkas4b06jFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="23016209"
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; 
+   d="scan'208";a="23016209"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 07:03:59 -0700
+X-CSE-ConnectionGUID: 5SVtqCkpR1OhiuzSknEhTQ==
+X-CSE-MsgGUID: o2GSPqwpSdKx8bDzLi+utw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; 
+   d="scan'208";a="66126708"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 07:03:54 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1shUsq-00000000oWR-0s0k;
+	Fri, 23 Aug 2024 17:03:20 +0300
+Date: Fri, 23 Aug 2024 17:03:19 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
+	"benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+Message-ID: <ZsiWp5ENQ0BeBjMn@smile.fi.intel.com>
+References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
+ <20240819092850.1590758-3-ryan_chen@aspeedtech.com>
+ <ZsNT7LPZ7-szrgBJ@smile.fi.intel.com>
+ <OS8PR06MB7541EE5BA5B400445FE0295EF28E2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <ZsXVU2qy0GIANFrc@smile.fi.intel.com>
+ <OS8PR06MB7541945591A62B956DA28AD9F28F2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <Zsc9_UddBybdnM1Z@smile.fi.intel.com>
+ <OS8PR06MB75419F3E3A222AE941DE3007F2882@OS8PR06MB7541.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.47
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <OS8PR06MB75419F3E3A222AE941DE3007F2882@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-From: Stefan Wiehler <stefan.wiehler@nokia.com>
+On Fri, Aug 23, 2024 at 06:23:54AM +0000, Ryan Chen wrote:
+> > On Thu, Aug 22, 2024 at 02:24:26AM +0000, Ryan Chen wrote:
+> > > > On Wed, Aug 21, 2024 at 06:43:01AM +0000, Ryan Chen wrote:
+> > > > > > On Mon, Aug 19, 2024 at 05:28:49PM +0800, Ryan Chen wrote:
 
-[ Upstream commit b739dffa5d570b411d4bdf4bb9b8dfd6b7d72305 ]
+...
 
-When of_irq_parse_raw() is invoked with a device address smaller than
-the interrupt parent node (from #address-cells property), KASAN detects
-the following out-of-bounds read when populating the initial match table
-(dyndbg="func of_irq_parse_* +p"):
+> > > > > > > +	if (i2c_bus->mode == BUFF_MODE) {
+> > > > > > > +		i2c_bus->buf_base =
+> > > > > > devm_platform_get_and_ioremap_resource(pdev, 1, &res);
+> > > > > > > +		if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
+> > > > > > > +			i2c_bus->buf_size = resource_size(res) / 2;
+> > > > > > > +		else
+> > > > > > > +			i2c_bus->mode = BYTE_MODE;
+> > > > > >
+> > > > > > What's wrong with positive conditional? And is it even possible
+> > > > > > to have NULL here?
+> > > > > >
+> > > > > Yes, if dtsi fill not following yaml example have reg 1, that will
+> > > > > failure at buffer
+> > > > mode.
+> > > > > And I can swith to byte mode.
+> > > > >
+> > > > > reg = <0x80 0x80>, <0xc00 0x20>;
+> > > >
+> > > > I was asking about if (!IS_ERR_OR_NULL(...)) line:
+> > > > 1) Why 'if (!foo) {} else {}' instead of 'if (foo) {} else {}'?
+> > > I will update to following.
+> > > 		if (IS_ERR(i2c_bus->buf_base))
+> > > 			i2c_bus->mode = BYTE_MODE;
+> > > 		else
+> > > 			i2c_bus->buf_size = resource_size(res) / 2;
+> > >
+> > > > 2) Why _NULL?
+> > > 	If dtsi file is claim only 1 reg offset. reg = <0x80 0x80>; that will goto byte
+> > mode.
+> > > 	reg = <0x80 0x80>, <0xc00 0x20>; can support buffer mode.
+> > > 	due to 2nd is buffer register offset.
+> > 
+> > I have asked why IS_ERR_OR_NULL() and not IS_ERR().
+> > 
+> OH, I will doing by this.
+> 		if (IS_ERR_OR_NULL(i2c_bus->buf_base))
 
-  OF: of_irq_parse_one: dev=/soc@0/picasso/watchdog, index=0
-  OF:  parent=/soc@0/pci@878000000000/gpio0@17,0, intsize=2
-  OF:  intspec=4
-  OF: of_irq_parse_raw: ipar=/soc@0/pci@878000000000/gpio0@17,0, size=2
-  OF:  -> addrsize=3
-  ==================================================================
-  BUG: KASAN: slab-out-of-bounds in of_irq_parse_raw+0x2b8/0x8d0
-  Read of size 4 at addr ffffff81beca5608 by task bash/764
+The question about _NULL remains unanswered...
 
-  CPU: 1 PID: 764 Comm: bash Tainted: G           O       6.1.67-484c613561-nokia_sm_arm64 #1
-  Hardware name: Unknown Unknown Product/Unknown Product, BIOS 2023.01-12.24.03-dirty 01/01/2023
-  Call trace:
-   dump_backtrace+0xdc/0x130
-   show_stack+0x1c/0x30
-   dump_stack_lvl+0x6c/0x84
-   print_report+0x150/0x448
-   kasan_report+0x98/0x140
-   __asan_load4+0x78/0xa0
-   of_irq_parse_raw+0x2b8/0x8d0
-   of_irq_parse_one+0x24c/0x270
-   parse_interrupts+0xc0/0x120
-   of_fwnode_add_links+0x100/0x2d0
-   fw_devlink_parse_fwtree+0x64/0xc0
-   device_add+0xb38/0xc30
-   of_device_add+0x64/0x90
-   of_platform_device_create_pdata+0xd0/0x170
-   of_platform_bus_create+0x244/0x600
-   of_platform_notify+0x1b0/0x254
-   blocking_notifier_call_chain+0x9c/0xd0
-   __of_changeset_entry_notify+0x1b8/0x230
-   __of_changeset_apply_notify+0x54/0xe4
-   of_overlay_fdt_apply+0xc04/0xd94
-   ...
+> 			i2c_bus->mode = BYTE_MODE;
+> 		else
+> 			i2c_bus->buf_size = resource_size(res) / 2;
 
-  The buggy address belongs to the object at ffffff81beca5600
-   which belongs to the cache kmalloc-128 of size 128
-  The buggy address is located 8 bytes inside of
-   128-byte region [ffffff81beca5600, ffffff81beca5680)
-
-  The buggy address belongs to the physical page:
-  page:00000000230d3d03 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x1beca4
-  head:00000000230d3d03 order:1 compound_mapcount:0 compound_pincount:0
-  flags: 0x8000000000010200(slab|head|zone=2)
-  raw: 8000000000010200 0000000000000000 dead000000000122 ffffff810000c300
-  raw: 0000000000000000 0000000000200020 00000001ffffffff 0000000000000000
-  page dumped because: kasan: bad access detected
-
-  Memory state around the buggy address:
-   ffffff81beca5500: 04 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
-   ffffff81beca5580: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
-  >ffffff81beca5600: 00 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
-                        ^
-   ffffff81beca5680: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
-   ffffff81beca5700: 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc fc
-  ==================================================================
-  OF:  -> got it !
-
-Prevent the out-of-bounds read by copying the device address into a
-buffer of sufficient size.
-
-Signed-off-by: Stefan Wiehler <stefan.wiehler@nokia.com>
-Link: https://lore.kernel.org/r/20240812100652.3800963-1-stefan.wiehler@nokia.com
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/irq.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index c94203ce65bb3..8fd63100ba8f0 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -344,7 +344,8 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
- 	struct device_node *p;
- 	const __be32 *addr;
- 	u32 intsize;
--	int i, res;
-+	int i, res, addr_len;
-+	__be32 addr_buf[3] = { 0 };
- 
- 	pr_debug("of_irq_parse_one: dev=%pOF, index=%d\n", device, index);
- 
-@@ -353,13 +354,19 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
- 		return of_irq_parse_oldworld(device, index, out_irq);
- 
- 	/* Get the reg property (if any) */
--	addr = of_get_property(device, "reg", NULL);
-+	addr = of_get_property(device, "reg", &addr_len);
-+
-+	/* Prevent out-of-bounds read in case of longer interrupt parent address size */
-+	if (addr_len > (3 * sizeof(__be32)))
-+		addr_len = 3 * sizeof(__be32);
-+	if (addr)
-+		memcpy(addr_buf, addr, addr_len);
- 
- 	/* Try the new-style interrupts-extended first */
- 	res = of_parse_phandle_with_args(device, "interrupts-extended",
- 					"#interrupt-cells", index, out_irq);
- 	if (!res)
--		return of_irq_parse_raw(addr, out_irq);
-+		return of_irq_parse_raw(addr_buf, out_irq);
- 
- 	/* Look for the interrupt parent. */
- 	p = of_irq_find_parent(device);
-@@ -389,7 +396,7 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
- 
- 
- 	/* Check if there are any interrupt-map translations to process */
--	res = of_irq_parse_raw(addr, out_irq);
-+	res = of_irq_parse_raw(addr_buf, out_irq);
-  out:
- 	of_node_put(p);
- 	return res;
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
