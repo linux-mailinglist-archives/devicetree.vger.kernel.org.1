@@ -1,187 +1,159 @@
-Return-Path: <devicetree+bounces-96212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 176F995D24C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:02:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EF795D432
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 19:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A411A2830C5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:02:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 987661C21433
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:21:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66905185E7B;
-	Fri, 23 Aug 2024 16:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5692A18E035;
+	Fri, 23 Aug 2024 17:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kSm0hgM6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TnJ/IDvs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB3E1DA4C;
-	Fri, 23 Aug 2024 16:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6A641C69;
+	Fri, 23 Aug 2024 17:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724428969; cv=none; b=RnsEnSO+Ywko+KLhGFNM356pVUc2VC8COi9QwZPuIVg8/tbhD8I47V6AyYaYRhLG2ERWPP8BPWWR7/5Jsd3rRLGlD7AFDbl0+LlICsw8Lsgyu9Hh0DCaXIfmD1gTiHaltoDWM5OYNOxyyeyDbQFVUCZfoVhAKo+iFKGoY6E4Ji8=
+	t=1724433683; cv=none; b=d9AxIIvOevO938aq51rzguryhT2yOicZBWKs2DrmnItHTbDFfL8xXCJDb02Yy4AmrRRbE9JlQEamfDRmfxBIkhk6SzP1D6IqzRZVac/coUC3N6S2zJKk8yXHzxvQ6iZUVc84iHKSOkJoq4XkHAdlPdHA70JycWZDxLeN0nLyX9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724428969; c=relaxed/simple;
-	bh=+J5v2a1KYipoTMfE/Qk79+k0+U/RnOiCO1QF6+MROOg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GRieTcnjo0/XegGjxT4FGz2YQ5lTasyB0B8KBH6VgsQg+6PpBmt0frsPGuJtmd/gjRNaVtT5LSTyuco6mvT+jCiBkvQKKzhpug/I72Bl0fVfc9hMc8cCIUsLJiUvPrUTDQN47UoxT6X344GqnZEj556IH9NJYaHOPYc5H4aJ1HA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kSm0hgM6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62512C4AF09;
-	Fri, 23 Aug 2024 16:02:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724428968;
-	bh=+J5v2a1KYipoTMfE/Qk79+k0+U/RnOiCO1QF6+MROOg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kSm0hgM6IJekKLoVVE4ON58EmoKIOJoNWoxufF4+bNJCT+g/pUd3wbRhW9P+J3VsW
-	 fnGGRjDaXr/tZL+228+l2+0IFrz6qcMxcLs8//zybPvjRTkyK7Bz2vgcR72ZDAV50u
-	 CQuV1ZVGFQ6p/rQ4SV7TuntA62tP3i88VsDCslQiBM+5gQRgN/9KUPWVFsbZVRGSLN
-	 GsJkCgGYKV4Vrb7i/FIs7cs0Ob2isoRA+fO8AdHDroZTA9YahiaIY5Mdmp73ywISI/
-	 L2UykFD9Yrr1rToETOdzTrEDkUP6B1fGBCMu+N1/L7uhVvLFj6UXpW9t9Iaz8T7Vpl
-	 wi50RmyyR6eOw==
-Date: Fri, 23 Aug 2024 17:02:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1724433683; c=relaxed/simple;
+	bh=CkO9IvqsG0iFWnRGdPmM5Qwes7ubF2O3wr/bx0vRq20=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pv9GyHJBjq63reUXQET4/50R/CXwCzqx6M+VkPpWWiHA0NrQiQajdv6v1+3gEHEv75fAcFqSyCeFZpTEmX7iUNkL9Blve5mhAl7K8IROVXdD1ZqGKUacVk7xjdRuRcZki+VmBfAq+U/Mq1/vuLTNreTsWmSdTpdl9P87sRM1FhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TnJ/IDvs; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-428243f928cso17941695e9.3;
+        Fri, 23 Aug 2024 10:21:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724433680; x=1725038480; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=93UYZNtsycP6f+B131FhdRCqvOk5pQ/dX6SuPovTZMM=;
+        b=TnJ/IDvsye+76dyOH5dqUvRYztYBnBLWDo34RwvirXZXn4+SvloP/AhNPR14jx6qsG
+         mVYj4b96JKmSVPjQCNOF0nUutdvDV2HTxLJKryz1fcdLgBbhbt4xFoSOR74wZI/a/Cfp
+         MsjJ1MhsVu9lTNNoSyj55Lb18Jv0bojZ5LNP08FZ7F70nBHhJ1IxW4fjJCa6gxKNut67
+         cIiFTxqgNnUq39SpTucwMRfhNC2aTLhDFERHqydWClhEyz57m8XadlcDeaAJYzx3mJzB
+         4EX2tl3LIxTPEeY11EzibjvwtTxc1sGmIfG4s7Zn0WLM4eMw0JRG2CoI2Q9tR4+4v6iQ
+         KrYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724433680; x=1725038480;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=93UYZNtsycP6f+B131FhdRCqvOk5pQ/dX6SuPovTZMM=;
+        b=cGwCEogjgxe8rWl8bNQyXqNSbNcOIzr81E8Wf/6tfK9N6hryTR/RKkQz6exFZSF2v/
+         iHMmorUqskAbKqw4fTxrmhIvc71RTBP4+0dBMcGwxE2NIFUOEWsKUWvaqOWxflZv6RiF
+         tu2YBdrHPpE5//OtF+c2lNUSMR6eBUwKrpa1znwwfP2PPy5OvnMjhx6V00/7akl7FcHQ
+         zY6hOC093mcOpkmbpL7ZBnOec9RBpeVonxkJoJq2rlNjx+XP6oVnveUNkrFgas2hpeVK
+         UDPXQ3/kCHJUR2ZqDkrQk4YzfkX9ifWjks4jPpeQggXqyvpSJ9PfwUm9TZJ97wjL69TQ
+         KOqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWY2bhgNXB19KSlEkCKefgPY8Rp4CJVuRvVA2CqGXDpw/x+i/Sis3XPIpzVGxJ4M/TwdcKvou8Mgx9WiA==@vger.kernel.org, AJvYcCX5vTpLYgNSKyo+cAdO+HEOgMROucVyMjO9jJbZS5Mrfr3h/5CQd0/REXINlHphaerGFI5zD1weCCnR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmLlFRc12dlZDJerEP4pAMeM+csGZtBmGtgQB3u7kdWMgXx68o
+	rP+8MSpJwq6B94785Y1XPY/W8Oa6dWcEJNveKAlVFg/RXBsr0kiU
+X-Google-Smtp-Source: AGHT+IGref40zkb0IUvtDNwA0TYFbk5k0+fa5r9I46BPr609ayqKWhEfTU0CKdcojT+tg6DFwoXrFg==
+X-Received: by 2002:a05:600c:1f87:b0:421:7bed:5274 with SMTP id 5b1f17b1804b1-42acc8ddcdcmr25250625e9.10.1724433679578;
+        Fri, 23 Aug 2024 10:21:19 -0700 (PDT)
+Received: from Ansuel-XPS. (host-87-1-209-141.retail.telecomitalia.it. [87.1.209.141])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abee8d1d9sm104140345e9.22.2024.08.23.10.21.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 10:21:19 -0700 (PDT)
+Message-ID: <66c8c50f.050a0220.d7871.f209@mx.google.com>
+X-Google-Original-Message-ID: <ZsimBSqlc_NeRhZB@Ansuel-XPS.>
+Date: Fri, 23 Aug 2024 17:08:53 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Benjamin Larsson <benjamin.larsson@genexis.eu>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mark Yao <markyao0591@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
-	Luis de Arquer <ldearquer@gmail.com>
-Subject: Re: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema
- for RK3588 HDMI TX Controller
-Message-ID: <20240823-swifter-smugly-c51447514f96@spud>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
- <2085e998-a453-4893-9e80-3be68b0fb13d@collabora.com>
- <4167579.6PsWsQAL7t@diego>
- <20240822-pushchair-premises-f4055779216a@spud>
- <7fc8cbc3-43d0-43d2-9272-350ac556e2b2@collabora.com>
- <4140b55c.a48.1917cc1095f.Coremail.andyshrk@163.com>
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+ controller
+References: <20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org>
+ <20240822-en7581-pinctrl-v2-1-ba1559173a7f@kernel.org>
+ <20240822-taste-deceptive-03d0ad56ae2e@spud>
+ <aef3188d-5aaf-4f6d-addf-60066065ef9b@genexis.eu>
+ <20240823-darkened-cartload-d2621f33eab8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tX5i8q7vWJU61EV6"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4140b55c.a48.1917cc1095f.Coremail.andyshrk@163.com>
+In-Reply-To: <20240823-darkened-cartload-d2621f33eab8@spud>
 
+On Fri, Aug 23, 2024 at 05:14:30PM +0100, Conor Dooley wrote:
+> On Thu, Aug 22, 2024 at 10:50:52PM +0200, Benjamin Larsson wrote:
+> > On 22/08/2024 18:06, Conor Dooley wrote:
+> > 
+> > 
+> > Hi.
+> > 
+> > > before looking at v1:
+> > > I would really like to see an explanation for why this is a correct
+> > > model of the hardware as part of the commit message. To me this screams
+> > > syscon/MFD and instead of describing this as a child of a syscon and
+> > > using regmap to access it you're doing whatever this is...
+> > 
+> > Can you post a link to a good example dts that uses syscon/MFD ?
+> > 
+> > It is not only pinctrl, pwm and gpio that are entangled in each other. A
+> > good example would help with developing a proper implementation.
+> 
+> Off the top of my head, no unfortunately. Maybe Rob or Krzk have a good
+> example. I would suggest to start by looking at drivers within gpio or
+> pinctrl that use syscon_to_regmap() where the argument is sourced from
+> either of_node->parent or dev.parent->of_node (which you use depends on
+> whether or not you have a child node or not).
+> 
+> I recently had some questions myself for Rob about child nodes for mfd
+> devices and when they were suitable to use:
+> https://lore.kernel.org/all/20240815200003.GA2956351-robh@kernel.org/
+> 
+> Following Rob's line of thought, I'd kinda expect an mfd driver to create
+> the devices for gpio and pwm using devm_mfd_add_devices() and the
+> pinctrl to have a child node.
 
---tX5i8q7vWJU61EV6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Just to not get confused and staring to focus on the wrong kind of
+API/too complex solution, I would suggest to check the example from
+Lorenzo.
 
-On Fri, Aug 23, 2024 at 09:01:51AM +0800, Andy Yan wrote:
->=20
-> Hi=EF=BC=8C
->=20
-> =E5=9C=A8 2024-08-22 19:59:43=EF=BC=8C"Cristian Ciocaltea" <cristian.cioc=
-altea@collabora.com> =E5=86=99=E9=81=93=EF=BC=9A
-> >On 8/22/24 11:41 AM, Conor Dooley wrote:
-> >> On Thu, Aug 22, 2024 at 09:01:34AM +0200, Heiko St=C3=BCbner wrote:
-> >>> @Conor: just for me, did some shift happen in our understanding of dt-
-> >>> best-practices in terms of syscon via phandle vs. syscon via compatib=
-le?
-> >>>
-> >>> Because Rockchip boards are referencing their GRFs via phandes forever
-> >>> but similar to the soc vs non-soc node thing, I'd like to stay on top=
- of
-> >>> best-practices ;-)
-> >>=20
-> >> If IP blocks, and thus drivers, are going to be reused between devices,
-> >> using the phandles makes sense given that it is unlikely that syscon
-> >> nodes can make use of fallback compatibles due to bits within that "gl=
-ue"
-> >> changing between devices. It also makes sense when there are multiple
-> >> instances of an IP on the device, which need to use different syscons.
-> >> My goal is to ask people why they are using these type of syscons
-> >> phandle properties, cos often they are not required at all - for examp=
-le
-> >> with clocks where you effectively need a whole new driver for every
-> >> single soc and having a phandle property buys you nothing.
-> >
-> >That would be also the case for this HDMI controller - need to check the
-> >specs for the newer RK3576 SoC, but I expect the syscons would be quite
-> >different when compared to RK3588, hence we should keep making use of
-> >the phandles.
->=20
->=20
-> Yes=EF=BC=8Cfor rk3576=EF=BC=8Cit shares the same HDMI IP block=EF=BC=88h=
-dmi controller and PHY=EF=BC=89=EF=BC=8C
-> of course reuse the driver of rk3588=EF=BC=8C but it has different GRF to=
- depends on[0]:
-> which calls ioc_grf and vo0_grf:
->=20
-> I also believe that makeing use of phandle beneficial for different devic=
-es to reuse the same code.
->=20
-> hdmi: hdmi@27da0000 {
->                 compatible =3D "rockchip,rk3576-dw-hdmi";
->                 reg =3D <0x0 0x27da0000 0x0 0x10000>, <0x0 0x27db0000 0x0=
- 0x10000>;
->                 interrupts =3D <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
->                              <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>,
->                              <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>,
->                              <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
->                              <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>;
-> ,            rockchip,grf =3D <&ioc_grf>;
->              rockchip,vo0_grf =3D <&vo0_grf>;
+The pinctrl/gpio is an entire separate block and is mapped separately.
+What is problematic is that chip SCU is a mix and address are not in
+order and is required by many devices. (clock, pinctrl, gpio...)
 
-btw, I don't particularly like this naming - on another soc in the
-future "vo0_grf" could be "vo1_grf". It is better to name them after
-what they are providing to the hdmi controller, rather than what the grf
-itself is called.
+IMHO a mfd is overkill and wouldn't suite the task. MDF still support a
+single big region and in our case we need to map 2 different one (gpio
+AND chip SCU) (or for clock SCU and chip SCU)
 
-That said, if the grf is changing between socs, the offset within the
-grf and what it provides to the hdmi controller may vary completely,
-which makes having generic grf reference properties redundant.
+Similar problem is present in many other place and syscon is just for
+the task.
 
->              phys =3D <&hdptxphy_hdmi>;
->              phy-names =3D "hdmi";
->=20
->=20
-> [0]https://github.com/armbian/linux-rockchip/blob/rk-6.1-rkr3/arch/arm64/=
-boot/dts/rockchip/rk3576.dtsi#L3122C2-L3123C33
->=20
-> >
-> >_______________________________________________
-> >Linux-rockchip mailing list
-> >Linux-rockchip@lists.infradead.org
-> >http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Simple proposed solution is:
+- chip SCU entirely mapped and we use syscon
+- pinctrl mapped and reference chip SCU by phandle
+- pwm a child of pinctrl as it's scrambled in the pinctrl mapped regs
 
---tX5i8q7vWJU61EV6
-Content-Type: application/pgp-signature; name="signature.asc"
+Hope this can clear any confusion.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsiyoQAKCRB4tDGHoIJi
-0oGzAP41PotnHGP7pOq28w8lA6nlhNpPPnf7XLGOSlUCEoZ4HwEAp3PJGursxfJy
-RIkB52Ug7Xev2iSA98QEF4jPYJGtKw4=
-=eT1G
------END PGP SIGNATURE-----
-
---tX5i8q7vWJU61EV6--
+-- 
+	Ansuel
 
