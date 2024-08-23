@@ -1,103 +1,156 @@
-Return-Path: <devicetree+bounces-96224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C96E95D304
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6358D95D30E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:19:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9B53B2408C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:19:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 217B5B258F1
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 16:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D81189BB8;
-	Fri, 23 Aug 2024 16:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D5B3FB3B;
+	Fri, 23 Aug 2024 16:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mYch5VwA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZC90Fm8O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0EEE18DF7E
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 16:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6E418BC14;
+	Fri, 23 Aug 2024 16:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724429847; cv=none; b=DMGnpgKKtQVnDh7kVb7QdMvgDg5WDhZrWM46zR+eLiu3EzuGi5hYl6a2oL26dYiCSgVdo/slef6FlMM2TOYEKtHmI7fbibHshsA91PSFB5mJoRxwSlu4TG5uvpklB5P6Nkqw5lMboNeyV1j3stsAh6yYJ8MuW+rLJrPFznJJmY0=
+	t=1724429891; cv=none; b=Wlkf7KVlT9LvtI8Zj7zEmdcufP2KK31XRIbOUDknjeO8KZrPNRRti1HLnDguD3xuCdNXK3B2/zspjKOfTy7tn/2NAaiMq3fYM62CRRFTaEdKBxTdE6xt9m1ur+bKuCXcCAIBQvIc6HHp6zML0frRJrgM4MYKwK6N/g85EiEVoR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724429847; c=relaxed/simple;
-	bh=/1JOykmGcfsMrRKEjdQMplOXVRMYxg8kAzDE2g75ZxA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qMIFI6svRJHyhfPgf6slJufcWanhNqawAvWqF6BLCnQp8sXT5HRwgG4x1AOQ9oiCGOCiwJq+qAssGmF8tk6sciXMPWKUVm30pdVYRDny8fKNfrN41HnaVZmXUeC2efswPhQ30FosiNlSe8BisamFarK9EVzk3lcXxS7N7+bnudQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mYch5VwA; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f3f25a1713so23008191fa.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 09:17:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724429844; x=1725034644; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/1JOykmGcfsMrRKEjdQMplOXVRMYxg8kAzDE2g75ZxA=;
-        b=mYch5VwACiWu0+mGTMVSGmyAGPeYlVwpPtVahWXYB5rotYQMFt3ySo17ngOgUMEXoJ
-         3OEIo/Ko/wU0YAJYKuNz+VsWDpu3O+Pmx2gGNzs3Uxf0VkRNnYpSHviAQWARtDjOHR7N
-         XHqPm6pYHhz8NBPG1feN3QxzNsKnoFlaxqq20dPLoDfILIBQ2AJXhuLrVEcPfwnk4Y0W
-         KETT3EZpo1GjzcIm8WngFvWiprYIqdZ27COghW5z9FRQgy9b94UunqiRZ2pGhEe4P+OX
-         AvLyCmuB16J8zC61dAEtJ0v2KiaIZ49ipNqbBBSOwcTnp6jCY0ySRBo531bV6FVp8oLC
-         w5wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724429844; x=1725034644;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/1JOykmGcfsMrRKEjdQMplOXVRMYxg8kAzDE2g75ZxA=;
-        b=mH8eHU6q58BqYUz3RMHMrCkBVivgb6HmEv4+2bQjAb3bxrEK4cGA1qUHDC3TMK3ogQ
-         fGGx1vJkkiFhlsqzlhWHAnDXuVDSQAw55sKO9vEagqITPBYnJefA8f5SETwVA1rSp9qs
-         iL1SnSiu+Cf65QHx73dUt7Ij04HyMcwo2aag835kMLYmkgJ7YrRSW2BP1U5bELfOqkNb
-         xwIQsqR56i0RrfpXz/eTIgM1Aa8nXFyiMAN4xflamhLJ7fdrBkr+5M5W9g0HKPZqtDQX
-         frlR/g0/QF/wWZKia+ETkF7MCQYms8vYdit72ljBxhPagQn7TXgHvyGXQxzAvqQfF9wQ
-         9qkw==
-X-Forwarded-Encrypted: i=1; AJvYcCV9hILeElO9A82A0mJZCr96BvxV20h+W6bYsJjaS5jAbbH51tAKh6YkZdqIlwiJMCHurnBMyioc7E1+@vger.kernel.org
-X-Gm-Message-State: AOJu0YywyX4I3ixVFUmZAWNu8EtEioE8hZVTJBk3dK+vbqt1uJBCYir3
-	RkW5Cn/sROmLQ8ElfWNFCx7r26vA7D5yXKUScFljCnKS1YZpHLUvvI/aZtdcUA8R2Q/jEoIGNX3
-	9lVnHM0sRHykyy7ivfW4N4aVmXu/V7zgXY5vUXA==
-X-Google-Smtp-Source: AGHT+IHLTFfhA6TdgZm/KA1Q+nJVzjfMKVt+DdJhoOP99yU6MeYeiEX9vrhl+Fo+VgEsy05TJol7hRdrCPfbxc+wBDI=
-X-Received: by 2002:a05:6512:3ba3:b0:52c:e01f:3665 with SMTP id
- 2adb3069b0e04-53438783dd9mr2043263e87.25.1724429843683; Fri, 23 Aug 2024
- 09:17:23 -0700 (PDT)
+	s=arc-20240116; t=1724429891; c=relaxed/simple;
+	bh=PgdByvdiAfbXaDotznDJ0dcWaZ63H3JEqmGBNQTkNik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fgcTzg9XirlC8Soo4v9EwWMNFSWmIl/fQzjqksfiaoA5fG6p+u+cYF+vOUa6ib9wJ4MfqSfNXiV+S0XUN9FaBJUHaRAXXGuOE9npoHTSy73vP4lv+kUSUmWqAvj3TDysWy1BfjMeBkr/WQfs3fcBON4LV7MI5gi4CzQkulT0Y2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZC90Fm8O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD95EC32786;
+	Fri, 23 Aug 2024 16:18:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724429891;
+	bh=PgdByvdiAfbXaDotznDJ0dcWaZ63H3JEqmGBNQTkNik=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZC90Fm8Oaw+MQx+uDsJmmODI2/hX9icvDed7tm4bS+eYRSFHflJN7lzWx7rLqnZVc
+	 /EeRQapRZtyrKflOGlW921S5f2NsO84csxAlObYlSnAoSpArgtGMI1fyIeP9JFeMd+
+	 wxx6FxANYeXN8kJP5XsIVDrOFWBOYyRpjxLF9MXQEWWoYz/NUKfioM1Mo5XKWcUVb2
+	 Xrli84Wyw2O4//SzdGKFRgz5B8WyBrbhzXS4McahzOIuBxJGTEl95FGQdPqujyGtbz
+	 LFS9h83DMHMURzMQNRTkjhJuj8I+FBR4OPZ7ykSCmj8rKCnV6Ksfnx4Ww39PmTXW/w
+	 TNlBbNLVZYIWg==
+Date: Fri, 23 Aug 2024 17:18:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	geert+renesas@glider.be, magnus.damm@gmail.com,
+	gregkh@linuxfoundation.org, mturquette@baylibre.com,
+	sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com,
+	biju.das.jz@bp.renesas.com, ulf.hansson@linaro.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH 02/16] dt-bindings: soc: renesas: renesas,rzg2l-sysc: Add
+ #reset-cells for RZ/G3S
+Message-ID: <20240823-plywood-unfixed-d8d8a2d93f14@spud>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240822152801.602318-3-claudiu.beznea.uj@bp.renesas.com>
+ <20240822-vanilla-enigmatic-f0b05ecca4b6@spud>
+ <0d8b1322-cf15-4ed9-b958-06516bbb64c7@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240528191510.1444068-1-robh@kernel.org> <172345744173.104566.7784022936514071509.b4-ty@linaro.org>
-In-Reply-To: <172345744173.104566.7784022936514071509.b4-ty@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 23 Aug 2024 18:17:11 +0200
-Message-ID: <CACRpkdaFMv6udzNdmb+VKG4epxvsDwWsNhX3=LZmJnw3NJowZw@mail.gmail.com>
-Subject: Re: [PATCH] arm: dts: realview: Add/drop missing/spurious unit-addreses
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Rob Herring (Arm)" <robh@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GSCRsUY2DblipIOX"
+Content-Disposition: inline
+In-Reply-To: <0d8b1322-cf15-4ed9-b958-06516bbb64c7@tuxon.dev>
+
+
+--GSCRsUY2DblipIOX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 12, 2024 at 12:11=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On Tue, 28 May 2024 14:15:09 -0500, Rob Herring (Arm) wrote:
+On Fri, Aug 23, 2024 at 10:54:06AM +0300, claudiu beznea wrote:
+> Hi, Conor,
+>=20
+> On 22.08.2024 19:42, Conor Dooley wrote:
+> > On Thu, Aug 22, 2024 at 06:27:47PM +0300, Claudiu wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> The RZ/G3S System controller has registers to control signals that need
+> >> to be de-asserted/asserted before/after different SoC areas are power
+> >> on/off. This signals are implemented as reset signals. For this docume=
+nt
+> >> the #reset-cells property.
+> >>
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >> ---
+> >>  .../bindings/soc/renesas/renesas,rzg2l-sysc.yaml | 16 ++++++++++++++++
+> >>  1 file changed, 16 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg=
+2l-sysc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-=
+sysc.yaml
+> >> index 4386b2c3fa4d..6b0bb34485d9 100644
+> >> --- a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc=
+=2Eyaml
+> >> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc=
+=2Eyaml
+> >> @@ -42,12 +42,28 @@ properties:
+> >>        - const: cm33stbyr_int
+> >>        - const: ca55_deny
+> >> =20
+> >> +  "#reset-cells":
+> >> +    const: 1
+> >> +
+> >>  required:
+> >>    - compatible
+> >>    - reg
+> >> =20
+> >>  additionalProperties: false
+> >> =20
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: renesas,r9a08g045-sysc
+> >> +    then:
+> >> +      required:
+> >> +        - "#reset-cells"
+> >=20
+> > Given this is new required property on an existing platform, I'd expect
+> > some mention of why it used to be okay to not have this but is now
+> > required. Did firmware or a bootloader stage take things out of reset?
+>=20
+> On previous SoCs the SYS controller has no support for controlling the
+> signals going to different peripherals (USB, PCIE in case of RZ/G3S).
+> I'll add a note about this on next version.
 
-> > Various nodes on the Arm Realview boards have missing or spurious
-> > unit-addresses.
->
-> No one took this patch and it waits on the list for very long.
->
-> Applied, thanks!
+My initial thought here wasn't about previous SoCs though, it was
+because you didn't add the compatible in this series for /this/ SoC.
+What's worth noting isn't about the prior SoCs, it is about what makes
+it okay for this one.
 
-Should have been me, I was too busy/lazy.
-Thanks a lot for stepping in!
+--GSCRsUY2DblipIOX
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Yours,
-Linus Walleij
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsi2PAAKCRB4tDGHoIJi
+0g2cAQDP31P2uZ2yJsxRp9QIUYTgXjcHmhTZPcFjJt8BD980TgD8DlBwXJ0T9MnS
+uL/Znkm4rQCaBJlq8vpNa0dgniF1pAQ=
+=Yj0N
+-----END PGP SIGNATURE-----
+
+--GSCRsUY2DblipIOX--
 
