@@ -1,120 +1,119 @@
-Return-Path: <devicetree+bounces-96015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60EB95C6C0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F1F95C6D4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:43:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FB6A1F274ED
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:41:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 562E61F2748E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C603C13C83D;
-	Fri, 23 Aug 2024 07:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB42F13D250;
+	Fri, 23 Aug 2024 07:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fkc8W+Dl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B8wNaoWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2FF3BBE9;
-	Fri, 23 Aug 2024 07:41:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E189136E2E
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 07:42:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724398900; cv=none; b=eFXNYzGa7xbEIGu/MucyyjrNwI+YAG+TOEABqBwAYFLZHjI5z/cOSrf3CPjXns2R77on8OlVhOa6uPH0yNI5x32Lc7KOVbWFpueHBikXXQqHc2XiXS73cXgmaCovua8WV3gadIMfQw9gHkPTLFyonjxYQdVkTWATkh6Be9iXdeY=
+	t=1724398973; cv=none; b=ifjpFW5fHtmGU2u7WsOCTdm3NMMSNpbgIG2rSJqZwq4qA9Jbe3jCmkA4Q9HWImDwDyNW7Ov7jrBQNlo4M65lZffHgZU+JU57y5BgeYDaMprLVTeMp8zuRchxqv+kYS0CQyl/ROCWitu/uJhtPAtRLoFEs++5EcwCbbqTvqlX4os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724398900; c=relaxed/simple;
-	bh=uSuMIYE5J9JwrbpXy6YKRYp03TqzpYwFYHzWTNl0mLw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BxhhYB0gA1TojVmyOPoNt894Bl+RCSd9phNJyK7uKUnDNNodAXOU98+RpoOAgavNioGwHXG3VHzGSmcoY+Ptgwu/5Obq2T1z/I3bDC5SoCUM+f+s9CddFbygvIs4M82hNVgplFjgjKH72q+LdkFSqMAOz1TFNnPdtdfC2aj/EK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fkc8W+Dl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83E86C4AF09;
-	Fri, 23 Aug 2024 07:41:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724398900;
-	bh=uSuMIYE5J9JwrbpXy6YKRYp03TqzpYwFYHzWTNl0mLw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fkc8W+Dl51nl/cScRCLABnW7Vd9Wdiber3O/GpmcKf9jUk+yDM42Vk8bPs/On9c6G
-	 nOLZqiLT8QIh7xZ9wb6hM9Wg+BURbQfu58NNqcKFDh8HJXQxEIszHhUDn1GfuwbXsR
-	 asdz35Nynbxy/4vIB+jwtA9R+3mI4okI9owIGD7TgUIZcmCymLfZq6/nwyW+NgHLnU
-	 BNx3uHxjWSd7D0Lvz4zahiJilkVaZhl1YK2lmjFKXaGUZ16ZFUpC5aPDR8fraB/JUF
-	 0PDwcrv7ABYj8VYntYRr2tEdx8PtM2JQYsOQBMsb0V4zSYwoSZUexDIVnNZG6TGjYF
-	 1s6oSlQ+FeMqA==
-Date: Fri, 23 Aug 2024 09:41:32 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Robert Nelson <robertcnelson@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
-	Jared McArthur <j-mcarthur@ti.com>, Jason Kridner <jkridner@beagleboard.org>, 
-	Deepak Khatri <lorforlinux@beagleboard.org>, Drew Fustini <drew@beagleboard.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: ti: Add BeagleY-AI
-Message-ID: <fe33a2tns5thgxwlyeqk7kh5lve6vqlfmkwiosh6mew3ohjcsl@rdiwvnqgoaw6>
-References: <20240822170440.265055-1-robertcnelson@gmail.com>
+	s=arc-20240116; t=1724398973; c=relaxed/simple;
+	bh=YGXtqEXLuxTj4L3nv5xoL1tlsMlz54zSjodhYy2ZDYU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=uVAbYngKu8/6v0FT3rvPIKkwrU8UiS30Cmc5/ok2GpQsQvrSDauFvK32sT+kPiaNbJ5w9MS93aZbit2DA6UcFST4iqRR2Vrg/8XDbsSOlgAm+nd/lgY3Qn44QEIGEdgDQb1ou9amynXQdrfY/soS5/H9sAMPz3o1aFDChr2DNTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B8wNaoWa; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-36830a54b34so88915f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 00:42:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724398970; x=1725003770; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UWGduNs2rm5qHwk5ddptW98pyWVss8YO6iqSSyBnt4g=;
+        b=B8wNaoWaChJZqjZs6iIfk0GfkKdl4ey+3gV5rzJmztnF2NPSMqnHXcGNs+qUYFCz6b
+         /RClRLwQ96MJqklUXpX7SfLEsxAvFARJ2XN/wulzVOjHT4ryyL/7lmXPKtYbe4vHQpdo
+         JMXwqglPt/oO6d0mkDKZiIRoem0kkjvdT/7q9r5EcjMV30ASK+6QQjjAPVPU+EdK4CcE
+         AnRl1s3QGs2VphwDNT1mNvhcaCtE0WmmOqFOr8FgbWN8728HGBmXtsJDbRMu/loY7Z8m
+         UzZCcW9MdfJdubSVmkA0BCyJ5ZYN4IURggTtqqKcDdRw18voUf5iI8FYNLxUwATydPEP
+         LsBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724398970; x=1725003770;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UWGduNs2rm5qHwk5ddptW98pyWVss8YO6iqSSyBnt4g=;
+        b=sbyq779FDjKWJHQEiPvbHk6r1d6xzTZuIC0g+wNVaKXgMbkUWHwauW3NF/yXyanftE
+         cGdC2QZYpF44lQyxmgQl4SWHstW70hJrffdeqdkGbLK+qrWoeT4mkj7RHekpe9eoEIjm
+         yhuJaR+7GILF9MKhIXCh/g9lYVkPTnnckEA2K0aDsknEeS+sjr2wgCY9iPYLBDOWXWN1
+         /Lw/hWr/ICWRP3KVbhZYqqdD70wEgOmJFzd9aLVmkDo0yg0+f8oa+VNFUEpSdBtU3nLY
+         1cozsJd2xLn3XPSyMlJjV1Jzaq8t60pplsPhzyvym5BM6OQezaE+Au5GUI23vYXH1J75
+         YPoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXjm4F/7TH6jpMx5NCIEHnWrhjkcabSFI8Hpb2wjAK9r+PJUVg6XmJp+drnIQLUj7uLcF4UgN68BCpA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKtku3s0qfj/aa7PmDihNF1+TyF6oYr4+m2Pkyu2q9Lkoem0Qh
+	+VFA67wLwmTKi0VNz3qOxgatqn3A9xQfgE3FjG3FFTxk5dtlwDVH13OL+pzDIgU=
+X-Google-Smtp-Source: AGHT+IEJ93sKDaOo1SXjMAhBtHW9HFDHMZTFcxKf9M1sLtwwW1Yaqmgrgefwkq+7vfKzhnmdv6BhWw==
+X-Received: by 2002:a5d:6daf:0:b0:362:4aac:8697 with SMTP id ffacd0b85a97d-373117c3298mr510253f8f.0.1724398970151;
+        Fri, 23 Aug 2024 00:42:50 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-373081ff63esm3485541f8f.87.2024.08.23.00.42.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 00:42:49 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sunyeal Hong <sunyeal.hong@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240821232652.1077701-2-sunyeal.hong@samsung.com>
+References: <20240821232652.1077701-1-sunyeal.hong@samsung.com>
+ <CGME20240821232656epcas2p3c59f98d2bd185b8258096bf1597d75eb@epcas2p3.samsung.com>
+ <20240821232652.1077701-2-sunyeal.hong@samsung.com>
+Subject: Re: (subset) [PATCH v9 1/4] dt-bindings: clock: add ExynosAuto
+ v920 SoC CMU bindings
+Message-Id: <172439896878.16898.16710163487615295552.b4-ty@linaro.org>
+Date: Fri, 23 Aug 2024 09:42:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240822170440.265055-1-robertcnelson@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On Thu, Aug 22, 2024 at 12:04:39PM -0500, Robert Nelson wrote:
-> This board is based on ti,j722s family using the am67a variation.
+
+On Thu, 22 Aug 2024 08:26:49 +0900, Sunyeal Hong wrote:
+> Add dt-schema for ExynosAuto v920 SoC clock controller.
+> Add device tree clock binding definitions for below CMU blocks.
 > 
-> https://beagley-ai.org/
-> https://openbeagle.org/beagley-ai/beagley-ai
+> - CMU_TOP
+> - CMU_PERIC0/1
+> - CMU_MISC
+> - CMU_HSI0/1
 > 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> [...]
 
-<form letter>
-This is a friendly reminder during the review process.
+Applied, thanks!
 
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation: Please add
-Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
-or above your Signed-off-by tag. Tag is "received", when provided
-in a message replied to you on the mailing list. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for tags received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Vignesh Raghavendra <vigneshr@ti.com>
-> CC: Tero Kristo <kristo@kernel.org>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Andrew Davis <afd@ti.com>
-> CC: Jared McArthur <j-mcarthur@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> CC: Drew Fustini <drew@beagleboard.org>
-> CC: linux-arm-kernel@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-
-Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-commit msg. There is no single need to store automated output of
-get_maintainers.pl in the git log. It can be easily re-created at any
-given time, thus its presence in the git history is redundant and
-obfuscates the log.
-
-If you need it for your own patch management purposes, keep it under the
---- separator.
-
+[1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU bindings
+      https://git.kernel.org/krzk/linux/c/997daa8de64ccbb4dc68d250510893597d485de4
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
