@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-96298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0BCB95D7F5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 22:44:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF8595D7FE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 22:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78C801F2366B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 20:44:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0DFA1C2040E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 20:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FEAE1C7B84;
-	Fri, 23 Aug 2024 20:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01CD11C6F72;
+	Fri, 23 Aug 2024 20:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="YZg3sNwk"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="K55m7jiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16209193413
-	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 20:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E9419307D
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 20:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724445885; cv=none; b=oWC7YrgQNwpYkt2xDoOtZkI77VIFqMeVpJNvNyUgLuJDdt94SG3TAU1hUbFQIVCuPMgrT5wvSK5rdP0c5HdqgsmKGmpSubwtwBQnJs8hSgM4irRyB1zW+chGclFTLL2CsKwyaPo+E8T8+nB5a14DHnRcOBa+0hWOBPfEjBx495M=
+	t=1724446046; cv=none; b=s6P1fInwPv7DpKUd+HXT5GZ5jUr8Rh2Xg8VawQBfW61djoKTI5XJRNYbzxqu4UOuUwnOzh+RjBQJnkcoxB515QwCLTg0ttduQjHt9/i7AY0GSgsyy+MQ5oc/9xULbBDC1gVMd0Q8YIacqbAyhK9q4JzeLRo3k/EFNIvQuxlmyh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724445885; c=relaxed/simple;
-	bh=ZwiuRkNlvL5/cpgehJtrZvPOsmmD7YzQQKxEkRl2Hew=;
+	s=arc-20240116; t=1724446046; c=relaxed/simple;
+	bh=0/5plbUShzyN0Lwayk1yBVoG0xyAy2FiSidykukxaik=;
 	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=olePJ1RIbIesgoZUkISQgq3om5z0idrHhT4mqiMpaPjc20GECLICL4iwaMcaq2H8JgdW0qnP6GjwmnjV3mFdxIrJg0B+vJmFX6GORZc1ymk7W5ELrn+UJkSHpX8gH6d/JWzdVm9YvkX4bZH3hgUpWGRZ2hNHwmYTHZX8BxhdxqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=YZg3sNwk; arc=none smtp.client-ip=209.85.222.177
+	 To:Cc:Content-Type; b=RJC/+ACYI+COEFVJtk2X1/in1SOpnDuEQNQ9ca6Y/fT4JBVhkOCqIvG5na7kRsjFzH8bLbTVP8CoZ+avJPxoiPK6O4AbMQynOYkqQuq8F/yAH7/MB45D0VJIjJJWbRCk/lIYaT9ao2D+Ml2c+cEdBbIRlGsiGtnRVd3cXHNYYu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=K55m7jiK; arc=none smtp.client-ip=209.85.161.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7a1d6f4714bso227618785a.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 13:44:42 -0700 (PDT)
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5dcad98e8acso1775865eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 13:47:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1724445882; x=1725050682; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1724446044; x=1725050844; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:user-agent:from:references
          :in-reply-to:mime-version:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qHJoSIvn3TQXsP4HGj1BbikslhYUk1pFvCcRMop1S9M=;
-        b=YZg3sNwkNGMeG/eiokK/lIh4Dxw8z5yo9GdIgFeIM03es0JOyx0TKpZdlV31M+jyGs
-         VrjT6an/notCGn+UTWZQIKW75G5dGQvt1hW1ZAFCoRTQErX5TwE8hvN1o9nnyE4C8rql
-         IP9uhWhhuwAIQlk82NFPqQcF22Sf3kYVFDVaA=
+        bh=qZiKFaKcOy5uMCUP9iI4bnV8rWlMx58uhQ+Bp65JxBY=;
+        b=K55m7jiKORwK9gNRm8ITJ8V6FL50HWA2hx3IbFO7Y7zq5rXi4LqoMas334EKg39gyE
+         H9Saxz+P3kpTXLy3AVFqZqfdl5Cun+PIYiK/ZntuoPp2hg8rIX60LoUuY0Ok9YiZDlUb
+         gnmS0Z+YWIQ1YLyxSjcerOOtmX3VyCnKhsHZs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724445882; x=1725050682;
+        d=1e100.net; s=20230601; t=1724446044; x=1725050844;
         h=cc:to:subject:message-id:date:user-agent:from:references
          :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qHJoSIvn3TQXsP4HGj1BbikslhYUk1pFvCcRMop1S9M=;
-        b=Q4zHMkY7t75AqmpZYBbOVVHfqmNAT7xOgymlPnUfIPbV4mEXO4JJcFUhbedCyGLp4s
-         QtEXU8GFd6qWXV3qgXT5XgLzYCxfLMOocSgKypf1tiQBXhcELKPxKUkHp6h7LUC3XHvC
-         otdCO74zPZNG8oaaLU99x4EoETcfkghUOHEI4UVTX/Tg3QORqVfmfkb948WV2hswvtw7
-         cZ1YcOvUuUd6v5u7bNJ34KQCc8Bm0PZO/8INspHwBXMTOnnwAm192I/ga5FDtAhT4P2e
-         kdkoAy8wtEK8HSnwrwxv7U+lpUXLjm+/u/H7EW8c5cm8Cb4VkhkFAR1Ky1rMy+5gF0SW
-         HiRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWrC7LB5tKSMr7jfCKWxDJSwJLtuz3pdDc74e28GaPy5eZfwRilxXREp32SOH75DjQUZMBTXx4YEwQZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLlohlkZyVWFPN4S0ud26Czmrw30890OH7oxiszrO1xAQ9LDqJ
-	auqRGpTkdWZlYPDGMcOJPkTHO68OTh03umLC1ZVWKV0lKO27o5HkgDomDmIb/V7oijN/RmhEFzT
-	EK3vzYxXlKWhcrafCtI9FFhhWA2N/lyIAvwhu
-X-Google-Smtp-Source: AGHT+IER+vkUNoi1LrSh0oKYCE+8iNRAFkc0O4BKptBtu1VAQywG251TPcXwcoPrrjWuSke5xL1qPKa71h4z9pa/Llc=
-X-Received: by 2002:a05:620a:1aaa:b0:795:e9cd:f5b8 with SMTP id
- af79cd13be357-7a67d497dd3mr1281397585a.23.1724445881936; Fri, 23 Aug 2024
- 13:44:41 -0700 (PDT)
+        bh=qZiKFaKcOy5uMCUP9iI4bnV8rWlMx58uhQ+Bp65JxBY=;
+        b=wdOh1iH7kjRKCKcH6PRMK4IwYtrp1dJtxuP8X3b7bQH9+nfiXaa5tmXdZ9820woSDD
+         mGuwU3x1uixVOUzk4CTr0jsbkIN3EoWAy0K5Lg1TQ3//s2fIHBW5gZiUVZReEEzbOfhj
+         Q+XNMzRMExkbKZ8pjzMU+S1QlGBg2akHcJUZlsTFRzQTiZuuQqUSpu0g/12p7zGojdjj
+         8+N/wFzbEV62/69sDb5iIYG+xmUWsmJ1+I18my6saolL3PPggrxU6O1M3RnmnIPRhzDW
+         Vn7H0W1iNmUtDZDhZ3l4H8PDS3E1tetunW15FoA2DA8ixgUIT2io1yTIDOFDUP/dS5d4
+         r09g==
+X-Forwarded-Encrypted: i=1; AJvYcCWixNKVjUWHVB5yxxtPmdOhJipgZkVjGHxremP0eBDjF0sX+MsReVc0epSx7ybPbjw0WQnU4BEytp4k@vger.kernel.org
+X-Gm-Message-State: AOJu0YzC+e/wBA2EXRj3kGJ/J/q1hqBH0C2WopH0htAurQYBoJspX4/w
+	Rpw2+FMPQSr7tJirl1VAPAo5HiJreEb0KNBruvEVS4gpH3CfmGWlDAJd1eyILJvC7yWScsC7UEw
+	OPRcjVL6FEwBCFo5KySS3dfzA3jFSm9pJApSV
+X-Google-Smtp-Source: AGHT+IGtmJ+gyuELHaRH+RZ4qvsU8Rp6JLHoxTqxGD2FO8wzaNQZtxGnVU0BhE1HT6iEWRSosj9gW6Yp+4g8GcNpGbY=
+X-Received: by 2002:a05:6358:248b:b0:1b1:aca7:dad6 with SMTP id
+ e5c5f4694b2df-1b5c3a4e8abmr336937055d.11.1724446044234; Fri, 23 Aug 2024
+ 13:47:24 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 23 Aug 2024 13:44:41 -0700
+ HTTPREST; Fri, 23 Aug 2024 13:47:23 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <ZsdNEWX-eeLiokZl@tzungbi-laptop>
-References: <20240819223834.2049862-1-swboyd@chromium.org> <20240819223834.2049862-17-swboyd@chromium.org>
- <ZsdNEWX-eeLiokZl@tzungbi-laptop>
+In-Reply-To: <ZsdMoRpwv5twOwqx@tzungbi-laptop>
+References: <20240819223834.2049862-1-swboyd@chromium.org> <20240819223834.2049862-16-swboyd@chromium.org>
+ <ZsdMoRpwv5twOwqx@tzungbi-laptop>
 From: Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date: Fri, 23 Aug 2024 13:44:41 -0700
-Message-ID: <CAE-0n50Tuxp0WjFoTx+_i1L4cSOajSNHWPh32PPoXvskJByJJg@mail.gmail.com>
-Subject: Re: [PATCH v3 16/17] platform/chrome: cros_ec_typec: Support DP muxing
+Date: Fri, 23 Aug 2024 13:47:23 -0700
+Message-ID: <CAE-0n50MVaU2dmRLdLVFWT9KWPO_BK-L7eEqGRSb8TKm1KtPNQ@mail.gmail.com>
+Subject: Re: [PATCH v3 15/17] platform/chrome: cros_ec_typec: Add support for
+ signaling DP HPD via drm_bridge
 To: Tzung-Bi Shih <tzungbi@kernel.org>
 Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	patches@lists.linux.dev, devicetree@vger.kernel.org, 
@@ -101,33 +102,33 @@ Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
 	Vinod Koul <vkoul@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Quoting Tzung-Bi Shih (2024-08-22 07:37:05)
-> On Mon, Aug 19, 2024 at 03:38:30PM -0700, Stephen Boyd wrote:
-> > @@ -671,6 +674,20 @@ static int cros_typec_configure_mux(struct cros_typec_data *typec, int port_num,
-> >       if (port->mux_flags == resp.flags && port->role == pd_ctrl->role)
-> >               return 0;
-> >
-> > +     dp_enabled = resp.flags & USB_PD_MUX_DP_ENABLED;
-> > +     hpd_asserted = resp.flags & USB_PD_MUX_HPD_LVL;
-> > +     /*
-> > +      * Assume the first port to have HPD asserted is the one muxed to DP
-> > +      * (i.e. active_port). When there's only one port this delays setting
-> > +      * the active_port until HPD is asserted, but before that the
-> > +      * drm_connector looks disconnected so active_port doesn't need to be
-> > +      * set.
-> > +      */
-> > +     if (dp_bridge && hpd_asserted && !dp_bridge->active_port)
-> > +             dp_bridge->active_port = port;
-> > +
-> > +     is_active_port = !dp_bridge || dp_bridge->active_port == port;
+Quoting Tzung-Bi Shih (2024-08-22 07:35:13)
+> On Mon, Aug 19, 2024 at 03:38:29PM -0700, Stephen Boyd wrote:
+> > +struct cros_typec_dp_bridge {
+> > +     struct cros_typec_data *typec_data;
+> > +     struct drm_dp_typec_bridge_dev *dev;
+> > +};
 >
-> Why `!dp_bridge`?  When will `dp_bridge` be NULL?
+> It looks like structs are all defined in cros_ec_typec.h.  I think this struct
+> definition can be also moved there.
 
-I'll add a comment.
+I put it here because it wasn't used by any other driver. Maybe I can
+skip the entire struct though and add what I need directly to 'struct
+cros_typec_data'.
 
-'dp_bridge' is NULL when this driver is running on non-DT platforms,
-i.e. ACPI, or there isn't a graph/ports node for this device. The latter
-could happen if there's some AP controlled piece of hardware that is a
-typec switch, connected directly to a usb-c-connector. This is the case
-on Kukui where we send the DP lanes directly to the usb-c-connector.
+>
+> > diff --git a/drivers/platform/chrome/cros_ec_typec.h b/drivers/platform/chrome/cros_ec_typec.h
+> > index deda180a646f..73d300427140 100644
+> > --- a/drivers/platform/chrome/cros_ec_typec.h
+> > +++ b/drivers/platform/chrome/cros_ec_typec.h
+> > @@ -27,6 +27,8 @@ struct cros_typec_altmode_node {
+> >       struct list_head list;
+> >  };
+> >
+> > +struct cros_typec_dp_bridge;
+>
+> If the struct definition moves here, it doesn't need to declare forward.
+
+But then we have to forward declare 'struct cros_typec_data'? There's no
+escape.
 
