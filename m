@@ -1,155 +1,220 @@
-Return-Path: <devicetree+bounces-95970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4798E95C35E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 04:43:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 023A895C37A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 04:55:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7229F1C22610
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 02:43:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70A781F21DC8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 02:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA24224B29;
-	Fri, 23 Aug 2024 02:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12FD338FA8;
+	Fri, 23 Aug 2024 02:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gBTLKsmj"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="dZuT/R7C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A7020B33;
-	Fri, 23 Aug 2024 02:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9B628DC3;
+	Fri, 23 Aug 2024 02:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724380998; cv=none; b=M8dI+hJA0rXyrDt5iFfB65ZAhpjchT0RCpScXJhavj9vqu0EIIOAT7gFUwXrf++xafzxmJn9YS0eqDc2RrEyh54q2ZIKNFRqx4lqknqNcq4JnjyCU8kiNYyK6XaQV9wuHFQsTKaIg1jtJI1326bOlhPFl5pE3j/ZnjmBZMZ1mq4=
+	t=1724381709; cv=none; b=NUdKko2k9WmclCr700eS5zRQ1HJzCVi+xiJKpUiMTXXPk17yX8f8YdmbpatqJ8ZkKm7wLigGAhEKVCnVu++y7UNTTctl1tQzyU3KsRWKg56VQMNsAwZF5/D9nr3lGEt0HSJO20Y8T2fyGVgs53Xewf/smu49T4g5AbIsbG4tWzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724380998; c=relaxed/simple;
-	bh=uP5IakzORudRLADCNa/D+ltxEuEvKGniLh27EekWsU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oa/laBael73GwQ9tWCNsPrgtiic/Ksp3I7OT27qmTM/myd/AykWdj7jTmV6zvsiVLueOdud7N2U3hQX/H6aLG90OqQzv1An9kq1wzU/GnZ7lho8XhaJbwF49XsWLKkE6Ic008y8ZyNOquCqabNV+uHUq7zLXWB9YlqGvsC/ALDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gBTLKsmj; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724380996; x=1755916996;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uP5IakzORudRLADCNa/D+ltxEuEvKGniLh27EekWsU8=;
-  b=gBTLKsmj8PjPD+xNS+t9/TDT+DJkn79hkagrqINomjakX30QmSlNTKe6
-   NMWRXsAWs/jAdlZX2O5GiH+n8U2mLQMXfFitP83HbPFi+6/SG5voERs+i
-   c2RtG3o7dLgVG7ZnehTE1QqhQC0Ml5lmxV924PwoaDV7RJRdceANRjAUo
-   EeEjrbImOxb4Z2tfmUuvuNNbLjF+Vk5DboA6clnGxQdnSmAUQKCEe88iy
-   liUoCjRWU2cL+Y/Dbmffnoj8Oxw+AEcaT12kNdFk2e2N+qfk4zgNafPXJ
-   +QZdO3Afh0TMSGzES/ezJGPW3OE/mmFI8LIyz/l8/wMu9cgDE2LwdfSje
-   g==;
-X-CSE-ConnectionGUID: f2A+RQw1Qs+sfD7/v2GPgA==
-X-CSE-MsgGUID: cW6Zn8HTRoGRIHVBW9a10Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="33399132"
-X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; 
-   d="scan'208";a="33399132"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2024 19:43:15 -0700
-X-CSE-ConnectionGUID: FZJsR5w5QVOE1ZQoxQVNlA==
-X-CSE-MsgGUID: puxOFJv1Sqmw0BHB3GROnA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; 
-   d="scan'208";a="61509548"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 22 Aug 2024 19:43:12 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1shKGb-000DOy-1P;
-	Fri, 23 Aug 2024 02:43:09 +0000
-Date: Fri, 23 Aug 2024 10:42:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Zhao Qunqin <zhaoqunqin@loongson.cn>, chenhuacai@kernel.org,
-	kernel@xen0n.name, bp@alien8.de, tony.luck@intel.com,
-	james.morse@arm.com, mchehab@kernel.org, rric@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, loongarch@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-	devicetree@vger.kernel.org, zhaoqunqin <zhaoqunqin@loongson.cn>
-Subject: Re: [PATCH v1 1/2] Loongarch: EDAC driver for loongson memory
- controller
-Message-ID: <202408231055.okLH0uuC-lkp@intel.com>
-References: <20240821064728.8642-2-zhaoqunqin@loongson.cn>
+	s=arc-20240116; t=1724381709; c=relaxed/simple;
+	bh=3H3inGK3FdVtB59opXLPzBkVlqEPsWA+B4dhRLOlAp0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oLVeb1oCjTD60PLIuJsgLNOXBRQuOQGpQZnzbikXlZRDnbt9pWUH8Z2og1qocCBpR9f5TeiIqGlIuVQ52QpuiVIAPRugXylgR/4cclHkM/gRn6C1NfI6sJI3hR0xtg9aDFBcYVnWDYPia2XLi+fOezm6uJ50FkCho3UL3Y+7NZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=dZuT/R7C; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 6010C889B4;
+	Fri, 23 Aug 2024 04:55:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724381704;
+	bh=v6/AEad34vXME+nOC1OR+VXilYDdLKEl9WOj8eeP57M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dZuT/R7CiO/QoKRXW9kZF640EcVPM8pEhteksQWI1Eu1+cXKiTsAMrtp7R3s6fk7o
+	 7XbIgiNO65H1JLCOtZ6WnPbHWeep4DlJ7e58JkzntKZ8FR+une4pLSbqywjPlr7VuF
+	 O8kCTGPd5VWr+1TnQsQK+/E/zt2468U78wx4o3N+VLz88/zNkHFN9YsTfqpatsAKL2
+	 uv2VOwuaX7BQfJ5JxsJqLxNyfMljAqVZnWc6fXTq1BwxptfdDN7K/E6QwHQ0iJfTJ+
+	 6fpAmH0aUYvT1rRdvxS2n/WfOpTXQK/SJI3tsVwc1BkUmvnosxeMU2OCmugHhzkV6g
+	 txSlfjJqaDkog==
+Message-ID: <201b31cb-ef17-4e18-9a4e-ff4193d06afb@denx.de>
+Date: Fri, 23 Aug 2024 04:46:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240821064728.8642-2-zhaoqunqin@loongson.cn>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] wifi: wilc1000: Add WILC3000 support
+To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ linux-wireless@vger.kernel.org
+Cc: Ajay Singh <ajay.kathat@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20240821184356.163816-1-marex@denx.de>
+ <20240821184356.163816-2-marex@denx.de>
+ <bbaf1b15-2d0e-4699-91cc-17fa7a18559b@bootlin.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <bbaf1b15-2d0e-4699-91cc-17fa7a18559b@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Zhao,
+On 8/22/24 2:10 PM, Alexis Lothoré wrote:
+> Hello Marek,
 
-kernel test robot noticed the following build warnings:
+Hi,
 
-[auto build test WARNING on ras/edac-for-next]
-[also build test WARNING on robh/for-next linus/master v6.11-rc4 next-20240822]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> I was coincidentally working on adding wilc3000 support upstream too.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Zhao-Qunqin/Loongarch-EDAC-driver-for-loongson-memory-controller/20240821-145127
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/ras/ras.git edac-for-next
-patch link:    https://lore.kernel.org/r/20240821064728.8642-2-zhaoqunqin%40loongson.cn
-patch subject: [PATCH v1 1/2] Loongarch: EDAC driver for loongson memory controller
-config: loongarch-loongson3_defconfig (https://download.01.org/0day-ci/archive/20240823/202408231055.okLH0uuC-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240823/202408231055.okLH0uuC-lkp@intel.com/reproduce)
+I hope you weren't too far along with that and I didn't waste too much 
+of your time/effort here.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408231055.okLH0uuC-lkp@intel.com/
+> My work is
+> also based on downstream tree, so my comments will likely reflect the reworks I
+> was doing or intended to do.
+> For the record, I have some wilc1000 and wilc3000 modules, in both  sdio and spi
+> setups.
 
-All warnings (new ones prefixed by >>):
+Nice, I only have this WILC3000 SDIO device .
 
-   drivers/edac/loongson_edac.c: In function 'get_dimm_config':
-   drivers/edac/loongson_edac.c:90:16: error: implicit declaration of function 'EDAC_DIMM_PTR' [-Werror=implicit-function-declaration]
-      90 |         dimm = EDAC_DIMM_PTR(mci->layers, mci->dimms, mci->n_layers,
-         |                ^~~~~~~~~~~~~
->> drivers/edac/loongson_edac.c:90:14: warning: assignment to 'struct dimm_info *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-      90 |         dimm = EDAC_DIMM_PTR(mci->layers, mci->dimms, mci->n_layers,
-         |              ^
-   drivers/edac/loongson_edac.c: At top level:
-   drivers/edac/loongson_edac.c:181:27: error: initialization of 'void (*)(struct platform_device *)' from incompatible pointer type 'int (*)(struct platform_device *)' [-Werror=incompatible-pointer-types]
-     181 |         .remove         = loongson_edac_remove,
-         |                           ^~~~~~~~~~~~~~~~~~~~
-   drivers/edac/loongson_edac.c:181:27: note: (near initialization for 'loongson_edac_driver.<anonymous>.remove')
-   cc1: some warnings being treated as errors
+> On 8/21/24 20:42, Marek Vasut wrote:
+>> From: Ajay Singh <ajay.kathat@microchip.com>
+> 
+> [...]
+> 
+>>   	if (!resume) {
+>> -		ret = wilc_sdio_read_reg(wilc, WILC_CHIPID, &chipid);
+>> -		if (ret) {
+>> -			dev_err(&func->dev, "Fail cmd read chip id...\n");
+>> +		chipid = wilc_get_chipid(wilc, true);
+>> +		if (is_wilc3000(chipid)) {
+>> +			wilc->chip = WILC_3000;
+>> +		} else if (is_wilc1000(chipid)) {
+>> +			wilc->chip = WILC_1000;
+>> +		} else {
+>> +			dev_err(&func->dev, "Unsupported chipid: %x\n", chipid);
+>>   			return ret;
+>>   		}
+> 
+> I wonder if this additional enum (enum wilc_chip_type)  is really useful. We
+> already store the raw chipid, which just needs to be masked to know about the
+> device type. We should likely store one or the other but not both, otherwise we
+> may just risk to create desync without really saving useful info.
+> 
+> Also, this change makes wilc1000-sdio failing to build as module (missing symbol
+> export on wilc_get_chipid)
 
+I think I have a separate patch for this, one which folds 
+wilc_get_chipid() entirely into wlan.c , and then follow up which uses 
+is_wilc1000() / is_wilc3000() all over the place to discern the two MACs 
+based on cached chip ID . That should work, I'll test it and submit it 
+later today I hope.
 
-vim +90 drivers/edac/loongson_edac.c
+> [...]
+> 
+>> -	/* select VMM table 0 */
+>> -	if (val & SEL_VMM_TBL0)
+>> -		reg |= BIT(5);
+>> -	/* select VMM table 1 */
+>> -	if (val & SEL_VMM_TBL1)
+>> -		reg |= BIT(6);
+>> -	/* enable VMM */
+>> -	if (val & EN_VMM)
+>> -		reg |= BIT(7);
+>> +	if (wilc->chip == WILC_1000) {
+> 
+> wilc1000 should likely remain the default/fallback ?
 
-    80	
-    81	static int get_dimm_config(struct mem_ctl_info *mci)
-    82	{
-    83		u32 size, npages;
-    84		struct dimm_info *dimm;
-    85	
-    86		/* size not used */
-    87		size = -1;
-    88		npages = MiB_TO_PAGES(size);
-    89	
-  > 90		dimm = EDAC_DIMM_PTR(mci->layers, mci->dimms, mci->n_layers,
-    91				0, 0, 0);
-    92		dimm->nr_pages = npages;
-    93		snprintf(dimm->label, sizeof(dimm->label),
-    94				"MC#%uChannel#%u_DIMM#%u",
-    95				mci->mc_idx, 0, 0);
-    96		dimm->grain = 8;
-    97	
-    98		return 0;
-    99	}
-   100	
+I am now validating whether the hardware is either wilc1000 or wilc3000 
+up front based on the chip ID early in init, so no other option can 
+occur here, so there is no need for fallback, it is either wilc1000 or 
+wilc3000 now (*). I think keeping them ordered alphanumerically is the 
+nicer option.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> [...]
+> 
+>> @@ -1232,10 +1234,7 @@ static int wilc_validate_chipid(struct wilc *wilc)
+>>   		dev_err(&spi->dev, "Fail cmd read chip id...\n");
+>>   		return ret;
+>>   	}
+>> -	if (!is_wilc1000(chipid)) {
+>> -		dev_err(&spi->dev, "Unknown chip id 0x%x\n", chipid);
+>> -		return -ENODEV;
+>> -	}
+>> +
+> 
+> Instead of dropping any filtering (and then making the function name become
+> irrelevant), why not ensuring that it is at least either a wilc1000 or a wilc3000 ?
+
+Right, done.
+
+[...]
+
+>> +void chip_wakeup(struct wilc *wilc)
+>> +{
+>> +	if (wilc->chip == WILC_1000)
+>> +		chip_wakeup_wilc1000(wilc);
+>> +	else
+>> +		chip_wakeup_wilc3000(wilc);
+>> +}
+>>   EXPORT_SYMBOL_GPL(chip_wakeup);
+> 
+> This new support makes a few places in wlan.c, netdev.c and in bus files
+> (sdio.c, spi.c) install (sometimes big) branches on the device type (chip init,
+> sleep, wakeup, read interrupt, clear interrupt, txq handling, etc), because the
+> registers are different, the masks are different, the number of involved
+> registers may not be the same, wilc3000 may need more operations to perform the
+> same thing... I feel like it will make it harder in the long run to maintain the
+> driver, especially if some new variants are added later.
+
+I agree the code is ugly. Looking at the roadmap, it seems the next 
+thing is WILCS02 which has its own driver, and for the WILC1000/3000 
+inherited from atmel this seems to be the end of the road.
+
+> Those branches tend to
+> show that some operations in those files are too specific to the targeted
+> device. I was examining the possibility to start creating device-type specific
+> files (wilc1000.c, wilc3000.c) and move those operations as "device-specific"
+> ops. Then wlan/netdev would call those chip-specific ops, which in turn may call
+> the hif_func ops. It may need some rework in the bus files to fit this new
+> hierarchy, but it may allow to keep netdev and wlan unaware of the device type,
+> and since wilc3000 has bluetooth, it may also make it easier to introduce the
+> corresponding support later. What do you think about it ? Ajay, any opinion on
+> this ?
+
+I did something like that for KSZ8851, that had bus-specific ops. I 
+vaguely recall there was feedback that the function pointer indirection 
+had non-trivial overhead due to spectre mitigations, and in case of the 
+handle_txq() here, the chip specific ops would be called in a while() {} 
+loop.
+
+I can imagine some of the long functions like wilc_sdio_clear_int_ext or 
+the handle_txq could be split up a bit, but likely only by factoring out 
+some of the code into static functions. But looking at this closer, both 
+pieces which are wilc1000/3000 specific in those functions manipulate 
+with variables which would have to be passed in into that factored out 
+code as function arguments, so I am not sure if this would improve 
+readability by much either.
+
+[...]
 
