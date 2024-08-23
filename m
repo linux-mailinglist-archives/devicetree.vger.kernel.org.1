@@ -1,147 +1,194 @@
-Return-Path: <devicetree+bounces-95992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274CB95C56A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:25:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBAF395C576
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 08:28:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A8081C240E4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:25:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80BFA1F224A5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 06:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C96A76025;
-	Fri, 23 Aug 2024 06:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6F374BF8;
+	Fri, 23 Aug 2024 06:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQRba9Vp"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="FxtpdeRA";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Qnw9Ikln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37413F9F9;
-	Fri, 23 Aug 2024 06:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0E93F9F9;
+	Fri, 23 Aug 2024 06:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724394319; cv=none; b=RikP9pej3yiqCaYwLfIKjMTQpJWqhXbDDZTRCYhj8Ikng4jkQAG5CBEGoErbDS0sInv2zGxe1wWL+sxUfRLOHLMhIt1MinxY9XMRGSfRba9sud5pOwHV6r2ap/6SjXABtuWgThFScr2B4yqUqrtntQOxrL+dSr9Htl5I0dnFrKw=
+	t=1724394498; cv=none; b=e+YcKXKeWbmt+7dmhAAINsAbqEAPmIXXi/+vXenDfOL//Js1vNdJLaIVWeQPwacS5zCjJkXuiake0GLo/dRe7f7pNbBiVYDidZMX1+GY6iCHEkmVxPDnss0OgdeXTf/YKWU4cuUjpqmYmdUv1yT+HfTn4r7Eqx2zQHSXK6LCv3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724394319; c=relaxed/simple;
-	bh=b8+xbNGFFvZbVGIexd79/RcpSXAvJrYf5MtQPw1Ekwc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=URG+/blS8GCnvdOzK4mWu8i4QMUaMwklpV0fRKKgGPam91BftpVkYFQie3kVdXwt4QtAm14G/IJNCAKKAiDHHU7zFf7cioXJxA9FZk8jT6M5QM+km44WX/0uvwXbqGAtMqY240dr1YVZ5aT/4mLVFOorA51cRMYGlYHXAHfHvDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQRba9Vp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C50A0C32786;
-	Fri, 23 Aug 2024 06:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724394318;
-	bh=b8+xbNGFFvZbVGIexd79/RcpSXAvJrYf5MtQPw1Ekwc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qQRba9Vp2fQAnj5NBv733OgeOIJPKOiIjvmObyInyW2R04kw4bXgvMWuEe1QME8Jq
-	 mmzzSoXqa30HT+OpFd/N2P20zKoWGFhfB/W0m5YTl9be+xPo/0qBzkTeumRnFzfOSW
-	 OdgKtQYCH7EyPXUP3ZFJPpoDuW99QryzMMRiHpB25pIRbc6ry9BtKFMZNQwuOC55Gp
-	 5JKBQHBaIRVfSGnCUqV4lt81ff2HNCRmloRN0ml85tO+KYX1TWus8VhbriMGdC776N
-	 lFkqQVlB6qtJ98JVgftuEPb9OQp5qgfudRQE4UnYvti4yR0DxSb4vUg4UnKox0g9+A
-	 lhWlh0Rreol0Q==
-Date: Fri, 23 Aug 2024 08:25:08 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com, 
-	Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org, sudeep.holla@arm.com, 
-	robin.murphy@arm.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: sse710: Add Host Base System
- Control
-Message-ID: <s6zorfinldyjslnsv2z6quyahvt6yurfe3mxflbcdftumishm5@wwgsjqb2vg2u>
-References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
- <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
- <20240822170951.339492-3-abdellatif.elkhlifi@arm.com>
+	s=arc-20240116; t=1724394498; c=relaxed/simple;
+	bh=lA9bKhtjUQMECgS6x1OcRtqEQn4zIHoANXSOuPPLqcU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kzt0B9v2PRqXqP6Ff4ppF3qB4ro0Gux/eOgjkgK7IUnqoV3/takDKyT+zce/jfRFWSnKQ897dxNb8J+1PgbjVOR4UMfBatEuc+icALof8x2waybaghGjm3Hh2f5x2aRnrOtOlk1BKm5zYfx4PcPCqBgPU867CCyaFVJC8OITk4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=FxtpdeRA; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Qnw9Ikln reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1724394495; x=1755930495;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Xbast0cN6Jy/gxT6Fnxt08kJvl3a05tYYkEiG/y3n8M=;
+  b=FxtpdeRAGQLxdKXEBISJN78XPvjBKSrsDB+jndvjZ43YSD+qcyAs9ryO
+   CH0IUJVaU6eSAb2jthh2P6wLo6mCmx4MOj9jhr/YkQb1q9nxOGDPlTxoC
+   0i7xAERN27XWuf5qLzq5F83iWPvWSrEPa++E+sxOt/3rBZDYsdFdOFLpl
+   ohZIYICSZbwYgpGLEbCQMtzlHQ4FNR72rcea0zUsrW6bXrWRFOMxnW7ZF
+   hluKh+woGeqT+Ejp/BYFvlWIdpRA+jDCTMqmWttA6OXDqnBYpky3fpiSF
+   Jz6ZXGFUQjHWKP3MOyhUDE29Ml2mGI9cU49LCjZoS6J7ipVQtfZFpGAA1
+   A==;
+X-CSE-ConnectionGUID: QN9sJb91SxGvOdTBMTyRbA==
+X-CSE-MsgGUID: xYziBBf3T7yxRojJJkYtUA==
+X-IronPort-AV: E=Sophos;i="6.10,169,1719871200"; 
+   d="scan'208";a="38551070"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 23 Aug 2024 08:28:07 +0200
+X-CheckPoint: {66C82BF7-A-6568578B-E2E34638}
+X-MAIL-CPID: 18533A58E4AB3FE89540CAEF9C99C5D7_3
+X-Control-Analysis: str=0001.0A782F1E.66C82BF7.007B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AB1651695DA;
+	Fri, 23 Aug 2024 08:28:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1724394482;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Xbast0cN6Jy/gxT6Fnxt08kJvl3a05tYYkEiG/y3n8M=;
+	b=Qnw9IklnrgLnz06bCXzMx5lQubSVpPYNb0E6lk7e5zpE5kcA3P7WbUs1852x+Bo/cdNv6G
+	Ux7suOlzV2I0Swp/ojdv18Q3fs9H+fJUMfSqFvMQMZO1c5veAubxzae5+L+xEpl9PBUrtT
+	a9xFqWQljZNr+Tm/xOnt0fbVuo4w7DHIPd1bJ6KJyi4jx1XBdd1GwYFu1bN5c27jURun+N
+	ucRKj0zhU7ZAlLlOwwyAnQD5mrThfDJhoN3KxqDL8L8uuvO4k/xGARwZ4JOyK0Xf8ZvDId
+	OE4hkdKOHVaBP58SwLFM1jkw+23prAAJW93M/j77DrD0jKxlfd07XDr/H1lepQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
+Subject: Re: [PATCH v2] arm64: dts: imx8mp-evk: Add native HDMI output
+Date: Fri, 23 Aug 2024 08:28:00 +0200
+Message-ID: <3242009.5fSG56mABF@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240823021257.1067054-1-victor.liu@nxp.com>
+References: <20240823021257.1067054-1-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240822170951.339492-3-abdellatif.elkhlifi@arm.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu, Aug 22, 2024 at 06:09:48PM +0100, Abdellatif El Khlifi wrote:
-> Add devicetree binding schema for the SSE-710 Host Base System Control
-> 
-> SSE-710 is implemented by the Corstone-1000 IoT Reference Design
-> Platform [1].
-> 
-> The Host Base System Control has registers to control the clocks, power,
-> and reset for SSE-710 subsystem [2]. It resides within AONTOP power domain.
-> The registers are mapped under the SSE-710 Host System memory map [3].
-> 
-> [1]: https://developer.arm.com/Processors/Corstone-1000
-> [2]: https://developer.arm.com/documentation/102342/latest/
-> [3]: https://developer.arm.com/documentation/102342/0000/Programmers-model/Register-descriptions/Host-Base-System-Control-register-summary
-> 
-> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Hi,
+
+Am Freitag, 23. August 2024, 04:12:57 CEST schrieb Liu Ying:
+> J17 on i.MX8mp EVK base board is a HDMI type A connector.
+> It connects with i.MX8mp HDMI PHY.  Add support for it.
+>=20
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
 > ---
->  .../arm/arm,sse710-host-base-sysctrl.yaml     | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,sse710-host-base-sysctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,sse710-host-base-sysctrl.yaml b/Documentation/devicetree/bindings/arm/arm,sse710-host-base-sysctrl.yaml
-> new file mode 100644
-> index 000000000000..e344a73e329d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/arm,sse710-host-base-sysctrl.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/arm,sse710-host-base-sysctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> v2:
+> * Change label hdmi_out to hdmi_in. (Alexander)
+>=20
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 46 ++++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/bo=
+ot/dts/freescale/imx8mp-evk.dts
+> index 938347704136..d26930f1a9e9 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> @@ -56,6 +56,18 @@ memory@40000000 {
+>  		      <0x1 0x00000000 0 0xc0000000>;
+>  	};
+> =20
+> +	native-hdmi-connector {
+> +		compatible =3D "hdmi-connector";
+> +		label =3D "HDMI OUT";
+> +		type =3D "a";
 > +
-> +title: SSE-710 Host Base System Control
+> +		port {
+> +			hdmi_in: endpoint {
+> +				remote-endpoint =3D <&hdmi_tx_out>;
+> +			};
+> +		};
+> +	};
 > +
-> +maintainers:
-> +  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> +  - Hugues Kamba Mpiana <hugues.kambampiana@arm.com>
+>  	pcie0_refclk: pcie0-refclk {
+>  		compatible =3D "fixed-clock";
+>  		#clock-cells =3D <0>;
+> @@ -408,6 +420,28 @@ &flexcan2 {
+>  	status =3D "disabled";/* can2 pin conflict with pdm */
+>  };
+> =20
+> +&hdmi_pvi {
+> +	status =3D "okay";
+> +};
 > +
-> +description: |+
+> +&hdmi_tx {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_hdmi>;
+> +	status =3D "okay";
+> +
+> +	ports {
+> +		port@1 {
+> +			hdmi_tx_out: endpoint {
+> +				remote-endpoint =3D <&hdmi_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&hdmi_tx_phy {
+> +	status =3D "okay";
+> +};
+> +
+>  &i2c1 {
+>  	clock-frequency =3D <400000>;
+>  	pinctrl-names =3D "default";
+> @@ -604,6 +638,10 @@ &lcdif1 {
+>  	status =3D "okay";
+>  };
+> =20
+> +&lcdif3 {
+> +	status =3D "okay";
+> +};
+> +
+>  &micfil {
+>  	#sound-dai-cells =3D <0>;
+>  	pinctrl-names =3D "default";
+> @@ -858,6 +896,14 @@ MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x140
+>  		>;
+>  	};
+> =20
+> +	pinctrl_hdmi: hdmigrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x1c2
+> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x1c2
+> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x10
+> +		>;
+> +	};
+> +
+>  	pinctrl_hog: hoggrp {
+>  		fsl,pins =3D <
+>  			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000010
+>=20
 
-Drop |+
 
-> +  The Host Base System Control has registers to control the clocks, power, and
-> +  reset for SSE-710 subsystem. It resides within AONTOP power domain.
-> +  The registers are mapped under the SSE-710 Host System memory map.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - arm,sse710-host-base-sysctrl
-> +      - const: simple-mfd
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^extsys[0-1]$":
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-^remoteproc-[01]$
-
-> +    description:
-> +      SSE-710 subsystem supports up to two External Systems.
-> +    $ref: /schemas/remoteproc/arm,sse710-extsys.yaml#
-> +    unevaluatedProperties: false
-> +
-> +additionalProperties: false
-
-This goes after "required:" block.
-
-> +
-> +required:
-> +  - compatible
-
-Best regards,
-Krzysztof
 
 
