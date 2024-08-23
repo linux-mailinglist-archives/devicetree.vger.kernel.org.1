@@ -1,158 +1,195 @@
-Return-Path: <devicetree+bounces-96007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484C895C65F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:16:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C4E495C673
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 09:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFCD82855C1
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:16:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 243B01F23555
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 07:23:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB37413C83D;
-	Fri, 23 Aug 2024 07:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0C013B2A8;
+	Fri, 23 Aug 2024 07:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Mw+6YZ1N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ImVFoA92"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9DB13B7BC;
-	Fri, 23 Aug 2024 07:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBD712C484
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 07:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724397396; cv=none; b=tjW98l4AWXe7gj1k4+Ssi1mhHqlGEpXH3dXkOqGpmG+UqHpPP7Wm806KjUOghb/tb24Qe/6pwm+mHMn50bYSa52YssFwC933F6z/It38yv48nuEO7caSyZU+Ku9qgS23a+XkDnRztY32VBDMxo1qk6KCI7/I9Yrqol1Lb9ZTCIA=
+	t=1724397829; cv=none; b=mpKxcrxibNCvov/paDXl1j7GOM3acIGgAGHuP4HFL+MsnxRCPLWhvN0v5nRaGjNO9MfCxBzVHOmrDX5PE49wC375kKHy3xk8+j3HOBvngK49zgzMJEeQMtFLtTv57EPWA8p9etZpN/y6NaAYGCJybt7Rr+vwxCHeWWxNM9xYlis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724397396; c=relaxed/simple;
-	bh=SmD2pAgg2Cga/t5bFDBOFnKZxjdDUcoMeuUuhKrJUN8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UcMvcc11ZmZMOWgLBiq7wArKKtiFkIlJNravfPzaey2RCg6uDxH0Ii/KSB/ahJ+8C9bPymaVFE1/Azvd00JJhE6qnrj3x1ccq9EGBXcpHL4ySh+l0rZXXSY6+ulXlwb9FagjMejCNTzoHQkG0mYv9+brhnY2zqWLwaX4nYS7REs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Mw+6YZ1N; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47N0q4wX001725;
-	Fri, 23 Aug 2024 07:16:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pvvmRzjjGmzJRu2QtaD2yqG7o8BFSxdAfyKmQ8OGQcs=; b=Mw+6YZ1N8M8rR9Jf
-	X8NPvg30YWIm0tHNwHZvEUkQ+IKOcKW+6n5qnurlXoSM9/9RLC+ER1cDDdOP4NH/
-	sR9P/86A1MTReubX3cLFbk7J48xoc671SOrEEYT6ljwZCydeKuJbDxWCHEmuuGqX
-	qCAQj/dfromoGUbp9JV8rglWvbeLloiUy1kVgaiMzy5ChFcFC4x3zuxMqSsCUUnM
-	LBwRet/APr+IlYv3HdLpoIlL+UV4oTEIl+I5prdGkZM1q/b5WbgWm9/57g5ZxEbh
-	rl+dzuzgyzhsdzMgOaaS1qos9kE5cKplrH7k/dsUqHGV3iqu4s1XkY34w8ot3Djb
-	c51yMw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pdn2fdd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Aug 2024 07:16:14 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47N7GD8O029109
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Aug 2024 07:16:13 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 23 Aug
- 2024 00:16:10 -0700
-Message-ID: <13ac63cb-8ef8-41e4-8758-82635cbfade4@quicinc.com>
-Date: Fri, 23 Aug 2024 15:16:07 +0800
+	s=arc-20240116; t=1724397829; c=relaxed/simple;
+	bh=iHS7rbkShMfUPZAmnOlThc8ibOAJHNhxRONLIiuqN58=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kar9T+qgf/b8FpEyiekprvCzCwmzo8Sn0jodrzrkOtjsmF8uduhc6OKEPxhe6cW2DOcyp+FAk3ex1rUpjVAHFOm1QwldceWCNP8E9yQdTiyHsxFn7hRVwaeZ302K/7jtHo8Uz2FgsrNSAz2wK/Jg9cgeTZpJ/8XFNCu58S6eA6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ImVFoA92; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-714261089c1so1170476b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 00:23:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724397827; x=1725002627; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=v5ElHlHRIu5slLIV+mCF9JmI6Y4XWgj6Cd25Jej8q74=;
+        b=ImVFoA92UV7EnvWgPwjqfgKN4wepkAlm5LIwHeugg4xcYzebSHenKmF8kVC6LyVqOZ
+         DQN3iIi+Vw1KdBNszlAUeP4jDCqXEZn9ndyFHyPJeygxKJmzWqeZTgYa25hPODsdP8AG
+         jzR5exz0hBUE/YRWzKONVSWRj3Mo2REiQ3Witi5mZ5fNqkse24FDLLrgLk4z9Bqqbzku
+         sJHvK2SQGdCwxOoZuSzgIPjGVcZ6QNQKqHwYSPM6srEqxDhG7pCdKOdLHiG7V7DG8IHG
+         sPGDZHi0jECaXZBlL70hgXJZEZiAOy4ON66JNBdGQUftzMdxx5JBNER3MWyiQuu4oPX2
+         8Gag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724397827; x=1725002627;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v5ElHlHRIu5slLIV+mCF9JmI6Y4XWgj6Cd25Jej8q74=;
+        b=t/chVl7UZytQX06QiOxQvTjeSnbJ1PI5dIuAd9cFuFDs9MwEHAfFOzUu/1srE2j4s9
+         5NJH4b0fFdoUv/36BQPNwHYswyLsgeo3JS5tAmkUmVRxvZzAsivE4NjVNrnbae5+IhT5
+         g8F0girfh3cwljpzM8/s3j8I3FbptyAqHQL8Khlvw8XRNqtSreFDZuHFGHxab1jzTE2d
+         IIB3fkvZNmlme+XAsXVQxQnLXbQ7owZDyQu90O9xwuY0UcFM/P3hzOLbD90WO0kgC50N
+         TCxvh9eiUvUWiVnEClKawgOedRxdIrgDBJGaCaE16VP5MI6os9rJuwgC/kWd7PR0ZkQZ
+         n4bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVoRrKiKz+3ns47TPcBZL0n5t+P/FqmRAV+WsJZFL4AeH82oqCQRsJJjsPpDbRK4nIczBjbxMzRiBnU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yybq/Gsh9wjLsPtPmjjCSNpK6GVR9o5oN4r2JWlbMcpzEOqNAt8
+	yZqSNzbXNqS+rzrwO7TCrqxJL3amUx5/ReYtlgiABBpT1z4/oSL3xX5QElXguQ==
+X-Google-Smtp-Source: AGHT+IFci5MVjwKGKSuKLPiYMi40vitXCDqOaX7wyqWrXkZSVfN3mDYsFqyHTQR/+iLqpPsiZXbVXg==
+X-Received: by 2002:a05:6a00:2fce:b0:70e:ce95:b87 with SMTP id d2e1a72fcca58-7143162f704mr9396156b3a.0.1724397826876;
+        Fri, 23 Aug 2024 00:23:46 -0700 (PDT)
+Received: from thinkpad ([120.60.60.148])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-714342e03a3sm2510295b3a.140.2024.08.23.00.23.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 00:23:46 -0700 (PDT)
+Date: Fri, 23 Aug 2024 12:53:40 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Jingoo Han <jingoohan1@gmail.com>, andersson@kernel.org,
+	quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 4/8] PCI: Change the parent to correctly represent
+ pcie hierarchy
+Message-ID: <20240823072340.qcd6afkgwssr4muw@thinkpad>
+References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
+ <20240803-qps615-v2-4-9560b7c71369@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add qcom,qmi-id for remote etm
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Alexander
- Shishkin <alexander.shishkin@linux.intel.com>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20240822064122.5231-1-quic_jinlmao@quicinc.com>
- <20240822064122.5231-2-quic_jinlmao@quicinc.com>
- <x45dqaramqjwqjmwf5fbagzsrzb4f4qaohpaaohrdfjkmq2oil@x3sz4jeqnmj5>
-Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <x45dqaramqjwqjmwf5fbagzsrzb4f4qaohpaaohrdfjkmq2oil@x3sz4jeqnmj5>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: OyOa49kwiLNuUPASs-1kIOjy-lAoPgOG
-X-Proofpoint-GUID: OyOa49kwiLNuUPASs-1kIOjy-lAoPgOG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-23_04,2024-08-22_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- lowpriorityscore=0 adultscore=0 mlxlogscore=999 bulkscore=0 mlxscore=0
- priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1011
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408230051
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240803-qps615-v2-4-9560b7c71369@quicinc.com>
 
-
-
-On 2024/8/22 15:41, Krzysztof Kozlowski wrote:
-> On Wed, Aug 21, 2024 at 11:41:18PM -0700, Mao Jinlong wrote:
->> qcom,qmi-id is the instance id used by qmi API to communicate with
->> remote processor.
->>
->> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->> ---
->>   .../bindings/arm/qcom,coresight-remote-etm.yaml        | 10 ++++++++++
->>   1 file changed, 10 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
->> index 4fd5752978cd..27e5f18bfedf 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
->> @@ -20,6 +20,13 @@ properties:
->>     compatible:
->>       const: qcom,coresight-remote-etm
->>   
->> +  qcom,qmi-id:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This id is used by qmi API to communicate with remote processor for
->> +      enabling and disabling remote etm. Each processor has its unique instance
->> +      id.
->> +
->>     out-ports:
->>       $ref: /schemas/graph.yaml#/properties/ports
->>       additionalProperties: false
->> @@ -31,6 +38,7 @@ properties:
->>   
->>   required:
->>     - compatible
->> +  - qcom,qmi-id
+On Sat, Aug 03, 2024 at 08:52:50AM +0530, Krishna chaitanya chundru wrote:
+> Currently the pwrctl driver is child of pci-pci bridge driver,
+> this will cause issue when suspend resume is introduced in the pwr
+> control driver. If the supply is removed to the endpoint in the
+> power control driver then the config space access by the
+> pci-pci bridge driver can cause issues like Timeouts.
 > 
-> That's an ABI break.
+> For this reason change the parent to controller from pci-pci bridge.
 > 
-> Best regards,
-> Krzysztof
-Hi Krzysztof,
 
-Sorry, I didn't get your point.
-Could you please share more details ?
+Also, what if the PCIe controller driver tries to access the device? Like for
+sending PME_Turn_Off etc... during suspend? I think you should also make sure
+that the suspend callback of the pwrctl driver has to happen _after_ the
+controller driver.
 
-Thanks
-Jinlong Mao
+Still the parent-child hierarchy is not going to change, but only the devlink
+part.
 
+- Mani
+
+> Fixes: 4565d2652a37 ("PCI/pwrctl: Add PCI power control core code")
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  drivers/pci/bus.c         | 3 ++-
+>  drivers/pci/pwrctl/core.c | 9 ++++++++-
+>  2 files changed, 10 insertions(+), 2 deletions(-)
 > 
+> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
+> index 55c853686051..15b42f0f588f 100644
+> --- a/drivers/pci/bus.c
+> +++ b/drivers/pci/bus.c
+> @@ -328,6 +328,7 @@ void __weak pcibios_bus_add_device(struct pci_dev *pdev) { }
+>   */
+>  void pci_bus_add_device(struct pci_dev *dev)
+>  {
+> +	struct pci_host_bridge *host = pci_find_host_bridge(dev->bus);
+>  	struct device_node *dn = dev->dev.of_node;
+>  	int retval;
+>  
+> @@ -352,7 +353,7 @@ void pci_bus_add_device(struct pci_dev *dev)
+>  
+>  	if (dev_of_node(&dev->dev) && pci_is_bridge(dev)) {
+>  		retval = of_platform_populate(dev_of_node(&dev->dev), NULL, NULL,
+> -					      &dev->dev);
+> +					      host->dev.parent);
+>  		if (retval)
+>  			pci_err(dev, "failed to populate child OF nodes (%d)\n",
+>  				retval);
+> diff --git a/drivers/pci/pwrctl/core.c b/drivers/pci/pwrctl/core.c
+> index feca26ad2f6a..4f2ffa0b0a5f 100644
+> --- a/drivers/pci/pwrctl/core.c
+> +++ b/drivers/pci/pwrctl/core.c
+> @@ -11,6 +11,8 @@
+>  #include <linux/property.h>
+>  #include <linux/slab.h>
+>  
+> +#include "../pci.h"
+> +
+>  static int pci_pwrctl_notify(struct notifier_block *nb, unsigned long action,
+>  			     void *data)
+>  {
+> @@ -64,18 +66,23 @@ static int pci_pwrctl_notify(struct notifier_block *nb, unsigned long action,
+>   */
+>  int pci_pwrctl_device_set_ready(struct pci_pwrctl *pwrctl)
+>  {
+> +	struct pci_bus *bus;
+>  	int ret;
+>  
+>  	if (!pwrctl->dev)
+>  		return -ENODEV;
+>  
+> +	bus = pci_find_bus(of_get_pci_domain_nr(pwrctl->dev->parent->of_node), 0);
+> +	if (!bus)
+> +		return -ENODEV;
+> +
+>  	pwrctl->nb.notifier_call = pci_pwrctl_notify;
+>  	ret = bus_register_notifier(&pci_bus_type, &pwrctl->nb);
+>  	if (ret)
+>  		return ret;
+>  
+>  	pci_lock_rescan_remove();
+> -	pci_rescan_bus(to_pci_dev(pwrctl->dev->parent)->bus);
+> +	pci_rescan_bus(bus);
+>  	pci_unlock_rescan_remove();
+>  
+>  	return 0;
 > 
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
