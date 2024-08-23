@@ -1,137 +1,126 @@
-Return-Path: <devicetree+bounces-96203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F14D495D1DD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:44:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0386B95D208
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:51:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 305561C205E1
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:44:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31618B2C4FA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20DB18A95E;
-	Fri, 23 Aug 2024 15:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E0218BB9C;
+	Fri, 23 Aug 2024 15:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z2JJMKPg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xsASl65Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2233F1885A0;
-	Fri, 23 Aug 2024 15:41:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED0E185E7B
+	for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 15:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724427689; cv=none; b=IHe5y8leNjxiwjFaFHFewET3MsXNscWZYm6cA9VXQvhEBphAkl/iM3cqBHa4J6m+ICwbZkZDiZ3ybWGj7BXQkwZI6ckE6MHh27CROm9fwS18wPDReDOHbZvM37Ldh41Z4qo3ZOjdec08jS2OpsFwyLJNS+Qq7yjdbRDtJeF5Olo=
+	t=1724427872; cv=none; b=ppJLQG+UTEIBnJGd4sUvjKsi6X4YkuS/IyiDuuPqNbr3wP6mkng8t7m/LHTJIsOasizZ40iLqmQ2QeSufOIrGWo/KdZWyogtoNgoeASuOW9x215b/K5OBnpG0BH2HcJxTKyjsNAAVS531HXW4OjImodGVjeZJHBMNrln5Whox54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724427689; c=relaxed/simple;
-	bh=qP3S+M0CNpnU2TUfkRgYP57VQtavU5PL8tYvXdirsYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p7fFCVPJ/dbVWh0BnnDkqPzht/0nUvxxbGjdhbDFW+3lgrBQWYGloe+abqpj6M6MCoEcsVUYsQNoKq7zpCxXYc+4UJtNRhfPEO0pBvHXjM63a50xP2gTbe/59CpGpohcJDzvHFIKzFoS/ikFDw/wNFxeDDopoC5y9BYKDkZZefU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z2JJMKPg; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7142a93ea9cso1668061b3a.3;
-        Fri, 23 Aug 2024 08:41:27 -0700 (PDT)
+	s=arc-20240116; t=1724427872; c=relaxed/simple;
+	bh=rUKpTbjTMGO6d8DrZaKlv/gPDbWH6oSJzFoDGFB2HMI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X+GWjXQjLjqsa6+xrV2biODhbFE8FdjrgxSg58OZgQdCvncRMIG88cZ5ZJKgfJkK9XVazfvCi6MzoiS9umLkNCjw7uLvRSVwi9DOQjsEXlg9CwcfU+7hQFDbRUWBKKqCrQBai7XBdh3UvUlgk/6N9pMwLRmDQo1jK4c10/zzylQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xsASl65Y; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53349ee42a9so2596966e87.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2024 08:44:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724427687; x=1725032487; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YjB9ZMnHKgYRM/l7XHxIgiTwIdgJ4z4hI/q0GewkKyo=;
-        b=Z2JJMKPgm/l+uGwcmzfUmuQTprRXtpDDEAlTmVo9Zw2hJCl6xEvd1/vJAlSRTueCa/
-         NevLmG2h4rE2onDP2qUUmZuYOwJgcBwMfWzDirJmbkX04t4GtEtF6f9/AHMblSxeLTLG
-         fwtpklLokPQP5igravkIlgbPtxisANk+XZjcrzgiCY9cUNNCmvl8R1rKzQcgSJsj2iqM
-         Udl+lsYkYbueadyVtZH3OP2qzf03LFTSFozWW+C7IOiZFlNuQEb1rVYVQe3Ylr315ao3
-         iuYDu4WhCpynUsC7a6Ya7vXp0gHWyGqpmWqYrKSzIb4P8UmA1HgUPlcxydUq5vqCqhmW
-         ivfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724427687; x=1725032487;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1724427869; x=1725032669; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YjB9ZMnHKgYRM/l7XHxIgiTwIdgJ4z4hI/q0GewkKyo=;
-        b=ULigvQTP/BaIsbVNqozFyYBqdMbrTYvQvAR4ByYRojKGDq7CqwlMi7OZ3T7lUMz9G0
-         14FHiRPyKSyz0eGDaiLF62N/JG52kbvg8W49XoFz94S4RcEVSibOYZovdR+HD9fH/bNV
-         AWYzTGBEGddhED6xEZIbgNI/pQEJ1oXmMfWWOOPx5hFSZkhlkghZBo+32JBaa3sfHcVE
-         +P/ieSOvkjBJsb4/3pvPZgNrJZG2hyNPfoqnjB281q4JSi6qzd4ivEnQ3Gd73TijBxGs
-         glzH8nnU1wLXBPMHpqFqtYuoc/xj3KqRxeM7SKeJZYH8gvml851xt1TAdOVu9lf8bN5x
-         SbEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUHg56ILwZ1VO59sYGAMN3nK9NZspf4+7XTqk01/afW90a6BrNb9qxft3HJqt2U316BifJAayiyOiIO@vger.kernel.org, AJvYcCVoV9+kAGVhgbQ08MquZP+3K8i8X+cDRukvigZeWIj3cgU3CUbnOfUDsSPZq5eQCZjSGdA/TFoEwzzfV2C++NdOUl0=@vger.kernel.org, AJvYcCX7FgqvoS3WRKd04EY2Em51hU3iwQcdBzVzrD7Qr6+RYFBmWreF32lkmacGwkiBwK9KvsNWW/zSWVGue9Q=@vger.kernel.org, AJvYcCXeo23jwlnE9tRSUVxdx2mgq5PNNortajSVtHqGL8GgoF5uiPvVHT4UzUm1p8U0nYdvvz9GCzmeW9gfWyY2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJiBkc3L83Qnz1V2AhhyPFW9Ej/akt1kTtzUTLN8AYWRhI4y7z
-	khn436hWEpn6DKfjMHU9OR0gyfJhi8N0eb0GW7RA99YTchOD9/Dx
-X-Google-Smtp-Source: AGHT+IFuyqyaZHnTmSqiJ3FlOdH0Cc0Z5cRjdNS0bL90sFcrAxgdrMRqebKNcikPNQpMrVWtXPIGDQ==
-X-Received: by 2002:a05:6a00:4f8d:b0:714:2d0d:8a90 with SMTP id d2e1a72fcca58-71445772525mr3202824b3a.9.1724427686966;
-        Fri, 23 Aug 2024 08:41:26 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:75c:5a5a:d7dc:18f6])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7cd9acdcf7dsm2914549a12.50.2024.08.23.08.41.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2024 08:41:26 -0700 (PDT)
-Date: Fri, 23 Aug 2024 08:41:23 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH 06/14] Input: samsung-keypad - use guard notation to
- acquire mutex
-Message-ID: <Zsito5oUdhNBg6Nn@google.com>
-References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
- <20240819045813.2154642-7-dmitry.torokhov@gmail.com>
- <e6xkutxnpu7acvm5qfyyces4estm4ihc3rzczqpnxrbrkptdm2@6lwrlssvtt3v>
- <Zsd-aVM6504L_hqi@google.com>
- <0afadefb-ecb1-4ec8-a862-bfa06d171457@kernel.org>
- <ZshJMRCe4LvpYNmZ@google.com>
- <e0f8dfd7-7232-4814-a5c9-58acd5c11d53@kernel.org>
+        bh=rUKpTbjTMGO6d8DrZaKlv/gPDbWH6oSJzFoDGFB2HMI=;
+        b=xsASl65YiaxZ1u4wcidXYbqB1nBXXGivXoslhNTd+IMod+/68aeNZhRcXLPN6iik/q
+         X1pMlnCLi7PJYiGyUdKeawqSALQHyu/8+8inlOFknr62SHHp2J5LiMJsBtMmz2uzd3go
+         6QWXKMcgPWpCpYt0XlcqDK2btWh49s/k7cDGT2Lt80nsLKZn6ftj4GXPsQPt/joxkc7M
+         nMKVLobt2MXe7C9rg6BWyKWkU2VAg7uNtYNWmaEwbste0kKZt4uFk5alVCe26ELvaaHm
+         lqidpXmpof/ydEv3ONSMSgT+a37gzQBvktA7vwufn3nGM8BoHCSS5ZFkc6CAz21q7exx
+         LZ/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724427869; x=1725032669;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rUKpTbjTMGO6d8DrZaKlv/gPDbWH6oSJzFoDGFB2HMI=;
+        b=a7k1yKkoA4wd6S++FdN/Xv9f1Kpettz7dFO8JJicd887O6WtBAUoXeQiN7+pZqyHQ3
+         0zwdQnBRQ2KdjgIsPacC2yaJrqyTUqV4zyAH1nYt5C9U4hsK8Ysnw6j29SR5Egzo3Ict
+         DlloQyJlqeda5sF3U8ejs5KBHzpXUEejT54EY/ZFuxtXVAo4jRNwBuBYediDhNQ3AH7r
+         mgGrNbXg6hRChrvqfEzNl4iX5LsHkmwh4RDMo9JqHxJIq0kHVa3E3lX9UHtT59y2WBc3
+         i38K3tLxanixLz4TFV63g8eIQ+6eMc+rcxxgihVdivI1cpEeoyPiD6ktbGOqjbXm5s6J
+         IR3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVEEhFfpHX+UVZN55/7t9b04Gp9prKsHKqNYwxOamfChOvLU+X0cQvr6XCm5WJCQPsUapuEZ9rtWe50@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEVNT8Su0x/kgMUJSpcG7PsBlVYZARe/NDdOVwZ6x4cqWjyQM8
+	iMypE9EkjqxQLcc+qGnHajcvFqn1e9+rWhntTWxmdNziFl4LDeC1hac/QxbLTImWZh6qOjt1YXc
+	EZGWZkHKkXaMU1xns+zdrcPZtnKdHfwJct+Nwog==
+X-Google-Smtp-Source: AGHT+IGLphY6wmw4p3puKJ7pV1BhETJaO8yEFBVUQMStXaSJMfBctlVKM+lBdvBVLSNIacxc9U5SyjAaRt7G1oWZN4M=
+X-Received: by 2002:a05:6512:3191:b0:533:44d7:c055 with SMTP id
+ 2adb3069b0e04-5343876c109mr1889079e87.5.1724427868274; Fri, 23 Aug 2024
+ 08:44:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e0f8dfd7-7232-4814-a5c9-58acd5c11d53@kernel.org>
+References: <IA1PR20MB4953DC78BB0FE0C57EA94F91BBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <IA1PR20MB4953DC78BB0FE0C57EA94F91BBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 23 Aug 2024 17:44:17 +0200
+Message-ID: <CACRpkdbaDW2=R881G9C=r1iW4YNdYpRZ2kHaN63T7EX1A0xVrA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/7] riscv: sophgo: Add pinctrl support for CV1800
+ series SoC
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
+	Drew Fustini <dfustini@baylibre.com>, Haylen Chu <heylenay@outlook.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 23, 2024 at 10:52:54AM +0200, Krzysztof Kozlowski wrote:
-> On 23/08/2024 10:32, Dmitry Torokhov wrote:
-> > On Fri, Aug 23, 2024 at 08:06:17AM +0200, Krzysztof Kozlowski wrote:
-> >> On 22/08/2024 20:07, Dmitry Torokhov wrote:
-> >>> On Thu, Aug 22, 2024 at 05:48:33PM +0200, Krzysztof Kozlowski wrote:
-> >>>> On Sun, Aug 18, 2024 at 09:58:03PM -0700, Dmitry Torokhov wrote:
-> >>>>> Guard notation is more compact and ensures that the mutex will be
-> >>>>> released when control leaves the function.
-> >>>>>
-> >>>>> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> >>>>> ---
-> >>>>>  drivers/input/keyboard/samsung-keypad.c | 8 ++------
-> >>>>>  1 file changed, 2 insertions(+), 6 deletions(-)
-> >>>>>
-> >>>>
-> >>>> You need to include cleanup.h (unless some other patch already did it
-> >>>> and I missed it?)
-> >>>
-> >>> Guard for mutexes defined in mutex.h which is pulled in indirectly, and
-> >>
-> >> guard() is not in mutex.h and in general we are including headers for
-> >> the things directly used in the unit.
-> > 
-> > Oh, but it is:
-> > 
-> > https://elixir.bootlin.com/linux/v6.10/source/include/linux/mutex.h#L196
-> > 
-> > DEFINE_GUARD(mutex, struct mutex *, mutex_lock(_T), mutex_unlock(_T))
-> 
-> That's DEFINE_GUARD, not guard().
+On Fri, Aug 2, 2024 at 2:34=E2=80=AFAM Inochi Amaoto <inochiama@outlook.com=
+> wrote:
 
-OK, I see what you mean. I believe that cleanup.h is too low level to
-include directly by anyone who does not actually define a new guard or
-destructor routine. The concrete implementations of needed guards and
-all necessary support is pulled together with the headers defining the
-primary objects (mutex, spinlock, etc).
+> Add basic pinctrl driver for Sophgo CV1800 series SoCs.
+> This patch series aims to replace the previous patch from Jisheng [1].
+> Since the pinctrl of cv1800 has nested mux and its pin definination
+> is discrete, it is not suitable to use "pinctrl-single" to cover the
+> pinctrl device.
+>
+> This patch require another patch [2] that provides standard attribute
+> "input-schmitt-microvolt"
+>
+> Note: As current documentation is not enough to guess the pin
+> configuration of Huashan Pi, only the pinctrl node is added.
+>
+> [1] https://lore.kernel.org/linux-riscv/20231113005702.2467-1-jszhang@ker=
+nel.org/
+> [2] https://lore.kernel.org/all/IA1PR20MB495346246245074234D337A6BBAC2@IA=
+1PR20MB4953.namprd20.prod.outlook.com/
+>
+> Changed from v3:
+> 1. binding: drop unnecessary type
+> 2. binding: use right ref for pin node.
+> 3. binding: remove mixed spaces and tabs.
 
-Thanks.
+This v4 looks good to me and has necessary ACKs.
 
--- 
-Dmitry
+It contains device tree patches which I am icky to merge but
+I can merge the rest and give you an immutable branch in the
+pinctrl tree that the ARM SoC maintainers can pull in to
+merge the device trees, does this work for you?
+
+Yours,
+Linus Walleij
 
