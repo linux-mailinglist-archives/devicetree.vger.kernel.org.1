@@ -1,298 +1,155 @@
-Return-Path: <devicetree+bounces-96241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E8D95D4E6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 20:10:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7066695D51E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 20:17:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7FFC1F23378
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:10:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27239284DFF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 18:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9EA4192586;
-	Fri, 23 Aug 2024 18:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C15191F7E;
+	Fri, 23 Aug 2024 18:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X8wflIzX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RJrGf8If"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00761922F8;
-	Fri, 23 Aug 2024 18:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0807918E02E;
+	Fri, 23 Aug 2024 18:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724436615; cv=none; b=RN62Aw7uochpOeykyBBmHGVjCLhJJxbSP3h/qv2s5pcUx9OK3cMc/YWElVW6CukDYho9zQEwCmdTj+pLdryWtyl2AMmd8LsK6GhmB/i+WujIszoA69HxoUhrzqnob/jCZ45Hd38T1wXKGhBjcQ9RaCKspzRTOpa4OyslanLgXco=
+	t=1724437042; cv=none; b=XbHw/X0qo0c0i3Nenjf9XizjCFiCxDpzcWobvNPTHpppKp+VffeIB8TFxbJavi0BUaIttIUDG4sSKrA3a/V2NIf/PnVtxXy/itdgmJv+udApulR19FRPykaPeUXCQcqjca7TkGlIR8QEIBkJKtbynvKoTFInfPnt6Z4fiZpA5XA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724436615; c=relaxed/simple;
-	bh=PSirfHdojdbXoWdPsYz8mxa9M1VP4fBr2htSgqKXfUg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Okr84ZhJcNA374cC+kW3qPO41YbjrL9ecWgi9K0Ms2L+qZcjLlUC62DCGySeZjLeHMpj+lYNa/eMJj75MKiDaO0TaPuX0acTyYhEKLVXeVgxcgux+LAinPWODuYPmlT9/33JqZAVBzrKRFxLkfhVOBf4Rh5Xd1ypzSimZEiWSEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X8wflIzX; arc=none smtp.client-ip=209.85.160.49
+	s=arc-20240116; t=1724437042; c=relaxed/simple;
+	bh=s9+PU91HOsnvN69dHOcgiVrBMPVH6NbyLtFUFs+4qos=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EvLThNLJispsbKiyPTNEyQoesekyqyBWbt1OFxwcDLIDx47+vXjCOi1So/ARQek6oD5PZD07V0mATlvVBks1+IUZ/N9FzNHIJ8/c2l4cEsiMrtrzWQPyU881lVM3W1WIh0t7WPVgBmQ+PDT7tLMLqdK5TLZ0pRQrVDzTkfLKBPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RJrGf8If; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-270263932d5so1628803fac.2;
-        Fri, 23 Aug 2024 11:10:13 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-428178fc07eso17219095e9.3;
+        Fri, 23 Aug 2024 11:17:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724436613; x=1725041413; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NbtN34OztMcTIBRWursUybQnLUd+2YeirAS1R5D30cM=;
-        b=X8wflIzX8fwtntV+ms9r7SIE4wSIBlXpsTfmyS/YOLXIsADdhSQg8dS5Pzx8534egJ
-         DCkvF/j6F+O4WTKkc8nbISO3FyBXh3R1XsOLJOZP1cdv0RLIovaymGOTQZhS5eo/Vs8a
-         Vb+s7Y8+orbHGktGKs81q7mAbFCzwFlcQ6M3XA+qeMgVMkO3Db5EqVCkbQ4lWJt9Lv4N
-         YwAWbaXwyIeo7sGpcBu/tvCYPuz5uph/EJjwPfbd7JnRdbFUmgTVv040/IqJJlpyOM0E
-         iVM06Cz+21jM9ORIW65d4ci0RVGM2hSsnf0acqIrl1IV6IdpSDNDA6X2BbZVR+Z/EPrj
-         62/Q==
+        d=gmail.com; s=20230601; t=1724437039; x=1725041839; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YbHgXuYc8WVmqRaVNRxIWkQql4xPfWAG9gyqOHYiFQU=;
+        b=RJrGf8IfGX7R+v5+rTy5LGd4sH7/CI36CNMp0C9wFWXuXsWRk5Fmc3GoiNJCpZvLaW
+         kst04QetQBJisVqWXDNgS9F71wC4MLuQBxpQjqGSo2hssSFLLjfKvLwD0UtnoJosc/qw
+         33j+92tujYGjFMYgVpxJYjH+cbPwH4FUCRbwPy8Be8YiKSgsXV4yoG0NzVZ+o4wrFwWH
+         h23rqrbJtm3Ywp3FivG7GgNhFupd1x5y+UyX8hnJjAsLI664e/IULM0cdkj4dPMKFZPC
+         5BMivli61xpH0nH3eB2Pk+2rY9o3RdNyTSrAwB87QLh34hJqi0AVPTbvsfwrBUw+MuAQ
+         b8fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724436613; x=1725041413;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1724437039; x=1725041839;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NbtN34OztMcTIBRWursUybQnLUd+2YeirAS1R5D30cM=;
-        b=GXwa2Xt9heS3z1Hij2EoA4w3HjY2Owf0FvDjw72mlOyUwaT2WciGASuIUECf1YFZrw
-         0QmqbP6ueoTQHZRKEmGuFEXjwGWADZcdDsrNIWxApfYvCfWI4ox6zzWiC7dJQLDD+ux/
-         NLjkjggn8F7HN2snbo//SjMkd5PwrgtGTtkbZenvZAt/bH5/Vgo9DWhLnAB0IL0JWFEC
-         QUGLs4iqCMh9q10L16dSZZzvH4Ze7215AE7dWnQoFpGi4z3wJBZpCVFaBkOtkIAPPlQw
-         LrGwQ16GVZ+1wYd78PbBJfIic88YsWa1gnoIc/M5pNlLyfig1q8G8Gx2Yr4i1J04VrMf
-         0rtA==
-X-Forwarded-Encrypted: i=1; AJvYcCUE+h5itKxxQEgS4DmnD8NVdN2A/wmE71bcyYbGlw6yfLY3gmQxQVojB3e/FAXKzrrZis75qUj4KoKq@vger.kernel.org, AJvYcCX3p1wrd5uqiZbtviiY0VrtRNyTYE5+ca+dflEs/V9ZOSacIVEIDFpyBPpN/FslqOjbNOX0ICzNz+DWIN42@vger.kernel.org, AJvYcCXOlbYHW+VjRTiJxoExw0zhJrxiOIZNEQmoIE2OZC7WO1kilMoBa3U5/aC2k7CcpCr7p+OveciNbsyUAVp9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmtfnYMYjE1zl37bG+RkrtnPTtmLj89qol1btYFtaWkNvv0dZ7
-	G59Cj5AtZ9XrEN4qRGJMsytFxeorBFlh7Hbao4JKbISRPQBoSa+OrXIqiNnmmSKKEzRMqMxADPY
-	9csT0o050S4JYE6OsVRbA6juO6yU=
-X-Google-Smtp-Source: AGHT+IHCk1CU0qiBSKUqy36ZULXUFuPlzCEntBPbtvUIZxFil/4taZiG19VCpHB1UWL9NQRCafYKkjCZbc4xE1Jnlys=
-X-Received: by 2002:a05:6870:b525:b0:261:446:c405 with SMTP id
- 586e51a60fabf-273e63de2a7mr3349911fac.4.1724436612812; Fri, 23 Aug 2024
- 11:10:12 -0700 (PDT)
+        bh=YbHgXuYc8WVmqRaVNRxIWkQql4xPfWAG9gyqOHYiFQU=;
+        b=A48nxtNfIg9tH4EIeQf7dL/xc3iPNUOTvOixpQ0hCqCxYgwcjVV0PPaM5h/Xbm8Gi2
+         uk/wCcFtnyjoSxoCdrL2M2wUyFJRiIPNbbmZlLgUAXwPBoTYCezyCogbhd91x6IIsQ+g
+         apzWCOgsr3d6kecBq0R2YvMqA3lhNBXq+4C+n/ao3AWs4PAH8zXsDQWRsCwHZjqYgfeQ
+         b86x78ovYrI8cJsBtr/RwicP9379rPRcUBl9w65KzH6vANiNe4Xynbmx6sTLXTNrIDpc
+         pBuFiPe8gw36j7oO4JqnTswtK15Du+0N8zsFVrHkYG780Au99Cdj2wBKZBSbi9QyTVdd
+         Q0wA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOpxNw+bzwzIigOKKSPx2MZHPIo+NIlEG+i6hPZyF4QQxVzbPc4y6aCKN65C5XevfVw3n+9WLY4ZGUYdjt@vger.kernel.org, AJvYcCUf+QzAenml3K0oFbfVohJ7HgeYLubTlmHFVHAqvxv7VvkakyRmmIN+6agTYU7h6sD6XfRJy//oS65j@vger.kernel.org, AJvYcCWwvukGRj9T3wCVJaD4XMrrq8wCzbZQxqeNh4wzOtX09v4N9n/Pvt3rDW/hz1mPkxpggMhi9CF8TqwG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9pnAidR9KTSQbH/JF3XypsB6lHzAjQtb1Qm/Jy3sTgNJqHYSt
+	Vcgo0XzgJePsVAsnXIA2K2Ynai1m36x5u7SEZT9p6v4hyYlyQi4p
+X-Google-Smtp-Source: AGHT+IHUpne5bcgyg59dEnxMMu8YpwxY1O31b9h55pFrr4+/0pywbv0ZolURjU5JE5mUCPXcT2hKmQ==
+X-Received: by 2002:adf:a11e:0:b0:367:99fd:d7bb with SMTP id ffacd0b85a97d-373118fde37mr1702754f8f.63.1724437038584;
+        Fri, 23 Aug 2024 11:17:18 -0700 (PDT)
+Received: from localhost.localdomain ([2a04:ee41:82:7577:f90d:5a72:8d56:a041])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730814602asm4677939f8f.44.2024.08.23.11.17.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2024 11:17:18 -0700 (PDT)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com
+Cc: vassilisamir@gmail.com,
+	ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org,
+	biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com,
+	semen.protsenko@linaro.org,
+	579lpy@gmail.com,
+	ak@it-klinger.de,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7] pressure: bmp280: Minor cleanup and interrupt support
+Date: Fri, 23 Aug 2024 20:17:07 +0200
+Message-Id: <20240823181714.64545-1-vassilisamir@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240820145623.3500864-1-avromanov@salutedevices.com>
-In-Reply-To: <20240820145623.3500864-1-avromanov@salutedevices.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 23 Aug 2024 23:39:54 +0530
-Message-ID: <CANAwSgSwY+XSfw2styzY49Ti_zDntQBPMnbOLeJUt2srwde-6w@mail.gmail.com>
-Subject: Re: [PATCH v9 00/23] Support more Amlogic SoC families in crypto driver
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, clabbe@baylibre.com, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, khilman@baylibre.com, 
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, 
-	vadim.fedorenko@linux.dev, linux-crypto@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@salutedevices.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Alexey,
+Depends on this: https://lore.kernel.org/linux-iio/20240823172017.9028-1-vassilisamir@gmail.com
 
-Thanks for working on these changes.
+Changes in v3:
 
-On Tue, 20 Aug 2024 at 20:31, Alexey Romanov
-<avromanov@salutedevices.com> wrote:
->
-> Hello!
->
-> This patchset expand the funcionality of the Amlogic
-> crypto driver by adding support for more SoC families:
-> AXG, G12A, G12B, SM1, A1, S4.
->
-> Also specify and enable crypto node in device tree
-> for reference Amlogic devices.
->
-> Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
-> custom tests [1] and tcrypt module.
->
+[PATCH v3 1/7]:
+	- Moved the indexing enum on top of the calibration buffer and added a
+	  comment that the reason for the complex accesses can be found in the
+	  datasheet.
 
-I have tried these patches on my G12B, Odorid N2plus.
+[PATCH v3 2/7]:
+	- Use dev_err_probe() instead of dev_err() since the .preinit function
+	  is called only from the probe.
 
-$ sudo cat /sys/kernel/debug/gxl-crypto/stats
-[sudo] password for alarm:
-Channel 0: nreq 330
-cbc-aes-gxl cbc(aes) 135 2187
-ecb-aes-gxl ecb(aes) 97 2005
-ctr-aes-gxl ctr(aes) 98 992
+[PATCH v3 4/7]:
+	- Made static the const int arrays.
+	- Changed the comment from "future" versions to "newer" versions.
+	- The current state of the board is saved into a variable in order to be
+	  able to be recovered after a suspend/resume operation.
 
-But, I am observing the following with crypto/testmgr failed
+[PATCH v3 5/7]:
+	- Corrected syntax error.
 
-[    1.915219] Key type .fscrypt registered
-[    1.915238] Key type fscrypt-provisioning registered
-[    2.418969] Key type encrypted registered
-[    4.358508] alg: skcipher: blocksize for ctr-aes-gxl (16) doesn't
-match generic impl (1)
-[    4.361075] alg: self-tests for ctr(aes) using ctr-aes-gxl failed (rc=-22)
-[    4.361089] ------------[ cut here ]------------
-[    4.361102] alg: self-tests for ctr(aes) using ctr-aes-gxl failed (rc=-22)
-[    4.361153] WARNING: CPU: 4 PID: 154 at crypto/testmgr.c:5887
-alg_test+0x56c/0x600
-[    4.367839] Modules linked in:
-[    4.370871] CPU: 4 PID: 154 Comm: cryptomgr_test Not tainted
-6.10.6-MANJARO-ARM+ #3
-[    4.378497] Hardware name: Hardkernel ODROID-N2Plus (DT)
-[    4.383784] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    4.390716] pc : alg_test+0x56c/0x600
-[    4.394356] lr : alg_test+0x56c/0x600
-[    4.397996] sp : ffff800084293d40
-[    4.401289] x29: ffff800084293d40 x28: ffff80008124ac58 x27: 00000000ffffffff
-[    4.408396] x26: 00000000ffffffea x25: 0000000000000048 x24: ffff80008308b000
-[    4.415503] x23: ffff80008124ac58 x22: 0000000000010385 x21: ffff000004481c80
-[    4.422609] x20: ffff000004481c00 x19: 000000000000003b x18: 00000000fffffffe
-[    4.429716] x17: 656e656720686374 x16: 616d2074276e7365 x15: ffff800084293930
-[    4.436823] x14: 0000000000000000 x13: ffff800082ed6153 x12: ffff8000821b1508
-[    4.443929] x11: 0000000000000001 x10: 0000000000000001 x9 : ffff80008017e6d4
-[    4.451036] x8 : c0000000ffffdfff x7 : ffff8000821012d0 x6 : 00000000000affa8
-[    4.458143] x5 : ffff8000821b14b0 x4 : 0000000000000000 x3 : 0000000000000000
-[    4.465250] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff00000a739dc0
-[    4.472357] Call trace:
-[    4.474783]  alg_test+0x56c/0x600
-[    4.478076]  cryptomgr_test+0x2c/0x50
-[    4.481716]  kthread+0x108/0x120
-[    4.484923]  ret_from_fork+0x10/0x20
-[    4.488477] irq event stamp: 988
-[    4.491683] hardirqs last  enabled at (987): [<ffff8000801808fc>]
-console_unlock+0x134/0x148
-[    4.500090] hardirqs last disabled at (988): [<ffff8000811a0554>]
-el1_dbg+0x24/0x98
-[    4.507716] softirqs last  enabled at (966): [<ffff8000800c2878>]
-handle_softirqs+0x350/0x370
-[    4.516209] softirqs last disabled at (959): [<ffff8000800105fc>]
-__do_softirq+0x1c/0x28
-[    4.524269] ---[ end trace 0000000000000000 ]---
+[PATCH v3 6/7]:
+	- Merged the bmp{3,5}80_trigger_probe() functions to one by using a
+	  general __bmp280_trigger_probe() which takes the sensor specific
+	  functions as interrupts.
 
-Thanks
--Anand
+[PATCH v3 7/7]:
+	- Fixed the bmp085_chip_info array by duplicating the bmp180_chip_info
+	  and just adding the extra variable for the bmp085 interrupt.
 
-> ---
->
-> Changes V1 -> V2 [2]:
->
-> - Rebased over linux-next.
-> - Adjusted device tree bindings description.
-> - A1 and S4 dts use their own compatible, which is a G12 fallback.
->
-> Changes V2 -> V3 [3]:
->
-> - Fix errors in dt-bindings and device tree.
-> - Add new field in platform data, which determines
-> whether clock controller should be used for crypto IP.
-> - Place back MODULE_DEVICE_TABLE.
-> - Correct commit messages.
->
-> Changes V3 -> V4 [4]:
->
-> - Update dt-bindings as per Krzysztof Kozlowski comments.
-> - Fix bisection: get rid of compiler errors in some patches.
->
-> Changes V4 -> V5 [5]:
->
-> - Tested on GXL board:
->   1. Fix panic detected by Corentin Labbe [6].
->   2. Disable hasher backend for GXL: in its current realization
->      is doesn't work. And there are no examples or docs in the
->      vendor SDK.
-> - Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
->   inversion of the keyiv at keys setup stage.
-> - A1 now uses its own compatible string.
-> - S4 uses A1 compatible as fallback.
-> - Code fixes based on comments Neil Atrmstrong and Rob Herring.
-> - Style fixes (set correct indentations)
->
-> Changes V5 -> V6 [7]:
->
-> - Fix DMA sync warning reported by Corentin Labbe [8].
-> - Remove CLK input from driver. Remove clk definition
->   and second interrput line from crypto node inside GXL dtsi.
->
-> Changes V6 -> V7 [9]:
->
-> - Fix dt-schema: power domain now required only for A1.
-> - Use crypto_skcipher_ctx_dma() helper for cipher instead of
->   ____cacheline_aligned.
-> - Add import/export functions for hasher.
-> - Fix commit message for patch 17, acorrding to discussion [10].
->
-> Changes V7 -> V8 [11]:
->
-> - Test patchset with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS: fix some bugs
->   in hasher logic.
-> - Use crypto crypto_ahash_ctx_dma in hasher code.
-> - Correct clock definition: clk81 is required for all SoC's.
-> - Add fixed-clock (clk81) definition for A1/S4.
-> - Add information (in commit messages) why different compatibles are used.
->
-> Changes V8 -> V9 [12]:
->
-> - Remove required field clk-names from dt-schema according to Rob Herring
-> recommendation [13].
-> - Fix commit order: all dt-bindings schema commits now located earlier
-> than any changes in device tree.
-> - Fix typos and add more clarifications in dt-schema patches.
->
-> Links:
->   - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
->   - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
->   - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
->   - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
->   - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@salutedevices.com/
->   - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
->   - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@salutedevices.com/
->   - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
->   - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@salutedevices.com/
->   - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a05@wendy/
->   - [11] https://lore.kernel.org/all/20240411133832.2896463-1-avromanov@salutedevices.com/
->   - [12] https://lore.kernel.org/all/20240607141242.2616580-1-avromanov@salutedevices.com/
->   - [13] https://lore.kernel.org/all/20240610222827.GA3166929-robh@kernel.org/
->
-> Alexey Romanov (23):
->   drivers: crypto: meson: don't hardcode IRQ count
->   drviers: crypto: meson: add platform data
->   drivers: crypto: meson: remove clock input
->   drivers: crypto: meson: add MMIO helpers
->   drivers: crypto: meson: move get_engine_number()
->   drivers: crypto: meson: drop status field from meson_flow
->   drivers: crypto: meson: move algs definition and cipher API to
->     cipher.c
->   drivers: crypto: meson: cleanup defines
->   drivers: crypto: meson: process more than MAXDESCS descriptors
->   drivers: crypto: meson: avoid kzalloc in engine thread
->   drivers: crypto: meson: introduce hasher
->   drivers: crypto: meson: add support for AES-CTR
->   drivers: crypto: meson: use fallback for 192-bit keys
->   drivers: crypto: meson: add support for G12-series
->   drivers: crypto: meson: add support for AXG-series
->   drivers: crypto: meson: add support for A1-series
->   dt-bindings: crypto: meson: correct clk and remove second interrupt
->     line
->   dt-bindings: crypto: meson: support new SoC's
->   arch: arm64: dts: meson: gxl: correct crypto node definition
->   arch: arm64: dts: meson: a1: add crypto node
->   arch: arm64: dts: meson: s4: add crypto node
->   arch: arm64: dts: meson: g12: add crypto node
->   arch: arm64: dts: meson: axg: add crypto node
->
->  .../bindings/crypto/amlogic,gxl-crypto.yaml   |  32 +-
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  14 +
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
->  .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   6 +-
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  13 +
->  drivers/crypto/amlogic/Makefile               |   2 +-
->  drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 632 ++++++++++++------
->  drivers/crypto/amlogic/amlogic-gxl-core.c     | 292 ++++----
->  drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 507 ++++++++++++++
->  drivers/crypto/amlogic/amlogic-gxl.h          | 118 +++-
->  11 files changed, 1269 insertions(+), 361 deletions(-)
->  create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
->
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+v2: https://lore.kernel.org/linux-iio/20240725231039.614536-1-vassilisamir@gmail.com
+
+Vasileios Amoiridis (7):
+  iio: pressure: bmp280: Use bulk read for humidity calibration data
+  iio: pressure: bmp280: Add support for bmp280 soft reset
+  iio: pressure: bmp280: Remove config error check for IIR filter
+    updates
+  iio: pressure: bmp280: Use sleep and forced mode for oneshot captures
+  dt-bindings: iio: pressure: bmp085: Add interrupts for BMP3xx and
+    BMP5xx devices
+  iio: pressure: bmp280: Add data ready trigger support
+  iio: pressure: bmp280: Move bmp085 interrupt to new configuration
+
+ .../bindings/iio/pressure/bmp085.yaml         |   7 +-
+ drivers/iio/pressure/bmp280-core.c            | 691 +++++++++++++++---
+ drivers/iio/pressure/bmp280-i2c.c             |   4 +-
+ drivers/iio/pressure/bmp280-spi.c             |   4 +-
+ drivers/iio/pressure/bmp280.h                 |  52 ++
+ 5 files changed, 667 insertions(+), 91 deletions(-)
+
+
+base-commit: 0f718e10da81446df0909c9939dff2b77e3b4e95
+prerequisite-patch-id: e4f81f31f4fbb2aa872c0c74ed4511893eee0c9a
+-- 
+2.25.1
+
 
