@@ -1,143 +1,198 @@
-Return-Path: <devicetree+bounces-96187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F6D95D163
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:29:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE70E95D149
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 17:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8482B29A80
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:16:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A247284D83
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 15:24:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A2B1891B2;
-	Fri, 23 Aug 2024 15:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A38188939;
+	Fri, 23 Aug 2024 15:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZUF8uYZk"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b="fbJDTmRz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96BF51586D3;
-	Fri, 23 Aug 2024 15:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724426190; cv=none; b=Wg984V4Gyq8mozL5hRiU2t4QXmWpPDAHAhADASssdsTDMti+zmRJfnIHBViClP8L2PH2Gu2bte8TAAct4X+6PylBc+LRJOywJmoZNi/7nNgSI2pFibmBu1GaVJVQ9GudKOW0PwIHewpx57TZhuhxmovz7/swQ5f+ahrXFSxbKzc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724426190; c=relaxed/simple;
-	bh=KIGu8KPJ4wD+6srlXDln8w2+UkY+JiFysbcZeTtgnv0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gZFGrcJSKbUB8ILvZWM2dEnB8vNJiDsrKyYMV6FrXjbhYkSpPVXhWQ5Cz54PraAcvMYhbnIv29sdxJ0hMc+80OCeJpws5g26kANabVS8eo4JKWOhjkxRYzO4lvywPCIkV4nlUILItVemm78rYZqhnVNep/pRUGaPC1oZVLir8/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZUF8uYZk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47NEAcxe010554;
-	Fri, 23 Aug 2024 15:16:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SYvZ/8Nyxyzj5yWb8bM+vn9zItFjjNckEx4h1QlisZY=; b=ZUF8uYZkHaA+IR6L
-	/+fj+sBks8hP24xc3pnhkUzzY0C5lDvWtGPuXe4ktToS+2kJVu72cYRKlT/ezTlf
-	JPzADCCSptRZ55qxMCSS3h6+E1e/anR936vYH20+24nc9m2T3qO0IMTRotbQTYml
-	TseiI5av2xDy0uqVAp9VPhahjlRp3GgIp8BG1CKqxPo7QPVVf9xBzOH3lPZLQ6mk
-	m+2DDAoGgpR8vHjU1s55VHqWqaowl6r4CSB7IBN4rV0NEepuVXMALT6rM5ih79vt
-	Xgr6EgCH2Wa9iMY1lduWV3spLvS3J1BROB/RuMmVYGI0jAIEnIav1EFzpXtYyLgN
-	ldc7TQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 416mnm9nkp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Aug 2024 15:16:11 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47NFG9mb006227
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Aug 2024 15:16:09 GMT
-Received: from [10.253.73.208] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 23 Aug
- 2024 08:15:55 -0700
-Message-ID: <1b8f9678-a51d-4088-a475-2818200c9ba5@quicinc.com>
-Date: Fri, 23 Aug 2024 23:15:50 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D61185E65;
+	Fri, 23 Aug 2024 15:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724426639; cv=pass; b=UG0MBXxsooePLB9iylK6qNwWp/Pnbb8PeEaglpcujr3AUtQu8AoUNIhUy1RNaW9Evidgsjp4ddoW/lrC7yguyeDRXY9gXUNLDPGDZywHpkgdJiw+RWSvH6weOHiTXX18/0f2YDeYPKk/PhhIZEGWSKuBFraxq+uHGCAzYMZb+QQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724426639; c=relaxed/simple;
+	bh=nRsHpWGYPED5YcKFeo82Ne3STmSb5PjaPNJUfEHd5t4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jFN01l4nmfojyyv4IG7PxeXVumdot8CZx05Om3VF1NUfjbcUxZNL6g94LLCRMvv5C/bTg6AWpvGYOsJ9A7YaD7DR/POv6mh+UJWU+zmWM9V1+1f8JRJV6tUfT8qk2holz3wuOwcjllbn8sq/MtjSRu5+1O716SGjjRboieyxO8I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b=fbJDTmRz; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: nfraprado@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724426625; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=YY61u2QHEh3TyX+mPY4Akk3f68nTPIaSz9fOYvcxGEVOzn271buw29BZN8C1ra8zE7cxbwxLLNIkkNDMXFwO2PrcDSkzuro3fYYE2nCI8WTN24ciXYP81+1nadfQ0Ux0JV0hh3cSaShyOJX1vYnnQhrrNbeMQU3q7JHCaijDS+U=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724426625; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=P1cL9EeZ4+4EpZOIxL5FlEKqQ7oajrUqL8HBJ40Wupw=; 
+	b=cHQ9lr75NVT2jt7GsCDKXQADoqxVgqLn3HR8I2VhWxm9AbCiKn+Y/Hc+Jtz9bIKZe8DXP5jlOobNMQNksLfqK9S6qlxwT8rqxHXPmvkctm1Yr7s6bsongP7CTYPQOK6cyX2UWfvh/Kid+wJYep9C3iDNXapxiEV9VyeTdbLJ3nk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.fricke@collabora.com;
+	dmarc=pass header.from=<sebastian.fricke@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724426625;
+	s=zohomail; d=collabora.com; i=sebastian.fricke@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=P1cL9EeZ4+4EpZOIxL5FlEKqQ7oajrUqL8HBJ40Wupw=;
+	b=fbJDTmRzLXEIIPjhgcxLVu290CQcBX/tPN52Nbrx3/q27PyRC9zkhPSbQTVzIP1I
+	bqfYAkhqxf6NUiiESl/HaqgkRjcM/mt4PrTXJfQAOayPmXpN9FIIYf2wu0ENwQ4wl/Y
+	mBIj+Xy1u0RmuEWkpoQVg3nfrZvFif1NjDQBlYdc=
+Received: by mx.zohomail.com with SMTPS id 1724426623925742.9251945533158;
+	Fri, 23 Aug 2024 08:23:43 -0700 (PDT)
+Date: Fri, 23 Aug 2024 17:23:38 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4 6/7] media: mediatek: vcodec: replace
+ v4l2_m2m_next_src_buf with v4l2_m2m_src_buf_remove
+Message-ID: <20240823152338.n7i7cnvolvke2hqp@basti-XPS-13-9310>
+References: <20240807082444.21280-1-yunfei.dong@mediatek.com>
+ <20240807082444.21280-7-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: qcom: Add CMN PLL clock
- controller for IPQ SoC
-To: Ziyang Huang <hzyitc@outlook.com>, <krzk@kernel.org>
-CC: <andersson@kernel.org>, <bartosz.golaszewski@linaro.org>,
-        <catalin.marinas@arm.com>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <konradybcio@kernel.org>,
-        <krzk+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mturquette@baylibre.com>,
-        <quic_kkumarcs@quicinc.com>, <quic_leiwei@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <robh@kernel.org>, <sboyd@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <will@kernel.org>
-References: <be2eae05-6deb-49fb-94ce-cb5e3a5bd1ba@kernel.org>
- <TYZPR01MB5556648ABB617F62EF865A61C98F2@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <TYZPR01MB5556648ABB617F62EF865A61C98F2@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: K4Q6lYm8ZVTcohq6w0ryIrSbqByZAhAY
-X-Proofpoint-GUID: K4Q6lYm8ZVTcohq6w0ryIrSbqByZAhAY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-23_11,2024-08-22_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- adultscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
- priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1011
- mlxlogscore=747 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408230113
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240807082444.21280-7-yunfei.dong@mediatek.com>
+X-ZohoMailClient: External
 
+Hey Yunfei,
 
+On 07.08.2024 16:24, Yunfei Dong wrote:
+>There isn't lock to protect source buffer when get next src buffer,
+>if the source buffer is removed for some unknown reason before lat
+>work queue execute done, will lead to remove source buffer or buffer
+>done error.
 
-On 8/23/2024 12:12 AM, Ziyang Huang wrote:
->> Yes, I double checked again with our hardware team and the
->> documentation. CMN is just a short form of "common" with no additional
->> information in the guide.
-> 
-> Hi luo jie,
-> 
-> I'm a free developer who was trying to add the ethernet support for
-> IPQ5018[1]. And I'm also trying to write the same driver in the V2 patch.
-> 
-> When I was trying to write this driver, I was also confused about the
-> 'CMN' whcih I can't find any description.
-> 
-> But finally in WiFI documents, I found the same word explained as
-> 'Component'. There may be different. But I think this is a better
-> explanation than 'common'. So I named this driver to
-> QCOM_ETH_CMN (Qualcomm Ethernet Component Driver).
+This is really hard to understand, can try wording this a bit clearer?
+Stuff like: if the source buffer is removed ... will lead to remove
+source buffer, just leaves me scratching my head.
+And there is a spinlock in the m2m framework in `v4l2_m2m_next_buf` so I
+suppose you mean something else when you say that there is no lock to
+protect the source buffer?
 
-Hi Ziyang,
+You might not know all reasons but for this commit description you
+should at least know one reason. Please highlight a case how this can
+happen, so that you can justify the change.
 
-We have confirmed from our SoC team that 'CMN' is used as a short
-form of "common" for the CMN PLL block in the documentation. The
-'component' reference that you may have found in the Wi-Fi document
-should not apply to this Ethernet specific CMN PLL block. This CMN
-PLL block provides a similar function on all IPQ SoCs including
-IPQ5018.
+>
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 30 +++++++++++++------
+> 1 file changed, 21 insertions(+), 9 deletions(-)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>index 8aa379872ddc..3dba3549000a 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
+>@@ -321,6 +321,7 @@ static void mtk_vdec_worker(struct work_struct *work)
+> 		container_of(work, struct mtk_vcodec_dec_ctx, decode_work);
+> 	struct mtk_vcodec_dec_dev *dev = ctx->dev;
+> 	struct vb2_v4l2_buffer *vb2_v4l2_src = ctx->last_vb2_v4l2_src;
+>+	struct vb2_v4l2_buffer *vb2_v4l2_dst;
+> 	struct vb2_buffer *vb2_src;
+> 	struct mtk_vcodec_mem *bs_src;
+> 	struct mtk_video_dec_buf *dec_buf_src;
+>@@ -329,7 +330,7 @@ static void mtk_vdec_worker(struct work_struct *work)
+> 	bool res_chg = false;
+> 	int ret;
+>
+>-	vb2_v4l2_src = vb2_v4l2_src ? vb2_v4l2_src : v4l2_m2m_next_src_buf(ctx->m2m_ctx);
+>+	vb2_v4l2_src = vb2_v4l2_src ? vb2_v4l2_src : v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
+> 	if (!vb2_v4l2_src) {
+> 		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
+> 		mtk_v4l2_vdec_dbg(1, ctx, "[%d] no available source buffer", ctx->id);
+>@@ -381,17 +382,28 @@ static void mtk_vdec_worker(struct work_struct *work)
+> 	    ctx->current_codec == V4L2_PIX_FMT_VP8_FRAME) {
+> 		if (src_buf_req)
+> 			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
+>-		v4l2_m2m_buf_done_and_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx, state);
+>-	} else {
+>-		if (ret != -EAGAIN) {
+>-			v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
+>-			ctx->last_vb2_v4l2_src = NULL;
+>-		} else {
+>-			ctx->last_vb2_v4l2_src = vb2_v4l2_src;
+>-		}
+>+		vb2_v4l2_dst = v4l2_m2m_dst_buf_remove(ctx->m2m_ctx);
+>+		v4l2_m2m_buf_done(vb2_v4l2_dst, state);
+>+		v4l2_m2m_buf_done(vb2_v4l2_src, state);
 
-Also, note that while this driver is initially enabled for IPQ9574
-SoC, we plan to extend it to other SoC later once the driver is
-accepted. Similarly we suggest enabling the IPQ5018 support for
-CMN PLL on top of this driver.
+This is another case where you just remove again completely what you
+have added in the previous patch.
 
-> 
-> Hope this can help something.
-> 
-> [1] https://lore.kernel.org/all/TYZPR01MB55563BD6A2B78402E4BB44D4C9762@TYZPR01MB5556.apcprd01.prod.exchangelabs.com/
-> 
+>
+> 		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
+>+		return;
+> 	}
+>+
+>+	/* If each codec return -EAGAIN to decode again, need to backup current source
+>+	 * buffer, then the driver will get this buffer next time.
 
+I would reword this like:
+
+	/* Store the current source buffer for the next attempt to decode,
+    * if this decode returned -EAGAIN */
+
+>+	 *
+>+	 * If each codec decode error, must to set buffer done with error status for
+>+	 * this buffer have been removed from ready list.
+>+	 */
+>+	ctx->last_vb2_v4l2_src = (ret != -EAGAIN) ? NULL : vb2_v4l2_src;
+
+Okay and here you add the same thing again as in the previous patch but
+differently, this collection of commits feels more and more to me like a
+work in progress. Please make sure in the future that each commit does
+one job and does it completely.
+It is not only confussing but also makes it hard to read the changes as
+the bigger picture is missing in these tiny commits.
+
+Please try to combine the patches where possible.
+
+Regards,
+Sebastian Fricke
+
+>+	if (ret && ret != -EAGAIN) {
+>+		if (src_buf_req)
+>+			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
+>+		v4l2_m2m_buf_done(vb2_v4l2_src, state);
+>+	}
+>+
+>+	v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
+> }
+>
+> static void vb2ops_vdec_stateless_buf_queue(struct vb2_buffer *vb)
+>-- 
+>2.46.0
+>
+>
 
