@@ -1,130 +1,135 @@
-Return-Path: <devicetree+bounces-96431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A2795DFEB
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 21:55:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B96095E008
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 23:35:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C257A2822EC
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 19:55:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 200151F21B60
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 21:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4089D7DA86;
-	Sat, 24 Aug 2024 19:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA3E7DA72;
+	Sat, 24 Aug 2024 21:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xXgCthzU"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="DfxGp94y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D9507DA6A;
-	Sat, 24 Aug 2024 19:54:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F588A94A;
+	Sat, 24 Aug 2024 21:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724529300; cv=none; b=FWmS1YkTOe8EFMXW0XYOU7vKpirDljZDGYESAb8OfVLHPhwNAzK/x1IVVSBIX/z52nHCq06J9ilml3HIlD1efKGQmqXbkOxDmyFXvj7AN65e44EwLliXg8lEWWJ+3zQcIUsmV3lue/MEVDKQo/4KGaLKdEJogRDwVJGlbu+AjGg=
+	t=1724535303; cv=none; b=hw4Q6NBLsKMAPhALK/a4tUJH0xEBBUPYzjY9F9ly1yKShK5SWLc6LDOGisQ5gz5/iyAJuulf6esPjfMQEBja0+/P3uAED9oppET+iPfB/mxyZA3xApERG8squHvnLzSfaHD+d/lIqDofILz4IjMIhP3SRyxb4CJNr3w+k3dSYf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724529300; c=relaxed/simple;
-	bh=4TSVbgyvS4QJGyIWLVRtrqcZCMtT1+Kxe07aerzN7gA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M3QVM7z/aSw2RXeN1qLyhMEHFPQNW4JCN1PScjh4CCJ2QMoDjGkEbjNncYc6syZou/bjUI9HMcA1cLZ7ZbsDjLVASqWsO8eJEybMln9WHX+Vre8lOJ2BbnLrfHqYgivnpu1PqyGWJtHbg3QGr5ogt4WSrfwci1hlo9qSdncH7O4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xXgCthzU; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47OJsox8027369;
-	Sat, 24 Aug 2024 14:54:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724529290;
-	bh=8EEwpvgoV+JIZJzECvQlx2aUXbJ764xGXQPW+tpnTcc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xXgCthzUS75kgUCKM68/RfLYLx1XQJHxVbKXXafwxWG9tH4cS/kTHz0iL2iuvQH8h
-	 dcIVyxqhn/kW3/dRmtiunb83A2wLxpsyruS7w6YzQcfAzF59U39Q0CveR5ntp2wX0+
-	 cJiDjvWbeyeUP7J9lLxFdSeBemyw+IMnJDu3F57g=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47OJsodP104158
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 24 Aug 2024 14:54:50 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 24
- Aug 2024 14:54:49 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 24 Aug 2024 14:54:49 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47OJsngo008278;
-	Sat, 24 Aug 2024 14:54:49 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jan
- Kiszka <jan.kiszka@siemens.com>
-CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su
-	<baocheng.su@siemens.com>,
-        Diogo Ivo <diogo.ivo@siemens.com>
-Subject: Re: (subset) [PATCH v4 0/3] arm64: dts: k3: Resolve remaining dtbs_check warnings
-Date: Sat, 24 Aug 2024 14:54:48 -0500
-Message-ID: <172452924926.505816.7580905718644351705.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1723653439.git.jan.kiszka@siemens.com>
-References: <cover.1723653439.git.jan.kiszka@siemens.com>
+	s=arc-20240116; t=1724535303; c=relaxed/simple;
+	bh=05h4flYVxYVmDr5sJI4fGsGtV6KOkCLCZzt3EJ1tz/U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UeIgTVjtJ+rs9YvNFH8lsNmDHktE06ZsaQAcglOk5OAaSfYYx6b0MbsPzncOdKJb4jWvztPs6GVn6fYoEyrGO69olEd/8SpPjSlzyOU1n8L5thNjCNQvRGZ0vGx3YXgBQ0eCzfDesrzLU1GMzlmhMPtJWhI3Un08YOq4r7eHgDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=DfxGp94y; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 558E78877E;
+	Sat, 24 Aug 2024 23:34:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724535293;
+	bh=ajQwuj+W+LQ2qCUTuDOWr6FOmcNHRSVOPqLao3goEEg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DfxGp94yy2tTS59G96xZA7+vK7VpoKG6Ig/Yqt1rb2JYvDvyIw0+wyhGbzrLv8Ao8
+	 oCH/Z5VolzlLkek2lG6FJqvR8znfREcVlMOo8Ev7UitnxYhUBDncvH3JOaaJ9Ek0bj
+	 cwPBLkNBggKwz5IaIB8oJRePfXXPiUO+yudA+o6HKlg/V+0Y5P0MAXmHxMvPtTZZfj
+	 Fp6rMIWy7qmjL70WV/9o+RrwWmJulz/OeBtOl1RkJ/myvVRZVnqSLZkubDMcFqQP7R
+	 +hSLiUpFYvwV6hfGuBfjy70ID9SoonGCYmw86X49FX6s3omF+7558KW0bmeTONq6oY
+	 z5Hqo6YAeNCTQ==
+Message-ID: <5e972d13-357c-41a1-ab5f-95b898ea154b@denx.de>
+Date: Sat, 24 Aug 2024 23:18:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] wifi: wilc1000: Fold wilc_get_chipid() into wlan.c
+To: Simon Horman <horms@kernel.org>
+Cc: linux-wireless@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, Dan Carpenter <dan.carpenter@linaro.org>
+References: <20240823161131.94305-1-marex@denx.de>
+ <20240823161131.94305-2-marex@denx.de> <20240823174630.GD2164@kernel.org>
+ <006098a3-efb5-4bf3-a28c-20702597feaa@denx.de>
+ <20240824124430.GI2164@kernel.org>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20240824124430.GI2164@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Jan Kiszka,
-
-On Wed, 14 Aug 2024 18:37:16 +0200, Jan Kiszka wrote:
-> Changes in v4:
->  - drop no longer applicable mux-controller
->  - model dss-oldi-io-ctrl@41e0 and clock-controller@4140 as regular property
+On 8/24/24 2:44 PM, Simon Horman wrote:
+> + Dan
 > 
-> Changes in v3:
->  - convert mux-controller from patternProperties to regular one
->  - dropped k3-j72xx-mcu-wakeup patch after simple-bus conversion
+> On Fri, Aug 23, 2024 at 10:38:59PM +0200, Marek Vasut wrote:
+>> On 8/23/24 7:46 PM, Simon Horman wrote:
+>>> On Fri, Aug 23, 2024 at 06:08:57PM +0200, Marek Vasut wrote:
+>>>> Do not use wilc_get_chipid() outside of wlan.c . Instead, call
+>>>> wilc_get_chipid() right after the SDIO/SPI interface has been
+>>>> initialized to cache the device chipid, and then use the cached
+>>>> chipid throughout the driver. Make wilc_get_chipid() static and
+>>>> remove its prototype from wlan.h .
+>>>>
+>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>
+>>> ...
+>>>
+>>>> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.c b/drivers/net/wireless/microchip/wilc1000/wlan.c
+>>>
+>>> ...
+>>>
+>>>> @@ -1535,9 +1537,18 @@ int wilc_wlan_init(struct net_device *dev)
+>>>>    	if (!wilc->hif_func->hif_is_init(wilc)) {
+>>>>    		acquire_bus(wilc, WILC_BUS_ACQUIRE_ONLY);
+>>>>    		ret = wilc->hif_func->hif_init(wilc, false);
+>>>> +		if (!ret)
+>>>> +			chipid = wilc_get_chipid(wilc);
+>>>>    		release_bus(wilc, WILC_BUS_RELEASE_ONLY);
+>>>>    		if (ret)
+>>>>    			goto fail;
+>>>> +
+>>>> +		if (!is_wilc1000(chipid)) {
+>>>> +			netdev_err(dev, "Unsupported chipid: %x\n", chipid);
+>>>> +			return -EINVAL;
+>>>
+>>> Hi Marek,
+>>>
+>>> Should this unwind as is the case elsewhere in this function?
+>>
+>> It should, will fix in V3, thanks.
+>>
+>>> 			ret = -EINVAL;
+>>> 			goto fail;
+>>>
+>>> Flagged by Smatch.
+>>
+>> What's the trick here ?
 > 
-> [...]
+> Smatch is here. I don't think there is much of a trick other than running it :)
+> 
+> https://github.com/error27/smatch
 
-I have applied the following to branch ti-k3-dts-next on [1].
-I have picked Andrew's fixups, so just 1 patch in this series
-is relevant. Let me know if you disagree. Thank you!
-
-[1/3] arm64: dts: ti: k3-am642-evm: Silence schema warning
-      commit: 182a862560097dec7adf774af58076984cd6c1ed
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Thanks !
 
