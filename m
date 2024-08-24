@@ -1,100 +1,92 @@
-Return-Path: <devicetree+bounces-96349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4114D95DBC7
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 07:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B74F95DB7C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 06:34:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E38011F232CF
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 05:17:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FDE11F239DD
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 04:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93768811F7;
-	Sat, 24 Aug 2024 05:17:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="pZqnuwYs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22A6149DE3;
+	Sat, 24 Aug 2024 04:34:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35425DF71;
-	Sat, 24 Aug 2024 05:17:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C36182B4
+	for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 04:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724476651; cv=none; b=fCCOk7EEXxga7AlY0Psb6zmvTbKWVY68+V1fle3uRykNB+sSSdqJnW3llZxZCtwsYCPRw1/348dXr2BxnwfzbOX/zUqyNkypNXK9GmTYQ8T706Ys+yk+6Ja8GeX2v7Ej9YNzis+i3L7y3GxocNSAjS7AUcCSrNwYXtnpVOphUCA=
+	t=1724474077; cv=none; b=nABZqUvJj5Zejr8LVWVSZ4TGrHVQhhlW8/6YsAE+j7Blvw9W6MnWP0UT+fyry4MlthiaJtqucDgcUlu56umUJUaeozivYqRJwZ5qXnmSYVp9I2HSivBScZP81RBMD/bXaNaCcadEbaOOljWhgRfWW96rCap2g7ylhnfq3YxXzzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724476651; c=relaxed/simple;
-	bh=EKYIrWqwELDuWb3+1xndQubTjiUIzzsdrYkz/a+9peg=;
+	s=arc-20240116; t=1724474077; c=relaxed/simple;
+	bh=S+sp4bbVPHXJSqQ8KuHmmGCojzoNyTNW57Ae46JcphA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UbHVeSqJuATJ+UIOQm7VBr90zlKp0ToZYwtPoCdcFB1UC3Eght2p63T8Hpb65kHRAQ3Sk8p46CGMSJGscgseC7SKa3ol28nD8v/XRunIllJkeQzmrMCUhjcJFyuq+FZ5Nseazz8RtaHvzl9ddlThkckerDwI3ooQQMXYtdcXqJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=pZqnuwYs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F32AC32781;
-	Sat, 24 Aug 2024 05:17:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1724476650;
-	bh=EKYIrWqwELDuWb3+1xndQubTjiUIzzsdrYkz/a+9peg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pZqnuwYsOzkoT3F9shGWLvGPerTWUfF0y4EdZ8YS9ToqCEk6X5+bleX9MUuRgeyH4
-	 5Wd2IjUbdRYlpBJetz7loeGfYFQm0Z33Iqt2DBks4qGptCbzJtrFjDq1+uIzDbEjRs
-	 o4Czi84+1cftdJ6971GCbffFbs0pIQqLAAkXwiGk=
-Date: Sat, 24 Aug 2024 09:53:18 +0800
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <2024082420-secluding-rearrange-fcfd@gregkh>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JYZkz+EPQQtl4K68RFDT4ecDnPsnJ52L98GaXJoVpv8qUbjcRSrF5zQEaY2KDnyl2VRveSOUSq8fPQSNjfzA8BkZuN+UUG8zc3MYHAg/SSI5Z7Yx9BcA3hxSc7O42ySt4/m114Fcib4w6L0/V1jUmAk4a8ej4NyT60A/cHVd5nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1shiTc-0001RR-9Q; Sat, 24 Aug 2024 06:34:12 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1shiTZ-002dhJ-Qd; Sat, 24 Aug 2024 06:34:09 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1shiTZ-003MQL-2E;
+	Sat, 24 Aug 2024 06:34:09 +0200
+Date: Sat, 24 Aug 2024 06:34:09 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Tristram.Ha@microchip.com
+Cc: Woojung.Huh@microchip.com, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
+	olteanv@gmail.com, pieter.van.trappen@cern.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	marex@denx.de, netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 2/2] net: dsa: microchip: Add KSZ8895/KSZ8864
+ switch support
+Message-ID: <ZsliwRqz2zH9Mkr4@pengutronix.de>
+References: <BYAPR11MB3558F407712B5C5DFB6F409DEC882@BYAPR11MB3558.namprd11.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+In-Reply-To: <BYAPR11MB3558F407712B5C5DFB6F409DEC882@BYAPR11MB3558.namprd11.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
-> --- a/include/linux/pci_ids.h
-> +++ b/include/linux/pci_ids.h
-> @@ -2610,6 +2610,9 @@
->  #define PCI_VENDOR_ID_TEKRAM		0x1de1
->  #define PCI_DEVICE_ID_TEKRAM_DC290	0xdc29
->  
-> +#define PCI_VENDOR_ID_RPI		0x1de4
-> +#define PCI_DEVICE_ID_RP1_C0		0x0001
+On Fri, Aug 23, 2024 at 11:07:06PM +0000, Tristram.Ha@microchip.com wrote:
+> KSZ8895/KSZ8864 is a switch family between KSZ8863/73 and KSZ8795, so it
+> shares some registers and functions in those switches already
+> implemented in the KSZ DSA driver.
+> 
+> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
 
-Minor thing, but please read the top of this file.  As you aren't using
-these values anywhere outside of this one driver, there's no need to add
-these values to pci_ids.h.  Just keep them local to the .c file itself.
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-thanks,
-
-greg k-h
+Thank you!
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
