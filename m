@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-96350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A36395DC2A
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 08:19:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E42B995DC31
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 08:21:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 534911C213C7
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 06:19:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2134284D86
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 06:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E5514AD2C;
-	Sat, 24 Aug 2024 06:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42F814EC79;
+	Sat, 24 Aug 2024 06:21:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AgJvfAag"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JUxtK1Qk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6820257D;
-	Sat, 24 Aug 2024 06:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7220257D;
+	Sat, 24 Aug 2024 06:21:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724480359; cv=none; b=dnBob/31kJRt3j/mAl9Nue0jF7uLqpi7x7dAlmTk/IW7fVQ/jx8OITrq+t4mtSsJANuigR37U+WDjUu89s3wYrOjsSXPJCZn6e8Tr7JsTLOJ51Ho2C5nQwGp6Iluq/tqEf7DET+fHVm8O03BAiDE4wWJ4jl9I6BQxE13KVGYP6c=
+	t=1724480474; cv=none; b=s+Fx2j+JfGoK5tceujSG9crYd9+dJ3KuP3cPTf9lPztfiAzmodxpoMoUFTwQ9jIO3cIKXN8skMk/O02R/yROxBe+UAvRfsHR7ZzpOMfVvYQR5ysfdJemNVVy1m4K38AGrSncze8n1w4aNhtRGv0ZIVcfzUwkNrJCd24W71DaUKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724480359; c=relaxed/simple;
-	bh=QyZ4RHcVpYoPpVB+kiK+jXBJjtzJnTlUdNJnH1LW2UI=;
+	s=arc-20240116; t=1724480474; c=relaxed/simple;
+	bh=Z6dWcYlPqm06YNAPdt4xcnuztyIyRWWD6uU4nqxVD8s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YFD/P48MTUgzECDe9OKjwlnOStWq+kFkUsKpYmwQnOeeT908thAXxzk/1XdL4GFl5JUXM2sj5F6IseZVnOA9IZwW1qK/UJZtMqxuCB4MhRpUTpne6MSC2NI6Zzgvl6XUdIVVYBnmr0JsSbnrYtET8XRciIbTJGxMLv3TLd30Am8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AgJvfAag; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75403C32781;
-	Sat, 24 Aug 2024 06:19:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gUIMBB8622psZt7/VZBTp55j3H4juUrjpGLnHBiJbwpF3gpVeLxKAlviQIdp97dkdxWXz8AiN4lLeAyCsefu9tN4G7BNfgZkWczRY7LuoGaRZDBili/vCm0TzAgofiJ/eUkyHXSQLz0dHeFQr/hqKXTUxa2i5kS8xx8p7VypAoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JUxtK1Qk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA70AC32781;
+	Sat, 24 Aug 2024 06:21:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724480359;
-	bh=QyZ4RHcVpYoPpVB+kiK+jXBJjtzJnTlUdNJnH1LW2UI=;
+	s=k20201202; t=1724480474;
+	bh=Z6dWcYlPqm06YNAPdt4xcnuztyIyRWWD6uU4nqxVD8s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AgJvfAagUYzBrd7PcuJ1ffJKAULrekugWB+QCTt2hvPXnASaNn8gOeh1P0D/+MgRv
-	 MyrypHMWqSXCHVzx7C4xgg9Dh5hAPs0f7cXhkDmIY3l4/hCBXP1XoIB52qOGGcT4Nd
-	 KvYZI8QEUMTuyepbGcRieEnq2NpyRfzpWATHQZkVLxz7iz/FcINbt/bUPST9Flv5bS
-	 q7i3DwMKGUwPQLNikWazambq9GtyoaRENUrKGT83+bSpTpCbqCqdsnl5PFUOIt2W+B
-	 m7Y+eXEPWOYNPMjBJfRtAgU2oxEsmrGLUg5cMi19m+pvJ8k+J0smTlcrNgUsVCTDtN
-	 peZxG8i0kK3Ng==
-Message-ID: <a36c434e-0fb6-43f0-b9a7-c59f0c7bc9f9@kernel.org>
-Date: Sat, 24 Aug 2024 08:19:12 +0200
+	b=JUxtK1Qk+E9SRPmlvA+BMvxzMevULKBMMI+tTnViNt+ZxyJHBoGPdq6oNTG/sagzL
+	 ep2TwG0rLuPikrojnP41v455if1nPv5Qapbz0PxOIWga7ZyR3TsLZ5hdlxt6C7ht+c
+	 XPtrubsXJ1F1TFIWh8uLApSCjH8UBobNApJQ1v+q7VyNyxm38Ui2/aqJCO40P94m6N
+	 l/4v1sK4SAOpvK5C9ml+uGFH07nvXlYe9CwhxkZ/9KibkyOHuPN7/JNleXdepoz6oG
+	 9Wdaw2j1NP7XINRSJTe/Dg5I9IxQ7e0T5zN8a4QQIFJDLMd/36mbtrAEoa7w5W79Fa
+	 VTJ2VlmhUnuvA==
+Message-ID: <595a4009-ba70-44c1-b5a1-7a692624e196@kernel.org>
+Date: Sat, 24 Aug 2024 08:21:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: interconnect: qcom: Do not require reg for
- sc8180x virt NoCs
-To: Georgi Djakov <djakov@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- quic_okukatla@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
-References: <20240730141016.1142608-1-djakov@kernel.org>
- <31173e79-4b2d-4027-a4a2-61071206f387@kernel.org>
- <7c75defd-372b-42cc-897a-eb46e4a8966e@kernel.org>
+Subject: Re: [PATCH 2/8] ARM: dts: rockchip: Add i2s0 node for RV1126
+To: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ alexandre.belloni@bootlin.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rtc@vger.kernel.org
+References: <20240823153528.3863993-1-karthikeyan@linumiz.com>
+ <20240823153528.3863993-3-karthikeyan@linumiz.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,41 +104,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <7c75defd-372b-42cc-897a-eb46e4a8966e@kernel.org>
+In-Reply-To: <20240823153528.3863993-3-karthikeyan@linumiz.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/08/2024 01:39, Georgi Djakov wrote:
-> On 30.07.24 17:32, Krzysztof Kozlowski wrote:
->> On 30/07/2024 16:10, djakov@kernel.org wrote:
->>> From: Georgi Djakov <djakov@kernel.org>
->>>
->>> The virtual interconnect providers do not have their own IO address space,
->>> but this is not documented in the DT schema and the following warnings are
->>> reported by dtbs_check:
->>>
->>> sc8180x-lenovo-flex-5g.dtb: interconnect-camnoc-virt: 'reg' is a required property
->>> sc8180x-lenovo-flex-5g.dtb: interconnect-mc-virt: 'reg' is a required property
->>> sc8180x-lenovo-flex-5g.dtb: interconnect-qup-virt: 'reg' is a required property
->>> sc8180x-primus.dtb: interconnect-camnoc-virt: 'reg' is a required property
->>> sc8180x-primus.dtb: interconnect-mc-virt: 'reg' is a required property
->>> sc8180x-primus.dtb: interconnect-qup-virt: 'reg' is a required property
->>>
->>> Fix this by adding them to the list of compatibles that do not require
->>> the reg property.
->>
->> So I guess we are giving up on
->> https://lore.kernel.org/all/20230530162454.51708-4-vkoul@kernel.org/
->> ?
+On 23/08/2024 17:35, Karthikeyan Krishnasamy wrote:
+> Add i2s0 node and possible pinctrl for Rockchip RV1126
 > 
-> Thanks for the pointer! That approach is fine too, but i was expecting
-> a re-send and then later completely forgot about it. I have a slight
-> preference towards my patch, because it is more compact, but i can also
-> revive Vinod's patch if you think that it would be a better pattern to
-> follow in the long term.
+> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
+> ---
+>  .../arm/boot/dts/rockchip/rv1126-pinctrl.dtsi | 102 ++++++++++++++++++
+>  arch/arm/boot/dts/rockchip/rv1126.dtsi        |  26 +++++
+>  2 files changed, 128 insertions(+)
 
-Vinod sent his patch more than a year ago, so I think we are indeed
-giving up on this :)
+...
+
+> +		i2s0m1_sdo1_sdi3: i2s0m1-sdo1_sdi3 {
+> +			rockchip,pins =
+> +			/* i2s0_sdo1_sdi3_m1 */
+> +			<3 RK_PB3 3 &pcfg_pull_none>;
+> +		};
+> +		i2s0m1_sdo2_sdi2: i2s0m1-sdo2_sdi2 {
+> +			rockchip,pins =
+> +			/* i2s0_sdo2_sdi2_m1 */
+> +			<3 RK_PB4 3 &pcfg_pull_none>;
+
+Weird alignment...
+
+> +		};
+> +		i2s0m1_sdo3_sdi1: i2s0m1-sdo3_sdi1 {
+
+No underscores in node names,
+
+> +			rockchip,pins =
+> +			/* i2s0_sdo3_sdi1_m1 */
+> +			<3 RK_PB5 3 &pcfg_pull_none>;
+> +		};
+> +	};
+
 
 Best regards,
 Krzysztof
