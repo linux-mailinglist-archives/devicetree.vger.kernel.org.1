@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-96412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF6D95DF24
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 19:05:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B6F95DF2F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 19:28:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0023B1C20E62
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 17:05:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E9A1282903
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 17:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B883FB3B;
-	Sat, 24 Aug 2024 17:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718DA481B7;
+	Sat, 24 Aug 2024 17:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZbgGzLCU"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="q+8E5rrz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC7336124
-	for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 17:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E22A46434
+	for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 17:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724519130; cv=none; b=krx2H21GXEzWeZVoD0EbE3G5CBW3SejB1mdsznW5MCGtGy5qpc22+goyHVC0T/p6yykiimx8LCwxoFlOS6sTma9H5v/+PvoC/eMC92BEpL4u5qAAiQvaBThXzLktgQsBYL07eZdRnO6R/RH8cGlVx4uz5RdOxqvYjYvX5S3MMP0=
+	t=1724520494; cv=none; b=Ko8KAXu0ejSEIKodAhrC9lx4TDTucUjpXgiXDj4rPKkW+zMIICp4ngC8YRGepIxsxjLCNnJhIZZHm/0je2UpCqrn/85UiRNxXV/V/oRYeGXyoWj6r1e4nQBTjAOkh2o0P7t56S8yDUuQeq02qLMESpofOQjJrnXAquCIdAe0oOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724519130; c=relaxed/simple;
-	bh=YZb3KQcDwKbRfBpA1jL8YOTnhsu2wLksJptIPtsdgs8=;
+	s=arc-20240116; t=1724520494; c=relaxed/simple;
+	bh=G+DYGeNowrK9DfjtX6jb02BsxwxQEtXCFbG3AWjzsO0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cQbd1dTegle2kA66coIpOErmeo4qN87F04+rFRLrNfwGmuLDXbi7wmmh6wJ1IAVBIGkpw/NOAkTm+gNFKwjgt5CTUKZ6A9p8jTs7xwI3Sy06cRULQRbXVBVNc8XMjf8fFmi5jEJ3U82hxpry9rUCX5xknyu2aquutan48vsHiCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZbgGzLCU; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a86b46c4831so87437066b.1
-        for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 10:05:28 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=SuYBptWg1t1RWBC+lMXQvrzKxI3KgVTTmlDkkoJ+o8HtMRHX82SK/hd1gmPKJ9CLRCXKtpwe+xHEJ4dwOJ8JJdCcnb56OkGhyP0RRqdEdIq2cedmhk/PDUgZXEEoacTpOWTfTymDeTvzJJl73KiWyPTERKHR2qpvf5+ae2fPfcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=q+8E5rrz; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a86abbd68ffso246448366b.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 10:28:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724519127; x=1725123927; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=tuxon.dev; s=google; t=1724520491; x=1725125291; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1wqIXwilhWQe12ivt8ypdTnldhiR6eZgAaKOzl3oFk=;
-        b=ZbgGzLCU8NeN1kyPzEfZytA/xl6HaCYC6XtXQdS89SSfavtANmLmWN9q/H8Q1s+xyj
-         ZNOTBZZknjRbAjkX3XROvIuzLxxUaXaCZ1tpBQldyjM4vA1Dm1+k2xvwkiiG3h1V9VTQ
-         8puTMyY1YDu7Lpw5HE7PZHdLesG55ApEmHWTCb8HSAfEOtv0MpQ3Q5TMgJ0+KA0lAXrL
-         k2FfYM+S1pa5cVeZyZZ4T9YKLXpLE49thy/d9eMQdDts7KGJE2h/g2rna75gVzut8v5M
-         7ylGX4TUhp7xt9BP4by0Zn7hfo4e2gontjVu143Ex/JR/XgReUBT4tdVVsrPITnZr0ek
-         dS8A==
+        bh=dAjX8uJ5kKnKORpPTokQbusW5FK9D7CYGqN4q6ZCkB8=;
+        b=q+8E5rrzJs1nHbByqL5F5ldj9J8lnGE7cMcsM0v+iahE4FJwrhVn+qA1k0aXuGOs9c
+         FY1fNbUZUP0FCNeXRT1w7P43KviW1PUcGHGojZHHoUBb+lKGaZSO00Mo5LMsuzASLl5d
+         2lHScEWbd1YL/UrOv2PhJfxUSCK0Y276vLsgBZZjYSmMQSkvqsK6m/EEir70yKAhwFH+
+         NXA/zfj594YKbhjiFfvDZLDfrPbxxWEKXvhq0LCAANA+pq9TIwMNytaljIVdDOxYnbD8
+         kt+87HwgG37te7U7Oo59DD3rqHpidjcCe3goviC6WkB0uaeQ9158l5C8OKsrrJaoMKZE
+         MpnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724519127; x=1725123927;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1724520491; x=1725125291;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1wqIXwilhWQe12ivt8ypdTnldhiR6eZgAaKOzl3oFk=;
-        b=TLc1+K52TxZuKZowX9Ekhqt1QIF90wADyIWdD9pOSjhkDVPFl5c5DD9mzCmwAam2js
-         5wQW9BU0FpklFpi5OG8xzpXYtVk7oeLH4l4cne36ackqMdGf/NjvIBEw0IZ9TTAcg7iO
-         iAXTmyU8cfCGVMBzQ6X3KG95b6dtaW5XmcsMkq6aJediSxfl+p+SpBBUhb5t6EirvVei
-         2hJfDBb+7Z+QhtSGopDL2YTadcdYIix3nkxZItlOf0dnpsqgOeQjkDMTrsvDebLqjS3i
-         /x5zQYhvdwItjKc6n/0XuXq+IU4zZ0+J2bBKlX8OTEqVbUzkdGLZ7rWbu/D3D7DlyMVZ
-         nlRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWTpspyowQqmPiq6Y/OPY5o48VAGU0QCKONK/XaxZu+jASxYtbzve46rvTNSlkI3gB5joj3yUA87qLL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxxpsc6A0xJ3zl+DNVJb9fxacQjopkxLW85nVBfyS2nAgY3A1vn
-	IY+iVGJN/f0vgFyhRIu+xyLinI2CruFYMnfvT2vTtkV2cRnx+dARgNQ/OW2+9sc=
-X-Google-Smtp-Source: AGHT+IHt3Su7ap3ryr5NK4u0osd07i4VrChxnechoJXjiVeQ4wUl6du3KIaeBLPXMzicWs8zA0kISA==
-X-Received: by 2002:a17:907:d15:b0:a77:cb8b:7a2d with SMTP id a640c23a62f3a-a86a54d1920mr377553966b.49.1724519126872;
-        Sat, 24 Aug 2024 10:05:26 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f43661dsm423115966b.100.2024.08.24.10.05.25
+        bh=dAjX8uJ5kKnKORpPTokQbusW5FK9D7CYGqN4q6ZCkB8=;
+        b=ThV6Dn4Q/bxxft1AzsTddu7zxP+um60N1NCfBXGjVfHx1gwshghUFwxUXM1QzIa3ki
+         gCLHVo9fWZ93Dfnhufb6kOC3woxdWomGKD4hQVZOtb00OuIxyTAW40ZRKpbBy1H5lBsq
+         2a6DsWZiZlEpzN2tVk5M2D0//nqR5Q5gAeys6Y7i3pBCvD7pJwMnSV3XAY+b5kxs+ny4
+         Ln4hMQE4d9ejja5lt/pH8oG0CsLvuSf986kr5kiIXoW5UlGfYux7WHbSjkIf0FZPGlCe
+         dHKzu4vmM5OEvR2qWpA1+BJPAr4s/7QgKIy6wzcBkZ5O0mH1bR/XX/HWIag2HYB/KuOA
+         s/fA==
+X-Forwarded-Encrypted: i=1; AJvYcCWuyFXjYffWFM+Q6bLlL/aPYAtH22jL97rJHu5DdjXcgQil3x4JFPaJ30kdSo0h+5TR+GRxdK9MD60w@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmPQn6C1FEpsPtMpShrAv/JZG9/ZO6bGyoGZDhDNcB2IPEi0kZ
+	8trBoWeliwyYUl0SrSk0NSVbohoxH5ILN5TZe6oSbJseSikdshTjwTyf3gtXs3s=
+X-Google-Smtp-Source: AGHT+IGkZmS3th7XQ+DNJRc7J1ksjGqSiB6v4AK9SrH8RDtAdo9Neq+o7kwWVAjvRjKkO6ui7OWhww==
+X-Received: by 2002:a17:907:d89:b0:a7a:bae8:f2b5 with SMTP id a640c23a62f3a-a86a313765bmr425883266b.36.1724520490524;
+        Sat, 24 Aug 2024 10:28:10 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.94])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f2a5077sm425612966b.69.2024.08.24.10.28.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Aug 2024 10:05:26 -0700 (PDT)
-Message-ID: <26b7fd84-34cc-485e-83eb-21daf99020ee@linaro.org>
-Date: Sat, 24 Aug 2024 18:05:25 +0100
+        Sat, 24 Aug 2024 10:28:10 -0700 (PDT)
+Message-ID: <1f570dfd-ca07-4dfc-8c2b-de551cf24415@tuxon.dev>
+Date: Sat, 24 Aug 2024 20:28:08 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,39 +76,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 00/13] media: qcom: camss: Add sm8550 support
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+Subject: Re: [PATCH v2] ARM: dts: microchip: sam9x60: Fix rtc/rtt clocks
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240709160656.31146-1-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Alexander Dahl <ada@thorsis.com>, linux-clk@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+ Sandeep Sheriker Mallikarjun <sandeepsheriker.mallikarjun@microchip.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20240820132730.357347-1-ada@thorsis.com>
+ <20240821055136.6858-1-ada@thorsis.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20240821055136.6858-1-ada@thorsis.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
->    media: qcom: camss: Add CSID Gen3 support for SM8550
->    media: qcom: camss: Add support for VFE hardware version Titan 780
 
-Before your post your next version of this series, please make the patch 
-submission titles consistent.
+On 21.08.2024 08:51, Alexander Dahl wrote:
+> The RTC and RTT peripherals use the "timing domain slow clock (TD_SLCK),
+> sourced from the 32.768 kHz crystal oscillator.
+> 
+> (The previously used Monitoring domain slow clock (MD_SLCK) is sourced
+> from an internal RC oscillator which is most probably not precise enough
+> for real time clock purposes.)
+> 
+> Fixes: 1e5f532c2737 ("ARM: dts: at91: sam9x60: add device tree for soc and board")
+> Fixes: 5f6b33f46346 ("ARM: dts: sam9x60: add rtt")
+> Signed-off-by: Alexander Dahl <ada@thorsis.com>
 
-e.g.
-
-Add CSID 780 support
-Add VFE 780 support
-
-Mixing SoC versions "sm8550" and/or including "Titan" - what's that a 
-reader might ask - should be avoided.
-
-No harm in including "Titan" but if you do, include it in both patches 
-and explain that Titan is the codename of the camera block in your SoC.
-
----
-bod
+Applied to at91-dt, thanks!
 
 
