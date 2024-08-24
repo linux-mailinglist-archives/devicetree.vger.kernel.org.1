@@ -1,90 +1,79 @@
-Return-Path: <devicetree+bounces-96345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D3C295D9C8
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 01:44:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A8E995DA35
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 02:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 172B4282F63
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2024 23:44:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B6FC1C21739
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 00:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CAEF18C90C;
-	Fri, 23 Aug 2024 23:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF70186A;
+	Sat, 24 Aug 2024 00:17:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VC5oNgjA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lDYN8CSY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D41F152196;
-	Fri, 23 Aug 2024 23:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0AE1195;
+	Sat, 24 Aug 2024 00:17:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724456671; cv=none; b=D2u82ucXGiGxHN6PP6EKP/k6dP/Daohv48MOumBiUazRFOA7PGEADj+Seoe+WlU7RElaXuyoN4iNBFr2A7INXe7S+fn2y4Z2zZbtRGcM+6S0Fvm4Zsed1/a0LuUpdQLlikVTGLkx9hmmsEKtMidXqu2tSF3GHMV0LBxvp2HyKUA=
+	t=1724458666; cv=none; b=ZHUyFv0aVY2DgaI6mfJHdZ3kjU6beMoYnos+cr0/hynO9nFwgi9Psh50A3oZH6VQedXt70vZb8gw1JS9op8IBa22Fv4CWxW9PSLG+bA+P20jqcvspF64KZZoOYYsyuqZyT/qE9xIajkv1OdVN1k6drciAoN+hMoGJnThCwuK6hQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724456671; c=relaxed/simple;
-	bh=PKOqjsh55k0gUWF28he/tpFo7CnOI0T+o1W/ywoIY40=;
+	s=arc-20240116; t=1724458666; c=relaxed/simple;
+	bh=wljoqGsA0TkAmF4SO4AeWOB8Rba0g9hk5wE0vU3p57Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b3Kj9WUUQXVGVhe6KCYrD1blsvJkZIh9Mgt2Pm1fxWKf9aIv7dAbpDeYB4sVcdCH29IZxE6BhaAxGdx5r2jSw+2dFP08s7bKku/YBMBdOo3R2qiEwHeSZXRe7LFhryfO2V6SLsWrvvXWBmFDbNC64/P0lCxbTRWewANN5ZDe2IA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VC5oNgjA; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6bf75ed0e0eso12955736d6.1;
-        Fri, 23 Aug 2024 16:44:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724456668; x=1725061468; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ye+Ps90cwlGsT4oHvYpdjI85sw14z4sG45EsgOKagSg=;
-        b=VC5oNgjAA01PpyWUv0wOeWT+XVdaltS73h7+vLfG6RfslSabKCrAdOJ7vqCJe9ckID
-         /Iw2uyTyOZZwAM51zdTU46f1ChNNAmTtk5I8Qug33wXNC56Cv07QxEMB/mcTQp75Ufr4
-         GK+4jiIadffLc9HUz7J9lMAfVmDc5sEBDAehZcaDt/vzZCaxwKD9p0eisHa9MGdhCKUA
-         x4BYF9T7IMjj07hw6vxI8WAsa+YSBAw6TcsM8LBtVe58jc4E99n13mtKSHnslIs4g5wP
-         LR0hg8TP6RvrGv/ypZRrtmd9hy4g/3MDUHsulMw+oWfdiVc3Y3jlaUwvVcvyvOMmLyPR
-         /atA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724456668; x=1725061468;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ye+Ps90cwlGsT4oHvYpdjI85sw14z4sG45EsgOKagSg=;
-        b=N/nZIqTs6PQ4whp5tigyShnJccqQt9chaslw2UXvpLn09LEOjGaBWy6M+edxajdT/O
-         vKmkOSVhpCe/EG7GPlHmxH/JvkxOUS4M6pQJ6AlU0jfpLoIeLFPsMDIs21nDJiyehCqK
-         FxCeDV6A8v0Y5c74a78Js5h+XOFfbLo+pjbY8aQkPWsql6TlJKUk+5GGdxVHnSDL6dv+
-         pzVKidlkOhJ5vJSt044rqUvc4sRQmhgy+VbrpdN7RXJtFtDTAH16VQt5mIIStIlNeMpy
-         cY7qgqHYIoQkWIkn1Utcz3aQ3j1s3vWySHxozVu5A4uNGRpmOiExg/OmBGe2DwoDibCX
-         y4Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2YoHuDLrQJtPBL19euYWKBDbethnsUNTFoGHidrZS1Vri4wYYB2edqU5508oeH1+M6HCf+VxKplqPlAOCnA==@vger.kernel.org, AJvYcCW8ISDUgr1eXYeXzTa5e2Sylae3uhZgtKHZ465tHMVDzq4ptLldfAkowCV+sIe7T9bq0rdCG0aSSqFS@vger.kernel.org, AJvYcCX1JsXBgzmpCbCCaAQnJBfjzgVN9UXjKOIQoNtC8CN2GtpW7VIobbckh0uceGAebONoBuQmbZZc2TDuNM4=@vger.kernel.org, AJvYcCX3wYE/UlNtzv5LHy0EVuifY+rC9BKgKHk8mvGQdvKLizJkRMVOGUDlf2fC1vs2RMYKpvHj0XHr4wzF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCUsYIQoatBummyeRQ2WI9KzSpXA3aYR1HWEQYy7w7ZUMEe67E
-	bal6RCCqlZtI5CDBK5AQnxJlBjoovzSbPb2gUQUDGdr9ibde3BjKcmVkUfh/
-X-Google-Smtp-Source: AGHT+IHsrMKOopKNem9M07VfAEBD9lUhg2aiNwXgCaC6w49RC2sZLM8rvab1CMAWFtEWOEzJpHPW4Q==
-X-Received: by 2002:a05:6214:3382:b0:6b0:90b4:1ca9 with SMTP id 6a1803df08f44-6c16dc217c1mr39081636d6.6.1724456668104;
-        Fri, 23 Aug 2024 16:44:28 -0700 (PDT)
-Received: from localhost ([2607:fea8:52a3:d200:324c:b818:b179:79b])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6c162d6548csm23198626d6.68.2024.08.23.16.44.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2024 16:44:27 -0700 (PDT)
-Date: Fri, 23 Aug 2024 19:44:26 -0400
-From: Richard Acayan <mailingradian@gmail.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: sdm670: add camss and cci
-Message-ID: <Zske2ptZAV12YLyf@radian>
-References: <20240819221051.31489-7-mailingradian@gmail.com>
- <20240819221051.31489-12-mailingradian@gmail.com>
- <40cd7a52-1c60-40dc-aee6-730b5247b216@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LmCNJvHv+rBejnpGrx5U5silzVJYVnZcgDIElXaRkfqgByjJPrwdBwKVLGz+lq9pKsVXqHXninTxBu8yQcubWt3P1yTHXBoHzsQogrV6GQULSdMY0NV77kjrMtNB1aW1fh/LfzHFQyoDi6VHAJARZH9UrOR4v8R12fsgjBLOMhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lDYN8CSY; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724458665; x=1755994665;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wljoqGsA0TkAmF4SO4AeWOB8Rba0g9hk5wE0vU3p57Q=;
+  b=lDYN8CSYFnnqC5DzUh/oDXvhuvaQFI7a+B6LVSECynZz5pBnOs0+onwC
+   47Jm3WzvlFHbN9a2k/CocWOmCKjECvdWwVx9v2LYzUjlVtcaoTsNZ2Tz6
+   WW0PeI+McDSVXEwon7LDdGlllzOnAWU7j6Pnp3toWcPVohvGOe0+lVFaA
+   puTw2nbh8OlnSfvi+0Ey9dWpOMf7heNS+louMHF6HGLpeKVjta6xtGxyF
+   7oy7FhVmkUKz6jSVJmp8Z9TNcYs4vDks6JgZbKfJsNfMxOlYmvKLuQaEL
+   Sifdy5prpON35iXjqovJakkoFajizR/MExdx/A0WvW8a8DV51cwcAE5Em
+   Q==;
+X-CSE-ConnectionGUID: 9AachcCeQIa92mfMnoS7uw==
+X-CSE-MsgGUID: hJ0v65llSc2Sy/UC5DmHAQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11173"; a="33574154"
+X-IronPort-AV: E=Sophos;i="6.10,171,1719903600"; 
+   d="scan'208";a="33574154"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 17:17:44 -0700
+X-CSE-ConnectionGUID: vp96dOqhTYKR2q1SNV/1bQ==
+X-CSE-MsgGUID: E8vsjnpvQe2h08pJXqsk9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,171,1719903600"; 
+   d="scan'208";a="99466060"
+Received: from yjiang5-mobl.amr.corp.intel.com (HELO localhost) ([10.124.1.48])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2024 17:17:42 -0700
+Date: Fri, 23 Aug 2024 17:17:42 -0700
+From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
+	x86@kernel.org, hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, kys@microsoft.com, haiyangz@microsoft.com,
+	wei.liu@kernel.org, decui@microsoft.com, rafael@kernel.org,
+	lenb@kernel.org, kirill.shutemov@linux.intel.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH 6/7] x86/hyperv: Reserve real mode when ACPI wakeup
+ mailbox is available
+Message-ID: <20240824001742.GA424@yjiang5-mobl.amr.corp.intel.com>
+References: <20240806221237.1634126-1-yunhong.jiang@linux.intel.com>
+ <20240806221237.1634126-7-yunhong.jiang@linux.intel.com>
+ <87a5ho2q6x.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,172 +82,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <40cd7a52-1c60-40dc-aee6-730b5247b216@linaro.org>
+In-Reply-To: <87a5ho2q6x.ffs@tglx>
 
-On Wed, Aug 21, 2024 at 01:40:14PM +0300, Vladimir Zapolskiy wrote:
-> On 8/20/24 01:10, Richard Acayan wrote:
-> > Add the camera subsystem and CCI used to interface with cameras on the
-> > Snapdragon 670.
-> > 
-> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sdm670.dtsi | 188 +++++++++++++++++++++++++++
-> >   1 file changed, 188 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> > index ba93cef33dbb..37bc4fa04286 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> > @@ -6,6 +6,7 @@
-> >    * Copyright (c) 2022, Richard Acayan. All rights reserved.
-> >    */
-> > +#include <dt-bindings/clock/qcom,camcc-sdm845.h>
-> >   #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
-> >   #include <dt-bindings/clock/qcom,gcc-sdm845.h>
-> >   #include <dt-bindings/clock/qcom,rpmh.h>
-> > @@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
-> >   			gpio-ranges = <&tlmm 0 0 151>;
-> >   			wakeup-parent = <&pdc>;
-> > +			cci0_default: cci0-default-state {
-> > +				pins = "gpio17", "gpio18";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-up;
-> > +			};
+On Wed, Aug 07, 2024 at 07:33:26PM +0200, Thomas Gleixner wrote:
+> On Tue, Aug 06 2024 at 15:12, Yunhong Jiang wrote:
+> > +static void __init hv_reserve_real_mode(void)
+> > +{
+> > +	phys_addr_t mem;
+> > +	size_t size = real_mode_size_needed();
 > > +
-> > +			cci0_sleep: cci0-sleep-state {
-> > +				pins = "gpio17", "gpio18";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-down;
-> > +			};
-> > +
-> > +			cci1_default: cci1-default-state {
-> > +				pins = "gpio19", "gpio20";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-up;
-> > +			};
-> > +
-> > +			cci1_sleep: cci1-sleep-state {
-> > +				pins = "gpio19", "gpio20";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-down;
-> > +			};
-> > +
-> >   			qup_i2c0_default: qup-i2c0-default-state {
-> >   				pins = "gpio0", "gpio1";
-> >   				function = "qup0";
-> > @@ -1400,6 +1429,165 @@ spmi_bus: spmi@c440000 {
-> >   			#interrupt-cells = <4>;
-> >   		};
-> > +		cci: cci@ac4a000 {
-> > +			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			reg = <0 0x0ac4a000 0 0x4000>;
-> > +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-> > +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> > +
-> > +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> > +				 <&camcc CAM_CC_SOC_AHB_CLK>,
-> > +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> > +				 <&camcc CAM_CC_CCI_CLK>;
-> > +			clock-names = "camnoc_axi",
-> > +				      "soc_ahb",
-> > +				      "cpas_ahb",
-> > +				      "cci";
-> > +
-> > +			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
-> > +			assigned-clock-rates = <37500000>;
+> > +	/*
+> > +	 * We only need the memory to be <4GB since the 64-bit trampoline goes
+> > +	 * down to 32-bit mode.
+> > +	 */
+> > +	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, SZ_4G);
+> > +	if (!mem)
+> > +		panic("No sub-4G memory is available for the trampoline\n");
+> > +	set_real_mode_mem(mem);
+> > +}
 > 
-> Please remove assigned-clocks and assigned-clock-rates properties.
+> We really don't need another copy of reserve_real_mode(). See uncompiled
+> patch below. It does not panic when the allocation fails, but why do you
+> want to panic in that case? If it's not there then the system boots with
+> a single CPU, so what.
 
-Doing this adds a warning to dmesg, where the clock rate is set to 19.2
-MHz by default.
+I created a separated patch on my v2 patch set with "Originally-by:" tag
+following suggestion at
+https://lore.kernel.org/lkml/20240711081317.GD4587@noisy.programming.kicks-ass.net/
 
-> > +
-> > +			pinctrl-names = "default", "sleep";
-> > +			pinctrl-0 = <&cci0_default &cci1_default>;
-> > +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-> > +
-> > +			status = "disabled";
-> > +
-> > +			cci_i2c0: i2c-bus@0 {
-> > +				reg = <0>;
-> > +				clock-frequency = <1000000>;
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +			};
-> > +
-> > +			cci_i2c1: i2c-bus@1 {
-> > +				reg = <1>;
-> > +				clock-frequency = <1000000>;
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +			};
-> > +		};
-> > +
-> > +		camss: camera-controller@ac65000 {
-> > +			compatible = "qcom,sdm670-camss";
-> > +			reg = <0 0x0ac65000 0 0x1000>,
-> > +			      <0 0x0ac66000 0 0x1000>,
-> > +			      <0 0x0ac67000 0 0x1000>,
-> > +			      <0 0x0acaf000 0 0x4000>,
-> > +			      <0 0x0acb3000 0 0x1000>,
-> > +			      <0 0x0acb6000 0 0x4000>,
-> > +			      <0 0x0acba000 0 0x1000>,
-> > +			      <0 0x0acc4000 0 0x4000>,
-> > +			      <0 0x0acc8000 0 0x1000>;
-> > +			reg-names = "csiphy0",
-> > +				    "csiphy1",
-> > +				    "csiphy2",
-> > +				    "vfe0",
-> > +				    "csid0",
-> > +				    "vfe1",
-> > +				    "csid1",
-> > +				    "vfe_lite",
-> > +				    "csid2";
-> > +
-> > +			interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "csid0",
-> > +					  "csid1",
-> > +					  "csid2",
-> > +					  "csiphy0",
-> > +					  "csiphy1",
-> > +					  "csiphy2",
-> > +					  "vfe0",
-> > +					  "vfe1",
-> > +					  "vfe_lite";
-> > +
-> > +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> > +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> > +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
-> > +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
-> > +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-> > +				 <&camcc CAM_CC_CSIPHY0_CLK>,
-> > +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-> > +				 <&camcc CAM_CC_CSIPHY1_CLK>,
-> > +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-> > +				 <&camcc CAM_CC_CSIPHY2_CLK>,
-> > +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-> > +				 <&gcc GCC_CAMERA_AHB_CLK>,
-> > +				 <&gcc GCC_CAMERA_AXI_CLK>,
-> > +				 <&camcc CAM_CC_SOC_AHB_CLK>,
+Please let me know if that's not the appropriate solution.
+ 
 > 
-> Please put two &gcc and "soc_ahb" clock sources on top, it will
-> require a change in dt bindings documentation also.
+> >  void __init hv_vtl_init_platform(void)
+> >  {
+> >  	pr_info("Linux runs in Hyper-V Virtual Trust Level\n");
+> >  
+> >  	if (wakeup_mailbox_addr) {
+> >  		x86_platform.hyper.is_private_mmio = hv_is_private_mmio_tdx;
+> > +		x86_platform.realmode_reserve = hv_reserve_real_mode;
+> >  	} else {
+> >  		x86_platform.realmode_reserve = x86_init_noop;
+> >  		x86_platform.realmode_init = x86_init_noop;
+> > @@ -259,7 +276,8 @@ int __init hv_vtl_early_init(void)
+> >  		panic("XSAVE has to be disabled as it is not supported by this module.\n"
+> >  			  "Please add 'noxsave' to the kernel command line.\n");
+> >  
+> > -	real_mode_header = &hv_vtl_real_mode_header;
+> > +	if (!wakeup_mailbox_addr)
+> > +		real_mode_header = &hv_vtl_real_mode_header;
+> 
+> Why is that not suffient to be done in hv_vtl_init_platform() inside the
+> condition which clears x86_platform.realmode_reserve/init?
+> 
+> x86_platform.realmode_init() is invoked from an early initcall while
+> hv_vtl_init_platform() is called during early boot.
 
-I'll do this for the clocks themselves because they have no parents (so
-no obvious clock sources).
+I created a separated patch for this change on my v2 patch set, since it's a
+a separated logic change. I added a Suggested-by: tag to the patch, hope it's
+ok.
+
+Thanks
+--jyh
+
+> 
+> Thanks,
+> 
+>         tglx
+> ---
+> --- a/arch/x86/include/asm/x86_init.h
+> +++ b/arch/x86/include/asm/x86_init.h
+> @@ -31,12 +31,18 @@ struct x86_init_mpparse {
+>   *				platform
+>   * @memory_setup:		platform specific memory setup
+>   * @dmi_setup:			platform specific DMI setup
+> + * @realmode_limit:		platform specific address limit for the realmode trampoline
+> + *				(default 1M)
+> + * @reserve_bios:		platform specific address limit for reserving the BIOS area
+> + *				(default 1M)
+>   */
+>  struct x86_init_resources {
+>  	void (*probe_roms)(void);
+>  	void (*reserve_resources)(void);
+>  	char *(*memory_setup)(void);
+>  	void (*dmi_setup)(void);
+> +	unsigned long realmode_limit;
+> +	unsigned long reserve_bios;
+>  };
+>  
+>  /**
+> --- a/arch/x86/kernel/x86_init.c
+> +++ b/arch/x86/kernel/x86_init.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/ioport.h>
+>  #include <linux/export.h>
+>  #include <linux/pci.h>
+> +#include <linux/sizes.h>
+>  
+>  #include <asm/acpi.h>
+>  #include <asm/bios_ebda.h>
+> @@ -68,6 +69,8 @@ struct x86_init_ops x86_init __initdata
+>  		.reserve_resources	= reserve_standard_io_resources,
+>  		.memory_setup		= e820__memory_setup_default,
+>  		.dmi_setup		= dmi_setup,
+> +		.realmode_limit		= SZ_1M,
+> +		.reserve_bios		= SZ_1M,
+>  	},
+>  
+>  	.mpparse = {
+> --- a/arch/x86/realmode/init.c
+> +++ b/arch/x86/realmode/init.c
+> @@ -45,7 +45,7 @@ void load_trampoline_pgtable(void)
+>  
+>  void __init reserve_real_mode(void)
+>  {
+> -	phys_addr_t mem;
+> +	phys_addr_t mem, limit = x86_init.resources.realmode_limit;
+>  	size_t size = real_mode_size_needed();
+>  
+>  	if (!size)
+> @@ -54,17 +54,15 @@ void __init reserve_real_mode(void)
+>  	WARN_ON(slab_is_available());
+>  
+>  	/* Has to be under 1M so we can execute real-mode AP code. */
+> -	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, 1<<20);
+> +	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, limit);
+>  	if (!mem)
+> -		pr_info("No sub-1M memory is available for the trampoline\n");
+> +		pr_info("No memory below %lluM for the real-mode trampoline\n", limit >> 20);
+>  	else
+>  		set_real_mode_mem(mem);
+>  
+> -	/*
+> -	 * Unconditionally reserve the entire first 1M, see comment in
+> -	 * setup_arch().
+> -	 */
+> -	memblock_reserve(0, SZ_1M);
+> +	/* Reserve the entire first 1M, if enabled. See comment in setup_arch(). */
+> +	if (x86_init.resources.reserve_bios)
+> +		memblock_reserve(0, x86_init.resources.reserve_bios);
+>  }
+>  
+>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
 
