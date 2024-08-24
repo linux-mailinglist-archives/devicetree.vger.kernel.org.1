@@ -1,199 +1,130 @@
-Return-Path: <devicetree+bounces-96389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAAF95DDC2
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 14:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 047A695DDD4
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 14:35:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BD8DB20D00
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 12:09:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9472BB21820
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 12:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBADA1714B4;
-	Sat, 24 Aug 2024 12:09:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aERqwiBh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A17435894;
+	Sat, 24 Aug 2024 12:34:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3409B154C1E;
-	Sat, 24 Aug 2024 12:09:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B84CEAD2;
+	Sat, 24 Aug 2024 12:34:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724501349; cv=none; b=tLdKqBSLbm8mcb9Dx6RDg9/43VfPCQREhRXNZtssK59xA6H8MK3ZB6tAK63t5DwjTR/ofHwGiBjUFU7r6okmQXfb6vpnjr5FfvlUVBV9IWut6myN9S3S8xnlN5gGRmNQW90R2vmt1Ip5hxAigM3VhvtWtCAB/0glM/ohLbNp5Os=
+	t=1724502893; cv=none; b=temQ1qTwvUtrhdncvBsfcAZ0olKBjbwxF1ovFSdx0zbiwEBegqz9ionJ01QXz8+UdS74OpPCQiWRuDxsuL7TQOs20RZvWTtsnda9ax1mqWflwsu8Z/XIFT8V4UfmFpTWjPIk0ZY7LDKD1B1TF3yFT5nZjwJbh4AN+IJIfnZAMyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724501349; c=relaxed/simple;
-	bh=/+jktZuYwzkTWpBIChCl+LRWbwotDiMea9Zn1vVSPA4=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OqelzvLZOFjfXmB8bp96epQmYIa88HwQHRjuZT9swpe4klPzEIh7EIBzfwa5AS8fRam13WHcxr1O+JfAdcXIN/U8BHRBHVvdop7BEp/X5tDJ+aNHSUWocwRVbIVQAw72O+ixorRP+U11wMBcpoWlQSftesWf6R31Yq8IGcPXpVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aERqwiBh; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1724502893; c=relaxed/simple;
+	bh=QwXiEAjwEXoAE6zGlVy7wCnl4gDD0wbHdryjStKwejE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jXnGrAr8OamkBtJLHTQxL/V34J/gV0Xozpc7kSR7LpBuIg8l4LUZfqc9dxrqEy9iXDyYtNkaLkUrPQccFBN9HpCuAz4LHnBvWw+WnbxOb7bjx9VZT93w030I1DIbYWr50MkqqiiE99FKWPIJgkhW2ci3LDk/lMx83X/BuglPeaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8677ae5a35so309688866b.0;
-        Sat, 24 Aug 2024 05:09:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724501347; x=1725106147; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=I18kqHK6RFkvR01e7jiU1ZtohyiwGdNcF6JR8v8pW7o=;
-        b=aERqwiBh6gLa0JPUrqhC9202IiW78C0pNuiuGGhMHeIvnozzj6ySiAlzUolvncEUx3
-         6Ka+zG7hEzpovlQj+5NUoZwYH+Lxvztt3UT0RO9oz0XRfgzUxGvN0EbZEK2JTcvDEV8t
-         o/B1EMrxX/f1YuaVGCWkvg5tjkX1iw+0j0ANKSJhHN1m6ptFH8NBqZNPhrquFOymo8FP
-         v70d4Q4sRUjhNHFSdtVCD38H73fEHywXxQCL+uZbhmb6tr2GJIB8JOAUhJdEmfxbiOhp
-         jMnaNT9Hj/qEEfWAb82MSUVKMORO0HjS/3sL8Zjma2LUb4hp2r0h8tZNaIlU3e2LXPN2
-         OviA==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f3f25a1713so31101121fa.2;
+        Sat, 24 Aug 2024 05:34:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724501347; x=1725106147;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I18kqHK6RFkvR01e7jiU1ZtohyiwGdNcF6JR8v8pW7o=;
-        b=o1TRIiDfv/zvYMtPLbYUCOygMvQg0eQGBsMbN1xaNeNrN4PyFB/pK7bbZU3nDp6H+q
-         bmBd3od+UvOJEzyt/H2uFXdwkucslD8AvygyCDejGEvjLJL+FrK2aiF7SHav64K9FtQ8
-         FUCbtJoLuTgoeslmkbswvrXjoO30TbBtkdjZ4D5cSFzgE5i0BBTalY7uYNIq9eGlMwyV
-         8pmir/r5QvSDxnqm4ejPaNDyut7upYMPHw9YRJjP5Ts8vkZWkJPONnc29nV5jPYb23NI
-         PlRCbRcm8rKV3ONKVkORPzV0wh/MhT7g/rqdpkIL922S4gfQtEMHm9siU/WgVxiQRwlG
-         CqMA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvE2GHm1NET4S3Ltbv55wrkVKlewURQZ2QwzS0HnjnI076g5q1WUX5djpBX7s43fOlrT3yBpp9nZML@vger.kernel.org, AJvYcCVcGm5NYU5XvTYJQJaeUXti0UcyV8hp041JvPTqv456iUVI3Vilfu1n99dEFEHwm5mtY60FRAbG07HX@vger.kernel.org, AJvYcCVi0tRc/bL+a+zmMKTBMzqCrrwJ0faZXD/l0X96pCsB+crXtejEUX9uLV+w56KdK46B3iwBELxFZ8wtEeSo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yydh+X88DP0l7mOUqVTs79a1JWpx9jOv+43+ulOGlOtwj3zAXVU
-	WN9FUkb9ny0Lp1Sp1Wwj+9hN89PDF3nCKZGAqRVU8sfiwnkluSfV
-X-Google-Smtp-Source: AGHT+IF4AINRMvHDCHXiXVmcO42Se6Af9rT2yUSC6qYkv9jUdkPDbqLTBODHes5o23ICSTd5tjloWA==
-X-Received: by 2002:a17:907:6d1b:b0:a86:99e9:ffa1 with SMTP id a640c23a62f3a-a86a54cca07mr354027966b.64.1724501346032;
-        Sat, 24 Aug 2024 05:09:06 -0700 (PDT)
-Received: from vamoiridPC ([2a04:ee41:82:7577:9aa7:6f8c:e4ad:5d20])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f4360c0sm392299966b.108.2024.08.24.05.09.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Aug 2024 05:09:05 -0700 (PDT)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
-Date: Sat, 24 Aug 2024 14:09:03 +0200
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Vasileios Amoiridis <vassilisamir@gmail.com>,
-	"jic23@kernel.org" <jic23@kernel.org>,
-	"lars@metafoo.de" <lars@metafoo.de>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
-	"ang.iglesiasg@gmail.com" <ang.iglesiasg@gmail.com>,
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-	"javier.carrasco.cruz@gmail.com" <javier.carrasco.cruz@gmail.com>,
-	"semen.protsenko@linaro.org" <semen.protsenko@linaro.org>,
-	"579lpy@gmail.com" <579lpy@gmail.com>,
-	"ak@it-klinger.de" <ak@it-klinger.de>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 5/7] dt-bindings: iio: pressure: bmp085: Add
- interrupts for BMP3xx and BMP5xx devices
-Message-ID: <20240824120903.GI9644@vamoiridPC>
-References: <20240823181714.64545-1-vassilisamir@gmail.com>
- <20240823181714.64545-6-vassilisamir@gmail.com>
- <TY3PR01MB1134611B456FEFAE4E4791CBB86882@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <20240824113128.GE9644@vamoiridPC>
- <TY3PR01MB11346D61FB9088AE3C5BCE2B686892@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+        d=1e100.net; s=20230601; t=1724502888; x=1725107688;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QwXiEAjwEXoAE6zGlVy7wCnl4gDD0wbHdryjStKwejE=;
+        b=EdMOxVkwOwDdZJtbaCuVdT8VJX/FkKxAcMLlEAhxUfLD+f6L6TsdhXZ13eHH0ok1j/
+         3VnV89SEkSpt2nn4gfOnbTjXavSXYPq/Xo+sjn/NVfpwfzTq8UHGdNtDkDZnjYWzWTzS
+         0fUolT1EZiZ8Ev6nPNBUOPKHOlLIO9iOopBv2wh1U2hLtwpgdabn619JcuOmvw6sVS41
+         4rhnMZ9yjaxw56rquNv0XPPNFu4eG+bhKyVARqjQv1AjFk7Zt2THDjiLvDXHyhOnkxaS
+         aNrcSc8fe7skD85+WoGzG3Ut5OzxGNosi2wJXE9fw/ZEp/aK+j0wmUTsuyCuAY9qJn7m
+         zcoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHTB4PE1bv52D65A2pL57i5OOzLZYX9WPUao0mBlQv5We1B6dhzZ86xla9ct93uYAd7jquJLuTdBEVFzfX@vger.kernel.org, AJvYcCVl6lmlUGKkLVG3/AAJMaGuTZW55LsBgn4r6VznssiR8NX4u4H9+2l1S5E2TgF0lO7PGtpBEDEvGmGs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNwNGBkbm3CSVa3DndMHpmjQKJq8bDL6GjpVuF8IH/OBSuVkPP
+	NRF8xLWVPk3ip3unRUQUKLbADyoBTShRe4oE7baFjssmoqeju+6G23pPe0L8
+X-Google-Smtp-Source: AGHT+IEL59n43hKVxd71HEFoe31D4O3Zu3KEPOXyNUERPWI5keSe6ZmfSohPP7QCiINhp3DMHDgtJw==
+X-Received: by 2002:a05:6512:b85:b0:52e:f367:709b with SMTP id 2adb3069b0e04-534387bb201mr3337946e87.42.1724502887137;
+        Sat, 24 Aug 2024 05:34:47 -0700 (PDT)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5334ea5d938sm845913e87.199.2024.08.24.05.34.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Aug 2024 05:34:46 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f43de7ad5eso30877271fa.1;
+        Sat, 24 Aug 2024 05:34:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV0d1hicd/GKBxIShNHlrcmAnodz4/Gx2o3eovxMVx/4CN5/ljtGeKZxZNJ9Rvq47KVz4yJ7qf0mHU9@vger.kernel.org, AJvYcCV3o40zWXr5UE5awaaTpBT18DjcaBnhtIX05Df1XByuBjKSztW9xBsAQ+oLgENCILZIZF4Pjhxeqyd1Wj1N@vger.kernel.org
+X-Received: by 2002:a2e:4a12:0:b0:2f3:df8f:bfaa with SMTP id
+ 38308e7fff4ca-2f4f4927f82mr28693001fa.36.1724502885863; Sat, 24 Aug 2024
+ 05:34:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TY3PR01MB11346D61FB9088AE3C5BCE2B686892@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20240824-b4-fix-nanopineoplus2-pio-regs-v1-1-7c5f7da445af@gmail.com>
+ <761f18d4-9274-4983-a128-94efb96e1c59@kernel.org> <51f28d92-f670-47de-8e2d-53cbecfac081@gmail.com>
+In-Reply-To: <51f28d92-f670-47de-8e2d-53cbecfac081@gmail.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Sat, 24 Aug 2024 20:34:32 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65M6Zz7=TfRwF0urbELNaaazMZYsd3dtHYzwdJvzoho3A@mail.gmail.com>
+Message-ID: <CAGb2v65M6Zz7=TfRwF0urbELNaaazMZYsd3dtHYzwdJvzoho3A@mail.gmail.com>
+Subject: Re: [PATCH PATCH] arm64: dts: sunxi: nanopi-neo-plus2: Add pio regulators
+To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Aug 24, 2024 at 11:41:26AM +0000, Biju Das wrote:
-> Hi Vasileios Amoiridis,
-> 
-> > -----Original Message-----
-> > From: Vasileios Amoiridis <vassilisamir@gmail.com>
-> > Sent: Saturday, August 24, 2024 12:31 PM
-> > Subject: Re: [PATCH v3 5/7] dt-bindings: iio: pressure: bmp085: Add interrupts for BMP3xx and BMP5xx
-> > devices
-> > 
-> > On Fri, Aug 23, 2024 at 06:51:55PM +0000, Biju Das wrote:
-> > > Hi Vasileios Amoiridis,
-> > >
-> > > Thanks for the patch.
-> > >
-> > > > -----Original Message-----
-> > > > From: Vasileios Amoiridis <vassilisamir@gmail.com>
-> > > > Sent: Friday, August 23, 2024 7:17 PM
-> > > > Subject: [PATCH v3 5/7] dt-bindings: iio: pressure: bmp085: Add
-> > > > interrupts for BMP3xx and BMP5xx devices
-> > > >
-> > > > Add interrupt options for BMP3xx and BMP5xx devices as well.
-> > > >
-> > > > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/iio/pressure/bmp085.yaml | 7
-> > > > ++++++-
-> > > >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> > > > b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> > > > index 6fda887ee9d4..eb1e1ab3dd18 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> > > > @@ -48,9 +48,14 @@ properties:
-> > > >
-> > > >    interrupts:
-> > > >      description:
-> > > > -      interrupt mapping for IRQ (BMP085 only)
-> > > > +      interrupt mapping for IRQ. Supported in BMP085, BMP3xx,
-> > > > + BMP5xx
-> > >
-> > > Since you have updated the description. It is better to enforce the
-> > > same in conditional schema?? So that dt binding check throws error if
-> > > interrupt used in bmp{180,280 and bme280}.
-> > >
-> > > Cheers,
-> > > Biju
-> > >
-> > 
-> > Hi Biju,
-> > 
-> > Thanks for the feedback! It is true that it would be good to throw an error in case the IRQ is used in
-> > a not supported sensor. If you could point me to an example of another sensor implementing it, it
-> > would be even more helpful, but I am sure I will find something :)
-> 
-> As Krzysztof Kozlowski mentioned it depends upon driver(s/w) or device(H/W).
-> 
-> if it is driver(s/w), then you don't need conditional check as bindings describes
-> hardware.
-> 
-> There are plenty of examples for allOf:if:then: 
-> 
-> Cheers,
-> Biju
-> 
+Hi,
 
-Hi Biju,
+On Sat, Aug 24, 2024 at 5:08=E2=80=AFPM Kry=C5=A1tof =C4=8Cern=C3=BD <cleve=
+rline1mc@gmail.com> wrote:
+>
+> I am sorry if the message is wrong, this is my first patch ever sent to
+> the Linux kernel. I have checked the schematic of the board and it
+> shares the same power line with mmc0, so I assumed I can use the same
+> regulator. Thanks for your feedback and I would be glad for your further
+> response.
 
-Indeed, I checked Krzysztof's mail later. I will implement it like this
-since it is a device(H/W) issue.
+So some of the pin groups do have dedicated supplies, and should thus be
+described, but not all of them. The schematic only shows dedicated
+supplies for PD and PG pingroups. So just add those. PD supply is from
+2.5V ethernet PHY I/O regulator supply, so you would need to add that
+as well.
 
-Cheers,
-Vasilis
+The datasheet also mentions a separate supply pin for PC pingroup, but
+it is not shown in the schematic. I would just omit that.
 
-> > 
-> > Cheers,
-> > Vasilis
-> > 
-> > > >      maxItems: 1
-> > > >
-> > > > +  drive-open-drain:
-> > > > +    description:
-> > > > +      set if the interrupt pin should be configured as open drain.
-> > > > +      If not set, defaults to push-pull configuration.
-> > > > +
-> > > >  required:
-> > > >    - compatible
-> > > >    - vddd-supply
-> > > > --
-> > > > 2.25.1
-> > >
+And as Krzysztof mentioned, device tree changes should be to model
+the hardware, not to work around some operating system warning. At
+least most of the time that is. So your commit message should also
+be about fixing the description or providing more detail, and not
+about the operating system.
+
+
+ChenYu
+
+> Dne 24. 08. 24 v 9:40 Krzysztof Kozlowski napsal(a):
+> > On 24/08/2024 09:09, Kry=C5=A1tof =C4=8Cern=C3=BD wrote:
+> >> The board does not have a dedicated regulator for pio and r_pio,
+> >> but this fixes the kernel warning about dummy regulators being used.
+> >> Tested on the actual board.
+> >>
+> > Judging by commit msg these are not correct regulators. Please do not
+> > add incorrect hardware description to silence some warnings coming from
+> > OS. Either you need proper (correct) hardware description or fix the
+> > problem other way, assuming there is anything to fix in the first place=
+.
+> >
+> > Best regards,
+> > Krzysztof
+> >
 
