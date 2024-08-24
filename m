@@ -1,179 +1,357 @@
-Return-Path: <devicetree+bounces-96380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 847FB95DD84
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 13:26:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B43B95DD8C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 13:29:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0E411C210A4
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 11:26:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EFC8283590
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 11:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3B115B0FE;
-	Sat, 24 Aug 2024 11:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7A415D5D9;
+	Sat, 24 Aug 2024 11:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="RH+rHcQT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PH8s8fgc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04olkn2016.outbound.protection.outlook.com [40.92.45.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6339A29A1;
-	Sat, 24 Aug 2024 11:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.45.16
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724498811; cv=fail; b=Th7tnDbHWWRSHLwjpPUCIxstBan8ZnTTCkz6Qqun2lfDFL0LsjeVobMLBmqXcvxrjD4Bj49l/LiH2/Cj2qzE5EGKzb9HRsto3xIcywf7a5ifTBULC/eK41xur3kNgM0WlU9Iuf5eLJWpKk7Yzl7SgZ25ai4zO1x4+IVyHaWsh7I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724498811; c=relaxed/simple;
-	bh=wHEUJFZjg4xm7P75oS4RfveTTUWQWirKmHVLmjN78Cg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=o9lfBtkxa9LbANOQJ6QkohY0XA8UJYvpIvZunf93VXTnXhDKQkfk+1CqjnGVl6PeXZjNAFXABA/7dbgQ1Vegr5NDLJmrBecCzJs31qYxuOId1hPCvE3nUfvthAURHkmM44C2cb6e5tcj5GZwlg8jvEDEOc4pRR4Uwe6J0iGauSM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=RH+rHcQT; arc=fail smtp.client-ip=40.92.45.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=inOZLpNPTF3+6CsJ6w7oW+NE1sEqKL8VMXMgCkJaWrigZd+ZOy5BLZr2U5EC3DeXyom6JgSKjrYFVxRLMS5+Q7TXXSB2hLoZLHoTnguQ7oGZ/HOVpySgUCt/wXBcgbXePiy3TGewgB3wkGn/Xrn2p4ejEFVxpAbJvqaBYGqVmQB4qcLUJBMmOK3G3nQnk4lsNEtQgS5IeIa8Gs65yeLbz+vcZvtdZZrPkxsoAIZ2ONVb6fPRx08KENGaM7KJsFcWS7Z1oQRlOaDGkjR3YSucBhPOlxM1irk7Q9HsYss8iBuug1RWxiGeBkGxUFv5axZ5c54fScnS3iBDjbHdm3ibRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FBLuGQyrA0UiV3q1qvXYkxmO40l1w1qrUJWVC3GFFls=;
- b=seweTF0bU7/0P0A2oChpmDkzbFuxnZU/lyT5JhHviozEDzOvsLIPHZ0NwAG31ouF4/vU9bEclCF3G/vTwvgGpAfYJQU7x7fDDhoNgCJyiXTrz2O58+t4Hg9YLY/1yJOvbpgmOMoH6szYpufMWRT71jXtyuQ305OkXxiR4xZfmFICDOKoDZcW6VrIPPyx7sJZHOGZdtPLoK7mchk4NQ5jw7jmhkM/yGhXuviqdIewVjHlNglOU03KaVGIUBTim99FrmXVWcwHp6E62n7QQEsjlqI+AsQFODM/Gas8bJIY1OWnXI315evLFbxtiHoz38pgeaBIhhCfdhk1K9zRSUy4fw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FBLuGQyrA0UiV3q1qvXYkxmO40l1w1qrUJWVC3GFFls=;
- b=RH+rHcQTVIezu4Z/mlXJDumRUkOaDGptTOr7qfr/KI6RhvxGSjONMNUMix6/YhIG+haDWq95dpwtAcISpbfyqzqMrUmmuel6bOhuHeoGhEM3m2JI38pw3kLD2aybDw5CkqhjcYIIH42nYRwPITKZ9v6uBLKPuv0Y4yxRqgVqxRgJfCyXT3b9WfBWLDUOEdUHin9FuDK98W1zy/1qxBM1Jp/KLc+sy0OZng4BrKG2GxAuSrLhLm9MBxnIJnuAT7IUQr8Huy1aUpdYSFGbAHX/R9jrGeaMiQhxJCL3+yxy51KrQsh30GVH65ac5x30w7lYTq6cBlysQHdBFefPa03QJQ==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by DS7PR20MB4623.namprd20.prod.outlook.com (2603:10b6:8:76::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7897.23; Sat, 24 Aug 2024 11:26:47 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%4]) with mapi id 15.20.7897.014; Sat, 24 Aug 2024
- 11:26:45 +0000
-Date: Sat, 24 Aug 2024 19:25:39 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Linus Walleij <linus.walleij@linaro.org>, 
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
-	Drew Fustini <dfustini@baylibre.com>, Haylen Chu <heylenay@outlook.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 0/7] riscv: sophgo: Add pinctrl support for CV1800
- series SoC
-Message-ID:
- <IA1PR20MB495368D784BE3F977617BF39BB892@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953DC78BB0FE0C57EA94F91BBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
- <CACRpkdbaDW2=R881G9C=r1iW4YNdYpRZ2kHaN63T7EX1A0xVrA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdbaDW2=R881G9C=r1iW4YNdYpRZ2kHaN63T7EX1A0xVrA@mail.gmail.com>
-X-TMN: [kmkp2C/EmnCmC7Jcgvw1pcjR0fK7SgW9QqOiXh5ATfk=]
-X-ClientProxiedBy: OSAPR01CA0263.jpnprd01.prod.outlook.com
- (2603:1096:604:29::35) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <k3xyfjzfslqae44rdsv5dfw3ybfphfzkfkv5vvmtruykxuqbnw@z2c3yqlvtsyx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84130154BFF;
+	Sat, 24 Aug 2024 11:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724498971; cv=none; b=O7/63ZWFrHk1Zs+rUFhBimGHbIIUXH36HF8BME2RjUuGu1V4vdo4EKuWbXX9Kb1kyBGbQsP5l6zMCvlBv+nnMQLWod56fhuBtW1FWpsOCWk/x6tgFRt54D+wYG5p1moRMlEo4C/s4lNH1Hv5zh0EIGYVcd4TX3n+qEbWYIXFTKc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724498971; c=relaxed/simple;
+	bh=KHrgdPldxZwH+gUoGeaHFZnjdYLc8pGJbzz8198AMEc=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jylMbqw816Mvsp3kI2hGjr/N+5WK1cX8CNq1Iy/Ujk5xEoSH/RJHfk4ZEk5X3HST9Z0ZJSRx2Ye69L0t/H9gpn+KDFdKSiKixugMehYkCU2NAFg6jmGlH8D+suskDB2c5GFMcbw0E/RZg/2wWmrr6G/j3mmoYpTGOEhBSg5cK2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PH8s8fgc; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3718ca50fd7so1533936f8f.1;
+        Sat, 24 Aug 2024 04:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724498968; x=1725103768; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O6AYBDTHwq86E9/xR+lHeYha+A1IcDpW/zRoW6FdXpk=;
+        b=PH8s8fgc+IWPPRYiNK42KwTeFLJQdCWkD6VCWc+eLphzb6eqvjtoSWxN3NSRiQFpTC
+         Ma9kp0xkOwWIRfjxPwC3hRfVXNfVQziKk9cK9ypsebyCrKD/+TJmIVnkEoFEyVgQ8YxV
+         TpnRVLYMKmXoyFJp2gi6OgFmjuNW72/kFLhvKHt97emG0uZAwf6lrZ0wI+oH6sZaqxc8
+         Com6pa/6icF4rCFY1Z2/3tvXKIRKr0XIRRa0YVAxkOq9/sd9sPkZ1+mvZMEvhjhWaIDM
+         25qbN27hgnBbl2AM/hgbD4YTcNqnO4LwO7gYsusOoT9jWWMgesfyP4g7FZu8QYKbMJzP
+         AwFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724498968; x=1725103768;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O6AYBDTHwq86E9/xR+lHeYha+A1IcDpW/zRoW6FdXpk=;
+        b=fjKeDYrjaX/5xLHjjAMYroE4cSrT1L7pO83zZrAt7wvl7PUvJzmdb1/jh1OKaVMp3g
+         o/YbtOPHBhtl4pt+QzoLSfhA8JJLEWI7Dfzr4FewLDQojKOje9F92fecsGC02FHFW8XA
+         /KGHiXDfVQTZd0yRzSz/tP4JkbCAr/57SrWoZ1PNfrH1hVsKwx9hRqTFvkiz/7AIh8a3
+         cNrB4edjZq8Es9zdTSv4cFw7i4A9rU6xoTO4s9PEl4eINCz73GrNnFXOQa3soYlyuG+u
+         GhKborynAQZxroJKo+qLtQftqpsA8UYiK03UAbxi+BsgV5CEBulraKkT74P3GySNDcGa
+         h4fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUeNNTjRzFFhOsHoQBNoDH3HxlvThkD1FAJ7XWxtgBroiOLxf/a/FITr8xWSL7VzA+/vM5oG8hcRfvY@vger.kernel.org, AJvYcCVsmt0HzCI1w3/JgZ5s/uQcpeAh+bhNwhLDmeBTSgNSTqaq0OweNIrZnRQL1ZtZsNdNDoQm+gGclq9Gvcnu@vger.kernel.org, AJvYcCWqGw0qotQhJnsckV//K8ICbVTCQMbKY8AetNiNCdr0siKeL7cxG8CTSzKImkEr4jALhRCbdf7M5QJ9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzIdBAtNdg1Spt6xsneYq/OSIW61h+Oaz+ryoP4BQQ3mgFRJZ2
+	j6TFyyWUfeHkXDlTPN0dondQhfD+Be7T0iswkzIPwYN/6DIRVg7m1htIPXs9
+X-Google-Smtp-Source: AGHT+IGXHDlzEVn/ATKk4zyvTJkyKaRLa2eJgIF6FIP7NiOZD/yzAU5p8p4MQ6Tsw/STc3Fbg2QtGg==
+X-Received: by 2002:a5d:534c:0:b0:368:3789:1b6 with SMTP id ffacd0b85a97d-373118e357amr3150945f8f.47.1724498967232;
+        Sat, 24 Aug 2024 04:29:27 -0700 (PDT)
+Received: from vamoiridPC ([2a04:ee41:82:7577:9aa7:6f8c:e4ad:5d20])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-373081ffb66sm6376516f8f.84.2024.08.24.04.29.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Aug 2024 04:29:26 -0700 (PDT)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
+Date: Sat, 24 Aug 2024 13:29:24 +0200
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, jic23@kernel.org,
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/7] iio: pressure: bmp280: Use sleep and forced mode
+ for oneshot captures
+Message-ID: <20240824112924.GD9644@vamoiridPC>
+References: <20240823181714.64545-1-vassilisamir@gmail.com>
+ <20240823181714.64545-5-vassilisamir@gmail.com>
+ <ZsjiDaZjcA-oopWB@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS7PR20MB4623:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19c4338c-d834-4167-b889-08dcc42fa2cb
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|461199028|19110799003|5072599009|15080799006|4302099013|3412199025|440099028|1602099012|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	mZ4GQTeAgAJYWgPffbSILmpVEnEghBLryoiyCnFFnFso9zwbHkXwWnvkA6CDhUmfbfHT7NlFcdecSelVzB4jO0hrzIuliM8MpACauDD67AlZf6npxwxPnAIyZQ1dJ+jlwQRhyd+yYpBga1TFClPekHm4nHJJt3um8pTzqbpTbxY0w10RRsSEoVP44ezJW7ANCIbmqDT0Mw0j60qJsNhojlZqt2iePaWfHv6/d8bVnPN0ijl1z83asx0S7OyFWOeFKqCy0Dmcpy93Ds5EQjuU/i03TjnlecHqgzIEYJGvoBK8Yy2/uln2BZ34zbprZYjeKGSfu6Mh39OWxvyr+g/zJ6vgO2nAuMB06NrTd8+YMLMyNoYWBG5nRGQJ7ZO8WygZ5DZSDfhNRwjpG0ulvEjX8+WG1pIQe+dHjgVp9WuZBs8Y8tPrh4llKs2IDQnRz9ZCmdC5xZkQAsEYcZmBIGvC0PWCTR1vl3C0xMWIuJyy4OhSKV13SXbV9jJ537xXqD0bVvQJ2l0NZ2h9M14he4MhkmaD7MtlUDwDuiL00R3qycIKn6zbn7C5JeiJVdPttPvjNUva9+j8/RYc6cB4TPk7WZ4E4BPpiuiv/Yuc/Or2ZzGxwZ1HER0PFZBysbl3eDwvoDEjHCZ+ws8b6jZkSzz0FN0pK4wBwNmf8tV+zQW5Ier+XTunRC58D2wIB2AmbBEvtD4LAhgz7Ntj2jkS78w+DXEFCd/h28Ht+Lhkj6akS9FyXrVyOy6qkyq1qAaIbf2UhxtnI67Z0pC/GMBcq9e13XOxGFbNhOGzIqK3NygKX29Txt3ZJXjn3eIuzzrZIiq4lvTHkYbqYuZ3ctEpINgShjneb6D7HwbLZiQMxjNfO1o=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?c0JZT0pIOGZkYkxoeFBBSVlMQ3lKdmFCS08vWVN5TnZFTmZEQXhFYUxHcEd5?=
- =?utf-8?B?aTJtZ1Y5TXJjZWkwOVhiY3lmbDFidmplbXpVMWwrRGVjWGcwRWhCUFVrZ3FB?=
- =?utf-8?B?SkdSOEhId1EzWVF1R1N0WnczVzNMQWlCelFLRTdPMkpVM3NYRmFKZ2t1dE1x?=
- =?utf-8?B?dExva2JDV0J0NWZjVkpVZFNPNHFBQVdOZHhPRXI5bXE5UVJoRkRmeDdYUG9H?=
- =?utf-8?B?Y1lMTEJDT1duMURtd0ZYb2xraWNlenJWRTV3UnBBM1lpSEcvMjBZOE5uNHkr?=
- =?utf-8?B?UEJYcVAweitiSC9yTk1aVTEybmpkdnU1N2JvZXVUNVJaTTZKeURiWmZlM3lZ?=
- =?utf-8?B?dCtxMy96ajAwUjBBb2NJMVlHUUNJb3R2VGhqeTFPSDFrZm5jcVd0RTBQdFlv?=
- =?utf-8?B?T0dTaW1GTnVUcWJzRFFySnhpZDZmQjUxYVNVSjJoWTFLaG0zczRoQnA1Q2Qr?=
- =?utf-8?B?MWpseFBJOTI0ZDNpM0NFbnBBVTBQMzExc0dXekkzemxGYmk2Mi9XOW1Rd1FJ?=
- =?utf-8?B?VTJ0NWg5dVA5RkIxK1JJTW5KazBoVFczRjdmR0NjUWY5YTByUzZrbE1LVEwz?=
- =?utf-8?B?OFhnTFprT0tCQVFMUU41SkI2QmhUR0RYVXZjaEJFdFF4UW1DVHpmczZIc213?=
- =?utf-8?B?TlRVVUdpVXZnNUNia0FmSHlpRi9yRWNRYkZkSlpsZzlFRkE3SVhIZEEwdjJ6?=
- =?utf-8?B?eTByVTFRRDZFcVdNNGNNNzVyb01SNHRkbFBsdEEwakF3MWE5ejJ6U1FrSklx?=
- =?utf-8?B?RVRqQTBVWVpVY3lxRVg0R3BmRnBVMGF3bDdvZkxpeVozNUJBcHkreFErc21B?=
- =?utf-8?B?MGkzSnArZlBqcGZtajFPZEdGRWJWQ3RIQVBuNFRHekIrK3lzcFNYZldIY284?=
- =?utf-8?B?a2ZTaWNMdVZjekMyT2Jia0J1YU1xZ0g3RkgxM1NWdExNMWNqV3hDa01xRFdK?=
- =?utf-8?B?TnlFdzhPbkNSL25Qa2UrUEdIcTdzMCtJT1ErZG1zcEt2N1FDQitWcm9McTcz?=
- =?utf-8?B?Qml4czFvY0ZpS2drdFMyWithN3Jtb0FYbWNnVVpzeS9aUUtRYnJwWmFjdzVG?=
- =?utf-8?B?Z1RYYk9xMjNyYXJ6M3lQNjlRU1NDd1RwcVJnVEVXdlRUTW1MUkRmUWZSUkRt?=
- =?utf-8?B?V2xST2drdDllUlNGWnJBUDNCUXdwYXFxelNsaStPbkxKTkVKaDYxS0RJVnpq?=
- =?utf-8?B?RDJ3VWRvemk5MGVIZmNFb1JObWdtajFkSS8wTDkzVERPemx6K21nNGJIdTFX?=
- =?utf-8?B?Q1BlMlNMSmNta3VvcUVNTFJBTEVvZXNLdS90ZWFzZWlidTBCbGp5cUNJcXVm?=
- =?utf-8?B?UVpDNTdONXhOSzRxMk95SFp0YzlWenNzNW1LQkJwSE4zQVdhL0x6b0J6ejlX?=
- =?utf-8?B?ZVo1cXFONGU5Tm4yRnVwVkwxc1JmdFFJd3orRDFKaXJ6MmwxWk8rNVpaMkFj?=
- =?utf-8?B?ZExNVGdhTlJqYUw0Nnp0b1dJVTF0bDZiMnZBa2M4TXZQbldHZ2licm91S0lw?=
- =?utf-8?B?dllweGxJd01IR2dWcHdsTXhiM3ZiemU3dXBVcFdMbkJaaHhLYVliMGtXUlBY?=
- =?utf-8?B?bWxNOE1aeDhzbW0zMnVnejFIZ2JwNnZLWGhORlFJTUJCOVBTQ3BJeExJayty?=
- =?utf-8?B?VWxwcnJESmtVZVY4c0thWHZVYVdSc2JYc1J6U2FXYnVHV1gyekp1MkJ4Y0Rv?=
- =?utf-8?Q?JysRYOyPMW/GvXv/IqH8?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19c4338c-d834-4167-b889-08dcc42fa2cb
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2024 11:26:45.6147
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR20MB4623
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZsjiDaZjcA-oopWB@smile.fi.intel.com>
 
-On Fri, Aug 23, 2024 at 05:44:17PM GMT, Linus Walleij wrote:
-> On Fri, Aug 2, 2024 at 2:34 AM Inochi Amaoto <inochiama@outlook.com> wrote:
+On Fri, Aug 23, 2024 at 10:25:01PM +0300, Andy Shevchenko wrote:
+> On Fri, Aug 23, 2024 at 08:17:11PM +0200, Vasileios Amoiridis wrote:
+> > This commit adds forced mode support in sensors BMP28x, BME28x, BMP3xx
+> > and BMP58x. Sensors BMP18x and BMP085 are old and do not support this
+> > feature so their operation is not affected at all.
+> > 
+> > Essentially, up to now, the rest of the sensors were used in normal mode
+> > all the time. This means that they are continuously doing measurements
+> > even though these measurements are not used. Even though the sensor does
+> > provide PM support, to cover all the possible use cases, the sensor needs
+> > to go into sleep mode and wake up whenever necessary.
+> > 
+> > This commit, adds sleep and forced mode support. Essentially, the sensor
+> > sleeps all the time except for when a measurement is requested. When there
+> > is a request for a measurement, the sensor is put into forced mode, starts
+> > the measurement and after it is done we read the output and we put it again
+> > in sleep mode.
+> > 
+> > For really fast and more deterministic measurements, the triggered buffer
+> > interface can be used, since the sensor is still used in normal mode for
+> > that use case.
+> > 
+> > This commit does not add though support for DEEP STANDBY, Low Power NORMAL
+> > and CONTINUOUS modes, supported only by the BMP58x version.
 > 
-> > Add basic pinctrl driver for Sophgo CV1800 series SoCs.
-> > This patch series aims to replace the previous patch from Jisheng [1].
-> > Since the pinctrl of cv1800 has nested mux and its pin definination
-> > is discrete, it is not suitable to use "pinctrl-single" to cover the
-> > pinctrl device.
-> >
-> > This patch require another patch [2] that provides standard attribute
-> > "input-schmitt-microvolt"
-> >
-> > Note: As current documentation is not enough to guess the pin
-> > configuration of Huashan Pi, only the pinctrl node is added.
-> >
-> > [1] https://lore.kernel.org/linux-riscv/20231113005702.2467-1-jszhang@kernel.org/
-> > [2] https://lore.kernel.org/all/IA1PR20MB495346246245074234D337A6BBAC2@IA1PR20MB4953.namprd20.prod.outlook.com/
-> >
-> > Changed from v3:
-> > 1. binding: drop unnecessary type
-> > 2. binding: use right ref for pin node.
-> > 3. binding: remove mixed spaces and tabs.
+> ...
 > 
-> This v4 looks good to me and has necessary ACKs.
+> > +static const u8 bmp280_operation_mode[] = { BMP280_MODE_SLEEP,
+> > +					    BMP280_MODE_FORCED,
+> > +					    BMP280_MODE_NORMAL };
 > 
-> It contains device tree patches which I am icky to merge but
-> I can merge the rest and give you an immutable branch in the
-> pinctrl tree that the ARM SoC maintainers can pull in to
-> merge the device trees, does this work for you?
+> Better style is
 > 
-> Yours,
-> Linus Walleij
+> static const u8 bmp280_operation_mode[] = {
+> 	BMP280_MODE_SLEEP, BMP280_MODE_FORCED, BMP280_MODE_NORMAL,
+> };
+> 
+> Also note comma at the end.
+> 
 
-Hi, Linus
+Looks much better indeed, thanks!
 
-It is OK for me, Thanks for taking it.
+> ...
+> 
+> > +static int bmp280_wait_conv(struct bmp280_data *data)
+> > +{
+> > +	unsigned int reg;
+> > +	int ret, meas_time;
+> > +
+> > +	meas_time = BMP280_MEAS_OFFSET;
+> > +
+> > +	/* Check if we are using a BME280 device */
+> > +	if (data->oversampling_humid)
+> > +		meas_time += (1 << data->oversampling_humid) * BMP280_MEAS_DUR +
+> 
+> 		BIT(data->oversampling_humid)
 
-Regard,
-Inochi
+ACK.
+
+> 
+> > +			       BMP280_PRESS_HUMID_MEAS_OFFSET;
+> 
+> > +	/* Pressure measurement time */
+> > +	meas_time += (1 << data->oversampling_press) * BMP280_MEAS_DUR +
+> 
+> Ditto.
+
+ACK.
+
+> 
+> > +		      BMP280_PRESS_HUMID_MEAS_OFFSET;
+> 
+> > +	/* Temperature measurement time */
+> > +	meas_time += (1 << data->oversampling_temp) * BMP280_MEAS_DUR;
+> 
+> Ditto.
+> 
+
+ACK.
+
+> > +	usleep_range(meas_time, meas_time * 12 / 10);
+> 
+> fsleep() ?
+
+Could be used indeed. My concern is that fsleep uses a sleep range
+between x and 2x but I don't think it is a problem since these are
+oneshot captures.
+
+> 
+> > +	ret = regmap_read(data->regmap, BMP280_REG_STATUS, &reg);
+> > +	if (ret) {
+> > +		dev_err(data->dev, "failed to read status register\n");
+> > +		return ret;
+> > +	}
+> > +	if (reg & BMP280_REG_STATUS_MEAS_BIT) {
+> > +		dev_err(data->dev, "Measurement cycle didn't complete\n");
+> > +		return -EBUSY;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static const u8 bmp380_operation_mode[] = { BMP380_MODE_SLEEP,
+> > +					    BMP380_MODE_FORCED,
+> > +					    BMP380_MODE_NORMAL };
+> 
+> As per above.
+> 
+
+ACK.
+
+> ...
+> 
+> > +static int bmp380_wait_conv(struct bmp280_data *data)
+> > +{
+> 
+> As per above comments against bmp280_wait_conv().
+> 
+
+ACK.
+
+> > +	ret = regmap_read(data->regmap, BMP380_REG_STATUS, &reg);
+> > +	if (ret) {
+> > +		dev_err(data->dev, "failed to read status register\n");
+> > +		return ret;
+> > +	}
+> 
+> > +
+> 
+> Choose one style (with or without blank line), as in the above you have no
+> blank line in the similar situation.
+> 
+
+I didn't even notice it, you are right.
+
+> > +	if (!(reg & BMP380_STATUS_DRDY_PRESS_MASK) ||
+> > +	    !(reg & BMP380_STATUS_DRDY_TEMP_MASK)) {
+> > +		dev_err(data->dev, "Measurement cycle didn't complete.\n");
+> > +		return -EBUSY;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +		usleep_range(data->start_up_time, data->start_up_time + 500);
+> 
+> fsleep() ? Comment?
+> 
+
+I could use fsleep(). I didn't add a comment because also before it was
+also like this. The code just used hardcoded (2000,2500) while I used
+the data->start_up_time. It is mentioned in the datasheet, I could add it.
+
+> ...
+> 
+> > +static const u8 bmp580_operation_mode[] = { BMP580_MODE_SLEEP,
+> > +					    BMP580_MODE_FORCED,
+> > +					    BMP580_MODE_NORMAL };
+> 
+> As per above.
+> 
+
+ACK.
+
+> ...
+> 
+> > +	switch (mode) {
+> > +	case BMP280_SLEEP:
+> > +		break;
+> > +	case BMP280_FORCED:
+> > +		ret = regmap_set_bits(data->regmap, BMP580_REG_DSP_CONFIG,
+> > +				      BMP580_DSP_IIR_FORCED_FLUSH);
+> > +		if (ret) {
+> > +			dev_err(data->dev,
+> > +				"Could not flush IIR filter constants.\n");
+> > +			return ret;
+> > +		}
+> > +		break;
+> > +	case BMP280_NORMAL:
+> > +		break;
+> 
+> Can be unified with _SLEEP case.
+> 
+
+ACK.
+
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> 
+> ...
+> 
+> > +static int bmp580_wait_conv(struct bmp280_data *data)
+> > +{
+> > +	/*
+> > +	 * Taken from datasheet, Section 2 "Specification, Table 3 "Electrical
+> > +	 * characteristics
+> 
+> Missing period.
+
+ACK.
+
+> 
+> > +	 */
+> > +	static const int time_conv_press[] = { 0, 1050, 1785, 3045, 5670, 10920, 21420,
+> > +					42420, 84420};
+> > +	static const int time_conv_temp[] = { 0, 1050, 1105, 1575, 2205, 3465, 6090,
+> > +				       11340, 21840};
+> 
+> Please, start values on the next line after {. Also make }; to be on a separate line.
+> 
+
+ACK.
+
+> > +	int meas_time;
+> > +
+> > +	meas_time = 4000 + time_conv_temp[data->oversampling_temp] +
+> > +			   time_conv_press[data->oversampling_press];
+> 
+> 4 * USEC_PER_MSEC ?
+
+Since the previous values in the arrays are all in thousands, why should
+I make this different?
+
+> 
+> > +	usleep_range(meas_time, meas_time * 12 / 10);
+> 
+> Comment? fsleep() ?
+> 
+
+The usleep here is for waiting for the sensor to make the conversion,
+as the function name points out as well? Should I put it as a comment?
+
+In general, is it considered good practice to add comments above all
+sleep functions? I don't think it's a bad idea, I just didn't notice
+it somewhere.
+
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +	usleep_range(2500, 3000);
+> 
+> fsleep() ?
+> 
+
+ACK.
+
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+
+Cheers,
+Vasilis
 
