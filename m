@@ -1,83 +1,169 @@
-Return-Path: <devicetree+bounces-96356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A3B795DC4F
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 08:40:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4AB795DC60
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 09:10:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C06A1B2241A
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 06:40:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C7781C21A0F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 07:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FD315380B;
-	Sat, 24 Aug 2024 06:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422A0154425;
+	Sat, 24 Aug 2024 07:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qj7VzI3/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IYxl7xYi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6EBD41C72;
-	Sat, 24 Aug 2024 06:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DE1153824;
+	Sat, 24 Aug 2024 07:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724481641; cv=none; b=CWYJK1RrjAL96ak9djW7R3J953pfzGEYyCrCmAJ1Byz7cVs8LoDuf2X0VzSROrn/FqpJ9lBcGl6kfZ4NQsZHwEq+Uikda/Vj6y51e7nT09QBzPnzzWvf1KZ5BRX4ZTqLfryZH1r+QmXP9bERb+95427DLyzAosbIsdxqQxdMWJg=
+	t=1724483430; cv=none; b=Ip+AYvCRjoKPLnokCZqra8yzmtujNQRWQiO55QMPienO+NKSIxZB8r6lTS9lveG1stayn5qY29QQo0JUGaIMEoIB57d64co7V5GU4tRItA3AGkrd9lqRejd4hrqF5n98vhQXXH5Qp6EAcZCAhICuVzdCEXfL7cXU3EW0c9j4FHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724481641; c=relaxed/simple;
-	bh=5TxGJM2lgfOwOS4MoY4u+yR3Tar/t5YK8uVyAbo38c0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XFAXY+tkkapvdwmYZzmDljDAM0R6IrBM7a/ipyQnqsqPU8UHz810E7kZ7HPnA3WEh8R5F04hrRQUdQvfOZnds+AyAy2EpUPLh+051Hz4/Glz8O2a57MrN9aamMrqlaOdf2A+p/vpW6N6r391b1UAGIr2LMYpSRh2twRzDS70VZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qj7VzI3/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 599F1C32781;
-	Sat, 24 Aug 2024 06:40:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724481641;
-	bh=5TxGJM2lgfOwOS4MoY4u+yR3Tar/t5YK8uVyAbo38c0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qj7VzI3/OvwOO57IW7w/frLuIeu/UUBh9154QnWVBW3THRktxfEHcp59FPjzJvJ+B
-	 e/qGYryowsbz2U7j1TpkjvKwlktZszRRlmzHpwy4Pk8lwNYsCrM7Yp4nsXkcjbWpOB
-	 ceyVEZ9ORPAtk+PvGJkvt+uT575akgR7byPm79/ezzgelIzyOk7CeFwNh+ujIChjrB
-	 HCd9ukIru4DxYFLIM8gOpwbSpXdUGi+CueGJWOKEKnkf18dFx091L5IlX7gT9+LFnv
-	 6NJS4tmOLTC1ck1Y8uc9Ekqa3b3aCPcogVLVqqsyvxberJBbDQxBPlbU/NRJuAcRvY
-	 LSluoWOk310Sw==
-Date: Sat, 24 Aug 2024 08:40:32 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tristram.Ha@microchip.com
-Cc: Woojung.Huh@microchip.com, UNGLinuxDriver@microchip.com, 
-	devicetree@vger.kernel.org, andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com, 
-	pieter.van.trappen@cern.ch, o.rempel@pengutronix.de, davem@davemloft.net, 
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, marex@denx.de, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 1/2] dt-bindings: net: dsa: microchip: Add
- KSZ8895/KSZ8864 switch support
-Message-ID: <3dqh5ccseh2kk6otsqybgzs3awtxt4swvtmwokr4xrworn3wkv@sf2u2x6ao5l2>
-References: <BYAPR11MB355841E229A2CBB9907C673EEC882@BYAPR11MB3558.namprd11.prod.outlook.com>
+	s=arc-20240116; t=1724483430; c=relaxed/simple;
+	bh=UMSSgFtE9sSYCRl7FqDQxvs8kkccAFFNVpy/6zc6pq0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qvLUYjaeKGHZbynOgSrVo47QD1DxOAQffaZGd/1GeYEpf+tg/1ryWwrnFWbEBWMZeJ33SBzK75SclsHx/oXD7baOOrVk+yOXqF2IztqcN+8/lcVS9xoRsFMdcB6T86rFynKKkQULzEF8kCVWeOFWLkSLugYlvn4nGGrasR0yrXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IYxl7xYi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47O5S3sA023727;
+	Sat, 24 Aug 2024 07:05:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ak1bjo5v/J0lhnYtiB4yxlYX1xBnGK1uJl/2njt9Dn4=; b=IYxl7xYiJCXgkflT
+	R2d2uDaG/EIKr4hQCBiCsdb8pOxHz81A7ktgxSvY3jeotypDcpgPvs0wRgJh8KPj
+	leC13oK/4iC1zeovvBwfmFut1yI01apa1qVqaS3uvMRrgigosUFhPLshc4nsqFRm
+	2shBJory1gY5/PA1EKyFT0WuuCEtPDkma9suMKFM2j1bUOs0qVnghTnDCH7d+tmj
+	srPA/rezRTRGlrbDQQC+TgYPg47OtRFFEz5EoJT260+jHAgGgBIw8q394vS7QGbq
+	xu9P7BccrFM0TPncSSpi89sxWXMgiIqxJ7uN4eRUD4q+f4x/Xmgag5mJuufPqUUM
+	dnAaWw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 417980r36h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Aug 2024 07:05:14 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47O75Dfp025819
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 24 Aug 2024 07:05:13 GMT
+Received: from [10.216.42.154] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 24 Aug
+ 2024 00:05:06 -0700
+Message-ID: <51653ef6-07f3-5419-e85b-b3e26958173f@quicinc.com>
+Date: Sat, 24 Aug 2024 12:34:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BYAPR11MB355841E229A2CBB9907C673EEC882@BYAPR11MB3558.namprd11.prod.outlook.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 01/16] dt-bindings: dma: qcom,bam: Add bam pipe lock
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <thara.gopinath@gmail.com>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <gustavoars@kernel.org>, <u.kleine-koenig@pengutronix.de>,
+        <kees@kernel.org>, <agross@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>, <quic_srichara@quicinc.com>,
+        <quic_varada@quicinc.com>, <quic_utiwari@quicinc.com>
+References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
+ <20240815085725.2740390-2-quic_mdalam@quicinc.com>
+ <20240823153958.vk4naz34vgkqzhrb@thinkpad>
+Content-Language: en-US
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <20240823153958.vk4naz34vgkqzhrb@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: fgyA9iH7KNSk9YsPjZ7AZdROO68WMbCg
+X-Proofpoint-ORIG-GUID: fgyA9iH7KNSk9YsPjZ7AZdROO68WMbCg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-24_05,2024-08-23_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ adultscore=0 mlxlogscore=999 spamscore=0 lowpriorityscore=0 clxscore=1015
+ malwarescore=0 phishscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408240039
 
-On Fri, Aug 23, 2024 at 11:07:03PM +0000, Tristram.Ha@microchip.com wrote:
-> KSZ8895/KSZ8864 is a switch family developed before KSZ8795 and after
-> KSZ8863, so it shares some registers and functions in those switches.
-> KSZ8895 has 5 ports and so is more similar to KSZ8795.
+
+
+On 8/23/2024 9:09 PM, Manivannan Sadhasivam wrote:
+> On Thu, Aug 15, 2024 at 02:27:10PM +0530, Md Sadre Alam wrote:
+>> BAM having pipe locking mechanism. The Lock and Un-Lock bit
+>> should be set on CMD descriptor only. Upon encountering a
+>> descriptor with Lock bit set, the BAM will lock all other
+>> pipes not related to the current pipe group, and keep
+>> handling the current pipe only until it sees the Un-Lock
+>> set.
+>>
+>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>> ---
+>>
+>> Change in [v2]
+>>
+>> * Added initial support for dt-binding
+>>
+>> Change in [v1]
+>>
+>> * This patch was not included in [v1]
+>>
+>>   Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+>> index 3ad0d9b1fbc5..91cc2942aa62 100644
+>> --- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+>> +++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+>> @@ -77,6 +77,12 @@ properties:
+>>         Indicates that the bam is powered up by a remote processor but must be
+>>         initialized by the local processor.
+>>   
+>> +  qcom,bam_pipe_lock:
+>> +    type: boolean
+>> +    description:
+>> +      Indicates that the bam pipe needs locking or not based on client driver
+>> +      sending the LOCK or UNLOK bit set on command descriptor.
+>> +
 > 
-> KSZ8864 is a 4-port version of KSZ8895.  The first port is removed
-> while port 5 remains as a host port.
+> This looks like a pure driver implementation and doesn't belong to the DT at
+> all. Why can't you add a logic in the driver to use the lock based on some
+> detection mechanism?
+   Sure , will use BAM_SW_VERSION register for detection mechanism, since this
+   support only for bam version above 1.4.0.
 > 
-> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
-
-Your From and Sob still do not match. Please run checkpatch before you
-post.
-
-Best regards,
-Krzysztof
-
+> - Mani
+> 
+>>     reg:
+>>       maxItems: 1
+>>   
+>> @@ -92,6 +98,8 @@ anyOf:
+>>         - qcom,powered-remotely
+>>     - required:
+>>         - qcom,controlled-remotely
+>> +  - required:
+>> +      - qcom,bam_pipe_lock
+>>     - required:
+>>         - clocks
+>>         - clock-names
+>> -- 
+>> 2.34.1
+>>
+>>
+> 
 
