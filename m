@@ -1,142 +1,344 @@
-Return-Path: <devicetree+bounces-96386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6745195DDAE
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 13:59:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7876495DDB3
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 14:02:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6936283335
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 11:59:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D74B71F21B76
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 12:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D2411714AA;
-	Sat, 24 Aug 2024 11:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154CD15B153;
+	Sat, 24 Aug 2024 12:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X6a07QXB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AB72uCTt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E12158DD9
-	for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 11:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424991CD31;
+	Sat, 24 Aug 2024 12:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724500747; cv=none; b=UyiBEnZu/NHnMjIOqMnXQpQvfvCH5U4b4XaBK7GiY+LihlPhl+XPQWr8SzJVT/FGBG77+DcOgxLdI3+H2EhBhzOWMI/aFyd5Gvd/y6NORxbBcm741tNUg21X1PwzCMzWUagOcIJdQFwGykP19PylDM1/Axq2Zusx13WJsdbUhAM=
+	t=1724500949; cv=none; b=OoltnIXiOplQeapWUTCLpvPWV+5N0KROSCSHyHyxOyQ4CJim8hjM/nO12aSwKwaQri+Rn7kJKSPcmIVPx6x4NGtsm3FNM0UTr2/McQs30aw35GxRbp5n2QKZ2mjdGf6WtIohOTFesxeinh7niyWDfKSJctSG+bOeZ1p7oLMm+BU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724500747; c=relaxed/simple;
-	bh=0DuzVKEoj/UXgJ7mEwk1mI8XAwz74JJWB+QxpB2dey4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BtQ7QJqGaoVrIkehqZHjF96gRdLVTsQc6z+b+Ft0O3aB2K4+KXPl4yQ7EvAL2C6haYK6SBWNNyMKpxM9fgRLw5gkDG4UqcFAbyThGWxAW5hseEdRzd/lI4tQq9M7U0QtRgk1SWOwCA+15ItmmMA4hoVGYN4HUBpWjbGc3a/WB3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X6a07QXB; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a8695cc91c8so298918466b.3
-        for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 04:59:05 -0700 (PDT)
+	s=arc-20240116; t=1724500949; c=relaxed/simple;
+	bh=HsOzfSOy3aKGBAfkhX1w1VTlDG8BUJdBoxUAafhwagE=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nuKvaRjc3DPS1KWVyUfAzG+NmRGi0PcHlpJp9Hh0mUf/dPviTnr+jZft4esQ/2yLLL3iveSYGG0yNlQVQi+DDofoBWTnmt21Zx/UGSLpgzYBIWOOFknZqcZ2D49/MzASmd6NazA4f3O3/Mcfv5KUOjCTpb0Zt1Ta1b6FLQGNLQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AB72uCTt; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4281d812d3eso29823235e9.3;
+        Sat, 24 Aug 2024 05:02:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724500744; x=1725105544; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nFI93y00zMD6bCmpfwEIFGjVAprudVxyzc0oGsV9Nws=;
-        b=X6a07QXB62MNUrElErXJ+PQ2QJnh2hMxPNfZ9YfkG+0VYxnANmoJv899mwfqqtlSBU
-         URvPL0nXwcA5ytbANWlmXYjOnrDJgC4VG3ZyxYdiw9VdhCk11yiqHNRviVffrMEpYgrV
-         nZZooPltoUDOydmo6bMQA6I2CytMjSQiM/MUJapP/GKhUWpf6Bx9rQMHsqDQeShioe4v
-         g9fn3M9OvpHawxrASbM2bi2skrZmt8PS7qSs6sXt2vxK9AVpJhvIRUC43cZlA5st1bFJ
-         gaw6rHX0O/wUCsTrZaBcuPoHxtxxXavGCV41E/XFBQlu/0+rOOxkKfvhQ+t0knh2c038
-         rhtA==
+        d=gmail.com; s=20230601; t=1724500945; x=1725105745; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z2ItJXwls8LLC6xWQ1PTr24F5BP1jKP9kLXBVlYcNIE=;
+        b=AB72uCTtvj7wIFxwvCSZiB3r2nDiNZ/RBrxv2v4cIFPJIBuBk9PlWYJ31hBYK5sp+7
+         xc9yZLbF6k9SiOb1C1Un10MKG/MSeO+MjJvzUypFnunHkCXyy6vedUBeS+U+wwljupby
+         1oHG6z6rEB6OxYE0yMKquYaOpjLi2XOynvY3bDWGnNBsB0L2Ijk2yTvi/qKE5ymWBPdD
+         ZUR2Y1BRM/4CqXddMAkpID0z/faV5Tobm445iS69eUYd8zIuw7bxKVFhPk1/VPQWlnB5
+         lqVmBjgbqbIkU9Svkr4p0JAZZHmvzMoP+ZJYUCOsn1EgKPk3NtGB1rEeKJOA2pPpe4eu
+         eYMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724500744; x=1725105544;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nFI93y00zMD6bCmpfwEIFGjVAprudVxyzc0oGsV9Nws=;
-        b=wSQoznmybKPbz8BKPzMva26XzC4b1o7gGOyqWz+3OsVjiVujCpB0+vcRcqLwijl4Ko
-         BRacVNlbZfcGO9JHjiopEYXT+R+cXfjoM6fOIh9VUjL+yZ2VuIYf3Qo8Rj6A2UON+DV6
-         wx9Qy+gYbrGF2jGnrOFRMFoJX8AILJ2XYIQUOgv2u/7vTkFqws/lU74/9kETF9K1JbPI
-         Q7LMTk8P0NEladK3/SYKaQAcMTHpRzHqaOV2IeuEydxQB4eaIf4ccRDK8myq92m9J7N6
-         yZzMKXMPyev7NB6UALvZsT999H/SKM7YULXoloCSTQzyqGQeTIClHdZVy8Tz28WdLL/u
-         jhww==
-X-Forwarded-Encrypted: i=1; AJvYcCV6/ezwSg9ZZLMtVNz+pMjuZ/gJ6+i7UrmDDMxTKEuI5GT769xUiBplV8H3mT+NDvShqjLtbPCWQufx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTw5xvLeFDBmXjcciLG929/XLaYpUQVkSsK97Wf1+gCN7yD0H3
-	ng4m2EFoKYe/cUbfmV7s9cEh4RBtgHKSSs6B644tyYX/NpcsFj0FZ91Ax7ykfXM=
-X-Google-Smtp-Source: AGHT+IFjioJWqfHoLZSyZtpbC3hGCEXMM/p8fgRmV3Ro8hWJPu+jWJN6wQIPD2x7AwJXhGlaVxPS1g==
-X-Received: by 2002:a17:907:e2d8:b0:a86:80b7:471d with SMTP id a640c23a62f3a-a86a52de598mr403785866b.37.1724500743573;
-        Sat, 24 Aug 2024 04:59:03 -0700 (PDT)
-Received: from sagittarius-a.ht.home ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f4f4a95sm390881166b.210.2024.08.24.04.59.02
+        d=1e100.net; s=20230601; t=1724500945; x=1725105745;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z2ItJXwls8LLC6xWQ1PTr24F5BP1jKP9kLXBVlYcNIE=;
+        b=ElhgHZJQ4VAlYIReLZZJmbAat05yC9hdKDPVymAI+B9CfChYzp2whC+IY7RcRjBPyW
+         2rTgommaTbp0GmDYeC7NpeFaebirpin+4aZsOPtGM1WCr1S3OzqHK4KUU0jULM3eAr9T
+         qwxPrwBQuIZR/aWeWEAcmRlUOCBHhxdpV6LvwjSLalz0+DxykvfM2T0sxhSF5sNhlEzS
+         xIfqD07q7AfppePcuZhfc50nKW2BPAAdS3Jdc2GanMb0V2Gf8Y9Zzh0yXK9aeS8Non+d
+         MZTuKyGPOweLLmhlgbQYVuLaa9OxCprlRpUxOzfhqfJGL2G13u/qsIET1kLteetO0MP+
+         QJag==
+X-Forwarded-Encrypted: i=1; AJvYcCVzL/jFw+aajAqFGKV+s3iWhY4JN4+0NDMCwpCRcaCq7vPYH8jTm9Zs7ww8Jhn7QPtIGKS41GFJgRjc2PO2@vger.kernel.org, AJvYcCXrOFUPpkZ7u1RlqyUB2v83u5ubguCseE5ceiz9OH4M0++hCHq016K3iH4WTejkFv8l0MWdTh73pa9j@vger.kernel.org, AJvYcCXsN01YmxnTQcsyQAHrYrnhgdyWMbrzJYLmBtHlItCZlCx2Ca/Rwsrv+xvTmdBOElX9GBA1e2vIwSD0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKUrPQeA6eD/FHkNhEX2iUqbyN/f97onnEu/1L2+DgT5EeRDE9
+	C7CKdlF6SU5Z2DgRx3i17bpQuX35wFtyLsKAZOd7FokFecsfUZc4
+X-Google-Smtp-Source: AGHT+IEHG5urjexhfKt+kdk+33zQTRwrsiCFjFCtfzt9SkHMQ584LriCwKdofi79rsLfEA+WOtfi7g==
+X-Received: by 2002:a05:600c:5128:b0:426:6857:3156 with SMTP id 5b1f17b1804b1-42acd5dcaa8mr37460795e9.27.1724500944879;
+        Sat, 24 Aug 2024 05:02:24 -0700 (PDT)
+Received: from vamoiridPC ([2a04:ee41:82:7577:9aa7:6f8c:e4ad:5d20])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37307c0c9c7sm6513375f8f.0.2024.08.24.05.02.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Aug 2024 04:59:03 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To: mailingradian@gmail.com,
-	vladimir.zapolskiy@linaro.org,
-	loic.poulain@linaro.org,
-	rfoss@kernel.org
-Cc: andi.shyti@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	todor.too@gmail.com,
-	mchehab@kernel.org,
-	andersson@kernel.org,
-	konradybcio@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: [PATCH] i2c: qcom-cci: Stop complaining about DT set clock rate
-Date: Sat, 24 Aug 2024 12:59:00 +0100
-Message-ID: <20240824115900.40702-1-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <Zske2ptZAV12YLyf@radian>
-References: <Zske2ptZAV12YLyf@radian>
+        Sat, 24 Aug 2024 05:02:24 -0700 (PDT)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
+Date: Sat, 24 Aug 2024 14:02:22 +0200
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, jic23@kernel.org,
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/7] iio: pressure: bmp280: Add data ready trigger
+ support
+Message-ID: <20240824120222.GG9644@vamoiridPC>
+References: <20240823181714.64545-1-vassilisamir@gmail.com>
+ <20240823181714.64545-7-vassilisamir@gmail.com>
+ <ZsjrxLlhmx-TzwXF@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZsjrxLlhmx-TzwXF@smile.fi.intel.com>
 
-It is common practice in the downstream and upstream CCI dt to set CCI
-clock rates to 19.2 MHz. It appears to be fairly common for initial code to
-set the CCI clock rate to 37.5 MHz.
+On Fri, Aug 23, 2024 at 11:06:28PM +0300, Andy Shevchenko wrote:
+> On Fri, Aug 23, 2024 at 08:17:13PM +0200, Vasileios Amoiridis wrote:
+> > The BMP3xx and BMP5xx sensors have an interrupt pin which can be used as
+> > a trigger for when there are data ready in the sensor for pick up.
+> > 
+> > This use case is used along with NORMAL_MODE in the sensor, which allows
+> > the sensor to do consecutive measurements depending on the ODR rate value.
+> > 
+> > The trigger pin can be configured to be open-drain or push-pull and either
+> > rising or falling edge.
+> > 
+> > No support is added yet for interrupts for FIFO, WATERMARK and out of range
+> > values.
+> 
+> ...
+> 
+> > +static int __bmp280_trigger_probe(struct iio_dev *indio_dev,
+> > +				  const struct iio_trigger_ops *trigger_ops,
+> > +				  int (*int_config)(struct bmp280_data *data),
+> 
+> > +				  irqreturn_t (*irq_thread_handler)(int irq, void *p))
+> 
+> irq_handler_t
+> 
 
-Applying the widely used CCI clock rates from downstream ought not to cause
-warning messages in the upstream kernel where our general policy is to
-usually copy downstream hardware clock rates across the range of Qualcomm
-drivers.
+But the function returns an irqreturn_t type, no?
 
-Drop the warning it is pervasive across CAMSS users but doesn't add any
-information or warrant any changes to the DT to align the DT clock rate to
-the bootloader clock rate.
+> ...
+> 
+> > +	fwnode = dev_fwnode(data->dev);
+> > +	if (!fwnode)
+> > +		return -ENODEV;
+> 
+> Why do you need this? The below will fail anyway.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/i2c/busses/i2c-qcom-cci.c | 8 --------
- 1 file changed, 8 deletions(-)
+Because If I don't make this check then fwnode might be garbage and I will
+pass garbage to the fwnode_irq_get() function. Or do I miss something?
 
-diff --git a/drivers/i2c/busses/i2c-qcom-cci.c b/drivers/i2c/busses/i2c-qcom-cci.c
-index 414882c57d7f4..99e4305a33733 100644
---- a/drivers/i2c/busses/i2c-qcom-cci.c
-+++ b/drivers/i2c/busses/i2c-qcom-cci.c
-@@ -602,14 +602,6 @@ static int cci_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	if (cci_clk_rate != cci->data->cci_clk_rate) {
--		/* cci clock set by the bootloader or via assigned clock rate
--		 * in DT.
--		 */
--		dev_warn(dev, "Found %lu cci clk rate while %lu was expected\n",
--			 cci_clk_rate, cci->data->cci_clk_rate);
--	}
--
- 	ret = cci_enable_clocks(cci);
- 	if (ret < 0)
- 		return ret;
--- 
-2.45.2
+> 
+> > +	irq = fwnode_irq_get(fwnode, 0);
+> > +	if (!irq)
+> 
+> Are you sure this is correct check?
+> 
+Well, I think yes, because the function return either the Linux IRQ number
+on success or a negative errno on failure.
 
+https://elixir.bootlin.com/linux/v6.10.6/source/drivers/base/property.c#L987
+
+> > +		return dev_err_probe(data->dev, -ENODEV,
+> 
+> Shadowed error code.
+> 
+
+I am not sure I understand what you mean here. You mean that there is no
+chance that the first one will pass and this one will fail?
+
+> > +				     "No interrupt found.\n");
+> 
+> > +	desc = irq_get_irq_data(irq);
+> > +	if (!desc)
+> > +		return -EINVAL;
+> 
+> When may this fail?
+> 
+
+I think that this will fail when Linux were not able to actually
+register that interrupt.
+
+> > +	irq_type = irqd_get_trigger_type(desc);
+> > +	switch (irq_type) {
+> > +	case IRQF_TRIGGER_RISING:
+> > +		data->trig_active_high = true;
+> > +		break;
+> > +	case IRQF_TRIGGER_FALLING:
+> > +		data->trig_active_high = false;
+> > +		break;
+> > +	default:
+> > +		return dev_err_probe(data->dev, -EINVAL,
+> > +				     "Invalid interrupt type specified.\n");
+> > +	}
+> 
+> > +	data->trig_open_drain = fwnode_property_read_bool(fwnode,
+> > +							  "int-open-drain");
+> 
+> Better
+> 
+> 	data->trig_open_drain =
+> 		fwnode_property_read_bool(fwnode, "int-open-drain");
+> 
+
+Indeed, thanks!
+
+> ...
+> 
+> > +static int bmp380_data_rdy_trigger_set_state(struct iio_trigger *trig,
+> > +					     bool state)
+> > +{
+> > +	struct bmp280_data *data = iio_trigger_get_drvdata(trig);
+> > +	int ret;
+> > +
+> > +	guard(mutex)(&data->lock);
+> > +
+> > +	ret = regmap_update_bits(data->regmap, BMP380_REG_INT_CONTROL,
+> > +				 BMP380_INT_CTRL_DRDY_EN,
+> > +				 FIELD_PREP(BMP380_INT_CTRL_DRDY_EN,
+> > +					    state ? 1 : 0));
+> 
+> 				 FIELD_PREP(BMP380_INT_CTRL_DRDY_EN, !!state));
+> 
+> ? ( Even <= 80 characters)
+
+Well, that's true.
+
+> 
+> > +	if (ret) {
+> > +		dev_err(data->dev, "Could not enable/disable interrupt\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	return 0;
+> 
+> 	if (ret)
+> 		dev_err(data->dev, "Could not enable/disable interrupt\n");
+> 
+> 	return ret;
+> 
+> ?
+
+All the other if statements follow the style that I typed. If I
+follow yours, will make it different just for this one, does it
+make sense?
+
+Cheers,
+Vasilis
+> 
+> > +}
+> 
+> ...
+> 
+> > +static int bmp380_int_config(struct bmp280_data *data)
+> > +{
+> > +	int ret, int_cfg = FIELD_PREP(BMP380_INT_CTRL_OPEN_DRAIN,
+> > +				      data->trig_open_drain) |
+> > +			   FIELD_PREP(BMP380_INT_CTRL_LEVEL,
+> > +				      data->trig_active_high);
+> 
+> Split these two variables and make the indentation better for int_cfg.
+> 
+
+True, makes sense.
+
+> > +	ret = regmap_update_bits(data->regmap, BMP380_REG_INT_CONTROL,
+> > +				 BMP380_INT_CTRL_SETTINGS_MASK, int_cfg);
+> > +	if (ret) {
+> > +		dev_err(data->dev, "Could not set interrupt settings\n");
+> 
+> > +		return ret;
+> > +	}
+> > +
+> > +	return 0;
+> 
+> 	return ret;
+> 
+> ?
+
+Yes, you are right.
+
+> 
+> > +}
+> 
+> ...
+> 
+> > +static int bmp580_data_rdy_trigger_set_state(struct iio_trigger *trig,
+> > +					     bool state)
+> > +{
+> > +	struct bmp280_data *data = iio_trigger_get_drvdata(trig);
+> > +	int ret;
+> > +
+> > +	guard(mutex)(&data->lock);
+> > +
+> > +	ret = regmap_update_bits(data->regmap, BMP580_REG_INT_CONFIG,
+> > +				 BMP580_INT_CONFIG_INT_EN,
+> 
+> > +				 FIELD_PREP(BMP580_INT_CONFIG_INT_EN,
+> > +					    state ? 1 : 0));
+> 
+> !!state ?
+> 
+
+ACK.
+
+> > +	if (ret) {
+> > +		dev_err(data->dev, "Could not enable/disable interrupt\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	return 0;
+> 
+> 	return ret;
+> 
+> ?
+> 
+> > +}
+> 
+> ...
+> 
+> > +static int bmp580_int_config(struct bmp280_data *data)
+> 
+> Same comments as per above.
+> 
+> ...
+> 
+> > +	if (irq > 0) {
+> > +		if (chip_id == BMP180_CHIP_ID) {
+> > +			ret = bmp085_fetch_eoc_irq(dev, name, irq, data);
+> > +			if (ret)
+> > +				return ret;
+> > +		}
+> > +		if (data->chip_info->trigger_probe) {
+> > +			ret = data->chip_info->trigger_probe(indio_dev);
+> > +			if (ret)
+> > +				return ret;
+> > +		}
+> >  	}
+> 
+> Can be
+> 
+> 	if (irq > 0) {
+> 		if (chip_id == BMP180_CHIP_ID)
+> 			ret = bmp085_fetch_eoc_irq(dev, name, irq, data);
+> 		if (data->chip_info->trigger_probe)
+> 			ret = data->chip_info->trigger_probe(indio_dev);
+> 		if (ret)
+> 			return ret;
+> 	}
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+
+Well, it looks much more beautiful indeed. Thanks again for the feedback
+Andy, I really appreciate it a lot!
+
+Cheers,
+Vasilis
 
