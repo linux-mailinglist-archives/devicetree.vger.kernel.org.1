@@ -1,62 +1,75 @@
-Return-Path: <devicetree+bounces-96347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9160695DA70
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 03:58:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4114D95DBC7
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 07:17:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45DB8284139
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 01:58:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E38011F232CF
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 05:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601BAB676;
-	Sat, 24 Aug 2024 01:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93768811F7;
+	Sat, 24 Aug 2024 05:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="g3qumbqB"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="pZqnuwYs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D33FB644;
-	Sat, 24 Aug 2024 01:58:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35425DF71;
+	Sat, 24 Aug 2024 05:17:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724464695; cv=none; b=Kab2CSTTPY3nsLYXHU6tmRCBx3MZFYLgLNCqUF19KQc5KOMsR2DQiI1yGo+xMp11bUo8OFz86W1HEQ5qcKqdV4Zwg93NcHevAm0PCfAPBjxEUIL8IiAoJ49t5f6V6m/z3Os/QmpYQPK3EzvZSo2WLITAHBvhtZclXfi1rP85CmA=
+	t=1724476651; cv=none; b=fCCOk7EEXxga7AlY0Psb6zmvTbKWVY68+V1fle3uRykNB+sSSdqJnW3llZxZCtwsYCPRw1/348dXr2BxnwfzbOX/zUqyNkypNXK9GmTYQ8T706Ys+yk+6Ja8GeX2v7Ej9YNzis+i3L7y3GxocNSAjS7AUcCSrNwYXtnpVOphUCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724464695; c=relaxed/simple;
-	bh=GINWLrrg2nx3Vivl4ATkC8nbh6bCMwwHWBKvUXlUXWM=;
+	s=arc-20240116; t=1724476651; c=relaxed/simple;
+	bh=EKYIrWqwELDuWb3+1xndQubTjiUIzzsdrYkz/a+9peg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sDo7HmmG0HbeusSTB1N3xK7GChQ+kQijzKmRL8dD1f+d16GV75xQqGC6oZgDV/WuUWy+dxCHh7vm5Mil5ZxUSYxUSF1R3Fk92/BUz8+y2l5yzDevFrhvJ96VDU0TX4MBSbLCgEWuQDYbBpFVPonLjwCJwuicBGwUYo8iLe6benM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=g3qumbqB; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D5D011C0003;
-	Sat, 24 Aug 2024 01:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1724464690;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lnixKGZ9j8jXTXWeAPNxltVu25XKBOwXu4ouyQ+656A=;
-	b=g3qumbqB+AysT8EzAW1bLfb8GrBd6ArIkZi3UnJWiVFuNyKqDu114L0+Q6iGeP9Msij8IW
-	MvNmt+IMliivrJWlT86VRHJC6XRXWYzyyzf4FcXB33CeEuQauiyGN0uvR1epCxSk7qnJ7S
-	b7DoynDLdTiT3Rd0Ews8KW+6dhzE/3AAkAl6NDQS9FKEueblSsYVNfF7lB1pbc8Ar/qq9z
-	8pjBcXhB6SEayNsz7c0rq9yjQInKCrFh3+uxwygCLpyXrhBfXL/RhMzrwSYqG4GfX5iVM3
-	lAhj819UHAFn/pL7b1LjhU6oECJnCJ/rlB4C/DECt7Lo603feOFaspMZ1inh/w==
-Date: Sat, 24 Aug 2024 03:58:09 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heiko@sntech.de, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 5/8] Documentation: bindings: rtc: add clock-cells
- property
-Message-ID: <202408240158092f696ac7@mail.local>
-References: <20240823153528.3863993-1-karthikeyan@linumiz.com>
- <20240823153528.3863993-6-karthikeyan@linumiz.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UbHVeSqJuATJ+UIOQm7VBr90zlKp0ToZYwtPoCdcFB1UC3Eght2p63T8Hpb65kHRAQ3Sk8p46CGMSJGscgseC7SKa3ol28nD8v/XRunIllJkeQzmrMCUhjcJFyuq+FZ5Nseazz8RtaHvzl9ddlThkckerDwI3ooQQMXYtdcXqJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=pZqnuwYs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F32AC32781;
+	Sat, 24 Aug 2024 05:17:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1724476650;
+	bh=EKYIrWqwELDuWb3+1xndQubTjiUIzzsdrYkz/a+9peg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pZqnuwYsOzkoT3F9shGWLvGPerTWUfF0y4EdZ8YS9ToqCEk6X5+bleX9MUuRgeyH4
+	 5Wd2IjUbdRYlpBJetz7loeGfYFQm0Z33Iqt2DBks4qGptCbzJtrFjDq1+uIzDbEjRs
+	 o4Czi84+1cftdJ6971GCbffFbs0pIQqLAAkXwiGk=
+Date: Sat, 24 Aug 2024 09:53:18 +0800
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <2024082420-secluding-rearrange-fcfd@gregkh>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,44 +78,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240823153528.3863993-6-karthikeyan@linumiz.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
 
-Hello,
-
-the subject needs to start with:
-
-dt-bindings: rtc: microcrystal,rv3028:
-
-On 23/08/2024 21:05:25+0530, Karthikeyan Krishnasamy wrote:
-> consume clkout from rv3028 rtc which is able to provide
-> different clock frequency upon configuration
-> 
-> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-> ---
->  Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> index 5ade5dfad048..cda8ad7c1203 100644
-> --- a/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> @@ -22,6 +22,9 @@ properties:
->    interrupts:
->      maxItems: 1
+On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
+> --- a/include/linux/pci_ids.h
+> +++ b/include/linux/pci_ids.h
+> @@ -2610,6 +2610,9 @@
+>  #define PCI_VENDOR_ID_TEKRAM		0x1de1
+>  #define PCI_DEVICE_ID_TEKRAM_DC290	0xdc29
 >  
-> +  "#clock-cells":
-> +    const: 0
-> +
->    trickle-resistor-ohms:
->      enum:
->        - 3000
-> -- 
-> 2.39.2
-> 
+> +#define PCI_VENDOR_ID_RPI		0x1de4
+> +#define PCI_DEVICE_ID_RP1_C0		0x0001
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Minor thing, but please read the top of this file.  As you aren't using
+these values anywhere outside of this one driver, there's no need to add
+these values to pci_ids.h.  Just keep them local to the .c file itself.
+
+thanks,
+
+greg k-h
 
