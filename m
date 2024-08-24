@@ -1,201 +1,151 @@
-Return-Path: <devicetree+bounces-96410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56A7695DEF0
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 18:17:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37C3995DF0B
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 18:44:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7651C1C20D14
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 16:17:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93692B21A35
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2024 16:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7733A29422;
-	Sat, 24 Aug 2024 16:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8D317A5BE;
+	Sat, 24 Aug 2024 16:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NGbmB1AU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B6YJn7IN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A252AF1D
-	for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 16:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EB22BAE5;
+	Sat, 24 Aug 2024 16:44:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724516269; cv=none; b=HFgkOLSJ/EK5RHhtxYCNdZLZPBdI+F0SdilrIvIRgOO507FuryaXHGGpdx3zVbLkPbTeNz9tSQMxLTyM+u7CMALOfYML0p6mhodR9YWtA2cnME+joM2D6HliiH0CaVD6J1Hg048D/ThdSXeSfc6c4eb/xVX9Pw2SHov4+6x9CT8=
+	t=1724517874; cv=none; b=WSAhbJtGOKYhqrwecD+DrmLNG9oN+Hu33UYWJDJ1qKq42KMz8srlN4ZTOHayHNyrnvpVyGhIvYE2ePYQAbwv0v/KXdxkDEThMu1CF5HX0hOzEMe644/XcFWTO8n7eRWW8XUyw6UzWvG9uOQjyrQnNeszyXOnrGpymlFgrncronI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724516269; c=relaxed/simple;
-	bh=0TRUzX7NRSHjcFUZ99/pBlP0WkhXQfwWMr5tIux8OGQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=beX5QLcvzDEw+By9bHs9vpTCZGrZCs9QiPb2U0s7N+Y0ybEnsAInYD8/mb3Cu9ytCPyVGCWfZ/b0yKa4Lp247fA3wfCik+u19m93CooamFccsvbxjrf9corcZpHLr000nts4hF/MIiC3YeXEG5nCKq0HrOjSuUVaNRmfEjDDwtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NGbmB1AU; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f43de7ad5eso32749591fa.1
-        for <devicetree@vger.kernel.org>; Sat, 24 Aug 2024 09:17:47 -0700 (PDT)
+	s=arc-20240116; t=1724517874; c=relaxed/simple;
+	bh=/9gX2XCk9FTMVcv7iiH7Odb5+BLxHlWeobR8KB9NnJk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FTeB2Yk+g787Js6qsy4TTMFMHvZpija5gO3fjOThHMGrsOtVTQ0rGydt8cj1xVyxo0O8KnQXBcbr5iRwguSpeidcujne4OnmO062gS0riqCbmJnYnpUqIUB+QGibFINMjYbF+aE3PYe+gi/7EbjZFG9/zYubHXmYZp0RSFxmlTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B6YJn7IN; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-202146e93f6so30626765ad.3;
+        Sat, 24 Aug 2024 09:44:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1724516266; x=1725121066; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tLewfIc0V1606kS8OnVX5wewyAHhmWACUF+UrTlyhhY=;
-        b=NGbmB1AUY3IvLYhvJLM41WQG/hJOsOBtv9RAf2/Sh26ahYggI7GPSmgCFAjgoMvlWU
-         N4j2u6ji27fiThh7wL1SRMJoryDz50BRiJfyecMdtQCqw7ZHxYoe9LkxVsnwQZF0nDVP
-         jRbvclNRK3bna3ywOhvceqLpIL3s5bU9/t7m1qnTzP8wEbClesns9jZgmmhxy+0v/Jug
-         shT0TDJjO5503qZ8kV8ZjmehBbT/Fky0kBgqNsm6TwnUyEY8STeyWwJ9cdAsxgmnMOFe
-         WFTeJ39CXW2wrps4EmksW1wJELgPZrj9KMHSHxCSmEpE2NMcQjI0PhorLIP4Gb2WRtje
-         w5Nw==
+        d=gmail.com; s=20230601; t=1724517872; x=1725122672; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rMJqxsXbKdshmWc6Vt4OVDWOFw/ne4JO6chf1aTJxRg=;
+        b=B6YJn7IN4UviFCnyISi5iPjuoFMKZ+XnRFFMeH/D/Lf3eNkM3tU7T3d2G5K0UeIzcf
+         CXf/2Dqdo2c9CHqImVcuasFdu0j6t4porda5YZEFn/zDZfmuvWaCKYu8SJzlUAmRnxpQ
+         Bp3anFm1ACysSXyy+SbJgqQFwteX/O47NUhol7cEHvH3K+6MgEIMV7D5Nj62jjr1BgBh
+         YcZ0lHWqIo6SWQyGy4uXUD4xFQyTwxp+HAukC1LFWSSth8hAry2eO9Tkj7Mj6UIqzURs
+         zZ13KXoUTuZzjvseifOZZKdGjV1y30BIWiKcJ0wQHE+qBgDTwtEMFEGjMPF2rH1nO7HT
+         4Afg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724516266; x=1725121066;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tLewfIc0V1606kS8OnVX5wewyAHhmWACUF+UrTlyhhY=;
-        b=qLxZgcoj/twJpICfSwgHHPmnKWnk3m06xdGkRmEvMN2Yk6zEY5j+pJxJXJdxOQOSEO
-         KQaGOhObpv4GZi0SKOz+S8KNDOFioFQR8FXmIAiXZmME75vQheT3/1yZ8qK1Ii5LLSMj
-         dn1CQ9haqCEtLEy5VxHc5dgEg8aIozj0boOLBGrwSzaOvbNUqVfFAwxlW2NeEQVXJFSh
-         TQ8TxuZTCxFIIDrjVbYH9H7ACFJTgnLYa4OLOYP8WBPnR15XtxOHQqmj8QRvVzRF/DuJ
-         p/HjxBdh3GqRryypTxjHCwctGVcePSfaPfjdUVwBOeuCv/zN/EFxjXAbfeQEuB6L6X0q
-         2YHA==
-X-Forwarded-Encrypted: i=1; AJvYcCUj15VUcTbwaRtFtt+Hi+m+xG2j3eFqNU/QO6R4g52jdOPPP1yyhpPQKAoMTuGTI9oldU9GybMD79kb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBWfleDAcxaAfgk8r4fv4nLeaRXRzKjUpmvPfgbXlJCS9c1Ln+
-	XK3z5aAU8q7sCTCrUMg+7nIIhWiYOwNmQbNTDEgdbOBluB8CbdMcrX4q4D5z6L4=
-X-Google-Smtp-Source: AGHT+IG1B8GIfumzhHnj7hWtGm9Ri19lD7phgp+y6ayI6ebhTTQom/sBEbyQQqKIe7quJGIBo5VwAg==
-X-Received: by 2002:a05:651c:1548:b0:2ef:268a:a194 with SMTP id 38308e7fff4ca-2f4f48d6dedmr44127171fa.9.1724516265407;
-        Sat, 24 Aug 2024 09:17:45 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.94])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c04a4c43e7sm3499608a12.70.2024.08.24.09.17.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Aug 2024 09:17:44 -0700 (PDT)
-Message-ID: <717bd06f-3eba-4825-a53f-b2f9aa1c81c8@tuxon.dev>
-Date: Sat, 24 Aug 2024 19:17:43 +0300
+        d=1e100.net; s=20230601; t=1724517872; x=1725122672;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rMJqxsXbKdshmWc6Vt4OVDWOFw/ne4JO6chf1aTJxRg=;
+        b=G74BI+VIE+wIeEAE07hb3GRa+mRg6oMRSHcPZ1k8yFVt+KQK4R9lIkDva6Cx/cyxX0
+         v3FwtwE1zzEAm44vsYIhnCOrj0JzCMPajG9Ae2FvXgZykfceGcq6MZ09KnZUCjIgiYgF
+         1z60Hg0toYoipxHU/tRPQK2HGm5aw6eMxdM4osJM0O0Hdx1lX473PSmrGMuKi0x9VEIw
+         WbqDxQifFtGL8XRrgTb1zkfikbpjP/TxExig/bsZBysBU2AwsE6c53Ozb10Rjmh+4Llr
+         foOG0EXefG7HjK+8iWscXWg77KlE1yx5vaio9PNPFt9oqq2QetV8ETFUbsM/MPIGFJ12
+         jZUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUiraKJSLhtWa0HT9HbY59HIhdEN4ZOtltkM9PQT6lm9Yt0rqa5FjxespA7nLxHlriAOvhbATlL3T/u@vger.kernel.org, AJvYcCUmhP1RsolNeiSLQzvHnKJrSolKX70nIPTB2I9RuzUbPlXYLHJ6P+5xvskpTYU0aRWl0ji59zIY5kSM@vger.kernel.org, AJvYcCVJQBnivTBV3ZD9grOo24bSxF+N9PAwpM76y4addetLp0cXs4Vm1zdZBFAzf/KCwInpT/ZT2T5ewwVLVfub@vger.kernel.org, AJvYcCViu72jdGZPuojBX6rFQqwBSV2FWHHosTQUeseFNpOleaSHQAj/w2tOoe80cmxgp409FYhKJ5Ej0Nc8@vger.kernel.org, AJvYcCWGcP9jJRfxydDzh8Aj8/zI78eil+sOAyKazNfpe4BT/sLjoBrb7WAIOiga5Eb2zyIBg1tZjq/6x8k9@vger.kernel.org, AJvYcCXBcbgME9M+HE2wup/xF7HVG53cOqE2bhw+XWKzLfP29mqJ5Eje27Arl+N45QLQO7fAxbccKKRQpK99@vger.kernel.org, AJvYcCXzwTjFb5sszF0td5EDIHKKM2l9LO+Me/HVEqMiRk/gV1v/cfoGZIjUBbUuAFK1ycvoRS4Txm7WXH4I9wy9dyc=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsJHuFCHP1TRRoPdBgMMmwDhM5ov95yYuD85eM+6meae8Dhjqq
+	Q+79wKL8nuCgi67dJeROvYRQ7EzFiFU2tcdd35K3UqtAu8w2cRxE
+X-Google-Smtp-Source: AGHT+IHcYVQoDXdmHH2kSyn3hjnKQGyb2SXXwv2a+G7g13SX+ywaROxz6n48bYMEHtMXrfqxmEat4A==
+X-Received: by 2002:a17:902:e750:b0:202:401f:ec6c with SMTP id d9443c01a7336-2039e4f1d23mr66486985ad.48.1724517872012;
+        Sat, 24 Aug 2024 09:44:32 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20385bdc5e0sm44114565ad.271.2024.08.24.09.44.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Aug 2024 09:44:31 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sat, 24 Aug 2024 09:44:29 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>, Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+	Ondrej Jirman <megi@xff.cz>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Elon Zhang <zhangzj@rock-chips.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>, Jisheng Zhang <jszhang@kernel.org>,
+	Jamie Iles <jamie@jamieiles.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v2 09/12] dt-bindings: watchdog: Add rockchip,rk3576-wdt
+ compatible
+Message-ID: <612a447c-8a74-48c1-8470-280dddca8d19@roeck-us.net>
+References: <20240823150057.56141-1-detlev.casanova@collabora.com>
+ <20240823150057.56141-10-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 00/12] Microchip OTPC driver on SAM9X60 exposing UIDxR
- as additional nvmem device
-Content-Language: en-US
-To: Alexander Dahl <ada@thorsis.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc: Christian Melki <christian.melki@t2data.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20240821105943.230281-1-ada@thorsis.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240821105943.230281-1-ada@thorsis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240823150057.56141-10-detlev.casanova@collabora.com>
 
-Hi, Alexander,
+On Fri, Aug 23, 2024 at 10:52:36AM -0400, Detlev Casanova wrote:
+> It is compatible with the other rockchip SoCs.
+> 
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 
-On 21.08.2024 13:59, Alexander Dahl wrote:
-> Hei hei,
-> 
-> on a custom sam9x60 based board we want to access a unique ID of the
-> SoC.  Microchip sam-ba has a command 'readuniqueid' which returns the
-> content of the OTPC Product UID x Register in that case.
-> 
-> (On different boards with a SAMA5D2 we use the Serial Number x Register
-> exposed through the atmel soc driver.  Those registers are not present
-> in the SAM9X60 series, but only for SAMA5D2/SAMA5D4 AFAIK.)
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-Not sure if you are talking about Chip ID, Chip ID extension registers.
-These are available also on SAM9X60.
-
+> ---
+>  Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> There is a driver for the OTPC of the SAMA7G5 and after comparing
-> register layouts it seems that one is almost identical to the one used
-> by SAM9X60.  Currently that driver has no support for the UIDx
-> registers, but I suppose it would be the right place to implement it,
-> because the registers are within the OTPC register address offsets.
+> diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> index c7aab0418a320..b5a3dc3770706 100644
+> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> @@ -29,6 +29,7 @@ properties:
+>                - rockchip,rk3368-wdt
+>                - rockchip,rk3399-wdt
+>                - rockchip,rk3568-wdt
+> +              - rockchip,rk3576-wdt
+>                - rockchip,rk3588-wdt
+>                - rockchip,rv1108-wdt
+>            - const: snps,dw-wdt
+> -- 
+> 2.46.0
 > 
-> The patch series starts with fixups for the current driver.  It then
-> adds the necessary pieces to DT and driver to work on SAM9X60 in
-> general.  Later support for enabling the main RC oscillator is added,
-> which is required on SAM9X60 for the OTPC to work.  The last patch adds
-> an additional nvmem device for the UIDx registers.
-> 
-> This v1 of the series was _not_ tested on SAMA7G5, because I don't have
-> such a board for testing.  Actually I don't know if the main_rc_osc
-> clock is required on SAMA7G5 too, and if yes how to handle that with
-> regard to the different clock ids.  If someone could test on SAMA7G5
-> and/or help me sorting out the core clock id things, that would be
-> highly appreciated.
-
-Please add Nicolas in the loop on the next revisions of this series as this
-should also be tested on SAMA7G5. I don't have a SAMA7G5 with OTP memory
-populated.
-
-> 
-> Also I assume some more devicetree and/or sysfs documentation is
-> necessary.  If someone could point me what's exactly required, this
-> would be very helpful for me.  You see I expect at least another version
-> v2 of the series. ;-)
-> 
-> Maybe some files having that "sama7g5" should be renamed, because that
-> DT binding is used for more SoCs now and deserves a more generic name?
-
-Not needed, adding your compatible there is enough.
-
-> Thinking of these for example:
-> 
-> - Documentation/devicetree/bindings/nvmem/microchip,sama7g5-otpc.yaml
-> - include/dt-bindings/nvmem/microchip,sama7g5-otpc.h
-> 
-> Are there other SoCs than SAMA7G5 and SAM9X60 using the same OTPC?
-> 
-> Last question: Should the UID be added to the device entropy pool with
-> add_device_randomness() as done in the SAMA5D2 sfr driver?
-> 
-> I sent an RFC patch on this topic earlier this year, you'll find the
-> link below as a reference to the discussion.  The patch itself was
-> trivial and not meant for applying as is anyways, so I decided to not
-> write a full changelog from RFC to v1.
-> 
-> Last not least, special thanks to Christian Melki on IRC, who wrote and
-> tested parts of this, and was very kind and helpful in discussing the
-> topic several times in the past months.
-> 
-> Christian, if you feel there's credit missing, just point me where to
-> add Co-developed-by and I'll happily do that for v2.
-> 
-> Greets
-> Alex
-> 
-> (series based on v6.11-rc4)
-> 
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Link: https://lore.kernel.org/all/20240412140802.1571935-2-ada@thorsis.com/
-> 
-> Alexander Dahl (12):
->   nvmem: microchip-otpc: Avoid writing a write-only register
->   nvmem: microchip-otpc: Fix swapped 'sleep' and 'timeout' parameters
->   dt-bindings: nvmem: microchip-otpc: Add compatible for SAM9X60
->   nvmem: microchip-otpc: Add SAM9X60 support
->   ARM: dts: microchip: sam9x60: Add OTPC node
->   ARM: dts: microchip: sam9x60_curiosity: Enable OTP Controller
->   nvmem: microchip-otpc: Add missing register definitions
->   nvmem: microchip-otpc: Add warnings for bad OTPC conditions on probe
->   clk: at91: sam9x60: Allow enabling main_rc_osc through DT
->   ARM: dts: microchip: sam9x60: Add clock properties to OTPC
->   nvmem: microchip-otpc: Enable main RC oscillator clock
->   nvmem: microchip-otpc: Expose UID registers as 2nd nvmem device
-> 
->  .../nvmem/microchip,sama7g5-otpc.yaml         |  1 +
->  .../dts/microchip/at91-sam9x60_curiosity.dts  |  4 +
->  arch/arm/boot/dts/microchip/sam9x60.dtsi      | 10 +++
->  drivers/clk/at91/sam9x60.c                    |  3 +-
->  drivers/nvmem/microchip-otpc.c                | 86 ++++++++++++++++++-
->  include/dt-bindings/clock/at91.h              |  1 +
->  6 files changed, 100 insertions(+), 5 deletions(-)
-> 
-> 
-> base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
 
