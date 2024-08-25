@@ -1,52 +1,48 @@
-Return-Path: <devicetree+bounces-96443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4049495E263
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 09:24:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF0995E291
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 10:03:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98A7CB214A3
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 07:24:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37F54282400
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 08:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1691E487A5;
-	Sun, 25 Aug 2024 07:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4704152F70;
+	Sun, 25 Aug 2024 08:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="YzWp4HGm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MtTUdeqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC51801;
-	Sun, 25 Aug 2024 07:24:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17ABD8F45;
+	Sun, 25 Aug 2024 08:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724570683; cv=none; b=LYRdJbrw8031Aqtr89DKX0PwzgX3ZtjFjYXzjYdxZxvubzxKdHxwXKpSrIjvZggEh+lwUAsx/B332905VBh2ZcPTKf42Wr7r/lgFsb5u6m/WZOw3BP3kxgy3MzNBWKOPvwEAG47Hvvttbe6wq+okVrrSEhiUHHyZU5izy/9WVts=
+	t=1724573017; cv=none; b=p5kLlziweN7BikHk4RxtHoAyTEbGDLW411c7g/T3Y541N7uaBKPALkcGDSbyAz+qo1Vy0epAdtWP1PWjmZBOJotolifiqiytgt6VloDfIDZXv2JEv37aM++ZwH8BgZwL9Zy/DQpLEiDfYd4EIHCA46FOe/fFOiVBTn+w5KFSJu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724570683; c=relaxed/simple;
-	bh=XS0MxfMA8aJLVnkTb3Bae/I1bANDoeKJiCKxbvzpHHk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZOUyldP8MdYoxLfoRI7ql/oucr33t7fydJE7IKjrW+hVVrkff16I0LV/p0H66eMScjfgW0qnyWCfYGrjtZkTiyNsPiu2Bfy+Y1xEiSBxJVTSJRUGcHZTCeHh0n3XAyT9DRxO6QYjvaK8t8NROYFrN1c1DGaz22FKCWoPSr3tPbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=YzWp4HGm; arc=none smtp.client-ip=80.237.130.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
-	Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
-	In-Reply-To:References; bh=GkeY4nW3vlCL/lRCei213Af711k/56MGA61cWokigp8=;
-	t=1724570680; x=1725002680; b=YzWp4HGmD/c/j0DzcABDtQdhF+iVY1MhZHXm+IDwUVSI3JT
-	+nHs6AXZ874jWiPU/p8CoJeTKBWYECdA5bFs055KqHs5sqF5UpFna1BJF+8FJzP5h2+scoKOkNosN
-	vF5EWNTxnYxQQvly9u2osZA80b7OiRkKG00TA/2gcTBlYcoRECohf/Md5Bn7wqWr1/aHMmF7DpyGi
-	Fe66Osr2ZlpltOML74Pj6WpdzOoD1CaEzpw2Ur5U/JGhJPoCpc9v9IgjRyqnMxnCtk+WQFWjosW5L
-	LHsaPRPWxMJD8IBpYpT3gnO1GHpoYUjUYkuGJ+8xNNmwRYkbJkCJLOfE6/Ri0CCw==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1si7bz-0005uc-6Q; Sun, 25 Aug 2024 09:24:31 +0200
-Message-ID: <48b20ca3-37f5-4d9c-b36f-1d05a2ee4f5c@leemhuis.info>
-Date: Sun, 25 Aug 2024 09:24:27 +0200
+	s=arc-20240116; t=1724573017; c=relaxed/simple;
+	bh=T4ok3lTtc3kyjXxl1s8hp8ytz9G38A+slChsX4ls93I=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=V9LoQBfuv9TaNQF8ZlgByZWvdbfnzewKK3pBjHudO72QEpF1mFZSJ8KUSEI+G16bI9as4qULYjYiMAN8mjaV9Eue0K/dPyQkqKN2V3+vx/Eqf6w1s9SjfwfYhH0pjrvGTP8E/GqI2OBplz2GexOioeOc9YsoEyU7ApURIyN1r/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MtTUdeqF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97597C32782;
+	Sun, 25 Aug 2024 08:03:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724573016;
+	bh=T4ok3lTtc3kyjXxl1s8hp8ytz9G38A+slChsX4ls93I=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=MtTUdeqFyek9vSKZr1fx6xDrhQCGWrqDvubqhM5bP6fUcEiaWzlvFTPWR8x816YBA
+	 GhtiNVfpMdewBsK1BomsXkecVUuJ+ouX6eJhdnn2WWrqm73NLDymO2tUb8vxlVI1V6
+	 Zkir04MUl8LaIbUmQ6667GZAe+d5FTc1voB0aFYf/Z2ZYxZSM0cLIzM7XvnmZp8jl/
+	 B4OBi8z7zKOZRYym6ravxbfOl1hFidyxhbLPjrZ6oENU2I9S/UrpVoka5phZT3gHEr
+	 8cyItENthzRsEMPq96IcFJ4798Yc/V/Qq3xhQ5oAY//LxWISAjLoXcHjNPDPLbu+GF
+	 HMwAR2OSGgTYw==
+Message-ID: <ee79c94a-c09a-4390-bb8a-65f01ddcf6e0@kernel.org>
+Date: Sun, 25 Aug 2024 10:03:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,144 +50,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] firmware: qcom: scm: smc: switch to using the SCM
- allocator
-To: bartosz.golaszewski@linaro.org, andersson@kernel.org,
- Rudraksha Gupta <guptarud@gmail.com>
-Cc: brgl@bgdev.pl, konrad.dybcio@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, robimarko@gmail.com,
- quic_gurus@quicinc.com, luzmaximilian@gmail.com, catalin.marinas@arm.com,
- will@kernel.org, srinivas.kandagatla@linaro.org, arnd@arndb.de,
- quic_eberman@quicinc.com, elder@kernel.org, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH] of_reserved_mem: Save region name string into struct
+ reserved_mem
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@quicinc.com,
- ahalaney@redhat.com, quic_djaggi@quicinc.com, regressions@lists.linux.dev
-References: <692cfe9a-8c05-4ce4-813e-82b3f310019a@gmail.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-In-Reply-To: <692cfe9a-8c05-4ce4-813e-82b3f310019a@gmail.com>
+ loongarch@lists.linux.dev, chenhuacai@kernel.org,
+ Kevin Wheatfox <enkerewpo@hotmail.com>
+References: <20240821-save_resv_name-v1-1-b9c17f103ffb@flygoat.com>
+ <lsn4bkeup4bjmxwgbgwtaancunszsqnnowi7gocyh2l5kftosh@jcrvd2gnkuli>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <lsn4bkeup4bjmxwgbgwtaancunszsqnnowi7gocyh2l5kftosh@jcrvd2gnkuli>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1724570680;44f1ad5b;
-X-HE-SMSGID: 1si7bz-0005uc-6Q
 
-Lo! Thx for your report!
-
-On 25.08.24 08:51, Rudraksha Gupta wrote:
+On 25/08/2024 09:18, Krzysztof Kozlowski wrote:
+> On Wed, Aug 21, 2024 at 02:51:02PM +0100, Jiaxun Yang wrote:
+>> Previously only a pointer to fdt string pool is saved to struct
+>> reserved_mem as region name.
+>>
+>> As on some architectures booting FDT will be wiped at later initialisation
+>> stages, this is breaking reserved_mem users.
+>>
+>> Copy and save the whole string into struct reserved_mem to avoid
+>> FDT lifecycle problem.
+>>
+>> Reported-by: Kevin Wheatfox <enkerewpo@hotmail.com>
+>> Closes: https://lore.kernel.org/loongarch/ME4P282MB1397447C3C094554C7AF2E37B58E2@ME4P282MB1397.AUSP282.PROD.OUTLOOK.COM/
 > 
-> Found a regression with a platform that has the msm8960 SoC. Was hoping
-> to code up a fix myself, but I'm not adept in ARM architecture or the
-> Linux kernel, so I'm just reporting it here. Reverting this commit seems
-> to fix it as well. Please let me know if there is anything else I should
-> provide for this regression report.
+> I doubt this uses mainline tree...
 > 
-> #regzbot introduced 449d0d84bcd8246b508d07995326d13c54488b8c
-
-FWIW, that is 449d0d84bcd824 ("firmware: qcom: scm: smc: switch to using
-the SCM allocator") [v6.11-rc1] which was authored by Bartosz
-Golaszewski and commited by Bjorn Andersson.
- 
-> Error: https://pastebin.com/SDRENUGk
-
-Better include the exact problem you face in your report so
-that search engines can do their magic; makes it also easier
-to handle for everyone.
-
-Furthermore two quick questions:
-
-[    0.000000] Linux version 6.10.0-rc1-msm8960+ (a@fpx-l-AMER03105) (Ubuntu clang version 16.0.6 (15), Ubuntu LLD 16.0.6) #17 SMP Sat
-
-Is that a vanilla kernel or one close to it? That "msm8960+" sounds
-somewhat suspicious. 
-
-And does the problem still happen with latest mainline? Cconsider
-retrying with -rc5, which should be out in the next 24h.
-
-And FWIW, here is the afaics relevant part of the problem: 
-
-[    0.047411] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
-[    0.051541] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
-[    0.060470] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
-[    0.066411] 8<--- cut here ---
-[    0.071896] Unable to handle kernel NULL pointer dereference at virtual address 00000090 when read
-[    0.074743] [00000090] *pgd=00000000
-[    0.083675] Internal error: Oops: 5 [#1] SMP ARM
-[    0.087283] Modules linked in:
-[    0.091833] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.10.0-rc1-msm8960+ #17
-[    0.094673] Hardware name: Generic DT based system
-[    0.101804] PC is at qcom_scm_get_tzmem_pool+0x1c/0x24
-[    0.106443] LR is at __scm_smc_call+0x30/0x2d4
-[    0.111511] pc : [<c089176c>]    lr : [<c0893fb0>]    psr: 60000013
-[    0.115896] sp : f0815d78  ip : f0815e98  fp : f0815d78
-[    0.121995] r10: 00000002  r9 : f0815e18  r8 : 00000001
-[    0.127150] r7 : c1106694  r6 : f0815e30  r5 : c126ff4c  r4 : 00000001
-[    0.132308] r3 : f0815e18  r2 : 00000002  r1 : f0815e30  r0 : 00000000
-[    0.138839] Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
-[    0.145288] Control: 10c5787d  Table: 8000406a  DAC: 00000051
-[    0.152413] Register r0 information: NULL pointer
-[    0.158083] Register r1 information: 2-page vmalloc region starting at 0xf0814000 allocated at copy_process+0x16c/0xddc
-[    0.162735] Register r2 information: non-paged memory
-[    0.173205] Register r3 information: 2-page vmalloc region starting at 0xf0814000 allocated at copy_process+0x16c/0xddc
-[    0.178373] Register r4 information: non-paged memory
-[    0.188845] Register r5 information: non-slab/vmalloc memory
-[    0.194002] Register r6 information: 2-page vmalloc region starting at 0xf0814000 allocated at copy_process+0x16c/0xddc
-[    0.199682] Register r7 information: non-slab/vmalloc memory
-[    0.210069] Register r8 information: non-paged memory
-[    0.215911] Register r9 information: 2-page vmalloc region starting at 0xf0814000 allocated at copy_process+0x16c/0xddc
-[    0.220819] Register r10 information: non-paged memory
-[    0.231292] Register r11 information: 2-page vmalloc region starting at 0xf0814000 allocated at copy_process+0x16c/0xddc
-[    0.236460] Register r12 information: 2-page vmalloc region starting at 0xf0814000 allocated at copy_process+0x16c/0xddc
-[    0.247372] Process swapper/0 (pid: 1, stack limit = 0x(ptrval))
-[    0.258105] Stack: (0xf0815d78 to 0xf0816000)
-[    0.264034] 5d60:                                                       f0815e08 c0893fb0
-[    0.268257] 5d80: f0815d9c c01953fc c1118278 c1124508 00000037 00000000 c1118278 f0815da8
-[    0.276334] 5da0: c125875c 00000800 00000036 00000000 039ab58a 00000000 c2000030 c0a5cee4
-[    0.284411] 5dc0: f0815dd8 c01953fc c1118278 c1124508 00000037 00000000 c1118278 00000000
-[    0.292489] 5de0: f0815e18 c01953fc dedf13d9 00000001 c126ff4c 00000000 c1106694 00000001
-[    0.300564] 5e00: f0815ef0 00000000 f0815eb0 c0893658 00000001 c0195934 f0815e78 c0195934
-[    0.308641] 5e20: f0815e48 00000000 f0815ebf f0815e4c 00000006 00000001 00000001 00000000
-[    0.316718] 5e40: 02000601 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[    0.324794] 5e60: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[    0.332873] 5e80: 00000000 00000000 00000000 00000000 00000002 00000000 f0815ebf dedf13d9
-[    0.340950] 5ea0: 00000000 f0815ee0 00000000 00000000 f0815ed0 c0891aa0 f0815ec8 00a8fbe0
-[    0.349027] 5ec0: f0815ef8 c0b8c08f 00000001 00000000 f0815f68 c0891980 00000001 c01012a0
-[    0.357103] 5ee0: 00000001 00000001 00000002 00000000 00000001 00000000 801012a0 00000000
-[    0.365180] 5f00: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[    0.373258] 5f20: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[    0.381335] 5f40: 00000002 00000000 dedf13d9 c1509100 00000001 c1568000 00000000 00000000
-[    0.389411] 5f60: 00000000 00000000 f0815f80 c100bf5c c1509100 00000001 c1568000 00000000
-[    0.397489] 5f80: f0815f98 c1001538 00000000 c0a8b56c 00000000 00000000 f0815fa8 c0a8b58c
-[    0.405565] 5fa0: 00000000 00000000 00000000 c010014c 00000000 00000000 00000000 00000000
-[    0.413643] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[    0.421718] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000 00000000 00000000
-[    0.429788] Call trace:
-[    0.429813]  qcom_scm_get_tzmem_pool from __scm_smc_call+0x30/0x2d4
-[    0.440444]  __scm_smc_call from __get_convention+0xac/0x128
-[    0.446370]  __get_convention from qcom_scm_call_atomic+0x24/0x90
-[    0.452214]  qcom_scm_call_atomic from qcom_scm_set_boot_addr+0xe4/0x100
-[    0.458142]  qcom_scm_set_boot_addr from qcom_smp_prepare_cpus+0x1c/0x94
-[    0.464849]  qcom_smp_prepare_cpus from kernel_init_freeable+0xcc/0x140
-[    0.471462]  kernel_init_freeable from kernel_init+0x20/0x144
-[    0.477734]  kernel_init from ret_from_fork+0x14/0x28
-[    0.483571] Exception stack(0xf0815fb0 to 0xf0815ff8)
-[    0.488561] 5fa0:                                     00000000 00000000 00000000 00000000
-[    0.493554] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[    0.501628] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-[    0.509710] Code: e28dd004 e30f0f50 e34c0126 e5900000 (e5900090)
-[    0.516140] ---[ end trace 0000000000000000 ]---
-[    0.522249] Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
-[    0.526890] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b ]---
-
-> Defconfig: https://pastebin.com/CRDjC39a
+>> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 > 
-> Platform:
-> https://wiki.postmarketos.org/wiki/Samsung_Galaxy_Express_SGH-I437_(samsung-expressatt)
+> This is a bigger problem and should be solved unified way in multiple
+> places. You cannot just wipe out FDT from the memory, because it is used
+> in all other places.
+> 
+> Your report earlier probably used some custom patches allowing this
+> wipe out, but that's the mistake. Fix your wiping out mechanism...
 
-Ciao, Thorsten
+The commit msg is quite vague on real problem, so one has to go to
+original report to find that you use built-in dtb, so only the
+unflatten_and_copy_device_tree() path, while I have impression you just
+want to drop the copied (in-kernel) FDT.
 
-P.S.:
+Fix the commit msg to describe the real problem being fixed here.
+Provide also proper fixes tag.
 
-#regzbot title: firmware: qcom: scm: smc: msm8960 SoC fails to boot
+Best regards,
+Krzysztof
+
 
