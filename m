@@ -1,161 +1,143 @@
-Return-Path: <devicetree+bounces-96440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B6595E24C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 09:04:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B87095E252
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 09:10:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A6331C20D70
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 07:04:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 491C51C21533
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2024 07:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A6F3B7AC;
-	Sun, 25 Aug 2024 07:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709B34AEE9;
+	Sun, 25 Aug 2024 07:10:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="sWM9ObKV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c9vyTaN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-29.smtpout.orange.fr [80.12.242.29])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FCE02119;
-	Sun, 25 Aug 2024 07:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.29
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E67710E6;
+	Sun, 25 Aug 2024 07:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724569476; cv=none; b=m98j1Xt7knrpJ4d2Ehk/YlkA99amuYjQKH85jPWDTueF/ZYevmIjvq6SAh459yWOeg5yuPJPpdPSulJwnDIMmZVVDZTWcqhZZDT2696Y4zndil0TAMP/EzGHDrIVkmvX2AHaEYOsgD5sQBWuIxT7sJX2YE/sOCp8p+OSGrGJUx8=
+	t=1724569806; cv=none; b=MjMX5WS7OEYqdKT1zLd09lvlLpTjshY4G0C2BgwzpRtsckoY0bIxiPGrhKfXU0bi5/0HIv8f3iao3rmIMM+6kbmd7GgNyXblRvxZsim0m/dHLAbnKxEI4AEqHlcPlDZuu3yPwEtovun0JiPwEECNlQIoCJ5blKw30fdzU7WsswI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724569476; c=relaxed/simple;
-	bh=alZC71CHOTo9J3hIdJNyDGSI1g7x1XDEka8tA9G6GJ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=tR+UnZYvLBZBw2cXPDHKo6NoSdAwzNbpQR3ZDshbIHUEB32+SOm8Q+LSA3HTxwkkT60Zx1ti91MWA/GMZFsgdBIzlmp1JrJliVyFcocCiTROKM9liszgpmPzMEON+CHns8FAeK0IvfOze9eX3fE25Y8AYtcx1AY2j5kGChTNTjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=sWM9ObKV; arc=none smtp.client-ip=80.12.242.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id i7IOsbrhcrSO8i7IOskoPA; Sun, 25 Aug 2024 09:04:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1724569464;
-	bh=g3hTbNzPlL7fF9/gdKgEl/IkBIzjVV5RDyBl6jJGA4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=sWM9ObKVe8JWhYPJWJ5eXq2w0ro+JYt/2svRpgypSP7UfLsTsQmPK5JYo/uWyjQEz
-	 gYe1v3kBQ4DrUx19W+QHbKBEHOGkiqw8uEMrGlSSC+sEcZEp125yVM0jDH4ZPj/uEC
-	 JmP4/ldi57cum5MjeiFTkP/ae+PYYG6tvM166XfwnEAmvx1TBW41XtlJf+CwfLktTC
-	 flAQD25H1BJmLbUrGRklEaY+lYWC2rLcNaJX3Rp9EohG8vqfXlqg7/6f2XBrx62L8r
-	 CEzsx5vvpYBBna+PB8mJ1x1/MIdc7tEnRiVqxCpz8F0N5INdJ/OGgXFEkeHBFOs8m+
-	 0sTi6TjEuhFSg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Sun, 25 Aug 2024 09:04:24 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <b898ad42-1559-4f43-8994-d9692e54f930@wanadoo.fr>
-Date: Sun, 25 Aug 2024 09:04:16 +0200
+	s=arc-20240116; t=1724569806; c=relaxed/simple;
+	bh=U/Oq2er/y7XgBVRnIf3CZHOyXgN+R1fGm+JuTjj/FG8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=apW4r6HnFZTv8MDNX+00sw5i7BXuoU80pMVtqw/rP1TDCDNCXYBjBzHYyAIZwnPKIaBks6GvUWV30udyljqwn44tRqjHhneuG5zKG9QtrTN20rC/kc0aMw7tRzvBqocscPBf3XgKHjZ8usD9OA3AYFJa0XXk9tt4qqxt/oAyhhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c9vyTaN8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB87DC32782;
+	Sun, 25 Aug 2024 07:10:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724569805;
+	bh=U/Oq2er/y7XgBVRnIf3CZHOyXgN+R1fGm+JuTjj/FG8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c9vyTaN829lJaSdkU2m9TPa1dfiS0mEDAUOwvkkyFh38keko/Rf6lV7UaTWZ761nf
+	 8BYRP41HOB71UNXocqw9lEVU0O5Qu6obqz5E0Dx7i6W4+tVBfvQVTtsAczw+Zzq4Ag
+	 CeaBkK3gS/G3PRwchprIhaCXhY48sfN7ew66HdIPTQEBxmXhtyjyTGKhaD0DKAZWVT
+	 4L//pWNUZrmVe8+VODPW3VuOLNrRqNB+u4D0MpEYh4sVF+a5sccfq4r49EiJdBJoqr
+	 DCDN6NAeB3ECM6jB9vXqgDDrS501jUv+ZRffLHIPX2GxOMe1CYOHQJVpO2MOnuFksk
+	 IMp+Fe1UvXk9w==
+Date: Sun, 25 Aug 2024 09:10:01 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, 
+	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, kys@microsoft.com, haiyangz@microsoft.com, 
+	wei.liu@kernel.org, decui@microsoft.com, rafael@kernel.org, lenb@kernel.org, 
+	kirill.shutemov@linux.intel.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
+ mailbox
+Message-ID: <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
+References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
+ <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] iio: pressure: bmp280: Add support for bmp280 soft
- reset
-To: vassilisamir@gmail.com
-References: <20240823181714.64545-1-vassilisamir@gmail.com>
- <20240823181714.64545-3-vassilisamir@gmail.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: 579lpy@gmail.com, ak@it-klinger.de, andriy.shevchenko@linux.intel.com,
- ang.iglesiasg@gmail.com, biju.das.jz@bp.renesas.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, javier.carrasco.cruz@gmail.com,
- jic23@kernel.org, krzk+dt@kernel.org, lars@metafoo.de,
- linus.walleij@linaro.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org, semen.protsenko@linaro.org
-In-Reply-To: <20240823181714.64545-3-vassilisamir@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
 
-Le 23/08/2024 à 20:17, Vasileios Amoiridis a écrit :
-> The BM(P/E)28x devices have an option for soft reset which is also
-> recommended by the Bosch Sensortech BME2 Sensor API to be used before the
-> initial configuration of the device.
+On Fri, Aug 23, 2024 at 04:23:20PM -0700, Yunhong Jiang wrote:
+> Add the binding to use mailbox wakeup mechanism to bringup APs.
 > 
-> Link: https://github.com/boschsensortec/BME280_SensorAPI/blob/bme280_v3.5.1/bme280.c#L429
-> Signed-off-by: Vasileios Amoiridis <vassilisamir-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
 > ---
->   drivers/iio/pressure/bmp280-core.c | 26 ++++++++++++++++++++++++++
->   drivers/iio/pressure/bmp280.h      |  3 +++
->   2 files changed, 29 insertions(+)
+>  .../devicetree/bindings/x86/wakeup.yaml       | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/x86/wakeup.yaml
 > 
-> diff --git a/drivers/iio/pressure/bmp280-core.c b/drivers/iio/pressure/bmp280-core.c
-> index c23515048081..e01c9369bd67 100644
-> --- a/drivers/iio/pressure/bmp280-core.c
-> +++ b/drivers/iio/pressure/bmp280-core.c
-> @@ -965,6 +965,30 @@ static const unsigned long bme280_avail_scan_masks[] = {
->   	0
->   };
->   
-> +static int bmp280_preinit(struct bmp280_data *data)
-> +{
-> +	unsigned int reg;
-> +	int ret;
+> diff --git a/Documentation/devicetree/bindings/x86/wakeup.yaml b/Documentation/devicetree/bindings/x86/wakeup.yaml
+> new file mode 100644
+> index 000000000000..cb84e2756bca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/x86/wakeup.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2024 Intel Corporation
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/x86/wakeup.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	ret = regmap_write(data->regmap, BMP280_REG_RESET, BMP280_RST_SOFT_CMD);
-> +	if (ret)
-> +		return dev_err_probe(data->dev, ret,
-> +				     "Failed to reset device.\n");
+> +title: x86 mailbox wakeup
+> +maintainers:
+> +  - Yunhong Jiang <yunhong.jiang@linux.intel.com>
 > +
-> +	usleep_range(data->start_up_time, data->start_up_time + 500);
+> +description: |
+> +  The x86 mailbox wakeup mechanism defines a mechanism to let the bootstrap
+> +  processor (BSP) to wake up application processors (APs) through a wakeup
+> +  mailbox.
 > +
-> +	ret = regmap_read(data->regmap, BMP280_REG_STATUS, &reg);
-> +	if (ret)
-> +		return dev_err_probe(data->dev, ret,
-> +				     "Failed to read status register.\n");
+> +  The "wakeup-mailbox-addr" property specifies the wakeup mailbox address. The
+> +  wakeup mailbox is a 4K-aligned 4K-size memory block allocated in the reserved
+> +  memory.
 > +
-> +	if (reg & BMP280_REG_STATUS_IM_UPDATE)
-> +		return dev_err_probe(data->dev, ret,
-> +				     "Failed to copy NVM contents.\n");
+> +  The wakeup mailbox structure is defined as follows.
+> +
+> +    uint16_t command;
+> +    uint16_t reserved;
+> +    uint32_t apic_id;
+> +    uint64_t wakeup_vector;
+> +    uint8_t  reservedForOs[2032];
+> +
+> +  The memory after reservedForOs field is reserved and OS should not touch it.
+> +
+> +  To wakes up a AP, the BSP prepares the wakeup routine, fills the wakeup
+> +  routine's address into the wakeup_vector field, fill the apic_id field with
+> +  the target AP's APIC_ID, and write 1 to the command field. After receiving the
+> +  wakeup command, the target AP will jump to the wakeup routine.
+> +
+> +  For each AP, the mailbox can be used only once for the wakeup command. After
+> +  the AP jumps to the wakeup routine, the mailbox will no longer be checked by
+> +  this AP.
+> +
+> +  The wakeup mailbox structure and the wakeup process is the same as
+> +  the Multiprocessor Wakeup Mailbox Structure defined in ACPI spec version 6.5,
+> +  section 5.2.12.19 [1].
+> +
+> +  References:
+> +
+> +  [1] https://uefi.org/specs/ACPI/6.5/05_ACPI_Software_Programming_Model.html
+> +
+> +select: false
 
-ret is 0 at this point.
-Should a -E<something> be used instead?
+This schema is still a no-op because of this false.
 
-CJ
+What is the point of defining one property if it is not placed anywhere?
+Every device node can have it? Seems wrong...
 
-> +
-> +	return 0;
-> +}
-> +
->   static int bmp280_chip_config(struct bmp280_data *data)
->   {
->   	u8 osrs = FIELD_PREP(BMP280_OSRS_TEMP_MASK, data->oversampling_temp + 1) |
-> @@ -1082,6 +1106,7 @@ const struct bmp280_chip_info bmp280_chip_info = {
->   	.read_temp = bmp280_read_temp,
->   	.read_press = bmp280_read_press,
->   	.read_calib = bmp280_read_calib,
-> +	.preinit = bmp280_preinit,
->   
->   	.trigger_handler = bmp280_trigger_handler,
->   };
-> @@ -1202,6 +1227,7 @@ const struct bmp280_chip_info bme280_chip_info = {
->   	.read_press = bmp280_read_press,
->   	.read_humid = bme280_read_humid,
->   	.read_calib = bme280_read_calib,
-> +	.preinit = bmp280_preinit,
->   
->   	.trigger_handler = bme280_trigger_handler,
->   };
-> diff --git a/drivers/iio/pressure/bmp280.h b/drivers/iio/pressure/bmp280.h
-> index 4e675401d61b..73516878d020 100644
-> --- a/drivers/iio/pressure/bmp280.h
-> +++ b/drivers/iio/pressure/bmp280.h
-> @@ -205,6 +205,9 @@
->   #define BMP280_REG_CONFIG		0xF5
->   #define BMP280_REG_CTRL_MEAS		0xF4
->   #define BMP280_REG_STATUS		0xF3
-> +#define BMP280_REG_STATUS_IM_UPDATE	BIT(0)
-> +#define BMP280_REG_RESET		0xE0
-> +#define BMP280_RST_SOFT_CMD		0xB6
->   
->   #define BMP280_REG_COMP_TEMP_START	0x88
->   #define BMP280_COMP_TEMP_REG_COUNT	6
+You need to come with proper schema. Lack of an example is another thing
+- this cannot be even validated by the tools. 
+
+Best regards,
+Krzysztof
 
 
