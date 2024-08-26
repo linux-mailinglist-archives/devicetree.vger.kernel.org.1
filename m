@@ -1,109 +1,164 @@
-Return-Path: <devicetree+bounces-96758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6AB95F61A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:10:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB3C95F62A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECB722825C2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:10:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92B5D1C20EC7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B1C193429;
-	Mon, 26 Aug 2024 16:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1517318660E;
+	Mon, 26 Aug 2024 16:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6Qzr18S"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wLmlNovv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7894A153812;
-	Mon, 26 Aug 2024 16:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CF7153812;
+	Mon, 26 Aug 2024 16:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724688590; cv=none; b=rQXt+u5ajr1FNkGLeIPHsF2woiY83swEtV5O+1OytFPGbYNabxDNDmISiWmpSeQAqaibBXh+LHf1cOV9HLbJAWnXKboyt2QajX7EajgWN28d1BJCX/pWxQ1neivG95dS9AeuKznXhODojgABndjTmWEqmgLqzCKa7U8615sAFt8=
+	t=1724688722; cv=none; b=tcT5oeN+ztq/xSQ9PXcc1Urfe+Fzf4AZI0lXYOrxo+g0d69WlbLvCIbgYk42z2HSHkNYpvJTrmkzXr9NpH3I/NqfyBIi5PXjYDlgfW/H+8G8xQUFX0XsNrtGHgRt2u9F6c+4S75yowHekdht+u4t25VS7EpsIVGnieM9m0kCD+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724688590; c=relaxed/simple;
-	bh=PgVuv+2ugVeGTH07IgetYbovxINZB9KbgAWUegNwC2M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HDw90NAEJGmylkEGPHPK0ugEE0DG6fBkakcFHyvVIOZ4Fm7IXXtW5zo/FZwheXflZ+Llr5YuxqW/0YbtzRc8xoQBJHBSnareSI7O8gZ074oEOIE1WAtjj8clBbufWrV17Ao3BwGt1jD1aLi2uNB2R3mHd+Fx+r52vstWaUZqmMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b6Qzr18S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE29DC52FC1;
-	Mon, 26 Aug 2024 16:09:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724688590;
-	bh=PgVuv+2ugVeGTH07IgetYbovxINZB9KbgAWUegNwC2M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b6Qzr18ST56e+ZIkNrKXLmV9BBHjlh82KJr9E5OOI/86EGF9gml8uPYnZnw7rIZ2N
-	 uQ0Dafk4rwC/2Fc7HsUC0ncaGxD+QreYUc6nElo1zGhSuvpBFOgkwNHLGRBmDQhMMs
-	 61IAGvFe9NCNiNceBHFBfjvU19CnWf2r63ed8Jl8lKszZiE2I3Vhh6zo5kM1cBaVCb
-	 JZuhkHPJwI1qnxSDCPHVLXaWlqpBhKktrwtu+t1KTejkdgYwNG2NpHT0em0b07KdZf
-	 rNMDePdjavcn8mu7cr7YfE15Z8ImlswG5K20o7Yc2EB+rAhiGmlPLb/KTlMWRcGF5D
-	 RGh99qNKNGSeQ==
-Date: Mon, 26 Aug 2024 17:09:43 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: lorforlinux@beagleboard.org, jkridner@beagleboard.org,
-	robertcnelson@beagleboard.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Johan Hovold <johan@kernel.org>,
-	Alex Elder <elder@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	greybus-dev@lists.linaro.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: ti,cc1352p7: Add
- bootloader-backdoor-gpios
-Message-ID: <20240826-pristine-domelike-d995db6f2561@spud>
-References: <20240825-beagleplay_fw_upgrade-v3-0-8f424a9de9f6@beagleboard.org>
- <20240825-beagleplay_fw_upgrade-v3-1-8f424a9de9f6@beagleboard.org>
+	s=arc-20240116; t=1724688722; c=relaxed/simple;
+	bh=jUQP68nUlki+cXW8OTLr++soCeGVktbXwYkW06PRrPc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ANQ0MNg1l9/xLaRePF5lSg3eQIvKeOBQBmTRRzDYP9gkSr8iwHRMv8CwPZvBKPgbzW66+xaCmPTWItykorHhtklDbbiuDnL9JEKfspYEYJq/uEZBMaYu6Klz7JTDNSGByTA4CN46zntx3mTR8wk9MnOILLQYBreOgDe1KuuLTvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wLmlNovv; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47QGBncw056660;
+	Mon, 26 Aug 2024 11:11:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724688709;
+	bh=zuc0ZpG16+l9Hej5rugykPnBSFVg7zD0PpDd9bXudNE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=wLmlNovv2yTAuOjIAneQSo29UEulDea1fPFfRECzdvWcLwlmoN2030xeRxgb4vPpy
+	 yMZEqs9diND+dxDtPPMG7O+/F2B1EOwgz8MPB8wswXk4q6Ik9e9j8zD3XBuetTRJcp
+	 74MeMI5VyG1MoEuB+qdXQ0Vtlim8O9go9z6Hs8Sg=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47QGBnZ5094345
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Aug 2024 11:11:49 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ Aug 2024 11:11:49 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 Aug 2024 11:11:49 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47QGBnTM041893;
+	Mon, 26 Aug 2024 11:11:49 -0500
+Date: Mon, 26 Aug 2024 11:11:49 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Dhruva Gole <d-gole@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/4] arm64: dts: ti: k3-am62p: add opp frequencies
+Message-ID: <20240826161149.2hnfpjslsdyezn72@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20240823-opp-v2-0-e2f67b37c299@ti.com>
+ <20240823-opp-v2-3-e2f67b37c299@ti.com>
+ <20240826132311.igliqicrydtifp2s@lcpd911>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/DPLpm0pp++ZNJeN"
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20240825-beagleplay_fw_upgrade-v3-1-8f424a9de9f6@beagleboard.org>
+In-Reply-To: <20240826132311.igliqicrydtifp2s@lcpd911>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On August 26, 2024 thus sayeth Dhruva Gole:
+> Hi Bryan,
+> 
+> On Aug 23, 2024 at 16:54:30 -0500, Bryan Brattlof wrote:
+> > ONe power management technique available to the Cortex-A53s is their
+> 
+> s/ONe/One
+> 
+> > ability to dynamically scale their frequency across the device's
+> > Operating Performance Points (OPP)
+> > 
+> > The OPPs available for the Cortex-A53s on the AM62Px can vary based on
+> > the silicon variant used. The SoC variant is encoded into the
+> > WKUP_MMR0_WKUP0_CTRL_MMR0_JTAG_USER_ID register which is used to limit
+> > the OPP entries the SoC supports. A table of all these variants can be
+> > found in its data sheet[0] for the AM62Px processor family.
+> 
+> Error 404! Not found [0] ;)
+> 
 
---/DPLpm0pp++ZNJeN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Oops. I'll fix these up
 
-On Sun, Aug 25, 2024 at 10:17:05PM +0530, Ayush Singh wrote:
-> bootloader-backdoor-gpio (along with reset-gpio) is used to enable
-> bootloader backdoor for flashing new firmware.
->=20
-> The pin and pin level to enable bootloader backdoor is configured using
-> the following CCFG variables in cc1352p7:
-> - SET_CCFG_BL_CONFIG_BL_PIN_NO
-> - SET_CCFG_BL_CONFIG_BL_LEVEL
->=20
-> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+> > 
+> > Add the OPP table into the SoC's ftdi file along with the syscon node to
+> 
+> What is ftdi?
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+FTDI is a chip, what I tried to type out was fdti or Flattened Device 
+Tree Includes :)
 
---/DPLpm0pp++ZNJeN
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> > describe the WKUP_MMR0_WKUP0_CTRL_MMR0_JTAG_USER_ID register to detect
+> > the SoC variant.
+> > 
+> > Signed-off-by: Bryan Brattlof <bb@ti.com>
+> > ---
+> >  .../boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi  |  5 +++
+> >  arch/arm64/boot/dts/ti/k3-am62p5.dtsi              | 47 ++++++++++++++++++++++
+> >  2 files changed, 52 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> > index 315d0092e7366..6f32135f00a55 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> > @@ -20,6 +20,11 @@ chipid: chipid@14 {
+> >  			bootph-all;
+> >  		};
+> >  
+> > +		opp_efuse_table: syscon@18 {
+> > +			compatible = "ti,am62-opp-efuse-table", "syscon";
+> 
+> Huh, curious why I don't see this particular compatible in am62 itself..
+> Also, I am still not clear where this discussion got left off: (If it's
+> related)
+> https://lore.kernel.org/all/5chxjwybmsxq73pagtlw4zr2asbtxov7ezrpn5j37cr77bmepa@fejdlxomfgae/
+> 
+> In AM625, I see
+> k3-am625.dtsi:111: col 14: syscon = <&wkup_conf>;
+> 
+> But the approach you've used here seems different. Is there a
+> justification given on which one should be used/why somewhere that I can
+> refer?
 
------BEGIN PGP SIGNATURE-----
+Labeling the entire &wkup_conf as a syscon node is kinda abusing what 
+the syscon node is used for. There are a lot of things inside that 
+WKUP_CTRL_MMR that do not belong under the miscellaneous registers 
+category. For the 62A and 62P we've chosen to label &wkup_conf as a bus 
+with little syscon sub-nodes inside of it.  
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsyoxwAKCRB4tDGHoIJi
-0thAAQDPuuwJz0rQ4CLBxjUEwzs+xJQjaSdCxpCtp2ypSXeDfgD/QDkE2GTbcD51
-HY+44h0CGH+wJznOESsbSYLni8+60wM=
-=7Rz+
------END PGP SIGNATURE-----
+I don't think the discussion[0] ever finalized but we started going that 
+direction with new SoCs, looks like the older SoCs never received the 
+cleanup.
 
---/DPLpm0pp++ZNJeN--
+~Bryan
+
+[0] https://lore.kernel.org/all/e7114cb4-e24f-4e78-a89f-4e2e2e704b8a@ti.com/
+
 
