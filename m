@@ -1,84 +1,97 @@
-Return-Path: <devicetree+bounces-96840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C99595FB0F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 22:55:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CDE95FB13
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 22:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F9201C2269A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:55:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 333492852FE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B52219AD81;
-	Mon, 26 Aug 2024 20:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E676719A28D;
+	Mon, 26 Aug 2024 20:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="wDVvOuYs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [164.92.70.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC38B199EAD
-	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 20:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85223199396
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 20:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=164.92.70.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724705705; cv=none; b=FX7b+5RZJFbYXe0UfNvl3ulUH5wPZfmA2YGVrT9lrmGcQ1hxQpo2fsDYCbSESgGwbdhhOIkC5jQgdSuiNiEZN9c6HrLQZNphsIkcAxEcTqEyrONfB/UddKaOiDnE3+wAhHbeAiZWIF3sBMaAh1AQ5CR+4iQQf5//x1MyA9rPl3o=
+	t=1724705766; cv=none; b=Eym52PFXbjirre3Ll3+t46UgzRUyz9lkU0u1PSt1vW57/SBpQsHl1deU5rfKHLThDeFupadzdO2DGuGdxlWNmEO3qXQq1bDjdqRGycCIPJpcBu5yO7RgjbU7AndU06PrL0rT0JwpFfHr2mY9BJJAU16HUHCMYT45ifqq1jJg4kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724705705; c=relaxed/simple;
-	bh=7NXtnwmvCIhyA32Y9cVSO9Z9Tqjqcf1blkjdopyxGR8=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pZlwrH6fNc/aN54LU5veP8BAOxpGpalmE8xVJI2DRS1yRp26BT9lF94VHcUG8HSWxwq0yQNa4FaLoqzSc2qM2/0BmTPzuePd6twFXoAkgsIqewUIjc9dUylRZymqZPgZ//ztfCm+tew8d7ML/a2b6VHSweLfx09hPBk/7ZB0oHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-25-87.elisa-laajakaista.fi [88.113.25.87])
-	by fgw22.mail.saunalahti.fi (Halon) with ESMTP
-	id 75ac7369-63ed-11ef-8ec2-005056bdf889;
-	Mon, 26 Aug 2024 23:55:00 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 26 Aug 2024 23:55:00 +0300
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
+	s=arc-20240116; t=1724705766; c=relaxed/simple;
+	bh=jFUP/27MV1FVEDFzFe66e8U0/TnQn3kfXparQUdw/j8=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=qLDzdbtMVUwdHPhKkGelII4GusKl+Si5DcIh6QZLSGxWaKNg7PBiDmB50vU8HZAshq0ep86LGCa63JWOpju0wuUnRNTKY11tFyr8TBDvJ6RFTh5LOmklkufF0wXSIjRtOyRMur9YlomlstuczieBNKlOmEcDgztOyOTd5R7UEiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=wDVvOuYs; arc=none smtp.client-ip=164.92.70.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Date: Subject: Cc: To: From:
+ Message-ID; q=dns/txt; s=fe-e1b5cab7be; t=1724705747;
+ bh=La1r0vb8HqM0uZe15gW8C1ZAEEWVA2k/jF0DeZaxmiQ=;
+ b=wDVvOuYsLVLkoicjTT2+ZtBY4+zDFHiv4ydbCWMhuStOfsqWrnkcsiOL6cb+w7IMg+20KmcsN
+ WwrZuPGbVAtbRP0y48oJa1ZepPoG0ZO5RWNSpWh6ROO0UgN4Bt7jqZ5qj4QSEo+VusAvBii3ZTG
+ eDXnEPr+qpTWrpMxlUbAlV+KMcrF4eCRoQRKPv7aYRbTeBfVylRCYv058J/uZn2OgR1539qFhDC
+ z3Ml1OJG7P871U8+yJsUowCu5Vvg8URMpaWdAqKOBCDm35Q4OJ0yO+j9raLHYSRfYg6WMMFc7vP
+ wzb3t5GaAOWoYJg+lnnfx+r1MoDCAmZwlIGEd1GVMIdQ==
+Message-ID: 20240826205538.1066103-1-jonas@kwiboo.se
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Maximilian Luz <luzmaximilian@gmail.com>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <quic_kdybcio@quicinc.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 0/3] OF support for Surface System Aggregator Module
-Message-ID: <ZszrpJrltlUsdPv7@surfacebook.localdomain>
-References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH 0/4] arm64: dts: rockchip: Add Hardkernel ODROID-M1S
+Date: Mon, 26 Aug 2024 20:55:27 +0000
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 164.92.70.200
+X-ForwardEmail-ID: 66ccebd2e59276ede820346a
 
-Wed, Aug 14, 2024 at 12:27:24PM +0200, Konrad Dybcio kirjoitti:
-> Wire up OF support for SSAM drivers, to use with Surface Laptop 7 and
-> other Qualcomm-based devices.
-> 
-> Patch 3 references compatible strings introduced in [1]
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20240809-topic-sl7-v1-1-2090433d8dfc@quicinc.com/T/#u
+This series fixes wrong vendor prefix on the Hardkernel ODROID-M1 board
+and adds initial support for the Hardkernel ODROID-M1S board.
 
-Please, Cc to me the v4.
+The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
+RK3566 SoC. It features e.g. 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-card,
+GbE LAN, HDMI 2.0, M.2 NVMe and USB 2.0/3.0.
+
+Schematic for ODROID-M1S can be found at:
+https://wiki.odroid.com/_media/odroid-m1s/hardware/m1s_main_rev1.0_230906.pdf
+
+Jonas Karlman (4):
+  dt-bindings: arm: rockchip: Correct vendor for Hardkernel ODROID-M1
+  arm64: dts: rockchip: Correct vendor prefix for Hardkernel ODROID-M1
+  dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
+  arm64: dts: rockchip: Add Hardkernel ODROID-M1S
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3566-odroid-m1s.dts   | 663 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3568-odroid-m1.dts    |   2 +-
+ 4 files changed, 671 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.45.2
 
 
