@@ -1,138 +1,133 @@
-Return-Path: <devicetree+bounces-96661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572ED95EF08
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:55:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B65D95EF19
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:56:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED18D1F249BB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:55:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A12A9288FC5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C812214F9EE;
-	Mon, 26 Aug 2024 10:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09AE1547C4;
+	Mon, 26 Aug 2024 10:55:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="Nuvp2MVV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JSy86E8y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com [95.215.58.176])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7AD14A4FB
-	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 10:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F64154458;
+	Mon, 26 Aug 2024 10:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724669560; cv=none; b=cDF7VDlR3KxZuYDzSIsys4xEZA/yLrndpBEmQ9u1KYG4OQN/Zu1QsNnwGXkRKFrr14NwSGAz5Ed5FlumObJYswfXZyhwNhrj4AV0OvtjcFpZEK76REYDnww2lfFnXf+s5tzBadqR/Gcg5+Z+l1SuC39lvz7qU4sZ+DsUBKof7vQ=
+	t=1724669702; cv=none; b=Lq1sAst9jxekXNKrZI+IfctGVBmZwpHMFVUuvCKGb9HGv5/xmIALyQ4kReIa3Wmi5hvZFEq3sGxRFXWvWZzXtdGW1Qd+9XHqhmczj+y/0sZmG/t3+q3PUr8rJR1mvEYFF/Sso0j6CQ+k9SJ3ySCRiJoDcqQiV7mbTtvsqwH2Lk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724669560; c=relaxed/simple;
-	bh=+VPNQ59e721DlIID/Hxdnoy7YLYOuWksopEO8/i2jKY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=k6+GBYn/Zg69hc7fDnWma24a5qPeRvC9pk7qrGDdHM4kI15dm8NvhDElvHO7aMm12LxKelalhdPMYSg3gXNcYcy59ind+69VxeH+xn2WcFyEnSLAALAfR+KNBZEqzIuqdBgNrbT0JCou8t9iJ9AQoogzd6swWwg0wNXZ0/mzLPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=Nuvp2MVV; arc=none smtp.client-ip=95.215.58.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1724669702; c=relaxed/simple;
+	bh=JLmSQi87B0rSmoyQSN959mk8I9lmnzhBxOxIOD5KSdA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X3Od3dbCAkdrnjhognnrR8qDZhNPbiEmpOSeHNgQ6rArELVNk74z9+wYj9iOub3eD1lJo45EIMrTK5nRMA8cPH7UcT2vjRl4G8Mdt6iKxfrvHMbURRVoE8K2YYLhAnmKX3Sahn3r+tKxueO3pObuu6HzdMNyIEXX5vYSIrSUM6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JSy86E8y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D099C4FEA2;
+	Mon, 26 Aug 2024 10:54:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724669701;
+	bh=JLmSQi87B0rSmoyQSN959mk8I9lmnzhBxOxIOD5KSdA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JSy86E8yaWrHB0QmDVM0cH343NkzYzmvDPRm1fTgbs/5wqZUk8xdDhPBwDl7fMWXA
+	 h0VHA06csbZnm+QusvOgx3zv8KQM/8dBtOZKda9TIxATFc4qwKz1gh5iC3PAzeMJ3b
+	 /hC9WmBdAr962TWRbHlIQlbahizOi/lK+CYqzJuttEfAV4T1Aw457BPwhen1oVV5XD
+	 JzA0DOti60D5lf2C1x8vpgC+QQ3fJceuHjYGgkyHvQPNJ3JdGNu8VfmzztEfQ06Z1n
+	 uPDLh9TJl66GQK+umFTe8ZaAI2kByTu19RjYeoD2xOdpKFvnd9METfpxd9icMm3w3F
+	 a+U42MdF4Qpnw==
+Message-ID: <276ee20c-beeb-4607-b435-11bfd188ccef@kernel.org>
+Date: Mon, 26 Aug 2024 12:54:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1724669556;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pC3CXd7b3nW6nitMDOzjNF3/d6+JckC+lUMoiAYLDf0=;
-	b=Nuvp2MVVjRShLuEha/c9tEtw/4BlB19sA/1t/LZZu8tzaTYBh3nx9gUlO5z3LliW25dPNO
-	W6sqL8JLRVeqakTDNknPlz5x1BpkNkGiVUeY/Wrnl9NXGAaf3nRZytCIuJSLzptpn7PEAQ
-	ao5USRXm1FmBTfsqxXl67kYj7bDasO33hTmT0ysTdSmd3F2pXzF+L4tWTnQYmPi9L4GYuo
-	E30nf6A+gP6kJ65gopeB1y3K5AshSJgeJiYdiHNgKQUxDaVn66Jq1VXbXZGI5Sg5zAnN9t
-	JD9owdWbBQmUCPpM5c9YFdWV29P1Tt8i2E5Cy2cxioLTP59vXQUEE8IyJOSbFQ==
-Content-Type: multipart/signed;
- boundary=88a03f0ace39b47353b9d5c8338341db7b73870548ed87a92bc4735c126f;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 26 Aug 2024 12:52:21 +0200
-Message-Id: <D3PSBTJGFOST.3DJNY2LQ65A3Z@cknow.org>
-To: "Marcin Juszkiewicz" <marcin.juszkiewicz@linaro.org>, "Heiko Stuebner"
- <heiko@sntech.de>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-Cc: <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
- "Jonas Karlman" <jonas@kwiboo.se>
-Subject: Re: [PATCH v5 2/7] arm64: dts: rockchip: add NanoPC-T6 LTS
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-References: <20240826-friendlyelec-nanopc-t6-lts-v5-0-ba33edda7f17@linaro.org> <20240826-friendlyelec-nanopc-t6-lts-v5-2-ba33edda7f17@linaro.org>
-In-Reply-To: <20240826-friendlyelec-nanopc-t6-lts-v5-2-ba33edda7f17@linaro.org>
-X-Migadu-Flow: FLOW_OUT
-
---88a03f0ace39b47353b9d5c8338341db7b73870548ed87a92bc4735c126f
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/7] arm64: dts: ti: k3-j7200-som-p0: Change timer
+ nodes status to reserved
+To: Beleswar Padhi <b-padhi@ti.com>, nm@ti.com, vigneshr@ti.com,
+ kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: u-kumar1@ti.com, tony@atomide.com, bb@ti.com, d-gole@ti.com, afd@ti.com,
+ hnagalla@ti.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240826104821.1516344-1-b-padhi@ti.com>
+ <20240826104821.1516344-2-b-padhi@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240826104821.1516344-2-b-padhi@ti.com>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon Aug 26, 2024 at 10:02 AM CEST, Marcin Juszkiewicz wrote:
-> FriendlyELEC introduced a second version of NanoPC-T6 SBC.
->
-> Create common include file and separate DT files for each version of the
-> board.
->
-> In the LTS version the miniPCIe slot got removed and USB 2.0 setup has
-> changed. There are two external accessible ports and two ports on the
-> internal header.
->
-> There is an on-board USB hub which provides:
-> - one external connector (bottom one)
-> - two internal ports on pin header
-> - one port for m.2 E connector
->
-> The top USB 2.0 connector comes directly from the SoC.
->
-> Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
->  .../boot/dts/rockchip/rk3588-nanopc-t6-lts.dts     |  61 ++
->  arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts  | 910 +--------------------
->  ...{rk3588-nanopc-t6.dts => rk3588-nanopc-t6.dtsi} |  16 -
->  4 files changed, 66 insertions(+), 922 deletions(-)
+On 26/08/2024 12:48, Beleswar Padhi wrote:
+> The remoteproc firmware of R5F in the MAIN voltage domain use timers.
+> Therefore, change the status of the timer nodes to "reserved" to avoid
+> any clash. Usage is described as below:
+> 
+> 	+===================+==========================+
+> 	|  Remoteproc node  |        Timer Node        |
+> 	+===================+==========================+
+> 	| main_r5fss0_core0 | main_timer0, main_timer2 |
+> 	+-------------------+--------------------------+
+> 	| main_r5fss0_core1 | main_timer1              |
+> 	+-------------------+--------------------------+
+> 
+> Fixes: c8a28ed4837c ("arm64: dts: ti: k3-j7200: Add general purpose timers")
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
 
-Would it be useful to split this patch up as follows?
-- Move common parts to dtsi and update the non-lts version to use that
-- Improve the dtsi file (optionally)
-- Improve the non-lts dts file (optionally)
-- Add the lts version
+You keep sending the same. Where is the changelog? Why so many same
+patchsets? Why so many resends without changes?
 
-> ...
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-> index ad8e36a339dc..2a2dc77c71b1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-> ...
-> -&uart2 {
-> -	pinctrl-0 = <&uart2m0_xfer>;
-> -	status = "okay";
-> -};
-> -
-> +/* USB 2.0 in minipcie slot */
->  &u2phy2_host {
->  	phy-supply = <&vdd_4g_3v3>;
->  	status = "okay";
->  };
+Best regards,
+Krzysztof
 
-I like comments like these, but I wonder if such things don't make the
-diff (way) larger then needed.
-
-Cheers,
-  Diederik
-
---88a03f0ace39b47353b9d5c8338341db7b73870548ed87a92bc4735c126f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZsxeawAKCRDXblvOeH7b
-bujlAQD7mr7iLUh0ESifXvOPiHNSTNHrH21hpoQu0JlLz6Gs2QEAu36UVu9WLegQ
-ngDg7BmbxXJ1zRQgsYE0HhaG6ybCeQw=
-=fPcS
------END PGP SIGNATURE-----
-
---88a03f0ace39b47353b9d5c8338341db7b73870548ed87a92bc4735c126f--
 
