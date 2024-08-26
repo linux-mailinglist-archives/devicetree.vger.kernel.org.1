@@ -1,83 +1,121 @@
-Return-Path: <devicetree+bounces-96618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81A995ED23
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:29:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D7B95ED2B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:30:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 174491C2185C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:29:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E0A21F221AB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE300143882;
-	Mon, 26 Aug 2024 09:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5628013D630;
+	Mon, 26 Aug 2024 09:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OqULYCcM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KVl7i6U1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8B913AD3F;
-	Mon, 26 Aug 2024 09:29:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F86977F08;
+	Mon, 26 Aug 2024 09:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724664574; cv=none; b=G1PIABKf2qZSdtfSInllpp6jE8ptTX3TIm0Z8zqz2iwMvvaFDMheC7UPnKKJPCefYGWGR+Rp2NrlO/a6qMKj9YhZHzbSTqUiw8iLlzj6Ygdv1qSn9iqwDwJZKt0h/vZDSMkyMr+rnqlgQRQBgY3u93+GhWdPJJSV34A8U9NDbcc=
+	t=1724664640; cv=none; b=tgKpa53/zXSBN+iz84dBDFD0LBsfzNiNt71+2/QsXpx3s9rrP5lU3mQurGAL1J2AbwR8JIKBZOSJRHc5HSRKiff93yZLnEyO9kuOWKpC7+705slQgRx8b4I5+D6cHYg+cRiVo3jA2wjBtYnOxwqcduXm3wUqtiZqf9Sp0KgWD2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724664574; c=relaxed/simple;
-	bh=yFtaOyJ3oZbhPtFgbua649+GIjQJIk5xntNn98+IQR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uxXLcEQxB3q1N4lGpfm/vJ3h2vYxDhU9pN7jjNTzgaSrKQovEtdXxvNtQwiZK2SqPSNihTZY5+BDblVTPPrWPo6Vm1NPDuGulA0jTYvXdRanpR2PRo6niewLgttBxdSxbjc7jOZg6wkNYTOh04LOftkcEQeaJQ4ellydD3ICTOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OqULYCcM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E477C8403F;
-	Mon, 26 Aug 2024 09:29:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724664574;
-	bh=yFtaOyJ3oZbhPtFgbua649+GIjQJIk5xntNn98+IQR4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OqULYCcMB+OSTkFPTgm+yOBeUzxkwxkyBwtdmIel/WsSxWu2ZNlIDHXQNcKmPA5bK
-	 4hRiAhEiGpArK0PjhFbOS9puXePcIzL5fY1n+Uhtms88TEmiHlzEkF+EmHQfiScsZa
-	 jyUVeB0M58jZnFjXyji46f0W+Xj1oic90Vi3P1IuewwiFQPbwhBAhGRNN98gI8YvDK
-	 abwRya7rGwmYBdSVt0TZcjg4gd8MsJP62mGsdoKed0HPAddBx0Kzqrgv7q8yVk7Pwx
-	 R37iDvoyS7gcHBwQhL/sZSmWoEWApOJ5PTNqPqeWN4Ciyt/Kz8JWv8MO21N/1nE0m3
-	 zJ+JaYq2NCuJg==
-Date: Mon, 26 Aug 2024 10:29:21 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Esteban Blanc <eblanc@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
- <nuno.sa@analog.com>, Jonathan Corbet <corbet@lwn.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH 5/6] iio: adc: ad4030: add support for ad4632-16 and
- ad4632-24
-Message-ID: <20240826102921.1c897357@jic23-huawei>
-In-Reply-To: <20240822-eblanc-ad4630_v1-v1-5-5c68f3327fdd@baylibre.com>
-References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
-	<20240822-eblanc-ad4630_v1-v1-5-5c68f3327fdd@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1724664640; c=relaxed/simple;
+	bh=IaQvQK322F41Wu3XuQqzpU/an5HrTCCYpOEpInG8XP8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QV43Z9uhFPHhIT7gP2Ii49IE+Ruvx7Zeb4ztZhg72J1/gu/FRvGFbgdktcaOP+TwjjEvX72WhkDiTmZEu/6KFi+r/o4g7D0luqEUpWaQDKgbaULbkekt33a/K4iNqOTvlYpM3kFZQmgjQLNc38bUBGecmhLy39HapB0uCX3WvhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KVl7i6U1; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47Q9UTCR113589;
+	Mon, 26 Aug 2024 04:30:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724664629;
+	bh=M5c+I3fwFUbb6TlPohBPIc7+gZ7Wuml8QQ0nxOyyRsI=;
+	h=From:To:CC:Subject:Date;
+	b=KVl7i6U1jF7Hv9JSTee5ir+NsRUAJ02T0gGgJvh7KFz6qZHuJOLk59ajHJmKundAs
+	 S8Bp2XT6/3SMtCgofHLrNPm9/JF9gYAE9bySgj1kGTttfz1+RZWzO4ZEtEz8Z6btMV
+	 P5hpgrrW/ofRWB4wenDLM1JnvVn8JjUuH3JWC/9Q=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47Q9UTFr015239
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Aug 2024 04:30:29 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ Aug 2024 04:30:28 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 Aug 2024 04:30:28 -0500
+Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.227.151])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47Q9UPn9118247;
+	Mon, 26 Aug 2024 04:30:25 -0500
+From: Beleswar Padhi <b-padhi@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <u-kumar1@ti.com>, <s-anna@ti.com>, <hnagalla@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/7] Switch MAIN R5F clusters to Split-mode for TI K3 Platforms
+Date: Mon, 26 Aug 2024 15:00:17 +0530
+Message-ID: <20240826093024.1183540-1-b-padhi@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, 22 Aug 2024 14:45:21 +0200
-Esteban Blanc <eblanc@baylibre.com> wrote:
+TI's K3 Platforms (J7200-EVM, J721E-EVM, J721E-SK, J721S2-EVM, AM68-SK,
+J784S4-EVM, AM69-SK) have multiple R5F clusters in the MAIN domain. All
+of these clusters are configured for LockStep mode at the moment. Switch
+all of these R5F clusters to Split mode by default to maximize the
+number of R5F cores.
 
-> AD4632-24 and AD4632-16 are 2 channels ADCs. Both channels are
-> interleaved bit per bit on SDO line.
-> 
-> Both of them do not have evaluation board. As such, the support added
-> here can't be tested. Support is provided as best effort until someone get
-> their hands on one.
-> 
-> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
-This looks fine to me.
+v3: Changelog:
+* Nishanth
+1) Refactored changes to board level DTS files instead of SoC level dtsi files.
+
+Link to v2:
+https://lore.kernel.org/all/20240821095200.3050878-1-b-padhi@ti.com/
+
+v2: Changelog:
+1) Update commit messages to drop "Lockstep-mode" as default mode for early
+booted remoteprocs.
+
+Link to v1:
+https://lore.kernel.org/all/20240503062414.804209-1-b-padhi@ti.com/
+
+Beleswar Padhi (7):
+  arm64: dts: ti: k3-j7200-som-p0: Switch MAIN R5F cluster to Split-mode
+  arm64: dts: ti: k3-j721e-som-p0: Switch MAIN R5F clusters to
+    Split-mode
+  arm64: dts: ti: k3-j721e-sk: Switch MAIN R5F clusters to Split-mode
+  arm64: dts: ti: k3-j721s2-som-p0: Switch MAIN R5F clusters to
+    Split-mode
+  arm64: dts: ti: k3-am68-sk-som: Switch MAIN R5F clusters to Split-mode
+  arm64: dts: ti: k3-j784s4-evm: Switch MAIN R5F clusters to Split-mode
+  arm64: dts: ti: k3-am69-sk: Switch MAIN R5F clusters to Split-mode
+
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi   |  8 ++++++++
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts        | 12 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  |  4 ++++
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts       |  8 ++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi  |  8 ++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi |  8 ++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 12 ++++++++++++
+ 7 files changed, 60 insertions(+)
+
+-- 
+2.34.1
 
 
