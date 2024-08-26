@@ -1,64 +1,57 @@
-Return-Path: <devicetree+bounces-96514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A86895E824
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 07:58:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB24B95E82C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:00:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9F8BB20954
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 05:57:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B9FD1F2117C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 06:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6E97DA97;
-	Mon, 26 Aug 2024 05:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA2D7F7DB;
+	Mon, 26 Aug 2024 06:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c3UIcaK2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UZxgzt9t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811FE7DA95;
-	Mon, 26 Aug 2024 05:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC3480027;
+	Mon, 26 Aug 2024 05:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724651874; cv=none; b=nnRKbmbLfZDQ3D0JnRiOYjvUVhwWi44MlqnrR9uSi9gCXfsNHgUIoUwimqbRtws0iXb/AlW4uLs7iUnOFN5k/JD5Ky/KsLkkFzbEFBo4JOv0u/HKSPUX4M3CpfnXit1hPzo7ReoNbtmHynFO/R5eWdlCzn7oHFHXfOXBM9JZLWc=
+	t=1724652000; cv=none; b=Iu/w36OII//i8aEp99e4u8AQp+u1b8mArL9JG4xHSIuzbbhDs2/tcjoPneNBq4KPf9cvG+fdXwT5zvVCrxp9R7Jd3FPfLuT60Cx46OC32lDxQlQAdL/argnVBl9LRTk+AyGneh4HkEkNS/PN0iiatx+PLQYp4mSMzrAcew6ldUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724651874; c=relaxed/simple;
-	bh=wyRlaGNpg7WUxry9pFdgw984ZNawvpL6nElCg7i5/OM=;
+	s=arc-20240116; t=1724652000; c=relaxed/simple;
+	bh=gwPC1PQuLbmGGEoj2L86IgnR3bAMfnC2ZsSKA6aNxgI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YeHjwW0ZZ5eQn3nb84KUJwgnnWmlpdziQYAHbHt+GQ7xztSAdHzM+dX14Pu6RwZe/gF5HA3FYjCSppnu0dcDcmuuCJVA6MEBg8z/uA4d2Szz/4nNa9TMqpdKFwSR52ReyG/Uy6z9bjCknW7hrwfGSFSfmuxS4Ia8HhVfOFm0cvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c3UIcaK2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52EDFC4AF11;
-	Mon, 26 Aug 2024 05:57:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oyjcg0Jh5ddLBLxL5h1hFjYyG6xCl4/wYzGMUWD2T9/ZXnZauAa848W3s3I9pf66NajMauVa9dwnZhLHy64DFneXyqrIRD4ldvPnrwWpl5vzJJX17X8tAuiudjmh/SYDm7JID4lkDFQ4LTE7w0i4+UVPliFJsXXX0phLrLGQCMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UZxgzt9t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89F95C4DDE1;
+	Mon, 26 Aug 2024 05:59:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724651874;
-	bh=wyRlaGNpg7WUxry9pFdgw984ZNawvpL6nElCg7i5/OM=;
+	s=k20201202; t=1724651999;
+	bh=gwPC1PQuLbmGGEoj2L86IgnR3bAMfnC2ZsSKA6aNxgI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c3UIcaK2jh/Zk1IFnUTnAXv5IMQBJ7tyIjK3F62xYaY5k6gK+aN3yXUl2WRH28kF6
-	 3/gLudS9ZU4R/uCMw7Vsz9U2PZUMZ5CtUzp/z9O77SmlzDhcA/qpJUhIrbaKVK5/Pe
-	 hWksA2nN3Mwd1HSK3/zVHu4Xtk4TOeKY1ahEnxcvWHdw6kv7bBMV6PAhksrtr9pEBu
-	 jSgiBIArl1+OFjk7G1MCeOCNYu1LcQw3mXxsgu9sJBtGGgPIAsOJbGmiaZo2aYs588
-	 ajb2ma9kiZ2dNcoI+VNhn5gKgeHy668dpSjCAaV0cLCUs7Re5Sk3tWr00gRhfGAKVu
-	 YU7NHRHGLZZ5A==
-Date: Mon, 26 Aug 2024 07:57:51 +0200
+	b=UZxgzt9t6AJLxZSGRafeIrUPvOi2Zm4UWjzQJArD2Tkw7gYTFtxyCXNO5NJSJR65n
+	 t/WmhalthFYqJuaBPfCMwbKZpXG9zjq63jtHMycczrT0pYWb+S2xD+JyK6NroPTlob
+	 l1/yFJrzM6WrZazrfwf4Dtqdqdx5TR5lZCQYozBA3uuvRCochukTHKRGCMdDmRRZkE
+	 rJQ0B/y7ShKcSmOj6l5oyFpCQ+M60o0xtZSQq5LU8t2U/Ge010Ctyc2IRByGvUhUA9
+	 CiXplAEL8hMzVYT9I53qmUnRm+ybyDBlFODxRsFKFmxV/+XJ1XGzu+HY0m1AHvnoZs
+	 73P/MSdg84ZRw==
+Date: Mon, 26 Aug 2024 07:59:55 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Mark Brown <broonie@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
-	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Takashi Iwai <tiwai@suse.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-omap@vger.kernel.org, linux-sound@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
-Subject: Re: [PATCH v3 1/9] of: property: add of_graph_get_next_port()
-Message-ID: <rlfczbgxjhnqeqskbg7q7rsvhyzznbqdjbtajl44pokpsdtdzx@ecirg7ytm6az>
-References: <87cylwqa12.wl-kuninori.morimoto.gx@renesas.com>
- <87bk1gqa0k.wl-kuninori.morimoto.gx@renesas.com>
+To: zhenghaowei@loongson.cn
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name, 
+	p.zabel@pengutronix.de, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, loongarch@lists.linux.dev
+Subject: Re: [PATCH v3 1/3] dt-bindings: serial: Add Loongson UART controller
+Message-ID: <7346m2dmduzdrhzmhlnms24bltoczbajfxfh6wcxxplzydqskc@2xey7pdc24t3>
+References: <20240826024705.55474-1-zhenghaowei@loongson.cn>
+ <20240826024705.55474-2-zhenghaowei@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,49 +60,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <87bk1gqa0k.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20240826024705.55474-2-zhenghaowei@loongson.cn>
 
-On Mon, Aug 26, 2024 at 02:43:23AM +0000, Kuninori Morimoto wrote:
-> We have endpoint base functions
-> 	- of_graph_get_next_device_endpoint()
-> 	- of_graph_get_device_endpoint_count()
-> 	- for_each_of_graph_device_endpoint()
+On Mon, Aug 26, 2024 at 10:47:03AM +0800, zhenghaowei@loongson.cn wrote:
+> From: Haowei Zheng <zhenghaowei@loongson.cn>
+> 
+> Add Loongson UART controller binding with DT schema format using
+> json-schema.
+> 
+> Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> ---
+>  .../bindings/serial/loongson,uart.yaml        | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/loongson,uart.yaml
+> 
+> Changes in V2:
+> 
+> - Correct the schema formatting errors.
+> 
+> - file name changed from 'loongson-uart.yaml' to 'loongson,ls7a-uart.yaml'
+> 
+> - Replace 'loongson,loongson-uart' with 'loongson,ls7a-uart'.
+> 
+> Changes in V3:
+> 
+> - Change the filename from 'loongson,ls7a-uart.yaml' to 'loongson,uart.yaml'.
+> 
+> - Drop newly defined features: fractional-division, rts-invert, dtr-invert,
+>   cts-invert and dsr-invert.
+> 
+> - Add three specific SoC: 'loongson,ls7a-uart', 'loongson,ls3a5000-uart' and 
+>   'loongson,ls2k2000-uart'.
+> 
+> - Drop 'LOONGSON UART DRIVER' description in MAINTAINERS.
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/loongson,uart.yaml b/Documentation/devicetree/bindings/serial/loongson,uart.yaml
+> new file mode 100644
+> index 000000000000..19a65dd5be9f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/loongson,uart.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/loongson,uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson UART
+> +
+> +maintainers:
+> +  - Haowei Zheng <zhenghaowei@loongson.cn>
+> +
+> +allOf:
+> +  - $ref: serial.yaml
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - loongson,ls7a-uart
 
-> +	if (!prev) {
-> +		/*
-> +		 * Find "ports" node from parent
-> +		 *
-> +		 *	parent {
-> +		 * =>		ports {
-> +		 *			port {...};
-> +		 *		};
-> +		 *	};
-> +		 */
-> +		prev = of_get_child_by_name(parent, "ports");
-> +
-> +		/*
-> +		 * Use parent as its ports if it not exist
-> +		 *
-> +		 * =>	parent {
-> +		 *		port {...};
-> +		 *	};
-> +		 */
-> +		if (!prev) {
-> +			prev = of_node_get(parent);
-> +
-> +			/* check wether it has port node */
-> +			struct device_node *port __free(device_node) =
-> +				of_get_child_by_name(prev, "port");
-> +
-> +			if (!port)
-> +				prev = NULL;
+Quick look tells me there is no such soc like ls7a. If there is such,
+please point me to the DTSI.
 
-It looks like you leak here "prev".
 
-> +		}
-> +
-> +		return prev;
-> +	}
+> +          - loongson,ls3a5000-uart
+> +          - loongson,ls2k2000-uart
+> +      - items:
+> +          - enum:
+> +              - loongson,ls2k1000-uart
+> +              - loongson,ls2k0500-uart
+> +          - const: loongson,ls7a-uart
+
+Just use real SoC names.
+
+> +      - items:
+> +          - enum:
+> +              - loongson,ls2k1500-uart
+> +          - const: loongson,ls2k2000-uart
+> +      - items:
+> +          - enum:
+> +              - loongson,ls3a6000-uart
+> +          - const: loongson,ls3a5000-uart
 
 Best regards,
 Krzysztof
