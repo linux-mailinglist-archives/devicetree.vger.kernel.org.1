@@ -1,160 +1,104 @@
-Return-Path: <devicetree+bounces-96607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2566D95ECBF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:08:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 367B495ED47
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE531B22363
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:08:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E623128241C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F8713DDB6;
-	Mon, 26 Aug 2024 09:08:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE2E146A69;
+	Mon, 26 Aug 2024 09:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kvAiglF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658A413D880;
-	Mon, 26 Aug 2024 09:08:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D35145FEE;
+	Mon, 26 Aug 2024 09:33:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724663298; cv=none; b=iPFq3IreuB7pGyAkD0k+ywsqh/WCVzo0ZwCX1fSgXHcbyPZPfD8jU2K8fGQ+B1wQmb6tX8PPbYhBpPMvayJ4kWtS62kIZeHgJGOHSlciydMsUftpPuinOI8MuHD2D9bJyKn/JJOLRGrR9ooLeAr63cFrkGTrRpWIClVZfoqO85Q=
+	t=1724664784; cv=none; b=LhLakcyv9HMt1a4ny2tazgAzPlmLL+NUn5TXTcsuWOoh7nb1709PJngCNnbRu4nFR9iK50MZzZ/JJxTSVxTJUv2Fgwp6yuOFfUAmcy2p0xF7xoBERAOed1cnmNQisk19FbjY9hyAnp90oxsm1pcDK4vjthlhrZmrn+7DElCXCis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724663298; c=relaxed/simple;
-	bh=Ye/42hokrfmovfnq9R+W9hx6eagaPmP5ImW+WKL3H34=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K/BI1ZdoRkMCnfiFqyJqLxbrYFV3cxKfH0Lc5vfio8SZ4cf7mWbT89YAofc2uw8uAXn1UY7aJ8XCc/BEzD2JZAUCE/iKOu/+sngWqsOOwPWyltysjFQrYEu0IjiJDyC62699jmBv1r6C7qG+KT6uXUcwdIhr+FITYAJLGpWA9Hw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.10,177,1719846000"; 
-   d="scan'208";a="216583881"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 26 Aug 2024 18:08:15 +0900
-Received: from localhost.localdomain (unknown [10.226.92.68])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 64C614007554;
-	Mon, 26 Aug 2024 18:08:12 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: rzg2lc-smarc: Enable HDMI audio
-Date: Mon, 26 Aug 2024 10:08:00 +0100
-Message-ID: <20240826090803.56176-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240826090803.56176-1-biju.das.jz@bp.renesas.com>
-References: <20240826090803.56176-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1724664784; c=relaxed/simple;
+	bh=hLsfUSzR0HEhVpFfdXscTD8zyuZTM22+rpebelyMh1E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YcBD6JdaPmwyCFrbAbgb24tKLBI3Ey6fBEmvaqQklvyMKUzrQEshWkcgLNYJzjaPptH8Nad4rleyEUyBxWBeJ8R6CdHzVZm+2CgsngGaNnzhnWiUOWoaFvI/1bC5I4sH3QQgipYm1egW9zKJ/uOkwJjIpdIBs/xBlRdrbu4KrY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kvAiglF9; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724664783; x=1756200783;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=hLsfUSzR0HEhVpFfdXscTD8zyuZTM22+rpebelyMh1E=;
+  b=kvAiglF94UFmsqyOHS7vasKHowSkNvZxK/UnrCHe3TIw3fNXkIToVxfD
+   9rGHmZFQ6U93hcFycMgjpYVLWKYaOehnnyZF0t46861z2Kdrqoro7IgUP
+   CJR0E7U//1yVodDPUQ6aIOFTe6kmv4bV5VabypUL+1XPcu9yj3QqW9TM7
+   SKZbw/WM8uFKiSVQbLqiie8uVIMizrS4xJYv94SFbdLibz1sSD9K0887Q
+   zFz7uLwVMGVqPVg803w18rdYbMp+VitQZ+Zv1BDcrwszcPcToQkTIepbc
+   bxQ1/iIY6Q8rLDN8f1/ElGV6MtOrYP+d8xba/inzOoO/n4v10w4KuS+BS
+   A==;
+X-CSE-ConnectionGUID: PJwgxjykR6ibOUktBPIWhw==
+X-CSE-MsgGUID: XPr01gcPTHWwEu3+NU2oVQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="25967078"
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
+   d="scan'208";a="25967078"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 02:33:02 -0700
+X-CSE-ConnectionGUID: GheEIs6PTFaDrqiKV0o3lA==
+X-CSE-MsgGUID: ftyAxPLYSzyC0hc4jGqEmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
+   d="scan'208";a="62134683"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO [10.245.246.121]) ([10.245.246.121])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 02:32:56 -0700
+Message-ID: <4149884a-7c60-40d8-848b-8876f16d6d7f@linux.intel.com>
+Date: Mon, 26 Aug 2024 11:09:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v25 31/33] ALSA: usb-audio: Add USB offload route kcontrol
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
+ lgirdwood@gmail.com, tiwai@suse.com, krzk+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, robh@kernel.org,
+ gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-doc@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20240823200101.26755-1-quic_wcheng@quicinc.com>
+ <20240823200101.26755-32-quic_wcheng@quicinc.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20240823200101.26755-32-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable HDMI audio on RZ/G2LC SMARC EVK. Set SW 1.5 to OFF
-position on the SoM module to turn on HDMI audio.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Dropped deleting ssi0 port when SW_I2S0_I2S1==0 as it enables only
-   when SW_I2S0_I2S1==1.
----
- .../boot/dts/renesas/r9a07g044c2-smarc.dts    |  3 ++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 33 +++++++++++++++++++
- 2 files changed, 36 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 0b90367b6d1e..ee5bf2c58051 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -47,6 +47,9 @@
- #error "Cannot set as both PMOD_MTU3 and SW_RSPI_CAN are mutually exclusive"
- #endif
- 
-+/* Please set SW_I2S0_I2S1. Default value is 0 */
-+#define SW_I2S0_I2S1   0
-+
- #include "r9a07g044c2.dtsi"
- #include "rzg2lc-smarc-som.dtsi"
- #include "rzg2lc-smarc.dtsi"
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index f21508640b6e..377849cbb462 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -33,6 +33,16 @@ hdmi_con_out: endpoint {
- 			};
- 		};
- 	};
-+
-+#if (SW_I2S0_I2S1)
-+	/delete-node/ sound;
-+
-+	sound_card {
-+		compatible = "audio-graph-card";
-+		label = "HDMI-Audio";
-+		dais = <&i2s2_port>;
-+	};
-+#endif
- };
- 
- #if (SW_SCIF_CAN || SW_RSPI_CAN)
-@@ -48,9 +58,11 @@ &canfd {
- };
- #endif
- 
-+#if (!SW_I2S0_I2S1)
- &cpu_dai {
- 	sound-dai = <&ssi0>;
- };
-+#endif
- 
- &dsi {
- 	status = "okay";
-@@ -104,6 +116,15 @@ adv7535_out: endpoint {
- 					remote-endpoint = <&hdmi_con_out>;
- 				};
- 			};
-+
-+#if (SW_I2S0_I2S1)
-+			port@2 {
-+				reg = <2>;
-+				codec_endpoint: endpoint {
-+					remote-endpoint = <&i2s2_cpu_endpoint>;
-+				};
-+			};
-+#endif
- 		};
- 	};
- };
-@@ -177,6 +198,18 @@ &ssi0 {
- 	pinctrl-names = "default";
- 
- 	status = "okay";
-+
-+#if (SW_I2S0_I2S1)
-+	i2s2_port: port {
-+		i2s2_cpu_endpoint: endpoint {
-+			remote-endpoint = <&codec_endpoint>;
-+			dai-format = "i2s";
-+
-+			bitclock-master = <&i2s2_cpu_endpoint>;
-+			frame-master = <&i2s2_cpu_endpoint>;
-+		};
-+	};
-+#endif
- };
- 
- #if (SW_RSPI_CAN)
--- 
-2.43.0
+> +config SND_USB_OFFLOAD_MIXER
+> +	tristate "Qualcomm USB Audio Offload mixer control"
+> +	help
+> +	 Say Y to enable the Qualcomm USB audio offloading mixer controls.
+> +	 This exposes an USB offload capable kcontrol to signal to
+> +	 applications about which platform sound card can support USB
+> +	 audio offload.  This can potentially be used to fetch further
+> +	 information about the offloading status from the platform sound
+> +	 card.
+
+I would remove reference to Qualcomm for this Kconfig, all the code
+seems generic to me? Probably a left-over from the previous version.
 
 
