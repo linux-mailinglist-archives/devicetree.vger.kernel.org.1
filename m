@@ -1,175 +1,288 @@
-Return-Path: <devicetree+bounces-96829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2916695F9C7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 21:40:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 332B895F9F6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 21:51:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB01BB209CB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 19:40:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9C6284465
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 19:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D12314AD0C;
-	Mon, 26 Aug 2024 19:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1AF1991B8;
+	Mon, 26 Aug 2024 19:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="ca0roMD4"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="AHghUoTk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3FD1990AD;
-	Mon, 26 Aug 2024 19:39:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724701196; cv=pass; b=eA6nnB9zI9PbDpS0A5BVlxXOeM5jHXxfkDR+7VsCCdzI4nzhfgckXQVbEDNmDuGCbb0HK/t5Y74F15HRCil+1uo9i77YvXndTfZyWlgaXsVh0XtVE6/VPyR7Kj2T4l6W3AqdCM2jboGfDOx41pQmWipslQYmY6HrdqbvCoWGZi0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724701196; c=relaxed/simple;
-	bh=od6fy+3S+nzYLljRoQHr8oqNUdaDpZC207RnMbTjVc4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EXxqDCon0UhLF+lFnkSgmrcsxuXvJijYvE36sUfHRRDBhgWTWcZ0D7wImrSjRGLGFW/Zyqst9eRYQIQAijC5//IhzJ3REbLckeD0R/BbWilC7o994mQ8BERUbtiVmYbp6M3OSOa2rV8QOavk9hkxPSD81AU93bUrQiUBL8dNByA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=ca0roMD4; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724701104; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Y8CvhF/MJMpIU8xUcXwDaR/0I/ZSweEEmXPq80aazFOnaFJYtKwl4bAoircq8YmuV6hXbjY/LG7ggwynibvQhGHfnA3ZxeJcjwFUFCvznyYbFk7aW61rIiOqUerkxcHHMLSrs42ET9t8PNTNaKsv5xPHKyWqwnZ6a6qTKIkYIe0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724701104; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=o/g/+7cY7f/H3JMgXb+3Ce2wa+YsyQzpWO4kehk64OE=; 
-	b=MUqYc1cFentcZXmMJg9AdlCdo8ojnSpq+vXAcb2Dy54wHiwWIOuJtTW6vVH4gpcV7uwcxMqELFKzkobFHCCb5EQOSXAiE16kMmMVa2SpQ7ZwzZfhgDdL75k4Q6T+BeMWw6EJYM/LEBPkdYRHZYc9FRT7i9Z7tpBAymCig84p9kg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724701104;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=o/g/+7cY7f/H3JMgXb+3Ce2wa+YsyQzpWO4kehk64OE=;
-	b=ca0roMD4CCh2C6YxOlrU6DoQDhY/6r1S4aQEcvOV4tFUBCMSGleXec7uvWP4kkRv
-	3tCHEJS1EM6ENk3vDrDuiM8rdiwTt9v6/9xC9v7IICGYmXiIINAfTSOzJBk3Dql+Dvd
-	Cuvg2in63RexEjBhe2pp9MOB8TUQpI9kWJ45Y4VQ=
-Received: by mx.zohomail.com with SMTPS id 1724701102774210.66353128633466;
-	Mon, 26 Aug 2024 12:38:22 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: airlied@gmail.com, alchark@gmail.com, amadeus@jmu.edu.cn,
- andi.shyti@kernel.org, andyshrk@163.com, broonie@kernel.org,
- cl@rock-chips.com, conor+dt@kernel.org, daniel@ffwll.ch,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- dsimic@manjaro.org, efectn@protonmail.com, finley.xiao@rock-chips.com,
- gregkh@linuxfoundation.org, heiko@sntech.de, honyuenkwun@gmail.com,
- jagan@edgeble.ai, jamie@jamieiles.com, jic23@kernel.org,
- jirislaby@kernel.org, jonas@kwiboo.se, jszhang@kernel.org,
- kernel@collabora.com, krzk+dt@kernel.org, lars@metafoo.de, lee@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux@roeck-us.net,
- maarten.lankhorst@linux.intel.com, macromorgan@hotmail.com, megi@xff.cz,
- michael.riesch@wolfvision.net, mripard@kernel.org, robh@kernel.org,
- tim@feathertop.org, tzimmermann@suse.de, ulf.hansson@linaro.org,
- wim@linux-watchdog.org
-Subject:
- Re: [PATCH v2 12/12] arm64: dts: rockchip: Add rk3576-armsom-sige5 board
-Date: Mon, 26 Aug 2024 15:38:18 -0400
-Message-ID: <2622447.Lt9SDvczpP@bootstrap>
-In-Reply-To: <20240825142509.201943-1-amadeus@jmu.edu.cn>
-References:
- <4367745.ejJDZkT8p0@trenzalore> <20240825142509.201943-1-amadeus@jmu.edu.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9BB612BEBE
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 19:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724701862; cv=none; b=BGryzPPsmEbot9G2hV6YLb2k4BSaqflxVLiDe94BU7llfhg0MhjpXI3jgtwYoxrlMD/IOO13sJGxNIrT4g7ceQTTvudyggsqJuwR1uxgM3jl3HagcgPRR4ftnGfnK9m6EBg15EwMYmSS1Ayhpo8H50Xj+R7zb6s6AxN2xGuHiQ4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724701862; c=relaxed/simple;
+	bh=MMfRm30DKmAgIRDJDysPRmHSCruCns16kqlRyLPykmk=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=moeeu+fYzQZsKhmvLX+5XpEa8OrOmtfSZhKQNyjw53Qx0M03HnwCi0WYOpFCzPqceem/g7M7zV3AFgCfG4KxZJBtkI80nnknzUBr8FWAtdQrvUpMxHmwMkfa7EBOcVT32gvcbm4E0kx61A/6yQM5Hr5NPvnNtxQYijCoyBSVzv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=AHghUoTk; arc=none smtp.client-ip=209.85.128.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-428ec6c190eso41229905e9.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 12:50:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1724701858; x=1725306658; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nm1b7fe+EM2KbxsMouqWXhXxk0JeYyRkXhbMRY2MV68=;
+        b=AHghUoTkE4yOiAJy4LNPy1fRpzci6tNt0XLPUUrS/9LFDz+62u0CiSkq11a5sqrZB1
+         ejDhhkmaBRMWLSLdpjLiKiNkLPySpx6kRxpBkhtLof7zvZTuA4noA2uMK2Om6wpUe4Ot
+         KHfz+HmnN7t/yIN3LGi52LusAA83E3EwB1vXT1NoF2sgA3f+PnSFzJ0marK48bmP2pk/
+         C1fSCgiOzw8SGKRL7I4PJidY0bUbroj2SuGSeZ4np+7v+pNBaNFIz5M0SfOw+AFvdeln
+         2KeAMh00RnCFuoEpTsBJV3v4pYRgRyTpCi42EhyMndSWuyR/AnalfKoRfeL/yQTJDjpc
+         hTRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724701858; x=1725306658;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nm1b7fe+EM2KbxsMouqWXhXxk0JeYyRkXhbMRY2MV68=;
+        b=Z8HzG0RskfebPJ+iuYiUYK60xJgC4b2D3gLRow6PH1SYjbMDhtmzKSsSULcQY8Lzk5
+         076kA2kZ9IySMdIqH8XA8OW3Qcw6ueLq3qiVthALYlrqVvsrF9OZzXWQQfEk1Kd7imLR
+         jsiZFTcIW65fZbg5oAIDiQdHBG2Y3aZSpJsr6HLt9/980dsCqlU8KPBzDBpzPSv1CvoV
+         YiLYcWGYDQItxNPvVCncXBDARaFrBYJN2GqXI1nyy69RNhYMk07tQO5SrSfn8G17nnCH
+         hcb5mG0kaolKT2XJMNwZYWCrCJs7TtXFXWl2ljwLStBk42WknJ+2rK4RQhdBM/5zjAr6
+         H+hA==
+X-Forwarded-Encrypted: i=1; AJvYcCWg17ty3RpPkyEcRMtmHc/s8MIHYDvxYk3gpyjI+9RZ8ytol2irLqgqaaYDoQyWJDj8q3faTG7FguEA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6sty9YwROHdNvVkQtMvFzm+wqGlxbV8glZ3ma4kMIW3oCYelV
+	6GUEJUJC8uFhL+srhNYX+6L1lF3CUO6xag73YKkwboFi9L9R3O9Ujq21tGA/Dq8=
+X-Google-Smtp-Source: AGHT+IF2zQ2HTqZgToRotlgcOcl2W6GGPXIdSXXSe9YgqKKpwd3OPRH5/4dJ7SYP5S2nDsD/4FzRPA==
+X-Received: by 2002:a5d:4cc2:0:b0:371:72a8:15e with SMTP id ffacd0b85a97d-37311855fecmr7064417f8f.16.1724701857803;
+        Mon, 26 Aug 2024 12:50:57 -0700 (PDT)
+Received: from localhost ([87.13.33.30])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a67f41f249sm488655485a.126.2024.08.26.12.50.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Aug 2024 12:50:57 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Mon, 26 Aug 2024 21:51:02 +0200
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
+ parsed from DT
+Message-ID: <Zszcps6bnCcdFa54@apocalypse>
+Mail-Followup-To: Bjorn Helgaas <helgaas@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+References: <8b4fa91380fc4754ea80f47330c613e4f6b6592c.1724159867.git.andrea.porta@suse.com>
+ <20240821152441.GA222583@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240821152441.GA222583@bhelgaas>
 
-Hi Chukun,
+Hi Bjorn,
 
-On Sunday, 25 August 2024 10:25:09 EDT Chukun Pan wrote:
-> Hi,
+On 10:24 Wed 21 Aug     , Bjorn Helgaas wrote:
+> On Tue, Aug 20, 2024 at 04:36:05PM +0200, Andrea della Porta wrote:
+> > The of_pci_set_address() function parse devicetree PCI range specifier
 > 
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> > ...
-> > +	leds: leds {
-> > +		compatible = "gpio-leds";
-> 
-> Maybe there should be a blank line.
-> 
-> > +		work_led: work-led {
-> > +			gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "heartbeat";
-> > +		};
-> > +	};
-> 
-> Is the color missing?
+> s/parse/parses/ ? 
 
-Actually, after rechecking, this is wrong. There are 2 LEDs on &gpio4:
- - PB2: Green
- - PB1: Red
+Ack.
 
-I can set the green one as heartbeat and the red one as default-on.
-
-> > ...
-> > +	vcc_3v3_rtc_s5: regulator-vcc-3v3-rtc-s5 {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vcc_3v3_rtc_s5";
-> > +		regulator-boot-on;
-> > +		regulator-always-on;
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		vin-supply = <&vcc_5v0_sys>;
-> > +	};
 > 
-> Missing blank line.
+> > assuming the address is 'sanitized' at the origin, i.e. without checking
+> > whether the incoming address is 32 or 64 bit has specified in the flags.
+> > In this way an address with no OF_PCI_ADDR_SPACE_MEM64 set in the flagss
 > 
-> > +	vcc_1v8_s0: regulator-vcc-1v8-s0 {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vcc_1v8_s0";
-> > +		regulator-boot-on;
-> > +		regulator-always-on;
-> > +		regulator-min-microvolt = <1800000>;
-> > +		regulator-max-microvolt = <1800000>;
-> > +		vin-supply = <&vcc_1v8_s3>;
-> > +	};
-> > ...
-> > +&gmac0 {
-> > +	phy-mode = "rgmii-rxid";
+> s/flagss/flags/
+
+Ack.
+
 > 
-> Can we use "rgmii-id" and remove tx_delay here?
-
-Indeed, that's better.
-
-> > ...
-> > +&sdmmc {
-> > +	bus-width = <4>;
-> > +	cap-mmc-highspeed;
-> > +	cap-sd-highspeed;
-> > +	disable-wp;
-> > +	max-frequency = <200000000>;
-> > +	no-sdio;
-> > +	no-mmc;
-> > +	non-removable;
-> > +	sd-uhs-sdr104;
-> > +        vmmc-supply = <&vcc_3v3_s3>;
+> > could leak through and the upper 32 bits of the address will be set too,
+> > and this violates the PCI specs stating that ion 32 bit address the upper
 > 
-> Indentation error.
+> s/ion/in/
+
+Ack.
+
 > 
-> > +	vqmmc-supply = <&vccio_sd_s0>;
-> > +	status = "okay";
-> > +};
-> > ...
+> > bit should be zero.
 > 
-> Thanks,
-> Chukun
+> I don't understand this code, so I'm probably missing something.  It
+> looks like the interesting path here is:
+> 
+>   of_pci_prop_ranges
+>     res = &pdev->resource[...];
+>     for (j = 0; j < num; j++) {
+>       val64 = res[j].start;
+>       of_pci_set_address(..., val64, 0, flags, false);
+>  +      if (OF_PCI_ADDR_SPACE_MEM64)
+>  +        prop[1] = upper_32_bits(val64);
+>  +      else
+>  +        prop[1] = 0;
+> 
+> OF_PCI_ADDR_SPACE_MEM64 tells us about the size of the PCI bus
+> address, but the address (val64) is a CPU physical address, not a PCI
+> bus address, so I don't understand why of_pci_set_address() should use
+> OF_PCI_ADDR_SPACE_MEM64 to clear part of the CPU address.
+>
 
+It all starts from of_pci_prop_ranges(), that is the caller of of_pci_set_address().
+val64 (i.e. res[j].start) is the address part of a struct resource that has
+its own flags.  Those flags are directly translated to of_pci_range flags by
+of_pci_get_addr_flags(), so any IORESOURCE_MEM_64 / IORESOURCE_MEM in the
+resource flag will respectively become OF_PCI_ADDR_SPACE_MEM64 / OF_PCI_ADDR_SPACE_MEM32
+in pci range.
+What is advertised as 32 bit at the origin (val64) should not become a 64
+bit PCI address at the output of of_pci_set_address(), so the upper 32 bit
+portion should be dropped. 
+This is explicitly stated in [1] (see page 5), where a space code of 0b10
+implies that the upper 32 bit of the address must be zeroed out.
+Please note that of_pci_prop_ranges() will be called only in case 
+CONFIG_PCI_DYNAMIC_OF_NODES is enabled to populate ranges for pci bridges and
+pci endpoint for which a quirk is declared, so I would say not a very
+often recurring use case.
+ 
+[1] - https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
 
+> Add blank lines between paragraphs.
 
+Ack.
 
+> 
+> > This could cause mapping translation mismatch on PCI devices (e.g. RP1)
+> > that are expected to be addressed with a 64 bit address while advertising
+> > a 32 bit address in the PCI config region.
+> > Add a check in of_pci_set_address() to set upper 32 bits to zero in case
+> > the address has no 64 bit flag set.
+> 
+> Is this an indication of a DT error?  Have you seen this cause a
+> problem?  If so, what does it look like to a user?  I.e., how could a
+> user find this patch if they saw a problem?
+
+Not neccessarily a DT error, but an inconsistent representation of addresses
+wrt the specs. I incidentally encountered this on RaspberryPi 5, where
+the PCI config space for the RP1 endpoint shows 32 bit BARs (basically an
+offset from zero) but the effective address to which the CPU can access the
+device is 64 bit nonetheless (0x1f_00000000).  I believe this is backed by
+some non standard hw wiring.
+
+Without this patch the range translation chain is broken, like this:
+
+pcie@120000: <0x2000000 0x00 0x00    0x1f 0x00                0x00 0xfffffffc>;
+~~~ chain breaks here ~~~
+pci@0      : <0x82000000 0x1f 0x00   0x82000000 0x1f 0x00     0x00 0x600000>;
+dev@0,0    : <0x01 0x00 0x00         0x82010000 0x1f 0x00     0x00 0x400000>;
+rp1@0      : <0xc0 0x40000000        0x01 0x00 0x00           0x00 0x400000>;
+
+while with the patch applied the chain correctly become:
+
+pcie@120000: <0x2000000 0x00 0x00    0x1f 0x00                0x00 0xfffffffc>;
+pci@0      : <0x82000000 0x00 0x00   0x82000000 0x00 0x00     0x00 0x600000>;
+dev@0,0    : <0x01 0x00 0x00         0x82010000 0x00 0x00     0x00 0x400000>;
+rp1@0      : <0xc0 0x40000000        0x01 0x00 0x00           0x00 0x400000>;
+
+I'm not advocating here that this patch is fixing the behaviour on Rpi5, this
+is just a nice side effect of the correct address representation. I think we can
+also probably fix it by patching the pcie node in the devicetree like this:
+
+pcie@120000: <0x2000000 0xi1f 0x00    0x1f 0x00                0x00 0xfffffffc>;
+
+but this is of course just a 1:1 mapping, while the address will still be at
+least 'virtually' unconsistent, showing 64 bit address wihile the 32 bit flag is
+set.
+The net symptoms to the user would be, in the case of the RP1, a platform driver
+of one of its sub-peripheral that fails to be probed.
+
+Many thanks,
+Andrea
+
+> 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  drivers/pci/of_property.c | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> > index 5a0b98e69795..77865facdb4a 100644
+> > --- a/drivers/pci/of_property.c
+> > +++ b/drivers/pci/of_property.c
+> > @@ -60,7 +60,10 @@ static void of_pci_set_address(struct pci_dev *pdev, u32 *prop, u64 addr,
+> >  	prop[0] |= flags | reg_num;
+> >  	if (!reloc) {
+> >  		prop[0] |= OF_PCI_ADDR_FIELD_NONRELOC;
+> > -		prop[1] = upper_32_bits(addr);
+> > +		if (FIELD_GET(OF_PCI_ADDR_FIELD_SS, flags) == OF_PCI_ADDR_SPACE_MEM64)
+> > +			prop[1] = upper_32_bits(addr);
+> > +		else
+> > +			prop[1] = 0;
+> >  		prop[2] = lower_32_bits(addr);
+> >  	}
+> >  }
+> > -- 
+> > 2.35.3
+> > 
 
