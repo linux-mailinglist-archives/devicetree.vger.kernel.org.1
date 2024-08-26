@@ -1,134 +1,184 @@
-Return-Path: <devicetree+bounces-96886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC1595FCBD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 00:28:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A270895FD53
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 00:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AC051C21488
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 22:28:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C57201C21C44
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 22:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8696319D09F;
-	Mon, 26 Aug 2024 22:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="TUGAKwSK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993D419B5B5;
+	Mon, 26 Aug 2024 22:45:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268A819D075;
-	Mon, 26 Aug 2024 22:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48E6199E9E;
+	Mon, 26 Aug 2024 22:45:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724711291; cv=none; b=JN6CmhWorUIG8oR0HtS9zdlwrgfJgKS1bqMDkZrU7XjBMyG4PhXNgKHtcYfEYPbghi8UJTXEsuB3a15lkgbfyzXqhHIHmBAa9jECxxpx2v+Dpcsxttzoso5kDi9ioUQ2SZumi+mVE8yaSvaBVovjk6ZrVPimzrUEwQ8xlLOc2MA=
+	t=1724712333; cv=none; b=T6ZbPDMCR/tr8TF5PH3QPdaCEmG8bzVALCRlUnsRnyqey3+0EcTMvfukfnISp1PW4v9Lhd2bm2BuHTeuAZ16i/1jZB93DTNy5l5Ox9j9hDuLGsk456qOjJeT4NzYnVqeauaQXqhyTIlzjqICoq5nIW+Q7jSKFbNlb+TIXZU+aGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724711291; c=relaxed/simple;
-	bh=xdiURQBnexqTHdHtZQZrJk+9VQJz+AyCfG2A5WB6oh8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SKIMjgKSsc1XyyP3VfBslYarIHi3OdUq56kRjHelUs4Q/NhIoGPVrNMpjgzeC/y67R5/SO6YNzDKKJL15HvKBclZ/73e0K4zWRY5r5k8wnKBvQnYa2ld0/7fX2LfJRHhglfqa0qlrZf6LSqYQ0Jtf96R9rWq0QIbeBhf6iK8nNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=TUGAKwSK; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 40B3020AB8;
-	Tue, 27 Aug 2024 00:28:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1724711287;
-	bh=xUm9tBZ+haGiL/pcLT1XqSLOUSAW+7lu0+BByLpTz38=;
-	h=Received:From:To:Subject;
-	b=TUGAKwSKAWozeXzQWLAP7/QHSN5U98LhQ2pCIjlIfNAK330tts/gBuSXGmtb+ZGhJ
-	 rI8To4a/Lsv1ej5kjzqY/2wwG1sCUbkSD8GKZ6qmNV86GQYuFTsCU/32NWQc/qt7JB
-	 0WdR5OXi7My1DUC5XH4XLmLtOppT29kzELAZNK9GCYha9byoWU1mVXB12fUx7OCIfP
-	 qnL1cwMfCh9CngeJpCtY+hnrc/bJREzhl78lkY4orM+L/q2WJwkV705utP89tL5JXN
-	 kVQ2MCalvDD+Kntri8SOu799SQNmtzsI0ItC1rVU+Jy6SEGb7BWon0/5RSMZxOaDK7
-	 M11JEAh4gjU1w==
-Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
-	id D627C7F9A5; Tue, 27 Aug 2024 00:28:06 +0200 (CEST)
-Date: Tue, 27 Aug 2024 00:28:06 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 01/10] arm64: dts: colibri-imx8x: Add usb support
-Message-ID: <Zs0BdnJM536YQd-B@gaggiata.pivistrello.it>
-References: <20240826215922.13225-1-francesco@dolcini.it>
- <20240826215922.13225-2-francesco@dolcini.it>
- <Zsz+YjOyGoReEqUm@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1724712333; c=relaxed/simple;
+	bh=nlVeaFDeJycv8bOlvV80IU26OalvyxUWvNVbkeKJzrA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZeI2W6X4C52N+QihwoLcJ6Yi3jPY8ruHUZ7or8Ar9THlO86P19TYqUv29teXLlSUHAJxxivGLkXq3GGSPWZn0bI6gdj/NFQuZTuQhPZ40pKWFTDefb9qwG2/KL/xzY5xn71MawXdBdfbzy1JrbK3yMZkCkn/qQgt7/Ru+O+C0rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1E523DA7;
+	Mon, 26 Aug 2024 15:45:56 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 023683F66E;
+	Mon, 26 Aug 2024 15:45:27 -0700 (PDT)
+Date: Mon, 26 Aug 2024 23:44:52 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
+Cc: wens@csie.org, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH PATCH] arm64: dts: sunxi: nanopi-neo-plus2: Add pio
+ regulators
+Message-ID: <20240826234452.0d015548@minigeek.lan>
+In-Reply-To: <aa33692c-4cae-4c41-959d-f2ecd56334b7@gmail.com>
+References: <20240824-b4-fix-nanopineoplus2-pio-regs-v1-1-7c5f7da445af@gmail.com>
+	<761f18d4-9274-4983-a128-94efb96e1c59@kernel.org>
+	<51f28d92-f670-47de-8e2d-53cbecfac081@gmail.com>
+	<CAGb2v65M6Zz7=TfRwF0urbELNaaazMZYsd3dtHYzwdJvzoho3A@mail.gmail.com>
+	<aa33692c-4cae-4c41-959d-f2ecd56334b7@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zsz+YjOyGoReEqUm@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 26, 2024 at 06:14:58PM -0400, Frank Li wrote:
-> On Mon, Aug 26, 2024 at 11:59:13PM +0200, Francesco Dolcini wrote:
-> > From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+On Sat, 24 Aug 2024 16:24:41 +0200
+Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> wrote:
+
+Hi Kry=C5=A1tof,
+
+many thanks for taking care of those warnings and sending a patch,
+that's the right way of fixing things and I wish more people would
+actually do that!
+
+I also checked the schematics and the H5 datasheet, so:
+
+> Yes, you are right with vcc-pd, I misunderstood it, thank you. Let me=20
+> explain and ask about the rest:
+> VDD_SYS_3.3V =3D reg_vcc3v3
+> Groups PA, PE, PF are powered from vcc-io, according to Allwinner H5=20
+> datasheet, Vcc-io is connected to VDD_SYS_3.3V, just like mmc0. Should=20
+> those be set or omitted?
+
+Yes, you can set those supplies to reg_vcc3v3.
+It seems like most of the boards's I/O (expect PD) is actually 3.3V,
+driven from that one discrete regulator, which is correctly described
+as reg_vcc3v3. This isn't very clear in the DT (it looks like a "dummy"
+regulator), which is what probably triggered Krzysztof's comment.
+To make this more obvious, please change the regulator description as
+seen in sun50i-h618-longanpi-3h.dts: There should be one 5V regulator,
+as the external power input, from the MicroUSB port. Every other
+regulator should be "chained" to that, via the vin-supply property.
+And add a comment mentioning that it's a discrete regulator, maybe
+even mentioning the chip name (SY8089A).
+
+> vcc-pc (ball G15), which is labeled as vcc_io2 (probably wrong), which=20
+> is also connected to VDD_SYS_3.3V.
+
+As Chen-Yu mentioned, VCC-PC is not mentioned in the schematics, but it
+must be 3.3V: there is a pull-up for PC7, to 3.3V, also there is no
+1.8V regulator, so the eMMC must work with 3.3V, supported by the
+missing vqmmc-supply property for mmc2.
+=20
+> vcc-pd (ball J15) is bonded to VDD_PHY_2.5V, which is always on and made=
+=20
+> from VDD_SYS_3.3V, so I should make a new fixed regulator of name=20
+> "reg_gmac_2v5"? Mainline eth driver does not implement this pin, so it=20
+> would be used only for the pio.
+
+Yes, please have another "regulator-fixed", feeding of reg_vcc3v3, and
+mention it's a discrete RT9193.
+
+> vcc-pg (ball H7) is also VDD_SYS_3.3V.
+
+Yes, that's the same reg_vcc3v3.
+
+> While PL is supplied from vcc-rtc (vcc_rtc, ball K6), it is connected=20
+> directly to the VDD_SYS_3.3V too, should this be the same regulator or a=
+=20
+> new one or omitted too?
+
+Since they are directly wired together, it's indeed the same reg_vcc3v3
+regulator.
+
+> Do you agree with my findings? I hope they are 100% now. If so, I will=20
+> try to make V2 with a new fixed regulator of 2.5V for the PD.
+>=20
+> Many thanks for your replies, I will do better next time.
+
+No worries, except for the VCC-PD at 2.5V this was actually all correct.
+So well done, especially for a first try!
+
+Cheers,
+Andre
+
+
+>=20
+> Dne 24. 08. 24 v 14:34 Chen-Yu Tsai napsal(a):
+> > Hi,
 > >
-> > Add USB HOST and OTG support to Colibri-iMX8X carrier boards.
+> > On Sat, Aug 24, 2024 at 5:08=E2=80=AFPM Kry=C5=A1tof =C4=8Cern=C3=BD <c=
+leverline1mc@gmail.com> wrote: =20
+> >> I am sorry if the message is wrong, this is my first patch ever sent to
+> >> the Linux kernel. I have checked the schematic of the board and it
+> >> shares the same power line with mmc0, so I assumed I can use the same
+> >> regulator. Thanks for your feedback and I would be glad for your furth=
+er
+> >> response. =20
+> > So some of the pin groups do have dedicated supplies, and should thus be
+> > described, but not all of them. The schematic only shows dedicated
+> > supplies for PD and PG pingroups. So just add those. PD supply is from
+> > 2.5V ethernet PHY I/O regulator supply, so you would need to add that
+> > as well.
 > >
-> > Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> >  .../dts/freescale/imx8x-colibri-aster.dtsi    | 26 +++++++++++++
-> >  .../dts/freescale/imx8x-colibri-eval-v3.dtsi  | 26 +++++++++++++
-> >  .../dts/freescale/imx8x-colibri-iris.dtsi     | 26 +++++++++++++
-> >  .../boot/dts/freescale/imx8x-colibri.dtsi     | 37 +++++++++++++++++--
-> >  4 files changed, 111 insertions(+), 4 deletions(-)
-
-...
-
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-> > index 49d105eb4769..1199e311d6f9 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-> > @@ -23,12 +23,31 @@ key-wakeup {
-> >  		};
-> >  	};
+> > The datasheet also mentions a separate supply pin for PC pingroup, but
+> > it is not shown in the schematic. I would just omit that.
 > >
-> > +	extcon_usbc_det: usbc-det {
-> > +		compatible = "linux,extcon-usb-gpio";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_usbc_det>;
-> > +		id-gpio = <&lsio_gpio5 9 GPIO_ACTIVE_HIGH>;
-> 
-> Not sure if I missed something, CHECK_DTBS report below warning.
-> 
-> arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris.dtb: usbc-det: 'id-gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/extcon/linux,extcon-usb-gpio.yaml
-
-This should be `id-gpios`. The binding for "linux,extcon-usb-gpio" was recently
-added, and this was not tested on the latest next (my fault), but on shawn imx branch and
-the old txt doc documented just `id-gpio`.
-
-We'll fix it. And thanks for catching it.
-
-
-> > +	reg_usbh_vbus: regulator-usbh-vbus {
-> > +		compatible = "regulator-fixed";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_usbh1_reg>;
-> > +		gpio = <&lsio_gpio4 3 GPIO_ACTIVE_LOW>;
-> > +		regulator-always-on;
-> 
-> Needn't regulator-always-on, because reg_usbh_vbus referece by other node.
-
-Is this an issue? we expect this regulator to be always on, therefore this is
-described this way in the DT.
-
-Francesco
+> > And as Krzysztof mentioned, device tree changes should be to model
+> > the hardware, not to work around some operating system warning. At
+> > least most of the time that is. So your commit message should also
+> > be about fixing the description or providing more detail, and not
+> > about the operating system.
+> >
+> >
+> > ChenYu
+> > =20
+> >> Dne 24. 08. 24 v 9:40 Krzysztof Kozlowski napsal(a): =20
+> >>> On 24/08/2024 09:09, Kry=C5=A1tof =C4=8Cern=C3=BD wrote: =20
+> >>>> The board does not have a dedicated regulator for pio and r_pio,
+> >>>> but this fixes the kernel warning about dummy regulators being used.
+> >>>> Tested on the actual board.
+> >>>> =20
+> >>> Judging by commit msg these are not correct regulators. Please do not
+> >>> add incorrect hardware description to silence some warnings coming fr=
+om
+> >>> OS. Either you need proper (correct) hardware description or fix the
+> >>> problem other way, assuming there is anything to fix in the first pla=
+ce.
+> >>>
+> >>> Best regards,
+> >>> Krzysztof
+> >>> =20
+>=20
 
 
