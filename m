@@ -1,119 +1,207 @@
-Return-Path: <devicetree+bounces-96891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D2C95FDB0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 01:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBA3C95FDC0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 01:22:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B37A01F2549C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 23:08:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D5161F22A63
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 23:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FF119DF73;
-	Mon, 26 Aug 2024 23:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="dxjrqrgx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A28C919DF46;
+	Mon, 26 Aug 2024 23:21:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C7919DF49;
-	Mon, 26 Aug 2024 23:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724713669; cv=pass; b=LjMEw+KdvrgygZKaRr6czfg23y89C5zE/kcXnlh1M6+o6MN83t3XztPtlgELcn7TQB3KqlWMu2hLQrF56gmE1d8/0sxgKmeztanLbgOnM6pxztJnmoQQH7py2KSSq+zdrVSlghnNqCLG0FBfPbRekdyqBc+iAiR0RH4RFmYTsf0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724713669; c=relaxed/simple;
-	bh=1UOqS2Dxo8iR9T9B1fLDBZrWdN8+C3Mh5hkvpGIoXa4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PzRxgQRGfgiV9FmQqqm+9fo+uKGJCpr8/Kq5RimjUjsWl5gMszfq5Ob4asdc6zKVY7dRTrdkTvc31Yfnm94RKriBkannOttVwsqF87Nn2B5xVC0oYqGvNVU8dMNNAmCmypK1/kE01zgGlHzgVOnPEzfjkbHEmUyBxVih4WMEYGI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=dxjrqrgx; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724713656; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=OfCkRUbsQEvxat4XQIRYlqToGp1J39wm44+qv757qhoqwcYbgRp/78pJDX8QmoKCuGvikH+2/vLFnwcuzOtJZDirIepIUUDGLHhuEqITmQNC9wFXduPvAV6Vz42BUyCvVdNeHd/hkb5U4EWeNhqZdiFJXSO9ld4AjepNrzdTPYo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724713656; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=NHu1lK8y+binnoeFm6Jqz7QKNR4uii4rwsRkUGw9AYA=; 
-	b=bnPqshmOmixHJEb8ZwFs6G26TG23cqtodWiR4t9xzfJ9/w9vc6zC5y0ErnzBmZyk4PfNBFNZ//YSpLr+PqNH3g+8zCMs9/Xw0aoXwVXGy1tcBm0hqhbjBkeuSYb4IfrHLnocg1kaVoKZAW8hDZHCbh9gspYPcUyWVCee7QKRahU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
-	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724713656;
-	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=NHu1lK8y+binnoeFm6Jqz7QKNR4uii4rwsRkUGw9AYA=;
-	b=dxjrqrgxfBkiwvtotSEIuDHcmhzBwlyMSZGtEqVWTCdCtlNGQ+uqQdqbjIB58mUe
-	j5oFonSe++1fdsJ2JIYfkk5lBcWdrqoqt4uYtBVksIKwlvenQXIk1mCa70DxtFhSLJP
-	XzjKV+/rptReYLZS8tFjgQq9jLDNNbeybvi18oDU=
-Received: by mx.zohomail.com with SMTPS id 1724713654812611.7088986874687;
-	Mon, 26 Aug 2024 16:07:34 -0700 (PDT)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Tue, 27 Aug 2024 02:06:51 +0300
-Subject: [PATCH 2/2] arm64: dts: rockchip: Fix compatibles for RK3588
- VO{0,1}_GRF
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5284213DB90
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 23:21:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724714513; cv=none; b=lMc3ObPgecbT/yuzl0mB7bp54VdkBXfCuHsmoljAdOFCKNUs/+UI1GOf0mn0YMfBgdSfsUpXlyEvpZNz1DgvdODV9lBPpX75atjbmgy1h8CTSnFo0ar+K0wUqO8AdOg7THEHbRWRbiusvDy/ZpV1Sy4mTw/fB6OSkBsPbVZGuC8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724714513; c=relaxed/simple;
+	bh=dR0vTFvIqwOAoTQ3v59Z5QfX+lxlrMJumJj9WMz32Po=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SKfllz6fTf0jasbVfPTtx/cCp0cs/p/aDq936kSCZSNGf50d+zbnXSYaAiWBqkpeonw6tkF/ARygMX+xVsWMhcjeU7qfE2oCOQpo6UDDNI18gzUA9jUG7Z8zDM3QfwTn4vprTow0N7VzfU+xK8t9/wub3gbI3iOVy3AHZbTrkkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtp84t1724714445t9ic3zpi
+X-QQ-Originating-IP: eefvjuIPbTAcwFquCsXFOd5lT4GK+CouTBcY35Qc3W8=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 27 Aug 2024 07:20:42 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 17106308806290885823
+Message-ID: <659A1B439A0F69BF+e92df213-bd31-46d6-b4b5-c9b865ae72b2@radxa.com>
+Date: Tue, 27 Aug 2024 08:20:42 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240827-rk3588-vo-grf-compat-v1-2-d4a18acf951a@collabora.com>
-References: <20240827-rk3588-vo-grf-compat-v1-0-d4a18acf951a@collabora.com>
-In-Reply-To: <20240827-rk3588-vo-grf-compat-v1-0-d4a18acf951a@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-X-Mailer: b4 0.14.1
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] arm64: dts: rockchip: add support for Radxa ROCK
+ Pi E v3.0
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20240816213429.1093-1-naoki@radxa.com>
+ <20240816213429.1093-2-naoki@radxa.com> <1819066.TLkxdtWsSY@diego>
+ <85AB3D0B7214AEEA+d54aaa4a-ce0b-43ef-8cb8-ea2c2f305bcd@radxa.com>
+ <cd08ce18bde728e2b33a995834441399@manjaro.org>
+ <10ac45cf5bb5dfab9c08160c826c9b28@manjaro.org>
+ <B26198585C33E0EC+958ace8d-0f31-4fc1-acc2-f090a31fa2e6@radxa.com>
+ <79b071b69f0a3e5faac2c3daf1a4f272@manjaro.org>
+ <0CF9D1576916E834+1a310fc3-d77a-4296-818c-81800d9859cd@radxa.com>
+ <d40e95d42074b9a2b8d353881d1be248@manjaro.org>
+ <f5528290efb529ebcb599a2f1c309e63@manjaro.org>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <f5528290efb529ebcb599a2f1c309e63@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-RK3588 VO0 and VO1 GRFs are not identical (though quite similar in terms
-of layout) and, therefore, incorrectly shared the compatible string.
+Hi,
 
-Since the related binding document has been updated to use dedicated
-strings, update the compatibles for vo{0,1}_grf DT nodes accordingly.
+On 8/26/24 20:25, Dragan Simic wrote:
+> Hello Naoki,
+> 
+> On 2024-08-18 00:30, Dragan Simic wrote:
+>> On 2024-08-17 22:28, FUKAUMI Naoki wrote:
+>>> On 8/18/24 05:12, Dragan Simic wrote:
+>>>> On 2024-08-17 22:04, FUKAUMI Naoki wrote:
+>>>>> On 8/18/24 04:51, Dragan Simic wrote:
+>>>>>> On 2024-08-17 21:28, Dragan Simic wrote:
+>>>>>>> On 2024-08-17 00:20, FUKAUMI Naoki wrote:
+>>>>>>>> On 8/17/24 07:11, Heiko Stübner wrote:
+>>>>>>>>> Am Freitag, 16. August 2024, 23:34:29 CEST schrieb FUKAUMI Naoki:
+>>>>>>>>>> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the 
+>>>>>>>>>> Rockchip
+>>>>>>>>>> RK3328 chip that ships in a number of RAM/eMMC/WiFi/BT 
+>>>>>>>>>> configurations:
+>>>>>>>>>>
+>>>>>>>>>> - Rockchip RK3328 SoC
+>>>>>>>>>> - Quad A53 CPU
+>>>>>>>>>> - 512MB/1GB/2GB DDR4 RAM
+>>>>>>>> (snip)
+>>>>>>>>> can you please describe what is different in that v3 board?
+>>>>>>>>> Describing what is different to require a separate board 
+>>>>>>>>> should've been
+>>>>>>>>> part of the commit message.
+>>>>>>>>>
+>>>>>>>>> Because from those changes, the bottom line currently seems to be
+>>>>>>>>> the same board with swapped mmc aliases?
+>>>>>>>>
+>>>>>>>> it's new board which uses DDR4 RAM (instead of DDR3 RAM on Pi E).
+>>>>>>>> different bootloader (U-Boot) is required.
+>>>>>>>>
+>>>>>>>> adding v3 dts seems not to be so important for Linux, but it's very
+>>>>>>>> important for U-Boot and OpenWrt(it includes bootloader for
+>>>>>>>> distributed binary).
+>>>>>>>
+>>>>>>> Aren't there different methods that allow such board variants to be
+>>>>>>> supported in U-Boot, with no need for a separate DT in the kernel?
+>>>>>>> IIRC, there are already more than a few examples of such board 
+>>>>>>> variants,
+>>>>>>> which require different DRAM initialization, which is covered in 
+>>>>>>> U-Boot
+>>>>>>> by providing different builds that use the same DT.
+>>>>>>
+>>>>>> As an example, please have a look at the following files in U-Boot:
+>>>>>>
+>>>>>> - arch/arm/dts/rk3399-nanopi-m4-u-boot.dtsi
+>>>>>> - arch/arm/dts/rk3399-nanopi-m4-2gb-u-boot.dtsi
+>>>>>> - configs/nanopi-m4-rk3399_defconfig
+>>>>>> - configs/nanopi-m4-2gb-rk3399_defconfig
+>>>>>>
+>>>>>> Basically, there's no need for separate DTs in the kernel, just to 
+>>>>>> support
+>>>>>> board variants with different DRAM types in U-Boot.
+>>>>>
+>>>>> OpenWrt firmware upgrading tool (sysupgrade) refers "compatible"
+>>>>> string to validate new firmware file is surely "for this board".
+>>>>>
+>>>>> currently both Pi E dts have "radxa,rockpi-e", it makes flashing wrong
+>>>>> firmware (include bootloaer, U-Boot) possible.
+>>>>
+>>>> Could you, please, explain what's the actual issue with OpenWrt?  I did
+>>>> read some GitHub issue that described it, IIRC, but I was unable to 
+>>>> fully
+>>>> understand what's the underlying issue.
+>>>
+>>> $ wget
+>>> https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-radxa_rock-pi-e-ext4-sysupgrade.img.gz
+>>> $ strings
+>>> openwrt-rockchip-armv8-radxa_rock-pi-e-ext4-sysupgrade.img.gz | grep
+>>> metadata
+>>> {  "metadata_version": "1.1", "compat_version": "1.0",
+>>> "supported_devices":["radxa,rock-pi-e"], "version": { "dist":
+>>> "OpenWrt", "version": "SNAPSHOT", "revision": "r27160-b72c4b5386",
+>>> "target": "rockchip/armv8", "board": "radxa_rock-pi-e" } }
+>>>
+>>> $ wget
+>>> https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-radxa_rock-pi-e-v3-ext4-sysupgrade.img.gz
+>>> $ strings
+>>> openwrt-rockchip-armv8-radxa_rock-pi-e-v3-ext4-sysupgrade.img.gz |
+>>> grep metadata
+>>> {  "metadata_version": "1.1", "compat_version": "1.0",
+>>> "supported_devices":["radxa,rock-pi-e-v3"], "version": { "dist":
+>>> "OpenWrt", "version": "SNAPSHOT", "revision": "r27160-b72c4b5386",
+>>> "target": "rockchip/armv8", "board": "radxa_rock-pi-e-v3" } }
+>>>
+>>> since they are incompatible firmware, it needs to have different
+>>> "supported_devices" string. if both are "radxa,rockpi-e", firmware
+>>> validation will not work correctly.
+>>>
+>>> (currently both values are wrong, it needs to be fixed, but it's 
+>>> another story)
+>>>
+>>>>> Radxa ROCK Pi E v1.x(DDR3) and ROCK Pi E v3(DDR4) are different
+>>>>> incompatible boards, it must have different "compatible" string.
+>>>>
+>>>> Well, the above-mentioned Nano Pi M4 boards share the same DT and 
+>>>> the same
+>>>> "compatible" value, because for all consumers of the DT, except for 
+>>>> U-Boot
+>>>> that can already handle the differences, they are the same boards.
+>>>
+>>> (un)fortunately Nano Pi M4 boards seems not to be supported by OpenWrt
+>>>
+>>>  https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/
+>>
+>> Thanks for the explanations.  As discussed further in #linux-rockchip
+>> on Libera.Chat, we do need a general solution for this issue, which would
+>> get us covered for all the board variants that use different DRAM chips,
+>> which are currently known to U-Boot only.
+>>
+>> I'll keep thinking about this in the next couple of days, and I'll come
+>> back with an update.
+> 
+> As a separate thought, is there some way to detect the actual ROCK Pi E
+> board variant at runtime, using some GPIO line, ADC readout, or something
+> similar?  That would help with making it possible to have a single U-Boot
+> build for both board variants.
 
-Additionally, for consistency, set the full region size (16KB) for
-VO1_GRF.
+as far as I know, no difference. (I asked my colleague)
+I will compare schematics.
 
-Reported-by: Conor Dooley <conor@kernel.org>
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+but, if there is difference, is it possible to replace RAM 
+initialization on u-boot?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index b6e4df180f0b..ee99166ebd46 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -582,14 +582,14 @@ vop_grf: syscon@fd5a4000 {
- 	};
+btw, RFC:
  
- 	vo0_grf: syscon@fd5a6000 {
--		compatible = "rockchip,rk3588-vo-grf", "syscon";
-+		compatible = "rockchip,rk3588-vo0-grf", "syscon";
- 		reg = <0x0 0xfd5a6000 0x0 0x2000>;
- 		clocks = <&cru PCLK_VO0GRF>;
- 	};
- 
- 	vo1_grf: syscon@fd5a8000 {
--		compatible = "rockchip,rk3588-vo-grf", "syscon";
--		reg = <0x0 0xfd5a8000 0x0 0x100>;
-+		compatible = "rockchip,rk3588-vo1-grf", "syscon";
-+		reg = <0x0 0xfd5a8000 0x0 0x4000>;
- 		clocks = <&cru PCLK_VO1GRF>;
- 	};
- 
+https://github.com/RadxaNaoki/u-boot/commit/ff1aa39ffb725d10fbb1608062debe6657f40acc
 
--- 
-2.46.0
-
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
