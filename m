@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-96750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB2995F555
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 17:41:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5032C95F56E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 17:45:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C1D01F21F4A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 15:41:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBF8D1F219B2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 15:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C38B193416;
-	Mon, 26 Aug 2024 15:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434B818BC09;
+	Mon, 26 Aug 2024 15:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oL9Tmtar"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="htMdAFLs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F07E19306C;
-	Mon, 26 Aug 2024 15:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4CF1741C0;
+	Mon, 26 Aug 2024 15:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724686864; cv=none; b=OQnzLrdQmPQVBe5XHcT+OxIOnbvTV/YrWcDEy+MQnJCkUeumUFCFv1/UdZbXbOszWdbv/lRBbW5EnUJmQZk5zLf5pcIziIwuHluubEpVqIvAH8tjV2aJobxEcL0q8QIv3R0Jn3i4dJXU/IT71r2Z5rhI6T7poSBHHm1Leul+ILk=
+	t=1724687125; cv=none; b=kQ7kgOsvsCojZzCrntRvTccxE20jNIck84PK2l+RtQoR4/XX/fQELW5fTN1cmG4gfWDQ6Mxh+y/cKVDcpVgk+cjnA8rUc2/W28i2278jXfY3zOz5BbC+K0+eJLVHwAwZnBqO5c45dJlXRATdQlNm08Yf9NHgHfjLV+o6IuutQGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724686864; c=relaxed/simple;
-	bh=4OBYIWAuYnEhwSytqNJnwnkZOQSeQFtWMgwMS94OgSI=;
+	s=arc-20240116; t=1724687125; c=relaxed/simple;
+	bh=CfjXIIFwVytbq3DboLG6ZBWEAA+dSeHjisriqW8r0BE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NwkcFOBbNJXJPxdTG8fxtP+k4LbSLgoh7H+DJRf9iBxRjFnxLQCh6NBBmgHotCaslZ9jIIW2AifEmdit0cdsodXSNVNSQJWqNikj1A0HT8wN1RN6aO8ZPbhWWmVNvb5sdSrkJ27oSKAI0GQFac2Lj4NO9scS+hmfjBCL2epV3Fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oL9Tmtar; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B31C52FC6;
-	Mon, 26 Aug 2024 15:40:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=vDN0mmpRzXgY0U1GxEJvyBpq2ZbZ0wVaqK6K70iOWIxInba3fTGGiCns2070xK4/S1Y2mvwmK+un18NQ2CsDnvQa+6SV2CSYB5lA7Rlc3kq4ippTKhAm/SewIlk/fUxy8YOQyAgPnoFPTOHHQyGmZkF6RkfMB/hsOiLv1NtjlnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=htMdAFLs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42C43C52FC6;
+	Mon, 26 Aug 2024 15:45:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724686863;
-	bh=4OBYIWAuYnEhwSytqNJnwnkZOQSeQFtWMgwMS94OgSI=;
+	s=k20201202; t=1724687124;
+	bh=CfjXIIFwVytbq3DboLG6ZBWEAA+dSeHjisriqW8r0BE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oL9TmtarQJv4DjPeqND9KiG15NqAYzHGoBw2fu+jVYLBGUtRDF8zxGTWZoTMl/HX0
-	 krwk3kznovw8tBTJxnQmkk3rBJ+CxhA/eZVHSw0y9bf4FN+bD9kVXKk41JS1KUwWqs
-	 4qUz0IKh3EN0jpOQMIh0fu/SR5RlRjuXEeFNpp+C/Es/jqt1aAUVQF4d9gXNPTjPjg
-	 qiBgfD6rVwlmEKU7IKP8/kGsSpm8L0CGAo2zppy+JhnhW51ccykvQCWeoJUtYYhTt5
-	 hyAHFQ7NK2JrRpa+SEoVol4rAr44q6QL7YORxDmQ9N5qmoG6EcBDsqcF1G4IE3/flY
-	 /CI4Be/PLDMgQ==
-Message-ID: <23155de7-82c8-4681-bb2b-95167139fa59@kernel.org>
-Date: Mon, 26 Aug 2024 17:40:57 +0200
+	b=htMdAFLsy/VWzrv7KZVdB83Fj8TsnzeXUCuS9+1biIW6Kz7P8Dh4rwbfWNSqJJqre
+	 Q1MZP6OCv9ymTfXGiisyVBc+61y6NAxzsv6wDxYFf5QOVk3E6F1SdlnZlTgnLyvLUk
+	 xGhaNHFVHg41UQPJVCIlCt9x7T8c8vEm6euiuW1Ji+u2wjGKZj5Z1k6YJKd8iilFou
+	 5mWQxV/v0ThrpnBGxODG0RJYZn8GV2MSa4PwDuybSumLl0NoB9uxXYUWMGxjeBCins
+	 b3mdgVqy03FfugQveIMy1T9NJUxZZFqEhPXLI8ecrU6Pea4SGSpIWZOmz7VUrzxLkd
+	 hGAtk1fD1/VbQ==
+Message-ID: <39a2971d-8776-4e5f-8d72-ae447ea88362@kernel.org>
+Date: Mon, 26 Aug 2024 17:45:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: arm: qcom: Add Surface Laptop 7
- devices
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
- Stephan Gerhold <stephan.gerhold@linaro.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240826-topic-sl7-v2-0-c32ebae78789@quicinc.com>
- <20240826-topic-sl7-v2-1-c32ebae78789@quicinc.com>
+Subject: Re: [PATCH] dt-bindings: mfd: mediatek,mt6357: Fixup reference to
+ pwrap node
+To: Macpaul Lin <macpaul.lin@mediatek.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Alexandre Mergnat <amergnat@baylibre.com>, Flora Fu <flora.fu@mediatek.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20240826065415.19641-1-macpaul.lin@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,21 +112,92 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240826-topic-sl7-v2-1-c32ebae78789@quicinc.com>
+In-Reply-To: <20240826065415.19641-1-macpaul.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/08/2024 16:37, Konrad Dybcio wrote:
-> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> 
-> Document the X1E80100-based Microsoft laptops.
-> 
-> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+On 26/08/2024 08:54, Macpaul Lin wrote:
+> The mt6357 is a subnode of pwrap node. Previously, the documentation
+> only included a note in the description of mt6357. This change adds the
+> appropriate $ref for pwrap to ensure clarity and correctness.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Heh? The schema described mt6357, not pwrap. Why are you changing it?
+
+> 
+>   $ref: /schemas/soc/mediatek/mediatek,pwrap.yaml
+> 
+> Additionally, the indentation for the pmic section has been adjusted
+> to match the corresponding structure.
+> 
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>  .../bindings/mfd/mediatek,mt6357.yaml         | 124 +++++++++---------
+>  1 file changed, 65 insertions(+), 59 deletions(-)
+> 
+> Changes for v1:
+>  - This patch has been made based on linux-next/master branch.
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> index b67fbe0..5f4f540 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> @@ -22,69 +22,75 @@ description: |
+>  
+>    It is interfaced to host controller using SPI interface by a proprietary hardware
+>    called PMIC wrapper or pwrap. This MFD is a child device of pwrap.
+> -  See the following for pwrap node definitions:
+> -  Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+>  
+>  properties:
+> -  compatible:
+> -    const: mediatek,mt6357
+
+How does this schema is being selected without compatible?
+
+> -
+> -  interrupts:
+> -    maxItems: 1
+> -
+> -  interrupt-controller: true
+> -
+> -  "#interrupt-cells":
+> -    const: 2
+> -
+> -  mediatek,hp-pull-down:
+> -    description:
+> -      Earphone driver positive output stage short to
+> -      the audio reference ground.
+> -    type: boolean
+> -
+> -  mediatek,micbias0-microvolt:
+> -    description: Selects MIC Bias 0 output voltage.
+> -    enum: [1700000, 1800000, 1900000, 2000000,
+> -           2100000, 2500000, 2600000, 2700000]
+> -    default: 1700000
+> -
+> -  mediatek,micbias1-microvolt:
+> -    description: Selects MIC Bias 1 output voltage.
+> -    enum: [1700000, 1800000, 1900000, 2000000,
+> -           2100000, 2500000, 2600000, 2700000]
+> -    default: 1700000
+> -
+> -  regulators:
+> -    type: object
+> -    $ref: /schemas/regulator/mediatek,mt6357-regulator.yaml
+> -    unevaluatedProperties: false
+> -    description:
+> -      List of MT6357 BUCKs and LDOs regulators.
+> -
+> -  rtc:
+> +  pwrap:
+
+With the diff it is tricky to say what you are doing, but it feels
+wrong. I don't understand the rationale, the problem being fixed here,
+and considering unusual diff, this just looks wrong approach.
+
+Bindings do not work like that - you do not reference the parent inside
+the child. There is nowhere example for that, so I have no clue how did
+you come up with it.
 
 Best regards,
 Krzysztof
