@@ -1,134 +1,270 @@
-Return-Path: <devicetree+bounces-96753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5622095F584
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 17:50:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B0B595F58C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 17:50:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88FC81C2171F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 15:50:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DE59B2181C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 15:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9021C189B89;
-	Mon, 26 Aug 2024 15:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003AD194085;
+	Mon, 26 Aug 2024 15:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CJow60lk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r0de/vYF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6393249631;
-	Mon, 26 Aug 2024 15:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA43A192B79;
+	Mon, 26 Aug 2024 15:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724687400; cv=none; b=g6SzxMyynRfSfXxe5TgV68HPI4ZZM2HeqhH/exz1UjMN/WNB570QVNT2VG8nkVWtuM45FrCK/LduD+tQP5hgAwxNXB1eoRqgTMOiV6lAt99rpb/w0EfpXE0WrKYf0Ob8ibFLwjAqRHW4DZdXDRGBcytdGiKYXVzIm7+uexJYcmw=
+	t=1724687438; cv=none; b=I6diQCD13qdLneseeYVlsujyUM6MZA6b28kW4GYO8AjFx4xg9NjCG4hnhMWVJy+GFeLrjWNtU1naSLeT+T3pYjdmviNq85pcEgHXHACCJvYeeOL0A7wK1k5jp0tOUDtjnpCXTPiH2e4D9ZOk4RJmGrXdbCuUpiStsvr3MK9LovY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724687400; c=relaxed/simple;
-	bh=Ix7gG+0vm0lVLIBVJQKChz8QDT/cbVX6+rxLO0aJ+Ic=;
+	s=arc-20240116; t=1724687438; c=relaxed/simple;
+	bh=ktxTLHI62m07O4aByHNtqdVU4NHYWDBoMv9Kczki3Rs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hEKTekpcItQvq3z81jp0m1vX6J05Om4jdKKoZQS8BPPr0o8ZFx9kq7+7j59O1mJlKIJF+EN+eT6AGhOHzcJDABbg8sViKddlNLCanc52ABwgjo/gV1jOp5S6HWTMYLNwgUjIrLwlPRUWkFnC8dKtFZyY+dH6w+Dl3TTBpBzTqHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CJow60lk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBCDFC4FEE4;
-	Mon, 26 Aug 2024 15:49:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fbvsdVVZrJ9NudF0BPkb9ooCDiItGDhR6WI+YzE6F20Rstt+BFF6oArKrUOShqJHX/12obqRE+vl2+nWHXMiJ5xDd94Zeg2f76CaI4+7utvpT7yEIZ3KpEbnVzIhE6l2JYml6ytaRk7cx8VMcZ54JyJZlPhczmXl6hu250KeTR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r0de/vYF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF966C4FF57;
+	Mon, 26 Aug 2024 15:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724687400;
-	bh=Ix7gG+0vm0lVLIBVJQKChz8QDT/cbVX6+rxLO0aJ+Ic=;
+	s=k20201202; t=1724687438;
+	bh=ktxTLHI62m07O4aByHNtqdVU4NHYWDBoMv9Kczki3Rs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CJow60lkASvRmQi4+EoOIL2KjoiqrTDGlKthDN7/dwFQXWvG1n9R2mfTjFw5xrD38
-	 syEmNpnoXlIRUu3acvC1jq/Q+PYCE/WODMxXftDuPZBMYRuYNk8e94dn3xozaFkXJ3
-	 I9wRbw+6yfqWLCEllY1l1EULNclQzrYaoeoHpdTwg2xFs+YF3dSXpTz185FoTbAzRK
-	 QbBoFF2HwtNEuIGRfElqSMvtTqEhAHINVqVIC7v4utHfvKZ2CH+HbAP5pHGk4cK3y+
-	 EtgeuwFhUlUj1UaCgKvcwotsTO2CQj919FSan581A2RlVZChVAguzzlZLWGG6UHDcD
-	 oIpQgqAi1BlrQ==
-Date: Mon, 26 Aug 2024 10:49:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
-	linux@armlinux.org.uk, andrei.botila@oss.nxp.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH v3 net-next 1/2] dt-bindings: net: tja11xx: add
- "nxp,phy-output-refclk" property
-Message-ID: <20240826154958.GA316598-robh@kernel.org>
-References: <20240826052700.232453-1-wei.fang@nxp.com>
- <20240826052700.232453-2-wei.fang@nxp.com>
+	b=r0de/vYF8OEWJOWzCY7dYubWPfWUHk5m6z1Z/5T2AqlxcRxn39H+cl2W+d9TSlRqT
+	 V1Kt+welB3O3YMFUfE4Au9oon6Nlx40aZUi3skZF8XIZr/YiBRcq/Opoz0QM6xRk8h
+	 N0HCiuhDBPzTWKadM/uUYZwV3SH3ejXLpKq7wFqqYfTxql28ALtynebpplP323aJkZ
+	 znopSFVVGtjJgpO3q2VbkH0IXhY0v7jau3yv87nMGFZITaMC5LfEfheFQLS9y018aY
+	 1w+VoxyjJDFtzMoK4qiFLIg81MmjB/ADouNjejhsAl0mY2Lt6oDafHRXr9IrBYQTCz
+	 yo0yQ5W0PfH7A==
+Date: Mon, 26 Aug 2024 16:50:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Flora Fu <flora.fu@mediatek.com>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Sen Chu <sen.chu@mediatek.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH] dt-bindings: mfd: mediatek,mt6357: Fixup reference to
+ pwrap node
+Message-ID: <20240826-slurp-earphone-0d5173923ae8@spud>
+References: <20240826065415.19641-1-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="50OsiPZgodBAcn76"
+Content-Disposition: inline
+In-Reply-To: <20240826065415.19641-1-macpaul.lin@mediatek.com>
+
+
+--50OsiPZgodBAcn76
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240826052700.232453-2-wei.fang@nxp.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 26, 2024 at 01:26:59PM +0800, Wei Fang wrote:
-> Per the RMII specification, the REF_CLK is sourced from MAC to PHY
-> or from an external source. But for TJA11xx PHYs, they support to
-> output a 50MHz RMII reference clock on REF_CLK pin. Previously the
-> "nxp,rmii-refclk-in" was added to indicate that in RMII mode, if
-> this property present, REF_CLK is input to the PHY, otherwise it
-> is output. This seems inappropriate now. Because according to the
-> RMII specification, the REF_CLK is originally input, so there is
-> no need to add an additional "nxp,rmii-refclk-in" property to
-> declare that REF_CLK is input.
-> Unfortunately, because the "nxp,rmii-refclk-in" property has been
-> added for a while, and we cannot confirm which DTS use the TJA1100
-> and TJA1101 PHYs, changing it to switch polarity will cause an ABI
-> break. But fortunately, this property is only valid for TJA1100 and
-> TJA1101. For TJA1103/TJA1104/TJA1120/TJA1121 PHYs, this property is
-> invalid because they use the nxp-c45-tja11xx driver, which is a
-> different driver from TJA1100/TJA1101. Therefore, for PHYs using
-> nxp-c45-tja11xx driver, add "nxp,phy-output-refclk" property to
-> support outputting RMII reference clock on REF_CLK pin.
-> 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+On Mon, Aug 26, 2024 at 02:54:15PM +0800, Macpaul Lin wrote:
+> The mt6357 is a subnode of pwrap node. Previously, the documentation
+> only included a note in the description of mt6357. This change adds the
+> appropriate $ref for pwrap to ensure clarity and correctness.
+
+I think this change is wrong and the existing binding is fine.
+Adding the ref overcomplicates the binding completely, and stating that
+this is a child node of another device is sufficient.
+
+Instead, if anything, the pwrap binding should have a ref to /this/
+binding.
+
+Thanks,
+Conor.
+
+>=20
+>   $ref: /schemas/soc/mediatek/mediatek,pwrap.yaml
+>=20
+> Additionally, the indentation for the pmic section has been adjusted
+> to match the corresponding structure.
+>=20
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 > ---
-> V2 changes:
-> 1. Change the property name from "nxp,reverse-mode" to
-> "nxp,phy-output-refclk".
-> 2. Simplify the description of the property.
-> 3. Modify the subject and commit message.
-> V3 changes:
-> 1. Keep the "nxp,rmii-refclk-in" property for TJA1100 and TJA1101.
-> 2. Rephrase the commit message and subject.
-> ---
->  Documentation/devicetree/bindings/net/nxp,tja11xx.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-
-This binding is completely broken. I challenge you to make it report any 
-errors. Those issues need to be addressed before you add more 
-properties.
-
-If you want/need custom properties, then you must have a compatible 
-string.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> index 85bfa45f5122..f775036a7521 100644
-> --- a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> +++ b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> @@ -48,6 +48,12 @@ patternProperties:
->            reference clock output when RMII mode enabled.
->            Only supported on TJA1100 and TJA1101.
->  
-> +      nxp,phy-output-refclk:
-
-Why not "nxp,rmii-refclk-out" if this is just the reverse of the 
-existing property.
-
-> +        type: boolean
-> +        description: |
-> +          Enable 50MHz RMII reference clock output on REF_CLK pin. This
-> +          property is only applicable to nxp-c45-tja11xx driver.
+>  .../bindings/mfd/mediatek,mt6357.yaml         | 124 +++++++++---------
+>  1 file changed, 65 insertions(+), 59 deletions(-)
+>=20
+> Changes for v1:
+>  - This patch has been made based on linux-next/master branch.
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml b=
+/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> index b67fbe0..5f4f540 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> @@ -22,69 +22,75 @@ description: |
+> =20
+>    It is interfaced to host controller using SPI interface by a proprieta=
+ry hardware
+>    called PMIC wrapper or pwrap. This MFD is a child device of pwrap.
+> -  See the following for pwrap node definitions:
+> -  Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> =20
+>  properties:
+> -  compatible:
+> -    const: mediatek,mt6357
+> -
+> -  interrupts:
+> -    maxItems: 1
+> -
+> -  interrupt-controller: true
+> -
+> -  "#interrupt-cells":
+> -    const: 2
+> -
+> -  mediatek,hp-pull-down:
+> -    description:
+> -      Earphone driver positive output stage short to
+> -      the audio reference ground.
+> -    type: boolean
+> -
+> -  mediatek,micbias0-microvolt:
+> -    description: Selects MIC Bias 0 output voltage.
+> -    enum: [1700000, 1800000, 1900000, 2000000,
+> -           2100000, 2500000, 2600000, 2700000]
+> -    default: 1700000
+> -
+> -  mediatek,micbias1-microvolt:
+> -    description: Selects MIC Bias 1 output voltage.
+> -    enum: [1700000, 1800000, 1900000, 2000000,
+> -           2100000, 2500000, 2600000, 2700000]
+> -    default: 1700000
+> -
+> -  regulators:
+> -    type: object
+> -    $ref: /schemas/regulator/mediatek,mt6357-regulator.yaml
+> -    unevaluatedProperties: false
+> -    description:
+> -      List of MT6357 BUCKs and LDOs regulators.
+> -
+> -  rtc:
+> +  pwrap:
+>      type: object
+> -    $ref: /schemas/rtc/rtc.yaml#
+> -    unevaluatedProperties: false
+> -    description:
+> -      MT6357 Real Time Clock.
+> +    $ref: /schemas/soc/mediatek/mediatek,pwrap.yaml
+>      properties:
+> -      compatible:
+> -        const: mediatek,mt6357-rtc
+> -      start-year: true
+> -    required:
+> -      - compatible
+> -
+> -  keys:
+> -    type: object
+> -    $ref: /schemas/input/mediatek,pmic-keys.yaml
+> -    unevaluatedProperties: false
+> -    description:
+> -      MT6357 power and home keys.
+> -
+> -required:
+> -  - compatible
+> -  - regulators
+> +      pmic:
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          compatible:
+> +            const: mediatek,mt6357
 > +
->      required:
->        - reg
->  
-> -- 
-> 2.34.1
-> 
+> +          interrupts:
+> +            maxItems: 1
+> +
+> +          interrupt-controller: true
+> +
+> +          "#interrupt-cells":
+> +            const: 2
+> +
+> +          mediatek,hp-pull-down:
+> +            description:
+> +              Earphone driver positive output stage short to
+> +              the audio reference ground.
+> +            type: boolean
+> +
+> +          mediatek,micbias0-microvolt:
+> +            description: Selects MIC Bias 0 output voltage.
+> +            enum: [1700000, 1800000, 1900000, 2000000,
+> +                   2100000, 2500000, 2600000, 2700000]
+> +            default: 1700000
+> +
+> +          mediatek,micbias1-microvolt:
+> +            description: Selects MIC Bias 1 output voltage.
+> +            enum: [1700000, 1800000, 1900000, 2000000,
+> +                   2100000, 2500000, 2600000, 2700000]
+> +            default: 1700000
+> +
+> +          regulators:
+> +            type: object
+> +            $ref: /schemas/regulator/mediatek,mt6357-regulator.yaml
+> +            unevaluatedProperties: false
+> +            description:
+> +              List of MT6357 BUCKs and LDOs regulators.
+> +
+> +          rtc:
+> +            type: object
+> +            $ref: /schemas/rtc/rtc.yaml#
+> +            unevaluatedProperties: false
+> +            description:
+> +              MT6357 Real Time Clock.
+> +            properties:
+> +              compatible:
+> +                const: mediatek,mt6357-rtc
+> +              start-year: true
+> +            required:
+> +              - compatible
+> +
+> +          keys:
+> +            type: object
+> +            $ref: /schemas/input/mediatek,pmic-keys.yaml
+> +            unevaluatedProperties: false
+> +            description:
+> +              MT6357 power and home keys.
+> +
+> +        required:
+> +          - compatible
+> +          - regulators
+> =20
+>  additionalProperties: false
+> =20
+> --=20
+> 2.45.2
+>=20
+>=20
+
+--50OsiPZgodBAcn76
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsykSAAKCRB4tDGHoIJi
+0gYAAQCGfMBFaDP6ivfMJJBwfUboQER1rC8YTMNL4nNMsiTnyQD/baclX5aCHVJi
+8ubJmmeyqBJRPWK/Nw5vmepd5ePRKwg=
+=JZUq
+-----END PGP SIGNATURE-----
+
+--50OsiPZgodBAcn76--
 
