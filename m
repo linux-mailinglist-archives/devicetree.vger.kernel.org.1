@@ -1,160 +1,187 @@
-Return-Path: <devicetree+bounces-96884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7714095FCA2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 00:19:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA7195FCAB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 00:21:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3455328532F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 22:19:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E83A1C20DAC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 22:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54BFB19CD12;
-	Mon, 26 Aug 2024 22:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A968C19D08C;
+	Mon, 26 Aug 2024 22:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="h4367pYa"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="jHLlUPgM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA83E19D07E;
-	Mon, 26 Aug 2024 22:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA37319CD12
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 22:21:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724710743; cv=none; b=VOqFxg8ucZKYXMEhfpfBDeD/ITv2MNjO+/ygual1cDqRizuyfwOn+GEeJzds2ccjOvLQhTcvMd9erZWV/AZW1fYtsnwF3Vh/qT/JEFOVhi/uTf+uRarkw755hH5FM7vPVpr54AGRbCEFCYrgPIokQQRje7bzA4xb0eSEAgesqpY=
+	t=1724710872; cv=none; b=ZVFJw36kpT6PDQHusebYayoGpk/RKlBIpiKzHBDp1npWam9IFFMvKqJ1iSZaFApS4iU54Cozx+WxNG3rq5aUorMXdubFATy1K/hXzjDgymKrewTxZx7BhaWo3UNQLGtmfiYXsWcAY8TylmITCD0tVuLI9yUxjh4No2ZBVa09DFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724710743; c=relaxed/simple;
-	bh=oiR1Fld9b770SKJdNvZawoU6zRfAeEpH73HRGqhu4Wg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HRvdsl2K8wBdQ192OapCGEacdDv6FYn7gvlTnL7Mr7H/yEPv+r2m3+VMPqR4LBc7UnFrjOz51ijku7lnzEM3wXU2jbsCHVgwnW4PuZtwU+BJejtEp/TgqK6LLaYL7EDFtES/+g+r6Sbp47AAWsrn0fX/8Sa88+d+TRKbZNbp+Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=h4367pYa; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 7432A20AB8;
-	Tue, 27 Aug 2024 00:18:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1724710740;
-	bh=OLHcXUX5ld590VkhJksYhwouQQmCELfT4laFDokDThE=; h=From:To:Subject;
-	b=h4367pYaDAO4MkkzKCXNmtiUU/ikzMSrhoUNea31fJiU4zwVYDWI5K0i2q4HNzsn/
-	 /SX4ptYYPt6NsVO1k799X8Cz+1zf7krTsRp+c3Oc+7edzU/0WIfucuym0SnuRrhZ96
-	 FPSiKTstBipJm55EJYvyLsyHmtF0+mWHak5547qjFM7E2BBH6cMj2bQOWoB84NZ0Wm
-	 uU+XUB8snzY3JJDDNqtVXLSig2oIrLpIR2zNqUVuBDhq01bA7DFTS6Gxc+xKSB3PbP
-	 6B2/rTFdm3nNYoZy9ygPvQyLC/14JQ6LQ08uLPTGtrDLgTB+uUV9AhXRwx1waGwNsz
-	 Ctjb+1THiqFGw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 5/5] arm64: dts: imx8-apalis: Add usb4 host support
-Date: Tue, 27 Aug 2024 00:18:55 +0200
-Message-Id: <20240826221855.16061-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240826221541.15669-1-francesco@dolcini.it>
-References: <20240826221541.15669-1-francesco@dolcini.it>
+	s=arc-20240116; t=1724710872; c=relaxed/simple;
+	bh=o5inbK5k5jJkCSFBq8jKV4/XzEa4ReX37kh9WGWKFkM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aU1Y+QCF41g3sJkHkSwcVlSRBuiB1CGj3vv9Bx44tHcRP7UFr+EvfLCWCFy+MTtO1MzSG2DcL/1+Z3H2A3beZlW2kiW6cXInwEUI+q+sH2iYvHU26mPfiq3uQ6Px1ojtgFqjYYqCFpxK0bPGHWi7z/djE+hNfl2zlomfVRPHnoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=jHLlUPgM; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1724710869;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uVnGMUXouwLWzh2JPfjWaejU7vTfrT6N/vmKgxEOM5c=;
+	b=jHLlUPgMvFMaCuwTgJSwtLcOt0/R2a69LnuwwvO250dXxoZP85wCRd0qRXqgW184lzQQ8M
+	V56WqSAy1cde0v/gjWqCZOVc3fzc6NYFzx29cg3nbUPYyD/ywNGhqts7KhAn0du8cloV0A
+	i618i1NeRa/aG0MU+cOtzGB/wzwWywU=
+Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
+ [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-571-wl-DnY7dPA2JpN_Sz34bkg-1; Mon, 26 Aug 2024 18:20:48 -0400
+X-MC-Unique: wl-DnY7dPA2JpN_Sz34bkg-1
+Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-6b38bd44424so87434017b3.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 15:20:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724710827; x=1725315627;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uVnGMUXouwLWzh2JPfjWaejU7vTfrT6N/vmKgxEOM5c=;
+        b=CCqdqm9hR/tGzUrNPXv1rJnCXim5JGtSexdFw5AIaz+G/6x0mG3yhq0LeT0u9KrZq9
+         029eYzqi5lk/GfTsGDRB+elGhsjb0J2E8T5JJFirlrCtGT6oyN664tNTA54gu+9lV9hW
+         uawd103txwFuMZdiPa/xOuPsYLudsam0pwt2YqCD1A6/kKQ7Xx+dfnSM6mR6SPm5fRMz
+         kqtSYZT/jPHaQaX1r3trYxisi+1mOKgeJKLCIasgKOUxb3GKAYHOTmLQ/WuqExJyX9tj
+         2S72SX2p8A7QXm1og1m/DMXMufQPNhFLwLgXIcHWNreLAqLraN1UFBsGnkHgSfSWQ+Z/
+         zr8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUqc5DqczlBYxK0yqp3j+NL+vW5Tjo8rxdfnlmglK84donBjVMZ2fnVPABwkB9UhxMOG+IJTc59jnCi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIqoQRUMK75uAyy3S2wgAodvUCu9a+/IyvZeavcbc4Vxr2PU8d
+	AgddxGcNMTasUzDtAfOn83ZR9BOwrgbwS4gbNyyZkdTpvmZGY71OwWfySBjRsS9YlANGXyoOZEo
+	kbjypdfu5DLPbUZnR2eTq9UpSmGLh88nHXZBiC6/wry2IXbggEARRY0y/AmM=
+X-Received: by 2002:a05:690c:480a:b0:64a:4161:4f94 with SMTP id 00721157ae682-6cfb9ebbdadmr12189107b3.20.1724710827527;
+        Mon, 26 Aug 2024 15:20:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGCt7ATrJ76cUPLhlo5TYvGQOosCLkwO2wXQz1V6PkjoZ9BpjTuprffh0hZuR28QBnONhXgbQ==
+X-Received: by 2002:a05:690c:480a:b0:64a:4161:4f94 with SMTP id 00721157ae682-6cfb9ebbdadmr12188837b3.20.1724710827121;
+        Mon, 26 Aug 2024 15:20:27 -0700 (PDT)
+Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c39b007461sm16730287b3.64.2024.08.26.15.20.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Aug 2024 15:20:26 -0700 (PDT)
+Date: Mon, 26 Aug 2024 18:20:25 -0400
+From: Eric Chanudet <echanude@redhat.com>
+To: "Kumar, Udit" <u-kumar1@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, J Keerthi <j-keerthy@ti.com>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andrew Halaney <ahalaney@redhat.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: align watchdog clocks
+Message-ID: <xlmi5cm4lcnohz3glzzxqtffrbletvsos2i2l2ytr55yjnwl33@fae24t7xvzj7>
+References: <20240805174330.2132717-2-echanude@redhat.com>
+ <wiyw7h7hkc7u2brehi6zgxykesajtqmwwajo7tpwwvayjtcykw@w7rcmojs62vi>
+ <f42f092f-2199-4cbd-8cad-96ccf4f100d0@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f42f092f-2199-4cbd-8cad-96ccf4f100d0@ti.com>
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On Mon, Aug 26, 2024 at 11:53:56PM GMT, Kumar, Udit wrote:
+> Hello Eric
+> 
+> On 8/21/2024 3:31 AM, Eric Chanudet wrote:
+> > On Mon, Aug 05, 2024 at 01:42:51PM GMT, Eric Chanudet wrote:
+> > > ---
+> > > I could not get the watchdog to do more than reporting 0x32 in
+> > > RTIWDSTATUS. Setting RTIWWDRXCTRL[0:3] to generate a reset instead of an
+> > > interrupt (0x5) didn't trigger a reset either when the window expired.
+> > Re-testing using u-boot from the BSP (2023.04) has the board reset as
+> > expected when the watchdog expires and WDIOC_GETTIMELEFT report the time
+> > left coherently with this patch until that happens.
+> > 
+> > I initially had a u-boot with a DT lacking:
+> > 	"mcu_esm: esm@40800000"
+> > and I could reproduce the board not resetting by commenting in its
+> > description:
+> > 	"ti,esm-pins = <95>;"
+> > 
+> > I don't understand why that is on the other hand. The TRM says ESM0
+> > ERR_O drives the SOC_SAFETY_ERRORn pin, which goes to the PMIC GPIO3 on
+> > the schematic _and_ to MCU_ESM0 as an error input event. The tps6594-esm
+> > module is probing successfully and it sets both ESM_SOC_EN|ESM_SOC_ENDRV
+> > and ESM_SOC_START, so I would expect the PMIC to reset the board without
+> > MCU_ESM0 being described or configured by u-boot.
+> 
+> AFAIK, Keerthy correct me. GPIO-7 of PMIC should reset the boards.
 
-Add USB4 HOST to Apalis-iMX8QM SOM and its carrier boards.
+That is what I'm seeing too, MCU_ESM0 is able to reset the board.
 
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi |  5 ++++-
- .../boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi  |  5 ++++-
- .../boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi  |  5 ++++-
- arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 13 ++++++++++++-
- 4 files changed, 24 insertions(+), 4 deletions(-)
+> If you see figure 5-27 of TRM then SOC_SAFETY_ERRORn goes to GPIO-3 of
+> PMIC (schematic)
+> 
+> Same time this is cascaded to MCU-ESM and WKUP-ESM to generate
+> MCU_SAFETY_ERRORn (from Wkup_ESM)
+> 
+> and MCU_SAFETY_ERRORn is connected to GPIO-7.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-index 5f24356ad4e2..dc127298715b 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-@@ -135,4 +135,7 @@ &usbotg1 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis USBH4 SuperSpeed */
-+/* Apalis USBH4 SuperSpeed */
-+&usbotg3_cdns3 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-index 4ec2227750f4..d4a1ad528f65 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-@@ -222,7 +222,10 @@ &usbotg1 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis USBH4 SuperSpeed */
-+/* Apalis USBH4 SuperSpeed */
-+&usbotg3_cdns3 {
-+	status = "okay";
-+};
- 
- /* Apalis MMC1 */
- &usdhc2 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-index 606d9328ac99..5e132c83e1b2 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-@@ -271,7 +271,10 @@ &usbotg1 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis USBH4 SuperSpeed */
-+/* Apalis USBH4 SuperSpeed */
-+&usbotg3_cdns3 {
-+	status = "okay";
-+};
- 
- /* Apalis MMC1 */
- &usdhc2 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-index 0f334c268a99..0523bd0e8cd2 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-@@ -807,7 +807,18 @@ &spdif0 {
- 
- /* TODO: Apalis USBH2, Apalis USBH3 and on-module Wi-Fi via on-module HSIC Hub */
- 
--/* TODO: Apalis USBH4 */
-+/* Apalis USBH4 */
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&usbotg3 {
-+	status = "okay";
-+};
-+
-+&usbotg3_cdns3 {
-+	dr_mode = "host";
-+};
- 
- /* Apalis USBO1 */
- &usbphy1 {
+Agreed (Figure 5-25, in TRM "SPRUJ52" for J784S4).
+
+> Unlike other device J721E (for reference)
+> 
+> SOC_SAFETY_ERRORn is generated by Main ESM and MCU_SAFETY_ERRORn can be
+> generated by WKUP_ESM and main_ESM.
+> 
+> Please look at schematic of J721E SOM [0], both SOC_SAFETY_ERRZ and
+> MCU_SAFETY_ERRZ both are connected to GPIO-7 of PMIC.
+> 
+> So on this device and board, only main ESM configuration is working for us.
+> 
+> [0] https://www.ti.com/tool/J721EXSOMXEVM#tech-docs
+
+Sure, but I am using J784S4[1] and the schematic of that board
+(PROC141E4(001)_SCH) shows SOC_SAFETY_ERRZ going to PMIC GPIO3.
+
+So when u-boot _does not_ configure MCU_ESM0 chaining through pin95, I
+would still expect the board to reboot, because ESM0 raised
+SOC_SAFETY_ERRORn on TPS6594 GPIO3 which should reset the board. Yet
+that does not seem to happen.
+
+[1] https://www.ti.com/tool/J784S4XEVM#tech-docs
+
+On Mon, Aug 26, 2024 at 11:48:34AM GMT, Andrew Halaney wrote:
+> rti0 ---> ESM0 pin 688 --SOC_SAFETY_ERRORn--> TPS6594 GPIO3
+> 				|
+> 				|
+> 				--> MCU_ESM0 pin 95 --> WKUP_ESM0 pin 63 --MCU_SAFETY_ERRORn--> TPS6584 GPIO7
+
+Using Andrew's drawing as it matches my understanding as well. So the
+PMIC should reset the board even if MCU_ESM0 isn't configured with pin95
+to chain SOC_SAFETY_ERRORn.
+
+Am I misunderstanding this?
+
+As well, since it is mentioned in Andrew's reply:
+
+On Mon, Aug 26, 2024 at 11:48:34AM GMT, Andrew Halaney wrote:
+> did you ensure that ESM0 was programmed in this test? Right now if
+> you're using upstream u-boot and upstream linux, nobody seems to be
+> configured by default to do that
+
+I am using the BSP u-boot (2023.04-f9b966c674) for this test, which has
+CONFIG_ESM_K3=y and esm@700000's description with pin688.
+
+Best,
+
 -- 
-2.39.2
+Eric Chanudet
 
 
