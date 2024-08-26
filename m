@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-96766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A949995F692
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:31:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C1595F6AB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:36:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62D35281864
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:31:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88B59282636
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 163FA1946D0;
-	Mon, 26 Aug 2024 16:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1090E194AEC;
+	Mon, 26 Aug 2024 16:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PpbCKo1p"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QpgWhoz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012004.outbound.protection.outlook.com [52.101.66.4])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013007.outbound.protection.outlook.com [52.101.67.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1672D1865E7;
-	Mon, 26 Aug 2024 16:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56965476B;
+	Mon, 26 Aug 2024 16:36:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.7
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724689879; cv=fail; b=qJ0T7yrhgGxT3Ccue4cHViV+xfexc31GhqkoehESf2AhkkGLE3w1Oy3xkGHEQVlA8Yj9L0yjRi1IiAg2D1vHxtiXmsL7Z/EEKPxYmTidxFr8A4ueDkNS5N8wa+OZZ0rvvDQsUXC8JQKmtgAP5eILnHQfQdNlM+SGIc290VE41+8=
+	t=1724690205; cv=fail; b=MvTRnWRmi19U71MQHsqtNZlJZTqzTfEAfcq0ohQFil0OsONrcwraX+QZjVhjr9XZhTv9IEN/TscN0lOl0BS54F0LPi1DMrZhamT5HRx1+7b+E25qxXjuefffR7aRcA75sB4tdfBICr0MyBaHf7+uLCx9phD6H2lToXNikoL2r6c=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724689879; c=relaxed/simple;
-	bh=M7lFVx2F0doGFe8D1YzxNTQdjPNG+u62950YGLi2w7M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=QjoODWkV6CDE4ytaEre42B/CVHMHK7kFMfignKBvIrty+86M+rtWWL83XfcYWrCiCmK9A/1bsO2+fLTiMlBoq2grIARabkMyAPPZF7glz787yRbzlw4EZpRbpG1TSYba4J2WOduWZGweHqYHctCv8Ic0IcZY0zlLqMEwAefAXpo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PpbCKo1p; arc=fail smtp.client-ip=52.101.66.4
+	s=arc-20240116; t=1724690205; c=relaxed/simple;
+	bh=GConoWA7KnbeHQIhqk0Et7Ru3GusNe81+6MF3tzVrWo=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=sO3JI3QPk701ouQI+p8djxOExS8dQBmXtrQdZ919t/0E2z4aEZDUsrvQKmfozUhXQZDbYsowdFUvnNQtG5kFO69St5Hgk5H1fm042y8zgB5b00Bil7Q2hb0Jh2z7DfM9QpE0azeJgjcdtqtGR5azIu9K+A3QudYWFwD6X8eSf/A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QpgWhoz4; arc=fail smtp.client-ip=52.101.67.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XW7r5wxSXiR7zqyGunM9FFwrubSWhiUp2UbLxz0rQmPYoREGzw+SCHG/eyNKasSPOYeab5v7ovWBDbMzwHZqJUf22qCDd89mgtTLdusiNg3rpzr3uO71Nmcyn8r3qzgGKQtLR/bUVqrrLyPVoP5q6TdSxqvCDPuBUfIQfxftc17hU5udKxuQ4PNevKFOY5ehUwyOPbl6XO2lsBPffzxvl7mQhzfPeB4p/4WzJnPD/FT8UlI/yKuTnIBETr+ea8G46iSkSswFznPCdzYhUoDmuefZWApRCaxN21xjh0RAddVZ4ClqwUNZqjkCc/C207Hst38jqXK3isYnnFSbTbRzhQ==
+ b=aE//q+mXkmnhr7wfwSm76rjmz72I1kSVqMEYyOn8F8CtLPDOhga+m90sg2HEDesufhxSXV0G1zh8KTchYHToUKp5pEdGzzhB4D+4g5cQg8whHwfZ5kMmsIO8dzDwsFJQaur6Px3yq8jV0NnSQoryFm5j5qYxZr8t9YHHI1e0j4HduaADNPG4q2BmjkCkIzq5kjA/QJYaV5O5n8hlpr6ZdwvFCsScv5rFTKDHeZgR5VD2assv9qIcP1NK1HdhLGcAkEQnaUkDD6c0I7nJoytJvqBVtzPIFQTAnl9nGg0ovXrMUaEA4gjz+fzVT2ZvxCsyQAc80nUkDnnD3+i2y2nzgg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/0u089mwEQFQc5YPfD0eArkFQhi+AYchIVRea6dPbxQ=;
- b=RvwufiraItvL1MPp6z19CBqCrRJDVv94WGC24cnw7CCheJ/48tDWVxFjMPjJEwTwTF3Nsn6NgVdKub47DMRMvxLd19fD+TmFo5rCa5o6khx3d8QF9PKWXXaTsnRGYJOp4RW673fKjx454L6FUD1FKxYDKKDek8JgHewPo0VywS7UQ1iUwnkc4M45A0Gu1al2nXLKIv+yE+yHd6BXnK8kmgcFoAaYoLwTc5sOVRfJLl0oC/pXQx54JeNFvevO2CvDQVoXJy2I4pUzX9dLkbNrVS5ofEC4Efyeq3Wz2xmh1Z0Hg/wfoJqunBnvxmXY0NDl+g4ez6VGTsAXy6ABJpE/6Q==
+ bh=JaQJHZsiwti3NVp8gATXFagLt8zdcwWqweY/7gOSKx8=;
+ b=DS9UWUCgedUCHLHI7XK/eu9K9nO+kam+OTrF5YNPZMhctUM7or0tXDb3zERQSoiGdSdcG9SWQLfCYZd8Q715vCqBFFnpX+Mpd477/cy8MZ/EFukcPj8lco4AyAra7BvoyTefvEa6Pk6PZHGMpaWxwUsjIRlGtCHl02AkTWmxyWprZkWbWzEuzYGX0BUXvOBZnwkPz0MO2rSYEbOIZbeoWH0nP4EIPIJ7hOuOdZVJ7t6V+kVgSZocmueodL+HQFERlB1vr5qodtQ8glUpDNZy9hAeq/JORlAj9kckA1UL4a9x2PQX7/JUbj5SuNVMroALZYQwwKL/nolOSyvt7GrjWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/0u089mwEQFQc5YPfD0eArkFQhi+AYchIVRea6dPbxQ=;
- b=PpbCKo1pR7Vk3nXm6nGRLw5Z1D5k69HqiUw/ke9ZZTsgzSR3SxH70xE/dZB24DJg2rsFB0HRsfNEYFdYOLo/keYcvfAZvTfLkSQJz9dM+dsGLHLtwctrTqj1F3UHNa3YjwD+T1dnkDlQ72s4mRO3lZzHSLIvjwgVsChtOixE3zEU+OoiQrCCg7Ipq2GhRs21UD5vwx8Gtf5lMdIGJcMGql5KFO8GWEhB0Fn7W9Q1SV2B7Diqx154bSVNh/VoO4qeBJRIdMaEqzrs1eezGALY9ENj69WeYkfce+rU73303h+pXD6zOOdV6gjO/FO4l6QsRPFvbUX5IJYVdANcwgt2hA==
+ bh=JaQJHZsiwti3NVp8gATXFagLt8zdcwWqweY/7gOSKx8=;
+ b=QpgWhoz48i/DpMHLWNGomLC43SancFvOAGSGb+cjWTMJYqPHiRrhUIenvdDSv7eFElzFeYPyrNN1CZRMaZW267qcOYwBAGU1RPvASFllR8V8wRjt8CqwzLpFbL+HA4SqwWdhSl1fTbvDHshJUjSgKEaJh6e9oFuvDKVuA9c1vXv+Txz4YJ3dhnG0Fliv9qGpU49JDtlzij6J5UXMvabZeb0vE2tOi6NKP1VLrE/LSYtXbhDXqk1r7Evqi4SB8asaB3Fpcyj460+qFWpv7YoPkD2CprAW5Go7YgJPp7gAdCAdunERb7TtU1V1gohh3yLXIGcXjdY7Ldqm2ExvNHNCRA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8371.eurprd04.prod.outlook.com (2603:10a6:20b:3b2::16) with
+ by VI1PR04MB6941.eurprd04.prod.outlook.com (2603:10a6:803:12e::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.24; Mon, 26 Aug
- 2024 16:31:13 +0000
+ 2024 16:36:39 +0000
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7875.019; Mon, 26 Aug 2024
- 16:31:10 +0000
-Date: Mon, 26 Aug 2024 12:31:01 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: miquel.raynal@bootlin.com, vkoul@kernel.org
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, festevam@gmail.com, han.xu@nxp.com,
-	imx@lists.linux.dev, kernel@pengutronix.de, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org, marex@denx.de, richard@nod.at,
-	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
-	vigneshr@ti.com
-Subject: Re: [PATCH v3 1/1] dt-bindings: dma: fsl-mxs-dma: Add compatible
- string "fsl,imx8qxp-dma-apbh"
-Message-ID: <ZsytxXE/4Binsl26@lizhi-Precision-Tower-5810>
-References: <20240801214601.2620843-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240801214601.2620843-1-Frank.Li@nxp.com>
-X-ClientProxiedBy: SJ0PR05CA0148.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ 16:36:39 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	linux-hwmon@vger.kernel.org (open list:HARDWARE MONITORING),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v3 1/1] dt-bindings: hwmon/regulator: Convert ltc2978.txt to yaml
+Date: Mon, 26 Aug 2024 12:36:25 -0400
+Message-Id: <20240826163626.961586-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0166.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
  (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -83,149 +83,273 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8371:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4fb3cd7f-0efe-444e-397f-08dcc5ec7e9d
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB6941:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c31173f-4198-4080-0db4-08dcc5ed42bd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|376014|366016|1800799024|38350700014;
+	BCL:0;ARA:13230040|366016|376014|1800799024|52116014|7416014|921020|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?KkCMRrNMPnGFjs/XiSBWjIklRNwuW498WBCD8w/NzIbFsNEecr4HIhB7uMAP?=
- =?us-ascii?Q?aGVJUAmvAMnj0q7g8xuYY9SbshwjPASQT5g2HFZ5LylwNFKElDMyFS352cnw?=
- =?us-ascii?Q?wwojKquzj3uoTAmB4EsqL8d2dPvWuyQ8/MgvNEvUy8xbXX5AgbIrXY7baONE?=
- =?us-ascii?Q?v7Mz7GH/oJ6f1OuCBCzWyi63FTWtkTFrMzeM+Sr9L4Bl2r1Rka/RbUnNNJzX?=
- =?us-ascii?Q?lwxJa6UsmTnZ4fZ71ByHrqDCx6aYIODBSIlUGEGiD4V8n4QDfvGq81RtzCKI?=
- =?us-ascii?Q?y1grzpY8YGt3UxAKYA+syK7tiry0+2UoLenoJwmiGN2KyRD+Zyyl9ZEr8B/l?=
- =?us-ascii?Q?VR8EkuvuwTAYZICG+HCyKksxigT5P9qVAQJOl0qeycLdEj2eacJLoa7GgLcR?=
- =?us-ascii?Q?ZyIbs6LMZ4ON6Jgf/Q3J5+2dItxTiVs8fjex66IvbHsyfnNAEMJIZA8yHfOm?=
- =?us-ascii?Q?dgzD8Em/yrCO4Jy6uvH9AgqlmE2XZpdkkcxgTHCyJYHPl2B4B/FsNapOOy9c?=
- =?us-ascii?Q?KtlYhXgYXpWU6OMD1pP0LYf/0K3wYRDwmiaw4Ydu2vgKaSR7cSKnK2hYXY3q?=
- =?us-ascii?Q?Uq7nT9tNV03E2Qti8rgnl1jciKeZkoBtMaGRuHJ2ck3BycogfFP16Ix+Zuc+?=
- =?us-ascii?Q?yvQJQNZC9xN+1jZu/9Nhh1HpAgVKVcihWtTXoTeKYzZzp0sPk7IM6xyN7yDs?=
- =?us-ascii?Q?i8Usmz2ScJmmiOaNpYVZD/dR1Nv2Xo6JYN2ceE5nHnf1nZ5/CYCDl25zpuAF?=
- =?us-ascii?Q?Aa7NB9e2VPqHOW/+6ww1X+IWwVvA2quWKD9pv73WSGQLgfa7ywMPA1a7u/id?=
- =?us-ascii?Q?bRBrGnAD1I8im00Q98v0U85h7IkWPWCBTUW5HKg8e7N8oAx7HkhbNu/U7sXW?=
- =?us-ascii?Q?tfGAdFzRfqQyr3ZE84yNWSDm/V5sVZis5NC+0ihFnYD/p6Nlxl0Fs40A7xZa?=
- =?us-ascii?Q?JwD1fB3tUwBrZLHfypEstV84KA9E99fnVkasha2F8r6eMIsjddpYHCQp3tBg?=
- =?us-ascii?Q?dPCCZKiQ+TEr42RAJcKsaivfaHlNQAwe+qmgffyyJUz0vM6RV6cY5COYsUdv?=
- =?us-ascii?Q?qnJTloSPovkulbcOqE5wGr06cTvJpJ1B9D8LTijbVtv/RMfZLhVbs6bes0uY?=
- =?us-ascii?Q?0oT7fALhm4PLKtxc+JQOqas+5XGVL1BdLkmqdi0ApdVzllzpiLaMFSjH17fP?=
- =?us-ascii?Q?KC4If4y1YMRgE3K3p1O3ryXTg1+fdVIouqviEKuypQZ0csQn7+D6P77jhD6U?=
- =?us-ascii?Q?mCvIdx9yCB1zvA0pUNR10zJMejqVQWo1KmXSFwjlOOykjQVilKdsWdKInbVM?=
- =?us-ascii?Q?OwcIX7Ch4baqFM28d5bRo3X0Ns5D0Ramt420ke2E7Wr82xBo0DT8Gdf1VHAP?=
- =?us-ascii?Q?spq2J5X1wylrIBVeJQT93dNAOxspFf2PZjpshNckF6gD3KMCMg=3D=3D?=
+	=?us-ascii?Q?0ZUMb+dBc9lZ2CHOMqJi9ilxpNInaOhf/46HPBb7BnCXP4YxdTEXqcoFwltt?=
+ =?us-ascii?Q?L+YKUAA+YJEVt1tOS5w80TVa0ce0ATQZ8MkvHRIhk40JdNmFH42Ks96yaFvI?=
+ =?us-ascii?Q?6moTKnXOSINjqFA3kRnOa0Tj4WKORJjqRRQqduX9ddeJv+aWz0z8ueneIZ6x?=
+ =?us-ascii?Q?+J3+9vN2NYPkR3Xq6MeMH8bVz7tV4KJGxH96iX8bXMytAyIUapSKnaCiaYke?=
+ =?us-ascii?Q?MGtFVsMP+iTmrl8xgUybNgemxRbRnulLwhLDse3KoRNxDJLtXM+ig9sH9TGB?=
+ =?us-ascii?Q?E6ygxU7ZT80iNKGdK17/b+6hSKfPMlJISOo9OJXcIANiR9A9k3WHvmMR9UzC?=
+ =?us-ascii?Q?cbmpJi4U/9WObfN4PFG0oAKxIoIW8gUZQbjUbpBtqey44pI8DH11OUHRDUXG?=
+ =?us-ascii?Q?49Vo2sJyqhg+7Cyvc81WpKGxHHbqw+UgxBZi8AgJEwo8rK05L5cTNnMYznWe?=
+ =?us-ascii?Q?wghgVSzczaYOC0e/LiFU4bnjsMRUIr0wCDPwcYjpw316VNi9cLBaUlnVyL0h?=
+ =?us-ascii?Q?NTzlnDfG453UNr8id5B9zt5bmqVZye79b35+g2Hz6+c7b2LovoOXFk8Lr5wh?=
+ =?us-ascii?Q?so8oHKPeufFBaDAtwzBupRiAYd8NrQOc2/8gZmXeQ41XMc4WYZo4HeAf3E1P?=
+ =?us-ascii?Q?DcU5aTqXYc7jVqfgPjgp9MxY3kzsTuerda1kHgePuF2D60cS+95qxh6GEVWH?=
+ =?us-ascii?Q?ytmMyyeAuRqjFXzcBPxF0aAJexrp+FAY2tvveLN7IHEBjRcRYj7Gbb+rlJWh?=
+ =?us-ascii?Q?TYW285fgy9dxYi9of5vB8ddNOI4Ea/NmN53kcziVqlhOoj+O0gF5b7m2caMB?=
+ =?us-ascii?Q?j2N5yTbL+pJflucKVEtVsUUmjiIqMZQTRFbCR6gKYYmN2hU1J8lFAYK5Q+ZF?=
+ =?us-ascii?Q?XFHQRFk8ErMRdOtEPizCk02qn75r1tn+9qi3fsgYmdGjIOFEHv/wWNAMNy9a?=
+ =?us-ascii?Q?Z/1dBapO8gDjO1IWZWh3cFd/EMhBk5LhlRYDuk1AHG9Y/lTF3MjgLGIYRLA+?=
+ =?us-ascii?Q?8AMZRuxW2AvgRGZuzmaz2GRZQTzwwZ/4HtJPsvih7xnlbe/sZWCp1TKdgpWg?=
+ =?us-ascii?Q?JUM1B5qTs1/FNV2DvoQvvoILG37Y/NZ0YOgWogn7f9jIRpVPUXdh7fOy6m6z?=
+ =?us-ascii?Q?mbCziJ17SwBKrU/xN+2agS0JdkWPPnMx3JOm1QdkrB9lSfe5O6WK/Qng34IG?=
+ =?us-ascii?Q?pKyqTn7E0xOxL6Vh2d9Rt5T4FuL91lmmzvkI0mHwxI3RRA+e/e66uwxvIiQi?=
+ =?us-ascii?Q?1XGoricKnGAgJpodBU0dLZKDnF8/Luw3nsFc5KLVrDeEYaUGMnptRNjd+LWq?=
+ =?us-ascii?Q?y9pCseBthAKBh/h6CVFQd1pw601kgtAPgaIPUqCNpIm19MukYMYEdgrMhGFS?=
+ =?us-ascii?Q?iOOQPVe4fQXQfoySFrEbPzZ/gUZU?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(52116014)(7416014)(921020)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?YcY90YGaHdz56L3TvJ/PZt05qndc5tS96obMcetrss5Qwxjg7dy5xxDxvgDK?=
- =?us-ascii?Q?tuy4RLecB0+TFIxrKuPbY/q9qsZfH3AeaHaAy7mfFobDmKyvh83v4J4zfSAd?=
- =?us-ascii?Q?puGq5u+9i3RQDZ19MruM5q0x1Dw/Pm9D+PkA+ham5YIjU0IByWzHWTja+RQd?=
- =?us-ascii?Q?Fp4hoAkYCt5HX3/HnYvn6OEvxJP4GIFee6mHnNfkqF9DKu6foWiO8I/pv2Om?=
- =?us-ascii?Q?JoWNQFgYYunGk1ZBz4FoAU7qImTgAsZRH1aPklZTpyFb0lr2U50EwdyRwHms?=
- =?us-ascii?Q?q7C6KeitjwZXgFMCqGOXY1Z+Cs6SBGWEPUOiUYdJOUlcSe01Hbk8WwtC++01?=
- =?us-ascii?Q?eKaegUWcsMccvNrjVrtsCFHiTlN9gL9ZSTo15KCgFXy3skDIqtdSvDcCUTNQ?=
- =?us-ascii?Q?PcxoXpACdXyGfC6p0ebA8LXsdVhlZHRdZmkUcs3RIN20MLF8GqEUE/lnlSvI?=
- =?us-ascii?Q?nZCThywFFOridH8xfjZCK3wyWf5F/ueUYS8SELlgJV2dBOkMFKQmEobFI67h?=
- =?us-ascii?Q?5TYOPYULs0TR/tJMgFNiClE/nLatTCXwdrhBWVy3jJNNeXwA9o1WbSw5rhfw?=
- =?us-ascii?Q?Wf723tjU10FoD+z8ifrc2rEP/okmHyYJEgDcqynBCe4SvFQSVsPGBDcUlknk?=
- =?us-ascii?Q?zpVGzD0Srhm3ZGngSGD/IxgqzWJ8Q5NsTlB2uPEm/eKmAxjtQhD7VTDZU53L?=
- =?us-ascii?Q?b6bjRM/qpAsW7n6U7pPC5n1HbdVdjH463KnQoO4nxg3YfSYfwijedRi5CWVa?=
- =?us-ascii?Q?GK7c72OKo9mXGdM9AVGefo4uq9mdu4AjrWGXM6QVEcGu9ZZM/WBkeBE/yIBS?=
- =?us-ascii?Q?NmxmWznf30fd3qNchDtWIPY1SYFaF50gbZaSRb/j8xlHRN1lMPL5+yDnvN7l?=
- =?us-ascii?Q?BE3LWCQKxwdhH3n6GBXXV8PoWJkTPIZei1IWLLe+EhYbFMP9z1g9tqOH1MyK?=
- =?us-ascii?Q?Cx3cVyeZa76h6lxjbEu4SHfS6U9Nw5NGhyB4DavYhOQF3yVs8oWirH5wOaCQ?=
- =?us-ascii?Q?MtKEzzzr4IAOL/Bb8a/wyzpst3h/Bs98fUULSbd5oIACzfigPxizqsVXxpH3?=
- =?us-ascii?Q?VftxtCEGF5PgZ/vRO+vJmalG6P3IRcc1zMMDnq18JICbSufgtFyyouEYyfYb?=
- =?us-ascii?Q?omJDACrGy6rjtDdyy2GE3VDPoXjFuqRyj1Wem6PkSgaKzwJ4rmFYuseFIky9?=
- =?us-ascii?Q?tK5MylQ7iNcajbEM4CA8HLtOa8PbR5fSgsz2VJe+3BjC9YLAER7n5dACK+D+?=
- =?us-ascii?Q?EbbNtJoqk9DCVyfhiu7rlk+ZlegRMEFP9PTSV7NZA+ktd1Ebqcxqog+9m4lu?=
- =?us-ascii?Q?xObrglGM0xhHgWtUGh1kIHbNNIjTNKCSJa/J1tv/3/pvKe2CVXnV2+yVWTip?=
- =?us-ascii?Q?9vWZBhFky1K1JMmQ8DoickFlkFz2bA/j0kT65d2wUzSZk5FbfQz4tdH2lQUk?=
- =?us-ascii?Q?TVQI4Iww619hV8zfnut6z9Uf5E5zT5buEXbr0zXeQQnzPemUw0jypGdCjY6F?=
- =?us-ascii?Q?od4au9zSLVlYnf6wlQelIiKan5Mdl2WNjsLMotOfHUPOtF1xFulX3e27V6/d?=
- =?us-ascii?Q?/dEiQigJd4dNvBmHFY2UnAAV+VEdC80JLLEASjlB?=
+	=?us-ascii?Q?s9KGiKtLw6lUzEpoQFnLWnuc5B6xTOJwGdQJF53aDc5gdz4XvfPsgqa5xL4F?=
+ =?us-ascii?Q?3CD8CHuc4i3XngMXdkJBvAX/c4Tgn3feX1BFdHZeeHbWXwJeQEpYdvErsm9F?=
+ =?us-ascii?Q?gZkF+KGvtC0ByxsFpKQ3zGKN4oOq/oQ8CevFB3SC4z9RqZqOrnmu5qFxXMdg?=
+ =?us-ascii?Q?ugX53QmrIhi//fZ1gdWemZ+KteneMo6SauOhoY857UpQhCl0EQamXcs2l3Ah?=
+ =?us-ascii?Q?nW4UplHgc6xvW1JhqJpaHHzCZj0JyPszfR7kbaATpC9iNmiAu8d4ntDlVfNl?=
+ =?us-ascii?Q?U/irYphHgMLpxiBbu0gRfpDF9qBc0sTkKnVYXA/Tj3/PSroEzhD2B5utyj4x?=
+ =?us-ascii?Q?yu/bkIhFGdNRWLr4DC86SOMQCgx9cZT/N7EjC+fZKCHurUMbIp50Q1anHDcv?=
+ =?us-ascii?Q?9VUQGrKHZA4Wlz8tzEpwoDyXOAqXCov9MXa8RKeTBuI5Yqeu6yMxZCx0ZJ6O?=
+ =?us-ascii?Q?lYIfsPUcE68KFpLpDiO0sgwxv65h+1DBUj8SK8rWRU14yI5QmMViWDv22NBr?=
+ =?us-ascii?Q?tsgO/ehdoHYdKRT9jB5hZAhj/xwhqxxwK1/SC58t72wE3nh0ehXYjB9vPsPl?=
+ =?us-ascii?Q?aSDdWWx04zsfr+TYk1MQmCLVHzTxX+DO8udQd7mb6EdBAA8NrkKJrzYEMCdH?=
+ =?us-ascii?Q?S3TWlBBKRTV4tXyIo19l9B4sZvphCQ1fyQip/FOdUNLctWMUVLULl/KZ/GZi?=
+ =?us-ascii?Q?Zsod29BVKfkbE48VEIK9zM0+UzhMzrFmYt94A1M81qPb/lEnqdR4mBbZBq77?=
+ =?us-ascii?Q?ysgrJ2dy4ufU72F6qbvggFylQtCwuPiFDXXTW9iLQMAy+bHUCcKkPWx0bhpt?=
+ =?us-ascii?Q?CikQJxUHiTnf7DkXRL4mXcsoSN0zsGlsbwbBIS+yFM5jSljRELgBBznmSNqi?=
+ =?us-ascii?Q?Hh55e6LisHXvs9VOgXNKyTM8ngjZVM0RxNk5Pzb5+o+3Hkl69XV1hHmK0//I?=
+ =?us-ascii?Q?S7Esvk+lG03rUsX72HGLo9Jet8VLbZgzSQh/2VW7TeR7F7PraVzsl/Gx03PB?=
+ =?us-ascii?Q?YAdV22Qls1r28P2Tb/oEqe5RyiqZfPYTwNur9Dguks4LxWmZm17G33tqIrja?=
+ =?us-ascii?Q?U5idiGx2i8ntj15p9tmHNwvtK1q/T8cnAv3MVEt9QLyQ57xX3NSluMye4ooJ?=
+ =?us-ascii?Q?14ICMCH6mPXzZD86K9wCZg25mKcOzc9nHINB8DmrWAblEgek3Kp/21GZQZr+?=
+ =?us-ascii?Q?0nX4VeFAP7kgNbd6JvTO7AcWWCxeKujpYnIstVPlQ/Rjid+NIqWDmeU+GlIa?=
+ =?us-ascii?Q?srUojFMUx0/fJVM6zGbu6FQmBKrYwu+tTIaKSMP+urtQ9URxEGLpbj9kOFQF?=
+ =?us-ascii?Q?P2CxPy3vWOoGX4X1Pmlf8IArYO84iRxjRgSdPpBmipRtcOKBwp2+XCe96cvb?=
+ =?us-ascii?Q?P+6qtbe6h5s33tVE9JlH6MINsineqkh/ghJ17sUHZF+VlWRMslGsguWEE0Xe?=
+ =?us-ascii?Q?jjKUUTwae65y5JskKdq5xHHbeI8s6Vxeqt8vOadnKpEcbIbc5mWb+KsCOLNr?=
+ =?us-ascii?Q?MSggJcTdRjDK+iFFPzSTLZpWMtd6m42bvZYGVGdf9aJamtn1c4BwRalyL0b/?=
+ =?us-ascii?Q?HPRJBu//YC+QpKLhgIo=3D?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4fb3cd7f-0efe-444e-397f-08dcc5ec7e9d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c31173f-4198-4080-0db4-08dcc5ed42bd
 X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2024 16:31:10.8168
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2024 16:36:39.8781
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YeIyIBheDfESNuYRReKF1Uxpzd8ocG3M5UD455+g7zkbgKIwfhrTlyJaidzl1ELfWiIDGKkaYR9tLdAq5t0Y5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8371
+X-MS-Exchange-CrossTenant-UserPrincipalName: jxUkSg0F2ce3QB8vmJ72eKQNrzf2cLCXf15XA+vQAg1tDOHgsTCBBwKaXatFDe5GjmLd0XPzZGvIE+28/LjX+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6941
 
-On Thu, Aug 01, 2024 at 05:46:01PM -0400, Frank Li wrote:
-> Add compatible string "fsl,imx8qxp-dma-apbh". It requires power-domains
-> compared with "fsl,imx28-dma-apbh".
->
-> Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
-> it.
->
-> Keep the same restriction about 'power-domains' for other compatible
-> strings.
->
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
+Convert binding doc ltc2978.txt to yaml format.
+Additional change:
+- add i2c node.
+- basic it is regulator according to example, move it under regulator.
 
-vkoul:
+Fix below warning:
+arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/i2c@2000000/i2c-mux@77/i2c@2/regulator@5c:
+	failed to match any schema with compatible: ['lltc,ltc3882']
 
-    Could you please take care this patch?
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change from v2 to v3
+- put my name into maintainers.
+change from v1 to v2
+- maintainer change to Mark Brown <broonie@kernel.org> (regulator maintainer)
+- update title to (from ltc2978 data sheet).
+octal, digital power-supply monitor, supervisor, sequencer, and margin controller.
+---
+ .../devicetree/bindings/hwmon/ltc2978.txt     | 62 ------------
+ .../bindings/regulator/lltc,ltc2972.yaml      | 94 +++++++++++++++++++
+ 2 files changed, 94 insertions(+), 62 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/ltc2978.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc2972.yaml
 
-Frank
+diff --git a/Documentation/devicetree/bindings/hwmon/ltc2978.txt b/Documentation/devicetree/bindings/hwmon/ltc2978.txt
+deleted file mode 100644
+index 4e7f6215a4533..0000000000000
+--- a/Documentation/devicetree/bindings/hwmon/ltc2978.txt
++++ /dev/null
+@@ -1,62 +0,0 @@
+-ltc2978
+-
+-Required properties:
+-- compatible: should contain one of:
+-  * "lltc,ltc2972"
+-  * "lltc,ltc2974"
+-  * "lltc,ltc2975"
+-  * "lltc,ltc2977"
+-  * "lltc,ltc2978"
+-  * "lltc,ltc2979"
+-  * "lltc,ltc2980"
+-  * "lltc,ltc3880"
+-  * "lltc,ltc3882"
+-  * "lltc,ltc3883"
+-  * "lltc,ltc3884"
+-  * "lltc,ltc3886"
+-  * "lltc,ltc3887"
+-  * "lltc,ltc3889"
+-  * "lltc,ltc7880"
+-  * "lltc,ltm2987"
+-  * "lltc,ltm4664"
+-  * "lltc,ltm4675"
+-  * "lltc,ltm4676"
+-  * "lltc,ltm4677"
+-  * "lltc,ltm4678"
+-  * "lltc,ltm4680"
+-  * "lltc,ltm4686"
+-  * "lltc,ltm4700"
+-- reg: I2C slave address
+-
+-Optional properties:
+-- regulators: A node that houses a sub-node for each regulator controlled by
+-  the device. Each sub-node is identified using the node's name, with valid
+-  values listed below. The content of each sub-node is defined by the
+-  standard binding for regulators; see regulator.txt.
+-
+-Valid names of regulators depend on number of supplies supported per device:
+-  * ltc2972 vout0 - vout1
+-  * ltc2974, ltc2975 : vout0 - vout3
+-  * ltc2977, ltc2979, ltc2980, ltm2987 : vout0 - vout7
+-  * ltc2978 : vout0 - vout7
+-  * ltc3880, ltc3882, ltc3884, ltc3886, ltc3887, ltc3889 : vout0 - vout1
+-  * ltc7880 : vout0 - vout1
+-  * ltc3883 : vout0
+-  * ltm4664 : vout0 - vout1
+-  * ltm4675, ltm4676, ltm4677, ltm4678 : vout0 - vout1
+-  * ltm4680, ltm4686 : vout0 - vout1
+-  * ltm4700 : vout0 - vout1
+-
+-Example:
+-ltc2978@5e {
+-	compatible = "lltc,ltc2978";
+-	reg = <0x5e>;
+-	regulators {
+-		vout0 {
+-			regulator-name = "FPGA-2.5V";
+-		};
+-		vout2 {
+-			regulator-name = "FPGA-1.5V";
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/regulator/lltc,ltc2972.yaml b/Documentation/devicetree/bindings/regulator/lltc,ltc2972.yaml
+new file mode 100644
+index 0000000000000..7270daea87f0a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/lltc,ltc2972.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/lltc,ltc2972.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Octal Digital Power-supply monitor/supervisor/sequencer/margin controller.
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - lltc,ltc2972
++      - lltc,ltc2974
++      - lltc,ltc2975
++      - lltc,ltc2977
++      - lltc,ltc2978
++      - lltc,ltc2979
++      - lltc,ltc2980
++      - lltc,ltc3880
++      - lltc,ltc3882
++      - lltc,ltc3883
++      - lltc,ltc3884
++      - lltc,ltc3886
++      - lltc,ltc3887
++      - lltc,ltc3889
++      - lltc,ltc7880
++      - lltc,ltm2987
++      - lltc,ltm4664
++      - lltc,ltm4675
++      - lltc,ltm4676
++      - lltc,ltm4677
++      - lltc,ltm4678
++      - lltc,ltm4680
++      - lltc,ltm4686
++      - lltc,ltm4700
++
++  reg:
++    maxItems: 1
++
++  regulators:
++    type: object
++    description: |
++      list of regulators provided by this controller.
++      Valid names of regulators depend on number of supplies supported per device:
++      * ltc2972 vout0 - vout1
++      * ltc2974, ltc2975 : vout0 - vout3
++      * ltc2977, ltc2979, ltc2980, ltm2987 : vout0 - vout7
++      * ltc2978 : vout0 - vout7
++      * ltc3880, ltc3882, ltc3884, ltc3886, ltc3887, ltc3889 : vout0 - vout1
++      * ltc7880 : vout0 - vout1
++      * ltc3883 : vout0
++      * ltm4664 : vout0 - vout1
++      * ltm4675, ltm4676, ltm4677, ltm4678 : vout0 - vout1
++      * ltm4680, ltm4686 : vout0 - vout1
++      * ltm4700 : vout0 - vout1
++
++    patternProperties:
++      "^vout[0-7]$":
++        $ref: regulator.yaml#
++        type: object
++        unevaluatedProperties: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@5e {
++            compatible = "lltc,ltc2978";
++            reg = <0x5e>;
++
++            regulators {
++                vout0 {
++                     regulator-name = "FPGA-2.5V";
++                };
++                vout2 {
++                     regulator-name = "FPGA-1.5V";
++                };
++            };
++        };
++    };
++
+-- 
+2.34.1
 
-> Change from v2 to v3
-> - Add rob's review tag
-> - resend because it is dropped from mtd tree at
-> https://lore.kernel.org/imx/20240717103846.306bf9fd@xps-13/
-> ---
->  .../devicetree/bindings/dma/fsl,mxs-dma.yaml      | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml b/Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml
-> index add9c77e8b52a..a17cf2360dd4a 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml
-> @@ -11,6 +11,17 @@ maintainers:
->
->  allOf:
->    - $ref: dma-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8qxp-dma-apbh
-> +    then:
-> +      required:
-> +        - power-domains
-> +    else:
-> +      properties:
-> +        power-domains: false
->
->  properties:
->    compatible:
-> @@ -20,6 +31,7 @@ properties:
->                - fsl,imx6q-dma-apbh
->                - fsl,imx6sx-dma-apbh
->                - fsl,imx7d-dma-apbh
-> +              - fsl,imx8qxp-dma-apbh
->            - const: fsl,imx28-dma-apbh
->        - enum:
->            - fsl,imx23-dma-apbh
-> @@ -42,6 +54,9 @@ properties:
->    dma-channels:
->      enum: [4, 8, 16]
->
-> +  power-domains:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> --
-> 2.34.1
->
 
