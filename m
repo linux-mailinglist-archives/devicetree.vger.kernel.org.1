@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-96594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6DD95EC15
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:34:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979CE95EC1C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:36:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF8991C21376
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:34:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 270E31F21049
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:36:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B3513F435;
-	Mon, 26 Aug 2024 08:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5532A136E01;
+	Mon, 26 Aug 2024 08:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bh4IoI9J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TJ+YLYUK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C3613C9A2;
-	Mon, 26 Aug 2024 08:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B4673478;
+	Mon, 26 Aug 2024 08:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724661226; cv=none; b=PAFwr+DWGu7fQaxXTRrEykgwFRZC6BQCCrwL1zSqM/X6kXeKXKKZW3uETynXSJ0fEqTZ1XbBpiPMmISlK/raLLWe72i91re6jILBURwdxmCXBWvUoacDXkEAJsTkETulI3xbPRyKQW+TzR6rbgQHmH8e5BimqQeQnV8SBiJ0rXs=
+	t=1724661412; cv=none; b=EJJigs8dIo1KXDqcnWxmdQmbTg9WL7vSU9/NpNIpCbv+J+3Qt2jvBS0Ky4voKH0ZaZGBjk6/vg5A1VY1d+nzuMerdBIu7bwTEGPGlg1HzTyOolCEvB9rE9+vQLe/5rqAeYiMzY4MAxvggQ3u7k2pOlRxVdyR34RzvqGZLAyoljA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724661226; c=relaxed/simple;
-	bh=U1tJ1/ULEzBvcZ47ZFvB/rVYnyeyMrzi27GGYRy1N2k=;
+	s=arc-20240116; t=1724661412; c=relaxed/simple;
+	bh=RvoSXYx5aZ9xUlAAZQxs9imiRyF//RNpaHWpP9bgIMw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WBExTBrae21v9OeUJ6RGnt3Bxz/RndPp4VI+J3pE8i5NGYwhtGx2T0cpn8e4LL7zXMC8Gbl95dZDMwb1L9tbSzB57ZMShal2fqyg5xPY9A2xUOBU0lS9zGW2XGqw4SPqjgb7FT+E+M6iSO9k566w3Y6rK6AlSqwHkLjfwDXRC3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bh4IoI9J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BF89C567C3;
-	Mon, 26 Aug 2024 08:33:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Z8sZJJcKDgPid/vYzKncThKU2akPFDPo8PgMkOwZLMZLxgwVbB4Lixt2exol7kCUmSEFderCEGQHbXY4PoB8te1Kp1AU1u+TPgyl22Yb+glYRpHfnyd/LD/VvmMLfVimFSNycQwbe6WR0b/hb8aIsknREB6tINxjUY5Xhe5W9ZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TJ+YLYUK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E112FC568DE;
+	Mon, 26 Aug 2024 08:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724661226;
-	bh=U1tJ1/ULEzBvcZ47ZFvB/rVYnyeyMrzi27GGYRy1N2k=;
+	s=k20201202; t=1724661411;
+	bh=RvoSXYx5aZ9xUlAAZQxs9imiRyF//RNpaHWpP9bgIMw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bh4IoI9J/w8IFTdTXrdD1sDrWDbvyXf7/Jo2QjABGam5mCuOGg6AiFHB2etNFndJi
-	 +v88wG4ATTA/C8yE0cTqxmRameI1L9QG/CugVOrrLpmm9gBOWFVeBwSG+vkx3F7ud5
-	 HKrmt31Vpbvp6E3sEj8WpE04x++r47itJsprVY2+T+exmIphAPqtyF+REgkLhsK7Sy
-	 Fn6sJaFU0L8xWT/7Mo2oHe2JFfpLS3Au0tXS394S4dMgQa0qkmFhXdPZg/O+unswoG
-	 n/A56xvKx8sX4HeIX72y6hUWNWCJogPhYH4k+udSw5FcKUDAmptE0KCSbqMcZ5QFg4
-	 ewY8LB1Hmu7tQ==
-Message-ID: <9537c866-cddc-4958-86a8-d097982067cd@kernel.org>
-Date: Mon, 26 Aug 2024 10:33:39 +0200
+	b=TJ+YLYUK1VF5e5R6djrUVifNEoPIdmNGRKzIxWWQLsCx62/FOJYAt4CbKyTV31l1G
+	 Sswj5HMVez0VUYUbq5RCJNYhCEqgv+GeTWdlRLy2Y8CmqbRMwhVv4G/h/QLk3OjyE7
+	 DYAaPyyQqAg9Kc915NOFvkCG2qDoLxQwim5TXf8tkCkwJfh2LWT8z5Bt8WoAw+0v9I
+	 cJyvrNALHZaIHtWHHApspnQ8HXezWCq9aCYUbDKWFA4fYecz7AzyLIwqgxITsaF++i
+	 zJrZoQGoWO2cODipqE4W9pUjZnkANzDCwoyjjDETHv0VxrZKz9veTfWXTPBzP+jTr1
+	 4lU3LLxcryTog==
+Message-ID: <cae86533-9eaa-4253-91ae-14c65b378c3c@kernel.org>
+Date: Mon, 26 Aug 2024 10:36:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] dt-bindings: arm: rockchip: Add Relfor Saib
-To: karthikeyan <karthikeyan@linumiz.com>, Conor Dooley <conor@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org
-References: <20240823153528.3863993-1-karthikeyan@linumiz.com>
- <20240823153528.3863993-8-karthikeyan@linumiz.com>
- <20240823-lark-regime-0d3ab4215d69@spud>
- <a5d4f421-5120-4421-944e-d39d67e482bb@linumiz.com>
+Subject: Re: [PATCH 1/6] dt-bindings: iio: adc: add ADI ad4030, ad4630 and
+ ad4632
+To: Esteban Blanc <eblanc@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
+ linux-doc@vger.kernel.org
+References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
+ <20240822-eblanc-ad4630_v1-v1-1-5c68f3327fdd@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,52 +108,130 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <a5d4f421-5120-4421-944e-d39d67e482bb@linumiz.com>
+In-Reply-To: <20240822-eblanc-ad4630_v1-v1-1-5c68f3327fdd@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/08/2024 14:48, karthikeyan wrote:
-> On 8/23/24 21:51, Conor Dooley wrote:
->> On Fri, Aug 23, 2024 at 09:05:27PM +0530, Karthikeyan Krishnasamy wrote:
->>> Add devicetree binding documentation for Relfor Saib
->>> board which uses Rockchip RV1109 SoC
->>>
->>> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
->>> ---
->>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
->>>   1 file changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>> index 1ef09fbfdfaf..29f7e09ae443 100644
->>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>> @@ -848,6 +848,12 @@ properties:
->>>                 - radxa,zero-3w
->>>             - const: rockchip,rk3566
->>>   
->>> +      - description: Relfor SAIB board
->>> +        items:
->>> +          - const: relfor,saib
->>> +          - enum:
->>> +              - rockchip,rv1109
->>
->> This does not make sense to me. Why do you have an enum for the SoC
->> model, implying that this SAIB board would have more than one possible
->> SoC? I'd expect to see - const: rockvhip,rv1109
->>
-> There is an upcoming version of SAIB board based on Rockchip RV1103.
+On 22/08/2024 14:45, Esteban Blanc wrote:
+> This adds a binding specification for the Analog Devices Inc. AD4030,
+> AD4630 and AD4632 families of ADCs.
+> 
+> - ad4030-24 is a 1 channel SAR ADC with 24 bits of precision and a
+>   sampling rate of 2M samples per second
+> - ad4630-16 is a 2 channels SAR ADC with 16 bits of precision and a
+>   sampling rate of 2M samples per second
+> - ad4630-24 is a 2 channels SAR ADC with 24 bits of precision and a
+>   sampling rate of 2M samples per second
+> - ad4632-16 is a 2 channels SAR ADC with 16 bits of precision and a
+>   sampling rate of 500K samples per second
+> - ad4632-24 is a 2 channels SAR ADC with 24 bits of precision and a
+>   sampling rate of 500K samples per second
+> 
+> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad4030.yaml    | 113 +++++++++++++++++++++
+>  MAINTAINERS                                        |   8 ++
+>  2 files changed, 121 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> new file mode 100644
+> index 000000000000..7957c0c0ac7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2024 Analog Devices Inc.
+> +# Copyright 2024 BayLibre, SAS.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4030.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD4030 and AD4630 ADC family device driver
 
-Still wrong form multiple points of view:
-1. Not logical, we never expect such entry in top level bindings,
-2. Same board or different? If same, how is it possible to have two
-different SoCs (not modules!) in the same board? These are different
-boards. Or maybe this uses some SoM, but your commit msg explained
-nothing about this.
+"device driver"? Bindings are for hardware. Explain the hardware, not
+driver.
 
-You have entire commit msg to explain the hardware. Use it, so you don't
-get such questions.
+> +
+> +maintainers:
+> +  - Nuno Sa <nuno.sa@analog.com>
+> +  - Michael Hennerich <michael.hennerich@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD4030 single channel and AD4630 dual channel precision SAR ADC
+> +  family
 
-The code above: NAK
+Does not look like wrapped according to Linux coding style. Read the
+coding style (not checkpatch).
+
+> +
+> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4030-24-4032-24.pdf
+> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-24_ad4632-24.pdf
+> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-16-4632-16.pdf
+> +
+> +properties:
+> +
+
+Drop blank line
+
+> +  compatible:
+> +    enum:
+> +      - adi,ad4030-24
+> +      - adi,ad4630-16
+> +      - adi,ad4630-24
+> +      - adi,ad4632-16
+> +      - adi,ad4632-24
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 100000000
+> +
+> +  spi-rx-bus-width:
+> +    enum: [1, 2, 4]
+> +
+> +  vdd-5v-supply: true
+> +  vdd-1v8-supply: true
+> +  vio-supply: true
+> +
+> +  ref-supply:
+> +    description:
+> +      Optional External unbuffered reference. Used when refin-supply is not
+> +      connected.
+> +
+> +  refin-supply:
+> +    description:
+> +      Internal buffered Reference. Used when ref-supply is not connected.
+> +
+> +  cnv-gpio:
+
+Nope, there is no "gpio" property. It IS ALWAYS gpios. Look at other
+examples.
+
+
+> +    description:
+> +      The Convert Input (CNV). It initiates the sampling conversions.
+> +    maxItems: 1
+> +
+> +  reset-gpio:
+
+Same problem.
+
+> +    description:
+> +      Reset Input (Active Low). Used for asynchronous device reset.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      The BUSY pin is used to signal that the conversions results are available
+> +      to be transferred when in SPI Clocking Mode. This nodes should be connected
+> +      to an interrupt that is triggered when the BUSY line goes low.
+> +    maxItems: 1
+> +
+
+
+> 
 
 Best regards,
 Krzysztof
