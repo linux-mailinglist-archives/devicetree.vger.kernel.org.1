@@ -1,57 +1,48 @@
-Return-Path: <devicetree+bounces-96507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90BC195E7E8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 07:30:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC0A95E7F4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 07:37:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D3DF1F2148E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 05:30:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D5E41C20B25
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 05:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC1E7404B;
-	Mon, 26 Aug 2024 05:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04DF7404B;
+	Mon, 26 Aug 2024 05:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="VpMkqhKR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YFywewTX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09306BB46
-	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 05:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EDE8C11;
+	Mon, 26 Aug 2024 05:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724650198; cv=none; b=I73v9XeX9Ti73MPOBy6+Vlz00OIise3wcrTPuSe21uQRhKsgaf3wdMjYwujHrpQ6B9EE4GaQ4ZezgBY0nSOtog8NIkISUx90IwINMXX0KGwyZUjX697DeiijjLyVy9rOQ53wrXJB3XQfcFye6/BFrduutoKXWqE0BrKLahbJBwI=
+	t=1724650664; cv=none; b=GCqwyjvliPiJ2OX1Q1luGvkKR0X7pzt6PtLEC8TRT7DXBwaFxxXuZ7Y1Y8M9JZ/HPMGUt04MyV5C/o6s95dS8FmyTl1O3r7CPot+QPtMmO+KGdwSRSoZs1MuHwVBh5K8XNdrF5I4qU4nIrPENtHhPjKcuq5KtlxXu266+WRji1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724650198; c=relaxed/simple;
-	bh=tqyl9jyvfW5D/WCsL5XIRYk+Gphu2NlhcYsQ0NnaDHs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uEd5wrhHNQ/3fEfyh6M1JO3FDy98Sg4fxI1bMb3u6WvBifvlMRtmjhyD52nw26qRf5XLIlY5HX3mFFfqLLZiDA6bB5MoPbE3qvtumPaHHA9dTOuXX+PuLfPF48ZQNgS7+JkvcRGRjxQ3gNenjJPnzCgAIhV+8+qBdvCdUtx1ldI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=VpMkqhKR; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1724650185; x=1727242185;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=tqyl9jyvfW5D/WCsL5XIRYk+Gphu2NlhcYsQ0NnaDHs=;
-	b=VpMkqhKRCu+hajpfD4AE96c7Xv97kFUEz01H6KVcrVqZI83Qu1igskJP84aBE+6a
-	EJbpKZZQ1TbytktgYgFRSRmkiM5MLVz97ZoIIhFw6/1U/SwbXbZ9op9apG+VusfK
-	Okq96ATvZ9Tq1JZKLhB0bKs8VlHqtCJkVtAlf8m1vfA=;
-X-AuditID: ac14000a-03e52700000021bc-e1-66cc12c916f3
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 5B.37.08636.9C21CC66; Mon, 26 Aug 2024 07:29:45 +0200 (CEST)
-Received: from [192.168.178.33] (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 26 Aug
- 2024 07:29:44 +0200
-Message-ID: <4e884c6c-ec82-4229-a2a4-55da66cc284f@phytec.de>
-Date: Mon, 26 Aug 2024 07:29:44 +0200
+	s=arc-20240116; t=1724650664; c=relaxed/simple;
+	bh=7o6ye5i/SsfL/3HvmhtG2xS2Nj6hXCUaPE+Z28dhZWk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uNlUzxJQBAxUj3U/2l6cmt1tq2XJJGkrAhHAAYs0afDNLGUY3ehMXny2nZzcBSOojnlyu7uTQfYGmEVohN8CckN0uHZwt8eHQORoUqCwH/0E4jL0YRswQJxs1guYxRGbyyEU7u/eMyhrJHCFWjPM8TFK1N9y0pX8aDvfcHbb9hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YFywewTX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B0D0C32786;
+	Mon, 26 Aug 2024 05:37:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724650664;
+	bh=7o6ye5i/SsfL/3HvmhtG2xS2Nj6hXCUaPE+Z28dhZWk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YFywewTXBuuiUfvFC+83I8C44uItl64c5ij70WWXTdYN1zHlBIPkRuapBsMhRpV7C
+	 hOYHxmxsQ5iysqsZxHeIxBjGKuduyGZobi30Up/2x90MK7768bkwLayCoc+ru14Fde
+	 hRNC31+0d9FPTxaRCzbmZhpB5oSk2tzZazevRz8c8KRpKF6IpgE6677zei37IPeuJ9
+	 5+WgnNfZKWqnvmtaw59LzpbdZdDs8jSA9d27cJbIWk4lOD8GzQn+A3n5i5y/gApmvi
+	 KsQrW5ff+1e2EYYaEF7lIQ1qhAJsK9DXVKxpgRJKicXT5ZTCvF29I5BpY9+QyEa4cx
+	 q75u3GlNsGxNg==
+Message-ID: <34a73de2-85b3-4a20-b2b4-6a72622d5abc@kernel.org>
+Date: Mon, 26 Aug 2024 07:37:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,117 +50,309 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64* Disable ethernet by default
- at SoC level
-To: Logan Bristol <logan.bristol@utexas.edu>
-CC: Josua Mayer <josua@solid-run.com>, Wadim Egorov <w.egorov@phytec.de>,
-	<linux@ew.tq-group.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Conor
- Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-References: <20240809135753.1186-1-logan.bristol@utexas.edu>
+Subject: Re: [PATCH v2 1/4] dt-binding: pinctrl: spacemit: add documents for
+ K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>, Yangyu Chen <cyy@cyyself.name>,
+ Jesse Taube <jesse@rivosinc.com>, Jisheng Zhang <jszhang@kernel.org>,
+ Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>,
+ Meng Zhang <zhangmeng.kevin@spacemit.com>, Meng Zhang
+ <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20240825-02-k1-pinctrl-v2-0-ddd38a345d12@gentoo.org>
+ <20240825-02-k1-pinctrl-v2-1-ddd38a345d12@gentoo.org>
+ <d9a925da-2381-4203-a3b6-4cb892039d23@kernel.org>
+ <66cbdc2a.050a0220.2d7994.f671SMTPIN_ADDED_BROKEN@mx.google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Daniel Schultz <d.schultz@phytec.de>
-In-Reply-To: <20240809135753.1186-1-logan.bristol@utexas.edu>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <66cbdc2a.050a0220.2d7994.f671SMTPIN_ADDED_BROKEN@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWyRpKBR/ek0Jk0g67LwhZr9p5jsph/5Byr
-	xfLJC9gtXs66x2ax6fE1VovLu+awWXxdd4bV4k/3ViaLNz/OMln8P/uB3YHL48WEf0wem1Z1
-	snlsXlLv8a/1MbPH8RvbmTza9gV6fN4kF8AexWWTkpqTWZZapG+XwJWxczF/wUPxijcXVrA3
-	MK4X6mLk5JAQMJHYf72RtYuRi0NIYAmTxM/+6ewQzn1GiWONHewgVbwCNhKPL09kBbFZBFQl
-	Ht35ABUXlDg58wkLiC0qIC9x/9YMsLiwQLTEzUnnmEFsEQEdiadbO8CGMgs8YJKY+xqiSAho
-	6LqVP8CamQXEJW49mc8EYrMJaEnc2TIXrJlTwFZi89tWRogaC4nFbw6yQ9jyEtvfzmGGmKMg
-	MXvbZEaId+Qlpp17zQxhh0oc2bSaaQKj8Cwkt85Csm4WkrGzkIxdwMiyilEoNzM5O7UoM1uv
-	IKOyJDVZLyV1EyMo3kQYuHYw9s3xOMTIxMF4iFGCg1lJhFfu8sk0Id6UxMqq1KL8+KLSnNTi
-	Q4zSHCxK4ryrO4JThQTSE0tSs1NTC1KLYLJMHJxSDYyx65y6SzZvmcjgXsM07diNevHkx1v2
-	ehX+7HOaE/ZgWfYF67/7uI+2OH0MWK5xrW0HwwIftc1aG4I/iU1xe3hwxvXdUfe/r1q3zDHw
-	5cOwunpekW4+3diHRw9mSqf9+PrM4bfFdEH5EAW1itdnDjGJpV3raq+7FHtou8yLzBhLYxO5
-	jXtSU7mUWIozEg21mIuKEwF15CJXpQIAAA==
 
-Hey Logan,
+On 26/08/2024 03:36, Yixun Lan wrote:
+> Hi Krzysztof: 
+> 
+> On 15:48 Sun 25 Aug     , Krzysztof Kozlowski wrote:
+>> On 25/08/2024 15:10, Yixun Lan wrote:
+>>> Add dt-binding for the pinctrl driver of SpacemiT's K1 SoC.
+>>
+>>
+>> Please use subject prefixes matching the subsystem. You can get them for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching. For bindings, the preferred subjects are
+>> explained here:
+>> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+>>
+>> It's "dt-bindings:"
+> Ok, will fix in next version
+> 
+>>
+>>>
+>>> Two vendor specific properties are introduced here, As the pinctrl
+>>> has dedicated slew rate enable control - bit[7], so we have
+>>> spacemit,slew-rate-{enable,disable} for this. For the same reason,
+>>> creating spacemit,strong-pull-up for the strong pull up control.
+>>
+>> Huh, no, use generic properties. More on that below
+>>
+> see my reply below
+> 
+>>
+>>
+>>>
+>>> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+>>> ---
+>>>  .../bindings/pinctrl/spacemit,k1-pinctrl.yaml      | 134 +++++++++++++++++
+>>>  include/dt-bindings/pinctrl/spacemit,k1-pinctrl.h  | 161 +++++++++++++++++++++
+>>>  2 files changed, 295 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+>>> new file mode 100644
+>>> index 0000000000000..8adfc5ebbce37
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+>>> @@ -0,0 +1,134 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/pinctrl/spacemit,k1-pinctrl.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: SpacemiT K1 SoC Pin Controller
+>>> +
+>>> +maintainers:
+>>> +  - Yixun Lan <dlan@gentoo.org>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: spacemit,k1-pinctrl
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: pinctrl io memory base
+>>> +
+>>> +patternProperties:
+>>> +  '-cfg$':
+>>> +    type: object
+>>> +    description: |
+>>
+>> Do not need '|' unless you need to preserve formatting.
+>>
+> Ok
+>>> +      A pinctrl node should contain at least one subnode representing the
+>>> +      pinctrl groups available on the machine.
+>>> +
+>>> +    additionalProperties: false
+>>
+>> Keep it before description.
+> Ok
+>>
+>>> +
+>>> +    patternProperties:
+>>> +      '-pins$':
+>>> +        type: object
+>>> +        description: |
+>>> +          Each subnode will list the pins it needs, and how they should
+>>> +          be configured, with regard to muxer configuration, bias, input
+>>> +          enable/disable, input schmitt trigger, slew-rate enable/disable,
+>>> +          slew-rate, drive strength, power source.
+>>> +        $ref: /schemas/pinctrl/pincfg-node.yaml
+>>> +
+>>> +        allOf:
+>>> +          - $ref: pincfg-node.yaml#
+>>> +          - $ref: pinmux-node.yaml#
+>>
+>> You are duplicating refs.
+> ok, will fix it
+>>
+>>> +
+>>> +        properties:
+>>> +          pinmux:
+>>> +            description: |
+>>> +              The list of GPIOs and their mux settings that properties in the
+>>> +              node apply to. This should be set using the K1_PADCONF macro to
+>>> +              construct the value.
+>>> +            $ref: /schemas/pinctrl/pinmux-node.yaml#/properties/pinmux
+>>
+>> Hm why you need the ref?
+>>
+> will drop it
+>>> +
+>>> +          bias-disable: true
+>>> +
+>>> +          bias-pull-up: true
+>>> +
+>>> +          bias-pull-down: true
+>>> +
+>>> +          drive-strength-microamp:
+>>> +            description: |
+>>> +              typical current when output high level, but in mA.
+>>> +              1.8V output: 11, 21, 32, 42 (mA)
+>>> +              3.3V output: 7, 10, 13, 16, 19, 23, 26, 29 (mA)
+>>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>>> +
+>>> +          input-schmitt:
+>>> +            description: |
+>>> +              typical threshold for schmitt trigger.
+>>> +              0: buffer mode
+>>> +              1: trigger mode
+>>> +              2, 3: trigger mode
+>>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>>> +            enum: [0, 1, 2, 3]
+>>> +
+>>> +          power-source:
+>>> +            description: external power supplies at 1.8v or 3.3v.
+>>> +            enum: [ 1800, 3300 ]
+>>> +
+>>> +          slew-rate:
+>>> +            description: |
+>>> +              slew rate for output buffer
+>>> +              0, 1: Slow speed
+>>
+>> Hm? Surprising, 0 is slow speed?
+>>
+> from docs, section 3.3.2.2 MFPR Register Description
+> 0, 1 are same, both for slow speed
+> https://developer.spacemit.com/documentation?token=An1vwTwKaigaXRkYfwmcznTXned
 
-my feedback is similar to Josua's.
+Don't store here register value.
 
-On 09.08.24 15:57, Logan Bristol wrote:
-> External interfaces should be disabled at the SoC DTSI level, since
-> the node is incomplete. Disable Ethernet switch and ports in SoC DTSI
-> and enable them in the board DTS. If the board DTS includes a SoM DTSI
-> that completes the node description, enable the Ethernet switch and ports
-> in SoM DTSI.
->
-> Reflect this change in SoM DTSIs by removing ethernet port disable.
->
-> Signed-off-by: Logan Bristol <logan.bristol@utexas.edu>
-> ---
-> Changes since v1:
-> - Enabled cpsw3g and cpsw_port1 in SoM DTSI instead of board DTS
-> if board DTS included SoM DTSI
-> ---
->   arch/arm64/boot/dts/ti/k3-am64-main.dtsi               | 3 +++
->   arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi        | 6 ++----
->   arch/arm64/boot/dts/ti/k3-am642-evm.dts                | 3 +++
->   arch/arm64/boot/dts/ti/k3-am642-sk.dts                 | 3 +++
->   arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi            | 6 ++----
->   arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts | 6 ++----
->   6 files changed, 15 insertions(+), 12 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index f8370dd03350..69c5af58b727 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -677,6 +677,7 @@ cpsw3g: ethernet@8000000 {
->   		assigned-clock-parents = <&k3_clks 13 9>;
->   		clock-names = "fck";
->   		power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
->   
->   		dmas = <&main_pktdma 0xC500 15>,
->   		       <&main_pktdma 0xC501 15>,
-> @@ -701,6 +702,7 @@ cpsw_port1: port@1 {
->   				phys = <&phy_gmii_sel 1>;
->   				mac-address = [00 00 00 00 00 00];
->   				ti,syscon-efuse = <&main_conf 0x200>;
-> +				status = "disabled";
->   			};
->   
->   			cpsw_port2: port@2 {
-> @@ -709,6 +711,7 @@ cpsw_port2: port@2 {
->   				label = "port2";
->   				phys = <&phy_gmii_sel 2>;
->   				mac-address = [00 00 00 00 00 00];
-> +				status = "disabled";
->   			};
->   		};
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> index ea7c58fb67e2..6bece2fb4e95 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> @@ -185,6 +185,7 @@ AM64X_IOPAD(0x0278, PIN_INPUT, 7)	/* (C19) EXTINTn.GPIO1_70 */
->   &cpsw3g {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&cpsw_rgmii1_pins_default>;
-> +	status = "okay";
->   };
->   
->   &cpsw3g_mdio {
-> @@ -208,10 +209,7 @@ cpsw3g_phy1: ethernet-phy@1 {
->   &cpsw_port1 {
->   	phy-mode = "rgmii-rxid";
->   	phy-handle = <&cpsw3g_phy1>;
-The connected phy is located on the SOM and should be enabled by default.
-> -};
-> -
-> -&cpsw_port2 {
-> -	status = "disabled";
-> +	status = "okay";
->   };
+> 
+>>> +              2: Medium speed
+>>> +              3: Fast speed
+>>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>>> +            enum: [0, 1, 2, 3]
+>>> +
+>>> +          spacemit,slew-rate-enable:
+>>> +            description: enable slew rate.
+>>
+>> The presence of slew-rate enables it, doesn't it?
+>>
+> yes, this should work, I will take this approach, thanks
+> 
+>>> +            type: boolean
+>>> +
+>>> +          spacemit,slew-rate-disable:
+>>> +            description: disable slew rate.
+>>> +            type: boolean
+>>
+>> Just use slew-rate, 0 disable, some value to match real slew-rate.
+>>
+> sounds good to me, since 0, 1 indicate same meaning, can re-use 0 for
+> disabling slew rate.
+> 
+>>> +
+>>> +          spacemit,strong-pull-up:
+>>> +            description: enable strong pull up.
+>>
+>> Do not duplicate the property name in description. You did not say
+>> anything useful here. What is "strong"? bias-pull-up takes also an argument.
+>>
+> there is a dedicated strong pull bit[3] for I2C, SD card kinds of pad
+> I don't know how 'strong' it is if in ohms, will see if can get
+> more info on this (may expand the description)
+> 
+> I think using 'bias-pull-up' property with argument should also work,
+> but it occur to me it's more intuitive to introduce a property here, which
+> reflect the underlying hardware functionality. this is similar to starfive's jh7100
+> bindings/pinctrl/starfive,jh7100-pinctrl.yaml:154
+> (refer to exist code doesn't mean always correct, so I need advice here)
 
-This port is routed to the carrier-board. Please drop this node.
+No, avoid introducing properties which duplicate existing generic ones.
 
-Regards,
-Daniel
+Same story was with qualcomm and it was possible to use specific value.
+
+> 
+> I will keep this property unless there is objection, please let me know
+> 
+>>> +            type: boolean
+>>> +
+>>> +        required:
+>>> +          - pinmux
+>>> +
+>>> +        additionalProperties: false
+>>
+>> This goes up, before description.
+>>
+> Ok
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/pinctrl/spacemit,k1-pinctrl.h>
+>>> +
+>>> +    soc {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <2>;
+>>> +
+>>> +        pinctrl@d401e000 {
+>>> +            compatible = "spacemit,k1-pinctrl";
+>>> +            reg = <0x0 0xd401e000 0x0 0x400>;
+>>> +            #pinctrl-cells = <2>;
+>>> +            #gpio-range-cells = <3>;
+>>
+>> This wasn't ever tested... :(
+>> ...
+> will drop it
+
+Test your patches instead.
+
+
+
+Best regards,
+Krzysztof
 
 
