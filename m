@@ -1,213 +1,177 @@
-Return-Path: <devicetree+bounces-96601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA59D95EC42
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B5A95ED40
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:33:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93C25281C04
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:43:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17BFB2820BB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC17140394;
-	Mon, 26 Aug 2024 08:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BD013F435;
+	Mon, 26 Aug 2024 09:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="DNooRPpc"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EOIanDy6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010001.outbound.protection.outlook.com [52.101.69.1])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D6813DDA7;
-	Mon, 26 Aug 2024 08:43:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.1
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724661785; cv=fail; b=PjxmX9Z0Lr2lnjvJU1j5Ok1qc4WFjn1f5RVTl4hSWk/jjCjiMBgh4JfLQmOuIRZFbiERqpxjGYR1bWEo4LWfq5qcstw1q5xoTEqV9Azl0hzQvl7MN/q1LQldjTePeBtx0ORzk8ViHTYq0cA+J4suO7eYzpwwG10hFji/pcktg+E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724661785; c=relaxed/simple;
-	bh=1NJrdS8vxC3Rs9L3wTILT1JGnDPKNOH+M4l6kRVvUxs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=j7Lt975hVOHx9S3oq6WO2PRlUP35J8YTnKekuCbrM5FWa5WlUYn+2nteY4BbdAbW2PdTIALmFBJwstP7WIdNX2+9sUwshgRabx6RbWMO5JzomdGoqxzSsondn50OMPXiCyVR6ji0xYlMpeBGVkgwltTu+n+s2LAJlRGG8/OuqtA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=DNooRPpc; arc=fail smtp.client-ip=52.101.69.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aXJa7woJkBOkZXqP6nPgqzyiRL+eqbMe2MlOsPyu+qd2KJ4IOv4u4/KT3e9BTVWgk+eaynwrxRPi7LZ4yjms76eVZ8hLzw6fUBA2atXqyLt8PuhBcKUZIQtQemNr5Du6sy9Hh0BNpJNSlNmt/RQOAjcpeNaJrGtGoL9pTZOJ+prU2IUt4o4OciUBfleLS4qE2xqi/4LghhEj/nOhmMa3Apq3NjWYBQZnN3ai8QCiMW81UZpgLKa5SaRpxP909NjScFx5t0kIRnpYa74RxhHpLZTex/Ky3rjKJS66oWGsCEhDY/v5SNNHzOle7kaOtgVKV+TxgDSx/bmCpW/9LFshhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RZ65DkhLmwqGDKqGMcrVgJr9nLqvJGogG+iYmWOwK3U=;
- b=ansZ9STYi/awLjrMAlWpx6SO7fZHs7R/iYxcHu7+Dsu9hrz8/VEW70BQS3sQrbPH8+GiLgaB8TL1IArAT0Dhkf44wjdYY8AWJLaUGq0dLzQ2qaEWEU5C5878WJHhfO8Y5PArMn4yov2bMg41UMHKtmwsLNhLH5JZAjieDpRRct67Xx/QPU8J3EnadwZLeCeN0mguJw8gt5a5nMoK4A63+vaaP50lK0xf1fgjQitKZCg/sPz8GssY/YaPM2YG4P8HO5A/jiJMPr5Yx6tPRpwIclpOPaXgpA0H0uCRVmqWmvDz9hr7ea9yKg87VzLNDTyEXCzMu9khYykBzo/hjRbMmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RZ65DkhLmwqGDKqGMcrVgJr9nLqvJGogG+iYmWOwK3U=;
- b=DNooRPpc2sUL99y2kDDxw73Vv4jSQC3b6JJMVbdCk+kc4cxc33c7SSDg6M8jTi8eLExH3vbvFHu4tDX/koOyCRlMDyxmnMPJ8uNcMn4piwk8pJD2zk+kkX7xppcsOVUw9S5foIUeRTLZtgHQMCFptbT7IPqUd7qZII6mwUMzxtkFYP8+09LxgEza/rqo4CQMBB++5+CYODB5Auf9b9/B9826Sui1SAD2U604RKa0M+SD0BZU2olvFFIjO8z4Wv5M5c60FuNVSKwaynHX2yFN6ns+OlktuMngIP6t3ggXs0DyQXAub438T2Hl1HKNeaqz8PfdzDe8j2ofaRn19uIjTg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com (2603:10a6:20b:41a::6)
- by DB9PR04MB9818.eurprd04.prod.outlook.com (2603:10a6:10:4ef::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.24; Mon, 26 Aug
- 2024 08:42:59 +0000
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455]) by AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455%4]) with mapi id 15.20.7897.021; Mon, 26 Aug 2024
- 08:42:59 +0000
-From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
-	Larisa Grigore <larisa.grigore@nxp.com>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Subject: [PATCH 3/3] MAINTAINERS: add MAINTAINER for S32G2 SIUL2 GPIO driver
-Date: Mon, 26 Aug 2024 11:42:10 +0300
-Message-ID: <20240826084214.2368673-4-andrei.stefanescu@oss.nxp.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240826084214.2368673-1-andrei.stefanescu@oss.nxp.com>
-References: <20240826084214.2368673-1-andrei.stefanescu@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AS4P191CA0043.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:657::10) To AM9PR04MB8487.eurprd04.prod.outlook.com
- (2603:10a6:20b:41a::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88C1143C70;
+	Mon, 26 Aug 2024 09:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724664778; cv=none; b=Z2xH97e0woklw6WltLoSC3BXAbssL2EyfM+PLgRwYDnmW6R43epjkWYLcZ/Y/KGBM9xGFLodDLMQ5ABOR3gAlrR54tWqzNZW2mWHRI+TNWkqXre8p8+UCYxT2TN+w1GPBpTm8WZXFJdCQgHRoBjsil4YOUb0Jqzhp7VFFhMtPTg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724664778; c=relaxed/simple;
+	bh=CNlgUOIhnZS0GrsQng07UAMdA7zQHT5HyZ7gwUjR7Rk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=afSrq7tqzAt0FBocXkWCBZ6YdC6J/hWb3uo7DV7IWFt6/s6rXpiswmopsrS6NIgdn8yXy4POtyEBCxOsfw9oMcAseK+m/xMP+vdkkmKPSu5IdWTC+gj5ONGyl5F2GBBw9gzS47VVIxbfL8UZdiIHFfWTBXNCjAo3vog/pPK5kuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EOIanDy6; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724664776; x=1756200776;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=CNlgUOIhnZS0GrsQng07UAMdA7zQHT5HyZ7gwUjR7Rk=;
+  b=EOIanDy6WKVOWqNGb8VoKVTyz5MHq827hmKYXYOglpGNGU2O4KN44xJH
+   MB96NL5Ql9/BBRP1aPCw6FJS7eNFu9LnMMBaS0Fgnf9xHR0UNkCGlvf84
+   wtqIA38ZlIdyN3rvUXmsJerdiGtHa8LvsEkXL2UwNuz02qzAnecMIueqZ
+   0HyrcFcHX9Z0b019Eq41ATGjWvcEjtTFLhiqqRH9dcsPexOzS68gY+EUy
+   W7iawrrkhadQJRet03mp2NGq5p9kG5qyB7i5YddoaP2+CG3avXFMCQK3U
+   m3inFtu0q5b2UXnHU1wOb/pAd0j9ML72EHDQ0ChoT5fcvdrjGEMTJVAny
+   A==;
+X-CSE-ConnectionGUID: /MZactx/QFC/l6uKqmMQxg==
+X-CSE-MsgGUID: HKpjTBjSTeSwwz2paY1HuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="25967061"
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
+   d="scan'208";a="25967061"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 02:32:55 -0700
+X-CSE-ConnectionGUID: wdvPnAEPTqmZhETgD1WLmA==
+X-CSE-MsgGUID: RKvQAKVwRa24HsNafnwANQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
+   d="scan'208";a="62134672"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO [10.245.246.121]) ([10.245.246.121])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 02:32:49 -0700
+Message-ID: <9f25b900-ae1c-41af-a380-ac5e00860283@linux.intel.com>
+Date: Mon, 26 Aug 2024 10:48:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8487:EE_|DB9PR04MB9818:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d1e326e-3d36-4e4f-081f-08dcc5ab16dc
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|52116014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Y3hramdVeXRQTFlNSnBHVVpDUGcxN0hoakQwb2F0bnBIRXdxWHRvdW5wck85?=
- =?utf-8?B?QUJoZEw2VWxuZXpGbFNhbk9CSHQ4UVJ0czUxTU5PT0FNNEI1b1lYKzRhYS9R?=
- =?utf-8?B?S3VrWlBSbzFQc1F6OXppcW5OR1gyN3k3QzZXWlNrMVhxV28xdkViMGRyTjVh?=
- =?utf-8?B?UElFcE5OU0FpYm5pbVMxbHpjS25DdmYvYkFxZ2thODBCcEtXRFcvNzJqdndk?=
- =?utf-8?B?elZUSStzVUVTbXlHem5uck81MWRRZTYxWkdLRXZla1hVL2lZVFNpWE10UTlV?=
- =?utf-8?B?KytIMUZwM3pSd2g5aTUvOWhrS2dqcGVNTDhIZnZiaHladWlJVnBQQ0gxSUp2?=
- =?utf-8?B?TXFWUS81QTZRQWdKMjlKcG9HSVRLTVhRaW1yYjNQUStrYlJjWWtiMjFreGJG?=
- =?utf-8?B?bmw0ZXpFNmkwQ3hpMjlYMlo0amxHWFpWQ0llN09UV1owcHFzVUprWnY1WXVO?=
- =?utf-8?B?cG5DSTRveDk5T2JBWWhLMXVhdWYxUDBockRpQmZXRDVvTjhhVm8rNUQ1d3JT?=
- =?utf-8?B?MldwdjJ3RGtPaVkzNnJsa0pTSW9DYWNwU2JiR1dSbTVZT1p1QmFJUFlOZlBB?=
- =?utf-8?B?R3BXSU5MVzFUSVNFYlpoVTRCblNSVkhXejlxa3UxYXF4MmVoYzFiU1JKWVBK?=
- =?utf-8?B?NHkyb3NqYm9zWHJtQys5Q3U1UXZnUkZSOVZ1SEoyRHQzRVhzbDY0ZG92cUxv?=
- =?utf-8?B?ZlZCWkVreUdWT212RmF1QUJYRDVGcEo1UkJhYnJEeHVzL3NHZjNEcnpCWlY0?=
- =?utf-8?B?V1dpUlpCV05zOWsxL1ZiNkJ0V3ltRWZnbXdjeitZTEpoRWVGUTBEK1RXYVp5?=
- =?utf-8?B?RXlrSlYyWDBVQTd6TTA4NnU0VnlUVXFjQ1B5WHgxSzZwVjB5ZlVIMW9RN2p4?=
- =?utf-8?B?VUhRSDFGMUwyalFYUjY0RHc3Y0ZHdWcxS1NCNmdlSkY5VWVsdHFIQUJlRVJ4?=
- =?utf-8?B?WUN2akd2V1JQUUpkUVdwYlBwTUZlUFZsOEEvWWgxTWRNUWVadmF5WmlkTEo0?=
- =?utf-8?B?VXJCTERsRzNQMzBYT1lLMndwdzNqQjB0RHFqRDl2Q0tHNmdDYVdmN1VMMDIr?=
- =?utf-8?B?OEdaMS9PRVI4dmpLdmZKR045VU5xeXc2RXJKUWRhVHV4MUNGMm1EdmdBc2J1?=
- =?utf-8?B?QWRKdFFIZlFpaURyNElBa1NWVEZHa2s4ajQ2ZGNGalRrcVdWT3JQU21IdmxK?=
- =?utf-8?B?c2tBNXVadTFJSFUvendpcmhTaE9hKzVpcStpS1VkS2hDSDIrQW0vRVdzTi83?=
- =?utf-8?B?SjB4V0c0cVRpZnBYRGQ5RnNDaG52aTVuOVJZbmhqNzBTZVAwYURwMld4TjQw?=
- =?utf-8?B?ZlprQzZkeU0wWWhjeGRjbWRVNC81eUVSK1FDZHlISzY3RjY0SytpRVBZNGh6?=
- =?utf-8?B?MDhJTXlGZHZaMTdqOTUybXpvOWhtQkdHWmlpWEoyRm5hSnJlcWdtYWhxS3da?=
- =?utf-8?B?SW9rTzFrTkRyOVNFWHNLa21od1MzaWRqVlVOaVpCdWQ0OXUrZFdEQW56Q2Ey?=
- =?utf-8?B?TFQ2b1VaLzJ2WUYwSG03MEZXZGpWVWdoTWdjeHM2T2h0RUpER0hhVDBlNUU3?=
- =?utf-8?B?NG5MdXFESFU3cnlrYU4xNWlKL3ZuSktxcERQSGViNWlxNk4yTkkza1VueVBs?=
- =?utf-8?B?YnJ0V2tVeHdkK0E3QnU4d0labFJxRUlJT3o3KzdOWDRVOWwyTi9seHJxV0tO?=
- =?utf-8?B?Nk9MdW9NYXdGZWM5amwrTkdrTWZmMzdFdVdrbXFqbzZRS0NhSnhDb1Vpd28y?=
- =?utf-8?B?K25vKzYyUjh5Tlk1ZGxnMXZTV1dIWDltQ0I2RnhROXk5S1cvTXM1S2pXd0NG?=
- =?utf-8?B?b0VSdTk2Ynp5dVM3ZG1meTJITUlrMkpGWWRnbzZ4aVZXRHlZV1lnekRKMTF4?=
- =?utf-8?B?QktRN1I0V0FPS3M5RXE1OWkyV28xakpJdEJyRTJkeWtmR3c9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8487.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?M2RRTVBIclk4cW05cUt5TDIwZ1NMVGZvQnB6QkxCd0l5UHNFa3QzQzU1K3hN?=
- =?utf-8?B?KzA5MnNtRU1KemJ1Z3ZPYzRSYUd0Q3cxUDJEMUMrZURVR0FCaVB0d2h3d3A4?=
- =?utf-8?B?UUhGclNDQUpTbXV1M0pYcTE4QjdUdmtsZ3FTdTcrSURBMitmdk5PQ0dVVVpz?=
- =?utf-8?B?dDBuditGSmdEUVVSNU1OdWQ0YTE3WDhmaUtSSlhoVWJmVW43VjdBaEVuWkd5?=
- =?utf-8?B?akJBTnZXcnYyL0N0NVVTQjFiNEtnOUc0RUNwWjcvbTlSbHpXOUNITlV6N2RH?=
- =?utf-8?B?NW1XMmE1SWk4K2diZU5iTnpUT1drTFlYV1c3aVRTWUZtcENNa0ZJcEo0Y3dN?=
- =?utf-8?B?QTduQldpWFprVFhwQTZRRXFSRmFTOU9PRGdGUkpQeERZNUhDSHhEUkd2V0g4?=
- =?utf-8?B?WURoMkFhTVl3dkJOM1VjWk1nSUp5UFlkNi80NUdZV1g1bXFiQnRZNjg5S0Rh?=
- =?utf-8?B?MW1BeHl6UEQ0OWQzU2ZlNlVSSENScWJRN0N0OFJXYzA0MGwvU2F5Z2JiYnNO?=
- =?utf-8?B?WUxKZ2lUa3dtanBmOEV0VVRWK2plTE1waVgyMHBiNFBKQkFxbXlWb1FJQzNL?=
- =?utf-8?B?dlRQdjdrOW8zbUJFUHU5NjVaRWQvUERQRG55Zjk1ZjlOcXRDeXgwV045bjk5?=
- =?utf-8?B?T1diRzFNdThsSWlnbEw4cktzM25ycVZyS3B0T1QyZ0J2QkwyY0JyZkJFVktJ?=
- =?utf-8?B?dzNPRDRCNmJ6eXRna2kzSmRFYzdvbTNnL1JIVDUwbUlVd3NwbWY4cGd4UW1P?=
- =?utf-8?B?bk1MUWtEUC9SanJpZlZvaGFCMG9UU2UxdTZpTHhTVno5YmdOTC9HOXMwNCtX?=
- =?utf-8?B?VHUrc2VqZDhnYWNvNkdZSTVlbUs2dXZyVDhGYStDWGR2RUNLdUFZY0pRbUYr?=
- =?utf-8?B?clB5dHIzQWgvSlNNZk9oMGRUUHlva1UxTkdBYkdWSGVPYlFRbHp3c3F2R1E4?=
- =?utf-8?B?aG5JMXhUSjFnUHVZTlpnL2hGNjIwdnFDbjU1RGRrblFWZ09Icmk0ZEFra3B4?=
- =?utf-8?B?eWM1Q1oyeEY4OXR4Sm0zQndvSHI4YXBZQWwzeGU4YTBtVm51OGVkYmtBQkU4?=
- =?utf-8?B?Wld2OHFoZHFCVzlhZ2dnc2paakVOZ3dKR3pxcGJ4eFA1dklLcTFMeXowS1dR?=
- =?utf-8?B?Tnk3bWtkalNGVnByRTRrVmtLK2tjV0pGcEY1T0VRa1dWTnlIZXdoRytrMFo0?=
- =?utf-8?B?S2RVNVl5ZDhHMFJJNDlpOWZBVkdabEl2VFc2ZklkeTR1dkdFRWp5a0V4SHBo?=
- =?utf-8?B?S2dkUzhPdkI5U3hibkhTZlp4VXBJQU9HczFpcVBKQkpjdU1nbFoyVnZDeUJs?=
- =?utf-8?B?YmMvNkVxUUJRdmcwWS9PMFFyS3QrdWZEQlNPTHl3YW5UM0NMRHQyUm9kUnhx?=
- =?utf-8?B?YUlFWDRSMjdhaXVGZjhoSWo5VFpMem9VYUxrNE5yZjNWWmFISWxrYUhaTld6?=
- =?utf-8?B?ZUdMN25ybXUzY2ZmY2F0NmdxOE1yQ2ZjVXg4S0dzRDAyVHhUVnFaeEswY2ti?=
- =?utf-8?B?SERBMHlRR01yU2hUeUljNG1LN0srWWhrNEdzNEtRRHllUnpzK042a1JhbkFn?=
- =?utf-8?B?YTdtcDlNTWJIVXNycXNqdkpMOFAwRDF1aS9zL0RNRkEvWG9vaUJ0Z0dpUmN4?=
- =?utf-8?B?YS8xMmFYb3A4V3FQZXk4R1U0NmxWSElDblhpUDIyeE9CMDdYSWZyWFRuT0lu?=
- =?utf-8?B?ZXhoLzhxaDVjRGRjZWtvOXQwM0RQWnlMbEdSMW1QQWdpeDVRQ0RYcnRmYUo3?=
- =?utf-8?B?cGpYK0dTbFU3OHc3SUlIaktaNDNSN2JxWlE0d3lFeUNWbmZOU25ELzlUMFE0?=
- =?utf-8?B?Wk5nVDkvK2k0Tm4rbFhHVklpMFQ3OFpSYU1jckh6bUN4SE9NZElUYmdyNEUw?=
- =?utf-8?B?R25TWE4xV3ZOaDdPVmR4OWw4U0dDNng0bWdjWGZRUTBINzNGT0tyVFA2UHlv?=
- =?utf-8?B?YmJWUVllaS9Dc1B6ZzZvUGM3OFk2VUY0MWlyM1poYys3Mzh1cDc2dUhMUysw?=
- =?utf-8?B?eldmNHpncXRjSTF5c0JRUEtkV3FyWWdUL0dSbGs1ZUtIYXdseHVrOGJjRXk1?=
- =?utf-8?B?d3ZPVytmTWNRTUp4NEcyOUZLaXJBYjFOclRVOFZRZUVtOEF5S3F3aC9xRFJw?=
- =?utf-8?B?M2tpbjlEdE1BK1YxbERNS0pDbnR2cHJtaGZLbEM0NVZrcTFIck1iM3lUR0xu?=
- =?utf-8?B?UVE9PQ==?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d1e326e-3d36-4e4f-081f-08dcc5ab16dc
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8487.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2024 08:42:59.5112
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zRdUaNHapSICiJREoddFShjiIuDbehp9lbO+V6UUdH/NfwWdUlm6X2rqzCl/YL7TBCgtnLGu/djqxUoVHb0O16oWZKmzAShpgR6m46OCVVI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9818
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v25 01/33] xhci: add helper to stop endpoint and wait for
+ completion
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
+ lgirdwood@gmail.com, tiwai@suse.com, krzk+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, robh@kernel.org,
+ gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-doc@vger.kernel.org, alsa-devel@alsa-project.org,
+ Mathias Nyman <mathias.nyman@linux.intel.com>
+References: <20240823200101.26755-1-quic_wcheng@quicinc.com>
+ <20240823200101.26755-2-quic_wcheng@quicinc.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20240823200101.26755-2-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8766f3e5e87e..b961cb2d041f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2686,10 +2686,12 @@ ARM/NXP S32G ARCHITECTURE
- R:	Chester Lin <chester62515@gmail.com>
- R:	Matthias Brugger <mbrugger@suse.com>
- R:	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-+R: 	Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
- L:	NXP S32 Linux Team <s32@nxp.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	arch/arm64/boot/dts/freescale/s32g*.dts*
-+F: 	drivers/gpio/gpio-siul2-s32g2.c
- F:	drivers/pinctrl/nxp/
- 
- ARM/Orion SoC/Technologic Systems TS-78xx platform support
--- 
-2.45.2
+
+On 8/23/24 22:00, Wesley Cheng wrote:
+> From: Mathias Nyman <mathias.nyman@linux.intel.com>
+> 
+> Expose xhci_stop_endpoint_sync() which is a synchronous variant of
+> xhci_queue_stop_endpoint().  This is useful for client drivers that are
+> using the secondary interrupters, and need to stop/clean up the current
+> session.  The stop endpoint command handler will also take care of cleaning
+> up the ring.
+> 
+> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> ---
+>  drivers/usb/host/xhci.c | 39 +++++++++++++++++++++++++++++++++++++++
+>  drivers/usb/host/xhci.h |  2 ++
+>  2 files changed, 41 insertions(+)
+> 
+> diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
+> index 37eb37b0affa..3a051ed32907 100644
+> --- a/drivers/usb/host/xhci.c
+> +++ b/drivers/usb/host/xhci.c
+> @@ -2784,6 +2784,45 @@ static int xhci_reserve_bandwidth(struct xhci_hcd *xhci,
+>  	return -ENOMEM;
+>  }
+>  
+> +/*
+> + * Synchronous XHCI stop endpoint helper.  Issues the stop endpoint command and
+> + * waits for the command completion before returning.
+> + */
+> +int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct xhci_virt_ep *ep, int suspend,
+> +			    gfp_t gfp_flags)
+> +{
+> +	struct xhci_command *command;
+> +	unsigned long flags;
+> +	int ret;
+> +
+> +	command = xhci_alloc_command(xhci, true, gfp_flags);
+> +	if (!command)
+> +		return -ENOMEM;
+> +
+> +	spin_lock_irqsave(&xhci->lock, flags);
+> +	ret = xhci_queue_stop_endpoint(xhci, command, ep->vdev->slot_id,
+> +				       ep->ep_index, suspend);
+> +	if (ret < 0) {
+> +		spin_unlock_irqrestore(&xhci->lock, flags);
+> +		goto out;
+> +	}
+> +
+> +	xhci_ring_cmd_db(xhci);
+> +	spin_unlock_irqrestore(&xhci->lock, flags);
+> +
+> +	wait_for_completion(command->completion);
+> +
+> +	if (command->status == COMP_COMMAND_ABORTED ||
+> +	    command->status == COMP_COMMAND_RING_STOPPED) {
+> +		xhci_warn(xhci, "Timeout while waiting for stop endpoint command\n");
+
+nit-pick: is this really a timeout? In that case you would have used
+wait_for_completion_timeout(), no?
+
+> +		ret = -ETIME;
+> +	}
+> +out:
+> +	xhci_free_command(xhci, command);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(xhci_stop_endpoint_sync);
+>  
+>  /* Issue a configure endpoint command or evaluate context command
+>   * and wait for it to finish.
+> diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+> index 30415158ed3c..1c6126ed55b0 100644
+> --- a/drivers/usb/host/xhci.h
+> +++ b/drivers/usb/host/xhci.h
+> @@ -1914,6 +1914,8 @@ void xhci_ring_doorbell_for_active_rings(struct xhci_hcd *xhci,
+>  void xhci_cleanup_command_queue(struct xhci_hcd *xhci);
+>  void inc_deq(struct xhci_hcd *xhci, struct xhci_ring *ring);
+>  unsigned int count_trbs(u64 addr, u64 len);
+> +int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct xhci_virt_ep *ep,
+> +			    int suspend, gfp_t gfp_flags);
+>  
+>  /* xHCI roothub code */
+>  void xhci_set_link_state(struct xhci_hcd *xhci, struct xhci_port *port,
 
 
