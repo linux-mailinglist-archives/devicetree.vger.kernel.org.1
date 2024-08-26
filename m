@@ -1,184 +1,296 @@
-Return-Path: <devicetree+bounces-96822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B00C95F923
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:45:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3106B95F929
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EF4E1C21D1A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:45:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAA62283D79
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8121990C9;
-	Mon, 26 Aug 2024 18:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8ED1990CD;
+	Mon, 26 Aug 2024 18:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="QOFT4k+Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r9MLujnA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 609327F7FC;
-	Mon, 26 Aug 2024 18:45:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724697915; cv=pass; b=MvwlzpyzxAXDFFjy1C43kKkuBGf+TjZ9BKOe46oCL1Y3S+muse0afAOFNBBrPJRuIOODsTQeRttdlfCd/FHzXAmrrYzPa0ZCLXO26TqQVTPFeDFSs1eCLZFWkIONnmdpi11x+/zxvuWsxOSgEIIf2XwAYG+01weB58t39ezBUrs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724697915; c=relaxed/simple;
-	bh=iwXcvEdMp95hUF7bQpTZJXgamO6d4IeH0JOuuyaviW8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UBHZXIcwy1tqTFoeOgRWCM+pBrVnWJVt82YQF8CrmJGTK17Q/CWWuU4bfm1qNefYRzxQAEllpbxcpkW5ifEjmE8lyOImIRfWxhQphdZvveYSVsm19HbXnwF2d/Kc+VpqN4nYkXSeazAnthjQyq4/uLHk6XQXeBBXldbKfkwTKNQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=QOFT4k+Z; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724697879; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=bgQwwXn15Aoufd+BzwNeginJ3mhUEPOciGcomXfAvREr2GMq/xAv7D1LEyhS8YFautIqkFkJZ1KeT7tdIVDwkmktmut5MwAlHlsx+GXw9WV145sVCs+CjXzqDb0OfPeYppW5lts6l6usoLa5uGhrqxZ7cSmEDbSAbwpPJP2nfwo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724697879; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=mlnYUtGPIbd9GPhhmlk+YwVhJr5+Jj0FaWL8g6QYGw8=; 
-	b=L5emk3qgbcXwjbvIy5cjN2Lw/xK8eQqkVSiyLGtGcz16XGNGwyRWF5A71fdxVZ/pMOGr3VAi1c5YKYqjuaIG3ajwLbDRv1i+c49dWs9S/6xttUCs+FhePz3q31ADQvx/T39x4g3RAoval1VybBY30tf98wjCMoWTUQ/omBzgdS4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724697879;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=mlnYUtGPIbd9GPhhmlk+YwVhJr5+Jj0FaWL8g6QYGw8=;
-	b=QOFT4k+ZE6zA8KdK0rDSS8lu2HnhpP6tbxo+AU3GzG+c/C1fvz5juyyXxAe1YDke
-	Wspd5eYM/u3H437m7kRjNe+hSNqw9mhf+USIVhtTLhiDjn6lt5WVYltwxi99PMwTuvD
-	Dq2GGn04YSJK2wOHMvtqkM0E4bEtFdsnQaG9Iy18=
-Received: by mx.zohomail.com with SMTPS id 1724697878497938.876702576403;
-	Mon, 26 Aug 2024 11:44:38 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- Shawn Lin <shawn.lin@rock-chips.com>
-Subject: Re: [PATCH v4 2/4] mmc: dw_mmc-rockchip: Add internal phase support
-Date: Mon, 26 Aug 2024 14:44:36 -0400
-Message-ID: <1999169.usQuhbGJ8B@bootstrap>
-In-Reply-To: <b57017bca1a4a5fe558556142a9cec3d@manjaro.org>
-References:
- <20240822212418.982927-1-detlev.casanova@collabora.com>
- <4943132.31r3eYUQgx@trenzalore>
- <b57017bca1a4a5fe558556142a9cec3d@manjaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E2E198E83;
+	Mon, 26 Aug 2024 18:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724697948; cv=none; b=q61wk0uxkLN/npv40e+qTOWdgB+NyAgk+BjZG4aKMi74CEfpznVw7sjxrQA5vUlZALJVnUNrDW8aLnpi5yOOx6Z01IdReTz+uko8X9BvycCZ04HewENsfdxPziBUb6+Rprh3ALl/QvuS7W1lV53MM14qH3201Y3igAh9PhLAWoY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724697948; c=relaxed/simple;
+	bh=ysY6MyTvKsXP7owiZXnmlj8olMa912wMXUBKgkEWvQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k6Ch9dxSUoKTIsPTK1K9UZwjGmQQvow6GVk/etQW7CJJltxMo0F0OTO2R8PksyOzvij3xRpG/XYpAIT1MBAvSsJEPXyfaATdfX7e1OlWLYyZfCqkc5vJ47hOSbF9hYWR2g/SjRv6Xv68357uKkn6f1qdgBdIWZESAaGwxIxb8EQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r9MLujnA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0776C4AF49;
+	Mon, 26 Aug 2024 18:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724697947;
+	bh=ysY6MyTvKsXP7owiZXnmlj8olMa912wMXUBKgkEWvQA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r9MLujnAIuhs9iPsUiSSS8j7gPgUwkYitsGUpPwy7lycl7v9PEQacqaUTSiKFUDsH
+	 4JMSX7U/Piqwfpa6raVl06drab3HLD7laYn0KtWb/QXS0aNJDrRCs1KwL3TIYvva8/
+	 IqsMklpNQl6yV/Rtpt8aVlpto6nCtl4+ghA1jPyOosuUSv0XY40StXI3eUVziSxquR
+	 tBImSe+k9Lj7Db6bmZIr8MSaR1Un0g5NXaWf/ovIuf8MDRprXt5JDpiqfuDeXxaUnW
+	 Ymii34og+J8XNg1B1iyWD3fgw6r0kGp4fdQsPBynXmJYWnfnM6GhqzMLq3qVuqQVJr
+	 Jvw9+m+4E23NA==
+Message-ID: <755c5428-da97-416c-9af3-52b94cbe4ac5@kernel.org>
+Date: Mon, 26 Aug 2024 20:45:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] soc: ti: Add IOMPU-like PVU driver
+To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
+ Santosh Shilimkar <ssantosh@kernel.org>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Bao Cheng Su <baocheng.su@siemens.com>, Hua Qian Li
+ <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>
+References: <cover.1724694969.git.jan.kiszka@siemens.com>
+ <30e16282dd0f7583c8d6ad0078ccdb17a804504d.1724694969.git.jan.kiszka@siemens.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <30e16282dd0f7583c8d6ad0078ccdb17a804504d.1724694969.git.jan.kiszka@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Monday, 26 August 2024 10:39:58 EDT Dragan Simic wrote:
-> Hello Detlev,
+On 26/08/2024 19:56, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
 > 
-> On 2024-08-23 15:34, Detlev Casanova wrote:
-> > On Friday, 23 August 2024 01:41:44 EDT Dragan Simic wrote:
-> >> Hello Detlev,
-> >> 
-> >> Please see a comment below.
-> >> 
-> >> On 2024-08-22 23:15, Detlev Casanova wrote:
-> >> > From: Shawn Lin <shawn.lin@rock-chips.com>
-> >> > 
-> >> > Some Rockchip devices put the phase settings into the dw_mmc
-> >> > controller.
-> >> > 
-> >> > When the feature is present, the ciu-drive and ciu-sample clocks are
-> >> > not used and the phase configuration is done directly through the mmc
-> >> > controller.
-> >> > 
-> >> > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> >> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> >> > Acked-by: Shawn Lin <shawn.lin@rock-chips.com>
-> >> > ---
-> >> > 
-> >> >  drivers/mmc/host/dw_mmc-rockchip.c | 171 +++++++++++++++++++++++++++--
-> >> >  1 file changed, 160 insertions(+), 11 deletions(-)
-> >> > 
-> >> > diff --git a/drivers/mmc/host/dw_mmc-rockchip.c
-> >> > b/drivers/mmc/host/dw_mmc-rockchip.c
-> >> > index b07190ba4b7a..2748f9bf2691 100644
-> >> > --- a/drivers/mmc/host/dw_mmc-rockchip.c
-> >> > +++ b/drivers/mmc/host/dw_mmc-rockchip.c
-> >> > @@ -15,7 +15,17 @@
-> >> > 
-> >> >  #include "dw_mmc.h"
-> >> >  #include "dw_mmc-pltfm.h"
-> >> > 
-> >> > -#define RK3288_CLKGEN_DIV	2
-> >> > +#define RK3288_CLKGEN_DIV		2
-> >> > +#define SDMMC_TIMING_CON0		0x130
-> >> > +#define SDMMC_TIMING_CON1		0x134
-> >> > +#define ROCKCHIP_MMC_DELAY_SEL		BIT(10)
-> >> > +#define ROCKCHIP_MMC_DEGREE_MASK	0x3
-> >> > +#define ROCKCHIP_MMC_DEGREE_OFFSET	1
-> >> > +#define ROCKCHIP_MMC_DELAYNUM_OFFSET	2
-> >> > +#define ROCKCHIP_MMC_DELAYNUM_MASK	(0xff <<
-> >> > ROCKCHIP_MMC_DELAYNUM_OFFSET)
-> >> > +#define ROCKCHIP_MMC_DELAY_ELEMENT_PSEC	60
-> >> > +#define HIWORD_UPDATE(val, mask, shift) \
-> >> > +		((val) << (shift) | (mask) << ((shift) + 16))
-> >> > 
-> >> >  static const unsigned int freqs[] = { 100000, 200000, 300000, 400000
-> >> > 
-> >> > };
-> >> > 
-> >> > @@ -24,8 +34,143 @@ struct dw_mci_rockchip_priv_data {
-> >> > 
-> >> >  	struct clk		*sample_clk;
-> >> >  	int			default_sample_phase;
-> >> >  	int			num_phases;
-> >> > 
-> >> > +	int			internal_phase;
-> >> > 
-> >> >  };
-> >> 
-> >> It might be good to declare internal_phase as "unsigned int
-> >> internal_phase:1",
-> >> i.e. as a bit field, which isn't going to save some memory in this
-> >> particular
-> >> case, but it would show additional attention to detail.
-> > 
-> > In that case, I would go with a bool instead of int, that makes things
-> > even clearer.
+> The TI Peripheral Virtualization Unit (PVU) permits to define a limited
+> set of mappings for DMA requests on the system memory. Unlike with an
+> IOMMU, there is no fallback to a memory-backed page table, only a fixed
+> set of register-backed TLBs. Emulating an IOMMU behavior appears to be
+> the more fragile the more fragmentation of pending requests occur.
 > 
-> My suggestion to use "unsigned int internal_phase:1" actually takes
-> inspiration from the ASoC code, in which such bit fields are used
-> quite a lot, even when using them actually doesn't save space.
+> Therefore, this driver does not expose the PVU as an IOMMU. It rather
+> introduces a simple, static interface to devices that are under
+> restricted-dma-pool constraints. They can register their pools with the
+> PVUs, enabling only those pools to work for DMA. As also MSI is issued
+> as DMA, the PVU already register the related translator region of the
+> AM654 as valid DMA target.
 > 
-> In this particular case, using plain bool would make sense, but I
-> still think that using an "unsigned int internal_phase:1" bit field
-> would fit better, because it would show the intention to possibly
-> save a bit of RAM at some point.  OTOH, I don't think that using
-> bool with such bit fields would actually work cleanly, because bool
-> actually resolves to int that's a signed type.
+> This driver is the essential building block for limiting DMA from
+> untrusted devices to clearly defined memory regions in the absence of a
+> real IOMMU (SMMU).
+> 
+> Co-developed-by: Diogo Ivo <diogo.ivo@siemens.com>
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> ---
+>  drivers/soc/ti/Kconfig  |   4 +
+>  drivers/soc/ti/Makefile |   1 +
+>  drivers/soc/ti/ti-pvu.c | 487 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/ti-pvu.h  |  11 +
+>  4 files changed, 503 insertions(+)
+>  create mode 100644 drivers/soc/ti/ti-pvu.c
+>  create mode 100644 include/linux/ti-pvu.h
+> 
+> diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
+> index 1a93001c9e36..af7173ad84de 100644
+> --- a/drivers/soc/ti/Kconfig
+> +++ b/drivers/soc/ti/Kconfig
+> @@ -82,6 +82,10 @@ config TI_PRUSS
+>  	  processors on various TI SoCs. It's safe to say N here if you're
+>  	  not interested in the PRU or if you are unsure.
+>  
 
-I wouldn't use bool with a bit field of course. I've always considered using 
-bit fileds only for structs that must have a certain format, like a header 
-format definition.
+...
 
-For me, it is better to use "bool internal_phase" so that it is obvious that 
-the feature can be on or off when reading the code.
+> +
+> +static int ti_pvu_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *its_node;
+> +	void __iomem *base;
+> +	struct ti_pvu *pvu;
+> +	u32 val;
+> +	int ret;
+> +
+> +	pvu = devm_kzalloc(dev, sizeof(struct ti_pvu), GFP_KERNEL);
 
-When using bit fields with a struct that is not marked as "__packed", I 
-immediately think that there could be a bug there and wonder why the bit field 
-is used, not really thinking "the dev wanted to show they cared about memory 
-usage".
-But I guess that is all about preferences. In the end, it won't change how it 
-works.
+sizeof(*)
 
-Detlev.
+> +	if (!pvu)
+> +		return -ENOMEM;
+> +
+> +	pvu->pdev = pdev;
+> +
+> +	base = devm_platform_ioremap_resource_byname(pdev, "cfg");
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	pvu->cfg = devm_regmap_init_mmio(dev, base, &pvu_cfg_regmap_cfg);
+> +	if (IS_ERR(pvu->cfg))
+> +		return dev_err_probe(dev, PTR_ERR(pvu->cfg), "failed to init cfg regmap");
+> +
+> +	ret = devm_regmap_field_bulk_alloc(dev, pvu->cfg, pvu->cfg_fields,
+> +					   pvu_cfg_reg_fields, PVU_MAX_CFG_FIELDS);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to alloc cfg regmap fields");
+> +
+> +	pvu->num_tlbs = pvu_field_read(pvu, PVU_TLBS);
+> +	pvu->num_entries = pvu_field_read(pvu, PVU_TLB_ENTRIES);
+> +	dev_info(dev, "TLBs: %d, entries per TLB: %d\n", pvu->num_tlbs,
+> +		 pvu->num_entries);
+> +
+> +	pvu->tlbif_base = devm_platform_ioremap_resource_byname(pdev, "tlbif");
+> +	if (IS_ERR(pvu->tlbif_base))
+> +		return PTR_ERR(pvu->tlbif_base);
+> +
+> +	its_node = of_find_compatible_node(0, 0, "arm,gic-v3-its");
+> +	if (its_node) {
+> +		u32 pre_its_window[2];
+> +
+> +		ret = of_property_read_u32_array(its_node,
+> +						 "socionext,synquacer-pre-its",
+> +						 pre_its_window,
+> +						 ARRAY_SIZE(pre_its_window));
+> +		if (ret) {
+> +			dev_err(dev, "failed to read pre-its property\n");
+> +			return ret;
+> +		}
+> +
+> +		ret = pvu_create_region(pvu, pre_its_window[0],
+> +					pre_its_window[1]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	val = readl(pvu->tlbif_base + PVU_CHAIN);
+> +	val |= PVU_CHAIN_EN;
+> +	writel(val, pvu->tlbif_base + PVU_CHAIN);
+> +
+> +	pvu_field_write(pvu, PVU_DMA_CNT, 0);
+> +	pvu_field_write(pvu, PVU_DMA_CL0, 0);
+> +	pvu_field_write(pvu, PVU_DMA_CL1, 0);
+> +	pvu_field_write(pvu, PVU_DMA_CL2, 0);
+> +	pvu_field_write(pvu, PVU_DMA_CL3, 0);
+> +	pvu_field_write(pvu, PVU_MAX_VIRTID, NUM_VIRTIDS);
+> +
+> +	ret = platform_get_irq(pdev, 0);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to get irq\n");
+> +
+> +	ret = devm_request_irq(dev, ret, pvu_fault_isr, 0, dev_name(dev), pvu);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to request irq\n");
+> +
+> +	pvu_field_write(pvu, PVU_EXC_ENABLE, 1);
+> +	pvu_field_write(pvu, PVU_ENABLED, 1);
+> +
+> +	dev_set_drvdata(dev, pvu);
+> +
+> +	mutex_lock(&ti_pvu_lock);
+> +	list_add(&pvu->entry, &ti_pvu_list);
+> +	mutex_unlock(&ti_pvu_lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static void ti_pvu_remove(struct platform_device *pdev)
+> +{
+> +	struct ti_pvu *pvu = dev_get_drvdata(&pdev->dev);
+> +
+> +	mutex_lock(&ti_pvu_lock);
+> +	list_del(&pvu->entry);
+> +	mutex_unlock(&ti_pvu_lock);
+> +}
+> +
+> +static const struct of_device_id ti_pvu_of_match[] = {
+> +	{ .compatible = "ti,am654-pvu", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, ti_pvu_of_match);
+> +
+> +static struct platform_driver ti_pvu_driver = {
+> +	.driver = {
+> +		.name = "ti-pvu",
+> +		.of_match_table = ti_pvu_of_match,
+> +	},
+> +	.probe = ti_pvu_probe,
+> +	.remove_new = ti_pvu_remove,
+> +};
+> +module_platform_driver(ti_pvu_driver);
+> diff --git a/include/linux/ti-pvu.h b/include/linux/ti-pvu.h
+> new file mode 100644
+> index 000000000000..d40642522cf0
+> --- /dev/null
+> +++ b/include/linux/ti-pvu.h
+> @@ -0,0 +1,11 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * TI Peripheral Virtualization Unit driver for static DMA isolation
+> + *
+> + * Copyright (c) 2024, Siemens AG
+> + */
+> +
 
+Missing guards.
+
+> +#include <linux/ioport.h>
+> +
+> +int ti_pvu_create_region(unsigned int virt_id, const struct resource *region);
+> +int ti_pvu_remove_region(unsigned int virt_id, const struct resource *region);
+
+
+Best regards,
+Krzysztof
 
 
