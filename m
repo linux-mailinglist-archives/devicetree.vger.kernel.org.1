@@ -1,138 +1,115 @@
-Return-Path: <devicetree+bounces-96639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD3495EDF9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:02:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A9595EE2A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:11:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E60AC1F22FFF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:02:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E132628239D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:11:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E80D145330;
-	Mon, 26 Aug 2024 10:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AFA146A61;
+	Mon, 26 Aug 2024 10:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tdT9otjG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cqjbEUVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71DB146A71;
-	Mon, 26 Aug 2024 10:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6821B804;
+	Mon, 26 Aug 2024 10:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724666523; cv=none; b=RDtj56+qDEppagD2N2TUMXhkNTmJts3B0hGlefkqNVnhA+jT+nASiJngX/p0fusty2Tci/VdLtnw5tGQd024df/HiLftxrbnm7MpLRCR+bvTdxRY9BQgQiZNWBvFi6KMPTkGbR68mnp8DoxHzejXpPEeodK7vzBjEZnQCoY6kBA=
+	t=1724667104; cv=none; b=Z7I76uj32wBo0igOsuXc4SPC6A6bW4F59cIGIlVpFgoUQkYBH4BKo1Zc3PQgXjrCnD16AM5w04l1pgMYH2SmLUEzUMxu/7f5AZ/2tTBjPeaRpgR9fmTtb6r9gVNQ7NO7F6HekW12+viXoS9mV9agizmGimjU1i4dKV+1+2a+iPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724666523; c=relaxed/simple;
-	bh=2bOnO0n6dYgvuE21Uq9+WsJrkGncEn9LYJnCBKux97I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MHNWPdHKWK7c3hdJpIi3Vrk/JgmogpcFddq1c1xIN/9pbCiZqramLyNViHhLGfPm8MV7Cz2ygEUJ7Hpnmn9kYO/41GX3mPxe4tbY1DBDmj8aaBuBOe4BcVU1IaoQhV+jlpzY4pC0w5zRxowwvzpjAkdS01vyDvzXujv6+1GqR18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tdT9otjG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BF6FC51407;
-	Mon, 26 Aug 2024 10:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724666522;
-	bh=2bOnO0n6dYgvuE21Uq9+WsJrkGncEn9LYJnCBKux97I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tdT9otjGdc1TQpp3yvN/W3dTwLtDRB4/DpulPZluyP15DvpWhe6zN1FuqVMor/jVN
-	 bweCHmtPX6yuC0TU18QqYuId/eELMYKeykF3dP3awC/ov6mlWt+Sqf5JIzylDN5NUD
-	 Ls5vIQKFHk7JaJK/HKG2s6wfbEdVnazXdIJDPXku5vR2lBVoB+ECO+zWJUTnkMPDWh
-	 vFKnJjfS1rUQmopyTFnUX6i+hjvMQHpxi20bV1+ZK3o93c4YppmFAIKKaHp7VVvWxX
-	 Vh/hNNgHT/dvL494n/PBWxsJkU19VxXOR8CJeO3wP899ab4ZjqYtOEfXwSad1PpNMK
-	 Gfg4/xjdvHmPw==
-Date: Mon, 26 Aug 2024 11:01:50 +0100
-From: Jonathan Cameron <jic23@kernel.org>
+	s=arc-20240116; t=1724667104; c=relaxed/simple;
+	bh=J9pk+6k9D1jPaW+Jut3/nqQGolmc7KHgQB0bSOm8q9o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GdG/oIB2ShIfiAj/2izMgmXfLzmkkAbGXtqiOshNhdjztGiDQ617pGcCuz+Eo+oHGzlwU9ifotP1ZUhdi+rYXAsluw2DPfcLXHVp3/s7K9Jp9Gwaa4cRSVfJIjLjaore+717OcgMhH/Tpd3eeMO7ox80flxF2sbdp0Iqj2z2iQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cqjbEUVw; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724667103; x=1756203103;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=J9pk+6k9D1jPaW+Jut3/nqQGolmc7KHgQB0bSOm8q9o=;
+  b=cqjbEUVwQxtAU7MDMRju8HDKVHGWlmkVcn7LIU3/uihCHk3jAQo0tJ87
+   d7Ow6cpB4FhAZHCC8NekEG9SnTHQMKxf4NZIPTnH8osSF89ypEpqdzj9c
+   bNfUsMnt5xnvT2b6O8ihHhUQJngZT16QzYrzBgRk3I2XsI+J0edFIPMDS
+   Zl1NVfDcAo6XtX6QNUxv3G+njOOr+KxVL2TkzehE51y3QxqcXxg92zIdY
+   nDJh3CLzdYGWwmSZdpdFp67lzkOeIa2Ft8LcgId8HIabseCoqBDTyYdAI
+   plmfbb/X486eIYQzLQxZYQJpIkKOzyf1aZsTJoNwywSzSdfrKmFnHFnMf
+   A==;
+X-CSE-ConnectionGUID: 9HPCl1XCSY6Vs3/QX6LknA==
+X-CSE-MsgGUID: 3H6IV8qmRSu+UHJJxEZpuQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="33646036"
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
+   d="scan'208";a="33646036"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:11:42 -0700
+X-CSE-ConnectionGUID: IY+5fxbaSCCWVpb1tq6FMg==
+X-CSE-MsgGUID: U2gaNkVfSC2FLkb2WhS2Rw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
+   d="scan'208";a="85648098"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:11:34 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1siWh8-00000001pMz-1yE2;
+	Mon, 26 Aug 2024 13:11:30 +0300
+Date: Mon, 26 Aug 2024 13:11:30 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
- biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
- semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] iio: pressure: bmp280: Add data ready trigger
- support
-Message-ID: <20240826110150.5f2e5c72@jic23-huawei>
-In-Reply-To: <20240824120222.GG9644@vamoiridPC>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] iio: pressure: bmp280: Add support for bmp280
+ soft reset
+Message-ID: <ZsxU0kA4lxW7ZHi9@smile.fi.intel.com>
 References: <20240823181714.64545-1-vassilisamir@gmail.com>
-	<20240823181714.64545-7-vassilisamir@gmail.com>
-	<ZsjrxLlhmx-TzwXF@smile.fi.intel.com>
-	<20240824120222.GG9644@vamoiridPC>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+ <20240823181714.64545-3-vassilisamir@gmail.com>
+ <ZsjfdRWRl4fMJP0Y@smile.fi.intel.com>
+ <20240824111614.GB9644@vamoiridPC>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240824111614.GB9644@vamoiridPC>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Sat, 24 Aug 2024 14:02:22 +0200
-Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+On Sat, Aug 24, 2024 at 01:16:14PM +0200, Vasileios Amoiridis wrote:
+> On Fri, Aug 23, 2024 at 10:13:57PM +0300, Andy Shevchenko wrote:
+> > On Fri, Aug 23, 2024 at 08:17:09PM +0200, Vasileios Amoiridis wrote:
 
-> On Fri, Aug 23, 2024 at 11:06:28PM +0300, Andy Shevchenko wrote:
-> > On Fri, Aug 23, 2024 at 08:17:13PM +0200, Vasileios Amoiridis wrote:  
-> > > The BMP3xx and BMP5xx sensors have an interrupt pin which can be used as
-> > > a trigger for when there are data ready in the sensor for pick up.
-> > > 
-> > > This use case is used along with NORMAL_MODE in the sensor, which allows
-> > > the sensor to do consecutive measurements depending on the ODR rate value.
-> > > 
-> > > The trigger pin can be configured to be open-drain or push-pull and either
-> > > rising or falling edge.
-> > > 
-> > > No support is added yet for interrupts for FIFO, WATERMARK and out of range
-> > > values.  
+...
+
+> > > +	usleep_range(data->start_up_time, data->start_up_time + 500);
 > > 
-> > ...
-> >   
-> > > +static int __bmp280_trigger_probe(struct iio_dev *indio_dev,
-> > > +				  const struct iio_trigger_ops *trigger_ops,
-> > > +				  int (*int_config)(struct bmp280_data *data),  
-> >   
-> > > +				  irqreturn_t (*irq_thread_handler)(int irq, void *p))  
-> > 
-> > irq_handler_t
-> >   
+> > Seems long enough to warrant the comment. Also, why not fsleep()?
 > 
-> But the function returns an irqreturn_t type, no?
-irq_handler_t is a typdef for the full function signature.
-It will still return irqreturn_t 
-> 
-> > ...
-> >   
-> > > +	fwnode = dev_fwnode(data->dev);
-> > > +	if (!fwnode)
-> > > +		return -ENODEV;  
-> > 
-> > Why do you need this? The below will fail anyway.  
-> 
-> Because If I don't make this check then fwnode might be garbage and I will
-> pass garbage to the fwnode_irq_get() function. Or do I miss something?
-It checks for NULL which is all it can actually be and returns a suitable
-error code if it is.
+> The datasheet of the sensor, and the published API from Bosch [1] 
+> require the startup_time for this procedure, it's not something that
+> came up from my mind. That's why I didn't add any comment.
 
-> 
-> >   
-> > > +	irq = fwnode_irq_get(fwnode, 0);
-> > > +	if (!irq)  
-> > 
-> > Are you sure this is correct check?
-> >   
-> Well, I think yes, because the function return either the Linux IRQ number
-> on success or a negative errno on failure.
-> 
-> https://elixir.bootlin.com/linux/v6.10.6/source/drivers/base/property.c#L987
+The comment usually needed on the basis of how long we have to sleep.
+To me ~1ms warrants that as it's long enough timeout on modern (GHz
+frequency range) CPUs.
 
-Indeed, so if (irq < 0)
-		return dev_err_probe(data->dev, irq, ...)
+-- 
+With Best Regards,
+Andy Shevchenko
 
-	carry on as valid irq.
-your error check if returning only if irq == 0 which never
-happens (due to catch for that in the code you link).
-Negative values are true, so !-EINVAL == false
-for example.
-> 
+
 
