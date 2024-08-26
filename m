@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-96708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F17B695F35D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 15:57:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1142895F36D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:00:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70F33B20E0C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 13:57:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC83F1F22D0D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 14:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CB7617C990;
-	Mon, 26 Aug 2024 13:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72221EEE0;
+	Mon, 26 Aug 2024 14:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="taeqgAbA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a/xs8b/C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD62FC08;
-	Mon, 26 Aug 2024 13:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9DAE372;
+	Mon, 26 Aug 2024 14:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724680657; cv=none; b=XkF4a3zq4li56fPZmgmnDih4N8uX6Q2KOuRNIZJ3hp1HboLMFvKkAukfPM2ooGMd3aQen3jReqdvTHssGslBMJFeaTwuVewirJqXll+BW8Qlp8TSjdNQwA5grpeO6K7/TQxoBmxSGvQWLu1AfkuIoBTnvcSGF9Vna/9jWPzrWYc=
+	t=1724680847; cv=none; b=gjhYNaeBPR8GpYp/4Zrwyq2VYhQPRbvgV2kkFwQ+kMZaJocDdcsn+SdtW78MY+nOdU/TG9KLojEovUywelTwgE1lCMNwc5KLNgI/z6d7sdhkR1rkGi8kpG8s6OFC3MZw+/YI5vpo3zMRFumBrO2bOyvEFDsF6jdU54P0Ok2U1Ao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724680657; c=relaxed/simple;
-	bh=X//oeaSxSnvJgJjp5uLJev8fa/GTw+ktOEOTQx0Z4Mg=;
+	s=arc-20240116; t=1724680847; c=relaxed/simple;
+	bh=N6QZc8YM8klksq0nE1lKt6yDYzsUUOHjIINFLCMZQUM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u8v3dpwuQVK/wR1cNKWnd3DcyzAeOwZo3Li7y+jhTUWxH6s4G8X4YQkX8xz95cbEu+U8AkUSIMJoGDWSdalk67SBwLzpAC367TG7Ys2sKrNrKhR8IrKaa3nifru8ncckqdKkTlIIeX2nPuN9Xu20d/NyY9LO6zE3g8evRCnIOyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=taeqgAbA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90DD7C52FC3;
-	Mon, 26 Aug 2024 13:57:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TIEtdvYbuh088afgR95p8UkBeTC6/lhkYl00ugURodQ4VLV7zfoWAi5YYoveZpSz0Z4zv08yZdm1uhk/+hEqzQMAXBJOzJm+B6puAfHTi21gTNaw7cJQBpytdyof0+H7bWaWJPcizBepOrQmSUXs3w6oK3bORU2Vo18miizXNgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a/xs8b/C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED2E0C52FC3;
+	Mon, 26 Aug 2024 14:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724680656;
-	bh=X//oeaSxSnvJgJjp5uLJev8fa/GTw+ktOEOTQx0Z4Mg=;
+	s=k20201202; t=1724680846;
+	bh=N6QZc8YM8klksq0nE1lKt6yDYzsUUOHjIINFLCMZQUM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=taeqgAbA652djiX3Rk5Gnh4x5kYkQ3BWcdJW9d5ai2S13BClGEiqbkpSLlwPKCj9b
-	 YDm7tQrtiqlb/07Qc4ZbrhaFpvs1HHMZBnvxR1IVSIzzzpoySXbIOwwTFGyIsnULqT
-	 vgF1Zk1r8EXlwbik1dJrKt5ULsyGqv5JwiN9FNMePPoe0qSzsto6cJ1U+OIhXKqtmd
-	 mQ1qEgwzHoaRQ7jxDz/Y92G5yUhpWy2kCoFEcMtCuERcvPrbn+2LJLEFwmDRQgvd0b
-	 xjs4jMOYFfSyDlv7RFYq7NKYEetITX7gVmSIJ8QFaZEej7ilUnRLiZIDYIUK2oBr/E
-	 NJbn4JC4SiqmA==
-Date: Mon, 26 Aug 2024 08:57:34 -0500
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Marek Vasut <marex@denx.de>, Mark Hasemeyer <markhas@chromium.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v5 1/1] dt-bindings: input: touchscreen: convert
- ads7846.txt to yaml
-Message-ID: <20240826135734.GA63447-robh@kernel.org>
-References: <20240820163710.448302-1-Frank.Li@nxp.com>
+	b=a/xs8b/C1L9CHIrb9yc9EtcYI9Qixbr/BvDfyXHjXTL8woZUoYFLY+1J0vU267ATI
+	 BH1AKAPNDDgC/lqiI/dC20ap9LZTKo9eWGQLiKLDBzZbNECqv0Jo2SykjK8KHp95se
+	 J6AcxKncn/4aQo2+dOo5PqKlhgHyjfbv+RLWWABzQKRD2vAmHGY0uom0Fbw9rsvOXp
+	 aoo/FbIHBSvMrker4TZ/btb64fn3Jju67Y14TR9uwrRZGmt7P72ubDB6M4qKhYqvP4
+	 xCgi1RmrklIMnGp/G50pmlbJuUwckoPtIWoZsmRaGEw5ppxnWEFl0vCionzWvixwf+
+	 Sr0fnsf4GRoZA==
+Date: Mon, 26 Aug 2024 09:00:44 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Sugar Zhang <sugar.zhang@rock-chips.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, kernel@collabora.com,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v6 1/3] dt-bindings: clock, reset: Add support for rk3576
+Message-ID: <172468084271.72163.10961446550304422485.robh@kernel.org>
+References: <20240822194956.918527-1-detlev.casanova@collabora.com>
+ <20240822194956.918527-2-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,137 +66,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240820163710.448302-1-Frank.Li@nxp.com>
+In-Reply-To: <20240822194956.918527-2-detlev.casanova@collabora.com>
 
-On Tue, Aug 20, 2024 at 12:37:03PM -0400, Frank Li wrote:
-> Convert binding doc ads7846.txt to yaml format.
-> Additional change:
-> - add ref to touchscreen.yaml and spi-peripheral-props.yaml.
-> - use common node name touchscreen.
-> - sort ti properties alphabetically.
-> - sort common properties alphabetically.
-> - sort compatible string alphabetically.
-> - remove vcc-supply from required list.
-> - deprecated ti,x-min, ti,y,min
 
-ti,y-min?
-
+On Thu, 22 Aug 2024 15:49:32 -0400, Detlev Casanova wrote:
+> Add clock and reset ID defines for rk3576.
 > 
-> Fix below warning: arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb: touchscreen@0:
-> 	ti,x-min: b'\x00}' is not of type 'object', 'array', 'boolean', 'null'
+> Compared to the downstream bindings written by Elaine, this uses
+> continous gapless IDs starting at 0. Thus all numbers are
+> different between downstream and upstream, but names are kept
+> exactly the same.
 > 
-> Reviewed-by: Marek Vasut <marex@denx.de>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Also add documentation for the rk3576 CRU core.
+> 
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 > ---
-> Change from v4 to v5
-> - Add Reviewed-by: Marek Vasut <marex@denx.de>
-> - Start sentence with uppercase letter
+>  .../bindings/clock/rockchip,rk3576-cru.yaml   |  56 ++
+>  .../dt-bindings/clock/rockchip,rk3576-cru.h   | 592 ++++++++++++++++++
+>  .../dt-bindings/reset/rockchip,rk3576-cru.h   | 564 +++++++++++++++++
+>  3 files changed, 1212 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
+>  create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
+>  create mode 100644 include/dt-bindings/reset/rockchip,rk3576-cru.h
 > 
-> Change from v3 to v4
-> - new line for all descrptions
-> - add . after sentense.
-> 
-> Change from v2 to v3
-> - Remove u16(u32) in descriptions
-> - deprecated ti,x-min and ti, y-min
-> 
-> Change from v1 to v2
-> - sort properties, by 3 group:
->   1. General (compatible, reg, interrupt)
->   2. Common properties
->   3. ti properties
-> - sort maintainers name alphabetically.
-> - uint16 have to be kept because default is uint32
-> - remove vcc-supply from required list
-> - remove unfinished sentence "all mandatory properties described in"
-> because it refer to /schemas/spi/spi-peripheral-props.yaml#
-> - fix make refcheckdoc error
-> ---
->  .../bindings/input/touchscreen/ads7846.txt    | 107 ----------
->  .../input/touchscreen/ti,ads7843.yaml         | 182 ++++++++++++++++++
->  .../bindings/power/wakeup-source.txt          |   2 +-
->  3 files changed, 183 insertions(+), 108 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
-
-
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
-> new file mode 100644
-> index 0000000000000..92d5e7d3b1ffd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
-> @@ -0,0 +1,182 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/ti,ads7843.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI's SPI driven touch screen controllers.
-
-Drop period.
-
-> +
-> +maintainers:
-> +  - Alexander Stein <alexander.stein@ew.tq-group.com>
-> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +description:
-> +  Device tree bindings for TI's ADS7843, ADS7845, ADS7846, ADS7873, TSC2046
-
-Drop 'Device tree bindings for '.
-
-> +  SPI driven touch screen controllers.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,ads7843
-> +      - ti,ads7845
-> +      - ti,ads7846
-> +      - ti,ads7873
-> +      - ti,tsc2046
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  pendown-gpio:
-> +    description:
-> +      GPIO handle describing the pin the !PENIRQ line is connected to.
-
-maxItems: 1
-
-> +
-> +  vcc-supply:
-> +    description:
-> +      A regulator node for the supply voltage.
-> +
-> +  wakeup-source: true
-> +
-> +  ti,debounce-max:
-> +    deprecated: true
-> +    $ref: /schemas/types.yaml#/definitions/uint16
-> +    description:
-> +      Max number of additional readings per sample.
-> +
-> +  ti,debounce-rep:
-> +    $ref: /schemas/types.yaml#/definitions/uint16
-> +    description:
-> +      Additional consecutive good readings required after the first two.
-> +
-> +  ti,debounce-tol:
-> +    $ref: /schemas/types.yaml#/definitions/uint16
-> +    description:
-> +      Tolerance used for filtering.
-> +
-> +  ti,hsync-gpios:
-> +    description:
-> +      GPIO line to poll for hsync.
-
-maxItems: 1
-
-With those fixes,
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
