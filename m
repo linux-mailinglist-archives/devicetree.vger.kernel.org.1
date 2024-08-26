@@ -1,134 +1,122 @@
-Return-Path: <devicetree+bounces-96596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F2995EC21
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D021395EC35
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:42:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0F13B224F2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:37:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B5DDB228A4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE36713AA53;
-	Mon, 26 Aug 2024 08:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B8E513AD32;
+	Mon, 26 Aug 2024 08:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L3NssS4B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HIdfvaZx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222C912BF25
-	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 08:37:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 568FA73478;
+	Mon, 26 Aug 2024 08:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724661452; cv=none; b=g9hC1WaCsX7ISg73Hi34dXH4PK9X5XVZ1RTw3Ow4XopXC3YQ/UttJgfsoj5YedovmU+Ik1AZIzh/O/5P6RjXVN8UkMquw9EMoCt2dQkaeeS89Lmf2HURs+Gx9goJicuCrGm36Rd6dxQ2h8VBdW9xMonHTUfGCOlKE/AmWyeeTY0=
+	t=1724661715; cv=none; b=OYdtlZvh0VUPW7TR0UWAEFbHvEw9jlh/k/Hku+HAoYxUVfPicLNSwguaM/0t+4cGI5IyLEVGl4bUgJXDMhty+tbuSWHCCnvqKdjRX0eTPSZPSnxReNJRvf7LgctdADMcMDerBpEMqcDnEZd+T8p/YaaWpyx3T9Z/azbl8WGs5EM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724661452; c=relaxed/simple;
-	bh=oM7kZdEzfuoVDcva/iFWT2NafPlq6MKcJXIggs+6Tyo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rPbQUl30I9TXS/2eZib2laWoDK+mn9M9+UNNz0R5GBN/VWk9LlJ/4cM7G0pKCF4D/vykoB+wWluU7QdLzJD3Cm1nIqtfVfr/HObcvxd0YXJM7gcx8/7Ebc2p9rvsstdSYUS+pFSpgCj57nLsfuM1NO9J2IDABYejyF0HTvx+NFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L3NssS4B; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f3f07ac2dcso45635871fa.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 01:37:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724661449; x=1725266249; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mGxn7htxuwUZYATtE1s95mMQFcoul/l6IY3bhY0xjag=;
-        b=L3NssS4BvwSejKvZBmvkndcutnGJth0RyDil0X4anX3mkGjaXjSeFJqjp9TKh2cIym
-         HyhPYmVbBU6EH4FhVU72qJdBVT5v4h/4L6+wbIvdgRffFi2kFWIK83BghlvmwDsD96x4
-         cW1WH1RYOsil2lC1ysZxAmBw60lPqaYbV0Qs6kbYZN0itX9k0LiS5PfVFJJpl07S1096
-         G/VmzKfxApZRVvQ/hrWSavbRaz9KkQ/lkIrrcWhwkAs15+ywjomskaupS62PeFKMpaK5
-         xValHQwGigWjv1t6Kf35YIowontAuH/ZDHRMv3iAg5Jrt5ZLsvxVn0CSKCUPFoI6ZBV8
-         mVyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724661449; x=1725266249;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mGxn7htxuwUZYATtE1s95mMQFcoul/l6IY3bhY0xjag=;
-        b=C2nQFyHrzL3yeabQrYkzcEw53DQOiUx4AC2r5Ee9UPwYFtyzlGBEn78BeZUIDasLm7
-         57DJGUeFiBbF2AmRN4/R8Sew9rzQuTESi2/OqOCFb2Jp4lOttpOXJxkHLWU936alznPV
-         r7qdAJe5s3okhRboZ7TeNSTQa1wxB91I4UWnGyzUFmoAGILcoWxygjj7ISSCuGfJPlfO
-         0Z0AF99kalLv8jXMMZt8QG4R4JLiHczKxBvgoPll8dKNj0dAVz4iQgLgSC1uhuKqExCg
-         KZbFH/c+v5cYud9as4qUv1sJazdI2pxP0rQFskiZ4qA+Ks7i/ri1XWudNNyYv6atLYw0
-         PYaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVzqS4nNGHSGUBVBK6u6EREXh9llqNXedSmxsrNLhO3oStb5aYCd7Du/CFdOVQkHjuJxnFR5hGlFmt9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnAKXHVdtS9W2csomT2/dtbiXpAT7oYLkvuN8uwuTebw2n1waH
-	b4wErcNqftpcPU2Pcx0RbrpYgXD6KOGXyuJFA3mcOGXPu3q2JsR118P+y6xw/tqQRGBPZoP+uTv
-	f585pZDvtU2/R9IBu296/dmWqPSnPDc1OM5b61Q==
-X-Google-Smtp-Source: AGHT+IHeMj7YBiO18vWqML21+FRq1pFZqa1ADKBp7TehE1pILknI7LCAogJhtpZ5d4cDOjaBm1wLNKiaVP0+mEb8qL0=
-X-Received: by 2002:a05:6512:3188:b0:52e:9c0a:3522 with SMTP id
- 2adb3069b0e04-5343885f878mr6873547e87.44.1724661448779; Mon, 26 Aug 2024
- 01:37:28 -0700 (PDT)
+	s=arc-20240116; t=1724661715; c=relaxed/simple;
+	bh=mTeGXa6kLrneVi/7UwU5293IHLpRJlJKgu0HALZVp4M=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hKyy6pzjagK5ZH822rF/6xHayyHP/ry0AcURvyEweI31SFO7RdBa/Amic46KijNBFY4EeThWagYmjRZYrM4OBEuAFPCriprQohEZ+G6dZv/cWqNuAZ58xEN/6SWSWHZojIWpZF5CxsL2Yhu8o5aGGAxhgWPtNRT/0tGV3qJKQNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HIdfvaZx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47Q8MTBe016970;
+	Mon, 26 Aug 2024 08:41:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=sDwK8FKewltdzBhScg9N/IjW
+	sMDQSCc47T7kexD8SfY=; b=HIdfvaZxflCIAjSDsU8t8MgCQz28t7wTamfrZ4xZ
+	T7bmtBNiGvBZluZkf7+TSErICBSDMtQT3LjsGj7smoXYt8QhBQPdVeEHK0/siLDh
+	iLyX+zNrXU9vmf3tW6mIKFvbD8k+h4OzZ5uFxcjQebKbI7GaI9rQETWdwito19Aa
+	XpPUpaVm7cQTWq8Yuz+Fk6P7FKslhAQ05YeoZS8P7wUfvINF6Cw87N4sC/W/y6ES
+	xXpZR5iU05uoNmKXJdcuahw+YaYYZDlPe8+ZIR76T2sU9ue9fovxH72g1lPcf3lZ
+	TOWgTspCm5CkJP0RCCGZoERZUgAX5fVbu0s95YnmVk+bwA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 417988b182-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 Aug 2024 08:41:50 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47Q8fnVm011566
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 Aug 2024 08:41:49 GMT
+Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 26 Aug 2024 01:41:45 -0700
+Date: Mon, 26 Aug 2024 16:41:41 +0800
+From: JieGan <quic_jiegan@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Song Chai
+	<quic_songchai@quicinc.com>,
+        Yushan Li <quic_yushli@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Add coresight nodes for x1e80100
+Message-ID: <Zsw/xTCZMDHkfrEm@jiegan-gv.ap.qualcomm.com>
+References: <20240826061900.790715-1-quic_jiegan@quicinc.com>
+ <548ccc89-3e0b-47ce-891b-4a181b79c714@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240821070740.2378602-1-billy_tsai@aspeedtech.com> <20240821070740.2378602-3-billy_tsai@aspeedtech.com>
-In-Reply-To: <20240821070740.2378602-3-billy_tsai@aspeedtech.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 26 Aug 2024 10:37:17 +0200
-Message-ID: <CACRpkdY-sNVdb+nSG4WLZnkj+7jvQ1D0t0Sn+gvOBgCfzvr2fw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] gpio: Add G7 Aspeed gpio controller driver
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: brgl@bgdev.pl, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	joel@jms.id.au, andrew@codeconstruct.com.au, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	BMC-SW@aspeedtech.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <548ccc89-3e0b-47ce-891b-4a181b79c714@kernel.org>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Yth64yOcBy3Zaz7W6KlnWiWNsnzMsEY_
+X-Proofpoint-ORIG-GUID: Yth64yOcBy3Zaz7W6KlnWiWNsnzMsEY_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-26_05,2024-08-23_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ spamscore=0 adultscore=0 mlxscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 clxscore=1015 impostorscore=0 suspectscore=0
+ mlxlogscore=541 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408260068
 
-Hi Billy,
-
-thanks for your patch!
-
-On Wed, Aug 21, 2024 at 9:07=E2=80=AFAM Billy Tsai <billy_tsai@aspeedtech.c=
-om> wrote:
-
-> In the 7th generation of the SoC from Aspeed, the control logic of the
-> GPIO controller has been updated to support per-pin control. Each pin now
-> has its own 32-bit register, allowing for individual control of the pin=
-=E2=80=99s
-> value, direction, interrupt type, and other settings.
+On Mon, Aug 26, 2024 at 10:20:54AM +0200, Krzysztof Kozlowski wrote:
+> On 26/08/2024 08:19, Jie Gan wrote:
+> > Add following coresight components for x1e80100 platform,
+> > include CTI, dummy sink, dynamic Funnel, Replicator, STM,
+> > TPDM, TPDA and TMC ETF.
+> > 
+> > Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> > Tested-by: Yushan Li <quic_yushli@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1534 ++++++++++++++++++++++++
+> >  1 file changed, 1534 insertions(+)
+> > 
+> 
+> And does it pass dtbs_check W=1?
 >
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-(...)
-
-> +static inline u32 field_get(u32 _mask, u32 _val)
-> +{
-> +       return (((_val) & (_mask)) >> (ffs(_mask) - 1));
-> +}
-> +
-> +static inline u32 field_prep(u32 _mask, u32 _val)
-> +{
-> +       return (((_val) << (ffs(_mask) - 1)) & (_mask));
-> +}
-
-Can't you use FIELD_GET and FIELD_PREP from
-<linux/bitfield.h> instead?
-
-> +static inline void ast_write_bits(void __iomem *addr, u32 mask, u32 val)
-> +{
-> +       iowrite32((ioread32(addr) & ~(mask)) | field_prep(mask, val), add=
-r);
-> +}
-> +
-> +static inline void ast_clr_bits(void __iomem *addr, u32 mask)
-> +{
-> +       iowrite32((ioread32(addr) & ~(mask)), addr);
-> +}
-
-This as a whole looks a bit like a reimplementation of regmap-mmio, can you
-look into using that instead?
-
-Yours,
-Linus Walleij
+It passed with "make CHECK_DTBS=y qcom/x1e80100-crd.dtb".
+ 
+Thanks,
+Jie
 
