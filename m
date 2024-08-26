@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-96790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8588A95F769
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 19:07:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCEF695F76C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 19:09:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA57F284BE0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 17:07:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D3ED1C20BD5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 17:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C7419882F;
-	Mon, 26 Aug 2024 17:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E4E198856;
+	Mon, 26 Aug 2024 17:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQCrZ5Nr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e+NKdVm+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CD0618D64D;
-	Mon, 26 Aug 2024 17:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19F018D64D;
+	Mon, 26 Aug 2024 17:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724692067; cv=none; b=LHHrmoCvZvLHE2QLe/qJLfqN770dz3LkEGMJllZ0YXWYpQ5YBpSiW6pe6skRC/rRheub9du5WCYgif2VQfXaatLF1OgscwnStnJu9s7E0nhIIZnzgOjXt9aOP4IDrMKTMIfkaP1L34A3vKXJIbvKxG+SvGvcyQEFNrDgqRxUwtQ=
+	t=1724692157; cv=none; b=dhBZujzyyGGI+OkpQ/lM9r5aNKcuH36DK5fz+x/bbWmF1PxjZrGDhSEBEvD9tsGQowO41FmTkYQMbYYSzHBqOKVzMdVq/Al5Y49juydVz6lU+GXxF0VNO9/3Ml6hQk7gGGHHATRY+0Sn4/KeS8Qt6AnnTfS2ITgfNtT8tzwEpx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724692067; c=relaxed/simple;
-	bh=VwQgJgxqTV5MDnUILDmu96OieGgqzcCluDvZCzORr8Q=;
+	s=arc-20240116; t=1724692157; c=relaxed/simple;
+	bh=o0yrJMcWN9NhQiyL6wLf2W3XPIcdo7ahAbqDUogj2kI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zb14TURuUK8OEC3+Lo5/yHz1jtAgSwxVt2L28B3BATwYRtgPRA94m0RlR/y6j2usRiQhdjd2uFyohCMSRzZkxcZKO1yxal3Qwux5sVvMP2lVIYg8r5XpzMwnKnUsx/8nXAfV26zNzJDMta70Fn7Bp+o6VasjweXHkKkCrWaxC9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQCrZ5Nr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D26A3C581BD;
-	Mon, 26 Aug 2024 17:07:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FUtoymrw8rhfH7uEWnt4/Zm/fX6i81Osv5jxvCE4Vro6KtuVwcNiZqta9jxr8KB3X44/NsJPf5INOps3vZNL4JNSY3yRY975+QYJx/O+zzhOfeHRTw0hfP+MCRVObqku3X5VS4g5GV+J5Z7gqnwPoCXex0bgeHiVOf5GYr3xJgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+NKdVm+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E69ABC5828E;
+	Mon, 26 Aug 2024 17:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724692065;
-	bh=VwQgJgxqTV5MDnUILDmu96OieGgqzcCluDvZCzORr8Q=;
+	s=k20201202; t=1724692156;
+	bh=o0yrJMcWN9NhQiyL6wLf2W3XPIcdo7ahAbqDUogj2kI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tQCrZ5Nrgaxg+a9Eoi40JpCSG1xe56c6xzNlQIptqEGVGMr5iKZVDvwXiy/g8WoXi
-	 7jFefA+g0CwNgKG0++OtpMTIb1fCO2az6yC14i7/z1m8pGIrPAa4g6AEjx2QREt2ue
-	 6dCX5jQ52b/C1iQs57l4FdtyuFhbL+30xtCtJ+hcl4GEj8X90ya75aeGBzKeM2bGkx
-	 eIRf3ncNbtLASkKB/sOd5I3AkblrkXjWFuNTQBZdB8uExPPjfqP8dckP5KdEX7A60D
-	 FZJucDfOpL9BJMI9luAe+sikT6j4g9xVstvqQEqT/IqNgKAPuFVygDtZa95iTckHFz
-	 HrBbrJ1bax4fw==
-Date: Mon, 26 Aug 2024 18:07:40 +0100
+	b=e+NKdVm+js++0+tUNii5X3zd86+JbZqnR5lwn7PRQdfmSWAuf/jPFpLfK/nDRPBV1
+	 QuL866WhBf2qaa5M3S5LiUSm9VEKJhEyUUISkLIB7FhTT7Fk4ZYRATlqR/cVOnH2Ex
+	 imv3IwC9Zws7uJhkg5ykDa4tRxRJmzMzKdM60lZkfARGazZdpy9hWplHoC7cGAhYaG
+	 MZjVU3GcCf8a+kZwmG1bMiJm4QbADmyS3LD/ZtBF9wO89s9/jVbhuD9LrO7FWIAiA3
+	 v69Q1qpAVOFc1hARm/tmwKmLSPg4HpoPbS+UvgU340zSSdzKEH3+IPqUmUA2tQeeT1
+	 X2vFCbRQ83fUw==
+Date: Mon, 26 Aug 2024 18:09:09 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-Message-ID: <20240826-kinsman-crunching-e3b75297088c@spud>
-References: <20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org>
- <20240822-en7581-pinctrl-v2-1-ba1559173a7f@kernel.org>
- <20240822-taste-deceptive-03d0ad56ae2e@spud>
- <aef3188d-5aaf-4f6d-addf-60066065ef9b@genexis.eu>
- <20240823-darkened-cartload-d2621f33eab8@spud>
- <66c8c50f.050a0220.d7871.f209@mx.google.com>
- <Zsj8bmBJhfUdH6qT@lore-desk>
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	geert+renesas@glider.be, magnus.damm@gmail.com,
+	gregkh@linuxfoundation.org, mturquette@baylibre.com,
+	sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com,
+	biju.das.jz@bp.renesas.com, ulf.hansson@linaro.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH 02/16] dt-bindings: soc: renesas: renesas,rzg2l-sysc: Add
+ #reset-cells for RZ/G3S
+Message-ID: <20240826-daycare-freewill-c0e1400bf255@spud>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240822152801.602318-3-claudiu.beznea.uj@bp.renesas.com>
+ <20240822-vanilla-enigmatic-f0b05ecca4b6@spud>
+ <0d8b1322-cf15-4ed9-b958-06516bbb64c7@tuxon.dev>
+ <20240823-plywood-unfixed-d8d8a2d93f14@spud>
+ <5eae2ddb-2a7b-4c1d-a7f7-41fb39058de1@tuxon.dev>
+ <20240823-dilute-juggle-7e2d43b8b630@spud>
+ <7b16791b-0d7b-49a1-82aa-c4db99ff2bfd@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,178 +73,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1nEfWonu5rwLGlXL"
+	protocol="application/pgp-signature"; boundary="kphp1gQZZmvGGz7y"
 Content-Disposition: inline
-In-Reply-To: <Zsj8bmBJhfUdH6qT@lore-desk>
+In-Reply-To: <7b16791b-0d7b-49a1-82aa-c4db99ff2bfd@tuxon.dev>
 
 
---1nEfWonu5rwLGlXL
+--kphp1gQZZmvGGz7y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 23, 2024 at 11:17:34PM +0200, Lorenzo Bianconi wrote:
-> > On Fri, Aug 23, 2024 at 05:14:30PM +0100, Conor Dooley wrote:
-> > > On Thu, Aug 22, 2024 at 10:50:52PM +0200, Benjamin Larsson wrote:
-> > > > On 22/08/2024 18:06, Conor Dooley wrote:
-> > > >=20
-> > > >=20
-> > > > Hi.
-> > > >=20
-> > > > > before looking at v1:
-> > > > > I would really like to see an explanation for why this is a corre=
-ct
-> > > > > model of the hardware as part of the commit message. To me this s=
-creams
-> > > > > syscon/MFD and instead of describing this as a child of a syscon =
-and
-> > > > > using regmap to access it you're doing whatever this is...
-> > > >=20
-> > > > Can you post a link to a good example dts that uses syscon/MFD ?
-> > > >=20
-> > > > It is not only pinctrl, pwm and gpio that are entangled in each oth=
-er. A
-> > > > good example would help with developing a proper implementation.
-> > >=20
-> > > Off the top of my head, no unfortunately. Maybe Rob or Krzk have a go=
-od
-> > > example. I would suggest to start by looking at drivers within gpio or
-> > > pinctrl that use syscon_to_regmap() where the argument is sourced from
-> > > either of_node->parent or dev.parent->of_node (which you use depends =
-on
-> > > whether or not you have a child node or not).
-> > >=20
-> > > I recently had some questions myself for Rob about child nodes for mfd
-> > > devices and when they were suitable to use:
-> > > https://lore.kernel.org/all/20240815200003.GA2956351-robh@kernel.org/
-> > >=20
-> > > Following Rob's line of thought, I'd kinda expect an mfd driver to cr=
-eate
-> > > the devices for gpio and pwm using devm_mfd_add_devices() and the
-> > > pinctrl to have a child node.
-> >=20
-> > Just to not get confused and staring to focus on the wrong kind of
-> > API/too complex solution, I would suggest to check the example from
-> > Lorenzo.
-> >=20
-> > The pinctrl/gpio is an entire separate block and is mapped separately.
-> > What is problematic is that chip SCU is a mix and address are not in
-> > order and is required by many devices. (clock, pinctrl, gpio...)
-> >=20
-> > IMHO a mfd is overkill and wouldn't suite the task. MDF still support a
-> > single big region and in our case we need to map 2 different one (gpio
-> > AND chip SCU) (or for clock SCU and chip SCU)
-> >=20
-> > Similar problem is present in many other place and syscon is just for
-> > the task.
-> >=20
-> > Simple proposed solution is:
-> > - chip SCU entirely mapped and we use syscon
-
-That seems reasonable.
-
-> > - pinctrl mapped and reference chip SCU by phandle
-
-ref by phandle shouldn't be needed here, looking up by compatible should
-suffice, no?
-
-> > - pwm a child of pinctrl as it's scrambled in the pinctrl mapped regs
-
-The pwm is not a child of the pinctrl though, they're both subfunctions of
-the register region they happen to both be in. I don't agree with that
-appraisal, sounds like an MFD to me.
-
-> > Hope this can clear any confusion.
+On Mon, Aug 26, 2024 at 01:15:43PM +0300, claudiu beznea wrote:
 >=20
-> To clarify the hw architecture we are discussing about 3 memory regions:
-> - chip_scu: <0x1fa20000 0x384>
-> - scu: <0x1fb00020 0x94c>
-                  ^
-I'm highly suspicious of a register region that begins at 0x20. What is
-at 0x1fb00000?
-
-> - gpio: <0x1fbf0200 0xbc>
-
-Do you have a link to the register map documentation for this hardware?
-
-> The memory regions above are used by the following IC blocks:
-> - clock: chip_scu and scu
-
-What is the differentiation between these two different regions? Do they
-provide different clocks? Are registers from both of them required in
-order to provide particular clocks?
-
-> - pinctrl (io-muxing/gpio_chip/irq_chip): chip_scu and gpio
-
-Ditto here. Are these actually two different sets of iomuxes, or are
-registers from both required to mux a particular pin?
-
-> - pwm: gpio
 >=20
-> clock and pinctrl devices share the chip_scu memory region but they need =
-to
-> access even other separated memory areas (scu and gpio respectively).
-> pwm needs to just read/write few gpio registers.
-> As pointed out in my previous email, we can define the chip_scu block as
-> syscon node that can be accessed via phandle by clock and pinctrl drivers.
-> clock driver will map scu area while pinctrl one will map gpio memory blo=
-ck.
-> pwm can be just a child of pinctrl node.
+> On 23.08.2024 19:33, Conor Dooley wrote:
+> > On Fri, Aug 23, 2024 at 07:26:42PM +0300, claudiu beznea wrote:
+> >> On 23.08.2024 19:18, Conor Dooley wrote:
+> >>> On Fri, Aug 23, 2024 at 10:54:06AM +0300, claudiu beznea wrote:
+> >>>> Hi, Conor,
+> >>>>
+> >>>> On 22.08.2024 19:42, Conor Dooley wrote:
+> >>>>> On Thu, Aug 22, 2024 at 06:27:47PM +0300, Claudiu wrote:
+> >>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>>>
+> >>>>>> The RZ/G3S System controller has registers to control signals that=
+ need
+> >>>>>> to be de-asserted/asserted before/after different SoC areas are po=
+wer
+> >>>>>> on/off. This signals are implemented as reset signals. For this do=
+cument
+> >>>>>> the #reset-cells property.
+> >>>>>>
+> >>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>>> ---
+> >>>>>>  .../bindings/soc/renesas/renesas,rzg2l-sysc.yaml | 16 +++++++++++=
++++++
+> >>>>>>  1 file changed, 16 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas=
+,rzg2l-sysc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,rz=
+g2l-sysc.yaml
+> >>>>>> index 4386b2c3fa4d..6b0bb34485d9 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-=
+sysc.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-=
+sysc.yaml
+> >>>>>> @@ -42,12 +42,28 @@ properties:
+> >>>>>>        - const: cm33stbyr_int
+> >>>>>>        - const: ca55_deny
+> >>>>>> =20
+> >>>>>> +  "#reset-cells":
+> >>>>>> +    const: 1
+> >>>>>> +
+> >>>>>>  required:
+> >>>>>>    - compatible
+> >>>>>>    - reg
+> >>>>>> =20
+> >>>>>>  additionalProperties: false
+> >>>>>> =20
+> >>>>>> +allOf:
+> >>>>>> +  - if:
+> >>>>>> +      properties:
+> >>>>>> +        compatible:
+> >>>>>> +          contains:
+> >>>>>> +            const: renesas,r9a08g045-sysc
+> >>>>>> +    then:
+> >>>>>> +      required:
+> >>>>>> +        - "#reset-cells"
+> >>>>>
+> >>>>> Given this is new required property on an existing platform, I'd ex=
+pect
+> >>>>> some mention of why it used to be okay to not have this but is now
+> >>>>> required. Did firmware or a bootloader stage take things out of res=
+et?
+> >>>>
+> >>>> On previous SoCs the SYS controller has no support for controlling t=
+he
+> >>>> signals going to different peripherals (USB, PCIE in case of RZ/G3S).
+> >>>> I'll add a note about this on next version.
+> >>>
+> >>> My initial thought here wasn't about previous SoCs though, it was
+> >>> because you didn't add the compatible in this series for /this/ SoC.
+> >>
+> >> RZ/G3S compatible is already present in this file:
+> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml#n26
+> >=20
+> > I know, first thing I did when I read the original patch was open the
+> > file ;)
+> > I don't care about the old SoCs, cos you're not applying the property to
+> > them, so what's changed between SoCs isn't really relevant. It's a ment=
+ion
+> > of why, on this SoC, it is safe to add new required properties that I w=
+ant.
+>=20
+>=20
+> >=20
+> > AFAIU the answer is that no consumer of the resets existed before, so
+>=20
+> That's true.
+>=20
+> > there's not some special state there, and I am guessing that the new
+> > sysc driver you're adding isn't going to fail to probe if there are no
+> > resets,=20
+>=20
+> That's true.
+>=20
+> it just won't register a reset controller?
+>=20
+> It will register it but,
+>=20
+> the new sysc driver is going to probe only for this SoC (RZ/G3S). On RZ/G=
+3S
+> we have 2 resets. These well be registered unconditionally, currently, on=
+ly
+> for RZ/G3S. If there will be no DT users for it then it should be no
+> problem, AFAICT.
 
-As I mentioned above, the last statement here I disagree with. As
-someone that's currently in the process of fixing making a mess of this
-exact kind of thing, I'm going to strongly advocate not taking shortcuts
-like this.
+Okay, sounds it doesn't break for existing devicetrees.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-IMO, all three of these regions need to be described as syscons in some
-form, how exactly it's hard to say without a better understanding of the
-breakdown between regions.
+Thanks,
+Conor.
 
-If, for example, the chip_scu only provides a few "helper" bits, I'd
-expect something like
-
-syscon@1fa20000 {
-	compatible =3D "chip-scu", "syscon";
-	reg =3D <0x1fa2000 0x384>;
-};
-
-syscon@1fb00000 {
-	compatible =3D "scu", "syscon", "simple-mfd";
-	#clock-cells =3D 1;
-};
-
-syscon@1fbf0200 {
-	compatible =3D "gpio-scu", "syscon", "simple-mfd";
-	#pwm-cells =3D 1;
-
-	pinctrl@x {
-		compatible =3D "pinctrl";
-		reg =3D x;
-		#pinctrl-cells =3D 1;
-		#gpio-cells =3D 1;
-	};
-};
-
-And you could look up the chip-scu by its compatible from the clock or
-pinctrl drivers. Perhaps the "helper" bits assumption is incorrect
-however, and both the scu and chip scu provide independent clocks?
-
-> What do you think about this approach? Can we address the requirements ab=
-ove
-> via classic mfd driver?
-
-
-
---1nEfWonu5rwLGlXL
+--kphp1gQZZmvGGz7y
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsy2XAAKCRB4tDGHoIJi
-0vEBAP9VeZxftChOpdKzYog+Vq3UkbSA7Yk1lSGYkUQZvVKoSAD7Bgn2umf+nGMQ
-S3TSunjM3PrwndSmaRkt1goXBwoCdw4=
-=BMYD
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsy2tQAKCRB4tDGHoIJi
+0rV7AP9DZ2q3xfYMx00ty17Bs3eDE/3N2vWVqh51vuQzlmHBaQD+MSrwIUvtdEhg
+jiaBBICMFZmTjei0JYXu91UpMiCd9AM=
+=MJwd
 -----END PGP SIGNATURE-----
 
---1nEfWonu5rwLGlXL--
+--kphp1gQZZmvGGz7y--
 
