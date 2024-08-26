@@ -1,145 +1,261 @@
-Return-Path: <devicetree+bounces-96589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901B895EB9D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:18:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBD1F95EBA1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:19:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4B841C21623
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:18:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 934F52817DC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491E613AA53;
-	Mon, 26 Aug 2024 08:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A035113AA53;
+	Mon, 26 Aug 2024 08:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MprAI4R2"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="EiNiMYrz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2116.outbound.protection.outlook.com [40.107.249.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BB1413A250;
-	Mon, 26 Aug 2024 08:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724660309; cv=none; b=cw/AsF5tSxIA7jsd7J2K7mir76gTHF3DHXl2Zi68znQKu/k9uuV0MHe3FN+OMyGV+IljmLzXZfII46qMVtU6FyVAMAPe3qFtaUopgJDAu8D5kDlp3LXiOOzntdQyirC2hBkX+QkfFfwucgyzebjgQuBDmlOpKQRGT2RnseJvUGg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724660309; c=relaxed/simple;
-	bh=Dm5wSQzz2CuSqJ8YdyeT008XPz/ymqN7Z/p6cNYZBz8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O3esfiB8h9cD+YhabxGLRwjVUf7NXvLzeViVg87WoLD6JJSfYfhL1igDYYiFdBB4TwYnjNBBYD4T6xwjTNH7WRu07yAQJhw2sJp9D/j4dfDetu1pFYalItaEnwmyhlXfrVHJ4mka7+ditRrL2KpsTGMSg98xebbVA1lCWmEGUX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MprAI4R2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A658FC8CDD6;
-	Mon, 26 Aug 2024 08:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724660308;
-	bh=Dm5wSQzz2CuSqJ8YdyeT008XPz/ymqN7Z/p6cNYZBz8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MprAI4R2UE/etg6qsOB2NZXyEzULVqsFjAy3v4cHeYts0OtWjs8WtMEhPNM7u0Rk3
-	 rUJwnAw1l/59/Uk+cxax7unctw0D3Tqba4ZKyojRHva/7sa7BVUHX8YllS0uH0fzG2
-	 Uq4VvnIwtC4O1W/8MGlTp0hevmEx4+lyWnvqwOfKTqXQmxvtVknVc7jXf7jNIU5LTY
-	 AfO6Y4+Wt3E6BcKq2SdtFCwTqNkgWw8nCxAgapK05qVfkZLwhC4e9yFJPIOs3rwrh5
-	 jnnznEA6O+fUDWNs+tzFqs3hCweqbu9JJAZCOLgwAwol950Mwk40KeO2RayQ2uNsPN
-	 vyi1txXHico0Q==
-Message-ID: <51f564ea-9507-40b4-a943-23bdd330e6d6@kernel.org>
-Date: Mon, 26 Aug 2024 10:18:21 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFE213A250;
+	Mon, 26 Aug 2024 08:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.116
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724660356; cv=fail; b=NQkW/oFZ1HnlAcCblltquot2oVQexDVwrx3eqoAsQESN910ESLWjgl8ymkFjZXBjzs6HJR6AJMWP6fv4aM/r67CWwdx9Z/Zc/kahJuv11QUZfWVU161QgZPslOApt88uHK+NtejhPE3j+2UZoGHIUXgs0zXgbh2smzl7my+983s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724660356; c=relaxed/simple;
+	bh=SP3rup1PpOg0UaUfywMrjEVgXu3fB8nCjdZPKW0ctbw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=IJtbuPU4iC5tK4jJ8/wo5ndaK3Eo4IZzAls2/hnxUNn88dA5cSYRWkDiqLNz7mA1g2ritnMt4nlMLcbD0h9ZsR6Ety9VyxLrvQ+qkH99Y977e4lo2qgWelNOcm3kUrkqPi61fgV0BA54RVB+2XWqivITfdGWHZhfrtOJ+JUBt28=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=EiNiMYrz; arc=fail smtp.client-ip=40.107.249.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vohaknNAZ3vm3P49l/DC3AiNVihfCdRDlcfZBFqcFtokoLubr3jaJumNdKz9ohrykO0ZBKcfhOxGO9Pd+I/u5ITdPTjbO7c0r/PivsXrmCy4gjji3nMHF3Gc5CYwpOAqyoTkj6EUG393T6+bBCXm4HX2Z3oTnhEMpcx96ojaXQ/7ZG0eYpG613zIkL3LZwg7JWKsYSTSu/RP+VnnxxmwC+OyO3avpxXwTR/DbrR8IRWDi40qISlEP8aR5QgIbtSEqqDnyF9MF/Y4BLUSFj0WnOCM8hnbHIQFT3T4Py+4g4cXxvvvnD+DEEEexR1zToxMdy7Z8Yb79ovupVJJ5O2Zxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OmR/ZQR6vuw6/ni709UpzzhB/mUS6BOHASGTcZv9W3g=;
+ b=P02lsD0Bb9Va1WXUm74DJTh1PzdTUC5l1XojLIpKK4lzdH5l8qfPlnuGvMkR+8JplnF8BZ1LAWeqGXWNAj4TBPREciDhkwqxBYHxBI+BOJOb1OiARmbopgFSCrJQI8KAc0shZDzB7n6bfKDQ/sZXVXYPQ3sEbTtLZamoHq0ZudCm4II6W6H32wjUC3J8l1D4Rq/ZwrkwM2bvVSS252YEWV4cVPeBqzF0zj1cXJDFNs6ZXnUH872ujJT1peiXYFRj68ZLmv03QL8fnssCNx0nHoVBdsqe3fEWaxed1vURbdbOGCQ9Mxos8YfvfM+NdfQcpCVWRMEF0m8lnoMt0P8fVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OmR/ZQR6vuw6/ni709UpzzhB/mUS6BOHASGTcZv9W3g=;
+ b=EiNiMYrznwbJk2lGfXbMH0pQw9W8rBqhiW5BHy2HGxPS25QYQLHQhpCq2OGAcs1GUsc+hCQrBiYALqK5mYwTd6AfYpDNYsqW+WhvPZqFVVHvmvWQz2fBw25LzW5GSoXi3vNBbfvsdEdD39I0OFoFjJsfYV2a/loFLfdtFpycE/U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by AS1PR08MB7539.eurprd08.prod.outlook.com (2603:10a6:20b:483::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.14; Mon, 26 Aug
+ 2024 08:19:10 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d%4]) with mapi id 15.20.7918.012; Mon, 26 Aug 2024
+ 08:19:10 +0000
+Message-ID: <cf8c1764-7721-4a5a-8012-b62ead4e2e57@wolfvision.net>
+Date: Mon, 26 Aug 2024 10:19:06 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] dt-bindings: media: Document bindings for HDMI RX
+ Controller
+To: Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>
+References: <20240719124032.26852-1-shreeya.patel@collabora.com>
+ <20240719124032.26852-3-shreeya.patel@collabora.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <20240719124032.26852-3-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR08CA0218.eurprd08.prod.outlook.com
+ (2603:10a6:802:15::27) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] LoongArch: Update dts to support Loongson UART
- driver.
-To: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org,
- kernel@xen0n.name, p.zabel@pengutronix.de, linux-serial@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- loongarch@lists.linux.dev
-References: <20240826024705.55474-1-zhenghaowei@loongson.cn>
- <20240826024705.55474-4-zhenghaowei@loongson.cn>
- <gtbaqcnk4g3f4achlyiixu2bbb2rxoxoitbltqxavexjoyqxlf@furbr4zsirkz>
- <fb0ddbe0-8613-40ac-a3fb-9e544c50088d@loongson.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <fb0ddbe0-8613-40ac-a3fb-9e544c50088d@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AS1PR08MB7539:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e9dda3c-621a-4415-70a7-08dcc5a7c331
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WlZBUFdOeW5VWEFNVSsydWcxcEJaQncwRUxTU2ExSnQ3bWxhZXN5aWFvbW4x?=
+ =?utf-8?B?YVFrTUIzMHFMSm1pUnRsZy9ZcWE3cUN1ZGJNVExXYi9qUUo3WUUvWUt6YzBD?=
+ =?utf-8?B?eDBOQ25pOGxhUVI1dVloeEljYVpWbWZEZ1k0QTgzaWFaODZ2ZlRJVHR0OE95?=
+ =?utf-8?B?RnY1T2ZZMkMxNmhKd2VxQU8rRERaK3c5WUFYL2xnWnJXSjZiTSt2K1Bwell5?=
+ =?utf-8?B?QTJDb0Y5VHJpZlNwWjlYTHlzbXJiNzVpWDVCVGdGVWplUzhSNmJGV0pHcksy?=
+ =?utf-8?B?ajlqS3llTzFLRi9Zbi9jN0NyM3RaM2NGTUpCeURBQnQ0djJab3orS2NOaFVr?=
+ =?utf-8?B?L1JOSTE4RkI3T3owbGpmZkhzMnhEa3JyUVBKWnlzbFUydGhhbSs0OHQrclBh?=
+ =?utf-8?B?dmx3MXc5bWtVdTVlakpyeXNMTnVqS0VFcUtpU0U1T1lOZlJGeHhGRVBJOGhJ?=
+ =?utf-8?B?eDNLNzhmNGR4U2wwSUVTbGdBdWpybXhjQ2ErY0htNmtpRkpPM1AveGVSZ3BM?=
+ =?utf-8?B?RFYvM2lKdlFnNHdMdmdQWnc5Z0dpVnNNWE5OcE9ySVpwWDZRaUZGS25RQmRT?=
+ =?utf-8?B?M2FWTmszV3A0WXhReEhjRHZyK3BQQzBlZFJDL1IvMGt4eEJOdW9MOWNXZzdo?=
+ =?utf-8?B?UzVpS0ZMa3QwcS8xZEVzV2RrOWI2UktXUWRlUUViYkdmeWtVaXh3RXVZSFFm?=
+ =?utf-8?B?TGw3ZjdZNHEvNCtLcEQveDU4UzhYWnEyVmI1UDhCYjJ6N3hiOW9tQUdSNTQw?=
+ =?utf-8?B?bGRkMHJ1anVEaVBqRUtaaUszZ0xkdjBRQjd3M0FjWXp3ZW5sRmpheEZWV2VO?=
+ =?utf-8?B?N21mS0RYZUlIV3BFNi9SRDJQSDExV3B4WENTWGtRM2ROV2lnWG9FSHBjeXpZ?=
+ =?utf-8?B?VkhFdDU5QnRRRFVFV295LzJrbjVQN3VHV2lSTXlEMU9OSEh1NWVtcU1BeFhH?=
+ =?utf-8?B?bDllckcwTWF0SXhnVVlDZFlWUHhYNlBCdVZ5SUtkeVBRR0ZWR3kxUUFibHZG?=
+ =?utf-8?B?M2s4R3pKa1gvMU1jWHRWVEUyOGFBeDJKWGZTWVIxTjJ3NE94ejc0dzRIR3pm?=
+ =?utf-8?B?WEtkTjkydjFPNDUwNXhtVGlGUkN5dnZwUkxaVk9DQ1lueHdaZXQ4SlNVaXhJ?=
+ =?utf-8?B?WmVwK2R1Rko0bi8zeDhvRWJpdk0rNmVZak9qRUxDdlhqNWQ1UDM5VW9PSjI5?=
+ =?utf-8?B?QTA0R1I4Y1BDR1lKYnl0Z1A0M3ArN1U4ZTNITlltVWg5WUZHQmFWaFVYT0JN?=
+ =?utf-8?B?MjNyUXowZTJlSEVOdlZvZEM0aEFKMFhKYTYxaFpXS0pjbVhDb2dpMjlJd3cr?=
+ =?utf-8?B?aGYyYTJhNkdIcGpOa1NVUFFQUGZwZzRyYkpWN2pWd2ZTbTZaaUd5bXluc2pt?=
+ =?utf-8?B?b3h1VGRuVHpValNBVmdySXh6K2I0aGxTYTJtMElkQlgwVzE5Qi9mMXZLLzkx?=
+ =?utf-8?B?SkRma1hocEYyelpzNVJZdHU3aXF4NTk1RHNjYWR1NHl6NlY3OXVOdE5GYjE5?=
+ =?utf-8?B?VFA0Z1M3TERYWWUxTnF6blRvWmJTMGVzVS9ub1NleXpZUERIa1I3dDNobGJz?=
+ =?utf-8?B?bjQyWnNDSm10cXNTaDdqMGIxMjg1TlFPTnZMRStFeXRYUFZwTTN0ZG5yeWQ3?=
+ =?utf-8?B?M3BRSVBzSUE4Q1ZxZEp5bXEyd2YrNk53U1ZpS3ZOK3p4NnQ3Z0FCMStwUVJP?=
+ =?utf-8?B?TVgybUVTNEg2UlE5L1JnUFhuZTZYRkZXREJIeVNtbVNWU1dJb2ErU0xEcHRK?=
+ =?utf-8?B?VW9RcnZ3SDhMT0NpRUZmdHNoeGZZZDh6dDF3SXlEWTFKdkN5c0Iycy9Qb0lU?=
+ =?utf-8?B?YXNMazhoT3UzTlpwVU11WDBHY3Rpcjh6RnVkRENaZE5uY1NKVG5FUnFMbTVi?=
+ =?utf-8?Q?AHxsjt8S6m0RZ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Z3Y0QmRSeXByNlhLeUVtTWxhdzdraVA1WUg3b25iRjVPMDlGV2U5TllNNW1K?=
+ =?utf-8?B?bUpSZzdTTkZoMG9xUnZpTlBCbWJ6ZmdEaEVUcmlvQmhyaVFDVFFxVW1TcmF0?=
+ =?utf-8?B?c2pWbmNKTUFuaXBBeVlCakhLUGh0dGt2Q01qSlplMWZvdHJPYUdFVWxPS1c5?=
+ =?utf-8?B?YXdJMkVBbGFJMkVFRkk1Q0NuWTJJdERKL2xXNVoxOWkvYXpoSHZuMHp0bFhm?=
+ =?utf-8?B?QlhrdGg3QlA4dHo2eFpxY1dUdFJubVZrQkU0amxYR0RRelNQVW81RFVrYWZ2?=
+ =?utf-8?B?SUNkSHpldExESXFJSmo0QUZFWnVwc1oveCtIWVFYQUJnaWdEbnZ2Snc0N1Fj?=
+ =?utf-8?B?NDVVL2dDQkI5N090a3YvM1krVWo3WndoYjEwR0VjV1pwUk9OcEl6TU9zWmJQ?=
+ =?utf-8?B?TFhvckRkMitoZjVCa0RBd3ZQdytWdlZhYkR2T1ZGRCsybSt3UmlwdjJPYmpo?=
+ =?utf-8?B?U2VEZU1XQ3drVDljNGRkQzQzVC9vbThaQXQwbkZVN2FUWW4rN1FlaDdlVVpQ?=
+ =?utf-8?B?clRjM1lZZUdrYlBLZEN2cUE5WWhCaWZQS0FJd3hyREtHWnNaZ0g3TmVyeDRh?=
+ =?utf-8?B?QjE2aGVtSzBMMUI0WGZMTG93akxiNGY3c0JOald5Q21ZdkhWVERCZ3JvTlhj?=
+ =?utf-8?B?QTRaMHJ2aSswRmNMNDdKWVNHR3l4SUE4aTRKbFptU1pZekE5YmpBbHo0eGZO?=
+ =?utf-8?B?U0oyVGUvSkJOSE9HSU53SURiSUZOMW1lY0RZNVB3RFRXZ2dxYkRJSnVhdDI4?=
+ =?utf-8?B?ZGdXcWJvMEg2eE1VWURtVk56YmpFY3BWSlNKTmRtdW4vcFFodVpzSVZmRSt0?=
+ =?utf-8?B?TU4zakdmNGdBakpXeXpVVkhDRHZEdTd5T3lYYi9vT1BUUzlGWGIwVEd5bWpH?=
+ =?utf-8?B?RTIveHh0ckxocmtuZUtDM0hFZUQ2MGNjTGJuRVQ0TEUyd25tOW84L0pIcCtD?=
+ =?utf-8?B?QTJYakpRMUNWbG91eUdPYTZZRjhWN2hEaGpjcjJrT1Y1aEVqSWtUT2VkbCtu?=
+ =?utf-8?B?eDZtdys0SElIWWc3VWcwbjRBSlVoZXpjb1dSd2ZlMDMweEdtYjdZdDh5WVV0?=
+ =?utf-8?B?RWMzc2hBZDFmRVNXSytkMFVlY1dOMlU2eWlsS2Fsejc3K2ZVU3l2VWZ5clBD?=
+ =?utf-8?B?U1FRdEg5d1R1eXNqa2NYUTNFZkJNVmVhVFlKQWpXVlBDRE10czRBZzF4a0Ny?=
+ =?utf-8?B?ZG0vMmxlOERQS2ozQkc4TjlUbG1UVjgwenlDeEhwYkpJVU1WTWxab3VKNmxy?=
+ =?utf-8?B?dU1yYi9KT1ppNmU4SzlKQk5kdWp4dzFoSDd6WUk5ZGZiSHlpSVFZTTlaSStr?=
+ =?utf-8?B?NWhDaGxrSjl1MFh0K3FOdXVrK1JvYUpiaDNjKzg4WHdhRUNDYjVjSWpvdGhZ?=
+ =?utf-8?B?MzlTYWZhREtyUk5taW1abG8vZnBhNmRiTzM3SXc2TWpmZHhsbXR3aXhRNGpC?=
+ =?utf-8?B?bWQxZDJzOVlheVBNRFAvNllIZU9SMTFweml5bzlndkk5a3RibWU2dGNCcGIw?=
+ =?utf-8?B?ejZqaUIrNDhiZWRLcTBRaWl6OCszdE1pWkliVU1MbHV0UG9KdmUxdkRuUEww?=
+ =?utf-8?B?SGlZYS82SWJYVnZOU3NtMmUyWmtvRDhxSzlleUsrbUFLdGxjSndVN2M4WlZD?=
+ =?utf-8?B?ckxGaTZxc0M4Tm40MFFDWURhT01PSHBmUk40V0xCcExwcUFUZ1ZXbTV6K3Ra?=
+ =?utf-8?B?dFllZldwa3hTdDVBMFhKNlNrWFg1NkZCZThuVnpwWVFEaHl6VCt1SmFvV0J1?=
+ =?utf-8?B?ZEt5OVMyTUNwU0JId2ZaL1Q5WU1TSEw2RTI2Sm1rMEhCTlMwNHRrTlV3Rlpj?=
+ =?utf-8?B?aHUwZzZNUVdJMytHbTJIWFA3ZTRJOVhsc0IvNFRjTnRmMkNxTDgxR1F0ck1i?=
+ =?utf-8?B?eHJlM0ZtckdMSWt6MklwTHhWTGlGMjlIRktTTng1UHJOdllSMGt5OUM1Rk83?=
+ =?utf-8?B?akVkZ1VTNHZGSWtEQmlBUVJkdXNIOWE1ZjJxRW9xWXZLWVBuR1VBdzlseDk2?=
+ =?utf-8?B?Rm5HWGs0L08rRGlmRGVDQ090QzJ2cnVHZjNNWlB0SGpFUkQrK24yUjVERGgy?=
+ =?utf-8?B?T2llbkVOVmFOZ2JROEJYT1JpQjJXdUlzRXd4cWtOWDdBeWxKZUhGNDJ3UUt5?=
+ =?utf-8?B?Z08vVW91R0NCK2xWblRlZVFpYTdKdW9Wb0RiOEZVa3pGaFZQZ0JZejdhVlZk?=
+ =?utf-8?B?ZFE9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e9dda3c-621a-4415-70a7-08dcc5a7c331
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2024 08:19:10.6002
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: g+BIdfm0cghn56MAmHn7ksi0JYaCF8bvsA7h8dHKDICHqpIRi19RRgXns5xiUYIvkzC4xSb5N8uviGoLBIeubgpXe3ODFTxzBP5bxGMurBY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR08MB7539
 
-On 26/08/2024 08:54, 郑豪威 wrote:
-> 
-> 在 2024/8/26 14:00, Krzysztof Kozlowski 写道:
->> On Mon, Aug 26, 2024 at 10:47:05AM +0800,zhenghaowei@loongson.cn wrote:
->>> From: Haowei Zheng<zhenghaowei@loongson.cn>
->>>
->>> Change to use the Loongson UART driver for Loongson-2K2000,
->>> Loongson-2K1000 and Loongson-2K0500.
->> Why?
->>
->> That's what commit msg should explain.  This is not bisectable and
->> breaks users without any reasonable need/explanation.
->>
->> Best regards,
->> Krzysztof
-> 
-> I got it, and I will provide detailed explanations like this:
-> 
-> We have provided separate UART drivers for ls2k0500,  ls2k1000, and
-> 
-> ls2k2000, which solves the issue of the full-featured serial port being
-> 
-> unusable. Additionally, we have implemented fractional division
-> 
-> functionality for ls2k2000.
+Hi Shreeya, hi all,
 
-You still break the users. Explain the problem you are fixing. NAK.
+First of all thank you very much for your efforts and patches!
+
+I have got more of a general question that came up during my recent work
+on a HDMI RX companion chip driver. It may or may not be out of scope of
+this initial submission for the Synopsys HDMI RX IP core, but anyway I
+feel like I should ask it now:
+
+On 7/19/24 14:40, Shreeya Patel wrote:
+> [...]
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/rk3588-power.h>
+> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +    hdmi_receiver: hdmi-receiver@fdee0000 {
+> +      compatible = "rockchip,rk3588-hdmirx-ctrler", "snps,dw-hdmi-rx";
+> +      reg = <0xfdee0000 0x6000>;
+> +      interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                   <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                   <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH 0>;
+> +      interrupt-names = "cec", "hdmi", "dma";
+> +      clocks = <&cru ACLK_HDMIRX>,
+> +               <&cru CLK_HDMIRX_AUD>,
+> +               <&cru CLK_CR_PARA>,
+> +               <&cru PCLK_HDMIRX>,
+> +               <&cru CLK_HDMIRX_REF>,
+> +               <&cru PCLK_S_HDMIRX>,
+> +               <&cru HCLK_VO1>;
+> +      clock-names = "aclk",
+> +                    "audio",
+> +                    "cr_para",
+> +                    "pclk",
+> +                    "ref",
+> +                    "hclk_s_hdmirx",
+> +                    "hclk_vo1";
+> +      power-domains = <&power RK3588_PD_VO1>;
+> +      resets = <&cru SRST_A_HDMIRX>, <&cru SRST_P_HDMIRX>,
+> +               <&cru SRST_HDMIRX_REF>, <&cru SRST_A_HDMIRX_BIU>;
+> +      reset-names = "axi", "apb", "ref", "biu";
+> +      memory-region = <&hdmi_receiver_cma>;
+> +      pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_5v_detection>;
+> +      pinctrl-names = "default";
+> +      hpd-gpios = <&gpio1 22 GPIO_ACTIVE_LOW>;
+> +    };
+
+Should HDMI RX connectors be described in the device tree?
+
+It seems that V4L2 features support for svidio and composite connectors,
+but newer standards such as HDMI never made it to e.g,
+drivers/media/v4l2-core/v4l2-fwnode.c. The name of the corresponding DT
+binding
+Documentation/devicetree/bindings/display/connector/analog-tv-connector.yaml
+somewhat confirms that only analog connectors are in the scope there.
+This means that some initial discussion and effort on the framework
+would be required.
+
+However, this would enable some nice (although not exactly killer)
+features: describing label, orientation, and connector (sub)type on DT
+level, thus eliminating the need to know the HW description in the
+higher SW layers.
+
+If the notion of HDMI RX (or, in general, digital video input)
+connectors in DT sounds reasonable to you all, there may be the chance
+to rework the submission at hand accordingly to avoid any compatibility
+issues with older/newer device trees. This is why I am bringing this up
+right now.
+
+What do you all think?
 
 Best regards,
-Krzysztof
-
+Michael
 
