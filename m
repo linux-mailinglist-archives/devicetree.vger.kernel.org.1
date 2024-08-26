@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-96823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3106B95F929
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:46:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ABA195F93F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAA62283D79
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:46:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1F751F22B9A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8ED1990CD;
-	Mon, 26 Aug 2024 18:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB16219923A;
+	Mon, 26 Aug 2024 18:53:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r9MLujnA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QYuuCf1m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E2E198E83;
-	Mon, 26 Aug 2024 18:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0B3F191F78
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 18:53:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724697948; cv=none; b=q61wk0uxkLN/npv40e+qTOWdgB+NyAgk+BjZG4aKMi74CEfpznVw7sjxrQA5vUlZALJVnUNrDW8aLnpi5yOOx6Z01IdReTz+uko8X9BvycCZ04HewENsfdxPziBUb6+Rprh3ALl/QvuS7W1lV53MM14qH3201Y3igAh9PhLAWoY=
+	t=1724698415; cv=none; b=mUQDcTKYHOgOzE5wJl+uequEezicgtAFydL1olpGmpCFiSZyuEfdAT3o/+GSEy7uhnVd0NsepJeBVQFHTHQeWOXbmjIlSf9VSiM6aaAvbj7S6BETPQvIkC6svhaHn3pKzXcEv+THRinU4fndahdnzWLUJ5ojjgRLFbdRP43k75Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724697948; c=relaxed/simple;
-	bh=ysY6MyTvKsXP7owiZXnmlj8olMa912wMXUBKgkEWvQA=;
+	s=arc-20240116; t=1724698415; c=relaxed/simple;
+	bh=i6qfRNn3DtbAvgNjcU5HFkL3Poi4ANUM/xXdHtpLXI8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k6Ch9dxSUoKTIsPTK1K9UZwjGmQQvow6GVk/etQW7CJJltxMo0F0OTO2R8PksyOzvij3xRpG/XYpAIT1MBAvSsJEPXyfaATdfX7e1OlWLYyZfCqkc5vJ47hOSbF9hYWR2g/SjRv6Xv68357uKkn6f1qdgBdIWZESAaGwxIxb8EQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r9MLujnA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0776C4AF49;
-	Mon, 26 Aug 2024 18:45:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724697947;
-	bh=ysY6MyTvKsXP7owiZXnmlj8olMa912wMXUBKgkEWvQA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r9MLujnAIuhs9iPsUiSSS8j7gPgUwkYitsGUpPwy7lycl7v9PEQacqaUTSiKFUDsH
-	 4JMSX7U/Piqwfpa6raVl06drab3HLD7laYn0KtWb/QXS0aNJDrRCs1KwL3TIYvva8/
-	 IqsMklpNQl6yV/Rtpt8aVlpto6nCtl4+ghA1jPyOosuUSv0XY40StXI3eUVziSxquR
-	 tBImSe+k9Lj7Db6bmZIr8MSaR1Un0g5NXaWf/ovIuf8MDRprXt5JDpiqfuDeXxaUnW
-	 Ymii34og+J8XNg1B1iyWD3fgw6r0kGp4fdQsPBynXmJYWnfnM6GhqzMLq3qVuqQVJr
-	 Jvw9+m+4E23NA==
-Message-ID: <755c5428-da97-416c-9af3-52b94cbe4ac5@kernel.org>
-Date: Mon, 26 Aug 2024 20:45:38 +0200
+	 In-Reply-To:Content-Type; b=tY3GK/zqYXpRHcnVWCXThO5glZjDEDn5Kwo+XMrAussEjn1QgBbPpvdUotOK5DuBD3bxVlAuQFGKvWo8bzs6+KKCviAWoXXLnZWJMDtEYCeKf8n4p+s5DtZYftama3ICyz6tGj6M1zoW6P+DwP72GaINaL7Nr/jMnLgp1YhMNuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QYuuCf1m; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4290075c7e1so5851885e9.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 11:53:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724698412; x=1725303212; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=e/9TXSfpmTtaW5kZL+zYy819SGf2q+CBCO3J61RxalY=;
+        b=QYuuCf1mQ/3yA4KjNQ6+NlHTrz6k3XJmyaVUb3fFWpQPHL14IZT/TXTDjWkd7xLohv
+         1b/O5iSPXhC3IkCBlHO1mIOl9adxsfIJXDZVTtAkyOmYMjH5CPOd+PXSQ/PAR8X8blxN
+         ZHd0+LxXP1N1UJDvDDhvJWJffbxEPHi31WtjX2Cq6UU4YXLye+G+a7DTmSpZ418fonTJ
+         Pbh3SLnPQJAqIxeZxFik2MekqGagR1Zt/aWWo5wgNLVl92lQQLlYLXSf+5DGN8Xsw8VD
+         AXM8WCShQZ/7jHNP7Pe4aZcsvp9xeB+B7h/2o0zZTDFCRzqxC0aAyT4Iqz9UC3p8ncQK
+         7a0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724698412; x=1725303212;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e/9TXSfpmTtaW5kZL+zYy819SGf2q+CBCO3J61RxalY=;
+        b=XRNM6KBQq6F9k5EZfSecato9VdwQrtef8Ut0pkBHEqZddwnliy7+Q1+NMYqIntHT4p
+         1CX6CKdfpuSbSkzABG+Y9oLfniHf2RkG0jwxjcDW2hK2KiDvh/NTZ8H45jhsbKRvdCB7
+         zv+41XiOBvTQqOpYHlyJ+rHIEiS92256WX5Z/kJr7qk3jUQ2uvj51neGKqqzshjf6+wh
+         4VlY+fc+vGqQOQEKuGIjv5SIJvc/JBl43VMtLfmbfhnKAng6fn+JoNHMjLKwEgaBzgNm
+         fQwDWFdhRVRCaFVjSkksaUPyq3g45Xe4P3kX+JkdhVG2ybwV868l3gw/mvT3k+/Id1DG
+         clVA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5Oa9/P+uiYPO5w61mZW1tnGEt+uXlNG6udPoH31TN7egQlUZ2Wl6NUwChJyfhqSyE6tUFKEznlmXY@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu1Q3AOHrUw+6BRCs2HgRssFco1IlgSc7ou0WoJTxq7H4AuAPY
+	vs/UDTaTt1emsln4hhxq86R7FavJYNk7hDGyhhZ/QBFuRnIJcVUc1NwGopHL+VU=
+X-Google-Smtp-Source: AGHT+IFUHMV4FAByIJjfomDTLhqhHajKCxcFOvwag7T+qZzkIc/8eivvYTqQz7fDI+F5sNfYpTxwoA==
+X-Received: by 2002:a05:600c:4445:b0:425:65b1:abb4 with SMTP id 5b1f17b1804b1-42acc8a7756mr46470165e9.0.1724698412073;
+        Mon, 26 Aug 2024 11:53:32 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730817a2f4sm11314083f8f.61.2024.08.26.11.53.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Aug 2024 11:53:31 -0700 (PDT)
+Message-ID: <93da058b-8d72-4f76-9ee7-f6837a1a4a9a@linaro.org>
+Date: Mon, 26 Aug 2024 20:53:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] soc: ti: Add IOMPU-like PVU driver
+Subject: Re: [PATCH 0/5] soc: ti: Add and use PVU on K3-AM65 for DMA isolation
 To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
  Santosh Shilimkar <ssantosh@kernel.org>,
  Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
@@ -59,12 +86,14 @@ To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, Siddharth Vadapalli <s-vadapalli@ti.com>,
  Bao Cheng Su <baocheng.su@siemens.com>, Hua Qian Li
- <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>
+ <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, linux-pci@vger.kernel.org,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>
 References: <cover.1724694969.git.jan.kiszka@siemens.com>
- <30e16282dd0f7583c8d6ad0078ccdb17a804504d.1724694969.git.jan.kiszka@siemens.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -74,221 +103,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <30e16282dd0f7583c8d6ad0078ccdb17a804504d.1724694969.git.jan.kiszka@siemens.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <cover.1724694969.git.jan.kiszka@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 26/08/2024 19:56, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
+> Only few of the K3 SoCs have an IOMMU and, thus, can isolate the system
+> against DMA-based attacks of external PCI devices. The AM65 is without
+> an IOMMU, but it comes with something close to it: the Peripheral
+> Virtualization Unit (PVU).
 > 
-> The TI Peripheral Virtualization Unit (PVU) permits to define a limited
-> set of mappings for DMA requests on the system memory. Unlike with an
-> IOMMU, there is no fallback to a memory-backed page table, only a fixed
-> set of register-backed TLBs. Emulating an IOMMU behavior appears to be
-> the more fragile the more fragmentation of pending requests occur.
-> 
-> Therefore, this driver does not expose the PVU as an IOMMU. It rather
-> introduces a simple, static interface to devices that are under
-> restricted-dma-pool constraints. They can register their pools with the
-> PVUs, enabling only those pools to work for DMA. As also MSI is issued
-> as DMA, the PVU already register the related translator region of the
-> AM654 as valid DMA target.
-> 
-> This driver is the essential building block for limiting DMA from
-> untrusted devices to clearly defined memory regions in the absence of a
-> real IOMMU (SMMU).
-> 
-> Co-developed-by: Diogo Ivo <diogo.ivo@siemens.com>
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> ---
->  drivers/soc/ti/Kconfig  |   4 +
->  drivers/soc/ti/Makefile |   1 +
->  drivers/soc/ti/ti-pvu.c | 487 ++++++++++++++++++++++++++++++++++++++++
->  include/linux/ti-pvu.h  |  11 +
->  4 files changed, 503 insertions(+)
->  create mode 100644 drivers/soc/ti/ti-pvu.c
->  create mode 100644 include/linux/ti-pvu.h
-> 
-> diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
-> index 1a93001c9e36..af7173ad84de 100644
-> --- a/drivers/soc/ti/Kconfig
-> +++ b/drivers/soc/ti/Kconfig
-> @@ -82,6 +82,10 @@ config TI_PRUSS
->  	  processors on various TI SoCs. It's safe to say N here if you're
->  	  not interested in the PRU or if you are unsure.
->  
+> The PVU was originally designed to establish static compartments via a
+> hypervisor, isolate those DMA-wise against each other and the host and
+> even allow remapping of guest-physical addresses. But it only provides
+> a static translation region, not page-granular mappings. Thus, it cannot
+> be handled transparently like an IOMMU.
 
-...
-
-> +
-> +static int ti_pvu_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *its_node;
-> +	void __iomem *base;
-> +	struct ti_pvu *pvu;
-> +	u32 val;
-> +	int ret;
-> +
-> +	pvu = devm_kzalloc(dev, sizeof(struct ti_pvu), GFP_KERNEL);
-
-sizeof(*)
-
-> +	if (!pvu)
-> +		return -ENOMEM;
-> +
-> +	pvu->pdev = pdev;
-> +
-> +	base = devm_platform_ioremap_resource_byname(pdev, "cfg");
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	pvu->cfg = devm_regmap_init_mmio(dev, base, &pvu_cfg_regmap_cfg);
-> +	if (IS_ERR(pvu->cfg))
-> +		return dev_err_probe(dev, PTR_ERR(pvu->cfg), "failed to init cfg regmap");
-> +
-> +	ret = devm_regmap_field_bulk_alloc(dev, pvu->cfg, pvu->cfg_fields,
-> +					   pvu_cfg_reg_fields, PVU_MAX_CFG_FIELDS);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to alloc cfg regmap fields");
-> +
-> +	pvu->num_tlbs = pvu_field_read(pvu, PVU_TLBS);
-> +	pvu->num_entries = pvu_field_read(pvu, PVU_TLB_ENTRIES);
-> +	dev_info(dev, "TLBs: %d, entries per TLB: %d\n", pvu->num_tlbs,
-> +		 pvu->num_entries);
-> +
-> +	pvu->tlbif_base = devm_platform_ioremap_resource_byname(pdev, "tlbif");
-> +	if (IS_ERR(pvu->tlbif_base))
-> +		return PTR_ERR(pvu->tlbif_base);
-> +
-> +	its_node = of_find_compatible_node(0, 0, "arm,gic-v3-its");
-> +	if (its_node) {
-> +		u32 pre_its_window[2];
-> +
-> +		ret = of_property_read_u32_array(its_node,
-> +						 "socionext,synquacer-pre-its",
-> +						 pre_its_window,
-> +						 ARRAY_SIZE(pre_its_window));
-> +		if (ret) {
-> +			dev_err(dev, "failed to read pre-its property\n");
-> +			return ret;
-> +		}
-> +
-> +		ret = pvu_create_region(pvu, pre_its_window[0],
-> +					pre_its_window[1]);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	val = readl(pvu->tlbif_base + PVU_CHAIN);
-> +	val |= PVU_CHAIN_EN;
-> +	writel(val, pvu->tlbif_base + PVU_CHAIN);
-> +
-> +	pvu_field_write(pvu, PVU_DMA_CNT, 0);
-> +	pvu_field_write(pvu, PVU_DMA_CL0, 0);
-> +	pvu_field_write(pvu, PVU_DMA_CL1, 0);
-> +	pvu_field_write(pvu, PVU_DMA_CL2, 0);
-> +	pvu_field_write(pvu, PVU_DMA_CL3, 0);
-> +	pvu_field_write(pvu, PVU_MAX_VIRTID, NUM_VIRTIDS);
-> +
-> +	ret = platform_get_irq(pdev, 0);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to get irq\n");
-> +
-> +	ret = devm_request_irq(dev, ret, pvu_fault_isr, 0, dev_name(dev), pvu);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to request irq\n");
-> +
-> +	pvu_field_write(pvu, PVU_EXC_ENABLE, 1);
-> +	pvu_field_write(pvu, PVU_ENABLED, 1);
-> +
-> +	dev_set_drvdata(dev, pvu);
-> +
-> +	mutex_lock(&ti_pvu_lock);
-> +	list_add(&pvu->entry, &ti_pvu_list);
-> +	mutex_unlock(&ti_pvu_lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static void ti_pvu_remove(struct platform_device *pdev)
-> +{
-> +	struct ti_pvu *pvu = dev_get_drvdata(&pdev->dev);
-> +
-> +	mutex_lock(&ti_pvu_lock);
-> +	list_del(&pvu->entry);
-> +	mutex_unlock(&ti_pvu_lock);
-> +}
-> +
-> +static const struct of_device_id ti_pvu_of_match[] = {
-> +	{ .compatible = "ti,am654-pvu", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, ti_pvu_of_match);
-> +
-> +static struct platform_driver ti_pvu_driver = {
-> +	.driver = {
-> +		.name = "ti-pvu",
-> +		.of_match_table = ti_pvu_of_match,
-> +	},
-> +	.probe = ti_pvu_probe,
-> +	.remove_new = ti_pvu_remove,
-> +};
-> +module_platform_driver(ti_pvu_driver);
-> diff --git a/include/linux/ti-pvu.h b/include/linux/ti-pvu.h
-> new file mode 100644
-> index 000000000000..d40642522cf0
-> --- /dev/null
-> +++ b/include/linux/ti-pvu.h
-> @@ -0,0 +1,11 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * TI Peripheral Virtualization Unit driver for static DMA isolation
-> + *
-> + * Copyright (c) 2024, Siemens AG
-> + */
-> +
-
-Missing guards.
-
-> +#include <linux/ioport.h>
-> +
-> +int ti_pvu_create_region(unsigned int virt_id, const struct resource *region);
-> +int ti_pvu_remove_region(unsigned int virt_id, const struct resource *region);
-
+You keep developing on some old kernel. I noticed it on few patchsets
+last days. Please work on mainline.
 
 Best regards,
 Krzysztof
