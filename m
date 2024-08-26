@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-96640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A9595EE2A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:11:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1534995EE2E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E132628239D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:11:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4B5FB208A2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AFA146A61;
-	Mon, 26 Aug 2024 10:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82041146A61;
+	Mon, 26 Aug 2024 10:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cqjbEUVw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dT11bOid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6821B804;
-	Mon, 26 Aug 2024 10:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AE5146A71;
+	Mon, 26 Aug 2024 10:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724667104; cv=none; b=Z7I76uj32wBo0igOsuXc4SPC6A6bW4F59cIGIlVpFgoUQkYBH4BKo1Zc3PQgXjrCnD16AM5w04l1pgMYH2SmLUEzUMxu/7f5AZ/2tTBjPeaRpgR9fmTtb6r9gVNQ7NO7F6HekW12+viXoS9mV9agizmGimjU1i4dKV+1+2a+iPM=
+	t=1724667178; cv=none; b=k4+ahsY43v5j8IonwrGTT/zzXwgJ630jDAaATjA2NUM5QrkGFoPgtrey5ejDt8A4Uo4oT3H9CsIhJ6tcj+gnRRm8YAbBOXh2Phs9IctSs+U1gL647//2zmaD+IkZeIjzdSjLyGpUEhJK8S7Fj2Lm0gP/6lsh84wLvK+yXBiSNYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724667104; c=relaxed/simple;
-	bh=J9pk+6k9D1jPaW+Jut3/nqQGolmc7KHgQB0bSOm8q9o=;
+	s=arc-20240116; t=1724667178; c=relaxed/simple;
+	bh=Um2oUufsq5SYlu4nyvLw6FGEmfUYMQ4wO8GqEDGg98o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GdG/oIB2ShIfiAj/2izMgmXfLzmkkAbGXtqiOshNhdjztGiDQ617pGcCuz+Eo+oHGzlwU9ifotP1ZUhdi+rYXAsluw2DPfcLXHVp3/s7K9Jp9Gwaa4cRSVfJIjLjaore+717OcgMhH/Tpd3eeMO7ox80flxF2sbdp0Iqj2z2iQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cqjbEUVw; arc=none smtp.client-ip=198.175.65.11
+	 Content-Type:Content-Disposition:In-Reply-To; b=h1CII05eN4YDo/OsO97r0fZo8BPETyxzKXf7ov0Cpb1F9LO8ZaV/Bm2izp62y211HYEU5bpdKLQ3DtDhXFVzd3Ab2lTsMfbcBjwJTiNqD2AZWuG4nyFFzPdDp8Kk2xk65JViOZZIvLp6h31ZP+ROnhV1MNzVCu2eXzovUUy0BtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dT11bOid; arc=none smtp.client-ip=198.175.65.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724667103; x=1756203103;
+  t=1724667176; x=1756203176;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=J9pk+6k9D1jPaW+Jut3/nqQGolmc7KHgQB0bSOm8q9o=;
-  b=cqjbEUVwQxtAU7MDMRju8HDKVHGWlmkVcn7LIU3/uihCHk3jAQo0tJ87
-   d7Ow6cpB4FhAZHCC8NekEG9SnTHQMKxf4NZIPTnH8osSF89ypEpqdzj9c
-   bNfUsMnt5xnvT2b6O8ihHhUQJngZT16QzYrzBgRk3I2XsI+J0edFIPMDS
-   Zl1NVfDcAo6XtX6QNUxv3G+njOOr+KxVL2TkzehE51y3QxqcXxg92zIdY
-   nDJh3CLzdYGWwmSZdpdFp67lzkOeIa2Ft8LcgId8HIabseCoqBDTyYdAI
-   plmfbb/X486eIYQzLQxZYQJpIkKOzyf1aZsTJoNwywSzSdfrKmFnHFnMf
+  bh=Um2oUufsq5SYlu4nyvLw6FGEmfUYMQ4wO8GqEDGg98o=;
+  b=dT11bOidNbP8M9/p8UUa287IqRJELWvUpCE1WO0PCPydgKC/T7UswU7O
+   1ZrCpBd5kCVjIn/PltcYJ92TH6Nf1DrbVAnc93jV01BGhzdyrnljYjuKH
+   5BrhqqwllKjCyqMd6lmLCzu9FjE6tPu7ihTtaYLifpYQs8BiE1CF0dCiz
+   bYjxwSCgjwqixU8QPjk6KI4tIOVLs0AmugAIFhd1I9f3mt08Bfk7mdfa2
+   DpoP65EuiZr7HDdUwBZERtmsX3pW5evihM9DnDwcnqhTR5pLuvCsXzNNH
+   ZCMynms3WCzMu8onQZuUGnyWPbFf8tmsz5CtURAKDLNp2SilKG/uxI0ZF
    A==;
-X-CSE-ConnectionGUID: 9HPCl1XCSY6Vs3/QX6LknA==
-X-CSE-MsgGUID: 3H6IV8qmRSu+UHJJxEZpuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="33646036"
+X-CSE-ConnectionGUID: 4LYggGndT2u80+ZrZP8PpA==
+X-CSE-MsgGUID: yURbHQM7Q3qWk6tn1I7GUQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="26844542"
 X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="33646036"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:11:42 -0700
-X-CSE-ConnectionGUID: IY+5fxbaSCCWVpb1tq6FMg==
-X-CSE-MsgGUID: U2gaNkVfSC2FLkb2WhS2Rw==
+   d="scan'208";a="26844542"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:12:56 -0700
+X-CSE-ConnectionGUID: nw9oOquMQYG540OfJTKHcA==
+X-CSE-MsgGUID: +clD/V5tS2iJW4gq63RHzQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="85648098"
+   d="scan'208";a="62769318"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:11:34 -0700
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:12:52 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.98)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1siWh8-00000001pMz-1yE2;
-	Mon, 26 Aug 2024 13:11:30 +0300
-Date: Mon, 26 Aug 2024 13:11:30 +0300
+	id 1siWiN-00000001pOS-3Geq;
+	Mon, 26 Aug 2024 13:12:47 +0300
+Date: Mon, 26 Aug 2024 13:12:47 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Vasileios Amoiridis <vassilisamir@gmail.com>
 Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
@@ -71,13 +71,13 @@ Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
 	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
 	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] iio: pressure: bmp280: Add support for bmp280
- soft reset
-Message-ID: <ZsxU0kA4lxW7ZHi9@smile.fi.intel.com>
+Subject: Re: [PATCH v3 3/7] iio: pressure: bmp280: Remove config error check
+ for IIR filter updates
+Message-ID: <ZsxVH3TG2vs38Brw@smile.fi.intel.com>
 References: <20240823181714.64545-1-vassilisamir@gmail.com>
- <20240823181714.64545-3-vassilisamir@gmail.com>
- <ZsjfdRWRl4fMJP0Y@smile.fi.intel.com>
- <20240824111614.GB9644@vamoiridPC>
+ <20240823181714.64545-4-vassilisamir@gmail.com>
+ <Zsjf0bVLZyPqBxru@smile.fi.intel.com>
+ <20240824111806.GC9644@vamoiridPC>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,26 +86,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240824111614.GB9644@vamoiridPC>
+In-Reply-To: <20240824111806.GC9644@vamoiridPC>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Sat, Aug 24, 2024 at 01:16:14PM +0200, Vasileios Amoiridis wrote:
-> On Fri, Aug 23, 2024 at 10:13:57PM +0300, Andy Shevchenko wrote:
-> > On Fri, Aug 23, 2024 at 08:17:09PM +0200, Vasileios Amoiridis wrote:
+On Sat, Aug 24, 2024 at 01:18:06PM +0200, Vasileios Amoiridis wrote:
+> On Fri, Aug 23, 2024 at 10:15:29PM +0300, Andy Shevchenko wrote:
+> > On Fri, Aug 23, 2024 at 08:17:10PM +0200, Vasileios Amoiridis wrote:
 
 ...
 
-> > > +	usleep_range(data->start_up_time, data->start_up_time + 500);
+> > > +	ret = regmap_update_bits(data->regmap, BMP580_REG_DSP_IIR,
+> > > +				 BMP580_DSP_IIR_PRESS_MASK |
+> > > +				 BMP580_DSP_IIR_TEMP_MASK, reg_val);
 > > 
-> > Seems long enough to warrant the comment. Also, why not fsleep()?
+> > Better to split on logical bounds
+> > 
+> > 	ret = regmap_update_bits(data->regmap, BMP580_REG_DSP_IIR,
+> > 				 BMP580_DSP_IIR_PRESS_MASK | BMP580_DSP_IIR_TEMP_MASK,
+> > 				 reg_val);
 > 
-> The datasheet of the sensor, and the published API from Bosch [1] 
-> require the startup_time for this procedure, it's not something that
-> came up from my mind. That's why I didn't add any comment.
+> This goes beyond the 80 char limit. I know that there is the relaxed
+> limit of 100 chars but I didn't feel it was more readable like this.
+> I could definitely use it though, thanks!
 
-The comment usually needed on the basis of how long we have to sleep.
-To me ~1ms warrants that as it's long enough timeout on modern (GHz
-frequency range) CPUs.
+The readability has a priority over that limit. That's even mentioned in
+the documentation besides the relaxed limit.
 
 -- 
 With Best Regards,
