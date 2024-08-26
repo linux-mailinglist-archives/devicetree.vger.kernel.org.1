@@ -1,358 +1,291 @@
-Return-Path: <devicetree+bounces-96508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC0A95E7F4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 07:37:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FDD095E810
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 07:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D5E41C20B25
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 05:37:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8424283821
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 05:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04DF7404B;
-	Mon, 26 Aug 2024 05:37:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 877D06F303;
+	Mon, 26 Aug 2024 05:47:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YFywewTX"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="RWL7dc9d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EDE8C11;
-	Mon, 26 Aug 2024 05:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E8B443D
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 05:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724650664; cv=none; b=GCqwyjvliPiJ2OX1Q1luGvkKR0X7pzt6PtLEC8TRT7DXBwaFxxXuZ7Y1Y8M9JZ/HPMGUt04MyV5C/o6s95dS8FmyTl1O3r7CPot+QPtMmO+KGdwSRSoZs1MuHwVBh5K8XNdrF5I4qU4nIrPENtHhPjKcuq5KtlxXu266+WRji1E=
+	t=1724651263; cv=none; b=NQ9TqjmgrBH+VWsfkAbWR+Ru7ymPDxkOdmlN8mnGAp2+z9HY4xcuEK3GUir88EInKVrQ9aBBJqrEFuup+dHM9qY3yeGrbFVcLddFTtXpGCgl74XcguICf9aN39RZRSHfu7+wIluU48LjExvqtdUhNzYsbQTVxXBu3YPmcO7uPtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724650664; c=relaxed/simple;
-	bh=7o6ye5i/SsfL/3HvmhtG2xS2Nj6hXCUaPE+Z28dhZWk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uNlUzxJQBAxUj3U/2l6cmt1tq2XJJGkrAhHAAYs0afDNLGUY3ehMXny2nZzcBSOojnlyu7uTQfYGmEVohN8CckN0uHZwt8eHQORoUqCwH/0E4jL0YRswQJxs1guYxRGbyyEU7u/eMyhrJHCFWjPM8TFK1N9y0pX8aDvfcHbb9hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YFywewTX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B0D0C32786;
-	Mon, 26 Aug 2024 05:37:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724650664;
-	bh=7o6ye5i/SsfL/3HvmhtG2xS2Nj6hXCUaPE+Z28dhZWk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YFywewTXBuuiUfvFC+83I8C44uItl64c5ij70WWXTdYN1zHlBIPkRuapBsMhRpV7C
-	 hOYHxmxsQ5iysqsZxHeIxBjGKuduyGZobi30Up/2x90MK7768bkwLayCoc+ru14Fde
-	 hRNC31+0d9FPTxaRCzbmZhpB5oSk2tzZazevRz8c8KRpKF6IpgE6677zei37IPeuJ9
-	 5+WgnNfZKWqnvmtaw59LzpbdZdDs8jSA9d27cJbIWk4lOD8GzQn+A3n5i5y/gApmvi
-	 KsQrW5ff+1e2EYYaEF7lIQ1qhAJsK9DXVKxpgRJKicXT5ZTCvF29I5BpY9+QyEa4cx
-	 q75u3GlNsGxNg==
-Message-ID: <34a73de2-85b3-4a20-b2b4-6a72622d5abc@kernel.org>
-Date: Mon, 26 Aug 2024 07:37:34 +0200
+	s=arc-20240116; t=1724651263; c=relaxed/simple;
+	bh=sNN7Gi7TFWA5uui4XNiyosEuHHsstx1Zym+EVmgBXKw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=CfCs0/JXtsP3w0s+XUcTCav+d4DS5yvli9CeYl1fI0XXiQbSUDRKbfPOWLLpk7RZBcJXns18I9SvhWsIpaJQnwaEA3RhdF1zDuCu+kNbtCnJql20hFhYSy6SbkxNTC0lRLVw6o8iXSmYfcPSQuaBVEpHNbrYtcHsMRB6TgHUI24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=RWL7dc9d; arc=none smtp.client-ip=95.215.58.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <2c1afef7-fed9-4685-bf07-b9f3d44a0077@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1724651258;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ts+B+wwMLY0gXBEyoiteKuMyTQYOutXDb9a3yKvXexU=;
+	b=RWL7dc9diM7n5fSd4t/eRCeBapVC8b4VBQygRQ9X5izqRegFhOu1RQ2Luhn+29BND4U4Fh
+	6HkZ16e9nYkeB13XMiLhdeRWcZJGUs9IQ52BpDq7nm7Vb92uQs/Tr74igCB55wisYDiVcx
+	Ja0YmrnIoV4VxozxCZaf4DAIk29TzEQ=
+Date: Mon, 26 Aug 2024 11:17:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-binding: pinctrl: spacemit: add documents for
- K1 SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Yangyu Chen <cyy@cyyself.name>,
- Jesse Taube <jesse@rivosinc.com>, Jisheng Zhang <jszhang@kernel.org>,
- Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>,
- Meng Zhang <zhangmeng.kevin@spacemit.com>, Meng Zhang
- <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20240825-02-k1-pinctrl-v2-0-ddd38a345d12@gentoo.org>
- <20240825-02-k1-pinctrl-v2-1-ddd38a345d12@gentoo.org>
- <d9a925da-2381-4203-a3b6-4cb892039d23@kernel.org>
- <66cbdc2a.050a0220.2d7994.f671SMTPIN_ADDED_BROKEN@mx.google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Subject: Re: [PATCH v3 2/4] dt-bindings: display: ti: Add schema for AM625
+ OLDI Transmitter
+To: Krzysztof Kozlowski <krzk@kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+ Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
+References: <20240716084248.1393666-1-a-bhatia1@ti.com>
+ <20240716084248.1393666-3-a-bhatia1@ti.com>
+ <0144d9b4-e830-44b0-95cd-4d49d5051155@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <66cbdc2a.050a0220.2d7994.f671SMTPIN_ADDED_BROKEN@mx.google.com>
+In-Reply-To: <0144d9b4-e830-44b0-95cd-4d49d5051155@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On 26/08/2024 03:36, Yixun Lan wrote:
-> Hi Krzysztof: 
-> 
-> On 15:48 Sun 25 Aug     , Krzysztof Kozlowski wrote:
->> On 25/08/2024 15:10, Yixun Lan wrote:
->>> Add dt-binding for the pinctrl driver of SpacemiT's K1 SoC.
->>
->>
->> Please use subject prefixes matching the subsystem. You can get them for
->> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->> your patch is touching. For bindings, the preferred subjects are
->> explained here:
->> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
->>
->> It's "dt-bindings:"
-> Ok, will fix in next version
-> 
->>
->>>
->>> Two vendor specific properties are introduced here, As the pinctrl
->>> has dedicated slew rate enable control - bit[7], so we have
->>> spacemit,slew-rate-{enable,disable} for this. For the same reason,
->>> creating spacemit,strong-pull-up for the strong pull up control.
->>
->> Huh, no, use generic properties. More on that below
->>
-> see my reply below
-> 
->>
->>
->>>
->>> Signed-off-by: Yixun Lan <dlan@gentoo.org>
->>> ---
->>>  .../bindings/pinctrl/spacemit,k1-pinctrl.yaml      | 134 +++++++++++++++++
->>>  include/dt-bindings/pinctrl/spacemit,k1-pinctrl.h  | 161 +++++++++++++++++++++
->>>  2 files changed, 295 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
->>> new file mode 100644
->>> index 0000000000000..8adfc5ebbce37
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
->>> @@ -0,0 +1,134 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pinctrl/spacemit,k1-pinctrl.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: SpacemiT K1 SoC Pin Controller
->>> +
->>> +maintainers:
->>> +  - Yixun Lan <dlan@gentoo.org>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: spacemit,k1-pinctrl
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: pinctrl io memory base
->>> +
->>> +patternProperties:
->>> +  '-cfg$':
->>> +    type: object
->>> +    description: |
->>
->> Do not need '|' unless you need to preserve formatting.
->>
-> Ok
->>> +      A pinctrl node should contain at least one subnode representing the
->>> +      pinctrl groups available on the machine.
->>> +
->>> +    additionalProperties: false
->>
->> Keep it before description.
-> Ok
->>
->>> +
->>> +    patternProperties:
->>> +      '-pins$':
->>> +        type: object
->>> +        description: |
->>> +          Each subnode will list the pins it needs, and how they should
->>> +          be configured, with regard to muxer configuration, bias, input
->>> +          enable/disable, input schmitt trigger, slew-rate enable/disable,
->>> +          slew-rate, drive strength, power source.
->>> +        $ref: /schemas/pinctrl/pincfg-node.yaml
->>> +
->>> +        allOf:
->>> +          - $ref: pincfg-node.yaml#
->>> +          - $ref: pinmux-node.yaml#
->>
->> You are duplicating refs.
-> ok, will fix it
->>
->>> +
->>> +        properties:
->>> +          pinmux:
->>> +            description: |
->>> +              The list of GPIOs and their mux settings that properties in the
->>> +              node apply to. This should be set using the K1_PADCONF macro to
->>> +              construct the value.
->>> +            $ref: /schemas/pinctrl/pinmux-node.yaml#/properties/pinmux
->>
->> Hm why you need the ref?
->>
-> will drop it
->>> +
->>> +          bias-disable: true
->>> +
->>> +          bias-pull-up: true
->>> +
->>> +          bias-pull-down: true
->>> +
->>> +          drive-strength-microamp:
->>> +            description: |
->>> +              typical current when output high level, but in mA.
->>> +              1.8V output: 11, 21, 32, 42 (mA)
->>> +              3.3V output: 7, 10, 13, 16, 19, 23, 26, 29 (mA)
->>> +            $ref: /schemas/types.yaml#/definitions/uint32
->>> +
->>> +          input-schmitt:
->>> +            description: |
->>> +              typical threshold for schmitt trigger.
->>> +              0: buffer mode
->>> +              1: trigger mode
->>> +              2, 3: trigger mode
->>> +            $ref: /schemas/types.yaml#/definitions/uint32
->>> +            enum: [0, 1, 2, 3]
->>> +
->>> +          power-source:
->>> +            description: external power supplies at 1.8v or 3.3v.
->>> +            enum: [ 1800, 3300 ]
->>> +
->>> +          slew-rate:
->>> +            description: |
->>> +              slew rate for output buffer
->>> +              0, 1: Slow speed
->>
->> Hm? Surprising, 0 is slow speed?
->>
-> from docs, section 3.3.2.2 MFPR Register Description
-> 0, 1 are same, both for slow speed
-> https://developer.spacemit.com/documentation?token=An1vwTwKaigaXRkYfwmcznTXned
+Hi Krzysztof,
 
-Don't store here register value.
+Thank you for the reviewing the patches.
+
+
+On 7/21/24 21:06, Krzysztof Kozlowski wrote:
+> On 16/07/2024 10:42, Aradhya Bhatia wrote:
+>> The OLDI (transmitters) TXes do not have registers of their own, and are
+>> dependent on the source video-ports from the DSS to provide
+>> configuration data. This hardware doesn't directly sit on the internal
+>> bus of the SoC, but does so via the DSS. Hence, the OLDI TXes are
+>> supposed to be child nodes under the DSS, and not independent devices.
+>>
+>> Two of the OLDI TXes can function in tandem to output dual-link OLDI
+>> output, or cloned single-link outputs. In these cases, one OLDI will be
+>> the primary OLDI, and the other one, a companion.
+>>
+>> The OLDI functionality is further supported by a system-control module,
+>> which contains a few registers to control OLDI IO power and
+>> characteristics.
+>>
+>> Add devicetree binding schema for AM625 OLDI TXes.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>  .../bindings/display/ti/ti,am625-oldi.yaml    | 153 ++++++++++++++++++
+>>  MAINTAINERS                                   |   1 +
+>>  2 files changed, 154 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+>> new file mode 100644
+>> index 000000000000..0a96e600bc0b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+>> @@ -0,0 +1,153 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/ti/ti,am625-oldi.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments AM625 OLDI Transmitter
+>> +
+>> +maintainers:
+>> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> +  - Aradhya Bhatia <a-bhatia1@ti.com>
+>> +
+>> +description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+
+Okay!
 
 > 
->>> +              2: Medium speed
->>> +              3: Fast speed
->>> +            $ref: /schemas/types.yaml#/definitions/uint32
->>> +            enum: [0, 1, 2, 3]
->>> +
->>> +          spacemit,slew-rate-enable:
->>> +            description: enable slew rate.
->>
->> The presence of slew-rate enables it, doesn't it?
->>
-> yes, this should work, I will take this approach, thanks
+>> +  The AM625 TI Keystone OpenLDI transmitter (OLDI TX) supports serialized RGB
+>> +  pixel data transmission between host and flat panel display over LVDS (Low
+>> +  Voltage Differential Sampling) interface. The OLDI TX consists of 7-to-1 data
+>> +  serializers, and 4-data and 1-clock LVDS outputs. It supports the LVDS output
+>> +  formats "jeida-18", "jeida-24" and "vesa-18", and can accept 24-bit RGB or
+>> +  padded and un-padded 18-bit RGB bus formats as input.
+>> +
+>> +properties:
+>> +  reg:
+>> +    maxItems: 1
+>> +
 > 
->>> +            type: boolean
->>> +
->>> +          spacemit,slew-rate-disable:
->>> +            description: disable slew rate.
->>> +            type: boolean
->>
->> Just use slew-rate, 0 disable, some value to match real slew-rate.
->>
-> sounds good to me, since 0, 1 indicate same meaning, can re-use 0 for
-> disabling slew rate.
+> How does it even work without compatible? How is this schema selected?
+> If by part of your next patch, then this is not a proper split - this
+> patch itself is noop. Squash the patches.
 > 
->>> +
->>> +          spacemit,strong-pull-up:
->>> +            description: enable strong pull up.
->>
->> Do not duplicate the property name in description. You did not say
->> anything useful here. What is "strong"? bias-pull-up takes also an argument.
->>
-> there is a dedicated strong pull bit[3] for I2C, SD card kinds of pad
-> I don't know how 'strong' it is if in ohms, will see if can get
-> more info on this (may expand the description)
-> 
-> I think using 'bias-pull-up' property with argument should also work,
-> but it occur to me it's more intuitive to introduce a property here, which
-> reflect the underlying hardware functionality. this is similar to starfive's jh7100
-> bindings/pinctrl/starfive,jh7100-pinctrl.yaml:154
-> (refer to exist code doesn't mean always correct, so I need advice here)
 
-No, avoid introducing properties which duplicate existing generic ones.
+Yes, it is supposed to be picked like the next patch does it. I can
+squash these both.
 
-Same story was with qualcomm and it was possible to use specific value.
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: serial clock input for the OLDI transmitters
+>> +
+>> +  clock-names:
+>> +    const: s_clk
+> 
+> Drop _clk or name it correctly.
+
+Alright!
 
 > 
-> I will keep this property unless there is objection, please let me know
+>> +
+>> +  ti,companion-oldi:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      phandle to companion OLDI transmitter. This property is mandatory for the
+>> +      primarty OLDI TX if the OLDI TXes are expected to work either in dual-lvds
+>> +      mode or in clone mode. This property should point to the secondary OLDI
+>> +      TX.
+>> +
+>> +  ti,secondary-oldi:
+>> +    type: boolean
+>> +    description: Boolean property to mark an OLDI TX as secondary node.
 > 
->>> +            type: boolean
->>> +
->>> +        required:
->>> +          - pinmux
->>> +
->>> +        additionalProperties: false
->>
->> This goes up, before description.
->>
-> Ok
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/pinctrl/spacemit,k1-pinctrl.h>
->>> +
->>> +    soc {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        pinctrl@d401e000 {
->>> +            compatible = "spacemit,k1-pinctrl";
->>> +            reg = <0x0 0xd401e000 0x0 0x400>;
->>> +            #pinctrl-cells = <2>;
->>> +            #gpio-range-cells = <3>;
->>
->> This wasn't ever tested... :(
->> ...
-> will drop it
+> Why? Lack companion tells it, doesn't it?
 
-Test your patches instead.
+A lack of companion doesn't mean secondary-OLDI automatically, actually.
+
+There is also a possible configuration where 2 OLDI TXes could be
+individually connected to 2 different sources => 2x single Link
+configuration. The OLDI TXes would then work independently.
+
+> 
+>> +
+>> +  ti,oldi-io-ctrl:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      phandle to syscon device node mapping OLDI IO_CTRL registers found in the
+>> +      control MMR region. This property is needed for OLDI interface to work.
+> 
+> "This property is needed for OLDI interface to work." tells nothing.
+> Everything is needed for everything to work. Be specific.
+> 
+
+Yes! Will fix this.
+
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description: Parallel RGB input port
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description: LVDS output port
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        ti,secondary-oldi: true
+> 
+> This does not work... Test your schema.
+> 
+
+I tested again just now. At least the schema check didn't report any
+error. I used the v2024.05 dtschema too.
+
+This github gist[0] captures all details of this test.
+
+Could you instead please elaborate what maybe wrong here, and I will try
+to fix that.
 
 
+>> +    then:
+>> +      properties:
+>> +        ti,companion-oldi: false
+>> +        ti,oldi-io-ctrl: false
+>> +        clocks: false
+>> +        clock-names: false
+>> +
+>> +    else:
+>> +      required:
+>> +        - ti,oldi-io-ctrl
+>> +        - clocks
+>> +        - clock-names
+>> +
+>> +required:
+>> +  - reg
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>> +
+>> +    oldi_txes {
+> 
+> No underscores in node names.
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Best regards,
-Krzysztof
+Right. Will make the name generic.
 
+> 
+> 
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        oldi: oldi@0 {
+> What is the "reg" for?
+
+The reg is for indexing purposes so that the driver can distinguish
+between which OLDI TX is under question. Since, the syscon controller
+has different power control registers and bits for different OLDIs - its
+important for the driver to be able to tell one from another.
+
+
+Regards
+Aradhya
+
+
+[0]: Github Gist of schema testing for patch 2/4.
+https://gist.github.com/aradhya07/e3776cb10ee64c33405db5609cbd2e4f
 
