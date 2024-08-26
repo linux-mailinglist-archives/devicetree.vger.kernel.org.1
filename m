@@ -1,120 +1,210 @@
-Return-Path: <devicetree+bounces-96641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1534995EE2E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:13:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8EA95EE45
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4B5FB208A2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:13:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3465CB22EB8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82041146A61;
-	Mon, 26 Aug 2024 10:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1726146A97;
+	Mon, 26 Aug 2024 10:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dT11bOid"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="OEI+JDxC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AE5146A71;
-	Mon, 26 Aug 2024 10:12:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5752714430A
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 10:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724667178; cv=none; b=k4+ahsY43v5j8IonwrGTT/zzXwgJ630jDAaATjA2NUM5QrkGFoPgtrey5ejDt8A4Uo4oT3H9CsIhJ6tcj+gnRRm8YAbBOXh2Phs9IctSs+U1gL647//2zmaD+IkZeIjzdSjLyGpUEhJK8S7Fj2Lm0gP/6lsh84wLvK+yXBiSNYQ=
+	t=1724667351; cv=none; b=reCK+9RYTg1y8foibyS7hN4yuM5AAcf/3ROHyro2Lb05g4O9WCkkLrrSNu1K+WJlFtflCt6Wf2U8/NYWN65unPSB/03AwCFdjSI4nDU1SZvLgx8zJjBbQ6T3ai0HeE9WkFGxERaWOEDjhZYUUJk/tNtCd7vGgA4PhBHZzQ8KlSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724667178; c=relaxed/simple;
-	bh=Um2oUufsq5SYlu4nyvLw6FGEmfUYMQ4wO8GqEDGg98o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h1CII05eN4YDo/OsO97r0fZo8BPETyxzKXf7ov0Cpb1F9LO8ZaV/Bm2izp62y211HYEU5bpdKLQ3DtDhXFVzd3Ab2lTsMfbcBjwJTiNqD2AZWuG4nyFFzPdDp8Kk2xk65JViOZZIvLp6h31ZP+ROnhV1MNzVCu2eXzovUUy0BtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dT11bOid; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724667176; x=1756203176;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Um2oUufsq5SYlu4nyvLw6FGEmfUYMQ4wO8GqEDGg98o=;
-  b=dT11bOidNbP8M9/p8UUa287IqRJELWvUpCE1WO0PCPydgKC/T7UswU7O
-   1ZrCpBd5kCVjIn/PltcYJ92TH6Nf1DrbVAnc93jV01BGhzdyrnljYjuKH
-   5BrhqqwllKjCyqMd6lmLCzu9FjE6tPu7ihTtaYLifpYQs8BiE1CF0dCiz
-   bYjxwSCgjwqixU8QPjk6KI4tIOVLs0AmugAIFhd1I9f3mt08Bfk7mdfa2
-   DpoP65EuiZr7HDdUwBZERtmsX3pW5evihM9DnDwcnqhTR5pLuvCsXzNNH
-   ZCMynms3WCzMu8onQZuUGnyWPbFf8tmsz5CtURAKDLNp2SilKG/uxI0ZF
-   A==;
-X-CSE-ConnectionGUID: 4LYggGndT2u80+ZrZP8PpA==
-X-CSE-MsgGUID: yURbHQM7Q3qWk6tn1I7GUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="26844542"
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="26844542"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:12:56 -0700
-X-CSE-ConnectionGUID: nw9oOquMQYG540OfJTKHcA==
-X-CSE-MsgGUID: +clD/V5tS2iJW4gq63RHzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="62769318"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:12:52 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1siWiN-00000001pOS-3Geq;
-	Mon, 26 Aug 2024 13:12:47 +0300
-Date: Mon, 26 Aug 2024 13:12:47 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] iio: pressure: bmp280: Remove config error check
- for IIR filter updates
-Message-ID: <ZsxVH3TG2vs38Brw@smile.fi.intel.com>
-References: <20240823181714.64545-1-vassilisamir@gmail.com>
- <20240823181714.64545-4-vassilisamir@gmail.com>
- <Zsjf0bVLZyPqBxru@smile.fi.intel.com>
- <20240824111806.GC9644@vamoiridPC>
+	s=arc-20240116; t=1724667351; c=relaxed/simple;
+	bh=dqF9qz6t/GVpGmum6vuUYfrUMXNhwX8AG3M4+n1M7ZI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VrReNy9dwApXlU2kmSG+1yxjYm8WUsWk3zhUOZV+8sL17ULxtB1hu8p1AhTq4qXj0OIBQzLzFaACCsILTmdVhqb0WFXO3a4ffXpC/sVl7kDDEjRiWFK89QKG25eJ07GTNvPbkuHZIF5KC7v0mrK2+5nys56RXVKa6+PPOzSQrYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=OEI+JDxC; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f50966c478so10676651fa.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 03:15:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1724667347; x=1725272147; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nXSb7P5yQsC6ZA7aZwkzK/D+oEX3tz1a/6VEPbOOF1M=;
+        b=OEI+JDxC340hJbyzaELF9aZjkFT4nnaE1jma3SYSKf8FaDgA8sj2hzwybWxynxWA5X
+         MgON+hpgEbKzURuwi8d3MBJ0Kt82nbfI8ZlyoqEmQozz3gmDJAuM64rbD2K3aR77C3AV
+         eROpf5Q0KDSSNQMz4xScqqIHp9FFyA4M/Up6zMLY9HVH0RuZUzVuRa0hsik+ixO52Tyb
+         jetbHtnX/vAHZjZMenomQw3dxEYAAjaz9+PnG4E7GEpg+ZincehP7SFzQyccplWrKTjc
+         1bLx8Tu+9B23afbvzr66tCsDhNQ02DqmhgGeviPjyhL+fxBZ16refNaKBCLPFxI8Ftsz
+         O9Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724667347; x=1725272147;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nXSb7P5yQsC6ZA7aZwkzK/D+oEX3tz1a/6VEPbOOF1M=;
+        b=up2aKMFNDIgXXVJz6wFzWJKO3Nj5uNE/nIw0n7JTxfd3WyMOPWLzsH+qZLI5IGtLz2
+         LdbVlK11+q+QFKVvdlNbc3DCDSDpTTSVkr2bWY278wR1BwdeMwoNHs7LUVUL0mLLjjCf
+         xAt7juhjP4f2kWvQm+N4Gyc71Mg+dRrnLGxaw2NU4KktOsAxkT7FmGJqC8OhCJ2AH4wg
+         2+uWzylW0aFghelWt/Msp17pX89xK6nFbUNkSgwcNhz2/jr4ryZPyOKIjTR4B9bwCW7D
+         95FyHretcU/2aiZtq6iYJ+E99cqSAFuLh/N1gRNjnSUI+vicvYztUFk2zH0C1WDUspN7
+         Z2mg==
+X-Forwarded-Encrypted: i=1; AJvYcCUalnxnOAtGabAOfY2JB43M510bipXKWDXXjQGOvOWwFcegCeBYkDKEApKhad/GwsPwmdDhRhVufso+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxC+n2qWKZA80UgHJN/opZIoLeaebAJ84Vok+hW1wn/KVGDkdca
+	WEgMYkZZ+k2LfcaOpEs4h5ELHMcxTpEqF5agbpL306hLSQzk9X8rvt3FMhOrMdQ=
+X-Google-Smtp-Source: AGHT+IGnOO+pYmBeCnoRQo4bouYucQfop3nBZsepSSurhHBVuFJ58XyC2lvaGwZIfEzC6OWNRHTbyQ==
+X-Received: by 2002:a05:651c:198b:b0:2f0:1a19:f3f1 with SMTP id 38308e7fff4ca-2f4f48f0feamr66567071fa.7.1724667346682;
+        Mon, 26 Aug 2024 03:15:46 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.144])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c04a3e8f88sm5421649a12.42.2024.08.26.03.15.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Aug 2024 03:15:46 -0700 (PDT)
+Message-ID: <7b16791b-0d7b-49a1-82aa-c4db99ff2bfd@tuxon.dev>
+Date: Mon, 26 Aug 2024 13:15:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240824111806.GC9644@vamoiridPC>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/16] dt-bindings: soc: renesas: renesas,rzg2l-sysc: Add
+ #reset-cells for RZ/G3S
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
+ magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com,
+ sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com,
+ biju.das.jz@bp.renesas.com, ulf.hansson@linaro.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240822152801.602318-3-claudiu.beznea.uj@bp.renesas.com>
+ <20240822-vanilla-enigmatic-f0b05ecca4b6@spud>
+ <0d8b1322-cf15-4ed9-b958-06516bbb64c7@tuxon.dev>
+ <20240823-plywood-unfixed-d8d8a2d93f14@spud>
+ <5eae2ddb-2a7b-4c1d-a7f7-41fb39058de1@tuxon.dev>
+ <20240823-dilute-juggle-7e2d43b8b630@spud>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20240823-dilute-juggle-7e2d43b8b630@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Aug 24, 2024 at 01:18:06PM +0200, Vasileios Amoiridis wrote:
-> On Fri, Aug 23, 2024 at 10:15:29PM +0300, Andy Shevchenko wrote:
-> > On Fri, Aug 23, 2024 at 08:17:10PM +0200, Vasileios Amoiridis wrote:
 
-...
 
-> > > +	ret = regmap_update_bits(data->regmap, BMP580_REG_DSP_IIR,
-> > > +				 BMP580_DSP_IIR_PRESS_MASK |
-> > > +				 BMP580_DSP_IIR_TEMP_MASK, reg_val);
-> > 
-> > Better to split on logical bounds
-> > 
-> > 	ret = regmap_update_bits(data->regmap, BMP580_REG_DSP_IIR,
-> > 				 BMP580_DSP_IIR_PRESS_MASK | BMP580_DSP_IIR_TEMP_MASK,
-> > 				 reg_val);
+On 23.08.2024 19:33, Conor Dooley wrote:
+> On Fri, Aug 23, 2024 at 07:26:42PM +0300, claudiu beznea wrote:
+>> On 23.08.2024 19:18, Conor Dooley wrote:
+>>> On Fri, Aug 23, 2024 at 10:54:06AM +0300, claudiu beznea wrote:
+>>>> Hi, Conor,
+>>>>
+>>>> On 22.08.2024 19:42, Conor Dooley wrote:
+>>>>> On Thu, Aug 22, 2024 at 06:27:47PM +0300, Claudiu wrote:
+>>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>>
+>>>>>> The RZ/G3S System controller has registers to control signals that need
+>>>>>> to be de-asserted/asserted before/after different SoC areas are power
+>>>>>> on/off. This signals are implemented as reset signals. For this document
+>>>>>> the #reset-cells property.
+>>>>>>
+>>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>> ---
+>>>>>>  .../bindings/soc/renesas/renesas,rzg2l-sysc.yaml | 16 ++++++++++++++++
+>>>>>>  1 file changed, 16 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+>>>>>> index 4386b2c3fa4d..6b0bb34485d9 100644
+>>>>>> --- a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+>>>>>> @@ -42,12 +42,28 @@ properties:
+>>>>>>        - const: cm33stbyr_int
+>>>>>>        - const: ca55_deny
+>>>>>>  
+>>>>>> +  "#reset-cells":
+>>>>>> +    const: 1
+>>>>>> +
+>>>>>>  required:
+>>>>>>    - compatible
+>>>>>>    - reg
+>>>>>>  
+>>>>>>  additionalProperties: false
+>>>>>>  
+>>>>>> +allOf:
+>>>>>> +  - if:
+>>>>>> +      properties:
+>>>>>> +        compatible:
+>>>>>> +          contains:
+>>>>>> +            const: renesas,r9a08g045-sysc
+>>>>>> +    then:
+>>>>>> +      required:
+>>>>>> +        - "#reset-cells"
+>>>>>
+>>>>> Given this is new required property on an existing platform, I'd expect
+>>>>> some mention of why it used to be okay to not have this but is now
+>>>>> required. Did firmware or a bootloader stage take things out of reset?
+>>>>
+>>>> On previous SoCs the SYS controller has no support for controlling the
+>>>> signals going to different peripherals (USB, PCIE in case of RZ/G3S).
+>>>> I'll add a note about this on next version.
+>>>
+>>> My initial thought here wasn't about previous SoCs though, it was
+>>> because you didn't add the compatible in this series for /this/ SoC.
+>>
+>> RZ/G3S compatible is already present in this file:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml#n26
 > 
-> This goes beyond the 80 char limit. I know that there is the relaxed
-> limit of 100 chars but I didn't feel it was more readable like this.
-> I could definitely use it though, thanks!
-
-The readability has a priority over that limit. That's even mentioned in
-the documentation besides the relaxed limit.
-
--- 
-With Best Regards,
-Andy Shevchenko
+> I know, first thing I did when I read the original patch was open the
+> file ;)
+> I don't care about the old SoCs, cos you're not applying the property to
+> them, so what's changed between SoCs isn't really relevant. It's a mention
+> of why, on this SoC, it is safe to add new required properties that I want.
 
 
+> 
+> AFAIU the answer is that no consumer of the resets existed before, so
+
+That's true.
+
+> there's not some special state there, and I am guessing that the new
+> sysc driver you're adding isn't going to fail to probe if there are no
+> resets, 
+
+That's true.
+
+it just won't register a reset controller?
+
+It will register it but,
+
+the new sysc driver is going to probe only for this SoC (RZ/G3S). On RZ/G3S
+we have 2 resets. These well be registered unconditionally, currently, only
+for RZ/G3S. If there will be no DT users for it then it should be no
+problem, AFAICT.
+
+SYSC variants have common features b/w different SoC variants (one of them
+being chip identification). The feature implemented though reset controller
+in this series is not common but particular to RZ/G3S.
+
+When the SYSC will be extended for other SoCs the reset driver registration
+would have to be adapted to not be registered. At the moment, as the SYC is
+compatible only with RZ/G3S and the reset driver is registered on auxiliary
+bus though SYSC there is no restriction, reset is registered all the time,
+but SYSC is only compatible with RZ/G3S.
+
+> Which is fine, cos all
+> devicetrees that have the new peripherals will have #reset-cells etc.
+> 
+>>> What's worth noting isn't about the prior SoCs, it is about what makes
+>>> it okay for this one.
 
