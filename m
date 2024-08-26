@@ -1,110 +1,296 @@
-Return-Path: <devicetree+bounces-96617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB6295ED1D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:28:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4839A95ED19
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C2A5281193
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:28:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3397282323
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9D6146581;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A90145B35;
 	Mon, 26 Aug 2024 09:28:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hz0c6MO8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157A213AD3F;
-	Mon, 26 Aug 2024 09:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDC6145B1F;
+	Mon, 26 Aug 2024 09:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724664483; cv=none; b=FeQVxYszf4QpITN5mri+fK6H1aJDpu7PVlADiF19e6SywYvjqlyH+WEBipzXDvHtFxDP621nZkW7gAInAtx1fKrYjwisvvfDfhyg0Be0XdK+a6udsDe9MbacQxbFK3y4aYzCGaoBeLkuFO+k7FVky1x2KJahcWEgvO9XlmfAZjg=
+	t=1724664483; cv=none; b=oapkwj/RHLm9Am3HbogJsLE+DcdYnznsCQK7S+ER8PdfhhMrJRlHKNkZrNfCYcHRdc9LLHaOGK4YWADLOAsPYQY/xSAeNwDmwzlrU19IZahXlxSw/ZJ3e0RBElNlPDSiQZhJOTb0Vgu38P1QXXEQy+PCfQBTDpVNgBL4u2gvjAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1724664483; c=relaxed/simple;
-	bh=sSaUhn+I2Wf3h5Ge42v4qqXN69VHOAmehNEkyYHnBnU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YtB8KOKtwbHhZh3Ne+2S2Nfq/De1BNdz7z0fNpnOOMmvLHLINW/XWKABr6IDZPzVVUYsxsfOPedHsD1LN/TYs/TXIRqDBw9clhU+1MesNzDrHaxaLELER1/aDUp4avhHkRsXXKPwH7Eout8W9rGuYWhsmedVyUAvbSTr1TZC7B8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e162df8bab4so3719423276.0;
-        Mon, 26 Aug 2024 02:28:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724664481; x=1725269281;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bNMbfrbxS48+aNmq0d91jfV6HNdOeE787OSvLTVzG2U=;
-        b=iEMJS0xPDUODGsARR77i5gFcIpFKK+JSKWjZSe0JQkpfULLhp3RMEP9AhdDSDhtA2W
-         OBQ+dMGCQ2Sg3eq3EWj4U0fuArrFWncUkHi0GXVMxnyuKzlh3Ffwi8JL9Xq6pqHJBX5P
-         q6iHao3JehQYj+xR7uIg/yuQV9mgJ5Zumb/jNxjLqqnGNdkWA6XcNm10cv3q7+mV0DdE
-         g440cO7jQ8tvDwUmZmP35RV3qPRw39hqdRSIzGmgD6XKuuGc9FOhIRFASz6S8ckq7gZ2
-         W1VqFmnf1RUXXVVPKprr9/Doar5KXYWBm6uPT/grXSR5sKd6dxfSCPQM4njpWkVdGx4I
-         e0UA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+o0tMtjwwSLD2pDzuMIX22ev38IgVQTtHDQtLj6eRSYARrHmTzexNW59UVC7R8Xy8NknfMWWCYl1g@vger.kernel.org, AJvYcCVpmCZgaeQ72eD+Tf3DxBuQdzZgEgtarQ4VrFkGvJJNsN+ZEkWBGfs/aiC2SkL08ahg/6t7klS7MNrF8+eg4y/mnGk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjeCEjUBtwD8J35YwQDnKazvHhaIrxftc5S5CjK3pVRB19DN+F
-	tbn6ifuLHxWHeP/LfgvCSgU9yQx+zoZgy+HDIL0t4EfXUuSFrCUmC4aSiNON
-X-Google-Smtp-Source: AGHT+IHe2SCagiqw1zbl8lxRhd8+LDzJuHlQjPk16GWhHoTiyLU7mFlGptUuNzx5nGLGfwBBZlKWbA==
-X-Received: by 2002:a05:6902:1109:b0:e16:3d01:3fc6 with SMTP id 3f1490d57ef6-e17a83d8c4dmr12223047276.21.1724664480684;
-        Mon, 26 Aug 2024 02:28:00 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e178e43fa60sm1898978276.5.2024.08.26.02.28.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Aug 2024 02:28:00 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-69df49d92b8so35555067b3.3;
-        Mon, 26 Aug 2024 02:28:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU4nDmzyoG1SbRuG4Y6pjiMiAvCi3kuJEXLeSp3u/papu7BJvDQEmuGs6tyUt5UMgnQXsK3Oc849gsL@vger.kernel.org, AJvYcCUsIyp1sqs2dMZ8rSNpmGPgUqOJHs86612MEo7jiw7kBq95XJi1qJSiem+4VzX3BsdXE/X7MGzcWN1nc6bJzo6uOBM=@vger.kernel.org
-X-Received: by 2002:a05:690c:f01:b0:6b1:1c30:7ea1 with SMTP id
- 00721157ae682-6c62538d722mr114870897b3.8.1724664480212; Mon, 26 Aug 2024
- 02:28:00 -0700 (PDT)
+	bh=tOUgInOKtpfGsDq0XN/aCDzC3Gyz0VVDNbURfDQgMks=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n1CN4kTG8tRqaD0Bqd6HXIMmRSG+rXzI0gVtALoff2TYMKFUfxYdI6tunDcy7IqEtzHdYIXiWCd2uucNI14jtPahyMP3Ys5jamfe39M2wQQcHA4JTen1G1CD0m0jwWHIhSf38txG7Iw5oMrRHLalPUq2fBHJ+KB6Z5pxtc3aNSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hz0c6MO8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E55C5E892;
+	Mon, 26 Aug 2024 09:27:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724664482;
+	bh=tOUgInOKtpfGsDq0XN/aCDzC3Gyz0VVDNbURfDQgMks=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hz0c6MO81u6Gs7ouPBR98N06TePtBFRnmnoW46fodLjllpo/FgETUWmWD4S6UXYM1
+	 WsqxsMg892SRYrpZmsRwqklTtkIOzIvgfbuXCUDFij4lwLdiPw5Nmgx1TcFFm2lgJg
+	 RkR/ZBZJOX6QBYA8ntWVbBnyeUA+KshZWtfRcIC20JwvGe9kY1XXvVDZSaN/vCkhRb
+	 fhqASgyL+a/SxhvebD/3caGZU7ZyKWNZfpZXMhae99JiyDgV4MdY8yZcMitPccdMUc
+	 QAIxbNK5uahpxNSC/viCxJ5O6LjFzU5Mce/p19dy4KyoU2dHPtJlosbnqXPsOSoTqU
+	 7gkOWKdfsz4Yg==
+Date: Mon, 26 Aug 2024 10:27:48 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Esteban Blanc <eblanc@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Corbet <corbet@lwn.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH 4/6] iio: adc: ad4030: add support for ad4630-24 and
+ ad4630-16
+Message-ID: <20240826102748.4be0b642@jic23-huawei>
+In-Reply-To: <20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
+References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
+	<20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240826090803.56176-1-biju.das.jz@bp.renesas.com> <20240826090803.56176-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240826090803.56176-3-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 26 Aug 2024 11:27:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUfn_bAVswzSQZJKOy2yojwt9LH-cLT_KH9_C-3ojGz1A@mail.gmail.com>
-Message-ID: <CAMuHMdUfn_bAVswzSQZJKOy2yojwt9LH-cLT_KH9_C-3ojGz1A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: rzg2lc-smarc: Enable HDMI audio
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 26, 2024 at 11:08=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
-> Enable HDMI audio on RZ/G2LC SMARC EVK. Set SW 1.5 to OFF
-> position on the SoM module to turn on HDMI audio.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Thu, 22 Aug 2024 14:45:20 +0200
+Esteban Blanc <eblanc@baylibre.com> wrote:
+
+> AD4630-24 and AD4630-16 are 2 channels ADCs. Both channels are
+> interleaved bit per bit on SDO line.
+> 
+> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
+Ah. I should have looked on in the patch set.  This obviously answers
+question about plans to support more parts.
+
+It feels like you made various improvements to naming etc
+in this patch and then forgot to push them back to the earlier
+patches.
+
+Jonathan
+
 > ---
-> v1->v2:
->  * Dropped deleting ssi0 port when SW_I2S0_I2S1=3D=3D0 as it enables only
->    when SW_I2S0_I2S1=3D=3D1.
+>  drivers/iio/adc/ad4030.c | 197 +++++++++++++++++++++++++++++++++++++++++------
+>  1 file changed, 173 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad4030.c b/drivers/iio/adc/ad4030.c
+> index e1e1dbf0565c..dbba5287b630 100644
+> --- a/drivers/iio/adc/ad4030.c
+> +++ b/drivers/iio/adc/ad4030.c
+> @@ -32,6 +32,8 @@
+>  #define AD4030_REG_PRODUCT_ID_H				0x05
+>  #define AD4030_REG_CHIP_GRADE				0x06
+>  #define     AD4030_REG_CHIP_GRADE_AD4030_24_GRADE	0x10
+> +#define     AD4030_REG_CHIP_GRADE_AD4630_16_GRADE	0x03
+> +#define     AD4030_REG_CHIP_GRADE_AD4630_24_GRADE	0x00
+>  #define     AD4030_REG_CHIP_GRADE_MASK_CHIP_GRADE	GENMASK(7, 3)
+>  #define AD4030_REG_SCRATCH_PAD			0x0A
+>  #define AD4030_REG_SPI_REVISION			0x0B
+> @@ -159,10 +161,14 @@ struct ad4030_state {
+>  	struct {
+>  		union {
+>  			u8 raw[AD4030_MAXIMUM_RX_BUFFER_SIZE];
+> -			struct {
+> -				s32 val;
+> -				u32 common;
+> -			} __packed buffered[AD4030_MAX_HARDWARE_CHANNEL_NB];
+> +			union {
+> +				s32 diff[AD4030_MAX_HARDWARE_CHANNEL_NB];
+> +				struct {
+> +					s32 diff;
+> +					u32 common;
+> +				} __packed
+Unless you are going to do something complex later, a union of unions is
+just a union so can flatten this I think.  Also no need for __packed
+for array of single size as those are always packed.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.12.
+> +				buffered_common[AD4030_MAX_HARDWARE_CHANNEL_NB];
 
-Gr{oetje,eeting}s,
+This style is confusing to read.  If you did need the __packed then it would be
+worth pushing to previous line, but you don't.
+In general feels like some of these renames should have been in the earlier
+patch.
 
-                        Geert
+> +			};
+>  		};
+>  	} rx_data __aligned(IIO_DMA_MINALIGN);
+>  };
+> @@ -171,7 +177,7 @@ struct ad4030_state {
+>  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),			\
+>  	.type = IIO_VOLTAGE,						\
+>  	.indexed = 1,							\
+> -	.channel = _idx * 2 + 2,					\
+> +	.channel = _idx * 3 + 2,					\
+Odd change. Wrong patch? 
+>  	.scan_index = _idx * 2 + 1,					\
+>  	.extend_name = "Channel" #_idx " common byte part",		\
+>  	.scan_type = {							\
+> @@ -194,8 +200,8 @@ struct ad4030_state {
+>  		BIT(IIO_CHAN_INFO_CALIBSCALE),				\
+>  	.type = IIO_VOLTAGE,						\
+>  	.indexed = 1,							\
+> -	.channel = _idx * 2,						\
+> -	.channel2 = _idx * 2 + 1,					\
+> +	.channel = _idx * 3,						\
+> +	.channel2 = _idx * 3 + 1,					\
+>  	.scan_index = _idx * 2,						\
+>  	.extend_name = "Channel" #_idx " differential part",		\
+>  	.differential = true,						\
+> @@ -412,7 +418,7 @@ static int ad4030_set_avg_frame_len(struct iio_dev *dev, unsigned int avg_len)
+>  static bool ad4030_is_common_byte_asked(struct ad4030_state *st,
+>  					unsigned int mask)
+>  {
+> -	/* Common byte channel is after the "real" differential sample channel */
+> +	/* Common byte channels are after each differential channel */
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Just use that comment in earlier patch to avoid noise.
+Each can incorporate 1 even if it's a bit odd to read.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>  	return mask & AD4030_COMMON_BYTE_CHANNELS_FILTER;
+>  }
+>  
+
+> +/*
+> + * @brief Descramble 2 32bits numbers out of a 64bits. The bits are interleaved:
+> + * 1 bit for first number, 1 bit for the second, and so on...
+> + */
+> +static void ad4030_extract_interleaved(u8 *src, u32 *ch0, u32 *ch1)
+> +{
+> +	u8 h0, h1, l0, l1;
+> +	u32 out0, out1;
+> +	u8 *out0_raw = (u8 *)&out0;
+> +	u8 *out1_raw = (u8 *)&out1;
+> +
+> +	for (int i = 0; i < 4; i++) {
+> +		h0 = src[i * 2];
+> +		l1 = src[i * 2 + 1];
+> +		h1 = h0 << 1;
+> +		l0 = l1 >> 1;
+> +
+> +		h0 &= 0xAA;
+> +		l0 &= 0x55;
+> +		h1 &= 0xAA;
+> +		l1 &= 0x55;
+> +
+> +		h0 = (h0 | h0 << 001) & 0xCC;
+> +		h1 = (h1 | h1 << 001) & 0xCC;
+> +		l0 = (l0 | l0 >> 001) & 0x33;
+> +		l1 = (l1 | l1 >> 001) & 0x33;
+> +		h0 = (h0 | h0 << 002) & 0xF0;
+> +		h1 = (h1 | h1 << 002) & 0xF0;
+> +		l0 = (l0 | l0 >> 002) & 0x0F;
+> +		l1 = (l1 | l1 >> 002) & 0x0F;
+> +
+> +		out0_raw[i] = h0 | l0;
+> +		out1_raw[i] = h1 | l1;
+> +	}
+> +
+> +	*ch0 = out0;
+> +	*ch1 = out1;
+> +}
+> +
+>  static int ad4030_conversion(struct ad4030_state *st,
+>  			     const struct iio_chan_spec *chan)
+>  {
+> @@ -460,12 +517,21 @@ static int ad4030_conversion(struct ad4030_state *st,
+>  	if (ret)
+>  		return ret;
+>  
+> -	if (st->mode != AD4030_OUT_DATA_MD_24_DIFF_8_COM)
+> +	if (st->chip->num_channels == 2)
+> +		ad4030_extract_interleaved(st->rx_data.raw,
+> +					   &st->rx_data.diff[0],
+> +					   &st->rx_data.diff[1]);
+> +
+> +	if (st->mode != AD4030_OUT_DATA_MD_16_DIFF_8_COM &&
+> +	    st->mode != AD4030_OUT_DATA_MD_24_DIFF_8_COM)
+>  		return 0;
+>  
+>  	byte_index = BITS_TO_BYTES(chan->scan_type.realbits);
+> -	for (i = 0; i < st->chip->num_channels; i++)
+> -		st->rx_data.buffered[i].common = ((u8 *)&st->rx_data.buffered[i].val)[byte_index];
+> +	/* Doing it backward to avoid overlap when reordering */
+> +	for (i = st->chip->num_channels - 1; i > 0; i--) {
+> +		st->rx_data.buffered_common[i].diff = st->rx_data.diff[i];
+> +		st->rx_data.buffered_common[i].common = ((u8 *)&st->rx_data.diff[i])[byte_index];
+> +	}
+
+I wonder if doing it in place is actually worthwhile.  Maybe unpack into a second
+array? That is still fairly small and may make code easier to read.
+
+
+>  
+>  	return 0;
+>  }
+
+...
+
+>  
+> +static const unsigned long ad4630_channel_masks[] = {
+> +	/* Differential only */
+> +	BIT(0) | BIT(2),
+> +	/* Differential with common byte */
+> +	GENMASK(3, 0),
+The packing of data isn't going to be good. How bad to shuffle
+to put the two small channels next to each other?
+Seems like it means you will want to combine your deinterleave
+and channel specific handling above, which is a bit fiddly but
+not much worse than current code.
+
+
+It only matters if you have timestamps though as otherwise
+the 8 byte alignment will force 6 bytes of packing in one
+place vs the 3 this gives in two places.
+I guess maybe not worth doing unless you plan to combine
+this with an offload engine in which case the timestamps will
+probably be disabled and the 12 byte scan length will be preferable
+to 16 bytes.
+
+> +	0,
+> +};
+> +
+>  static const struct iio_scan_type ad4030_24_scan_types[] = {
+> -	[AD4030_SCAN_TYPE_NORMAL] = {
+> +	[AD4030_OUT_DATA_MD_24_DIFF] = {
+Name it this way in the first place.
+
+>  		.sign = 's',
+>  		.storagebits = 32,
+>  		.realbits = 24,
+> @@ -908,6 +1002,23 @@ static const struct iio_scan_type ad4030_24_scan_types[] = {
+>  	},
+>  };
+>  
+> +static const struct iio_scan_type ad4030_16_scan_types[] = {
+> +	[AD4030_SCAN_TYPE_NORMAL] = {
+> +		.sign = 's',
+> +		.storagebits = 32,
+> +		.realbits = 16,
+> +		.shift = 16,
+> +		.endianness = IIO_BE,
+> +	},
+> +	[AD4030_SCAN_TYPE_AVG] = {
+> +		.sign = 's',
+> +		.storagebits = 32,
+> +		.realbits = 30,
+> +		.shift = 2,
+> +		.endianness = IIO_BE,
+> +	}
+> +};
+> +
+
 
