@@ -1,168 +1,135 @@
-Return-Path: <devicetree+bounces-96615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F04B95ED16
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:28:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FE395EB55
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:05:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF2081F2124C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:28:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A53F3B243BE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD69143C6F;
-	Mon, 26 Aug 2024 09:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C0313AA26;
+	Mon, 26 Aug 2024 08:03:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from muminek.juszkiewicz.com.pl (muminek.juszkiewicz.com.pl [213.251.184.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1594213AD3F;
-	Mon, 26 Aug 2024 09:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDCF7407A
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 08:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.251.184.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724664468; cv=none; b=nkIoHis/BtwGq0iNT7R5LfMvhkTKU9IaVvxXGLPc8ZIb7yJeQJV/XvbQLnknTKaJjEnS56N/BIXhpEqayBfFeHXxP61TVqCx5LwOWq9yqfCswXaNtV+7P6T7xgAfy7nY2rkFYlkNUHjRM/KzEIQp3k4KV8Ie4p9vH8AR8SfYVhM=
+	t=1724659403; cv=none; b=kjD7wh/mopEOcsNSQrQKmUXqzDnRQYrDmFWOiwXFvkCS6EP840lA9vbknFqWbB/RfReFO270Ox/ILSb6o39YI6oHLjKWobP1Ecl5pdnHl4mUvOyHb+ndsIsGjRYpSWNCKQi3ZH0tiuqKZVcu5hKkb/8nGY0VMmmpy9mb7I1WZ+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724664468; c=relaxed/simple;
-	bh=m0c4P9PL6AO6iaD2QbgMEKqSM6WELU5uReA8nE/G1Ys=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=u4c7VCjIhd3TsrTSkaSuxuYSf3prtV7V44vJ+Raza0i2XCUWF3c3qP3DHILIS9qPBQ7BwpNqaakBdoDMeYZIP9qGcFfSXboqtublih6uFz8ssma+0R22Q5Sbb9mX4LOuP9MSrRtvoOiSu65H8EtDJTo3mjh+9MlPnXFg0tAdAqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [58.61.141.165])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 14FA77E0195;
-	Mon, 26 Aug 2024 15:01:13 +0800 (CST)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: bigfoot@classfun.cn
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dsimic@manjaro.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for LCKFB Taishan Pi RK3566
-Date: Mon, 26 Aug 2024 15:01:09 +0800
-Message-Id: <20240826070109.55659-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240826044530.726458-4-bigfoot@classfun.cn>
-References: <20240826044530.726458-4-bigfoot@classfun.cn>
+	s=arc-20240116; t=1724659403; c=relaxed/simple;
+	bh=QAxTWEuf9NR5FVob2x23GC9PBWFUVewQHG1wy3Co3A0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=S1DMVLaHWWEkN1S+jGcYwI3tDxKknbeNOt1HtPXJ7PWfsTn5uLVi4TaPnkY8ZatYad+ksCC5HVM3pLye6oK84wEkmH/EOV4RET3ZYeUp0tGzZphaW/o5rd7kbeFlwK/Z7unp9hWDgKqVgrPBX/Yn5KPN52OIsf2UNqUkbbasydw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org; spf=fail smtp.mailfrom=linaro.org; arc=none smtp.client-ip=213.251.184.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=linaro.org
+Received: from localhost (localhost [127.0.0.1])
+	by muminek.juszkiewicz.com.pl (Postfix) with ESMTP id A7E29260ACD;
+	Mon, 26 Aug 2024 10:03:13 +0200 (CEST)
+X-Virus-Scanned: Debian amavis at juszkiewicz.com.pl
+Received: from muminek.juszkiewicz.com.pl ([127.0.0.1])
+ by localhost (muminek.juszkiewicz.com.pl [127.0.0.1]) (amavis, port 10024)
+ with ESMTP id FMfb5G2_nGUE; Mon, 26 Aug 2024 10:03:11 +0200 (CEST)
+Received: from puchatek.local (83.25.211.12.ipv4.supernova.orange.pl [83.25.211.12])
+	by muminek.juszkiewicz.com.pl (Postfix) with ESMTPSA id AFEB62602C9;
+	Mon, 26 Aug 2024 10:03:10 +0200 (CEST)
+From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
+Subject: [PATCH v5 0/7] FriendlyELEC NanoPC-T6 improvements
+Date: Mon, 26 Aug 2024 10:02:44 +0200
+Message-Id: <20240826-friendlyelec-nanopc-t6-lts-v5-0-ba33edda7f17@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSUtIVkkYQhhNHkhKSR1LTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlOQ1VNSlVKT0pVSk1OWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0NNVUpLS1VLWQ
-	Y+
-X-HM-Tid: 0a918d7d201b03a2kunm14fa77e0195
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MTI6NBw5ETIrCh80GB9MM1Yt
-	SgwKFEtVSlVKTElPTU5OTUxIQ0JCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWU5D
-	VU1KVUpPSlVKTU5ZV1kIAVlBSEhOTjcG
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKQ2zGYC/43OQW7CMBAF0Ksgr+tobKeJ0xX3qLqwJxNwa+zUD
+ mkB5e41sChVJcTyf43enxPLlBxl9rI6sUSzyy6GEp6fVgy3JmyIu75kJkHWoCXwoZyH3h/IE/J
+ gQhyRTw33U+YA2DatRmX7lhVgTDS47wv++nbNiT73ZWP6LbcuTzEdLg/M4tw+tDULLnhvhGwVK
+ gJN6/d9Pn44+nJ4rDDuqtGzsz/LW1PcNSUHTiCUtlYA1HLtXTApVjFtrpZ63FLFUoSD6brGWoJ
+ /Vn1rybtWXSzdSUMWCQGbP9ayLD88eWBqxgEAAA==
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.0
 
-Hi Junhao,
+This series updates FriendlyELEC NanoPC-T6 situation. There is non-LTS
+(2301) version of a board and LTS (2310) version.
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts
-> ...
-> +	aliases {
-> +		mmc0 = &sdmmc0;
-> +		mmc1 = &sdhci;
-> +		mmc2 = &sdmmc1;
-> +		wifi = &brcmf;
-> +		bluetooth = &bluetooth;
-> +	};
+This series creates common DTSI for both boards and then separate
+NanoPC-T6 and NanoPC-T6 LTS DTS files. This way T6 gets MiniPCIe section
+and T6-LTS gets USB20 section.
 
-WiFi and Bluetooth do not need aliases.
+Then set of changes for both versions are done:
 
-> ...
-> +	vcc5v0_host: vcc5v0-host-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_host";
-> +		regulator-boot-on;
-> +		regulator-always-on;
+- enable USB-C port (one orientation only)
+- enable Mali GPU
+- enable IR receiver (tested using ir-keytable)
+- enable SPI flash (present on LTS, optional on non-LTS)
+- enable Mask Rom button as input device
 
-This regulator does not need always-on and boot-on.
+Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 
-> ...
-> +	vccio_flash: vccio-flash {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vccio_flash";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc_1v8>;
-> +	};
+---
+Changes in v5:
+- added Reviewed-by to 'add spi flash' patch
+- dropped adding SPI M1 pinctl
+- changed ir-receiver to have pinctrl like Jonas Karlman suggested
+- Link to v4: https://lore.kernel.org/r/20240822-friendlyelec-nanopc-t6-lts-v4-0-892aebcec0c6@linaro.org
 
-Generally speaking, vccio_flash is not a DCDC regulator,
-it is directly connected to vcc_1v8. Maybe you need to
-confirm the schematics.
+Changes in v4:
+- added Acked-by to dt-bindings patch
+- create common dtsi for both board versions
+- nanopc-t6.dts has minipcie items
+- nanopc-t6-lts.dts has usb 2.0 host enablement
+- Link to v3: https://lore.kernel.org/r/20240821-friendlyelec-nanopc-t6-lts-v3-0-3ecfa996bbe0@linaro.org
 
-> +
-> +	vccio_wl: vccio-wl {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vccio_wl";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_3v3>;
-> +	};
+Changes in v3:
+- create separate NanoPC-T6 LTS devicetree as suggested
+- Link to v2: https://lore.kernel.org/r/20240821-friendlyelec-nanopc-t6-lts-v2-0-e0138bb10042@linaro.org
 
-Same as above, usually like this:
-VCC_1V8 or VCCA1V8_PMU - 0R - VCCIO_WL
-`sd-uhs-sdr104` requires 1.8v io voltage,
-you need to confirm the schematics.
+Changes in v2:
+- merged changes into NanoPC-T6 dts file
+- add SPI flash pinctl for SPI M1
+- enable SPI on NanoPC-T6 LTS
+- enable USB-C port (one orientation only)
+- enable Mali GPI
+- enable IR receiver (not tested)
+- Link to v1: https://lore.kernel.org/r/20240820-friendlyelec-nanopc-t6-lts-v1-1-da1273c3e08e@juszkiewicz.com.pl
 
-> ...
-> +&pinctrl {
-> ...
-> pmic {
-> +	pmic {
-> +		pmic_int: pmic_int {
+---
+Marcin Juszkiewicz (7):
+      dt-bindings: arm: rockchip: Add NanoPC-T6 LTS
+      arm64: dts: rockchip: add NanoPC-T6 LTS
+      arm64: dts: rockchip: add SPI flash on NanoPC-T6
+      arm64: dts: rockchip: add IR-receiver to NanoPC-T6
+      arm64: dts: rockchip: enable GPU on NanoPC-T6
+      arm64: dts: rockchip: enable USB-C on NanoPC-T6
+      arm64: dts: rockchip: add Mask Rom key on NanoPC-T6
 
-Only the pmic_int is needed.
-Also `pmic_int: pmic-int {`
+ .../devicetree/bindings/arm/rockchip.yaml          |   6 +-
+ arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+ .../boot/dts/rockchip/rk3588-nanopc-t6-lts.dts     |  61 ++
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts  | 910 +--------------------
+ ...{rk3588-nanopc-t6.dts => rk3588-nanopc-t6.dtsi} | 142 +++-
+ 5 files changed, 191 insertions(+), 929 deletions(-)
+---
+base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
+change-id: 20240820-friendlyelec-nanopc-t6-lts-00c7678c3bd7
 
-> ...
-> +&sdhci {
-> +	bus-width = <8>;
-> +	max-frequency = <200000000>;
-> +	non-removable;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe &emmc_rstnout>;
-> +	status = "okay";
-> +	vmmc-supply = <&vccio_flash>;
-> +	vqmmc-supply = <&vccio_flash>;
-> +};
-
-The vmmc requires 3.3V supply (on rk356x).
-
-> ...
-> +&sdmmc1 {
-> ...
-> +	sd-uhs-sdr104;
-> +	vmmc-supply = <&vccio_wl>;
-> +	vqmmc-supply = <&vccio_wl>;
-
-Same as above.
-
-> ...
-+&uart1 {
-> ...
-+		vbat-supply = <&vcc3v3_sys>;
-+		vddio-supply = <&vccio_wl>;
-
-Here corresponds to sdmmc1.
-
-Thanks,
-Chukun
-
+Best regards,
 -- 
-2.25.1
+Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 
 
