@@ -1,208 +1,93 @@
-Return-Path: <devicetree+bounces-96720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0F3D95F3B3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:22:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFBF95F3E1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:29:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 223421F2137C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 14:22:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7DBB1C21AF2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 14:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD8D188934;
-	Mon, 26 Aug 2024 14:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D2E1917DB;
+	Mon, 26 Aug 2024 14:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="xluqtBuL";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Pb0j8WMO"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="gzoPPy/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh2-smtp.messagingengine.com (fhigh2-smtp.messagingengine.com [103.168.172.153])
+Received: from mta-64-226.siemens.flowmailer.net (mta-64-226.siemens.flowmailer.net [185.136.64.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B33D67BB15;
-	Mon, 26 Aug 2024 14:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE5518BBA3
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 14:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724682129; cv=none; b=cU9bmz1iRfaT1HKZRV6CWs0eiMNNhlBfYVlo0laLBC0u88zczuI5yfkTHHCYYndRI3cw6n9OVoXAcxkkUMNP4N4xFf+idxU45Tj13YsD+YmTxcKSf+2a0pZQ2L/4rbWjQsJ7X7lyWOSScK3zhoog7heOGQlbxKRVKy6E7NNk874=
+	t=1724682553; cv=none; b=o6XnGn3weqQhhhPFSdC+gndHpAoBUYAq2prH0NdKSIuHsFrx2mMnN7h06xvdt2V94tA5UxAKdnG8hBp71wGfbQRmKY8txw6g5ld5FX6RiD3GH65PsSOAWfo4zKI4iOZvGfiB/J8TdZV86QnO5KSKl41h9JB9yg0fmyAITJ+iYIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724682129; c=relaxed/simple;
-	bh=CYbj1j7FjoELrxn0RAajPNibHiZ38GUK7VqfvUgDIA0=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=tg1/s04ppuuM85UOo+GcyQFAqjVllfKOSTRcM0oRKdHsgrldAqY7fYUV3KgGilWAVp8Vrkw6BDTZYtpYxDrU7CBnyvgxEorGxSXmAQfmaOaetHIAPrv0jjF0wDpOdejpGJeZ6q7zpIKPyXOMLC2qjRA+CcsISzKt8+NTFbRCVDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=xluqtBuL; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Pb0j8WMO; arc=none smtp.client-ip=103.168.172.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from phl-compute-05.internal (phl-compute-05.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id E41BE1151AA9;
-	Mon, 26 Aug 2024 10:22:06 -0400 (EDT)
-Received: from phl-imap-12 ([10.202.2.86])
-  by phl-compute-05.internal (MEProxy); Mon, 26 Aug 2024 10:22:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1724682126;
-	 x=1724768526; bh=ASEjOFtcIjkhF5bkMjqXjN8mcsXwNaXpIL2eHm4tIjc=; b=
-	xluqtBuLZNvJPbpIJabYMEVgvEfIecBY4topuzyZssk2Nui0A6zlN+klU4ZuN9Hr
-	s1yVM1NV3JLa8Y+wKwiwc3rrChbmhFwqy0txAmd8OkAEziDAH/6cAoEQEdOLoIe3
-	RNqi678ccIp22JpdtcA6Vi3pjzs4HNKFVdJS38JcMiD3ZPgHv7tq1ewX6Oi97B0Q
-	aRf3JJL/ta1cMgsFf4Ql81pKtPOhU3s2e5Cr509ZmUlP+7dsIevWqPtY6BnIac8E
-	M51+UaOlKk8fhR1B4plsyUDzhzDvHQdI4v7Bf/lntO0hc0/ZAj1NnHlqP6T+UNio
-	wIWxpfGcyFQgt9W6BXE/aA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1724682126; x=
-	1724768526; bh=ASEjOFtcIjkhF5bkMjqXjN8mcsXwNaXpIL2eHm4tIjc=; b=P
-	b0j8WMOdX6tFGg8l80rhzOBXm7rDlvBicl5TITD54lAbSGS6EeVUzllm8l/hfO3H
-	jfqXvR1SWqMcEowXHinKftY3jStGR//ueM451Do3Yrb0VqzHhbh6qNbvDSNIIJEp
-	RMOYCZKWfmGo6cLbKRyOuGORu/RQbWoin71pVo0PnrxXl6Guh6N1lhKzp+hEQbl6
-	HhGjGvIeNDiz425JAJgUEzTWDEzp4lCr81s6pzjmdDa1b67Uz+yaDchYAvx3fSzC
-	qeQGT+iaxddg4XLbIaVhK1DkLM6PfJQEn6GU0Ig9zHXLJoUHvT9n9l+HTm1TcVib
-	3DY8wuRpMldLjBSJXk1QQ==
-X-ME-Sender: <xms:jo_MZpD4PeXsE4--zX3DCy-u5tHZuReh8Zx2CqClDVr65o7d4N2jlw>
-    <xme:jo_MZnhRapWA_MVjce7TAT1nGhvt9IbWZOe25kpsiGI2t2NxjB_kDw0zSZpFOQ19R
-    jwq73KypojjuQqb5uI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddvkedgjeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdej
-    necuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfh
-    hlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepffekveettdeuveefhfekhfdu
-    gfegteejffejudeuheeujefgleduveekuddtueehnecuffhomhgrihhnpehkvghrnhgvlh
-    drohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
-    pehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmpdhnsggprhgtphhtthhope
-    ejpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehsrghrrghvrghnrghksehgohho
-    ghhlvgdrtghomhdprhgtphhtthhopegvnhhkvghrvgifphhosehhohhtmhgrihhlrdgtoh
-    hmpdhrtghpthhtoheptghhvghnhhhurggtrghisehkvghrnhgvlhdrohhrghdprhgtphht
-    thhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhoohhnghgrrhgthh
-    eslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopeguvghvihgtvghtrhgvvges
-    vhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlh
-    esvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:jo_MZknYdkUJWPqqIP9gEcWj82_PWzUPxQMRUhfa58PFFA16zwtPyA>
-    <xmx:jo_MZjwZG1A-AGUiecrxmEUZNe3Bgw7BM4VR5D9NRQXFT_r6vEUfsA>
-    <xmx:jo_MZuRqyfuD-f4Bm1HhLcqiGCc6eHhsZ7MT3Mz2Z_xYHB0N9apcgw>
-    <xmx:jo_MZmb34e0yCBDZ27D0U1ng0LjAVaDxK6OWSwvnJP8jMS8w0wYlKQ>
-    <xmx:jo_MZtGhWv3rhutNT_PjpC3QXJyuO6sU2kVYh-90OtIFyLVZ9wGIxHkn>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 794AB1C20064; Mon, 26 Aug 2024 10:22:06 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1724682553; c=relaxed/simple;
+	bh=5/X9NuHLDKjzqfIadX8X72Geg7Um5NYptrZjQPrFTa8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XgY4aywrY6URRypUV3wNX9JV7ia8NQb1jmGpB8+B0OQVaQQm5d713BUYJhlVNO4uh7zyLlT9vQsVm8Fq+/czNDWKrP5RGbzDYdMlMxrQTd1JZceRu9x5b+JFfq17+/s0Qm3MJM0S7jbQcGq3E5v+X/TrbBgg8Cf+UFOqZEalq4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b=gzoPPy/s; arc=none smtp.client-ip=185.136.64.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-226.siemens.flowmailer.net with ESMTPSA id 2024082614290184694159b493dca944
+        for <devicetree@vger.kernel.org>;
+        Mon, 26 Aug 2024 16:29:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=jan.kiszka@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=pu5+lmk2w/MjDyzllxTFAT0dhfjf9jzaQq4l1txj8Z0=;
+ b=gzoPPy/sr6aQAStbWm1oKH4NvauW8TOUDABXPsjZwUfwW+v0VJbl9EFaBhB+Ya6gmX6oYn
+ eiwuKG+CXl2n5zn61sbHNHJZBPCV/EVf626iRwLIMhmhjVDtfV0KUhBe1nZjkpV3TAQLE+PI
+ cz3F7Py+CXXcSIm85KvFb4b1q+IBVeaRF/Dp8OqfsO4OcFM5tM9xhllj8f/diAbSirFRxMS2
+ fKLIauL3BjLEbqpmmOp8AvjaHXrSIXsv+YLnqy0O3DEZR93MggTNUVbr3O5BzIo2V2GtGci0
+ Q1lSoG8hrwdl2XKN49OkErSeNDTZZctV5WFPX35myaKhx69WKBIjKUig==;
+From: Jan Kiszka <jan.kiszka@siemens.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Bao Cheng Su <baocheng.su@siemens.com>,
+	Hua Qian Li <huaqian.li@siemens.com>
+Subject: [PATCH 0/2] arm64: dts: iot2050: Fix R5 lock-step settings, add overlays
+Date: Mon, 26 Aug 2024 16:28:57 +0200
+Message-ID: <cover.1724682539.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 26 Aug 2024 15:21:45 +0100
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Rob Herring" <robh@kernel.org>
-Cc: "Saravana Kannan" <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
- "Huacai Chen" <chenhuacai@kernel.org>,
- "Kevin Wheatfox" <enkerewpo@hotmail.com>
-Message-Id: <c0df4919-21b4-4526-8861-f74234ffd390@app.fastmail.com>
-In-Reply-To: 
- <CAL_JsqLeVPBz4mEedXEm=rb6ghWwROB7jr-PDw3qVsNRz20Z_A@mail.gmail.com>
-References: <20240821-save_resv_name-v1-1-b9c17f103ffb@flygoat.com>
- <CAL_JsqLeVPBz4mEedXEm=rb6ghWwROB7jr-PDw3qVsNRz20Z_A@mail.gmail.com>
-Subject: Re: [PATCH] of_reserved_mem: Save region name string into struct reserved_mem
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-294854:519-21489:flowmailer
 
+Trying to get our backlog closer to zero. See patches for details.
 
+Jan
 
-=E5=9C=A82024=E5=B9=B48=E6=9C=8826=E6=97=A5=E5=85=AB=E6=9C=88 =E4=B8=8B=E5=
-=8D=883:09=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
-> On Wed, Aug 21, 2024 at 8:51=E2=80=AFAM Jiaxun Yang <jiaxun.yang@flygo=
-at.com> wrote:
->>
->> Previously only a pointer to fdt string pool is saved to struct
->> reserved_mem as region name.
->>
->> As on some architectures booting FDT will be wiped at later initialis=
-ation
->> stages, this is breaking reserved_mem users.
->
-> What architectures? Be specific.
+Jan Kiszka (1):
+  arm64: dts: ti: iot2050: Add overlays for M.2 used by firmware
 
-It's LoongArch and MIPS, I'll expand commit message.
+Li Hua Qian (1):
+  arm64: dts: ti: iot2050: Disable lock-step for all iot2050 boards
 
-FDT might be placed in .init sections or memory not managed by kernel, t=
-hus
-it may be wiped out.
+ arch/arm64/boot/dts/ti/Makefile               |  2 +
+ .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    |  5 --
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  5 ++
+ .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  5 --
+ ...48-iot2050-advanced-m2-bkey-ekey-pcie.dtso | 27 +++++++++++
+ ...-am6548-iot2050-advanced-m2-bkey-usb3.dtso | 47 +++++++++++++++++++
+ 6 files changed, 81 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2-bkey-ekey-pcie.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2-bkey-usb3.dtso
 
->
-> Why is the FDT wiped? It should be preserved and you need it later to
-> implement kexec.
+-- 
+2.43.0
 
-So KEXEC is using kernel's self copy of FDT created by unflatten_and_cop=
-y_device_tree(),
-while reserved-mem scan is performed before copy to ensure that reserved=
- memory
-are being tracked by memblock before possible memblock_alloc in unflatte=
-n_and_copy_device_tree().
-
-Thanks
-- Jiaxun
-
->
->>
->> Copy and save the whole string into struct reserved_mem to avoid
->> FDT lifecycle problem.
->>
->> Reported-by: Kevin Wheatfox <enkerewpo@hotmail.com>
->> Closes: https://lore.kernel.org/loongarch/ME4P282MB1397447C3C094554C7=
-AF2E37B58E2@ME4P282MB1397.AUSP282.PROD.OUTLOOK.COM/
->> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
->> ---
->>  drivers/of/of_reserved_mem.c    | 2 +-
->>  include/linux/of_reserved_mem.h | 4 +++-
->>  2 files changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_me=
-m.c
->> index 46e1c3fbc769..22841599cd83 100644
->> --- a/drivers/of/of_reserved_mem.c
->> +++ b/drivers/of/of_reserved_mem.c
->> @@ -70,7 +70,7 @@ static void __init fdt_reserved_mem_save_node(unsig=
-ned long node, const char *un
->>         }
->>
->>         rmem->fdt_node =3D node;
->> -       rmem->name =3D uname;
->> +       strscpy(rmem->name, uname, RESERVED_MEM_NAME_LEN);
->>         rmem->base =3D base;
->>         rmem->size =3D size;
->>
->> diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reser=
-ved_mem.h
->> index e338282da652..ed9de36c9cc9 100644
->> --- a/include/linux/of_reserved_mem.h
->> +++ b/include/linux/of_reserved_mem.h
->> @@ -8,8 +8,10 @@
->>  struct of_phandle_args;
->>  struct reserved_mem_ops;
->>
->> +#define RESERVED_MEM_NAME_LEN  128
->> +
->>  struct reserved_mem {
->> -       const char                      *name;
->> +       char                            name[RESERVED_MEM_NAME_LEN];
->>         unsigned long                   fdt_node;
->>         const struct reserved_mem_ops   *ops;
->>         phys_addr_t                     base;
->>
->> ---
->> base-commit: bb1b0acdcd66e0d8eedee3570d249e076b89ab32
->> change-id: 20240821-save_resv_name-4f2e2cb8883b
->>
->> Best regards,
->> --
->> Jiaxun Yang <jiaxun.yang@flygoat.com>
->>
-
---=20
-- Jiaxun
 
