@@ -1,185 +1,158 @@
-Return-Path: <devicetree+bounces-96574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B4B895EB52
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:05:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C6E95EB7D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:12:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 143F3284AEF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:05:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9C6FB209D7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 08:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAF413B59E;
-	Mon, 26 Aug 2024 08:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="iGxqgMrn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48AF2745F4;
+	Mon, 26 Aug 2024 08:12:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from classfun.cn (unknown [129.204.178.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5047407A;
-	Mon, 26 Aug 2024 08:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B324A28
+	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 08:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724659316; cv=none; b=rKI2oVFSGpt9ZogB6eAbtgwTKtQfMQLM3aK8PMa0NFjL2PwPhyh8e50gmP3WuNOF42ASHuX9uselvPvpC8f1xmobBK+VeFY1WMlqpV/sILCRjxd/sBy5wMveXALbsmSAaujbcwC0IBxY82bmR5dUZcpwvL0+Y4mhfliFWeQUwcA=
+	t=1724659944; cv=none; b=uygRGaQgVMkd1bAtsqqF1f2IBCCHDirdQ0tu1vsFVAXCy9lSANiGTNRwSJwg1jF8pRg7f0WQAJ8V2i1Dg5MnXN2VOGnSeZBuxGVlcy2C9wt6DNDh6QLdb/g8iraCanwcPyFRpJV06TNKcwKcm3CaQTfe85gsXGa97iwI/KWghcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724659316; c=relaxed/simple;
-	bh=6h1G/HE25i8L3yL4WxgPw8whKETtTIgGES73nyn1vYE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=LRqm1HsV15Car303CjX/vMbXpIm4ePXUb6koUteggdkqFAf//BZebzwGwoCQwd981zvUp995OH/0oOcm8rELJ3YHTXHCf9+ja1FRtD9gDgy5yDm41uzJQ1NmlMgctRTkJOImGRYciUc2dI/Jl17eA+zFk76wibVwbABpU8GWnhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=iGxqgMrn; arc=none smtp.client-ip=129.204.178.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
-Received: from [192.168.0.160] (unknown [14.153.79.170])
-	(Authenticated sender: bigfoot)
-	by classfun.cn (Postfix) with ESMTPSA id 2B0C4789E4;
-	Mon, 26 Aug 2024 16:01:50 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 2B0C4789E4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
-	s=default; t=1724659310;
-	bh=vEQbp8JhlcjDWWseCz9sjPI3YL2zLcYOUsfYIw62S8M=;
-	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
-	b=iGxqgMrnw4ByjCHyOS5757fQe+SlPABwwEgFFPOSpcpikJgfMIa+KIqKgMvUS+27J
-	 4PgZ+m4qFm57s7lc5X0rw2NppRLvo1agiI/7T074Zv94Ikl2dhbk3VVU1N7SpYxjWP
-	 eYqIpjrRnx+DRc/zvzYqf+24BZ2dApnMmqSU2fZI=
-Message-ID: <6edb8443-6bb4-4174-8fe0-906208757cef@classfun.cn>
-Date: Mon, 26 Aug 2024 16:03:01 +0800
+	s=arc-20240116; t=1724659944; c=relaxed/simple;
+	bh=XVNMuFqpEPOPM9b8ptGjJ6kF7f/oZ4X5hSdpOODpAas=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KytVOufIgAhyAwL/xPrNsu1G2MPDD753nhAJ9WoSWiDnxLBC9kZ6+0pP35sI14Gx2aZ7U2nBtESx+bvc6yGI1oaT9B5iw4JhdNtzGT5chPXvJcu19MnOuLmjM5GkKtw3kTGOr8lmLNQtr8ot8fzB8FSb17AJhiiou14fe7Bqvos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 47Q856kA025051;
+	Mon, 26 Aug 2024 17:05:06 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH] arm64: dts: rockchip: enable PCIe on M.2 E key for Radxa ROCK 5A
+Date: Mon, 26 Aug 2024 17:04:56 +0900
+Message-ID: <20240826080456.525-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for LCKFB Taishan Pi
- RK3566
-To: Chukun Pan <amadeus@jmu.edu.cn>
-References: <20240826044530.726458-4-bigfoot@classfun.cn>
- <20240826070109.55659-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
- FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <20240826070109.55659-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2024/8/26 15:01, Chukun Pan wrote:
-> Hi Junhao,
-> 
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts
->> ...
->> +	aliases {
->> +		mmc0 = &sdmmc0;
->> +		mmc1 = &sdhci;
->> +		mmc2 = &sdmmc1;
->> +		wifi = &brcmf;
->> +		bluetooth = &bluetooth;
->> +	};
-> 
-> WiFi and Bluetooth do not need aliases.
-> 
->> ...
->> +	vcc5v0_host: vcc5v0-host-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc5v0_host";
->> +		regulator-boot-on;
->> +		regulator-always-on;
-> 
-> This regulator does not need always-on and boot-on.
-> 
+Enable pcie2x1l2 and related combphy/regulator routed to M.2 E key
+connector on Radxa ROCK 5A.
 
-I will remove them.
+Tested with Radxa Wireless Module A8:
 
-> 
->> ...
->> +	vccio_flash: vccio-flash {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vccio_flash";
->> +		regulator-min-microvolt = <1800000>;
->> +		regulator-max-microvolt = <1800000>;
->> +		vin-supply = <&vcc_1v8>;
->> +	};
-> 
-> Generally speaking, vccio_flash is not a DCDC regulator,
-> it is directly connected to vcc_1v8. Maybe you need to
-> confirm the schematics.
-> 
+$ lspci
+0004:40:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0004:41:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852BE PCIe 802.11ax Wireless Network Controller
 
-Yes, vccio_flash and vccio_wl are not DCDC regulator, they are connected to vcc_1v8 and vcc_3v3 through voltage selection resistors.
+$ ip l
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether c2:58:fc:70:55:86 brd ff:ff:ff:ff:ff:ff
+3: wlP4p65s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 2c:05:47:65:5b:ed brd ff:ff:ff:ff:ff:ff
 
-> 
->> +
->> +	vccio_wl: vccio-wl {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vccio_wl";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		vin-supply = <&vcc_3v3>;
->> +	};
-> 
-> Same as above, usually like this:
-> VCC_1V8 or VCCA1V8_PMU - 0R - VCCIO_WL
-> `sd-uhs-sdr104` requires 1.8v io voltage,
-> you need to confirm the schematics.
-> 
+$ lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 1a40:0101 Terminus Technology Inc. Hub
+Bus 001 Device 003: ID 0bda:b85b Realtek Semiconductor Corp. Bluetooth Radio
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 004 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 006 Device 002: ID 0789:0336 Logitec Corp. LMD USB Device
+Bus 007 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 008 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 
-It is actually connected to vcc_1v8, I will fix it.
+$ hciconfig
+hci0:	Type: Primary  Bus: USB
+	BD Address: 2C:05:47:65:5B:EE  ACL MTU: 1021:6  SCO MTU: 255:12
+	UP RUNNING
+	RX bytes:2698 acl:0 sco:0 events:329 errors:0
+	TX bytes:69393 acl:0 sco:0 commands:329 errors:0
 
-> 
->> ...
->> +&pinctrl {
->> ...
->> pmic {
->> +	pmic {
->> +		pmic_int: pmic_int {
-> 
-> Only the pmic_int is needed.
-> Also `pmic_int: pmic-int {`
-> 
->> ...
->> +&sdhci {
->> +	bus-width = <8>;
->> +	max-frequency = <200000000>;
->> +	non-removable;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe &emmc_rstnout>;
->> +	status = "okay";
->> +	vmmc-supply = <&vccio_flash>;
->> +	vqmmc-supply = <&vccio_flash>;
->> +};
-> 
-> The vmmc requires 3.3V supply (on rk356x).
-> 
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-Yes, the vmmc of eMMC is actually connected to vcc_3v3, I will fix it.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index 953a722198fe..294b99dd50da 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -65,6 +65,18 @@ vcc12v_dcin: vcc12v-dcin-regulator {
+ 		regulator-max-microvolt = <12000000>;
+ 	};
+ 
++	vcc3v3_wf: vcc3v3-wf-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3_wf";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		enable-active-high;
++		gpio = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
++		pinctrl-0 = <&pow_en>;
++		pinctrl-names = "default";
++		vin-supply = <&vcc5v0_sys>;
++	};
++
+ 	vcc5v0_host: vcc5v0-host-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc5v0_host";
+@@ -114,6 +126,10 @@ vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
+ 	};
+ };
+ 
++&combphy0_ps {
++	status = "okay";
++};
++
+ &combphy2_psu {
+ 	status = "okay";
+ };
+@@ -293,6 +309,14 @@ rgmii_phy1: ethernet-phy@1 {
+ 	};
+ };
+ 
++&pcie2x1l2 {
++	pinctrl-0 = <&pcie20x1m0_pins>;
++	pinctrl-names = "default";
++	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
++	vpcie3v3-supply = <&vcc3v3_wf>;
++	status = "okay";
++};
++
+ &pinctrl {
+ 	leds {
+ 		io_led: io-led {
+@@ -300,6 +324,12 @@ io_led: io-led {
+ 		};
+ 	};
+ 
++	pcie {
++		pow_en: pow-en {
++			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	power {
+ 		vcc_5v0_en: vcc-5v0-en {
+ 			rockchip,pins = <4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
+-- 
+2.43.0
 
-> 
->> ...
->> +&sdmmc1 {
->> ...
->> +	sd-uhs-sdr104;
->> +	vmmc-supply = <&vccio_wl>;
->> +	vqmmc-supply = <&vccio_wl>;
-> 
-> Same as above.
-> 
->> ...
-> +&uart1 {
->> ...
-> +		vbat-supply = <&vcc3v3_sys>;
-> +		vddio-supply = <&vccio_wl>;
-> 
-> Here corresponds to sdmmc1.
-> 
-> Thanks,
-> Chukun
-> 
-
-Thanks for your review, I will fix all problems and post patch v2!
 
