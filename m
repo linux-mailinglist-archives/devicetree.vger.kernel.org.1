@@ -1,135 +1,334 @@
-Return-Path: <devicetree+bounces-96815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D7295F8C2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:08:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7DE95F8E4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:24:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 538341C21BA4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:08:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 696CB1F22BCF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D2411991B8;
-	Mon, 26 Aug 2024 18:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAE377119;
+	Mon, 26 Aug 2024 18:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Gp9pcWAV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UxDC5wwt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076221990DD;
-	Mon, 26 Aug 2024 18:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4197B677;
+	Mon, 26 Aug 2024 18:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724695680; cv=none; b=pMuhFJ/Zr143eJ8HHAlSDMc0ifhnf7xplQWvu1z+7MWtK9yYmQZE0b3OP6gT6T9eCS5Sp1r0up0vzk/Yq0hqbw1M84230HvYBsZFTV18JnW9kZu7JRbyMjDal9w8ogSBmWwoczZvGaJaY1aoZhTTvelCWTRlw1q8h456TXjkc18=
+	t=1724696656; cv=none; b=CWbhc2NLxBB68QPe0yDItXd3v7QovQGYNNraF5J/wc/s3iixaiCToxqoGsV7EzN/9cBgyABfhPQPHkeG18oHvWGbL1Gi+iQvAlsL+ZIQ0Gly1mPpgOvideiheWcdB9pPES/ZZhpJuHHTXNnU+dyqjIxjlt1clHvZA5gr2UduadE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724695680; c=relaxed/simple;
-	bh=Er/2jR/5Jz557dqMgAoXj6xbxU6wZWuzU9zvcQxRlKw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=tvnGhHj85S5kLHrIpVMHntQyKU1S9Mcw0vKFlCk++JTmi3bnPZW/t6mMrWgP+y+RyU8j40s9Ly/+6w5Y0JoAqD2Yu09AL4F4cGTWjVXTeHwo+0pSl+PzUlYoMBfGus2IP19m0nW5vDVjnrnvq0e/e0CPd7XUMkF5QnaU5Wk/P9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Gp9pcWAV; arc=none smtp.client-ip=198.47.23.249
+	s=arc-20240116; t=1724696656; c=relaxed/simple;
+	bh=DyXC+tw0wqVHJTaKkE/Ey7V5jOVQhGLDuuTJJCKil40=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mmNc0FljaNDbstRc8SHxcwe/VSLv2PgYdsvtCniYs65NDJsThkNpoUtoiZzwCAj9+4z2r02FC8x9k7ayQMRDYWLXJJS4ewOACX7nsmW0LjitAw77fJAjk3EHSTWtN86Dy3kmzP9L0UkG33Gev2nNuc1Yhh9Rj89k+DT0Q1KEMVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UxDC5wwt; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47QI7qmj077456;
-	Mon, 26 Aug 2024 13:07:52 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47QIO2GT109919;
+	Mon, 26 Aug 2024 13:24:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724695672;
-	bh=aKOhReHhfkFqY/b6mLNIi1grS6Sxo6McapeRea5WrKw=;
-	h=From:Date:Subject:To:CC;
-	b=Gp9pcWAVBNUiW9TRsMbxx3kMHEWhi+A9KRnUHPwU+bLALVSiRwSQQq0X/EBAJmNRt
-	 MLNTjmhZPmvSsKK0TEOxy0go20narWai6WpLjfrjqrb2gGwLp1yCpK0xzaxwJhKeg5
-	 9tWHQy+b7iHuqX5EvTmvEIHiNUFazVZWdqOTNSMo=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47QI7q7g025084
+	s=ti-com-17Q1; t=1724696642;
+	bh=axph+CVJh6fzdG84jT93tUF99qz3udvt+bZ8lns2okM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=UxDC5wwtCRFtga9D4Bfojw2MB4S5JOViviKXcSYt9qA7DoJmds6doX3lGqU85cuGd
+	 uq/1xwyXfYrp5jyIcMVyq16rufkl1V7u4Q68WG+ee0ul1hn2XWBcTuYTew+LOMtK4x
+	 hYXsnRPgwIsR3KQ/4uyCiXG5dlLQbmw3k/GGNmW0=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47QIO21D099097
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 26 Aug 2024 13:07:52 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 26 Aug 2024 13:24:02 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
- Aug 2024 13:07:52 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 13:24:01 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 26 Aug 2024 13:07:52 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47QI7qV6046687;
-	Mon, 26 Aug 2024 13:07:52 -0500
-From: Bryan Brattlof <bb@ti.com>
-Date: Mon, 26 Aug 2024 13:07:48 -0500
-Subject: [PATCH] arm64: dts: ti: k3-am62p5-sk: Remove CTS/RTS from
- wkup_uart0 pinctrl
+ Frontend Transport; Mon, 26 Aug 2024 13:24:01 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47QINvei062853;
+	Mon, 26 Aug 2024 13:23:58 -0500
+Message-ID: <f42f092f-2199-4cbd-8cad-96ccf4f100d0@ti.com>
+Date: Mon, 26 Aug 2024 23:53:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240826-am62p-v1-1-b713b48628d1@ti.com>
-X-B4-Tracking: v=1; b=H4sIAHPEzGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDCyNj3cRcM6MCXVNzQ+PENMNkS+NUAyWg2oKi1LTMCrA50bG1tQBnLos
- +VwAAAA==
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: align watchdog clocks
+To: Eric Chanudet <echanude@redhat.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, J Keerthi <j-keerthy@ti.com>
 CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Vibhore Vardhan <vibhore@ti.com>,
-        Bryan
- Brattlof <bb@ti.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1157; i=bb@ti.com;
- h=from:subject:message-id; bh=E4YxGbjfEXXJZ1nzZfL5G0JK0+K3hJsoTdQGfMm3r/k=;
- b=owNCWmg5MUFZJlNZImlXeQAAaX///vfp/2Vt6N/9zzMUf//W9PX/bv7eqc9/xO5u/plPn++wA
- RswGRAaGg0DRoDTQDQaNABiAA00NA0yABhGgBo0xAaDIDTJo0eptTJp6gyemk8odA00Mho0GEDI
- DQBpgmmTQaZDQNNAANGg2iYINNMNIGg0NDIDQZHqNAMjTCBpgmmjJoyYgMmjIGTJiZDIaaZAMIZ
- NAaMQYgYjTJhAaAGQGCAAyADQBA3gZCG+h4VYDESgmExZxipILv3B3+T7wgcKjp3NquiPAJhOgK
- BZRckMv+aF3xGwVUmEM+6ASF4EWzvGU55Sz5kmCO5qL2SwJsMkauP1G/y2r3h6rCC5e7dKaX14K
- d+BYz2eawGwZMDJs4kAJyl4uOPModYpBKZTZxhLORfaOmj5aJx+cGgC0rZUFKu78tHGi6tgYbtN
- w6f25x12kWMOy5zYJuRecLZ58L4JwVWqCRluxxvfsrOroqE5NMLGTJYPHay+GOxuXJ4G3scE589
- Y7bzC8psL0ZBxZRwTwFvsIkIbqxCnRIngSwFhpPdhqGeVPmTmwdHxihJ7CbylGKBVVYocHXzQAi
- aIGRikLwilhiDtR6nEGmtQtGYi8c0CAASuooq/MBDph6Z0P4fiUpFz4uzGHhUq7wuCE6gjxrtXe
- qhB+D7/xdyRThQkCJpV3kA=
-X-Developer-Key: i=bb@ti.com; a=openpgp;
- fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
+        <linux-kernel@vger.kernel.org>, Andrew Halaney <ahalaney@redhat.com>,
+        <u-kumar1@ti.com>
+References: <20240805174330.2132717-2-echanude@redhat.com>
+ <wiyw7h7hkc7u2brehi6zgxykesajtqmwwajo7tpwwvayjtcykw@w7rcmojs62vi>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <wiyw7h7hkc7u2brehi6zgxykesajtqmwwajo7tpwwvayjtcykw@w7rcmojs62vi>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Vibhore Vardhan <vibhore@ti.com>
+Hello Eric
 
-wkup_uart0 is a reserved node that is used by Device Manager firmware.
-Enabling pinctrl for CTS and RTS breaks the wakeup functionality of
-wkup_uart0. Hence they have been dropped.
+On 8/21/2024 3:31 AM, Eric Chanudet wrote:
+> On Mon, Aug 05, 2024 at 01:42:51PM GMT, Eric Chanudet wrote:
+>> assigned-clock sets DEV_RTIx_RTI_CLK(id:0) whereas clocks sets
+>> DEV_RTIx_RTI_CLK_PARENT_GLUELOGIC_HFOSC0_CLKOUT(id:1)[1]. This does not
+>> look right, the timers in the driver assume a max frequency of 32kHz for
+>> the heartbeat (HFOSC0 is 19.2MHz on j784s4-evm).
+>>
+>> With this change, WDIOC_GETTIMELEFT return coherent time left
+>> (DEFAULT_HEARTBEAT=60, reports 60s upon opening the cdev).
+>>
+>> [1] http://downloads.ti.com/tisci/esd/latest/5_soc_doc/j784s4/clocks.html#clocks-for-rti0-device
+>>
+>> Fixes: caae599de8c6 ("arm64: dts: ti: k3-j784s4-main: Add the main domain watchdog instances")
+>> Suggested-by: Andrew Halaney <ahalaney@redhat.com>
+>> Signed-off-by: Eric Chanudet <echanude@redhat.com>
+> Gentle ping and update to the test comment.
+>
+>> ---
+>> I could not get the watchdog to do more than reporting 0x32 in
+>> RTIWDSTATUS. Setting RTIWWDRXCTRL[0:3] to generate a reset instead of an
+>> interrupt (0x5) didn't trigger a reset either when the window expired.
+> Re-testing using u-boot from the BSP (2023.04) has the board reset as
+> expected when the watchdog expires and WDIOC_GETTIMELEFT report the time
+> left coherently with this patch until that happens.
+>
+> I initially had a u-boot with a DT lacking:
+> 	"mcu_esm: esm@40800000"
+> and I could reproduce the board not resetting by commenting in its
+> description:
+> 	"ti,esm-pins = <95>;"
+>
+> I don't understand why that is on the other hand. The TRM says ESM0
+> ERR_O drives the SOC_SAFETY_ERRORn pin, which goes to the PMIC GPIO3 on
+> the schematic _and_ to MCU_ESM0 as an error input event. The tps6594-esm
+> module is probing successfully and it sets both ESM_SOC_EN|ESM_SOC_ENDRV
+> and ESM_SOC_START, so I would expect the PMIC to reset the board without
+> MCU_ESM0 being described or configured by u-boot.
 
-Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
-Signed-off-by: Bryan Brattlof <bb@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 2 --
- 1 file changed, 2 deletions(-)
+AFAIK, Keerthy correct me. GPIO-7 of PMIC should reset the boards.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index ff65955551a32..3efa12bb72546 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -645,8 +645,6 @@ &mcu_pmx0 {
- 
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
- 		pinctrl-single,pins = <
--			AM62PX_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
--			AM62PX_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (C6) WKUP_UART0_RTSn */
- 			AM62PX_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (D8) WKUP_UART0_RXD */
- 			AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
- 		>;
+If you see figure 5-27 of TRM then SOC_SAFETY_ERRORn goes to GPIO-3 of 
+PMIC (schematic)
 
----
-base-commit: 182a862560097dec7adf774af58076984cd6c1ed
-change-id: 20240823-am62p-5713af1c93e0
+Same time this is cascaded to MCU-ESM and WKUP-ESM to generate 
+MCU_SAFETY_ERRORn (from Wkup_ESM)
 
-Best regards,
--- 
-Bryan Brattlof <bb@ti.com>
+and MCU_SAFETY_ERRORn is connected to GPIO-7.
 
+Unlike other device J721E (for reference)
+
+SOC_SAFETY_ERRORn is generated by Main ESM and MCU_SAFETY_ERRORn can be 
+generated by WKUP_ESM and main_ESM.
+
+Please look at schematic of J721E SOM [0], both SOC_SAFETY_ERRZ and 
+MCU_SAFETY_ERRZ both are connected to GPIO-7 of PMIC.
+
+So on this device and board, only main ESM configuration is working for us.
+
+[0] https://www.ti.com/tool/J721EXSOMXEVM#tech-docs
+
+> Best,
+>
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 38 +++++++++++-----------
+>>   1 file changed, 19 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index f170f80f00c1..6c014d335f2c 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -2429,7 +2429,7 @@ main_esm: esm@700000 {
+>>   	watchdog0: watchdog@2200000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2200000 0x00 0x100>;
+>> -		clocks = <&k3_clks 348 1>;
+>> +		clocks = <&k3_clks 348 0>;
+>>   		power-domains = <&k3_pds 348 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 348 0>;
+>>   		assigned-clock-parents = <&k3_clks 348 4>;
+>> @@ -2438,7 +2438,7 @@ watchdog0: watchdog@2200000 {
+>>   	watchdog1: watchdog@2210000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2210000 0x00 0x100>;
+>> -		clocks = <&k3_clks 349 1>;
+>> +		clocks = <&k3_clks 349 0>;
+>>   		power-domains = <&k3_pds 349 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 349 0>;
+>>   		assigned-clock-parents = <&k3_clks 349 4>;
+>> @@ -2447,7 +2447,7 @@ watchdog1: watchdog@2210000 {
+>>   	watchdog2: watchdog@2220000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2220000 0x00 0x100>;
+>> -		clocks = <&k3_clks 350 1>;
+>> +		clocks = <&k3_clks 350 0>;
+>>   		power-domains = <&k3_pds 350 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 350 0>;
+>>   		assigned-clock-parents = <&k3_clks 350 4>;
+>> @@ -2456,7 +2456,7 @@ watchdog2: watchdog@2220000 {
+>>   	watchdog3: watchdog@2230000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2230000 0x00 0x100>;
+>> -		clocks = <&k3_clks 351 1>;
+>> +		clocks = <&k3_clks 351 0>;
+>>   		power-domains = <&k3_pds 351 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 351 0>;
+>>   		assigned-clock-parents = <&k3_clks 351 4>;
+>> @@ -2465,7 +2465,7 @@ watchdog3: watchdog@2230000 {
+>>   	watchdog4: watchdog@2240000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2240000 0x00 0x100>;
+>> -		clocks = <&k3_clks 352 1>;
+>> +		clocks = <&k3_clks 352 0>;
+>>   		power-domains = <&k3_pds 352 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 352 0>;
+>>   		assigned-clock-parents = <&k3_clks 352 4>;
+>> @@ -2474,7 +2474,7 @@ watchdog4: watchdog@2240000 {
+>>   	watchdog5: watchdog@2250000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2250000 0x00 0x100>;
+>> -		clocks = <&k3_clks 353 1>;
+>> +		clocks = <&k3_clks 353 0>;
+>>   		power-domains = <&k3_pds 353 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 353 0>;
+>>   		assigned-clock-parents = <&k3_clks 353 4>;
+>> @@ -2483,7 +2483,7 @@ watchdog5: watchdog@2250000 {
+>>   	watchdog6: watchdog@2260000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2260000 0x00 0x100>;
+>> -		clocks = <&k3_clks 354 1>;
+>> +		clocks = <&k3_clks 354 0>;
+>>   		power-domains = <&k3_pds 354 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 354 0>;
+>>   		assigned-clock-parents = <&k3_clks 354 4>;
+>> @@ -2492,7 +2492,7 @@ watchdog6: watchdog@2260000 {
+>>   	watchdog7: watchdog@2270000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2270000 0x00 0x100>;
+>> -		clocks = <&k3_clks 355 1>;
+>> +		clocks = <&k3_clks 355 0>;
+>>   		power-domains = <&k3_pds 355 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 355 0>;
+>>   		assigned-clock-parents = <&k3_clks 355 4>;
+>> @@ -2506,7 +2506,7 @@ watchdog7: watchdog@2270000 {
+>>   	watchdog8: watchdog@22f0000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x22f0000 0x00 0x100>;
+>> -		clocks = <&k3_clks 360 1>;
+>> +		clocks = <&k3_clks 360 0>;
+>>   		power-domains = <&k3_pds 360 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 360 0>;
+>>   		assigned-clock-parents = <&k3_clks 360 4>;
+>> @@ -2517,7 +2517,7 @@ watchdog8: watchdog@22f0000 {
+>>   	watchdog9: watchdog@2300000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2300000 0x00 0x100>;
+>> -		clocks = <&k3_clks 356 1>;
+>> +		clocks = <&k3_clks 356 0>;
+>>   		power-domains = <&k3_pds 356 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 356 0>;
+>>   		assigned-clock-parents = <&k3_clks 356 4>;
+>> @@ -2528,7 +2528,7 @@ watchdog9: watchdog@2300000 {
+>>   	watchdog10: watchdog@2310000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2310000 0x00 0x100>;
+>> -		clocks = <&k3_clks 357 1>;
+>> +		clocks = <&k3_clks 357 0>;
+>>   		power-domains = <&k3_pds 357 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 357 0>;
+>>   		assigned-clock-parents = <&k3_clks 357 4>;
+>> @@ -2539,7 +2539,7 @@ watchdog10: watchdog@2310000 {
+>>   	watchdog11: watchdog@2320000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2320000 0x00 0x100>;
+>> -		clocks = <&k3_clks 358 1>;
+>> +		clocks = <&k3_clks 358 0>;
+>>   		power-domains = <&k3_pds 358 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 358 0>;
+>>   		assigned-clock-parents = <&k3_clks 358 4>;
+>> @@ -2550,7 +2550,7 @@ watchdog11: watchdog@2320000 {
+>>   	watchdog12: watchdog@2330000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2330000 0x00 0x100>;
+>> -		clocks = <&k3_clks 359 1>;
+>> +		clocks = <&k3_clks 359 0>;
+>>   		power-domains = <&k3_pds 359 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 359 0>;
+>>   		assigned-clock-parents = <&k3_clks 359 4>;
+>> @@ -2561,7 +2561,7 @@ watchdog12: watchdog@2330000 {
+>>   	watchdog13: watchdog@23c0000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x23c0000 0x00 0x100>;
+>> -		clocks = <&k3_clks 361 1>;
+>> +		clocks = <&k3_clks 361 0>;
+>>   		power-domains = <&k3_pds 361 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 361 0>;
+>>   		assigned-clock-parents = <&k3_clks 361 4>;
+>> @@ -2572,7 +2572,7 @@ watchdog13: watchdog@23c0000 {
+>>   	watchdog14: watchdog@23d0000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x23d0000 0x00 0x100>;
+>> -		clocks = <&k3_clks 362 1>;
+>> +		clocks = <&k3_clks 362 0>;
+>>   		power-domains = <&k3_pds 362 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 362 0>;
+>>   		assigned-clock-parents = <&k3_clks 362 4>;
+>> @@ -2583,7 +2583,7 @@ watchdog14: watchdog@23d0000 {
+>>   	watchdog15: watchdog@23e0000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x23e0000 0x00 0x100>;
+>> -		clocks = <&k3_clks 363 1>;
+>> +		clocks = <&k3_clks 363 0>;
+>>   		power-domains = <&k3_pds 363 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 363 0>;
+>>   		assigned-clock-parents = <&k3_clks 363 4>;
+>> @@ -2594,7 +2594,7 @@ watchdog15: watchdog@23e0000 {
+>>   	watchdog16: watchdog@23f0000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x23f0000 0x00 0x100>;
+>> -		clocks = <&k3_clks 364 1>;
+>> +		clocks = <&k3_clks 364 0>;
+>>   		power-domains = <&k3_pds 364 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 364 0>;
+>>   		assigned-clock-parents = <&k3_clks 364 4>;
+>> @@ -2605,7 +2605,7 @@ watchdog16: watchdog@23f0000 {
+>>   	watchdog17: watchdog@2540000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2540000 0x00 0x100>;
+>> -		clocks = <&k3_clks 365 1>;
+>> +		clocks = <&k3_clks 365 0>;
+>>   		power-domains = <&k3_pds 365 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 365 0>;
+>>   		assigned-clock-parents = <&k3_clks 366 4>;
+>> @@ -2616,7 +2616,7 @@ watchdog17: watchdog@2540000 {
+>>   	watchdog18: watchdog@2550000 {
+>>   		compatible = "ti,j7-rti-wdt";
+>>   		reg = <0x00 0x2550000 0x00 0x100>;
+>> -		clocks = <&k3_clks 366 1>;
+>> +		clocks = <&k3_clks 366 0>;
+>>   		power-domains = <&k3_pds 366 TI_SCI_PD_EXCLUSIVE>;
+>>   		assigned-clocks = <&k3_clks 366 0>;
+>>   		assigned-clock-parents = <&k3_clks 366 4>;
+>> -- 
+>> 2.45.2
+>>
 
