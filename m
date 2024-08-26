@@ -1,136 +1,140 @@
-Return-Path: <devicetree+bounces-96831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67DCA95FA25
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 21:56:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF9695FA3E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 22:01:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7C491F241E5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 19:56:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F083280EAC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 20:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E19D1993A3;
-	Mon, 26 Aug 2024 19:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778301991AD;
+	Mon, 26 Aug 2024 20:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="yMt3jDjC"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rQhuyVGx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB79E19922D
-	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 19:56:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505FE1EEE0;
+	Mon, 26 Aug 2024 20:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724702212; cv=none; b=bhKM3lVrqKmfUBEgB/PsHstSXtBCwp+NbWgegcsAhuPHQ6xifFuwhQeKcWLBpljRPJnSqtv7kx9T1SkR5SosdQ6CjxXPbdqKZTjO9KGFiKBmg+Xcwydwj5cq3kMSQlrcgi9t+xdf8JZQo409/ioEv+y3QBGJpiBL3qr3VZamtTM=
+	t=1724702462; cv=none; b=BdxAisPiVsOEwvJpuIZ6lHOJtCVGTVnLGLMPUm3CcthKZK2nJSvYsAEctSlofS1t4c84gCkXf7H/RhfVVF6OijTGlWCQvv1j3yHc+iABjL4QdVXiSQv2JyWaaldF7kk9+Aq9feE4P7GkU7As3hXAyuZJQfDvBRYpelUhWPo6JXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724702212; c=relaxed/simple;
-	bh=f44u1tmOhjyUpYSb/IUGjf0UFDthWX1iuarJYnkxt8E=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=omrd3C55HAeDmAgJEDMwGUvz6MdJdq8R7hchoafLyg6l4nqfrOba/yKPiy4mu/gUf5FZ/1nkiN0Tdsm62IMgo2qjm2+IEc7adkBQd7STuvFnBw9RMhAZftgB9nBzBpV2KGRjja3CuEmu3DGp+maWtCBFDNttmZt/2gzNKsL32nE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=yMt3jDjC; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1724702462; c=relaxed/simple;
+	bh=i8b2/3fpffPE7CwL6nUMN/hgNxZHYPJAWsR36w/3Wpo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TJyMhbVB0To2Tzd1WGNQDpRAtiyHEDWazHZ6E2mNZiC1ZSJYeTDTWjmL4nIPlGx/I6/AerbRE7OJyrf7z1kaueLks54F1/gvSamSuHnO2DDnQdk4syQBEZznJI2bsEEC17Ilq/fK3Ofb0VPSSyNpdue8y3+LyHy/4OHWNteW0GI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rQhuyVGx; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47QJxU6s080126;
+	Mon, 26 Aug 2024 14:59:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724702370;
+	bh=PoQ1GbwjydY0m7ZMYSEqW1TJtwmFz8MtKPN1W40p+7U=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=rQhuyVGxs4DXmBAIEfpEDVI7n8jDEsyM6EZz1H3RSdbtByW/5SrTJ0G98n8NjHNZB
+	 J+z1L7TyM2wOPDsu9MkZ7Si/WCtgw5jz9IZ7Cqd9Eo3QOqMwUzV9GJM/su3niSwQzL
+	 JtpYMhYcZjQhvuBdLxi2y7ZaN53oeuqNP+96wHqs=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47QJxUDL022545
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Aug 2024 14:59:30 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ Aug 2024 14:59:30 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 Aug 2024 14:59:30 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47QJxUIx026103;
+	Mon, 26 Aug 2024 14:59:30 -0500
+Date: Mon, 26 Aug 2024 14:59:30 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Jan Kiszka <jan.kiszka@siemens.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Bao Cheng Su <baocheng.su@siemens.com>,
+        Diogo
+ Ivo <diogo.ivo@siemens.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: soc: ti: am645-system-controller:
+ add child nodes used by main domain
+Message-ID: <20240826195930.c7bylbgu6qma2v3c@siren>
+References: <cover.1723653439.git.jan.kiszka@siemens.com>
+ <c6bbb3884e9270a203ee39d298c34f6676b3911e.1723653439.git.jan.kiszka@siemens.com>
+ <20240824175825.bedufmhfkx4btv5n@anything>
+ <992d6ff9-3181-4a71-9e21-3ba6465693d6@siemens.com>
+ <20240826114259.ynxf5a5qwbm2co4u@press>
+ <7ee8c6c0-3e1d-4262-840e-435407521324@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1724702208;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lSNB16YmTmGtSszFku9OEpzxCSlM3sSnGKMEEle5Jqc=;
-	b=yMt3jDjCx/B0z6xC082cVw0HQY4Me/FagDvE50oGlZZXCMF5Jq6LNhf+2Qxm6GxDSPpGhy
-	osQCkmyACysyLu+u650VEqjzcGGEzFWl7uD9cGiG2uKMLG+neaKZVbHPdqs4NgFfV9kN36
-	F6RecMyRzzHf5tUuKzWLlXy6Zq2aaUrO4Nqz767HIHttvZPw1xfRvEvz1/LRgm5SKRKgW5
-	e98Q7S61cpPqJ69fgCnm4wfemUXqHoZmqLDjo7EW4Gn5fu5LKSLz7FsFpc5L1IqLMoKSNw
-	zVNkFcO6HzXLN8irNUWL94mMo90EcrTYmktZgOLYwgwJL0BRUy5LS22/0nNbVQ==
-Content-Type: multipart/signed;
- boundary=128cfb0fa1f91e2aae272ffecd950e1f386b558b6f3d91eca48fb6bdbb70;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 26 Aug 2024 21:56:34 +0200
-Message-Id: <D3Q3WI8AHRJ1.3B8E985JAVVC2@cknow.org>
-Cc: <airlied@gmail.com>, <alchark@gmail.com>, <andi.shyti@kernel.org>,
- <andyshrk@163.com>, <broonie@kernel.org>, <cl@rock-chips.com>,
- <conor+dt@kernel.org>, <daniel@ffwll.ch>, <devicetree@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <dsimic@manjaro.org>,
- <efectn@protonmail.com>, <finley.xiao@rock-chips.com>,
- <gregkh@linuxfoundation.org>, <heiko@sntech.de>, <honyuenkwun@gmail.com>,
- <jagan@edgeble.ai>, <jamie@jamieiles.com>, <jic23@kernel.org>,
- <jirislaby@kernel.org>, <jonas@kwiboo.se>, <jszhang@kernel.org>,
- <kernel@collabora.com>, <krzk+dt@kernel.org>, <lars@metafoo.de>,
- <lee@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>, <linux-serial@vger.kernel.org>,
- <linux-spi@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
- <linux@roeck-us.net>, <maarten.lankhorst@linux.intel.com>,
- <macromorgan@hotmail.com>, <megi@xff.cz>, <michael.riesch@wolfvision.net>,
- <mripard@kernel.org>, <robh@kernel.org>, <tim@feathertop.org>,
- <tzimmermann@suse.de>, <ulf.hansson@linaro.org>, <wim@linux-watchdog.org>
-Subject: Re: [PATCH v2 11/12] arm64: dts: rockchip: Add rk3576 SoC base DT
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Detlev Casanova" <detlev.casanova@collabora.com>, "Chukun Pan"
- <amadeus@jmu.edu.cn>
-References: <23624422.6Emhk5qWAg@trenzalore>
- <20240825140824.200453-1-amadeus@jmu.edu.cn>
- <22403959.EfDdHjke4D@bootstrap>
-In-Reply-To: <22403959.EfDdHjke4D@bootstrap>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <7ee8c6c0-3e1d-4262-840e-435407521324@siemens.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
---128cfb0fa1f91e2aae272ffecd950e1f386b558b6f3d91eca48fb6bdbb70
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On 14:01-20240826, Jan Kiszka wrote:
+> On 26.08.24 13:42, Nishanth Menon wrote:
+> > On 13:31-20240826, Jan Kiszka wrote:
+> >> On 24.08.24 19:58, Nishanth Menon wrote:
+> >>> On 18:37-20240814, Jan Kiszka wrote:
+> >>>> From: Jan Kiszka <jan.kiszka@siemens.com>
+> >>>>
+> >>>> Expand bindings to cover both the MCU and the main usage of the AM654
+> >>>> system controller.
+> >>>>
+> >>>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> >>>> ---
+> >>>>  .../soc/ti/ti,am654-system-controller.yaml    | 19 +++++++++++++++++++
+> >>>>  1 file changed, 19 insertions(+)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> >>>> index e79803e586ca..cb9da3ec39a8 100644
+> >>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> >>>
+> >>> As per linux-next, this file does not exist? looks like you might need
+> >>> to rebase on latest next?
+> >>>
+> >>
+> >> "This goes on top of
+> >> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20240518-dt-bindings-ti-soc-mfd-v1-0-b3952f104c9a@linaro.org/"
+> >>
+> >> Is that series obsolete by now?
+> > 
+> > This dependency information would have been useful when provided under the
+> > diffstat section of the representative patch. :(
+> > 
+> 
+> Yeah, who reads cover letters? ;) Will try to do that next time.
 
-On Mon Aug 26, 2024 at 8:28 PM CEST, Detlev Casanova wrote:
-> On Sunday, 25 August 2024 10:08:24 EDT Chukun Pan wrote:
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> > > ...
-> > > +		opp-1416000000 {
-> > > +			opp-hz =3D /bits/ 64 <1416000000>;
-> > > +			opp-microvolt =3D <725000 725000 950000>;
-> > > +			opp-microvolt-L1 =3D <712500 712500 950000>;
-> > > +			opp-microvolt-L2 =3D <700000 700000 950000>;
-> > > +			opp-microvolt-L3 =3D <700000 700000 950000>;
-> > > +			opp-microvolt-L4 =3D <700000 700000 950000>;
-> > > +			opp-microvolt-L5 =3D <700000 700000 950000>;
-> > > +			clock-latency-ns =3D <40000>;
-> > > +		};
-> > > ...
-> >=20
-> > I'm curious if these frequencies work properly. On the bsp kernel,
-> > 'opp-microvolt-L<name>' is used by the PVTM driver, I don't know
-> > if it works on the upstream kernel.
->
-> Which seems to correspond to the set opp-hz value. As mentionned by Alexe=
-y,=20
-> the opp-microvolt-L.* values are not used by the driver.
->
-> I also have not tested any cpufreq settings/driver on this board yet. I c=
-an=20
-> remove the opp-microvolt-L.* for now.
+Looking at what we included in v6.11, looks like the above series from
+krystoff will need to be re-thought through.
+[1] makes the patches un-necessary to an extent by modelling the node as
+a simple-bus - Looks like k3-am62-wakeup.dtsi was missed, but it should
+be trivial enough fixup. Did you try applying the series on latest next?
+it should not apply anymore (Doesn't apply on master either).
 
-If you run this command on the upstream kernel:
-``grep -r "opp-microvolt" arch/arm64/boot/dts/rockchip/``
+[1] https://lore.kernel.org/all/20240628151518.40100-1-afd@ti.com/
 
-you'll see it doesn't use the opp-microvolt-LN variants anywhere,
-so this is indeed a downstream/BSP only thing.
-
---128cfb0fa1f91e2aae272ffecd950e1f386b558b6f3d91eca48fb6bdbb70
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZszd+QAKCRDXblvOeH7b
-bsPMAP9CORw/HV6VNrTduOL78GjAIEpWxM/M9+0BOgYkBHnzpQEAjK8fuZpW3HrN
-ri8LuinsuvlO+D0OMT9SEJJAE8prZQE=
-=pQv4
------END PGP SIGNATURE-----
-
---128cfb0fa1f91e2aae272ffecd950e1f386b558b6f3d91eca48fb6bdbb70--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
