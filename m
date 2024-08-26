@@ -1,253 +1,109 @@
-Return-Path: <devicetree+bounces-96570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AE4295EA7B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:32:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E98595EABF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02E34288CF1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 07:32:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DF09B207F5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 07:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FBE129A74;
-	Mon, 26 Aug 2024 07:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8DF12E1EE;
+	Mon, 26 Aug 2024 07:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="e1LbLJrg"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="UYIt0vym"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC8B82490;
-	Mon, 26 Aug 2024 07:32:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0802D052;
+	Mon, 26 Aug 2024 07:45:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724657560; cv=none; b=quZILRj/VlwWl/r/1Ev2EdDTTb9kJOukSyG82R/PJAew4Bck6TaiqVmuPJyE1fr9JTEwah04v0nBzB5pfQUd4gD8eZpLWOYq8A4pwhR+UVOiaE8lj3oNa9u6sISdJmZc9XhzGewG3PkucEsBpfbof7AnHDLHd7doRpTToZ+j0rs=
+	t=1724658344; cv=none; b=E5Jn/AyJnZ+u96IAkk5CCVSyKatFrGdVkyg49B3t2x6dYGaIWu8XvTLoANx3BDJS9v/MNk4OJlSPVp01KusKt0JyXCE8WfETtDFcMfW7AtdwMKBJhHqP2qlLcvL3TYA3ZA16G4Wn6wZsYxqOsArf0BGEpNg2S9yYzlIuKc3U9Q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724657560; c=relaxed/simple;
-	bh=a+CpVZgGiTL8JhtFV1PU7HeO6EwxdOWGSDK5dPwAiDQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Oja6Igc2FBddTQUFQezW3xiPz5F4p4qxZURV70lUpWeDvhe+zPEBpttcCjIcI0kvrWFwAu14edu/ygkUREahHQhrkumiaAu72adBeXBZ4bbNsfAi1noWWFz6Q9gdw8YWR+htsWNDvHIPqDcZzIJjvaZW9DlnglNUyq/kOIQk4JU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=e1LbLJrg; arc=none smtp.client-ip=91.218.175.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <73f033cb-d890-426d-8b1a-f9c56456961d@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1724657555;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HGdrGxQwgoxsXhspyMbG8l2ZGZETxRuwcMDsFiaAMqE=;
-	b=e1LbLJrgwyrIS1FKWYpzuMPFCPJ7RILGWqg5nk65MwWlhLaQ0Sr5uvirxiI+GVuOcceIrs
-	nmGUEAuRqnuhqMhEgJTBB3bpBKH4Oducv/Ei5SR86ulY0ylBewDT8BKqM3Z1BF0GjDlEcN
-	b6vbYAbXrC1CF9j6kEsP0hcNDKs/2AY=
-Date: Mon, 26 Aug 2024 13:02:23 +0530
+	s=arc-20240116; t=1724658344; c=relaxed/simple;
+	bh=vgiDjg6ERTOokHd3WN2U4z0/E/rvw7eX4pWbXDCewGU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=kmjpSREbp1Q1E8Nd6arn1W6JzMfGOcw1eB5rrSjQ8AlYTMv7KZsYq7E0Ju7G6jYDux06D3OsfOzYjjyKW4YJJXZ5LhGAzJEo9Myw3LGl/Mf7n9Rsfe5u9tM8eR/+DmgkkBR+AmPBKIVcbt5X/eX+8mztKfQEzW9+3b+BmK3R7f8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=UYIt0vym; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [14.153.79.170])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 21858789DF;
+	Mon, 26 Aug 2024 15:45:33 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 21858789DF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1724658338;
+	bh=m5/rFI10QPDFYm6oHs30udevEbWy1s0fAFZ7HUo6nKU=;
+	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
+	b=UYIt0vymjXO0pPbBCdZajGwZOFuifJhyVT320kIjBgeOkzFuxZibkag7/1fN8mo9i
+	 pOfrm20CGGJwuthziD0PI73lrTeK1LUgMduoyDvNK2U9zJ5yextJaxLvEpiipo3u0k
+	 mqXx5XSzzywBQ6HS7qNVPRR0CLJQX4fdD75kHPqE=
+Message-ID: <25346f43-642a-477d-8df5-91ddf2765d69@classfun.cn>
+Date: Mon, 26 Aug 2024 15:46:49 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: display: ti,am65x-dss: Add OLDI
- properties for AM625 DSS
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Jyri Sarha <jyri.sarha@iki.fi>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- Alexander Sverdlin <alexander.sverdlin@siemens.com>,
- Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
- Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
-References: <20240716084248.1393666-1-a-bhatia1@ti.com>
- <20240716084248.1393666-4-a-bhatia1@ti.com>
- <93844c97-46b7-48bd-9397-2bbba9c09510@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for LCKFB Taishan Pi
+ RK3566
+To: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20240826044530.726458-1-bigfoot@classfun.cn>
+ <20240826044530.726458-4-bigfoot@classfun.cn>
+ <wacysftuozwpumrw262tltoxqrldlju7mzj5fnxxcjheycjvzr@wb7mcnbiv6ic>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-In-Reply-To: <93844c97-46b7-48bd-9397-2bbba9c09510@kernel.org>
+From: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <wacysftuozwpumrw262tltoxqrldlju7mzj5fnxxcjheycjvzr@wb7mcnbiv6ic>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
 
-Hi Krzysztof,
-
-
-On 7/21/24 21:09, Krzysztof Kozlowski wrote:
-> On 16/07/2024 10:42, Aradhya Bhatia wrote:
->> The DSS in AM625 SoC has 2 OLDI TXes. Refer the OLDI schema to add the
->> support for the OLDI TXes.
+On 2024/8/26 14:06, Krzysztof Kozlowski  wrote:
+> On Mon, Aug 26, 2024 at 12:44:13PM +0800, Junhao Xie wrote:
+>> Add dts for LCKFB Taishan Pi.
 >>
->> The AM625 DSS VP1 (port@0) can connect and control 2 OLDI TXes, to use
->> them in dual-link or cloned single-link OLDI modes. Add support for an
->> additional endpoint under the port@0 to accurately depict the data flow
->> path.
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>  .../bindings/display/ti/ti,am65x-dss.yaml     | 135 ++++++++++++++++++
->>  1 file changed, 135 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> index 399d68986326..249597455d34 100644
->> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> @@ -91,6 +91,24 @@ properties:
->>            For AM625 DSS, the internal DPI output port node from video
->>            port 1.
->>            For AM62A7 DSS, the port is tied off inside the SoC.
->> +        properties:
->> +          endpoint@0:
->> +            $ref: /schemas/graph.yaml#/properties/endpoint
->> +            description:
->> +              For AM625 DSS, VP Connection to OLDI0.
->> +              For AM65X DSS, OLDI output from the SoC.
->> +
->> +          endpoint@1:
->> +            $ref: /schemas/graph.yaml#/properties/endpoint
->> +            description:
->> +              For AM625 DSS, VP Connection to OLDI1.
-> 
-> Eh, that's confusing. Why do you have graph to your children? Isn't this
-> entirely pointless?
 
-I am not sure I fully understand. The same display source video port can
-connect up to 2 OLDI TXes - hence 2 endpoints which connect to the OLDI
-that were described in the previous patch. The idea has been to
-accurately depict the connections of the hardware.
-
-What am I missing here?
-
-
-side-note: I do realize, as I write this, that it has been quite a while
-since you reviewed, and that you may have, rightfully, lost context.
-I apologize for that.
+[...]
 
 > 
->> +
->> +        anyOf:
->> +          - required:
->> +              - endpoint
->> +          - required:
->> +              - endpoint@0
->> +              - endpoint@1
->>  
->>        port@1:
->>          $ref: /schemas/graph.yaml#/properties/port
->> @@ -112,6 +130,23 @@ properties:
->>        Input memory (from main memory to dispc) bandwidth limit in
->>        bytes per second
->>  
->> +  oldi-txes:
->> +    type: object
->> +    additionalProperties: true
+>> +	dc_12v: dc-12v {
 > 
-> Why? This looks wrong.
-
-This, I will admit, was a shot in the dark. The binding check asked me
-that I was missing either this or unevaluatedProperties. I tried to make
-sense of the two, but with little luck. Eventually, I went with this.
-
-I could change it to unevaluatedProperties if that is indeed correct. I
-could also use some comprehensive resource to understand this, if you
-have something to recommend. =)
-
+> Use some reasonable prefix or suffix (regulator) for all regulator
+> nodes. Or even: use name for all fixed regulators which matches current
+> format recommendation: 'regulator-[0-9]v[0-9]'
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
 > 
->> +    properties:
->> +      "#address-cells":
->> +        const: 1
+
+Thanks, I will rename it to dc-12v-regulator
+
+[...]
+
 >> +
->> +      "#size-cells":
->> +        const: 0
->> +
->> +    patternProperties:
->> +      '^oldi_tx@[0-1]$':
+>> +&sdhci {
+>> +	bus-width = <8>;
+>> +	max-frequency = <200000000>;
+>> +	non-removable;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe &emmc_rstnout>;
+>> +	status = "okay";
 > 
-> Please follow DTS coding style for naming.
-
-Okay!
-
+> Keep status the last.
 > 
->> +        type: object
->> +        $ref: ti,am625-oldi.yaml#
->> +        unevaluatedProperties: false
->> +        description: OLDI transmitters connected to the DSS VPs
->> +
->>  allOf:
->>    - if:
->>        properties:
->> @@ -123,6 +158,19 @@ allOf:
->>          ports:
->>            properties:
->>              port@0: false
->> +            oldi_txes: false
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: ti,am65x-dss
->> +    then:
->> +      properties:
->> +        oldi_txes: false
->> +        port@0:
->> +          properties:
->> +            endpoint@1: false
->>  
->>  required:
->>    - compatible
->> @@ -171,3 +219,90 @@ examples:
->>              };
->>          };
->>      };
->> +
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
->> +
->> +    bus {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +        dss1: dss@30200000 {
->> +            compatible = "ti,am625-dss";
->> +            reg = <0x00 0x30200000 0x00 0x1000>, /* common */
->> +                  <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
->> +                  <0x00 0x30206000 0x00 0x1000>, /* vid */
->> +                  <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
->> +                  <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
->> +                  <0x00 0x3020a000 0x00 0x1000>, /* vp1 */
->> +                  <0x00 0x3020b000 0x00 0x1000>, /* vp2 */
->> +                  <0x00 0x30201000 0x00 0x1000>; /* common1 */
->> +            reg-names = "common", "vidl1", "vid",
->> +                        "ovr1", "ovr2", "vp1", "vp2", "common1";
->> +            power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
->> +            clocks =        <&k3_clks 186 6>,
->> +                            <&vp1_clock>,
->> +                            <&k3_clks 186 2>;
->> +            clock-names = "fck", "vp1", "vp2";
->> +            interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
->> +            oldi-txes {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +                oldi0: oldi@0 {
+> Best regards,
+> Krzysztof
 > 
-> You are duplicating the example from previous schema. No need. Keep
-> only, one complete example.
+> 
 
-Sure!
-
-
-Regards
-Aradhya
+Thanks for your review, I will fix all problems and post patch v2!
 
