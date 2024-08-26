@@ -1,282 +1,124 @@
-Return-Path: <devicetree+bounces-96694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8119895F207
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 14:52:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5AE95F211
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 14:53:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6DBD1C22A0E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:52:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D907B282B26
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F251C17279E;
-	Mon, 26 Aug 2024 12:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kuybHtF0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF50417C984;
+	Mon, 26 Aug 2024 12:49:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB8F155A43;
-	Mon, 26 Aug 2024 12:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE7717BEC0;
+	Mon, 26 Aug 2024 12:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724676492; cv=none; b=lyU0ZY1yiwlfrBYfYmrqiGOxmzvKiu7kl9HVrrsB9A+pXXr4mprqmO06IUavhe9SEr4HGeD7kkIiJj+iRcDphNMeqJWU66Tp+2XQSHVvHFOBp5Hfl2rV2jE6dN2wTHgEmlx/obXI2852siuuam/0QQ3s2iOrrg2wQMUjD62AXbo=
+	t=1724676598; cv=none; b=FfUvEp5ZWmOnWm5SSB1ErRxspg4hdqLMgp6/he0eYX9GfwOBlTYjuNl8t69o2Cqp39T9cwR5vRFimhCJn/cWQhLSBzGU7s93Jlixbsws6oZJWDjsGlae8/thShquBhf1N4ze+FFB/aqpNv+U5owciWlIe7AE9m7A22eZ/NsVZbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724676492; c=relaxed/simple;
-	bh=vIc3CjymiCxc/rWgM8Rdk5oh2gtNDlRqS9o5BN/ii6w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G9GWNA1OTqFYdYtVlBDVPz4+bGl3oHxnwO905mILPhvD9A2bZuvrJWnIPVGmnROKEGDKBlo1YxWdGznm4x3lWfMTE45f1WTbalzFVmRT6TqLSuUggelL1OkazCSgNAOos0OO5ypR4m/jUKklVOATydcJC7iCEEPdxSLxhz7+XLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kuybHtF0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0E1EC51429;
-	Mon, 26 Aug 2024 12:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724676492;
-	bh=vIc3CjymiCxc/rWgM8Rdk5oh2gtNDlRqS9o5BN/ii6w=;
-	h=From:To:Cc:Subject:Date:From;
-	b=kuybHtF0dPOYVzEMclFokkYXL/arB3vs50wrzl+k+txjBQ6rCLwkYmxE9hP6GeYhZ
-	 kg6fQ6KDlc/5lOL2ZMjNILKSX7w1hhM6Fz2K9q3vMW4FfWTKuFGUApmWP30ZmZeqPJ
-	 d3Y6eLCvwU4EjEQlcSm3NncVLOABJJH6lbyEBkP7ZBJdT7Rb8NcAhimE2A+Qlu4nyC
-	 tLBzPIPeL2Rzg7xI6ZD13D0KDtuN+unTpo3JesP+TGdxNz3+m98t74j5gMAGHivGbX
-	 JMnjtBUOgwqqzYxirxtQUUF9TAfn4YCD1AcmYG3ALJ+cU9NChO1z1z9VhU6iyc9Hb/
-	 MM0UhxubzRVbQ==
-From: Masahiro Yamada <masahiroy@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	Frank Rowand <frowand.list@gmail.com>,
-	Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH] of: move empty_root and unittest data DTBs to .init.rodata section
-Date: Mon, 26 Aug 2024 21:48:01 +0900
-Message-ID: <20240826124802.1552738-1-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1724676598; c=relaxed/simple;
+	bh=U5d9f4V/3go4eQ+5yKorX5gfhmyk6wN2Wq5U9RPsxn8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Pcn3n9BQhWW+7nW7Aa/6wE2uCpfvtVrXreafnrLHKxIe8NCCmT3VnzPrFbcJNiv/M6mOJfP7Fq7pv8dPrcMcKGrjrjJjemXdbmIHRXbFWndy75ovXvaBYl5n2T/yUiA8sbFNO0X5GUVxnnVQwu1frTSlXCma+At5vcKq86Q7QjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6b4432b541aso37662757b3.1;
+        Mon, 26 Aug 2024 05:49:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724676595; x=1725281395;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fNKaoBwiLKxyI1/6ZL98h5nDfWVTkc6MIAIcVX0VupA=;
+        b=FBNDsYrW6rmcC93wcjM2qoQx8WqS9kDh7SQtpGMjKBNOjE1+Ypqb9JaxYHu70pPwg/
+         tkQFjegWuankG7n8+BzevDaffMfqy72+j8uyT+80909PI+5nLWnqmUP+EM9pNN0Gvskh
+         PLvJ97xP3eChPe28vx6GwwjDL1FNIHDtAr0ux52wjwwb8bHHxwOi+HPpF7+5ZEMve/hT
+         sqNR2Ww5yzhLsLzsMmLr9XDmpx5kXrKC6atKwsGiME9VkBbv0+vv7ZHB2JVjSe3miWnc
+         zH86ztNNNlzEMzPOiW3i2C/k47nt8VdJ+DrEjsu2I9NiD5zPDO7jOOfoywTICnGQULDl
+         o4vw==
+X-Forwarded-Encrypted: i=1; AJvYcCWG6c4fc9NhOjQb9qjGdVExLR5A1A86Czt8kUHot8ZVQW9wvWcXl3k8vb5DvDiJVG/FCl1WejrbF5qifbdtg4QfP+8=@vger.kernel.org, AJvYcCXS1/RdV+PQBEM7ToSMZ6mWp+A2ss7HLvlFltd/OBiQPjYtgiVBCuHX8jGqYed6KCgG+s0MWQ/ZQwgc@vger.kernel.org, AJvYcCXSg7dZ6aNKg0g2+LtqX0CpZHAgt/JfrrebnfypzdoNiVxpiQVYGA3va2tDqx1I3Txcld8jIMTxVkgdJsSB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1UznnXadDUL5KFZm1YA1/XC0uFe9SOldWv3hgrMXQCXHkPYh3
+	NDmG3OijQ9udPmgskEoj47YnXcwOTMfft2tud2ZvI4PhTts/ZxCt3aacC/I5
+X-Google-Smtp-Source: AGHT+IGwbKXwkNP2TgAFJUWSN4ml6WC6Nhe4oky562mjIrqDl608Wxor3GqniBr12Kz1MkJAsBWuuA==
+X-Received: by 2002:a05:690c:d91:b0:64a:f237:e0b0 with SMTP id 00721157ae682-6c6246036cemr116548157b3.5.1724676595122;
+        Mon, 26 Aug 2024 05:49:55 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c399cb503asm15103757b3.17.2024.08.26.05.49.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Aug 2024 05:49:54 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6c0adbbf2eeso34492477b3.0;
+        Mon, 26 Aug 2024 05:49:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUHThF6t30tHkf16lHdLocXP4yV+rn6b91VKr8RswB0XcvF6KDV8RiaxhQVdchEsU8TRwDEDprgq0j8yPaa@vger.kernel.org, AJvYcCVVldGhbRqpaHV3wLeEGZyhrhdSY6LfUAQXfqA8/qlKsPgCnw3h2pJ5iqWWhrnnWpXYGuOIM0iXdbmJw6Y/XNQ9rdo=@vger.kernel.org, AJvYcCWA/QNmu6loI5wpwEGs3pxEUbjgub0tuDI3gRMP4fuRe9c0LKZlPWkowCDC2phJs4A+i3vFDoThg+X+@vger.kernel.org
+X-Received: by 2002:a05:690c:97:b0:6ad:deb1:c8e0 with SMTP id
+ 00721157ae682-6c625861730mr125379867b3.18.1724676594353; Mon, 26 Aug 2024
+ 05:49:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240821085644.240009-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240821085644.240009-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240821085644.240009-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 26 Aug 2024 14:49:42 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUyW_8ma++zP8bRLMh120mysSD7206On0euRG7+S-081A@mail.gmail.com>
+Message-ID: <CAMuHMdUyW_8ma++zP8bRLMh120mysSD7206On0euRG7+S-081A@mail.gmail.com>
+Subject: Re: [PATCH v3 7/8] arm64: dts: renesas: r9a09g057h44-gp-evk: Enable
+ OSTM, I2C, and SDHI
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Some architectures can embed DTB(s) in vmlinux. Most of them expect a
-single DTB in the .dtb.init.rodata section.
+Hi Prabhakar,
 
-For example, RISC-V previously allowed embedding multiple DTBs in
-vmlinux, but only the first DTB in the .dtb.init.rodata section was
-used. Which DTB was used was unpredictable, as it depended on the link
-order (i.e., the order in Makefile).
+On Wed, Aug 21, 2024 at 10:56=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable OSTM0-OSTM7, RIIC{0,1,2,3,6,7,8}, and SDHI1 (available on the SD2
+> connector) on the RZ/V2H GP-EVK platform.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Commit 2672031b20f6 ("riscv: dts: Move BUILTIN_DTB_SOURCE to common
-Kconfig") changed the Makefiles to ensure only one DTB is embedded.
+Thanks for your patch!
 
-However, commit 7b937cc243e5 ("of: Create of_root if no dtb provided by
-firmware") introduced another DTB into the .dtb.init.rodata section.
+> ---
+> note, for i2c nodes we are defaulting the clock-frequency and this
+> will be updated when slave nodes are enabled.
 
-Since then, the symbol dump (sorted by address) for ARCH=riscv
-nommu_k210_defconfig is as follows:
+This causes lots of "'clock-frequency' is a required property" warnings
+from "make dtbs".  Moreover, what if I run i2cdetect on any of these
+buses? Could it run the bus faster than the board wiring allows?
+Hence I think you should add "clock-frequency" properties to all
+enabled I2C bus nodes.
 
-    00000000801290e0 D __dtb_k210_generic_begin
-    00000000801290e0 D __dtb_start
-    000000008012b571 D __dtb_k210_generic_end
-    000000008012b580 D __dtb_empty_root_begin
-    000000008012b5c8 D __dtb_empty_root_end
-    000000008012b5e0 D __dtb_end
+The rest LGTM.
 
-The .dtb.init.rodata section now contains the following two DTB files:
+Gr{oetje,eeting}s,
 
-    arch/riscv/boot/dts/canaan/k210_generic.dtb
-    drivers/of/empty_root.dtb
+                        Geert
 
-This is not an immediate problem because the boot code picks up the
-first DTB. The second one, empty_root.dtb is just ignored.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-However, as mentioned above, it is fragile to rely on the link order,
-as future Makefile changes may break the behavior.
-
-The cmd_wrap_S_dtb rule in scripts/Makefile.lib is used for embedding a
-DTB into the .dtb.init.rodata, so that the arch boot code can find it by
-the __dtb_start symbol.
-
-empty_root.dtb is looked up by its own symbol, so it does not need to
-be located in the .dtb.init.rodata. It can be moved to the .init.rodata
-section.
-
-When CONFIG_OF_UNITTEST is enabled, more unittest DTBOs are embedded in
-the .dtb.init.rodata section. These are also looked up by name and for
-generic purposes, so they can be moved to the .init.rodata section as
-well.
-
-I added a wrapper source file, drivers/of/empty_root_dtb.S, because this
-is the only wrapper used in driver/of/Makefile. I moved the rule for
-generating *.dtbo.S to drivers/of/unittest-data/Makefile because it is
-not used anywhere else.
-
-I added the __initdata annotation to the overlay_info data array to
-avoid section mismatch warnings. The .dtb.init.rodata section is not
-checked by modpost, even though it is discarded after the early boot
-stage.
-
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
----
-
- drivers/of/Makefile               |  4 +++-
- drivers/of/empty_root_dtb.S       | 11 +++++++++++
- drivers/of/fdt.c                  |  4 ----
- drivers/of/unittest-data/Makefile | 20 ++++++++++++++++++++
- drivers/of/unittest.c             |  6 +++---
- scripts/Makefile.build            |  2 --
- scripts/Makefile.lib              |  5 +----
- 7 files changed, 38 insertions(+), 14 deletions(-)
- create mode 100644 drivers/of/empty_root_dtb.S
-
-diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-index 251d33532148..c6eb4f6df6e6 100644
---- a/drivers/of/Makefile
-+++ b/drivers/of/Makefile
-@@ -2,7 +2,9 @@
- obj-y = base.o cpu.o device.o module.o platform.o property.o
- obj-$(CONFIG_OF_KOBJ) += kobj.o
- obj-$(CONFIG_OF_DYNAMIC) += dynamic.o
--obj-$(CONFIG_OF_FLATTREE) += fdt.o empty_root.dtb.o
-+obj-$(CONFIG_OF_FLATTREE) += fdt.o empty_root_dtb.o
-+$(obj)/empty_root_dtb.o: $(obj)/empty_root.dtb
-+targets += empty_root.dtb
- obj-$(CONFIG_OF_EARLY_FLATTREE) += fdt_address.o
- obj-$(CONFIG_OF_PROMTREE) += pdt.o
- obj-$(CONFIG_OF_ADDRESS)  += address.o
-diff --git a/drivers/of/empty_root_dtb.S b/drivers/of/empty_root_dtb.S
-new file mode 100644
-index 000000000000..482d6a33f4ae
---- /dev/null
-+++ b/drivers/of/empty_root_dtb.S
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+#include <asm-generic/vmlinux.lds.h>
-+
-+.section .init.rodata,"a"
-+.balign STRUCT_ALIGNMENT
-+.global __dtb_empty_root_begin
-+__dtb_empty_root_begin:
-+.incbin "drivers/of/empty_root.dtb"
-+.global __dtb_empty_root_end
-+__dtb_empty_root_end:
-+.balign STRUCT_ALIGNMENT
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 68103ad230ee..f719256988eb 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -32,10 +32,6 @@
- 
- #include "of_private.h"
- 
--/*
-- * __dtb_empty_root_begin[] and __dtb_empty_root_end[] magically created by
-- * cmd_dt_S_dtb in scripts/Makefile.lib
-- */
- extern uint8_t __dtb_empty_root_begin[];
- extern uint8_t __dtb_empty_root_end[];
- 
-diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-index 01a966e39f23..fe280a36cf88 100644
---- a/drivers/of/unittest-data/Makefile
-+++ b/drivers/of/unittest-data/Makefile
-@@ -104,3 +104,23 @@ static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
- static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
- 
- dtb-$(CONFIG_OF_OVERLAY) += static_test_1.dtb static_test_2.dtb
-+
-+# Generate an assembly file to wrap the output of the device tree compiler
-+quiet_cmd_wrap_S_dtbo = WRAP    $@
-+      cmd_wrap_S_dtbo = {					\
-+		echo '\#include <asm-generic/vmlinux.lds.h>';	\
-+		echo '.section .init.rodata,"a"';		\
-+		echo '.balign STRUCT_ALIGNMENT';		\
-+		echo '.global __dtbo_$*_begin';			\
-+		echo '__dtbo_$*_begin:';			\
-+		echo '.incbin "$<"';				\
-+		echo '.global __dtbo_$*_end';			\
-+		echo '__dtbo_$*_end:';				\
-+		echo '.balign STRUCT_ALIGNMENT';		\
-+	} > $@
-+
-+$(obj)/%.dtbo.S: $(obj)/%.dtbo FORCE
-+	$(call if_changed,wrap_S_dtbo)
-+
-+targets += $(foreach x, dtbo.S dtbo, \
-+              $(patsubst %.dtbo.o,%.$(x), $(filter %.dtbo.o, $(obj-y))))
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index c830f346df45..21ee856e9d74 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1861,7 +1861,7 @@ static int __init unittest_data_add(void)
- 	struct device_node *unittest_data_node = NULL, *np;
- 	/*
- 	 * __dtbo_testcases_begin[] and __dtbo_testcases_end[] are magically
--	 * created by cmd_dt_S_dtbo in scripts/Makefile.lib
-+	 * created by cmd_wrap_S_dtbo in drivers/of/unittest-data/Makefile
- 	 */
- 	extern uint8_t __dtbo_testcases_begin[];
- 	extern uint8_t __dtbo_testcases_end[];
-@@ -3525,7 +3525,7 @@ static void __init of_unittest_lifecycle(void)
- 
- /*
-  * __dtbo_##overlay_name##_begin[] and __dtbo_##overlay_name##_end[] are
-- * created by cmd_dt_S_dtbo in scripts/Makefile.lib
-+ * created by cmd_wrap_S_dtbo in drivers/of/unittest-data/Makefile
-  */
- 
- #define OVERLAY_INFO_EXTERN(overlay_name) \
-@@ -3585,7 +3585,7 @@ OVERLAY_INFO_EXTERN(overlay_bad_symbol);
- OVERLAY_INFO_EXTERN(overlay_bad_unresolved);
- 
- /* entries found by name */
--static struct overlay_info overlays[] = {
-+static __initdata struct overlay_info overlays[] = {
- 	OVERLAY_INFO(overlay_base, -9999, 0),
- 	OVERLAY_INFO(overlay, 0, 0),
- 	OVERLAY_INFO(overlay_0, 0, 0),
-diff --git a/scripts/Makefile.build b/scripts/Makefile.build
-index a5ac8ed1936f..d0dfdf043ce2 100644
---- a/scripts/Makefile.build
-+++ b/scripts/Makefile.build
-@@ -451,12 +451,10 @@ intermediate_targets = $(foreach sfx, $(2), \
- 					$(filter %$(strip $(1)), $(targets))))
- # %.asn1.o <- %.asn1.[ch] <- %.asn1
- # %.dtb.o <- %.dtb.S <- %.dtb <- %.dts
--# %.dtbo.o <- %.dtbo.S <- %.dtbo <- %.dtso
- # %.lex.o <- %.lex.c <- %.l
- # %.tab.o <- %.tab.[ch] <- %.y
- targets += $(call intermediate_targets, .asn1.o, .asn1.c .asn1.h) \
- 	   $(call intermediate_targets, .dtb.o, .dtb.S .dtb) \
--	   $(call intermediate_targets, .dtbo.o, .dtbo.S .dtbo) \
- 	   $(call intermediate_targets, .lex.o, .lex.c) \
- 	   $(call intermediate_targets, .tab.o, .tab.c .tab.h)
- 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 207325eaf1d1..a5584ca72857 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -382,7 +382,7 @@ DTC_FLAGS += $(if $(filter $(patsubst $(obj)/%,%,$@), $(base-dtb-y)), -@)
- # Generate an assembly file to wrap the output of the device tree compiler
- quiet_cmd_wrap_S_dtb = WRAP    $@
-       cmd_wrap_S_dtb = {								\
--		symbase=__$(patsubst .%,%,$(suffix $<))_$(subst -,_,$(notdir $*));	\
-+		symbase=__dtb_$(subst -,_,$(notdir $*));				\
- 		echo '\#include <asm-generic/vmlinux.lds.h>';				\
- 		echo '.section .dtb.init.rodata,"a"';					\
- 		echo '.balign STRUCT_ALIGNMENT';					\
-@@ -397,9 +397,6 @@ quiet_cmd_wrap_S_dtb = WRAP    $@
- $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
- 	$(call if_changed,wrap_S_dtb)
- 
--$(obj)/%.dtbo.S: $(obj)/%.dtbo FORCE
--	$(call if_changed,wrap_S_dtb)
--
- quiet_dtb_check_tag = $(if $(dtb-check-enabled),[C],   )
- cmd_dtb_check = $(if $(dtb-check-enabled),; $(DT_CHECKER) $(DT_CHECKER_FLAGS) -u $(srctree)/$(DT_BINDING_DIR) -p $(DT_TMP_SCHEMA) $@ || true)
- 
--- 
-2.43.0
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
