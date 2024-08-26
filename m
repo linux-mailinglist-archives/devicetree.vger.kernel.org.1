@@ -1,137 +1,149 @@
-Return-Path: <devicetree+bounces-96650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D9695EEAE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:42:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3031D95EEC7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 12:48:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4649E1F23069
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:42:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CABE1C21386
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 10:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6570B14A4D9;
-	Mon, 26 Aug 2024 10:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFDB147C91;
+	Mon, 26 Aug 2024 10:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a4eiOgzW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PHvp1FK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BB9D1482F5;
-	Mon, 26 Aug 2024 10:42:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D129F39ACC;
+	Mon, 26 Aug 2024 10:48:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724668969; cv=none; b=Zvk2Xp4095MLf7mYmX/GUcxXGy9LG+FcEAMVf1LPv+HOZHPVZ9Tua43r4Xx/qoZidb691x9WHZdQyRTYCDwDyGc6pbiR04lmB3fAZ6G8BQsVm+GOv794NgE6bcFrtczXzmyVO8EHM2m8oRqdpkKltU2owy9eY+r+8olRwqLnxPw=
+	t=1724669324; cv=none; b=Y3+rD1GCXeWHlcyOnnRor1rSACTdQ7ZPaIsRtmXyWo1dLA/6CtYSCbfl8QftnF+UDcWp7HP7f4bjjwx8Ux/JKex//4hWxqo5YpO6Tv3OcLxl1xhesbbmZwqep6jCYlG1UImwQyG11WaB+nGFafOOJ4Su9UOaFC1teREJaf7hPb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724668969; c=relaxed/simple;
-	bh=9dh5giGN/NKD5kz5JVWSuqtsglWlEf+AhSpHcdrDvo4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aKeZDeKW6oh67fN7aZgMOI20eOub4wUFizq+7RupjSP5OtR9LTeJWrTJd7SG0cGy1Q6ixMmcf22ZCHhz6t6lfN7N3trPHEwML2QxAYjB9WNU5QYG6mUmEERlfFKXwXN7hBR4DY/UidxnxMuS4z8Gn841EWhMESsfE8/0MHQh1AE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a4eiOgzW; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724668967; x=1756204967;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=9dh5giGN/NKD5kz5JVWSuqtsglWlEf+AhSpHcdrDvo4=;
-  b=a4eiOgzWSPsuRgotOZ7Oqm4qMa9tAdaKpyI3I7g4Z92YMYLhbG93XpO4
-   d5SKT70YIMUzgDGR+x1tXVOWmB6SiyYR4oJ91g5/gqPWidgQVwZsTxU2n
-   xQbQh+oYrRkGNjKLQkZw5kGSLL28/RjJHT4H3TI3j9yaMzCZufUlkztYb
-   MJUs59/mTQYqbxyOxaUqd4TyeP/l085cmErApYfaAMd/N6cQseZM2rvq7
-   Z1Kh4rMdgx5atx+/5UrPrA0mXvgKlflLSfinviUENJvlMKg/YcxQTPgYg
-   JTuZ1k7rKe7m08iHKkUZySce4joYt1i2+l5vuZGm0hQaufrhCpDczkMrs
-   A==;
-X-CSE-ConnectionGUID: 47LDJakaSB+HjwOa8HPMgQ==
-X-CSE-MsgGUID: pA+aHIfIS06u6fLILVAokA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="40588730"
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="40588730"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:42:46 -0700
-X-CSE-ConnectionGUID: sXCb1H7PRaCzD7fBLgSJow==
-X-CSE-MsgGUID: Y9Qaky/tTGOdfRzCXeP2UA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="62624159"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 03:42:43 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1siXBG-00000001psm-47Zf;
-	Mon, 26 Aug 2024 13:42:38 +0300
-Date: Mon, 26 Aug 2024 13:42:38 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-	Gwendal Grignou <gwendal@chromium.org>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux@mainlining.org
-Subject: Re: [PATCH v4 1/4] iio: magnetometer: ak8975: Relax failure on
- unknown id
-Message-ID: <ZsxcHv9RzzKkadoa@smile.fi.intel.com>
-References: <20240819-ak09918-v4-0-f0734d14cfb9@mainlining.org>
- <20240819-ak09918-v4-1-f0734d14cfb9@mainlining.org>
- <20240823193203.7772a6b0@jic23-huawei>
- <Zsje0_gd41N1P0eE@black.fi.intel.com>
- <20240826113920.092d9ec7@jic23-huawei>
+	s=arc-20240116; t=1724669324; c=relaxed/simple;
+	bh=H5qdFsHLBF26NXOTNKT8cc1YmjeXWIdmAW1q9jJoiFc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iyQUuVMYsQ39wi7sFKez71jZ5ozIStCUeCB+n5FTS3RcYLas+Gl0Sz2XVzyC9vuWdlloLgDITrH9lvIx+1x+43sjFsgpUGdUYQySslghUz1KJ9GB74QBKRuSoy27UGz7G424++gzRoMEdaLVmL5dl0nO7vIuhOcIaIqc7G3csJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PHvp1FK5; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47QAmQKF008291;
+	Mon, 26 Aug 2024 05:48:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724669306;
+	bh=Sdt9ErsTLxOJWQjj+at8gn6Uw33/oDVhLQO7dagY6aY=;
+	h=From:To:CC:Subject:Date;
+	b=PHvp1FK5EG3EpiNJ55xTrnwZceDMq+nwJuBwzKttC2nQzHeTXGSw1tqsbsemnndFC
+	 8P8sFIK1kiZcjfuR9A0/dsvnX5FawLXe9rIwv/OWLTpZKRR9E6gtPgtOJSeVdcXxLR
+	 fMPCjgBfhzGiug2NdRLJYyIewhZ7BSPhl4k2XZVI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47QAmQXO037593
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Aug 2024 05:48:26 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ Aug 2024 05:48:26 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 Aug 2024 05:48:26 -0500
+Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.227.151])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47QAmLNj063606;
+	Mon, 26 Aug 2024 05:48:22 -0500
+From: Beleswar Padhi <b-padhi@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <u-kumar1@ti.com>, <tony@atomide.com>, <bb@ti.com>, <d-gole@ti.com>,
+        <afd@ti.com>, <hnagalla@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/7] Reserve Timer Nodes to avoid clash with Remoteproc firmware
+Date: Mon, 26 Aug 2024 16:18:13 +0530
+Message-ID: <20240826104821.1516344-1-b-padhi@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240826113920.092d9ec7@jic23-huawei>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Aug 26, 2024 at 11:39:20AM +0100, Jonathan Cameron wrote:
-> On Fri, 23 Aug 2024 22:11:15 +0300
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > On Fri, Aug 23, 2024 at 07:32:03PM +0100, Jonathan Cameron wrote:
-> > > On Mon, 19 Aug 2024 00:29:39 +0200
-> > > Barnabás Czémán <barnabas.czeman@mainlining.org> wrote:  
+The remoteproc firmware like of R5F and DSPs in the MAIN voltage domain
+use timers. At the same time, if Linux probes the timers, some
+instability is observed while booting remote cores. Therefore, change
+the status of the timer nodes to "reserved" to avoid any clash. 
 
-...
+NOTE: This series has been rebased on top of a sibling series[0] as both of them
+introduce changes in the same files. Thus, please apply [0] before applying this
+series.
 
-> > > > +	/* Let driver to probe on unknown id for support more register  
-> > > Comment style wrong, I'll fix it up.
-> > > 
-> > > With that tweak applied to the togreg branch of iio.git
+[0]: https://lore.kernel.org/all/20240826093024.1183540-1-b-padhi@ti.com/
 
-> > > > +	 * compatible variants.
-> > > > +	 */  
-> > 
-> > There is another one also wrong.
-> > 
-> > +	[AK09918] = {
-> > +		/* ak09918 is register compatible with ak09912 this is for avoid
-> > +		 * unknown id messages.
-> > +		 */
-> 
-> I think unrelated to this series, but nice to cleanup.
-> Patches welcome :)
+v4: Changelog:
+1) Refactored changes from {}-common-proc-board.dts to {}-som.dtsi to put all
+remoteproc related changes at one place as remotecores were getting enabled at
+{}-som.dtsi file.
+2) Rebased this series on top of [0].
 
-Sure, but I leave this to newbies to have a material to exercise on.
+* Nishanth:
+1) Fixed $subject line for all patches to include the board level files where
+the changes were applied instead of the SoC level files.
+2) Applied these timer fixes to J721E-SK, AM68-SK and AM69-SK boards as well.
 
-> Or it I get bored, I might do a scrub of the full subsystem to get everything
-> in the same style and not provide incorrect choices to cut and paste.
+Link to v3:
+https://lore.kernel.org/all/20240816073908.2343650-1-b-padhi@ti.com/
 
-:-)
+v3: Changelog:
+* Udit
+1) j7200: Updated commit message description to remove DSPs as the SoC does not
+have one.
+2) j722s: Updated the correct commit for "Fixes:" tag which introduced the bug.
+3) For entire series, removed comment about timer usage by R5fs in the MCU
+voltage domain as those are used by Device Manager firmware to get SoC
+functional.
 
-I believe we still have more interesting cases, than white space cleanups.
+Link to v2:
+https://lore.kernel.org/all/20240814104151.2038457-1-b-padhi@ti.com/
+
+v2: Changelog:
+- Split the changes into individual patches for each SoC to tag the
+  correct offending commit for "Fixes:" tag.
+
+* Udit
+1) Add the correct clashing timer nodes for J7200 SoC.
+2) Port these changes to board level dts files instead of SoC level dtsi files.
+
+Link to v1:
+https://lore.kernel.org/all/20240607105559.771080-1-b-padhi@ti.com/
+
+Beleswar Padhi (7):
+  arm64: dts: ti: k3-j7200-som-p0: Change timer nodes status to reserved
+  arm64: dts: ti: k3-j721e-som-p0: Change timer nodes status to reserved
+  arm64: dts: ti: k3-j721e-sk: Change timer nodes status to reserved
+  arm64: dts: ti: k3-j721s2-som-p0: Change timer nodes status to
+    reserved
+  arm64: dts: ti: k3-am68-sk-som: Change timer nodes status to reserved
+  arm64: dts: ti: k3-j784s4-evm: Change timer nodes status to reserved
+  arm64: dts: ti: k3-am69-sk: Change timer nodes status to reserved
+
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi   | 25 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts        | 41 ++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 13 +++++++
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts       | 29 ++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi  | 29 ++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 25 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 41 ++++++++++++++++++++
+ 7 files changed, 203 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
