@@ -1,345 +1,310 @@
-Return-Path: <devicetree+bounces-96479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3632195E656
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 03:36:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D9CA95E6BE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 04:37:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AC701C2089E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 01:36:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44FC8281944
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 02:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993584A07;
-	Mon, 26 Aug 2024 01:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6F7BE68;
+	Mon, 26 Aug 2024 02:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="bclQSNuo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2127.outbound.protection.outlook.com [40.107.255.127])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F82443D;
-	Mon, 26 Aug 2024 01:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724636201; cv=none; b=ZHtyBeMULuNdzZ7cwvQ1jTA+HNInhluoeAGtsOF6Jn24b4PF3hr3rTtMHYxjgM/b6LwXSxKVdN/R1CYi3ErMmnlDom8lmVDPq5pJ53XNOIgXpT6/ZKNwVLQsoax2doXtMUsqzSvyuJS/YSf2+eVVZD9lshgKxkqTjUeAJv+78Ag=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724636201; c=relaxed/simple;
-	bh=wd6zZUEd613VvgbUTb6iIUfcvaLsT1imtH42TS06iMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=budZQ7rP62XLqL+6ED5wvwoB80hwCs5SlZKmSrUfloqZreIaTMpfMVj4JBVd94sOo19OcuSYPnJrDJNopoIOzSIXnzSAYQPrP9pZ97rv420ldQeDvc5ZZtXPJ8nLl5f7qlbMLMzd59D2XsK0MeirKa71g+FbOXuyp4wRTy3PV38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Mon, 26 Aug 2024 01:36:35 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Yangyu Chen <cyy@cyyself.name>, Jesse Taube <jesse@rivosinc.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>,
-	Meng Zhang <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-binding: pinctrl: spacemit: add documents for
- K1 SoC
-Message-ID: <20240826013230.GYA22924.dlan.gentoo>
-References: <20240825-02-k1-pinctrl-v2-0-ddd38a345d12@gentoo.org>
- <20240825-02-k1-pinctrl-v2-1-ddd38a345d12@gentoo.org>
- <d9a925da-2381-4203-a3b6-4cb892039d23@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15615645;
+	Mon, 26 Aug 2024 02:36:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.127
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724639815; cv=fail; b=VRF5bVTQPcHFzlytp4K+N3wBbiH87+1713uB3JiQdV2ntAEWfY/DdMs2/TWoWRIFZWRPyZZMPWUSmZ/Ydt8Dk2St/oXQbbbc1bP8UVJHAGkJdM+3njjxBNIhyOCEkJiAC6UqZK9buezhRnGGXdEAalh+5h+sJ3/eZeP1WnW16+E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724639815; c=relaxed/simple;
+	bh=bsTVXlM9Ma+JS5ZTpMJUBeSXOmijsJYhHbojsVMjFZk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=UoQoSi8m1danTCcMFtfWo4Qra+VWnHczcNAs5KSqrcKEz5CvyJXCRSFb6WP5yj/F/lpnnCLLtwrRFGJbkVPFTQBNA75paFLastYNN2emDL6LeO2LfUmdoMaNBlyCFyfdwdx3NGRSNWRUcSMSFnP0dg1Be4f6oNyRYU0pVh8T0gM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=bclQSNuo; arc=fail smtp.client-ip=40.107.255.127
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=T0T+y0ZJsXvC14shCRbchhxEjWJb+0iE96dkXt6fKOtsdJteTPkbho9astNwZ1okGn+5XlGVuSqNnz3KpWQ5xqHfwotyymxy0Oa3YbW1wU7hje1C4kfI7L7/XWJ5BB/OzCnM/m3jGwnkGugBKq4vu3bX4ELc1HPJ10yNfMToMxyY3dk7OeAwXnH9FE3yVpRxVAomKB4oipZ5xhbt9evu/ZJG1ECRKQ/zWK0aTV76tFLdt7z1fNwk4EBhKzGrBXZhk63amI9hwJV1CmvwlzfRVys62J15vM1eK9hjXb0ZTguzsxdXULW1rzE7PnAtEr4/tRZW1dKImegvB7Tubz0qRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3P9jK0UKJVJCBfyRP4+uFbiWtUVuLDxp/HcFemXDGsc=;
+ b=bv/LYHoF6/uBT/92hTsfsF6eWGxp1mp8PDA3UifpTkU3AclzWhKvvfyrV+Y6TE19e9LdAymCk7QaDfJZfwUX6tc1Rg4+8aEmy1FadPEm4pOyMhhouie20KKKGMnNb1cK3TNzxYheV6/me9YG/5Wtz0hpnDNXRePwMjWXAEh0iVg4tnxEt4gjL3xdb4peWYmytECUIHF4iq5ZEoRzqLd0ns/nsz4u7bukpxxd8adUvneYRt2oOuvPlT+CbxAmKxDnoOf1QH/eu1MGb6uAIVklD+Dze6l1dwePY6oBEF15CNlBL5Gsl9NS8SnScWBPeeVdJWuCU6Qr5YFh8S8plZeACg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3P9jK0UKJVJCBfyRP4+uFbiWtUVuLDxp/HcFemXDGsc=;
+ b=bclQSNuo7fJXZ4EjoLNkLKrkms+t7MMVdrc+gcbIXciMkb8TXda9DcUYNzjir9YnqDVFDq2nCj66O+1fcEmwZisJcpVcLBcOWCr5io7pACK7kYgcxWn/P4Uf08OHWHOXX0cjrVTXltelgAtj1xUknSakCS85q5rOEBHyafyqflWc/wuNeHXse9ZHyyrolLWjELMPs4P2lKN0bBiMe+lz96ibosOPrXLMA3AcJ+k/8tUVJuAkirx8/scTsBpxSB9hG/JwXjwP8QnvcYzp2UN0b0JQLsJbHRdncBRpRgPKtg7/OpVv19fHmpwn2b4KIvJx+yZ6WFWnx7YLsXkTvSsEGg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SEYPR03MB7950.apcprd03.prod.outlook.com (2603:1096:101:169::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.23; Mon, 26 Aug
+ 2024 02:36:47 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.7897.021; Mon, 26 Aug 2024
+ 02:36:47 +0000
+Message-ID: <1039f02d-ca89-438c-b1dd-f49c2ffed6ff@amlogic.com>
+Date: Mon, 26 Aug 2024 10:36:42 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add Amlogic A311L2 and A113X2 rtc
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Yiting Deng <yiting.deng@amlogic.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
+ <20240823-rtc-v1-1-6f70381da283@amlogic.com>
+ <20240823-rotunda-machinist-4f8dabbff479@spud>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20240823-rotunda-machinist-4f8dabbff479@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR02CA0028.apcprd02.prod.outlook.com
+ (2603:1096:4:195::8) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d9a925da-2381-4203-a3b6-4cb892039d23@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB7950:EE_
+X-MS-Office365-Filtering-Correlation-Id: f53bbcce-ed01-49cf-334e-08dcc577ee50
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?a2JjSVlxY0FZNFNvMC9VdXlyd2Y2amJ5eEJlcS9hTFVCT0RTbDlFeDdYeTJU?=
+ =?utf-8?B?TkpVK0dpb3BlS2ZHL3BNNU5hQzFPak5MVG1ROGY4bmp5aFdPSzNBa3ltdlNZ?=
+ =?utf-8?B?Z0FlUTBmN3hwc3B1elcwTGd5Y3dzMmMvV29kUVN0dExvUEJicDVHZDVQNFVO?=
+ =?utf-8?B?czZHRHVGTlV2b2IyS3F4c0Z2dnBRdUh6QkF5QngxdEd4dGViZWZPbjk2ZlIy?=
+ =?utf-8?B?NG9MeEZ3OVRGQnZseDkrNnA5RStHOTYxdTNWVko1cjFSUk5aVVkzalhUR3Vl?=
+ =?utf-8?B?WDVTeXZ6TExFakFYeDlZYkY1VDBHUmdqaysxS2p4SzRwR21rSk84N2VkYjZn?=
+ =?utf-8?B?S3VkdFpTczRPRVU2eXFidFNDa3NHczFKLy9LVjJXTWVYcUZtOSszK01tK1hV?=
+ =?utf-8?B?UW9PNHJNaWVaNm4vcGZCdDU1V0tQdkRUTkhuTEVFdHFzSGloUFlJSk5IK3RJ?=
+ =?utf-8?B?VS9ITXpVZ3p5SDBaaWFjMmZnM2VLbzVOTVlHZzM3OG1jTHJld2lQYUMxMWxJ?=
+ =?utf-8?B?ZWMyWUF4Z2d4bG9Rb0t5eVNGYlFGTWFnRkh4OXc2TGNWeVpxWS8ycVlGOFIw?=
+ =?utf-8?B?LzdhdlBrdHllVjRxWFB5c0pnMTlObDR6S0llUFNrSlM5ajc4Zmx5Y0xpd3Bt?=
+ =?utf-8?B?Y245empZNnhSN2I2RmkrekNtVWtwaHJDZGZzM3NJeTd3OXhSdnV5cm4zakJW?=
+ =?utf-8?B?RTl4UnRQbW4vTkpKS2VKK1lsYkptK3R0VzFWMFl3SWl1aHZzYzZGMHc1WDFp?=
+ =?utf-8?B?Zk1LUzYxK2ZIVzUwdGl6L1BvWkk2N0xxaHJGaXQvak1wVWx6cUNheE95bkxj?=
+ =?utf-8?B?T1pFZUxyYzFJWWo2NGxFTFVtMW9mbUxPMzQ4Q3JPV0ZUNVJkdUx4d05EUEVu?=
+ =?utf-8?B?SzByRWhKOTBhaGpTY2gzakVTRENwUnF2VTEvOU9ySXhwWXVSYjZVWm50Q0Vq?=
+ =?utf-8?B?cXpwTUlvNVA1MW13YzNubXhSQlltWExJQ0xiRS9lWEpIbHNOMHlkOG1iRE43?=
+ =?utf-8?B?Vzk3M2RNcFVnd01ZMzBveXZVTjBZeG9tNHdNdWJkcGpmUkozZnVVUkp6Tmp0?=
+ =?utf-8?B?TXJSTEpLVjhzZTNBMVQ1U1RCME9TQnVPRHROZTJ2VHF2QTVSWEU2bzBHSTBh?=
+ =?utf-8?B?c1NOOGpPbHVZL2NUOGhMUHBXS2hjOUZtNnBORFRGU1Q1UGZzS3B2ay9MT1Fh?=
+ =?utf-8?B?ei8rQTRzRTQ1RkhMUG5YQ2ZQY2c5ZlpRdUJiT1BkeGtjaVM0a0g1WVdnWjdm?=
+ =?utf-8?B?M1k3VWVKbGJhMEJCMW9xZktyR3YxWnVtU2JqdnlYZXVhVnBiNnpVTmlkWXVi?=
+ =?utf-8?B?WEZWMkhRc1lZaTdlYi9tNDFJSmJGeHoreEpDS1g0OXM4Rk9QUkNkTVNSbENo?=
+ =?utf-8?B?aDhMRFZzM3l5Q2t0N2lXM1U0YnEvTVZZaENVQ1NJQlRLQ3ROUU1jRDZYTndX?=
+ =?utf-8?B?L3ZyL3g5alU5d0w4MXk0SE9pTHNuaUc0WjJQNmc2aFFnK2RTTFNWRDlFZVA1?=
+ =?utf-8?B?V2pVL01iNmE5MHN6dWNBRTUyVHQrSkNocU03UWpDcTJZSzhyZXNEcFdEN2sw?=
+ =?utf-8?B?ZUdKV1B1REdPUjhXQ0JtZFF4MldPM0NzL3ZNbGpQeFNORTllUzFkTFlLY252?=
+ =?utf-8?B?RzhCd21jbVNVWC9KNGVxUVdjdDc1L2gyYW00TXNmQVl1aUNBbE5ncHBuQndE?=
+ =?utf-8?B?S2NFNjhuNVZRSXNqT3lydnBRR2FmOHFzelBhbklyd1dvcFR1SlNzVDVwdmh0?=
+ =?utf-8?Q?M9pXDv5KzEs7zZlHZM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?a0srd1YxdWptNzZhUndpWGxRVi9RMDlSSjR0NkV5MkIxTDZ6WnkyTk56VG1M?=
+ =?utf-8?B?QmVKSEE0aE44RVNqeVhMNEM3RnBQUHpxdGQ2bUFDMVd3UXpLaHZaVTF1d0d4?=
+ =?utf-8?B?U3lJbVpNclhOTG5XQVVBcU8vczE5blcxMVF0ZHNQTnZidG9zTEg5M1RrQnJG?=
+ =?utf-8?B?eFF0SkF3dGlJVDlxcHpoRVQrY2ZlMzB5eHJPVmJCYTlHQm5tTFFENForMVFk?=
+ =?utf-8?B?dnRiOFZzemxpQWREeXRCMUVES0thTU03WWplNXloMDZiVlBMaDFLdlVjcllL?=
+ =?utf-8?B?RERSMm1Cb2tJaTUvcC9abFJxVDcwQ1NGbEc1WE1McmFQaFJvaGh5dUVDejJw?=
+ =?utf-8?B?UHkyK3dFdnFmR2s3aElzb21aTlFQaGp4YnV3Mys3S3Z2eVhsOUsxemdOVzZv?=
+ =?utf-8?B?SzZWWTJiWkVyNmhZMWwrNjZJOHE3ay9TS1hhRWJhbVR1N3Mvb202T3RjbC83?=
+ =?utf-8?B?cUpHOHZaRjdMejJuQVE5TjM2ajNwRVVrL1ZGeHYzdlVxNU14c0NQeGtucUVL?=
+ =?utf-8?B?TS9OTUhHU0xka3lSS1hDa3R1SW1pMmRadGxINml5U3pwSXN6NVdwQ2NEdjlS?=
+ =?utf-8?B?bURHaGhhTHZHcnNUYmZvNUpCK1pBd0FxNmV1cTdTdEJ6dU1wZ09pblltWHRi?=
+ =?utf-8?B?QkxYYW51NkpmWG1ZL3JwaXQ0ZTJDUmg4OXJXRHBPUXFJa3p6QW5EcGUzVDJ6?=
+ =?utf-8?B?OUJkWUg3MFNDRWE4UElqdGI1MVgvTUhzaU9TcTVUQVl5VmN6aXVzS0hhQS94?=
+ =?utf-8?B?UEpGcXd3bVlvKzk2RzJBQUtwQ2QxcDVaNTJxS0V2NjRLTzFnVUtDdUZpZ2Ru?=
+ =?utf-8?B?Nkp4N2VxVWNNZzhLZ3h4MG9LcG95YUFxaEpGbTBuSm9uVS9nbXloWjNLRW9X?=
+ =?utf-8?B?S1pDUVdGSysrcjBCbCtBbkxOdjVKaHNIdmZvazZqVlQ0OWJoRzdVMXM5Qm56?=
+ =?utf-8?B?M3ozK1RXWmxmZ1BXcVZFRG9Xbys5Q0ZRVFJqSkxybGxEWWxyUGdSdnB3dnhC?=
+ =?utf-8?B?RlFUU0t6YkJJTjFMMVBpT1liWmRQUFJETHgvN2R6OVF2dXg0eTB5WDNjZVUv?=
+ =?utf-8?B?dHpQNTdzSElvcnRmV3A1b3IzdUUzVUtUL1pFaDdrd1ZwUmx6NE9kQm81czZq?=
+ =?utf-8?B?NVh4MFZTUEhXWWVlaXZrcUdJSXVLVjVOQlFZVUhDR3laSEFMa3BqNWtsMU9u?=
+ =?utf-8?B?Z1I2WXRYdzlWVGFOUERYN1JCWTR6R0d2Z29XbFBCbFhXZTZFYlpXRUZhZGZJ?=
+ =?utf-8?B?bWpaRWZIOGhiSzNoem9ObUxqNk16NlplYUZ2bWwvNHR5N0ZsK2h4UDVGQXpx?=
+ =?utf-8?B?eE5zWDh5Ny9XZlBHRnNDMVM0NzBaWFF1cHpLMlVZNW43SGgvbHVWVlBsemZx?=
+ =?utf-8?B?TTNBUlZ3aFhPTXBGMGVGUTRoZ1VlZ2dBTllBMTljdFFZZ291L2I2c05MUzE4?=
+ =?utf-8?B?Y0VyWmRld1EySEhvbFEyY1FCMlR2amNuZy9McURybFZKUHIvaURPRzVBbTRU?=
+ =?utf-8?B?bzBKSmlVWnB2T1VCN0UzNlhteGxHd3NKaFJXenIrbWN6amtQQ0RKY1E5Zjlp?=
+ =?utf-8?B?cGVaRkNnMXgwTHJmdXc0dFo0TmpnMjM4VVI4MWRRNWtjR0lrT05qeUcrTjhL?=
+ =?utf-8?B?WXdyTmE2VUZLWFRwMFYyYjlzSlBINTU3YW9acWVNY3pvK28zVGtJZE9UZVdD?=
+ =?utf-8?B?ZHFCSWZ0V3dUdGNGSUdrckRlK3VwdHBVKzhIRmZRZkt6L0svaGZheUF5N1lx?=
+ =?utf-8?B?blJYSVE4Wm05eTc3TmtoL21BTVpTQ1pvM01HQitXYWh1RHFlelNURUwyd0th?=
+ =?utf-8?B?OXZ5WmtQL0NYQ20yYU1nTVJxVmdPdzZFR0h6K0QzdVRtUUVCY0FGMFFTQS81?=
+ =?utf-8?B?YjV2Vmk5T01peXRGcHN2OWtJV3RWQW4xLzVvdWlxQ1dIUUdKV2REbXZhVGgx?=
+ =?utf-8?B?NVduTVJ0Ni9uajh4M1V4NEpvanZob2kyMjNobG9HU2ZPcXRwNmlOclJsUVlD?=
+ =?utf-8?B?Q1FQUURsanlTMXU0akpya2tkb1RWY1dXdjZwdHFuRElIOG5sZE9Ib1BFTFFq?=
+ =?utf-8?B?TzNOMkxmaXlEdTUyNkhBM2tISUpvWmJmVS9yQm4vL1dUZ092SnZ5aVM2Z1c1?=
+ =?utf-8?B?MEJ2MFEzdHJldlhsRkZvMTJ4ckpyQmFZemsramcxUlhQWXovbS9yQ2xEejFo?=
+ =?utf-8?B?dVE9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f53bbcce-ed01-49cf-334e-08dcc577ee50
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2024 02:36:47.1783
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: R5E8Rsid3+K9kIywyM7JesdR8/5Q1zy/Dvi4e7leHVMof0MEXPqNM+zYeH0F0UUpzKZ1UB3jd8Fsk+BirhsCw3ZtVWkmmylCas2xtOtCxkE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7950
 
-Hi Krzysztof: 
+Hi Conor,
+    Thanks for your reply.
 
-On 15:48 Sun 25 Aug     , Krzysztof Kozlowski wrote:
-> On 25/08/2024 15:10, Yixun Lan wrote:
-> > Add dt-binding for the pinctrl driver of SpacemiT's K1 SoC.
+On 2024/8/23 23:51, Conor Dooley wrote:
+> Subject:
+> Re: [PATCH 1/3] dt-bindings: rtc: Add Amlogic A311L2 and A113X2 rtc
+> From:
+> Conor Dooley <conor@kernel.org>
+> Date:
+> 2024/8/23 23:51
+> 
+> To:
+> xianwei.zhao@amlogic.com
+> CC:
+> Yiting Deng <yiting.deng@amlogic.com>, Alexandre Belloni 
+> <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+> Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley 
+> <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
+> linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+> linux-kernel@vger.kernel.org
 > 
 > 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> On Fri, Aug 23, 2024 at 05:19:44PM +0800, Xianwei Zhao via B4 Relay wrote:
+>> From: Yiting Deng<yiting.deng@amlogic.com>
+>>
+>> Add documentation describing the Amlogic A113L2 and A113X2 rtc controller.
+>>
+>> Signed-off-by: Yiting Deng<yiting.deng@amlogic.com>
+>> Signed-off-by: Xianwei Zhao<xianwei.zhao@amlogic.com>
+>> ---
+>>   .../bindings/rtc/amlogic,amlogic-rtc.yaml          | 66 ++++++++++++++++++++++
+>>   1 file changed, 66 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
+>> new file mode 100644
+>> index 000000000000..fa3d7838022e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
+> Filename matching a compatible please.
 > 
-> It's "dt-bindings:"
-Ok, will fix in next version
 
-> 
-> > 
-> > Two vendor specific properties are introduced here, As the pinctrl
-> > has dedicated slew rate enable control - bit[7], so we have
-> > spacemit,slew-rate-{enable,disable} for this. For the same reason,
-> > creating spacemit,strong-pull-up for the strong pull up control.
-> 
-> Huh, no, use generic properties. More on that below
-> 
-see my reply below
+Will do, modify the name to "amlogic,a4-rtc.yaml".
 
+>> @@ -0,0 +1,66 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
+>> +%YAML 1.2
+>> +---
+>> +$id:http://devicetree.org/schemas/rtc/amlogic,amlogic-rtc.yaml#
+>> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic Real Time Clock controller include a4, a5
+>> +
+>> +maintainers:
+>> +  - Yiting Deng<yiting.deng@amlogic.com>
+>> +  - Xianwei Zhao<xianwei.zhao@amlogic.com>
+>> +
+>> +description:
+>> +  The Amlogic new chips used RTC module.
+>> +
+>> +allOf:
+>> +  - $ref: rtc.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - amlogic,a4-rtc
+>> +      - amlogic,a5-rtc
+> The names you have chosen here do not match the patch description. What
+> is going on there?
 > 
-> 
-> > 
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > ---
-> >  .../bindings/pinctrl/spacemit,k1-pinctrl.yaml      | 134 +++++++++++++++++
-> >  include/dt-bindings/pinctrl/spacemit,k1-pinctrl.h  | 161 +++++++++++++++++++++
-> >  2 files changed, 295 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
-> > new file mode 100644
-> > index 0000000000000..8adfc5ebbce37
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
-> > @@ -0,0 +1,134 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/spacemit,k1-pinctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: SpacemiT K1 SoC Pin Controller
-> > +
-> > +maintainers:
-> > +  - Yixun Lan <dlan@gentoo.org>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: spacemit,k1-pinctrl
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: pinctrl io memory base
-> > +
-> > +patternProperties:
-> > +  '-cfg$':
-> > +    type: object
-> > +    description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
-Ok
-> > +      A pinctrl node should contain at least one subnode representing the
-> > +      pinctrl groups available on the machine.
-> > +
-> > +    additionalProperties: false
-> 
-> Keep it before description.
-Ok
-> 
-> > +
-> > +    patternProperties:
-> > +      '-pins$':
-> > +        type: object
-> > +        description: |
-> > +          Each subnode will list the pins it needs, and how they should
-> > +          be configured, with regard to muxer configuration, bias, input
-> > +          enable/disable, input schmitt trigger, slew-rate enable/disable,
-> > +          slew-rate, drive strength, power source.
-> > +        $ref: /schemas/pinctrl/pincfg-node.yaml
-> > +
-> > +        allOf:
-> > +          - $ref: pincfg-node.yaml#
-> > +          - $ref: pinmux-node.yaml#
-> 
-> You are duplicating refs.
-ok, will fix it
-> 
-> > +
-> > +        properties:
-> > +          pinmux:
-> > +            description: |
-> > +              The list of GPIOs and their mux settings that properties in the
-> > +              node apply to. This should be set using the K1_PADCONF macro to
-> > +              construct the value.
-> > +            $ref: /schemas/pinctrl/pinmux-node.yaml#/properties/pinmux
-> 
-> Hm why you need the ref?
-> 
-will drop it
-> > +
-> > +          bias-disable: true
-> > +
-> > +          bias-pull-up: true
-> > +
-> > +          bias-pull-down: true
-> > +
-> > +          drive-strength-microamp:
-> > +            description: |
-> > +              typical current when output high level, but in mA.
-> > +              1.8V output: 11, 21, 32, 42 (mA)
-> > +              3.3V output: 7, 10, 13, 16, 19, 23, 26, 29 (mA)
-> > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +          input-schmitt:
-> > +            description: |
-> > +              typical threshold for schmitt trigger.
-> > +              0: buffer mode
-> > +              1: trigger mode
-> > +              2, 3: trigger mode
-> > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > +            enum: [0, 1, 2, 3]
-> > +
-> > +          power-source:
-> > +            description: external power supplies at 1.8v or 3.3v.
-> > +            enum: [ 1800, 3300 ]
-> > +
-> > +          slew-rate:
-> > +            description: |
-> > +              slew rate for output buffer
-> > +              0, 1: Slow speed
-> 
-> Hm? Surprising, 0 is slow speed?
-> 
-from docs, section 3.3.2.2 MFPR Register Description
-0, 1 are same, both for slow speed
-https://developer.spacemit.com/documentation?token=An1vwTwKaigaXRkYfwmcznTXned
 
-> > +              2: Medium speed
-> > +              3: Fast speed
-> > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > +            enum: [0, 1, 2, 3]
-> > +
-> > +          spacemit,slew-rate-enable:
-> > +            description: enable slew rate.
-> 
-> The presence of slew-rate enables it, doesn't it?
-> 
-yes, this should work, I will take this approach, thanks
+Will modify description to "Add Amlogic A4(A311L2) and A5(A113X2) rtc".
 
-> > +            type: boolean
-> > +
-> > +          spacemit,slew-rate-disable:
-> > +            description: disable slew rate.
-> > +            type: boolean
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: RTC clock source, available 24M or 32K crystal
+>> +          oscillator source. when using 24M, need to divide 24M into 32K.
+>> +      - description: RTC module accesses the clock of the apb bus.
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: rtc_osc
+>> +      - const: rtc_sys_clk
+> s/_clk//, they're all clocks.
 > 
-> Just use slew-rate, 0 disable, some value to match real slew-rate.
-> 
-sounds good to me, since 0, 1 indicate same meaning, can re-use 0 for
-disabling slew rate.
 
-> > +
-> > +          spacemit,strong-pull-up:
-> > +            description: enable strong pull up.
-> 
-> Do not duplicate the property name in description. You did not say
-> anything useful here. What is "strong"? bias-pull-up takes also an argument.
-> 
-there is a dedicated strong pull bit[3] for I2C, SD card kinds of pad
-I don't know how 'strong' it is if in ohms, will see if can get
-more info on this (may expand the description)
+Will do.
 
-I think using 'bias-pull-up' property with argument should also work,
-but it occur to me it's more intuitive to introduce a property here, which
-reflect the underlying hardware functionality. this is similar to starfive's jh7100
-bindings/pinctrl/starfive,jh7100-pinctrl.yaml:154
-(refer to exist code doesn't mean always correct, so I need advice here)
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - interrupts
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    apb {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        rtc: rtc@8e600 {
+> And the label here can go, you've got no references to it 🙂
+> 
 
-I will keep this property unless there is objection, please let me know
+Will delte rtc  label.
 
-> > +            type: boolean
-> > +
-> > +        required:
-> > +          - pinmux
-> > +
-> > +        additionalProperties: false
+> Thanks,
+> Conor.
 > 
-> This goes up, before description.
-> 
-Ok
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/pinctrl/spacemit,k1-pinctrl.h>
-> > +
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        pinctrl@d401e000 {
-> > +            compatible = "spacemit,k1-pinctrl";
-> > +            reg = <0x0 0xd401e000 0x0 0x400>;
-> > +            #pinctrl-cells = <2>;
-> > +            #gpio-range-cells = <3>;
-> 
-> This wasn't ever tested... :(
-> ...
-will drop it
-> 
-> > diff --git a/include/dt-bindings/pinctrl/spacemit,k1-pinctrl.h b/include/dt-bindings/pinctrl/spacemit,k1-pinctrl.h
-> > new file mode 100644
-> > index 0000000000000..13ef4aa6c53a3
-> > --- /dev/null
-> > +++ b/include/dt-bindings/pinctrl/spacemit,k1-pinctrl.h
-> > @@ -0,0 +1,161 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * Copyright (c) 2022-2024 SpacemiT (Hangzhou) Technology Co. Ltd
-> > + * Copyright (c) 2024 Yixun Lan <dlan@gentoo.org>
-> > + *
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_PINCTRL_K1_H
-> > +#define _DT_BINDINGS_PINCTRL_K1_H
-> > +
-> > +#define PINMUX(pin, mux) \
-> > +	(((pin) & 0xffff) | (((mux) & 0xff) << 16))
-> > +
-> > +/* pin offset */
-> > +#define PINID(x)	((x) + 1)
-> > +
-> > +#define GPIO_INVAL  0
-> > +#define GPIO_00     PINID(0)
-> 
-> Not really, pin numbers are not bindings. Drop entire header.
-> 
-Ok, I will move them to dts folder, which should be file
-arch/riscv/boot/dts/spacemit/k1-pinctrl.h
-
-> ...
-> 
-> > +
-> > +#define SLEW_RATE_SLOW0		0
-> > +#define SLEW_RATE_SLOW1		1
-> > +#define SLEW_RATE_MEDIUM	2
-> > +#define SLEW_RATE_FAST		3
-> 
-> Not a binding, either. No usage in the driver.
-Ok, will drop it
-
-> 
-> > +
-> > +#define K1_PADCONF(pin, func) (((pin) << 16) | (func))
-> 
-> Not a binding.
-> 
-same, move to dts
-
-> 
-> 
-> Best regards,
-> Krzysztof
-
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+>> +            compatible = "amlogic,a4-rtc";
+>> +            interrupts = <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>;
+>> +            reg = <0x0 0x8e600 0x0 0x38>;
+>> +            clocks = <&xtal_32k>, <&clkc_periphs 1>;
+>> +            clock-names = "rtc_osc", "rtc_sys_clk";
+>> +        };
+>> +    };
+>>
+>> -- 
+>> 2.37.1
 
