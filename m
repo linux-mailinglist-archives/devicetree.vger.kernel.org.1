@@ -1,436 +1,470 @@
-Return-Path: <devicetree+bounces-96633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AAB095ED9C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:45:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7AB295EDAD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:50:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EFE41C218FA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:45:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FF0928304A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4AC145B10;
-	Mon, 26 Aug 2024 09:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7D1146D45;
+	Mon, 26 Aug 2024 09:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jIr7X3Zs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nQQ3kK9N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5046F335B5;
-	Mon, 26 Aug 2024 09:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64CC1465AE;
+	Mon, 26 Aug 2024 09:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724665525; cv=none; b=ERDmYh/hs9XfAuPKsS+DiU7jXp2H9X71sqnAJ6UASBpYyWs1VbLxmlqU3G3jMtTVRmB8n8jkSYr4dykjnRw8VGvQ0ER/RWLxd53P+vl84iJLmxGAUIRTUTVHNVNh1ep1tiJH1B6PbaMe+ZEcDF5ZQzCPEAftpBdgZwj5twRTJJ8=
+	t=1724665807; cv=none; b=iDAcYT1BeoapZ+ZwWbRlnH0FNCwtZKQXbWYAC+lRGW/ctGV3p+8eRtuATAHNFCnqejIShTi+4k3Dh2QCFnfKPbUKLWhLkqDMGg+RFUfmGuhP3VStRLSRIYuIhRn+81lIm5PhzGppA06m62vOov3b+f5RqW5LshRgD9JxVEd4yNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724665525; c=relaxed/simple;
-	bh=PhNJCnEqWAf5tOQ3VBj/FIzLFFYPizMxoaqPArGK5Ts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GyE2hS6llbg/y2H0DQfWKnZIEhKPRo7nEcb5j9zWVx0Fed+LLKWfToGW7ie10uU2ptse8rKwSdrm7sSXiJuIbwU50a1eBSOxtgGWRWWQo0w49ldWp/vwSi+DtsJXcgmrIGShVeQrAuP6hGO1VD9TLe1jtI0BExozHq9kXgDQPiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jIr7X3Zs; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3FE78240005;
-	Mon, 26 Aug 2024 09:45:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1724665520;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Cm7pTcmop+B8Zg+nbYiYBBLjbkVuEU6sN7SIS3TJIAQ=;
-	b=jIr7X3ZsNbaWgwn/2FZVB/qWjVAkCNv627YiNOV9EtsFgJ8rbmPK83G6X0KIU1OgmkTBur
-	QOGMoEcVVWOc3XLyLft0yKn1L6Xzrs9ZBtfLa9MCBT4MZ/N3+cNM/U4TUAzwXxYr/6v6+R
-	wOYm6+42QY4/T1cVe9afQNPxJr1L32STAD0qG2QvZCEzfOAzajcaK9U3PX8wson2RfEtKj
-	+DtDByZNvPGY1KibzpEPyiinuXufj2Af/DkPLu2QPDiNKcVe75KY88EAqM+eWezH968g7v
-	4FN/h768YMHUa+PUsP3MwlTSeqCJXw3wlrfDfiZJfwElYnd/jLyDKyixJ/KKjg==
-Date: Mon, 26 Aug 2024 11:45:19 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: xianwei.zhao@amlogic.com
-Cc: Yiting Deng <yiting.deng@amlogic.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] rtc: support for the Amlogic on-chip RTC
-Message-ID: <2024082609451907fd19e2@mail.local>
-References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
- <20240823-rtc-v1-2-6f70381da283@amlogic.com>
+	s=arc-20240116; t=1724665807; c=relaxed/simple;
+	bh=X4XtTIQ4M47FVIdcgJule4UXJUzrtFvBwfomuOxhSNY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qNVDooQbPCdJwRk5Nup1OOu9gIAIK6gYpRL5wmdR3Rnk/dC89X4ZD/EXlg53b3u2FajQIZTwCoBFCFWJQzFLgPnPhzfn2qjy0FJqIDUPUGSuMFUbSjJxgOU/wpX8nq/2ovt/MAQROZRq6nMwrV1GOPFFkOhE3nQ9zEFmmoJiSTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nQQ3kK9N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8B5FC4FE00;
+	Mon, 26 Aug 2024 09:50:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724665806;
+	bh=X4XtTIQ4M47FVIdcgJule4UXJUzrtFvBwfomuOxhSNY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=nQQ3kK9N+iwDLbwezr69Ra9UmNixoWdrH1kXvvkP6/x6o9Q/tysOt6phcbc2AymHg
+	 nBFgYKoq2+r8qCM5gUF/yNEUv02H2zahX07DaCKhyQsdHRQjOpW0xflpZu5n7/f/X9
+	 RGPVYav3U0dL/J82Zi00UTLLNCvKDb5jN66B5sklFL0sYmsfHEejNQOMlo2OqpbDtN
+	 dHHd+Y7jzubpc5s2AYxGSmB9mXamhW8zcVRWoZUYd6VXs1Z5Hhtuv0sZNDiGNim1rJ
+	 qMlYyHPz8MPIW7b2QV3xCIh5qVmT3drmreQsWukeK1apYpCmP7G1ksskuRseDgQ1mp
+	 KiNwVygSdjYpg==
+Date: Mon, 26 Aug 2024 10:49:47 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Li, Hua Qian" <HuaQian.Li@siemens.com>
+Cc: "Zeng, Chao" <chao.zeng@siemens.com>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "conor@kernel.org" <conor@kernel.org>, "Su, Bao Cheng"
+ <baocheng.su@siemens.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Kiszka,
+ Jan" <jan.kiszka@siemens.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "Lopes Ivo, Diogo Miguel" <diogo.ivo@siemens.com>
+Subject: Re: [PATCH 2/3] dt-bindings: iio: Add everlight pm16d17 binding
+Message-ID: <20240826104947.61613a3c@jic23-huawei>
+In-Reply-To: <18528634e39eec1307777a0fed5eda7324e78575.camel@siemens.com>
+References: <cover.1723527641.git.jan.kiszka@siemens.com>
+	<f6476e06cd8d1cf3aff6563530612c536cd45716.1723527641.git.jan.kiszka@siemens.com>
+	<20240813-captivity-spellbind-d36ca0f31e22@spud>
+	<a458a2cbc96a23c0a2ef89327e1f8bcd2e2777e6.camel@siemens.com>
+	<20240817144215.1b2e9db3@jic23-huawei>
+	<18528634e39eec1307777a0fed5eda7324e78575.camel@siemens.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240823-rtc-v1-2-6f70381da283@amlogic.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 23/08/2024 17:19:45+0800, Xianwei Zhao via B4 Relay wrote:
-> From: Yiting Deng <yiting.deng@amlogic.com>
+On Mon, 26 Aug 2024 07:12:53 +0000
+"Li, Hua Qian" <HuaQian.Li@siemens.com> wrote:
+
+> On Sat, 2024-08-17 at 14:42 +0100, Jonathan Cameron wrote:
+> > On Fri, 16 Aug 2024 01:48:36 +0000
+> > "Li, Hua Qian" <HuaQian.Li@siemens.com> wrote:
+> >  
+> > > On Tue, 2024-08-13 at 16:52 +0100, Conor Dooley wrote:  
+> > > > On Tue, Aug 13, 2024 at 07:40:41AM +0200, Jan Kiszka wrote:  
+> > > > > From: Chao Zeng <chao.zeng@siemens.com>
+> > > > >
+> > > > > Add the binding document for the everlight pm16d17 sensor.
+> > > > >
+> > > > > Signed-off-by: Chao Zeng <chao.zeng@siemens.com>
+> > > > > Co-developed-by: Baocheng Su <baocheng.su@siemens.com>
+> > > > > Signed-off-by: Baocheng Su <baocheng.su@siemens.com>  
+> > > >
+> > > > Ditto here Jan.
+> > > >  
+> > > > > ---
+> > > > >  .../iio/proximity/everlight,pm16d17.yaml      | 95
+> > > > > +++++++++++++++++++
+> > > > >  1 file changed, 95 insertions(+)
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/iio/proximity/everlight,pm16d
+> > > > > 17.y
+> > > > > aml
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/iio/proximity/everlight,pm1
+> > > > > 6d17
+> > > > > .yaml
+> > > > > b/Documentation/devicetree/bindings/iio/proximity/everlight,pm1
+> > > > > 6d17
+> > > > > .yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..fadc3075181a
+> > > > > --- /dev/null
+> > > > > +++
+> > > > > b/Documentation/devicetree/bindings/iio/proximity/everlight,pm1
+> > > > > 6d17
+> > > > > .yaml
+> > > > > @@ -0,0 +1,95 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id:
+> > > > > http://devicetree.org/schemas/iio/proximity/everlight,pm16d17.yaml#
+> > > > > +$schema:
+> > > > > http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Everlight PM-16D17 Ambient Light & Proximity Sensor
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Chao Zeng <chao.zeng@siemens.com>
+> > > > > +
+> > > > > +description: |
+> > > > > +  This sensor uses standard I2C interface. Interrupt function
+> > > > > is
+> > > > > not covered.  
+> > > >
+> > > > Bindings should be complete, even if software doesn't use the
+> > > > interrupts. Can you document them please.
+> > > >  
+> > > > > +  Datasheet:
+> > > > > https://en.everlight.com/sensor/category-proximity_sensor/digital_proximity_sensor/
+> > > > >  
+> > > >
+> > > > Do you have a link to a datasheet? The link to the pm16d17 here
+> > > > 404s
+> > > > for
+> > > > me.
+> > > >  
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - everlight,pm16d17
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  ps-gain:
+> > > > > +    description: Receiver gain of proximity sensor
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > +    enum: [1, 2, 4, 8]
+> > > > > +    default: 1
+> > > > > +  
+> How about using `in_proximity0_hw_gain` as a userspace interface here?
+
+hwgain is used for cases where the gain does not affect the singal
+reported (so things like brightness on a time of flight sensor).
+If this directly affects the output values for proximity then
+it should be scale. If there are multiple things affecting the scale
+it is up to the driver to figure out the 'right' combination to satisfy the
+user request.
+
+> > > > > +  ps-itime:  
+> > > >
+> > > > How did you get itime from conversion time? To the layman (like
+> > > > me!)
+> > > > conversion-time would make more sense...
+> > > >
+> > > > Also, "ps"? The whole thing is a proxy sensor, so why have that
+> > > > prefix
+> > > > on properties. What is missing however is a vendor prefix.  
+> How about using `in_proximity0_conversion_time` as a userspace
+> interface here?
+
+See if you can use standard ABI.  New ABI is effectively ABI that
+is unused by all existing software and unlikely to be adopted by
+anything generic in future.
+
+We have various controls this might map to.  integration_time
+for the amount of exposure time for a given sensor, sampling_frequency
+covers the rate at which the overall process occurs (1/sampling period).
+That covers the majority of cases.  If it's something else that
+can't be mapped to these interfaces I want to fully understand
+why userspace would choose to change it.
+
+> > > >  
+> > > > > +    description: Conversion time for proximity sensor [ms]
+> > > > > +    $ref: /schemas/types.yaml#/definitions/string  
+> > > >
+> > > > Instead of a string, please use the -us suffix, and put this in
+> > > > microseconds instead.
+> > > >
+> > > > In total, that would be s/ps-itime/everlight,conversion-time-us/.
+> > > >
+> > > > I would, however, like to know why this is a property of the
+> > > > hardware.
+> > > > What factors do you have to consider when determining what value
+> > > > to
+> > > > put
+> > > > in here?
+> > > >  
+> > > > > +    enum:
+> > > > > +      - "0.4"
+> > > > > +      - "0.8"
+> > > > > +      - "1.6"
+> > > > > +      - "3.2"
+> > > > > +      - "6.3"
+> > > > > +      - "12.6"
+> > > > > +      - "25.2"
+> > > > > +    default: "0.4"
+> > > > > +
+> > > > > +  ps-wtime:
+> > > > > +    description: Waiting time for proximity sensor [ms]
+> > > > > +    $ref: /schemas/types.yaml#/definitions/string  
+> > > >
+> > > > All of the same comments apply here. E.g. why "wtime" isntead of
+> > > > "waiting-time" and so on.
+> > > > I would really like to know why these things are properties of
+> > > > the
+> > > > hardware, rather than something that software should control.
+> > > >  
+> How about using `in_proximity0_wait_time` as a userspace interface
+> here?
+Again, if you add new ABI, it will be unused.
+So basically do not do so.  Work out how to map to existing ABI.
+
+Superficially seems like sampling_frequency = 1/(wait_time + conversion_time)
+And 'maybe' conversion time is close at least to 'integration_time'.
+
+It is sometimes a pain to map to standard ABI for hardware that chooses
+different control schemes, but it is necessary to do so if you want to be
+able to use normal software / scripts etc.
+
+If there is something we can't represent and a strong usecase for
+why userspace will want to directly tune it (rather than it being
+one element of the hardware controls that back a single userspace
+control) then it is fine to propose new userspace ABI along with
+documentation.  We'll consider it, but it will be much more challenging
+to get accepted than using standard ABI.
+
+> > > > > +    enum:
+> > > > > +      - "12.5"
+> > > > > +      - "25"
+> > > > > +      - "50"
+> > > > > +      - "100"
+> > > > > +      - "200"
+> > > > > +      - "400"
+> > > > > +      - "800"
+> > > > > +      - "1600"
+> > > > > +    default: "12.5"
+> > > > > +
+> > > > > +  ps-ir-led-pulse-count:
+> > > > > +    description: IR LED drive pulse count
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32  
+> > > >
+> > > > All custom properties require a vendor prefix, not "ps". Again,
+> > > > what
+> > > > makes this a property of the hardware, rather than something that
+> > > > software should control?
+> > > >  
+> How about using `in_proximity0_pulse_count` as a userspace interface
+> here?
+This one is unsual, so I want to understand what it actually means
+for a user.  Why would they control pulse count? What does it do?
+- Increase gain / sensitivity?
+- Reduce noise?
+
+> > > > > +    minimum: 1
+> > > > > +    maximum: 256
+> > > > > +    default: 1
+> > > > > +
+> > > > > +  ps-offset-cancel:
+> > > > > +    description: |
+> > > > > +      When PS offset cancel function is enabled, the result of
+> > > > > subtracting any
+> > > > > +      value specified by the PS offset cancel register from
+> > > > > the
+> > > > > internal PS
+> > > > > +      output data is written to the PS output data register.  
+> > > >  
+> How about using `in_proximity0_offset_cancel` as a userspace interface
+> here?
+
+This seems likely to be calibbias or offset.  The cancel or not
+is just whether the offset value is 0 or not.
+
+> > > > Again, what makes this a property of the hardware? What hardware
+> > > > related
+> > > > factors determine that value that you put in here?
+> > > >
+> > > > Thanks,
+> > > > Conor.  
+> > >
+> > > Certain parameters such as conversion time, wait time, or sampling
+> > > rate
+> > > are directly tied to the physical characteristics and capabilities
+> > > of
+> > > the sensor.  
+> >
+> > Ah. I think I'd missed this uses an external LED (rather than it
+> > being
+> > in package).  In that case, the characteristics that 'work' for
+> > proximity sensing are somewhat dependent on the system design
+> > (simplifying heavily, led output for a given current, optical filter
+> >  on that LED etc).
+> >
+> > For the sensor specific side, it should be just from the compatible,
+> > but
+> > when another part is involved, DT binding based tuning may make sense
+> > as long as it is 'per consumer device / board' not per specific
+> > instance.
+> >
+> >
+> >
+> >  
+> > > These parameters are typically determined by the sensor
+> > > specifications, and the datasheet usually provides recommended
+> > > values
+> > > for these parameters. Below is an excerpt from the datasheet:
+> > >
+> > > /*
+> > > +-----------------------+-------+------+------+------+-----+-------
+> > > ---+  
+> > > > Parameter             | Symbol| Min  | Typ  | Max  | Unit|
+> > > > Condition|  
+> > > +-----------------------+-------+------+------+------+-----+-------
+> > > ---+  
+> > > > PS A/D conversion time| TPS   | 21.4 | 25.2 | 28.9 | ms  | PS  
+> > > A/DC=16bit  |  
+> > > > PS wait time setting  | TPSWAIT| 10.6| 12.5 | 14.3 | ms  | 12.5ms  
+> > > setting |
+> > > +-----------------------+-------+------+------+------+-----+-------
+> > > ---+
+> > > */  
+> >
+> > Doesn't apply to everything you have here though. wtime / wait time
+> > is about how often you get a reading not the physical device.  How is
+> > that affected by the physical device?
+> >
+> > I 'think' the table above is giving precision of the value for a
+> > particular
+> > control setting. If you set wtime to 12.5msec (value 0 in register)
+> > then it will actually be between 10.6 and 14.3 msec, not that you
+> > should
+> > set it to 12.5msec.
+> >
+> > There are 3 controls related to gain that you could argue for
+> > defaults
+> > for in DT (maybe) but given proximity sensing is also about the
+> > target, not just the measurement device, there won't be a right
+> > answer
+> > unless your proximity sensor is being used for a fixed purpose (e.g.
+> > WIFI signal strength limiting or a button type control).  
+> > >
+> > >
+> > > However, there are some similar cases in the kernel, as follows:
+> > >
+> > > Documentation/devicetree/bindings/iio/proximity/devantech-
+> > > srf04.yaml
+> > >     - startup-time-ms  
+> > That's after a resume and I think depends one exactly what the
+> > circuitry
+> > is (in this case the device is more of a reference design than a
+> > single
+> > device).
+> >  
+> > > Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+> > > Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+> > > Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
+> > >     - semtech,avg-pos-strength
+> > >     - semtech,ph01-resolution
+> > >     - semtech,input-analog-gain  
+> > These are SAR sensors I think, so the sensor element is external to
+> > the device.  In theory we could have described the sensing element
+> > and used that to work out the right values of these, but in practice
+> > it was easier to just provide the parameters from some 'per design'
+> > tuning.
+> >  
+> > >     - ...
+> > > Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yam
+> > > l
+> > >     - vishay,led-current-microamp  
+> >
+> > I think this is about whether you can burn the external LED out or
+> > not.
+> > On the datasheet I'm looking at for this device, only value 000 is
+> > specified in this 3bit field so I guess it's not controllable?
+> >
+> > Pulse counts are less likely to be relevant to the LED burning out,
+> > but
+> > maybe(?)
+> >
+> > Anyhow, it's not entirely obvious to me that it makes sense to
+> > control
+> > so much in DT for this device.  Better to put it in userspace control
+> > and rely on udev etc setting things right for a given device +
+> > application.
+> >
+> > Jonathan
+> >  
+> I agree with your comments, we'll modify the DT to allow userspace
+> control as introduced above. Consequently, all the dt properites will
+> be removed.
+
+That's good, but do focus on how to fit existing ABI as that's
+what existing userspace is aware of.
+
+Jonathan
+
 > 
-> Support for the on-chip RTC found in some of Amlogic's SoCs such as the
-> A113L2 and A113X2.
 > 
-> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  drivers/rtc/Kconfig       |  12 +
->  drivers/rtc/Makefile      |   1 +
->  drivers/rtc/rtc-amlogic.c | 589 ++++++++++++++++++++++++++++++++++++++++++++++
+> Thanks,
+> Hua Qian
+> >
+> >
+> >  
+> > >
+> > > This is why we are leveraging the hardware properties.
+> > >
+> > > Thanks,
+> > > Hua Qian
+> > >  
+> > > >  
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > +    default: 0
+> > > > > +    maximum: 65535
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +
+> > > > > +unevaluatedProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    i2c {
+> > > > > +        #address-cells = <1>;
+> > > > > +        #size-cells = <0>;
+> > > > > +
+> > > > > +        lightsensor: pm16d17@44 {
+> > > > > +            compatible = "everlight,pm16d17";
+> > > > > +            reg = <0x44>;
+> > > > > +
+> > > > > +            ps-gain = <1>;
+> > > > > +            ps-itime = "0.4";
+> > > > > +            ps-wtime = "12.5";
+> > > > > +            ps-ir-led-pulse-count = <1>;
+> > > > > +            ps-offset-cancel = <280>;
+> > > > > +        };
+> > > > > +    };
+> > > > > --
+> > > > > 2.43.0
+> > > > >  
+> > >  
+> >  
+> 
+> --
+> Hua Qian Li
+> Siemens AG
+> http://www.siemens.com/
 
-As pointed out, this is the third amlogic driver so the name of the file
-must be more specific.
-
-> +static void aml_set_time(struct aml_rtc_data *rtc, u32 time_sec)
-
-Is indirection necessary, this function is used only once
-
-> +{
-> +	if (rtc->config->gray_stored)
-> +		time_sec = binary_to_gray(time_sec);
-> +	regmap_write(rtc->map, RTC_COUNTER_REG, time_sec);
-> +}
-> +
-> +static u32 aml_read_time(struct aml_rtc_data *rtc)
-Ditto
-
-> +{
-> +	u32 time_sec;
-> +
-> +	regmap_read(rtc->map, RTC_REAL_TIME, &time_sec);
-> +	if (rtc->config->gray_stored)
-> +		time_sec = gray_to_binary(time_sec);
-> +	return time_sec;
-> +}
-> +
-> +static u32 aml_read_alarm(struct aml_rtc_data *rtc)
-Ditto
-
-> +{
-> +	u32 alarm_sec;
-> +
-> +	regmap_read(rtc->map, RTC_ALARM0_REG, &alarm_sec);
-> +	if (rtc->config->gray_stored)
-> +		alarm_sec = gray_to_binary(alarm_sec);
-> +	return alarm_sec;
-> +}
-> +
-> +static void aml_set_alarm(struct aml_rtc_data *rtc, u32 alarm_sec)
-Ditto
-
-> +{
-> +	if (rtc->config->gray_stored)
-> +		alarm_sec = binary_to_gray(alarm_sec);
-> +	regmap_write(rtc->map, RTC_ALARM0_REG, alarm_sec);
-> +}
-> +
-> +static int aml_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-> +{
-> +	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-> +	time64_t alarm_sec;
-> +
-> +	if (alarm->enabled) {
-
-Why aren't you setting the alarm when it is not enabled?
-
-> +		regmap_update_bits(rtc->map, RTC_CTRL,
-> +				   RTC_ALRM0_EN, RTC_ALRM0_EN);
-> +		regmap_update_bits(rtc->map, RTC_INT_MASK,
-> +				   RTC_ALRM0_IRQ_MSK, 0);
-> +
-> +		alarm_sec = rtc_tm_to_time64(&alarm->time);
-> +		if (alarm_sec > U32_MAX) {
-
-This is never going to happen, the test and error message are not
-necessary.
-
-> +			dev_err(dev, "alarm value invalid!\n");
-> +			return -EINVAL;
-> +		}
-> +		aml_set_alarm(rtc, alarm_sec);
-> +	}
-> +	dev_dbg(dev, "%s: alarm->enabled=%d alarm_set=%llds\n", __func__,
-> +		alarm->enabled, alarm_sec);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aml_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-> +{
-> +	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-> +	u32 alarm_sec;
-> +	u32 reg_val;
-> +	int alarm_enable, alarm_mask;
-> +
-> +	alarm_sec = aml_read_alarm(rtc);
-> +	rtc_time64_to_tm(alarm_sec, &alarm->time);
-> +
-> +	regmap_read(rtc->map, RTC_CTRL, &reg_val);
-> +	alarm_enable = FIELD_GET(RTC_ALRM0_EN, reg_val);
-> +
-> +	regmap_read(rtc->map, RTC_INT_MASK, &reg_val);
-> +	alarm_mask = FIELD_GET(RTC_ALRM0_IRQ_MSK, reg_val);
-> +
-> +	alarm->enabled = (alarm_enable && !alarm_mask) ? 1 : 0;
-> +	dev_dbg(dev, "%s: alarm->enabled=%d alarm=%us\n", __func__,
-> +		alarm->enabled, alarm_sec);
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t aml_rtc_handler(int irq, void *data)
-> +{
-> +	struct aml_rtc_data *rtc = (struct aml_rtc_data *)data;
-> +
-> +	regmap_write(rtc->map, RTC_ALARM0_REG, 0);
-> +	regmap_update_bits(rtc->map, RTC_INT_CLR,
-> +			   RTC_ALRM0_IRQ_STATUS, RTC_ALRM0_IRQ_STATUS);
-
-Are you sure regmap_update_bits is necessary here?
-
-> +
-> +	rtc_update_irq(rtc->rtc_dev, 1, RTC_AF | RTC_IRQF);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-
-
-> +static int aml_rtc_adjust_sec(struct device *dev, u32 match_counter,
-> +			      int ops, int enable)
-> +{
-> +	struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
-> +	u32 reg_val;
-> +
-> +	if (!FIELD_FIT(RTC_MATCH_COUNTER, match_counter)) {
-> +		pr_err("%s: invalid match_counter\n", __func__);
-> +		return -EINVAL;
-> +	}
-> +
-> +	reg_val = FIELD_PREP(RTC_SEC_ADJUST_CTRL, ops)
-> +		  | FIELD_PREP(RTC_MATCH_COUNTER, match_counter)
-> +		  | FIELD_PREP(RTC_ADJ_VALID, enable);
-> +	/* Set sec_adjust_ctrl, match_counter and Valid adjust */
-> +	regmap_write(rtc->map, RTC_SEC_ADJUST_REG, reg_val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aml_rtc_set_calibration(struct device *dev, u32 calibration)
-> +{
-> +	int cal_ops, enable, match_counter;
-> +	int ret;
-> +
-> +	match_counter = FIELD_GET(RTC_MATCH_COUNTER, calibration);
-> +	cal_ops = FIELD_GET(RTC_SEC_ADJUST_CTRL, calibration);
-> +	enable = FIELD_GET(RTC_ADJ_VALID, calibration);
-> +
-> +	ret = aml_rtc_adjust_sec(dev, match_counter, cal_ops, enable);
-> +	dev_dbg(dev, "%s: Success to store RTC calibration attribute\n",
-> +		__func__);
-> +
-> +	return ret;
-> +}
-> +
-> +static int aml_rtc_get_calibration(struct device *dev, u32 *calibration)
-> +{
-> +	struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
-> +	u32 reg_val;
-> +
-> +	regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
-> +	*calibration = FIELD_GET(RTC_SEC_ADJUST_CTRL | RTC_MATCH_COUNTER, reg_val);
-> +	/* BIT is only UL defined，and GENMASK has no type, its' donot used together */
-> +	*calibration |= FIELD_PREP(RTC_ADJ_VALID, FIELD_GET(RTC_ADJ_VALID, reg_val));
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * The calibration value transferred from buf takes bit[18:0] to represent
-> + * match_counter, while takes bit[20:19] to represent sec_adjust_ctrl, bit[23]
-> + * to represent adj_valid. enable/disable sec_adjust_ctrl and match_counter.
-> + * @buf: Separate buf to match_counter, sec_adjust_ctrl and adj_valid
-> + *	 match_counter: bit[18:0], value is 0 ~ 0x7fff
-> + *	 sec_adjust_ctrl: bit[20:19], value is 0 ~ 2. 3 to insert a second once every
-> + *	 match_counter+1 seconds, 2 to swallow a second once every match_counter+1 seconds
-> + *	 0 or 1 to no adjustment
-> + *	 adj_valid: bit[23], value is 0 or 1, 0 to disable sec_adjust_ctrl and
-> + *	 match_counter, and 1 to enable them.
-> + */
-> +static ssize_t rtc_calibration_store(struct device *dev,
-> +				     struct device_attribute *attr,
-> +				     const char *buf, size_t count)
-> +{
-> +	int retval;
-> +	int calibration = 0;
-> +
-> +	if (sscanf(buf, " %i ", &calibration) != 1) {
-> +		dev_err(dev, "Failed to store RTC calibration attribute\n");
-> +		return -EINVAL;
-> +	}
-> +	retval = aml_rtc_set_calibration(dev, calibration);
-> +
-> +	return retval ? retval : count;
-> +}
-> +
-> +static ssize_t rtc_calibration_show(struct device *dev,
-> +				    struct device_attribute *attr, char *buf)
-> +{
-> +	int  retval = 0;
-> +	u32  calibration = 0;
-> +
-> +	retval = aml_rtc_get_calibration(dev, &calibration);
-> +	if (retval < 0) {
-> +		dev_err(dev, "Failed to read RTC calibration attribute\n");
-> +		sprintf(buf, "0\n");
-> +		return retval;
-> +	}
-> +
-> +	return sprintf(buf, "0x%x\n", calibration);
-> +}
-> +static DEVICE_ATTR_RW(rtc_calibration);
-> +
-> +static int rtc_set_div256_adjust(struct device *dev, u32 *value)
-> +{
-> +	struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
-> +	u32 div256_adj;
-> +
-> +	div256_adj = FIELD_PREP(RTC_DIV256_ADJ_DSR | RTC_DIV256_ADJ_VAL, *value);
-> +	/*
-> +	 * AO_RTC_SEC_ADJUST_REG bit 24 insert/remove(1/0) a div256 cycle,
-> +	 * bit 25 valid/invalid(1/0) div256_adj_val
-> +	 */
-> +	regmap_write_bits(rtc->map, RTC_SEC_ADJUST_REG,
-> +			  RTC_DIV256_ADJ_DSR | RTC_DIV256_ADJ_VAL, div256_adj);
-> +	/* rtc need about 30ms to adjust its time after written */
-> +	mdelay(30);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rtc_get_div256_adjust(struct device *dev, u32 *value)
-> +{
-> +	struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
-> +	u32 reg_val;
-> +
-> +	regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
-> +	*value = FIELD_GET(RTC_DIV256_ADJ_DSR | RTC_DIV256_ADJ_VAL, reg_val);
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * div256 adjust function is controlled using bit[24] and bit[25].
-> + * transferred buf takes bit[0] to represent div256 adj val, bit[1]
-> + * to represent div256 adj enable/disable. div256 cycle means that adjust
-> + * 1/32768/256 once by written once, it's val is equal to 1/128s
-> + * @buf: 3: enable div256 adjust and insert a div256 cycle
-> + *	 2: enable div256 adjust and remove a div256 cycle
-> + *	 1 or 0: disable div256 adjust
-> + */
-> +static ssize_t rtc_div256_adjust_store(struct device *dev,
-> +				       struct device_attribute *attr,
-> +				       const char *buf, size_t count)
-> +{
-> +	int retval;
-> +	u32 value = 0;
-> +
-> +	if (sscanf(buf, " %i ", &value) != 1) {
-> +		dev_err(dev, "Failed to store RTC div256 adjust attribute\n");
-> +		return -EINVAL;
-> +	}
-> +	retval = rtc_set_div256_adjust(dev, &value);
-> +
-> +	return retval ? retval : count;
-> +}
-> +
-> +static ssize_t rtc_div256_adjust_show(struct device *dev,
-> +				      struct device_attribute *attr, char *buf)
-> +{
-> +	int retval = 0;
-> +	u32 value = 0;
-> +
-> +	retval = rtc_get_div256_adjust(dev, &value);
-> +	if (retval < 0) {
-> +		dev_err(dev, "Failed to read RTC div256 adjust attribute\n");
-> +		sprintf(buf, "0\n");
-> +		return retval;
-> +	}
-> +
-> +	return sprintf(buf, "0x%x\n", value);
-> +}
-> +static DEVICE_ATTR_RW(rtc_div256_adjust);
-> +
-> +static struct attribute *aml_rtc_attrs[] = {
-> +	&dev_attr_rtc_calibration.attr,
-> +	&dev_attr_rtc_div256_adjust.attr,
-> +	NULL,
-> +};
-> +
-> +static const struct attribute_group aml_rtc_sysfs_files = {
-> +	.attrs	= aml_rtc_attrs,
-> +};
-> +
-
-You must use the standard RTC API to handle calibration, see
-.read_offset and .set_offset
-
-> +static void aml_rtc_init(struct device *dev, struct aml_rtc_data *rtc)
-> +{
-> +	u32 reg_val;
-> +	u32 rtc_enable;
-> +
-> +	regmap_read(rtc->map, RTC_CTRL, &reg_val);
-> +	rtc_enable = FIELD_GET(RTC_ENABLE, reg_val);
-> +	if (!rtc_enable) {
-> +		if (clk_get_rate(rtc->sclk) == OSC_24M) {
-> +			/* select 24M oscillator */
-> +			regmap_update_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, RTC_OSC_SEL);
-> +
-> +			/*
-> +			 * Set RTC oscillator to freq_out to freq_in/((N0*M0+N1*M1)/(M0+M1))
-> +			 * Enable clock_in gate of oscillator 24MHz
-> +			 * Set N0 to 733, N1 to 732
-> +			 */
-> +			reg_val = FIELD_PREP(RTC_OSCIN_IN_EN, 1)
-> +				  | FIELD_PREP(RTC_OSCIN_OUT_CFG, 1)
-> +				  | FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_N0)
-> +				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_N1);
-> +			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL0, RTC_OSCIN_IN_EN
-> +					  | RTC_OSCIN_OUT_CFG | RTC_OSCIN_OUT_N0M0
-> +					  | RTC_OSCIN_OUT_N1M1, reg_val);
-> +
-> +			/* Set M0 to 2, M1 to 3, so freq_out = 32768 Hz*/
-> +			reg_val = FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_M0)
-> +				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_M1);
-> +			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL1, RTC_OSCIN_OUT_N0M0
-> +					  | RTC_OSCIN_OUT_N1M1, reg_val);
-> +		} else {
-> +			/* select 32K oscillator */
-> +			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, 0);
-> +		}
-> +		/* Enable RTC */
-> +		regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
-
-		This must not be done at probe time, else you loose the
-		important information taht the time has never been set. Instead,
-		it should only be enabled on the first .set_time invocation do
-		you could now in .read_time that the time is currently invalid.
-
-> +		usleep_range(100, 200);
-> +	}
-> +	regmap_write_bits(rtc->map, RTC_INT_MASK,
-> +			  RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
-> +	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN, 0);
-> +}
-> +
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
