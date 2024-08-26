@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-96707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C7D95F349
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 15:52:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17B695F35D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 15:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45A712827FE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 13:52:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70F33B20E0C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 13:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 904F31862B9;
-	Mon, 26 Aug 2024 13:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CB7617C990;
+	Mon, 26 Aug 2024 13:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mnF1digA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="taeqgAbA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629CA17B51C;
-	Mon, 26 Aug 2024 13:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD62FC08;
+	Mon, 26 Aug 2024 13:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724680353; cv=none; b=KCSOx9VMWOW2pJCtChqoQWdawQK7cN8gWY4GpGRtbfWfcHO8Gvz1jDNZBt12MMnODvPs6fzOq+dvNVd2njLp4XGtESTafwTm3+NpIjhqw+AjvpVptytv/CPG/glTc0z+rhRxAGwM1/172AEiOFoL2E6nBDCQsM1Eqf8OUKWC7ks=
+	t=1724680657; cv=none; b=XkF4a3zq4li56fPZmgmnDih4N8uX6Q2KOuRNIZJ3hp1HboLMFvKkAukfPM2ooGMd3aQen3jReqdvTHssGslBMJFeaTwuVewirJqXll+BW8Qlp8TSjdNQwA5grpeO6K7/TQxoBmxSGvQWLu1AfkuIoBTnvcSGF9Vna/9jWPzrWYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724680353; c=relaxed/simple;
-	bh=Ih2aZy7VK+1vLk929aZ2HrdxEuygnHrgNQUcO7Z4NJw=;
+	s=arc-20240116; t=1724680657; c=relaxed/simple;
+	bh=X//oeaSxSnvJgJjp5uLJev8fa/GTw+ktOEOTQx0Z4Mg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YWHgVDh/Mt9b1hO9ouYiTszrXBU4Rp8zcAMT7Dmd8izfcgEG+NMyl6mDdHe1UXFR1L6y+7HZpTnSL9VLaM+vmAkt5tQXeli2HcgMbwByy/sP3N5MfF8RZr8Rm94B6irLiP1+ctOv0prlwtmcBGaDzHll6zuHoQs2YyCMp33Fwgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mnF1digA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B35F3C52FC0;
-	Mon, 26 Aug 2024 13:52:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u8v3dpwuQVK/wR1cNKWnd3DcyzAeOwZo3Li7y+jhTUWxH6s4G8X4YQkX8xz95cbEu+U8AkUSIMJoGDWSdalk67SBwLzpAC367TG7Ys2sKrNrKhR8IrKaa3nifru8ncckqdKkTlIIeX2nPuN9Xu20d/NyY9LO6zE3g8evRCnIOyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=taeqgAbA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90DD7C52FC3;
+	Mon, 26 Aug 2024 13:57:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724680350;
-	bh=Ih2aZy7VK+1vLk929aZ2HrdxEuygnHrgNQUcO7Z4NJw=;
+	s=k20201202; t=1724680656;
+	bh=X//oeaSxSnvJgJjp5uLJev8fa/GTw+ktOEOTQx0Z4Mg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mnF1digAxnCngL9LOjd3YG47mqco03wSu3Rda6ewvhEB2kBiqA7Wl1xSO2TxDQsAa
-	 VhHRaztUJAEQYSdkscisW7+ABuMKMe3KlePokEddD1+HCrdkQ0xXmGdzFEr3Y93SeO
-	 rJXi1IVbXVPhVW2qN3k97HVHkK5+5HaHV5+Pii+qPP6VmNbdVgtfkColVlwSzG4DJ7
-	 BRmRWYFn16OkyvgiOeImC6L0d5vE3Dib/aoCkQiEUa5HkG1EhKezEws1IoRne5i5Ow
-	 8NtxXRB2G34ErFIp8GsyvAqLo3Fk9hTFahRD9d5zvPb/UAXFM2uaY8Y8ZYhby/yCRz
-	 aeyrcVStCpj/A==
-Date: Mon, 26 Aug 2024 08:52:28 -0500
+	b=taeqgAbA652djiX3Rk5Gnh4x5kYkQ3BWcdJW9d5ai2S13BClGEiqbkpSLlwPKCj9b
+	 YDm7tQrtiqlb/07Qc4ZbrhaFpvs1HHMZBnvxR1IVSIzzzpoySXbIOwwTFGyIsnULqT
+	 vgF1Zk1r8EXlwbik1dJrKt5ULsyGqv5JwiN9FNMePPoe0qSzsto6cJ1U+OIhXKqtmd
+	 mQ1qEgwzHoaRQ7jxDz/Y92G5yUhpWy2kCoFEcMtCuERcvPrbn+2LJLEFwmDRQgvd0b
+	 xjs4jMOYFfSyDlv7RFYq7NKYEetITX7gVmSIJ8QFaZEej7ilUnRLiZIDYIUK2oBr/E
+	 NJbn4JC4SiqmA==
+Date: Mon, 26 Aug 2024 08:57:34 -0500
 From: Rob Herring <robh@kernel.org>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, clabbe@baylibre.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev,
-	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
-Subject: Re: [PATCH v9 18/23] dt-bindings: crypto: meson: support new SoC's
-Message-ID: <20240826135228.GA61588-robh@kernel.org>
-References: <20240820145623.3500864-1-avromanov@salutedevices.com>
- <20240820145623.3500864-19-avromanov@salutedevices.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Marek Vasut <marex@denx.de>, Mark Hasemeyer <markhas@chromium.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v5 1/1] dt-bindings: input: touchscreen: convert
+ ads7846.txt to yaml
+Message-ID: <20240826135734.GA63447-robh@kernel.org>
+References: <20240820163710.448302-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,75 +65,137 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240820145623.3500864-19-avromanov@salutedevices.com>
+In-Reply-To: <20240820163710.448302-1-Frank.Li@nxp.com>
 
-On Tue, Aug 20, 2024 at 05:56:18PM +0300, Alexey Romanov wrote:
-> Now crypto module available at G12A/G12B/S4/A1/SM1/AXG.
-> 
-> 1. Add new compatibles:
->   - amlogic,g12a-crypto
->   - amlogic,axg-crypto
->   - amlogic,a1-crypto
->   - amlogic,s4-crypto (uses a1-crypto as fallback)
-> 
-> Difference between this compatibles:
->  * Different registers offset and the number of setup descriptors.
->  * GXL doesn't support hashing like the others.
->  * G12A/B and A1/S4 crypto HW don't support 192 AES key.
->  * GXL, G12A/B and AXG require a reverse IV key before processing.
-> 
-> 2. Add power-domains in schema, which is required only for A1.
-> This is specific vendor design: in old SoC's power domain for
-> crypto HW was not configurable, but in A1-series it is configurable.
+On Tue, Aug 20, 2024 at 12:37:03PM -0400, Frank Li wrote:
+> Convert binding doc ads7846.txt to yaml format.
+> Additional change:
+> - add ref to touchscreen.yaml and spi-peripheral-props.yaml.
+> - use common node name touchscreen.
+> - sort ti properties alphabetically.
+> - sort common properties alphabetically.
+> - sort compatible string alphabetically.
+> - remove vcc-supply from required list.
+> - deprecated ti,x-min, ti,y,min
 
-You added this in the previous patch. So I withdraw my Reviewed-by.
+ti,y-min?
 
 > 
-> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> Fix below warning: arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb: touchscreen@0:
+> 	ti,x-min: b'\x00}' is not of type 'object', 'array', 'boolean', 'null'
+> 
+> Reviewed-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../bindings/crypto/amlogic,gxl-crypto.yaml   | 21 +++++++++++++++++--
->  1 file changed, 19 insertions(+), 2 deletions(-)
+> Change from v4 to v5
+> - Add Reviewed-by: Marek Vasut <marex@denx.de>
+> - Start sentence with uppercase letter
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> index 7300328de1d5..106a9d1fed69 100644
-> --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> @@ -11,8 +11,16 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - const: amlogic,gxl-crypto
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - amlogic,s4-crypto
-> +          - const: amlogic,a1-crypto
-> +      - enum:
-> +          - amlogic,gxl-crypto
-> +          - amlogic,axg-crypto
-> +          - amlogic,g12a-crypto
-> +          - amlogic,a1-crypto
->  
->    reg:
->      maxItems: 1
-> @@ -33,6 +41,15 @@ required:
->    - interrupts
->    - clocks
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: amlogic,a1-crypto
-> +    then:
-> +      required:
-> +        - power-domains
+> Change from v3 to v4
+> - new line for all descrptions
+> - add . after sentense.
+> 
+> Change from v2 to v3
+> - Remove u16(u32) in descriptions
+> - deprecated ti,x-min and ti, y-min
+> 
+> Change from v1 to v2
+> - sort properties, by 3 group:
+>   1. General (compatible, reg, interrupt)
+>   2. Common properties
+>   3. ti properties
+> - sort maintainers name alphabetically.
+> - uint16 have to be kept because default is uint32
+> - remove vcc-supply from required list
+> - remove unfinished sentence "all mandatory properties described in"
+> because it refer to /schemas/spi/spi-peripheral-props.yaml#
+> - fix make refcheckdoc error
+> ---
+>  .../bindings/input/touchscreen/ads7846.txt    | 107 ----------
+>  .../input/touchscreen/ti,ads7843.yaml         | 182 ++++++++++++++++++
+>  .../bindings/power/wakeup-source.txt          |   2 +-
+>  3 files changed, 183 insertions(+), 108 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
+
+
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
+> new file mode 100644
+> index 0000000000000..92d5e7d3b1ffd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
+> @@ -0,0 +1,182 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/ti,ads7843.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.34.1
-> 
+> +title: TI's SPI driven touch screen controllers.
+
+Drop period.
+
+> +
+> +maintainers:
+> +  - Alexander Stein <alexander.stein@ew.tq-group.com>
+> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +description:
+> +  Device tree bindings for TI's ADS7843, ADS7845, ADS7846, ADS7873, TSC2046
+
+Drop 'Device tree bindings for '.
+
+> +  SPI driven touch screen controllers.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ads7843
+> +      - ti,ads7845
+> +      - ti,ads7846
+> +      - ti,ads7873
+> +      - ti,tsc2046
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  pendown-gpio:
+> +    description:
+> +      GPIO handle describing the pin the !PENIRQ line is connected to.
+
+maxItems: 1
+
+> +
+> +  vcc-supply:
+> +    description:
+> +      A regulator node for the supply voltage.
+> +
+> +  wakeup-source: true
+> +
+> +  ti,debounce-max:
+> +    deprecated: true
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +    description:
+> +      Max number of additional readings per sample.
+> +
+> +  ti,debounce-rep:
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +    description:
+> +      Additional consecutive good readings required after the first two.
+> +
+> +  ti,debounce-tol:
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +    description:
+> +      Tolerance used for filtering.
+> +
+> +  ti,hsync-gpios:
+> +    description:
+> +      GPIO line to poll for hsync.
+
+maxItems: 1
+
+With those fixes,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
