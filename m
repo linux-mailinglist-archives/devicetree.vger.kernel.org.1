@@ -1,147 +1,94 @@
-Return-Path: <devicetree+bounces-96761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A59C95F65B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:22:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB03095F663
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 18:23:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B3B71C21FF1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:22:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BE6C2810B6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 16:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B142B19538A;
-	Mon, 26 Aug 2024 16:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0442E1957FC;
+	Mon, 26 Aug 2024 16:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LyvyOAvD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ACob5qbh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84545194C9E;
-	Mon, 26 Aug 2024 16:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C50195390;
+	Mon, 26 Aug 2024 16:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724689336; cv=none; b=AhVb/zTy7VL8sdauID0HnuL8qD4b5dTjOvTX3FEPoiSxBmBTLwLbGGKHnw8BtkfODZkXb44jGU/rkgbTAmuI/4QXyUGXDn/Ppl5cja2VdMGrXnyIDrNbTEd9WFITLbx9UIarVidH39BjgmM2oBqWidmPIEhdDYQRbVnNR8/90U4=
+	t=1724689381; cv=none; b=QPrSrDCyTTumQ/N2um6PiBrb+SUx3SlcHihQOkEuDF7WMLKUWotf4ujAaiMZFsbgsOBJT8WLdI4ce+ytCWixVDDRk24R7SgjVA7U28aS3sgCFYLJKQCVZ793Lb/5s80+jqmvvcqvT0AV9MS9xdC2PVr5bKWLu7VrpoiEUO3YSQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724689336; c=relaxed/simple;
-	bh=+RTZMx1fzQdb+R5GnKXIaBS0hVNREfRA+TCS9zcwgbk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ie0bLcHmdqa0EL7IHJtZUzEwIpWrSHIzgxlcETXVl6ES5cQugKKC3stpoHplTe5NWX7N+uo+SMIQkNPYIwb4K30JTWoHIOXr332ZdC9YFfBjO2gmM5zA8lWL9xOyZAyDVmv3cG/g2jDC8JZxeVoBDf6zYMZgO7mVVwDds5FD6Aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LyvyOAvD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D4C2C52FC0;
-	Mon, 26 Aug 2024 16:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724689336;
-	bh=+RTZMx1fzQdb+R5GnKXIaBS0hVNREfRA+TCS9zcwgbk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LyvyOAvDft8diKLOLUx20hHBgtJRj7WlrqbidunMWHGD5BOLkxHTL5o6fY7yT8Gs3
-	 DcJbKbnMLgpQyKVvdKGc+flE6lxPFbG4P0K0SNVPn0k/RvbWGO7OgbK/ZEUEIXPd07
-	 3E8i+1Nn+9ESLgGww9YjjHr/qrJNLORNHmJQnc5Q5i/Pu3vwPCVJj8Wi3ZYrjR13xc
-	 JXCO18OxLNbPaGkIjKdBoOi2U+nPIHr5ipkRWEOmayOa6pyxygSEF9rKm3KsFZG+zZ
-	 MjC99H2cFwabwar8EGqf8u7eQG4DStn4QbAn20rnKOmdIwhuoC2NLavgyHVMV4AkM+
-	 5264DWAfuAyZQ==
-Date: Mon, 26 Aug 2024 17:22:10 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Yangyu Chen <cyy@cyyself.name>,
-	Jesse Taube <jesse@rivosinc.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>,
-	Meng Zhang <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-binding: pinctrl: spacemit: add documents for
- K1 SoC
-Message-ID: <20240826-turbofan-unwound-280af18d60cc@spud>
-References: <20240825-02-k1-pinctrl-v2-0-ddd38a345d12@gentoo.org>
- <20240825-02-k1-pinctrl-v2-1-ddd38a345d12@gentoo.org>
- <66cbf3bb.050a0220.2632ed.b191SMTPIN_ADDED_BROKEN@mx.google.com>
+	s=arc-20240116; t=1724689381; c=relaxed/simple;
+	bh=FWjimFKnPE49x7sRAndX3Ey/MaahJinRLJmifuFTMPY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=n1S7yIeAs7inQLyyu/TW7QTI6qdA/GuNRp4zxFhBh5qdzntBfUBmjo9C4PRfBf1SAdhSzjsQM57PooaOxxE9LEYRkoz18R6WYQcbYR/soORF25rT1O10FWxLLzRB0bSiA4+bLkBEz6HHMMSYRitGqg16uGUdYL582uQ5EFoQP6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ACob5qbh; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47QGMpP7025835;
+	Mon, 26 Aug 2024 11:22:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724689371;
+	bh=9fRONO3q2PiOH6HMDD3rASyvC4hPpHxbSJo0s+2R7JA=;
+	h=From:To:CC:Subject:Date;
+	b=ACob5qbhgzoSdAMyMAnXGNwkKmIUWldHmyoSGv1Gzb/tLI8vq5FqOBkFBaKfTbyRm
+	 g0rovLZIh7180g5KmZCgOXpjqjj0BlkD1xLWmNHcp06ripr8WXIv077RIdVEPYcW9H
+	 TdtGKo50YFns6cenca0v3Hj77E/r5my9TWvis9lo=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47QGMpQ6019096
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Aug 2024 11:22:51 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ Aug 2024 11:22:51 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 Aug 2024 11:22:51 -0500
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47QGMobf058683;
+	Mon, 26 Aug 2024 11:22:51 -0500
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <nm@ti.com>, <vigneshr@ti.com>
+CC: <s-jain1@ti.com>, <r-donadkar@ti.com>, <devarsht@ti.com>,
+        <praneeth@ti.com>
+Subject: [PATCH 0/2] Enable E5010 JPEG encoder
+Date: Mon, 26 Aug 2024 21:52:48 +0530
+Message-ID: <20240826162250.380005-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vv0iS6OPh2q+34gu"
-Content-Disposition: inline
-In-Reply-To: <66cbf3bb.050a0220.2632ed.b191SMTPIN_ADDED_BROKEN@mx.google.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+This series adds support for E5010 JPEG encoder device-tree node for TI's
+AM62A SoC and enables it in defconfig.
 
---vv0iS6OPh2q+34gu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Devarsh Thakkar (2):
+  arm64: dts: ti: k3-am62a : Add E5010 JPEG Encoder
+  arm64: defconfig: Enable E5010 JPEG Encoder
 
-On Mon, Aug 26, 2024 at 03:09:39AM +0000, Yixun Lan wrote:
->=20
-> On 13:10 Sun 25 Aug     , Yixun Lan wrote:
-> > Add dt-binding for the pinctrl driver of SpacemiT's K1 SoC.
-> >=20
-> > Two vendor specific properties are introduced here, As the pinctrl
-> > has dedicated slew rate enable control - bit[7], so we have
-> > spacemit,slew-rate-{enable,disable} for this. For the same reason,
-> > creating spacemit,strong-pull-up for the strong pull up control.
-> >=20
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 10 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi      |  2 ++
+ arch/arm64/configs/defconfig              |  1 +
+ 3 files changed, 13 insertions(+)
 
-I got this mail, and one of your other ones, 5 times. What's going wrong
-with your mail setup?=20
+-- 
+2.39.1
 
-| 250   T Aug 25 Yixun Lan       (6.0K) =E2=94=8C=E2=94=80>[PATCH v2 4/4] r=
-iscv: dts: spacemit: add pinctrl property to uart0 in BPI-F3
-| 251 N T Aug 26 Inochi Amaoto   ( 12K) =E2=94=82 =E2=94=8C=E2=94=80>
-| 252   T Aug 25 Yixun Lan       (6.8K) =E2=94=9C=E2=94=80>[PATCH v2 3/4] r=
-iscv: dts: spacemit: add pinctrl support for K1 SoC
-| 253 N T Aug 26 Inochi Amaoto   ( 46K) =E2=94=82 =E2=94=8C=E2=94=80>
-| 254   T Aug 25 Yixun Lan       ( 38K) =E2=94=9C=E2=94=80>[PATCH v2 2/4] p=
-inctrl: spacemit: add support for SpacemiT K1 SoC
-| 255 N T Aug 26 Inochi Amaoto   ( 22K) =E2=94=82 =E2=94=8C=E2=94=80>
-| 256   T Aug 26 Yixun Lan       ( 333) =E2=94=82 =E2=94=9C=E2=94=80>
-| 257   T Aug 26 Yixun Lan       ( 338) =E2=94=82 =E2=94=9C=E2=94=80>
-| 258   T Aug 26 Yixun Lan       ( 334) =E2=94=82 =E2=94=9C=E2=94=80>
-| 259   T Aug 26 Yixun Lan       ( 334) =E2=94=82 =E2=94=9C=E2=94=80>
-| 260   T Aug 26 Yixun Lan       ( 333) =E2=94=82 =E2=94=9C=E2=94=80>
-| 261   C Aug 25 Rob Herring (Ar (9.0K) =E2=94=82 =E2=94=9C=E2=94=80>
-| 262 N C Aug 26 Krzysztof Kozlo ( 14K) =E2=94=82 =E2=94=82 =E2=94=8C=E2=94=
-=80>
-| 263 N C Aug 26 Inochi Amaoto   ( 19K) =E2=94=82 =E2=94=82 =E2=94=9C=E2=94=
-=80>
-| 264   C Aug 26 Yixun Lan       ( 285) =E2=94=82 =E2=94=82 =E2=94=9C=E2=94=
-=80>
-| 265   C Aug 26 Yixun Lan       ( 281) =E2=94=82 =E2=94=82 =E2=94=9C=E2=94=
-=80>
-| 266 N C Aug 26 Yixun Lan       ( 14K) =E2=94=82 =E2=94=82 =E2=94=9C=E2=94=
-=80>
-| 267 N C Aug 26 Yixun Lan       ( 12K) =E2=94=82 =E2=94=82 =E2=94=9C=E2=94=
-=80>
-| 268 N C Aug 26 Yixun Lan       ( 12K) =E2=94=82 =E2=94=82 =E2=94=9C=E2=94=
-=80>
-| 269   T Aug 25 Krzysztof Kozlo ( 13K) =E2=94=82 =E2=94=9C=E2=94=80>
-| 270   T Aug 25 Yixun Lan       ( 14K) =E2=94=9C=E2=94=80>[PATCH v2 1/4] d=
-t-binding: pinctrl: spacemit: add documents for K1 SoC
-| 271   T Aug 25 Yixun Lan       (8.5K) [PATCH v2 0/4] riscv: spacemit: add=
- pinctrl support to K1 SoC
-
-
---vv0iS6OPh2q+34gu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsyrsgAKCRB4tDGHoIJi
-0q6hAQDeH2i2SNS/Z13kPou1aa7nn27FSu6SRvKx9lRsDN+A0wD/eqwn/JkSg0bn
-sCsM9hBmsqrjbzQW/WiTVKFJWO1kZAk=
-=th+c
------END PGP SIGNATURE-----
-
---vv0iS6OPh2q+34gu--
 
