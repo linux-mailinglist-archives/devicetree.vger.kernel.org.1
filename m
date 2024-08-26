@@ -1,176 +1,80 @@
-Return-Path: <devicetree+bounces-96605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E20595ECB9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:07:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3C995ECBD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 11:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B37721C216FD
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:07:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23F25B214A4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2024 09:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDC5143882;
-	Mon, 26 Aug 2024 09:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="KAfhreAF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F67985283;
+	Mon, 26 Aug 2024 09:08:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C854E14535F
-	for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 09:07:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EDEB13D2A9;
+	Mon, 26 Aug 2024 09:08:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724663253; cv=none; b=Bs/T1wVL9bZe1W/aLRY328gxGYvoE0u9RouHoaqb/skVI1ZjPG1890Gzy4xkccS9kNIfE9NRW1PiqtAz8NxI4HcOdMdrt53TeSTiSX52vv0/jujihzJrVdRDkvEnaZFirzAt3/zzqnmnWpa72RI3WYzFHTCRs4+9o2FDteoIYYs=
+	t=1724663297; cv=none; b=V/Ya7FPDRnTGvBgFWcrGOUgusFbDganj+0DQ/62xM9ORCGqWvZLTeoOwJOUMU1Odb2XuLfzYxoKtTGNcNeclJAJtjiwS1sV43uMMAb0fiPf0x/el2PXK5/kqfL3oLMRyLK+riFIevjumChThN/cjtjO8FplsSKvgSiDm5Q+B8eM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724663253; c=relaxed/simple;
-	bh=lj01/f2LiyRrUvTSa8/RM+ENuLL5BYJU8hMdCYL8sIg=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c2eYsNdmABOy+rFmDaq8sQCbq0nB1DEw2jR0Xfal4XwMmGBV0ZboFdtepcwHGKldY2gtrhtCdccwgb4IG+POjqTF3lgHGlFB+DTiZlOp0hibOruy8af/Ozez10LN182i5tSJDyP/vOBdW/K91ZJMMvKE4O9A7Uucf7Utcm5BKR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=KAfhreAF; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f029e9c9cfso49605761fa.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2024 02:07:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1724663248; x=1725268048; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UqD5UWcEcVPtLKNughX5xFAsztARfJbyIdaLj7krJ48=;
-        b=KAfhreAFNj29HjT2HRVug5yGbYqg+uXm/EbHaYsfpbUSmXpiiMp08OJpvLccNsKg6z
-         53wRQAOco+Vc83bcSDlU7TzqK67Ajf03FnhkGDXqkGBA92jGKv5eM7HrWhJmj2Ke/GRK
-         3naiX76Odxc44hk3Ag9NgW0nAmv4o1HaTXaCAo2yAG5/KLoU3/BF3ttU1XQldTxODXv2
-         EW58aG/icuOW58s1stk5ivp43KqABTq77vJBj352iqoFbkskE+eJw8ZLJhg6mG8NsJpj
-         e0bcY6FkT/RszqswcmBql1PCylwC+LPG3I8fKde+hmE1gPlpSxR0SfnvubaNW/OK4Xns
-         6tdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724663248; x=1725268048;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UqD5UWcEcVPtLKNughX5xFAsztARfJbyIdaLj7krJ48=;
-        b=bATko4NMe9Vf0xju3U/JUNoRAp24VgM3pxB1w1t0XtI66ql8is1axVJEcrvVMiAQU+
-         VV4NKxQIT6gsBChqAPVZfbBMTv6xdwQ7uvVkME/rjRDz8lt3WoY9xE6PGNjbY6rBruKy
-         Nte6hJlzSOnpUrND+ucD90O2FYJdvrY6XJ2JlKQ6hG+XyjZ22xpFLIcwHvTYIpmMqSH0
-         tPxSEdwApA38PpE85N6aY2k2rUPYUiDpQlnvgWhiQeVbuH92Q1Y3nFOPYxCzu/I4Fx/j
-         DD/8zrrQjReNDidLDh5uHe8JdldO5LNm0n6S386UMEr5yylMoVsc15S7kPfz9EYXcbgc
-         KbfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWxyZBYpQITPtCtUxU+ccfdin8DhtGX+Qsr4sFYiKimrbaG64A0YukqssDgth4iATlh9pg+h3f0C+/R@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBeDAfn7Ox8s3M5PJ5M1WFPqZW4zBIr8iUer8KTi824G2WdwEE
-	erF3Km9Dr7uPRpyQGAGgBIcu4OWo9wCtkN/MoWIrMJXDeBD4v+XqBcQNAJycdUA=
-X-Google-Smtp-Source: AGHT+IEK0yN2RYKBDuaStUQnXKZRjXxJWE9pErYm6IieseugH4NhuZzdiuxipurv3igkJJwF0aMRAw==
-X-Received: by 2002:a2e:b892:0:b0:2f3:cf43:c2a8 with SMTP id 38308e7fff4ca-2f4f579e8eamr76624181fa.42.1724663247306;
-        Mon, 26 Aug 2024 02:07:27 -0700 (PDT)
-Received: from localhost ([87.13.33.30])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f2205e1sm652753666b.12.2024.08.26.02.07.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2024 02:07:26 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Mon, 26 Aug 2024 11:07:33 +0200
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1724663297; c=relaxed/simple;
+	bh=X7+8nQb9lzLAHMjE1y9inzs2gvbg55BORjmxSbaxA1o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aEOPywjyJjI2Z0+vS09zBq/nEmmAAX3CSpOuFzsOcaPxWlnG9fXFXf4Xf9fXuqAgYYjYQeJbbjb6g/NDgsJWwTgXqr5yBNFV7w9vXlbhc66aR2Md+HW3IcBhjJpCjYurs/i965PYFkh8J/7x224kKXEm4e5qcu1gacC4ogNLV5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.10,177,1719846000"; 
+   d="scan'208";a="216583869"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 26 Aug 2024 18:08:08 +0900
+Received: from localhost.localdomain (unknown [10.226.92.68])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7A9534007554;
+	Mon, 26 Aug 2024 18:08:05 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <ZsxF1ZvsrJbmWzQH@apocalypse>
-Mail-Followup-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
- <2024082420-secluding-rearrange-fcfd@gregkh>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2 0/2] Add HDMI Audio support
+Date: Mon, 26 Aug 2024 10:07:58 +0100
+Message-ID: <20240826090803.56176-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2024082420-secluding-rearrange-fcfd@gregkh>
+Content-Transfer-Encoding: 8bit
 
-Hi Greg,
+This patch series aims to add HDMI audio support for RZ/{G2L,G2LC,V2L}
+SMARC EVKs.
 
-On 09:53 Sat 24 Aug     , Greg Kroah-Hartman wrote:
-> On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
-> > --- a/include/linux/pci_ids.h
-> > +++ b/include/linux/pci_ids.h
-> > @@ -2610,6 +2610,9 @@
-> >  #define PCI_VENDOR_ID_TEKRAM		0x1de1
-> >  #define PCI_DEVICE_ID_TEKRAM_DC290	0xdc29
-> >  
-> > +#define PCI_VENDOR_ID_RPI		0x1de4
-> > +#define PCI_DEVICE_ID_RP1_C0		0x0001
-> 
-> Minor thing, but please read the top of this file.  As you aren't using
-> these values anywhere outside of this one driver, there's no need to add
-> these values to pci_ids.h.  Just keep them local to the .c file itself.
->
+v1->v2:
+ * Dropped SSI1 RXD pin as it is not connected on carrier board
+ * Dropped deleting ssi0 port when SW_I2S0_I2S1==0 as it enables only
+   when SW_I2S0_I2S1==1.
 
-Thanks, I've read the top part of that file. The reason I've declared those
-two macroes in pci_ids.h is that I'm using them both in the
-main driver (rp1-pci.c) and in drivers/pci/quirks.c.
+Biju Das (2):
+  arm64: dts: renesas: rzg2l-smarc: Enable HDMI audio
+  arm64: dts: renesas: rzg2lc-smarc: Enable HDMI audio
 
-I suppose I could move DECLARE_PCI_FIXUP_FINAL() inside rp1-pci.c to keep
-those two defines local, but judging from the number of entries of
-DECLARE_PCI_FIXP_FINAL found in quirks.c versus the occurences found in
-respective driver, I assumed the preferred way was to place it in quirks.c.
+ .../boot/dts/renesas/r9a07g044c2-smarc.dts    |  3 ++
+ .../dts/renesas/rzg2l-smarc-pinfunction.dtsi  |  6 ++++
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  | 30 +++++++++++++++++
+ arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 33 +++++++++++++++++++
+ 4 files changed, 72 insertions(+)
 
-Many thanks,
-Andrea
+-- 
+2.43.0
 
- 
-> thanks,
-> 
-> greg k-h
 
