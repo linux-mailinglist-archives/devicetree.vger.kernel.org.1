@@ -1,151 +1,100 @@
-Return-Path: <devicetree+bounces-97184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD904961411
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:30:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C83D96146E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:43:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EFD21F24134
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:30:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A7EF282D65
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156591C8FD3;
-	Tue, 27 Aug 2024 16:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09FA11D0494;
+	Tue, 27 Aug 2024 16:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="XQVsRIU2"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Vb5x8y1I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6953A1C3F1D;
-	Tue, 27 Aug 2024 16:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724776229; cv=pass; b=BF1AJ/FphGvw/VIP7F0Fq5LHU30AnoOKucB8AcfxfP5hiNmJQUJN/EC6k5mRDAXOONDdrzKnssnCCwGatalD+ZolsxnS8NxwCVffAg9KLhjUWG9AtSngv1ZI2e+XPHHH/fGmpkEt7swNDABl6kdx9wPG/7JNxWP5Og2btu3DiRs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724776229; c=relaxed/simple;
-	bh=/kzx1RinYKgOz2UtzB5CMAvZLHO7c3+nz/XEbSShg2M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P5lW/Qr+rSOoca3SicQW9X44PuQwyo51VIZJnB9ISGLJg9DscOZhSKaacj3u6m9M0aCIXhY4eyKuzreCK3nnXig1TcpC0m8fmZIhoddznE+6r0o2DDo8iYB0bndw+h9OeN7yuicUSCbMT6IuPZs/7MgFuicR37tS8g9l6BwM4Ps=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=XQVsRIU2; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724776187; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=dV4yUuRMtkdlYes9lilFVNqwvEbmoZXh7AQpd/lmRuUyjWd8oo9apnBqjTSFAyMrUWU+fgkCoFX20QihOIER3MuCn19wrdnQIdbAR8ocBpVBB4h2U1BICd1rDO4gIJgEUFrgEVkR3LyPHq2ISoKG0l7pmFJ5GtpjCuik4BmjjYQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724776187; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=yIZ4tokYIs1ihPKr07xclM5JUdjc2mCvibla5fSMoXc=; 
-	b=gCdaq9fP/CZclQ5+WAVBOkAf3gS5ADwAvE1BkfygmsgiBeolk5AQieQ4mT2WlcGNO3PG/VRlDmSD6YlBmDkCLvYMV6sMb0Hl3csz71unFMifaCWK31ilC2J5epAiF8I/Yir35NeZxdBhyrP7N6+l6Es6p+Yvgz+/PRcn4RGrqpg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724776187;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=yIZ4tokYIs1ihPKr07xclM5JUdjc2mCvibla5fSMoXc=;
-	b=XQVsRIU2208eGNpDbDh5z/5tfN0pYZhYpuzg0qdFyAXuVEph/ODawx3xP+MDZ464
-	U9DXYVkywRqb9Jr0JIHTWucJ0S5R7mxJrwFL/VQU5+X9Po3ki0b4NitodbBqRFRt3mp
-	fcsgMRES7zn6dgUjME8ZqxrdDzaVpzk/zAjNv12I=
-Received: by mx.zohomail.com with SMTPS id 1724776186585449.4642360121936;
-	Tue, 27 Aug 2024 09:29:46 -0700 (PDT)
-Received: by mercury (Postfix, from userid 1000)
-	id 16A8610604BD; Tue, 27 Aug 2024 18:29:41 +0200 (CEST)
-Date: Tue, 27 Aug 2024 18:29:40 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, linux-sunxi@lists.linux.dev, 
-	Chris Morgan <macroalpha82@gmail.com>, linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com, 
-	mripard@kernel.org, tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com, 
-	u.kleine-koenig@pengutronix.de, samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org, 
-	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de, 
-	jonathan.cameron@huawei.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: (subset) [PATCH V4 11/15] mfd: axp20x: Add ADC, BAT, and USB
- cells for AXP717
-Message-ID: <fv4ukscke4hoyso4vprtrx2pzqy5lkwkuhnd5wywfxe4burlr4@2dgxbhqpol7t>
-References: <20240821215456.962564-1-macroalpha82@gmail.com>
- <20240821215456.962564-12-macroalpha82@gmail.com>
- <172433485381.1334876.7027428905035727559.b4-ty@kernel.org>
- <20240826120342.503bef41@jic23-huawei>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1501CFED9;
+	Tue, 27 Aug 2024 16:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724776968; cv=none; b=eEWzNij8quVsnyA35XHdwczSG7y21/auK+HEmqOiMtRkAjYwtPynUygVLvdt5GrUqvDGL106C0/L30nlF+fFu3LNhD1F1MbXx8WHDj4gjrCuH4BjjxtC2TXovWfMnvimMhNKGYVeT8q0wptz9OCfajqJPs7I5hdNqpTPuZVi1ys=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724776968; c=relaxed/simple;
+	bh=Jj2Oi0duJe2bHJPlHmEiXxPp7AdHFIUvtDymNXBNZBo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jg8pVnUB1jFQO4YawIKB40zaetIpUs1LNoUikQp4S5L6yE+FouEPSGGVg5O31cJoCsbkR5gmN+wzvTB1eubTs4Zo/oyzzSCjAJPn4Or85OWeIVdLkaZ9ApuMP+LY5YXBkik/vO52uEEtZfcN3GRVXh7FGbRv0EKrUkfuUVYQl70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Vb5x8y1I; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id E59F2888C8;
+	Tue, 27 Aug 2024 18:42:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724776965;
+	bh=v9UgdaWGS04BSmIse3RKiwzHVfsA2BzZVmOCjBmyT48=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Vb5x8y1I6Qnu5mTLssyKJm399qGJ0RKpUKm7YhyiZ3r1O+G8nNjxpJuxSe/6c2vND
+	 ++O1Ozb1DbuvC/MA7HBZ2Q2IWhfLX60yEnxqwzUQzpYAWOJLLI5Kbq7exEONkuJY/Q
+	 s59zgFs37kBeyYlz67N458LJjNVQM0+J00pUfDqOfRiJmZyvWbunn7ixItjNjw1vFk
+	 LQiYJcEG0s1a3kv/aXQT0HzYn8aJE6grZQmgedWxpquvhUShaEjYUT+oAY7g+nlLgA
+	 WD7RwL9IXgtLWfqcZuNpvL2t+RoDsKi4FPbpoVn0vyjZtfzNDsUrRjgrBJiZ8dKkLv
+	 5iH1c2u+j1Gpw==
+Message-ID: <b8cf0639-7fe1-4225-9d95-ffd3caef595b@denx.de>
+Date: Tue, 27 Aug 2024 18:31:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="72vwrvvbohscblme"
-Content-Disposition: inline
-In-Reply-To: <20240826120342.503bef41@jic23-huawei>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/224.285.20
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] wifi: wilc1000: Add WILC3000 support
+To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ linux-wireless@vger.kernel.org
+Cc: Ajay Singh <ajay.kathat@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240823161131.94305-1-marex@denx.de>
+ <20240823161131.94305-4-marex@denx.de>
+ <9217902b-7d1b-4d67-a148-a28484e8946e@bootlin.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <9217902b-7d1b-4d67-a148-a28484e8946e@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-
---72vwrvvbohscblme
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 8/27/24 10:28 AM, Alexis Lothoré wrote:
 
 Hi,
 
-On Mon, Aug 26, 2024 at 12:03:42PM GMT, Jonathan Cameron wrote:
-> On Thu, 22 Aug 2024 14:54:13 +0100
-> Lee Jones <lee@kernel.org> wrote:
->=20
-> > On Wed, 21 Aug 2024 16:54:52 -0500, Chris Morgan wrote:
-> > > Add support for the AXP717 PMIC to utilize the ADC (for reading
-> > > voltage, current, and temperature information from the PMIC) as well
-> > > as the USB charger and battery.
-> > >=20
-> > >  =20
-> >=20
-> > Applied, thanks!
-> >=20
-> > [11/15] mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
-> >         commit: e1043ad46060c181ffb8f981ccb25d9f698b2f09
-> >=20
-> Hi Lee, patch 12 is dependent on this because of the header
-> additions.
->=20
-> If you don't mind can you pick up 1, 8 and 12
-> (all the IIO ones)?  Otherwise they'll have to wait for next
-> cycle. Guessing too late to ask for an IB?
->=20
-> I haven't checked but the later power supply ones may have
-> the same block.
+>> @@ -1467,6 +1604,20 @@ static int init_chip(struct net_device *dev)
+>>   		}
+>>   	}
+>>   
+>> +	if (is_wilc3000(wilc->chipid)) {
+>> +		ret = wilc->hif_func->hif_read_reg(wilc, 0x207ac, &reg);
+> 
+> Some defines would be nice here instead of hardcoded addresses. I have asked
+> Ajay about those while working on wilc3000, the meaning is roughly the following:
+> - 0x000207ac: WILC_3000_BOOTROM_STATUS_REGISTER
+> - 0x004f0000: WILC_3000_CORTUS_BOOT_REGISTER_2
+> - 0x71: WILC_CORTUS_BOOT_FROM_IRAM
 
-Yes, patches 13 + 14 are also blocked by the MFD patch adding
-register defines. I merged the other power-supply patches before
-noticing this, so patches 13 + 14 need to wait a cycle without
-an immutable branch.
-
-Greetings,
-
--- Sebastian
-
---72vwrvvbohscblme
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbN/vQACgkQ2O7X88g7
-+pr/qA//Z47zpsYNHymEJyhzZ0+KvDR6LxviBoQRMkhNZNmbjQVA1OEZOXbMm6Np
-AP3B6ifwXDdRGV0dv4wUSYbL95QnZ3BW2tWBrblZOSPzy6fs2p3yKvGamIlxaWUf
-0VQSsV+j5sZjeF2NCv6NiP+y4mpMI02VOphcXjX3b9Qb/9E6JXlEK8rS6ONHxjsh
-+czXqGougXwybTW2pDeIHmmjA9YPjd/NL1FJ9wTDxbcNLieuuU06yh29YRVQhAVi
-fqRL262HNQv6zBJzSqusggdpMY01u2Dm2i5ySUXNG0KOXEkC5In5t+o9SjC5Ft6f
-poQC8NRXUR/h4nIOo8v9jFBEE3zxO2cR2fgn2EGv9TH9QeBGQ3343vqCu+nsDR0P
-KGexs6RFiDxTJEigSlQ/oPEoV7MCims5vAR/SyEzCLerDN+pHDmc3Bi3zKjcmq3B
-g3PqyPhD8uh4rB0Jr9rYyWg4G/7DfvIwKFwqAzqvx4L76v1C5dtqgziYkjTCc9r7
-2hZWU7L6oGxgEgkRdtQy26a6JB8NBNvIR5Xn12zirVsaIk5kLl2SLftTXJPp4md3
-uRFWJOnLjnZnhDt0F+Me7TXOdNzfftWjK2BZ71EYCs8rDUmrNHMZRe92D0d5OduS
-JpgeBYL91p04T3HPOiQX4FQ75/jLmWL15fvgnJKgIZV2x7OYgDo=
-=uRJ7
------END PGP SIGNATURE-----
-
---72vwrvvbohscblme--
+Fixed in V3, thanks.
 
