@@ -1,55 +1,61 @@
-Return-Path: <devicetree+bounces-97171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2238B961359
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 17:53:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FF7F961374
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:00:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D32672829F2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:53:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1C561C2304C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD7A1CFED9;
-	Tue, 27 Aug 2024 15:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424191C86F4;
+	Tue, 27 Aug 2024 16:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJFXeS42"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lBjnBdjn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7381A1CFEC6;
-	Tue, 27 Aug 2024 15:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122BB1C6F4F;
+	Tue, 27 Aug 2024 16:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724773921; cv=none; b=iPpwHriRFMoPCAUQUhAKWJu7y+66zc3crnLxoqGIuU4VSRW3Fc7Zfzt+KvdQ7TzyYsCk7F/1wsDwc7NzZDT5KUYyJix/d7fQxcEt6gGrERaHNLbKtNb3r020vBiEaCQJ41i+YMvn29dcK5zs77xx4lBr3Pcqjd8RZf4HqvhIaSs=
+	t=1724774413; cv=none; b=g+n8uKcb/I8Ci8LnFUA0ULdhfEOE/I7ydAHqOEMN2252sIWF9yXgQs/Q3dVweLUTJcJRQM3q0eTW6luym/7yg/2qpkYHG6kTC988dtQ2nooYZts06zhVnLqEhhZmFnkJ0PkCYGbGMerywWPJeCShBkMMXTqJD+5oXg4ZYZO57RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724773921; c=relaxed/simple;
-	bh=nkxZmjJsQD+WMFNTPKl18ceTuqzu825y5NWLg20zRY4=;
+	s=arc-20240116; t=1724774413; c=relaxed/simple;
+	bh=glt23gL14OT29ySgLa2OLHvgpFuLQ4dVuwOcWfQCHhg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fC/mGZHDo3ekaVF7c2kxIiVJA9SCGPilYJgyReimDPd9KPNPe/ziac1kykIknIFhDj2eekzAqlj5pfooltvElmANBc2zWcZxUQnuLKhnxwyp5jcWNZWBKqbYRb3jNhaQ6F482imiA5VCpFNKIr2q65EIjM4H1EarRCTmh7ogc7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJFXeS42; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9583C58106;
-	Tue, 27 Aug 2024 15:52:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aMHziV2/MeTsgiDK5Bv18BGsvJiUSWITFi7ZOeNnJjdbk2s8AV5HKCozfE1pi1fCD76Iba8p67lPbMAGxECBertbgQFWRKuGMVX4nTjSDp/H3rJVszhbuyMN8wS8df6g7NEHEAKgyFUIEvzuBiZ/uk9P2iadL4chxgLWiQBwE9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lBjnBdjn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70FFFC4FE0A;
+	Tue, 27 Aug 2024 16:00:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724773921;
-	bh=nkxZmjJsQD+WMFNTPKl18ceTuqzu825y5NWLg20zRY4=;
+	s=k20201202; t=1724774412;
+	bh=glt23gL14OT29ySgLa2OLHvgpFuLQ4dVuwOcWfQCHhg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XJFXeS42JQvsvgV8UWsTvI+dwLXioBc6g2SXLHPRsvJQ0Uy8fY/y6CmpY8G3T3npC
-	 1+r8Hod9g/If6UCs6ykeab8xFfuhQMYnMQRWpwon27//KLRj0xW66hrDLDIL7EZP9b
-	 0GdRVIRW8vzazsj6n5Nn+fxDdVH8//Rk7FPAosWipBJ3lUHD83KtM/LDP2oLo75ugM
-	 FxU0eGMSQH0abLY/g6cNTD7qGS0wMmpSMTXKxE9hKQ4PLMu2OZqh37Ot34LjMAOpEy
-	 pp7VRZnPRT+wylabBzGnOwahF6fkB63hbG2mwqmnIR/ePewcwlHjbmLGLHbTa65iHt
-	 n1vqQ/ODA+9YA==
-Date: Tue, 27 Aug 2024 10:51:58 -0500
+	b=lBjnBdjn1AI/zAlDKPGgTVd+arH3lcdjpMzuPQjwabOLKdcIjEdWwTYDjZUeXCQ1H
+	 3zHCw/ZhXiZIzgxXqckqYfAfqafahvLlH4yuuopHc/hk9BtE+AZ4e+Djz7W9P4RQww
+	 7nFYf/Ikbpq/PgSp+Tz9lmz9tCvkqIQ6Kp795AZMOubilOuctNdMruyg8D5S44a8mk
+	 QBGqJuSBpr06F/2AtwFoniaBdUwHu/lVR+qhnRaSpuvubLHshFlvOkmgw5ngUkFGw7
+	 BzPecD7pqJIKFz9lhM6VrBd4HPPCzy+3YmJwyi/hylLaVC+6vrjyMXH+6uS/0fv5kk
+	 u1fZnwkjtm/Dw==
+Date: Tue, 27 Aug 2024 11:00:10 -0500
 From: Rob Herring <robh@kernel.org>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH] of: move empty_root and unittest data DTBs to
- .init.rodata section
-Message-ID: <20240827155158.GA3940418-robh@kernel.org>
-References: <20240826124802.1552738-1-masahiroy@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	"open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v3 1/1] dt-bindings: hwmon/regulator: Convert ltc2978.txt
+ to yaml
+Message-ID: <20240827160010.GA3965737-robh@kernel.org>
+References: <20240826163626.961586-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,72 +64,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240826124802.1552738-1-masahiroy@kernel.org>
+In-Reply-To: <20240826163626.961586-1-Frank.Li@nxp.com>
 
-On Mon, Aug 26, 2024 at 09:48:01PM +0900, Masahiro Yamada wrote:
-> Some architectures can embed DTB(s) in vmlinux. Most of them expect a
-> single DTB in the .dtb.init.rodata section.
+On Mon, Aug 26, 2024 at 12:36:25PM -0400, Frank Li wrote:
+> Convert binding doc ltc2978.txt to yaml format.
+> Additional change:
+> - add i2c node.
+> - basic it is regulator according to example, move it under regulator.
 > 
-> For example, RISC-V previously allowed embedding multiple DTBs in
-> vmlinux, but only the first DTB in the .dtb.init.rodata section was
-> used. Which DTB was used was unpredictable, as it depended on the link
-> order (i.e., the order in Makefile).
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/i2c@2000000/i2c-mux@77/i2c@2/regulator@5c:
+> 	failed to match any schema with compatible: ['lltc,ltc3882']
 > 
-> Commit 2672031b20f6 ("riscv: dts: Move BUILTIN_DTB_SOURCE to common
-> Kconfig") changed the Makefiles to ensure only one DTB is embedded.
-> 
-> However, commit 7b937cc243e5 ("of: Create of_root if no dtb provided by
-> firmware") introduced another DTB into the .dtb.init.rodata section.
-> 
-> Since then, the symbol dump (sorted by address) for ARCH=riscv
-> nommu_k210_defconfig is as follows:
-> 
->     00000000801290e0 D __dtb_k210_generic_begin
->     00000000801290e0 D __dtb_start
->     000000008012b571 D __dtb_k210_generic_end
->     000000008012b580 D __dtb_empty_root_begin
->     000000008012b5c8 D __dtb_empty_root_end
->     000000008012b5e0 D __dtb_end
-> 
-> The .dtb.init.rodata section now contains the following two DTB files:
-> 
->     arch/riscv/boot/dts/canaan/k210_generic.dtb
->     drivers/of/empty_root.dtb
-> 
-> This is not an immediate problem because the boot code picks up the
-> first DTB. The second one, empty_root.dtb is just ignored.
-> 
-> However, as mentioned above, it is fragile to rely on the link order,
-> as future Makefile changes may break the behavior.
-> 
-> The cmd_wrap_S_dtb rule in scripts/Makefile.lib is used for embedding a
-> DTB into the .dtb.init.rodata, so that the arch boot code can find it by
-> the __dtb_start symbol.
-> 
-> empty_root.dtb is looked up by its own symbol, so it does not need to
-> be located in the .dtb.init.rodata. It can be moved to the .init.rodata
-> section.
-> 
-> When CONFIG_OF_UNITTEST is enabled, more unittest DTBOs are embedded in
-> the .dtb.init.rodata section. These are also looked up by name and for
-> generic purposes, so they can be moved to the .init.rodata section as
-> well.
-> 
-> I added a wrapper source file, drivers/of/empty_root_dtb.S, because this
-> is the only wrapper used in driver/of/Makefile. I moved the rule for
-> generating *.dtbo.S to drivers/of/unittest-data/Makefile because it is
-> not used anywhere else.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v2 to v3
+> - put my name into maintainers.
+> change from v1 to v2
+> - maintainer change to Mark Brown <broonie@kernel.org> (regulator maintainer)
+> - update title to (from ltc2978 data sheet).
+> octal, digital power-supply monitor, supervisor, sequencer, and margin controller.
+> ---
+>  .../devicetree/bindings/hwmon/ltc2978.txt     | 62 ------------
+>  .../bindings/regulator/lltc,ltc2972.yaml      | 94 +++++++++++++++++++
+>  2 files changed, 94 insertions(+), 62 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ltc2978.txt
+>  create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc2972.yaml
 
-That is likely to change. We've had fixup overlays (fixup an old dt 
-to a new binding) added into the kernel from time to time. There were 2, 
-but they've been removed. However, I just recently suggested adding some 
-new ones[1].
-
-It seems we need a named section when we access the dtb by variable 
-name and an unnamed or boot dt section for the one boot dtb.
+Based on the discussion, I think it is easier if we just leave this 
+under hwmon.
 
 Rob
-
-[1] https://lore.kernel.org/all/20240812212139.GA1797954-robh@kernel.org/
-
 
