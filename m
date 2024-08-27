@@ -1,172 +1,151 @@
-Return-Path: <devicetree+bounces-97183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB8B96140C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:28:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD904961411
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:30:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EEF81C20A47
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:28:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EFD21F24134
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60201C4EE3;
-	Tue, 27 Aug 2024 16:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156591C8FD3;
+	Tue, 27 Aug 2024 16:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dpC6jANe"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="XQVsRIU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F211F481CD
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 16:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724776106; cv=none; b=DryLhHAw05FAEYu1pADzL0iP5qAnYpCjODmM+A/saC8Ddj7KmScycpEe8SUUw6UKB3KWKhLss9+x1QxJEmpxiTVdOqSAG8pccogPBECYWteh4VAGrG0B1i+9+YIXvDKbGFfBwhjV+T5uCMC0CvZifvRmcIsS2ss2UyRdktr7RqA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724776106; c=relaxed/simple;
-	bh=gv13NTKcLRF/Slgn9FXOKbo+fZtnZIyLnz0YsO7zqbs=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Wkvq1OXLBS29rbq/aJIQ9gWXQ38SQ7zEPXxlAKYcrUQ2bT0xCvqeHVjXB0OCVbYoLPclU16puO18CsBOk0xTC0fCaVbH6ex5FJv8mcczhN8L2+l/0ZYuksRQYCRzMH3u97aY8ffzaerPSKeiEiZqFgXO+qpGvfGM2bZZwY3WShc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dpC6jANe; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-428119da952so50728265e9.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 09:28:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724776103; x=1725380903; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ufE/6XVJ+83T5fOnTjTASaHShwbV2r35OMHx7oT3zhU=;
-        b=dpC6jANe/W0OOMtnMrzgubW7V7uVVKGHbcXP7KfIhxGmvyvxb9Vk54Pp3Y/B3dQ2tj
-         MB2mwDid3xClvQ96JL6YQ5ZImGMHulJqQ64ZLb+IzZx/8EJzP4eiE9beWAq4+UlhFDyb
-         R81esV+RZ1SDQPcPB8lUmAvKurmzShmsx2yR0Nz/coBBp1A4u7sPuKPs32opNuUrUYX7
-         qizL+fv/1PoPOmJZUykfhVyvYYcT/TquIZeUGPt8WlROiatobr3KWfruPwpPqjPxU9pU
-         NvTdWBjcMxy54h/epakL6EGAMUpdy97ntKQ6atoa95vjHdRUaIqRN7iyUNHNFY+qDSs5
-         HCHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724776103; x=1725380903;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ufE/6XVJ+83T5fOnTjTASaHShwbV2r35OMHx7oT3zhU=;
-        b=NsGogAZsSL4y5i1FkerZ/rvWAFQiEAlEAVv8FutAlWriIJ7ll53GwwVr3YfQyfi3o6
-         wldR5uqTKPLp+ogZ3e2Hdkw9uwyHlJDpRMVa2xMFB5xaoRJfR4cFWRWMozjWHhqcFEJB
-         zwO5F7REKb/S6vcWqz15CymArjJVJiqzYbJ82lqjcBsn2S8iVMh00WKW8JU+3x8uGybL
-         1yHWVjQIjZvkye2ImjSMfk6pYllSYOzPlzpb+03au0JzBcWNPrTCDvDvqgGIwqG2JumU
-         7ZIsMtlkOT9UviW5KiCgeMlR+oy5WKQhbw7e5Dlc2mcfZDqWXv1eS+nKiUs/OdVO5j7B
-         ORzg==
-X-Forwarded-Encrypted: i=1; AJvYcCWdmDFtLBgCmud27Og916RUCM3UD4HLFBgy2R8DprqCAiCrGGruRXPzC6RW5mejpNGeDuWrUcxDWbnd@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnHlQR+OQ165GPbORC235zDPYZtzZgjrqKvs0t3DW7GpzP4Awr
-	aeTqyDEroE+V/TUZETiIDj57qtNqWWbakMRngr360wpxnUIVkKvN2odRGPfr5zI=
-X-Google-Smtp-Source: AGHT+IFs44im3ppKp7rli/0SrE8qnw/kI4+1TZyXKWRmUS8FDR4OalSDTwLVmncC76FonQP5ohDJmg==
-X-Received: by 2002:a05:600c:5102:b0:427:abed:3608 with SMTP id 5b1f17b1804b1-42acc8d519bmr101922755e9.5.1724776102800;
-        Tue, 27 Aug 2024 09:28:22 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:cedc:30f:887e:7717? ([2a01:e0a:982:cbb0:cedc:30f:887e:7717])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abee8d1d9sm232476035e9.22.2024.08.27.09.28.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Aug 2024 09:28:22 -0700 (PDT)
-Message-ID: <d9686280-5514-49ab-91b8-0737141178ce@linaro.org>
-Date: Tue, 27 Aug 2024 18:28:21 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6953A1C3F1D;
+	Tue, 27 Aug 2024 16:30:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724776229; cv=pass; b=BF1AJ/FphGvw/VIP7F0Fq5LHU30AnoOKucB8AcfxfP5hiNmJQUJN/EC6k5mRDAXOONDdrzKnssnCCwGatalD+ZolsxnS8NxwCVffAg9KLhjUWG9AtSngv1ZI2e+XPHHH/fGmpkEt7swNDABl6kdx9wPG/7JNxWP5Og2btu3DiRs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724776229; c=relaxed/simple;
+	bh=/kzx1RinYKgOz2UtzB5CMAvZLHO7c3+nz/XEbSShg2M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P5lW/Qr+rSOoca3SicQW9X44PuQwyo51VIZJnB9ISGLJg9DscOZhSKaacj3u6m9M0aCIXhY4eyKuzreCK3nnXig1TcpC0m8fmZIhoddznE+6r0o2DDo8iYB0bndw+h9OeN7yuicUSCbMT6IuPZs/7MgFuicR37tS8g9l6BwM4Ps=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=XQVsRIU2; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724776187; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=dV4yUuRMtkdlYes9lilFVNqwvEbmoZXh7AQpd/lmRuUyjWd8oo9apnBqjTSFAyMrUWU+fgkCoFX20QihOIER3MuCn19wrdnQIdbAR8ocBpVBB4h2U1BICd1rDO4gIJgEUFrgEVkR3LyPHq2ISoKG0l7pmFJ5GtpjCuik4BmjjYQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724776187; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=yIZ4tokYIs1ihPKr07xclM5JUdjc2mCvibla5fSMoXc=; 
+	b=gCdaq9fP/CZclQ5+WAVBOkAf3gS5ADwAvE1BkfygmsgiBeolk5AQieQ4mT2WlcGNO3PG/VRlDmSD6YlBmDkCLvYMV6sMb0Hl3csz71unFMifaCWK31ilC2J5epAiF8I/Yir35NeZxdBhyrP7N6+l6Es6p+Yvgz+/PRcn4RGrqpg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724776187;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=yIZ4tokYIs1ihPKr07xclM5JUdjc2mCvibla5fSMoXc=;
+	b=XQVsRIU2208eGNpDbDh5z/5tfN0pYZhYpuzg0qdFyAXuVEph/ODawx3xP+MDZ464
+	U9DXYVkywRqb9Jr0JIHTWucJ0S5R7mxJrwFL/VQU5+X9Po3ki0b4NitodbBqRFRt3mp
+	fcsgMRES7zn6dgUjME8ZqxrdDzaVpzk/zAjNv12I=
+Received: by mx.zohomail.com with SMTPS id 1724776186585449.4642360121936;
+	Tue, 27 Aug 2024 09:29:46 -0700 (PDT)
+Received: by mercury (Postfix, from userid 1000)
+	id 16A8610604BD; Tue, 27 Aug 2024 18:29:41 +0200 (CEST)
+Date: Tue, 27 Aug 2024 18:29:40 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, linux-sunxi@lists.linux.dev, 
+	Chris Morgan <macroalpha82@gmail.com>, linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com, 
+	mripard@kernel.org, tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com, 
+	u.kleine-koenig@pengutronix.de, samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org, 
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de, 
+	jonathan.cameron@huawei.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: (subset) [PATCH V4 11/15] mfd: axp20x: Add ADC, BAT, and USB
+ cells for AXP717
+Message-ID: <fv4ukscke4hoyso4vprtrx2pzqy5lkwkuhnd5wywfxe4burlr4@2dgxbhqpol7t>
+References: <20240821215456.962564-1-macroalpha82@gmail.com>
+ <20240821215456.962564-12-macroalpha82@gmail.com>
+ <172433485381.1334876.7027428905035727559.b4-ty@kernel.org>
+ <20240826120342.503bef41@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8
- panel
-To: Ryan Walklin <ryan@testtoast.com>, Maxime Ripard <mripard@kernel.org>,
- Conor Dooley <conor@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>,
- Chris Morgan <macroalpha82@gmail.com>
-References: <20240626112005.248576-1-ryan@testtoast.com>
- <20240626112005.248576-2-ryan@testtoast.com>
- <a4d33da3-2a2a-48ce-874d-95a5889f2f1f@linaro.org>
- <20240626-loyal-squirrel-of-charisma-4e784f@houat>
- <20240626-procreate-goldmine-800179f909e9@spud>
- <20240627-muskox-of-nonconcrete-art-e4bcfd@houat>
- <8b4519fc-0fba-48fe-bfb4-318818b47a65@app.fastmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <8b4519fc-0fba-48fe-bfb4-318818b47a65@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="72vwrvvbohscblme"
+Content-Disposition: inline
+In-Reply-To: <20240826120342.503bef41@jic23-huawei>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/224.285.20
+X-ZohoMailClient: External
 
-On 30/06/2024 10:16, Ryan Walklin wrote:
-> On Fri, 28 Jun 2024, at 5:59 AM, Maxime Ripard wrote:
->> On Wed, Jun 26, 2024 at 04:34:11PM GMT, Conor Dooley wrote:
->>> On Wed, Jun 26, 2024 at 05:04:19PM +0200, Maxime Ripard wrote:
->>>> On Wed, Jun 26, 2024 at 02:25:54PM GMT, Neil Armstrong wrote:
->>>>> Can it be more specific ? because there's a lot of rg35xx defined in bindings:
->>>>>   anbernic,rg351m
->>>>>   anbernic,rg351v
->>>>>   anbernic,rg353p
->>>>>   anbernic,rg353ps
->>>>>   anbernic,rg353v
->>>>>   anbernic,rg353vs
->>>>>   anbernic,rg35xx-2024
->>>>>   anbernic,rg35xx-plus
->>>>>   anbernic,rg35xx-h
-> 
-> Just to note only the three rg35xx-* devices use this particular panel.
-> 
->>>>
->>>> Yeah, if we have an identified model name, we should probably use that,
->>>> with a comment that we couldn't figure out what the vendor was and thus
->>>> went for anbernic.
->>>
->>> What's wrong with using the wl name that already exists as the model?
->>> Using rg<whatever>-panel is total invention on our part, especially
->>> seeing as the commit message says that multiple models can use it.
->>
->> Yeah, that makes sense, sorry for the noise
->>
-> Thanks both for the further feedback, agreed logical to use the device vendor and panel serial number, ie "anbernic,wl-355608-a8". Will post a V2 with a comment to that effect.
 
-Well in this case we can keep "wl-355608-a8", because the panel vendor _is not_ anbernic.
+--72vwrvvbohscblme
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Neil
+Hi,
 
-> 
-> Regards,
-> 
-> Ryan
+On Mon, Aug 26, 2024 at 12:03:42PM GMT, Jonathan Cameron wrote:
+> On Thu, 22 Aug 2024 14:54:13 +0100
+> Lee Jones <lee@kernel.org> wrote:
+>=20
+> > On Wed, 21 Aug 2024 16:54:52 -0500, Chris Morgan wrote:
+> > > Add support for the AXP717 PMIC to utilize the ADC (for reading
+> > > voltage, current, and temperature information from the PMIC) as well
+> > > as the USB charger and battery.
+> > >=20
+> > >  =20
+> >=20
+> > Applied, thanks!
+> >=20
+> > [11/15] mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
+> >         commit: e1043ad46060c181ffb8f981ccb25d9f698b2f09
+> >=20
+> Hi Lee, patch 12 is dependent on this because of the header
+> additions.
+>=20
+> If you don't mind can you pick up 1, 8 and 12
+> (all the IIO ones)?  Otherwise they'll have to wait for next
+> cycle. Guessing too late to ask for an IB?
+>=20
+> I haven't checked but the later power supply ones may have
+> the same block.
 
+Yes, patches 13 + 14 are also blocked by the MFD patch adding
+register defines. I merged the other power-supply patches before
+noticing this, so patches 13 + 14 need to wait a cycle without
+an immutable branch.
+
+Greetings,
+
+-- Sebastian
+
+--72vwrvvbohscblme
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbN/vQACgkQ2O7X88g7
++pr/qA//Z47zpsYNHymEJyhzZ0+KvDR6LxviBoQRMkhNZNmbjQVA1OEZOXbMm6Np
+AP3B6ifwXDdRGV0dv4wUSYbL95QnZ3BW2tWBrblZOSPzy6fs2p3yKvGamIlxaWUf
+0VQSsV+j5sZjeF2NCv6NiP+y4mpMI02VOphcXjX3b9Qb/9E6JXlEK8rS6ONHxjsh
++czXqGougXwybTW2pDeIHmmjA9YPjd/NL1FJ9wTDxbcNLieuuU06yh29YRVQhAVi
+fqRL262HNQv6zBJzSqusggdpMY01u2Dm2i5ySUXNG0KOXEkC5In5t+o9SjC5Ft6f
+poQC8NRXUR/h4nIOo8v9jFBEE3zxO2cR2fgn2EGv9TH9QeBGQ3343vqCu+nsDR0P
+KGexs6RFiDxTJEigSlQ/oPEoV7MCims5vAR/SyEzCLerDN+pHDmc3Bi3zKjcmq3B
+g3PqyPhD8uh4rB0Jr9rYyWg4G/7DfvIwKFwqAzqvx4L76v1C5dtqgziYkjTCc9r7
+2hZWU7L6oGxgEgkRdtQy26a6JB8NBNvIR5Xn12zirVsaIk5kLl2SLftTXJPp4md3
+uRFWJOnLjnZnhDt0F+Me7TXOdNzfftWjK2BZ71EYCs8rDUmrNHMZRe92D0d5OduS
+JpgeBYL91p04T3HPOiQX4FQ75/jLmWL15fvgnJKgIZV2x7OYgDo=
+=uRJ7
+-----END PGP SIGNATURE-----
+
+--72vwrvvbohscblme--
 
