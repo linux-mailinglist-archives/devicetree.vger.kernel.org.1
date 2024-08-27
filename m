@@ -1,224 +1,252 @@
-Return-Path: <devicetree+bounces-96894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F85D95FE54
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 03:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D62695FF38
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 04:41:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ED3F1F22BCE
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 01:36:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 969B71F22B77
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 02:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC72C539A;
-	Tue, 27 Aug 2024 01:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700B3101E6;
+	Tue, 27 Aug 2024 02:41:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=digi.com header.i=@digi.com header.b="PWsH8E/O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
+Received: from outbound-ip24b.ess.barracuda.com (outbound-ip24b.ess.barracuda.com [209.222.82.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822DD1FDA
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 01:36:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724722565; cv=none; b=RGImK6WrWJjpgVAxP40Jm+0d4MrmqiMXG/i6RYZPw/BPEtvlMyZSqP3aPDjoOPwL9ll103WddG181L8Gl6+2Jq5qpknE3WQ04bViCztWHFr692hyzM8Al9CmOzU8MBvfmI68EHFGJPtRYZRTraCC62iULG4WUa7NpFAzLOQKROg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724722565; c=relaxed/simple;
-	bh=oRlgKdAFEz8Wx6Q3kbUBJSkeY8SM/fUmQ+ZGSX28lFs=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Pi5DREhVrrXFin0Wb15vaSeb4DKvkI+wZUNjgx56mBhk6WGTpUHhXLEOFf626KDkMnNQAZaaT9sixnn5qQsONNLMiZPDrzW+guXV95ctJd5j0tw+G26NZJG+khn/BTbbWVXOQ2ni2PEdQG64p8lTeq6tflBAxJ6BJw9BNt+nw7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtp80t1724722484t4j0i649
-X-QQ-Originating-IP: y5tiIDLHZe7KJeXVMOs6fJS0ujAAWJRCHFZoAcyeb5k=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 27 Aug 2024 09:34:41 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7053113923276737299
-Message-ID: <14AD3FF5DD278AA3+1537a4d0-6666-4c6b-a7c3-4562cc4f91e8@radxa.com>
-Date: Tue, 27 Aug 2024 10:34:40 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1286C8FE
+	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 02:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=209.222.82.221
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724726501; cv=fail; b=eeuWSkqtEcG/6ZM1X0TbdqkIPXo/sAZQuVGutrTESrYHZGw9u0M8XyymmH7uHVNUtqWfY3JpKnn7HP4Z23G5ysoDiJG0ZziG3wxg6bVlc33Psz1QgHM7N1+RU0dj68J67f5fsnw/hQY6AqVPX5XxF1+3v5tnU2r//EOPkxp3rGI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724726501; c=relaxed/simple;
+	bh=WjKRf/DvwCN9PFlk+248NXdkEGkMZxiI0cpFPakNdC0=;
+	h=Date:From:To:cc:Subject:Message-ID:Content-Type:MIME-Version; b=hGsm+uKGVTpIbkAhDr1Wu3EJpRWGorc+OewpvsLpbSJrl7DD/VbEJdBzSktuijqFotiq8W4POZBGxkkHqAGoKyawJf+txKIliuEcwuqismOwqft00yp04VyJTEwkGfYkYd3GCv989lVwh5272Zq3QoF60MgEjvRR0+UjvP3zC9o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=digi.com; spf=pass smtp.mailfrom=digi.com; dkim=pass (2048-bit key) header.d=digi.com header.i=@digi.com header.b=PWsH8E/O; arc=fail smtp.client-ip=209.222.82.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=digi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=digi.com
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2176.outbound.protection.outlook.com [104.47.57.176]) by mx-outbound19-31.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 27 Aug 2024 02:41:37 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sfLWvXb2wFFKIfP0VmHAaLKHOEBTEZEe77VldNveZHzPWFTvTv39goP4wpQaDc2PK7D0KP1WsoKQ1xy9+gTmNb/vls6+9+NiAwo+7J68laqq0Z9zNlG93jWLVAQeZv3muAA71XKkA+cq3wqGoejjNgR6SMEG2/H5Sk3s6lW9Bd/T+ecjMqakH0SZHm/Ji177fIqZ8FRN4nu+UWxFksgrbOAVvjymfdtJBy2i0iWty8cZ+/JIuNOxac0+Qh9F6+AYJ0OgDWqaHhqvMuo4PATHlMrJd5nYJFMPD6ueXBPxov7cXxxIUTtDxXE5T1B0OY8c7e0vw2/3QKuhCu67ESIlbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p15iNT2jIN0JR4e7Fvu4faxG9g0C9L3GM6KhxggCAHw=;
+ b=lrh4F0cZJP0LnXUlXxzI0I/uEV6y2K0jxkZ49zEkSiMuVjjoT9gZnaeNx8W/ueT/7SoDUMLVqXMDilFwIAmG5sQZunfP797sa0bd3xHt2HX9poCeSU8+2Hw2iIGCNeBXNMlUNnLULuHDqYHus0LwTWIJtm7ljzLwimeGTlxVc/1AdVUGHqRWny1MVYFP07IK2AJhyZY1uc/Pk/6bvrMeivhX5W3bEHfqQm7L3b5ke24cW6TggnwNaL8FoEZRr08yWjdCgoOLvFWjLLWZJYYlhieQQlyPHgtIoMOGZiHNiZxa7mzW6Q0kkVOCdT1hUUo1AY/WjwtJA+/WhfZh20nNZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=digi.com; dmarc=pass action=none header.from=digi.com;
+ dkim=pass header.d=digi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=digi.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p15iNT2jIN0JR4e7Fvu4faxG9g0C9L3GM6KhxggCAHw=;
+ b=PWsH8E/OJdPdiXEzrxpg3NJNSurbB1jthpk5UsMrAOyqDbRAXGlEtb8oFb2ivaNhAvyTGhhf7tzQX7IT/t5l8rOhg8P1K72Bb4fMRA35Mcwjt53j76z4F5E/mbn/qgxjA+5u82hSSRSI4PagPq/1TWBKXsOe5psZbwT3KAWeBXVpqdX0oZqH1rjQT2NHV/X9cEviPbx+XlDxMdP06A1leofTYKibQJCS7JBMVP01dwFYniTteiuJS4rBFQkP6hLN3qJAQN4+fEcGOMnllplEoX4XqXOY1AVAyMNPWHfVTECJdbZm0vpWJaa2P4t/K4O+UwZtQ1GfN15iga9x4o6J2Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=digi.com;
+Received: from DS0PR10MB6918.namprd10.prod.outlook.com (2603:10b6:8:136::8) by
+ DS0PR10MB7432.namprd10.prod.outlook.com (2603:10b6:8:155::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7918.14; Tue, 27 Aug 2024 02:07:39 +0000
+Received: from DS0PR10MB6918.namprd10.prod.outlook.com
+ ([fe80::3697:c0ef:caee:24ae]) by DS0PR10MB6918.namprd10.prod.outlook.com
+ ([fe80::3697:c0ef:caee:24ae%5]) with mapi id 15.20.7918.006; Tue, 27 Aug 2024
+ 02:07:39 +0000
+Date: Tue, 27 Aug 2024 12:07:34 +1000 (AEST)
+From: David Leonard <David.Leonard@digi.com>
+To: linux-arm-kernel@lists.infradead.org
+cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/6] arm64: dts: ls1012a: add pinctrl node
+Message-ID: <d9d48d8a-8dcc-8b46-eb0b-954e5db78736@digi.com>
+Organization: Opengear Digi
+Content-Type: text/plain; format=flowed; charset=US-ASCII
+X-ClientProxiedBy: SY5P282CA0143.AUSP282.PROD.OUTLOOK.COM
+ (2603:10c6:10:205::15) To DS0PR10MB6918.namprd10.prod.outlook.com
+ (2603:10b6:8:136::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: rockchip: add support for Radxa ROCK
- Pi E v3.0
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20240816213429.1093-1-naoki@radxa.com>
- <20240816213429.1093-2-naoki@radxa.com> <1819066.TLkxdtWsSY@diego>
- <85AB3D0B7214AEEA+d54aaa4a-ce0b-43ef-8cb8-ea2c2f305bcd@radxa.com>
- <cd08ce18bde728e2b33a995834441399@manjaro.org>
- <10ac45cf5bb5dfab9c08160c826c9b28@manjaro.org>
- <B26198585C33E0EC+958ace8d-0f31-4fc1-acc2-f090a31fa2e6@radxa.com>
- <79b071b69f0a3e5faac2c3daf1a4f272@manjaro.org>
- <0CF9D1576916E834+1a310fc3-d77a-4296-818c-81800d9859cd@radxa.com>
- <d40e95d42074b9a2b8d353881d1be248@manjaro.org>
- <f5528290efb529ebcb599a2f1c309e63@manjaro.org>
- <659A1B439A0F69BF+e92df213-bd31-46d6-b4b5-c9b865ae72b2@radxa.com>
-Content-Language: en-US
-In-Reply-To: <659A1B439A0F69BF+e92df213-bd31-46d6-b4b5-c9b865ae72b2@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR10MB6918:EE_|DS0PR10MB7432:EE_
+X-MS-Office365-Filtering-Correlation-Id: df8677b7-e145-4c38-bc29-08dcc63d06fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?SNcPLz3iyY6wT7h1xiblFaFUVn9E8vSngR08G/eR97jlnYFKEy7o+ZtFnIFL?=
+ =?us-ascii?Q?241+WoNLWohxzu+nzOB1qWn72VeWchytX3ZJuS5DV8SYblZJYLpn5cm7Ivuy?=
+ =?us-ascii?Q?CTXZU1RGA1+NKRl+r7dAL5rR//Vx/AG7eBdFp8Ad3QHbGOF84jrISokqvR6W?=
+ =?us-ascii?Q?wE068CyxXiRWosts+zI8QlNzfDhyoyAh6c3R0StZt6fsLIRqK1D0tdZabhAV?=
+ =?us-ascii?Q?iCHpF3ljamLWiwtgJk0SJ87q+615q0YtNuJClirz8U7W1bSy9ds0Gw0xCoeF?=
+ =?us-ascii?Q?Vq9CKQaQZDX+6tHlJDOdnLV9RLz6Jj8bccDe8eb4bwze3fVe6UuwyKcBhq+Y?=
+ =?us-ascii?Q?870BASN0Mc0AZCCVDloZ9GUC6O7/UoKI4qtNEFReVvVIl2JTgqnxhShWwtx4?=
+ =?us-ascii?Q?SSzEe/9u6VAUxnA4JABzndkDPzzDp5/VX8LhwO5mL7z3w1OiqozSjuybffGm?=
+ =?us-ascii?Q?PR59or1Cx7eqZkVHrvc/MB9k3RLICm8PDTgMCOKDtNnf08GkVN21XAiaFpPC?=
+ =?us-ascii?Q?jau+Y3g4GCDxiD03HC9sRbNhKZv7QJAjTmGJBxKCFyuM9VtBFmH1nVtRer2o?=
+ =?us-ascii?Q?FWe/UwFU/3jqKstTbE5KO1K6/W+mbFGFMXJFrejv7jNQYZbrR4rIRMkLUGci?=
+ =?us-ascii?Q?0ne9o8JQhfYHMa0SSTtxDMwfepCC5XalyfC11RV3QEzpNVVWIjt4u+F8IcFS?=
+ =?us-ascii?Q?ZH0dvVSMrQwUncYs8rkNcri07YiyGVyoy8QIQLuL3p3rwLbQLG7PlFb5NxL3?=
+ =?us-ascii?Q?3lIkir+5110yWz0s8nLFBQeraj9JJ6Bm98bDYrMhYp6Xlhvh1foLKmkh5JtT?=
+ =?us-ascii?Q?dFoWMl7rQvlH88v9QSHG6w8XAK6+q54gFON1wDmSq6UeW/H3+Ib8PxHjDFmr?=
+ =?us-ascii?Q?XU0NwhUSRRHBeG4XAwkN0noRrPQSW3QJ63Khd87g67fIlDkiTwPxVCPjUwTf?=
+ =?us-ascii?Q?DA7eYwoNP603+xQl1fLiLysGb0rIm5r2jW+8WLIV5BMDdCIYysKtA3EcLZsx?=
+ =?us-ascii?Q?NWw8zbzLpju9b0ehWz/A929AP72VharvxUkcbqKeCtRbfCKLmLMVoF32NEO9?=
+ =?us-ascii?Q?OplgPNc5UljhuTzorrtQLY5063zVFOC1AYaY8Q8I5XHsy5RI0cnPFdDysSHU?=
+ =?us-ascii?Q?/3B+ePjjYpp95YeAbGtAnLkU5hxdthejT3RyruyEUz8jyjvJV+9riyPe1CmP?=
+ =?us-ascii?Q?L4Ajq9IWOshGrmTleb2WY4GXCxA0907y/h6Dq8yuxD+Mpsh727f0VW3XTJ+j?=
+ =?us-ascii?Q?sVWSYq+0aR3Moqe6QC98gMmGF1aj3StKskxbP5FoW3/DfgUhYJKbn9a/Bds6?=
+ =?us-ascii?Q?rnDNcY2MbXdbgxFifVCg+Pu+DWVeC8myJQM3xJ5lRFMIDw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR10MB6918.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?wGScf4/gxNDB7j6g9y3UAuiEOCTrZgFIleEqklEcP4cGiD4nmExm7hbh4uxV?=
+ =?us-ascii?Q?TcuRavz74RiS1O3CpQau+ulBw/sL6klgO1ZUa/3ppatRk0jEe817sOnCodtc?=
+ =?us-ascii?Q?1jcrU9CCZ3oejNgHj5SqIwrI98RM2GIQyAHJqmh56ak9hLW4o3Mb/1QJ+yhX?=
+ =?us-ascii?Q?sNPSHvkFTJ9ZER019oZg2Yy4O2q61U9SIO0tJ/BkfHIbQRUPXPcl9zNHhKwv?=
+ =?us-ascii?Q?HrrtDj/kwgWH4Si7/yapPCsz85mMFeHEjDWxXzWN8TcPz/68/WCa7xUxJ1yI?=
+ =?us-ascii?Q?dHRCMUF9TYDG1C8TH9w34mAQ8DMQ1sVNmCKd+OiklGX2uAK+6fJ4+LX7dLiY?=
+ =?us-ascii?Q?heGdqIWfxfmqrv6dQFBcogSxuGNLPQmkA0ga8sD9kAUOGqCY3Arrmc6mJ9sY?=
+ =?us-ascii?Q?9kba9w66D/c9G3iV2iXeL3yuDZI8NSCRrtnNZzvsUIJToLQcxnWo8/4NrB/S?=
+ =?us-ascii?Q?L4Ed2ElshtTUfWoELlXDAz95mwjR4ZDn+sFUk53OyPhlIfbuEmjzFUZFtsQ3?=
+ =?us-ascii?Q?610U82Pcq6uOjF6G58XwTnkR1y1D/YWYVHqowywx7tbBtfFhA7ZVZm1h3uG3?=
+ =?us-ascii?Q?M3m9jmzlqmm4zv9oB7L3JvCGC2zDvA/mUoJWO+ZYDQAV7V2h37nWoI4VQA3E?=
+ =?us-ascii?Q?hnYFkORHNlOrnQQF0zfIX+uNHWIHVPKUJ5AwDlls6Sj+IjmwN1jv1A8lKyUl?=
+ =?us-ascii?Q?jRNIcZHmS96VVouNRciE8DFICH4g224JdIqhH5Me4NIxlktJ8TDVBHh5fwiv?=
+ =?us-ascii?Q?bT/zTK1Ie3tKOKnFhS71ZbwXFT49M1xj792At/Yj3d+omfDAtserXH2kO4Hm?=
+ =?us-ascii?Q?C64h34hTF8uBoGvc6mo5lAwdSk1pSSsncaHDJofea4uZrDIM/JanS8EYJp8S?=
+ =?us-ascii?Q?yX2nftGgBBoYnjbvdsuPe9eqYLY+zxG/KCrL0tO8Gkp3QiKoZcyRaqVI/laC?=
+ =?us-ascii?Q?8uHvmDX4NTtzczZaNNkg2kNTxqlAQaMxnxJuo5KBeGUDC7XD2FdM8OApd2Vi?=
+ =?us-ascii?Q?CZYP3FcWUCauPAgz21Ldv9zdtoNdB4Xaw1EfaGHZz3EU76RsWzbvnFxYMJv2?=
+ =?us-ascii?Q?7xd8h2Cir+uGVbYPhAzEQj+Q54SXD0ZYazyHmG76RIs6yaBWbCZKmLa8Y+jy?=
+ =?us-ascii?Q?+hpSVrT1NWFd8Uu+BqVDAt8UW+W1BLohkvFh3iQW8CTtwlQeGAgNLCuBw8gW?=
+ =?us-ascii?Q?zf4KWNL20Y7zBLuZtX27o2Y2NG9+7n+/FwqWBltnlTwnlrVa4zZEps4N0Gu+?=
+ =?us-ascii?Q?RUNw1PoDgWZssLK+f9BzTd8EgNGjIA7mtj5aevBLDoFvDNCJkxIz87laJ1mf?=
+ =?us-ascii?Q?zOBQc4YuOmIL/eHDQOWisT42L9ZpVZ+CUrElNuo0vHFxclzMDi0RbucwMgJm?=
+ =?us-ascii?Q?czMR1vTvGnzvbZodLwjYirEePvVoKc2cYTa63HpfQbWyQnGLzptylkEL/nAg?=
+ =?us-ascii?Q?EMfjEoOfIcMUIzUMTwdLhtwYhUkipFZz9RqUN55rRy0LZnh3qkaSGaU8Eodl?=
+ =?us-ascii?Q?ESiMZh9TlTNAibArmbRRqGhwOVHQqF/7Oc85ru23RZjbAzi7FRVDGFF5ldpb?=
+ =?us-ascii?Q?3ZXVZnG3sMNGb66jFsME3ymxBueck9ZCtUxozPitwPGxag+nlxYgpgbrhLzh?=
+ =?us-ascii?Q?O95LHQFZ3aGyMHPJ0pCyLEruABqxNec+wekjrDJKW7sP?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: df8677b7-e145-4c38-bc29-08dcc63d06fc
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR10MB6918.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2024 02:07:39.3142
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: abb4cdb7-1b7e-483e-a143-7ebfd1184b9e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Esa5DLsWAsvZVYm3HhVtFIso9UZZ8MqsBa7f71SbKLFRm5VURFeW3jPHtzrBp0+V96mNr8cEt9VBXyezlQqoSQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7432
+X-OriginatorOrg: digi.com
+X-BESS-ID: 1724726497-104895-1363-711-1
+X-BESS-VER: 2019.1_20240823.2008
+X-BESS-Apparent-Source-IP: 104.47.57.176
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUioBkjpK+cVKVkbGhkZAVgZQ0CI1OSUl2dDAOM
+	0wLdnC2Mw4zdLEKCkpxSjRwtQs0dJUqTYWAPBjqllBAAAA
+X-BESS-Outbound-Spam-Score: 0.50
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.258621 [from 
+	cloudscan14-172.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.50 BSF_RULE7568M          META: Custom Rule 7568M 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS112744 scores of KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status:1
 
-Hi,
 
-RFC:
-https://patchwork.ozlabs.org/project/uboot/patch/20240827013111.633-1-naoki@radxa.com/
+Add a node for the LS1012A's pinmux controller along with related
+pinctrl properties for the nodes using related GPIO and I2C functions.
 
-Best regards,
+Signed-off-by: David Leonard <David.Leonard@digi.com>
+---
+  .../arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 48 +++++++++++++++++++
+  1 file changed, 48 insertions(+)
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+index e61ea7e0737e..d28416849b0f 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+@@ -175,6 +175,44 @@ scfg: scfg@1570000 {
+  			big-endian;
+  		};
 
-On 8/27/24 08:20, FUKAUMI Naoki wrote:
-> Hi,
-> 
-> On 8/26/24 20:25, Dragan Simic wrote:
->> Hello Naoki,
->>
->> On 2024-08-18 00:30, Dragan Simic wrote:
->>> On 2024-08-17 22:28, FUKAUMI Naoki wrote:
->>>> On 8/18/24 05:12, Dragan Simic wrote:
->>>>> On 2024-08-17 22:04, FUKAUMI Naoki wrote:
->>>>>> On 8/18/24 04:51, Dragan Simic wrote:
->>>>>>> On 2024-08-17 21:28, Dragan Simic wrote:
->>>>>>>> On 2024-08-17 00:20, FUKAUMI Naoki wrote:
->>>>>>>>> On 8/17/24 07:11, Heiko Stübner wrote:
->>>>>>>>>> Am Freitag, 16. August 2024, 23:34:29 CEST schrieb FUKAUMI Naoki:
->>>>>>>>>>> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the 
->>>>>>>>>>> Rockchip
->>>>>>>>>>> RK3328 chip that ships in a number of RAM/eMMC/WiFi/BT 
->>>>>>>>>>> configurations:
->>>>>>>>>>>
->>>>>>>>>>> - Rockchip RK3328 SoC
->>>>>>>>>>> - Quad A53 CPU
->>>>>>>>>>> - 512MB/1GB/2GB DDR4 RAM
->>>>>>>>> (snip)
->>>>>>>>>> can you please describe what is different in that v3 board?
->>>>>>>>>> Describing what is different to require a separate board 
->>>>>>>>>> should've been
->>>>>>>>>> part of the commit message.
->>>>>>>>>>
->>>>>>>>>> Because from those changes, the bottom line currently seems to be
->>>>>>>>>> the same board with swapped mmc aliases?
->>>>>>>>>
->>>>>>>>> it's new board which uses DDR4 RAM (instead of DDR3 RAM on Pi E).
->>>>>>>>> different bootloader (U-Boot) is required.
->>>>>>>>>
->>>>>>>>> adding v3 dts seems not to be so important for Linux, but it's 
->>>>>>>>> very
->>>>>>>>> important for U-Boot and OpenWrt(it includes bootloader for
->>>>>>>>> distributed binary).
->>>>>>>>
->>>>>>>> Aren't there different methods that allow such board variants to be
->>>>>>>> supported in U-Boot, with no need for a separate DT in the kernel?
->>>>>>>> IIRC, there are already more than a few examples of such board 
->>>>>>>> variants,
->>>>>>>> which require different DRAM initialization, which is covered in 
->>>>>>>> U-Boot
->>>>>>>> by providing different builds that use the same DT.
->>>>>>>
->>>>>>> As an example, please have a look at the following files in U-Boot:
->>>>>>>
->>>>>>> - arch/arm/dts/rk3399-nanopi-m4-u-boot.dtsi
->>>>>>> - arch/arm/dts/rk3399-nanopi-m4-2gb-u-boot.dtsi
->>>>>>> - configs/nanopi-m4-rk3399_defconfig
->>>>>>> - configs/nanopi-m4-2gb-rk3399_defconfig
->>>>>>>
->>>>>>> Basically, there's no need for separate DTs in the kernel, just 
->>>>>>> to support
->>>>>>> board variants with different DRAM types in U-Boot.
->>>>>>
->>>>>> OpenWrt firmware upgrading tool (sysupgrade) refers "compatible"
->>>>>> string to validate new firmware file is surely "for this board".
->>>>>>
->>>>>> currently both Pi E dts have "radxa,rockpi-e", it makes flashing 
->>>>>> wrong
->>>>>> firmware (include bootloaer, U-Boot) possible.
->>>>>
->>>>> Could you, please, explain what's the actual issue with OpenWrt?  I 
->>>>> did
->>>>> read some GitHub issue that described it, IIRC, but I was unable to 
->>>>> fully
->>>>> understand what's the underlying issue.
->>>>
->>>> $ wget
->>>> https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-radxa_rock-pi-e-ext4-sysupgrade.img.gz
->>>> $ strings
->>>> openwrt-rockchip-armv8-radxa_rock-pi-e-ext4-sysupgrade.img.gz | grep
->>>> metadata
->>>> {  "metadata_version": "1.1", "compat_version": "1.0",
->>>> "supported_devices":["radxa,rock-pi-e"], "version": { "dist":
->>>> "OpenWrt", "version": "SNAPSHOT", "revision": "r27160-b72c4b5386",
->>>> "target": "rockchip/armv8", "board": "radxa_rock-pi-e" } }
->>>>
->>>> $ wget
->>>> https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-radxa_rock-pi-e-v3-ext4-sysupgrade.img.gz
->>>> $ strings
->>>> openwrt-rockchip-armv8-radxa_rock-pi-e-v3-ext4-sysupgrade.img.gz |
->>>> grep metadata
->>>> {  "metadata_version": "1.1", "compat_version": "1.0",
->>>> "supported_devices":["radxa,rock-pi-e-v3"], "version": { "dist":
->>>> "OpenWrt", "version": "SNAPSHOT", "revision": "r27160-b72c4b5386",
->>>> "target": "rockchip/armv8", "board": "radxa_rock-pi-e-v3" } }
->>>>
->>>> since they are incompatible firmware, it needs to have different
->>>> "supported_devices" string. if both are "radxa,rockpi-e", firmware
->>>> validation will not work correctly.
->>>>
->>>> (currently both values are wrong, it needs to be fixed, but it's 
->>>> another story)
->>>>
->>>>>> Radxa ROCK Pi E v1.x(DDR3) and ROCK Pi E v3(DDR4) are different
->>>>>> incompatible boards, it must have different "compatible" string.
->>>>>
->>>>> Well, the above-mentioned Nano Pi M4 boards share the same DT and 
->>>>> the same
->>>>> "compatible" value, because for all consumers of the DT, except for 
->>>>> U-Boot
->>>>> that can already handle the differences, they are the same boards.
->>>>
->>>> (un)fortunately Nano Pi M4 boards seems not to be supported by OpenWrt
->>>>
->>>>  https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/
->>>
->>> Thanks for the explanations.  As discussed further in #linux-rockchip
->>> on Libera.Chat, we do need a general solution for this issue, which 
->>> would
->>> get us covered for all the board variants that use different DRAM chips,
->>> which are currently known to U-Boot only.
->>>
->>> I'll keep thinking about this in the next couple of days, and I'll come
->>> back with an update.
->>
->> As a separate thought, is there some way to detect the actual ROCK Pi E
->> board variant at runtime, using some GPIO line, ADC readout, or something
->> similar?  That would help with making it possible to have a single U-Boot
->> build for both board variants.
-> 
-> as far as I know, no difference. (I asked my colleague)
-> I will compare schematics.
-> 
-> but, if there is difference, is it possible to replace RAM 
-> initialization on u-boot?
-> 
-> btw, RFC:
-> 
-> https://github.com/RadxaNaoki/u-boot/commit/ff1aa39ffb725d10fbb1608062debe6657f40acc
-> 
-> -- 
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
++		pinctrl: pinctrl@1570430 {
++			compatible = "fsl,ls1012a-pinctrl";
++			reg = <0x0 0x1570430 0x0 0x4>; /* SCFG PMUXCR0 */
++			big-endian;
++
++			dcfg-regmap = <&dcfg>;
++
++			pinctrl_qspi_1: pinctrl-qspi-1 {
++				groups = "qspi_1_grp";
++				function = "spi";
++			};
++			pinctrl_qspi_2: pinctrl-qspi-2 {
++				groups = "qspi_1_grp", "qspi_2_grp";
++				function = "spi";
++			};
++			pinctrl_qspi_4: pinctrl-qspi-4 {
++				groups = "qspi_1_grp", "qspi_2_grp", "qspi_3_grp";
++				function = "spi";
++			};
++
++			pinctrl_gpio4_5_11: pinctrl-gpio4_5_11 {
++				groups = "qspi_1_grp";
++				function = "gpio";
++			};
++			pinctrl_gpio12: pinctrl-gpio12 {
++				groups = "qspi_2_grp";
++				function = "gpio";
++			};
++			pinctrl_gpio1314: pinctrl-gpio1314 {
++				groups = "qspi_3_grp";
++				function = "gpio";
++			};
++			pinctrl_i2c1: pinctrl-i2c1 {
++				groups = "qspi_3_grp";
++				function = "i2c";
++			};
++		};
++
+  		esdhc1: mmc@1580000 {
+  			compatible = "fsl,ls1012a-esdhc", "fsl,esdhc";
+  			reg = <0x0 0x1580000 0x0 0x10000>;
+@@ -371,6 +409,10 @@ i2c1: i2c@2190000 {
+  			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+  					    QORIQ_CLK_PLL_DIV(4)>;
+  			scl-gpios = <&gpio0 13 0>;
++			sda-gpios = <&gpio0 14 0>;
++			pinctrl-names = "default", "gpio";
++			pinctrl-0 = <&pinctrl_i2c1>;
++			pinctrl-1 = <&pinctrl_gpio1314>;
+  			status = "disabled";
+  		};
+
+@@ -414,6 +456,12 @@ gpio0: gpio@2300000 {
+  			#gpio-cells = <2>;
+  			interrupt-controller;
+  			#interrupt-cells = <2>;
++			gpio-ranges = <&pinctrl 4 62 1>,
++					<&pinctrl 5 124 1>,
++					<&pinctrl 11 123 1>,
++					<&pinctrl 12 61 1>,
++					<&pinctrl 13 122 1>,
++					<&pinctrl 14 60 1>;
+  		};
+
+  		gpio1: gpio@2310000 {
+-- 
+2.43.0
+
 
