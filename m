@@ -1,394 +1,130 @@
-Return-Path: <devicetree+bounces-96993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073A396051E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80769960542
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B8EE1C22256
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 09:07:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2E2A1C212D3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 09:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC2419AD6E;
-	Tue, 27 Aug 2024 09:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A88E199EAD;
+	Tue, 27 Aug 2024 09:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="CpCi4aGf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OpIIR956"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10BE199E9B
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 09:07:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9F8199E9A;
+	Tue, 27 Aug 2024 09:12:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724749651; cv=none; b=DjMiFjkTLxphJgASLiG9Tlp+hd8Cm0iyi2JbbUfTxfiWnaslHaRSLuidhsTYTRs0dlNDJ+BREqeozFni/Z62ibeJb4fQeSpIsfsd7J25roNlMbD5U41KcPq7zQK93fj7AHJXw4VZQSZ9USL78URMCriNMLvNO4YxJDokC+0e1hE=
+	t=1724749968; cv=none; b=hb3IEj+4xA2oZV9dJRZ9jIat7hPjdn+k54LX5atXf+n2JC/2uM1RyO0Wf/zC309EWHpT3q/keAkgncuOjV5piuVeDVOWI5B34Q9cbPMLUqh0kCHrL1vD2+pRJg5Hc/BqCmcfcKub8E+9j4qowHFhgHuREoZurmyarJHNx6oNgHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724749651; c=relaxed/simple;
-	bh=PKEN6I5V8pypNB6zwLv46ZWR3A6nnO0DXd+d/r8UWLA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UzPY5XLPrVYlz3szUm6llEP6xgNFdtXuU3N3OMXA5R/ZMr2zdXhkvAPThduR/cg1hdOCrYUoO4cyjajvE/vbZviIYobGd+UwkYUWQc87wChFktqLzh7CXrKIkR8LN7vx54cpxGLkagqZ9MPmt3UwqnTirmhPSOl8TRWZh2jjHOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=CpCi4aGf; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1724749648;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=l3k5aXgmeHpOgCqavu3RPvmVi3OTsmxyK+VkxJKU+yU=;
-	b=CpCi4aGftTvCNZpk05NHAvpunsDdn4+re6pn8b9lPerSKwNacTu7w5v1pRgjTvSoEt0mW8
-	HjSlrkTJpIO+/u/QKVy8ZlMwn1qfmIHaLI4WFNqeoBk9JEqPAnPl25vVEj2s017n7oo8FJ
-	gH4bx8dHLHepAzTin8u9k/OinZXLbnE=
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com
- [209.85.208.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-18-XGHbZkzYOcK8w4-qphZP-g-1; Tue, 27 Aug 2024 05:07:23 -0400
-X-MC-Unique: XGHbZkzYOcK8w4-qphZP-g-1
-Received: by mail-lj1-f198.google.com with SMTP id 38308e7fff4ca-2f3f9517948so48255041fa.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 02:07:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724749642; x=1725354442;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l3k5aXgmeHpOgCqavu3RPvmVi3OTsmxyK+VkxJKU+yU=;
-        b=tN19Uljea8KHU0ezNlbQT5g0GPXkwgdTO950s/8okb9GeCtqtpacIC018PgQjqLiTg
-         hErE1Y1QUSm40Y95tZ0MLexVwj4ZQniJhCG4vMV5KVNAvFHtiN0lRRieIVgM3Nw6w1Ut
-         ymWTTv44YekwS6MosSjKnLidoio/NlEHhPDe4Rgv+9/gTHPWzt7uLIscv6+mv9gi9TW/
-         zSDYDc2vsLEgBpna5e79/Jprmhxzs3UIMywcwQk6IYsFfcmtrgpnKwTf527gEOAzwr9J
-         qj5K5lo9n8YEpPYW6u6FDp5IME+qnK4eHVFlGWs7sYJWd+Oai9fROGeSQCgKiUQQWGRg
-         DjdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfW5b/WQ2dR5BaiLQNE8eoImODtgYD8/aTq2WPzRKvCmVpP5xxaGcBnax61Y2urs0QkbkF2TUHdd0u@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNAGxasxxQmnZIO7EHWtyRo1lcMiURNERIuWgwBGkp39oKKLoZ
-	qlY2C/KEk9QYru4zhydhYj3LvLN2LXxZDxH0608J2+leWk8zT7dGi96EQreCBDkkqXDu+/AlQwe
-	+urmXGbmLIgY1fJDZHIyqjU+1mNglA1LvHtgiPKJ1v12+qAT5lOaTBALjYq8=
-X-Received: by 2002:a05:651c:54e:b0:2ef:2c0f:283e with SMTP id 38308e7fff4ca-2f514a2fd6amr14686191fa.12.1724749641624;
-        Tue, 27 Aug 2024 02:07:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEel0jovheZHux9Pox4ntorGH0rGVklDEPrOVvhQYHt58E5EJzmLItmotwzMzG3AI3lA3LU+A==
-X-Received: by 2002:a05:651c:54e:b0:2ef:2c0f:283e with SMTP id 38308e7fff4ca-2f514a2fd6amr14685861fa.12.1724749640928;
-        Tue, 27 Aug 2024 02:07:20 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c0bb1c280dsm774115a12.3.2024.08.27.02.07.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Aug 2024 02:07:20 -0700 (PDT)
-Message-ID: <4dab4f36-309d-4b95-8b01-84963ca08d16@redhat.com>
-Date: Tue, 27 Aug 2024 11:07:19 +0200
+	s=arc-20240116; t=1724749968; c=relaxed/simple;
+	bh=FnK8nPtxi3Bq+7qglj1Ib0smYwt/SQArNx5z6qyk0Nk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nmuY2Bw1C+pYo71lFCPE2FXl1Y3AG5dNlXMk5YzR0TbzkZcsb05DkMQ/ca9R+qSU2A+SLWq3hhYpn2FX/TXMLMmdBwq2JdTAEhZ7U/0cgFYP02izdHyAyOKYURjToI8O9SSp2Ign+N2WfWPEhD0HZrUXXlm14Xl2wkYVJv4IN4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OpIIR956; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R7YwE5017528;
+	Tue, 27 Aug 2024 09:12:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=QNdN4OF4Dmq4AUHL2J3V6fI/
+	+I5hwt1KrF/XKf+afA4=; b=OpIIR9563DVQcrmIe7IV8HgthLmGN8ZBBIK9BLmn
+	AeVaSFqHdahdo/FhoRlk49N37GXKUmbS9+0pMD0uYy04V4+NP62PzZtHCko7S6ot
+	WHGIeS5pnkMkdDQIbjIj2RW+Bt7c/2q65b0qCJdo23Rc3s7KTnYlHPvphJ7sDxRe
+	OISZwrJyJ7rjxqPma4uHG7H3InqaK4IWlXR1hZUcJzMi67L0val/ZHRDFdzWIHF/
+	DFoyo/ELAY1Cqm2ubxxSFEWyV61nR7bkH5uUG1Kpr8XL2QdR+gKvbEGz0demuevp
+	7o06064kbZ6xYmZobGTarfjXREty0F2vXhtQlKtM8r0G1w==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4179dux9jt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 27 Aug 2024 09:12:43 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47R9CgW4022841
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 27 Aug 2024 09:12:43 GMT
+Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 27 Aug 2024 02:12:37 -0700
+Date: Tue, 27 Aug 2024 17:12:34 +0800
+From: JieGan <quic_jiegan@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Song Chai
+	<quic_songchai@quicinc.com>,
+        Yushan Li <quic_yushli@quicinc.com>
+Subject: Re: [PATCH v1 0/1] arm64: dts: qcom: Add coresight components for
+ x1e80100
+Message-ID: <Zs2Ygm4rMF4ng0fY@jiegan-gv.ap.qualcomm.com>
+References: <20240827072724.2585859-1-quic_jiegan@quicinc.com>
+ <833eafc7-46f0-49d1-afe1-ad9d20ca16fd@kernel.org>
+ <Zs2I+M4wkjVlKuq9@jiegan-gv.ap.qualcomm.com>
+ <af1d8c37-0053-4c8d-94ea-b5639bca4ac8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] platform/surface: Add OF support
-To: Andy Shevchenko <andy.shevchenko@gmail.com>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
- <20240814-topic-sam-v3-3-a84588aad233@quicinc.com>
- <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
-Content-Language: en-US, nl
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <af1d8c37-0053-4c8d-94ea-b5639bca4ac8@kernel.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ve0JbcSSHJ9GmjJyQ2Y40JHEWCDKRKJv
+X-Proofpoint-ORIG-GUID: ve0JbcSSHJ9GmjJyQ2Y40JHEWCDKRKJv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-27_06,2024-08-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=425
+ impostorscore=0 adultscore=0 priorityscore=1501 phishscore=0 mlxscore=0
+ clxscore=1015 bulkscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408270069
 
-Hi Andy,
+On Tue, Aug 27, 2024 at 11:01:15AM +0200, Krzysztof Kozlowski wrote:
+> On 27/08/2024 10:06, JieGan wrote:
+> > On Tue, Aug 27, 2024 at 10:02:44AM +0200, Krzysztof Kozlowski wrote:
+> >> On 27/08/2024 09:27, Jie Gan wrote:
+> >>> Add coresight components for x1e80100. This change includes CTI,
+> >>> dummy sink, dynamic Funnel, Replicator, STM, TPDM, TPDA and TMC ETF.
+> >>>
+> >>> Change in V1:
+> >>> Check the dtb with dtbs_check W=1, and fix the warnings for
+> >>> the change.
+> >>
+> >> So this is v2, not v1.
+> >>
+> > Appologize for the mistake of the version number.
+> > Do I need to re-send the patch with V2?
+> 
+> Dunno, maybe Bjorn tools will handle this, maybe not.
+> 
+Thanks for checking.
+I think it's better to wait other feedbacks.
+I will send the patch with new version number in a few days if necessary.
 
-Thank you for the review.
-
-Note this has already been merged though.
-
-Still there are some good suggestions here for a follow-up
-cleanup patch.
-
-Regards,
-
-Hans
-
-
-On 8/26/24 10:54 PM, Andy Shevchenko wrote:
-> Wed, Aug 14, 2024 at 12:27:27PM +0200, Konrad Dybcio kirjoitti:
->> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
->>
->> Add basic support for registering the aggregator module on Device Tree-
->> based platforms. These include at least three generations of Qualcomm
->> Snapdragon-based Surface devices:
->>
->> - SC8180X / SQ1 / SQ2: Pro X,
->> - SC8280XP / SQ3: Devkit 2023, Pro 9
->> - X Elite: Laptop 7 / Pro11
->>
->> Thankfully, the aggregators on these seem to be configured in an
->> identical way, which allows for using these settings as defaults and
->> no DT properties need to be introduced (until that changes, anyway).
->>
->> Based on the work done by Maximilian Luz, largely rewritten.
-> 
-> ...
-> 
->>  	sdev->dev.fwnode = fwnode_handle_get(node);
->> +	sdev->dev.of_node = to_of_node(node);
-> 
-> Please, use device_set_node() instead of those two.
-> 
-> ...
-> 
->> +static int ssam_controller_caps_load(struct device *dev, struct ssam_controller_caps *caps)
->> +{
-> 
->> +	acpi_handle handle = ACPI_HANDLE(dev);
-> 
-> It's a bit non-standard way to check if we run on DT or ACPI. The others (most
-> of them?) do something like this:
-> 
-> 	struct fwnode_handle *fwnode = dev_fwnode(...);
-> 
-> 	if (is_of_node(fwnode))
-> 		return X;
-> 	if (is_acpi_node(fwnode)) // also more precise _device or _data variant
-> 		return Y;
-> 
-> 	return ERROR;
-> 
->> +	/* Set defaults. */
->> +	caps->ssh_power_profile = U32_MAX;
->> +	caps->screen_on_sleep_idle_timeout = U32_MAX;
->> +	caps->screen_off_sleep_idle_timeout = U32_MAX;
->> +	caps->d3_closes_handle = false;
->> +	caps->ssh_buffer_size = U32_MAX;
->> +
->> +	if (handle)
->> +		return ssam_controller_caps_load_from_acpi(handle, caps);
-> 
-> Yeah, I see that you use handle here, that's why it's up to you how to proceed
-> with that. 
-> 
->> +	else
->> +		return ssam_controller_caps_load_from_of(dev, caps);
-> 
-> But just note that we have 4 options for fwnode type here and this covers 3 and
-> I don't know if you ever have an ACPI data node or software node and what you
-> want to do with that.
-> 
->> +}
-> 
-> ...
-> 
->>  	gpiod = gpiod_get(dev, "ssam_wakeup-int", GPIOD_ASIS);
->> -	if (IS_ERR(gpiod))
->> -		return PTR_ERR(gpiod);
->> -
->> -	irq = gpiod_to_irq(gpiod);
->> -	gpiod_put(gpiod);
->> +	if (IS_ERR(gpiod)) {
->> +		irq = fwnode_irq_get(dev_fwnode(dev), 0);
->> +	} else {
->> +		irq = gpiod_to_irq(gpiod);
->> +		gpiod_put(gpiod);
->> +	}
-> 
-> Can't you try fwnode_irq_get_byname() followed by fwnode_irq_get()? And why do
-> you need unnamed variant to begin with? As far as I understand it's pure DT and
-> names are there, no?
-> 
-> ...
-> 
->>  #include <linux/kernel.h>
->>  #include <linux/kref.h>
->>  #include <linux/module.h>
->> +#include <linux/of.h>
-> 
-> I do not see how you use this. You probably missed mod_devicetable.h.
-> 
->> +#include <linux/platform_device.h>
->>  #include <linux/pm.h>
->>  #include <linux/serdev.h>
->>  #include <linux/sysfs.h>
-> 
-> ...
-> 
->> +	/*
->> +	 * When using DT, we have to register the platform hub driver manually,
->> +	 * as it can't be matched based on top-level board compatible (like it
->> +	 * does the ACPI case).
->> +	 */
->> +	if (!ssh) {
->> +		struct platform_device *ph_pdev =
->> +			platform_device_register_simple("surface_aggregator_platform_hub",
->> +							0, NULL, 0);
->> +		if (IS_ERR(ph_pdev))
->> +			return dev_err_probe(dev, PTR_ERR(ph_pdev),
->> +					     "Failed to register the platform hub driver\n");
-> 
->> +	}
->> +
->> +	if (ssh)
-> 
-> Simply 'else' ? And making condition positive?
-> 
-> ...
-> 
->> -static const struct acpi_device_id ssam_serial_hub_match[] = {
->> +static const struct acpi_device_id ssam_serial_hub_acpi_match[] = {
->>  	{ "MSHW0084", 0 },
->>  	{ },
-> 
-> At some point, please drop that 0 part above and the comma in the terminator
-> entry.
-> 
->>  };
->> -MODULE_DEVICE_TABLE(acpi, ssam_serial_hub_match);
->> +MODULE_DEVICE_TABLE(acpi, ssam_serial_hub_acpi_match);
-> 
-> Do you really need this renaming?
-> 
-> ...
-> 
->> +#ifdef CONFIG_OF
->> +static const struct of_device_id ssam_serial_hub_of_match[] = {
->> +	{ .compatible = "microsoft,surface-sam", },
-> 
-> No inner comma.
-> 
->> +	{ },
-> 
-> No comma for the terminator.
-> 
->> +};
->> +MODULE_DEVICE_TABLE(of, ssam_serial_hub_of_match);
->> +#endif
->>  
->>  static struct serdev_device_driver ssam_serial_hub = {
->>  	.probe = ssam_serial_hub_probe,
->>  	.remove = ssam_serial_hub_remove,
->>  	.driver = {
->>  		.name = "surface_serial_hub",
->> -		.acpi_match_table = ssam_serial_hub_match,
->> +		.acpi_match_table = ACPI_PTR(ssam_serial_hub_acpi_match),
-> 
-> No, please do not use ACPI_PTR(), it's more harmful than helpful.
-> 
->> +		.of_match_table = of_match_ptr(ssam_serial_hub_of_match),
-> 
-> There is ongoing task to drop of_match_ptr(), so for ACPI_PTR().
-> 
->>  		.pm = &ssam_serial_hub_pm_ops,
->>  		.shutdown = ssam_serial_hub_shutdown,
->>  		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> 
-> ...
-> 
->> --- a/drivers/platform/surface/surface3_power.c
->> +++ b/drivers/platform/surface/surface3_power.c
->> @@ -479,6 +479,7 @@ static int mshw0011_install_space_handler(struct i2c_client *client)
->>  	}
->>  
->>  	acpi_dev_clear_dependencies(adev);
->> +
->>  	return 0;
->>  }
-> 
-> Stray change.
-> 
-> ...
-> 
->> +/* Devices for Surface Laptop 7. */
->> +static const struct software_node *ssam_node_group_sl7[] = {
->> +	&ssam_node_root,
->> +	&ssam_node_bat_ac,
->> +	&ssam_node_bat_main,
->> +	&ssam_node_tmp_perf_profile_with_fan,
->> +	&ssam_node_fan_speed,
->> +	&ssam_node_hid_sam_keyboard,
->> +	/* TODO: evaluate thermal sensors devices when we get a driver for that */
->> +	NULL,
-> 
-> At some point please drop commas at the terminator entries. This will make code
-> more robust against quite unlikely but potential rebase-like mistakes (when a
-> new entry is added behind the terminator).
-> 
->> +};
-> 
-> ...
-> 
->> -static const struct acpi_device_id ssam_platform_hub_match[] = {
->> +static const struct acpi_device_id ssam_platform_hub_acpi_match[] = {
->>  	/* Surface Pro 4, 5, and 6 (OMBR < 0x10) */
->>  	{ "MSHW0081", (unsigned long)ssam_node_group_gen5 },
->>  
->> @@ -400,18 +413,41 @@ static const struct acpi_device_id ssam_platform_hub_match[] = {
->>  
->>  	{ },
->>  };
->> -MODULE_DEVICE_TABLE(acpi, ssam_platform_hub_match);
->> +MODULE_DEVICE_TABLE(acpi, ssam_platform_hub_acpi_match);
-> 
-> If renaming is needed, it can be done in a separate patch.
-> 
->> +#ifdef CONFIG_OF
->> +static const struct of_device_id ssam_platform_hub_of_match[] = {
->> +	/* Surface Laptop 7 */
->> +	{ .compatible = "microsoft,romulus13", (void *)ssam_node_group_sl7 },
->> +	{ .compatible = "microsoft,romulus15", (void *)ssam_node_group_sl7 },
->> +	{ },
->> +};
->> +#endif
-> 
-> As per above.
-> 
-> ...
-> 
->>  static int ssam_platform_hub_probe(struct platform_device *pdev)
->>  {
->>  	const struct software_node **nodes;
->> +	const struct of_device_id *match;
->> +	struct device_node *fdt_root;
->>  	struct ssam_controller *ctrl;
->>  	struct fwnode_handle *root;
->>  	int status;
->>  
->>  	nodes = (const struct software_node **)acpi_device_get_match_data(&pdev->dev);
-> 
-> Hmm... Why this doesn't use simple device_get_match_data()?
-> 
->> -	if (!nodes)
->> -		return -ENODEV;
->> +	if (!nodes) {
->> +		fdt_root = of_find_node_by_path("/");
->> +		if (!fdt_root)
->> +			return -ENODEV;
->> +
->> +		match = of_match_node(ssam_platform_hub_of_match, fdt_root);
->> +		of_node_put(fdt_root);
->> +		if (!match)
->> +			return -ENODEV;
->> +
->> +		nodes = (const struct software_node **)match->data;
-> 
-> This is quite strange! Where are they being defined?
-> 
->> +		if (!nodes)
->> +			return -ENODEV;
->> +	}
-> 
-> ...
-> 
->> +MODULE_ALIAS("platform:surface_aggregator_platform_hub");
-> 
-> Can it be platfrom device ID table instead? But do you really need it?
-> 
-
+Thanks,
+Jie 
 
