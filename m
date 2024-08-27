@@ -1,131 +1,118 @@
-Return-Path: <devicetree+bounces-97142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74967960D82
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:25:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E881960D8A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29D201F23D81
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:25:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB8671F244F4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE2D1C4EC2;
-	Tue, 27 Aug 2024 14:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3A61C4ED0;
+	Tue, 27 Aug 2024 14:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lOtBWMVS";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="TnIgC49V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KoNAUGaK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6111A0721;
-	Tue, 27 Aug 2024 14:25:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D2E73466;
+	Tue, 27 Aug 2024 14:27:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724768712; cv=none; b=NGd+GNPqWFhGuyJ6eTBUKg2axoL9Uni/N1oqheWpoz0LpoOCrwRtklJoRdcT/RmuSHOcVNjbsiEyoRriiJpCKNSXVeZJmaN/fLW14qWxMvDIw/ll12LSiIUrQXSRYPRmgRm3P00spPPzLLjG5WVmdxTCvdcqMZfrHkRDVyu9kEs=
+	t=1724768854; cv=none; b=Q2YxrxwInyU1ogYbRrHh3z50EnhaKEIoYh/yzbQGKQcUTTHsPukvfm7IaEb0bxK2yppSReb3kB1+LFbGJN8GhRpPUCJ50YxY1sUIn48no3h90BP6rXdw+L6UKQbTofpZTpBV4exzOM+cUBfkd84GdtqP620u0Tsvdx/LTU4cu30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724768712; c=relaxed/simple;
-	bh=LKCUwtSMsgKqtM6IlkHHhLOESS/1JIflJn00AgT7QjU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=scuqcS1r2F5dspeIEdRZDWLmTOYlXgdL9vRFLz7ngdiZJZaWB4q1kgrnKnoKUEwlnslB0pLztTgXtymGOrj8Grfz7dmQusHDGQVXViHeZX2GstEJ+s/leimUgsJzJ5O3Ot6PV/qP5a1WGc8IPW+uMJghXAwSPMlAHE5Ombnnpe4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=lOtBWMVS; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=TnIgC49V reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1724768854; c=relaxed/simple;
+	bh=9+fE61rKVtmjAwZSNnx+Z5N8InGoV86+d+K80kYtw3s=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M3IeP77KplLflY52vgkO2CHYaAx9Zi5HRb+TzYtN0UUkT/RJllzp2ZsMpBGA4ets+gPWOLZo8SFqn6JGCagBu8OzI76Xb0X7SxhD2Lsuc+l6qbaDbPuP+2Bj3E622w9waHO6KzN3ulHAtJn9DXqzR34AklcXdxC7Fu4sX9KqbeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KoNAUGaK; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso8301624a12.1;
+        Tue, 27 Aug 2024 07:27:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1724768709; x=1756304709;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=HiqpgpwN/DyTQ5enb5aMf0VU14IWuoEiQLnmzGymo1s=;
-  b=lOtBWMVSBXJMHxdC4lnPB/V5m8h/6s5sxVnpRqvSGzBzug45JIAi1Ctw
-   TPv9LwJhZwoYCi/A12J+mjAybTMklMEt57y4pntgV4f5ue028l/P6T51f
-   YcvQy5d4kk8dwFdMdA/rRoUDDGWTSuyeXpQBKJwY4j9+zVpe8Ndw5F4hp
-   ofsVUUUKwJ7tMG4CgQ2LFbEKvDnQxmDZKTqVTwiXFhYnI5NAA8MLLRhtB
-   nO3ff50x33UoIqaZaKuGIqUUyUysCu7UWwDtuMy6AePj5rHcu6QNfbFey
-   exU629ynU0/kaQi3asVKYHgF5GtKo+02Se1i6+UCPxFhbW/qMQ5Mr0qV8
-   w==;
-X-CSE-ConnectionGUID: HFGwEk9IR++MipMeOMKYtQ==
-X-CSE-MsgGUID: FAjgxtP3QNCXixWxFaHeCg==
-X-IronPort-AV: E=Sophos;i="6.10,180,1719871200"; 
-   d="scan'208";a="38614643"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 27 Aug 2024 16:25:07 +0200
-X-CheckPoint: {66CDE1C2-15-22BB8E18-F5F6D0B4}
-X-MAIL-CPID: 215C266285C7040C7030EA4E64D12783_5
-X-Control-Analysis: str=0001.0A782F23.66CDE1C2.00CE,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9A466161453;
-	Tue, 27 Aug 2024 16:25:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1724768702; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=HiqpgpwN/DyTQ5enb5aMf0VU14IWuoEiQLnmzGymo1s=;
-	b=TnIgC49VxJ9z1JMGQOknT5fyoTYzJ/jSBJDOMkYEYyRWHKmB8IMWoUDDqKYRRulw2hYSzV
-	DfmtuUUjNIeRO0KjPdBM6skzdeGFVXqNbjNUszG4G47AbdL2IEBI4dXebuPJzfKAeHEWLy
-	i3KM6WwNvvcfhUVsp5XWtDdyyv/X5QF93JmYy5KkyTR92uSj38wvcUCnbdQodOOlQlh731
-	UnW3JFJ0F3CWkfF7D3CzSWPquWcb0gRAOnrUEZhB7kSsHnxkyJaT5oyUM/xcn0ttNiBMdj
-	HkUNqPQak34LJGBZIOZ0V9UlrO0Z0R59H96ZqU6aRgkdOI1exwWMWJNBmeQkXA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
+        d=gmail.com; s=20230601; t=1724768849; x=1725373649; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nVeD5uWflgm4YCV5CAvBSyF+Co+VIw7Xmcbf9desJMQ=;
+        b=KoNAUGaKO9aZMcWTYH6T32TitDSs87EjRGKJ3uCU+R++UgLn2XCZGDaVPLLFLb7gL2
+         yObiK3N4RPkm1s2ueEO4qtGHwPBIRcPyGTGubAugzCItR2HD/IXA+zmCaz7dL0ibc/wD
+         URx6IMbVfx0lmVS51WIis7sSVa3a6Nyi7NpdCdQksVhpv9zCjQGmDiLh0ahDT5Bh0d10
+         n7Kmj4s+QpaQK8cukuIcTZMxU8KaKK3UayOVKNWsbeSywzHoe7jzKwgGZqF3rsHymX/U
+         tucZ2z9L9lWVZehncLNoXohVCxxH+F3JR3yQWsN1wk9nJ+RmfvAXPbd12YLjj9wUbZsS
+         rwAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724768849; x=1725373649;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nVeD5uWflgm4YCV5CAvBSyF+Co+VIw7Xmcbf9desJMQ=;
+        b=QUcaRKMX+M3lk6O8e2g3aTH6L+//xthQGs8A75U6rqs/B+7jioe/HelU08xaLJheWh
+         xRrKMUaqev2pq5aOYWTbp43gZjhO2KQK/5ONu0pgtiAkKeTR5tPsKmdFPt4LTcA6JVox
+         bKWBP5Ww/Pi1iW+vWMi0K/uRanE9KIoszzqzEqPhT0KL1WUVE9oBGU8Z9Z++iRdm9eWi
+         WewUBRd+pPbfOKt04QhTO7/+1yLutzli98DJPXQU4AioaPMeDghhxIvj22oIby8AQeF6
+         hQbOx8QmPGYlXDaCHRU9knYnzOLA+f60TjbDboqS8Z7dBoLYLbQX2C0lY5MBa+1/LM6p
+         ONAw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGJbzndr9RtqIE3JGkWrcX+IPckhWXtsetL0jkmWQ6Z0GA/W3mRU8vVCXqDIVhyREpyfSEC2Y1YMQu@vger.kernel.org, AJvYcCXcozzrhaevCfjx/q4BJfh+FwggV+lONe+00XQrHbPOV66Wxallc1M3NRGGsrbL1pftOY+D2DUFVeBHM90=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0IKJrjxn5SugkassBCZNNTpUqusFdrnCL1SKeselwDdcZSAXb
+	KOjYlboUQJveTHB544oSBeg1f9P/ZPoQhBzp+pwWPgbeQ+GPoLe4
+X-Google-Smtp-Source: AGHT+IHYwMGvsK9ShpMW1S+A4mG2ZmkTMolmtvbryre/WqmBnlX9WCz8JzS5pT9tHqCRnREbXoZmJQ==
+X-Received: by 2002:a05:6402:34cc:b0:5c0:ba90:463f with SMTP id 4fb4d7f45d1cf-5c0ba904700mr1715386a12.7.1724768848246;
+        Tue, 27 Aug 2024 07:27:28 -0700 (PDT)
+Received: from localhost (p200300e41f29d300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f29:d300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c0bb1c6076sm1079262a12.9.2024.08.27.07.27.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2024 07:27:27 -0700 (PDT)
+From: Thierry Reding <thierry.reding@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Brad Griffis <bgriffis@nvidia.com>,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] ARM: dts: imx6qdl: Add reserved memory area for CMA memory
-Date: Tue, 27 Aug 2024 16:24:58 +0200
-Message-Id: <20240827142458.265558-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	linux-tegra@vger.kernel.org,
+	Vedant Deshpande <vedantd@nvidia.com>
+Subject: Re: [PATCH v2 0/2] arm64: tegra: Tegra234 UART updates
+Date: Tue, 27 Aug 2024 16:27:24 +0200
+Message-ID: <172476883370.1250657.7943327214501260350.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240711171101.2798971-1-vedantd@nvidia.com>
+References: <20240711171101.2798971-1-vedantd@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Default CMA size is too small for HDMI output and VPU usage. Increase the
-default size by providing a CMA memory area.
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Smallest RAM variant has 512MiB.
 
- arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+On Thu, 11 Jul 2024 17:10:59 +0000, Vedant Deshpande wrote:
+> Changes since V1
+> - Added patch "Add DMA properties for Tegra234 UARTA"
+> 
+> Vedant Deshpande (2):
+>   arm64: tegra: Add DMA properties for Tegra234 UARTA
+>   arm64: tegra: enable same UARTs for Orin NX/Nano
+> 
+> [...]
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi
-index d03f7065ddfd7..8ba3ec27bee07 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi
-@@ -106,6 +106,20 @@ reg_vcc3v3_audio: regulator-vcc3v3-audio {
- 		vin-supply = <&reg_mba6_3p3v>;
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x14000000>;
-+			alloc-ranges = <0x10000000 0x20000000>;
-+			linux,cma-default;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "fsl,imx-audio-tlv320aic32x4";
- 		pinctrl-names = "default";
+Applied, thanks!
+
+[1/2] arm64: tegra: Add DMA properties for Tegra234 UARTA
+      commit: 7ac0be7a4cd708dd5139e68597c816fa4ce22a88
+[2/2] arm64: tegra: enable same UARTs for Orin NX/Nano
+      commit: 92331cc63ce378546368c8a58c4d8cbb044d1f70
+
+Best regards,
 -- 
-2.34.1
-
+Thierry Reding <treding@nvidia.com>
 
