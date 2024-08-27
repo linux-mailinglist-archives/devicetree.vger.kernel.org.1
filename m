@@ -1,162 +1,140 @@
-Return-Path: <devicetree+bounces-97058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E1E96088C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D839608A8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:28:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62CC01F239CF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:26:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0978E1F236D1
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC2819F49C;
-	Tue, 27 Aug 2024 11:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B4A1A00F4;
+	Tue, 27 Aug 2024 11:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNmAfJPu"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Hm5AzqL/";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="EjoBRGKI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB97919E802;
-	Tue, 27 Aug 2024 11:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBAD19E7D1;
+	Tue, 27 Aug 2024 11:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724758006; cv=none; b=BRsHuGaQfPCkbD46+GuCxYusWln78A5zvGS174VTGwcYdh0Rc8LZQzEeL0Jx2IS4LRedGyV40xBSLmPfs+zWsV00btsDV6WfR9ljO5L3E/qiRjzTBFFy9hv133xvIzXHUaEpsDalbDAci1Ni736rVv+1WvqngF+o5CS7ZIUPKGQ=
+	t=1724758082; cv=none; b=Hvq9IIcx4mdIP4l9QxX8EN/JoCkWxMxgeFLHe3pwVgHqjh2TN83dWKbymI5oYttyKfWYIiglYmxzobYApQDF3Zpn3t3a7UiLM3r4U7FVBCbIlkSbKDxdtgJDPiPOVOuGvREJ1nLeW5wiYE63vQn6mDshy7iVLECLMKTe72KgiZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724758006; c=relaxed/simple;
-	bh=PUkphdTgX+m9PJYcH52LnfPvEospa2bT0O+ZL3jZWf0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qEoG9KChhAm3Wjj7rcxHRbVXUGgoRdw/ZeajrK+8h/zLsdjxMh+im8q1aLhcrGngCtouj+rtWMuVDmLlzolT7M0GkU1yUiXxYuEHpFDPkaQC42Nlxp0z9pR2uqzYQEiXI64Rns+NyHBxPXj+TsAfi+e9iy0P05sSXSNdAGBSDEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNmAfJPu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F343CC567EF;
-	Tue, 27 Aug 2024 11:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724758006;
-	bh=PUkphdTgX+m9PJYcH52LnfPvEospa2bT0O+ZL3jZWf0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kNmAfJPussNkjdsDXifEnCrpzpdeAi/Hb1xvmAGWcvtfDZZIsPKF3qJ4vj97HvL6E
-	 lvRjR1XG+2uu+VqVy4siyH10fbW6rRT7oj8e2wcI0CD8al2taKIDDKnfh3SYFh/b14
-	 ehT9DynG5rnkLdeDvp44R6zgNP2cl6/6s/PJLfUH5LdnGr4qEe5pC5adCp8J0pJTJj
-	 b1e+OY2PLnC3grMcz4HbwZcE1ubTObZcomfsNp1FlUO+2+3tPyX6RIcTq2yI/4ZR9j
-	 XimK7B8EdY+uCekWKbDc3tXEPicrWs65ZqToia+qdS7eRqkfDhL3WwTXSxgrE6eVph
-	 mRoCxKr2t6MVg==
-Message-ID: <62ac051e-f462-4a98-9c80-2229d1bf16be@kernel.org>
-Date: Tue, 27 Aug 2024 13:26:40 +0200
+	s=arc-20240116; t=1724758082; c=relaxed/simple;
+	bh=4gyqfKs+tLOGvXNMDLu1SnmVy4qS5p61g1+E5uo/tYk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iO/+rsqwSGj43gftJnPfd4JCZBUWwIefTcgZjv48uaz/5suwvAoAr0jekIpoeFUxgQuarRCc6zAj2En0s436DtHwCYMmGDfF60DWWCmikyVkU7Eyjn2niHFEiB5ngG6fjmotQs+Vs3TQrJ3Po57/TxW1tBflGN2M1IHzKVj4dBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Hm5AzqL/; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=EjoBRGKI reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1724758080; x=1756294080;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=H594hvymOuVyU4IRA+6IzWfGdTMX7wzroXd1GVZo3i4=;
+  b=Hm5AzqL/5dyFM7T1QZ4Hyygtp4mytePpM6GPLh7Z89pEPFo2xD/B2iGs
+   +SDcJ2IpfZ40o0m0Kc1TZY44YvNDBunzOPN6KRnb+/NpfxX2bz2PVPCQI
+   fmO93AugBmKjfyXrGau/M9XkyBkb8/gjSwGrhgArzjR2+7ppFzkAvxSDi
+   NaWT0qT+I+kuh06zPBWOjLi7/kRzvXjtuiF+MQDwt4PxuGvXeT9BiGgK1
+   nJg1IwTewe+dwWGkqQ9fN/R8NvNAzKBEYLzqelpYfmi+MLSYV/4T8SGmT
+   QV5/zexNpTsqG6DRwBSzrYvCvCfGZe1l4aP788Vh2BicxYnFoTFuI+Zbe
+   Q==;
+X-CSE-ConnectionGUID: M40X6Ie/TWq3pDfF8ecKxA==
+X-CSE-MsgGUID: V2QOWBIpRJ2/u/qaC3o1Eg==
+X-IronPort-AV: E=Sophos;i="6.10,180,1719871200"; 
+   d="scan'208";a="38609560"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 27 Aug 2024 13:27:57 +0200
+X-CheckPoint: {66CDB83D-13-5FF8EC80-F6CEE9F8}
+X-MAIL-CPID: 78A325EE22E9AD5A01AB969032D4A1D2_0
+X-Control-Analysis: str=0001.0A782F17.66CDB83D.0089,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 314DB163F46;
+	Tue, 27 Aug 2024 13:27:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1724758073;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=H594hvymOuVyU4IRA+6IzWfGdTMX7wzroXd1GVZo3i4=;
+	b=EjoBRGKIDWEjVLScvKCr/b+KfQJdhoHw1O02dsbWEavaL9Yy0g0PgrTxm7QjA031esybSs
+	zLjeQWstY1suPg3HslD9XHGcxUBf5R/2fkjMe6jCYXEA+vP8IGxKcKbjnORHuukId0LkZt
+	4C/W6oE6En7NEAIa+gfcO47Oxz9MLEPkKwAHpxeb0NPTIYm8UzvE0W4w2keVI3AzRJvZPD
+	0QxAdOkQFKI4ssNC8KQ1oLsz2KnlmMPtjbfxzUAk/3X9yxMKQUzGqJ9Nm+pMbOQjc3Dz8h
+	ixxjf4FrjSZvy5vId2wNJ1UqGytZ/TSBCJ8OWN8ZSjXC/vTkHm2TII/C6qzjYA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Tarang Raval <tarang.raval@siliconsignals.io>
+Cc: "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "festevam@gmail.com" <festevam@gmail.com>, "shawnguo@kernel.org" <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals Support
+Date: Tue, 27 Aug 2024 13:27:51 +0200
+Message-ID: <2200558.irdbgypaU6@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <PN3P287MB18296998E37E061AC496F2D58B882@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+References: <20240821135817.56393-1-tarang.raval@siliconsignals.io> <20240822-calm-dinosaur-of-music-33db22-mkl@pengutronix.de> <PN3P287MB18296998E37E061AC496F2D58B882@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8280xp-crd: enable wifi
-To: Johan Hovold <johan@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240813190639.154983-1-brgl@bgdev.pl>
- <20240813190639.154983-2-brgl@bgdev.pl>
- <ZsdRrHK7kCYs7MJF@hovoldconsulting.com>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <ZsdRrHK7kCYs7MJF@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 22.08.2024 4:56 PM, Johan Hovold wrote:
-> On Tue, Aug 13, 2024 at 09:06:36PM +0200, Bartosz Golaszewski wrote:
->> From: Konrad Dybcio <konradybcio@kernel.org>
->>
->> Add nodes for the WCN6855 PMU, the WLAN module and relevant regulators
->> and pin functions to enable wifi support on sc8280xp-crd.
-> 
-> What are you guys smoking? The Wi-Fi has been enabled on the CRD since
-> 6.2 and commit d907fe5acbf1 ("arm64: dts: qcom: sc8280xp-crd: enable
-> WiFi controller").
+Hi,
 
-Smells like copypasta..
+Am Freitag, 23. August 2024, 06:42:24 CEST schrieb Tarang Raval:
+> Hi alexander,
+>=20
+> Thank you for your feedback, Regarding your suggestion to switch to the U=
+SB connector node
+>=20
+> >> +     extcon_usb: extcon-usbotg1 {
+> >> +             compatible =3D "linux,extcon-usb-gpio";
+> >
+> >Please refer to Documentation/devicetree/bindings/extcon/extcon-usb-gpio=
+=2Eyaml:
+>=20
+> I couldn=E2=80=99t find the Documentation/devicetree/bindings/extcon/extc=
+on-usb-gpio.yaml file as mentioned. Instead, I located the extcon-usb-gpio.=
+txt file, but it doesn=E2=80=99t contain documentation about connectors.
 
-> 
->> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
->> [Bartosz:
->>   - write the commit message,
->>   - rebase Konrad's commit,
->>   - fix one of the supplies' name]
->> Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 112 ++++++++++++++++++++++
->>  1 file changed, 112 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
->> index 6020582b0a59..57efeefbc89e 100644
->> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
->> @@ -177,6 +177,17 @@ vreg_misc_3p3: regulator-misc-3p3 {
->>  		regulator-always-on;
->>  	};
->>  
->> +	vreg_s10b: regulator-s10b {
->> +		compatible = "regulator-fixed";
-> 
-> I don't think this is a fixed regulator.
+Sorry, I thought my patch [1] was already applied. Meanwhile another one is=
+ applied instead [2].
 
-It effectively is
+[1] https://lore.kernel.org/all/20240215093214.796821-2-alexander.stein@ew.=
+tq-group.com/
+[2] https://lore.kernel.org/all/b4b96be5-fad6-458c-a236-9b6761eac968@kernel=
+=2Eorg/
 
-> 
->> +
->> +		regulator-name = "VREG_S10B";
->> +		regulator-min-microvolt = <1800000>;
->> +		regulator-max-microvolt = <1800000>;
->> +
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +	};
->> +
->>  	vreg_wlan: regulator-wlan {
->>  		compatible = "regulator-fixed";
->>  
->  
->> +&pcie4_port0 {
->> +	wifi@0 {
->> +		compatible = "pci17cb,1103";
->> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
->> +
->> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
->> +		vddaon-supply = <&vreg_pmu_aon_0p8>;
->> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
->> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
->> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
->> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
->> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
->> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
->> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
->> +
->> +		qcom,ath11k-calibration-variant = "LE_X13S";
-> 
-> This is not the right calibration variant either. In fact, Qualcomm has
-> not yet released any calibration data for this CRD yet:
-> 
-> 	https://bugzilla.kernel.org/show_bug.cgi?id=216036
-> 
-> I use a patch like this locally, but we shouldn't merge this upstream.
+> >> Deprecated, use USB connector node instead.
+> >>
+> >> deprecated: true
+> >
+> >Switch to connectors instead.
+>=20
+> I referred to the following YAML file:
+>=20
+> link : https://www.kernel.org/doc/Documentation/devicetree/bindings/conne=
+ctor/usb-connector.yaml
+>=20
+> Could you please confirm if this is the correct file to refer to?
 
-Agreed
+Yeah, that's the one I'm referring to.
 
->  
->> +	wlan_en: wlan-en-state {
->> +		pins = "gpio134";
->> +		function = "gpio";
->> +		drive-strength = <8>;
-> 
-> Why increase the drive strength?
+Thanks
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
 
-This is what's used on Windows, for lack of a better idea, not sure
-if this is actually necessary
 
-Konrad
 
