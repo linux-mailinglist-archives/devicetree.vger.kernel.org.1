@@ -1,184 +1,166 @@
-Return-Path: <devicetree+bounces-96980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B442960419
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:13:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87281960421
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:14:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 036A2283936
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:13:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41B1A28391F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33FC189917;
-	Tue, 27 Aug 2024 08:13:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D833D189BA8;
+	Tue, 27 Aug 2024 08:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="klVFeogV";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Z2iEVlU6"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TZhC9m4J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout2-smtp.messagingengine.com (fout2-smtp.messagingengine.com [103.168.172.145])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4083C13A25B;
-	Tue, 27 Aug 2024 08:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD33418859D;
+	Tue, 27 Aug 2024 08:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724746422; cv=none; b=cr7lBfyRJ1nATh6cv2OpJtcsUbX4So+4ZThXnKNHu1nyQ//aIQOYqnseadm2VRBIrbalthngkxSvY3jfd8QuvtIZ/NEmL9WjkOyQIom/k0J40o0svfCwc4DsuECyrXMk0grgQINC8Im4K9Ygp1zAh/az8EfVsUWl58B4cfnhPOM=
+	t=1724746475; cv=none; b=HFoA9CBuXVt/cNZ23XffHhNQHNASCgAQDDhToFIJwufuFoLL4sLf848pCuwsTv+kk1Bf+c/cKEmZbrGILZUQK0y5D1VVPrrqZ8LuLdkOWCA/EH90882gqbuZgakUp5QJ7iIiuRuuZwb5+hOBNX9mvaE+9KRXuxSO1yNpFBbranw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724746422; c=relaxed/simple;
-	bh=CfhXaRPdfpF00dLmUGho2oyCI1F5FmEj8etU3p9RS88=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dr2x2J3bUanMIlWLw/vq6qzsM75B1JdDoozMI9IihGwJUDsz1k4iHwUh9EqgWhxt/VE5NDJbIU0FoNw/YJMYSHKuPxCYa+pUivNIy83Hr2pzIwYaHR7eWLvOdziJlndwwYjpXfyBLYxiP7g0dF5MWRpEjGpRcnpdNyH/wPLfv9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=klVFeogV; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Z2iEVlU6; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-02.internal (phl-compute-02.nyi.internal [10.202.2.42])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 548D8138AFCD;
-	Tue, 27 Aug 2024 04:13:39 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-02.internal (MEProxy); Tue, 27 Aug 2024 04:13:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1724746419;
-	 x=1724832819; bh=Bj52+IBQqf17DJDFuJwh8RF0KaDsj5FNtKw9uv5SD08=; b=
-	klVFeogVvc/wX2Wh9eYtm/Xe0a7tnUiVtUM/g29I013SoFV8T/LU6ULmbwCUXXQv
-	VAERy+qDmhbuPdL9haja3YTQcGA1iVy30QmUVUVbhTxQn7wdhQqgI+pPeHUIWENC
-	LyQM6U8ZoWC0wlVeHXd8siDfjBOpDy8LyFi8HxBITzjDrBDl8OG51Uqyj/HEZunz
-	dHHDVRb0nvrTSU7auLnN3VoygshV/fp2wI3h4dCMlC5Ek/DqLkn7nRGHEhNy4BEF
-	Z/PxfQY5ofuGd9C09Z2qPSZdmg889quoMnZR0jid3OGpCLYIFVsa5gWHdCxZskuV
-	+CJAGbUFW8AptMggH6QbvA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1724746419; x=
-	1724832819; bh=Bj52+IBQqf17DJDFuJwh8RF0KaDsj5FNtKw9uv5SD08=; b=Z
-	2iEVlU6AySOh+LHy12Eom+8p4KahQALBSjHFN1a0PM4VIzt5m1hysWWBJqspRY/Z
-	jOwZbQJ3MkhWhCbFb1LrTlddanhiENeEuAdE8y4Mr7LN6B8786bbZRUqgOco7Oy4
-	ftlQ/jvT+tcavlv6ATJAubAZuNPMqWwaTG7E4euMtD7Ts0NQkzmrJhydfg+NDAJX
-	kLzW1a3BX7yhQiVrOPQvAIN9ds9lBW3ZcO2k1UlOO5cn8/MxWSkvRCmzI2RJlBNQ
-	7mgfs5AZhPCvAAM6Z1RDGnvhz10R0XVP17Rt4LpXK4nTi0ns0pVuQiz/mvahKwxm
-	XqU4XISmULAd1Pg63D9BA==
-X-ME-Sender: <xms:sorNZrHzBZUEAHB8j1pySikiOefROTCnmsS3HXi8zsfHv7AmsS1Pcw>
-    <xme:sorNZoXkmzk9Pjfke4f0OrVmLm0muQ_-kdnNfshyrOXNezW4OzojJ4r4QFX6hqCP7
-    dQSf--VQjNAjDRebxo>
-X-ME-Received: <xmr:sorNZtIirI55iDXR6ch7mL7f7zGmfR1P-IFDgH-Pd9aORyitEVhHeTH7jPuW_dO5CJBIcL8UYM2IBINdit58IGh_HnKvzuxcOA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudeftddgtdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
-    thgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvd
-    elieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
-    ihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrsh
-    gvpdhnsggprhgtphhtthhopedutddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohep
-    sghijhhurdgurghsrdhjiiessghprdhrvghnvghsrghsrdgtohhmpdhrtghpthhtohepmh
-    gthhgvhhgrsgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgruhhrvghnthdrphhi
-    nhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehrohgshh
-    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriiihshiithhofhdrkhhoiihlohif
-    shhkihdoughtsehlihhnrghrohdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskh
-    gvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihgu
-    vghrrdgsvgdprhgtphhtthhopehlihhnuhigqdhmvgguihgrsehvghgvrhdrkhgvrhhnvg
-    hlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghl
-    rdhorhhg
-X-ME-Proxy: <xmx:sorNZpHrDuHaKesZEN5vAJi0TUK35njdnKn5p_flax9cgBooI4MU9Q>
-    <xmx:sorNZhVX7l6C5zHn0CYbn8WjVxKjvhH10ES3jWzrCF-o6_2b2LTjkg>
-    <xmx:sorNZkOO-otrHHME7Pq0mK627DrJ42IJUES0mDpMkwiWNBB6ZKs3sQ>
-    <xmx:sorNZg1W4GcU9zIhqAk0TrM5E4Z0Qp0zXuMyKHZer_tryr3alVH0Rw>
-    <xmx:s4rNZqPYHN1Oj_1psNkrDX2GZiCgvlR-zpP5UldM4m5nsQRLmjSL0HDU>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 27 Aug 2024 04:13:37 -0400 (EDT)
-Date: Tue, 27 Aug 2024 10:13:36 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v2 4/6] media: rcar-isp: Add family compatible for R-Car
- Gen4 family
-Message-ID: <20240827081336.GF2636928@fsdn.se>
-References: <20240826144352.3026980-1-niklas.soderlund+renesas@ragnatech.se>
- <20240826144352.3026980-5-niklas.soderlund+renesas@ragnatech.se>
- <TY3PR01MB11346E6810025CECA51A86B53868B2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1724746475; c=relaxed/simple;
+	bh=x6G+5+IJ7a72Cq5SOq6HjDFgUyiWiy0Jha7aSlSvAkA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TDNKz3g+KGkFf2arTBwzvHOU9RYkx1gCSpUts+ASrE5t4VegTiP2PA9l3qq9/DwJnBwWo1znchegIpEd2mhl1fHUNQN+BP47X1cyxcMLKuROWNTkfa6V477g5ndIE16YEWOkhtz1f0f6PssB3FRD93Uhoum8Z+0nFun6f7ukIPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TZhC9m4J; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EFB3260003;
+	Tue, 27 Aug 2024 08:14:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1724746471;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HHeCSHZ34Mwia/PNi9Y8v1uhIR9u/g7fFvQSmjPs83E=;
+	b=TZhC9m4JfAtaAvP4/EVLb8PP+yuqfze5JokhB09Nxiu6sqYKKkldBWKYrlT/JwDY7ahRfd
+	VRfS1a7lQIq0R1Fd9/qm6TPJaGXQj8sk4B2avgYDFf06qMG7UxG7dALJ77OfVIcqOBXLsK
+	WLhEGBxv2eDHjf9PwrTqcmeq7PEccEZ/aLYKiUAwX3GCDUpc50ZwlJQP0HSD/3SvNBRC+S
+	4rWaN07xV1if/05fU2j63YTVPzh3hjafdFBJTF7IFBlrGO5r3oSk3ye/VQrU56xMEFq4xA
+	TaJJvBc8Tfl+BIrH4h0ORlx5pqV5FaePKnpZHDdeZPXVQl8fofdWCyO1mrRHiw==
+Message-ID: <9bc68261-9d5a-463c-82e8-c7a630dda79e@bootlin.com>
+Date: Tue, 27 Aug 2024 10:14:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] wifi: wilc1000: Fold
+ chip_allow_sleep()/chip_wakeup() into wlan.c
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240823161131.94305-1-marex@denx.de>
+ <20240823161131.94305-3-marex@denx.de>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20240823161131.94305-3-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <TY3PR01MB11346E6810025CECA51A86B53868B2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-Hello Biju,
+On 8/23/24 18:08, Marek Vasut wrote:
+> Neither chip_allow_sleep()/chip_wakeup() is used outside of wlan.c .
+> Make both functions static and remove both the exported symbol and
+> entries from wlan.h .
+> 
+> Make chip_allow_sleep() return error code in preparation for the
+> follow up patches.
+> 
+> Move acquire_bus() and release_bus() to avoid forward declaration
+> of chip_allow_sleep()/chip_wakeup().
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Adham Abozaeid <adham.abozaeid@microchip.com>
+> Cc: Ajay Singh <ajay.kathat@microchip.com>
+> Cc: Alexis Lothoré <alexis.lothore@bootlin.com>
+> Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Kalle Valo <kvalo@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-wireless@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> ---
+> V2: New patch
+> ---
+>  .../net/wireless/microchip/wilc1000/wlan.c    | 47 +++++++++----------
+>  .../net/wireless/microchip/wilc1000/wlan.h    |  2 -
+>  2 files changed, 23 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.c b/drivers/net/wireless/microchip/wilc1000/wlan.c
+> index 1aab2f2dc159f..5fbba6876bd07 100644
+> --- a/drivers/net/wireless/microchip/wilc1000/wlan.c
+> +++ b/drivers/net/wireless/microchip/wilc1000/wlan.c
+> @@ -12,20 +12,6 @@
+>  
+>  #define WAKE_UP_TRIAL_RETRY		10000
+>  
+> -static inline void acquire_bus(struct wilc *wilc, enum bus_acquire acquire)
+> -{
+> -	mutex_lock(&wilc->hif_cs);
+> -	if (acquire == WILC_BUS_ACQUIRE_AND_WAKEUP && wilc->power_save_mode)
+> -		chip_wakeup(wilc);
+> -}
+> -
+> -static inline void release_bus(struct wilc *wilc, enum bus_release release)
+> -{
+> -	if (release == WILC_BUS_RELEASE_ALLOW_SLEEP && wilc->power_save_mode)
+> -		chip_allow_sleep(wilc);
+> -	mutex_unlock(&wilc->hif_cs);
+> -}
+> -
+>  static void wilc_wlan_txq_remove(struct wilc *wilc, u8 q_num,
+>  				 struct txq_entry_t *tqe)
+>  {
+> @@ -555,7 +541,7 @@ static struct rxq_entry_t *wilc_wlan_rxq_remove(struct wilc *wilc)
+>  	return rqe;
+>  }
+>  
+> -void chip_allow_sleep(struct wilc *wilc)
+> +static int chip_allow_sleep(struct wilc *wilc)
+>  {
+>  	u32 reg = 0;
+>  	const struct wilc_hif_func *hif_func = wilc->hif_func;
+> @@ -584,7 +570,7 @@ void chip_allow_sleep(struct wilc *wilc)
+>  	while (--trials) {
+>  		ret = hif_func->hif_read_reg(wilc, to_host_from_fw_reg, &reg);
+>  		if (ret)
+> -			return;
+> +			return ret;
 
-Thanks for your feedback.
+Forwarding error codes sounds like a good idea, but neither this patch nor the
+next one is reading the return value from any chip_allow_sleep[XXX] function, so
+it does not bring much value.
 
-On 2024-08-26 14:48:07 +0000, Biju Das wrote:
-> Hi Niklas Söderlund,
-> 
-> Thanks for the patch.
-> 
-> > -----Original Message-----
-> > From: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > Sent: Monday, August 26, 2024 3:44 PM
-> > Subject: [PATCH v2 4/6] media: rcar-isp: Add family compatible for R-Car Gen4 family
-> > 
-> > Add the Gen4 family compatible. This will be used instead of a SoC specific compatible for the new
-> > Gen4 SoC V4M. Two Gen4 boards (V3U and
-> > V4H) have already been added prior and their bindings need to be kept for backward compatibility.
-> > 
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > ---
-> > * Changes since v1
-> > - Reworked to add a family compatible instead of V4M specific one.
-> > ---
-> >  drivers/media/platform/renesas/rcar-isp.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/media/platform/renesas/rcar-isp.c b/drivers/media/platform/renesas/rcar-isp.c
-> > index 4512ac338ca5..6504c7025a40 100644
-> > --- a/drivers/media/platform/renesas/rcar-isp.c
-> > +++ b/drivers/media/platform/renesas/rcar-isp.c
-> > @@ -429,8 +429,11 @@ static int risp_probe_resources(struct rcar_isp *isp,  }
-> > 
-> >  static const struct of_device_id risp_of_id_table[] = {
-> > +	/* Keep to be compatible with old DTS files. */
-> >  	{ .compatible = "renesas,r8a779a0-isp" },
-> > +	/* Keep to be compatible with old DTS files. */
-> >  	{ .compatible = "renesas,r8a779g0-isp" },
-> > +	{ .compatible = "renesas,rcar-gen4-isp" },
-> >  	{ /* sentinel */ },
-> 
-> Nit pick:
->     Comma can be dropped from last entry.
-
-Indeed it could be dropped from the "sentinel" entry, but that would be 
-a different patch.
-
-> 
-> Cheers,
-> Biju
-> 
-> >  };
-> >  MODULE_DEVICE_TABLE(of, risp_of_id_table);
-> > --
-> > 2.45.2
-> > 
-> 
+Alexis
 
 -- 
-Kind Regards,
-Niklas Söderlund
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
