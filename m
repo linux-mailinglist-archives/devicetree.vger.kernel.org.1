@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708C0960E89
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:49:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CA5960EF1
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:54:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95B561C23309
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:49:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25037B23CF4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB4B1C4EF6;
-	Tue, 27 Aug 2024 14:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8E11C7B92;
+	Tue, 27 Aug 2024 14:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0Rf9eEr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XeBv6OPy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 767311BA87C;
-	Tue, 27 Aug 2024 14:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5051C7B73;
+	Tue, 27 Aug 2024 14:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724770176; cv=none; b=EsDwGzrtHPO4rCgmlp/HBJBoO1YNuALhpDf/ZD3w6hYZtBZIVO0ACu8UmBzeuejcyZaaQyOgYVBXsvQHo9OSkBxUfgzler+IsvTrSG+pjrO29pZyAib8JJmOxZE8/AhbI9OsIMTvnfvR/XYfCwlea+gfMRU0H9jSY9FHA+tGN5c=
+	t=1724770405; cv=none; b=JLl7JfKumnPPdX9MvtVK4b2RGE2WguFmnjBxjlwLChs0suHCAZwt2W5g8sk8pWeZqALBsLoyazwbVi+s79GnbW0S+2S1SZhsQykMgfMHL0Mhuuh+BcIHDuJsL7X660R927zWZqTlaY8GnEN28dkiiAO318XzHv7O3001WHrKqSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724770176; c=relaxed/simple;
-	bh=db/egAmCBNmBgfIRYn9njVsO91zJcPmxdECDwFQbw4s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=EsgtuyMHPnc8nvVsGeAdHyckAbnw/Qj90dduRhWs0DH+cnqhJPVQERBQw7Lx/DsAeYiX0732jD3uko/wgJ/v4dAxjHl1bODQA6bz7RzbOf07+amxVWaDmHiQtTGpLC3nCs8wdrwj94KLA0Y8kFs80A1A+JBXtI2OwG21AyMm920=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n0Rf9eEr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E30BC4AF1C;
-	Tue, 27 Aug 2024 14:49:26 +0000 (UTC)
+	s=arc-20240116; t=1724770405; c=relaxed/simple;
+	bh=Kg3GjQSiusxWVLTdLYx6/ArqcAuScIKX9tgSJRL8nm0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RwygbQA6FHqiGBm2Jo9pgMxvd6IMVnmMhpGC8kn5HabyE1zIScIQP6VJFP8tgkiL0iZxhQM5tiRcJB3axZTaEln1XFGBKJJQzKsbWhlZSzQ471HzXxT6UORZnaZM+g6md4apBdK681qysyjVdwfSbldqEEHHDVpKAALeYGP9/gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XeBv6OPy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29EE0C61053;
+	Tue, 27 Aug 2024 14:53:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724770176;
-	bh=db/egAmCBNmBgfIRYn9njVsO91zJcPmxdECDwFQbw4s=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=n0Rf9eErUPfDoZvolRPwGjqMc6fBKzC19+lrPJCcC29D96m/YHaZjAF4YumGWuAZo
-	 xyEl1Kt2Arlg52ndN10l6IGS9opq8cJxPzYu6d0AAoqsJto+uphF/CPfYjaTnh7S9i
-	 jXMKVA9bX6Rf4uKLtmik4L5Uydn+Di3K4283n8JTEf7Mumb8MK2lngpLVeVhWiMU3b
-	 QYFRqWMtfQUmwzfXTeQ5yjkqWV9Dy7SAojJx0BMprCX3pcHerWWAK81L2zFUjSdOuy
-	 zh17lUktRTlU6GYdFKb9RRKh4O5+xdzh5Z6eVt69l8Wo3O/0RJS9+nuSPxFYjw1Kh2
-	 ixvL51pgLYy1Q==
-Message-ID: <342534c3-c921-4acc-b5b4-a84ff69ce644@kernel.org>
-Date: Tue, 27 Aug 2024 16:49:24 +0200
+	s=k20201202; t=1724770404;
+	bh=Kg3GjQSiusxWVLTdLYx6/ArqcAuScIKX9tgSJRL8nm0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XeBv6OPyMIDQ85Q3F4L4AEHf+JcMTRSVqvYlnFOjaPLVS81hGa4e/QqhAZlF+z1z5
+	 2cd/iGDpR8T6wFTjeZkyUgRX3tIkMJ0oJmqrIepBBBKA58RenBldI0ZEo1rRnrCj98
+	 fk0J3ODMdUIPQhD6ISbcUeltIO8pXnRJzbAQwDnSneuJYpnBSPNJ3BqGFlaTAmhIIe
+	 FMYBbaEqug3Ww0kUzwzi6Ksx+v49mwshX/PFbbyTXbYKTsmIWUm/9PaLcY5mdjrbLS
+	 nj2IB+n056qdN5Mqdv8AqgfJXi+PFReXCFSbvf47tHn56UReL8M5x5vVoj7GkvcoVu
+	 o72OvtFQP8CyQ==
+Message-ID: <7dadf8dd-ad54-4e4f-a336-adc3444df4b0@kernel.org>
+Date: Tue, 27 Aug 2024 16:53:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: display: st,stm32-ltdc: Document
- stm32mp25 compatible
-To: Yannick Fertre <yannick.fertre@foss.st.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240827140455.115182-1-yannick.fertre@foss.st.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: maxim,max96712: Add compatible
+ for MAX96724
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-staging@lists.linux.dev
+Cc: linux-renesas-soc@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240827131841.629920-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240827131841.629920-2-niklas.soderlund+renesas@ragnatech.se>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,89 +108,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240827140455.115182-1-yannick.fertre@foss.st.com>
+In-Reply-To: <20240827131841.629920-2-niklas.soderlund+renesas@ragnatech.se>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 27/08/2024 16:04, Yannick Fertre wrote:
-> Add "st,stm32mp25-ltdc" compatible for SOC MP25. This new SOC introduce
-> new clocks (bus, ref & lvds). Bus clock was separated from lcd clock.
-> New sources are possible for lcd clock (lvds / ref).
+On 27/08/2024 15:18, Niklas Söderlund wrote:
+> The MAX96712 and MAX96724 are almost identical and can be supported by
+> the same driver, add a compatible for MAX96724.
+
+The driver statement in this context is meaningless. You did not make
+them compatible so what does it matter?
+
 > 
-> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
+> * Changes since v1
+> - Group in series together with driver change.
+> ---
+>  .../devicetree/bindings/media/i2c/maxim,max96712.yaml        | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> Changes in v3: Add max/min Items fields.
-> 'make dt_binding_check' command fails on previous patch, rework fiedls mas/min items
-> of properties clocks & clock-names.
-> 
-> Changes in v2: Rework clock property.
-> 
->  .../bindings/display/st,stm32-ltdc.yaml       | 28 +++++++++++++++----
->  1 file changed, 23 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-> index d6ea4d62a2cf..940127820de3 100644
-> --- a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-> +++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
-> @@ -12,7 +12,9 @@ maintainers:
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> index 6c72e77b927c..26f85151afbd 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> @@ -25,7 +25,10 @@ description: |
 >  
 >  properties:
 >    compatible:
-> -    const: st,stm32-ltdc
-> +    enum:
-> +      - st,stm32-ltdc
-> +      - st,stm32mp25-ltdc
->  
->    reg:
->      maxItems: 1
-> @@ -24,12 +26,12 @@ properties:
->      minItems: 1
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
->  
->    clock-names:
-> -    items:
-> -      - const: lcd
-> -
-> +    minItems: 1
-> +    maxItems: 4
+> -    const: maxim,max96712
+> +    items:
+> +      - enum:
+> +          - maxim,max96712
+> +          - maxim,max96724
 
-Keep the blank line.
+Driver change tells these are compatible and version is detectable.
+Express it in the binding with fallback or explain in commit msg why
+they are not compatible.
 
->    resets:
->      maxItems: 1
->  
-> @@ -51,6 +53,22 @@ required:
->    - resets
->    - port
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - st,stm32mp25-ltdc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-
-Instead, describe the items.
-
-Missing clock-names
-
-> +    else:
-> +      properties:
-> +        clocks:
-> +          minItems: 1
-
-minItems? Why are you changing existing device? Nothing in commit msg
-explains this.
 
 Best regards,
 Krzysztof
