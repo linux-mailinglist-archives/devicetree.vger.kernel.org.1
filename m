@@ -1,144 +1,117 @@
-Return-Path: <devicetree+bounces-97072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17DF6960935
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:45:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE55960976
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:02:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA6762810EC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:45:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE5312866DD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075811A073F;
-	Tue, 27 Aug 2024 11:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="R8RN5Eot"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681F21A01C4;
+	Tue, 27 Aug 2024 12:02:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3E51A08A9;
-	Tue, 27 Aug 2024 11:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB8151CD31
+	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 12:02:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724759107; cv=none; b=UC+bCDCiY/IZjgiAzpseU9ylt5dUHI15zGKdvTxXtwbQQ2IdYxAd2kNvhWDFhuUPp18z8HtSZ4HQZkbUbCPN+wLXVmTYE1VRuiOZ+K1a5itAU2E5lK+5jb4m+xKZ+IRCndE2zx1+nIrvMQtsGLUwJ+rGFf1Kh1o0q9mCOWk+ws4=
+	t=1724760141; cv=none; b=jAl6Yv9axqKx0sZd5XFeHvkmlH9ITE6u1VEJSFZhaw1wPn6ntddiJ/KHAMM0FfZJftElgAWbptGWpfCA33O4UPZlPWHAMrwcBygm34tnSo0N5WnlHQUHgrXr8+UZlpa1hRezGOyeHOOuGefDfdpV4qifR7KvsGqg5Uk+KykUn+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724759107; c=relaxed/simple;
-	bh=qQ5rnwHBebdoqbagT23hX6UofBKa8mmMdLPucmPVnks=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=c3Q2zCsjTv+ghr2Phcff1KlkXaJBrfCvamaS0DXXs4+4kgI/y1vgnNiyvyVwDA3Cmc938nUbOxEqC51XyAulEoL2ibwD0ASC4rxbK9k5+hdwheg7fvKsRDvdczTinjVbL4lf5GlOoz+hZdbENJImFHef0eoKOGLgGxm65JQUFr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=R8RN5Eot; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=xLXPfKWDxExyWqYh9vtXpPA+hwYuofc+hgQ3XeMgQEI=; b=R8RN5EotjK+Krdq8wnD52auW0j
-	zVu8/mHLkhcE3xaGIpM1UcXdL1qZEHnT/6q4HEPw/9lPNFT1pYIcJNkU6QLanbEgsRZAqz+57p8qM
-	O5iIxC67NNogtyNOu74OCzmRoBPvcqoNLrpp3aVMXmI+Z9uBem3zmeCyf7z19OmfivaCWxgSE1KGb
-	3Oke7WuMtYI4WG1jglXzaN+TUKSKJ/xzS7kX+F8RjNXs5Gp/qjSMOmd06vY4Ox28QL66toCcYxMKL
-	/kntGsR1sO4xOyaXzTaDE6zJ6aDafl4VLjUM3kfN7DDvvKZ8k09B6pYm2+MQ0gf45TonWZ5rVxH6l
-	vORb+vJg==;
-Received: from dynamic-176-006-142-117.176.6.pool.telefonica.de ([176.6.142.117] helo=[127.0.0.1])
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	s=arc-20240116; t=1724760141; c=relaxed/simple;
+	bh=eiLK3F+/vUbTbCvu/QK1J1+TZgaGLosfrxeEGlbvEMc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HItPHY2fH0M+W6klHx2qo46rWCX4XcGOMWFGf6TxbM7qcmu7oDhFB4a4DVc7FB5AJE+3rQfu2jEi81eP0lQ9PnJxPUpDasgI4upVOxdQWS61jn/sZHkhCYrb5jzLeYaU56UZXmHWooJLrG8r4uIEGkrg8KyaGyNCrJfX2sJQcwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1siutV-00086L-E2; Tue, 27 Aug 2024 14:01:53 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1siud9-0005QN-9R; Tue, 27 Aug 2024 13:44:59 +0200
-Date: Tue, 27 Aug 2024 13:44:58 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzk@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-CC: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
-User-Agent: K-9 Mail for Android
-In-Reply-To: 1ec02fa5-4b11-424b-a595-c715b62d105e@kwiboo.se
-References: <20240826205538.1066103-1-jonas@kwiboo.se> <66ccebeb.d40a0220.356790.58caSMTPIN_ADDED_BROKEN@mx.google.com> <b69e5a0a-acf9-412c-90b4-ebe00c7e07d4@kernel.org> 1ec02fa5-4b11-424b-a595-c715b62d105e@kwiboo.se
-Message-ID: <99731A50-58FA-4829-9785-339051E791B2@sntech.de>
+	(envelope-from <mkl@pengutronix.de>)
+	id 1siutU-003Q5D-9X; Tue, 27 Aug 2024 14:01:52 +0200
+Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id E9D3C32A516;
+	Tue, 27 Aug 2024 12:01:51 +0000 (UTC)
+Date: Tue, 27 Aug 2024 14:01:51 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Tarang Raval <tarang.raval@siliconsignals.io>
+Cc: "shawnguo@kernel.org" <shawnguo@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "festevam@gmail.com" <festevam@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals
+ Support
+Message-ID: <20240827-arboreal-purring-seahorse-5d2353-mkl@pengutronix.de>
+References: <20240823120158.19294-1-tarang.raval@siliconsignals.io>
+ <20240823-demonic-jolly-chital-fb4d61-mkl@pengutronix.de>
+ <PN3P287MB1829E68257FC17F8ADA725028B942@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="egn5wl6oqvlwcn7i"
+Content-Disposition: inline
+In-Reply-To: <PN3P287MB1829E68257FC17F8ADA725028B942@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+
+--egn5wl6oqvlwcn7i
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
+On 27.08.2024 11:16:02, Tarang Raval wrote:
+> Yes, I have tested it, and you can see the logs below.
+> After running ifconfig can0 up, the bus is operational.
 
+Thanks for testing.
 
-Am 27=2E August 2024 13:29:34 MESZ schrieb Jonas Karlman <jonas@kwiboo=2Es=
-e>:
->Hi Krzysztof,
->
->On 2024-08-27 08:52, Krzysztof Kozlowski wrote:
->> On 26/08/2024 22:55, Jonas Karlman wrote:
->>> The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
->>> RK3566 SoC=2E It features e=2Eg=2E 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-c=
-ard,
->>> GbE LAN, HDMI 2=2E0, M=2E2 NVMe and USB 2=2E0/3=2E0=2E
->>>
->>> Add devicetree binding documentation for the Hardkernel ODROID-M1S boa=
-rd=2E
->>>
->>> Signed-off-by: Jonas Karlman <jonas@kwiboo=2Ese>
->>> ---
->>>  Documentation/devicetree/bindings/arm/rockchip=2Eyaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/rockchip=2Eyaml b/D=
-ocumentation/devicetree/bindings/arm/rockchip=2Eyaml
->>> index f08e9f2f5dfc=2E=2E9e29a5ecc94d 100644
->>> --- a/Documentation/devicetree/bindings/arm/rockchip=2Eyaml
->>> +++ b/Documentation/devicetree/bindings/arm/rockchip=2Eyaml
->>> @@ -598,6 +598,11 @@ properties:
->>>            - const: hardkernel,rk3568-odroid-m1
->>>            - const: rockchip,rk3568
->>> =20
->>> +      - description: Hardkernel Odroid M1S
->>> +        items:
->>> +          - const: hardkernel,rk3566-odroid-m1s
->>=20
->> hardkernel,odroid-m1s
->>=20
->> Why adding SoC name to the board? Can it be Odroid M1S with RK3568?
->
->No, the M1S (rk3566) is a variant of the M1 (rk3568) with less features
->and the smaller SoC package, fully agree that hardkernel,odroid-m1s is
->better, will use it in a v2=2E
->
->I mainly wanted to keep it consistent to other Hardkernel Odroid boards=
-=2E
->- hardkernel,rk3326-odroid-go2
->- hardkernel,rk3326-odroid-go2-v11
->- hardkernel,rk3326-odroid-go3
->- rockchip,rk3568-odroid-m1 (hardkernel,rk3568-odroid-m1)
->
->If you agree to a vendor prefix change of rockchip,rk3568-odroid-m1,
->maybe we can also drop the soc name from that compatible at the same
->time? E=2Eg=2E change it to hardkernel,odroid-m1=2E
-
-I'd also agree with going with compatibles without the soc name in it=2E I=
-t is an ABI break but I think except the chrome devices no other board actu=
-ally uses that part of the compatible ?
-
-
->Regards,
->Jonas
->
->>=20
->>=20
->> Best regards,
->> Krzysztof
->>=20
->
+regards,
+Marc
 
 --=20
-Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
-=2E
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--egn5wl6oqvlwcn7i
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbNwCwACgkQKDiiPnot
+vG+NbAf+JBJeGMKIG1kfgMFb/ws/spN94Vz4Mi+K1lWudCmmb7VEuszbUBWSCDSP
+Kei/gHez/pQLYZRUR/h95Kb3X7PcLPYFTTZS5sObtA3Sm+nguueO1qmh9CIiU6iu
+at0qyuyPhfZeCgNQ4nHUVgGKoMXAGHHR89FGmx3X4mWjr5jV5XdoqIa3C61z5QAl
+RidIg6dtw1NEULeFhYDh6x9xZlQukVcxb8A/zh5WpDvLV5DRttivScp1nD/K9wb+
+K9N1nY8P59iDkb5c2veQU1JF61We8SxAMbD3aa0MoN/OZIgdsVJWldRU1/3wv69B
+ZLqmhznWpy71gFpXMaAkAPcAPgYktA==
+=InBt
+-----END PGP SIGNATURE-----
+
+--egn5wl6oqvlwcn7i--
 
