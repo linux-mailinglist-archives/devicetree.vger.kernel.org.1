@@ -1,188 +1,126 @@
-Return-Path: <devicetree+bounces-96989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 469569604F4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:55:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52C11960502
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:59:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAEA41F23683
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:55:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FFA728141D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6993199FB9;
-	Tue, 27 Aug 2024 08:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF6C1990CF;
+	Tue, 27 Aug 2024 08:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DusVZnZ7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkFzgDgD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58188158DD0;
-	Tue, 27 Aug 2024 08:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15799158DD0;
+	Tue, 27 Aug 2024 08:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724748945; cv=none; b=bLyEsNYT8WeLcukQ5W+0k58/kim9tIPhGIssieGFgBjDgndmcdCVx+ZBvjqA2+dosRdy8ryr1CoFfr3Qb3xKHtab7WuLBYb5dgto36HhoxjfgYTAhFkXjcRKuLGnU3wrLcS1RzSy1RVxoKfUC0LtlEak2epeUdHnzCC3T84a5oY=
+	t=1724749140; cv=none; b=YthRMQob5GuOfnY8zEn6OEvjahB0PRddcqqjA+4rvZiC19mgs7xucWn5HaYq5anFLVy7ig+SHP2r/RC3/s3zsIfX+4NCU/AdjAVldT9K5KIP9h1Ex1XUvjGCVgUJGPu1131BgGxxSaCV2Ui24R8V62GKAkALJbZxLbJMrDVlFp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724748945; c=relaxed/simple;
-	bh=WLyDwKrTLwxUKO9wLuHMkEx2eqbtMQG2RDk7GrJYDXs=;
+	s=arc-20240116; t=1724749140; c=relaxed/simple;
+	bh=brMwUnoxrTvNJcSO2RG6nxbRHtnEcIrTU0qQDmJE/7U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oW+yXMNYQLA8jsdJv8q+4imlY13EYHDB43Pi/YHEqiPG0tfwost9HmHi9gToLX3rOliQ49yvvdc1sLeVJnek25rOgrvDA3/hH5iYjH1dJ+jRDb4w9I2hLG/S6S47Z+71FPe/IJmHo0mt47b7lYNGEiVVzOXnRRgo84P4UjHV6aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DusVZnZ7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E362BC8B7A5;
-	Tue, 27 Aug 2024 08:55:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nMko8M2iIAsICHqgESsihoexYWO/QtqIKXH+jr5G1x50ReBf0E9PYI52ffZkpM2xit82BDJmaYkpUY6VYWyNUxlNsoZqnsaKQuo1Bmp6UOaeGebzsXzdIp7XPZuTOI/6gFF94MyoTVSoW1uNLB1rHPekJ6M4ehSB4rIXIJrvhvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkFzgDgD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D68EC8B7A5;
+	Tue, 27 Aug 2024 08:58:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724748944;
-	bh=WLyDwKrTLwxUKO9wLuHMkEx2eqbtMQG2RDk7GrJYDXs=;
+	s=k20201202; t=1724749138;
+	bh=brMwUnoxrTvNJcSO2RG6nxbRHtnEcIrTU0qQDmJE/7U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DusVZnZ7wV2iULh/1avLL75JPrhMhQlBqoECiJtic0bUtwgwuIxQeD5hzgO3OPkyS
-	 dpl+eK1bBgzJJ35WOwwwbfdgq1YQrY2eHAEWUAKnv8OixY+PRJYPtQH9Uh4KDOOHgD
-	 2/VI5iJPwBhdC5LsFDFX73FW+2wIcx/umVi6Bv43EvELDrk40xPn4mIuDGkezsnKRA
-	 xbs+ZNNQqQDTYUIePAvIqd1K0l/VrmBAarQw0NUQwiKK+jAlMR+ifUUyK+I6EB0ATl
-	 0IqZzSdRMeIajz+pVDlkeyPLq3GoGX7ttE4pCEa3ZuqwGkXktl0F6ooJc0ev3A8Yxa
-	 2+SfAAZCXhU+Q==
-Date: Tue, 27 Aug 2024 11:52:55 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Bruno Faccini <bfaccini@nvidia.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Arnd Bergmann <arnd@arndb.de>, Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Hildenbrand <david@redhat.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
-	"linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-cxl@vger.kernel.org" <linux-cxl@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-	"linux-mm@kvack.org" <linux-mm@kvack.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
-	"linux-sh@vger.kernel.org" <linux-sh@vger.kernel.org>,
-	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-	"loongarch@lists.linux.dev" <loongarch@lists.linux.dev>,
-	"nvdimm@lists.linux.dev" <nvdimm@lists.linux.dev>,
-	"sparclinux@vger.kernel.org" <sparclinux@vger.kernel.org>,
-	"x86@kernel.org" <x86@kernel.org>, Zi Yan <ziy@nvidia.com>
-Subject: Re: [PATCH v4 24/26] arch_numa: switch over to numa_memblks
-Message-ID: <Zs2T5wkSYO9MGcab@kernel.org>
-References: <MW4PR12MB72616723E1A090E315681FF6A38B2@MW4PR12MB7261.namprd12.prod.outlook.com>
+	b=SkFzgDgDObrJZ62sKyhzDaQWPSu69zfgIIlt6JriR+Pd+4k0BmqKPB5RbGnecjA+g
+	 qrGPlLmMaEkmKURMJdZtNLM/xOqwwECLm25Is6vmmxu4L3+ZRXd+ZdvABVItbUmZ4S
+	 /T1q9GAaxJgA06eVBchBKVVsoeQfjkYnrsjNIrwOPhYwTTF/XtFvX5ZDqw94r0x0MC
+	 HDe8z9qhw+nsOizgwq0aPnslhBS2LAXKi/fU7D1LcyI1BQQP9y+MwNcCDlNTRf3Ohd
+	 MH0JYXGNSbadD7+cswhubahggRqDZMbRHcFYw0ZvTvIm7gvhwoBy07crol/e58A2A+
+	 ZH5UQRyzp3JFg==
+Date: Tue, 27 Aug 2024 10:58:55 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>, 
+	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>, 
+	Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH v4 2/4] drm/bridge: synopsys: Add DW HDMI QP TX
+ Controller support library
+Message-ID: <20240827-armored-magnificent-badger-ffb025@houat>
+References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
+ <20240819-b4-rk3588-bridge-upstream-v4-2-6417c72a2749@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="7d6czoxivc6cezpy"
+Content-Disposition: inline
+In-Reply-To: <20240819-b4-rk3588-bridge-upstream-v4-2-6417c72a2749@collabora.com>
+
+
+--7d6czoxivc6cezpy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <MW4PR12MB72616723E1A090E315681FF6A38B2@MW4PR12MB7261.namprd12.prod.outlook.com>
 
-Hi,
+On Mon, Aug 19, 2024 at 01:29:29AM GMT, Cristian Ciocaltea wrote:
+> +static irqreturn_t dw_hdmi_qp_main_hardirq(int irq, void *dev_id)
+> +{
+> +	struct dw_hdmi_qp *hdmi = dev_id;
+> +	struct dw_hdmi_qp_i2c *i2c = hdmi->i2c;
+> +	u32 stat;
+> +
+> +	stat = dw_hdmi_qp_read(hdmi, MAINUNIT_1_INT_STATUS);
+> +
+> +	i2c->stat = stat & (I2CM_OP_DONE_IRQ | I2CM_READ_REQUEST_IRQ |
+> +			    I2CM_NACK_RCVD_IRQ);
+> +
+> +	if (i2c->stat) {
+> +		dw_hdmi_qp_write(hdmi, i2c->stat, MAINUNIT_1_INT_CLEAR);
+> +		complete(&i2c->cmp);
+> +	}
+> +
+> +	if (stat)
+> +		return IRQ_HANDLED;
+> +
+> +	return IRQ_NONE;
+> +}
 
-On Mon, Aug 26, 2024 at 06:17:22PM +0000, Bruno Faccini wrote:
-> > On 7 Aug 2024, at 2:41, Mike Rapoport wrote:
-> > 
-> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-> > 
-> > Until now arch_numa was directly translating firmware NUMA information
-> > to memblock.
-> > 
-> > Using numa_memblks as an intermediate step has a few advantages:
-> > * alignment with more battle tested x86 implementation
-> > * availability of NUMA emulation
-> > * maintaining node information for not yet populated memory
-> > 
-> > Adjust a few places in numa_memblks to compile with 32-bit phys_addr_t
-> > and replace current functionality related to numa_add_memblk() and
-> > __node_distance() in arch_numa with the implementation based on
-> > numa_memblks and add functions required by numa_emulation.
-> > 
-> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> > Tested-by: Zi Yan <ziy@nvidia.com> # for x86_64 and arm64
-> > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Tested-by: Jonathan Cameron <Jonathan.Cameron@huawei.com> [arm64 + CXL via
-> > QEMU]
-> > Acked-by: Dan Williams <dan.j.williams@intel.com>
-> > Acked-by: David Hildenbrand <david@redhat.com>
-> > ---
-> >   drivers/base/Kconfig       |   1 +
-> >   drivers/base/arch_numa.c   | 201 +++++++++++--------------------------
-> >   include/asm-generic/numa.h |   6 +-
-> >   mm/numa_memblks.c          |  17 ++--
-> >   4 files changed, 75 insertions(+), 150 deletions(-)
-> >  
-> > <snip>
-> > 
-> > +
-> > +u64 __init numa_emu_dma_end(void)
-> > +{
-> > +             return PFN_PHYS(memblock_start_of_DRAM() + SZ_4G);
-> > +}
-> > +
-> 
-> PFN_PHYS() translation is unnecessary here, as
-> memblock_start_of_DRAM() + SZ_4G is already a
-> memory size.
-> 
-> This should fix it:
->  
-> diff --git a/drivers/base/arch_numa.c b/drivers/base/arch_numa.c
-> index 8d49893c0e94..e18701676426 100644
-> --- a/drivers/base/arch_numa.c
-> +++ b/drivers/base/arch_numa.c
-> @@ -346,7 +346,7 @@ void __init numa_emu_update_cpu_to_node(int
-> *emu_nid_to_phys,
-> 
-> u64 __init numa_emu_dma_end(void)
-> {
-> -              return PFN_PHYS(memblock_start_of_DRAM() + SZ_4G);
-> +             return memblock_start_of_DRAM() + SZ_4G;
-> }
-> 
-> void debug_cpumask_set_cpu(unsigned int cpu, int node, bool enable)
+If the scrambler is enabled, you need to deal with hotplug. On hotplug,
+the monitor will drop its TMDS ratio and scrambling status, but the
+driver will keep assuming it's been programmed.
 
-Right, I've missed that. Thanks for the fix!
+If you don't have a way to deal with hotplug yet, then I'd suggest to
+just drop the scrambler setup for now.
 
-Andrew, can you please apply this (with fixed formatting)
+Maxime
 
-diff --git a/drivers/base/arch_numa.c b/drivers/base/arch_numa.c
-index 8d49893c0e94..e18701676426 100644
---- a/drivers/base/arch_numa.c
-+++ b/drivers/base/arch_numa.c
-@@ -346,7 +346,7 @@ void __init numa_emu_update_cpu_to_node(int *emu_nid_to_phys,
- 
- u64 __init numa_emu_dma_end(void)
- {
--	return PFN_PHYS(memblock_start_of_DRAM() + SZ_4G);
-+	return memblock_start_of_DRAM() + SZ_4G;
- }
- 
- void debug_cpumask_set_cpu(unsigned int cpu, int node, bool enable)
+--7d6czoxivc6cezpy
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Sincerely yours,
-Mike.
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZs2VRgAKCRAnX84Zoj2+
+doR9AX9jVRhemySX3ezsY45XTCyYbffOw0vhn1iAZ9FcKrlkjaZ1jF3VuvQVlqV+
+CgkFKFwBfRfYZWXSy78SdiB2VLCDGrHhrKCyjwCWW4R2Le9bIP4lzSh1HDBv4FFA
+JXPD9gbLhA==
+=OVt5
+-----END PGP SIGNATURE-----
+
+--7d6czoxivc6cezpy--
 
