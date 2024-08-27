@@ -1,173 +1,132 @@
-Return-Path: <devicetree+bounces-97211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02E7D961663
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 20:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8050D961680
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 20:12:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 068B4B20CA3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:07:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F2EEB22A25
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813E61D2F53;
-	Tue, 27 Aug 2024 18:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACECE1D27BA;
+	Tue, 27 Aug 2024 18:12:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="b8atZ+SR"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="ZfSb0FUW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465091D2786;
-	Tue, 27 Aug 2024 18:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724781948; cv=none; b=IGlaPTGeLeyBA6xE/gkwpda1wWDpSx+2e+uOZNlZkJPXJfTiW1nnVYG57Uhj+JTKj5EeG8p7ueIAUe8I3tA6zkNvVxvqeVbZcyD7vHqNBepT+or646dN1G4TDKEbc3NP+oQcDZet+BoiMzPl8HuXGjMGYEXFndH/aRvgjYkmhKE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724781948; c=relaxed/simple;
-	bh=Gw79yOjbZv9gbtsmtzI8ONCwsue7qo7vUany0vBy9CA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ttMII6SxWgbckrQdwKVMmpztJG2Q7fgKTQ3YYxuyTBdwHnNuxoooQ+QsC7f6gR1e54JEAsnchNa7TQ1lB9r4Cqs5pys07IhPz6Eze0DvpnDnp1CfUkysZGVOmGFd4iNjbGT3xSCtXr7FZkMLA1fvrhEchAHJgS9xbb1mb46uXG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=b8atZ+SR; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id EBE2E88A4B;
-	Tue, 27 Aug 2024 20:05:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1724781944;
-	bh=1fH1ehWxhmFHL+pwCnGMKQmfjMRvcUVp0cPiBxZjs50=;
-	h=From:To:Cc:Subject:Date:From;
-	b=b8atZ+SRNppskEgkPf+Mjub7Jnem6+xHUTcCsmeVEWybyqzNmtHHhF4VcEdfSzdSX
-	 XvqW+xpmAFbywPGjgBlC7I/QuVYd/gJoPR5hbLqivbw/mYLS/Qj+uakN2PQUW5P61T
-	 p6atH7yVcy6jqAqNysj0UWJDsl1e6h3dIP66zKPowzQZ8VtNTccPij0Ualz4SMb0rP
-	 V9dklJ+nomYFzjNM21FVnPb5y/HNL2VM1+FYbqgJrVUBPibCA+i1g4/FuOagfQ8diK
-	 4IPWz088olkLME+6bWOB2Sa85GwcQPzUkXjIniXE22YG/K3vnOlprQmy3BT0xRA7WM
-	 Xy9VsUXBF/tew==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B1A1D278D;
+	Tue, 27 Aug 2024 18:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724782354; cv=pass; b=ZtU8csvc9rhsISQeRqsodjciyBlclPBHTLcOVPJBl2SUf/qLf9suzTC4bUTLFnMvAWVwVAOc/ymmnhyii7YqaWKkdaNNUktDv44/8hWzGUpW7D+q9RbnM1myQVposPwm6IcduQleklpgxBpUFq4fkB399WzyeumHwDBo6jxuaWs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724782354; c=relaxed/simple;
+	bh=aWREDDXw3VUSy01eYgB6syDfxtw33a+xK/k4CacyOAo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B2PddO6XeuvdqKMs2oPp9utOu+McgfpX2ubrAH7ueGky8dFoxlsdeg8ImS+KWT/5euo9lkuOZi/67KVgbEWKoNPnpXx6GxuFBbypfr2qM8V1OjVLnXjEUwlmJHXrUMccm65rXGfdhqFe1pE2vlrz0+y31Dp4E3Y42fQwPDfopFM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=ZfSb0FUW; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724782336; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=brXvxwVIWeMuvOScjIxgv6Wf8xsoBqkNTcBzrDa2raD6htJhsFQef4ChT+QhP2GZCqqtWEH8pqcTOpETw+4MuiZspdflFfd8lT9/+IS/eTFdyukN3EDZyBnnMHzKllkrusuwmQf5vwxfAHbq1VIfF94VfAgcxagG1pnDWSiaxcQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724782336; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=RoiMzBJ0Us9ppCH7FKAaOJox09dmiZXOo+WgF7DfWP8=; 
+	b=hWq2EJUZ0+8I1cwKmnyTZdGu2fZSseu+8uvJsB9WQan2Rv5qZlvs4WDjehrkYgxaXY/gnj891YtueEXQcubqnrcQK5QOM62TbwzSjX95VEFlY/6KGjPxT/Qzlzp7wMwh3k3N5QHkJOD0/5GdUsEJ5mAX62SXsAGjSAv5tci5W90=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724782336;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=RoiMzBJ0Us9ppCH7FKAaOJox09dmiZXOo+WgF7DfWP8=;
+	b=ZfSb0FUWLmpfAqvHz/IKDNIWZ3BCg1KxdSHY6pFH5Ab3AafKd9DxWb7YSZDf0fXk
+	gngIOB37ZSNarut3wlYNJFFycU5GoEq1JNXUfT/awDYBMT3MdplUQVhYOc/9oJ/06km
+	8AbE7/wijqQ+FslYBE2JXnHHmz8GLVxZ2w15XSdI=
+Received: by mx.zohomail.com with SMTPS id 1724782334636725.3316886969787;
+	Tue, 27 Aug 2024 11:12:14 -0700 (PDT)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id DFF724800E2; Tue, 27 Aug 2024 20:12:10 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+	linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH] ASoC: dt-bindings: Add dt bindings definition file for imx28 saif
-Date: Tue, 27 Aug 2024 20:05:28 +0200
-Message-Id: <20240827180528.2315563-1-lukma@denx.de>
-X-Mailer: git-send-email 2.39.2
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v8 0/2] RK3588 VEPU121/VPU121 support
+Date: Tue, 27 Aug 2024 20:10:19 +0200
+Message-ID: <20240827181206.147617-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-This file allows correct check of DTS node for imx287 based
-"fsl,imx28-saif" compatible device.
+Hi,
 
-It corresponds to Documentation/devicetree/bindings/fsl,imx28-saif
+This enables support for Hantro in the RK3588 base devicetree. Sebastian =
+Fricke
+send the pull request for the driver/binding changes for 6.12 some hours =
+ago:
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
----
- .../devicetree/bindings/sound/fsl,saif.yaml   | 79 +++++++++++++++++++
- 1 file changed, 79 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,saif.yaml
+https://lore.kernel.org/all/20240827133315.qlmwdvwmghidayzy@basti-XPS-13-=
+9310/
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,saif.yaml b/Documentation/devicetree/bindings/sound/fsl,saif.yaml
-new file mode 100644
-index 000000000000..747faa411a50
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,saif.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,saif.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale MXS Serial Audio Interface (SAIF)
-+
-+maintainers:
-+  - Lukasz Majewski <lukma@denx.de>
-+
-+description: |
-+  The SAIF is based on I2S module that is used to communicate with audio codecs,
-+  but only with half-duplex manner (i.e. it can either transmit or receive PCM
-+  audio).
-+
-+properties:
-+  compatible:
-+    const: fsl,imx28-saif
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  assigned-clock-parents: true
-+  assigned-clock-rates: true
-+  assigned-clocks: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rx-tx
-+
-+  clocks:
-+    maxItems: 1
-+
-+  fsl,saif-master:
-+    description: Indicate that saif is a slave and its phandle points to master
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - dmas
-+  - dma-names
-+  - "#sound-dai-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    saif0: saif@80042000 {
-+        #sound-dai-cells = <0>;
-+        compatible = "fsl,imx28-saif";
-+        reg = <0x80042000 2000>;
-+        interrupts = <59>;
-+        clocks = <&clks 53>;
-+        dmas = <&dma_apbx 4>;
-+        dma-names = "rx-tx";
-+    };
-+  - |
-+    saif1: saif@80046000 {
-+        #sound-dai-cells = <0>;
-+        compatible = "fsl,imx28-saif";
-+        reg = <0x80046000 2000>;
-+        interrupts = <58>;
-+        clocks = <&clks 53>;
-+        dmas = <&dma_apbx 5>;
-+        dma-names = "rx-tx";
-+        fsl,saif-master = <&saif0>;
-+    };
--- 
-2.39.2
+Changes since PATCHv7:
+ * Dropped patches 1-4 (merged to media tree)
+ * Rebased DT patches to use rk3588-base.dtsi instead of rk3588s.dtsi
+ * Dropped a bunch of people from Cc since the media side is done
+
+Changes since PATCHv6:
+ * Collected Acked-by for RK3588 VEPU121 DT binding from Conor Dooley
+ * Fix resource leak of DT node in hantro_disable_multicore()
+ * Support disabled nodes in hantro_disable_multicore()
+ * Use correct match data (RK3568 VEPU instead of VPU) for RK3588 VEPU121
+
+Changes since PATCHv5:
+ * Fix binding for vepu121 (use enum)
+ * split hantro driver patch (multicore / vepu121 compatible)
+ * move video-codec@fdb50000 node to correct position
+ * change "jpeg_enc*" alias to "vepu121_*"
+ * change "vpu_*" alias to "vpu121_*" (to be consistent)
+
+Changes since PATCHv3 (VEPU121) / PATCHv4 (VPU121)
+ * combine both patchsets, since there is some overleap
+ * add patch to disable multi-core handling in the hantro driver
+ * drop the RK3568 fallback compatible for VEPU (see above for the reason=
+)
+ * describe all RK3588 VEPU cores (possible because of driver change)
+
+Greetings,
+
+-- Sebastian
+
+Emmanuel Gil Peyrot (1):
+  arm64: dts: rockchip: Add VEPU121 to RK3588
+
+Jianfeng Liu (1):
+  arm64: dts: rockchip: Add VPU121 support for RK3588
+
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 101 ++++++++++++++++++
+ 1 file changed, 101 insertions(+)
+
+--=20
+2.45.2
 
 
