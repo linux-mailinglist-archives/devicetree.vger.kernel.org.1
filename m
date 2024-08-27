@@ -1,120 +1,160 @@
-Return-Path: <devicetree+bounces-96975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52FD59603F5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:06:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 004CA960408
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:09:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 863091C2272B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:06:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FAC51F2296C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133FC189BB5;
-	Tue, 27 Aug 2024 08:06:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B6A199E98;
+	Tue, 27 Aug 2024 08:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GY4bT0AX"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oK+P+wyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C97B194C62;
-	Tue, 27 Aug 2024 08:06:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9507199242;
+	Tue, 27 Aug 2024 08:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724745990; cv=none; b=tOR2g28cQoUdLz5ug6BQDiO98wkC1LDSKNqvLvcyx060161++G9pI1GJ3mGeWVOtJvioZOA2jSw72uJO9SZ8lwPCv1Y1y/ilJIvyEp4YyUWyI6+RWhCGn1wX4B469XdOlasFEsNhdEyo93NNosKaQTWU5R6Mau3k0D9dH8g1Cbg=
+	t=1724746120; cv=none; b=tJp+HBey9TOEn55SUNrW+p+BATLjIT3zugYlYpHDdKKq77ohgbZGdicu9pt446NnDWGUOUSGbvYGKPetL1qUF/nADzWI674pvac+rZbIa4yO5oxUj7UVKEKAT/AeoQVkMDYnvznduqfgXfEQlYHoLwH3drGRIusAY8fg0ZJLDE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724745990; c=relaxed/simple;
-	bh=bNrUlql358duxz0xZ6kkPTqgaytxYizLfD7UW4xAL5E=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JeZoWrrjdN+4OcJwaPlIKZc6+q6X+KKcQ8wDWnXsrzPxrUxCgC+d0GDYob1MVfkOpkAFfCUhws/QDQanRqZ4ahint5J7w5oaF+EvVmdUGoFR19uykSHVoHun6gb+Rf9AWmECG8YDyHgtSFAR9Uy/XguGfAZxjC5QQylI5sImsrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GY4bT0AX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R6umTS020197;
-	Tue, 27 Aug 2024 08:06:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rMzWwOxLAvaYBL8C14V2DUa7
-	Royn8qe6WziQ4i9Py9g=; b=GY4bT0AXvdPoYZYuSXwqcW8dJ9//Jm4BgcfHXDfM
-	hPeBtWURey+hrxUjq2o8htmOJF2il8rMDoTvx1WuX7Ah3nWGn0XekpyXLfl9Nu9Z
-	hk2Ze9JY7tFH4hWWpWIVN1b3hzQ7fNnpHdaS//EDliMttJ3h4nZNHvhi/lgBWh+j
-	ekkjs0sb0QD8agaMulIBIf6stYk6BjlNk0Jc/bR+BAPu/dL5VZ63ZUPLYqPUnyzE
-	tMgwzLloRVjy30K19RNWeDGNDNfHEXqpkxp6//Sql36YsyUhnNdgoB8+9KKiD6Wk
-	7Cgz1LWqi1j2xunnjAOJZkW6vAJucnrWMinOTzOyTlU0mg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4199yt05ht-1
+	s=arc-20240116; t=1724746120; c=relaxed/simple;
+	bh=KUNevkqKItUtyAoJeoaCrfGr37Eon6c2GKQEP9yAB9U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pYrIAh0JFJkELIEbprvX4pbVgKamqcey9j+9hq6FAgscMOreXK0Qr4pVQjch0F/3Kv+n+tjbCy7HCK+ftRRvUBeHmDRqu1TjWO2sOFTTFtvWEBNWXlWzR1lmfsBTLaZYFOxq+XmeQplPGwNQoAXKhArjMWQ346H1VdfGavhbA3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oK+P+wyR; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R7NZnX002527;
+	Tue, 27 Aug 2024 10:08:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	NL0vfsDaZi+n7IXnnxL961mLfvdpI9ZZJJiAuUY0CU8=; b=oK+P+wyRw6FWOfoE
+	ii3HFisp1T+BZcECPD9QcTmWQAnw0oAdYT+ELLEbd2HwfVDIg7dqla3qthTTlFDn
+	9dHgJfiS8GlyJMKotw2TmRX8VLsA6NXdw5Vp0hUnHbt95dJ7cvqsNkTTe8JSlqJ3
+	ilBOB9iLUYx3zQ8pltIC2PiQLRKfPPRkVT4ih9SmavhWveUdmAzzFkRyAkUJDsIg
+	3Vw5npBP4l3po35kbKOg4jkMJke1iHgIvabfPlrSXmv9OrBF/NqfqrM7/Ub5Obe3
+	fZV9bmY/1mm9Fkq5GKQXAbp2Zl9HrzxP2GDbbFfvPdDpSI9/fSwEZKZY5gub+8z+
+	Vw8oWQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 419ac886r4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 08:06:25 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47R86OHH021760
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 08:06:24 GMT
-Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 27 Aug 2024 01:06:20 -0700
-Date: Tue, 27 Aug 2024 16:06:16 +0800
-From: JieGan <quic_jiegan@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Song Chai
-	<quic_songchai@quicinc.com>,
-        Yushan Li <quic_yushli@quicinc.com>
-Subject: Re: [PATCH v1 0/1] arm64: dts: qcom: Add coresight components for
- x1e80100
-Message-ID: <Zs2I+M4wkjVlKuq9@jiegan-gv.ap.qualcomm.com>
-References: <20240827072724.2585859-1-quic_jiegan@quicinc.com>
- <833eafc7-46f0-49d1-afe1-ad9d20ca16fd@kernel.org>
+	Tue, 27 Aug 2024 10:08:05 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2089540048;
+	Tue, 27 Aug 2024 10:08:00 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C12A724DCC5;
+	Tue, 27 Aug 2024 10:07:11 +0200 (CEST)
+Received: from [10.252.31.50] (10.252.31.50) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 27 Aug
+ 2024 10:07:10 +0200
+Message-ID: <8a13fd32-4bc4-4711-bf6b-7e0ce2e938ec@foss.st.com>
+Date: Tue, 27 Aug 2024 10:07:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <833eafc7-46f0-49d1-afe1-ad9d20ca16fd@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VvDaQR_qxkiI1NW4xDmtASEtCFuJxqbJ
-X-Proofpoint-ORIG-GUID: VvDaQR_qxkiI1NW4xDmtASEtCFuJxqbJ
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm: dts: st: stm32mp151a-prtt1l: Fix QSPI
+ configuration
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Oleksij Rempel
+	<o.rempel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob
+ Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@pengutronix.de>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20240806120517.406714-1-o.rempel@pengutronix.de>
+ <20dc2cd4-7684-4894-9db3-23c3f4abd661@pengutronix.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20dc2cd4-7684-4894-9db3-23c3f4abd661@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-08-27_05,2024-08-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=417
- suspectscore=0 malwarescore=0 spamscore=0 impostorscore=0 clxscore=1015
- bulkscore=0 priorityscore=1501 mlxscore=0 adultscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408270061
 
-On Tue, Aug 27, 2024 at 10:02:44AM +0200, Krzysztof Kozlowski wrote:
-> On 27/08/2024 09:27, Jie Gan wrote:
-> > Add coresight components for x1e80100. This change includes CTI,
-> > dummy sink, dynamic Funnel, Replicator, STM, TPDM, TPDA and TMC ETF.
-> > 
-> > Change in V1:
-> > Check the dtb with dtbs_check W=1, and fix the warnings for
-> > the change.
-> 
-> So this is v2, not v1.
-> 
-Appologize for the mistake of the version number.
-Do I need to re-send the patch with V2?
+Hi
 
-Thanks,
-Jie
+On 8/7/24 11:38, Ahmad Fatoum wrote:
+> Hello Oleksij,
+> 
+> On 06.08.24 14:05, Oleksij Rempel wrote:
+>> Rename 'pins1' to 'pins' in the qspi_bk1_pins_a node to correct the
+>> subnode name. The previous name caused the configuration to be
+>> applied to the wrong subnode, resulting in QSPI not working properly.
+>>
+>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+>> ---
+>>   arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi b/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
+>> index 3938d357e198f..4db684478c320 100644
+>> --- a/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
+>> +++ b/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
+>> @@ -123,7 +123,7 @@ flash@0 {
+>>   };
+>>   
+>>   &qspi_bk1_pins_a {
+>> -	pins1 {
+>> +	pins {
+> 
+> As you have seen such device tree overriding is error prone and would
+> be entirely avoidable if specifying full board-specific pinctrl groups
+> was allowed for the stm32 platforms instead of override-and-pray.
+
+You can create your own pin group in stm32mp15-pinctlr.dtsi. What is the 
+issue ? Do I miss something ? It will avoid to overwrite an existing 
+configuration
+
+regards
+alex
+
+
+> Anyways, there's better syntax for such overriding now:
+> 
+>    &{qspi_blk1_pins_a/pins}
+> 
+> which would cause a compilation error if pins was renamed again.
+> 
+>>   		bias-pull-up;
+> 
+> There's bias-disable in stm32mp15-pinctrl.dtsi. You may want to add
+> a /delete-property/ for that to make sure, it's not up to the driver
+> which one has priority.
+> 
+>>   		drive-push-pull;
+>>   		slew-rate = <1>;
+> 
+> These are already in qspi_bk1_pins_a. If repeating those is ok, why
+> not go a step further and just duplicate the pinmux property and stay
+> clear of this issue altogether, provided Alex is amenable to changing
+> his mind regarding pinctrl groups in board device trees.
+> 
+> 
+> Cheers,
+> Ahmad
+> 
 
