@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DFE6960B08
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:51:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53262960B34
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43474284529
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:51:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EC88283EE7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD7A1BD502;
-	Tue, 27 Aug 2024 12:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C278E1BCA04;
+	Tue, 27 Aug 2024 13:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cw9Q527O"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="SA79Irt+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471D11BD4F2;
-	Tue, 27 Aug 2024 12:48:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A543219CCED
+	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724762912; cv=none; b=exEh+g6w38dkub5O/xGVDOtiqnDFM06IM+TNm4KH+yX3VBuktexJ+r1Smxb+eAdCPMe5KvmaNG9HatI79w8SmdctdsKYfbG5oaBq8CxRXR7lCs1a2Rl/gVWwK7ejxeJeckdrey6hP2Y0IW4USJJx82EYH+Hqw5gVArCra/D5uLM=
+	t=1724763719; cv=none; b=R83oqsZL+LeUWDeYdj+aw3EG0BPlJJ3bzaSCm6hoxMr2AvDZHp1j6Lx9AlOoVfTzgsi8AcBp9nWPKSrcKciT6D90B/BG7h2wFjiYXiPDXjLg7w7VT2TCQbGqF4xf9JSjGUWUsFW5aGnJmewdw2wtthY5TzjlglEuNP1oJGUmGXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724762912; c=relaxed/simple;
-	bh=g/hqEC7ZyuL4IqUrKsBwU6+lHHVgteFNIUEWYPF6vpA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=RL/nDqPZ80xr22SdgYkVwEghMxtjm8LMvGFMgmIAfQ7zgYA4izgDswNDMmyqSkJ0IvMfIgRwtKrcthvLgIk2DF4yv0wE4mCi0vA3yWmZLwXw1ne343mjEgf52PlCo/Wv0RJrZV3ckHtkNFbXbp7MWM1CsObHU9Kh1jruIb/j9w4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cw9Q527O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F669C61049;
-	Tue, 27 Aug 2024 12:48:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724762911;
-	bh=g/hqEC7ZyuL4IqUrKsBwU6+lHHVgteFNIUEWYPF6vpA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=cw9Q527O6dWO02WhjWD66sK6ngmX0c/HxLElI+B2h+kCW1VYm3lgFt/xoJmpb4G37
-	 6k/HRWnhJ8OG6JommIzNQUtqb7W8oUt+OVS2r/1q1gs2fHR609f7hywbUeZiXPCvAh
-	 FQ9yhe3Uybh+hvuVT4YXBxt65dTc3dBObnj9RcQ82VCjYPXT8DaHVRfB0TMEElTrsW
-	 kFCGxztp4dZjsNJB9s60rbETHNooyyHoBRhxhThyw8fEdUEtZHUEfu8nz1NnWBHyW6
-	 9IuoBNX2mXBi5oHSZNyFCNd67aVTpe9ALAGzTfnb4sMmNzEI9xmaWdMCjPSYUHzM8B
-	 Hs12sQUB5Ou9A==
-Message-ID: <5fbc815f-d52e-437d-bdc3-c61f365e9d1c@kernel.org>
-Date: Tue, 27 Aug 2024 14:48:25 +0200
+	s=arc-20240116; t=1724763719; c=relaxed/simple;
+	bh=t8u4tNyz7wHL5M/0SNVAJ8o4p/fLR/xY9fCwR/a9Usw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ooAdlpRwJtKKOcM4sZwSaVkvw0mvsUdMPISKGamreiUXT0MghlvIEwQJb7Qr44IilpwqpjZ3yGv6XeUc4UbTPfrVKCdZWOfzxKrIiaFBNxNuDe9gUwuHOmElHVo9dJzimWt4hp9yU2lP6qpXmoGyH7CE2q341b+gS3+KUvlzHbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=SA79Irt+; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1724763707;
+ bh=KZfENK1t3+yf0BK3gmf2/PNsiTAlFh2wSe1HI5OaUgY=;
+ b=SA79Irt+xUmgatt/St6kq6eYTPLfl2YWu2miMJvMnoeO58Bbucu+RiziPbx65PC3HlkvJJCgu
+ pGY/L2CAl07IQns4igfBfQ3bkBrmFC1G8K9Vv+DtdJY/8REEjxAH295BzNibxYYx4RxV1vi9MmL
+ izaKWywy3DkgffdDzm0G6NnOJfX2mde+V8st6vz+y8KJSv5EDd0Pht41Fm+3cxW3kxZZ2OtNyGQ
+ AUSwBtUJxC1xOgM7tx3gKBcerjX7gEqiqIlI4taOjly+1RGskyT8uIibUi/pgW0IMeTLWTcGAK0
+ MEooJtNofL5bSxxQnxpHLdvVLMSCny46jYSFxMb+5sTQ==
+Message-ID: b6c7513e-26c3-4f9d-bdb4-c4710bea5820@kwiboo.se
+Date: Tue, 27 Aug 2024 15:01:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,111 +50,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 25/27] ARM: dts: at91: sam9x7: add device tree for SoC
-To: Varshini.Rajendran@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
- <20240729070934.1991467-1-varshini.rajendran@microchip.com>
- <7031d811-2bb2-4325-996c-a6de766925db@kernel.org>
- <bf77fe95-0982-4605-a493-25c889e81639@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
+To: Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240826205538.1066103-1-jonas@kwiboo.se>
+ <66ccebeb.d40a0220.356790.58caSMTPIN_ADDED_BROKEN@mx.google.com>
+ <b69e5a0a-acf9-412c-90b4-ebe00c7e07d4@kernel.org>
+ <99731A50-58FA-4829-9785-339051E791B2@sntech.de>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <bf77fe95-0982-4605-a493-25c889e81639@microchip.com>
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <99731A50-58FA-4829-9785-339051E791B2@sntech.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66cdce388a3cb1214853bd7e
 
-On 27/08/2024 11:50, Varshini.Rajendran@microchip.com wrote:
-> Hi Krzysztof,
-> 
-> Apologies for the delay in response.
-> 
-> On 31/07/24 2:00 pm, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+On 2024-08-27 13:44, Heiko Stuebner wrote:
+> Am 27. August 2024 13:29:34 MESZ schrieb Jonas Karlman <jonas@kwiboo.se>:
+>> Hi Krzysztof,
 >>
->> On 29/07/2024 09:09, Varshini Rajendran wrote:
->>> Add device tree file for SAM9X7 SoC family.
+>> On 2024-08-27 08:52, Krzysztof Kozlowski wrote:
+>>> On 26/08/2024 22:55, Jonas Karlman wrote:
+>>>> The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
+>>>> RK3566 SoC. It features e.g. 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-card,
+>>>> GbE LAN, HDMI 2.0, M.2 NVMe and USB 2.0/3.0.
+>>>>
+>>>> Add devicetree binding documentation for the Hardkernel ODROID-M1S board.
+>>>>
+>>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>>>>  1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> index f08e9f2f5dfc..9e29a5ecc94d 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> @@ -598,6 +598,11 @@ properties:
+>>>>            - const: hardkernel,rk3568-odroid-m1
+>>>>            - const: rockchip,rk3568
+>>>>  
+>>>> +      - description: Hardkernel Odroid M1S
+>>>> +        items:
+>>>> +          - const: hardkernel,rk3566-odroid-m1s
 >>>
->>> Co-developed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
->>> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
->>> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+>>> hardkernel,odroid-m1s
+>>>
+>>> Why adding SoC name to the board? Can it be Odroid M1S with RK3568?
 >>
->> ...
+>> No, the M1S (rk3566) is a variant of the M1 (rk3568) with less features
+>> and the smaller SoC package, fully agree that hardkernel,odroid-m1s is
+>> better, will use it in a v2.
 >>
->>> +
->>> +             can1: can@f8004000 {
->>> +                     compatible = "bosch,m_can";
->>> +                     reg = <0xf8004000 0x100>, <0x300000 0xbc00>;
->>> +                     reg-names = "m_can", "message_ram";
->>> +                     interrupts = <30 IRQ_TYPE_LEVEL_HIGH 0>,
->>> +                                  <69 IRQ_TYPE_LEVEL_HIGH 0>;
->>> +                     interrupt-names = "int0", "int1";
->>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 30>, <&pmc PMC_TYPE_GCK 30>;
->>> +                     clock-names = "hclk", "cclk";
->>> +                     assigned-clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_GCK 30>;
->>> +                     assigned-clock-rates = <480000000>, <40000000>;
->>> +                     assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
->>> +                     bosch,mram-cfg = <0x7800 0 0 64 0 0 32 32>;
->>> +                     status = "disabled";
->>> +             };
->>> +
->>> +             tcb: timer@f8008000 {
->>> +                     compatible = "microchip,sam9x7-tcb","atmel,sama5d2-tcb", "simple-mfd", "syscon";
+>> I mainly wanted to keep it consistent to other Hardkernel Odroid boards.
+>> - hardkernel,rk3326-odroid-go2
+>> - hardkernel,rk3326-odroid-go2-v11
+>> - hardkernel,rk3326-odroid-go3
+>> - rockchip,rk3568-odroid-m1 (hardkernel,rk3568-odroid-m1)
 >>
->> Why this is simple-mfd without children?
+>> If you agree to a vendor prefix change of rockchip,rk3568-odroid-m1,
+>> maybe we can also drop the soc name from that compatible at the same
+>> time? E.g. change it to hardkernel,odroid-m1.
 > 
-> The tcb node will have each TC (Timer Counter) Block as a child when it 
-> is configured to be used as either one of the following modes Timer or 
-> Counter / Capture / PWM.
+> I'd also agree with going with compatibles without the soc name in it. It is an ABI break but I think except the chrome devices no other board actually uses that part of the compatible ?
 
-And where are these children? What does it mean "will have", in context
-when? DTS is static, if you do not have here children then this is not a
-simple-mfd.
+U-Boot and the FIT spec [1] does have a FIT_BEST_MATCH feature that use
+the board compatible to find the best matching FIT configuration.
+Guessing this is a feature of FIT that the chrome devices use.
 
-Best regards,
-Krzysztof
+I have recently learnt that the OpenWrt project use the board compatible
+to validate if a system upgrade package/image can be applied to the
+currently running system.
+
+OpenWrt does not have an image/target for the ODROID-M1 (or other
+Hardkernel boards), so this ABI breakage should not affect OpenWrt users.
+
+I do not know of any other actual use of the board compatible.
+
+[1] https://fitspec.osfw.foundation/#select-a-configuration-to-boot
+
+Regards,
+Jonas
+
+> 
+> 
+>> Regards,
+>> Jonas
+>>
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+> 
 
 
