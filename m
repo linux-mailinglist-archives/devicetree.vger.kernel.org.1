@@ -1,164 +1,164 @@
-Return-Path: <devicetree+bounces-97202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F73596153D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 19:15:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFCBD96156F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 19:28:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7477B1C22B50
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 17:15:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E07D1F24836
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 17:28:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF751CF299;
-	Tue, 27 Aug 2024 17:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFFE01CFEB3;
+	Tue, 27 Aug 2024 17:28:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="IOyeCNlF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ud4EL2c5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D18045025;
-	Tue, 27 Aug 2024 17:14:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724778901; cv=pass; b=iXtTYJzrEBOjTRSLkbjVrw7w0P8/KnqHtoprkGSYKjVQH8z2WFirZpvmBcJr2Lcs6EtiumFzliW+XTPl+ctNUNcFmAdABrX9Kt5hy4TnsHSAtBfv/CLOn7hDpVXQ2eZ9PqFetdAg99ecnNfPI3Puit0yXf++FJR7SOO3pEEbWNc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724778901; c=relaxed/simple;
-	bh=nayKPb4tLGx+umAD8NxLT+uZpxft3WYUb0z4jMU2gkI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UVBY5EQid5JTk/K6zZq92ev1aQy33v+WlMjtInwuOsvQ9E4k89VQsB2yVaagvW/0VBQVf6g804Fzx7bH3Tuw61aCFXs7DcmGamRxJOZjaUVKuZv9UEqWbA+FfVsU5fS45dsN2EkUyIHlvqpLxq7S1H7/4fL9yugGVZ2n71sZp/g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=IOyeCNlF; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724778870; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=RD5obJxn3/mi7CqGbJBbze69xs+VqGmrHcf4q7XaTSXkF4X6MnSQFLGYH4RaIB3cJlYESqu8ktWvMzaNWpYI9UirRDaEFmk6+ZWPjSXIaoVOg7pcAzJ4f//IjFYakyICxx2ovaQhtl1i2EucFM5apf3TmQZTrAm1dhmij22eJQ8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724778870; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=cDDjGl/Gppuk2pcPpuTmcg+ibp8EJtADXjamce7oskU=; 
-	b=VaT+lBBpLu9Ilgw5e0nqlupwp14Zq/wTqfxZS7G6M2K3c/9XFwPCSIz/48tZUbgSdUJeqcQqmY53GuwSLo2VazebgCuYn5hXcd9b0APexCN/4f3tD8M77Lje5b6kvPz9Rlk52+hO5ATTprEhEwm+J+xPbhOtnNhIeE+rbVlTVDc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724778870;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=cDDjGl/Gppuk2pcPpuTmcg+ibp8EJtADXjamce7oskU=;
-	b=IOyeCNlFKMbn+APGykPNwHCtBZ+EEu9/D3CQJ+3fnO3c/A5jqvZKuMu9N5dh15QA
-	cd2x7Agw/cVdlz1BQ6p5vkKlq5FL66p9HEykAvK/AUytRGow5dqNJJMPQ0zj3seG0Cd
-	ujLsATJrd4lHa6of8hX8uM73OBdWA+dpbpYeT9eg=
-Received: by mx.zohomail.com with SMTPS id 1724778869440810.5604485911801;
-	Tue, 27 Aug 2024 10:14:29 -0700 (PDT)
-Received: by mercury (Postfix, from userid 1000)
-	id B5A3F10604BD; Tue, 27 Aug 2024 19:14:24 +0200 (CEST)
-Date: Tue, 27 Aug 2024 19:14:24 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Artur Weber <aweber.kernel@gmail.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>, 
-	Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>, Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
-Subject: Re: [PATCH v4 04/10] power: supply: max77693: Set charge current
- limits during init
-Message-ID: <ek7w5yd2kvmk7qnu3v776dckyjyvdmfahebqbvzfyckwi2szwz@ytcuz22io2cs>
-References: <20240816-max77693-charger-extcon-v4-0-050a0a9bfea0@gmail.com>
- <20240816-max77693-charger-extcon-v4-4-050a0a9bfea0@gmail.com>
- <9dbaacdb-5f9c-48d4-a56a-a19ca8809344@kernel.org>
- <021f5a99-bbee-4d4c-b36e-49339030b869@gmail.com>
- <f91048f3-2a97-493f-a35c-0e8f184d77d6@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863E01CF299;
+	Tue, 27 Aug 2024 17:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724779729; cv=none; b=Rn+Q4+ZLDzs6qjEW+KmPpslBxVrpB5Vc6SSwQQIFabwCobzSOMSEBxYv3ErkaKcySRQdvVaS+z6xVgNpsxs+srNavWErODsJlC4ZluRYaLKKkcjmkIY+HUK9KB1ci+iWCg/S51LHaMtY1bY3XFwxft+Znqq0Unl+rSeG/g7gKSY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724779729; c=relaxed/simple;
+	bh=H2u/az8fXpwcbxeDS2ZI8Pd1uN78s8lmC8oD3gm3zFc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vF0zCufvScSl9f7WDzdEHpSYyfhtYqGA+tHU07+za4zVy2ybcKhYzLJFdWeW5DtnjzOu99Q/7K4G5jnMaMMokQeFTIxlMzJ0WsaOoKflyKUGX6wJQO3NnynoiTX9oX/jvtxiL8VR5RtMe1p/FCEN6eyW06qV807eW2BDGAtd7Xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ud4EL2c5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48B04C4AF64;
+	Tue, 27 Aug 2024 17:28:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724779729;
+	bh=H2u/az8fXpwcbxeDS2ZI8Pd1uN78s8lmC8oD3gm3zFc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ud4EL2c5/nNngRLg+uaKkexAt3cJvIaPlYruRNzzhspp7FeQ8Ar3Q67ZDmgMdX7MT
+	 B060WrQD6VpRm5/aaEVTeGjJ7w/UHy+vFSZo5XSZqABBGcA6MkCo4shqk94RRFe1gc
+	 Vd7lsDGzOAUevXLCeK/oKwFbhLxq1+RjJ9Xx4z9h+EjWZyLKAHiwY1RTVVbrvvfEPw
+	 Ojpu+9Y3MGrcqwhzQ6vcVzbGCEKj4+WhpnPL9W3AOTq4YZyJMJ8LO/QcZrjnIKAeD7
+	 +Tzb21Ri4TTYVqpbV8pxKwklyRG/PuxtyPmED4Xg8EiDaFuhwDRkXyrHxTi7BzVbVB
+	 ZycMSLadweUAw==
+Message-ID: <db12d221-d3b1-4df5-91e4-d31fb0acdb8b@kernel.org>
+Date: Tue, 27 Aug 2024 19:28:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="otsejtyezulrljul"
-Content-Disposition: inline
-In-Reply-To: <f91048f3-2a97-493f-a35c-0e8f184d77d6@kernel.org>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/224.322.35
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] dt-bindings: pinctrl: Add fsl,ls1012a-pinctrl yaml
+ file
+To: David Leonard <David.Leonard@digi.com>
+Cc: linux-arm-kernel@lists.infradead.org, Dong Aisheng
+ <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <a5c1eef7-372d-082b-066e-ecd5e001d1cf@digi.com>
+ <pywfy4ypttq7y2llfkdgkwgpjfvnzk3lcgd67efp2v6qu6f2it@fdgiw5pac7uz>
+ <f682476b-f7af-0d66-7105-1d064f5f1739@digi.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f682476b-f7af-0d66-7105-1d064f5f1739@digi.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 27/08/2024 18:51, David Leonard wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    const: fsl,ls1012a-pinctrl
+>>> +
+>>> +  reg:
+>>> +    description: Specifies the base address of the PMUXCR0 register.
+>>> +    maxItems: 2
+>>
+>> Instead list and describe the items.
+> 
+> Changed to
+> 
+>     reg:
+>       items:
+>         - description: Physical base address of the PMUXCR0 register.
+>         - description: Size of the PMUXCR0 register (4).
+> 
+> Is this what you meant?
+
+Almost, second reg is not a size. You claim there are two IO address
+spaces. Each address space contains base address and size. Look at other
+bindings how they do it.
 
 
---otsejtyezulrljul
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+> 
+>>> +
+>>> +  big-endian:
+>>> +    description: If present, the PMUXCR0 register is implemented in big-endian.
+>>
+>> Why is this here? Either it is or it is not?
+> 
+> You're right. Changed to
+> 
+>     big-endian: true
+> 
+> (This also lead to some code simplification)
 
-On Fri, Aug 16, 2024 at 05:40:37PM GMT, Krzysztof Kozlowski wrote:
-> On 16/08/2024 16:25, Artur Weber wrote:
-> >=20
-> >=20
-> > On 16.08.2024 11:54, Krzysztof Kozlowski wrote:
-> >> On 16/08/2024 10:19, Artur Weber wrote:
-> >>> @@ -732,6 +794,15 @@ static int max77693_charger_probe(struct platfor=
-m_device *pdev)
-> >>>   	chg->dev =3D &pdev->dev;
-> >>>   	chg->max77693 =3D max77693;
-> >>>  =20
-> >>> +	psy_cfg.drv_data =3D chg;
-> >>> +
-> >>> +	chg->charger =3D devm_power_supply_register(&pdev->dev,
-> >>> +						  &max77693_charger_desc,
-> >>> +						  &psy_cfg);
-> >>> +	if (IS_ERR(chg->charger))
-> >>> +		return dev_err_probe(&pdev->dev, PTR_ERR(chg->charger),
-> >>> +				     "failed: power supply register\n");
-> >>
-> >> This code move is not explained in the commit msg. At least I could not
-> >> find it. Please explain why you need it in the commit msg.
-> >=20
-> > This is done because the call to power_supply_get_battery_info in
-> > max77693_dt_init requires chg->charger to be set. (I was considering
-> > putting this in the commit message, can't remember why I didn't do it.
-> > I'll add it in the next version.)
->=20
-> I think that's wrong. Power supply is being available to the system
-> before it is being configured.
+OK, but I still wonder why is it here. Without it the hardware will work
+in little-endian?
 
-It's a known limitation of the power_supply_get_battery_info API.
-I think it would be best to add an register_init() hook to struct
-power_supply_desc, which would be called from __power_supply_register()
-directly before it calls device_add(). At that point the power_supply
-struct is initialized far enough for getting the battery info, but not
-yet exposed to the remaining system.
+> 
 
-As a nice side effect the register writes happen after checking the
-supplies, so the registers are not written if the probe errors out
-with a probe defer anyways.
 
-Greetings,
+Best regards,
+Krzysztof
 
--- Sebastian
-
---otsejtyezulrljul
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbOCW0ACgkQ2O7X88g7
-+pqWrQ/+PyPFHFkRut+MAJpYMoQdpY6HbFaVc/wPgERw1U5QaIeg7WiG236dBjqR
-2nmNa/vHaTXfVJRBSPEVP3G+Q0CLgMec8Gw5wNZ2rBi6rBQ3EoWK/YOBHnh6/xD8
-zsuSAmjRmgPrS295odE4JRxJV/6FR7keyuBBBXvEdZIk33tZjTlGtpgaVq8ab8iL
-ZeUOk4xw4B6r1z0kjaNdlImI/iOK/Jd8/les45cXNem2bVWZ6GphezC+VFNqL+ia
-+EnVwEcRMiIJjekED3nN415fB1rIPsY0jyFWuEN1fdSH9+WF8tyBSGls9Efi87Uo
-p8BvvK7xAs4mPjVcsE5nwqiduI+Twjg/B/uxm/D49UoMr0p4Tg/53dNUnuuC0WRU
-pRNdnHMA2JuwkBBfOEnJ4txjuXAYsb9Kl2QW82tgHJqBDRR/HSGxJK+zd2+JNDz0
-Iu1Lx8kKoZyw4zPmr/O6soxgeMPbXMsb/ZB1R4iLLMyTu8EJR8GqjnvIgAQrGTqw
-j0Sg774CJ9mutvGwObNFwcvWc898a6k9Km5tCbIsitoc5ZU3sfoIMpgiNWo2dRQD
-20V+peZeIGmNKbhPHAroLvvY4wZ7ul83WT4wjyD7Pke6IhDV5cjihsnlAIhgQqup
-mT9xWJfUJfB3IpFG04uYHkvAry1+Du+C1LPzXv0v5xkimZHcMf4=
-=r5xS
------END PGP SIGNATURE-----
-
---otsejtyezulrljul--
 
