@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDE3F9607DC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F799607EF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:54:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F1FF1C220E8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:51:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 105B41C20D54
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11EF219E7FF;
-	Tue, 27 Aug 2024 10:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A731819E7FA;
+	Tue, 27 Aug 2024 10:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YgvZQF4o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSxo0GdF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46BF19753F;
-	Tue, 27 Aug 2024 10:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA2419DF41;
+	Tue, 27 Aug 2024 10:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724755913; cv=none; b=UrNeq0P95DGeyRxMv/m8jktmVHws2RLrjZ36cFpJ1EIwoU15Ga9UkNwuUDeHN3o6Z2JpbPeG9QMeWFO5udeWpIXehKeXvJ1WoAAQf99h/g7voY4gyK3b8a6sG+NpLsI31sHafSWeeWnMzZWOgkUadbNZmMMjT9YEQspUTYL8pt8=
+	t=1724756074; cv=none; b=iMYqP116i6hFZMYTnBwkgJjWL8TNpWCOnH3cL3LeC6517WcO1FU1Xvex1vd8478Jy6L3+d5FeUSBuaBgiOsSLWbCsu/Xvc3X9GVLpNOTMFom/hAn/g2ZTtA2dws3L4cgmbMe2/0zg3xVZlsuFs+RJ4mOhw3OODZivrgWeoCMuvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724755913; c=relaxed/simple;
-	bh=TeJrDQy3fJuDWSxIq3vLDrsob+bLlaQ3lUK42XDZhl8=;
+	s=arc-20240116; t=1724756074; c=relaxed/simple;
+	bh=qr/Hp6BBFcGFu44bjDTuyx3scvk00Z3ynq+fe/9+cyo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QIgy3q9T4RwOJTF+y1393PSi576c/vNLOOB1lflQ8uqmCikYtYaVP1OTkTZepvMaU2boQpNmoDSV+HJHZijp8rkYtBUHrZy7VKM+1l7szBt0J7bWN5nj+RbFnr9VWz031PgDgTlyHzZ8bPBuI76Ma9k1BXh+t5NP96ef1+/IW7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YgvZQF4o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C35F0C8B7C2;
-	Tue, 27 Aug 2024 10:51:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DubUW4Qp7PI+ShSyVOiYY3ScAgGXWMiFYCZQzmMRYApCaVU6yM+5AL/QM7inHM9fgYwD8rpzAoTLceDYHcGGgVzqwoTicx8RX3hV5EdR54flXV1UPstko9SqoW6C694YVzUumRuopxMXV2YcM9pP5/dGoMIxt5OLoOkAhkNqsAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSxo0GdF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F230AC8B7A4;
+	Tue, 27 Aug 2024 10:54:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724755912;
-	bh=TeJrDQy3fJuDWSxIq3vLDrsob+bLlaQ3lUK42XDZhl8=;
+	s=k20201202; t=1724756074;
+	bh=qr/Hp6BBFcGFu44bjDTuyx3scvk00Z3ynq+fe/9+cyo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YgvZQF4o+FN5DLg12DjaIz+won+L3MaVRP5u8wKHNGzE5Chxr+5rFMP6Iiwu6X/2Z
-	 u2m9zuG9ojvkLDjt2o39VzXvB7ejNNwWVTn8osdkT4pKiXxPFeJVZPu3gRSXF+NmLc
-	 eii51h4Qb/mWAXgFePCz0vfF9f9E57C0TnBXHqVYUFOUY8R20pIO4sZXu66zP5hsFO
-	 jys/Nx+8X9xAXP8LAA7VoGrUefGy/0gh3XvROuEgV4gW1oBW/i+gkjrC0GfGeVktiN
-	 C4PwY0VU/OXllC6Uxy+JpHg4rUX8ngC4IfJf9ysOHXc/VY1jU0CINzlWQhQWsdbdrL
-	 mSi/9miav9jOg==
-Message-ID: <81fd218f-aa0f-4710-b832-cab927bfab9d@kernel.org>
-Date: Tue, 27 Aug 2024 12:51:45 +0200
+	b=eSxo0GdFbLfp/4tg60/bYyM+xfouKSvTasqRcSHD8ajTaLcw1CQ/ESWVxu4zL4+BA
+	 F+kaiedylFmYhNYkX+l2DpL+I2tosLgj0A9tIWw17o+8qCnyAERovtKmZLWRMuH7C0
+	 tEDtB7O6CBjiemTm/d7y+AN/cgymuzgud2TKIeY8SzFvDJaT7m7WfyltjM/EUipti0
+	 oZ9VHsyC8VgAEHbWCdbWStLqVRtE0He16bAG0dtKZUoUExh7VQG4gauOVifuMK0ARi
+	 86xaBGLd5nCQiLKOkWXdnbRpZM164PXRD+uLRA2MnFqF+YjLC+kfbZIocxp56u5cuG
+	 SpupcX252urkA==
+Message-ID: <344418a4-0365-40f0-a4d6-380fbfbf96dc@kernel.org>
+Date: Tue, 27 Aug 2024 12:54:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/29] media: iris: initialize power resources
-To: quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
- <20240827-iris_v3-v3-4-c5fdbbe65e70@quicinc.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: PCI: ti,am65: Extend for use with PVU
+To: Jan Kiszka <jan.kiszka@siemens.com>,
+ Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Bao Cheng Su <baocheng.su@siemens.com>, Hua Qian Li
+ <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>
+References: <cover.1724709007.git.jan.kiszka@siemens.com>
+ <82ac9e266f6aca42699ec4a3c8f10887789ee6bf.1724709007.git.jan.kiszka@siemens.com>
+ <afyz3i4xihir4fnt4djo45saytz5ubu3wel6munq7cinwcb55m@ohdelne4xf34>
+ <6c28d580-9961-4bac-adcd-1724de68c9fb@siemens.com>
+ <0ca0fc20-421e-4bbc-bcda-9e5c2ea3b1b4@kernel.org>
+ <2bb6b337-d83b-4cbe-aff2-bbd0c7d17c2b@siemens.com>
+ <ada462d5-157a-4e11-ba25-d412a2bb678f@ti.com>
+ <da47dd71-18fe-4474-adec-d4f1571c02f2@siemens.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,276 +113,74 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240827-iris_v3-v3-4-c5fdbbe65e70@quicinc.com>
+In-Reply-To: <da47dd71-18fe-4474-adec-d4f1571c02f2@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/08/2024 12:05, Dikshita Agarwal via B4 Relay wrote:
-> From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+On 27/08/2024 12:46, Jan Kiszka wrote:
+> On 27.08.24 12:06, Siddharth Vadapalli wrote:
+>> On Tue, Aug 27, 2024 at 11:32:02AM +0200, Jan Kiszka wrote:
+>>> On 27.08.24 11:29, Krzysztof Kozlowski wrote:
+>>>> On 27/08/2024 11:22, Jan Kiszka wrote:
+>>>>> On 27.08.24 08:37, Krzysztof Kozlowski wrote:
+>>>>>> On Mon, Aug 26, 2024 at 11:50:04PM +0200, Jan Kiszka wrote:
+>>>>>>> From: Jan Kiszka <jan.kiszka@siemens.com>
+>>>>>>>
+>>>>>>> Describe also the VMAP registers which are needed in order to make use
+>>>>>>> of the PVU with this PCI host. Furthermore, permit to specify a
+>>>>>>> restricted DMA pool by phandle.
+>>>>>>
+>>>>>> That's an ABI break without explanation why it is necessary.
+>>>>>>
+>>>>>
+>>>>> It is needed in order to support the PVU, as written above.
+>>>>
+>>>> Above say only that you want a new feature and that's not really
+>>>> suitable explanation for ABI break, because answer to this is: add new
+>>>> feature without breaking existing users. But maybe there is a bug or
+>>>> something does not work or never work or there are no users, don't know.
+>>>>
+>>>>>
+>>>>> Previous versions of this binding likely didn't consider this use case
+>>>>> and therefore didn't describe all registers associated with the hardware.
+>>>>>
+>>>>> BTW, if you see a way to add the required registers without breaking
+>>>>> more than needed, I'm all ears. At least the kernel driver will continue
+>>>>> to work with older DTs when you disable PVU support or do not add a DMA
+>>>>> pool to the DT.
+>>>>
+>>>> If there is no ABI break, because driver still handles correctly old
+>>>> DTB, then mention it in the commit msg.
+>>>
+>>> Well, this is strictly spoken not a topic for this commit because this
+>>> one should have no clue about what drivers do with DTs according to this
+>>> binding. But I can put a hint and go into details in the driver patch.
+>>
+>> Based on the Techincal Reference Manual for AM654 and the driver
+>> implementation in patch 5/6, I think that the following might be one way
+>> of hinting that ABI won't break:
+>>
+>> The PVU on the AM65 SoC is capable of restricting DMA from PCIe devices to
+>> specific regions of host memory. Add the optional property "memory-regions"
+>> to point to such regions of memory when PVU is used. Since the PVU deals
+>> with system physical addresses, utilizing the PVU with PCIe devices also
+>> requires setting up the VMAP registers to map the Requester ID of the
+>> PCIe device to the CBA Virtual ID, which in turn is mapped to the system
+>> physical address. Hence, describe the VMAP registers which are optionally
+>> configured whenever PVU is used for PCIe.
 > 
-> Add support for initializing Iris "resources", which are clocks,
-> interconnects, power domains, reset clocks, and clock frequencies
-> used for iris hardware.
+> Thanks, will reuse this!
 > 
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
+> Additionally, we should then likely do
+> 
+>   reg:
+>     minItems: 4
+>     maxItems: 6
+> 
+> to underline that the old form is still fine. Do I need to do anything
+> to reg-names then as well?
 
-...
-
-> +struct iris_platform_data sm8550_data = {
-> +	.icc_tbl = sm8550_icc_table,
-> +	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
-> +	.clk_rst_tbl = sm8550_clk_reset_table,
-> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
-> +	.pmdomain_tbl = sm8550_pmdomain_table,
-> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
-> +	.opp_pd_tbl = sm8550_opp_pd_table,
-> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
-> +	.clk_tbl = sm8550_clk_table,
-> +	.clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
-> +};
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> index 0a54fdaa1ab5..2616a31224f9 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -69,6 +69,19 @@ static int iris_probe(struct platform_device *pdev)
->  	if (core->irq < 0)
->  		return core->irq;
->  
-> +	core->iris_platform_data = of_device_get_match_data(core->dev);
-> +	if (!core->iris_platform_data) {
-> +		ret = -ENODEV;
-> +		dev_err_probe(core->dev, ret, "init platform failed\n");
-
-That's not even possible. I would suggest dropping entire if. But if yoi
-insist, then without this weird redundant code. return -EINVAL.
-
-> +		return ret;
-> +	}
-> +
-> +	ret = iris_init_resources(core);
-> +	if (ret) {
-> +		dev_err_probe(core->dev, ret, "init resource failed\n");
-> +		return ret;
-
-How many same errors are you printing? Not mentioning that syntax of
-dev_errp_rpboe is different...
-
-
-> +	}
-> +
->  	ret = v4l2_device_register(dev, &core->v4l2_dev);
->  	if (ret)
->  		return ret;
-> @@ -88,8 +101,14 @@ static int iris_probe(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id iris_dt_match[] = {
-> -	{ .compatible = "qcom,sm8550-iris", },
-> -	{ .compatible = "qcom,sm8250-venus", },
-> +	{
-> +		.compatible = "qcom,sm8550-iris",
-> +		.data = &sm8550_data,
-> +	},
-> +	{
-> +		.compatible = "qcom,sm8250-venus",
-> +		.data = &sm8250_data,
-
-You just added this. No, please do not add code which is immediatly
-incorrect.
-
-> +	},
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, iris_dt_match);
-> diff --git a/drivers/media/platform/qcom/iris/iris_resources.c b/drivers/media/platform/qcom/iris/iris_resources.c
-> new file mode 100644
-> index 000000000000..57c6f9f3449b
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/iris/iris_resources.c
-> @@ -0,0 +1,171 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/interconnect.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/pm_opp.h>
-> +#include <linux/reset.h>
-> +
-> +#include "iris_core.h"
-> +#include "iris_resources.h"
-> +
-> +static int iris_init_icc(struct iris_core *core)
-> +{
-> +	const struct icc_info *icc_tbl;
-> +	u32 ret, i = 0;
-> +
-> +	icc_tbl = core->iris_platform_data->icc_tbl;
-> +
-> +	core->icc_count = core->iris_platform_data->icc_tbl_size;
-> +	core->icc_tbl = devm_kzalloc(core->dev,
-> +				     sizeof(struct icc_bulk_data) * core->icc_count,
-> +				     GFP_KERNEL);
-> +	if (!core->icc_tbl)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < core->icc_count; i++) {
-> +		core->icc_tbl[i].name = icc_tbl[i].name;
-> +		core->icc_tbl[i].avg_bw = icc_tbl[i].bw_min_kbps;
-> +		core->icc_tbl[i].peak_bw = 0;
-> +	}
-> +
-> +	ret = devm_of_icc_bulk_get(core->dev, core->icc_count, core->icc_tbl);
-> +	if (ret)
-> +		dev_err(core->dev, "failed to get interconnect paths, NoC will stay unconfigured!\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int iris_pd_get(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	struct dev_pm_domain_attach_data iris_pd_data = {
-> +		.pd_names = core->iris_platform_data->pmdomain_tbl,
-> +		.num_pd_names = core->iris_platform_data->pmdomain_tbl_size,
-> +		.pd_flags = PD_FLAG_NO_DEV_LINK,
-> +	};
-> +
-> +	ret = devm_pm_domain_attach_list(core->dev, &iris_pd_data, &core->pmdomain_tbl);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int iris_opp_pd_get(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	struct dev_pm_domain_attach_data iris_opp_pd_data = {
-> +		.pd_names = core->iris_platform_data->opp_pd_tbl,
-> +		.num_pd_names = core->iris_platform_data->opp_pd_tbl_size,
-> +		.pd_flags = PD_FLAG_DEV_LINK_ON,
-> +	};
-> +
-> +	ret = devm_pm_domain_attach_list(core->dev, &iris_opp_pd_data, &core->opp_pmdomain_tbl);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int iris_init_power_domains(struct iris_core *core)
-> +{
-> +	const struct platform_clk_data *clk_tbl;
-> +	u32 clk_cnt, i;
-> +	int ret;
-> +
-> +	ret = iris_pd_get(core);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iris_opp_pd_get(core);
-> +	if (ret)
-> +		return ret;
-> +
-> +	clk_tbl = core->iris_platform_data->clk_tbl;
-> +	clk_cnt = core->iris_platform_data->clk_tbl_size;
-> +
-> +	for (i = 0; i < clk_cnt; i++) {
-> +		if (clk_tbl[i].clk_type == IRIS_HW_CLK) {
-> +			ret = devm_pm_opp_set_clkname(core->dev, clk_tbl[i].clk_name);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +	}
-> +
-> +	ret = devm_pm_opp_of_add_table(core->dev);
-> +	if (ret) {
-> +		dev_err(core->dev, "failed to add opp table\n");
-> +		return ret;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int iris_init_clocks(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	ret = devm_clk_bulk_get_all(core->dev, &core->clock_tbl);
-> +	if (ret < 0) {
-> +		dev_err(core->dev, "failed to get bulk clock\n");
-
-Syntax is:
-return dev_err_probe(). If this is probe path. Is it?
-
-> +		return ret;
-> +	}
-> +
-> +	core->clk_count = ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int iris_init_resets(struct iris_core *core)
-> +{
-> +	const char * const *rst_tbl;
-> +	u32 rst_tbl_size;
-> +	u32 i = 0, ret;
-> +
-> +	rst_tbl = core->iris_platform_data->clk_rst_tbl;
-> +	rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
-> +
-> +	core->resets = devm_kzalloc(core->dev,
-> +				    sizeof(*core->resets) * rst_tbl_size,
-> +				    GFP_KERNEL);
-> +	if (rst_tbl_size && !core->resets)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < rst_tbl_size; i++)
-> +		core->resets[i].id = rst_tbl[i];
-> +
-> +	ret = devm_reset_control_bulk_get_exclusive(core->dev, rst_tbl_size, core->resets);
-> +	if (ret) {
-> +		dev_err(core->dev, "failed to get resets\n");
-
-Syntax is:
-return dev_err_probe(). If this is probe path. Is it?
-
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +int iris_init_resources(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	ret = iris_init_icc(core);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iris_init_power_domains(core);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iris_init_clocks(core);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iris_init_resets(core);
-> +
-> +	return ret;
-> +}
-
-This should be just part of of main unit file, next to probe. It is
-unusual to see probe parts not next to probe. Sorry, that's wrong.
+They need "minItems: 4".
 
 Best regards,
 Krzysztof
