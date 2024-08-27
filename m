@@ -1,140 +1,129 @@
-Return-Path: <devicetree+bounces-97059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D839608A8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 977C59608B2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:30:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0978E1F236D1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:28:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4149C1F2384B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B4A1A00F4;
-	Tue, 27 Aug 2024 11:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB0E1A0718;
+	Tue, 27 Aug 2024 11:29:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Hm5AzqL/";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="EjoBRGKI"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HZhfn8Zh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [164.92.70.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBAD19E7D1;
-	Tue, 27 Aug 2024 11:27:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8541A01AE
+	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 11:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=164.92.70.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724758082; cv=none; b=Hvq9IIcx4mdIP4l9QxX8EN/JoCkWxMxgeFLHe3pwVgHqjh2TN83dWKbymI5oYttyKfWYIiglYmxzobYApQDF3Zpn3t3a7UiLM3r4U7FVBCbIlkSbKDxdtgJDPiPOVOuGvREJ1nLeW5wiYE63vQn6mDshy7iVLECLMKTe72KgiZQ=
+	t=1724758187; cv=none; b=JLM/9LDwrDkNEifxyNas3QC6jzQBa6oWjtSc/HnaZJHSS74b/6g54/XjaANXsBX3sKgkmyKSm2NtaaoTpFF2Gkmi3ioYbQI+GSpsdxPlrUFfZLjFfpl9titSl5L48KFhIZmF0rq/qzcawe5mfrI5jtM97ZQStG9O2Xcn9P8zi08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724758082; c=relaxed/simple;
-	bh=4gyqfKs+tLOGvXNMDLu1SnmVy4qS5p61g1+E5uo/tYk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iO/+rsqwSGj43gftJnPfd4JCZBUWwIefTcgZjv48uaz/5suwvAoAr0jekIpoeFUxgQuarRCc6zAj2En0s436DtHwCYMmGDfF60DWWCmikyVkU7Eyjn2niHFEiB5ngG6fjmotQs+Vs3TQrJ3Po57/TxW1tBflGN2M1IHzKVj4dBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Hm5AzqL/; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=EjoBRGKI reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1724758080; x=1756294080;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=H594hvymOuVyU4IRA+6IzWfGdTMX7wzroXd1GVZo3i4=;
-  b=Hm5AzqL/5dyFM7T1QZ4Hyygtp4mytePpM6GPLh7Z89pEPFo2xD/B2iGs
-   +SDcJ2IpfZ40o0m0Kc1TZY44YvNDBunzOPN6KRnb+/NpfxX2bz2PVPCQI
-   fmO93AugBmKjfyXrGau/M9XkyBkb8/gjSwGrhgArzjR2+7ppFzkAvxSDi
-   NaWT0qT+I+kuh06zPBWOjLi7/kRzvXjtuiF+MQDwt4PxuGvXeT9BiGgK1
-   nJg1IwTewe+dwWGkqQ9fN/R8NvNAzKBEYLzqelpYfmi+MLSYV/4T8SGmT
-   QV5/zexNpTsqG6DRwBSzrYvCvCfGZe1l4aP788Vh2BicxYnFoTFuI+Zbe
-   Q==;
-X-CSE-ConnectionGUID: M40X6Ie/TWq3pDfF8ecKxA==
-X-CSE-MsgGUID: V2QOWBIpRJ2/u/qaC3o1Eg==
-X-IronPort-AV: E=Sophos;i="6.10,180,1719871200"; 
-   d="scan'208";a="38609560"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 27 Aug 2024 13:27:57 +0200
-X-CheckPoint: {66CDB83D-13-5FF8EC80-F6CEE9F8}
-X-MAIL-CPID: 78A325EE22E9AD5A01AB969032D4A1D2_0
-X-Control-Analysis: str=0001.0A782F17.66CDB83D.0089,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 314DB163F46;
-	Tue, 27 Aug 2024 13:27:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1724758073;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=H594hvymOuVyU4IRA+6IzWfGdTMX7wzroXd1GVZo3i4=;
-	b=EjoBRGKIDWEjVLScvKCr/b+KfQJdhoHw1O02dsbWEavaL9Yy0g0PgrTxm7QjA031esybSs
-	zLjeQWstY1suPg3HslD9XHGcxUBf5R/2fkjMe6jCYXEA+vP8IGxKcKbjnORHuukId0LkZt
-	4C/W6oE6En7NEAIa+gfcO47Oxz9MLEPkKwAHpxeb0NPTIYm8UzvE0W4w2keVI3AzRJvZPD
-	0QxAdOkQFKI4ssNC8KQ1oLsz2KnlmMPtjbfxzUAk/3X9yxMKQUzGqJ9Nm+pMbOQjc3Dz8h
-	ixxjf4FrjSZvy5vId2wNJ1UqGytZ/TSBCJ8OWN8ZSjXC/vTkHm2TII/C6qzjYA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "festevam@gmail.com" <festevam@gmail.com>, "shawnguo@kernel.org" <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals Support
-Date: Tue, 27 Aug 2024 13:27:51 +0200
-Message-ID: <2200558.irdbgypaU6@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <PN3P287MB18296998E37E061AC496F2D58B882@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-References: <20240821135817.56393-1-tarang.raval@siliconsignals.io> <20240822-calm-dinosaur-of-music-33db22-mkl@pengutronix.de> <PN3P287MB18296998E37E061AC496F2D58B882@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1724758187; c=relaxed/simple;
+	bh=jVubUo4oWTPVIjpMQG9xOItjx9kQJh+7YT/BPKlBiY8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SqTp+1wY8vK0CURapCToFBcVxGPhtbOwsi3K9bXvPTvlQl5BXtv690V6BuBsoBtLRV6nULchFTVSYAsImS/q2sRth1B0bfwPbpPq9O6n0z4HTJT6tOYOrmp4njj6/nI4/AYsLkCkCPys2Gvy8x2sy2lD1ko9iO6QTGVyTus7MoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HZhfn8Zh; arc=none smtp.client-ip=164.92.70.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1724758181;
+ bh=oz/rd4e08jz+p+5PwAy+8XVahhTtzgw1n8icFlOoc84=;
+ b=HZhfn8Zh+Fcol542UqY23Mzj3a2wieHtcSJ1wL/6gk5ooOjSpfeWU9UER8wDObRjJJfHGMiii
+ YLAO7WEylhlEYKaCZB3a2hnWZupXBq6HY3/nkFgEbTGWXLpzPhJGLWvxtgrodEGyrL3nk95W9oS
+ kvbQkeEwCcoBpjrRqFfloU9iQJmxK7UkoIeJsU4ZossLdheANSH7TrbQGWNG0kr/Ro4rD3qIi2s
+ gPYB1Kzf43AZccR3zzXKqIpcQzPeDHFp9fRfwyC99pLhG8N5egD03GLj1HH7V41zscLzbjbRRHm
+ x9voG4/xfjEo+GcqJ/wLD0EJkyyc6PNP15ZP/Fg+Sg4g==
+Message-ID: 1ec02fa5-4b11-424b-a595-c715b62d105e@kwiboo.se
+Date: Tue, 27 Aug 2024 13:29:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
+To: Krzysztof Kozlowski <krzk@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240826205538.1066103-1-jonas@kwiboo.se>
+ <66ccebeb.d40a0220.356790.58caSMTPIN_ADDED_BROKEN@mx.google.com>
+ <b69e5a0a-acf9-412c-90b4-ebe00c7e07d4@kernel.org>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <b69e5a0a-acf9-412c-90b4-ebe00c7e07d4@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 164.92.70.200
+X-ForwardEmail-ID: 66cdb8a4c498660ae9674ece
 
-Hi,
+Hi Krzysztof,
 
-Am Freitag, 23. August 2024, 06:42:24 CEST schrieb Tarang Raval:
-> Hi alexander,
->=20
-> Thank you for your feedback, Regarding your suggestion to switch to the U=
-SB connector node
->=20
-> >> +     extcon_usb: extcon-usbotg1 {
-> >> +             compatible =3D "linux,extcon-usb-gpio";
-> >
-> >Please refer to Documentation/devicetree/bindings/extcon/extcon-usb-gpio=
-=2Eyaml:
->=20
-> I couldn=E2=80=99t find the Documentation/devicetree/bindings/extcon/extc=
-on-usb-gpio.yaml file as mentioned. Instead, I located the extcon-usb-gpio.=
-txt file, but it doesn=E2=80=99t contain documentation about connectors.
+On 2024-08-27 08:52, Krzysztof Kozlowski wrote:
+> On 26/08/2024 22:55, Jonas Karlman wrote:
+>> The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
+>> RK3566 SoC. It features e.g. 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-card,
+>> GbE LAN, HDMI 2.0, M.2 NVMe and USB 2.0/3.0.
+>>
+>> Add devicetree binding documentation for the Hardkernel ODROID-M1S board.
+>>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> ---
+>>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> index f08e9f2f5dfc..9e29a5ecc94d 100644
+>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>> @@ -598,6 +598,11 @@ properties:
+>>            - const: hardkernel,rk3568-odroid-m1
+>>            - const: rockchip,rk3568
+>>  
+>> +      - description: Hardkernel Odroid M1S
+>> +        items:
+>> +          - const: hardkernel,rk3566-odroid-m1s
+> 
+> hardkernel,odroid-m1s
+> 
+> Why adding SoC name to the board? Can it be Odroid M1S with RK3568?
 
-Sorry, I thought my patch [1] was already applied. Meanwhile another one is=
- applied instead [2].
+No, the M1S (rk3566) is a variant of the M1 (rk3568) with less features
+and the smaller SoC package, fully agree that hardkernel,odroid-m1s is
+better, will use it in a v2.
 
-[1] https://lore.kernel.org/all/20240215093214.796821-2-alexander.stein@ew.=
-tq-group.com/
-[2] https://lore.kernel.org/all/b4b96be5-fad6-458c-a236-9b6761eac968@kernel=
-=2Eorg/
+I mainly wanted to keep it consistent to other Hardkernel Odroid boards.
+- hardkernel,rk3326-odroid-go2
+- hardkernel,rk3326-odroid-go2-v11
+- hardkernel,rk3326-odroid-go3
+- rockchip,rk3568-odroid-m1 (hardkernel,rk3568-odroid-m1)
 
-> >> Deprecated, use USB connector node instead.
-> >>
-> >> deprecated: true
-> >
-> >Switch to connectors instead.
->=20
-> I referred to the following YAML file:
->=20
-> link : https://www.kernel.org/doc/Documentation/devicetree/bindings/conne=
-ctor/usb-connector.yaml
->=20
-> Could you please confirm if this is the correct file to refer to?
+If you agree to a vendor prefix change of rockchip,rk3568-odroid-m1,
+maybe we can also drop the soc name from that compatible at the same
+time? E.g. change it to hardkernel,odroid-m1.
 
-Yeah, that's the one I'm referring to.
+Regards,
+Jonas
 
-Thanks
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
-
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
