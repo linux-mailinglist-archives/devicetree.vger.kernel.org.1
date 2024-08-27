@@ -1,285 +1,140 @@
-Return-Path: <devicetree+bounces-97113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10FE960C4E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:39:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE73960C53
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:40:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 118741C22F7F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:39:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34A161F21BB5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F561A0730;
-	Tue, 27 Aug 2024 13:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C0B1C1726;
+	Tue, 27 Aug 2024 13:40:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIiepjKZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V3m8AHT1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160DE19D076
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:39:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB941C0DE3;
+	Tue, 27 Aug 2024 13:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724765963; cv=none; b=WBB6CVthW6cxhGJeWOWKFEzVNjOpmyB5miZNGz31GRenJpwRWyo9yCVDadmf13PUwfI315LYkXP5jykEcUr9CvNZLRMLB0ibyz6Q6eK9mkpzpeBRe7Eu0A2PKv0QU0VxYNBUOfDWo8Csr8wvjnEHVcOLBmBTHXBIYItlc7G8qiA=
+	t=1724766001; cv=none; b=FjQt+BmlvKUrg9r9IHnbgyj4jBxupV90iEMcTEDf62SEDK0lVdC32Ukd0vzdtJFYAOo3ryGVlsPKoGAdP55yogRgOKxc8bXW6vhT0H85Ot4lgXYG15aNOCQpHAp+u7/2aQb5fXNonmQv+wOGFhTF2+yq6TVNerEFFo92xERxKw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724765963; c=relaxed/simple;
-	bh=mgFOFeLBlxfh1P2qLfqCzzCjjawBaBWoDeRs88GUP3E=;
+	s=arc-20240116; t=1724766001; c=relaxed/simple;
+	bh=joSayfGZbhAgfS7Af87lUtotvFzcgcb3h/kA/FP+0Cc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EfE3dZgomggQRweckRTr6UxUkv2fjHUQZVrGzdCS22vOzmX3CbFTWmPsxiivRNu1751nVNyOIvWzs61GGgBAs9ag1/jXBwznaZDDMmjxc5Gn65o3R0vyqsr26dE+mg3uhD3fSWRW0tHni/UOXVJvViW9VpLeWatuIZV2WACiHPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIiepjKZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D0BAC6105D
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:39:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724765962;
-	bh=mgFOFeLBlxfh1P2qLfqCzzCjjawBaBWoDeRs88GUP3E=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cIiepjKZP59TRjQCYRUf/RkWIINV6yDOQUisRhLkeUF3MRNQ09DI1nuvEG0fq8gnw
-	 5dp7cQ/hzVPP+OFI+6O3jMh1HJf5nKM3DuTTMmPaecfGVnFrisLnUdBOm2inJRq5i6
-	 wEwrydxZfuO7EotJ3uZAQJxJek8VZkNrcONHbKRyQmj00vuZeq7rGc3v0j4dhKnxu/
-	 iATTz8KppC/sHd53Qh6gyEaxUtWDGYJFxXwzSOQY9slMmLg20fKmhdnwkTH2A/mNGS
-	 a4UuQBsyR2QN9aCkPZDznBouITtZr6ZwxHpZXoJ1iyrN0xiYOL8/N1e+guQuDXjCIz
-	 iXZH2M7XHC0KA==
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e115eb44752so5902643276.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 06:39:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWo/stNyOhw4aF2kH+CMBEizRvowjekGjaeAw1zilp0w5feuUSezu3ACrNFK57eXa14l0BztpPTciQ5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIlGQS/hLGJQQQLv9W4LAukEQyLvmWwIW0nW2eSqbPc3PMikNX
-	N23APBID7Y6pgpznWcFJtr+1e1kamAXdA1OlHRkZuBNh73guyWznU6M3qA6JAKGn36Xb1fb12/8
-	CTvdHJcQ4X/COC0F05/w+aJafcBYMC3GRjcYgoA==
-X-Google-Smtp-Source: AGHT+IGXnhHqNrJhk46Rl+P1U8Op9Mh+U4zroGn3/eljhE3p4XH2WiUerYGsPqzGwn7EwuvEBtyqueJvGIXDJt/wOYs=
-X-Received: by 2002:a05:6902:1006:b0:e13:d834:603e with SMTP id
- 3f1490d57ef6-e17a8e42776mr14587824276.45.1724765961830; Tue, 27 Aug 2024
- 06:39:21 -0700 (PDT)
+	 To:Cc:Content-Type; b=eJI8WRr0AEImX55unfh5AYkb4t8MuaxsDUEUViljeHotW4EzgCtIvhqKh0AG5pkQW1oTCRCnSBUtLOs2Y6EiQ26r9Vok/hpNApx4Zy6vxjsUcGar7CCmA8mjhjOXPD+o0eaqi1APe/W/Y0kpzU3jiK3FyEMB1r8Z/GR+jwyou7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V3m8AHT1; arc=none smtp.client-ip=209.85.160.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-44fdde0c8dcso31046121cf.0;
+        Tue, 27 Aug 2024 06:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724765999; x=1725370799; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R+JzrrWhLwPRmVxAzC6IAz2guX6EbmEAvRvJoNjLnwA=;
+        b=V3m8AHT1oCKwilqb9qbdN+zYeYDivmzaqkju2+emULL6tQFY1RTHDzLlC3az9JiFM+
+         jqqLGkVK3OQdBTXoQe6JZlswuHJcGmaCeV2NJApHCZ8GmFRt1/sa8ko8fOBbsfLtWAWN
+         cMWLmNut6OZGFfqxkZGrIn5z+tTJExnmDgS2gDOCGLgLIsKffBrVOaznwKQ/oGG9elgq
+         o+5yKu+h+TRGjZqkCPWlAmMMPgACw2v/jiYVGn/agGxcEtNZKSu9c9zY9sBykGcS11Td
+         xA+pVj15pRwFrD/hmQQi/5TgEAC6VQSdg5/T8yuNPi4G5d1hzm6pvrYYYS0FtM+H23Gr
+         rBKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724765999; x=1725370799;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R+JzrrWhLwPRmVxAzC6IAz2guX6EbmEAvRvJoNjLnwA=;
+        b=nnhNywbCCOdZJI5VUX6XV0MCg9aSpEsioxci3g6f3kL7TUcbeik0w5Sgc3yE8azjgv
+         ALKbwEjbl7TYj0IBHaKcdboYLLnAouxk+HNDVhc13/R8KiHx4oZ50e4F1LgpOkcrSksL
+         S1fXMHB5AOt67LG70AyUt2uStYVRrcDNxtJE3HcqWbMNttG3kh1PDBscs3ivPj8uY/GF
+         VVNWvVWKcVR4HvpTAkqN8WXAsnJgrpoXuUWZPaheOnR7x6uzOZiVH17n5uMrGFrg9uSj
+         /xfHVE3RJah/RQm0uyyHIqBIkv/zkXSsprU/qe7RovEzw7hN7BriiGbcldBGkgq4y3UR
+         5IAw==
+X-Forwarded-Encrypted: i=1; AJvYcCVCNFpy6xQSYVZk+mAYMJioBANSaQGWvM3UtohSWreyG8oz2Tyb+aWdG+L2X+xCvEOhOIWhUXtlEAz8as+U@vger.kernel.org, AJvYcCW4xW2EnRebOZun78u/ot38tQfwRIPTlVPFPvwuac/XFMg4yKKAfaOZkmDlBXPfd/xTN1tXupsJflx+09ZjAcYZJzM=@vger.kernel.org, AJvYcCXu3Ewut3mtcg+HMNhcCVhlFQSfL4/zfaVUYjlUZCBQKs/H08eiVHytWYsesrEzrSECQ68nH0Go5X3r@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJPdv1KJILLyLSSWR1H3y79MWSatibP8yMnwv0818O1qbLjIGW
+	l8jPgwm/KfGuwz5gq0KEG6GV0XeKbT3fs9YynhMJAbtbZqPIa84gME6JldVi5H5+dcxQU4Ko2Z2
+	PtAVtTQSPLPF+nsho1VGclbyiEoo=
+X-Google-Smtp-Source: AGHT+IGJ8PhaVJ/ECaHF2mR2KdRB/84usJc1sUbmkZvFaKSqLou+KRIZSWHQY7dyo5gAcjE6tSLXwS8btDovdvbGKuU=
+X-Received: by 2002:a05:622a:4805:b0:446:5368:cce4 with SMTP id
+ d75a77b69052e-45509d37d36mr159127051cf.48.1724765998857; Tue, 27 Aug 2024
+ 06:39:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240812-tdp158-v5-0-78684a84ec23@freebox.fr> <20240812-tdp158-v5-2-78684a84ec23@freebox.fr>
-In-Reply-To: <20240812-tdp158-v5-2-78684a84ec23@freebox.fr>
-From: Robert Foss <rfoss@kernel.org>
-Date: Tue, 27 Aug 2024 15:39:10 +0200
-X-Gmail-Original-Message-ID: <CAN6tsi7UEZ1B3BmTxL-WEeX4Dm0cOYpJSW2QFv6t1vCxcaM8KA@mail.gmail.com>
-Message-ID: <CAN6tsi7UEZ1B3BmTxL-WEeX4Dm0cOYpJSW2QFv6t1vCxcaM8KA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] drm/bridge: add support for TI TDP158
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+References: <20240821085644.240009-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240821085644.240009-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW2=u8enge6N+A617V+5oNYnNmhw_VFW9qbcX=TEbJKig@mail.gmail.com>
+In-Reply-To: <CAMuHMdW2=u8enge6N+A617V+5oNYnNmhw_VFW9qbcX=TEbJKig@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 27 Aug 2024 14:39:31 +0100
+Message-ID: <CA+V-a8t+ri3YtU+=MhVx4ZkPOvoUS6ZY+Hj-nvuXkVKrDUX9pA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/8] arm64: dts: renesas: Add initial DTS for RZ/V2H
+ GP-EVK board
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 12, 2024 at 4:51=E2=80=AFPM Marc Gonzalez <mgonzalez@freebox.fr=
-> wrote:
->
-> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
-> It supports DVI 1.0, HDMI 1.4b and 2.0b.
-> It supports 4 TMDS channels, HPD, and a DDC interface.
-> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
-> for power reduction. Several methods of power management are
-> implemented to reduce overall power consumption.
-> It supports fixed receiver EQ gain using I2C or pin strap to
-> compensate for different lengths input cable or board traces.
->
-> Features
->
-> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
-> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
-> data rate, compatible with HDMI 2.0b electrical parameters
-> - DisplayPort dual-mode standard version 1.1
-> - Programmable fixed receiver equalizer up to 15.5dB
-> - Global or independent high speed lane control, pre-emphasis
-> and transmit swing, and slew rate control
-> - I2C or pin strap programmable
-> - Configurable as a DisplayPort redriver through I2C
-> - Full lane swap on main lanes
-> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
->
-> https://www.ti.com/lit/ds/symlink/tdp158.pdf
->
-> On our board, I2C_EN is pulled high.
-> Thus, this code defines a module_i2c_driver.
->
-> The default settings work fine for our use-case.
-> So this basic driver doesn't need to tweak any I2C registers.
->
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->  drivers/gpu/drm/bridge/Kconfig     |   7 +++
->  drivers/gpu/drm/bridge/Makefile    |   1 +
->  drivers/gpu/drm/bridge/ti-tdp158.c | 108 +++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 116 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kcon=
-fig
-> index c621be1a99a89..c0ab5b620b57d 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -368,6 +368,13 @@ config DRM_TI_DLPC3433
->           It supports up to 720p resolution with 60 and 120 Hz refresh
->           rates.
->
-> +config DRM_TI_TDP158
-> +       tristate "TI TDP158 HDMI/TMDS bridge"
-> +       depends on OF
-> +       select DRM_PANEL_BRIDGE
-> +       help
-> +         Texas Instruments TDP158 HDMI/TMDS Bridge driver
-> +
->  config DRM_TI_TFP410
->         tristate "TI TFP410 DVI/HDMI bridge"
->         depends on OF
-> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Mak=
-efile
-> index 7df87b582dca3..3daf803ce80b6 100644
-> --- a/drivers/gpu/drm/bridge/Makefile
-> +++ b/drivers/gpu/drm/bridge/Makefile
-> @@ -32,6 +32,7 @@ obj-$(CONFIG_DRM_I2C_ADV7511) +=3D adv7511/
->  obj-$(CONFIG_DRM_TI_DLPC3433) +=3D ti-dlpc3433.o
->  obj-$(CONFIG_DRM_TI_SN65DSI83) +=3D ti-sn65dsi83.o
->  obj-$(CONFIG_DRM_TI_SN65DSI86) +=3D ti-sn65dsi86.o
-> +obj-$(CONFIG_DRM_TI_TDP158) +=3D ti-tdp158.o
->  obj-$(CONFIG_DRM_TI_TFP410) +=3D ti-tfp410.o
->  obj-$(CONFIG_DRM_TI_TPD12S015) +=3D ti-tpd12s015.o
->  obj-$(CONFIG_DRM_NWL_MIPI_DSI) +=3D nwl-dsi.o
-> diff --git a/drivers/gpu/drm/bridge/ti-tdp158.c b/drivers/gpu/drm/bridge/=
-ti-tdp158.c
-> new file mode 100644
-> index 0000000000000..4ee0ad29874de
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/ti-tdp158.c
-> @@ -0,0 +1,108 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2024 Freebox SAS
-> + */
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_atomic_helper.h>
-> +#include <linux/i2c.h>
-> +
-> +struct tdp158 {
-> +       struct drm_bridge bridge;
-> +       struct drm_bridge *next;
-> +       struct gpio_desc *enable; // Operation Enable - pin 36
-> +       struct regulator *vcc; // 3.3V
-> +       struct regulator *vdd; // 1.1V
-> +       struct device *dev;
-> +};
-> +
-> +static void tdp158_enable(struct drm_bridge *bridge, struct drm_bridge_s=
-tate *prev)
-> +{
-> +       int err;
-> +       struct tdp158 *tdp158 =3D bridge->driver_private;
-> +
-> +       err =3D regulator_enable(tdp158->vcc);
-> +       if (err)
-> +               dev_err(tdp158->dev, "failed to enable vcc: %d", err);
-> +
-> +       err =3D regulator_enable(tdp158->vdd);
-> +       if (err)
-> +               dev_err(tdp158->dev, "failed to enable vdd: %d", err);
-> +
-> +       gpiod_set_value_cansleep(tdp158->enable, 1);
-> +}
-> +
-> +static void tdp158_disable(struct drm_bridge *bridge, struct drm_bridge_=
-state *prev)
-> +{
-> +       struct tdp158 *tdp158 =3D bridge->driver_private;
-> +
-> +       gpiod_set_value_cansleep(tdp158->enable, 0);
-> +       regulator_disable(tdp158->vdd);
-> +       regulator_disable(tdp158->vcc);
-> +}
-> +
-> +static int tdp158_attach(struct drm_bridge *bridge, enum drm_bridge_atta=
-ch_flags flags)
-> +{
-> +       struct tdp158 *tdp158 =3D bridge->driver_private;
-> +
-> +       return drm_bridge_attach(bridge->encoder, tdp158->next, bridge, f=
-lags);
-> +}
-> +
-> +static const struct drm_bridge_funcs tdp158_bridge_funcs =3D {
-> +       .attach =3D tdp158_attach,
-> +       .atomic_enable =3D tdp158_enable,
-> +       .atomic_disable =3D tdp158_disable,
-> +       .atomic_duplicate_state =3D drm_atomic_helper_bridge_duplicate_st=
-ate,
-> +       .atomic_destroy_state =3D drm_atomic_helper_bridge_destroy_state,
-> +       .atomic_reset =3D drm_atomic_helper_bridge_reset,
-> +};
-> +
-> +static int tdp158_probe(struct i2c_client *client)
-> +{
-> +       struct tdp158 *tdp158;
-> +       struct device *dev =3D &client->dev;
-> +
-> +       tdp158 =3D devm_kzalloc(dev, sizeof(*tdp158), GFP_KERNEL);
-> +       if (!tdp158)
-> +               return -ENOMEM;
-> +
-> +       tdp158->next =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> +       if (IS_ERR(tdp158->next))
-> +               return dev_err_probe(dev, PTR_ERR(tdp158->next), "missing=
- bridge");
-> +
-> +       tdp158->vcc =3D devm_regulator_get(dev, "vcc");
-> +       if (IS_ERR(tdp158->vcc))
-> +               return dev_err_probe(dev, PTR_ERR(tdp158->vcc), "vcc");
-> +
-> +       tdp158->vdd =3D devm_regulator_get(dev, "vdd");
-> +       if (IS_ERR(tdp158->vdd))
-> +               return dev_err_probe(dev, PTR_ERR(tdp158->vdd), "vdd");
-> +
-> +       tdp158->enable =3D devm_gpiod_get_optional(dev, "enable", GPIOD_O=
-UT_LOW);
-> +       if (IS_ERR(tdp158->enable))
-> +               return dev_err_probe(dev, PTR_ERR(tdp158->enable), "enabl=
-e");
-> +
-> +       tdp158->bridge.of_node =3D dev->of_node;
-> +       tdp158->bridge.funcs =3D &tdp158_bridge_funcs;
-> +       tdp158->bridge.driver_private =3D tdp158;
-> +       tdp158->dev =3D dev;
-> +
-> +       return devm_drm_bridge_add(dev, &tdp158->bridge);
-> +}
-> +
-> +static const struct of_device_id tdp158_match_table[] =3D {
-> +       { .compatible =3D "ti,tdp158" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, tdp158_match_table);
-> +
-> +static struct i2c_driver tdp158_driver =3D {
-> +       .probe =3D tdp158_probe,
-> +       .driver =3D {
-> +               .name =3D "tdp158",
-> +               .of_match_table =3D tdp158_match_table,
-> +       },
-> +};
-> +module_i2c_driver(tdp158_driver);
-> +
-> +MODULE_DESCRIPTION("TI TDP158 driver");
-> +MODULE_LICENSE("GPL");
->
-> --
-> 2.34.1
->
+Hi Geert,
 
-Reviewed-by: Robert Foss <rfoss@kernel.org>
+On Mon, Aug 26, 2024 at 1:07=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Wed, Aug 21, 2024 at 10:56=E2=80=AFAM Prabhakar <prabhakar.csengg@gmai=
+l.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add initial DTS for RZ/V2H GP-EVK board, adding the below support:
+> > - Memory
+> > - Clock inputs
+> > - PINCTRL
+> > - SCIF
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dts
+> > @@ -0,0 +1,61 @@
+> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +/*
+> > + * Device Tree Source for the RZ/V2H GP-EVK board
+> > + *
+> > + * Copyright (C) 2024 Renesas Electronics Corp.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "r9a09g057.dtsi"
+> > +
+> > +/ {
+> > +       model =3D "Renesas GP-EVK Board based on r9a09g057h44";
+> > +       compatible =3D "renesas,gp-evk", "renesas,r9a09g057h44", "renes=
+as,r9a09g057";
+>
+> Board name/compatible (and thus file name) are still under discussion...
+>
+As discussed internally I'll update the board name/compatible to
+"renesas,rzv2h-evk" and rename r9a09g057h44-gp-evk.dts to
+r9a09g057h44-rzv2h-evk.dts.
+
+Cheers,
+Prabhakar
 
