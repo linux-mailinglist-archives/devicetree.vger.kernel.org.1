@@ -1,128 +1,125 @@
-Return-Path: <devicetree+bounces-97215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDDED9616D2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 20:21:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18876961707
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 20:33:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 745001F27650
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:21:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8095287E53
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9AC1C57A5;
-	Tue, 27 Aug 2024 18:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717BE1D2F72;
+	Tue, 27 Aug 2024 18:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qkk/E5Bh"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="alWX8iss"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.208])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E061C6F79
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 18:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0191D27B1;
+	Tue, 27 Aug 2024 18:33:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.208
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724782894; cv=none; b=dwBXrGUUijvtP7c1w12deVocoTwWFy/cNXOd3+EVq+V4qvYtcQwc8VXFWCaVAMo0nA+v17AmT6tIHErV1oG2z231HPKnjxycWicmPcBxwAMDJ1yJ26syaMELDWpyUpF5y0dPpgYuNZs7g9FxxX1UxdQ9AVeBUfWIW5RYP4F+xKE=
+	t=1724783584; cv=none; b=SypZTzkVIJm9hnxjVej88mifywR2lfIya1afnBOjlf+SEoSHmckavYzLyp8BOI716xYENuWQzPirb/IgMELhRvtTpxK17nDObgomhmmKsq+LKM+4cFFsB2D6R5eaBbw8Ic/lNEbda4tCvh84eazvUeWUwtBAwNh9N056DwqfiD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724782894; c=relaxed/simple;
-	bh=MpceHBZuHH3o2CueqUk5GDOo7VtJrr197q01MLuthFA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GkB5FhGwSA+legwEhuaQ+IVRoZb0UsaUxS/YwXZli7Lt7MCOKwXCzHOtKktJWimrUqLD2fKdxJIdBN+qmu+JftW1ufNz51BIZ4KZKDphsH8O+bMhUCjjySpypYoIBNP2DdPiabvX5DWjxheDVGCMJjM9BY8OovenRizXx6oUgEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qkk/E5Bh; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4280ca0791bso52510095e9.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 11:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724782891; x=1725387691; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kqdvqJEmzWDPrKZyiAdNz0J2ROp2OO31etrcR1BLAWs=;
-        b=Qkk/E5BhNTbRLvBwbNC0azY9GNZg/1WDwXdZRF+ItgxohfucYoEN/nKaFSd/tSbOzT
-         zJirMTA/wDgFIEmwg8q9JXSpbFnYDNikwrwD1cOcoUsSomSXH/l1vzcLIytNmfPwI8Ky
-         uR/QFS2+PGEgBSqD89DcR5asbM1HweLbLrgeeizyOlZil8OQI1KYaC6HfhGgOadXtxJM
-         Jvm4slbi+628DresDQ+d+4mS8Ee5Mi2iuwNHMVbua0VAr6luJqxg6OR1xKWAFYvVAqSb
-         mndE1zBfRP3XK2hmPHF6bFXnKt0zMXCb7NaD7DhZR5ClRrKDJBv09orSmxOXHhMSARzp
-         apKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724782891; x=1725387691;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kqdvqJEmzWDPrKZyiAdNz0J2ROp2OO31etrcR1BLAWs=;
-        b=OQei0JzyHgwywim6OLH5/a+TU6a/MYHIymjjPcQ4oKM/oKx7LiOCjs/xgw9iELO7CW
-         11WA83vLWWIQCvQ6xzHKsHk7fKgRQ3v0+0pQvKBFUVSZx1q2RjiHk4SwFqwLl6mZnb2s
-         BDY0wa1JDidsj+CnVaPAcDhePxnH5A0h1YQLNwcH2SJGBoKObSyMir4RQ6+9nGShYtGO
-         p1AahzhOjWrKWdzUNBtKICSoV5EcGLjWcU8jfF/dlHE+p3VZI6jII2u5igal3U/WzL8W
-         Avl8TDUyBo6UfLeMSMV8jM3m6Vc3OziNSuYQQ18FBgLuf6TQIByh0717m8DABG94VBKU
-         z+EQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXajX4i7iaHnIH+OdXTvrKjDzfiUh2iM097HaeKJy76JZ0+MyN0pwhtoHe/+B2EawnNRckij8JkBwBL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx01VGtwnk+I1fmZvqbjM+QjJLGftgdAK5jBdsyldZCwJffG+nB
-	4I+cEDr8Ugq9RhqmcPHUUo1aeB4DyZYcfageY5SqQMqbK9nAcXJjE+D7DPrU6/c=
-X-Google-Smtp-Source: AGHT+IEn/urW2WYXErg3s6zWyW9m2P6dJY1Stz7H7aazJRw4zjfpDd/WN9qJrYv1mjZWFicmilsI7Q==
-X-Received: by 2002:a05:600c:45d1:b0:429:e637:959e with SMTP id 5b1f17b1804b1-42b9add4764mr27914815e9.10.1724782890655;
-        Tue, 27 Aug 2024 11:21:30 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ac5180106sm198559695e9.41.2024.08.27.11.21.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2024 11:21:29 -0700 (PDT)
-Date: Tue, 27 Aug 2024 21:21:25 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	s=arc-20240116; t=1724783584; c=relaxed/simple;
+	bh=1386lGTMB6WCcSqsjLJUMCrOsAbXFeBuQL4kGvdYOLQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ltyr1+VLLoIhsXhoH+POAq7XpYOrv3OOfUPMLnCMcukTNh8fKVPRFjVWwJWkiNI1+om+zE80/jH16ejQ1535pWmNbKq+KI/7tVwaEjqtn3U9Eg5SUq3S4EgSPe9kVH0xhBg+7Rm5JkLGWYnVK3TKih0RJ8oZ7hF70nC3RCHtwUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=alWX8iss; arc=none smtp.client-ip=192.19.144.208
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 40E0AC0000E4;
+	Tue, 27 Aug 2024 11:24:54 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 40E0AC0000E4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1724783094;
+	bh=1386lGTMB6WCcSqsjLJUMCrOsAbXFeBuQL4kGvdYOLQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=alWX8issrocCy8Fbnb6qTjBa1LKsp87QC9xvBRCelEPXvz00Fy66v0ajMCipefx+w
+	 O74Q76fWS9tmOW3wAfv94aMnF7LZ8JzsEeMPUbYLIDhBW+n9sipw8rAkpwJlKEFUcj
+	 TMIgDW/ZoQeXTBCq1itZlXWMGBlpj5YjP9tQbIFM=
+Received: from stbirv-lnx-1.igp.broadcom.net (stbirv-lnx-1.igp.broadcom.net [10.67.48.32])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id CD45118045E7C9;
+	Tue, 27 Aug 2024 11:24:53 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-staging@lists.linux.dev, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: staging: max96712: Add support for MAX96724
-Message-ID: <44676cc2-a9e0-45b9-b08b-5280e8aa7a06@stanley.mountain>
-References: <20240827131841.629920-1-niklas.soderlund+renesas@ragnatech.se>
- <20240827131841.629920-3-niklas.soderlund+renesas@ragnatech.se>
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list),
+	arm-scmi@vger.kernel.org (open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE),
+	justin.chen@broadcom.com,
+	opendmb@gmail.com,
+	kapil.hali@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH v4 0/2] Support for I/O width within ARM SCMI SHMEM
+Date: Tue, 27 Aug 2024 11:24:48 -0700
+Message-Id: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240827131841.629920-3-niklas.soderlund+renesas@ragnatech.se>
 
-On Tue, Aug 27, 2024 at 03:18:41PM +0200, Niklas Söderlund wrote:
-> @@ -181,7 +186,8 @@ static void max96712_pattern_enable(struct max96712_priv *priv, bool enable)
->  	}
->  
->  	/* PCLK 75MHz. */
-> -	max96712_write(priv, 0x0009, 0x01);
-> +	if (!priv->max96724)
-> +		max96712_write(priv, 0x0009, 0x01);
->  
+We just got our hands on hardware that only supports 32-bit access width
+to the SRAM being used. This patch series adds support for the
+'reg-io-width' property and allows us to specify the exact access width
+that the SRAM supports.
 
-I don't like this either.  The comment should move.  I didn't see the ! the
-first couple times I read this.  I don't like the MAX96712_ID and
-MAX96724_ID defines because when humans read they only see the general shape of
-the words.
+Changes in v4:
 
-https://www.dictionary.com/e/typoglycemia/
-https://en.wikipedia.org/wiki/Hamming_distance
+- added alignment warnings in case the source/destination/count are not
+  a 4 bytes multiple
+- switched to __ioread32_copy/__iowrite32_copy per Sudeep's suggestion
+- dropped volatile qualifiers to permit that switch
 
-I guess the best we can do is remove the _ID so at least the last characters are
-different.
+Changes in v3:
 
-It should be something like:
+- added missing documentation for the structure members being added
+- removed the use of a macro for the 32-bit only operation, this
+  gets rid of a number of checkpatch warnings
+- added missing trailing barriers
+- corrected binding indentation
 
-	if (priv->id == MAX96712) {
-		/* PCLK 75MHz. */
-		max96712_write(priv, 0x0009, 0x01);
-	}
+Changes in v2:
 
-Or maybe put in function.
+- fixed typo in the binding and added reviewed-by tag from Krzysztof
 
-regards,
-dan carpenter
+- determine the correct I/O operation at the time we parse the
+  'reg-io-width' property rather than for each
+  tx_prepare/fetch_response/fetch_notification call
+
+- dropped support for 1 and 2 bytes 'reg-io-width' as they do not quite
+  make sense, if we can support such smaller access size, then we can
+  support the larger 4 byte access width, too, and there are many places
+  within the SCMI code where ioread32/iowrite32 are used
+
+Florian Fainelli (2):
+  dt-bindings: sram: Document reg-io-width property
+  firmware: arm_scmi: Support 'reg-io-width' property for shared memory
+
+ .../devicetree/bindings/sram/sram.yaml        |  6 ++
+ drivers/firmware/arm_scmi/common.h            | 32 +++++++-
+ .../arm_scmi/scmi_transport_mailbox.c         | 13 +++-
+ .../firmware/arm_scmi/scmi_transport_optee.c  | 11 ++-
+ .../firmware/arm_scmi/scmi_transport_smc.c    | 11 ++-
+ drivers/firmware/arm_scmi/shmem.c             | 78 +++++++++++++++++--
+ 6 files changed, 130 insertions(+), 21 deletions(-)
+
+-- 
+2.34.1
 
 
