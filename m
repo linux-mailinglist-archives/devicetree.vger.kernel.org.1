@@ -1,140 +1,117 @@
-Return-Path: <devicetree+bounces-97124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6BFC960CF1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50314960CF5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:05:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69A7B1F23BE7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:05:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C98311F22597
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FA021C4612;
-	Tue, 27 Aug 2024 14:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31481C3F2A;
+	Tue, 27 Aug 2024 14:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="f0wsI+aC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cepbEcsj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD41A1C1725
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 14:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA481C2DD2;
+	Tue, 27 Aug 2024 14:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724767508; cv=none; b=tq2Cechu1KWanc3sKE/k4Gi/ChswT06iHyTLJ1jUDwGMvl9i0O0NnlxNqukETrADLraWTT9cv2V6ycCzED3HQzycP4xgPa+G1fyJPjz+oYYoYX3cBRTHOxIUugwWAYw7NaGRx9khXSYR63vYzXQ0V+zbTpANzXTt8IPC6DNezyw=
+	t=1724767517; cv=none; b=GnUtI7cId7zVVnNhf+bENgADVPqkPsN1ZVcLcrbDx73P6jeaLM42zWElT+8A6H9hkWeeLRvnDObepPvoVROwcg1J6uxhJOnWV1lALR5VGhat3hI/zI755aoh/Gm/+9pgVn2Z4jfYaDFFjEkwpASHELaVKmEaoHK8XTH0HO5P1XY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724767508; c=relaxed/simple;
-	bh=bM4fxNbrY/+xVU8fyQSBkQzkgoPZsh5qN3u1v0lkPNQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=afjkfnT02BZGcIFJnKsAMmcYtu6Hz8KLRMnG/7tnL4HtLs5O2fBis3vK4xK0Rf+kKPr0woHLjytXbAlrF9PLDoPMihiSbir7Brt6CA+5Z0ovHBIZJVdqGVM2BPGJT9Zb8Yn5FmB4Ghn8P9Z6oXupoUNtQrJBROxFJy0/+PJTISw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=f0wsI+aC; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1724767505;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o/+4z3eCYQ3ifiWxh2Mo64fSEyLTY0srxIMSGlgXIu0=;
-	b=f0wsI+aCnyVCs9y5QYruZtqR5vEiINYu1Xgq+jQ/7dATouu8B+TkWKwZ6fqMyp5j/y7pjN
-	2BKFegidSHoxi4zaIOuSs5/FShDZTk1ICVGkpzTq3646XJXjRivG04ynCtO31cfvUkTadn
-	vkSDW9PucLftdffePUo5j16i4AsHyxU=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-298-04p4MyfqOHqD9rh7KkHJZw-1; Tue, 27 Aug 2024 10:05:04 -0400
-X-MC-Unique: 04p4MyfqOHqD9rh7KkHJZw-1
-Received: by mail-ej1-f72.google.com with SMTP id a640c23a62f3a-a8698664af8so711930766b.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 07:05:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724767503; x=1725372303;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o/+4z3eCYQ3ifiWxh2Mo64fSEyLTY0srxIMSGlgXIu0=;
-        b=pig0hB2XSjd3oAdNlJV+VB928gkaF0kjj1hugyy+iWU/uwwSJO1x10R4fmV0wejE49
-         mjMHYjIFQIZHaodh7X2qwQD3grkJIEldVISwV9YDAp0cmbhvUqVSfPNt+xpvtTv/8R+9
-         TX8WLreVed00cbNCbJ2fg7f+MltR82x3VIrhgj0FIdg6l3vmwUoCgNbNy2C5yUekyoia
-         sUdFxFWXXqvyJkTNNoZ75hyCPYxJ4JAL1pNJRz7ZQi38xNFF4jQtqX5ChGD3pv4Lobz+
-         mosZxi3ryoHWvwi/tm03ux6/QNfvoXVGcljeBEyLvMfw3iOTmOq3eNLwSpGyaW6+9Iin
-         RF3w==
-X-Forwarded-Encrypted: i=1; AJvYcCXgpegMRc8NJkK6MusRCbPcpxSMsK03CHGqDm1hOn2qeUI1llM60a9dzJPs4vDHqFoavmCAAnLH5ebM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMbGz+NvvtcUTU1VK4QwSpozEAnjQLbpQV6PJcBf5n7hwZW1Ay
-	/vQm1vnajvWyFkHNaTE9aUn8nByXm8XdVKkCjojMDuEecDxqZtV/Ziik+uWtedKjlTV7xDYkkCy
-	W0vzFNj2Ru0SaqeEH5hE4yzwxC4Zl+OGtdy2txOVe6c49rXGvmBoQpMJvK0A=
-X-Received: by 2002:a17:906:fe46:b0:a7a:130e:fb6e with SMTP id a640c23a62f3a-a86e297a558mr332225566b.15.1724767501459;
-        Tue, 27 Aug 2024 07:05:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFPFM6fsuNqAoz9t1ZCb79CqPD0sS5dxWyKrPwS3nP6u25sZDYw8Fpsre6BrGY9O9j4ICI+Jw==
-X-Received: by 2002:a17:906:fe46:b0:a7a:130e:fb6e with SMTP id a640c23a62f3a-a86e297a558mr332217866b.15.1724767500740;
-        Tue, 27 Aug 2024 07:05:00 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a86e582d54dsm112656866b.129.2024.08.27.07.04.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Aug 2024 07:05:00 -0700 (PDT)
-Message-ID: <56292842-2071-4c26-a380-c6ae1488361a@redhat.com>
-Date: Tue, 27 Aug 2024 16:04:58 +0200
+	s=arc-20240116; t=1724767517; c=relaxed/simple;
+	bh=LKBzwLK1VuRCG247aZ18hkKv8Cu+JZVib28vpysx80E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KlIsfW4M8fzb2TqReGP6ny/r+fIFVHDhTfTrIzOVx8EOl2hbMhopb1V8geG7/UzXaQSSg96Q9hsEPgqBaxb6yPEo3uVN8NRyrdx0AiCxiJTlAwOi3WBX1xVTDmnb5nxx+FQoHzG2xHa1P6P/CGGyOsAkyLhrmNIqML/GeC4S0pE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cepbEcsj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06326C61073;
+	Tue, 27 Aug 2024 14:05:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724767517;
+	bh=LKBzwLK1VuRCG247aZ18hkKv8Cu+JZVib28vpysx80E=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=cepbEcsjf81GL1oTNQ4cpG2rya1VZgaBMQ5UK+Eef8HF7HrmE4NgZchfghQqUuOQ1
+	 B9zows4udjTc8PvO/15qa2CKES/aSaYQAbDEpnyZXfi6lO2/h2VeDM4b/E2BuG/HbK
+	 bcguEJocmarmkPaH2NWtYQqWerl7WKmmrrSxP5NlBJxPSex0nAOP5JkmSAurmimAOv
+	 3UV85kxV8JNnaaj01N/DL394XITUeKKSAC3Vf7Xeyeb5m70iuFBhQOh4VdkLUG7uZv
+	 mGGepPeI8+7RdEABg0cLfiaKFExxg4wwdPTvQOv8H5dDHyCUaZmBOudvzv0jz3KH7l
+	 guzD0PZEbiaoQ==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5334b0e1a8eso7286823e87.0;
+        Tue, 27 Aug 2024 07:05:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUGaEikVsmVG2Dh6/4SeoJcCw8bdA5n1wz9/Enukmsru24/ht/SQ0S0L3ByTzyfjVmLgrI6sB4SKEyMYFI=@vger.kernel.org, AJvYcCUdkXBhGhxMGYDgdXTvqZAX00dqW6LQp6JawJ4fpCp6SRhwqd5r4VCY49HtqczsWf22XJtZaTh89zLqyFM=@vger.kernel.org, AJvYcCVH5TtZWRGWHrmqqeYoja3LbG2mepqleY8lfk9Im5mU8w7rtee28imDurHEQ5IoOR0ZLmsTZO81sEzXiA==@vger.kernel.org, AJvYcCVbNvmn1+kISpH0qgCPZ91Ii+rPUDobmLEOM/MXnMTZk9o/yykeN4NbQxZY5M9ok6pfi88fbJe0DSia@vger.kernel.org, AJvYcCXRk44K0EbcB2+SWp5gAu+tzLh2E9WkCPZYkZSb9YaHLWZxnC9a+z9mi26wWa1yn3IhhkRsCcpDyD8WYB4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhQjtMxKeau31qWnMf0gZP1NEnKOE1TqD4yA+YywtzJSigIz+k
+	WdIKTOCFGQxZsKncw2kWopJLPtbSiAoCFvBmjbyGHM4qmjBA40lRgtsZHMSa4djCKjlVQznj8J0
+	Fnfe7RMP6RkD23x/iQ5aRR7J4Fw==
+X-Google-Smtp-Source: AGHT+IER8wl94tUFX0eKrTywG7PWQXHkf/Kibv/Fvx5W7HJEPoMeI4PCXKA6CTewYNf/vhQ7d085ZoNSwSxadgFvBDE=
+X-Received: by 2002:a05:6512:31c4:b0:52e:f950:31f3 with SMTP id
+ 2adb3069b0e04-53438785441mr11027241e87.35.1724767515105; Tue, 27 Aug 2024
+ 07:05:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] platform/surface: Add OF support
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
- <20240814-topic-sam-v3-3-a84588aad233@quicinc.com>
- <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
- <4dab4f36-309d-4b95-8b01-84963ca08d16@redhat.com>
- <cdd77270-3189-4fa9-9b4e-e443db5fb583@kernel.org>
-Content-Language: en-US, nl
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <cdd77270-3189-4fa9-9b4e-e443db5fb583@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <87cylwqa12.wl-kuninori.morimoto.gx@renesas.com>
+ <87a5h0qa0g.wl-kuninori.morimoto.gx@renesas.com> <20240826154009.GA300981-robh@kernel.org>
+ <Zs2tYUh3PXv-0e20@valkosipuli.retiisi.eu>
+In-Reply-To: <Zs2tYUh3PXv-0e20@valkosipuli.retiisi.eu>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 27 Aug 2024 09:05:02 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLcM3r0dPHX9eoU3cz78UxBfg3_DnU4eKX7aohbYC2mRA@mail.gmail.com>
+Message-ID: <CAL_JsqLcM3r0dPHX9eoU3cz78UxBfg3_DnU4eKX7aohbYC2mRA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] of: property: add of_graph_get_next_port_endpoint()
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	David Airlie <airlied@gmail.com>, Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Mark Brown <broonie@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
+	Michal Simek <michal.simek@amd.com>, Saravana Kannan <saravanak@google.com>, 
+	Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-omap@vger.kernel.org, linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Tue, Aug 27, 2024 at 5:47=E2=80=AFAM Sakari Ailus <sakari.ailus@iki.fi> =
+wrote:
+>
+> Rob, Kunimori-san,
+>
+> On Mon, Aug 26, 2024 at 10:40:09AM -0500, Rob Herring wrote:
+> > On Mon, Aug 26, 2024 at 02:43:28AM +0000, Kuninori Morimoto wrote:
+> > > We already have of_graph_get_next_endpoint(), but it is not
+> > > intuitive to use in some case.
+> >
+> > Can of_graph_get_next_endpoint() users be replaced with your new
+> > helpers? I'd really like to get rid of the 3 remaining users.
+>
+> The fwnode graph API has fwnode_graph_get_endpoint_by_id() which can also
+> be used to obtain endpoints within a port. It does the same than
+> of_graph_get_endpoint_by_regs() with the addition that it also has a
+> flags field to allow e.g. returning endpoints with regs higher than
+> requested (FWNODE_GRAPH_ENDPOINT_NEXT).
 
-On 8/27/24 3:52 PM, Konrad Dybcio wrote:
-> On 27.08.2024 11:07 AM, Hans de Goede wrote:
->> Hi Andy,
->>
->> Thank you for the review.
->>
->> Note this has already been merged though.
->>
->> Still there are some good suggestions here for a follow-up
->> cleanup patch.
-> 
-> Andy, Hans
-> 
-> Is it fine if I submit a fat "address review comments" patch, or should
-> I split it up per issue?
+Looks to me like FWNODE_GRAPH_ENDPOINT_NEXT is always used with
+endpoint #0. That's equivalent to passing -1 for the endpoint number
+with the OF API.
 
-I would say use your best judgement / something in the middle.
+> Most users dealing with endpoints on fwnode property API use this, could
+> something like this be done on OF as well? Probably a similar flag would =
+be
+> needed though.
 
-IOW start with a fat "address review comments" patch and if
-specific parts turn out to be somewhat involved do 1 patch
-with smaller clean-ups and split out the involved parts in
-a separate patch.
+I had fixed almost all the OF cases at one point. Unfortunately, there
+were a few corner cases that I didn't address to eliminate the API. So
+now it has proliferated with the fwnode API.
 
-Thanks & Regards,
-
-Hans
-
-
+Rob
 
