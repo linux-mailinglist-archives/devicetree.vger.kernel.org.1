@@ -1,464 +1,366 @@
-Return-Path: <devicetree+bounces-97219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A57396170B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 20:34:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257C09616FD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 20:29:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA18E1F23E57
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:34:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4985B1C22622
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCD41D27B4;
-	Tue, 27 Aug 2024 18:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172931CFEB3;
+	Tue, 27 Aug 2024 18:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="DvgWwaVU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jojjj+AU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.209])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCC57D405;
-	Tue, 27 Aug 2024 18:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.209
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAAD1C57A5;
+	Tue, 27 Aug 2024 18:29:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724783689; cv=none; b=XzWLC34OjV6F3XCRW32q0XfjY6vpOU+ZY6n4eW6HeikL5e+3hUmImNc6HOSSHrpAPrZgo2cTgPpTX3Xyo3f4CqRG4yLJGNBjV76SQHSu0Z8SM5gsiycfbg0n9q791kj6z3cItXfU4eL7HSLfresMEfx+13jkwtsH9xfVQRpBRrM=
+	t=1724783369; cv=none; b=rq2ypN55C/EP/4UORJEuVey9UzVY+GL0NBMnx5bpp8DKoF1A8lGo3HDCLxrb5MlZG+Bh8zoX1AWpBFoa/QMqKeFrE6VJgtUmUKi1fQvv5ettNq1Ow44cR6wBXADNRlOmew1FJUQARs5IWokxcPgzaa/Yr4cZx0Lo+o8iHf2FyD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724783689; c=relaxed/simple;
-	bh=00yhDg6wTKBvyoqA/HsobzG0yYt1gEx8SsEpCSHFgAo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=WI2g1Qa7pbwv0Y/FtC/egKzbe0jdcKlBIZPjbw+1szeRCTAmt/EWVMOEhilcjtdaF3ReA3jVSPsB+FkAApjvyR0uqES1xAoEKwffzWIB2Gi0VYsg2cLAKRcG9s96KkXnoXZo476O5TsugEWzZ6BmwkthrnrrPSRdoe/v6+aEOQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=DvgWwaVU; arc=none smtp.client-ip=192.19.144.209
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 940ADC0000F5;
-	Tue, 27 Aug 2024 11:24:54 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 940ADC0000F5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1724783094;
-	bh=00yhDg6wTKBvyoqA/HsobzG0yYt1gEx8SsEpCSHFgAo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DvgWwaVUp2wVJEdM+rI50QBdFThRCRTZP1mInzbtxYFathVgIadNRIa9tLqyGNvJB
-	 TX8425xyrJU+7z5NLTeuXFi2TMjf7b8/G2xFN2ri08+ApklpYP2IryeN4PB757Ruzm
-	 8XZs6mWGSYvZHyH6CRChjB5TTe3uJLfsznpIHA9Y=
-Received: from stbirv-lnx-1.igp.broadcom.net (stbirv-lnx-1.igp.broadcom.net [10.67.48.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 380BE18045EF45;
-	Tue, 27 Aug 2024 11:24:54 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1724783369; c=relaxed/simple;
+	bh=EnYjS++9YilliVGA8wfsFMGybcXA/J3pmRuAWqg/ZXM=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CA0UMZFSphh2POm7ukAAj2+LnI6l6QoputgKdKBYZq3U2rE1SMGx3/19/h4/Gam0O+1+YDrYhCJJFUCat2DHphcHF3pR+1L8YflW0K08x5J9NluDahwbgpFK0/53R7GJYeFsXa7xS0ykKoQnjKtHkCko53lUu9mC3dR7dLHZkpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jojjj+AU; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-371b97cfd6fso3741565f8f.2;
+        Tue, 27 Aug 2024 11:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724783365; x=1725388165; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WI1N1DgwDsJPwlRve7vkKC6KRtuD+miK3xK7WkyW/yM=;
+        b=Jojjj+AUt19zb7B1JKRzzDcJNbDOyVc2kMkWblzijpXh+4tdIJQR7dOB5Ce12TkT7X
+         TjM+QB6fH3tzKsup7jncWOQ2abEuwdDwR958ycqUvJXLDFTFFnMcpg4rBwshq84MQ4aY
+         q336YEgXOa30CRY9rC09dsKWfvYUsX3QzT9iIkF7LXl9ogi0qFcxF5D9G2Gzv1SqIMh1
+         7Gn+yK1Ltkp8/XaxvGj2OJ00uuMUMm5/+c/HLG7PI6OnDs3pHHayAH5cYr/UI5/hBThS
+         3xDpt+ObUn57FXnmaz0jCZ6Xwgg3yrufe4EnsYSyD1oGlL3/83ix0tUsy2Y9CxjkwPKy
+         VSlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724783365; x=1725388165;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WI1N1DgwDsJPwlRve7vkKC6KRtuD+miK3xK7WkyW/yM=;
+        b=Nk0Ds4RFVSuIfD4gvTJG2vCdsW+dzT8ci1ve8xH3MsZ1jYxvd0df6b6ol0QFp0069b
+         6mpdurkuyQrqpyzUFbZPkd5YWH9sj1nfdbHPWxzDMtxs8QsI7vztZXdX57OV7h6e2oYt
+         sjkts76xHc5Oc2wk/zXQ7oc6pqx2+h2G4hE2PoipV2oSVwWj0toCPeRidnXvQIDKS8ae
+         ZsSF0owT2IaDem4ks7n6z6YrPJ7e/Luab2BRYhqH2AiDx/SjwUar4q9wApwb+cinY+xy
+         0FbFsi4n4aftmYqYrcQpPCU9itgYTB9vUAT8nmhEURxWS5euWwbHaclkJb+HQ6/kS5T3
+         rQ7g==
+X-Forwarded-Encrypted: i=1; AJvYcCW+t33L0B7Gd5PwBq5HcAOTnZQYvZ12xYe323bJS2yvbO/sSGJmALKaJDYlagHtLfmMqV3M3t5AfioA@vger.kernel.org, AJvYcCXpNsNLmh3goNuLuHDgQQWNxPJAP7H1zNTNUEf18uSgx6PwkWSs08gedKP1Tszg8svUcQq4dewuuLs7eg==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzl8pFl6G5315xorzFlg5W4LjtmTZM6fm8OiNggE06yMHafjo+D
+	jZm8rr1cFiF4mWdGLbKK3hQq6RNo3naOOzHDL+eRHKDNEEGnli0X
+X-Google-Smtp-Source: AGHT+IEh8e9df02+VsFiaG+m2FW0LXgC8j4lKzwsfi4bbOggJsY8PNcGwyF+AYmZjvqrw4VScPcODg==
+X-Received: by 2002:a5d:4903:0:b0:368:d0d:a5d6 with SMTP id ffacd0b85a97d-3748c81a27cmr1883813f8f.50.1724783364861;
+        Tue, 27 Aug 2024 11:29:24 -0700 (PDT)
+Received: from Ansuel-XPS. (host-87-1-209-141.retail.telecomitalia.it. [87.1.209.141])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730817a2f4sm13703619f8f.61.2024.08.27.11.29.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2024 11:29:24 -0700 (PDT)
+Message-ID: <66ce1b04.df0a0220.a2131.6def@mx.google.com>
+X-Google-Original-Message-ID: <Zs4bADmXY6V4ukSg@Ansuel-XPS.>
+Date: Tue, 27 Aug 2024 20:29:20 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
+	Conor Dooley <conor@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Benjamin Larsson <benjamin.larsson@genexis.eu>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	arm-scmi@vger.kernel.org (open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE),
-	justin.chen@broadcom.com,
-	opendmb@gmail.com,
-	kapil.hali@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH v4 2/2] firmware: arm_scmi: Support 'reg-io-width' property for shared memory
-Date: Tue, 27 Aug 2024 11:24:50 -0700
-Message-Id: <20240827182450.3608307-3-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
-References: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+ controller
+References: <20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org>
+ <20240822-en7581-pinctrl-v2-1-ba1559173a7f@kernel.org>
+ <20240822-taste-deceptive-03d0ad56ae2e@spud>
+ <aef3188d-5aaf-4f6d-addf-60066065ef9b@genexis.eu>
+ <20240823-darkened-cartload-d2621f33eab8@spud>
+ <66c8c50f.050a0220.d7871.f209@mx.google.com>
+ <Zsj8bmBJhfUdH6qT@lore-desk>
+ <20240826-kinsman-crunching-e3b75297088c@spud>
+ <CAA2SeNJ2Gi+3Za+jvAVqqbx7xEGLqkDBkJ8vL=pA=ZbKWOfp=Q@mail.gmail.com>
+ <CAL_JsqLBGwgX=PeCqP8+iFj6uvAO4O_dTvz7x1c+T1Kz+-q-QA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqLBGwgX=PeCqP8+iFj6uvAO4O_dTvz7x1c+T1Kz+-q-QA@mail.gmail.com>
 
-Some shared memory areas might only support a certain access width,
-such as 32-bit, which memcpy_{from,to}_io() does not adhere to at least
-on ARM64 by making both 8-bit and 64-bit accesses to such memory.
+On Tue, Aug 27, 2024 at 09:35:07AM -0500, Rob Herring wrote:
+> On Tue, Aug 27, 2024 at 3:47 AM Lorenzo Bianconi
+> <lorenzo.bianconi83@gmail.com> wrote:
+> >
+> > >
+> > > On Fri, Aug 23, 2024 at 11:17:34PM +0200, Lorenzo Bianconi wrote:
+> > > > > On Fri, Aug 23, 2024 at 05:14:30PM +0100, Conor Dooley wrote:
+> > > > > > On Thu, Aug 22, 2024 at 10:50:52PM +0200, Benjamin Larsson wrote:
+> > > > > > > On 22/08/2024 18:06, Conor Dooley wrote:
+> > > > > > >
+> > > > > > >
+> > > > > > > Hi.
+> > > > > > >
+> > > > > > > > before looking at v1:
+> > > > > > > > I would really like to see an explanation for why this is a correct
+> > > > > > > > model of the hardware as part of the commit message. To me this screams
+> > > > > > > > syscon/MFD and instead of describing this as a child of a syscon and
+> > > > > > > > using regmap to access it you're doing whatever this is...
+> > > > > > >
+> > > > > > > Can you post a link to a good example dts that uses syscon/MFD ?
+> > > > > > >
+> > > > > > > It is not only pinctrl, pwm and gpio that are entangled in each other. A
+> > > > > > > good example would help with developing a proper implementation.
+> > > > > >
+> > > > > > Off the top of my head, no unfortunately. Maybe Rob or Krzk have a good
+> > > > > > example. I would suggest to start by looking at drivers within gpio or
+> > > > > > pinctrl that use syscon_to_regmap() where the argument is sourced from
+> > > > > > either of_node->parent or dev.parent->of_node (which you use depends on
+> > > > > > whether or not you have a child node or not).
+> > > > > >
+> > > > > > I recently had some questions myself for Rob about child nodes for mfd
+> > > > > > devices and when they were suitable to use:
+> > > > > > https://lore.kernel.org/all/20240815200003.GA2956351-robh@kernel.org/
+> > > > > >
+> > > > > > Following Rob's line of thought, I'd kinda expect an mfd driver to create
+> > > > > > the devices for gpio and pwm using devm_mfd_add_devices() and the
+> > > > > > pinctrl to have a child node.
+> > > > >
+> > > > > Just to not get confused and staring to focus on the wrong kind of
+> > > > > API/too complex solution, I would suggest to check the example from
+> > > > > Lorenzo.
+> > > > >
+> > > > > The pinctrl/gpio is an entire separate block and is mapped separately.
+> > > > > What is problematic is that chip SCU is a mix and address are not in
+> > > > > order and is required by many devices. (clock, pinctrl, gpio...)
+> > > > >
+> > > > > IMHO a mfd is overkill and wouldn't suite the task. MDF still support a
+> > > > > single big region and in our case we need to map 2 different one (gpio
+> > > > > AND chip SCU) (or for clock SCU and chip SCU)
+> > > > >
+> > > > > Similar problem is present in many other place and syscon is just for
+> > > > > the task.
+> > > > >
+> > > > > Simple proposed solution is:
+> > > > > - chip SCU entirely mapped and we use syscon
+> > >
+> > > That seems reasonable.
+> >
+> > ack
+> >
+> > >
+> > > > > - pinctrl mapped and reference chip SCU by phandle
+> > >
+> > > ref by phandle shouldn't be needed here, looking up by compatible should
+> > > suffice, no?
+> >
+> > ack, I think it would be fine
+> >
+> > >
+> > > > > - pwm a child of pinctrl as it's scrambled in the pinctrl mapped regs
+> > >
+> > > The pwm is not a child of the pinctrl though, they're both subfunctions of
+> > > the register region they happen to both be in. I don't agree with that
+> > > appraisal, sounds like an MFD to me.
+> >
+> > ack
+> >
+> > >
+> > > > > Hope this can clear any confusion.
+> > > >
+> > > > To clarify the hw architecture we are discussing about 3 memory regions:
+> > > > - chip_scu: <0x1fa20000 0x384>
+> > > > - scu: <0x1fb00020 0x94c>
+> > >                   ^
+> > > I'm highly suspicious of a register region that begins at 0x20. What is
+> > > at 0x1fb00000?
+> >
+> > sorry, my fault
+> >
+> > >
+> > > > - gpio: <0x1fbf0200 0xbc>
+> > >
+> > > Do you have a link to the register map documentation for this hardware?
+> > >
+> > > > The memory regions above are used by the following IC blocks:
+> > > > - clock: chip_scu and scu
+> > >
+> > > What is the differentiation between these two different regions? Do they
+> > > provide different clocks? Are registers from both of them required in
+> > > order to provide particular clocks?
+> >
+> > In chip-scu and scu memory regions we have heterogeneous registers.
+> > Regarding clocks in chip-scu we have fixed clock registers (e.g. spi
+> > clock divider, switch clock source and divider, main bus clock source
+> > and divider, ...) while in scu (regarding clock configuration) we have
+> > pcie clock regs (e.g. reset and other registers). This is the reason
+> > why, in en7581-scu driver, we need both of them, but we can access
+> > chip-scu via the compatible string (please take a look at the dts
+> > below).
+> >
+> > >
+> > > > - pinctrl (io-muxing/gpio_chip/irq_chip): chip_scu and gpio
+> > >
+> > > Ditto here. Are these actually two different sets of iomuxes, or are
+> > > registers from both required to mux a particular pin?
+> >
+> > Most of the io-muxes configuration registers are in chip-scu block,
+> > just pwm ones are in gpio memory block.
+> > Gpio block is mainly used for gpio_chip and irq_chip functionalities.
+> >
+> > >
+> > > > - pwm: gpio
+> > > >
+> > > > clock and pinctrl devices share the chip_scu memory region but they need to
+> > > > access even other separated memory areas (scu and gpio respectively).
+> > > > pwm needs to just read/write few gpio registers.
+> > > > As pointed out in my previous email, we can define the chip_scu block as
+> > > > syscon node that can be accessed via phandle by clock and pinctrl drivers.
+> > > > clock driver will map scu area while pinctrl one will map gpio memory block.
+> > > > pwm can be just a child of pinctrl node.
+> > >
+> > > As I mentioned above, the last statement here I disagree with. As
+> > > someone that's currently in the process of fixing making a mess of this
+> > > exact kind of thing, I'm going to strongly advocate not taking shortcuts
+> > > like this.
+> > >
+> > > IMO, all three of these regions need to be described as syscons in some
+> > > form, how exactly it's hard to say without a better understanding of the
+> > > breakdown between regions.
+> > >
+> > > If, for example, the chip_scu only provides a few "helper" bits, I'd
+> > > expect something like
+> > >
+> > > syscon@1fa20000 {
+> > >         compatible = "chip-scu", "syscon";
+> > >         reg = <0x1fa2000 0x384>;
+> > > };
+> > >
+> > > syscon@1fb00000 {
+> > >         compatible = "scu", "syscon", "simple-mfd";
+> > >         #clock-cells = 1;
+> > > };
+> > >
+> > > syscon@1fbf0200 {
+> > >         compatible = "gpio-scu", "syscon", "simple-mfd";
+> > >         #pwm-cells = 1;
+> > >
+> > >         pinctrl@x {
+> > >                 compatible = "pinctrl";
+> > >                 reg = x;
+> > >                 #pinctrl-cells = 1;
+> > >                 #gpio-cells = 1;
+> > >         };
+> > > };
+> > >
+> >
+> > ack, so we could use the following dts nodes for the discussed memory
+> > regions (chip-scu, scu and gpio):
+> >
+> > syscon@1fa20000 {
+> >     compatible = "airoha,chip-scu", "syscon";
+> >     reg = <0x0 0x1fa2000 0x0 0x384>;
+> > };
+> >
+> > clock-controller@1fb00000 {
+> >     compatible = "airoha,en7581-scu", "syscon";
+> >     reg = <0x0 0x1fb00000 0x0 0x94c>;
+> >     #clock-cells = <1>;
+> >     #reset-cells = <1>;
+> > };
+> >
+> > mfd@1fbf0200 {
+> >     compatible = "airoha,en7581-gpio-mfd", "simple-mfd";
+> >     reg = <0x0 0x1fbf0200 0x0 0xc0>;
+> >
+> >     pio: pinctrl {
+> >         compatible = "airoha,en7581-pinctrl"
+> >         gpio-controller;
+> >         #gpio-cells = <2>;
+> >
+> >         interrupt-controller;
+> >         #interrupt-cells = <2>;
+> >         interrupt-parent = <&gic>;
+> >         interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> >     }
+> >
+> >     pwm: pwm {
+> >         compatible = "airoha,en7581-pwm";
+> >         #pwm-cells = <3>;
+> >     }
+> > };
+> 
+> I think this can be simplified down to this:
+> 
+> mfd@1fbf0200 {
+>     compatible = "airoha,en7581-gpio-mfd";  // MFD is a Linuxism. What
+> is this h/w block called?
+>     reg = <0x0 0x1fbf0200 0x0 0xc0>;
+>     gpio-controller;
+>     #gpio-cells = <2>;
+>     interrupt-controller;
+>     #interrupt-cells = <2>;
+>     interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> 
+>     #pwm-cells = <3>;
+> 
+>     pio: pinctrl {
+>         foo-pins {};
+>         bar-pins {};
+>     };
+> };
+> 
+> Maybe we keep the compatible in 'pinctrl'...
+>
 
-Update the shmem layer to support reading from and writing to such
-shared memory area using the specified I/O width in the Device Tree. The
-various transport layers making use of the shmem.c code are updated
-accordingly to pass the I/O accessors that they store.
+Hi Rob, thanks a lot for the hint, I hope we can finally find a solution
+on how to implement this.
 
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- drivers/firmware/arm_scmi/common.h            | 32 +++++++-
- .../arm_scmi/scmi_transport_mailbox.c         | 13 +++-
- .../firmware/arm_scmi/scmi_transport_optee.c  | 11 ++-
- .../firmware/arm_scmi/scmi_transport_smc.c    | 11 ++-
- drivers/firmware/arm_scmi/shmem.c             | 78 +++++++++++++++++--
- 5 files changed, 124 insertions(+), 21 deletions(-)
+In Documentation the block is called GPIO Controller. As explained it does
+expose pinctrl function AND pwm (with regs in the middle)
 
-diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
-index 69928bbd01c2..a13f79b37c99 100644
---- a/drivers/firmware/arm_scmi/common.h
-+++ b/drivers/firmware/arm_scmi/common.h
-@@ -316,6 +316,26 @@ enum scmi_bad_msg {
- 	MSG_MBOX_SPURIOUS = -5,
- };
- 
-+/* Used for compactness and signature validation of the function pointers being
-+ * passed.
-+ */
-+typedef void (*shmem_copy_toio_t)(void __iomem *to, const void *from,
-+				  size_t count);
-+typedef void (*shmem_copy_fromio_t)(void *to, const void __iomem *from,
-+				    size_t count);
-+
-+/**
-+ * struct scmi_shmem_io_ops  - I/O operations to read from/write to
-+ * Shared Memory
-+ *
-+ * @toio: Copy data to the shared memory area
-+ * @fromio: Copy data from the shared memory area
-+ */
-+struct scmi_shmem_io_ops {
-+	shmem_copy_fromio_t fromio;
-+	shmem_copy_toio_t toio;
-+};
-+
- /* shmem related declarations */
- struct scmi_shared_mem;
- 
-@@ -336,13 +356,16 @@ struct scmi_shared_mem;
- struct scmi_shared_mem_operations {
- 	void (*tx_prepare)(struct scmi_shared_mem __iomem *shmem,
- 			   struct scmi_xfer *xfer,
--			   struct scmi_chan_info *cinfo);
-+			   struct scmi_chan_info *cinfo,
-+			   shmem_copy_toio_t toio);
- 	u32 (*read_header)(struct scmi_shared_mem __iomem *shmem);
- 
- 	void (*fetch_response)(struct scmi_shared_mem __iomem *shmem,
--			       struct scmi_xfer *xfer);
-+			       struct scmi_xfer *xfer,
-+			       shmem_copy_fromio_t fromio);
- 	void (*fetch_notification)(struct scmi_shared_mem __iomem *shmem,
--				   size_t max_len, struct scmi_xfer *xfer);
-+				   size_t max_len, struct scmi_xfer *xfer,
-+				   shmem_copy_fromio_t fromio);
- 	void (*clear_channel)(struct scmi_shared_mem __iomem *shmem);
- 	bool (*poll_done)(struct scmi_shared_mem __iomem *shmem,
- 			  struct scmi_xfer *xfer);
-@@ -350,7 +373,8 @@ struct scmi_shared_mem_operations {
- 	bool (*channel_intr_enabled)(struct scmi_shared_mem __iomem *shmem);
- 	void __iomem *(*setup_iomap)(struct scmi_chan_info *cinfo,
- 				     struct device *dev,
--				     bool tx, struct resource *res);
-+				     bool tx, struct resource *res,
-+				     struct scmi_shmem_io_ops **ops);
- };
- 
- const struct scmi_shared_mem_operations *scmi_shared_mem_operations_get(void);
-diff --git a/drivers/firmware/arm_scmi/scmi_transport_mailbox.c b/drivers/firmware/arm_scmi/scmi_transport_mailbox.c
-index dc5ca894d5eb..1a2e90e5c765 100644
---- a/drivers/firmware/arm_scmi/scmi_transport_mailbox.c
-+++ b/drivers/firmware/arm_scmi/scmi_transport_mailbox.c
-@@ -25,6 +25,7 @@
-  * @chan_platform_receiver: Optional Platform Receiver mailbox unidirectional channel
-  * @cinfo: SCMI channel info
-  * @shmem: Transmit/Receive shared memory area
-+ * @io_ops: Transport specific I/O operations
-  */
- struct scmi_mailbox {
- 	struct mbox_client cl;
-@@ -33,6 +34,7 @@ struct scmi_mailbox {
- 	struct mbox_chan *chan_platform_receiver;
- 	struct scmi_chan_info *cinfo;
- 	struct scmi_shared_mem __iomem *shmem;
-+	struct scmi_shmem_io_ops *io_ops;
- };
- 
- #define client_to_scmi_mailbox(c) container_of(c, struct scmi_mailbox, cl)
-@@ -43,7 +45,8 @@ static void tx_prepare(struct mbox_client *cl, void *m)
- {
- 	struct scmi_mailbox *smbox = client_to_scmi_mailbox(cl);
- 
--	core->shmem->tx_prepare(smbox->shmem, m, smbox->cinfo);
-+	core->shmem->tx_prepare(smbox->shmem, m, smbox->cinfo,
-+				smbox->io_ops->toio);
- }
- 
- static void rx_callback(struct mbox_client *cl, void *m)
-@@ -197,7 +200,8 @@ static int mailbox_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	if (!smbox)
- 		return -ENOMEM;
- 
--	smbox->shmem = core->shmem->setup_iomap(cinfo, dev, tx, NULL);
-+	smbox->shmem = core->shmem->setup_iomap(cinfo, dev, tx, NULL,
-+						&smbox->io_ops);
- 	if (IS_ERR(smbox->shmem))
- 		return PTR_ERR(smbox->shmem);
- 
-@@ -298,7 +302,7 @@ static void mailbox_fetch_response(struct scmi_chan_info *cinfo,
- {
- 	struct scmi_mailbox *smbox = cinfo->transport_info;
- 
--	core->shmem->fetch_response(smbox->shmem, xfer);
-+	core->shmem->fetch_response(smbox->shmem, xfer, smbox->io_ops->fromio);
- }
- 
- static void mailbox_fetch_notification(struct scmi_chan_info *cinfo,
-@@ -306,7 +310,8 @@ static void mailbox_fetch_notification(struct scmi_chan_info *cinfo,
- {
- 	struct scmi_mailbox *smbox = cinfo->transport_info;
- 
--	core->shmem->fetch_notification(smbox->shmem, max_len, xfer);
-+	core->shmem->fetch_notification(smbox->shmem, max_len, xfer,
-+					smbox->io_ops->fromio);
- }
- 
- static void mailbox_clear_channel(struct scmi_chan_info *cinfo)
-diff --git a/drivers/firmware/arm_scmi/scmi_transport_optee.c b/drivers/firmware/arm_scmi/scmi_transport_optee.c
-index 08911f40d1ff..2be4124c6826 100644
---- a/drivers/firmware/arm_scmi/scmi_transport_optee.c
-+++ b/drivers/firmware/arm_scmi/scmi_transport_optee.c
-@@ -114,6 +114,7 @@ enum scmi_optee_pta_cmd {
-  * @req.shmem: Virtual base address of the shared memory
-  * @req.msg: Shared memory protocol handle for SCMI request and
-  *   synchronous response
-+ * @io_ops: Transport specific I/O operations
-  * @tee_shm: TEE shared memory handle @req or NULL if using IOMEM shmem
-  * @link: Reference in agent's channel list
-  */
-@@ -128,6 +129,7 @@ struct scmi_optee_channel {
- 		struct scmi_shared_mem __iomem *shmem;
- 		struct scmi_msg_payld *msg;
- 	} req;
-+	struct scmi_shmem_io_ops *io_ops;
- 	struct tee_shm *tee_shm;
- 	struct list_head link;
- };
-@@ -350,7 +352,8 @@ static int setup_dynamic_shmem(struct device *dev, struct scmi_optee_channel *ch
- static int setup_static_shmem(struct device *dev, struct scmi_chan_info *cinfo,
- 			      struct scmi_optee_channel *channel)
- {
--	channel->req.shmem = core->shmem->setup_iomap(cinfo, dev, true, NULL);
-+	channel->req.shmem = core->shmem->setup_iomap(cinfo, dev, true, NULL,
-+						      &channel->io_ops);
- 	if (IS_ERR(channel->req.shmem))
- 		return PTR_ERR(channel->req.shmem);
- 
-@@ -465,7 +468,8 @@ static int scmi_optee_send_message(struct scmi_chan_info *cinfo,
- 		ret = invoke_process_msg_channel(channel,
- 						 core->msg->command_size(xfer));
- 	} else {
--		core->shmem->tx_prepare(channel->req.shmem, xfer, cinfo);
-+		core->shmem->tx_prepare(channel->req.shmem, xfer, cinfo,
-+					channel->io_ops->toio);
- 		ret = invoke_process_smt_channel(channel);
- 	}
- 
-@@ -484,7 +488,8 @@ static void scmi_optee_fetch_response(struct scmi_chan_info *cinfo,
- 		core->msg->fetch_response(channel->req.msg,
- 					  channel->rx_len, xfer);
- 	else
--		core->shmem->fetch_response(channel->req.shmem, xfer);
-+		core->shmem->fetch_response(channel->req.shmem, xfer,
-+					    channel->io_ops->fromio);
- }
- 
- static void scmi_optee_mark_txdone(struct scmi_chan_info *cinfo, int ret,
-diff --git a/drivers/firmware/arm_scmi/scmi_transport_smc.c b/drivers/firmware/arm_scmi/scmi_transport_smc.c
-index c6c69a17a9cc..04e715ec1570 100644
---- a/drivers/firmware/arm_scmi/scmi_transport_smc.c
-+++ b/drivers/firmware/arm_scmi/scmi_transport_smc.c
-@@ -45,6 +45,7 @@
-  * @irq: An optional IRQ for completion
-  * @cinfo: SCMI channel info
-  * @shmem: Transmit/Receive shared memory area
-+ * @io_ops: Transport specific I/O operations
-  * @shmem_lock: Lock to protect access to Tx/Rx shared memory area.
-  *		Used when NOT operating in atomic mode.
-  * @inflight: Atomic flag to protect access to Tx/Rx shared memory area.
-@@ -60,6 +61,7 @@ struct scmi_smc {
- 	int irq;
- 	struct scmi_chan_info *cinfo;
- 	struct scmi_shared_mem __iomem *shmem;
-+	struct scmi_shmem_io_ops *io_ops;
- 	/* Protect access to shmem area */
- 	struct mutex shmem_lock;
- #define INFLIGHT_NONE	MSG_TOKEN_MAX
-@@ -144,7 +146,8 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	if (!scmi_info)
- 		return -ENOMEM;
- 
--	scmi_info->shmem = core->shmem->setup_iomap(cinfo, dev, tx, &res);
-+	scmi_info->shmem = core->shmem->setup_iomap(cinfo, dev, tx, &res,
-+						    &scmi_info->io_ops);
- 	if (IS_ERR(scmi_info->shmem))
- 		return PTR_ERR(scmi_info->shmem);
- 
-@@ -229,7 +232,8 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
- 	 */
- 	smc_channel_lock_acquire(scmi_info, xfer);
- 
--	core->shmem->tx_prepare(scmi_info->shmem, xfer, cinfo);
-+	core->shmem->tx_prepare(scmi_info->shmem, xfer, cinfo,
-+				scmi_info->io_ops->toio);
- 
- 	if (scmi_info->cap_id != ULONG_MAX)
- 		arm_smccc_1_1_invoke(scmi_info->func_id, scmi_info->cap_id, 0,
-@@ -253,7 +257,8 @@ static void smc_fetch_response(struct scmi_chan_info *cinfo,
- {
- 	struct scmi_smc *scmi_info = cinfo->transport_info;
- 
--	core->shmem->fetch_response(scmi_info->shmem, xfer);
-+	core->shmem->fetch_response(scmi_info->shmem, xfer,
-+				    scmi_info->io_ops->fromio);
- }
- 
- static void smc_mark_txdone(struct scmi_chan_info *cinfo, int ret,
-diff --git a/drivers/firmware/arm_scmi/shmem.c b/drivers/firmware/arm_scmi/shmem.c
-index 01d8a9398fe8..e9f30ab671a8 100644
---- a/drivers/firmware/arm_scmi/shmem.c
-+++ b/drivers/firmware/arm_scmi/shmem.c
-@@ -34,9 +34,59 @@ struct scmi_shared_mem {
- 	u8 msg_payload[];
- };
- 
-+static inline void shmem_memcpy_fromio32(void *to,
-+					 const void __iomem *from,
-+					 size_t count)
-+{
-+	WARN_ON(!IS_ALIGNED((unsigned long)from, 4) ||
-+		!IS_ALIGNED((unsigned long)to, 4) ||
-+		count % 4);
-+
-+	__ioread32_copy(to, from, count / 4);
-+}
-+
-+static inline void shmem_memcpy_toio32(void __iomem *to,
-+				       const void *from,
-+				       size_t count)
-+{
-+	WARN_ON(!IS_ALIGNED((unsigned long)to, 4) ||
-+		!IS_ALIGNED((unsigned long)from, 4) ||
-+		count % 4);
-+
-+	__iowrite32_copy(to, from, count / 4);
-+}
-+
-+static struct scmi_shmem_io_ops shmem_io_ops32 = {
-+	.fromio	= shmem_memcpy_fromio32,
-+	.toio	= shmem_memcpy_toio32,
-+};
-+
-+/* Wrappers are needed for proper memcpy_{from,to}_io expansion by the
-+ * pre-processor.
-+ */
-+static inline void shmem_memcpy_fromio(void *to,
-+				       const void __iomem *from,
-+				       size_t count)
-+{
-+	memcpy_fromio(to, from, count);
-+}
-+
-+static inline void shmem_memcpy_toio(void __iomem *to,
-+				     const void *from,
-+				     size_t count)
-+{
-+	memcpy_toio(to, from, count);
-+}
-+
-+static struct scmi_shmem_io_ops shmem_io_ops_default = {
-+	.fromio = shmem_memcpy_fromio,
-+	.toio	= shmem_memcpy_toio,
-+};
-+
- static void shmem_tx_prepare(struct scmi_shared_mem __iomem *shmem,
- 			     struct scmi_xfer *xfer,
--			     struct scmi_chan_info *cinfo)
-+			     struct scmi_chan_info *cinfo,
-+			     shmem_copy_toio_t copy_toio)
- {
- 	ktime_t stop;
- 
-@@ -73,7 +123,7 @@ static void shmem_tx_prepare(struct scmi_shared_mem __iomem *shmem,
- 	iowrite32(sizeof(shmem->msg_header) + xfer->tx.len, &shmem->length);
- 	iowrite32(pack_scmi_header(&xfer->hdr), &shmem->msg_header);
- 	if (xfer->tx.buf)
--		memcpy_toio(shmem->msg_payload, xfer->tx.buf, xfer->tx.len);
-+		copy_toio(shmem->msg_payload, xfer->tx.buf, xfer->tx.len);
- }
- 
- static u32 shmem_read_header(struct scmi_shared_mem __iomem *shmem)
-@@ -82,7 +132,8 @@ static u32 shmem_read_header(struct scmi_shared_mem __iomem *shmem)
- }
- 
- static void shmem_fetch_response(struct scmi_shared_mem __iomem *shmem,
--				 struct scmi_xfer *xfer)
-+				 struct scmi_xfer *xfer,
-+				 shmem_copy_fromio_t copy_fromio)
- {
- 	size_t len = ioread32(&shmem->length);
- 
-@@ -91,11 +142,12 @@ static void shmem_fetch_response(struct scmi_shared_mem __iomem *shmem,
- 	xfer->rx.len = min_t(size_t, xfer->rx.len, len > 8 ? len - 8 : 0);
- 
- 	/* Take a copy to the rx buffer.. */
--	memcpy_fromio(xfer->rx.buf, shmem->msg_payload + 4, xfer->rx.len);
-+	copy_fromio(xfer->rx.buf, shmem->msg_payload + 4, xfer->rx.len);
- }
- 
- static void shmem_fetch_notification(struct scmi_shared_mem __iomem *shmem,
--				     size_t max_len, struct scmi_xfer *xfer)
-+				     size_t max_len, struct scmi_xfer *xfer,
-+				     shmem_copy_fromio_t copy_fromio)
- {
- 	size_t len = ioread32(&shmem->length);
- 
-@@ -103,7 +155,7 @@ static void shmem_fetch_notification(struct scmi_shared_mem __iomem *shmem,
- 	xfer->rx.len = min_t(size_t, max_len, len > 4 ? len - 4 : 0);
- 
- 	/* Take a copy to the rx buffer.. */
--	memcpy_fromio(xfer->rx.buf, shmem->msg_payload, xfer->rx.len);
-+	copy_fromio(xfer->rx.buf, shmem->msg_payload, xfer->rx.len);
- }
- 
- static void shmem_clear_channel(struct scmi_shared_mem __iomem *shmem)
-@@ -139,7 +191,8 @@ static bool shmem_channel_intr_enabled(struct scmi_shared_mem __iomem *shmem)
- 
- static void __iomem *shmem_setup_iomap(struct scmi_chan_info *cinfo,
- 				       struct device *dev, bool tx,
--				       struct resource *res)
-+				       struct resource *res,
-+				       struct scmi_shmem_io_ops **ops)
- {
- 	struct device_node *shmem __free(device_node);
- 	const char *desc = tx ? "Tx" : "Rx";
-@@ -148,6 +201,7 @@ static void __iomem *shmem_setup_iomap(struct scmi_chan_info *cinfo,
- 	struct resource lres = {};
- 	resource_size_t size;
- 	void __iomem *addr;
-+	u32 reg_io_width;
- 
- 	shmem = of_parse_phandle(cdev->of_node, "shmem", idx);
- 	if (!shmem)
-@@ -173,6 +227,16 @@ static void __iomem *shmem_setup_iomap(struct scmi_chan_info *cinfo,
- 		return IOMEM_ERR_PTR(-EADDRNOTAVAIL);
- 	}
- 
-+	of_property_read_u32(shmem, "reg-io-width", &reg_io_width);
-+	switch (reg_io_width) {
-+	case 4:
-+		*ops = &shmem_io_ops32;
-+		break;
-+	default:
-+		*ops = &shmem_io_ops_default;
-+		break;
-+	}
-+
- 	return addr;
- }
- 
+Is this semplification really needed? It does pose some problem driver
+wise (on where to put the driver, in what subsystem) and also on the
+yaml side with mixed property for pinctrl and pwm controller.
+
+I feel mixing the 2 thing might cause some confusion on the 2 block
+device that are well separated aside from the unlucky position of the
+regs.
+
+The suggested MFD implementation would consist of
+- main node with MFD (map the entire GPIO controller regs)
+-   2 child for PWM and pinctrl (no regs)
+
+- driver in mfd/
+- driver in pinctrl/
+- driver in pwm/
+
+An alternative is the previous solution with pinctrl mapping all the
+GPIO controller regs and PWM a child but Conor suggested that a MFD
+structure might be better suited for the task. We have both implemented
+and ready to be submitted. Hope we can find a common decision on how to
+implement this simple but annoying block of devices.
+
 -- 
-2.34.1
-
+	Ansuel
 
