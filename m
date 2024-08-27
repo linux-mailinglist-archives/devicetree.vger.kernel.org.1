@@ -1,98 +1,112 @@
-Return-Path: <devicetree+bounces-97172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FF7F961374
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:00:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37EAF96146C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:43:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1C561C2304C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:00:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB9FCB22A3D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424191C86F4;
-	Tue, 27 Aug 2024 16:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1DB01CE705;
+	Tue, 27 Aug 2024 16:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lBjnBdjn"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="P5q6WqFz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122BB1C6F4F;
-	Tue, 27 Aug 2024 16:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2EB1CCEFE;
+	Tue, 27 Aug 2024 16:42:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724774413; cv=none; b=g+n8uKcb/I8Ci8LnFUA0ULdhfEOE/I7ydAHqOEMN2252sIWF9yXgQs/Q3dVweLUTJcJRQM3q0eTW6luym/7yg/2qpkYHG6kTC988dtQ2nooYZts06zhVnLqEhhZmFnkJ0PkCYGbGMerywWPJeCShBkMMXTqJD+5oXg4ZYZO57RQ=
+	t=1724776966; cv=none; b=DUX5TkjROn6hN9YqJ/ReHuhFJJzQTOdJLuNmnmyS+zpiyRQRmyqKWl0b5boxrfIak0sjiqyQ39qcWmktKDjYInv0jkwhX2NQSwI3N4NdEAafc3CXqJy5C0wc5SiNo5Ux7d8mEY8muzEfq9gAulFnOSrW0nzwJOxNxVuMapRQORw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724774413; c=relaxed/simple;
-	bh=glt23gL14OT29ySgLa2OLHvgpFuLQ4dVuwOcWfQCHhg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aMHziV2/MeTsgiDK5Bv18BGsvJiUSWITFi7ZOeNnJjdbk2s8AV5HKCozfE1pi1fCD76Iba8p67lPbMAGxECBertbgQFWRKuGMVX4nTjSDp/H3rJVszhbuyMN8wS8df6g7NEHEAKgyFUIEvzuBiZ/uk9P2iadL4chxgLWiQBwE9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lBjnBdjn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70FFFC4FE0A;
-	Tue, 27 Aug 2024 16:00:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724774412;
-	bh=glt23gL14OT29ySgLa2OLHvgpFuLQ4dVuwOcWfQCHhg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lBjnBdjn1AI/zAlDKPGgTVd+arH3lcdjpMzuPQjwabOLKdcIjEdWwTYDjZUeXCQ1H
-	 3zHCw/ZhXiZIzgxXqckqYfAfqafahvLlH4yuuopHc/hk9BtE+AZ4e+Djz7W9P4RQww
-	 7nFYf/Ikbpq/PgSp+Tz9lmz9tCvkqIQ6Kp795AZMOubilOuctNdMruyg8D5S44a8mk
-	 QBGqJuSBpr06F/2AtwFoniaBdUwHu/lVR+qhnRaSpuvubLHshFlvOkmgw5ngUkFGw7
-	 BzPecD7pqJIKFz9lhM6VrBd4HPPCzy+3YmJwyi/hylLaVC+6vrjyMXH+6uS/0fv5kk
-	 u1fZnwkjtm/Dw==
-Date: Tue, 27 Aug 2024 11:00:10 -0500
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	"open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v3 1/1] dt-bindings: hwmon/regulator: Convert ltc2978.txt
- to yaml
-Message-ID: <20240827160010.GA3965737-robh@kernel.org>
-References: <20240826163626.961586-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1724776966; c=relaxed/simple;
+	bh=DmxjFhnAHK+VWjm0356yo6E5Yi51ofS0JYRn6zjFSFY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ju+PFLpNN3yuFukbNJd6VjOfH1FVLxhHVrHGG+h+HDeQnRdJMn3OPps3W0tVMz/ovwQJLTq7TwVZlNJSYEMOFgwgBWvnV8t6LcpZ8SxUYvJVGEuTOWaSkD3g5qnFu/7J0sXTMrnq+9L6krvi+lhevQ7eEcUHZ8CNMoKPpm7kVY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=P5q6WqFz; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 657FC8897C;
+	Tue, 27 Aug 2024 18:42:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724776963;
+	bh=Xp4MUtvj4s/OszPG6oxIpWEWZX/+92XaG1xSPN7hUAI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P5q6WqFz1Iv4ZOqHZBssbxtTol9mJ05pkqpf5A0BcUkf4LxBOaJ/2aVqjaUUwATKv
+	 QRnYKh7QDkzolzCZkQ87VYBv0ny79uSm0+SCEqefdB4q7cDw5qg6/PKettChPlglgr
+	 RSnJ4woswr6W0G97cf6kzBDpZ8deO62w2vjdFD7O10ME4TQesLX3MB3Nv1EJb7ERVj
+	 UjPOc1BKh4yzrN/8X9BHs2h+EaFCBJdF34lAG678L/AtdygEjbR1AxDJBltbkx1ZAk
+	 PsH/IY9JMqu9j35izdYoKr2qnX9nWuqFzmIhGP52xd/TXIvV3KFv8Dw5VZYQXHam18
+	 T8mnCIoavc4Ig==
+Message-ID: <182e449a-3e6d-4727-a538-6fd518ae75f8@denx.de>
+Date: Tue, 27 Aug 2024 17:34:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240826163626.961586-1-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] wifi: wilc1000: Fold wilc_get_chipid() into wlan.c
+To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240823161131.94305-1-marex@denx.de>
+ <20240823161131.94305-2-marex@denx.de>
+ <2b167618-473a-4da1-9c10-cba2b9051381@bootlin.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <2b167618-473a-4da1-9c10-cba2b9051381@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, Aug 26, 2024 at 12:36:25PM -0400, Frank Li wrote:
-> Convert binding doc ltc2978.txt to yaml format.
-> Additional change:
-> - add i2c node.
-> - basic it is regulator according to example, move it under regulator.
+On 8/27/24 9:51 AM, Alexis Lothoré wrote:
+
+Hi,
+
+>> +static u32 wilc_get_chipid(struct wilc *wilc)
+>> +{
+>> +	u32 chipid = 0;
+>> +	u32 rfrevid = 0;
+>> +
+>> +	if (wilc->chipid == 0) {
+>> +		wilc->hif_func->hif_read_reg(wilc, WILC_CHIPID, &chipid);
+> If we search for WILC_CHIPID in the whole driver, there are still two places
+> manually reading this register. Shouldn't those places also benefit from
+> wilc_get_chipid ?
+
+Both the one in wilc_wlan_start() and wilc_validate_chipid() look more 
+like some sort of communication check attempt, rather than reading out 
+the chipid for any sort of actual chip identification purpose. I could 
+simply remove those ?
+
+>> +		wilc->hif_func->hif_read_reg(wilc, WILC_RF_REVISION_ID,
+>> +					     &rfrevid);
+>> +		if (!is_wilc1000(chipid)) {
+>> +			wilc->chipid = 0;
 > 
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/i2c@2000000/i2c-mux@77/i2c@2/regulator@5c:
-> 	failed to match any schema with compatible: ['lltc,ltc3882']
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v2 to v3
-> - put my name into maintainers.
-> change from v1 to v2
-> - maintainer change to Mark Brown <broonie@kernel.org> (regulator maintainer)
-> - update title to (from ltc2978 data sheet).
-> octal, digital power-supply monitor, supervisor, sequencer, and margin controller.
-> ---
->  .../devicetree/bindings/hwmon/ltc2978.txt     | 62 ------------
->  .../bindings/regulator/lltc,ltc2972.yaml      | 94 +++++++++++++++++++
->  2 files changed, 94 insertions(+), 62 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/ltc2978.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc2972.yaml
+> While at it, since you have trimmed the update parameter, it would be nice to
+> also fix this return value (ie make wilc_getchipid() not return 0 but a real
+> error code if we can not read the chip id.
 
-Based on the discussion, I think it is easier if we just leave this 
-under hwmon.
-
-Rob
+Fixed in V3, thanks .
 
