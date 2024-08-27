@@ -1,197 +1,160 @@
-Return-Path: <devicetree+bounces-97094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 094BD960ADD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:47:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DFE6960B08
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:51:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 840B21F21548
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:47:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43474284529
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D7C1BDA8E;
-	Tue, 27 Aug 2024 12:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD7A1BD502;
+	Tue, 27 Aug 2024 12:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nv6Vk8Jp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cw9Q527O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CCCB1BFDFA;
-	Tue, 27 Aug 2024 12:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471D11BD4F2;
+	Tue, 27 Aug 2024 12:48:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724762807; cv=none; b=tivbONYSOXeIQeS7PW4xKclSACXyyCyKkZOFytPUY6Bjk+L4VHVnWKkpIDkuQppCFpRo96hh9/OPqCEv4gx8MDEjDtJ8MRilxDSl2rOfEp4l2gCsDg9AlMxccMIsP9jb+LoSrfJ7wwWbHlDGgi4mBM5Dlz68cSJTJVUueGqAJMw=
+	t=1724762912; cv=none; b=exEh+g6w38dkub5O/xGVDOtiqnDFM06IM+TNm4KH+yX3VBuktexJ+r1Smxb+eAdCPMe5KvmaNG9HatI79w8SmdctdsKYfbG5oaBq8CxRXR7lCs1a2Rl/gVWwK7ejxeJeckdrey6hP2Y0IW4USJJx82EYH+Hqw5gVArCra/D5uLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724762807; c=relaxed/simple;
-	bh=iDYNmkH1rPO+EIARm3K+77l72Di1gKix5GvJkXPMc0E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=PDrxujTtpQl1GddGSWN71q7ldgcBDiKYdkiHpkAwfB7YMMqq33AoD8p1wYyMewbJ/3vs0hk3jYWRsXJlAknPPtVTXI9LLKtmZVvqeg9szop5hdMb7pbN+69mbSLmGtgyUK36apK/Qs2a1AVz1aR5T9v7E0To5KmX6IuOpk7jkC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Nv6Vk8Jp; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R6ut3R020213;
-	Tue, 27 Aug 2024 12:46:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ESduTgCKaYaSicTMZdeVrT3MA2TZqs7Q9YHb0gZCcVA=; b=Nv6Vk8JpVrtYXrKz
-	sFWleSYCatE+uJnouUUnvtDYVRqeTQU+Ll00rthU5MMHji/W2oZ2c2eOV6SCpH6P
-	jNpgJRk8bksHgkVCucZuar6syoFEwf1CFlCYYT3owvGwWryd5WUOih/Wo86RZzEA
-	kX5YyeM7LAKF4IYa5ObGVCJYVR4uuVmTStym8WiMZoN4a0JljA2FXxBjPwzM3akF
-	FVyPEERMUAzUp3p5KevybYRIdfzO6SXcbt+IuvQUJMTzjBbZZYmfW7orAGw1SDvD
-	BP4WnvrwKbVvRanX+VHlozUuT92y8h4ASqfWd38vaknd6A3vbIDt7OxhRonKGkq7
-	sh6PhA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4199yt0wrn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 12:46:37 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47RCkaYY020111
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 12:46:36 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 27 Aug 2024 05:46:31 -0700
-From: Luo Jie <quic_luoj@quicinc.com>
-Date: Tue, 27 Aug 2024 20:46:02 +0800
-Subject: [PATCH v3 4/4] arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
+	s=arc-20240116; t=1724762912; c=relaxed/simple;
+	bh=g/hqEC7ZyuL4IqUrKsBwU6+lHHVgteFNIUEWYPF6vpA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=RL/nDqPZ80xr22SdgYkVwEghMxtjm8LMvGFMgmIAfQ7zgYA4izgDswNDMmyqSkJ0IvMfIgRwtKrcthvLgIk2DF4yv0wE4mCi0vA3yWmZLwXw1ne343mjEgf52PlCo/Wv0RJrZV3ckHtkNFbXbp7MWM1CsObHU9Kh1jruIb/j9w4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cw9Q527O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F669C61049;
+	Tue, 27 Aug 2024 12:48:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724762911;
+	bh=g/hqEC7ZyuL4IqUrKsBwU6+lHHVgteFNIUEWYPF6vpA=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=cw9Q527O6dWO02WhjWD66sK6ngmX0c/HxLElI+B2h+kCW1VYm3lgFt/xoJmpb4G37
+	 6k/HRWnhJ8OG6JommIzNQUtqb7W8oUt+OVS2r/1q1gs2fHR609f7hywbUeZiXPCvAh
+	 FQ9yhe3Uybh+hvuVT4YXBxt65dTc3dBObnj9RcQ82VCjYPXT8DaHVRfB0TMEElTrsW
+	 kFCGxztp4dZjsNJB9s60rbETHNooyyHoBRhxhThyw8fEdUEtZHUEfu8nz1NnWBHyW6
+	 9IuoBNX2mXBi5oHSZNyFCNd67aVTpe9ALAGzTfnb4sMmNzEI9xmaWdMCjPSYUHzM8B
+	 Hs12sQUB5Ou9A==
+Message-ID: <5fbc815f-d52e-437d-bdc3-c61f365e9d1c@kernel.org>
+Date: Tue, 27 Aug 2024 14:48:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 25/27] ARM: dts: at91: sam9x7: add device tree for SoC
+To: Varshini.Rajendran@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
+ <20240729070934.1991467-1-varshini.rajendran@microchip.com>
+ <7031d811-2bb2-4325-996c-a6de766925db@kernel.org>
+ <bf77fe95-0982-4605-a493-25c889e81639@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <bf77fe95-0982-4605-a493-25c889e81639@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240827-qcom_ipq_cmnpll-v3-4-8e009cece8b2@quicinc.com>
-References: <20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com>
-In-Reply-To: <20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
-        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>,
-        Luo Jie
-	<quic_luoj@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724762769; l=2601;
- i=quic_luoj@quicinc.com; s=20240808; h=from:subject:message-id;
- bh=iDYNmkH1rPO+EIARm3K+77l72Di1gKix5GvJkXPMc0E=;
- b=mgPDBtJ7N+wVevHu96PkxIDWtrbKNl0oRyrTMyB9Ihe2j5hYh0HoeVfqzR4VhEdAK5APuwvmB
- sJKiJv8XpcdCRjMpGQSIPInh8m+i9+readAA7tfvrQN/g9dhVu5bMTA
-X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
- pk=P81jeEL23FcOkZtXZXeDDiPwIwgAHVZFASJV12w3U6w=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ecxqiTF1FRSmdkZ6N_ZxvdQGlJcj1M21
-X-Proofpoint-ORIG-GUID: ecxqiTF1FRSmdkZ6N_ZxvdQGlJcj1M21
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-27_06,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- suspectscore=0 malwarescore=0 spamscore=0 impostorscore=0 clxscore=1015
- bulkscore=0 priorityscore=1501 mlxscore=0 adultscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408270094
 
-The CMN PLL clock controller allows selection of an input
-clock rate from a defined set of input clock rates. It in-turn
-supplies fixed rate output clocks to the hardware blocks that
-provide ethernet functions, such as PPE (Packet Process Engine)
-and connected switch or PHY.
+On 27/08/2024 11:50, Varshini.Rajendran@microchip.com wrote:
+> Hi Krzysztof,
+> 
+> Apologies for the delay in response.
+> 
+> On 31/07/24 2:00 pm, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 29/07/2024 09:09, Varshini Rajendran wrote:
+>>> Add device tree file for SAM9X7 SoC family.
+>>>
+>>> Co-developed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+>>
+>> ...
+>>
+>>> +
+>>> +             can1: can@f8004000 {
+>>> +                     compatible = "bosch,m_can";
+>>> +                     reg = <0xf8004000 0x100>, <0x300000 0xbc00>;
+>>> +                     reg-names = "m_can", "message_ram";
+>>> +                     interrupts = <30 IRQ_TYPE_LEVEL_HIGH 0>,
+>>> +                                  <69 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +                     interrupt-names = "int0", "int1";
+>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 30>, <&pmc PMC_TYPE_GCK 30>;
+>>> +                     clock-names = "hclk", "cclk";
+>>> +                     assigned-clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_GCK 30>;
+>>> +                     assigned-clock-rates = <480000000>, <40000000>;
+>>> +                     assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
+>>> +                     bosch,mram-cfg = <0x7800 0 0 64 0 0 32 32>;
+>>> +                     status = "disabled";
+>>> +             };
+>>> +
+>>> +             tcb: timer@f8008000 {
+>>> +                     compatible = "microchip,sam9x7-tcb","atmel,sama5d2-tcb", "simple-mfd", "syscon";
+>>
+>> Why this is simple-mfd without children?
+> 
+> The tcb node will have each TC (Timer Counter) Block as a child when it 
+> is configured to be used as either one of the following modes Timer or 
+> Counter / Capture / PWM.
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi |  6 +++++-
- arch/arm64/boot/dts/qcom/ipq9574.dtsi            | 17 ++++++++++++++++-
- 2 files changed, 21 insertions(+), 2 deletions(-)
+And where are these children? What does it mean "will have", in context
+when? DTS is static, if you do not have here children then this is not a
+simple-mfd.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-index 91e104b0f865..77e1e42083f3 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-@@ -3,7 +3,7 @@
-  * IPQ9574 RDP board common device tree source
-  *
-  * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- /dts-v1/;
-@@ -164,6 +164,10 @@ &usb3 {
- 	status = "okay";
- };
- 
-+&cmn_pll_ref_clk {
-+	clock-frequency = <48000000>;
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <24000000>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 48dfafea46a7..1d7c863018c0 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -3,7 +3,7 @@
-  * IPQ9574 SoC device tree source
-  *
-  * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <dt-bindings/clock/qcom,apss-ipq.h>
-@@ -19,6 +19,11 @@ / {
- 	#size-cells = <2>;
- 
- 	clocks {
-+		cmn_pll_ref_clk: cmn-pll-ref-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+		};
-+
- 		sleep_clk: sleep-clk {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
-@@ -226,6 +231,16 @@ rpm_msg_ram: sram@60000 {
- 			reg = <0x00060000 0x6000>;
- 		};
- 
-+		clock-controller@9b000 {
-+			compatible = "qcom,ipq9574-cmn-pll";
-+			reg = <0x0009b000 0x800>;
-+			clocks = <&cmn_pll_ref_clk>,
-+				 <&gcc GCC_CMN_12GPLL_AHB_CLK>,
-+				 <&gcc GCC_CMN_12GPLL_SYS_CLK>;
-+			clock-names = "ref", "ahb", "sys";
-+			#clock-cells = <1>;
-+		};
-+
- 		rng: rng@e3000 {
- 			compatible = "qcom,prng-ee";
- 			reg = <0x000e3000 0x1000>;
-
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
