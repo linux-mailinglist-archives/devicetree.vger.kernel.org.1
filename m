@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-97182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078F5961400
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:26:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AB8B96140C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:28:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B468328506D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:26:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EEF81C20A47
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327EE1CBE8F;
-	Tue, 27 Aug 2024 16:26:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60201C4EE3;
+	Tue, 27 Aug 2024 16:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WipV0yn/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dpC6jANe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74CFE1CC898
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 16:26:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F211F481CD
+	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 16:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724776002; cv=none; b=oiVhdOV6O8uHc7/hTfbagFtHTiY+ErPwjBxynB/31GPMNYP+wXTlJZQAeU2ddjQTya04A44vm3xv5L+VVufphxdJZzoCFF5qG/GZXFtw+DmPb2mwBsiY+zcJ6q1010bhZp6h8pDnsAmxt6FgMVdkfsTRbv6G5+gwMP0bg+kXi4c=
+	t=1724776106; cv=none; b=DryLhHAw05FAEYu1pADzL0iP5qAnYpCjODmM+A/saC8Ddj7KmScycpEe8SUUw6UKB3KWKhLss9+x1QxJEmpxiTVdOqSAG8pccogPBECYWteh4VAGrG0B1i+9+YIXvDKbGFfBwhjV+T5uCMC0CvZifvRmcIsS2ss2UyRdktr7RqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724776002; c=relaxed/simple;
-	bh=e8CooLDyjqVzLqCwIuVAsXY+x0H9Iip9UWRM8TAkzXc=;
+	s=arc-20240116; t=1724776106; c=relaxed/simple;
+	bh=gv13NTKcLRF/Slgn9FXOKbo+fZtnZIyLnz0YsO7zqbs=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=IUEdu2XlL+ONbi8KazyAtLgHcyHhHZdM2vCRwXqTjdgeVz+Hv625GmHeOmAcxAc4T9sR2eV7/7NhDwhITeQfk43ip8GBP9yUI83Gu8+879Kw9s+KZIsxNzSOzdtfxfszPfQS9TqURFYWuH/FXDi7CR8x+NEhQDIHqSY4PaYCh00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WipV0yn/; arc=none smtp.client-ip=209.85.128.41
+	 In-Reply-To:Content-Type; b=Wkvq1OXLBS29rbq/aJIQ9gWXQ38SQ7zEPXxlAKYcrUQ2bT0xCvqeHVjXB0OCVbYoLPclU16puO18CsBOk0xTC0fCaVbH6ex5FJv8mcczhN8L2+l/0ZYuksRQYCRzMH3u97aY8ffzaerPSKeiEiZqFgXO+qpGvfGM2bZZwY3WShc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dpC6jANe; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4280c55e488so31348265e9.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 09:26:39 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-428119da952so50728265e9.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 09:28:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724775998; x=1725380798; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1724776103; x=1725380903; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=v8CXfOImNZAPo+0QEI9EfNOPJJp994RZWBU+MZvr+8c=;
-        b=WipV0yn/IOr74mX0aWaZnPihkrpRFFyo99+LjPa8YBB2LfRKT/3AL3eMnS6iqA5h/n
-         m1gMAIs2oO7HAsZ2lcn9eeRBZbMPzzg26lHgBJ1Y1OHvgv1DTV0T5UToAoGagE7UQJRJ
-         Vxt2GLQP0uMX3mZzGzg70Sn2l5rK08K9vqgbODPgzDi3uo619WlGO+gwKY/weXS3Mwyc
-         oWKmvY/5WdTDz9nQrzACyTx2/ROOZuFnnA1XYLp1FMmZuHPayqf6D4ArWxXNWZudNlGy
-         cnd1wdRP5JlJSBOPJEq2FuxrTvlChyPM4ss6Vu6HB+XnswUG3lEl/Sir6NMaVprU3uyh
-         rYBQ==
+        bh=ufE/6XVJ+83T5fOnTjTASaHShwbV2r35OMHx7oT3zhU=;
+        b=dpC6jANe/W0OOMtnMrzgubW7V7uVVKGHbcXP7KfIhxGmvyvxb9Vk54Pp3Y/B3dQ2tj
+         MB2mwDid3xClvQ96JL6YQ5ZImGMHulJqQ64ZLb+IzZx/8EJzP4eiE9beWAq4+UlhFDyb
+         R81esV+RZ1SDQPcPB8lUmAvKurmzShmsx2yR0Nz/coBBp1A4u7sPuKPs32opNuUrUYX7
+         qizL+fv/1PoPOmJZUykfhVyvYYcT/TquIZeUGPt8WlROiatobr3KWfruPwpPqjPxU9pU
+         NvTdWBjcMxy54h/epakL6EGAMUpdy97ntKQ6atoa95vjHdRUaIqRN7iyUNHNFY+qDSs5
+         HCHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724775998; x=1725380798;
+        d=1e100.net; s=20230601; t=1724776103; x=1725380903;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=v8CXfOImNZAPo+0QEI9EfNOPJJp994RZWBU+MZvr+8c=;
-        b=TpR8f57GqD23TNPsse/Valdbrwpzx8s98z+u1UgCqPW1rrNw8oeU4gvVbTwHIFK9U7
-         0/lJeNTI+MfdkeEauKqj2z8sY4L1FfYFHO8oSB8vLLmh/vBq7cdNyn/AzTE91p27aDXQ
-         avz66gsq8AX/FJ1WdQ8dHrRqAJzonSYwP9T6HMLskrvIhFwzQKXI/Zqw43WvlRHVvQuC
-         uejla2nc7ogdyjLWVw3pERMc9WK3mV04SEgaqZ/dqPiR7i8S2wbyBFtteHd/1YHGsfy+
-         YSRRQVe+0s4VdD03a8WQXLioJg0Bkd8w/gW4Tz1nqhI2F5xu8OQ1bi0IwU3jpWj/6p+a
-         eecw==
-X-Forwarded-Encrypted: i=1; AJvYcCXLUcUeTdSUEN9LfrbGGc2RJboK7Rns/8JZh0xxnivp3wlR3LFVM9DaqemV0NEnQ6kqrI6UiUdr30et@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyxuy2Y6hScONRe9OWyA6l35BA/AjlSINdzjphDkwApCTQ4as1l
-	W7lsfxoCeoVYx+IXl0Jt5g3oIJlJBPdrfOy+bTgrJiJSS8MVMF04wLNL7klRaZk=
-X-Google-Smtp-Source: AGHT+IESU8S9DEVBMpyZfWscDxO0CMagekuQ/YRK6C4x9dg34h8I1OCh7vzpCcvK6gT1EZnV3jT6HQ==
-X-Received: by 2002:a05:600c:8aa:b0:42a:a749:e6 with SMTP id 5b1f17b1804b1-42b9a471114mr23411325e9.10.1724775996955;
-        Tue, 27 Aug 2024 09:26:36 -0700 (PDT)
+        bh=ufE/6XVJ+83T5fOnTjTASaHShwbV2r35OMHx7oT3zhU=;
+        b=NsGogAZsSL4y5i1FkerZ/rvWAFQiEAlEAVv8FutAlWriIJ7ll53GwwVr3YfQyfi3o6
+         wldR5uqTKPLp+ogZ3e2Hdkw9uwyHlJDpRMVa2xMFB5xaoRJfR4cFWRWMozjWHhqcFEJB
+         zwO5F7REKb/S6vcWqz15CymArjJVJiqzYbJ82lqjcBsn2S8iVMh00WKW8JU+3x8uGybL
+         1yHWVjQIjZvkye2ImjSMfk6pYllSYOzPlzpb+03au0JzBcWNPrTCDvDvqgGIwqG2JumU
+         7ZIsMtlkOT9UviW5KiCgeMlR+oy5WKQhbw7e5Dlc2mcfZDqWXv1eS+nKiUs/OdVO5j7B
+         ORzg==
+X-Forwarded-Encrypted: i=1; AJvYcCWdmDFtLBgCmud27Og916RUCM3UD4HLFBgy2R8DprqCAiCrGGruRXPzC6RW5mejpNGeDuWrUcxDWbnd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnHlQR+OQ165GPbORC235zDPYZtzZgjrqKvs0t3DW7GpzP4Awr
+	aeTqyDEroE+V/TUZETiIDj57qtNqWWbakMRngr360wpxnUIVkKvN2odRGPfr5zI=
+X-Google-Smtp-Source: AGHT+IFs44im3ppKp7rli/0SrE8qnw/kI4+1TZyXKWRmUS8FDR4OalSDTwLVmncC76FonQP5ohDJmg==
+X-Received: by 2002:a05:600c:5102:b0:427:abed:3608 with SMTP id 5b1f17b1804b1-42acc8d519bmr101922755e9.5.1724776102800;
+        Tue, 27 Aug 2024 09:28:22 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:cedc:30f:887e:7717? ([2a01:e0a:982:cbb0:cedc:30f:887e:7717])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abefc627asm231269735e9.34.2024.08.27.09.26.35
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abee8d1d9sm232476035e9.22.2024.08.27.09.28.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Aug 2024 09:26:36 -0700 (PDT)
-Message-ID: <aa0f4f1c-3043-4b03-8b9f-f9a39f3682aa@linaro.org>
-Date: Tue, 27 Aug 2024 18:26:35 +0200
+        Tue, 27 Aug 2024 09:28:22 -0700 (PDT)
+Message-ID: <d9686280-5514-49ab-91b8-0737141178ce@linaro.org>
+Date: Tue, 27 Aug 2024 18:28:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,27 +78,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/4] Revert "drm/panel-edp: Add SDC ATNA45AF01"
-To: Doug Anderson <dianders@chromium.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8
+ panel
+To: Ryan Walklin <ryan@testtoast.com>, Maxime Ripard <mripard@kernel.org>,
+ Conor Dooley <conor@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Johan Hovold <johan@kernel.org>
-References: <20240715-x1e80100-crd-backlight-v2-0-31b7f2f658a3@linaro.org>
- <20240715-x1e80100-crd-backlight-v2-2-31b7f2f658a3@linaro.org>
- <7daa3c0d-cecf-4f50-be32-ae116b920db0@linaro.org>
- <ZpUcI3KkIa58zC55@linaro.org>
- <d1603248-afe8-4594-9e2e-81ba208dff00@linaro.org>
- <CAD=FV=WimxYmDrkfn0+E3MbXp8kS9TicN2kT3AM4eM+SAwYsOg@mail.gmail.com>
- <CAD=FV=XfvD1OniNBrCrA8C6XjOB15fye8EdnniNmgpu4DnpH6w@mail.gmail.com>
- <CAD=FV=Vp1Trv2JeFtqk2=Zhi0B7io5w402GkG_UhYm2q34q8dw@mail.gmail.com>
+ <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>,
+ Chris Morgan <macroalpha82@gmail.com>
+References: <20240626112005.248576-1-ryan@testtoast.com>
+ <20240626112005.248576-2-ryan@testtoast.com>
+ <a4d33da3-2a2a-48ce-874d-95a5889f2f1f@linaro.org>
+ <20240626-loyal-squirrel-of-charisma-4e784f@houat>
+ <20240626-procreate-goldmine-800179f909e9@spud>
+ <20240627-muskox-of-nonconcrete-art-e4bcfd@houat>
+ <8b4519fc-0fba-48fe-bfb4-318818b47a65@app.fastmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -125,130 +125,48 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <CAD=FV=Vp1Trv2JeFtqk2=Zhi0B7io5w402GkG_UhYm2q34q8dw@mail.gmail.com>
+In-Reply-To: <8b4519fc-0fba-48fe-bfb4-318818b47a65@app.fastmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/08/2024 17:36, Doug Anderson wrote:
-> Hi,
+On 30/06/2024 10:16, Ryan Walklin wrote:
+> On Fri, 28 Jun 2024, at 5:59 AM, Maxime Ripard wrote:
+>> On Wed, Jun 26, 2024 at 04:34:11PM GMT, Conor Dooley wrote:
+>>> On Wed, Jun 26, 2024 at 05:04:19PM +0200, Maxime Ripard wrote:
+>>>> On Wed, Jun 26, 2024 at 02:25:54PM GMT, Neil Armstrong wrote:
+>>>>> Can it be more specific ? because there's a lot of rg35xx defined in bindings:
+>>>>>   anbernic,rg351m
+>>>>>   anbernic,rg351v
+>>>>>   anbernic,rg353p
+>>>>>   anbernic,rg353ps
+>>>>>   anbernic,rg353v
+>>>>>   anbernic,rg353vs
+>>>>>   anbernic,rg35xx-2024
+>>>>>   anbernic,rg35xx-plus
+>>>>>   anbernic,rg35xx-h
 > 
-> On Mon, Jul 22, 2024 at 8:49 AM Doug Anderson <dianders@chromium.org> wrote:
->>
->> Hi,
->>
->> On Mon, Jul 15, 2024 at 6:51 AM Doug Anderson <dianders@chromium.org> wrote:
->>>
->>> Hi,
->>>
->>> On Mon, Jul 15, 2024 at 6:02 AM Neil Armstrong
->>> <neil.armstrong@linaro.org> wrote:
->>>>
->>>> On 15/07/2024 14:54, Stephan Gerhold wrote:
->>>>> On Mon, Jul 15, 2024 at 02:42:12PM +0200, Neil Armstrong wrote:
->>>>>> On 15/07/2024 14:15, Stephan Gerhold wrote:
->>>>>>> This reverts commit 8ebb1fc2e69ab8b89a425e402c7bd85e053b7b01.
->>>>>>>
->>>>>>> The panel should be handled through the samsung-atna33xc20 driver for
->>>>>>> correct power up timings. Otherwise the backlight does not work correctly.
->>>>>>>
->>>>>>> We have existing users of this panel through the generic "edp-panel"
->>>>>>> compatible (e.g. the Qualcomm X1E80100 CRD), but the screen works only
->>>>>>> partially in that configuration: It works after boot but once the screen
->>>>>>> gets disabled it does not turn on again until after reboot. It behaves the
->>>>>>> same way with the default "conservative" timings, so we might as well drop
->>>>>>> the configuration from the panel-edp driver. That way, users with old DTBs
->>>>>>> will get a warning and can move to the new driver.
->>>>>>>
->>>>>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->>>>>>> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
->>>>>>> ---
->>>>>>>     drivers/gpu/drm/panel/panel-edp.c | 2 --
->>>>>>>     1 file changed, 2 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
->>>>>>> index 3a574a9b46e7..d2d682385e89 100644
->>>>>>> --- a/drivers/gpu/drm/panel/panel-edp.c
->>>>>>> +++ b/drivers/gpu/drm/panel/panel-edp.c
->>>>>>> @@ -1960,8 +1960,6 @@ static const struct edp_panel_entry edp_panels[] = {
->>>>>>>      EDP_PANEL_ENTRY('L', 'G', 'D', 0x05af, &delay_200_500_e200_d200, "Unknown"),
->>>>>>>      EDP_PANEL_ENTRY('L', 'G', 'D', 0x05f1, &delay_200_500_e200_d200, "Unknown"),
->>>>>>> -   EDP_PANEL_ENTRY('S', 'D', 'C', 0x416d, &delay_100_500_e200, "ATNA45AF01"),
->>>>>>> -
->>>>>>>      EDP_PANEL_ENTRY('S', 'H', 'P', 0x1511, &delay_200_500_e50, "LQ140M1JW48"),
->>>>>>>      EDP_PANEL_ENTRY('S', 'H', 'P', 0x1523, &delay_80_500_e50, "LQ140M1JW46"),
->>>>>>>      EDP_PANEL_ENTRY('S', 'H', 'P', 0x153a, &delay_200_500_e50, "LQ140T1JH01"),
->>>>>>>
->>>>>>
->>>>>> How will we handle current/old crd DT with new kernels ?
->>>>>>
->>>>>
->>>>> I think this is answered in the commit message:
->>>>>
->>>>>>> We have existing users of this panel through the generic "edp-panel"
->>>>>>> compatible (e.g. the Qualcomm X1E80100 CRD), but the screen works only
->>>>>>> partially in that configuration: It works after boot but once the screen
->>>>>>> gets disabled it does not turn on again until after reboot. It behaves the
->>>>>>> same way with the default "conservative" timings, so we might as well drop
->>>>>>> the configuration from the panel-edp driver. That way, users with old DTBs
->>>>>>> will get a warning and can move to the new driver.
->>>>>
->>>>> Basically with the entry removed, the panel-edp driver will fallback to
->>>>> default "conservative" timings when using old DTBs. There will be a
->>>>> warning in dmesg, but otherwise the panel will somewhat work just as
->>>>> before. I think this is a good way to remind users to upgrade.
->>>>
->>>> I consider this as a regression
->>>>
->>>>>
->>>>>> Same question for patch 3, thie serie introduces a bindings that won't be valid
->>>>>> if we backport patch 3. I don't think patch should be backported, and this patch
->>>>>> should be dropped.
->>>>>
->>>>> There would be a dtbs_check warning, yeah. Functionally, it would work
->>>>> just fine. Is that reason enough to keep display partially broken for
->>>>> 6.11? We could also apply the minor binding change for 6.11 if needed.
->>>>
->>>> I don't know how to answer this, I'll let the DT maintainer comment this.
->>>>
->>>> The problem is I do not think we can pass the whole patchset as fixes
->>>> for v6.11, patches 2 & 3 could, patches 1 & 4 definitely can't.
->>>>
->>>> Neil
->>>
->>> IMO: patch #3 (dts) and #4 (CONFIG) go through the Qualcomm tree
->>> whenever those folks agree to it. If we're worried about the
->>> dtbs_check breakage I personally wouldn't mind "Ack"ing patch #1 to go
->>> through the Qualcomm tree as long as it made it into 6.11-rc1. I have
->>> a hunch that there are going to be more Samsung OLED panels in the
->>> future that will need to touch the same file, but if the change is in
->>> -rc1 it should make it back into drm-misc quickly, right?
->>>
->>> Personally I think patch #2 could go in anytime since, as people have
->>> said, things are pretty broken today and the worst that happens is
->>> that someone gets an extra warning. That would be my preference. That
->>> being said, we could also snooze that patch for a month or two and
->>> land it later. There's no real hurry.
->>
->> For now I'm going to snooze this patch for a month just to avoid any
->> controversy. I'll plan to apply it (to drm-misc-next) when I see the
->> device tree patch land. Since the device tree patch should land as a
->> fix that should keep things landing in the correct order. ...and, as
->> per above, the worst case is that if someone has an old DTS and a new
->> kernel then a panel that was already not working well will print a fat
->> warning and startup a bit slower.
->>
->> If somehow I mess up and forget about this patch, feel free to send me
->> a poke when the device tree patch is landed.
+> Just to note only the three rg35xx-* devices use this particular panel.
 > 
-> More than a month has passed now. One last warning before I apply this
-> revert in a few more days.
+>>>>
+>>>> Yeah, if we have an identified model name, we should probably use that,
+>>>> with a comment that we couldn't figure out what the vendor was and thus
+>>>> went for anbernic.
+>>>
+>>> What's wrong with using the wl name that already exists as the model?
+>>> Using rg<whatever>-panel is total invention on our part, especially
+>>> seeing as the commit message says that multiple models can use it.
+>>
+>> Yeah, that makes sense, sorry for the noise
+>>
+> Thanks both for the further feedback, agreed logical to use the device vendor and panel serial number, ie "anbernic,wl-355608-a8". Will post a V2 with a comment to that effect.
 
-It's fine if you apply it now
+Well in this case we can keep "wl-355608-a8", because the panel vendor _is not_ anbernic.
 
 Neil
 
 > 
-> -Doug
+> Regards,
 > 
+> Ryan
 
 
