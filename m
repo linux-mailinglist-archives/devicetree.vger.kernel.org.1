@@ -1,522 +1,214 @@
-Return-Path: <devicetree+bounces-96973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BEF79603EB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:04:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 612579603EF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:06:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60DAA1C2100C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:04:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17B731F21B53
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BA5194090;
-	Tue, 27 Aug 2024 08:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855BE189511;
+	Tue, 27 Aug 2024 08:06:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="wxpy/16k"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DRMC/HNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C35E189511
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 08:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D21E10A3E;
+	Tue, 27 Aug 2024 08:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724745848; cv=none; b=EeReflRmjNQqfJACtkkfv7n6ktX+qkMv67DraNr8yCGkkWo9xyJbbP29a5iYgh1J1umMowKYhHYLvyuLZuBAqjLR97lyHhDv9yFVP44+hXiEP3Ti6iXqvZxnAjn6y2ZD9umywMRX5rdHaW5Qg9an38tYC1Zjp4BpKkplDfEf6Lo=
+	t=1724745985; cv=none; b=ntY4AkjZA/dXR83MZuGVXrVXQQfGWs6Vy9UZ7RvbK8i+CjIRH9BY1YtH5BVbl43OPiebqmmukQYjxr0mew3CYv5NHabhZLrB4tbNs37aoaxLeoPrLmo1CY7kqgOqB5sys+E/XmkT6N2Pntq1KHfAlMV04vJ9s9lwEU2QVJNu4h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724745848; c=relaxed/simple;
-	bh=YNI+j3bkYRnw/j3RXWkw/r7jMtOAfzJUrcLuryOCZTE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X1QtZBO3JQB36Z4L8WClhBwBNDV/p3l9TWjutp7XUQ3dy2LOEpYIDAwxmzfHRP5rlGYQj6TpZvJqfkgXOS/SEO3VM2gQGjHHlZqVc2FY12bT+bppOt+of/daDMDy8pquXl7kNcCACWobRdTev9dlfi+sfFp2e4THbaGVee8TQwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=wxpy/16k; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a86acbaddb4so431201266b.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 01:04:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1724745843; x=1725350643; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vFAjL5jKmdVtAU01RnPeyjQJjLNN6n5ELWoLoKgeIu8=;
-        b=wxpy/16kdFqzVbYO8MudpUugvz5JLdTHdsJkrST32xYDxFgIFyNZLLALMzmTo7pxjH
-         F5/A+xpFEvkg7TmPtT35J28MyWpRro9qpA0u33xc0tT7Uhz68V9EfI1WMcN+VjyWRWFW
-         ovKlbfE0hMfOaB13pWiV1IrlXZekll499RtNiFEbDTS3hv85CErSBLfqxVt5FVwgKkCz
-         6tnfBF8SulUxwOinPGatQp1q62C9aR8+sfYWzvZtu1DeV1usSrC7h/UmoKDeTX0YGscC
-         +c/tlDmnJ1fqIjs04VnvUIlPms5pbaKI/JMZyc9VokwEik/ri0fjHA3tSHR3X4QgRVKV
-         8DOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724745843; x=1725350643;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vFAjL5jKmdVtAU01RnPeyjQJjLNN6n5ELWoLoKgeIu8=;
-        b=X+x3brBV53neyxMc17ZLjn5ES6dlnUqvdMGkGTrbGphtEQB9h3pCvLjPusy+/wAiyr
-         5cBasYkx/j7L0bW+nc9ImYb1h/GTxVoAUJemKyhV7hHIaI0GjyBYRJLpp4wXI+8Lw56O
-         yGngP+2gWdUdQ16YURojQg5l87ts7iAPRKIbuI4MMlXruqY5a7SLv0iVKz5AdJfEtZxV
-         wodQkjkiRqRSGLgTH5IA6eHXJsFttrkvSGRjbLraqd3wDcv3L3og80JOVMmte8LLSuF1
-         /XxNNzZBCi5bwlwK6Jx8guG6i79Rv8W3VcLFXLa8SDn2KVHK0Ei2EggCImOCOZRYM2Lw
-         xErA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1HnmH3rsAkBEvWx/aIcakvs3bmQpz7yFKUX5Y9vJhmJorkxO/xvn48Zr/kwhQ3w2SZR2IWhPL0G4M@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyj4NIMlWmcBENlSQMVr6yk6QywvnKlvhIT1DQPHDdza92EkjEF
-	bope/2jforWiH1FwYhSrdNIkmvHICrT61KE7FvF6R4m9NKqR4roV6v3HbcSC4OFOPG/xIq4bd86
-	WlPt5hboeYtLVYZiyJgojNjCU5rWj2YDErXnV2Q==
-X-Google-Smtp-Source: AGHT+IFihpYv6T1JdpovppsTq+jGQ1YzO4C/0UePHGnkOurm7OJ16Ln/MvCWkmOlTL3SApVC7pHL73nngNzXtDsbapA=
-X-Received: by 2002:a17:907:1ca4:b0:a86:a6ee:7dad with SMTP id
- a640c23a62f3a-a86e3be5ec8mr137910366b.52.1724745843332; Tue, 27 Aug 2024
- 01:04:03 -0700 (PDT)
+	s=arc-20240116; t=1724745985; c=relaxed/simple;
+	bh=AcLkc26b9PYQn4/uwF23aTQej+Cge+p2ru+EExJCk9U=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bFZNk/B1zoEB+68Ie7AjeyDdDgHoIMvtQz6I5UvTV0rWik5iAeewYOzOcNuJriqZCK0Da1foFPm6htDSPflBvHGneSQ+/lzDx85vwbyGhZMgQXMZIPWJdEigOdYu98SJHmpB9ncWqpqfXlMj0yHKHMXki0TsH7MW0Ip+pyi8PNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DRMC/HNX; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47R86Gpa029843;
+	Tue, 27 Aug 2024 03:06:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724745976;
+	bh=7HdlXB9b99rm5OP5zMcmXcUANpRivvoEO64WttLFBuk=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=DRMC/HNXKQkBoIGM+V31jRAdSh3Di10xO1Or/Bz+Xgn/sm9kTiJHSP/PfLEWhu4s/
+	 Ao59ykHm2mi2Yn4Y8W7Hmsx0IO/dmBlXrqNerfT1P8dAIRr7+E2J3JE+RRCxj+5RWQ
+	 8CG9vQg6p88h7zoAy3lgiSRqa6Ha8692jrOqWzsE=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47R86G7i022204
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 27 Aug 2024 03:06:16 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 27
+ Aug 2024 03:06:15 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 27 Aug 2024 03:06:15 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47R86E22126086;
+	Tue, 27 Aug 2024 03:06:15 -0500
+Date: Tue, 27 Aug 2024 13:36:13 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Manorit Chawdhry <m-chawdhry@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
+	<b-padhi@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH v4 1/5] arm64: dts: ti: Refactor J784s4 SoC files to a
+ common file
+Message-ID: <78410d3c-0426-42e3-a0fa-480f845542da@ti.com>
+References: <20240819-b4-upstream-j742s2-v4-0-f2284f6f771d@ti.com>
+ <20240819-b4-upstream-j742s2-v4-1-f2284f6f771d@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731072405.197046-1-alexghiti@rivosinc.com>
- <20240731072405.197046-14-alexghiti@rivosinc.com> <20240731-ce25dcdc5ce9ccc6c82912c0@orel>
- <CAHVXubgtD_nDBL2H-MYb9V+3jLBoszz8HAZ2NTTsiS2wR6aPDQ@mail.gmail.com>
- <6f1bcc9b-1812-4e8c-9050-a750bfadd008@ghiti.fr> <CAJF2gTS4L6=HE_-9rgn3L8+6R7C4Jx=QgCkvOBhQHdHVGzr5MA@mail.gmail.com>
-In-Reply-To: <CAJF2gTS4L6=HE_-9rgn3L8+6R7C4Jx=QgCkvOBhQHdHVGzr5MA@mail.gmail.com>
-From: Alexandre Ghiti <alexghiti@rivosinc.com>
-Date: Tue, 27 Aug 2024 10:03:52 +0200
-Message-ID: <CAHVXubiPfY-1Ji5tmO2_NVqh9fi6aHqMcc2eYqGOcuatkDs-LA@mail.gmail.com>
-Subject: Re: [PATCH v4 13/13] riscv: Add qspinlock support
-To: Guo Ren <guoren@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, Andrew Jones <ajones@ventanamicro.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
-	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Leonardo Bras <leobras@redhat.com>, linux-doc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-arch@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240819-b4-upstream-j742s2-v4-1-f2284f6f771d@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Guo,
+On Mon, Aug 19, 2024 at 03:09:35PM +0530, Manorit Chawdhry wrote:
+> Refactor J784s4 SoC files to a common file which uses the
+> superset device to allow reuse in j742s2-evm which uses the subset part.
+> 
+> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> ---
+>  .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  149 +
+>  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2667 ++++++++++++++++++
+>  ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
+>  ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
+>  arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  135 +-
+>  6 files changed, 2913 insertions(+), 2887 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+> new file mode 100644
+> index 000000000000..958054ab1018
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+> @@ -0,0 +1,149 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Device Tree Source for J784S4 SoC Family
 
-On Sat, Aug 17, 2024 at 7:08=E2=80=AFAM Guo Ren <guoren@kernel.org> wrote:
->
-> On Thu, Aug 15, 2024 at 9:27=E2=80=AFPM Alexandre Ghiti <alex@ghiti.fr> w=
-rote:
-> >
-> > Hi Andrew,
-> >
-> > On 01/08/2024 08:53, Alexandre Ghiti wrote:
-> > > On Wed, Jul 31, 2024 at 5:29=E2=80=AFPM Andrew Jones <ajones@ventanam=
-icro.com> wrote:
-> > >> On Wed, Jul 31, 2024 at 09:24:05AM GMT, Alexandre Ghiti wrote:
-> > >>> In order to produce a generic kernel, a user can select
-> > >>> CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
-> > >>> spinlock implementation if Zabha or Ziccrse are not present.
-> > >>>
-> > >>> Note that we can't use alternatives here because the discovery of
-> > >>> extensions is done too late and we need to start with the qspinlock
-> > >>> implementation because the ticket spinlock implementation would pol=
-lute
-> > >>> the spinlock value, so let's use static keys.
-> > >>>
-> > >>> This is largely based on Guo's work and Leonardo reviews at [1].
-> > >>>
-> > >>> Link: https://lore.kernel.org/linux-riscv/20231225125847.2778638-1-=
-guoren@kernel.org/ [1]
-> > >>> Signed-off-by: Guo Ren <guoren@kernel.org>
-> > >>> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-> > >>> ---
-> > >>>   .../locking/queued-spinlocks/arch-support.txt |  2 +-
-> > >>>   arch/riscv/Kconfig                            | 29 +++++++++++++
-> > >>>   arch/riscv/include/asm/Kbuild                 |  4 +-
-> > >>>   arch/riscv/include/asm/spinlock.h             | 43 ++++++++++++++=
-+++++
-> > >>>   arch/riscv/kernel/setup.c                     | 38 ++++++++++++++=
-++
-> > >>>   include/asm-generic/qspinlock.h               |  2 +
-> > >>>   include/asm-generic/ticket_spinlock.h         |  2 +
-> > >>>   7 files changed, 118 insertions(+), 2 deletions(-)
-> > >>>   create mode 100644 arch/riscv/include/asm/spinlock.h
-> > >>>
-> > >>> diff --git a/Documentation/features/locking/queued-spinlocks/arch-s=
-upport.txt b/Documentation/features/locking/queued-spinlocks/arch-support.t=
-xt
-> > >>> index 22f2990392ff..cf26042480e2 100644
-> > >>> --- a/Documentation/features/locking/queued-spinlocks/arch-support.=
-txt
-> > >>> +++ b/Documentation/features/locking/queued-spinlocks/arch-support.=
-txt
-> > >>> @@ -20,7 +20,7 @@
-> > >>>       |    openrisc: |  ok  |
-> > >>>       |      parisc: | TODO |
-> > >>>       |     powerpc: |  ok  |
-> > >>> -    |       riscv: | TODO |
-> > >>> +    |       riscv: |  ok  |
-> > >>>       |        s390: | TODO |
-> > >>>       |          sh: | TODO |
-> > >>>       |       sparc: |  ok  |
-> > >>> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > >>> index ef55ab94027e..c9ff8081efc1 100644
-> > >>> --- a/arch/riscv/Kconfig
-> > >>> +++ b/arch/riscv/Kconfig
-> > >>> @@ -79,6 +79,7 @@ config RISCV
-> > >>>        select ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP
-> > >>>        select ARCH_WANTS_NO_INSTR
-> > >>>        select ARCH_WANTS_THP_SWAP if HAVE_ARCH_TRANSPARENT_HUGEPAGE
-> > >>> +     select ARCH_WEAK_RELEASE_ACQUIRE if ARCH_USE_QUEUED_SPINLOCKS
-> > >> Why do we need this? Also, we presumably would prefer not to have it
-> > >> when we end up using ticket spinlocks when combo spinlocks is select=
-ed.
-> > >> Is there no way to avoid it?
-> > > I'll let Andrea answer this as he asked for it.
-> > >
-> > >>>        select BINFMT_FLAT_NO_DATA_START_OFFSET if !MMU
-> > >>>        select BUILDTIME_TABLE_SORT if MMU
-> > >>>        select CLINT_TIMER if RISCV_M_MODE
-> > >>> @@ -488,6 +489,34 @@ config NODES_SHIFT
-> > >>>          Specify the maximum number of NUMA Nodes available on the =
-target
-> > >>>          system.  Increases memory reserved to accommodate various =
-tables.
-> > >>>
-> > >>> +choice
-> > >>> +     prompt "RISC-V spinlock type"
-> > >>> +     default RISCV_COMBO_SPINLOCKS
-> > >>> +
-> > >>> +config RISCV_TICKET_SPINLOCKS
-> > >>> +     bool "Using ticket spinlock"
-> > >>> +
-> > >>> +config RISCV_QUEUED_SPINLOCKS
-> > >>> +     bool "Using queued spinlock"
-> > >>> +     depends on SMP && MMU && NONPORTABLE
-> > >>> +     select ARCH_USE_QUEUED_SPINLOCKS
-> > >>> +     help
-> > >>> +       The queued spinlock implementation requires the forward pro=
-gress
-> > >>> +       guarantee of cmpxchg()/xchg() atomic operations: CAS with Z=
-abha or
-> > >>> +       LR/SC with Ziccrse provide such guarantee.
-> > >>> +
-> > >>> +       Select this if and only if Zabha or Ziccrse is available on=
- your
-> > >>> +       platform.
-> > >> Maybe some text recommending combo spinlocks here? As it stands it s=
-ounds
-> > >> like enabling queued spinlocks is a bad idea for anybody that doesn'=
-t know
-> > >> what platforms will run the kernel they're building, which is all di=
-stros.
-> > > That's NONPORTABLE, so people enabling this config are supposed to
-> > > know that right?
-> > >
-> > >>> +
-> > >>> +config RISCV_COMBO_SPINLOCKS
-> > >>> +     bool "Using combo spinlock"
-> > >>> +     depends on SMP && MMU
-> > >>> +     select ARCH_USE_QUEUED_SPINLOCKS
-> > >>> +     help
-> > >>> +       Embed both queued spinlock and ticket lock so that the spin=
-lock
-> > >>> +       implementation can be chosen at runtime.
-> > >> nit: Add a blank line here
-> > > Done
-> > >
-> > >>> +endchoice
-> > >>> +
-> > >>>   config RISCV_ALTERNATIVE
-> > >>>        bool
-> > >>>        depends on !XIP_KERNEL
-> > >>> diff --git a/arch/riscv/include/asm/Kbuild b/arch/riscv/include/asm=
-/Kbuild
-> > >>> index 5c589770f2a8..1c2618c964f0 100644
-> > >>> --- a/arch/riscv/include/asm/Kbuild
-> > >>> +++ b/arch/riscv/include/asm/Kbuild
-> > >>> @@ -5,10 +5,12 @@ syscall-y +=3D syscall_table_64.h
-> > >>>   generic-y +=3D early_ioremap.h
-> > >>>   generic-y +=3D flat.h
-> > >>>   generic-y +=3D kvm_para.h
-> > >>> +generic-y +=3D mcs_spinlock.h
-> > >>>   generic-y +=3D parport.h
-> > >>> -generic-y +=3D spinlock.h
-> > >>>   generic-y +=3D spinlock_types.h
-> > >>> +generic-y +=3D ticket_spinlock.h
-> > >>>   generic-y +=3D qrwlock.h
-> > >>>   generic-y +=3D qrwlock_types.h
-> > >>> +generic-y +=3D qspinlock.h
-> > >>>   generic-y +=3D user.h
-> > >>>   generic-y +=3D vmlinux.lds.h
-> > >>> diff --git a/arch/riscv/include/asm/spinlock.h b/arch/riscv/include=
-/asm/spinlock.h
-> > >>> new file mode 100644
-> > >>> index 000000000000..503aef31db83
-> > >>> --- /dev/null
-> > >>> +++ b/arch/riscv/include/asm/spinlock.h
-> > >>> @@ -0,0 +1,43 @@
-> > >>> +/* SPDX-License-Identifier: GPL-2.0 */
-> > >>> +
-> > >>> +#ifndef __ASM_RISCV_SPINLOCK_H
-> > >>> +#define __ASM_RISCV_SPINLOCK_H
-> > >>> +
-> > >>> +#ifdef CONFIG_RISCV_COMBO_SPINLOCKS
-> > >>> +#define _Q_PENDING_LOOPS     (1 << 9)
-> > >>> +
-> > >>> +#define __no_arch_spinlock_redefine
-> > >>> +#include <asm/ticket_spinlock.h>
-> > >>> +#include <asm/qspinlock.h>
-> > >>> +#include <asm/alternative.h>
-> > >> We need asm/jump_label.h instead of asm/alternative.h, but...
-> > >>
-> > >>> +
-> > >>> +DECLARE_STATIC_KEY_TRUE(qspinlock_key);
-> > >>> +
-> > >>> +#define SPINLOCK_BASE_DECLARE(op, type, type_lock)                =
-   \
-> > >>> +static __always_inline type arch_spin_##op(type_lock lock)        =
-   \
-> > >>> +{                                                                 =
-   \
-> > >>> +     if (static_branch_unlikely(&qspinlock_key))                  =
-   \
-> > >>> +             return queued_spin_##op(lock);                       =
-   \
-> > >>> +     return ticket_spin_##op(lock);                               =
-   \
-> > >>> +}
-> > >> ...do you know what impact this inlined static key check has on the
-> > >> kernel size?
-> > > No, I'll check, thanks.
-> >
-> >
-> > So I have just checked the size of the jump table section:
-> >
-> > * defconfig:
-> >
-> > - ticket: 26928 bytes
-> > - combo: 28320 bytes
-> >
-> > So that's a ~5% increase.
-> >
-> > * ubuntu config
-> >
-> > - ticket: 107840 bytes
-> > - combo: 174752 bytes
-> >
-> > And that's a ~62% increase.
-> The size of the jump table section has increased from 5% to 62%. I
-> think some configuration triggers the jump table's debug code. If it's
-> not a debugging configuration, that's a bug of the Ubuntu config.
+Since the file is already named "...-j784s4-j742s2-...", wouldn't it be
+better to add J742S2 and the link to its TRM here itself rather than
+adding it in patch 4/5?
 
-Let's cc @Emil Renner Berthing to make him aware of this "issue" and
-maybe he even has an idea :)
+> + *
+> + * TRM (SPRUJ43 JULY 2022): https://www.ti.com/lit/zip/spruj52
+> + *
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
 
->
-> >
-> > This is the ELF size difference between ticket and combo spinlocks:
-> >
-> > * ticket: 776915592 bytes
-> > * combo: 786958968 bytes
-> >
-> > So that's an increase of ~1.3% on the ELF.
-> >
-> > And the .text section size:
-> >
-> > * ticket: 12290960 bytes
-> > * combo: 12366644 bytes
-> >
-> > And that's a ~0.6% increase!
-> >
-> > Finally, I'd say the impact is very limited :)
-> >
-> > Thanks,
-> >
-> > Alex
-> >
-> >
-> > >
-> > >> Actually, why not use ALTERNATIVE with any nonzero cpufeature value.
-> > >> Then add code to riscv_cpufeature_patch_check() to return true when
-> > >> qspinlocks should be enabled (based on the value of some global set
-> > >> during riscv_spinlock_init)?
-> > > As discussed with Guo in the previous iteration, the patching of the
-> > > alternatives intervenes far after the first use of the spinlocks and
-> > > the ticket spinlock implementation pollutes the spinlock value, so
-> > > we'd have to unconditionally start with the qspinlock implementation
-> > > and after switch to the ticket implementation if not supported by the
-> > > platform. It works but it's dirty, I really don't like this hack.
-> > >
-> > > We could though:
-> > > - add an initial value to the alternatives (not sure it's feasible th=
-ough)
-> > > - make the patching of alternatives happen sooner by parsing the isa
-> > > string sooner, either in DT or ACPI (I have a working PoC for very
-> > > early parsing of ACPI).
-> > >
-> > > I intend to do the latter as I think we should be aware of the
-> > > extensions sooner in the boot process, so I'll change that to the
-> > > alternatives when it's done. WDYT, any other idea?
-> > >
-> > >
-> > >>> +
-> > >>> +SPINLOCK_BASE_DECLARE(lock, void, arch_spinlock_t *)
-> > >>> +SPINLOCK_BASE_DECLARE(unlock, void, arch_spinlock_t *)
-> > >>> +SPINLOCK_BASE_DECLARE(is_locked, int, arch_spinlock_t *)
-> > >>> +SPINLOCK_BASE_DECLARE(is_contended, int, arch_spinlock_t *)
-> > >>> +SPINLOCK_BASE_DECLARE(trylock, bool, arch_spinlock_t *)
-> > >>> +SPINLOCK_BASE_DECLARE(value_unlocked, int, arch_spinlock_t)
-> > >>> +
-> > >>> +#elif defined(CONFIG_RISCV_QUEUED_SPINLOCKS)
-> > >>> +
-> > >>> +#include <asm/qspinlock.h>
-> > >>> +
-> > >>> +#else
-> > >>> +
-> > >>> +#include <asm/ticket_spinlock.h>
-> > >>> +
-> > >>> +#endif
-> > >>> +
-> > >>> +#include <asm/qrwlock.h>
-> > >>> +
-> > >>> +#endif /* __ASM_RISCV_SPINLOCK_H */
-> > >>> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
-> > >>> index a2cde65b69e9..b811fa331982 100644
-> > >>> --- a/arch/riscv/kernel/setup.c
-> > >>> +++ b/arch/riscv/kernel/setup.c
-> > >>> @@ -244,6 +244,43 @@ static void __init parse_dtb(void)
-> > >>>   #endif
-> > >>>   }
-> > >>>
-> > >>> +#if defined(CONFIG_RISCV_COMBO_SPINLOCKS)
-> > >>> +DEFINE_STATIC_KEY_TRUE(qspinlock_key);
-> > >>> +EXPORT_SYMBOL(qspinlock_key);
-> > >>> +#endif
-> > >>> +
-> > >>> +static void __init riscv_spinlock_init(void)
-> > >>> +{
-> > >>> +     char *using_ext =3D NULL;
-> > >>> +
-> > >>> +     if (IS_ENABLED(CONFIG_RISCV_TICKET_SPINLOCKS)) {
-> > >>> +             pr_info("Ticket spinlock: enabled\n");
-> > >>> +             return;
-> > >>> +     }
-> > >>> +
-> > >>> +     if (IS_ENABLED(CONFIG_RISCV_ISA_ZABHA) &&
-> > >>> +         IS_ENABLED(CONFIG_RISCV_ISA_ZACAS) &&
-> > >>> +         riscv_isa_extension_available(NULL, ZABHA) &&
-> > >>> +         riscv_isa_extension_available(NULL, ZACAS)) {
-> > >>> +             using_ext =3D "using Zabha";
-> > >>> +     } else if (riscv_isa_extension_available(NULL, ZICCRSE)) {
-> > >>> +             using_ext =3D "using Ziccrse";
-> > >>> +     }
-> > >>> +#if defined(CONFIG_RISCV_COMBO_SPINLOCKS)
-> > >>> +     else {
-> > >> else if (IS_ENABLED(CONFIG_RISCV_COMBO_SPINLOCKS))
-> > >>
-> > >>> +             static_branch_disable(&qspinlock_key);
-> > >>> +             pr_info("Ticket spinlock: enabled\n");
-> > >>> +
-> > >> nit: remove this blank line
-> > >>
-> > >>> +             return;
-> > >>> +     }
-> > >>> +#endif
-> > >>> +
-> > >>> +     if (!using_ext)
-> > >>> +             pr_err("Queued spinlock without Zabha or Ziccrse");
-> > >>> +     else
-> > >>> +             pr_info("Queued spinlock %s: enabled\n", using_ext);
-> > >>> +}
-> > >>> +
-> > >>>   extern void __init init_rt_signal_env(void);
-> > >>>
-> > >>>   void __init setup_arch(char **cmdline_p)
-> > >>> @@ -297,6 +334,7 @@ void __init setup_arch(char **cmdline_p)
-> > >>>        riscv_set_dma_cache_alignment();
-> > >>>
-> > >>>        riscv_user_isa_enable();
-> > >>> +     riscv_spinlock_init();
-> > >>>   }
-> > >>>
-> > >>>   bool arch_cpu_is_hotpluggable(int cpu)
-> > >>> diff --git a/include/asm-generic/qspinlock.h b/include/asm-generic/=
-qspinlock.h
-> > >>> index 0655aa5b57b2..bf47cca2c375 100644
-> > >>> --- a/include/asm-generic/qspinlock.h
-> > >>> +++ b/include/asm-generic/qspinlock.h
-> > >>> @@ -136,6 +136,7 @@ static __always_inline bool virt_spin_lock(stru=
-ct qspinlock *lock)
-> > >>>   }
-> > >>>   #endif
-> > >>>
-> > >>> +#ifndef __no_arch_spinlock_redefine
-> > >> I'm not sure what's better/worse, but instead of inventing this
-> > >> __no_arch_spinlock_redefine thing we could just name all the functio=
-ns
-> > >> something like __arch_spin* and then add defines for both to asm/spi=
-nlock.h,
-> > >> i.e.
-> > >>
-> > >> #define queued_spin_lock(l) __arch_spin_lock(l)
-> > >> ...
-> > >>
-> > >> #define ticket_spin_lock(l) __arch_spin_lock(l)
-> > >> ...
-> > >>
-> > >> Besides not having to touch asm-generic/qspinlock.h and
-> > >> asm-generic/ticket_spinlock.h it allows one to find the implementati=
-ons
-> > >> a bit easier as following a tag to arch_spin_lock() will take them t=
-o
-> > >> queued_spin_lock() which will then take them to
-> > >> arch/riscv/include/asm/spinlock.h and there they'll figure out how
-> > >> __arch_spin_lock() was defined.
-> > >>
-> > >>>   /*
-> > >>>    * Remapping spinlock architecture specific functions to the corr=
-esponding
-> > >>>    * queued spinlock functions.
-> > >>> @@ -146,5 +147,6 @@ static __always_inline bool virt_spin_lock(stru=
-ct qspinlock *lock)
-> > >>>   #define arch_spin_lock(l)            queued_spin_lock(l)
-> > >>>   #define arch_spin_trylock(l)         queued_spin_trylock(l)
-> > >>>   #define arch_spin_unlock(l)          queued_spin_unlock(l)
-> > >>> +#endif
-> > >>>
-> > >>>   #endif /* __ASM_GENERIC_QSPINLOCK_H */
-> > >>> diff --git a/include/asm-generic/ticket_spinlock.h b/include/asm-ge=
-neric/ticket_spinlock.h
-> > >>> index cfcff22b37b3..325779970d8a 100644
-> > >>> --- a/include/asm-generic/ticket_spinlock.h
-> > >>> +++ b/include/asm-generic/ticket_spinlock.h
-> > >>> @@ -89,6 +89,7 @@ static __always_inline int ticket_spin_is_contend=
-ed(arch_spinlock_t *lock)
-> > >>>        return (s16)((val >> 16) - (val & 0xffff)) > 1;
-> > >>>   }
-> > >>>
-> > >>> +#ifndef __no_arch_spinlock_redefine
-> > >>>   /*
-> > >>>    * Remapping spinlock architecture specific functions to the corr=
-esponding
-> > >>>    * ticket spinlock functions.
-> > >>> @@ -99,5 +100,6 @@ static __always_inline int ticket_spin_is_conten=
-ded(arch_spinlock_t *lock)
-> > >>>   #define arch_spin_lock(l)            ticket_spin_lock(l)
-> > >>>   #define arch_spin_trylock(l)         ticket_spin_trylock(l)
-> > >>>   #define arch_spin_unlock(l)          ticket_spin_unlock(l)
-> > >>> +#endif
-> > >>>
-> > >>>   #endif /* __ASM_GENERIC_TICKET_SPINLOCK_H */
-> > >>> --
-> > >>> 2.39.2
-> > >>>
-> > >> Thanks,
-> > >> drew
-> > > _______________________________________________
-> > > linux-riscv mailing list
-> > > linux-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
->
->
->
-> --
-> Best Regards
->  Guo Ren
+Since this is a new file and not a moved file, should it simply be "2024"?
+
+> + *
+> + */
+
+[...]
+
+> +
+> +
+> +	cbass_main: bus@100000 {
+> +		bootph-all;
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
+> +			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
+> +			 <0x00 0x00700000 0x00 0x00700000 0x00 0x00001000>, /* ESM */
+> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
+
+Since SERDES2 lies in the above range, to be techincally correct, the
+above range should be split up to move SERDES2 out of the common file.
+
+> +			 <0x00 0x04210000 0x00 0x04210000 0x00 0x00010000>, /* VPU0 */
+> +			 <0x00 0x04220000 0x00 0x04220000 0x00 0x00010000>, /* VPU1 */
+> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIe0 Core*/
+> +			 <0x00 0x0d800000 0x00 0x0d800000 0x00 0x00800000>, /* PCIe1 Core*/
+> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00800000>, /* PCIe2 Core*/
+> +			 <0x00 0x0e800000 0x00 0x0e800000 0x00 0x00800000>, /* PCIe3 Core*/
+
+PCIe2 and PCIe3 should be dropped from the common file.
+
+> +			 <0x00 0x10000000 0x00 0x10000000 0x00 0x08000000>, /* PCIe0 DAT0 */
+> +			 <0x00 0x18000000 0x00 0x18000000 0x00 0x08000000>, /* PCIe1 DAT0 */
+> +			 <0x00 0x64800000 0x00 0x64800000 0x00 0x0070c000>, /* C71_1 */
+> +			 <0x00 0x65800000 0x00 0x65800000 0x00 0x0070c000>, /* C71_2 */
+> +			 <0x00 0x66800000 0x00 0x66800000 0x00 0x0070c000>, /* C71_3 */
+> +			 <0x00 0x67800000 0x00 0x67800000 0x00 0x0070c000>, /* C71_4 */
+> +			 <0x00 0x6f000000 0x00 0x6f000000 0x00 0x00310000>, /* A72 PERIPHBASE */
+> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00400000>, /* MSMC RAM */
+> +			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
+> +			 <0x40 0x00000000 0x40 0x00000000 0x01 0x00000000>, /* PCIe0 DAT1 */
+> +			 <0x41 0x00000000 0x41 0x00000000 0x01 0x00000000>, /* PCIe1 DAT1 */
+> +			 <0x42 0x00000000 0x42 0x00000000 0x01 0x00000000>, /* PCIe2 DAT1 */
+> +			 <0x43 0x00000000 0x43 0x00000000 0x01 0x00000000>, /* PCIe3 DAT1 */
+> +			 <0x44 0x00000000 0x44 0x00000000 0x00 0x08000000>, /* PCIe2 DAT0 */
+> +			 <0x44 0x10000000 0x44 0x10000000 0x00 0x08000000>, /* PCIe3 DAT0 */
+
+PCIe2 and PCIe3 should be dropped from the common file.
+
+> +			 <0x4e 0x20000000 0x4e 0x20000000 0x00 0x00080000>, /* GPU */
+> +
+> +			 /* MCUSS_WKUP Range */
+> +			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
+> +			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00998400>,
+> +			 <0x00 0x40f00000 0x00 0x40f00000 0x00 0x00020000>,
+> +			 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>,
+
+[...]
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> new file mode 100644
+> index 000000000000..04d77c42442d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> @@ -0,0 +1,2667 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Device Tree Source for J784S4 and J742S2 SoC Family Main Domain peripherals
+
+Here, you have mentioned J742S2 as well, so to keep it consistent,
+J742S2 should be mentioned in the "k3-j784s4-j742s2-common.dtsi" file as
+well as I have indicated above.
+
+> + *
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
+
+Since this is a new file and not a renamed file, shouldn't it be "2024"?
+
+> + */
+> +
+> +#include <dt-bindings/mux/mux.h>
+> +#include <dt-bindings/phy/phy.h>
+> +#include <dt-bindings/phy/phy-ti.h>
+> +
+
+[...]
+
+Regards,
+Siddharth.
 
