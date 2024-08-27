@@ -1,140 +1,94 @@
-Return-Path: <devicetree+bounces-96959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6BE96027B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:52:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 404CC960291
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:57:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E5A71C22354
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:52:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1B86B21E42
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061A915380A;
-	Tue, 27 Aug 2024 06:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B9D149C7A;
+	Tue, 27 Aug 2024 06:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZbwrqmHZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KTESJBOJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D212454F87;
-	Tue, 27 Aug 2024 06:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284C4148FE1;
+	Tue, 27 Aug 2024 06:57:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724741540; cv=none; b=M2iPfINjEE82mqduiVtbfD2oNFUExyF04qGKj0gDXWNHwrbDdlIPb+Redb1a13e2bzpT9RcSyoaEMUPjkoWJHVdGsXgddNOMz7r9eLIfu5qluT1lLMJHwz8odJvFHKg+nLLZZW6LBwurOVhWi8fBYddVfUY0Qxl7bqbkq8F2HFQ=
+	t=1724741823; cv=none; b=bDqcuJz9HI/vxXOtqQJyOsp44rqEwfRY2mPQsvijEvFWqNfZZi/0lJtYGgcZ3Qh+E2io82FpDHi2SuHhcZ7P5fh530mkrxo0josHmq8iwd+kOiMiyIIvo0XLgJ8cw0gH5QQqg3a9tq0mDwODhkCY2T3ZpzTSNq3YTuOe+Q8N/qM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724741540; c=relaxed/simple;
-	bh=NFFYyetWLLnK/j7UnujThrwVZsi8OwjZbGEmvMMyLrc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VWlfjMRMZZQ8cn+JxpiO/4YN+m3ERLhN09VOHrPS4Aahg/usA2+IPLBGrZEPx3dFpDM7PPUyuVDrKmEuZLlPDaoG2vv+Z/JBd8Ei5zRaA5B/I4WscDrrVe8v6RLCfzqsgswYjakXNgLVXHMj/Y9cWM5UmJcfcDXsRj3UkX/KQ/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZbwrqmHZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49385C8B7C6;
-	Tue, 27 Aug 2024 06:52:17 +0000 (UTC)
+	s=arc-20240116; t=1724741823; c=relaxed/simple;
+	bh=EdNPQchORoPessX+G6mk84EUoaM5/m/oPh6e5kb7gTE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MgUG1dDTq5bjaVQ02uza2BMzwGrGeTa/niQ9S90vVN3dBfZ/KMfXqiNSDbzBQRoX/FW2jDR/J2V81mNY4KHa1e1E1yIgwvfClCcIidOovXNqreFs4k0KFHr3ETusgNmT88Ym1H+QqxjwTZ9QoIpT+wUxG83uUEuwBdx3+0LYjeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KTESJBOJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86145C4FE00;
+	Tue, 27 Aug 2024 06:57:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724741540;
-	bh=NFFYyetWLLnK/j7UnujThrwVZsi8OwjZbGEmvMMyLrc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZbwrqmHZJQt6oX0uINbulTZ5E1MRT8y3X44bdof6DyCzVE7AoWWCXOdeLp7A6wu5+
-	 zp7OY+j6xEfTN2IGkcMWG3EoRHqnffqSl0Q/21Alj8w9weSzFoKmSo4KM2m4+0zxsZ
-	 H1S84qy4YnOpLviCkPV1XCuPbR4mzvaA0BsbE6Yce22ktv1SiXGWftTn/mHAN1DiY7
-	 WvVsCTho7zkzB1Ef8aL6Bjyqio5nsvo35x/ryju6lxf0SHFg/y9TdbSe/4EdEdPKz1
-	 NYkLgUM6xr4JztlRpBgAsiOGmBUY5mo1Kp/EFpUU+S8LqNSEZlPpoPDthUYz4ULZ0A
-	 Su32wypJtWLIA==
-Message-ID: <b69e5a0a-acf9-412c-90b4-ebe00c7e07d4@kernel.org>
-Date: Tue, 27 Aug 2024 08:52:15 +0200
+	s=k20201202; t=1724741822;
+	bh=EdNPQchORoPessX+G6mk84EUoaM5/m/oPh6e5kb7gTE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KTESJBOJHBJEU4kUtEaMVsXM4ZBCg3UIH/tGJfMQ4NhjxUuY2D2Vm9HftMhnXAhjm
+	 TgJ4U/J06eLspxES147RRkrPxEzWAYRLDXoo0gt0a7fVLMJdQSSuJCic+wEB7biHLn
+	 mG1w5o649gC7sxY99zIO0ONvc9Yb7AvyU+cm6lQ3x0MZik9cj3HQkYpIJEf/B4sGHQ
+	 aQE4EFUMg/qIX8QQrk3JnIhblFjxWci2n7fNLhqnhvLJa+ZYGav2SHM6bNWu+CrVs0
+	 HncDqZPeDQcP9MI+RwiFgvFXXyQwkIoRJzZmUNBEK99nE6L44Rzjb5ropUxxyMuCNk
+	 S1/0xPQ+Qnimg==
+Date: Tue, 27 Aug 2024 08:56:58 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: rockchip: Fix compatibles for
+ RK3588 VO{0,1}_GRF
+Message-ID: <5c5juu2ug5wmtzcokvwav2vls2f43ryom6mjrqc27uytscax6d@hj4qfezdrf7u>
+References: <20240827-rk3588-vo-grf-compat-v1-0-d4a18acf951a@collabora.com>
+ <20240827-rk3588-vo-grf-compat-v1-1-d4a18acf951a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
-To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240826205538.1066103-1-jonas@kwiboo.se>
- <66ccebeb.d40a0220.356790.58caSMTPIN_ADDED_BROKEN@mx.google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <66ccebeb.d40a0220.356790.58caSMTPIN_ADDED_BROKEN@mx.google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240827-rk3588-vo-grf-compat-v1-1-d4a18acf951a@collabora.com>
 
-On 26/08/2024 22:55, Jonas Karlman wrote:
-> The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
-> RK3566 SoC. It features e.g. 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-card,
-> GbE LAN, HDMI 2.0, M.2 NVMe and USB 2.0/3.0.
+On Tue, Aug 27, 2024 at 02:06:50AM +0300, Cristian Ciocaltea wrote:
+> According to RK3588 TRM, VO0_GRF and VO1_GRF have a similar layout, but
+> definitely not an identical one, therefore sharing the compatible is not
+> really justified.
 > 
-> Add devicetree binding documentation for the Hardkernel ODROID-M1S board.
+> Since currently there is no user of this, hence no ABI break, let's fix
+> it by providing dedicated strings.
 > 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> Reported-by: Conor Dooley <conor@kernel.org>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index f08e9f2f5dfc..9e29a5ecc94d 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -598,6 +598,11 @@ properties:
->            - const: hardkernel,rk3568-odroid-m1
->            - const: rockchip,rk3568
->  
-> +      - description: Hardkernel Odroid M1S
-> +        items:
-> +          - const: hardkernel,rk3566-odroid-m1s
+> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> index 78c6d5b64138..8fd539125f4a 100644
+> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> @@ -31,7 +31,8 @@ properties:
+>                - rockchip,rk3588-pcie3-pipe-grf
+>                - rockchip,rk3588-usb-grf
+>                - rockchip,rk3588-usbdpphy-grf
+> -              - rockchip,rk3588-vo-grf
 
-hardkernel,odroid-m1s
-
-Why adding SoC name to the board? Can it be Odroid M1S with RK3568?
-
+You should deprecate the old one instead (deprecated: true).
 
 Best regards,
 Krzysztof
