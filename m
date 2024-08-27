@@ -1,128 +1,90 @@
-Return-Path: <devicetree+bounces-97173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DACA961394
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:05:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 362A09613A8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6B6D1F23CE3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:04:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEBE81F240D1
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5B31C7B71;
-	Tue, 27 Aug 2024 16:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F3E1C86F0;
+	Tue, 27 Aug 2024 16:07:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YvecuaA+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7WsD/Rb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62DC1C6F48;
-	Tue, 27 Aug 2024 16:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63ACB64A;
+	Tue, 27 Aug 2024 16:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724774694; cv=none; b=l+FMN+MnISbN+m6Lxx6h3lDYX27zLN2Vr0Za/sHhZ/R172d9IeB7gNKH9vIHQMZYsyMMqnzzwrbpXyMLny189c4sTn8NKazjaQS3aDNknroZNh7Qrw//kxBgwykIu+qzDe6qq0PVuXfyUCC/yqg2dvbMiG9522EOITO2ncwA0JM=
+	t=1724774875; cv=none; b=qOWkriVTAvf7+d5ZgLOyiFSmBctVQWBKpPignr0CwmXrkJtAxmzNOyJx5sQNPyBxegUz4TCfJP/6IHOFlerU7nwMfO/+PvyzprPz/ls34IchHYC5emddRq6AkllipheHipOiP/11fhOYzJE9sby5JS04cP8f3VC5VxaXM8GxT+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724774694; c=relaxed/simple;
-	bh=e46VkUMx+O9YtB2a77Mdsp+OyuWhfRtS3jV/UsDqPTQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UdhCLTGisKKPNV6jJ5FANI8GlK+5eiqvQFpyZHEMPWV6+optB26wakBUhGncraRqBy0xWmxFPiHBdXdTE9TJJGtxCfaBHtg+sK4VNOgX9Qlq5oxNjfV+t88CwXqerZdismpTq0JvG4On2grW1fv+FhKuAFzAdl9zAUYaxZn+GEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YvecuaA+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RFcJLR025767;
-	Tue, 27 Aug 2024 16:04:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=qmxualgWirVB9VB+ifEsGQ5T
-	J/kSK5dckP6lTNPJwb0=; b=YvecuaA+G6r+KSXhl4Ste/45KnpaC0Uv2T1/r3vb
-	QOBukkeLcvWUS+xUzooXl2L6qipLkehkJOilCkeFxuR7J/bJRUpKEha7vZrXYZzM
-	+kwl57icCDLUPsLcQqNmjw6AGhCD6T04sdQQxShJ6fGrMTS2/DBEYx8V7MV4gQP2
-	deWNyU4E2vp3MnAtkA4MMad6uqiA9TYqTRo49xnCTC0Wx/LPYXUKH7ohT3tATxqH
-	MkniNAL47K8kDZJrg1s0mv4Tn5adMNxDSjmGjeGrD9caqcyaXx2Rrhiwwmy17zMq
-	4oFVRXRP3dqx3+X/4NRftgjqjpwe94WPoCpEUvifeq4F9w==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4199s89khd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 16:04:48 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47RG4lrQ031027
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 16:04:47 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 27 Aug 2024 09:04:43 -0700
-Date: Tue, 27 Aug 2024 21:34:35 +0530
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, <lee@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Tingwei <quic_tingweiz@quicinc.com>,
-        "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for
- sa8775p
-Message-ID: <Zs35Ez/xGIkcXXd+@hu-mojha-hyd.qualcomm.com>
-References: <20240705153252.1571814-1-quic_mojha@quicinc.com>
- <3b16214b-4693-4754-b62a-fea2e070269c@kernel.org>
- <1f5c5be4-f864-489c-941d-aad4a914508e@quicinc.com>
+	s=arc-20240116; t=1724774875; c=relaxed/simple;
+	bh=PxD+IcsDEZ9xXG7fmj5qGES4cWSVJLZ0Q/GZsBMb8Ic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lg+XZ7CWu/KKR3KvU8bBtQL7g9XmcnSVe7bQ6rSlN2VnVX4rQZNTEu7XHXBNt2tVoIyoM6+xKtqq4fl3NNaqMysdmDZoTPvCiZlxhjfLKeZ1JkILkfSqYb6WsNrnJVGAbGKEiZpDtg/AHdpeVsW1PkMwjIJIqWwJB33UowbG5/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k7WsD/Rb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8686EC6106A;
+	Tue, 27 Aug 2024 16:07:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724774874;
+	bh=PxD+IcsDEZ9xXG7fmj5qGES4cWSVJLZ0Q/GZsBMb8Ic=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k7WsD/RbALGPv6gLXwXXbC8he9X0lrMd/w3TFcnsyxQcCQ31W7LjADm481hdqgWII
+	 R26SDKINFMZX+QcVj4H1xgLRXVhWvzzilQpebxBA+4n1r+cy0eTgXefjb7CCbecxBk
+	 x/bF5E/WfAu6tjQ8BC4H5Uwj6X9EDTLvquTf4jQ4rI07vQpKh4xe/qcmXfUialyoiF
+	 rWnB7tE+bqQGjv0g1E9AZwC8/wn0wzbeKs4OZ7OE9gq3MCBh9xAPVowhXqNQStIN+3
+	 nWTEOMbsStiqiTrKEzCaT1eQQNNjk+z4qfO2rz1KztP76W09lMqeW5q7sKsdR/QE6i
+	 V3u+xbPWwTgOg==
+Date: Tue, 27 Aug 2024 11:07:52 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org,
+	Olof Johansson <olof@lixom.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, imx@lists.linux.dev,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-pci@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: layerscape-pci: Replace
+ fsl,lx2160a-pcie with fsl,lx2160ar2-pcie
+Message-ID: <172477487189.4026008.12479335354124304319.robh@kernel.org>
+References: <20240826-2160r2-v1-0-106340d538d6@nxp.com>
+ <20240826-2160r2-v1-1-106340d538d6@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1f5c5be4-f864-489c-941d-aad4a914508e@quicinc.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: VMB5P-PHeUtTEYylM-1sk6A6aJMEwLqp
-X-Proofpoint-GUID: VMB5P-PHeUtTEYylM-1sk6A6aJMEwLqp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-27_09,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 phishscore=0
- suspectscore=0 lowpriorityscore=0 mlxlogscore=706 impostorscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408270120
+In-Reply-To: <20240826-2160r2-v1-1-106340d538d6@nxp.com>
 
-On Mon, Jul 29, 2024 at 06:48:51PM +0800, Tengfei Fan wrote:
+
+On Mon, 26 Aug 2024 17:38:32 -0400, Frank Li wrote:
+> fsl,lx2160a-pcie compatible is used for mobivel according to
+> Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
 > 
+> fsl,layerscape-pcie.yaml is used for designware PCIe controller binding. So
+> change it to fsl,lx2160ar2-pcie and allow fall back to fsl,ls2088a-pcie.
 > 
-> On 7/7/2024 8:46 PM, Krzysztof Kozlowski wrote:
-> > On 05/07/2024 17:32, Mukesh Ojha wrote:
-> > > Document the compatible for sa8775p SoC.
-> > > 
-> > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > 
-> > Eh? SA8775p is going to be removed/changed... why adding this?
-> > 
-> > Best regards,
-> > Krzysztof
-> > 
+> Sort compatible string.
 > 
-> After considering the feedback provided on the subject, We have decided
-> to keep current SA8775p compatible and ABI compatibility in drivers.
-> Therefore, this patch is still needed, please continue to review this
-> patch.
-> Thank you for your input.
-
-Thanks Tengfei for the reply.
-
-Can this series be considered now, it still applied fine on linux-next.
-
--Mukesh
-
+> Fixes: 24cd7ecb3886 ("dt-bindings: PCI: layerscape-pci: Convert to YAML format")
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../bindings/pci/fsl,layerscape-pcie.yaml          | 26 ++++++++++++----------
+>  1 file changed, 14 insertions(+), 12 deletions(-)
 > 
-> -- 
-> Thx and BRs,
-> Tengfei Fan
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
