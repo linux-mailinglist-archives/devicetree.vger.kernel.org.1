@@ -1,147 +1,123 @@
-Return-Path: <devicetree+bounces-97198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 827129614A3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08C619614BA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 18:56:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 296DB1F2451D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:53:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A68FD1F2106F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 16:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5E161CF29B;
-	Tue, 27 Aug 2024 16:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCDA1C8FD3;
+	Tue, 27 Aug 2024 16:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="OpKB9Yrm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hedFYLG2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D51E81CE6E7;
-	Tue, 27 Aug 2024 16:52:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724777543; cv=pass; b=bHVMWJsY+ltma7LX5i8fSN/dgr6jkGHT3UZkIPjOfs3uouGf0w374fpL+t3Yd/XLn6pLK1YkfBky7XJ7E3uPibVTvWSG6KPKF/ElSWBOrvbY3SRFtcC+xDugtrIr7qj6GTSqeE9FUMdoyayLpl9HvoSgu5fRY7t0RcZ23Dzg6SI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724777543; c=relaxed/simple;
-	bh=SdgFpzzLedIEKAkguxPGHN9/qwQWneX547RqSrqEkJk=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEB61C27;
+	Tue, 27 Aug 2024 16:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724777771; cv=none; b=tiF2pgo+dyOuizzyDz3iJnWAD8lTGmvKIypwb1N7vuXmBWPcRWi2KG1M/UQY8mLlxlH/cg9tBqISn1wzil5dP9D/6wIFba8LMa3MZx7x2ovnTdWvcbY0KUarc+XniXOa6lUxKmipVa9CTZx3nxUy6I4ZsUVdplkSxmxIhB6J9No=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724777771; c=relaxed/simple;
+	bh=TpgY5Goxq3Cb2OOuAE/kh9u2rtmTr3lvYDP7Tgu5rSI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RpAKAc2SScICnh3K4Uk5taI9FZGjsoCyePsYhm9h0d90tUd76UGoS0TDz04PxQLE6fRzsV60UwDFC0oHrZGy03zTK3jwcy5Hlz7hqhj5tDOpB5ttWapxxDvKf85EgfkGYfFSpb+0GOOAwF0UuVuTPwEv6TRk1U46F4u/f9L1VPY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=OpKB9Yrm; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724777519; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=bwIumnAotVC8L8yTnDIJ27UUlcC1PksE78uao2ODkkufl04cSH8JCCogCmrlG5qYZ4bqXwpAq86gVwzplDnQcLzVtc1FxhP1AdtkfI8+IHmNHJhNDDHDaNPXYNQ7kNt5ix099nvgkp6nPRuXGeI29KXMiKbIhSJsdSv4b3yAWlk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724777519; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=bYimh/iNRBlXEJfDnSGl77olRxlPtpIHOnaA2x9TrmI=; 
-	b=RD1pKMmVbmawE7lCeTfRZtyqt8TXqLOYOEXBxSgTVShiubYZ4b+DoygxqYbjyQevJ9Q/iuG975SzoBiA5+e4mNJh3BjOvE5V5v8RkTjAeURbXe3YHEx0QM2nb4jKPzUFWX76+r+4tpMJxw/pZwi41Cy5ghydDXkWyCf2S97ZPhA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724777519;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=bYimh/iNRBlXEJfDnSGl77olRxlPtpIHOnaA2x9TrmI=;
-	b=OpKB9YrmWW3ouB1HwEkLL4oUqdqaKrXgi1GZEm5DD+wiVoAl3NquUSWmuh/JxPcO
-	1ELuWZ5FEZKOjF2CCzxuQp9ptPNzLbbdEFBX/1SCJjnAlb0kpVLHd+948hgHE+3L8mF
-	52nTZraLSb5xTQvtsNl0NC/ieYRVoCBXdgz/azKE=
-Received: by mx.zohomail.com with SMTPS id 1724777517787364.44684154521156;
-	Tue, 27 Aug 2024 09:51:57 -0700 (PDT)
-Received: by mercury (Postfix, from userid 1000)
-	id 010D010604BD; Tue, 27 Aug 2024 18:51:52 +0200 (CEST)
-Date: Tue, 27 Aug 2024 18:51:52 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Artur Weber <aweber.kernel@gmail.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>, 
-	Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>, Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
-Subject: Re: [PATCH v4 08/10] ARM: dts: samsung: exynos4212-tab3: Add battery
- node with charge current value
-Message-ID: <ekqydclwg6dx6ydqcm3tanyho636hxtwpx3cnpj7c4dwpdxa2d@bbzaqvkoajrg>
-References: <20240816-max77693-charger-extcon-v4-0-050a0a9bfea0@gmail.com>
- <20240816-max77693-charger-extcon-v4-8-050a0a9bfea0@gmail.com>
- <f2d19e20-9177-4b30-9781-6904cc1d1638@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=b/jiYzxrxsj1hajj4as0uKOOuBl0MOEp4GNxgvysjhQzYtYEPAJSut6A1+hflnHWsfI6Vind1mxTKSbEnt94NlOgZFOodSoVcXoyeYvaQl6fziJZx6gZ9rIv31dh0vEs3la8u/TO53pZvtnvR2ZJCpZ8ZSbQj0BMUBV9yLmnU80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hedFYLG2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A77D3C4AF63;
+	Tue, 27 Aug 2024 16:56:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724777770;
+	bh=TpgY5Goxq3Cb2OOuAE/kh9u2rtmTr3lvYDP7Tgu5rSI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hedFYLG280viYumUxRNfeuVYQ53WQMvOuhkG+AqbMfgJck8q7U1F3GxtFOTMziu07
+	 rbD2xgSmxKUpk3nnW9XZnJMXBz6o8jbaRBy2k51+4MRtOJSq6h4vn2C7Rf4BLl5UEz
+	 d9iy4umTjg1bt1ncruuY9JXtlO6Ai6f0/+Lffjzo77RNLu/2SHaFghcrEMNM/Aai7M
+	 2eGJmevsSyeLZWB3DvoIM+t/4InlLMRQwMArTqp4ZQN3IeDrsCSxctRGMDAFSK3mud
+	 NybessVmdUBU/GqSHy3uAQNEPGmZpjIeny2RgCEGnFZmPP37GZwbnYkyCFqVyt4ezX
+	 TqtEGMpVzxBkA==
+Date: Tue, 27 Aug 2024 17:56:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Olof Johansson <olof@lixom.net>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: layerscape-pci: Replace
+ fsl,lx2160a-pcie with fsl,lx2160ar2-pcie
+Message-ID: <20240827-sepia-setup-fb8396972b54@spud>
+References: <20240826-2160r2-v1-0-106340d538d6@nxp.com>
+ <20240826-2160r2-v1-1-106340d538d6@nxp.com>
+ <20240827-breeding-vagrancy-22cd1e1f9428@spud>
+ <Zs3/qnkcSl4pQQSg@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2ugqlblyosjqwmlb"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RgNqtIwAT2TJQYCf"
 Content-Disposition: inline
-In-Reply-To: <f2d19e20-9177-4b30-9781-6904cc1d1638@kernel.org>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/224.300.3
-X-ZohoMailClient: External
+In-Reply-To: <Zs3/qnkcSl4pQQSg@lizhi-Precision-Tower-5810>
 
 
---2ugqlblyosjqwmlb
+--RgNqtIwAT2TJQYCf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Fri, Aug 16, 2024 at 12:03:32PM GMT, Krzysztof Kozlowski wrote:
-> On 16/08/2024 10:19, Artur Weber wrote:
-> > This value was verified by comparing register dumps of the MAX77693
-> > charger with on mainline with a downstream kernel under Android; the
-> > value on downstream was set to 1.8 amps when charging with a proper
-> > charger.
-> >=20
-> > Add it to a new battery node and pass it to the MAX77693 charger
-> > so that the fast charge current setting can be used for charging.
-> >=20
-> > Tested-by: Henrik Grimler <henrik@grimler.se>
-> > Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> > ---
-> > Changes in v2:
-> > - Switched to monitored-battery
-> > ---
-> >  arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 6 ++++++
-> >  1 file changed, 6 insertions(+)
+On Tue, Aug 27, 2024 at 12:32:42PM -0400, Frank Li wrote:
+> On Tue, Aug 27, 2024 at 05:14:32PM +0100, Conor Dooley wrote:
+> > On Mon, Aug 26, 2024 at 05:38:32PM -0400, Frank Li wrote:
+> > > fsl,lx2160a-pcie compatible is used for mobivel according to
+> > > Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
+> > >
+> > > fsl,layerscape-pcie.yaml is used for designware PCIe controller bindi=
+ng. So
+> > > change it to fsl,lx2160ar2-pcie and allow fall back to fsl,ls2088a-pc=
+ie.
+> > >
+> > > Sort compatible string.
+> > >
+> > > Fixes: 24cd7ecb3886 ("dt-bindings: PCI: layerscape-pci: Convert to YA=
+ML format")
+> >
+> > I don't understand what this fixes tag is for, this is a brand new
+> > compatible that you are adding, why does it need a fixes tag pointing to
+> > the conversion?
 >=20
-> For next version, please split DTS into separate patchset and provide in
-> changelog (---) lore link to power supply patchset with bindings. It
-> will be easier for Sebastian to apply entire set for psy.
+> Because previous convert wrongly included "fsl,lx2160a-pcie" here, which
+> already used for mobivel pci controler, descripted in
+> layerscape-pcie-gen4.txt.
+>=20
+> This patch fix this problem, rename fsl,lx2160a-pcie to fsl,lx2160ar2-pcie
 
-I'm fine with a splitted series of course, but I am also perfectly
-fine with applying partial patchsets. I know at least some SoC
-maintainers like this style of a combined patch series, since they
-basically get an automatic push notification that the dependencies
-have been merged. It also makes testing easier of course :)
+Ah, I see that now. Lost in the noise of reordering the list first time
+around.
 
--- Sebastian
-
---2ugqlblyosjqwmlb
+--RgNqtIwAT2TJQYCf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbOBCIACgkQ2O7X88g7
-+pqhmRAAj/YUAksIichzuOKkEA9JWrEqtvZqm9QMWiY8zHymBBNObZKbUjHa+OBZ
-jsx8GMQ1+4lnap1Llsyq9MJTQuaICNaNChUd+gAsnAbXW0Fsf+BumCD8Kd0Wu6U9
-BugLOA/kYnaMd5nSeclaE+BshGj6wxySqkBvEU2dyFaVmBygHAx+6XAgJT8Q4682
-a4gntdDDh3m8x44b1rg6frZoXR0TSome93wGIQGAYWpmuan49kAf1rt9/wFXWMys
-79VOMPX57pIVl0kKYFFWefrqsTM/faMyzxxbyx980DB1GzvpEbMW/C3dX9vHhqlX
-uKbBW18dkWGIKCfO95ZPVhXjpg+HiTpcN3GTW4O6IoOi+buq5Y/pg8wWk740f7Ck
-7bKbmE7ay480qnjVGq/pdu6XVdTyoBr+vifztJYiD78JuQgrP2sHWBShmAEa/fU3
-iicuyYE6txTYaEocVrWjVFr4k2eZYA6B4ELeeyAONgIsvIFJe3QK6Ui///lXovSL
-Z4jYdo8TQV4WDKgLIQzJNk5EG/HGQFKrcDkcnbzQX442xmXMqEY5KQVeNeeceSwN
-PsCop9CbI11zJ40LPP/ydENbhzmG2bgQyEAgAmrZ85YxtBS4wH5b7uVSJfQK4l7h
-Aui4+8U3tPCiE/h6ovxqV5pN/CebJ/LOSeDJyp7kcvmOUgs6gco=
-=5DI8
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZs4FJQAKCRB4tDGHoIJi
+0vLRAPsFrYnP12WBONWVolx0rNNnFpQTkL5y3HnprcmHPNCnZQD+NFrvy1AmEWLb
+DBcuFN8q7NWORpAJEjIQcsxB6hIy7wk=
+=BUL8
 -----END PGP SIGNATURE-----
 
---2ugqlblyosjqwmlb--
+--RgNqtIwAT2TJQYCf--
 
