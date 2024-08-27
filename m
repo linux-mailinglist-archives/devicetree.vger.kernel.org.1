@@ -1,435 +1,704 @@
-Return-Path: <devicetree+bounces-97037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E9296073B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:19:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE499606A9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB5681F23992
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:19:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F0051C22354
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D291A0B04;
-	Tue, 27 Aug 2024 10:15:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0EB1993BE;
+	Tue, 27 Aug 2024 10:06:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="qnUX9yP7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="azXfcVy5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A8A4C92;
-	Tue, 27 Aug 2024 10:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724753734; cv=fail; b=NyQ0Vl+mN3vruDs+dh3BCU8o0brBdmyoApj5s85gaR0XsyP5lkEF4QKYmO/Red+347tNqCVT9vxtc0sdCgW2Dn0jBorUgjbr9wY38ol/RZF1O8pAOEz1lkVJhwacoehP2qCtpFHXhV4fMvOKqRs3IUiauHn7GYCINyERrNabU4I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724753734; c=relaxed/simple;
-	bh=50xwp+Hgcu7D7nKktYmZgItYU5tSIme91xwgE9VNhVE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=stc8lTGM9cwycnM/l1J0tULuHLZ5r4wTooBWGkyPNjA4Prw8T5578hGS2F6oEL0uO1Apco+7ISK49Ym9+ylkkE5i6VQgtM4q+NM7ubFAjhjVbfXKe2qlmAb9M21e8P+7Otl+67MvFcf9ax20YGS48BDQ7py+QlAZObv/Cb/WSTQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=qnUX9yP7; arc=fail smtp.client-ip=148.163.139.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R7irCO021421;
-	Tue, 27 Aug 2024 06:03:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=Jft/Z
-	UWs2peIja1KgesopRrnqHhUXAWIyrJ0m4FJl4M=; b=qnUX9yP7uDoZ3rhjLWNMF
-	D56JbHErEJV12Zv3qKNIbnNdYLWw0Pt2bT617BKftQnyVSKSvVIiTpM+B7cdvYDi
-	XJ3m+JLJT82k9eOtnE32nxZ/EHtWt/lWCv6/h4vOFOcTvkq07CegllR67kY9xDE8
-	6OkHDS4/IrYBuT+22sbsAi+1SLL3D/Ir6ctUil+NufN+7NsepJhJgu2w9LdjDVZV
-	zXS6Le9KwRSeCvYg4ofdC9QbEKoG4TG6wKfjKhFemFSJUlHEWFkQNNYMQFWb4Cdz
-	TyUpgvsG2X2qWj9h7aXP0xgZjSFPSBFr1kOjW1C1nXOmXSYUmk6XenO5N2YwA7/X
-	w==
-Received: from cy4pr05cu001.outbound.protection.outlook.com (mail-westcentralusazlp17010006.outbound.protection.outlook.com [40.93.6.6])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 419apb0ep7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 06:03:28 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ilt8PjQusIuKv8gToP4gl3bo8G+nWxGFl4z2bZCe0KcEQqpMAs4ij2AF7Q3NQuGZERZX9pmxZ0QUt0gF4WWNaCRq0CzVop38Ih3qw3MU3EKx++pgKkeLt5do2JgtrpuksTYwTBjuuyaKblUBOdpVWYguqItwMDrfk96mLHI8Hs01DfTnkMqPaYZtBvaEEldyWomnFTK7wU6204DtNsDDrlPlHGDPgQrpvzQnDZx5u3apRVpGJGBcXY2p2jsjs6ND6qxbrvzvA1gLom9RvlAImmLYf2lUEmfoobnd137dDCEtYSRnXlnCQywG3KhlceJFpllNKClspv/dpTHsw5K8LA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jft/ZUWs2peIja1KgesopRrnqHhUXAWIyrJ0m4FJl4M=;
- b=kdrHN5bzbqzpRUY1Qmsg2qhCndNUcKF1hWsTg5byrx67+MJ2381IgW4+dEFisNwUA63LRFTCPvE1K98tDll3airZ6qlBhehEzm1fd1ZBtYm9vODjny5DhrSfeyWcQRJ+tZcV7WUtoTT6V7g3E4Ad3/U+UE2LWl/7o4HswzqzR7xeDMhq1zIgjzFaFetd/AUO56ciPo6nCjALNBmtpa8gNIG4Nusab6oj2B9H6xFDhMMfZ7eKeEXJKE7Vq/uZRtSd6enU++i91qACSTGRIVC3J0lPmwlqiSs6rgTIERj8vAw463rD0uK094izFKJTAsH81YAaTh0hgeAASUabIvxxaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-Received: from SJ0PR03MB6343.namprd03.prod.outlook.com (2603:10b6:a03:399::11)
- by DS7PR03MB5607.namprd03.prod.outlook.com (2603:10b6:5:2ce::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Tue, 27 Aug
- 2024 10:03:24 +0000
-Received: from SJ0PR03MB6343.namprd03.prod.outlook.com
- ([fe80::6744:a83a:ab:7e23]) by SJ0PR03MB6343.namprd03.prod.outlook.com
- ([fe80::6744:a83a:ab:7e23%5]) with mapi id 15.20.7828.031; Tue, 27 Aug 2024
- 10:03:24 +0000
-From: "Agarwal, Utsav" <Utsav.Agarwal@analog.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-CC: "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Artamonovs,
- Arturs" <Arturs.Artamonovs@analog.com>,
-        "Bimpikas, Vasileios"
-	<Vasileios.Bimpikas@analog.com>,
-        "Gaskell, Oliver"
-	<Oliver.Gaskell@analog.com>
-Subject: RE: [PATCH RESEND v11 2/3] Input: adp5588-keys - add support for pure
- gpio
-Thread-Topic: [PATCH RESEND v11 2/3] Input: adp5588-keys - add support for
- pure gpio
-Thread-Index: AQHa99yGlLOk1X9mPU6GXSnAVAkfwbI56ZqAgAD0oDA=
-Date: Tue, 27 Aug 2024 10:03:24 +0000
-Message-ID:
- <SJ0PR03MB6343189410510459562996919B942@SJ0PR03MB6343.namprd03.prod.outlook.com>
-References: <20240826-adp5588_gpio_support-v11-0-3e5ac2bd31b7@analog.com>
- <20240826-adp5588_gpio_support-v11-2-3e5ac2bd31b7@analog.com>
- <ZszU5xzd6S8JKd5E@google.com>
-In-Reply-To: <ZszU5xzd6S8JKd5E@google.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-dg-rorf: true
-x-dg-ref:
- =?us-ascii?Q?PG1ldGE+PGF0IGFpPSIwIiBubT0iYm9keS50eHQiIHA9ImM6XHVzZXJzXHVh?=
- =?us-ascii?Q?Z2Fyd2EyXGFwcGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVl?=
- =?us-ascii?Q?ZS02Yjg0YmEyOWUzNWJcbXNnc1xtc2ctOTc0NWY4NDQtNjQ1Yi0xMWVmLTg0?=
- =?us-ascii?Q?ZmUtNjQ0OTdkY2U1Zjg1XGFtZS10ZXN0XDk3NDVmODQ2LTY0NWItMTFlZi04?=
- =?us-ascii?Q?NGZlLTY0NDk3ZGNlNWY4NWJvZHkudHh0IiBzej0iMTM2MzQiIHQ9IjEzMzY5?=
- =?us-ascii?Q?MjI2NjAyNDgzNjQwOSIgaD0iVVJIb2p3ZVZIOThlbmMyOHNoS2JGQjdJNzM4?=
- =?us-ascii?Q?PSIgaWQ9IiIgYmw9IjAiIGJvPSIxIiBjaT0iY0FBQUFFUkhVMVJTUlVGTkNn?=
- =?us-ascii?Q?VUFBRGdEQUFBNW5hQlphUGphQVRJK3RQSDhnTE5xTWo2MDhmeUFzMm9EQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUhBQUFBRGFBUUFBU2dJQUFPNEFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUVBQVFBQkFBQUEzTGhTZmdBQUFBQUFBQUFBQUFBQUFKNEFB?=
- =?us-ascii?Q?QUJoQUdRQWFRQmZBSE1BWlFCakFIVUFjZ0JsQUY4QWNBQnlBRzhBYWdCbEFH?=
- =?us-ascii?Q?TUFkQUJ6QUY4QVpnQmhBR3dBY3dCbEFGOEFaZ0J2QUhNQWFRQjBBR2tBZGdC?=
- =?us-ascii?Q?bEFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBRUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHRUFaQUJwQUY4QWN3?=
- =?us-ascii?Q?QmxBR01BZFFCeUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdCMEFITUFYd0IwQUdr?=
- =?us-ascii?Q?QVpRQnlBREVBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFB?=
- =?us-ascii?Q?QUFBQUFDQUFBQUFBQ2VBQUFBWVFCa0FHa0FYd0J6QUdVQVl3QjFBSElBWlFC?=
- =?us-ascii?Q?ZkFIQUFjZ0J2QUdvQVpRQmpBSFFBY3dCZkFIUUFhUUJsQUhJQU1nQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBSUFBQUFBQU80?=
- =?us-ascii?Q?QUFBQUFBQUFBQ0FBQUFBQUFBQUFJQUFBQUFBQUFBQWdBQUFBQUFBQUF6Z0FB?=
- =?us-ascii?Q?QUFNQUFBQk9BQUFBQUFBQUFHRUFaQUJwQUY4?=
-x-dg-refone:
- QWN3QmxBR01BZFFCeUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdCMEFITUFYd0JtQUdFQWJBQnpBR1VBWHdCbUFHOEFjd0JwQUhRQWFRQjJBR1VBQUFBOEFBQUFBQUFBQUdFQVpBQnBBRjhBY3dCbEFHTUFkUUJ5QUdVQVh3QndBSElBYndCcUFHVUFZd0IwQUhNQVh3QjBBR2tBWlFCeUFERUFBQUE4QUFBQUFBQUFBR0VBWkFCcEFGOEFjd0JsQUdNQWRRQnlBR1VBWHdCd0FISUFid0JxQUdVQVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURJQUFBQT0iLz48L21ldGE+
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR03MB6343:EE_|DS7PR03MB5607:EE_
-x-ms-office365-filtering-correlation-id: f13713e2-2011-4783-0747-08dcc67f7d4a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?Mva7EuUvQMFhK6Y672QdBNtxB3Yav1/1os+nGGQvBsUNoM6Z1f+513FpVdC0?=
- =?us-ascii?Q?mexonNPCTBnmdVv7KMcxBHEEHW6+YCl0iT7nvr3aVwalV2lyXr8lsXOWQN5k?=
- =?us-ascii?Q?aYYapiRgSTNnDtU75r6r1xkaExzz90Yfx0B8zwZjh3Goh4gRDIhVZq/p1Gkb?=
- =?us-ascii?Q?G3emX5y/w5ztm3NZIL7ytm+A2lDKLcpZuqUw24hKUlytJ+zWsUn2eG2X1AkG?=
- =?us-ascii?Q?3LDIgoIv+HTV7WafevBWEeGp/ue8fYwTnuL6Jgp1QtJdTITP8ngmv8qAZL5M?=
- =?us-ascii?Q?2HRk6HijcdDVvLW+915CbLuVkXXlZVpIUQbZLWkQG8hIqNN+waiff9VwL5wp?=
- =?us-ascii?Q?FRSuF3XFa39O+cdrv9pWcoJweKTIae0Le3a76T0VFMx67ly5Bv5VzSKTrRWB?=
- =?us-ascii?Q?P0b7BuEtpOS9Z8BxSeRzsw2v1jRMzFzZ/WJsBH2o/ncmEKMa5+4V5urbXWuZ?=
- =?us-ascii?Q?+3lDoDJp/DBmTg3VLRxphUzZz8AFewD5HksU63X3fESOF8qiwnGXoBSps57t?=
- =?us-ascii?Q?RaigsOoaOUvQIajomb/72v2Z9vG9Ph/cxJVvf1Wkskxdu5H0NmMxz5fMt0JK?=
- =?us-ascii?Q?H4TINYXLzkbpp+JKRz4jgxiNIt1cA3vDSdydV3a2ORF1DdQDUmcFN5L5jl+l?=
- =?us-ascii?Q?LsKVbY3IV9pCSBBsV2pnZOtsyhkpIYX0MDHXLbGqbFe5SUqAu+OsNbvCe0Do?=
- =?us-ascii?Q?HTPNOYaymria6zPL2VVbk8O1Qg6mKfRYUCYCG7JM+EtIkXckCSt3vS9w/qPU?=
- =?us-ascii?Q?AYfNCCpvtFCEeTAD2SUVuaA6HCOl1Vq5L8OJLzTIAsRDUMhbDaIIz2937oLp?=
- =?us-ascii?Q?avshLqAIuS65NjL4ZUVwy7+IC+WIZxhzPQg8S5gj/4QLAX4UJssY3lKoS7vm?=
- =?us-ascii?Q?uweoR4tTpIpmW4DTxpiYLDdHUphnxbKTsokUTqhZgEs3If5Y95uLk+s/X0pc?=
- =?us-ascii?Q?yUYW9HLSryaVkG/j+W9mXIt4nVFs2ldHV5DIsrDH1sUrexToNqwYOLnMhXJs?=
- =?us-ascii?Q?kDk4SNjap9q4bvAX0sRZTgwCKMpIzrYKdYDTjBZH4B2mKBfBvRj+JkRi5/+z?=
- =?us-ascii?Q?AUZdA6C9r4yMhMuoJjcGkEpAAt0StP3gOCMHwk3n3+KCnht4hpMW99lSk6HY?=
- =?us-ascii?Q?ZSv/dkQWyI339rVlA1vPesfD0bNiThtaNCZijXY8eLCgoLhMS9ArE9EzKP3c?=
- =?us-ascii?Q?KFwkrJSVK7qZdpvp+2qXU8fb/qb0KZtHnbj3W7W06JeW8Ul9pqNvs+Krkxzf?=
- =?us-ascii?Q?pGW7VM5A0v9waDB8oA6vQt5nStmNESoxbAWjduBNm3bE+0uyiEiMGYGLs7Lp?=
- =?us-ascii?Q?LFlFkox5HFIIjX4BAbnF8JGGRTGCznBWXPOHAaZ7wuFviSOW7APkr0tCeswE?=
- =?us-ascii?Q?jtRdyfVtBJaL/pVCCYtVR1YrSM2lrIWsXZlmBxJRbYUvAN3pwA=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB6343.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?w4PIKrGPWSz9zsSLQ8KCJUvWNFfZr2tkxZvYSMq0hbWJXw7UnBvC8AjXsBgK?=
- =?us-ascii?Q?/b2lKHRABtMCmMFwzowT1QdJ2TkH/SkXEfuqrQidw5Ss3rxUxrcZBxP+QtmR?=
- =?us-ascii?Q?z505llPE53yysd4sYi+lLoFSWsr8j8rrHDVE8umBEoFM/JMrHhqUkT50e2sD?=
- =?us-ascii?Q?2z9efj5f3xLRHtlfHpu+IkEIZecLXhmjkwWPJAdHIJl0mmO9EkLMXZTRWq6v?=
- =?us-ascii?Q?GYCBcLOnhOPoSyukiFj+wU2y+CLcMyKKecyJ/gqKROmFdLBFxcwGDkdEtyS2?=
- =?us-ascii?Q?ObRcQNW3cV3mF0wRCmKLBfPjkq8irSy47v7h78c8Fv51FF1A+JywPZt0tFNz?=
- =?us-ascii?Q?bDfPLwfh6Q/DuxZSzlcz0Yra501KBLj/7ydENDxePBj+eJBgjzzDswJzmYhJ?=
- =?us-ascii?Q?EnkXft7nb35n10dqe1xLgnGTXP+aXzu7D7qmXgDxJmXxvHF38AYlhANrTpLN?=
- =?us-ascii?Q?ipYFkFQl5gTPtJmBprFo4DlBahAIhl1NJTk2wFuHyvQf2T/KZpxrxXl8Vd+4?=
- =?us-ascii?Q?lRYDxvW457TZKmoMg5V35PzlfRKn8A+zWXFMwWgUNA4gl0gEsu6QG4RKBOR9?=
- =?us-ascii?Q?0rkdeLzEyB/7aY0p/FAlhjhQuSfIwvMbUFl6A0C2ZAuoPDncUOJAJTkZHVY7?=
- =?us-ascii?Q?U9EUgTNAc3vQCgZAK5ZK0O7RpcXyyBmmMudffJ9wcLoG+LwukeCZ8h77WZiD?=
- =?us-ascii?Q?AWjOXo5U13OM+GiFpEVPYAS1vbF8l+EhcOQY7FGJMwaURgPJDddhlsiYhbA4?=
- =?us-ascii?Q?SdPzETIqycaHlvyxE+dLcDQ/uRCOsN1qGsszJJId12V3Ubgh/a4aoRb8GKBT?=
- =?us-ascii?Q?k7fjA3TUoAiBx4fMRS2QJXFA3NT7fzBYqOOCy58fHY1MTrHxFUICG/WxpWjN?=
- =?us-ascii?Q?lgQMTDJPaUDJZ6lIwW6AOMq7PK26uulu8+06NKuNkMrpIEbwaKxxBvxKmiAR?=
- =?us-ascii?Q?rr/PT47IVVmntXdEUBBKouse1g8cbAAS6DGl6PzBEtsCjTw1DiX0Ob6M5Ftv?=
- =?us-ascii?Q?f5F1cKp5ip3Q4a/8xb0LFmnPHjX1HlM36B2lkPRvusEuPg3vCXuDozYitAzB?=
- =?us-ascii?Q?2IvxMz9IzzpJ5hWxVt0CKsS3uSgf6JSYIN/9qcv/cZfxYQ+Org0TqkCz+4mX?=
- =?us-ascii?Q?ToRAn4JfD1zAfJBD7uca+R/NqRjLRQjvS9XVKRAHIi2if42dwWeFsTV3Y5tp?=
- =?us-ascii?Q?OzmN7I8m7e96ugx/UH83FWyQIuggSi7YIQaJHh6CU6r8JNhxxefwUqE+LRzB?=
- =?us-ascii?Q?SpdgIQwLldgIubAdHUVdEY2IZCpNRDMkbiyY2XlHxfF7azKAKfYib9S5UX/I?=
- =?us-ascii?Q?3TphGEgAjLELjpLVMA3ZuJj6lXrceNHyPHC8DAaeX7l64aWyU7SouWeQo641?=
- =?us-ascii?Q?PactMWanFgmLlsSCai8hS8iJSna7OXDyejqKGQNZFBBeMVBHhWBeciyOeeGc?=
- =?us-ascii?Q?69jNCwN9ZWn1Y1b47K3CB8rFc86KYVjF+RmiOZkH1xHj1iWxxJui0/zTLGY7?=
- =?us-ascii?Q?oJtLVeLZTtD35mHUEjxVG6zH4xrwGs1OIKJ20uafy4grV2gJn2SbhGBcYHca?=
- =?us-ascii?Q?yUa7V0AjT7zP7IvRuU8Ek+GDBreEB/wSgreZyvdF?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459BC2FB2;
+	Tue, 27 Aug 2024 10:06:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724753194; cv=none; b=fl5xc4abjDfqmovk2V/Ce9rL4Q4kigcd4kfibSF9irqKCtdgjijgzhH1Svd1eLqbRTWMzFQFZJBZC2U/FyAsalhQ4tia3IFFGipfkc1ORhw7xWqN4jrX03SfZkw3RytTdGfS+sz1ZPD7XQEh6t3otCEojD5DBNxgn58aabcqlq0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724753194; c=relaxed/simple;
+	bh=B9gT5+IWI9RnpgWZ28NpoIq4XigLKDYfLa8semxQ1L0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mDxLbTaHZAl1ALE8YKffwoY2zFU6MIK/K1etMZo42FkXwUzn3PQ1NQU0OP2W7l0xibUA9Z/VOgwHAaar/YGR8YjQXwxL059/ZDQ5yUAiwEnSytns4+FnN4ydiI24srfQtLqpVGbDsSf22wyZ5NKoUIavZgJLcCdCzcdgE05qjYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=azXfcVy5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 15B6FC8B7D7;
+	Tue, 27 Aug 2024 10:06:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724753194;
+	bh=B9gT5+IWI9RnpgWZ28NpoIq4XigLKDYfLa8semxQ1L0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=azXfcVy5OVzUgRTU02Afa13CThJlpvGLi/vburFjzujv/FVqm/qDIu2KP0bs0CB9C
+	 us9M5CjsRXqjtzMU5+7uAfVOXN25dRSlu8YCtGYQ66ir63ORbdA+UhtpyccKo7XGW9
+	 cFTmSQJ8rbQh1rjEUBAHvO1ueUCfYbynGoCMaM4hoQKb27ZhK8XGna1TMAWoEIRcK+
+	 eTFf8YRt0mqQyem7KPwd/ErmjMg5QWHRYJrQVWSaiOSs0pd7rMKLDsE2IwnKyrh9Rf
+	 IfelcFVxbZMbgAlPB91aJvKLIVmsbvDuNW1eMSgv4YJzU4T9oWiZrCt/gYR/Na9tkU
+	 npSiWCg1pa+pQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 04E4FC5320E;
+	Tue, 27 Aug 2024 10:06:34 +0000 (UTC)
+From: Dikshita Agarwal via B4 Relay <devnull+quic_dikshita.quicinc.com@kernel.org>
+Subject: [PATCH v3 00/29] Qualcomm iris video decoder driver
+Date: Tue, 27 Aug 2024 15:35:25 +0530
+Message-Id: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB6343.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f13713e2-2011-4783-0747-08dcc67f7d4a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2024 10:03:24.4816
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mfnif4VFnseqblTwFy56sPXRNwQI48CqeZkaXVPJ240ErpAsQbr3WfbN6CoS5o8O0kPAtoYQfPaB6WGnF8PYBnyNYg1yPobwS5lluTVU2fs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR03MB5607
-X-Proofpoint-GUID: OeEBz0SjGQSbLwA7sQoI4rLohR0iOTZp
-X-Proofpoint-ORIG-GUID: OeEBz0SjGQSbLwA7sQoI4rLohR0iOTZp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-27_06,2024-08-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- priorityscore=1501 clxscore=1015 lowpriorityscore=0 mlxlogscore=999
- spamscore=0 phishscore=0 suspectscore=0 adultscore=0 malwarescore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408270075
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOWkzWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDCyNz3cyizOL4MmNdkyRjg1RLM0ODVPM0JaDqgqLUtMwKsEnRsbW1AOh
+ V/gtZAAAA
+To: Vikash Garodia <quic_vgarodia@quicinc.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+ Vedang Nagar <quic_vnagar@quicinc.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724753190; l=23046;
+ i=quic_dikshita@quicinc.com; s=20240826; h=from:subject:message-id;
+ bh=B9gT5+IWI9RnpgWZ28NpoIq4XigLKDYfLa8semxQ1L0=;
+ b=NPly0gi/qpJeCsgwaXgEuqFMO4TBaWRUZbb1LXdCHvEC4MK3OWTPGCKmABnx1cInIbBzHKzWH
+ jg4BuQpQkdrC2FbpsaaFTDjrip5hSjc5HMMS7rMf63d+12e9X05+h89
+X-Developer-Key: i=quic_dikshita@quicinc.com; a=ed25519;
+ pk=+c7562uu1Y968VTv9z59ch2v3jmlO2Qv3uX7srN3LJY=
+X-Endpoint-Received: by B4 Relay for quic_dikshita@quicinc.com/20240826
+ with auth_id=199
+X-Original-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Reply-To: quic_dikshita@quicinc.com
 
-Hi Dmitry,
+Introduce support for Qualcomm new video acceleration hardware i.e. IRIS, used
+for video stream decoding.
 
-> -----Original Message-----
-> From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Sent: Monday, August 26, 2024 8:18 PM
-> To: Agarwal, Utsav <Utsav.Agarwal@analog.com>
-> Cc: Hennerich, Michael <Michael.Hennerich@analog.com>; Rob Herring
-> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor
-> Dooley <conor+dt@kernel.org>; Sa, Nuno <Nuno.Sa@analog.com>; linux-
-> input@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; Artamonovs, Arturs
-> <Arturs.Artamonovs@analog.com>; Bimpikas, Vasileios
-> <Vasileios.Bimpikas@analog.com>; Gaskell, Oliver
-> <Oliver.Gaskell@analog.com>
-> Subject: Re: [PATCH RESEND v11 2/3] Input: adp5588-keys - add support for
-> pure gpio
->=20
-> [External]
->=20
-> Hi Utsav,
->=20
-> On Mon, Aug 26, 2024 at 06:22:02PM +0100, Utsav Agarwal via B4 Relay
-> wrote:
-> > From: Utsav Agarwal <utsav.agarwal@analog.com>
-> >
-> > Keypad specific setup is relaxed if no keypad rows/columns are specifie=
-d,
-> > enabling a purely gpio operation.
-> >
-> > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> > Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
-> > ---
-> >  drivers/input/keyboard/adp5588-keys.c | 37
-> +++++++++++++++++++++++++++++++----
-> >  1 file changed, 33 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/input/keyboard/adp5588-keys.c
-> b/drivers/input/keyboard/adp5588-keys.c
-> > index 09bcfc6b9408..7c32f8b69a3e 100644
-> > --- a/drivers/input/keyboard/adp5588-keys.c
-> > +++ b/drivers/input/keyboard/adp5588-keys.c
-> > @@ -188,6 +188,7 @@ struct adp5588_kpad {
-> >  	u32 cols;
-> >  	u32 unlock_keys[2];
-> >  	int nkeys_unlock;
-> > +	bool gpio_only;
-> >  	unsigned short keycode[ADP5588_KEYMAPSIZE];
-> >  	unsigned char gpiomap[ADP5588_MAXGPIO];
-> >  	struct gpio_chip gc;
-> > @@ -431,10 +432,12 @@ static int adp5588_gpio_add(struct adp5588_kpad
-> *kpad)
-> >  	kpad->gc.label =3D kpad->client->name;
-> >  	kpad->gc.owner =3D THIS_MODULE;
-> >
-> > -	girq =3D &kpad->gc.irq;
-> > -	gpio_irq_chip_set_chip(girq, &adp5588_irq_chip);
-> > -	girq->handler =3D handle_bad_irq;
-> > -	girq->threaded =3D true;
-> > +	if (kpad->client->irq) {
-> > +		girq =3D &kpad->gc.irq;
-> > +		gpio_irq_chip_set_chip(girq, &adp5588_irq_chip);
-> > +		girq->handler =3D handle_bad_irq;
-> > +		girq->threaded =3D true;
-> > +	}
->=20
-> I think we should only set up irqchip if we have "interrupt-controller"
-> property in the device tree.
->=20
-> >
-> >  	mutex_init(&kpad->gpio_lock);
-> >
-> > @@ -632,6 +635,21 @@ static int adp5588_fw_parse(struct adp5588_kpad
-> *kpad)
-> >  	struct i2c_client *client =3D kpad->client;
-> >  	int ret, i;
-> >
-> > +	/*
-> > +	 * Check if the device is to be operated purely in GPIO mode. To do
-> > +	 * so, check that no keypad rows or columns have been specified,
-> > +	 * since all GPINS should be configured as GPIO.
-> > +	 */
-> > +	ret =3D device_property_present(&client->dev,
-> > +			"keypad,num-rows");
-> > +	ret |=3D device_property_present(&client->dev,
-> > +			"keypad,num-columns");
-> > +	/* If purely GPIO, skip keypad setup */
-> > +	if (!ret) {
-> > +		kpad->gpio_only =3D true;
-> > +		return 0;
-> > +	}
-> > +
-> >  	ret =3D matrix_keypad_parse_properties(&client->dev, &kpad->rows,
-> >  					     &kpad->cols);
-> >  	if (ret)
-> > @@ -775,6 +793,11 @@ static int adp5588_probe(struct i2c_client *client=
-)
-> >  	if (error)
-> >  		return error;
-> >
-> > +	if (kpad->gpio_only && !client->irq) {
-> > +		dev_info(&client->dev, "Rev.%d, started as GPIO only\n",
-> revid);
-> > +		return 0;
-> > +	}
->=20
-> This is way too noisy. I think one message logging the revision ID
-> should be enough. The rest of the data can be found from elsewhere if
-> needed.
->=20
-> Can you try the below on top of yours? If this works I'' squash it
-> together with your change.
+Iris is a multi pipe based hardware that offloads video stream decoding from the
+application processor (AP). It supports H.264 decoding.  The AP communicates
+with hardware through a well defined protocol, called as host firmware interface
+(HFI), which provides fine-grained and asynchronous control over individual
+hardware features.
 
-I have applied and tested the same on relevant hardware, it works as
-intended.
+This driver implements upgraded HFI gen2 to communicate with firmware. It
+supports SM8550 which is based out of HFI gen 2. It also supports SM8250 which
+is based out of HFI gen1.
 
-> Thanks.
->
-> --
-> Dmitry
->=20
-- Utsav
->=20
-> diff --git a/drivers/input/keyboard/adp5588-keys.c
-> b/drivers/input/keyboard/adp5588-keys.c
-> index 7c32f8b69a3e..b5f4becf5cb6 100644
-> --- a/drivers/input/keyboard/adp5588-keys.c
-> +++ b/drivers/input/keyboard/adp5588-keys.c
-> @@ -432,7 +432,12 @@ static int adp5588_gpio_add(struct adp5588_kpad
-> *kpad)
->  	kpad->gc.label =3D kpad->client->name;
->  	kpad->gc.owner =3D THIS_MODULE;
->=20
-> -	if (kpad->client->irq) {
-> +	if (device_property_present(dev, "interrupt-controller")) {
-> +		if (!kpad->client->irq) {
-> +			dev_err(dev, "Unable to serve as interrupt controller
-> without interrupt");
-> +			return -EINVAL;
-> +		}
-> +
->  		girq =3D &kpad->gc.irq;
->  		gpio_irq_chip_set_chip(girq, &adp5588_irq_chip);
->  		girq->handler =3D handle_bad_irq;
-> @@ -640,12 +645,9 @@ static int adp5588_fw_parse(struct adp5588_kpad
-> *kpad)
->  	 * so, check that no keypad rows or columns have been specified,
->  	 * since all GPINS should be configured as GPIO.
->  	 */
-> -	ret =3D device_property_present(&client->dev,
-> -			"keypad,num-rows");
-> -	ret |=3D device_property_present(&client->dev,
-> -			"keypad,num-columns");
-> -	/* If purely GPIO, skip keypad setup */
-> -	if (!ret) {
-> +	if (!device_property_present(&client->dev, "keypad,num-rows") &&
-> +	    !device_property_present(&client->dev, "keypad,num-columns"))
-> {
-> +		/* If purely GPIO, skip keypad setup */
->  		kpad->gpio_only =3D true;
->  		return 0;
->  	}
-> @@ -793,28 +795,19 @@ static int adp5588_probe(struct i2c_client *client)
->  	if (error)
->  		return error;
->=20
-> -	if (kpad->gpio_only && !client->irq) {
-> -		dev_info(&client->dev, "Rev.%d, started as GPIO only\n",
-> revid);
-> -		return 0;
-> -	}
-> -
-> -	error =3D devm_request_threaded_irq(&client->dev, client->irq,
-> -					  adp5588_hard_irq,
-> adp5588_thread_irq,
-> -					  IRQF_TRIGGER_FALLING |
-> IRQF_ONESHOT,
-> -					  client->dev.driver->name, kpad);
-> -	if (error) {
-> -		dev_err(&client->dev, "failed to request irq %d: %d\n",
-> -			client->irq, error);
-> -		return error;
-> -	}
-> -
-> -	if (kpad->gpio_only) {
-> -		dev_info(&client->dev, "Rev.%d GPIO only, irq %d\n",
-> -				revid, client->irq);
-> -		return 0;
-> +	if (client->irq) {
-> +		error =3D devm_request_threaded_irq(&client->dev, client-
-> >irq,
-> +						  adp5588_hard_irq,
-> adp5588_thread_irq,
-> +						  IRQF_TRIGGER_FALLING |
-> IRQF_ONESHOT,
-> +						  client->dev.driver->name,
-> kpad);
-> +		if (error) {
-> +			dev_err(&client->dev, "failed to request irq %d:
-> %d\n",
-> +				client->irq, error);
-> +			return error;
-> +		}
->  	}
->=20
-> -	dev_info(&client->dev, "Rev.%d keypad, irq %d\n", revid, client-
-> >irq);
-> +	dev_info(&client->dev, "Rev.%d controller\n", revid);
->  	return 0;
->  }
->=20
+This driver comes with below capabilities:
+- V4L2 complaint video driver with M2M and STREAMING capability.
+- Supports H264 decoder.
+
+This driver comes with below features:
+- Centralized resource management.
+- Centralized management of core and instance states.
+- Defines platform specific capabilities and features. As a results, it provides
+  a single point of control to enable/disable a given feature depending on
+  specific platform capabilities.
+- Handles various video recommended sequences, like DRC, Drain, Seek, EOS.
+- Implements asynchronous communication with hardware to achieve better
+  experience in low latency usecases.
+- Output and capture planes are controlled independently. Thereby providing a
+  way to reconfigure individual plane.
+- Native hardware support of LAST flag which is mandatory to align with port
+  reconfiguration and DRAIN sequence as per V4L guidelines.
+
+Changes since v2:
+- introduced support for HFI gen1.
+- deprecated Encoder and HEVC, VP9 codecs.
+- removed custom vb2 mem ops and used standard framework instead.
+- added support for mmap streaming mode.
+- migrated all the buffer APIs to mem2mem helper functions.
+- registered iris buffer with vb2 framework.
+- migrated to clk_bulk, reset_bulk and icc_bulk APIs.
+- used pm_domain_attach/detach_list APIs.
+- migrated to read/writel and other available helpers for register access
+  instead of custom wrappers.
+- added documentation for various structures.
+- addressed many other review comments from v2.
+
+This series depends on [1] & [2]:
+
+[1]: https://patchwork.linuxtv.org/project/linux-media/list/?series=13341 -
+already applied in next-20240821 
+[2]: https://patchwork.kernel.org/project/linux-clk/patch
+/20240812134752.28031-1-quic_vnagar@quicinc.com/
+
+Note: A harmless onetime error log "Lucid PLL latch failed. Output may
+be unstable!" is seen during bootup. It doesn't impact any video usecase
+and is currently under discussion.
+
+Static tools like checkpatch, smatch, dt_binding_check, sparse and Coccinelle
+run successfully with this driver.
+
+The result of v4l2-compliance test on SM8550:
+
+v4l2-compliance 1.29.0-5239, 64 bits, 64-bit time_t
+v4l2-compliance SHA: a1ebb4dad512 2024-08-08 20:00:17
+
+Compliance test for iris_driver device /dev/video0:
+
+Driver Info:
+        Driver name      : iris_driver
+        Card type        : iris_decoder
+        Bus info         : platform:iris_icc
+        Driver version   : 6.11.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateful Decoder
+
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+                fail: ../utils/v4l2-compliance/v4l2-compliance.cpp(763): !ok
+        test for unlimited opens: FAIL
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 3 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK
+        test Composing: OK
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for iris_driver device /dev/video0: 47, Succeeded: 46, Failed: 1,
+Warnings: 0
+
+The result of v4l2-compliance test on SM8250:
+
+v4l2-compliance 1.29.0-5239, 64 bits, 64-bit time_t
+v4l2-compliance SHA: a1ebb4dad512 2024-08-08 20:00:17
+
+Compliance test for iris_driver device /dev/video0:
+
+Driver Info:
+        Driver name      : iris_driver
+        Card type        : iris_decoder
+        Bus info         : platform:iris_icc
+        Driver version   : 6.11.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateful Decoder
+
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+                fail: ../utils/v4l2-compliance/v4l2-compliance.cpp(763): !ok
+        test for unlimited opens: FAIL
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 2 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK
+        test Composing: OK
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for iris_driver device /dev/video0: 47, Succeeded: 46, Failed: 1,
+Warnings: 0
+
+Fluster score on SM8550:
+
+77/135 while testing JVT-AVC_V1 with GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 52 test vectors failed due to interlaced clips: Interlaced decoding is 
+  not supported in iris driver.
+  Test Vectors:
+        cabac_mot_fld0_full
+        cabac_mot_mbaff0_full
+        cabac_mot_picaff0_full
+        CABREF3_Sand_D
+        CAFI1_SVA_C
+        CAMA1_Sony_C
+        CAMA1_TOSHIBA_B
+        cama1_vtc_c
+        cama2_vtc_b
+        CAMA3_Sand_E
+        cama3_vtc_b
+        CAMACI3_Sony_C
+        CAMANL1_TOSHIBA_B
+        CAMANL2_TOSHIBA_B
+        CAMANL3_Sand_E
+        CAMASL3_Sony_B
+        CAMP_MOT_MBAFF_L30
+        CAMP_MOT_MBAFF_L31
+        CANLMA2_Sony_C
+        CANLMA3_Sony_C
+        CAPA1_TOSHIBA_B
+        CAPAMA3_Sand_F
+        cavlc_mot_fld0_full_B
+        cavlc_mot_mbaff0_full_B
+        cavlc_mot_picaff0_full_B
+        CVCANLMA2_Sony_C
+        CVFI1_Sony_D
+        CVFI1_SVA_C
+        CVFI2_Sony_H
+        CVFI2_SVA_C
+        CVMA1_Sony_D
+        CVMA1_TOSHIBA_B
+        CVMANL1_TOSHIBA_B
+        CVMANL2_TOSHIBA_B
+        CVMAPAQP3_Sony_E
+        CVMAQP2_Sony_G
+        CVMAQP3_Sony_D
+        CVMP_MOT_FLD_L30_B
+        CVNLFI1_Sony_C
+        CVNLFI2_Sony_H
+        CVPA1_TOSHIBA_B
+        FI1_Sony_E
+        MR6_BT_B
+        MR7_BT_B
+        MR8_BT_B
+        MR9_BT_B
+        Sharp_MP_Field_1_B
+        Sharp_MP_Field_2_B
+        Sharp_MP_Field_3_B
+        Sharp_MP_PAFF_1r2
+        Sharp_MP_PAFF_2r
+        CVMP_MOT_FRM_L31_B
+- 3 test vectors failed due to unsupported bitstream.
+  num_slice_group_minus1 greater than zero is not supported by the hardware.
+  Test Vectors:
+        FM1_BT_B
+        FM1_FT_E
+        FM2_SVA_C
+- 2 test vectors failed because SP_SLICE type is not supported by the hardware.
+  Test Vectors:
+        SP1_BT_A
+        sp2_bt_b
+- 1 test vector failed due to unsupported profile:
+  V4L2_MPEG_VIDEO_H264_PROFILE_EXTENDED is being deprecated from sm8550
+  onwards due to hardware issues.
+  Test Vectors:
+        BA3_SVA_C
+
+23/69 while testing JVT-FR-EXT with GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 21 test vectors failed due to interlaced clips: Interlaced decoding is
+  not supported in iris driver.
+  Test Vectors:
+        brcm_freh4
+        brcm_freh5
+        brcm_freh6
+        brcm_freh10
+        brcm_freh11
+        freh7_b
+        FREXT01_JVC_D
+        FREXT02_JVC_C
+        FRExt2_Panasonic_C
+        FRExt4_Panasonic_B
+        HCAFF1_HHI_B
+        HCAMFF1_HHI_B
+        HCHP3_HHI_A
+        HPCAFL_BRCM_C
+        HPCAFLNL_BRCM_C
+        HVLCFI0_Sony_B
+        HVLCMFF0_Sony_B
+        HVLCPFF0_Sony_B
+        HPCAMAPALQ_BRCM_B
+        HPCVFL_BRCM_A
+        HPCVFLNL_BRCM_A
+- 2 test vectors failed due to 10bit bitstream: 10bit decoding is not
+  supported in iris driver
+  Test Vectors:
+        FREH10-1
+        FREH10-2
+- 21 test vectors failed due to unsupported profile:
+  V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_422 is not supported by the hardware.
+  Test Vectors:
+        FREXT1_TANDBERG_A
+        FREXT2_TANDBERG_A
+        FREXT3_TANDBERG_A
+        Hi422FR1_SONY_A
+        Hi422FR2_SONY_A
+        Hi422FR3_SONY_A
+        Hi422FR4_SONY_A
+        Hi422FR6_SONY_A
+        Hi422FR7_SONY_A
+        Hi422FR8_SONY_A
+        Hi422FR9_SONY_A
+        Hi422FR10_SONY_A
+        Hi422FR11_SONY_A
+        Hi422FR12_SONY_A
+        Hi422FR13_SONY_A
+        Hi422FR14_SONY_A
+        Hi422FR15_SONY_A
+        Hi422FREXT16_SONY_A
+        Hi422FREXT17_SONY_A
+        Hi422FREXT18_SONY_A
+        Hi422FREXT19_SONY_A
+- 2 test vectors failed due to unsupported bitstream.
+  chroma_fmt_idc is equal to 0(monochrome) in the bitstream which is not
+  supported by the hardware.
+  Test Vectors:
+        HPCAMOLQ_BRCM_B
+        HPCVMOLQ_BRCM_B
+
+Fluster score on SM8250:
+
+78/135 while testing JVT-AVC_V1 with GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 52 test vectors failed due to interlaced clips: Interlaced decoding is not
+  supported in iris driver.
+  Test Vectors:
+        cabac_mot_fld0_full
+        cabac_mot_mbaff0_full
+        cabac_mot_picaff0_full
+        CABREF3_Sand_D
+        CAFI1_SVA_C
+        CAMA1_Sony_C
+        CAMA1_TOSHIBA_B
+        cama1_vtc_c
+        cama2_vtc_b
+        CAMA3_Sand_E
+        cama3_vtc_b
+        CAMACI3_Sony_C
+        CAMANL1_TOSHIBA_B
+        CAMANL2_TOSHIBA_B
+        CAMANL3_Sand_E
+        CAMASL3_Sony_B
+        CAMP_MOT_MBAFF_L30
+        CAMP_MOT_MBAFF_L31
+        CANLMA2_Sony_C
+        CANLMA3_Sony_C
+        CAPA1_TOSHIBA_B
+        CAPAMA3_Sand_F
+        cavlc_mot_fld0_full_B
+        cavlc_mot_mbaff0_full_B
+        cavlc_mot_picaff0_full_B
+        CVCANLMA2_Sony_C
+        CVFI1_Sony_D
+        CVFI1_SVA_C
+        CVFI2_Sony_H
+        CVFI2_SVA_C
+        CVMA1_Sony_D
+        CVMA1_TOSHIBA_B
+        CVMANL1_TOSHIBA_B
+        CVMANL2_TOSHIBA_B
+        CVMAPAQP3_Sony_E
+        CVMAQP2_Sony_G
+        CVMAQP3_Sony_D
+        CVMP_MOT_FLD_L30_B
+        CVNLFI1_Sony_C
+        CVNLFI2_Sony_H
+        CVPA1_TOSHIBA_B
+        FI1_Sony_E
+        MR6_BT_B
+        MR7_BT_B
+        MR8_BT_B
+        MR9_BT_B
+        Sharp_MP_Field_1_B
+        Sharp_MP_Field_2_B
+        Sharp_MP_Field_3_B
+        Sharp_MP_PAFF_1r2
+        Sharp_MP_PAFF_2r
+        CVMP_MOT_FRM_L31_B
+- 3 test vectors failed due to unsupported bitstream.
+  num_slice_group_minus1 greater than zero is not supported by the hardware.
+  Test Vectors:
+        FM1_BT_B
+        FM1_FT_E
+        FM2_SVA_C
+- 2 test vectors failed because SP_SLICE type is not supported by the hardware.
+  Test Vectors:
+        SP1_BT_A
+        sp2_bt_b
+
+23/69 while testing JVT-FR-EXT with GStreamer-H.264-V4L2-Gst1.0.JVT-AVC_V1.
+The failing tests are:
+- 21 test vectors failed due to interlaced clips: Interlaced decoding is
+  not supported in iris driver.
+  Test Vectors:
+        brcm_freh4
+        brcm_freh5
+        brcm_freh6
+        brcm_freh10
+        brcm_freh11
+        freh7_b
+        FREXT01_JVC_D
+        FREXT02_JVC_C
+        FRExt2_Panasonic_C
+        FRExt4_Panasonic_B
+        HCAFF1_HHI_B
+        HCAMFF1_HHI_B
+        HCHP3_HHI_A
+        HPCAFL_BRCM_C
+        HPCAFLNL_BRCM_C
+        HVLCFI0_Sony_B
+        HVLCMFF0_Sony_B
+        HVLCPFF0_Sony_B
+        HPCAMAPALQ_BRCM_B
+        HPCVFL_BRCM_A
+        HPCVFLNL_BRCM_A
+- 2 test vectors failed due to 10bit bitstream: 10bit decoding is not
+  supported in iris driver
+  Test Vectors:
+        FREH10-1
+        FREH10-2
+- 21 test vectors failed due to unsupported profile:
+  V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_422 is not supported by the hardware.
+  Test Vectors:
+        FREXT1_TANDBERG_A
+        FREXT2_TANDBERG_A
+        FREXT3_TANDBERG_A
+        Hi422FR1_SONY_A
+        Hi422FR2_SONY_A
+        Hi422FR3_SONY_A
+        Hi422FR4_SONY_A
+        Hi422FR6_SONY_A
+        Hi422FR7_SONY_A
+        Hi422FR8_SONY_A
+        Hi422FR9_SONY_A
+        Hi422FR10_SONY_A
+        Hi422FR11_SONY_A
+        Hi422FR12_SONY_A
+        Hi422FR13_SONY_A
+        Hi422FR14_SONY_A
+        Hi422FR15_SONY_A
+        Hi422FREXT16_SONY_A
+        Hi422FREXT17_SONY_A
+        Hi422FREXT18_SONY_A
+        Hi422FREXT19_SONY_A
+- 2 test vectors failed due to unsupported bitstream.
+  chroma_fmt_idc is equal to 0(monochrome) in the bitstream which is not
+  supported by the hardware.
+  Test Vectors:
+        HPCAMOLQ_BRCM_B
+        HPCVMOLQ_BRCM_B
+
+Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+---
+Dikshita Agarwal (17):
+      dt-bindings: media: Add sm8550 dt schema
+      media: MAINTAINERS: Add Qualcomm Iris video accelerator driver
+      media: iris: add platform driver for iris video device
+      media: iris: initialize power resources
+      media: iris: implement iris v4l2 file ops
+      media: iris: introduce iris core state management with shared queues
+      media: iris: implement video firmware load/unload
+      media: iris: implement boot sequence of the firmware
+      media: iris: introduce Host firmware interface with necessary hooks
+      media: iris: implement power management
+      media: iris: implement reqbuf ioctl with vb2_queue_setup
+      media: iris: implement vb2 streaming ops
+      media: iris: allocate, initialize and queue internal buffers
+      media: iris: implement vb2 ops for buf_queue and firmware response
+      media: iris: add support for dynamic resolution change
+      media: iris: handle streamoff/on from client in dynamic resolution change
+      media: iris: add support for drain sequence
+
+Vedang Nagar (12):
+      media: iris: implement s_fmt, g_fmt and try_fmt ioctls
+      media: iris: implement g_selection ioctl
+      media: iris: implement enum_fmt and enum_frameintervals ioctls
+      media: iris: implement subscribe_event and unsubscribe_event ioctls
+      media: iris: implement iris v4l2_ctrl_ops and prepare capabilities
+      media: iris: implement query_cap, query_ctrl and query_menu ioctls
+      media: iris: implement set properties to firmware during streamon
+      media: iris: subscribe parameters and properties to firmware for hfi_gen2
+      media: iris: add check whether the video session is supported or not
+      media: iris: implement power scaling for vpu2 and vpu3
+      media: iris: add allow checks for v4l2 ioctls
+      media: iris: add check to allow sub states transitions
+
+ .../bindings/media/qcom,sm8550-iris.yaml           |  162 ++++
+ MAINTAINERS                                        |   11 +
+ drivers/media/platform/qcom/Kconfig                |    1 +
+ drivers/media/platform/qcom/Makefile               |    1 +
+ drivers/media/platform/qcom/iris/Kconfig           |   13 +
+ drivers/media/platform/qcom/iris/Makefile          |   27 +
+ drivers/media/platform/qcom/iris/iris_buffer.c     |  599 ++++++++++++
+ drivers/media/platform/qcom/iris/iris_buffer.h     |  117 +++
+ drivers/media/platform/qcom/iris/iris_core.c       |   99 ++
+ drivers/media/platform/qcom/iris/iris_core.h       |  107 +++
+ drivers/media/platform/qcom/iris/iris_ctrls.c      |  296 ++++++
+ drivers/media/platform/qcom/iris/iris_ctrls.h      |   22 +
+ drivers/media/platform/qcom/iris/iris_firmware.c   |  151 +++
+ drivers/media/platform/qcom/iris/iris_firmware.h   |   15 +
+ drivers/media/platform/qcom/iris/iris_hfi_common.c |  222 +++++
+ drivers/media/platform/qcom/iris/iris_hfi_common.h |  155 +++
+ drivers/media/platform/qcom/iris/iris_hfi_gen1.h   |   16 +
+ .../platform/qcom/iris/iris_hfi_gen1_command.c     |  834 ++++++++++++++++
+ .../platform/qcom/iris/iris_hfi_gen1_defines.h     |  448 +++++++++
+ .../platform/qcom/iris/iris_hfi_gen1_response.c    |  658 +++++++++++++
+ drivers/media/platform/qcom/iris/iris_hfi_gen2.h   |   41 +
+ .../platform/qcom/iris/iris_hfi_gen2_command.c     | 1003 ++++++++++++++++++++
+ .../platform/qcom/iris/iris_hfi_gen2_defines.h     |  160 ++++
+ .../platform/qcom/iris/iris_hfi_gen2_packet.c      |  328 +++++++
+ .../platform/qcom/iris/iris_hfi_gen2_packet.h      |  125 +++
+ .../platform/qcom/iris/iris_hfi_gen2_response.c    |  954 +++++++++++++++++++
+ drivers/media/platform/qcom/iris/iris_hfi_queue.c  |  343 +++++++
+ drivers/media/platform/qcom/iris/iris_hfi_queue.h  |  180 ++++
+ drivers/media/platform/qcom/iris/iris_instance.h   |   73 ++
+ .../platform/qcom/iris/iris_platform_common.h      |  195 ++++
+ .../platform/qcom/iris/iris_platform_sm8250.c      |  175 ++++
+ .../platform/qcom/iris/iris_platform_sm8550.c      |  310 ++++++
+ drivers/media/platform/qcom/iris/iris_power.c      |  182 ++++
+ drivers/media/platform/qcom/iris/iris_power.h      |   15 +
+ drivers/media/platform/qcom/iris/iris_probe.c      |  257 +++++
+ drivers/media/platform/qcom/iris/iris_resources.c  |  338 +++++++
+ drivers/media/platform/qcom/iris/iris_resources.h  |   27 +
+ drivers/media/platform/qcom/iris/iris_state.c      |  338 +++++++
+ drivers/media/platform/qcom/iris/iris_state.h      |  153 +++
+ drivers/media/platform/qcom/iris/iris_utils.c      |   96 ++
+ drivers/media/platform/qcom/iris/iris_utils.h      |   50 +
+ drivers/media/platform/qcom/iris/iris_vb2.c        |  353 +++++++
+ drivers/media/platform/qcom/iris/iris_vb2.h        |   17 +
+ drivers/media/platform/qcom/iris/iris_vdec.c       |  693 ++++++++++++++
+ drivers/media/platform/qcom/iris/iris_vdec.h       |   25 +
+ drivers/media/platform/qcom/iris/iris_vidc.c       |  706 ++++++++++++++
+ drivers/media/platform/qcom/iris/iris_vidc.h       |   15 +
+ drivers/media/platform/qcom/iris/iris_vpu2.c       |   39 +
+ drivers/media/platform/qcom/iris/iris_vpu3.c       |  125 +++
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.c |  311 ++++++
+ drivers/media/platform/qcom/iris/iris_vpu_buffer.h |   91 ++
+ drivers/media/platform/qcom/iris/iris_vpu_common.c |  371 ++++++++
+ drivers/media/platform/qcom/iris/iris_vpu_common.h |   28 +
+ .../platform/qcom/iris/iris_vpu_register_defines.h |   17 +
+ 54 files changed, 12088 insertions(+)
+---
+base-commit: 31aaa7d95e09892c81df0d7c49ae85640fa4e202
+change-id: 20240827-iris_v3-4b30e9610e7f
+
+Best regards,
+-- 
+Dikshita Agarwal <quic_dikshita@quicinc.com>
+
+
 
