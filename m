@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBBE196084E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:17:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E1E96088C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:26:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE9F21C20CB3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:17:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62CC01F239CF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86AED18C345;
-	Tue, 27 Aug 2024 11:17:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC2819F49C;
+	Tue, 27 Aug 2024 11:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="toWeKiE4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNmAfJPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [164.92.70.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D37155CBD
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 11:17:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=164.92.70.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB97919E802;
+	Tue, 27 Aug 2024 11:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724757452; cv=none; b=rptb3JPsv3pQ87IBOS5/4xhcj25bH7i+mrVQKABqvjv+IjtyaidGi5gXSBnj7V1r9EBDHnubvmevhpzWtFBF37JhYSIsiIt7/v2XCWhGMCNLstBXrvO0ZYW2uod3ecjE4ecbpNaQojSxaiWVUk6o/Wgj2jP0VX9FlmujgL1z/0M=
+	t=1724758006; cv=none; b=BRsHuGaQfPCkbD46+GuCxYusWln78A5zvGS174VTGwcYdh0Rc8LZQzEeL0Jx2IS4LRedGyV40xBSLmPfs+zWsV00btsDV6WfR9ljO5L3E/qiRjzTBFFy9hv133xvIzXHUaEpsDalbDAci1Ni736rVv+1WvqngF+o5CS7ZIUPKGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724757452; c=relaxed/simple;
-	bh=8hBSVPloG6qLi64U0Rpazu5mshd0SD2BYuhwJWKhwkE=;
+	s=arc-20240116; t=1724758006; c=relaxed/simple;
+	bh=PUkphdTgX+m9PJYcH52LnfPvEospa2bT0O+ZL3jZWf0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NI96PqZDeQEcoMY9u+xgiR6PajHsZiK5ZqYoJ01b3Z8clWHn+pZ+veXxHJCTANpPD+pgicEl3/oYyLoL4AYDZOZmGGLrmDfesmxGUFfPHYiZaPShNBOMvAF/or4qJwPq9OCpXBss3OArI0Xo1Ug+vjekbpsnX7JO5ZGZTuLPS7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=toWeKiE4; arc=none smtp.client-ip=164.92.70.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1724757438;
- bh=nQ4QainTGN2Jed9JjhWBNvyI+iuWOCGmVBnaGKnvp9M=;
- b=toWeKiE4pM0pTT1816OwRfr8BIWKE8t8yxh4+jr4IM8ecRyC4pHl25Y67zFRHNAkZLEHahObq
- zdSz7w77Wkp83xX0so+uzFrl+iuy7RMz124WbGgM95EcsGXo4fYyqD/GKmd03rxyz3Y6COIEmiH
- KgHyWwiErbQlcVElQWXCtp6aWNdvn3Hz5k3LmBpN+KTAQLiVyjNVtlGY0Iiv47K8+OpipW703uK
- uiZCw0fqMBsvRkN8qRNw7KRdAfitMV8rLcKnzmjTJbsU3ULcg3DrDql4W1JpTqElg+mDwZxp7yD
- /2l3/Hu/Jps4XeoMhKXRaCuZBxWA8PNb1mfVSSNHrcXQ==
-Message-ID: 7a6e6536-bcfd-4448-aa5f-25f492435e8e@kwiboo.se
-Date: Tue, 27 Aug 2024 13:17:05 +0200
+	 In-Reply-To:Content-Type; b=qEoG9KChhAm3Wjj7rcxHRbVXUGgoRdw/ZeajrK+8h/zLsdjxMh+im8q1aLhcrGngCtouj+rtWMuVDmLlzolT7M0GkU1yUiXxYuEHpFDPkaQC42Nlxp0z9pR2uqzYQEiXI64Rns+NyHBxPXj+TsAfi+e9iy0P05sSXSNdAGBSDEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNmAfJPu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F343CC567EF;
+	Tue, 27 Aug 2024 11:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724758006;
+	bh=PUkphdTgX+m9PJYcH52LnfPvEospa2bT0O+ZL3jZWf0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kNmAfJPussNkjdsDXifEnCrpzpdeAi/Hb1xvmAGWcvtfDZZIsPKF3qJ4vj97HvL6E
+	 lvRjR1XG+2uu+VqVy4siyH10fbW6rRT7oj8e2wcI0CD8al2taKIDDKnfh3SYFh/b14
+	 ehT9DynG5rnkLdeDvp44R6zgNP2cl6/6s/PJLfUH5LdnGr4qEe5pC5adCp8J0pJTJj
+	 b1e+OY2PLnC3grMcz4HbwZcE1ubTObZcomfsNp1FlUO+2+3tPyX6RIcTq2yI/4ZR9j
+	 XimK7B8EdY+uCekWKbDc3tXEPicrWs65ZqToia+qdS7eRqkfDhL3WwTXSxgrE6eVph
+	 mRoCxKr2t6MVg==
+Message-ID: <62ac051e-f462-4a98-9c80-2229d1bf16be@kernel.org>
+Date: Tue, 27 Aug 2024 13:26:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,78 +50,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Correct vendor for
- Hardkernel ODROID-M1
-To: Krzysztof Kozlowski <krzk@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Aurelien Jarno <aurelien@aurel32.net>,
- Dongjin Kim <tobetter@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240826205538.1066103-1-jonas@kwiboo.se>
- <66ccebe1.c80a0220.22579e.e8daSMTPIN_ADDED_BROKEN@mx.google.com>
- <bf6145b6-8dd7-40e8-8b33-7eacd2c20a37@kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8280xp-crd: enable wifi
+To: Johan Hovold <johan@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240813190639.154983-1-brgl@bgdev.pl>
+ <20240813190639.154983-2-brgl@bgdev.pl>
+ <ZsdRrHK7kCYs7MJF@hovoldconsulting.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <bf6145b6-8dd7-40e8-8b33-7eacd2c20a37@kernel.org>
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <ZsdRrHK7kCYs7MJF@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 164.92.70.200
-X-ForwardEmail-ID: 66cdb5bac498660ae9674ab3
 
-Hi Krzysztof,
-
-On 2024-08-27 08:50, Krzysztof Kozlowski wrote:
-> On 26/08/2024 22:55, Jonas Karlman wrote:
->> The vendor prefix for Hardkernel ODROID-M1 is incorrectly listed as
->> rockchip. Use the proper hardkernel vendor prefix for this board.
+On 22.08.2024 4:56 PM, Johan Hovold wrote:
+> On Tue, Aug 13, 2024 at 09:06:36PM +0200, Bartosz Golaszewski wrote:
+>> From: Konrad Dybcio <konradybcio@kernel.org>
 >>
->> Fixes: 19cc53eb2ce6 ("dt-bindings: rockchip: Add Hardkernel ODROID-M1 board")
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> Add nodes for the WCN6855 PMU, the WLAN module and relevant regulators
+>> and pin functions to enable wifi support on sc8280xp-crd.
 > 
-> Your messages are broken somehow. Broken message id, rewritten by google
-> but I cannot grab the thread neither by original nor by "fixed" message-id:
-> b4 ... 66ccebe1.c80a0220.22579e.e8daSMTPIN_ADDED_BROKEN@mx.google.com
-> Grabbing thread from
-> lore.kernel.org/all/66ccebe1.c80a0220.22579e.e8daSMTPIN_ADDED_BROKEN@mx.google.com/t.mbox.gz
-> That message-id is not known.
-> 
-> b4 ... '20240826205538.1066103-1-jonas@kwiboo.se'
-> Grabbing thread from
-> lore.kernel.org/all/20240826205538.1066103-1-jonas@kwiboo.se/t.mbox.gz
-> CRITICAL: '20240826205538.1066103-1-jonas@kwiboo.se
+> What are you guys smoking? The Wi-Fi has been enabled on the CRD since
+> 6.2 and commit d907fe5acbf1 ("arm64: dts: qcom: sc8280xp-crd: enable
+> WiFi controller").
 
-Noticed that this series behaved very strange, may try to use the B4 web
-endpoint for a v2.
+Smells like copypasta..
 
 > 
-> Anyway, this was sent:
-> https://lore.kernel.org/all/20240116192605.GA274661-robh@kernel.org/
+>> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
+>> [Bartosz:
+>>   - write the commit message,
+>>   - rebase Konrad's commit,
+>>   - fix one of the supplies' name]
+>> Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 112 ++++++++++++++++++++++
+>>  1 file changed, 112 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+>> index 6020582b0a59..57efeefbc89e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+>> @@ -177,6 +177,17 @@ vreg_misc_3p3: regulator-misc-3p3 {
+>>  		regulator-always-on;
+>>  	};
+>>  
+>> +	vreg_s10b: regulator-s10b {
+>> +		compatible = "regulator-fixed";
 > 
-> it is technically ABI break, but likely without practical impact.
+> I don't think this is a fixed regulator.
 
-I can see that for the other two listed boards the compatible has been
-corrected, not yet for the Hardkernel ODROID-M1, do you want me to drop
-this change?
-
-I mostly wanted to prepare/unify before adding the ODROID-M1S (rk3566)
-and in a separate series add the ODROID-M2 (rk3588s) board.
-
-Please let me know if I should drop or keep this compatible change.
-
-Regards,
-Jonas
+It effectively is
 
 > 
+>> +
+>> +		regulator-name = "VREG_S10B";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>>  	vreg_wlan: regulator-wlan {
+>>  		compatible = "regulator-fixed";
+>>  
+>  
+>> +&pcie4_port0 {
+>> +	wifi@0 {
+>> +		compatible = "pci17cb,1103";
+>> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+>> +
+>> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
+>> +		vddaon-supply = <&vreg_pmu_aon_0p8>;
+>> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+>> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
+>> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+>> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+>> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+>> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+>> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
+>> +
+>> +		qcom,ath11k-calibration-variant = "LE_X13S";
 > 
-> Best regards,
-> Krzysztof
+> This is not the right calibration variant either. In fact, Qualcomm has
+> not yet released any calibration data for this CRD yet:
 > 
+> 	https://bugzilla.kernel.org/show_bug.cgi?id=216036
+> 
+> I use a patch like this locally, but we shouldn't merge this upstream.
 
+Agreed
+
+>  
+>> +	wlan_en: wlan-en-state {
+>> +		pins = "gpio134";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+> 
+> Why increase the drive strength?
+
+This is what's used on Windows, for lack of a better idea, not sure
+if this is actually necessary
+
+Konrad
 
