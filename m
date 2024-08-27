@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-97096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53262960B34
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:02:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5BC5960B3B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:03:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EC88283EE7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:02:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AF6C1F242B5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:03:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C278E1BCA04;
-	Tue, 27 Aug 2024 13:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652591BCA04;
+	Tue, 27 Aug 2024 13:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="SA79Irt+"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Ci3oK9Fx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A543219CCED
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA50119EED3
+	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724763719; cv=none; b=R83oqsZL+LeUWDeYdj+aw3EG0BPlJJ3bzaSCm6hoxMr2AvDZHp1j6Lx9AlOoVfTzgsi8AcBp9nWPKSrcKciT6D90B/BG7h2wFjiYXiPDXjLg7w7VT2TCQbGqF4xf9JSjGUWUsFW5aGnJmewdw2wtthY5TzjlglEuNP1oJGUmGXI=
+	t=1724763826; cv=none; b=l2L3mKTU3oStaAEAbWELlW3OAgHbj9wMcA/bL+CTYv/Ugbsx0cBUn4oFE12Sz2xpt4zTPo0ERurUhwwW1WZQDDTQJurDHt974emXXAqXtFgkZ6/0J2w9ZVz+1vvMcqHXRvTBxwDielhL9bCT17Iid17HWXuhQ3b0M4Ln7vMER5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724763719; c=relaxed/simple;
-	bh=t8u4tNyz7wHL5M/0SNVAJ8o4p/fLR/xY9fCwR/a9Usw=;
+	s=arc-20240116; t=1724763826; c=relaxed/simple;
+	bh=g131o0KuyKHodChgpl8+qeSQWwQdDBkQEeVD2/iEY1Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ooAdlpRwJtKKOcM4sZwSaVkvw0mvsUdMPISKGamreiUXT0MghlvIEwQJb7Qr44IilpwqpjZ3yGv6XeUc4UbTPfrVKCdZWOfzxKrIiaFBNxNuDe9gUwuHOmElHVo9dJzimWt4hp9yU2lP6qpXmoGyH7CE2q341b+gS3+KUvlzHbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=SA79Irt+; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1724763707;
- bh=KZfENK1t3+yf0BK3gmf2/PNsiTAlFh2wSe1HI5OaUgY=;
- b=SA79Irt+xUmgatt/St6kq6eYTPLfl2YWu2miMJvMnoeO58Bbucu+RiziPbx65PC3HlkvJJCgu
- pGY/L2CAl07IQns4igfBfQ3bkBrmFC1G8K9Vv+DtdJY/8REEjxAH295BzNibxYYx4RxV1vi9MmL
- izaKWywy3DkgffdDzm0G6NnOJfX2mde+V8st6vz+y8KJSv5EDd0Pht41Fm+3cxW3kxZZ2OtNyGQ
- AUSwBtUJxC1xOgM7tx3gKBcerjX7gEqiqIlI4taOjly+1RGskyT8uIibUi/pgW0IMeTLWTcGAK0
- MEooJtNofL5bSxxQnxpHLdvVLMSCny46jYSFxMb+5sTQ==
-Message-ID: b6c7513e-26c3-4f9d-bdb4-c4710bea5820@kwiboo.se
-Date: Tue, 27 Aug 2024 15:01:33 +0200
+	 In-Reply-To:Content-Type; b=VxU5cB2uMSzD42bRfyFVvA1/zylQXHegdhF5wqeJMHLwdWNhmxEG36Po3Z/rpxAxWxUX1BUS3qVUlc8HOyqbbvPhxTrxuzxTxCZlbTnAzFxPJOfKd5XoxIWK9H3hinSFSae2UfC1crp3h4JeeBkFaRklGfncZOwe03mrcy9yGqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Ci3oK9Fx; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1724763823;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JQ7KSXos2g5YKHcot8IcrKmcUaOEE56R2i6CzUYd7pg=;
+	b=Ci3oK9FxcijfE6nAx9TuuP/nE4bq0fnbCP6MEOxrmfFTbcXZX7Ogekkdv6kIYgVH5hrvG7
+	dofyxffTystoKpfvyGp+5t7SobH0hCu8D5TMCecsNBIrIr8dIiY6s8nPGqAm/KnfTj70hX
+	utrIQAqsu7XZr15ZcYkEUaqt419VIVM=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-353-0n3NI7t_PV-ie-qV8DCyFg-1; Tue, 27 Aug 2024 09:03:42 -0400
+X-MC-Unique: 0n3NI7t_PV-ie-qV8DCyFg-1
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-37197b9e1ceso3331427f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 06:03:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724763821; x=1725368621;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JQ7KSXos2g5YKHcot8IcrKmcUaOEE56R2i6CzUYd7pg=;
+        b=ZTztGGHh6IwGq4CAK9SvqrX9HeLp7mFbl08REY3BM7qpZv/LQpCPqSs/YFkpTPEws8
+         2GVsQvtbTc8YhBfeISvrFUsTcagt0z770u8zlgijYvuE+FTp6/Z/bdVbhuM9LMP4vBHw
+         YSleA2pkeZ9Eb6vhjUiRPdjgL06v/DmREHTyUjkbjXvJKg+bgFjob1MF7LvKyIigWjLE
+         y9mZ+MRc73lquBX9qziXeWyMjtBgsVjHZ6V88mJQtBYCawQuMqgSJ6lBpuRnrzzgUswk
+         pnh0YZJxvudN2UNmmt/0vnDIpOvErM3yT1dSx9x8tsYG6/lS9FRMh1SdlPP5yNkYOmF1
+         A/wQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/7y96L8jnVqZ01U29Wz1C3kr/fqMUT6b5kqwly4RGjo0oelZZo7qA9SzUew8pmfrZ7Yvp+9EpgwpZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyf3MKYkg3ELVsse5J4g8XR2q6GYrWCLrCA2NQJbjwK69bp7pWo
+	5eXDgZZsYLHofJjAnZt+SAYw/hRFAKNbgEUtCXrkFqJ0pmt3UKqUAfuZWr5/87kEF0sKc7zZecf
+	RTpKpklX4NwHTmSaGbMfnWMWqP2eeM3wFpMqIxhaMP0uNXM7tX19BylRVdIs=
+X-Received: by 2002:adf:ed08:0:b0:368:4edc:611e with SMTP id ffacd0b85a97d-373118580dcmr8316815f8f.14.1724763820821;
+        Tue, 27 Aug 2024 06:03:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFd1xsweSnbINCAxizbM13yu0pRe3D0c3l234fJFAE105Vpm2FkO3D8LTHh2scsUxQgobBHWw==
+X-Received: by 2002:adf:ed08:0:b0:368:4edc:611e with SMTP id ffacd0b85a97d-373118580dcmr8316789f8f.14.1724763820223;
+        Tue, 27 Aug 2024 06:03:40 -0700 (PDT)
+Received: from ?IPV6:2a0d:3344:1b67:7410::f71? ([2a0d:3344:1b67:7410::f71])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730826a3f7sm13027467f8f.112.2024.08.27.06.03.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Aug 2024 06:03:39 -0700 (PDT)
+Message-ID: <43ca814d-2003-4d1b-8cca-4d3fec3d1aee@redhat.com>
+Date: Tue, 27 Aug 2024 15:03:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,107 +82,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
-To: Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240826205538.1066103-1-jonas@kwiboo.se>
- <66ccebeb.d40a0220.356790.58caSMTPIN_ADDED_BROKEN@mx.google.com>
- <b69e5a0a-acf9-412c-90b4-ebe00c7e07d4@kernel.org>
- <99731A50-58FA-4829-9785-339051E791B2@sntech.de>
+Subject: Re: [PATCH net-next v2 0/2] net: pse-pd: tps23881: Reset GPIO support
+To: Kyle Swenson <kyle.swenson@est.tech>,
+ "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
+ "kory.maincent@bootlin.com" <kory.maincent@bootlin.com>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20240822220100.3030184-1-kyle.swenson@est.tech>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <99731A50-58FA-4829-9785-339051E791B2@sntech.de>
-Content-Type: text/plain; charset=UTF-8
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20240822220100.3030184-1-kyle.swenson@est.tech>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 66cdce388a3cb1214853bd7e
 
-On 2024-08-27 13:44, Heiko Stuebner wrote:
-> Am 27. August 2024 13:29:34 MESZ schrieb Jonas Karlman <jonas@kwiboo.se>:
->> Hi Krzysztof,
->>
->> On 2024-08-27 08:52, Krzysztof Kozlowski wrote:
->>> On 26/08/2024 22:55, Jonas Karlman wrote:
->>>> The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
->>>> RK3566 SoC. It features e.g. 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-card,
->>>> GbE LAN, HDMI 2.0, M.2 NVMe and USB 2.0/3.0.
->>>>
->>>> Add devicetree binding documentation for the Hardkernel ODROID-M1S board.
->>>>
->>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->>>> ---
->>>>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->>>>  1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> index f08e9f2f5dfc..9e29a5ecc94d 100644
->>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> @@ -598,6 +598,11 @@ properties:
->>>>            - const: hardkernel,rk3568-odroid-m1
->>>>            - const: rockchip,rk3568
->>>>  
->>>> +      - description: Hardkernel Odroid M1S
->>>> +        items:
->>>> +          - const: hardkernel,rk3566-odroid-m1s
->>>
->>> hardkernel,odroid-m1s
->>>
->>> Why adding SoC name to the board? Can it be Odroid M1S with RK3568?
->>
->> No, the M1S (rk3566) is a variant of the M1 (rk3568) with less features
->> and the smaller SoC package, fully agree that hardkernel,odroid-m1s is
->> better, will use it in a v2.
->>
->> I mainly wanted to keep it consistent to other Hardkernel Odroid boards.
->> - hardkernel,rk3326-odroid-go2
->> - hardkernel,rk3326-odroid-go2-v11
->> - hardkernel,rk3326-odroid-go3
->> - rockchip,rk3568-odroid-m1 (hardkernel,rk3568-odroid-m1)
->>
->> If you agree to a vendor prefix change of rockchip,rk3568-odroid-m1,
->> maybe we can also drop the soc name from that compatible at the same
->> time? E.g. change it to hardkernel,odroid-m1.
+On 8/23/24 00:01, Kyle Swenson wrote:
+> On some boards, the TPS2388x's reset line (active low) is pulled low to
+> keep the chip in reset until the SoC pulls the device out of reset.
+> This series updates the device-tree binding for the tps23881 and then
+> adds support for the reset gpio handling in the tps23881 driver.
 > 
-> I'd also agree with going with compatibles without the soc name in it. It is an ABI break but I think except the chrome devices no other board actually uses that part of the compatible ?
-
-U-Boot and the FIT spec [1] does have a FIT_BEST_MATCH feature that use
-the board compatible to find the best matching FIT configuration.
-Guessing this is a feature of FIT that the chrome devices use.
-
-I have recently learnt that the OpenWrt project use the board compatible
-to validate if a system upgrade package/image can be applied to the
-currently running system.
-
-OpenWrt does not have an image/target for the ODROID-M1 (or other
-Hardkernel boards), so this ABI breakage should not affect OpenWrt users.
-
-I do not know of any other actual use of the board compatible.
-
-[1] https://fitspec.osfw.foundation/#select-a-configuration-to-boot
-
-Regards,
-Jonas
-
+> Signed-off-by: Kyle Swenson <kyle.swenson@est.tech>
 > 
+> v1 -> v2:
+>    - Changed the reset pulse duration to be between 5us and 10us, per the
+>      TPS23880 datasheet
+>    - Changed the delay after reset to be 50ms instead of 1-10ms in order
+>      to meet the minimum recommended time before SRAM programming.
 > 
->> Regards,
->> Jonas
->>
->>>
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
+> v1: https://lore.kernel.org/netdev/20240819190151.93253-1-kyle.swenson@est.tech/
 > 
+> Kyle Swenson (2):
+>    dt-bindings: pse: tps23881: add reset-gpios
+>    net: pse-pd: tps23881: Support reset-gpios
+> 
+>   .../bindings/net/pse-pd/ti,tps23881.yaml      |  3 +++
+>   drivers/net/pse-pd/tps23881.c                 | 21 +++++++++++++++++++
+>   2 files changed, 24 insertions(+)
+
+This has been applied by Jakub, but the bot failed to send the notification.
+
+Thanks,
+
+Paolo
 
 
