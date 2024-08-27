@@ -1,175 +1,217 @@
-Return-Path: <devicetree+bounces-96915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E3B960042
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:25:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A71CB96005F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:40:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D5381C21878
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 04:25:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26E1B1F227DC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 04:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8862E33CFC;
-	Tue, 27 Aug 2024 04:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA8E56458;
+	Tue, 27 Aug 2024 04:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q9qOEh7x"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FA1cd8pp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B9523BB;
-	Tue, 27 Aug 2024 04:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF6034CDD;
+	Tue, 27 Aug 2024 04:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724732751; cv=none; b=G7+tEyINJBuw96BOTdzM+TtLJcYVGpetlsz5fVx05u2P5+a3cjHcZ4vULeS3eFQFxNQAKe7HLd9aRFlf0IUE8nuBTnaXwMh87ktRbY7OEB0GH0TCdGG37oJ2JBpYgelK68gHy/9P5qJVuUcxyFGo2bGrHbPCmEo/wZzqqK6LYMg=
+	t=1724733596; cv=none; b=VmPsQ8HIRo5EvUuDCyxz4gOxxexT3zlTxWTn+/2u0bQL+pq5KHyVYj7BivZwwy+6M0q+75V74VESJvc9fSHD+9QFybJK+rbEG/ghUc2WJnenqm1IKyStFXfmxD14Lw1ag4C2wVGr0iMgQ7Yhh1YCBT5hhVLTP5gRFUNipwZ05Qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724732751; c=relaxed/simple;
-	bh=D4WpegS0Kt3UGTzJCdyG8yasvdAQaFeTBZ7aZHOagA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GYH1rRWdnMWF105ZiFAbv3J/awBPG4BJVYyVNNFOmCCs6N1ldFiBrUiMP24rullsPZYUbGC/WVkyaIXU8xjmPXgoxol/k0SPQxHM7pc6yTdTDGuZ6v6KZAOpwhMlNHNs/ZQeagln4bmDDIzIX0v1Z94eowfTnP8u+DgmOL9IjGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q9qOEh7x; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47R4PeNr004738;
-	Mon, 26 Aug 2024 23:25:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724732740;
-	bh=6e9SfThhYRrN7KG1HncGujBpniySH9ne5vmCciFzMy0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Q9qOEh7xOAfTbaofQA2gs/BFM6RkXj8oEzp42RJ3l0tXiW50Ii/4HRcJEmBEfLf6b
-	 eLiN51XKS953rXiTVaurb0arMdr9y/n2PZTaPcgI2RiHZTVGpUKmlM6k+1SkbykM8c
-	 HbMBBn0XlMphmSk+xBgkGoIJdqr/sjuTmo7T07z0=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47R4Peal114153
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 26 Aug 2024 23:25:40 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
- Aug 2024 23:25:40 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 26 Aug 2024 23:25:40 -0500
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47R4Pben007236;
-	Mon, 26 Aug 2024 23:25:37 -0500
-Message-ID: <571daac8-a5a4-4cc6-b95c-68cd7e0eb924@ti.com>
-Date: Tue, 27 Aug 2024 09:55:36 +0530
+	s=arc-20240116; t=1724733596; c=relaxed/simple;
+	bh=IvHgAsD2Jsl0yIxPJmOkQqE9LY3kZsEaCrqs+DYIQno=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SQ2JzglDJsdsbdKu+AFUbMKkDxm11gr/O8J1AVkS7f1fV+padz1qpQQebXeNAhHb/GByeebYLFCd14upGfx04lbqPjP+pwdeTyhDKYDzMW1Ucn6LCGhm/EXz5H28kE1fQb22bkI+7IMaBAXpPXg7Dp3Y6+De7VzOvme++O0jgEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FA1cd8pp; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724733593; x=1756269593;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IvHgAsD2Jsl0yIxPJmOkQqE9LY3kZsEaCrqs+DYIQno=;
+  b=FA1cd8pp9Hk1a9m1CMOcyudnaCmAmBc/gW+LOlgIv5ECKY2xNlbg2H0n
+   kaPRaqyWb4+1rFHW7BI5ZTB9F8WdodgaY93gBGcuWrTkj/YTO/s2SpUO9
+   2WIZgTlgh11RLDZeoXlBnTkAhQN+7X3BVBIUw+hLkJSCiLcCvo3+tYEZR
+   lAvv/Q6I/P+AA63mkID6uKlhk4IFRItvpiFw5UN2Fm7pXLZ56UblZvQpg
+   3GQZNBj01gHX6tzuf9JWcNRiTrHe2wVFLmPcnRsswM7mlfStghZ9VvBFg
+   obR+pZECuTWRXPE45kCF64A43Q0N5lXG8nLDYxpVzPHoZEQmGVsDDUKTy
+   w==;
+X-CSE-ConnectionGUID: st3TF315TYGvQ5cCbWMOkw==
+X-CSE-MsgGUID: /TF5Q//2SXC3OQQPz++szg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="23315944"
+X-IronPort-AV: E=Sophos;i="6.10,179,1719903600"; 
+   d="scan'208";a="23315944"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 21:39:53 -0700
+X-CSE-ConnectionGUID: cfd7qcZ3SoanNwlFt9l3RA==
+X-CSE-MsgGUID: 4C2CmRAaQ0Kx0udHm7tlww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,179,1719903600"; 
+   d="scan'208";a="62433427"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 26 Aug 2024 21:39:49 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sinze-000Hw6-1V;
+	Tue, 27 Aug 2024 04:39:46 +0000
+Date: Tue, 27 Aug 2024 12:38:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+	Larisa Grigore <larisa.grigore@nxp.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Subject: Re: [PATCH 2/3] drivers: gpio: siul2-s32g2: add NXP S32G2/S32G3 SoCs
+ support
+Message-ID: <202408271250.W4HQp7ZZ-lkp@intel.com>
+References: <20240826084214.2368673-3-andrei.stefanescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: ti: k3-am62p: add opp frequencies
-To: Bryan Brattlof <bb@ti.com>, Dhruva Gole <d-gole@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240823-opp-v2-0-e2f67b37c299@ti.com>
- <20240823-opp-v2-3-e2f67b37c299@ti.com>
- <20240826132311.igliqicrydtifp2s@lcpd911>
- <20240826161149.2hnfpjslsdyezn72@bryanbrattlof.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <20240826161149.2hnfpjslsdyezn72@bryanbrattlof.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240826084214.2368673-3-andrei.stefanescu@oss.nxp.com>
+
+Hi Andrei,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on brgl/gpio/for-next]
+[also build test WARNING on robh/for-next linus/master v6.11-rc5 next-20240826]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrei-Stefanescu/dt-bindings-gpio-add-schema-for-NXP-S32G2-S32G3-SoCs/20240826-164853
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
+patch link:    https://lore.kernel.org/r/20240826084214.2368673-3-andrei.stefanescu%40oss.nxp.com
+patch subject: [PATCH 2/3] drivers: gpio: siul2-s32g2: add NXP S32G2/S32G3 SoCs support
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20240827/202408271250.W4HQp7ZZ-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240827/202408271250.W4HQp7ZZ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408271250.W4HQp7ZZ-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/platform_device.h:13,
+                    from drivers/gpio/gpio-siul2-s32g2.c:13:
+   drivers/gpio/gpio-siul2-s32g2.c: In function 'siul2_gpio_pads_init':
+>> drivers/gpio/gpio-siul2-s32g2.c:341:33: warning: format '%lu' expects argument of type 'long unsigned int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
+     341 |                                 "Failed to initialize opad2%lu regmap config\n",
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/gpio/gpio-siul2-s32g2.c:340:25: note: in expansion of macro 'dev_err'
+     340 |                         dev_err(dev,
+         |                         ^~~~~~~
+   drivers/gpio/gpio-siul2-s32g2.c:341:62: note: format string is defined here
+     341 |                                 "Failed to initialize opad2%lu regmap config\n",
+         |                                                            ~~^
+         |                                                              |
+         |                                                              long unsigned int
+         |                                                            %u
+   drivers/gpio/gpio-siul2-s32g2.c:350:33: warning: format '%lu' expects argument of type 'long unsigned int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
+     350 |                                 "Failed to initialize ipad2%lu regmap config\n",
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/gpio/gpio-siul2-s32g2.c:349:25: note: in expansion of macro 'dev_err'
+     349 |                         dev_err(dev,
+         |                         ^~~~~~~
+   drivers/gpio/gpio-siul2-s32g2.c:350:62: note: format string is defined here
+     350 |                                 "Failed to initialize ipad2%lu regmap config\n",
+         |                                                            ~~^
+         |                                                              |
+         |                                                              long unsigned int
+         |                                                            %u
+   drivers/gpio/gpio-siul2-s32g2.c: In function 'siul2_gpio_probe':
+   drivers/gpio/gpio-siul2-s32g2.c:498:33: warning: format '%lu' expects argument of type 'long unsigned int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
+     498 |                                 "unable to get pinspec %lu from device tree\n",
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/gpio/gpio-siul2-s32g2.c:497:25: note: in expansion of macro 'dev_err'
+     497 |                         dev_err(dev,
+         |                         ^~~~~~~
+   drivers/gpio/gpio-siul2-s32g2.c:498:58: note: format string is defined here
+     498 |                                 "unable to get pinspec %lu from device tree\n",
+         |                                                        ~~^
+         |                                                          |
+         |                                                          long unsigned int
+         |                                                        %u
 
 
+vim +341 drivers/gpio/gpio-siul2-s32g2.c
 
-On 26/08/24 21:41, Bryan Brattlof wrote:
-> On August 26, 2024 thus sayeth Dhruva Gole:
->> Hi Bryan,
->>
->> On Aug 23, 2024 at 16:54:30 -0500, Bryan Brattlof wrote:
->>> ONe power management technique available to the Cortex-A53s is their
->>
->> s/ONe/One
->>
->>> ability to dynamically scale their frequency across the device's
->>> Operating Performance Points (OPP)
->>>
->>> The OPPs available for the Cortex-A53s on the AM62Px can vary based on
->>> the silicon variant used. The SoC variant is encoded into the
->>> WKUP_MMR0_WKUP0_CTRL_MMR0_JTAG_USER_ID register which is used to limit
->>> the OPP entries the SoC supports. A table of all these variants can be
->>> found in its data sheet[0] for the AM62Px processor family.
->>
->> Error 404! Not found [0] ;)
->>
-> 
-> Oops. I'll fix these up
-> 
->>>
->>> Add the OPP table into the SoC's ftdi file along with the syscon node to
->>
->> What is ftdi?
-> 
-> FTDI is a chip, what I tried to type out was fdti or Flattened Device 
-> Tree Includes :)
-> 
->>
->>> describe the WKUP_MMR0_WKUP0_CTRL_MMR0_JTAG_USER_ID register to detect
->>> the SoC variant.
->>>
->>> Signed-off-by: Bryan Brattlof <bb@ti.com>
->>> ---
->>>  .../boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi  |  5 +++
->>>  arch/arm64/boot/dts/ti/k3-am62p5.dtsi              | 47 ++++++++++++++++++++++
->>>  2 files changed, 52 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
->>> index 315d0092e7366..6f32135f00a55 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
->>> @@ -20,6 +20,11 @@ chipid: chipid@14 {
->>>  			bootph-all;
->>>  		};
->>>  
->>> +		opp_efuse_table: syscon@18 {
->>> +			compatible = "ti,am62-opp-efuse-table", "syscon";
->>
->> Huh, curious why I don't see this particular compatible in am62 itself..
->> Also, I am still not clear where this discussion got left off: (If it's
->> related)
->> https://lore.kernel.org/all/5chxjwybmsxq73pagtlw4zr2asbtxov7ezrpn5j37cr77bmepa@fejdlxomfgae/
->>
->> In AM625, I see
->> k3-am625.dtsi:111: col 14: syscon = <&wkup_conf>;
->>
->> But the approach you've used here seems different. Is there a
->> justification given on which one should be used/why somewhere that I can
->> refer?
-> 
-> Labeling the entire &wkup_conf as a syscon node is kinda abusing what 
-> the syscon node is used for. There are a lot of things inside that 
-> WKUP_CTRL_MMR that do not belong under the miscellaneous registers 
-> category. For the 62A and 62P we've chosen to label &wkup_conf as a bus 
-> with little syscon sub-nodes inside of it.  
-> 
-> I don't think the discussion[0] ever finalized but we started going that 
-> direction with new SoCs, looks like the older SoCs never received the 
-> cleanup.
-
-This patch seems to be in the right direction. Marking entire wkup_conf
-as "syscon", "simple-mfd" is wrong and needs to be addressed in
-k3-am62-wakeup.dtsi similar to how other child-nodes in wkup_conf are
-implemented in same file.
-
-[...]
+   329	
+   330	static int siul2_gpio_pads_init(struct platform_device *pdev,
+   331					struct siul2_gpio_dev *gpio_dev)
+   332	{
+   333		struct device *dev = &pdev->dev;
+   334		size_t i;
+   335	
+   336		for (i = 0; i < ARRAY_SIZE(gpio_dev->siul2); i++) {
+   337			gpio_dev->siul2[i].opadmap = init_padregmap(pdev, gpio_dev, i,
+   338								    false);
+   339			if (IS_ERR(gpio_dev->siul2[i].opadmap)) {
+   340				dev_err(dev,
+ > 341					"Failed to initialize opad2%lu regmap config\n",
+   342					i);
+   343				return PTR_ERR(gpio_dev->siul2[i].opadmap);
+   344			}
+   345	
+   346			gpio_dev->siul2[i].ipadmap = init_padregmap(pdev, gpio_dev, i,
+   347								    true);
+   348			if (IS_ERR(gpio_dev->siul2[i].ipadmap)) {
+   349				dev_err(dev,
+   350					"Failed to initialize ipad2%lu regmap config\n",
+   351					i);
+   352				return PTR_ERR(gpio_dev->siul2[i].ipadmap);
+   353			}
+   354		}
+   355	
+   356		return 0;
+   357	}
+   358	
 
 -- 
-Regards
-Vignesh
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
