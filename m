@@ -1,107 +1,129 @@
-Return-Path: <devicetree+bounces-97098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E0B960B7B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDE2A960B97
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:16:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EAFC1C22690
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:13:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 352531C22EBB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B871C0DE7;
-	Tue, 27 Aug 2024 13:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D67A51BD00E;
+	Tue, 27 Aug 2024 13:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuFtNbHd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eLm/3AN6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DFAB1C0DE2
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:10:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273591A2C3D
+	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724764222; cv=none; b=L5GGNnbYb0c/xLEEi6d1ModqrIko8ncl8bYRMpDa8XQixGrmCl5be5IGMm9kT9w30XZaMDNRNzGxv6E2YjlyNUry63vWQGulhK4JIXP8cLPb/Vpw/RQjhnmEd4BbgwT/87Ae4nE4UfwZ8EL0d1XealIDjbBiLJDMSrcFvzgVjzA=
+	t=1724764591; cv=none; b=s6e8DBHMNQ/qi/RuMkQ07mmNtjZ/G1Ih+em78undeTsMhvXfySNZVehqq3kkZ/7dp0T6mY3mQxSTKZKsVxAJj2TK4DkFDPfABTyBiApV7maBu+E/CTpCAXTR/YAQUgttg+T12250ElA1Bj2FOf0yIIGq/JLgJwcKMCS5xppiTIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724764222; c=relaxed/simple;
-	bh=5OdpWp2toBhBU4WiZZkZyU0CSsGAOTFhIgqBBr3Gf08=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XnV/NWr1nWTYxLzIe5G1AM1DzGz1NhV5nBLMa+9QU//jj48tL2zx0Pdhd6LUBgS7/83CyGkikgnfnI/B1LEHg58/oIR7I39047gc0VhojYKG9OLI9Rn9Cmtb8Xbl/kNYcTfZ/lbEf9Up1Z+zKAEKZ1Zly0GMjOnXt1CZ6MCGpF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuFtNbHd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 901F5C61048;
-	Tue, 27 Aug 2024 13:10:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724764222;
-	bh=5OdpWp2toBhBU4WiZZkZyU0CSsGAOTFhIgqBBr3Gf08=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FuFtNbHdx3SZEei1GEAIMUJ4wuCBV4B7FWlGvusTjhuOlggK9s7nmn3DlivoEy6Q2
-	 9G/ZaIgtYTtVNHa8BUJMwwwW6L6CnrZvRChrNmr2NhWPkNl4rShgK7hnlyip3Mf28D
-	 6uZOczQKhpMF0v7HKeT8W5HYtbEVH2Fh/Vx55zVn+8tf83KRauN4TkOpTw5VWEJYld
-	 YhtPD6373ai0jeL8N4ofVHJW889s3OWbQRNeYzFwgUkl9grQgtNtvpZpQi0+EFgU28
-	 z3sb1GidZQ3turUSf5kHSBaJRk4dMmS1Kubqat2zaFEErFv5R3VlhTdqaVAbdtZq1V
-	 pVot1GEj4Tzig==
-Date: Tue, 27 Aug 2024 15:10:19 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hironori KIKUCHI <kikuchan98@gmail.com>, Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH 0/3] Correct WL-355608-A8 panel compatible
-Message-ID: <20240827-rose-tuna-of-science-4d0812@houat>
-References: <20240626112005.248576-1-ryan@testtoast.com>
+	s=arc-20240116; t=1724764591; c=relaxed/simple;
+	bh=zSDs4BUV3METdXmko0hl60ogxseD+zNrseh74ORAvDo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cT07uQtOvWh2fmWmCnLvBQq2tlkf8jmqyroRZAhYEmxjastXSUD26ntkNjCLYUGz3ssQ1kA9POH+AShdGNVUChDueKclVPDt+9+aWzaw7aRtVBYGp8bx8GvcoFxiA/GxScHkgbfQbP9H9qWjHoBlyoOdoq8J93B0Nkc5QD3i7Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eLm/3AN6; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5bed0a2ae0fso6835888a12.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 06:16:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724764588; x=1725369388; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GrhMuYl4d9v0h/UP5/GJa9EJkPhfXO+uMjBnq3JFZdI=;
+        b=eLm/3AN69Jm7eIp6BT7VIJGvq9JewO7/2i5AtUByUlCzR4/dlanauEgn5vgc1xCBhS
+         GNs5E2bOWHE2Ys4XvahjpbdFEb1uQapcqiWYcnDHeFaRI/NuSB3XbBN4kj/OTBmrIYiy
+         Ffomrz5FypB2WDKR378dYXD+/r8+FQhRHVWWqa+dWm47IAqQD4JK4/Eq3VOke+2xPFyE
+         zUhyiILR+IKt51PClTjTYsktm5faNHgO/pMRpNH02b74M/OesGnI4DVmB/nLM2vVk0Bn
+         gnZRWKVwnbFChNi1CY5bMTHkYJ2WXJinpNF/MAEeiRH/WviB8Mf83xqefhJYZ8HXRkkI
+         o/3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724764588; x=1725369388;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GrhMuYl4d9v0h/UP5/GJa9EJkPhfXO+uMjBnq3JFZdI=;
+        b=Jj4ey1JEHoG/HrmCX0s2ddldi9yaAGbh5m6S3P8EjnlD2V3/35w3raRwZeaEUPIwgD
+         5wKB3weowavDL1q0yeYAOXqgx22ZOSAN/WYFFSILA2jfXJKxcUSPQ44shnNGrvJOVu4s
+         3qNmtj5dyal7s4/+inOfBeIDEE46ocJh6PzQiy3aRyMYwdjsMqyS56qnfBgbRBy3BDXl
+         azqWhIKjFVaxWmGRzq4QoaE0jyz/THyI4vIezF5v3mSyB1eg+hqUnsvrUY8oHKeAPNVw
+         NavPy3KfHmkveoR8ePldG8zNhlnW4yaCvGpOO2J/2wI4L/WCuI7x8TY6F5y1ReBQV+Kj
+         h/Xw==
+X-Forwarded-Encrypted: i=1; AJvYcCWk2LNsFuPCDdKxR653DFXIHcL2Aixq5EaJX9ZsuS7TB6ufnEZwUpryHR1TnW0qCUUTJMLqTJOmM4KJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfdqvrEQf7vRK0WBnNl6wUy1v2hmUs0rfbd77YrRlWb0hsXwj2
+	WczY0DpcrButiS/uN2lMNmKceWeSrW5qWW7AhGxNKFpTkkACq5IXKAR+xlttHOc=
+X-Google-Smtp-Source: AGHT+IFnrrYt1pcEShR0jArLWyB07KU328muSxhdaWUNjW24ILMrZgVMlT+ASlmP8Ql2d4/j2jfvkg==
+X-Received: by 2002:a05:6402:42c7:b0:5b8:5851:66cd with SMTP id 4fb4d7f45d1cf-5c089159d17mr8851171a12.2.1724764588304;
+        Tue, 27 Aug 2024 06:16:28 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c0bb1c2b8fsm1004146a12.1.2024.08.27.06.16.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Aug 2024 06:16:27 -0700 (PDT)
+Message-ID: <63844f8e-4564-4528-b81c-27e973fb36c8@linaro.org>
+Date: Tue, 27 Aug 2024 14:16:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="ssshyrjley2mfxjz"
-Content-Disposition: inline
-In-Reply-To: <20240626112005.248576-1-ryan@testtoast.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
+ version Titan 780
+To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-14-quic_depengs@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240812144131.369378-14-quic_depengs@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 12/08/2024 15:41, Depeng Shao wrote:
+> +static void vfe_reg_update(struct vfe_device *vfe, enum vfe_line_id line_id)
+> +{
+> +	int port_id = line_id;
+> +
+> +	/* RUP(register update) registers has beem moved to CSID in Titan 780.
+> +	 * Notify the event of trigger RUP.
+> +	 */
+> +	camss_reg_update(vfe->camss, vfe->id, port_id, false);
+> +}
+> +
+> +static inline void vfe_reg_update_clear(struct vfe_device *vfe,
+> +					enum vfe_line_id line_id)
+> +{
+> +	int port_id = line_id;
+> +
+> +	/* RUP(register update) registers has beem moved to CSID in Titan 780.
+> +	 * Notify the event of trigger RUP clear.
+> +	 */
+> +	camss_reg_update(vfe->camss, vfe->id, port_id, true);
+> +}
 
---ssshyrjley2mfxjz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I think I tend to agree with Vlad here, that this is a needless layer of 
+wrappering.
 
-Hi,
+I'm not sure that's exactly what you guys where talking about but, I 
+rebased my x1e80100 stuff on top of your stuff
 
-On Wed, Jun 26, 2024 at 11:17:47PM GMT, Ryan Walklin wrote:
-> The previous patch adding support for this panel [1] referred to previous=
-ly by its serial number only. As discussed after the patch was committed, t=
-he preference is to use the integrating device vendor and name in this circ=
-umstance.
->=20
-> This series corrects the panel compatible to reflect the vendor (Anbernic=
-, already in the vendor prefix table), updates the NV3052C panel driver wit=
-h the new compatible, and lastly adds num-chipselects and sck-gpios to the =
-DT binding example, identified by make dt_bindings_check as required for bi=
-t-banged SPI over GPIO lines.
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-24-08-15-x1e80100-camss-debufsoff-cleanup?ref_type=heads
 
-Where are we on this?
+and anyway the above wrapper didn't make alot of sense to me.
 
-The 6.11 release comes dangerously close now.
-
-Maxime
-
---ssshyrjley2mfxjz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZs3QNgAKCRAnX84Zoj2+
-dk3fAYDWAKctf+llbgLTK6fI/TBSYkj9E0xKs1oZVzwr4vDTQxE2IDjrlArAHLag
-e7UvZvYBgKzeGYOtmiqfnedlIIclS6gozCtHbuvjaBKzmubRIJwL6Lg8GmUGtnnO
-Ha1qhyGYOw==
-=vIPI
------END PGP SIGNATURE-----
-
---ssshyrjley2mfxjz--
+---
+bod
 
