@@ -1,174 +1,129 @@
-Return-Path: <devicetree+bounces-97206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304AB961586
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 19:33:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B349615AA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 19:40:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA1FE1F222A9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 17:32:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C22BA28465B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 17:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF2B1CFEBA;
-	Tue, 27 Aug 2024 17:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0751CFEBA;
+	Tue, 27 Aug 2024 17:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dHEqQFeJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s6s2BhPk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E551C57B3;
-	Tue, 27 Aug 2024 17:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB601CDA3C;
+	Tue, 27 Aug 2024 17:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724779974; cv=none; b=A2FzPT1pWEToqXTtCgx7XKO/6sEY32p2O//oyBnDzptPXSeQg7IHTO0VUY2bkTEQrkLsxpb2FRsD6tFxhSzMO4Z0FdYyFSD7z11bRmmrMLGdklsXdePr0RgvenVoeQBC3TmDagrdfQh8BryyiZbh1Y/BUUg8/kLPaUr/kE1H6h4=
+	t=1724780452; cv=none; b=To6j6Dpn6xcrJZG3ZNYw7pmd4G5K9+A1ZrMjv/uB76MKl8rMir83N4nRDE29ypH2MJtDJdEHUah3YEsv5KUvasAU3NrANlGwg7RbalOt/wvBfAWKvnC463wPa9Cmn4vNq2+XDuC0jEiSLCyCecSJZg7kDilZbEFtaqINtP9p2FY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724779974; c=relaxed/simple;
-	bh=M1tmcsqJYY5or/7JXhieSbFm0OxDJE/MjA4OBPadC88=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nr3rYPrfzxGdN3M5vsHtRxyrOttHdOrqmiYOv0JJSiM6MBOBNkMCQTRA/39aY/zZKCcUyMHLg+BjzVssJePM/tMEaWLVfbYo34CARP9inAUn9zkYjV/wCnsEmgHfwkgA/T/QO6l2Lf///IKckP7SVdYpjMfgpmAcIQzPgUVgqeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dHEqQFeJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0AE9C4AF0F;
-	Tue, 27 Aug 2024 17:32:53 +0000 (UTC)
+	s=arc-20240116; t=1724780452; c=relaxed/simple;
+	bh=vKSmcgOEjetGAkb2pcZR15D4OHVKyQNwnp0Q6FyfbPo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nnC42r+48ipGa1IjFjNFm6PoOtkMdaMp6gjeHyGbSo9FDNY2PR/3/7ldA8xsVOH6Aup6hmjUcakSbVLp6pZBDpshAz3Mn7KQctImAeEhcr9XlxmIek6mldTNaF75nztsTVL/Bswct4pSpRAxnaHJdN453odwTTsYN1jF49csdZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s6s2BhPk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B66E0C4FE9F;
+	Tue, 27 Aug 2024 17:40:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724779974;
-	bh=M1tmcsqJYY5or/7JXhieSbFm0OxDJE/MjA4OBPadC88=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dHEqQFeJhreKqMkr4J8GYeRPdfvgIdFX1+cVRRQjCM2JnP2ab0GgvUFNQYwT4Z4Ao
-	 a0fGSBXcRAB6k+ZAyovTaLhR6r606kwlWQrUxNo/13yGrGWq/NWP4JCyjAF90pl7Xb
-	 Hqv6WCafc6SiWh1U2nnZMhjtvVg4KiZQiXTlkJt4ZaXC+Y5E171l3gXf09ZlYow6v6
-	 9xVhaqHFet1qS9HiuIMEoAxgAzKm+lFTmckADrMOgFSOSYlYyi1tFZ185Tu1/ImZxE
-	 78mzYESRYGIQaozJ29WOYkVQBtXFzEuKszccknWeaXfwiDowYo5sXCl6O1k1A5DetU
-	 7912DwgT/Bu1g==
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f406034874so58552761fa.1;
-        Tue, 27 Aug 2024 10:32:53 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWF4/leFJMQ9Hp8Z0MRm7IkRp0iw69w+hGhmC2MbzT5tUxg+YEsBXwnbs5UmQw1rXgwI0xtnd2Y1fjP@vger.kernel.org, AJvYcCWJZcJOUX7xN9fnmE4vTQg9SUIEeLv2yfnEpQYiSc1VPOpgKsOM+3eoPMqdKNNbYVCgeO474buYUlCgqevE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzm16+gQzYfhK7NP1De+GJup3S3jS1DJqD80jBVccNndVwm3IM
-	apV9gXHq6m6W6tn1ZEaC14wIy/ySh+dulD8TXRflepuVCvHUslDOs0UBh6vx3PgljvNgHuQQ6ob
-	gpq3bblWkmQc+B9rr8Roh2i+eisU=
-X-Google-Smtp-Source: AGHT+IHUqPaorA0zdEf5knFXodoByk71NjHVWZR2sveGzC+pXFb0+66HxIC4RctudxY0fssulxiCofQm1kGNSDqzHvI=
-X-Received: by 2002:a2e:a9a0:0:b0:2f4:9fb:5905 with SMTP id
- 38308e7fff4ca-2f514940df7mr28117221fa.0.1724779972628; Tue, 27 Aug 2024
- 10:32:52 -0700 (PDT)
+	s=k20201202; t=1724780452;
+	bh=vKSmcgOEjetGAkb2pcZR15D4OHVKyQNwnp0Q6FyfbPo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=s6s2BhPkOSE1W/ULOqKXjM2Zq5mClDvCuoolvkfGlJ3WsDm8L8JgBDXffx2I4dOZa
+	 n+3hMd9538dViXIpc1a2A+yBektUNKqD2uG/DJhka5vdYGh7eCuCHsIybl6JeFJ7y7
+	 S9xMAZN7OviEPvVihkgpkGvJVxTS0zsAPZ9fUGuo5eeb0tWMWKaZghFLj/7gZdzLP1
+	 LlEY/gax9ejsoK5kpEFekhWhA5KyCrPIbGSVdWWOHxOjGRFVmSfZVXgiirLLA4B0iX
+	 Mh2FlTlq9XN0FU9Y8HAqmZ62+eYZu7mxP+Oy72TjqZJcaU3ceOdhp4PtAXrlv9rWCt
+	 wKVgsGMhem9hA==
+Message-ID: <b008ca92-419a-47d0-97d7-2bddaba75d3c@kernel.org>
+Date: Tue, 27 Aug 2024 19:40:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240826124802.1552738-1-masahiroy@kernel.org> <20240827155158.GA3940418-robh@kernel.org>
-In-Reply-To: <20240827155158.GA3940418-robh@kernel.org>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Wed, 28 Aug 2024 02:32:15 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARAr9r6pzFzONQnNfFsbFFf_NpE39HBdmVHMBEGe1-nfQ@mail.gmail.com>
-Message-ID: <CAK7LNARAr9r6pzFzONQnNfFsbFFf_NpE39HBdmVHMBEGe1-nfQ@mail.gmail.com>
-Subject: Re: [PATCH] of: move empty_root and unittest data DTBs to
- .init.rodata section
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/5] dt-bindings: wireless: wilc1000: Document WILC3000
+ compatible string
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240827164042.53698-1-marex@denx.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240827164042.53698-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 28, 2024 at 12:52=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Mon, Aug 26, 2024 at 09:48:01PM +0900, Masahiro Yamada wrote:
-> > Some architectures can embed DTB(s) in vmlinux. Most of them expect a
-> > single DTB in the .dtb.init.rodata section.
-> >
-> > For example, RISC-V previously allowed embedding multiple DTBs in
-> > vmlinux, but only the first DTB in the .dtb.init.rodata section was
-> > used. Which DTB was used was unpredictable, as it depended on the link
-> > order (i.e., the order in Makefile).
-> >
-> > Commit 2672031b20f6 ("riscv: dts: Move BUILTIN_DTB_SOURCE to common
-> > Kconfig") changed the Makefiles to ensure only one DTB is embedded.
-> >
-> > However, commit 7b937cc243e5 ("of: Create of_root if no dtb provided by
-> > firmware") introduced another DTB into the .dtb.init.rodata section.
-> >
-> > Since then, the symbol dump (sorted by address) for ARCH=3Driscv
-> > nommu_k210_defconfig is as follows:
-> >
-> >     00000000801290e0 D __dtb_k210_generic_begin
-> >     00000000801290e0 D __dtb_start
-> >     000000008012b571 D __dtb_k210_generic_end
-> >     000000008012b580 D __dtb_empty_root_begin
-> >     000000008012b5c8 D __dtb_empty_root_end
-> >     000000008012b5e0 D __dtb_end
-> >
-> > The .dtb.init.rodata section now contains the following two DTB files:
-> >
-> >     arch/riscv/boot/dts/canaan/k210_generic.dtb
-> >     drivers/of/empty_root.dtb
-> >
-> > This is not an immediate problem because the boot code picks up the
-> > first DTB. The second one, empty_root.dtb is just ignored.
-> >
-> > However, as mentioned above, it is fragile to rely on the link order,
-> > as future Makefile changes may break the behavior.
-> >
-> > The cmd_wrap_S_dtb rule in scripts/Makefile.lib is used for embedding a
-> > DTB into the .dtb.init.rodata, so that the arch boot code can find it b=
-y
-> > the __dtb_start symbol.
-> >
-> > empty_root.dtb is looked up by its own symbol, so it does not need to
-> > be located in the .dtb.init.rodata. It can be moved to the .init.rodata
-> > section.
-> >
-> > When CONFIG_OF_UNITTEST is enabled, more unittest DTBOs are embedded in
-> > the .dtb.init.rodata section. These are also looked up by name and for
-> > generic purposes, so they can be moved to the .init.rodata section as
-> > well.
-> >
-> > I added a wrapper source file, drivers/of/empty_root_dtb.S, because thi=
-s
-> > is the only wrapper used in driver/of/Makefile. I moved the rule for
-> > generating *.dtbo.S to drivers/of/unittest-data/Makefile because it is
-> > not used anywhere else.
->
-> That is likely to change. We've had fixup overlays (fixup an old dt
-> to a new binding) added into the kernel from time to time. There were 2,
-> but they've been removed. However, I just recently suggested adding some
-> new ones[1].
+On 27/08/2024 18:37, Marek Vasut wrote:
+> Document compatible string for the WILC3000 chip. The chip is similar
+> to WILC1000, except that the register layout is slightly different and
+> it does not support WPA3/SAE.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Heh, surprising.
+Best regards,
+Krzysztof
 
-Will something like commit 841281fe52a7 come back?
-
-
-
-
-> It seems we need a named section when we access the dtb by variable
-> name and an unnamed or boot dt section for the one boot dtb.
-
-
-built-in boot dtb --> stay in .dtb.init.rodata
-                      (arch boot code does not know the DTB name)
-
-drivers and drivers/of/  --> can be moved to .init.rodata section
-                             because look-up by name is possible.
-
-
-
-
-
-So, do you want to keep the build rule in scripts/Makefile.lib,
-but for a different section?
-
-
-
-> Rob
->
-> [1] https://lore.kernel.org/all/20240812212139.GA1797954-robh@kernel.org/
->
-
-
---=20
-Best Regards
-Masahiro Yamada
 
