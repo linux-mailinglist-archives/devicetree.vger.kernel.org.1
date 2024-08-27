@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-96932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25DBD960173
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:20:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F75960185
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:24:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1844281FE2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:20:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18671282510
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:24:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2555F146D68;
-	Tue, 27 Aug 2024 06:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0576913C8F4;
+	Tue, 27 Aug 2024 06:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cyR7S/d5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z2gL4dQO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEA0145B0C;
-	Tue, 27 Aug 2024 06:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6267BA49;
+	Tue, 27 Aug 2024 06:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724739605; cv=none; b=sjIjz+RtFs8QNG29P4CyqGno5GdimKucdBRx1f1JlrmTyAi179jVupepf86BVCUQl0lyEejmEzdGyBQ5yLyVP0FLWRxvbfmMhM+MQ5z+mM/noMoiG6Gb75ovt8wMfo8Ax6ML7NgmK5O4RdKYTG8UjoOktYoa/w8YyQP2A1XNaTc=
+	t=1724739874; cv=none; b=mT924ntRswL7YYbKM+hxwfWYFYDiExR/HuZok+y8y/zKsRgTm7VTtS9KktcL5KuctkD+44bsD2ALtaGS9t+35C7GjfZwL94FQxJ3FdKdGEaGf+5bwkQ1Mnl+MXxCTsbXddwExGMjD9IaFtUPYJ/xEIuY/oX9E7DJKo7J6Gui2OY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724739605; c=relaxed/simple;
-	bh=+9tzJfq/xzY8EG6tCU+fWeZg1GtXDz0Y7NOhuziouaA=;
+	s=arc-20240116; t=1724739874; c=relaxed/simple;
+	bh=eiyBCHlvira5vozuY4SS6oQOMVMr3NqhAQQh4AhxF8k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XrBGlrzMoeQCUdHNUl8B7RAG4ROh7J8W8CGs7NMVvOVj2W4nR5cUlOwXbr2Qy5emez9qSDZGBDS3rSqzAMXBI6au2iHvFbTZyPbx48JKrpXMqrz/CO7Q+jfJU8f8tkB5zwemjfF/z9PkC1CTwZkvsauJjF2R0yRXECA//xjYfTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cyR7S/d5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9ADC8B7AA;
-	Tue, 27 Aug 2024 06:20:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VWTMuFa/smDCcaXjm8OhicNXn+SYm+VIj74topn6PhUGEvCPbtNiN/0JoO41W3vVZFGv8jxtZsrErt5eJ18pl+3Cew6A+21cVmmrrNZsDkd7TpIc1SvRZuiko+89P0YzK0jlKmhtY7+Q8X8B3mbJ6PFQ2/qOz/qjLlIk+S3GYxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z2gL4dQO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 754B3C4E68E;
+	Tue, 27 Aug 2024 06:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724739604;
-	bh=+9tzJfq/xzY8EG6tCU+fWeZg1GtXDz0Y7NOhuziouaA=;
+	s=k20201202; t=1724739874;
+	bh=eiyBCHlvira5vozuY4SS6oQOMVMr3NqhAQQh4AhxF8k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cyR7S/d5hISBltml6fCxQnyQqzG1LMOvpPmqODDYlOKdkz207XDv28xdwXagzCGor
-	 trS0+RL+4s4/uKAEQWYv1IWG7zF8d9Eft34pFZ/FHVs+NIu4qpaTmGXAkAUHqrMEmp
-	 86MHymCguw0hgNWYyMJ6AwpHkx7fMQ+hs9TMNaxr+Ku8FrBwmakNWbHI4h+OsSfo7E
-	 CZOQOg+Kj06PUzPNzbqJ2oJuolf/jMXiF6e4XUGxBQQ58ofwQZg/c0DOteLZFBAJMn
-	 9kv+MYeSxWAEfIDOrnf5sPCIJIx6KyKTeRr4oUAv6oNtFIm2Fsm2KZ1YFs+6EnNuwt
-	 JbVDVFgEtvXYQ==
-Date: Tue, 27 Aug 2024 08:20:01 +0200
+	b=Z2gL4dQOC+6Pa8coExiUQ62UkHTnr0v7NVrt4TDtf8rM5IC6FB4HPW39qU5a7R9nB
+	 VZUnmGhOvtnZP+4w/XFkIIV1JxfQhAKItyOzIkfK82ftI9zjB991tZjs8dsH5zi8TE
+	 GH2jg1OFqHKIDRkAPYbzvK15NX7VxAly1Fu+uRGEtvwDr65bz65i1VdgENRDO9ymQM
+	 dDfdGN7UN3izcnzpkfAJuT/zUwbGUEGrOHh7K/qL+eIrgukPZlTLctBvH+8yOPvtB7
+	 QYcl2HqVyw02l59nr3XSlf9MY0ZA1jeH7TXFz9rZ9kvzCbtfp8mZa5Rue7Qyf5QVnW
+	 mVgygtRnyIyRQ==
+Date: Tue, 27 Aug 2024 08:24:30 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Leonard <David.Leonard@digi.com>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] dt-bindings: pinctrl: Add fsl,ls1046a-pinctrl yaml
- file
-Message-ID: <5js7324jqsp65kp4s4erm4rx3bms2u4otbqbsne3bldolzzq6f@wrqc4rfwaxly>
-References: <b17a0414-8503-950e-a133-e5a1b1cab8c4@digi.com>
+To: Sricharan R <quic_srichara@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, robimarko@gmail.com
+Subject: Re: [PATCH V2 0/6] Enable IPQ5018 PCI support
+Message-ID: <wq5mfkqvvclubmacu5ogptdeaahxr77hk73dpmcvcelno5ylpv@4q4hfuolzky7>
+References: <20240827045757.1101194-1-quic_srichara@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,64 +61,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <b17a0414-8503-950e-a133-e5a1b1cab8c4@digi.com>
+In-Reply-To: <20240827045757.1101194-1-quic_srichara@quicinc.com>
 
-On Tue, Aug 27, 2024 at 12:15:08PM +1000, David Leonard wrote:
+On Tue, Aug 27, 2024 at 10:27:51AM +0530, Sricharan R wrote:
+> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > 
-
-Why do you keep sending emails one-by-one?
-
-Fix your threading.
-
-All previous comments apply.
-
-> Add a binding schema and examples for the LS1046A's pinctrl function.
+> This patch series adds the relevant phy and controller
+> DT configurations for enabling PCI gen2 support
+> on IPQ5018.
 > 
-> Signed-off-by: David Leonard <David.Leonard@digi.com>
-> ---
->  .../bindings/pinctrl/fsl,ls1046a-pinctrl.yaml | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,ls1046a-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,ls1046a-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/fsl,ls1046a-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..3d49e42d33e8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/fsl,ls1046a-pinctrl.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/fsl,ls1046a-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP QorIQ LS1046A pin multiplexing
-> +
-> +maintainers:
-> +  - David.Leonard@digi.com
-> +
-> +description: >
-> +  Bindings for LS1046A pinmux control.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,ls1046a-pinctrl
-> +
-> +  reg:
-> +    description: >
+> v2:
+>   Fixed all review comments from Krzysztof, Robert Marko,
+>   Dmitry Baryshkov, Manivannan Sadhasivam, Konrad Dybcio.
 
-Drop >, actually entire description... insteasd list and describe the
-items.
-
-> +      Specifies the base address of SCFG_RCWPMUXCR0
-> +    maxItems: 2
-> +
-> +  big-endian:
-> +    description: >
-
-Drop >
-
-all other comments also apply.
+That's not specific. What exactly did you do? You must list the
+changes.
 
 Best regards,
 Krzysztof
