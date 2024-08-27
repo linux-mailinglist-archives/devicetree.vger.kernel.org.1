@@ -1,100 +1,122 @@
-Return-Path: <devicetree+bounces-97075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3699609BC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:10:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4403E960A2B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:27:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C76651F23E58
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:10:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7667C1C22B12
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054111A08C6;
-	Tue, 27 Aug 2024 12:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D407A1B4C2E;
+	Tue, 27 Aug 2024 12:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l1n5fPse"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oISbGJP+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B4B1A072B;
-	Tue, 27 Aug 2024 12:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C62719922A;
+	Tue, 27 Aug 2024 12:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724760649; cv=none; b=aT/3XooHt60Y0Qd9Gykp+0brn58OnCfQ0G+EtZKio7umbL7uLJMG5W5Ud4XBACClkeI+KPRU8KH7q9thRAhcuxv7juDRCdQ8GvpfSeDhwXUDnPXSbb0G9VvWLzDtucbViR8ZZ7DXPp5v1poM8AH1ren/AVjRgBpC0sDEWznRfWI=
+	t=1724761599; cv=none; b=RPuxVg7BKAT1WMsogoYzsUG4xpvINshYTX9jf/qat8m/FqqyBMNRut3TnJtZ8UwaoGhJ5Ivs1fAy92jJI9HUAqFT/6wKVUVkZVtXDj59evE+wE0vTJf5LjnsgIWXkMbUzrk4wm3mBia1U4JXCUQ22RP1Vu+bzzhrvH8bMW5R4cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724760649; c=relaxed/simple;
-	bh=AQQY0+eCtpauFdwfMB/DPq7vz6WsH8SVHCLuIW7R2r4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EaR8+bmE1Bi9iIKZ3iA3DdeM1JaqKLqZrV5n9ni89lyh+yELTrHoEKevB/xefL+leyJyt/Xbw5HDpI3CyQkpapP31rOCsv0ysEhICS+ZEkVmjdTjQ+ZJDr5NXE+fMdzq5NETYAJSAW1v7/noPm7M/UyztKAKq/8AtCAccJMj+dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l1n5fPse; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-533488ffaf7so7273574e87.0;
-        Tue, 27 Aug 2024 05:10:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724760646; x=1725365446; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ocWvo9DzoExmIHq9UIiaFosa4hw3n9psCH8ZfRs9xow=;
-        b=l1n5fPseKKnSQT/zheLDx/TUHIq5vDPpdOVeC4o3ABvDqb3PBJMH22aBKOfA67k2Y4
-         Vy+1I44OuelJ+6T5xFPYqN0uazVBYM4bQxBfvbWc0xFRvySuhoyqxFtgYm9tdU7EI/1z
-         +bmHTOHE7aBvHZnEyedsz9trOW1KpYyx9KVzZ2v7m7m9im0hXZZDZF5qK/m9BPnBGFrz
-         xsb8RAiphKDMYD2PyX0TmRV2NJQY+0ST/QIc8GLYQzALz4UIJFlDRd9q4AufMY/E9dip
-         m2nLYTRgRn61HEGbj9AdTOg4wWO7mzbss9g0RoCGiYb5Ilmz8r+oGOgTOXCWPUk0ATmE
-         5g4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724760646; x=1725365446;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ocWvo9DzoExmIHq9UIiaFosa4hw3n9psCH8ZfRs9xow=;
-        b=saadsdgmMXohMYlZYw/S8X2ZCIXMLuxqAIf1NBuT8R+6M6a40qDA0mYA6rwayQoo5q
-         hx21DuwqSZVeOwqHKkpJ+8Ta/EtNdPoRIOEuLrPIumj+0lXcJX+4QDSsbxJHd8kZssfd
-         q3Zrn4lmPUGSNIyKp1eXENst3eLUwFGuYH+sUduP1p5LgK+gJbawXpLVLB0broMOrBwm
-         KV8yAMJJYkferz20PC5Pa+31o3zBo9Q3zTsh1V9WXOLulqOyDlxCZ6OSvyXMHGq945TP
-         8x6yg32rBWTaa/Ff48LeRxQNDdXb9Y7nlQ6//Wb861OCh62Y2IIrJ0WYVfQjaODUlNm+
-         EY/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUkLYBZsLbd6pP7VGmlcwO89Cqumhmpi0KIOW2VK3bcXk3JCbrYeHqlvPDak7XwaNf5DyoHUJh8+aPX@vger.kernel.org, AJvYcCXxommqoh0jBdAMmPTacA0BbylgmR85G5WptzJN9YpFqk03GS4iwSGOYOsL8b3pm6tcRnzjjFAR5DAJkroi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEecIZ191SVI5V2395lt0NpUYNtBBCoKovrCgjz6TEy+4JT+dp
-	Ek6Cdr6kn9UEmhNcM999p46jhm2/0MmrDYdjanWjbbUwp2SZ1j5Vn6DTy4YaIOIQsUCsAZ+u999
-	Susr5DLCn2MToyd/FYP8w6uQVq9M=
-X-Google-Smtp-Source: AGHT+IEh5psS72JM5hvNRaxVWHrg402o8pnzLlLRh3KcneC/lRx90ichG0VNgnlvvr66dtMljeyh19iUph+sTp2ULkA=
-X-Received: by 2002:a05:6512:6d2:b0:530:b871:eb9a with SMTP id
- 2adb3069b0e04-5344e4faf07mr1737573e87.47.1724760646028; Tue, 27 Aug 2024
- 05:10:46 -0700 (PDT)
+	s=arc-20240116; t=1724761599; c=relaxed/simple;
+	bh=96kw8P72d9gzY4hB0TBG8RkglfN1ceu0NH450keWjsQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oQT0EvmEahATcmNTXP03cwtZrsO3Vjl9Vr+m5/t4LqZ2Vdvq8caaoEMR8FVXTWnUJ0eIahJddUXKdeETXG1hlGNb847zIVSHMHUpHRdAvVxj24BZYXN4fzqLxPTMSrQme7v61ri5LzqUvip8Hn0ZxC28dSi1imb0D3mtF8/wtBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oISbGJP+; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RAZcVc018614;
+	Tue, 27 Aug 2024 14:26:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=MTkvu1DrSeJOWwBLrkpClM
+	7Ev2RqstQuHoTEgAEyciM=; b=oISbGJP+2iVPBDbHoCB/YD4k0+TUU2BrnsypM5
+	Pz1qj1l9X1LmtU7jaBTReWVKfzjmEh6uNs1Au3aJwJiB7J2CO3q4ok3hl83M48ZW
+	0VVidMmRhGIMO+3wDGsbK/umvjuZOCcOZBCLY3s+vqRB7u7aBcU5YDX9Ed6pO3W6
+	AErcN0M32uDa39r+DLB4+AN0v8BXRwJ2pWeEKMvRhF01zhyCVtVGa3zjdMe0ePEb
+	VCptViheJFi5B/nRwcjXS1Fg4bUE11rUk54FTROj4MpBy/jj8IMxaY8YLMk8avU3
+	Lg5x2VjhU34b0RudKst8+NLXRwVpdoAd2wF3Eh6EGcgngcnQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41796km64c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 27 Aug 2024 14:26:14 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7B29440045;
+	Tue, 27 Aug 2024 14:26:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3573526333B;
+	Tue, 27 Aug 2024 14:25:22 +0200 (CEST)
+Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 27 Aug
+ 2024 14:25:22 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v3 0/5] Add STM32MP25 USB3/PCIE COMBOPHY driver 
+Date: Tue, 27 Aug 2024 14:24:54 +0200
+Message-ID: <20240827122459.1102889-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240823120158.19294-1-tarang.raval@siliconsignals.io>
- <20240823-demonic-jolly-chital-fb4d61-mkl@pengutronix.de> <PN3P287MB1829E68257FC17F8ADA725028B942@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-In-Reply-To: <PN3P287MB1829E68257FC17F8ADA725028B942@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 27 Aug 2024 09:10:34 -0300
-Message-ID: <CAOMZO5BUrJBo5+bEyBA3i7q9Kb0HXgRwu8J-kV9JbDMFcx-WGg@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals Support
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-27_06,2024-08-27_01,2024-05-17_01
 
-Hi Tarang,
+This patch series adds USB3/PCIE COMBOPHY driver for the STM32MP25 SoC from
+STMicrolectronics, respective yaml schema and enable for the stm32mp257f-ev1
+device into which it is used for PCIe.
 
-On Tue, Aug 27, 2024 at 8:16=E2=80=AFAM Tarang Raval
-<tarang.raval@siliconsignals.io> wrote:
+Changes in v3:
+Address comments from Rob and Krzysztof:
+   - Reorder MAINTAINERS patch
+   - Drop wakeup-source from bindings (should be generic)
 
-> [    8.639860] fec 30be0000.ethernet eth0: Unable to connect to phy
-> [    8.708452] fec 30be0000.ethernet eth0: Unable to connect to phy
+Changes in v2:
+   - Reorder entries
+   - Rename clock_names and reset_names bindings
+   - Rename and clarify rx-equalizer binding 
 
-What about this network issue?
+Christian Bruel (5):
+  dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+  phy: stm32: Add support for STM32MP25 COMBOPHY.
+  MAINTAINERS: add entry for ST STM32MP25 COMBOPHY driver
+  arm64: dts: st: Add combophy node on stm32mp251
+  arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
+
+ .../bindings/phy/st,stm32-combophy.yaml       | 144 +++++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  17 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 +
+ drivers/phy/st/Kconfig                        |  11 +
+ drivers/phy/st/Makefile                       |   1 +
+ drivers/phy/st/phy-stm32-combophy.c           | 607 ++++++++++++++++++
+ 7 files changed, 800 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+ create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+
+-- 
+2.34.1
+
 
