@@ -1,140 +1,100 @@
-Return-Path: <devicetree+bounces-97074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58636960980
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:04:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3699609BC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 14:10:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 168B728617C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:04:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C76651F23E58
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0D819EECD;
-	Tue, 27 Aug 2024 12:04:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054111A08C6;
+	Tue, 27 Aug 2024 12:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Wx7q2TgG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l1n5fPse"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4C01CD31
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 12:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B4B1A072B;
+	Tue, 27 Aug 2024 12:10:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724760240; cv=none; b=ua+ekU+UcYpDtodwQEX3hRemI6XSOs5152ZMhcpqsbsw4AvjpNKtT0pvdGkswakLSkMbkapvyJ3RRtvsPDNorjQc8SHv81r92ghlDBEpJRR/MR9VgfYNljNGaxGWwz+VR76PW38XG8q3FREyK7y7kLAigH3bwYbJbrA9YAPInBQ=
+	t=1724760649; cv=none; b=aT/3XooHt60Y0Qd9Gykp+0brn58OnCfQ0G+EtZKio7umbL7uLJMG5W5Ud4XBACClkeI+KPRU8KH7q9thRAhcuxv7juDRCdQ8GvpfSeDhwXUDnPXSbb0G9VvWLzDtucbViR8ZZ7DXPp5v1poM8AH1ren/AVjRgBpC0sDEWznRfWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724760240; c=relaxed/simple;
-	bh=ln8nZXJYTPhe1ZmtwQ9Nks+Do74knxVtB5zmVCuDXnQ=;
+	s=arc-20240116; t=1724760649; c=relaxed/simple;
+	bh=AQQY0+eCtpauFdwfMB/DPq7vz6WsH8SVHCLuIW7R2r4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GzsoWrIyUTVHB7lbBO7fBidbQQTBkWCTH153P7lX5AWDoWvluraTW6MifBv6BDMyg7Pqm0e3bm8mYtpuFBxQiUqLZ5V2uyvGwKi4YUdZ9o44y9Mx01ngmXPWR9Tz6EnRD8Nm2UleSPKyPz+MGPN0FH31hM8iSQITMyNIurxytfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=Wx7q2TgG; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5334a8a1af7so5236112e87.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 05:03:57 -0700 (PDT)
+	 To:Cc:Content-Type; b=EaR8+bmE1Bi9iIKZ3iA3DdeM1JaqKLqZrV5n9ni89lyh+yELTrHoEKevB/xefL+leyJyt/Xbw5HDpI3CyQkpapP31rOCsv0ysEhICS+ZEkVmjdTjQ+ZJDr5NXE+fMdzq5NETYAJSAW1v7/noPm7M/UyztKAKq/8AtCAccJMj+dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l1n5fPse; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-533488ffaf7so7273574e87.0;
+        Tue, 27 Aug 2024 05:10:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1724760236; x=1725365036; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1724760646; x=1725365446; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=S3P+qjnJFbHf83h/XH7Zznqd3488XVLRUKQbFjvatag=;
-        b=Wx7q2TgGBPnx11ept+8Qv7fvSaNpZxC79J/F7nZUkcVIpp63KjvywHb7ReY/AsOZNz
-         00pvqgneI+E+h0RtDM3Mp8MKflNpvp9JOa7v83LPpknvwtbMGEv+jF+zwvIC6RS45v0u
-         goRUpCNYeU0z6MLzA78WLEaRqmzmAmDp5GJ1Q=
+        bh=ocWvo9DzoExmIHq9UIiaFosa4hw3n9psCH8ZfRs9xow=;
+        b=l1n5fPseKKnSQT/zheLDx/TUHIq5vDPpdOVeC4o3ABvDqb3PBJMH22aBKOfA67k2Y4
+         Vy+1I44OuelJ+6T5xFPYqN0uazVBYM4bQxBfvbWc0xFRvySuhoyqxFtgYm9tdU7EI/1z
+         +bmHTOHE7aBvHZnEyedsz9trOW1KpYyx9KVzZ2v7m7m9im0hXZZDZF5qK/m9BPnBGFrz
+         xsb8RAiphKDMYD2PyX0TmRV2NJQY+0ST/QIc8GLYQzALz4UIJFlDRd9q4AufMY/E9dip
+         m2nLYTRgRn61HEGbj9AdTOg4wWO7mzbss9g0RoCGiYb5Ilmz8r+oGOgTOXCWPUk0ATmE
+         5g4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724760236; x=1725365036;
+        d=1e100.net; s=20230601; t=1724760646; x=1725365446;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=S3P+qjnJFbHf83h/XH7Zznqd3488XVLRUKQbFjvatag=;
-        b=poHOr9u1db4uU7YHH2xf0ep7PkBbw3JYLa9OPzAo3LHdwJoOb11iRd70dXELp7txs4
-         pu4kT/GI4gUrLzHuMovbKgWUc6AD/qTZzC9Y7w27PzwKz1/TTKEHNMMROplTy1Wr95AO
-         WF+2Ekv8c4uv27uXvJaOYrH9TuaQrmWwYrpHR0dTg34H+nY/tsnP7zU3JaMG4hILmv7k
-         so9ix84ub/KtvleaqaQEHVQRzZtrh6otsJaeGPwPAkg5tbIrgUuHwKeXwi2LvjUiG4Vt
-         kWDet8qpCIYym3/soKBNoxJRVu2BgKnY33/Kg5H9ybMk11ZgZPbpWmJQTLUGZFXZx50n
-         Dugg==
-X-Forwarded-Encrypted: i=1; AJvYcCWsp9ZZ4tp8W0NZfvqfDpZRKQW9stkqd2KLlN5i8rVd68vIz6SimjaJE98cC3iibkDbZYyC7nYF7Z9F@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMcFpK51ObIE6h8mnq3hgeGt6PXCDeHkDdDG09NIEVWKFAgfeH
-	7RyK+IghdvBibeQqQhztFjWCLv98JP1Svo637AlvNJHr/9zOvM1JowabkRS5BgJhh54iGBywhk3
-	fPcFY7dfQc3LRg20AueDFydRMQYrm2/SlyMSN4bsdO7fbGmuPDek=
-X-Google-Smtp-Source: AGHT+IFppD7+L97m6BFDKW0husHdnT7cnz+evKXmLdIo2uNlIW5WSkmV2culk7eGbdRhkcak8U57Vd4KE69AJprWR/Y=
-X-Received: by 2002:a05:6512:15a8:b0:530:ae0a:ab7a with SMTP id
- 2adb3069b0e04-5344e3d0cc0mr1514306e87.17.1724760235790; Tue, 27 Aug 2024
- 05:03:55 -0700 (PDT)
+        bh=ocWvo9DzoExmIHq9UIiaFosa4hw3n9psCH8ZfRs9xow=;
+        b=saadsdgmMXohMYlZYw/S8X2ZCIXMLuxqAIf1NBuT8R+6M6a40qDA0mYA6rwayQoo5q
+         hx21DuwqSZVeOwqHKkpJ+8Ta/EtNdPoRIOEuLrPIumj+0lXcJX+4QDSsbxJHd8kZssfd
+         q3Zrn4lmPUGSNIyKp1eXENst3eLUwFGuYH+sUduP1p5LgK+gJbawXpLVLB0broMOrBwm
+         KV8yAMJJYkferz20PC5Pa+31o3zBo9Q3zTsh1V9WXOLulqOyDlxCZ6OSvyXMHGq945TP
+         8x6yg32rBWTaa/Ff48LeRxQNDdXb9Y7nlQ6//Wb861OCh62Y2IIrJ0WYVfQjaODUlNm+
+         EY/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUkLYBZsLbd6pP7VGmlcwO89Cqumhmpi0KIOW2VK3bcXk3JCbrYeHqlvPDak7XwaNf5DyoHUJh8+aPX@vger.kernel.org, AJvYcCXxommqoh0jBdAMmPTacA0BbylgmR85G5WptzJN9YpFqk03GS4iwSGOYOsL8b3pm6tcRnzjjFAR5DAJkroi@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEecIZ191SVI5V2395lt0NpUYNtBBCoKovrCgjz6TEy+4JT+dp
+	Ek6Cdr6kn9UEmhNcM999p46jhm2/0MmrDYdjanWjbbUwp2SZ1j5Vn6DTy4YaIOIQsUCsAZ+u999
+	Susr5DLCn2MToyd/FYP8w6uQVq9M=
+X-Google-Smtp-Source: AGHT+IEh5psS72JM5hvNRaxVWHrg402o8pnzLlLRh3KcneC/lRx90ichG0VNgnlvvr66dtMljeyh19iUph+sTp2ULkA=
+X-Received: by 2002:a05:6512:6d2:b0:530:b871:eb9a with SMTP id
+ 2adb3069b0e04-5344e4faf07mr1737573e87.47.1724760646028; Tue, 27 Aug 2024
+ 05:10:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240821143420.2564869-1-festevam@gmail.com>
-In-Reply-To: <20240821143420.2564869-1-festevam@gmail.com>
-From: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date: Tue, 27 Aug 2024 14:03:45 +0200
-Message-ID: <CAOf5uwnUPDPVzM7vNPn-tGrt2ENuuUzVfKh1q7AiORcAMZm0UA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mn-bsh-smm-s2pro: Remove invalid audio
- codec clock
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, ariel.dalessandro@collabora.com, 
-	Fabio Estevam <festevam@denx.de>, Dario Binacchi <dario.binacchi@amarulasolutions.com>
+References: <20240823120158.19294-1-tarang.raval@siliconsignals.io>
+ <20240823-demonic-jolly-chital-fb4d61-mkl@pengutronix.de> <PN3P287MB1829E68257FC17F8ADA725028B942@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <PN3P287MB1829E68257FC17F8ADA725028B942@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 27 Aug 2024 09:10:34 -0300
+Message-ID: <CAOMZO5BUrJBo5+bEyBA3i7q9Kb0HXgRwu8J-kV9JbDMFcx-WGg@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals Support
+To: Tarang Raval <tarang.raval@siliconsignals.io>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Fabio
+Hi Tarang,
 
-On Wed, Aug 21, 2024 at 4:34=E2=80=AFPM Fabio Estevam <festevam@gmail.com> =
-wrote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> According to ti,tlv320dac3100.yaml, 'clocks' is not a valid
-> property.
->
-> Remove it to fix the following dt-schema warning:
->
-> Unevaluated properties are not allowed ('clocks' was unexpected)
->
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
-> index c6ad65becc97..475cbf9e0d1e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
-> @@ -64,7 +64,6 @@ tlv320dac3101: audio-codec@18 {
->                 DVDD-supply =3D <&buck5_reg>;
->                 reset-gpios =3D <&gpio1 6 GPIO_ACTIVE_LOW>;
->                 ai31xx-micbias-vg =3D <MICBIAS_AVDDV>;
-> -               clocks =3D <&clk IMX8MN_CLK_SAI3_ROOT>;
->         };
->  };
+On Tue, Aug 27, 2024 at 8:16=E2=80=AFAM Tarang Raval
+<tarang.raval@siliconsignals.io> wrote:
 
-Let's just give a test to the board
+> [    8.639860] fec 30be0000.ethernet eth0: Unable to connect to phy
+> [    8.708452] fec 30be0000.ethernet eth0: Unable to connect to phy
 
-Michael
-
->
-> --
-> 2.34.1
->
-
-
---=20
-Michael Nazzareno Trimarchi
-Co-Founder & Chief Executive Officer
-M. +39 347 913 2170
-michael@amarulasolutions.com
-__________________________________
-
-Amarula Solutions BV
-Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
-T. +31 (0)85 111 9172
-info@amarulasolutions.com
-www.amarulasolutions.com
+What about this network issue?
 
