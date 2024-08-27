@@ -1,110 +1,188 @@
-Return-Path: <devicetree+bounces-96913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 167D8960017
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 05:57:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03CFB960036
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D17292837A0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 03:57:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D5651F22003
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 04:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A10D20328;
-	Tue, 27 Aug 2024 03:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F4C3A27E;
+	Tue, 27 Aug 2024 04:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J9qjjNDa"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="U09XgPgp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC4714A90;
-	Tue, 27 Aug 2024 03:56:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D90917736;
+	Tue, 27 Aug 2024 04:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724731017; cv=none; b=HSuLrXzLrfhuCHCC0zpB2WVaGzwGQ9MJ4zfQzc5gLDO4lhHMhszl1IQBT7svv0sXdeh+DTauoS8XpgfUP9IEOhDZcOFYQt4v56G1LcFLbmV7WR2PpQQaJJDNjcdeJp/0fgTKkItvCPui+IXNeOB9ZBGgWEQQap+UZHleAGazKpA=
+	t=1724731921; cv=none; b=oMWPz6udCEgN87C+m5EejEZuWD0OSSBsNXJ9AE/diBFm5vyABqErnd2MYExb2beFyUWk9AZUNA6KeZzdAgoizs0O8t8kH9J/fQkRKiNYQBA0IZqs0VjrhNIWnvXscj18MkuzD/AE7TLj8/O1D2KUimNvGKh2M99ka3s4Bcd3VNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724731017; c=relaxed/simple;
-	bh=2yqbwoTLn51851vf508uCRo/0TtNC/nkzS3LwVEiyG0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qGLcOF5D/BGqIRD+9659QOELVRbP97LXjUen8RSQM79zuid9K12uzQ4DoXQX0ztAeZWD0wAr7Qz63JYA79/lzFy59prf3hd4TeoSnsh14Ea/zzLsFqTKUn1YH7Zk9VKI9eWAGV2iMLPsnY6mkgsLVFdve0HixzHVuNeQ9B15fMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J9qjjNDa; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-201ed196debso43338605ad.1;
-        Mon, 26 Aug 2024 20:56:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724731015; x=1725335815; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KTvOR/DS9knaRzY3sdxLzqaq9zQJwZGfns9IyQ9Yg/c=;
-        b=J9qjjNDa9byAU7hOKvkgD/Z8laHZRMXoiaiNCd7rBNRmdP4troEVQ5oaU+FgVbXCQX
-         C4hS9zlE7VKiWLz6Lq209NNPU20iUhRd17xMqXFgQfwvglVI0pSRp7C4R8XP3YDbsjO1
-         yWNkszaVQ14i5sYt/uQgb1U+vQ9W1Ou42htdL1AT7A/YSi9rsgrl4+SEYLwMdfFl7RC1
-         AbwOUo1lKUy1PjKLgkYan0NaU5tC3J8pauqnT69rW4+He3sJbEj4qdmKDW01r7r9sxc9
-         gZI6b+/+lzahDqRRtX475eC92rvPmdHGGJMif5r8D6H4+Bb4vhgraSJB+JR0dMgDtzbP
-         mxbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724731015; x=1725335815;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KTvOR/DS9knaRzY3sdxLzqaq9zQJwZGfns9IyQ9Yg/c=;
-        b=qwAv82kKsECGJUPLXSzEDytNZPd4Yg1gSNaqvKd7SK+rqm+eUHVD3gt/ua3pRSd19X
-         NKjQPGn7mSXJxZAV7Rq6x/w3XLN9z3sEjMQC96zDKU55kEzirWTEfNA907g0+vyF3kUv
-         XHYpm+6PTfzzPdmeLqQIDQlpGUC5f68613dSNtDLtH+vSZkbWohcc4Qo/1j98v5ts7qP
-         6YoOA9oc3W4LybEybYT5agm+bQNlWbUKlhW1KTJ9qFoLBC1HTRX3NpQA8CIUlWIzDr1L
-         hufJeYgnOW0y6QDf4nR0X8jGOMa3tkc/YijAbyt+/vjS5O0F6YJVQ/9rbOyRjS5aQyDg
-         XtRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUaDr8mMwRwornL3g8fTCD5eNl783DRZDsukLRrp2JesuD2wDMVkWFPOXapgQq0//Oj2dCq3LFaolq2PNc=@vger.kernel.org, AJvYcCUrUQEPPm8Uat+KOJ1CbXsYXtPEEBmYRDtESZIIw+lDbw9dwOlrkiqmw2Xyd7qmMX4YFAT6SgaOsxF2LsCD@vger.kernel.org, AJvYcCV6Y4fDNiLFkfbTYsf0eY0Qo3ROfydmK9yH/VssQlu2dFJb2iY3VScE+ZDHmbGzsvaRGdbRMLTvteZU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0kfVR4JlhieijhMC2EUO0IKg1ZnI03sgjO3o+Mdw4M4gmVRjQ
-	qdFZwBbKmQjM6RJdVHHDASzSZsMaQ2OAKKAOX2Gn8o39RRD0qQmyevmj6w==
-X-Google-Smtp-Source: AGHT+IFxneXRFmZ1WmEVJIBaliCW7se8z0sLkUpG6VSRORjfjkBu0029f/W74ZEp6JtRVQdyr0mBRA==
-X-Received: by 2002:a17:902:b20f:b0:1fb:72b4:8775 with SMTP id d9443c01a7336-204df4d39a1mr16138875ad.40.1724731014747;
-        Mon, 26 Aug 2024 20:56:54 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2038556657asm74264205ad.47.2024.08.26.20.56.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2024 20:56:54 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 26 Aug 2024 20:56:53 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Chanh Nguyen <chanh@os.amperecomputing.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Justin Ledford <justinledford@google.com>,
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-	Open Source Submission <patches@amperecomputing.com>,
-	Phong Vo <phong@os.amperecomputing.com>,
-	Thang Nguyen <thang@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Khanh Pham <khpham@amperecomputing.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4] dt-bindings: hwmon: Add maxim max31790
-Message-ID: <3382f952-daae-43ff-bb85-fa4820ecbc5f@roeck-us.net>
-References: <20240822084808.299884-1-chanh@os.amperecomputing.com>
+	s=arc-20240116; t=1724731921; c=relaxed/simple;
+	bh=R7+rr4IFOkDDC68258FOanKKCM+e0YIAKpgqz276MEE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YSEdKGqWFUWMj+NuzcXm8/b/n4iYOMAdHo3fx9AwI7ZnVew9NNSpzzQsPra6pmcKh0D6R5uGbLWOncyaLBqH7ln8HnQ5pb7zgg9qz2rGmiFDCSY9fB7RYkMl9QAnLSbJJip6UwMJYSBqxv01uaRUxclYAvXyuOWIoBx0ddzsxn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=U09XgPgp; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47R4BmrC092175;
+	Mon, 26 Aug 2024 23:11:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724731908;
+	bh=KavFqkvjazdMpxeCK83iCyZmnAnVP4EjnBVrA+hIfak=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=U09XgPgpREG2XfEAbonaqnFZ2khDIHSFW/KU48pCPgKVEe9uTl2eg10qaPHIHXCi/
+	 bGMee7XxhQzgx0NquTmxc86Q0PrwPQ9ZnN15sXjeTWe7NkSXb3ScgEib4nZWZhoflV
+	 xaHl8UzPSuMbC1KRL2Q0Ijsd/MOh+TD1mG8yqahw=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47R4BmoT107182
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Aug 2024 23:11:48 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ Aug 2024 23:11:48 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 Aug 2024 23:11:48 -0500
+Received: from [172.24.19.209] (lt5cd2489kgj.dhcp.ti.com [172.24.19.209])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47R4Bi5h122509;
+	Mon, 26 Aug 2024 23:11:44 -0500
+Message-ID: <616bfcfa-ca5a-43c8-b778-cfe654923da1@ti.com>
+Date: Tue, 27 Aug 2024 09:41:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240822084808.299884-1-chanh@os.amperecomputing.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: align watchdog clocks
+To: Eric Chanudet <echanude@redhat.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, J Keerthi
+	<j-keerthy@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Halaney
+	<ahalaney@redhat.com>,
+        <u-kumar1@ti.com>
+References: <20240805174330.2132717-2-echanude@redhat.com>
+ <wiyw7h7hkc7u2brehi6zgxykesajtqmwwajo7tpwwvayjtcykw@w7rcmojs62vi>
+ <f42f092f-2199-4cbd-8cad-96ccf4f100d0@ti.com>
+ <xlmi5cm4lcnohz3glzzxqtffrbletvsos2i2l2ytr55yjnwl33@fae24t7xvzj7>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <xlmi5cm4lcnohz3glzzxqtffrbletvsos2i2l2ytr55yjnwl33@fae24t7xvzj7>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Aug 22, 2024 at 08:48:08AM +0000, Chanh Nguyen wrote:
-> Add device tree bindings and an example for max31790 device.
-> 
-> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Eric
 
-Applied.
+On 8/27/2024 3:50 AM, Eric Chanudet wrote:
+> On Mon, Aug 26, 2024 at 11:53:56PM GMT, Kumar, Udit wrote:
+>> Hello Eric
+>>
+>> On 8/21/2024 3:31 AM, Eric Chanudet wrote:
+>>> On Mon, Aug 05, 2024 at 01:42:51PM GMT, Eric Chanudet wrote:
+>>>> ---
+>>>> I could not get the watchdog to do more than reporting 0x32 in
+>>>> RTIWDSTATUS. Setting RTIWWDRXCTRL[0:3] to generate a reset instead of an
+>>>> interrupt (0x5) didn't trigger a reset either when the window expired.
+>>> Re-testing using u-boot from the BSP (2023.04) has the board reset as
+>>> expected when the watchdog expires and WDIOC_GETTIMELEFT report the time
+>>> left coherently with this patch until that happens.
+>>>
+>>> I initially had a u-boot with a DT lacking:
+>>> 	"mcu_esm: esm@40800000"
+>>> and I could reproduce the board not resetting by commenting in its
+>>> description:
+>>> 	"ti,esm-pins = <95>;"
+>>>
+>>> I don't understand why that is on the other hand. The TRM says ESM0
+>>> ERR_O drives the SOC_SAFETY_ERRORn pin, which goes to the PMIC GPIO3 on
+>>> the schematic _and_ to MCU_ESM0 as an error input event. The tps6594-esm
+>>> module is probing successfully and it sets both ESM_SOC_EN|ESM_SOC_ENDRV
+>>> and ESM_SOC_START, so I would expect the PMIC to reset the board without
+>>> MCU_ESM0 being described or configured by u-boot.
+>> AFAIK, Keerthy correct me. GPIO-7 of PMIC should reset the boards.
+> That is what I'm seeing too, MCU_ESM0 is able to reset the board.
+>
+>> If you see figure 5-27 of TRM then SOC_SAFETY_ERRORn goes to GPIO-3 of
+>> PMIC (schematic)
+>>
+>> Same time this is cascaded to MCU-ESM and WKUP-ESM to generate
+>> MCU_SAFETY_ERRORn (from Wkup_ESM)
+>>
+>> and MCU_SAFETY_ERRORn is connected to GPIO-7.
+> Agreed (Figure 5-25, in TRM "SPRUJ52" for J784S4).
+>
+>> Unlike other device J721E (for reference)
+>>
+>> SOC_SAFETY_ERRORn is generated by Main ESM and MCU_SAFETY_ERRORn can be
+>> generated by WKUP_ESM and main_ESM.
+>>
+>> Please look at schematic of J721E SOM [0], both SOC_SAFETY_ERRZ and
+>> MCU_SAFETY_ERRZ both are connected to GPIO-7 of PMIC.
+>>
+>> So on this device and board, only main ESM configuration is working for us.
+>>
+>> [0] https://www.ti.com/tool/J721EXSOMXEVM#tech-docs
+> Sure, but I am using J784S4[1] and the schematic of that board
+> (PROC141E4(001)_SCH) shows SOC_SAFETY_ERRZ going to PMIC GPIO3.
+>
+> So when u-boot _does not_ configure MCU_ESM0 chaining through pin95, I
+> would still expect the board to reboot, because ESM0 raised
+> SOC_SAFETY_ERRORn on TPS6594 GPIO3 which should reset the board. Yet
+> that does not seem to happen.
 
-Thanks,
-Guenter
+I think, we are saying same thing .
+
+Reset is happening with GPIO-7 pin of PMIC not with GPIO-3 PIN.
+
+
+> [1] https://www.ti.com/tool/J784S4XEVM#tech-docs
+>
+> On Mon, Aug 26, 2024 at 11:48:34AM GMT, Andrew Halaney wrote:
+>> rti0 ---> ESM0 pin 688 --SOC_SAFETY_ERRORn--> TPS6594 GPIO3
+>> 				|
+>> 				|
+>> 				--> MCU_ESM0 pin 95 --> WKUP_ESM0 pin 63 --MCU_SAFETY_ERRORn--> TPS6584 GPIO7
+> Using Andrew's drawing as it matches my understanding as well. So the
+> PMIC should reset the board even if MCU_ESM0 isn't configured with pin95
+> to chain SOC_SAFETY_ERRORn.
+>
+> Am I misunderstanding this?
+
+
+I am not PMIC expert,
+
+but based upon my results on other SOC/EVM. SOC_SAFETY_ERRORn signal can 
+reset the board, if this is connected with GPIO-7 pin of PMIC.
+
+
+>
+> As well, since it is mentioned in Andrew's reply:
+>
+> On Mon, Aug 26, 2024 at 11:48:34AM GMT, Andrew Halaney wrote:
+>> did you ensure that ESM0 was programmed in this test? Right now if
+>> you're using upstream u-boot and upstream linux, nobody seems to be
+>> configured by default to do that
+> I am using the BSP u-boot (2023.04-f9b966c674) for this test, which has
+> CONFIG_ESM_K3=y and esm@700000's description with pin688.
+>
+> Best,
+>
 
