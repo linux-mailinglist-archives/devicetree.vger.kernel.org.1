@@ -1,259 +1,964 @@
-Return-Path: <devicetree+bounces-96969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB919603C9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:01:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F029603DB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:03:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8CE6B2171B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:01:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D0481F22B85
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:03:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA58712C475;
-	Tue, 27 Aug 2024 08:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="a/NA375e"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D1918BC02;
+	Tue, 27 Aug 2024 08:03:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020097.outbound.protection.outlook.com [52.101.69.97])
+Received: from out28-217.mail.aliyun.com (out28-217.mail.aliyun.com [115.124.28.217])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942DB1F943;
-	Tue, 27 Aug 2024 08:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.97
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724745652; cv=fail; b=DaQKRW80qMmxdKV7FR+iuvKcfoCxOx/c1Yt8u1PSOG96Brr2w2gigQVisIChNKmtmZxeSewyxuhqP/yRZ7/dufj3ztpZ23Tur/aA7cHDcO7A/XsaVXLcJJB9aapJ4FSSSP9EiaZCKxA+NTy42/wbdiTi2qtOawRxK8q0nH6S/sI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724745652; c=relaxed/simple;
-	bh=U4mMnvpU2KduBzJAg2OMFjL6qcPUKDF+9OAsuB7dbhI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=f/PmuA/rPPx0sgVTa2udsbr5UwlyOxbUJ30xP+wzs+zalGioht983nPfUMEUF0Ojfwh36sxJBLPrlFBELyO5Gwa1IUec1R67Jx6RrSqHFlyAC/MnTHHxGdX5X+Bj/fg1R7eSzU7OxTIeIkpEGCTlscmcGztc5Cec+zASg/FeloU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=a/NA375e; arc=fail smtp.client-ip=52.101.69.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ixt0uDUaWwez4ZATZytoEatc9ukLcRvOL/ezjgm6kEtW3TNLZRfMpJRqJsZ9TmC4UtTFRa3XHv2c3hdgnnOBCYKRD33k6ux87PdnQ+rcTEWlcSR8MqLaVSeGyKU1Rg/bjxQS+Ogatx5VHrBYGC9xbEtKc1Ncc0pbpiFIMKHc/OwlKYU0d7CV2M7FjOnuIgEEybEWZP4GCi7lIj/kVVDqxuQXhGYO6nsQyR9ss/15WqzQtT8PMIQw4Y0GXlT/d3q7MnasLNktQbzf86U2+z2u8ZB9K1ZVGWShNBzI6fjbTCRJAzWOEbdPDwNPBsCpLiIQ/X/Blas/AN8XXm9+DI7KLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U4mMnvpU2KduBzJAg2OMFjL6qcPUKDF+9OAsuB7dbhI=;
- b=t+szkw6AtCpxX8JB78g8PVYfJOdJXdUoVOu0JDGwS4PKsI6BHStUIjYV9T7GEKF4+nl3gTNQxcj5LRIryW0WOjpwat5mjzZSAM6CAIWjy/DOFhq0L+34jZ7C6rWEy81cN5LE31wwwfJBrQAb4nAYaHSEbH/sYVeBwDZQhrnIej7g7eKlubzDH8iIVQOdA+ommy/hih6KrU0Llbl7zwr2DUKgjoyrzkUX3bx3A8QVZK5Oz/gAEFdOSHI1MOBYka31pUnghmX6nCXches+sMzXBSRqNHqxlgzwRX/QYGQWp9WdlQMb1+TGke7fRgxSMbv993T1I1t6I8HxsyTROD4dpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U4mMnvpU2KduBzJAg2OMFjL6qcPUKDF+9OAsuB7dbhI=;
- b=a/NA375enZF2uVN4UgAEohPPPCeILhjQfZL19Co6/mLBKLgQkPorRA1KcPkdKEUNwtjxGV6KfFnBBWD5M32ajqvT0irI0/PJhS6lJXJ3+F/3oneHQ8nwbMEUHoc/IssYsidPFoTCsunwl0DPDHFlXk+7I1Yfc4sx/RVZc4Qtav0=
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
- by PAWPR04MB9720.eurprd04.prod.outlook.com (2603:10a6:102:38d::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.24; Tue, 27 Aug
- 2024 08:00:47 +0000
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529]) by AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529%5]) with mapi id 15.20.7897.021; Tue, 27 Aug 2024
- 08:00:47 +0000
-From: Josua Mayer <josua@solid-run.com>
-To: Logan Bristol <logan.bristol@utexas.edu>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Matt McKee <mmckee@phytec.com>, Wadim Egorov <w.egorov@phytec.de>,
-	"linux@ew.tq-group.com" <linux@ew.tq-group.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64* Disable ethernet by default
- at SoC level
-Thread-Topic: [PATCH v2] arm64: dts: ti: k3-am64* Disable ethernet by default
- at SoC level
-Thread-Index: AQHa6mRMvn4eMRt68kiqym0pT5BO+bI37FCAgAI4KwCAALUuAA==
-Date: Tue, 27 Aug 2024 08:00:47 +0000
-Message-ID: <15b5d678-9dff-49e1-9871-9b3a98148f38@solid-run.com>
-References: <20240809135753.1186-1-logan.bristol@utexas.edu>
- <23ac5cfb-dc5d-422b-925b-ab3f7cfae622@solid-run.com>
- <c6cca5d2-45f6-4a2c-86f5-cdcb0db9e936@utexas.edu>
-In-Reply-To: <c6cca5d2-45f6-4a2c-86f5-cdcb0db9e936@utexas.edu>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR04MB7586:EE_|PAWPR04MB9720:EE_
-x-ms-office365-filtering-correlation-id: 639e6ea6-89ea-4737-7563-08dcc66e5bfa
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?cjhvS3QzTlVPMkhzR3owMmw2OGZUNlpyQTlqNDZoWlFrajNpbnBydVVmODVZ?=
- =?utf-8?B?V25ndEROQzdTRmdaM1NUZkkzMm9YWFBXOUhvaXpYTlJNdDhzUE5JT1Z2WXpr?=
- =?utf-8?B?cGRleFVDRHN4KytQVXNOaGJ0aGRiMFEvQm90RGxDVHlib1JuZmZ5Vk9odUtk?=
- =?utf-8?B?RzRnbWpZZXFNYjY4SmpzRVlpZnV6WTJ0THc5NXVPaXdNeWJxTHNYNjVsbnNU?=
- =?utf-8?B?Zy8wMnFaTjJCbTBlZlR0MythZmNzUmY3dllCOFIxMndQQ0RrOHl4cUpZQUJx?=
- =?utf-8?B?L2Z0WWZTSHpqVWRRazJrNXZzZmpJYzJqei81bUplRDBJYWxKemdJWFNmZlNM?=
- =?utf-8?B?MEVZZW9lMkQwRzJuQVIxZkQ5U1RLSjR5TnA4bDVYMFZ3bXBnTUVtWDlKQlZk?=
- =?utf-8?B?SmxyK3hQZmRnYUx4Z2h4SFlqMGpIYlJHU1hjS1dqWStuZldhYnY5WCtMdXJQ?=
- =?utf-8?B?WHBISGJ3dTk4ZTh2ZGIvT0w1UDhZN3hPQlp4cFVralpiV3FJT2ZrVGpJcTZy?=
- =?utf-8?B?WU0vVUhiZWR5ai80OXR2S0dlYXlaOFhsanV1OUVnWkErYktnNDdYbkpOekZo?=
- =?utf-8?B?MnhqeUZROTloVjJJN3BCeVFVcEpVV1ZrdFA1cWl5cXN2ZGZqdDRHTnpGZEVR?=
- =?utf-8?B?azVhSEljUVpuRDcvbWJCMUYvUnhDbFRicGowVWxTeUc4U3gwMTl3OGRBb003?=
- =?utf-8?B?RHFLTFlSblhnMi9keXFzODRieEJFcEU5T0Rxd2hZeFNoMkJCcExZcnNkRHFU?=
- =?utf-8?B?cVhoUjF4M1FqMFowVERITjYzT0ttQk0waWFhTXRQSnNoMmNKcVBuRjNVcnhD?=
- =?utf-8?B?V2loZ3FSNVVVWHk0YjN4TnNYSDY4QjlsV2VsQzlYendVY2J5WTdqZDB1WHQz?=
- =?utf-8?B?Qnp0ejdXSlRBaWZIZ1dzd3piWlpOeWQ0YzJxbjRnR1hHTGlucUpCc3Z5K0po?=
- =?utf-8?B?cjdoeVkvcEJvbXhGZmhrd3ZJVFNiUWdXdkV5MWVIMm15MU94VmVkaVVqZUJs?=
- =?utf-8?B?RWhzQnFYQndIcGxOa0dxUG5YaXBIVG05ejBzcitrM1lVOHFwbml2Nm9Eblpi?=
- =?utf-8?B?NTdBaFM0LzVWc2cyTlA2c0lXZ2RLZ3FBZDh3TCtGbXNWbjFjSUVHL2tLODhP?=
- =?utf-8?B?eUpMeUg0L0xTRGZxOVdvelNFODFDbGNmR3RVUHRnK2dQZlhJbnlRaHIyckNi?=
- =?utf-8?B?QW05VFU1enI4cWI1UXdCNE54eHhJTXIrVnVYS3BQeFBPaVcrOTlGKzJEdmZG?=
- =?utf-8?B?cGhoSGk4RDdIQitoVWF1QkFOWXQrcnd2azF4YUtxSERKL3JmcjV2bEQ4djZZ?=
- =?utf-8?B?MmxJanJwMFUwVUtTaEUxUjZxUE1oSTY0VlNnRTJRbk1NNWdkUzZ1SFlQU0Jl?=
- =?utf-8?B?WWk2R2kwWFdOamVCd1BhejMzQ0sxejl6MEF3bTE1UHh5THhuVWZkQVZrV2hU?=
- =?utf-8?B?TUMwdTBqUm9Nc0xUc1ZMOVdCeVcrbDlFYXRkOHNkZW9lanhVNlZvd1NncnJm?=
- =?utf-8?B?OXFGM2p1YmpoOWc2S2tpT2JxRXNEdUFxREJOS3crOUxSVzFHMGx1emNvcFVH?=
- =?utf-8?B?NEd3MnpSYTNBWG1JRTNoTHk3TFlKUE1kZFhYSko5YU5VWFN6WHdQNkVHcnRY?=
- =?utf-8?B?aHVGeE85b0h6Qjl5MFFnelFqSVJkc2syRnVGTEMwWU4xdG1iOFRYZGhZbHV1?=
- =?utf-8?B?QmlZS3N5TlhCRXBlWGtqMmhsYkZuN1MrcE12RnUzMDBwNm1zdXZucFBmM2Jt?=
- =?utf-8?B?U2JyN2hjdUFUUkxNR0xVNVhCVW1xQUtoVTF6Q0diejFPL0JWejNnNDRrWjFX?=
- =?utf-8?B?TDRvWkN6VVFkaXJrTlFmNERCVnZWWlZuRzlYMHZGODBKSDVTcGEzTThDN3N3?=
- =?utf-8?B?blVFUlBIZXdZR09PWUQ0U1BqZElTUzR6K3BRcHBJYkVXTGc9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?NzV2VkR2ZFN3d3NHSkxSTjA0R2wvUER5T0lHY0dJVkZCeTFoOFBpcGRzekQ2?=
- =?utf-8?B?VVRCTmcrbEkwU3VYYVR6UUs5WllSQmZzNXhQaDVLMmljWEw2MXprOEhBUlF4?=
- =?utf-8?B?RXVZb21EYjlpUXoyVkdsa3RNa2c0UC8wQVowaWhTeUk1UWlEUzlPdU4yMTJL?=
- =?utf-8?B?aUxIUWJialdYMXBFc0NWZ242ZlpWeGg0ODFwd1l2SldxQ2czc0dGaW9rR251?=
- =?utf-8?B?TmhTWmlzdEJBYkZoUG1DNlNMUTVkY3dheTBQbzVSU0NMUkZxL0JsZ1pTOWtp?=
- =?utf-8?B?VmZhMStSY3B3VjF1dGJSYUxvMjNoY3dxZnpkdmkzd0VGLzQwMUdoTGdlNnAv?=
- =?utf-8?B?dnQyVHpLUzc0amhLTVh2L3IzQy9LSTNrY2ZoclAySEhoSjNJTDBjOWhNN0NJ?=
- =?utf-8?B?clE1VUxSbC84cE9CbEF2TDloRE9mMGxEYzJOMlhMamtKeFg4ZDJHQXRHRGRG?=
- =?utf-8?B?MVJkUkszU3paaXZnN2hiUkN0MTNXQVpmTUhTdnJiR3FERzJSK0xtc2d3SVZp?=
- =?utf-8?B?TmJZdThhN2p0ZEFCa1hqVE93K3YwVUwwcW1TUzBVWnVIYWc3eS9aVDZKYkJY?=
- =?utf-8?B?QWVFaVVNR3VXaERtaitvVU9CZ0NKY1ZBb3lORDdtL3BFd2t5VVlydUh4Vlp2?=
- =?utf-8?B?cXozY3VVOWJROG5xbjJOdUdiejNCb2FyMENRRTJqeVViTU9Dd1lsMUdBd2FH?=
- =?utf-8?B?RUcrdndWSkwrYW4vYThkaEQvSnJHREVXaGJneHFCWUNMamxwQ0VuRWZKUTBm?=
- =?utf-8?B?YWtFaGhvN2NGU24xN3hsbGJpMEx2cHROcTg5aUlNMWxYQ0Nwc09meFZzekhO?=
- =?utf-8?B?MGwwMEtYbDJ0bVl0dVFkeHJsYUtPVUExclVEMC9MSEJKd2szcFVrS1YrVGVi?=
- =?utf-8?B?WWlVT3JQSUdxZFRBNEI3akVwb3AvVEtIb3d2NS9OdlM4WUNNQlVUWllacG9X?=
- =?utf-8?B?a1BrVXBpRHRHWFN3QWl4c016YUJ1aFgwRmVoS0w1Mit2dCt3d1BjVjA4VWpi?=
- =?utf-8?B?TWhEZXpnY0VxL1BhK1FYbGtOVGNPbUZIMHo5T2llYVlYMnZDc1o3bUpWMExw?=
- =?utf-8?B?VG5LZFB2dW9CMmhNeUlaYUFka2tIOXNjWUhKRE1xbkdXN0ZCckJ1NTE1bHBa?=
- =?utf-8?B?ZThsVlkwcC9wZkdlVmxBenc5aHFraGIrZnNxVk9PenNTblhkQnovWFMxa3hN?=
- =?utf-8?B?MXMzTEZ0QWltWGJGRlJqSGhUQkpiWEcwa0ZKa2FuZ2xpaHM4aEZhOFlvQk02?=
- =?utf-8?B?d2g0cUw2eFVFVjZ2K2VtVGJCNXkyV0I5UW53blpXVitwdnIrZmx5VzA0aTBl?=
- =?utf-8?B?YWZMb0M4Z1ZqNFF5NXhIOThVVFdUTjlCaXNRZ2VuTzE5K0o1LzFqL1VPSy9B?=
- =?utf-8?B?VHpNZjE0U3lVZ05rV3BkMzhPeERuU0dhOU9HbmY4c25ZbHJqSmgrTmFwTklP?=
- =?utf-8?B?cEpjbGwya0o2RHJpN0VGZmVRSHlQNHNJWHJOUjZmajhBVnFqSm9uSDdyWDhx?=
- =?utf-8?B?cERFbVB4aWFVRUhsYmtMVzk1RXA3WTZ3WVlLUFRBM3NQSWZocDQ2ZXI4Vkht?=
- =?utf-8?B?RGRieWN0dXlCVCs3ckRWV1RjOTRZUW1mNG4zMGkvb1N0emVWdXdnaFVzNFQx?=
- =?utf-8?B?SSs0UUdsbllRVDE5aVA2dkpsa05JUWRaYXFEbmQ3S2VaaFQrdHZYOWk0WG1W?=
- =?utf-8?B?QmpjTGtndllWYkE0dXJRSXdWVHh0ZzFmNU9ITVl2a0NtY0J5djRRWFJkVm1L?=
- =?utf-8?B?bFQvNlphWnQ3T0RIT0ZIMlo3YjFudGVEaFBnWEpKOSszUHhSUzNlT0ZDVFlG?=
- =?utf-8?B?aWh6SE9RVDFPQmZxZVNxNzZUelBmUmc1azluNEMvMU4zMllYR3FZUzhOWm1B?=
- =?utf-8?B?ZFo4dkpHYzJPdlZDWXFZTUlnVmhXNmJpZ1kwV0dXWHhNWkZ3eEdCU3FhMlZx?=
- =?utf-8?B?TjV3Tm54VVQ1NU00ODBJVUkxUFNyOGVSbUphRHN3b092cUR3YURxT1VIbVRk?=
- =?utf-8?B?Z1V0ZFh6amFxR2JYQWtsdE5FckxhcTBJWmJoeHhaZ2liazJwbW5rR1dSRmpV?=
- =?utf-8?B?VGRQcjdpY2pqV3NXcHZxTzFwOXlnUDAxZ0ZsQmNSdVljNFQyOWozQ1RMSE1G?=
- =?utf-8?Q?PGiBl8ONsRNRz0PGK1O6M934Y?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <036A4B201D57E148AB591203D4C0422E@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9C213A25B;
+	Tue, 27 Aug 2024 08:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.217
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724745780; cv=none; b=ga+xtu6H6mm1sPb3MHxzZhdrY2/n9EpYe5JLX6Q/kBn++Hx8GFPSFhw1yuhrrFe9LaQHePLaSva4/49DmMcRERdMwZGGYuS+sOGfTBtV6jXyzqYgVFT2tRq709bvH/t1EzjfSqdh6XYltGJ3Tu9vy5B0hhJbqxBhFreO+TMipb0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724745780; c=relaxed/simple;
+	bh=uqJ+9muxg5UG5E1Cfvp13AkTOCczjSf/j2waHwlbSsM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=RKYA9ZEVXCfuWrnvDYAyzKigopWI3dD0PcoLSKzpzHNlmiYSzldQYvvq9RNBmvi9fW6U5wtZXkMGoMFMr4Knw2F7RInsyF3Jmya1RuyvfzbY5pMgvODT6k1cq5TUDxVsZarWnllMOC0tbleU+Vq3TZh2oprTY4MtjtcwAcBFjdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.217
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.Z3WL9kI_1724745764)
+          by smtp.aliyun-inc.com;
+          Tue, 27 Aug 2024 16:02:46 +0800
+From: wangshuaijie@awinic.com
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	kees@kernel.org,
+	gustavoars@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Cc: wangshuaijie@awinic.com,
+	liweilei@awinic.com,
+	kangjiajun@awinic.com
+Subject: [PATCH V9 2/2] iio: proximity: aw96103: Add support for aw96103/aw96105 proximity sensor
+Date: Tue, 27 Aug 2024 08:02:29 +0000
+Message-ID: <20240827080229.1431784-3-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20240827080229.1431784-1-wangshuaijie@awinic.com>
+References: <20240827080229.1431784-1-wangshuaijie@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 639e6ea6-89ea-4737-7563-08dcc66e5bfa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2024 08:00:47.1364
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2oYs6fm61ZXj1Ms65nteoNk7NF30FkcgMbcUB2GxRwtRtNcI7EnsKzqQtJRHFzWm2VutivEVE5qF6MKQX09Y2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9720
+Content-Transfer-Encoding: 8bit
 
-QW0gMjcuMDguMjQgdW0gMDA6MTIgc2NocmllYiBMb2dhbiBCcmlzdG9sOg0KPiBIaSBKb3N1YSwN
-Cj4NCj4gT24gOC8yNS8yMDI0IDY6MTggQU0sIEpvc3VhIE1heWVyIHdyb3RlOg0KPj4gSGkgTG9n
-YW4sDQo+Pg0KPj4gVGFuayB5b3UgZm9yIGluY29ycG9yYXRpbmcgdGhlIHJlcXVlc3RlZCBjaGFu
-Z2VzLA0KPj4gdW5mb3J0dW5hdGVseSBJIGZvdW5kIGFub3RoZXIgbWlzdGFrZSAuLi4gc2VlIGJl
-bG93Lg0KPj4NCj4+IEFtIDA5LjA4LjI0IHVtIDE2OjU3IHNjaHJpZWIgTG9nYW4gQnJpc3RvbDoN
-Cj4+PiBFeHRlcm5hbCBpbnRlcmZhY2VzIHNob3VsZCBiZSBkaXNhYmxlZCBhdCB0aGUgU29DIERU
-U0kgbGV2ZWwsIHNpbmNlDQo+Pj4gdGhlIG5vZGUgaXMgaW5jb21wbGV0ZS4gRGlzYWJsZSBFdGhl
-cm5ldCBzd2l0Y2ggYW5kIHBvcnRzIGluIFNvQyBEVFNJDQo+Pj4gYW5kIGVuYWJsZSB0aGVtIGlu
-IHRoZSBib2FyZCBEVFMuIElmIHRoZSBib2FyZCBEVFMgaW5jbHVkZXMgYSBTb00gRFRTSQ0KPj4+
-IHRoYXQgY29tcGxldGVzIHRoZSBub2RlIGRlc2NyaXB0aW9uLCBlbmFibGUgdGhlIEV0aGVybmV0
-IHN3aXRjaCBhbmQgDQo+Pj4gcG9ydHMNCj4+PiBpbiBTb00gRFRTSS4NCj4+Pg0KPj4+IFJlZmxl
-Y3QgdGhpcyBjaGFuZ2UgaW4gU29NIERUU0lzIGJ5IHJlbW92aW5nIGV0aGVybmV0IHBvcnQgZGlz
-YWJsZS4NCj4+Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IExvZ2FuIEJyaXN0b2wgPGxvZ2FuLmJyaXN0
-b2xAdXRleGFzLmVkdT4NCj4+PiAtLS0NCj4+PiBDaGFuZ2VzIHNpbmNlIHYxOg0KPj4+IC0gRW5h
-YmxlZCBjcHN3M2cgYW5kIGNwc3dfcG9ydDEgaW4gU29NIERUU0kgaW5zdGVhZCBvZiBib2FyZCBE
-VFMNCj4+PiBpZiBib2FyZCBEVFMgaW5jbHVkZWQgU29NIERUU0kNCj4+PiAtLS0NCj4+PiDCoMKg
-IGFyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02NC1tYWluLmR0c2nCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHwgMyArKysNCj4+PiDCoMKgIGFyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMt
-YW02NC1waHljb3JlLXNvbS5kdHNpwqDCoMKgwqDCoMKgwqAgfCA2ICsrLS0tLQ0KPj4+IMKgwqAg
-YXJjaC9hcm02NC9ib290L2R0cy90aS9rMy1hbTY0Mi1ldm0uZHRzwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHwgMyArKysNCj4+PiDCoMKgIGFyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMt
-YW02NDItc2suZHRzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCAzICsrKw0KPj4+
-IMKgwqAgYXJjaC9hcm02NC9ib290L2R0cy90aS9rMy1hbTY0Mi1zci1zb20uZHRzacKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgfCA2ICsrLS0tLQ0KPj4+IMKgwqAgYXJjaC9hcm02NC9ib290L2R0cy90
-aS9rMy1hbTY0Mi10cW1hNjR4eGwtbWJheDR4eGwuZHRzIHwgNiArKy0tLS0NCj4+PiDCoMKgIDYg
-ZmlsZXMgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pDQo+Pj4NCj4+
-PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy90aS9rMy1hbTY0LW1haW4uZHRzaSAN
-Cj4+PiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02NC1tYWluLmR0c2kNCj4+PiBpbmRl
-eCBmODM3MGRkMDMzNTAuLjY5YzVhZjU4YjcyNyAxMDA2NDQNCj4+PiAtLS0gYS9hcmNoL2FybTY0
-L2Jvb3QvZHRzL3RpL2szLWFtNjQtbWFpbi5kdHNpDQo+Pj4gKysrIGIvYXJjaC9hcm02NC9ib290
-L2R0cy90aS9rMy1hbTY0LW1haW4uZHRzaQ0KPj4+IEBAIC02NzcsNiArNjc3LDcgQEAgY3BzdzNn
-OiBldGhlcm5ldEA4MDAwMDAwIHsNCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoCBhc3NpZ25lZC1j
-bG9jay1wYXJlbnRzID0gPCZrM19jbGtzIDEzIDk+Ow0KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IGNsb2NrLW5hbWVzID0gImZjayI7DQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgcG93ZXItZG9t
-YWlucyA9IDwmazNfcGRzIDEzIFRJX1NDSV9QRF9FWENMVVNJVkU+Ow0KPj4+ICvCoMKgwqDCoMKg
-wqDCoCBzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPj4+IMKgwqAgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-ZG1hcyA9IDwmbWFpbl9wa3RkbWEgMHhDNTAwIDE1PiwNCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIDwmbWFpbl9wa3RkbWEgMHhDNTAxIDE1PiwNCj4+PiBAQCAtNzAxLDYg
-KzcwMiw3IEBAIGNwc3dfcG9ydDE6IHBvcnRAMSB7DQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIHBoeXMgPSA8JnBoeV9nbWlpX3NlbCAxPjsNCj4+PiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWFjLWFkZHJlc3MgPSBbMDAgMDAgMDAgMDAgMDAg
-MDBdOw0KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB0aSxzeXNjb24t
-ZWZ1c2UgPSA8Jm1haW5fY29uZiAweDIwMD47DQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgfTsNCj4+PiDCoMKgIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY3Bzd19wb3J0
-MjogcG9ydEAyIHsNCj4+PiBAQCAtNzA5LDYgKzcxMSw3IEBAIGNwc3dfcG9ydDI6IHBvcnRAMiB7
-DQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGxhYmVsID0gInBvcnQy
-IjsNCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGh5cyA9IDwmcGh5
-X2dtaWlfc2VsIDI+Ow0KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBt
-YWMtYWRkcmVzcyA9IFswMCAwMCAwMCAwMCAwMCAwMF07DQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPj4+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgfTsNCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Ow0KPj4gLi4uDQo+Pj4g
-ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02NDItc3Itc29tLmR0c2kg
-DQo+Pj4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3RpL2szLWFtNjQyLXNyLXNvbS5kdHNpDQo+Pj4g
-aW5kZXggYzE5ZDBiOGJiZjBmLi5hNWNlYzlhMDc1MTAgMTAwNjQ0DQo+Pj4gLS0tIGEvYXJjaC9h
-cm02NC9ib290L2R0cy90aS9rMy1hbTY0Mi1zci1zb20uZHRzaQ0KPj4+ICsrKyBiL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvdGkvazMtYW02NDItc3Itc29tLmR0c2kNCj4+PiBAQCAtMTc3LDYgKzE3Nyw3
-IEBAIHZkZF9tbWMwOiByZWd1bGF0b3ItdmRkLW1tYzAgew0KPj4+IMKgwqAgJmNwc3czZyB7DQo+
-Pj4gwqDCoMKgwqDCoMKgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+Pj4gwqDCoMKgwqDC
-oMKgIHBpbmN0cmwtMCA9IDwmcmdtaWkxX2RlZmF1bHRfcGlucz47DQo+Pj4gK8KgwqDCoCBzdGF0
-dXMgPSAib2theSI7DQo+PiBjb3JyZWN0DQo+Pj4gwqDCoCB9Ow0KPj4+IMKgwqAgwqDCoCAmY3Bz
-dzNnX21kaW8gew0KPj4+IEBAIC0yMTAsMTAgKzIxMSw3IEBAIGV0aGVybmV0X3BoeTA6IGV0aGVy
-bmV0LXBoeUAwIHsNCj4+PiDCoMKgICZjcHN3X3BvcnQxIHsNCj4+PiDCoMKgwqDCoMKgwqAgcGh5
-LW1vZGUgPSAicmdtaWktaWQiOw0KPj4+IMKgwqDCoMKgwqDCoCBwaHktaGFuZGxlID0gPCZldGhl
-cm5ldF9waHkwPjsNCj4+IFdlIHVzZSB0aGlzIHBvcnQgb24gdGhlIFNvTSwgcGxlYXNlIHNldCBz
-dGF0dXMgb2theS4NCj4+PiAtfTsNCj4+PiAtDQo+Pj4gLSZjcHN3X3BvcnQyIHsNCj4+PiAtwqDC
-oMKgIHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+Pj4gK8KgwqDCoCBzdGF0dXMgPSAib2theSI7DQo+
-PiBXZSBhcmUgbm90IHVzaW5nIHRoaXMgcG9ydCBvbiB0aGUgU29NLCBkcm9wIG5vZGUgdG8ga2Vl
-cCBzdGF0dXMgDQo+PiBkaXNhYmxlZC4NCj4NCj4gTXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IHRo
-ZSBjcHN3X3BvcnQxIG5vZGUgc2hvdWxkIGJlIGVuYWJsZWQgYW5kIHRoZSANCj4gY3Bzd19wb3J0
-MiBub2RlIHNob3VsZCBub3QgZXhpc3QgaW4gdGhpcyBEVFNJLiBJZiBteSB1bmRlcnN0YW5kaW5n
-IGlzIA0KPiBjb3JyZWN0LCBpc24ndCB0aGF0IHNob3duIGluIHRoaXMgZGlmZj8NCg0KWW91IGFy
-ZSByaWdodCwgc29ycnkgYWJvdXQgdGhhdCAuLi4gbXkgZXllcyBtaXNzZWQgdGhlIG1pbnVzZXMg
-OigNCg0KQWNrZWQtQnk6IEpvc3VhIE1heWVyIDxqb3N1YUBzb2xpZC1ydW4uY29tPg0KDQo=
+From: shuaijie wang <wangshuaijie@awinic.com>
+
+AW96103 is a low power consumption capacitive touch and proximity controller.
+Each channel can be independently config as sensor input, shield output.
+
+Channel Information:
+  aw96103: 3-channel
+  aw96105: 5-channel
+
+Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
+---
+ drivers/iio/proximity/Kconfig   |  11 +
+ drivers/iio/proximity/Makefile  |   1 +
+ drivers/iio/proximity/aw96103.c | 844 ++++++++++++++++++++++++++++++++
+ 3 files changed, 856 insertions(+)
+ create mode 100644 drivers/iio/proximity/aw96103.c
+
+diff --git a/drivers/iio/proximity/Kconfig b/drivers/iio/proximity/Kconfig
+index 2ca3b0bc5eba..974aedf0c057 100644
+--- a/drivers/iio/proximity/Kconfig
++++ b/drivers/iio/proximity/Kconfig
+@@ -219,4 +219,15 @@ config VL53L0X_I2C
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called vl53l0x-i2c.
+ 
++config AW96103
++	tristate "AW96103/AW96105 Awinic proximity sensor"
++	select REGMAP_I2C
++	depends on I2C
++	help
++	  Say Y here to build a driver for Awinic's AW96103/AW96105 capacitive
++	  proximity sensor.
++
++	  To compile this driver as a module, choose M here: the
++	  module will be called aw96103.
++
+ endmenu
+diff --git a/drivers/iio/proximity/Makefile b/drivers/iio/proximity/Makefile
+index f36598380446..b1e32aa93678 100644
+--- a/drivers/iio/proximity/Makefile
++++ b/drivers/iio/proximity/Makefile
+@@ -21,4 +21,5 @@ obj-$(CONFIG_SX_COMMON) 	+= sx_common.o
+ obj-$(CONFIG_SX9500)		+= sx9500.o
+ obj-$(CONFIG_VCNL3020)		+= vcnl3020.o
+ obj-$(CONFIG_VL53L0X_I2C)	+= vl53l0x-i2c.o
++obj-$(CONFIG_AW96103)		+= aw96103.o
+ 
+diff --git a/drivers/iio/proximity/aw96103.c b/drivers/iio/proximity/aw96103.c
+new file mode 100644
+index 000000000000..d3eca77f3f15
+--- /dev/null
++++ b/drivers/iio/proximity/aw96103.c
+@@ -0,0 +1,844 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * AWINIC aw96103 proximity sensor driver
++ *
++ * Author: Wang Shuaijie <wangshuaijie@awinic.com>
++ *
++ * Copyright (c) 2024 awinic Technology CO., LTD
++ */
++#include <linux/bits.h>
++#include <linux/bitfield.h>
++#include <linux/delay.h>
++#include <linux/firmware.h>
++#include <linux/i2c.h>
++#include <linux/interrupt.h>
++#include <linux/iio/events.h>
++#include <linux/iio/iio.h>
++#include <linux/regulator/consumer.h>
++#include <linux/regmap.h>
++#include <linux/slab.h>
++#include <asm/unaligned.h>
++
++#define AW_DATA_PROCESS_FACTOR			1024
++#define AW96103_CHIP_ID				0xa961
++#define AW96103_BIN_VALID_DATA_OFFSET		64
++#define AW96103_BIN_DATA_LEN_OFFSET		16
++#define AW96103_BIN_DATA_REG_NUM_SIZE		4
++#define AW96103_BIN_CHIP_TYPE_SIZE		8
++#define AW96103_BIN_CHIP_TYPE_OFFSET		24
++
++#define AW96103_REG_SCANCTRL0			0x0000
++#define AW96103_REG_STAT0			0x0090
++#define AW96103_REG_BLFILT_CH0			0x00A8
++#define AW96103_REG_BLRSTRNG_CH0		0x00B4
++#define AW96103_REG_DIFF_CH0			0x0240
++#define AW96103_REG_FWVER2			0x0410
++#define AW96103_REG_CMD				0xF008
++#define AW96103_REG_IRQSRC			0xF080
++#define AW96103_REG_IRQEN			0xF084
++#define AW96103_REG_RESET			0xFF0C
++#define AW96103_REG_CHIPID			0xFF10
++#define AW96103_REG_EEDA0			0x0408
++#define AW96103_REG_EEDA1			0x040C
++#define AW96103_REG_PROXCTRL_CH0		0x00B0
++#define AW96103_REG_PROXTH0_CH0			0x00B8
++#define AW96103_PROXTH_CH_STEP			0x3C
++#define AW96103_THHYST_MASK			GENMASK(13, 12)
++#define AW96103_INDEB_MASK			GENMASK(11, 10)
++#define AW96103_OUTDEB_MASK			GENMASK(9, 8)
++#define AW96103_INITOVERIRQ_MASK		BIT(0)
++#define AW96103_BLFILT_CH_STEP			0x3C
++#define AW96103_BLRSTRNG_MASK			GENMASK(5, 0)
++#define AW96103_CHIPID_MASK			GENMASK(31, 16)
++#define AW96103_BLERRTRIG_MASK			BIT(25)
++#define AW96103_CHAN_EN_MASK			GENMASK(5, 0)
++#define AW96103_REG_PROXCTRL_CH(x)		\
++		(AW96103_REG_PROXCTRL_CH0 + (x) * AW96103_PROXTH_CH_STEP)
++
++#define AW96103_REG_PROXTH0_CH(x)		\
++		(AW96103_REG_PROXTH0_CH0 + (x) * AW96103_PROXTH_CH_STEP)
++
++/**
++ * struct aw_bin - Store the data obtained from parsing the configuration file.
++ * @chip_type: Frame header information-chip type
++ * @valid_data_len: Length of valid data obtained after parsing
++ * @valid_data_addr: The offset address of the valid data obtained
++ *		     after parsing relative to info
++ * @len: The size of the bin file obtained from the firmware
++ * @data: Store the bin file obtained from the firmware
++ */
++struct aw_bin {
++	unsigned char chip_type[8];
++	unsigned int valid_data_len;
++	unsigned int valid_data_addr;
++	unsigned int len;
++	unsigned char data[] __counted_by(len);
++};
++
++enum aw96103_sar_vers {
++	AW96103 = 2,
++	AW96103A = 6,
++	AW96103B = 0xa,
++};
++
++enum aw96103_operation_mode {
++	AW96103_ACTIVE_MODE = 1,
++	AW96103_SLEEP_MODE = 2,
++	AW96103_DEEPSLEEP_MODE = 3,
++	AW96103B_DEEPSLEEP_MODE = 4,
++};
++
++enum aw96103_sensor_type {
++	AW96103_VAL,
++	AW96105_VAL,
++};
++
++struct aw_channels_info {
++	bool used;
++	unsigned int old_irq_status;
++};
++
++struct aw_chip_info {
++	const char *name;
++	struct iio_chan_spec const *channels;
++	int num_channels;
++};
++
++struct aw96103 {
++	unsigned int hostirqen;
++	struct regmap *regmap;
++	struct device *dev;
++	/*
++	 * There is one more logical channel than the actual channels,
++	 * and the extra logical channel is used for temperature detection
++	 * but not for status detection. The specific channel used for
++	 * temperature detection is determined by the register configuration.
++	 */
++	struct aw_channels_info channels_arr[6];
++	unsigned int max_channels;
++	unsigned int chan_en;
++};
++
++static const unsigned int aw96103_reg_default[] = {
++	0x0000, 0x00003f3f, 0x0004, 0x00000064, 0x0008, 0x0017c11e,
++	0x000c, 0x05000000, 0x0010, 0x00093ffd, 0x0014, 0x19240009,
++	0x0018, 0xd81c0207, 0x001c, 0xff000000, 0x0020, 0x00241900,
++	0x0024, 0x00093ff7, 0x0028, 0x58020009, 0x002c, 0xd81c0207,
++	0x0030, 0xff000000, 0x0034, 0x00025800, 0x0038, 0x00093fdf,
++	0x003c, 0x7d3b0009, 0x0040, 0xd81c0207,	0x0044, 0xff000000,
++	0x0048, 0x003b7d00, 0x004c, 0x00093f7f, 0x0050, 0xe9310009,
++	0x0054, 0xd81c0207, 0x0058, 0xff000000,	0x005c, 0x0031e900,
++	0x0060, 0x00093dff, 0x0064, 0x1a0c0009,	0x0068, 0xd81c0207,
++	0x006c, 0xff000000, 0x0070, 0x000c1a00,	0x0074, 0x80093fff,
++	0x0078, 0x043d0009, 0x007c, 0xd81c0207,	0x0080, 0xff000000,
++	0x0084, 0x003d0400, 0x00a0, 0xe6400000,	0x00a4, 0x00000000,
++	0x00a8, 0x010408d2, 0x00ac, 0x00000000,	0x00b0, 0x00000000,
++	0x00b8, 0x00005fff, 0x00bc, 0x00000000,	0x00c0, 0x00000000,
++	0x00c4, 0x00000000, 0x00c8, 0x00000000,	0x00cc, 0x00000000,
++	0x00d0, 0x00000000, 0x00d4, 0x00000000, 0x00d8, 0x00000000,
++	0x00dc, 0xe6447800, 0x00e0, 0x78000000,	0x00e4, 0x010408d2,
++	0x00e8, 0x00000000, 0x00ec, 0x00000000,	0x00f4, 0x00005fff,
++	0x00f8, 0x00000000, 0x00fc, 0x00000000,	0x0100, 0x00000000,
++	0x0104, 0x00000000, 0x0108, 0x00000000,	0x010c, 0x02000000,
++	0x0110, 0x00000000, 0x0114, 0x00000000,	0x0118, 0xe6447800,
++	0x011c, 0x78000000, 0x0120, 0x010408d2,	0x0124, 0x00000000,
++	0x0128, 0x00000000, 0x0130, 0x00005fff,	0x0134, 0x00000000,
++	0x0138, 0x00000000, 0x013c, 0x00000000,	0x0140, 0x00000000,
++	0x0144, 0x00000000, 0x0148, 0x02000000,	0x014c, 0x00000000,
++	0x0150, 0x00000000, 0x0154, 0xe6447800,	0x0158, 0x78000000,
++	0x015c, 0x010408d2, 0x0160, 0x00000000,	0x0164, 0x00000000,
++	0x016c, 0x00005fff, 0x0170, 0x00000000,	0x0174, 0x00000000,
++	0x0178, 0x00000000, 0x017c, 0x00000000,	0x0180, 0x00000000,
++	0x0184, 0x02000000, 0x0188, 0x00000000,	0x018c, 0x00000000,
++	0x0190, 0xe6447800, 0x0194, 0x78000000,	0x0198, 0x010408d2,
++	0x019c, 0x00000000, 0x01a0, 0x00000000,	0x01a8, 0x00005fff,
++	0x01ac, 0x00000000, 0x01b0, 0x00000000,	0x01b4, 0x00000000,
++	0x01b8, 0x00000000, 0x01bc, 0x00000000,	0x01c0, 0x02000000,
++	0x01c4, 0x00000000, 0x01c8, 0x00000000,	0x01cc, 0xe6407800,
++	0x01d0, 0x78000000, 0x01d4, 0x010408d2,	0x01d8, 0x00000000,
++	0x01dc, 0x00000000, 0x01e4, 0x00005fff,	0x01e8, 0x00000000,
++	0x01ec, 0x00000000, 0x01f0, 0x00000000,	0x01f4, 0x00000000,
++	0x01f8, 0x00000000, 0x01fc, 0x02000000,	0x0200, 0x00000000,
++	0x0204, 0x00000000, 0x0208, 0x00000008,	0x020c, 0x0000000d,
++	0x41fc, 0x00000000, 0x4400, 0x00000000,	0x4410, 0x00000000,
++	0x4420, 0x00000000, 0x4430, 0x00000000,	0x4440, 0x00000000,
++	0x4450, 0x00000000, 0x4460, 0x00000000,	0x4470, 0x00000000,
++	0xf080, 0x00003018, 0xf084, 0x00000fff,	0xf800, 0x00000000,
++	0xf804, 0x00002e00, 0xf8d0, 0x00000001,	0xf8d4, 0x00000000,
++	0xff00, 0x00000301, 0xff0c, 0x01000000,	0xffe0, 0x00000000,
++	0xfff4, 0x00004011, 0x0090, 0x00000000,	0x0094, 0x00000000,
++	0x0098, 0x00000000, 0x009c, 0x3f3f3f3f,
++};
++
++static const struct iio_event_spec aw_common_events[3] = {
++	{
++		.type = IIO_EV_TYPE_THRESH,
++		.dir = IIO_EV_DIR_RISING,
++		.mask_separate = BIT(IIO_EV_INFO_PERIOD),
++	},
++	{
++		.type = IIO_EV_TYPE_THRESH,
++		.dir = IIO_EV_DIR_FALLING,
++		.mask_separate = BIT(IIO_EV_INFO_PERIOD),
++	},
++	{
++		.type = IIO_EV_TYPE_THRESH,
++		.dir = IIO_EV_DIR_EITHER,
++		.mask_separate = BIT(IIO_EV_INFO_ENABLE) |
++			BIT(IIO_EV_INFO_HYSTERESIS) |
++			BIT(IIO_EV_INFO_VALUE),
++	}
++};
++
++#define AW_IIO_CHANNEL(idx)			\
++{								\
++	.type = IIO_PROXIMITY,				\
++	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),	\
++	.indexed = 1,			\
++	.channel = idx,			\
++	.event_spec = aw_common_events,		\
++	.num_event_specs = ARRAY_SIZE(aw_common_events),	\
++}							\
++
++static const struct iio_chan_spec aw96103_channels[] = {
++	AW_IIO_CHANNEL(0),
++	AW_IIO_CHANNEL(1),
++	AW_IIO_CHANNEL(2),
++	AW_IIO_CHANNEL(3),
++};
++
++static const struct iio_chan_spec aw96105_channels[] = {
++	AW_IIO_CHANNEL(0),
++	AW_IIO_CHANNEL(1),
++	AW_IIO_CHANNEL(2),
++	AW_IIO_CHANNEL(3),
++	AW_IIO_CHANNEL(4),
++	AW_IIO_CHANNEL(5),
++};
++
++static const struct aw_chip_info aw_chip_info_tbl[] = {
++	[AW96103_VAL] = {
++		.name = "aw96103_sensor",
++		.channels = aw96103_channels,
++		.num_channels = ARRAY_SIZE(aw96103_channels),
++	},
++	[AW96105_VAL] = {
++		.name = "aw96105_sensor",
++		.channels = aw96105_channels,
++		.num_channels = ARRAY_SIZE(aw96105_channels),
++	},
++};
++
++static void aw96103_parsing_bin_file(struct aw_bin *bin)
++{
++	bin->valid_data_addr = AW96103_BIN_VALID_DATA_OFFSET;
++	bin->valid_data_len =
++		*(unsigned int *)(bin->data + AW96103_BIN_DATA_LEN_OFFSET) -
++		AW96103_BIN_DATA_REG_NUM_SIZE;
++	memcpy(bin->chip_type, bin->data + AW96103_BIN_CHIP_TYPE_OFFSET,
++	       AW96103_BIN_CHIP_TYPE_SIZE);
++}
++
++static const struct regmap_config aw96103_regmap_confg = {
++	.reg_bits = 16,
++	.val_bits = 32,
++};
++
++static int aw96103_get_diff_raw(struct aw96103 *aw96103, unsigned int chan,
++				int *buf)
++{
++	u32 data;
++	int ret;
++
++	ret = regmap_read(aw96103->regmap,
++			  AW96103_REG_DIFF_CH0 + chan * 4, &data);
++	if (ret)
++		return ret;
++	*buf = (int)(data / AW_DATA_PROCESS_FACTOR);
++
++	return 0;
++}
++
++static int aw96103_read_raw(struct iio_dev *indio_dev,
++			    const struct iio_chan_spec *chan,
++			    int *val, int *val2, long mask)
++{
++	struct aw96103 *aw96103 = iio_priv(indio_dev);
++	int ret;
++
++	switch (mask) {
++	case IIO_CHAN_INFO_RAW:
++		ret = aw96103_get_diff_raw(aw96103, chan->channel, val);
++		if (ret)
++			return ret;
++
++		return IIO_VAL_INT;
++	default:
++		return -EINVAL;
++	}
++}
++
++static int aw96103_read_thresh(struct aw96103 *aw96103,
++			       const struct iio_chan_spec *chan, int *val)
++{
++	int ret;
++
++	ret = regmap_read(aw96103->regmap,
++			  AW96103_REG_PROXTH0_CH(chan->channel), val);
++	if (ret)
++		return ret;
++
++	return IIO_VAL_INT;
++}
++
++static int aw96103_read_out_debounce(struct aw96103 *aw96103,
++				     const struct iio_chan_spec *chan,
++				     int *val)
++{
++	unsigned int reg_val;
++	int ret;
++
++	ret = regmap_read(aw96103->regmap,
++			  AW96103_REG_PROXCTRL_CH(chan->channel), &reg_val);
++	if (ret)
++		return ret;
++	*val = FIELD_GET(AW96103_OUTDEB_MASK, reg_val);
++
++	return IIO_VAL_INT;
++}
++
++static int aw96103_read_in_debounce(struct aw96103 *aw96103,
++				    const struct iio_chan_spec *chan, int *val)
++{
++	unsigned int reg_val;
++	int ret;
++
++	ret = regmap_read(aw96103->regmap,
++			  AW96103_REG_PROXCTRL_CH(chan->channel), &reg_val);
++	if (ret)
++		return ret;
++	*val = FIELD_GET(AW96103_INDEB_MASK, reg_val);
++
++	return IIO_VAL_INT;
++}
++
++static int aw96103_read_hysteresis(struct aw96103 *aw96103,
++				   const struct iio_chan_spec *chan, int *val)
++{
++	unsigned int reg_val;
++	int ret;
++
++	ret = regmap_read(aw96103->regmap,
++			  AW96103_REG_PROXCTRL_CH(chan->channel), &reg_val);
++	if (ret)
++		return ret;
++	*val = FIELD_GET(AW96103_THHYST_MASK, reg_val);
++
++	return IIO_VAL_INT;
++}
++
++static int aw96103_read_event_val(struct iio_dev *indio_dev,
++				  const struct iio_chan_spec *chan,
++				  enum iio_event_type type,
++				  enum iio_event_direction dir,
++				  enum iio_event_info info,
++				  int *val, int *val2)
++{
++	struct aw96103 *aw96103 = iio_priv(indio_dev);
++
++	if (chan->type != IIO_PROXIMITY)
++		return -EINVAL;
++
++	switch (info) {
++	case IIO_EV_INFO_VALUE:
++		return aw96103_read_thresh(aw96103, chan, val);
++	case IIO_EV_INFO_PERIOD:
++		switch (dir) {
++		case IIO_EV_DIR_RISING:
++			return aw96103_read_out_debounce(aw96103, chan, val);
++		case IIO_EV_DIR_FALLING:
++			return aw96103_read_in_debounce(aw96103, chan, val);
++		default:
++			return -EINVAL;
++		}
++	case IIO_EV_INFO_HYSTERESIS:
++		return aw96103_read_hysteresis(aw96103, chan, val);
++	default:
++		return -EINVAL;
++	}
++}
++
++static int aw96103_write_event_val(struct iio_dev *indio_dev,
++				   const struct iio_chan_spec *chan,
++				   enum iio_event_type type,
++				   enum iio_event_direction dir,
++				   enum iio_event_info info, int val, int val2)
++{
++	struct aw96103 *aw96103 = iio_priv(indio_dev);
++
++	if (chan->type != IIO_PROXIMITY)
++		return -EINVAL;
++
++	switch (info) {
++	case IIO_EV_INFO_VALUE:
++		return regmap_write(aw96103->regmap,
++				    AW96103_REG_PROXTH0_CH(chan->channel), val);
++	case IIO_EV_INFO_PERIOD:
++		switch (dir) {
++		case IIO_EV_DIR_RISING:
++			return regmap_update_bits(aw96103->regmap,
++					AW96103_REG_PROXCTRL_CH(chan->channel),
++					AW96103_OUTDEB_MASK,
++					FIELD_PREP(AW96103_OUTDEB_MASK, val));
++
++		case IIO_EV_DIR_FALLING:
++			return regmap_update_bits(aw96103->regmap,
++				AW96103_REG_PROXCTRL_CH(chan->channel),
++				AW96103_INDEB_MASK,
++				FIELD_PREP(AW96103_INDEB_MASK, val));
++		default:
++			return -EINVAL;
++		}
++	case IIO_EV_INFO_HYSTERESIS:
++		return regmap_update_bits(aw96103->regmap,
++					AW96103_REG_PROXCTRL_CH(chan->channel),
++					AW96103_THHYST_MASK,
++					FIELD_PREP(AW96103_THHYST_MASK, val));
++	default:
++		return -EINVAL;
++	}
++}
++
++static int aw96103_read_event_config(struct iio_dev *indio_dev,
++				     const struct iio_chan_spec *chan,
++				     enum iio_event_type type,
++				     enum iio_event_direction dir)
++{
++	struct aw96103 *aw96103 = iio_priv(indio_dev);
++
++	return aw96103->channels_arr[chan->channel].used;
++}
++
++static int aw96103_write_event_config(struct iio_dev *indio_dev,
++				      const struct iio_chan_spec *chan,
++				      enum iio_event_type type,
++				      enum iio_event_direction dir, int state)
++{
++	struct aw96103 *aw96103 = iio_priv(indio_dev);
++
++	aw96103->channels_arr[chan->channel].used = !!state;
++
++	return regmap_update_bits(aw96103->regmap, AW96103_REG_SCANCTRL0,
++				  BIT(chan->channel),
++				  state ? BIT(chan->channel) : 0);
++}
++
++struct iio_info iio_info = {
++	.read_raw = aw96103_read_raw,
++	.read_event_value = aw96103_read_event_val,
++	.write_event_value = aw96103_write_event_val,
++	.read_event_config = aw96103_read_event_config,
++	.write_event_config = aw96103_write_event_config,
++};
++
++static int aw96103_channel_scan_start(struct aw96103 *aw96103)
++{
++	int ret;
++
++	ret = regmap_write(aw96103->regmap, AW96103_REG_CMD,
++			   AW96103_ACTIVE_MODE);
++	if (ret)
++		return ret;
++
++	return regmap_write(aw96103->regmap, AW96103_REG_IRQEN,
++			    aw96103->hostirqen);
++}
++
++static int aw96103_reg_version_comp(struct aw96103 *aw96103,
++				    struct aw_bin *aw_bin)
++{
++	u32 blfilt1_data, fw_ver;
++	unsigned char i;
++	int ret;
++
++	ret = regmap_read(aw96103->regmap, AW96103_REG_FWVER2, &fw_ver);
++	if (ret)
++		return ret;
++	/*
++	 * If the chip version is AW96103A and the loaded register
++	 * configuration file is for AW96103, special handling of the
++	 * AW96103_REG_BLRSTRNG_CH0 register is required.
++	 */
++	if ((fw_ver != AW96103A) || (aw_bin->chip_type[7] != '\0'))
++		return 0;
++
++	for (i = 0; i < aw96103->max_channels; i++) {
++		ret = regmap_read(aw96103->regmap,
++			AW96103_REG_BLFILT_CH0 + (AW96103_BLFILT_CH_STEP * i),
++			&blfilt1_data);
++		if (ret)
++			return ret;
++		if (FIELD_GET(AW96103_BLERRTRIG_MASK, blfilt1_data) != 1)
++			return 0;
++
++		return regmap_update_bits(aw96103->regmap,
++			AW96103_REG_BLRSTRNG_CH0 + (AW96103_BLFILT_CH_STEP * i),
++			AW96103_BLRSTRNG_MASK, 1 << i);
++	}
++
++	return 0;
++}
++
++static int aw96103_bin_valid_loaded(struct aw96103 *aw96103,
++				    struct aw_bin *aw_bin_data_s)
++{
++	unsigned int start_addr = aw_bin_data_s->valid_data_addr;
++	u32 i, reg_data;
++	u16 reg_addr;
++	int ret;
++
++	for (i = 0; i < aw_bin_data_s->valid_data_len;
++	     i += 6, start_addr += 6) {
++		reg_addr = get_unaligned_le16(aw_bin_data_s->data + start_addr);
++		reg_data = get_unaligned_le32(aw_bin_data_s->data +
++					      start_addr + 2);
++		if ((reg_addr == AW96103_REG_EEDA0) ||
++		    (reg_addr == AW96103_REG_EEDA1))
++			continue;
++		if (reg_addr == AW96103_REG_IRQEN) {
++			aw96103->hostirqen = reg_data;
++			continue;
++		}
++		if (reg_addr == AW96103_REG_SCANCTRL0)
++			aw96103->chan_en = FIELD_GET(AW96103_CHAN_EN_MASK,
++						     reg_data);
++
++		ret = regmap_write(aw96103->regmap, reg_addr, reg_data);
++		if (ret < 0)
++			return ret;
++	}
++
++	ret = aw96103_reg_version_comp(aw96103, aw_bin_data_s);
++	if (ret)
++		return ret;
++
++	return aw96103_channel_scan_start(aw96103);
++}
++
++static int aw96103_para_loaded(struct aw96103 *aw96103)
++{
++	int i, ret;
++
++	for (i = 0; i < ARRAY_SIZE(aw96103_reg_default); i += 2) {
++		ret = regmap_write(aw96103->regmap,
++				   (u16)aw96103_reg_default[i],
++				   (u32)aw96103_reg_default[i + 1]);
++		if (ret)
++			return ret;
++		if (aw96103_reg_default[i] == AW96103_REG_IRQEN)
++			aw96103->hostirqen = aw96103_reg_default[i + 1];
++		else if (aw96103_reg_default[i] == AW96103_REG_SCANCTRL0)
++			aw96103->chan_en = FIELD_GET(AW96103_CHAN_EN_MASK,
++					   aw96103_reg_default[i + 1]);
++	}
++
++	return aw96103_channel_scan_start(aw96103);
++}
++
++static int aw96103_cfg_all_loaded(const struct firmware *cont,
++				  struct aw96103 *aw96103)
++{
++	if (!cont)
++		return -EINVAL;
++
++	struct aw_bin *aw_bin __free(kfree) =
++		kzalloc(cont->size + sizeof(*aw_bin), GFP_KERNEL);
++	if (!aw_bin)
++		return -ENOMEM;
++
++	aw_bin->len = cont->size;
++	memcpy(aw_bin->data, cont->data, cont->size);
++	release_firmware(cont);
++	aw96103_parsing_bin_file(aw_bin);
++
++	return aw96103_bin_valid_loaded(aw96103, aw_bin);
++}
++
++static void aw96103_cfg_update(const struct firmware *fw, void *data)
++{
++	struct aw96103 *aw96103 = data;
++	int ret, i;
++
++	if (!fw || !fw->data) {
++		dev_err(aw96103->dev, "No firmware.\n");
++		return;
++	}
++
++	ret = aw96103_cfg_all_loaded(fw, aw96103);
++	/*
++	 * If loading the register configuration file fails,
++	 * load the default register configuration in the driver to
++	 * ensure the basic functionality of the device.
++	 */
++	if (ret) {
++		ret = aw96103_para_loaded(aw96103);
++		if (ret) {
++			dev_err(aw96103->dev, "load param error.\n");
++			return;
++		}
++	}
++
++	for (i = 0; i < aw96103->max_channels; i++) {
++		if ((aw96103->chan_en >> i) & 0x01)
++			aw96103->channels_arr[i].used = true;
++		else
++			aw96103->channels_arr[i].used = false;
++	}
++}
++
++static int aw96103_sw_reset(struct aw96103 *aw96103)
++{
++	int ret;
++
++	ret = regmap_write(aw96103->regmap, AW96103_REG_RESET, 0);
++	/*
++	 * After reset, the initialization process starts to perform and
++	 * it will last for a bout 20ms.
++	 */
++	msleep(20);
++
++	return ret;
++}
++
++enum aw96103_irq_trigger_position {
++	FAR = 0,
++	TRIGGER_TH0 = 0x01,
++	TRIGGER_TH1 = 0x03,
++	TRIGGER_TH2 = 0x07,
++	TRIGGER_TH3 = 0x0f,
++};
++
++static irqreturn_t aw96103_irq(int irq, void *data)
++{
++	unsigned int irq_status, curr_status_val, curr_status;
++	struct iio_dev *indio_dev = data;
++	struct aw96103 *aw96103 = iio_priv(indio_dev);
++	int ret, i;
++
++	ret = regmap_read(aw96103->regmap, AW96103_REG_IRQSRC, &irq_status);
++	if (ret)
++		return IRQ_HANDLED;
++
++	ret = regmap_read(aw96103->regmap, AW96103_REG_STAT0, &curr_status_val);
++	if (ret)
++		return IRQ_HANDLED;
++
++	/*
++	 * Iteratively analyze the interrupt status of different channels,
++	 * with each channel having 4 interrupt states.
++	 */
++	for (i = 0; i < aw96103->max_channels; i++) {
++		if (!aw96103->channels_arr[i].used)
++			continue;
++
++		curr_status = (((curr_status_val >> (24 + i)) & 0x1)) |
++			      (((curr_status_val >> (16 + i)) & 0x1) << 1) |
++			      (((curr_status_val >> (8 + i)) & 0x1) << 2) |
++			      (((curr_status_val >> i) & 0x1) << 3);
++		if (aw96103->channels_arr[i].old_irq_status == curr_status)
++			continue;
++
++		switch (curr_status) {
++		case FAR:
++			iio_push_event(indio_dev,
++				       IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, i,
++							    IIO_EV_TYPE_THRESH,
++							    IIO_EV_DIR_RISING),
++				       iio_get_time_ns(indio_dev));
++			break;
++		case TRIGGER_TH0:
++		case TRIGGER_TH1:
++		case TRIGGER_TH2:
++		case TRIGGER_TH3:
++			iio_push_event(indio_dev,
++				       IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, i,
++							    IIO_EV_TYPE_THRESH,
++							    IIO_EV_DIR_FALLING),
++				       iio_get_time_ns(indio_dev));
++			break;
++		default:
++			return IRQ_HANDLED;
++		}
++		aw96103->channels_arr[i].old_irq_status = curr_status;
++	}
++
++	return IRQ_HANDLED;
++}
++
++static int aw96103_interrupt_init(struct iio_dev *indio_dev,
++				  struct i2c_client *i2c)
++{
++	struct aw96103 *aw96103 = iio_priv(indio_dev);
++	unsigned int irq_status;
++	int ret;
++
++	ret = regmap_write(aw96103->regmap, AW96103_REG_IRQEN, 0);
++	if (ret)
++		return ret;
++	ret = regmap_read(aw96103->regmap, AW96103_REG_IRQSRC, &irq_status);
++	if (ret)
++		return ret;
++	ret = devm_request_threaded_irq(aw96103->dev, i2c->irq, NULL,
++					aw96103_irq, IRQF_ONESHOT,
++					"aw96103_irq", indio_dev);
++	if (ret)
++		return ret;
++
++	return regmap_write(aw96103->regmap, AW96103_REG_IRQEN,
++			    aw96103->hostirqen);
++}
++
++static int aw96103_wait_chip_init(struct aw96103 *aw96103)
++{
++	unsigned int cnt = 20;
++	u32 reg_data;
++	int ret;
++
++	while (cnt--) {
++		/*
++		 * The device should generate an initialization completion
++		 * interrupt within 20ms.
++		 */
++		ret = regmap_read(aw96103->regmap, AW96103_REG_IRQSRC,
++				  &reg_data);
++		if (ret)
++			return ret;
++
++		if (FIELD_GET(AW96103_INITOVERIRQ_MASK, reg_data))
++			return 0;
++		fsleep(1000);
++	}
++
++	return -ETIMEDOUT;
++}
++
++static int aw96103_read_chipid(struct aw96103 *aw96103)
++{
++	unsigned char cnt = 0;
++	u32 reg_val = 0;
++	int ret;
++
++	while (cnt < 3) {
++		/*
++		 * This retry mechanism and the subsequent delay are just
++		 * attempts to read the chip ID as much as possible,
++		 * preventing occasional communication failures from causing
++		 * the chip ID read to fail.
++		 */
++		ret = regmap_read(aw96103->regmap, AW96103_REG_CHIPID,
++				  &reg_val);
++		if (ret < 0) {
++			cnt++;
++			fsleep(2000);
++			continue;
++		}
++		break;
++	}
++	if (cnt == 3)
++		return -ETIMEDOUT;
++
++	if (FIELD_GET(AW96103_CHIPID_MASK, reg_val) != AW96103_CHIP_ID)
++		dev_info(aw96103->dev,
++			 "unexpected chipid, id=0x%08X\n", reg_val);
++
++	return 0;
++}
++
++static int aw96103_i2c_probe(struct i2c_client *i2c)
++{
++	const struct aw_chip_info *chip_info;
++	struct iio_dev *indio_dev;
++	struct aw96103 *aw96103;
++	int ret;
++
++	indio_dev = devm_iio_device_alloc(&i2c->dev, sizeof(*aw96103));
++	if (!indio_dev)
++		return -ENOMEM;
++
++	aw96103 = iio_priv(indio_dev);
++	aw96103->dev = &i2c->dev;
++	chip_info = i2c_get_match_data(i2c);
++	aw96103->max_channels = chip_info->num_channels;
++
++	aw96103->regmap = devm_regmap_init_i2c(i2c, &aw96103_regmap_confg);
++	if (IS_ERR(aw96103->regmap))
++		return PTR_ERR(aw96103->regmap);
++
++	ret = devm_regulator_get_enable(aw96103->dev, "vcc");
++	if (ret < 0)
++		return ret;
++
++	ret = aw96103_read_chipid(aw96103);
++	if (ret)
++		return ret;
++
++	ret = aw96103_sw_reset(aw96103);
++	if (ret)
++		return ret;
++
++	ret = aw96103_wait_chip_init(aw96103);
++	if (ret)
++		return ret;
++
++	ret = request_firmware_nowait(THIS_MODULE, true, "aw96103_0.bin",
++				      aw96103->dev, GFP_KERNEL, aw96103,
++				      aw96103_cfg_update);
++	if (ret)
++		return ret;
++
++	ret = aw96103_interrupt_init(indio_dev, i2c);
++	if (ret)
++		return ret;
++
++	indio_dev->modes = INDIO_DIRECT_MODE;
++	indio_dev->num_channels = chip_info->num_channels;
++	indio_dev->channels = chip_info->channels;
++	indio_dev->info = &iio_info;
++	indio_dev->name = chip_info->name;
++
++	return devm_iio_device_register(aw96103->dev, indio_dev);
++}
++
++static const struct of_device_id aw96103_dt_match[] = {
++	{
++		.compatible = "awinic,aw96103",
++		.data = &aw_chip_info_tbl[AW96103_VAL]
++	},
++	{
++		.compatible = "awinic,aw96105",
++		.data = &aw_chip_info_tbl[AW96105_VAL]
++	},
++	{ }
++};
++MODULE_DEVICE_TABLE(of, aw96103_dt_match);
++
++static const struct i2c_device_id aw96103_i2c_id[] = {
++	{ "aw96103", (kernel_ulong_t)&aw_chip_info_tbl[AW96103_VAL] },
++	{ "aw96105", (kernel_ulong_t)&aw_chip_info_tbl[AW96105_VAL] },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, aw96103_i2c_id);
++
++static struct i2c_driver aw96103_i2c_driver = {
++	.driver = {
++		.name = "aw96103_sensor",
++		.of_match_table = aw96103_dt_match,
++	},
++	.probe = aw96103_i2c_probe,
++	.id_table = aw96103_i2c_id,
++};
++module_i2c_driver(aw96103_i2c_driver);
++
++MODULE_AUTHOR("Wang Shuaijie <wangshuaijie@awinic.com>");
++MODULE_DESCRIPTION("Driver for Awinic AW96103 proximity sensor");
++MODULE_LICENSE("GPL v2");
+-- 
+2.45.1
+
 
