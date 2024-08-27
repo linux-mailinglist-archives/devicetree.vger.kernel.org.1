@@ -1,312 +1,196 @@
-Return-Path: <devicetree+bounces-97119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C81A960CA1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:54:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E25960CA7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 15:55:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DC3C1C231B9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:54:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 704B51F21BED
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580671C32F0;
-	Tue, 27 Aug 2024 13:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EB31C2DD1;
+	Tue, 27 Aug 2024 13:55:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CpjVyVLy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1RSwg++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562E31A0715
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 13:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D3119ADBE;
+	Tue, 27 Aug 2024 13:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724766845; cv=none; b=En80p3il7lHMFB0yP0IyJ7vgKsbqbZt0UTZ6BhjFgjVcojuTgijVNFdw2uDEHFFJiPeez8f99floRz1yXM1N6L0tFgQPuHUmbOlI+qbHFH+xSHosvpX8ylRFZTH75NIkiBc667U97G/VHf6sDJ6NMCBESUQvSO5BE58UPlne9IQ=
+	t=1724766907; cv=none; b=mn+DDtLbhNZjZf1FvzoqVD2Lcq1RmDlIGXglXw0HdGGhV0+4IpUa7W9MGi4aaEyA260M4cRRUnHXdwzoQZIK6mGoRGvP1NriIctIsywxK9cS8HT0MKcQEB3s7TDacH2aoXj97sj3BgP47NzbZB13DNZLMC7hhJd3TFOZiGp39lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724766845; c=relaxed/simple;
-	bh=44SZCDbcmzG09AQZ50x/Dy0zdigrMGUoG2ovPXzcraY=;
+	s=arc-20240116; t=1724766907; c=relaxed/simple;
+	bh=SUBG5hoMIRO14nV0jWKUhFG2oORyt7kd2MOv6Sog22g=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jVPbim7SBj0qTQO7TVn4/EqqbqlDIkd8mLJclHit7uXv7i1pOW2nxw6Uczxs52jx4FtVeI6tkY4ILMxTvDS2P2WzRXlw+aUpEEjk/19AOx64aDh4L7C362II8Z9xWRdVxAgO7gF80kxjAbTiu4ZmQU7UqqSNxhRwYXRsrEATIEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CpjVyVLy; arc=none smtp.client-ip=209.85.222.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-84305a83b06so1700540241.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 06:54:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724766841; x=1725371641; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LKxMqQG/y28P0kTx7Xe5S5QMMuqHP6qRbSeqqy9q1io=;
-        b=CpjVyVLy5c/V9kneWzvGwtHgUsw8nK6uGRWNfs/gjunmnxJqN+ariYsTRTH0bzT09p
-         y6yOe3icMii+wpKRlQh0Ogk8BamOwXXAIY/DmSqvFZAetMufv5CpMyK7KfdQ6yp7MEn2
-         9gSeZcQAYRmWzmLah4jLn6+ZLl+ZZMWzwqJloEOywEPFX1cuSX0CcI5IcKwECHMYtK/z
-         cIHssH2NWfu9liPRij15fpYzEHjguohQ/2Dxv8O0mM68iuT4mGy1smXQzq2d+Nf3dEf4
-         sfSo1Df+SIROCcTm/Hbb/FKYRWs3afzj6ZOxqI+pyS75PI/scm/xsQa7j9GLs7tuVV4/
-         tN7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724766841; x=1725371641;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LKxMqQG/y28P0kTx7Xe5S5QMMuqHP6qRbSeqqy9q1io=;
-        b=qQ13j0/cNltthXQtnXJybmCssbX0WNFA78/muvPL6TocY8oNzX+R5JttVaH5eiPrsT
-         DcY9XzBQmpXv2BZLEVvp2M7DYmSwU4Sl93z0CBHUe2OoOKHH8mXEoRDDYMU6twKAi/7S
-         X849gBq/rAwLnflP8B4yKY9I/8+gYu4CPW/ByfwzBJDcKhNYKIdUzFY0Db+lZb/vW3g4
-         qCq3/V5vg5vVy1XePWuRml2rvzht2Tfqw+LNtdLYnULdJ19Uu0G26cyyHi7znqricXI3
-         iTG8u85VnbOzsUptFDsA2g7EoxacXf+pCGkktiZ35i2h8rsT5B4ZY/g1QjOVLLpE2r+n
-         u7Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCW64dAuQRJEQ6ibkDAt0mTf3MuTA4D8ScoGrbVX8W1UyzSUqLpQQd2IRmspogLeAiX8gqA4y5AzutPh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyb9Rkm158g7Z5O8dv+uC2a471HAiMOtKF9QTtlZvCD6n+WdX6f
-	64QZrEsyI0hYytZrlY9T4NE7mUFz3AZ47jBAQqB0HrLiltu4JF8lPir+X+72tdbqvmwyi8yqiso
-	2Y5PsscHQ9WtVTThhjG77pxBmJfAposaU08+04MHnUzfW8Z451sw=
-X-Google-Smtp-Source: AGHT+IFJBKlcd3fVo5oPev8XGIfBhFCYIhK7+76gcZGfvbdrMN/1PzVakFvXI+Y+D4GZ1/51eWthgnEpHo6/gYqnOLc=
-X-Received: by 2002:a05:6122:1689:b0:4f2:a973:8ae with SMTP id
- 71dfb90a1353d-4fd1a52c651mr15262226e0c.5.1724766841131; Tue, 27 Aug 2024
- 06:54:01 -0700 (PDT)
+	 To:Cc:Content-Type; b=XmJlpxTK4cSsPFhJW+dQ+JZfEMSdsblKxUdVAdNF5SlrA9am07hiHSEpXWZw5gef3rRO9e9OnK/g93q/zFsc0nyslNiiH2xmUAtB31KrDCMW4kT+yDgPxVHs+VeZOX2/mHFxFHXLq7w0i/WsTgM0Vaztvnf4rH2ws3LziPiI/2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1RSwg++; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D8A9C6104C;
+	Tue, 27 Aug 2024 13:55:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724766906;
+	bh=SUBG5hoMIRO14nV0jWKUhFG2oORyt7kd2MOv6Sog22g=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=d1RSwg++2vsw27s5mw8S0E+m9otKmoDc4aWXcdNmuuRadOumVBMJ5Z3RIJqQBGOUd
+	 /GCzOiCqujhzfUTswtOAvS2x4uxA/hIWsSw9WxFzNny3Zme003ccv/o0wfMZLFVF6m
+	 4mZS9CNY3CZBdR8wTZ8cJS843k3Lo4er0MWq7D3U4GSWqk1bEtRSJ1vquvKlFKBc8Y
+	 3ZNy5KKmqFwT2Zxgtmh8J9vg67x/lWxrckJrBfWkei+qKLEbhP2uLN403+CEUwAQFl
+	 yLEIeytnrvtvK6L14vWSu5pR5hniIa+Od3dlUdQTfQ35wo2jCwABezOXNEL5Ju1hpO
+	 iErF6HvEpGrzA==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-533de5a88f8so4990234e87.3;
+        Tue, 27 Aug 2024 06:55:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUVEfBjwRUI8QXbiUevc+F5ksH1/aSCQbcZS0KBGVHmL6m64HBtfI0xoqMU5Jj/NNEaG5ZD+Lv+LkWyj9w=@vger.kernel.org, AJvYcCUrWrVSyaLcfS2T09uqtSM58wiKvdV894O/wiWXlovSDOkAFqkTuQ/pCoRozz+1l7TRRi8JKafclim2sA==@vger.kernel.org, AJvYcCV3hhp9uRDqU6UqWgJ2P6Yjn+vtySR0b6X+EXtptwad9A1RuBBfD7jIQWOrdjkLvG0Zt3HEL+hOnp2fYOk=@vger.kernel.org, AJvYcCWCK4gAsiz5H2xyZYm2VJioh5ZNwvXScznveJ2HlvEJjmicxahKK6HUL0PEO+aJrsjOuWj4CRY2p65X@vger.kernel.org, AJvYcCXrm4sTGrh/IntHDvYNKI8S5vPLXpoVrzKFS3L58jGXhoeyWlWfgyQSGVjyYENKAC9bAok3I+db87AsZ7w=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKpOyEWb7yz4RMNCKn7trseq+X0py3WppjF7g8+wlHYvzQBQ2N
+	7qt0CW2SZJMyTa3g0qpv4aCRi7KssRG/NPU904K5oec5wUP4MxluFg2U35cDQ3Z6OpzAYKmwOI4
+	0EHuL1B/GONP1QlF2vSZTnkxOgQ==
+X-Google-Smtp-Source: AGHT+IFGoChqzPb8c5bU7g7SCtu0XFZWBbc3/ggPD1QT1E2fNBMBbbJ063/8ywSLhH92vmiZkqq4veEvdtq2nuDD85I=
+X-Received: by 2002:a05:6512:31d3:b0:533:4b07:a8dc with SMTP id
+ 2adb3069b0e04-5344e3e4978mr2079374e87.35.1724766904825; Tue, 27 Aug 2024
+ 06:55:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240819064721.91494-1-aardelean@baylibre.com>
- <20240819064721.91494-2-aardelean@baylibre.com> <20240823195251.032c0c22@jic23-huawei>
-In-Reply-To: <20240823195251.032c0c22@jic23-huawei>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Tue, 27 Aug 2024 16:53:50 +0300
-Message-ID: <CA+GgBR_uH2GMY_KVfiQOhs32anZo+3-NK2piYcQv+HiBOsSxLQ@mail.gmail.com>
-Subject: Re: [PATCH 1/7] iio: adc: ad7606: add 'bits' parameter to channels macros
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	lars@metafoo.de, michael.hennerich@analog.com, gstols@baylibre.com
+References: <87cylwqa12.wl-kuninori.morimoto.gx@renesas.com>
+ <87a5h0qa0g.wl-kuninori.morimoto.gx@renesas.com> <20240826154009.GA300981-robh@kernel.org>
+ <87bk1ebz59.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87bk1ebz59.wl-kuninori.morimoto.gx@renesas.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 27 Aug 2024 08:54:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLysakbSdENNy+_XvotK9_eHG0KP50s6gtfFUYntawyWw@mail.gmail.com>
+Message-ID: <CAL_JsqLysakbSdENNy+_XvotK9_eHG0KP50s6gtfFUYntawyWw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] of: property: add of_graph_get_next_port_endpoint()
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Jonathan Cameron <jic23@kernel.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Helge Deller <deller@gmx.de>, 
+	Jaroslav Kysela <perex@perex.cz>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+	Saravana Kannan <saravanak@google.com>, Takashi Iwai <tiwai@suse.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linux-sound@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 23, 2024 at 9:53=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Mon, 19 Aug 2024 09:47:11 +0300
-> Alexandru Ardelean <aardelean@baylibre.com> wrote:
->
-> > There are some newer additions to the AD7606 family, which support 18 b=
-it
-> > precision.
->
-> Hi Alexandru,
->
-> > Up until now, all chips were 16 bit.
-> >
-> > This change adds a 'bits' parameter to the AD760X_CHANNEL macro and ren=
-ames
-> > 'ad7606_channels' -> 'ad7606_channels_16bit' for the current devices.
-> >
-> > The AD7606_CHANNEL_PER_CHAN_SCALE() macro is also introduced, as it wil=
-l
-> > also require that the number of bits be correctly adjusted (for 18 bit
-> > parts).
-> Where is that introduced?  There is a _SW_ variant of one macro that isn'=
-t
-> mentioned...
++Jonathan C for the naming
 
-Right.
-My famous forgetting to update commits after updating code a few times.
-Will update.
+On Mon, Aug 26, 2024 at 7:14=E2=80=AFPM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+>
+>
+> Hi Rob
+>
+> > > We already have of_graph_get_next_endpoint(), but it is not
+> > > intuitive to use in some case.
+> >
+> > Can of_graph_get_next_endpoint() users be replaced with your new
+> > helpers? I'd really like to get rid of the 3 remaining users.
+>
+> Hmm...
+> of_graph_get_next_endpoint() will fetch "endpoint" beyond the "port",
+> but new helper doesn't have such feature.
 
+Right, but the "feature" is somewhat awkward as you said. You
+generally should know what port you are operating on.
+
+> Even though I try to replace it with new helper, I guess it will be
+> almost same as current of_graph_get_next_endpoint() anyway.
 >
-> J
-> >
-> > Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
-> > ---
-> >  drivers/iio/adc/ad7606.c     | 58 ++++++++++++++++++------------------
-> >  drivers/iio/adc/ad7606.h     | 18 ++++++-----
-> >  drivers/iio/adc/ad7606_spi.c | 16 +++++-----
-> >  3 files changed, 47 insertions(+), 45 deletions(-)
-> >
-> > diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-> > index 539e4a8621fe..dba1f28782e4 100644
-> > --- a/drivers/iio/adc/ad7606.c
-> > +++ b/drivers/iio/adc/ad7606.c
-> > @@ -333,16 +333,16 @@ static const struct iio_chan_spec ad7605_channels=
-[] =3D {
-> >       AD7605_CHANNEL(3),
-> >  };
-> >
-> > -static const struct iio_chan_spec ad7606_channels[] =3D {
-> > +static const struct iio_chan_spec ad7606_channels_16bit[] =3D {
-> >       IIO_CHAN_SOFT_TIMESTAMP(8),
-> > -     AD7606_CHANNEL(0),
-> > -     AD7606_CHANNEL(1),
-> > -     AD7606_CHANNEL(2),
-> > -     AD7606_CHANNEL(3),
-> > -     AD7606_CHANNEL(4),
-> > -     AD7606_CHANNEL(5),
-> > -     AD7606_CHANNEL(6),
-> > -     AD7606_CHANNEL(7),
-> > +     AD7606_CHANNEL(0, 16),
-> > +     AD7606_CHANNEL(1, 16),
-> > +     AD7606_CHANNEL(2, 16),
-> > +     AD7606_CHANNEL(3, 16),
-> > +     AD7606_CHANNEL(4, 16),
-> > +     AD7606_CHANNEL(5, 16),
-> > +     AD7606_CHANNEL(6, 16),
-> > +     AD7606_CHANNEL(7, 16),
-> >  };
-> >
-> >  /*
-> > @@ -357,22 +357,22 @@ static const struct iio_chan_spec ad7606_channels=
-[] =3D {
-> >   */
-> >  static const struct iio_chan_spec ad7616_channels[] =3D {
-> >       IIO_CHAN_SOFT_TIMESTAMP(16),
-> > -     AD7606_CHANNEL(0),
-> > -     AD7606_CHANNEL(1),
-> > -     AD7606_CHANNEL(2),
-> > -     AD7606_CHANNEL(3),
-> > -     AD7606_CHANNEL(4),
-> > -     AD7606_CHANNEL(5),
-> > -     AD7606_CHANNEL(6),
-> > -     AD7606_CHANNEL(7),
-> > -     AD7606_CHANNEL(8),
-> > -     AD7606_CHANNEL(9),
-> > -     AD7606_CHANNEL(10),
-> > -     AD7606_CHANNEL(11),
-> > -     AD7606_CHANNEL(12),
-> > -     AD7606_CHANNEL(13),
-> > -     AD7606_CHANNEL(14),
-> > -     AD7606_CHANNEL(15),
-> > +     AD7606_CHANNEL(0, 16),
-> > +     AD7606_CHANNEL(1, 16),
-> > +     AD7606_CHANNEL(2, 16),
-> > +     AD7606_CHANNEL(3, 16),
-> > +     AD7606_CHANNEL(4, 16),
-> > +     AD7606_CHANNEL(5, 16),
-> > +     AD7606_CHANNEL(6, 16),
-> > +     AD7606_CHANNEL(7, 16),
-> > +     AD7606_CHANNEL(8, 16),
-> > +     AD7606_CHANNEL(9, 16),
-> > +     AD7606_CHANNEL(10, 16),
-> > +     AD7606_CHANNEL(11, 16),
-> > +     AD7606_CHANNEL(12, 16),
-> > +     AD7606_CHANNEL(13, 16),
-> > +     AD7606_CHANNEL(14, 16),
-> > +     AD7606_CHANNEL(15, 16),
-> >  };
-> >
-> >  static const struct ad7606_chip_info ad7606_chip_info_tbl[] =3D {
-> > @@ -382,25 +382,25 @@ static const struct ad7606_chip_info ad7606_chip_=
-info_tbl[] =3D {
-> >               .num_channels =3D 5,
-> >       },
-> >       [ID_AD7606_8] =3D {
-> > -             .channels =3D ad7606_channels,
-> > +             .channels =3D ad7606_channels_16bit,
-> >               .num_channels =3D 9,
-> >               .oversampling_avail =3D ad7606_oversampling_avail,
-> >               .oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avai=
-l),
-> >       },
-> >       [ID_AD7606_6] =3D {
-> > -             .channels =3D ad7606_channels,
-> > +             .channels =3D ad7606_channels_16bit,
-> >               .num_channels =3D 7,
-> >               .oversampling_avail =3D ad7606_oversampling_avail,
-> >               .oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avai=
-l),
-> >       },
-> >       [ID_AD7606_4] =3D {
-> > -             .channels =3D ad7606_channels,
-> > +             .channels =3D ad7606_channels_16bit,
-> >               .num_channels =3D 5,
-> >               .oversampling_avail =3D ad7606_oversampling_avail,
-> >               .oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avai=
-l),
-> >       },
-> >       [ID_AD7606B] =3D {
-> > -             .channels =3D ad7606_channels,
-> > +             .channels =3D ad7606_channels_16bit,
-> >               .num_channels =3D 9,
-> >               .oversampling_avail =3D ad7606_oversampling_avail,
-> >               .oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avai=
-l),
-> > diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-> > index 0c6a88cc4695..771121350f98 100644
-> > --- a/drivers/iio/adc/ad7606.h
-> > +++ b/drivers/iio/adc/ad7606.h
-> > @@ -8,7 +8,7 @@
-> >  #ifndef IIO_ADC_AD7606_H_
-> >  #define IIO_ADC_AD7606_H_
-> >
-> > -#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all) { \
-> > +#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all, bits) {   \
-> >               .type =3D IIO_VOLTAGE,                            \
-> >               .indexed =3D 1,                                   \
-> >               .channel =3D num,                                 \
-> > @@ -19,24 +19,26 @@
-> >               .scan_index =3D num,                              \
-> >               .scan_type =3D {                                  \
-> >                       .sign =3D 's',                            \
-> > -                     .realbits =3D 16,                         \
-> > -                     .storagebits =3D 16,                      \
-> > +                     .realbits =3D (bits),                     \
-> > +                     .storagebits =3D (bits),                  \
-> >                       .endianness =3D IIO_CPU,                  \
-> >               },                                              \
-> >  }
-> >
-> >  #define AD7605_CHANNEL(num)                          \
-> >       AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW),     \
-> > -             BIT(IIO_CHAN_INFO_SCALE), 0)
-> > +             BIT(IIO_CHAN_INFO_SCALE), 0, 16)
-> >
-> > -#define AD7606_CHANNEL(num)                          \
-> > +#define AD7606_CHANNEL(num, bits)                    \
-> >       AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW),     \
-> >               BIT(IIO_CHAN_INFO_SCALE),               \
-> > -             BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
-> > +             BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), bits)
-> >
-> > -#define AD7616_CHANNEL(num)  \
-> > +#define AD7606_SW_CHANNEL(num, bits) \
-> >       AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SC=
-ALE),\
-> > -             0, BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
-> > +             0, BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), bits)
-> > +
-> > +#define AD7616_CHANNEL(num)  AD7606_SW_CHANNEL(num, 16)
-> >
-> >  /**
-> >   * struct ad7606_chip_info - chip specific information
-> > diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.=
-c
-> > index 287a0591533b..dd0075c97c24 100644
-> > --- a/drivers/iio/adc/ad7606_spi.c
-> > +++ b/drivers/iio/adc/ad7606_spi.c
-> > @@ -67,14 +67,14 @@ static const struct iio_chan_spec ad7616_sw_channel=
-s[] =3D {
-> >
-> >  static const struct iio_chan_spec ad7606b_sw_channels[] =3D {
-> >       IIO_CHAN_SOFT_TIMESTAMP(8),
-> > -     AD7616_CHANNEL(0),
-> > -     AD7616_CHANNEL(1),
-> > -     AD7616_CHANNEL(2),
-> > -     AD7616_CHANNEL(3),
-> > -     AD7616_CHANNEL(4),
-> > -     AD7616_CHANNEL(5),
-> > -     AD7616_CHANNEL(6),
-> > -     AD7616_CHANNEL(7),
-> > +     AD7606_SW_CHANNEL(0, 16),
-> > +     AD7606_SW_CHANNEL(1, 16),
-> > +     AD7606_SW_CHANNEL(2, 16),
-> > +     AD7606_SW_CHANNEL(3, 16),
-> > +     AD7606_SW_CHANNEL(4, 16),
-> > +     AD7606_SW_CHANNEL(5, 16),
-> > +     AD7606_SW_CHANNEL(6, 16),
-> > +     AD7606_SW_CHANNEL(7, 16),
-> >  };
-> >
-> >  static const unsigned int ad7606B_oversampling_avail[9] =3D {
+> Alternative idea is...
+> One of the big user of of_graph_get_next_endpoint() is
+> for_each_endpoint_of_node() loop.
 >
+> So we can replace it to..
+>
+> -       for_each_endpoint_of_node(parent, endpoint) {
+> +       for_each_of_graph_port(parent, port) {
+> +               for_each_of_graph_port_endpoint(port, endpoint) {
+>
+> Above is possible, but it replaces single loop to multi loops.
+>
+> And, we still need to consider about of_fwnode_graph_get_next_endpoint()
+> which is the last user of of_graph_get_next_endpoint()
+
+I missed fwnode_graph_get_next_endpoint() which has lots of users.
+Though almost all of those are just "get the endpoint" and assume
+there is only 1. In any case, it's a lot more than 3, so nevermind for
+now.
+
+> > > +struct device_node *of_graph_get_next_port_endpoint(const struct dev=
+ice_node *port,
+> > > +                                               struct device_node *p=
+rev)
+> > > +{
+> > > +   do {
+> > > +           prev =3D of_get_next_child(port, prev);
+> > > +           if (!prev)
+> > > +                   break;
+> > > +   } while (!of_node_name_eq(prev, "endpoint"));
+> >
+> > Really, this check is validation as no other name is valid in a
+> > port node. The kernel is not responsible for validation, but okay.
+> > However, if we are going to keep this, might as well make it WARN().
+>
+> OK, will do in v4
+>
+> > > +/**
+> > > + * for_each_of_graph_port_endpoint - iterate over every endpoint in =
+a port node
+> > > + * @parent: parent port node
+> > > + * @child: loop variable pointing to the current endpoint node
+> > > + *
+> > > + * When breaking out of the loop, of_node_put(child) has to be calle=
+d manually.
+> >
+> > No need for this requirement anymore. Use cleanup.h so this is
+> > automatic.
+>
+> Do you mean it should include __free() inside this loop, like _scoped() ?
+
+Yes.
+
+> #define for_each_child_of_node_scoped(parent, child) \
+>         for (struct device_node *child __free(device_node) =3D           =
+ \
+>              of_get_next_child(parent, NULL);                           \
+>              child !=3D NULL;                                            =
+ \
+>              child =3D of_get_next_child(parent, child))
+>
+> In such case, I wonder does it need to have _scoped() in loop name ?
+
+Well, we added that to avoid changing all the users at once.
+
+> And in such case, I think we want to have non _scoped() loop too ?
+
+Do we have a user? I don't think we need it because anywhere we need
+the node iterator pointer outside the loop that can be done explicitly
+(no_free_ptr()).
+
+So back to the name, I don't think we need _scoped in it. I think if
+any user treats the iterator like it's the old style, the compiler is
+going to complain.
+
+> For example, when user want to use the param.
+>
+>         for_each_of_graph_port_endpoint(port, endpoint)
+>                 if (xxx =3D=3D yyy)
+>                         return endpoint;
+>
+>         for_each_of_graph_port_endpoint_scoped(port, endpoint)
+>                 if (xxx =3D=3D yyy)
+>                         return of_node_get(endpoint)
+
+Actually, you would do "return_ptr(endpoint)" here.
+
+Rob
 
