@@ -1,160 +1,173 @@
-Return-Path: <devicetree+bounces-96978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004CA960408
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:09:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C17960413
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FAC51F2296C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:09:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE5462829DB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B6A199E98;
-	Tue, 27 Aug 2024 08:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A3AD189917;
+	Tue, 27 Aug 2024 08:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oK+P+wyR"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="EMe4J2wQ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="aQVMEw9P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from fout2-smtp.messagingengine.com (fout2-smtp.messagingengine.com [103.168.172.145])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9507199242;
-	Tue, 27 Aug 2024 08:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781EB13A25B;
+	Tue, 27 Aug 2024 08:12:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724746120; cv=none; b=tJp+HBey9TOEn55SUNrW+p+BATLjIT3zugYlYpHDdKKq77ohgbZGdicu9pt446NnDWGUOUSGbvYGKPetL1qUF/nADzWI674pvac+rZbIa4yO5oxUj7UVKEKAT/AeoQVkMDYnvznduqfgXfEQlYHoLwH3drGRIusAY8fg0ZJLDE4=
+	t=1724746362; cv=none; b=Y6Y4LI9dsBb5BKb8LycqgXqP9sNWSQcjh641ZV6TV4g1k9uJQOIqLMzElR7H/AS7MIVP2+/W6jxEAed8xM0BMhXw/7BI9OogYwhzN2JHUJoxa/WVo8UcGOBEi0s6QflkslAX83PuAPoHxTal9fAMWYBn49KcXTFVlA7lwDUZmDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724746120; c=relaxed/simple;
-	bh=KUNevkqKItUtyAoJeoaCrfGr37Eon6c2GKQEP9yAB9U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pYrIAh0JFJkELIEbprvX4pbVgKamqcey9j+9hq6FAgscMOreXK0Qr4pVQjch0F/3Kv+n+tjbCy7HCK+ftRRvUBeHmDRqu1TjWO2sOFTTFtvWEBNWXlWzR1lmfsBTLaZYFOxq+XmeQplPGwNQoAXKhArjMWQ346H1VdfGavhbA3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oK+P+wyR; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R7NZnX002527;
-	Tue, 27 Aug 2024 10:08:05 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	NL0vfsDaZi+n7IXnnxL961mLfvdpI9ZZJJiAuUY0CU8=; b=oK+P+wyRw6FWOfoE
-	ii3HFisp1T+BZcECPD9QcTmWQAnw0oAdYT+ELLEbd2HwfVDIg7dqla3qthTTlFDn
-	9dHgJfiS8GlyJMKotw2TmRX8VLsA6NXdw5Vp0hUnHbt95dJ7cvqsNkTTe8JSlqJ3
-	ilBOB9iLUYx3zQ8pltIC2PiQLRKfPPRkVT4ih9SmavhWveUdmAzzFkRyAkUJDsIg
-	3Vw5npBP4l3po35kbKOg4jkMJke1iHgIvabfPlrSXmv9OrBF/NqfqrM7/Ub5Obe3
-	fZV9bmY/1mm9Fkq5GKQXAbp2Zl9HrzxP2GDbbFfvPdDpSI9/fSwEZKZY5gub+8z+
-	Vw8oWQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 419ac886r4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 Aug 2024 10:08:05 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2089540048;
-	Tue, 27 Aug 2024 10:08:00 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C12A724DCC5;
-	Tue, 27 Aug 2024 10:07:11 +0200 (CEST)
-Received: from [10.252.31.50] (10.252.31.50) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 27 Aug
- 2024 10:07:10 +0200
-Message-ID: <8a13fd32-4bc4-4711-bf6b-7e0ce2e938ec@foss.st.com>
-Date: Tue, 27 Aug 2024 10:07:10 +0200
+	s=arc-20240116; t=1724746362; c=relaxed/simple;
+	bh=qAoI/blZPQzW+zuQx2VQaHMoGi33Xpcxj3YhMr1VWPM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P5OUUITlgl1TSgSX+bfXtcdEYtSONNJPqi/QCnAnikhCtwba+rWF+BRq4Eu5oAfpe81hyukbGZlw2QECuS7iTA162F/0Ug0DDvPELfI+riIuYQ8XMJX1vXvElb+iXWTbFG+0LYnbZC/oTn1PVabVCWvSgypyahJW+dIAQ2EWBnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=EMe4J2wQ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=aQVMEw9P; arc=none smtp.client-ip=103.168.172.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-04.internal (phl-compute-04.nyi.internal [10.202.2.44])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 138F0138822F;
+	Tue, 27 Aug 2024 04:12:37 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-04.internal (MEProxy); Tue, 27 Aug 2024 04:12:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1724746357;
+	 x=1724832757; bh=t8zwrFvJJEIIj0GFYOuMXFR+QQWo68sXLTxrrRDvfck=; b=
+	EMe4J2wQSqfX5pSC2S6i671AzolMKXxFAFIDR4yv3I36e3AaLN1YzCtJFa9UtSG3
+	klTmRfBa7w8Q515h6xNV6t7G0GRNJjoXzjwOLu1i/+F9Jvy/hEjF11kSv0jNI3+J
+	bQoig0/vq/fgHqutrHjUrlH9Gu7TMFJD7KREad8Rn/yzjRtRCDAsrgQzg6d6VVFT
+	ilBPS8fVmEeBwTC+TjBvAn1gxtIj4tzpZy7+FI+fKn9yxez4163jlA/J2yHSMwVO
+	+qQUnG1yr3apM9+9FwL0jkfc1N4qqzFu3IGoqY1RdG0vW7dKlnq2HfwvD7zzxOtv
+	jddv1fD26thjs6QeC2P3Nw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1724746357; x=
+	1724832757; bh=t8zwrFvJJEIIj0GFYOuMXFR+QQWo68sXLTxrrRDvfck=; b=a
+	QVMEw9PEWPyVaCmboHm98KDZSMyHA9lRlVpz55cpQT3O2QgrbLtlQEtXUyqPftCl
+	UDu9wT9I/1IjrRhrVQGcaIxeVmNtGOTmYoIKd2OFYaVv8jHBblpdFpJht4MsYZtP
+	w56XBSJlGe73n3WI63nPdI0bArruJhI9ou69VJmBCmpciKUbQJAOXXXlQPhlTiFr
+	6IIIx1vRaAXezKnMedG/mF4UVzsB1u40ujqwmpW516qCEL8f02UtAir7JIgg3HR4
+	q5NGlJOHnBVw82L2b16h+jUBZu/TOZJxw+5n53scwhlSTvMNMnLT5hT35RqqaSuz
+	cMwxA1utwhhk3d1mlCtvA==
+X-ME-Sender: <xms:dIrNZpe4ChwBRID8XCBVOOB_UTJAiW3V6qnb1lOyejdGAENUxZC2Jg>
+    <xme:dIrNZnNekvcUtqkXh8JFn67ewKzLwLOgJr47d9QZILIoFvTBrNe9g7mpoBl7cCdcA
+    WR7Hps-AcOxfldBGGQ>
+X-ME-Received: <xmr:dIrNZijhka2HqnS_ZbZpdGBPeEZzKaQ56XatprCEcVbfRJ6jGMUAZk72YxPQnHsJjl0UF-ijp3G670RZ4l-adgNlHoKmEWyCzQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudeftddgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
+    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
+    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
+    thgvrhhnpeffkefgudekgefhhfejtedviedtgeetieekffeiudfhgeevteejvedtffdvke
+    fftdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgep
+    tdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhguod
+    hrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepuddtpdhm
+    ohguvgepshhmthhpohhuthdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepmhgthhgvhhgrsgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgr
+    uhhrvghnthdrphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtph
+    htthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriiihshiithho
+    fhdrkhhoiihlohifshhkihdoughtsehlihhnrghrohdrohhrghdprhgtphhtthhopegtoh
+    hnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnhgv
+    shgrshesghhlihguvghrrdgsvgdprhgtphhtthhopehlihhnuhigqdhmvgguihgrsehvgh
+    gvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgv
+    rhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:dIrNZi86Kn32eTUwiOWQfXFrdCC5M7-qSQPs0-EVPV9mqR1HKXnuMg>
+    <xmx:dIrNZlvE2Nxqsim5XXgiiM6VNl6VJmUIoq3_7oy20vOrVijWvZcc7g>
+    <xmx:dIrNZhH5fzevua2aM3KL6skaZDiXhp2ckw86RHL317167b9hXdigIQ>
+    <xmx:dIrNZsPji2d0PCh7in58OncSinktalmv5nQRYhTCjHfnK6fwdKRXmg>
+    <xmx:dYrNZhFyupFet745qyseqxNSyNkdRlcJ8-zJWVhenmDUjcl7qZDq0Cop>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 27 Aug 2024 04:12:36 -0400 (EDT)
+Date: Tue, 27 Aug 2024 10:12:33 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: media: renesas,isp: Add Gen4 family
+ fallback
+Message-ID: <20240827081233.GE2636928@fsdn.se>
+References: <20240826144352.3026980-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240826144352.3026980-2-niklas.soderlund+renesas@ragnatech.se>
+ <cnca2gdh6c3kg5ybb4dxzlca5c7jsvz4tomibpkf746syejvmf@ndbq4qkykume>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm: dts: st: stm32mp151a-prtt1l: Fix QSPI
- configuration
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Oleksij Rempel
-	<o.rempel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20240806120517.406714-1-o.rempel@pengutronix.de>
- <20dc2cd4-7684-4894-9db3-23c3f4abd661@pengutronix.de>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20dc2cd4-7684-4894-9db3-23c3f4abd661@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-27_05,2024-08-26_01,2024-05-17_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cnca2gdh6c3kg5ybb4dxzlca5c7jsvz4tomibpkf746syejvmf@ndbq4qkykume>
 
-Hi
+On 2024-08-27 08:31:22 +0200, Krzysztof Kozlowski wrote:
+> On Mon, Aug 26, 2024 at 04:43:47PM +0200, Niklas Söderlund wrote:
+> > The ISP Channel Selector IP is the same for all current Gen4 devices.
+> > This was not known when adding support for V3U and V4H and a single SoC
+> > specific compatible was used.
+> > 
+> > Before adding more SoC specific bindings for V4M add a family compatible
+> > fallback for Gen4. That way the driver only needs to be updated once for
+> > Gen4, and we still have the option to fix any problems in the driver if
+> > any testable differences between the SoCs are found.
+> > 
+> > There are already DTS files using the V3U and V4H compatibles which
+> > needs to be updated to not produce a warning for DTS checks. The driver
+> > also needs to kept the compatible values to be backward compatible , but
+> > for new Gen4 SoCs such as V4M we can avoid this.
+> > 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > ---
+> > * Changes since v1
+> > - New in v2.
+> > ---
+> >  Documentation/devicetree/bindings/media/renesas,isp.yaml | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > index 33650a1ea034..730c86f2d7b1 100644
+> > --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > @@ -22,6 +22,7 @@ properties:
+> >        - enum:
+> >            - renesas,r8a779a0-isp # V3U
+> >            - renesas,r8a779g0-isp # V4H
+> > +      - const: renesas,rcar-gen4-isp # Generic R-Car Gen4
+> 
+> Adding generic fallback post-factum is odd, does not feel reliable.
+> Instead use specific compatibles as fallbacks.
 
-On 8/7/24 11:38, Ahmad Fatoum wrote:
-> Hello Oleksij,
-> 
-> On 06.08.24 14:05, Oleksij Rempel wrote:
->> Rename 'pins1' to 'pins' in the qspi_bk1_pins_a node to correct the
->> subnode name. The previous name caused the configuration to be
->> applied to the wrong subnode, resulting in QSPI not working properly.
->>
->> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
->> ---
->>   arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi b/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
->> index 3938d357e198f..4db684478c320 100644
->> --- a/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
->> +++ b/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
->> @@ -123,7 +123,7 @@ flash@0 {
->>   };
->>   
->>   &qspi_bk1_pins_a {
->> -	pins1 {
->> +	pins {
-> 
-> As you have seen such device tree overriding is error prone and would
-> be entirely avoidable if specifying full board-specific pinctrl groups
-> was allowed for the stm32 platforms instead of override-and-pray.
+I agree, it feels a bit odd. But this was the road we hammered out at 
+great pain for how to be able to move forward with this issue for the 
+other IP block involved in video capture for R-Car Gen4, VIN [1]. This 
+just mirrors that long discussion decision for the R-Car CSISP.
 
-You can create your own pin group in stm32mp15-pinctlr.dtsi. What is the 
-issue ? Do I miss something ? It will avoid to overwrite an existing 
-configuration
+I would hate to have different solutions for the two.
 
-regards
-alex
+1. [PATCH v5 0/6] rcar-vin: Add support for R-Car V4M
+   https://lore.kernel.org/all/20240704161620.1425409-1-niklas.soderlund+renesas@ragnatech.se/
 
-
-> Anyways, there's better syntax for such overriding now:
-> 
->    &{qspi_blk1_pins_a/pins}
-> 
-> which would cause a compilation error if pins was renamed again.
-> 
->>   		bias-pull-up;
-> 
-> There's bias-disable in stm32mp15-pinctrl.dtsi. You may want to add
-> a /delete-property/ for that to make sure, it's not up to the driver
-> which one has priority.
-> 
->>   		drive-push-pull;
->>   		slew-rate = <1>;
-> 
-> These are already in qspi_bk1_pins_a. If repeating those is ok, why
-> not go a step further and just duplicate the pinmux property and stay
-> clear of this issue altogether, provided Alex is amenable to changing
-> his mind regarding pinctrl groups in board device trees.
-> 
-> 
-> Cheers,
-> Ahmad
-> 
+-- 
+Kind Regards,
+Niklas Söderlund
 
