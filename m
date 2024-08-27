@@ -1,139 +1,132 @@
-Return-Path: <devicetree+bounces-97053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C051E9607FF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 12:57:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB92960815
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:02:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2E301C22942
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:57:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C6521F237AA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13C319F466;
-	Tue, 27 Aug 2024 10:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BCD19D89C;
+	Tue, 27 Aug 2024 11:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MloyMNoT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fWnmJFwM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8EFC19E7FF;
-	Tue, 27 Aug 2024 10:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7323158D9C;
+	Tue, 27 Aug 2024 11:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724756222; cv=none; b=PU/82qLer/rnE9xGhU0aBRUqw3hCNSESBFGnurGBxQqlrsnW4oClIuC1wERQc+vJKbS7PdOPHYgkCuXaUE4LCeji7cucmcdKYATGcpSwOocagwmFgAfY5MAnxWIvJgC4Suf7y4qg1g2p14PIci1rRCj1C7vJQWh48K52FgXK/ks=
+	t=1724756559; cv=none; b=hHdn0mYO9yuuTzOlOyltszUKRT/NApAOnGxqa+cyVmnvBDKsozdeAEb5LOWvBX0rQ0/XMjWSP0cbKd7oc8yeZJMVe/tM9j3JKlgD9Lyx2hyXkINvK6RHwK5EkhHCCxwPTWPjLW5JMhpt3jqp3MB1xDgMf88xKBZF84x2ujRd4S8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724756222; c=relaxed/simple;
-	bh=tx0g7NhvrM+O/NA3qD141c9tzZma0yfUmDnIeJKoP84=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LfGFmBRnCcqvbvuJyRlXJ5a5fPfC52sWbaCuzdogvs1SVAfGnAXExZruc4+ul24uz6tCN8Tg7kCXeNoLfgteoctB+mnW9WJgo+QJsQlXe5JNlHMZRFYy9hs6aQC3/LwQ7eOpz7mBBtyl+6A/c/BtmlF6fnuuqFBAb3MWn1GoqDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MloyMNoT; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47RAun1G068796;
-	Tue, 27 Aug 2024 05:56:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724756209;
-	bh=zPbib7xbMUlrnvdopHSHphG/Tp3WBjra4xzF/7bFHgw=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=MloyMNoTQ8DwDwnalFLbExTUodOpCNW4hozGyUef6EG0XLQ8eoqEXHoDqjzx2Bl8j
-	 ugMA6OtiJZVRQAQ4fHJqplqN7hpLxCpaRLGIYnXM3AkMXwhYn1kGw0546SKMmO+q33
-	 1UV/DKmSUeAyeT4NHIqKoKPu9M6+dxEuXvf4imPA=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47RAunxP128162
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 27 Aug 2024 05:56:49 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 27
- Aug 2024 05:56:49 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 27 Aug 2024 05:56:49 -0500
-Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47RAumpu051333;
-	Tue, 27 Aug 2024 05:56:48 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <b-kapoor@ti.com>, <jm@ti.com>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j722s-evm: Describe main_uart5
-Date: Tue, 27 Aug 2024 16:26:44 +0530
-Message-ID: <20240827105644.575862-3-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240827105644.575862-1-b-kapoor@ti.com>
-References: <20240827105644.575862-1-b-kapoor@ti.com>
+	s=arc-20240116; t=1724756559; c=relaxed/simple;
+	bh=AdxxyU7osmJMtOozW5BsXf+2/zQypAfNNaF3yzunBVk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S/UA9w5MpZ2UHP7yfayW+/19xibTZAlfLAKaL1prOIYsF3TxIzu7RYatDkC1V4kAnt6lfawT7pUWcYp2FOAFzP9Rd2TDgRRwM6B/zZQAIQC+kyKsgZq6T1IJ+/zPI6YYArPF9ycbUvxLx877UoZ77R8rMq1x2jpEBALD77CrnM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fWnmJFwM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CCA7C8B7A0;
+	Tue, 27 Aug 2024 11:02:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724756559;
+	bh=AdxxyU7osmJMtOozW5BsXf+2/zQypAfNNaF3yzunBVk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fWnmJFwMfvSprxmKFgXSpRKb2p6ZxhMsPV+1W75GynZLR7cYyCHoF2/5c6NKrBLug
+	 oQjbcA0JCpLRSQXh/SwKhW4UuOrUP0GaMChkPVPom7YSoL4889apIwavlckTM8kTQD
+	 PQqGO3HegTX9dcaqzYmXKnbO5pG0xwwdnDVpySOBfjskKyvbBeU2emKSkS+SzIL5N+
+	 V5iN9YtvertY+9qj7EI/r+Abt0WlFwupNDvTM/Fhvn17A/XAwOSSYCcrrunMAjXxLv
+	 q/8xla2Cl1AxeIsSZ5ySnt0+vNGU1vuZf9D/UmQvvgYTvCWkqlXTqewQMFnekfvl/I
+	 u2wB68YFyTwPA==
+Message-ID: <52b32254-8468-4fba-8357-0edc54dee129@kernel.org>
+Date: Tue, 27 Aug 2024 13:02:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 8/8] PCI: qcom: Add support to PCIe slot power supplies
+To: Qiang Yu <quic_qianyu@quicinc.com>, manivannan.sadhasivam@linaro.org,
+ vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, abel.vesa@linaro.org,
+ quic_msarkar@quicinc.com, quic_devipriy@quicinc.com
+Cc: dmitry.baryshkov@linaro.org, kw@linux.com, lpieralisi@kernel.org,
+ neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240827063631.3932971-1-quic_qianyu@quicinc.com>
+ <20240827063631.3932971-9-quic_qianyu@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240827063631.3932971-9-quic_qianyu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-System firmware uses main_uart5 in J722S EVM for trace data.
-Thus, describe it in device tree for completeness,
-adding the pinmux and mark it as reserved.
+On 27.08.2024 8:36 AM, Qiang Yu wrote:
+> On platform x1e80100 QCP, PCIe3 is a standard x8 form factor. Hence, add
+> support to use 3.3v, 3.3v aux and 12v regulators.
+> 
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 52 +++++++++++++++++++++++++-
+>  1 file changed, 50 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 6f953e32d990..59fb415dfeeb 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -248,6 +248,8 @@ struct qcom_pcie_cfg {
+>  	bool no_l0s;
+>  };
+>  
+> +#define QCOM_PCIE_SLOT_MAX_SUPPLIES			3
+> +
+>  struct qcom_pcie {
+>  	struct dw_pcie *pci;
+>  	void __iomem *parf;			/* DT parf */
+> @@ -260,6 +262,7 @@ struct qcom_pcie {
+>  	struct icc_path *icc_cpu;
+>  	const struct qcom_pcie_cfg *cfg;
+>  	struct dentry *debugfs;
+> +	struct regulator_bulk_data slot_supplies[QCOM_PCIE_SLOT_MAX_SUPPLIES];
+>  	bool suspended;
+>  	bool use_pm_opp;
+>  };
+> @@ -1174,6 +1177,41 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
+>  	return !!(val & PCI_EXP_LNKSTA_DLLLA);
+>  }
+>  
+> +static int qcom_pcie_enable_slot_supplies(struct qcom_pcie *pcie)
+> +{
+> +	struct dw_pcie *pci = pcie->pci;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(pcie->slot_supplies),
+> +				    pcie->slot_supplies);
+> +	if (ret < 0)
+> +		dev_err(pci->dev, "Failed to enable slot regulators\n");
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
+return dev_err_probe would be a good call.. probably more so below,
+but won't hurt to use here too
 
-Link to v1: https://lore.kernel.org/all/20240822053538.10475-1-b-kapoor@ti.com/
+> +
+> +	return ret;
+> +}
+> +
+> +static void qcom_pcie_disable_slot_supplies(struct qcom_pcie *pcie)
+> +{
+> +	regulator_bulk_disable(ARRAY_SIZE(pcie->slot_supplies),
+> +			       pcie->slot_supplies);
+> +}
 
-changelog v1->v2:
-	- Modified commit message to be more clear
-	- provide documentation on why main_uart5 is reserved
+This I feel like is overly abstracted
 
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index 8daa47a245aa..41c36f82a3c5 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -20,6 +20,7 @@ / {
- 	aliases {
- 		serial0 = &wkup_uart0;
- 		serial2 = &main_uart0;
-+		serial3 = &main_uart5;
- 		mmc0 = &sdhci0;
- 		mmc1 = &sdhci1;
- 	};
-@@ -211,6 +212,13 @@ J722S_IOPAD(0x01cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
- 		bootph-all;
- 	};
- 
-+	main_uart5_pins_default: main-uart5-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0108, PIN_INPUT, 3)       /* (J27) UART5_RXD */
-+			J722S_IOPAD(0x010c, PIN_OUTPUT, 3)      /* (H27) UART5_TXD */
-+		>;
-+	};
-+
- 	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
- 		pinctrl-single,pins = <
- 			J722S_IOPAD(0x0120, PIN_INPUT, 7) /* (F27) MMC2_CMD.GPIO0_70 */
-@@ -330,6 +338,13 @@ &main_uart0 {
- 	bootph-all;
- };
- 
-+&main_uart5 {
-+	/* MAIN UART 5 is used by System firmware */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart5_pins_default>;
-+	status = "reserved";
-+};
-+
- &mcu_pmx0 {
- 
- 	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
--- 
-2.34.1
-
+Konrad
 
