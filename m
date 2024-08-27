@@ -1,116 +1,119 @@
-Return-Path: <devicetree+bounces-96918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C6A96008A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:53:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A0D960090
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 06:55:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00CE11C21E9A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 04:53:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 098ED2833FA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 04:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055824DA1F;
-	Tue, 27 Aug 2024 04:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1F043169;
+	Tue, 27 Aug 2024 04:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AG7iDVK4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="D3bQb5c6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8355A54648;
-	Tue, 27 Aug 2024 04:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC02246BA;
+	Tue, 27 Aug 2024 04:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724734423; cv=none; b=JtmGVeICBCEOHB+6KF2kgxgK3I2jir+WfJoMXRdck6dBYAXXexG/TOzo4zv5iA93cETWxvdxNl3CkLMTSfLfVu7syRlgu9EqxK2tn6XReley2s3qNRs0lC8FxA9LAMLgPZyB67o1XD1d70Mmf9KDAyqNLQ6GIxdfhl5OpqalOGg=
+	t=1724734497; cv=none; b=gk8Pa+plqyD9yNkLbnvWZKOOcILNA4x3fn7oNSKQZzR5S8crt4j0fqU4oOr/sWN807VliXylgnkf3xq5EQlqVKwJVlDRybAT/S/PYhMeDYapH6HfTLYZvtR8CJirQBoxr7gXaMph6e3JwM1i2E5jNOvHUzMQhhVwV7sBsZSZ3CM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724734423; c=relaxed/simple;
-	bh=yMbQF0uHORUf0udirhElpdblOuGQiBeBYSNIiCP1D6w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qKFyT5gVIWU6N3mrAsJYiU2BQIVbmvbTrG2ZbwyD0ERy4b4EwG6iBV4SAskB2/T29PUqtPYmINPcWW0Xq6IbtH6jqbEUtHR5xYE5p7N2PSM/S1CO/jUnmpKCF6eWG9l4nuTmQKiM1LpxAOFA3XWMBOK9cHVUshWPXcXiFewIERs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AG7iDVK4; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20203988f37so49589285ad.1;
-        Mon, 26 Aug 2024 21:53:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724734422; x=1725339222; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uvPg2odSODo+vDn/Yud57+BmBlEnCSstG5MaGB4eQ8U=;
-        b=AG7iDVK4qjquQTcQyW9Gy5H2RkOh1YF7Tt8LwZmdUoDYIUyE9kIGlR3Gi97w0bvGox
-         wsCI0AtGCzivxi25qSkCy31UdKIly0cOBZeK3PjAiN4NPjEbKK15uT/U752+d9cyOvL6
-         vZVgoRiTWbFhLe7TrX0KvkKzWaGKGyRp6ZqdM0mTVo0LK6752CiCiOK4sFA+74qxBXqX
-         dZ5Jm0SgIiwVJYrYDTGl0E9MoCAkVMmzNi+lG3k/smVuO2Hay7n/Ru96Jy4uFvwSSWuM
-         6FwBm7nQ8ieXBJmeQryhmoSrAZycRcFDFJfEEN27wyHS+VNljv1V2DbNW87mVweeJrK8
-         5RPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724734422; x=1725339222;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uvPg2odSODo+vDn/Yud57+BmBlEnCSstG5MaGB4eQ8U=;
-        b=AOFT0T1zkHjC9jk0MOOkZT3Y2CMPcorlgQpNX3umEQL92o4BFlLtMmGa5sih8T6Spm
-         7aaR5BrJQjqsajAm8o/BLviGC62cecogy5TvSXLdCsquE01YdCfXrgjN8dtznERvE4d9
-         FOsRKnbeueaHOrtcRjl0yQndApzAzSsuTOq0bdrN7L3cneSeJIdjrlSdxOrOhAlGicTe
-         0r4bmqCzpOsBLNMYEL40zHN6fzsP3o0oRsOlybmeawsLYCKc1/AcudrZ+n60f+wsL8Dc
-         hpUvuWiQ+AuMPWBq3JcIBqJm/ltHswMmMqYt6/fRpSLBu/6FgKefjYfcazrUVp2jP2BI
-         95ig==
-X-Forwarded-Encrypted: i=1; AJvYcCUmtpTLTjXyd0NqxJIcj/n5JQVwFRmyypo1ppWoK2i363EC1VYvI7kXduVqruwpo148k0Si+1lH3pw0rRXU@vger.kernel.org, AJvYcCVTm9DnyAjH4lxFfJjkfqHNppEFUKffWdUIrJFZyj/Ih+mHZ1lXlZgUO0q/fUmnbKGXjLwhKHPy73aW@vger.kernel.org, AJvYcCWzqE3ktXdCViJa3BET9dC7H7xsW9/9LJ0TeUGj+ay0qBgpSh6fPJjlbLXg9Fj5+IXot8b+UQNDMpcSmmw=@vger.kernel.org, AJvYcCX0oJ0UI+AqT0i+BxG1oa5FYhA7rrQ6YKWNma2aGtYdtu3OZuFgjQXjcANAw/qE3nK4OoX/7rhPvEn8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwH2mlaCTzZUbOfibZaKeLa9suNbNJolA44NxQ/AfE660iI5FUT
-	rdYfGrOjUSfjB3jI6dE7+UCTZT4CHuP0124mWHyWx+/ofd4znXMx
-X-Google-Smtp-Source: AGHT+IEL1kKWGCjT1JsS3shOvdnMLab3oIYLzpv2H9njpHNKyiMPBT8u41muELEiFrxu91t9FxKUFg==
-X-Received: by 2002:a17:90a:6543:b0:2d3:c933:6c72 with SMTP id 98e67ed59e1d1-2d646bcd8bfmr14272772a91.8.1724734421649;
-        Mon, 26 Aug 2024 21:53:41 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d82a6d3d42sm125910a91.1.2024.08.26.21.53.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2024 21:53:40 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 26 Aug 2024 21:53:39 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Chao Wei <chao.wei@sophgo.com>, Yangyu Chen <cyy@cyyself.name>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Hal Feng <hal.feng@starfivetech.com>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v11 2/4] drivers: hwmon: sophgo: Add SG2042 external
- hardware monitor support
-Message-ID: <5c7d6c42-e9ab-44b3-87d0-f2e4711a8c24@roeck-us.net>
-References: <IA1PR20MB4953DF0AE7210A6D74162952BB822@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB49536C786048D1E676BB9C20BB822@IA1PR20MB4953.namprd20.prod.outlook.com>
+	s=arc-20240116; t=1724734497; c=relaxed/simple;
+	bh=LTRjkNWpPIJV+y1DqNWSjY3HaokQAegTXhNwvzVcyOA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YjItmrjn/u2Clm8jvqhw0LqlWq40pkq/jViOnGp3NU7FnDvzkpG+98d3OVCyuetFJJ0iDWKXu9kV7MhXzMtPVaa95FF7YJv1iIH/IkHdUmgv3E0Wmq9Vg3ZOqjA3h+b7iOV/OLgfE1JVD4p0VyXg0MeOVurynKI5yZUUC0ku0Ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=D3bQb5c6; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47R4siaS009374;
+	Mon, 26 Aug 2024 23:54:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724734484;
+	bh=Ey+E+1b4RzgL6/GdPYzmE944PKZywYIjd3t1l/eIaUI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=D3bQb5c68aUg5JsomvUgF/4MfuEHcKT/DPmKJIVJykPSXx6pklM107CEmJEAa0pje
+	 keyerlBVueUcIM8GLsAfSAwGwil1nwHyAsMKo+Cdah+FgtbVMFPoZiDHcaPwKkAe+t
+	 /SD9zUWqj2KhaebMDymHwiuvrAGL6ZgyRL64kHiQ=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47R4siEA050447
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 26 Aug 2024 23:54:44 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ Aug 2024 23:54:44 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 Aug 2024 23:54:44 -0500
+Received: from [172.24.227.151] (uda0510294.dhcp.ti.com [172.24.227.151])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47R4sd0m030791;
+	Mon, 26 Aug 2024 23:54:40 -0500
+Message-ID: <2beb4f12-c485-4af5-86ef-a481f6f7ecae@ti.com>
+Date: Tue, 27 Aug 2024 10:24:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB49536C786048D1E676BB9C20BB822@IA1PR20MB4953.namprd20.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/7] arm64: dts: ti: k3-j7200-som-p0: Change timer
+ nodes status to reserved
+To: Krzysztof Kozlowski <krzk@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <u-kumar1@ti.com>, <tony@atomide.com>, <bb@ti.com>, <d-gole@ti.com>,
+        <afd@ti.com>, <hnagalla@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240826104821.1516344-1-b-padhi@ti.com>
+ <20240826104821.1516344-2-b-padhi@ti.com>
+ <276ee20c-beeb-4607-b435-11bfd188ccef@kernel.org>
+ <e7aa7d45-8d5f-4f5f-bba4-b9e0f77d8a6a@kernel.org>
+Content-Language: en-US
+From: Beleswar Prasad Padhi <b-padhi@ti.com>
+In-Reply-To: <e7aa7d45-8d5f-4f5f-bba4-b9e0f77d8a6a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sat, Aug 17, 2024 at 10:22:57AM +0800, Inochi Amaoto wrote:
-> SG2042 use an external MCU to provide basic hardware information
-> and thermal sensors.
-> 
-> Add driver support for the onboard MCU of SG2042.
-> 
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
 
-Applied.
+On 26/08/24 18:07, Krzysztof Kozlowski wrote:
+> On 26/08/2024 12:54, Krzysztof Kozlowski wrote:
+>> On 26/08/2024 12:48, Beleswar Padhi wrote:
+>>> The remoteproc firmware of R5F in the MAIN voltage domain use timers.
+>>> Therefore, change the status of the timer nodes to "reserved" to avoid
+>>> any clash. Usage is described as below:
+>>>
+>>> 	+===================+==========================+
+>>> 	|  Remoteproc node  |        Timer Node        |
+>>> 	+===================+==========================+
+>>> 	| main_r5fss0_core0 | main_timer0, main_timer2 |
+>>> 	+-------------------+--------------------------+
+>>> 	| main_r5fss0_core1 | main_timer1              |
+>>> 	+-------------------+--------------------------+
+>>>
+>>> Fixes: c8a28ed4837c ("arm64: dts: ti: k3-j7200: Add general purpose timers")
+>>> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+>> You keep sending the same. Where is the changelog? Why so many same
+>> patchsets? Why so many resends without changes?
+> OK, now cover letter came and I see the changelog. Some hickup on mail
+> servers.
 
-Thanks,
-Guenter
+
+I understand the mistake. From next time, will mention changelogs in 
+patches as well as cover letter.
+
+>
+> Best regards,
+> Krzysztof
+>
 
