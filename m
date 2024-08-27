@@ -1,224 +1,144 @@
-Return-Path: <devicetree+bounces-97071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17F996092F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:44:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DF6960935
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 13:45:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D56EA1C206A2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:44:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA6762810EC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 11:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8435C1A01CB;
-	Tue, 27 Aug 2024 11:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075811A073F;
+	Tue, 27 Aug 2024 11:45:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u5QNvds/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="R8RN5Eot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE65D19FA96
-	for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 11:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3E51A08A9;
+	Tue, 27 Aug 2024 11:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724759064; cv=none; b=gsapcO9PIqbcPL5D3qSio6QIgjwzM7A+s0MuHJ6EEb1ktba6ze12k+FRxP+T3Gkg841CM4bG5Y56Oxpr8mDRoB4byVDTOl0MOj2HC2ZreQ/f853tNN/LOcmiyZ4hGgDXKs9na93Ni1v5UWCrDRGl28B0FhsdnavlGbt9snowp8s=
+	t=1724759107; cv=none; b=UC+bCDCiY/IZjgiAzpseU9ylt5dUHI15zGKdvTxXtwbQQ2IdYxAd2kNvhWDFhuUPp18z8HtSZ4HQZkbUbCPN+wLXVmTYE1VRuiOZ+K1a5itAU2E5lK+5jb4m+xKZ+IRCndE2zx1+nIrvMQtsGLUwJ+rGFf1Kh1o0q9mCOWk+ws4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724759064; c=relaxed/simple;
-	bh=M5U58xavEfJS9Jq3NPUxRrcl06l5is/NdCI503mKL7o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MSrvaFCh/KgzJR9d92vH7ZWo1JJ3e2N8F7MWkelkJ0V8DXW3Jk/ReaFNs5hnaLL0v/6/2K8+skJ/ytCaSaassm12KuHJzUXZrFwlPDklQxDglrSIL/Ye3Fxxu/MxPpNox8CkkZHhIoyAPtXJZH2V/k8MOE4vclXnGsHKON0T22s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u5QNvds/; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6b3afc6cd01so49342827b3.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2024 04:44:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724759061; x=1725363861; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HbrPQE8jRD81MclT20thBdKrMQOQNi57XSGQvxTWTS4=;
-        b=u5QNvds/XVIi+SZ5jk6z8LK5MUJqbWdLoBza2GyDn8T9Frefwg4uc1Rw56BqGGG6UG
-         HY+P+1VqR8gNzCIgE/ac3S6bTYAmCgDcNWNImNQHHYaLm1u1O/UoB/sy8ItlT1zvUqf9
-         GK1GIJ5eP1XTWgUYcy23izncuTctjhkdcR65BpHj8JP9hDhiCXz8XK9dGOdMIJltWrQU
-         DffhrPxk2aGT7iJNYpD7qqP0H8AI+UW2o2GyxYsSUN4dCLXkHGTsPEGq6StsgRRH/36y
-         elb8GBpFocwNlBwzQmeG/myFbhWnkPSC8KMyjeufpbo+RN2O8nb9ltzVHM2cIZicnkIK
-         arWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724759061; x=1725363861;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HbrPQE8jRD81MclT20thBdKrMQOQNi57XSGQvxTWTS4=;
-        b=CaqHa4/5TwO4iQJHjJfvooqXyQXUQwjzyUOrNzRwGTzodyqIDX8JBPTuSWIdY1qXQ2
-         vd+dgEdAdQX0YcBPwhDzVu1DUAZ6aHRFDmBX+UXIkSWy/ZDQDJE5f1YxjqWHIpHLV6Vw
-         huqacfjJzjwOUE+QxsJs0M+Ou/jvHfDLfPdJY+ZLkjSRJP9cUtYzY5G26LHpD659Mb+R
-         rZNqr3SR5/uGK0+28w9hicf4JnvnmkoTVN9LikDducABIoeWh0OSwZYwK5C9AJ+JpD6L
-         /0lmTjiFIvRihkTcTiMHBE4gT3StxG8QSKbi5L8TM4q3p2/TAlrw3ZPyV6FoJAHRgyI0
-         3/fA==
-X-Forwarded-Encrypted: i=1; AJvYcCWG7Cb3WNKaEuQE4EmgR3iEqaZyV+J8JCVqfh5IhHmM7rhecTsfJd5awPsJ45901x4KSmy3dkRKULiZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh9M/M8se2GopYJQgB5dEQJn3hGRlyRXqH1KXeu+ZkwnMNgh9i
-	GbzNIepbaYd59H3XmEdnq6DJyH5Xq5NFZ/rFu+9dmGNsSXV1vC13Pvfd5EZz3RvAQof3Bv0MYZn
-	3alO5XGN/fTIsInp1y1V99MqjSDLazbdBWNG3aQ==
-X-Google-Smtp-Source: AGHT+IEFbOl3EI7OwCA2RA3WFV/8KK9lP4+cyNXB+PQIqHygNosqXZpSCOmLNbYe18abw+wdIinxpT2b9VOQqGYfq/w=
-X-Received: by 2002:a05:690c:6c09:b0:6ad:c9bd:3812 with SMTP id
- 00721157ae682-6cfb3fde15cmr20895397b3.17.1724759060653; Tue, 27 Aug 2024
- 04:44:20 -0700 (PDT)
+	s=arc-20240116; t=1724759107; c=relaxed/simple;
+	bh=qQ5rnwHBebdoqbagT23hX6UofBKa8mmMdLPucmPVnks=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=c3Q2zCsjTv+ghr2Phcff1KlkXaJBrfCvamaS0DXXs4+4kgI/y1vgnNiyvyVwDA3Cmc938nUbOxEqC51XyAulEoL2ibwD0ASC4rxbK9k5+hdwheg7fvKsRDvdczTinjVbL4lf5GlOoz+hZdbENJImFHef0eoKOGLgGxm65JQUFr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=R8RN5Eot; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xLXPfKWDxExyWqYh9vtXpPA+hwYuofc+hgQ3XeMgQEI=; b=R8RN5EotjK+Krdq8wnD52auW0j
+	zVu8/mHLkhcE3xaGIpM1UcXdL1qZEHnT/6q4HEPw/9lPNFT1pYIcJNkU6QLanbEgsRZAqz+57p8qM
+	O5iIxC67NNogtyNOu74OCzmRoBPvcqoNLrpp3aVMXmI+Z9uBem3zmeCyf7z19OmfivaCWxgSE1KGb
+	3Oke7WuMtYI4WG1jglXzaN+TUKSKJ/xzS7kX+F8RjNXs5Gp/qjSMOmd06vY4Ox28QL66toCcYxMKL
+	/kntGsR1sO4xOyaXzTaDE6zJ6aDafl4VLjUM3kfN7DDvvKZ8k09B6pYm2+MQ0gf45TonWZ5rVxH6l
+	vORb+vJg==;
+Received: from dynamic-176-006-142-117.176.6.pool.telefonica.de ([176.6.142.117] helo=[127.0.0.1])
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1siud9-0005QN-9R; Tue, 27 Aug 2024 13:44:59 +0200
+Date: Tue, 27 Aug 2024 13:44:58 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+CC: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
+User-Agent: K-9 Mail for Android
+In-Reply-To: 1ec02fa5-4b11-424b-a595-c715b62d105e@kwiboo.se
+References: <20240826205538.1066103-1-jonas@kwiboo.se> <66ccebeb.d40a0220.356790.58caSMTPIN_ADDED_BROKEN@mx.google.com> <b69e5a0a-acf9-412c-90b4-ebe00c7e07d4@kernel.org> 1ec02fa5-4b11-424b-a595-c715b62d105e@kwiboo.se
+Message-ID: <99731A50-58FA-4829-9785-339051E791B2@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240827063631.3932971-1-quic_qianyu@quicinc.com> <20240827063631.3932971-9-quic_qianyu@quicinc.com>
-In-Reply-To: <20240827063631.3932971-9-quic_qianyu@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 27 Aug 2024 14:44:09 +0300
-Message-ID: <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
-Subject: Re: [PATCH 8/8] PCI: qcom: Add support to PCIe slot power supplies
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org, 
-	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com, 
-	quic_devipriy@quicinc.com, kw@linux.com, lpieralisi@kernel.org, 
-	neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-
-On Tue, 27 Aug 2024 at 09:36, Qiang Yu <quic_qianyu@quicinc.com> wrote:
->
-> On platform x1e80100 QCP, PCIe3 is a standard x8 form factor. Hence, add
-> support to use 3.3v, 3.3v aux and 12v regulators.
-
-First of all, I don't see corresponding bindings change.
-
-Second, these supplies power up the slot, not the host controller
-itself. As such these supplies do not belong to the host controller
-entry. Please consider using the pwrseq framework instead.
-
->
-> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 52 +++++++++++++++++++++++++-
->  1 file changed, 50 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 6f953e32d990..59fb415dfeeb 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -248,6 +248,8 @@ struct qcom_pcie_cfg {
->         bool no_l0s;
->  };
->
-> +#define QCOM_PCIE_SLOT_MAX_SUPPLIES                    3
-> +
->  struct qcom_pcie {
->         struct dw_pcie *pci;
->         void __iomem *parf;                     /* DT parf */
-> @@ -260,6 +262,7 @@ struct qcom_pcie {
->         struct icc_path *icc_cpu;
->         const struct qcom_pcie_cfg *cfg;
->         struct dentry *debugfs;
-> +       struct regulator_bulk_data slot_supplies[QCOM_PCIE_SLOT_MAX_SUPPLIES];
->         bool suspended;
->         bool use_pm_opp;
->  };
-> @@ -1174,6 +1177,41 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
->         return !!(val & PCI_EXP_LNKSTA_DLLLA);
->  }
->
-> +static int qcom_pcie_enable_slot_supplies(struct qcom_pcie *pcie)
-> +{
-> +       struct dw_pcie *pci = pcie->pci;
-> +       int ret;
-> +
-> +       ret = regulator_bulk_enable(ARRAY_SIZE(pcie->slot_supplies),
-> +                                   pcie->slot_supplies);
-> +       if (ret < 0)
-> +               dev_err(pci->dev, "Failed to enable slot regulators\n");
-> +
-> +       return ret;
-> +}
-> +
-> +static void qcom_pcie_disable_slot_supplies(struct qcom_pcie *pcie)
-> +{
-> +       regulator_bulk_disable(ARRAY_SIZE(pcie->slot_supplies),
-> +                              pcie->slot_supplies);
-> +}
-> +
-> +static int qcom_pcie_get_slot_supplies(struct qcom_pcie *pcie)
-> +{
-> +       struct dw_pcie *pci = pcie->pci;
-> +       int ret;
-> +
-> +       pcie->slot_supplies[0].supply = "vpcie12v";
-> +       pcie->slot_supplies[1].supply = "vpcie3v3";
-> +       pcie->slot_supplies[2].supply = "vpcie3v3aux";
-> +       ret = devm_regulator_bulk_get(pci->dev, ARRAY_SIZE(pcie->slot_supplies),
-> +                                     pcie->slot_supplies);
-> +       if (ret < 0)
-> +               dev_err(pci->dev, "Failed to get slot regulators\n");
-> +
-> +       return ret;
-> +}
-> +
->  static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
->  {
->         struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -1182,10 +1220,14 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
->
->         qcom_ep_reset_assert(pcie);
->
-> -       ret = pcie->cfg->ops->init(pcie);
-> +       ret = qcom_pcie_enable_slot_supplies(pcie);
->         if (ret)
->                 return ret;
->
-> +       ret = pcie->cfg->ops->init(pcie);
-> +       if (ret)
-> +               goto err_disable_slot;
-> +
->         ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
->         if (ret)
->                 goto err_deinit;
-> @@ -1216,7 +1258,8 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
->         phy_power_off(pcie->phy);
->  err_deinit:
->         pcie->cfg->ops->deinit(pcie);
-> -
-> +err_disable_slot:
-> +       qcom_pcie_disable_slot_supplies(pcie);
->         return ret;
->  }
->
-> @@ -1228,6 +1271,7 @@ static void qcom_pcie_host_deinit(struct dw_pcie_rp *pp)
->         qcom_ep_reset_assert(pcie);
->         phy_power_off(pcie->phy);
->         pcie->cfg->ops->deinit(pcie);
-> +       qcom_pcie_disable_slot_supplies(pcie);
->  }
->
->  static void qcom_pcie_host_post_init(struct dw_pcie_rp *pp)
-> @@ -1602,6 +1646,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->                         goto err_pm_runtime_put;
->         }
->
-> +       ret = qcom_pcie_get_slot_supplies(pcie);
-> +       if (ret)
-> +               goto err_pm_runtime_put;
-> +
->         ret = pcie->cfg->ops->get_resources(pcie);
->         if (ret)
->                 goto err_pm_runtime_put;
-> --
-> 2.34.1
->
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
--- 
-With best wishes
-Dmitry
+
+Am 27=2E August 2024 13:29:34 MESZ schrieb Jonas Karlman <jonas@kwiboo=2Es=
+e>:
+>Hi Krzysztof,
+>
+>On 2024-08-27 08:52, Krzysztof Kozlowski wrote:
+>> On 26/08/2024 22:55, Jonas Karlman wrote:
+>>> The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
+>>> RK3566 SoC=2E It features e=2Eg=2E 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-c=
+ard,
+>>> GbE LAN, HDMI 2=2E0, M=2E2 NVMe and USB 2=2E0/3=2E0=2E
+>>>
+>>> Add devicetree binding documentation for the Hardkernel ODROID-M1S boa=
+rd=2E
+>>>
+>>> Signed-off-by: Jonas Karlman <jonas@kwiboo=2Ese>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/rockchip=2Eyaml | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip=2Eyaml b/D=
+ocumentation/devicetree/bindings/arm/rockchip=2Eyaml
+>>> index f08e9f2f5dfc=2E=2E9e29a5ecc94d 100644
+>>> --- a/Documentation/devicetree/bindings/arm/rockchip=2Eyaml
+>>> +++ b/Documentation/devicetree/bindings/arm/rockchip=2Eyaml
+>>> @@ -598,6 +598,11 @@ properties:
+>>>            - const: hardkernel,rk3568-odroid-m1
+>>>            - const: rockchip,rk3568
+>>> =20
+>>> +      - description: Hardkernel Odroid M1S
+>>> +        items:
+>>> +          - const: hardkernel,rk3566-odroid-m1s
+>>=20
+>> hardkernel,odroid-m1s
+>>=20
+>> Why adding SoC name to the board? Can it be Odroid M1S with RK3568?
+>
+>No, the M1S (rk3566) is a variant of the M1 (rk3568) with less features
+>and the smaller SoC package, fully agree that hardkernel,odroid-m1s is
+>better, will use it in a v2=2E
+>
+>I mainly wanted to keep it consistent to other Hardkernel Odroid boards=
+=2E
+>- hardkernel,rk3326-odroid-go2
+>- hardkernel,rk3326-odroid-go2-v11
+>- hardkernel,rk3326-odroid-go3
+>- rockchip,rk3568-odroid-m1 (hardkernel,rk3568-odroid-m1)
+>
+>If you agree to a vendor prefix change of rockchip,rk3568-odroid-m1,
+>maybe we can also drop the soc name from that compatible at the same
+>time? E=2Eg=2E change it to hardkernel,odroid-m1=2E
+
+I'd also agree with going with compatibles without the soc name in it=2E I=
+t is an ABI break but I think except the chrome devices no other board actu=
+ally uses that part of the compatible ?
+
+
+>Regards,
+>Jonas
+>
+>>=20
+>>=20
+>> Best regards,
+>> Krzysztof
+>>=20
+>
+
+--=20
+Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
+=2E
 
