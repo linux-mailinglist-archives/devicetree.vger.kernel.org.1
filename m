@@ -1,306 +1,574 @@
-Return-Path: <devicetree+bounces-96986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-96987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE5B9604CF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:48:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0062F9604DA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 10:49:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CBEA1F23BB7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:48:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7680F1F21B46
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2024 08:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B3719CD0F;
-	Tue, 27 Aug 2024 08:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855D41991C8;
+	Tue, 27 Aug 2024 08:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DAeqqbCA"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="cPSRAULn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2058.outbound.protection.outlook.com [40.107.22.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C76A19ADAC;
-	Tue, 27 Aug 2024 08:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724748434; cv=none; b=ZjlBwkBctfLIzEB6SDWHgp7j6y1Te3OMSSuzgPRJvF7mMqNIWA0E2LvwwzVdGnAEyhCFq69J1XFZzuejEFcSm7E0kVtbkGcNHw65XdpKFs3Fv6nyMGgwbZ6dzXeUy4PMWtC7kt2IPa3qq5/WXyU1aLLhLUp0AZM8IItea57vZzs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724748434; c=relaxed/simple;
-	bh=/bKdA/fUgS6txw3PjDZjMyTtbG9DKmlJaGp1eA8pz6s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qgDcyM6q5wI8Ed0elDsZuu1BsoeOVHmB6V0YjFgoyXIeACojash7VeZRari/sf/UbZq984BTU9mJiqAro7HIG5z2A25g0PAVCcH3lwM6BM21xiSpgJC9L94jts2EICyhg61kMrgU1M/o4HWwCdXHkM8SGCotsaS3eba+H2+fzjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DAeqqbCA; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f3f0a31ab2so57811561fa.0;
-        Tue, 27 Aug 2024 01:47:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724748430; x=1725353230; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fGVlo+O+ebU/GFxqfUFQ4h31mc1K7cAiW2G4oCByTC0=;
-        b=DAeqqbCAmXmcSkfizYqs8LDYY/z1bCA+7UKwHQsvfz9byFPdaIYJzeotNKd5pzL7Sj
-         RsCsYfzHoq9PUXmueOyEkGyrnOoi1bi8toa8bCOkKeyddVHvbZ8UyG4e8jSHyL+A3keO
-         5VbRMpI+/AUcq95Px5Yl1ky2U37jQxUdo12XdjdmqeCyulRUdP/G0VsruAbs7v8zfAFY
-         qyp3w+lGtkUgDUvr4vKUnMdbirshI7Bo4b84k5z695ErvbomKRcFC0x/vxZDyaWyFBsD
-         9gpCKhZiINMQHaYCDw0VWkUyl38AJktRk1nqGjE9vL1TLuuVJCyJJGorh/Uq0AW3q1u1
-         z72w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724748430; x=1725353230;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fGVlo+O+ebU/GFxqfUFQ4h31mc1K7cAiW2G4oCByTC0=;
-        b=ETSgEYnE5S9VD/JiBJXUdUkl+2iziJ+AvIfWyU0EFvnm0DWLMHhgGEMeMBZ0ySM54r
-         R4DEj2dmMVOQP6enbs7pjm2hJvs7l6BLBhbATizwg9/bpkVSjPQtUgSatYelJYlGdN/u
-         oOBjSrEu5qRgvmNxz/HhJoebwHGMarX7grWm92dpVrd2CelhTs6tc6oO2WiyxexH96et
-         4xNcdVZp87Y1WHVHGW08CNcH0KgNGqysvYwiizfhqgbpqq0haI3xjLnwsAERZzRDYncS
-         pvs7vDyZNZVcAVT5XeFm77//JDxpymCQ0+yKKRnE7frO6+HO0ZP3Ye04sKRt6PmoGw8Q
-         QzNg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFIIgW2i+1qL85a/B7e0z8S9vx/d1cG6I8zXaQiBRVqvE63ec6UtbB/SVTcJcIR20L2Mx9dhFbVurV@vger.kernel.org, AJvYcCWSi87zUPwGqS0QG2uqBkcRqISGrY7D24k9kBJC0Itge2N4r5nWyYPJzIUHrvC7DMKBPrXvGtFclF2rgg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+RYosaHksBv8Jo1nao1BMihycU3X6s99qM0Bt8CDZSFhEejKM
-	RojinD0FXIp07I5AVmL0SgUvVwHMjEJm+8uUHrxqEt6GUPUKfnV86qrq0Lnl/gkqO5+jXBux9Re
-	Il2InGhW8YfJakeYAoZh770/W+so=
-X-Google-Smtp-Source: AGHT+IF+7bMAIBWpPp9ZpYwoa+Iv2SEaNFgur+pE6KunkOxacIkCMQdQ0TOsiUNbIEVl+RbrIkKRo9Ai58gvP8G+H1Q=
-X-Received: by 2002:a2e:bc1f:0:b0:2f5:487:e87a with SMTP id
- 38308e7fff4ca-2f50487eaa3mr51459021fa.18.1724748429619; Tue, 27 Aug 2024
- 01:47:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC2331990CF;
+	Tue, 27 Aug 2024 08:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724748506; cv=fail; b=RBXUhezfGJF+W7lhIuNF353eZjKKZKcYpTKzhZKi+YhPSBy6Mg/0/T8Gn1hm9cOCAbb5AjG8bmY9HIukDZLXoR2AjyOZGmBo2SBDuoPFcxzBYjpQVzdjzroMALPQn/9AQjyr6O1dGnDCLF/ovlRGfBNDfci0HEBtXyXPsTgOiGs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724748506; c=relaxed/simple;
+	bh=k/CZEQCZeuOz8W/R1Mcj5DsTtSkXAvg/SK3LTSiLHcM=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=hJ80PLjzyeHjcaot17QPGaOsI+h6SnMW/c+K9PoWGeKMwF1imyfnCRfosN1yQbKW0ron8iriaksJQJ+Ot5PkeKjT5FxopR0t3ZasGnEJ6DOvrwkGrfiuLd85rMDilikh4Dh/eUIgk+B4dl400nN3eSEioqrqREwMilCsXCvqyMA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=cPSRAULn; arc=fail smtp.client-ip=40.107.22.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M35gduQU6CryEGbNRrL2Z+d5Qhmf2geaPf6Dn/gXZPFafTYfsTaLvXKu+QNnW6fycYRQi3mUPdIZmnNtTJ5N7N4YtqmP23G7UCyVi/Y5oMxnlfaHSOJjvlfe0EX1i+kaavy5z1MzZBdpB9qvbnK5waPOaErPZykjhT1+rY31kjae0BvZIgInzrGYJir71V1zXswXeB85lpD70zOMqWWjXRAzVWYgz3fuxcC5YWlWjPTQByspgwaRC9OdwIEE3U7hyN95QKbVHmHZL56eRnmWhS28C2Drd9oyaklXG+RAjCW2slG/tqJ2GPMhN5J4d1ZWjGXR4zab1hm6y57VNW5ZIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bBywNm9rCx8O1nhpFZBty3IRaL/1NgDpLT3TMOPaOVk=;
+ b=lIq8XvWigL+Jo/P10L2qulbeupPPwAATds6gti/OEK1Hmp/ZiwdqABAtSFGystugpaD1F0NZ7fjNfi0jD3vGW+Brc7acfG4UatVd4KODzVc759LLF9TO5P330HQ4bqYN6jbTWhYzwCR76287SSEInT0rPeUuzRLgfeYjMatkyzASRVtMn8tD0AQedTu5HjQOq6KxFn0AJvJ+FxtMbrrpoEnR3UdXjGyrbw922ijoKzsqzTyU5Yobe7oZEt/PCCUBMhVqbVC4uaHeQ1woW0pP1f0BHBptPl3eCJ1ySHxdtG8Q2yEXobFKuoIxAn/Cnqkh2FXMNRpLzc2gqBk1KPMvzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bBywNm9rCx8O1nhpFZBty3IRaL/1NgDpLT3TMOPaOVk=;
+ b=cPSRAULnh0/RsXl21UJjQJWp02avr9YUxGf5vuE7YZNnw0etGIAIS+3fIrkHD+F04AMptHmfPJVHxq0OAufpiGah3Zb+xaJdBdvz6ABtRnoGRqHzMmAYX9xghZ6BJ5jbXaFjGF1j8nAWbyf7WZjmWZNf/yAH6Z+h35zwd9NEjhhzrlLqbzniZ/UV51EGwhQ/XHw5nnElTaCVHVv+4pPuneYkrtQUH6yy75J1kVhY0zal8GYnmp7MZ4p2oPyH47tjDivLhdDNoAiXF2+irn6yChK99plNKEJz9c15sTDAXrWE+dsgYIhWdskEo8kpb/kfMUSW58C4JDZCDfIgJ+ozAw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
+ by AM0PR04MB6948.eurprd04.prod.outlook.com (2603:10a6:208:187::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Tue, 27 Aug
+ 2024 08:48:20 +0000
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd%7]) with mapi id 15.20.7897.021; Tue, 27 Aug 2024
+ 08:48:20 +0000
+From: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+To: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Subject: [PATCH] arm64: dts: s32g: Add S32G2/S32G3 uSDHC pinmux
+Date: Tue, 27 Aug 2024 11:48:15 +0300
+Message-ID: <20240827084815.1931169-1-ciprianmarian.costea@oss.nxp.com>
+X-Mailer: git-send-email 2.45.2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AS4P192CA0052.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:20b:658::6) To DU0PR04MB9251.eurprd04.prod.outlook.com
+ (2603:10a6:10:352::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org>
- <20240822-en7581-pinctrl-v2-1-ba1559173a7f@kernel.org> <20240822-taste-deceptive-03d0ad56ae2e@spud>
- <aef3188d-5aaf-4f6d-addf-60066065ef9b@genexis.eu> <20240823-darkened-cartload-d2621f33eab8@spud>
- <66c8c50f.050a0220.d7871.f209@mx.google.com> <Zsj8bmBJhfUdH6qT@lore-desk> <20240826-kinsman-crunching-e3b75297088c@spud>
-In-Reply-To: <20240826-kinsman-crunching-e3b75297088c@spud>
-From: Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>
-Date: Tue, 27 Aug 2024 10:46:58 +0200
-Message-ID: <CAA2SeNJ2Gi+3Za+jvAVqqbx7xEGLqkDBkJ8vL=pA=ZbKWOfp=Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl controller
-To: Conor Dooley <conor@kernel.org>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>, 
-	Benjamin Larsson <benjamin.larsson@genexis.eu>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sean Wang <sean.wang@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	upstream@airoha.com
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|AM0PR04MB6948:EE_
+X-MS-Office365-Filtering-Correlation-Id: deb35a01-8cfb-4d45-b9aa-08dcc675008b
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RWl1YzBpRWdzVHBUbDlkUldOc3pHbnVMT01TSk9wMCs4ekxKOHBZbDNXdFlI?=
+ =?utf-8?B?dFozL01Xb2V6RXNwNEZ1KzdxRzVGdWxsZHVhUWpNbGg3NkEydXh3dnJjN0o5?=
+ =?utf-8?B?WTBJM1BPRmVYbGoxc2JSQ1FrcFhHcHovWVdBV2lrV0VOVmVmbCsyU0h0OTIw?=
+ =?utf-8?B?UzVQUE80UVI5RURITCtrRGdZSEl2aXVsbFRiN3JsYWJKS0VGT0pGZzVlMUQv?=
+ =?utf-8?B?VXg0SEs3KzZLY1ozbUVyKzVQUzZNajVPNCtqMHB4ZFpPM1ZJdHJaZ0VaYldD?=
+ =?utf-8?B?VGVzQ081Ujh2MEh5VnNaeFhRSXIxWTkzYWpzT1hZSVVKZlpFdk5nK25kcFp1?=
+ =?utf-8?B?bERTeDVSTWFDdGZoYTdBWEp2cVdLd21MU1J2cTJ0TU5RWWZiZjBXazU1NU51?=
+ =?utf-8?B?ZHc3UVQxcm85SU1DS21ZczdabXNmcENVMy91ZVphMzdTYUZaNUwyK2xJQkhj?=
+ =?utf-8?B?RzJlQlVXb2FwbURYcmlzcTNKU0c1RmdZZFhpY0ZCNnVBamtwR3JRcWFFYWtn?=
+ =?utf-8?B?NDl6a1VMK3p1NGlqWW5JanZVMGRaWEpUSFhPdHNzSFpCMlNQR0lBZDhuSkQ4?=
+ =?utf-8?B?Vi9yMzJNMlJJcndmNXlqWjJtSms5REh5YW1NSHFLTm5Cd1g0VHRrV2lUdDJW?=
+ =?utf-8?B?S2dKdjQzNndOVlhtYUhvNlhqWjNHUmU4ZXpNWW9xVElqbFl2SXFPd3UvcVZG?=
+ =?utf-8?B?THZ2RWpJYzRaRkNRaTZKZUppVWVLWUZBdm5zb2ZFTkZ2b1V4Ti9HYVZCVXFh?=
+ =?utf-8?B?WElNbUNQYVNRc1dHYmZ6K3ZKUFJHekVOK1AwNGhFQVJWaVpsaDRYZFFVODJu?=
+ =?utf-8?B?RVdaSGs2U2lnRVlCZHk3dEZ3YUloenpsT24wZEpVQTVWUy82K3QxMS95aFhV?=
+ =?utf-8?B?YUhLVEViczhjZTZmKy9qeG5qYWRBOGtIQWZyRDhiSXk5RjFFWGFiQlJMKy9k?=
+ =?utf-8?B?VlNTVTREVm1XUFdpVG1ERGE5ZkFQMFU5QlcvWWJlOTAyRjl4SXREWmpiT2VU?=
+ =?utf-8?B?M1dtVElLWGp5OG1ZeUM0aE5sbGE1VUpIcHVqRUFsMmVSK1hJS3pLc1J4U04y?=
+ =?utf-8?B?aytGQXRsMmpTVGtUTkdLazVJSnE1akoyTkpXZGZNWCsrWllEREcyYXFRczNa?=
+ =?utf-8?B?Z1c4RGYxaWJpVCtXYm9OZ0lWekM5M08rSzY2TnlicEFLeVlkN244YTU5Mk5w?=
+ =?utf-8?B?NVFxelBqWGtldks4M0xwUjZ3RUlra2xjQ0Q2SVBjYlQ5aU9BS3R0RGVlUENy?=
+ =?utf-8?B?ZC8rd0Q2bkxadWhnNER5MGdHaTBXZWxRR1VHeEM5cllnaWdzcE1YUXM0K1lQ?=
+ =?utf-8?B?VmhkUjBYeXFHYzhjU0lpRXZYZzhCd3dha2J6UVBteENLL3owZjlrZ3lsL0Jz?=
+ =?utf-8?B?MmRrRmFjTUsySTlyaW9uSkhNczF3RHZVR1FTOFdNUGYyUnpLV2M5VE9nM2dS?=
+ =?utf-8?B?N2JDeDZHeC91ejNaalcrcjFVUGZiK0xlTmVFaW9OOGhTUm9sMFpheWhweU9x?=
+ =?utf-8?B?dkxxVkdCdTZIR1NnQlFWTzFyVDlKT0gvaFVBSEJ5bU1yVGI3SklRNVRRTVdi?=
+ =?utf-8?B?eDFpZnE5K3dBdXhCZU9RMllYOHgyL1AxQ3k3ZDlZRi9MYXRjTWd2Vit0YTRu?=
+ =?utf-8?B?N3JUdlFzWWtLYkJpaFhoSEdrQ3pWNFZuYlZVZCtnWWEzNXZnallHenJhajZK?=
+ =?utf-8?B?NDl5V3J4cFl3YmoxTERaanBHMDFjWXZVaVZRMEUwTFVRR1JCMnVOclFBYVpv?=
+ =?utf-8?B?TWNLdmw4NEJBOThGWVJrNkk0TlRFanY1Uy9BNy9FdlZIeXhHNmNXZm1ydnNq?=
+ =?utf-8?B?MkI1ZjRRVHJUR01LS1EyUT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OUNwMDhjUFpvaDE2RHpuclI1ZnZaaWFadi9PbUg4eC9XL3o3c0hVSjhVRWM4?=
+ =?utf-8?B?Z0x1UXFKMVBzRzkwUjBxSFErRnlxREZFTUdZNVVxSEZES0NFa0FUM1daWito?=
+ =?utf-8?B?ZTlEZEEvQzJxRHJWb3MxYUJmY0N3TUJXb2hoeGJQVnJKbGFWbldqS2N3Nnpn?=
+ =?utf-8?B?UjFydndJZldhZ2NzZjVsV1l6WlA1b0hyaCtpc0lrQ2VOME1IS3YrYjVwRXBv?=
+ =?utf-8?B?OWRMdnlCTzUvVUdjcnVnakJlQkdLQlIrVXVwZkNPS3pTK2ZmdVlTRStnejhX?=
+ =?utf-8?B?eDF6SmRPTGhkY2tUSzNLNnpXYnE3VksraHpkTU15MmpWVzkvQTd5V211TEZr?=
+ =?utf-8?B?YXJSRjU4Q1Z6bDBIMzYxT1FMYVB4SS9FU1FwYWhFR29pazNwR1ZZek1nVXdQ?=
+ =?utf-8?B?Yi83aHA5TFJxT29VeWNpN2Z3MVlJeVhPdHl0bUhwSFNJWCtVTFBXbXU2UDR6?=
+ =?utf-8?B?WUljQWR5T2RsTmFDc0dLREJDZEdqaWE2eFd5YlRDS2xkbExaUmUwWURObmRq?=
+ =?utf-8?B?T0RKSlBXclFMOGw5dnE0TENzTWZ4VlppOUkvVkwrSVVkck8rd3RlQ3MrNUFq?=
+ =?utf-8?B?ekxwMzNEeEZldTllQnduOEJFSFlJRkdINHRjOHI5YlhqT205aTM2Sk1PWDRI?=
+ =?utf-8?B?dVhVekFjSXlwZFN4ZVkrYytqK3oxR2ZHSE9makNmcGpSMFFCY0tQQTdYaGg0?=
+ =?utf-8?B?L1J2Mi9wd3JUN2k1OVdaOExScW5LZGFxdFI3bzBjZCs0ZG9heWV1VGRHSmxS?=
+ =?utf-8?B?YUJHWGNURHR6aVdieTZMcWJKcWptUXpCVTd2TGNKSkw4ZUZOUjRHK2luSkxC?=
+ =?utf-8?B?OVdIS2trZlFJQVRBY2hnVTdtQU1pR2V6bFNDUW9uc0xDWUVpL05XcVMveVpZ?=
+ =?utf-8?B?dHc1ZE5zdFFSaGtpV3JtR3hhTVI3UnVRd2F3NWZFNmUvbnF1TVFMVWJGYWh6?=
+ =?utf-8?B?WWI1Nlg0bnNoVktPa3B3NENONjlPMzBqR0hMY3dUeUxhbUZCc1hFSXNEejNo?=
+ =?utf-8?B?R2xoTXU1KzdEUHVHTDVnVlVzY1VuQWFjYzJjc2d4cXBzaVR3dHE2VkJGZW9l?=
+ =?utf-8?B?cjBYT2FqS3BXWCtaQUtPdGlHSlFkTWdqUnFMbEVha0FnUzF0ZkZNcEV2T1Fu?=
+ =?utf-8?B?ZHdTbnFoanVONjRqQjFlZ2xSeWtGU0gwWHpJbERuakl3L1JSanRjYTZjZytn?=
+ =?utf-8?B?NkNTMEdVSnJML0xaVEVrSm9XeWFSWERPRW9uQ2hwbGFqOGFDNHVFb0J4Mnhl?=
+ =?utf-8?B?NEdWdmpZdllRa1FpRkw4UUJFVnNTSE5wM25oZGVIUXl4WHVxMjAwUWl3bDdS?=
+ =?utf-8?B?cmMrV2hQUURmTWJaMXEwSkxNcEtFNngwOGVaakN6VW9iSSszY0JQbWluODJM?=
+ =?utf-8?B?dDl3VHlzTWlUNy9FdmxWOFFaWDNiaFVaOVJVNXh0Z0ZMNnRac0l1RGZ2bDFD?=
+ =?utf-8?B?QVl0UXVLL2hXc2NQd0IvbUgva2UvOXVmM1ZsNVZTN2M5SU5rUjN3RndPMEtU?=
+ =?utf-8?B?ZmlnVDVnYTVyczA0UzNvRmhGNmEwdUg5NXlXNXFMdStXN1FkbGliZGxiS3dN?=
+ =?utf-8?B?bXlyODdBYTNGT1IzdXRUT2xpa2cxYmpvNFVJSTExVi9ITVQ4T21HdHk1YUYr?=
+ =?utf-8?B?SnVBMzlRKzl2OEtGWGcrQkVzdVFSSVcyZFhOcUFDS2JpTU82bHRlSGk4S3pi?=
+ =?utf-8?B?SWxVNG44VjJUeXZpZ2NuSHdLVmh6ekhGWTl0MzhUQ3JXcHo2NVZWTWwwelp1?=
+ =?utf-8?B?T1FGZ25CVnh6azhhWnM3Y0F1aDdEeWJIa0pkbXYzcHpNK0JIYkd4am5lWmxz?=
+ =?utf-8?B?Z1c2bzZxL0xodFlkZHVxYmhmb3RJVU85ZS80VTZJZXc0c2xOWVI2MS9kWTdK?=
+ =?utf-8?B?ZVZ4NDBybFZISk9Nd3NpSkV4WXhLckV6elNKaVMyam9PM2lNL1dSd0xPYVE4?=
+ =?utf-8?B?eUNZdk1YdU4zaVUyajV3NzlML0s2bWtxbFpsVzdkTGsreWlQOHpVSWlScWJQ?=
+ =?utf-8?B?aUI5U1NNZ2JOV2lTT0I3a2tNVU5ZMEoxUk9QT00raXlIcjE1U2pNMzZqenAy?=
+ =?utf-8?B?QnJBQ2ZhZlI4R016S0xWRnJYTU5VRWhyd0NHVExIa0twc1ByRUVWTjlkOXpq?=
+ =?utf-8?B?eW9xWFJ6aUpZZGc3NlFobGpNeEhqQXNCWmRRSGRpcG1wcEZqMTlCNlJWVUdw?=
+ =?utf-8?B?SEE9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: deb35a01-8cfb-4d45-b9aa-08dcc675008b
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2024 08:48:20.4442
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bqvi+v4W++6xmZmxfLBO0R0ejNmHpSvCTPZj8ZB+cjXqMK6OmzN/KYCF3SBYd3A3OP7wjunNDv2TJ+MhpkkYKsmJbRghH8W2IiW0nam3rTQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6948
 
->
-> On Fri, Aug 23, 2024 at 11:17:34PM +0200, Lorenzo Bianconi wrote:
-> > > On Fri, Aug 23, 2024 at 05:14:30PM +0100, Conor Dooley wrote:
-> > > > On Thu, Aug 22, 2024 at 10:50:52PM +0200, Benjamin Larsson wrote:
-> > > > > On 22/08/2024 18:06, Conor Dooley wrote:
-> > > > >
-> > > > >
-> > > > > Hi.
-> > > > >
-> > > > > > before looking at v1:
-> > > > > > I would really like to see an explanation for why this is a correct
-> > > > > > model of the hardware as part of the commit message. To me this screams
-> > > > > > syscon/MFD and instead of describing this as a child of a syscon and
-> > > > > > using regmap to access it you're doing whatever this is...
-> > > > >
-> > > > > Can you post a link to a good example dts that uses syscon/MFD ?
-> > > > >
-> > > > > It is not only pinctrl, pwm and gpio that are entangled in each other. A
-> > > > > good example would help with developing a proper implementation.
-> > > >
-> > > > Off the top of my head, no unfortunately. Maybe Rob or Krzk have a good
-> > > > example. I would suggest to start by looking at drivers within gpio or
-> > > > pinctrl that use syscon_to_regmap() where the argument is sourced from
-> > > > either of_node->parent or dev.parent->of_node (which you use depends on
-> > > > whether or not you have a child node or not).
-> > > >
-> > > > I recently had some questions myself for Rob about child nodes for mfd
-> > > > devices and when they were suitable to use:
-> > > > https://lore.kernel.org/all/20240815200003.GA2956351-robh@kernel.org/
-> > > >
-> > > > Following Rob's line of thought, I'd kinda expect an mfd driver to create
-> > > > the devices for gpio and pwm using devm_mfd_add_devices() and the
-> > > > pinctrl to have a child node.
-> > >
-> > > Just to not get confused and staring to focus on the wrong kind of
-> > > API/too complex solution, I would suggest to check the example from
-> > > Lorenzo.
-> > >
-> > > The pinctrl/gpio is an entire separate block and is mapped separately.
-> > > What is problematic is that chip SCU is a mix and address are not in
-> > > order and is required by many devices. (clock, pinctrl, gpio...)
-> > >
-> > > IMHO a mfd is overkill and wouldn't suite the task. MDF still support a
-> > > single big region and in our case we need to map 2 different one (gpio
-> > > AND chip SCU) (or for clock SCU and chip SCU)
-> > >
-> > > Similar problem is present in many other place and syscon is just for
-> > > the task.
-> > >
-> > > Simple proposed solution is:
-> > > - chip SCU entirely mapped and we use syscon
->
-> That seems reasonable.
+From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-ack
+Adding 100mhz & 200mhz pinmux support for uSDHC helps to support
+higher speed modes for SD (SDR50, DDR50, SDR104) and
+eMMC (such as HS200, HS400/HS400ES).
 
->
-> > > - pinctrl mapped and reference chip SCU by phandle
->
-> ref by phandle shouldn't be needed here, looking up by compatible should
-> suffice, no?
+Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+---
+ arch/arm64/boot/dts/freescale/s32g2.dtsi      | 153 ++++++++++++++++++
+ .../arm64/boot/dts/freescale/s32g274a-evb.dts |   4 +
+ .../boot/dts/freescale/s32g274a-rdb2.dts      |   4 +
+ arch/arm64/boot/dts/freescale/s32g3.dtsi      | 153 ++++++++++++++++++
+ .../boot/dts/freescale/s32g399a-rdb3.dts      |   4 +
+ 5 files changed, 318 insertions(+)
 
-ack, I think it would be fine
+diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+index fa054bfe7d5c..303be64399b5 100644
+--- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
++++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+@@ -162,6 +162,159 @@ jtag-grp4 {
+ 					slew-rate = <166>;
+ 				};
+ 			};
++
++			pinctrl_usdhc0: usdhc0grp {
++				usdhc0-grp0 {
++					pinmux = <0x2e1>,
++						 <0x381>;
++					output-enable;
++					bias-pull-down;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp1 {
++					pinmux = <0x2f1>,
++						 <0x301>,
++						 <0x311>,
++						 <0x321>,
++						 <0x331>,
++						 <0x341>,
++						 <0x351>,
++						 <0x361>,
++						 <0x371>;
++					output-enable;
++					input-enable;
++					bias-pull-up;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp2 {
++					pinmux = <0x391>;
++					output-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp3 {
++					pinmux = <0x3a0>;
++					input-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp4 {
++					pinmux = <0x2032>,
++						 <0x2042>,
++						 <0x2052>,
++						 <0x2062>,
++						 <0x2072>,
++						 <0x2082>,
++						 <0x2092>,
++						 <0x20a2>,
++						 <0x20b2>,
++						 <0x20c2>;
++				};
++			};
++
++			pinctrl_usdhc0_100mhz: usdhc0-100mhzgrp {
++				usdhc0-100mhz-grp0 {
++					pinmux = <0x2e1>,
++						 <0x381>;
++					output-enable;
++					bias-pull-down;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp1 {
++					pinmux = <0x2f1>,
++						 <0x301>,
++						 <0x311>,
++						 <0x321>,
++						 <0x331>,
++						 <0x341>,
++						 <0x351>,
++						 <0x361>,
++						 <0x371>;
++					output-enable;
++					input-enable;
++					bias-pull-up;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp2 {
++					pinmux = <0x391>;
++					output-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp3 {
++					pinmux = <0x3a0>;
++					input-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp4 {
++					pinmux = <0x2032>,
++						 <0x2042>,
++						 <0x2052>,
++						 <0x2062>,
++						 <0x2072>,
++						 <0x2082>,
++						 <0x2092>,
++						 <0x20a2>,
++						 <0x20b2>,
++						 <0x20c2>;
++				};
++			};
++
++			pinctrl_usdhc0_200mhz: usdhc0-200mhzgrp {
++				usdhc0-200mhz-grp0 {
++					pinmux = <0x2e1>,
++						 <0x381>;
++					output-enable;
++					bias-pull-down;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp1 {
++					pinmux = <0x2f1>,
++						 <0x301>,
++						 <0x311>,
++						 <0x321>,
++						 <0x331>,
++						 <0x341>,
++						 <0x351>,
++						 <0x361>,
++						 <0x371>;
++					output-enable;
++					input-enable;
++					bias-pull-up;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp2 {
++					pinmux = <0x391>;
++					output-enable;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp3 {
++					pinmux = <0x3a0>;
++					input-enable;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp4 {
++					pinmux = <0x2032>,
++						 <0x2042>,
++						 <0x2052>,
++						 <0x2062>,
++						 <0x2072>,
++						 <0x2082>,
++						 <0x2092>,
++						 <0x20a2>,
++						 <0x20b2>,
++						 <0x20c2>;
++				};
++			};
+ 		};
+ 
+ 		uart0: serial@401c8000 {
+diff --git a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+index dbe498798bd9..7ab917f547ef 100644
+--- a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
++++ b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+@@ -34,6 +34,10 @@ &uart0 {
+ };
+ 
+ &usdhc0 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc0>;
++	pinctrl-1 = <&pinctrl_usdhc0_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc0_200mhz>;
+ 	disable-wp;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+index ab1e5caaeae7..8739f63771bc 100644
+--- a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
++++ b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+@@ -40,6 +40,10 @@ &uart1 {
+ };
+ 
+ &usdhc0 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc0>;
++	pinctrl-1 = <&pinctrl_usdhc0_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc0_200mhz>;
+ 	disable-wp;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
+index b4226a9143c8..0d6f077b1eb9 100644
+--- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
++++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
+@@ -219,6 +219,159 @@ jtag-grp4 {
+ 					slew-rate = <166>;
+ 				};
+ 			};
++
++			pinctrl_usdhc0: usdhc0grp {
++				usdhc0-grp0 {
++					pinmux = <0x2e1>,
++						 <0x381>;
++					output-enable;
++					bias-pull-down;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp1 {
++					pinmux = <0x2f1>,
++						 <0x301>,
++						 <0x311>,
++						 <0x321>,
++						 <0x331>,
++						 <0x341>,
++						 <0x351>,
++						 <0x361>,
++						 <0x371>;
++					output-enable;
++					input-enable;
++					bias-pull-up;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp2 {
++					pinmux = <0x391>;
++					output-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp3 {
++					pinmux = <0x3a0>;
++					input-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-grp4 {
++					pinmux = <0x2032>,
++						 <0x2042>,
++						 <0x2052>,
++						 <0x2062>,
++						 <0x2072>,
++						 <0x2082>,
++						 <0x2092>,
++						 <0x20a2>,
++						 <0x20b2>,
++						 <0x20c2>;
++				};
++			};
++
++			pinctrl_usdhc0_100mhz: usdhc0-100mhzgrp {
++				usdhc0-100mhz-grp0 {
++					pinmux = <0x2e1>,
++						 <0x381>;
++					output-enable;
++					bias-pull-down;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp1 {
++					pinmux = <0x2f1>,
++						 <0x301>,
++						 <0x311>,
++						 <0x321>,
++						 <0x331>,
++						 <0x341>,
++						 <0x351>,
++						 <0x361>,
++						 <0x371>;
++					output-enable;
++					input-enable;
++					bias-pull-up;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp2 {
++					pinmux = <0x391>;
++					output-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp3 {
++					pinmux = <0x3a0>;
++					input-enable;
++					slew-rate = <150>;
++				};
++
++				usdhc0-100mhz-grp4 {
++					pinmux = <0x2032>,
++						 <0x2042>,
++						 <0x2052>,
++						 <0x2062>,
++						 <0x2072>,
++						 <0x2082>,
++						 <0x2092>,
++						 <0x20a2>,
++						 <0x20b2>,
++						 <0x20c2>;
++				};
++			};
++
++			pinctrl_usdhc0_200mhz: usdhc0-200mhzgrp {
++				usdhc0-200mhz-grp0 {
++					pinmux = <0x2e1>,
++						 <0x381>;
++					output-enable;
++					bias-pull-down;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp1 {
++					pinmux = <0x2f1>,
++						 <0x301>,
++						 <0x311>,
++						 <0x321>,
++						 <0x331>,
++						 <0x341>,
++						 <0x351>,
++						 <0x361>,
++						 <0x371>;
++					output-enable;
++					input-enable;
++					bias-pull-up;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp2 {
++					pinmux = <0x391>;
++					output-enable;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp3 {
++					pinmux = <0x3a0>;
++					input-enable;
++					slew-rate = <208>;
++				};
++
++				usdhc0-200mhz-grp4 {
++					pinmux = <0x2032>,
++						 <0x2042>,
++						 <0x2052>,
++						 <0x2062>,
++						 <0x2072>,
++						 <0x2082>,
++						 <0x2092>,
++						 <0x20a2>,
++						 <0x20b2>,
++						 <0x20c2>;
++				};
++			};
+ 		};
+ 
+ 		uart0: serial@401c8000 {
+diff --git a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+index 176e5af191c8..828e353455b5 100644
+--- a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
++++ b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+@@ -40,6 +40,10 @@ &uart1 {
+ };
+ 
+ &usdhc0 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc0>;
++	pinctrl-1 = <&pinctrl_usdhc0_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc0_200mhz>;
+ 	bus-width = <8>;
+ 	disable-wp;
+ 	status = "okay";
+-- 
+2.45.2
 
->
-> > > - pwm a child of pinctrl as it's scrambled in the pinctrl mapped regs
->
-> The pwm is not a child of the pinctrl though, they're both subfunctions of
-> the register region they happen to both be in. I don't agree with that
-> appraisal, sounds like an MFD to me.
-
-ack
-
->
-> > > Hope this can clear any confusion.
-> >
-> > To clarify the hw architecture we are discussing about 3 memory regions:
-> > - chip_scu: <0x1fa20000 0x384>
-> > - scu: <0x1fb00020 0x94c>
->                   ^
-> I'm highly suspicious of a register region that begins at 0x20. What is
-> at 0x1fb00000?
-
-sorry, my fault
-
->
-> > - gpio: <0x1fbf0200 0xbc>
->
-> Do you have a link to the register map documentation for this hardware?
->
-> > The memory regions above are used by the following IC blocks:
-> > - clock: chip_scu and scu
->
-> What is the differentiation between these two different regions? Do they
-> provide different clocks? Are registers from both of them required in
-> order to provide particular clocks?
-
-In chip-scu and scu memory regions we have heterogeneous registers.
-Regarding clocks in chip-scu we have fixed clock registers (e.g. spi
-clock divider, switch clock source and divider, main bus clock source
-and divider, ...) while in scu (regarding clock configuration) we have
-pcie clock regs (e.g. reset and other registers). This is the reason
-why, in en7581-scu driver, we need both of them, but we can access
-chip-scu via the compatible string (please take a look at the dts
-below).
-
->
-> > - pinctrl (io-muxing/gpio_chip/irq_chip): chip_scu and gpio
->
-> Ditto here. Are these actually two different sets of iomuxes, or are
-> registers from both required to mux a particular pin?
-
-Most of the io-muxes configuration registers are in chip-scu block,
-just pwm ones are in gpio memory block.
-Gpio block is mainly used for gpio_chip and irq_chip functionalities.
-
->
-> > - pwm: gpio
-> >
-> > clock and pinctrl devices share the chip_scu memory region but they need to
-> > access even other separated memory areas (scu and gpio respectively).
-> > pwm needs to just read/write few gpio registers.
-> > As pointed out in my previous email, we can define the chip_scu block as
-> > syscon node that can be accessed via phandle by clock and pinctrl drivers.
-> > clock driver will map scu area while pinctrl one will map gpio memory block.
-> > pwm can be just a child of pinctrl node.
->
-> As I mentioned above, the last statement here I disagree with. As
-> someone that's currently in the process of fixing making a mess of this
-> exact kind of thing, I'm going to strongly advocate not taking shortcuts
-> like this.
->
-> IMO, all three of these regions need to be described as syscons in some
-> form, how exactly it's hard to say without a better understanding of the
-> breakdown between regions.
->
-> If, for example, the chip_scu only provides a few "helper" bits, I'd
-> expect something like
->
-> syscon@1fa20000 {
->         compatible = "chip-scu", "syscon";
->         reg = <0x1fa2000 0x384>;
-> };
->
-> syscon@1fb00000 {
->         compatible = "scu", "syscon", "simple-mfd";
->         #clock-cells = 1;
-> };
->
-> syscon@1fbf0200 {
->         compatible = "gpio-scu", "syscon", "simple-mfd";
->         #pwm-cells = 1;
->
->         pinctrl@x {
->                 compatible = "pinctrl";
->                 reg = x;
->                 #pinctrl-cells = 1;
->                 #gpio-cells = 1;
->         };
-> };
->
-
-ack, so we could use the following dts nodes for the discussed memory
-regions (chip-scu, scu and gpio):
-
-syscon@1fa20000 {
-    compatible = "airoha,chip-scu", "syscon";
-    reg = <0x0 0x1fa2000 0x0 0x384>;
-};
-
-clock-controller@1fb00000 {
-    compatible = "airoha,en7581-scu", "syscon";
-    reg = <0x0 0x1fb00000 0x0 0x94c>;
-    #clock-cells = <1>;
-    #reset-cells = <1>;
-};
-
-mfd@1fbf0200 {
-    compatible = "airoha,en7581-gpio-mfd", "simple-mfd";
-    reg = <0x0 0x1fbf0200 0x0 0xc0>;
-
-    pio: pinctrl {
-        compatible = "airoha,en7581-pinctrl"
-        gpio-controller;
-        #gpio-cells = <2>;
-
-        interrupt-controller;
-        #interrupt-cells = <2>;
-        interrupt-parent = <&gic>;
-        interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-    }
-
-    pwm: pwm {
-        compatible = "airoha,en7581-pwm";
-        #pwm-cells = <3>;
-    }
-};
-
-What do you think?
-If we all agree on the approach above, we can proceed with the
-required changes in the clk/pinctrl and pwm drivers.
-
-Regards,
-Lorenzo
-
-> And you could look up the chip-scu by its compatible from the clock or
-> pinctrl drivers. Perhaps the "helper" bits assumption is incorrect
-> however, and both the scu and chip scu provide independent clocks?
->
-> > What do you think about this approach? Can we address the requirements above
-> > via classic mfd driver?
->
->
 
