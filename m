@@ -1,107 +1,92 @@
-Return-Path: <devicetree+bounces-97307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D2F961F0F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:08:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3DB5961F18
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:10:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43F001F2416B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 06:08:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF901F24CEC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 06:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C964D14B945;
-	Wed, 28 Aug 2024 06:08:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22257155316;
+	Wed, 28 Aug 2024 06:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ApTn6ikf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="stgk8XDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70401799F;
-	Wed, 28 Aug 2024 06:08:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2944154BEB;
+	Wed, 28 Aug 2024 06:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724825328; cv=none; b=NlNPAGdoX+GwicpMvGbXc3WVn0OquXMkYZH3aKBsLdADNeZ6lF003B11fPDAXWnw/jYQVFtzNVrpDBfWiztnoRBIcsRlboE+olrNA2iYRQShekFUyLwl3CifWqvIWZXrcLivYmWtAtmqpU1QtZeGx3zmI1GDjF7k73caGXTTpPw=
+	t=1724825437; cv=none; b=V0fSLoJe56CQFwTX9L/JVg+Y7Uz//xKLOaWW9odQ6hfcwM2Rbhs/0HIPb7m/I+0Jx8l9ady6iduT3w8dOTMRvbPhHL+i1mYhX1qL8ebk1UlyxphDIJBP4ytXkiLne4xwA1SaL+wwwWu2EnHy2FfrVJq7sgz7pmnansIkFoXnlwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724825328; c=relaxed/simple;
-	bh=Pl1+NSifgoRpJ4LlZciVlTEEXJmTEpqOHSiN9reOK54=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jRIxrIEb/NqYfo9YVkBkRbUUj8ix7W2vzZSa4MP7ekJq/f0aWwl+Ge9XwKrRDri6Zu4W/O+OwR80+FmD4yB/EXGY876dZe0vF6M6MTICm94Uj4+GuJKaqZrb4mcQZmpMwNfLn/Mzvk+wPQmbvgXsAADd2KY/j9cvUj7zPOZnRcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ApTn6ikf; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47S68aI7055360;
-	Wed, 28 Aug 2024 01:08:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724825316;
-	bh=I9CxeLlhRLFlFLlPgD1G7AfcoceYacs6pNC/qxoK6i0=;
-	h=From:To:CC:Subject:Date;
-	b=ApTn6ikfQxsvUN8bpUk85e4QsZlQYxigQLZeqcbBDcAMJpgN/FfZmv2L3kmJFlJef
-	 X/4GATzLKIqnv65X5LIUHsrxNprwl+ABl6ZA3+5P4o+V2EV2bWdhMDrm5GNDJCRwJg
-	 nNiuWFkES7sJyq2HCMB2zvNxyl8uq45JuIGApJQA=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47S68a8g029671
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 28 Aug 2024 01:08:36 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
- Aug 2024 01:08:36 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 28 Aug 2024 01:08:36 -0500
-Received: from prasanth-server.dhcp.ti.com (prasanth-server.dhcp.ti.com [172.24.227.197])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47S68Wh3037421;
-	Wed, 28 Aug 2024 01:08:33 -0500
-From: Prasanth Babu Mantena <p-mantena@ti.com>
-To: <vigneshr@ti.com>, <nm@ti.com>, <krzk+dt@kernel.org>, <kristo@kernel.org>,
-        <robh@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        <sinthu.raja@ti.com>, <m-chawdhry@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am68-sk-som: Update Partition info for OSPI Flash
-Date: Wed, 28 Aug 2024 11:38:30 +0530
-Message-ID: <20240828060830.555733-1-p-mantena@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1724825437; c=relaxed/simple;
+	bh=xHoDsiwlXv3u19OOqWpN2NWa+iTlBrIoUnqU28yV7xk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nwiYR06e/LerSnJ73dsY5fKZ2aQQDW1GzqvRqJsDd7gcngsvK/7HNm9Rjlc3P5xJIooyGaruuwOR4xiaZn4XKHJuCM5ZIvtAetFzO7tTqgKZq3XTfwymHe/luaTB71WAX2WMmPKzRZg+8Ct0IAvkXB5t+vGuRQFHh4X8mJdi44s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=stgk8XDC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E723C32786;
+	Wed, 28 Aug 2024 06:10:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724825436;
+	bh=xHoDsiwlXv3u19OOqWpN2NWa+iTlBrIoUnqU28yV7xk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=stgk8XDC8B3SIoQUIRzqQivCuuwFpcl68pY9bPTe/SgOVpcTpfYB8jbe1pqLIvMDi
+	 if5KzQoNibL3hdhyk3lYr84lfkLAtPNBm5KUfWUbKGOWcsl0FMdDQct/np61Qzh+VH
+	 fZZzGk45HNm/2nBKCfh4gbBzOUOjTziqqV821Fcx/2j2mzS0WQjAYvX2EQvCY8RMXR
+	 3AGvhXzqIMXHkeWp1rbUJU/WyN2oPe8IoDtjBEtkcJ/z+ZX8WK3Wq4JtBkASnYCt0o
+	 nBKqq3hhWqynJVigmti6Uwe0nzYcQLd0jk0o0oFcQotYlTG5mbZrLHoKgBRgjMrRza
+	 DnLLAmeJZt/Rw==
+Date: Wed, 28 Aug 2024 08:10:32 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: misc: fsl,qoriq-mc: remove ref for
+ msi-parent
+Message-ID: <gpq556m4k4x5qfnnoxgazjvqc4pxcsexnlq6quakfezuup3w2k@waz2swdiwigd>
+References: <20240827180028.1009902-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240827180028.1009902-1-Frank.Li@nxp.com>
 
-Commit 73f1f26e2e4c ("arm64: dts: ti: k3-am68-sk-som: Add support
-for OSPI flash") introduced the flash node with discontinuous
-partitions. Updating the partition offset to be continuous from
-the previous partition to maintain linearity.
+On Tue, Aug 27, 2024 at 02:00:25PM -0400, Frank Li wrote:
+> msi-parent is standard property. Needn't ref to phandle.
+> Fix below warning:
+>   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: fsl-mc@80c000000: msi-parent:0: [16, 0] is too long
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml b/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
+> index 01b00d89a9921..8c64e2f7bc3c3 100644
+> --- a/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
+> +++ b/Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
+> @@ -113,7 +113,6 @@ properties:
+>  
+>    msi-parent:
+>      deprecated: true
+> -    $ref: /schemas/types.yaml#/definitions/phandle
 
-Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Instead:
+maxItems: 1
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-index 5c66e0ec6e82..2e5730216caa 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-@@ -215,9 +215,9 @@ partition@680000 {
- 				reg = <0x680000 0x40000>;
- 			};
- 
--			partition@740000 {
-+			partition@6c0000 {
- 				label = "ospi.env.backup";
--				reg = <0x740000 0x40000>;
-+				reg = <0x6c0000 0x40000>;
- 			};
- 
- 			partition@800000 {
--- 
-2.34.1
+... or anything else with proper explanation in commit msg.
+
+Best regards,
+Krzysztof
 
 
