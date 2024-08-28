@@ -1,140 +1,156 @@
-Return-Path: <devicetree+bounces-97690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87CBB9630B1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:07:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F24609630FA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:31:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 445832880F0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:07:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32C7AB2148A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:31:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647A41AB532;
-	Wed, 28 Aug 2024 19:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7101AB508;
+	Wed, 28 Aug 2024 19:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cq58Vbp9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kN2bwTjN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27D11AAE19;
-	Wed, 28 Aug 2024 19:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB20C175D2F
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 19:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724872030; cv=none; b=oreCLpnadGpxzW9OHHd6IisaaxX06Q1pBvaH+WNBspmBsk71PsLv62vXOT1qmLt9jOib/dchXrgOo9jSL+eTJa6vfwxW3YkXDvf9NhwTTvfjJD1KNCHVDAPFV32hBv8i+C8kCPdOuEoJG7vAwYbQefdGba7veTdgpg3zHCluN/A=
+	t=1724873481; cv=none; b=rU7HrG6ebYn7iusgloSxIXC43FUzzl0OtOsjGhdw4bAhQiLb9QTZXyfHCE4g6HDYpbUPIck3EKa+4meoiYxTT+2ZnzHv7zj0e363FVEWhDvyS27GqC5qhG/1coKHXMCNVGCLey4S7sfqDznVOsyjH2AvKf9scYPlvWo/27KsSK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724872030; c=relaxed/simple;
-	bh=HjKq3StBX94hw4M7AOGIX3XHXN2gq4bMwsiXnPva3LY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NL6BCSUtpK24yizO3pfpPWoUt1tvVzzvXNSMucMw73IA+bDjBG7aeVKgtFEoIl/AufDYWEOPOiPLrOPnx0IKgu9J/MyYlGgCCbPukEK5qAss82ZZBsV3rzAqw2WtgyPRzMP/qrqFn0Px7bxsnT6zmeNyYErAGmxFtzV/lKOn+oQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cq58Vbp9; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a7a9cf7d3f3so895472866b.1;
-        Wed, 28 Aug 2024 12:07:08 -0700 (PDT)
+	s=arc-20240116; t=1724873481; c=relaxed/simple;
+	bh=VuB8aOD1DFpYanM0ekrE9ZDfb9mPITbIOAVIdF3y8q0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f2/V0CDUUVzQ0DO9MvWYnSdyEr7I7xej4fzgUUxVbkD6+C2uRAhHAOZqXNDKf1TEvxNOv+Ie0JT0U4FeKUJU/56C5ZF83LjHWoluItItHqJnfIum62fWSb5nvk4BEAHEMbL9cmYI4K5mHWf99suAkvpY3ZqtzApE6L/eQPF3fxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kN2bwTjN; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53349d3071eso8814431e87.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 12:31:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724872027; x=1725476827; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HjKq3StBX94hw4M7AOGIX3XHXN2gq4bMwsiXnPva3LY=;
-        b=Cq58Vbp9cfo4Fd5Ep0X39hCPpdQxCYVY/8vqF9sHzzNGRi2OnIDcYPdE+Jlzt3/OOz
-         URmlwtEOu32Cw0tPgAkaC4N/kMKjpCGykZdZJAz41zfxpid3XKkxd8Haadn0pyCxG4Ig
-         D227chqUj6x+ZJ3QLZv6B6AVK+zLpTeDZWG+lOxdflw9f2u5sb05vXt5thHJYP5L/tjU
-         31FoC4WqRy38yO9Eff2Y7pry3uc8046Xvn7t/ewITaQZ2ptaoiS0GA3+ddKmyFRhZ/79
-         xOgZqQ7SzqgJowgv22/KCaWX2+2Zm8a5xqYmAsS2U28xgR8i/SZdRC7Tc4lKCJkWrJBm
-         8Y1g==
+        d=linaro.org; s=google; t=1724873478; x=1725478278; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=AoA1rvh9tEvmLE6yW93wrf40qTudqkuqIKNU0qjFVRI=;
+        b=kN2bwTjNGYgwqVThl7k0LilhcbN1N7ZtcwfkSP1SCA1gRhUdZyG0tTowtswBLXnqzf
+         FERQcnwMHv3882Bfh8YlCqe3MQbhcCoXQ2MnYy62pOKnAWDYNeT1NBSMA07g2nFNq7bV
+         6YPmaRTMQVjW9TV8cbytkFxomIS48BHZKkO+iU6WSS/ENcR7URWUejNLDVhdLcSn847q
+         7gUs+Q6vPjohyMkCXvybIGxcxxd9VsWdSEriRdIcBp3e5nysd4MahgTaoEZwm1+areo+
+         qOs5qKrQ1E0eOeVK4FyriUaO5IZLks+xpqS39wuDPxMVjEgYiU0hJRHru4ao8Fwbp5k/
+         Sn2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724872027; x=1725476827;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HjKq3StBX94hw4M7AOGIX3XHXN2gq4bMwsiXnPva3LY=;
-        b=Nk13wU+atQkEALDtxdHiBoiqH20xq0qgzbs5UXiMzLtgXD7Sy++8DjnGtfLtWsyo9f
-         Zh+joY6tjzafvbGKGqGoCm7NrKfULk3LCL58yfZnOMD6jZU3Qg/tQcoAMS4NA9B6g8ta
-         IfDwNyXVaGjnzKZYqMx2E0QaKN7BfEz51cBmEDnxhn0lnaA5k9qmSkvVoZVKN7E0yrSp
-         q/nApQHAcQy7Hu2J53dfWafbnqFDgOgV0TC/fg6/oG6aR2iW0VxRwGwO/FaUUbSOk65K
-         v7+TNdW016s19JLd2QEzveCelsxCRq7DQl9eqSVTmzkGDTvKYiWOaJlASPNaCtA8xg2e
-         2CJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUVDLBAyZk160oNi1Q9eshkSh+MlXTZYyJc/MTeAMsPc/jwWp4nNmnRtgYcjCPJbM54vVnJu2yk26Z2@vger.kernel.org, AJvYcCUnyGXP1rmXN5/3d+GbcWDc8/Nd3bfJNpAl3aHJgsWVmGKmrMYEulxounwCOacBjKmbj/JEC5pziCCLgVa6vS/GUjUhYQ==@vger.kernel.org, AJvYcCVtckanUpogLDAxlFSue/yZiCBBKrO/l91cfknfZSX6RKJSndE34h5IVv2c+/5XU3Y7Ybr3ElztFJRgWsr+@vger.kernel.org, AJvYcCW0WOYOPX0DjJT2/YEbd9ssxhYdwkhNLWCh1k1drZl/ULxVn2yY8XUNGjrJu8NVAihNuWcVhLWTV8nerQ==@vger.kernel.org, AJvYcCWXkTBQT1S99/1pxYy3Ut41g7wb8FlcIO+qA0374kgNVcjIQ4J9thxmXgWTDu3hM0sVkYTWAv67FX+gbvBG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6ICaZ6WbfIxK+L/6DQDGaKqBiV5GTMYzxaJvGkwS4bOX6P7hG
-	omAgBWI5X45MvMzxpZFhkCj3lzTORnlYkUHivsbyvvTu7mhx1XsmxHcntRc/7McvNE2MuLLlpzA
-	6lg6IbYYggNWsXY4q9ZA0IhkifovfIDr3
-X-Google-Smtp-Source: AGHT+IGYzYJZG7E9ETnEzC8H10RpiiV3h5C0x38Xf6GmVcfkNytGNvXBHM+pdaWW6SlDFggj27f/kKMygSvqctEhX88=
-X-Received: by 2002:a17:907:980c:b0:a86:7adb:b327 with SMTP id
- a640c23a62f3a-a897f8d5200mr29640866b.40.1724872026595; Wed, 28 Aug 2024
- 12:07:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724873478; x=1725478278;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AoA1rvh9tEvmLE6yW93wrf40qTudqkuqIKNU0qjFVRI=;
+        b=VFRu6NxFkW6vtQUUn26IZBaftKVBigTsvKMcvKa0HiF8FvVXboY7m1vvEb1lCYPkAL
+         NzLc9R/YCxe+ey/wnmi1XsAvKSKwrO3wFtdIGyWLm+cNvUKcmv7TlKPJbT2gvndB0q0S
+         EExjDS82x1kMbPQ72BGOtWbMEaUGBGXQVlOjSyJ/aMQPdz5KhV+PABoVhJMiIGEsegIm
+         oIriwa0bAiWoU0mxqvN8SVXrym2RwMgbLNiRQaWkgZB4hv3ltY/GEg7GajDK2iAcjtJm
+         jAmU83huwNyC+ARgancH+CCRjqT9r+zTMXdXOIEbajeccbedr2UuCPmkAwvfjZPxX/GA
+         O3TA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3SDmwzwTB6uSxRp3MCm2rNKnmws5yFnuohtG6K5iGo/29/paPLqHF3rAszDiwlaBFF6je6VFprlPB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAWw3JHhHmxS734kF/PgSNxXOCVZzhg2HXpW2MNymszfa7gOy9
+	QmxTAaq+vA8+PMYwzD3a/DosZ82wXe/dguPz13aAXvGGrzptOBxq6ugImuXo8N4=
+X-Google-Smtp-Source: AGHT+IGIA5Nxp4aLQLPCqJOBJCzuUgDnPtLzTB/9BIteMLCqncZoQFdLyaWZQ9R4m004CPzbIRDsdA==
+X-Received: by 2002:a05:6512:3b2b:b0:52c:e084:bb1e with SMTP id 2adb3069b0e04-5353e5696d8mr199475e87.13.1724873477405;
+        Wed, 28 Aug 2024 12:31:17 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5334ea591bbsm2251241e87.176.2024.08.28.12.31.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2024 12:31:17 -0700 (PDT)
+Date: Wed, 28 Aug 2024 22:31:15 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Trilok Soni <quic_tsoni@quicinc.com>
+Cc: Caleb Connolly <caleb.connolly@linaro.org>, 
+	Elson Roy Serrao <quic_eserrao@quicinc.com>, andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH 0/8] Enable EUD on Qualcomm sm8450 SoC
+Message-ID: <bvhukpvqtn2rmgscqgfzwxi6lxmm547iesxwfvjeuvs6k72adm@g2vumqixalu5>
+References: <20240730222439.3469-1-quic_eserrao@quicinc.com>
+ <023d4ea8-635d-435f-bae2-87284f70123b@linaro.org>
+ <2a17eaca-54af-d1fa-304d-c7e0afd85b33@quicinc.com>
+ <32f23133-c494-46c1-a1f7-cabddb6331a8@linaro.org>
+ <622c0fd6-e4e2-6597-d0a2-ff449d7d2f59@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
- <20240814-topic-sam-v3-3-a84588aad233@quicinc.com> <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
- <d08d41ad-edcb-48ad-a848-53edc45ab8eb@gmail.com> <CAHp75VcbjR8HQqPASLFEGiyYLfTFQDa6Ri+jFy+7Q1xz7gY39Q@mail.gmail.com>
- <53a56539-1d95-42ac-ad07-1b689702b2ed@gmail.com>
-In-Reply-To: <53a56539-1d95-42ac-ad07-1b689702b2ed@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 28 Aug 2024 22:06:29 +0300
-Message-ID: <CAHp75VdsksKPrj-CwmR4QLBrm_FfaG4aZys-_jnee_L=3ZnRPQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] platform/surface: Add OF support
-To: Maximilian Luz <luzmaximilian@gmail.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-serial@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <quic_kdybcio@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <622c0fd6-e4e2-6597-d0a2-ff449d7d2f59@quicinc.com>
 
-On Wed, Aug 28, 2024 at 8:40=E2=80=AFPM Maximilian Luz <luzmaximilian@gmail=
-.com> wrote:
-> On 8/28/24 6:56 PM, Andy Shevchenko wrote:
-> > On Wed, Aug 28, 2024 at 12:10=E2=80=AFPM Maximilian Luz <luzmaximilian@=
-gmail.com> wrote:
+On Tue, Aug 06, 2024 at 11:58:02AM GMT, Trilok Soni wrote:
+> On 8/1/2024 3:52 AM, Caleb Connolly wrote:
+> > Hi Trilok,
+> > 
+> > On 31/07/2024 21:58, Trilok Soni wrote:
+> >> On 7/31/2024 4:13 AM, Caleb Connolly wrote:
+> >>>>      2.) Proper routing of USB role switch notifications: EUD hub is physically
+> >>>>       present in between the USB connector and the USB controller. So the
+> >>>>       usb role switch notifications originating from the connector should
+> >>>>       route through EUD. EUD also relies on role switch notifications to
+> >>>>       communicate with the USB, regarding EUD attach/detach events.
+> >>>>
+> >>>> This series aims at implementing the above aspects to enable EUD on
+> >>>> Qualcomm sm8450 SoC.
+> >>>
+> >>> Are there any plans to make this feature available for folks outside of Qualcomm / an NDA?
+> >>>
+> >>> There is an openOCD fork on CodeLinaro but it still requires some proprietary library which is only available to folks with a quicinc email as I understand it.
+> >>>
+> >>
+> >> Which codelinaro link are you referring here?
+> > 
+> > That would be https://git.codelinaro.org/clo/la/openocd-org/openocd/-/blob/qcom_changes/README_QCOM?ref_type=heads
+> > 
+> > Which says:
+> > 
+> > Qualcomm specific tools:
+> > - Login to qpm.qualcomm.com
+> > - QUTS: 1.64.1.39 (version & above)
+> > - Qualcomm Host USB Product Suite - QUD QC only : 1.00.63 (supported version)
+> > - EUD QC : 2.1.1 (supported version)
+> > 
+> > I believe the specific versions of QUD and EUD are only available to Qualcomm engineers and not even to OEMs, though I might be mistaken.
+> 
+> Thanks. So are we okay w/ one of the following option? (trying to understand the need here properly before I relay it internally). 
+> 
+> Options:
+> 
+> (1) Provide EUD library and tools - proprietary w/o any login requirement. 
+> (2) Provide open-source EUD library and tools w/o any login requirement. 
+> 
+> Is Option (1) fine to begin with or option 2 is must? 
 
-...
+The usual problem of (1) is future compatibility guarantees. What
+system libraries will it depend upon? When the open-source world and
+openocd update to the next libusb ABI, will it break the EUD library?
 
-> > Yes, and software nodes for DT are quite strange things! Why can't you
-> > simply fix the DT to begin with?
->
-> For the ARM/DT variants we could do that. But we still have to deal with
-> the x86/ACPI ones here.
+Next, which interfaces are going to be used and/or provided by the lib
+and tools? In other words, will it be really useful?
 
-So, then fix it there! Currently it's an abuse of software nodes
-inside the Linux kernel.
+Last, if is prorietary, then under which licence? Will it allow reverse
+engineering or not? Will it allow redistributing? Also note that OpenOCD
+is licenced under GPL-2.0-or-later, so while one can link it with a
+proprietary software, they can not further distribute the resulting
+binaries. Also there might be different questions on whether the lib
+itself is a derivative work (and as such it must be covered by the GPL).
 
-> So for me it makes more sense to have it unified
-> and just deal with everything in this module.
-
-I understand the desire, but DT is DT and ACPI is ACPI, they are
-different despite having some common APIs in the Linux kernel.
-Moreover, DT has a validation tools and everything, making that being
-a software nodes has at least these disadvantages:
-- no official schema that must be supported and users are known of
-- no validation done
-- bloating of the Linux kernel binary and hence memory footprint
-
-> Also, if we consider that at some point we might get ACPI PEP support (I
-> know, far fetched right now): With that, ACPI on ARM might be feasible
-> and then we'd have to manage the same thing in two places...
-
-This (PEP) is something I have no knowledge about. But I think it's
-still orthogonal to the software nodes usage.
-
-> And lastly, the EC subdevices are quite contained and I don't see them
-> interacting with any other components in the DT, so it's more of a
-> stylistic choice where to put them.
-
-They are still part of hardware and DT describes hardware.
-
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+With best wishes
+Dmitry
 
