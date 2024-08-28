@@ -1,200 +1,189 @@
-Return-Path: <devicetree+bounces-97427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5575962304
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:09:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 745B596230A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:10:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13FFBB20BCA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:09:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29D48281992
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4237515D5C4;
-	Wed, 28 Aug 2024 09:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05EC15DBD5;
+	Wed, 28 Aug 2024 09:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gdu/dfRV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2118.outbound.protection.outlook.com [40.107.215.118])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920B21591FC;
-	Wed, 28 Aug 2024 09:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.118
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724836169; cv=fail; b=rRFb+zpmH11Z+ZO3CtpfO08KtsI33vjlKshRu6AsPhZzwi9fUYSN8Vz5X9f+IJ2EiYFpH3shTRQp8W7pZ8++bxhcTnQ0za1hLAYvdT2xfS/9RzirQsgDz7WhtcWJABcn3ysLf92RA1AHZ7Rw5vVWCX8U+7mki8EMwwp/mZTJrB0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724836169; c=relaxed/simple;
-	bh=GaU8kNJ20FAGzOf43b3y+siDA+hN6NW0TmcOj5CuL8A=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ct6cTKo6+sJm0r1CGNVe3/Yq5EuRc+9uW46K56tVG1AXOgYOG4mLIPpn5GFxWv3gIMqQURQzSCSd50J6z1ZVwUbzACZh7JhDfqfz6Dv8O2dI9VMDxmxt7b+MpecFOqEYDdIMUurQ52DUT8awT60B3Bqw/7E9Lg70G1Qs86QUhFE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.215.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DQDdMR6jAiMfIyCVUI7M5DVZv7u1ZZo3IcO2VoAgowAJb2CpziHhVsbdybx8CTJlu+J1nRIqLRCGnRv9Bop0UMVntg/LJ4CHSnFSOPwE95tV8Xw7rQVRg7betqNvVaASH9GD7XY/naWBRgmamPJ5h6Xq50RTfstV1cMzzcjqTFi+Gp3om+A4OqH/R8iaxfxDKXSPncOSY+Mt2Nc89aDhSOy6rCu99aOpXBZrL97kOLgnZrozI/Be/vzyA6bURWxk6c+NQyJ2Dwl5qm7kemZ9UZsgBHIQN6ZgKzXcrV2RWIFYGJd+0oWntBL8ixwVb1kEgZYRqrUY1Dry6wTKbH++FQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZgRXmecMfcOQltINsYE862DPHZKPEg2H8QOg0cnx/9M=;
- b=bQBax/ZzNLyJPWr/1fKJVd7Rtvc3Fkac+ZU7/mVQvZMrly9UH+9tOAiLjJv5951zR7e0zn0yLqwRsQDE2yRaxTaPn1TrShDW8gETOvc8OcHiDmurVfAlfTbxZ/f8Fc3MnoeNFl5KhzhJPHbmBqWlCP8G0EnN5L5j4EM991hPciNxthJ8o+Fs3RnZwTQmyvho62ObZ/NxZ0CzZGp6xZgfQC8rEP4KYz0vjWnLbFadBaUkeClrzAeS8hewiOmn4Ce6reVTrpHC9IY/1wEdnsqsRLT+W07ktfKgKFS+EUse20PKBrl8FDdIM9TkUCAXdEFBEZmAlqXplwYy8GFdeQWRrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
- dkim=pass header.d=wesion.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wesion.com;
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
- by SEYPR03MB6674.apcprd03.prod.outlook.com (2603:1096:101:6b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Wed, 28 Aug
- 2024 09:09:22 +0000
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0%4]) with mapi id 15.20.7875.019; Wed, 28 Aug 2024
- 09:09:22 +0000
-Message-ID: <157bb276-aae2-488c-8163-367f69c944df@wesion.com>
-Date: Wed, 28 Aug 2024 17:09:18 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 0/2] Add Wi-Fi support for Khadas Edge2 and fallback
- compatible for Apple
-To: Arend van Spriel <arend.vanspriel@broadcom.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- asahi@lists.linux.dev, Muhammed Efe Cetin <efectn@protonmail.com>
-References: <20240828-dts-v13-0-6bff9896d649@wesion.com>
- <7951482c-ee1e-45f4-8753-433a933321b6@broadcom.com>
-Content-Language: en-US
-From: Jacobe Zang <jacobe.zang@wesion.com>
-In-Reply-To: <7951482c-ee1e-45f4-8753-433a933321b6@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TYCP301CA0016.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:381::17) To TYZPR03MB7001.apcprd03.prod.outlook.com
- (2603:1096:400:26a::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7617158543;
+	Wed, 28 Aug 2024 09:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724836249; cv=none; b=fR6F5oTVpoY5VSdFqGkxpdUG8+u86bOo7/OeKHm6gAg2qIwvP8UcW2kcrryXHifzRtjDeRGOhSMcDCoVjiSPQiv9EIvT47g531ELj+Wqp8KF4Oal0ElpKNc9E8Gvnzl63KH6yWQvO2pJb6BrmA0XSEDUl5cjc3Tm7EvRXasVRfk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724836249; c=relaxed/simple;
+	bh=zSHKO3j33Ria7zyczy79YyyVNqfKsgActvy2LbiGQV4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CMpFiJ9ARmFaQQGRod258pIEp0GA6yhKfPJi86hnneC0QCon7f2EtRYFeqFk5MD6YMph5XOREDHOtMzCmrDm/rZn13DehMsWZZiCxR/zl0kI4Zup7mSM4JROZYN2htZ35DIwcd5dSOFA95q4qF519Xgh1/K61TbHWYDEgeAv8wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gdu/dfRV; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3719753d365so3592136f8f.2;
+        Wed, 28 Aug 2024 02:10:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724836246; x=1725441046; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x3niQjXZJR5D3vooE/mqJ9Cy41uU536hIxUZ/GtxSL8=;
+        b=gdu/dfRVZFpumaFqQEvACr+rscBpBbtdHBoaQwGJ3gfV9woODBKLe6CbaPdoyF7gJN
+         Eh4Jkpvd3Mkf1wZG2uwBCzPW1zxiQjDd9BJaO3SpL1PA82Nkf2yThMd7ALIx+pzciDnP
+         WgODzsElulGQ60wU4l6bfGbPEk+SQFHW6ZEg/2MzCb/3SSRfkobb1shXgtvHmSNfd9dY
+         ODarThN/XIg1Xe6KTod/mtI0RoyQsnPxpcbmSUIVp2EvfPFM+317lE6OC6XtDMfsISDw
+         YQAIGtB7J4lsln4ECh14IUhvRm6305pZiW1/EF9LZc+h1UZbvkaCbGwvBAFodAbFB8GA
+         tC9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724836246; x=1725441046;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x3niQjXZJR5D3vooE/mqJ9Cy41uU536hIxUZ/GtxSL8=;
+        b=CMnPNaWkK9wHXcUCKfcgokqqQEk7NLICn5FQ4nX8FFc9uxhtP9lEhL/tiMBFu/cwld
+         +mTuFxmw00de13WoyBVh8tloKWRxLdhrulHmxgw3tK/My6MKB6LQEX/EoUlqBmGFirOw
+         PwsuEUu4KStoxh+4Mpchi/VJ+sM7C47SyAMc901HoUxyda82XDnTtPaXdsze2D/U806A
+         1w4VgxxpcjTEjBuFhP/XjKyQt8TbC9QIDXPtWyu9gMvyIPCscD9diDjYE+XOniNuASbH
+         /FY0JHkvDclWTCzbVmKmgjQiFB+kOZp/A7gbglARwgs9opkTt7UmHOtGc4nxUA6QuNvt
+         1I+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVDTbALPawLNrHvu3ewZn3pxdkB7JuSX1rJzcH98llmryizVtqIUC2drVl9nS9K215ep84oYTmScBtTt90utV+/zw1qRA==@vger.kernel.org, AJvYcCVROz0/b0e+dXnIIuLTT43aKWY4hMdGy5IKru6xQWyhwMQ1Mxo7L8SJzdiG60mpJg1zPumdXPD+lhYK@vger.kernel.org, AJvYcCVw8/nRc3KkMpNBA6GZfexs63cg4g9VXvazZuvTm/ow2FaIyYACB1gOhRDduw64JCL6sD68r7PJHlghPOF2@vger.kernel.org, AJvYcCW+kvfZZWH3pOLloutrcddKTdUterGzFVr/NRNaiabK4BQpIR9VAmYFcqwRUXnV+1adIPdmrGeMqFXpYQ==@vger.kernel.org, AJvYcCWqb8IoshiENJD9xaCpSzWpS7kv0hKibMVaZnvZEArEwPHMJj5rNaP9CdPal4g+cGkd3KoQcs3bH7qdXWVi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKo1W153ioV0ox8JLhZ1KGaCEGSLZli6SYZMb5vNbQr8fj93Ve
+	qma1q31KCod0fjoaayUcri6pvJth4BC8FvMW4/3E2hJ407Ef+b5Q
+X-Google-Smtp-Source: AGHT+IF7uY9ow2G6xujW69BVfU5b4AZOL2v5nnCZbY71qinhm3c0AqkQo9Sucb8izKf3PWV00S2FKQ==
+X-Received: by 2002:adf:a344:0:b0:367:98e6:362b with SMTP id ffacd0b85a97d-37311909018mr10609524f8f.42.1724836245824;
+        Wed, 28 Aug 2024 02:10:45 -0700 (PDT)
+Received: from [10.126.144.131] (ufr-132-230-194-172.eduroam-nat.uni-freiburg.de. [132.230.194.172])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730810ffb9sm15230364f8f.7.2024.08.28.02.10.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Aug 2024 02:10:45 -0700 (PDT)
+Message-ID: <d08d41ad-edcb-48ad-a848-53edc45ab8eb@gmail.com>
+Date: Wed, 28 Aug 2024 11:10:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|SEYPR03MB6674:EE_
-X-MS-Office365-Filtering-Correlation-Id: 125f1b4f-8c5c-4f5b-dab1-08dcc7411b1a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZVlNdzRUWHlQNVpWeCtCK05oTTVTVUlHR2lMYUpGZmlYeS9yWUdmZ1hHbm41?=
- =?utf-8?B?emdTeDc4NFIwTVNSMUZNT1pxdUY1b0FYbDdBQ0REWVU2WDFRcGVGZ24waTJB?=
- =?utf-8?B?WGFGemFwMWFqcHBWQnZlanVQSG8zYVdLNWJMSnMvTENuVXpzazdMTDc4c2ND?=
- =?utf-8?B?Y1BCLzhsSm5hRnVGRnBYVnIrdUY0Q0k4S3V5YzBnaHIzTkZnS2duODZiRjRj?=
- =?utf-8?B?NkdoOG1MV1VZZ0xMeVBEN1V1djh6TlUwTzdTeEk1VmhxcHhMQWhRcFVzdWtV?=
- =?utf-8?B?RVc0TFJBTGdFYmhBVktzVjN3QXpJRkt4Z2xmdC81N1ZYU3liZWx6QjlwWTk0?=
- =?utf-8?B?MG9PZSt6VGUzMStjZDZseUtWMGYzSGpKNkszUFJ4ZVNOUlhUNWVBNkY2T3cr?=
- =?utf-8?B?Z0MyM2FvWVFYTURnMTJWakNpdE95QjNpQTNaN1J2OGg1ZHorU3QwRzJwTUc0?=
- =?utf-8?B?dkh3RzNjNEllQTdnS2hTODVKb3FpYmhtU0pDV1V3aW5LTjdDRStMcHpvdnA5?=
- =?utf-8?B?SDZWdUhMY0ZWNWFrSDJtOVkxaFZlMjBOQzBzVU1jMXFnK1pvdFhrR3hwZzNR?=
- =?utf-8?B?SGpoK0dVYTY0NUphcHZmSnZzN2lBVlRwSExjeG5UUThKcCtiREYvckF2YkJD?=
- =?utf-8?B?V3B3a1JrZGk4WnNvYjZLYkE5dWhscHd5bXRFd0RQN21ZRlNIeFoySm5yVm0v?=
- =?utf-8?B?R3BGeExTL21HT0VoWWxucXJSU1JoQmNQN0dRMEtCWE50RmJiaEEyb0VBS3Ji?=
- =?utf-8?B?ZnpjNjBzaXc4Q1UyRlc3b2RobFlHelZZSkRqdDRPQUFkQytoclZWNHNmNEF6?=
- =?utf-8?B?UGtFdUFSTTU5OTJkenBHUjVmTXV5LytWbjJPS3VpTSsyVU5wc1MwRnV2aGJ2?=
- =?utf-8?B?YVR6d2wrT09rd1ZWU2p1Rlp0SDNRS2RwVjNWOXdYYW13cGplbWw4bGVFeDdY?=
- =?utf-8?B?ODZtQjBwWHhudGEyTkZXMy9BTWlkbXI2aE9vdUt2S21YbHVLUjNqeWZjdWYw?=
- =?utf-8?B?NGlzS1JLc1gxd3ExWDVBTDZVZWVta2twMHI4ZXpTOUhLUklWMjdUL1c5Q2xw?=
- =?utf-8?B?UmlSSFdiUXJRcVFuWFlKanZKQjVvNlJnUWlQZWplK0V2MnlJdDR6aVkxdWdw?=
- =?utf-8?B?bHVuRk1yWDkyUmNnbUNBRGh2S2pSUm9kU1F5QTlnb3U1WVVXQWFVOXBGcU9L?=
- =?utf-8?B?QkgwMW1ZMjdYanZEbVpNT3h1cFZtZ2tmbnFOanpwNkVQTGVSUTRQWkhyemZN?=
- =?utf-8?B?dVNUSkhiWUhzWGNGaUVZSUNEV2VaQXFobFlIUWpLSVNVb1ZFTEw1Z3J3Zk1O?=
- =?utf-8?B?TGVYUHJtZUhaQmZIaHdUTjc4OVIxTXZGOU9HQ3F6b01rNmRUNEk0eSt5V2V6?=
- =?utf-8?B?UmtPZG1xN0Z4dUZUSmFFcmhTNmtBNE5pdlhGbCtoOHFOQVR2WDBXYk1DblpY?=
- =?utf-8?B?dktBeUJRRlQ0TElvaGVKWTQ2S2RMVDlUSjBFLzlFTHZVV0lkcHA1SlN5T0xC?=
- =?utf-8?B?TkZ3YmhxRm9YVE1ZQVNIcllOa3MrNUxSVmhEZXl6TkdxZ2VpMEhuOU9RZTY0?=
- =?utf-8?B?Q3dJcW5YK2hFcDhUdzVkR0JkKzI4VDRFM3cxY2JaSkx5WHRPbGZIVlN1ejkv?=
- =?utf-8?B?VlgveTU4MlkzNVlBMWIwMUFvZ3k2QURzV1FGNmc4N2NtQzMydVpDQld2cTBi?=
- =?utf-8?B?UVcrRThyR1FSTC9xelp5TkVLTmhkM3k2MDhHSWo0VW5jeXFLam50cTN5eS9I?=
- =?utf-8?B?bmJWT04wSDVaaWd6TXJJa1dwK2czdElSckd3a3ExUk1xZ2p0Q2VpdDRHVjAz?=
- =?utf-8?B?SWVmTVBlZ2Z2Z0NGQ2FhQT09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eDRIRDd4RXBvM05Dbm1hVVNab1VicFpVMTdwY09QSW12RXZzTU9uQnM4dDlr?=
- =?utf-8?B?RmlZckJWWlFwVVN6ZHppNGgyUmtxZTJNRzRhMGRUVG9waDBGVEU4elp1dmNF?=
- =?utf-8?B?dksrQThpcnhhWGNjRFdRVkFDSHBiR2cwMnFVSDhSckY0VnRWRjcyUWNTdlFS?=
- =?utf-8?B?VkYxSlg2V1h3TFNLYlBYRE5uNFlVS2tFbFlyR1I2emRWeDNKVHpsSnVlOHIr?=
- =?utf-8?B?WFlOaXdvZFBZTGFISTRnOFNLSzNFMmd1RUFueGIwMFJ5c0hrNWg1SDd2b0R4?=
- =?utf-8?B?UGRoQmRsK0t2ZXp0a3RLb1RZTUp2MVNodmV5bUI1MkhYSm5LbzFqYS9taUF2?=
- =?utf-8?B?amRySVdUcjNla1g2dkdiaGJtNVZ0MnkvYm5SaHpCNG8xUk95Q3hjbHV3WlFW?=
- =?utf-8?B?S0tVVGRtM3UwSEpMeTBSRUJIYkNzYWdTb0k1anJDRktWYjVUSStUODkxL3Nj?=
- =?utf-8?B?MlpvanJ2aHl2Q2hYY2dpN3JqWEpTaHcreGovNkh2TVlIQTR3aStrNnlzS244?=
- =?utf-8?B?em1EbkhFUUNXNkhZcVFETEU3UWtsQ2Y3cE5jUC9vdGVvR0RpMy9ISGpjbFRt?=
- =?utf-8?B?V1I0SGppaStGYmxONnFJMWRoMjRvbG1UdzgxbzBJNkl3dmtJbVY5WThtRTN0?=
- =?utf-8?B?ZWRGY2lhUkFhS2lKTy92QURlbndCSjhYZkhMVWxhSlN4VGFwRG9iWi9aejla?=
- =?utf-8?B?WlQyQkY5SUZBM2ZieWI4MUtaQzF6Z2ovbHZCMnJwM3VWWXNRTzh3bmxXWTdJ?=
- =?utf-8?B?VEliaE0yY1p1ZjZoMDd5azRGRlhkdVhZc0ZRcHl0T0RNWkFnWndLWW8wYWhV?=
- =?utf-8?B?RE9tand6Nk9ZVWZZYldUVmdiaE45TG9jY0dkWE9xdjdvSUhGSkE2MmFaTk1a?=
- =?utf-8?B?NGdXSUVtREozc0JPT05obmVaVWxzSGV2Y3Z4RzYxMXpEUytraUsyVW9TNGFZ?=
- =?utf-8?B?b2FhdU0zZ3BUclB5L09XRmpBQ0pDcElMMVZvMFNXTUNIbXJXTFA4Q3RxWGFY?=
- =?utf-8?B?YURUSUdmQ0RmN3BXYllDRGIrUnJ2TWk4ZHBzLzBQS2pySnlpVGNFZWRpL0ZS?=
- =?utf-8?B?OGM3bnp2cHVMR3lPTGoyeldWY2FuZUo5SDZqVWV6aDF4bHZKRXcvL3JzSFY5?=
- =?utf-8?B?VVEzaWppOFltUlJhRERxYVBLOWkySGxkVDVNbEFZVE4zbDQwcnQ4VHJRd2dC?=
- =?utf-8?B?eUFSZ09QbDdWdFZlS0RHVHg2OWhsaERhaFV6YUNUM0VmbDNybGhSWTNaWVph?=
- =?utf-8?B?QXRuVEFSSThhSUxUZ3FTSWRWdWluSTRqaEVFR1lXaXQvT3dVQ1RFditrNVlS?=
- =?utf-8?B?MWZxQnVhaFpiZ1BjckF1dU9MVFFTa3AxUFF3T1pDUFMwN3BmQXA5ZzIwckpi?=
- =?utf-8?B?ZERJU0x3cTcyZnJxVEtnVncxOXFOY1BscGEybGNtOHNFZnNnWEVVRVk3UGEz?=
- =?utf-8?B?NzRGSUY4R1V2Y0hMTis0bUh5UWNrZHBNd0xPeElEdGFVQWQzd29qa1pJeDh0?=
- =?utf-8?B?R1ExM3d6eEw0dEh0VHVjcURMQ0M4Rk9jRzZZM1poUThoOVhGdCtUajJIdnRH?=
- =?utf-8?B?ZTVWQVJ2emdWL0dvOWtkdXMzaFVycURHcjdVa2pteDJmRG5nRnJxdGVrTXVZ?=
- =?utf-8?B?QWFlT3grSlRWMERydGpvTURmclM3NFJTdTBRWi9CU3JMR0owYmFrakloVzF5?=
- =?utf-8?B?Vk9ja3cvNzZwVnJGdUJEa1UrVTl6OTE3YWtDcDRpTXI1d0hoQ2s2WjB3OU5R?=
- =?utf-8?B?cXR5K3FHNWlvd0dKRDBjaVgyeWo0ZnZOdUIwZjZWdnpGRGUyVEZUbHVDdWMx?=
- =?utf-8?B?YktMclFCbE1taUQ0aGllRHFOYktTQzVpMDcxcGpWQVJKQkhYMzhaK2ZSMnBO?=
- =?utf-8?B?MC9YM1hXR3hzMWJ5SERQSVcranljV00zS3d2MDJ4WE9oN0NEdkdvRElxdHpG?=
- =?utf-8?B?MmN2Rm9kVWtiWm9SZXZNMllYK1JJRTNpRWt3TnBlNDV5Q3lJZmpWOTVDWFlY?=
- =?utf-8?B?eVFja3dxVkltRktleUp4MnBmUjJaSFF6QlhhY2gwWU5PRFBWTUU3b3A5cTBB?=
- =?utf-8?B?TnFJZ3EzK25EZUZVcDk1RHNwVVFVc1liUFRtTzRlN1F2QUtFYVpSNitHVVdr?=
- =?utf-8?Q?/cvP+b6DPSCtHiY0FtrqPGdjr?=
-X-OriginatorOrg: wesion.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 125f1b4f-8c5c-4f5b-dab1-08dcc7411b1a
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2024 09:09:22.1974
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WXvbQyaYdKFRGxF3KFIpiqrSrOIEh3SG0kyx2gmDPV33+wET9qsTFqEgS+TwZTvktwmXgJpzzsmrbqiazce51Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6674
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] platform/surface: Add OF support
+To: Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
+ <20240814-topic-sam-v3-3-a84588aad233@quicinc.com>
+ <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
+Content-Language: en-US
+From: Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi,
 
+I thought I should provide some context:
 
-On 2024/8/28 16:55, Arend van Spriel wrote:
-> On 8/28/2024 10:45 AM, Jacobe Zang wrote:
->> Add basic Wi-Fi support on Khadas Edge2. Wireless driver need to check 
->> "brcm,bcm4329-fmac"
->> compatible so add it to Apple's devices.
+Am 26/08/2024 um 22:54 schrieb Andy Shevchenko:
+> Wed, Aug 14, 2024 at 12:27:27PM +0200, Konrad Dybcio kirjoitti:
+>> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+
+[...]
+
+>> +	/*
+>> +	 * When using DT, we have to register the platform hub driver manually,
+>> +	 * as it can't be matched based on top-level board compatible (like it
+>> +	 * does the ACPI case).
+>> +	 */
+>> +	if (!ssh) {
+>> +		struct platform_device *ph_pdev =
+>> +			platform_device_register_simple("surface_aggregator_platform_hub",
+>> +							0, NULL, 0);
+>> +		if (IS_ERR(ph_pdev))
+>> +			return dev_err_probe(dev, PTR_ERR(ph_pdev),
+>> +					     "Failed to register the platform hub driver\n"); 
+>> +	}
+
+[...]
+
+>>   static int ssam_platform_hub_probe(struct platform_device *pdev)
+>>   {
+>>   	const struct software_node **nodes;
+>> +	const struct of_device_id *match;
+>> +	struct device_node *fdt_root;
+>>   	struct ssam_controller *ctrl;
+>>   	struct fwnode_handle *root;
+>>   	int status;
+>>   
+>>   	nodes = (const struct software_node **)acpi_device_get_match_data(&pdev->dev);
 > 
-> Did not receive [PATCH v13 2/2]. I don't follow every kernel list. Maybe 
-> good to add linux-wireless list?
-
-Just now in your reply said the compatible should not be added. So 2/2 
-patch is also dropped. Maybe the patch is about DTS, so b4 didn't 
-include linux-wireless, need to be added manually.
-
+> Hmm... Why this doesn't use simple device_get_match_data()?
 > 
-> Regards,
-> Arend
+>> -	if (!nodes)
+>> -		return -ENODEV;
+>> +	if (!nodes) {
+>> +		fdt_root = of_find_node_by_path("/");
+>> +		if (!fdt_root)
+>> +			return -ENODEV;
+>> +
+>> +		match = of_match_node(ssam_platform_hub_of_match, fdt_root);
+>> +		of_node_put(fdt_root);
+>> +		if (!match)
+>> +			return -ENODEV;
+>> +
+>> +		nodes = (const struct software_node **)match->data;
 > 
->> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
->> ---
->> Changes in v13:
->>   - Change patch 2/2 argument from driver to bindings.
+> This is quite strange! Where are they being defined?
 
--- 
-Best Regards
-Jacobe
+Essentially, this whole module is a giant workaround because there
+doesn't seem to be a way to auto-discover which functions or subdevices
+the EC actually supports. So this module builds a registry of software
+nodes and matches against a Surface-model-specific ACPI ID (in ACPI
+mode). Based on that ID, we retrieve the tree of software nodes that
+define the EC subdevices and register them using a (virtual) platform
+hub device.
 
+The snippet way above registers the platform hub device for DT,
+because there we don't have an equivalent ACPI device that we can
+use. The code here retrieves the respective nodes.
+
+>> +		if (!nodes)
+>> +			return -ENODEV;
+>> +	}
+> 
+> ...
+> 
+>> +MODULE_ALIAS("platform:surface_aggregator_platform_hub");
+> 
+> Can it be platfrom device ID table instead? But do you really need it?
+> 
+
+I think the explanation above already kind of answers this, but the
+module is named differently than the driver (so that they reflect the
+specific nature of each, registry vs hub device). And the platform hub
+device added in the snippet I left above is named after the driver. So
+for the registry module to load when the platform hub driver is
+requested, it is needed.
+
+Regards,
+Max
 
