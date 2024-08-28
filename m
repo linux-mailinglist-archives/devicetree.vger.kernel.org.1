@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-97459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 233B696243F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:02:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14546962448
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:06:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4AC8287890
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:02:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68E3286143
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFA816132A;
-	Wed, 28 Aug 2024 10:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B641415E5D4;
+	Wed, 28 Aug 2024 10:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=julien.massot@collabora.com header.b="cSjo8wbN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JunY7zgw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4B81553BC;
-	Wed, 28 Aug 2024 10:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724839363; cv=pass; b=e0PmFEifY9zfjL+Wz4SPvqpIpG3LYGOgbMpQ/y/MzJ0QAXtFycHRv3Hr7lcLFXXd+jSNG3C+eXGCOROpivH881/1rHaLP2oElKB9qEKRBsyZx1A5nrgQLLyLn1GOOE5LRrJFqLfUjNaSTqL2HAsj8OfTjcTJHss8/dSUCT63VxI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724839363; c=relaxed/simple;
-	bh=cVhdnGh1gtNtWJrnF9ZbO5IS+WmF+xa16YhB9Qx5chE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ckWqEuZ71aWnh4HDjhEPuHmOSR9G37je3JtqGXkkIMX3HhDldYyyrCKU/qGPCNuPNHDqJ8cumzR4o1dHW1ftkBDjdXY9jQvRqqj4qlxQaT1YpGtKT3/27/JmKCYA5ML/8Hk25bsUFhkSYWmoxMPF/61UZs0xfKR92a/PMUJ03Z8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=julien.massot@collabora.com header.b=cSjo8wbN; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724839350; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=P9ItgZk4OFmZ3oZujLJajth3nyKBxbqHHC7XSxBB/YDUGnVX1kxeJYvObWVpPwFOl7HxitnIIkdVE+1oWZu6e2WY2XPr7u68vpBCqzVfRPj30FziypcdVsNxNojoSQtNQMxmw2TkZ/6BIz0xiD97DZ2Ge90KVbc/M8ZD9h0myRU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724839350; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ZLM7oCag8bEqv46GHSaKZQveF6nYFv5zvA0CwiARDdg=; 
-	b=OMkxr3BYhuhmPXPMZ2GR8bgkjSU4bPZ/ZbqUVOMrwxD6LqIt5wekHRG05wEQJX5Q5PRel7pIe57K1RpZaE3jsjFUouqwPfdvujDriK4u0UFggRvVlIRwvVXFyFBfga/utegYOCdIHjcVyN6G3lhD0w1Wb3aPrmVRT6xQQXXIuaQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=julien.massot@collabora.com;
-	dmarc=pass header.from=<julien.massot@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724839350;
-	s=zohomail; d=collabora.com; i=julien.massot@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=ZLM7oCag8bEqv46GHSaKZQveF6nYFv5zvA0CwiARDdg=;
-	b=cSjo8wbNH9XtnKMCb0bvgScrc5QDlcDTq3YTb3q7YMKaSVNpruDNaCusCG/xxjRg
-	PQN4466OjR/6rysuinfmNwDJEEswNbWHaaxEBaMOdTbMU6AtgeFMwD0jCSPeFFoB8oI
-	G2X4mazr3FQ6+LpepwETeezxK/gpO6q77uSJ7AB0=
-Received: by mx.zohomail.com with SMTPS id 1724839349104444.9895094581451;
-	Wed, 28 Aug 2024 03:02:29 -0700 (PDT)
-Message-ID: <dd566af6-9632-4768-b945-ec25db93814b@collabora.com>
-Date: Wed, 28 Aug 2024 12:02:24 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF78A158DC2;
+	Wed, 28 Aug 2024 10:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724839613; cv=none; b=N1fGnyD82x4G3AmWq3ULbWzottCwixKQRNmTZy/XKFOOhp/P0iBJNVBm7ClHfncLrLIH1ksE1zpaPbD8s4jVwvNCJGcfy+VNN8Ij4YH+YHIiYhjWh0K387D/kiAMkRr7hK9fsuCH1fyJNQpC/UI2RbSniilPvDyu357ltyGI0OU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724839613; c=relaxed/simple;
+	bh=FKGbrxqJSRa4U0/BHk4YGXG5im9Iz1hjXpIRWRfZKEg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mKTtzcT3xg6DSWJN6G8CGctWssu+pQZqW4HkPD3Uij6AFd/vZiaYLqeOMnWezUjwWuAMtV7aYg4UbdKqlJcaZknaaD6SQWCZH1T5rOh5SsV8Y5YseJ4SPuC8MnveYY46omIFnnESjYUfoD1+1JFMMTqZQb1LLgZgzjrndSIPySE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JunY7zgw; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47SA5Qp5026192;
+	Wed, 28 Aug 2024 10:06:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EwycJpyb+jhaoS/+kJ3yX61GWjWCUDaA9mWmk5KUAAw=; b=JunY7zgwgChRjrKl
+	gBNMFyB13ShnH/qzQgmDIba59qgsue4+6uEJKLU5OhNzOhammsirrVPXM+wDqIHs
+	7HdSCbxipVcR1jTa6XBnNlO749gROQQSyaHeVROm/CrTjWWhie8a31nucBVJtBv9
+	fDIVcDAVJ6vFbA1LDHxEsZScekC5vw+Eo6ZhnOBJh0qgYJ+VJjW5nP81cwZLZ6YG
+	MR74R0R0eRxjp5iMVdfB08abg+8mnXefpUIsGFuGPS87yyn7M8nJXAj5iyRUOr6I
+	nZLNeqMHHIz451HUUYl5InjBm4YhAc2v9KfjN5M3Y4UAiu22x9bXMunoeAAi5fm/
+	LgO6uA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419puthe1b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 10:06:45 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47SA6iXA008184
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 10:06:44 GMT
+Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 Aug
+ 2024 03:06:39 -0700
+Message-ID: <b9aee62c-3c8c-4a8f-8559-41fabced7fbe@quicinc.com>
+Date: Wed, 28 Aug 2024 18:06:36 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,58 +65,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] media: staging: max96712: Add support for MAX96724
-To: Tommaso Merciai <tomm.merciai@gmail.com>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-renesas-soc@vger.kernel.org
-References: <20240827131841.629920-1-niklas.soderlund+renesas@ragnatech.se>
- <20240827131841.629920-3-niklas.soderlund+renesas@ragnatech.se>
- <Zs3az1G/e5y5lkf1@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-Content-Language: en-US
-From: Julien Massot <julien.massot@collabora.com>
-In-Reply-To: <Zs3az1G/e5y5lkf1@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: add base QCS615 RIDE dts
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, <kernel@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
+ <20240828-add_initial_support_for_qcs615-v1-6-5599869ea10f@quicinc.com>
+ <22qkvfravm6sxiq3xfavahg2u6b2pwlyzqbqvd55zym5zef3gi@m4bsqkdvggty>
+ <17d0017e-b55d-4b32-9fd3-1a1a84e5ebf9@quicinc.com>
+ <0ec92d59-0648-40ed-a522-307152b5c37d@kernel.org>
+ <148451f2-6b1b-4616-b703-fd52e7afa2be@quicinc.com>
+ <90c98fee-770c-4b83-9e05-6f04866094c2@kernel.org>
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+In-Reply-To: <90c98fee-770c-4b83-9e05-6f04866094c2@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: GskXdbBZ_q4xX6T_X4aS1OuOGb7snX_K
+X-Proofpoint-ORIG-GUID: GskXdbBZ_q4xX6T_X4aS1OuOGb7snX_K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_03,2024-08-27_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 phishscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0
+ mlxlogscore=640 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408280072
 
-Hi Tommaso,
 
-On 8/27/24 3:55 PM, Tommaso Merciai wrote:
-> Hi Niklas,
-> Thanks for your work.
+
+在 8/28/2024 5:34 PM, Krzysztof Kozlowski 写道:
+> On 28/08/2024 11:31, Lijuan Gao wrote:
+>>>>>> +/ {
+>>>>>> +	model = "Qualcomm Technologies, Inc. QCS615 Ride";
+>>>>>> +	compatible = "qcom,qcs615-ride", "qcom,qcs615";
+>>>>>> +
+>>>>>> +	chosen {
+>>>>>> +		bootargs = "console=hvc0";
+>>>>>
+>>>>> Noooo, last time I agreed on this, you told me later it is different.
+>>>>>
+>>>> In the early stages, enabling HVC is to more easily verify clock and
+>>>> PMIC related functions, as it’s difficult to debug without the console
+>>>> log. After the clock and PMIC are ready, we will enable the UART console.
+>>>
+>>> Working serial is supposed to be part of the early submission.
+>>>
+>> Okay, I will remove it in the next patch.
 > 
-> Hi Julien,
-> I think we can adopt a similar approach for the max96716 deserializer using your work
-> on max96714 driver. What do you think?
+> Can you post next version with proper serial device?
+Well noted, will update in the next version.
 > 
-> Thanks in advance.
+> Best regards,
+> Krzysztof
+> 
 
-
-I don't think that supporting MAX96716 and MAX96714 in the same driver 
-is the best option
-
-MAX96714 is a very simple device with one input one output one video pipe.
-
-While the MAX96716 is a two inputs/outputs with four different pipes.
-
-IMHO we should have one driver for the 1 port GMSL2 devices, another 
-driver for the dual deserializers which will introduce more complex 
-routing, and another one for the quad deserializers since the register 
-layout is too much different.
-
-But that's only my opinion let's see when we will implement the dual 
-deserializer support.
-
-We can of course share some functions for those drivers like GPIO 
-handling or pattern generation.
-
-Regards,
-Julien
-
-
+-- 
+Thx and BRs
+Lijuan Gao
 
