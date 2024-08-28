@@ -1,220 +1,170 @@
-Return-Path: <devicetree+bounces-97251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFFEB961B33
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 02:56:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C3AB961B54
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 03:18:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FC77285257
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 00:56:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 215C31F24920
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 01:18:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCD417991;
-	Wed, 28 Aug 2024 00:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8F41BC20;
+	Wed, 28 Aug 2024 01:18:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="LHQ280W+"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="kzJ4Lns4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010040.outbound.protection.outlook.com [52.101.228.40])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9D7322A;
-	Wed, 28 Aug 2024 00:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724806569; cv=fail; b=gRF7T0c5CzDjKUL0aDlkHhb/OKSgxfbmu+kIE753s7PUIrs5QSU/fNpVtPQdxz1ICXdYs6PMhQALzDlMmc2vAtEytnQRSMwad0jyRW2VrdddoGzz+iuy0cpf6G5XMG5RZXPl+GE5BPF10HCprK6e8fBi3z2V3wsj0ZPBwe3W+6k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724806569; c=relaxed/simple;
-	bh=Vuxefuf9muFgreJrkK2xHMLXXkkQ9YOVHnLn+8lVPFQ=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=SXyCWQ15oNoAJCslFuGSMK0Yo1KNnPAS9kKhG0ZtxVN6xZKGn8eWTnaM6r6SSk+WyYrHB6wMuMvIaj72VS5dBo18QvvOctuLb528W1QSsWxlD3Iop+40f5KopQIQ8exVbbyt9FAymMfdHxqUQwQQx8kH0lDFhb1rZ7OtPEXYhJ0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=LHQ280W+; arc=fail smtp.client-ip=52.101.228.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VESUkiujlFoXAz42eV36FsvnRvpRfNvwcMEzsNCKJYDjpvgun/uBcleYf5u3o0Yx0AyZqxUXdaQXOzaVZi/S0y8b9+XtyYsZHzQnUgUORM/fEUgOtPshoZ2G0m7an1A7ppQy8m1v/lNrdg7acjUFnDCpTTj11tfNsS4VUYnvEFx31aurvKGvUqLVFYXQk/y7+OzE4X5hhrrBt4j0s6fTGAEdg1HIA7BfaON3Wd+ILG2zPEYHC6/zVuNSbttamQP7MQmdFbyRtuJfxR5H1i70/nfQ1PKaB6dma8bGiNMkR6V1C0c2YpX9RMsfW4Mh/bpH04Uufnzvl/nxwqUtGFEr6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AmLDuHWz3ia+yubnIbik7DzrJXWTnxAsSICokWqPLk0=;
- b=KtvP05nHy3Vx6k88IuQdRM9EyuSMGRSIuPrO6e4onWnXQmGriEOAZEm4Z1SasA/t6JnkOO5H4tXKJr8FmEYctgBNlP8BJT1On5KlwTjQrgCVp6yt9596jxaNJkhdzoDTJQaV13yzOa1ILRdMst0bTUwlk3arq8GLYj3YJW7F2vAbbmDQs+h6JDfjnTO6TChoSUy+TM4pl1zCGaIIPBBfuFinpGJMMEth7SbWTH5bnhnZAYt2lzrmuJ4xt9ZTMtzYcNS2dilGiy0WxcC7d5FgOhmDpisD3Y1eC3tlaOtbyfAx/6to7ktrTbVjMGeWZIjhlgLUK7uX/IAdY6EJwHAqvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AmLDuHWz3ia+yubnIbik7DzrJXWTnxAsSICokWqPLk0=;
- b=LHQ280W+6kjGpWTs2L9//R4hTV95nVj6r2NpkM26A4Bus0dtar6wji2z9CKIs68lCC7ueuBS7/cxhG1sOIJUqhXJrHNYKtb5dGnsJuIxZvY0+QFo1Nj/OmGL9aMXsQVsKnIQNELupklR8iPHaM26hemdMxf2F3n5Dx59Phjk3ek=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TY3PR01MB10906.jpnprd01.prod.outlook.com
- (2603:1096:400:3af::14) by OS3PR01MB6610.jpnprd01.prod.outlook.com
- (2603:1096:604:10a::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Wed, 28 Aug
- 2024 00:56:03 +0000
-Received: from TY3PR01MB10906.jpnprd01.prod.outlook.com
- ([fe80::592:9b7b:ef57:2dd8]) by TY3PR01MB10906.jpnprd01.prod.outlook.com
- ([fe80::592:9b7b:ef57:2dd8%6]) with mapi id 15.20.7875.016; Wed, 28 Aug 2024
- 00:56:02 +0000
-Message-ID: <87h6b531p9.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Sakari Ailus <sakari.ailus@iki.fi>
-Subject: Re: [PATCH v3 2/9] of: property: add of_graph_get_next_port_endpoint()
-In-Reply-To: <CAL_JsqLysakbSdENNy+_XvotK9_eHG0KP50s6gtfFUYntawyWw@mail.gmail.com>
-References: <87cylwqa12.wl-kuninori.morimoto.gx@renesas.com>
-	<87a5h0qa0g.wl-kuninori.morimoto.gx@renesas.com>
-	<20240826154009.GA300981-robh@kernel.org>
-	<87bk1ebz59.wl-kuninori.morimoto.gx@renesas.com>
-	<CAL_JsqLysakbSdENNy+_XvotK9_eHG0KP50s6gtfFUYntawyWw@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Wed, 28 Aug 2024 00:56:02 +0000
-X-ClientProxiedBy: TYAPR01CA0230.jpnprd01.prod.outlook.com
- (2603:1096:404:11e::26) To TY3PR01MB10906.jpnprd01.prod.outlook.com
- (2603:1096:400:3af::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A54C2224D7;
+	Wed, 28 Aug 2024 01:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724807901; cv=none; b=aPcGVNn7d0dQNlkB6aaiHJRTUAth60eqBV0sZEwNNPQ304xZ/BxUBkBjxxWdyEFSl8b4uGVnBNemwvQseTzcgEoWTeiCL9+aW3SomOfUUhGgYVtZiXRLOXhgpETsexWqo3EVhAykivywKbbpoIEy1yxsNyJ9MeVwtgPNOFhZC5k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724807901; c=relaxed/simple;
+	bh=NM/lwsS3G+GKJXhXb83ew0o1y2LlFi31QJtJmSZZeaI=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=m+1OMwN64OsMjR631GcOYRfGO8oHiDZYAOIjfpF5Wn0Ml/bhe21vrR+WZOKYYKche2ecIHbBB6wbrvX/5A6CTXbClNisy84/21rF7RXusV673qiZgLRlqA/db2JE8qKaO0kmd1eRbzCoJsxVv0l3AV9icsbnsGTCZ55WW6i6kM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=kzJ4Lns4; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1724807895;
+	bh=bSE2OAY6iKksQlsyS8uTUxZkQGdxPR2/GAYLJ2SIUjY=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=kzJ4Lns4D9k57LouPc/ML5CJP0WhGPBVqYuF+dpxMKLT5NJWLFIWCbArZVWkUv7Dr
+	 rhU/ZjoYbN0bOG7EImSeetjmM/eaOn0ymvzkub9Y4CMkLJ6I/EkeCzZ26P5/zfUrH0
+	 Pt8qEn+5i8uRsFe87NACLcOEXh+nGUCmEdpMr+wK9PxnyT2Dl154GimlC0p9NSflTw
+	 9b6T65PqWDACMy0vdxF49OENa6kLD7c3u22M8AEHLL1hgCDAbBLBOrkKF224YIdHTV
+	 va0gKzZ/sfuZpwaMDRH2SKLgACJw/LIb7LZ+RcvHJwV9wtne0Uf+oKRQaXfLi/Zwz7
+	 /aO25LvIqFCwQ==
+Received: from [192.168.68.112] (ppp118-210-185-99.adl-adc-lon-bras34.tpg.internode.on.net [118.210.185.99])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4A16A6506F;
+	Wed, 28 Aug 2024 09:18:12 +0800 (AWST)
+Message-ID: <e629752d8c97a2d14641a7fbc0cbdb1cd01a8ac5.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1 2/2] gpio: Add G7 Aspeed gpio controller driver
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, "linus.walleij@linaro.org"
+ <linus.walleij@linaro.org>, "brgl@bgdev.pl" <brgl@bgdev.pl>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>,  "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "joel@jms.id.au" <joel@jms.id.au>,  "linux-gpio@vger.kernel.org"
+ <linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>
+Date: Wed, 28 Aug 2024 10:48:10 +0930
+In-Reply-To: <OSQPR06MB7252CBAEBF1DBE2C613F24748B8B2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+References: <20240821070740.2378602-1-billy_tsai@aspeedtech.com>
+	 <20240821070740.2378602-3-billy_tsai@aspeedtech.com>
+	 <cf92b3ab4b171e7c7c07cada066dad6323c5dace.camel@codeconstruct.com.au>
+	 <OSQPR06MB7252CBAEBF1DBE2C613F24748B8B2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY3PR01MB10906:EE_|OS3PR01MB6610:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0044f524-a945-4397-c6e2-08dcc6fc3087
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|1800799024|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?3gfvY74ntZbU0A5PExB5E0X6kOTvGhndRcOl2EVBsIXvuJWkl3GiK/hTaSfx?=
- =?us-ascii?Q?bHojQBdde+iT1YWf65GgEk53fEh3GnseY7OzSS5TldUaA4Q161qvWNJ8RyLF?=
- =?us-ascii?Q?qkN9DgMTKO9C4WW0c/OskzyZhxSO5TBqa33XdWLj+Qba7J5HF07V0xRLJaV4?=
- =?us-ascii?Q?Nsa39jjokCAXqOTl0SIX1Znme83RKICXHkCt2YmvYAH02FNvfTlRSsrbLS2F?=
- =?us-ascii?Q?tPhqUYLxJk5T3Y3UMOI3U7r3n0QmLl+0W3WX1bFwDpZMo0b5Ai51eAwig/UY?=
- =?us-ascii?Q?ENwqxM3iQU3jHIZxrDRUS9nn1uneB7YlZvKGYZ5LqAuEKd35PrRmkVKGlWzb?=
- =?us-ascii?Q?nnUPWzo46Vc2xs7uQTk5CsddgcSm3C7HwgH345qZbII5eyeCkhNF1P+f4a7P?=
- =?us-ascii?Q?BcQUkBKii0tYX6tzO4PbRGj10pMVZ7wMOotgbYWkV2adrVy5cNXCJPey2XXK?=
- =?us-ascii?Q?lyQ+5D6ghoxmx+0fdc0fpg9TXw4JHFoer312Foa1Sic0vVXXiIQxF2gtMw8S?=
- =?us-ascii?Q?F7QS+bpBAn25E8pNuggAEnO7UG+Mv9Vk9PWl2GRpPcozec8aADkoXXtPDcq0?=
- =?us-ascii?Q?i3qRARvEkWFL4LCseCS3iZOENbZr/MroYbafckQVQRTTfmLC2hsrXL1e/BWZ?=
- =?us-ascii?Q?N074U56unV9cftCOzg2lgI0utFI4DbssUDSMOF1R4fkYlvX70DnHspXIYN0a?=
- =?us-ascii?Q?nAzjA812h0032cyzcg5aHXQqqoQLS5cp7OmrQebDqLNQPlSD5X0liyp+VHiQ?=
- =?us-ascii?Q?wsjpL+Q/4gNK0NtUoqDwqd6Ts48dnLXMon7DHqTPmDGXduk4S4zLCuVO/OOW?=
- =?us-ascii?Q?iScOc2eJkYTlsi8jot6PX9z3R7TmtJEypgFQlBf3fCRtg+61Qqy26ioO4L/o?=
- =?us-ascii?Q?4qpOSkDCQOa6wp/BPFXjZbIAYrpMKHb0dLQb484nem2M7f6/JBq81kkheFur?=
- =?us-ascii?Q?Z/sEtlmsQWNHopOdwSsDt5/llwQPoCRbA2X5JA+fDlit+Que2G3d4hAoyycK?=
- =?us-ascii?Q?0MjGyzD5b89S3uGHbjp5IhU8bLnYPNJefyhXC6Joq9yJhE5kTia2C67cvmH6?=
- =?us-ascii?Q?nximXOOLqP5V6kjuUrTn7YVV0Z4pED/Rg1i7SkJ+bNuZaefZYly0O7ieuIzI?=
- =?us-ascii?Q?gnkAi3m3x9j7pv/U71kUjIVdowHzz8VhjucLHpUEuNwRT9T1f5fPHuMA50Eq?=
- =?us-ascii?Q?25hZ9Rp+73GYCXbZ7xHZMq3xy+zJrscLiqheZtV1jipvRewW+QbL/kO8BZeh?=
- =?us-ascii?Q?Hnap6rDWKBTz5xy42del9kI8H6EvJTAX9hEYVtDSQh38po4xsf5decu1nHo5?=
- =?us-ascii?Q?1Otms4SHJKzf36zrrOQXFsjS1hanZupPNz3hKRtsA+XmfcoT/F4BuR4unlxR?=
- =?us-ascii?Q?IXTf0DtHPYbM+QuTytf5tivea59jiRuQq7A4kSuVyiNW6POPMg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB10906.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ociBfkTzfVtVI+9J65CEq9L2dMWp/YFAVW4tKZsXufxmwORsmmY0G8ndt74X?=
- =?us-ascii?Q?2Tg5mVN1DAS84cS08Eq4ssU9mQ117fdTAQFsVx2BuHMJdQRoarMz5S+HYEKf?=
- =?us-ascii?Q?qjcVxq9BGwoFglvwLDnKbWDBv0eVB1eWHFFaZd16YIRKjCdyDFWbMMZBz3Ko?=
- =?us-ascii?Q?xnj6Ng92j+meZOYRpG0ye9TfTTSw3zkkmKcSSt9fLPD54heLT3tOy6igqZez?=
- =?us-ascii?Q?SYlYV94raxq3G2obSY7TAxeaoZunW1cgnSCTfbjKsACPZQaUvZpKy5+dVruC?=
- =?us-ascii?Q?NKgRf7OzsWw5q8c3gV/ozV0lsxyTyuPaszkebG3i53pNLUTBu4BlBj2+9zZr?=
- =?us-ascii?Q?VKwGAOs5MItwBMtGV/J4b/p5KL39i1lJoH4WFC6qfkM7THjAzYhKlHXjwExI?=
- =?us-ascii?Q?MOPJO7WtrJgSKzE6ysLEhBxqgpfbtmwOMFWjTWzdEIgRNUXO2FDbIbXYCAy7?=
- =?us-ascii?Q?YBbohwPGwPzGCFr7e6/NRSKLAiDvRv13Q3mRwuLhVS6TeX3Rr/4Wm3odcm0t?=
- =?us-ascii?Q?vsySuveocyW04FigDNXXYcUzHGkXkpkFyf3DDoy2bhUEmdyJs3ulZX1Rk5GW?=
- =?us-ascii?Q?WMfyZDVEb5OueDSX1r3FU5ZKW8bJLeqhowGx4o6bVJ5JJAj4EKErCn0d9Kyu?=
- =?us-ascii?Q?bsFfFwrf0wqNmpHVb15ny7Gf3Umpmj9ZVCha9fMS1pkEC7NDl27r9nwLZKSu?=
- =?us-ascii?Q?5Lpzbsa5e8zVlGGuDbBio7RF74qC91GOVpYmtBhW1LHJhMmLO5mqdoYpqylA?=
- =?us-ascii?Q?wTjBS+VwM1losTkwl+kLQQ8TDET6ZFk3CEXbhPdDZeFhg8XgPzNx/MjXcULv?=
- =?us-ascii?Q?N6KqTddwYgpF7Qwu9hsQcpnj3XOYcClNa+6UoyB3QpQBx1NBAgXz8BKwp3PW?=
- =?us-ascii?Q?MaXZBgcdye7t7GKTnPPl0hglnnlb72nBYH75e3YLg0+h+EHsJUmGLV+mPsFu?=
- =?us-ascii?Q?9up5+3bdZqvD2PCoyhR321GWWVqZ+JuCiVpMK0ugLz6HAWJxu0qgSn8grenM?=
- =?us-ascii?Q?ePNkumSM/obtgEwVmzbHWYKj5QL8CStYMsyW5BjXzVxtGWoApiOwAgRayrBK?=
- =?us-ascii?Q?HoXOWZtihiG/Ch8F3Eo7nkjs9qSfANvtXP1vDkgFP/T8uFNPJoLW0aPSKvnQ?=
- =?us-ascii?Q?yOVqEpxFP5mupmdpm1XWvBz5n3RcbHejpHEbYbX0nhzujBSdYw0wD5V6dwTj?=
- =?us-ascii?Q?pH/Ge3JKA5HVjRsgzsTQ6202i1zVUMAqiiEkDlv71opmV3z4jkkSQ95fCbA8?=
- =?us-ascii?Q?Oryc24zpieIe96+uCXH9DCbnxeJICswhWcrLfKvpIvwYCE/jFZ5T0muKRm9h?=
- =?us-ascii?Q?OUZvprX04wzsRIIMDGB3B9z/yQxJV04V+HMKEboK7vxWuqnQ5yuP/i47/M+v?=
- =?us-ascii?Q?B0+JrSrTjR608nEu2ceDdnwlvBs7I4TlFQHkjWfCy88S/QwXrTuiyZZEhZr7?=
- =?us-ascii?Q?qj2F9npWGN2CxIghxG8R8l3rBi3djyd7HWK2zNpGvZFn0NkwUI1kDus+LJFC?=
- =?us-ascii?Q?vrtrekcODNc/kJY9WrxL8v3NQ+zJGLljw5vtzsk57s6A3jrVF89wusSnQO0J?=
- =?us-ascii?Q?pdZFc9WYNMU+LQAk+FELZtYFEewsPdjG+suNOIDLr6zUQixJ5GSABfPtk1MB?=
- =?us-ascii?Q?YKPtxLXU4k9iwhiJfMe6xJE=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0044f524-a945-4397-c6e2-08dcc6fc3087
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB10906.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2024 00:56:02.8946
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lfATgaliq9VTDN39rma1zGmv+QMX4hakA0wjqJINSAbLGshToT/VpE2bY8TMDBmvBs/dydnqH6lccsEzqcWN63YdByLZSDu+SuoLOi1ihU4oEOYAJ6ReuT4dg9oCPRI5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6610
 
+On Tue, 2024-08-27 at 02:45 +0000, Billy Tsai wrote:
+> Hi Andrew,
+>=20
+> Thanks for your suggestion. As I understand it, you=E2=80=99re suggesting=
+ that this driver should share the
+> common parts with aspeed-gpio.c, correct?
+> However, I don=E2=80=99t think that=E2=80=99s necessary. You can treat it=
+ as a new GPIO controller because the
+> register layout is quite different from aspeed-gpio.c.
 
-Hi Rob
+Well, we could, but both share a lot of the same capabilities. aspeed-
+gpio.c already has to abstract over the register layout because it's so
+haphazard. What I was suggesting was to formalise this a bit more by
+converting some of the inline functions and macros to callbacks that
+can be implemented for each controller.
 
-> > And, we still need to consider about of_fwnode_graph_get_next_endpoint()
-> > which is the last user of of_graph_get_next_endpoint()
-> 
-> I missed fwnode_graph_get_next_endpoint() which has lots of users.
-> Though almost all of those are just "get the endpoint" and assume
-> there is only 1. In any case, it's a lot more than 3, so nevermind for
-> now.
+I haven't tried it myself, but it feels feasible?
 
-OK, thanks.
+> If I try to make it common, the driver could become too complex, potentia=
+lly requiring a separate
+> gpio-aspeed-common.c and necessitating changes to the existing aspeed-gpi=
+o.c
 
-> So back to the name, I don't think we need _scoped in it. I think if
-> any user treats the iterator like it's the old style, the compiler is
-> going to complain.
-> 
-> > For example, when user want to use the param.
-> >
-> >         for_each_of_graph_port_endpoint(port, endpoint)
-> >                 if (xxx == yyy)
-> >                         return endpoint;
-> >
-> >         for_each_of_graph_port_endpoint_scoped(port, endpoint)
-> >                 if (xxx == yyy)
-> >                         return of_node_get(endpoint)
-> 
-> Actually, you would do "return_ptr(endpoint)" here.
+I felt the trade-off between the volume of copy/paste and the
+complexity of adding a few callbacks weighed in favour of the latter.
 
-OK, nice to know about this
-I will try to use this style on v4
+Also, given the volume of copy/paste, I think it would be best to
+retain the copyright information from aspeed-gpio.c if the outcome is
+these must be separate drivers.
 
+Many of the changes seemed to be dealing with the difference between
+`struct aspeed_gpio` and `struct aspeed_gpio_g7`, which might be
+addressed by some careful struct design and use of container_of().
 
-Thank you for your help !!
+> Maybe the discussion of merging aspeed-gpio.c and this driver can be post=
+poned until after this one
+> is accepted?
 
-Best regards
----
-Kuninori Morimoto
+Yeah, but I suspect the discussion just won't happen if this is merged.
+Now's the time to get consensus on a way forward, while the driver is
+yet to be merged.
+
+> > > +
+> > > +static const int debounce_timers[4] =3D { 0x00, 0x04, 0x00, 0x08 };
+>=20
+> > This is all largely copy/pasted from gpio-aspeed.c. Can we split it out
+> > and share the definitions?
+>=20
+> Do you mean moving them into the common header file?=20
+> The structure is fine, but I=E2=80=99m unsure about the debounce_timers.=
+=20
+> It=E2=80=99s a static array, so I don=E2=80=99t think it needs to be shar=
+ed with gpio-aspeed.c.
+
+That can be changed though? An appropriate pointer can be point into
+the driver struct.
+
+> > > +static int aspeed_gpio_g7_get(struct gpio_chip *gc, unsigned int off=
+set)
+> > > +{
+> > > +     struct aspeed_gpio_g7 *gpio =3D gpiochip_get_data(gc);
+> > > +     void __iomem *addr =3D gpio->base + GPIO_G7_CTRL_REG_OFFSET(off=
+set);
+> > > +
+> > > +     return !!(field_get(GPIO_G7_IN_DATA, ioread32(addr)));
+> > > +}
+> > > +
+> > > +static void __aspeed_gpio_g7_set(struct gpio_chip *gc, unsigned int =
+offset, int val)
+> > > +{
+> > > +     struct aspeed_gpio_g7 *gpio =3D gpiochip_get_data(gc);
+> > > +     void __iomem *addr =3D gpio->base + GPIO_G7_CTRL_REG_OFFSET(off=
+set);
+>=20
+> > The rest of the implementation of this function is broadly the same as
+> > in gpio-aspeed.c. The main difference is accounting for the address to
+> > access and the bit to whack. If we define some callbacks that replace
+> > GPIO_BANK()/to_bank() and GPIO_BIT() that can account for the
+> > differences in register layout, perhaps this could be common?
+>=20
+> > The trade-off is some complexity vs copy-paste, but there does seem to
+> > be an awful lot of the latter with only minor changes so far.
+>=20
+> Do you mean I need to create a gpio-aspeed-common.c, define the necessary=
+ common APIs,
+> and have gpio-aspeed.c and this driver hook into those APIs?
+
+Well, you may not have to do that if we can put it all in gpio-
+aspeed.c?
+
+My suspicion is the g7 support could largely become some well-chosen
+callbacks.
+
+Andrew
 
