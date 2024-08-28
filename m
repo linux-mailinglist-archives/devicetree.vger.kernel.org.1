@@ -1,143 +1,125 @@
-Return-Path: <devicetree+bounces-97684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F5E963086
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:59:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F2596308C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:59:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB49B281987
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 18:58:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DD641F21A13
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 18:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945671A7AF0;
-	Wed, 28 Aug 2024 18:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD131AAE0F;
+	Wed, 28 Aug 2024 18:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sFjfGOGD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O0Xmz5bf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48E4328DB;
-	Wed, 28 Aug 2024 18:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7071C1A76B2;
+	Wed, 28 Aug 2024 18:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724871534; cv=none; b=VEQg6dcCTrsMiUJYPeRPob7S8ha2c5nzKDQ7u1M5cVbD3YHk4m6YTg0Gl7Jxr91o2jEub0ERNELw+ktwnvA2muSfCOUdPtO3irp0/+LKIsBH44b34XpuXO91ZJa7BK9VDXEUQEE9lG8lw8ePI/JbhtjIIKrWVVid2yUlq7GrJ28=
+	t=1724871575; cv=none; b=uqPBi4JLNietbW8rQd6hpl7MGWBFEkILr0QjPsjj7JWPjBwDMg4/Y5qYk00X+WmMyiOSiMzwhXMxsHGVJ8YI6tDT8PW1f2kuBoLOQ4NqL1fOUDMruSnXWZmwdFEPEKXb/m9KKbNfOSb8koOrv/bS+EhS2kW9eDMlq5EqsDvc5G4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724871534; c=relaxed/simple;
-	bh=zoB+5dltGl4SeMjFiwf4Bz8rfttU134J1Ael6y0wd+s=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sYuFXo/Q0ELd0HZe92680CkB7kHwRcLKGVdXXh0ADEatklVvH6uMpT0MrbiYx0ze3qs/fgvZFiFHPqAt9Pg3fmGF17qbLy/G64Bn804R8hJQNF+he0+qRJUfEo5YlFesW7PO/umR/nZ/pjMp/dcktu9N7zZOED7ZeVqAnzGGl9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sFjfGOGD; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SIwhGT100627;
-	Wed, 28 Aug 2024 13:58:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724871523;
-	bh=oKu6Epfr3/VrPNrtu3gQBk1GOWEbuQRg5gkYsXVsHds=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=sFjfGOGDuJw1AhGY/hzJ/R5ymg8T11L2RU10Ilz+eiHo4j4e8xJLuIeThOONMm+OI
-	 OBDup36KHzy3YK9pzhxTYLR1UedHqGcNLiystvgUkHQkRuYeZeepDPR/0BNhz2NUiC
-	 bIMAsiAIbGg0WL8U58Ig4LmULLqGMS/ZjcbHTdAM=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SIwhwp061887
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 28 Aug 2024 13:58:43 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
- Aug 2024 13:58:42 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 28 Aug 2024 13:58:42 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SIwgtv051528;
-	Wed, 28 Aug 2024 13:58:42 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        Beleswar Padhi <b-padhi@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <u-kumar1@ti.com>, <tony@atomide.com>,
-        <bb@ti.com>, <d-gole@ti.com>, <afd@ti.com>, <hnagalla@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 0/7] Reserve Timer Nodes to avoid clash with Remoteproc firmware
-Date: Wed, 28 Aug 2024 13:58:39 -0500
-Message-ID: <172487140504.3441749.10326233588807171364.b4-ty@ti.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240826104821.1516344-1-b-padhi@ti.com>
-References: <20240826104821.1516344-1-b-padhi@ti.com>
+	s=arc-20240116; t=1724871575; c=relaxed/simple;
+	bh=2oNMMsYsI+j+ejHVU5D5R1OZsviLXTfVtcjUTwfydlU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Jn+L7pLrQxr1p2TO3auViaZxf3bvq4byxodjve8czn7xQ2k1kYMxyMoHSTxT3qDT3DLYLT/cuNeH9at0WJQN+TSB8DGofY1VLn0R7uflNaMmCZ3YS1aIKnH7V4WHQ4yvmjE6R04FExu84/UXZ34017dFT9hCruB4WN+wVhmkCnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O0Xmz5bf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47SAiFvp020336;
+	Wed, 28 Aug 2024 18:59:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	X+bp9nEmFMTVmWQTMXToBGklbro1PYiI6dvNZl24hjw=; b=O0Xmz5bf0/grb8CI
+	bmXJR3TuhNpmeW4y21GNl1aEjQWl4aC+Zw12rl2gx9sHLwPb7UzoUi+A1JeaIMLb
+	rJ6isSaBm9Rl5FQdWhMYTdDmDF/n1f2uzeX/WySv7ubqzQXaZakKtu+xG28hZAya
+	qZubyj/54hHBgPJkUMf5boHQwa++N1WfMKVJzk9DFGVCTbvx8m+uhz0pWzYKXFPc
+	CXtqn48VSVLt1A+pBcpA/Gcelit/+bFyltIEJpusDE4/9/tHlGo7c5XfaMWNL2Ze
+	CUqHbpZ500s9jmP/u/1KKejrfapEoiLd7x84f/1mkz2Qm9YYtasGJavo6hOse+wN
+	uGNWIw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419puttu87-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 18:59:15 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47SIxEYk019455
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 18:59:14 GMT
+Received: from [10.110.100.101] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 Aug
+ 2024 11:59:13 -0700
+Message-ID: <d44634b7-1285-4771-b7e0-4e852224d13f@quicinc.com>
+Date: Wed, 28 Aug 2024 11:59:13 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v25 31/33] ALSA: usb-audio: Add USB offload route kcontrol
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <tiwai@suse.com>, <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240823200101.26755-1-quic_wcheng@quicinc.com>
+ <20240823200101.26755-32-quic_wcheng@quicinc.com>
+ <4149884a-7c60-40d8-848b-8876f16d6d7f@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <4149884a-7c60-40d8-848b-8876f16d6d7f@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: X3n_XKtTrJz3EB77-0EvdjKlg6OlyTSW
+X-Proofpoint-GUID: X3n_XKtTrJz3EB77-0EvdjKlg6OlyTSW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_08,2024-08-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=544 suspectscore=0 phishscore=0 spamscore=0 bulkscore=0
+ clxscore=1015 mlxscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408280138
 
-Hi Beleswar Padhi,
+Hi Pierre,
 
-On Mon, 26 Aug 2024 16:18:13 +0530, Beleswar Padhi wrote:
-> The remoteproc firmware like of R5F and DSPs in the MAIN voltage domain
-> use timers. At the same time, if Linux probes the timers, some
-> instability is observed while booting remote cores. Therefore, change
-> the status of the timer nodes to "reserved" to avoid any clash.
-> 
-> NOTE: This series has been rebased on top of a sibling series[0] as both of them
-> introduce changes in the same files. Thus, please apply [0] before applying this
-> series.
-> 
-> [...]
+On 8/26/2024 2:09 AM, Pierre-Louis Bossart wrote:
+>
+>> +config SND_USB_OFFLOAD_MIXER
+>> +	tristate "Qualcomm USB Audio Offload mixer control"
+>> +	help
+>> +	 Say Y to enable the Qualcomm USB audio offloading mixer controls.
+>> +	 This exposes an USB offload capable kcontrol to signal to
+>> +	 applications about which platform sound card can support USB
+>> +	 audio offload.  This can potentially be used to fetch further
+>> +	 information about the offloading status from the platform sound
+>> +	 card.
+> I would remove reference to Qualcomm for this Kconfig, all the code
+> seems generic to me? Probably a left-over from the previous version.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Ah, yes will remove any vendor stuff.
 
-[1/7] arm64: dts: ti: k3-j7200-som-p0: Change timer nodes status to reserved
-      commit: f7d6dacb233e1fe7e99e766abddd2a0247957d80
-[2/7] arm64: dts: ti: k3-j721e-som-p0: Change timer nodes status to reserved
-      commit: 96b2d17bfe407faae341053e1f376c7429c03c22
-[3/7] arm64: dts: ti: k3-j721e-sk: Change timer nodes status to reserved
-      commit: a8d1241bd6e57add2807c3127f987f8929bb45a1
-[4/7] arm64: dts: ti: k3-j721s2-som-p0: Change timer nodes status to reserved
-      commit: 1cf3a036f91a2e5a6187f7cea8f9bfab1d9b504f
-[5/7] arm64: dts: ti: k3-am68-sk-som: Change timer nodes status to reserved
-      commit: ce25e4c7dff5c9a392ad5a5c38c4fc7031305cd2
-[6/7] arm64: dts: ti: k3-j784s4-evm: Change timer nodes status to reserved
-      commit: d8087ca36a29fa81cc80dd0a9b347b2877cc9b3d
-[7/7] arm64: dts: ti: k3-am69-sk: Change timer nodes status to reserved
-      commit: bdebd509e43e508386488ba7a35cf714dffa0088
+Thanks
 
-I dropped the fixes tag while applying: the behavior you are
-considering here is firmware specific. While I understand it is
-important for the board, the reported "fixes" tag has nothing to do
-with the board, it is a SoC timer introduction which is not where the
-bug is.
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Wesley Cheng
 
 
