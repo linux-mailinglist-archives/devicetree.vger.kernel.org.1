@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-97678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063D1963035
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:39:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3417A963048
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:42:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 386D51C2105A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 18:39:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D15FE1F253FB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 18:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70721AAE1B;
-	Wed, 28 Aug 2024 18:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB44B1AB513;
+	Wed, 28 Aug 2024 18:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IkN32QN7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Yqu4BTCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED821A76D8;
-	Wed, 28 Aug 2024 18:39:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9E741AB516;
+	Wed, 28 Aug 2024 18:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724870391; cv=none; b=KciynTZwGtssUfp+bINKVxP8aKaTUtDesqskjGTCde8CUJbTPP1KVQEOttdT+4DIWRqRW4I3BLQieukbvHfVMDfvFf2Y5gviXR0y0Jo94YxDch66yaExE6FAKTgbi2nac4VBJ48YQS15ewmLVF+X4m399jHA+SXsyefEpfYpd08=
+	t=1724870480; cv=none; b=rU/jFfZc0zxiiVqQwh4I/LLuPsoyj3LI3U89MxE4tDEeDbSnfZkUqm5NvnV5hU8Im6XHepFhvy/yMARb9H258aa9y1O37TPCAxox/qYYX+uOe/pVK7mCQZE+t0hjxjgPadYlrUfeikJ4ONxSCASLyxUa/QZzanmGDqLnlV4OkBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724870391; c=relaxed/simple;
-	bh=LkYVrOtohvHt6mcgM0pTMXY8dxwNF7H8pFxQVHZFzIA=;
+	s=arc-20240116; t=1724870480; c=relaxed/simple;
+	bh=tXMckQrvm0MyR2eX18HhDwWW+YFg0bAGbHF3Lcbw9RE=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hlZGVje+w4VIN+R7w64k8TmRwClGk5pluiv2FSyB+Ejdyul5K1wmBjt3efISH4jGd+T/3qpud2FSVr6uj+bGjZdX09sJEGEXECb9YyfWQoiBCG8HQL/ssqo/ySYOCnrfvlRK+ld8BjIqWMlClWKCtXEjaeo1eMPa43HeBzPU5Bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IkN32QN7; arc=none smtp.client-ip=198.47.19.142
+	 MIME-Version:Content-Type; b=nuWr+FiwbNCf5AejViwDuXjXgYBKQL+9d/x1KumlzfTwWQidsnhg+AemDpdF9VmazdLMzfhW4LCl+3wkzAM1JQ0CT1d9FMYHTqYxdgHkghAs9Uhwr/UYbh4lIt9pTmNK0wq8AnGFvxUUA465TYf8/YPf3lkVG0dyFrVIFDocrw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Yqu4BTCo; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SIdfis095636;
-	Wed, 28 Aug 2024 13:39:41 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SIf2aA089117;
+	Wed, 28 Aug 2024 13:41:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724870381;
-	bh=IyVMTwJKBNuo3zemCL9X+QKPGaj+L8l2c6FCAl7w+G8=;
+	s=ti-com-17Q1; t=1724870462;
+	bh=2cukJ9RvwW94P3cFpOls9Le+mixF9l3PqTQ3do4PFVM=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=IkN32QN7zaw+DnlKbc1pYRJWJvLXVzsAI9+wG0TyIAyWHZcrYBAlaNZxQMaS40HDd
-	 mdw/c9E9sA2BLZetYjPjv9AnuRi7yMmI1kleo/2DIFPaT8srdnJBqhhO+vxcTFT9N9
-	 nPIx2UageiSNB40sHZdKk6oA2HYh/mA1ONe3WiZ4=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SIdfHl007825
+	b=Yqu4BTCo5mTRxlftV318g3/ek5gQNRHcbJf7kHkDAYbsVIayvqs7J6PKqlofROmpn
+	 nagBNYMfkvGjl919pVW40LiOMahyt/B4nV+gpUsdF664EZjRZLP9enaunAPrIjyeJ6
+	 6Iat9JdOkIcH9LHS01oT6y7zDg9x/Bd5dRMJlzRo=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SIf1M0063555
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 28 Aug 2024 13:39:41 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 28 Aug 2024 13:41:01 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
- Aug 2024 13:39:41 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 13:41:01 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 28 Aug 2024 13:39:41 -0500
+ Frontend Transport; Wed, 28 Aug 2024 13:41:01 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SIdfVC033093;
-	Wed, 28 Aug 2024 13:39:41 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SIf1vS035407;
+	Wed, 28 Aug 2024 13:41:01 -0500
 From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Eric Chanudet <echanude@redhat.com>
-CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Halaney
-	<ahalaney@redhat.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: align watchdog clocks
-Date: Wed, 28 Aug 2024 13:39:39 -0500
-Message-ID: <172487029339.3436933.1448039342546375060.b4-ty@ti.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Logan Bristol
+	<logan.bristol@utexas.edu>
+CC: Nishanth Menon <nm@ti.com>, Josua Mayer <josua@solid-run.com>,
+        Matt McKee
+	<mmckee@phytec.com>, Wadim Egorov <w.egorov@phytec.de>,
+        <linux@ew.tq-group.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64* Disable ethernet by default at SoC level
+Date: Wed, 28 Aug 2024 13:41:00 -0500
+Message-ID: <172487040667.3437873.12482413208486691957.b4-ty@ti.com>
 X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240805174330.2132717-2-echanude@redhat.com>
-References: <20240805174330.2132717-2-echanude@redhat.com>
+In-Reply-To: <20240809135753.1186-1-logan.bristol@utexas.edu>
+References: <20240809135753.1186-1-logan.bristol@utexas.edu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,28 +84,27 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Eric Chanudet,
+Hi Logan Bristol,
 
-On Mon, 05 Aug 2024 13:42:51 -0400, Eric Chanudet wrote:
-> assigned-clock sets DEV_RTIx_RTI_CLK(id:0) whereas clocks sets
-> DEV_RTIx_RTI_CLK_PARENT_GLUELOGIC_HFOSC0_CLKOUT(id:1)[1]. This does not
-> look right, the timers in the driver assume a max frequency of 32kHz for
-> the heartbeat (HFOSC0 is 19.2MHz on j784s4-evm).
+On Fri, 09 Aug 2024 08:57:53 -0500, Logan Bristol wrote:
+> External interfaces should be disabled at the SoC DTSI level, since
+> the node is incomplete. Disable Ethernet switch and ports in SoC DTSI
+> and enable them in the board DTS. If the board DTS includes a SoM DTSI
+> that completes the node description, enable the Ethernet switch and ports
+> in SoM DTSI.
 > 
-> With this change, WDIOC_GETTIMELEFT return coherent time left
-> (DEFAULT_HEARTBEAT=60, reports 60s upon opening the cdev).
+> Reflect this change in SoM DTSIs by removing ethernet port disable.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-j784s4-main: align watchdog clocks
-      commit: 549833b697534a6f61840941b7c847669cfd77fa
+[1/1] arm64: dts: ti: k3-am64* Disable ethernet by default at SoC level
+      commit: fdf47b3a379b180403bd29b59e4159deff748e0b
 
-PS: I did replace the http url with the tisci https:// url in the commit
-log. This is inline with the base url used in kernel documentation
-till date.
+I did check the change on phycore, it looks fine, and this patch seems to
+have waited long enough.
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
