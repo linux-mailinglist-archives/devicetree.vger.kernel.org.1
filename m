@@ -1,131 +1,140 @@
-Return-Path: <devicetree+bounces-97689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08309630A8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:04:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87CBB9630B1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:07:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40C71C21A5F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:04:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 445832880F0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77171A76A0;
-	Wed, 28 Aug 2024 19:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647A41AB532;
+	Wed, 28 Aug 2024 19:07:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="P7J1wL1o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cq58Vbp9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F40231D696;
-	Wed, 28 Aug 2024 19:04:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27D11AAE19;
+	Wed, 28 Aug 2024 19:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724871882; cv=none; b=BKFsf5FqeslqsHvS24PwkbsyUODMe910xuvvRyLh2870I1JoOHO4CwHyw4FUMabkjRatREaORfBrztW0/sXQKD5tqhDgQjZF1yEHxkaDXvSsSQXfJC+XrXl5uKM9dz9z8487cPtjEtil27aOkkO812dDgV1Cw+Pcju00tt8gEQ4=
+	t=1724872030; cv=none; b=oreCLpnadGpxzW9OHHd6IisaaxX06Q1pBvaH+WNBspmBsk71PsLv62vXOT1qmLt9jOib/dchXrgOo9jSL+eTJa6vfwxW3YkXDvf9NhwTTvfjJD1KNCHVDAPFV32hBv8i+C8kCPdOuEoJG7vAwYbQefdGba7veTdgpg3zHCluN/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724871882; c=relaxed/simple;
-	bh=2PbMUHDVGW2h2OsCN+ZdmA+kAdqhvNBQiOnzfvvguRY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OAyoBuid1jDJfwA761O4NMXGOBekDfkhPDQrEJ7ZYJK+iIkedIPhIqmErY6198V6WORl65Txiz4kTfrahMjajE81dqkuk8TXSMYZ1D3tTWFBErLRs2i4Ij+hv45cec1+EsyPgJwFgn/3p126lk2cOXfUdociIEQvhzCDD0T2EYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=P7J1wL1o; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SJ4VZG054856;
-	Wed, 28 Aug 2024 14:04:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724871871;
-	bh=keod4O1+yAxg+zkJuMNaiR40evVQhpWT7LOuKFUl74c=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=P7J1wL1oqbJOatBfVBUpLy9nSghmMvvZAL7OSGvZllt4VzL5L6TX/hCoSSP43DSqv
-	 7GKQN56YhXKu+IxnYcf4wAlDuKh04slpSSb0TY1RM34CzZmtI2RrE8/jgaBGZjt9VW
-	 ZMv7QcBu8Tn5bwHDei3Z6IyeGwfp/ukB8RjX8/Pw=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SJ4VLo018111
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 28 Aug 2024 14:04:31 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
- Aug 2024 14:04:30 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 28 Aug 2024 14:04:30 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SJ4UT9066055;
-	Wed, 28 Aug 2024 14:04:30 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>,
-        Devarsh Thakkar
-	<devarsht@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <s-jain1@ti.com>, <r-donadkar@ti.com>,
-        <praneeth@ti.com>
-Subject: Re: [PATCH 0/2] Enable E5010 JPEG encoder
-Date: Wed, 28 Aug 2024 14:04:28 -0500
-Message-ID: <172487179147.3443633.3959874500764738240.b4-ty@ti.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240826162250.380005-1-devarsht@ti.com>
-References: <20240826162250.380005-1-devarsht@ti.com>
+	s=arc-20240116; t=1724872030; c=relaxed/simple;
+	bh=HjKq3StBX94hw4M7AOGIX3XHXN2gq4bMwsiXnPva3LY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NL6BCSUtpK24yizO3pfpPWoUt1tvVzzvXNSMucMw73IA+bDjBG7aeVKgtFEoIl/AufDYWEOPOiPLrOPnx0IKgu9J/MyYlGgCCbPukEK5qAss82ZZBsV3rzAqw2WtgyPRzMP/qrqFn0Px7bxsnT6zmeNyYErAGmxFtzV/lKOn+oQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cq58Vbp9; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a7a9cf7d3f3so895472866b.1;
+        Wed, 28 Aug 2024 12:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724872027; x=1725476827; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HjKq3StBX94hw4M7AOGIX3XHXN2gq4bMwsiXnPva3LY=;
+        b=Cq58Vbp9cfo4Fd5Ep0X39hCPpdQxCYVY/8vqF9sHzzNGRi2OnIDcYPdE+Jlzt3/OOz
+         URmlwtEOu32Cw0tPgAkaC4N/kMKjpCGykZdZJAz41zfxpid3XKkxd8Haadn0pyCxG4Ig
+         D227chqUj6x+ZJ3QLZv6B6AVK+zLpTeDZWG+lOxdflw9f2u5sb05vXt5thHJYP5L/tjU
+         31FoC4WqRy38yO9Eff2Y7pry3uc8046Xvn7t/ewITaQZ2ptaoiS0GA3+ddKmyFRhZ/79
+         xOgZqQ7SzqgJowgv22/KCaWX2+2Zm8a5xqYmAsS2U28xgR8i/SZdRC7Tc4lKCJkWrJBm
+         8Y1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724872027; x=1725476827;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HjKq3StBX94hw4M7AOGIX3XHXN2gq4bMwsiXnPva3LY=;
+        b=Nk13wU+atQkEALDtxdHiBoiqH20xq0qgzbs5UXiMzLtgXD7Sy++8DjnGtfLtWsyo9f
+         Zh+joY6tjzafvbGKGqGoCm7NrKfULk3LCL58yfZnOMD6jZU3Qg/tQcoAMS4NA9B6g8ta
+         IfDwNyXVaGjnzKZYqMx2E0QaKN7BfEz51cBmEDnxhn0lnaA5k9qmSkvVoZVKN7E0yrSp
+         q/nApQHAcQy7Hu2J53dfWafbnqFDgOgV0TC/fg6/oG6aR2iW0VxRwGwO/FaUUbSOk65K
+         v7+TNdW016s19JLd2QEzveCelsxCRq7DQl9eqSVTmzkGDTvKYiWOaJlASPNaCtA8xg2e
+         2CJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVDLBAyZk160oNi1Q9eshkSh+MlXTZYyJc/MTeAMsPc/jwWp4nNmnRtgYcjCPJbM54vVnJu2yk26Z2@vger.kernel.org, AJvYcCUnyGXP1rmXN5/3d+GbcWDc8/Nd3bfJNpAl3aHJgsWVmGKmrMYEulxounwCOacBjKmbj/JEC5pziCCLgVa6vS/GUjUhYQ==@vger.kernel.org, AJvYcCVtckanUpogLDAxlFSue/yZiCBBKrO/l91cfknfZSX6RKJSndE34h5IVv2c+/5XU3Y7Ybr3ElztFJRgWsr+@vger.kernel.org, AJvYcCW0WOYOPX0DjJT2/YEbd9ssxhYdwkhNLWCh1k1drZl/ULxVn2yY8XUNGjrJu8NVAihNuWcVhLWTV8nerQ==@vger.kernel.org, AJvYcCWXkTBQT1S99/1pxYy3Ut41g7wb8FlcIO+qA0374kgNVcjIQ4J9thxmXgWTDu3hM0sVkYTWAv67FX+gbvBG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6ICaZ6WbfIxK+L/6DQDGaKqBiV5GTMYzxaJvGkwS4bOX6P7hG
+	omAgBWI5X45MvMzxpZFhkCj3lzTORnlYkUHivsbyvvTu7mhx1XsmxHcntRc/7McvNE2MuLLlpzA
+	6lg6IbYYggNWsXY4q9ZA0IhkifovfIDr3
+X-Google-Smtp-Source: AGHT+IGYzYJZG7E9ETnEzC8H10RpiiV3h5C0x38Xf6GmVcfkNytGNvXBHM+pdaWW6SlDFggj27f/kKMygSvqctEhX88=
+X-Received: by 2002:a17:907:980c:b0:a86:7adb:b327 with SMTP id
+ a640c23a62f3a-a897f8d5200mr29640866b.40.1724872026595; Wed, 28 Aug 2024
+ 12:07:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
+ <20240814-topic-sam-v3-3-a84588aad233@quicinc.com> <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
+ <d08d41ad-edcb-48ad-a848-53edc45ab8eb@gmail.com> <CAHp75VcbjR8HQqPASLFEGiyYLfTFQDa6Ri+jFy+7Q1xz7gY39Q@mail.gmail.com>
+ <53a56539-1d95-42ac-ad07-1b689702b2ed@gmail.com>
+In-Reply-To: <53a56539-1d95-42ac-ad07-1b689702b2ed@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 28 Aug 2024 22:06:29 +0300
+Message-ID: <CAHp75VdsksKPrj-CwmR4QLBrm_FfaG4aZys-_jnee_L=3ZnRPQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] platform/surface: Add OF support
+To: Maximilian Luz <luzmaximilian@gmail.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-serial@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <quic_kdybcio@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Devarsh Thakkar,
+On Wed, Aug 28, 2024 at 8:40=E2=80=AFPM Maximilian Luz <luzmaximilian@gmail=
+.com> wrote:
+> On 8/28/24 6:56 PM, Andy Shevchenko wrote:
+> > On Wed, Aug 28, 2024 at 12:10=E2=80=AFPM Maximilian Luz <luzmaximilian@=
+gmail.com> wrote:
 
-On Mon, 26 Aug 2024 21:52:48 +0530, Devarsh Thakkar wrote:
-> This series adds support for E5010 JPEG encoder device-tree node for TI's
-> AM62A SoC and enables it in defconfig.
-> 
-> Devarsh Thakkar (2):
->   arm64: dts: ti: k3-am62a : Add E5010 JPEG Encoder
->   arm64: defconfig: Enable E5010 JPEG Encoder
-> 
-> [...]
+...
 
+> > Yes, and software nodes for DT are quite strange things! Why can't you
+> > simply fix the DT to begin with?
+>
+> For the ARM/DT variants we could do that. But we still have to deal with
+> the x86/ACPI ones here.
 
-I have applied
+So, then fix it there! Currently it's an abuse of software nodes
+inside the Linux kernel.
 
-Following to branch ti-k3-dts-next on [1].
+> So for me it makes more sense to have it unified
+> and just deal with everything in this module.
 
-[1/2] arm64: dts: ti: k3-am62a : Add E5010 JPEG Encoder
-      commit: 540fcd5fbdb5f3bbd6f6a88d85b9993a9318d474
+I understand the desire, but DT is DT and ACPI is ACPI, they are
+different despite having some common APIs in the Linux kernel.
+Moreover, DT has a validation tools and everything, making that being
+a software nodes has at least these disadvantages:
+- no official schema that must be supported and users are known of
+- no validation done
+- bloating of the Linux kernel binary and hence memory footprint
 
-Following to branch ti-k3-config-next on [1]:
+> Also, if we consider that at some point we might get ACPI PEP support (I
+> know, far fetched right now): With that, ACPI on ARM might be feasible
+> and then we'd have to manage the same thing in two places...
 
-[2/2] arm64: defconfig: Enable E5010 JPEG Encoder
-      commit: e8c643daeaa9040e18f8349993b9bc504e9d2117
+This (PEP) is something I have no knowledge about. But I think it's
+still orthogonal to the software nodes usage.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> And lastly, the EC subdevices are quite contained and I don't see them
+> interacting with any other components in the DT, so it's more of a
+> stylistic choice where to put them.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+They are still part of hardware and DT describes hardware.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
