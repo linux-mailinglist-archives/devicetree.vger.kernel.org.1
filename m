@@ -1,490 +1,187 @@
-Return-Path: <devicetree+bounces-97489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F3B9625E8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C5E69625FC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B494285623
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:22:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD121283351
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB8DB16D9BA;
-	Wed, 28 Aug 2024 11:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6360C16CD24;
+	Wed, 28 Aug 2024 11:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="h4IBE+8L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BJHV6Vvd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665AA16BE1D;
-	Wed, 28 Aug 2024 11:21:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C103FEC;
+	Wed, 28 Aug 2024 11:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724844117; cv=none; b=rGh1E0SwSkMjDpYj5SZD7rTH6EVIQCosBxcNv0W3F3OTekoTbFJV3UD7Dr3Iv8DG18BzuhxSQ37TXlaP518aookbVjV5f+7isbFzJfQKQikmGqQvuVO9U+LQAHfMY53w+Rg8Pzp9hhy4OSFp69Se7j7kaHjww2umhI9HsOrwjFg=
+	t=1724844374; cv=none; b=HWhmG/jQbcuXLNCBV1RCW5Zlj7UwNL22GAxVNMu+13wRYAqiauVoiivsbaY0Z6mW5uEwdwnV/UQ1heFOLr38H4WWO6G0KVZMZuLBur/Cbct1iZxH4vOAc0gsCSrGqnc29KtAmtWyqzo3/MIpJuhbretA+9pKQfVQvRUVg6FnnvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724844117; c=relaxed/simple;
-	bh=wjGVgvU5H/NDXwEmFEITC6Mqky9X8+HQj4j/8VVWWEk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=K03wsuSMeo9jyW1x0UN6sZrDot1vREya3km2igH8/MYnPEFK+jqQUm1VOVrDV4f+QphV5vfau5WEnfmHVTKhc03OjGkVoUHyZ0wPQ7+NKSsOXUKbtryJjTxUHNMIUwQ/mSjjjytGW80Mees9dx5mB9chDgCFJh5MMIPDMBJq8Qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=h4IBE+8L; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id CECE6885D1;
-	Wed, 28 Aug 2024 13:21:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1724844112;
-	bh=a7FOnSq7i9Vaylm1Ebgs3B61sFfIDUuaWG7MlKTTnro=;
-	h=From:To:Cc:Subject:Date:From;
-	b=h4IBE+8LNzi+LB6hPlHB6ILWJNXtTtlh9hbn7TnKb2IQZDv10/8RemTms60Vwce74
-	 tCyfs6mhcxUa+di1h5FeJympZIgEiC7uZk1BUniBNStblsizM1TW/bYJP5FdhtrjBK
-	 E5PapOJxL6CpGUbTzsNSUIBMQWbFI+wy/ltXxOPnDOZYCHRVBO1lp845e+1DxlY5BC
-	 x8mAKikfFddpVqYUacoERojREogZT9DL7VT+5aFXUnlMf2Hkqqzeuv/T+3NfxUp/dn
-	 kHjYYXZMdbVK4cWj9tditIZbqSyHfqqRz/sjOWd8zo19GG+F1iDzexWvHVlZohH+Ie
-	 k3KiN+t63r7OA==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH] dts: nxp: mxs: Add descriptions for imx287 based btt3-[012] devices
-Date: Wed, 28 Aug 2024 13:21:39 +0200
-Message-Id: <20240828112139.2665814-1-lukma@denx.de>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1724844374; c=relaxed/simple;
+	bh=5lNFCDhIR1yLod+7azEmTWto9wZhQwEh6KaJPyzXbvU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BMnerk3LdJM1vEAjnRfshaa9M4pjmrebi8kYFTPIPfixiu0er/DbGAhMZ422dMjfHi4WROZ3b9z0oII58eYNGk5RdIKGBVi6WObZ+K6OEy676SQRxdqdV9xmPPbZAr6KmXBhPHlgs/72u4v8DwH8y8k9sd4PBkiVtkkB1phDMk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BJHV6Vvd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24F6BC98EC1;
+	Wed, 28 Aug 2024 11:26:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724844373;
+	bh=5lNFCDhIR1yLod+7azEmTWto9wZhQwEh6KaJPyzXbvU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BJHV6Vvd3bSDtky6aftlLDadBX7iIqkL2Olx6wPkzDIqZgskAe9DoiDz+8/pHLKd9
+	 VsYtWf8owSA5aM3rdQw4pAJQCOq039ZrVW7yi0HjcaydI+NmEEKNsOqLSipEqJHz77
+	 3ST1bFap0JdUleIKBKXsh7/BFOlUZw3GmygVesVfatt8bD2nJyM7J0qotvQ4RG++mi
+	 njOxkd2M86eD3PN6JBYhanSV0hpxQ17lmQoWqp3AYIsbBCkeOEEvJPnRfp+9Yz14WK
+	 aym6o8IIj5GTCN2fqEWBRjSrVTlSxGoDsffB8U4eqPxqBxD0dwowiN23dznbrnj0L4
+	 JQyhALRPWLBDA==
+Message-ID: <d2b69df9-e882-4bce-b94c-a5a5ce8dc29e@kernel.org>
+Date: Wed, 28 Aug 2024 13:26:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/6] dt-bindings: media: renesas,vin: Add Gen4 family
+ fallback
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240704161620.1425409-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240704161620.1425409-2-niklas.soderlund+renesas@ragnatech.se>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240704161620.1425409-2-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-some extend similar to already upstreamed XEA devices, hence are
-using common imx28-lwe.dtsi file.
+On 04/07/2024 18:16, Niklas Söderlund wrote:
+> The Gen4 SoCs V3U, V4H and V4M have a similar video capture pipelines.
+> 
+> The datasheets for the SoCs have small nuances around the Pre-Clip
+> registers ELPrC and EPPrC in three use-cases, interlaced images,
+> embedded data and RAW8 input. On V4H the values written to the registers
+> are based on odd numbers while on V4M they are even numbers, values are
+> based on the input image size. No board that uses these SoCs which also
+> have the external peripherals to test these nuances exists. Most likely
+> this is an issue in the datasheet.
+> 
+> Before adding bindings for V4M add a family compatible fallback for
+> Gen4. That way the driver only needs to be updated once for Gen4, and we
+> still have the option to fix any problems in the driver if any testable
+> differences between the SoCs are found.
+> 
+> There are already DTS files using the V3U and V4H compatibles which
+> needs to be updated to not produce a warning for DTS checks. The driver
+> also needs to kept the compatible values to be backward compatible , but
+> for new Gen4 SoCs such as V4M we can avoid this.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> * Changes since v4
+> - Added V3U to the list of Gen4 devices.
+> 
+> * Changes since v3
+> - New in v4.
+> ---
+>  Documentation/devicetree/bindings/media/renesas,vin.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> index 5539d0f8e74d..aa16f1528f2d 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> @@ -52,8 +52,11 @@ properties:
+>                - renesas,vin-r8a77980 # R-Car V3H
+>                - renesas,vin-r8a77990 # R-Car E3
+>                - renesas,vin-r8a77995 # R-Car D3
+> +      - items:
+> +          - enum:
+>                - renesas,vin-r8a779a0 # R-Car V3U
+>                - renesas,vin-r8a779g0 # R-Car V4H
+> +          - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
 
-New, btt3.dtsi has been added to embrace common DTS properties for
-different HW revisions for this device.
+I believe it was requested in earlier comments to use SoC specific
+compatible as fallback.
 
-As a result - changes introduced in btt3-[012].dts are minimal.
+See:
+https://lore.kernel.org/all/20240624-rented-danger-300652ab8eeb@wendy/
+https://lore.kernel.org/all/20240610-screen-wolverine-78370c66d40f@spud/
+https://lore.kernel.org/all/20240620-gating-coherent-af984389b2d7@spud/
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
----
- arch/arm/boot/dts/nxp/mxs/Makefile   |   3 +
- arch/arm/boot/dts/nxp/mxs/btt3-0.dts |  12 +
- arch/arm/boot/dts/nxp/mxs/btt3-1.dts |   8 +
- arch/arm/boot/dts/nxp/mxs/btt3-2.dts |  12 +
- arch/arm/boot/dts/nxp/mxs/btt3.dtsi  | 320 +++++++++++++++++++++++++++
- 5 files changed, 355 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3-0.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3-1.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3-2.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3.dtsi
+You ignored these suggestions and decided to go with other approach.
 
-diff --git a/arch/arm/boot/dts/nxp/mxs/Makefile b/arch/arm/boot/dts/nxp/mxs/Makefile
-index a430d04f9c69..fa50eae3f431 100644
---- a/arch/arm/boot/dts/nxp/mxs/Makefile
-+++ b/arch/arm/boot/dts/nxp/mxs/Makefile
-@@ -1,5 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MXS) += \
-+	btt3-0.dtb \
-+	btt3-1.dtb \
-+	btt3-2.dtb \
- 	imx23-evk.dtb \
- 	imx23-olinuxino.dtb \
- 	imx23-sansa.dtb \
-diff --git a/arch/arm/boot/dts/nxp/mxs/btt3-0.dts b/arch/arm/boot/dts/nxp/mxs/btt3-0.dts
-new file mode 100644
-index 000000000000..0c782c3136f5
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/btt3-0.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "btt3.dtsi"
-+
-+&hog_pins_rev {
-+	fsl,pull-up = <MXS_PULL_ENABLE>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/mxs/btt3-1.dts b/arch/arm/boot/dts/nxp/mxs/btt3-1.dts
-new file mode 100644
-index 000000000000..031fb6e4c917
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/btt3-1.dts
-@@ -0,0 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "btt3.dtsi"
-diff --git a/arch/arm/boot/dts/nxp/mxs/btt3-2.dts b/arch/arm/boot/dts/nxp/mxs/btt3-2.dts
-new file mode 100644
-index 000000000000..ec8315527c94
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/btt3-2.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "btt3.dtsi"
-+
-+&lcdif {
-+	display = <&display_te_b>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/mxs/btt3.dtsi b/arch/arm/boot/dts/nxp/mxs/btt3.dtsi
-new file mode 100644
-index 000000000000..5574cebf9abc
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/btt3.dtsi
-@@ -0,0 +1,320 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+/dts-v1/;
-+#include "imx28-lwe.dtsi"
-+
-+/ {
-+	model = "BTT3";
-+
-+	compatible = "lwn,btt3", "fsl,imx28";
-+
-+	chosen {
-+	       bootargs = "root=/dev/mmcblk0p2 rootfstype=ext4 ro rootwait console=ttyAMA0,115200 panic=1 quiet";
-+	};
-+
-+	memory@40000000 {
-+		reg = <0x40000000 0x10000000>;
-+		device_type = "memory";
-+	};
-+
-+	poweroff {
-+		compatible = "gpio-poweroff";
-+		gpios = <&gpio0 24 0>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "BTTC Audio";
-+		simple-audio-card,widgets = "Speaker", "BTTC Speaker";
-+		simple-audio-card,routing = "BTTC Speaker", "SPKOUTN", "BTTC Speaker", "SPKOUTP";
-+		simple-audio-card,dai-link@0 {
-+			format = "left_j";
-+			bitclock-master = <&dai0_master>;
-+			frame-master = <&dai0_master>;
-+			mclk-fs = <256>;
-+			dai0_master: cpu {
-+				sound-dai = <&saif0>;
-+			};
-+			codec {
-+				sound-dai = <&wm89xx>;
-+				clocks = <&saif0>;
-+			};
-+		};
-+	};
-+
-+	wifi_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_en_pin_bttc>;
-+		reset-gpios = <&gpio0 27 GPIO_ACTIVE_LOW>;
-+		/* W1-163 needs 60us for WL_EN to be low and */
-+		/* 150ms after high before downloading FW is possible */
-+		post-power-on-delay-ms = <200>;
-+		power-off-delay-us = <100>;
-+	};
-+};
-+
-+&auart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&auart0_2pins_a>;
-+	status = "okay";
-+};
-+
-+&auart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&auart3_pins_a>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	wm89xx: codec@1a {
-+		compatible = "wlf,wm8940", "wlf,wm8974";
-+		reg = <0x1a>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&lcdif_24bit_pins_a>, <&lcdif_sync_pins_bttc>,
-+		    <&lcdif_reset_pins_bttc>;
-+	lcd-supply = <&reg_3v3>;
-+	display = <&display0>;
-+	status = "okay";
-+	display0: display0 {
-+		bits-per-pixel = <32>;
-+		bus-width = <24>;
-+		display-timings {
-+			native-mode = <&timing0>;
-+			timing0: timing0 {
-+				clock-frequency = <6500000>;
-+				hactive = <320>;
-+				vactive = <240>;
-+				hfront-porch = <20>;
-+				hback-porch = <38>;
-+				hsync-len = <30>;
-+				vfront-porch = <4>;
-+				vback-porch = <14>;
-+				vsync-len = <4>;
-+				hsync-active = <0>;
-+				vsync-active = <0>;
-+				de-active = <0>;
-+				pixelclk-active = <1>;
-+			};
-+		};
-+	};
-+	display_te_b: display1 {
-+		bits-per-pixel = <32>;
-+		bus-width = <24>;
-+		display-timings {
-+			native-mode = <&timing0>;
-+			timing_te_b: timing0 {
-+				clock-frequency = <6500000>;
-+				hactive = <320>;
-+				vactive = <240>;
-+				hfront-porch = <20>;
-+				hback-porch = <68>;
-+				hsync-len = <30>;
-+				vfront-porch = <4>;
-+				vback-porch = <14>;
-+				vsync-len = <4>;
-+				hsync-active = <0>;
-+				vsync-active = <0>;
-+				de-active = <1>;
-+				pixelclk-active = <1>;
-+			};
-+		};
-+	};
-+
-+};
-+
-+&mac0 {
-+	clocks = <&clks 57>, <&clks 57>, <&clks 64>;
-+	clock-names = "ipg", "ahb", "enet_out";
-+	phy-handle = <&mac0_phy>;
-+	phy-mode = "rmii";
-+	phy-supply = <&reg_3v3>;
-+	local-mac-address = [ 00 11 B8 00 BF 8A ];
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		mac0_phy: ethernet-phy@0 {
-+			/* LAN8720Ai - PHY ID */
-+			compatible = "ethernet-phy-id0007.c0f0","ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			smsc,disable-energy-detect;
-+			max-speed = <100>;
-+
-+			reset-gpios = <&gpio4 12 GPIO_ACTIVE_LOW>; /* GPIO4_12 */
-+			reset-assert-us = <1000>;
-+			reset-deassert-us = <1000>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hog_pins_a>, <&hog_pins_rev>;
-+
-+	hog_pins_a: hog@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_RDY2__GPIO_0_22
-+			MX28_PAD_GPMI_RDY3__GPIO_0_23
-+			MX28_PAD_GPMI_RDN__GPIO_0_24
-+			MX28_PAD_LCD_VSYNC__GPIO_1_28
-+			MX28_PAD_SSP2_SS1__GPIO_2_20
-+			MX28_PAD_SSP2_SS2__GPIO_2_21
-+			MX28_PAD_AUART2_CTS__GPIO_3_10
-+			MX28_PAD_AUART2_RTS__GPIO_3_11
-+			MX28_PAD_GPMI_WRN__GPIO_0_25
-+			MX28_PAD_ENET0_RXD2__GPIO_4_9
-+			MX28_PAD_ENET0_TXD2__GPIO_4_11
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	hog_pins_rev: hog@1 {
-+		reg = <1>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_ENET0_RXD3__GPIO_4_10
-+			MX28_PAD_ENET0_TX_CLK__GPIO_4_5
-+			MX28_PAD_ENET0_COL__GPIO_4_14
-+			MX28_PAD_ENET0_CRS__GPIO_4_15
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	keypad_pins_bttc: keypad-bttc@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_D00__GPIO_0_0
-+			MX28_PAD_AUART0_CTS__GPIO_3_2
-+			MX28_PAD_AUART0_RTS__GPIO_3_3
-+			MX28_PAD_GPMI_D03__GPIO_0_3
-+			MX28_PAD_GPMI_D04__GPIO_0_4
-+			MX28_PAD_GPMI_D05__GPIO_0_5
-+			MX28_PAD_GPMI_D06__GPIO_0_6
-+			MX28_PAD_GPMI_D07__GPIO_0_7
-+			MX28_PAD_GPMI_CE1N__GPIO_0_17
-+			MX28_PAD_GPMI_CE2N__GPIO_0_18
-+			MX28_PAD_GPMI_CE3N__GPIO_0_19
-+			MX28_PAD_GPMI_RDY0__GPIO_0_20
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	lcdif_sync_pins_bttc: lcdif-bttc@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_LCD_DOTCLK__LCD_DOTCLK
-+			MX28_PAD_LCD_ENABLE__LCD_ENABLE
-+			MX28_PAD_LCD_HSYNC__LCD_HSYNC
-+			MX28_PAD_LCD_RD_E__LCD_VSYNC
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	lcdif_reset_pins_bttc: lcdif-bttc@1 {
-+		reg = <1>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_LCD_RESET__GPIO_3_30
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+
-+	ssp1_sdio_pins_a: ssp1-sdio@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_SSP1_DATA0__SSP1_D0
-+			MX28_PAD_GPMI_D01__SSP1_D1
-+			MX28_PAD_GPMI_D02__SSP1_D2
-+			MX28_PAD_SSP1_DATA3__SSP1_D3
-+			MX28_PAD_SSP1_CMD__SSP1_CMD
-+			MX28_PAD_SSP1_SCK__SSP1_SCK
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_8mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+
-+	wifi_en_pin_bttc: wifi_en_pin@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_CLE__GPIO_0_27
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_8mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm3_pins_a>;
-+	status = "okay";
-+};
-+
-+&reg_usb_5v {
-+	gpio = <&gpio1 28 0>;
-+};
-+
-+&saif0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&saif0_pins_a>;
-+	#sound-dai-cells = <0>;
-+	assigned-clocks = <&clks 53>;
-+	assigned-clock-rates = <12000000>;
-+	status = "okay";
-+};
-+
-+&saif1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&saif1_pins_a>;
-+	fsl,saif-master = <&saif0>;
-+	#sound-dai-cells = <0>;
-+	status = "okay";
-+};
-+
-+&ssp1 {
-+	compatible = "fsl,imx28-mmc";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ssp1_sdio_pins_a>;
-+	bus-width = <4>;
-+	no-1-8-v;       /* force 3.3V VIO */
-+	pm-ignore-notify;
-+	non-removable;
-+	vmmc-supply = <&reg_3v3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	keep-power-in-suspend;
-+	status = "okay";
-+
-+	wlan@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+&ssp2 {
-+	compatible = "fsl,imx28-spi";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi2_pins_a>;
-+	status = "okay";
-+};
--- 
-2.39.2
+I don't agree with this.
+
+Please carry:
+
+Nacked-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+so my objection and your avoidance of earlier suggestions will be
+clearly documented.
+
+Best regards,
+Krzysztof
 
 
