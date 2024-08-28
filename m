@@ -1,139 +1,132 @@
-Return-Path: <devicetree+bounces-97681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 000E8963068
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:48:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E63F963080
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:55:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 978C81F220A4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 18:48:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1944AB24C8D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 18:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31FDF1A706D;
-	Wed, 28 Aug 2024 18:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16CF31A3BDE;
+	Wed, 28 Aug 2024 18:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QG/Wu4bH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HphzMfK4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0574A328DB;
-	Wed, 28 Aug 2024 18:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C73328DB;
+	Wed, 28 Aug 2024 18:55:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724870877; cv=none; b=ppuHuuIZoKdkDKBSa1qqtdIBbkYu0aT8Pl6g5MRyks2AeIoKTu32j0QCiCKuXR41xXeKzGwQ241F5irmuY72zTT8h5SZRihZPcIMt4ku4QMcYgcrFmNVcLbWUDbpTzOpWr0l5H7fwFEyYg7TrQuf384vSoWxgac9wOpz0O0Ar3w=
+	t=1724871331; cv=none; b=eHBIzq3ywCtJeQWnbZGY3TXfKm9s7kpOZfmUWBOH9ECfLCIv/W46HKgY7oWD4mrFNoVXSb86oJa3G1gvXmxxgRaLkn9yXUj6GrZXERg9lvFIRPA/gRZ+cNmBv/QNSYxd7ui6sOdVMKRkIWeBT9HshRhCUmzsyazUdF6MDyhBL3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724870877; c=relaxed/simple;
-	bh=BWqtKeZjzI89ouRoevpj7gC/9WLPfDVqSv+VnjFUUv4=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:To:Date; b=hBW3su/CYRivwwv+T/qIqmmV1slY1PdHvNv32mKJ/fQ5P49JL3xYjVf2koPnxkX+LhYWrFujwB5ZEo0DDGz3PIovaTmCZ7gRwwaj+r2eydRm4OTWpU8hdFl8f2dlnnk2+FPljae3S/SE8HVVz+eRDPcsSDb/8MbkVgafdZpkh4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QG/Wu4bH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A123C4CEC0;
-	Wed, 28 Aug 2024 18:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724870876;
-	bh=BWqtKeZjzI89ouRoevpj7gC/9WLPfDVqSv+VnjFUUv4=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=QG/Wu4bH7Skgv9fh1+BCAdSlUsc+q6ygbSJwP+eAJzkAkDo/FjXXFnKVLtNtbHmVC
-	 xcQRuKe48fV5FFzyL32N9b2GJBiqH/rchG1C6MgwQ7x4o1znlQXFpzUPw5aI3pKfhK
-	 qVlspvwIujse9n9OsmH25IPpg9Mmi2+T/+x5DVhYvhumHLEoQPQi5AMrfWNhXwJAAQ
-	 sr1UxEJX0N3te3bC2kFfutZ8pZ4ZifyjLi2MdD9uWeDPcv13sA1bjFNUHTAF8z0Bhh
-	 PB9Qg6YJkrO/QgJ8wehkqWAAWsSpdBCttQb2/hu+qaaKt9sC8g8FOvSl5TZkUGnRvm
-	 oH+c2DMzAXvzA==
-Message-ID: <61c8234139fcd2b27610ef18e9d9fbf7.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1724871331; c=relaxed/simple;
+	bh=K24XdBVS1ZC69+udi8532kBQaRJNZotpK6hDvJIMQWQ=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sYW9l9ZPD9jxRUbBMpKwpWp5PRbxVvTWQXCINUjPjh5ClRHSUdn3p5YcNUrktSz7gehyMxPrZATsz2udA61WBZOilk8TS4wCTb70IIEz3K9syhM+a3wdZfk5MTH/0OFJe8t0nKZKRzRIjZjqEq2+iKh2hekFfyNrSQh6JzHd4Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HphzMfK4; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SItKnH092157;
+	Wed, 28 Aug 2024 13:55:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724871320;
+	bh=Qy/V2k5Y2S/JbJqVjEzf8cnsqV6HJ6GGxYP13wMud9s=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=HphzMfK4+RJu3qVAQwIrP/6yaIntgVsVcOr7Nq97owLDhPl5nrJobNVT0eUDP79v2
+	 wJ/dHKRc3nyaLB3eSZiRAL4WIh6Zacb4iOM7qII3tgY6GikY9tfZ76sAu2WeFpSDA/
+	 nU4EQdvaLmBTnfVjWjEBjlgFI0EypiUEeGAB0ImY=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SItKQ3060099
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 28 Aug 2024 13:55:20 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
+ Aug 2024 13:55:20 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 28 Aug 2024 13:55:20 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SItKI1048548;
+	Wed, 28 Aug 2024 13:55:20 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jan Kiszka
+	<jan.kiszka@siemens.com>
+CC: Nishanth Menon <nm@ti.com>, Bao Cheng Su <baocheng.su@siemens.com>,
+        Hua
+ Qian Li <huaqian.li@siemens.com>
+Subject: Re: [PATCH v2 0/2] arm64: dts: iot2050: Fix R5 lock-step settings, add overlays
+Date: Wed, 28 Aug 2024 13:55:18 -0500
+Message-ID: <172487125711.3441200.11079556552266288312.b4-ty@ti.com>
+X-Mailer: git-send-email 2.46.0
+In-Reply-To: <cover.1724830741.git.jan.kiszka@siemens.com>
+References: <cover.1724830741.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240828062740.1614744-4-ryan_chen@aspeedtech.com>
-References: <20240828062740.1614744-1-ryan_chen@aspeedtech.com> <20240828062740.1614744-4-ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH v2 3/3] clk: aspeed: add AST2700 clk driver
-From: Stephen Boyd <sboyd@kernel.org>
-To: andrew@codeconstruct.com.au, conor+dt@kernel.org, devicetree@vger.kernel.org, joel@jms.id.au, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org, ryan_chen@aspeedtech.com
-Date: Wed, 28 Aug 2024 11:47:54 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Quoting Ryan Chen (2024-08-27 23:27:40)
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index 983ef4f36d8c..855b65f2d6dd 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -269,6 +269,16 @@ config COMMON_CLK_ASPEED
->           The G4 and G5 series, including the ast2400 and ast2500, are su=
-pported
->           by this driver.
-> =20
-> +config COMMON_CLK_AST2700
-> +       bool "Clock driver for AST2700 SoC"
-> +       depends on ARCH_ASPEED || COMPILE_TEST
-> +       select MFD_SYSCON
+Hi Jan Kiszka,
 
-Why is this a syscon?
+On Wed, 28 Aug 2024 09:38:59 +0200, Jan Kiszka wrote:
+> Changes in v2:
+>  - build dtb with applied overlays
+> 
+> Trying to get our backlog closer to zero. See patches for details.
+> 
+> Jan
+> 
+> [...]
 
-> +       select RESET_CONTROLLER
-> +       help
-> +         This driver provides support for clock on AST2700 SoC.
-> +         This driver is responsible for managing the various clocks requ=
-ired
-> +         by the peripherals and cores within the AST2700.
-> +
->  config COMMON_CLK_S2MPS11
->         tristate "Clock driver for S2MPS1X/S5M8767 MFD"
->         depends on MFD_SEC_CORE || COMPILE_TEST
-> diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
-> new file mode 100644
-> index 000000000000..7e0466e73980
-> --- /dev/null
-> +++ b/drivers/clk/clk-ast2700.c
-> @@ -0,0 +1,1198 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2024 ASPEED Technology Inc.
-> + * Author: Ryan Chen <ryan_chen@aspeedtech.com>
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/clk-provider.h>
-[...]
-> +
-> +struct ast2700_reset {
-> +       void __iomem *base;
-> +       struct ast2700_reset_signal const *signal;
-> +       struct reset_controller_dev rcdev;
-> +};
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Please move the reset controller to the drivers/reset directory by means
-of using an auxiliary device. There are some existing examples in there
-if you grep for auxiliary_device in drivers/reset to help guide.
+[1/2] arm64: dts: ti: iot2050: Disable lock-step for all iot2050 boards
+      commit: e0133f883cf115d9e97e704169a9fb6003caefb2
+[2/2] arm64: dts: ti: iot2050: Add overlays for M.2 used by firmware
+      commit: dba27d026fc841d28a0ed373f617cc84ec0e4504
 
-> +
-> +#define to_rc_data(p) container_of(p, struct ast2700_reset, rcdev)
-> +
-[...]
-> +
-> +static int ast2700_soc0_clk_init(struct device_node *soc0_node)
-> +{
-> +       struct clk_hw_onecell_data *clk_data;
-> +       void __iomem *clk_base;
-[...]
-> +                                            0, clk_base + SCU0_CLK_STOP,
-> +                                            28, 0, &ast2700_clk_lock);
-> +
-> +       of_clk_add_hw_provider(soc0_node, of_clk_hw_onecell_get, clk_data=
-);
-> +
-> +       return 0;
-> +};
-> +
-> +CLK_OF_DECLARE_DRIVER(ast2700_soc0, "aspeed,ast2700-scu0", ast2700_soc0_=
-clk_init);
-> +CLK_OF_DECLARE_DRIVER(ast2700_soc1, "aspeed,ast2700-scu1", ast2700_soc1_=
-clk_init);
+From what I see, this seems fine, and inline with the good stuff, but if
+folks feel it was a bit pre-mature to pick things up, I can drop it, but
+prefer to let it cook in next for a short while if possible.
 
-Why can't this be a platform driver?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
 
