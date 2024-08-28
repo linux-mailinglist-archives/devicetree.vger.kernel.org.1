@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1CB9622F4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:07:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E452D962300
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:08:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38B241F2450C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:07:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EE4D284F1B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3533F1591FC;
-	Wed, 28 Aug 2024 09:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899B715DBAE;
+	Wed, 28 Aug 2024 09:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ryph/kPm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="frlLQMiW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02140158543;
-	Wed, 28 Aug 2024 09:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA2C15C14F;
+	Wed, 28 Aug 2024 09:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724836028; cv=none; b=WTgOX4qIhzKr95tXQCcA6kmlD+WzshrKNdD5566uRjoEU5I6n3npkPC4CrIabXje95JsexPxlKX+SI8t1ePWtBTEJakdcrLfaPuw/+Ge6slaiNJHHG2IwlLRY1dz8FkwOIMaIB7amhilfg4+hpvVVzA1MhJ2GiCLZfES6Kq5FxI=
+	t=1724836122; cv=none; b=csmbj8eF0k1GRFupOJfbLnpbtQZ3RgKaJBor4blRHnt884vFzr3uEOQKWABNL1WWGR4H3u8C3m3fQcYw6MCl7Vf7jPfXDIKNsiHJ6f87gjnnsB7DSPERj5ETDNDY+LyEOo2WFWeR+TIDnyhan+VYQJQNXy0YHrpOXtJPA5eHU5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724836028; c=relaxed/simple;
-	bh=qa1D8sWQ7smF5eON7ApWsmnuqplMQ1HKdz1ku1wHFIE=;
+	s=arc-20240116; t=1724836122; c=relaxed/simple;
+	bh=T9+UPkiHdOSPmSX/60spyttQMin9/8OW+10mi+SdMFM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t23kUJzTcHEG0lH1j+hU1BPUbNwx0ojnj6HTHNrCjxngOgfI/jGj5OTbcsAKbuzazkI23KSI6o+mjuC0AiuLTeZjSESu0XetOWqvg8J/Zh6H1sBqn44nHEHL+fEsqJK1SGXQTMWzHNT+NIB2cPdWbSOizSzI/PoHMZbHQYi2pLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ryph/kPm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1CB7C4AF51;
-	Wed, 28 Aug 2024 09:07:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MzgLmnSoswSvL7vQjGQQLU41spo4mZBU1t4uIByzww+CpgDd5NU7md/rohw3nG5DCqj8sLTUH1qLZ8iUiVQE8C4/8HeYnAV/FxnRUgVxR/eLpCjORCxo5ujrBy/3TG4AE+HA181TTgdKu3Z4qLRxdj8X+u9xds/gMmhTTYsyP1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=frlLQMiW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF946C8403B;
+	Wed, 28 Aug 2024 09:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724836027;
-	bh=qa1D8sWQ7smF5eON7ApWsmnuqplMQ1HKdz1ku1wHFIE=;
+	s=k20201202; t=1724836121;
+	bh=T9+UPkiHdOSPmSX/60spyttQMin9/8OW+10mi+SdMFM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ryph/kPmI6mUyBZsV6IIW1VHyrUCZWOFAK4yYtYd087XawAaKkN4wndjstA3AxXyG
-	 h3mMMnbIho93JqD02uKUztohPXOCAYk7wB1KcQBb6HosG6yBf7xTP0jxNVZWDPr4go
-	 URklcY28JBD+ho8cF9T1XAuZyM6eVjWTw26ROWLRv04RRc6zvMOD5ub1k4vLv/R54f
-	 oDe8Jrp4XX2DFwMCNvJxsM26nM5zy1LgGmD47MueRrOaBub1m2sMx7HWtn1vKyof8l
-	 Xd2PUX4nIoXTlM7vjLPA+xoc6b8YQBKcJxpA1TGxewoj48hwIWsMM3V2IQor7tD2Gb
-	 tVnb895fiYipw==
-Message-ID: <fcf59ffe-69f7-48d3-bf20-fc223a2c2d10@kernel.org>
-Date: Wed, 28 Aug 2024 11:07:00 +0200
+	b=frlLQMiWouw88VzoZNjJZV2KjpobUVwczNzvsO56jI8Im8umluEi/+GyFzYwkm4wJ
+	 xG7Sc+4fw+JuRxqHNftuJ12rrEWHkhsyg+/ht+WmmLLQ31+F0rYQcR9gCW6nTC4ywT
+	 HAKHMxLJnO+EtwtDt1CohL42Fk2UNriNvQ05Hodk2uAOpZk01Ns7e9bLTJ31GzBiEg
+	 Wxo4igQk+XVGWVAE8kib9dRbr5MPZaDeGeGjb1ax1h/44H+YTw1llVioPpdB92VkGk
+	 01jQwgWkdIVMter6fL5ByFiBd+MweXaa7jQT9va4d/oVIwd4XqXzAtoDEtsZuOvvcN
+	 ket4RQAPtwODQ==
+Message-ID: <9180e80b-f464-4a84-8c58-35383beec637@kernel.org>
+Date: Wed, 28 Aug 2024 11:08:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom,sa8775p-pas: Document
- QCS8300 remoteproc
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- andersson@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mathieu.poirier@linaro.org,
- bartosz.golaszewski@linaro.or, quic_tingweiz@quicinc.com,
- quic_aiquny@quicinc.com, quic_tengfan@quicinc.com,
- Xin Liu <quic_liuxin@quicinc.com>
-References: <20240828030511.443605-1-quic_jingyw@quicinc.com>
- <20240828030511.443605-2-quic_jingyw@quicinc.com>
- <eetb73ycz7kzcgknuzorsnoszhpdljuxepuoflhakobli6dozl@q2sbmj77hedo>
- <51280d4a-ad55-466d-b9d8-c5bdc1a2f0ee@quicinc.com>
+Subject: Re: [PATCH v12 2/2] arm64: dts: apple: add "brcm,bcm4329-fmac"
+ fallback compatible
+To: Jacobe Zang <jacobe.zang@wesion.com>, marcan@marcan.st,
+ sven@svenpeter.dev, alyssa@rosenzweig.io, robh@kernel.org, heiko@sntech.de,
+ krzk+dt@kernel.org
+Cc: linux-rockchip@lists.infradead.org, dsimic@manjaro.org,
+ conor+dt@kernel.org, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, nick@khadas.com
+References: <20240828033953.967649-1-jacobe.zang@wesion.com>
+ <20240828033953.967649-3-jacobe.zang@wesion.com>
+ <22aaf58a-da71-44c7-acd7-f3e70b91cdfd@kernel.org>
+ <c5047173-d569-42d4-9676-4679100da118@wesion.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,62 +108,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <51280d4a-ad55-466d-b9d8-c5bdc1a2f0ee@quicinc.com>
+In-Reply-To: <c5047173-d569-42d4-9676-4679100da118@wesion.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/08/2024 09:28, Jingyi Wang wrote:
+On 28/08/2024 08:13, Jacobe Zang wrote:
 > 
 > 
-> On 8/28/2024 3:22 PM, Krzysztof Kozlowski wrote:
->> On Wed, Aug 28, 2024 at 11:05:10AM +0800, Jingyi Wang wrote:
->>> Document the components used to boot the ADSP, CDSP and GPDSP on the
->>> QCS8300 SoC.
->>>
->>> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
->>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
->>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->>> ---
->>>  .../bindings/remoteproc/qcom,sa8775p-pas.yaml | 22 +++++++++++++++++++
->>>  1 file changed, 22 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml
->>> index 7fe401a06805..44b070a17ca0 100644
->>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml
->>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml
->>> @@ -16,6 +16,9 @@ description:
->>>  properties:
->>>    compatible:
->>>      enum:
->>> +      - qcom,qcs8300-adsp-pas
->>> +      - qcom,qcs8300-cdsp-pas
->>> +      - qcom,qcs8300-gpdsp-pas
->>>        - qcom,sa8775p-adsp-pas
->>>        - qcom,sa8775p-cdsp0-pas
->>>        - qcom,sa8775p-cdsp1-pas
->>> @@ -64,6 +67,7 @@ allOf:
->>>        properties:
->>>          compatible:
->>>            enum:
->>> +            - qcom,qcs8300-adsp-pas
->>>              - qcom,sa8775p-adsp-pas
->>>      then:
->>>        properties:
->>> @@ -75,6 +79,23 @@ allOf:
->>>            items:
->>>              - const: lcx
->>>              - const: lmx
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          enum:
->>> +            - qcom,qcs8300-cdsp-pas
+> On 2024/8/28 13:56, Krzysztof Kozlowski wrote:
+>> On 28/08/2024 05:39, Jacobe Zang wrote:
+>>> Broadcom driver need to check "brcm,bcm4329-fmac" compatible. Before
 >>
->> This looks the same as sa8775p cdsp. Why new entry?
+>> What for?
 >>
-> There is difference in power domain, sa8775p use nsp while qcs8300 use nsp0
+> 
+> It matches the changes in the other series that I sent.
 
-Please paste code where do you see the difference.
+Commit msg did not explain this at all. Anyway, then bindings should
+provide proper rationale without referring to "driver" as the reason.
+
+> 
+>>> PCIe devices used PCI ID as base compabile so add it as fallback
+>>> compatible to pass the check.
+>>>
+>>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+>>> ---
+>>>   arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 2 +-
+>>>   arch/arm64/boot/dts/apple/t8112-j413.dts  | 2 +-
+>>>   arch/arm64/boot/dts/apple/t8112-j493.dts  | 2 +-
+>>>   3 files changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+>>> index 5988a4eb6efaa..4b021626d4692 100644
+>>> --- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+>>> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+>>> @@ -72,7 +72,7 @@ hpm1: usb-pd@3f {
+>>>   &port00 {
+>>>   	bus-range = <1 1>;
+>>>   	wifi0: network@0,0 {
+>>> -		compatible = "pci14e4,4425";
+>>> +		compatible = "pci14e4,4425", "brcm,bcm4329-fmac";
+>>
+>> So devices are not compatible, but your argument is that driver needs to
+>> do something here? That's not enough.
+>>
+> Before this change, the check of "brcm,bcm4329-fmac" compatible is set 
+> at the end of probe function for SDIO devices which need IRQ. But after 
+> this change I set it to the top as the first check. So I add this 
+> fallback compatible to the Apple's DTS.
+
+You are not listening, I think, and still keep talking about driver. It
+has nothing to do. Fix your driver.
+
+> 
+> Oh..I got what you mean. Maybe my commit message is not clearly. It is 
+> no need to mention driver in it. Because the intent of adding the 
+> "brcm,bcm4329-fmac" compatible is to conform to the bindings.
+
+Explain the hardware, not the driver. DTS represents hardware, not drivers.
 
 Best regards,
 Krzysztof
