@@ -1,184 +1,126 @@
-Return-Path: <devicetree+bounces-97379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01429621A4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:48:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B2C9621A7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:48:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E34121C21024
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:48:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9EE91C2123F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBE61586DB;
-	Wed, 28 Aug 2024 07:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D8815A85B;
+	Wed, 28 Aug 2024 07:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BA28siPs"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FYonrL2P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED43157A67;
-	Wed, 28 Aug 2024 07:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06751157A67;
+	Wed, 28 Aug 2024 07:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724831282; cv=none; b=MstwrVXM6X41r9rYupRd7Z+q75T8aNhluuAlQq31VAcMVTjBMw6G6Pd/qT5B9yKySxv+iW+7DiEMP4s0O1SX61UTxcJzxTu72a3i/HVeTdGPWzcbWmQLhAk5eWZIC3yZpXBzAU7sJyFzpatPL4sjPU1/Dkz1v0jczmGHVsQzn5E=
+	t=1724831288; cv=none; b=fxMdDrK3ODa0NCWRYfePzuZVkim+kU5TgJ8atJsrTx2wjdq/Hmt6wbzsHwRfx1G/DPv2oMeR1qsOuxj4O57wBs8Fri1hon+kua1l4uATYizJAxLmaoMKeWZYfMBhek1ZZ9uCzIn4xgbyvvCeh93wUc3AYoB36lqnu5xddlN/f34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724831282; c=relaxed/simple;
-	bh=PySVlahkFHYtglZZ/v7pwWnhVdnK6CdMyrLZQviO5bM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nVNfFxJTTLdB3Pl6J0Llh4e3FjEnt7hQiG1l3mmGfouwTH+AjSYJX5BnmmwroU9+WOFCruYCdol0fnETV2Ra/7xWlq8V2Ae1KugnQ24AuMC9NWKmJ+VLpFIv4nI54iRa1c1aGTQwlyBujzPX5Bam8FtwiXlK2QNPaEE4Kk16O5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BA28siPs; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20227ba378eso58083815ad.0;
-        Wed, 28 Aug 2024 00:48:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724831280; x=1725436080; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3OBjUgc9cFXkg83mO7IC2sZvH5LHYp7bAGQMEXhE0sI=;
-        b=BA28siPsjduBI03zjI+a9rBWvEzIFMxeDWkLQnH6VpuNqqtx0o3gm8SsdVhtvOO5OH
-         iqRjS73eGfRMK2MEps0JTWGHlw1LzYIMxYrOtv95Js+0f+u8sBtt5Bsza53BG6GurWOc
-         mjzVjcyMJeuh8JjrIzc3ZtwAVAmS1gB7OMSIaupc68YrE3EOs5owraFd/ji24mynq7Jh
-         ONqv43/5HAxk8CfuQQpNs3jrpxkq5WscCplzZDiv3M8MytwLeonyXMaklUoLmiS/hT0r
-         nbyFQkMZFjz1g8IhVaD5qN23GGdXGqTYlaywtVRUAQWXkQ+fzHSnHC53V0iU6JQlb2Dp
-         MD2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724831280; x=1725436080;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3OBjUgc9cFXkg83mO7IC2sZvH5LHYp7bAGQMEXhE0sI=;
-        b=IwcgZuMX28JQgluzFg+G2j2xNEZ+g/W78d8o+XaM0IcZBKHAILhXU9Gc+5aYjSUgg4
-         bUU0JN2/wWd6Z7i29D73T7VDEkEZnMbvGxtmHAQCIMoKHs24gemNMHRdsGGIldU4iCvH
-         7WvjBU5drB/5dnhTzElhqkMKpIzeVn1ImVSbJkQ6d8dGrdWuKthGvy2BcSsLBC43MHTk
-         0atRIUSo/O9CD6QajnaeXWh9yRj436FuqXfhgHT02nTTEtjnpb3R1KMiNVlkkmfJHsaJ
-         sdZxxdt+dCV/j0mPcIsWCn3Xe46YC+qx0MyXclhqlwDzb4Jh4u1s74RI5GviAgRKalRZ
-         MiXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUvR25GLGyiBm+iV3hx9XjprC0FJmauxNy2+eG4ppbU00f4bKXG9giSjPmMRfQCMbWszF55FNQ81vIg@vger.kernel.org, AJvYcCWs4hQ6BHkphX4+3TTW6qNzR+1zVy6B6pZAIu3fpPfq+wsCGngsuZX72bpZmBhRWhrIldUUD41PCsP72lGn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjsBtUO8cGne6fcW8IyUhbtEz3NAY9IBDPziC+pXhOK3AuIvnd
-	DbimEN68eoIRrNKRbNaO7D0UIXavKYzOMWmbVP4NhsXRbWW/G8ae7a7lk/lF
-X-Google-Smtp-Source: AGHT+IH4XeViWXkMvG8J+jECU/21Cp/grJ7rcyxe62j91h8/4LmdvTzWeJPBzN3n0Nxnqnd+vHgcvw==
-X-Received: by 2002:a17:902:fac3:b0:201:e65b:500b with SMTP id d9443c01a7336-2039e534282mr140849695ad.63.1724831280169;
-        Wed, 28 Aug 2024 00:48:00 -0700 (PDT)
-Received: from 167-179-157-192.a7b39d.syd.nbn.aussiebb.net (167-179-157-192.a7b39d.syd.nbn.aussiebb.net. [167.179.157.192])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2038557f59bsm94081575ad.97.2024.08.28.00.47.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2024 00:47:59 -0700 (PDT)
-From: Jonathan Liu <net147@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: FUKAUMI Naoki <naoki@radxa.com>,
-	Jonathan Liu <net147@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: Enable RK809 audio codec for Radxa ROCK 4C+
-Date: Wed, 28 Aug 2024 17:47:53 +1000
-Message-ID: <20240828074755.1320692-1-net147@gmail.com>
-X-Mailer: git-send-email 2.46.0
+	s=arc-20240116; t=1724831288; c=relaxed/simple;
+	bh=SYYKQg9vKwBUvAgFk2eRCRQpOKTBGlmxBEfLcYlU4UA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k/j2KZcPdMPusrf1HLfHFj1EIjVZluDQMBr+YKqcbcBsZxDwjiyjwqUY5ONyDy8a0naZscPlU0xtzoJ1XH6eHmEXAlCmYimTs1VENKnUeJtw+aWRU4qcm5BFTXaw0qKugeBz4k6A5d3AKEZ25bYerkO6kC5Ck3gHOI5/uP2E5xE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FYonrL2P; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2136F20008;
+	Wed, 28 Aug 2024 07:48:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1724831284;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6r+JuDb9XhBus5ZFw2eCxv7bB0sqq0Ha2zLM/04HK34=;
+	b=FYonrL2Px47cjelbzY0drB6IAR72KbFgQ0CfRB4xg1AZrKCgR1b3Fu+ESpfaymsGaMIG2l
+	TMLsQZfVaYBY8gptVsK1fiRCv8C4hSxkZIwjd9IT/lpsxms5grv8A1LiPB+OtoZgaPFa66
+	2G4sp4G5GXhvTDdFoMWNR+G4jdT4luttSex6C45+TAmpxpraI5uLus9vj/CiclRptLnKSz
+	mk4cmggeJCbkHYQnbf6VlfgggYRvr+yvD3BjIDulTrLL+uWRYDHMnUaUYuXip4KtdDfaYT
+	Rw1durvT07zKEINfBHseCSUpn5d3cdvSbFriyO5O2jAZQZla9E+z0SdzwY6ncQ==
+Message-ID: <2f84827c-bbe9-419a-a3f4-71a8889e99d0@bootlin.com>
+Date: Wed, 28 Aug 2024 09:48:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] wifi: wilc1000: Fold wilc_get_chipid() into wlan.c
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240823161131.94305-1-marex@denx.de>
+ <20240823161131.94305-2-marex@denx.de>
+ <2b167618-473a-4da1-9c10-cba2b9051381@bootlin.com>
+ <182e449a-3e6d-4727-a538-6fd518ae75f8@denx.de>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <182e449a-3e6d-4727-a538-6fd518ae75f8@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-This adds the necessary device tree changes to enable analog audio
-output for the 3.5 mm TRS headphone jack on the Radxa ROCK 4C+ with
-its RK809 audio codec.
+On 8/27/24 17:34, Marek Vasut wrote:
+> On 8/27/24 9:51 AM, Alexis Lothoré wrote:
+> 
+> Hi,
+> 
+>>> +static u32 wilc_get_chipid(struct wilc *wilc)
+>>> +{
+>>> +    u32 chipid = 0;
+>>> +    u32 rfrevid = 0;
+>>> +
+>>> +    if (wilc->chipid == 0) {
+>>> +        wilc->hif_func->hif_read_reg(wilc, WILC_CHIPID, &chipid);
+>> If we search for WILC_CHIPID in the whole driver, there are still two places
+>> manually reading this register. Shouldn't those places also benefit from
+>> wilc_get_chipid ?
+> 
+> Both the one in wilc_wlan_start() and wilc_validate_chipid() look more like some
+> sort of communication check attempt, rather than reading out the chipid for any
+> sort of actual chip identification purpose. I could simply remove those ?
 
-Signed-off-by: Jonathan Liu <net147@gmail.com>
----
- .../boot/dts/rockchip/rk3399-rock-4c-plus.dts | 46 ++++++++++++++++++-
- 1 file changed, 45 insertions(+), 1 deletion(-)
+Agree about the purpose of this reading in wilc_wlan_start and wilc_validate_chipid.
+And about removing those: I would say why not. wilc_validate_chipid has proven
+to be quite useful to diagnose some early communication failure, but I guess
+there are enough communications attempts around
+(wilc_spi_configure_bus_protocol, wilc_load_mac_from_nv) to still validate than
+we are able to communicate with the chip at probe time.
+> 
+>>> +        wilc->hif_func->hif_read_reg(wilc, WILC_RF_REVISION_ID,
+>>> +                         &rfrevid);
+>>> +        if (!is_wilc1000(chipid)) {
+>>> +            wilc->chipid = 0;
+>>
+>> While at it, since you have trimmed the update parameter, it would be nice to
+>> also fix this return value (ie make wilc_getchipid() not return 0 but a real
+>> error code if we can not read the chip id.
+> 
+> Fixed in V3, thanks .
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-index d4b4dced3e39..14453b286446 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-@@ -52,6 +52,21 @@ led-1 {
- 		};
- 	};
- 
-+	rk809-sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,name = "Analog RK809";
-+		simple-audio-card,mclk-fs = <256>;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s0>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&rk809>;
-+		};
-+	};
-+
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		clocks = <&rk809 1>;
-@@ -200,10 +215,13 @@ rk809: pmic@20 {
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
- 		#clock-cells = <1>;
-+		clock-names = "mclk";
-+		clocks = <&cru SCLK_I2S_8CH_OUT>;
- 		clock-output-names = "rk808-clkout1", "rk808-clkout2";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pmic_int_l>;
-+		pinctrl-0 = <&pmic_int_l>, <&i2s_8ch_mclk>;
- 		rockchip,system-power-controller;
-+		#sound-dai-cells = <0>;
- 		wakeup-source;
- 
- 		vcc1-supply = <&vcc5v0_sys>;
-@@ -445,6 +463,10 @@ &i2c3 {
- 	status = "okay";
- };
- 
-+&i2s0 {
-+	status = "okay";
-+};
-+
- &i2s2 {
- 	status = "okay";
- };
-@@ -472,6 +494,28 @@ bt_wake_l: bt-wake-l {
- 		};
- 	};
- 
-+	i2s0 {
-+		i2s0_8ch_bus: i2s0-8ch-bus {
-+			rockchip,pins =
-+				<3 RK_PD0 1 &pcfg_pull_none>,
-+				<3 RK_PD2 1 &pcfg_pull_none>,
-+				<3 RK_PD3 1 &pcfg_pull_none>,
-+				<3 RK_PD7 1 &pcfg_pull_none>;
-+		};
-+
-+		i2s0_8ch_bus_bclk_off: i2s0-8ch-bus-bclk-off {
-+			rockchip,pins =
-+				<3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>,
-+				<3 RK_PD2 1 &pcfg_pull_none>,
-+				<3 RK_PD3 1 &pcfg_pull_none>,
-+				<3 RK_PD7 1 &pcfg_pull_none>;
-+		};
-+
-+		i2s_8ch_mclk: i2s-8ch-mclk {
-+			rockchip,pins = <4 RK_PA0 1 &pcfg_pull_none>;
-+		};
-+	};
-+
- 	leds {
- 		user_led1: user-led1 {
- 			rockchip,pins = <3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
+Great, thanks
+
+Alexis
+
 -- 
-2.46.0
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
