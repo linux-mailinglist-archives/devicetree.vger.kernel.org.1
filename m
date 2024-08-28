@@ -1,212 +1,236 @@
-Return-Path: <devicetree+bounces-97548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D5F59628FD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:43:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C33A962909
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:44:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF8811F23F98
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:43:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7DF284754
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A72187878;
-	Wed, 28 Aug 2024 13:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2037D188014;
+	Wed, 28 Aug 2024 13:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XQX1xlWU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0731EA65;
-	Wed, 28 Aug 2024 13:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64592187FE5;
+	Wed, 28 Aug 2024 13:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724852618; cv=none; b=hkfmhD8afX9BISR8OuFxcaA8voNR4iNQIEUroL9VmclNKs4FjSw52uDg5vM80fyGUylaZOLSSxhEo/xOpH4BheZ0DeQHDD7caI897azvwZovb8Sl2TJILEHZ4/Yk9wG9XDDrCJZWh1QPwipfbpKnZ+h8oSbOY9aLKA2W21AHtNg=
+	t=1724852675; cv=none; b=dcYnrbAlgLXp79G+F71MhOH8XyDNwJ2h3D4EHtGBqoy0tLpbOv4ni/CBcyxCgbilIF9mMFXaFlrHTVNl4rQluxbCcbKXMql/bv6NXUxOo8P6oDkX5zv08hPOPRn3tzR6D+qOHPLavanfzgGlYY5WM5tAKWvSqDRfBWOlaZav+jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724852618; c=relaxed/simple;
-	bh=u6qjWjK4vB+eii5+rdYpZfkq8L6vXynittERchj+etE=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DDZ0jNB1CCBScuFE/IpCy1vTjkdKVCbYjFMxdTqaHxrGkhSBf4v/2ngBMQLwuZ6ftpESbbfxNN3GciELCCR0sHNNH/I4cVTGrKRdulE6ci/sAgG0o7HkALEWYBiqAPryI6p4+cpOGcAw2M3ZHkI63c0rgaF6khelOnvw44bwvWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Wv5Bp35x6z6J7x9;
-	Wed, 28 Aug 2024 21:40:18 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id B649614038F;
-	Wed, 28 Aug 2024 21:43:34 +0800 (CST)
-Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 28 Aug
- 2024 14:43:34 +0100
-Date: Wed, 28 Aug 2024 14:43:33 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: <Jianping.Shen@de.bosch.com>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <dima.fedrau@gmail.com>,
-	<marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<Christian.Lorenz3@de.bosch.com>, <Ulrike.Frauendorf@de.bosch.com>,
-	<Kai.Dolde@de.bosch.com>
-Subject: Re: [PATCH v4 2/2] iio: imu: smi240: imu driver
-Message-ID: <20240828144333.0000386b@Huawei.com>
-In-Reply-To: <20240826140545.4085-3-Jianping.Shen@de.bosch.com>
-References: <20240826140545.4085-1-Jianping.Shen@de.bosch.com>
-	<20240826140545.4085-3-Jianping.Shen@de.bosch.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1724852675; c=relaxed/simple;
+	bh=emDC30H51qu8L5OlUlGZUyMHWlLMlaMzNkPO2HeKdTs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FTCIS4kZYW0r+A8HMHleFZg9+sSziLCaSXF+kPcA/2aq9bNa1m0VeQ73osqPQsWPXygWuBV1OOfzFGp8EM5V5SoQNVLDIEguf03G34tGc6FOBuXa69u8upsEyDBg7WQHblXq55mkyeeG7CtK+B/ruCLgawSWTNtG6OAjBvxpe04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XQX1xlWU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47SBGBuj005876;
+	Wed, 28 Aug 2024 13:44:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	WV6pOsN3fzAOdvPKz8rxnXPKkoNjSkNfRLTZAiQzD6s=; b=XQX1xlWUOZ/mwcR1
+	ybKElGSj+kEgAYLK1Zl5/YqTUla64WimlWfkOXJPlLaCxXcYWMLbsrev5sYrdT5d
+	m602n5l/UnJE5SSiOn8C/5I7uQnL+SIOp873lVB5DRrlAzEZ+TqD7NPe798Q/wHM
+	Ed1Rn6VEchqchJzAu3ZrCNM3t1vdsrpBbf7sigF/Jar5BjHIf5OZZJ+RyRS4QQDP
+	w+IqodQEJ/x3cFfxwkSY6Flwq+FtmGvPl26/g/7J49pgfW3l5ojZ0gK1Ss1sd3lM
+	SjOybkToPPJ9tTIn7R82a3DA8AGQx0/M2f/D6RdN4vlpvuWwEIMetE5U4onUDLXZ
+	LgrLsw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv2huyb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 13:44:20 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47SDiJjj016907
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 13:44:19 GMT
+Received: from [10.253.39.71] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 Aug
+ 2024 06:44:13 -0700
+Message-ID: <844538cc-9f58-4e05-8356-096a98bd543a@quicinc.com>
+Date: Wed, 28 Aug 2024 21:44:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-
-On Mon, 26 Aug 2024 16:05:45 +0200
-<Jianping.Shen@de.bosch.com> wrote:
-
-> From: Shen Jianping <Jianping.Shen@de.bosch.com>
->=20
-> This patch adds the iio driver for bosch imu smi240. The smi240
-> is a combined three axis angular rate and three axis acceleration
-> sensor module with a measurement range of +/-300=B0/s and up to 16g.
-> Smi240 does not support interrupt. A synchronous acc and gyro
-> sampling can be triggered by setting the capture bit in spi read
-> command.
->=20
-> Implemented features:
-> * raw data access for each axis through sysfs
-> * tiggered buffer for continuous sampling
-> * synchronous acc and gyro data from tiggered buffer
->=20
-> Signed-off-by: Shen Jianping <Jianping.Shen@de.bosch.com>
-As per the other review, I'd really prefer this as one simple file.
-I know you want to keep it looking like other IMUs, but it is a much
-simpler devices, so the complexity they need is not appropriate here.
-
-A few things inline,
-
-Jonathan
-
-> diff --git a/drivers/iio/imu/smi240/smi240_core.c b/drivers/iio/imu/smi24=
-0/smi240_core.c
-> new file mode 100644
-> index 00000000000..fc0226af843
-> --- /dev/null
-> +++ b/drivers/iio/imu/smi240/smi240_core.c
-> @@ -0,0 +1,385 @@
-...
-
-> +#define SMI240_DATA_CHANNEL(_type, _axis, _index)              \
-> +	{                                                          \
-> +		.type =3D _type,                                         \
-> +		.modified =3D 1,                                         \
-> +		.channel2 =3D IIO_MOD_##_axis,                           \
-> +		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),          \
-
-No scaling?  I'd expect the offset + scale for an accelerometer or gyro
-channel to be well defined in the datasheet.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 8/8] PCI: qcom: Add support to PCIe slot power supplies
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
+        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
+        <kw@linux.com>, <lpieralisi@kernel.org>, <neil.armstrong@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20240827063631.3932971-1-quic_qianyu@quicinc.com>
+ <20240827063631.3932971-9-quic_qianyu@quicinc.com>
+ <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
+Content-Language: en-US
+From: Qiang Yu <quic_qianyu@quicinc.com>
+In-Reply-To: <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ecUGWv2wRlPHoo51cogHb43pAmzADN8m
+X-Proofpoint-ORIG-GUID: ecUGWv2wRlPHoo51cogHb43pAmzADN8m
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_05,2024-08-27_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 adultscore=0 phishscore=0
+ impostorscore=0 bulkscore=0 spamscore=0 suspectscore=0 mlxscore=0
+ mlxlogscore=999 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2407110000 definitions=main-2408280098
 
 
-> +		.info_mask_shared_by_type =3D                            \
-> +			BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),  \
-> +		.info_mask_shared_by_type_available =3D                  \
-> +			BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),  \
+On 8/27/2024 7:44 PM, Dmitry Baryshkov wrote:
+> On Tue, 27 Aug 2024 at 09:36, Qiang Yu <quic_qianyu@quicinc.com> wrote:
+>> On platform x1e80100 QCP, PCIe3 is a standard x8 form factor. Hence, add
+>> support to use 3.3v, 3.3v aux and 12v regulators.
+> First of all, I don't see corresponding bindings change.
+>
+> Second, these supplies power up the slot, not the host controller
+> itself. As such these supplies do not belong to the host controller
+> entry. Please consider using the pwrseq framework instead.
+As Mani commented, he is exploring to use pwrctl driver to control this
+three power. Will update the patch after Mani share his conclusion. This
+patch may even not required.
 
-
-> diff --git a/drivers/iio/imu/smi240/smi240_spi.c b/drivers/iio/imu/smi240=
-/smi240_spi.c
-> new file mode 100644
-> index 00000000000..d308f6407da
-> --- /dev/null
-> +++ b/drivers/iio/imu/smi240/smi240_spi.c
-> @@ -0,0 +1,172 @@
-> +// SPDX-License-Identifier: BSD-3-Clause OR GPL-2.0
-> +/*
-> + * Copyright (c) 2024 Robert Bosch GmbH.
-> + */
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/iio/iio.h>
-> +#include <asm/unaligned.h>
-
-Alphabetical order preferred.
-
-
-> +static int smi240_regmap_spi_read(void *context, const void *reg_buf,
-> +				  size_t reg_size, void *val_buf,
-> +				  size_t val_size)
-> +{
-> +	int ret;
-> +	u32 request, response;
-> +	struct spi_device *spi =3D context;
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(&spi->dev);
-> +	struct smi240_data *iio_priv_data =3D iio_priv(indio_dev);
-> +
-> +	request =3D SMI240_BUS_ID << 30;
-FIELD_PREP for this field as well (and define the mask etc).
-
-> +	request |=3D FIELD_PREP(SMI240_CAP_BIT_MASK, iio_priv_data->capture);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_ADDR_MASK, *(u8 *)reg_buf);
-> +	request |=3D smi240_crc3(request, SMI240_CRC_INIT, SMI240_CRC_POLY);
-> +
-> +	iio_priv_data->spi_buf =3D cpu_to_be32(request);
-> +
-> +	/*
-> +	 * SMI240 module consists of a 32Bit Out Of Frame (OOF)
-> +	 * SPI protocol, where the slave interface responds to
-> +	 * the Master request in the next frame.
-> +	 * CS signal must toggle (> 700 ns) between the frames.
-> +	 */
-> +	ret =3D spi_write(spi, &iio_priv_data->spi_buf, sizeof(request));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D spi_read(spi, &iio_priv_data->spi_buf, sizeof(response));
-> +	if (ret)
-> +		return ret;
-> +
-> +	response =3D be32_to_cpu(iio_priv_data->spi_buf);
-> +
-> +	if (!smi240_sensor_data_is_valid(response))
-> +		return -EIO;
-> +
-> +	response =3D FIELD_GET(SMI240_READ_DATA_MASK, response);
-> +	memcpy(val_buf, &response, val_size);
-> +
-> +	return 0;
-> +}
-> +
-> +static int smi240_regmap_spi_write(void *context, const void *data,
-> +				   size_t count)
-> +{
-> +	u32 request;
-> +	struct spi_device *spi =3D context;
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(&spi->dev);
-> +	struct smi240_data *iio_priv_data =3D iio_priv(indio_dev);
-> +	u8 reg_addr =3D ((u8 *)data)[0];
-> +	u16 reg_data =3D get_unaligned_le16(&((u8 *)data)[1]);
-> +
-> +	request =3D SMI240_BUS_ID << 30;
-
-FIELD_PREP() for this one as well with appropriate mask.
-
-> +	request |=3D FIELD_PREP(SMI240_WRITE_BIT_MASK, 1);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_ADDR_MASK, reg_addr);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_DATA_MASK, reg_data);
-> +	request |=3D smi240_crc3(request, SMI240_CRC_INIT, SMI240_CRC_POLY);
-> +
-> +	iio_priv_data->spi_buf =3D cpu_to_be32(request);
-> +
-> +	return spi_write(spi, &iio_priv_data->spi_buf, sizeof(request));
-> +}
-
+Thanks,
+Qiang
+>
+>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-qcom.c | 52 +++++++++++++++++++++++++-
+>>   1 file changed, 50 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index 6f953e32d990..59fb415dfeeb 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -248,6 +248,8 @@ struct qcom_pcie_cfg {
+>>          bool no_l0s;
+>>   };
+>>
+>> +#define QCOM_PCIE_SLOT_MAX_SUPPLIES                    3
+>> +
+>>   struct qcom_pcie {
+>>          struct dw_pcie *pci;
+>>          void __iomem *parf;                     /* DT parf */
+>> @@ -260,6 +262,7 @@ struct qcom_pcie {
+>>          struct icc_path *icc_cpu;
+>>          const struct qcom_pcie_cfg *cfg;
+>>          struct dentry *debugfs;
+>> +       struct regulator_bulk_data slot_supplies[QCOM_PCIE_SLOT_MAX_SUPPLIES];
+>>          bool suspended;
+>>          bool use_pm_opp;
+>>   };
+>> @@ -1174,6 +1177,41 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
+>>          return !!(val & PCI_EXP_LNKSTA_DLLLA);
+>>   }
+>>
+>> +static int qcom_pcie_enable_slot_supplies(struct qcom_pcie *pcie)
+>> +{
+>> +       struct dw_pcie *pci = pcie->pci;
+>> +       int ret;
+>> +
+>> +       ret = regulator_bulk_enable(ARRAY_SIZE(pcie->slot_supplies),
+>> +                                   pcie->slot_supplies);
+>> +       if (ret < 0)
+>> +               dev_err(pci->dev, "Failed to enable slot regulators\n");
+>> +
+>> +       return ret;
+>> +}
+>> +
+>> +static void qcom_pcie_disable_slot_supplies(struct qcom_pcie *pcie)
+>> +{
+>> +       regulator_bulk_disable(ARRAY_SIZE(pcie->slot_supplies),
+>> +                              pcie->slot_supplies);
+>> +}
+>> +
+>> +static int qcom_pcie_get_slot_supplies(struct qcom_pcie *pcie)
+>> +{
+>> +       struct dw_pcie *pci = pcie->pci;
+>> +       int ret;
+>> +
+>> +       pcie->slot_supplies[0].supply = "vpcie12v";
+>> +       pcie->slot_supplies[1].supply = "vpcie3v3";
+>> +       pcie->slot_supplies[2].supply = "vpcie3v3aux";
+>> +       ret = devm_regulator_bulk_get(pci->dev, ARRAY_SIZE(pcie->slot_supplies),
+>> +                                     pcie->slot_supplies);
+>> +       if (ret < 0)
+>> +               dev_err(pci->dev, "Failed to get slot regulators\n");
+>> +
+>> +       return ret;
+>> +}
+>> +
+>>   static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>   {
+>>          struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> @@ -1182,10 +1220,14 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>
+>>          qcom_ep_reset_assert(pcie);
+>>
+>> -       ret = pcie->cfg->ops->init(pcie);
+>> +       ret = qcom_pcie_enable_slot_supplies(pcie);
+>>          if (ret)
+>>                  return ret;
+>>
+>> +       ret = pcie->cfg->ops->init(pcie);
+>> +       if (ret)
+>> +               goto err_disable_slot;
+>> +
+>>          ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
+>>          if (ret)
+>>                  goto err_deinit;
+>> @@ -1216,7 +1258,8 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>          phy_power_off(pcie->phy);
+>>   err_deinit:
+>>          pcie->cfg->ops->deinit(pcie);
+>> -
+>> +err_disable_slot:
+>> +       qcom_pcie_disable_slot_supplies(pcie);
+>>          return ret;
+>>   }
+>>
+>> @@ -1228,6 +1271,7 @@ static void qcom_pcie_host_deinit(struct dw_pcie_rp *pp)
+>>          qcom_ep_reset_assert(pcie);
+>>          phy_power_off(pcie->phy);
+>>          pcie->cfg->ops->deinit(pcie);
+>> +       qcom_pcie_disable_slot_supplies(pcie);
+>>   }
+>>
+>>   static void qcom_pcie_host_post_init(struct dw_pcie_rp *pp)
+>> @@ -1602,6 +1646,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>>                          goto err_pm_runtime_put;
+>>          }
+>>
+>> +       ret = qcom_pcie_get_slot_supplies(pcie);
+>> +       if (ret)
+>> +               goto err_pm_runtime_put;
+>> +
+>>          ret = pcie->cfg->ops->get_resources(pcie);
+>>          if (ret)
+>>                  goto err_pm_runtime_put;
+>> --
+>> 2.34.1
+>>
+>
 
