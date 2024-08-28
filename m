@@ -1,126 +1,146 @@
-Return-Path: <devicetree+bounces-97380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B2C9621A7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:48:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF979621BB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:49:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9EE91C2123F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:48:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BF392827F9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:49:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D8815A85B;
-	Wed, 28 Aug 2024 07:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E0015C12A;
+	Wed, 28 Aug 2024 07:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FYonrL2P"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="m+IuM1tT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06751157A67;
-	Wed, 28 Aug 2024 07:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A169915B0E8;
+	Wed, 28 Aug 2024 07:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724831288; cv=none; b=fxMdDrK3ODa0NCWRYfePzuZVkim+kU5TgJ8atJsrTx2wjdq/Hmt6wbzsHwRfx1G/DPv2oMeR1qsOuxj4O57wBs8Fri1hon+kua1l4uATYizJAxLmaoMKeWZYfMBhek1ZZ9uCzIn4xgbyvvCeh93wUc3AYoB36lqnu5xddlN/f34=
+	t=1724831340; cv=none; b=g+hl6gHaAW8ZT/HvTzPebyDzZTnjzZfDTA0Kwv2F2OYuBrYwWgY7Qxe3ULlpm8yv9c6nqbyClUEjn7pTNh4WW7pNa5xHbnBum/UK/6e3FseC15+1cJ79eiJZ5t14hIUx2rZxCIx7UbvGi9CDvgJ3Ta7GPvESJMFKqZRqS6bpX2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724831288; c=relaxed/simple;
-	bh=SYYKQg9vKwBUvAgFk2eRCRQpOKTBGlmxBEfLcYlU4UA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k/j2KZcPdMPusrf1HLfHFj1EIjVZluDQMBr+YKqcbcBsZxDwjiyjwqUY5ONyDy8a0naZscPlU0xtzoJ1XH6eHmEXAlCmYimTs1VENKnUeJtw+aWRU4qcm5BFTXaw0qKugeBz4k6A5d3AKEZ25bYerkO6kC5Ck3gHOI5/uP2E5xE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FYonrL2P; arc=none smtp.client-ip=217.70.183.200
+	s=arc-20240116; t=1724831340; c=relaxed/simple;
+	bh=brMbuJxBR0YP5Q4chxmLNPrjSwAwAUfc5DbpP3BC/EE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HM5Krj2hqvCZkR9bzHZLh7XBWuqcdNhMM1XgbfS/nXfrtGOOgzT2Gumv5/hg/+tb8F3CvVoKCfv0AlYwIuOEPZUUnp3lbSS4Qto5i7zrBpW8UWy1Q4KN9TYhuT0eSgtKuXs2afNpX4PC9D73Mm6uvmvmJgwHqYNOV2fFQjCmMk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=m+IuM1tT; arc=none smtp.client-ip=217.70.183.199
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2136F20008;
-	Wed, 28 Aug 2024 07:48:03 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 62B78FF808;
+	Wed, 28 Aug 2024 07:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1724831284;
+	t=1724831329;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=6r+JuDb9XhBus5ZFw2eCxv7bB0sqq0Ha2zLM/04HK34=;
-	b=FYonrL2Px47cjelbzY0drB6IAR72KbFgQ0CfRB4xg1AZrKCgR1b3Fu+ESpfaymsGaMIG2l
-	TMLsQZfVaYBY8gptVsK1fiRCv8C4hSxkZIwjd9IT/lpsxms5grv8A1LiPB+OtoZgaPFa66
-	2G4sp4G5GXhvTDdFoMWNR+G4jdT4luttSex6C45+TAmpxpraI5uLus9vj/CiclRptLnKSz
-	mk4cmggeJCbkHYQnbf6VlfgggYRvr+yvD3BjIDulTrLL+uWRYDHMnUaUYuXip4KtdDfaYT
-	Rw1durvT07zKEINfBHseCSUpn5d3cdvSbFriyO5O2jAZQZla9E+z0SdzwY6ncQ==
-Message-ID: <2f84827c-bbe9-419a-a3f4-71a8889e99d0@bootlin.com>
-Date: Wed, 28 Aug 2024 09:48:02 +0200
+	bh=y5zLZsHecvlr5wSYFNatvZpgULQ6Qmig03QDSQmQd4Y=;
+	b=m+IuM1tTx5x1LLw++vJv+fVKTLfoYsQe486sDQqOB4JvPo0i/JIlUYXEqpBcD7ew+lG8B5
+	ubnACfagbmX36TbQzavKFAA1nP2nJ5ZwxCZGhsqN7mUYMGwrGChsrNnlfh7Al2nn234Vw6
+	Qnc4toma/uSIkeZ1OdF1EdVuicT2P1hY9CIe8yxDpCuOR76KOtIv1DHColUWaqmuiJ3bIs
+	0GrAY77FOYA2mQdSs6dYdUZHwrkSlhieu3DRPo3qY2QJPwYsg1S8TfExbKa/a6fFAA4i+3
+	ZLDUWtxAjoEyXiq2awP9FrIKW+GiEySKt/VFt0QRGEtxj52f7nxEMphy/vnEPw==
+Date: Wed, 28 Aug 2024 09:48:46 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Hui-Ping Chen <hpchen0nvt@gmail.com>
+Cc: richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com,
+ esben@geanix.com, linux-arm-kernel@lists.infradead.org,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mtd: nuvoton,ma35d1-nand: add new
+ bindings
+Message-ID: <20240828094846.166c7de6@xps-13>
+In-Reply-To: <fd0d73cf-6bce-4f7b-9513-5f434ab9ae00@gmail.com>
+References: <20240821071132.281018-1-hpchen0nvt@gmail.com>
+	<20240821071132.281018-2-hpchen0nvt@gmail.com>
+	<20240823182616.5a85e1ae@xps-13>
+	<fd0d73cf-6bce-4f7b-9513-5f434ab9ae00@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] wifi: wilc1000: Fold wilc_get_chipid() into wlan.c
-To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240823161131.94305-1-marex@denx.de>
- <20240823161131.94305-2-marex@denx.de>
- <2b167618-473a-4da1-9c10-cba2b9051381@bootlin.com>
- <182e449a-3e6d-4727-a538-6fd518ae75f8@denx.de>
-From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <182e449a-3e6d-4727-a538-6fd518ae75f8@denx.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On 8/27/24 17:34, Marek Vasut wrote:
-> On 8/27/24 9:51 AM, Alexis Lothoré wrote:
-> 
-> Hi,
-> 
->>> +static u32 wilc_get_chipid(struct wilc *wilc)
->>> +{
->>> +    u32 chipid = 0;
->>> +    u32 rfrevid = 0;
->>> +
->>> +    if (wilc->chipid == 0) {
->>> +        wilc->hif_func->hif_read_reg(wilc, WILC_CHIPID, &chipid);
->> If we search for WILC_CHIPID in the whole driver, there are still two places
->> manually reading this register. Shouldn't those places also benefit from
->> wilc_get_chipid ?
-> 
-> Both the one in wilc_wlan_start() and wilc_validate_chipid() look more like some
-> sort of communication check attempt, rather than reading out the chipid for any
-> sort of actual chip identification purpose. I could simply remove those ?
+Hi Hui-Ping,
 
-Agree about the purpose of this reading in wilc_wlan_start and wilc_validate_chipid.
-And about removing those: I would say why not. wilc_validate_chipid has proven
-to be quite useful to diagnose some early communication failure, but I guess
-there are enough communications attempts around
-(wilc_spi_configure_bus_protocol, wilc_load_mac_from_nv) to still validate than
-we are able to communicate with the chip at probe time.
-> 
->>> +        wilc->hif_func->hif_read_reg(wilc, WILC_RF_REVISION_ID,
->>> +                         &rfrevid);
->>> +        if (!is_wilc1000(chipid)) {
->>> +            wilc->chipid = 0;
->>
->> While at it, since you have trimmed the update parameter, it would be nice to
->> also fix this return value (ie make wilc_getchipid() not return 0 but a real
->> error code if we can not read the chip id.
-> 
-> Fixed in V3, thanks .
+hpchen0nvt@gmail.com wrote on Wed, 28 Aug 2024 10:47:17 +0800:
 
-Great, thanks
+> Dear Miqu=C3=A8l,
+>=20
+> Thank you for your reply.
+>=20
+>=20
+>=20
+> On 2024/8/24 =E4=B8=8A=E5=8D=88 12:26, Miquel Raynal wrote:
+> > Hi,
+> >
+> > hpchen0nvt@gmail.com wrote on Wed, 21 Aug 2024 07:11:31 +0000:
+> > =20
+> >> Add dt-bindings for the Nuvoton MA35 SoC NAND Controller.
+> >>
+> >> Signed-off-by: Hui-Ping Chen <hpchen0nvt@gmail.com>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >>   .../bindings/mtd/nuvoton,ma35d1-nand.yaml     | 93 +++++++++++++++++=
+++
+> >>   1 file changed, 93 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/mtd/nuvoton,ma3=
+5d1-nand.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand=
+.yaml b/Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+> >> new file mode 100644
+> >> index 000000000000..152784e73263
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+> >> @@ -0,0 +1,93 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/mtd/nuvoton,ma35d1-nand.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Nuvoton MA35D1 NAND Flash Interface (NFI) Controller
+> >> +
+> >> +maintainers:
+> >> +  - Hui-Ping Chen <hpchen0nvt@gmail.com>
+> >> +
+> >> +allOf:
+> >> +  - $ref: nand-controller.yaml#
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - nuvoton,ma35d1-nand =20
+> > Can we please use the -nand-controller suffix. A NAND is a the common
+> > name for a chip with storage inside. You are describing a host
+> > controller that can be connected to in order to talk to a NAND. =20
+>=20
+>=20
+> Okay, I will change it to nuvoton,ma35d1-nfi.
+>=20
+> Because in our platform, it is the NAND Flash Interface.
 
-Alexis
+nfi is not an acronym that is understandable by everyone. Please use
+-nand-controller. Don't be worried by the size of the string.
 
--- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+You can use the acronym as prefix for your NAND controller functions
+though.
 
+Thanks,
+Miqu=C3=A8l
 
