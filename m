@@ -1,96 +1,139 @@
-Return-Path: <devicetree+bounces-97533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798CA96280E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:59:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E87962827
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB7761C24016
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:59:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6784F1C238C5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1959417C9BB;
-	Wed, 28 Aug 2024 12:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F0117921D;
+	Wed, 28 Aug 2024 13:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="WhMkgT+o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3zQW7jg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B20E15B12F;
-	Wed, 28 Aug 2024 12:59:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACCA1C69C;
+	Wed, 28 Aug 2024 13:02:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724849985; cv=none; b=iw5QklXJTg3SjpgqAMp7miTGb/KHZRH69hk85ntgMah33vXBOn3FsV7z2pwyJQoEL+GEFlM1nNsF7r3TBeHLbYH/Ogb73sjUvtBf0LjR3+pGDGyInKM5rYIc/WINp2J/MhdEGO9YHjX4LVMLWTKuznNcPMGzG/84eiMNmS3wLGk=
+	t=1724850137; cv=none; b=hD0n7dbd5mIr/JUW+id/uuAFuidJI4jWlelEJcbctTExz+OMuo6hgQRr7fwdldxbg/Y9xRxNGtAjv5H1iG9yuYBu0mUhVTqmbl9D9WGjfryeK8VxxrajJbPgpMZDG6gjBycy0l3enxiAo8hDfomNqhQ+4t4Vqf/VDNfQ+/LECjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724849985; c=relaxed/simple;
-	bh=PoJ58OyUY8+InttErmXtLqqc+RMwktChV0+7+uuGVHE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pHv4BYcjl0V0GwfFlPxUhwisPeIRLpfyCNbz6KQJj2Eb3dfh6wUFh5LERxmsV1u8xCw2LCWZUfr9nDo1yNTGtwHix7ch/hg06AnB09wu08HGTLtiZKgOdd+eIyToywrvwQ9qpRMLSFdThawtyAvvR2vtz9i1uKK4NqJqJHBAvxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=WhMkgT+o; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=FJB8kqxvEm2TG1FvDWYg7p79qtRb7PR5dNg6chIXUPg=; b=WhMkgT+ozZUJARpn4Hnh7CnYbZ
-	4zaPyvWd9DHlGFeyyWBp59bS+8rEpDTCJHnE3tUBhUw5m3+MjQPKu9iwje5dz/ZgFFnSuaEq/EsnG
-	lbcDPCCEEW6m2s+2IseCD3i5XPcMLB3rHct68y4Q8o4q7ExAGSBUUrpJzue++N7tKWxEbABLuxeip
-	QSKbpFOVe41PVRPGKoGP3VmpRTmOQ6qpw0v2tnvsuPeU1YzZIEA2zEDISn4Zw/sIfl7c74ic7X2h4
-	sFD9vEAaLhtlXvVf/FUXofXWAeaneyaAqUXzK97J8QJXB/GZ3yEz+/GaLaoX/etV1B/xSmwNpsgw4
-	7ZqNPXrw==;
-Received: from i5e8616cd.versanet.de ([94.134.22.205] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sjIGv-0005Ox-Tl; Wed, 28 Aug 2024 14:59:37 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Liu <net147@gmail.com>
-Cc: FUKAUMI Naoki <naoki@radxa.com>, Jonathan Liu <net147@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2] arm64: dts: rockchip: Enable RK809 audio codec for Radxa ROCK
- 4C+
-Date: Wed, 28 Aug 2024 15:00:49 +0200
-Message-ID: <2502361.uoxibFcf9D@diego>
-In-Reply-To: <20240828074755.1320692-1-net147@gmail.com>
-References: <20240828074755.1320692-1-net147@gmail.com>
+	s=arc-20240116; t=1724850137; c=relaxed/simple;
+	bh=/6SljX9gw8PbsPYSXxR+fKbnyYy2MaQXQEU9mENvZ3M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C3EZQEbsSuwzKgJkv0DObVq2gfQ2Kb79/GNBw76sBFeHSjNR6IQ3fxZH80k3fTbx0j5+UEfwVLvWlLiB7cK4UDYjxxAqRYx3ALMM7EgoTXhjB6OuEtDW+xjowEj7RQnHD/hKbYc2jQdCgzjXJXSwD4RRw5VxSBgiBWn81gPGXGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s3zQW7jg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 438DDC4FE0E;
+	Wed, 28 Aug 2024 13:02:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724850136;
+	bh=/6SljX9gw8PbsPYSXxR+fKbnyYy2MaQXQEU9mENvZ3M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=s3zQW7jgjBVSqlu9zMG1TQ7nQ92gbVsuNbMKgPI9ehw/5NsNe+Ju61vNWF11Zod/i
+	 qtAdzIq1e/exgdesSyDvBcikiPrPdaKFGnHSx5roTKA8RnN2O1rMXd2WyVih+GWazL
+	 bfgTpuCs26/X3z7JntOuT3sL+BSrbBCA50d6vd50VznTpwnzCfXkTMoYQ/a3CE/WtG
+	 ANK79/8e7QFjVQkNsyZDk9zzneqxktoIGoYD3fxsO/Rx2xK1aos//8LxeLpjfqYFCA
+	 C6uFi4Nkr+1GRlm/kL3zDoF7Y8OyFIgtDG3gMazJHLDmGYOTM8YCNdyH+Cdno9WVeQ
+	 aJEajJo5e8p9A==
+Message-ID: <faa5f1d0-4300-42b3-a91f-e20fda87dfed@kernel.org>
+Date: Wed, 28 Aug 2024 15:02:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 2/2] arm64: dts: apple: add "brcm,bcm4329-fmac"
+ fallback compatible
+To: Jacobe Zang <jacobe.zang@wesion.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ asahi@lists.linux.dev
+References: <20240828-dts-v13-0-6bff9896d649@wesion.com>
+ <20240828-dts-v13-2-6bff9896d649@wesion.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240828-dts-v13-2-6bff9896d649@wesion.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jonathan,
-
-Am Mittwoch, 28. August 2024, 09:47:53 CEST schrieb Jonathan Liu:
-> This adds the necessary device tree changes to enable analog audio
-> output for the 3.5 mm TRS headphone jack on the Radxa ROCK 4C+ with
-> its RK809 audio codec.
+On 28/08/2024 10:45, Jacobe Zang wrote:
+> Wi-Fi compatible in these DTS is based on PCI ID. Bindings need
+> "brcm,bcm4329-fmac" as fallback compatible.
 > 
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> ---
+>  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 2 +-
+>  arch/arm64/boot/dts/apple/t8112-j413.dts  | 2 +-
+>  arch/arm64/boot/dts/apple/t8112-j493.dts  | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
 
-as it looks like you have one of those boards, could I possibly as you
-to take a look at the vdd_cpu_b and vdd_gpu nodes?
+Bindings are being questioned, so link to them in changelog section
+would help the maintainers to decide when to apply it.
 
-I see (and devicetree check reports it too) a pinctrl-0 for the vsel-gpio
-without accompanying pinctrl-names.
+I am not convinced this is correct bindings change, thus this DTS should
+wait.
 
-Could you check if things fail if you either add pinctrl-names or remove
-the pinctrl-0 entry?
+Your previous patch also misses link to bindings. Whenever you split DTS
+to separate series, please always provide link to the bindings, so
+people will have the context.
 
-
-Thanks a lot
-Heiko
-
+Best regards,
+Krzysztof
 
 
