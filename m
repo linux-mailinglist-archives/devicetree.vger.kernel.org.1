@@ -1,929 +1,400 @@
-Return-Path: <devicetree+bounces-97750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB7B9633EB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:32:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD44963473
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 00:14:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52EE3B22E85
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:32:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 047021C22F1C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 22:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79911AE031;
-	Wed, 28 Aug 2024 21:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EECFD1AAE19;
+	Wed, 28 Aug 2024 22:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FftG/ISe"
+	dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b="sHSfcnU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5F31AD401;
-	Wed, 28 Aug 2024 21:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC55C16B388;
+	Wed, 28 Aug 2024 22:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724880735; cv=none; b=cWft51H5TJ7al61WWxfi1QbBw/fxiwi+C8BZn7qjsogVlurH003o9HYjVV6fWx9lBR4TRRZeBbXG1gz+DQnhWLpsiguKkr9BIZOPH1cZ1rV0/pWoAl8NCMsn5/w8CzKEaqUf+YcdcT3JKwZnsUQQ4+XsMIEQAOlqrMpal6iulyc=
+	t=1724883240; cv=none; b=gASobSpmrrOWQo3Bue6DRCY8KjHXJLKaB6E1KvdU6axenPBoJN9y/SruH2BYckHHE3vBUNbjtYzqG2jXuFejaZ0tVwxdIQ4REEXtcxyek9E/SPQsv6LXgT6AtX9rNpGMnentcoponNdkx/LV1e2Ex8znGirOU3c3tTG8j8W3eDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724880735; c=relaxed/simple;
-	bh=c9IzYP759LILr2EU8HEoOvAWZHaaLszxsKitEoqLyb4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aBcDi7L8/LYSgSgIZDQedL+UuRzxXD51C6SnF0gs2NZKMDXkmWYMRcLcdpfrvxOQ//S/6osK09tHUGZKwu7p74C7Pp4/BI3DSxsEWuJADzorVytMW9mzMS2kikcFusX7tC9OWK7Kaqp2guc2Vqrk4dD/TlZoxgDXVEOlZgD9cO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FftG/ISe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A454BC4CEC0;
-	Wed, 28 Aug 2024 21:32:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724880735;
-	bh=c9IzYP759LILr2EU8HEoOvAWZHaaLszxsKitEoqLyb4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=FftG/ISeRhPlUx0U7l/6EaMeWUFKEc2EGihrWnjdMlwGPlpwjM4vyiOs+nU8jdHx7
-	 vH6GqdJwHcOl7UgOlTXeo3/TdPfPaCYjSH/0rfvdXCopHZFp7G4ZINRlpvSXfxkvhc
-	 4nV5z4eZlk3ig/XXWOmU5OE0i/YUsLUhAHkESvQrKh6eSf4EWEx0+pXuohtih9Mgmk
-	 dAuZmi9TIT3ru6Sa0oevBsGvYEsukPQANbDMv6KqfouBWXlBqTiVaIZ9UHhoXmg79O
-	 6x+rv7urMPr+YciFTsaT7V40fdv5JfaMg/6fi8dw7C6WqKcCq8MCeP20hTR5/Lj1V1
-	 +2n3iEYym5BcA==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Wed, 28 Aug 2024 23:32:01 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: Add X1E78100 ThinkPad T14s Gen 6
+	s=arc-20240116; t=1724883240; c=relaxed/simple;
+	bh=qHmKktuPhs8Dy4M1TkSPEen65p1uFS09lJhvAiQXkOM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YtBQyxbmZr3FiAXJln4/UItsjseH8WR6nVngQ8FKpvLV6eyAQxXpYS67v8qaI0Z4ajIVxWGN+hEndhaQ2hpfjO42C8/zkDK0z+OVf4/n70tVMUHrlrCk52RRI2PtSEqz40BtoKAzOm5BkYVPbBjncyedvp1/yo18leyz64yAu58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de; spf=pass smtp.mailfrom=timsurber.de; dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b=sHSfcnU2; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timsurber.de
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4WvJbF5bnpz9sFb;
+	Thu, 29 Aug 2024 00:13:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
+	s=MBO0001; t=1724883225;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MQV+YGqcydJ5jlIKsihEwvsyXo2JQb+LIHXD9xmYv2A=;
+	b=sHSfcnU2OMIprmwW0Mz6rVXbfOf06aIqvlJVvC4h0xHqeP4XN/FRQtbpgnEg3g2/OuJDwU
+	i/BS/xHstpBfQE7Xd3wCjyazMaio4jJ3HyPaLnoE+0o4eS+Yh+w31ylDEoYGSGflQ9+FMT
+	9jdQfAZ6vORRqaCPNy8zqjpveptC1Is+raBw/8MZK8PDH9058bjcTtw59XCTyW9jZZSc2I
+	ciEnkLm01OU95R0jGI5k6Ky8oui6dxlm/HvkAMr11jvEhuuh78vbQJ/WTt/EeXt9W34YAH
+	+N7iH9KyA8uuEUOQXJnjUhTA8k/MDrWoBUnztogkXJgkpfE7zDv+zaFyCJ7rxA==
+Message-ID: <74850340-b662-4a58-b5eb-a4e352c5002c@timsurber.de>
+Date: Thu, 29 Aug 2024 00:13:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240828-topic-t14s_upstream-v2-2-49faea18de84@quicinc.com>
-References: <20240828-topic-t14s_upstream-v2-0-49faea18de84@quicinc.com>
-In-Reply-To: <20240828-topic-t14s_upstream-v2-0-49faea18de84@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
- Johan Hovold <johan@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724880724; l=20223;
- i=quic_kdybcio@quicinc.com; s=20230215; h=from:subject:message-id;
- bh=UMnIah9rNJOgzuWf80AJ1q1jPDEJ5DSrna+M+UZKwVA=;
- b=KWjHQ1HQnD2v39b13HbQUPRu4i46CjXv/t7zhjX+8+NKTNYJTkDr9QD8oowFeZl9B/wsUxev9
- vW5Q+2aR7OrABHlLAS1RY13mWsG3vR1rKuuJ8ZyeFhDF31wm6npF9W7
-X-Developer-Key: i=quic_kdybcio@quicinc.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Subject: Re: [PATCH v4 0/4] Add Synopsys DesignWare HDMI RX Controller
+To: Shreeya Patel <shreeya.patel@collabora.com>
+Cc: heiko <heiko@sntech.de>, mchehab <mchehab@kernel.org>,
+ robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>,
+ conor+dt <conor+dt@kernel.org>, mturquette <mturquette@baylibre.com>,
+ sboyd <sboyd@kernel.org>, "p.zabel" <p.zabel@pengutronix.de>,
+ "jose.abreu" <jose.abreu@synopsys.com>,
+ "nelson.costa" <nelson.costa@synopsys.com>,
+ "shawn.wen" <shawn.wen@rock-chips.com>,
+ "nicolas.dufresne" <nicolas.dufresne@collabora.com>,
+ hverkuil <hverkuil@xs4all.nl>, hverkuil-cisco <hverkuil-cisco@xs4all.nl>,
+ kernel <kernel@collabora.com>, linux-kernel <linux-kernel@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>,
+ devicetree <devicetree@vger.kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-rockchip <linux-rockchip@lists.infradead.org>
+References: <20240719124032.26852-1-shreeya.patel@collabora.com>
+ <6f5c4ebb-84ab-4b65-9817-ac5f6158911f@timsurber.de>
+ <19150697f90.11f343d091099757.4301715823219222254@collabora.com>
+Content-Language: en-US
+From: Tim Surber <me@timsurber.de>
+In-Reply-To: <19150697f90.11f343d091099757.4301715823219222254@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4WvJbF5bnpz9sFb
 
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi Shreeya,
 
-Add support for the aforementioned laptop. That includes:
+another hint:
 
-- input methods, incl. lid switch (keyboard needs the pdc
-  wakeup-parent removal hack..)
-- NVMe, WiFi
-- USB-C ports
-- GPU, display
-- DSPs
+Changing the EDID like you described fixed the 4k60fps BGR3 input.
 
-Notably, the USB-A ports on the side are depenedent on the USB
-multiport controller making it upstream.
+But still for NV16/NV24 (I can't output NV12 for some reason) there is 
+the error which Nicolas described.
 
-At least one of the eDP panels used (non-touchscreen) identifies as
-BOE 0x0b66.
+The output from v4l2-ctl for NV16/NV24 is:
 
-See below for the hardware description from the OEM.
+Plane 0           :
+        Bytes per Line : 3840
+        Size Image     : 8294400
 
-Link: https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/lenovo-thinkpad-t14s-gen-6-(14-inch-snapdragon)/len101t0099
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 807 +++++++++++++++++++++
- 2 files changed, 808 insertions(+)
+According to Nicolas there should be an additional plane/more memory 
+reserved.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 197ab325c0b9..3085b2051709 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -268,6 +268,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= x1e78100-lenovo-thinkpad-t14s.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-lenovo-yoga-slim7x.dtb
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-new file mode 100644
-index 000000000000..941dfddd6713
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-@@ -0,0 +1,807 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2024, Linaro Limited
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "x1e80100.dtsi"
-+#include "x1e80100-pmics.dtsi"
-+
-+/ {
-+	model = "Lenovo ThinkPad T14s Gen 6";
-+	compatible = "lenovo,thinkpad-t14s", "qcom,x1e78100", "qcom,x1e80100";
-+	chassis-type = "laptop";
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&hall_int_n_default>;
-+		pinctrl-names = "default";
-+
-+		switch-lid {
-+			gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			wakeup-source;
-+			wakeup-event-action = <EV_ACT_DEASSERTED>;
-+		};
-+	};
-+
-+	pmic-glink {
-+		compatible = "qcom,x1e80100-pmic-glink",
-+			     "qcom,sm8550-pmic-glink",
-+			     "qcom,pmic-glink";
-+		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
-+				    <&tlmm 123 GPIO_ACTIVE_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Display-adjacent port */
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss0_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss0_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss0_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		/* User-adjacent port */
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss1_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss1_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
-+	reserved-memory {
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			size = <0x0 0x8000000>;
-+			reusable;
-+			linux,cma-default;
-+		};
-+	};
-+
-+	vreg_edp_3p3: regulator-edp-3p3 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_EDP_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 70 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&edp_reg_en>;
-+		pinctrl-names = "default";
-+
-+		regulator-boot-on;
-+	};
-+
-+	vreg_nvme: regulator-nvme {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_NVME_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 18 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&nvme_reg_en>;
-+		pinctrl-names = "default";
-+	};
-+
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm8550-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		vdd-bob1-supply = <&vph_pwr>;
-+		vdd-bob2-supply = <&vph_pwr>;
-+		vdd-l1-l4-l10-supply = <&vreg_s4c_1p8>;
-+		vdd-l2-l13-l14-supply = <&vreg_bob1>;
-+		vdd-l5-l16-supply = <&vreg_bob1>;
-+		vdd-l6-l7-supply = <&vreg_bob2>;
-+		vdd-l8-l9-supply = <&vreg_bob1>;
-+		vdd-l12-supply = <&vreg_s5j_1p2>;
-+		vdd-l15-supply = <&vreg_s4c_1p8>;
-+		vdd-l17-supply = <&vreg_bob2>;
-+
-+		vreg_bob1: bob1 {
-+			regulator-name = "vreg_bob1";
-+			regulator-min-microvolt = <3008000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_bob2: bob2 {
-+			regulator-name = "vreg_bob2";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2b_3p0: ldo2 {
-+			regulator-name = "vreg_l2b_3p0";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4b_1p8: ldo4 {
-+			regulator-name = "vreg_l4b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6b_1p8: ldo6 {
-+			regulator-name = "vreg_l6b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8b_3p0: ldo8 {
-+			regulator-name = "vreg_l8b_3p0";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9b_2p9: ldo9 {
-+			regulator-name = "vreg_l9b_2p9";
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10b_1p8: ldo10 {
-+			regulator-name = "vreg_l10b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l12b_1p2: ldo12 {
-+			regulator-name = "vreg_l12b_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13b_3p0: ldo13 {
-+			regulator-name = "vreg_l13b_3p0";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14b_3p0: ldo14 {
-+			regulator-name = "vreg_l14b_3p0";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l15b_1p8: ldo15 {
-+			regulator-name = "vreg_l15b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l17b_2p5: ldo17 {
-+			regulator-name = "vreg_l17b_2p5";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pm8550ve-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vdd-l1-supply = <&vreg_s5j_1p2>;
-+		vdd-l2-supply = <&vreg_s1f_0p7>;
-+		vdd-l3-supply = <&vreg_s1f_0p7>;
-+		vdd-s4-supply = <&vph_pwr>;
-+
-+		vreg_s4c_1p8: smps4 {
-+			regulator-name = "vreg_s4c_1p8";
-+			regulator-min-microvolt = <1856000>;
-+			regulator-max-microvolt = <2000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1c_1p2: ldo1 {
-+			regulator-name = "vreg_l1c_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c_0p8: ldo2 {
-+			regulator-name = "vreg_l2c_0p8";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3c_0p8: ldo3 {
-+			regulator-name = "vreg_l3c_0p8";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pmc8380-rpmh-regulators";
-+		qcom,pmic-id = "d";
-+
-+		vdd-l1-supply = <&vreg_s1f_0p7>;
-+		vdd-l2-supply = <&vreg_s1f_0p7>;
-+		vdd-l3-supply = <&vreg_s4c_1p8>;
-+		vdd-s1-supply = <&vph_pwr>;
-+
-+		vreg_l1d_0p8: ldo1 {
-+			regulator-name = "vreg_l1d_0p8";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2d_0p9: ldo2 {
-+			regulator-name = "vreg_l2d_0p9";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3d_1p8: ldo3 {
-+			regulator-name = "vreg_l3d_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-3 {
-+		compatible = "qcom,pmc8380-rpmh-regulators";
-+		qcom,pmic-id = "e";
-+
-+		vdd-l2-supply = <&vreg_s1f_0p7>;
-+		vdd-l3-supply = <&vreg_s5j_1p2>;
-+
-+		vreg_l2e_0p8: ldo2 {
-+			regulator-name = "vreg_l2e_0p8";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3e_1p2: ldo3 {
-+			regulator-name = "vreg_l3e_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-4 {
-+		compatible = "qcom,pmc8380-rpmh-regulators";
-+		qcom,pmic-id = "f";
-+
-+		vdd-l1-supply = <&vreg_s5j_1p2>;
-+		vdd-l2-supply = <&vreg_s5j_1p2>;
-+		vdd-l3-supply = <&vreg_s5j_1p2>;
-+		vdd-s1-supply = <&vph_pwr>;
-+
-+		vreg_s1f_0p7: smps1 {
-+			regulator-name = "vreg_s1f_0p7";
-+			regulator-min-microvolt = <700000>;
-+			regulator-max-microvolt = <1100000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-6 {
-+		compatible = "qcom,pm8550ve-rpmh-regulators";
-+		qcom,pmic-id = "i";
-+
-+		vdd-l1-supply = <&vreg_s4c_1p8>;
-+		vdd-l2-supply = <&vreg_s5j_1p2>;
-+		vdd-l3-supply = <&vreg_s1f_0p7>;
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+
-+		vreg_l1i_1p8: ldo1 {
-+			regulator-name = "vreg_l1i_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2i_1p2: ldo2 {
-+			regulator-name = "vreg_l2i_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3i_0p8: ldo3 {
-+			regulator-name = "vreg_l3i_0p8";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-7 {
-+		compatible = "qcom,pm8550ve-rpmh-regulators";
-+		qcom,pmic-id = "j";
-+
-+		vdd-l1-supply = <&vreg_s1f_0p7>;
-+		vdd-l2-supply = <&vreg_s5j_1p2>;
-+		vdd-l3-supply = <&vreg_s1f_0p7>;
-+		vdd-s5-supply = <&vph_pwr>;
-+
-+		vreg_s5j_1p2: smps5 {
-+			regulator-name = "vreg_s5j_1p2";
-+			regulator-min-microvolt = <1256000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1j_0p8: ldo1 {
-+			regulator-name = "vreg_l1j_0p8";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2j_1p2: ldo2 {
-+			regulator-name = "vreg_l2j_1p2";
-+			regulator-min-microvolt = <1256000>;
-+			regulator-max-microvolt = <1256000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3j_0p8: ldo3 {
-+			regulator-name = "vreg_l3j_0p8";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		firmware-name = "qcom/x1e80100/LENOVO/21N1/qcdxkmsuc8380.mbn";
-+	};
-+};
-+
-+&i2c0 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	/* ELAN06E2 or ELAN06E3 */
-+	touchpad@15 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x15>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&tpad_default>;
-+		pinctrl-names = "default";
-+
-+		wakeup-source;
-+	};
-+
-+	/* TODO: second-sourced SYNA8022 or SYNA8024 touchpad @ 0x2c */
-+
-+	/* ELAN06F1 or SYNA06F2 */
-+	keyboard@3a {
-+		compatible = "hid-over-i2c";
-+		reg = <0x3a>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&kybd_default>;
-+		pinctrl-names = "default";
-+
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c8 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	/* ILIT2911 or GTCH1563 */
-+	touchscreen@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&ts0_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	/* TODO: second-sourced touchscreen @ 0x41 */
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dp3 {
-+	compatible = "qcom,x1e80100-dp";
-+	/delete-property/ #sound-dai-cells;
-+
-+	status = "okay";
-+
-+	aux-bus {
-+		panel {
-+			compatible = "edp-panel";
-+			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
-+			power-supply = <&vreg_edp_3p3>;
-+
-+			pinctrl-0 = <&edp_bl_en>;
-+			pinctrl-names = "default";
-+
-+			port {
-+				edp_panel_in: endpoint {
-+					remote-endpoint = <&mdss_dp3_out>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+
-+			mdss_dp3_out: endpoint {
-+				data-lanes = <0 1 2 3>;
-+				link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+
-+				remote-endpoint = <&edp_panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dp3_phy {
-+	vdda-phy-supply = <&vreg_l3j_0p8>;
-+	vdda-pll-supply = <&vreg_l2j_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pcie4 {
-+	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-0 = <&pcie4_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie4_phy {
-+	vdda-phy-supply = <&vreg_l3i_0p8>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pcie6a {
-+	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+
-+	vddpe-3v3-supply = <&vreg_nvme>;
-+
-+	pinctrl-0 = <&pcie6a_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie6a_phy {
-+	vdda-phy-supply = <&vreg_l1d_0p8>;
-+	vdda-pll-supply = <&vreg_l2j_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pmc8380_3_gpios {
-+	edp_bl_en: edp-bl-en-state {
-+		pins = "gpio4";
-+		function = "normal";
-+		power-source = <1>;
-+		input-disable;
-+		output-enable;
-+	};
-+};
-+
-+&qupv3_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_1 {
-+	status = "okay";
-+};
-+
-+&qupv3_2 {
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/x1e80100/LENOVO/21N1/qcadsp8380.mbn",
-+			"qcom/x1e80100/LENOVO/21N1/adsp_dtbs.elf";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/x1e80100/LENOVO/21N1/qccdsp8380.mbn",
-+			"qcom/x1e80100/LENOVO/21N1/cdsp_dtbs.elf";
-+
-+	status = "okay";
-+};
-+
-+&smb2360_0_eusb2_repeater {
-+	vdd18-supply = <&vreg_l3d_1p8>;
-+	vdd3-supply = <&vreg_l2b_3p0>;
-+};
-+
-+&smb2360_1_eusb2_repeater {
-+	vdd18-supply = <&vreg_l3d_1p8>;
-+	vdd3-supply = <&vreg_l14b_3p0>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <34 2>, /* Unused */
-+			       <44 4>, /* SPI (TPM) */
-+			       <72 2>, /* Secure EC I2C connection (?) */
-+			       <238 1>; /* UFS Reset */
-+
-+	tpad_default: tpad-default-state {
-+		pins = "gpio3";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
-+
-+	nvme_reg_en: nvme-reg-en-state {
-+		pins = "gpio18";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts0_default: ts0-default-state {
-+		reset-n-pins {
-+			pins = "gpio48";
-+			function = "gpio";
-+			output-high;
-+			drive-strength = <16>;
-+		};
-+
-+		int-n-pins {
-+			pins = "gpio51";
-+			function = "gpio";
-+			bias-disable;
-+		};
-+	};
-+
-+	kybd_default: kybd-default-state {
-+		pins = "gpio67";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
-+	edp_reg_en: edp-reg-en-state {
-+		pins = "gpio70";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	hall_int_n_default: hall-int-n-state {
-+		pins = "gpio92";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
-+	pcie4_default: pcie4-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio147";
-+			function = "pcie4_clk";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio146";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio148";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	pcie6a_default: pcie6a-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio153";
-+			function = "pcie6a_clk";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio152";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio154";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	wcd_default: wcd-reset-n-active-state {
-+		pins = "gpio191";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-low;
-+	};
-+};
-+
-+&usb_1_ss0_hsphy {
-+	vdd-supply = <&vreg_l3j_0p8>;
-+	vdda12-supply = <&vreg_l2j_1p2>;
-+
-+	phys = <&smb2360_0_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss0_qmpphy {
-+	vdda-phy-supply = <&vreg_l3e_1p2>;
-+	vdda-pll-supply = <&vreg_l1j_0p8>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss0 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss0_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_1_ss0_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss0_hs_in>;
-+};
-+
-+&usb_1_ss0_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss0_ss_in>;
-+};
-+
-+&usb_1_ss1_hsphy {
-+	vdd-supply = <&vreg_l3j_0p8>;
-+	vdda12-supply = <&vreg_l2j_1p2>;
-+
-+	phys = <&smb2360_1_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss1_qmpphy {
-+	vdda-phy-supply = <&vreg_l3e_1p2>;
-+	vdda-pll-supply = <&vreg_l2d_0p9>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss1 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss1_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_1_ss1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss1_hs_in>;
-+};
-+
-+&usb_1_ss1_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss1_ss_in>;
-+};
+This leads to errors when trying to read the device using for example 
+gstreamer:
 
--- 
-2.46.0
+  gst_memory_resize: assertion 'size + mem->offset + offset <= 
+mem->maxsize' failed
 
+
+This seems to always happen using the  NV16/NV24 formats regardless of 
+resolution/fps.
+
+
+Best regards,
+
+Tim
+
+On 14.08.24 12:22, Shreeya Patel wrote:
+>   ---- On Sun, 04 Aug 2024 05:27:08 +0530  Tim Surber  wrote ---
+>   > Hi Shreeya,
+>   >
+>
+> Hi Tim,
+>
+>
+>   > I tested your patch and noticed problems when using 3840x2160 resolution
+>   > at  60fps.
+>   >
+>   > For my testing I connected an HDMI source and set it to 4k60fps. I
+>   > verified that this source and the cables work on a screen at this
+>   > resolution.
+>   >
+>   > Using
+>   > 'v4l2-ctl --verbose -d /dev/video1
+>   > --set-fmt-video=width=3840,height=2160,pixelformat='NV12'
+>   > --stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll'
+>   > I get the video format output, but not the periodic output which shows
+>   > the fps.
+>   >
+>   > Using
+>   > 'GST_DEBUG=4 gst-launch-1.0 -v v4l2src device=/dev/video1 !
+>   > fpsdisplaysink text-overlay=false video-sink="fakevideosink"'
+>   > I get the following error message:
+>   >
+>   > (gst-launch-1.0:3231): GStreamer-CRITICAL **: 01:34:39.137:
+>   > gst_memory_resize: assertion 'size + mem->offset + offset <=
+>   > mem->maxsize' failed
+>   > 0:00:03.489382529  3231 0xffffa0000b90 WARN  v4l2bufferpool
+>   > gstv4l2bufferpool.c:2209:gst_v4l2_buffer_pool_process:
+>   > Dropping truncated buffer, this is likely a driver bug.
+>   > 0:00:03.489421906  3231 0xffffa0000b90 WARN  bufferpool
+>   > gstbufferpool.c:1252:default_reset_buffer: Buffer
+>   > 0xffff98008e80 without the memory tag has maxsize (8294400) that is
+>   > smaller than the configured buffer pool size (12441600). The buffer will
+>   > be not be reused. This is most likely a bug in this GstBufferPool subclass
+>   >
+>   >
+>   > Everything works with 4k30fps or 1080p 60fps. The hardware should
+>   > support 4k60fps.
+>   >
+>
+>
+> Sorry for the delayed response, I've been trying to reproduce this on my side
+> and to also fix it.
+>
+> It seems you are right, 4K@60 fps doesn't work with the latest version of HDMIRX.
+> We found out that it could be because of the current EDID which shows some failures.
+>
+> Though I wasn't able to test the following on my side since my device doesn't support
+> 4K, one of my colleague tried to replace the EDID and 4K@60 fps worked fine after that.
+>
+> If you'd like to try it yourself then following is the command to get the new EDID
+>
+> v4l2-ctl --show-edid type=hdmi-4k-600mhz
+>
+> You will have to replace the EDID in the driver with the EDID you get the from the above
+> command in HEX format.
+>
+> Thanks for reporting this, I will soon send v5 with this change included in it.
+>
+>
+> Thanks,
+> Shreeya Patel
+>
+>
+>   > Best regards,
+>   > Tim
+>   >
+>   > On 19.07.24 14:40, Shreeya Patel wrote:
+>   > > This series implements support for the Synopsys DesignWare
+>   > > HDMI RX Controller, being compliant with standard HDMI 1.4b
+>   > > and HDMI 2.0.
+>   > >
+>   > > Features that are currently supported by the HDMI RX driver
+>   > > have been tested on rock5b board using a HDMI to micro-HDMI cable.
+>   > > It is recommended to use a good quality cable as there were
+>   > > multiple issues seen during testing the driver.
+>   > >
+>   > > Please note the below information :-
+>   > > * While testing the driver on rock5b we noticed that the binary BL31
+>   > > from Rockchip contains some unknown code to get the HDMI-RX PHY
+>   > > access working without any errors.
+>   > > With TF-A BL31, the HDMI-RX PHY also works fine but there were no
+>   > > interrupts seen for rk_hdmirx-hdmi leading to some errors when
+>   > > loading the driver [0]. It doesn't affect the functionality of the
+>   > > driver though.
+>   > > * We have tested the working of OBS studio with HDMIRX driver and
+>   > > there were no issues seen.
+>   > > * We also tested and verified the support for interlaced video.
+>   > >
+>   > > [0] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/trusted-firmware-a/-/issues/1
+>   > >
+>   > > To test the HDMI RX Controller driver, following example commands can be used :-
+>   > >
+>   > > root@debian-rockchip-rock5b-rk3588:~# v4l2-ctl --verbose -d /dev/video0 \
+>   > > --set-fmt-video=width=1920,height=1080,pixelformat='BGR3' --stream-mmap=4 \
+>   > > --stream-skip=3 --stream-count=100 --stream-to=/home/hdmiin4k.raw --stream-poll
+>   > >
+>   > > root@debian-rockchip-rock5b-rk3588:~# ffmpeg -f rawvideo -vcodec rawvideo \
+>   > > -s 1920x1080 -r 60 -pix_fmt bgr24 -i /home/hdmiin4k.raw output.mkv
+>   > >
+>   > > CEC compliance test results :-
+>   > >
+>   > > * https://gitlab.collabora.com/-/snippets/381
+>   > > * https://gitlab.collabora.com/-/snippets/380
+>   > >
+>   > > Following is the v4l2-compliance test result :-
+>   > >
+>   > > root@debian-rockchip-rock5b-rk3588:~# v4l2-compliance -d /dev/video0
+>   > > v4l2-compliance 1.27.0-5220, 64 bits, 64-bit time_t
+>   > > v4l2-compliance SHA: 8387e3673837 2024-07-01 11:09:32
+>   > >
+>   > > Compliance test for snps_hdmirx device /dev/video0:
+>   > >
+>   > > Driver Info:
+>   > >     Driver name      : snps_hdmirx
+>   > >     Card type        : snps_hdmirx
+>   > >     Bus info         : platform:fdee0000.hdmi-receiver
+>   > >     Driver version   : 6.10.0
+>   > >     Capabilities     : 0x84201000
+>   > >         Video Capture Multiplanar
+>   > >         Streaming
+>   > >         Extended Pix Format
+>   > >         Device Capabilities
+>   > >     Device Caps      : 0x04201000
+>   > >         Video Capture Multiplanar
+>   > >         Streaming
+>   > >         Extended Pix Format
+>   > >
+>   > > Required ioctls:
+>   > >     test VIDIOC_QUERYCAP: OK
+>   > >     test invalid ioctls: OK
+>   > >
+>   > > Allow for multiple opens:
+>   > >     test second /dev/video0 open: OK
+>   > >     test VIDIOC_QUERYCAP: OK
+>   > >     test VIDIOC_G/S_PRIORITY: OK
+>   > >     test for unlimited opens: OK
+>   > >
+>   > > Debug ioctls:
+>   > >     test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+>   > >     test VIDIOC_LOG_STATUS: OK
+>   > >
+>   > > Input ioctls:
+>   > >     test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>   > >     test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>   > >     test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>   > >     test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>   > >     test VIDIOC_G/S/ENUMINPUT: OK
+>   > >     test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>   > >     Inputs: 1 Audio Inputs: 0 Tuners: 0
+>   > >
+>   > > Output ioctls:
+>   > >     test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>   > >     test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>   > >     test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>   > >     test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>   > >     test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>   > >     Outputs: 0 Audio Outputs: 0 Modulators: 0
+>   > >
+>   > > Input/Output configuration ioctls:
+>   > >     test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>   > >     test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
+>   > >     test VIDIOC_DV_TIMINGS_CAP: OK
+>   > >     test VIDIOC_G/S_EDID: OK
+>   > >
+>   > > Control ioctls (Input 0):
+>   > >     test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+>   > >     test VIDIOC_QUERYCTRL: OK
+>   > >     test VIDIOC_G/S_CTRL: OK
+>   > >     test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+>   > >     test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+>   > >     test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+>   > >     Standard Controls: 3 Private Controls: 0
+>   > >
+>   > > Format ioctls (Input 0):
+>   > >     test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+>   > >     test VIDIOC_G/S_PARM: OK
+>   > >     test VIDIOC_G_FBUF: OK (Not Supported)
+>   > >     test VIDIOC_G_FMT: OK
+>   > >     test VIDIOC_TRY_FMT: OK
+>   > >     test VIDIOC_S_FMT: OK
+>   > >     test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>   > >     test Cropping: OK (Not Supported)
+>   > >     test Composing: OK (Not Supported)
+>   > >     test Scaling: OK (Not Supported)
+>   > >
+>   > > Codec ioctls (Input 0):
+>   > >     test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>   > >     test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>   > >     test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+>   > >
+>   > > Buffer ioctls (Input 0):
+>   > >     test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+>   > >     test CREATE_BUFS maximum buffers: OK
+>   > >     test VIDIOC_REMOVE_BUFS: OK
+>   > >     test VIDIOC_EXPBUF: OK
+>   > >     test Requests: OK (Not Supported)
+>   > >
+>   > > Total for snps_hdmirx device /dev/video0: 47, Succeeded: 47, Failed: 0, Warnings: 0
+>   > >
+>   > > Changes in v4 :-
+>   > >    - Remove DTS changes included in the device tree patch
+>   > >    - Remove the hdmi rx pin info as it's already present
+>   > >      in the rk3588-base-pinctrl.dtsi
+>   > >    - Create a separate config option for selecting the EDID
+>   > >      and enable it by default
+>   > >    - Improve the comment related to DV timings and move it
+>   > >      to the side of hdmirx_get_detected_timings
+>   > >    - Add 100ms delay before pulling the HPD high
+>   > >    - Do not return the detected timings from VIDIOC_G_DV_TIMINGS
+>   > >    - Drop the bus info from hdmirx_querycap
+>   > >    - If *num_planes != 0 then return 0 in hdmirx_queue_setup
+>   > >    - Set queue->min_queued_buffers to 1
+>   > >    - Drop q->allow_cache_hints = 0; as it's always 0 by default
+>   > >    - Add a comment for q->dma_attrs = DMA_ATTR_FORCE_CONTIGUOUS;
+>   > >    - Drop .read = vb2_fop_read as it's not supported by driver
+>   > >    - Remove redundant edid_init_data_600M
+>   > >    - Make HPD low when driver is loaded
+>   > >    - Add support for reading AVI Infoframe
+>   > >    - Remove msg_len checks from hdmirx_cec_transmit
+>   > >    - Add info about the CEC compliance test in the cover letter
+>   > >    - Add arbitration lost status
+>   > >    - Validate the physical address inside the EDID
+>   > >
+>   > > Changes in v3 :-
+>   > >    - Use v4l2-common helpers in the HDMIRX driver
+>   > >    - Rename cma node and phandle names
+>   > >    - Elaborate the comment to explain 160MiB calculation
+>   > >    - Move &hdmi_receiver_cma to the rock5b dts file
+>   > >    - Add information about interlaced video testing in the
+>   > >      cover-letter
+>   > >
+>   > > Changes in v2 :-
+>   > >    - Fix checkpatch --strict warnings
+>   > >    - Move the dt-binding include file changes in a separate patch
+>   > >    - Add a description for the hardware in the dt-bindings file
+>   > >    - Rename resets, vo1 grf and HPD properties
+>   > >    - Add a proper description for grf and vo1-grf phandles in the
+>   > >      bindings
+>   > >    - Rename the HDMI RX node name to hdmi-receiver
+>   > >    - Include gpio header file in binding example to fix the
+>   > >      dt_binding_check failure
+>   > >    - Move hdmirx_cma node to the rk3588.dtsi file
+>   > >    - Add an entry to MAINTAINERS file for the HDMIRX driver
+>   > >
+>   > > Shreeya Patel (4):
+>   > >    MAINTAINERS: Add entry for Synopsys DesignWare HDMI RX Driver
+>   > >    dt-bindings: media: Document bindings for HDMI RX Controller
+>   > >    arm64: dts: rockchip: Add device tree support for HDMI RX Controller
+>   > >    media: platform: synopsys: Add support for hdmi input driver
+>   > >
+>   > >   .../bindings/media/snps,dw-hdmi-rx.yaml       |  132 +
+>   > >   MAINTAINERS                                   |    8 +
+>   > >   .../dts/rockchip/rk3588-base-pinctrl.dtsi     |   14 +
+>   > >   .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |   56 +
+>   > >   drivers/media/platform/Kconfig                |    1 +
+>   > >   drivers/media/platform/Makefile               |    1 +
+>   > >   drivers/media/platform/synopsys/Kconfig       |    3 +
+>   > >   drivers/media/platform/synopsys/Makefile      |    2 +
+>   > >   .../media/platform/synopsys/hdmirx/Kconfig    |   27 +
+>   > >   .../media/platform/synopsys/hdmirx/Makefile   |    4 +
+>   > >   .../platform/synopsys/hdmirx/snps_hdmirx.c    | 2763 +++++++++++++++++
+>   > >   .../platform/synopsys/hdmirx/snps_hdmirx.h    |  394 +++
+>   > >   .../synopsys/hdmirx/snps_hdmirx_cec.c         |  285 ++
+>   > >   .../synopsys/hdmirx/snps_hdmirx_cec.h         |   44 +
+>   > >   14 files changed, 3734 insertions(+)
+>   > >   create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+>   > >   create mode 100644 drivers/media/platform/synopsys/Kconfig
+>   > >   create mode 100644 drivers/media/platform/synopsys/Makefile
+>   > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/Kconfig
+>   > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/Makefile
+>   > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+>   > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.h
+>   > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.c
+>   > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.h
+>   > >
+>   >
 
