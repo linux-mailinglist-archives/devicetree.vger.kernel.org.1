@@ -1,260 +1,200 @@
-Return-Path: <devicetree+bounces-97396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405AC9621F9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:01:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C972E962207
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:10:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 646991C234B9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:01:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 864B428583D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B1D15958A;
-	Wed, 28 Aug 2024 08:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="TgJ+SDcI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0462415AD83;
+	Wed, 28 Aug 2024 08:10:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2136.outbound.protection.outlook.com [40.107.117.136])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 107DF157E88;
-	Wed, 28 Aug 2024 08:01:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724832077; cv=none; b=j1FUtoyAXC73z46Wp1dSBpmxwZcaFczVm0R0MM6jijHAvUlcKqHd0uscDrCFhjIoSCIwCEAodMD+w3xnlfimjXZEBDc+7V8eKUFjIRts0yYATU8sThnE9vwd9WJkPXrFnQ9XOFydTYTxOSRyoiDLZIpNTOydEKUM/g8ZVhSwYAw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724832077; c=relaxed/simple;
-	bh=q3+yV9/2nn6kuWyLCUtijxbnMcgqxCbfqe44GUBUAMg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f1vhmddFLvmu8rvv2jdpcTUWv1mhKRoONDJl/OUvdRJIn1vs8kdnrLsPgO07PCB2Nz1sQEeB7ayDXeWYB2y+Co3tAuZmirJ9ItEe93Udk4NmyL1+jNEZWAdNR99atmLvLSftnPTxDosgZ1tHNSWB/gYPtk4Zp1lrmaQAempbjDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=TgJ+SDcI; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 7CD5788852;
-	Wed, 28 Aug 2024 10:01:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1724832073;
-	bh=JgwDc4JoAWGEkDqG8w6tT/QjJOG2yEkAJ/ckjkJ7Zbw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=TgJ+SDcIaqS8QIrG/USFV3z2fOt0siiMwRBvil59u4Y6eFAn42912G+HFkUEO/ZvW
-	 TBwFwOtdwdzvLCPoB5VVfRl21vZNELas2Fgp2Er/CIdG/PzXaWJwloAX5XKj9YXZ0C
-	 /L+rKbHAFDP3T0Y42P/lNMJXxT/lA2Yctvt9OEvHcrdqd/nno7EbfIDu/ECWW5/MuA
-	 YJ8O/RhyXaeI1b8/byvIdOp2q0Cvs+B1sbHncsL6fMJUxTslI9Gfg5C/2IYtIvIhJC
-	 ZbF/QQgUAL1CYSDcIoS8uYb3qAUIwN4EkPFmHPLfaJOVjSPHcMda5vYTqNVGEicZR0
-	 G7ylfdF8QBruw==
-Date: Wed, 28 Aug 2024 10:01:11 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Fabio
- Estevam <festevam@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: Add dt bindings definition file for
- imx28 saif
-Message-ID: <20240828100111.10852309@wsk>
-In-Reply-To: <mzlrm7zkzuue4xsxehz32ffiesigy2dzbos2osirzfoi525q6q@7klbgtmht74a>
-References: <20240827180528.2315563-1-lukma@denx.de>
-	<mzlrm7zkzuue4xsxehz32ffiesigy2dzbos2osirzfoi525q6q@7klbgtmht74a>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACC4B67A;
+	Wed, 28 Aug 2024 08:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.136
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724832654; cv=fail; b=QYTYmNgix+LLWQRccudHzAYeMksMecPS1OrDsxR08YxnS8UzWNTsQ+nLwQZG3vct6ApKWWh8Lojfm/VeXlPwxdHotYcSqr+FwjofIoEOGT9c0ruLfu8MLJd0V1S8UAj+LR8AJrjrGpVrQDs6UdKYJKjadUwmIHAwLwMf7NuzpQ8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724832654; c=relaxed/simple;
+	bh=1PfeMbbLYRrsaymNXBDmQ7mmVW2w8Ik325QLEpYb4+o=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=f9KxPJJnfE8SFOCCRWGG/ipKWyPD5o1q6ZkjSNrHVDdHtPx3NtHbTFemwekIWHw+BLBWwErOE8VPHJV2a6af2YRTU5ZDcKq2OBBiF6ssV9Yqm09RVDy8VYeSV1In0IsANDKxWeU6HsP4C/mppmB1V8XCG0GK9AFx0Feh8S2qq+o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.117.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DljZBUbiKZo7MoiTdjwZ8E+H2N5sa4CeY7qUYR2M4dxBJKvaRSatJyFHsVowStxQ4j/aqd3SwLWWbguheiaiNmTvqY3E/7qK7l3o/ENNIlInHHMYMO8uu0dVZn8QZA1AAqTniW+Q6b1jJf8Kn/KFrHa/baYifjzJYBJtIffG7bDwZTQ9Ugf0IJFLKeR5oXHlzwKI0nxss4ZNFPZcUO459BXOLJC+bwkjYtn4qjPZuS7For2F5Gd4Rot0WfpYzGNAP9fsf8gki+bt18xsDKVZHVr69WjQUX8TGKZ1FmzLzjiLNvLUmBuw6npEnOsjhpiy6Yy808Sw+3j9VfIeLNY4aQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hK+wF/UVXu1htGUTMCfzPw1Y2NicYjYXES/mcTmU7x0=;
+ b=BpFsNV1LxWj+ab9Ns8oCWABDtwdD5CLG/yrHsIcE/nbNd7HDCoQTzQWwUQ3otBuuadQ2HZTxxvueBiNrlFe4Y1bELxQ7dkuNBJ3YyDX5kajhDIHkUq4LDcivDdmfVRxyZd4i9o9tINSqcuwm20CiQuf/EFg3lZF5WsitzEJjCzMMEiobzl2pItsSkd+SYQu8KLArOrHlMdHRydH1uf6RYmj5ZsAI3cPzCFPdyKquQBBpRFZa9+GDDPT/VRMt1Fr5A3F1B4SI/SJQO7VuMs0/mPySOnWUIJkblw6eePgb3rIsmQqETporuTIxnSn/lo/kdSSaaFOKoJe7E11mWLQNxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
+ by PUZPR03MB7014.apcprd03.prod.outlook.com (2603:1096:301:f0::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Wed, 28 Aug
+ 2024 08:10:47 +0000
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0%4]) with mapi id 15.20.7875.019; Wed, 28 Aug 2024
+ 08:10:47 +0000
+Message-ID: <31b6852c-85d9-438e-88ba-46f6e8b528d7@wesion.com>
+Date: Wed, 28 Aug 2024 16:10:40 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 0/5] Add AP6276P wireless support
+To: Krzysztof Kozlowski <krzk@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, van Spriel <arend@broadcom.com>,
+ Arend van Spriel <arend.vanspriel@broadcom.com>
+Cc: linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Ondrej Jirman <megi@xff.cz>, Sai Krishna <saikrishnag@marvell.com>
+References: <20240828-wireless-mainline-v12-0-9064ac7acf1d@wesion.com>
+ <33d0151d-7708-45da-8414-b161892db937@kernel.org>
+Content-Language: en-US
+From: Jacobe Zang <jacobe.zang@wesion.com>
+In-Reply-To: <33d0151d-7708-45da-8414-b161892db937@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI1PR02CA0032.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::12) To TYZPR03MB7001.apcprd03.prod.outlook.com
+ (2603:1096:400:26a::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/_gimqZ3VPAw3ipv3ud7YrZ7";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-
---Sig_/_gimqZ3VPAw3ipv3ud7YrZ7
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi Krzysztof,
-
-> On Tue, Aug 27, 2024 at 08:05:28PM +0200, Lukasz Majewski wrote:
-> > This file allows correct check of DTS node for imx287 based
-> > "fsl,imx28-saif" compatible device.
-> >=20
-> > It corresponds to Documentation/devicetree/bindings/fsl,imx28-saif
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> >  .../devicetree/bindings/sound/fsl,saif.yaml   | 79
-> > +++++++++++++++++++ 1 file changed, 79 insertions(+) =20
->=20
-> There is a binding. Please perform conversion from TXT to DT schema,
-> mentioning in commit msg any changes from pure conversion (e.g. new
-> properties to match DTS).
-
-Hmm.... OK.
-
->=20
-> Few more comments below.
->=20
-> >  create mode 100644
-> > Documentation/devicetree/bindings/sound/fsl,saif.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/sound/fsl,saif.yaml
-> > b/Documentation/devicetree/bindings/sound/fsl,saif.yaml new file
-> > mode 100644 index 000000000000..747faa411a50
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/fsl,saif.yaml
-> > @@ -0,0 +1,79 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/fsl,saif.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale MXS Serial Audio Interface (SAIF)
-> > +
-> > +maintainers:
-> > +  - Lukasz Majewski <lukma@denx.de>
-> > +
-> > +description: | =20
->=20
-> Do not need '|' unless you need to preserve formatting.
-
-Ok.
-
->=20
-> > +  The SAIF is based on I2S module that is used to communicate with
-> > audio codecs,
-> > +  but only with half-duplex manner (i.e. it can either transmit or
-> > receive PCM
-> > +  audio).
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: fsl,imx28-saif
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#sound-dai-cells":
-> > +    const: 0
-> > +
-> > +  assigned-clock-parents: true
-> > +  assigned-clock-rates: true
-> > +  assigned-clocks: true =20
->=20
-> These three should be dropped, redundant.
-
-Last two are present in definition of saif[01] in imx28.dtsi - so IMHO
-it shall be added.
-
-Moreover, those are present in fsl,sg5000.yaml dt-schema description.
-
->=20
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  dmas:
-> > +    maxItems: 1
-> > +
-> > +  dma-names:
-> > +    const: rx-tx
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  fsl,saif-master:
-> > +    description: Indicate that saif is a slave and its phandle
-> > points to master
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - dmas
-> > +  - dma-names
-> > +  - "#sound-dai-cells" =20
->=20
-> Keep the same order as in "properties:" block.
-
-Ok.
-
->=20
-> and here allOf: with $ref to dai-common.yaml
-
-Ok.
-
->=20
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    saif0: saif@80042000 {
-> > +        #sound-dai-cells =3D <0>;
-> > +        compatible =3D "fsl,imx28-saif";
-> > +        reg =3D <0x80042000 2000>;
-> > +        interrupts =3D <59>;
-> > +        clocks =3D <&clks 53>;
-> > +        dmas =3D <&dma_apbx 4>;
-> > +        dma-names =3D "rx-tx";
-> > +    };
-> > +  - |
-> > +    saif1: saif@80046000 { =20
->=20
-> Just one example, could be this one as more complete.
-
-This is important, as saif1 has "fsl,saif-master" which allows to have
-full duplex PCM communication (by default on imx28 single saif is
-half-duplex).
-
->=20
-> > +        #sound-dai-cells =3D <0>; =20
->=20
-> Keep it after "reg" (compatible and reg are always first).
-
-Ok.
-
->=20
-> Best regards,
-> Krzysztof
->=20
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|PUZPR03MB7014:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05fa41dc-509b-4387-8b61-08dcc738ec31
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SEh2V0ljQlc1dEFYUVhqZjAzaVZNbUF4RlhqeHYrYSttcUtPTEppZG5nbHNW?=
+ =?utf-8?B?bzZpd0tkZm9UNUhBc0ljWnZuTkNsNXZ0YWE2eVhXcUtITERIMkR4aFFuVmQ2?=
+ =?utf-8?B?RTMzWkJOd250WW1PS2JsV1lwT1pMRy9MQVUrZS9Ba2RnRXpxNlVocHRkK0FR?=
+ =?utf-8?B?bzdJUkMwdEJjL3cwWGxpbFE0M1RydG5XN1kwcXpKRE9remd4cFVHN1NTQ201?=
+ =?utf-8?B?cDJlTVJPUnNydDZxMC9vQ3FoRGQyU3hYVkVBL1hjcGFRenFUQ3VsVVlKckRx?=
+ =?utf-8?B?eS9jMDJ2YlNSVE1uZkVWQjNJUk9CYXIzVExjb044RFExbFdRL0VIR2dkR0ds?=
+ =?utf-8?B?L3A4Q1FudndSV2gxNHNacHJmSVhEZk5tN0k4anAvOVlva3RIZmowWllKRHhq?=
+ =?utf-8?B?b3RqK1l1T0JLYjNJVFFxbzlIdXUrT1E1c2cvRnBjN0oyUTBxUjRGQjIvOUxR?=
+ =?utf-8?B?cFFNWHA4QWpKcElGRHU1ck1rQytKajhMdkQyTytKYnJjemFwWVg2Q0lZTkg5?=
+ =?utf-8?B?VEhqWlFHSkdzcVBQeUZIdXFYQ1VZNWI1MlE5UGluaVFEblYrdktTS0tMQnE1?=
+ =?utf-8?B?NXpEZXNzZzN6QXJJalVpbElFb0d4Q0tJZGFwazJrbEJ0STBiT3NrdlY4Nm9x?=
+ =?utf-8?B?QzhTRzFJOElLWjJaT2VCNlFYWmFLRlAwNkh6REFQL2hxdzZBM29ZK1RrNlJn?=
+ =?utf-8?B?RVZRVVpENEhVSnFyVEhESjlkSzJRdEJLT3lnMUJOS0IyTnFQQUY4Yi9ZK3Y4?=
+ =?utf-8?B?RHVEOC95Q2JURExtY0xvMnFCc0xVcUhwRWJKd0xkSDhuWTNybmFrM1NxM01w?=
+ =?utf-8?B?RENTTkpJWVY4WGVOQkgwYTVKZmpzMFhob0NyRHFCK1hqRnNZUnZSZVNkd05U?=
+ =?utf-8?B?ekFOeDdackxkcnpUNitsUklnOVlobm1WbUduRC8wbVhyWFVVcisxc3JZUk1F?=
+ =?utf-8?B?NFdJeVJSUHBaVzN6dER3T3hvK0dQTldqc1lqWDJTTGxadjlDcXJqUXRRV1Fr?=
+ =?utf-8?B?aVE1NmJsUzRNZHQ3c2RrZmNLb21qMzU5WER1VkdnZGR1TUxyY1piaTB4R0FG?=
+ =?utf-8?B?YWluMnpXRHlFak9BVVhzK3ZtU2xvb3ZHRjJlU2NETGpTb0VxRVd0NzMrKzVM?=
+ =?utf-8?B?M1dPQzIvWTlQWWsxOE4zemdCRWE1N09VNHFXaktqMm82Nm4zVzhGQjdPQjg1?=
+ =?utf-8?B?RHBJMTZQTENQT2VLL21FcjR4WGRmNFVKOHR1NFloSG5pR05meHo2dUxoMWhl?=
+ =?utf-8?B?aVNFZStvYnY1L2NXSnlNVjAxVFY3dWNJSElaN3F0WVF6NDlmcGhDc3NTa2VO?=
+ =?utf-8?B?QW44R1g4cU5VNGhFYThadWRwdWp6aDNqbGRRL3ZsbmMxVElqaHBGdXZtbWIr?=
+ =?utf-8?B?c01mNHQ0akZJOUZiVEI0YjcwdzRleVc5YzI4dVRod295Q1VGOStMSnp4dUd3?=
+ =?utf-8?B?eGhzbWVZeXEzaHgyM0ExMlJzNE9RTnZUWXBVMGVpR1BhbWxyUVl3cnRUa0Rp?=
+ =?utf-8?B?M0RyWFNjQ2JyNDJOVEY4d1lvcGtHMzlMcU84S2dUWEpWOFRnS2g3NGF6dFBU?=
+ =?utf-8?B?QlV5RnJKZjZ5UVpsMHo0azZwa2Q0Vkw1SGZ6MW9hR2F3WjQvcldNc2QyVVlj?=
+ =?utf-8?B?cmhFaEMwYTZrZHNkY1RvS3N1UnNRQnZwdjFOV1lrN2liMEdSWnRZdThKdXBi?=
+ =?utf-8?B?aENXSEE4RmEzUVRTUXhBRXlOZ200d2xDb2NHMy9NbWFjdC81YzBONWgxc1VH?=
+ =?utf-8?B?NC96eE91QVJGdzBmMlhEMFQvWDh4NGY2Q3o4QXplUjVmb1ZERkQ1S1NoaWpG?=
+ =?utf-8?B?TUJpdGphbVh4ZUc4cHdnK2xhbURzQk1LWHZGWDIzWTZVd2NLYU5CY2s1YzZa?=
+ =?utf-8?Q?Jdy5yUEps5ZgX?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TUo1b25HV1M3WW44NGkxVG1nUjIwYU5IRzZPMzNrRGZycGNqVGorTXkwTHVi?=
+ =?utf-8?B?RTBLMVFXcG5lVWFFMlJGbU8vT0lTYjV0cUtTd3VHQldzcEpTM3FrSUxnaG9I?=
+ =?utf-8?B?cVBEU2JyN2p4eW9VVW04WmNXWFQyNWhFc2trWWE1Zjc4T3lZYzRVMGRmNHY5?=
+ =?utf-8?B?MWloMlo1dWh4OVo4a3FxWUN6NmVMNEpnMmhKTEh4WTltc3pXd2dGM05ndWMv?=
+ =?utf-8?B?UENGazlOamNQNm1pd3RWbWYyekk3cjU3eU9ZOW9CZDJ6Y2s2cjRxMklxRVVY?=
+ =?utf-8?B?Zm1TeTFlUFU3SXZyOTc5NHh5MG1vV2hzczdFMm9hUkhORitqVTFFWUU0eGRJ?=
+ =?utf-8?B?TitQQmkrdzd6bGhOK3pUSGF3d2hWakFuZllPYlV0TTZQQUNWN3hZazJ5R3pT?=
+ =?utf-8?B?YlE1cVFtcVV1UHB6VGgyVVk4YlVyZm5sak9vNG0yc3k0Mll3Vm9NeDgwUzV5?=
+ =?utf-8?B?eXc5ZjVacmM3alpBRUdINGxJdklFMmdsV1o1Yi81NTl1bWMveldMekE2VjBJ?=
+ =?utf-8?B?RmtWN1BENFc5OFBjV1hRQlF3R0E4OEYyYWFmeWhuU2VpYldjSUJFd0ZaWnZK?=
+ =?utf-8?B?cS9JSVJvYnJpNUs1NWxQUGpOczkzNlFQU0svY1hXOEtDbnRrSW9xdDlvSFgv?=
+ =?utf-8?B?R0NKUzFlRDZTM3hIanpPTTg4NVlWeGhoK2NxREtGQXMzbHZOdG45RE9KQzF0?=
+ =?utf-8?B?QitWOEdhR05iZGMvSkIrV2xmZEliYTAyb0gxMDJLbitYSDRQam14T3QzdE1G?=
+ =?utf-8?B?bjdHYjF3M2FPZTdHS0ZRaDJ1eHBaQ095bkNkOG5XYXdGc3pickVqSmFobE9p?=
+ =?utf-8?B?S2U0UFJMZktWaVljS2c1cVlNcUNxbERTTVE0UkltdDlqSDIzV0U3TkloQU1B?=
+ =?utf-8?B?QnJTK3RZZXc4VGd1OXhvUXBpWGowblZ4N3RIQ3Zvd25UUmR5UXhtQ0UvM0lX?=
+ =?utf-8?B?c01zYkVxUjdDRDZ0MzNyNWQ4N2w5cGt5aHpYZ3JoZUkyOU9VazRxVkcvTk5w?=
+ =?utf-8?B?YTBOaXNudU80VHZyTi80VnBTRGFlQnNOQjVHRExidHJvMHpIWFFVVE1nVyt4?=
+ =?utf-8?B?OUNldllhaG50dGZzK1NvMmsvRnFLcU9rZndjdEd4V1RwbTBTUGg4Zy9kczds?=
+ =?utf-8?B?R0lPZ0RpUU5ZamVYYnlmQjJ0VXppTktJN2YxT2IwU1lKSWVNTWY5YXhBM2V3?=
+ =?utf-8?B?WWgrVkRuQ1ZjclF1TzJKL2FJcytOMlN1MklzOVJYUXo1d3RWNS9vSUFQd3Ru?=
+ =?utf-8?B?RU44QXdHazA5c3d3c1kxd1lMSUZkaC8rZE0vcSswY2NKYTJXV0ZLN2hnZzgy?=
+ =?utf-8?B?Zk5NNEV6L3FMRTVOQ29iSlR6bVJWSnQxUithK3dsQWVwNDE1OC9MVTVEczgv?=
+ =?utf-8?B?K0VQdERPTWVZRVc2bGFQYkl5Q0hjTWp2aSsrT0pnRy9mdmQvbDJZcE45NTFC?=
+ =?utf-8?B?NmtyVklCQW9IdXRlRDhERWpkT1ppbW1NK1diMWtPNzFkSzUyclk2YlhQOSt3?=
+ =?utf-8?B?a2ZldUNXTjhnR2dGdnFUUnpzY29GMitaU29ZWkRjMUZoNmEvby9lSTVlMHY4?=
+ =?utf-8?B?c25UTDNYVHpJYmdZZ3UyaWhkUVl5cXVCVDlqN0dCTGFaWll4N29Tb2xKRysw?=
+ =?utf-8?B?amhiY0NjUjU1NmxCMGRDVGlhMkdWRE9YV2FaVW1MYzVpcEtxUUZmZXUvNjhF?=
+ =?utf-8?B?OUVqNVZ3Q1NsTUdWb1JnaDVPcml5OWFKVlczQ3JQNHVGWmJOZzhteTBYTm1B?=
+ =?utf-8?B?Qmp4RDcraFRTVU00NXlBUG4zREwwMjVMVVllMitMa3FNZEM2ck92dnJQNTNo?=
+ =?utf-8?B?YkpFNElSam1nbjR4Z1IvcTdDdUxEZUswOGlWZ2QxYzNLbnExbHh2SzRDZGor?=
+ =?utf-8?B?bFdvTEZkQnh2NitDbXZFWEMwSUxlU1lsUXRPaURyR1RDd0t3cEZKcnY5bGpM?=
+ =?utf-8?B?UWJUMlN6NFN0bXpjd1BqZ0hkYmF1YVNFSDI2dnFGYkhhbFQ3RXRBUW5kakV6?=
+ =?utf-8?B?RmF4OFg5SnZHSFNhMW1BMEZRc1BQYW1mUU4vU3RBM3lMZmRFR3h5b3JJRU9v?=
+ =?utf-8?B?cUVocFRzZXVXWkkwTG1OMDVvbUZ4ZE8rZWdpajNOV0lUOW9aaEpJZkFzZ295?=
+ =?utf-8?Q?1yL4r2D9tLrX+WAvRfYpV+ojK?=
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05fa41dc-509b-4387-8b61-08dcc738ec31
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2024 08:10:47.6267
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: x7ljc0qsL9alZXJbSMaDxH/HXZlqFb5qLDF7NMXs7svjwKcFw1VwQXXD9hJG07S8jbqzbzA4yGfS3P2Vi1oNUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR03MB7014
 
 
 
+On 2024/8/28 15:59, Krzysztof Kozlowski wrote:
+> On 28/08/2024 09:40, Jacobe Zang wrote:
+>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+>> ---
+>> These add AP6275P wireless support on Khadas Edge2. Enable 32k clock
+>> for Wi-Fi module and extend the hardware IDs table in the brcmfmac
+>> driver for it to attach.
+>>
+> 
+> I saw v12 and responded to it. This is confusing. Also to other people
+> if they start reviewing different copies.
+> 
+> Please read carefully submitting. This is v12, so I don't get why such
+> basic submission guidelines are not respected here.
+> 
 
-Best regards,
+Sorry.. It is my first time using b4 to send patch, so I made the 
+confused versions..
 
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/_gimqZ3VPAw3ipv3ud7YrZ7
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmbO2UcACgkQAR8vZIA0
-zr1QcQf/euu7IT1NcD2+dD6eT2Od2udmPLT+RnskvAcYRZfe15b5OBOpDygNrTIr
-Aujol4WGW+JZHN2mwMQkFf6iMVgE2RgMUaipfdsMX3h73eGPo6us0OY/Tld6NF29
-N/bQNZTUHoZZ03c+QIVHqX2ZcdIk40UzZ27JcT33CizCbncbPMM4aFF5EGynFyg7
-sB6N738GcDCrgJvgpy7vVJ1bxh1psUarXf04+mQMemJ5T3cFffhE4iSW+/hEq6Pj
-Okor54NDlTvvXqkRR9VBHzzrDyD6jHAp0AMGYrkWvX07VUAeI2GOIBaEpaihjqva
-mSxmdTBxaPk33JlG38Wp5Sft/oZH/g==
-=8HeM
------END PGP SIGNATURE-----
-
---Sig_/_gimqZ3VPAw3ipv3ud7YrZ7--
+-- 
+Best Regards
+Jacobe
 
