@@ -1,169 +1,168 @@
-Return-Path: <devicetree+bounces-97572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9689962AAA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:46:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CA9962AF4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:59:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F7C528156E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:46:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5136FB21BA7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56532189505;
-	Wed, 28 Aug 2024 14:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C66B1A254F;
+	Wed, 28 Aug 2024 14:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCdB3/fF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jalgkQ9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C343B1BC;
-	Wed, 28 Aug 2024 14:46:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266F119AD7E
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 14:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724856406; cv=none; b=MT2M+ebno6muU0uB7pynbs77PbxUQyM44ikfE7bpTRLAteZ7NaqUtORh+dVjSSl5Dh+WMlS6h0BSUJa2FEoeXdXzDzG91qVpmdyRoZ+ZqDJWwSpPKMnrAaKyoTpXdXH/6/zs/HHWHftSeherrum4B8YfRT5PR7vCm4nGKq6m0Wc=
+	t=1724857157; cv=none; b=syAGiUvOwEYrGxl7qqFj0r9upVuYfRSfEzEBkZuK4/xSJsDZD+OoG1VAA/+zdPvKpJkMzm7TpJ2GW5+6+PBrX+KYbHgmfCI7F07kARg0hN/EBJgvmxwWogs3a32Ga0CgR8dwtg5Z+YjLGrJF9bYc6gZ+ZkoQZ9d4/b0rbWPnwkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724856406; c=relaxed/simple;
-	bh=N5TGGxSycG5gUcWZtnwDNyns4qOEMnnt0eP/rT0BOKo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iXN16IIg2ebs1AniYF6yOG0smFEJSeZWfMRDYX5Uft6zbLATav/sRa+eYP8sRfurjmb6IbYm89vRGwLThytABKIjlNdVQA1AoSL6kV7trz7MFCIA748xEIz77+R+7M12hnmiEYxApLnPgIs/6VRwqEwwWEgcsIIeHUZoXYVcR84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCdB3/fF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCAE4C4CED4;
-	Wed, 28 Aug 2024 14:46:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724856406;
-	bh=N5TGGxSycG5gUcWZtnwDNyns4qOEMnnt0eP/rT0BOKo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KCdB3/fF7rrwY9SRfhTqdBHwXaM9ofu21x04HHlagX73fP8XPAXZSl0WJHqArY7EV
-	 2pF2zmmp0cmFDJtJ+FshYiUJQb6jpd8HkMzk7AqZwJ3TH4jBj1xvjlcx5zslVnNx7z
-	 aMa3GkK1dbfHjhBNP/Aqky9ZfXNeLjEU2BPvshNtk14mVtuvFXGuUSxqYiA3xiuKZQ
-	 ezYjTWrXHJ1VzuKMfNwvlwQzn4Zt36wi7lz/4B+m5ETP+rqOu5kz9QOiBMgKEAkBeG
-	 2BAqCDYgWzRW7Mlfavi4tkH8+xoBJBZgEEv3DikDoOrhkIjpyQGjo6KyiCaL9VXdZ2
-	 svBtXA2JyQ8xQ==
-Date: Wed, 28 Aug 2024 09:46:44 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: media: renesas,isp: Add Gen4 family
- fallback
-Message-ID: <20240828144644.GA3680498-robh@kernel.org>
-References: <20240826144352.3026980-1-niklas.soderlund+renesas@ragnatech.se>
- <20240826144352.3026980-2-niklas.soderlund+renesas@ragnatech.se>
- <cnca2gdh6c3kg5ybb4dxzlca5c7jsvz4tomibpkf746syejvmf@ndbq4qkykume>
- <20240827081233.GE2636928@fsdn.se>
- <20240827213441.GA30398@pendragon.ideasonboard.com>
- <9e18bbf4-ae22-4d53-a998-67ad5807d72b@kernel.org>
+	s=arc-20240116; t=1724857157; c=relaxed/simple;
+	bh=4UNfrrrvypOXbGF1696LSllFlEGPK4iGpCwoIEZEm6M=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=SOLFJyO3ZarZWvou5C0D9lBZiyzoj/9fO0xD9uxpK4xX+RfuDZxtXz96XBsLQV2YB5r3kRsZ7gHP+zj8GOPamnW7YSwhL/uPRhWcwf9Od+/DGWfhniDKGVTJpBVOuDcdeogiGFFd/A8t+sdkF3btxSyF+KzsOEV98uqa8WPDWZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jalgkQ9Q; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-428fb103724so4381665e9.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 07:59:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724857152; x=1725461952; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KO/kUq3HaX92Ly9XzMaKjjt6nL2ysMBapj0XMvCm3k8=;
+        b=jalgkQ9Q2AmukeXSuBuQAxhbndY5EY7Rw7JMMfabg3qljTWO/lg/M3ELMUdRf/O3mz
+         Va1UwRSAMFIeCBkFyGWVBne3+xUu6cKcCwShHphIib/smyTbxeaHJ9EQcDDxJF47G4SQ
+         WavejaeFErxRGM1JEcY3ukFSIG0SwJsRZQn5J4fdZDw+cUjRv64VfMhmWbbn2X+7eKQP
+         CYK6TBfBN5ZV11wLCoFHyWfC3PmJ/8d4Rmv65xIgDmGs4HWhVrkq925Tevcsj1oM4yur
+         IecluCFi3+aFCnP6RTnV0yluRxT+mRS8TSH5ueaB2DBvUuGgr0a9xwyuihgtv4XMEt+w
+         G7Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724857152; x=1725461952;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=KO/kUq3HaX92Ly9XzMaKjjt6nL2ysMBapj0XMvCm3k8=;
+        b=PZp/PRAfRg0mRJp9vMduakW2jZd78ci4HmlsHJ5Q96QnI4Wj5bsMLCMMptrWUd950B
+         GX2roV07GCn9Nh5VsRtl0n1IColiadpd59Hz5aZdIeYHheimQzSp3kvoigPPI/mxSLVR
+         DrFZKtnPcbB7RKXutWh22nk7K7ELdHsqmER2Iclu7/uOt+Y4HvM6YzJJ7dHOA2bBxRtf
+         LB25sypTa1vDkx0Ugt7fKdSwASwIhkEt/lvAUJ6vdmHofyC05ZrmZW1d3I2RewbdTz+p
+         VwIqoVwpQmcxgC6nsKJlYNorl2rp+S3CpdJ5ONpzmbtk+ExmQ5bweidzyEcJOheft5vV
+         ECUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV4Zf4+VjdMDjtrDIHMyZnhkTdmLEuLZVk1fhtcuDgKjfEX37umi8prZ+AKKpNwdC/8iOCke8916JFo@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrfCMiZpF9q43w/x3aG/LN+vIto/wMikm15xUMiM6lPQkk+kfV
+	8VWnTpvPZs4SIm3bk45TmwdGu+sPOhpw+pIr+O98Nd79wWKXSxkwo6ktVQpeW8Q=
+X-Google-Smtp-Source: AGHT+IGpYyl2oFuEHSkvy/FLwK15pAaH4MgP4JJbb6daH2SnrD/XOuBjv4Vd9IkQ8xwpgzVSDO+D3w==
+X-Received: by 2002:a05:600c:4fc8:b0:427:abfd:4432 with SMTP id 5b1f17b1804b1-42ba5708dd6mr14626585e9.12.1724857152032;
+        Wed, 28 Aug 2024 07:59:12 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:765d:64ff:5f38:550? ([2a01:e0a:982:cbb0:765d:64ff:5f38:550])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42baf7fa745sm4356805e9.31.2024.08.28.07.59.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Aug 2024 07:59:11 -0700 (PDT)
+Message-ID: <35ab4327-4736-41e8-afaf-c2dea58f0406@linaro.org>
+Date: Wed, 28 Aug 2024 16:59:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/2] drm/panel: add BOE tv101wum-ll2 panel driver
+To: Doug Anderson <dianders@chromium.org>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240828-topic-sdm450-upstream-tbx605f-panel-v2-0-0a039d064e13@linaro.org>
+ <20240828-topic-sdm450-upstream-tbx605f-panel-v2-2-0a039d064e13@linaro.org>
+ <CAD=FV=WqmdjrM3jgpGEX=DqrJLYySpgQ9w+zK0mR=os_5wA35g@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CAD=FV=WqmdjrM3jgpGEX=DqrJLYySpgQ9w+zK0mR=os_5wA35g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9e18bbf4-ae22-4d53-a998-67ad5807d72b@kernel.org>
 
-On Wed, Aug 28, 2024 at 07:36:35AM +0200, Krzysztof Kozlowski wrote:
-> On 27/08/2024 23:34, Laurent Pinchart wrote:
-> > On Tue, Aug 27, 2024 at 10:12:33AM +0200, Niklas Söderlund wrote:
-> >> On 2024-08-27 08:31:22 +0200, Krzysztof Kozlowski wrote:
-> >>> On Mon, Aug 26, 2024 at 04:43:47PM +0200, Niklas Söderlund wrote:
-> >>>> The ISP Channel Selector IP is the same for all current Gen4 devices.
-> >>>> This was not known when adding support for V3U and V4H and a single SoC
-> >>>> specific compatible was used.
-> >>>>
-> >>>> Before adding more SoC specific bindings for V4M add a family compatible
-> >>>> fallback for Gen4. That way the driver only needs to be updated once for
-> >>>> Gen4, and we still have the option to fix any problems in the driver if
-> >>>> any testable differences between the SoCs are found.
-> >>>>
-> >>>> There are already DTS files using the V3U and V4H compatibles which
-> >>>> needs to be updated to not produce a warning for DTS checks. The driver
-> >>>> also needs to kept the compatible values to be backward compatible , but
-> >>>> for new Gen4 SoCs such as V4M we can avoid this.
-> >>>>
-> >>>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> >>>> ---
-> >>>> * Changes since v1
-> >>>> - New in v2.
-> >>>> ---
-> >>>>  Documentation/devicetree/bindings/media/renesas,isp.yaml | 3 ++-
-> >>>>  1 file changed, 2 insertions(+), 1 deletion(-)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> >>>> index 33650a1ea034..730c86f2d7b1 100644
-> >>>> --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> >>>> @@ -22,6 +22,7 @@ properties:
-> >>>>        - enum:
-> >>>>            - renesas,r8a779a0-isp # V3U
-> >>>>            - renesas,r8a779g0-isp # V4H
-> >>>> +      - const: renesas,rcar-gen4-isp # Generic R-Car Gen4
-> >>>
-> >>> Adding generic fallback post-factum is odd, does not feel reliable.
-> >>> Instead use specific compatibles as fallbacks.
-> >>
-> >> I agree, it feels a bit odd. But this was the road we hammered out at 
-> >> great pain for how to be able to move forward with this issue for the 
-> >> other IP block involved in video capture for R-Car Gen4, VIN [1]. This 
-> >> just mirrors that long discussion decision for the R-Car CSISP.
-> >>
-> >> I would hate to have different solutions for the two.
-> >>
-> >> 1. [PATCH v5 0/6] rcar-vin: Add support for R-Car V4M
-> >>    https://lore.kernel.org/all/20240704161620.1425409-1-niklas.soderlund+renesas@ragnatech.se/
-> > 
-> > The compatible fallback for VIN has been added following a request from
-> > Conor and Rob, so it would be nice if the three of you could agree to
-> > achieve consistency in the bindings :-)
+On 28/08/2024 16:11, Doug Anderson wrote:
+> Hi,
 > 
-> Don't twist our answers. You need fallback, but specific, not family.
-> There was a countless number of answers from Rob that specific
-> compatibles are preferred.
-
-Preferred, definitely. But preferred is not absolute. The Renesas 
-bindings have consistently followed the above style for some time. For 
-the most part that has worked out it seems (based on Geert's slides 
-linked in one of the threads). If you want to continue that here, it's 
-not something I care to argue about.
-
-However, I have to agree that adding the fallback after the fact is not 
-ideal. Why design it where you have to carry renesas,r8a779g0-isp and 
-renesas,rcar-gen4-isp in the driver forever when you could have 0 driver 
-changes instead? The problem with genericish fallbacks is you have to 
-know the future. Am I going to have a family of chips with the same 
-block? It's much easier to just say "oh, this new chip is compatible 
-with this old chip".
-
-
-> Look, Conor's reply:
+> On Wed, Aug 28, 2024 at 2:22â€¯AM Neil Armstrong
+> <neil.armstrong@linaro.org> wrote:
+>>
+>> +static int boe_tv101wum_ll2_off(struct boe_tv101wum_ll2 *ctx)
+>> +{
+>> +       struct mipi_dsi_device *dsi = ctx->dsi;
+>> +       struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
+>> +
+>> +       dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+>> +
+>> +       mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+>> +
+>> +       mipi_dsi_msleep(&dsi_ctx, 70);
+>> +
+>> +       mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+>> +
+>> +       mipi_dsi_msleep(&dsi_ctx, 20);
+>> +
+>> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x04, 0x5a);
+>> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x05, 0x5a);
+>> +
+>> +       mipi_dsi_msleep(&dsi_ctx, 150);
+>> +
+>> +       return dsi_ctx.accum_err;
+>> +}
 > 
-> https://lore.kernel.org/all/20240620-gating-coherent-af984389b2d7@spud/
-> Do you see family fallback? I think "r8a779g0" is SoC.
-> 
-> Look here:
-> https://lore.kernel.org/all/20240610-screen-wolverine-78370c66d40f@spud/
-> 
-> Or here
-> https://lore.kernel.org/all/20240624-rented-danger-300652ab8eeb@wendy/
-> where Conor agrees against!
+> optional nit: now that the single caller of this function isn't
+> looking at the error code, you could make boe_tv101wum_ll2_off()
+> return "void".
 
-But he ultimately Acked it.
+Indeed, I'll spin a v3 with this and you review and apply it
 
 > 
-> So let me actually NAK it - you got multiple comments on VIN to use
-> specific compatible.
+> In any case, this looks good.
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-This doesn't help anything. You've made your point without it.
+Thanks!
+Neil
 
-Rob
 
