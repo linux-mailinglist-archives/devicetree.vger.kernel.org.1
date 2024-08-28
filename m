@@ -1,185 +1,148 @@
-Return-Path: <devicetree+bounces-97608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E19D5962C33
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:25:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BA9A962C71
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:33:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EA132879C3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:25:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECFEF282EDC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:33:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B58C1A3BD6;
-	Wed, 28 Aug 2024 15:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562C317C223;
+	Wed, 28 Aug 2024 15:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aT4sBRCX";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="gHek42am"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="AcwAc6jm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-43.smtp-out.eu-west-1.amazonses.com (a7-43.smtp-out.eu-west-1.amazonses.com [54.240.7.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640401A38F6;
-	Wed, 28 Aug 2024 15:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746C313D8B4;
+	Wed, 28 Aug 2024 15:33:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724858700; cv=none; b=U6860ho61Bt0aC+Pzsi53qUePV0TjMe4e5mRys+eyBb9mm6HXEWEyImqKdz95yNpJ3jOfhITVFFyUoSaDiSEPzO8NPVMRpGVXFoKVAImianMgvryTzr81j6gnyTv6pz5VzGPt0TgB1F4aruglFgCiFqsCFhxmELteInHqMeqck0=
+	t=1724859220; cv=none; b=ZSLmoqfQn5sKZe4VGIrc4jZ1rENp7i7ZB71AUlcX0UzAcvBhOGsJ/A7fCM4xklvlcnO3B8KZM+oWdUecT9jkvSy/yUtBfSjgZ9Zsk4SMu0ZfnnAkQICGBT6Lpm1FD9nh7pKzlO1tCscLMJ6PF8glhu99DVuhn3ctsOhTL0PfFIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724858700; c=relaxed/simple;
-	bh=shJ6n+tc71cHDfqon4Rkez8fNIGRyWksu873PNeIOIg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mXMTYgV4FKXSbnnKMkX7Jb7aayULE6EXghGKpMnROwngTWQSZeVxuif51A+bAWPqh1txvqb0K2LSTLhpxERrHA0+OyBG82oeWj8tsq5/CM4m8ctmLdO4Fu6xzqIoLPx6BZyKLSHxjN8SbvMY52u1LCF+ajewwJ8oURIRFgxYpc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aT4sBRCX; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=gHek42am; arc=none smtp.client-ip=54.240.7.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1724858696;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
-	bh=shJ6n+tc71cHDfqon4Rkez8fNIGRyWksu873PNeIOIg=;
-	b=aT4sBRCXlmGjT4vnN0FrZ7lvvVKEpJDu4W6nF49Nx+zBn1lr9rZRa3mVRzDYukY5
-	hWX3BbnXi0DcoDoKy+/rh8qGqdwgJGNcDk/ooNcHnT4Kbm3JxV6DF1lLJkmVtpKBkGr
-	Ju9NpLInFJaSHMx7aym6AFU2bZDuYczLgY5vv83rGyQ0WTZpFjMjqQBjoBXf3a6o1hN
-	bsquS1+HZRSfiTmf6dt58EFCm/OOUdlHTYhKnknFJ68f+DJXAj0k61b0MWO4b18lQXk
-	P1Qyj8YpHZWZbz5q8bEw4Q2C/wlESZzqnIE/p1lDcAdvVGyQ+uusyXnOvBFJu7HXcTS
-	USUyX9cjlA==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1724858696;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
-	bh=shJ6n+tc71cHDfqon4Rkez8fNIGRyWksu873PNeIOIg=;
-	b=gHek42amabUCXFWSvRgweSVyL5n5zMr8/wEDSE+vY42IJDbm9fl6DKaigOpENgeI
-	JKo36eYhRKBnDbal5WqIkSLmW/LdwJw4J2+6JNE4afXXujpoWl6hVIhaq15caWuPaTB
-	KeBkr2lUyZCdX68kiFHXEx+MEMu4j+34YXyqekog=
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, kernel@collabora.com, 
-	Detlev Casanova <detlev.casanova@collabora.com>
-Subject: [PATCH v5 3/3] mmc: dw_mmc-rockchip: Add support for rk3576 SoCs
-Date: Wed, 28 Aug 2024 15:24:56 +0000
-Message-ID: <010201919997044d-c3a008d1-afbc-462f-a928-fc1ece785bdb-000000@eu-west-1.amazonses.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240828152446.42896-1-detlev.casanova@collabora.com>
-References: <20240828152446.42896-1-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1724859220; c=relaxed/simple;
+	bh=o56S8pLMGrt4CkvaoCu9w5pHDJBsrZKUDQNBoIaCEpU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UUtYlPlFVAV0IihH1sKpquKm/dYYpcRXwbtfJJyHJzwFnmXNZ+SmrqV/TAwzb6ihvgbYsm/aHr1sIycjMWtIT9min/cqNMJM1yYUJuxfUPytsgflgXvyn88AXexV2XTao6Xo8mT/nAKGcv52+vWK94CCqO2xhbNmDKa6XDqE9OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=AcwAc6jm; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 16BD1885A0;
+	Wed, 28 Aug 2024 17:33:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724859216;
+	bh=pgIBv8xSZ60paxL7JPQGAQxBEmzFpSxLivN1lCW3iI8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=AcwAc6jmYoBxdS+F2EIASSPI4YXEVA+nBDE8Fq7ED18W6DpV9S8Kc9sjopHI4bHaC
+	 NVnsVhNF/tAWTTfsnquliEt2Sp95HVMwt+UDEPmCyGZCK2i6c/rkVdzl2dYxNNm34T
+	 21V3J4Q7K4hIkEOWF/vfdh1+12JZbi/6M6eMmoypEI0MMQrwlwHZ9T6JZShu6TnuB6
+	 7W5/h3Lhg0PAeCgu9YiaKIHxpCZqTMHo1a/PihjqgqxRcXjrS0oMerZ9j7p0Yfvkkq
+	 dpM6hjmW3SCcYDU/eqN7favAySmpkdMRWkkD8+qdCryE38Gamfm25m1JuqepZ3UOxy
+	 cUAEZI8aFT3Eg==
+Date: Wed, 28 Aug 2024 17:33:34 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm: dts: mxs: Remove not used "fsl,imx2[38]-icoll'
+ compatibles
+Message-ID: <20240828173334.21dcdeb2@wsk>
+In-Reply-To: <f4b7e56f-50d1-486b-9866-ee1f82262b53@kernel.org>
+References: <20240828093518.2628817-1-lukma@denx.de>
+	<f4b7e56f-50d1-486b-9866-ee1f82262b53@kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.08.28-54.240.7.43
+Content-Type: multipart/signed; boundary="Sig_/LKKBY4fh8LtwIHI2=HgFYHN";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On rk3576 the tunable clocks are inside the controller itself, removing
-the need for the "ciu-drive" and "ciu-sample" clocks.
+--Sig_/LKKBY4fh8LtwIHI2=HgFYHN
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-That makes it a new type of controller that has its own dt_parse function.
+Hi Krzysztof,
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- drivers/mmc/host/dw_mmc-rockchip.c | 48 ++++++++++++++++++++++++++----
- 1 file changed, 43 insertions(+), 5 deletions(-)
+> On 28/08/2024 11:35, Lukasz Majewski wrote:
+> > The 'fsl,imx23-icoll' and 'fsl,imx28-icoll' are not used at any
+> > place in the Linux kernel - instead for imx2[38] the 'fsl,icoll' is
+> > used.
+> >=20
+> > Hence, it is possible to remove them. =20
+>=20
+> Preference is to have SoC-specific compatibles in the front, so
+> instead of dropping it, these should be documented as bindings.
+>=20
+> imx23 and imx28 are quite old platforms, so I think no one really
+> cared about dtbs_check and their bindings. If the platform is being
+> actively used (as judging by your contributions) then some bigger
+> cleanup could be useful. Also, drop your email somewhere in the files
+> or maintainer entry, so we will know whom to ping when asking for
+> platform removal.\
 
-diff --git a/drivers/mmc/host/dw_mmc-rockchip.c b/drivers/mmc/host/dw_mmc-rockchip.c
-index 75e9ac4bcd08..f96260fd143b 100644
---- a/drivers/mmc/host/dw_mmc-rockchip.c
-+++ b/drivers/mmc/host/dw_mmc-rockchip.c
-@@ -407,7 +407,7 @@ static int dw_mci_rk3288_execute_tuning(struct dw_mci_slot *slot, u32 opcode)
- 	return ret;
- }
- 
--static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
-+static int dw_mci_common_parse_dt(struct dw_mci *host)
- {
- 	struct device_node *np = host->dev->of_node;
- 	struct dw_mci_rockchip_priv_data *priv;
-@@ -417,13 +417,29 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
- 		return -ENOMEM;
- 
- 	if (of_property_read_u32(np, "rockchip,desired-num-phases",
--					&priv->num_phases))
-+				 &priv->num_phases))
- 		priv->num_phases = 360;
- 
- 	if (of_property_read_u32(np, "rockchip,default-sample-phase",
--					&priv->default_sample_phase))
-+				 &priv->default_sample_phase))
- 		priv->default_sample_phase = 0;
- 
-+	host->priv = priv;
-+
-+	return 0;
-+}
-+
-+static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
-+{
-+	struct dw_mci_rockchip_priv_data *priv;
-+	int err;
-+
-+	err = dw_mci_common_parse_dt(host);
-+	if (err)
-+		return err;
-+
-+	priv = host->priv;
-+
- 	priv->drv_clk = devm_clk_get(host->dev, "ciu-drive");
- 	if (IS_ERR(priv->drv_clk))
- 		dev_dbg(host->dev, "ciu-drive not available\n");
-@@ -432,13 +448,25 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
- 	if (IS_ERR(priv->sample_clk))
- 		dev_dbg(host->dev, "ciu-sample not available\n");
- 
--	host->priv = priv;
--
- 	priv->internal_phase = false;
- 
- 	return 0;
- }
- 
-+static int dw_mci_rk3576_parse_dt(struct dw_mci *host)
-+{
-+	struct dw_mci_rockchip_priv_data *priv;
-+	int err = dw_mci_common_parse_dt(host);
-+	if (err)
-+		return err;
-+
-+	priv = host->priv;
-+
-+	priv->internal_phase = true;
-+
-+	return 0;
-+}
-+
- static int dw_mci_rockchip_init(struct dw_mci *host)
- {
- 	int ret, i;
-@@ -480,11 +508,21 @@ static const struct dw_mci_drv_data rk3288_drv_data = {
- 	.init			= dw_mci_rockchip_init,
- };
- 
-+static const struct dw_mci_drv_data rk3576_drv_data = {
-+	.common_caps		= MMC_CAP_CMD23,
-+	.set_ios		= dw_mci_rk3288_set_ios,
-+	.execute_tuning		= dw_mci_rk3288_execute_tuning,
-+	.parse_dt		= dw_mci_rk3576_parse_dt,
-+	.init			= dw_mci_rockchip_init,
-+};
-+
- static const struct of_device_id dw_mci_rockchip_match[] = {
- 	{ .compatible = "rockchip,rk2928-dw-mshc",
- 		.data = &rk2928_drv_data },
- 	{ .compatible = "rockchip,rk3288-dw-mshc",
- 		.data = &rk3288_drv_data },
-+	{ .compatible = "rockchip,rk3576-dw-mshc",
-+		.data = &rk3576_drv_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, dw_mci_rockchip_match);
--- 
-2.46.0
+>=20
+> But if there is no product on imx23/28, then I am afraid it might be
+> wasted effort - isn't it planned for deprecation/removal by Arnd?
+>=20
 
+I cannot say about imx23, but for sure imx287 will stay with us for
+many, many years.
+
+imx287 (arm9) is still in active production, for extended life time
+devices...
+
+It is just pervasive in the industry.
+
+> Best regards,
+> Krzysztof
+>=20
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/LKKBY4fh8LtwIHI2=HgFYHN
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmbPQ04ACgkQAR8vZIA0
+zr14qAgAxSvE4qlOjSzUXqF7+zIEVZTP4mBonJa6mWpx46jie3dTr1gKZhB7qOFg
+UTiWKH3cleVbqMngkfGQnyjhixhfLJrKNJNrY46Wk9c9o8Nt/U/qcWjrR0EzOCAf
+kTBqwu8u1pgMONsUqWp1sMFW1BcaC4E4xR8MMjZ4msaMZKRnsE9ddGgvhteg1nuv
+1TzABHV7FFxemuamdrwXMAVjpvMhHdLdWxlkxfeIX8Xykmasj13hK3EIuuWXdxML
+zUrGOni1V0tIrCQna6gvuNBazlUhrib9O5TdX1kUmo2kbNIa/aCq4n5XHo5NHoKv
+DRh8axbd8BWOjYbkk90srtYXMQioLg==
+=s7nd
+-----END PGP SIGNATURE-----
+
+--Sig_/LKKBY4fh8LtwIHI2=HgFYHN--
 
