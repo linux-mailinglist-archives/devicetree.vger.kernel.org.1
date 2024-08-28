@@ -1,140 +1,120 @@
-Return-Path: <devicetree+bounces-97696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F14963134
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:48:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 905D096313A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:49:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 516A3281CFF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:48:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F35F282A27
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF151A7042;
-	Wed, 28 Aug 2024 19:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481C11ABEDA;
+	Wed, 28 Aug 2024 19:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dNIzkp+6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mCusYVUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 526D6125BA;
-	Wed, 28 Aug 2024 19:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D8A1A7042
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 19:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724874517; cv=none; b=ntWqjZ0scpFtp4Y1+PiRoTAlGmiXCpklgP4trhzsoTPKgVgUPpowBYvvLQHTOJUlxBcYct3FysoBjg1mbhQQAAsEe9z7SHmOBX5wBc5zUCC6/8aHDzYOHvlvRkm5/W4cc45kZ8PJn9v+Q2FVnQbBQ57+Ntd1rGvxls6SukyWi9c=
+	t=1724874565; cv=none; b=QeJlNySMXFsWpysdjlXjH6WxLhY26HcLRxDbcml4FkSubNAP/BRFqB4r341ShvU1NdCKzaU8vawdMETFc6/WvrtNqXbU5PWc5/EtOgYT/+nqvgKTL6mdnJhD06g9Sl71NjXszvMByXZyBt7Gs2OfjPisbuibhKUNdySjY+VGYzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724874517; c=relaxed/simple;
-	bh=T+y2Sp2I/AnCuxrPMoWAy41YouAMEHYew2EbmzfD8y8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lj5DfdxbD4FAs9O1PLymzMvqrsmOCZeB9VZ+/Jy1TtbZCqT6dvaBqaMcq/YvYrLAvVI6oCQihuIAcQloWpI6n+8d7A9q6lMnZ0u2ao5jU72okhI1lvp+0Skn2+Oa678vYIdSiN3U7oBtVVUWNOpm7XqH8gtx/C2nXKpJPXOEMk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dNIzkp+6; arc=none smtp.client-ip=209.85.219.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6bf825d779eso34720506d6.0;
-        Wed, 28 Aug 2024 12:48:36 -0700 (PDT)
+	s=arc-20240116; t=1724874565; c=relaxed/simple;
+	bh=iCpcqPThAPmZLodK+uZfdz3ZGn7+GEtpWdlwHYhSoSw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vn0Fnx/fbwUgZKWYD+jknX1K5J7wH+3q8GrdZbJTMSAxrJsuYah8ch7RWl+iBZkV/9v+xSwGMpzP07//RUMo8e4sj/OT3hQfSf1KubUhEIPzSvrE03IZ8/2yLJ93CmRWzC9M6ElZ0H8HQ+6Mxc30nmXMa6RcsLWLwd5PJMl44z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mCusYVUw; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5344ab30508so1018773e87.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 12:49:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724874515; x=1725479315; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xplm6NVOjj7WQ4sm6b8trxIQwwR4NFeBU2VDjNPXlzc=;
-        b=dNIzkp+6a83ezIC/BYYrhBj2ZGNWbY8SdWmwqDMGAc4HbvJhBCo/cmsjICkMp06w4o
-         fvFafzPZqRiQwpCpdfNrL9RoY0bZ2YFEgY2RdVsvKq6qyUXEhSS1Kdd9jJRfYD6WdKdB
-         36ZCJva6nGGWwDoSvYbL8aWObN8JXA2/LJp2OkPheiuyTPB79La5JWzAEZFapVn2Jy52
-         ZZAP4L+c+UQZihDnviGRueeZWb/7P36XVLJOCa+TU0BulcjjihTFVcfAPip8adzEdrsp
-         ecrmzLZMMUcBoPTim+2er5Z2xUaXnlnu6o3WoviDGV1wXvtM1Ut67IHzNgoHuqB9A+c3
-         ZUEQ==
+        d=linaro.org; s=google; t=1724874561; x=1725479361; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WfREJfZgElEweHVwJvSVEk/D+r54zJQcIccfYEdIZSM=;
+        b=mCusYVUwhkOoWoZ7j3rRMP0aB6XymUwG3Nm3ngxRb5Kf+WyEQ7vQT2kxWYj7ejOKGQ
+         mXisgKT1Q3Q/tVY6bq7qla00l86iqNZPDbsYpv4eGkRtxDabeALMxyuvSAt/cg9O4gXm
+         CGBG/JWAT9d1Jx27KwioaHCgqdQXBjTsTGsurBwSiqAjGHd4wVJjn/+1UTe4ObDjfnaR
+         xmWHe0l1QYpDt0uUlk5c6Ak65AN4297l4FMZxgBYkYVGKgXHcsG/aEb+7JRs5xoxI+pw
+         Zaa8/9NsRdzr+Xvym1ITN/eLqnvac3QHRysQmZQ2hDmflO9onPZ3OJyEfcV6zHF1vczm
+         Qmrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724874515; x=1725479315;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xplm6NVOjj7WQ4sm6b8trxIQwwR4NFeBU2VDjNPXlzc=;
-        b=raZ6cfmhuLW6CDODDhdtA9lRZMaipvTjUl/Zx6LuJGlTWhwZd+RGcYDr4CBXbLaxSv
-         RPj3tkPc5pDr4P6AUK8QxEc3c1bEuLdpQOm132WZxHOQA4JnWwhVmzXBTfr9Isuvzs/N
-         bY6rvm0M0oHlwsDm+n3lBT7QZ/v7nFJQ7TOI4ZVvxamDZJgm4+wFVFi86ECM+WoEsr8H
-         p7EKPNRK1b1EkhEsDERJROhAjgI9ZaAPOnEI37oFcoS241gxQ4nEb4GPhoF8QvchKNAu
-         92l3FhiEFSp8Qt5ozrcC/D+nvAV8RRTy0TSIlpkuqcCgFFBjhZNOy6IUA0MXWjOunEcf
-         nuzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXloWuIG3EpYBeMaH7XHpSRHWj2A8IKM3fzsfqbBd61uOzrTJSlFlkfhzbOCYfjFywBXrKkmSqkEzKp@vger.kernel.org, AJvYcCXyf9ya+JMkUdwzihI6OS3okqDOxfDks2uq6/jtkbzwvb7k1M51jKSJ0dODZoe15i4FihjlTPY0xfy0a6IZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyA2SeLgpBvvge6mScfHHxK77w+ZczqNXBtxcioTqwRTsmk3dh
-	OrXf07z1eyLYUOmzlvjNgjFYiPcTkRvZVEyXcsCj0CLP/Rv502I2wFiKmpT3nz8+W7D+izRgzy3
-	3UZooXNWROCCXkfBkJcOegV8nSfozIQ==
-X-Google-Smtp-Source: AGHT+IHcNA1i+ClZxAmogf8L75nNE/ZbojI8W7DLFgdNeoyUDfp9cwp5v1AqlcpV+VB0TP8xunu8fM+SahM89YO+zFs=
-X-Received: by 2002:a05:6214:5c0a:b0:6b5:7e70:3537 with SMTP id
- 6a1803df08f44-6c33e69bfccmr6912876d6.50.1724874514838; Wed, 28 Aug 2024
- 12:48:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724874561; x=1725479361;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WfREJfZgElEweHVwJvSVEk/D+r54zJQcIccfYEdIZSM=;
+        b=BuCZAeHIGsypzbq8cK32CNuxq+/u/0aFMPjCgsHUEvEmeVpashg6j7Injj5d4wzGPi
+         foFHsbHL/HmSF4X4/be72FwA6xY2+op6lwna5HEFErZh5qCPYh0faxcwi8GAyXr52eEq
+         E1hbZ3/hGxniupNPrlPg9ZVONbnkp1Npy2NqA1lVa9rD0UahOofiubIbb8kzU8pjGTML
+         Xo6P0s4cUkpdEpS7zHWcYHaJL3UqKvkl2Q+JJ1lLsxQQIU+QxIVRSUSRtPcpth6S0k2n
+         hTDtj8dN4Z3LAEllHwYj5Y1iUkbs/36VWLjs9A5/FZK9IJrtPv9pLQtKN0nsFgKkBJfs
+         dMHw==
+X-Forwarded-Encrypted: i=1; AJvYcCWPyHC34A+cMpuOPWRJsN0FyMGBlwht3L56NNjudvIZ5kdDhi3VZHQi3rQnmvMSkh+xUVVoKtErFAz5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQBscCntC8F2GhbH/NzfbzX6I7W9KcVcYbNc0kiiANP4ImPnLB
+	PSiTNgNCCXqGpydoCkp+ZrWcyq5IjjdcXEPU2oV7JalX0IH1RaxN18x0/GZYpc8=
+X-Google-Smtp-Source: AGHT+IFR6avFKpr2wHph931hDBC2z+rTIPVUVlBNS/Uou013Y8gMhOrlNprLkZ/3P1WLSkHYPJBA7Q==
+X-Received: by 2002:a05:6512:3b97:b0:52f:228:cf91 with SMTP id 2adb3069b0e04-5353eba3ee1mr78077e87.1.1724874560042;
+        Wed, 28 Aug 2024 12:49:20 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5334ea99933sm2248052e87.309.2024.08.28.12.49.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2024 12:49:19 -0700 (PDT)
+Date: Wed, 28 Aug 2024 22:49:18 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Amol Maheshwari <amahesh@qti.qualcomm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Tengfei Fan <quic_tengfan@quicinc.com>, 
+	Ling Xu <quic_lxu5@quicinc.com>
+Subject: Re: [PATCH v4 4/6] misc: fastrpc: Add support for cdsp1 remoteproc
+Message-ID: <vuviyau3vbmf4l4mfb47lyh2n2t65fy3j2lxrg5jtyuz34kil2@q5ytlfdcmf7x>
+References: <20240805-topic-sa8775p-iot-remoteproc-v4-0-86affdc72c04@linaro.org>
+ <20240805-topic-sa8775p-iot-remoteproc-v4-4-86affdc72c04@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822170440.265055-1-robertcnelson@gmail.com>
- <20240822170440.265055-2-robertcnelson@gmail.com> <2774e7e5-8c03-4f38-90c3-b414bc6af255@kernel.org>
- <CAOCHtYhK36QyKOmQhY+Q31rB23ASoxUXTX+0R1tzK-ZhvvWSLA@mail.gmail.com>
- <CAOCHtYiPdxpxz9oPO-deLMMgMZtjCjtEMqPARAPtqMKg8JxOhQ@mail.gmail.com> <87752439-1b41-4f4b-9e94-5c2a43fab4f4@kernel.org>
-In-Reply-To: <87752439-1b41-4f4b-9e94-5c2a43fab4f4@kernel.org>
-From: Robert Nelson <robertcnelson@gmail.com>
-Date: Wed, 28 Aug 2024 14:48:08 -0500
-Message-ID: <CAOCHtYg2hEYZVQ-5P3PPh03-q+FjijJtk2j2=9kKKz9fev=HZA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: Add k3-am67a-beagley-ai
-To: Roger Quadros <rogerq@kernel.org>, "Aldea, Andrei" <a-aldea@ti.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>, Jai Luthra <j-luthra@ti.com>, 
-	Siddharth Vadapalli <s-vadapalli@ti.com>, Jared McArthur <j-mcarthur@ti.com>, 
-	Jason Kridner <jkridner@beagleboard.org>, Deepak Khatri <lorforlinux@beagleboard.org>, 
-	Drew Fustini <drew@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240805-topic-sa8775p-iot-remoteproc-v4-4-86affdc72c04@linaro.org>
 
-On Wed, Aug 28, 2024 at 2:44=E2=80=AFPM Roger Quadros <rogerq@kernel.org> w=
-rote:
->
->
->
-> On 28/08/2024 17:33, Robert Nelson wrote:
-> > On Fri, Aug 23, 2024 at 10:33=E2=80=AFAM Robert Nelson <robertcnelson@g=
-mail.com> wrote:
-> >>
-> >>>> +
-> >>>> +&cpsw3g {
-> >>>> +     pinctrl-names =3D "default";
-> >>>> +     pinctrl-0 =3D <&rgmii1_pins_default>, <&gbe_pmx_obsclk>;
-> >>>
-> >>> Why do you need OBSCLK for Ethernet MAC?
-> >>> The OBSCLK is connected to the Ethernet PHY via C406 which is not eve=
-n populated.
-> >>> It seems that the PHY is clocked by a crystal oscillator X5 so doesn'=
-t really
-> >>> need OBSCLK in the stock configuration?
-> >>
-> >> Ah crap, I'll take a look at this... I bet it's left over from the
-> >> first pcb, (all my first rev pcb's are now locked up so i don't use
-> >> them anymore)..  Seeed/BeagleBoard was playing it safe and designing
-> >> in both options.. Once the internal clocks were verified newer
-> >> revisions removed the external clock.
-> >>
-> >> Yeah, I'm pretty sure final production boards removed every external
-> >> clock option.
-> >
-> > Yeap, external clock is the default for all production boards, i
-> > removed this internal clock configuration.
->
-> Did you mean internal clock is the default?
-> Earlier you mentioned
-> "after verification newer versions removed the external clock"
+On Mon, Aug 05, 2024 at 07:08:05PM GMT, Bartosz Golaszewski wrote:
+> From: Ling Xu <quic_lxu5@quicinc.com>
+> 
+> The fastrpc supports 4 remoteproc. There are some products which
+> support cdsp1 remoteproc. Add changes to support cdsp1 remoteproc.
 
-Yeah sorry Roger, screwed up on my previous message... I thought one
-of our goals was to have an internal clock for everything. But @Aldea,
-Andrei reminded me Monday night, that Ethernet was external..
+I'd very much prefer to see this abstracted somehow, but it seems
+impossible with the current driver code.
 
-Regards,
+> 
+> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> [Bartosz: ported to mainline]
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  drivers/misc/fastrpc.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
 
---=20
-Robert Nelson
-https://rcn-ee.com/
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+
+-- 
+With best wishes
+Dmitry
 
