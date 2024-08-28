@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC32A962310
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:11:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C58796231A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:12:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83983281E04
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:11:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15D1528520B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8A415E5BA;
-	Wed, 28 Aug 2024 09:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958151607B7;
+	Wed, 28 Aug 2024 09:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dAGLj+IR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I+fspJpN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5D4158543;
-	Wed, 28 Aug 2024 09:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E7E1607AC;
+	Wed, 28 Aug 2024 09:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724836259; cv=none; b=Gr+IBbfZBrzNx9XLo2TQJiabUdyz0Ak2igHnNDO0l7kGWOfbf1Ns3Upd5B5yMKMV26QO0Rm4JDPD23VLi/ONWr1mWVmbqYhcjdFnXNTEGPhiVIgjj1WtzDVX77gZbKYeo5/MV7Vhqb6xUI/t87ZMFastu0Qs9+iOi9GLgV8w8R4=
+	t=1724836305; cv=none; b=KyOlZWU46rOz0YbZyowvFfHdFgzSwdlJRBOO1xfZNRqflw9KTx8IPjW947zlC1yEa24WE78lMx531wZGGsgv1kcG1GjfcRBdHS16nq9LgKhER+MDxavZpNaCgPzdH0HBH2wnD/LTYXtb62QNjYqyqh5apYdEW5/9z0zEF3O5gns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724836259; c=relaxed/simple;
-	bh=4wjsCstqQZZ/e4H4a4DtBSqr+93zTZjzDFUyeOtQ3Ac=;
+	s=arc-20240116; t=1724836305; c=relaxed/simple;
+	bh=0h8O7FJ3DgvgGR17BcBk6wfFWrda7TDSqBbyr2M0Ubw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iVub0TumG0o86OqA1j/hu24Qw5AvaV0hmTSb4lV2QhcVQD9Zcfuldt+A5LTXVUl6ixybmww62lNwu9jye2GFEIsj2wWikve8zvs5xOXggsrsx9daW5dH6tzPIKysBVjbpo3vEOK7m6NLpRnoMEdeLMS0v+Ud8/GmJiosHWnboJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dAGLj+IR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59685C515A3;
-	Wed, 28 Aug 2024 09:10:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iNLzQ7cpOwZ7shGsSiMJM/4h2Jwgm/GZScaQmiIepJ74lP0m9gT0zWa7HwayJDZ6pfG8PiWcC1uGQU3ABhggZ0PiDDjCTDdyvjOuRQBmZw+Iq6o3HcUCowac5L6qZ2lHL29dqyJHyCigSHV7v1b4KWQbCexGeT722Q5eQ3JXifs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I+fspJpN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A85C5C51EE7;
+	Wed, 28 Aug 2024 09:11:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724836258;
-	bh=4wjsCstqQZZ/e4H4a4DtBSqr+93zTZjzDFUyeOtQ3Ac=;
+	s=k20201202; t=1724836304;
+	bh=0h8O7FJ3DgvgGR17BcBk6wfFWrda7TDSqBbyr2M0Ubw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dAGLj+IR7aLFNJhsGX3eoFhoosVgIUZyVEoWteFasKTgp0e+ZwXSSb43FFYAeFMP/
-	 5MhW+Z5/pImqftHjK+DTTly4Cb6k1AHg+0LaCXNC0DRYMecxfALg+FEfN/xEOV54BH
-	 baDqbZPA/LxJraY5PIeSLrl2VALs0zLZ1HQ6caDBPRaWZGTBRUx7tuMKhmU4PRxsuV
-	 HztmIlx9un/9NVq13F/5mBH1D+39Dlui9znn78rCLth8PYXdr0KGZEYBOesi2qW1n9
-	 akMlK0pv38zuihRWnV4a1TR44jZ6B++0uuGhhr2xmeyNkE1XbO1Z5qtbZPyWYVVZo5
-	 qtOAocZIeXcfA==
-Message-ID: <8908eee4-d3a4-4d15-a68e-d0937bbca9f0@kernel.org>
-Date: Wed, 28 Aug 2024 11:10:52 +0200
+	b=I+fspJpN+ifmm1D7U6v+HSzkaGPjPPilt3HUwEAU722sfeMSp67NFdNXcJ328RMu0
+	 Gnmn14XMc1kBl4uBDrp7yr2Sxo0NUyjeulXLgYK+yWRWwC3+OobBRqULU+kJo19fCR
+	 sKlmwH6S2niy9eB4qjMHhtszgWjkrir2/a5UKpnie9YHAhXs6v9RSZKvwr0iZcJrcs
+	 uyycCazxcv9GMBurmktEhyW98mbA7XBNn/dlbyUOfNqU9g/d8Z5V/wOkBTyLqfAStG
+	 pmWuY/tGOc0UavfTJVDbZjfUlhI7mbQSm95663RfHUt8ssz8hEnR5tN6gL4AdxV8Q1
+	 O5+GzqFq1AvxQ==
+Message-ID: <0ec92d59-0648-40ed-a522-307152b5c37d@kernel.org>
+Date: Wed, 28 Aug 2024 11:11:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: Add aspeed,video binding
-To: Jammy Huang <jammy_huang@aspeedtech.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "eajames@linux.ibm.com" <eajames@linux.ibm.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@aj.id.au" <andrew@aj.id.au>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
- "pmenzel@molgen.mpg.de" <pmenzel@molgen.mpg.de>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240819080859.1304671-1-jammy_huang@aspeedtech.com>
- <20240819080859.1304671-2-jammy_huang@aspeedtech.com>
- <nnjcjt2kuplsy5bbxujuubkn2xdtpifjeiqt5qfvktdmaorzuz@x444p5ezcoch>
- <TYZPR06MB6568AB9E260263DBB1ED474DF1882@TYZPR06MB6568.apcprd06.prod.outlook.com>
- <a17f963e-0e6d-4132-817f-2e663268ee2d@kernel.org>
- <TYZPR06MB6568A38AD08F72EC637EFA7BF1952@TYZPR06MB6568.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: add base QCS615 RIDE dts
+To: Lijuan Gao <quic_lijuang@quicinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, kernel@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
+ <20240828-add_initial_support_for_qcs615-v1-6-5599869ea10f@quicinc.com>
+ <22qkvfravm6sxiq3xfavahg2u6b2pwlyzqbqvd55zym5zef3gi@m4bsqkdvggty>
+ <17d0017e-b55d-4b32-9fd3-1a1a84e5ebf9@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,40 +107,63 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <TYZPR06MB6568A38AD08F72EC637EFA7BF1952@TYZPR06MB6568.apcprd06.prod.outlook.com>
+In-Reply-To: <17d0017e-b55d-4b32-9fd3-1a1a84e5ebf9@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 28/08/2024 08:05, Jammy Huang wrote:
-> Hi Krzysztof,
+On 28/08/2024 09:54, Lijuan Gao wrote:
 > 
-> Sorry for the troublesome e-mail notice. We have informed IT to remove it.
 > 
-> On 2024/8/23 下午 02:13, Krzysztof Kozlowski wrote:
->> On 23/08/2024 03:11, Jammy Huang wrote:
->>
+> 在 8/28/2024 2:25 PM, Krzysztof Kozlowski 写道:
+>> On Wed, Aug 28, 2024 at 10:02:16AM +0800, Lijuan Gao wrote:
+>>> Add initial support for Qualcomm QCS615 RIDE board and enable
+>>> the QCS615 RIDE board to shell with dcc console.
 >>>
->>>>
->>>>> @@ -0,0 +1,81 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/arm/aspeed/aspeed,video.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: ASPEED Video Engine
->>>>
->>>> ASPEED or Aspeed?
->>> I prefer ASPEED.
+>>> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/Makefile        |  1 +
+>>>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 15 +++++++++++++++
+>>>   2 files changed, 16 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>> index 197ab325c0b9..c5503f189847 100644
+>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>> @@ -110,6 +110,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+>>>   dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>>> new file mode 100644
+>>> index 000000000000..31d32ad951b5
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>>> @@ -0,0 +1,15 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>>> + */
+>>> +/dts-v1/;
+>>> +
+>>> +#include "qcs615.dtsi"
+>>> +/ {
+>>> +	model = "Qualcomm Technologies, Inc. QCS615 Ride";
+>>> +	compatible = "qcom,qcs615-ride", "qcom,qcs615";
+>>> +
+>>> +	chosen {
+>>> +		bootargs = "console=hvc0";
 >>
->> What is the name of the company? How is it called in all bindings? Is it an
->> acronym?
-> It's ASPEED Technology Inc. You can find brief introduction here, https://www.aspeedtech.com/about_vision/.
-> I did check it in bindings, but both ASPEED and Aspeed can be found.
-> If you have suggestion, please let me know.
+>> Noooo, last time I agreed on this, you told me later it is different.
+>>
+> In the early stages, enabling HVC is to more easily verify clock and 
+> PMIC related functions, as it’s difficult to debug without the console 
+> log. After the clock and PMIC are ready, we will enable the UART console.
 
-Keep official name, so ASPEED.
-
-
+Working serial is supposed to be part of the early submission.
 
 Best regards,
 Krzysztof
