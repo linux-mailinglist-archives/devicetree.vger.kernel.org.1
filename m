@@ -1,195 +1,91 @@
-Return-Path: <devicetree+bounces-97592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF340962BC9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:15:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F11962BD4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:16:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 867D61F215A9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:15:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE074B23D46
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C922C1A4B6E;
-	Wed, 28 Aug 2024 15:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82BE1A705A;
+	Wed, 28 Aug 2024 15:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5wR9DUa"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="CBFVj1CE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8F51A2C17;
-	Wed, 28 Aug 2024 15:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4D01A3BAF;
+	Wed, 28 Aug 2024 15:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724857927; cv=none; b=JPPixrghu6gH/k2CIkZDkKaHM3GLS2+IDTHaz04hZ/LXfHUuPCjlMmWJPZSAhD03PfVK7qCs/VlMNC+zm1VZg8rcIZnd2OKVnhb15WAj2lzOcBJoV9wOhOSZWhFOPGXpoD9+/FlS2mFwDsoD3Oc92pjHnez/njnE0nRO3zd8PvU=
+	t=1724858062; cv=none; b=nUIfVI2Brc9YYYLQlENjNICPyvn6izVFz1AHVG9TYBfaBxE7I0uOwpUlqR4ga8fQE41+5bXUXwXbB4/Z6P/0bK2M46NtRnMK/2HrNpH/qiSxFNrQjM3MOMzdFmkHzxx4CpDKbiM3RyczUC4SUldmd30sq98XHb8+k1CAyBAKp8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724857927; c=relaxed/simple;
-	bh=9GuXAxjPKxPmRMioM0desVcabOX2V79hzACInoh3ahU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tWhzj+IiPtJunr8sEQ5vlxnNzrOv+1qiXkqYhe+72lzuqPGbi2462iEKs9NXkTjG4s8fz0F7RJAc18NIlF5oNMNgW6WjMJVhzhn3tz5wU0mi/ltUq+lS/cWtszLqt/a5Qy/385jPj7g6s+qJA8NrJZW+yk3co+Yo724WRQ7lqVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5wR9DUa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBC85C4CEC1;
-	Wed, 28 Aug 2024 15:12:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724857927;
-	bh=9GuXAxjPKxPmRMioM0desVcabOX2V79hzACInoh3ahU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z5wR9DUaujBFT4XeskFDnq/unR1mK7T6eJVLJ6YdAP+4nJKvH1Bn+zE/tDmRvwe07
-	 q/ANLYGHJerruJiRG5M1e2eew8M4KozXaXfYkpzvJB9ffU04lJC7uDBHeA7OhT5ybC
-	 /dwjw3Ixv+2eEcBdWnkCfyxbmgyH6b5BixfZHYVkOEDpn3+drA5zECDmYH3rcGhoAw
-	 a7xOWsHEdyshtT5wRUFmtLz2zx2NqjL3wV7S11mJQbOG3xkIqm45rnAVDuUkpDBTxH
-	 +BteBBRDPODTWwLRe+4wEk7ibapa3HeaM69wia0TMC7HzTu30IDQtkcZ8zKeXk0utP
-	 nQ28Nxcj3TxiA==
-Date: Wed, 28 Aug 2024 10:12:05 -0500
-From: Rob Herring <robh@kernel.org>
-To: Jie Gan <quic_jiegan@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1724858062; c=relaxed/simple;
+	bh=GSuLSojALIbQR4KZF6xcyKyxQ0Reo6aOSnplz8L0V7U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ly+okHa97HcEnOd5VsGwZiO4Idp4zQuk8rBpqbJfKqiJa4CPn22rNyV/CcNEC1IAEwR/+ZMHBaCbLhNTxaDL/DpDAJtMYaltY5CXHvb8RjOL+3+fHVvcJ1sKrGQUwOevvBHlea8iFN9VyyQK+IVVX5G5/05Hj+p4HUr5PvG+3kI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=CBFVj1CE; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=qO+auz81JILQiPonn+3KFLDW+eIXTBATRojCXRXQL4M=; b=CBFVj1CECsX7O0hGFIEFKwKGMl
+	13swb7gcTQLpSA0jxaXO4GPGvCpnHeL3VtNRDq0p+wfEjtMEVzJi4MI+ryJVJGQH8S90UNUdaOQbt
+	C/xQVedAtTEhzmb/636lCSP1eMATtQMGtA/O0H9lEeKbD0LI26w8y2k1z9fw0LIEKTz5yE+w+kqg1
+	yPwp55ldNbdi2gwmsJLvwt0G9Z79fVFaVUtlgoxWZfvvX2XVuzQqyr4rweOT+atfY220vDVjPb94m
+	US8F5jJBuFnm90YfL4RNJuFG5LV/ozFpLoUBudOmSkNUbkizVab/73RE451Onqf5yscqPteYA4mTa
+	1QDUq4iw==;
+Received: from i5e8616cd.versanet.de ([94.134.22.205] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sjKNF-00065f-8O; Wed, 28 Aug 2024 17:14:17 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Tingwei Zhang <quic_tingweiz@quicinc.com>,
-	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-	Tao Zhang <quic_taozha@quicinc.com>,
-	Song Chai <quic_songchai@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v4 3/5] dt-bindings: arm: Add Coresight TMC Control Unit
- hardware
-Message-ID: <20240828151205.GA3830921-robh@kernel.org>
-References: <20240828012706.543605-1-quic_jiegan@quicinc.com>
- <20240828012706.543605-4-quic_jiegan@quicinc.com>
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: disable display subsystem only for Radxa E25
+Date: Wed, 28 Aug 2024 17:14:09 +0200
+Message-ID: <172485421377.1511809.12375078793933979207.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240820120020.469375-1-amadeus@jmu.edu.cn>
+References: <20240820120020.469375-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240828012706.543605-4-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, Aug 28, 2024 at 09:27:04AM +0800, Jie Gan wrote:
-> Add binding file to specify how to define a Coresight TMC
-> Control Unit device in device tree.
+On Tue, 20 Aug 2024 20:00:20 +0800, Chukun Pan wrote:
+> The SoM board has reserved HDMI output, while the Radxa E25
+> is not connected. So disable the display subsystem only for
+> Radxa E25.
 > 
-> It is responsible for controlling the data filter function
-> based on the source device's Trace ID for TMC ETR device.
-> The trace data with that Trace id can get into ETR's buffer
-> while other trace data gets ignored.
 > 
-> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
-> ---
->  .../bindings/arm/qcom,coresight-ctcu.yaml     | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> new file mode 100644
-> index 000000000000..669aac646451
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-ctcu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CoreSight TMC Control Unit
-> +
-> +maintainers:
-> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
-> +  - Jie Gan <quic_jiegan@quicinc.com>
-> +
-> +description:
 
-You need '>' or '|' if you want to preserve paragraphs.
+Applied, thanks!
 
-> +  The Trace Memory Controller(TMC) is used for Embedded Trace Buffer(ETB),
-> +  Embedded Trace FIFO(ETF) and Embedded Trace Router(ETR) configurations.
-> +  The configuration mode (ETB, ETF, ETR) is discovered at boot time when
-> +  the device is probed.
-> +
-> +  The Coresight TMC Control unit controls various Coresight behaviors.
-> +  It works as a helper device when connected to TMC ETR device.
-> +  It is responsible for controlling the data filter function based on
-> +  the source device's Trace ID for TMC ETR device. The trace data with
-> +  that Trace id can get into ETR's buffer while other trace data gets
-> +  ignored.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sa8775p-ctcu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +
-> +  in-ports:
+[1/1] arm64: dts: rockchip: disable display subsystem only for Radxa E25
+      commit: 5d4b29c2bf1b2b08522c48f211311404b8075bd1
 
-Just "ports". "in-ports" is for the case when you have "out-ports".
-
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    patternProperties:
-> +      '^port(@[0-1])?$':
-> +        description: Input connections from CoreSight Trace bus
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - in-ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ctcu@1001000 {
-> +        compatible = "qcom,sa8775p-ctcu";
-> +        reg = <0x1001000 0x1000>;
-> +
-> +        clocks = <&aoss_qmp>;
-> +        clock-names = "apb";
-> +
-> +        in-ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                ctcu_in_port0: endpoint {
-> +                    remote-endpoint = <&etr0_out_port>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                ctcu_in_port1: endpoint {
-> +                    remote-endpoint = <&etr1_out_port>;
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
