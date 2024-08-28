@@ -1,96 +1,110 @@
-Return-Path: <devicetree+bounces-97755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8C096355A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 01:25:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 310DE963560
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 01:26:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADACA1C2229E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:25:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 640881C21FEC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:26:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56251AC8AC;
-	Wed, 28 Aug 2024 23:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwmXUK3y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAED51AD9F7;
+	Wed, 28 Aug 2024 23:26:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C78F16C6B0;
-	Wed, 28 Aug 2024 23:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC071AD9D0;
+	Wed, 28 Aug 2024 23:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724887554; cv=none; b=DjfYQX+oU+1BT5FlHyE/SZ5VmgZBcxNSMHEcr2tiIAgZgc+4FtyUgYdCmF/7HIkDTbOL3sFD+QM59GCY78uNU55r88romf+cZpTojOtlJkc4Zc2HsfCOVW1nu+s0KmYuLZZz3+w5cGRnRB5OLucklGPQ6DJzPwVHjd0H6oIPVqY=
+	t=1724887584; cv=none; b=aipw1iDTPmBxpcRgOecSDECnkrB9LzPlbMdMehJrbYCmQf131SU2QeOo01CQUjYwx13mW0tlYy9HIjAkDKJcWRxdPFJCT+gn6KpvEWy2BPsYowBPiyffLHCzPPC/HA/+6W3Bnw/cIYsqHIqkQNEUHrQC/xNal+CmI1hRbbGbqNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724887554; c=relaxed/simple;
-	bh=Y3O1toRDNDojmdDwgxNMaHK3SbtdT1D1qQFC1lr+iMM=;
+	s=arc-20240116; t=1724887584; c=relaxed/simple;
+	bh=ZmBX1i/gzUBKDT7MneBIjVFqHHioZEbAtq4Zuxn30KU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZGYFGfG+ZAHWwECMLOr1J8BOR/uZ+d3X+g+S887aIiyrJP3FdqMZXau2g5hlVtFIEyN00MBNAwBwDgYZylYpBSfCOWgehTtTlh/uXQXyoyY6NQpmURINMS8hoS8UsxoNegz0AZFHQuftQ1IxrEIF/Tqul9MmN4P8j3grYFfCdIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwmXUK3y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF7F0C4CEC0;
-	Wed, 28 Aug 2024 23:25:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724887554;
-	bh=Y3O1toRDNDojmdDwgxNMaHK3SbtdT1D1qQFC1lr+iMM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CwmXUK3yfmqCaw1agouAWAH1FkxF0PjSZ0hUE4JXlnPUmy+vUb46eTMfWM2Tv8sb7
-	 QmrGZM0iTz7KtdtNQeGiu3uXDRg1hy4b/bbEX1cZ/QaxuZLZx4Q/5DbuFLzKyMY9h5
-	 oDjBnk5Kh4MFhSVT/HDakNosxGi4Sw7mrYlR/YaOh79gqE1qzPXGkTB6yx5GrkCBlj
-	 JnLV5BqhG4Nn6KxqDGPnpBrJO7cxpPOVTCj1MDg5F6zJLyN8JVY1tcpqwL5cxKztcj
-	 zfdNW97s4dPnl+F6tjxyx9n6RlreAABRkN/rMly8llidja/8h99qQYsCJZ5jEaQGoi
-	 z+oJkOETFVjcw==
-Date: Thu, 29 Aug 2024 00:25:48 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: linux-spi@vger.kernel.org, otavio.salvador@ossystems.com.br,
-	heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH RESEND v2 1/3] dt-bindings: trivial-devices: Document
- elgin,jg10309-01
-Message-ID: <0d6314a3-75a9-4f21-947b-194eaf1fe12f@sirena.org.uk>
-References: <20240828180057.3167190-1-festevam@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fJ2s6gKQxHu7Yv7SD/bnz4DHoDIwjMC9GD05x1WakPBtHmjKXZiA+tslvTMnL9C0Xt0uy/4hyYTwErbAo8CVCnCGif65kSUvjph8djjpBRUviDy6Wpr07pFDZDM5P7M/UMrABAe3Z/74Bd8WFUVgr2FTiO5vWBq5R8sTTAclHNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sjS3L-000000000Xz-21Lc;
+	Wed, 28 Aug 2024 23:26:15 +0000
+Date: Thu, 29 Aug 2024 00:26:08 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Robert Marko <robimarko@gmail.com>,
+	Russell King <rmk+kernel@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 2/2] net: phy: aquantia: allow forcing order
+ of MDI pairs
+Message-ID: <Zs-yECtQO8kKafAQ@makrotopia.org>
+References: <1cdfd174d3ac541f3968dfe9bd14d5b6b28e4ac6.1724885333.git.daniel@makrotopia.org>
+ <e56a9065f50cd90d33da7fe50bf01989adc65d26.1724885333.git.daniel@makrotopia.org>
+ <afca2465-3e42-4bf1-8f07-13e15e9ed773@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sjSsBDRYzfDNfjS1"
-Content-Disposition: inline
-In-Reply-To: <20240828180057.3167190-1-festevam@gmail.com>
-X-Cookie: You are number 6!  Who is number one?
-
-
---sjSsBDRYzfDNfjS1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <afca2465-3e42-4bf1-8f07-13e15e9ed773@lunn.ch>
 
-On Wed, Aug 28, 2024 at 03:00:55PM -0300, Fabio Estevam wrote:
-> The rv1108-elgin-r1 board has an LCD controlled via SPI in userspace.
-> The marking on the LCD is JG10309-01.
+On Thu, Aug 29, 2024 at 01:05:00AM +0200, Andrew Lunn wrote:
+> On Wed, Aug 28, 2024 at 11:52:09PM +0100, Daniel Golle wrote:
+> > Despite supporting Auto MDI-X, it looks like Aquantia only supports
+> > swapping pair (1,2) with pair (3,6) like it used to be for MDI-X on
+> > 100MBit/s networks.
+> > 
+> > When all 4 pairs are in use (for 1000MBit/s or faster) the link does not
+> > come up with pair order is not configured correctly, either using
+> > MDI_CFG pin or using the "PMA Receive Reserved Vendor Provisioning 1"
+> > register.
+> > 
+> > Normally, the order of MDI pairs being either ABCD or DCBA is configured
+> > by pulling the MDI_CFG pin.
+> > 
+> > However, some hardware designs require overriding the value configured
+> > by that bootstrap pin. The PHY allows doing that by setting a bit in
+> > "PMA Receive Reserved Vendor Provisioning 1" register which allows
+> > ignoring the state of the MDI_CFG pin and another bit configuring
+> > whether the order of MDI pairs should be normal (ABCD) or reverse
+> > (DCBA). Pair polarity is not affected and remains identical in both
+> > settings.
+> > 
+> > Introduce two mutually exclusive boolean properties which allow forcing
+> > either normal or reverse order of the MDI pairs from DT.
+> > 
+> > If none of the two new properties is present, the behavior is unchanged
+> > and MDI pair order configuration is untouched (ie. either the result of
+> > MDI_CFG pin pull-up/pull-down, or pair order override already configured
+> > by the bootloader before Linux is started).
+> > 
+> > Forcing normal pair order is required on the Adtran SDG-8733A Wi-Fi 7
+> > residential gateway.
+> 
+> Is there an in-tree dts file for this? We like to see that options
+> which are added are actually used.
 
-Is there some reason why this is v2 and not v3?  b4 gets terribly
-confused about what version of the series I might want.
-
---sjSsBDRYzfDNfjS1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbPsfwACgkQJNaLcl1U
-h9B87gf/WsHu9HDBTawryPAxLT9SeCnpesMndsZeDeHSICfh6+io3FxLGSTNKYc7
-shA3hTic4oQtNsfLT/Yjr8G4JmhMBnfd51+0pqu4dtkxIIcVn6H0vmr1U5dTLU9x
-2YOREdFOWSsMFLwrXyS6Jt60LLm1Itux38JLpE9BNt2vMgJvIDv0LraOijgGvhVE
-z0FYKu/NgSzV5IUatx11o4CjyxYe97JYZFoXNdXMCj1vUjZUb6urJdw6VLIKFOCg
-d0aR072BGrfGOzSRIsaKPDLTvqoOxHP2R8EnEETZCmV7PN8/nA+6FR90TVWeR0yW
-R8MGFm74tGGt2Ie9dlSGG0ztAiOhsw==
-=zZ7y
------END PGP SIGNATURE-----
-
---sjSsBDRYzfDNfjS1--
+I planning to submit DTS for all the Adtran 8700 series once the
+MediaTek MT7988 SoC Ethernet is fully supported. At this point I'm still
+waiting for feedback on how to organize the PCS drivers for that SoC,
+see https://patchwork.kernel.org/comment/25954425/
 
