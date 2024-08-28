@@ -1,71 +1,76 @@
-Return-Path: <devicetree+bounces-97420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF849622D8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:55:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD4B9622E1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 732031C243FC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:55:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 519F6B22D00
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C0515CD41;
-	Wed, 28 Aug 2024 08:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBE8158543;
+	Wed, 28 Aug 2024 09:02:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Oh3Adj2Q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OTSTNJCd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D31158A04
-	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 08:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B164D15748F
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 09:02:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724835354; cv=none; b=iQhQ0OmBDquTBdzF3jmSfRi+Fa/pkCXZi/TRRPXEBqZ/vwFTDYuOYIb3Qm2iLCm+/PvvQboh6BCm7IdjpdUTg25a4Gt6RDTk5ElAp1bqAzN8ri0lIBx4OkkaaF85DxYVTsAOhBouwssBYyjYXUtrye+jZ+rUoCVZruj72bsiSzc=
+	t=1724835731; cv=none; b=nyNWgbYtlDcvTvLBMZc6SUKxaQ7m+ArdZLvZab3Ey29iye7NElFyI/M1mULPgxuwNX2sl/uV6kdaJ929+drXX8yVcd6bEGXbu9VKSVoPj76E5WK/e61Gs+tTz+ZPur4U9tJjTaT+/0JLffyvYmXZyPJ9rahVJEF/xjpJaEso4jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724835354; c=relaxed/simple;
-	bh=DX3qWFO2aFGCE2+NSubhi4EkFuTdYX6uS/4KMwlKUzc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iK1LddrQDubDbLCZFDMpR3Z/z3DGuVxRkGMa+rNnno31GOwT049S5YV7YsmPV+HcSTV+xUAgCZzcJ4sA4U8YdX/Wns9puRTk719vHmAPPuNwLFscJRJBrMfJKYRGwWgpm+eNVpGOS+8nhr/gp7mTaZ4N6Dw4A6iBw/qunbbGaHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Oh3Adj2Q; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5da6865312eso5122538eaf.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 01:55:52 -0700 (PDT)
+	s=arc-20240116; t=1724835731; c=relaxed/simple;
+	bh=Y9T9mdlQSTcnkP1tn21JG7vgCJSK/X8TTylmvdd+n8c=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=twocOfHreus7zkgqoRm6W1EnFOqhXQlqN3xBSDMsjxrUH7e5q6Ql694KNSqkwZk4/JV0inQmZr+q5Pq1Z/ccrMt5t3UJlXmj0e2U5kfbOilmnq6VjAZ1+i5TGkslYEvg44KSnJbjyb8pYAIaoPlYdRAJ7M56XSI+015wHw04g2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OTSTNJCd; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3718cd91185so3440558f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 02:02:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1724835351; x=1725440151; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QWYpKLox98Zm+kv0OB+ZP4rUkmwKANk3sWNWu8DRmgw=;
-        b=Oh3Adj2QLl01m1O1cBl2YUTDDYGM1HxXpqpE2EcAbQ8upO6Crh9eElO2mAsUvKVZPp
-         Yb8c3IdC1uv8tyfTriCA+01TL7xb7+0lOHD1LL65jljFOJ5XKduO42NUYXOumjK4Wvt8
-         pqESmWof5DB0lEnjoTzeQhOks86K3ODwKNlW4=
+        d=linaro.org; s=google; t=1724835728; x=1725440528; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5Z4NxETDH0rFSk+745J6bpRFGLfHusheDiIWrN8jBhk=;
+        b=OTSTNJCdanrz/vf/RJKuOxP75zAI3smwk5iRg1js8z6e9Ax9bq/DXQPooLV9RbXfIy
+         beuIpOAJ13vj0cVn1Ey08E4+gjYNLjwZsW6Qzj4mNKvHC43GuR79/ggmqDVfply1kAXz
+         W91ir0TtFnoN+H0ujNEek6cBNsvwh3nWGv7stBAmjkyHzjdDZ4yOQjdrAxTVdUCmBho3
+         9w+ayzC6q7EwsZYpQIJPEav+GE5hyIeqy0QXrmXmYZX9asxj9QMBryRL0PqKMgzJ63Tp
+         8NsRmMM/HueOb7Gu5O2BmGQMjFpm85QCnQkYMWUNxap3cAqRnHlQzSaR2aQho2WvGT+W
+         fsWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724835351; x=1725440151;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QWYpKLox98Zm+kv0OB+ZP4rUkmwKANk3sWNWu8DRmgw=;
-        b=cpa4QNkmSpaqF5HMm7moRPdzooanLJ1pzGedZyVCfDYW+DQwisQWsNYjdGTr7GyIqI
-         rRdXYIHApTK/Jt4QqkRXS0wNZwAjiXmCnJ+ehQYOVT74DTazYhSDwEc9h0fIAAdCVaWG
-         oeRF7hgLLFkd1yNfjAOP/XdHaAzFxtgSmICH2ympc41pSVM7REvp/SN53RCm4TS2NV5Y
-         hW7o1Waqv56xYIZR+0CBrqzrQs1o7zjlLPI8dtpFLTygbArKzOCiiWwxGvvLkVAVtaSw
-         tyoFPsy0ndkO/9vzh9yOIMP5FurPdrw4SghgyWfYo+wjeQRutN0ulq6wqM5bF418WipA
-         udjA==
-X-Gm-Message-State: AOJu0YwN6F+HgJerbdnDVq5gSKOHOO0OKTKCnAf/4H1BAWYA/W3q2SSk
-	UvZriixv4kR/vJ8t3D1amBeTlLUlNXO2K9HEHbCnSQpNjORQ8x3OcOXD6wH6Kg==
-X-Google-Smtp-Source: AGHT+IEmxUMmPUIRtslVRmejayJrNR7fKFL/cvIGljIuBj7DsRG0nD12IvGHcaZOt1yiq+lvFGmImg==
-X-Received: by 2002:a05:6358:60c7:b0:1ac:660a:8a69 with SMTP id e5c5f4694b2df-1b5facf5059mr150068655d.18.1724835351435;
-        Wed, 28 Aug 2024 01:55:51 -0700 (PDT)
-Received: from [10.176.68.61] ([192.19.176.250])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7143430964fsm9726609b3a.150.2024.08.28.01.55.47
+        d=1e100.net; s=20230601; t=1724835728; x=1725440528;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=5Z4NxETDH0rFSk+745J6bpRFGLfHusheDiIWrN8jBhk=;
+        b=AYvi+RLYlCsOzgkiQiGoZWgkb0GgYsF3Hpauyw3Um4wvfChC7UBOqDM06YHZowOdMC
+         bCaWl4a89LAiIEZT7D45hXu4C1cj4XUuI7LY/CculIiq28iUgTuzvGjoBTPqnA6xbsZ5
+         nXansNOpo9JSz021wUYaTFQ06z1IMPD4Knzu7HfzgAsI1GWFw6382uMC5fzgvixHXQK/
+         4bQ6VlaWrePgcmscy60ngNy4XcTpJPWB7E6JVBNw9tqvYxc+F7kpg0t7+ob0Hbm+w6Rx
+         2a2sZNDJ2uh74kD9KBuMtX26CnVBzwOr44n9LqhurDOJ75Pj+gsFMLvhnswcDuyFM2fG
+         /HBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXzfK0rsbYazoIU0tsOkDBWJRcNIBEC6Q65sA4YI+R2/uTBc+O0r8YQWd2x6DQC0n2CPyBnlQiQEe2Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCLIkPZ+DgmTY/JhNNNn4EIgUVpAW+8jwK5Mq5wGeqmRxmL9aD
+	zG4Hwtz5JYHDyK8XP+l0U8Pb930tUPZMKKhMW1LBlpZB+L2WdgJMHNEzevL8mYM=
+X-Google-Smtp-Source: AGHT+IFmdAK9+lZzMofTlrPBow7WEkGGYo1oX9YCwv64L8aM54t+v71mKdHMhcNTUKhnMvxpvZFm0g==
+X-Received: by 2002:a5d:6041:0:b0:367:4383:d9b4 with SMTP id ffacd0b85a97d-37496859743mr787025f8f.56.1724835727419;
+        Wed, 28 Aug 2024 02:02:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:765d:64ff:5f38:550? ([2a01:e0a:982:cbb0:765d:64ff:5f38:550])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730815b420sm15057475f8f.50.2024.08.28.02.02.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Aug 2024 01:55:50 -0700 (PDT)
-Message-ID: <7951482c-ee1e-45f4-8753-433a933321b6@broadcom.com>
-Date: Wed, 28 Aug 2024 10:55:44 +0200
+        Wed, 28 Aug 2024 02:02:07 -0700 (PDT)
+Message-ID: <e3dee615-1df5-400c-82a3-3baff08c66bf@linaro.org>
+Date: Wed, 28 Aug 2024 11:02:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,78 +78,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 0/2] Add Wi-Fi support for Khadas Edge2 and fallback
- compatible for Apple
-To: Jacobe Zang <jacobe.zang@wesion.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- asahi@lists.linux.dev, Muhammed Efe Cetin <efectn@protonmail.com>
-References: <20240828-dts-v13-0-6bff9896d649@wesion.com>
-Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- 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
-In-Reply-To: <20240828-dts-v13-0-6bff9896d649@wesion.com>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] drm/panel: add BOE tv101wum-ll2 panel driver
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240709-topic-sdm450-upstream-tbx605f-panel-v1-0-af473397835d@linaro.org>
+ <20240709-topic-sdm450-upstream-tbx605f-panel-v1-2-af473397835d@linaro.org>
+ <CAD=FV=VL1Wxd0veW7N+0Hy=LdKMzNbBang9_EZ9Zo_d-wZOBfw@mail.gmail.com>
+ <dfb29dca-7110-4c11-b86e-9063f71a8ada@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <dfb29dca-7110-4c11-b86e-9063f71a8ada@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 8/28/2024 10:45 AM, Jacobe Zang wrote:
-> Add basic Wi-Fi support on Khadas Edge2. Wireless driver need to check "brcm,bcm4329-fmac"
-> compatible so add it to Apple's devices.
+On 24/07/2024 09:50, Neil Armstrong wrote:
+> On 23/07/2024 21:17, Doug Anderson wrote:
+>> Hi,
+>>
+>> On Tue, Jul 9, 2024 at 6:06 AM Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>>
 
-Did not receive [PATCH v13 2/2]. I don't follow every kernel list. Maybe 
-good to add linux-wireless list?
+<snip>
 
-Regards,
-Arend
+>>
+>>> +static int boe_tv101wum_ll2_get_modes(struct drm_panel *panel,
+>>> +                                     struct drm_connector *connector)
+>>> +{
+>>> +       return drm_connector_helper_get_modes_fixed(connector, &boe_tv101wum_ll2_mode);
+>>
+>> Random question for you: on panels that don't use the
+>> drm_connector_helper the "bpc" gets set here. Is there a reason why
+>> some panel drivers (like this one) don't set bpc?
+> 
+> Good question, I'll check
 
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> ---
-> Changes in v13:
->   - Change patch 2/2 argument from driver to bindings.
+Ok so the documentation says :
+https://elixir.bootlin.com/linux/v6.11-rc5/source/include/drm/drm_connector.h#L698
+	 * @bpc: Maximum bits per color channel. Used by HDMI and DP outputs.
+
+and looking at the code, all drivers considers bpc=8 when unset.
+
+but yeah ultimately drm_connector_helper_get_modes_fixed should have a variant to set the bpc
+when != 8.
+
+In this case it's useless.
+
+Neil
+
+
+<snip>
+
 
