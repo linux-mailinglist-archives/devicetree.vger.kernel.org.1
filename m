@@ -1,202 +1,138 @@
-Return-Path: <devicetree+bounces-97378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8BCF962196
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:43:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98EAA9621DC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:57:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E88C287234
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:43:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 252CCB2444B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A1815A87B;
-	Wed, 28 Aug 2024 07:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A6B15B10E;
+	Wed, 28 Aug 2024 07:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nOsfdB/i"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="YvrfdGUq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB591552EB;
-	Wed, 28 Aug 2024 07:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37EB2157A67;
+	Wed, 28 Aug 2024 07:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724830972; cv=none; b=khNtVHhNXBHYR9WLjRVwyr8z5XrV0IpyLFu8rFTzkOkI8kGPL5Yzewmhdy1BboD59MmCPsEi//hTzPaB4+vldjBrZ3frs2BJYui/NV/6s/yTjz2MC8mTRSBlcWKVqCQ9JsJaYJwC3C0tCZm/gi7d3s1Z/Z1EGFWGo8dCp1PEB/E=
+	t=1724831817; cv=none; b=FkGsyXJhtBe/6j0KiLMbH244MbmUKd90bBMTBz0etgYAeW1S3QwvFiyaEyqNUSxteaMqdkJp8mLCIs3mhPDVV+QsVv0C9/ND8ueJ4b4h3nuflvfAJapnD47N8HmE3Cf2QGWSLvr2FPt/gmKcOjaXdicz71B0yc+/UN0hCJ2y2Rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724830972; c=relaxed/simple;
-	bh=x8lNSgnyVAVfqukk19F7f8nycin/R7tfovVRZ46bXi4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jg+H8QYTjNBaIThOkusMB1709IeOELpRECA1H/k/PPe/9G95lmNR1i7nUGE555BoolRi1iRa3o2TnAz02E2ZPFFNwejlQXmxXpPheaaT2GDb2QSB865JAZez5VzObm5cA40MoC1nAJJDaQIDImpLUfILmWtLkiTf6RcYVgg7o6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nOsfdB/i; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RLa76g020980;
-	Wed, 28 Aug 2024 07:42:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QCWsgOxbrgIosIr/7BN8CKVX4ttXYcnDeJzlJC+bpzs=; b=nOsfdB/ir34lCuT4
-	kGeOm0NSkg18khZYFpoE+3KJ9Pb+UpYlnEM6Asjb82x88BA9holzXINwcG3Enk2N
-	Sr8UzCk/uW0NLYabOiaLtl7VzwSdc2iYqCp+q783FLJLXc4IFmPN5ykHrETCSx31
-	AbW520bq0CR3nZzjlhxSBP1tQAZtzaDNyU0LKu/Cz0z9yO+0WKWcWa0nFYze2tt8
-	YV3pOyqlkdiTINeq7MTyrQFxXT2wcpfIwnQFCq+M9dZN3H9aEImzdjTtMsxO3Fpk
-	2MCy2UbrC/MN0WrCuTw/QX2WoHQiZ3ePcrNLgdfc7lcU20DR0ZxFQ2yJByOlUpAV
-	baLqDA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv0h2yk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 07:42:44 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47S7gh3i018673
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 07:42:43 GMT
-Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 Aug
- 2024 00:42:37 -0700
-Message-ID: <955c0fdc-5b04-42d6-a15d-58966c7145c4@quicinc.com>
-Date: Wed, 28 Aug 2024 15:42:34 +0800
+	s=arc-20240116; t=1724831817; c=relaxed/simple;
+	bh=o1/M+3PhzxTC2Qyi5wfEU2L4YbYB8ba3gjqhV8GQ+II=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=U925wh4HJe1SmkvkJenFBeORfnw8s8OfRNL8XuwNlD0rscTUwHeoAPHHxaYWL4xUReVAcCKR9Tu5GZbWo/NGVed01URHORRCs/XmJnRqeLJJUEchyxhvH2Zu3JMd3j0kPQjjRkiUwStkvg7xd+2uFO1jsX4pUUAEQ5ZTA+LA8So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=YvrfdGUq; arc=none smtp.client-ip=116.203.77.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 39EFDBFB0B;
+	Wed, 28 Aug 2024 09:48:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1724831308; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=Sk/iSLcWW34am2lJOyTQ6p5QG/I58ELhkbjR/9vSduk=;
+	b=YvrfdGUqoG4TzSdQg8ZLh0JBKEYm6E1giJ2JsfZgxSqv8fABfEYoiZLjhW/+uMUXz3S+N+
+	1v5O13rt7wvMMYaq9ozDvngd1pXSruN2C1UhHAZG37az6rYZHqapTwKF1wPPRm/6VrEqyd
+	IpCPdfcE1GNXDew711fXv7ZN0JQjvzC5yI5BKkTp+YR/Jy5RjapErNFPuPipV9QlzcTPY+
+	YRJGbDtv9nLhSzFSYM5mHYfWxOtYAN0xhVto4hTuscSsznenOYOKF9/vNLjjUSmYv9ToZq
+	zNlfYy6QedCo0Z+8mXqeM7BZIMZ3n3WJkpG0+o7C9hRBuf4Jr9+9vOKnO8HoeQ==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Parthiban Nallathambi <parthiban@linumiz.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: [PATCH v2 0/4] arm64: dts: imx8mm-kontron: Add HDMI and LVDS display support
+Date: Wed, 28 Aug 2024 09:46:52 +0200
+Message-ID: <20240828074753.25401-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: add initial support for QCS615 DTSI
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
- <20240828-add_initial_support_for_qcs615-v1-5-5599869ea10f@quicinc.com>
- <gtoz6fzmukti7mbdihsw5ycltoozhrxgery536rh6dgpcqoru2@gd27iemigqae>
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-In-Reply-To: <gtoz6fzmukti7mbdihsw5ycltoozhrxgery536rh6dgpcqoru2@gd27iemigqae>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9vCTBPG4BHIOexPTsJF0IX0SztEId7Fa
-X-Proofpoint-ORIG-GUID: 9vCTBPG4BHIOexPTsJF0IX0SztEId7Fa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-28_03,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=820 bulkscore=0 impostorscore=0 phishscore=0 clxscore=1011
- mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408280054
+X-Last-TLS-Session-Version: TLSv1.3
 
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
+This add support for the display bridges (DSI->LVDS and DSI->HDMI)
+on the BL i.MX8MM and the 7" LVDS panel in a separate overlay.
 
-在 8/28/2024 2:23 PM, Krzysztof Kozlowski 写道:
-> On Wed, Aug 28, 2024 at 10:02:15AM +0800, Lijuan Gao wrote:
->> Add initial DTSI for QCS615 SoC. It includes base description
->> of CPUs, interrupt-controller and cpu idle on Qualcomm QCS615
->> platform.
->>
->> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 449 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 449 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> new file mode 100644
->> index 000000000000..cf7aaa7f6131
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> @@ -0,0 +1,449 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +/ {
->> +	interrupt-parent = <&intc>;
->> +
-> 
-> No need for blank line.
-Well noted. Will update in the next patch.
-> 
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	chosen { };
-> 
-> Drop, redundant.
-Well noted. Will update in the next patch.
-> 
->> +
->> +	clocks {
->> +		xo_board: xo-board {
-> 
-> xo-clk? xo-board-clk?
-> 
-> But if board, this does not sound like part of SoC. See other files how
-> they do it.
-> 
-Other files also added ‘xo_board’. The ‘xo_board’ is the clock that will 
-be used by other SoC nodes, such as rpmhcc. Currently, the node can be 
-deleted as no one is using it.
-> 
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <38400000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		sleep_clk: sleep-clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <32000>;
->> +			#clock-cells = <0>;
->> +		};
->> +	};
->> +
->> +	cpus {
->> +		#address-cells = <2>;
->> +		#size-cells = <0>;
->> +
->> +		CPU0: cpu@0 {
-> 
-> labels are lowercase.
-Well noted. Will update in the next patch.
-> 
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a55";
->> +			reg = <0x0 0x0>;
->> +			enable-method = "psci";
->> +			power-domains = <&CPU_PD0>;
->> +			power-domain-names = "psci";
->> +			next-level-cache = <&L2_0>;
->> +			#cooling-cells = <2>;
->> +
->> +			L2_0: l2-cache {
-> 
-> lowercase
-Well noted. Will update in the next patch.
-> 
->> +			      compatible = "cache";
->> +			      cache-level = <2>;
->> +			      cache-unified;
->> +			      next-level-cache = <&L3_0>;
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Only one of the interfaces (HDMI or LVDS) is supported at the same
+time. Enabling the LVDS overlay will disable the HDMI interface.
+
+* Patch 1 and 2: Add the necessary binding changes
+* Patch 3: Extend the BL devicetree
+* Patch 4: Add the LVDS panel overlay
+
+Changes for v2:
+* Patch 1: Add link to commit message
+* Patch 2: Add Conors A-b tag
+* Patch 3: Remove blank lines from hdmi node
+* Patch 3: Fix order of lvds and hdmi nodes within i2c
+* Patch 3: Remove the unneeded deletion of samsung,pll-clock-frequency
+* Patch 3: Use the existing MIPI DSI output port from imx8mm.dtsi
+* Patch 4: Update copyright year
+* Patch 4: Use exisitng MIPI DSI output port from imx8mm.dtsi
+* Patch 4: Fix pinctrl for GPIO hogs
+* Patch 4: Fix property order in i2c2 node
+* Patch 4: Use generic node name for touchscreen
+
+Frieder Schrempf (4):
+  dt-bindings: vendor-prefixes: Add Jenson Display
+  dt-bindings: display: panel-lvds: Add compatible for Jenson
+    BL-JT60050-01A
+  arm64: dts: imx8mm-kontron: Add support for display bridges on BL
+    i.MX8MM
+  arm64: dts: imx8mm-kontron: Add DL (Display-Line) overlay with LVDS
+    support
+
+ .../bindings/display/panel/panel-lvds.yaml    |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   4 +
+ .../boot/dts/freescale/imx8mm-kontron-bl.dts  | 131 ++++++++++++
+ .../boot/dts/freescale/imx8mm-kontron-dl.dtso | 189 ++++++++++++++++++
+ 5 files changed, 328 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
 
 -- 
-Thx and BRs
-Lijuan Gao
+2.46.0
+
 
