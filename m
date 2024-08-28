@@ -1,71 +1,85 @@
-Return-Path: <devicetree+bounces-97383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03A79621B9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:49:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B01429621A4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:48:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EBE91F2610F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:49:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E34121C21024
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD2115ADA6;
-	Wed, 28 Aug 2024 07:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBE61586DB;
+	Wed, 28 Aug 2024 07:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="DV7ZZhDw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BA28siPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E7515921B;
-	Wed, 28 Aug 2024 07:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED43157A67;
+	Wed, 28 Aug 2024 07:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724831337; cv=none; b=FsFl718dV/jmzT1c5iXDSrg9WH0yVZmVp9EzYVhTZV1rEBZaMqjOwHPecud5xkQVdde9mC3rrq48CZiouMWx/GWnLD1e/o1CtlO/hcH+QwenJlSGAEZfT1TdZJa0qq7bndwkhqPPb9ide8OcGGzMXUZ+aaxvbKlncdOCubKxrQs=
+	t=1724831282; cv=none; b=MstwrVXM6X41r9rYupRd7Z+q75T8aNhluuAlQq31VAcMVTjBMw6G6Pd/qT5B9yKySxv+iW+7DiEMP4s0O1SX61UTxcJzxTu72a3i/HVeTdGPWzcbWmQLhAk5eWZIC3yZpXBzAU7sJyFzpatPL4sjPU1/Dkz1v0jczmGHVsQzn5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724831337; c=relaxed/simple;
-	bh=ndVpXgzZwgLXLXaQTCNGLeudF+ExJTj8TVrl22il2AI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ukO4Eufb0iQM6zTbCNT8RzdeUaHKuZbWVIjeBkC1N6MEDQFiMI/mP0BUIcF4qAyu6zGFhtgfwbBUfuEfNK2egkrZE1lrTyaMLlf8zLqyd9VW90bMKJIx/GsH+mdNO3yzzWUIQX6vm2H7F9DCrs/1pBsC1HOykWS+KMQEDoMqJtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=DV7ZZhDw; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4CA50BFC3C;
-	Wed, 28 Aug 2024 09:48:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1724831331; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=3mVIZ+JXyRBMOprHPOtoPHNbDnPgHzt8uoGB8VCF5QQ=;
-	b=DV7ZZhDwfinsqw55EF3DPXufT/zCnWteV596zdb/e3/9tqkobHvQPGJTNdSeiPsT/ujM5S
-	TW8aTP0iQlvo69Q3q//xNS6Kx2rJp4UsUqmjPhnU06mlCD94D25gcXXrVKa2u5AilsNJb+
-	QTRGJAqFQQK/sp/NgbmypcBqhhPYZ/4XnzgeKrIMthBJrxe/vsLsAV3yaA+YM3aepEnp/N
-	tflKYtpFj/9xMvbtIUCy4cY6g9a+UZ5hdkv8nLkSK55JnO6a+E8wRUi8fcjRXm735pyywn
-	UrpJg1OjdbZgzpCeddeKb4D0vCvBIxxb7qPLRKH3WzKoJBcSR1kmBuobcISCgQ==
-From: Frieder Schrempf <frieder@fris.de>
-To: Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
+	s=arc-20240116; t=1724831282; c=relaxed/simple;
+	bh=PySVlahkFHYtglZZ/v7pwWnhVdnK6CdMyrLZQviO5bM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nVNfFxJTTLdB3Pl6J0Llh4e3FjEnt7hQiG1l3mmGfouwTH+AjSYJX5BnmmwroU9+WOFCruYCdol0fnETV2Ra/7xWlq8V2Ae1KugnQ24AuMC9NWKmJ+VLpFIv4nI54iRa1c1aGTQwlyBujzPX5Bam8FtwiXlK2QNPaEE4Kk16O5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BA28siPs; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20227ba378eso58083815ad.0;
+        Wed, 28 Aug 2024 00:48:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724831280; x=1725436080; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3OBjUgc9cFXkg83mO7IC2sZvH5LHYp7bAGQMEXhE0sI=;
+        b=BA28siPsjduBI03zjI+a9rBWvEzIFMxeDWkLQnH6VpuNqqtx0o3gm8SsdVhtvOO5OH
+         iqRjS73eGfRMK2MEps0JTWGHlw1LzYIMxYrOtv95Js+0f+u8sBtt5Bsza53BG6GurWOc
+         mjzVjcyMJeuh8JjrIzc3ZtwAVAmS1gB7OMSIaupc68YrE3EOs5owraFd/ji24mynq7Jh
+         ONqv43/5HAxk8CfuQQpNs3jrpxkq5WscCplzZDiv3M8MytwLeonyXMaklUoLmiS/hT0r
+         nbyFQkMZFjz1g8IhVaD5qN23GGdXGqTYlaywtVRUAQWXkQ+fzHSnHC53V0iU6JQlb2Dp
+         MD2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724831280; x=1725436080;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3OBjUgc9cFXkg83mO7IC2sZvH5LHYp7bAGQMEXhE0sI=;
+        b=IwcgZuMX28JQgluzFg+G2j2xNEZ+g/W78d8o+XaM0IcZBKHAILhXU9Gc+5aYjSUgg4
+         bUU0JN2/wWd6Z7i29D73T7VDEkEZnMbvGxtmHAQCIMoKHs24gemNMHRdsGGIldU4iCvH
+         7WvjBU5drB/5dnhTzElhqkMKpIzeVn1ImVSbJkQ6d8dGrdWuKthGvy2BcSsLBC43MHTk
+         0atRIUSo/O9CD6QajnaeXWh9yRj436FuqXfhgHT02nTTEtjnpb3R1KMiNVlkkmfJHsaJ
+         sdZxxdt+dCV/j0mPcIsWCn3Xe46YC+qx0MyXclhqlwDzb4Jh4u1s74RI5GviAgRKalRZ
+         MiXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUvR25GLGyiBm+iV3hx9XjprC0FJmauxNy2+eG4ppbU00f4bKXG9giSjPmMRfQCMbWszF55FNQ81vIg@vger.kernel.org, AJvYcCWs4hQ6BHkphX4+3TTW6qNzR+1zVy6B6pZAIu3fpPfq+wsCGngsuZX72bpZmBhRWhrIldUUD41PCsP72lGn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjsBtUO8cGne6fcW8IyUhbtEz3NAY9IBDPziC+pXhOK3AuIvnd
+	DbimEN68eoIRrNKRbNaO7D0UIXavKYzOMWmbVP4NhsXRbWW/G8ae7a7lk/lF
+X-Google-Smtp-Source: AGHT+IH4XeViWXkMvG8J+jECU/21Cp/grJ7rcyxe62j91h8/4LmdvTzWeJPBzN3n0Nxnqnd+vHgcvw==
+X-Received: by 2002:a17:902:fac3:b0:201:e65b:500b with SMTP id d9443c01a7336-2039e534282mr140849695ad.63.1724831280169;
+        Wed, 28 Aug 2024 00:48:00 -0700 (PDT)
+Received: from 167-179-157-192.a7b39d.syd.nbn.aussiebb.net (167-179-157-192.a7b39d.syd.nbn.aussiebb.net. [167.179.157.192])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2038557f59bsm94081575ad.97.2024.08.28.00.47.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2024 00:47:59 -0700 (PDT)
+From: Jonathan Liu <net147@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: FUKAUMI Naoki <naoki@radxa.com>,
+	Jonathan Liu <net147@gmail.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Parthiban Nallathambi <parthiban@linumiz.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v2 4/4] arm64: dts: imx8mm-kontron: Add DL (Display-Line) overlay with LVDS support
-Date: Wed, 28 Aug 2024 09:46:56 +0200
-Message-ID: <20240828074753.25401-5-frieder@fris.de>
-In-Reply-To: <20240828074753.25401-1-frieder@fris.de>
-References: <20240828074753.25401-1-frieder@fris.de>
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: Enable RK809 audio codec for Radxa ROCK 4C+
+Date: Wed, 28 Aug 2024 17:47:53 +1000
+Message-ID: <20240828074755.1320692-1-net147@gmail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,249 +87,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+This adds the necessary device tree changes to enable analog audio
+output for the 3.5 mm TRS headphone jack on the Radxa ROCK 4C+ with
+its RK809 audio codec.
 
-The Kontron Electronics DL i.MX8MM consists of the BL i.MX8MM board
-and a 7" LVDS panel. Provide an overlay that enables the panel.
-
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Signed-off-by: Jonathan Liu <net147@gmail.com>
 ---
-Note: This might throw the following warnings:
+ .../boot/dts/rockchip/rk3399-rock-4c-plus.dts | 46 ++++++++++++++++++-
+ 1 file changed, 45 insertions(+), 1 deletion(-)
 
-Warning (graph_port): /fragment@3: graph port node name should be 'port'
-Warning (graph_endpoint): /fragment@3/__overlay__: graph endpoint node name should be 'endpoint'
-Warning (graph_endpoint): /fragment@3/__overlay__: graph connection to node '/fragment@7/__overlay__/ports/port@0/endpoint' is not bidirectional
-
-The following fix is available in DTC and queued in linux-next:
-
-84b056a89d ("checks: relax graph checks for overlays")
-
-https://git.kernel.org/pub/scm/utils/dtc/dtc.git/commit/?id=84b056a89d3c5b6cf6c5eeeafd4c4b14d6333aa9
-
-Changes for v2:
-* Update copyright year
-* Use exisitng MIPI DSI output port from imx8mm.dtsi
-* Fix pinctrl for GPIO hogs
-* Fix property order in i2c2 node
-* Use generic node name for touchscreen
----
- arch/arm64/boot/dts/freescale/Makefile        |   4 +
- .../boot/dts/freescale/imx8mm-kontron-dl.dtso | 189 ++++++++++++++++++
- 2 files changed, 193 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index f04c22b7de72e..d8af069139920 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -244,6 +244,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+index d4b4dced3e39..14453b286446 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+@@ -52,6 +52,21 @@ led-1 {
+ 		};
+ 	};
  
-+imx8mm-kontron-dl-dtbs			:= imx8mm-kontron-bl.dtb imx8mm-kontron-dl.dtbo
++	rk809-sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,name = "Analog RK809";
++		simple-audio-card,mclk-fs = <256>;
 +
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-dl.dtb
-+
- imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
- imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
- imx8mm-venice-gw72xx-0x-rs232-rts-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs232-rts.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso b/arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
-new file mode 100644
-index 0000000000000..2e40cc3852743
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
-@@ -0,0 +1,189 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Kontron Electronics GmbH
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "imx8mm-pinfunc.h"
-+
-+&{/} {
-+	compatible = "kontron,imx8mm-bl", "kontron,imx8mm-sl", "fsl,imx8mm";
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 50000 0>;
-+		brightness-levels = <0 100>;
-+		num-interpolated-steps = <100>;
-+		default-brightness-level = <100>;
-+	};
-+
-+	panel {
-+		compatible = "jenson,bl-jt60050-01a", "panel-lvds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_panel>;
-+		backlight = <&backlight>;
-+		data-mapping = "vesa-24";
-+		enable-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
-+		height-mm = <86>;
-+		width-mm = <154>;
-+
-+		panel-timing {
-+			clock-frequency = <51200000>;
-+			hactive = <1024>;
-+			vactive = <600>;
-+			hsync-len = <1>;
-+			hfront-porch = <160>;
-+			hback-porch = <160>;
-+			vsync-len = <1>;
-+			vfront-porch = <12>;
-+			vback-porch = <23>;
++		simple-audio-card,cpu {
++			sound-dai = <&i2s0>;
 +		};
 +
-+		port {
-+			panel_out_bridge: endpoint {
-+				remote-endpoint = <&bridge_out_panel>;
-+			};
++		simple-audio-card,codec {
++			sound-dai = <&rk809>;
 +		};
 +	};
-+};
 +
-+&dsi_mux_sel_hdmi {
-+	status = "disabled";
-+};
-+
-+&dsi_mux_sel_lvds {
+ 	sdio_pwrseq: sdio-pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		clocks = <&rk809 1>;
+@@ -200,10 +215,13 @@ rk809: pmic@20 {
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
+ 		#clock-cells = <1>;
++		clock-names = "mclk";
++		clocks = <&cru SCLK_I2S_8CH_OUT>;
+ 		clock-output-names = "rk808-clkout1", "rk808-clkout2";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pmic_int_l>;
++		pinctrl-0 = <&pmic_int_l>, <&i2s_8ch_mclk>;
+ 		rockchip,system-power-controller;
++		#sound-dai-cells = <0>;
+ 		wakeup-source;
+ 
+ 		vcc1-supply = <&vcc5v0_sys>;
+@@ -445,6 +463,10 @@ &i2c3 {
+ 	status = "okay";
+ };
+ 
++&i2s0 {
 +	status = "okay";
 +};
 +
-+&mipi_dsi_out {
-+	remote-endpoint = <&bridge_in_dsi_lvds>;
-+};
-+
-+&gpio3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio3>;
-+
-+	panel-rst-hog {
-+		gpio-hog;
-+		gpios = <20 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "panel-reset";
-+	};
-+
-+	panel-stby-hog {
-+		gpio-hog;
-+		gpios = <21 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "panel-standby";
-+	};
-+
-+	panel-hinv-hog {
-+		gpio-hog;
-+		gpios = <24 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "panel-horizontal-invert";
-+	};
-+
-+	panel-vinv-hog {
-+		gpio-hog;
-+		gpios = <25 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "panel-vertical-invert";
-+	};
-+};
-+
-+&hdmi {
-+	status = "disabled";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	touchscreen@5d {
-+		compatible = "goodix,gt928";
-+		reg = <0x5d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touch>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <22 8>;
-+		reset-gpios = <&gpio3 23 0>;
-+		irq-gpios = <&gpio3 22 0>;
-+	};
-+};
-+
-+&lvds {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			bridge_in_dsi_lvds: endpoint {
-+				remote-endpoint = <&dsi_out_bridge>;
-+				data-lanes = <1 2>;
-+			};
+ &i2s2 {
+ 	status = "okay";
+ };
+@@ -472,6 +494,28 @@ bt_wake_l: bt-wake-l {
+ 		};
+ 	};
+ 
++	i2s0 {
++		i2s0_8ch_bus: i2s0-8ch-bus {
++			rockchip,pins =
++				<3 RK_PD0 1 &pcfg_pull_none>,
++				<3 RK_PD2 1 &pcfg_pull_none>,
++				<3 RK_PD3 1 &pcfg_pull_none>,
++				<3 RK_PD7 1 &pcfg_pull_none>;
 +		};
 +
-+		port@2 {
-+			reg = <2>;
++		i2s0_8ch_bus_bclk_off: i2s0-8ch-bus-bclk-off {
++			rockchip,pins =
++				<3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>,
++				<3 RK_PD2 1 &pcfg_pull_none>,
++				<3 RK_PD3 1 &pcfg_pull_none>,
++				<3 RK_PD7 1 &pcfg_pull_none>;
++		};
 +
-+			bridge_out_panel: endpoint {
-+				remote-endpoint = <&panel_out_bridge>;
-+			};
++		i2s_8ch_mclk: i2s-8ch-mclk {
++			rockchip,pins = <4 RK_PA0 1 &pcfg_pull_none>;
 +		};
 +	};
-+};
 +
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_gpio3: gpio3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI5_RXD3_GPIO3_IO24		0x19
-+			MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20		0x19
-+			MX8MM_IOMUXC_SAI5_RXD0_GPIO3_IO21		0x19
-+			MX8MM_IOMUXC_SAI5_MCLK_GPIO3_IO25		0x19
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL			0x40000083
-+			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA			0x40000083
-+		>;
-+	};
-+
-+	pinctrl_panel: panelgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI5_RXFS_GPIO3_IO19		0x19
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SPDIF_EXT_CLK_PWM1_OUT		0x6
-+		>;
-+	};
-+
-+	pinctrl_touch: touchgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI5_RXD1_GPIO3_IO22		0x19
-+			MX8MM_IOMUXC_SAI5_RXD2_GPIO3_IO23		0x19
-+		>;
-+	};
-+};
+ 	leds {
+ 		user_led1: user-led1 {
+ 			rockchip,pins = <3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
 -- 
 2.46.0
 
