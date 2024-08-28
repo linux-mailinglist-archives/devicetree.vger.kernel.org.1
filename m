@@ -1,97 +1,139 @@
-Return-Path: <devicetree+bounces-97611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA87962C91
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:39:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F37962CA1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:42:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94F7B1F2334B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:39:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 641241C21477
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72EF81A2C0E;
-	Wed, 28 Aug 2024 15:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6846318DF8A;
+	Wed, 28 Aug 2024 15:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jmcH+K1W"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="O3W7b2tF";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="bu4hQFmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from a7-43.smtp-out.eu-west-1.amazonses.com (a7-43.smtp-out.eu-west-1.amazonses.com [54.240.7.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B0313C3D5;
-	Wed, 28 Aug 2024 15:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 706D183A18;
+	Wed, 28 Aug 2024 15:42:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724859583; cv=none; b=DFPcwZiqYQBtLQgElq/9bncJitsBlC8XDGLeJkc3SxJDxEzsPatagwo6VQFcrBHEdiN8kyKlq5WVe0phDORVQlFpzZdFZCA/MgNbevubE6JTwGnmapZEEN2IBRXKWcpFEi6j5o4ZsPrBaJLp+nhhAnBTU5kObVi8YQsw9sLBdvg=
+	t=1724859772; cv=none; b=IjxDFOROGpFu2klge+pQv9IQ1OEZfbOsKwc+YbKUTg5NnDgPhUQduZxlvdd3opABOGQYN2Za4KMWACy2Qk/JbliIvS6/EV3XA7FJb/PbX+JTVbsnEARMQ3FaSYoyJ0AuXTGsaxssdcqGTROhWFe0PDGxpl8N9SFGYoFcoeKxxTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724859583; c=relaxed/simple;
-	bh=bJikFcZwx9JucrgqW1e8FTFYmK48P/7CWwLxWQz7Xpg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZW6K/CWZmZPBvyn/KMfAf5UXlu829r48NDbVoYAsUIKAVUUX/e3g4TC1IbsIa8vaO5+csFYwr9P4EgRk0+h/13FI/ybSbvLFl86UcBEF3pMQH0oXpI38LtsDRpieQ7Zp6kOB1/HkFbwEDSEnkRw3g4tRUbjDN6IfPABBmwrWyQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jmcH+K1W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1F11C4CEC9;
-	Wed, 28 Aug 2024 15:39:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724859582;
-	bh=bJikFcZwx9JucrgqW1e8FTFYmK48P/7CWwLxWQz7Xpg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jmcH+K1Wl8Wvhvdo3dN1dZyG8OU9/A4kujAK5JNouySApI/WPoXAg2h+XbLKaxFoM
-	 2LN2x5TR/J/Wv4T2SGaRwPP4HGEt7yc8JKfG/w3RIj06+iTd8S6zr5PeOlmfflMFxx
-	 5a5U7ylXEIVsbGfHEOIKG0QV4w2lE5o1QfR6DDCsczh3i93f2UWfxNA3vLQ6iiSqyL
-	 360zSE8Ipu7mDpRXtBlc7uwlRQOo2R40z1bpYDUDaN0WINqTPh8x/a1YXOlqEdPLts
-	 uPhdFiMWZcGcDNa88PC9pg1aUQrsahtAqspZA1uy2g9zbKCcqe8krLzZiftVFq5+I8
-	 Ds0uO2In3ea9w==
-Date: Wed, 28 Aug 2024 16:39:38 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Fix compatibles for RK3588 VO{0,1}_GRF
-Message-ID: <20240828-reprise-lethargy-1190b6e3a05d@spud>
-References: <20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com>
+	s=arc-20240116; t=1724859772; c=relaxed/simple;
+	bh=xvS7mUpObgNa0y44bNiTQm/TS6jfEf1+p9f/JF2fZJs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OXjpp7refB4+oWjwRyYHc5pD+bMX0v6nM4teHYjuK7Q2L8khZE39U5qz/fxHt/LsIoFCdycdT4UkhbUi2HtQWkkIQBQM8ixHAYKNXZQXCZW4IE5yWfIH2NV+kX/MYLGF6brzikS1bqfL5f1x1ntP3gqvL1m/HV03WrQdWmZMU/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=O3W7b2tF; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=bu4hQFmF; arc=none smtp.client-ip=54.240.7.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1724859768;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Transfer-Encoding;
+	bh=xvS7mUpObgNa0y44bNiTQm/TS6jfEf1+p9f/JF2fZJs=;
+	b=O3W7b2tFPIArTnoTwpvggcVI7B+QHPVcjk2p+kSuNcNWX8qUsCJAwBH9oK+7xj8G
+	rWuv+ZB3uEDOAxQnvPmcva/sfOJXpfTU04hcr3z0YKPbTpwgNGgpxNDBRyOiJ/YchK3
+	pg+sq6MICMh38evtC4mxjTwHdzJreVNU+pp7sljRPzZhS1Dg7rcQ02kUgojJzYbNveK
+	1bZRAOEvRVVv1Mj0xM+NR3qoxFlTT0e9yT9rCOVHw9rCeio+hojI9fYl3bATJLGxrAl
+	behdh/BJUjq5axQmDNbsV1aMRbyovdIb39DIOEuJhQMVMvLWb5pnfAEcWUCKqV2HtHy
+	w03vbxWQKA==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1724859768;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
+	bh=xvS7mUpObgNa0y44bNiTQm/TS6jfEf1+p9f/JF2fZJs=;
+	b=bu4hQFmFlsZiszzltCIyxjjy13w3RtbJmRZE2ryjF8y0kpr1vAC0gZKlTWCtbzbv
+	iuGC1k/0cDipVqUD1PtM2eAuE9nXWS7Im78IA6jVjO1VkEngX8BIqvWk1rG1JZDX4Em
+	MFL6U9vzbFW8XxELouQljBPIKbaQvdps84zCWX0I=
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	Elaine Zhang <zhangqing@rock-chips.com>, 
+	Detlev Casanova <detlev.casanova@collabora.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: [PATCH v7 0/3] Add CRU support for rk3576 SoC
+Date: Wed, 28 Aug 2024 15:42:48 +0000
+Message-ID: <0102019199a75f9b-aab57db6-806a-474b-8295-e5be5a99d424-000000@eu-west-1.amazonses.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MHhSniWftcmWfCNL"
-Content-Disposition: inline
-In-Reply-To: <20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com>
+Content-Transfer-Encoding: 8bit
+Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
+X-SES-Outgoing: 2024.08.28-54.240.7.43
 
+Add support for clocks and resets on the rk3576.
+Patches from downstream have been squashed and rebased.
 
---MHhSniWftcmWfCNL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The resets have been renumbered without gaps and their actual register/bit
+information is set in rst-rk3576.c as it has been done for rk3588.
 
-On Wed, Aug 28, 2024 at 03:40:07PM +0300, Cristian Ciocaltea wrote:
-> As Conor noticed recently [1], RK3588 VO0 & VO1 GRFs incorrectly share
-> the compatible string, since they are not identical (though quite
-> similar in terms of layout).
->=20
-> Provide dedicated compatible strings, as a follow-up.
->=20
-> [1] https://lore.kernel.org/lkml/20240821-stretch-scam-09d7adc08a4c@spud/
->=20
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Also add the pll_rk3588_ddr pll type that is used by the ppll clock.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Changes since v6:
+- Renamed HDMITXHPD to HDMITXHDP in clocks and resets
 
---MHhSniWftcmWfCNL
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since v5:
+- Use mandatory syscon lookup instead of optional grf phandle
+- Add pll_rk3588_ddr type to always have correct rate values
 
------BEGIN PGP SIGNATURE-----
+Changes since v4:
+- Fix commit message with idx starting at 0
+- Stash all bindings commits
+- Cleanup example and add me as maintainer
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZs9EugAKCRB4tDGHoIJi
-0jSfAQC7QoPhTY9jXgMOAKRdVlBmctOzmHqYkq2eO/gU9HyYCQEA/WygIBP5zkLi
-fD/XjTO50/CMHhRbMTBYAzARqySdpgg=
-=3ZzO
------END PGP SIGNATURE-----
+Changes since v3:
+- Add missing include in bindings
 
---MHhSniWftcmWfCNL--
+Changes since v2:
+- Renumber IDs from 0
+- Commit clock header with clock bindings
+- Add missing resets on sub-cores
+- Add redundant fields in bindings
+
+Changes since v1:
+- Remove reset defines that are probably out of the main core
+- Separate resets and clocks bindings
+- Renumber the resets without gaps
+
+Detlev.
+
+Detlev Casanova (1):
+  dt-bindings: clock, reset: Add support for rk3576
+
+Elaine Zhang (2):
+  clk: rockchip: Add new pll type pll_rk3588_ddr
+  clk: rockchip: Add clock controller for the RK3576
+
+ .../bindings/clock/rockchip,rk3576-cru.yaml   |   56 +
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-pll.c                |    6 +-
+ drivers/clk/rockchip/clk-rk3576.c             | 1829 +++++++++++++++++
+ drivers/clk/rockchip/clk.h                    |   54 +
+ drivers/clk/rockchip/rst-rk3576.c             |  652 ++++++
+ .../dt-bindings/clock/rockchip,rk3576-cru.h   |  592 ++++++
+ .../dt-bindings/reset/rockchip,rk3576-cru.h   |  564 +++++
+ 9 files changed, 3760 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3576.c
+ create mode 100644 drivers/clk/rockchip/rst-rk3576.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3576-cru.h
+
+-- 
+2.46.0
+
 
