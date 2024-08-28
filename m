@@ -1,223 +1,105 @@
-Return-Path: <devicetree+bounces-97510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466E196271D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:30:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 545C096275F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:40:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBFA91F22A5C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:30:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E432859A8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62ACD16D4C1;
-	Wed, 28 Aug 2024 12:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C75176FDB;
+	Wed, 28 Aug 2024 12:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZEQCJ/eD"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="GBaYBiMK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BBF1E4A9;
-	Wed, 28 Aug 2024 12:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724848230; cv=none; b=gbk9Tx4NP5byw9b+9/MZd93sJVAot+tJ4JPynBtz3C5eISE/MPie9jMc3VzX8xAwC1pSx6AcKZPB0tAxWv9RGUgYETtwrmjEz6f259rfjRmVIDpJibsAi3HkcXUTGIAeyKVJiY7+fcSTJXdVn4K/xlCLHkqBTAenDtwICwouy6A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724848230; c=relaxed/simple;
-	bh=ctW73pHklNe9RINO0iCUE5vW5BGZGLv6BijjDcxDt3Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OyUwS0JRnkXFeXUtK8ihCaQXWGS7rCb0sOb4kXaUCjNuaKPfkcG2PIjwQTL+ZpoVkUkYxNIIcSabA0Lck/F1MYQ+iTTbv/nTQr/QZN9Vpzc1AiY8xo5I6E9I2Zyu7g0UmBZl5mzBgvW39AWhWTTHXpN/NMQYWIzlHFBsC0Hg79M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZEQCJ/eD; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724848228; x=1756384228;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ctW73pHklNe9RINO0iCUE5vW5BGZGLv6BijjDcxDt3Q=;
-  b=ZEQCJ/eD22XOLg6AtXvf7arjo+6dxUa32YiCWnXhFkXbrSdC+kxApAiX
-   dQFOegAcumEwoUptn/qJioG64ub7XX0EGJ/qpBRW9Jq23/uRMQjF6aop1
-   Ujp7+j5o3ZM9MlFm+AdxZDph0gyxbcuFwmEowZEs+ueynehoVkkTWsIRr
-   9x+ykfAOxDxz7161bcA08i1T+RdJVgPBSHIyAzRXkxPPbRikVMFNraXv+
-   p8FySW/uKj7DXPOI3VnsTfA4PVoixusITmLPjpOAD7GQuRWlF5CydijaU
-   OSyasTAdLQj6aL21EwCzhwJ7z18ROGiNH920IFJQt8D7hLFH0fllYon8D
-   g==;
-X-CSE-ConnectionGUID: ewnu/BJtRx2GR1Cj5HWWBw==
-X-CSE-MsgGUID: c4zaJe3iRBKrW9hOWrVE1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23558291"
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; 
-   d="scan'208";a="23558291"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2024 05:30:28 -0700
-X-CSE-ConnectionGUID: UUaCcM39TnKc9iOjo1aeBg==
-X-CSE-MsgGUID: oQpyLYd1Rfu7ufkyjGRP7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; 
-   d="scan'208";a="94007581"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2024 05:30:24 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 4B1321201A1;
-	Wed, 28 Aug 2024 15:30:21 +0300 (EEST)
-Date: Wed, 28 Aug 2024 12:30:21 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: media: Add bindings for
- raspberrypi,rp1-cfe
-Message-ID: <Zs8YXVQ4armJJN4X@kekkonen.localdomain>
-References: <20240620-rp1-cfe-v2-0-b8b48fdba3b3@ideasonboard.com>
- <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
- <Zs8ErwJVTGYkHfJl@kekkonen.localdomain>
- <20240828111153.GL30398@pendragon.ideasonboard.com>
- <b3fe348b-60a3-4480-8a8e-89760c5bb7ae@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7966F176AA0;
+	Wed, 28 Aug 2024 12:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724848852; cv=pass; b=dH+himBsNGswycmOEemqGUCqCLZtOxSrQXDQ4tWBHYtuB+3CSKd0nzZZ2qO7la1MOnN9j0nUxAB57HTjWOmpVeFdiXSLTo7qZo/0olk8m5EYxZV0UJ2k4I2/IhXzBDUTGaHJ7sRtrRPPPdY8AG40YmNVvj9oHgQAJSfKrHGcKSg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724848852; c=relaxed/simple;
+	bh=EasWgWbQkmMYTcKdGQUxWRbjGrsAf159+DNB2A39Tcg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=V0SWjN3LgDZU4UZTLICRYFn+RFNER9MwYUqdE/E7DkdS3aW3ZhOycpYJYtfs/Kwtfw5AOYpS4I7DKBs15WBn5RCS2aNn1jIoi8S4yLJHDLn2qMqsTrZ5xydgYTtL9rxSFzW9uthYz0fgz7YFFiyGyGCH5JmocV8lWQqDAcfBeko=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=GBaYBiMK; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724848836; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Mr9vXI19AMRK+7sP300gtmXGiYFnNaRjoSgmu2avGnmrMV3sy7/bVG/0HnuD+cSuok7t/5xml0A7+isEAT1tJj3MA277D8cgJ3+R5jQ6joGTX38KE8GOLbzo3u24dO8ydfP/NWnwyHdelhCiuQmRPtf20JhwjRLagRijWs9PX38=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724848836; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=hMhceDYSJT3sweNsBvB0D+Xx2msIrWuw/AOE4Zw1sKM=; 
+	b=TagecXMhwN1/1gdeVIsVuQBtRZAOQEm9AddRI2HNh8fUIOcCMOWRFh1HjRFI3uI+bo8P7iZ+UtJ4wxpg6gKSnaV4EdXpKQD2JWsb+y1RzLrDuvOrp7xrT0CbPQS1IcvS3TRUT9CZTG0XwxHdJXOjlzm2luh6YneVhwxtaDI+Qpw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724848836;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=hMhceDYSJT3sweNsBvB0D+Xx2msIrWuw/AOE4Zw1sKM=;
+	b=GBaYBiMKPFOr9IZts8uWExL/VeGTFa1f5sSYNSQokGegbQzNKORuAq3naw77tnvg
+	aXoZnIzFAjgB8mspUhrArCtTuLQ5MOvtY58KXPB9B9t6eTLCmMw1p83lf+1+d4w0PGs
+	1AfMhaEHzmQzzYTiZkGP2ItWFQ5m5uYiTboDm0rM=
+Received: by mx.zohomail.com with SMTPS id 17248488348410.2640791504728668;
+	Wed, 28 Aug 2024 05:40:34 -0700 (PDT)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v2 0/2] Fix compatibles for RK3588 VO{0,1}_GRF
+Date: Wed, 28 Aug 2024 15:40:07 +0300
+Message-Id: <20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b3fe348b-60a3-4480-8a8e-89760c5bb7ae@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKcaz2YC/4WNQQ6CMBBFr0Jm7RhaS6iuvIdhMbQFGpGSKWk0p
+ He3cgGX7+f/93eIjr2LcKt2YJd89GEpIE8VmImW0aG3hUHWUtVatsjPS6M1poAjD2jCa6UNlZV
+ GK2taLXso05Xd4N+H9tEVnnzcAn+OlyR+6R9hElijVSQ0meHaCLqbMM/UB6ZzqUCXc/4CurrrA
+ rwAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
+X-Mailer: b4 0.14.1
+X-ZohoMailClient: External
 
-Heippa,
+As Conor noticed recently [1], RK3588 VO0 & VO1 GRFs incorrectly share
+the compatible string, since they are not identical (though quite
+similar in terms of layout).
 
-On Wed, Aug 28, 2024 at 03:14:47PM +0300, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 28/08/2024 14:12, Laurent Pinchart wrote:
-> > On Wed, Aug 28, 2024 at 11:06:23AM +0000, Sakari Ailus wrote:
-> > > On Thu, Jun 20, 2024 at 02:07:51PM +0300, Tomi Valkeinen wrote:
-> > > > Add DT bindings for raspberrypi,rp1-cfe.
-> > > > 
-> > > > Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> > > > ---
-> > > >   .../bindings/media/raspberrypi,rp1-cfe.yaml        | 98 ++++++++++++++++++++++
-> > > >   1 file changed, 98 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..851533de2305
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
-> > > > @@ -0,0 +1,98 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/media/raspberrypi,rp1-cfe.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Raspberry Pi PiSP Camera Front End
-> > > > +
-> > > > +maintainers:
-> > > > +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> > > > +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-> > > > +
-> > > > +description: |
-> > > > +  The Raspberry Pi PiSP Camera Front End is a module in Raspberrypi 5's RP1 I/O
-> > > > +  controller, that contains:
-> > > > +  - MIPI D-PHY
-> > > > +  - MIPI CSI-2 receiver
-> > > > +  - Simple image processor (called PiSP Front End, or FE)
-> > > > +
-> > > > +  The FE documentation is available at:
-> > > > +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-> > > > +
-> > > > +  The PHY and CSI-2 receiver part have no public documentation.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    items:
-> > > > +      - const: raspberrypi,rp1-cfe
-> > > > +
-> > > > +  reg:
-> > > > +    items:
-> > > > +      - description: CSI-2 registers
-> > > > +      - description: D-PHY registers
-> > > > +      - description: MIPI CFG (a simple top-level mux) registers
-> > > > +      - description: FE registers
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  port:
-> > > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > > +    additionalProperties: false
-> > > > +    description: CSI-2 RX Port
-> > > > +
-> > > > +    properties:
-> > > > +      endpoint:
-> > > > +        $ref: video-interfaces.yaml#
-> > > > +        unevaluatedProperties: false
-> > > > +
-> > > > +        properties:
-> > > > +          data-lanes:
-> > > > +            minItems: 1
-> > > > +            maxItems: 4
-> > > > +
-> > > > +          clock-lanes:
-> > > > +            maxItems: 1
-> > > 
-> > > minItems needs to be 1 as well.
-> 
-> Hmm, I see a lot of
-> 
-> clock-lanes:
->   maxItems: 1
-> 
-> in the device tree bindings. And
-> https://docs.kernel.org/devicetree/bindings/writing-schema.html says "Cases
-> that have only a single entry just need to express that with maxItems".
+Provide dedicated compatible strings, as a follow-up.
 
-Fair enough.
+[1] https://lore.kernel.org/lkml/20240821-stretch-scam-09d7adc08a4c@spud/
 
-> 
-> > > 
-> > > Or... is this actually configurable in hardware?
-> > 
-> > Looking at the driver, lane reordering is not supported, so we could
-> > drop this property. If the hardware is found to support it later, it can
-> > easily be added back without any backward compatibility issue.
-> 
-> Re-ordering is not supported. I guess clock-lanes can be dropped, although I
-> feel that if we have the clock lane in the hardware, and the numbering of
-> data-lanes must take that into account, then:
-> 
-> clock-lanes = <0>;
-> data-lanes = <1 2>;
-> 
-> looks better than:
-> 
-> data-lanes = <1 2>; /* and implicit clk lane 0 */
-> 
-> But I can't think of any practical benefit it brings...
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v2:
+- Deprecate the old compatible instead of removing it from the binding
+  document (Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20240827-rk3588-vo-grf-compat-v1-0-d4a18acf951a@collabora.com
 
-The clock-lanes property is optional, it only provides any information if
-the clock lane is configurable. Please drop it.
+---
+Cristian Ciocaltea (2):
+      dt-bindings: soc: rockchip: Fix compatibles for RK3588 VO{0,1}_GRF
+      arm64: dts: rockchip: Fix compatibles for RK3588 VO{0,1}_GRF
 
--- 
-Terveisin,
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 10 +++++++++-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi           |  6 +++---
+ 2 files changed, 12 insertions(+), 4 deletions(-)
+---
+base-commit: 8400291e289ee6b2bf9779ff1c83a291501f017b
+change-id: 20240827-rk3588-vo-grf-compat-4d2c84dc782b
 
-Sakari Ailus
 
