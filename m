@@ -1,179 +1,263 @@
-Return-Path: <devicetree+bounces-97542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C88509628A3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:29:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2873C9628BB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:34:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 836A9283D1F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:29:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C7541C21204
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68E41862B7;
-	Wed, 28 Aug 2024 13:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sa4EIlir"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B59173328;
+	Wed, 28 Aug 2024 13:34:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB16C156F4A;
-	Wed, 28 Aug 2024 13:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B1F1D554;
+	Wed, 28 Aug 2024 13:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724851748; cv=none; b=nM7SJ6Aw1QcOnWHXBZwzwzxftrwis5edmrKnSLBXPXFcZyrGgFpRsrOF5j5E/1zkJ8/qWWFfDe3aJk0kRbdm4nGRxKM+p1lYg+aVincMJMaR1X7O2yEpF32xWFvfy+CUnpuiTLfaKFINxaLrJnObDBADQWIxWo0kdUOehOwzGvc=
+	t=1724852087; cv=none; b=QMp8gcVV3BwDmBA2EHa5ndgZzFUJwuHrgqga0Km/5dY8jF4ema27SBT5EZBmWe2+V0vIkpeLiFd3tjWyr8nk4ODpWwLDg1LajrDz/FFETyy7zTpmjxJ3L11ywiUC6cSA+kW7FcXC0kNLz9QBJhHtqikdgUoxxfu1f81j/DogtNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724851748; c=relaxed/simple;
-	bh=/r0MT3aB8uX7pI7/PuwSmyCqrVzxDBWEBTArzIlqKtg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NxyDYagNGC904/vg0QisqXQQqRHTkuczmQNppe6a+c8hmwxo9swPSSJtH3xhVlTtBzBVH/zrO072VAFd8xEGhWzL5yb4dAyToOxMMozxmzRX1QWDiq5x5vZd91q9zG4ShXvUmRjnS/tvY4jb6Q1lmSlyDEN+I8Oac0qvI7Zl0oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sa4EIlir; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 09B9E2C5;
-	Wed, 28 Aug 2024 15:27:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1724851677;
-	bh=/r0MT3aB8uX7pI7/PuwSmyCqrVzxDBWEBTArzIlqKtg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sa4EIlirLCtNbuz27sn3LDUZK5582Sc6xwe+z8OuwabPWIL6vnsUPtXVqO3dxfzb7
-	 Ly4DHj0m/ypq8aIpGKghHUiC2p8yb9vzxDXrJA6SCXbiS0EsWrECRRbOfsjRDmZo2K
-	 q01D8QzhpQ7nzVx8srIqHS7J3KOECh2gGiaUsfhs=
-Date: Wed, 28 Aug 2024 16:29:00 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: renesas,du: narrow interrupts
- and resets per variants
-Message-ID: <20240828132900.GB27131@pendragon.ideasonboard.com>
-References: <20240818173003.122025-1-krzysztof.kozlowski@linaro.org>
- <20240818174137.GC29465@pendragon.ideasonboard.com>
- <4615f52b-4e4c-4fe4-bfef-a66e196410d7@linaro.org>
- <20240818175118.GF29465@pendragon.ideasonboard.com>
- <526b6f56-7807-4bb6-9365-077b1cc490b2@linaro.org>
- <20240828124517.GA23978@pendragon.ideasonboard.com>
- <3aa885c1-d653-4d73-98ab-3d4d3d214235@linaro.org>
+	s=arc-20240116; t=1724852087; c=relaxed/simple;
+	bh=hYxXtkxsQKOAkmN+b3xnHbaMT1UgdiIJMQzTuDcUAIk=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jbwhaPeqbyK3VhVb98to6lt9EG4XEij2w4F3l2oWPahaj+WJdIzqDAsVXHjacL0t8Tiw9DINlopBtNj5fkp0mrqdhKz+p1tECGU8OBmYm9l9lCHTy83xtGmBGAJHn8I92jgAbs+KznxfJ14nLNytUv1q9NJaADcc1hLZhsvwNE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Wv50X51yfz6H7YP;
+	Wed, 28 Aug 2024 21:31:24 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 008C1140B30;
+	Wed, 28 Aug 2024 21:34:41 +0800 (CST)
+Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 28 Aug
+ 2024 14:34:40 +0100
+Date: Wed, 28 Aug 2024 14:34:39 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Esteban Blanc <eblanc@baylibre.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>, "Rob Herring"
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor Dooley"
+	<conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Jonathan Corbet
+	<corbet@lwn.net>, <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, David Lechner <dlechner@baylibre.com>,
+	<linux-doc@vger.kernel.org>
+Subject: Re: [PATCH 2/6] iio: adc: ad4030: add driver for ad4030-24
+Message-ID: <20240828143439.00006d3d@Huawei.com>
+In-Reply-To: <D3QUGZYL7INK.R3U3WQR0OCUS@baylibre.com>
+References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
+	<20240822-eblanc-ad4630_v1-v1-2-5c68f3327fdd@baylibre.com>
+	<20240824122111.425fa689@jic23-huawei>
+	<D3QUGZYL7INK.R3U3WQR0OCUS@baylibre.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3aa885c1-d653-4d73-98ab-3d4d3d214235@linaro.org>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Wed, Aug 28, 2024 at 02:52:25PM +0200, Krzysztof Kozlowski wrote:
-> On 28/08/2024 14:45, Laurent Pinchart wrote:
-> > On Sun, Aug 18, 2024 at 08:48:54PM +0200, Krzysztof Kozlowski wrote:
-> >> On 18/08/2024 19:51, Laurent Pinchart wrote:
-> >>> On Sun, Aug 18, 2024 at 07:44:22PM +0200, Krzysztof Kozlowski wrote:
-> >>>> On 18/08/2024 19:41, Laurent Pinchart wrote:
-> >>>>> On Sun, Aug 18, 2024 at 07:30:02PM +0200, Krzysztof Kozlowski wrote:
-> >>>>>> Each variable-length property like interrupts or resets must have fixed
-> >>>>>> constraints on number of items for given variant in binding.  The
-> >>>>>> clauses in "if:then:" block should define both limits: upper and lower.
-> >>>>>
-> >>>>> I thought that, when only one of minItems or maxItems was specified, the
-> >>>>> other automatically defaulted to the same value. I'm pretty sure I
-> >>>>> recall Rob asking me to drop one of the two in some bindings. Has the
-> >>>>> rule changes ? Is it documented somewhere ?
-> >>>>
-> >>>> New dtschema changed it and, even if previous behavior is restored, the
-> >>>> size in if:then: always had to be constrained. You could have skipped
-> >>>> one side of limit if it was equal to outer/top-level limit, e.g:
-> >>>>
-> >>>> properties:
-> >>>>   clocks:
-> >>>>     minItems: 1
-> >>>>     maxItems: 2
-> >>>>
-> >>>>
-> >>>> if:then:properties:
-> >>>>   clocks:
-> >>>>     minItems: 2
-> >>>
-> >>> Where can I find a description of the behaviour of the new dtschema
-> >>> (hopefully with some documentation) ?
-> >>
-> >> No clue, but I feel there is some core concept missing. Your earlier
-> >> statement:
-> >> "I thought that, when only one of minItems or maxItems was specified, the"
-> >>
-> >> was never logically correct for the "if:then", except for the case I
-> >> mentioned above. That's why all schema used as examples had it explicit:
-> >>
-> >> My talk from 2022, page 30:
-> >> https://static.sched.com/hosted_files/osseu2022/bd/How%20to%20Get%20Your%20DT%20Schema%20Bindings%20Accepted%20in%20Less%20than%2010%20Iterations%20-%20Krzysztof%20Kozlowski%2C%20Linaro.pdf?_gl=1*kmzqmt*_gcl_au*MTU2MzQ1MjY0Mi4xNzIxNzE0NDc1
-> >> all constraints defined,.
-> >>
-> >> My talk from 2023, page 34:
-> >> https://static.sched.com/hosted_files/eoss2023/a8/How%20to%20Get%20Your%20DT%20Schema%20Bindings%20Accepted%20in%20Less%20than%2010%20Iterations%20-%20Krzysztof%20Kozlowski%2C%20Linaro%20-%20ELCE%202023.pdf?_gl=1*1jgx6d3*_gcl_au*MTU2MzQ1MjY0Mi4xNzIxNzE0NDc1
-> >>
-> >> Recently, I started using other example as "useful reference":
-> >> https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
-> >>
-> >> That's nothing. All three above reference examples I keep giving are
-> >> already there and repeated in emails all the time.
-> >>
-> >> So aren't you confusing the entire "skip one limit" for top-level
-> >> properties? This patch is not about it all and dtschema did not change.
-> > 
-> > There must have been a misunderstanding indeed, I interpreted "New
-> > dtschema changed it" as meaning there were now new rules. Is that
-> > incorrect ?
-> 
-> For the binding with a property defined only in top-level properties: no
-> changes, no new rules.
-> 
-> For the binding with top-level and if:then:else: dtschema since few
-> months changed interpretation.
+On Tue, 27 Aug 2024 18:45:49 +0200
+Esteban Blanc <eblanc@baylibre.com> wrote:
 
-OK, that's what I didn't understand correctly.
+> On Sat Aug 24, 2024 at 1:21 PM CEST, Jonathan Cameron wrote:
+> > On Thu, 22 Aug 2024 14:45:18 +0200
+> > Esteban Blanc <eblanc@baylibre.com> wrote:
+> >  
+> > > This adds a new driver for the Analog Devices INC. AD4030-24 ADC.
+> > > 
+> > > The driver implements basic support for the AD4030-24 1 channel
+> > > differential ADC with hardware gain and offset control.
+> > > 
+> > > Signed-off-by: Esteban Blanc <eblanc@baylibre.com>  
+> > Hi Esteban
+> >
+> > Some additional comments.  David did a good review already so
+> > I've tried not to duplicate too much of that.
+> >
+> > The big one in here is don't use extended_name.
+> > It's effectively deprecated for new drivers plus
+> > it would have required you add a lot of ABI docs as every
+> > sysfs file would have a strange name.
+> >  
+> > > diff --git a/drivers/iio/adc/ad4030.c b/drivers/iio/adc/ad4030.c
+> > > new file mode 100644
+> > > index 000000000000..a981dce988e5
+> > > --- /dev/null
+> > > +++ b/drivers/iio/adc/ad4030.c  
+> >  
+> > > +struct ad4030_state {
+> > > +	struct spi_device *spi;
+> > > +	struct regmap *regmap;
+> > > +	const struct ad4030_chip_info *chip;
+> > > +	struct gpio_desc *cnv_gpio;
+> > > +	int vref_uv;
+> > > +	int vio_uv;
+> > > +	int offset_avail[3];
+> > > +	u32 conversion_speed_hz;
+> > > +	enum ad4030_out_mode mode;
+> > > +
+> > > +	/*
+> > > +	 * DMA (thus cache coherency maintenance) requires the transfer buffers
+> > > +	 * to live in their own cache lines.
+> > > +	 */
+> > > +	u8 tx_data[AD4030_SPI_MAX_XFER_LEN] __aligned(IIO_DMA_MINALIGN);
+> > > +	struct {
+> > > +		union {
+> > > +			u8 raw[AD4030_MAXIMUM_RX_BUFFER_SIZE];
+> > > +			struct {
+> > > +				s32 val;
+> > > +				u32 common;
+> > > +			} __packed buffered[AD4030_MAX_HARDWARE_CHANNEL_NB];  
+> >
+> > David pointed out this doesn't need to be packed.
+> > Given you have a union here, add __beXX as needed to avoid casts below.  
+> 
+> They also pointed out that I should reduce the size for the common field.
+> I was planing to use an u32 bitfield here, 8 bits for common and 24 bits for
+> padding. As far as I understood, the C standard is quite flexible on the
+> size used for bitfield, so I should probably keep the __packed, right?
+Don't use a bitfield - they are a pain as the C standard is very vague
+on the data arrangement. Just use big enough storage and #define x GENMASK()
+etc to extract the dta.
 
-> > If you don't mind clarifying, what is the current recommendation to
-> > indicate that a property has a fixed number of items ? Which of the
-> > following three options is preferred ?
 > 
-> Answer below assumes we have clocks defined in top-level properties and
-> there is no if:then:else customizing it.
-> 
-> > properties:
-> >   clocks:
-> >     minItems: 2
-> 
-> That's wrong, because items are unconstrained.
-> 
-> > properties:
-> >   clocks:
-> >     maxItems: 2
-> 
-> This one is preferred.
-> 
-> > properties:
-> >   clocks:
-> >     minItems: 2
-> >     maxItems: 2
-> 
-> This one is correct, but less preferred.
 
-Thank you, that is clear now.
+> > > +static int ad4030_spi_read(void *context, const void *reg, size_t reg_size,
+> > > +			   void *val, size_t val_size)
+> > > +{
+> > > +	struct ad4030_state *st = context;
+> > > +
+> > > +	struct spi_transfer xfer = {
+> > > +		.tx_buf = st->tx_data,
+> > > +		.rx_buf = st->rx_data.raw,
+> > > +		.len = reg_size + val_size,
+> > > +	};
+> > > +	int ret;
+> > > +
+> > > +	memcpy(st->tx_data, reg, reg_size);
+> > > +
+> > > +	/*
+> > > +	 * This should use spi_write_the_read but when doing so, CS never get
+> > > +	 * deasserted.  
+> >
+> > I'm confused.  As a single transfer it won't be deasserted in the transfer
+> > whereas spi_write_then_read() will. So is this comment backwards or
+> > is it referring to something else?  
+> 
+> So, with a single transfer (what is done now), the transfer is working
+> as expected: CS goes low, the data is transferred, CS goes high again.
+> With spi_write_then_read(), CS goes low, data is transferred but CS never
+> goes high again. After some time I get a timeout error in the kernel logs.
 
--- 
-Regards,
+That's odd.  spi_write_then_read() should not behave differently.
+Perhaps a quirk of your SPI controller?
 
-Laurent Pinchart
+That one is worth digging into as in both cases we should have some
+transactions and after that the chip select should behave the same.
+
+
+
+> > > +static int ad4030_reset(struct ad4030_state *st)
+> > > +{
+> > > +	struct device *dev = &st->spi->dev;
+> > > +	struct gpio_desc *reset;
+> > > +	int ret;
+> > > +
+> > > +	/* Use GPIO if available ... */
+> > > +	reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> > > +	if (IS_ERR(reset))
+> > > +		return dev_err_probe(dev, PTR_ERR(reset),
+> > > +				"Failed to get reset GPIO\n");
+> > > +
+> > > +	if (reset) {
+> > > +		ndelay(50);
+> > > +		gpiod_set_value_cansleep(reset, 0);
+> > > +	} else {
+> > > +		/* ... falback to software reset otherwise */
+> > > +		ret = ad4030_enter_config_mode(st);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +
+> > > +		ret = regmap_write(st->regmap, AD4030_REG_INTERFACE_CONFIG_A,
+> > > +				   AD4030_REG_INTERFACE_CONFIG_A_SW_RESET);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +	}
+> > > +
+> > > +	/* Wait for reset to complete before communicating to it */  
+> >
+> > I'd rather see a reference for the value than a generic comment
+> > like this.  Also pull the actual value down here. Not particularly
+> > useful to have a define for what is a real time unless you are going
+> >  to have some combined docs for a bunch of timings (i.e a datasheet
+> > table reference)  
+> 
+> I will put the real value in fsleep call directly. When you say "I'd
+> rather see a reference for the value", you ment a reference to the place
+> the value is defined in the datasheet, right?
+Exactly.
+
+> 
+> > > +static int ad4030_detect_chip_info(const struct ad4030_state *st)
+> > > +{
+> > > +	unsigned int grade;
+> > > +	int ret;
+> > > +
+> > > +	ret = regmap_read(st->regmap, AD4030_REG_CHIP_GRADE, &grade);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	grade = FIELD_GET(AD4030_REG_CHIP_GRADE_MASK_CHIP_GRADE, grade);
+> > > +	if (grade != st->chip->grade)
+> > > +		return dev_err_probe(&st->spi->dev, -EINVAL,
+> > > +					"Unknown grade(0x%x) for %s\n", grade,
+> > > +					st->chip->name);  
+> >
+> > Is this similar to a missmatch on a whoami value?  
+> 
+> Yes. It also saved me multiple hours of debuging when the eval board
+> was not connected porperly and the SPI link was just not working.
+> 
+> > I.e. should we print a message and carry on in the interests of providing
+> > some degree of support for newer devices on older kernel?
+> > (fallback compatibles in DT)  
+> 
+> Ok, let's go with a warning then.
+> 
+> > > +static const struct spi_device_id ad4030_id_table[] = {
+> > > +	{ "ad4030-24", (kernel_ulong_t)&ad4030_24_chip_info },
+> > > +	{}  
+> >
+> > I'm going to assume you have a bunch of other parts you plan to
+> > support soon. Otherwise we normally don't add the chip specific
+> > support until it is needed.  It tends to complicate initial driver
+> > review a little and experience says that sometimes no other devices
+> > are ever added.  
+> 
+> I'm sending the other devices in the same series (patch 4 and 5).
+> For the sake of reducing noise in the later patches, I've put it in
+> the initial driver. If you feel like I should wait and do it in the
+> following patch (patch 4), I can do that.
+
+Oops. I didn't ready on ;)  Absolutely fine to have this here.
+
+Jonathan
+
+> 
+> Thanks for your time,
+> 
+
 
