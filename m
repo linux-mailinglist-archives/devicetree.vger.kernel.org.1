@@ -1,127 +1,125 @@
-Return-Path: <devicetree+bounces-97562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFAA962A3D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:28:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76CB8962A52
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5798D1F21B0D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:28:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8B071C238BC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CFB18A6AF;
-	Wed, 28 Aug 2024 14:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C8A16C866;
+	Wed, 28 Aug 2024 14:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0GFFVgo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hxRjhOMv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4F6188CC8;
-	Wed, 28 Aug 2024 14:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D92591BC20;
+	Wed, 28 Aug 2024 14:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724855323; cv=none; b=UKtMJIaiTwfWmbrE6tEBm2ya1mwBAndUKUjR/2Jf4rbk9L//woTIg237uL58vFmsrxSqmSmEEPW606a+2o9axpolBd6oR2JV9H30GBuhgGNHqJ8EVBAGQw8vlj40BXARbwcGW22yRWlbSuil+cm6b6LQXwskknEUvpfLVcbirZs=
+	t=1724855651; cv=none; b=n4zTrKMFGAaHOy35YTOGEigpXK58bS3QUpYbjlghhUq+pG87horH+o97h8QZXFFqTUJKPOWj707v9w0FAgWIFaU9BCZ6v01unlBuUsc9hReCcq36/QDYi2N2Znjck95RbqHLEfttu+vjfu8BoPi5jybPcTW4PYENpM1D+ES1ds8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724855323; c=relaxed/simple;
-	bh=DGSuZ/bqxzkTTPMrGypMuEZndk6U6ePb9UX8AbuIeMY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IW8po+CfcfkKEYMvb0kc00Nx2umjwlSURtlyB4xc1Vy2oxPE2I4C6Bm8+QLCMKTxdJNs7BJKGxr8g4nmx6j7ZHPjIpLtcZnX34RP2RxbKn9Uec0JU76LpzStqbgW790zfWyFYuGZ0rcKJhtn63hujLYdZEhD3r978fmO9DcLios=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0GFFVgo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A1D5C4CEE8;
-	Wed, 28 Aug 2024 14:28:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724855323;
-	bh=DGSuZ/bqxzkTTPMrGypMuEZndk6U6ePb9UX8AbuIeMY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i0GFFVgoNwKWx2eUNGm0ZlYiY5E5fj60GtW6Ra2IlMsCBktVCzTuzvliOUm/d+bfk
-	 SkECt/EzgytWYW3r8Au+Wlz6kFJyGzfT56cnRihEdS8OGa9ZUk9JjkHz2Yd+SpGkO8
-	 aAvUcmQokuAQ1tWPW+sZ+ynRb6VGEde1XqgJMJELd/1M/7FTmcVyN9bN3ldbCBzGt8
-	 hBRML2Z4W6LBIA6aJ2ZzXahrCmxkdV/leQ4TTjvbw5G+ZzkadRgxFifZwV0TmA6St2
-	 OKb7VU9sWmJdsmJ5tbdRU0/T3O7MJwIpzE0YYxrzO4bYas5u3B4OTY9tdAdj60qzLM
-	 BDCMlDj8IUIJw==
-Message-ID: <1fd84ffc-60e2-45ce-8b0a-1081360fae30@kernel.org>
-Date: Wed, 28 Aug 2024 16:28:36 +0200
+	s=arc-20240116; t=1724855651; c=relaxed/simple;
+	bh=LURcFRroKnT5wgo+eFJtTh8WtbX/dDOkgUZzFjst0co=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pWqKpScF2+SNZxE5EsTojCMnY3qLDnXooc/lE05y68l37DyVAb2oHyjkDe7K6D3LwxwXBaHeyq20l7TxsIrP0NFc+yPEy8NNOlqkZLIwIEGCOmjeC1UM1m+mpyTjQQ0aICYezRRcj894JRCbOC8BdYBj+LDDCyvVTTbldPO28Is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hxRjhOMv; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7a7d7ec7395so175659685a.3;
+        Wed, 28 Aug 2024 07:34:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724855649; x=1725460449; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wY+kQnopqYf4JLBsGjvkE7C+Uhqy25XmburGUYLLN3A=;
+        b=hxRjhOMvQ01X2a6ZRftgUeviOqyyRjxYJtYyJPVm7CEY+TK0Vm27er+wro9LoZQWPm
+         vCJFUCi961vSo4iZG1z1Jov0Z2eEKSergrT8dGAUHP+EObYWE9yEcYaDbuYQ9zn3unJA
+         0DbFoZwD4KAdGwnA3vgJOUxuxe+COhIUaAkS8Ul1IhVly/Chkw/SoRO9PktRx429uPi4
+         98xbLAB5zQAyR69p55+8+RSybhBKRW1olz2mnleLnIoR0XqhaCTUwc/VtCOQBxxgyoPM
+         Ztz39lDD7oMyXNGKaFm8WmBXrQHJ3BzK/WdbQkRrvPr0W+kDToSnPpKpXgACamKR5NyA
+         yyxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724855649; x=1725460449;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wY+kQnopqYf4JLBsGjvkE7C+Uhqy25XmburGUYLLN3A=;
+        b=B0iDH+BISyy1UP+8FIjtSWXFGzTbhypwjA8omqWsWnL186tJjrVzg2mXdGMgIYdVMT
+         yIYpcF8H0gHtMTR0R5Zkj4GMyxbIMYjFFUp5yT3M4YucLLnz2v+iWyfIYqHctyR65s/+
+         7WJ0UkKGHGltdU6CCQRMXDYStskp47Qh/mzy9Kdh3XSkFg0wMgwpNUW03dBXi3xVQJH8
+         WL+JWvlHA8jImP5rL1ZfJlOYLRkcDMGk41uquxqmw04GGP6drxXfeOhAOsJcbJbEnNz9
+         dres0U9uhnAX53yAIceKt44U0r4+03TTgY+R/XlSmPGsEByYUlzWWldNxuJ0PpTBrtUK
+         yjIA==
+X-Forwarded-Encrypted: i=1; AJvYcCUeB3/e7p+WD73bvGpvPOEbXSWZdjrnIac5JdRSVSxIyY5zwVxQ4q2lCgfA46nuxnhidlH3YucA+KLl@vger.kernel.org, AJvYcCVdQ79DrtsU2y8f+9IQLBhItOQCKl/Ldp1GEXAFvrfzRsh7BPMa6SmwnWttUY0/kxH3vWAjhJSRsm63o4Km@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKUiUjApYkZkWAB6EeZejh5PZ05PMUEmURHwfksXTGJwGUHGjD
+	GRunw8lnfrThshXnEKvxSMmVWRXT9EVbalgQDgyqMXu1A6SheLad+YdQwHb7mhFvsFUlbluJcdP
+	Zyz04mQZbi+y08oUiEj0mJnLKTFMWEw==
+X-Google-Smtp-Source: AGHT+IE6pfQMU/hFWirObvxGWVXC5CnUF5j9zoWtgyu7lzevFa+EzYUDHElDUUtnbmXUzBGyG43+xnxxO3o3mj0mJE8=
+X-Received: by 2002:a05:6214:5544:b0:6b5:d0de:8ab5 with SMTP id
+ 6a1803df08f44-6c16dc8f203mr211916656d6.30.1724855648714; Wed, 28 Aug 2024
+ 07:34:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ASoC: dt-bindings: Convert mxs-saif.txt to
- fsl,saif.yaml (imx28 saif)
-To: Lukasz Majewski <lukma@denx.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240828092709.2626359-1-lukma@denx.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240828092709.2626359-1-lukma@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240822170440.265055-1-robertcnelson@gmail.com>
+ <20240822170440.265055-2-robertcnelson@gmail.com> <2774e7e5-8c03-4f38-90c3-b414bc6af255@kernel.org>
+ <CAOCHtYhK36QyKOmQhY+Q31rB23ASoxUXTX+0R1tzK-ZhvvWSLA@mail.gmail.com>
+In-Reply-To: <CAOCHtYhK36QyKOmQhY+Q31rB23ASoxUXTX+0R1tzK-ZhvvWSLA@mail.gmail.com>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Wed, 28 Aug 2024 09:33:40 -0500
+Message-ID: <CAOCHtYiPdxpxz9oPO-deLMMgMZtjCjtEMqPARAPtqMKg8JxOhQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: ti: Add k3-am67a-beagley-ai
+To: Roger Quadros <rogerq@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>, Jai Luthra <j-luthra@ti.com>, 
+	Siddharth Vadapalli <s-vadapalli@ti.com>, Jared McArthur <j-mcarthur@ti.com>, 
+	Jason Kridner <jkridner@beagleboard.org>, Deepak Khatri <lorforlinux@beagleboard.org>, 
+	Drew Fustini <drew@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 28/08/2024 11:27, Lukasz Majewski wrote:
-> The 'fsl,imx28-saif' compatible has already the mxs-saif.txt description.
-> This patch converts (and removes it) this file to fsl,saif.yaml (to follow
-> current fsl convention).
-> 
-> Changes for the mxs-saif.txt:
-> - Adds 'clocks', '#clock-cells' and '#sound-dai-cells' properties
-> - Provide device description
-> 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+On Fri, Aug 23, 2024 at 10:33=E2=80=AFAM Robert Nelson <robertcnelson@gmail=
+.com> wrote:
+>
+> > > +
+> > > +&cpsw3g {
+> > > +     pinctrl-names =3D "default";
+> > > +     pinctrl-0 =3D <&rgmii1_pins_default>, <&gbe_pmx_obsclk>;
+> >
+> > Why do you need OBSCLK for Ethernet MAC?
+> > The OBSCLK is connected to the Ethernet PHY via C406 which is not even =
+populated.
+> > It seems that the PHY is clocked by a crystal oscillator X5 so doesn't =
+really
+> > need OBSCLK in the stock configuration?
+>
+> Ah crap, I'll take a look at this... I bet it's left over from the
+> first pcb, (all my first rev pcb's are now locked up so i don't use
+> them anymore)..  Seeed/BeagleBoard was playing it safe and designing
+> in both options.. Once the internal clocks were verified newer
+> revisions removed the external clock.
+>
+> Yeah, I'm pretty sure final production boards removed every external
+> clock option.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yeap, external clock is the default for all production boards, i
+removed this internal clock configuration.
 
-Best regards,
-Krzysztof
+Thanks
 
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
