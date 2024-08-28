@@ -1,158 +1,104 @@
-Return-Path: <devicetree+bounces-97524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6202962790
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:45:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BC39627C0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:51:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8E8F1C23CCA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:45:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C6F4B22E79
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C4D16C6A0;
-	Wed, 28 Aug 2024 12:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F09185B77;
+	Wed, 28 Aug 2024 12:51:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="NTeBNvOi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCrY8jpv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BDC1EA65;
-	Wed, 28 Aug 2024 12:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C57D149C7A;
+	Wed, 28 Aug 2024 12:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724849125; cv=none; b=SPYGkVMH+/vqrTO7xwj4TYyjRm4OWKMm/ON+LRQ0DCQzq1cSVIp583VDovbkt9HHAob7AECqLKqPc/nDZnTS2nhToZesFRqyIbIUmkzX6fF1vGpKqx5w5bV2X3KsGde4c2XoqDw/tlIDF6H4Aib58eANM5dMfH13iKJtFoDgPQQ=
+	t=1724849475; cv=none; b=QUOFnHFJ2v6//j61lBQGfwK1DBh7ipyl3CKT20nVOqXX9qnuGiMw8c2FggcuWbzvyyhvo+i+oeV6OTI/t3ZfEKfGu3gXSkh4u/PREU0Ir30DUUZsbbeXJHHv8TayIdkfTHIKPXACREFVNd4SPMJAEGS0mpq5R2uWzBWsDq+RlMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724849125; c=relaxed/simple;
-	bh=E++JwPBS1FVrt81yUy4cR/gwpBl+ON5KNmJxBwegUy4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UmKLg/Tv4J85HGcLM4tS5BzQskBzy5bo+TMEAjQgOlJafVRP/+vJyOiDt3B+BWCKYJ8Vjg+MXSg+0LExMg9LIdTlDZXzpXfCIW+zqplh5Oal/7Q1vDGBmjxN2n+GJeQAihuTDCupyEiCplmb8LLW46X7nxrKlGntIDpRc072tAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=NTeBNvOi; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 09BAA220;
-	Wed, 28 Aug 2024 14:44:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1724849054;
-	bh=E++JwPBS1FVrt81yUy4cR/gwpBl+ON5KNmJxBwegUy4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NTeBNvOikaQPb6ukMI5dxA/tgZrQgpBQK+m/6jYUIIDbXtgnFEHMyn+sPRUdVJVMj
-	 AVO/Tcs0OvFjZqT0WEhDPbvEg2BTzD/COK1oK1oa4VVtF8aq3lohNs/CWxVILiw2+L
-	 D0nV7wS1G5oS/9jZJtPRECKzRXVNnY1S/LnqwrKg=
-Date: Wed, 28 Aug 2024 15:45:17 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: renesas,du: narrow interrupts
- and resets per variants
-Message-ID: <20240828124517.GA23978@pendragon.ideasonboard.com>
-References: <20240818173003.122025-1-krzysztof.kozlowski@linaro.org>
- <20240818174137.GC29465@pendragon.ideasonboard.com>
- <4615f52b-4e4c-4fe4-bfef-a66e196410d7@linaro.org>
- <20240818175118.GF29465@pendragon.ideasonboard.com>
- <526b6f56-7807-4bb6-9365-077b1cc490b2@linaro.org>
+	s=arc-20240116; t=1724849475; c=relaxed/simple;
+	bh=Xj3q54Xs8pJypq3V2jbLTbUBopo2sjq2zYTrO+Fvrh8=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=o/LGlPZ3DIMxGRUNBGtr1Hiz8+xtkMmhyCTzCUSc+q66Mbq3zpnpa5wUiulDb/NIaa1I8p9mUPKGarJjaC384cPLkEenqO5EQbX++WF+pC+Z15kNsPXAsSprIp/ieAfRGnxjSskGSY4zMVAFI/JdN0ujtdaCRz5PkcNl3lhq7Jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCrY8jpv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78742C4FEFA;
+	Wed, 28 Aug 2024 12:51:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724849474;
+	bh=Xj3q54Xs8pJypq3V2jbLTbUBopo2sjq2zYTrO+Fvrh8=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=KCrY8jpvMbbIitPFuw6LTwsNwwOTO9mGyzvA58CCJtU1zjfI9tIfItgQFNTceWoZx
+	 fOsJs/GrhafzzQAm+4wG/xOh6g3HOCUwioE3jp6JGWX2M1uHGVsUFgsDiGlId/fr2k
+	 RoWviw0SjpZeW0I74wBvKYDdTOF+y2/6wqFWvuSeEJ4oIQMFmlCuhi4zhfxI6xVr/7
+	 yrgeOMyaJo6T4qbUe6HevXRNKshF5AERp4ZJWTvMZ5DT/+Bv+DAMAx1Zr1l6ELOyfx
+	 FQDHgr+fJtR37b6RvQ8Uw5D7JDm+njb2eAAFDrMmkGKN+gnKR310R2UGr+xGNHU23Z
+	 NpuhWsF5Ee5Rg==
+Date: Wed, 28 Aug 2024 07:51:12 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <526b6f56-7807-4bb6-9365-077b1cc490b2@linaro.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jonathan Liu <net147@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ FUKAUMI Naoki <naoki@radxa.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org
+In-Reply-To: <20240828074755.1320692-1-net147@gmail.com>
+References: <20240828074755.1320692-1-net147@gmail.com>
+Message-Id: <172484936512.3462690.18423493121475512611.robh@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Enable RK809 audio codec for
+ Radxa ROCK 4C+
 
-Hi Krzysztof,
 
-On Sun, Aug 18, 2024 at 08:48:54PM +0200, Krzysztof Kozlowski wrote:
-> On 18/08/2024 19:51, Laurent Pinchart wrote:
-> > On Sun, Aug 18, 2024 at 07:44:22PM +0200, Krzysztof Kozlowski wrote:
-> >> On 18/08/2024 19:41, Laurent Pinchart wrote:
-> >>> On Sun, Aug 18, 2024 at 07:30:02PM +0200, Krzysztof Kozlowski wrote:
-> >>>> Each variable-length property like interrupts or resets must have fixed
-> >>>> constraints on number of items for given variant in binding.  The
-> >>>> clauses in "if:then:" block should define both limits: upper and lower.
-> >>>
-> >>> I thought that, when only one of minItems or maxItems was specified, the
-> >>> other automatically defaulted to the same value. I'm pretty sure I
-> >>> recall Rob asking me to drop one of the two in some bindings. Has the
-> >>> rule changes ? Is it documented somewhere ?
-> >>
-> >> New dtschema changed it and, even if previous behavior is restored, the
-> >> size in if:then: always had to be constrained. You could have skipped
-> >> one side of limit if it was equal to outer/top-level limit, e.g:
-> >>
-> >> properties:
-> >>   clocks:
-> >>     minItems: 1
-> >>     maxItems: 2
-> >>
-> >>
-> >> if:then:properties:
-> >>   clocks:
-> >>     minItems: 2
-> > 
-> > Where can I find a description of the behaviour of the new dtschema
-> > (hopefully with some documentation) ?
+On Wed, 28 Aug 2024 17:47:53 +1000, Jonathan Liu wrote:
+> This adds the necessary device tree changes to enable analog audio
+> output for the 3.5 mm TRS headphone jack on the Radxa ROCK 4C+ with
+> its RK809 audio codec.
 > 
-> No clue, but I feel there is some core concept missing. Your earlier
-> statement:
-> "I thought that, when only one of minItems or maxItems was specified, the"
+> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> ---
+>  .../boot/dts/rockchip/rk3399-rock-4c-plus.dts | 46 ++++++++++++++++++-
+>  1 file changed, 45 insertions(+), 1 deletion(-)
 > 
-> was never logically correct for the "if:then", except for the case I
-> mentioned above. That's why all schema used as examples had it explicit:
-> 
-> My talk from 2022, page 30:
-> https://static.sched.com/hosted_files/osseu2022/bd/How%20to%20Get%20Your%20DT%20Schema%20Bindings%20Accepted%20in%20Less%20than%2010%20Iterations%20-%20Krzysztof%20Kozlowski%2C%20Linaro.pdf?_gl=1*kmzqmt*_gcl_au*MTU2MzQ1MjY0Mi4xNzIxNzE0NDc1
-> all constraints defined,.
-> 
-> My talk from 2023, page 34:
-> https://static.sched.com/hosted_files/eoss2023/a8/How%20to%20Get%20Your%20DT%20Schema%20Bindings%20Accepted%20in%20Less%20than%2010%20Iterations%20-%20Krzysztof%20Kozlowski%2C%20Linaro%20-%20ELCE%202023.pdf?_gl=1*1jgx6d3*_gcl_au*MTU2MzQ1MjY0Mi4xNzIxNzE0NDc1
-> 
-> Recently, I started using other example as "useful reference":
-> https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
-> 
-> That's nothing. All three above reference examples I keep giving are
-> already there and repeated in emails all the time.
-> 
-> So aren't you confusing the entire "skip one limit" for top-level
-> properties? This patch is not about it all and dtschema did not change.
 
-There must have been a misunderstanding indeed, I interpreted "New
-dtschema changed it" as meaning there were now new rules. Is that
-incorrect ?
 
-If you don't mind clarifying, what is the current recommendation to
-indicate that a property has a fixed number of items ? Which of the
-following three options is preferred ?
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-properties:
-  clocks:
-    minItems: 2
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-properties:
-  clocks:
-    maxItems: 2
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-properties:
-  clocks:
-    minItems: 2
-    maxItems: 2
+  pip3 install dtschema --upgrade
 
--- 
-Regards,
 
-Laurent Pinchart
+New warnings running 'make CHECK_DTBS=y rockchip/rk3399-rock-4c-plus.dtb' for 20240828074755.1320692-1-net147@gmail.com:
+
+arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: pmic: vsel1-gpio: {'rockchip,pins': [[1, 17, 0, 194]], 'phandle': 138} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: pmic: vsel2-gpio: {'rockchip,pins': [[1, 14, 0, 194]], 'phandle': 139} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+
+
+
+
+
 
