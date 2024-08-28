@@ -1,230 +1,144 @@
-Return-Path: <devicetree+bounces-97431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0D396231E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:12:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7800E962322
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33F8E1F21CEC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:12:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF550B23D75
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394E515F3FF;
-	Wed, 28 Aug 2024 09:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597BD161319;
+	Wed, 28 Aug 2024 09:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="iYkYYAJi"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S/zg1nBj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D7E15C13D;
-	Wed, 28 Aug 2024 09:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B2A15B55D;
+	Wed, 28 Aug 2024 09:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724836330; cv=none; b=JW4Hrn9EsvY7IGBZkp1Sb3meLaJ4XvhsArf9vQwJ3JmV5cjSpKKmzij7hvoczTI8xYMDM7SymyOuwdBizU2+0/g+nNqARxSbPSdcs5pj9phRdL/oqv7/9Tqwe+bnM/2nJZMX0ue3pMYLNAjTf010Y/Mm3hg0cNrGCWRvu5aLn+o=
+	t=1724836343; cv=none; b=Il/U2iNbZMDpkRE9iv1qVH1K1Q0lq77fbqF716BWIvyWDX93KTXJK1TpUCOygBzRBF46Esy3FvQzJNJyE2+Q37k7gI1P2l0t7Q+tSqdhjwsYrm4QjPLLpBtHc3P4GBsmgzEd7bT7EtZBUv+oetTLYGzChiIPj/erDVI6ldszed0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724836330; c=relaxed/simple;
-	bh=py7WNHFqaDklaOhQ2w8uzIN3xg2iCJk3lPybb5aymv0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sU553mwENFuSw7mo4t7zrdsLUYAs7a4BUuIxL1VxT2S/79PsxZbEcSvdVm5NYl9aRDmlOSwSj3vgPQjNrxTRUppKigfGlylTLO9fdCa0oIDCwGA7ScT5eJXcphIBP777kn3raHU3CFm7tjWrCzK1OTUy3AVVLHiD90bJ3oiJQ18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=iYkYYAJi; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 0AEE98641C;
-	Wed, 28 Aug 2024 11:11:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1724836320;
-	bh=0UHGu++TVhvGTMTBxR5QUaSiGMr14Fo9/b/MnkvehCw=;
-	h=From:To:Cc:Subject:Date:From;
-	b=iYkYYAJiAlVDAYl62o/UCurX/4PAOGL9wZbWxzwQKuzXnG9xVGcG482V0+zf2Jw+x
-	 vvrQwskWuksK/5RQoAIJP+U683RR2mb81O7hlSGXd/FLQwUG6lrXYTOryU44k4sddd
-	 Dq+BgGsfYIISfGxIXpWEdW9BH02RyeVvPs8Fv9q5oSEeMQcLaxMzEPV/3NupDnFD0I
-	 AQW3AYjlcTT05nN8CsHMjhTfG8lVw7X6FyctSzqjdlgPN2K7HeJhUCqYCjX0rD58Wv
-	 pf40rajqH2xEW/4mYz7ZemasLvMsSi0EWLE9zIFGD1xGD6OtwUDmNkfStBds2OFHcN
-	 cA0xwguDoRvPw==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH v2] ASoC: dt-bindings: Convert mxs-saif.txt to fsl,saif.yaml (imx28 saif)
-Date: Wed, 28 Aug 2024 11:11:39 +0200
-Message-Id: <20240828091139.2621158-1-lukma@denx.de>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1724836343; c=relaxed/simple;
+	bh=ZalckBvMTWaoy3jVYilCdgkf09reBQXkb7xO0PA0YzM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JFVXfYL9IxXiP7Uz8NXHST1figRc1Qd3nzEANdcb/Fg+mareafrvzYwnzO9oxX4HFb+DsBVXuoM6OH0j3NjQWlRdw6pkdTSMTxKg1hUfB2Z1x0QhDQ6W+NORev+ZvE8kPkcctJdQq0W8h/074RIdLP2/HON5LtyYrgioKmQ7Mvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=S/zg1nBj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RLfR8V009547;
+	Wed, 28 Aug 2024 09:12:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	M1y+4aFupFg5jHnRUIBKBj7VIHbsyj/E677pestYgEE=; b=S/zg1nBjFMsq+H71
+	g5WO1R4ol1GRe8y5TsDtzuWD+tskw3gnVu87sulq45f6g4Qmdz8TALZEjaYqOynB
+	qZG0tUd8Z5Uv13fFKP0NAmUiXIWwzdx6gFVaYLKlgonjwvmwC6lMUVuvvFeNBm8J
+	LPEbltn5YOrzRd7f5xa4Ijrj9NZ7Ro1hBAU/KclLaEPpqfcw8dQoYB1BEs4OYjKm
+	oGuIAtZFz6NgxQk4nHbQG/OspsVt18RCv5h5D1rdC7esxtK+TYNyq4TeD7vGPYpE
+	zcqG9gQV3N7ykR7Keiim8YMRPEpmgx6c3oMPhYGg+jrNEGaUa2M+G1LEgNtZMtlt
+	h+AgiQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419px5h90b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 09:12:17 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47S9CGPd003488
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 09:12:16 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 Aug
+ 2024 02:12:13 -0700
+Message-ID: <4340f1d1-b049-4368-8227-b6400ae0cbce@quicinc.com>
+Date: Wed, 28 Aug 2024 17:12:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] remoteproc: qcom: pas: Add QCS8300 remoteproc support
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingyi Wang
+	<quic_jingyw@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <andersson@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mathieu.poirier@linaro.org>,
+        <bartosz.golaszewski@linaro.or>, <quic_tingweiz@quicinc.com>,
+        <quic_tengfan@quicinc.com>, Xin Liu <quic_liuxin@quicinc.com>
+References: <20240828030511.443605-1-quic_jingyw@quicinc.com>
+ <20240828030511.443605-3-quic_jingyw@quicinc.com>
+ <udhf32bgdfw6kfqltd7qo7tvzv7fev4nvrwxwg3tnjnfjtb3md@oy6kd5jnsu3t>
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <udhf32bgdfw6kfqltd7qo7tvzv7fev4nvrwxwg3tnjnfjtb3md@oy6kd5jnsu3t>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: rMvDLlYLY_5qOde5thlgtLze6Sl53RM4
+X-Proofpoint-GUID: rMvDLlYLY_5qOde5thlgtLze6Sl53RM4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_03,2024-08-27_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1011
+ adultscore=0 suspectscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 malwarescore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408280065
 
-The 'fsl,imx28-saif' compatible has already the mxs-saif.txt description.
-This patch converts (and removes it) this file to fsl,saif.yaml (to follow
-current fsl convention).
 
-Changes for the mxs-saif.txt:
-- Adds 'clocks' and '#sound-dai-cells' properties
-- Provide device description
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
+On 8/28/2024 3:24 PM, Krzysztof Kozlowski wrote:
+> On Wed, Aug 28, 2024 at 11:05:11AM +0800, Jingyi Wang wrote:
+>> Add support for PIL loading on ADSP, CDSP and GPDSP on QCS8300
+>> platform.
+>>
+>> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+>> ---
+>>  drivers/remoteproc/qcom_q6v5_pas.c | 55 ++++++++++++++++++++++++++++++
+>>  1 file changed, 55 insertions(+)
+>>
+>> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+>> index ef82835e98a4..368aa9cc0051 100644
+>> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+>> @@ -857,6 +857,58 @@ static const struct adsp_data sdm845_adsp_resource_init = {
+>>  	.ssctl_id = 0x14,
+>>  };
+>>  
+>> +static const struct adsp_data qcs8300_adsp_resource = {
+>> +	.crash_reason_smem = 423,
+> 
+> You just duplicate stuff. This is EXACTLY the same as SA8775p.
 
----
-Changes for v2:
-- Remove mxs-saif.txt
-- Add description with information about extensions required for this
-  device's current DTS description
----
- .../devicetree/bindings/sound/fsl,saif.yaml   | 78 +++++++++++++++++++
- .../devicetree/bindings/sound/mxs-saif.txt    | 41 ----------
- 2 files changed, 78 insertions(+), 41 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,saif.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/mxs-saif.txt
+Agreed with you. Offline checked with Jingyi, she will remove the
+creation and use sa8775p_adsp_resource directly.
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,saif.yaml b/Documentation/devicetree/bindings/sound/fsl,saif.yaml
-new file mode 100644
-index 000000000000..cc78a95e0391
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,saif.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,saif.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale MXS Serial Audio Interface (SAIF)
-+
-+maintainers:
-+  - Lukasz Majewski <lukma@denx.de>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+description:
-+  The SAIF is based on I2S module that is used to communicate with audio codecs,
-+  but only with half-duplex manner (i.e. it can either transmit or receive PCM
-+  audio).
-+
-+properties:
-+  compatible:
-+    const: fsl,imx28-saif
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rx-tx
-+
-+  clocks:
-+    maxItems: 1
-+
-+  fsl,saif-master:
-+    description: Indicate that saif is a slave and its phandle points to master
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+  - interrupts
-+  - dmas
-+  - dma-names
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    saif0: saif@80042000 {
-+        compatible = "fsl,imx28-saif";
-+        reg = <0x80042000 2000>;
-+        #sound-dai-cells = <0>;
-+        interrupts = <59>;
-+        dmas = <&dma_apbx 4>;
-+        dma-names = "rx-tx";
-+        clocks = <&clks 53>;
-+    };
-+  - |
-+    saif1: saif@80046000 {
-+        compatible = "fsl,imx28-saif";
-+        reg = <0x80046000 2000>;
-+        #sound-dai-cells = <0>;
-+        interrupts = <58>;
-+        dmas = <&dma_apbx 5>;
-+        dma-names = "rx-tx";
-+        clocks = <&clks 53>;
-+        fsl,saif-master = <&saif0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/mxs-saif.txt b/Documentation/devicetree/bindings/sound/mxs-saif.txt
-deleted file mode 100644
-index 7ba07a118e37..000000000000
---- a/Documentation/devicetree/bindings/sound/mxs-saif.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--* Freescale MXS Serial Audio Interface (SAIF)
--
--Required properties:
--- compatible: Should be "fsl,<chip>-saif"
--- reg: Should contain registers location and length
--- interrupts: Should contain ERROR interrupt number
--- dmas: DMA specifier, consisting of a phandle to DMA controller node
--  and SAIF DMA channel ID.
--  Refer to dma.txt and fsl-mxs-dma.txt for details.
--- dma-names: Must be "rx-tx".
--
--Optional properties:
--- fsl,saif-master: phandle to the master SAIF.  It's only required for
--  the slave SAIF.
--
--Note: Each SAIF controller should have an alias correctly numbered
--in "aliases" node.
--
--Example:
--
--aliases {
--	saif0 = &saif0;
--	saif1 = &saif1;
--};
--
--saif0: saif@80042000 {
--	compatible = "fsl,imx28-saif";
--	reg = <0x80042000 2000>;
--	interrupts = <59>;
--	dmas = <&dma_apbx 4>;
--	dma-names = "rx-tx";
--};
--
--saif1: saif@80046000 {
--	compatible = "fsl,imx28-saif";
--	reg = <0x80046000 2000>;
--	interrupts = <58>;
--	dmas = <&dma_apbx 5>;
--	dma-names = "rx-tx";
--	fsl,saif-master = <&saif0>;
--};
+Will it be ok to put the second patchset here along with the qcs8300
+base dt changes together?
+> 
+> NAK.
+> 
+> Best regards,
+> Krzysztof
+> 
+
 -- 
-2.39.2
+Thx and BRs,
+Aiqun(Maria) Yu
 
 
