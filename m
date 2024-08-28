@@ -1,236 +1,205 @@
-Return-Path: <devicetree+bounces-97549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C33A962909
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:44:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E173962956
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:54:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7DF284754
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:44:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B0341F24F5F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2037D188014;
-	Wed, 28 Aug 2024 13:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC30A188CAB;
+	Wed, 28 Aug 2024 13:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XQX1xlWU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="baOf/6Mg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64592187FE5;
-	Wed, 28 Aug 2024 13:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED3616C859
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 13:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724852675; cv=none; b=dcYnrbAlgLXp79G+F71MhOH8XyDNwJ2h3D4EHtGBqoy0tLpbOv4ni/CBcyxCgbilIF9mMFXaFlrHTVNl4rQluxbCcbKXMql/bv6NXUxOo8P6oDkX5zv08hPOPRn3tzR6D+qOHPLavanfzgGlYY5WM5tAKWvSqDRfBWOlaZav+jw=
+	t=1724853244; cv=none; b=c9JviXx02DBmc/BcOu/6+woxYzclqhx+q5/Eu+4BLySdG/wb3pg5Yk9iF7tzck+OfNQTiDzczAALYXZJKSSWJNRk7uSEbsJMKLzC3IZo7sA9dRLtOC+Tu/B/9HalUxunuNRV8/hphliNxztMQPBlSHdjX9kC4B32gRwjqwkdkm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724852675; c=relaxed/simple;
-	bh=emDC30H51qu8L5OlUlGZUyMHWlLMlaMzNkPO2HeKdTs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FTCIS4kZYW0r+A8HMHleFZg9+sSziLCaSXF+kPcA/2aq9bNa1m0VeQ73osqPQsWPXygWuBV1OOfzFGp8EM5V5SoQNVLDIEguf03G34tGc6FOBuXa69u8upsEyDBg7WQHblXq55mkyeeG7CtK+B/ruCLgawSWTNtG6OAjBvxpe04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XQX1xlWU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47SBGBuj005876;
-	Wed, 28 Aug 2024 13:44:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WV6pOsN3fzAOdvPKz8rxnXPKkoNjSkNfRLTZAiQzD6s=; b=XQX1xlWUOZ/mwcR1
-	ybKElGSj+kEgAYLK1Zl5/YqTUla64WimlWfkOXJPlLaCxXcYWMLbsrev5sYrdT5d
-	m602n5l/UnJE5SSiOn8C/5I7uQnL+SIOp873lVB5DRrlAzEZ+TqD7NPe798Q/wHM
-	Ed1Rn6VEchqchJzAu3ZrCNM3t1vdsrpBbf7sigF/Jar5BjHIf5OZZJ+RyRS4QQDP
-	w+IqodQEJ/x3cFfxwkSY6Flwq+FtmGvPl26/g/7J49pgfW3l5ojZ0gK1Ss1sd3lM
-	SjOybkToPPJ9tTIn7R82a3DA8AGQx0/M2f/D6RdN4vlpvuWwEIMetE5U4onUDLXZ
-	LgrLsw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv2huyb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 13:44:20 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47SDiJjj016907
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 13:44:19 GMT
-Received: from [10.253.39.71] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 Aug
- 2024 06:44:13 -0700
-Message-ID: <844538cc-9f58-4e05-8356-096a98bd543a@quicinc.com>
-Date: Wed, 28 Aug 2024 21:44:11 +0800
+	s=arc-20240116; t=1724853244; c=relaxed/simple;
+	bh=W2qT+nbE+KGIf64JgDj7bPJT7KbQfb1ZNolRePACrmA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iHNU0FUxiUJucKdIZlfJzCr4vQkhCN+tzXzVXj5pRb+sOwyLbTULIeMoQqkYMBtqJVycA8eBegkp0KBRGNEEV0mbr0saqESEqMeF2MxB00FPQzDJm5xF7TrEm3bzgWj+4K5FINPV61TGnCuSehI7xDlKmTR4K56U1u7cxeD35Ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=baOf/6Mg; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-37189d8e637so3943422f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 06:54:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724853241; x=1725458041; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PsWzKaC8r3z3iwI7ze5w6BhtUaD0ABZEzQQaTYtnZn4=;
+        b=baOf/6Mg+kD7G0aCUyCgQM+zacpsd251ivYlZcXwiVfcAb/Wz9DumkFHSvnfmUPOz/
+         SkCjQF9J27Oy/Pbz7E6zRr6S2sEdXmlmOt0SFXG49lcgGnxTLVze7SRrmHfVsF/Onfdh
+         2JOTSPQh2JYWWaqvaHo6B2LnfAOu4jnyWXmtyiALVBkuF5asMBi77FRf/3z/dXvTnyfB
+         LSBDOlKV/ig2tjMJkhZki+WdIzTc8SU0SoqqXzxiOSbQsv7AsuaYTvW16ryTktJONDJb
+         aBVG7YiNEQslN9vPcb21HtOG8PR/ZijV+/hyC2O3EpuW5YT3RFQ9yKQlb8DDuZxNjtis
+         PhAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724853241; x=1725458041;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PsWzKaC8r3z3iwI7ze5w6BhtUaD0ABZEzQQaTYtnZn4=;
+        b=lu8SNIPNIZ9S+B0zPUk5539XWpVjidt6SQqOfcMJ/lbaRTyrM9mxPIx52zbZbOD52M
+         +l4X9FJWorgBr6fXiJP3JA3mkpb3tPWJFmESSBVprM2u3sxASz47Tquocq62gjrY6bIz
+         vNanBngvDatsDmF5lp4ziT99K1IejFsYBhK6zHLIeip2PFMPlH3yL+zHcQ1/jUERzHL4
+         QIn0+LEIVr+qF8XPwEJ0eQ4aZRb6s+3XZYm1ylrs0GEgT0lixWUbKl3gpWxu+FlnDgR1
+         fm1r2QXfa3P4vZC6Eyr9hNmFBNeI8zbvPzaDSFiHnkC7Z1Ud4Sjo9FdlDzBxxOI1uQFn
+         ZYug==
+X-Forwarded-Encrypted: i=1; AJvYcCWstojXNRER4iibis7IpKojGcG9KXPxhnZv4LmLLtDAJzrPKxX4AlMr0hYY7AYGjNwMmno1D+Fnj1w9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQgtkxb1BYyUt26ZiJygWFOSL1098uIXQ4DcyBS4yNauT0nK7A
+	adSqs16Q0Sf13vBksAuCyBb+PKQnqOsMx5Ck6D+xHBHvf5E76Ssx48hzaJWrgKI=
+X-Google-Smtp-Source: AGHT+IGYNhcSsHhA50Pc1ZE3GvXf2OgkY55sS2VidB4C2ZkfpkxCDxWyLcO8SIagveLtAqlTErYVvQ==
+X-Received: by 2002:a5d:6111:0:b0:371:a844:d331 with SMTP id ffacd0b85a97d-373118fc172mr10240865f8f.62.1724853240598;
+        Wed, 28 Aug 2024 06:54:00 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730813c44asm15613395f8f.34.2024.08.28.06.53.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2024 06:54:00 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/3] ASoC: dt-bindings: amlogic-sound-cards: document
+ clocks property
+Date: Wed, 28 Aug 2024 15:53:53 +0200
+Message-Id: <20240828-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v2-0-58159abf0779@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] PCI: qcom: Add support to PCIe slot power supplies
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
-        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
-        <kw@linux.com>, <lpieralisi@kernel.org>, <neil.armstrong@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20240827063631.3932971-1-quic_qianyu@quicinc.com>
- <20240827063631.3932971-9-quic_qianyu@quicinc.com>
- <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
-Content-Language: en-US
-From: Qiang Yu <quic_qianyu@quicinc.com>
-In-Reply-To: <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ecUGWv2wRlPHoo51cogHb43pAmzADN8m
-X-Proofpoint-ORIG-GUID: ecUGWv2wRlPHoo51cogHb43pAmzADN8m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-28_05,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 malwarescore=0 adultscore=0 phishscore=0
- impostorscore=0 bulkscore=0 spamscore=0 suspectscore=0 mlxscore=0
- mlxlogscore=999 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408280098
+X-B4-Tracking: v=1; b=H4sIAPErz2YC/6WOQQ6CMBREr2K69pu2VhRX3sOwqO2n/ARa0g9EQ
+ 7i7lSu4mrzJZGZWwZgJWdwPq8i4EFOKBfTxIFxnY0AgX1hoqY2slIEpjeTADn0KReeRp4x2gBd
+ FTzEwtPRGBjt7SsDRg7PZg3aV0c75oihK9Zhxz5XmZ1O4I55S/uwvFvVz/xxcFEio28vV1yjV7
+ WwePUWb0ynlIJpt275XTao2+QAAAA==
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5950;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=W2qT+nbE+KGIf64JgDj7bPJT7KbQfb1ZNolRePACrmA=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmzyv1/ZMuhoHR5pewIyF5Gq+f8UGw7T/m3E0Pig6d
+ v47cuCGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZs8r9QAKCRB33NvayMhJ0fnGD/
+ wLvs8Egp00XPNWKHBIC7q7bcXodhwunPgAOFqpH1cksGb0adPigFWPnTjhBvqwGGGhOJgriDhoRAGb
+ 1woPAgTxo96yPq4y/rOUeYrDphxqx1JrATxTausbPL90AyGRCD0kUMfk/RrnLy69k5xWohubgGA7fD
+ nT+qmhS1Krsub6kIvmu6KMX6AJctbDhBXDxCBY/hEIkmVWSoTlA9uBYBYQw0PVSP5+QuaIwEGAlA3+
+ ka0JH8r1kSa4pLYwgrulUHpSS4xtUX49o+krg25UcEbWwr4fVcebHkCILobKPdcs1W1zbK7Okl0c4u
+ XrJzhrUcnK6wWuPaLy/NGi1l9+eFP4wSYm+v2t32Q2OzTZruBpI90pTUCpmoAd9RU/zAKctieznRQg
+ U8Ss+nck4wPHvbUN84+uY+6mny4pnIfE30uezrObARDrMwHc9Hdl9XDX+kPXGK9zyOXNSAkgpXQmws
+ TL4VoO5Hnr7I7SzygZhESUanUjzbwAAVFu3ujUkgUfUworJRpTejrKHjip2S3BUjE1TWq7kkGflz4F
+ gMCH9XdPE/ix4Osjkw1SIs/vONUpn5MsV83r5SoaeYX5SFz71RtFuk+RmhioViGTCg66piwhgE1J7H
+ AuQTT9amtEy4KQ4/kHU5kwamsatOXJulV86VZ9vNbOpLdsv63fmrqMCDvzVA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
+Following an off-list discution with Jerome about fixing the following
+DTBs check errors:
+    sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+        from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
+    sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+        from schema $id: http://devicetree.org/schemas/sound/amlogic,gx-sound-card.yaml#
+    sound: 'anyOf' conditional failed, one must be fixed:
+        'clocks' is a required property
+        '#clock-cells' is a required property
+        from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
 
-On 8/27/2024 7:44 PM, Dmitry Baryshkov wrote:
-> On Tue, 27 Aug 2024 at 09:36, Qiang Yu <quic_qianyu@quicinc.com> wrote:
->> On platform x1e80100 QCP, PCIe3 is a standard x8 form factor. Hence, add
->> support to use 3.3v, 3.3v aux and 12v regulators.
-> First of all, I don't see corresponding bindings change.
->
-> Second, these supplies power up the slot, not the host controller
-> itself. As such these supplies do not belong to the host controller
-> entry. Please consider using the pwrseq framework instead.
-As Mani commented, he is exploring to use pwrctl driver to control this
-three power. Will update the patch after Mani share his conclusion. This
-patch may even not required.
+It has been agreed documenting the clock in the sound card is a better solution
+than moving them to a random clock controller or consumer node which is not
+related to the actual meaning of those root frequencies.
 
-Thanks,
-Qiang
->
->> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
->> ---
->>   drivers/pci/controller/dwc/pcie-qcom.c | 52 +++++++++++++++++++++++++-
->>   1 file changed, 50 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
->> index 6f953e32d990..59fb415dfeeb 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -248,6 +248,8 @@ struct qcom_pcie_cfg {
->>          bool no_l0s;
->>   };
->>
->> +#define QCOM_PCIE_SLOT_MAX_SUPPLIES                    3
->> +
->>   struct qcom_pcie {
->>          struct dw_pcie *pci;
->>          void __iomem *parf;                     /* DT parf */
->> @@ -260,6 +262,7 @@ struct qcom_pcie {
->>          struct icc_path *icc_cpu;
->>          const struct qcom_pcie_cfg *cfg;
->>          struct dentry *debugfs;
->> +       struct regulator_bulk_data slot_supplies[QCOM_PCIE_SLOT_MAX_SUPPLIES];
->>          bool suspended;
->>          bool use_pm_opp;
->>   };
->> @@ -1174,6 +1177,41 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
->>          return !!(val & PCI_EXP_LNKSTA_DLLLA);
->>   }
->>
->> +static int qcom_pcie_enable_slot_supplies(struct qcom_pcie *pcie)
->> +{
->> +       struct dw_pcie *pci = pcie->pci;
->> +       int ret;
->> +
->> +       ret = regulator_bulk_enable(ARRAY_SIZE(pcie->slot_supplies),
->> +                                   pcie->slot_supplies);
->> +       if (ret < 0)
->> +               dev_err(pci->dev, "Failed to enable slot regulators\n");
->> +
->> +       return ret;
->> +}
->> +
->> +static void qcom_pcie_disable_slot_supplies(struct qcom_pcie *pcie)
->> +{
->> +       regulator_bulk_disable(ARRAY_SIZE(pcie->slot_supplies),
->> +                              pcie->slot_supplies);
->> +}
->> +
->> +static int qcom_pcie_get_slot_supplies(struct qcom_pcie *pcie)
->> +{
->> +       struct dw_pcie *pci = pcie->pci;
->> +       int ret;
->> +
->> +       pcie->slot_supplies[0].supply = "vpcie12v";
->> +       pcie->slot_supplies[1].supply = "vpcie3v3";
->> +       pcie->slot_supplies[2].supply = "vpcie3v3aux";
->> +       ret = devm_regulator_bulk_get(pci->dev, ARRAY_SIZE(pcie->slot_supplies),
->> +                                     pcie->slot_supplies);
->> +       if (ret < 0)
->> +               dev_err(pci->dev, "Failed to get slot regulators\n");
->> +
->> +       return ret;
->> +}
->> +
->>   static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
->>   {
->>          struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->> @@ -1182,10 +1220,14 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
->>
->>          qcom_ep_reset_assert(pcie);
->>
->> -       ret = pcie->cfg->ops->init(pcie);
->> +       ret = qcom_pcie_enable_slot_supplies(pcie);
->>          if (ret)
->>                  return ret;
->>
->> +       ret = pcie->cfg->ops->init(pcie);
->> +       if (ret)
->> +               goto err_disable_slot;
->> +
->>          ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
->>          if (ret)
->>                  goto err_deinit;
->> @@ -1216,7 +1258,8 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
->>          phy_power_off(pcie->phy);
->>   err_deinit:
->>          pcie->cfg->ops->deinit(pcie);
->> -
->> +err_disable_slot:
->> +       qcom_pcie_disable_slot_supplies(pcie);
->>          return ret;
->>   }
->>
->> @@ -1228,6 +1271,7 @@ static void qcom_pcie_host_deinit(struct dw_pcie_rp *pp)
->>          qcom_ep_reset_assert(pcie);
->>          phy_power_off(pcie->phy);
->>          pcie->cfg->ops->deinit(pcie);
->> +       qcom_pcie_disable_slot_supplies(pcie);
->>   }
->>
->>   static void qcom_pcie_host_post_init(struct dw_pcie_rp *pp)
->> @@ -1602,6 +1646,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->>                          goto err_pm_runtime_put;
->>          }
->>
->> +       ret = qcom_pcie_get_slot_supplies(pcie);
->> +       if (ret)
->> +               goto err_pm_runtime_put;
->> +
->>          ret = pcie->cfg->ops->get_resources(pcie);
->>          if (ret)
->>                  goto err_pm_runtime_put;
->> --
->> 2.34.1
->>
->
+The patchset adds the clocks proprty to the bindings and finally adds the
+properties to the DT files.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- drop clock-names in bindings & commit messages
+- fix new boards
+- drop RFS
+- Link to v1: https://lore.kernel.org/r/20240614-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v1-0-9f57d9e01834@linaro.org
+
+---
+Neil Armstrong (3):
+      ASoC: dt-bindings: amlogic,axg-sound-card: document clocks property
+      ASoC: dt-bindings: amlogic,gx-sound-card: document clocks property
+      arm64: dts: amlogic: add clock and clock-names to sound cards
+
+ .../devicetree/bindings/sound/amlogic,axg-sound-card.yaml          | 7 +++++++
+ Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml | 7 +++++++
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts                     | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts                  | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts              | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts                  | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts                    | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts                 | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts      | 4 ++++
+ .../arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi               | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts                | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts              | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts                  | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts         | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi              | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts              | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts             | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi             | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi                | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts                 | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts             | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts                | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts                    | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts                    | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts             | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts       | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts         | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts    | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts       | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts             | 5 +++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts              | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts                | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts                 | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi                 | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi        | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts          | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts               | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts          | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts              | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts                  | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi                  | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts                   | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts             | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts                  | 4 ++++
+ 52 files changed, 217 insertions(+)
+---
+base-commit: cb2361c78068ec47c3a6222d71f664b67665550e
+change-id: 20240614-topic-amlogic-upstream-bindings-fixes-audio-snd-card-2c642ccd2c6e
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
