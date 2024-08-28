@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-97745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5372696334D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 22:59:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBFC963358
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:02:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F02EC1F251D9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:59:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10623B20CE4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C221AC898;
-	Wed, 28 Aug 2024 20:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CFA1AC891;
+	Wed, 28 Aug 2024 21:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="akue8Pph"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SBp4eS4t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A8AC1AC45C
-	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 20:59:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E791AC42A
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 21:01:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724878782; cv=none; b=DkZkSEQeL5B+/bW/zcLSN/v/HhXj8a73ysEh2AMADudq1+GDd7ZGMGAomjmvcdnFFrZzYLxBDchstr3RvGC+O3D+XitTjcsqFk6djO1PrghANpSQKpr7AJpHghi/TqK/Ucnw83Mop02gBDgcNm+ovDK4rHBXc0Ko/wK40FucDC4=
+	t=1724878913; cv=none; b=EfOzKJHVE6kkPJJeNRbtjWfCYzhmrPoxRFBnizYj2q4wHQg1f9KJSoUfEg5UiSEZt+Chw170nK/IVjdkScDmSEh18WWiveEXTjsHurEhlzrT+HgU7L7a1EgzWv/zbPrGApD9BgviUld0vcij79/pIV6/MyKr9Pql0fbK6nGJjxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724878782; c=relaxed/simple;
-	bh=rgXiQ0ut4rQ+4bIIkkS5brMFNpLbKdsLtkTp1LLm1/0=;
+	s=arc-20240116; t=1724878913; c=relaxed/simple;
+	bh=dlIRFRRqOUfbBTTzHCw3bIRHgjbd1gyMfANoQGpbubA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zx6xgr+e5Mi1gzN6JNRthvstbK81PMV8crqzcskA2e+LoPHg1/jCZ92+WanTjPYuC3MwXSgO0mU/u7C+xZ28GWaCQ5TXVExOav7LW+Q/6H3Ny2i2+8znZ0NzbT1b1aPX+xGbnH2Bv1URU41txqJpjOAyeLiHUwbmXkh2BQtSdq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=akue8Pph; arc=none smtp.client-ip=209.85.208.180
+	 Content-Type:Content-Disposition:In-Reply-To; b=JdCxDjG98RqIeXUBuuk7bymnAvifANI55I3HBBvvSm72VFiKCg5fCsbeEWh0jY8ADKkv8lipirD32rwVZ2R+Zs53tODyiZ58EwAnpOsaiZzaLRtRv8mkkeAi3JOBL2KqmkVGLEEwyXFrYeKG00Xwz4hsbtiIc5KFzB7rjbzLIrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SBp4eS4t; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f3fea6a0a9so9433401fa.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 13:59:40 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53351642021so8561594e87.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 14:01:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724878779; x=1725483579; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1724878910; x=1725483710; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=w3e2rMn7JyR9qzQn+ZSCjNL54f4MTdVR/nFThKl7tiM=;
-        b=akue8PphbNF4fYKsEysZlZXYnQl5OPqwVKc1yjOS0cs/qx2MlZOcvyWPSKSOYuHUi7
-         2O1wFX1VcwAuihYz7LT46BfUYsX63Ma7BnOfyPBeSZI2vrBG23mfvdHuYozyl5pYD/Gc
-         kDMnUlr4w+x1WSbFvk6xJtEOwM3g4xzj1UUiZVbaSUPSYVP1hb55KR4LUttWp9imbn21
-         YV5qv6oYFM4PauGiMZV3RWc4Ottzj/bTjcn4wDPwKANwF3A3ZrxVH6Geg6+tD7uXcPC6
-         Q4IRGnAzQ1AnFmq9ea1VZ1CONArMUMH6R7n86c6MAr4YRyILyblpDBz0l63Plyq/JCZN
-         yg4Q==
+        bh=9OrGNAAWQoFpJEHjcXRj5aD9CPBwOs7tFWfZHpIv76g=;
+        b=SBp4eS4tsGwMuVTZFDCCmivDqNijPni3pfsAhRtP02LB+kGcfeK7g6EKa3LVc+TVcL
+         cf5Xs9TBJ8XD0FJvjt0/SLRK7kFQNd0vVW0gInMmu2BX8dtYJJyQSHIUWNL1b+P+mpcn
+         iete7iFnM9aJ5p+gMvuIkuK6IV7kC2IIlMkJddZDozSbfi2D6ky2SDWtbicdJhcEkgTm
+         pNG8EGdIJtMtV0FDvbYX3Tq+0Et6n8L0AFFMqImpA5jEB3kM0vSk/U6F26JgzWMejPWT
+         JzOPuDXTfE3IkrkY1v7yU3wudM0Ce8uRxd6FyxGtw6kThBACi4ZLV4ktuFqa8Tkrzo5O
+         KTtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724878779; x=1725483579;
+        d=1e100.net; s=20230601; t=1724878910; x=1725483710;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=w3e2rMn7JyR9qzQn+ZSCjNL54f4MTdVR/nFThKl7tiM=;
-        b=KkQYSEiNqouQHurpKVLypE3StPItAcw2At4PK4GDm5FiLhqOztniL80v560IyQcBL5
-         1yJ0bKvEhEYNC7yPJbraFuNxKTgbPnq5qEVyTsKwrYoGz6X6CzoGU4q9Xq0N9wO76Ix+
-         M4B9kFtjS+7O5kc/s/+iKB2bVl00kSyQg3kTSK5ZFyFekwVVW1xPOJre9C4gDZvDKFhK
-         8nWBkGJBs3TsBq8ZTunPc9rE8Fmh4W9UUqugxKO5sjDIhUHGUCiklJtaffpBZtaFJQG4
-         knF7yvynAyhzp+4iQHbxmWKPt9+TvBo9dg7tnaBcrYz4OHupNT1f8HF5bghC46BhJ3J7
-         kSXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXT3f7/Y/6W7MwqIyRgpx9DLMOpmufZHUg92ZcCfZmk3fCfIIzt5ZptXEdNQT6R0OzejMwTyM/za4fO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzcy4xmh66pfKqV223Twtz4ArMjoka3zwmS2pbNy7O7VMt2GbK
-	maCKkDGmFqXlYBko7hy38rvLkAuMt/SVCAqV5JrjnLNCDKa7RCk6HlT9Bk6UvSw=
-X-Google-Smtp-Source: AGHT+IFbHz8tCFXAnyET44/ligk5uJzcSPo66ooELnKUtYAB0PqKSrneJsVu2v9zyMP4D3hSScLw9g==
-X-Received: by 2002:a05:651c:211d:b0:2f5:23a:1055 with SMTP id 38308e7fff4ca-2f612ae4c5fmr1068811fa.18.1724878777924;
-        Wed, 28 Aug 2024 13:59:37 -0700 (PDT)
+        bh=9OrGNAAWQoFpJEHjcXRj5aD9CPBwOs7tFWfZHpIv76g=;
+        b=FX4KVbwdZ4+UDFMJjn8YGCSzC0IRHaasT5swq+IAELNFf0OKKgboxsw6dz3cGFVzuj
+         LmW9v/IW4Phtki+UDRsFYvG8E9cFoAmhs78oZ6nyz1H8HzycwZGzfxsbrZmpVyFZV3NC
+         UJG+RFckrs6nDzFVTQphAlDb6qxu1bTC2ioDGTL4gquLxdkIS49w3Fy2sI585oX5LQd4
+         b5Xa6vJA5ZiOQDgphCo22NaV4tTc1ejJ9TN3qu+UyK/wVKgMwEGfOAv8B3t0HIe2ohjJ
+         dHfkHsjh7luvrQeIsZbtMdpDEhgCJguV27KPIe7R2NGe+6ehhm3IBiv0975voS61xdkQ
+         uB4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVCqGiH63Zf/VP8J+mOSLviYBPuj3CZM1huvLRk8VX5f3dUnszEAoYfkStDoM15hFEmgwNpSx0HqPRz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWzkwudPtpJFScdxqm5cUGk01LQHiQqrZ6pYP0yaPCB4dmricb
+	fC7JZd0bTbIo+FqT67nBDokx5YMrlL4R65d35psOYXZawTL1vPNiQ1E6hnt+DlA=
+X-Google-Smtp-Source: AGHT+IGiHuoKMiiPcr4b2w40l5MMLxSg/HrhC7ywebXGvK5HJJmHbS3Pb68beruYP+cc7V41QUN+Cg==
+X-Received: by 2002:a05:6512:ba1:b0:530:c1fb:51a1 with SMTP id 2adb3069b0e04-5353e56764fmr263510e87.17.1724878909295;
+        Wed, 28 Aug 2024 14:01:49 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f4047e101esm20650611fa.72.2024.08.28.13.59.36
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5334ea366desm2283755e87.82.2024.08.28.14.01.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2024 13:59:36 -0700 (PDT)
-Date: Wed, 28 Aug 2024 23:59:35 +0300
+        Wed, 28 Aug 2024 14:01:48 -0700 (PDT)
+Date: Thu, 29 Aug 2024 00:01:47 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Varadarajan Narayanan <quic_varada@quicinc.com>
 Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
@@ -74,12 +74,11 @@ Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
 	ilia.lin@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org, 
 	ulf.hansson@linaro.org, linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v7 3/7] dt-bindings: soc: qcom: cpr3: Add bindings for
- IPQ9574
-Message-ID: <52cffqp4ugh557yg6wx5n56tar74csra635pewqyu7wirv4cqj@zljbg2hdrxsx>
+	Praveenkumar I <quic_ipkumar@quicinc.com>
+Subject: Re: [PATCH v7 6/7] soc: qcom: cpr3: Add IPQ9574 definitions
+Message-ID: <fmzjfzksja24pev7bkjdr2kelp7djq3jlwib2dauzop7em7tkl@gurroyrzeqqm>
 References: <20240820055705.3922754-1-quic_varada@quicinc.com>
- <20240820055705.3922754-4-quic_varada@quicinc.com>
+ <20240820055705.3922754-7-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,44 +87,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240820055705.3922754-4-quic_varada@quicinc.com>
+In-Reply-To: <20240820055705.3922754-7-quic_varada@quicinc.com>
 
-On Tue, Aug 20, 2024 at 11:27:01AM GMT, Varadarajan Narayanan wrote:
-> Add the bindings for the IPQ9574 CPR3 driver to the documentation.
-
-Bindings are for the hardware, not for the driver.
-
+On Tue, Aug 20, 2024 at 11:27:04AM GMT, Varadarajan Narayanan wrote:
+> From: Praveenkumar I <quic_ipkumar@quicinc.com>
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> * Add thread, scaling factor, CPR descriptor defines to enable
+>   CPR on IPQ9574.
+> 
+> * Skip 'acc' usage since IPQ9574 does not have acc
+> 
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
 > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
-> v5: Add Reviewed-by
+> v7: Add rangeuV vaues
+>     Fix IRQ handler 'argument'
 > 
-> v4: Change compatible string to cpr4 instead of cprh
->     Not adding Reviewed-By as compatible string changed
-
-I still see that it is being declared as compatible with qcom,cprh,
-while your hardware isn't CPRh, it's CPR4.
-
+> v6: Rebase on top of Konrad's v15
+> 	- https://lore.kernel.org/lkml/20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org/T/
 > 
-> v2: Constrained nvmem-cells and the other variant.
->     Removed unnecessary blank line.
+> v5: Move the 'acc_desc' usage check to first patch
+> 
+> v4: s/silver//, s/cprh/cpr4/
+>     Skip 'acc' related code as IPQ9574 does not have acc
+> 
+> v3: Fix patch author
+>     Included below information in cover letter
+> v2: Fix Signed-off-by order
+> Depends:
+> 	[1] https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org/T/
+> 	[2] https://github.com/quic-varada/cpr/commits/konrad/
 > ---
->  .../bindings/soc/qcom/qcom,cpr3.yaml          | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
+>  drivers/pmdomain/qcom/cpr3.c | 142 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 140 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> index 2e6712aa1c58..c00373948901 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> @@ -24,6 +24,7 @@ properties:
->        - const: qcom,cpr4
->        - items:
->            - enum:
-> +              - qcom,ipq9574-cpr4
->                - qcom,msm8998-cprh
->                - qcom,sdm630-cprh
->            - const: qcom,cprh
+> diff --git a/drivers/pmdomain/qcom/cpr3.c b/drivers/pmdomain/qcom/cpr3.c
+> index d594bc79be1c..51c8b5766ccd 100644
+> --- a/drivers/pmdomain/qcom/cpr3.c
+> +++ b/drivers/pmdomain/qcom/cpr3.c
+> @@ -2461,7 +2597,7 @@ static int cpr_thread_init(struct cpr_drv *drv, int tid)
+>  						NULL, cpr_irq_handler,
+>  						IRQF_ONESHOT |
+>  						IRQF_TRIGGER_RISING,
+> -						"cpr", drv);
+> +						"cpr", thread);
+
+Unrelated change => separate patch.
+
+LGTM otherwise.
+
+>  		if (ret)
+>  			goto fail;
+>  	}
+> @@ -2544,7 +2680,8 @@ static int cpr_probe(struct platform_device *pdev)
+>  	desc = data->cpr_desc;
+>  
+>  	/* CPRh disallows MEM-ACC access from the HLOS */
+> -	if (!(data->acc_desc || desc->cpr_type == CTRL_TYPE_CPRH))
+> +	if (!(data->acc_desc || desc->cpr_type == CTRL_TYPE_CPRH ||
+> +	      of_device_is_compatible(dev->of_node, "qcom,ipq9574-cpr4")))
+>  		return dev_err_probe(dev, -EINVAL, "Invalid ACC data\n");
+>  
+>  	drv = devm_kzalloc(dev, sizeof(*drv), GFP_KERNEL);
+> @@ -2694,6 +2831,7 @@ static void cpr_remove(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id cpr3_match_table[] = {
+> +	{ .compatible = "qcom,ipq9574-cpr4", .data = &ipq9574_cpr_acc_desc },
+>  	{ .compatible = "qcom,msm8998-cprh", .data = &msm8998_cpr_acc_desc },
+>  	{ .compatible = "qcom,sdm630-cprh", .data = &sdm630_cpr_acc_desc },
+>  	{ }
+> -- 
+> 2.34.1
+> 
+
 -- 
 With best wishes
 Dmitry
