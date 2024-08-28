@@ -1,293 +1,263 @@
-Return-Path: <devicetree+bounces-97281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98ACA961D03
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 05:30:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D38961C28
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 04:35:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD8841C23448
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 03:30:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F31BB22757
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 02:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C0613D896;
-	Wed, 28 Aug 2024 03:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2053CF74;
+	Wed, 28 Aug 2024 02:34:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="CsOhvdJ5"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="MaTa8cxR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1CB2941C;
-	Wed, 28 Aug 2024 03:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724815847; cv=none; b=WCnfJDfjy3Iribrw0rXwSKRAvPTYdyX8Fssm1Lp/VbgN1bi0GcDVdRngzgBL5/MVyqTEFOYQIFV07QxAmj/FVCj0foZa3gPAU3NyPjrsZeYP3WhE88tgy8Tm9eiecBpySw40G4oqYleCLQ7a93MEQr/elgRZvpZD46sut8Wc07o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724815847; c=relaxed/simple;
-	bh=w9gKMUwtFMhXtaLOZKT94eoi54UxpaqmxQcBOIz4yLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A8X7mSqbai4Z+0IonY+DbivQQ4KAfHz8t+JkVIRK3SIaUHPShwjFjbygUeaeHUp+4R27A1U7vns4mAfgeTJBlShmAWBg2Qf/aYRQmnSKxxIvzftep0h+7p3B/fqGlsNoua00ZIZ10LzYhRJNQaFCJqyUm6QNLG8/4LlC0F8fc90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=CsOhvdJ5; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=BJK05Ul0TQ++UJk0M0jDApdVzd0KxnzQI04Ca6YRhoM=;
-	b=CsOhvdJ5L6c2jKEq4i0gMa1TGrotzOerH0tXvhvLJheihULgT0EvDoEVP4htZW
-	fTIU4mhgdcCOIj578xYMZalJHtjUniDmabMgFLPPy75Vds/zclIRUj04o9jih8wo
-	eJqj0QP/Y/9qjOEFImSd7hp0MOD9THecMDlQUeWIDMv04=
-Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDn__5vi85mpd4NAA--.24882S3;
-	Wed, 28 Aug 2024 10:29:05 +0800 (CST)
-Date: Wed, 28 Aug 2024 10:29:03 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 3/4] arm64: dts: imx8mm-kontron: Add support for display
- bridges on BL i.MX8MM
-Message-ID: <Zs6LbyOeGMZsxn2S@dragon>
-References: <20240806133352.440922-1-frieder@fris.de>
- <20240806133352.440922-4-frieder@fris.de>
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2131.outbound.protection.outlook.com [40.107.255.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67BC288B1;
+	Wed, 28 Aug 2024 02:34:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724812493; cv=fail; b=lgq5Z6a4xL45H9z7JyunYqpJ5iNpWPHWbpFG6gcW6iyzly+aZbny7jvHrVhm320NAM0mP3r3Q3mDamoWZVh0AzCnvadxsP1qfutaazmwyVDrreJIwP8D+XLlx5hqACEZhZI3zaTyehenxhI/7B1Q+TJ9CXPvg+tBWF2MYRuk5Y0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724812493; c=relaxed/simple;
+	bh=/c60EITzT/gASQI0L5V/7ys50SUGtLW+IM3rEcvBJ7E=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=o3xTPWGyV/oOKkjA8Iwy6goQl76ihG5WmUcJLXKJeDWPAHM1V/VCMfzLaGswfaWH9voG5hIlleqB33oE6wdhffg8m8GJLkTzSbL7rB9fMKNFFp843eR3gevXPkGybb4T5K6yqGk55oKZTT2ThK0a8oL7FdDXiYzy7ijWv7BIJ6E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=MaTa8cxR; arc=fail smtp.client-ip=40.107.255.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=I6A1YK/ceWJLxit6jqVklePN7okBkhP60cOexwp+b2+u6pfYMrIauY1bk2bj2qWk/DXmgQuKGc4kdcM5oCTeNs9zgqsJgaxyJ7NpFM1JGS7Eket8yOZlcf3vnzeeHlw8leFbu65lDQcI6lTny8b7nXHI03OoVfZ0HvBzerjFX6kUo+jFL9xPWTOJLvzdjY6UqofEArTvMXjzwdgbV9gkiruRZSe4QVGEarR1zqa+kbXXPK1ChFm2TTtgKYv44+GcknAizLinHsPHqvgP8Fm2ANPFFAAgLJlwccQ427gpUzlYQT2Vv47t39f1qLP4eS72puT1uTjALyMbnYO7zBFcXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UT/+Mk0EZsn5ssnt1WExj+UnUSsLOOYKRw0/dX+GtPU=;
+ b=XOhNhBxD/xNtshPMVS/MSEerYLaZq6wj85F8voCDTFRBb/lc95NJ9dH4DrEbeAGuhLbKRPH/ryHhN04G+ZbeMLFwtooY+eKrfu6NKhOH+Ou9ZNb5efr8NMj8Y6yz21kzftPvKXNqr+W6RI0fhPxMJnk8fPBS9WBXac6RAxSyP8G3XFSNA6n8PG3YSnYo6e0Ly7cvVzkinKaDPjtNCu8tfIogK/FzDCWOL57M72Ij4VpZkq+3u/KUqBhJpT9aORVFAf8lGdfO4kCERyvQTo+sGu1wD2jjfGYMmDDOjI3cZbZN4qMKBQpI4ZK8FnN6zeRB1k8B6eu+U6UGdQYw+jkatA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UT/+Mk0EZsn5ssnt1WExj+UnUSsLOOYKRw0/dX+GtPU=;
+ b=MaTa8cxR9eO1C29RGA7kqKYiwv7VH2ShsEK+HRKPmGi0t8Ml+TPHy90O2vz3esS/r5HgLWNNiDQH64ZrLa2ERJLrzSzW/yXzYIkDFkZZUuYY4Buc+Zs45uL3iYTQ5gSJxfSVZlY8Gc+W2/Ek33jdjnzOzengrpDY5m/P2fO9WSgcR9RtaGZUJA5mnAssasWYb5MnstInlREZtDdClf8xowWJ/Y7hBtjPFWF+C0fm4qWv0a8oxgQdvd9LuFkR/OzmC8EjrhGUJWtDKD0O/Hu/Z6kOq432OaOqYaPTGQa9QJWeqJTY/z2RCYMDnXOGwOKp7Zo9oEvPLArdmLCcwH7D3w==
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
+ by KL1PR0601MB5598.apcprd06.prod.outlook.com (2603:1096:820:9a::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.27; Wed, 28 Aug
+ 2024 02:34:43 +0000
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11%6]) with mapi id 15.20.7897.021; Wed, 28 Aug 2024
+ 02:34:43 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
+	"benh@kernel.crashing.org" <benh@kernel.crashing.org>, "joel@jms.id.au"
+	<joel@jms.id.au>, "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+Thread-Topic: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+Thread-Index:
+ AQHa8ho4oLFWUX2yC0qHT9Kfp3UIaLIuoMcAgAJo7hCAAJOvgIAA5YcAgADIa4CAARTpgIAAhfaAgARNnHCAADAKAIACnU8A
+Date: Wed, 28 Aug 2024 02:34:43 +0000
+Message-ID:
+ <OS8PR06MB75416ED990B2A32F98266A1DF2952@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
+ <20240819092850.1590758-3-ryan_chen@aspeedtech.com>
+ <ZsNT7LPZ7-szrgBJ@smile.fi.intel.com>
+ <OS8PR06MB7541EE5BA5B400445FE0295EF28E2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <ZsXVU2qy0GIANFrc@smile.fi.intel.com>
+ <OS8PR06MB7541945591A62B956DA28AD9F28F2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <Zsc9_UddBybdnM1Z@smile.fi.intel.com>
+ <OS8PR06MB75419F3E3A222AE941DE3007F2882@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <ZsiWp5ENQ0BeBjMn@smile.fi.intel.com>
+ <OS8PR06MB7541A23130F469357B7FE5F4F28B2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <ZsxbDK25mJ0sjcQy@smile.fi.intel.com>
+In-Reply-To: <ZsxbDK25mJ0sjcQy@smile.fi.intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|KL1PR0601MB5598:EE_
+x-ms-office365-filtering-correlation-id: a2cbba31-de1e-4737-c062-08dcc709f96f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?KTtmsPYPVorFub7zE3pzV3olezOvUVh6TFveU47LBSz+4lFXflQHZUgwxBoQ?=
+ =?us-ascii?Q?X1j4fFwrAEV/qriOnyIn64Kntr3nZxvS2fnk1pHYl5zS/nfOwn7EgCD36P0u?=
+ =?us-ascii?Q?Q2vUkBCRD4Zoav40WrQ49cYA1JkydR+YnCqJImh6fWB5unJSPlU2Uhbgxt4F?=
+ =?us-ascii?Q?RCx6jWOQDtbkfC67SUHCehF+dK6FmMYtU6jrO+tWqkYy1EChZpQtsuTAuQ4f?=
+ =?us-ascii?Q?612kbDxbrMFcppWz4kEk888qNv4sN9vpoDNWq2V8//YApgqgfQ0056lC9rGZ?=
+ =?us-ascii?Q?IGnlMHFIHe0iu/7RNedxSL9zllPbgOMPU1UhTXNNaPgDwElY3nD7hvjsmY5z?=
+ =?us-ascii?Q?JFd9Cf5n4oFjV2PtwJgfOOJ5wYa/o2+5UANa8joEZdD8Q7JDeFrBRoivoiQ1?=
+ =?us-ascii?Q?4hn5VRz47ELCh380f2vh1puG3srlomAZz/2mDwM7CkKTwduJRvfmAk1I0DXl?=
+ =?us-ascii?Q?uGzLixE3LwTbuOQb+xu+Z9YL8KAThzQPJKZmsCOMXDkkWZmgSjreQ2RPvHX+?=
+ =?us-ascii?Q?q2umqticpidHUoS0jgI+6KqhciC85MzZjbW7D6U2O8+9t7i+SfxkiJq+XfQs?=
+ =?us-ascii?Q?LeqcnknzhLMNiXcjn5sJRcih3+QYuI+0V6NO1xo9ju9mkqgVsr8gGXZDTkBt?=
+ =?us-ascii?Q?7NBvTS/9zO507jE+eorkQ5Bue5865sPf74ozL8SOtAFNE2x7ogPD29E4poqi?=
+ =?us-ascii?Q?v1Vek4pCzsdkPbkZuXcSd1cBjIv9wT1KFRHZ725SOAlBZqpC0xP56UcIfcVA?=
+ =?us-ascii?Q?7PNxMtqxnSNjJAz8GAY+G2iboxIcsr2GH02G8iQPyGb7erE5ULI1ZWuCfKwk?=
+ =?us-ascii?Q?uM+VGPcBZPYqYxN10t3tjz/5LIYSYxG7uNIMwqsZJeeBmfilwejqq6C4oCk2?=
+ =?us-ascii?Q?qKGE0hB2F9yrNCriw5HRuiSjEpSdpRFq2NtYF8wfLeT6VE/ysHh6e2pV7KZI?=
+ =?us-ascii?Q?8sQIMskSmzm7WKHyzFcE6/7WreNeYEvnF93qlb/awUzPmBMBvM4TnUjJz3+5?=
+ =?us-ascii?Q?piz5Fv4HI1BEc85MYnZyzbURhHxiKa6WeW8WtT5IcY/zJt1doMp04/dBciwY?=
+ =?us-ascii?Q?CUX0hF+JMrE0e6h8GOY1TN8oqsT/S4vrWp0YakPVcmlClQ8hqweRdFTdK9cC?=
+ =?us-ascii?Q?264JVCUso+f5DOkOYLw+THsmd0uV0fowu+gWx32A1sByBo+MfRVZuWGOZQzr?=
+ =?us-ascii?Q?59Pf/gcSrisVJTOQi3iy4zEYDZzHJzrLKmJqI4/dexsCfLhCvIvaj+ZtBBO+?=
+ =?us-ascii?Q?4Ngr1LebBreiCI6RkUPYK92YzfSOB1wMfwnBJ5Yg9ixeQnMvbPsz+57ul5FM?=
+ =?us-ascii?Q?moEsK/ixp9rgg1A7dzaxjfzkhWHWzmhH/XU71uQ7GQ/UllHrw8bnQtLF1E0A?=
+ =?us-ascii?Q?7QSKJLKje4v/LaiONr2l5ffy2QycbXMxBf7NUOXMRhw/BhzixQ=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?JAlfemUcLyzmzxiI8oCeC6iLu7v3hQ8k11gVQsYUI6mf1QzMMxKjrMIey+vU?=
+ =?us-ascii?Q?gvrfTF8afIg9h/U6EmVvqSL7NRKjx2Vp3XShOWm/AtnlHgqoWv71vetMjgqX?=
+ =?us-ascii?Q?tNxqZAoEac2G1wBCJo6fYb0U3u8EqkbX2UGOa6fIGe71XoHnBR12gvLaRFsD?=
+ =?us-ascii?Q?OEkIMGGBlQxK8cQ28UpwNTPZJ5rPv06XDbZnoGMLFQUxXDOhYs99lbgtOYmt?=
+ =?us-ascii?Q?X6Npk4fp4okPr32/AyTTjyqWaPp4MMf/FM5xGrbuB9x7fSpOdNhfJBcStov6?=
+ =?us-ascii?Q?W19tdxk+tHqc0pg7X6BEcHC2lg5TchLcF8Kl/7fqdjT6MoiEwmtcQ+1KxsQV?=
+ =?us-ascii?Q?IuUjzXPP0+pvkv438Wuu2uvzt/WRb1RhYh9CwD+x8Q7/cjBsOfqkPxaUTSVm?=
+ =?us-ascii?Q?vmWX6Q3OgKiiMb9S7evEzxLfbd2i+30Scot53cteciFEiyyREovQHjoelVzY?=
+ =?us-ascii?Q?v6jvkaoR9tRhjz4C9OtaHxmZJ/06BprC/oQ4IKFuSzqpkD9f/U7S3d7gwN5F?=
+ =?us-ascii?Q?YvU5wjXmmddGP8IYxIn1jSbisUT0ZTp8EYwJhFiQoxdHgXdryWQgjaq2jsbY?=
+ =?us-ascii?Q?ih/b+SKFptXk95CkjDZ3PLW+Uu7oN+VJ/kY+6EelJhI7BtsxpgLK1wnRMKGh?=
+ =?us-ascii?Q?Mi2OzcTfPNHhHFYQvdOBDrLdgCWScA6z9+cdyuLMaop/A3ZBuwyFRVd4U2U6?=
+ =?us-ascii?Q?tx/969ZB/ESkR9cLsf0urD3rOyQH48S6R/3osC2Eekmb3G/Cc4cA7m5kA7Xb?=
+ =?us-ascii?Q?y15SBEIUSf8G81jYAAJBfKIEe8xKF+sGHAgjWQ6Sz9yqIFRhCHBpxpxcxW5Q?=
+ =?us-ascii?Q?jW6sNvs/pJlnPufnuaH2NXI2SsC/CehQuvvTQTK5aDGcjIAbsRkxsBny21Nz?=
+ =?us-ascii?Q?mQihiSdmyr61iUK8i+Nl4eobdeJvSfd4p8I/BG/gmP+5nv8TVy1L2wh39b6Q?=
+ =?us-ascii?Q?G6gzITnCyDOuPaGL0UW7C8BDWAQhx/zhcU4jWeTmOjJ7kE5Ez4elp1vI3Pko?=
+ =?us-ascii?Q?AzuupSdbKJbTRcwGoFEP1uFvGkl+TWJ5PRPuiO0M8McUaK8EJJycRVK+nucF?=
+ =?us-ascii?Q?+DtS+tp33QTNqO20YasGyUxI90gjm5TQIBBFRcMvNtic8dDErdxm901mej89?=
+ =?us-ascii?Q?fiB17ZPW2XxsY5tROkoXugREUgguL9KpeXjKJxLga+hNlu44PKpoQgeKq7DU?=
+ =?us-ascii?Q?tZCBmeurpnO5Ok5W2ifblAef/PHsbX41HTiks56KwdJ08wdMrn0f++o9kA05?=
+ =?us-ascii?Q?lNlLV/cZYoiu2IzYNMkiscQKssp2+1hyT0N/LBQHVsmptPoddt1gAd7elmQq?=
+ =?us-ascii?Q?m3JW7PQQG92P2Z0x617dJWg5CDxHdVgqW6z1RRGG7SZ7hwhU6bu7wCOYW6Gt?=
+ =?us-ascii?Q?+UkEfeEYTABTcMJj5d+s83nYMPRoY9ixuN9p7bcQwSLj54NLVVVVtrkNYfEX?=
+ =?us-ascii?Q?KCctIHdz1ZGlmDYsUZBEoC+PxO9qxiAoWaSH2gBcZYu9rET2suC61mQ2DOwx?=
+ =?us-ascii?Q?3jcBaOt7YaQm3W6WNn3K7XgHUniYXYo7DA0iP0FjZuvElfFF55j7Tnyw3+zc?=
+ =?us-ascii?Q?lU+ULBI+EDOP+aqjsjLSs52Qwz/J18CoiHpPTzIx?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240806133352.440922-4-frieder@fris.de>
-X-CM-TRANSID:M88vCgDn__5vi85mpd4NAA--.24882S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxXw4DGF18JFW7try7Jr15CFg_yoWrKw4Dpr
-	9xAws3Xr40qF4jya4DZr18Crn3C3ykGw4v9wnF9FyFyrZxu347tF45Krn5Wrs0kFWUZw4F
-	vF4Fvry2grnYq3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j4ZXrUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiER9JZWbOG9TjXwABs4
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2cbba31-de1e-4737-c062-08dcc709f96f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2024 02:34:43.3158
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ztPP4Y1Ru678EAh9RdIpdn5j6oI/pel6xz1lWJrblmD80iAPd93X5xXHyIJA2EJIfGzC015NA1GbyWDUbjBQZnunD8sAp6C8NwRGiV4tUdI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5598
 
-On Tue, Aug 06, 2024 at 03:33:01PM +0200, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> 
-> The Kontron Electronics BL i.MX8MM has oboard disply bridges for
-> DSI->HDMI and DSI->LVDS conversion. The DSI interface is muxed by
-> a GPIO-controlled switch to one of these two bridges.
-> 
-> By default the HDMI bridge is enabled. The LVDS bridge can be
-> selected by loading an additional (panel-specific) overlay.
-> 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  .../boot/dts/freescale/imx8mm-kontron-bl.dts  | 146 ++++++++++++++++++
->  1 file changed, 146 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> index aab8e24216501..2b344206dfd16 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> @@ -25,6 +25,17 @@ osc_can: clock-osc-can {
->  		clock-output-names = "osc-can";
->  	};
->  
-> +	hdmi-out {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_in_conn: endpoint {
-> +				remote-endpoint = <&bridge_out_conn>;
-> +			};
-> +		};
-> +	};
-> +
->  	leds {
->  		compatible = "gpio-leds";
->  		pinctrl-names = "default";
-> @@ -132,6 +143,90 @@ ethphy: ethernet-phy@0 {
->  	};
->  };
->  
-> +&gpio4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_gpio4>;
-> +
-> +	dsi_mux_sel_hdmi: dsi-mux-sel-hdmi-hog {
-> +		gpio-hog;
-> +		gpios = <14 GPIO_ACTIVE_HIGH>;
-> +		output-high;
-> +		line-name = "dsi-mux-sel";
-> +	};
-> +
-> +	dsi_mux_sel_lvds: dsi-mux-sel-lvds-hog {
-> +		gpio-hog;
-> +		gpios = <14 GPIO_ACTIVE_HIGH>;
-> +		output-low;
-> +		line-name = "dsi-mux-sel";
-> +		status = "disabled";
-> +	};
-> +
-> +	dsi-mux-oe-hog {
-> +		gpio-hog;
-> +		gpios = <15 GPIO_ACTIVE_LOW>;
-> +		output-high;
-> +		line-name = "dsi-mux-oe";
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	status = "okay";
-> +
-> +	hdmi: hdmi@39 {
-> +		compatible = "adi,adv7535";
-> +		reg = <0x39>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_adv7535>;
-> +
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		adi,dsi-lanes = <4>;
-> +
+> Subject: Re: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new registe=
+r
+> mode driver
+>=20
+> On Mon, Aug 26, 2024 at 07:50:24AM +0000, Ryan Chen wrote:
+> > > On Fri, Aug 23, 2024 at 06:23:54AM +0000, Ryan Chen wrote:
+> > > > > On Thu, Aug 22, 2024 at 02:24:26AM +0000, Ryan Chen wrote:
+> > > > > > > On Wed, Aug 21, 2024 at 06:43:01AM +0000, Ryan Chen wrote:
+> > > > > > > > > On Mon, Aug 19, 2024 at 05:28:49PM +0800, Ryan Chen wrote=
+:
+>=20
+> ...
+>=20
+> > > > > > > > > > +	if (i2c_bus->mode =3D=3D BUFF_MODE) {
+> > > > > > > > > > +		i2c_bus->buf_base =3D
+> > > > > > > > > devm_platform_get_and_ioremap_resource(pdev, 1, &res);
+> > > > > > > > > > +		if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
+> > > > > > > > > > +			i2c_bus->buf_size =3D resource_size(res) / 2;
+> > > > > > > > > > +		else
+> > > > > > > > > > +			i2c_bus->mode =3D BYTE_MODE;
+> > > > > > > > >
+> > > > > > > > > What's wrong with positive conditional? And is it even
+> > > > > > > > > possible to have NULL here?
+> > > > > > > > >
+> > > > > > > > Yes, if dtsi fill not following yaml example have reg 1,
+> > > > > > > > that will failure at buffer
+> > > > > > > mode.
+> > > > > > > > And I can swith to byte mode.
+> > > > > > > >
+> > > > > > > > reg =3D <0x80 0x80>, <0xc00 0x20>;
+> > > > > > >
+> > > > > > > I was asking about if (!IS_ERR_OR_NULL(...)) line:
+> > > > > > > 1) Why 'if (!foo) {} else {}' instead of 'if (foo) {} else {}=
+'?
+> > > > > > I will update to following.
+> > > > > > 		if (IS_ERR(i2c_bus->buf_base))
+> > > > > > 			i2c_bus->mode =3D BYTE_MODE;
+> > > > > > 		else
+> > > > > > 			i2c_bus->buf_size =3D resource_size(res) / 2;
+> > > > > >
+> > > > > > > 2) Why _NULL?
+> > > > > > 	If dtsi file is claim only 1 reg offset. reg =3D <0x80 0x80>;
+> > > > > > that will goto byte
+> > > > > mode.
+> > > > > > 	reg =3D <0x80 0x80>, <0xc00 0x20>; can support buffer mode.
+> > > > > > 	due to 2nd is buffer register offset.
+> > > > >
+> > > > > I have asked why IS_ERR_OR_NULL() and not IS_ERR().
+> > > > >
+> > > > OH, I will doing by this.
+> > > > 		if (IS_ERR_OR_NULL(i2c_bus->buf_base))
+> > >
+> > > The question about _NULL remains unanswered...
+> > Sorry, I may not catch your point.
+> > So, Do you mean I should passive coding by following?
+>=20
+> No. I already mentioned that in one of the previous mails.
+> Why do you use IS_ERR_OR_NULL() and not IS_ERR()?
+>=20
+> You should understand your code better than me :-)
+Understood, I will change to=20
+	if (IS_ERR(i2c_bus->buf_base))
+		i2c_bus->mode =3D BYTE_MODE;
+	else
+		i2c_bus->buf_size =3D resource_size(res) / 2;
 
-Can we drop these newlines in the middle of property list?
-
-> +		a2vdd-supply = <&reg_vdd_1v8>;
-> +		avdd-supply = <&reg_vdd_1v8>;
-> +		dvdd-supply = <&reg_vdd_1v8>;
-> +		pvdd-supply = <&reg_vdd_1v8>;
-> +		v1p2-supply = <&reg_vdd_1v8>;
-> +		v3p3-supply = <&reg_vdd_3v3>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				bridge_in_dsi_hdmi: endpoint {
-> +					remote-endpoint = <&dsi_out_bridge>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				bridge_out_conn: endpoint {
-> +					remote-endpoint = <&hdmi_in_conn>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	lvds: bridge@2c {
-
-Sort I2C devices in unit-address.
-
-Shawn
-
-> +		compatible = "ti,sn65dsi84";
-> +		reg = <0x2c>;
-> +		enable-gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_sn65dsi84>;
-> +		status = "disabled";
-> +	};
-> +};
-> +
->  &i2c4 {
->  	clock-frequency = <100000>;
->  	pinctrl-names = "default";
-> @@ -144,6 +239,30 @@ rx8900: rtc@32 {
->  	};
->  };
->  
-> +&lcdif {
-> +	status = "okay";
-> +};
-> +
-> +&mipi_dsi {
-> +	samsung,esc-clock-frequency = <54000000>;
-> +	/*
-> +	 * Let the driver calculate an appropriate clock rate based on the pixel
-> +	 * clock instead of using the fixed value from imx8mm.dtsi.
-> +	 */
-> +	/delete-property/ samsung,pll-clock-frequency;
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +
-> +			dsi_out_bridge: endpoint {
-> +				remote-endpoint = <&bridge_in_dsi_hdmi>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &pwm2 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_pwm2>;
-> @@ -207,6 +326,12 @@ &iomuxc {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_gpio>;
->  
-> +	pinctrl_adv7535: adv7535grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI1_TXD4_GPIO4_IO16		0x19
-> +		>;
-> +	};
-> +
->  	pinctrl_can: cangrp {
->  		fsl,pins = <
->  			MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28		0x19
-> @@ -277,6 +402,20 @@ MX8MM_IOMUXC_SAI3_MCLK_GPIO5_IO2		0x19
->  		>;
->  	};
->  
-> +	pinctrl_gpio4: gpio4grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14		0x19
-> +			MX8MM_IOMUXC_SAI1_TXD3_GPIO4_IO15		0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL			0x40000083
-> +			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x40000083
-> +		>;
-> +	};
-> +
->  	pinctrl_i2c4: i2c4grp {
->  		fsl,pins = <
->  			MX8MM_IOMUXC_I2C4_SCL_I2C4_SCL			0x40000083
-> @@ -290,6 +429,13 @@ MX8MM_IOMUXC_SPDIF_RX_PWM2_OUT			0x19
->  		>;
->  	};
->  
-> +	pinctrl_sn65dsi84: sn65dsi84grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI2_TXD0_GPIO4_IO26		0x19
-> +			MX8MM_IOMUXC_SD2_WP_GPIO2_IO20			0x19
-> +		>;
-> +	};
-> +
->  	pinctrl_uart1: uart1grp {
->  		fsl,pins = <
->  			MX8MM_IOMUXC_SAI2_RXC_UART1_DCE_RX		0x0
-> -- 
-> 2.45.2
-> 
+> > If (i2c_bus->buf_base > 0)
+> > 	i2c_bus->buf_size =3D resource_size(res) / 2; else
+> >     i2c_bus->mode =3D BYTE_MODE;
+> >
+> > > > 			i2c_bus->mode =3D BYTE_MODE;
+> > > > 		else
+> > > > 			i2c_bus->buf_size =3D resource_size(res) / 2;
+>=20
+> --
+> With Best Regards,
+> Andy Shevchenko
+>=20
 
 
