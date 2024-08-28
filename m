@@ -1,59 +1,74 @@
-Return-Path: <devicetree+bounces-97545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC1BD9628D1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:37:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3F29628F0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:42:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DF08B22DD3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:37:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 812D6B2143C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:42:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40509187578;
-	Wed, 28 Aug 2024 13:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F19178CEC;
+	Wed, 28 Aug 2024 13:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="INzfTGWQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ufak4esb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125A71862B3;
-	Wed, 28 Aug 2024 13:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A1B186E4B;
+	Wed, 28 Aug 2024 13:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724852256; cv=none; b=j9N7nhtwg321PYwN4YK/bZtCJEbtMJJd+j+c1C1U3EUhVbbgbfaLQbwXbyA8EBCICtEWXFQpXlwa0lhudo5DpGDAeEU4FO/9LhF3hL4X71gVBqQDEhp0urA99D+JKUOWrrNzLGcDozGuRX2v75pN6mqe5L/ZsZePRqdsRqM5XWo=
+	t=1724852517; cv=none; b=nJ2+LXAKPVJ7bL7Qb1N6cEDcXbOkId/CpCpAAXW9TM31gol+1sw1hrm/7bz7y4LWrByIR19uIHNLnOE48B/aHrnTeuHaiWQZp06CJQ4dpY+ZiH6nC9JB/ml7S2zV6Alk+H6Gxv6B6/sj6x7mAWj8Z1MHnX6gca6bzw7dcqoM1jU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724852256; c=relaxed/simple;
-	bh=KohNPqr7ETWS1kn2mut3vxJ3dYAgefPzIWcOnMsMYbc=;
+	s=arc-20240116; t=1724852517; c=relaxed/simple;
+	bh=a2swbrR98wISn+eYtffCdkI+7ImxeBOzuWP7GOb5gpY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ka8LUicFYsjwYAWmGwsVFLlDsy0DHxMVo6VjmUk0Weu8X2lPF+5nVg0UvdMyA/R3Pmy788oc+7gc19hDZ1AIQNd4I2IexdZ2p8Dpxjfrd9OXwqTKfzZLsF29o8q2+UZq91B4R7T13Y8PFmL9s52TQPyG2QzOxSRCDBbqG5ij5To=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=INzfTGWQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 678A7C567CD;
-	Wed, 28 Aug 2024 13:37:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FKsohlI1a3uR5hVNkWkh/Xg2CBy4xNoyJ7zv+J5dvPe4QFElqYClqH4d5HhqT/vzZk3xTyo/Uq3+O4cdn8IpIX0KQRn3LNYnpsa+bkH420IliOSxfCqTrPpW/fbXFGzJTR0Cco0tBfudk0w45yXC+70mj6OjvauXHoOYYdbR2X8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ufak4esb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A50CC581BF;
+	Wed, 28 Aug 2024 13:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724852255;
-	bh=KohNPqr7ETWS1kn2mut3vxJ3dYAgefPzIWcOnMsMYbc=;
+	s=k20201202; t=1724852516;
+	bh=a2swbrR98wISn+eYtffCdkI+7ImxeBOzuWP7GOb5gpY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=INzfTGWQgjSGxFUugGU75A1T0mwNFfF4fX90FT9O9cVaM393Ulvdi7uKyrdJFcvR2
-	 y5Ws07VOxJcysms6pYzTxxvUTFTGKd30OTX3pP60KprUDd/KMOW8rJCA/DgJiYfmOx
-	 6VE6QCTavp1L2aYIKnEkiHioIvSC6UXsY4wtvBggunCVe4BUfUhRu8s6IfEzdZGSBg
-	 TfXuzu/NLeYjM+SsZ4lpxsm/aTtFUlOQrvX295diXSCVvWzwB3Mk3JlHJ/WPv/5IoT
-	 sG8W1XDrqxuzPMtavBl0lLsnw91y8Kv19uBxzphElOfLEIPL4kwjbsl9otSMINvgpf
-	 OY8SUCl+tntzw==
-Date: Wed, 28 Aug 2024 08:37:33 -0500
+	b=Ufak4esb9vRxDU4GXWxGafmlJTaaq4y+jEUzLh7YVE4uiQMPQ83Ft6+XewFe94s4D
+	 FNSQ6lEyET56QVve7F3q7ILt31ZxLKe/stiwlh1KArGfGN1zrJBxVz3Lb4UAYpXXbH
+	 Xa1fAc4sQdH7f2f+Ia1OCsm3lDcOVwDwdd2qnY1z7dxxkPnXF0uCJxN75Wsa/lDK3Z
+	 AwW/zPEUD4tQB7wVyZJYppBwcu0FJ4zD8yyJijlAQjkxBO2aztydzi3duvsjQ990CJ
+	 31Fp721OMzvYoe8BbXyNS/QwrRMlSJQfFszL9R7HyGkyWXl8LMbBeV6tW5+NmhyeKX
+	 1DPFCurUvPooA==
+Date: Wed, 28 Aug 2024 08:41:55 -0500
 From: Rob Herring <robh@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Masahiro Yamada <yamada.masahiro@socionext.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: clocks: add binding for
- gated-fixed-clocks
-Message-ID: <20240828133733.GA3650798-robh@kernel.org>
-References: <20240828101503.1478491-1-heiko@sntech.de>
- <20240828101503.1478491-2-heiko@sntech.de>
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 0/3] dt-bindings: gpio/pinctrl: add missing type to GPIO
+ hogs
+Message-ID: <20240828134155.GA3656223-robh@kernel.org>
+References: <20240828-dt-bindings-gpio-hog-v1-0-63b83e47d804@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,96 +77,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240828101503.1478491-2-heiko@sntech.de>
+In-Reply-To: <20240828-dt-bindings-gpio-hog-v1-0-63b83e47d804@linaro.org>
 
-On Wed, Aug 28, 2024 at 12:14:59PM +0200, Heiko Stuebner wrote:
-> In contrast to fixed clocks that are described as ungateable, boards
-> sometimes use additional oscillators for things like PCIe reference
-> clocks, that need actual supplies to get enabled and enable-gpios to be
-> toggled for them to work.
+On Wed, Aug 28, 2024 at 11:35:56AM +0200, Krzysztof Kozlowski wrote:
+> Merging
+> =======
+> Patches are independent and can go via different trees.
 > 
-> This adds a binding for such oscillators that are not configurable
-> themself, but need to handle supplies for them to work.
+> Description
+> ===========
+> DTS like:
 > 
-> In schematics they often can be seen as
+>     device {
+>         compatible = "fcs,fxl6408";
+>         dummy-hog;
+>     };
 > 
->          ----------------
-> Enable - | 100MHz,3.3V, | - VDD
->          |    3225      |
->    GND - |              | - OUT
->          ----------------
+> should fail, but unfortunately it does not if "type: object" is missing.
+> Add missing type, so this will properly trigger warning:
 > 
-> or similar. The enable pin might be separate but can also just be tied
-> to the vdd supply, hence it is optional in the binding.
+>     dummy-hog: True is not of type 'object'
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Best regards,
+> Krzysztof
+> 
 > ---
->  .../bindings/clock/gated-fixed-clock.yaml     | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/gated-fixed-clock.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/gated-fixed-clock.yaml b/Documentation/devicetree/bindings/clock/gated-fixed-clock.yaml
-> new file mode 100644
-> index 000000000000..76d264770d35
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/gated-fixed-clock.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/gated-fixed-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Gated Fixed clock
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    const: gated-fixed-clock
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-frequency: true
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    description:
-> +      Contains a single GPIO specifier for the GPIO that enables and disables
-> +      the oscillator.
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: handle of the regulator that provides the supply voltage
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +  - clock-frequency
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    voltage-oscillator {
-
-clock-1000000000
+> Krzysztof Kozlowski (3):
+>       dt-bindings: gpio: fcs,fxl6408: add missing type to GPIO hogs
+>       dt-bindings: pinctrl: qcom: add missing type to GPIO hogs
+>       dt-bindings: gpio: simplify GPIO hog nodes schema
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
-
-> +      compatible = "gated-fixed-clock";
-> +      #clock-cells = <0>;
-> +      clock-frequency = <1000000000>;
-> +      vdd-supply = <&reg_vdd>;
-> +    };
-> +...
-> -- 
-> 2.43.0
-> 
 
