@@ -1,175 +1,293 @@
-Return-Path: <devicetree+bounces-97267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76CEB961C18
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 04:25:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98ACA961D03
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 05:30:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31ECB284C15
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 02:25:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD8841C23448
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 03:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8DE753370;
-	Wed, 28 Aug 2024 02:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C0613D896;
+	Wed, 28 Aug 2024 03:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="CsOhvdJ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910EB11CBD;
-	Wed, 28 Aug 2024 02:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1CB2941C;
+	Wed, 28 Aug 2024 03:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724811906; cv=none; b=ZJ4+Bf3AqMA2H4ykotB9a15Fs3gd+KjK1zl66zo4aEzVCknBh2Vo337zuzsHmwNlhkZSUFQdO0yCqoHrsqxrAUncLc6dNIUdlBeYZNWVm/nM+o7Tuo2rIHmQvXu6+/HgJ6ZtxoIvitJVfruMJxgNDVen2PR6cIOoSK+kETXIhHk=
+	t=1724815847; cv=none; b=WCnfJDfjy3Iribrw0rXwSKRAvPTYdyX8Fssm1Lp/VbgN1bi0GcDVdRngzgBL5/MVyqTEFOYQIFV07QxAmj/FVCj0foZa3gPAU3NyPjrsZeYP3WhE88tgy8Tm9eiecBpySw40G4oqYleCLQ7a93MEQr/elgRZvpZD46sut8Wc07o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724811906; c=relaxed/simple;
-	bh=B5dtz9Yqh1A1+UtV12K1RcsbRpJNT05gSeVQzG9YFqU=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=tMmvTQUADSQX9x+yx7NGNWkYvxSjBkJgbgdB9v9DgrIURhbZXXMJXkGFo+tI5oQg6WEGB/5UI/++EvyeBWr4WZTYkJYt4fftHz3gwiKOcTFins7P/hZnsnWjftSNL46vMTXO9JDo5pa3uILL3f/JRjpwOQAqtOxPtO8R6EXn5Lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.20.42.164])
-	by gateway (Coremail) with SMTP id _____8AxSZp8is5mA1EiAA--.32384S3;
-	Wed, 28 Aug 2024 10:25:00 +0800 (CST)
-Received: from [10.20.42.164] (unknown [10.20.42.164])
-	by front1 (Coremail) with SMTP id qMiowMAxE+B4is5mChwlAA--.41799S2;
-	Wed, 28 Aug 2024 10:24:58 +0800 (CST)
-Subject: Re: [PATCH v1 2/2] dt-bindings: EDAC for loongson memory controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, chenhuacai@kernel.org,
- kernel@xen0n.name, bp@alien8.de, tony.luck@intel.com, james.morse@arm.com,
- mchehab@kernel.org, rric@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: loongarch@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-edac@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240821064728.8642-1-zhaoqunqin@loongson.cn>
- <20240821064728.8642-3-zhaoqunqin@loongson.cn>
- <de5ffcd8-0f2a-4cca-a7a0-0c4fc0158392@kernel.org>
-From: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Message-ID: <eaeb61e0-ab13-c33f-a42e-c592ef345efa@loongson.cn>
-Date: Wed, 28 Aug 2024 10:24:53 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	s=arc-20240116; t=1724815847; c=relaxed/simple;
+	bh=w9gKMUwtFMhXtaLOZKT94eoi54UxpaqmxQcBOIz4yLE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A8X7mSqbai4Z+0IonY+DbivQQ4KAfHz8t+JkVIRK3SIaUHPShwjFjbygUeaeHUp+4R27A1U7vns4mAfgeTJBlShmAWBg2Qf/aYRQmnSKxxIvzftep0h+7p3B/fqGlsNoua00ZIZ10LzYhRJNQaFCJqyUm6QNLG8/4LlC0F8fc90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=CsOhvdJ5; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=BJK05Ul0TQ++UJk0M0jDApdVzd0KxnzQI04Ca6YRhoM=;
+	b=CsOhvdJ5L6c2jKEq4i0gMa1TGrotzOerH0tXvhvLJheihULgT0EvDoEVP4htZW
+	fTIU4mhgdcCOIj578xYMZalJHtjUniDmabMgFLPPy75Vds/zclIRUj04o9jih8wo
+	eJqj0QP/Y/9qjOEFImSd7hp0MOD9THecMDlQUeWIDMv04=
+Received: from dragon (unknown [114.216.210.89])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgDn__5vi85mpd4NAA--.24882S3;
+	Wed, 28 Aug 2024 10:29:05 +0800 (CST)
+Date: Wed, 28 Aug 2024 10:29:03 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frieder Schrempf <frieder@fris.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 3/4] arm64: dts: imx8mm-kontron: Add support for display
+ bridges on BL i.MX8MM
+Message-ID: <Zs6LbyOeGMZsxn2S@dragon>
+References: <20240806133352.440922-1-frieder@fris.de>
+ <20240806133352.440922-4-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <de5ffcd8-0f2a-4cca-a7a0-0c4fc0158392@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID:qMiowMAxE+B4is5mChwlAA--.41799S2
-X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxZw1DKFy7Kw1DAw4kZw17twc_yoW5Xr17pr
-	n3Aan5Jryjqr1xGrs0gFy8JFWrt348J3ZrJrsrt3W7JFyq9F1YqFya9ryjgFn5Ar48Xry3
-	ZFyfWw429F47ArXCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUPIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
-	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
-	6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
-	1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxG
-	rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14
-	v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkG
-	c2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4U
-	MIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j5fHUUUU
-	UU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240806133352.440922-4-frieder@fris.de>
+X-CM-TRANSID:M88vCgDn__5vi85mpd4NAA--.24882S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXw4DGF18JFW7try7Jr15CFg_yoWrKw4Dpr
+	9xAws3Xr40qF4jya4DZr18Crn3C3ykGw4v9wnF9FyFyrZxu347tF45Krn5Wrs0kFWUZw4F
+	vF4Fvry2grnYq3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j4ZXrUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiER9JZWbOG9TjXwABs4
 
+On Tue, Aug 06, 2024 at 03:33:01PM +0200, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> The Kontron Electronics BL i.MX8MM has oboard disply bridges for
+> DSI->HDMI and DSI->LVDS conversion. The DSI interface is muxed by
+> a GPIO-controlled switch to one of these two bridges.
+> 
+> By default the HDMI bridge is enabled. The LVDS bridge can be
+> selected by loading an additional (panel-specific) overlay.
+> 
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
+>  .../boot/dts/freescale/imx8mm-kontron-bl.dts  | 146 ++++++++++++++++++
+>  1 file changed, 146 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
+> index aab8e24216501..2b344206dfd16 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
+> @@ -25,6 +25,17 @@ osc_can: clock-osc-can {
+>  		clock-output-names = "osc-can";
+>  	};
+>  
+> +	hdmi-out {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_in_conn: endpoint {
+> +				remote-endpoint = <&bridge_out_conn>;
+> +			};
+> +		};
+> +	};
+> +
+>  	leds {
+>  		compatible = "gpio-leds";
+>  		pinctrl-names = "default";
+> @@ -132,6 +143,90 @@ ethphy: ethernet-phy@0 {
+>  	};
+>  };
+>  
+> +&gpio4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_gpio4>;
+> +
+> +	dsi_mux_sel_hdmi: dsi-mux-sel-hdmi-hog {
+> +		gpio-hog;
+> +		gpios = <14 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "dsi-mux-sel";
+> +	};
+> +
+> +	dsi_mux_sel_lvds: dsi-mux-sel-lvds-hog {
+> +		gpio-hog;
+> +		gpios = <14 GPIO_ACTIVE_HIGH>;
+> +		output-low;
+> +		line-name = "dsi-mux-sel";
+> +		status = "disabled";
+> +	};
+> +
+> +	dsi-mux-oe-hog {
+> +		gpio-hog;
+> +		gpios = <15 GPIO_ACTIVE_LOW>;
+> +		output-high;
+> +		line-name = "dsi-mux-oe";
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	hdmi: hdmi@39 {
+> +		compatible = "adi,adv7535";
+> +		reg = <0x39>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_adv7535>;
+> +
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		adi,dsi-lanes = <4>;
+> +
 
-在 2024/8/21 下午4:20, Krzysztof Kozlowski 写道:
-> On 21/08/2024 08:47, Zhao Qunqin wrote:
->> From: zhaoqunqin <zhaoqunqin@loongson.cn>
->>
->> Add: drivers/edac/loongson_edac.c
->>
->> Signed-off-by: zhaoqunqin <zhaoqunqin@loongson.cn>
-> Please use full name, not login.
->
->> ---
->>   .../bindings/edac/loongson,ls-mc-edac.yaml    | 35 +++++++++++++++++++
-> Bindings are before users.
-dt-bindings is 0001-*.patch and driver is 0002-*.patch ?
->
->>   MAINTAINERS                                   |  7 ++++
->>   2 files changed, 42 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/edac/loongson,ls-mc-edac.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/edac/loongson,ls-mc-edac.yaml b/Documentation/devicetree/bindings/edac/loongson,ls-mc-edac.yaml
->> new file mode 100644
->> index 000000000..29e5b8381
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/edac/loongson,ls-mc-edac.yaml
->> @@ -0,0 +1,35 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/edac/loongson,ls-mc-edac.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson Memory Controller EDAC
->> +
->> +maintainers:
->> +  - Zhao Qunqin <zhaoqunqin@loongson.cn>
->> +
->> +description: |
->> +  EDAC node is defined to describe on-chip error detection and correction for
->> +  Loongson Memory Controller.
->> +
->> +properties:
->> +
->> +  compatible:
->> +    const: loongson,ls-mc-edac
-> Missing soc part. And then adjust filename to match proper (new) compatible.
+Can we drop these newlines in the middle of property list?
 
-ls3c5000l, ls3c5000, ls3d5000, ls3a6000 and ls3c6000 are compatible with 
-ls3a5000.
+> +		a2vdd-supply = <&reg_vdd_1v8>;
+> +		avdd-supply = <&reg_vdd_1v8>;
+> +		dvdd-supply = <&reg_vdd_1v8>;
+> +		pvdd-supply = <&reg_vdd_1v8>;
+> +		v1p2-supply = <&reg_vdd_1v8>;
+> +		v3p3-supply = <&reg_vdd_3v3>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				bridge_in_dsi_hdmi: endpoint {
+> +					remote-endpoint = <&dsi_out_bridge>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				bridge_out_conn: endpoint {
+> +					remote-endpoint = <&hdmi_in_conn>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	lvds: bridge@2c {
 
-Can i write compatible string this way:
+Sort I2C devices in unit-address.
 
-properties:
-   compatible:
-     oneOf:
-       - enum:
-           - loongson,ls3a5000-mc-edac
-       - items:
-           - enum:
-               - loongson,ls3c5000l-mc-edac
-               - loongson,ls3c5000-mc-edac
-               - loongson,ls3d5000-mc-edac
-               - loongson,ls3a6000-mc-edac
-               - loongson,ls3c6000-mc-edac
-           - const: loongson,ls3a5000-mc-edac
+Shawn
 
->
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    edac: mc0@1fe00600 {
-> memory-controller@
->
-> and drop unused label.
->
->
->> +        compatible = "loongson,ls-mc-edac";
->> +        reg = <0x0 0x1fe00600 0x0 0x50>;
->> +    };
-> Best regards,
-> Krzysztof
-Thanks for your suggestions,
-
-Zhao Qunqin
+> +		compatible = "ti,sn65dsi84";
+> +		reg = <0x2c>;
+> +		enable-gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_sn65dsi84>;
+> +		status = "disabled";
+> +	};
+> +};
+> +
+>  &i2c4 {
+>  	clock-frequency = <100000>;
+>  	pinctrl-names = "default";
+> @@ -144,6 +239,30 @@ rx8900: rtc@32 {
+>  	};
+>  };
+>  
+> +&lcdif {
+> +	status = "okay";
+> +};
+> +
+> +&mipi_dsi {
+> +	samsung,esc-clock-frequency = <54000000>;
+> +	/*
+> +	 * Let the driver calculate an appropriate clock rate based on the pixel
+> +	 * clock instead of using the fixed value from imx8mm.dtsi.
+> +	 */
+> +	/delete-property/ samsung,pll-clock-frequency;
+> +	status = "okay";
+> +
+> +	ports {
+> +		port@1 {
+> +			reg = <1>;
+> +
+> +			dsi_out_bridge: endpoint {
+> +				remote-endpoint = <&bridge_in_dsi_hdmi>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>  &pwm2 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_pwm2>;
+> @@ -207,6 +326,12 @@ &iomuxc {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_gpio>;
+>  
+> +	pinctrl_adv7535: adv7535grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI1_TXD4_GPIO4_IO16		0x19
+> +		>;
+> +	};
+> +
+>  	pinctrl_can: cangrp {
+>  		fsl,pins = <
+>  			MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28		0x19
+> @@ -277,6 +402,20 @@ MX8MM_IOMUXC_SAI3_MCLK_GPIO5_IO2		0x19
+>  		>;
+>  	};
+>  
+> +	pinctrl_gpio4: gpio4grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14		0x19
+> +			MX8MM_IOMUXC_SAI1_TXD3_GPIO4_IO15		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c3: i2c3grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL			0x40000083
+> +			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x40000083
+> +		>;
+> +	};
+> +
+>  	pinctrl_i2c4: i2c4grp {
+>  		fsl,pins = <
+>  			MX8MM_IOMUXC_I2C4_SCL_I2C4_SCL			0x40000083
+> @@ -290,6 +429,13 @@ MX8MM_IOMUXC_SPDIF_RX_PWM2_OUT			0x19
+>  		>;
+>  	};
+>  
+> +	pinctrl_sn65dsi84: sn65dsi84grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI2_TXD0_GPIO4_IO26		0x19
+> +			MX8MM_IOMUXC_SD2_WP_GPIO2_IO20			0x19
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX8MM_IOMUXC_SAI2_RXC_UART1_DCE_RX		0x0
+> -- 
+> 2.45.2
+> 
 
 
