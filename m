@@ -1,206 +1,131 @@
-Return-Path: <devicetree+bounces-97357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86214962124
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:31:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 170E7962126
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:31:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 130E51F26793
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:31:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8E0C281CB2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 07:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC643158DA9;
-	Wed, 28 Aug 2024 07:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="YGqt5rhN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C74158DA3;
+	Wed, 28 Aug 2024 07:31:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D885328DB;
-	Wed, 28 Aug 2024 07:31:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D058328DB;
+	Wed, 28 Aug 2024 07:31:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724830272; cv=none; b=gwtFEuvqESXNG31yzUIsaW72QtpFaL2Lu2zMNuSrMxhfv8DWheXznqX1mJiPzeP66jgpT170bv1I0djTWr3xs8N+yC2Tg9qtBH9qbB7rg4zFunw1kVR/F4xvf5HbcTUnxQbKZpbqTe5+CSXn6RUhi/ds7qRZQ2KEEIkGwL/xloA=
+	t=1724830289; cv=none; b=HIXYJReWGe61c3gDiM+cIqvqkP2naKDiZJPfYzE01vQeN6PYxhPJ2BiviYeajx4xo5yta1Ce+BCnMDonjNIVtrDp0bruxyfbQKn7WyP+I6TMJC51golWHEFiZtHjEcjz5F80Irh/rojZWKnxaqQPd1+evOOzaZC9933FHdPEIBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724830272; c=relaxed/simple;
-	bh=RVZ2WzypTVL8aXwnyta5z6xdCi/wY4px/T4jPpfoPVk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UbfaXliByqBa9HdhcjTe/TffXyoLaMl4f0umOzJ4VJKmYJkHgO/c10dFseRmZ3E+SFC3vnceA4LlN/mtL/oLZGXndb3eSStuUEoBFaRlMOlQO/wkhQe3Hpyr98Xq/oy8vXYhXI0olFTqjPifURomji/9yMX5+H7I9AjTK+Rv6NA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=YGqt5rhN; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 216621483485;
-	Wed, 28 Aug 2024 09:31:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1724830268; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=mTvFLF+yscDR3yye+ivUrz/P11CO4Y8bZCNC+3JezZE=;
-	b=YGqt5rhNIJ39St7tOOHVoemuVYd5/rMXiYi8EdmgACC8TdsAHxUcUe1FN94tgvWynWAlAU
-	PKe2NISLCPNy4pX0Nb/3no98nY9aonaTpLg3XhI8zNFkkBtJCSvB+IglMxrr7vr9VPte7w
-	Q3vBgjl+KI+0zRRDHPccIsVzY0D6oEw9vZHC2Nf8C9XZSdsRTHC37Fbhkxe40WmSYABpP9
-	+EXSidqte4a6aeOp1N6796wKV5vxNGWjJPaT0Fys/Z52ZdR2nralwZTyssZljkgpYEUrzW
-	No6P/LQ+NMTXxMTKovJ1bY6sSUrhuDFvbbBiNTWUqswBfca8IU8AVDE4LS0a9g==
-Date: Wed, 28 Aug 2024 09:31:05 +0200
-From: Alexander Dahl <ada@thorsis.com>
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: Alexander Dahl <ada@thorsis.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Christian Melki <christian.melki@t2data.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v1 00/12] Microchip OTPC driver on SAM9X60 exposing UIDxR
- as additional nvmem device
-Message-ID: <20240828-steadily-nearby-1fe97d4cbe97@thorsis.com>
-Mail-Followup-To: claudiu beznea <claudiu.beznea@tuxon.dev>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Christian Melki <christian.melki@t2data.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20240821105943.230281-1-ada@thorsis.com>
- <717bd06f-3eba-4825-a53f-b2f9aa1c81c8@tuxon.dev>
+	s=arc-20240116; t=1724830289; c=relaxed/simple;
+	bh=VfmrcibnR5VC4udjpTBxcTJD4ySxANT7MnQuzKLh1W0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C5Vs/Ao+TToZZAHRFzKpCLmxQ5+GrNvtYc8fEKBPAoewHsjU2lvmKhPjw6RHVMiUjrxXc43w18e76/K2oum/uxrZ6zZjc4tE/sJJU+pDX+oIW6KZDUlsE/VU8ACyw7oZU3gWaxLOVlTBAGSBJSv774DoC8SVIGrA7ibXkV5fJyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6b2e6e7ad28so2486897b3.0;
+        Wed, 28 Aug 2024 00:31:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724830285; x=1725435085;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fWjj01UxlqgE9wgsqT0X1qkl31HoxLJKg7srHrY8G6E=;
+        b=nNfyT7SWXZmr+OlTCdxSP6N1hNgApjtiNYZuu+Kw0g8ZCPQq5+TVbVaAriN1KWMQ+Y
+         YYVcAly3Rb4Ei0SfRYWcCSiYVYk+pzTHLMFNovh4aIfskIRq9E7B4JeyeAl8IKOrrCfD
+         4GCZzFZJyHjMIIHvlyxHVJNBgZzKYZSnZaZx1iW+OFpYHFhWzzS/ZjdRJwYsOzhM69nh
+         txFk6xrVc8L9VbYMKeUcKGS7DhiwhOH7qzEWzwMBAdBcSoU1BDKtmX2ywMd8pD5INQiS
+         28l/NJPBItFw74bt11H4OYzwkk6pR8zFyV8UkH7iEGC4IhnVH6FL9eGjqY+GMYW4AiA6
+         Ctjw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJE3lawRcDnqoLjfAUItYHOY5MlqUgkhP7Pw+XhxGbixkzH8PQHLE+65e6Mn/HHSb5y8dmckcOnm+u@vger.kernel.org, AJvYcCX+0OomyyMtaXwkEq0SKwnaHEXrXGpyY5UmH1g5xiWn4cJdqwFN/aO/hESTlj6LugpQE9clZybRHxjO5tvMc1ONc+8=@vger.kernel.org, AJvYcCXD5h0PAW0SnA3jlNqeOV/txKp8f0JCBASm+uZgsoF0w7U3NFXbeld0Tt4HWM1GEPnbRxAgjWKqusv2WUU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZYSbR/CW/Pe9NO5GOQZa2HKAg6SJ3fHkTrMuSvjdTudtnvU8y
+	oGcjsYm8f5/kjoCMkWZHpfzPHIZiNPA3WXl7NpPn4EvcF6naclDu7Le3x5+r
+X-Google-Smtp-Source: AGHT+IH11lNPB+6TO7HdS+kIL6QdrFenzBsOTSVFrr9VzRl8S7c51lJnrdfwBMukdkLJg8R+qUHIRg==
+X-Received: by 2002:a05:690c:d8c:b0:6b2:7494:455c with SMTP id 00721157ae682-6d151d53fe2mr9099177b3.1.1724830285594;
+        Wed, 28 Aug 2024 00:31:25 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c39d3a9bcdsm22673647b3.77.2024.08.28.00.31.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Aug 2024 00:31:25 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6bada443ffeso2613957b3.0;
+        Wed, 28 Aug 2024 00:31:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVnD52FL9mrdWo4sUJC44pVxZIsTSxmvr4mwVIrydqdb3ANF59Kbt9a0tA9kU5LiKr6Ela4HkQ0eoJoDSU=@vger.kernel.org, AJvYcCVvc7gAhmH4Ap7urleofBgIyKQqS6tgY45ZfwWy/KcJgpWK1URym2iwGyI1u6+7UcSnwQ0a0ngNqOCh/OFoax4WJ24=@vger.kernel.org, AJvYcCXz6ZNE1sI3DCNS3VL3Wpv1+sYpUyli3sFEvjAtP8itFsUMn6kFhUxIY3IP+s+iGSWOIQEAJDFXqTZE@vger.kernel.org
+X-Received: by 2002:a05:690c:f84:b0:640:aec2:101c with SMTP id
+ 00721157ae682-6d151d54443mr9754437b3.2.1724830285074; Wed, 28 Aug 2024
+ 00:31:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <717bd06f-3eba-4825-a53f-b2f9aa1c81c8@tuxon.dev>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20240826144352.3026980-1-niklas.soderlund+renesas@ragnatech.se> <20240826144352.3026980-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240826144352.3026980-2-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 28 Aug 2024 09:31:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXacXi5CqDO5K3-asJ4odHtAoFpeS17qGvK_W1sycLMzA@mail.gmail.com>
+Message-ID: <CAMuHMdXacXi5CqDO5K3-asJ4odHtAoFpeS17qGvK_W1sycLMzA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: media: renesas,isp: Add Gen4 family fallback
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Claudiu,
+On Mon, Aug 26, 2024 at 4:44=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> The ISP Channel Selector IP is the same for all current Gen4 devices.
+> This was not known when adding support for V3U and V4H and a single SoC
+> specific compatible was used.
+>
+> Before adding more SoC specific bindings for V4M add a family compatible
+> fallback for Gen4. That way the driver only needs to be updated once for
+> Gen4, and we still have the option to fix any problems in the driver if
+> any testable differences between the SoCs are found.
+>
+> There are already DTS files using the V3U and V4H compatibles which
+> needs to be updated to not produce a warning for DTS checks. The driver
+> also needs to kept the compatible values to be backward compatible , but
+> for new Gen4 SoCs such as V4M we can avoid this.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+> * Changes since v1
+> - New in v2.
 
-thanks for having a closer look on the series.  The issues the bots
-complained about are already fixed in my working copy and will be part
-of v2.  Detailed discussion on particular patches itself over there,
-general remarks below.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Am Sat, Aug 24, 2024 at 07:17:43PM +0300 schrieb claudiu beznea:
-> Hi, Alexander,
-> 
-> On 21.08.2024 13:59, Alexander Dahl wrote:
-> > Hei hei,
-> > 
-> > on a custom sam9x60 based board we want to access a unique ID of the
-> > SoC.  Microchip sam-ba has a command 'readuniqueid' which returns the
-> > content of the OTPC Product UID x Register in that case.
-> > 
-> > (On different boards with a SAMA5D2 we use the Serial Number x Register
-> > exposed through the atmel soc driver.  Those registers are not present
-> > in the SAM9X60 series, but only for SAMA5D2/SAMA5D4 AFAIK.)
-> 
-> Not sure if you are talking about Chip ID, Chip ID extension registers.
-> These are available also on SAM9X60.
+This is in line with Section 2.3.1 ("Standard Properties / Compatible")
+of the Devicetree Specification, Release v0.4, as it is used "to express
+compatibility with a family of similar devices".  Note that this does
+deviate slightly from the recommended format in the specification
+("manufacturer,model"), as the fallback "model" specifies a family,
+not a model number.
 
-No, this is not what I'm talking about.  The Chip ID and Chip ID
-extension registers are common over all SoCs of the same type.
+As such I think this is fine, and consistent with lots of other existing
+family-specific compatible values.
 
-What I need is a unique ID, the same sam-ba returns with the
-"readuniqueid" applet.  The SAMA5D2 has this in SFR_SN0 and SFR_SN1,
-handled by drivers/soc/atmel/sfr.c driver.  The SFR block on sam9x60
-has no SNx registers, the unique ID comes from OTPC_UIDxR here.
+Gr{oetje,eeting}s,
 
-Best thing would be a simple nvmem device for the SAM9X60 providing
-just those 4 registers, in a similar way the sfr driver does for
-SAMA5D2.  This is the motivation for the series and what's eventually
-done in patch 12.  The other patches are just fixing the otpc driver
-for SAM9X60 so I can add that nvmem stuff.
+                        Geert
 
-Greets
-Alex
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-> > There is a driver for the OTPC of the SAMA7G5 and after comparing
-> > register layouts it seems that one is almost identical to the one used
-> > by SAM9X60.  Currently that driver has no support for the UIDx
-> > registers, but I suppose it would be the right place to implement it,
-> > because the registers are within the OTPC register address offsets.
-> > 
-> > The patch series starts with fixups for the current driver.  It then
-> > adds the necessary pieces to DT and driver to work on SAM9X60 in
-> > general.  Later support for enabling the main RC oscillator is added,
-> > which is required on SAM9X60 for the OTPC to work.  The last patch adds
-> > an additional nvmem device for the UIDx registers.
-> > 
-> > This v1 of the series was _not_ tested on SAMA7G5, because I don't have
-> > such a board for testing.  Actually I don't know if the main_rc_osc
-> > clock is required on SAMA7G5 too, and if yes how to handle that with
-> > regard to the different clock ids.  If someone could test on SAMA7G5
-> > and/or help me sorting out the core clock id things, that would be
-> > highly appreciated.
-> 
-> Please add Nicolas in the loop on the next revisions of this series as this
-> should also be tested on SAMA7G5. I don't have a SAMA7G5 with OTP memory
-> populated.
-> 
-> > 
-> > Also I assume some more devicetree and/or sysfs documentation is
-> > necessary.  If someone could point me what's exactly required, this
-> > would be very helpful for me.  You see I expect at least another version
-> > v2 of the series. ;-)
-> > 
-> > Maybe some files having that "sama7g5" should be renamed, because that
-> > DT binding is used for more SoCs now and deserves a more generic name?
-> 
-> Not needed, adding your compatible there is enough.
-> 
-> > Thinking of these for example:
-> > 
-> > - Documentation/devicetree/bindings/nvmem/microchip,sama7g5-otpc.yaml
-> > - include/dt-bindings/nvmem/microchip,sama7g5-otpc.h
-> > 
-> > Are there other SoCs than SAMA7G5 and SAM9X60 using the same OTPC?
-> > 
-> > Last question: Should the UID be added to the device entropy pool with
-> > add_device_randomness() as done in the SAMA5D2 sfr driver?
-> > 
-> > I sent an RFC patch on this topic earlier this year, you'll find the
-> > link below as a reference to the discussion.  The patch itself was
-> > trivial and not meant for applying as is anyways, so I decided to not
-> > write a full changelog from RFC to v1.
-> > 
-> > Last not least, special thanks to Christian Melki on IRC, who wrote and
-> > tested parts of this, and was very kind and helpful in discussing the
-> > topic several times in the past months.
-> > 
-> > Christian, if you feel there's credit missing, just point me where to
-> > add Co-developed-by and I'll happily do that for v2.
-> > 
-> > Greets
-> > Alex
-> > 
-> > (series based on v6.11-rc4)
-> > 
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: linux-clk@vger.kernel.org
-> > Link: https://lore.kernel.org/all/20240412140802.1571935-2-ada@thorsis.com/
-> > 
-> > Alexander Dahl (12):
-> >   nvmem: microchip-otpc: Avoid writing a write-only register
-> >   nvmem: microchip-otpc: Fix swapped 'sleep' and 'timeout' parameters
-> >   dt-bindings: nvmem: microchip-otpc: Add compatible for SAM9X60
-> >   nvmem: microchip-otpc: Add SAM9X60 support
-> >   ARM: dts: microchip: sam9x60: Add OTPC node
-> >   ARM: dts: microchip: sam9x60_curiosity: Enable OTP Controller
-> >   nvmem: microchip-otpc: Add missing register definitions
-> >   nvmem: microchip-otpc: Add warnings for bad OTPC conditions on probe
-> >   clk: at91: sam9x60: Allow enabling main_rc_osc through DT
-> >   ARM: dts: microchip: sam9x60: Add clock properties to OTPC
-> >   nvmem: microchip-otpc: Enable main RC oscillator clock
-> >   nvmem: microchip-otpc: Expose UID registers as 2nd nvmem device
-> > 
-> >  .../nvmem/microchip,sama7g5-otpc.yaml         |  1 +
-> >  .../dts/microchip/at91-sam9x60_curiosity.dts  |  4 +
-> >  arch/arm/boot/dts/microchip/sam9x60.dtsi      | 10 +++
-> >  drivers/clk/at91/sam9x60.c                    |  3 +-
-> >  drivers/nvmem/microchip-otpc.c                | 86 ++++++++++++++++++-
-> >  include/dt-bindings/clock/at91.h              |  1 +
-> >  6 files changed, 100 insertions(+), 5 deletions(-)
-> > 
-> > 
-> > base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
