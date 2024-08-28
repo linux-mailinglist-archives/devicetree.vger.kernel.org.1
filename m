@@ -1,177 +1,156 @@
-Return-Path: <devicetree+bounces-97560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D66EB9629FA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:14:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1142962A06
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:17:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 150DA1C215C8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:14:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6652F1F25179
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D10D189900;
-	Wed, 28 Aug 2024 14:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC18188CC2;
+	Wed, 28 Aug 2024 14:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NIRK2sRF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFBA1D696;
-	Wed, 28 Aug 2024 14:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7898D42A8E;
+	Wed, 28 Aug 2024 14:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724854477; cv=none; b=pkd8UDXRKPDjbw+c/6zBcl3TP5m8yYVL2cQHuhjnWvDIJ4fYRkzbFGkKaD04CfhsQZM0VdU4PBiS4v/bpbkCt3KIKVrNBK7b2dDLwnB0Vp8lyw6Kjz4/XNCJ6jnzqPK+Mh6/gJEKJSHw3Uj/fQq9TWIkfUvrrUC91+0EC7IiU5A=
+	t=1724854670; cv=none; b=p8PjwWlH6aeGjDm6Ji++E5yV0CeTmZ6YIiU0KvbdILl5K6/xsdaZr3P5C3hC/oW4MOb9rwTiRb1iWnW38BKNAXm30jhQOTArBh0GOeS9BqO+qe6uqdm7we3Z3HtyE+0XpWAIVkaixSh9/tEj9eFGW4CkcDdaQ2kKH6GKybCsLLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724854477; c=relaxed/simple;
-	bh=aSwVc1iaM6sKrtalUUmirGhYivhnMU2dAxV+8M4+sDU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LA42aLbmdKo6pP1olXrKcm/STC8ZHWd7uAgXs9iaLod9txVA2rUCtigbAZqOaFYwxWqE8FJPbsjeri1+h66P4J+6nSFm7O7tU9DTNStO5oAbStqR7sVj+AJpW39CuIlHyxpEUahoVBlzxa8f7KO1WrTH1KsvMdNm0xiLQYD/H8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BD67C98EEB;
-	Wed, 28 Aug 2024 14:14:34 +0000 (UTC)
-Message-ID: <83b8be7b-a2c5-42f8-a42b-93dfc528a414@xs4all.nl>
-Date: Wed, 28 Aug 2024 16:14:32 +0200
+	s=arc-20240116; t=1724854670; c=relaxed/simple;
+	bh=Znii0Gu4u2xaHQfuHkXYV9iRjgMc8rCLjfx7GALBuGQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aawJ/4xL7b02DuAm5DXPUAKa51hNglHr2V70VbDOcRHWX/HNUt+FcA1ORNdVJzENfXx2pDnhsunIXUaVkeni4FpgUkyWucDTbzdH+tNJZU9d2ud2gK1REGQhZctLcMcw1s4Uk9Dm+6iCRgtyNftG7XWQNn0sJn4C80uOQccnrPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NIRK2sRF; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724854668; x=1756390668;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Znii0Gu4u2xaHQfuHkXYV9iRjgMc8rCLjfx7GALBuGQ=;
+  b=NIRK2sRFvcCluzlTV3OX2grQuQtO9HftQ6hh+6EQY8XuWoDoXzf5egGr
+   4qD3frB6LfTgieCqYcRRa3BfZneQHJfisZUguyk2vIK6MEpyaTk8XaSQw
+   oHlPk7vXdOaLjBCsfR080PEdo0b7SpLM69SfcfJrpmQdnzZ5whi4nlYOx
+   +3QBmDsSGJvQ3874dqO6+nEIHlVq0wuWYiDTo6xzIm7L8F8xfjrw37oWT
+   ZVfLRZrh9mP3Cuh5dBtHuPSslPdZWPU9RtLt5if4Xvp2HoCD2p/PTj9LU
+   Dc0JO3gjGcv3fbvI/+4QxfDUxCGtnWGNOh72aswQm92fZAR/Ab5x6acRC
+   w==;
+X-CSE-ConnectionGUID: GMkIPbLWQjWKFPELUbs2mg==
+X-CSE-MsgGUID: Z5mXoxF0RP+EvzhP6yenNg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="22969071"
+X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; 
+   d="scan'208";a="22969071"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2024 07:17:47 -0700
+X-CSE-ConnectionGUID: vB+rwcLTTuKRLSfTJmJU4g==
+X-CSE-MsgGUID: u3KghOOiTSaUxzX4Tll+VQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; 
+   d="scan'208";a="100750764"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2024 07:17:43 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sjJUS-00000002fZd-3JjK;
+	Wed, 28 Aug 2024 17:17:40 +0300
+Date: Wed, 28 Aug 2024 17:17:40 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/7] iio: pressure: bmp280: Add data ready trigger
+ support
+Message-ID: <Zs8xhMaFahBVanwd@smile.fi.intel.com>
+References: <20240823181714.64545-1-vassilisamir@gmail.com>
+ <20240823181714.64545-7-vassilisamir@gmail.com>
+ <ZsjrxLlhmx-TzwXF@smile.fi.intel.com>
+ <20240824120222.GG9644@vamoiridPC>
+ <ZsxXvGy4GNrZWs-D@smile.fi.intel.com>
+ <20240828140119.GB4934@vamoiridPC>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv2 0/6] drm/omap: hdmi: improve hdmi4 CEC, add CEC for
- hdmi5
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- "H. Nikolaus Schaller" <hns@goldelico.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, Sekhar Nori <nsekhar@ti.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux-OMAP <linux-omap@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>,
- Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
- Andreas Kemnade <andreas@kemnade.info>
-References: <20210302162403.983585-1-hverkuil-cisco@xs4all.nl>
- <43F64377-8394-448F-A6F0-4DA11DB9AEF5@goldelico.com>
- <3c36b0cd-7b43-4a63-a832-1d8d14a4512a@ideasonboard.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <3c36b0cd-7b43-4a63-a832-1d8d14a4512a@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240828140119.GB4934@vamoiridPC>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 28/08/2024 15:57, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 25/08/2024 23:31, H. Nikolaus Schaller wrote:
->> Hi,
->> CEC features are useful to e.g. control HDMI monitor standby.
->>
->> But I wonder what happened to this series?
->>
->> I could find some reviewed-by: and acked-by: in [1] but it wasn't merged upstream
->> for unidentifiable reasons.
->>
->> We apparently had merged this series some years ago into our LetuxOS distro kernel
->> and now we found it to be broken (NULL dereference) at least for omap5uevm
->> (and likely Pyra Handheld) after rebasing to v6.11-rc (it was already broken
->> since v6.9-rc1). Fixes were not difficult, but it would be better if it were
->> part of upstream.
-> 
-> There was a v3:
-> 
-> 20210428132545.1205162-1-hverkuil-cisco@xs4all.nl
-> 
-> I see there was a concern from Laurent in:
-> 
-> YLjMZiX71mcQNQdO@pendragon.ideasonboard.com
-> 
-> And we need an ack from the bridge maintainers for the drm_bridge parts. But the series is three years old, so I think someone would have to rebase on top of mainline and re-test and re-send first.
+On Wed, Aug 28, 2024 at 04:01:19PM +0200, Vasileios Amoiridis wrote:
+> On Mon, Aug 26, 2024 at 01:23:56PM +0300, Andy Shevchenko wrote:
+> > On Sat, Aug 24, 2024 at 02:02:22PM +0200, Vasileios Amoiridis wrote:
+> > > On Fri, Aug 23, 2024 at 11:06:28PM +0300, Andy Shevchenko wrote:
+> > > > On Fri, Aug 23, 2024 at 08:17:13PM +0200, Vasileios Amoiridis wrote:
 
-I never really followed up with this. I still have the hardware, it is primarily
-time. And also that for me this is quite low priority since I don't use omap5.
+...
 
-If someone wants to refresh this series and post it, then I would have no problem
-with it.
+> > > > > +	irq = fwnode_irq_get(fwnode, 0);
+> > > > > +	if (!irq)
+> > > > 
+> > > > Are you sure this is correct check?
+> > > > 
+> > > Well, I think yes, because the function return either the Linux IRQ number
+> > > on success or a negative errno on failure.
+> > 
+> > Where is 0 mentioned in this?
+> > 
+> > > https://elixir.bootlin.com/linux/v6.10.6/source/drivers/base/property.c#L987
+> > > 
+> > > > > +		return dev_err_probe(data->dev, -ENODEV,
+> > > > 
+> > > > Shadowed error code.
+> > > 
+> > > I am not sure I understand what you mean here. You mean that there is no
+> > > chance that the first one will pass and this one will fail?
+> > 
+> > -ENODEV is not what fwnode_irq_get() returns on error.
+> > 
+> > > > > +				     "No interrupt found.\n");
 
-Regards,
+...
 
-	Hans
-
+> > > > > +	desc = irq_get_irq_data(irq);
+> > > > > +	if (!desc)
+> > > > > +		return -EINVAL;
+> > > > 
+> > > > When may this fail?
+> > > 
+> > > I think that this will fail when Linux were not able to actually
+> > > register that interrupt.
+> > 
+> > Wouldn't fwnode_irq_get() fail already?
 > 
->  Tomi
+> By looking at it again, I didn't reply correct here. This function
+> internally calls the irq_to_desc() which basically returns the
+> irq desctiptor for this irq. This function can return NULL in
+> case the interrupt is not found in the maple tree (CONFIG_SPARSE_IRQ)
+> or in case the interrupt number is bigger than the NR_IRQs which
+> the irq controller can handle (!CONFIG_SPARSE_IRQ).
 > 
->> BR and thanks,
->> Nikolaus
->>
->> [1] https://lore.kernel.org/r/all/20210302162403.983585-4-hverkuil-cisco@xs4all.nl/T/
->>
->>> Am 02.03.2021 um 17:23 schrieb Hans Verkuil <hverkuil-cisco@xs4all.nl>:
->>>
->>> This series improves the drm_bridge support for CEC by introducing two
->>> new bridge ops in the first patch, and using those in the second patch.
->>>
->>> This makes it possible to call cec_s_conn_info() and set
->>> CEC_CAP_CONNECTOR_INFO for the CEC adapter, so userspace can associate
->>> the CEC adapter with the corresponding DRM connector.
->>>
->>> The third patch simplifies CEC physical address handling by using the
->>> cec_s_phys_addr_from_edid helper function that didn't exist when this
->>> code was originally written.
->>>
->>> The fourth patch adds the cec clock to ti,omap5-dss.txt.
->>>
->>> The fifth patch the missing cec clock to the dra7 and omap5 device tree,
->>> and the last patch adds CEC support to the OMAP5 driver.
->>>
->>> Tested with a Pandaboard and a Beagle X15 board.
->>>
->>> Regards,
->>>
->>> Hans
->>>
->>> Changes since v1:
->>>
->>> - as per suggestion from Laurent, changed cec_init/exit to
->>>   connector_attach/_detach which are just called for all
->>>   bridges. The DRM_BRIDGE_OP_CEC was dropped.
->>>
->>> - added patch to add the cec clock to ti,omap5-dss.txt
->>>
->>> - swapped the order of the last two patches
->>>
->>> - incorporated Tomi's suggestions for the hdmi5 CEC support.
->>>
->>> Hans Verkuil (6):
->>>   drm: drm_bridge: add connector_attach/detach bridge ops
->>>   drm/omapdrm/dss/hdmi4: switch to the connector bridge ops
->>>   drm/omapdrm/dss/hdmi4: simplify CEC Phys Addr handling
->>>   dt-bindings: display: ti: ti,omap5-dss.txt: add cec clock
->>>   dra7.dtsi/omap5.dtsi: add cec clock
->>>   drm/omapdrm/dss/hdmi5: add CEC support
->>>
->>> .../bindings/display/ti/ti,omap5-dss.txt      |   4 +-
->>> arch/arm/boot/dts/dra7.dtsi                   |   5 +-
->>> arch/arm/boot/dts/omap5.dtsi                  |   5 +-
->>> drivers/gpu/drm/drm_bridge_connector.c        |   9 +
->>> drivers/gpu/drm/omapdrm/Kconfig               |   8 +
->>> drivers/gpu/drm/omapdrm/Makefile              |   1 +
->>> drivers/gpu/drm/omapdrm/dss/hdmi.h            |   1 +
->>> drivers/gpu/drm/omapdrm/dss/hdmi4.c           |  40 ++--
->>> drivers/gpu/drm/omapdrm/dss/hdmi4_cec.c       |  13 +-
->>> drivers/gpu/drm/omapdrm/dss/hdmi4_cec.h       |  12 +-
->>> drivers/gpu/drm/omapdrm/dss/hdmi5.c           |  63 +++++-
->>> drivers/gpu/drm/omapdrm/dss/hdmi5_cec.c       | 209 ++++++++++++++++++
->>> drivers/gpu/drm/omapdrm/dss/hdmi5_cec.h       |  42 ++++
->>> drivers/gpu/drm/omapdrm/dss/hdmi5_core.c      |  35 ++-
->>> drivers/gpu/drm/omapdrm/dss/hdmi5_core.h      |  33 ++-
->>> include/drm/drm_bridge.h                      |  27 +++
->>> 16 files changed, 453 insertions(+), 54 deletions(-)
->>> create mode 100644 drivers/gpu/drm/omapdrm/dss/hdmi5_cec.c
->>> create mode 100644 drivers/gpu/drm/omapdrm/dss/hdmi5_cec.h
->>>
->>> -- 
->>> 2.30.1
->>>
->>
-> 
+> So in my opinion, it makes sense to keep this check.
+
+So, you mean that if fwnode_irq_get() succeeded there is a chance that returned
+Linux IRQ number is invalid?! If it's so, it's something new to me. I would like
+to see the details, please!
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
