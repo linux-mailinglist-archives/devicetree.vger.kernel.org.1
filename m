@@ -1,126 +1,72 @@
-Return-Path: <devicetree+bounces-97642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA6F962DFC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:00:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B17C962E03
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:00:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16B98B22978
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:00:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFB6BB22ADC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99551A4F16;
-	Wed, 28 Aug 2024 17:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9D21A4F27;
+	Wed, 28 Aug 2024 17:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mYG2kvwE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YXJ/6JlS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D481A4F1A;
-	Wed, 28 Aug 2024 17:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C3C1A3BD0;
+	Wed, 28 Aug 2024 17:00:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724864405; cv=none; b=dvPmP7ja/sRloFaMe+P9FuYLhgmu02RoGCnpz2CAHRkGNU8eQJ7pEPZoZLv7B3XZ4ST+i0aKkvymuhNK4oao5UpU5PMKUfyGOvrQhD6vSOrmfUL0szh8oXJF1kAS7lQnpLYzdp/FNPHhgkFhgVAYC7jPvnOEsUErbVEpTpQMe7I=
+	t=1724864419; cv=none; b=TNMVlt1vnk88yxAfxEP4A62GPXgKhgWH8zGCwTGwC8qPCsVuArnRSImn4yWsbQfSifSWuUZ8b8LI5EJYgDePPFbGOYZcE87d2u82Ot6qgFAbk9sgVXWVnMuGdEpj2w7JqTPOFFzOxwUGMh4BGcSdpFc4XoR2T7UyeXHHeYeuefI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724864405; c=relaxed/simple;
-	bh=kEsPKUR2T+Ch4/rin+qLVKFxP+TWUI9hktFf9GxDYGc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bySplWseXzfEr+HMhfEJuaGJc9s4HiuoF2F8sKlrV/WK0bMJxKr8LWBBX41OhgWzEaB1SlJWh1U2Wx8VgxXrT27lSu2pPGUeRbzAcQexIrUQOBMYoLYMKD3nzV4Hk07VPDAr5DACdJWLmpd9BrC9aSEIKvdhzuADiMq4NEAM4yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mYG2kvwE; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SGxsN0069441;
-	Wed, 28 Aug 2024 11:59:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724864394;
-	bh=yCu3p6k7jYdq0sC+LK3TcbQgS0qZfJnmMCl1ItmtqWY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=mYG2kvwEsWVFGSsze5CkQuYVi1FPhMb3OlNpGHDRxM8g1rfCiuG9DMLyepJponl7a
-	 0dFkbIT+/xmUpWklW1QNp4pFTpcXNYUOXYxCO8+O9oRfcPEYsDrYz3ud5qE4dOz95h
-	 j/P0+e5uimIsNIeYFB7MCrvJj3/6HmUGA9LnACYs=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SGxsFn004449
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 28 Aug 2024 11:59:54 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
- Aug 2024 11:59:54 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 28 Aug 2024 11:59:54 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SGxsHE027680;
-	Wed, 28 Aug 2024 11:59:54 -0500
-Date: Wed, 28 Aug 2024 11:59:54 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Robert Nelson <robertcnelson@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
-        Jai Luthra
-	<j-luthra@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>,
-        Jared McArthur <j-mcarthur@ti.com>,
-        Jason Kridner
-	<jkridner@beagleboard.org>,
-        Deepak Khatri <lorforlinux@beagleboard.org>,
-        Drew
- Fustini <drew@beagleboard.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: Add k3-am67a-beagley-ai
-Message-ID: <20240828165954.4d2uf65khni7rlr5@uncurled>
-References: <20240822170440.265055-1-robertcnelson@gmail.com>
- <20240822170440.265055-2-robertcnelson@gmail.com>
- <20240824184415.o7ehjqm523igqbbi@cornhusk>
- <CAOCHtYiap7JzwEXZ3aHDC+yhXEdoJuyb+q-sZAmbMENHCjtvUw@mail.gmail.com>
- <CAOCHtYg8DTuGncoxKPvTOyKvGrF-zNMwVvKcNWzRHxT5Hvt7nw@mail.gmail.com>
+	s=arc-20240116; t=1724864419; c=relaxed/simple;
+	bh=wvcCw/u2DHmQjZ+lBFZsEG5m3ALmQ5p1JIzRH0qd2OY=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=mkEsVGt9lyKuTznPYoNbpgAcWp7DemyWScCEhG9lLJsJ2C43RszUmHihzBYX4pYCa8PedInci4LJSdDlWHscNzY1ogJtyY/OdDd1IBXJNk4TgfkeTj3PXtGscLy4AGMP2Id2hIwzru3eso5Hm3fvQ5eoQWFqC7Q9+nBt8HjzZ+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YXJ/6JlS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3B98C4CEDA;
+	Wed, 28 Aug 2024 17:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724864418;
+	bh=wvcCw/u2DHmQjZ+lBFZsEG5m3ALmQ5p1JIzRH0qd2OY=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=YXJ/6JlS49eKre5/7JLOUjrfR2hvDTzcLLYUdHxEG51KRx369KPbzsP27VUzIVKuy
+	 CUJf5q3YAe7O3XIDhuew9We81iY6C0xrfPGCz8ZDDu9qzBO3ZHopPQxVgzsZk5OpK4
+	 DPD5SU22ZUuXmXbREb85PpvPY/b0G1fv664vdzHu9NatA18kmK+YyblqSpod2PjNYu
+	 NnzirXjAtxU7e7bUoxYb5Uxe3jVDf2QKYnSgswYULp2UkiWZZb+5pciHzrz/goGi4E
+	 lyPvgQhF7OiIG/H9SrHl5NtWRdxRLP2Melm25mxupRtN+26v4szyx2l/M8lYQaLd7j
+	 uMxMk2BZvtBtw==
+Message-ID: <4a441f73cea283e694465d5a7c4bef6d.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAOCHtYg8DTuGncoxKPvTOyKvGrF-zNMwVvKcNWzRHxT5Hvt7nw@mail.gmail.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240818173014.122073-1-krzysztof.kozlowski@linaro.org>
+References: <20240818173014.122073-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: baikal,bt1-ccu-div: add top-level constraints
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, Conor Dooley <conor+dt@kernel.org>, Elaine Zhang <zhangqing@rock-chips.com>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Michael Turquette <mturquette@baylibre.com>, Richard Fitzgerald <rf@opensource.cirrus.com>, Rob Herring <robh@kernel.org>, Serge Semin <fancer.lancer@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, patches@opensource.cirrus.com
+Date: Wed, 28 Aug 2024 10:00:16 -0700
+User-Agent: alot/0.10
 
-On 11:34-20240828, Robert Nelson wrote:
-[...]
-> 
-> /builds/RobertCNelson/arm64-multiplatform/KERNEL/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dtb:
-> leds: led-0:linux,default-trigger: 'oneOf' conditional failed, one
-> must be fixed:
-> 'off' is not one of ['backlight', 'default-on', 'heartbeat',
-> 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern',
-> 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash',
-> 'kbd-capslock', 'mtd', 'nand-disk', 'none', 'torch', 'usb-gadget',
-> 'usb-host', 'usbport']
-> 
-> I guess, 'none' is close... off/etc..
-> 
+Quoting Krzysztof Kozlowski (2024-08-18 10:30:10)
+> Properties with variable number of items per each device are expected to
+> have widest constraints in top-level "properties:" block and further
+> customized (narrowed) in "if:then:".  Add missing top-level constraints
+> for clocks and clock-names.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-I'd just suggest to drop the property since you already use heartbeat.
-
-Also function = is alternate option, if you choose to go down the road
-of enabling a function
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/leds/common.h#n77
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/common.yaml#n83
-
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Applied to clk-next
 
