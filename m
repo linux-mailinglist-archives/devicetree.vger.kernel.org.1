@@ -1,112 +1,96 @@
-Return-Path: <devicetree+bounces-97754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9DB096352A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 01:05:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8C096355A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 01:25:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 909DD2859A5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:05:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADACA1C2229E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237EA1AD3EF;
-	Wed, 28 Aug 2024 23:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56251AC8AC;
+	Wed, 28 Aug 2024 23:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="vbI9BDo5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwmXUK3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACDE158DCD;
-	Wed, 28 Aug 2024 23:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C78F16C6B0;
+	Wed, 28 Aug 2024 23:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724886318; cv=none; b=lMlMCiNnHgG45tXaq+kwwYy+hbldu2rJdepheQb6cfjIOwW2MAYaSHkNZmEPhS4uDsMY9evKP9qtyzddWo00JGopASFquXKjo87rh8Bg4ulfTiGCvVeXozXCX0BMfc9CnwC9TtPtdSQQb6SGW++NIzVIGoupvnfDPAlrtw+cIj8=
+	t=1724887554; cv=none; b=DjfYQX+oU+1BT5FlHyE/SZ5VmgZBcxNSMHEcr2tiIAgZgc+4FtyUgYdCmF/7HIkDTbOL3sFD+QM59GCY78uNU55r88romf+cZpTojOtlJkc4Zc2HsfCOVW1nu+s0KmYuLZZz3+w5cGRnRB5OLucklGPQ6DJzPwVHjd0H6oIPVqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724886318; c=relaxed/simple;
-	bh=llHts8eNjq0P0NBAG429dD9B8JX0dv2yxzxzDWhrfyQ=;
+	s=arc-20240116; t=1724887554; c=relaxed/simple;
+	bh=Y3O1toRDNDojmdDwgxNMaHK3SbtdT1D1qQFC1lr+iMM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CpToIKMNyt6otr13kg82idiFc+9MjP9nm5fdhNBoTdeD7I8Thew1Pp7uXD3Uudg+NpJ91phUE3rZwCt8y2RQDM4xYKeQuT8HU+EZ4SYYnm+tWJ/SvSImq/JlGJU0rdV5mEnabuzynizJ3TwKjik9xrrp+2nBw/0l6nVtqQO6YQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=vbI9BDo5; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=T2M/0J58JB0YRsETocA8T7qG6Z8ibgdVe/L0GaWjXjE=; b=vbI9BDo54PDvk0yL9yvSBRRlo9
-	W8L3dNzG0X1dDt7AB2sbG7UEZjEigo4P2HeJ7I0TX+wCNw1CM/F/MDmigRwqFDsc9wDUIs7fw3sj6
-	u3FV74+RVEIEXc+sQUMeBbYGGT/MP4rekxso+dogvak9coiLy15H+HY0fyMQQt91c73A=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sjRim-005yiR-N9; Thu, 29 Aug 2024 01:05:00 +0200
-Date: Thu, 29 Aug 2024 01:05:00 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Robert Marko <robimarko@gmail.com>,
-	Russell King <rmk+kernel@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/2] net: phy: aquantia: allow forcing order
- of MDI pairs
-Message-ID: <afca2465-3e42-4bf1-8f07-13e15e9ed773@lunn.ch>
-References: <1cdfd174d3ac541f3968dfe9bd14d5b6b28e4ac6.1724885333.git.daniel@makrotopia.org>
- <e56a9065f50cd90d33da7fe50bf01989adc65d26.1724885333.git.daniel@makrotopia.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZGYFGfG+ZAHWwECMLOr1J8BOR/uZ+d3X+g+S887aIiyrJP3FdqMZXau2g5hlVtFIEyN00MBNAwBwDgYZylYpBSfCOWgehTtTlh/uXQXyoyY6NQpmURINMS8hoS8UsxoNegz0AZFHQuftQ1IxrEIF/Tqul9MmN4P8j3grYFfCdIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwmXUK3y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF7F0C4CEC0;
+	Wed, 28 Aug 2024 23:25:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724887554;
+	bh=Y3O1toRDNDojmdDwgxNMaHK3SbtdT1D1qQFC1lr+iMM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CwmXUK3yfmqCaw1agouAWAH1FkxF0PjSZ0hUE4JXlnPUmy+vUb46eTMfWM2Tv8sb7
+	 QmrGZM0iTz7KtdtNQeGiu3uXDRg1hy4b/bbEX1cZ/QaxuZLZx4Q/5DbuFLzKyMY9h5
+	 oDjBnk5Kh4MFhSVT/HDakNosxGi4Sw7mrYlR/YaOh79gqE1qzPXGkTB6yx5GrkCBlj
+	 JnLV5BqhG4Nn6KxqDGPnpBrJO7cxpPOVTCj1MDg5F6zJLyN8JVY1tcpqwL5cxKztcj
+	 zfdNW97s4dPnl+F6tjxyx9n6RlreAABRkN/rMly8llidja/8h99qQYsCJZ5jEaQGoi
+	 z+oJkOETFVjcw==
+Date: Thu, 29 Aug 2024 00:25:48 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: linux-spi@vger.kernel.org, otavio.salvador@ossystems.com.br,
+	heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH RESEND v2 1/3] dt-bindings: trivial-devices: Document
+ elgin,jg10309-01
+Message-ID: <0d6314a3-75a9-4f21-947b-194eaf1fe12f@sirena.org.uk>
+References: <20240828180057.3167190-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sjSsBDRYzfDNfjS1"
+Content-Disposition: inline
+In-Reply-To: <20240828180057.3167190-1-festevam@gmail.com>
+X-Cookie: You are number 6!  Who is number one?
+
+
+--sjSsBDRYzfDNfjS1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e56a9065f50cd90d33da7fe50bf01989adc65d26.1724885333.git.daniel@makrotopia.org>
 
-On Wed, Aug 28, 2024 at 11:52:09PM +0100, Daniel Golle wrote:
-> Despite supporting Auto MDI-X, it looks like Aquantia only supports
-> swapping pair (1,2) with pair (3,6) like it used to be for MDI-X on
-> 100MBit/s networks.
-> 
-> When all 4 pairs are in use (for 1000MBit/s or faster) the link does not
-> come up with pair order is not configured correctly, either using
-> MDI_CFG pin or using the "PMA Receive Reserved Vendor Provisioning 1"
-> register.
-> 
-> Normally, the order of MDI pairs being either ABCD or DCBA is configured
-> by pulling the MDI_CFG pin.
-> 
-> However, some hardware designs require overriding the value configured
-> by that bootstrap pin. The PHY allows doing that by setting a bit in
-> "PMA Receive Reserved Vendor Provisioning 1" register which allows
-> ignoring the state of the MDI_CFG pin and another bit configuring
-> whether the order of MDI pairs should be normal (ABCD) or reverse
-> (DCBA). Pair polarity is not affected and remains identical in both
-> settings.
-> 
-> Introduce two mutually exclusive boolean properties which allow forcing
-> either normal or reverse order of the MDI pairs from DT.
-> 
-> If none of the two new properties is present, the behavior is unchanged
-> and MDI pair order configuration is untouched (ie. either the result of
-> MDI_CFG pin pull-up/pull-down, or pair order override already configured
-> by the bootloader before Linux is started).
-> 
-> Forcing normal pair order is required on the Adtran SDG-8733A Wi-Fi 7
-> residential gateway.
+On Wed, Aug 28, 2024 at 03:00:55PM -0300, Fabio Estevam wrote:
+> The rv1108-elgin-r1 board has an LCD controlled via SPI in userspace.
+> The marking on the LCD is JG10309-01.
 
-Is there an in-tree dts file for this? We like to see that options
-which are added are actually used.
+Is there some reason why this is v2 and not v3?  b4 gets terribly
+confused about what version of the series I might want.
 
-      Andrew
+--sjSsBDRYzfDNfjS1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbPsfwACgkQJNaLcl1U
+h9B87gf/WsHu9HDBTawryPAxLT9SeCnpesMndsZeDeHSICfh6+io3FxLGSTNKYc7
+shA3hTic4oQtNsfLT/Yjr8G4JmhMBnfd51+0pqu4dtkxIIcVn6H0vmr1U5dTLU9x
+2YOREdFOWSsMFLwrXyS6Jt60LLm1Itux38JLpE9BNt2vMgJvIDv0LraOijgGvhVE
+z0FYKu/NgSzV5IUatx11o4CjyxYe97JYZFoXNdXMCj1vUjZUb6urJdw6VLIKFOCg
+d0aR072BGrfGOzSRIsaKPDLTvqoOxHP2R8EnEETZCmV7PN8/nA+6FR90TVWeR0yW
+R8MGFm74tGGt2Ie9dlSGG0ztAiOhsw==
+=zZ7y
+-----END PGP SIGNATURE-----
+
+--sjSsBDRYzfDNfjS1--
 
