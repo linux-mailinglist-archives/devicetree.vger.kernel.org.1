@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-97596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1ADD962BD8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:16:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F7E962BD3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:16:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F6882876F6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:16:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69E0F1C234B8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54FDA1A76AD;
-	Wed, 28 Aug 2024 15:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82681A7059;
+	Wed, 28 Aug 2024 15:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="aEWdhDDY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xaxhRQih"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59651A706B;
-	Wed, 28 Aug 2024 15:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5201A7052
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 15:14:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724858066; cv=none; b=LF4i4n7gapQn0fvvbLeNoFtoLg8xPGgTQ3cVDbNilotqBBlI3AMtD+2QSS1iXsl92hqe7QZrrL3B7Br5FByP7oNO15KdkTdS6V8Rf860dlYq5iewYVTdB6FqnHix/wP5RCuTmpA5wWndZf/7Pk5TiGIaTHM45qun7HnSgkrqQiU=
+	t=1724858062; cv=none; b=ikJJS+VIBsfER7POTgzWpN+KMlHd5Yf2zO6BJ31X2Ocs58dXscNG+Sbk6LBOhw62rh4E7/h/KIwS8yyGt4ppNqP11TIB+18kOgkcsLAa00qtPvgfKKkS9D6eX1zNwUtjAlJYUZeaILfK55KCnvkLUfGq6E3TfLx+FIkHanVyCMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724858066; c=relaxed/simple;
-	bh=Ew3Wx2eYp9qvM7g5zipR8+GupOj0F+MUmh75MbtPaJs=;
+	s=arc-20240116; t=1724858062; c=relaxed/simple;
+	bh=OEKUB1PdLXi8mz/xlbGhwYsW8H49JRMemiGWSsSYAQs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o86qZVxRZSzSLrI48F4C64JFMn0bz8GXbj/AnCzhuaHq0RqVOWTGSMCq/XZp6hDQkdyr4MIy+xkd5yR8SZTtrEAgxM2J/fmkXD/tdchoePLPZdwLQSMhATqyI/xWpFj0TOnwt7N+clEEYvM+wFqLFhCZyJf6JHAFFcjAAtSURJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=aEWdhDDY; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=S3hYNdNz5mfTHCkBHMbMwfWYTc5MHdNz4qoj5g8+nTLrk1VRV2QiezlPFWb9e254mEU3u2Yu88wJdSagO0YEtuWKuiSsJEfOV3crMQInnAnjMnwyH1+ceFCcAWbXhAXOSunKuSbIwfLP6t/8eE6Nvt8K/rXSIPpZL8Syhc0oE2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xaxhRQih; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,34 +37,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=LevMEsCzUj4G8ENrhUfHsg8ts9orTIQ9E7AP5yZ+FK8=; b=aEWdhDDYw5+twZWDzXVsUja0ha
-	NoQdtwH5CDlssSpTFXB+SaXQzO3iSLy6LHX/06slAv7INfcUsSJ8R8tMcoEPV16o9QU1JJJY7S5Mo
-	f4NWFUaehr30EaJOCkhfVjkCK2qIf2m5WhdNDhlpERjKmK2ofvkCdVLXfQ07fwrzu0l221+cYNgA6
-	u0T0ITOSF4WotwDeCeXpuPc0gNMYWXROXE6LdmcVSj/tc/KgRxU2uQs2r933DFpP9oms7YKWFYlQr
-	NgUhw5wBcKRUfV3dlkeHLe4uezYNiwOkGnLMvl/T20/nC9njX2S1lD0Qgt0zOMXaqlXCOJPqJ3iRH
-	XkX6pDpQ==;
+	bh=Q6MDe5ik/q62fr2nqCRdkQ9EMnGU7nKBsp+fj8YUl0c=; b=xaxhRQihsPhY2sdb0DKbD5ZB3R
+	vWJ/QVqb7040AEXp19LqQZAUOzbFvhYw9NJuaRbuUaBXExWFmuT38HdvbjNA1tncl2UzHmDb41u8k
+	c2Z/AOCJGckBIokFMrPJT2lIC37bKY8nkrk6ct3dwuBeTuFJk5LFl14hKz/NU4U+1HMv0MVQZwNyy
+	pNf+DjdiraBkV27qh00PjUAqJgRWly1dpbBLArbdup7VITfj/rOpKSLjIrBNVPHTAN9vwX4ZS1RAW
+	cjL3Ri5zeEJsu+1sG3Gzlb2lDFQYbmxpCRuwvB5MSIGVFR7yBNBTXY+Lf41py/9RxtkEiOvGkt3Ma
+	60hiYatA==;
 Received: from i5e8616cd.versanet.de ([94.134.22.205] helo=phil.lan)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1sjKNG-00065f-TW; Wed, 28 Aug 2024 17:14:18 +0200
+	id 1sjKNH-00065f-8j; Wed, 28 Aug 2024 17:14:19 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>
+To: FUKAUMI Naoki <naoki@radxa.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
 	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 0/4] arm64: dts: rockchip: Add Hardkernel ODROID-M1S
-Date: Wed, 28 Aug 2024 17:14:12 +0200
-Message-ID: <172485421375.1511809.9810674722852460291.b4-ty@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: enable PCIe on M.2 E key for Radxa ROCK 5A
+Date: Wed, 28 Aug 2024 17:14:13 +0200
+Message-ID: <172485421377.1511809.17622417470399861504.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240827211825.1419820-1-jonas@kwiboo.se>
-References: <20240827211825.1419820-1-jonas@kwiboo.se>
+In-Reply-To: <20240826080456.525-1-naoki@radxa.com>
+References: <20240826080456.525-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,26 +71,22 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Tue, 27 Aug 2024 21:18:14 +0000, Jonas Karlman wrote:
-> This series fixes wrong vendor prefix on the Hardkernel ODROID-M1 board
-> and adds initial support for the Hardkernel ODROID-M1S board.
+On Mon, 26 Aug 2024 17:04:56 +0900, FUKAUMI Naoki wrote:
+> Enable pcie2x1l2 and related combphy/regulator routed to M.2 E key
+> connector on Radxa ROCK 5A.
 > 
-> The Hardkernel ODROID-M1S is a single-board computer based on Rockchip
-> RK3566 SoC. It features e.g. 4/8 GB LPDDR4 RAM, 64 GB eMMC, SD-card,
-> GbE LAN, HDMI 2.0, M.2 NVMe and USB 2.0/3.0.
+> Tested with Radxa Wireless Module A8:
+> 
+> $ lspci
+> 0004:40:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+> 0004:41:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852BE PCIe 802.11ax Wireless Network Controller
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] dt-bindings: arm: rockchip: Correct vendor for Hardkernel ODROID-M1
-      commit: fa63d087bbf67ca907a8ee6ab54f9932cd02f919
-[2/4] arm64: dts: rockchip: Correct vendor prefix for Hardkernel ODROID-M1
-      commit: 735065e774dcfc62e38df01a535862138b6c92ed
-[3/4] dt-bindings: arm: rockchip: Add Hardkernel ODROID-M1S
-      commit: 611a434a7d3387fc0eee50cfcc318cc237c1d489
-[4/4] arm64: dts: rockchip: Add Hardkernel ODROID-M1S
-      commit: 10dc64fe0f980c47c7e747885ddf7a8c12780337
+[1/1] arm64: dts: rockchip: enable PCIe on M.2 E key for Radxa ROCK 5A
+      commit: b728d4c51f0ce9207daf502f3a85073785c46319
 
 Best regards,
 -- 
