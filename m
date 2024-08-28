@@ -1,158 +1,126 @@
-Return-Path: <devicetree+bounces-97564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 236E0962A54
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B97962A65
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA8AD1F250AE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:34:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ABDD1F25344
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28F3199FB9;
-	Wed, 28 Aug 2024 14:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7EC199FB9;
+	Wed, 28 Aug 2024 14:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aAl4AFwE"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="P+RAvk3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A476716C866;
-	Wed, 28 Aug 2024 14:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB001741F8;
+	Wed, 28 Aug 2024 14:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724855670; cv=none; b=FPO476oyK2djHQGo984IMIBB6Ei+g7ieY/M9j9ubR4BqNpFl4NBhP1UBNA+5U25RVw3BAa+fbnnQ2lKnKpujIvRyeEPulCeaMCkzY4Wqq0VuqNGYJTJ4hvUcLWnQKDxtCUqSlaAc7xMHnfHVPtuvfGJqMBuw/RVyBKWzz8UTeLc=
+	t=1724855859; cv=none; b=t7KD3l1yxceiYWZLzLErk5aUYWJo4NxQ5JgUq9TuETyEuES3dlTGEhr5RhrOLFNG2wObZf9kiPHF85arvhASmm6OFNaDPkqD5WTwWKc92AwtzIb7D+5P8Ni8p7MB2zHh3MpLRQy4s09r2qFrpfGwNqclUYtqKc4mrUwaGhPErz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724855670; c=relaxed/simple;
-	bh=j/Q1LONafWjKMVos3PdLmRHYgCPTc52BK3D0sXgAucM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WImQN7r2HSk6VKrzmmJ2vX6FrvtMfzpVXVKHBkZuvTbmBaAvpaRvVFCoRtSVBJL71NeGRc1HnZxWYuVfYkb8z6/o6CKy/6k0wl8K6VWMuGj+Haif6wSn/ig8vYKVeNtd+yHfWYI9aGIKpCSPTsdfGspjxvlJpjPR5q5Bp/N9NaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aAl4AFwE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6821C51AA5;
-	Wed, 28 Aug 2024 14:34:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724855670;
-	bh=j/Q1LONafWjKMVos3PdLmRHYgCPTc52BK3D0sXgAucM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aAl4AFwEfXuWO6RItuz6+ilTCQaGgagmI4SdJJWa1VBEcezZDFQ32QGHuTAhmH06T
-	 mS28JevqtPEa/yWM2FHoj72g9P+Xkw4LCBUXiQJCkNStAHpS/35LuF9mr9xJABqGHN
-	 kuI4uBMGMsYHrvuFOznMNLTOVkKxIOTcXQ4tCFOWvcW5NB08VX8ZXJkumzUeogQyBu
-	 DOwjjh+VToOCqpz/yKFg1s8khK71gNnP7C8T4J1mbOD/tkcxFe6ETK9o77US4/9FFd
-	 v9MCPfWwqi2bL4a6ntS49ZNw4BUcpfzQQJWV8g/hMdDGxbANHVrKNN1brsQThsSFAH
-	 La4e6W+hIzcBQ==
-Message-ID: <28106585-59d1-42c4-af56-89820b15bdfb@kernel.org>
-Date: Wed, 28 Aug 2024 16:34:23 +0200
+	s=arc-20240116; t=1724855859; c=relaxed/simple;
+	bh=fdpg3kq4dPHCGNskbhOT3JsJDtXXiyk+S1SADWL7kP4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UnIt+xYoYKVi2nELRV+R9nMmrXV0nkTodfRhvAuZ36ESt7fIi0Tunr7fmzeZynwuCcAKWH2j8lfJF3Q6ZZCzwhfDmsVDxerL62BG5GyinE90TGBqQBVGQO//U/4rsYjLkWcenoqvhTtOlQJQW3qfQD+VaWm0mWarFr8KvyT8clw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=P+RAvk3A; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47SDcHJW022995;
+	Wed, 28 Aug 2024 16:37:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=PQt+rFDvJ2p7ysrJ52Hqzp
+	olK6zn6vXicKJGfAoCcvE=; b=P+RAvk3A9n029uL7gERYrujW11w3q/SK9uzTKq
+	KNRa0au0Iks/YUePgE12oywnkWS4tHca0SfsVZoFxLLmdMvGX49SYLNOn3rs8wid
+	w9mprFfUSsVVt8EUYxAFMJ2ae4MABZdu15hgW243T7e1iV87f8Vau1zwANfbie7H
+	SLDbSdTBgKs3vNcK/0S2krX5h7Ou/3CBUmRxNQ2nXNd6j/H+zz69QkJzZA4sr1Fi
+	vL88OmeW02MRWsSetk5dzhWpVUxs23lFnA+W3l/pMU7oS4O8gjzQJs3wFoPMUGFH
+	gfr6N9TA6GCsNfJ0MLva2Ag7mCIZvYGthSxwj+B+MErTd6Sw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41a4y00b3s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 16:37:05 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7773B4002D;
+	Wed, 28 Aug 2024 16:37:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 784AD26F238;
+	Wed, 28 Aug 2024 16:36:12 +0200 (CEST)
+Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 28 Aug
+ 2024 16:36:12 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v4 0/5] Add STM32MP25 USB3/PCIE COMBOPHY driver 
+Date: Wed, 28 Aug 2024 16:34:47 +0200
+Message-ID: <20240828143452.1407532-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/9] dt-bindings: soc: renesas: Document RZ/V2H EVK
- board
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240828124134.188864-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240828124134.188864-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240828124134.188864-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_05,2024-08-27_01,2024-05-17_01
 
-On 28/08/2024 14:41, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Add "renesas,rzv2h-evk" which targets the Renesas RZ/V2H ("R9A09G057")
-> EVK board.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Hi Rob, I have restored your Ack with the below change, I hope that's OK.
-> 
-> Cheers, Prabhakar
-> 
-> v1->v4
-> - Updated 'renesas,gp-evk # GP-EVK' -> 'renesas,rzv2h-evk # RZ/V2H EVK'
-> - Updated commit message
-> 
-> v1: https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240724094707.569596-2-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> ---
->  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> index d582992aaf0e..b7acb65bdecd 100644
-> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -527,6 +527,8 @@ properties:
->  
->        - description: RZ/V2H(P) (R9A09G057)
->          items:
-> +          - enum:
-> +              - renesas,rzv2h-evk # RZ/V2H EVK
->            - enum:
+Address comments from Rob and Krzysztof
 
-This is unusual pattern for me, but maybe I miss here something. Commit
-message does not explain why EXISTING boards needs to be changed. What
-does it mean "rzv2h-evk targets evk board"? How does this work?
+Changes in v4:
+   - "#phy-cells": Drop type item description since it is specified
+     by user node phandle.
+   - Rename stm32-combophy.yaml to match compatible
+   - Drop wakeup-source from bindings (should be generic)
+   - Alphabetically reorder required: list.
+   - Drop "Reviewed-by" since those previous changes
 
-You have EVK board and now it is not valid anymore?
+Changes in v3:
+   - Reorder MAINTAINERS patch
 
+Changes in v2:
+   - Reorder entries
+   - Rename clock_names and reset_names bindings
+   - Rename and clarify rx-equalizer binding 
 
-Best regards,
-Krzysztof
+Christian Bruel (5):
+  dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+  phy: stm32: Add support for STM32MP25 COMBOPHY.
+  MAINTAINERS: add entry for ST STM32MP25 COMBOPHY driver
+  arm64: dts: st: Add combophy node on stm32mp251
+  arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
+
+ .../bindings/phy/st,stm32mp25-combophy.yaml   | 128 ++++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  17 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 +
+ drivers/phy/st/Kconfig                        |  11 +
+ drivers/phy/st/Makefile                       |   1 +
+ drivers/phy/st/phy-stm32-combophy.c           | 607 ++++++++++++++++++
+ 7 files changed, 784 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
+ create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+
+-- 
+2.34.1
 
 
