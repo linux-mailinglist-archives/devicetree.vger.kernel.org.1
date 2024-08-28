@@ -1,200 +1,110 @@
-Return-Path: <devicetree+bounces-97747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8F19633BE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:19:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 013B79633E5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 23:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CB2C1F229C6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:19:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3425A1C22169
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD141AD3FC;
-	Wed, 28 Aug 2024 21:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D4B1AD417;
+	Wed, 28 Aug 2024 21:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pVFp21+B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O6A3qyIt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE0C1AD3F2;
-	Wed, 28 Aug 2024 21:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D441AD416;
+	Wed, 28 Aug 2024 21:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724879950; cv=none; b=YOoKS1RbMvmO9PP1j51+m6S2CKyd4boHnFkP8WE22lDmW2MdBOFwWaLjk9ITOkCZBYiTLR9UdJTprjayt+SFaa2eNCMR+fLmpTHoE/hPbIunAif3ekVLamR9vWHP9+272YLsYJ6YIcNxVrsDcLXm29/hIAT/vGfrdx4dQpmt8OA=
+	t=1724880728; cv=none; b=QIVegJlDtcsXiZnZ+lVK3oakW6g5rs4GxpvCNouBrj6la3DylW1Prf6DH3ASS2MHOllx4tXJQB0xAHpu3uwaAlTDLtCSBYk57Tm93bWiRxl1QikP5GAjNot3oUXb+2DzzurcD61WsfTfYMK+Z2Um7frfWI5B9KjW+7kqPCAaU2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724879950; c=relaxed/simple;
-	bh=49PHB8qyunhNwkqPu8maqVRtY1UPnUcFp4zqIf0kXcY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=uueqbK8OjbdiMtBr7cjiijbBaieYKm86fK4RL5xs11C+7V8tI14dxrvFZ+ZGNhTosyI4hsLlnODXZu7Vo4XB7cQusiqd8loXRPdJirxgJlu1e4gnkq64HPna4PHGGOd1BThu8qssFznKAO9NK9FayNpiQ3PL95zoRao1sCo4wo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pVFp21+B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9E37C4CEC3;
-	Wed, 28 Aug 2024 21:19:08 +0000 (UTC)
+	s=arc-20240116; t=1724880728; c=relaxed/simple;
+	bh=tvvsM7RC7K+AS3pR//hz5+6DDeoWHDT2NRglbiOrZU4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sSGw/CG7DWsVtYxei805oj2HG4epKyyJvee26j7yj5S+sua4kH/ccWag2NDmEp0KrbptRoM+ja9C3DI/I/go6XfYXRD+T9ND7I7cP2KudX4RefBDPQ9BxlT9iLGMDPIrtawSjUDrech/ShAnHIX8kaimNXoJRHM4g0WH/MkB6MM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O6A3qyIt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8708DC4CEC4;
+	Wed, 28 Aug 2024 21:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724879949;
-	bh=49PHB8qyunhNwkqPu8maqVRtY1UPnUcFp4zqIf0kXcY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=pVFp21+BRU63IIpfRMbslg+8XpR0EjCfJpCQik0ChLei1TqYjx+Huu9B+GgR30ELW
-	 FDqVR2GpORk5bS++6AD4hEBeA14/Br+lrgnv7rfsp2HnPJcxwG+sJmd2mhWEHjFWtd
-	 e8h38p7fw54LCX1XFpK/lzWHBTCTzw1jr46hC21QyuasPUC50Xq2F5jDXbGh1bqnQL
-	 S8/NSn1O2jHXHY0mUd+cD8vX2tauqBnjYQQIVaD0Wv11BQnJ2ygq7UlIj9e+zdI3sw
-	 tWjZB3RwR7tOTO+LYTqQNBDxpUUbCK3FbBguUI/FPvFN3a/RSMMIigUe8Xxq8AaYvT
-	 E76oUpgeyQPoQ==
-Date: Wed, 28 Aug 2024 16:19:06 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, vigneshr@ti.com,
-	kishon@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, srk@ti.com
-Subject: Re: [PATCH v3 2/2] PCI: j721e: Enable ACSPCIE Refclk if
- "ti,syscon-acspcie-proxy-ctrl" exists
-Message-ID: <20240828211906.GA38267@bhelgaas>
+	s=k20201202; t=1724880727;
+	bh=tvvsM7RC7K+AS3pR//hz5+6DDeoWHDT2NRglbiOrZU4=;
+	h=From:Subject:Date:To:Cc:From;
+	b=O6A3qyIt2IMZX47N89uoca7T2Mtlc3YXAypRBe7WeJxFd7ZU1mjuQq09WHxizWpap
+	 1xjaA2aUPzZTsNtIY5Glqh+AZnDB6w6EgJ8a6kMGdXG+y+S4Bu7kARQczAdh6Pifn8
+	 Kb0TlY5M5EQEPz3ODLL7tchSMhyIP+RBWdlcyDK99S2YOmUvcL4zApnKTHHZ4k8LYJ
+	 PhPBUbY6bai5t7paNVI1bSC38xdgU2Ad3aT4I+H0EfQ+AaBGqEhF5u+OmrC8dyaEfu
+	 EMp24AgSwqE6pAqAxFkrEpBMeALflqOTmkDSBSgnsFS+NjyvYV9AZ1/fLjAwLw7fhK
+	 rl49xYs4MmDaw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH v2 0/2] ThinkPad T14s Gen 6 support
+Date: Wed, 28 Aug 2024 23:31:59 +0200
+Message-Id: <20240828-topic-t14s_upstream-v2-0-49faea18de84@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240827055548.901285-3-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE+Xz2YC/32NQQ6CMBBFr0JmbU1bMYgr7mGIKe0UJlFKppVoS
+ O9u5QAu30v++xtEZMII12oDxpUihbmAPlRgJzOPKMgVBi11LRvVihQWsiKpOt5fS0yM5inwfPL
+ WSWudNlCWC6On91699YUniinwZz9Z1c/+761KSOEa1zbe4TDoS/eg2XA4Bh6hzzl/AWt2Wiu3A
+ AAA
+To: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Johan Hovold <johan@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724880724; l=1119;
+ i=quic_kdybcio@quicinc.com; s=20230215; h=from:subject:message-id;
+ bh=tvvsM7RC7K+AS3pR//hz5+6DDeoWHDT2NRglbiOrZU4=;
+ b=TLekHTXo+uZF/UaTguepotezwSHmHSjooJB5NvHVyJL23luOkkhJ0RyAoLrNv6Nt9fH9Q3PYn
+ rE5ZJUWmuuyAZ6bjOpOKfW/BZ9ck9FHUn9On/bRh57r9mcULtCgn1nx
+X-Developer-Key: i=quic_kdybcio@quicinc.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Tue, Aug 27, 2024 at 11:25:48AM +0530, Siddharth Vadapalli wrote:
-> The ACSPCIE module is capable of driving the reference clock required by
-> the PCIe Endpoint device. It is an alternative to on-board and external
-> reference clock generators. Enabling the output from the ACSPCIE module's
-> PAD IO Buffers requires clearing the "PAD IO disable" bits of the
-> ACSPCIE_PROXY_CTRL register in the CTRL_MMR register space.
-> 
-> Add support to enable the ACSPCIE reference clock output using the optional
-> device-tree property "ti,syscon-acspcie-proxy-ctrl".
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> v2:
-> https://lore.kernel.org/r/20240729092855.1945700-3-s-vadapalli@ti.com/
-> Changes since v2:
-> - Rebased patch on next-20240826.
-> 
-> v1:
-> https://lore.kernel.org/r/20240715120936.1150314-4-s-vadapalli@ti.com/
-> Changes since v1:
-> - Addressed Bjorn's feedback at:
->   https://lore.kernel.org/r/20240725211841.GA859405@bhelgaas/
->   with the following changes:
->   1) Updated $subject and commit message to indicate that this patch
->   enables ACSPCIE reference clock output if the DT property is present.
->   2) Updated macro and comments to indicate that the BITS correspond to
->   disabling ACSPCIE output, due to which clearing them enables the
->   reference clock output.
->   3) Replaced "PAD" with "refclk" both in the function name and in the
->   error prints.
->   4) Wrapped lines to be within the 80 character limit to match the rest
->   of the driver.
-> 
->  drivers/pci/controller/cadence/pci-j721e.c | 38 ++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
-> index 85718246016b..ed42b2229483 100644
-> --- a/drivers/pci/controller/cadence/pci-j721e.c
-> +++ b/drivers/pci/controller/cadence/pci-j721e.c
-> @@ -44,6 +44,7 @@ enum link_status {
->  #define J721E_MODE_RC			BIT(7)
->  #define LANE_COUNT(n)			((n) << 8)
->  
-> +#define ACSPCIE_PAD_DISABLE_MASK	GENMASK(1, 0)
->  #define GENERATION_SEL_MASK		GENMASK(1, 0)
->  
->  struct j721e_pcie {
-> @@ -220,6 +221,34 @@ static int j721e_pcie_set_lane_count(struct j721e_pcie *pcie,
->  	return ret;
->  }
->  
-> +static int j721e_enable_acspcie_refclk(struct j721e_pcie *pcie,
-> +				       struct regmap *syscon)
-> +{
-> +	struct device *dev = pcie->cdns_pcie->dev;
-> +	struct device_node *node = dev->of_node;
-> +	u32 mask = ACSPCIE_PAD_DISABLE_MASK;
-> +	struct of_phandle_args args;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = of_parse_phandle_with_fixed_args(node,
-> +					       "ti,syscon-acspcie-proxy-ctrl",
-> +					       1, 0, &args);
-> +	if (!ret) {
-> +		/* Clear PAD IO disable bits to enable refclk output */
-> +		val = ~(args.args[0]);
-> +		ret = regmap_update_bits(syscon, 0, mask, val);
-> +		if (ret)
-> +			dev_err(dev, "failed to enable ACSPCIE refclk: %d\n",
-> +				ret);
-> +	} else {
-> +		dev_err(dev,
-> +			"ti,syscon-acspcie-proxy-ctrl has invalid arguments\n");
-> +	}
+As good as the other X1 laptops
 
-I should have mentioned this the first time, but this would be easier
-to read if structured as:
+See this page for more hw info:
 
-  ret = of_parse_phandle_with_fixed_args(...);
-  if (ret) {
-    dev_err(...);
-    return ret;
-  }
+https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/lenovo-thinkpad-t14s-gen-6-(14-inch-snapdragon)/len101t0099
 
-  /* Clear PAD IO disable bits to enable refclk output */
-  val = ~(args.args[0]);
-  ret = regmap_update_bits(syscon, 0, mask, val);
-  if (ret) {
-    dev_err(...);
-    return ret;
-  }
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- kick UART
+- add PCIe4 pinctrl
+- fix PCIe4 PHY supplies
+- disable bias on PERST#
+- remote regulator-always-on on EDP vreg
+- explain what X1E78100 is
+- add missing chassis-type
+- Link to v1: https://lore.kernel.org/r/20240719-topic-t14s_upstream-v1-0-d7d97fdebb28@linaro.org
 
-  return 0;
+---
+Konrad Dybcio (2):
+      dt-bindings: arm: qcom: Add Lenovo ThinkPad T14s Gen 6
+      arm64: dts: qcom: Add X1E78100 ThinkPad T14s Gen 6
 
-> +	return ret;
-> +}
-> +
->  static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
->  {
->  	struct device *dev = pcie->cdns_pcie->dev;
-> @@ -259,6 +288,15 @@ static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
->  		return ret;
->  	}
->  
-> +	/* Enable ACSPCIE refclk output if the optional property exists */
-> +	syscon = syscon_regmap_lookup_by_phandle_optional(node,
-> +						"ti,syscon-acspcie-proxy-ctrl");
-> +	if (syscon) {
-> +		ret = j721e_enable_acspcie_refclk(pcie, syscon);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->  	return 0;
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 807 +++++++++++++++++++++
+ 3 files changed, 814 insertions(+)
+---
+base-commit: 1210438f69a0b58ad5f8a46816da90e245b2e17e
+change-id: 20240719-topic-t14s_upstream-e53fcd0ccd2a
 
-Not as dramatic here, but I think the following would be a little
-simpler since the final "return" isn't used for two purposes
-((1) syscon property absent, (2) syscon present and refclk
-successfully enabled):
+Best regards,
+-- 
+Konrad Dybcio <quic_kdybcio@quicinc.com>
 
-  syscon = syscon_regmap_lookup_by_phandle_optional(...);
-  if (!syscon)
-    return 0;
-
-  return j721e_enable_acspcie_refclk(...);
-
->  }
->  
-> -- 
-> 2.40.1
-> 
 
