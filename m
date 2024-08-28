@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7815962653
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E0F59626AB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:14:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 186B51C20D78
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:50:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 440071C21692
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E456F16D321;
-	Wed, 28 Aug 2024 11:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942241741D9;
+	Wed, 28 Aug 2024 12:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rPhL52AF"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="DXCkuQrF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA04515B12F;
-	Wed, 28 Aug 2024 11:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9783813D53D;
+	Wed, 28 Aug 2024 12:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724845799; cv=none; b=K/RIOdatZ3rSatLBe/aT/5y3iI2QMIaQwP8yTswFV1xJlVQunpdJtzTxfAzmz1AEqTg6osHtMmbD8lEoHAt6Q+aCDIeHqAyC+rwZFEfApQtlbhoD2D+hlyjyGMq3j4Y7v5neQlzBK+3NFpsbpD7uPa9nr2JzOJZUQn3v2InVKlA=
+	t=1724847295; cv=none; b=ix60Nu0xOQ2nxtbJHhuWED/NgzOY+4R4JoPCF/8Ffjg/JXVLW6RrCPT6Sh0iBkIIVuIn/5NFBCFLw51Ob50esm9mmVUts4CqH0GNmN8erW9oltBGi0SdoRCtEXZDlVbdqhzIQYm7gC9oPnUfr6Wz2blPBpZHR0QjzF2TJlAiJSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724845799; c=relaxed/simple;
-	bh=Rmg15xcrDSp/rS54nFzfPvGUre02UCMRZ4kZHLoLxMw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=DUowa8UEaGe25P0C3IGmqDE+DIKL7+frIaiV9ZQJkNx8DmsvttJFff2Jf9k15RxxzvyNsLCvOhQ5cN0MkIK51f1Z/Ot1g75ohf8/mLK0kMumC8ktQwq5bxnVE2RTW+/WeRXarImkBINgoqiP63P1L2Hh7+knhd/dMejg6+D97gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rPhL52AF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69ADAC98EC3;
-	Wed, 28 Aug 2024 11:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724845799;
-	bh=Rmg15xcrDSp/rS54nFzfPvGUre02UCMRZ4kZHLoLxMw=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=rPhL52AFcFVJ8bqp8jCbLeuNE2JLek2l9kSCxYYmGHoXF96QFoPQNPt4pD4+FkKBk
-	 oiVFk8R2tSxj4GPoMCtpAtMP44II6JMTAHkIMkp1bR8j1Mv0xVisikw+ghA2rDP3w9
-	 bmdwhREEOYuDcJZcGSdrhvwgPiDjclwzv1HlTiFKQRYCSpcfKey9Z5CzJ1hyC335eD
-	 NO+5fd2Rhlrh5tKv/s9DfD1F7n2yZ7FSJn+8GYWnf1P1O2ZAlb+yoaLGkvhwfgl9mp
-	 H3I9sq/fbZcj0DMHUDz15PLuRc9aHOJIs+dliYres+QDfAVSE4KgvtpeySzZf8iiKd
-	 EDVKhpNXKrA/w==
-Message-ID: <fe4c8c72-1f7b-4274-a910-4ad803487951@kernel.org>
-Date: Wed, 28 Aug 2024 13:49:54 +0200
+	s=arc-20240116; t=1724847295; c=relaxed/simple;
+	bh=FedBPNvWnRBW4FwoI7m8twxwx7vsQQ1gen13mGStnVA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gRj2ZcG7XL9BPt/4q/0ZL6X3bp/fG0egcD3rYWLc0Vog3ag+vot3OJjFl5rdYuHUpqRouqGmIW69L7gFzfaRL+MP/+wu/DkGcLnKiewDtlUNtzg80htq0ItDLQqXzmhe9bShmfiT2vtTDPTIJ1MCCIGnfjol0zaYBA4ZhhK/1Jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=DXCkuQrF; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 92FCA220;
+	Wed, 28 Aug 2024 14:13:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1724847223;
+	bh=FedBPNvWnRBW4FwoI7m8twxwx7vsQQ1gen13mGStnVA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DXCkuQrFaCtFSHgvHIdWUiV0Aln91HQGgN1nY71h28FwR6b5A5u6lX7ACsUtaEkt8
+	 afHrRwwtfxHMYhG508o3fCzOmVjX8/eScOyZkZ8mI9zB/tuW454D6dhW/u32pWZ54K
+	 ydNIwba/sSPppyhYmQ1B/Mki9ArD7AvYxAUlQDGE=
+Message-ID: <b3fe348b-60a3-4480-8a8e-89760c5bb7ae@ideasonboard.com>
+Date: Wed, 28 Aug 2024 15:14:47 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,142 +50,187 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 25/27] ARM: dts: at91: sam9x7: add device tree for SoC
-To: Varshini.Rajendran@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240729065603.1986074-1-varshini.rajendran@microchip.com>
- <20240729070934.1991467-1-varshini.rajendran@microchip.com>
- <7031d811-2bb2-4325-996c-a6de766925db@kernel.org>
- <bf77fe95-0982-4605-a493-25c889e81639@microchip.com>
- <5fbc815f-d52e-437d-bdc3-c61f365e9d1c@kernel.org>
- <a36c4d23-e2fe-4bf5-a262-5eb9828e6e7a@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: media: Add bindings for
+ raspberrypi,rp1-cfe
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Naushir Patuck <naush@raspberrypi.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>
+References: <20240620-rp1-cfe-v2-0-b8b48fdba3b3@ideasonboard.com>
+ <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
+ <Zs8ErwJVTGYkHfJl@kekkonen.localdomain>
+ <20240828111153.GL30398@pendragon.ideasonboard.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <a36c4d23-e2fe-4bf5-a262-5eb9828e6e7a@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240828111153.GL30398@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 28/08/2024 10:25, Varshini.Rajendran@microchip.com wrote:
-> On 27/08/24 6:18 pm, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 27/08/2024 11:50, Varshini.Rajendran@microchip.com wrote:
->>> Hi Krzysztof,
+Hi,
+
+On 28/08/2024 14:12, Laurent Pinchart wrote:
+> On Wed, Aug 28, 2024 at 11:06:23AM +0000, Sakari Ailus wrote:
+>> On Thu, Jun 20, 2024 at 02:07:51PM +0300, Tomi Valkeinen wrote:
+>>> Add DT bindings for raspberrypi,rp1-cfe.
 >>>
->>> Apologies for the delay in response.
+>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>>> ---
+>>>   .../bindings/media/raspberrypi,rp1-cfe.yaml        | 98 ++++++++++++++++++++++
+>>>   1 file changed, 98 insertions(+)
 >>>
->>> On 31/07/24 2:00 pm, Krzysztof Kozlowski wrote:
->>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>>
->>>> On 29/07/2024 09:09, Varshini Rajendran wrote:
->>>>> Add device tree file for SAM9X7 SoC family.
->>>>>
->>>>> Co-developed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
->>>>> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
->>>>> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
->>>>
->>>> ...
->>>>
->>>>> +
->>>>> +             can1: can@f8004000 {
->>>>> +                     compatible = "bosch,m_can";
->>>>> +                     reg = <0xf8004000 0x100>, <0x300000 0xbc00>;
->>>>> +                     reg-names = "m_can", "message_ram";
->>>>> +                     interrupts = <30 IRQ_TYPE_LEVEL_HIGH 0>,
->>>>> +                                  <69 IRQ_TYPE_LEVEL_HIGH 0>;
->>>>> +                     interrupt-names = "int0", "int1";
->>>>> +                     clocks = <&pmc PMC_TYPE_PERIPHERAL 30>, <&pmc PMC_TYPE_GCK 30>;
->>>>> +                     clock-names = "hclk", "cclk";
->>>>> +                     assigned-clocks = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_GCK 30>;
->>>>> +                     assigned-clock-rates = <480000000>, <40000000>;
->>>>> +                     assigned-clock-parents = <&pmc PMC_TYPE_CORE PMC_UTMI>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
->>>>> +                     bosch,mram-cfg = <0x7800 0 0 64 0 0 32 32>;
->>>>> +                     status = "disabled";
->>>>> +             };
->>>>> +
->>>>> +             tcb: timer@f8008000 {
->>>>> +                     compatible = "microchip,sam9x7-tcb","atmel,sama5d2-tcb", "simple-mfd", "syscon";
->>>>
->>>> Why this is simple-mfd without children?
->>>
->>> The tcb node will have each TC (Timer Counter) Block as a child when it
->>> is configured to be used as either one of the following modes Timer or
->>> Counter / Capture / PWM.
+>>> diff --git a/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+>>> new file mode 100644
+>>> index 000000000000..851533de2305
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+>>> @@ -0,0 +1,98 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/media/raspberrypi,rp1-cfe.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Raspberry Pi PiSP Camera Front End
+>>> +
+>>> +maintainers:
+>>> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>>> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+>>> +
+>>> +description: |
+>>> +  The Raspberry Pi PiSP Camera Front End is a module in Raspberrypi 5's RP1 I/O
+>>> +  controller, that contains:
+>>> +  - MIPI D-PHY
+>>> +  - MIPI CSI-2 receiver
+>>> +  - Simple image processor (called PiSP Front End, or FE)
+>>> +
+>>> +  The FE documentation is available at:
+>>> +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+>>> +
+>>> +  The PHY and CSI-2 receiver part have no public documentation.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: raspberrypi,rp1-cfe
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: CSI-2 registers
+>>> +      - description: D-PHY registers
+>>> +      - description: MIPI CFG (a simple top-level mux) registers
+>>> +      - description: FE registers
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  port:
+>>> +    $ref: /schemas/graph.yaml#/$defs/port-base
+>>> +    additionalProperties: false
+>>> +    description: CSI-2 RX Port
+>>> +
+>>> +    properties:
+>>> +      endpoint:
+>>> +        $ref: video-interfaces.yaml#
+>>> +        unevaluatedProperties: false
+>>> +
+>>> +        properties:
+>>> +          data-lanes:
+>>> +            minItems: 1
+>>> +            maxItems: 4
+>>> +
+>>> +          clock-lanes:
+>>> +            maxItems: 1
 >>
->> And where are these children? What does it mean "will have", in context
->> when? DTS is static, if you do not have here children then this is not a
->> simple-mfd.
+>> minItems needs to be 1 as well.
+
+Hmm, I see a lot of
+
+clock-lanes:
+   maxItems: 1
+
+in the device tree bindings. And 
+https://docs.kernel.org/devicetree/bindings/writing-schema.html says 
+"Cases that have only a single entry just need to express that with 
+maxItems".
+
 >>
-> I understand your concern. But the thing is that, each tc block is 
-> configured as a child and it can be configured in 3 different modes with 
-> different compatibles. In the current dts (i.e., sam9x75_curiosity 
-> board) we don't have a use case for the tcb, hence there are no child 
-> nodes defined. But there are instances where it can be defined in the 
-> dts, say for a custom board using sam9x7 SoC. In that case the 
+>> Or... is this actually configurable in hardware?
+> 
+> Looking at the driver, lane reordering is not supported, so we could
+> drop this property. If the hardware is found to support it later, it can
+> easily be added back without any backward compatibility issue.
 
-Where are these instances? Can you point me to DTS?
+Re-ordering is not supported. I guess clock-lanes can be dropped, 
+although I feel that if we have the clock lane in the hardware, and the 
+numbering of data-lanes must take that into account, then:
 
-> simple-mfd usage is justified, if I am not wrong. If this justification 
-> doesn't suffice, then declaring child nodes with one mode as default 
+clock-lanes = <0>;
+data-lanes = <1 2>;
 
-If I understand correctly: some out of tree, non-upstream project wants
-this. Sorry, but out of tree does not matter. So it is not a correct
-justification.
+looks better than:
 
-With such argument you could claim that everything needs simple-mfd
-because some broken out-of-tree code adds there children.
+data-lanes = <1 2>; /* and implicit clk lane 0 */
 
-> which can be overridden in the dts and kept disabled in the dtsi should 
-> be the other plausible way. Please let me know your suggestions.
+But I can't think of any practical benefit it brings...
 
-No clue, please post complete binding and complete DTS so we can review
-these.
-
-Best regards,
-Krzysztof
+  Tomi
 
 
