@@ -1,135 +1,130 @@
-Return-Path: <devicetree+bounces-97460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14546962448
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:06:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFBA962470
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:14:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68E3286143
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:06:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C5441F24EF2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B641415E5D4;
-	Wed, 28 Aug 2024 10:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187BE1684A7;
+	Wed, 28 Aug 2024 10:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JunY7zgw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JrshnpEN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF78A158DC2;
-	Wed, 28 Aug 2024 10:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7681715B98E;
+	Wed, 28 Aug 2024 10:14:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724839613; cv=none; b=N1fGnyD82x4G3AmWq3ULbWzottCwixKQRNmTZy/XKFOOhp/P0iBJNVBm7ClHfncLrLIH1ksE1zpaPbD8s4jVwvNCJGcfy+VNN8Ij4YH+YHIiYhjWh0K387D/kiAMkRr7hK9fsuCH1fyJNQpC/UI2RbSniilPvDyu357ltyGI0OU=
+	t=1724840046; cv=none; b=l7eI0Ajy1Rlr8nSvZQZastIyrG4Co/Xv3qlvnmz5TXW1RUsIObXZIedfGfR9Rwv+qOLyWfSWIBeChh+ZEFkdp4Ytwhc/nJ0RyWf7FFM5EE4iMJffSeUQa89SVomxq6L3J/jwhPPU1KZd/rRUnPoUm0yxsmQDEgOyvg4KVewq49Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724839613; c=relaxed/simple;
-	bh=FKGbrxqJSRa4U0/BHk4YGXG5im9Iz1hjXpIRWRfZKEg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mKTtzcT3xg6DSWJN6G8CGctWssu+pQZqW4HkPD3Uij6AFd/vZiaYLqeOMnWezUjwWuAMtV7aYg4UbdKqlJcaZknaaD6SQWCZH1T5rOh5SsV8Y5YseJ4SPuC8MnveYY46omIFnnESjYUfoD1+1JFMMTqZQb1LLgZgzjrndSIPySE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JunY7zgw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47SA5Qp5026192;
-	Wed, 28 Aug 2024 10:06:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EwycJpyb+jhaoS/+kJ3yX61GWjWCUDaA9mWmk5KUAAw=; b=JunY7zgwgChRjrKl
-	gBNMFyB13ShnH/qzQgmDIba59qgsue4+6uEJKLU5OhNzOhammsirrVPXM+wDqIHs
-	7HdSCbxipVcR1jTa6XBnNlO749gROQQSyaHeVROm/CrTjWWhie8a31nucBVJtBv9
-	fDIVcDAVJ6vFbA1LDHxEsZScekC5vw+Eo6ZhnOBJh0qgYJ+VJjW5nP81cwZLZ6YG
-	MR74R0R0eRxjp5iMVdfB08abg+8mnXefpUIsGFuGPS87yyn7M8nJXAj5iyRUOr6I
-	nZLNeqMHHIz451HUUYl5InjBm4YhAc2v9KfjN5M3Y4UAiu22x9bXMunoeAAi5fm/
-	LgO6uA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419puthe1b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 10:06:45 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47SA6iXA008184
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 10:06:44 GMT
-Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 Aug
- 2024 03:06:39 -0700
-Message-ID: <b9aee62c-3c8c-4a8f-8559-41fabced7fbe@quicinc.com>
-Date: Wed, 28 Aug 2024 18:06:36 +0800
+	s=arc-20240116; t=1724840046; c=relaxed/simple;
+	bh=H/spxYuv25xMJd7avzns1jDAaEpUBgBfR27818iNls0=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WPFQOSgxIm1MCSZynA/tTNlAMTUfQJkHMAO/QIrSStt990XJ+7HUN7lCWkep+BCog/plI8n2RzOmCVPTpFUsXI77SDULsHk+BBJroE5n7ZBY7MUDIU2qqyXh0nLGeFDBWT+Ne3d9uU7vvw4wvf1S2znRDvul//cK9bbJq84SPWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JrshnpEN; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3C92840006;
+	Wed, 28 Aug 2024 10:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1724840041;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CB6BO/KLb4RXq0NQixkj5jR5dZS0zY9MFbOR0+McABQ=;
+	b=JrshnpENn0+8kCxDPw+vOidiPhzUcXXxucnC4nGtiyuMRWQidOL3DVsxiasc3vXZAwp7B4
+	ew2l+EBphQqvvPq1Dunr2Ct/olGkJG2cjbyKTzCvHAeXMlUZPOOG97soXRXRPsLJ0Akx0X
+	eCKbfO9xYw6SOFggoIG70At4MjJ5CRAXOZpqWKL6dNEvd6Pm8fIbCuMxhhf3RcgYTS3w2K
+	E6zmQcXPVI4E8tXnNmB7eqFE+77qXR+MYOSQn4wUN0szD+lFZ9R0mWxRG8dOjbE9T5Y9ec
+	Jaln9w4t/Z2bHbqgkbc9U1A5YUN1GORqMR8PY3cNOHOR391NqdjmaUMqbu7w/Q==
+Date: Wed, 28 Aug 2024 12:14:00 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: claudiu beznea <claudiu.beznea@tuxon.dev>, nicolas.ferre@microchip.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mturquette@baylibre.com, sboyd@kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 3/3] ARM: dts: microchip: Use SCKC_{TD, MD}_SLCK IDs for
+ clk32k clocks
+Message-ID: <2024082810140092b1c3d7@mail.local>
+References: <20240826173116.3628337-1-claudiu.beznea@tuxon.dev>
+ <20240826173116.3628337-4-claudiu.beznea@tuxon.dev>
+ <8ae724e3-f467-4df4-b8cc-f03489bd0f35@tuxon.dev>
+ <20240828-chivalry-brunch-7e21bd12b7fa@thorsis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: add base QCS615 RIDE dts
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
- <20240828-add_initial_support_for_qcs615-v1-6-5599869ea10f@quicinc.com>
- <22qkvfravm6sxiq3xfavahg2u6b2pwlyzqbqvd55zym5zef3gi@m4bsqkdvggty>
- <17d0017e-b55d-4b32-9fd3-1a1a84e5ebf9@quicinc.com>
- <0ec92d59-0648-40ed-a522-307152b5c37d@kernel.org>
- <148451f2-6b1b-4616-b703-fd52e7afa2be@quicinc.com>
- <90c98fee-770c-4b83-9e05-6f04866094c2@kernel.org>
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-In-Reply-To: <90c98fee-770c-4b83-9e05-6f04866094c2@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: GskXdbBZ_q4xX6T_X4aS1OuOGb7snX_K
-X-Proofpoint-ORIG-GUID: GskXdbBZ_q4xX6T_X4aS1OuOGb7snX_K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-28_03,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 phishscore=0 adultscore=0 priorityscore=1501
- impostorscore=0 malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0
- mlxlogscore=640 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408280072
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240828-chivalry-brunch-7e21bd12b7fa@thorsis.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
+On 28/08/2024 09:07:05+0200, Alexander Dahl wrote:
+> Hello Claudiu,
+> 
+> Am Mon, Aug 26, 2024 at 08:42:10PM +0300 schrieb claudiu beznea:
+> > 
+> > 
+> > On 26.08.2024 20:31, Claudiu Beznea wrote:
+> > > Use the newly introduced macros instead of raw number. With this device
+> > > tree code is a bit easier to understand.
+> > > 
+> > > Signed-off-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> > > ---
+> > >  arch/arm/boot/dts/microchip/sam9x60.dtsi | 18 +++++++++---------
+> > >  arch/arm/boot/dts/microchip/sama7g5.dtsi | 16 ++++++++--------
+> > >  2 files changed, 17 insertions(+), 17 deletions(-)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> > > index 04a6d716ecaf..eeda277e684f 100644
+> > > --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> > > +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> > > @@ -560,7 +560,7 @@ tcb0: timer@f8008000 {
+> > >  				#size-cells = <0>;
+> > >  				reg = <0xf8008000 0x100>;
+> > >  				interrupts = <17 IRQ_TYPE_LEVEL_HIGH 0>;
+> > > -				clocks = <&pmc PMC_TYPE_PERIPHERAL 17>, <&clk32k 0>;
+> > > +				clocks = <&pmc PMC_TYPE_PERIPHERAL 17>, <&clk32k SCKC_MD_SLCK>;
+> > 
+> > Actually, looking again at it, I don't know if it worth as we use numbers
+> > directly also for other PMC clock IDs.
+> 
+> I think in this case it is worth it.  The macros you added are more
+> like the already existing PMC_MCK et al. macros for PMC_TYPE_CORE and
+> do essentially the same thing in driver code working as somewhat
+> arbitrary array index, without relation to SoC internals.
+> 
+> The PMC clock IDs on the other hand are for PMC_TYPE_PERIPHERAL and
+> are that long list in the Peripheral Identifiers table and correspond
+> to the SoC internal IDs, which are not used in the same way.
+> 
+> So from my point of view, the patch series is valuable and should be
+> further worked on.
+> 
 
+I agree with this.
 
-在 8/28/2024 5:34 PM, Krzysztof Kozlowski 写道:
-> On 28/08/2024 11:31, Lijuan Gao wrote:
->>>>>> +/ {
->>>>>> +	model = "Qualcomm Technologies, Inc. QCS615 Ride";
->>>>>> +	compatible = "qcom,qcs615-ride", "qcom,qcs615";
->>>>>> +
->>>>>> +	chosen {
->>>>>> +		bootargs = "console=hvc0";
->>>>>
->>>>> Noooo, last time I agreed on this, you told me later it is different.
->>>>>
->>>> In the early stages, enabling HVC is to more easily verify clock and
->>>> PMIC related functions, as it’s difficult to debug without the console
->>>> log. After the clock and PMIC are ready, we will enable the UART console.
->>>
->>> Working serial is supposed to be part of the early submission.
->>>
->> Okay, I will remove it in the next patch.
+> Greets
+> Alex
 > 
-> Can you post next version with proper serial device?
-Well noted, will update in the next version.
-> 
-> Best regards,
-> Krzysztof
-> 
+> > Sorry for the noise,
+> > Claudiu Beznea
+> > 
+> > 
+> > 
 
 -- 
-Thx and BRs
-Lijuan Gao
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
