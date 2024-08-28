@@ -1,148 +1,97 @@
-Return-Path: <devicetree+bounces-97610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BA9A962C71
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:33:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA87962C91
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:39:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECFEF282EDC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:33:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94F7B1F2334B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562C317C223;
-	Wed, 28 Aug 2024 15:33:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72EF81A2C0E;
+	Wed, 28 Aug 2024 15:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="AcwAc6jm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jmcH+K1W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746C313D8B4;
-	Wed, 28 Aug 2024 15:33:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B0313C3D5;
+	Wed, 28 Aug 2024 15:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724859220; cv=none; b=ZSLmoqfQn5sKZe4VGIrc4jZ1rENp7i7ZB71AUlcX0UzAcvBhOGsJ/A7fCM4xklvlcnO3B8KZM+oWdUecT9jkvSy/yUtBfSjgZ9Zsk4SMu0ZfnnAkQICGBT6Lpm1FD9nh7pKzlO1tCscLMJ6PF8glhu99DVuhn3ctsOhTL0PfFIw=
+	t=1724859583; cv=none; b=DFPcwZiqYQBtLQgElq/9bncJitsBlC8XDGLeJkc3SxJDxEzsPatagwo6VQFcrBHEdiN8kyKlq5WVe0phDORVQlFpzZdFZCA/MgNbevubE6JTwGnmapZEEN2IBRXKWcpFEi6j5o4ZsPrBaJLp+nhhAnBTU5kObVi8YQsw9sLBdvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724859220; c=relaxed/simple;
-	bh=o56S8pLMGrt4CkvaoCu9w5pHDJBsrZKUDQNBoIaCEpU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UUtYlPlFVAV0IihH1sKpquKm/dYYpcRXwbtfJJyHJzwFnmXNZ+SmrqV/TAwzb6ihvgbYsm/aHr1sIycjMWtIT9min/cqNMJM1yYUJuxfUPytsgflgXvyn88AXexV2XTao6Xo8mT/nAKGcv52+vWK94CCqO2xhbNmDKa6XDqE9OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=AcwAc6jm; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 16BD1885A0;
-	Wed, 28 Aug 2024 17:33:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1724859216;
-	bh=pgIBv8xSZ60paxL7JPQGAQxBEmzFpSxLivN1lCW3iI8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AcwAc6jmYoBxdS+F2EIASSPI4YXEVA+nBDE8Fq7ED18W6DpV9S8Kc9sjopHI4bHaC
-	 NVnsVhNF/tAWTTfsnquliEt2Sp95HVMwt+UDEPmCyGZCK2i6c/rkVdzl2dYxNNm34T
-	 21V3J4Q7K4hIkEOWF/vfdh1+12JZbi/6M6eMmoypEI0MMQrwlwHZ9T6JZShu6TnuB6
-	 7W5/h3Lhg0PAeCgu9YiaKIHxpCZqTMHo1a/PihjqgqxRcXjrS0oMerZ9j7p0Yfvkkq
-	 dpM6hjmW3SCcYDU/eqN7favAySmpkdMRWkkD8+qdCryE38Gamfm25m1JuqepZ3UOxy
-	 cUAEZI8aFT3Eg==
-Date: Wed, 28 Aug 2024 17:33:34 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
+	s=arc-20240116; t=1724859583; c=relaxed/simple;
+	bh=bJikFcZwx9JucrgqW1e8FTFYmK48P/7CWwLxWQz7Xpg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZW6K/CWZmZPBvyn/KMfAf5UXlu829r48NDbVoYAsUIKAVUUX/e3g4TC1IbsIa8vaO5+csFYwr9P4EgRk0+h/13FI/ybSbvLFl86UcBEF3pMQH0oXpI38LtsDRpieQ7Zp6kOB1/HkFbwEDSEnkRw3g4tRUbjDN6IfPABBmwrWyQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jmcH+K1W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1F11C4CEC9;
+	Wed, 28 Aug 2024 15:39:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724859582;
+	bh=bJikFcZwx9JucrgqW1e8FTFYmK48P/7CWwLxWQz7Xpg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jmcH+K1Wl8Wvhvdo3dN1dZyG8OU9/A4kujAK5JNouySApI/WPoXAg2h+XbLKaxFoM
+	 2LN2x5TR/J/Wv4T2SGaRwPP4HGEt7yc8JKfG/w3RIj06+iTd8S6zr5PeOlmfflMFxx
+	 5a5U7ylXEIVsbGfHEOIKG0QV4w2lE5o1QfR6DDCsczh3i93f2UWfxNA3vLQ6iiSqyL
+	 360zSE8Ipu7mDpRXtBlc7uwlRQOo2R40z1bpYDUDaN0WINqTPh8x/a1YXOlqEdPLts
+	 uPhdFiMWZcGcDNa88PC9pg1aUQrsahtAqspZA1uy2g9zbKCcqe8krLzZiftVFq5+I8
+	 Ds0uO2In3ea9w==
+Date: Wed, 28 Aug 2024 16:39:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm: dts: mxs: Remove not used "fsl,imx2[38]-icoll'
- compatibles
-Message-ID: <20240828173334.21dcdeb2@wsk>
-In-Reply-To: <f4b7e56f-50d1-486b-9866-ee1f82262b53@kernel.org>
-References: <20240828093518.2628817-1-lukma@denx.de>
-	<f4b7e56f-50d1-486b-9866-ee1f82262b53@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Fix compatibles for RK3588 VO{0,1}_GRF
+Message-ID: <20240828-reprise-lethargy-1190b6e3a05d@spud>
+References: <20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/LKKBY4fh8LtwIHI2=HgFYHN";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MHhSniWftcmWfCNL"
+Content-Disposition: inline
+In-Reply-To: <20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com>
 
---Sig_/LKKBY4fh8LtwIHI2=HgFYHN
-Content-Type: text/plain; charset=US-ASCII
+
+--MHhSniWftcmWfCNL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
-
-> On 28/08/2024 11:35, Lukasz Majewski wrote:
-> > The 'fsl,imx23-icoll' and 'fsl,imx28-icoll' are not used at any
-> > place in the Linux kernel - instead for imx2[38] the 'fsl,icoll' is
-> > used.
-> >=20
-> > Hence, it is possible to remove them. =20
+On Wed, Aug 28, 2024 at 03:40:07PM +0300, Cristian Ciocaltea wrote:
+> As Conor noticed recently [1], RK3588 VO0 & VO1 GRFs incorrectly share
+> the compatible string, since they are not identical (though quite
+> similar in terms of layout).
 >=20
-> Preference is to have SoC-specific compatibles in the front, so
-> instead of dropping it, these should be documented as bindings.
+> Provide dedicated compatible strings, as a follow-up.
 >=20
-> imx23 and imx28 are quite old platforms, so I think no one really
-> cared about dtbs_check and their bindings. If the platform is being
-> actively used (as judging by your contributions) then some bigger
-> cleanup could be useful. Also, drop your email somewhere in the files
-> or maintainer entry, so we will know whom to ping when asking for
-> platform removal.\
-
+> [1] https://lore.kernel.org/lkml/20240821-stretch-scam-09d7adc08a4c@spud/
 >=20
-> But if there is no product on imx23/28, then I am afraid it might be
-> wasted effort - isn't it planned for deprecation/removal by Arnd?
->=20
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
-I cannot say about imx23, but for sure imx287 will stay with us for
-many, many years.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-imx287 (arm9) is still in active production, for extended life time
-devices...
-
-It is just pervasive in the industry.
-
-> Best regards,
-> Krzysztof
->=20
-
-
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/LKKBY4fh8LtwIHI2=HgFYHN
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--MHhSniWftcmWfCNL
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmbPQ04ACgkQAR8vZIA0
-zr14qAgAxSvE4qlOjSzUXqF7+zIEVZTP4mBonJa6mWpx46jie3dTr1gKZhB7qOFg
-UTiWKH3cleVbqMngkfGQnyjhixhfLJrKNJNrY46Wk9c9o8Nt/U/qcWjrR0EzOCAf
-kTBqwu8u1pgMONsUqWp1sMFW1BcaC4E4xR8MMjZ4msaMZKRnsE9ddGgvhteg1nuv
-1TzABHV7FFxemuamdrwXMAVjpvMhHdLdWxlkxfeIX8Xykmasj13hK3EIuuWXdxML
-zUrGOni1V0tIrCQna6gvuNBazlUhrib9O5TdX1kUmo2kbNIa/aCq4n5XHo5NHoKv
-DRh8axbd8BWOjYbkk90srtYXMQioLg==
-=s7nd
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZs9EugAKCRB4tDGHoIJi
+0jSfAQC7QoPhTY9jXgMOAKRdVlBmctOzmHqYkq2eO/gU9HyYCQEA/WygIBP5zkLi
+fD/XjTO50/CMHhRbMTBYAzARqySdpgg=
+=3ZzO
 -----END PGP SIGNATURE-----
 
---Sig_/LKKBY4fh8LtwIHI2=HgFYHN--
+--MHhSniWftcmWfCNL--
 
