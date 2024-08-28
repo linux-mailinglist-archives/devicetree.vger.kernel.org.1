@@ -1,173 +1,188 @@
-Return-Path: <devicetree+bounces-97661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D36962F28
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 20:01:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB3F962EB0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:41:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA00C1F2248D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 18:01:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E08221C21BA7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2EB41A7AE2;
-	Wed, 28 Aug 2024 18:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E147B1A4F3A;
+	Wed, 28 Aug 2024 17:41:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HqXzXjPH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386D319DF40;
-	Wed, 28 Aug 2024 18:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24DBB36130;
+	Wed, 28 Aug 2024 17:41:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724868086; cv=none; b=GIq8GYqaQGg/w6+Q72fQqlFpApTufReNTHiVpV0IL3jc20PzIxqwZqPS7kZV3gNNcnNHXANkwT32D+nkbhP5NE84uP0Tu/jbnJrN68PBzDXTP4mTY8XSJS8weNrMGRn98N5/hcUS0oz3Jzja+OtRNLzbhe5pjlgp0I9ronTcfDM=
+	t=1724866861; cv=none; b=P/zOlC2pmOFV5OBmi8VH3lnyVjGorpNX5w5LPJL74f6PDuIFVY3sLbZVj7zkM+SQPD6RIIEDSCfeIoTRMdpHp/k/la17w+f12X22Or/mWcbzd+iBNwZ51yAuQ78tSXDQRb+0Dldo29/GCU2bLCFChwOGCZm+z+lJnrbythPGnrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724868086; c=relaxed/simple;
-	bh=Bir9DzxYH2KlY03PYUHYPMX0jfsReNkotxUb7Eyt9uI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YjKtVTRNQhYpFh49W4JWNKVQmBRFjMY8OtH46eenWuMzfyfT19wYdHRSl8x3EyYy44afuOH/rjS1x/VvNoABw64kgqDoP+S3k9KbqIsbECxLMtUK9ZZ/2n1eEAK3Qnorbz/Ee3FgZ7xtqTHANQILRfgn9SKr/d3d3hL0hsGBLvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-	by finn.localdomain with esmtp (Exim 4.95)
-	(envelope-from <tharvey@gateworks.com>)
-	id 1sjMbG-005gbd-U8;
-	Wed, 28 Aug 2024 17:36:55 +0000
-From: Tim Harvey <tharvey@gateworks.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Li Yang <leoyang.li@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH 2/2 v2] arm64: dts: freescale: rename gw7905 to gw75xx
-Date: Wed, 28 Aug 2024 10:36:51 -0700
-Message-Id: <20240828173651.4053753-2-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240828173651.4053753-1-tharvey@gateworks.com>
-References: <20240828173651.4053753-1-tharvey@gateworks.com>
+	s=arc-20240116; t=1724866861; c=relaxed/simple;
+	bh=gbtXHJq+mAHq+lCKykPrcJKzlc6UtbaslicjWljJIv4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zs/e4zwF8nNpj6Q7cL0MHtHszSRB/GOPJYDdIwC/1IsX5OksQDNUX/YimVs+OoVvrdEDrXrtLyU/CR79S5/lVdpQIBNYUHnzBHKP0Bz+TpNJSiyEGa0/Kc5PtCWBkrAO03MZgf6RMJTHQT/hiRhrRPW7KJ4CYacladqYHEdlfTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HqXzXjPH; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-428ec6c190eso61683725e9.1;
+        Wed, 28 Aug 2024 10:40:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724866858; x=1725471658; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=An0Vk1+fcXlBnERTT4Ns65sUJzJJDn81eBsrPMRL5tQ=;
+        b=HqXzXjPHZEhSPeo45ilkW0gkhxz5Qx5SlZNed4nPYVsHT54Dh0vfMUd9auQ9pKVizc
+         zlpbE4CdBdD50LAdTIQ7Jlw3n+q2qP1/fYNJ3Uv9DCKc3fUVAqEOdg9UXL1A8VFNPrLT
+         w0pl3G1oKvUr5NvzCf5m5gSiOgwZwA/JEHrPn7xlfgYM/vg5tGJvnKhS2mOQSwg/9GX5
+         f/HoK1fyVKX1N7HY0ZpokKqwwowVRz4NfJ3+Musxq/RZhH/cwy7UrnRfc4rBmc8mc3TA
+         em1Su8c1BcXiFoEdiBCdPTzi4E96/McHtXFdfYqL04n7wOb9ZuGS2wNWcwYPSNElRejY
+         50dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724866858; x=1725471658;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=An0Vk1+fcXlBnERTT4Ns65sUJzJJDn81eBsrPMRL5tQ=;
+        b=gUHrNkswXItlqjY5uL8t97PjSzd3/utxYFETnwKqqZbiVRcJfby6UJ990OQrDibEq4
+         HDiSWXWwoch5dM/fnXxrCa/Nq4PU57vt2M6Gw1snYUIZFjQ4cOv02ADfvyYoFrUkLbCL
+         YcTirSE9SRvJAaznfq5HbHRWvI6JLe6YAdSb1pIiCkM4iMr1tBhbB2MftxUeLGHGeXX6
+         UAxNoI5NcK6nJv3JLu2Lqzpqol03aM0yBN20Ul6Xp9wje8JLTn+dJjnazYWEo63rw95S
+         5c517q+Jo/TiutBnEgPImFnrl0SgNe7EDRu+RG+LqpJT2CNIytqZ8lUq2Nm/j55frRSv
+         1BLw==
+X-Forwarded-Encrypted: i=1; AJvYcCVsUpaE9pc2N8nXTX59fHdbP87iU7yOSUFVXIZ+tZw08inzY0W97ep8equrNLgiAs6E51ybB6DtlzNX4nvg@vger.kernel.org, AJvYcCVugZfiDlLl4UupOVjMQCRM0t7JQR0OdwOp5VS+k/Hlzg9SIE6x9+lrsNEphsSeBtBn+g8I02Re8eB1iqQKm4DKY9PZDg==@vger.kernel.org, AJvYcCWOkaDKh/u4+NwGmnxOEfImKCz46DvawCYotS4AsOFUHZHvG1G5xoQSeZtQ1Aah5Cl7envV2i/R7oOLZA==@vger.kernel.org, AJvYcCWwjp0vk0AZTvQ0dLtvfMlxKfDC+6cIvBfoBNzxvcedyJxuuDGAXayPuXddcDVbrmH+yqdGcgxRoUDcH50+@vger.kernel.org, AJvYcCX39/6DG2QjZd5pXlRZkCzyecsV67oc5lFEA926xdGhNjhWrKZbW2oTf/2v+qGEao7tiCzO3irG1PMn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzmpTI75bC/Pvhnf9oB6FVtyBAh5aY2sbq5MCFUs9D13TOJ4rx
+	Y93RacWSqu1MRbY7XjltN1U28nY+wRJBIdhVRzGuajvgXEJ6uX0W
+X-Google-Smtp-Source: AGHT+IEMT2J9j0NWA0FQP6JJCnxcc6TeVi0FxecAAgalOduVjWy5jaFjAtjj33iEpx2L92OLR0WBNA==
+X-Received: by 2002:a05:600c:310b:b0:427:dac4:d36 with SMTP id 5b1f17b1804b1-42bb02444aamr2508925e9.7.1724866858234;
+        Wed, 28 Aug 2024 10:40:58 -0700 (PDT)
+Received: from ?IPV6:2a02:8071:b783:140:927c:82ba:d32d:99c1? ([2a02:8071:b783:140:927c:82ba:d32d:99c1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb01d3029sm3731855e9.42.2024.08.28.10.40.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Aug 2024 10:40:57 -0700 (PDT)
+Message-ID: <53a56539-1d95-42ac-ad07-1b689702b2ed@gmail.com>
+Date: Wed, 28 Aug 2024 19:40:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] platform/surface: Add OF support
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
+ <20240814-topic-sam-v3-3-a84588aad233@quicinc.com>
+ <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
+ <d08d41ad-edcb-48ad-a848-53edc45ab8eb@gmail.com>
+ <CAHp75VcbjR8HQqPASLFEGiyYLfTFQDa6Ri+jFy+7Q1xz7gY39Q@mail.gmail.com>
+Content-Language: en-US
+From: Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <CAHp75VcbjR8HQqPASLFEGiyYLfTFQDa6Ri+jFy+7Q1xz7gY39Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-The GW7905 was renamed to GW7500 before production release.
+On 8/28/24 6:56 PM, Andy Shevchenko wrote:
+> On Wed, Aug 28, 2024 at 12:10 PM Maximilian Luz <luzmaximilian@gmail.com> wrote:
+> 
+>> I thought I should provide some context:
+> 
+> Thank you, my reply below.
+> 
+>> Am 26/08/2024 um 22:54 schrieb Andy Shevchenko:
+>>> Wed, Aug 14, 2024 at 12:27:27PM +0200, Konrad Dybcio kirjoitti:
+>>>> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+> 
+> [...]
+> 
+>>>>       nodes = (const struct software_node **)acpi_device_get_match_data(&pdev->dev);
+>>>
+>>> Hmm... Why this doesn't use simple device_get_match_data()?
+>>>
+>>>> -    if (!nodes)
+>>>> -            return -ENODEV;
+>>>> +    if (!nodes) {
+>>>> +            fdt_root = of_find_node_by_path("/");
+>>>> +            if (!fdt_root)
+>>>> +                    return -ENODEV;
+>>>> +
+>>>> +            match = of_match_node(ssam_platform_hub_of_match, fdt_root);
+>>>> +            of_node_put(fdt_root);
+>>>> +            if (!match)
+>>>> +                    return -ENODEV;
+>>>> +
+>>>> +            nodes = (const struct software_node **)match->data;
+>>>
+>>> This is quite strange! Where are they being defined?
+>>
+>> Essentially, this whole module is a giant workaround because there
+>> doesn't seem to be a way to auto-discover which functions or subdevices
+>> the EC actually supports. So this module builds a registry of software
+>> nodes and matches against a Surface-model-specific ACPI ID (in ACPI
+>> mode). Based on that ID, we retrieve the tree of software nodes that
+>> define the EC subdevices and register them using a (virtual) platform
+>> hub device.
+>>
+>> The snippet way above registers the platform hub device for DT,
+>> because there we don't have an equivalent ACPI device that we can
+>> use. The code here retrieves the respective nodes.
+> 
+> Yes, and software nodes for DT are quite strange things! Why can't you
+> simply fix the DT to begin with?
 
-While we typically do not change compatibles, the GW7905 was never
-released before its product name was changed to a GW7500.
+For the ARM/DT variants we could do that. But we still have to deal with
+the x86/ACPI ones here. So for me it makes more sense to have it unified
+and just deal with everything in this module.
 
-The use the the 'xx' wildcard is to denote the fact that this
-device-tree can support range of board models from GW7500 to GW7599 as
-has been done historically with the Gateworks baseboards to support
-various build customizatoins based on the same PCB.
+Also, if we consider that at some point we might get ACPI PEP support (I
+know, far fetched right now): With that, ACPI on ARM might be feasible
+and then we'd have to manage the same thing in two places...
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2:
- - added to commit log reason for non-standard rename
- - added to commit log reason for a-typical wildcard (xx) in model name
----
- arch/arm64/boot/dts/freescale/Makefile                      | 4 ++--
- ...8mm-venice-gw7905-0x.dts => imx8mm-venice-gw75xx-0x.dts} | 6 +++---
- ...{imx8mm-venice-gw7905.dtsi => imx8mm-venice-gw75xx.dtsi} | 0
- ...8mp-venice-gw7905-2x.dts => imx8mp-venice-gw75xx-2x.dts} | 6 +++---
- ...{imx8mp-venice-gw7905.dtsi => imx8mp-venice-gw75xx.dtsi} | 0
- 5 files changed, 8 insertions(+), 8 deletions(-)
- rename arch/arm64/boot/dts/freescale/{imx8mm-venice-gw7905-0x.dts => imx8mm-venice-gw75xx-0x.dts} (67%)
- rename arch/arm64/boot/dts/freescale/{imx8mm-venice-gw7905.dtsi => imx8mm-venice-gw75xx.dtsi} (100%)
- rename arch/arm64/boot/dts/freescale/{imx8mp-venice-gw7905-2x.dts => imx8mp-venice-gw75xx-2x.dts} (67%)
- rename arch/arm64/boot/dts/freescale/{imx8mp-venice-gw7905.dtsi => imx8mp-venice-gw75xx.dtsi} (100%)
+And lastly, the EC subdevices are quite contained and I don't see them
+interacting with any other components in the DT, so it's more of a
+stylistic choice where to put them.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 033baee533cd..48ef7131017f 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -129,11 +129,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw75xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7903.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7904.dtb
--dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7905-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-mallow.dtb
-@@ -185,7 +185,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw71xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw72xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw73xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
--dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw7905-2x.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw75xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-mallow.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905-0x.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx-0x.dts
-similarity index 67%
-rename from arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905-0x.dts
-rename to arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx-0x.dts
-index 914753f062cd..04f06a55da5c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905-0x.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx-0x.dts
-@@ -7,11 +7,11 @@
- 
- #include "imx8mm.dtsi"
- #include "imx8mm-venice-gw700x.dtsi"
--#include "imx8mm-venice-gw7905.dtsi"
-+#include "imx8mm-venice-gw75xx.dtsi"
- 
- / {
--	model = "Gateworks Venice GW7905-0x i.MX8MM Development Kit";
--	compatible = "gateworks,imx8mm-gw7905-0x", "fsl,imx8mm";
-+	model = "Gateworks Venice GW75xx-0x i.MX8MM Development Kit";
-+	compatible = "gateworks,imx8mm-gw75xx-0x", "fsl,imx8mm";
- 
- 	chosen {
- 		stdout-path = &uart2;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905.dtsi
-rename to arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx-2x.dts
-similarity index 67%
-rename from arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-rename to arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx-2x.dts
-index 4a1bbbbe19e6..7ca68df9e516 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx-2x.dts
-@@ -7,11 +7,11 @@
- 
- #include "imx8mp.dtsi"
- #include "imx8mp-venice-gw702x.dtsi"
--#include "imx8mp-venice-gw7905.dtsi"
-+#include "imx8mp-venice-gw75xx.dtsi"
- 
- / {
--	model = "Gateworks Venice GW7905-2x i.MX8MP Development Kit";
--	compatible = "gateworks,imx8mp-gw7905-2x", "fsl,imx8mp";
-+	model = "Gateworks Venice GW75xx-2x i.MX8MP Development Kit";
-+	compatible = "gateworks,imx8mp-gw75xx-2x", "fsl,imx8mp";
- 
- 	chosen {
- 		stdout-path = &uart2;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
-rename to arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi
--- 
-2.25.1
+>>>> +            if (!nodes)
+>>>> +                    return -ENODEV;
+>>>> +    }
+> 
+> ...
+> 
+>>>> +MODULE_ALIAS("platform:surface_aggregator_platform_hub");
+>>>
+>>> Can it be platfrom device ID table instead? But do you really need it?
+>>>
+>>
+>> I think the explanation above already kind of answers this, but the
+>> module is named differently than the driver (so that they reflect the
+>> specific nature of each, registry vs hub device). And the platform hub
+>> device added in the snippet I left above is named after the driver. So
+>> for the registry module to load when the platform hub driver is
+>> requested, it is needed.
+> 
+> So, I believe it warrants a platform device ID table to make it explicit.
 
+Yes, that makes sense. (I was not arguing against that, just wanted to
+explain why we need the match at all.)
+
+Best regards,
+Max
 
