@@ -1,72 +1,71 @@
-Return-Path: <devicetree+bounces-97419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4549622C9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:52:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF849622D8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:55:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F042D1C24333
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:52:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 732031C243FC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C7B165EE3;
-	Wed, 28 Aug 2024 08:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C0515CD41;
+	Wed, 28 Aug 2024 08:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="fFTk7Dl2"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Oh3Adj2Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A9415EFA0
-	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 08:50:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D31158A04
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 08:55:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724835052; cv=none; b=SB8og+Z4Ni+IktqXWAi+ofn+ztgfxmkxCFkXwQJbtaUhp6z6dhmlUbjD6NBkNXPnj2/UsFmslO1oDk18XaoVEJQ2zIUrj761oPqhXcd5s334GTU2MW2eXJxQfIpowsP3D8fFjsHk49MgqvvMrXssWrNFIMSNrNKl17E2u2gGIdc=
+	t=1724835354; cv=none; b=iQhQ0OmBDquTBdzF3jmSfRi+Fa/pkCXZi/TRRPXEBqZ/vwFTDYuOYIb3Qm2iLCm+/PvvQboh6BCm7IdjpdUTg25a4Gt6RDTk5ElAp1bqAzN8ri0lIBx4OkkaaF85DxYVTsAOhBouwssBYyjYXUtrye+jZ+rUoCVZruj72bsiSzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724835052; c=relaxed/simple;
-	bh=c9g+rp5fVpjbqkIfSqp3slDFY2jz+ztPwAXbFeXQ8t4=;
+	s=arc-20240116; t=1724835354; c=relaxed/simple;
+	bh=DX3qWFO2aFGCE2+NSubhi4EkFuTdYX6uS/4KMwlKUzc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C+DSVJlvTjy7PA306HcWrQ8747f6YLmkmP7P6RmxHa8O34T8bTLqa/8Eh0kYifWNDiHzFoofcpz/8mcIYHO5JMwzfXOrIVAGg54OsdkOHKeBjP0J0MceJhGhmDAyXy4u/QavsH0/ZQOwLRNB9u8lrZBWznDkzv6Hfy+z5CQw15A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=fFTk7Dl2; arc=none smtp.client-ip=209.85.216.45
+	 In-Reply-To:Content-Type; b=iK1LddrQDubDbLCZFDMpR3Z/z3DGuVxRkGMa+rNnno31GOwT049S5YV7YsmPV+HcSTV+xUAgCZzcJ4sA4U8YdX/Wns9puRTk719vHmAPPuNwLFscJRJBrMfJKYRGwWgpm+eNVpGOS+8nhr/gp7mTaZ4N6Dw4A6iBw/qunbbGaHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Oh3Adj2Q; arc=none smtp.client-ip=209.85.161.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2d60f48a2ccso5298044a91.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 01:50:50 -0700 (PDT)
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5da6865312eso5122538eaf.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 01:55:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1724835050; x=1725439850; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1724835351; x=1725440151; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=shRY5stjFi+JLGkJ+y51t2hwTW4qiG9k0qtRydA83MA=;
-        b=fFTk7Dl2INvgRC5i4K2ReeFoFvV8NCV71aqONMtVZFEYofYU34KYq/tU/A+0L3VUfd
-         S23GNQS0yv34LARi1ouwusPS0133aE/oIMgPg+qYiKVnN9TGezH5V5oEl6zAeC1n0XiI
-         BlF5P9o7gSuT+8JWQVV4GVtwi6ws60b99DYY0=
+        bh=QWYpKLox98Zm+kv0OB+ZP4rUkmwKANk3sWNWu8DRmgw=;
+        b=Oh3Adj2QLl01m1O1cBl2YUTDDYGM1HxXpqpE2EcAbQ8upO6Crh9eElO2mAsUvKVZPp
+         Yb8c3IdC1uv8tyfTriCA+01TL7xb7+0lOHD1LL65jljFOJ5XKduO42NUYXOumjK4Wvt8
+         pqESmWof5DB0lEnjoTzeQhOks86K3ODwKNlW4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724835050; x=1725439850;
+        d=1e100.net; s=20230601; t=1724835351; x=1725440151;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=shRY5stjFi+JLGkJ+y51t2hwTW4qiG9k0qtRydA83MA=;
-        b=kWcHyWaIGvw18pKgTiGYYR9cywLTSd6kWZmAFyTZcDWqvImRLsxV4GchST3n1vlqV5
-         Bj9rarJCY80V/YDkVy8++ZFL5Szt+8HGpwg0L6vU13nDNeJFTchRdsl0DaCNiifSOnoX
-         Lmat4+/PGySTBwN0jBtRmpfaL22CuCCJHThmDYK3r2JNpfKNJrRGCNa9aJIZTfAf4CKQ
-         oZyDIEPHVZjqCBgn7Lu1gNn8jnQqfIcF+O/hvVvNfKeDbDJopsJ3gXNaHa2bEEZKtBVX
-         MDU9f84yl9Kxc3C0JvrwTV1ReKbXg4IVC2Kv6Gnb9DojDVSvdURxMJztNhehiAlrffiw
-         exWg==
-X-Forwarded-Encrypted: i=1; AJvYcCX/INemeVquWyfeD3W+Kw9l9DrNh8cOm9dTSrBYUQIHBcjpctwFwRk0BXWTJxhuBlNkKtK/6DGcMMrG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJh0NyP9a20wXnMMv8S//UzibVwN1W7nscbLO8Anh7WWnC2j6N
-	mReCuhL0wtWOg5nXm0vi7xey01t3O9xZJ7mWwWW9zWEdM/tNt1hLFoe8o7QX2A==
-X-Google-Smtp-Source: AGHT+IGq6FJZLa1EEfe8Q6XnN8zV+OXKNWera5wQWyN99473BRSN9pCh6Zwq68D6ro5+GxN5M0vYQA==
-X-Received: by 2002:a17:90a:de8e:b0:2d3:da82:2728 with SMTP id 98e67ed59e1d1-2d646d5eba9mr15834309a91.41.1724835049454;
-        Wed, 28 Aug 2024 01:50:49 -0700 (PDT)
+        bh=QWYpKLox98Zm+kv0OB+ZP4rUkmwKANk3sWNWu8DRmgw=;
+        b=cpa4QNkmSpaqF5HMm7moRPdzooanLJ1pzGedZyVCfDYW+DQwisQWsNYjdGTr7GyIqI
+         rRdXYIHApTK/Jt4QqkRXS0wNZwAjiXmCnJ+ehQYOVT74DTazYhSDwEc9h0fIAAdCVaWG
+         oeRF7hgLLFkd1yNfjAOP/XdHaAzFxtgSmICH2ympc41pSVM7REvp/SN53RCm4TS2NV5Y
+         hW7o1Waqv56xYIZR+0CBrqzrQs1o7zjlLPI8dtpFLTygbArKzOCiiWwxGvvLkVAVtaSw
+         tyoFPsy0ndkO/9vzh9yOIMP5FurPdrw4SghgyWfYo+wjeQRutN0ulq6wqM5bF418WipA
+         udjA==
+X-Gm-Message-State: AOJu0YwN6F+HgJerbdnDVq5gSKOHOO0OKTKCnAf/4H1BAWYA/W3q2SSk
+	UvZriixv4kR/vJ8t3D1amBeTlLUlNXO2K9HEHbCnSQpNjORQ8x3OcOXD6wH6Kg==
+X-Google-Smtp-Source: AGHT+IEmxUMmPUIRtslVRmejayJrNR7fKFL/cvIGljIuBj7DsRG0nD12IvGHcaZOt1yiq+lvFGmImg==
+X-Received: by 2002:a05:6358:60c7:b0:1ac:660a:8a69 with SMTP id e5c5f4694b2df-1b5facf5059mr150068655d.18.1724835351435;
+        Wed, 28 Aug 2024 01:55:51 -0700 (PDT)
 Received: from [10.176.68.61] ([192.19.176.250])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d844640ab6sm1127894a91.42.2024.08.28.01.50.45
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7143430964fsm9726609b3a.150.2024.08.28.01.55.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Aug 2024 01:50:48 -0700 (PDT)
-Message-ID: <22fdbe11-830a-4084-aa5e-1b7294f3a7fd@broadcom.com>
-Date: Wed, 28 Aug 2024 10:50:43 +0200
+        Wed, 28 Aug 2024 01:55:50 -0700 (PDT)
+Message-ID: <7951482c-ee1e-45f4-8753-433a933321b6@broadcom.com>
+Date: Wed, 28 Aug 2024 10:55:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,18 +73,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/5] dt-bindings: net: wireless: brcm4329-fmac: change
- properties enum structure
-To: Jacobe Zang <jacobe.zang@wesion.com>, Kalle Valo <kvalo@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, van Spriel <arend@broadcom.com>
-Cc: linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com
-References: <20240828-wireless-mainline-v12-0-9064ac7acf1d@wesion.com>
- <20240828-wireless-mainline-v12-3-9064ac7acf1d@wesion.com>
+Subject: Re: [PATCH v13 0/2] Add Wi-Fi support for Khadas Edge2 and fallback
+ compatible for Apple
+To: Jacobe Zang <jacobe.zang@wesion.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ asahi@lists.linux.dev, Muhammed Efe Cetin <efectn@protonmail.com>
+References: <20240828-dts-v13-0-6bff9896d649@wesion.com>
 Content-Language: en-US
 From: Arend van Spriel <arend.vanspriel@broadcom.com>
 Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
@@ -131,35 +129,22 @@ Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
  NKowQLrlMBGXT4NnRNV0+yHmusXPOPIqQCKEtbWSx9s2slQxmXukPYvLnuRJqkPkvrTgjn5d
  eSE0Dkhni4292/Nn/TnZf5mxCNWH1p3dz/vrT6EIYk2GSJgCLoTkCcqaM6+5E4IwgYOq3UYu
  AAgeEbPV1QeTVAPrntrLb0t0U5vdwG7Xl40baV9OydTv7ghjYZU349w1d5mdxg==
-In-Reply-To: <20240828-wireless-mainline-v12-3-9064ac7acf1d@wesion.com>
+In-Reply-To: <20240828-dts-v13-0-6bff9896d649@wesion.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 8/28/2024 9:40 AM, Jacobe Zang wrote:
-> Add "brcm,bcm4329-fmac" as fallback compatible for wireless devices that
-> used PCI ID based compatible. So that can pass the compatible check in
-> driver.
+On 8/28/2024 10:45 AM, Jacobe Zang wrote:
+> Add basic Wi-Fi support on Khadas Edge2. Wireless driver need to check "brcm,bcm4329-fmac"
+> compatible so add it to Apple's devices.
 
-Hi Jacobe,
-
-Using the driver implementation as an argument for adding the fallback 
-compatible to the bindings does sound wrong. The most importants rule 
-about the bindings is that it is independent of kernel and/or driver 
-implementation.
-
-Now this actually overlaps my patch series from couple of weeks ago 
-which also covered some other existing DTS files for Apple platforms. So 
-my proposal here is to drop this patch for now. I will give it another 
-shot in v2 of my series after yours is (finally) applied. We can always 
-hope ;-) That does also mean the compatible check in the driver should 
-not be moved in brcmf_of_probe(). Also the Khadas Edge2 DTS file should 
-not use the fallback compatible yet. I can include it in my series later.
+Did not receive [PATCH v13 2/2]. I don't follow every kernel list. Maybe 
+good to add linux-wireless list?
 
 Regards,
 Arend
 
 > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
 > ---
->   .../bindings/net/wireless/brcm,bcm4329-fmac.yaml     | 20 +++++++++++---------
->   1 file changed, 11 insertions(+), 9 deletions(-)
+> Changes in v13:
+>   - Change patch 2/2 argument from driver to bindings.
 
