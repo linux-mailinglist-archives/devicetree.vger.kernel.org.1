@@ -1,109 +1,135 @@
-Return-Path: <devicetree+bounces-97259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7795C961B95
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 03:45:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 615A6961BB0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 04:03:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1998C1F247A9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 01:45:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A3B2284B99
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 02:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F753D96A;
-	Wed, 28 Aug 2024 01:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB544438B;
+	Wed, 28 Aug 2024 02:02:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bVn8bss2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nst62ftw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164A93D0A9;
-	Wed, 28 Aug 2024 01:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 074EB946C;
+	Wed, 28 Aug 2024 02:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724809506; cv=none; b=WuhClxVxpBWWfajR8mONy2wcWK9cEgcNwDjlvYLeSdxbiphJvn7LbSWBY6S8494zMywolXoGk5bEyl2+COgFEoDbOddQ/kurevDcne5QEuhEm7gQ0+hpYwf2eq8r8qem3wLLjmPeOEJQDuq7VzeLgFQ2BBxn8VRmoKuuOoR35aQ=
+	t=1724810572; cv=none; b=Y4rv82h1yf1VcnXWXlurgdhylT9CbqXSSUxUA6ICHZSc0syUHnktw1Ajiuj5eRPVmPmzJuDzKtOYJ9VJ9R26+xGBONEMfBcjegGBKQZI0ERSuR3mq2MYoULLtyLdzh05UMKkv0fdF+oh6l9ICA1AZvJ+8TKZyWfBN3aRUCRrvqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724809506; c=relaxed/simple;
-	bh=7LuomIMMRpCXY0e/2DKIVqsSnL5Za8OyQ2iv7VsWxfI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RcmsYU6YS09nwBzSJhKy6OdNc+5iqGr9CLwOwIcqiS4v8MyJy5p6bxw6R21Ie4J7/ct9LJKN2zCLsuj8R2lGjfaDcPoq/sAJPBwwqxwI0xtvTGI1idCI7wJddrTz4Jh9Kaeue7Kd57EVUCNWkkYt3duIM0n4cx6DuhdcD6owRGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bVn8bss2; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=IC04N3pSECFSR9IAB60w2wb7p2WDMSJzd/BCucDtm7U=;
-	b=bVn8bss2XN+FPxol9grcpOrqjHbFRqZSgn66a4tOOZwOX2ph2r+4Q8/YOaA5wj
-	hN+8VaE82coFlVG5SuhA1O20KkqviwA1ce7f3OTf/rYR0SRUAUsmDeqnBPTuhgKm
-	mtS/gsMI7sGlqGGDH4zUoA6BVm5roizpDSB82ICOzmRdE=
-Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3d1jhgM5mwYMNAA--.24374S3;
-	Wed, 28 Aug 2024 09:44:03 +0800 (CST)
-Date: Wed, 28 Aug 2024 09:44:00 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, peter.chen@kernel.org,
-	herve.codina@bootlin.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-	jun.li@nxp.com
-Subject: Re: [PATCH v2 6/6] ARM: dts: imx7ulp: add "nxp,sim" property for
- usbphy1
-Message-ID: <Zs6A4OEgaC8a3gcw@dragon>
-References: <20240726113207.3393247-1-xu.yang_2@nxp.com>
- <20240726113207.3393247-6-xu.yang_2@nxp.com>
- <20240826065612.ol4fjib4g2jrvoy7@hippo>
+	s=arc-20240116; t=1724810572; c=relaxed/simple;
+	bh=DtBiu3d1Tve5RceK4TCqLFVvl2TE6BcpMpXK6gxItA0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=GYIHPXfzNRC3+joBdr6/+8Am9NMmMiaTsvYceK/YERb6eAej6I2jS/l9QssvyJqEuN0YwmXeV+Nm75V0Wr8dWSl4vI366xbSI56fe0+jSz1ber+W1o4eJjtWVBGVNXa6iZH46+HE/WAtkujxU21NOrhvLcrtFna53N2vo5RCJ88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nst62ftw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RLaNfN021184;
+	Wed, 28 Aug 2024 02:02:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=k0z/kXZkFkFG7mWmEt5MY1
+	Bwvzbm7aQXLkmaxB6ZLyM=; b=nst62ftwqsQ+yk30/iYyYPkbbSw29TDSU7CmYK
+	bcOIWg8FDFZk7Pl797holZiQLfBztTKn6NARaXYCHKoOG5UFW31LTq2nX/9gcLlm
+	L3+KHM2bJ7PiHT4xoaEW894XM/w6w81HyccjRWtl48MierVC7wlqJxgna25xiFWH
+	8p8ex76h9HOGD644PojiJgcu7V5X8EbVH2WYzfFgkrWtRliFKmicgsE1nscB5sZ2
+	+vbdoz0zh57KaLNHRGrur790FOkdn0/0WR9twLzsoPhAm9JeUenomUQGzetyRiip
+	sWKcKiqnihBIH7y9OHrOjmj5RLeHASp3TFWMtx6mGi7n6CVQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv0gdb7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 02:02:37 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47S22ZYE011241
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 02:02:35 GMT
+Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 27 Aug 2024 19:02:30 -0700
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Subject: [PATCH 0/6] Add initial support for QCS615
+Date: Wed, 28 Aug 2024 10:02:10 +0800
+Message-ID: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240826065612.ol4fjib4g2jrvoy7@hippo>
-X-CM-TRANSID:Mc8vCgD3d1jhgM5mwYMNAA--.24374S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrurWkGF4rZF1xWryDAF4xZwb_yoWDtrg_Wr
-	W7Cw1jka1rKrs5uFyDGr1kX343KwsrGrZ3X345Wr1kJF1ava18GFs7ta93XFy5Ca42gFWD
-	ZFZ3Za4jqw1SkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8t3ktUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiER9JZWbOG9TjXwAAs5
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACOFzmYC/x3NQQrDIBBA0auEWVeI2qTSq5QiomMyUNTOpKUQc
+ vdKlm/z/w6CTChwH3Zg/JJQLR36MkBcQ1lQUeoGM5rr6MxNhZQ8FdoovLx8Wqu8+VzZv6PMelI
+ 2W2dstHHSDnqkMWb6nYPH8zj+Xx3Zg3AAAAA=
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Lijuan Gao
+	<quic_lijuang@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724810550; l=1298;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=DtBiu3d1Tve5RceK4TCqLFVvl2TE6BcpMpXK6gxItA0=;
+ b=MrdFKekZ9pSal/pzn+cJzwCydcTtvk8hkdrZQTQcnmBdTjTW5TmJXbnOfbIAxGyw9JUyFphqg
+ iQcwfeib6xED9unEjUHVwkdfYPT0SWYXus2k6SNVWQVltiLqCpPoCWS
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BCiVW4T8qC-q9i6Rf5vOMJuQZzN1drop
+X-Proofpoint-ORIG-GUID: BCiVW4T8qC-q9i6Rf5vOMJuQZzN1drop
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_01,2024-08-27_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=764 bulkscore=0 impostorscore=0 phishscore=0 clxscore=1011
+ mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408280013
 
-On Mon, Aug 26, 2024 at 02:56:12PM +0800, Xu Yang wrote:
-> Hi Shawn,
-> 
-> On Fri, Jul 26, 2024 at 07:32:07PM +0800, Xu Yang wrote:
-> > i.MX7ULP need properly set System Integration Module(SIM) module to make
-> > usb wakeup work well. This will add a "nxp,sim" property for usbphy1.
-> > 
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > 
-> > ---
-> > Changes in v2:
-> >  - no changes
-> > ---
-> >  arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-> > index ac338320ac1d..b093f2a447ae 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-> > @@ -214,6 +214,7 @@ usbphy1: usb-phy@40350000 {
-> >  			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> >  			clocks = <&pcc2 IMX7ULP_CLK_USB_PHY>;
-> >  			#phy-cells = <0>;
-> > +			nxp,sim = <&sim>;
-> >  		};
-> >  
-> >  		usdhc0: mmc@40370000 {
-> 
-> Could you please pick up patch 3 and 6?
+Add initial support for QCS615 SoC and QCS615 RIDE board with basic
+description of CPUs, interrupt-controller and cpu idle, which enable
+the board boot to shell with dcc console.
 
-Patch #3 should go via usb tree, and ping me on #6 after #3 is applied.
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+---
+Lijuan Gao (6):
+      dt-bindings: qcom,pdc: document QCS615 Power Domain Controller
+      dt-bindings: arm: qcom: document QCS615 and the reference board
+      dt-bindings: arm: qcom,ids: add SoC ID for QCS615
+      soc: qcom: socinfo: Add QCS615 SoC ID table entry
+      arm64: dts: qcom: add initial support for QCS615 DTSI
+      arm64: dts: qcom: add base QCS615 RIDE dts
 
-Shawn
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+ .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  15 +
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 449 +++++++++++++++++++++
+ drivers/soc/qcom/socinfo.c                         |   1 +
+ include/dt-bindings/arm/qcom,ids.h                 |   1 +
+ 7 files changed, 474 insertions(+)
+---
+base-commit: 0dec408547d2a9e21ea44eab538a1ca852f0be0d
+change-id: 20240827-add_initial_support_for_qcs615-3f3823c3c518
+
+Best regards,
+-- 
+Lijuan Gao <quic_lijuang@quicinc.com>
 
 
