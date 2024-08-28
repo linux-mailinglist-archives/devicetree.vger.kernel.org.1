@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-97688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64839630A3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:02:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A08309630A8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:04:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D115B21522
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:02:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40C71C21A5F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF83D1AAE19;
-	Wed, 28 Aug 2024 19:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77171A76A0;
+	Wed, 28 Aug 2024 19:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pwinlqxM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="P7J1wL1o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4D21993AF;
-	Wed, 28 Aug 2024 19:02:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F40231D696;
+	Wed, 28 Aug 2024 19:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724871729; cv=none; b=K888Ij/LHw50wl9s6/DwW8jcsZ7/7VXLwYniFUnjcg42fhzu1+CyE7xy9NS//ltqtOFK3bMdC2b0pg69RI6YEVkT5isFS5swy3W750uBPxthQJJpXvnQkjqh7idjI7hcLcIBxUx56AvolM911sfw+WYBU81VvcFQSrF3SbJoRzY=
+	t=1724871882; cv=none; b=BKFsf5FqeslqsHvS24PwkbsyUODMe910xuvvRyLh2870I1JoOHO4CwHyw4FUMabkjRatREaORfBrztW0/sXQKD5tqhDgQjZF1yEHxkaDXvSsSQXfJC+XrXl5uKM9dz9z8487cPtjEtil27aOkkO812dDgV1Cw+Pcju00tt8gEQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724871729; c=relaxed/simple;
-	bh=s1iL0EKjIjaAXnnu8eTYshpWZ+dr32MPHL1rufb7uNk=;
+	s=arc-20240116; t=1724871882; c=relaxed/simple;
+	bh=2PbMUHDVGW2h2OsCN+ZdmA+kAdqhvNBQiOnzfvvguRY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f7Lv6RJdb3H/Lqtb9cLvnTpvq18A5ghZ5bHQAj3dKGaDba/ncWWVUYObuNlZZ8El92vTTePnVB9GKnAwRz5Is/8qWHRnx4NA5fLeIrPpkJkN7O0fVkkcuBJKYpO/r48wq47gpzPSWue+risAhHjNV1eKejwnQgjmsXUcU+WvgIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pwinlqxM; arc=none smtp.client-ip=198.47.19.141
+	 MIME-Version:Content-Type; b=OAyoBuid1jDJfwA761O4NMXGOBekDfkhPDQrEJ7ZYJK+iIkedIPhIqmErY6198V6WORl65Txiz4kTfrahMjajE81dqkuk8TXSMYZ1D3tTWFBErLRs2i4Ij+hv45cec1+EsyPgJwFgn/3p126lk2cOXfUdociIEQvhzCDD0T2EYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=P7J1wL1o; arc=none smtp.client-ip=198.47.23.249
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SJ22KI094030;
-	Wed, 28 Aug 2024 14:02:02 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47SJ4VZG054856;
+	Wed, 28 Aug 2024 14:04:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724871722;
-	bh=2L2++9j+E+6H5IMkyDUrsG0SB8UEcgLzgOpNN3UaNw8=;
+	s=ti-com-17Q1; t=1724871871;
+	bh=keod4O1+yAxg+zkJuMNaiR40evVQhpWT7LOuKFUl74c=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=pwinlqxMyviRq8EdgadwGH/51Q5lpZFGGPxSPZ05CdJJf1XIabRGZO7u8nbbk5Nt6
-	 y2JHUyUUtZAQ3Ho6wvRiqVybWBeLTfUQHJ0CdDe/NerTkNa0HrT9hC4mMvSYXMaxu3
-	 W/CSF1G1Ydb8wM7wjcVIMr3xMCWJkNBpi93PByts=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SJ22IU021825
+	b=P7J1wL1oqbJOatBfVBUpLy9nSghmMvvZAL7OSGvZllt4VzL5L6TX/hCoSSP43DSqv
+	 7GKQN56YhXKu+IxnYcf4wAlDuKh04slpSSb0TY1RM34CzZmtI2RrE8/jgaBGZjt9VW
+	 ZMv7QcBu8Tn5bwHDei3Z6IyeGwfp/ukB8RjX8/Pw=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47SJ4VLo018111
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 28 Aug 2024 14:02:02 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 28 Aug 2024 14:04:31 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
- Aug 2024 14:02:02 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 14:04:30 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 28 Aug 2024 14:02:02 -0500
+ Frontend Transport; Wed, 28 Aug 2024 14:04:30 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SJ22PL057668;
-	Wed, 28 Aug 2024 14:02:02 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47SJ4UT9066055;
+	Wed, 28 Aug 2024 14:04:30 -0500
 From: Nishanth Menon <nm@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bhavya
- Kapoor <b-kapoor@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <jm@ti.com>, <vigneshr@ti.com>
-Subject: Re: [PATCH v2 0/2] Add support for multiple can instances as well as describe main_uart5
-Date: Wed, 28 Aug 2024 14:02:00 -0500
-Message-ID: <172487168711.3443156.17556165846774517423.b4-ty@ti.com>
+To: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>,
+        Devarsh Thakkar
+	<devarsht@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <s-jain1@ti.com>, <r-donadkar@ti.com>,
+        <praneeth@ti.com>
+Subject: Re: [PATCH 0/2] Enable E5010 JPEG encoder
+Date: Wed, 28 Aug 2024 14:04:28 -0500
+Message-ID: <172487179147.3443633.3959874500764738240.b4-ty@ti.com>
 X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240827105644.575862-1-b-kapoor@ti.com>
-References: <20240827105644.575862-1-b-kapoor@ti.com>
+In-Reply-To: <20240826162250.380005-1-devarsht@ti.com>
+References: <20240826162250.380005-1-devarsht@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,26 +81,30 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Bhavya Kapoor,
+Hi Devarsh Thakkar,
 
-On Tue, 27 Aug 2024 16:26:42 +0530, Bhavya Kapoor wrote:
-> This series adds support for multiple can instances present on J722S
-> EVM as well as describe the main_uart5 for J722S EVM.
+On Mon, 26 Aug 2024 21:52:48 +0530, Devarsh Thakkar wrote:
+> This series adds support for E5010 JPEG encoder device-tree node for TI's
+> AM62A SoC and enables it in defconfig.
 > 
-> CAN instances 0 and 1 in the mcu domain and 0 in the main domain are
-> brought on the evm through headers J5, J8 and J10 respectively. Thus,
-> add their respective transceiver's 0, 1 and 2 dt nodes as well as
-> add the required pinmux to add support for these CAN instances.
+> Devarsh Thakkar (2):
+>   arm64: dts: ti: k3-am62a : Add E5010 JPEG Encoder
+>   arm64: defconfig: Enable E5010 JPEG Encoder
 > 
 > [...]
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
 
-[1/2] arm64: dts: ti: k3-j722s-evm: Add support for multiple CAN instances
-      commit: 46ca5c7207703b36025228a6b7a29198a1539d10
-[2/2] arm64: dts: ti: k3-j722s-evm: Describe main_uart5
-      commit: 010b035ab4d7a1c4fd13936f42eef857ddbeede7
+I have applied
+
+Following to branch ti-k3-dts-next on [1].
+
+[1/2] arm64: dts: ti: k3-am62a : Add E5010 JPEG Encoder
+      commit: 540fcd5fbdb5f3bbd6f6a88d85b9993a9318d474
+
+Following to branch ti-k3-config-next on [1]:
+
+[2/2] arm64: defconfig: Enable E5010 JPEG Encoder
+      commit: e8c643daeaa9040e18f8349993b9bc504e9d2117
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
