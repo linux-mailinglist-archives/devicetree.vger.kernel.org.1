@@ -1,111 +1,113 @@
-Return-Path: <devicetree+bounces-97547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D3F29628F0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:42:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BF169628ED
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 812D6B2143C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:42:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F6D21C21F12
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F19178CEC;
-	Wed, 28 Aug 2024 13:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E40C4187FE7;
+	Wed, 28 Aug 2024 13:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ufak4esb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="h0mGQKeU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A1B186E4B;
-	Wed, 28 Aug 2024 13:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0597F187FE5;
+	Wed, 28 Aug 2024 13:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724852517; cv=none; b=nJ2+LXAKPVJ7bL7Qb1N6cEDcXbOkId/CpCpAAXW9TM31gol+1sw1hrm/7bz7y4LWrByIR19uIHNLnOE48B/aHrnTeuHaiWQZp06CJQ4dpY+ZiH6nC9JB/ml7S2zV6Alk+H6Gxv6B6/sj6x7mAWj8Z1MHnX6gca6bzw7dcqoM1jU=
+	t=1724852491; cv=none; b=JmktABuMQTFB60MKt8tmeovWRJXof4w5fFp5v5w+G4KjOdvOc7XGXuZvVHkP7DfU+qSFwEvcp+5Hz+ysra/Tl+Z29CVNFwEerZPRDPtcTzVFXh8jCTnx+nAjR6kTFd27E276LMdMj9Xmhy7T7uKVxubxP0+46RJHJxPLnTn3n2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724852517; c=relaxed/simple;
-	bh=a2swbrR98wISn+eYtffCdkI+7ImxeBOzuWP7GOb5gpY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FKsohlI1a3uR5hVNkWkh/Xg2CBy4xNoyJ7zv+J5dvPe4QFElqYClqH4d5HhqT/vzZk3xTyo/Uq3+O4cdn8IpIX0KQRn3LNYnpsa+bkH420IliOSxfCqTrPpW/fbXFGzJTR0Cco0tBfudk0w45yXC+70mj6OjvauXHoOYYdbR2X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ufak4esb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A50CC581BF;
-	Wed, 28 Aug 2024 13:41:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724852516;
-	bh=a2swbrR98wISn+eYtffCdkI+7ImxeBOzuWP7GOb5gpY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ufak4esb9vRxDU4GXWxGafmlJTaaq4y+jEUzLh7YVE4uiQMPQ83Ft6+XewFe94s4D
-	 FNSQ6lEyET56QVve7F3q7ILt31ZxLKe/stiwlh1KArGfGN1zrJBxVz3Lb4UAYpXXbH
-	 Xa1fAc4sQdH7f2f+Ia1OCsm3lDcOVwDwdd2qnY1z7dxxkPnXF0uCJxN75Wsa/lDK3Z
-	 AwW/zPEUD4tQB7wVyZJYppBwcu0FJ4zD8yyJijlAQjkxBO2aztydzi3duvsjQ990CJ
-	 31Fp721OMzvYoe8BbXyNS/QwrRMlSJQfFszL9R7HyGkyWXl8LMbBeV6tW5+NmhyeKX
-	 1DPFCurUvPooA==
-Date: Wed, 28 Aug 2024 08:41:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Masahiro Yamada <yamada.masahiro@socionext.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 0/3] dt-bindings: gpio/pinctrl: add missing type to GPIO
- hogs
-Message-ID: <20240828134155.GA3656223-robh@kernel.org>
-References: <20240828-dt-bindings-gpio-hog-v1-0-63b83e47d804@linaro.org>
+	s=arc-20240116; t=1724852491; c=relaxed/simple;
+	bh=qUUiaCfBLXZWpJdappx4+njgqnXxefIpho9blRI4Pes=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mQqyO2E0utMOW866xv/cRMIXovGMxU2PTxPK5QG5e6sfsM63FWjl2f0uhnC8njCCWXarhXwYuQOtJ+xMLEK72KMpr0ep6lx9lhwZ62mXp/tpAL6SGhMCV85DkuiUwhmcDEozUO1b5c92oH0QkMv8PXiMIch1F340pmk1iooXpjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=h0mGQKeU; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=qUUiaCfBLXZWpJdappx4+njgqnXxefIpho9blRI4Pes=; b=h0mGQKeUHlQIzvXxOw2pBhnXnp
+	1gkRnQcgSpBgLRM91xDWAdbouRh+oqwwTl0pRZMjtkidxWkkdlHbym4+zv0vanCYCyAeYpzZMezF/
+	IWhrGWqZoOaoIA9mEFfl9dpfMNmjfBHfon0hmHYmuCBg40OjjA3WdeqJZBgYkjIPT8y/hkCUwCkIk
+	xMi4a5KnL8Yg7h0GsAr+YWrY7/TqGF3wt9pz5376t0vKzCr5Od12SYu/B55lZEOa1BfdWoQkIHWxG
+	2GOOVfMngUSpq1Im2QF2UhWxsQyC+8qArm++5HOahS2BxYwzrXFCB9263I6nvaLXsLoRX9YLwqqFo
+	//iudiqg==;
+Received: from i5e8616cd.versanet.de ([94.134.22.205] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sjIvL-0005dr-8m; Wed, 28 Aug 2024 15:41:23 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Jonathan Liu <net147@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: Enable RK809 audio codec for Radxa ROCK
+ 4C+
+Date: Wed, 28 Aug 2024 15:42:35 +0200
+Message-ID: <2576985.vzjCzTo3RI@diego>
+In-Reply-To:
+ <CANwerB0NUFyJ1egYNEAnhdqSyBTq41cSKKC0bAbKudZAPx8UfA@mail.gmail.com>
+References:
+ <20240828074755.1320692-1-net147@gmail.com> <2502361.uoxibFcf9D@diego>
+ <CANwerB0NUFyJ1egYNEAnhdqSyBTq41cSKKC0bAbKudZAPx8UfA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240828-dt-bindings-gpio-hog-v1-0-63b83e47d804@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Wed, Aug 28, 2024 at 11:35:56AM +0200, Krzysztof Kozlowski wrote:
-> Merging
-> =======
-> Patches are independent and can go via different trees.
-> 
-> Description
-> ===========
-> DTS like:
-> 
->     device {
->         compatible = "fcs,fxl6408";
->         dummy-hog;
->     };
-> 
-> should fail, but unfortunately it does not if "type: object" is missing.
-> Add missing type, so this will properly trigger warning:
-> 
->     dummy-hog: True is not of type 'object'
-> 
-> Best regards,
-> Krzysztof
-> 
-> ---
-> Krzysztof Kozlowski (3):
->       dt-bindings: gpio: fcs,fxl6408: add missing type to GPIO hogs
->       dt-bindings: pinctrl: qcom: add missing type to GPIO hogs
->       dt-bindings: gpio: simplify GPIO hog nodes schema
+Hi Jonathan,
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Am Mittwoch, 28. August 2024, 15:24:56 CEST schrieb Jonathan Liu:
+> On Wed, 28 Aug 2024 at 22:59, Heiko St=FCbner <heiko@sntech.de> wrote:
+> > Am Mittwoch, 28. August 2024, 09:47:53 CEST schrieb Jonathan Liu:
+> > > This adds the necessary device tree changes to enable analog audio
+> > > output for the 3.5 mm TRS headphone jack on the Radxa ROCK 4C+ with
+> > > its RK809 audio codec.
+> > >
+> > > Signed-off-by: Jonathan Liu <net147@gmail.com>
+> >
+> > as it looks like you have one of those boards, could I possibly as you
+> > to take a look at the vdd_cpu_b and vdd_gpu nodes?
+> >
+> > I see (and devicetree check reports it too) a pinctrl-0 for the vsel-gp=
+io
+> > without accompanying pinctrl-names.
+> >
+> > Could you check if things fail if you either add pinctrl-names or remove
+> > the pinctrl-0 entry?
+>=20
+> I tried both but neither resulted in any change to the warnings in dtbs_c=
+heck.
+> Reverting my change also results in the same warnings so I don't think
+> it is related to my change.
+
+I was more aiming at a functional test on the board :-) .
+
+You are correct in that this is not related to your change, I was just
+seeing someone with the hardware.
+
+I.e. while running dtbs check here I saw those regulator nodes
+and didn't want to change stuff without being able to test them.
+
+Heiko
+
+
 
