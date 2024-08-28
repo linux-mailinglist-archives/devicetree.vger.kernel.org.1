@@ -1,405 +1,168 @@
-Return-Path: <devicetree+bounces-97576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B2B0962B15
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:04:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89ED6962B20
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:06:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E125E2854E1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:04:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41EFD283E91
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:06:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0124A1A2C21;
-	Wed, 28 Aug 2024 15:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C12B1A00F4;
+	Wed, 28 Aug 2024 15:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m+nsf/6z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZtlyIXZl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE9651A08A0
-	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 15:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5491DA32;
+	Wed, 28 Aug 2024 15:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724857470; cv=none; b=CzKRDgbQqUgDs/y/BlA0CjzX5GfA52NuNBnWVvjdb02/86+lzNw72IQmjKYvtomzWCxuoRaRUbgUVwUsmY5PeUNnvm8XNWcYxcvvrxrVDxjpjtwunLZb0kI+QwLVs+wrflX4O30INF4LPeJWfcZkaBbQ9hNhExB/A9SQEKAdHfs=
+	t=1724857559; cv=none; b=JkWoitQePJpL0P6TQeoGg5mxPihPvtwqBfec1/BIIooEDr+6e4/hWQueIKQp+2sMUsxysbbuZjRebHrvvvMdB5IabSR8wiBhBMq1yMY319qKWrAqP46goNgYXbBEhFMBcxPuGSaP6Y01bJ1a/+JlO49eEtb1Cdlnaqns3GS5lCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724857470; c=relaxed/simple;
-	bh=2Njn5bNaQDufIW+OX+YZ1RHg5HJaiNzkyAOoSbvzm8A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CdSmQTH9C9pY3j+Rh0OxwCdmG6bSEx+4NQRcHsmf/5l+O6wliPdRDTlcbtoGP3QMHkDQGvNeMDIYvlg4QZ0uDSHAeNh1Jq6gbRaYy5nTGn+PooNFFEYHnxIK68U8F96OE5gbDeFPH8VYM6kVsF7tSdzoTqHz8eepAzzC9HqiDl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m+nsf/6z; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-428e0d18666so59094375e9.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 08:04:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724857467; x=1725462267; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ovFCnXvXr8jSZA7XeyMiJX7sAb3C0j4/FiJJH8aoN9E=;
-        b=m+nsf/6ziNLym4Lhy8zVodk1C0kid1tQW+aBzuOCQMzZTMlcaxI1NH4O3A6/RhSOCV
-         4SjZfRWZpC8RRmVc+01ZlHeYKsnrv6Z4ES12VTxh5XMbCB+8EB01lCJKA39c334MJKeQ
-         wML7YXSJz2kf0XiNx6fvCxppayr9RcY9og4Z3PyMVPBwEf4ARueO3N/i5n/9NWB4pRzg
-         iiUgRblaJnfLdIKpeCc3TF640w1GgZtRxDxzpMYdcd+AlsBi9p/97uDL/ayyke8CNmvv
-         gnJ0xprwgitvLKTEUHTgnK/UXGFH5dNXbcI/Q8JOhNgCLkTIUbs99xp+8m4zZFnNvk1V
-         cmfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724857467; x=1725462267;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ovFCnXvXr8jSZA7XeyMiJX7sAb3C0j4/FiJJH8aoN9E=;
-        b=Fct9s95k+DKIhQAc0Ugff+XB6Mf5FrcWWqNylMluWurBI9WCWnX7vjd1coH7Mqv51l
-         12HXZtY19u4OwM3GiJ77aC4DKC/vtDlVZwmJ1J57+v7VO0kTVp6t+0tgBDytu4igpAPL
-         owjUTOiFE2NAvlG0ruIssNcR8PqjKySgBLv4Pq9+9bBXA9K/ibV9OmEOxA/maIqaU/Bq
-         jSi1pGjcIucQEu6nuf/pXe8TKEoxwv7/vf/V6skum5ioEphWh4awiR/D+YAEpqBTjfzO
-         dEeMxY1bPRuxdnqDkG6Hd/nY+6msZeQOpSJCYHT/nuRnYRlkuuUf74x1nGae9BJ4sYC8
-         bsfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXJWd5nDV0EOQx2/I2qPijzSjlLtGfwtHw288SoqcoMEvxBx1Qmb8NJaNwHmopIdsKOQUtJIolTZy0O@vger.kernel.org
-X-Gm-Message-State: AOJu0YywnOu8JnVXWhcEXT26g4BicS2ij2eYmkYX5FyIp7gOsAOQML0A
-	qv2ZfX5PP7YXWY4ADcv3PArUX2JoxLEEdGIRv5bvB0HLLF9yAKlAZV9mGr9QaHU=
-X-Google-Smtp-Source: AGHT+IE6zqtBhAAQfpcPokgm5Mts8rJbMaxLDUR63S0+1NLH/qHkR7S6ZQbrGMKZ9f6ycKFE6rSf9w==
-X-Received: by 2002:a05:600c:1c18:b0:426:8884:2c54 with SMTP id 5b1f17b1804b1-42bb01fb929mr35665e9.35.1724857466545;
-        Wed, 28 Aug 2024 08:04:26 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba63acd66sm24079315e9.23.2024.08.28.08.04.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2024 08:04:26 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 28 Aug 2024 17:04:20 +0200
-Subject: [PATCH v3 2/2] drm/panel: add BOE tv101wum-ll2 panel driver
+	s=arc-20240116; t=1724857559; c=relaxed/simple;
+	bh=6Vo1aKkY0Rdj6AZrKv1kbReR++M9czmdnc21wj24QlQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TsCRwBt281TR7meYuZDvU1uK19ljexrIzxGR0Exf0XqcbxmaP4xKu/NWpgEgaIDul4vXQPMBlUthWl2r950wk9M5rs9Gq2I7YTKA8UEhB/iePNjE+g2AZQo0yN5UbZhM2sF5jge3BcSrNxCFoHApnGvXEmdwIcB9LXwJnVaPaOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZtlyIXZl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3CDAC4CEC1;
+	Wed, 28 Aug 2024 15:05:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724857558;
+	bh=6Vo1aKkY0Rdj6AZrKv1kbReR++M9czmdnc21wj24QlQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZtlyIXZldOMARdAO3Q11fY81fJQfKJPNjKpbDcjLD0l4+jCjPohFdEvLkJBwp3X7l
+	 QmV8e+UOb4DhNx95fEARbw+HJXjcArzBDzs8IstHOJIiYl/IyC4GeGOUpN3JCY4FDa
+	 yEuRsFVtLad1CxjXieE63mm/ZizdYgaetD4CLGhfDKEIDEsmdOzIUvZx57hzzC0GJU
+	 X1d0SNGvt/B/IPYeEuMt0gICfKXy/rGt6o/r7PU75vg9C0qE4pXQHf4nfyyqWArZz5
+	 IcI4nTQ+WOGhNs6fbSJNE3g+R5v51/R26zrk6SA/t3AJqJyFb1cYF2aFu3NlSo5V+K
+	 RfhEGX0+ZyI3g==
+Date: Wed, 28 Aug 2024 10:05:56 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: media: renesas,isp: Add Gen4 family
+ fallback
+Message-ID: <20240828150556.GB3680498-robh@kernel.org>
+References: <20240826144352.3026980-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240826144352.3026980-2-niklas.soderlund+renesas@ragnatech.se>
+ <cnca2gdh6c3kg5ybb4dxzlca5c7jsvz4tomibpkf746syejvmf@ndbq4qkykume>
+ <20240827081233.GE2636928@fsdn.se>
+ <20240827213441.GA30398@pendragon.ideasonboard.com>
+ <9e18bbf4-ae22-4d53-a998-67ad5807d72b@kernel.org>
+ <20240828105008.GJ30398@pendragon.ideasonboard.com>
+ <530102e8-e638-49c1-a0ac-960c51d4f3dc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240828-topic-sdm450-upstream-tbx605f-panel-v3-2-b792f93e1d6b@linaro.org>
-References: <20240828-topic-sdm450-upstream-tbx605f-panel-v3-0-b792f93e1d6b@linaro.org>
-In-Reply-To: <20240828-topic-sdm450-upstream-tbx605f-panel-v3-0-b792f93e1d6b@linaro.org>
-To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Doug Anderson <dianders@chromium.org>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9332;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=2Njn5bNaQDufIW+OX+YZ1RHg5HJaiNzkyAOoSbvzm8A=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmzzx2xzIgzzTwbmLl1TAR13hy/J92QkAtloCMVy+f
- DdrPbSSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZs88dgAKCRB33NvayMhJ0SX4D/
- 48U+QXmG//5nMaaLesF5mp91A/N/oSn7DBF39+qK/eNzZgM01q7hClqJfJM1mNZAxYQpyZBOc2mzP9
- 6DN+TpY9rqiohpjDnNKdkly+N7cl//qMRZfK8d25fRSFjIZAq12BjAUJXbyfUFW39eg2rewYyYZcX8
- yRGQNYvDFTS2D1+x1B+cu269ExM0CGMFDoR8h8MkHIluSgoOrbHxDOWDVKeAdMV+dA2mBD9Ldxdvbq
- 3PjW8hG/6YaFAAbQzA1XEkfP562YNc1PWBalN3NyGs69N77fqBpzu4Eofo0/QmaBUIdExy2QR21G/l
- 3hoN3G2SnDFTdN8ibgFV0M/y6CQyRJnkEfqhznMPUZYU8xYra5pl0RW5SAYWHYzxWYKtcjpt/wpj4i
- 4kGoo2/qTb4mUWdoCR2rKu6srRvOkLHXwnfdx91tNpvdfpAUZqHRuUeKi1qUwopi++AViFt/EjiUy/
- jmat3F3QB+inXbOfQitOkTSHgtt2kJ2F+PJWTL0T9wduBxtqyn7GitlWD7U1O/LNfdA9l2/UHnK5aj
- LRGoniKjMxp9dYcNDl3UzjuDT1uqiMsfLrTAaITF1DbJa4EFLpquwVVmKyZSOmhM2mMbSZaIWg6+LF
- rktnXfBMFKGYlciQnbWBINV7QuJK6PXHp45AvSwumDs0wxDGFqHINaw6Fspg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <530102e8-e638-49c1-a0ac-960c51d4f3dc@kernel.org>
 
-Add support for the 1200x1920 BOE TV101WUM-LL2 DSI Display Panel found
-in the Lenovo Smart Tab M10 tablet. The controller is unknown.
+On Wed, Aug 28, 2024 at 01:06:37PM +0200, Krzysztof Kozlowski wrote:
+> On 28/08/2024 12:50, Laurent Pinchart wrote:
+> > On Wed, Aug 28, 2024 at 07:36:35AM +0200, Krzysztof Kozlowski wrote:
+> >> On 27/08/2024 23:34, Laurent Pinchart wrote:
+> >>> On Tue, Aug 27, 2024 at 10:12:33AM +0200, Niklas Söderlund wrote:
+> >>>> On 2024-08-27 08:31:22 +0200, Krzysztof Kozlowski wrote:
+> >>>>> On Mon, Aug 26, 2024 at 04:43:47PM +0200, Niklas Söderlund wrote:
+> >>>>>> The ISP Channel Selector IP is the same for all current Gen4 devices.
+> >>>>>> This was not known when adding support for V3U and V4H and a single SoC
+> >>>>>> specific compatible was used.
+> >>>>>>
+> >>>>>> Before adding more SoC specific bindings for V4M add a family compatible
+> >>>>>> fallback for Gen4. That way the driver only needs to be updated once for
+> >>>>>> Gen4, and we still have the option to fix any problems in the driver if
+> >>>>>> any testable differences between the SoCs are found.
+> >>>>>>
+> >>>>>> There are already DTS files using the V3U and V4H compatibles which
+> >>>>>> needs to be updated to not produce a warning for DTS checks. The driver
+> >>>>>> also needs to kept the compatible values to be backward compatible , but
+> >>>>>> for new Gen4 SoCs such as V4M we can avoid this.
+> >>>>>>
+> >>>>>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> >>>>>> ---
+> >>>>>> * Changes since v1
+> >>>>>> - New in v2.
+> >>>>>> ---
+> >>>>>>  Documentation/devicetree/bindings/media/renesas,isp.yaml | 3 ++-
+> >>>>>>  1 file changed, 2 insertions(+), 1 deletion(-)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> >>>>>> index 33650a1ea034..730c86f2d7b1 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> >>>>>> @@ -22,6 +22,7 @@ properties:
+> >>>>>>        - enum:
+> >>>>>>            - renesas,r8a779a0-isp # V3U
+> >>>>>>            - renesas,r8a779g0-isp # V4H
+> >>>>>> +      - const: renesas,rcar-gen4-isp # Generic R-Car Gen4
+> >>>>>
+> >>>>> Adding generic fallback post-factum is odd, does not feel reliable.
+> >>>>> Instead use specific compatibles as fallbacks.
+> >>>>
+> >>>> I agree, it feels a bit odd. But this was the road we hammered out at 
+> >>>> great pain for how to be able to move forward with this issue for the 
+> >>>> other IP block involved in video capture for R-Car Gen4, VIN [1]. This 
+> >>>> just mirrors that long discussion decision for the R-Car CSISP.
+> >>>>
+> >>>> I would hate to have different solutions for the two.
+> >>>>
+> >>>> 1. [PATCH v5 0/6] rcar-vin: Add support for R-Car V4M
+> >>>>    https://lore.kernel.org/all/20240704161620.1425409-1-niklas.soderlund+renesas@ragnatech.se/
+> >>>
+> >>> The compatible fallback for VIN has been added following a request from
+> >>> Conor and Rob, so it would be nice if the three of you could agree to
+> >>> achieve consistency in the bindings :-)
+> >>
+> >> Don't twist our answers. You need fallback, but specific, not family.
+> >> There was a countless number of answers from Rob that specific
+> >> compatibles are preferred.
+> >>
+> >> Look, Conor's reply:
+> >>
+> >> https://lore.kernel.org/all/20240620-gating-coherent-af984389b2d7@spud/
+> >> Do you see family fallback? I think "r8a779g0" is SoC.
+> >>
+> >> Look here:
+> >> https://lore.kernel.org/all/20240610-screen-wolverine-78370c66d40f@spud/
+> >>
+> >> Or here
+> >> https://lore.kernel.org/all/20240624-rented-danger-300652ab8eeb@wendy/
+> >> where Conor agrees against!
+> >>
+> >> So let me actually NAK it - you got multiple comments on VIN to use
+> >> specific compatible.
+> > 
+> > Krzysztof, this tone is not acceptable, regardless of the technical
+> > argument. Period.
+> 
+> Except elevated arguments I don't think the tone is not acceptable.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/gpu/drm/panel/Kconfig                  |   9 +
- drivers/gpu/drm/panel/Makefile                 |   1 +
- drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c | 241 +++++++++++++++++++++++++
- 3 files changed, 251 insertions(+)
+You cannot control nor change how someone interprets your tone, so there 
+is little point in arguing about it. But it would be worthwhile to 
+reflect on the comment.
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 5d83ddc06ece..d3a9a9fafe4e 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -87,6 +87,15 @@ config DRM_PANEL_BOE_TV101WUM_NL6
- 	  Say Y here if you want to support for BOE TV101WUM and AUO KD101N80
- 	  45NA WUXGA PANEL DSI Video Mode panel
- 
-+config DRM_PANEL_BOE_TV101WUM_LL2
-+	tristate "BOE TV101WUM LL2 1200x1920 panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to support for BOE TV101WUM-LL2
-+	  WUXGA PANEL DSI Video Mode panel
-+
- config DRM_PANEL_EBBG_FT8719
- 	tristate "EBBG FT8719 panel driver"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 5581387707c6..987a08702410 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -6,6 +6,7 @@ obj-$(CONFIG_DRM_PANEL_AUO_A030JTN01) += panel-auo-a030jtn01.o
- obj-$(CONFIG_DRM_PANEL_BOE_BF060Y8M_AJ0) += panel-boe-bf060y8m-aj0.o
- obj-$(CONFIG_DRM_PANEL_BOE_HIMAX8279D) += panel-boe-himax8279d.o
- obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) += panel-boe-th101mb31ig002-28a.o
-+obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_LL2) += panel-boe-tv101wum-ll2.o
- obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) += panel-boe-tv101wum-nl6.o
- obj-$(CONFIG_DRM_PANEL_DSI_CM) += panel-dsi-cm.o
- obj-$(CONFIG_DRM_PANEL_LVDS) += panel-lvds.o
-diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c
-new file mode 100644
-index 000000000000..50e4a5341bc6
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-ll2.c
-@@ -0,0 +1,241 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
-+//   Copyright (c) 2013, The Linux Foundation. All rights reserved.
-+//   Copyright (c) 2024, Neil Armstrong <neil.armstrong@linaro.org>
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+
-+struct boe_tv101wum_ll2 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data *supplies;
-+};
-+
-+static const struct regulator_bulk_data boe_tv101wum_ll2_supplies[] = {
-+	{ .supply = "vsp" },
-+	{ .supply = "vsn" },
-+};
-+
-+static inline struct boe_tv101wum_ll2 *to_boe_tv101wum_ll2(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct boe_tv101wum_ll2, panel);
-+}
-+
-+static void boe_tv101wum_ll2_reset(struct boe_tv101wum_ll2 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+
-+	msleep(120);
-+}
-+
-+static int boe_tv101wum_ll2_on(struct boe_tv101wum_ll2 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-+
-+	mipi_dsi_msleep(&dsi_ctx, 120);
-+
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x50, 0x5a, 0x0e);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0xff, 0x81, 0x68, 0x6c, 0x22,
-+				     0x6d, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x50, 0x5a, 0x23);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x90, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x94, 0x2c, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x50, 0x5a, 0x19);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xa2, 0x38);
-+
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x50, 0x5a, 0x0c);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x80, 0xfd);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x50, 0x00);
-+
-+	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-+
-+	mipi_dsi_msleep(&dsi_ctx, 20);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static void boe_tv101wum_ll2_off(struct boe_tv101wum_ll2 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-+
-+	mipi_dsi_msleep(&dsi_ctx, 70);
-+
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-+
-+	mipi_dsi_msleep(&dsi_ctx, 20);
-+
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x04, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x05, 0x5a);
-+
-+	mipi_dsi_msleep(&dsi_ctx, 150);
-+}
-+
-+static int boe_tv101wum_ll2_prepare(struct drm_panel *panel)
-+{
-+	struct boe_tv101wum_ll2 *ctx = to_boe_tv101wum_ll2(panel);
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(boe_tv101wum_ll2_supplies),
-+				    ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	boe_tv101wum_ll2_reset(ctx);
-+
-+	ret = boe_tv101wum_ll2_on(ctx);
-+	if (ret < 0) {
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		regulator_bulk_disable(ARRAY_SIZE(boe_tv101wum_ll2_supplies),
-+				       ctx->supplies);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int boe_tv101wum_ll2_unprepare(struct drm_panel *panel)
-+{
-+	struct boe_tv101wum_ll2 *ctx = to_boe_tv101wum_ll2(panel);
-+
-+	/* Ignore errors on failure, in any case set gpio and disable regulators */
-+	boe_tv101wum_ll2_off(ctx);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+
-+	regulator_bulk_disable(ARRAY_SIZE(boe_tv101wum_ll2_supplies),
-+			       ctx->supplies);
-+
-+	return 0;
-+}
-+
-+static const struct drm_display_mode boe_tv101wum_ll2_mode = {
-+	.clock = (1200 + 27 + 8 + 12) * (1920 + 155 + 8 + 32) * 60 / 1000,
-+	.hdisplay = 1200,
-+	.hsync_start = 1200 + 27,
-+	.hsync_end = 1200 + 27 + 8,
-+	.htotal = 1200 + 27 + 8 + 12,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 155,
-+	.vsync_end = 1920 + 155 + 8,
-+	.vtotal = 1920 + 155 + 8 + 32,
-+	.width_mm = 136,
-+	.height_mm = 217,
-+	.type = DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static int boe_tv101wum_ll2_get_modes(struct drm_panel *panel,
-+				      struct drm_connector *connector)
-+{
-+	/* We do not set display_info.bpc since unset value is bpc=8 by default */
-+	return drm_connector_helper_get_modes_fixed(connector, &boe_tv101wum_ll2_mode);
-+}
-+
-+static const struct drm_panel_funcs boe_tv101wum_ll2_panel_funcs = {
-+	.prepare = boe_tv101wum_ll2_prepare,
-+	.unprepare = boe_tv101wum_ll2_unprepare,
-+	.get_modes = boe_tv101wum_ll2_get_modes,
-+};
-+
-+static int boe_tv101wum_ll2_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct boe_tv101wum_ll2 *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ret = devm_regulator_bulk_get_const(&dsi->dev,
-+					ARRAY_SIZE(boe_tv101wum_ll2_supplies),
-+					boe_tv101wum_ll2_supplies,
-+					&ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_MODE_VIDEO_HSE;
-+
-+	drm_panel_init(&ctx->panel, dev, &boe_tv101wum_ll2_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+	ctx->panel.prepare_prev_first = true;
-+
-+	ret = drm_panel_of_backlight(&ctx->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		drm_panel_remove(&ctx->panel);
-+		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static void boe_tv101wum_ll2_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct boe_tv101wum_ll2 *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id boe_tv101wum_ll2_of_match[] = {
-+	{ .compatible = "boe,tv101wum-ll2" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, boe_tv101wum_ll2_of_match);
-+
-+static struct mipi_dsi_driver boe_tv101wum_ll2_driver = {
-+	.probe = boe_tv101wum_ll2_probe,
-+	.remove = boe_tv101wum_ll2_remove,
-+	.driver = {
-+		.name = "panel-boe-tv101wum_ll2",
-+		.of_match_table = boe_tv101wum_ll2_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(boe_tv101wum_ll2_driver);
-+
-+MODULE_DESCRIPTION("DRM driver for BOE TV101WUM-LL2 Panel");
-+MODULE_LICENSE("GPL");
+> Anyway, please provide references supporting your statement that Conor
+> and Rob encouraged using generic (not specific) fallback compatible.
 
--- 
-2.34.1
+Encouraged? Certainly not, but tolerated or allowed, yes. Every other 
+Renesas binding reflects that.
 
+Rob
 
