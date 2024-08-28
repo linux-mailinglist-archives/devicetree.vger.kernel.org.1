@@ -1,74 +1,65 @@
-Return-Path: <devicetree+bounces-97399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1325596220D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:12:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93BB0962225
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:18:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5012BB22915
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:12:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C65E81C224AA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:18:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BA515ADB3;
-	Wed, 28 Aug 2024 08:11:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4612C15C14F;
+	Wed, 28 Aug 2024 08:17:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E7K1UKCW"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="4ltcx8IF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CC0B67A;
-	Wed, 28 Aug 2024 08:11:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2991515B99E;
+	Wed, 28 Aug 2024 08:17:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724832712; cv=none; b=ema8YXFYMxDt1pHxbqLADw/+1AGJBwfsOR1QQo8pJtw4Wc+0OJhA5/Aez6UBSdCT5qCNugXyoluM5oQt8/8AYxreeD+hj5nPp6GI/zSV+f0HKLgDlgGcnX/yd1XZk5VRktUZBI1bv2D+Pih0h1fA+e/35M+h6cePO52umSdsSwY=
+	t=1724833066; cv=none; b=aR/d5JU+yJg0MXlHkugLC93JnBoTlc/UIYmW2aNAmgx+Knv3r3d1CKRXfjAi4JJJzYzn51WC7EW0rWcQ3+T8KCvYkKu5Uo5hDeF0D+Z3RMpkLXTK5f+gMVMVRHnUC4De/WYho33hwI/BXqWxGbtURJ8OUYdZJoMFqz1lGNaQ2rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724832712; c=relaxed/simple;
-	bh=rXAlDyfQa6JsiZxIdegNxFqr8f1pLLaMFvHLepT2Hus=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qUapMGY3deerMtxIj7dRXHAMANwXKO+2ffgNtoSfW4vMJpMuEzkUam5CildI2g+sVorMIhrFETNRyKCLPQkO2brIGTyULmc/SdqPqltGhVO8UxuccKDIOV7hCvYq0MBL/FMp1Fi1qxPAtZaRLNckHSAFrvzMMcx8HFx8Hcfl0js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E7K1UKCW; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4280b3a7efaso55111495e9.0;
-        Wed, 28 Aug 2024 01:11:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724832709; x=1725437509; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dSk/OEHoPMhRCK/ZaRMyI/zmjD4EdJp4kRX9RWfkNhI=;
-        b=E7K1UKCWsB2Jk9vrvl1gkpJuvm7Qg7FWBnxnhJSUzq/n41+UQOWysJ2wjIYLpZU3zG
-         v6Cs/AHqWmCDGww5Me+A+Z+/h92asiwhsvxuxvy+TpQghsI4uH9s72eYlcHVPBYYb/81
-         s0Au66bTStSr6xcFFbluJ0APbSkOWBs1+uVH04AhwgtM8msBNG1XPk3YoaJmWwinXAZl
-         K77WGc8Ggs7JGFywi0tDAot117yY0ymJQ+qVAnc8W88Bsha3g4ZQbbXLSoN52AU/5xBo
-         Z91R0/WZ9YIVOMNXsIV8PFRTZpVC+XC1VuNXBkVjKMeWo/jvC/Vk7RsnJG/d10Ai+tpU
-         jopg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724832709; x=1725437509;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dSk/OEHoPMhRCK/ZaRMyI/zmjD4EdJp4kRX9RWfkNhI=;
-        b=XSaFA93IKmTOs02docrzuJZUiT0+sW8rGyeVO5QWurBMUVq0Hz5Foxu8OriOmCvjfh
-         j5H6+I0pGF3q1V4nsk5e3CTpbljx1bGfKchAbagIaxuWAJfeydpFqI74P3gJktd8o/Y6
-         Gh+++twBXrXekL2KFzbeLYSc48WDrrPDa/xQyipDXif2VwDnIpWNRjG9GS9VISLQXFAL
-         x2LNwFTzMRHCPhJ+wB0tbw1QkQPr2FwRYbXkqgRSjJ5yYbY1RrEp/l56Rj1ttCa8m4/O
-         YwZxE0XR8YuO+uekIwGApeEvTK65DcXPcAk19ZeNUCJMd5Z9FJ3lJIieZylOozb8qjM/
-         0Fww==
-X-Forwarded-Encrypted: i=1; AJvYcCWUSu+4Om5xosMOnRZvsP3/cOc8Rew3UF4r0BH/ty9uBaNX3VPnmRxDxvFdi3cR92rdaCxUOBBrmLQP8xZX@vger.kernel.org, AJvYcCWtOsPjZTj5HOVWDcEU/SJ5dT43niliHJZ/Oza9F6JHxnQFO/XfIoM2qEhY0SlIo6v/laCinsSwdBDJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVWVAaN7+e/ka+FKsxBiiSmWF/RJPtnWVmRkSBv7NOSY0FB0jg
-	GpYN1wnEhNW7oIVmkonebHekjfOA23DNgFv1pfMfq0jA87xBIY3h
-X-Google-Smtp-Source: AGHT+IF8lcvZiFVTHUZ/tpOE7NQ2mVYYVRKLrUmvMJQgvic+d058iumAAiF97qbfy80oik/EDFhJNQ==
-X-Received: by 2002:adf:f08f:0:b0:371:7e19:b9de with SMTP id ffacd0b85a97d-37496821fb1mr774969f8f.32.1724832708968;
-        Wed, 28 Aug 2024 01:11:48 -0700 (PDT)
-Received: from [192.168.0.10] ([178.233.24.52])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba7b4271fsm7517625e9.29.2024.08.28.01.11.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Aug 2024 01:11:48 -0700 (PDT)
-Message-ID: <66432301-d5ad-4703-a08d-833573e733e0@gmail.com>
-Date: Wed, 28 Aug 2024 11:11:46 +0300
+	s=arc-20240116; t=1724833066; c=relaxed/simple;
+	bh=aUsYex0y6W1cxIZTyRhUVzw5iSPy6giVddYTLSpD4aU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=eidJp+U1oZ6egosWkb+HIakKW2I1zCASD471a73i/lOt0fCPZLMQAmXVbJbUxEfA+EHYvHbAgyndxqcTTDc6/N8kz36ED2E51rcxfjIhdZs9ZtF6CBjxVI/p2y5TjuO4bg18r6VKBaSWUJ0SgRkhFaJv1R4VXvi5yifJOYLSdmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=4ltcx8IF; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47S82eok005368;
+	Wed, 28 Aug 2024 10:17:20 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	rtTPWUUqmUCKTWA2bIbkcbnHPVzdag4uOv6xbrxbM/Q=; b=4ltcx8IFlq1GmsIH
+	YJqbNeMq6yNy4535SLpzIMWNRzPGq2N/cRqQMgyRZnS8aksWtHisZAQxBNcg2vVc
+	Uow8+yyxRSO0mhrLnXdnW36xQhqsuoj42DwGqi7h/qCzYha5VFA0gctxC3lqFce6
+	8iE2ZItcVPULNaeyk9zXU0rlBeULb9Jg7vYQGMOIb9EAFLc02vRsq/Uq6N8fC22E
+	8Q/Y4PCeY38VAN63cTj36E1ruXlJjBGPT+G5LwI7TQmEbQEWqvAVxp1bbccCr9eA
+	WSydbQob8C50ontxXBsFdvVX8gMrlIum+AMoD2hGql/7T/1bSbSuOzeS0fQr32N0
+	w78Emw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 419wyvgks5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Aug 2024 10:17:20 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8266340044;
+	Wed, 28 Aug 2024 10:17:14 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5BAF324C42E;
+	Wed, 28 Aug 2024 10:16:22 +0200 (CEST)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 28 Aug
+ 2024 10:16:21 +0200
+Message-ID: <90ae7f29-19f8-4046-9b27-31739244e045@foss.st.com>
+Date: Wed, 28 Aug 2024 10:16:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,100 +67,135 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8186: Fix supported-hw mask for
- GPU OPPs
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-mediatek@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@collabora.com
-References: <20240725072243.173104-1-angelogioacchino.delregno@collabora.com>
-From: Alper Nebi Yasak <alpernebiyasak@gmail.com>
-Content-Language: en-US, tr, en-GB
-In-Reply-To: <20240725072243.173104-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/5] dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>
+References: <20240827122459.1102889-1-christian.bruel@foss.st.com>
+ <20240827122459.1102889-2-christian.bruel@foss.st.com>
+ <5f29a065-269d-4e72-81b8-30d247994fbd@kernel.org>
+Content-Language: en-US
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <5f29a065-269d-4e72-81b8-30d247994fbd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-28_03,2024-08-27_01,2024-05-17_01
 
-Hi,
 
-On 2024-07-25 10:22 +03:00, AngeloGioacchino Del Regno wrote:
-> The speedbin eFuse reads a value 'x' from 0 to 7 and, in order to
-> make that compatible with opp-supported-hw, it gets post processed
-> as BIT(x).
-> 
-> Change all of the 0x30 supported-hw to 0x20 to avoid getting
-> duplicate OPPs for speedbin 4, and also change all of the 0x8 to
-> 0xcf because speedbins different from 4 and 5 do support 900MHz,
-> 950MHz, 1000MHz with the higher voltage of 850mV, 900mV, 950mV
-> respectively.
-> 
-> Fixes: f38ea593ad0d ("arm64: dts: mediatek: mt8186: Wire up GPU voltage/frequency scaling")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
+On 8/27/24 15:23, Krzysztof Kozlowski wrote:
+> On 27/08/2024 14:24, Christian Bruel wrote:
+>> Document the bindings for STM32 COMBOPHY interface, used to support
+>> the PCIe and USB3 stm32mp25 drivers.
+>> Following entries can be used to tune caracterisation parameters
+>>   - st,output-micro-ohms and st,output-vswing-microvolt bindings entries
+>> to tune the impedance and voltage swing using discrete simulation results
+>>   - st,rx-equalizer register to set the internal rx equalizer filter value.
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> v1? Or v3?
 
-Tested-by: Alper Nebi Yasak <alpernebiyasak@gmail.com>
 
-Appears to work on my magneton, I can see "Mali-G52 r1 (Panfrost)" as
-the OpenGL renderer in various programs after this patch.
+sorry, forgot to update Subject: it is v3, will resend a v4 with your 
+further comments
 
->  arch/arm64/boot/dts/mediatek/mt8186.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index 4763ed5dc86c..d63a9defe73e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -731,7 +731,7 @@ opp-850000000 {
->  		opp-900000000-3 {
->  			opp-hz = /bits/ 64 <900000000>;
->  			opp-microvolt = <850000>;
-> -			opp-supported-hw = <0x8>;
-> +			opp-supported-hw = <0xcf>;
->  		};
->  
->  		opp-900000000-4 {
-> @@ -743,13 +743,13 @@ opp-900000000-4 {
->  		opp-900000000-5 {
->  			opp-hz = /bits/ 64 <900000000>;
->  			opp-microvolt = <825000>;
-> -			opp-supported-hw = <0x30>;
-> +			opp-supported-hw = <0x20>;
->  		};
->  
->  		opp-950000000-3 {
->  			opp-hz = /bits/ 64 <950000000>;
->  			opp-microvolt = <900000>;
-> -			opp-supported-hw = <0x8>;
-> +			opp-supported-hw = <0xcf>;
->  		};
->  
->  		opp-950000000-4 {
-> @@ -761,13 +761,13 @@ opp-950000000-4 {
->  		opp-950000000-5 {
->  			opp-hz = /bits/ 64 <950000000>;
->  			opp-microvolt = <850000>;
-> -			opp-supported-hw = <0x30>;
-> +			opp-supported-hw = <0x20>;
->  		};
->  
->  		opp-1000000000-3 {
->  			opp-hz = /bits/ 64 <1000000000>;
->  			opp-microvolt = <950000>;
-> -			opp-supported-hw = <0x8>;
-> +			opp-supported-hw = <0xcf>;
->  		};
->  
->  		opp-1000000000-4 {
-> @@ -779,7 +779,7 @@ opp-1000000000-4 {
->  		opp-1000000000-5 {
->  			opp-hz = /bits/ 64 <1000000000>;
->  			opp-microvolt = <875000>;
-> -			opp-supported-hw = <0x30>;
-> +			opp-supported-hw = <0x20>;
->  		};
->  	};
->  
+Regards
 
+Christian
+
+>
+>> ---
+>>   .../bindings/phy/st,stm32-combophy.yaml       | 144 ++++++++++++++++++
+>>   1 file changed, 144 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml b/Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+>> new file mode 100644
+>> index 000000000000..c33a843b83a3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+> Filename matching compatible.
+
+ok
+
+>
+>> @@ -0,0 +1,144 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/st,stm32-combophy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STMicroelectronics STM32MP25 USB3/PCIe COMBOPHY
+>> +
+>> +maintainers:
+>> +  - Christian Bruel <christian.bruel@foss.st.com>
+>> +
+>> +description:
+>> +  Single lane PHY shared (exclusive) between the USB3 and PCIe controllers.
+>> +  Supports 5Gbit/s for USB3 and PCIe gen2 or 2.5Gbit/s for PCIe gen1.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: st,stm32mp25-combophy
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#phy-cells":
+>> +    const: 1
+>> +    description: |
+>> +      The cells contain the following arguments.
+>> +
+>> +      - description: The PHY type
+> That's some sort of mess. Is it schema within description or schema? Why
+> two descriptions?
+
+yes, indeed
+
+>> +          enum:
+>> +            - PHY_TYPE_USB3
+>> +            - PHY_TYPE_PCIE
+>> +
+> ...
+>
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - st,syscfg
+>> +  - '#phy-cells'
+>> +  - resets
+>> +  - reset-names
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +allOf:
+>> +  - if:
+>> +      required:
+>> +        - wakeup-source
+>> +    then:
+>> +      anyOf:
+>> +        - required: [interrupts]
+>> +        - required: [interrupts-extended]
+>> +
+> I do not see any improvements.
+>
+> The tag you received was CONDITIONAL. If you do not apply the comments,
+> you cannot just apply the tag.
+
+my mistake again.
+
+
+> Best regards,
+> Krzysztof
+>
 
