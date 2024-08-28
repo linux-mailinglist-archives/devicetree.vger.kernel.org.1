@@ -1,179 +1,191 @@
-Return-Path: <devicetree+bounces-97692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB8C963114
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:41:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AADF4963152
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 21:53:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 653961F21648
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:41:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F78C285963
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 19:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E8C1AAE3B;
-	Wed, 28 Aug 2024 19:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C501ABED0;
+	Wed, 28 Aug 2024 19:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SEQwLsQo"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="O8a3KiZP";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="OyLU5CbJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD521A2554;
-	Wed, 28 Aug 2024 19:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724874064; cv=none; b=KVoh81aEqibMnXtkHJNSZrBOo3HkukrH+DjxPIh7OedD8RDMz2xqfjOvbi0t4Hv6rLOV0n0QTQvy8pVnAjD8paYvTpwq5mwOCIdQW0KivSaTk6lYXlBXu7LZbrPFxg3H0MwVJ0k0/z+rJ5YdjfJ0EgGDVtwH23yGNNouHE2pyyY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724874064; c=relaxed/simple;
-	bh=MXhQ9Hgtws6rY5qwqhJGDFzt+GBAaEl1yDl+z/rIagE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=loKlC0kBs9scepRfyiBfGaLuMgGBfT9ih+lIdRzoVR3gwSSg6HviNZiJnbGTH/9biee/HlRXc/eUYocKQI4bM3wX+RoQ7ScoyLffioI2Rc9pNbyjmWCVernXzyoNLVelA0pzX19CZXDt4XZeaHRCzm8tyA0NkKTo6rJ5BTOBY7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SEQwLsQo; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2d3b5f2f621so5240772a91.1;
-        Wed, 28 Aug 2024 12:41:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724874062; x=1725478862; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=ce1N0tTiPtR4rouCUzpG0LMPRDeIiFvwRX19g+i6YHU=;
-        b=SEQwLsQoh4lUQ77/wa9kiMB04oWqFp+NWmdZTbjUWca0Tgxfcpd7hKJJuP8D2tPq9M
-         eVC5PCSOEFbAaeKi65rolbqua2LrVEklDGIBo7++rotHO3sohmhMcAMWmz7iWhD+JdOR
-         +nU8Bm94HTsiRgmVg+D2tVJ+3P6QT+WT1ODk6TUKgecxWaEowLOWL58e5hnda6/O+2kE
-         8bRooX6A6ESHe0n8hKvwj61eTm9zUp6ynTLe7qwpCMGYuny7WlQfI5ZJg4fFujJsuJwT
-         Saiu3mOhenWd88bwwgPui3jNKf+PqB3TSXeC0suwZV+dPU9qIl8SbzwKYr00UrMrRpln
-         f8Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724874062; x=1725478862;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ce1N0tTiPtR4rouCUzpG0LMPRDeIiFvwRX19g+i6YHU=;
-        b=nQGfZCZv9RWnRvDZHyRij4lHn4x03A0tUigcwBTF5DbDE4bZiwHIlmOxHSFcMaiCe4
-         nF3k6AFUDPEoB5dZeKf6FzncvL9Ygb/CvkTg7RwcfO9SZKHze37L03vbYFtnr5eBN6h8
-         CBzUzzxDhVqCCIPAtMFVz8Y3ETM3j8/DrhJeiVfopAnBQHFSnC3vioCelN3qNJPeBoS2
-         lw1WIB04W8MabWTmXeEXHdD0ux/a1HNNaf9TjG1z7tR+amt24PMtfKPTuYbrVRfKHwti
-         wI/7a2xxME3qmphVra6Hvb44V7cxu2oSFnN8J84GniOLQDFL/E/ovGK7j8BvBWk9Fj7t
-         NZbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJblyBCx1YrRCmli/bcZA5+k8YXndIrQRx8b5vIWNo7e6+r1SSGrZZxKYr2ThH3kg/QgONemV0E5UWNhpo@vger.kernel.org, AJvYcCUZivPLk+K77FYzke5b0RYUIxbJ6frIBah0bmZJo/Zg23f3R5EWGskGpYBXsko5gKQGXvZ7P1N8yv3R@vger.kernel.org, AJvYcCVLpqjgpkiL0vrtbHvIa5WFfFj/lHYgohkKfKc38y76/Jbyq0Kru5Mfeu7Q4PQUuTd/96OuMrBz2lBEiW4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyO6Quc1rB8Stas4PRr47FLCjuIF+KyeUcg+NfK1sHABCojgk+f
-	rIPMrlHZNTUzGzusf6IiyZnMwXpvBEkqClzBEwOwc0nBn9Q73m83
-X-Google-Smtp-Source: AGHT+IFJ4eNMqEsFokIt6tr5u4WccKvoFDiG25BeHIQhhWeO2V7WYEfddZEzht0kBa1BPr6IUzbeOg==
-X-Received: by 2002:a17:90a:4201:b0:2c9:6f8d:7270 with SMTP id 98e67ed59e1d1-2d8564a4b84mr354549a91.42.1724874061586;
-        Wed, 28 Aug 2024 12:41:01 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d8445e80absm2316029a91.13.2024.08.28.12.40.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Aug 2024 12:41:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e0fc65c0-45b3-4948-bb00-f34db59fe011@roeck-us.net>
-Date: Wed, 28 Aug 2024 12:40:59 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 829861AAE0D;
+	Wed, 28 Aug 2024 19:53:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724874811; cv=pass; b=Fmif0TbxdBOegPyrm82MUx7d0CWkuiuabJi/NuARkpiw+j78ZgStLD+okqG4sCyvy6R/vWSa1YrULjEoHw5me73xdK/+ZTWOgNlCrp34dmJPpbc0T6Oac8lQ0aktxtbSFtnMpbs9hdWegmX+2oQTQSASxkAhe9t3NzQ69ltMKoI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724874811; c=relaxed/simple;
+	bh=lc5BSaVtMgbDX8gAC4VThV455gmTc3dxUo2vkykN4YM=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=fHfT6OLcx9cizV9eBBtn8px5hNt9L3QVmQqwFx+JvvCTWnyMGqzbVtXvKtq/w2nDXKHC0GIXzpfS9QSN8A3LzZNvgwptjE3TDGJIU+ard9EbSLTr9qtK5naF1h7jGMKBNauA1kB7EgjVOuTbP3ZKnCEIqBNZoz5jUSbIc3hvi5U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=O8a3KiZP; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=OyLU5CbJ; arc=pass smtp.client-ip=85.215.255.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724874082; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=dztje0vILEdjUGIKWuww9r4Nq6WJJnki/zM1jzVxx3tk4dgygumrWYE6uNjOV0b0BO
+    97kC729/owvvKlEYjwmIkIclCWFDCGt5bXKoAYnJ5/zJsACK9E9h1V+WetgieZ+UlkyS
+    knfIzwOg5pQZMl9wiPNyVyFhjrQwswXs0oM/6ybdHk9Y6jfZ1qhMlTNBaHHirh5m7ycK
+    lRwHa6dRPTITH65b87nNHqP4hxffRtO82d6IVhFFJO0FsoUHuFb4aHUoi6QLe+ZBa7De
+    cdAIGFw4AxcQf3tPy1osnyv0iUjOPTG0oRtVF4aorDc3GibahqFB5KbkNtNe7nSzSfK3
+    gqBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1724874082;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=lc5BSaVtMgbDX8gAC4VThV455gmTc3dxUo2vkykN4YM=;
+    b=HtibQybjGsJJwnR8wLPmcvDxpAUsayuY3E5+rZ/6+VkB+VC8Q5VBBFMqqnNJ760+Bu
+    xpvwjd4sOz6aqb3k/0uBDen8a7pN7OObe9W04+zTn+0S8NKdJWMDOT5R5QUW5NFdp8Ui
+    uMOe62Ez4lroOM0yUaAg8/i+XhCHm3HtA1klg8nPG+Evj0m3nR39N+7A4Yw2tKMMTnn9
+    UfceS4X8rIHW5vHBn0FUq81X0ig6xE6iKlhz7ZvDd5PkIs6HaJh2ur8SaRhpBxH9L/NX
+    ap3Zp21T52brkSHX87KGHauqHA2BNho+goTB2lVoCOOqNUcV+GjFx/G3iMcBIU//WNHK
+    ZDhw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1724874082;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=lc5BSaVtMgbDX8gAC4VThV455gmTc3dxUo2vkykN4YM=;
+    b=O8a3KiZPSXg3lf/Nt2LAgVDJCsOKWN+MuG9dX+0NW1RxUX9vT7TcfZU5HArmSAORSj
+    rKTW73QWNXGhP2CJ/ACstA1ojg05EZsEJQfF9LkfnhWoutn2QE4V4bL1l/zj4owwCigD
+    gjiNFhi9wl63zX+GtQ9YxH8cO1Ng1NhUV5EJgh0weNX2lG9m1nB+tuqsTBKZuEGNEH5u
+    L3++GTpCTj5gi8HgXpYPXv1syP4S21l5wUb9xy1KkYF1SHiA81Pu5NUgNoJJsqo2smca
+    zu6wwT3FMCpMME/lW/7wqAGTdrsd2B9WhWZu2PFJ48JZy5F9MC/CcI+/FtW2/V5GexrD
+    JDqw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1724874082;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=lc5BSaVtMgbDX8gAC4VThV455gmTc3dxUo2vkykN4YM=;
+    b=OyLU5CbJOECNm7avLli8/iVpyXjJBaLQfGoklgUH1hdgdfnmY74hHs8JU6lc2++dsG
+    k+SylEsh1iUBXimAdaAg==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yfzoZ"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 51.2.3 DYNA|AUTH)
+    with ESMTPSA id Q984c207SJfMzUn
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Wed, 28 Aug 2024 21:41:22 +0200 (CEST)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] dt-bindings: hwmon: Convert ltc2978.txt to yaml
-To: Frank Li <Frank.li@nxp.com>
-Cc: robh@kernel.org, broonie@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev, jdelvare@suse.com,
- krzk+dt@kernel.org, lgirdwood@gmail.com, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240828164133.1131959-1-Frank.Li@nxp.com>
- <54243e7d-2b54-4934-a530-173ac06180ef@roeck-us.net>
- <Zs9uAbUPRqkcRdxL@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <Zs9uAbUPRqkcRdxL@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
+Subject: Re: [Letux-kernel] [PATCHv2 0/6] drm/omap: hdmi: improve hdmi4 CEC,
+ add CEC for hdmi5
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <83b8be7b-a2c5-42f8-a42b-93dfc528a414@xs4all.nl>
+Date: Wed, 28 Aug 2024 21:41:11 +0200
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Linux-OMAP <linux-omap@vger.kernel.org>,
+ Sekhar Nori <nsekhar@ti.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ linux-media@vger.kernel.org,
+ Discussions about the Letux Kernel <letux-kernel@openphoenux.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <3D3C502B-C29B-4156-9616-E5EFDB89E4B7@goldelico.com>
+References: <20210302162403.983585-1-hverkuil-cisco@xs4all.nl>
+ <43F64377-8394-448F-A6F0-4DA11DB9AEF5@goldelico.com>
+ <3c36b0cd-7b43-4a63-a832-1d8d14a4512a@ideasonboard.com>
+ <83b8be7b-a2c5-42f8-a42b-93dfc528a414@xs4all.nl>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>
+X-Mailer: Apple Mail (2.3776.700.51)
 
-On 8/28/24 11:35, Frank Li wrote:
-> On Wed, Aug 28, 2024 at 10:06:25AM -0700, Guenter Roeck wrote:
->> On 8/28/24 09:41, Frank Li wrote:
->>> Convert binding doc ltc2978.txt to yaml format.
->>> Additional change:
->>> - add i2c node.
->>> - basic it is regulator according to example, move it under regulator.
->>>
->>> Fix below warning:
->>> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/i2c@2000000/i2c-mux@77/i2c@2/regulator@5c:
->>> 	failed to match any schema with compatible: ['lltc,ltc3882']
->>>
->>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>> ---
->>> Change from v3 to v4
->>> - keep under hwmon directory.
->>> Change from v2 to v3
->>> - put my name into maintainers.
->>> change from v1 to v2
->>> - maintainer change to Mark Brown <broonie@kernel.org> (regulator maintainer)
->>> - update title to (from ltc2978 data sheet).
->>> octal, digital power-supply monitor, supervisor, sequencer, and margin controller.
->>> ---
->>>    .../bindings/hwmon/lltc,ltc2972.yaml          | 94 +++++++++++++++++++
->>>    .../devicetree/bindings/hwmon/ltc2978.txt     | 62 ------------
->>
->> I still fail to understand the rationale for renaming the file from ltc2978
->> to ltc2972. I can see that 2972 is currently the alphabetically first supported
->> chip, but that is, in my opinion, irrelevant, and it will change.
-> 
-> Conor suggest use one of compatbile string as filename. I random pick one.
-> I am not care about filename. If you like, I can use lltc,ltc2978.yaml
-> or other filename.
-> 
+Hi all,
 
-The rename results in a disconnect between driver name and the associated
-devicetree file. I fail to see the point of introducing that disconnect.
+> Am 28.08.2024 um 16:14 schrieb Hans Verkuil =
+<hverkuil-cisco@xs4all.nl>:
+>=20
+> On 28/08/2024 15:57, Tomi Valkeinen wrote:
+>> Hi,
+>>=20
+>> On 25/08/2024 23:31, H. Nikolaus Schaller wrote:
+>>> Hi,
+>>> CEC features are useful to e.g. control HDMI monitor standby.
+>>>=20
+>>> But I wonder what happened to this series?
+>>>=20
+>>> I could find some reviewed-by: and acked-by: in [1] but it wasn't =
+merged upstream
+>>> for unidentifiable reasons.
+>>>=20
+>>> We apparently had merged this series some years ago into our LetuxOS =
+distro kernel
+>>> and now we found it to be broken (NULL dereference) at least for =
+omap5uevm
+>>> (and likely Pyra Handheld) after rebasing to v6.11-rc (it was =
+already broken
+>>> since v6.9-rc1). Fixes were not difficult, but it would be better if =
+it were
+>>> part of upstream.
+>>=20
+>> There was a v3:
+>>=20
+>> 20210428132545.1205162-1-hverkuil-cisco@xs4all.nl
 
-Guenter
+[A clickable link is here: =
+https://lore.kernel.org/linux-media/20210428132545.1205162-1-hverkuil-cisc=
+o@xs4all.nl/ ]
+
+Ah, I see. It wasn't sent to linux-omap so I didn't recognise/find it in =
+my mails
+or omap-patchwork.
+
+
+>> I see there was a concern from Laurent in:
+>>=20
+>> YLjMZiX71mcQNQdO@pendragon.ideasonboard.com
+
+Well, he didn't reject it although he had concerns, but I am not =
+experienced with what
+he is talking about for a proper solution...
+
+>>=20
+>> And we need an ack from the bridge maintainers for the drm_bridge =
+parts. But the series is three years old, so I think someone would have =
+to rebase on top of mainline and re-test and re-send first.
+>=20
+> I never really followed up with this. I still have the hardware, it is =
+primarily
+> time. And also that for me this is quite low priority since I don't =
+use omap5.
+>=20
+> If someone wants to refresh this series and post it, then I would have =
+no problem
+> with it.
+
+A far as I see it just needs a rebase - I guess on linux-next (or =
+drm-misc?) and some
+compile fixes I already have implemented for our distro kernel.
+
+So if you agree I could work on it, test on omap4&5 and submit a v4 and =
+hope that you
+can jump in and support for the discussion. I would keep you (Hans) as =
+commit author
+and just add a signed-off: and tested-by:
+
+But I will also need some time...
+
+BR and thanks,
+Nikolaus
 
 
