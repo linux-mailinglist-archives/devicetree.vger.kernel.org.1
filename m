@@ -1,112 +1,90 @@
-Return-Path: <devicetree+bounces-97317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF43961FAB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:25:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6799E961FBC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 08:27:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F3761C23A0A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 06:25:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 054421F21D59
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 06:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6FB1494D8;
-	Wed, 28 Aug 2024 06:25:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sbDHE9bv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E9B1553AF;
+	Wed, 28 Aug 2024 06:27:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D530A1BC2F;
-	Wed, 28 Aug 2024 06:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6D414B956;
+	Wed, 28 Aug 2024 06:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724826331; cv=none; b=kkh4o8BKsEMPYk4tpoC4ybmtTcpKxmi/o8NkdoQeucvRYec6RpCmlrPTC85UAQ+JVE3/U8mTfh0kd7ToRuu3Ib2FZdUUwJFV3IJP+iEuNr4Dt4fGJ8WXMQGzuioY7TpaVNxZ4bLzIlN/B9JnWFPVGIz6VVLmtOZMrajpB3pY1Ws=
+	t=1724826470; cv=none; b=aILqS9Tmp6NEThWlS9v8xihp7byJeGLfWdmyUCOkZJzM11KCdirNGQKdOa9N6ttq4Dapwxk/lO85VNHpg14irppuIPScX2OjI0trW8Y1nszhMvj7/zu0zBzxLbpuIPsL55hFg/tcu7nGfmaEhsCHei0skZueKUueytQcI4vewXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724826331; c=relaxed/simple;
-	bh=3pJFadj/uOYX+IMAKfXMeRK5ez0VFC7d4Lt/cF61HuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rKEv5PZKh2L/oTh1wIrkDQn3FMk19hhtIY5rb9SxhdPC0i+RkahItySlxYqNLsgdb09iuytGHjILbHxcLHKIBRdL6UbRe3E4nyHs5CFjCDeo7AmJc/EIbzB1mUk4Bx2MHGcouziLmgomN2sXTrPflUPrK/29YblMfkdGTue4Wu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sbDHE9bv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFDC9C58138;
-	Wed, 28 Aug 2024 06:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724826329;
-	bh=3pJFadj/uOYX+IMAKfXMeRK5ez0VFC7d4Lt/cF61HuU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sbDHE9bveipmpoB5W+YDPjZPqZeIb/9oGLVKJ0vnYHBzu43Hy59fRl9uvtoDPrhVI
-	 5ytTsMO6GVToekDibDGFuUhgVmVejqcAGCuDC6fE5AVpsT/RRxDLEVQIWhDAf42U4f
-	 bUv+g9Uj2h6D1Ldl17ohxe9nk5ypLxuNceK3GYmzQmNtuyhK6VEr7xqB/fp57ySqKs
-	 jpOT++B5qunVW50KZUClPglx/blu6KYH68sh3OtfKFZslnKtWE9qfbDn/Zf/Xf08SC
-	 gkOU+vXYWD1M+TSDG/cB8WlXSPRV+Ccan2+tRkEMvFUHRnenFGzQs71Jps/gQV0L45
-	 wypTy1N/R9UmA==
-Date: Wed, 28 Aug 2024 08:25:25 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lijuan Gao <quic_lijuang@quicinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, kernel@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: add base QCS615 RIDE dts
-Message-ID: <22qkvfravm6sxiq3xfavahg2u6b2pwlyzqbqvd55zym5zef3gi@m4bsqkdvggty>
-References: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
- <20240828-add_initial_support_for_qcs615-v1-6-5599869ea10f@quicinc.com>
+	s=arc-20240116; t=1724826470; c=relaxed/simple;
+	bh=/75gyVrSQxnSZyVzUBvNGhjrloQB+9R5CgjaLt+rewY=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GdHIj18f1WOnRJ8HpWvGv/Bla/FkrgIYyFhPOxAoJ9gRBzR4g3OF8TNqJImkCwGduf6N1AcX3+o4GLM1M676io8qmW6cFmKpViGc+Gv0Tg4Qhq1sF8dDEIt4kWAvauUzwjL/LdHWXXv5opqkOzb6yZQA7UMv5snC7j2olK7FAeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Wed, 28 Aug
+ 2024 14:27:40 +0800
+Received: from twmbx02.aspeed.com (192.168.10.152) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Wed, 28 Aug 2024 14:27:40 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: <ryan_chen@aspeedtech.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<joel@jms.id.au>, <andrew@codeconstruct.com.au>, <p.zabel@pengutronix.de>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v2 0/3] Add support for AST2700 clk driver
+Date: Wed, 28 Aug 2024 14:27:37 +0800
+Message-ID: <20240828062740.1614744-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240828-add_initial_support_for_qcs615-v1-6-5599869ea10f@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Aug 28, 2024 at 10:02:16AM +0800, Lijuan Gao wrote:
-> Add initial support for Qualcomm QCS615 RIDE board and enable
-> the QCS615 RIDE board to shell with dcc console.
-> 
-> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile        |  1 +
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 15 +++++++++++++++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 197ab325c0b9..c5503f189847 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -110,6 +110,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> new file mode 100644
-> index 000000000000..31d32ad951b5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +/dts-v1/;
-> +
-> +#include "qcs615.dtsi"
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. QCS615 Ride";
-> +	compatible = "qcom,qcs615-ride", "qcom,qcs615";
-> +
-> +	chosen {
-> +		bootargs = "console=hvc0";
+This patch series is add clk driver for AST2700.
 
-Noooo, last time I agreed on this, you told me later it is different.
+AST2700 is the 8th generation of Integrated Remote Management Processor
+introduced by ASPEED Technology Inc. Which is Board Management controller
+(BMC) SoC family. AST2700 have two SoC connected, one is SoC0, another
+is SoC1, it has it's own scu, this driver inlcude SCU0 and SCU1 driver.
 
-Best regards,
-Krzysztof
+v2:
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number
+-clk-ast2700: drop WARN_ON, weird comment.
+
+Ryan Chen (3):
+  dt-bindings: reset Add AST2700 reset bindings
+  dt-bindings: clock: Add AST2700 clock bindings
+  clk: aspeed: add AST2700 clk driver
+
+ drivers/clk/Kconfig                           |   10 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-ast2700.c                     | 1198 +++++++++++++++++
+ .../dt-bindings/clock/aspeed,ast2700-clk.h    |  165 +++
+ .../dt-bindings/reset/aspeed,ast2700-reset.h  |  125 ++
+ 5 files changed, 1499 insertions(+)
+ create mode 100644 drivers/clk/clk-ast2700.c
+ create mode 100644 include/dt-bindings/clock/aspeed,ast2700-clk.h
+ create mode 100644 include/dt-bindings/reset/aspeed,ast2700-reset.h
+
+-- 
+2.34.1
 
 
