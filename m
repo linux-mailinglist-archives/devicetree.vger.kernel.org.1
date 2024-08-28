@@ -1,815 +1,170 @@
-Return-Path: <devicetree+bounces-97456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518C5962425
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA528962430
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:00:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3233286C65
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 09:57:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 616FB287A51
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402A616BE29;
-	Wed, 28 Aug 2024 09:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB00B16A920;
+	Wed, 28 Aug 2024 10:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fz66jj9m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rPprKea6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBEC416B720
-	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 09:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A1815CD7A
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 10:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724839010; cv=none; b=Mz0EQKjlCf0scjexrdl1Ik3VRfUskBsn+SZ0RaCWnng+mdt749gVntfw4uF7tRf1ytvoZqbAbH+yhtsw41cRC2O4iIR/Cytn5BxCyBEYh9SS1/JzSziZe9NpKCojbM9T+nl9i6WgkvhnpyHdGalbxPkut26RlgHoiKvfF33zlNY=
+	t=1724839244; cv=none; b=NQVfo47kFe6+sOJUmzSNIf2hr9xUkfDOdcSt3nWAaDdPTAAdxAtlQG3zAa6sASgxR+a9JJs95ezpf0O1khHzkDkkZhxba7BON7YDz7F+H82ciZdvRigNr3RsywOIxlAZ0zpEoFhS/MnRvN58S/qu1fuiDJuATr5WkDK2gGZ290E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724839010; c=relaxed/simple;
-	bh=4IMYrKTfIIBnluDt6DNfa5usHodP8v3hg4+zXa6ic+g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=m/qITxLcvLqzIx18VMICYPOJij57kASIM/6oPPm0JfoTSkP0K3yF/P53Qj1n9ysIqvAjt8QUGVzZm1k7fd4YYXJuZbn1zV947YMaRBjPhnVITl7khrolXPtR+Vz48HnfBxLp7UdyyZ6aFMBmwmQ/xGSw1ZvIZvWkgjQwxAcz46s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fz66jj9m; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1724839244; c=relaxed/simple;
+	bh=2U7ggqmSgzg+AWYysQa45MyuoJZ8Jj3TcTJwId9DP40=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TPgh9mHILze3n+avmzS6YEClnv8zYrlwcvxpPZ0zo3oVZuThl3R4Zckpyq4cd5mOtsQDhNgNhXhsN0wIbp25VIM9xSPJ1VSDueFSaDOZXeG4sxLLa9AqWrps+ZPbWi9+IfiGXtirkJCdLnef4KpX1ZkowptlgePYopkkkfYfjfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rPprKea6; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4281da2cdaeso9241815e9.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 02:56:47 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4280ee5f1e3so56145795e9.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 03:00:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724839006; x=1725443806; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D8OaldaUE0inX4SY2oD1BjCaoWFJvoM+Pyb4Oy9khmI=;
-        b=Fz66jj9m1kAURhYuRT3DGiVrJW408JL6tZPZhwaqwnTN5Dqg9szcag2e2QVKDeMwpj
-         aWW8bqIUvYb95AE/uU19hQ9Yg37fo50yQMVU0vd+nDd43RwKqGefxHjj+woyCFcmzuHs
-         0r6JimNaNMqyiIrHX8QiqpH9pQQ+lwbx4SorGlThDrHWJfFr4SDDJfRJhxYLGCwBwhGG
-         uLSUKVrnw7dHcM11jbLbXHwBtHzr7ai/MqERnI9yXXzhzKSwC/cog+zMC7K9GMlGWNjg
-         d9aYUU2iN0NkxjjdE+RV0O9QtMSXmEcfp/zWupi33svOE4YgGwz5F0GWeSe46jZJTxm5
-         rvPA==
+        d=linaro.org; s=google; t=1724839241; x=1725444041; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vEVI7HiqxVqMEgse2bbT6Cv/tYXN4/gyPqY1R8cSp3k=;
+        b=rPprKea6E9ZfjaeLw7KfymodeX3B+KmoBtejwe/0ekq09eMvbTOPFhuoSuJFA3T5RK
+         oic8zSjUOh9e1P8VmlHicAQpJkhgk4DByEgcm1tRnanqBmqI2rRaHUAn4Ov3x8ratVEz
+         Lc6mCwM4/Pwp4FczCdnEtQBUXpfCUPzC2ZILkIE83l571JxJuAB1OebA+ysSgffJE79J
+         wQxHJcQZwiM1/0CD5wgnT6m9FMdKSBbG51jwxBRsmeqTQ4VfK6bbk6AGav1BVMwKrNf4
+         tFG9BOspiGo6QEv61JmBXfOtn6VryCSJ8IGgxfZj19xZoUBsBHVgK28HQRTAdQqclm6k
+         C1Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724839006; x=1725443806;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D8OaldaUE0inX4SY2oD1BjCaoWFJvoM+Pyb4Oy9khmI=;
-        b=Tq8rTG9amuwY5pkm4j2jfBTb2t05pipZmEwyYrsH0wFk0Q9Z4dN/EXEY5F6br0s/mz
-         ZmiBcJNdV6aa1+iFunIa2H/Bojq8vfA4V0O5QaOUNNucsQIGZYz+gynaYP1tvDwcQvsc
-         wIo4yGI6m2R0iZRsUU1jgGTDBLQBWX4UlvSXWhcHLBe0YbbaENOozlyrk1692pdigWwF
-         K2+XFCVVbuJ458IzMogQ+jin+yRspQvgdcdvEguvsxSiQmI/yV0WN07NAmI0HFO8Hc8p
-         mvmHNFT1ZYz3xZJ75wBEAK24YEuvSTVffHgu7Uwb4dhaqwDoy0dD2/UBAeu46E2SeRME
-         f76g==
-X-Forwarded-Encrypted: i=1; AJvYcCVaOkwtf5cpOgAb7Nmn/JBsT/pXj0EbEuza4sd/Pe1l1oTtIMxq/EYm9i+e6ne8bDRuRbmLjPsBMv5j@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoiTPytwsNxXhPVDyWPHT0wyfSqjaa6yz3g5KA5yXcARo4nusG
-	KvTCMf8lZ00Ce0/QXXa4z6Liu28YdjNZJ3gUe9il4aGMUFHBYfdTBoSvRwdmzlI=
-X-Google-Smtp-Source: AGHT+IEj/QnthsYGVW789KDEhZbu1fGgIY4vzoB/p5f9swn6+ACDOTpJaa//HvGHVIM1GoVpXFsPMQ==
-X-Received: by 2002:a05:6000:178a:b0:368:4c5:1b5a with SMTP id ffacd0b85a97d-373118e9be9mr6203079f8f.9.1724839006103;
-        Wed, 28 Aug 2024 02:56:46 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730810fb33sm15067077f8f.13.2024.08.28.02.56.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2024 02:56:45 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Andrey Smirnov <andrew.smirnov@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] ARM: dts: imx7d-sdb: align pin config nodes with bindings
-Date: Wed, 28 Aug 2024 11:56:38 +0200
-Message-ID: <20240828095638.231569-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240828095638.231569-1-krzysztof.kozlowski@linaro.org>
-References: <20240828095638.231569-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20230601; t=1724839241; x=1725444041;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vEVI7HiqxVqMEgse2bbT6Cv/tYXN4/gyPqY1R8cSp3k=;
+        b=VaUh1AwViOPaTPbksAGI3OZK3RokjP03Fiwi871/g+QN+Mp2VAwSHcG1b6GFdriLQ4
+         MHYEog8N4yjD4FuusLpvBP6ICGdsAmH8ZTnYjxTA6OuXBJVMxA5/DpaOPUiWwaXmPIeC
+         z0+Ndt6MnloZpJGw6NQ7tmR2tGlSiViWaYW4ZISOG8VOeOUcIMS0dZwCMW5VqiMqwSmR
+         unpGOKv4MBfWRdWQyGF7Eow6ICH23c4nxPrChDEdMsNyl8gxR6mjGUYAo4SQzf1ynwqV
+         5tA67+wOK1aFDmuj2mGZ4lsT7APeHpkGCuomrphkxtEEmH5jiYmHuHnPzvVVLN6Pa4mh
+         BYEA==
+X-Gm-Message-State: AOJu0Yy980daQAiau2+UQdQkDYZv5ItJOiiEykQkIenamVx5Sk2rx94s
+	N8jZ2ft4WNtcDTUvfKkcinPvOKs/sCJiX0c5Sc2xt8pYk1EZStYB+ZLEKTYdHuA=
+X-Google-Smtp-Source: AGHT+IFup8wrx+EQX+pO/u3azKm1K3r4Amq/I6Xq2GHqK+ixDuYFRCvzBfzFkPPVu1dEJNOdw1Atiw==
+X-Received: by 2002:a05:600c:348f:b0:427:ff3b:7a20 with SMTP id 5b1f17b1804b1-42ba66b3592mr9894205e9.27.1724839240003;
+        Wed, 28 Aug 2024 03:00:40 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:765d:64ff:5f38:550? ([2a01:e0a:982:cbb0:765d:64ff:5f38:550])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba6397de5sm16534505e9.8.2024.08.28.03.00.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Aug 2024 03:00:39 -0700 (PDT)
+Message-ID: <3e7bdc54-294a-467f-a437-2cabe640f624@linaro.org>
+Date: Wed, 28 Aug 2024 12:00:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 0/3] Add support for Amlogic T7 reset controller
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: kelvin.zhang@amlogic.com, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20240422-t7-reset-v2-0-cb82271d3296@amlogic.com>
+ <c11bfe7e-e917-4ecd-ab2c-548332a4d22d@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <c11bfe7e-e917-4ecd-ab2c-548332a4d22d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Bindings expect pin configuration nodes in pinctrl to match certain
-naming and not be part of another fake node:
+Hi,
 
-  imx7d-sdb-sht11.dtb: pinctrl@30330000: 'imx7d-sdb' does not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
+On 05/06/2024 14:51, Neil Armstrong wrote:
+> Hi Philipp,
+> 
+> On 22/04/2024 13:11, Kelvin Zhang via B4 Relay wrote:
+>> Add a new compatible and device node for Amlogic T7 reset controller.
+>> And modify the driver accordingly.
+>>
+>> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+>> ---
+>> Changes in v2:
+>> - Drop the compatible comment in dt-binding.
+>> - Move t7-reset.h to arch/arm64/boot/dts/amlogic.
+>> - Link to v1: https://lore.kernel.org/r/20240329-t7-reset-v1-0-4c6e2e68359e@amlogic.com
+>>
+>> ---
+>> Zelong Dong (3):
+>>        dt-bindings: reset: Add Amlogic T7 reset controller
+>>        reset: reset-meson: Add support for Amlogic T7 SoC reset controller
+>>        arm64: dts: amlogic: Add Amlogic T7 reset controller
+>>
+>>   .../bindings/reset/amlogic,meson-reset.yaml        |   1 +
+>>   arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h     | 197 +++++++++++++++++++++
+>>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |   7 +
+> 
+> I applied the DT change, could you pick the bindings & driver change ?
 
-Drop the "imx7d-sdb" wrapping node and adjust the names to have "grp"
-prefix.  Diff looks big but this should have no functional impact.
+Gentle ping, could you apply the bindings & driver changes ?
+If you lack time, please tell me if it's ok for you for me to apply the bindings via the amlogic tree ?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/nxp/imx/imx7d-sdb-reva.dts |  30 +-
- arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts      | 608 +++++++++----------
- 2 files changed, 317 insertions(+), 321 deletions(-)
+Neil
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-sdb-reva.dts b/arch/arm/boot/dts/nxp/imx/imx7d-sdb-reva.dts
-index cabdaa6dc518..40156cd9195f 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-sdb-reva.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-sdb-reva.dts
-@@ -21,23 +21,21 @@ &fec2 {
- };
- 
- &iomuxc {
--	imx7d-sdb {
--		pinctrl_tsc2046_pendown: tsc2046_pendown {
--			fsl,pins = <
--				MX7D_PAD_EPDC_DATA13__GPIO2_IO13	0x59
--			>;
--		};
-+	pinctrl_tsc2046_pendown: tsc2046-pendowngrp {
-+		fsl,pins = <
-+			MX7D_PAD_EPDC_DATA13__GPIO2_IO13	0x59
-+		>;
-+	};
- 
--		pinctrl_hog: hoggrp {
--			fsl,pins = <
--				MX7D_PAD_ECSPI2_SS0__GPIO4_IO23		0x34  /* bt reg on */
--			>;
--		};
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			MX7D_PAD_ECSPI2_SS0__GPIO4_IO23		0x34  /* bt reg on */
-+		>;
-+	};
- 
--		pinctrl_usb_otg2_vbus_reg_reva: usbotg2vbusregrevagrp {
--			fsl,pins = <
--				MX7D_PAD_UART3_CTS_B__GPIO4_IO7		0x14
--			>;
--		};
-+	pinctrl_usb_otg2_vbus_reg_reva: usbotg2vbusregrevagrp {
-+		fsl,pins = <
-+			MX7D_PAD_UART3_CTS_B__GPIO4_IO7		0x14
-+		>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts b/arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts
-index 0462e43ec09b..f712537fca16 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts
-@@ -537,342 +537,340 @@ &iomuxc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_hog>;
- 
--	imx7d-sdb {
--		pinctrl_brcm_reg: brcmreggrp {
--			fsl,pins = <
--				MX7D_PAD_ECSPI2_MOSI__GPIO4_IO21	0x14
--			>;
--		};
-+	pinctrl_brcm_reg: brcmreggrp {
-+		fsl,pins = <
-+			MX7D_PAD_ECSPI2_MOSI__GPIO4_IO21	0x14
-+		>;
-+	};
- 
--		pinctrl_ecspi3: ecspi3grp {
--			fsl,pins = <
--				MX7D_PAD_SAI2_TX_SYNC__ECSPI3_MISO	0x2
--				MX7D_PAD_SAI2_TX_BCLK__ECSPI3_MOSI	0x2
--				MX7D_PAD_SAI2_RX_DATA__ECSPI3_SCLK	0x2
--				MX7D_PAD_SD2_CD_B__GPIO5_IO9		0x59
--			>;
--		};
-+	pinctrl_ecspi3: ecspi3grp {
-+		fsl,pins = <
-+			MX7D_PAD_SAI2_TX_SYNC__ECSPI3_MISO	0x2
-+			MX7D_PAD_SAI2_TX_BCLK__ECSPI3_MOSI	0x2
-+			MX7D_PAD_SAI2_RX_DATA__ECSPI3_SCLK	0x2
-+			MX7D_PAD_SD2_CD_B__GPIO5_IO9		0x59
-+		>;
-+	};
- 
--		pinctrl_enet1: enet1grp {
--			fsl,pins = <
--				MX7D_PAD_GPIO1_IO10__ENET1_MDIO			0x3
--				MX7D_PAD_GPIO1_IO11__ENET1_MDC			0x3
--				MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC	0x1
--				MX7D_PAD_ENET1_RGMII_TD0__ENET1_RGMII_TD0	0x1
--				MX7D_PAD_ENET1_RGMII_TD1__ENET1_RGMII_TD1	0x1
--				MX7D_PAD_ENET1_RGMII_TD2__ENET1_RGMII_TD2	0x1
--				MX7D_PAD_ENET1_RGMII_TD3__ENET1_RGMII_TD3	0x1
--				MX7D_PAD_ENET1_RGMII_TX_CTL__ENET1_RGMII_TX_CTL	0x1
--				MX7D_PAD_ENET1_RGMII_RXC__ENET1_RGMII_RXC	0x1
--				MX7D_PAD_ENET1_RGMII_RD0__ENET1_RGMII_RD0	0x1
--				MX7D_PAD_ENET1_RGMII_RD1__ENET1_RGMII_RD1	0x1
--				MX7D_PAD_ENET1_RGMII_RD2__ENET1_RGMII_RD2	0x1
--				MX7D_PAD_ENET1_RGMII_RD3__ENET1_RGMII_RD3	0x1
--				MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL	0x1
--			>;
--		};
-+	pinctrl_enet1: enet1grp {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO10__ENET1_MDIO			0x3
-+			MX7D_PAD_GPIO1_IO11__ENET1_MDC			0x3
-+			MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC	0x1
-+			MX7D_PAD_ENET1_RGMII_TD0__ENET1_RGMII_TD0	0x1
-+			MX7D_PAD_ENET1_RGMII_TD1__ENET1_RGMII_TD1	0x1
-+			MX7D_PAD_ENET1_RGMII_TD2__ENET1_RGMII_TD2	0x1
-+			MX7D_PAD_ENET1_RGMII_TD3__ENET1_RGMII_TD3	0x1
-+			MX7D_PAD_ENET1_RGMII_TX_CTL__ENET1_RGMII_TX_CTL	0x1
-+			MX7D_PAD_ENET1_RGMII_RXC__ENET1_RGMII_RXC	0x1
-+			MX7D_PAD_ENET1_RGMII_RD0__ENET1_RGMII_RD0	0x1
-+			MX7D_PAD_ENET1_RGMII_RD1__ENET1_RGMII_RD1	0x1
-+			MX7D_PAD_ENET1_RGMII_RD2__ENET1_RGMII_RD2	0x1
-+			MX7D_PAD_ENET1_RGMII_RD3__ENET1_RGMII_RD3	0x1
-+			MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL	0x1
-+		>;
-+	};
- 
--		pinctrl_enet2: enet2grp {
--			fsl,pins = <
--				MX7D_PAD_EPDC_GDSP__ENET2_RGMII_TXC		0x1
--				MX7D_PAD_EPDC_SDCE2__ENET2_RGMII_TD0		0x1
--				MX7D_PAD_EPDC_SDCE3__ENET2_RGMII_TD1		0x1
--				MX7D_PAD_EPDC_GDCLK__ENET2_RGMII_TD2		0x1
--				MX7D_PAD_EPDC_GDOE__ENET2_RGMII_TD3		0x1
--				MX7D_PAD_EPDC_GDRL__ENET2_RGMII_TX_CTL		0x1
--				MX7D_PAD_EPDC_SDCE1__ENET2_RGMII_RXC		0x1
--				MX7D_PAD_EPDC_SDCLK__ENET2_RGMII_RD0		0x1
--				MX7D_PAD_EPDC_SDLE__ENET2_RGMII_RD1		0x1
--				MX7D_PAD_EPDC_SDOE__ENET2_RGMII_RD2		0x1
--				MX7D_PAD_EPDC_SDSHR__ENET2_RGMII_RD3		0x1
--				MX7D_PAD_EPDC_SDCE0__ENET2_RGMII_RX_CTL		0x1
--			>;
--		};
-+	pinctrl_enet2: enet2grp {
-+		fsl,pins = <
-+			MX7D_PAD_EPDC_GDSP__ENET2_RGMII_TXC		0x1
-+			MX7D_PAD_EPDC_SDCE2__ENET2_RGMII_TD0		0x1
-+			MX7D_PAD_EPDC_SDCE3__ENET2_RGMII_TD1		0x1
-+			MX7D_PAD_EPDC_GDCLK__ENET2_RGMII_TD2		0x1
-+			MX7D_PAD_EPDC_GDOE__ENET2_RGMII_TD3		0x1
-+			MX7D_PAD_EPDC_GDRL__ENET2_RGMII_TX_CTL		0x1
-+			MX7D_PAD_EPDC_SDCE1__ENET2_RGMII_RXC		0x1
-+			MX7D_PAD_EPDC_SDCLK__ENET2_RGMII_RD0		0x1
-+			MX7D_PAD_EPDC_SDLE__ENET2_RGMII_RD1		0x1
-+			MX7D_PAD_EPDC_SDOE__ENET2_RGMII_RD2		0x1
-+			MX7D_PAD_EPDC_SDSHR__ENET2_RGMII_RD3		0x1
-+			MX7D_PAD_EPDC_SDCE0__ENET2_RGMII_RX_CTL		0x1
-+		>;
-+	};
- 
--		pinctrl_enet2_reg: enet2reggrp {
--			fsl,pins = <
--				MX7D_PAD_LPSR_GPIO1_IO04__GPIO1_IO4	0x14
--			>;
--		};
-+	pinctrl_enet2_reg: enet2reggrp {
-+		fsl,pins = <
-+			MX7D_PAD_LPSR_GPIO1_IO04__GPIO1_IO4	0x14
-+		>;
-+	};
- 
--		pinctrl_flexcan2: flexcan2grp {
--			fsl,pins = <
--				MX7D_PAD_GPIO1_IO14__FLEXCAN2_RX	0x59
--				MX7D_PAD_GPIO1_IO15__FLEXCAN2_TX	0x59
--			>;
--		};
-+	pinctrl_flexcan2: flexcan2grp {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO14__FLEXCAN2_RX	0x59
-+			MX7D_PAD_GPIO1_IO15__FLEXCAN2_TX	0x59
-+		>;
-+	};
- 
--		pinctrl_flexcan2_reg: flexcan2reggrp {
--			fsl,pins = <
--				MX7D_PAD_EPDC_DATA14__GPIO2_IO14	0x59	/* CAN_STBY */
--			>;
--		};
-+	pinctrl_flexcan2_reg: flexcan2reggrp {
-+		fsl,pins = <
-+			MX7D_PAD_EPDC_DATA14__GPIO2_IO14	0x59	/* CAN_STBY */
-+		>;
-+	};
- 
--		pinctrl_gpio_keys: gpio_keysgrp {
--			fsl,pins = <
--				MX7D_PAD_SD2_RESET_B__GPIO5_IO11	0x59
--				MX7D_PAD_SD2_WP__GPIO5_IO10		0x59
--			>;
--		};
-+	pinctrl_gpio_keys: gpio-keysgrp {
-+		fsl,pins = <
-+			MX7D_PAD_SD2_RESET_B__GPIO5_IO11	0x59
-+			MX7D_PAD_SD2_WP__GPIO5_IO10		0x59
-+		>;
-+	};
- 
--		pinctrl_hog: hoggrp {
--			fsl,pins = <
--				MX7D_PAD_ECSPI2_SS0__GPIO4_IO23		0x34  /* bt reg on */
--				MX7D_PAD_EPDC_BDR0__GPIO2_IO28		0x59  /* headphone detect */
--			>;
--		};
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			MX7D_PAD_ECSPI2_SS0__GPIO4_IO23		0x34  /* bt reg on */
-+			MX7D_PAD_EPDC_BDR0__GPIO2_IO28		0x59  /* headphone detect */
-+		>;
-+	};
- 
--		pinctrl_i2c1: i2c1grp {
--			fsl,pins = <
--				MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
--				MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
--			>;
--		};
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
-+			MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
-+		>;
-+	};
- 
--		pinctrl_i2c2: i2c2grp {
--			fsl,pins = <
--				MX7D_PAD_I2C2_SDA__I2C2_SDA		0x4000007f
--				MX7D_PAD_I2C2_SCL__I2C2_SCL		0x4000007f
--			>;
--		};
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C2_SDA__I2C2_SDA		0x4000007f
-+			MX7D_PAD_I2C2_SCL__I2C2_SCL		0x4000007f
-+		>;
-+	};
- 
--		pinctrl_i2c3: i2c3grp {
--			fsl,pins = <
--				MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
--				MX7D_PAD_I2C3_SCL__I2C3_SCL		0x4000007f
--			>;
--		};
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
-+			MX7D_PAD_I2C3_SCL__I2C3_SCL		0x4000007f
-+		>;
-+	};
- 
--		pinctrl_i2c4: i2c4grp {
--			fsl,pins = <
--				MX7D_PAD_SAI1_RX_BCLK__I2C4_SDA		0x4000007f
--				MX7D_PAD_SAI1_RX_SYNC__I2C4_SCL		0x4000007f
--			>;
--		};
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX7D_PAD_SAI1_RX_BCLK__I2C4_SDA		0x4000007f
-+			MX7D_PAD_SAI1_RX_SYNC__I2C4_SCL		0x4000007f
-+		>;
-+	};
- 
--		pinctrl_lcdif: lcdifgrp {
--			fsl,pins = <
--				MX7D_PAD_LCD_DATA00__LCD_DATA0		0x79
--				MX7D_PAD_LCD_DATA01__LCD_DATA1		0x79
--				MX7D_PAD_LCD_DATA02__LCD_DATA2		0x79
--				MX7D_PAD_LCD_DATA03__LCD_DATA3		0x79
--				MX7D_PAD_LCD_DATA04__LCD_DATA4		0x79
--				MX7D_PAD_LCD_DATA05__LCD_DATA5		0x79
--				MX7D_PAD_LCD_DATA06__LCD_DATA6		0x79
--				MX7D_PAD_LCD_DATA07__LCD_DATA7		0x79
--				MX7D_PAD_LCD_DATA08__LCD_DATA8		0x79
--				MX7D_PAD_LCD_DATA09__LCD_DATA9		0x79
--				MX7D_PAD_LCD_DATA10__LCD_DATA10		0x79
--				MX7D_PAD_LCD_DATA11__LCD_DATA11		0x79
--				MX7D_PAD_LCD_DATA12__LCD_DATA12		0x79
--				MX7D_PAD_LCD_DATA13__LCD_DATA13		0x79
--				MX7D_PAD_LCD_DATA14__LCD_DATA14		0x79
--				MX7D_PAD_LCD_DATA15__LCD_DATA15		0x79
--				MX7D_PAD_LCD_DATA16__LCD_DATA16		0x79
--				MX7D_PAD_LCD_DATA17__LCD_DATA17		0x79
--				MX7D_PAD_LCD_DATA18__LCD_DATA18		0x79
--				MX7D_PAD_LCD_DATA19__LCD_DATA19		0x79
--				MX7D_PAD_LCD_DATA20__LCD_DATA20		0x79
--				MX7D_PAD_LCD_DATA21__LCD_DATA21		0x79
--				MX7D_PAD_LCD_DATA22__LCD_DATA22		0x79
--				MX7D_PAD_LCD_DATA23__LCD_DATA23		0x79
--				MX7D_PAD_LCD_CLK__LCD_CLK		0x79
--				MX7D_PAD_LCD_ENABLE__LCD_ENABLE		0x79
--				MX7D_PAD_LCD_VSYNC__LCD_VSYNC		0x79
--				MX7D_PAD_LCD_HSYNC__LCD_HSYNC		0x79
--				MX7D_PAD_LCD_RESET__LCD_RESET		0x79
--			>;
--		};
-+	pinctrl_lcdif: lcdifgrp {
-+		fsl,pins = <
-+			MX7D_PAD_LCD_DATA00__LCD_DATA0		0x79
-+			MX7D_PAD_LCD_DATA01__LCD_DATA1		0x79
-+			MX7D_PAD_LCD_DATA02__LCD_DATA2		0x79
-+			MX7D_PAD_LCD_DATA03__LCD_DATA3		0x79
-+			MX7D_PAD_LCD_DATA04__LCD_DATA4		0x79
-+			MX7D_PAD_LCD_DATA05__LCD_DATA5		0x79
-+			MX7D_PAD_LCD_DATA06__LCD_DATA6		0x79
-+			MX7D_PAD_LCD_DATA07__LCD_DATA7		0x79
-+			MX7D_PAD_LCD_DATA08__LCD_DATA8		0x79
-+			MX7D_PAD_LCD_DATA09__LCD_DATA9		0x79
-+			MX7D_PAD_LCD_DATA10__LCD_DATA10		0x79
-+			MX7D_PAD_LCD_DATA11__LCD_DATA11		0x79
-+			MX7D_PAD_LCD_DATA12__LCD_DATA12		0x79
-+			MX7D_PAD_LCD_DATA13__LCD_DATA13		0x79
-+			MX7D_PAD_LCD_DATA14__LCD_DATA14		0x79
-+			MX7D_PAD_LCD_DATA15__LCD_DATA15		0x79
-+			MX7D_PAD_LCD_DATA16__LCD_DATA16		0x79
-+			MX7D_PAD_LCD_DATA17__LCD_DATA17		0x79
-+			MX7D_PAD_LCD_DATA18__LCD_DATA18		0x79
-+			MX7D_PAD_LCD_DATA19__LCD_DATA19		0x79
-+			MX7D_PAD_LCD_DATA20__LCD_DATA20		0x79
-+			MX7D_PAD_LCD_DATA21__LCD_DATA21		0x79
-+			MX7D_PAD_LCD_DATA22__LCD_DATA22		0x79
-+			MX7D_PAD_LCD_DATA23__LCD_DATA23		0x79
-+			MX7D_PAD_LCD_CLK__LCD_CLK		0x79
-+			MX7D_PAD_LCD_ENABLE__LCD_ENABLE		0x79
-+			MX7D_PAD_LCD_VSYNC__LCD_VSYNC		0x79
-+			MX7D_PAD_LCD_HSYNC__LCD_HSYNC		0x79
-+			MX7D_PAD_LCD_RESET__LCD_RESET		0x79
-+		>;
-+	};
- 
--		pinctrl_sai1: sai1grp {
--			fsl,pins = <
--				MX7D_PAD_SAI1_MCLK__SAI1_MCLK           0x1f
--				MX7D_PAD_ENET1_RX_CLK__SAI1_TX_BCLK     0x1f
--				MX7D_PAD_ENET1_CRS__SAI1_TX_SYNC	0x1f
--				MX7D_PAD_ENET1_COL__SAI1_TX_DATA0	0x30
--				MX7D_PAD_ENET1_TX_CLK__SAI1_RX_DATA0	0x1f
--			>;
--		};
-+	pinctrl_sai1: sai1grp {
-+		fsl,pins = <
-+			MX7D_PAD_SAI1_MCLK__SAI1_MCLK           0x1f
-+			MX7D_PAD_ENET1_RX_CLK__SAI1_TX_BCLK     0x1f
-+			MX7D_PAD_ENET1_CRS__SAI1_TX_SYNC	0x1f
-+			MX7D_PAD_ENET1_COL__SAI1_TX_DATA0	0x30
-+			MX7D_PAD_ENET1_TX_CLK__SAI1_RX_DATA0	0x1f
-+		>;
-+	};
- 
--		pinctrl_sai2: sai2grp {
--			fsl,pins = <
--				MX7D_PAD_SAI2_TX_BCLK__SAI2_TX_BCLK     0x1f
--				MX7D_PAD_SAI2_TX_SYNC__SAI2_TX_SYNC     0x1f
--				MX7D_PAD_SAI2_TX_DATA__SAI2_TX_DATA0    0x30
--				MX7D_PAD_SAI2_RX_DATA__SAI2_RX_DATA0    0x1f
--			>;
--		};
-+	pinctrl_sai2: sai2grp {
-+		fsl,pins = <
-+			MX7D_PAD_SAI2_TX_BCLK__SAI2_TX_BCLK     0x1f
-+			MX7D_PAD_SAI2_TX_SYNC__SAI2_TX_SYNC     0x1f
-+			MX7D_PAD_SAI2_TX_DATA__SAI2_TX_DATA0    0x30
-+			MX7D_PAD_SAI2_RX_DATA__SAI2_RX_DATA0    0x1f
-+		>;
-+	};
- 
--		pinctrl_sai3: sai3grp {
--			fsl,pins = <
--				MX7D_PAD_UART3_TX_DATA__SAI3_TX_BCLK   0x1f
--				MX7D_PAD_UART3_CTS_B__SAI3_TX_SYNC     0x1f
--				MX7D_PAD_UART3_RTS_B__SAI3_TX_DATA0    0x30
--			>;
--		};
-+	pinctrl_sai3: sai3grp {
-+		fsl,pins = <
-+			MX7D_PAD_UART3_TX_DATA__SAI3_TX_BCLK   0x1f
-+			MX7D_PAD_UART3_CTS_B__SAI3_TX_SYNC     0x1f
-+			MX7D_PAD_UART3_RTS_B__SAI3_TX_DATA0    0x30
-+		>;
-+	};
- 
--		pinctrl_spi4: spi4grp {
--			fsl,pins = <
--				MX7D_PAD_GPIO1_IO09__GPIO1_IO9	0x59
--				MX7D_PAD_GPIO1_IO12__GPIO1_IO12	0x59
--				MX7D_PAD_GPIO1_IO13__GPIO1_IO13	0x59
--			>;
--		};
-+	pinctrl_spi4: spi4grp {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO09__GPIO1_IO9	0x59
-+			MX7D_PAD_GPIO1_IO12__GPIO1_IO12	0x59
-+			MX7D_PAD_GPIO1_IO13__GPIO1_IO13	0x59
-+		>;
-+	};
- 
--		pinctrl_tsc2046_pendown: tsc2046_pendown {
--			fsl,pins = <
--				MX7D_PAD_EPDC_BDR1__GPIO2_IO29		0x59
--			>;
--		};
-+	pinctrl_tsc2046_pendown: tsc2046-pendowngrp {
-+		fsl,pins = <
-+			MX7D_PAD_EPDC_BDR1__GPIO2_IO29		0x59
-+		>;
-+	};
- 
--		pinctrl_uart1: uart1grp {
--			fsl,pins = <
--				MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
--				MX7D_PAD_UART1_RX_DATA__UART1_DCE_RX	0x79
--			>;
--		};
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
-+			MX7D_PAD_UART1_RX_DATA__UART1_DCE_RX	0x79
-+		>;
-+	};
- 
--		pinctrl_uart5: uart5grp {
--			fsl,pins = <
--				MX7D_PAD_SAI1_TX_BCLK__UART5_DCE_TX	0x79
--				MX7D_PAD_SAI1_RX_DATA__UART5_DCE_RX	0x79
--				MX7D_PAD_SAI1_TX_SYNC__UART5_DCE_CTS	0x79
--				MX7D_PAD_SAI1_TX_DATA__UART5_DCE_RTS	0x79
--			>;
--		};
-+	pinctrl_uart5: uart5grp {
-+		fsl,pins = <
-+			MX7D_PAD_SAI1_TX_BCLK__UART5_DCE_TX	0x79
-+			MX7D_PAD_SAI1_RX_DATA__UART5_DCE_RX	0x79
-+			MX7D_PAD_SAI1_TX_SYNC__UART5_DCE_CTS	0x79
-+			MX7D_PAD_SAI1_TX_DATA__UART5_DCE_RTS	0x79
-+		>;
-+	};
- 
--		pinctrl_uart6: uart6grp {
--			fsl,pins = <
--				MX7D_PAD_ECSPI1_MOSI__UART6_DCE_TX	0x79
--				MX7D_PAD_ECSPI1_SCLK__UART6_DCE_RX	0x79
--				MX7D_PAD_ECSPI1_SS0__UART6_DCE_CTS	0x79
--				MX7D_PAD_ECSPI1_MISO__UART6_DCE_RTS	0x79
--			>;
--		};
-+	pinctrl_uart6: uart6grp {
-+		fsl,pins = <
-+			MX7D_PAD_ECSPI1_MOSI__UART6_DCE_TX	0x79
-+			MX7D_PAD_ECSPI1_SCLK__UART6_DCE_RX	0x79
-+			MX7D_PAD_ECSPI1_SS0__UART6_DCE_CTS	0x79
-+			MX7D_PAD_ECSPI1_MISO__UART6_DCE_RTS	0x79
-+		>;
-+	};
- 
--		pinctrl_usdhc1_gpio: usdhc1_gpiogrp {
--			fsl,pins = <
--				MX7D_PAD_SD1_CD_B__GPIO5_IO0		0x59 /* CD */
--				MX7D_PAD_SD1_WP__GPIO5_IO1		0x59 /* WP */
--				MX7D_PAD_SD1_RESET_B__GPIO5_IO2		0x59 /* vmmc */
--				MX7D_PAD_GPIO1_IO08__SD1_VSELECT	0x59 /* VSELECT */
--			>;
--		};
-+	pinctrl_usdhc1_gpio: usdhc1-gpiogrp {
-+		fsl,pins = <
-+			MX7D_PAD_SD1_CD_B__GPIO5_IO0		0x59 /* CD */
-+			MX7D_PAD_SD1_WP__GPIO5_IO1		0x59 /* WP */
-+			MX7D_PAD_SD1_RESET_B__GPIO5_IO2		0x59 /* vmmc */
-+			MX7D_PAD_GPIO1_IO08__SD1_VSELECT	0x59 /* VSELECT */
-+		>;
-+	};
- 
--		pinctrl_usdhc1: usdhc1grp {
--			fsl,pins = <
--				MX7D_PAD_SD1_CMD__SD1_CMD		0x59
--				MX7D_PAD_SD1_CLK__SD1_CLK		0x19
--				MX7D_PAD_SD1_DATA0__SD1_DATA0		0x59
--				MX7D_PAD_SD1_DATA1__SD1_DATA1		0x59
--				MX7D_PAD_SD1_DATA2__SD1_DATA2		0x59
--				MX7D_PAD_SD1_DATA3__SD1_DATA3		0x59
--			>;
--		};
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD1_CMD__SD1_CMD		0x59
-+			MX7D_PAD_SD1_CLK__SD1_CLK		0x19
-+			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x59
-+			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x59
-+			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x59
-+			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x59
-+		>;
-+	};
- 
--		pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {
--			fsl,pins = <
--				MX7D_PAD_SD1_CMD__SD1_CMD		0x5a
--				MX7D_PAD_SD1_CLK__SD1_CLK		0x1a
--				MX7D_PAD_SD1_DATA0__SD1_DATA0		0x5a
--				MX7D_PAD_SD1_DATA1__SD1_DATA1		0x5a
--				MX7D_PAD_SD1_DATA2__SD1_DATA2		0x5a
--				MX7D_PAD_SD1_DATA3__SD1_DATA3		0x5a
--			>;
--		};
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhz-grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD1_CMD__SD1_CMD		0x5a
-+			MX7D_PAD_SD1_CLK__SD1_CLK		0x1a
-+			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x5a
-+			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x5a
-+			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x5a
-+			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x5a
-+		>;
-+	};
- 
--		pinctrl_usdhc1_200mhz: usdhc1grp_200mhz {
--			fsl,pins = <
--				MX7D_PAD_SD1_CMD__SD1_CMD		0x5b
--				MX7D_PAD_SD1_CLK__SD1_CLK		0x1b
--				MX7D_PAD_SD1_DATA0__SD1_DATA0		0x5b
--				MX7D_PAD_SD1_DATA1__SD1_DATA1		0x5b
--				MX7D_PAD_SD1_DATA2__SD1_DATA2		0x5b
--				MX7D_PAD_SD1_DATA3__SD1_DATA3		0x5b
--			>;
--		};
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhz-grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD1_CMD__SD1_CMD		0x5b
-+			MX7D_PAD_SD1_CLK__SD1_CLK		0x1b
-+			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x5b
-+			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x5b
-+			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x5b
-+			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x5b
-+		>;
-+	};
- 
--		pinctrl_usdhc2: usdhc2grp {
--			fsl,pins = <
--				MX7D_PAD_SD2_CMD__SD2_CMD		0x59
--				MX7D_PAD_SD2_CLK__SD2_CLK		0x19
--				MX7D_PAD_SD2_DATA0__SD2_DATA0		0x59
--				MX7D_PAD_SD2_DATA1__SD2_DATA1		0x59
--				MX7D_PAD_SD2_DATA2__SD2_DATA2		0x59
--				MX7D_PAD_SD2_DATA3__SD2_DATA3		0x59
--			>;
--		};
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD2_CMD__SD2_CMD		0x59
-+			MX7D_PAD_SD2_CLK__SD2_CLK		0x19
-+			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x59
-+			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x59
-+			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x59
-+			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x59
-+		>;
-+	};
- 
--		pinctrl_usdhc2_100mhz: usdhc2grp_100mhz {
--			fsl,pins = <
--				MX7D_PAD_SD2_CMD__SD2_CMD		0x5a
--				MX7D_PAD_SD2_CLK__SD2_CLK		0x1a
--				MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5a
--				MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5a
--				MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5a
--				MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5a
--			>;
--		};
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhz-grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD2_CMD__SD2_CMD		0x5a
-+			MX7D_PAD_SD2_CLK__SD2_CLK		0x1a
-+			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5a
-+			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5a
-+			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5a
-+			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5a
-+		>;
-+	};
- 
--		pinctrl_usdhc2_200mhz: usdhc2grp_200mhz {
--			fsl,pins = <
--				MX7D_PAD_SD2_CMD__SD2_CMD		0x5b
--				MX7D_PAD_SD2_CLK__SD2_CLK		0x1b
--				MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5b
--				MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5b
--				MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5b
--				MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5b
--			>;
--		};
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhz-grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD2_CMD__SD2_CMD		0x5b
-+			MX7D_PAD_SD2_CLK__SD2_CLK		0x1b
-+			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5b
-+			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5b
-+			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5b
-+			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5b
-+		>;
-+	};
- 
- 
--		pinctrl_usdhc3: usdhc3grp {
--			fsl,pins = <
--				MX7D_PAD_SD3_CMD__SD3_CMD		0x59
--				MX7D_PAD_SD3_CLK__SD3_CLK		0x19
--				MX7D_PAD_SD3_DATA0__SD3_DATA0		0x59
--				MX7D_PAD_SD3_DATA1__SD3_DATA1		0x59
--				MX7D_PAD_SD3_DATA2__SD3_DATA2		0x59
--				MX7D_PAD_SD3_DATA3__SD3_DATA3		0x59
--				MX7D_PAD_SD3_DATA4__SD3_DATA4		0x59
--				MX7D_PAD_SD3_DATA5__SD3_DATA5		0x59
--				MX7D_PAD_SD3_DATA6__SD3_DATA6		0x59
--				MX7D_PAD_SD3_DATA7__SD3_DATA7		0x59
--				MX7D_PAD_SD3_STROBE__SD3_STROBE		0x19
--			>;
--		};
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
-+			MX7D_PAD_SD3_CLK__SD3_CLK		0x19
-+			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x59
-+			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x59
-+			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x59
-+			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x59
-+			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x59
-+			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x59
-+			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x59
-+			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x59
-+			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x19
-+		>;
-+	};
- 
--		pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
--			fsl,pins = <
--				MX7D_PAD_SD3_CMD__SD3_CMD		0x5a
--				MX7D_PAD_SD3_CLK__SD3_CLK		0x1a
--				MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5a
--				MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5a
--				MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5a
--				MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5a
--				MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5a
--				MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5a
--				MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5a
--				MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5a
--				MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1a
--			>;
--		};
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD3_CMD__SD3_CMD		0x5a
-+			MX7D_PAD_SD3_CLK__SD3_CLK		0x1a
-+			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5a
-+			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5a
-+			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5a
-+			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5a
-+			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5a
-+			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5a
-+			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5a
-+			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5a
-+			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1a
-+		>;
-+	};
- 
--		pinctrl_usdhc3_200mhz: usdhc3grp_200mhz {
--			fsl,pins = <
--				MX7D_PAD_SD3_CMD__SD3_CMD		0x5b
--				MX7D_PAD_SD3_CLK__SD3_CLK		0x1b
--				MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5b
--				MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5b
--				MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5b
--				MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5b
--				MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5b
--				MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5b
--				MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5b
--				MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5b
--				MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1b
--			>;
--		};
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD3_CMD__SD3_CMD		0x5b
-+			MX7D_PAD_SD3_CLK__SD3_CLK		0x1b
-+			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5b
-+			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5b
-+			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5b
-+			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5b
-+			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5b
-+			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5b
-+			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5b
-+			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5b
-+			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1b
-+		>;
- 	};
- };
- 
-@@ -901,7 +899,7 @@ MX7D_PAD_LPSR_GPIO1_IO07__GPIO1_IO7	  0x14
- 		>;
- 	};
- 
--	pinctrl_sai3_mclk: sai3grp_mclk {
-+	pinctrl_sai3_mclk: sai3-mclk-grp {
- 		fsl,pins = <
- 			MX7D_PAD_LPSR_GPIO1_IO03__SAI3_MCLK	0x1f
- 		>;
--- 
-2.43.0
+> 
+> Thanks,
+> Neil
+> 
+>>   drivers/reset/reset-meson.c                        |   6 +
+>>   4 files changed, 211 insertions(+)
+>> ---
+>> base-commit: f529a6d274b3b8c75899e949649d231298f30a32
+>> change-id: 20240329-t7-reset-f87e8346fadb
+>>
+>> Best regards,
 
 
