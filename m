@@ -1,173 +1,160 @@
-Return-Path: <devicetree+bounces-97467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87593962486
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:15:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D7F9624C5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:23:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB23EB224A4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:15:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAEA81C23CEB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0A516C6AD;
-	Wed, 28 Aug 2024 10:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023B316C6A9;
+	Wed, 28 Aug 2024 10:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Wxv9aYnC"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xRNOZVR9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B97016A934;
-	Wed, 28 Aug 2024 10:15:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0477316C6A0
+	for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 10:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724840122; cv=none; b=O9xho7HLTg17fFl9AubGvPxxzvMjxK7nZxH1qK9iZDS+a5yi8AEE3BnOSpYMke9lTr9XcZRB8fhg3GRx735NjsSnRfiQ7cx326GoZYYFmqAqB4oDWgb5MpC9Fcg5lCpE7ZGaoKporJnZWQSapR41vkVdBTQvZ3seLogr55h8+Jc=
+	t=1724840604; cv=none; b=f9A+DQIQOtgAhuutWlBa3dGdE5XFk3nrql2um4/9XVqhtMYl78J52ecOGKh1TZdGLtKoDChWpTzqFFZk3LGT5Teh2IC7H63c+3nB8afxnFt/ozHB1OX5+EI5vt1GD0bezbu0bRF9NUx3mGzBVsy6gmBDc5+gYK+ZBy1Fcz5KxVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724840122; c=relaxed/simple;
-	bh=WR14k8P+mLy91L69HY4wBwuOQUnhcX1BRQ5eOt3Bxww=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PPQTusss2bb3urQCWdb2HWAxjOUBb7bCQMGvqnmZu+o1jQ9qd1HRyCmML4XXTlBpdAbpk6HvwwF0LmBMoEa1GeHzDSK81FpPsu3ZxkAdCniWEY/NLKc7PkvhF37ckIlkMe5aF2owxVUWdCf7NeHEOzkk/qMb1WI0bLV1TgnOPjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Wxv9aYnC; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=PlRpVtIBwwyT7sJiOXWleLS+M54tw81jUNBu+u7QyPQ=; b=Wxv9aYnCBQ2sHWb4hEkwzkky2w
-	hMLxucWM2eLIQdW66oKCOAmlzru8RSS20sw7pDv8j/rjhg6zImCqeAV+yBgf8MZbiz/a/q17KkNxz
-	2B9HDDosW7MzfH/FqEyzAciSIuXYOMl8RJBXt9TzbCHHzedUkg5+HKu1SfyGbjQoilXlBqGjSdZpk
-	mFjDi7xv0rYs3PiYhwTk4Z1uQD5/XA+N0XIMJJNRb943XBGuxrpWoBIl2f1U2oWXxvaPwNtxz5hUt
-	MoG0VhPdI+SmoEUSyGLPaOB4r63sC/3pr2OhRpH3ylvcbq7Qbk/tAdKbdHqmzb4rUvDIHh7F0/ZqW
-	KYd0eVow==;
-Received: from i5e8616cd.versanet.de ([94.134.22.205] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sjFhu-0004M3-7X; Wed, 28 Aug 2024 12:15:18 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	heiko@sntech.de,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: fix the pcie refclock oscillator on Rock 5 ITX
-Date: Wed, 28 Aug 2024 12:15:03 +0200
-Message-ID: <20240828101503.1478491-6-heiko@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240828101503.1478491-1-heiko@sntech.de>
-References: <20240828101503.1478491-1-heiko@sntech.de>
+	s=arc-20240116; t=1724840604; c=relaxed/simple;
+	bh=pcmoMHkfM6+rVu9NGxIUa/tgdGuUsUHn2TixcQ7+jBo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OVyVzSYglF4g96R9lbwvpdqUsgkdhuN3+EaAac1pN+7BN+K6b41eNbbeg/Bu2W4cQCivbgkyiveVewohCGeeth2E5KnBTFPiR4PlU10TVo1t3FzYBMry/HpaGB0KOWnSGX/vcFBW+1EQOgkgPz+Wa3u5TIPfEly6zun/dQ44Gl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=xRNOZVR9; arc=none smtp.client-ip=209.85.217.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-498d14b9b8cso2244925137.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 03:23:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724840602; x=1725445402; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1Mbi6UDIyTd2bDtcfNWtgeu1nnW22anmzdjv6AWS1kU=;
+        b=xRNOZVR9KJLSv7UMEP/2pMW7e/I6KpxUGJqVk2BgkYJuAjl6pha8zmpykWXST+9v+z
+         hCvQyNc1uSdYXD0cPP1YymS2c2dntk/XfIuPv/k7imQbshMpQC8JMp5HLmKGA8a/ATgR
+         Y1EBzO7snbX87v+rmMUB5mw4fobN9MlNVav4ZDCdgESseL4Hnb1zJ7xl58y2wLl7Zr6l
+         ncufmw1wzBNHP37LVAjzhgjKwlqOKjsgYWqyURK1RSElBoJyDxag70+5fzV3z12dqFdS
+         QgJ+CbWkC8yGWXBwTaE1Yq1lfbVMHoT0JAU05l6PqNT+Jggjxq0IoeSNszDeuH+C0n+E
+         aAug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724840602; x=1725445402;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1Mbi6UDIyTd2bDtcfNWtgeu1nnW22anmzdjv6AWS1kU=;
+        b=KZwhjnGkHqhj70wPFxTGVD1TC2wlQ00DA3ENwuPtxShu4MZHr933F3s1GRbgoTtOyY
+         vKwCizXoW9m7DB9BE9ahjoQZzsEvDv0xpJo7h3E1d3+zZAslO+IzvuGz5WKrOs0PuZGy
+         JVLKpkloxj+RUAxv5wpySdRDQr6DcQPH6sxUvrubbcHokwybvpHeu5sx/KZw7jhzG6jU
+         CoNOMB6ldgO3crOQU4Lo3MRKyIGIC7uPLECyLU+ycGCxEmFAuv3u6WFNaIiV84uIniO/
+         RU6HF6qqqrWgCsyelX6PzvDgqKdNI2w1PLqd7PY7TgoZN+8K/hSRyb8zxBh3HXMppRhX
+         GPVw==
+X-Forwarded-Encrypted: i=1; AJvYcCXVA6Z2WNCZwxUt7QGyzPU+Q+fhUlevV6wcZeJVu2WS2b824tO1j2JKJA2q3WetWk/0eRg4lUPg5LnM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyggrUO7L3/4Jku4ZkwxU7wFbDtR0vmxWnkv6RXvglkzfL5NEdD
+	wlyxmWYpqmfOEn3p3DpetVfi+EMx1HCYYZEZeLRStRStS6MTN+0MelVqjVMQJT6TBZ0IyX34QyE
+	8Uwey+yRS6bjQskupAztgYObwA/msH2VccxSVMQ==
+X-Google-Smtp-Source: AGHT+IGiYzqoMHpp0MAoVgUWF9ZasIX8jeUlgNpRL3MOlPNFy1/rfUwF8T0ImEZUhZW1LvMGbo0ZvCX5hvYP3bgA260=
+X-Received: by 2002:a05:6102:38c8:b0:498:efe0:f91d with SMTP id
+ ada2fe7eead31-498f46ea982mr17511357137.19.1724840601668; Wed, 28 Aug 2024
+ 03:23:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240819064721.91494-1-aardelean@baylibre.com>
+ <20240819064721.91494-7-aardelean@baylibre.com> <zuvwoy5wtdel7qgkz6wa6valwjwajpwoqnizyoooiawghrxvc3@cuoswu32h4fl>
+ <CA+GgBR_V8r0Vz1PeKxwD6ovwHXxGM6=Z6XVd03ehokT5C3zjnQ@mail.gmail.com>
+ <20240821212606.6981eae1@jic23-huawei> <46153017-9ab2-4a2f-afe6-9321e0f65f03@kernel.org>
+In-Reply-To: <46153017-9ab2-4a2f-afe6-9321e0f65f03@kernel.org>
+From: Alexandru Ardelean <aardelean@baylibre.com>
+Date: Wed, 28 Aug 2024 13:23:10 +0300
+Message-ID: <CA+GgBR-ZPfJuOJJuXqUu6YEBmzHf6SLYWFprQUo8X-UhyRTyEg@mail.gmail.com>
+Subject: Re: [PATCH 6/7] dt-bindings: iio: adc: add adi,ad7606c-{16,18}
+ compatible strings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
+	gstols@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Rock 5 ITX uses two PCIe controllers to drive both a M.2 slot and its
-SATA controller with 2 lanes each. The supply for the refclk oscillator is
-the same that supplies the M.2 slot, but the SATA controller port is
-supplied by a different rail.
+On Fri, Aug 23, 2024 at 12:09=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 21/08/2024 22:26, Jonathan Cameron wrote:
+> >
+> >>>> +    type: object
+> >>>> +    $ref: adc.yaml
+> >>>> +    unevaluatedProperties: false
+> >>>> +
+> >>>> +    properties:
+> >>>> +      reg:
+> >>>> +        description: The channel number.
+> >>>> +        minimum: 0
+> >>>> +        maximum: 7
+> >>>> +
+> >>>> +      diff-channel:
+> >>>> +        description: Channel is bipolar differential.
+> >>>
+> >>> There is diff-channels property, why do we need one more?
+> >>
+> >> Yeah, I wanted to use that.
+> >> Maybe I will try another spin at that.
+> >> The thing with "diff-channels" is that it requires 2 ints.
+> >> So,  diff-channels =3D <0 0>.
+> >> To use it here, a rule would need to be put in place where  "reg =3D=
+=3D
+> >> diff-channels[0] && reg =3D=3D diff-channels[1]".
+> >> That also works from my side.
+> >> Part of the reason for this patchset, was to also get some feedback
+> >> (if this is the correct direction).
+> >>
+> > So I 'think' this is a datasheet matching thing.
+> > In many cases, even for strictly differential devices, the pin
+> > naming allows for a clear A - B channel description. Here
+> > in the non differential modes, the negative pins are effectively
+> > not used (from a really quick look at the datasheet)
+> >
+> > So we 'could' introduce magic channels (give them high numbers) for
+> > the negative ends. I think we may want to do that for the
+> > userspace ABI (0-0 on the few times it has come up has been a
+> > calibration / self check mode not what you have here - it
+> > wires the actual inputs together).  Alternative is just present
+> > them as a simple voltage and don't worry about the differential aspect
+> > as it's not hugely different to bipolar (where the zero level is
+> > effectively the negative input of a differential ADC.
+> >
+> > For the binding I'm fine with the binding using A, A as you suggest
+> > with an update to adc.yaml to cover this corner.
 
-This leads to the effect that if the PCIe30x4 controller for the M.2
-probes first, everything works normally. But if the PCIe30x2 controller
-that is connected to the SATA controller probes first, it will hang on
-the first DBI read as nothing will have enabled the refclock before.
+The main difference the "diff-channels" property brings is a change to
+the available scales.
+They differ a bit between differential, and single-ended (unipolar and bipo=
+lar).
 
-Fix this by describing the clock generator with its supplies so that
-both controllers can reference it as needed.
+I'll update the adc.yaml file then.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 38 ++++++++++++++++++-
- 1 file changed, 36 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-index d0b922b8d67e..2d0bcf90bf0f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -72,6 +72,15 @@ hdd-led2 {
- 		};
- 	};
- 
-+	/* Unnamed gated oscillator: 100MHz,3.3V,3225 */
-+	pcie30_port0_refclk: pcie30_port1_refclk: pcie-oscillator {
-+		compatible = "gated-fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "pcie30_refclk";
-+		vdd-supply = <&vcc3v3_pi6c_05>;
-+	};
-+
- 	fan0: pwm-fan {
- 		compatible = "pwm-fan";
- 		#cooling-cells = <2>;
-@@ -146,13 +155,14 @@ vcc3v3_lan: vcc3v3_lan_phy2: regulator-vcc3v3-lan {
- 		vin-supply = <&vcc_3v3_s3>;
- 	};
- 
--	vcc3v3_mkey: regulator-vcc3v3-mkey {
-+	/* The PCIE30x4_PWREN_H controls two regulators */
-+	vcc3v3_mkey: vcc3v3_pi6c_05: regulator-vcc3v3-pi6c-05 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
- 		gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pcie30x4_pwren_h>;
--		regulator-name = "vcc3v3_mkey";
-+		regulator-name = "vcc3v3_pi6c_05";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 		startup-delay-us = <5000>;
-@@ -513,6 +523,18 @@ &pcie30phy {
- 
- /* ASMedia ASM1164 Sata controller */
- &pcie3x2 {
-+	/*
-+	 * The board has a "pcie_refclk" oscillator that needs enabling,
-+	 * so add it to the list of clocks.
-+	 */
-+	clocks = <&cru ACLK_PCIE_2L_MSTR>, <&cru ACLK_PCIE_2L_SLV>,
-+		 <&cru ACLK_PCIE_2L_DBI>, <&cru PCLK_PCIE_2L>,
-+		 <&cru CLK_PCIE_AUX1>, <&cru CLK_PCIE2L_PIPE>,
-+		 <&pcie30_port1_refclk>;
-+	clock-names = "aclk_mst", "aclk_slv",
-+		      "aclk_dbi", "pclk",
-+		      "aux", "pipe",
-+		      "ref";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie30x2_perstn_m1_l>;
- 	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-@@ -522,6 +544,18 @@ &pcie3x2 {
- 
- /* M.2 M.key */
- &pcie3x4 {
-+	/*
-+	 * The board has a "pcie_refclk" oscillator that needs enabling,
-+	 * so add it to the list of clocks.
-+	 */
-+	clocks = <&cru ACLK_PCIE_4L_MSTR>, <&cru ACLK_PCIE_4L_SLV>,
-+		 <&cru ACLK_PCIE_4L_DBI>, <&cru PCLK_PCIE_4L>,
-+		 <&cru CLK_PCIE_AUX0>, <&cru CLK_PCIE4L_PIPE>,
-+		 <&pcie30_port0_refclk>;
-+	clock-names = "aclk_mst", "aclk_slv",
-+		      "aclk_dbi", "pclk",
-+		      "aux", "pipe",
-+		      "ref";
- 	num-lanes = <2>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie30x4_perstn_m1_l>;
--- 
-2.43.0
-
+>
+> Yep, let's add it to adc.yaml.
+>
+> >
+> > We never (I think) have bindings for the self check case where the inpu=
+t
+> > is wired to both sides. It's just a mode that is applied to
+> > any inputs that are wired.
+> >
+> Best regards,
+> Krzysztof
+>
 
