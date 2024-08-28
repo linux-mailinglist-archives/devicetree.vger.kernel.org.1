@@ -1,134 +1,215 @@
-Return-Path: <devicetree+bounces-97609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 590B7962C58
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 17:28:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF4C962A75
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 16:39:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C3DA1C21193
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 15:28:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84BA71F21FA5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 14:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0AA8189511;
-	Wed, 28 Aug 2024 15:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A601898EC;
+	Wed, 28 Aug 2024 14:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oiBVSbDD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gOXRCaMo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1009188CAF;
-	Wed, 28 Aug 2024 15:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93CAA18786F;
+	Wed, 28 Aug 2024 14:38:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724858935; cv=none; b=ZJNp0j8ZZuXwL/kBUio0Xj19Z0m3D5xqndIeuL2psniPB9Z+EtWbEojMzFJRLdaSXK1ZBW0talfYqMhRc0HDXef8Rxdp4C/pQDWav0puJUDxTDVUucpgPvRSMdDBdUE4dJd01TDqfzWNCjVodSdx5btCdLsddCtyvShoykPnjrw=
+	t=1724855936; cv=none; b=XOnaVCfPytxJ+cu48dRkD1zFm4+lt8xHYEl0B0K6ZUFIL+4KTxAlGp/I/N60s7s6ckMeqaKLVYbSL9WTsIdrN3kE2LbnVoJp5stIxWpnm0xPn2ZXYbJsApYSbQ022AJsSPg1S87srj2jxuHKXWn9aQwxLPNsA6Zl5g7BNnpsJqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724858935; c=relaxed/simple;
-	bh=oLlTW2bh8VJAWJfDthgoq2uvZctY02SJcHJtrpkYkO8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cXdvi3/NplLf9aqRlSSAoJm5YiX5ICZUSvAkms8RilV8moFBUGQ2JbgX7nUG4e8mt6ypV5PmdmxOXGyjskMrNH70RY5MgT5FBL3SdVn2WUY8vsN3M1qjBnUO2ZHbmxbDWTUpXu1QfFxVJsfNN8/yYPu4VKweDOMMA3+u6T4clNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oiBVSbDD; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47SDcCnw022823;
-	Wed, 28 Aug 2024 17:28:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	oFevO1WzCe1lndyKIcqDqzd48GJyNyJUl83cjIp11to=; b=oiBVSbDD2/nHoQGt
-	VQYTr103Jt4iMAlTMTLVczCh3Xr4XMPnHmu0QF09tRIrld5naurn1jiPoerWY7Tu
-	ZKVUOmG+5rAYUVs2joonYJYpRdww2r9blas7N2ZJJB7JnReiaxxdHChp82Rs/2JA
-	DDfYsehLOUMDPAFpflkfduFRbcZrBOo81nUN5fg3RaR6BTDCjWASAK7Xw9C5URK6
-	ed/EB+mq4ocnDGQmn7jp/9bbn9OwbRXqBnn1oMyj+eVn8iazARTC9wsYJcOi99gr
-	h+dMUJ2xZvw33CYdhuPgoHMfKSVMdJ2yw/EAU168VPxNiJuDyvYj7+j1e48ya3BY
-	KcgfbQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41a4y00j2g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Aug 2024 17:28:28 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E106E4002D;
-	Wed, 28 Aug 2024 17:28:23 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 18394276F33;
-	Wed, 28 Aug 2024 17:27:35 +0200 (CEST)
-Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 28 Aug
- 2024 17:27:34 +0200
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>,
-        Christian Bruel <christian.bruel@foss.st.com>
-Subject: [PATCH v4 5/5] arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
-Date: Wed, 28 Aug 2024 16:34:52 +0200
-Message-ID: <20240828143452.1407532-6-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240828143452.1407532-1-christian.bruel@foss.st.com>
-References: <20240828143452.1407532-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1724855936; c=relaxed/simple;
+	bh=IQGQBX+jR2nhBT1i3nk9PUilott+5xo/VHFcCU9Ixg8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U0cGt4Dxt0Bk7KFvgP8YK/Eu6IOYVS2Eb3wIVV4NDh+DN7dVOjP2StQGgNxCt00/YKw16gOogQ/Uro2+h2uxUkpdqViVISz1iGzXVl4Qj6BMI011aUkhoFn/9S3RgaxNxntGQBvv6wtMWhM6xDbuTHMvghkPrVK8rKYxqTZRotU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gOXRCaMo; arc=none smtp.client-ip=209.85.219.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6bf6755323cso39248506d6.1;
+        Wed, 28 Aug 2024 07:38:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724855933; x=1725460733; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pNVFsrKviUYVGZsJJS3QcPSjIKYSmns2GgeRHX+s058=;
+        b=gOXRCaMo9COx19vHTGlwNsqeXP76Ef9nfHv2PLu3kXvwrJKwDz6iX8YdVDSpoWKxqQ
+         n1JRjFEzbgFvt4XpR1VQlqYJv3M+PS60WZd/id51lzIbwdKlTgtJF1DX/03Ukh8i8or0
+         MKzFlIhS4xmo+uAB4P4EdLzg4h9QI8PT0uHl9cNLBt7DoDzs/BD+K+meP81uOgduSJ0W
+         +06K/+s7yLXCdPtLjMkC8byzGw3raS43xY1Je/y5A5vQocsy1uYkhK97nlj/7mS+awpQ
+         WOQ7uDuNtAgkziCrjpXw16OBEl8oeO3oZbZGVma2A/ep5/Q3XF9L9r1lq27DIfMNn17L
+         332w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724855933; x=1725460733;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pNVFsrKviUYVGZsJJS3QcPSjIKYSmns2GgeRHX+s058=;
+        b=vQYhYiH7uvq+qe+l2nK0sK1ioIw2kUJ7Iq93lQEJxh3BbEk4CEaJww685w4Y6a9iU2
+         VtuvK/yGy3zuiJcMjRIUFF27+zoxV90j1Yiyox8T9FEKbS2z8WyGbdL9td/n2ekWJNHM
+         8lgQ5bhHyKaz1Ge2QXEfp7LvDF0HlQ7e9mYz8P+BDjbSNO9S/TJ7VPLYn1ayLGkVlBi4
+         zUIe9TeqSzD4y4TFxhrCgNkR+6TE7tSX8R/e0C8glldA48dQqqJJExXGM6CvtgXl7RxJ
+         TuftzN9iQa510Kc59M4iqawRVDP3s6Wtwe+xC7lAnhA+Ci3fMVGnYFov1aLvNnFZilYx
+         u/3w==
+X-Forwarded-Encrypted: i=1; AJvYcCVgbekgUhBmHmNZCYws4Y5fWAiQ/CT48zPLpLnqnI/xKGsQyOffvXK4Sl3pPBHEAmOozK6cC+hZvspEjR6c@vger.kernel.org, AJvYcCXOqx/fgFchNqb+7OPL9DA+m24lSVcDOCy4kQ5qECLqXg3kD3OwEFTB18o53TTDXpHQfj96NDhq//tl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgjAC0NUNQSCS56jRDglwALr55BVF/UYm+LF36A3DBycX1Pgbo
+	QKZJ4D1mMeCN26FR/tlRc4iCzFB63bZ22e8MPUB7r8vwP4V1B3Py9AxwOXVrHgEk7D8zQ+Vop/M
+	JT3XnYqsNoWMGEQkQgWL4pTGXsZI=
+X-Google-Smtp-Source: AGHT+IGAwcK805lN88HxJCO2KKmaM000oC6NPgsN+MFiiYpjLECrEVicxjM41oB53JfL/Q6wCWlpbfeYhMeS/3ctejk=
+X-Received: by 2002:a05:6214:2d4a:b0:6c1:6aa0:c21 with SMTP id
+ 6a1803df08f44-6c3362be690mr20865576d6.3.1724855933306; Wed, 28 Aug 2024
+ 07:38:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-28_05,2024-08-27_01,2024-05-17_01
+References: <20240822170440.265055-1-robertcnelson@gmail.com>
+ <20240822170440.265055-2-robertcnelson@gmail.com> <20240824184415.o7ehjqm523igqbbi@cornhusk>
+In-Reply-To: <20240824184415.o7ehjqm523igqbbi@cornhusk>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Wed, 28 Aug 2024 09:38:27 -0500
+Message-ID: <CAOCHtYiap7JzwEXZ3aHDC+yhXEdoJuyb+q-sZAmbMENHCjtvUw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: ti: Add k3-am67a-beagley-ai
+To: Nishanth Menon <nm@ti.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>, Jai Luthra <j-luthra@ti.com>, 
+	Roger Quadros <rogerq@kernel.org>, Siddharth Vadapalli <s-vadapalli@ti.com>, 
+	Jared McArthur <j-mcarthur@ti.com>, Jason Kridner <jkridner@beagleboard.org>, 
+	Deepak Khatri <lorforlinux@beagleboard.org>, Drew Fustini <drew@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enable the COMBOPHY with external pad clock on stm32mp257f-ev1
-board, to be used for the PCIe clock provider.
+On Sat, Aug 24, 2024 at 1:44=E2=80=AFPM Nishanth Menon <nm@ti.com> wrote:
+>
+> On 12:04-20240822, Robert Nelson wrote:
+> Minor nmits below:
+>
+> > BeagleBoard.org BeagleY-AI is an easy to use, affordable open source
+> > hardware single board computer based on the Texas Instruments AM67A,
+> > which features a quad-core 64-bit Arm CPU subsystem, 2 general-purpose
+> > digital-signal-processors (DSP) and matrix-multiply-accelerators (MMA),
+> > GPU, vision and deep learning accelerators, and multiple Arm Cortex-R5
+> > cores for low-power, low-latency GPIO control.
+> >
+> [...]
+> > +
+> > +     vdd_3v3: regulator-2 {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vdd_3v3";
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             vin-supply =3D <&vsys_5v0>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vdd_mmc1: regulator-mmc1 {
+>
+>         Also responding:
+>
+> > Okay, i'll change these... I already see a problem, as I've got two
+> > 3v3... can we use 'regulator-[0-9]v[0-9]-X' ?
+>
+>
+> let us just call them regulator-3 and so on incrementally. You can
+> already name with regulator-name property. We really don't need the "v'
+> specification here.
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Okay, renamed all as `regulator-X`
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 214191a8322b..bcf84d533cb2 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -27,6 +27,14 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	clocks {
-+		pad_clk: pad-clk {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <100000000>;
-+		};
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0x1 0x0>;
-@@ -50,6 +58,12 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&combophy {
-+	clocks = <&rcc CK_BUS_USB3PCIEPHY>, <&rcc CK_KER_USB3PCIEPHY>, <&pad_clk>;
-+	clock-names = "apb", "ker", "pad";
-+	status = "okay";
-+};
-+
- &ethernet2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&eth2_rgmii_pins_a>;
--- 
-2.34.1
 
+>
+> [...]
+> > +&wkup_i2c0 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&wkup_i2c0_pins_default>;
+> > +     clock-frequency =3D <100000>;
+> > +     bootph-all;
+> > +     status =3D "okay";
+> > +
+> > +     tps65219: pmic@30 {
+> > +             compatible =3D "ti,tps65219";
+> > +             reg =3D <0x30>;
+> > +             buck1-supply =3D <&vsys_5v0>;
+> > +             buck2-supply =3D <&vsys_5v0>;
+> > +             buck3-supply =3D <&vsys_5v0>;
+> > +             ldo1-supply =3D <&vdd_3v3>;
+> > +             ldo3-supply =3D <&vdd_3v3>;
+> > +             ldo4-supply =3D <&vdd_3v3>;
+> > +
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pmic_irq_pins_default>;
+> > +             interrupt-parent =3D <&gic500>;
+> > +             interrupts =3D <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+> > +             interrupt-controller;
+> > +             #interrupt-cells =3D <1>;
+> > +
+> > +             system-power-controller;
+> > +             ti,power-button;
+> > +             bootph-all;
+>
+> Flip the bootph-all above the system-power-controller to stay within the
+> coding style boundaries?
+
+Fixed!
+
+>
+> > +
+> > +             regulators {
+>         [...]
+> > +};
+> > +
+> > +&sdhci1 {
+> > +     /* SD/MMC */
+> > +     vmmc-supply =3D <&vdd_mmc1>;
+> > +     vqmmc-supply =3D <&vdd_sd_dv>;
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&main_mmc1_pins_default>;
+> > +     disable-wp;
+> > +     cd-gpios =3D <&main_gpio1 48 GPIO_ACTIVE_LOW>;
+> > +     cd-debounce-delay-ms =3D <100>;
+> > +     ti,fails-without-test-cd;
+> > +     bootph-all;
+>
+> Nit: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/t=
+ree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
+> keep the  bootph property above the vendor prefixed ones..
+
+Fixed!
+
+>
+> > +     status =3D "okay";
+> > +};
+> > --
+> > 2.39.2
+> >
+>
+>
+> Additionally, with dtbs_check on next-20240823, I get:
+>
+> /workdir/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dtb: leds: led-0: Une=
+valuated properties are not allowed ('linux,default-trigger' was unexpected=
+)
+> /workdir/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dtb: leds: led-0:linu=
+x,default-trigger: 'oneOf' conditional failed, one must be fixed:
+>
+> Please fix appropriately.
+
+fixed with: linux,default-trigger =3D "off";
+
+Thanks!
+
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
