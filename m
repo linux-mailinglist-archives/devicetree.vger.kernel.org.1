@@ -1,106 +1,226 @@
-Return-Path: <devicetree+bounces-97474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BACF962558
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 12:58:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A39962579
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 13:06:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA4BE1F237F4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 10:58:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8031EB22C64
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2024 11:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8950616C42C;
-	Wed, 28 Aug 2024 10:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114FC16BE29;
+	Wed, 28 Aug 2024 11:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="OBslnhaY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZKZKm0Kf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E874516B3BA;
-	Wed, 28 Aug 2024 10:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D329016B3BA;
+	Wed, 28 Aug 2024 11:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724842719; cv=none; b=la1G2hN1ZykLjGo8opgpKFBsiAtESClpubWDz98SCG9HcrVhfWLrRYyZxrBYDcn/NG7kV8GIxwxq6VByVX+3taOz9wVwUP3WVZilzXpOAjIuwAVohV0qngHEbcIoL8fRnDl7cxI5P2eos7mvFXjZWM71WY6lLZ8p42Rbhd7Hwo8=
+	t=1724843195; cv=none; b=WzlASe5YPyXjCZTmPD2ZsFDiSuLAXi/H1/Q74n9amNRPesKApzgBUkXlW179o/Feb4qqpKwpUwhAuWf0236PJs8BUpcAMdvoEuHWl5cDPEdvCFhxMiKCjVG6f0+scKhzTHAkuzU4qzhtBheSYcL0fP/n5nqUZuF6onShn3oZalY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724842719; c=relaxed/simple;
-	bh=faWKWd/jRfhvXNUmojC7SgOHNgJ64P7fWSIx46KxdIM=;
+	s=arc-20240116; t=1724843195; c=relaxed/simple;
+	bh=XZmmdO2kYeD5TGivqJdO4zd4Bfu/ZBI17NXpvzMGjEY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NofHTiFounqUYfdMMVwEJ0PMSdqJEyllKcfZ8BZlhZf/PU9xULL4L/zz/O1WbL2jiHzzygqD9wIILtiK6J9NoxAov6PG9bMBvgyL/NF1ed03DGbqHkPclM2F2IEVMJb2NmM/GEpbeoc/PxLAN34rWVQLBlV/OZ/PaDCWIpA21dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=OBslnhaY; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 63163220;
-	Wed, 28 Aug 2024 12:57:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1724842647;
-	bh=faWKWd/jRfhvXNUmojC7SgOHNgJ64P7fWSIx46KxdIM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OBslnhaY4XKqvj9xzuTx17N3jrJa8erfptO1Q76buFjYV71UNunWyqm0I7Ft2GJbp
-	 3N3WijcfcaVLnThbpncT8hQFXywZTe6/ranac9Q1lMLsDnA+G8xF5ZVTs8m1uXNOx5
-	 gfPxCecd5M0O+U/E08yyJPDed0cV9MlKobT2he4U=
-Date: Wed, 28 Aug 2024 13:58:30 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: haibo.chen@nxp.com
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH v2] dt-bindings: mfd: adp5585: Add parsing of hogs
-Message-ID: <20240828105830.GK30398@pendragon.ideasonboard.com>
-References: <20240828030405.2851611-1-haibo.chen@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EYVxg+rsTnkRLSJkixov95CSqpkCkvkEi8ChkTXpJiW0j7JqNjFop2HGarFYTO69r49DTQlk+Sp28KZsKskUzPCxqf64XEUPxFtP+pHgtS7djm5z3UVTeyYfXmxuiX4QqV7Qhj609qCvmO4zUhYDY+FTc5wqXnbb1EeeZnoVx/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZKZKm0Kf; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724843193; x=1756379193;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XZmmdO2kYeD5TGivqJdO4zd4Bfu/ZBI17NXpvzMGjEY=;
+  b=ZKZKm0Kfd6HxVAZI1O3Kcibm3eagaYXaf8eH0VSpZvBpIi8HV2eJ9CP4
+   k9sBj+htr+EYPfttTlagjxCfb9SUZIyhAdVx/kJfVzaYqRsFMtTrJjWub
+   ibp9cs2sdccz7XuYOpF2erespugr+fMGyPshgJqp9hNxgI24jr54bhCwA
+   gPukm1QKFKLCs2vXS1yJ26cQPJAeSjD0z0F9hTe5z6ZV5IeH6OCU3bxkU
+   YTIwKRBdL8s/ooAIDEpMKE6s/+bbDmbUQ71GGQ7ZYSIbLWvw8k5uyPNDC
+   Hj2QBnnpu+i9nINQ/kcAHq6qFHajJ5hbemXYgfUeBHKSKTwc8fHUyWUW4
+   A==;
+X-CSE-ConnectionGUID: c08sg9tXSPq7bOk2UJ0DPw==
+X-CSE-MsgGUID: YgAe4NpBQgGHvJyrivqnVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="22887877"
+X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; 
+   d="scan'208";a="22887877"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2024 04:06:30 -0700
+X-CSE-ConnectionGUID: 4GY8qefQRVyn6EG4fH8Fvg==
+X-CSE-MsgGUID: heAXf6J7T32tkoZMqb1/4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; 
+   d="scan'208";a="63230839"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2024 04:06:25 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 2780E1201A1;
+	Wed, 28 Aug 2024 14:06:23 +0300 (EEST)
+Date: Wed, 28 Aug 2024 11:06:23 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	20240531080707.34568-1-jacopo.mondi@ideasonboard.com
+Subject: Re: [PATCH v2 2/4] dt-bindings: media: Add bindings for
+ raspberrypi,rp1-cfe
+Message-ID: <Zs8ErwJVTGYkHfJl@kekkonen.localdomain>
+References: <20240620-rp1-cfe-v2-0-b8b48fdba3b3@ideasonboard.com>
+ <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240828030405.2851611-1-haibo.chen@nxp.com>
+In-Reply-To: <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
 
-Hi Haibo,
+Moi,
 
-Thank you for the patch.
+Thanks for the set!
 
-On Wed, Aug 28, 2024 at 11:04:05AM +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On Thu, Jun 20, 2024 at 02:07:51PM +0300, Tomi Valkeinen wrote:
+> Add DT bindings for raspberrypi,rp1-cfe.
 > 
-> Allow parsing GPIO controller children nodes with GPIO hogs.
-> 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-
-This looks good, sorry for forgetting to add it in the first place.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 > ---
->  Documentation/devicetree/bindings/mfd/adi,adp5585.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/media/raspberrypi,rp1-cfe.yaml        | 98 ++++++++++++++++++++++
+>  1 file changed, 98 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml b/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> index f9c069f8534b..ee2272f754a3 100644
-> --- a/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> @@ -42,6 +42,13 @@ properties:
->    "#pwm-cells":
->      const: 3
->  
-> +patternProperties:
-> +  "-hog(-[0-9]+)?$":
-> +    type: object
+> diff --git a/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+> new file mode 100644
+> index 000000000000..851533de2305
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/raspberrypi,rp1-cfe.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +    required:
-> +      - gpio-hog
+> +title: Raspberry Pi PiSP Camera Front End
 > +
->  required:
->    - compatible
->    - reg
+> +maintainers:
+> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> +
+> +description: |
+> +  The Raspberry Pi PiSP Camera Front End is a module in Raspberrypi 5's RP1 I/O
+> +  controller, that contains:
+> +  - MIPI D-PHY
+> +  - MIPI CSI-2 receiver
+> +  - Simple image processor (called PiSP Front End, or FE)
+> +
+> +  The FE documentation is available at:
+> +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+> +
+> +  The PHY and CSI-2 receiver part have no public documentation.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: raspberrypi,rp1-cfe
+> +
+> +  reg:
+> +    items:
+> +      - description: CSI-2 registers
+> +      - description: D-PHY registers
+> +      - description: MIPI CFG (a simple top-level mux) registers
+> +      - description: FE registers
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description: CSI-2 RX Port
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 4
+> +
+> +          clock-lanes:
+> +            maxItems: 1
+
+minItems needs to be 1 as well.
+
+Or... is this actually configurable in hardware?
+
+> +
+> +        required:
+> +          - clock-lanes
+> +          - data-lanes
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rp1 {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      csi@110000 {
+> +        compatible = "raspberrypi,rp1-cfe";
+> +        reg = <0xc0 0x40110000 0x0 0x100>,
+> +              <0xc0 0x40114000 0x0 0x100>,
+> +              <0xc0 0x40120000 0x0 0x100>,
+> +              <0xc0 0x40124000 0x0 0x1000>;
+> +
+> +        interrupts = <42>;
+> +
+> +        clocks = <&rp1_clocks>;
+> +
+> +        port {
+> +          csi_ep: endpoint {
+> +            remote-endpoint = <&cam_endpoint>;
+> +            clock-lanes = <0>;
+> +            data-lanes = <1 2>;
+> +          };
+> +        };
+> +      };
+> +    };
+> 
 
 -- 
-Regards,
+Terveisin,
 
-Laurent Pinchart
+Sakari Ailus
 
