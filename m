@@ -1,120 +1,173 @@
-Return-Path: <devicetree+bounces-97852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7F4963DB9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:53:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17D50963DC7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:55:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FC581F22D77
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:53:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C96F1C242BA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9137C189BBD;
-	Thu, 29 Aug 2024 07:53:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 887DE219E0;
+	Thu, 29 Aug 2024 07:55:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zo3JL890"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OciKxiMe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9768161914
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 07:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C263161914;
+	Thu, 29 Aug 2024 07:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724918013; cv=none; b=IQDrR4S026v5YBKYH9YytJpSzmD838ENd50+5BSx9WSeFwDp3NuIS5olR82WmSSntAe+HPDXYMK6VEb9mGle7cJ0UHbPpby2I1ZfMaruOejftnTpsjowhb98KomSy3IosNteZqFRFr0w3XNzUUzJcfmeK0Babqy2f2F91BAjesE=
+	t=1724918139; cv=none; b=l0sMvqUraEE8cRG+q6lNBRE3lRqvwlKUIeMnF6MtlS1XxLlKxYZ789vG07ckbqTHZ8hk3gNQ+HWCdvRlFznNkjOgDiVzEPTHgiweI7Q0goXhOyZNWVDDoftaz6yv34Kh6kpGF9l7aguz3sFTaxF0Bb0LN5XnjrM6L1E2sL/2TL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724918013; c=relaxed/simple;
-	bh=W3a7fcWo+PgBtFPMvzXW2DFGxj1QeaatlOg1GiAuNAc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=abvhlvv5ItkLfE6ggM9KxYsFNuDRpamGwfxawaE8sjqVpClIQsdLcftJG5p1Feia4YC9W4t80j+smDLRdShyuLW+kN1/RggHCwDcHhDXknkLgtyApY33pNpCyug0JxpgQCLGTg9lGK3vusdDd5v3WMro1uic0drYN7A5C+3tn/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zo3JL890; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42bb885f97eso333995e9.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 00:53:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724918010; x=1725522810; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=InYUyDiltHfYnX1zRpFtWut+hZvc9QSePUy7MTBnp5I=;
-        b=Zo3JL890FP4MaLYz0qiqH5FwtBQfy6cmsAOIumaQBxs+pivCLnGCAsEIYGzOoRzUAE
-         GTnQgpUBjB9IfwZrMq+N/E2xyrWhRELw6B8AEtBMsJyfAD0iBVWmHgsb1f1NUOsK3haq
-         Qk+bmgeLbW1mJYf5a9p2qFL2FSLkwc6AofnDilxJNEizgbBE6KIU+K0s3aB8AGKF15Hu
-         Gegzvpp1yYbf2cTrP/UjAvywBFCjPfKGPj1GTQPntP52MbrzQctAPmomgdf0FBZoXnI0
-         pQGo+wkkN0TQEL9OtGNFWWPZSa2KBFcxyULgsFeMNRD9n54cy0F7Y/HgdDmidavXEgUH
-         PJ3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724918010; x=1725522810;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=InYUyDiltHfYnX1zRpFtWut+hZvc9QSePUy7MTBnp5I=;
-        b=FkphxGYNeq1z/3K6t9zpOHGD1R+kX0HfAnBOU6OzKC/lWKB4TobIkLxeIFXiY21EMK
-         OrzPkDJDUCdIiUS3Kcd64IJr23ZbujrUYj41kDDoOOMgW4FSfK3jA3aeYwrcLTCLVBw4
-         rlY1qdvTe/I4AL437IJ4e3YMhCunqMHTzBDgRS0CB1eaBP+/UN/dmfbX5TwHSbtjWrPv
-         EqjrbMxlQGulhekC4ULHsumgsopfuvzrG8GGi5PGLmKw+suEzGVTyQ3SRw1flMAhmKfk
-         sHmUSQJ1MTiuaQSl5lUDBZV+RepuLob8k1WnYR0x+wIbBZWRP+5CmUsTsk6A9ebqZy6h
-         bbFg==
-X-Forwarded-Encrypted: i=1; AJvYcCVkpmiiI4aJuCaym7Rae5J3fbUB/nwg9ugWKDcRXbzJvSfHf0dtsojbZFqT4DnL7//bXKQU0mW2LmOK@vger.kernel.org
-X-Gm-Message-State: AOJu0YztncCKUnNKTJNdfYLpbRUeqiGjWNCZ2nNBIhpKQ9K8CgDGpIzs
-	Mq4FZb2T1M3PdSCuhdSsvTFWe9y5Mrz7scEJnsRkrfE5gF/RZDydAD3BuW1pRp4=
-X-Google-Smtp-Source: AGHT+IG36wbd/M5Oo2bLRecVz+d/tZ6IYaPfKGqL9VUz1yj12FPMnhEBY5MgAchFiPL25jDtKrOvaA==
-X-Received: by 2002:a05:600c:5025:b0:426:64c1:8388 with SMTP id 5b1f17b1804b1-42bb7461abdmr5020065e9.17.1724918010053;
-        Thu, 29 Aug 2024 00:53:30 -0700 (PDT)
-Received: from linaro.org ([82.79.186.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee4aa22sm733789f8f.7.2024.08.29.00.53.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 00:53:29 -0700 (PDT)
-Date: Thu, 29 Aug 2024 10:53:28 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	festevam@gmail.com, abelvesa@kernel.org, peng.fan@nxp.com,
-	Wei Fang <wei.fang@nxp.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [Patch v3 0/4] add NETCMIX block control support on i.MX95
-Message-ID: <ZtAo+B0XOE558+93@linaro.org>
-References: <20240829011849.364987-1-wei.fang@nxp.com>
- <172491778768.2521946.17064463983702008243.b4-ty@linaro.org>
+	s=arc-20240116; t=1724918139; c=relaxed/simple;
+	bh=gfwdGkshrn41f6ZPGzSwIbOrEfaOncX7XjVktdIoKMs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LdxATifPQxnHQ5m8bybFCqu/Gy1pYlVbNjTyYCqk7gVU21Fkdb4GffXgFhyQvnopdNeyR2IM2PkpV/rn3Oeb6p7mZoqXZ6WT6l+go0DllHLP87MfyU01xqpMR/IYxPvVUhh+Ni65QBCsNKOM7QBKDPgY0qXhk1TL7U216+XsQ38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OciKxiMe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22735C4CEC1;
+	Thu, 29 Aug 2024 07:55:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724918138;
+	bh=gfwdGkshrn41f6ZPGzSwIbOrEfaOncX7XjVktdIoKMs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OciKxiMeWeucX59OyqP9P1woa59CF909KQAk9RW4bWF437Xo5fk36WARTd9cWfkSs
+	 Q1/nYuTsdjijVVRQd4vCuD7cRbt0zplTslUD25VUBtPrUSYDd1j1c+ok0k7X/AmFG6
+	 CM81Oqh8JAsugp79kv04NeAr4vWe3wHZQ/BdAh7/d3cFlT+30xmB09Jg1jA+FnKApe
+	 MwWL5V6/WbQd5kBjhKtTSLYbbNJCmlMZW5ev5UWdPyLcsssQxliGw/8xOgxDturACN
+	 rR2+R4Tve7AjmG83nBDKLa3ZfXyZdvGuNlZoFFtDY3sjOf3FXzAFX90tKqiGBedjUj
+	 R2fq25LQsCG5A==
+Message-ID: <8ce757a9-ea4c-4dd2-8aaa-e04f21eb3f63@kernel.org>
+Date: Thu, 29 Aug 2024 09:55:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <172491778768.2521946.17064463983702008243.b4-ty@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: media: convert aspeed-video.txt to
+ dt-schema
+To: Jammy Huang <jammy_huang@aspeedtech.com>, robh@kernel.org,
+ conor+dt@kernel.org, eajames@linux.ibm.com, mchehab@kernel.org,
+ joel@jms.id.au, andrew@aj.id.au, hverkuil@xs4all.nl, pmenzel@molgen.mpg.de,
+ krzk+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20240829064508.3706672-1-jammy_huang@aspeedtech.com>
+ <20240829064508.3706672-2-jammy_huang@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240829064508.3706672-2-jammy_huang@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-08-29 10:50:16, Abel Vesa wrote:
+On 29/08/2024 08:45, Jammy Huang wrote:
+> Convert the ASPEED SoCs video txt bindings to dt-schema.
 > 
-> On Thu, 29 Aug 2024 09:18:45 +0800, Wei Fang wrote:
-> > The NETCMIX block control consists of registers for configuration of
-> > peripherals in the NETC domain, such as MQS, SAI and NETC. So add the
-> > NETCMIX block control support on i.MX95 platform.
-> > 
-> 
-> Applied, thanks!
-> 
-> [1/4] dt-bindings: clock: add i.MX95 NETCMIX block control
->       commit: 4b78b54762dbfc2f22f28655fa3cf6f5d50de197
-> [2/4] dt-bindings: clock: add RMII clock selection
->       commit: b4f62001ccd3fa953769ccbd313c9a7a4f5f8f3d
-> [3/4] clk: imx95: enable the clock of NETCMIX block control
->       commit: 42dc425fa8b5be982bcc2025d5bf30be8b26da86
-> [4/4] arm64: dts: imx95: Add NETCMIX block control support
->       (no commit info)
+> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
+> ---
+>  .../bindings/media/aspeed,video-engine.yaml   | 78 +++++++++++++++++++
+>  .../bindings/media/aspeed-video.txt           | 33 --------
+>  2 files changed, 78 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/aspeed,video-engine.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/aspeed-video.txt
 
-For some reason, b4 ty thinks it's OK to mention this 4th patch as
-applied, while it is obviously not.
+Fix the paths in kernel (git grep).
 
-I only applied the first 3 patches.
+...
 
-> 
-> Best regards,
-> -- 
-> Abel Vesa <abel.vesa@linaro.org>
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  memory-region:
+> +    description: |
+> +      Phandle to a memory region to allocate from, as defined in
+> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+
+Useless description, completely redundant. Please say something useful
+about this particular memory region and its usage.
+
+Missing maxItems.
+
+> +
+> +  aspeed,scu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Specifies the scu node that is needed if video wants to capture
+> +      from sources other than Host VGA.
+> +
+> +  aspeed,gfx:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Specifies the Soc Display(gfx) node that needs to be queried to get
+> +      related information if video wants to use gfx as capture source.
+
+These two were not in the binding. Mention in the commit msg any changes
+from pure conversion with rationale WHY you are changing the binding.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +
+> +additionalProperties: false
+Best regards,
+Krzysztof
+
 
