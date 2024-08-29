@@ -1,120 +1,154 @@
-Return-Path: <devicetree+bounces-97926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7CA3964263
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:55:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EABBB964295
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:05:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61194286221
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:55:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2887D1C21DAC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:05:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B59719006E;
-	Thu, 29 Aug 2024 10:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EEB19068E;
+	Thu, 29 Aug 2024 11:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="vKkbXT3v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HL1vgj10"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F168D189B95;
-	Thu, 29 Aug 2024 10:55:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D4518F2C1;
+	Thu, 29 Aug 2024 11:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724928906; cv=none; b=FSzmbrfydfzi0xKqcF2Eb8HkeLIuTCgU2l6GbzHKa202i/Oh5heEfch0AHmxpp03IwSdFho1Y+gLrrATcGLq29+tf0BKdygRzVSkg+LDfrLfDLPr5DxGEJRHxCC3Rx+7t3IS0+wo1OOPQ9GO0qeFbzDeSSkhcQMlk+gR0jjrmUE=
+	t=1724929523; cv=none; b=G1ELFUwQrGxUOzOyBTTri5q+61XHSKT2DYS2P/M6X9qJkCBKDI3W5sT6H1nnYtfhMGMGuGe3243C5es2mBZ1DusXOiTq0bhQ+5jYotkVjDr0TOhq8VGgbwICfqh4uDmQ9MwSjjOQzUupiUrRkKAHu2DMp4lHTCCyT+qZU0F7wY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724928906; c=relaxed/simple;
-	bh=t5PoyfbtCc3q1wTlJMYyxUEyIDQt5ZPFVQ3ZdRZkAYg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=tEz8bbGIUCh992+xhQ5m6dH2CyrvzYMpOaXfUSAm21Dc05joOdoAaAAXBtBhAztf+1pLc/44+UaAauD+8M1y1jsKguD+1k+Of+bQTVZ9Z/fQHneMpDnqw6dimWOsy1SCScKU0agRmjedGs+QgTsSSFfuVgy4w6uecdn+D39J77U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=vKkbXT3v; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1724928904; x=1756464904;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=t5PoyfbtCc3q1wTlJMYyxUEyIDQt5ZPFVQ3ZdRZkAYg=;
-  b=vKkbXT3v+FthiaT9NLId5uAFolvyewHLnEjtHaReSacZ+OKCnpVcKDj0
-   T1mNCgmR4fusdfnNdIi232sOHe7D/vGgEQUJEkreJeNcaIp4zEVAPXb7c
-   cpMlvBOUAJsNemW6cEgYsnKwFC/6T7wlDkZFZSCkH75GjQ6HGLPPu9WGi
-   6m6aRCaLU7GthlrAgGcCHRx+te/hRo44rWxvjS/W/5fd5cO7vJpqEVww3
-   6cwWpVXQbl90QJ/Fh3AlaD0JcNOS5wTFvdGlyD/ODR4qzShW2dzdkmHE8
-   ksTholwMhezu1bhQxWhFlU64UpwwvryTLqcolvt0jx303a3lHF8BE7ocF
-   Q==;
-X-CSE-ConnectionGUID: l+lO9GWMSNi3wu1+kd0hOg==
-X-CSE-MsgGUID: VclacZE3QyiP8UIdjR2kkw==
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; 
-   d="scan'208";a="198480025"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Aug 2024 03:55:03 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 29 Aug 2024 03:54:44 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 29 Aug 2024 03:54:39 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Thu, 29 Aug 2024 16:24:37 +0530
-Subject: [PATCH] dt-bindings: clocks: atmel,at91sam9x5-sckc: add sama7d65
+	s=arc-20240116; t=1724929523; c=relaxed/simple;
+	bh=ANsBIa2TdUYJmIfErVq94w5VFjOAUaSvlwr8O3efTQM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kZOj0NaU0kaQapNNuiH6OrgU7ujjF/TUFBj3bSVCWdlWHN61rnOQi9pZtvxyUfWYHr0keWAqyF5ykElWyq6yUxaXYEeB2cOt20z1uPtYsxgd0d/HglT73JMxK27JXsYdAIPyhfQvLr8a4442ktlkSWkMhMsfZ7rEhLT/BnGaa+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HL1vgj10; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-71431524f33so419884b3a.1;
+        Thu, 29 Aug 2024 04:05:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724929521; x=1725534321; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gsCX4I75Bt35ZXKA3R7bksaicVq4gEOUFqU0ER8sKQo=;
+        b=HL1vgj10vF4+lPPraju8eTYEXAMQDUxLlK14dvkOOVFVJFe19+2c4ZK4IycHRbOWCF
+         MjFN7EsuAJEumxeIv2tEoB7hTJ/Z4VF76RaT6CeqIeUDm1FNzQw3vKmrEP6IFN89zqoN
+         iDdKBwkSxiaKm83rwQnz4A/rlUYFXLdrRC8Wrhxbo3x3LuzExzCB8cKSg1hY1sA+veqN
+         gYvF7Mm900jGK4aq2gsZaJS5HXP8mOP4l4Gt9STTOcthakx0wSG/dwMlUBAOXbuzRpAG
+         QcQPZdYRhSF9fbmdMjWeWGxE1G6ci/Lx8v+/76aNPHIGoFC8iStSnBc8gmaI28EJCEoC
+         TwWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724929521; x=1725534321;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gsCX4I75Bt35ZXKA3R7bksaicVq4gEOUFqU0ER8sKQo=;
+        b=Pim0e7z0O5Rd8ArSsE3G0Zq2Uo/7RWjQv5cCtqCOGmzPY+MQrqXeMLUfxgo3cAEEY2
+         9orIgANCKiXZ0Yav4/LlBIpBwgkKOCIOIwq6dORMHBhNg0ud1efqYrQXwJp4u+iF4cle
+         cgun+WbHv6HRrknei5idlXzzhlLJSKvnJa1dHYsTlhkAEY+sPL1fROOpYYjAGwG/0cEw
+         6wu8bZMo4rzrcKuWPU4FZqxgAUoPkIL11o+rPeXTIDYkn6PDUPSBc4OWTjj90lyNRp52
+         HvEPbZ3T19rbTQaP5LeNdaWyASU12EKApuFvcqI0SOM6+qUqh3Cm8hefx26LEDg77DrD
+         rR9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUMbWuP35hx3xKnosfx6Xvq4gsZdDuLhTjxa+y1R55rl1yVf6rkabcoc38uo159R9Ri6Q7y6+PECbrM@vger.kernel.org, AJvYcCWj8zbT12PGiYCbeM6Tn7Zmo4B6PJRJYfZmykjAy1K9sDrHRJMExnYL971dbiiOun4Hcjn26wyqEascJrhK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxCjs/l8SBUZpuu/h74JSRGiqF/bw7ixYGCa5GLxsjYukFwwoC
+	JO2PVbs6E9dtJF4LLO+GCMcAAyj+BX4QpZQm/g2avN0Hw/a0gG9h
+X-Google-Smtp-Source: AGHT+IG5uHzBuuTpBUgVsDRXpGnCV/Y6SAkTlghqjk76zLB5VEdpH82AMuT/Q0uG81tPW1Uzq1lrfA==
+X-Received: by 2002:a05:6a00:1806:b0:714:2069:d90e with SMTP id d2e1a72fcca58-715dfc7a4fbmr3076028b3a.26.1724929521137;
+        Thu, 29 Aug 2024 04:05:21 -0700 (PDT)
+Received: from localhost.localdomain ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-715e5576cc7sm906671b3a.32.2024.08.29.04.05.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 04:05:20 -0700 (PDT)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH RESEND 0/3] Add AIC support for A7-A11 SoCs
+Date: Thu, 29 Aug 2024 19:02:14 +0800
+Message-ID: <20240829110436.46052-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240829-sama7d65-sck-v1-1-3e7b19e3cbf9@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAGxT0GYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDCyNL3eLE3ETzFDNT3eLkbN3ExCSLFENjYxMz0yQloJaCotS0zAqwcdG
- xtbUAbsGTwV4AAAA=
-To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
-	<nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Dharma Balasubiramani <dharma.b@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724928879; l=988;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=t5PoyfbtCc3q1wTlJMYyxUEyIDQt5ZPFVQ3ZdRZkAYg=;
- b=76ova2mjUCfXV2DmLI+g/txlPa9qwJQ0G34fdNFqgkL9I2hI7qeGcqAtvblrXUQy+xV1Ggy+n
- RNf7neRMIr5ACX7WSxW+0WeBghjYEodAxHaOIa0ZxXUptU+8W/kIKZe
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+Content-Transfer-Encoding: 8bit
 
-Add bindings for SAMA7D65's slow clock controller.
+Resend to correct dt-bindings issues pointed out by Rob.
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
- Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-index c2283cd07f05..d4cf8ae2961e 100644
---- a/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-+++ b/Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
-@@ -20,6 +20,7 @@ properties:
-       - items:
-           - enum:
-               - microchip,sam9x7-sckc
-+              - microchip,sama7d65-sckc
-               - microchip,sama7g5-sckc
-           - const: microchip,sam9x60-sckc
- 
+This series is a second attempt at adding support for A7-A11 SoCs to
+Linux, it is based on a previous attempt, which you can find at [1].
+However, there have been quite a bit of changes.
 
----
-base-commit: b18bbfc14a38b5234e09c2adcf713e38063a7e6e
-change-id: 20240829-sama7d65-sck-aab8d133465b
+First, the boot process has changed, now, the boot process includes
+a "1337" version of checkra1n [2], a custom PongoOS binary [3], and
+a modified version of m1n1 [4]. The kernel is appended to m1n1 and loaded
+by it.
 
-Best regards,
+This attempt also supports SMP, which has uncovered some differences
+in the A7-A11 AIC. Namely, although A11 supported fast IPI, it only
+supported "global" fast IPIs via SYS_IMP_APL_IPI_RR_GLOBAL_EL1,
+and SYS_IMP_APL_IPI_RR_LOCAL_EL1 does not exist on A11. As a result,
+there are now three feature levels:
+
+A7 - A10: No fast IPI
+A11: "Global" fast IPI
+M1: Global and Local fast IPI
+
+Each feature level is strictly an extension of the previous, for example,
+M1 will also work with the A7-A10 compatible. As a result, the
+modifications only includes if'ing out of features, in order to make
+the existing driver work on older SoCs.
+
+The A10(X) contains P-core and E-core pairs where only one core in each
+pair may be active at one time, controlled by CPU frequency. A RFC patch
+will be posted to disable 32-bit executable support on A10(X), as it only
+supported 16KB page size anyways. However, such a patch is not required
+to run AArch64 Linux on A10. At worst, any attempt to run 32-bit
+executables will result in the process crashing.
+
+Initial device trees will be posted in a later patch series, likely when
+the AIC modifications are accepted.
+
+Asahi Linux downstream kernel note:
+These patches will not work with the Asahi Linux downstream kernel,
+as these earlier SoCs do not support state retention across deep WFI,
+which results in the CPUs going back to RVBAR on cpuidle.
+
+[1]: https://lore.kernel.org/asahi/20221007200022.22844-1-konrad.dybcio@somainline.org/
+[2]: https://checkra.in/1337
+[3]: https://github.com/asdfugil/pongoOS/tree/mini
+[4]: https://github.com/asdfugil/m1n1-idevice
+
+Nick Chan (3):
+  dt-bindings: apple,aic: Document A7-A11 compatibles
+  irqchip/apple-aic: Only access IPI sysregs when use_fast_ipi is true
+  irqchip/apple-aic: Add a new "Global fast IPIs only" feature level
+
+ .../interrupt-controller/apple,aic.yaml       |  8 ++-
+ drivers/irqchip/irq-apple-aic.c               | 49 ++++++++++++++-----
+ 2 files changed, 43 insertions(+), 14 deletions(-)
+
 -- 
-Dharma Balasubiramani <dharma.b@microchip.com>
+2.46.0
 
 
