@@ -1,195 +1,122 @@
-Return-Path: <devicetree+bounces-98110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D28B964DE5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 20:41:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA98964DE9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 20:43:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 887901F237AB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:41:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48ADF2832D2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE141B8EAF;
-	Thu, 29 Aug 2024 18:41:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D130B1B7913;
+	Thu, 29 Aug 2024 18:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e2uAjRYx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nZzfZU8N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3581B8EAD
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 18:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C4B15B13D;
+	Thu, 29 Aug 2024 18:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724956867; cv=none; b=hzUdIsjKgPrEg8LT81uiNRvVYwEz5KNB2fpS6iXX99mbfF+0p3otWP1kEllf79iumvx6JXj+TiQp5fL7AT0w2BxIfoHXY/Kyw+SfYoF5DE2yeJ9/yQoNeAIbG56Qk1EKvqQBUHDYg82nUnpxqzQhLIl/s4kDH5KE785Eo0cy/ZM=
+	t=1724956985; cv=none; b=t5cxhR1qWZHn9c5zuJeeHnJlwlarRHj/2zfkKjV91gmFkhFfMQYVLiNshphXwArgImTnhIM91pBrB2Jv6lTtufSQq10U1Jb8LEuWAuyxci13XpkhIn2dEK1S61cf5A2MFWBjrG+WiwIlvpTnld8QoyOMRX0tnFmrMVWkGNKuLCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724956867; c=relaxed/simple;
-	bh=Y5ftCvwbu1YfN/WFW/s8mq+4lwkhQohqLKOcSJSl3L0=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=tXt/1CNVFvHajFXXp3tWj5Gm7TKlBmeB3NcQX3HvSfioB3r7SyBtvZcNZCYCfwoXzsVJUaNcBCQJKoa4ofP/sDMh0Iqy92HPvAvqedGFgIo4CXCcEsTqfER3NmfpyJKa0e1G7ShURYwXekAmvhTYVdI1FJ4CE3yO/+gWX2g/vnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e2uAjRYx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A1B3C4CEC1;
-	Thu, 29 Aug 2024 18:41:07 +0000 (UTC)
+	s=arc-20240116; t=1724956985; c=relaxed/simple;
+	bh=aRsxTQ+z2/BcIQan4A5CUzdaVyQJyjbRmw0k512Pgc8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BdmMc5lpWnGvPunZxfX1jbkN9f0I/crNslGMWWpblTW5iNWQi0ZZCDhjawuCIrp7OtZsOXHjx7sFHRqBOWb+wjw3mCm/I02sd1A8FRT5mUGa90nmr6cHIjlZnsyOiePhoONrNwjAjOxW7HmaYNifahHn+Kw0TO62nULTTIVsGRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nZzfZU8N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 196B6C4CEC6;
+	Thu, 29 Aug 2024 18:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724956867;
-	bh=Y5ftCvwbu1YfN/WFW/s8mq+4lwkhQohqLKOcSJSl3L0=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=e2uAjRYxvt6O3B4ae/frxJhUOnA+wHRGxE3UfLG2tSoAwYKNIOsof9+jegnlSveoL
-	 p+Rak0Lbd666NKoROdfqQ9WCjIvpPGd6/rWWsYgvDB2qaQ/WkSyO6okH/Pg3crt3+J
-	 YdJuzSXoY7Wqi/yUcEZz3bI24dzCNuX69kDtUX5R1ciZXJqchX6OP6r4unBSHh70z7
-	 D2M8k0d49Pd6qg+VxjqkSccw3fIiYrwgZU0YDth+gxNieKFi3qoJwIVj5Yi5oBsGJC
-	 HA5ECVQXFMXCpqZs4scvWhObpraplFEu/ymJNJEnY+v1kCX9oy6/ha9rmMOkP/nsTf
-	 54uT4rZAjzzGg==
-Date: Thu, 29 Aug 2024 13:41:05 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1724956985;
+	bh=aRsxTQ+z2/BcIQan4A5CUzdaVyQJyjbRmw0k512Pgc8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=nZzfZU8Nc9ogh9GburQvKebfAYSydbvClced2l0SeaoXG4zdlxWnpPztN93Br1yT/
+	 2XgrG9cc8zU55zHWzcy9c2JWWyO9+j3xHCDB+oCRYG5AfJjg7sjbKgCa5q02TONz84
+	 FyUE2p9dY9siDFiQM3jTvqbuB2N3kKOoMM/RKYz12TyEfC2DaiPhC8ODkEEh534lDa
+	 P/nRY2K7gEBXkGgYYxzcR+w2O8Xm8Bg3o7pppaXmHhf42qFUzBkriL8yABrJ/mIPfk
+	 WxhUCQv3e2uA9Op91Lw+76hwADJOSake1Bcs49WvlrZGSZ9w+OTvQShXCoGz2FqwDf
+	 kn0QaCH8n8CAw==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-533de5a88f8so994453e87.3;
+        Thu, 29 Aug 2024 11:43:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWCD9g6X9nD5qDJsUrGdNfFcN3FmHGgZq91xxVeayOOZlca9UTTQq0sFCDvVmS7T2qsxXw5BQUcwih3@vger.kernel.org, AJvYcCWkwkTHlXI7U6wk4VHShyp/y2/Aom/PSOauGVw94n1qvFqFR5lUU60EXtw2B6CumbVHmKYN5521ZlTe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA1iG8c3vkAlSKAweOZToG2hj6G5iWxax9ybA0IZrWnVg1azkH
+	dyOfjRicnhKPPrAflMm7hZI28hiYdV4yc8wfxNBpol3Spdv7BM2g847vAe1g7kVKlkExPgj4QMp
+	E8P4dZwoU8lOBa9otUHf2+kBC7w==
+X-Google-Smtp-Source: AGHT+IEOIsXBTVW1a7P5gxxUALYyRo8u6jCniTiE/wJrT5MFBSpFvSrte1KVxGcAUEkzg2n5lOZfgI3jwMoiJbIaASA=
+X-Received: by 2002:a05:6512:3d9f:b0:532:ec7d:9c68 with SMTP id
+ 2adb3069b0e04-5353e5c05c0mr2562280e87.55.1724956983385; Thu, 29 Aug 2024
+ 11:43:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>, 
- linux-rockchip@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Diederik de Haas <didi.debian@cknow.org>
-In-Reply-To: <20240829-friendlyelec-nanopc-t6-lts-v6-0-edff247e8c02@linaro.org>
-References: <20240829-friendlyelec-nanopc-t6-lts-v6-0-edff247e8c02@linaro.org>
-Message-Id: <172495659080.899972.1462110472298011019.robh@kernel.org>
-Subject: Re: [PATCH v6 0/9] FriendlyELEC NanoPC-T6 improvements
+References: <20240829113158.3324928-1-festevam@gmail.com> <172495658983.899923.10430034751474903183.robh@kernel.org>
+In-Reply-To: <172495658983.899923.10430034751474903183.robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 29 Aug 2024 13:42:50 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL7+5q=7rag4UqfHUR96ii-j8vDksRj2xWnWs=Y_FWU7A@mail.gmail.com>
+Message-ID: <CAL_JsqL7+5q=7rag4UqfHUR96ii-j8vDksRj2xWnWs=Y_FWU7A@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: trivial-devices: Document elgin,jg10309-01
+To: Fabio Estevam <festevam@gmail.com>
+Cc: heiko@sntech.de, broonie@kernel.org, krzk+dt@kernel.org, 
+	linux-spi@vger.kernel.org, conor+dt@kernel.org, 
+	otavio.salvador@ossystems.com.br, Conor Dooley <conor.dooley@microchip.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Aug 29, 2024 at 1:41=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+>
+> On Thu, 29 Aug 2024 08:31:56 -0300, Fabio Estevam wrote:
+> > The rv1108-elgin-r1 board has an LCD controlled via SPI in userspace.
+> > The marking on the LCD is JG10309-01.
+> >
+> > Add an entry for the "elgin,jg10309-01" compatible string.
+> >
+> > Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Acked-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> > Changes since v3:
+> > - Fix the series numbering version.
+> >
+> >  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+>
+>
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>
+>   pip3 install dtschema --upgrade
+>
+>
+> New warnings running 'make CHECK_DTBS=3Dy rockchip/rv1108-elgin-r1.dtb' f=
+or 20240829113158.3324928-1-festevam@gmail.com:
+>
+> arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: display@0: 'spi-cpha', 's=
+pi-cpol' do not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/trivial-devices.ya=
+ml#
 
-On Thu, 29 Aug 2024 14:26:51 +0200, Marcin Juszkiewicz wrote:
-> This series updates FriendlyELEC NanoPC-T6 situation. There is non-LTS
-> (2301) version of a board and LTS (2310) version.
-> 
-> This series creates common DTSI for both boards and then separate
-> NanoPC-T6 and NanoPC-T6 LTS DTS files. This way T6 gets MiniPCIe section
-> and T6-LTS gets USB20 section.
-> 
-> Then set of changes for both versions are done:
-> 
-> - enable USB-C port (one orientation only)
-> - enable Mali GPU
-> - enable IR receiver (tested using ir-keytable)
-> - enable SPI flash (present on LTS, optional on non-LTS)
-> - enable Mask Rom button as input device
-> 
-> Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-> 
-> ---
-> Changes in v6:
-> - split 2nd patch into parts:
->   - create common DTSI
->   - move non-LTS (2301) parts to rk3588-nanopc-t6.dts
->   - add LTS (2310) in rk3588-nanopc-t6-lts.dts
-> - Link to v5: https://lore.kernel.org/r/20240826-friendlyelec-nanopc-t6-lts-v5-0-ba33edda7f17@linaro.org
-> 
-> Changes in v5:
-> - added Reviewed-by to 'add spi flash' patch
-> - dropped adding SPI M1 pinctl
-> - changed ir-receiver to have pinctrl like Jonas Karlman suggested
-> - Link to v4: https://lore.kernel.org/r/20240822-friendlyelec-nanopc-t6-lts-v4-0-892aebcec0c6@linaro.org
-> 
-> Changes in v4:
-> - added Acked-by to dt-bindings patch
-> - create common dtsi for both board versions
-> - nanopc-t6.dts has minipcie items
-> - nanopc-t6-lts.dts has usb 2.0 host enablement
-> - Link to v3: https://lore.kernel.org/r/20240821-friendlyelec-nanopc-t6-lts-v3-0-3ecfa996bbe0@linaro.org
-> 
-> Changes in v3:
-> - create separate NanoPC-T6 LTS devicetree as suggested
-> - Link to v2: https://lore.kernel.org/r/20240821-friendlyelec-nanopc-t6-lts-v2-0-e0138bb10042@linaro.org
-> 
-> Changes in v2:
-> - merged changes into NanoPC-T6 dts file
-> - add SPI flash pinctl for SPI M1
-> - enable SPI on NanoPC-T6 LTS
-> - enable USB-C port (one orientation only)
-> - enable Mali GPI
-> - enable IR receiver (not tested)
-> - Link to v1: https://lore.kernel.org/r/20240820-friendlyelec-nanopc-t6-lts-v1-1-da1273c3e08e@juszkiewicz.com.pl
-> 
-> ---
-> Marcin Juszkiewicz (9):
->       dt-bindings: arm: rockchip: Add NanoPC-T6 LTS
->       arm64: dts: rockchip: prepare NanoPC-T6 for LTS board
->       arm64: dts: rockchip: move NanoPC-T6 parts to DTS
->       arm64: dts: rockchip: add NanoPC-T6 LTS
->       arm64: dts: rockchip: add SPI flash on NanoPC-T6
->       arm64: dts: rockchip: add IR-receiver to NanoPC-T6
->       arm64: dts: rockchip: enable GPU on NanoPC-T6
->       arm64: dts: rockchip: enable USB-C on NanoPC-T6
->       arm64: dts: rockchip: add Mask Rom key on NanoPC-T6
-> 
->  .../devicetree/bindings/arm/rockchip.yaml          |   6 +-
->  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
->  .../boot/dts/rockchip/rk3588-nanopc-t6-lts.dts     |  61 ++
->  arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts  | 908 +--------------------
->  ...{rk3588-nanopc-t6.dts => rk3588-nanopc-t6.dtsi} | 143 +++-
->  5 files changed, 189 insertions(+), 930 deletions(-)
-> ---
-> base-commit: d5d547aa7b51467b15d9caa86b116f8c2507c72a
-> change-id: 20240820-friendlyelec-nanopc-t6-lts-00c7678c3bd7
-> 
-> Best regards,
-> --
-> Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-> 
-> 
-> 
+I'd be okay if trivial-devices.yaml references spi-peripheral-props.yaml.
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y rockchip/rk3588-nanopc-t6-lts.dtb rockchip/rk3588-nanopc-t6.dtb' for 20240829-friendlyelec-nanopc-t6-lts-v6-0-edff247e8c02@linaro.org:
-
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: video-codec@fdb50000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['rockchip,rk3588-vpu121', 'rockchip,rk3568-vpu'] is too long
-	'rockchip,rk3588-vpu121' is not one of ['rockchip,rk3036-vpu', 'rockchip,rk3066-vpu', 'rockchip,rk3288-vpu', 'rockchip,rk3328-vpu', 'rockchip,rk3399-vpu', 'rockchip,px30-vpu', 'rockchip,rk3568-vpu', 'rockchip,rk3588-av1-vpu']
-	'rockchip,rk3188-vpu' was expected
-	'rockchip,rk3228-vpu' was expected
-	'rockchip,rk3066-vpu' was expected
-	'rockchip,rk3399-vpu' was expected
-	from schema $id: http://devicetree.org/schemas/media/rockchip-vpu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: /video-codec@fdb50000: failed to match any schema with compatible: ['rockchip,rk3588-vpu121', 'rockchip,rk3568-vpu']
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: /video-codec@fdba0000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: /video-codec@fdba4000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: /video-codec@fdba8000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: /video-codec@fdbac000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: regulator@42: Unevaluated properties are not allowed ('rockchip,suspend-voltage-selector' was unexpected)
-	from schema $id: http://devicetree.org/schemas/regulator/fcs,fan53555.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: pmic@0: regulators:dcdc-reg4: Unevaluated properties are not allowed ('regulator-init-microvolt' was unexpected)
-	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk806.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: pmic@0: Unevaluated properties are not allowed ('regulators' was unexpected)
-	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk806.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: codec@1b: Unevaluated properties are not allowed ('assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks', 'port' were unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/realtek,rt5616.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: sound: 'simple-audio-card,hp-pin-name' does not match any of the regexes: '^simple-audio-card,codec(@[0-9a-f]+)?$', '^simple-audio-card,cpu(@[0-9a-f]+)?$', '^simple-audio-card,dai-link(@[0-9a-f]+)?$', '^simple-audio-card,plat(@[0-9a-f]+)?$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dtb: vcc3v3-sd-s0-regulator: Unevaluated properties are not allowed ('enable-active-low' was unexpected)
-	from schema $id: http://devicetree.org/schemas/regulator/fixed-regulator.yaml#
-
-
-
-
-
+Rob
 
