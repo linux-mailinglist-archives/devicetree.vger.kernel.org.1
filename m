@@ -1,325 +1,158 @@
-Return-Path: <devicetree+bounces-97808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7175D963B0A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:11:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6386963B01
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:10:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 271CA282E87
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 06:11:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8B6A1C2225F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 06:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022F7159565;
-	Thu, 29 Aug 2024 06:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69FF1586C7;
+	Thu, 29 Aug 2024 06:09:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Jwb1pXpI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hfQq23Pw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5A614B96F;
-	Thu, 29 Aug 2024 06:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C5C14A0A8
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 06:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724911792; cv=none; b=ary3fQrVf+SWjQiBj6SgeYIs25423FedEA6CBucjq0nRuaE2B9RDVe6drAma55HG69xAFxTTeaQWfRnFtqbfPUy9az9bhkBMOI44edFJ8Ij8WAyqE9JzwI5HbWSiMrwAJ/hSVzMIH2nqeqQwI+T1fwlB7ADf9PlGR0Whxdw+skw=
+	t=1724911780; cv=none; b=O0Kc7RuOSGzXrtTt14HrLCgUDwRhP6ZqjFq/4qWR6wGbS5Hb+jTr+XT68CsizXPZWnxQaArjGUf59IGA1SLl/5TWfo7OO80a324d+7DDwL4V5EyMXSab4FAmhTWNy+tGoKK9Z69ggJCuw5APshC9WllhEoiOg7/9vwwyhVJPe40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724911792; c=relaxed/simple;
-	bh=E18KCSEO1P6gK1opFctjc1u2+ZEMHv98uvCXZhRWb+I=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H16wbqkDdVhX+a3ANTqyrPltw+Xnt7DMaJvGVtPr57WW2btxrzcZ3sIf29lNYCCBOr9K7Z6WH0xGh/VQPH+GWh1leQU7DSNZL7jXqh5ng2RB8vmP+2Bj95Q7+yD9awGRJzEF1ZzataP+cSRJBuczkU6fSUyHFZLTnNmqeh0S544=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Jwb1pXpI; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47T69i2x046266;
-	Thu, 29 Aug 2024 01:09:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724911784;
-	bh=00DAZbq1zfJzTYRRMqNrRuL6F1cYf0kUrd9Rz/om+GQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Jwb1pXpI1OTFLBn66IMUOsCaAIg1IwYEf4Ov3ZzSrFjxLGLt1os98BlFlMxS1IoJ+
-	 N8wDOZIsxq0jzw7TxptwV+A9P5WNAEDKRr7gVlIqd5rfg4AjfruPgL7zmxN+s0va1L
-	 TZyIHFD8RiB5w9YB6s4bhNhQkDQFRYIQ1BShG4/A=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47T69i6Q011067
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Aug 2024 01:09:44 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- Aug 2024 01:09:44 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 Aug 2024 01:09:44 -0500
-Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.227.151])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47T69XCK126434;
-	Thu, 29 Aug 2024 01:09:41 -0500
-From: Beleswar Padhi <b-padhi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <u-kumar1@ti.com>, <j-choudhary@ti.com>, <vaishnav.a@ti.com>, <afd@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v4 2/2] arm64: dts: ti: k3-j722s-evm: Enable Inter-Processor Communication
-Date: Thu, 29 Aug 2024 11:39:32 +0530
-Message-ID: <20240829060932.3441295-3-b-padhi@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240829060932.3441295-1-b-padhi@ti.com>
-References: <20240829060932.3441295-1-b-padhi@ti.com>
+	s=arc-20240116; t=1724911780; c=relaxed/simple;
+	bh=FdVFyLT/x1rsG14wGDYAOcBYWaGG2qbCcDt24uqUXLY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TUzP1Nsz2izDRgc2LJuqYmz8Mwl1lke7gSPJKmohMBVr9xbDbPLhMiIKjfZ4p+L2VT+Wnyqqe8wHoPLBQhYtnEhBBlkH344MA7cB9M1Xnu305rIQyqDYCZQJ6YWgiKi6DXPpWWe4WU0rvEFpSjJdENDghl+yIug+/thBu4S2W50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hfQq23Pw; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5334879ba28so366627e87.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 23:09:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724911776; x=1725516576; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=z3pkh/ED0BxrYfQgLbjlqIU28qynPeADtyfaWsIf8Rc=;
+        b=hfQq23PwwCRwBzwfRWbvbUBRI/rlsVBLrGHR8gyTK3FjmLh+RYPV2tP4SbbXxp0A1Y
+         YY+Act7YRtsMOPcJBF18fG6svUownM99bJXeeUTewTMb/V4dkSaBrCQoMRjfnx5bS8cC
+         DDJugOriy0qxPVB5Mts92epFagXtZ5MNTRCbKnJhE9f53u/4m3fbsaF3VdLBBm9St93N
+         5Hxdf0z4/Zx4AgKoN9DxKOkqwb842DmWaFwVC7MyKIuqdrub8aLBpXGIIGE15nqy7ySo
+         1zfwHsApxu3uofujtyaipkpDWPJaHXxkKmUuMA0vHhjlhvDKlACJvQHPUJbonnaE6xHx
+         LZhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724911776; x=1725516576;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z3pkh/ED0BxrYfQgLbjlqIU28qynPeADtyfaWsIf8Rc=;
+        b=nuJv0YYX7HRfKWIlPUN00mjhwMiHU/B6+TZBxnIjm7FAyfcXvWm/JoQ/yIV/TwQpOB
+         V5VoBXe/vey1TTB85BWSBFRh9v+Uw/XgQ+J1Dyb43vMS5FaHLN8EHVxNjZ2HXht7X0pf
+         gxxymdaAKr/slL/KPykVSmSEdsRTovYy2IU/bP72kk/Cjz+y4EtPyJHR8v57ra9Vm6G+
+         p9vhR9pYTML5FkHnpFEWyJn0WpT1BoO/RUpjs9ho2CT/i63WTTjex2O7naojyOliWnC5
+         TshcO9Ige8+2JatOLS1AGXeIuVCjrDcQouTvBObgUWaJG57zmmcMbNWLlHUTl20RfOh+
+         FSRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUdDx61PZo8DqM+8MFc7P5mi60ZiYmqmLMin5h5masrWacOb+51Hy2HkESZlmB9oaJtOMT1NGND/mtz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1eZzqNa8udDx2pHjnIEpoSq66kosUvdZuTw+X6TxFBXUG8bOH
+	rnEBaDU+z5/QxtDbn2Ei5mfQGjbrXhedJ1vpvS9cTe0aDMmz8GLTUwslTIXo8BE=
+X-Google-Smtp-Source: AGHT+IErhxCewvU9PV2ayjz+bdB6RfWmVGeB2Gdz/UBsTPEUAIjsolzfgF/RaX19bHrgtd7ZCUTk2A==
+X-Received: by 2002:a05:6512:138e:b0:533:1cb8:ec6b with SMTP id 2adb3069b0e04-5353e57edbcmr1010194e87.27.1724911775332;
+        Wed, 28 Aug 2024 23:09:35 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5354082751asm61004e87.151.2024.08.28.23.09.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2024 23:09:34 -0700 (PDT)
+Date: Thu, 29 Aug 2024 09:09:33 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Sachin Gupta <quic_sachgupt@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, quic_narepall@quicinc.com, 
+	quic_rampraka@quicinc.com, quic_sartgarg@quicinc.com, quic_mapa@quicinc.com, 
+	quic_cang@quicinc.com, quic_nguyenb@quicinc.com
+Subject: Re: [PATCH V2] arm64: dts: qcom: Add SD Card node for qcm6490-idp
+Message-ID: <35ajtwyzlnna46fatvnbnqqnks4ii7x52k56c46cy5ztv62twk@rkdp3ctk4mz3>
+References: <20240822054457.16314-1-quic_sachgupt@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240822054457.16314-1-quic_sachgupt@quicinc.com>
 
-From: Apurva Nandan <a-nandan@ti.com>
+On Thu, Aug 22, 2024 at 11:14:57AM GMT, Sachin Gupta wrote:
+> Add SD Card node for Qualcomm qcm6490-idp Board.
+> 
+> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
 
-The K3 J722S-EVM platform is based on the J722S SoC which has one
-single-core Arm Cortex-R5F processor in each of the WAKEUP, MCU and MAIN
-voltage domain, and two C71x DSP subsystems in MAIN voltage domain.
+It doesn't look like this patch was tested, see below...
 
-The Inter-Processor communication between the A72 cores and these R5F
-and DSP remote cores is achieved through shared memory and Mailboxes.
-Thus, add the memory carveouts and enable the mailbox clusters required
-for communication.
+> ---
+>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 27 ++++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> index a0668f767e4b..8cfbb42af6a3 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> @@ -641,6 +641,21 @@
+>  	status = "okay";
+>  };
+>  
+> +&sdc2_clk {
+> +	bias-disable;
+> +	drive-strength = <16>;
+> +};
+> +
+> +&sdc2_cmd {
+> +	bias-pull-up;
+> +	drive-strength = <10>;
+> +};
+> +
+> +&sdc2_data {
+> +	bias-pull-up;
+> +	drive-strength = <10>;
+> +};
+> +
+>  &sdhc_1 {
+>  	non-removable;
+>  	no-sd;
+> @@ -652,6 +667,18 @@
+>  	status = "okay";
+>  };
+>  
+> +&sdhc_2 {
+> +	status = "okay";
+> +
+> +	pinctrl-0 = <&sdc2_clk>, <&sdc2_cmd>, <&sdc2_data>, <&sd_cd>;
+> +	pinctrl-1 = <&sdc2_clk_sleep>, <&sdc2_cmd_sleep>, <&sdc2_data_sleep>, <&sd_cd>;
 
-Also, The remoteproc firmware like of R5F and DSPs in the MAIN voltage
-domain use timers. Therefore, change the status of the timer nodes to
-"reserved" to avoid any clash during booting of remotecores. Usage is
-described as below:
+Please point me to the sd_cd definition that is going to be used here?
 
-	+===================+=============+
-	|  Remoteproc Node  | Timer Node  |
-	+===================+=============+
-	| main_r5fss0_core0 | main_timer0 |
-	+-------------------+-------------+
-	| c7x_0             | main_timer1 |
-	+-------------------+-------------+
-	| c7x_1             | main_timer2 |
-	+-------------------+-------------+
+> +
+> +	vmmc-supply = <&vreg_l9c_2p96>;
+> +	vqmmc-supply = <&vreg_l6c_2p96>;
+> +
+> +	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
+> +};
+> +
+>  &tlmm {
+>  	gpio-reserved-ranges = <32 2>, /* ADSP */
+>  			       <48 4>; /* NFC */
+> -- 
+> 2.17.1
+> 
 
-Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-[ Enabled mailbox instances and Reserved timer nodes ]
-Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
----
-v4: Changelog:
-1) Moved "status" property to the end in all the extended DT nodes added
-in this patch.
-2) Preceded child-nodes by a single blank line in the extended DT nodes
-added in this patch.
-
-Link to v3:
-https://lore.kernel.org/all/20240828112713.2668526-3-b-padhi@ti.com/
-
-v3: Changelog:
-1) Reserved conflicting timer nodes with remoteproc firmware (reflected the same
-in commit message).
-2) Simplified $subject to clarify that this patch enables IPC and transferred
-the details into commit message.
-
-Link to v2:
-https://lore.kernel.org/all/20240612112259.1131653-3-b-padhi@ti.com/
-
-v2: Changelog:
-1) Squashed Patch 2 and 3 from V1 into Patch 2 in V2 as they were doing
-the same logical thing.
-
-Links to v1:
-https://lore.kernel.org/all/20240607090433.488454-3-b-padhi@ti.com/
-https://lore.kernel.org/all/20240607090433.488454-4-b-padhi@ti.com/
-
-
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 157 ++++++++++++++++++++++++
- 1 file changed, 157 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index dd3b5f7039d7..38620c76c3be 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -51,12 +51,71 @@ secure_ddr: optee@9e800000 {
- 			no-map;
- 		};
- 
-+		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
- 		wkup_r5fss0_core0_memory_region: r5f-memory@a0100000 {
- 			compatible = "shared-dma-pool";
- 			reg = <0x00 0xa0100000 0x00 0xf00000>;
- 			no-map;
- 		};
- 
-+		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@a1000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@a1100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_dma_memory_region: main-r5fss-dma-memory-region@a2000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region: main-r5fss-memory-region@a2100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c7x_0_dma_memory_region: c7x-dma-memory@a3000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_0_memory_region: c7x-memory@a3100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c7x_1_dma_memory_region: c7x-dma-memory@a4000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_1_memory_region: c7x-memory@a4100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		rtos_ipc_memory_region: ipc-memories@a5000000 {
-+			reg = <0x00 0xa5000000 0x00 0x1c00000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
- 	};
- 
- 	vmain_pd: regulator-0 {
-@@ -494,6 +553,104 @@ &sdhci1 {
- 	bootph-all;
- };
- 
-+&mailbox0_cluster0 {
-+	status = "okay";
-+
-+	mbox_r5_0: mbox-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	status = "okay";
-+
-+	mbox_mcu_r5_0: mbox-mcu-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	status = "okay";
-+
-+	mbox_c7x_0: mbox-c7x-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	status = "okay";
-+
-+	mbox_main_r5_0: mbox-main-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_c7x_1: mbox-c7x-1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+/* Timers are used by Remoteproc firmware */
-+&main_timer0 {
-+	status = "reserved";
-+};
-+
-+&main_timer1 {
-+	status = "reserved";
-+};
-+
-+&main_timer2 {
-+	status = "reserved";
-+};
-+
-+&wkup_r5fss0 {
-+	status = "okay";
-+};
-+
-+&wkup_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
-+	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-+			<&wkup_r5fss0_core0_memory_region>;
-+};
-+
-+&mcu_r5fss0 {
-+	status = "okay";
-+};
-+
-+&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+};
-+
-+&main_r5fss0 {
-+	status = "okay";
-+};
-+
-+&main_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster3 &mbox_main_r5_0>;
-+	memory-region = <&main_r5fss0_core0_dma_memory_region>,
-+			<&main_r5fss0_core0_memory_region>;
-+};
-+
-+&c7x_0 {
-+	mboxes = <&mailbox0_cluster2 &mbox_c7x_0>;
-+	memory-region = <&c7x_0_dma_memory_region>,
-+			<&c7x_0_memory_region>;
-+	status = "okay";
-+};
-+
-+&c7x_1 {
-+	mboxes = <&mailbox0_cluster3 &mbox_c7x_1>;
-+	memory-region = <&c7x_1_dma_memory_region>,
-+			<&c7x_1_memory_region>;
-+	status = "okay";
-+};
-+
- &serdes_ln_ctrl {
- 	idle-states = <J722S_SERDES0_LANE0_USB>,
- 		      <J722S_SERDES1_LANE0_PCIE0_LANE0>;
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
