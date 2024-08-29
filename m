@@ -1,174 +1,157 @@
-Return-Path: <devicetree+bounces-98117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD24964E48
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:00:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EDA4964E52
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:02:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC156B209E6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:00:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF1111F22777
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65FC01B0120;
-	Thu, 29 Aug 2024 19:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8CE61B7900;
+	Thu, 29 Aug 2024 19:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LolUGmzR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K0LMyed0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44FE31B78FB;
-	Thu, 29 Aug 2024 19:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BBF61B375A;
+	Thu, 29 Aug 2024 19:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724958017; cv=none; b=MRj7EnAhVhCAXOiLFsP4mm3y99GmDGjX9KNh6JdMmKSX+cw2N0tEfbQqHG2xXSLEBKxlruIDF5HstxvDdZE3mIvH53ymKnpHCISyCVWDEHku/6sMgH187sX+yspwqN8jOjabHwFV7SjQw27dgAOHWDu3kC68L7cixxN+fncIr18=
+	t=1724958156; cv=none; b=gwdukc2aWNbWscddkXffWdgKqLcKwMeOMXoGcuAwgj2B3L5oddjOg1L16S9s2O0N6vpNBsYlLMY9X6MG3wVSTLyhia4Us1QGtel1ApAsGtkhGJAXCsfVOM8OmphzB6bwnQOw+bQ7Zi4dDQ0988d4lTtAwT3f2e50Djh5r80IfvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724958017; c=relaxed/simple;
-	bh=7+ggEBBhu/QOeMtFqgg3a1o5eP6Nzl6/6KHyT9M9FXg=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XqJaRQACYqDUe6SrXkK4H4AoBVnp07ebEfhG9d8Ogrwa9UYIgGCBn08xSuB5SaNW/MgU6bLEuI32HEdvfrPUwgG+Xz4OUG5iLXLlAz8gyw7oKb0Ol2y1aroa6xcuCVj5HOBx8/z+4RnqElTwIVlVvWZGilhouW3+X2GQPluRcfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LolUGmzR; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5c218866849so1254275a12.0;
-        Thu, 29 Aug 2024 12:00:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724958007; x=1725562807; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eWjSA8ItuPZiWtr0SUiMPcq0+G3JZcX9bYjSkUjh5xA=;
-        b=LolUGmzRX0m0DflAD3e8whnvWeaWIK83APRrriiA1bPeGOwwaOXd7aepFOKjg4rSaf
-         SU0FhUNQBJHLHrnjHx7XwavtUOm0MPn8IKbuyjt3vLnTrSAWxhUBJchFCOXkD24a4cCQ
-         q0RbNBpSvk7DGfFdIWainB3E+EK0R2wQPZSX5HXIKP/LlMqHZtd0CndvPid+gvOkyWJZ
-         jJzhFXYGiJwLPRauhF92/ReaaqUTP0lZ//SYgdiB9tMEjC0NsGC7nP0Z3j9sApmRzkgB
-         FBVCbFwMweIUKwnpUG7FrCeyGoHguh8xVfXeSId5ub5jzrYb4zvx0Et4D8zi+TgbGYIS
-         wjdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724958007; x=1725562807;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eWjSA8ItuPZiWtr0SUiMPcq0+G3JZcX9bYjSkUjh5xA=;
-        b=dd6alGFWF2RypxwnZ9rwb/dJlIJoXXah0ZcGnEYZklvMIVJJSCNGhXmXFU+mXG28IY
-         FniT5ZlCDMyuZwbiYdarM5DWA3qma4T3sqBefC9v50IDudW04WCfROT1CsKTKZExl+qM
-         F5y7+LR+rwJo83FKqrrF3l/B+xdgXRHD8ysnj5zkl1b8N4Uos/q0y/Ca+yx9L7UPVRK+
-         BqNoMO1TD62Fkg+W6S4OQeT3MrC2aWhP6KAkMOJD5g1lVhA6vd8dq9oMnwpeapXV+1tG
-         55O5NVHDTIZ4T1ujEzOmDUX2pbaJPPOG7+EMPbYC5D0pzbpk3oY8GnBUp06TcCgHI1Ig
-         BjCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqIradrjF8UTAcaeL8Oa2ua20Zz1ELOzqCqfkbD6h6W2l17HkStpJKiiDdS9e5rnixiovdthtQQlnIl62k@vger.kernel.org, AJvYcCWt6m4EPIfQqFZUYEgRc7Su/ByO0dv79cPTWdgSadnkU1KbIfbC7r4NYxr9k49WWWtETev18zLPXCHE@vger.kernel.org, AJvYcCXypMX3vIZRCnAKdNaHwhJBmRwW0+y/2zfzZmo5Tw12J6WEK4pkIXwimRq4aHDZUE09JlnSFiYz3lnb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuyHZCQcPT8X0HWYBEyD6lHnhKjheUj/NKs/yKOyi0BTblgvIc
-	iEMXK1Z1kKF2IC4YahNaY24LkaA4d4g6SCzxuRTCazUXvCNIsN+l
-X-Google-Smtp-Source: AGHT+IFzdSMMmgYmIXTsEkQkhQi7hdRa5zgJXxur9UtcDHL5X8La5hlmG3ZeJOJ62BWRSKZ6MoBypg==
-X-Received: by 2002:a17:906:f589:b0:a86:9d14:dbb8 with SMTP id a640c23a62f3a-a897f77fd62mr350472666b.6.1724958006851;
-        Thu, 29 Aug 2024 12:00:06 -0700 (PDT)
-Received: from vamoiridPC ([2a04:ee41:82:7577:f22f:934f:9b88:e7ce])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a898904c70asm111122466b.90.2024.08.29.12.00.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 12:00:06 -0700 (PDT)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
-Date: Thu, 29 Aug 2024 21:00:04 +0200
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, jic23@kernel.org,
-	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v4 2/7] iio: pressure: bmp280: Add support for bmp280
- soft reset
-Message-ID: <20240829190004.GB3493@vamoiridPC>
-References: <20240828205128.92145-1-vassilisamir@gmail.com>
- <20240828205128.92145-3-vassilisamir@gmail.com>
- <ZtBlLqLgpi2h6kMl@smile.fi.intel.com>
+	s=arc-20240116; t=1724958156; c=relaxed/simple;
+	bh=/wmJtwFDN490HIh+23neW3jdiSkIUC6/3Or1KkDeYRU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=I9oYkEckb2ZfJvJVmAXzqnxLhb4LRfmglWqy8CH59AbMiNCvCvIA8D2w9x6XkQHWh//CsR03ypajtGLYERxv803b/6ta0s+mCQJW4+XsVRPA/FRffKeWk2qKjyrg27l3H81+BL9nnvnMmKA5rzsPKeeRvMGRagc5fMA5ToP5c5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K0LMyed0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47TGjpZ2000576;
+	Thu, 29 Aug 2024 19:01:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Vk4nZW/bDicP43XO1R2Ns1I318mX58Bj/9S9ag6wloc=; b=K0LMyed0l/G8fkIO
+	NPghrtx7Cso89jMC+5F565Jf/sG5jhoOf7aFuxsRWreH5WluGeLAkXPWNDAdOPZT
+	emdwDaGpjRbsot80jfztJSM+mPrc1jhCVFmZquV1/5tznPwjtR6ydXkDUMNvbtQi
+	aSrOGE11mORKXY0dgUjF19KOw4B0O/3u5/sP8fD/Mfnk0ib6utkcnt+GHsvi2HEK
+	CVf9S5gM0Gejb2RVq0rRWnYCVAH9NSbS7RIIEvim18eBX185hk1HOzOjnZ7aP85N
+	bG25E8Sg3dR3xq+s2bc9LfGwNLFuZQVJ4DoehrHOqdQYqdaSJpgTMphAJMu0hNbz
+	ihKgrg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419puw6d4n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Aug 2024 19:01:56 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47TJ1s14030388
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Aug 2024 19:01:54 GMT
+Received: from [10.110.28.107] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 29 Aug
+ 2024 12:01:50 -0700
+Message-ID: <de0c40c2-3627-4c63-9112-4eb13cf75c0a@quicinc.com>
+Date: Thu, 29 Aug 2024 12:01:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZtBlLqLgpi2h6kMl@smile.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 21/22] ARM: dt: GIC: add extended SPI specifier
+To: Rob Herring <robh@kernel.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <sudeep.holla@arm.com>, <andi.shyti@kernel.org>, <tglx@linutronix.de>,
+        <will@kernel.org>, <joro@8bytes.org>, <jassisinghbrar@gmail.com>,
+        <lee@kernel.org>, <linus.walleij@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
+        <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robin.murphy@arm.com>,
+        <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <vkoul@kernel.org>, <quic_gurus@quicinc.com>,
+        <agross@kernel.org>, <bartosz.golaszewski@linaro.org>,
+        <quic_rjendra@quicinc.com>, <robimarko@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <quic_tsoni@quicinc.com>,
+        <quic_shazhuss@quicinc.com>
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240828203721.2751904-22-quic_nkela@quicinc.com>
+ <20240829185240.GA914553-robh@kernel.org>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20240829185240.GA914553-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pfQJciifrzl-te3Okl98bZsPdJcXrs6z
+X-Proofpoint-GUID: pfQJciifrzl-te3Okl98bZsPdJcXrs6z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-29_06,2024-08-29_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=989 suspectscore=0
+ adultscore=0 spamscore=0 impostorscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408290136
 
-On Thu, Aug 29, 2024 at 03:10:22PM +0300, Andy Shevchenko wrote:
-> On Wed, Aug 28, 2024 at 10:51:22PM +0200, Vasileios Amoiridis wrote:
-> > The BM(P/E)28x devices have an option for soft reset which is also
-> > recommended by the Bosch Sensortech BME2 Sensor API to be used before the
-> > initial configuration of the device.
-> 
-> ...
-> 
-> > +static int bmp280_preinit(struct bmp280_data *data)
-> > +{
-> 
-> With
-> 
-> 	struct device *dev = data->dev;
-> 
-> it will look better?
-> 
 
-Yes, that could be used.
+On 8/29/2024 11:52 AM, Rob Herring wrote:
+> On Wed, Aug 28, 2024 at 01:37:20PM -0700, Nikunj Kela wrote:
+>> Add interrupt specifier for extended SPI interrupts.
+> What's an "extended SPI"? Is this a GIC spec thing? If so, what version?
 
-> > +	unsigned int reg;
-> > +	int ret;
-> 
-> > +	ret = regmap_write(data->regmap, BMP280_REG_RESET, BMP280_RST_SOFT_CMD);
-> > +	if (ret)
-> 
-> > +		return dev_err_probe(data->dev, ret,
-> > +				     "Failed to reset device.\n");
-> 
-> 		return dev_err_probe(dev, ret, "Failed to reset device.\n");
-> 
+Extended SPI is an extended range of SPI interrupts supported by GIC.
 
-ACK.
+Excerpt below from
+Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
 
-> > +	/*
-> > +	 * According to the datasheet in Chapter 1: Specification, Table 2,
-> > +	 * after resetting, the device uses the complete power-on sequence so
-> > +	 * it needs to wait for the defined start-up time.
-> > +	 */
-> > +	fsleep(data->start_up_time);
-> > +
-> > +	ret = regmap_read(data->regmap, BMP280_REG_STATUS, &reg);
-> > +	if (ret)
-> 
-> > +		return dev_err_probe(data->dev, ret,
-> > +				     "Failed to read status register.\n");
-> 
-> 		return dev_err_probe(dev, ret, "Failed to read status register.\n");
-> 
+"The 1st cell is the interrupt type; 0 for SPI interrupts, 1 for PPI
+interrupts, 2 for interrupts in the Extended SPI range, 3 for the
+Extended PPI range. Other values are reserved for future use."
 
-ACK.
+"The 2nd cell contains the interrupt number for the interrupt type. SPI
+interrupts are in the range [0-987]. PPI interrupts are in the range
+[0-15]. Extented SPI interrupts are in the range [0-1023]. Extended PPI
+interrupts are in the range [0-127]."
 
-> > +	if (reg & BMP280_REG_STATUS_IM_UPDATE)
-> 
-> > +		return dev_err_probe(data->dev, -EIO,
-> > +				     "Failed to copy NVM contents.\n");
-> 
-> 		return dev_err_probe(dev, -EIO, "Failed to copy NVM contents.\n");
-> 
-
-ACK.
-
-> > +	return 0;
-> > +}
-> 
-> Yes, it's up to 84 characters long, but I think it improves readability.
-> 
-
-In all the previous cases though, shouldn't checkpatch.pl generate errors?
-I didn't notice that they were below 80 chars and I never checked more
-because checkpatch.pl didn't say anything...
-
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+>> Qualcomm SA8255p platform uses extended SPI for SCMI 'a2p' doorbells.
+>>
+>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>> ---
+>>  include/dt-bindings/interrupt-controller/arm-gic.h | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/include/dt-bindings/interrupt-controller/arm-gic.h b/include/dt-bindings/interrupt-controller/arm-gic.h
+>> index 35b6f69b7db6..9c06248446b7 100644
+>> --- a/include/dt-bindings/interrupt-controller/arm-gic.h
+>> +++ b/include/dt-bindings/interrupt-controller/arm-gic.h
+>> @@ -12,6 +12,7 @@
+>>  
+>>  #define GIC_SPI 0
+>>  #define GIC_PPI 1
+>> +#define GIC_ESPI 2
+>>  
+>>  /*
+>>   * Interrupt specifier cell 2.
+>> -- 
+>> 2.34.1
+>>
 
