@@ -1,166 +1,123 @@
-Return-Path: <devicetree+bounces-97910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196C19641BF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:29:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F34C79641D2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:31:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CDE51C24A04
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:29:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D122B279AF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E421B3B35;
-	Thu, 29 Aug 2024 10:21:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="la+XfnQ3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EF618E76B;
+	Thu, 29 Aug 2024 10:22:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9440919645C
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 10:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B2618E75A;
+	Thu, 29 Aug 2024 10:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724926886; cv=none; b=ElmhY8J1TzbyLOwgqPixDAmdbfUZOrWpBWwJ1ArkXKvgtc8GpahzP9AmLZEljpOtoLBchLEbVKaKH0qctrx75wXsy1ph7twy1srkYTiJcfSKj5esd5BpH2Q7fRQ97hXnEgAKV8oJZEBbqKMQfUE+qxV9j3Q+2K8RUr4wj7B8iX8=
+	t=1724926932; cv=none; b=WAMhCC9w+5JeIIPXlsRTVDpYw5tyXKQQ+AEVMci3uLmVqEvUt/7bmVslX6MW/6T9SfyNCPKMj3DbBbEZWWUaQTxercc2J+FfszKInJeswI0qCFQ9E/NOHPGBRHngiY73LId8+ngNPHij6dSfdZc0T65aUIKUI4PB+7zPNyqXndk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724926886; c=relaxed/simple;
-	bh=mTnyfs5iyXk2A8jVh4g9909p7wCslrKHActf8v2jCu8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BG4qdNw6o8kL/If3ZEySU0UkqMyCGB1RWUCtYJywqgjhuRlY38V5LBeZYoLHu70KMOBI7DPUeDFpBKquYUdEPCsZbn21S9qKMHwBEPOkAk0QpbvD3/Djg6xsToFpgpj3UAbUi/YGuDbx07jBDUVR6QsQuewaTdSGvH3qKC1WjLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=la+XfnQ3; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-533488ffaf7so686100e87.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 03:21:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724926883; x=1725531683; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=puTnCF9XRDK7owVjEuZhSKV7rRgleAu/KF+YmSYOfOo=;
-        b=la+XfnQ39aD2eISdLWJCeT0Xl5wH07yhFOCx7ghJ5hRtn26l/+hvZaZy6Ie4DzwiG6
-         QHWX3hp9/PgXrwL5Yf6YtHaiOss7v+U47cF2K8SHMBdpNJq3Xvp0vmFVMKthWsoZIiQG
-         qmOptEyHPFFJI8sAMA28d7p5Wclb8QSV87GSnWKkarEWCoLj1DF7hSzIJSGYWSdL2QSl
-         +LnQ0UBaGT+mimTQXthic42MPaI4tYxSr+pG0N4w3lKsjYWVZfOS8SQgA27MQt0E2i9K
-         dVxg0rTLMkYw4xK7B8nBYbx/shu5gHEDbvQEsSKiGSgLTdKhzTTOACDfhRWD8L3zjCl8
-         z66g==
+	s=arc-20240116; t=1724926932; c=relaxed/simple;
+	bh=mxxzQWZfgZ32+twWj89CW548vDxQf8EC0zzzg9UaSNI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b9KYlcIqzStX3+SNzKZP6VB6lhVeMtSOC5Aplt6sCa8+32R7sFzc7pj9f7Ia3m5tZawVs4DvzLIPXma1xFFPm+UfOT4oyB32XWHMymwJHFpQBJmnAwg+ckqZDmuODV4dOQzN4mLFndoiDVS3XvI5RQkF5qkAqOSgQX82stMgWG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e1651f48c31so525763276.0;
+        Thu, 29 Aug 2024 03:22:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724926883; x=1725531683;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=puTnCF9XRDK7owVjEuZhSKV7rRgleAu/KF+YmSYOfOo=;
-        b=i2OZnrvMEBPNTZ84EEMpUPeaf2ZVy+m07XSqeifBlqEsVU0nJN7A+MScmRVHZycZjc
-         cglvvOZ4qKNKbMNFc3C3EYiJHt7Z0SZ4/E9xgwB30egaLSz909lN5ThxdyReRISREU96
-         q4cuUP5zsAqltmnfp+Ii/jtYOyAIPlAKKUTTm7ss+p1wHeeW3SRhT+PbUrjPaM/3eIRA
-         GT4lOPZKZ6fC8zOMlnHB+OmdMAzxZ1V/UiItaLXVGfHxjO9PVlHU9NCCaXmf+FXTSxDk
-         D0On3bFzeEJBhHRsK7l6906QAdnCZtCkc/VuG8OS9hKnd3/E/bsN5YjQXqZwqivRr1VZ
-         0YHw==
-X-Forwarded-Encrypted: i=1; AJvYcCVlG5jr2chZprEASs5Fj71lbNb2udScCO0UqLvTwErdeeZ25mJXogyvotNf+D+JfbiXsqmdhQlMRV8m@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAZ06lXGqq3bjTafruwgC+dqG+melDmU3DotyVkH2Ad5Q3AYZf
-	QYh42HAV8Yki/i7R8zgFsIHlEiW1xAdQvmMRdQWRz68vNQlq5mbBJwVp726RPW8=
-X-Google-Smtp-Source: AGHT+IFFNsu2a9NDRGs85OJjM17UuETV7H8yjux3hgCI70M+fCsa984v1mj68+Le6L8itmReRpHr3A==
-X-Received: by 2002:a05:6512:3d8e:b0:530:dab8:7dd9 with SMTP id 2adb3069b0e04-5353e53fbafmr1854704e87.12.1724926882119;
-        Thu, 29 Aug 2024 03:21:22 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5354079be8esm117031e87.48.2024.08.29.03.21.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 03:21:21 -0700 (PDT)
-Date: Thu, 29 Aug 2024 13:21:20 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, djakov@kernel.org, richardcochran@gmail.com, 
-	geert+renesas@glider.be, neil.armstrong@linaro.org, arnd@arndb.de, 
-	nfraprado@collabora.com, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, netdev@vger.kernel.org, 
-	Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Subject: Re: [PATCH v5 7/8] arm64: dts: qcom: ipq5332: add support for the
- NSSCC
-Message-ID: <hvbrd7lyf4zjhwphxiephohuoy7olmqb5hxsa4qnidmuuae45p@swezjh3lfpzi>
-References: <20240829082830.56959-1-quic_varada@quicinc.com>
- <20240829082830.56959-8-quic_varada@quicinc.com>
+        d=1e100.net; s=20230601; t=1724926929; x=1725531729;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dy/eI0Q3PUx3vxxIGNbAvRLE3QuQXFyslX3VdRYQ4/o=;
+        b=v+tG9zWtHUv/CN5vI9oyV+Y6ejdB7/sCUliVKgBqaG+tS1UmnO/3iXJE33WWHrJL6i
+         gkucVZ+OLQote6L/ICW5QUP7QYiS3DeW/vEA0cPOtTK5EIrnGuuCgeSRfcsKyR0RAfYI
+         msvkmBhGgxI4IHTKARiTS74SFaxQeCLdRB9/0fMY5/04xq8ROabcYOe75hjNAoXd5keo
+         a1e1pAMVXIhNxh7f55bNbfuIyv2GTJk/My67DRLUdCmmYy8OoXCEOV0Z5lwesqsOJjh6
+         hRUsdlypWQOu4qLrx432kNtfF8eHmGPOLgP9NZwRBB4mqeYGPdoL3seEIcdJ7Smpy2T5
+         0gGg==
+X-Forwarded-Encrypted: i=1; AJvYcCVR6SuoZJrrengLiGOx1AnCdcxXKxtlfv1kyOl5DTRGDJZk9uPD3267XJEFevkfJXWX2QDJkTYIZjeeODV9UBP2AtE=@vger.kernel.org, AJvYcCWLIdFEjYFoArr7RA6lpWSkw4Fs5P6A2uX5hUsYl8nV4hThMB1nq9KrtGOa+x0RjEAoCJ87KbwHx6u4@vger.kernel.org, AJvYcCWX+QNhTrlmi9YT9od5clACaW3YpB35Xq4BFcPy4Z06bRhpKhsm9I1TyuqcSg+SniI5U1fLCFcTXtd/4n+p@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCrb10d3YBJRGN/GVZ840Y4mIwFTcMheUgTn43KJjyIrslv31Q
+	lDdflxDUSEHpYx4mtXx1aHBddNxv6l0clN077bgGcmX6pc4O4F2PAnfsWyKG
+X-Google-Smtp-Source: AGHT+IHftTh4BcNHEhmt9KR/wd50l47Hw7EY06C8nuoVDoywkQ/YK+ptOtCScktB16Co7a7AvDznSg==
+X-Received: by 2002:a05:6902:18c5:b0:e16:19f7:96df with SMTP id 3f1490d57ef6-e1a5ab38cafmr2873035276.10.1724926928989;
+        Thu, 29 Aug 2024 03:22:08 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e1a6268329csm182643276.31.2024.08.29.03.22.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Aug 2024 03:22:08 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6b4412fac76so4550027b3.1;
+        Thu, 29 Aug 2024 03:22:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVvJvJ1fxfRqwIGCdeXa4KMsPdC2+Aw3V3uEzKCzXAfL+hBm9LXYfmgl+wLnMTiALH50Gqt+OXERxNeQ8FzCxHiJDg=@vger.kernel.org, AJvYcCWGCUVHz7w/vmpgYPTFj1q5nF1ZhDzeImcKChHxFT6mKX3H0J3FG93dW3oHRkx8Ohl+B3GsgT9+N4B1@vger.kernel.org, AJvYcCWzvXg71AjnOufcktdGFGljGQv9OjaeBMONuTnnyAjC7JvKVT3IsKYrP4qdMbTY5cmieF+LTI6JLXN5z8/j@vger.kernel.org
+X-Received: by 2002:a05:690c:438e:b0:648:bca0:1e71 with SMTP id
+ 00721157ae682-6d277c6f47bmr17823907b3.35.1724926928634; Thu, 29 Aug 2024
+ 03:22:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240829082830.56959-8-quic_varada@quicinc.com>
+References: <20240828124134.188864-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240828124134.188864-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240828124134.188864-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 29 Aug 2024 12:21:56 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJm2VQxZGVedc71UiRVsVsA2JMMik+NKp3hsRaSKMNRg@mail.gmail.com>
+Message-ID: <CAMuHMdWJm2VQxZGVedc71UiRVsVsA2JMMik+NKp3hsRaSKMNRg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/9] arm64: dts: renesas: Add initial SoC DTSI for
+ RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 29, 2024 at 01:58:29PM GMT, Varadarajan Narayanan wrote:
-> From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> 
-> Describe the NSS clock controller node and it's relevant external
-> clocks.
-
-Who generates these clocks? 300 MHz crystal?
-
-> 
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+On Wed, Aug 28, 2024 at 2:41=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add initial SoC DTSI for Renesas RZ/V2H(P) ("R9A09G057") SoC, below are
+> the list of blocks added:
+> - EXT CLKs
+> - 4X CA55
+> - SCIF
+> - PFC
+> - CPG
+> - SYS
+> - GIC
+> - ARMv8 Timer
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
-> v5: Remove #power-domain-cells
->     Add #interconnect-cells
-> ---
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 28 +++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index 71328b223531..1cc614de845c 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -16,6 +16,18 @@ / {
->  	#size-cells = <2>;
->  
->  	clocks {
-> +		cmn_pll_nss_200m_clk: cmn-pll-nss-200m-clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <200000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		cmn_pll_nss_300m_clk: cmn-pll-nss-300m-clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <300000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
->  		sleep_clk: sleep-clk {
->  			compatible = "fixed-clock";
->  			#clock-cells = <0>;
-> @@ -479,6 +491,22 @@ frame@b128000 {
->  				status = "disabled";
->  			};
->  		};
-> +
-> +		nsscc: clock-controller@39b00000 {
-> +			compatible = "qcom,ipq5332-nsscc";
-> +			reg = <0x39b00000 0x80000>;
-> +			clocks = <&cmn_pll_nss_200m_clk>,
-> +				 <&cmn_pll_nss_300m_clk>,
-> +				 <&gcc GPLL0_OUT_AUX>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>,
-> +				 <&xo_board>;
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#interconnect-cells = <1>;
-> +		};
->  	};
->  
->  	timer {
-> -- 
-> 2.34.1
-> 
+> v3->v4
+> - Sorted nodes by nodename
+> - Used hexadecimal values for clocks and resets
 
--- 
-With best wishes
-Dmitry
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.12.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
