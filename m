@@ -1,117 +1,140 @@
-Return-Path: <devicetree+bounces-97884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC759963F9B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:14:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AAF963FB4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:17:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BFA11C20EB8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:14:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D1641F25D32
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC6EB18CBEC;
-	Thu, 29 Aug 2024 09:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 385AE18DF61;
+	Thu, 29 Aug 2024 09:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s6XX8EgO"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="EZyI9WjC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376001684B9
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 09:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59DE518D63A;
+	Thu, 29 Aug 2024 09:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724922837; cv=none; b=rej5wC4pL5S3UJ7Wc2N7HZaNfkH+dFv63WrXV/R42YIoBjzlOdY2ds7xFrYfWYbtLhdhRbMDVCwVnPVcBeDHfEg5bYzjT6Tlp1T/5NCZcla5r+Ztx66Q51JA9tdqW+YJT7o/w1BazzgEXydG2w+6OcRXAzZ7fH97LpjHBdsN5JY=
+	t=1724923033; cv=none; b=WPGkEeyDif1wMWsN0fyovdozgqTFiWeyA/ubVwdCYNuU6XLkyXmHKdek1xwIExHNMG+MUW74LRf40A5H7BipzQ2In62pjMCw8tyQkQZwQwN+RuYD3gpELfEuNq6Sbjpxr36qHIexKYrCvmY5BDkvCuBP7uls/QCtysExfvNJCBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724922837; c=relaxed/simple;
-	bh=9z7glOF5aQ8L7P5cXcuB4MT1+GrbVwchTlGtyPbx4sU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jMTE6g6nuMo1wmM2FBBBMtBjqML+8lp19junB34Q6nzplmThP6IMQAGq2KSUwv06xuy6Z9X43jDV2A/PlpfpXuygBTyzdA7xO8uWWfywYM/5puWVUu/D5cCAzrlK2Ta8lUA25wYNWhb784Yw38fajuJ6iOELcb5p1gggiVEV7G0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s6XX8EgO; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2f40a1a2c1aso4162991fa.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 02:13:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724922834; x=1725527634; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lE8P44IgEXQgLAuKYiFf8e2mPh9BhaeyiUVSH7zzHfY=;
-        b=s6XX8EgO1aWClV0VCCx/AgYjHJrLlAL7X462GWiqpvZcKkMWTfJ+E0JuaM0UN2n9VN
-         b1qTX2MvhcLSJ9gaEtUnd0GTt+gSHDi6WnxVE71ONiA1D/vlNrAbJDPUcxFEJFY+hUOJ
-         Q4+hVlODb/a10XWs30noRp6cfmVkQLKQVXeTPQJdCgMg+jMTI0b88B+Ev8dU2TIIUkVZ
-         S8hK3ClTRb1r0zrTuwovdaiQKtJ2epVSGCY0QBOgPVVtg3v/Pp5tmEKDC31BzYJ4I+/8
-         I2YCwX4Z9J0ngQerGWIf0/cdeSOZ7trp8fKKaYKtFfz8D5xbADTx+nrGVEmnTa2Jc/US
-         6R9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724922834; x=1725527634;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lE8P44IgEXQgLAuKYiFf8e2mPh9BhaeyiUVSH7zzHfY=;
-        b=mCbmc04WMZa1FFC2fcpOUCSqLXLPiFX/pVRSFXNN2Nj+CfLJKA3IbbZuxfvZAA78/K
-         iR+620SNNnUftwv5puB0WPHLgSSFOrsozfeAr/XbDuGzOWmny58jXoHTK9LhfJS3B6tv
-         3i4zVnXd8dTFDc3zcbbry+uPPTR2pn9CS5ksz302V2XpNbYq3z+d2y+FxTrBtlpPpTgl
-         +hFpI5AQj1l3cJTat8fxduZFURNrbD1w7vH5E/Hhd+nF/3EcuJteMyOQcMRRl8Je6qZ9
-         UrgxPR6fH8T7WwNijY3WRPJBvN/3glnrYlgc53FCy8/Ta4x+rhi6+amZ68TyU1syJpJ1
-         6tzw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+ALxHq2M17ZAAlV5PeKjKWtkkjaO3trYyvbFRHioLAF3weE/8EFUy8ibOKMfBgVQ+bJsvLhhDDSrn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxmr00wgz0PcIo7tlDiC19YQJM6GOiToLsPmouxsWtcuHNxYXVU
-	oIyY0v27Tlb3L9EKTcJ86vmX90mOObQmlm+udJ+jN5nSOapE4ZqDMeYGGom/XLg=
-X-Google-Smtp-Source: AGHT+IEDf7R6Hp7cY8yLxdcEzp/MjRBM1Q8yy0a+0DWnkq+fkdeuUHk+jFQ0G9E9ZjsvU/viYUuW1A==
-X-Received: by 2002:a2e:be8d:0:b0:2f4:84f3:120d with SMTP id 38308e7fff4ca-2f61038c67emr19018551fa.8.1724922833704;
-        Thu, 29 Aug 2024 02:13:53 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f615195484sm1235281fa.137.2024.08.29.02.13.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 02:13:52 -0700 (PDT)
-Date: Thu, 29 Aug 2024 12:13:51 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 03/29] media: iris: add platform driver for iris video
- device
-Message-ID: <zfltcl5x4hol2foftyvr4oigxus4hnequd74zi7bdd7tsdv56q@3nphukr4zgmm>
-References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
- <20240827-iris_v3-v3-3-c5fdbbe65e70@quicinc.com>
- <74126160-57f9-4abf-a26c-3491c8f3dd78@linaro.org>
+	s=arc-20240116; t=1724923033; c=relaxed/simple;
+	bh=SgVTgRK+0wNwUFBeTxPLOnEYRB/KBJtDw35oxosAxKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=K37wVvc+IoTqdRc3C18BWgdqrcYwyMqbdG1nL26dxuYE/7wia+ICjoCTTHW4Fk3swdfoCLGITK9I3UIH8IuICy2hwjghhqcIW4z0vTnvPJjsGofWj3ktzfYFyvoPfCvVT++6ycyVy6oz1xYdrm7K1V2R3efqjpyIG6cg4I35nyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=EZyI9WjC; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 8B6AE831A1;
+	Thu, 29 Aug 2024 11:17:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724923024;
+	bh=LXR1nPUxSyWrjiNK8lZ2WFyKiKdIj/aOb1xeF3UDSZ4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=EZyI9WjCigWoVTNUoR6lXPGvtvBGy/9gYISWGZg/DsJUaWvzESZVu/T0J1PxTabZ7
+	 g5siNPtwgFdz7cXCs/LBCFzW2pLjj2AvPxBDqQJ6pHyya90Wey0rMY24feW5sxZhHn
+	 Qm2/ex2hjKkjVMdhq7bE4TtR39V9QROthtXHofhblqi0+6uwsEf93CEXro1nCyhpsG
+	 wnkGn5GPqY1sQUqYAbKcMNLo4OCGH56rCu2l+3v+r2vhAU6I0m/RxqODCjZ2q/LXGC
+	 O5xGtx42cls5LvhPRSktmVS2wBhgHKV8CYXag4YxGFlbtC8an62x+/xfEakG/xEhm/
+	 saQ6HL130L1Tw==
+Date: Thu, 29 Aug 2024 11:17:02 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dts: nxp: mxs: Add descriptions for imx287 based
+ btt3-[012] devices
+Message-ID: <20240829111702.7ee999b6@wsk>
+In-Reply-To: <CAOMZO5BOCOuf9t5uH1TfcWyoi-ECrw=3HztRVVXi0WR4K6EqZA@mail.gmail.com>
+References: <20240828112139.2665814-1-lukma@denx.de>
+	<CAOMZO5BOCOuf9t5uH1TfcWyoi-ECrw=3HztRVVXi0WR4K6EqZA@mail.gmail.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <74126160-57f9-4abf-a26c-3491c8f3dd78@linaro.org>
+Content-Type: multipart/signed; boundary="Sig_/3vwl=3nO.Iz6tuJ3+b+0v3H";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Tue, Aug 27, 2024 at 03:08:03PM GMT, Bryan O'Donoghue wrote:
-> On 27/08/2024 11:05, Dikshita Agarwal via B4 Relay wrote:
-> > +static const struct of_device_id iris_dt_match[] = {
-> > +	{ .compatible = "qcom,sm8550-iris", },
-> > +	{ .compatible = "qcom,sm8250-venus", },
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, iris_dt_match);
-> 
-> The enabling patch for the compat strings should come last - if its first
-> then the time between the compat add and the last patch is a dead zone where
-> things are bound to break on a booting board.
+--Sig_/3vwl=3nO.Iz6tuJ3+b+0v3H
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-But then it's impossible to test the driver in the interim state.
-Moreover enabling it at the end only makes it hard to follow platform
-data changes. What about adding sm8550 at this point and adding sm8250
-at the end? Or enabling qcom,sm8550-iris and the fake qcom,sm8250-iris
-now (and clearly documenting it as fake) and as the last patch change it
-to qcom,sm8250-venus.
+Hi Fabio,
 
--- 
-With best wishes
-Dmitry
+> Hi Lukasz,
+>=20
+> On Wed, Aug 28, 2024 at 8:21=E2=80=AFAM Lukasz Majewski <lukma@denx.de> w=
+rote:
+> >
+> > The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
+> > some extend similar to already upstreamed XEA devices, hence are
+> > using common imx28-lwe.dtsi file.
+> >
+> > New, btt3.dtsi has been added to embrace common DTS properties for
+> > different HW revisions for this device.
+> >
+> > As a result - changes introduced in btt3-[012].dts are minimal.
+> >
+> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> > ---
+> >  arch/arm/boot/dts/nxp/mxs/Makefile   |   3 +
+> >  arch/arm/boot/dts/nxp/mxs/btt3-0.dts |  12 +
+> >  arch/arm/boot/dts/nxp/mxs/btt3-1.dts |   8 +
+> >  arch/arm/boot/dts/nxp/mxs/btt3-2.dts |  12 +
+> >  arch/arm/boot/dts/nxp/mxs/btt3.dtsi  | 320
+> > +++++++++++++++++++++++++++ =20
+>=20
+> All the i.MX devicetrees start with the SoC name.
+>=20
+> What about naming them imx28-btt3-0.dts, imx28-btt3-1.dts and so on?
+
++1
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/3vwl=3nO.Iz6tuJ3+b+0v3H
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmbQPI4ACgkQAR8vZIA0
+zr021AgAqtBaMmL5HMHSJ5Im0KRg2EoTHjIdiCB5Dr/YLQ62Bj/w0SBiRz1r2gor
+q2D1nmS9jB5dS1ASNBOzJakRG7gQNqBhVnELo0MyzWVQpc8ilVFEoPqfaTu87Ab0
+5eHcjguXFYLFPRp3DlH3sHkZ4Oz/EwZ9EvsRrjya9y+rgtGyBfU9sVncoryLEDCE
+b+FnAPx2Nf7TsM0Zuh+se8l3Zyx4Rz/gK/y1kxha0AwRfDPWL3VwNgOcLx7Q0Sye
+JbAsKKqlClPVNVMYaVmhsg7L5d44hMiwrQ2e9mh/BU5FATKoLrBjRHkzcbkbKAfa
+uIqBQrZ3uHYDOO7OFoO3I3EssKGIMQ==
+=sIRF
+-----END PGP SIGNATURE-----
+
+--Sig_/3vwl=3nO.Iz6tuJ3+b+0v3H--
 
