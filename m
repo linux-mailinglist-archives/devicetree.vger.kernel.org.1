@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-97776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0DD5963749
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 03:04:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39EBF96374A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 03:04:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A5DC28212A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 01:04:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83E9AB24181
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 01:04:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB63D146592;
-	Thu, 29 Aug 2024 01:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 546A31487D1;
+	Thu, 29 Aug 2024 01:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="VfiSCjzu"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="bHuIlB/6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC9C136663
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 01:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CF013B2A5
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 01:02:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724893331; cv=none; b=n+PCWVY/MjZB8GgIoieEUeinaMAB9C11qfntQp2DikHXKa1IAPK9dUTUvmZtPhXsu0Ga/3C8tr8MornruPj1lqXOMI5eRymH1JVEAb5o/jV91vINpjK9iJ4fvycg/CvpGYXzU0Y8MSn3jN0+dIV1yxkblgQ6J5p0b/zx87aoVBE=
+	t=1724893332; cv=none; b=C4ea1o/iY0re6lbFbTN9dsffY5NaqNqP3NQKmTEI57yGfl6EIkosHEMagFBiB5qnvCiutq2VweXpJ8IwmqGWcIsVQuwON67mQTf1/++1Ric8Fuc53fgixh7sUn1RE2x3g/PMJTBuOLNMkO/kxPOb8sMaifELuE3cL0qdMqVwMQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724893331; c=relaxed/simple;
-	bh=FTANMXx9niaisfK+aQOXv+t1NRHVUzMLkPl/sK5KrN4=;
+	s=arc-20240116; t=1724893332; c=relaxed/simple;
+	bh=/w+c93Hw/JiHQhqpwIk8i+Ew5DeNXn1I9VLrQlq8hyo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DntB7pV+HXv9g8QAtE2y89Zv3wMfACsdEAQIhbjUMtFF3x4AoH1UasExuhweRNhsVDJY3nLgAxBOIFYtGhyOQ2krfLkkzOt4r12nxUV9BfQUs+IVDjIbd5cSRp51lRhICQ/lZAMGBxnuQY8bA7XIxhpUhuVwFKrsxA2m7jsgAzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=VfiSCjzu; arc=none smtp.client-ip=209.85.210.177
+	 MIME-Version; b=oXKmXcPnTAt9PdNLfE+mlBy/1OhTISNwZWk30gEQx3g0az4aHb3TFhd5CKLpTsbWcGfIMMPTAgD3jc2fKgGj4wX/Vyzy/CiEPLTp9zhbNQ8iRB9awg0IDTi1CmvdCzT07IciQn+OLv/EeGVy1xmXD1OK3pespwuysECml+EeAEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=bHuIlB/6; arc=none smtp.client-ip=209.85.210.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-714226888dfso128435b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 18:02:09 -0700 (PDT)
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-714262f1bb4so112475b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 18:02:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1724893329; x=1725498129; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1724893330; x=1725498130; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UVeUN5Mn4knmfhlWREJV6zJkPuiqFserRZxouOs1BJI=;
-        b=VfiSCjzuwhvb4Zr591fzQqVeOyP2asgXO4s2l0vzl9CJQnPgZBrJg2aXPRD1QHKn63
-         e3tyGJzQNUWi5+DtPCmqhflejxz/AYqgJ5aWoF6kMFjvBAP8jVu+gH7zx3P6zWiPk+sp
-         OO5yIFliWuHTgnbenuN7yWUgjFZNPx+SF5jaBW9r8/xqUpG6KhYnqfEmd09EmlYKBbZk
-         dvb6nCeZLkthdHZpGOKtJVo9TAXIa74evM1cMZrbWiExTsxmKRmq+cJF6jdV5JNFGfMC
-         sDd7/vniF75iV0I8lHhsIj0wUpesjILpm9G5U3komg8L0Ms8XLj49ZzlqXUsO6spVOvq
-         ygsg==
+        bh=UZ85hK5DD6/7RMQg7pUyZ001ybckvLWjPJtkX5mnwuQ=;
+        b=bHuIlB/6k59ZqDBn9JGgyWba6yxlWN2M57w3jM/W9slQIxfNAuxfj9h8S7qArZFKPy
+         /VbyddsRxpEMDbOPdKM5XDVeP76H3+6uTWDbbJBWw4fk9OfErdc1YEn2mgK++d56fJu7
+         u20J9fAmHKYU9nz5f8uGKNeXRwk5RVTqgvemNjygZZ6Em6HZ1CRR6FMn69hNPCj8ZkvH
+         jTF7Q3Cj5EVB0Ig/mScZDsFPHMgG6WwoWyYYbxqY3ghgCemVxtwF1CfSfLjeIA1WSzhe
+         UfxGyHMVyH0LYC6BNWIPfZ23fWZaVeyKamrbHIuzS88a1zjuDOvejmT9PjiyJbApqwSP
+         AkNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724893329; x=1725498129;
+        d=1e100.net; s=20230601; t=1724893330; x=1725498130;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UVeUN5Mn4knmfhlWREJV6zJkPuiqFserRZxouOs1BJI=;
-        b=EUoIpczFtAGrlRzAoP5ytauIemDzOWng51tnmGVU1lj/NDbPbQW2sN2CyGjYDkqrP/
-         brNzY9Oux37degEMg19hmBkGQLiNEiuzXKv+fDC6GFcAsItN4q5am4tjAWAqF54KEEtg
-         wHG4OAEdyTxpE6bNjZg6geQoOvrehSjTwZJFgZiJ3sSl/9/sZokPxYvhI2sWwwSNVrMO
-         lOy23fiTjzwICnz/jktH1PUs97upnXlaxWbyzz8PXICq7oxuvhn0P98JJl8VRt+bAYgM
-         DzQtKkYM8NXInA1NCA989YAUU9L0uynQYLrdMKv5oyktDbV7GIKb+1CcxcFRmrUMYN7N
-         wVng==
-X-Gm-Message-State: AOJu0YyMPMrL9dOpg1/9lOwbPOm77koXX4sJ1QVBxW3EAA53U39zCIA0
-	SgN3GCmsoGLNRoZRXzRsbuQDZPOq+xL+p9IeWveU7Qfnq2Cli0n1zmWmpWAubh8=
-X-Google-Smtp-Source: AGHT+IE20Iz5wZXTitHFQF8jSuAcL+G/x9Gpo+1x4hS8Jq+hDLNQBGiIr2r+fj9xMkWCy+9sL14ZDA==
-X-Received: by 2002:a05:6a21:e94:b0:1c0:f315:ec7e with SMTP id adf61e73a8af0-1cce101e3eamr1074001637.28.1724893328672;
-        Wed, 28 Aug 2024 18:02:08 -0700 (PDT)
+        bh=UZ85hK5DD6/7RMQg7pUyZ001ybckvLWjPJtkX5mnwuQ=;
+        b=BffmJbkFqfmRbnMXJfDE48WrBgwfpkRe7YdDcrK/j+9tjSZrtRVGL5IBQOECSduA5I
+         sObhrb5PnApkQsevBU8B0e/5f+RSeuSUdqEgY1SokmgQZyXF1odmHcnHmjjyJWb3jMcA
+         Im6gKY2xkRQ9w0EHwKlSmqyztbH618+//xR7L37oGD2ieJXz7u/5iopW2OPRK9MoIhEv
+         vcFyPjeAtBQ7A8iC54qN182ds5x7omhTm4b+p/Jed53QDc7TNrN+Wwnnu6r0wd7v0+W0
+         MC4xr23VFOQ1Ncbz7vkROh46RPZJhcNiQodvATb3LCjO2vBpXbJPy55j5AwFcf9qTMm4
+         4J3g==
+X-Gm-Message-State: AOJu0YzgO0sc0olyZ5x/b7CcFvosL/Qk50lpxI9FMsKW4N6voTsCtm+M
+	7F21M/kyHYKouOw4aoFYQlqfKo5QUqZouVicjJAsmG8/JsL9JDyaTehMXmc3YLE=
+X-Google-Smtp-Source: AGHT+IHtPqetJTcS8DJjyTVqTZf+ptUYcRum3naxhEpRfuBLTylIE+8MNrQmk7y3vEqVGl/I7s74+w==
+X-Received: by 2002:a05:6a20:c890:b0:1c2:8d33:af69 with SMTP id adf61e73a8af0-1cce10a3b9bmr986022637.41.1724893330253;
+        Wed, 28 Aug 2024 18:02:10 -0700 (PDT)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e5576a4dsm89670b3a.17.2024.08.28.18.02.07
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e5576a4dsm89670b3a.17.2024.08.28.18.02.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2024 18:02:08 -0700 (PDT)
+        Wed, 28 Aug 2024 18:02:09 -0700 (PDT)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	linux-riscv@lists.infradead.org
@@ -81,9 +81,9 @@ Cc: devicetree@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
 	Samuel Holland <samuel.holland@sifive.com>
-Subject: [PATCH v4 09/10] RISC-V: KVM: Allow Smnpm and Ssnpm extensions for guests
-Date: Wed, 28 Aug 2024 18:01:31 -0700
-Message-ID: <20240829010151.2813377-10-samuel.holland@sifive.com>
+Subject: [PATCH v4 10/10] KVM: riscv: selftests: Add Smnpm and Ssnpm to get-reg-list test
+Date: Wed, 28 Aug 2024 18:01:32 -0700
+Message-ID: <20240829010151.2813377-11-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240829010151.2813377-1-samuel.holland@sifive.com>
 References: <20240829010151.2813377-1-samuel.holland@sifive.com>
@@ -95,14 +95,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The interface for controlling pointer masking in VS-mode is henvcfg.PMM,
-which is part of the Ssnpm extension, even though pointer masking in
-HS-mode is provided by the Smnpm extension. As a result, emulating Smnpm
-in the guest requires (only) Ssnpm on the host.
-
-Since the guest configures Smnpm through the SBI Firmware Features
-interface, the extension can be disabled by failing the SBI call. Ssnpm
-cannot be disabled without intercepting writes to the senvcfg CSR.
+Add testing for the pointer masking extensions exposed to KVM guests.
 
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
@@ -112,47 +105,59 @@ Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 Changes in v2:
  - New patch for v2
 
- arch/riscv/include/uapi/asm/kvm.h | 2 ++
- arch/riscv/kvm/vcpu_onereg.c      | 3 +++
- 2 files changed, 5 insertions(+)
+ tools/testing/selftests/kvm/riscv/get-reg-list.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index e97db3296456..4f24201376b1 100644
---- a/arch/riscv/include/uapi/asm/kvm.h
-+++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -175,6 +175,8 @@ enum KVM_RISCV_ISA_EXT_ID {
- 	KVM_RISCV_ISA_EXT_ZCF,
- 	KVM_RISCV_ISA_EXT_ZCMOP,
- 	KVM_RISCV_ISA_EXT_ZAWRS,
-+	KVM_RISCV_ISA_EXT_SMNPM,
-+	KVM_RISCV_ISA_EXT_SSNPM,
- 	KVM_RISCV_ISA_EXT_MAX,
- };
- 
-diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
-index b319c4c13c54..6f833ec2344a 100644
---- a/arch/riscv/kvm/vcpu_onereg.c
-+++ b/arch/riscv/kvm/vcpu_onereg.c
-@@ -34,9 +34,11 @@ static const unsigned long kvm_isa_ext_arr[] = {
- 	[KVM_RISCV_ISA_EXT_M] = RISCV_ISA_EXT_m,
- 	[KVM_RISCV_ISA_EXT_V] = RISCV_ISA_EXT_v,
- 	/* Multi letter extensions (alphabetically sorted) */
-+	[KVM_RISCV_ISA_EXT_SMNPM] = RISCV_ISA_EXT_SSNPM,
- 	KVM_ISA_EXT_ARR(SMSTATEEN),
- 	KVM_ISA_EXT_ARR(SSAIA),
- 	KVM_ISA_EXT_ARR(SSCOFPMF),
-+	KVM_ISA_EXT_ARR(SSNPM),
- 	KVM_ISA_EXT_ARR(SSTC),
- 	KVM_ISA_EXT_ARR(SVINVAL),
- 	KVM_ISA_EXT_ARR(SVNAPOT),
-@@ -129,6 +131,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
- 	case KVM_RISCV_ISA_EXT_M:
- 	/* There is not architectural config bit to disable sscofpmf completely */
- 	case KVM_RISCV_ISA_EXT_SSCOFPMF:
-+	case KVM_RISCV_ISA_EXT_SSNPM:
- 	case KVM_RISCV_ISA_EXT_SSTC:
- 	case KVM_RISCV_ISA_EXT_SVINVAL:
- 	case KVM_RISCV_ISA_EXT_SVNAPOT:
+diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+index 8e34f7fa44e9..54ab484d0000 100644
+--- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
++++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+@@ -41,9 +41,11 @@ bool filter_reg(__u64 reg)
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_I:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_M:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_V:
++	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SMNPM:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SMSTATEEN:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SSAIA:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SSCOFPMF:
++	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SSNPM:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SSTC:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVINVAL:
+ 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVNAPOT:
+@@ -414,9 +416,11 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
+ 		KVM_ISA_EXT_ARR(I),
+ 		KVM_ISA_EXT_ARR(M),
+ 		KVM_ISA_EXT_ARR(V),
++		KVM_ISA_EXT_ARR(SMNPM),
+ 		KVM_ISA_EXT_ARR(SMSTATEEN),
+ 		KVM_ISA_EXT_ARR(SSAIA),
+ 		KVM_ISA_EXT_ARR(SSCOFPMF),
++		KVM_ISA_EXT_ARR(SSNPM),
+ 		KVM_ISA_EXT_ARR(SSTC),
+ 		KVM_ISA_EXT_ARR(SVINVAL),
+ 		KVM_ISA_EXT_ARR(SVNAPOT),
+@@ -946,8 +950,10 @@ KVM_ISA_EXT_SUBLIST_CONFIG(aia, AIA);
+ KVM_ISA_EXT_SUBLIST_CONFIG(fp_f, FP_F);
+ KVM_ISA_EXT_SUBLIST_CONFIG(fp_d, FP_D);
+ KVM_ISA_EXT_SIMPLE_CONFIG(h, H);
++KVM_ISA_EXT_SIMPLE_CONFIG(smnpm, SMNPM);
+ KVM_ISA_EXT_SUBLIST_CONFIG(smstateen, SMSTATEEN);
+ KVM_ISA_EXT_SIMPLE_CONFIG(sscofpmf, SSCOFPMF);
++KVM_ISA_EXT_SIMPLE_CONFIG(ssnpm, SSNPM);
+ KVM_ISA_EXT_SIMPLE_CONFIG(sstc, SSTC);
+ KVM_ISA_EXT_SIMPLE_CONFIG(svinval, SVINVAL);
+ KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
+@@ -1009,8 +1015,10 @@ struct vcpu_reg_list *vcpu_configs[] = {
+ 	&config_fp_f,
+ 	&config_fp_d,
+ 	&config_h,
++	&config_smnpm,
+ 	&config_smstateen,
+ 	&config_sscofpmf,
++	&config_ssnpm,
+ 	&config_sstc,
+ 	&config_svinval,
+ 	&config_svnapot,
 -- 
 2.45.1
 
