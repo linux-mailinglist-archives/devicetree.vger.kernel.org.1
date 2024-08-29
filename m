@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-97863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76893963E3B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDBD963E3D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1AE21C21C98
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:21:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 908091C20A12
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B301718C32B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FEC18C331;
 	Thu, 29 Aug 2024 08:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BUPBTci4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a4fIa6l4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9034D18C028
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F262718C03F
 	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 08:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724919680; cv=none; b=C6PLdujeV5j0yTo9nwOnzvZSOq0Gk0IMHJIGikAEIytwtyFIoDBcadFyeMen7tUq1uub/WWtL7LMCaz8tx9IC0mgBMgfbpViQ7GWqDpOTm8QTbc0C0ZGead0vGylgJdWIhxZJceQciquFzMeqrzWhM9PYJHjoDK72rbENuCaqp4=
+	t=1724919680; cv=none; b=e0a3SfO8mM4OwJGQ6likRFpbM4qibcRfuCTr/23zFaKVAW2dFbSRUDmGURXn/ln9g5Ny6MS52hhYgEMJkLEnBnQib9gGZzUhKOYcTKG/LKhfVTX3YTqKMR945Q1wHiuhfjgWZ+79FU90m3KFMi60cHGyFHtuYMP9EAPDsZ4gqKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1724919680; c=relaxed/simple;
-	bh=K04IwqvP4QHiJEyRnXObSNOLM29xMbSAUjAHbtkAsYI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=G5zJhelRNTjhiHFC2KpRwa+mo2JVm9KhrdACBZMsFd52R70jzZyKEMNA+YQJoCJBd87JXnSZLpQIOXIAs+cfXKqhxto3ogvEqZczqaDSGBimK8uZJRt5tRDFDtWILgtNuHcYhqrF7fvtkrb3hd5pHrGi06CTiGZewiwSc4MG86s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BUPBTci4; arc=none smtp.client-ip=209.85.208.176
+	bh=Rt1zyvmsStyMEQ7Imc4AIEo/xzosFjgkb3d1LP7dDzw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=HRrfAIebEFpZRjxi0XTE4SKFTAOhnCqD1N6lNzvifsfWjYZMXed3cbGZSOEzCrItZVVTwGfFjAEep5xGbi72TGP34jUJy3UYjL8RZClXXBQp7RdsF+1ixBlfZz0/bdY0197m/oldd2DBBT82las7bfvECXsPosxXD8hb8gGoqjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a4fIa6l4; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f3f90295a9so3858601fa.0
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5353cd2fa28so473001e87.3
         for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 01:21:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724919676; x=1725524476; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GFe2h6mCzOZVtHkC8fLtufQDeRDZfA2dn2/r0ffaHpg=;
-        b=BUPBTci4WQ5xBMLDPt2ESwhL6Frxnj7OUK6Ac6rqWLc46k0c/XeZedQTt16AitvD1t
-         9uWp3KAbyqIlYiAxn8KBSCQjoQZc1fdgLrYnKaOGUxD5epZcFmxiG5KQQM48jzXZIFZY
-         kadRaAgT2Sxi/upvaDq9upyq+yxWzGEUKf/9dK9E2DeEcmlLjG4bQNliQ8R76wC1H3cX
-         tuGTkmjqyMeEvZGhhBOTqZ2U57TFsMYncyOOJFrFpZzsUF5mQ/L3Wz47jpQpicTM1yyI
-         wbnCc0fjlsIE0XOjQwfGvYrAIt6SMfDOHKZ7p24X70lDmPh+4c/RQ0x/CEIEu4iDXD28
-         ZC7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724919676; x=1725524476;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1724919677; x=1725524477; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GFe2h6mCzOZVtHkC8fLtufQDeRDZfA2dn2/r0ffaHpg=;
-        b=G69mVasWKMLiOJ2eNg6GO5KMXY0FdQZ92HJ9YvVWJwwI19KciYOWgig6PMAFnSUXAE
-         EWuxtn52NlQ9dmmaQvh3a8GmVUToiPa6ivJ1iTUjKaoOzj9f0S+b6rjZKNclm6HpJkrw
-         HB4lBvmRFcUGk1WNivibBgIzziqLPniwcn2F9IsJNDq9ldtwTc1edXAHK+nt68l9r8Q4
-         ixxPYa/tysWYOS5XF0G9sosb4i2Fl45k2Dng3n4paxImlnDsUj5FQhhBRbopuKz4d+9f
-         UvtMZFrVY+/4p0F44wCQdQEosZktkItHbXDxPi642UbrUpe3kfFhTeOrE/K2cbON89J9
-         G0fA==
-X-Forwarded-Encrypted: i=1; AJvYcCWif+x0TgGTJPBCn06ooh+JVv0wd/xZdhaOt23t9eta3w5ysZbe7IuZWA00bcLmiFIIflMeCQCZHj9R@vger.kernel.org
-X-Gm-Message-State: AOJu0YxT5C2nsMM2UbcKcMQeOdfYWAA8LsX6Qw7MZ3nkl0MYy+fBDqal
-	PaicdygNfxJecuiL+Ajh3cx/+5+2DTFaCdYJio/HgJN4o0d93N3ksO6/LsFUX0s=
-X-Google-Smtp-Source: AGHT+IEPILolNaXIOtWPkvXuhIpXtzFYlASE1vDaxS6koISyxcfo0zqXADbPzOyD6IgDr8l2GxgKuw==
-X-Received: by 2002:a05:6512:1047:b0:52f:368:5018 with SMTP id 2adb3069b0e04-5353e5b8400mr1383456e87.43.1724919675693;
-        Thu, 29 Aug 2024 01:21:15 -0700 (PDT)
+        bh=6rRlnDUQ62hVEyyi6Zzf8hyKbeo68gurNoPgtGYPUfQ=;
+        b=a4fIa6l43+7Hc2g5aKsFfwneON4c6BioXqloo/vfRMvt3//wLbUmR7PwXsVur97Lej
+         jgyFkYTUFMV98CHmCmNMoKEGdg2y1UK1DZiBiF6KXgcZcFGAU741IOE3Qcijg4LZi6fJ
+         NeeWqxm1Vs3uL7nX0SYnu6FtSTX+QjF71k3L8srYOXT8m1WowefsXikhyJoVpoulLEtt
+         b1zeQrFkjrQsXnzJDyTSC5PpyWpOTiKR0bN7o6Wo2b/w2IVN0NBv4DxO36wiFKIGVgM/
+         WUZPHh5djzslm7NdnR9PYzNylRHRTZ38pGmz2HdNjLyS+gJUboatzBKt1Y7TeIpFX3mQ
+         1Ixw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724919677; x=1725524477;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6rRlnDUQ62hVEyyi6Zzf8hyKbeo68gurNoPgtGYPUfQ=;
+        b=L/BCSKFI4M4aYudeR6zW+fhjGE5zJvEN2mulggQCzEk8FhTiqLe6sROYGjXlF7AyOS
+         pgC8gwquIQdA2mXXsXLptzawGvos0vl5jOTDqKuxPm4zhUsBrAz1tle5CK6WlcpeNZ1K
+         Hj4wBsPiJnwv6u5zWJqw2v3RB0WeIP/0WknK4c755RKBvRBkjBsTboxmgeqSQ/m+Ke/I
+         KPTNG8QIkwbBzt1i7H25uvHI4RctXtxVrIj+p3Qc40edhFQYG4bemxLtNvc0KIWdYphM
+         8bpffm6WFMIk6CnmqHIXXBfHMCUupUZ2aoC4SHjyIR/MuBtq8F049TVvDw/T+hJn1vRN
+         5snA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5T+s0uv2fZS8XxJUtvF+g9YL5VOuWpOovP2wteoBrdgih5fuBjZrD4Y1nmJbxoBVaf8IgPZYc7QAx@vger.kernel.org
+X-Gm-Message-State: AOJu0YycMpuLmFmX5OYLbaJTYoXPJdAhcfPGLvmPvcFtIglhJsR7q65v
+	4yepGCpAqnNJxgVDphMl+f4acMecTN3WMQm+pJyhTrFrSVyogPZyE3qg6oG/4kY=
+X-Google-Smtp-Source: AGHT+IEdfiG8wdAXUjLPn9PNPt905p1RpCSOc6/eqVSv+Bplproc2OyIXIw1yR9abz+N9kBoKVLYHw==
+X-Received: by 2002:a05:6512:3a84:b0:533:d3e:16f5 with SMTP id 2adb3069b0e04-5353e5b7b4bmr1095192e87.38.1724919676455;
+        Thu, 29 Aug 2024 01:21:16 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.90])
         by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-535407ac333sm90243e87.70.2024.08.29.01.21.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 01:21:15 -0700 (PDT)
+        Thu, 29 Aug 2024 01:21:16 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH 0/2] phy: add NXP PTN3222 eUSB2 to USB2 redriver
-Date: Thu, 29 Aug 2024 11:21:12 +0300
-Message-Id: <20240829-nxp-ptn3222-v1-0-46906bc4747a@linaro.org>
+Date: Thu, 29 Aug 2024 11:21:13 +0300
+Subject: [PATCH 1/2] dt-bindings: phy: add NXP PTN3222 eUSB2 to USB2
+ redriver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,9 +79,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHkv0GYC/x3MQQqAIBBA0avErBN0dKFdJVpkTTUbE40QxLsnL
- d/i/wqZElOGaaiQ6OXMd+hQ4wDbtYaTBO/dgBKNtOhEKFHEJ2hEFFp6760iZw1BL2Kig8t/m5f
- WPumVoaZdAAAA
+Message-Id: <20240829-nxp-ptn3222-v1-1-46906bc4747a@linaro.org>
+References: <20240829-nxp-ptn3222-v1-0-46906bc4747a@linaro.org>
+In-Reply-To: <20240829-nxp-ptn3222-v1-0-46906bc4747a@linaro.org>
 To: Vinod Koul <vkoul@kernel.org>, 
  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -89,16 +91,16 @@ Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-phy@lists.infradead.org,
  linux-arm-msm@vger.kernel.org, 
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=899;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1815;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=K04IwqvP4QHiJEyRnXObSNOLM29xMbSAUjAHbtkAsYI=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm0C96KQtgq+QiXli2xwJUwFJy8O7goNK1HIODP
- lY3r0kLuBiJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtAvegAKCRCLPIo+Aiko
- 1ZMnCACDncFx7nCwNWfmvqHMShy3DZWvjWLncWqZDdAO1QUzJKiblMhF+iGdU6GZBmgsByotc8Q
- JMy/HDJ6vKDhZgisrtSOUtduyBZeqVrGKsA+THoHnXLLKN/+v2CZX2rxIf4j/02ihV/WM0fRlNu
- SjyDO2bfO+3fI+PEZChomkscaXBHIfr4sqlCvdvBPjCLAw9we5ZcN5UxiUlE+zv+lEo0ESehC/s
- 1zCJyYiCoOZ327Na+V9X7uCm081EMRSxz42mtCBDZQ0iJmsP/tqon/XrNXcb6vHdVXLH38pa/Hs
- hcZKkszSDJhRFw8kRw49dLrXg7OMTydk4dLXHX8ATT5l09tK
+ bh=Rt1zyvmsStyMEQ7Imc4AIEo/xzosFjgkb3d1LP7dDzw=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm0C96aYenMsYK0ZYEgfvXPWoICoZVsrGBXo0iW
+ z+iZUBuB+uJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtAvegAKCRCLPIo+Aiko
+ 1Tk1B/9OMMF6fU5VWjCowzP29snvZdmDtWqZY+FDFZ35Ppw4BggT8bS7oxc8bgDQ3r0lgdUxmzY
+ 3b2Gi8YriCNbt71qpS7N3d88BEEPm6PwU+0ANEpU5IvYLA7RNkP3Sa/MhRrwAZjgXCUsTm5kK9c
+ sbBjRkmJFuwEU2/CPbgu2zn8ighHiAiHxHM9bI3YJpRZj/M+isyn31Yi13lw/mDBcNRsT/09PSn
+ Y1gcNNqolJldhIR6svu+SJIc4rSiLVkajGk+8dEP9HVX2dn553GQTkIMegD3Tmiz6A95CY/F4V/
+ 8sxKLU8BThWm1ph1LvDnRhOpsHcnSlncRyOesjUD1N5Bm83h
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
@@ -108,21 +110,72 @@ three data rates: Low Speed, Full Speed and High Speed.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
-Dmitry Baryshkov (2):
-      dt-bindings: phy: add NXP PTN3222 eUSB2 to USB2 redriver
-      phy: add NXP PTN3222 eUSB2 to USB2 redriver
+ .../devicetree/bindings/phy/nxp,ptn3222.yaml       | 55 ++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
- .../devicetree/bindings/phy/nxp,ptn3222.yaml       |  55 ++++++++++
- drivers/phy/Kconfig                                |  11 ++
- drivers/phy/Makefile                               |   1 +
- drivers/phy/phy-nxp-ptn3222.c                      | 119 +++++++++++++++++++++
- 4 files changed, 186 insertions(+)
----
-base-commit: 195a402a75791e6e0d96d9da27ca77671bc656a8
-change-id: 20240829-nxp-ptn3222-30bbb81e984e
+diff --git a/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml b/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml
+new file mode 100644
+index 000000000000..acec5bb2391d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/nxp,ptn3222.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PTN3222 1-port eUSB2 to USB2 redriver
++
++maintainers:
++  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - nxp,ptn3222
++
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 0
++
++  vdd1v8-supply:
++    description: power supply (1.8V)
++
++  vdd3v3-supply:
++    description: power supply (3.3V)
++
++  reset-gpios: true
++
++required:
++  - compatible
++  - reg
++  - '#phy-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        redriver@4f {
++            compatible = "nxp,ptn3222";
++            reg = <0x4f>;
++            #phy-cells = <0>;
++            vdd3v3-supply = <&vreg_3p3>;
++            vdd1v8-supply = <&vreg_1p8>;
++            reset-gpios = <&gpio_reset GPIO_ACTIVE_LOW>;
++        };
++    };
++...
 
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.39.2
 
 
