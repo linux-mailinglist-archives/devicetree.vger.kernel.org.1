@@ -1,133 +1,184 @@
-Return-Path: <devicetree+bounces-97799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F3D963A26
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:59:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4585F963A29
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E74AB1C2216A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 05:59:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC9D4286188
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 06:00:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E4E157464;
-	Thu, 29 Aug 2024 05:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B659714AD2B;
+	Thu, 29 Aug 2024 05:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WbOeQWsP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kGse8ehH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE35B14B946
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:57:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DC21487F1;
+	Thu, 29 Aug 2024 05:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724911046; cv=none; b=BaL8Yo1wKoCxLiFrDp7vY/OanvQillKwtwyClnfTgZeJDZE+NbCNNSywx96wsIwKKFgWtjWXKV9F/7CbNvFcC2gsmOPvDmfPQfvNrMorBKz3hD0P13xFtWnfZrVDODajHR9az4ljWLEScI0gLAgAx30kUCopNw43v9Q1RUYUk6I=
+	t=1724911199; cv=none; b=deb+M778SCpJBt6L+YRzl++JDfC/S3R4WRJEnXmeHDXTOo9LKv6SFUZm+wU9JH+WyzOFIpFkvVfXOSmBo2Tv/9d8cuuWo8psUkeZzX4lBj4oxm70HZXIJR6jH3bSQEzfZUx4/0LYECibJNY+/F57cqniiwG0UquJOUDaoOB5x+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724911046; c=relaxed/simple;
-	bh=dHjnz2UzSLfwh1FR8aDWFAa/de3ziMwtFVKc+1uy4S0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FazYRrcLkkM81DnRl2sB7mfL106josEoIYXBJ/iQxXzh/HIq5xfhTAlWZQGVcX94b7kmrPjjzVyJc9R4MeOOp9B2OVNpwZVrN7j5dd6d/TZdeTDRnHjz2qdwOgca2NYNXV2LhLW6BBj2bLkJXfBJfQPvw5clEcvmfbSfzyz85tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WbOeQWsP; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5344ab30508so1311403e87.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2024 22:57:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724911043; x=1725515843; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1vASjKIj/XbShQ3oRAfqq4CjpUQYKAt498Y++gSmZqU=;
-        b=WbOeQWsP7SyHsxiyacwFv06CQ4JNqQ0nkzbEM+jW1U7vaRLy5D783zGoU/8j4wmbCq
-         gl04R532YijHMj/qLrgH40bTT9DFYEtFqlo0hiE+CgvWYk95S+d1Ag+fh71tXIZKCsGJ
-         /ARer9G1pCvUCGjYAI9UatcTJfIWuw8JORQkksFN0ax3m6XakDC757RUmXe4anaIFJ5T
-         /zjUqfYBZgcx93XuonOUVBIXI+gFAUpyqt9J6hwxfe3CwG2Co1M5IwHlPVap/Hi+38/O
-         cAq2LPCb3er9N9pGOSeVSHmOWYunE/FyESEfr13x3c0+FibX9PWlSQVaE0/kvPmsOD/9
-         B7Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724911043; x=1725515843;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1vASjKIj/XbShQ3oRAfqq4CjpUQYKAt498Y++gSmZqU=;
-        b=Ro7Cf5GRT1bEnZlksvrYYgcgFNhX8Ybs+k4ymKrjGfPwlBCuqWjZG4n5JcK2E7LSzl
-         R/6K8K2HX36A8gfw595QxR4jfixURw2Gwhx64YvxA54TzvsosTQAIA/1HSQd2xwnhIP2
-         m2HbBYovuGi0JC8KqKTvoZ3DeL2FkSarSYUYQHkEQhJLFLLfkOEKffZgwt+T+EpV4D7S
-         vMB/JIHSEY+XY2Os2PwlN28gFFm+9LCfSJ5t7wjr60h8gyEIMO7SmKkLDPO4t7iI/0g0
-         vrmPtUBRAZXQtmeXxGIcnrEfrU5VmFTLk+noehFtWqkk17sRW9VE8OF8LumgIfGNh9zg
-         y2wg==
-X-Forwarded-Encrypted: i=1; AJvYcCWuqeO+WOrY6vRJS7ysDsVAX18glIdf/taXNQV9ap0PYuyful2f2WwLqf/tgmR8buGt7mjZr4jjFKkS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrOGTP0bcqDOOFyeIsBaXOVHH34MvnxN/NjGhIPCqx1T4g4FhJ
-	e4kVqpaiUPbDXAzXHjGGoz3J4a6TcdKoW5ewM9NT+oMgOhM4xCKPIISojvCZ90CiJU7jLFRLCrf
-	C
-X-Google-Smtp-Source: AGHT+IGp6B4PARu5DefP0fh+oEmkjIvpMlcIls1wS868UOLPrl34GguF+KwFIE4+MKTA10hqteoEQA==
-X-Received: by 2002:a05:6512:39d3:b0:52e:a737:2958 with SMTP id 2adb3069b0e04-5353ebf75b1mr338516e87.28.1724911042131;
-        Wed, 28 Aug 2024 22:57:22 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53540853739sm58251e87.289.2024.08.28.22.57.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2024 22:57:21 -0700 (PDT)
-Date: Thu, 29 Aug 2024 08:57:20 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: ipq6018: add 1.5GHz CPU
- Frequency
-Message-ID: <xmqyp2rgd3nozuiqu44iwidjnnwsidls3mxaqhmy3sshd4nok5@n552fd5tkjoc>
-References: <20240821101025.858961-1-amadeus@jmu.edu.cn>
- <20240821101025.858961-3-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1724911199; c=relaxed/simple;
+	bh=or9q8znWmsvhx/j2aAse3wsrDXtSIeQ3YTWHYshzmHc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h+amx7WIzjNahaBQkVjyr0MQvx4NDnwJUc4ZME8LPr4eX6LMbj1e4wzu/1Z6xYkSBSG7pGX85bCZuuzgWAmAXXB+1S8tQqhYvbP2VUK4xhercEWrpLqpagFABwxOJ3sh0tUNKCKBUKT4wfAXY/Cv6vgUvy2VhypvBu4T/ydD1gU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kGse8ehH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46F55C4CEC1;
+	Thu, 29 Aug 2024 05:59:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724911199;
+	bh=or9q8znWmsvhx/j2aAse3wsrDXtSIeQ3YTWHYshzmHc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kGse8ehHwVLDFq3qY6Hi+JwfPfaHPU4q8GdCZnnnVzrXeoQqOVUVsnPLrqLRbw/wJ
+	 ClD5SSAsILP5fThXiau2NnbcH5o2uLy9+70rAbcoWN4fZpYC8J50iEP7pW/BNZLBAl
+	 /jd8OegsxlYqiviXh0RjYwHAMP6xOhkGcl4T0DT9Nl8aWDdTW+HHRS1ItLknEjgu9h
+	 MxL8PRPFDUgwSf76jfv8cuhzzwVodMB/w6zTvkN2Fy8/o7CQuHs4rzR3rI/r4uCIkv
+	 1x0qufl9VShpp43Ef03PMb6xzlIzbxf7zAPUk4c36cDvTn0SnrH3HCrawLmEl9RRNZ
+	 2igmKlmNSNNUA==
+Message-ID: <606dc93b-9433-46bf-8c38-1d07b3677abb@kernel.org>
+Date: Thu, 29 Aug 2024 07:59:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240821101025.858961-3-amadeus@jmu.edu.cn>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/9] dt-bindings: soc: renesas: Document RZ/V2H EVK
+ board
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240828124134.188864-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240828124134.188864-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <28106585-59d1-42c4-af56-89820b15bdfb@kernel.org>
+ <CA+V-a8tGBQTNLEBBKTi0Gy47CsdFpQKQkwP02omSWTt8DveqGA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CA+V-a8tGBQTNLEBBKTi0Gy47CsdFpQKQkwP02omSWTt8DveqGA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Aug 21, 2024 at 06:10:23PM GMT, Chukun Pan wrote:
-> The IPQ6005 SoCs and some IPQ6000 SoCs (with PMIC, no fused)[1] have
-> CPU frequencies up to 1.5GHz, so add this frequency.
+On 28/08/2024 22:09, Lad, Prabhakar wrote:
+> Hi Krzysztof,
 > 
-> [1] Usually the SBL version is BOOT.XF.0.3-00077-IPQ60xxLZB-2
-> The old version of IPQ6000 did not explicitly fused the SoC to
-> be 'IPQ6000', and fused the CPU frequency to 1.5GHz.
+> On Wed, Aug 28, 2024 at 3:34 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 28/08/2024 14:41, Prabhakar wrote:
+>>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>>
+>>> Add "renesas,rzv2h-evk" which targets the Renesas RZ/V2H ("R9A09G057")
+>>> EVK board.
+>>>
+>>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>>> ---
+>>> Hi Rob, I have restored your Ack with the below change, I hope that's OK.
+>>>
+>>> Cheers, Prabhakar
+>>>
+>>> v1->v4
+>>> - Updated 'renesas,gp-evk # GP-EVK' -> 'renesas,rzv2h-evk # RZ/V2H EVK'
+>>> - Updated commit message
+>>>
+>>> v1: https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240724094707.569596-2-prabhakar.mahadev-lad.rj@bp.renesas.com/
+>>> ---
+>>>  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+>>> index d582992aaf0e..b7acb65bdecd 100644
+>>> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+>>> @@ -527,6 +527,8 @@ properties:
+>>>
+>>>        - description: RZ/V2H(P) (R9A09G057)
+>>>          items:
+>>> +          - enum:
+>>> +              - renesas,rzv2h-evk # RZ/V2H EVK
+>>>            - enum:
+>>
+>> This is unusual pattern for me, but maybe I miss here something. Commit
+>> message does not explain why EXISTING boards needs to be changed. What
+>> does it mean "rzv2h-evk targets evk board"? How does this work?
+>>
+> This commit is not changing the existing boards. The entries below the
+> addition are the RZ/V2H(P) SoC variants. Here we are just adding the
+> board entry which is based on RZ/V2H SoC [0].
 
-Again, more data is necessary here. "some" doesn't look exact enough.
+Then it is even more surprising to see there entries which were not
+boards. What's in this file in such case?
 
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 1b584d9aadd1..33062417781a 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -140,6 +140,13 @@ opp-1440000000 {
->  			clock-latency-ns = <200000>;
->  		};
->  
-> +		opp-1512000000 {
-> +			opp-hz = /bits/ 64 <1512000000>;
-> +			opp-microvolt = <937500>;
-> +			opp-supported-hw = <0x2>;
-> +			clock-latency-ns = <200000>;
-> +		};
-> +
->  		opp-1608000000 {
->  			opp-hz = /bits/ 64 <1608000000>;
->  			opp-microvolt = <987500>;
-> -- 
-> 2.25.1
-> 
+Which DTS file it matches?
 
--- 
-With best wishes
-Dmitry
+> In the board DTS file it will be used as "compatible =
+> "renesas,rzv2h-evk", "renesas,r9a09g057h44", "renesas,r9a09g057";",
+> see [1].
+> 
+>                ^^                              ^^
+>                  ^^
+> 
+>               Board variant             SoC  variant
+>     Generic RZ/V2H SoC
+> 
+>> You have EVK board and now it is not valid anymore?
+>>
+> No this is not the case.
+Krzysztof
+
 
