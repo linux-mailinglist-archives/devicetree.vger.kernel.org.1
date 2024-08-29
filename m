@@ -1,140 +1,109 @@
-Return-Path: <devicetree+bounces-98065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B02964AF0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:04:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E4D964AF7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:04:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F0181F22B0F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:04:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58CC21C24B6E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA11B2530;
-	Thu, 29 Aug 2024 16:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7D21B4C52;
+	Thu, 29 Aug 2024 16:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T6EN2YXu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dHgblykA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9DAC1A2C0A;
-	Thu, 29 Aug 2024 16:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8FB1B3F19;
+	Thu, 29 Aug 2024 16:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724947442; cv=none; b=dG9wb5kfJv3SwCIMIY4OPs3rngvVaZ1+sNMAnRPvY3yaRCFCZsltNPmlho4TMcCnAelSy7m+NVCr6nOm57twJ/ISelkudc6ax2PbK9xOziath3M7vrwfZ8GXJrwsSWhu7bcJAXhOD5/V2+5OI0R6n8xNTUjch9NxnYifoOH1QhM=
+	t=1724947479; cv=none; b=C8tkm9II+6VZwdviavu6IgXTKFeFaa8t5P+K3RBpRbCU1jmt6vqiLoenKQjBW0GUcMePI39INiIyHkrrar2vuHEBOCQU/wJpWtRh5k6KHKq99wIsZWIZy1/HlZRWU4UnxXYgxPhweBwzplTRtl7iaH2rVQ7wFvrjiKmA26ihry4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724947442; c=relaxed/simple;
-	bh=O/DvXCbm0mUIBbuHpVMnROI8oLLkYu27ZqpxUyR7bTA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TEKZo/++dbtlxC+N834NESc8pukFS+sHN/hXF053kltcNr0/tiBgdbTQTfmiCCNHFdCpoyCGeyID22Kbaay4tFsgvf3Xiq84UvOnAOVmk5FGNmFo3+YFq4/fHSLrLXD2kvH20kU8htokg80iQm5tSEPsVvkXkD0jwL+METP7kAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T6EN2YXu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D5BC4CEC1;
-	Thu, 29 Aug 2024 16:04:00 +0000 (UTC)
+	s=arc-20240116; t=1724947479; c=relaxed/simple;
+	bh=/UWwwm9DQOK+k3QK01sWwhtAkx/XzO3OvB3mEjmcYzc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Ine7CRgs0l2CVjcwFgErtBzFTRw1oAJnPLPfzNsT/vEYE/VL3dxkrvGnxAckQt/yASJzKCSkMHLOvUMTuAMUp30Catow5rl2+IwS6L6r0CYgne2aIFNakNnNcxIw4RYb00WlZh5seuQPIaCKEomvML17eAGW77XgielQj1FaZ30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dHgblykA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AB79C4CEC1;
+	Thu, 29 Aug 2024 16:04:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724947442;
-	bh=O/DvXCbm0mUIBbuHpVMnROI8oLLkYu27ZqpxUyR7bTA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T6EN2YXuiFQYBmMbVWVgvMX0quuqs7yvj0VwVFh7HsghFJPyy4TakqHucFkmMyLic
-	 F1o1IH/OroPkgqUECEQDL1KtOdflpdtG5awAL5JDkLnvfiHLgq5ZiJCHov3DW2u7lt
-	 NlwdNAQRm8ZXhQHIhCwf22f6jifguBR3/IVxbLxuHDe7CIWBMDTqree9biZKagUEVt
-	 +OE1Xb8rfxsPJP1PIGm5ozUNsGJXwDdyhYAmpiWP+sAlP82v1nGBS6UKqTcGyJvdXe
-	 i6oilR6vNRTWTyYOC7pdSWFvbnXObYkGIlSBKkLC4QeFvKtc7zS1tVbZosncrjrVdS
-	 ZPT11Y0z+RTyw==
-Date: Thu, 29 Aug 2024 17:03:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: gomba007@gmail.com
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, csokas.bence@prolan.hu,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] dt-bindings: rtc: Add support for SD2405AL.
-Message-ID: <20240829-reissue-curtsy-3c7c10d0797f@spud>
-References: <20240829-rtc-sd2405al-v6-0-4fbfe2624aa7@gmail.com>
- <20240829-rtc-sd2405al-v6-2-4fbfe2624aa7@gmail.com>
+	s=k20201202; t=1724947478;
+	bh=/UWwwm9DQOK+k3QK01sWwhtAkx/XzO3OvB3mEjmcYzc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dHgblykAb4kxCUJ/032sObRj3RrPtwB/BmXxqQwE3u4LdFYtt9GrMkSHQ58l62sFB
+	 tgAPnKiMjN3GTaJqpG5LseAhe4UAAm9/hAbB+xW/vC4wReq9hyj0bymaXVAUT84bRe
+	 H6k/TbZopEpQkWnhQDcHXUpvuW/VVFSdAdAAcxW91ABrdlDLy/xMXuegj6a5cw2dVP
+	 udMWX9u+kmM6t+gz+NG0b7QlQobZtXBqMG2wxuZ8H56Ii2kwXDhwS8Fylc6rdo9z4f
+	 kMB5mPufF7LIf0E9ozMeP0eNW/Ql4YsfED6sylYP3XI4YBcxfvdXf79XOve43h5F9Q
+	 CHyB278AuvPng==
+From: Mark Brown <broonie@kernel.org>
+To: David Rhodes <david.rhodes@cirrus.com>, 
+ Richard Fitzgerald <rf@opensource.cirrus.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: linux-sound@vger.kernel.org, patches@opensource.cirrus.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240829-cs4271-yaml-v3-1-f1624cc838f6@maquefel.me>
+References: <20240829-cs4271-yaml-v3-1-f1624cc838f6@maquefel.me>
+Subject: Re: [PATCH v3] ASoC: dt-bindings: cirrus,cs4271: Convert to
+ dtschema
+Message-Id: <172494747609.570876.9753159786712866803.b4-ty@kernel.org>
+Date: Thu, 29 Aug 2024 17:04:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4SBVkb1i5yWqdfTP"
-Content-Disposition: inline
-In-Reply-To: <20240829-rtc-sd2405al-v6-2-4fbfe2624aa7@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-37811
 
+On Thu, 29 Aug 2024 10:52:57 +0300, Nikita Shubin wrote:
+> Convert the Cirrus Logic CS4271 audio CODEC bindings to DT schema.
+> 
+> Add missing spi-cpha, spi-cpol, '#sound-dai-cells' and port, as they
+> are already being used in the DTS and the driver for this device.
+> 
+> Switch to 'reset-gpios' and drop legacy 'reset-gpio' used in original
+> bindings.
+> 
+> [...]
 
---4SBVkb1i5yWqdfTP
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Thu, Aug 29, 2024 at 01:31:45PM +0200, T=F3th J=E1nos via B4 Relay wrote:
-> From: T=F3th J=E1nos <gomba007@gmail.com>
->=20
-> Add the necessary documentation for SD2405AL.
->=20
-> Signed-off-by: T=F3th J=E1nos <gomba007@gmail.com>
-> ---
->  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 ++
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Both of these should really be two different patches, despite how
-trivial they would be. If you resubmit, please do that and provide a
-link to the vendor in the vendor-prefixes patch. Otherwise,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Thanks!
+
+[1/1] ASoC: dt-bindings: cirrus,cs4271: Convert to dtschema
+      commit: 7817eb1ad353d732bac546b39316f2422c76fff4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Conor.
+Mark
 
->  2 files changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Doc=
-umentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> index fffd759c603f..dae594626b2e 100644
-> --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> @@ -38,6 +38,8 @@ properties:
->        - dallas,ds1672
->        # Extremely Accurate I=B2C RTC with Integrated Crystal and SRAM
->        - dallas,ds3232
-> +      # SD2405AL Real-Time Clock
-> +      - dfrobot,sd2405al
->        # EM Microelectronic EM3027 RTC
->        - emmicro,em3027
->        # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index a70ce43b3dc0..bd8b279a5152 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -368,6 +368,8 @@ patternProperties:
->      description: Devantech, Ltd.
->    "^dfi,.*":
->      description: DFI Inc.
-> +  "^dfrobot,.*":
-> +    description: DFRobot Corporation
->    "^dh,.*":
->      description: DH electronics GmbH
->    "^difrnce,.*":
->=20
-> --=20
-> 2.34.1
->=20
->=20
-
---4SBVkb1i5yWqdfTP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCb7gAKCRB4tDGHoIJi
-0pO0AP9nFYr5MAPzV6Djrk7CIqjBrQzH+sxexRRGqM2+/8lLFgEAmNT/FudTE89a
-s6vnW2G/aGr2aeZ8rMJuNP4wo/xgUgY=
-=8tXq
------END PGP SIGNATURE-----
-
---4SBVkb1i5yWqdfTP--
 
