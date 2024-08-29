@@ -1,86 +1,109 @@
-Return-Path: <devicetree+bounces-98094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F14964CCE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:31:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09273964CDD
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C43E1F23771
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:31:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B88E1C21B11
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2A61B86DA;
-	Thu, 29 Aug 2024 17:30:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816871B5EC7;
+	Thu, 29 Aug 2024 17:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i9WoHNIF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PNFOxpTx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1505A4DA14;
-	Thu, 29 Aug 2024 17:30:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB09A1B151F;
+	Thu, 29 Aug 2024 17:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724952640; cv=none; b=prC27JshEFSRtmz7jyINB9CL2Swq8ykPkVlt8AG1DsoKmejEUgBsx4AAPcrEtR+yRxF0v8dykGe1ZhWVNlPgYuQA6UJHHFZGvWgCVWivk8xfoirt/CsD5TOhY8/ouk9tMNjVOcZjCsBdEEj194OgGnlvrWYomdVKgUFYMHvadpA=
+	t=1724952734; cv=none; b=GlIdRazAtjDCzBCuN7eklZCxHK00L4bW8dn0IkhSS6FDFsZ0+kRgECP9hFn5CFO/zaAmyewzmNzuyr8ZalVwB4niZb2Vmyyghha2eX/gjkwHPrdbEe3fN82UH37gjdHVFI4CpBliudNxzXx7B/I6QZ6KjgQGzQJLHS3Lf7re8qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724952640; c=relaxed/simple;
-	bh=TEsB8LNFhusEQgf0kKmbqfMQXDUwHoHoROc849hZ0bE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=u3dgtAxt3h/S3nHnrHWy6qjpmevY3dFkhH75PhJyUexkSyP+UNqES3I1+FzJGPQTTVHigzkXht7WeLH7DJ18iDstm1nDo+uhlTKbckz2uKEp7T3xGO5V6iaF1EbTrlWPV9ck0m5tBhwvATNNcHUxw/ngJWYLKwynVcAPtIi5s+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i9WoHNIF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA9AAC4CEC9;
-	Thu, 29 Aug 2024 17:30:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724952638;
-	bh=TEsB8LNFhusEQgf0kKmbqfMQXDUwHoHoROc849hZ0bE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=i9WoHNIF87zh4Oy3KAe2hxdGM+OnfJ4mo4YoxOMRwck1N4KScmM98LTchnsV9DhxE
-	 nUIw6A0cjnTG6LJxbKTIHxmxcV9gHJjxKe7itsWv7CbO1FPkjfbcHGpQefks3D2/tj
-	 Sbd87ucnKdivj07+1ks1ByIsjQ++RUrfJ2wKmMmWO1/7bW3Nwx6AXui64m9XzvGqkZ
-	 JasiovCPuaOAbrcvgmNfPFMTYPpLUr9pAisMtS5WbcVBc72I9KVnPHavBaq3IF0jNu
-	 uonF7lFJEiIt6UX+kvE4JMkm2IA/t8PTl6mLO6vqgD0eVcAmYL7470/HKBiLHLbfx+
-	 GNR12IGSQvSGw==
-From: Vinod Koul <vkoul@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- Fabio Estevam <festevam@denx.de>
-In-Reply-To: <20240807170517.64290-1-festevam@gmail.com>
-References: <20240807170517.64290-1-festevam@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: dma: fsl,imx-dma: Document the DMA
- clocks
-Message-Id: <172495263633.385951.4011383179072165108.b4-ty@kernel.org>
-Date: Thu, 29 Aug 2024 23:00:36 +0530
+	s=arc-20240116; t=1724952734; c=relaxed/simple;
+	bh=Ci1IjLrgxuKopOrBB7mS85mXNkrMaR11ehThLezyhOU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Oc7ZIfFze82vAJwCBdIDfD58mUvr+mfzQAYgDj64FNr9ETv7g+JLpJgR5LDBsYLJEKN3xyDgxUCUku8BOgWF7MR0BRZWReKLjyqwDaHHsP8CrlUIRPR2chSrMjmtG6XQTbQg/1zLNHZh+KRpS0WfeZm7lPlc/jM984rx1080nyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PNFOxpTx; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-533488ffaebso1083509e87.0;
+        Thu, 29 Aug 2024 10:32:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724952731; x=1725557531; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ci1IjLrgxuKopOrBB7mS85mXNkrMaR11ehThLezyhOU=;
+        b=PNFOxpTxkkPwnuJ69dHp5U4OHpn88Fgrlo9PNBPqG7pafQgnxAlujBNFqAsfxlcwdm
+         ytqtnrd7dNm9CscP6ezFB6LGs42gYFOqL/Fh5aDmILNZnwlGzqV0YHNjnWqcYX6OBU9a
+         Gt7uHE4BSa/3meedlxdZlNoW8yUhwFcRxuWkDWw1UGV684yAbg8x5HA1i2LerG30F12W
+         qIkjgMSY3d+Clq5P33zj9d5hlx3WsD8xXt/B+x45Xu/vsxqtjSbNAkGw/S4fWIiEU587
+         PFlTJn0xlxLqjBXLErJkStIgakyOYygj5d9FjY8gZpb9RiUlxW+4/oO6QEDiwmwsgKA1
+         I1hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724952731; x=1725557531;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ci1IjLrgxuKopOrBB7mS85mXNkrMaR11ehThLezyhOU=;
+        b=r0xFfE/UV1VtJN0F0dB/dw0dlYVNFBp4oujc1me7cx5YGonpZ7G81ELf3wxAeZ1EGi
+         fosq73T00pHVD36ja4Y3RMY2FLOtpS5X/7r4LKFMXOUuqZhoNBXK21HkMapP469D//Cj
+         FiFjSuJUGuZCIETJ/b5q5QAaC+LjgGUdS3ki42vz601ZSnlRvkmCpSv3Eo4N50R1gPho
+         SC7XzFpQlltBhO+4NnZOcsg9uiLB3V3WYeoGjw9YLzrCVjj2Fptq9awZ4xx7vQBE1WTU
+         KcqFDissxUJ5w0CeiC9KzDfBSznMqo9hnP/ugEd7Vchm+BItiGHhq5K6Mwfg7SPG79Vx
+         kipA==
+X-Forwarded-Encrypted: i=1; AJvYcCVYr2wS9IYnNVzVRg0fFms0wVrH7HfxKaPjuEoDgfi1aDi95YL9hC74RyhqxAJgOSYD4QCpUfPalA1S@vger.kernel.org, AJvYcCWyi4RB/JhyR5uc+eCXg03bLuTaL2R5wuCNjKMpv8dJ+hjvfCSJRbJm3XU3tkggddNN9xiqnm1YSA5T@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgKLpBuUyXRb/f8e/mgk7SKKRM4qx6WT6Xcku7LSs8/Nuz+e6r
+	oBfqgO/mS3GYUurZAXsub70WjCi4y1lRCq6nRtOr4GYKGlAU/Xtt04ZInU/HmsJjDv6aharS294
+	4v4DkIVPzZmj2+e7gm15ESnh/i54=
+X-Google-Smtp-Source: AGHT+IHJDiN4QUGh0SUTrhUUPUdUEZ8AfwVAwRa5oZ5JGf74ystLR3IEm6UIkr3QuY22L0L2SyneKpFkXIE/amdk9zU=
+X-Received: by 2002:a05:6512:b84:b0:52e:7125:c70a with SMTP id
+ 2adb3069b0e04-5353e5ae6damr2243321e87.47.1724952730222; Thu, 29 Aug 2024
+ 10:32:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+References: <20240719111210.1287783-1-festevam@gmail.com> <20240719111210.1287783-3-festevam@gmail.com>
+ <574443966.JY4mfKhWER@diego>
+In-Reply-To: <574443966.JY4mfKhWER@diego>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 29 Aug 2024 14:31:58 -0300
+Message-ID: <CAOMZO5AseqaMMR8au8gPE4oUkUWnhxeGO5CeZTknWck9meFmug@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] ARM: dts: rockchip: rv1108-elgin-r1: Do not
+ describe unexisting DAC device
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: broonie@kernel.org, linux-spi@vger.kernel.org, 
+	otavio.salvador@ossystems.com.br, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Heiko,
 
-On Wed, 07 Aug 2024 14:05:17 -0300, Fabio Estevam wrote:
-> Document the IPG and AHB clocks that are needed by the DMA hardware
-> as required properties.
-> 
-> It is not possible to have DMA functional without the DMA clocks
-> being turned on.
-> 
-> 
-> [...]
+On Sat, Aug 10, 2024 at 6:23=E2=80=AFPM Heiko St=C3=BCbner <heiko@sntech.de=
+> wrote:
 
-Applied, thanks!
+> Acked-by: Heiko Stuebner <heiko@sntech.de>
+>
+> Mark, do you want to take all 3 patches (fine by me) or just the
+> first two?
 
-[1/1] dt-bindings: dma: fsl,imx-dma: Document the DMA clocks
-      commit: 2ccf4822683336f027a5c9f12cb2468e329125d9
+Mark has applied the spidev patch on his for-6.11 branch:
 
-Best regards,
--- 
-~Vinod
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?h=
+=3Dfor-6.11&id=3D5f3eee1eef5d0edd23d8ac0974f56283649a1512
 
+Could you please apply the other two to your tree?
 
+Thanks
 
