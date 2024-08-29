@@ -1,111 +1,168 @@
-Return-Path: <devicetree+bounces-97866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D21C963E47
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:23:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2943D963E67
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:29:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E38E1C22480
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:23:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D5421C21DD7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E1C18C02D;
-	Thu, 29 Aug 2024 08:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5DC418C034;
+	Thu, 29 Aug 2024 08:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfxGg7nx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nl+dGyMr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047A818C025;
-	Thu, 29 Aug 2024 08:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F217418C025;
+	Thu, 29 Aug 2024 08:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724919824; cv=none; b=pklxZvGfTDp6hDBDrZeTLpZpg9zZ89AqOddl47ZLygBPXpEclayswlX0sT6QwRpBESh4y68gHcx5al++BrBnvWEbbdok4Vun7eTrekNfDb8rKrMAVGqRdwEI598poCw3qafBidl4VXCGeE3v+naJ2pmzbdfkQiD+FA0uNkoTvRI=
+	t=1724920159; cv=none; b=TJalwBBeTa8CPCO3VmDVx4FDEHDA25fZO9XAvMdPv3r7hSLQFx1U0TVa1mvXbXB0IQBB2/UeiroZ3WroVVqF1Tnv18HAvGyr+6cByelWkROAQK6shECXBTjk6uLZRRVqGbAVQ5jAONTJcAdwpemG1ZVS/GVIKcGnt4dn1vmOFPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724919824; c=relaxed/simple;
-	bh=ZYaSGp+fnpZ/q2d742FCiD1B5Vwp233d4XIjEq3SxmI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=VWDNXxnWA/k30fKz2VXqJpbf6zeR0e07QTScMsLy7k1s7nY4vnQFJnH4opuUxf8fdKULIZ/ucnfcY+0mmAKplW6/nSt3pDk4BCHHFdoTu+o6+iM4WT9fpjY7tX21f8zPDsO9vOA4vxwdp5kWwrSlXY5ufIMfWfsNmNyEWtrKvow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfxGg7nx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 678AAC4CEC1;
-	Thu, 29 Aug 2024 08:23:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724919823;
-	bh=ZYaSGp+fnpZ/q2d742FCiD1B5Vwp233d4XIjEq3SxmI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=LfxGg7nxC/5pTw/pl4SPD3eMgN3WOG2lJTTMvpwQujpq7RUcrhezJRMpG6N/oVe11
-	 oG44QXMWpDJ4pzQlAFFUn3uPYjMXTNErlElOrv2xbum2lE3syzFYUuQY92OZf4hMHe
-	 kZUzsstPPpndi65VdFlfenzrkGUS2hhFH7B9kyUpkZNEUyLRTrYCfT55CDKfFnxKob
-	 d0iaO3mzp/3DguWkbICbwsuR6GYGZcg3oixLlC+jA0QXCdf0oxtOqLYLJ2uvxA3P4y
-	 74liAa0d+SclnZHStNHPjWN1/kjOh2dS3Gw4vm7qJLe0AECKs8kKo2Dmjjz35xleYf
-	 INrXQOo4/NVXw==
-Date: Thu, 29 Aug 2024 03:23:41 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1724920159; c=relaxed/simple;
+	bh=E22UVlKfybQ6Tmjaw6PPYSMUlg5345khqFSuT+Vhx8M=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kNYKYQJp+0YFi0PpbR6x3Cdc9K8SiQzPuuNeMZEgcmHQxoQ8Bs0mnDiAuz7OhX1VAfi8OacE9WjccJuwsQJJt0s+WkMY1Ei5TZ/JVI7KZZStmX/HIfsrLvq2hrlwR5sIUmyqhnRbVmDbR5Jj/T+sp/6fo2nDJaiLxnqAjweNDXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Nl+dGyMr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47T8QcaV000605;
+	Thu, 29 Aug 2024 08:29:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7ry3tTO1NvxIQ0xDSdkI6D
+	BGk1wEMGklt9PYcx1cDHY=; b=Nl+dGyMrwrKC+czRz5w4HQUwS06UGUWeL7aIJJ
+	rZm3pqlVgrDs3DbdSLMoFT153pMx6jl12Kd+wsscicg2Z54O2f5XaS+8Dt4FLscR
+	r6J+QYNEClp79f8ETxOg25rr6JqiSociVJX+SUIhiWR2kTodE6f03MzRGGVnHCPW
+	IGElkGcv2GZXxEVo7m3sQImQQvw8fcaZczGG7tF2PwKzY7u3yYxyga8GEhgbfANy
+	/IA3QTb5KBlMFeHsC8RIJYykmbRJUUyM1QdM7iBV9Jus1wYTWwPub4NFlFtrB8w5
+	Ce0b5D9Y8O+q7YqidVRnl+FBmbFJbRq3RuQu8O8p3lbchr2w==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419puw4h9t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Aug 2024 08:29:01 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47T8Sx8C007272
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Aug 2024 08:28:59 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 29 Aug 2024 01:28:52 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <djakov@kernel.org>, <richardcochran@gmail.com>,
+        <geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
+        <neil.armstrong@linaro.org>, <arnd@arndb.de>,
+        <nfraprado@collabora.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-pm@vger.kernel.org>, <netdev@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>,
+        Kathiravan Thirumoorthy
+	<quic_kathirav@quicinc.com>
+Subject: [PATCH v5 0/8] Add NSS clock controller support for Qualcomm IPQ5332
+Date: Thu, 29 Aug 2024 13:58:22 +0530
+Message-ID: <20240829082830.56959-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jammy Huang <jammy_huang@aspeedtech.com>
-Cc: pmenzel@molgen.mpg.de, krzk+dt@kernel.org, conor+dt@kernel.org, 
- joel@jms.id.au, devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, 
- mchehab@kernel.org, linux-aspeed@lists.ozlabs.org, andrew@aj.id.au, 
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- eajames@linux.ibm.com, linux-kernel@vger.kernel.org, hverkuil@xs4all.nl
-In-Reply-To: <20240829064508.3706672-2-jammy_huang@aspeedtech.com>
-References: <20240829064508.3706672-1-jammy_huang@aspeedtech.com>
- <20240829064508.3706672-2-jammy_huang@aspeedtech.com>
-Message-Id: <172491982164.2766568.9027879446207472741.robh@kernel.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: media: convert aspeed-video.txt to
- dt-schema
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gByXCS-HlPuas1kMDGT_fDzgQ9_XjdC5
+X-Proofpoint-GUID: gByXCS-HlPuas1kMDGT_fDzgQ9_XjdC5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-29_02,2024-08-29_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ priorityscore=1501 malwarescore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=999 suspectscore=0
+ adultscore=0 spamscore=0 impostorscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408290062
 
+Add bindings, driver and devicetree node for networking sub system clock
+controller on IPQ5332. Some of the nssnoc clocks present in GCC driver is
+enabled by default and its RCG is configured by bootloaders, so enable
+those clocks in driver probe.
 
-On Thu, 29 Aug 2024 14:45:07 +0800, Jammy Huang wrote:
-> Convert the ASPEED SoCs video txt bindings to dt-schema.
-> 
-> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
-> ---
->  .../bindings/media/aspeed,video-engine.yaml   | 78 +++++++++++++++++++
->  .../bindings/media/aspeed-video.txt           | 33 --------
->  2 files changed, 78 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/aspeed,video-engine.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/aspeed-video.txt
-> 
+Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+---
+Changes in v5:
+- Rebased on next-20240821
+- Addressed review comments
+- Dropped 'const qualifier' patches
+- Dropped 'clk: qcom: ipq5332: enable few nssnoc clocks in driver probe'
+- Enabled icc-clk for NSSCC
+- Update ICC master/slave list
+- In dt-bindings of nsscc
+	Mark #power-domain-cells as false (as it is not applicable)
+	Add #interconnect-cells
+- Link to v4: https://lore.kernel.org/lkml/20240122-ipq5332-nsscc-v4-0-19fa30019770@quicinc.com/
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Changes in v4:
+- Rebased on next-20240122
+- Fixed the missing space on the nsscc node
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20231211-ipq5332-nsscc-v3-0-ad13bef9b137@quicinc.com/
 
-yamllint warnings/errors:
+Changes in v3:
+- Collected the tags
+- Dropped the dt-binding patch 3/9
+- Cleaned up the header file inclusion and updated the module
+  description in the driver
+- Used the decimal number instead of hex in the NSSCC node
+- Link to v2: https://lore.kernel.org/r/20231121-ipq5332-nsscc-v2-0-a7ff61beab72@quicinc.com
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/aspeed,video-engine.example.dts:27.29-30 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:442: Documentation/devicetree/bindings/media/aspeed,video-engine.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432: dt_binding_check] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
+Changes in v2:
+- Change logs are in respective patches
+- Link to v1: https://lore.kernel.org/r/20231030-ipq5332-nsscc-v1-0-6162a2c65f0a@quicinc.com
 
-doc reference errors (make refcheckdocs):
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/media/aspeed-video.txt
-MAINTAINERS: Documentation/devicetree/bindings/media/aspeed-video.txt
+---
+Kathiravan Thirumoorthy (6):
+  dt-bindings: clock: ipq5332: add definition for GPLL0_OUT_AUX clock
+  clk: qcom: ipq5332: add gpll0_out_aux clock
+  dt-bindings: clock: add Qualcomm IPQ5332 NSSCC clock and reset
+    definitions
+  clk: qcom: add NSS clock Controller driver for Qualcomm IPQ5332
+  arm64: dts: qcom: ipq5332: add support for the NSSCC
+  arm64: defconfig: build NSS Clock Controller driver for Qualcomm
+    IPQ5332
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240829064508.3706672-2-jammy_huang@aspeedtech.com
+Varadarajan Narayanan (2):
+  dt-bindings: interconnect: Update master/slave id list
+  clk: qcom: ipq5332: Add couple of more interconnects
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+ .../bindings/clock/qcom,ipq5332-nsscc.yaml    |   64 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         |   28 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-ipq5332.c                |   16 +
+ drivers/clk/qcom/nsscc-ipq5332.c              | 1049 +++++++++++++++++
+ include/dt-bindings/clock/qcom,ipq5332-gcc.h  |    1 +
+ .../dt-bindings/clock/qcom,ipq5332-nsscc.h    |   86 ++
+ .../dt-bindings/interconnect/qcom,ipq5332.h   |    4 +
+ 10 files changed, 1259 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq5332-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-ipq5332.c
+ create mode 100644 include/dt-bindings/clock/qcom,ipq5332-nsscc.h
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.34.1
 
 
