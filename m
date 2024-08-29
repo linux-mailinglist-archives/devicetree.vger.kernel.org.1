@@ -1,104 +1,120 @@
-Return-Path: <devicetree+bounces-98037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E139647A0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 877D69647A1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84A3C281732
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:09:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 451C72816F2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1BE18E750;
-	Thu, 29 Aug 2024 14:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763731AC436;
+	Thu, 29 Aug 2024 14:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J5Y8smki"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WI+Z8a48"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246F718E36D;
-	Thu, 29 Aug 2024 14:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBAD18E750;
+	Thu, 29 Aug 2024 14:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724940590; cv=none; b=nmnZ4FlH2OXI5bRUwoJrl7dhyQf1cUlTcs5m1LeVFxQkW+jS9yAXDvAjwIbZN8N0CLwiE8bxqFWyC6sjG6o7kLjy5FRdhp/xyKAMWo6HnMCaM8SmZe2F7ffhgVwbFfBgbZG4HmHO2XsIw097PclGWW0Nzf1plwnXbnLuPM0MaKY=
+	t=1724940610; cv=none; b=J5BsxnuArn3KOIICDVQJeshgkFxj6snTGsojLw3ZU8X+ijhzYMfniDo1DFI7HVcl0ErSIAB1V3BmAiOb1/3fCwQRTZFjjpq0lDkTJcNxkbRPYo4j+QtkovbubfZLzvtTOunwj9EgOoBgv5DyZDxRrSqt87dPS9GHrTarFozrA6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724940590; c=relaxed/simple;
-	bh=FpQQ/uMy+PNEKD3Nj/2L1tmHC+W7Oe5wDR9Ehc6CsN8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BgBW58qjivF4xXWwh1cTgux84cKa4ClPAQ9vysohHC+qqAbdZVEm0leZ11bWMaLhn6Byrvm1Uy1i9i7YKkZiW+13QbAzDCaqVV8/8y0WySkesf9eKLVDnF7iFbqsMmrFIjlyopIV9fhObE0TtljlrhAaVjXmEyS73AUmmu/O6rE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J5Y8smki; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10949C4CEC8;
-	Thu, 29 Aug 2024 14:09:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724940590;
-	bh=FpQQ/uMy+PNEKD3Nj/2L1tmHC+W7Oe5wDR9Ehc6CsN8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=J5Y8smkiEo1lkup2f9eYa2RokLMAO4TDrKHnV7dE+bFLSdQhMq23PW+xgL9crBBa+
-	 ii15hOaCIYcDquixZ1jV6YlUZngh9EAaipzZbkDZ08Ov91/AGWcZ7THZnRa2sUYSYi
-	 2zX8LwLq512nq3HC0bmuJFJuvKZ/D8dbb0ZzoGFy5f0vyWUk2xHBAAme5wqFdN1iSz
-	 4PSKHNLzdeJLxqGDz1+tquDM23MV8b8AlU1s/I+yIOjbhrlr9xIsAtpDjaCxdO7i6I
-	 Vc/CNf4X58qtlMoDuH5v8f+PJKZR9ZV9gY54X1UaXfTRKCBFxQBUD9DJRnQ6fAvWuf
-	 3EW13UvGCX/Ug==
-From: Mark Brown <broonie@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: linux-spi@vger.kernel.org, otavio.salvador@ossystems.com.br, 
- heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20240829113158.3324928-1-festevam@gmail.com>
-References: <20240829113158.3324928-1-festevam@gmail.com>
-Subject: Re: (subset) [PATCH v4 1/3] dt-bindings: trivial-devices: Document
- elgin,jg10309-01
-Message-Id: <172494058780.260290.2099482677435543580.b4-ty@kernel.org>
-Date: Thu, 29 Aug 2024 15:09:47 +0100
+	s=arc-20240116; t=1724940610; c=relaxed/simple;
+	bh=qTwOLDyuIJZS5WYFmgDfv4KEXGvXw9UoAMyimnM+OxA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qPsOiYosZx3yzuuT/9UeLIkRgzI/rzdFFGKtoo8Hp3n0hsccirz3nsHMneH3aawuk5y5sMky0S9RFxV9Jhk4nFMPQQeeXdK1ENo7mCjSElcFLIVM6wMueBhEkcfAN9ovLpMsJs+CU78DamIWCVw2VRLyg35TLt12PbrBFC6oCoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WI+Z8a48; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C69EA40003;
+	Thu, 29 Aug 2024 14:10:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1724940605;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=u9iP8bCRJqK47kKnLBPXwytzrpV7PSNInp4gC39oES4=;
+	b=WI+Z8a48GHLNMFT578dHsj4QyDLRExsKUPQ0TLHA88ybm6R1hCzAbfVmFQIgGU/6+QQbsX
+	3/sZAA+/5d99NWipDtt1/z5DVbTuY1wKqgpLOp/tOdqpqSdHIQjSyjp5aPwVFO+di9F7/3
+	XROqjXnbN61hjhIQGYPGlSvEqfTUOyXmVTmuYy3j177iPLiPq2dpSzxL7T7X5hm8uR4xgw
+	oq+us58dKDlVcEGHCXdlLWWbzKQKB6hHFBwxrrm02m5lTHTBOJ0LNJG9bobClegUNwYvPg
+	eJjXUZalKMzEaz8TJp/jEIILgeyIvZHRFjaBj4uiexGxa50xV0BGWWHtjLGD/Q==
+Date: Thu, 29 Aug 2024 16:10:03 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: Add SAMA7D65 PMC compatible string
+Message-ID: <20240829141003278e9ec2@mail.local>
+References: <20240829-sama7d65-next-v1-1-53d4e50b550d@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-37811
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240829-sama7d65-next-v1-1-53d4e50b550d@microchip.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Thu, 29 Aug 2024 08:31:56 -0300, Fabio Estevam wrote:
-> The rv1108-elgin-r1 board has an LCD controlled via SPI in userspace.
-> The marking on the LCD is JG10309-01.
+On 29/08/2024 15:08:45+0530, Dharma Balasubiramani wrote:
+> Add the `microchip,sama7d65-pmc` compatible string to the existing binding,
+> since the SAMA7D65 PMC shares the same properties and clock requirements
+> as the SAMA7G5.
+
+Shouldn't you rather use a fallback if you currently have no driver
+change?
+
 > 
-> Add an entry for the "elgin,jg10309-01" compatible string.
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+> index c9eb60776b4d..885d47dd5724 100644
+> --- a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+> @@ -43,6 +43,7 @@ properties:
+>                - atmel,sama5d4-pmc
+>                - microchip,sam9x60-pmc
+>                - microchip,sam9x7-pmc
+> +              - microchip,sama7d65-pmc
+>                - microchip,sama7g5-pmc
+>            - const: syscon
+>  
+> @@ -90,6 +91,7 @@ allOf:
+>              enum:
+>                - microchip,sam9x60-pmc
+>                - microchip,sam9x7-pmc
+> +              - microchip,sama7d65-pmc
+>                - microchip,sama7g5-pmc
+>      then:
+>        properties:
+> 
+> ---
+> base-commit: b18bbfc14a38b5234e09c2adcf713e38063a7e6e
+> change-id: 20240829-sama7d65-next-a91d089b56a3
+> 
+> Best regards,
+> -- 
+> Dharma Balasubiramani <dharma.b@microchip.com>
 > 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/3] dt-bindings: trivial-devices: Document elgin,jg10309-01
-      (no commit info)
-[2/3] spi: spidev: Add an entry for elgin,jg10309-01
-      commit: 5f3eee1eef5d0edd23d8ac0974f56283649a1512
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
