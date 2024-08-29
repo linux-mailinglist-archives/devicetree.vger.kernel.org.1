@@ -1,181 +1,192 @@
-Return-Path: <devicetree+bounces-97795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422649639E3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:31:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9EE963A08
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A162D1F25B66
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 05:31:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26CCA1C23C18
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 05:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE7513C8FF;
-	Thu, 29 Aug 2024 05:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45C014B94F;
+	Thu, 29 Aug 2024 05:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BRMcqT+G"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="nAYStO0V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650B650A63;
-	Thu, 29 Aug 2024 05:31:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68BCC5338D
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724909477; cv=none; b=u8l88B8CjdYpZx0hp5zNWzgOSY/Ou1sKkLdJh4VnN8KDvOR1+fIFFkUi5AvR8RUI6RfRpoU7QnSr5Wf8xIuEcKpuOzHq3Cz3eU+T+QrrgDfHS4FC7SpRe38/IN4flqRTRecRFF8SWmY9VFzPWF40uUBKqkEN9WNQOfEsmsot4lE=
+	t=1724910624; cv=none; b=R/Wwv4SqILgbRY1lI2+oFqFl2Z9jai/HA9tAJ+CoOORMZdn1kEB5adZc7RTbr7nI/v1Eb9/xSC3Z9GbB57cZaX8EUWkwKbPZaBq74wYwI4AXtlzAoNaQnRMgobTLXuCO/lI4b4KchwPGfMMu3ExqsfNuRs0MqVUCVi8mdNQO0dA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724909477; c=relaxed/simple;
-	bh=tU53d3Zz3bM/dhVBI3QGvA0eOuMFk1tkdx0X0vtd28g=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VH7H/O/albsNwJ/YoN44oK1w6ZX8KmevtvQqH8aGn7uHp6QnEuFbzpuR1hqYHwYpBreNXjKzQe4ak480rQ29Vgazpe0AdAEkrIIehFo7mSdsOrGGTb+F1FDMFiaamGkmT3Byc7+zFZYn2AT1mNhj+CzNRaj8e43rfr7zmBaS1sM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BRMcqT+G; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47T5V2Ed098558;
-	Thu, 29 Aug 2024 00:31:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724909462;
-	bh=fo2xYcjr2pHkeY4HV+MN41M6scsudZXeANUulYj2JVg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=BRMcqT+GnwHgbIFpYZdyLkNMMxJeDvHlX6I6lrr5CXpXA19K9Zh+1sfRr6qLaGDf+
-	 WFuUhzdaIZ2jD0b8AspWWOoYCd2qOQsmeD16OVln//K2ljx1Xuy81jygaQx9tp8ESs
-	 Rlwg3ima5BGFnyw+Dn60bEWoX5HyDTd0KHZqAMJ8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47T5V2xm019752
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Aug 2024 00:31:02 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- Aug 2024 00:31:01 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 Aug 2024 00:31:01 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47T5V0kr064991;
-	Thu, 29 Aug 2024 00:31:01 -0500
-Date: Thu, 29 Aug 2024 11:00:59 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <bhelgaas@google.com>,
-        <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vigneshr@ti.com>,
-        <kishon@kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH v3 2/2] PCI: j721e: Enable ACSPCIE Refclk if
- "ti,syscon-acspcie-proxy-ctrl" exists
-Message-ID: <99e1b482-0a54-4a33-9c59-f9851ef2c1b6@ti.com>
-References: <20240827055548.901285-3-s-vadapalli@ti.com>
- <20240828211906.GA38267@bhelgaas>
+	s=arc-20240116; t=1724910624; c=relaxed/simple;
+	bh=wdBzlHPzqbQqgzcrw6a0vj9ow8E9XI7yoBVOFCltyaU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GTGT4rzKWe/Fmu27GOcfto9Co3w65TxhsWtZuayad7vgDBtGgqSUIanjypqksnSLjaRT0WXYe3Igkea+4SoV4LF4WRGpic8z7r1nBStwlJGitus+aWibuMPNBQpxUdzD1VvHTmp/rvhSjqn3gM9Ft2cEztbR261eQ1mGjL0Z7UE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=nAYStO0V; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1724910608; x=1727502608;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=wdBzlHPzqbQqgzcrw6a0vj9ow8E9XI7yoBVOFCltyaU=;
+	b=nAYStO0VqxBgR65a1cbt/jYjpwoHmCfA0wdGSdYTcjWC1uSrsQHK0kxw7OGtJM0P
+	QHWQgqVweX3Mzo69Nbg9wrfSAPECN98V51tY8VE0a66gMMSWYf2Hz9x+ozT/exAh
+	D21J8bcGVd9zlF5UdpuJZFMFIDMeT7Q5tYgUaLkLfPs=;
+X-AuditID: ac14000a-03e52700000021bc-3d-66d00c0f9590
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id D9.1B.08636.F0C00D66; Thu, 29 Aug 2024 07:50:07 +0200 (CEST)
+Received: from [10.0.0.19] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 29 Aug
+ 2024 07:50:02 +0200
+Message-ID: <2d454d61-6f17-4c31-9d03-b065489b26c9@phytec.de>
+Date: Thu, 29 Aug 2024 07:49:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240828211906.GA38267@bhelgaas>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64* Disable ethernet by default
+ at SoC level
+To: Logan Bristol <logan.bristol@utexas.edu>
+CC: Josua Mayer <josua@solid-run.com>, Wadim Egorov <w.egorov@phytec.de>,
+	<linux@ew.tq-group.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Conor
+ Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+References: <20240809135753.1186-1-logan.bristol@utexas.edu>
+ <4e884c6c-ec82-4229-a2a4-55da66cc284f@phytec.de>
+ <6fa4f5e5-7f7b-495a-a95a-82d7b105d2d7@utexas.edu>
+Content-Language: en-US
+From: Daniel Schultz <d.schultz@phytec.de>
+In-Reply-To: <6fa4f5e5-7f7b-495a-a95a-82d7b105d2d7@utexas.edu>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprCIsWRmVeSWpSXmKPExsWyRpKBR5ef50KawaxnmhZr9p5jsph/5Byr
+	xfLJC9gtXs66x2ax6fE1VovLu+awWXxdd4bV4k/3ViaLNz/OMln8P/uB3YHL48WEf0wem1Z1
+	snlsXlLv8a/1MbPH8RvbmTza9gV6fN4kF8AexWWTkpqTWZZapG+XwJXxddME9oLZChXvJ8xh
+	b2DcKN3FyMkhIWAi8W/advYuRi4OIYElTBIrXl2Fcm4xSuz9vZsdpIpXwEbi05cvTCA2i4Cq
+	xKfbT5gh4oISJ2c+YQGxRQXkJe7fmgFWLywQLXFz0jmwGhEBHYmnWzvAhjILPGCSmPt6BtSG
+	xYwSa5r+sIFUMQuIS9x6Mh9sA5uAlsSdLXPBujkF7CQOXr7PClFjIbH4zUF2CFteonnrbLAa
+	IQEFidnbJjNC/CMvMe3ca2YIO1TiyKbVTBMYhWchOXYWknWzkIydhWTsAkaWVYxCuZnJ2alF
+	mdl6BRmVJanJeimpmxhBMSfCwLWDsW+OxyFGJg7GQ4wSHMxKIrwnjp9NE+JNSaysSi3Kjy8q
+	zUktPsQozcGiJM67uiM4VUggPbEkNTs1tSC1CCbLxMEp1cDom3dasi3/3jT/lHl75H8Ff6ve
+	6eq1rfBO5o97US0n//RO/WsneUZAPjtqxtPzZVtaz170fpKVs2Zms47r/Nkts5r8ApMKmRU7
+	/jwXU1hxcd858wX6tnv3hzYbzWV4/fHnpbm3dzDHaIveazoZ82FV89WPtU0HNpbfXS2YtO0r
+	/1eOzwt5alIuK7EUZyQaajEXFScCABb3uGenAgAA
 
-On Wed, Aug 28, 2024 at 04:19:06PM -0500, Bjorn Helgaas wrote:
 
-Hello Bjorn,
+On 26.08.24 23:17, Logan Bristol wrote:
+> Hi Daniel,
+>
+> On 8/26/2024 12:29 AM, Daniel Schultz wrote:
+>> Hey Logan,
+>>
+>> my feedback is similar to Josua's.
+>>
+>> On 09.08.24 15:57, Logan Bristol wrote:
+>>> External interfaces should be disabled at the SoC DTSI level, since
+>>> the node is incomplete. Disable Ethernet switch and ports in SoC DTSI
+>>> and enable them in the board DTS. If the board DTS includes a SoM DTSI
+>>> that completes the node description, enable the Ethernet switch and 
+>>> ports
+>>> in SoM DTSI.
+>>>
+>>> Reflect this change in SoM DTSIs by removing ethernet port disable.
+>>>
+>>> Signed-off-by: Logan Bristol <logan.bristol@utexas.edu>
+>>> ---
+>>> Changes since v1:
+>>> - Enabled cpsw3g and cpsw_port1 in SoM DTSI instead of board DTS
+>>> if board DTS included SoM DTSI
+>>> ---
+>>>   arch/arm64/boot/dts/ti/k3-am64-main.dtsi               | 3 +++
+>>>   arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi        | 6 ++----
+>>>   arch/arm64/boot/dts/ti/k3-am642-evm.dts                | 3 +++
+>>>   arch/arm64/boot/dts/ti/k3-am642-sk.dts                 | 3 +++
+>>>   arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi            | 6 ++----
+>>>   arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts | 6 ++----
+>>>   6 files changed, 15 insertions(+), 12 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/ 
+>>> boot/dts/ti/k3-am64-main.dtsi
+>>> index f8370dd03350..69c5af58b727 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>>> @@ -677,6 +677,7 @@ cpsw3g: ethernet@8000000 {
+>>>           assigned-clock-parents = <&k3_clks 13 9>;
+>>>           clock-names = "fck";
+>>>           power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
+>>> +        status = "disabled";
+>>>           dmas = <&main_pktdma 0xC500 15>,
+>>>                  <&main_pktdma 0xC501 15>,
+>>> @@ -701,6 +702,7 @@ cpsw_port1: port@1 {
+>>>                   phys = <&phy_gmii_sel 1>;
+>>>                   mac-address = [00 00 00 00 00 00];
+>>>                   ti,syscon-efuse = <&main_conf 0x200>;
+>>> +                status = "disabled";
+>>>               };
+>>>               cpsw_port2: port@2 {
+>>> @@ -709,6 +711,7 @@ cpsw_port2: port@2 {
+>>>                   label = "port2";
+>>>                   phys = <&phy_gmii_sel 2>;
+>>>                   mac-address = [00 00 00 00 00 00];
+>>> +                status = "disabled";
+>>>               };
+>>>           };
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/ 
+>>> arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+>>> index ea7c58fb67e2..6bece2fb4e95 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+>>> @@ -185,6 +185,7 @@ AM64X_IOPAD(0x0278, PIN_INPUT, 7)    /* (C19) 
+>>> EXTINTn.GPIO1_70 */
+>>>   &cpsw3g {
+>>>       pinctrl-names = "default";
+>>>       pinctrl-0 = <&cpsw_rgmii1_pins_default>;
+>>> +    status = "okay";
+>>>   };
+>>>   &cpsw3g_mdio {
+>>> @@ -208,10 +209,7 @@ cpsw3g_phy1: ethernet-phy@1 {
+>>>   &cpsw_port1 {
+>>>       phy-mode = "rgmii-rxid";
+>>>       phy-handle = <&cpsw3g_phy1>;
+>> The connected phy is located on the SOM and should be enabled by 
+>> default.
+>>> -};
+>>> -
+>>> -&cpsw_port2 {
+>>> -    status = "disabled";
+>>> +    status = "okay";
+>>>   };
+>>
+>> This port is routed to the carrier-board. Please drop this node.
+>
+> I replied similarly to Josua's comments, but if cpsw_port1 is to be 
+> enabled and cpsw_port2 should be dropped from this DTSI, isn't that 
+> shown in this diff?
 
-> On Tue, Aug 27, 2024 at 11:25:48AM +0530, Siddharth Vadapalli wrote:
-> > The ACSPCIE module is capable of driving the reference clock required by
-> > the PCIe Endpoint device. It is an alternative to on-board and external
-> > reference clock generators. Enabling the output from the ACSPCIE module's
-> > PAD IO Buffers requires clearing the "PAD IO disable" bits of the
-> > ACSPCIE_PROXY_CTRL register in the CTRL_MMR register space.
-> > 
-> > Add support to enable the ACSPCIE reference clock output using the optional
-> > device-tree property "ti,syscon-acspcie-proxy-ctrl".
-> > 
-> > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > ---
-> > 
+Ah, sorry. I did the same mistake :)
 
-[...]
+Acked-by: Daniel Schultz <d.schultz@phytec.de>
 
-> > +
-> > +	ret = of_parse_phandle_with_fixed_args(node,
-> > +					       "ti,syscon-acspcie-proxy-ctrl",
-> > +					       1, 0, &args);
-> > +	if (!ret) {
-> > +		/* Clear PAD IO disable bits to enable refclk output */
-> > +		val = ~(args.args[0]);
-> > +		ret = regmap_update_bits(syscon, 0, mask, val);
-> > +		if (ret)
-> > +			dev_err(dev, "failed to enable ACSPCIE refclk: %d\n",
-> > +				ret);
-> > +	} else {
-> > +		dev_err(dev,
-> > +			"ti,syscon-acspcie-proxy-ctrl has invalid arguments\n");
-> > +	}
-> 
-> I should have mentioned this the first time, but this would be easier
-> to read if structured as:
-> 
->   ret = of_parse_phandle_with_fixed_args(...);
->   if (ret) {
->     dev_err(...);
->     return ret;
->   }
-> 
->   /* Clear PAD IO disable bits to enable refclk output */
->   val = ~(args.args[0]);
->   ret = regmap_update_bits(syscon, 0, mask, val);
->   if (ret) {
->     dev_err(...);
->     return ret;
->   }
-> 
->   return 0;
-
-Yes, this removes the nested IF conditions and is definitely a cleaner
-approach. I will update this in the next version of the patch.
-
-> 
-> > +	return ret;
-> > +}
-> > +
-> >  static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
-> >  {
-> >  	struct device *dev = pcie->cdns_pcie->dev;
-> > @@ -259,6 +288,15 @@ static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
-> >  		return ret;
-> >  	}
-> >  
-> > +	/* Enable ACSPCIE refclk output if the optional property exists */
-> > +	syscon = syscon_regmap_lookup_by_phandle_optional(node,
-> > +						"ti,syscon-acspcie-proxy-ctrl");
-> > +	if (syscon) {
-> > +		ret = j721e_enable_acspcie_refclk(pcie, syscon);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> >  	return 0;
-> 
-> Not as dramatic here, but I think the following would be a little
-> simpler since the final "return" isn't used for two purposes
-> ((1) syscon property absent, (2) syscon present and refclk
-> successfully enabled):
-> 
->   syscon = syscon_regmap_lookup_by_phandle_optional(...);
->   if (!syscon)
->     return 0;
-> 
->   return j721e_enable_acspcie_refclk(...);
-
-Sure. I will implement the above in the next patch. Thank you for
-reviewing this patch and sharing your feedback.
-
-Regards,
-Siddharth.
+>
+> Thank you,
+> Logan Bristol
+>
 
