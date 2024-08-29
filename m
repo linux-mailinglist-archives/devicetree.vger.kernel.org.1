@@ -1,115 +1,204 @@
-Return-Path: <devicetree+bounces-98032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA19A964716
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:45:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6037964750
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:55:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD9451C215D1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:45:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C3D8B2FA97
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DCE19408D;
-	Thu, 29 Aug 2024 13:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988FF1AE056;
+	Thu, 29 Aug 2024 13:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JEusvmxQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k61X5c2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2300197A99;
-	Thu, 29 Aug 2024 13:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82CF19005B;
+	Thu, 29 Aug 2024 13:48:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724939100; cv=none; b=VzLBgIKx8crkDMmpXn+kpVQBlnDYY6Rkwsw1hIIiB9bNEKTFgaK+AJt/TmbcOmCJoLlV9xRau1whugDKYrxdhukMTlrOEHB8o+cxtcVpYsrPXlecjSFrnX5mxIP7IvPaJSD6DROEjnI4sTOna8XbzZqdvk2DRLII5ZweaTRtEeg=
+	t=1724939297; cv=none; b=fnE64bPC6xNjTrGj8MLTTRJ4+Wt7NqM8cIXj2aB9/eBTXt5n/bVAkLkVBW9oMN83MLAIgIiUv8YkSm3kguaDkCe3ipvsKP3KayIMEJ7z6QIxPztrKEigMfjt83jcAWcXuQfyBm+UwGhOVw615IA5//Wtx4Ewj60oh3tlyiWB8t4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724939100; c=relaxed/simple;
-	bh=bF27xFeV0+twmQMvmY/FDj/meChd84h21UG3lXSJwtY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LbDyt5WQCqAdrcKbBtizz+rBQPxl8Smnpq8UtpKOcpJ8glOnR08rg2vzJOX2wc0lubwad/V4ZsRkg6KS318vutf9MvYbKUlCYJffuZS/Hg0dUng9gdmZIwv4aD9on05ErDqWC3UI54Y5d5UYIM872HfLq3yUrHeC6N7t4643rqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JEusvmxQ; arc=none smtp.client-ip=209.85.216.48
+	s=arc-20240116; t=1724939297; c=relaxed/simple;
+	bh=bMd2+0+v0C0vkmvZ0a7gm12/MK8cw71SBn03PAdEUug=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D7DJD6jgFscx7APGEdeEQYrpPTJLHgLI7B16HeO53gSIJz+YlYuL78CBO1ThQ+YlzCwiOz0SoWVvTKjdnsphsdRmsRQDTnUWrBlo6wMdtkWftn4FrxwJSjdRdbHC707zddrS0bCpVog4SrvedS1Q184B6tO+pIbTJpVzrtjTaNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k61X5c2r; arc=none smtp.client-ip=209.85.161.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2d3da054f7cso484529a91.1;
-        Thu, 29 Aug 2024 06:44:58 -0700 (PDT)
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5d5f9d68805so350579eaf.3;
+        Thu, 29 Aug 2024 06:48:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724939098; x=1725543898; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WOaSQEKKrU5OyPKF5Gs6HDIxnlDFFVnwUzpo8mn71QE=;
-        b=JEusvmxQnS7sHmwnp4YxSlECCz+J0UT18M+y8M/RVk1APU634XVzUJEtXUaGkrvvCX
-         UU6HGbzRPP1hMjbtor0kR6kW7wBoHYhMxXmljtvSZf+GLtL8P2JVmAMwqOLYu58QOA8W
-         7DIqBjhO5lFwpvbkqsXuQxDJ9wNywYhVeu5dnTHrHLW4AhURS9MASlMdYCAFFgCRxcCv
-         vNPO6VaJ/QV9cdVqEdcELO+owR+YtlJrMPc2p7lZVKlfrRrD2ho0bGiQ6X0yiNGTf1j3
-         xa0BaSXO7XalHe68MBxCHWalOFZjSHxgdq80cq65CHHAoFUYtbndUZu4yJaLrx7vHFwG
-         wgSg==
+        d=gmail.com; s=20230601; t=1724939295; x=1725544095; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fij7bmUZ1BwtygZobmPkPFaBK/SFCbQ/kLne1FVouMA=;
+        b=k61X5c2rvs8K5UvKAvgH4VejKek9yM4p4frWdj2yth6Vt8L6IRq1l3nz34hw8x2K3B
+         HZU7iUWDAH4rhR0EiFdszrxK5vHMb2aSfHrXpdn3WAJDaJAVgdiYdtVYSV84Gtwa5pJ4
+         U4xKb3YvXvT2x2hPAQuNeOmklDzm0Y/3KWZZHdMuhsYWSoySIhaLwkqnJ9BCHv9fO+Yb
+         6wHA5QPFke6e0Y4CseYkwBxq0dc6e87QDw56pkR5YBiGsEtljM19ULU6t4QNzjwSPCwQ
+         UH6Ih8PFt7M1PZs+daku1pzDndf1FiPhfa5iSnm1ybj4fysQYtzr4jiBZlWYYNgzecK/
+         zP3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724939098; x=1725543898;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WOaSQEKKrU5OyPKF5Gs6HDIxnlDFFVnwUzpo8mn71QE=;
-        b=amoGDapc7smyM54YfRBDOHA6rX7bkC7fRsl2tlFRwavWyTyEq8nXf11bBLc7DiBGhm
-         8T8AYIsidlhFqoDShVAaPL7IIU6++v/e7Tpqe56HemaQCO3v7oMCfYP9hELiHwLVlzeL
-         0gQV3gAxf4IUtSBk9uaHh8181eL7oQvlDZq00QQx4ydnosyb9d8D5I3nU9wMAmHPCfyY
-         Rc9JnongjEL9/5eUUhvE+Hvv9qlZCnVnRTUlSjgb2qvs6IdFOnYMSbBBQ8M/Q3223UgQ
-         TJqwYR+FeXXbtpVhQKWq1GgzUJiURi8DPTAD3LWc9+qLvhe0i8JnwdP0flAAeRbRVMfn
-         6RnA==
-X-Forwarded-Encrypted: i=1; AJvYcCVumhb6hbA3lDy/XxaRo9OwYA73aC6fOd22VokNAXiNVe/DS3iJkb6bzU6ZcALbR6Us9lMZLP4o/3KwWKs=@vger.kernel.org, AJvYcCWZ+NF3hmaJcNhW0UCBXaEseL3m0O30hi2WZeHDF0mQ9ilovjWUgLbcgXvjsNo8OozwNyTeHt8sc+l/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfrG3HlnpxESU3+4UTlkZpVMHQqbk3pptX89QusJEFoSxXkNXd
-	fOdbeAY/0n5AlgHHJPqkzl+xdkm8lLCllpWa2QXiF6Ey7I8VtAsv
-X-Google-Smtp-Source: AGHT+IF5ijy2v66Yd+1pnqkxvSU5MZZZ1pmr7Au2YyFsQfwCg2R1FM24YPoxjxRF25tjCILkfTodYA==
-X-Received: by 2002:a17:90a:8d15:b0:2c9:9658:d704 with SMTP id 98e67ed59e1d1-2d8564b3683mr2426460a91.40.1724939097787;
-        Thu, 29 Aug 2024 06:44:57 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:adb0:3b7e:78c6:e307])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-205155658dfsm11381935ad.297.2024.08.29.06.44.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 06:44:54 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: dmitry.torokhov@gmail.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: input: touchscreen: edt-ft5x06: Use generic node name
-Date: Thu, 29 Aug 2024 10:44:28 -0300
-Message-Id: <20240829134428.3347075-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1724939295; x=1725544095;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fij7bmUZ1BwtygZobmPkPFaBK/SFCbQ/kLne1FVouMA=;
+        b=X23h2Vr33wpgA/AE/GkkJpyg0AbgBVTQkuVo+llDGwzoHXP0wy3sdMJwdA5gzlluV2
+         yyAYf4dIZRzABdNIN6j7M7F9H6LB2E3W8GWlvZtOWQAzxHw2GvHY55SaQisW/ak2P7nJ
+         SAURXw4kCYgkOIc2ohJDnvuJmZmh6iY+KzMoN2Fytf/4D4OCcowXVOXfqUSSN+I2gQ4+
+         FgDGhazVfTwSitSUbsWjxNH/x9sRUGdZ1JgOeOVbsBu0cb+bhmb44AfranDJIkS/VryC
+         ut37X88Xq8sLHS6fHpM0fP/LPmRLbJUxYckDqOU4MiEPC9gsA+jHrBYBlAuFCZsW5odg
+         G3XQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUv/XhwPxgCXJhk+yUM1jmImf45qRlreQD2DpwI8lFDwzk6g1JJQoqa2j0TljiQ4goFvryqJXXiM0syy0cF@vger.kernel.org, AJvYcCXUBAdwzS9Cb5bJ4yvM4YLjlolFfcXKdV0MdI2twWysDnkJt01Ns8VvTM9OnXeit55zvh7fsp0KaJaw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFPBjqZIN/TqBFx0X4KMXVCY+BFbPcjmlg90mkzFNdEuGgaw1e
+	BHML3O0glwySrDPyegYStArsLbAdH6DyLYReOiHv25TnWQyX63Sv
+X-Google-Smtp-Source: AGHT+IGCpp26qT5ACYfhkp4StVnu7Amwf484YTNlNSrglEKytGqqjoOG91Qqwhfb8r2kOPo+eK2/Zw==
+X-Received: by 2002:a05:6359:4c10:b0:1a5:6b71:dde6 with SMTP id e5c5f4694b2df-1b603bebb88mr396283355d.3.1724939294686;
+        Thu, 29 Aug 2024 06:48:14 -0700 (PDT)
+Received: from [192.168.0.122] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d22e66d8f4sm1236270a12.0.2024.08.29.06.48.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Aug 2024 06:48:14 -0700 (PDT)
+Message-ID: <18007fe0-cc5d-4887-ab41-ed4cf8217b60@gmail.com>
+Date: Thu, 29 Aug 2024 21:48:10 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND 2/3] irqchip/apple-aic: Only access IPI sysregs
+ when use_fast_ipi is true
+Content-Language: en-MW
+To: Thomas Gleixner <tglx@linutronix.de>, Hector Martin <marcan@marcan.st>,
+ Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+ Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20240829110436.46052-1-towinchenmi@gmail.com>
+ <20240829110436.46052-3-towinchenmi@gmail.com> <87zfova32u.ffs@tglx>
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <87zfova32u.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
 
-Node names should be generic.
 
-Improve the binding example by using 'touchscreen' as the node name.
+On 29/8/2024 21:08, Thomas Gleixner wrote:
+> On Thu, Aug 29 2024 at 19:02, Nick Chan wrote:
+>> Starting from the A11 (T8015) SoC, Apple introuced system registers for
+>> fast IPI and UNCORE PMC control. These sysregs do not exist on earlier
+>> A7-A10 SoCs and trying to access them results in an instant crash.
+>>
+>> Restrict sysreg access within the AIC driver to configurations where
+>> use_fast_ipi is true to allow AIC to function properly on A7-A10 SoCs.
+> 
+> use_fast_ipi is an implementation detail and does not mean anything
+> here. It's sufficient to say:
+> 
+>    Only access system registers on SoCs which provide them.
+> 
+> Hmm?
+Seems like a good idea. Will be in v2. Though if the commit message
+is that generic, do you think it's correct to squash the third patch
+into this commit? It is also preventing sysreg access on SoC that
+do not provide them.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+>> While at it, remove the IPI-always-ack path on aic_handle_fiq.
+> 
+> It's not while at it. It's part of handling this correctly.
+In v2 it will be mentioned as as part of the sysreg access restriction.
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-index 51d48d4130d3..70a922e213f2 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-@@ -126,7 +126,7 @@ examples:
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
--      edt-ft5x06@38 {
-+      touchscreen@38 {
-         compatible = "edt,edt-ft5406";
-         reg = <0x38>;
-         interrupt-parent = <&gpio2>;
--- 
-2.34.1
+> 
+>> If we are able to reach there, we are on an IPI-capable system and
+>> should be using one of the IPI-capable compatibles, anyway.
+> 
+> 'we' can't reach that code ever.
+> 
+> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#changelog
+Acked. In v2 the commit message will not impersonate the code anymore.
 
+> 
+> 
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> 
+> This Signed-off-by chain is invalid. If Konrad authored the patch then
+> you need to have a 'From: Konrad ...' line at the top of the change log.
+> 
+> If you worked together on this then this needs a Co-developed-by
+> tag. See Documentation/process/...
+This patch was entirely made by Konrad, but now that changes are requested,
+it will be a Co-developed-by in v2.
+
+> 
+>>  
+>> -	if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
+>> -		if (static_branch_likely(&use_fast_ipi)) {
+>> -			aic_handle_ipi(regs);
+>> -		} else {
+>> -			pr_err_ratelimited("Fast IPI fired. Acking.\n");
+>> -			write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
+>> -		}
+>> +	if (static_branch_likely(&use_fast_ipi) &&
+>> +	    (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING)) {
+>> +		aic_handle_ipi(regs);
+>>  	}
+>>  
+>>  	if (TIMER_FIRING(read_sysreg(cntp_ctl_el0)))
+>> @@ -574,8 +571,9 @@ static void __exception_irq_entry aic_handle_fiq(struct pt_regs *regs)
+>>  					  AIC_FIQ_HWIRQ(irq));
+>>  	}
+>>  
+>> -	if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) == UPMCR0_IMODE_FIQ &&
+>> -			(read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
+>> +	if (static_branch_likely(&use_fast_ipi) &&
+>> +	    (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) == UPMCR0_IMODE_FIQ) &&
+>> +	    (read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
+>>  		/* Same story with uncore PMCs */
+>>  		pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
+>>  		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
+>> @@ -811,7 +809,8 @@ static int aic_init_cpu(unsigned int cpu)
+>>  	/* Mask all hard-wired per-CPU IRQ/FIQ sources */
+>>  
+>>  	/* Pending Fast IPI FIQs */
+>> -	write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
+>> +	if (static_branch_likely(&use_fast_ipi))
+>> +		write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
+>>  
+>>  	/* Timer FIQs */
+>>  	sysreg_clear_set(cntp_ctl_el0, 0, ARCH_TIMER_CTRL_IT_MASK);
+>> @@ -832,8 +831,9 @@ static int aic_init_cpu(unsigned int cpu)
+>>  			   FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_OFF));
+>>  
+>>  	/* Uncore PMC FIQ */
+>> -	sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
+>> -			   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
+>> +	if (static_branch_likely(&use_fast_ipi))
+>> +		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
+>> +				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
+> 
+> Please see the bracket rules in the tip maintainers doc.
+Acked. Brackets will be added to function references in commit message
+of v2.
+
+> 
+> Thanks,
+> 
+>         tglx
+
+Nick Chan
 
