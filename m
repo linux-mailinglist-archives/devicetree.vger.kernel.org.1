@@ -1,304 +1,156 @@
-Return-Path: <devicetree+bounces-97876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D02E3963E9F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:33:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FDA963EE9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:44:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2E541C2431C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:33:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEE751F23EEB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:44:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE47218CC00;
-	Thu, 29 Aug 2024 08:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C894018C351;
+	Thu, 29 Aug 2024 08:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hZUzzT2X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TqEahd06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBC8018CC01
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 08:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1453515C13B;
+	Thu, 29 Aug 2024 08:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724920255; cv=none; b=kVTmbWavDImaQSB2tIc+3KmyJa+EeRQ0M+oTDGhYk2YBtPmB9BIDqu7DYXcQ7dN+q+u6iAHpeE5MkJa9uuEiUp0yd3QfMqNkiPHDJ6DDSWtbmU6zt2CNPQw8S/Hf8WfbCl7dmRDBbLWbCAlkBCcbYd13F85z77EFufLyu13ZUj4=
+	t=1724921071; cv=none; b=ubEJstXktQfWXMDg7DkqHuINdIKzFbVfpL89QUN3yxnE9yRMh7WSgtJYyNnJ+9t68w4RQrQU1fO937HHIZJ8/l5b4WaCBcS1E9FBbxhUMZL3sYwemjB1uuCTGCP2ykrY6C6HzZZEML5ZR3YiePOWwE4Z0dJTRaE+ezrNVMUDqv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724920255; c=relaxed/simple;
-	bh=zsRlTwTVxlGdUebG4U9l/6351oc6rYJx9FuwhzGC6rE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=K17UaHjbQWgJiGAkRGLPApUxex7PIDUjCiLvd2yXWFGW5/HEoh14Ossqqrx3ZbO9uwnF2kzEZ7uD2pqvd5AkQnxBmT5C8eU33YpSQsUBOeweQY9q7Ivdy3CRttfVgABR2kuHjGNXdmzDtDrJyDrwhfunErWzc5EQniOM8FRNQSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hZUzzT2X; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-42816ca782dso3292195e9.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 01:30:53 -0700 (PDT)
+	s=arc-20240116; t=1724921071; c=relaxed/simple;
+	bh=rS7qG8284LsPMVDZT3Wk6pL1xkn6e7lfFskZ9IfThig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NRj8UyvQTdR/tZ6CdVspcX25wjhWKzfFTBiJCWgJp77T1LGO8Z7JgsJK1RPLVUqPKBu3mNRIjZnRIucgRZWPadr8QVoRgJYHD8pKWI6XMOpzy+Cm6h3ebBUpXlSQSvDiiOKqbDaCWucdZOFHzEzhY5sWSj5TRanlC8eZFhQ+otg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TqEahd06; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-371aa511609so248692f8f.1;
+        Thu, 29 Aug 2024 01:44:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724920252; x=1725525052; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/fW71FS0lmTuV1wHWmHmOLHgNUvex8iYSoVrr1nHB6s=;
-        b=hZUzzT2X/mV4DMzsi9yoJEMQUFCpeE07A4XhcJXheGoBBL1/ZgA3di7X9fwYJCU+dF
-         uFpI6mqw4CNrdw4BzMCalI/nAv42Al5cHcqcgllmZmSTr5YmsrHvqWdvfIHih4D9vW3N
-         T+7+nalypG5mCyIQXZoyYtTCWpiAd/A4kMCYVi/QEb5F/JRD8b6wHzzWs6+bHWoLX5rO
-         y5DidyEd89N4QJUsp8Mh5XhmZx2693yJoNxS93xz3TJmyBLmpZMCfs101Jqggtvmeg1C
-         VGIDWXCqG+nB2fydzx7IuAEiqyQJBJpOZQ4jafwrX3CvuAEi2ttyqgHheNYiv2/6b15b
-         D3vg==
+        d=gmail.com; s=20230601; t=1724921068; x=1725525868; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qkYEbPeyDZMPuncnqwYBTt8dp21NOhBXd/4fbCM70QY=;
+        b=TqEahd06PUZsD0+MsTe19Sh65SWlINq6cgOJE7DCRng4oWChKojK0Pwy0SVtGAKFTW
+         cA6yAbH5Z8gKQicMZSYfBEwiydQGC6PnxikfVcB/NqFkoQBhRecqJ4e9wE64CuiuJoC1
+         J9Gu8ZFI3HNEsWMv4t6eEaWN696X6QJj0p/0u2Oa0nx8+MJqS1DacKfNFcNCK9lJVeoW
+         3MN/owOHNWmj6eO7RZZvMAr0OpHf7esC01ktzwIamnXEv2Zqf+sHEPpkkQAOS6JN7DPt
+         2BAtQPJzp/i0MtLdZONRrCZVSHpGih0Medv/RdiKDDKqLlqmXX8He1w6s1GpbZ9a+ijg
+         4H1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724920252; x=1725525052;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/fW71FS0lmTuV1wHWmHmOLHgNUvex8iYSoVrr1nHB6s=;
-        b=NA4Qjshm776z8PjSDHewswxV6AWSik5BuO/jQnfxsrHfK9OT8QsVcZ1U0yll0CrQFn
-         lcF3epLked3du6507mc/o2NHkyqaZRUNn4kJ3qZEaIbaPHAq5QaMxR0E7tncrc3EmuS8
-         sqpFt/jLSszWk6/ykY94ouXE9EEH/I48HciqMuzW89Mjx+w0ibhRPJbFJoIik3NL6OwV
-         FYL1hONaV0ewjYtr6KRGPiRKMYEJZWVCXpsT0CkmWspnEFlxPss5ZDG3VLU9ZeBQXAQk
-         85ILEG1WMpyGSufVmLXN49w18hRV/cQAv8Lznsy5njPXX9MpG21x4nPd32C+mlZIA3oA
-         foeA==
-X-Forwarded-Encrypted: i=1; AJvYcCVdjczP6GZYNESRCFAAPaU1clfyhLPZUaeI97hysSlXhfrXU0MDu+97isl91bKdudGADbF3tP9HZDwh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzarJ33OW1n0/pp0+YajtLj99kPZyzWqlV1WZ/ImwnCU8xsnMsC
-	mljDHKWKHPPOOWJyrDgTS/YsLo0QHTgUBzmz8y4hUTlZb7pr+JmbjDfBccSUMYA=
-X-Google-Smtp-Source: AGHT+IHGuznT7s9K3x5HeSkF7fCIjIIH9qT4bN2dkHvKGxtIsO2SxucelcGw+Ke16+3q8DaHNkERJA==
-X-Received: by 2002:a05:600c:5110:b0:426:6696:9e50 with SMTP id 5b1f17b1804b1-42bb02591d1mr12515665e9.14.1724920251352;
-        Thu, 29 Aug 2024 01:30:51 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:12f5:c9c:a0e1:6915? ([2a01:e0a:982:cbb0:12f5:c9c:a0e1:6915])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba639652esm44084155e9.2.2024.08.29.01.30.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 01:30:50 -0700 (PDT)
-Message-ID: <79a643de-9808-4866-9e41-8bd5ab55ffed@linaro.org>
-Date: Thu, 29 Aug 2024 10:30:49 +0200
+        d=1e100.net; s=20230601; t=1724921068; x=1725525868;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qkYEbPeyDZMPuncnqwYBTt8dp21NOhBXd/4fbCM70QY=;
+        b=KCU3G6NL4Xh4fi4PK7Hb5jB+kuxPv5HHZnR6h592doF9JA1ngB7MzG2frLRTBxVxcr
+         2NJWr0jBSQ3ZfIoLlIJBurHKrrfcOcap+Fe4b9eMZKA4gQFtY4oTwE3n0A56M096H22M
+         Px6eRMD/1q7oDIWIofut7nSe0L3XIHMzl3ph5UxSdfcJROpAWMJmFwdTFd8k3TpLJL7f
+         kAhp2VcFSyThFCPcbeYR9Joi7baAQLWxkxcx6rYHY7ki7pkQ+0NQCgXLOLMLJvjtXjFG
+         44tQqgi7expoGlnQp1zK0/9Yo77cFlSeaQejbXdZcD7Dv1mdEC8hdEx+2b4YGbkwbHhy
+         /Rrg==
+X-Forwarded-Encrypted: i=1; AJvYcCVssR18l3SmQGGNklrGwZMCJFRekJgckZUvYJbSPp13vrElrAc88S84PzOuKUU4bjg9OLF53+zuaGhQ8Rs=@vger.kernel.org, AJvYcCVusMsq3GeY401s42giufhsviRL42lSyFILXivWVi4X8SF1aLN0jV2sv/DNlJtdtK5RS0Ty015i+szD@vger.kernel.org, AJvYcCWCqAl32kDK7zKPkTrIg+Y9gZrYT3UbYJbaG/SfuDUyvPJFulPu+K5MtiXwSlwKkdt9YecfhUN3e1UHaKlT@vger.kernel.org, AJvYcCXtU+/62miLw44pBPC3EBfi/EzCozx3eh7DEkrl7nt2h1+aArXMMCPfMcBZOWCGSXClR7hKtqfNuu7y@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvskqLh5EEkexP6icQZfK6RJjnV2u93YS3xkX8IW9CretfkqWw
+	JFydt8xlBOEChiskZMp911gCiAr/5gCwWDu7DsLEHQU+hIyGYyz+2mWhKPBT
+X-Google-Smtp-Source: AGHT+IEMouz3ROOjSErGJywXdM5Mfn+/P48p3QNwwTCNoCWFYKxG5dcA1+1v8UKm8OgVo7achmy9aQ==
+X-Received: by 2002:adf:c04a:0:b0:366:eb61:b47 with SMTP id ffacd0b85a97d-3749b52fa73mr1316866f8f.8.1724921067626;
+        Thu, 29 Aug 2024 01:44:27 -0700 (PDT)
+Received: from orome (p200300e41f29d300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f29:d300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee71650sm836764f8f.40.2024.08.29.01.44.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 01:44:27 -0700 (PDT)
+Date: Thu, 29 Aug 2024 10:44:25 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] dt-bindings: i2c: nvidia,tegra20-i2c: minor cleanups
+Message-ID: <kjoc55okpq2h3t3olnsfegp2jalgo3mr636eqg5tndmjc2t5de@7dy7du53p53y>
+References: <20240820-dt-bindings-i2c-nvidia-v1-0-2763e9a9a1b0@linaro.org>
+ <rzf7wiv7hvalx4svnnxxsu7z2ciprujxfdwbr7te7cqtmi6xkc@757xhotlbren>
+ <36769d45-d827-41bf-befc-e7b0e95f199e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] phy: add NXP PTN3222 eUSB2 to USB2 redriver
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240829-nxp-ptn3222-v1-0-46906bc4747a@linaro.org>
- <20240829-nxp-ptn3222-v1-2-46906bc4747a@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240829-nxp-ptn3222-v1-2-46906bc4747a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="jastyiiobfjmpo6r"
+Content-Disposition: inline
+In-Reply-To: <36769d45-d827-41bf-befc-e7b0e95f199e@linaro.org>
 
-On 29/08/2024 10:21, Dmitry Baryshkov wrote:
-> The NXP PTN3222 is the single-port eUSB2 to USB2 redriver that performs
-> translation between eUSB2 and USB2 signalling schemes. It supports all
-> three data rates: Low Speed, Full Speed and High Speed.
-> 
-> The reset state enables autonegotiation of the PHY role and of the data
-> rate, so no additional programming is required.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/phy/Kconfig           |  11 ++++
->   drivers/phy/Makefile          |   1 +
->   drivers/phy/phy-nxp-ptn3222.c | 119 ++++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 131 insertions(+)
-> 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index dfab1c66b3e5..cb06a7f79740 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -82,6 +82,17 @@ config PHY_AIROHA_PCIE
->   	  This driver create the basic PHY instance and provides initialize
->   	  callback for PCIe GEN3 port.
->   
-> +config PHY_NXP_PTN3222
-> +	tristate "NXP PTN3222 1-port eUSB2 to USB2 redriver"
-> +	depends on I2C
-> +	depends on OF
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support NXP PTN3222 1-port eUSB2 to USB2 Redriver.
-> +	  This redriver performs translation between eUSB2 and USB2 signalling
-> +	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
-> +	  Speed and High Speed.
-> +
->   source "drivers/phy/allwinner/Kconfig"
->   source "drivers/phy/amlogic/Kconfig"
->   source "drivers/phy/broadcom/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index 5fcbce5f9ab1..b64247046575 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
->   obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
->   obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
->   obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
-> +obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
->   obj-y					+= allwinner/	\
->   					   amlogic/	\
->   					   broadcom/	\
-> diff --git a/drivers/phy/phy-nxp-ptn3222.c b/drivers/phy/phy-nxp-ptn3222.c
-> new file mode 100644
-> index 000000000000..429a91910f14
-> --- /dev/null
-> +++ b/drivers/phy/phy-nxp-ptn3222.c
-> @@ -0,0 +1,119 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2024, Linaro Limited
-> + */
-> +
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#define NUM_SUPPLIES 2
-> +
-> +struct ptn3222 {
-> +	struct i2c_client *client;
-> +	struct phy *phy;
-> +	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data supplies[NUM_SUPPLIES];
-> +};
-> +
-> +static int ptn3222_init(struct phy *phy)
-> +{
-> +	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(NUM_SUPPLIES, ptn3222->supplies);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gpiod_set_value_cansleep(ptn3222->reset_gpio, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ptn3222_exit(struct phy *phy)
-> +{
-> +	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
-> +
-> +	gpiod_set_value_cansleep(ptn3222->reset_gpio, 1);
-> +
-> +	return regulator_bulk_disable(NUM_SUPPLIES, ptn3222->supplies);
-> +}
-> +
-> +static const struct phy_ops ptn3222_ops = {
-> +	.init		= ptn3222_init,
-> +	.exit		= ptn3222_exit,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static int ptn3222_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct phy_provider *phy_provider;
-> +	struct ptn3222 *ptn3222;
-> +	int ret;
-> +
-> +	ptn3222 = devm_kzalloc(dev, sizeof(*ptn3222), GFP_KERNEL);
-> +	if (!ptn3222)
-> +		return -ENOMEM;
-> +
-> +	ptn3222->client = client;
-> +
-> +	ptn3222->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> +						      GPIOD_OUT_HIGH);
-> +	if (IS_ERR(ptn3222->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(ptn3222->reset_gpio),
-> +				     "unable to acquire reset gpio\n");
-> +
-> +	ptn3222->supplies[0].supply = "vdd3v3";
-> +	ptn3222->supplies[0].init_load_uA = 11000;
-> +	ptn3222->supplies[1].supply = "vdd1v8";
-> +	ptn3222->supplies[1].init_load_uA = 55000;
-> +
-> +	ret = devm_regulator_bulk_get(dev,
-> +				      NUM_SUPPLIES,
-> +				      ptn3222->supplies);
 
-Suggestion only, you could switch to devm_regulator_bulk_get_const()
+--jastyiiobfjmpo6r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +	if (ret)
-> +		return ret;
-> +
-> +	ptn3222->phy = devm_phy_create(dev, dev->of_node, &ptn3222_ops);
-> +	if (IS_ERR(ptn3222->phy)) {
-> +		dev_err(dev, "failed to create PHY: %d\n", ret);
-> +		return PTR_ERR(ptn3222->phy);
-> +	}
-> +
-> +	phy_set_drvdata(ptn3222->phy, ptn3222);
-> +
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct i2c_device_id ptn3222_table[] = {
-> +	{ "ptn3222" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ptn3222_table);
-> +
-> +static const struct of_device_id ptn3222_of_table[] = {
-> +	{ .compatible = "nxp,ptn3222" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ptn3222_of_table);
-> +
-> +static struct i2c_driver ptn3222_driver = {
-> +	.driver = {
-> +		.name = "ptn3222",
-> +		.of_match_table = ptn3222_of_table,
-> +	},
-> +	.probe = ptn3222_probe,
-> +	.id_table = ptn3222_table,
-> +};
-> +
-> +module_i2c_driver(ptn3222_driver);
-> +
-> +MODULE_DESCRIPTION("NXP PTN3222 eUSB2 Redriver driver");
-> +MODULE_LICENSE("GPL");
-> 
+On Tue, Aug 27, 2024 at 04:21:01PM GMT, Krzysztof Kozlowski wrote:
+> On 27/08/2024 16:03, Thierry Reding wrote:
+> > On Tue, Aug 20, 2024 at 10:44:23AM GMT, Krzysztof Kozlowski wrote:
+> >> Simple cleanups for nvidia I2C.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>
+> >> ---
+> >> Krzysztof Kozlowski (3):
+> >>       dt-bindings: i2c: nvidia,tegra20-i2c: combine same if:then: clau=
+ses
+> >>       dt-bindings: i2c: nvidia,tegra20-i2c: restrict also clocks in if=
+:then:
+> >>       dt-bindings: i2c: nvidia,tegra20-i2c: define power-domains top-l=
+evel
+> >>
+> >>  .../bindings/i2c/nvidia,tegra20-i2c.yaml           | 27 ++++++++++++-=
+---------
+> >>  1 file changed, 15 insertions(+), 12 deletions(-)
+> >=20
+> > It wasn't clear who you wanted to pick these up, so I've applied them to
+> > the Tegra tree. Shout if anybody wants to take them through a different
+> > tree.
+>=20
+> They target I2C and I think they were merged by Andi:
+> https://lore.kernel.org/all/dkcfnidl3xgvspiusp3zftgdftyvlbxahlbumjdfl7dvx=
+gmdmr@nomisqfu2mwb/
 
-Apart that, it looks fine, please add my:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Indeed, I hadn't seen Andi's reply in the patch tracker, so had assumed
+people were waiting for me to pick them into the Tegra tree.
+
+I'll drop them.
+
+Thanks,
+Thierry
+
+--jastyiiobfjmpo6r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmbQNOkACgkQ3SOs138+
+s6FlIw//WEBpF+XgLGpAPoRUyXeGZ+6XkpqogCwhLKJFsPluWlH67WvmK61MvjtY
+9Ig+xBiy2ANhZJV9vaudWnIDHte6/amh37rz7fRazi8+UVbDEiUZu5fo0JgEJsnK
+YLTRkcGmJr4IBuVm3sVI2+HjdtAnt9Ba9YPoXOansKbN/+hr74mnJwDZgJwOdTOD
+so9yGsXZ6dB8fn1iqM+SMxHSDs1k3FcyZ3bYtpRmHEZEBtYOE7H/RLWnCwQF5GKV
+GxjXAeNe1nqxO0yf+Y/XgDn1xiGN/42MF8VBglU1d+IaFNHb644BT0iO2GGjXsis
+yUJjqTMfgrYqsQu0zFGWgNLgbPlvILi5CbEKlH8pT/9wi9Jc7sj1mVe7fVFOhXPJ
+7l5G2zKgKvkokxlmaE4EqYHMWQQRzG9Hz+d3+JpEoEO1sf0TWOhLwUp4/N6ZAv0/
+lN3azsZKuip9S6T+W4O9UKiP0yRip2dF0IZI/gdDswkNJv8TU2n5JQaR5jEJWdtw
+9ReDs2E7NlKm/m6cK9OtbKCWQRc2DcuKntw8MB40XlqL5gtFolHTxk2XzSfjpj9y
+VmSklk8guoGOQB7+X3yVisA1jB0NNc1F7XVV9N8dSp0INDxx6a2qQLXXvoasYz+l
+QSB7TEk6xgsOJyuiBy2GaELJOXi9KnrUOZZiDCx5fC4K0YfatCw=
+=O9ev
+-----END PGP SIGNATURE-----
+
+--jastyiiobfjmpo6r--
 
