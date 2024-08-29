@@ -1,170 +1,103 @@
-Return-Path: <devicetree+bounces-97959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CACBE964404
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:12:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D4A96441B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:15:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8980D28792D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:12:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 042A71F25CA3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9980E192B8E;
-	Thu, 29 Aug 2024 12:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F062195F28;
+	Thu, 29 Aug 2024 12:15:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d1SbyzOe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C86/mMyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECDB214B96F;
-	Thu, 29 Aug 2024 12:12:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB95194C86;
+	Thu, 29 Aug 2024 12:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724933571; cv=none; b=Y2+toUV+/lLLH+qEXjcan85ezqpvbNub2qqzS+iJg4EMoQBGXxypNuD3V8zspfcQyJVAgprBcTBEInZPxd6f6pDI6QEdS1cNurYT6WgZ1QrqW6Q8Zlg3UNtIwTFt6vz1wJ8bdHFyn1Ypt+GdtQwYFbMIIx2vnN9Ti07IvZW5sFM=
+	t=1724933721; cv=none; b=FjnX+yqtGQlZ4z/IPZ2/ALxqAErPpjj/tHkfKx0knPql+wdwfHQTbTLMfPgmNq6QTKyrRdRAt02MF3ahovoARyPDitizNoCAaPj2QrxZebJJhGhBx0Cb7ur0kpIWF97sD3D6eRpAp/XoZJq11AqzX7NWzoUqlCyDfodzveE3Q6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724933571; c=relaxed/simple;
-	bh=9N9+0n+b/Oa7kbni7tVHqg5SPKO080u3lLNyCG6/hsA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=o/NdRsDz70D4KTl1V3tSmy6+sU1FeQav1RKs+RIb2xstQb7erCfP+MGvvPmHa6+7ccUuHlpj1qixwYgAVaGenowy9hmps0VFjhicGsf8NjJ/99cd+t8+ZD+8LJCgWdqHarKcLamsyV36udTNXrbGuQy4+wQVMYff2UrBOSONeEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d1SbyzOe; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47T8msFB014501;
-	Thu, 29 Aug 2024 12:12:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	qcppdkim1; bh=j1AWm7Q3h9bAi2EtqGHGnN05xWoDUjTdPNV7xpiZeSs=; b=d1
-	SbyzOeWJPGAa7V1zah6tLLQTBy2XSGObd2Q3JktGQPyCiMXXaNissxANdk+atvqY
-	ZehvMymkPv59U3/qE35KtZc6d4uivjcr1roAbT4zxEOvdJAMzGMg642abA3kA20I
-	G6vuLYmrXo1R6mymhkiREhfnKWQ9KrasMxoyWm4PQAdu1OmwxYq81za/x8IZjYGd
-	Z3hr3cx0q+g9DCVBuN+jV4jBO5FaqtUZwAe6EzcBg7d4BUAjsLX65sRXDX+W7WIs
-	qMepK9nirp66uka1wZsZtR9LmB+7k7ZnEvwsr/FkGWC1oKhK0jlpZYUy7nHQvsv+
-	SdcxxYeMUtExaj1xKRag==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv154nn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 12:12:46 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47TCCjs1004812
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 12:12:45 GMT
-Received: from hu-sachgupt-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 29 Aug 2024 05:12:40 -0700
-From: Sachin Gupta <quic_sachgupt@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_nitirawa@quicinc.com>,
-        <quic_bhaskarv@quicinc.com>, <quic_narepall@quicinc.com>,
-        <quic_rampraka@quicinc.com>, <quic_sartgarg@quicinc.com>,
-        <quic_mapa@quicinc.com>, <quic_cang@quicinc.com>,
-        <quic_nguyenb@quicinc.com>
-Subject: [PATCH V3] arm64: dts: qcom: Add SD Card node for qcm6490-idp
-Date: Thu, 29 Aug 2024 17:42:25 +0530
-Message-ID: <20240829121225.14184-1-quic_sachgupt@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1724933721; c=relaxed/simple;
+	bh=/cyFcVMaEuDDsDW+Zpc6YMDwmq+hIwkCU3DTDVpSXIQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oa4rOhUQL42nZOmBtc5iLe89h56tKiWTiqAXKEPGwVDc3/6Dm5CSwrwtF890HdakSRlgIBMv6UqURRDvwCaFqYkFSKO0h1LkB6/Sc1tKo8NoJNRw0y+Mrd5ZSobpksETHYvEpfoYdDUuYJJvi8mZWPSqZbkUgcsOMfRA1WbX3dY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C86/mMyW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D06AC4CEC8;
+	Thu, 29 Aug 2024 12:15:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724933720;
+	bh=/cyFcVMaEuDDsDW+Zpc6YMDwmq+hIwkCU3DTDVpSXIQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C86/mMyWMJmx6x2K0Uo7zAiNJVlA3Uatfou/+/Gx1yUwRihM6PmEsWQKnWSQvVMBR
+	 vFBOOSyoqfNiS70lXUwBYAn1UH/loNFuc8/6nTKl2gY0Qzkw2dJ+kauH/ebunAZwxy
+	 LZxW87GXYeCJnvEfi5Y6/IuNtqPx/1pwogXgC0ea6pzIixBFxFLQcv8AXMyP4dA66q
+	 lakhLTeKcG3DhzStRe3bukDb7rGznxqGH5h6ydx2Ojtx+uWhDg9JLObjwUQKemsItQ
+	 iSFkB0GkD/EJ5cqQCFpgL0L2+wItFHGK/+pxcmhfIToxT5xTD3m2jjQQk3yYdsMzSv
+	 zEU2wwlqvHKjA==
+Date: Thu, 29 Aug 2024 13:15:13 +0100
+From: Lee Jones <lee@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>,
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	quentin.schulz@free-electrons.com, mripard@kernel.org,
+	tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com,
+	u.kleine-koenig@pengutronix.de, samuel@sholland.org,
+	jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org,
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	lars@metafoo.de, jonathan.cameron@huawei.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: (subset) [PATCH V4 11/15] mfd: axp20x: Add ADC, BAT, and USB
+ cells for AXP717
+Message-ID: <20240829121513.GN6858@google.com>
+References: <20240821215456.962564-1-macroalpha82@gmail.com>
+ <20240821215456.962564-12-macroalpha82@gmail.com>
+ <172433485381.1334876.7027428905035727559.b4-ty@kernel.org>
+ <20240826120342.503bef41@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: osKVRCWzOR-qbQ_aOJBzz2Glexozze2y
-X-Proofpoint-ORIG-GUID: osKVRCWzOR-qbQ_aOJBzz2Glexozze2y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-29_02,2024-08-29_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0 bulkscore=0
- mlxlogscore=709 impostorscore=0 malwarescore=0 spamscore=0 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408290086
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240826120342.503bef41@jic23-huawei>
 
-Add SD Card node for Qualcomm qcm6490-idp Board.
+On Mon, 26 Aug 2024, Jonathan Cameron wrote:
 
-Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
----
-Changes from v2:
- - Corrected patch version.
+> On Thu, 22 Aug 2024 14:54:13 +0100
+> Lee Jones <lee@kernel.org> wrote:
+> 
+> > On Wed, 21 Aug 2024 16:54:52 -0500, Chris Morgan wrote:
+> > > Add support for the AXP717 PMIC to utilize the ADC (for reading
+> > > voltage, current, and temperature information from the PMIC) as well
+> > > as the USB charger and battery.
+> > > 
+> > >   
+> > 
+> > Applied, thanks!
+> > 
+> > [11/15] mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
+> >         commit: e1043ad46060c181ffb8f981ccb25d9f698b2f09
+> > 
+> Hi Lee, patch 12 is dependent on this because of the header
+> additions.
+> 
+> If you don't mind can you pick up 1, 8 and 12
+> (all the IIO ones)?  Otherwise they'll have to wait for next
+> cycle. Guessing too late to ask for an IB?
 
-Changes from v1:
- - Define sd_cd node. (Thanks Dmitry)
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 33 ++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Hold that thought!
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index a0668f767e4b..95d5cf2d9bcd 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -641,6 +641,21 @@
- 	status = "okay";
- };
- 
-+&sdc2_clk {
-+	bias-disable;
-+	drive-strength = <16>;
-+};
-+
-+&sdc2_cmd {
-+	bias-pull-up;
-+	drive-strength = <10>;
-+};
-+
-+&sdc2_data {
-+	bias-pull-up;
-+	drive-strength = <10>;
-+};
-+
- &sdhc_1 {
- 	non-removable;
- 	no-sd;
-@@ -655,12 +670,30 @@
- &tlmm {
- 	gpio-reserved-ranges = <32 2>, /* ADSP */
- 			       <48 4>; /* NFC */
-+
-+	sd_cd: sd-cd-state {
-+		pins = "gpio91";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
- };
- 
- &uart5 {
- 	status = "okay";
- };
- 
-+&sdhc_2 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&sdc2_clk>, <&sdc2_cmd>, <&sdc2_data>, <&sd_cd>;
-+	pinctrl-1 = <&sdc2_clk_sleep>, <&sdc2_cmd_sleep>, <&sdc2_data_sleep>, <&sd_cd>;
-+
-+	vmmc-supply = <&vreg_l9c_2p96>;
-+	vqmmc-supply = <&vreg_l6c_2p96>;
-+
-+	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
 -- 
-2.17.1
-
+Lee Jones [李琼斯]
 
