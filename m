@@ -1,283 +1,111 @@
-Return-Path: <devicetree+bounces-97865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7527963E40
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:21:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D21C963E47
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:23:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA4F31C21153
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:21:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E38E1C22480
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E99418C352;
-	Thu, 29 Aug 2024 08:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E1C18C02D;
+	Thu, 29 Aug 2024 08:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rGhs1Edu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfxGg7nx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF82018C02D
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 08:21:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047A818C025;
+	Thu, 29 Aug 2024 08:23:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724919681; cv=none; b=NkfhFTJFquH7tXtNuL34SWdneVRLbpE7pWZdNitAF00O4OjBoRZ9bZ/5dy73nNERdU2nBUQwatMR6EIoGbhDLxUKHoCYZGhtCUTgnqBD7I7HHDKF7Nt5b10sUQv1A60XRNNzfowyh8ZM73q6qkFAMfAhLFDg+QTV7uwIx+2sazQ=
+	t=1724919824; cv=none; b=pklxZvGfTDp6hDBDrZeTLpZpg9zZ89AqOddl47ZLygBPXpEclayswlX0sT6QwRpBESh4y68gHcx5al++BrBnvWEbbdok4Vun7eTrekNfDb8rKrMAVGqRdwEI598poCw3qafBidl4VXCGeE3v+naJ2pmzbdfkQiD+FA0uNkoTvRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724919681; c=relaxed/simple;
-	bh=D945pissAzYJ1WSZ4r3fmdjGbNimiMhFB6YLYYkLGPU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XCLUezB7kiL1hf7Q7hYvpxToRX0TGdTe5MV4cjLKDvt26O7eodkhRTMvnwWsu5iS8LyJwZ8VQTxZyGglfdJmGDwvP6oom9aemV7Q7gYCZYfdZDOQdS9ZJd4b9ymgWhqsqZbyz3Wp6hrdYgOHhZyd/D6I0Y/pe3r5877ehA8ejNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rGhs1Edu; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53346132365so521154e87.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 01:21:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724919678; x=1725524478; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l4vkvoTso6h1gNffXtkAXfIEyKfOljt6J/EQ+f9eh4k=;
-        b=rGhs1EduQInRqQlHgN+R/iEaO67j3BjjOwYx6Rq+iNivrielhtt8y3rsOpgywYL3tr
-         A2dwPtr3kU345Z15pZ37qMGu+uAAaB6I28QKJvOY3yn9AyrrGhvS8L9lDJs+E2VDBctE
-         DmZ/h/bdkdEnOYWPqF8z1q5NJUywlQF5GuUfItu5wPS0Y4FJa9V/Vilje2LurdAlg1S6
-         nUminPONDBlmE8WVNgRN6daCnmKXBF8DQvKJXBKRRIdZ7Rdk98oful+42wlO/a+PiZqU
-         +b2wHzfdFEuwNZty/SF5rZyzDM10Qdq9nwyiXio2AoETpKr31GpQf8RGVsRuRP1JBJCa
-         iSYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724919678; x=1725524478;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l4vkvoTso6h1gNffXtkAXfIEyKfOljt6J/EQ+f9eh4k=;
-        b=dJ5YnvIYGvmhV5bPIpGL+0cTI8pRN1/1z2DecHAtyXmIOV6mIHwBwb2L5KwnA/ZKsa
-         m+wXCNA8VEpbJSKlnMr1ePxy2iiNVo8a4sD2fZ/jhG8tjTRGkFk850TLIJQV9Cn+qdFm
-         RiXr0BsUx0TqqMZzdtA/H8/oH+KEGVfkufBv+RaaKGhMQVmSItU2+Xkjex1AZ7T8Fuv4
-         VlVwNba1h8w954bJlNjFgIbANVxs+xVl+OkWOSitFbrHsxHfyt93XBWiE16wuYm4gVdy
-         xRSbWZ5K6SD3GdnyIgfV9XPEm6WPjPWj8TCHX75V2qVb12sXN8alEZTpnyNlbl11NQhi
-         oy6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUfSK8rkrkGIbKGaDm/iF5TIOj5kxhe8AeCbKES29jNFZizBam9p3uCi+5hsZM22KSnq/bq/pVPkL+O@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpjcGHReVYe39n3o+3JkGCfmFzPScYlb7+6nEOHAxeGLvr/n1M
-	0WpyphiO6NvsSsiDOZv+XJIvr8r8iEn6ZN3ybzLvYEhJMZ1SCrAatPcKqmF01jE=
-X-Google-Smtp-Source: AGHT+IE29xdrMuG56sjGZ0HIT6/edkCuXIp0/EK146elrMyoVzNezfgtU6FXrZp8xyU6P6Ohzvmgow==
-X-Received: by 2002:a05:6512:3084:b0:530:c323:46a8 with SMTP id 2adb3069b0e04-5353e56935emr1131789e87.23.1724919677229;
-        Thu, 29 Aug 2024 01:21:17 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-535407ac333sm90243e87.70.2024.08.29.01.21.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 01:21:16 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 29 Aug 2024 11:21:14 +0300
-Subject: [PATCH 2/2] phy: add NXP PTN3222 eUSB2 to USB2 redriver
+	s=arc-20240116; t=1724919824; c=relaxed/simple;
+	bh=ZYaSGp+fnpZ/q2d742FCiD1B5Vwp233d4XIjEq3SxmI=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=VWDNXxnWA/k30fKz2VXqJpbf6zeR0e07QTScMsLy7k1s7nY4vnQFJnH4opuUxf8fdKULIZ/ucnfcY+0mmAKplW6/nSt3pDk4BCHHFdoTu+o6+iM4WT9fpjY7tX21f8zPDsO9vOA4vxwdp5kWwrSlXY5ufIMfWfsNmNyEWtrKvow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfxGg7nx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 678AAC4CEC1;
+	Thu, 29 Aug 2024 08:23:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724919823;
+	bh=ZYaSGp+fnpZ/q2d742FCiD1B5Vwp233d4XIjEq3SxmI=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=LfxGg7nxC/5pTw/pl4SPD3eMgN3WOG2lJTTMvpwQujpq7RUcrhezJRMpG6N/oVe11
+	 oG44QXMWpDJ4pzQlAFFUn3uPYjMXTNErlElOrv2xbum2lE3syzFYUuQY92OZf4hMHe
+	 kZUzsstPPpndi65VdFlfenzrkGUS2hhFH7B9kyUpkZNEUyLRTrYCfT55CDKfFnxKob
+	 d0iaO3mzp/3DguWkbICbwsuR6GYGZcg3oixLlC+jA0QXCdf0oxtOqLYLJ2uvxA3P4y
+	 74liAa0d+SclnZHStNHPjWN1/kjOh2dS3Gw4vm7qJLe0AECKs8kKo2Dmjjz35xleYf
+	 INrXQOo4/NVXw==
+Date: Thu, 29 Aug 2024 03:23:41 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240829-nxp-ptn3222-v1-2-46906bc4747a@linaro.org>
-References: <20240829-nxp-ptn3222-v1-0-46906bc4747a@linaro.org>
-In-Reply-To: <20240829-nxp-ptn3222-v1-0-46906bc4747a@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5103;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=D945pissAzYJ1WSZ4r3fmdjGbNimiMhFB6YLYYkLGPU=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm0C96yL9zJFlSohV/brIn5g/vjD2TJHC0kAhFW
- jYzqRi5OTCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtAvegAKCRCLPIo+Aiko
- 1Vm3B/wJ/0cuoDCWshKIwTvNfPHBhzR0GbOXGUMhB/IwUwxTi8GSEfG6IBQXeV++iccQuMUP4H5
- g5gvY7gXht9cWO/4kQuwz29pVs76HUOubsW5Mp2al5Wcp16KdfcGIMqeuOKu8LUCjL6Mde0+rYX
- 7mW22OkDaP3H3dWjs3b1srd1Zw6WTmwC6SpfJChgVIc+XxCDXhWL8E1RZZKawx65drhCCMGX/j/
- 0BrIsW9zyGvnPfSfQFZoZ6fcmeO30dXzD9Jyg8ZKNjN1ySDT2zTPDTo0GtSFKzI0wytcixMZtrd
- ygP+tZIE4nUpscxhIr0AjAHh8ubBVnKAaS2rq2XPwnW7UoNf
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jammy Huang <jammy_huang@aspeedtech.com>
+Cc: pmenzel@molgen.mpg.de, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ joel@jms.id.au, devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, 
+ mchehab@kernel.org, linux-aspeed@lists.ozlabs.org, andrew@aj.id.au, 
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ eajames@linux.ibm.com, linux-kernel@vger.kernel.org, hverkuil@xs4all.nl
+In-Reply-To: <20240829064508.3706672-2-jammy_huang@aspeedtech.com>
+References: <20240829064508.3706672-1-jammy_huang@aspeedtech.com>
+ <20240829064508.3706672-2-jammy_huang@aspeedtech.com>
+Message-Id: <172491982164.2766568.9027879446207472741.robh@kernel.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: media: convert aspeed-video.txt to
+ dt-schema
 
-The NXP PTN3222 is the single-port eUSB2 to USB2 redriver that performs
-translation between eUSB2 and USB2 signalling schemes. It supports all
-three data rates: Low Speed, Full Speed and High Speed.
 
-The reset state enables autonegotiation of the PHY role and of the data
-rate, so no additional programming is required.
+On Thu, 29 Aug 2024 14:45:07 +0800, Jammy Huang wrote:
+> Convert the ASPEED SoCs video txt bindings to dt-schema.
+> 
+> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
+> ---
+>  .../bindings/media/aspeed,video-engine.yaml   | 78 +++++++++++++++++++
+>  .../bindings/media/aspeed-video.txt           | 33 --------
+>  2 files changed, 78 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/aspeed,video-engine.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/aspeed-video.txt
+> 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/phy/Kconfig           |  11 ++++
- drivers/phy/Makefile          |   1 +
- drivers/phy/phy-nxp-ptn3222.c | 119 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 131 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index dfab1c66b3e5..cb06a7f79740 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -82,6 +82,17 @@ config PHY_AIROHA_PCIE
- 	  This driver create the basic PHY instance and provides initialize
- 	  callback for PCIe GEN3 port.
- 
-+config PHY_NXP_PTN3222
-+	tristate "NXP PTN3222 1-port eUSB2 to USB2 redriver"
-+	depends on I2C
-+	depends on OF
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support NXP PTN3222 1-port eUSB2 to USB2 Redriver.
-+	  This redriver performs translation between eUSB2 and USB2 signalling
-+	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
-+	  Speed and High Speed.
-+
- source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index 5fcbce5f9ab1..b64247046575 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
- obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
- obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
- obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
-+obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
- obj-y					+= allwinner/	\
- 					   amlogic/	\
- 					   broadcom/	\
-diff --git a/drivers/phy/phy-nxp-ptn3222.c b/drivers/phy/phy-nxp-ptn3222.c
-new file mode 100644
-index 000000000000..429a91910f14
---- /dev/null
-+++ b/drivers/phy/phy-nxp-ptn3222.c
-@@ -0,0 +1,119 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2024, Linaro Limited
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define NUM_SUPPLIES 2
-+
-+struct ptn3222 {
-+	struct i2c_client *client;
-+	struct phy *phy;
-+	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data supplies[NUM_SUPPLIES];
-+};
-+
-+static int ptn3222_init(struct phy *phy)
-+{
-+	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = regulator_bulk_enable(NUM_SUPPLIES, ptn3222->supplies);
-+	if (ret)
-+		return ret;
-+
-+	gpiod_set_value_cansleep(ptn3222->reset_gpio, 0);
-+
-+	return 0;
-+}
-+
-+static int ptn3222_exit(struct phy *phy)
-+{
-+	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
-+
-+	gpiod_set_value_cansleep(ptn3222->reset_gpio, 1);
-+
-+	return regulator_bulk_disable(NUM_SUPPLIES, ptn3222->supplies);
-+}
-+
-+static const struct phy_ops ptn3222_ops = {
-+	.init		= ptn3222_init,
-+	.exit		= ptn3222_exit,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int ptn3222_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct phy_provider *phy_provider;
-+	struct ptn3222 *ptn3222;
-+	int ret;
-+
-+	ptn3222 = devm_kzalloc(dev, sizeof(*ptn3222), GFP_KERNEL);
-+	if (!ptn3222)
-+		return -ENOMEM;
-+
-+	ptn3222->client = client;
-+
-+	ptn3222->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-+						      GPIOD_OUT_HIGH);
-+	if (IS_ERR(ptn3222->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ptn3222->reset_gpio),
-+				     "unable to acquire reset gpio\n");
-+
-+	ptn3222->supplies[0].supply = "vdd3v3";
-+	ptn3222->supplies[0].init_load_uA = 11000;
-+	ptn3222->supplies[1].supply = "vdd1v8";
-+	ptn3222->supplies[1].init_load_uA = 55000;
-+
-+	ret = devm_regulator_bulk_get(dev,
-+				      NUM_SUPPLIES,
-+				      ptn3222->supplies);
-+	if (ret)
-+		return ret;
-+
-+	ptn3222->phy = devm_phy_create(dev, dev->of_node, &ptn3222_ops);
-+	if (IS_ERR(ptn3222->phy)) {
-+		dev_err(dev, "failed to create PHY: %d\n", ret);
-+		return PTR_ERR(ptn3222->phy);
-+	}
-+
-+	phy_set_drvdata(ptn3222->phy, ptn3222);
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct i2c_device_id ptn3222_table[] = {
-+	{ "ptn3222" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, ptn3222_table);
-+
-+static const struct of_device_id ptn3222_of_table[] = {
-+	{ .compatible = "nxp,ptn3222" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ptn3222_of_table);
-+
-+static struct i2c_driver ptn3222_driver = {
-+	.driver = {
-+		.name = "ptn3222",
-+		.of_match_table = ptn3222_of_table,
-+	},
-+	.probe = ptn3222_probe,
-+	.id_table = ptn3222_table,
-+};
-+
-+module_i2c_driver(ptn3222_driver);
-+
-+MODULE_DESCRIPTION("NXP PTN3222 eUSB2 Redriver driver");
-+MODULE_LICENSE("GPL");
+yamllint warnings/errors:
 
--- 
-2.39.2
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/media/aspeed,video-engine.example.dts:27.29-30 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:442: Documentation/devicetree/bindings/media/aspeed,video-engine.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432: dt_binding_check] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/media/aspeed-video.txt
+MAINTAINERS: Documentation/devicetree/bindings/media/aspeed-video.txt
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240829064508.3706672-2-jammy_huang@aspeedtech.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
