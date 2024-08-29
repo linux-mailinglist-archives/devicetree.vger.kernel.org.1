@@ -1,143 +1,156 @@
-Return-Path: <devicetree+bounces-98043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D01A96489B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:35:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 764CA964894
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21404B27D40
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:33:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BA8C1C218E3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1261AED54;
-	Thu, 29 Aug 2024 14:32:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pUIn2GP9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061201AED52;
+	Thu, 29 Aug 2024 14:35:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472941A76B7;
-	Thu, 29 Aug 2024 14:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C70433B1;
+	Thu, 29 Aug 2024 14:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724941977; cv=none; b=dkI6EZJi2FMFRY35fFxQZr0HdpACUlpOtBU4lxgftw9Lc6T/Y2gJWXJiMw+pL6SBSkDeflbL38pT2+gkg77kNMaVcMqQT8RXyPLgS/ZeLVtBipaSi/ixmQn6Gej+uqjo/FWxDCybUG5ruOCAg1tYdm4zABme2mZ3Q2l9C+Cc18Y=
+	t=1724942099; cv=none; b=UrYh8pBVg4O4P1a6uD+SrS3WwGwVTaXVq3MsIyeYbPNX6hAUYLYK7jCdJvxeRQWtdLhlGT2BCrOuh+4uQO4Kp1XyJyDyePvrhdHWg9aonBLu8M/Qh2+q7w2Tbj8Ezzu74GH00OXdsTxGesZV/cKJzXS28mzArVE7j1dadvwjrio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724941977; c=relaxed/simple;
-	bh=Eb2ZPuL+3koYo3fJiQg7r+u2ELH+/JY4bfYIJUUyklQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PM66MnWmM2MU+RigcYj5UkO6MJaNRxzocFXkS9c8pdfGutOI6Dp6B8+bcJz6ieP12HE0FmrKOp3jACKBxXrPMNyGs0STdI/wxGs1h/hGBXl6S7+O8aHjsJBus/gXCRikXegUgvLhPIfzhwk9MNAXxb9zB6i3TCPblLyzNysSi/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pUIn2GP9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47T8OgEF010887;
-	Thu, 29 Aug 2024 14:32:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zqodGm77Krj1I3ICwjAgMZxw71umf4G4EfC6q1kQGnc=; b=pUIn2GP9ddnHQMb4
-	T2kX9Iqau3GZVC3a1ozrr4tFfUrgabfm+3+wAGdeP5QVJSSAGQnR7i6mRTiM7laZ
-	fyOpIFF+8NbM7EwE5mWqAcOMPx31DasKVQJSR6mc0st9dwYqzZHbugtrQfgptnYP
-	uLRcmPmzIl6SeMJfsTHakblCSOb1fPj040sgiC/7RqQdMaAE+/V97UYzcxNga84x
-	eU4GY0imdLwyQmiqV6/GQrPbaXO2Wpo+8fwbl/0YVTaz97VQ3Ypq/5Raz3bwVyfv
-	qC/kSEpO64eDMPm1AytzMMHI5Kw3YrV8rGhozJUbK9QQSJ+T01ifJmTOm5bPzwK6
-	YS7fFA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv0nkr7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 14:32:22 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47TEWLm9000806
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 14:32:21 GMT
-Received: from [10.110.28.107] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 29 Aug
- 2024 07:32:17 -0700
-Message-ID: <b263cd16-b5c2-4dd8-a6fc-7d6861338bcb@quicinc.com>
-Date: Thu, 29 Aug 2024 07:32:16 -0700
+	s=arc-20240116; t=1724942099; c=relaxed/simple;
+	bh=XAALFjp/NR1bfS++lDuCUQU75ZusEVRBbA70eUgzF9w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=swOvkCKY5In1WSKnNpvJ81Okwy+FS+Yzu5qWY1hrMLPNALTDdrpEp8+s2cEUwh/NyB4+kgCxsd56BET9rZBoKvFdVPAI17RAYa69v62tnKTTZWpaETOCtUiHnzlfiDkSyhbZd/Ayg1XAym5YCro84jQuiu/MRHXySbBUOBqxGf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e13cda45037so772524276.3;
+        Thu, 29 Aug 2024 07:34:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724942096; x=1725546896;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3sDsODZm9I03lBNUvN7iX7XME4qFqazcIonu1CpL+3k=;
+        b=tIB540CyZFjNUKXyi58JJdswBGPI0Qb89xiM+QQXrsHLdMubX3U0nrm/10udjQ8mzc
+         W7RTtTWUFr5lBYrkjmwi3S1enYa0EtdOAmz9KdJ9rgn6/B0B0zZZnHTjXN2UCiMYfe+K
+         C4hNDQMQwtGqHT+3LEzbQKPZ5fjEBIaDsRYr7sOjBzrnA6nNXfvQfMqIJGeBsTLIbNni
+         UykiSwIOas/z/B2dbTZryuHGVZxD8WcsEMWMi4KQt6n9Gk4zwqJ8Asahx/ymbX8Qoxiu
+         uFZ2sJ92uk7jsUod8TQltngIkBx9wsQRsv94ORd5YPVDcQgPe5hyACjXcBNb8nvCtme6
+         o82Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUb3w2xUhoD2S/wVVpBM25n8Q8PL+LV550t6UQvaU9EmmQIIzLu5f6cdkOByY+jgNJC+oooKkAZ4si/kpTCc6Wc1QQ=@vger.kernel.org, AJvYcCV7kFFAVSMYD8QEGRzjUW6FcfPKNxiaJjEpLNZX4q1UgDQE9i6JDGInmmMXdta9swGi/aUgEkfmsGgLquAH@vger.kernel.org, AJvYcCVM3iukNm7xnq7RViH2pafSbeEUOwBDyldRCvRDbYpymRU0/jBfWtiKfjTSf/tNaiSVjpWa5BrkcAO+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI9pBbcqCma+YfHMy+tEigCxlkvOuEHAdT9rfmHLGESBCKb9ug
+	91YIwmgzX67B3LawE7sFPWD3sAVKiphz9Y+8VnnDoRKthHAk7BA02uyPc115
+X-Google-Smtp-Source: AGHT+IFES/69AVwfVAEORSVewuSTxTLF5Jz4A0BNtx4b3jKDSgTqBRcD85DHBy6IQ6dLsM8ifocSHw==
+X-Received: by 2002:a05:6902:1583:b0:e13:dfdc:d84c with SMTP id 3f1490d57ef6-e1a5a6e45dcmr3193690276.0.1724942095981;
+        Thu, 29 Aug 2024 07:34:55 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e1a62656f3fsm263775276.9.2024.08.29.07.34.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Aug 2024 07:34:55 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e0875f1e9edso727001276.1;
+        Thu, 29 Aug 2024 07:34:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUjxQEnRoyesB8fdTFDnD5nxScmutUf+WHnGNyyZkYPZAB0auFiIptnc6Jf0opsonxeiSmRaBd+YLxRR6e30T+aHW0=@vger.kernel.org, AJvYcCVGuD0mHGSTbp5t5ZGrIrstJjjCVnc9qFXi2znzXhQvsgF6datQ//CbuLb3UEvVKO2JnJ+rRxiAYUOGJkJf@vger.kernel.org, AJvYcCX5+w9/dYe71DfKO7JUi6EUZgQoy/9stQykJr0kuyv2Zn5PbD1/7hfZMFY2mlT7yWC/huQhzcSNt3vY@vger.kernel.org
+X-Received: by 2002:a05:6902:15c4:b0:e16:572a:4d85 with SMTP id
+ 3f1490d57ef6-e1a5adf1836mr3361931276.36.1724942094764; Thu, 29 Aug 2024
+ 07:34:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/22] arm64: qcom: Introduce SA8255p Ride platform
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <sudeep.holla@arm.com>, <andi.shyti@kernel.org>, <tglx@linutronix.de>,
-        <will@kernel.org>, <joro@8bytes.org>, <jassisinghbrar@gmail.com>,
-        <lee@kernel.org>, <linus.walleij@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
-        <wim@linux-watchdog.org>, <linux@roeck-us.net>
-CC: <robin.murphy@arm.com>, <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <vkoul@kernel.org>, <quic_gurus@quicinc.com>,
-        <agross@kernel.org>, <bartosz.golaszewski@linaro.org>,
-        <quic_rjendra@quicinc.com>, <robimarko@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
-        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>, <quic_tsoni@quicinc.com>,
-        <quic_shazhuss@quicinc.com>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <11c897d7-ea9c-4474-81f6-1fc2198d289d@kernel.org>
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <11c897d7-ea9c-4474-81f6-1fc2198d289d@kernel.org>
+References: <cover.1721999833.git.geert+renesas@glider.be> <1a3d4ff8ce34a5e676d1cb1fafd40525378e29a4.1721999833.git.geert+renesas@glider.be>
+ <20240730162435.GA1480758-robh@kernel.org> <CAMuHMdUwATmjM3E7WmwnCK739CwuyZH1w_YVYbroDcWEpzh8ig@mail.gmail.com>
+ <67hcoj3haiptjh4f7qvaz4xwcdamr3x33xxrxusuwq2t3veiln@z2ggc7razty4>
+ <CAMuHMdXSxMzzM6WgwObbymdWHcqUU2r6BOyS7ZzqSBx_gsWftw@mail.gmail.com>
+ <c91167d8-df24-4a3c-bb92-811bd1543be3@kernel.org> <CAMuHMdUOi-jNLdfnG1iWORa8=EnZjM+DpREsWPyc9RMQwW80SA@mail.gmail.com>
+ <20240829135845.GA297607-robh@kernel.org>
+In-Reply-To: <20240829135845.GA297607-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 29 Aug 2024 16:34:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUTju=fZ4x5qAwkrRKF8HxvwyKgBD7aD1rPWHGyGFKD-Q@mail.gmail.com>
+Message-ID: <CAMuHMdUTju=fZ4x5qAwkrRKF8HxvwyKgBD7aD1rPWHGyGFKD-Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/7] dt-bindings: fuse: Move renesas,rcar-{efuse,otp}
+ to nvmem
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Arnd Bergmann <arnd@arndb.de>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fv5TpYAMjB7nkZE4j2aSXpV4D3dEfStr
-X-Proofpoint-ORIG-GUID: fv5TpYAMjB7nkZE4j2aSXpV4D3dEfStr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-29_03,2024-08-29_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 bulkscore=0 impostorscore=0 phishscore=0 clxscore=1015
- mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408290100
+Content-Transfer-Encoding: quoted-printable
 
+Hi Rob,
 
-On 8/29/2024 12:57 AM, Krzysztof Kozlowski wrote:
-> On 28/08/2024 22:36, Nikunj Kela wrote:
->> This series enables the support for SA8255p Qualcomm SoC and Ride
->> platform. This platform uses SCMI power, reset, performance, sensor
->> protocols for resources(e.g. clocks, regulator, interconnect, phy etc.)
->> management. SA8255p is a virtual platforms that uses Qualcomm smc/hvc
->> transport driver.
->>
-> Who is supposed to merge it? The Cc-list is quite enormous and I got now
-> 20 bounces:
+On Thu, Aug 29, 2024 at 3:58=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Thu, Aug 29, 2024 at 11:10:41AM +0200, Geert Uytterhoeven wrote:
+> > On Thu, Aug 29, 2024 at 10:55=E2=80=AFAM Krzysztof Kozlowski <krzk@kern=
+el.org> wrote:
+> > > On 28/08/2024 22:10, Geert Uytterhoeven wrote:
+> > > > On Mon, Aug 19, 2024 at 1:11=E2=80=AFPM Krzysztof Kozlowski <krzk@k=
+ernel.org> wrote:
+> > > >> On Wed, Jul 31, 2024 at 09:37:36AM +0200, Geert Uytterhoeven wrote=
+:
+> > > >>> On Tue, Jul 30, 2024 at 6:24=E2=80=AFPM Rob Herring <robh@kernel.=
+org> wrote:
+> > > >>>> On Fri, Jul 26, 2024 at 03:38:06PM +0200, Geert Uytterhoeven wro=
+te:
+> > > >>>>> The R-Car E-FUSE blocks can be modelled better using the nvmem
+> > > >>>>> framework.
+> > > >>>>>
+> > > >>>>> Replace the R-Car V3U example by an R-Car S4-8 ES1.2 example, t=
+o show
+> > > >>>>> the definition of nvmem cells.  While at it, drop unneeded labe=
+ls from
+> > > >>>>> the examples, and fix indentation.
+> > > >>>>>
+> > > >>>>> Add an entry to the MAINTAINERS file.
+> > > >>>>>
+> > > >>>>> Reported-by: Arnd Bergmann <arnd@arndb.de>
+> > > >>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > >>>>> ---
+> > > >>>>> v3:
+> > > >>>>>   - New.
+> > > >>>>>
+> > > >>>>> I would expect that the calib@144 node needs:
+> > > >>>>>
+> > > >>>>>     #nvmem-cell-cells =3D <0>;
+> > >
+> > > So this is for mac-base...
+> >
+> > No, mac-base is not involved.
 >
-> "    Too many recipients to the message"
->
-> at least drop some non-maintainer related, I counted 5-7 Qualcomm ones
-> which should not be needed.
->
-> Best regards,
-> Krzysztof
+> It is because that's the only case that allows #nvmem-cell-cells in
+> fixed-cell.yaml. While fixed-cell.yaml allows additional properties,
+> where it is referenced in fixed-layout.yaml does not.
 
-Hi Krzysztof,
+So all of this is normal, and you should just never use #nvmem-cell-cells,
+except in a node describing the location of the MAC address?
 
-I ran maintainers script to get all the emails. I kept maintainers,
-reviewers and "in file" ones in addition to some Qualcomm leads. I will
-drop "in file" and Qualcomm leads in next version.
+When no #nvmem-cell-cells property is present,
+of_parse_phandle_with_optional_args() (as used in
+of_nvmem_cell_get()) returns zero anyway
 
-Thanks,
+Gr{oetje,eeting}s,
 
--Nikunj
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
