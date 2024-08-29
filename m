@@ -1,192 +1,181 @@
-Return-Path: <devicetree+bounces-98030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EBC3964700
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:41:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A13964709
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:42:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06C9D2810D8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:41:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E82A1F21B02
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:42:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1202F1AED32;
-	Thu, 29 Aug 2024 13:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N095giUz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA7E1A76BE;
+	Thu, 29 Aug 2024 13:41:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67EDE1AE860;
-	Thu, 29 Aug 2024 13:41:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7AE1A76AB
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 13:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724938862; cv=none; b=slOIzN75wduJdaNsY2DLeEMEXlrMrsnbh0GtAgb8INVH7Z7hEnPFBLLYN6eZd4oLLwVyTylkD3BndbrVAqDtqarSMLrgmsA/SfUQIeIkEU/XrFWAOqUZxcYWcExE/vil2oNTsJE1unOsQA/zLwNzqStw3tOGez0tsSRJ4oYivL8=
+	t=1724938889; cv=none; b=XZ9wPZjvyqN3tnADzm7mOhChXt4W75E8B9qz541ms3QD4SbcgNxu+TtWy4g8U38Mxf7tS60auGBck6MFS38dJSKKWIyaNQM5uyE4LDNTkt94bx13+gK8rfWCKV2wFdIflJnLhcgxS5gVuTUa+bIeQ+SQ4aaKATIjbC7ZO+xKd7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724938862; c=relaxed/simple;
-	bh=7OF/1Q+Bgf6uvmsLyNLfEaKaJz4+VhCfNN5LRsUusQg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MXBrAWiH2vC4SBGgPSDyCzmnbSPnkeRt+yqJ/Lj8xtn2T9a5BRbqegctPpa8ixaDw3N0CSKjYb2Y53bq3MMfKVTujycOICFEmj6VC7vhSzWP5h6pmGwSNWO3Z1fybM4ILrD2Vbval+kdB6ehwnEoh8OaTq/Dxy9nG0kbu3e0FxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=N095giUz; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47T8WkXR030353;
-	Thu, 29 Aug 2024 13:40:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lOn9U/uwJF+sEn9lfBTyTqUFLrypSYD0f8j/KzWz7Uo=; b=N095giUzra50D9rL
-	6p0R69wld4jroYX36GUuD9Skb8FA22Y/XgDL8h3dgH8jZMySV8SlY0Bdvzc5G/LD
-	HD1zto30bRUzDDYNBk9XC8gn6Kb8APe7GnG1Zt873kk298UYCoS7tbj1sBbsjyVt
-	Pe3WmEODYvgGE8gNExgen8Vajk+0p3W5X6+SJ1B5adf3OlpQ9EO2bKwOQ5fqqwH0
-	KvkF15B7BEM5BBl1p/pqOaXTBHR0+EnhyDW3HZltPayW55NJsc5hGG7o8vmfgl62
-	TOz5aMECNaVoh3kHyQ/jix+Rfp4JNxtiBt9mK/nMbiP4cXQcV8S0aQ5Z+ismEojp
-	R3Nt2w==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419puudbu4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 13:40:57 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47TDevHS025789
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 13:40:57 GMT
-Received: from hu-gokulsri-blr.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 29 Aug 2024 06:40:53 -0700
-From: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-To: <andersson@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_viswanat@quicinc.com>, <quic_mmanikan@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>,
-        <quic_gokulsri@quiconc.com>
-Subject: [PATCH V2 4/4] arm64: dts: qcom: ipq9574: add nodes to bring up q6
-Date: Thu, 29 Aug 2024 19:10:21 +0530
-Message-ID: <20240829134021.1452711-5-quic_gokulsri@quicinc.com>
+	s=arc-20240116; t=1724938889; c=relaxed/simple;
+	bh=j15g7+Zs11MXgNdFt9xjPzQq0JE/TjMvjYfFKO5EiIg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=lCRelADxto/d0fle8X+GEvpNaZ8WjTJ+x6eQBgCtgmr7TYVfVAvdYF1XBZOZBMKHCtCkogowcz+A37pn33p9rPFC+6MscXSRb/zfiibW7ycb/hppcGFH/eNTJ8q15WdD+Z+erq2ruYgPiPXIqzibnrcr+ZKkRIMEjFKXrwZMzDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:fbdf:b855:e99a:9ec0])
+	by michel.telenet-ops.be with cmsmtp
+	id 5phL2D00Q0Yrr4n06phL2C; Thu, 29 Aug 2024 15:41:24 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sjfOn-001GR8-Oo;
+	Thu, 29 Aug 2024 15:41:20 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sjfOq-0002Uf-Dp;
+	Thu, 29 Aug 2024 15:41:20 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alex Shi <alexs@kernel.org>,
+	Yanteng Si <siyanteng@loongson.cn>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andrew Davis <afd@ti.com>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 resend] docs: dt: Update overlay file extension
+Date: Thu, 29 Aug 2024 15:41:18 +0200
+Message-Id: <4661808d64fe4cb53ec3f291045f62256c7a7755.1724938789.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240829134021.1452711-1-quic_gokulsri@quicinc.com>
-References: <20240829134021.1452711-1-quic_gokulsri@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EIil7okAnoHqQnKZD2verxxYU8xkG7-a
-X-Proofpoint-ORIG-GUID: EIil7okAnoHqQnKZD2verxxYU8xkG7-a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-29_02,2024-08-29_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 adultscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- clxscore=1015 mlxlogscore=837 mlxscore=0 phishscore=0 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408290094
 
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Building DTB overlays from .dts files is no longer supported.
+Update the documentation to reflect this.
 
-Enable nodes required for q6 remoteproc bring up.
-
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+Fixes: 81d362732bac05f6 ("kbuild: Disallow DTB overlays to built from .dts named source files")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Andrew Davis <afd@ti.com>
+Reviewed-by: Yanteng Si <siyanteng@loongson.cn>
 ---
-changes since v1: Addressed comments by Krzysztof
-	- updated the order of items to 'qcom,smem-states' keeping
-	  'stop' first based on changes to binding documentation.
+v2:
+  - Add Acked-by, Reviewed-by.
+---
+ Documentation/devicetree/overlay-notes.rst           | 12 ++++++------
+ .../translations/zh_CN/devicetree/overlay-notes.rst  | 12 ++++++------
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 58 +++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 08a82a5cf667..2d55f0697225 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -213,6 +213,11 @@ smem@4aa00000 {
- 			hwlocks = <&tcsr_mutex 3>;
- 			no-map;
- 		};
-+
-+		q6_region: wcnss@4ab00000 {
-+			reg = <0x0 0x4ab00000 0x0 0x2b00000>;
-+			no-map;
-+		};
+diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
+index e139f22b363e9f36..35e79242af9a928d 100644
+--- a/Documentation/devicetree/overlay-notes.rst
++++ b/Documentation/devicetree/overlay-notes.rst
+@@ -38,10 +38,10 @@ Lets take an example where we have a foo board with the following base tree::
  	};
+     ---- foo.dts ---------------------------------------------------------------
  
- 	soc: soc@0 {
-@@ -756,6 +761,35 @@ frame@b128000 {
- 				status = "disabled";
- 			};
- 		};
-+
-+		q6v5_wcss: remoteproc@cd00000 {
-+			compatible = "qcom,ipq9574-wcss-sec-pil";
-+			reg = <0x0cd00000 0x4040>;
-+			firmware-name = "ath11k/IPQ9574/hw1.0/q6_fw.mdt";
-+			interrupts-extended = <&intc GIC_SPI 325 IRQ_TYPE_EDGE_RISING>,
-+					      <&wcss_smp2p_in 0 IRQ_TYPE_NONE>,
-+					      <&wcss_smp2p_in 1 IRQ_TYPE_NONE>,
-+					      <&wcss_smp2p_in 2 IRQ_TYPE_NONE>,
-+					      <&wcss_smp2p_in 3 IRQ_TYPE_NONE>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack";
-+
-+			qcom,smem-states = <&wcss_smp2p_out 1>,
-+					   <&wcss_smp2p_out 0>;
-+			qcom,smem-state-names = "stop",
-+						"shutdown";
-+			memory-region = <&q6_region>;
-+
-+			glink-edge {
-+				interrupts = <GIC_SPI 321 IRQ_TYPE_EDGE_RISING>;
-+				label = "rtr";
-+				qcom,remote-pid = <1>;
-+				mboxes = <&apcs_glb 8>;
-+			};
-+		};
- 	};
+-The overlay bar.dts,
++The overlay bar.dtso,
+ ::
  
- 	thermal-zones {
-@@ -987,4 +1021,28 @@ timer {
- 			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+-    ---- bar.dts - overlay target location by label ----------------------------
++    ---- bar.dtso - overlay target location by label ---------------------------
+ 	/dts-v1/;
+ 	/plugin/;
+ 	&ocp {
+@@ -51,7 +51,7 @@ The overlay bar.dts,
+ 			... /* various properties and child nodes */
+ 		};
  	};
-+
-+	wcss: wcss-smp2p {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <435>, <428>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <GIC_SPI 322 IRQ_TYPE_EDGE_RISING>;
-+
-+		mboxes = <&apcs_glb 9>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <1>;
-+
-+		wcss_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		wcss_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
- };
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ when loaded (and resolved as described in [1]) should result in foo+bar.dts::
+ 
+@@ -88,9 +88,9 @@ in the base DT. In this case, the target path can be provided. The target
+ location by label syntax is preferred because the overlay can be applied to
+ any base DT containing the label, no matter where the label occurs in the DT.
+ 
+-The above bar.dts example modified to use target path syntax is::
++The above bar.dtso example modified to use target path syntax is::
+ 
+-    ---- bar.dts - overlay target location by explicit path --------------------
++    ---- bar.dtso - overlay target location by explicit path -------------------
+ 	/dts-v1/;
+ 	/plugin/;
+ 	&{/ocp} {
+@@ -100,7 +100,7 @@ The above bar.dts example modified to use target path syntax is::
+ 			... /* various properties and child nodes */
+ 		}
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 
+ Overlay in-kernel API
+diff --git a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
+index 43e3c0bc5a9f8235..ba5edd05dc1e7fd2 100644
+--- a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
++++ b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
+@@ -43,10 +43,10 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ 	};
+     ---- foo.dts ---------------------------------------------------------------
+ 
+-覆盖bar.dts,
++覆盖bar.dtso,
+ ::
+ 
+-    ---- bar.dts - 按标签覆盖目标位置 ----------------------------
++    ---- bar.dtso - 按标签覆盖目标位置 ---------------------------
+ 	/dts-v1/;
+ 	/插件/;
+ 	&ocp {
+@@ -56,7 +56,7 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ 			... /* 各种属性和子节点 */
+ 		};
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 当加载（并按照[1]中描述的方式解决）时，应该产生foo+bar.dts::
+ 
+@@ -90,9 +90,9 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ DT中的适当位置。在这种情况下，可以提供目标路径。通过标签的目标位置的语法是比
+ 较好的，因为不管标签在DT中出现在哪里，覆盖都可以被应用到任何包含标签的基础DT上。
+ 
+-上面的bar.dts例子被修改为使用目标路径语法，即为::
++上面的bar.dtso例子被修改为使用目标路径语法，即为::
+ 
+-    ---- bar.dts - 通过明确的路径覆盖目标位置 --------------------
++    ---- bar.dtso - 通过明确的路径覆盖目标位置 -------------------
+ 	/dts-v1/;
+ 	/插件/;
+ 	&{/ocp} {
+@@ -102,7 +102,7 @@ DT中的适当位置。在这种情况下，可以提供目标路径。通过标
+ 			... /* 各种外围设备和子节点 */
+ 		}
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 
+ 内核中关于覆盖的API
 -- 
 2.34.1
 
