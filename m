@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-98067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFDD964B1A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:09:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D39B1964B31
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:13:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 012891F25F29
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:09:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46BE2B2542F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F2B1B373C;
-	Thu, 29 Aug 2024 16:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6361B580A;
+	Thu, 29 Aug 2024 16:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqqRpPpy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P0o6GpUb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A210192B84;
-	Thu, 29 Aug 2024 16:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF17C1B5800;
+	Thu, 29 Aug 2024 16:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724947787; cv=none; b=pNHQ7NHQlq6tU/4T/21wluHGicyTI1Y5pzSEwO/zPzOzI9cufPUsmhzWfzaV/zqYvqSOQVuFpm0N0UvqmsepPHHjxzXOqaV2w0n8dNcR4pF+K/6oy+FL+q/UEa1CHweZNWP4gyG1KOG1AcJxKDH/ty8bfLLdxq7wuNm2esHe2uQ=
+	t=1724948002; cv=none; b=A+QlJJgOYG8pOc1k8q+m3OqLBvZGYZjrMdLfjmMgrxv7ddxVOnNCSert1wpYN//oSfBi/BwDln3Cl/AIpuo1rU66T68hlyJZXPuZ+QeCZlXd9mdVg2N725eTNxNHgpQQ41vEyCqDzGMqR+a1RbqInzMub87UD4qJcjuApfP38v8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724947787; c=relaxed/simple;
-	bh=tyKDa9eF9hWmJ5krbc0vX9Qd82zc8OOsfQkxJ4wEuwQ=;
+	s=arc-20240116; t=1724948002; c=relaxed/simple;
+	bh=VGs68PfNrarA1kIV4Q3+GneWz66NTWvS2Qg0QV3mnCU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WjlBWiTS2rCcYmHDwKfZ3maUmHWVXeLjgYJTWbAdz5xqGXfvgA20t8wqAGXjk5XiBvjed1IiPjv73jFWc+7cU4DrU1ubQR7BLZWAMegI1V03bn2DaYqyE3NlJNqZjwPXcoBxi8rgYBUyhGYfsqpMPDkGM7vKLzfes4LcRj/aXnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqqRpPpy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD096C4CEC1;
-	Thu, 29 Aug 2024 16:09:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S2LZFqJHB9uUPNAKOl6fLV1iNYQB1s144RzraUA25MvAAKywOSoT2ZoefPjmmkXAvO7pvdmZ74bxvXcGIVwMXQjru6o4kokzfj1qWqgK1gvh3gvF9UbNY+ddyMmO+atUMV+dSN/IhdbH7DRL0NLnBqw2PZeorXr3CxxNu7rCLoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P0o6GpUb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1A34C4CEC9;
+	Thu, 29 Aug 2024 16:13:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724947787;
-	bh=tyKDa9eF9hWmJ5krbc0vX9Qd82zc8OOsfQkxJ4wEuwQ=;
+	s=k20201202; t=1724948002;
+	bh=VGs68PfNrarA1kIV4Q3+GneWz66NTWvS2Qg0QV3mnCU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dqqRpPpyypSmADZrtxUQTuhdXioLX4bNUO4CeBn/sxR03V+3Pg+Yj5+ffrNqO7d47
-	 rHI9e6s5f54GSKZpsKO0VesJu0xYXFq4B0LZU6DKRcXeyb5PQArSTmmZ2wwSJ0g/rU
-	 6vs1GjOzrODidwKMW7UlbTzjn7EdaosbmgueNkFTTSQWULDdTApqB2mjBSHXVMZtxj
-	 XI+jlTTNGHi2hS85Vk6oHH6tWOOCZXjTtVHlyLhMYrRGGHowXGt5aFGqUoO7HiOTUT
-	 hcUrK8G6DKGsP0fsRKVzcd7bDjqes3Q6bguURytmClL9c2idhZX3ra7iQ9Llr056oR
-	 YU4XzusjSC6LA==
-Date: Thu, 29 Aug 2024 17:09:42 +0100
+	b=P0o6GpUbGD8sx9Ok+rGfmiYrhBg1C8TXmFjhyjkMA7w11yo0dbTIMwgb2dvsXVEDN
+	 fI/uAwfcMRI3Af0V1SVibi1nfGb/mwmuuJ5T7vF++fwmcOzejd7qBdP/daQof3hDPy
+	 cHNOzX4rvs5YwCxM3iPJxZt+Y/ojAbgPu/bdXrmOT6btLM4V0NY8s4kVgcv1jAYefT
+	 896z7BUQjUHsXIeqBwfh24UViZxlNTw3JzQBKETcC42qhZpf3Uml5sdzMNWAxK2I80
+	 eqErcgTGwbSyYMlYfaN8YTWKOia+4GDEPyn/1vt6aiFwxAu8XzkFM7BS0tHPKRFGNe
+	 1ck9tWIH71Ktw==
+Date: Thu, 29 Aug 2024 17:13:17 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clocks: atmel,at91sam9x5-sckc: add sama7d65
-Message-ID: <20240829-mosaic-elective-2dcaad5fc6c4@spud>
-References: <20240829-sama7d65-sck-v1-1-3e7b19e3cbf9@microchip.com>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-sound@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v4] ASoC: dt-bindings: Convert mxs-saif.txt to
+ fsl,imx28-saif.yaml (imx28 saif)
+Message-ID: <20240829-power-traction-01344edc5fed@spud>
+References: <20240829102625.3128645-1-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,33 +63,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DS9Ulw7sw6YNxpVn"
+	protocol="application/pgp-signature"; boundary="flucLSha+vknQX0y"
 Content-Disposition: inline
-In-Reply-To: <20240829-sama7d65-sck-v1-1-3e7b19e3cbf9@microchip.com>
+In-Reply-To: <20240829102625.3128645-1-lukma@denx.de>
 
 
---DS9Ulw7sw6YNxpVn
+--flucLSha+vknQX0y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 29, 2024 at 04:24:37PM +0530, Dharma Balasubiramani wrote:
-> Add bindings for SAMA7D65's slow clock controller.
+On Thu, Aug 29, 2024 at 12:26:25PM +0200, Lukasz Majewski wrote:
+> The 'fsl,imx28-saif' compatible has already the mxs-saif.txt description.
+> This patch converts (and removes it) this file to fsl,imx28-saif.yaml.
 >=20
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Changes for the mxs-saif.txt:
+> - Adds 'clocks', '#clock-cells' and '#sound-dai-cells' properties
+> - Provide device description
+>=20
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+>=20
+> ---
+> Changes for v4:
+> - Change file name to match compatible (fsl,imx28-saif.yaml)
+> - Remove 'saif0' and 'saif1' labels as those are not needed in the
+>   example node
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Hmm, what you've done is not quite what I was suggesting. I was saying
+that either you should remove one of the examples entirely, or merge the
+two examples retaining the only saif0 label.
 
---DS9Ulw7sw6YNxpVn
+With that sorted,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+
+> +examples:
+> +  - |
+> +    saif@80042000 {
+> +        compatible =3D "fsl,imx28-saif";
+> +        reg =3D <0x80042000 2000>;
+> +        #sound-dai-cells =3D <0>;
+> +        interrupts =3D <59>;
+> +        dmas =3D <&dma_apbx 4>;
+> +        dma-names =3D "rx-tx";
+> +        #clock-cells =3D <0>;
+> +        clocks =3D <&clks 53>;
+> +    };
+> +    saif@80046000 {
+> +        compatible =3D "fsl,imx28-saif";
+> +        reg =3D <0x80046000 2000>;
+> +        #sound-dai-cells =3D <0>;
+> +        interrupts =3D <58>;
+> +        dmas =3D <&dma_apbx 5>;
+> +        dma-names =3D "rx-tx";
+> +        clocks =3D <&clks 53>;
+> +        fsl,saif-master =3D <&saif0>;
+> +    };
+
+--flucLSha+vknQX0y
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCdRgAKCRB4tDGHoIJi
-0rI6AP49JYlSWrgb4BX978wCCGjZhQj2Je3Uvv2k/pdMlbWHYQEAnpwFboh90uYG
-ySqncxdvHBYGWtyxim6MRTo7bWFlpwY=
-=E7BV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCeHQAKCRB4tDGHoIJi
+0rbiAP9Y7W5F+NPN2JmNH/14k5YrCbeB7Ma9GtGh5Mu/5AE86wD/bYJfDPmUwzxq
+VnrDiy27sjxu9PeSf8eyLVHCH6mTRgA=
+=Ftps
 -----END PGP SIGNATURE-----
 
---DS9Ulw7sw6YNxpVn--
+--flucLSha+vknQX0y--
 
