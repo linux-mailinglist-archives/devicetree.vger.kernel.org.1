@@ -1,193 +1,87 @@
-Return-Path: <devicetree+bounces-98086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AECE964C0F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:52:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCB89964C1D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:53:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9781C22CC9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:52:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFA091C234FA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FE31B791C;
-	Thu, 29 Aug 2024 16:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BE1F1B583C;
+	Thu, 29 Aug 2024 16:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="u0HOd+fY";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="lPq20trS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P2KPzdKV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout5-smtp.messagingengine.com (fout5-smtp.messagingengine.com [103.168.172.148])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB22E1B7904;
-	Thu, 29 Aug 2024 16:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606351B5823;
+	Thu, 29 Aug 2024 16:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724950294; cv=none; b=M3Fz4H7W+Wzysyt5w36maWsysnVSWskzbDFgAWOEgHt3UHgFaI5p70dTUnJqVOMJ0nHwTuCOM37gAF+JbePqk/LiRGoix9XC1G5gKIUErVbp39j1U7YGL3Eb/HJ6WTQFSowikxR4ii+FNNhbd7wga1GJEb9wzmYgih1rX1ec+vc=
+	t=1724950410; cv=none; b=XKGJ8wGFIQ4SS6FgyC2ls3laiB7UxfzDQRE22pAtuJvPyWPuDkw0GfgzwQlNerJ7b9co3wNum7ll+F1bfMzNHm/YMZcH82aPRo4D0PZbzRzK4sQSWoESLl6oA4tcBsivQbabuLrK2PZI4oZboJg8w4+botdYSBXYPlIThknfT8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724950294; c=relaxed/simple;
-	bh=e2Ul4WhNGlcZeXQdMMvVpKFIdN3eMc1T1l38qwbLHVk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Siq0g67T4aNw8FDkWVoL5jVGZFHP65IJavx8g/VsoX9O1if8UWPzKSQRpFYB9Ex2Q8l+CAkQcgh/0z2F3WVbAX60Slty+yvK05Tkb6SZBRxQayMnpzZhJTFhYqiQAxs4QKA0P03pO6Oj/mVemVtaRtMhzqIwAL0C95II9vG/i3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=u0HOd+fY; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=lPq20trS; arc=none smtp.client-ip=103.168.172.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-02.internal (phl-compute-02.nyi.internal [10.202.2.42])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 50960138FFDB;
-	Thu, 29 Aug 2024 12:51:32 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-02.internal (MEProxy); Thu, 29 Aug 2024 12:51:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1724950292;
-	 x=1725036692; bh=JxRke+RPtxCDm2emvz/ESc2BXKQW8dh7vn0rKmecTrU=; b=
-	u0HOd+fY2KLbC9rCy0m9YZwodbBKswh09H2WCD6OJvac2gC3fU4VVRq4ydwz0k6/
-	fENLWo0ZEViIjYDk7KHvfRtH62Yj10IE2k0j+8zW9sbv71vtV4Wa5vQ0TVFBVzbn
-	hMKkFo7sITgXP6SRvJURh4lmzf2yT2IFOnnJ6/DAYQNbMgSj+Uq+Si/xtvhxeW9o
-	COTl2Ndts/BXOJ8WI1I+B0GRwXO3hw35JQaFO3OVcpMduaPRxhPvVdIGQ6CZEnLl
-	SeyrwUBSnAXziM/O3PzCUnXUqKgUjY6Pq5xOVKgzMfVJowYO2Mg25eHiRbPsytXy
-	N6oYUcz5tASi0CxaxDBnqw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1724950292; x=
-	1725036692; bh=JxRke+RPtxCDm2emvz/ESc2BXKQW8dh7vn0rKmecTrU=; b=l
-	Pq20trS8nC3yRoqPritm9CLUhevZbmO5nkI2OJNLAfT9f6frxntgabSm84JxVDVL
-	rPEy8cslwVFdDd6J0syrMl8QJ9HwUHqkwkFNqxV+IU6nMdqti3rOEqU3BcyX2tPI
-	ahZHxjuYsm9Af2PgEur/bRWoO+a03apXsC33S3Mz9FvCEMNrf9XHDmzt7JWcCb45
-	16JTDxnGqe+19h68FAHRe6JLPeFgfRP3SiKbTwWUQGJ4u657MLjkdn5V2rfDoMBk
-	iQ6YSqZUUdnZlwVPCeLGOA80PgphOCopWtV13BLxr1RtYNINJC5kvLsmZ08rsgI/
-	IWtvqGmYV/vAe/QLI++1Q==
-X-ME-Sender: <xms:FKfQZqRqFlJCCa5-UkuwIWUkmCXzlEvEMmd-vBfY1O3hYG0uuKzNMw>
-    <xme:FKfQZvzbgOZpoE5Wg8iNmmq3pY5qJuXQTTrShdi8nG4CudvCdHEwhN1h460p0dzTD
-    kqWQBf0s-2TMtFPciw>
-X-ME-Received: <xmr:FKfQZn1qMjbiH_csr-K6b-8NJEU510S3fRRNRqb50pGs9pMxM4VctUaW6LOYHSRWKzWQ2MbUH6ZwrxJf_a7jt9gK-g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudefgedguddthecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredt
-    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
-    guvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgr
-    thhtvghrnhepheeigfeuveeutdefhfehgeekvedtleeuueekveefudehhffhjeffgfegff
-    elfeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
-    nhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtg
-    hpthhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmtghhvghhrggs
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpd
-    hrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptgho
-    nhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhheslhhinh
-    hugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehsrghkrghrihdrrghilhhu
-    shesihhkihdrfhhipdhrtghpthhtohepjhhulhhivghnrdhmrghsshhothestgholhhlrg
-    gsohhrrgdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvgguihgrsehvghgvrhdrkhgv
-    rhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrh
-    hnvghlrdhorhhg
-X-ME-Proxy: <xmx:FKfQZmARQzW65FDcVVV0ry2iHT1WcoODutrj1-HCsiz1yypKXNscqQ>
-    <xmx:FKfQZjhq7m_7V02tM0HUJuuHjr6me0at-4YH6cKqVowZVDl7Rdi0Gg>
-    <xmx:FKfQZiomeNidkC9xIbdy-bHhZ9EkxZnJSpX-oI2sTuI14ptNcjkNvA>
-    <xmx:FKfQZmiNxyrlv7teGO1OLQ9WBucPgzU-XM-NFrrm2gb2gKt36ro5ww>
-    <xmx:FKfQZsa3kSVxwRuqX6_FkHGup2RHixAB9GG-dNh5TbsfnbU_ur-6u6Wo>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 29 Aug 2024 12:51:31 -0400 (EDT)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Julien Massot <julien.massot@collabora.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-staging@lists.linux.dev
-Cc: linux-renesas-soc@vger.kernel.org,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH v3 5/5] media: staging: max96712: Add support for MAX96724
-Date: Thu, 29 Aug 2024 18:50:51 +0200
-Message-ID: <20240829165051.2498867-6-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240829165051.2498867-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20240829165051.2498867-1-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1724950410; c=relaxed/simple;
+	bh=7lGLL0XhrxlPC1QZEvRqoSTWUVqnsrXOpUkvm7E/9d4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=IdGjtzu5U1xQzCXPQ5wtv6IqOP+/Tv71TQwGaZY8DYHRsY3oYZpcjpDbpjZ+Ujb++oo0xIdVVIZUHkdnEdkNgylIwl+4e1onnpMYBjFHz4ISpoteFDAd9mmHezu7LWVhrWHdKUB7pZlKCJvBeGRt2nbPHQEqOY8lqVshVAwF9z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P2KPzdKV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B02BEC4CEC1;
+	Thu, 29 Aug 2024 16:53:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724950410;
+	bh=7lGLL0XhrxlPC1QZEvRqoSTWUVqnsrXOpUkvm7E/9d4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=P2KPzdKVTqEVMDVIYblA2mTa0t+ZjXsZQy30AWbBeaFdZ8aK21f12ysTr3hIWwd5R
+	 4LUmkxL+zEeeGtSHvEtwHIQwyaoWrAoIk0kqN/1qHSR0u5/VnMgtrd6+0plwCh40A5
+	 n23ApadZodBHpnro8Qh7i880GGyhHBJnK70Hov1Rt8lCnGmZUKj2jhldiRbjTlXaDj
+	 SpSfi2lnsSXebJtxpDtuUlmwWCrysYblN0zzl0sgrDfGP4wVBrlAZC/Dvj0+aQfiy3
+	 Kv6mMYGyGKDp5uuWxPly266+GXcp2eqGrHMvooFHIj/iogs1FqxkSewWprUVg8YJHL
+	 4GRIKqVAjMmPw==
+Date: Thu, 29 Aug 2024 11:53:22 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, vigneshr@ti.com,
+	kishon@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, srk@ti.com
+Subject: Re: [PATCH v4 2/2] PCI: j721e: Enable ACSPCIE Refclk if
+ "ti,syscon-acspcie-proxy-ctrl" exists
+Message-ID: <20240829165322.GA66640@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240829105316.1483684-3-s-vadapalli@ti.com>
 
-The MAX96724 is almost identical to the MAX96712 and can be supported by
-the same driver, add support for it.
+On Thu, Aug 29, 2024 at 04:23:16PM +0530, Siddharth Vadapalli wrote:
+> The ACSPCIE module is capable of driving the reference clock required by
+> the PCIe Endpoint device. It is an alternative to on-board and external
+> reference clock generators. Enabling the output from the ACSPCIE module's
+> PAD IO Buffers requires clearing the "PAD IO disable" bits of the
+> ACSPCIE_PROXY_CTRL register in the CTRL_MMR register space.
+> 
+> Add support to enable the ACSPCIE reference clock output using the optional
+> device-tree property "ti,syscon-acspcie-proxy-ctrl".
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-For the staging driver which only supports patter generation the big
-difference is that the datasheet (rev 4) for MAX96724 do not describe
-the DEBUG_EXTRA register, which is at offset 0x0009 on MAX96712. It's
-not clear if this register is removed or moved to a different offset.
-What is known is writing to register 0x0009 have no effect on MAX96724.
+Looks good to me, thanks!
 
-This makes it impossible to increase the test pattern clock frequency
-from 25 MHz to 75Mhz on MAX96724. To be able to get a stable test
-pattern the DPLL frequency have to be increase instead to compensate for
-this. The frequency selected is found by experimentation as the MAX96724
-datasheet is much sparser then what's available for MAX96712.
+> v3:
+> https://lore.kernel.org/r/20240827055548.901285-3-s-vadapalli@ti.com/
+> Changes since v3:
+> - Rebased patch on next-20240829.
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
-* Changes since v2
-- Use device information instead of if and switches statements to
-  differentiate between to two devices.
-
-* Changes since v1
-- Group in series together with binding.
----
- drivers/staging/media/max96712/max96712.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/staging/media/max96712/max96712.c b/drivers/staging/media/max96712/max96712.c
-index 5c15346c05dd..63ef7eb206e8 100644
---- a/drivers/staging/media/max96712/max96712.c
-+++ b/drivers/staging/media/max96712/max96712.c
-@@ -27,6 +27,7 @@ enum max96712_pattern {
- 
- struct max96712_info {
- 	unsigned int dpllfreq;
-+	bool have_debug_extra;
- };
- 
- struct max96712_priv {
-@@ -173,8 +174,9 @@ static void max96712_pattern_enable(struct max96712_priv *priv, bool enable)
- 		return;
- 	}
- 
--	/* PCLK 75MHz. */
--	max96712_write(priv, DEBUG_EXTRA_REG, DEBUG_EXTRE_PCLK_75MHZ);
-+	/* Set PCLK to 75MHz if device have DEBUG_EXTRA register. */
-+	if (priv->info->have_debug_extra)
-+		max96712_write(priv, DEBUG_EXTRA_REG, DEBUG_EXTRE_PCLK_75MHZ);
- 
- 	/* Configure Video Timing Generator for 1920x1080 @ 30 fps. */
- 	max96712_write_bulk_value(priv, 0x1052, 0, 3);
-@@ -455,10 +457,16 @@ static void max96712_remove(struct i2c_client *client)
- 
- static const struct max96712_info max96712_info_max96712 = {
- 	.dpllfreq = 1000,
-+	.have_debug_extra = true,
-+};
-+
-+static const struct max96712_info max96712_info_max96724 = {
-+	.dpllfreq = 1200,
- };
- 
- static const struct of_device_id max96712_of_table[] = {
- 	{ .compatible = "maxim,max96712", .data = &max96712_info_max96712 },
-+	{ .compatible = "maxim,max96724", .data = &max96712_info_max96724 },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, max96712_of_table);
--- 
-2.46.0
-
+Doesn't hurt to do it, but no need to rebase for PCI patches.  We
+apply everything to -rc1 anyway.
 
