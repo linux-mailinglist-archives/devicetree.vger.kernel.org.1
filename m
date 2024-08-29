@@ -1,119 +1,306 @@
-Return-Path: <devicetree+bounces-97906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7441E9640F5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:09:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1EE3964109
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30C7F28217B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:09:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20AB7B21ECE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6505D18CC1E;
-	Thu, 29 Aug 2024 10:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A0418E35A;
+	Thu, 29 Aug 2024 10:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="EFf9BlrQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com [209.85.208.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8226418E02F;
-	Thu, 29 Aug 2024 10:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412FF18E359
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 10:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724926165; cv=none; b=ixxCrXr2enW8enGE9DZOorEHViVuL6uhn9ZbTkzWMQB9btcE0hzdqRL09sC41kPfOHCcltPdI8acweR9pFjihao3z78It+bVudnB81hzsx67hRtYt47mMZ2bED4GiIs/XfC/Ou18gWV6vGo0EyxLTLblLnq3ntqUBK5ySYWNHw8=
+	t=1724926417; cv=none; b=hMqo5sAFgip8TIPmdcl5ZUF2QyOZ3jvFAfgDLfd6mRtUamXrCJZPcLlYTz5fjEd6akBGda1VJcajjSXfbyPoP95SA5MF2qFfF4vCCoBQZ2wYlJlZeN+BeBkMtOD/2Wjj7qmgLz8VreWTojDL1RQBKf342g1kALBvw9Mmy0s4jjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724926165; c=relaxed/simple;
-	bh=Gp2Vvo9l1GHC7VeWXzadyM/sn/iZNA1B7SZjRUJXSjM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qcl1/SNre8Wr/Jp1C/3ko2jv6ijgwOgvtvpWm0qFgfZyqaI7gJx+AwHcw5CdNJV8AccBCRLBN6og2ys+lTB9BUiKIihPRFLDKvOLFhiH/+CxA5xJWnglO+XRLtS3aPATRkDzO8ObLekyWaz9sKxWOCzp5CUNBGFPBlY0dZBtMAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6b44dd520ceso4917917b3.0;
-        Thu, 29 Aug 2024 03:09:23 -0700 (PDT)
+	s=arc-20240116; t=1724926417; c=relaxed/simple;
+	bh=E51GhEQQOg1HwuEGkHFf6XEayoGU7GbLDFfQdiuKKcM=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m7rqZmIxTRDWbouaHgogxi43FKt9tP+4Bo4+6YqrHr4qTV82xb9k0VZvlDkGnXN8tFWdh7ZrWaUdMVBgkUO2l3qwhktXQ+f77ZfrixXzoKLY3WwlS1iZ71SMZmBU+p06XwG5WsAsvLtaR/hxLSTmxb0iO3aXFzWRNwIOslsgwe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=EFf9BlrQ; arc=none smtp.client-ip=209.85.208.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-lj1-f195.google.com with SMTP id 38308e7fff4ca-2f406034874so5564901fa.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 03:13:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1724926413; x=1725531213; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ly3H9TdfQqHUrvW8I+Z7YT7Eu7iCs1+6axXuLh+lXi0=;
+        b=EFf9BlrQc1AUZnb2Cbw3FEzBBokazssTC1Ex7yAljpIy3nR7KRJrXL3Su939n+yhNN
+         hMsVwIvLX50OAHopRCnCEYkT6pfKo2Hoo+w0mdNVPBPCKp6O/UGJOCjtQOc1Q3NaOtOr
+         8KInLhK0uoGK5DHT9ajX1W5lFPyL2BtVzak0+LnCE0f07wejtC0YtFQcW0jnf/xe7YXP
+         pHm1EowrsLN0zdIILGpQocez3TwnkJmHzN0rDHZcS97pOWaHfRT+h1qSLLy52ZLye8AY
+         ByQc5PE4YyxPoIZjHot81VqvXr5jSPATj7/wMSn6QGelH7bq5QMABSgR58EWpI1y3byU
+         fCdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724926162; x=1725530962;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6WYSubx7jiUJRK5iuUhENWbYRax9U+a5+NbPR9XvXyo=;
-        b=D0QNEX3rFg0oS434ZkVpWQWjw+g9+alvzGex8FIauBLoxoB82Qk7F5atqwSRgicBg2
-         5Mrgjmb4mpEDw1BmYRWPqzvqx9oHlSi7GaXneVESh7Fv/pDKmB770gmaIEPljrDFS3/V
-         VDbpjrpcGFBgOJVNKGBfQk4d/hFV+tUfxvcLY/jjoCBFuwoIx2idnZ67tuXR2lyUZrSU
-         hRW/vFneuL1hCwR2yGujmqEEHNRxaC6Mq5NfDC031d3FlfvYBW/EzpXwXJzbUj62jNzk
-         oULQLho2Nsn3+pYf9uB6MTx7aLBHWdbuIpE5foIGfAaC0xe9XRUhblgPVVvFtIJbx86c
-         zdoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUmjINTAE4XyMFvy1tRjR6ceQxCEEmKiviQRCzOxzLQ9iEx9dMJUxdy/Az2KLGol7PhkyDrATVx6otTlFXUMwPtGtI=@vger.kernel.org, AJvYcCV0Y0BQeRgYrwfmafPG2nzOVk6dQ9yTxph1QbDvNQc5S0i24jYiuMRhZaydhne7Jlhv3s1IDT5yKTPO@vger.kernel.org, AJvYcCX0DMl7x5/Q50OMJKHMSDK8HI5t8qrea9SN7QeuomNHQb0bOMfzrLmKE9hrM8ObmS5TEfHr1naWbx/bQiri@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHjQv9TWK+K06iCV+lcgzf7xxK1gOXssx7plW+YVEFRIBV8PQb
-	jcJDVS/N5Mv83qptOWE9izpr4KGxANZNCx0R9jgzJS11g7m4r21FVWHKBOlL
-X-Google-Smtp-Source: AGHT+IGcpfEQY7kn62UFXxzuwEjh8gRBoirWBFXSHshAen++/4zbr02V4GsGCA1azdPeElhfb+Wb2w==
-X-Received: by 2002:a05:690c:6606:b0:6b3:3520:a45 with SMTP id 00721157ae682-6d2766ef05cmr23331057b3.20.1724926162081;
-        Thu, 29 Aug 2024 03:09:22 -0700 (PDT)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d5daf5casm1774657b3.108.2024.08.29.03.09.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 03:09:21 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6b747f2e2b7so5015427b3.3;
-        Thu, 29 Aug 2024 03:09:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVC0eoO9nZP6ZshVWEw3KysQacH+Uj28aIJ8QjouLr9Q7wm3THtezgS4YbxqrZCS8CXkf9Pc8/hkv0Vsull@vger.kernel.org, AJvYcCVLtNPytQt6feUFNEvyTuP5v9ynAEYbl5zAedJi78PXA0mDxc8cCDadZbz6jPn1JiTsIsnpNLBfmOxPvD/u0//MHe4=@vger.kernel.org, AJvYcCW8RVzC/VIBys16NDFg/bPo+5buP7sQU8+8TfWYv+tvihry7n8S6EnheOnY2JoVEhivVtn4eu7pMoDi@vger.kernel.org
-X-Received: by 2002:a05:690c:d90:b0:643:aef1:fb9d with SMTP id
- 00721157ae682-6d275965a4dmr26027877b3.4.1724926161547; Thu, 29 Aug 2024
- 03:09:21 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724926413; x=1725531213;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ly3H9TdfQqHUrvW8I+Z7YT7Eu7iCs1+6axXuLh+lXi0=;
+        b=WsMZTyrl519vKrvXzGKdKe/hdHpNbsDwWyHnZjO5Gp2bDQcwRANYBSYgSZkU3mtWWe
+         +vbHgTHABfO7UHUyq/BJUHaO0D6E5LHg8wAjx1WeaQXqNsI3AyCXXjQkLsn1J10btGv2
+         irPJoBdCDwdWlSvmCxlWy8W4H8fmO4YxNPpOIQMWKOPjRv/eyEvh79CEaUnwWwBqZxSf
+         EA9S53XooNz+5J4CRNGsBayx9m3Bh/f4H7/xnCQV3oADHzM9SrQ2bKN3xMWe3/zSrkF1
+         AGtbgkfbGXfWGxULl3V4hzPEJMIRJx8cK3l29e+4NYAogKaSSlDvwLa6L1uVavA+Byc2
+         l2bw==
+X-Forwarded-Encrypted: i=1; AJvYcCVOAzC+BH2lOOamKzmHgKF9+3hVIf0WdGApJ56xZiWA3O22K6YkA+bmKev/9HrlUGGOSgKaOgBu+ddN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFqddLUi2B33UFl/FwLyEBqq+kpklq8iijR1tGi9aahUy9dP4f
+	iI2XnJRn9AdtVNetUNegrcp+PJOtbOiL9Hc6r/04mIiPAzl6AgISxEeWx5FKRzo=
+X-Google-Smtp-Source: AGHT+IHdj0Gax8cLl5ferCv8ike/PKOlbdGFRkbWcfI4fVRlQt52wlkGm5gMUFs+5U5W7ciTlZ/YtA==
+X-Received: by 2002:a05:651c:2207:b0:2f0:1f06:2b43 with SMTP id 38308e7fff4ca-2f6108a7771mr19344571fa.41.1724926412637;
+        Thu, 29 Aug 2024 03:13:32 -0700 (PDT)
+Received: from localhost (host-80-182-198-72.pool80182.interbusiness.it. [80.182.198.72])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c226c7c2d0sm524452a12.45.2024.08.29.03.13.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 03:13:32 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 29 Aug 2024 12:13:38 +0200
+To: Rob Herring <robh@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 04/11] of: address: Preserve the flags portion on 1:1
+ dma-ranges mapping
+Message-ID: <ZtBJ0jIq-QrTVs1m@apocalypse>
+Mail-Followup-To: Rob Herring <robh@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <5ca13a5b01c6c737f07416be53eb05b32811da21.1724159867.git.andrea.porta@suse.com>
+ <20240821001618.GA2309328-robh@kernel.org>
+ <ZsWi86I1KG91fteb@apocalypse>
+ <CAL_JsqKN0ZNMtq+_dhurwLR+FL2MBOmWujp7uy+5HzXxUb_qDQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240828124134.188864-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240828124134.188864-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240828124134.188864-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 29 Aug 2024 12:09:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVpjarw4SR2SwNH08EPjFosE5Z5aE-t_=QzKEbBLShB-g@mail.gmail.com>
-Message-ID: <CAMuHMdVpjarw4SR2SwNH08EPjFosE5Z5aE-t_=QzKEbBLShB-g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/9] dt-bindings: soc: renesas: Document RZ/V2H EVK board
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKN0ZNMtq+_dhurwLR+FL2MBOmWujp7uy+5HzXxUb_qDQ@mail.gmail.com>
 
-On Wed, Aug 28, 2024 at 2:41=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add "renesas,rzv2h-evk" which targets the Renesas RZ/V2H ("R9A09G057")
-> EVK board.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Hi Rob, I have restored your Ack with the below change, I hope that's OK.
->
-> Cheers, Prabhakar
->
-> v1->v4
-> - Updated 'renesas,gp-evk # GP-EVK' -> 'renesas,rzv2h-evk # RZ/V2H EVK'
-> - Updated commit message
+Hi Rob,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.12.
+On 16:29 Mon 26 Aug     , Rob Herring wrote:
+> On Wed, Aug 21, 2024 at 3:19 AM Andrea della Porta
+> <andrea.porta@suse.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On 19:16 Tue 20 Aug     , Rob Herring wrote:
+> > > On Tue, Aug 20, 2024 at 04:36:06PM +0200, Andrea della Porta wrote:
+> > > > A missing or empty dma-ranges in a DT node implies a 1:1 mapping for dma
+> > > > translations. In this specific case, rhe current behaviour is to zero out
+> > >
+> > > typo
+> >
+> > Fixed, thanks!
+> >
+> > >
+> > > > the entire specifier so that the translation could be carried on as an
+> > > > offset from zero.  This includes address specifier that has flags (e.g.
+> > > > PCI ranges).
+> > > > Once the flags portion has been zeroed, the translation chain is broken
+> > > > since the mapping functions will check the upcoming address specifier
+> > >
+> > > What does "upcoming address" mean?
+> >
+> > Sorry for the confusion, this means "address specifier (with valid flags) fed
+> > to the translating functions and for which we are looking for a translation".
+> > While this address has some valid flags set, it will fail the translation step
+> > since the ranges it is matched against have flags zeroed out by the 1:1 mapping
+> > condition.
+> >
+> > >
+> > > > against mismatching flags, always failing the 1:1 mapping and its entire
+> > > > purpose of always succeeding.
+> > > > Set to zero only the address portion while passing the flags through.
+> > >
+> > > Can you point me to what the failing DT looks like. I'm puzzled how
+> > > things would have worked for anyone.
+> > >
+> >
+> > The following is a simplified and lightly edited) version of the resulting DT
+> > from RPi5:
+> >
+> >  pci@0,0 {
+> >         #address-cells = <0x03>;
+> >         #size-cells = <0x02>;
+> >         ......
+> >         device_type = "pci";
+> >         compatible = "pci14e4,2712\0pciclass,060400\0pciclass,0604";
+> >         ranges = <0x82000000 0x00 0x00   0x82000000 0x00 0x00   0x00 0x600000>;
+> >         reg = <0x00 0x00 0x00   0x00 0x00>;
+> >
+> >         ......
+> >
+> >         rp1@0 {
+> 
+> What does 0 represent here? There's no 0 address in 'ranges' below.
+> Since you said the parent is a PCI-PCI bridge, then the unit-address
+> would have to be the PCI devfn and you are missing 'reg' (or omitted
+> it).
 
-Gr{oetje,eeting}s,
+There's no reg property because the registers for RP1 are addressed
+starting at 0x40108000 offset from BAR1. The devicetree specs says
+that a missing reg node should not have any unit address specified
+(and AFAIK there's no other special directives for simple-bus specified
+in dt-bindings). 
+I've added @0 just to get rid of the following warning:
 
-                        Geert
+ Warning (unit_address_vs_reg): /fragment@0/__overlay__/rp1: node has
+ a reg or ranges property, but no unit name 
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+coming from make W=1 CHECK_DTBS=y broadcom/rp1.dtbo.
+This is the exact same approach used by Bootlin patchset from:
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+https://lore.kernel.org/all/20240808154658.247873-2-herve.codina@bootlin.com/
+
+replied here below for convenience:
+
++	pci-ep-bus@0 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		/*
++		 * map @0xe2000000 (32MB) to BAR0 (CPU)
++		 * map @0xe0000000 (16MB) to BAR1 (AMBA)
++		 */
++		ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
++		          0xe0000000 0x01 0x00 0x00 0x1000000>;
+
+Also, I think it's not possible to know the devfn in advance, since the
+DT part is pre-compiled as an overlay while the devfn number is coming from
+bus enumeration.
+Since the registers for sub-peripherals will start (as stated in ranges
+property) from 0xc040000000, I'd be inclined to use rp1@c040000000 as the
+node name and address unit. Is it feasible?
+
+> 
+> >                 #address-cells = <0x02>;
+> >                 #size-cells = <0x02>;
+> >                 compatible = "simple-bus";
+> 
+> The parent is a PCI-PCI bridge. Child nodes have to be PCI devices and
+> "simple-bus" is not a PCI device.
+
+The simple-bus is needed to automatically traverse and create platform
+devices in of_platform_populate(). It's true that RP1 is a PCI device,
+but sub-peripherals of RP1 are platform devices so I guess this is
+unavoidable right now.
+
+> 
+> The assumption so far with all of this is that you have some specific
+> PCI device (and therefore a driver). The simple-buses under it are
+> defined per BAR. Not really certain if that makes sense in all cases,
+> but since the address assignment is dynamic, it may have to. I'm also
+> not completely convinced we should reuse 'simple-bus' here or define
+> something specific like 'pci-bar-bus' or something.
+
+Good point. Labeling a new bus for this kind of 'appliance' could be
+beneficial to unify the dt overlay approach, and I guess it could be
+adopted by the aforementioned Bootlin's Microchip patchset too.
+However, since the difference with simple-bus would be basically non
+existent, I believe that this could be done in a future patch due to
+the fact that the dtbo is contained into the driver itself, so we do
+not suffer from the proliferation that happens when dtb are managed
+outside.
+
+> 
+> >                 ranges = <0xc0 0x40000000   0x01 0x00 0x00   0x00 0x400000>;
+> >                 dma-ranges = <0x10 0x00   0x43000000 0x10 0x00   0x10 0x00>;
+> >                 ......
+> >         };
+> >  };
+> >
+> > The pci@0,0 bridge node is automatically created by virtue of
+> > CONFIG_PCI_DYNAMIC_OF_NODES, and has no dma-ranges, hence it implies 1:1 dma
+> > mappings (flags for this mapping are set to zero).  The rp1@0 node has
+> > dma-ranges with flags set (0x43000000). Since 0x43000000 != 0x00 any translation
+> > will fail.
+> 
+> It's possible that we should fill in 'dma-ranges' when making these
+> nodes rather than supporting missing dma-ranges here.
+
+I really think that filling dma-ranges for dynamically created pci
+nodes would be the correct approach.
+However, IMHO this does not imply that we could let inconsistent
+address (64 bit addr with 32 flag bit set) laying around the 
+translation chain, and fixing that is currently working fine. I'd
+be then inclined to say the proposed change is outside the scope
+of the present patchset and to postpone it to a future patch.
+
+Many thanks,
+Andrea
+
+> 
+> Rob
 
