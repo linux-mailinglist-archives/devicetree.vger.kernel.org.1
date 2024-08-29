@@ -1,130 +1,214 @@
-Return-Path: <devicetree+bounces-97902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B613F9640BC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:58:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 565BC9640D4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71561285645
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:58:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48DFE1C22865
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD86156875;
-	Thu, 29 Aug 2024 09:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288CC18E025;
+	Thu, 29 Aug 2024 10:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="sl7sOKrx"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="elVgCjnU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3AA18A924;
-	Thu, 29 Aug 2024 09:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1487E18D646;
+	Thu, 29 Aug 2024 10:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724925500; cv=none; b=H6jBDOSXlDcjVLZDjXba8V7YHF5nBq+MdvIO6HKNYXuTbeDyTOahrS/ycwYptU5YEEW+rTMEB28lsf2VKsYHj+KJv3g+Ncs4X+1RKYH14RPbDEhT8+ZsshgLkYGrdwxuetZ97ePpbogjFqNUuUirLJqVZGm/5xMK/qpx/KSgrWo=
+	t=1724925728; cv=none; b=rCjzjxTnIYtRCFVr8f8WZKabPFjLLyL3HodgiQqbKELYszA2UCSu/Zks7HJQoMxtBOk/iBjk+tdzdC7TKoKBYyqwfXkmvtOH4I5qvwW0v1pa9p/4+vMvx9LTtg8QVr0kHz9qs3o7s+gf18aZsEJmGE8LNvYweB0Ed3mkNA2oDPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724925500; c=relaxed/simple;
-	bh=bn/1npRFBg5AELqurqShxB2OhHBkGEdDaslJlXXx3bY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=Rknj4LrumUx/k4P3KghX2bQg+LxfiDR6kp+XysbtInR1xEjoaW94Rmql9BHFinzelVuPN/6otsyl8b+7bTwIhcxQkKP/+3D88o9iPs5KLhAor8/3Z16i0jmTOVNBWeiS+LN8l7dngizwns++z3LxBYOcD4WEIJFYk3QWZnXyd+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=sl7sOKrx; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1724925499; x=1756461499;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=bn/1npRFBg5AELqurqShxB2OhHBkGEdDaslJlXXx3bY=;
-  b=sl7sOKrxi/0zJy2mXCd7fIkBemFdZTE0ogsYaLvJ0CpeJNyGeHaH+BB+
-   Kz6g1p5NAzr4YzGczIbenZy4hLWldVILbfDO7yqU8JX3x7Ci9bWBBbDXL
-   ujlsyTuqQI/o1Ph/naMY4BsBxHOYMtbpinL6HOr34Tt535EttyZvKJdQZ
-   gx3s5We7FeIpCF42KC4tXUiTWA+9LoZScGmgKAt80CBQLb3B5juy8HuU4
-   2A67WatbURWqUI+o18WoYEhkTiCStOrJ7NfrgquzF8nKQdimbOXnPPWul
-   B0R1GbJfSzhlD7KjB3GUSppWJeOJSx1JNGQChQbNGM8iQUtF5JovRCUxP
-   w==;
-X-CSE-ConnectionGUID: LGQAnO1RRT+/Lnt5/9YMoA==
-X-CSE-MsgGUID: aoePMEnFTu2IvL/NpySfKA==
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; 
-   d="scan'208";a="261987739"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Aug 2024 02:58:18 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 29 Aug 2024 02:57:48 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 29 Aug 2024 02:57:45 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Thu, 29 Aug 2024 15:27:42 +0530
-Subject: [PATCH] dt-bindings: ARM: at91: Document Microchip SAMA7D65
- Curiosity
+	s=arc-20240116; t=1724925728; c=relaxed/simple;
+	bh=wUHWqhlxskG37GHnrSGRWcm8JrIsxzmU4fREj8ADUVA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YQf44nflLwSvs9YXyZAY0Jkq4E1LOV1lZ2IhMq/dqo3Pnim5Hhm7AhWyETO0RfGpKwKyF+Ga3KlP3dY5PsEuilH93S7CFvtEknYY2PPVAtdTAIBnT5jLTkC3EHyAbaUx/OmTQYsWdA5CfUWkXhb2Tr5UxKYcNDdWwN2UznrKWBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=elVgCjnU; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id B5D1C87DC7;
+	Thu, 29 Aug 2024 12:02:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724925723;
+	bh=xthEvjklyi0tldf0RzO+cBlxZDiIDe0pmHoD56I97AY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=elVgCjnUjFPI4y42KRlcYzWDBiojtmbyFpMeHoHSMPrAw6iFw/qn8MuTPdPXJExrd
+	 KyNXT8wU2YaDGSUUuHj6OAFnqQ7ACyRxkQP4sVHy8U2HiTe98XnnGsj2yzKT8da/Yk
+	 9Hp8uCl3qfDKgKbpMRsN1IAa6739MMXWUzR6AvApz1T7izpZVvFN8l/r+OsMPv/zOY
+	 JxgdaeCt1xWPutL3hW11YJDG5BZ9vcbzklbJA1lTzukCiU64cB+Ql0PxW+OU5w9nNH
+	 /jC0SaGxtueGfEaYeKbf6WTYj5+M/918R6DvWSEKo2YNIgNcBqsNuP4SEPzoYtUVvE
+	 KoPFqb1lSAfHA==
+Date: Thu, 29 Aug 2024 12:02:01 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, Conor Dooley
+ <conor+dt@kernel.org>, imx@lists.linux.dev, Shawn Guo
+ <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH] dts: nxp: mxs: Add descriptions for imx287 based
+ btt3-[012] devices
+Message-ID: <20240829120201.1c6b97a8@wsk>
+In-Reply-To: <CAL_JsqJ4+=L4hOYWKUBRTHpSMfMNaNvEy0xcjX=fZ4r4KP8x3Q@mail.gmail.com>
+References: <20240828112139.2665814-1-lukma@denx.de>
+	<172484936571.3462707.10762753590627002293.robh@kernel.org>
+	<20240828160553.53e164c3@wsk>
+	<CAL_JsqJ4+=L4hOYWKUBRTHpSMfMNaNvEy0xcjX=fZ4r4KP8x3Q@mail.gmail.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240829-sama7d65-core-dt-v1-1-e5d882886f59@microchip.com>
-X-B4-Tracking: v=1; b=H4sIABVG0GYC/x3MPQqAMAxA4atIZgM2/lWvIg6ljZrBVloRQby7x
- fEb3nsgcRROMBYPRL4kSfAZqizAbsavjOKygSpqKk0DJrOb3nUt2hAZ3YlK6abWNVnqNeTsiLz
- I/S+n+X0/tHjQ8WIAAAA=
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
-	<nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Romain Sioen <romain.sioen@microchip.com>,
-	Dharma Balasubiramani <dharma.b@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724925464; l=1301;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=Y3EQm+KUhP0XyCykxR4HD0M+o/JUx0lh1Web0rsxU2E=;
- b=TwgzPVKu4LClgwK6phKDXIawIz8ZSYETLbHGRlU25kSK/5AwX4WjnVpoebHvNLjJTFs3vJFPX
- wKcYvBITYs5DzBg6YeeKbF3EqWP1cIGIbKzTyblWhM6ZVHkk1DPOy2Q
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+Content-Type: multipart/signed; boundary="Sig_/ggFtdIXYD1S_KQtz.lDs_tT";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-From: Romain Sioen <romain.sioen@microchip.com>
+--Sig_/ggFtdIXYD1S_KQtz.lDs_tT
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Document device tree binding of the Microchip SAMA7D65 Curiosity board.
+Hi Rob,
 
-Signed-off-by: Romain Sioen <romain.sioen@microchip.com>
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
- Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+> On Wed, Aug 28, 2024 at 9:12=E2=80=AFAM Lukasz Majewski <lukma@denx.de> w=
+rote:
+> >
+> > Hi Rob,
+> > =20
+> > > On Wed, 28 Aug 2024 13:21:39 +0200, Lukasz Majewski wrote: =20
+> > > > The btt3 device' HW revisions from 0 to 2 use imx287 SoC and
+> > > > are to some extend similar to already upstreamed XEA devices,
+> > > > hence are using common imx28-lwe.dtsi file.
+> > > >
+> > > > New, btt3.dtsi has been added to embrace common DTS properties
+> > > > for different HW revisions for this device.
+> > > >
+> > > > As a result - changes introduced in btt3-[012].dts are minimal.
+> > > >
+> > > > Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> > > > ---
+> > > >  arch/arm/boot/dts/nxp/mxs/Makefile   |   3 +
+> > > >  arch/arm/boot/dts/nxp/mxs/btt3-0.dts |  12 +
+> > > >  arch/arm/boot/dts/nxp/mxs/btt3-1.dts |   8 +
+> > > >  arch/arm/boot/dts/nxp/mxs/btt3-2.dts |  12 +
+> > > >  arch/arm/boot/dts/nxp/mxs/btt3.dtsi  | 320
+> > > > +++++++++++++++++++++++++++ 5 files changed, 355 insertions(+)
+> > > >  create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3-0.dts
+> > > >  create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3-1.dts
+> > > >  create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3-2.dts
+> > > >  create mode 100644 arch/arm/boot/dts/nxp/mxs/btt3.dtsi
+> > > > =20
+> > >
+> > >
+> > > My bot found new DTB warnings on the .dts files added or changed
+> > > in this series.
+> > >
+> > > Some warnings may be from an existing SoC .dtsi. Or perhaps the
+> > > warnings are fixed by another series. Ultimately, it is up to the
+> > > platform maintainer whether these warnings are acceptable or not.
+> > > No need to reply unless the platform maintainer has comments.
+> > > =20
+> >
+> > There a few things to clarify after:
+> > CROSS_COMPILE=3D"arm-none-linux-gnueabihf-"
+> > ARCH=3Darm make -j4 CHECK_DTBS=3Dy nxp/mxs/btt3-0.dtb
+> >
+> > 1. mxs-spi.yaml vs mxs-mmc.yaml -> both refer to the same set of HW
+> > - as those IP blocks can work as both mmc and SPI. =20
+>=20
+> Sounds like there should be 1 binding then.
 
-diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-index 82f37328cc69..8e897680d43a 100644
---- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-+++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-@@ -174,6 +174,13 @@ properties:
-           - const: atmel,sama5d4
-           - const: atmel,sama5
- 
-+      - description: Microchip SAMA7D65 Curiosity Board
-+        items:
-+          - const: microchip,sama7d65-curiosity
-+          - const: microchip,sama7d65
-+          - const: microchip,sama7d6
-+          - const: microchip,sama7
-+
-       - items:
-           - const: microchip,sama7g5ek # SAMA7G5 Evaluation Kit
-           - const: microchip,sama7g5
+I also think so - one binding with two compatibles.
 
----
-base-commit: b18bbfc14a38b5234e09c2adcf713e38063a7e6e
-change-id: 20240829-sama7d65-core-dt-11843832c278
+>=20
+> >
+> > 2. For the sound codec:
+> >  codec@1a: compatible: ['wlf,wm8940', 'wlf,wm8974'] is too long
+> >
+> > This is a bit problematic as well - as WM8974 doesn't have ANY ID
+> > register, so it needs to be probed manually and decided which module
+> > with sound codec needs to be inserted. The WM8940 is the pin
+> > compatible replacement. =20
+>=20
+> So if the OS has 2 drivers for these 2 devices, which one does it
+> pick?
+
+(For now) user space assess if the correct codec is inserted as a
+module.
+
+> The answer for Linux is it is undefined. The expectation is if
+> there are multiple options, the firmware figures out which one is
+> present and adjusts the DT.
+
+So then, only the newest one would be used, and then I would move
+detection to u-boot and use overlays.
+
+>=20
+> > 3. The simple-bus.yaml seems to be missing in the Linux kernel tree
+> > - problem is that imx28 has 'apbx' bus. =20
+>=20
+> simple-bus.yaml lives in dtschema repo.
+>=20
+
+Yes, I've just noticed that.
+
+> Node names should be generic, not named for the implementation/type.
+> The binding is fairly flexible in allowing ".*-bus".
+
+Fabio has just prepared and shared proper patch.
+
+>=20
+> > 4. The fsl,lcdif.yaml doesn't allow the situation when one specify
+> > by hand (in DTS) display parameters (as different ones can be used
+> > by the manufacturing site). =20
+>=20
+> Shrug. At the end of the day, the binding and dts have to match. One
+> (or both) has to be adjusted.
+
+Ok.
+
+>=20
+> Rob
+
 
 Best regards,
--- 
-Dharma Balasubiramani <dharma.b@microchip.com>
 
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/ggFtdIXYD1S_KQtz.lDs_tT
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmbQRxkACgkQAR8vZIA0
+zr0QzwgAwJdeGp91k9muym0KIPV9AcUJwVRNO8xcaTnGoTlhtepdDSVIOXuxGvqu
+8rdTTMTqkxcZrdRpoe8F8cMfhAJLie+x9/E+OP3M/b02AdpYSZQEQ3IUYkckt5ra
+1xFA8dJXvj/j+QP8v+k6IUBXmAdawntgEiGDlJeb7v9fUf9DMcb2bDDBPJPKLA+b
+SuyAAToBp0yKMkXvS33XO+uTfyGbSf5c06/cormBdhbcJZg+dBjCFdcPpDS+J+RI
+BiAiiwv1HWms2QKfE24mqEvi5Tubs6LRX4RzoMnCH1qEr+OJ+hud6/SwZAh+sTH3
+rNtLOdm94OAKngc92Z6xg5G5FdkK5w==
+=zHNm
+-----END PGP SIGNATURE-----
+
+--Sig_/ggFtdIXYD1S_KQtz.lDs_tT--
 
