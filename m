@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-97932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F35119642B1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:08:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28699642B8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2510A1C23B95
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:08:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5BE61C22459
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27D41922D9;
-	Thu, 29 Aug 2024 11:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DC618E373;
+	Thu, 29 Aug 2024 11:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="VL/3cTgy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z9+SdVpf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D17E1922E8;
-	Thu, 29 Aug 2024 11:07:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2B5189F3E;
+	Thu, 29 Aug 2024 11:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724929654; cv=none; b=JRW0Dwe8MYn1F/+vArB4pfJC0x9U3YwStzv2+iIK5Gn2ZereJgN0JN1YWoMCTNoiG4Eyw7hPsWcI92HWlt/Qd9KEmMuBTf2rR0REECNilvKCiXstUgdJRvXavsHbPonnWUtOCGV6fMekmJgT7EolnKqmENMZtpd3ROXOCDJM+pQ=
+	t=1724929778; cv=none; b=mj+JkgXT92b7TWK0nyg/Yf+wjxvu3501L/Ql0X9OcGiJ2fhJ7ntWZa07IOA8RF8BiFD+qfzEKUqbcTO4D/c9GtNijnTj88T8y1YzWwfbgejjRnFNlhcgt7vP+aIdkb6WwOMViGv7fl0COembT4u2ZM7E/B/jJjaZTAxWB69RLVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724929654; c=relaxed/simple;
-	bh=A5OFPTbpdEqP2mUYX6FFkePBU9IKDSudOS4uXdE44+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Jjl2X4/d40w37h3HSwIUvArVDFvs+f15Q0Z8wAMMIA6th+oYmNzIiViG+Jn6o+jJBMEULnqI/RiFiYYdiRdU9N34zjakcNZFEwwTRwfchvcdUBMTzlHyDAk3oTY/5ejhYIJO5cWXjMaRYU+DsUpeh/LaF7PTMtc6TDKvqR95yhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=VL/3cTgy; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47T8VC3O013994;
-	Thu, 29 Aug 2024 13:07:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	Jw191MdcLJDiHz3SnaEKXrLm1BcBizdG8CQxgijglLY=; b=VL/3cTgyTbAiUU9E
-	d/pxaR8rJ77F2XQhP+ORaN8RJG1fUzx3CNuEPRnmpXxVp3h8+4UEDzje1YFeGlDQ
-	DUMiel3vP9vEp7MYqSmcU1erpERSGsGw2sfsn8gd0kqRcxb4fg70XaJHVb2HbJ7D
-	Ckke1PkQze2FyDbXrG8wcHJH/6RpOeAIzHx0pUXTAY6RxUPbVoH0jmjMFUixScOx
-	UCKlkS4LxSYnvHGj67f5ZIBCnI+diqMEafJR/kmjs5CWLKS5DXzfnUKbFwwR2NgO
-	HE68gZ+FLQdac/vntBD9NIzuhTr6B7jJyOmo6cU6FOgUGfkskAWytnqFPJ7AahkK
-	o2Pbxw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41a4y649qr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 13:07:10 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4044B4002D;
-	Thu, 29 Aug 2024 13:07:05 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E71BF25ED6F;
-	Thu, 29 Aug 2024 13:07:00 +0200 (CEST)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 29 Aug
- 2024 13:07:00 +0200
-Message-ID: <005a2f7d-ab46-46c8-a0cc-b343685caf7c@foss.st.com>
-Date: Thu, 29 Aug 2024 13:06:53 +0200
+	s=arc-20240116; t=1724929778; c=relaxed/simple;
+	bh=sG/raVnx3HC8/TEH4IPZw5S6fzpcJ+CAyoGc5BaqYns=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LlOLqg3OUL6z1SYB6dST7YHL2rvn9btYtTeLQHVvz2tDvcZXlsBOQS++FlGj3xOpxgVbyVsWHRWkzHdGTJF6HKifGyG3eghAzbdyMfwuDggtVPPtJNnZEljg0bqly9758QIIlLybynWWuLciTGw9JDlsdIe1wugAeT05NgchcJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z9+SdVpf; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7cf5e179b68so371837a12.1;
+        Thu, 29 Aug 2024 04:09:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724929776; x=1725534576; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=peUvJHmZvKj9l0DgThdraUA2U1lKp1rDQkc/x5wUhK4=;
+        b=Z9+SdVpf4c7kYCpL2wdNMED7gyE/LzAQ2NdooUhZN9ZvkvbBaqzs0bWQgD3pMyzYMj
+         EW1amZuaPLfEncg+l/xkiOPx9o9tRiaKCnxFSJCscSLWQIj/AzZlYenlT3X43t64gyhW
+         NEdLfM5m/VcRD8WQnm29Illhem2KeFkjolTwqsjscag070xGkDVQh6zLMvzRUcziK0h8
+         zBz0wzC9QMVuR9Onxe7uZeHyn20aFFyMjL9g97LbUgEWL04xtTseKun7glyTfw9jQetK
+         1e1RPI1XDSqUcRjSHK48Uyjj3wEae8xuqfztyXgk0kio2UWFPMIw2ppCmZXPPl7Do0nj
+         iKmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724929776; x=1725534576;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=peUvJHmZvKj9l0DgThdraUA2U1lKp1rDQkc/x5wUhK4=;
+        b=fK7K4uH1BFrnrutQ9K6MA4kGrkBfCEiPtv1YBcG8Dq+4YIJjvT1MelKjkMCoBmalsA
+         SPmUIJMX75d6V0liIB9ua4zp0YkAMuaaFK2iroKw/NbYkY+BaZYrhUEaec+/LaglQqp6
+         R7hpH3VvwC/wK9yQ/aeRwuQnOByzdVKxo/U+VqZDyrr8cnMUHzUzEArOw6yG/aaHXGmr
+         6oBgqOSLrxyQwvS6ZqOo9JtzVwudciuuqs01t0OtvQ6vZ2VOtCHa5DKDzZ/FS3h+Wlv8
+         YfDqFcvjZq11I0D8YfXkk9qYpXywuBWA5+Z04dWadpOQaQdwiOU1bfuiUct/bh0YIYC5
+         IdhA==
+X-Forwarded-Encrypted: i=1; AJvYcCWo9BZQv7j8YuUcNAaK6sZXH0A6RceWF9QKGnzT5Ryzln878v1luhHjgTtuhjWFhmGAZy3cLns78wQpdC8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY5G8k/k14+OOWm3sFzzQw1X6szun40HDbcnCn8OUMl+SZlU6t
+	Q6hgLr9osf1HQztAv+uNHNwFLPLNnYBwvZi2pY1UxSryZak5lWdh
+X-Google-Smtp-Source: AGHT+IGdEOcfdKj0mrRNzvZvFSj5VjQPh/SiyTbiJB6q+bMK1A3fHVFUxokQUSRAMYhQuzez3pc/sw==
+X-Received: by 2002:a17:90b:1095:b0:2c8:f3b5:7dd1 with SMTP id 98e67ed59e1d1-2d85c7a02b6mr1804373a91.16.1724929775836;
+        Thu, 29 Aug 2024 04:09:35 -0700 (PDT)
+Received: from [192.168.0.122] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d8445e80absm3787855a91.13.2024.08.29.04.09.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Aug 2024 04:09:35 -0700 (PDT)
+Message-ID: <afd79f6c-89b4-4229-aa16-f130a35d78b0@gmail.com>
+Date: Thu, 29 Aug 2024 19:09:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,224 +76,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
-To: Conor Dooley <conor@kernel.org>
-CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>
-References: <20240828143452.1407532-1-christian.bruel@foss.st.com>
- <20240828143452.1407532-2-christian.bruel@foss.st.com>
- <20240828-handsfree-overarch-cd1af26cb0c5@spud>
-Content-Language: en-US
-From: Christian Bruel <christian.bruel@foss.st.com>
-In-Reply-To: <20240828-handsfree-overarch-cd1af26cb0c5@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-29_02,2024-08-29_02,2024-05-17_01
+Subject: Re: [PATCH 1/3] dt-bindings: apple,aic: Document A7-A11 compatibles
+Content-Language: en-MW
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Sven Peter <sven@svenpeter.dev>, Thomas Gleixner <tglx@linutronix.de>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev
+References: <20240829092610.89731-1-towinchenmi@gmail.com>
+ <20240829092610.89731-2-towinchenmi@gmail.com>
+ <172492705116.3333643.6993934329983052782.robh@kernel.org>
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <172492705116.3333643.6993934329983052782.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 8/28/24 18:11, Conor Dooley wrote:
-> On Wed, Aug 28, 2024 at 04:34:48PM +0200, Christian Bruel wrote:
->> Document the bindings for STM32 COMBOPHY interface, used to support
->> the PCIe and USB3 stm32mp25 drivers.
->> Following entries can be used to tune caracterisation parameters
->>   - st,output-micro-ohms and st,output-vswing-microvolt bindings entries
->> to tune the impedance and voltage swing using discrete simulation results
->>   - st,rx-equalizer register to set the internal rx equalizer filter value.
+
+
+On 29/8/2024 18:24, Rob Herring (Arm) wrote:
+> 
+> On Thu, 29 Aug 2024 17:03:11 +0800, Nick Chan wrote:
+>> Document the compatibles for Apple A7-A11 SoCs.
 >>
->> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+>> There are three feature levels:
+>> - A7-A10: No fast IPI
+>> - A11: fast IPI, global only
+>> - M1: fast IPI with local and global support
+>>
+>> Each feature level is an extension of the previous. For example, M1 will
+>> also work with the A7 feature level.
+>>
+>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 >> ---
->>   .../bindings/phy/st,stm32mp25-combophy.yaml   | 128 ++++++++++++++++++
->>   1 file changed, 128 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
+>>  .../bindings/interrupt-controller/apple,aic.yaml  | 15 ++++++++++++---
+>>  1 file changed, 12 insertions(+), 3 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml b/Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
->> new file mode 100644
->> index 000000000000..8d4a40b94507
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
->> @@ -0,0 +1,128 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/st,stm32mp25-combophy.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: STMicroelectronics STM32MP25 USB3/PCIe COMBOPHY
->> +
->> +maintainers:
->> +  - Christian Bruel <christian.bruel@foss.st.com>
->> +
->> +description:
->> +  Single lane PHY shared (exclusive) between the USB3 and PCIe controllers.
->> +  Supports 5Gbit/s for USB3 and PCIe gen2 or 2.5Gbit/s for PCIe gen1.
->> +
->> +properties:
->> +  compatible:
->> +    const: st,stm32mp25-combophy
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#phy-cells":
->> +    const: 1
->> +
->> +  clocks:
->> +    minItems: 2
->> +    items:
->> +      - description: apb Bus clock mandatory to access registers.
->> +      - description: ker Internal RCC reference clock for USB3 or PCIe
->> +      - description: pad Optional on board clock input for PCIe only. Typically an
->> +                     external 100Mhz oscillator wired on dedicated CLKIN pad. Used as reference
->> +                     clock input instead of the ker
->> +
->> +  clock-names:
->> +    minItems: 2
->> +    items:
->> +      - const: apb
->> +      - const: ker
->> +      - const: pad
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    const: phy
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  wakeup-source: true
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +    description: interrupt used for wakeup
->> +
->> +  access-controllers:
->> +    minItems: 1
->> +    maxItems: 2
-> Can you please describe the items here?
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/apple,aic.example.dtb: interrupt-controller@23b100000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['apple,t8103-aic', 'apple,aic'] is too long
+> 	['apple,t8103-aic', 'apple,aic'] is too short
+> 	'apple,s5l8960x-aic' was expected
+> 	'apple,t8103-aic' is not one of ['apple,s8000-aic', 'apple,t7000-aic', 'apple,t8010-aic']
+> 	'apple,t8015-aic' was expected
+> 	from schema $id: http://devicetree.org/schemas/interrupt-controller/apple,aic.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240829092610.89731-2-towinchenmi@gmail.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+Acked. yamllint was not installed on my system.
 
-I can specialize the description: "Phandle to the rifsc firewall device to check access right."
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
-otherwise described in access-controllers/access-controllers.yaml, see also bindings/bus/st,stm32mp25-rifsc.yaml
-
->
->> +  st,syscfg:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: Phandle to the SYSCON entry required for configuring PCIe
->> +      or USB3.
-> Why is a phandle required for this lookup, rather than doing it by
-> compatible?
-
-the phandle is used to select the sysconf SoC configuration register 
-depending on the PCIe/USB3 mode (selected by xlate function), so it's 
-not like a lookup here. This sysconf register is also used for other 
-settings such as the PLL, Reference clock selection, ...
-
->
->> +
->> +  st,ssc-on:
->> +    type: boolean
-> flag, not boolean, for presence based stuff. And in the driver,
-> s/of_property_read_bool/of_property_present/.
-
-ok
-
->
->> +    description:
->> +      A boolean property whose presence indicates that the SSC for common clock
->> +      needs to be set.
-> And what, may I ask, does "SSC" mean? "Common clock" is also a bit of a
-> "linuxism", what does this actually do in the hardware block?
-
-SSC for Spread Spectrum Clocking. It is an hardware setting for the 100Mhz PCIe reference common clock,
-I will rephrase the description
-
->
->> +
->> +  st,rx-equalizer:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 7
->> +    default: 2
->> +    description:
->> +      A 3 bit value to tune the RX fixed equalizer setting for optimal eye compliance
->> +
->> +  st,output-micro-ohms:
->> +    minimum: 3999000
->> +    maximum: 6090000
->> +    default: 4968000
->> +    description:
->> +      A value property to tune the Single Ended Output Impedance, simulations results
->> +      at 25C for a VDDP=0.8V. The hardware accepts discrete values in this range.
->> +
->> +  st,output-vswing-microvolt:
->> +    minimum: 442000
->> +    maximum: 803000
->> +    default: 803000
->> +    description:
->> +      A value property in microvolt to tune the Single Ended Output Voltage Swing to change the
->> +      Vlo, Vhi for a VDDP = 0.8V. The hardware accepts discrete values in this range.
->> +
->> +required:
->> +  - "#phy-cells"
->> +  - compatible
->> +  - clocks
->> +  - clock-names
->> +  - reg
->> +  - resets
->> +  - reset-names
->> +  - st,syscfg
-> The order here should reflect the ordering in a node, so compatible and
-> reg first, rather than sorted alphanumerically.
-
-ok
-
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
->> +
->> +    combophy: phy@480c0000 {
-> You can drop the label here, it ain't used by anything.
-
-ok
-
-thanks,
-Christian
-
->
-> Cheers,
-> Conor.
->
->> +        compatible = "st,stm32mp25-combophy";
->> +        reg = <0x480c0000 0x1000>;
->> +        #phy-cells = <1>;
->> +        clocks = <&rcc CK_BUS_USB3PCIEPHY>, <&rcc CK_KER_USB3PCIEPHY>;
->> +        clock-names = "apb", "ker";
->> +        resets = <&rcc USB3PCIEPHY_R>;
->> +        reset-names = "phy";
->> +        st,syscfg = <&syscfg>;
->> +        access-controllers = <&rifsc 67>;
->> +        power-domains = <&CLUSTER_PD>;
->> +        wakeup-source;
->> +        interrupts-extended = <&exti1 45 IRQ_TYPE_EDGE_FALLING>;
->> +    };
->> +...
->> -- 
->> 2.34.1
->>
+Nick Chan
 
