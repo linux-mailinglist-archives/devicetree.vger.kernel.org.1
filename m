@@ -1,67 +1,59 @@
-Return-Path: <devicetree+bounces-98064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B6FE964AB0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:54:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B02964AF0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54D2828220E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:54:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F0181F22B0F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FEC41B1D7F;
-	Thu, 29 Aug 2024 15:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA11B2530;
+	Thu, 29 Aug 2024 16:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q9hPUymU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T6EN2YXu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E112943ADE;
-	Thu, 29 Aug 2024 15:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9DAC1A2C0A;
+	Thu, 29 Aug 2024 16:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724946865; cv=none; b=p70AiZ06B2svwRPlZlEi/Hq0ljI4R+zdQEUJ8YtTFiIhemKlLmo2bkvCK0v8+QnJ40kWAXAIEbi0RaiR7ayKkIDXfzVrD4ShBB5hOBeundoVjHFAE+wm6TrzMtKDv8Rs0X4QPyZLRfb5Wqrt8AyMQyJnBCiFOWwTVhtXptlQVI0=
+	t=1724947442; cv=none; b=dG9wb5kfJv3SwCIMIY4OPs3rngvVaZ1+sNMAnRPvY3yaRCFCZsltNPmlho4TMcCnAelSy7m+NVCr6nOm57twJ/ISelkudc6ax2PbK9xOziath3M7vrwfZ8GXJrwsSWhu7bcJAXhOD5/V2+5OI0R6n8xNTUjch9NxnYifoOH1QhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724946865; c=relaxed/simple;
-	bh=2q+OiF406XPSjiUS7iYMlpB+7HKrq4ShozAQkTfjXRU=;
+	s=arc-20240116; t=1724947442; c=relaxed/simple;
+	bh=O/DvXCbm0mUIBbuHpVMnROI8oLLkYu27ZqpxUyR7bTA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V/dLjDIqpx5Vof0Qn7U2KIcAkEx9OFwr1OM1tc7EXo/8L8z/XNGYSbd302SsqoFO8Sb17a4D5UArBF5Oc5uQYhPHW/q3smXs3uQal6N/94NywCg9AMZ/tH1/EvoyFUApPuy0NNzbyeA8Uwcmr0cCfYdeRXomknNCLaGG3Ny8yKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q9hPUymU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E8F1C4CEC1;
-	Thu, 29 Aug 2024 15:54:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TEKZo/++dbtlxC+N834NESc8pukFS+sHN/hXF053kltcNr0/tiBgdbTQTfmiCCNHFdCpoyCGeyID22Kbaay4tFsgvf3Xiq84UvOnAOVmk5FGNmFo3+YFq4/fHSLrLXD2kvH20kU8htokg80iQm5tSEPsVvkXkD0jwL+METP7kAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T6EN2YXu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D5BC4CEC1;
+	Thu, 29 Aug 2024 16:04:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724946864;
-	bh=2q+OiF406XPSjiUS7iYMlpB+7HKrq4ShozAQkTfjXRU=;
+	s=k20201202; t=1724947442;
+	bh=O/DvXCbm0mUIBbuHpVMnROI8oLLkYu27ZqpxUyR7bTA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q9hPUymUxrstMDsTKs13AgZR65chtL7fPFcSn+MTLCIUPKk1JCwPQkFNpYO9VrxfG
-	 7ImlPiq3O0GAXn2hPJ8ElZoZUWrGPhUqeRnmhX2IuAaGnWoVzM/5j+i22Ml5SfBf/m
-	 Hp63XIGSLbt08fE9NtXOPYY3Vb8KSQAIjWBSr4zi5XYMoyBte/sCOqM1Pq2UxDzeu/
-	 sQtDFT5jORQ++a8mPrRJLZ17exCsxxAnjsrIG9vkXwHAuzKI19rvH7KeRAzR60Z8Dr
-	 Sv4xfODowvi9ruzUOjjwdsS6vBcEjkqPyX1G1U42RRNXeROeiJZdhZp8f3F6ZltPp/
-	 M3SC66xg/xiRw==
-Date: Thu, 29 Aug 2024 16:54:19 +0100
+	b=T6EN2YXuiFQYBmMbVWVgvMX0quuqs7yvj0VwVFh7HsghFJPyy4TakqHucFkmMyLic
+	 F1o1IH/OroPkgqUECEQDL1KtOdflpdtG5awAL5JDkLnvfiHLgq5ZiJCHov3DW2u7lt
+	 NlwdNAQRm8ZXhQHIhCwf22f6jifguBR3/IVxbLxuHDe7CIWBMDTqree9biZKagUEVt
+	 +OE1Xb8rfxsPJP1PIGm5ozUNsGJXwDdyhYAmpiWP+sAlP82v1nGBS6UKqTcGyJvdXe
+	 i6oilR6vNRTWTyYOC7pdSWFvbnXObYkGIlSBKkLC4QeFvKtc7zS1tVbZosncrjrVdS
+	 ZPT11Y0z+RTyw==
+Date: Thu, 29 Aug 2024 17:03:58 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+To: gomba007@gmail.com
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: iio: adc: sophgo,cv1800b-saradc: Add
- Sophgo CV1800B SARADC
-Message-ID: <20240829-impolite-excretory-298dcd984e76@spud>
-References: <20240829-sg2002-adc-v5-0-aacb381e869b@bootlin.com>
- <20240829-sg2002-adc-v5-1-aacb381e869b@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org, csokas.bence@prolan.hu,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] dt-bindings: rtc: Add support for SD2405AL.
+Message-ID: <20240829-reissue-curtsy-3c7c10d0797f@spud>
+References: <20240829-rtc-sd2405al-v6-0-4fbfe2624aa7@gmail.com>
+ <20240829-rtc-sd2405al-v6-2-4fbfe2624aa7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,37 +61,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JOvC/K7N02Ne9hmR"
+	protocol="application/pgp-signature"; boundary="4SBVkb1i5yWqdfTP"
 Content-Disposition: inline
-In-Reply-To: <20240829-sg2002-adc-v5-1-aacb381e869b@bootlin.com>
+In-Reply-To: <20240829-rtc-sd2405al-v6-2-4fbfe2624aa7@gmail.com>
 
 
---JOvC/K7N02Ne9hmR
-Content-Type: text/plain; charset=us-ascii
+--4SBVkb1i5yWqdfTP
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 29, 2024 at 02:31:50PM +0200, Thomas Bonnefille wrote:
-> The Sophgo CV1800B SARADC is a Successive Approximation ADC that can be
-> found in the Sophgo CV1800B SoC.
+On Thu, Aug 29, 2024 at 01:31:45PM +0200, T=F3th J=E1nos via B4 Relay wrote:
+> From: T=F3th J=E1nos <gomba007@gmail.com>
 >=20
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Add the necessary documentation for SD2405AL.
+>=20
+> Signed-off-by: T=F3th J=E1nos <gomba007@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 ++
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Both of these should really be two different patches, despite how
+trivial they would be. If you resubmit, please do that and provide a
+link to the vendor in the vendor-prefixes patch. Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
---JOvC/K7N02Ne9hmR
+>  2 files changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Doc=
+umentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> index fffd759c603f..dae594626b2e 100644
+> --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> @@ -38,6 +38,8 @@ properties:
+>        - dallas,ds1672
+>        # Extremely Accurate I=B2C RTC with Integrated Crystal and SRAM
+>        - dallas,ds3232
+> +      # SD2405AL Real-Time Clock
+> +      - dfrobot,sd2405al
+>        # EM Microelectronic EM3027 RTC
+>        - emmicro,em3027
+>        # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index a70ce43b3dc0..bd8b279a5152 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -368,6 +368,8 @@ patternProperties:
+>      description: Devantech, Ltd.
+>    "^dfi,.*":
+>      description: DFI Inc.
+> +  "^dfrobot,.*":
+> +    description: DFRobot Corporation
+>    "^dh,.*":
+>      description: DH electronics GmbH
+>    "^difrnce,.*":
+>=20
+> --=20
+> 2.34.1
+>=20
+>=20
+
+--4SBVkb1i5yWqdfTP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCZqgAKCRB4tDGHoIJi
-0tmFAQDuCBgWolSZSmmwKxidXOgVFEyAkp03nE56bxdV/mnZ1wEApMNmjk0lPQTq
-OX3+1Bnc1D5utxnITTTEbgufgpj3LQM=
-=hASc
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCb7gAKCRB4tDGHoIJi
+0pO0AP9nFYr5MAPzV6Djrk7CIqjBrQzH+sxexRRGqM2+/8lLFgEAmNT/FudTE89a
+s6vnW2G/aGr2aeZ8rMJuNP4wo/xgUgY=
+=8tXq
 -----END PGP SIGNATURE-----
 
---JOvC/K7N02Ne9hmR--
+--4SBVkb1i5yWqdfTP--
 
