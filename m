@@ -1,127 +1,181 @@
-Return-Path: <devicetree+bounces-97794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1645C9639C6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:13:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422649639E3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:31:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76F7EB223FD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 05:13:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A162D1F25B66
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 05:31:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A481E7581F;
-	Thu, 29 Aug 2024 05:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE7513C8FF;
+	Thu, 29 Aug 2024 05:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BRMcqT+G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C0F5338D
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650B650A63;
+	Thu, 29 Aug 2024 05:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724908386; cv=none; b=cb5oTt6NgwchTeKxnngLgdzNYdM9tfCHB1BZvCM38szHjCmKzjnaBI0Zka8unMv8YrnLrt33gPi4MzIy5kr2hrLcKdYQEU+yiDCJYKsLlT2OzWWB7U0sNmx86o6fRReFWxjQ8fd83AowUSAvz2X0m5DUVNPyjuz0CZOxGjgxp5E=
+	t=1724909477; cv=none; b=u8l88B8CjdYpZx0hp5zNWzgOSY/Ou1sKkLdJh4VnN8KDvOR1+fIFFkUi5AvR8RUI6RfRpoU7QnSr5Wf8xIuEcKpuOzHq3Cz3eU+T+QrrgDfHS4FC7SpRe38/IN4flqRTRecRFF8SWmY9VFzPWF40uUBKqkEN9WNQOfEsmsot4lE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724908386; c=relaxed/simple;
-	bh=TuQ5kAmSd+2FQcnqsC0UV+48aeMHqzr2qLJASNIOn+A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=icSr7hLkLjwUx07vnRx9FGXXgacz0yOcdWcItbWHRlu8TaWqAZe8CmKVHFytBQX32FGHRfyUVboD0GMnE4aIJJ6tNHIGgsuReqLQnPQxMyvLOFNva+ZnwUHoEnWzOIUPH39lHlRVxbA+U+5Y/zL8W/hrC2bbyWaPQh1IiXabAQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sjXSq-0002IP-Mc; Thu, 29 Aug 2024 07:12:56 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sjXSp-003pxg-91; Thu, 29 Aug 2024 07:12:55 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sjXSp-00CYpL-0X;
-	Thu, 29 Aug 2024 07:12:55 +0200
-Date: Thu, 29 Aug 2024 07:12:55 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1] arm: dts: st: stm32mp151a-prtt1l: Fix QSPI
- configuration
-Message-ID: <ZtADV2hHgbF9HI08@pengutronix.de>
-References: <20240806120517.406714-1-o.rempel@pengutronix.de>
- <20dc2cd4-7684-4894-9db3-23c3f4abd661@pengutronix.de>
- <8a13fd32-4bc4-4711-bf6b-7e0ce2e938ec@foss.st.com>
+	s=arc-20240116; t=1724909477; c=relaxed/simple;
+	bh=tU53d3Zz3bM/dhVBI3QGvA0eOuMFk1tkdx0X0vtd28g=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VH7H/O/albsNwJ/YoN44oK1w6ZX8KmevtvQqH8aGn7uHp6QnEuFbzpuR1hqYHwYpBreNXjKzQe4ak480rQ29Vgazpe0AdAEkrIIehFo7mSdsOrGGTb+F1FDMFiaamGkmT3Byc7+zFZYn2AT1mNhj+CzNRaj8e43rfr7zmBaS1sM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BRMcqT+G; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47T5V2Ed098558;
+	Thu, 29 Aug 2024 00:31:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724909462;
+	bh=fo2xYcjr2pHkeY4HV+MN41M6scsudZXeANUulYj2JVg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=BRMcqT+GnwHgbIFpYZdyLkNMMxJeDvHlX6I6lrr5CXpXA19K9Zh+1sfRr6qLaGDf+
+	 WFuUhzdaIZ2jD0b8AspWWOoYCd2qOQsmeD16OVln//K2ljx1Xuy81jygaQx9tp8ESs
+	 Rlwg3ima5BGFnyw+Dn60bEWoX5HyDTd0KHZqAMJ8=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47T5V2xm019752
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 29 Aug 2024 00:31:02 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
+ Aug 2024 00:31:01 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 29 Aug 2024 00:31:01 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47T5V0kr064991;
+	Thu, 29 Aug 2024 00:31:01 -0500
+Date: Thu, 29 Aug 2024 11:00:59 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <bhelgaas@google.com>,
+        <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vigneshr@ti.com>,
+        <kishon@kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+Subject: Re: [PATCH v3 2/2] PCI: j721e: Enable ACSPCIE Refclk if
+ "ti,syscon-acspcie-proxy-ctrl" exists
+Message-ID: <99e1b482-0a54-4a33-9c59-f9851ef2c1b6@ti.com>
+References: <20240827055548.901285-3-s-vadapalli@ti.com>
+ <20240828211906.GA38267@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <8a13fd32-4bc4-4711-bf6b-7e0ce2e938ec@foss.st.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240828211906.GA38267@bhelgaas>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Alexandre,
+On Wed, Aug 28, 2024 at 04:19:06PM -0500, Bjorn Helgaas wrote:
 
-On Tue, Aug 27, 2024 at 10:07:10AM +0200, Alexandre TORGUE wrote:
-> Hi
-> 
-> On 8/7/24 11:38, Ahmad Fatoum wrote:
-> > Hello Oleksij,
+Hello Bjorn,
+
+> On Tue, Aug 27, 2024 at 11:25:48AM +0530, Siddharth Vadapalli wrote:
+> > The ACSPCIE module is capable of driving the reference clock required by
+> > the PCIe Endpoint device. It is an alternative to on-board and external
+> > reference clock generators. Enabling the output from the ACSPCIE module's
+> > PAD IO Buffers requires clearing the "PAD IO disable" bits of the
+> > ACSPCIE_PROXY_CTRL register in the CTRL_MMR register space.
 > > 
-> > On 06.08.24 14:05, Oleksij Rempel wrote:
-> > > Rename 'pins1' to 'pins' in the qspi_bk1_pins_a node to correct the
-> > > subnode name. The previous name caused the configuration to be
-> > > applied to the wrong subnode, resulting in QSPI not working properly.
-> > > 
-> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > > ---
-> > >   arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi | 2 +-
-> > >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi b/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
-> > > index 3938d357e198f..4db684478c320 100644
-> > > --- a/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
-> > > +++ b/arch/arm/boot/dts/st/stm32mp151a-prtt1l.dtsi
-> > > @@ -123,7 +123,7 @@ flash@0 {
-> > >   };
-> > >   &qspi_bk1_pins_a {
-> > > -	pins1 {
-> > > +	pins {
+> > Add support to enable the ACSPCIE reference clock output using the optional
+> > device-tree property "ti,syscon-acspcie-proxy-ctrl".
 > > 
-> > As you have seen such device tree overriding is error prone and would
-> > be entirely avoidable if specifying full board-specific pinctrl groups
-> > was allowed for the stm32 platforms instead of override-and-pray.
-> 
-> You can create your own pin group in stm32mp15-pinctlr.dtsi. What is the
-> issue ? Do I miss something ? It will avoid to overwrite an existing
-> configuration
+> > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > ---
+> > 
 
-There are mostly one one properly change (pull up), not really worth adding a
-new sub node.
+[...]
+
+> > +
+> > +	ret = of_parse_phandle_with_fixed_args(node,
+> > +					       "ti,syscon-acspcie-proxy-ctrl",
+> > +					       1, 0, &args);
+> > +	if (!ret) {
+> > +		/* Clear PAD IO disable bits to enable refclk output */
+> > +		val = ~(args.args[0]);
+> > +		ret = regmap_update_bits(syscon, 0, mask, val);
+> > +		if (ret)
+> > +			dev_err(dev, "failed to enable ACSPCIE refclk: %d\n",
+> > +				ret);
+> > +	} else {
+> > +		dev_err(dev,
+> > +			"ti,syscon-acspcie-proxy-ctrl has invalid arguments\n");
+> > +	}
+> 
+> I should have mentioned this the first time, but this would be easier
+> to read if structured as:
+> 
+>   ret = of_parse_phandle_with_fixed_args(...);
+>   if (ret) {
+>     dev_err(...);
+>     return ret;
+>   }
+> 
+>   /* Clear PAD IO disable bits to enable refclk output */
+>   val = ~(args.args[0]);
+>   ret = regmap_update_bits(syscon, 0, mask, val);
+>   if (ret) {
+>     dev_err(...);
+>     return ret;
+>   }
+> 
+>   return 0;
+
+Yes, this removes the nested IF conditions and is definitely a cleaner
+approach. I will update this in the next version of the patch.
+
+> 
+> > +	return ret;
+> > +}
+> > +
+> >  static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
+> >  {
+> >  	struct device *dev = pcie->cdns_pcie->dev;
+> > @@ -259,6 +288,15 @@ static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
+> >  		return ret;
+> >  	}
+> >  
+> > +	/* Enable ACSPCIE refclk output if the optional property exists */
+> > +	syscon = syscon_regmap_lookup_by_phandle_optional(node,
+> > +						"ti,syscon-acspcie-proxy-ctrl");
+> > +	if (syscon) {
+> > +		ret = j721e_enable_acspcie_refclk(pcie, syscon);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> >  	return 0;
+> 
+> Not as dramatic here, but I think the following would be a little
+> simpler since the final "return" isn't used for two purposes
+> ((1) syscon property absent, (2) syscon present and refclk
+> successfully enabled):
+> 
+>   syscon = syscon_regmap_lookup_by_phandle_optional(...);
+>   if (!syscon)
+>     return 0;
+> 
+>   return j721e_enable_acspcie_refclk(...);
+
+Sure. I will implement the above in the next patch. Thank you for
+reviewing this patch and sharing your feedback.
 
 Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Siddharth.
 
