@@ -1,113 +1,117 @@
-Return-Path: <devicetree+bounces-97913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10AEC9641D9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:32:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 168529641DE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:33:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE3771F252FD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:32:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAC821F25399
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:33:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD6E18E025;
-	Thu, 29 Aug 2024 10:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD436190676;
+	Thu, 29 Aug 2024 10:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q2JCCafX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260DB139D04;
-	Thu, 29 Aug 2024 10:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B39E190666;
+	Thu, 29 Aug 2024 10:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724927016; cv=none; b=QcwrfIN0nBSMyO4SP8BwNdqQi5vsVtfRZaTACNrvBIeQE5McdtUrTzuvSLTD5/6Q+PZ2xQXtuNIyx/VzuFREkjTSmAZQhZZfwWPyz0My5fkm49rwxWUQNQYNVwrI5dSJT5zetbkVgooEQetdQn34F0/3t7yvDIlavHh6H/YceFg=
+	t=1724927053; cv=none; b=NjlS4O6ngvBzUOnyqehaDtOfYyqre4lsQiEZ0Jj6dcoI35T/0sPvgH5poKt7o2+AMNTcUfe4yXDDcSKJlYc4A42EFP7uLFT6fZXAMzY7eY0J/3AnOuplkcC5u8vI1NrFfUTq0nRPvHStuB8Dc7VJbLETIKxp3kDar7peG+pQR+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724927016; c=relaxed/simple;
-	bh=+qDbg+b+y5JPeSs8m4Me+sOY+xkF+2YmvqCcX1UxhzM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=obnHj8eWOP6Xjggl80n1S6FBnSaXnKnmTNUBTes1yNZMZu5G2GpDgmD7mqkQUqahqO4ITRMcp/b71apMP0IXe9oc2O6heRVf6MHztAmBZGyPYGX4YUETVzZ4EqiYITAWmmU8I71qi/s9ERlhIZIx0a6rLOyP1KpQYE0VJpsuEdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6c130ffa0adso5132367b3.3;
-        Thu, 29 Aug 2024 03:23:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724927013; x=1725531813;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P4Ftb0GocyJ/C8uBCYxnTAY1Zw5Um4gDWJu7PBY5uXk=;
-        b=t+D955Rp9SJDfdKbJR3OHOcNs1E6bqT/NsefW+8FjRQjkljW/xYeyXC0soiC6tR/3f
-         QJH86JfmN2TZtymGbDENbUytyIyRUarS3v/5PU45kz9XP3lJC77tJDU3POWS75MXojVG
-         +QLyM45/TNlZl1zfBHF+hGLAULJYoNmQqOWK74Zv9uHBE25XRx2Ayl2Gl/bW7dDf8U8i
-         ky67BA5YQ7hJ2mEG6Mwqxr9ylxpt17s7q518Ae2RrdVOT/tj8UMEW95/sHLCXpwvAl5J
-         B1Kc9FTR0b4G50oh+LDAyd+KAwxz8tsdWGFXoE0ANo/9PxCsDG+GlV+534PHlLLkKR07
-         aecQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGIBYFdH7GMk94uSUmaZkVbRqqoNtDyM5Pr43J94lggWUQ46xKWBHHEOh39MdPyFGQCpTO46jgJg5bw58k@vger.kernel.org, AJvYcCW0b4MWUqRrID2jzB+JzB3M+l+Y+ALpdR2g4GBJICxMrfgBGNJV7ha9g9JAC/U47+Z1g9uHHDvce7GN@vger.kernel.org, AJvYcCX6+1FLqlPGViyWF6vRik/+qyKhv9fJOwbRjMLIuqWk3YZHFzsmTk6flOsY++WW7UknoWOMxG6JC2HntF6nZwI3gUo=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxy6X3MmVpd+B+ajXFeUCJ0VlI7YXTo7IZKQt6ImTAVWJeo691D
-	qF41ko5ipOeK44N2jOu+pTlTWvTB0s3Dg4/0qSIaQyUaFtANY7prF552dqgq
-X-Google-Smtp-Source: AGHT+IGyighw6No7L96K8frTmLaNWWTGSBdL6kHmKHLPilAjCIR10vBLGUnUuLxcVde7xiqCqPSHAw==
-X-Received: by 2002:a05:690c:3582:b0:632:77ca:dafd with SMTP id 00721157ae682-6d276404ademr24911117b3.10.1724927013403;
-        Thu, 29 Aug 2024 03:23:33 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d5ea6909sm1807707b3.131.2024.08.29.03.23.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 03:23:33 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6ca1d6f549eso5915257b3.0;
-        Thu, 29 Aug 2024 03:23:33 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW3rDKJdOiHuU7Xjg4l96MuAnlsmPQhRpQVRVbikWNN35b+pZWS3x5Wk0/HRLzvr1r3piMVkFjCOYF6@vger.kernel.org, AJvYcCWQdK6UQIhCAQWSDE1vg7myyX5XLDf0QF9ReHGeh9LHWKq3OcFJiCRwGdkhO3ZJQCx1guvU5RLtsYXm069s@vger.kernel.org, AJvYcCWas0owmq0iyxTBnUNt3lNnOr3AvJPN1e1TwpQXh4kh20R7/Xo4fA3AOcL6CB7fhtMSM0VJqkjYJmg3rsCOkjKgog0=@vger.kernel.org
-X-Received: by 2002:a05:690c:fd6:b0:64b:52e8:4ae3 with SMTP id
- 00721157ae682-6d275e337f4mr26567347b3.3.1724927012999; Thu, 29 Aug 2024
- 03:23:32 -0700 (PDT)
+	s=arc-20240116; t=1724927053; c=relaxed/simple;
+	bh=729zgq4sALOytFJ4dQMLRwIoHBrGCvNxhQojI7f4avU=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=rYGwoi6aHYcBfaMT93XehD4riw2r4ViKp3vQMj6d3IkacQ2PDUPV8MKHjUqLly0KKTDp2AmS/D/+rfXohRI8MJ+Zu+GT9+XSYRhfrWx3aAF6eKs72lMXX9wTDbHVZFZ1COPy0lWP19jIx25TmYno7owng6POVSN3E2a3TPShCDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q2JCCafX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBE19C4CEC1;
+	Thu, 29 Aug 2024 10:24:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724927053;
+	bh=729zgq4sALOytFJ4dQMLRwIoHBrGCvNxhQojI7f4avU=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=Q2JCCafXw788OY6j2AOZjvHheXbbiNC9O1CFDQhgvgI6rJcH+dHiWuUs/EQBrOgSo
+	 LcXr1s8MUs+PsSQHD/vMrhgsGB7BbPOICTL0JudPON7D6JQy2Qhp15E5pri0Mg/wlp
+	 Wf7VVg3mJ+/KtButfbM73uQfkx2/4z+30Oei66e0eRIMP5HgembtR4djxX7dFeY1YE
+	 GNdnnlEizbJ6HJe8Tw6NPr2fc4Z0GkrX86atbR8+uq2/8Gof1YoyvPMWl4KxRMZ5Op
+	 YVqn9rBX7gIIuLI/nr2RxyprLz9eharhQMG4h0Nr8wcw9WXkewH2kd1JNwWHawCL1r
+	 rlkg2CWYdQjJA==
+Date: Thu, 29 Aug 2024 05:24:11 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240828124134.188864-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240828124134.188864-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240828124134.188864-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 29 Aug 2024 12:23:21 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUP69GUWqs93Nbh7CyEgub3G8EXXX9EnHwwSi=i19kJnw@mail.gmail.com>
-Message-ID: <CAMuHMdUP69GUWqs93Nbh7CyEgub3G8EXXX9EnHwwSi=i19kJnw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/9] arm64: dts: renesas: r9a09g057: Add OSTM0-OSTM7 nodes
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Sven Peter <sven@svenpeter.dev>, Thomas Gleixner <tglx@linutronix.de>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Hector Martin <marcan@marcan.st>, 
+ linux-kernel@vger.kernel.org, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ asahi@lists.linux.dev
+In-Reply-To: <20240829092610.89731-2-towinchenmi@gmail.com>
+References: <20240829092610.89731-1-towinchenmi@gmail.com>
+ <20240829092610.89731-2-towinchenmi@gmail.com>
+Message-Id: <172492705116.3333643.6993934329983052782.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: apple,aic: Document A7-A11
+ compatibles
 
-On Wed, Aug 28, 2024 at 2:41=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add OSTM0-OSTM7 nodes to RZ/V2H(P) ("R9A09G057") SoC DTSI.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+On Thu, 29 Aug 2024 17:03:11 +0800, Nick Chan wrote:
+> Document the compatibles for Apple A7-A11 SoCs.
+> 
+> There are three feature levels:
+> - A7-A10: No fast IPI
+> - A11: fast IPI, global only
+> - M1: fast IPI with local and global support
+> 
+> Each feature level is an extension of the previous. For example, M1 will
+> also work with the A7 feature level.
+> 
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 > ---
-> v3->v4
-> - Used hexadecimal values for clocks and resets
-> - Sorted nodes based on nodes index
+>  .../bindings/interrupt-controller/apple,aic.yaml  | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.12.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Gr{oetje,eeting}s,
+yamllint warnings/errors:
 
-                        Geert
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/apple,aic.example.dtb: interrupt-controller@23b100000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['apple,t8103-aic', 'apple,aic'] is too long
+	['apple,t8103-aic', 'apple,aic'] is too short
+	'apple,s5l8960x-aic' was expected
+	'apple,t8103-aic' is not one of ['apple,s8000-aic', 'apple,t7000-aic', 'apple,t8010-aic']
+	'apple,t8015-aic' was expected
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/apple,aic.yaml#
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+doc reference errors (make refcheckdocs):
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240829092610.89731-2-towinchenmi@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
