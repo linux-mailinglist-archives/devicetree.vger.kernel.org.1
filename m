@@ -1,246 +1,150 @@
-Return-Path: <devicetree+bounces-98080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170B0964BE4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:45:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FBD964BFF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5092BB23ED8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:45:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D7101F233C6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A09F1B5806;
-	Thu, 29 Aug 2024 16:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E5D1B6532;
+	Thu, 29 Aug 2024 16:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7iIbi0+"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="A2+pZeVQ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="JzN3tj9J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout5-smtp.messagingengine.com (fout5-smtp.messagingengine.com [103.168.172.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57651B4C58;
-	Thu, 29 Aug 2024 16:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBE01B5EBD;
+	Thu, 29 Aug 2024 16:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724949895; cv=none; b=W8a5z/3WABavSv/lsCuRR57dTmzXVIs3/LrMsWERFmMlND5WqlnzFWYiHtTZPf+BQk0UBKJi4sZ5Klew/9u8lYTOyv6siT4YtcLoaXpiOcvc+LTq0/EfLirlqlvDmMoIZXJTukHv41DNXOizxY+xUBw9jkuLEcOouaIXRPLwXbc=
+	t=1724950286; cv=none; b=Q0S5egDS/gvY9xRPI89Klj/dM9n2Yb6rPkLccO1/2dZylaXhVas7DiNrAUJ0N1Y9HWwP09nWSw2pOi6ftdvWp2AkIRloUnw1iZQTlONq1AJJ6wN06Gnx84G++xtkBjYtaw4OEhUmJrvzsZFeCkTtzk7M4RsXZZXdDXKySGGFFlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724949895; c=relaxed/simple;
-	bh=OMsOLBdAsSGlf4aitflcY78wVc+gfDKPy/epnfUGNfE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TKSGGP8SbTknKzCrNrD6FduV9FKUonxY1Q2adkq8L6AIGDbfx7NBroYcvu7udi44QopH0BTXKNaTueYkpo7//ZI/sXTL0G0KWsX37oLaj0kfPOdJ+KxXPQ7BCDdyhLjFFwZPWe7p/9UmBY4ckq/AHYsUXOW+B9dvh2Aaol/fqEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7iIbi0+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D008C4CEC1;
-	Thu, 29 Aug 2024 16:44:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724949895;
-	bh=OMsOLBdAsSGlf4aitflcY78wVc+gfDKPy/epnfUGNfE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L7iIbi0+kkKXOsu1mXRZ4FOTjZwDzCcoThaO3gUYPUIOHToB3KaSIV6gJLAoKvcFP
-	 /qh5/vKTzlaksp5IKAUn+6OPtBCKaUFJViqhMo681z34OuCj/d3jYnqRjUc/rAr+Sr
-	 EXl1gBptTJE/7FytpitmpThOUGkA7k4+TjresSyFq/3Frv14hDzn7xeOT+181Owv3A
-	 qycizKgULOL9iaM+453afn0Y+nPxQDwfW8QbLDi6EjHy0kz5RIZLQCH2wR8xSzGkxV
-	 exg06hklD+k5v0Jm98im+sFPh8sPARra//zyjFOSosgjPv0EaNIxi+N0uzQTpmqKlT
-	 OIfaSZYDza2Fg==
-Date: Thu, 29 Aug 2024 17:44:50 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH v4 1/5] dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
-Message-ID: <20240829-manifesto-tray-65443d6e7e6e@spud>
-References: <20240828143452.1407532-1-christian.bruel@foss.st.com>
- <20240828143452.1407532-2-christian.bruel@foss.st.com>
- <20240828-handsfree-overarch-cd1af26cb0c5@spud>
- <005a2f7d-ab46-46c8-a0cc-b343685caf7c@foss.st.com>
+	s=arc-20240116; t=1724950286; c=relaxed/simple;
+	bh=x+E2xSOliwv3VwbYh1SEe1FzDL+mwxesX5L5sUtes/Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Dz3+7s03Kd9VoEnUj5RSlfSP/+Ot0Yuy4C6vgMyi5O5E5rx2/nZ6FC/qfnygKGQMHCblb945xnANLDqEgE+oV2ccbXjzt9+8zZhOXgC5o/hwJzi3+Y7NNJ0OyYllMSWDDi+fbS/i9nmL7Z27mWr+mfHwSXrJMw/u6BpcYaays30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=A2+pZeVQ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=JzN3tj9J; arc=none smtp.client-ip=103.168.172.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-01.internal (phl-compute-01.nyi.internal [10.202.2.41])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 0B18F138FFE9;
+	Thu, 29 Aug 2024 12:51:22 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-01.internal (MEProxy); Thu, 29 Aug 2024 12:51:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm3; t=1724950282; x=1725036682; bh=d7
+	tiux3bXoYy+XC0KmOAU1uT04Wchk6bNlYn19sLwJ0=; b=A2+pZeVQ2JmheOBOY4
+	cgtm09kr6zxQuRLXfFltH8kpKsLNtyYn8s7wx6PMIvP7/cGpg51UMofgP2+BEjPA
+	xXnyvoVwmmxkmjOA2qN28Yh1v9GOfcUTn8FYXIwi0ibXwsfs1FpRuIzre+f1hfSa
+	CYKCoF8/nWqbJb8sJd/pSnOir0Hak7c+Fq/scY1eAVcU40qIhUU24RTzii4DbJcW
+	I3sAYKRtf7x1pG3Yf4BAEBFDjH3+Y81Eu0JfN7kFkZCozFVGT2tSUK4ZdDSyc0Ru
+	EGcIFzckZmWc+etJBpqIZCqy9pFGOqoAFfanNXsbLZ/KLexoJYAGFg7Ckro//PEC
+	gVxA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1724950282; x=1725036682; bh=d7tiux3bXoYy+
+	XC0KmOAU1uT04Wchk6bNlYn19sLwJ0=; b=JzN3tj9Jc1gFzA9L2qZlinKZ8jI+1
+	g110LTBBMfLFQmnE2s5TGAkz3tJZ0zbmZgCArBU7DNnGeJjioVYxWoiggVO96cEL
+	va6XJkRCNnKmzY6I5/uinJTmdQtEb/L6wia0aGeqW3KVpBErprXt9OTX01woEVv+
+	jcg1ZktluTM/Aoc7p7UD/lY1r3ICb470KS/3rYdhYZrx2d8eHQgqKCVBX8dp8W/o
+	AGcVtssEnMqI6yn+45Ko03PjdbmCSzTch8Q8KlEOX1dD2DXcFset1ZwxBfFLVZiQ
+	ijGmngn/E+Z9t1uyjGSD/fM6qclKRrzqMUvwFxLa5dVUerL82umcQLiDA==
+X-ME-Sender: <xms:CafQZlff3duRQCnDvCgbmSoAp3O09PeMC6T8LnJCFoArsnUmpn7P3Q>
+    <xme:CafQZjNeSpIs8ByIKv2OEJ3yyK4BLNBPMm6epSgTSbVlNi2gWHDMazMmC3rpktxgu
+    rjblUliqnZIBPKGtFk>
+X-ME-Received: <xmr:CafQZuhFsCLXBnQ9t2nMJxJPKOI8_TKtxUfZegzl00_BEeJv7SSvWKe-vz5pCr2whMEOXp3652zEIXAwcitKb9Crpw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudefgedguddthecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffogggtgfesthekredtredtjeen
+    ucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvg
+    hrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthht
+    vghrnhepheduleetteekgffffedufeeuvdejiedvkefhveeifeegffehledtvdevhfefte
+    egnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhi
+    khhlrghsrdhsohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpth
+    htohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmtghhvghhrggssehk
+    vghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtg
+    hpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhho
+    rhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhheslhhinhhugi
+    hfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehsrghkrghrihdrrghilhhushes
+    ihhkihdrfhhipdhrtghpthhtohepjhhulhhivghnrdhmrghsshhothestgholhhlrggsoh
+    hrrgdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvgguihgrsehvghgvrhdrkhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvg
+    hlrdhorhhg
+X-ME-Proxy: <xmx:CafQZu-fnwohCDI0A8QlbxC0Ylb2Rn_-uu9NkPP2_InpYE3KIws8Cw>
+    <xmx:CafQZhuXP97abxKXh-O4QVTSW-ufxHzu_BsyqW-UERrIGXJ0KIBKTA>
+    <xmx:CafQZtE0oPqY87NV2EFEjkrg5IyJe-u6RwTse31gI4adR_OyPjW-mA>
+    <xmx:CafQZoPU8wZE0Rmft-yHM4x8YUVSDv0R3tKu2L_JeXXUAsL7V-SiAw>
+    <xmx:CqfQZqH7mb3bkRWtIN8K7dHCwPl9hBEzNdrrHI7nee_OeGzYNp1_rvhG>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 29 Aug 2024 12:51:21 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Julien Massot <julien.massot@collabora.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-staging@lists.linux.dev
+Cc: linux-renesas-soc@vger.kernel.org,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v3 0/5] media: staging: max96712: Add support for MAX96724
+Date: Thu, 29 Aug 2024 18:50:46 +0200
+Message-ID: <20240829165051.2498867-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="d1nrqP5TuJn4PExU"
-Content-Disposition: inline
-In-Reply-To: <005a2f7d-ab46-46c8-a0cc-b343685caf7c@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hello,
 
---d1nrqP5TuJn4PExU
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series extends the max96712 driver in staging to also support
+the MAX96724 device.
 
-On Thu, Aug 29, 2024 at 01:06:53PM +0200, Christian Bruel wrote:
-> On 8/28/24 18:11, Conor Dooley wrote:
-> > On Wed, Aug 28, 2024 at 04:34:48PM +0200, Christian Bruel wrote:
-> > > Document the bindings for STM32 COMBOPHY interface, used to support
-> > > the PCIe and USB3 stm32mp25 drivers.
-> > > Following entries can be used to tune caracterisation parameters
-> > >   - st,output-micro-ohms and st,output-vswing-microvolt bindings entr=
-ies
-> > > to tune the impedance and voltage swing using discrete simulation res=
-ults
-> > >   - st,rx-equalizer register to set the internal rx equalizer filter =
-value.
-> > >=20
-> > > Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
-> > > ---
-> > >   .../bindings/phy/st,stm32mp25-combophy.yaml   | 128 +++++++++++++++=
-+++
-> > >   1 file changed, 128 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/phy/st,stm32mp=
-25-combophy.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/phy/st,stm32mp25-combo=
-phy.yaml b/Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
-> > > new file mode 100644
-> > > index 000000000000..8d4a40b94507
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
-> > > @@ -0,0 +1,128 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/phy/st,stm32mp25-combophy.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: STMicroelectronics STM32MP25 USB3/PCIe COMBOPHY
-> > > +
-> > > +maintainers:
-> > > +  - Christian Bruel <christian.bruel@foss.st.com>
-> > > +
-> > > +description:
-> > > +  Single lane PHY shared (exclusive) between the USB3 and PCIe contr=
-ollers.
-> > > +  Supports 5Gbit/s for USB3 and PCIe gen2 or 2.5Gbit/s for PCIe gen1.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: st,stm32mp25-combophy
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#phy-cells":
-> > > +    const: 1
-> > > +
-> > > +  clocks:
-> > > +    minItems: 2
-> > > +    items:
-> > > +      - description: apb Bus clock mandatory to access registers.
-> > > +      - description: ker Internal RCC reference clock for USB3 or PC=
-Ie
-> > > +      - description: pad Optional on board clock input for PCIe only=
-=2E Typically an
-> > > +                     external 100Mhz oscillator wired on dedicated C=
-LKIN pad. Used as reference
-> > > +                     clock input instead of the ker
-> > > +
-> > > +  clock-names:
-> > > +    minItems: 2
-> > > +    items:
-> > > +      - const: apb
-> > > +      - const: ker
-> > > +      - const: pad
-> > > +
-> > > +  resets:
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-names:
-> > > +    const: phy
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  wakeup-source: true
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +    description: interrupt used for wakeup
-> > > +
-> > > +  access-controllers:
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > Can you please describe the items here?
->=20
-> I can specialize the description: "Phandle to the rifsc firewall device t=
-o check access right."
+The devices are similar but not identical. As the staging driver only
+supports the video pattern generator the changes in the driver are
+small, but needed, to generate a stable test pattern.
 
-Right, but there are potentially two access controllers here. You need
-to describe which is which, so that people can hook them up in the
-correct order. In what case are there two? Your dts patch only has one.
+Patch 1/2 extends the bindings with a new compatible for MAX96724, while
+patchs 2/5 - 4/5 prepare for the new device with small improvements and 
+moving device specific settings to a device information struct. Finaly 
+patch 5/5 takes care of updating the driver to support generating a test
+pattern without changing the test pattern clock (which is not supported
+on MAX96724).
 
-> otherwise described in access-controllers/access-controllers.yaml, see al=
-so bindings/bus/st,stm32mp25-rifsc.yaml
->=20
-> >=20
-> > > +  st,syscfg:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: Phandle to the SYSCON entry required for configurin=
-g PCIe
-> > > +      or USB3.
-> > Why is a phandle required for this lookup, rather than doing it by
-> > compatible?
->=20
-> the phandle is used to select the sysconf SoC configuration register
-> depending on the PCIe/USB3 mode (selected by=A0xlate function), so it's n=
-ot
-> like a lookup here.
+See individual patches for changelog.
 
-If "syscon_regmap_lookup_by_phandle()" is not a lookup, then I do not
-know what is. An example justification for it would be that there are
-multiple combophys on the same soc, each using a different sysconf
-region. Your dts suggests that is not the case though, since you have
-st,syscfg =3D <&syscfg>; in it, rather than st,syscfg =3D <&syscfg0>;.
+Niklas Söderlund (5):
+  dt-bindings: i2c: maxim,max96712: Add compatible for MAX96724
+  media: staging: max96712: Remove device id check
+  media: staging: max96712: Move link frequency setting to device struct
+  media: staging: max96712: Document the DEBUG_EXTRA register
+  media: staging: max96712: Add support for MAX96724
 
-> This sysconf register is also used for other settings
-> such as the PLL, Reference clock selection, ...
->=20
-> >=20
-> > > +
-> > > +  st,ssc-on:
-> > > +    type: boolean
-> > flag, not boolean, for presence based stuff. And in the driver,
-> > s/of_property_read_bool/of_property_present/.
->=20
-> ok
->=20
-> >=20
-> > > +    description:
-> > > +      A boolean property whose presence indicates that the SSC for c=
-ommon clock
-> > > +      needs to be set.
-> > And what, may I ask, does "SSC" mean? "Common clock" is also a bit of a
-> > "linuxism", what does this actually do in the hardware block?
->=20
-> SSC for Spread Spectrum Clocking. It is an hardware setting for the 100Mh=
-z PCIe reference common clock,
+ .../bindings/media/i2c/maxim,max96712.yaml    |  5 +-
+ drivers/staging/media/max96712/max96712.c     | 56 ++++++++++---------
+ 2 files changed, 34 insertions(+), 27 deletions(-)
 
-Ah, so not really a "common clock" linuxism at all.
+-- 
+2.46.0
 
-> I will rephrase the description
-
-How is someone supposed to decide between on and off? Is it always on
-for PCIe, or only on in some configurations? Or maybe only (or always?) on
-if the pad clock is provided?
-
-Cheers,
-Conor.
-
---d1nrqP5TuJn4PExU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtClggAKCRB4tDGHoIJi
-0mz4AQCOLJVTuu1biezoFWNlwB78dkF2W3NgTHnu4EeKe/fVegEA8PVCgbv2TNfb
-/QSr9nkfPam8mQ4ZKijx7IvnTCm3LgQ=
-=SvVH
------END PGP SIGNATURE-----
-
---d1nrqP5TuJn4PExU--
 
