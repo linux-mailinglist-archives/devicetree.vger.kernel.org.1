@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-97979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C260D96448C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:33:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4FE496448F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:34:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DF83B20E43
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3073BB22FB9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2674C1AAE1A;
-	Thu, 29 Aug 2024 12:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B17D1AB530;
+	Thu, 29 Aug 2024 12:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bUajZ1bt"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2V+wQm2z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79126194C86
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 12:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67681A4F2E
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 12:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724934799; cv=none; b=FnRrJIXBjsC6pKbcZ7BnNqOzqNexP4zDGPpuN2U2wt3V8xGJr/h6AnTTogTzN97BRW1QBTxvKHixX2QKPmteXF6LH5Vj8UuD3gQspiKZaoTNurtRADsoRTQukHFzMs8LhIWBD6GG7qwcNpzk1lujfPR34t/hw2MFsEiivQ73rYM=
+	t=1724934799; cv=none; b=mlb3DdX0IYt0HxqwFfsIdUO20Gf+c54Xza5hSA1ORCKUXnntFW0cogZthWszaARkwgpJIs0XMEoa1sQSngcAn+xyoiaS1/hJIzgDtudzDZSF3SY/qVjaPSP2CLi+xlu+/xlJh+MOBpUrTKzF2TwN2hqJBT4jr7ckeMnvelq26GU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1724934799; c=relaxed/simple;
-	bh=1omagQrEBxWt5LqMGnhblwdn+Byf50yNYRTVVNHZQIA=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=m7WZQPwFWHwVjqZVJIdOqcb2d5GIr9HyVfPetegugMxPMg9LwSA+8UBz7tLk7pcv2R24qt60/zn2TOfJIPN1gkWujvN39kit7Hcv2eckY2urDRmkVEscDz9C/ty/MlGMI2Xrg3/pFEUmFkKaxTmM8Tp4NaANbqkUAqdmBiyzWgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bUajZ1bt; arc=none smtp.client-ip=209.85.221.46
+	bh=E1ArSvYWlEKg2mj8U4mUHAOngGGn/icyww8fVMtpx+4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Js4KSerT0rX/mlKoiv8w3VMkkrxYhaq63VFnkB8QVKMYXEt2zsIXaiYDN7iHQTfg+mzAbgJomIMqSc6ntzI3xy6cmDPzFUeIsfBmaH/MtPohgQJF+h96TBxkvQakY9bxzpC8Gw2nfPXUyQRn1xyYXQwJvyhySli996dhylrxnfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2V+wQm2z; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3719753d365so444228f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:33:16 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37496a92188so406020f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:33:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724934795; x=1725539595; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xkGOopWRUb40ZcUq/jCWY7FOanor2g9Nkp2Kgjs+pA8=;
-        b=bUajZ1bt5PihBthNuGjyuG+yr5jnCkX0x25DiUwiRfjsSP85MJVhVx7oB9Sg4DBALO
-         PkaAfKHy5SKYoUVJdRqc64CkDk0E1nRNDNhNF7vFldNPrDLQ5D1sJLOHxXreGpyG5Dy4
-         9IBAa4t/Vdd4bob5irbUMlPPFTiCFH4xJSQogry4uFyoS66eTpij2h/Xdgsuh1ZgKwsz
-         IyiZVnM2oC/R3Ptx/4asqtM9Vngv+YB/gB+qZdY/EN+7V6CrrNXIlChLvQ+eLg4l0552
-         jl1KZ93E5SWjAWjkWGMYyOUvS5DK+i4BmkBYcJrob9UF9ygwzTuwBhqY5SZCZoQnsXZ9
-         M37g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724934795; x=1725539595;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724934796; x=1725539596; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xkGOopWRUb40ZcUq/jCWY7FOanor2g9Nkp2Kgjs+pA8=;
-        b=B+bcBHkm3j5TOnA8mPDBnaRpo0wX+0RV/p7wseFBkn6p0NZ93wT9hZ6kXKfwinRuJg
-         MvROUflYKY5+gzSBqYkByFdQiRq79YJWlhFehKQwy80XChpOVlyvxUohg+v+3EU+wdAg
-         8P5nz07sgkQCm+g5vkMQQJ1LJ/9um60lWkMN7Oqv4qEQuLW8OpdqabPi4hwPJXGPVRnL
-         /VfiHqYfDyuwa0QOcusxhlFzReQ8R5f3nJeWU9ehAwVi6BqR6MczW7tAgX8N4FZkVxvH
-         CiLPyUvIQi8zED+SQdUr21nj8xj6lA8KreXzMiWFOwyNOytFHzYmetEquhdblVyCkxQx
-         ByyA==
-X-Forwarded-Encrypted: i=1; AJvYcCWyTore02bMdaAWwpNOYhateP9UTjrOIpacOXZDGgKsihlCTS0JTg/SH6A2JtJBskoIB5c7TeaOc3MS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAbAbQKHoIuD6hsZjy0o9cqahXSa2urtWgq1Mo8UbCL363VMkO
-	7xIJ8GpQJAABNqFHqGzCQuYtzRd84vjyU6qjbVqDrbu5Dj018AwYx+6l6EadNeE=
-X-Google-Smtp-Source: AGHT+IGqNZJRXWedNV1KVSYPqiO9rTpBvV84Sdv//T4TRhrhYM7QLcqnqXzKNv1mYm4QRLxmK33m2w==
-X-Received: by 2002:a5d:59a9:0:b0:35f:cd7:5ba1 with SMTP id ffacd0b85a97d-3749b585ddamr2268621f8f.60.1724934794656;
-        Thu, 29 Aug 2024 05:33:14 -0700 (PDT)
+        bh=XSbzKoZMSzlZLqSuQFsdX/6ISDzmO2lC8VpPGyPhuxI=;
+        b=2V+wQm2zT6gV+I9dc2MhicjZTAz2TUjFB4pxuBfiTF4hTg2I65pvfNTd5SGsTuosVo
+         FRRaWovJrAiDEXc/Qdmtei8CVQHOc7hZOarKFxkSS72CQbQKarQeHA6dOq6xSxab8cOV
+         3O/5gEaqoP5p9frAI9eFEbzReoG62eoi7KLEMDO08izTAjBM7BCtCtqY0/Rnzo8R8Gtg
+         5uj6bDDgegh6OpVPhV14hQr+eroPwANtNBLculJ70Q9o17U5pN1uUhnWVjz1qKotOEmI
+         mYvoiUeyo2vuC8ZTwN4qHQ54qSCSqgb4DZi3jfqMyO3Pxg04P02I/mSoGbDv/29pmDqV
+         YhAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724934796; x=1725539596;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XSbzKoZMSzlZLqSuQFsdX/6ISDzmO2lC8VpPGyPhuxI=;
+        b=VzLIxWfrAH10jLW1piSYin0WRlTURKOMc/d3bezAJnZUtUOj6uunoT+eFnU71VFC/s
+         QZn3Ntm4c2Kcbe8CGyFvJaxFR8I9+0+obGLdcsUluzjePJNXeMhiWA9bEXXPAAYKWJSw
+         Gb76qV3Co48Oo+I44c96BsXw16hqlRZ0GUHm97khcSZGATUm3DVzW4K5q+URpYaD7iZ3
+         MOh47YHHzmer+vMopmRmYZouw/0UkYiGMhw6z9G03F4bOECmpnhreAHg8mNx59kf7AQ5
+         ebJhq5ygFJILJCyZ9FeCHz2GlKtnQGC/D9+3ddGvx7xRexD8lfKl+c5vnf4EgQJgsrEL
+         BsDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUePhgjLd9CiZlbuyTzsUOr8HS4ZIzspWUS2znXeDA0vabvx0omNWXiqU3e7fVlrgIk8io4NAxgVRX4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKiGijWPXhZfVQXk/zkkTyYNrpmw7jmy0mIdFBZMBgAWSsKI6j
+	+fAzHJa1slDqcUMHF0QZXFX8qsZ2082Qpl+vLXmT2LFGYer8dEivcssIoUKWZ+k=
+X-Google-Smtp-Source: AGHT+IGdX+6BPRfUeoPV/k4K2aySBQ9Gqbyh0fWcL2k663Xqq0qtlZFTMJAWVJqZU/yqDbbxq9Fvzg==
+X-Received: by 2002:a05:6000:8e:b0:360:7812:6abc with SMTP id ffacd0b85a97d-3749b5890ecmr1729426f8f.60.1724934795974;
+        Thu, 29 Aug 2024 05:33:15 -0700 (PDT)
 Received: from [127.0.1.1] (host-95-233-232-76.retail.telecomitalia.it. [95.233.232.76])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee9978bsm1315042f8f.49.2024.08.29.05.33.13
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee9978bsm1315042f8f.49.2024.08.29.05.33.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 05:33:14 -0700 (PDT)
+        Thu, 29 Aug 2024 05:33:15 -0700 (PDT)
 From: Angelo Dureghello <adureghello@baylibre.com>
 X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Subject: [RFC PATCH 0/8] iio: dac: introducing ad3552r-axi
-Date: Thu, 29 Aug 2024 14:31:58 +0200
-Message-Id: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+Date: Thu, 29 Aug 2024 14:31:59 +0200
+Subject: [PATCH RFC 1/8] dt-bindings: iio: dac: ad3552r: add io-backend
+ property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,10 +79,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAD5q0GYC/x3MSQqAMAxA0atI1gY6ONWriItqowakSgtVEO9uc
- fkW/z8QKTBF6IsHAiWOfPgMWRYwb9avhOyyQQlViU4ZvPjEaUfrdF2rgPZmTAInSbo1s+kapyG
- 3Z6CF7/87jO/7AV1IC/tnAAAA
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240829-wip-bl-ad3552r-axi-v0-v1-1-b6da6015327a@baylibre.com>
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+In-Reply-To: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
 To: Lars-Peter Clausen <lars@metafoo.de>, 
  Michael Hennerich <Michael.Hennerich@analog.com>, 
  =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
@@ -93,84 +95,91 @@ Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  Angelo Dureghello <adureghello@baylibre.com>
 X-Mailer: b4 0.14.1
 
-Hi, asking for comments for this patchset, that is mostly 
-ready, at least feature-complete and functionally tested.
+From: Angelo Dureghello <adureghello@baylibre.com>
 
-I am introducing ad3552r-axi variant, controlled from a fpga-based
-AXI IP, as a platform driver, using the DAC backend. The patchset is
-actually based on linux-iio, since some needed DAC backend features
-was already there on that repo only, still to be merged in mainline.
+There is a version AXI DAC IP block (for FPGAs) that provides
+a physical bus for AD3552R and similar chips. This can be used
+instead of a typical SPI controller to be able to use the chip
+in ways that typical SPI controllers are not capable of.
 
-Comments i would like to ask are:
-
-- i added some devicetree bindings inside current ad3552r yaml,
-  device is the same, so i wouldn't create a different yaml file.  
-
-- if it's ok adding the bus-type property in the DAC backend:
-  actually, this platform driver uses a 4 lanes parallel bus, plus
-  a clock line, similar to a qspi. This to read an write registers
-  and as well to send samples at double data rate. Other DAC may 
-  need "parallel" or "lvds" in the future.
-
-- adding the bus-type property vs. a boolean property vs. adding 
-  a new compatible string.
-
-- how external synchronization should be handled. Actually, i added
-  2 backend calls to enable or disable this external trigger.
-
-- is a read-only sampling-frequency useful ?
-
-Thanks a lot for your feedbacks.
-
-To: Lars-Peter Clausen <lars@metafoo.de>
-To: Michael Hennerich <Michael.Hennerich@analog.com>
-To: Nuno Sá <nuno.sa@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: dlechner@baylibre.com
+The binding is modified so that either the device is a SPI
+peripheral or it uses an io-backend.
 
 Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 ---
-Angelo Dureghello (8):
-      dt-bindings: iio: dac: ad3552r: add io-backend property
-      iio: backend: extend features
-      iio: backend adi-axi-dac: backend features
-      dt-bindings: iio: dac: add adi axi-dac bus property
-      iio: dac: ad3552r: changes to use FIELD_PREP
-      iio: dac: ad3552r: extract common code (no changes in behavior intended)
-      iio: dac: ad3552r: add axi platform driver
-      iio: ABI: add DAC sysfs synchronous_mode parameter
+ .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 39 ++++++++++++++++++++--
+ 1 file changed, 37 insertions(+), 2 deletions(-)
 
- Documentation/ABI/testing/sysfs-bus-iio-dac        |   7 +
- .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   |  39 +-
- .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   |   9 +
- drivers/iio/dac/Kconfig                            |  11 +
- drivers/iio/dac/Makefile                           |   3 +-
- drivers/iio/dac/ad3552r-axi.c                      | 572 +++++++++++++++++++++
- drivers/iio/dac/ad3552r-common.c                   | 163 ++++++
- drivers/iio/dac/ad3552r.c                          | 394 +++-----------
- drivers/iio/dac/ad3552r.h                          | 199 +++++++
- drivers/iio/dac/adi-axi-dac.c                      | 250 ++++++++-
- drivers/iio/industrialio-backend.c                 | 151 ++++++
- include/linux/iio/backend.h                        |  24 +
- 12 files changed, 1494 insertions(+), 328 deletions(-)
----
-base-commit: 7ccb2c2db44572deadb795c4637273cdabbe8b66
-change-id: 20240829-wip-bl-ad3552r-axi-v0-b1e379c986d3
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+index fc8b97f82077..1874486229ad 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+@@ -60,12 +60,34 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     enum: [0, 1, 2, 3]
+ 
++  io-backends:
++    description: The iio backend reference.
++      An example backend can be found at
++        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
++    maxItems: 1
++
+   '#address-cells':
+     const: 1
+ 
+   '#size-cells':
+     const: 0
+ 
++if:
++  required:
++    - reg
++
++then:
++  $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++  properties:
++    io-backends: false
++
++  required: [ spi-max-frequency ]
++
++else:
++  required:
++    - io-backends
++
+ patternProperties:
+   "^channel@([0-1])$":
+     type: object
+@@ -207,8 +229,6 @@ allOf:
+ 
+ required:
+   - compatible
+-  - reg
+-  - spi-max-frequency
+ 
+ additionalProperties: false
+ 
+@@ -238,4 +258,19 @@ examples:
+             };
+         };
+     };
++
++  - |
++    fpga_axi {
++        ad3552r {
++            compatible = "adi,ad3552r";
++            reset-gpios = <&gpio0 92 1>;
++            io-backends = <&backend>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            channel@0 {
++                reg = <0>;
++                adi,output-range-microvolt = <(-5000000) (5000000)>;
++            };
++        };
++    };
+ ...
 
-Best regards,
 -- 
-
-  o/ QW5nZWxvIER1cmVnaGVsbG8=
-   www.kernel-space.org
-    e: angelo at kernel-space.org
-      c: +39 388 8550663
-       
+2.45.0.rc1
 
 
