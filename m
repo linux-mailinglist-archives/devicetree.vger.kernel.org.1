@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-97806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDDE963B05
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:10:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93BE8963B11
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:12:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 465E2286858
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 06:10:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C69991C21160
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 06:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D866F15B0E4;
-	Thu, 29 Aug 2024 06:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034403AC28;
+	Thu, 29 Aug 2024 06:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hx56u18J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t6CCYQ/0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA20D15A843;
-	Thu, 29 Aug 2024 06:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3FCD249EB;
+	Thu, 29 Aug 2024 06:12:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724911787; cv=none; b=pPubkcnbl4LXy+slEmrTlq+arwNPjCZQ560ID2dmmXV2N0KmTSAhD5hg0DED35hKUw1wcDkdodhIzmDAnpASypyrjCRIwu+m11S05iCVeyXq/eQWwvq3lvOoBeik24BSvkQ2uzmhYu9WCjJ6+kcAjgRlOgQfqbrEAKWcbp79v78=
+	t=1724911950; cv=none; b=DokQklX+3Fym79f064JQOi8Vm58t9qwufTBPM1Pg99W5XeqFoZku+ZYNuzSX5UAj3nPlsQklEXq9lidq8E5w9YqZHi5ADSHZ4Hgvy2LGDVVDRoN+vvSikIS8av/E193RE0ig4feMeUYvTZFKGDodKb9wNpnS6VVVlzh4STyqA50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724911787; c=relaxed/simple;
-	bh=YvzmcJOMW0Q4wrzRgAo47ep0PUJTe2q7WQpVHCgImTg=;
+	s=arc-20240116; t=1724911950; c=relaxed/simple;
+	bh=fUh+gganf82ip2dJ2Nztr6H7Y6AvMJX0ZtDoyTs9tPo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoIByRRvVQEJy0K2bEa8Sf9+n1cY27swUm+u4jwiOG+XWrYvVILzfFv0ps0Ic0MV3Fx61ueWYOLelSKH2UoqCteMTtkkR4HpnOTshYPmbCfsOI7Cq9eTLm2VONAt++a7cr1nq1lPrGJcWRd/w4N+u0oSfsLURRgY0gQDCwDikRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hx56u18J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1743AC4CEC1;
-	Thu, 29 Aug 2024 06:09:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=f0/3twIRo+TUVT/18gPS/7IgK6k9MaZoux1zIP9e/hZa34iZIv2CZHmS22wg9kkvL+MaoBZ56nWAVLo65WACyZoP6CW7D/y+HdKQJySlJ0bh7mH2/PeK4vPbI9FactgG0t4qFjAp5+7Jtp2Weq00xPC094dTtchFzcXMS3NNXVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t6CCYQ/0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56CC3C4CEC1;
+	Thu, 29 Aug 2024 06:12:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724911786;
-	bh=YvzmcJOMW0Q4wrzRgAo47ep0PUJTe2q7WQpVHCgImTg=;
+	s=k20201202; t=1724911950;
+	bh=fUh+gganf82ip2dJ2Nztr6H7Y6AvMJX0ZtDoyTs9tPo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hx56u18Jygjlgeop61/q1htd3jPQj5D294hatsTZwHP86tk63QoBwlVR52bSuvx1G
-	 QUGbDK7ULtDUzm/45L3ALb0H7MSHsYL+2PcP1ldj0CWh/t18yX+X4yJ/VVxi6Vy2An
-	 u6G8KDGzk4nU9U1rpqn7PXgeiGlNspo/7YVPHIuOJ65rmxCrWUFDAh2mYW3GxsaC7P
-	 KEae8dEX4NjMT9UA45zQszv36wQiTkS0t9TXtRNkAlWZyTHFTdIPycS0N37/fCZHxM
-	 EuXM9QySJG8vMRqh/20pd4YjVmOi8FeM2SEF79X76rPwtgZ1PVXSDjZf6p+Hk1qc2G
-	 AYLPBJbdyhIlg==
-Date: Thu, 29 Aug 2024 08:09:42 +0200
+	b=t6CCYQ/0NA2i3dPL1Kuj9U/pMIuzeU6Qj+lMSgdk790uXPgLzY6kHDU+zQemprIUA
+	 +8SlXVKfrfqSSOjEmVs42uZsaM+gzf89G6w4rUo+9u+Sk1UUfF/gzqSlNAysaievyH
+	 lmW0rjk4im6dE7vu8UnaOo9IlURVaGK4JAsopP7UORMyFbr3iM8Qx80mYVMYn3TZlF
+	 +0njCMn9eSwypOTAZrgI3G92CdOUUPQYzjCM80ojFpq2Q1CMz98oq4CrxJ0wsSdsq3
+	 O0YLh1TsWIsQ8Y97fGi9HWxlTetqet70GZpVk4Q6Ro5Gs7ta5itl7OqVvLjNLd3ppF
+	 ddMUz78ksCFSQ==
+Date: Thu, 29 Aug 2024 08:12:26 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jan Kiszka <jan.kiszka@siemens.com>
 Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
@@ -50,11 +50,11 @@ Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
 	Siddharth Vadapalli <s-vadapalli@ti.com>, Bao Cheng Su <baocheng.su@siemens.com>, 
 	Hua Qian Li <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: soc: ti: Add AM65 peripheral
- virtualization unit
-Message-ID: <6ceabv6xf4obh3zc7b3cpm24b7fnzlfxwulwkn2trcwgvhqfit@3wccgolzipiv>
+Subject: Re: [PATCH v3 4/7] arm64: dts: ti: k3-am65-main: Add VMAP registers
+ to PCI root complexes
+Message-ID: <bsxsk3zy5wyao7ljdf37idff4jf5g3gsp7amkywbm7z55vrt4j@fz4x4vjkfehm>
 References: <cover.1724868080.git.jan.kiszka@siemens.com>
- <ccbbc49b00b64e857c35a24466ca237d9a0c7da3.1724868080.git.jan.kiszka@siemens.com>
+ <988ddd76b742240d42aa2733ad92c6e7b82a3f0e.1724868080.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +63,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ccbbc49b00b64e857c35a24466ca237d9a0c7da3.1724868080.git.jan.kiszka@siemens.com>
+In-Reply-To: <988ddd76b742240d42aa2733ad92c6e7b82a3f0e.1724868080.git.jan.kiszka@siemens.com>
 
-On Wed, Aug 28, 2024 at 08:01:14PM +0200, Jan Kiszka wrote:
+On Wed, Aug 28, 2024 at 08:01:17PM +0200, Jan Kiszka wrote:
 > From: Jan Kiszka <jan.kiszka@siemens.com>
 > 
-> The PVU allows to define a limited set of mappings for incoming DMA
-> requests to the system memory. It is not a real IOMMU, thus hooked up
-> under the TI SoC bindings.
+> Rewrap the long lines at this chance.
 > 
 > Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
 > ---
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You still have DTS packed in the middle of driver changes, suggesting
+dependency.
+
+Such ordering does not make sense, because entire DTS goes separate tree
+and branch. It only complicates stuff because if you have dependency,
+which you cannot have, it won't be that easily visible.
+
+You already got the same comment.
+
+Please fix your driver to remove dependency and ABI break, and then fix
+the patch order.
 
 Best regards,
 Krzysztof
