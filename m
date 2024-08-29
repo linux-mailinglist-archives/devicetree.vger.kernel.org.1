@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-97987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5231D9644A7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:36:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C7B9644C2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:40:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 781F31C21DC1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:36:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2304E1C24A30
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE70C1B013F;
-	Thu, 29 Aug 2024 12:33:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496CF1AAE1E;
+	Thu, 29 Aug 2024 12:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bCYOTh5i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AjLlydPq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C84E1B0110
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 12:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BED19149D
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 12:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724934810; cv=none; b=gOgHv5jDg5SDw5qeMf/KCg1vvScdRdcKE78G70Ns2WM8XOHlsHRCuyCHb4xTEolVlp28vuuDySTEDhBbxoRK7krnkUIBYqfw5QafFD8Hke52kLE5lOQYEBZl7HcaNrpGsX/bf8ZSOOHe8Jp/KCkLYij/3MdpeSdgf9+IKP7YbEo=
+	t=1724934907; cv=none; b=KOOEvazUaAQm/Dg9aM8sA8kA23hNcPZP5pA/H9XdOsA47pJwkxsgcY615DCjbhnFnI62arFkOK5QyxbEIO+6uvn7vizMuWDpcI0uh6YVvC4GhhxEWadv4vku2ULL4cAZRhujzzLTFBJxgcUvkVwhCgWhrbK1FiPY9a0UonXAsHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724934810; c=relaxed/simple;
-	bh=2mPWOtyTd/YBLFdmdjfe2ZHlnUKUTSLx+XgVmvWKRLs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gjPbr6LvsUYSzzxBaDuUyvmJH4nD1Mf1gZy/iz3TKMDndyfeKVsKQ5W+kN0KdZHTX+Rbb9HpDbyHPCOTlqLqqCuwm8ZDD66+mP/VDISbAHTta4P9BGYswoYHh1PAyn7v9tplbvjZHfCM/yyzbfHtVvL8hBFmxkA+xkqIBs7XKio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bCYOTh5i; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-371bb8322b2so346252f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:33:28 -0700 (PDT)
+	s=arc-20240116; t=1724934907; c=relaxed/simple;
+	bh=A94fbOmMnCooTL/B0tEnX125QpW9zvLEW8SCjKCx928=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JnvKZINCN4MqKqPK3dnCEhKXh7lg1EBw36Xon7t1Cl+eFQuan0/XeidvdsUcgxar2ZbnOBimatsphXktXDaMVIcqOVv4j7987mDbtlW+WzQ44GO3aaj1RsTLD4nXgIYXm3N6R7HXtEi/xLuIlsd6ii35+fFzLjdb+Cn0ZHoDlzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AjLlydPq; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42b964d7526so912385e9.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724934806; x=1725539606; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E1lPvyLwxDQjEGBnGsrIyA9bdmn+GnJfAmZj6pMaXAQ=;
-        b=bCYOTh5iayHuymcaJQrT4KhXgZiJPYbfIfJxSdTbevM3yKaW03uOlJy/gyrFUs9mO8
-         oQCEDAjGML3FHjU3AjOf4f7DmHm+CWUSAEbacILnMAuGvy4BiRrdRS8gyNuX6deOuWkA
-         b295QL78osWwbjnAz35Wxbr3tf66mhFB+WEv2fAuFHWAFvlK1TjlRZwmRczYTKbghv33
-         1/5Xeo9HHsPhqsjvXGbBmiId8SX9kxYcjSvo3RHaNohn5ipdRLpb6xUq36cPC8zF1CTt
-         /gB0XyV4DuS066RH+0/JGtbbL94u5ESljZ1Qe/v4x1jq2D3AApy44NIGSkQ9jplGTAnV
-         fI1A==
+        d=linaro.org; s=google; t=1724934904; x=1725539704; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LCvf5VP3lL2Ujxo2dpmuPVrjXbHO8/j1viTpjIqCuHM=;
+        b=AjLlydPqw1oGQJNYAQ+k6Vp1yhwzmduAatd1uIfsLIdv0BJx8kBeal0Cizu+oFuLtT
+         RBNzAmWkVWnsjtNY5onhYnsBWln8C+WjwT5AJzxcx/JDEjR73CCEowWutpC2ktjXlkKS
+         tCM06vxcLr4QLVuEo0xRjMfQm/WxvfyP+DGO/YxrAawQlJYQr+0wulnqfCbV+NHXZUoB
+         FzSN0fMQG3nQy2wc3dChLe3X7VPwKEG+aUq26rZAFNi04KaLHBiRR5ui1PXhpRTJIxTI
+         +JR7s1g7DivMbrGysdjKusGP8FX/VX7r/JK9D+A4sk8rP4gODmx3ytUcFa/EgLBSzRoV
+         3TqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724934807; x=1725539607;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E1lPvyLwxDQjEGBnGsrIyA9bdmn+GnJfAmZj6pMaXAQ=;
-        b=SjrdcwsgCB+JXNshD5Bf4yyx+y2iGPVKmPIR9q/Mdocx9Qvj+75ENFNhfPdLavf1t/
-         LWAXj46UC596veidY1T/8vf7uU4N6rPQMn6JZ9YzceumIrNlmAlJrVjFfh1xyipOL1rn
-         4WEZKYjAkzHLNKXET3950J89IbshnMZeQBFpWqiWygg2skKBQtWj6e42YbWQYEdHJqxx
-         ChKJc2ytNaf12mbjH3rAXbyGbHREmqOhMZWDpJdG027qjcoeccXr23X7Zb9DZ0f0q8iL
-         WOjNqGOGIzRXIxvyZ1s5qgUy4OtR+77fIU6GlS0tGBEIyXN74nfhhdEDDbja/PN/6hR9
-         VGXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUslQcRjHKA+8xq/OdNvEofF2VtbbxM08AtAL2gEbbxsVYq2lxmxb1fRhbEHFuOGc/grzz+OK8n+A5b@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKKihxFO02Z2YsvnxMtPRBw1xEZ/sA0iqAm63omZU6nlaEK58o
-	s2hKNzMLO2uLaIpmS/diOlJF8e1oZX5370S0tFjvvjhi2xx+ioa2sYw5/mp7gqA=
-X-Google-Smtp-Source: AGHT+IFN3lOIB6gGygWvS7enFigGG4fh8ywN6uYsYc1jl1ZrAvYUvR4AaWIuj9iAzaNIUxh1F8FLFg==
-X-Received: by 2002:a5d:61c4:0:b0:360:70e3:ef2b with SMTP id ffacd0b85a97d-374a02318f1mr1095378f8f.26.1724934806553;
-        Thu, 29 Aug 2024 05:33:26 -0700 (PDT)
-Received: from [127.0.1.1] (host-95-233-232-76.retail.telecomitalia.it. [95.233.232.76])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee9978bsm1315042f8f.49.2024.08.29.05.33.25
+        d=1e100.net; s=20230601; t=1724934904; x=1725539704;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LCvf5VP3lL2Ujxo2dpmuPVrjXbHO8/j1viTpjIqCuHM=;
+        b=kdh9+/vWlrjTFQ5MOrmgV+FhaBDsHPB2jNUFHuocPHVIKCrEsn9mTyXU2oJO4CIAQl
+         uyXa7XNzWa7ZjTdmM0bhN+uk1VRNbYT+8omf6kQRH8nDFmnDmKVzRUm5URe2WtrtBUWX
+         D/zMCKQ+5oPgGGCYFSPkkPShbGTsW6cp0mLvGlSf9erRGWjB7wKvtryTKVcPFghXUKld
+         84kDiZoSfcKCMqPJiXR+gHKuVkQ5/YSbBRLICwv08lMuXDKU5IOxx16gCu56E9bdKrGb
+         SKEXioRoYaxFC7iAUI0NxyqnLDL28BhhCrNBcPStOs7gc2n4gWm67rVV5EqsLcDcgXEs
+         8sNw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/HaX5Suj6IoKzj8EK2OnfIFyO3WAKBnGXRbebE50aFNMAs8aoWCTK1F+4F+kjFcuuB9fgXdS4tJUD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJYRWXojFaUzHjRsBBFsBMysq4Ky9jS9pjO4eSALRXFRBNeDZ9
+	T8FP1y7VKf+2h8dnOscJ5c3GFHyHQP3EIxkenxcuoEPKif7xNdWKjN/IjfUFX6A=
+X-Google-Smtp-Source: AGHT+IFSJzkxe4229qkDipmZwYXw+yxrKpJOs5rQ9G+PyiUQHkEg8mzTU3P5Q9L+1N+SX8cjrJJNDQ==
+X-Received: by 2002:a05:600c:4f42:b0:427:f1a9:cb06 with SMTP id 5b1f17b1804b1-42bb01331ffmr13631705e9.0.1724934903443;
+        Thu, 29 Aug 2024 05:35:03 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee4a55fsm1322270f8f.10.2024.08.29.05.35.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 05:33:26 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Thu, 29 Aug 2024 14:32:06 +0200
-Subject: [PATCH RFC 8/8] iio: ABI: add DAC sysfs synchronous_mode parameter
+        Thu, 29 Aug 2024 05:35:02 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 00/17] arm64: dts: qcom: change labels to lower-case
+Date: Thu, 29 Aug 2024 14:34:35 +0200
+Message-Id: <20240829-dts-qcom-label-v2-0-5deaada3e6b2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,49 +77,137 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240829-wip-bl-ad3552r-axi-v0-v1-8-b6da6015327a@baylibre.com>
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
-In-Reply-To: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIANtq0GYC/3WMwQ7CIBAFf6XZs2sATaCe/A/TA1DaboJgoSGah
+ n8Xe/c4L29mh+wSuQy3bofkCmWKoYE4dWAXHWaHNDYGwcSVKaFw3DKuNj7Ra+M8Kt6rfjJSGWW
+ hSa/kJnofwcfQeKG8xfQ5+oX/1r+pwpGhEdJIwS/tI++egk7xHNMMQ631C+vv/mqtAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dlechner@baylibre.com, 
- Angelo Dureghello <adureghello@baylibre.com>
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5744;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=A94fbOmMnCooTL/B0tEnX125QpW9zvLEW8SCjKCx928=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm0GrjAf4U/m//+qZWTI3CKdLMfs4BqHSsd5PvC
+ 8abf0ElxqSJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZtBq4wAKCRDBN2bmhouD
+ 1yACD/oD6BwxG5fDEJI4fkSLQG3Ta62Iq/kIOP8SQlt4TqH0iGKrm9YJ1Ke4zyUApwjqT3UFkAG
+ uruUcBBKZkKojqTcG8NZWvzwMMQ/UlyXJcitMZv11poTx36ccUw249aanYNdt0ORrlkqxjoWQjb
+ ezBs1mMVLINnSbIYFMuY6X5SlBufaAQ99/hp03SyGewmbKy+YDEqlaHIx+dyd+zD53QTN4vhH1R
+ gGcFZEAyWMWaaSQGyKXxNbERmy54REAalF/oIspCmlivoBMq/NiJY+n2ioeWXuaj8P63RPf3wcy
+ 3BePTmHZ/A7U5cN53sRB7mtsYS5y2CqbPQevmPuijtpSi01EwXBsTW72jI7VL6qdroyXbnB0WGU
+ XEBAKMIiidaxBLJNKvvD9hVh2ORbtn1J0Avr/WP3XoqPcm+H+42edUBqLeAo5KKpnwHBNsMXCj5
+ NUL7HtPtEov+bNIwDskml0s+ROqelTMwirE9xZN10CEpUTb/oLjDjMAOAeDMBs7trISuvKVx2WG
+ O/oFZfx0xhCuROcprSa1DzAJxPErjencpZZhYM1dp+4LncHVqoVj4Mtms3EdDOBp6DjSaLM+kjs
+ t3MRsynNMLK7a2fMdJWdw1vnyPIdJ8QYn0+lodkP4hVYoAk4IjA8QOfQxG3AGdtjMHi78CHEaau
+ MyXtplzEOmhnDMQ==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+Changes in v2:
+- New patch #3
+- Several fixes as pointed out by Konrad - not entire part of labels was
+  converted in v1 (e.g. LITTLE_CPU_SLEEP_0 -> little_cpu_SLEEP_0).
+- Few more labels found for clusters/cpu sleep states and clk40m.
+- So in total re-doing pattern matching. b4 is your friend for the
+  changelog :)
+- Link to v1: https://lore.kernel.org/r/20240828-dts-qcom-label-v1-0-b27b72130247@linaro.org
 
-Some DACs as ad3552r need a synchronous mode setting, adding
-this parameter for ad3552r and for future use on other DACs,
-if needed.
+DTS coding style expects labels to be lowercase.  No functional impact.
+Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
 
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+I am splitting the patchset per few patches doing the same, because
+otherwise diffs would be too big and would bounce from Patchwork/mailing
+list.
+
+Best regards,
+Krzysztof
+
 ---
- Documentation/ABI/testing/sysfs-bus-iio-dac | 7 +++++++
- 1 file changed, 7 insertions(+)
+Krzysztof Kozlowski (17):
+      arm64: dts: qcom: ipq: change labels to lower-case
+      arm64: dts: qcom: msm: change labels to lower-case
+      arm64: dts: qcom: msm8992-libra: drop unused regulators labels
+      arm64: dts: qcom: sc7180: change labels to lower-case
+      arm64: dts: qcom: sc8280xp: change labels to lower-case
+      arm64: dts: qcom: sc: change labels to lower-case
+      arm64: dts: qcom: sm6115: change labels to lower-case
+      arm64: dts: qcom: sm6350: change labels to lower-case
+      arm64: dts: qcom: sm8150: change labels to lower-case
+      arm64: dts: qcom: sm8250: change labels to lower-case
+      arm64: dts: qcom: sm8350: change labels to lower-case
+      arm64: dts: qcom: sm8450: change labels to lower-case
+      arm64: dts: qcom: sm8550: change labels to lower-case
+      arm64: dts: qcom: sm8650: change labels to lower-case
+      arm64: dts: qcom: sm: change labels to lower-case
+      arm64: dts: qcom: sdm: change labels to lower-case
+      arm64: dts: qcom: change labels to lower-case
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-dac b/Documentation/ABI/testing/sysfs-bus-iio-dac
-index 810eaac5533c..a3012baf90b3 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio-dac
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-dac
-@@ -59,3 +59,10 @@ Description:
- 		multiple predefined symbols. Each symbol corresponds to a different
- 		output, denoted as out_voltageY_rawN, where N is the integer value
- 		of the symbol. Writing an integer value N will select out_voltageY_rawN.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/out_voltage_synchronous_mode
-+KernelVersion:	6.13
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		This attribute allows a specific synchronization mode, mainly
-+		intended for DACs where multiple synchronization methods are available.
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  10 +-
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  18 +-
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  26 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi              |  18 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  50 +--
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              | 100 +++---
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 110 +++---
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              |  68 ++--
+ arch/arm64/boot/dts/qcom/msm8976.dtsi              |  32 +-
+ arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts       |  12 +-
+ arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts  |   4 +-
+ arch/arm64/boot/dts/qcom/msm8992.dtsi              |   4 +-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi              |  52 +--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              |  54 +--
+ arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi    |  32 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  92 ++---
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi              |  68 ++--
+ arch/arm64/boot/dts/qcom/qcs404.dtsi               |  68 ++--
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi              |  86 ++---
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           |  14 +-
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts           |   4 +-
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts           |   4 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 188 +++++------
+ arch/arm64/boot/dts/qcom/sc7180-firmware-tfa.dtsi  |  84 ++---
+ .../arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-homestar.dtsi     |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi  |   8 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               | 362 ++++++++++----------
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |   6 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 374 ++++++++++-----------
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 164 ++++-----
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  16 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 158 ++++-----
+ arch/arm64/boot/dts/qcom/sdm630.dtsi               | 152 ++++-----
+ arch/arm64/boot/dts/qcom/sdm632.dtsi               |  26 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sdm670.dtsi               | 158 ++++-----
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi         |  74 ++--
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts         |   4 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 178 +++++-----
+ arch/arm64/boot/dts/qcom/sdx75.dtsi                |  90 ++---
+ arch/arm64/boot/dts/qcom/sm4250.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sm4450.dtsi               | 160 ++++-----
+ arch/arm64/boot/dts/qcom/sm6115.dtsi               | 152 ++++-----
+ arch/arm64/boot/dts/qcom/sm6125.dtsi               |  52 +--
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 190 +++++------
+ arch/arm64/boot/dts/qcom/sm6375.dtsi               | 160 ++++-----
+ arch/arm64/boot/dts/qcom/sm7125.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sm7225.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               | 370 ++++++++++----------
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 366 ++++++++++----------
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 352 +++++++++----------
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 160 ++++-----
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 162 ++++-----
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               | 156 ++++-----
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 202 +++++------
+ 56 files changed, 2765 insertions(+), 2765 deletions(-)
+---
+base-commit: 1d875a0450232790dd662c9e44c2c0bd9c675636
+change-id: 20240828-dts-qcom-label-81989fb78b8c
 
+Best regards,
 -- 
-2.45.0.rc1
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
