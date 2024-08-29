@@ -1,192 +1,226 @@
-Return-Path: <devicetree+bounces-97796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E9EE963A08
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:50:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C2DB963A0A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:53:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26CCA1C23C18
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 05:50:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03C542829CA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 05:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45C014B94F;
-	Thu, 29 Aug 2024 05:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9405985956;
+	Thu, 29 Aug 2024 05:53:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="nAYStO0V"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="lhP+G/wX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04olkn2071.outbound.protection.outlook.com [40.92.47.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68BCC5338D
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 05:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724910624; cv=none; b=R/Wwv4SqILgbRY1lI2+oFqFl2Z9jai/HA9tAJ+CoOORMZdn1kEB5adZc7RTbr7nI/v1Eb9/xSC3Z9GbB57cZaX8EUWkwKbPZaBq74wYwI4AXtlzAoNaQnRMgobTLXuCO/lI4b4KchwPGfMMu3ExqsfNuRs0MqVUCVi8mdNQO0dA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724910624; c=relaxed/simple;
-	bh=wdBzlHPzqbQqgzcrw6a0vj9ow8E9XI7yoBVOFCltyaU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GTGT4rzKWe/Fmu27GOcfto9Co3w65TxhsWtZuayad7vgDBtGgqSUIanjypqksnSLjaRT0WXYe3Igkea+4SoV4LF4WRGpic8z7r1nBStwlJGitus+aWibuMPNBQpxUdzD1VvHTmp/rvhSjqn3gM9Ft2cEztbR261eQ1mGjL0Z7UE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=nAYStO0V; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1724910608; x=1727502608;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wdBzlHPzqbQqgzcrw6a0vj9ow8E9XI7yoBVOFCltyaU=;
-	b=nAYStO0VqxBgR65a1cbt/jYjpwoHmCfA0wdGSdYTcjWC1uSrsQHK0kxw7OGtJM0P
-	QHWQgqVweX3Mzo69Nbg9wrfSAPECN98V51tY8VE0a66gMMSWYf2Hz9x+ozT/exAh
-	D21J8bcGVd9zlF5UdpuJZFMFIDMeT7Q5tYgUaLkLfPs=;
-X-AuditID: ac14000a-03e52700000021bc-3d-66d00c0f9590
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id D9.1B.08636.F0C00D66; Thu, 29 Aug 2024 07:50:07 +0200 (CEST)
-Received: from [10.0.0.19] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 29 Aug
- 2024 07:50:02 +0200
-Message-ID: <2d454d61-6f17-4c31-9d03-b065489b26c9@phytec.de>
-Date: Thu, 29 Aug 2024 07:49:57 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F8F42A9D;
+	Thu, 29 Aug 2024 05:53:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.47.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724910793; cv=fail; b=YEVJEY4BvoMtAjskm1w5lMCszstP0KCgJAHxIFwoHxx32Ih9E0adu0QaOSbIDvH9RiwxLrjiUht5IUGWJkUToBIGP9Xo3fgdS8ZwXJBRwqUjocdttsLR9MFvzf4aToJoQLLh0C9qCw8N7RU0maGDpF6O4Zk+9fEtl4wbt2+3csY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724910793; c=relaxed/simple;
+	bh=jdKMYAkhkiurXLWErqsGTKR22CHcCon17kI6tBvQd40=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=cxR0Ya+6r5kPmuuDcRX+VPCm6qiwcbjypm93cqoPAQHknOitEYuGoDpQ3e0ggzuJud4tYVyGcVRqPdTODrAn7UhFmeaockEegC+cqfTG8SEhGkjFUBBAAfGapv2SuFDHxFXswoLRNHhZHbORj7WZUxQCwqFfiYyQj3StJ3ZFGNk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=lhP+G/wX; arc=fail smtp.client-ip=40.92.47.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Q7U5PHa95gKJbqZ03EUMrRSI7pkG2yh4ofqloilyUrPKMic2P6TPTW59tly2MYL+pFAMAZuiueNK6x3yMH/s2nS2vN7F5St5fcyj6In39cWGZmA5b/TMR9rR4b/ktPqUv2gK8qLjhUfrKuhkonJkpqIqLHtsoV6nTAelyVFMOZEi8qG1w1ZTlpDEdh9FMJGmiQpZ2NcMRrk8J9XR0XKTs8LsYbSPc9Ge6wagnxDBL85p/njMg1/256Qgt68ViJ7z92A+hjg9toGg7ZtJgKX5sGzClyXESckPDX7zyGENRUx+h0iDdCxqejrlK23AXF4GC9sx9RyNXJ3muD2A2zbsgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Sx/whpwT4PSOF1e4B76P6dDxzPYBUiZX7eW/P54h5qM=;
+ b=Sodzn2NlzLyVcQtotcmIFFm/o00Avk4xHT6+RsVyVY7irTsEfoYe/Erkdfwv/16U2xYh8davrd/ecZqOXjUTz6KSEE9i+HdkvxqRTJA3ka7SoM5hjuGRGj1plddM06RLCelmmkinL4jWlL0f8yKy3TlU0xQ6iJX/FCwXxagT8gh1cQfG7l5q9T4yYBzB6SwfkAeapYcyEDytHagG6NB0zXl/TJL9v+KY39vmJjdljoMO6wmjUZcpLX2ymiJEZhogEjqY9ObgpeW5Jn5qtOyve6g990Ms14AsmTDHy9AJc5HQx1JCSZsN8LJhGVYYTWXaox33htrHl29Kvlc6Gk/Cxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Sx/whpwT4PSOF1e4B76P6dDxzPYBUiZX7eW/P54h5qM=;
+ b=lhP+G/wXpAFaxeBZzfj9vJRAVYTfufPHt60mDccnoOcYmqok/RNA26cyKcXLuGaDcXVP4m4zm0QnQ7WX4+3siHRyyHU/lU1Nb4I6MjZgt0A4p/ok5bhMLfZalSHs0lJZyzNHHe9D6BDTTegEkzWAOss9ZcoZMIHWXKGbURm3zUXsaWiyzMsnIUmNXWGZwibNDgeNW66klu04+t/KgcuanvuJ9ajZAqLv/Vz41/8BVEp8r/JSaJO0p85vzVIsyBXVzxxz8sPZpv+/oN/ClOSuIeS5eUlUVBPEtzySuRphgohV7/ps4JDC43//rxv4WeemNl58Oh5ZnjAK4anMucPLww==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by MW4PR20MB5324.namprd20.prod.outlook.com (2603:10b6:303:207::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.28; Thu, 29 Aug
+ 2024 05:53:08 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%4]) with mapi id 15.20.7897.021; Thu, 29 Aug 2024
+ 05:53:07 +0000
+Date: Thu, 29 Aug 2024 13:52:03 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
+	Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 4/4] riscv: dts: sophgo: Add LicheeRV Nano board
+ device tree
+Message-ID:
+ <IA1PR20MB4953612773890B94FFD0C9EABB962@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
+ <20240711-sg2002-v4-4-d97ec2367095@bootlin.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240711-sg2002-v4-4-d97ec2367095@bootlin.com>
+X-TMN: [9Hn/CEYPHkPAzj5/8s/WSQF6aj6gryIVtr2YGaDBOHs=]
+X-ClientProxiedBy: TYAPR04CA0013.apcprd04.prod.outlook.com
+ (2603:1096:404:15::25) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <ppy4cw6pqx63wnoldwn6324umgkbiuu35zh5qmadhpqn5viura@x3xoizhi5x2l>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64* Disable ethernet by default
- at SoC level
-To: Logan Bristol <logan.bristol@utexas.edu>
-CC: Josua Mayer <josua@solid-run.com>, Wadim Egorov <w.egorov@phytec.de>,
-	<linux@ew.tq-group.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Conor
- Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-References: <20240809135753.1186-1-logan.bristol@utexas.edu>
- <4e884c6c-ec82-4229-a2a4-55da66cc284f@phytec.de>
- <6fa4f5e5-7f7b-495a-a95a-82d7b105d2d7@utexas.edu>
-Content-Language: en-US
-From: Daniel Schultz <d.schultz@phytec.de>
-In-Reply-To: <6fa4f5e5-7f7b-495a-a95a-82d7b105d2d7@utexas.edu>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprCIsWRmVeSWpSXmKPExsWyRpKBR5ef50KawaxnmhZr9p5jsph/5Byr
-	xfLJC9gtXs66x2ax6fE1VovLu+awWXxdd4bV4k/3ViaLNz/OMln8P/uB3YHL48WEf0wem1Z1
-	snlsXlLv8a/1MbPH8RvbmTza9gV6fN4kF8AexWWTkpqTWZZapG+XwJXxddME9oLZChXvJ8xh
-	b2DcKN3FyMkhIWAi8W/advYuRi4OIYElTBIrXl2Fcm4xSuz9vZsdpIpXwEbi05cvTCA2i4Cq
-	xKfbT5gh4oISJ2c+YQGxRQXkJe7fmgFWLywQLXFz0jmwGhEBHYmnWzvAhjILPGCSmPt6BtSG
-	xYwSa5r+sIFUMQuIS9x6Mh9sA5uAlsSdLXPBujkF7CQOXr7PClFjIbH4zUF2CFteonnrbLAa
-	IQEFidnbJjNC/CMvMe3ca2YIO1TiyKbVTBMYhWchOXYWknWzkIydhWTsAkaWVYxCuZnJ2alF
-	mdl6BRmVJanJeimpmxhBMSfCwLWDsW+OxyFGJg7GQ4wSHMxKIrwnjp9NE+JNSaysSi3Kjy8q
-	zUktPsQozcGiJM67uiM4VUggPbEkNTs1tSC1CCbLxMEp1cDom3dasi3/3jT/lHl75H8Ff6ve
-	6eq1rfBO5o97US0n//RO/WsneUZAPjtqxtPzZVtaz170fpKVs2Zms47r/Nkts5r8ApMKmRU7
-	/jwXU1hxcd858wX6tnv3hzYbzWV4/fHnpbm3dzDHaIveazoZ82FV89WPtU0HNpbfXS2YtO0r
-	/1eOzwt5alIuK7EUZyQaajEXFScCABb3uGenAgAA
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MW4PR20MB5324:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5c4dda6-1a3b-4a91-4bcf-08dcc7eedaf0
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|6090799003|15080799006|5072599009|19110799003|461199028|8060799006|1602099012|440099028|3412199025|4302099013|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	cCaIwQTjzJNTqR1mYSxOMbTj1yju7AD0tNSQp44z/ROjOcn8NJfTJP+5CzUiC4Zb5VC9fF23ZFtytIiOswB17uT5p6KXwbYGblFIaipwLiE3e/7CGNTkNRpH06vh6NBpvvUHW5lQKMoDXKDDfTXG+Z3QCR80Q13oTiADDyEtj+/fqr2/cZ0G/caUCkPGket6eDeHqkwxqSOITD2cskBJ6b7/DDSRP3exwnoMbR87pqncwsKeI4yMmCeJF6iL6P9L386ZuaZ4pStmh+2DGqcLSzky/yWU1l+N3jRd6iBJYAeWcCHJhYCVGqggD1KXQG1OxLFQ77jv4Dat+9/el4mUaKZHTJ1BI2db4tuhTbskqojxEgoEhM6T5stDa6m52IsrEXEkIRkeDXs9k44KhvoPBC2OFfzReTXIJHBgl08Q5fFGFuEup/igmlL6Y3RxZOdbz7UbxGsihB6N/Y69QXeLD47Vfn9ACzFcs/RMf0NrQ9zFKDeqIRztu1WiNmZarKA095X4ysbJSCRWDYAu0S8ucts+KsueRe6ri0AGmH0XsR9sIHiFxZ5CjVxD/rWb4oeY6WEb3XL4laGocU2PUJngn5UgCn5Q7ekdSaNkNSzvqIBhYsZJbcdV6CIyc7z70xeISFpoL2Ug/Q3WqmCwuSahnfcNsp8YAe3+NnOFjP3r9xe2BIO9mPMJrap+2YKA619ReWceDkCxkckXOidywqlOxIIw1cyeruXGc5IVqxfw3+1JcZC0bIWdKqGqLUKWhbsUxDHeBzT28jiWB/u9cWFSJI9RkN1TS8Eh6A5mwSERewtldjsVsOSSAxc2GS/Ddjc6w+vxecHxoqI8WNt2Q6lqRKS+BdyyVzJtbxUb5FZ+YCv2TMQzQTtAVaa/xInPiaaX
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?IpIXzXQNC2z+5PP8Y/EB4Yke70T1UWbu7zLgkvxWi3gMWZ2DrOFhYIw4as15?=
+ =?us-ascii?Q?QrYLzlx4MU2iu8IZ27oRNYHFySsCmnly+Brg6UgddxnpE+lqaHfZVChDz5L/?=
+ =?us-ascii?Q?12ZpLHuQ0wcLUBABgfG4mk9+QDqR/dptEcAgtIDTKPXi2bsor6fpqJ9YNF/A?=
+ =?us-ascii?Q?rsqYr6mM9oC0XD0c3iDvKvVUFfr5cefjsK3OrO5SbkH9Ij6GcCHnZsdW3ig6?=
+ =?us-ascii?Q?G84+BoBIfPSS30RCkjIvmRulbqTcdfSKYT8XIeW9xn6KfKDFDZKox7JDYKWd?=
+ =?us-ascii?Q?PH76QE+Ww3EtdFOgdKalHUth3TMRHUkqTr2EnaXcXFkIPs7X5ZWxh46uzpEG?=
+ =?us-ascii?Q?Z+C99UTTQiB2ajE4ixT7+sWyLgmNaDAqt5FQD0i6yl4R8BiRfP/G9Hav8UEq?=
+ =?us-ascii?Q?nlL3JPG6o0P4Ss197J+mmARbTKazu8fCg34agsGdqL9j+hv7asXhitogRAeb?=
+ =?us-ascii?Q?Y634o86mb4Ka8xBJdahqHWEEvXIiitCTmxJVnqBybU1zKsXhgUtQ5Cr0wyCT?=
+ =?us-ascii?Q?eE31zpeCNGGJY7qFofN/p87xa92enVC5I2Iz35++Fg/4NOO23VTHjdQhiLXm?=
+ =?us-ascii?Q?d/loxT2MWHep8ltI4RzLjHObqEHJc4BOm85gWPUrBJWWcoIl/Ov4gy4gjWXJ?=
+ =?us-ascii?Q?NcfYFHu+JaucJv46xzJb59g8+6PRywkA3SR/dpby4jHgSsJlepbR0LFPgcue?=
+ =?us-ascii?Q?kyTNlbiL3iFEATMg92gfaCzO9POnUwm9A3DtjS/vgXMxK0P7r7nzs2PBCbdN?=
+ =?us-ascii?Q?B1aXnEVZWHoJmgn4GbjMcx3GGV+ZmewSqlSKLwjWw7e2YeSndqg1oSPJY9J3?=
+ =?us-ascii?Q?JkAgYJeA/K+O3jLjM0QI4w4KMX96FEOyeO0iTEvb87Xxzr7R+of3GawEOMQp?=
+ =?us-ascii?Q?Cu0zu/fUj1ljBmqRUsvfoHUgiG6++JiEhbYwIVVN+Y9aevo56Rpt5YP8ymSq?=
+ =?us-ascii?Q?3MCUWc0eDo/XlHMNosl5cEuJEvA04E7yPQcON+ffJPG8ppU7tcgeL6FOaO2U?=
+ =?us-ascii?Q?0r5EfPkzwb3rh0sSq5UMvYvr+/WzHnUQvKWNnNqDNADD0AsLO32PbExMB1um?=
+ =?us-ascii?Q?Eji+vGjOkLb8qZMLxOx5eKh0iKq0tO6uZzwtBHMEZZAiyMC3298Wu9gvZU8d?=
+ =?us-ascii?Q?x/uZYR1yVRbXJtUTu9EmI7QOWEnF6UzYtx1qVhUwuKkMIxiRizlrkNnZBfMY?=
+ =?us-ascii?Q?9I5xcbPnHfBfcGlpTHS62hubJOf4z1qLY+bBdBEiT7cOZyxsoFhjkHF2mwdI?=
+ =?us-ascii?Q?LUV8DDTwS0rtzSyLepn7?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5c4dda6-1a3b-4a91-4bcf-08dcc7eedaf0
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2024 05:53:07.0795
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR20MB5324
 
+On Thu, Jul 11, 2024 at 12:01:31PM GMT, Thomas Bonnefille wrote:
+> LicheeRV Nano B [1] is an embedded development platform based on the SOPHGO
+> SG2002 chip, the B(ase) version is deprived of Wifi/Bluetooth and Ethernet.
+> 
+> Add only support for UART and SDHCI.
+> 
+> Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html [1]
+> 
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/Makefile                |  1 +
+>  .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 54 ++++++++++++++++++++++
+>  2 files changed, 55 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
+> index 57ad82a61ea6..47d4243a8f35 100644
+> --- a/arch/riscv/boot/dts/sophgo/Makefile
+> +++ b/arch/riscv/boot/dts/sophgo/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
+>  dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
+> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
+>  dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
+> new file mode 100644
+> index 000000000000..fc98b6a0ddf7
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
+> @@ -0,0 +1,54 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sg2002.dtsi"
+> +
+> +/ {
+> +	model = "LicheeRV Nano B";
+> +	compatible = "sipeed,licheerv-nano-b", "sipeed,licheerv-nano", "sophgo,sg2002";
+> +
+> +	aliases {
+> +		gpio0 = &gpio0;
+> +		gpio1 = &gpio1;
+> +		gpio2 = &gpio2;
+> +		gpio3 = &gpio3;
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <25000000>;
+> +};
+> +
+> +&sdhci0 {
+> +	status = "okay";
+> +	bus-width = <4>;
+> +	no-1-8-v;
+> +	no-mmc;
+> +	no-sdio;
+> +	disable-wp;
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> 
+> -- 
+> 2.45.2
+> 
 
-On 26.08.24 23:17, Logan Bristol wrote:
-> Hi Daniel,
->
-> On 8/26/2024 12:29 AM, Daniel Schultz wrote:
->> Hey Logan,
->>
->> my feedback is similar to Josua's.
->>
->> On 09.08.24 15:57, Logan Bristol wrote:
->>> External interfaces should be disabled at the SoC DTSI level, since
->>> the node is incomplete. Disable Ethernet switch and ports in SoC DTSI
->>> and enable them in the board DTS. If the board DTS includes a SoM DTSI
->>> that completes the node description, enable the Ethernet switch and 
->>> ports
->>> in SoM DTSI.
->>>
->>> Reflect this change in SoM DTSIs by removing ethernet port disable.
->>>
->>> Signed-off-by: Logan Bristol <logan.bristol@utexas.edu>
->>> ---
->>> Changes since v1:
->>> - Enabled cpsw3g and cpsw_port1 in SoM DTSI instead of board DTS
->>> if board DTS included SoM DTSI
->>> ---
->>>   arch/arm64/boot/dts/ti/k3-am64-main.dtsi               | 3 +++
->>>   arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi        | 6 ++----
->>>   arch/arm64/boot/dts/ti/k3-am642-evm.dts                | 3 +++
->>>   arch/arm64/boot/dts/ti/k3-am642-sk.dts                 | 3 +++
->>>   arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi            | 6 ++----
->>>   arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts | 6 ++----
->>>   6 files changed, 15 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/ 
->>> boot/dts/ti/k3-am64-main.dtsi
->>> index f8370dd03350..69c5af58b727 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->>> @@ -677,6 +677,7 @@ cpsw3g: ethernet@8000000 {
->>>           assigned-clock-parents = <&k3_clks 13 9>;
->>>           clock-names = "fck";
->>>           power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
->>> +        status = "disabled";
->>>           dmas = <&main_pktdma 0xC500 15>,
->>>                  <&main_pktdma 0xC501 15>,
->>> @@ -701,6 +702,7 @@ cpsw_port1: port@1 {
->>>                   phys = <&phy_gmii_sel 1>;
->>>                   mac-address = [00 00 00 00 00 00];
->>>                   ti,syscon-efuse = <&main_conf 0x200>;
->>> +                status = "disabled";
->>>               };
->>>               cpsw_port2: port@2 {
->>> @@ -709,6 +711,7 @@ cpsw_port2: port@2 {
->>>                   label = "port2";
->>>                   phys = <&phy_gmii_sel 2>;
->>>                   mac-address = [00 00 00 00 00 00];
->>> +                status = "disabled";
->>>               };
->>>           };
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/ 
->>> arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
->>> index ea7c58fb67e2..6bece2fb4e95 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
->>> @@ -185,6 +185,7 @@ AM64X_IOPAD(0x0278, PIN_INPUT, 7)    /* (C19) 
->>> EXTINTn.GPIO1_70 */
->>>   &cpsw3g {
->>>       pinctrl-names = "default";
->>>       pinctrl-0 = <&cpsw_rgmii1_pins_default>;
->>> +    status = "okay";
->>>   };
->>>   &cpsw3g_mdio {
->>> @@ -208,10 +209,7 @@ cpsw3g_phy1: ethernet-phy@1 {
->>>   &cpsw_port1 {
->>>       phy-mode = "rgmii-rxid";
->>>       phy-handle = <&cpsw3g_phy1>;
->> The connected phy is located on the SOM and should be enabled by 
->> default.
->>> -};
->>> -
->>> -&cpsw_port2 {
->>> -    status = "disabled";
->>> +    status = "okay";
->>>   };
->>
->> This port is routed to the carrier-board. Please drop this node.
->
-> I replied similarly to Josua's comments, but if cpsw_port1 is to be 
-> enabled and cpsw_port2 should be dropped from this DTSI, isn't that 
-> shown in this diff?
-
-Ah, sorry. I did the same mistake :)
-
-Acked-by: Daniel Schultz <d.schultz@phytec.de>
-
->
-> Thank you,
-> Logan Bristol
->
+Have you test you patch with a real board? Especially
+for device "uart1" and "i2c0", I suspect your 
+configuartion does not work by default.
 
