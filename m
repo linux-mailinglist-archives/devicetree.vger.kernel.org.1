@@ -1,207 +1,99 @@
-Return-Path: <devicetree+bounces-97951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B19E96439A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:55:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6388096439C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:55:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ADEB1F2351D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:55:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21A16282FC3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF03194094;
-	Thu, 29 Aug 2024 11:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D516191F9B;
+	Thu, 29 Aug 2024 11:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="tRj9f0pp"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="N6Y8pbLp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B16A0192B9C;
-	Thu, 29 Aug 2024 11:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A5E192B7C;
+	Thu, 29 Aug 2024 11:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724932521; cv=none; b=pW5l20gmhoo2xzzTvIAaddsFYDtafyOTaT3pG/YRuGL3hLOekgSwA3GGrncEi3vuoms4unz2HFzbd1nQQbtOe21eF6bcOR1u70y1GAyh04w7hXkLxBFg5OzuwRV3KIPkVWGNaXuPy8hp23lGQt01pPqih3lxSHcOYH6mq36etUQ=
+	t=1724932548; cv=none; b=hnDRix6uxj6bDZ2eRhJJYnpz96TyEoAU6jS0QfGpZcADG4V1BUsHvBW1OvXKgSmGhJHwOmHfdjDudPeWplphyV14QgoEuPn65NkQzs+6H9mC9F7ZQTGNYLNDKEmwH5sco3h6DTI+o/9TqpdJ4C0UdQJx8Fdgr+EyYSwOPLWSlwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724932521; c=relaxed/simple;
-	bh=18MFg0ZU0gWEGTSRmJyGi2UXhCSkBRuo2F5V7lvrFW4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H4TgUTK87c2AazD5gizjA3dbY2rdNreMNxmqc+WhWSO7FHFvhLdOeE5k3S+DWqOjFut1TFlGt9C99vNR+TsRU7o1PlBy/eYYQnp8eosEzWowkTVlP+mrmxdUnbhpU0Zl6isdV49MCZXj+5r6zjkdgMaQ+99q0JNpMGt221oSWOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=tRj9f0pp; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 223CF6B5;
-	Thu, 29 Aug 2024 13:54:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1724932444;
-	bh=18MFg0ZU0gWEGTSRmJyGi2UXhCSkBRuo2F5V7lvrFW4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tRj9f0ppVRM5zv7lpEUb0256T7/Lqiu56m0Jkr5rbA+WvCipDUkeg6EPm9pJp1vcc
-	 q0qKU/2mpqC5B68d1d8cx0ayjq7VVlBlq6HRInS+kpLeV2jPimqGQarAk10kfZBa2B
-	 P4cQ+UveA0/rE9DuKn2wTwb9s04VKSBOpYIIS4ZM=
-Message-ID: <bb9d4495-ada4-446a-80e3-6b9ddc676f48@ideasonboard.com>
-Date: Thu, 29 Aug 2024 14:55:07 +0300
+	s=arc-20240116; t=1724932548; c=relaxed/simple;
+	bh=FCSAChrWFDKdcWJFIikEalr2qxD2b3BG5GIHb84DhVo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=O5/Ezu8xYMXy5f0GbFO6W4RyC8y7ee8hLSymCjqxGD4syEPmB4EIowhOOHEmDdmwof39sqm7jjdd/bLR79Lhsuw+9C39ZZB545NF88mbHIV1BVhfEvsFMQe7xn8yshESTuRKZEN3fihBlbkPpsEMJTQ1C9zdIslG/TD103B+8cU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=N6Y8pbLp; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=09k5tGRHsX1lPAzdVjGE3UyjwnS3VL8JaqpnFiQJWMk=; b=N6Y8pbLpYqVMpm3S/cLI1Ugkkm
+	f3w7juzI9/Dall0G7YTOR/zRPJxONg6czYbBbAjTDstBDZWgSJ/qJlCP/1w6ypFViva++G0l/Pt3m
+	A1K3egH+uk88yc7TUac4dQ2CJVrRsCny1smQv0QNtSQzF7TOHM8AHccUPvUMP7YbWlENDtsMpT1Ca
+	GhZLFM8/WIdNjvt2khMCpa06verSAKZX7aXUpJY5JjgZNC6XFeuxJi+j2H7qZM16zZeGLYjkYkAs9
+	7q+hpa7YHlmgTnFQjtEHme/stEA3VpqJLb2p5QJvDz9XK0DOa9N6HNbAV61IfyzIiUJoi+H6fMeTy
+	Aek48RCg==;
+Received: from i5e861916.versanet.de ([94.134.25.22] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sjdkc-0003fK-8k; Thu, 29 Aug 2024 13:55:42 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org,
+	Conor Dooley <conor@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	kernel@collabora.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Fix compatibles for RK3588 VO{0,1}_GRF
+Date: Thu, 29 Aug 2024 13:55:32 +0200
+Message-ID: <172493252602.1711002.13468063682788889129.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com>
+References: <20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/2] pmdomain: ti-sci: Support retaining PD boot time
- state
-To: Ulf Hansson <ulf.hansson@linaro.org>, Abel Vesa <abel.vesa@linaro.org>,
- Saravana Kannan <saravanak@google.com>, Stephen Boyd <sboyd@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
- Santosh Shilimkar <ssantosh@kernel.org>, Dave Gerlach <d-gerlach@ti.com>,
- J Keerthy <j-keerthy@ti.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Santosh Shilimkar <santosh.shilimkar@oracle.com>,
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Devarsh Thakkar <devarsht@ti.com>
-References: <20240415-ti-sci-pd-v1-0-a0e56b8ad897@ideasonboard.com>
- <20240415-ti-sci-pd-v1-2-a0e56b8ad897@ideasonboard.com>
- <d4cd0323-4792-49b0-a4e2-0bc92068e7f0@ideasonboard.com>
- <CAPDyKFqShuq98qV5nSPzSqwLLUZ7LxLvp1eihGRBkU4qUKdWwQ@mail.gmail.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
- wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
- Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
- eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
- LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
- G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
- DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
- 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
- rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
- Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
- aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
- ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
- PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
- VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
- 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
- uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
- R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
- sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
- Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
- PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
- dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
- qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
- hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
- DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
- KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
- 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
- xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
- UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
- /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
- 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
- 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
- mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
- 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
- suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
- xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
- m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
- CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
- CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
- 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
- ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
- yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
- 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-In-Reply-To: <CAPDyKFqShuq98qV5nSPzSqwLLUZ7LxLvp1eihGRBkU4qUKdWwQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Ulf,
-
-On 03/05/2024 16:45, Ulf Hansson wrote:
-> + Abel, Saravanna, Stephen
+On Wed, 28 Aug 2024 15:40:07 +0300, Cristian Ciocaltea wrote:
+> As Conor noticed recently [1], RK3588 VO0 & VO1 GRFs incorrectly share
+> the compatible string, since they are not identical (though quite
+> similar in terms of layout).
 > 
-> On Mon, 15 Apr 2024 at 19:17, Tomi Valkeinen
-> <tomi.valkeinen@ideasonboard.com> wrote:
->>
->> On 15/04/2024 19:00, Tomi Valkeinen wrote:
->>> Add a new flag, TI_SCI_PD_KEEP_BOOT_STATE, which can be set in the dts
->>> when referring to power domains. When this flag is set, the ti-sci
->>> driver will check if the PD is currently enabled in the HW, and if so,
->>> set the GENPD_FLAG_ALWAYS_ON flag so that the PD will stay enabled.
->>>
->>> The main issue I'm trying to solve here is this:
->>>
->>> If the Display Subsystem (DSS) has been enabled by the bootloader, the
->>> related PD has also been enabled in the HW. When the tidss driver
->>> probes, the driver framework will automatically enable the PD. While
->>> executing the probe function it is very common for the probe to return
->>> EPROBE_DEFER, and, in rarer cases, an actual error. When this happens
->>> (probe() returns an error), the driver framework will automatically
->>> disable the related PD.
->>>
->>> Powering off the PD while the DSS is enabled and displaying a picture
->>> will cause the DSS HW to enter a bad state, from which (afaik) it can't
->>> be woken up except with full power-cycle. Trying to access the DSS in
->>> this state (e.g. when retrying the probe) will usually cause the board
->>> to hang sooner or later.
->>>
->>> Even if we wouldn't have this board-hangs issue, it's nice to be able to
->>> keep the DSS PD enabled: we want to keep the DSS enabled when the
->>> bootloader has enabled the screen. If, instead, we disable the PD at the
->>> first EPROBE_DEFER, the screen will (probably) go black.
->>
->> A few things occurred to me. The driver is supposed to clear the
->> GENPD_FLAG_ALWAYS_ON when the driver has probed successfully. There are
->> two possible issues with that:
->>
->> - Afaics, there's no API to do that, and currently I just clear the bit
->> in genpd->flags. There's a clear race there, so some locking would be
->> required.
->>
->> - This uses the GENPD_FLAG_ALWAYS_ON flag to say "PD is always on, until
->> the driver has started". If the PD would have GENPD_FLAG_ALWAYS_ON set
->> for other reasons, the driver would still go and clear the flag, which
->> might break things.
->>
->> Also, unrelated to the above and not a problem in practice at the very
->> moment, but I think clocks should also be dealt with somehow. Something,
->> at early-ish boot stage, should mark the relevant clocks as in use, so
->> that there's no chance they would be turned off when the main kernel has
->> started (the main display driver is often a module).
->>
->> It would be nice to deal with all the above in a single place. I wonder
->> if the tidss driver itself could somehow be split into two parts, an
->> early part that would probe with minimal dependencies, mainly to reserve
->> the core resources without doing any kind of DRM init. And a main part
->> which would (somehow) finish the initialization at a later point, when
->> we have the filesystem (for firmware) and the other bridge/panel drivers
->> have probed.
->>
->> That can be somewhat achieved with simplefb or simpledrm, though, but we
->> can't do any TI DSS specific things there, and it also creates a
->> requirement to have either of those drivers built-in, and the related DT
->> nodes to be added.
+> Provide dedicated compatible strings, as a follow-up.
 > 
-> Without going into too much detail, this and similar problems have
-> been discussed in the past. With the fw_devlink and the ->sync_state()
-> callback we are getting closer to a solution, but for genpd a solution
-> is still pending.
+> [1] https://lore.kernel.org/lkml/20240821-stretch-scam-09d7adc08a4c@spud/
 > 
-> If you want to read up on earlier discussions and join us moving
-> forward, that would be great. The last attempt for genpd to move this
-> forward was posted by Abel Vesa:
-> https://lore.kernel.org/linux-pm/20230621144019.3219858-1-abel.vesa@linaro.org/
-> 
-> Beyond that, we have also discussed various solutions at the last LPC
-> in Richmond. I think the consensus at that point was that Saravana
-> targeted to post something for clocks - and when that was done, we
-> should do the similar thing for genpd. Anyway, I have looped them into
-> this thread, so they can share any updates on their side of the
-> matter.
+> [...]
 
-Do you know if there's been any recent work related to this? I tried to 
-look around on the lists, but nothing caught my eye.
+Applied, thanks!
 
-  Tomi
+[1/2] dt-bindings: soc: rockchip: Fix compatibles for RK3588 VO{0,1}_GRF
+      commit: 11746c33909b082cb3b2183dd4164eb8bdcfc3df
+[2/2] arm64: dts: rockchip: Fix compatibles for RK3588 VO{0,1}_GRF
+      commit: 5956ee09c8254273c587b07f5b4d42da59a0325c
 
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
