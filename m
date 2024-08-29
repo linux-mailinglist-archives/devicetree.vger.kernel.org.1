@@ -1,119 +1,181 @@
-Return-Path: <devicetree+bounces-98185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A272B96515F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 23:07:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C3D39651BA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 23:20:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D58531C215C8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:07:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46EE31F21DD6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22D818A95F;
-	Thu, 29 Aug 2024 21:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540CE18B491;
+	Thu, 29 Aug 2024 21:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ya/SEl5u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IWnDs27G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A59514A614;
-	Thu, 29 Aug 2024 21:07:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877ED18A949;
+	Thu, 29 Aug 2024 21:20:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724965654; cv=none; b=C1jwZKjdB4rnMaES/oxSDeAeAP3fko5CfsEMW93IyRg3PPkyWGSVFpDo91n0cAIRszO6yQOfAHNPMld6/hijVR0gEO79issWVpoOA07dY5Wt5fqqizkJshfDFARz8LnswZdf1UhTlYfHQ/oqovFgOz6PrtMKtjINyZEKmZMn4c4=
+	t=1724966434; cv=none; b=Tq7nAzf6bKcRDChJsWuz0kDMRZDS9B5oSYrEVm7DMJsT96HbdSsoV+CnlwDfqNCARuJVnnNwzPpllFf3pxX7aFquT0NuZgwASKCpTKI+aKCtjW6k4RhGIzPUkTHMQtPjYxVdH0XdPpAzsjWg7mHtLpS0wJXBQQ6rsLxaJMYhobE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724965654; c=relaxed/simple;
-	bh=TaivfIdjh0TSI85jNY77CELnXdBC7Jd65G6SlY8tMwk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bUXVXdJzG0fmWhGNq9bTGQ9i7rUldVjh7ptBmQeAToh4i7JE6zmnCraH6uYMF2/QW7MyyK6fADb7jH3ef/g5ERSKjIvNa7S8yFDihXqcPi6aBnyTbtTQBHqKle90W68AKEyEwyoQqip53Xad3IdNe9Cg1IbkGfJ71+MkvxRNd/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ya/SEl5u; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47TL7K1D123687;
-	Thu, 29 Aug 2024 16:07:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724965640;
-	bh=GzlXiTAHsbZukH7gUwsKWEWduTwBkldcsOPp8jNhcMA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ya/SEl5ut7pYXuzjdqqjyU5ShZdEFk8+drTKX/gyNHTP2ejrhPmMJr3BoF51ranPN
-	 mg23HaPF8p+b8lPxUy0VYVc6vk5fvfTcPLjJHwQeH4+go8fC3hRH/rVQIhXrZadbQC
-	 h+uKVRipNMW9KyDyXcBn6UusBJL2PHEFrYKXhRYw=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47TL7KeU036977
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Aug 2024 16:07:20 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- Aug 2024 16:07:20 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 Aug 2024 16:07:19 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47TL7J06017255;
-	Thu, 29 Aug 2024 16:07:19 -0500
-Date: Thu, 29 Aug 2024 16:07:19 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Judith Mendez <jm@ti.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 0/6] Add and fix ESM nodes
-Message-ID: <20240829210719.ir3yubhdrzwg7mym@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20240815204833.452132-1-jm@ti.com>
+	s=arc-20240116; t=1724966434; c=relaxed/simple;
+	bh=s23M7oMrEUJys+xAvGHuuwv3TEEjFq3xU4PMlfZckGo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FRfU7EHhiyOnrz77jSwdWNizeTk6BM18qacjXDtkkgd9MoaRCxms/mb+OZ2WAMpEGLtTB79Y/1LcCjI5HiQucjjJCUgsmM+xLhh24vUGN3beRyAMMeixM+Pk5z29x9tMTsfNnilWHVI7HdygSaie68bWIgNU/X2XicRasThbqLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IWnDs27G; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2f4f2868710so11885431fa.1;
+        Thu, 29 Aug 2024 14:20:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724966428; x=1725571228; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fLi6/gNYCxBVU+mYmFe3F60tlH0Da5WXtkU2JtKbeFo=;
+        b=IWnDs27GMBf5/aswIJYeC0XlQpzDY1RyJ6c2skQWJrotWKnmkV94do1NSOsZ56J2GU
+         3fHRGCf51iNZ7Yb5sP1tk8pWCmUzfAnhEsvmfhgUahD174k/C7x+CuQoKTPTCYWQNEmr
+         L6Kuu8Fs5wiw/zFdviXonTiiEQbK62o+6PM0twCxz2oqXKKEgCrr0uDiGMR4xIpqoCSH
+         +2G5NklbQcCCWb5nWUlS03mQEsNzk+775Hk+zS0jL9tDeDBNmiI6qBXs0WTEGtnPdLdV
+         Tvqyd4qgz5r1M4yigBoXruYfXPPcCxKsxNsve2mAWfkGBD6Hj6n/Wr3GeJt2CIHYMHOd
+         /zLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724966428; x=1725571228;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fLi6/gNYCxBVU+mYmFe3F60tlH0Da5WXtkU2JtKbeFo=;
+        b=VeZ5UarHJG0H35R7usra0idFD0R32BqnzvjGxbDKCCFkj7mJyLWMnPFCbxDna+BYtP
+         giSRkgJUZMtgFldLdDFU892CVQKv4dGCZndlpfwvGUO7ECGRWih9TE2+IEyurRdvVLiP
+         P6SDryn1jlRS5ovp6KjlR1KrgLBU/gpnQRF0qI+EJf+1VGKc1QrWG9HVUBNh7ZsM7s/3
+         rHMTQMsLRTMfJQLh+8BoAjV7Z7IrjpmnKmIbx0q88iD6vWzyPU5+cRhjrTlryT+flKm5
+         kUiWOpZL1qpkxDlXec7m+j4K+B99iWXHuSGa8u+cI9rGaRDbiENCuGiJYm64I7Fq0BNf
+         ssXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUT8RrFs01sHbFp7vPN8r5ClTuCXnjTmiAZeA4nlEQwOMJ4L3VZF5wswjHut2QVrKzGDdLsWZaZrW98jq2K@vger.kernel.org, AJvYcCW5g1pPWq1NjTPnJf/VTSZNKNZkDDiZu/Kguui0dvn8n5Q7zjnOIfDpoqedZJiw4+mwXYNQdOL0suTx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6/yCgnyqdfDwodVWcOOe2hRm+TAY+fkkb+253+/ropnkdh9pG
+	wn2qyY+r5eVI8qR092KAxI+73z/tMZmrg6vTzyq9fXTtpFGbjHvGfygwjg==
+X-Google-Smtp-Source: AGHT+IFcgyF5XX8pBNH651vgfwOmcMYDl4QGEGs/tnVCRyTAxMd66Da8tIKruuGWKQwdE1eJujgEFA==
+X-Received: by 2002:a2e:bea3:0:b0:2ef:2016:262e with SMTP id 38308e7fff4ca-2f6105acafbmr30548241fa.0.1724966427513;
+        Thu, 29 Aug 2024 14:20:27 -0700 (PDT)
+Received: from kuzhyl-vm.. (89-64-30-233.dynamic.chello.pl. [89.64.30.233])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f614ed15fcsm2746671fa.16.2024.08.29.14.20.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 14:20:27 -0700 (PDT)
+From: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Oleh Kuzhylnyi <kuzhylol@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	igor.opaniuk@gmail.com,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jeff LaBundy <jeff@labundy.com>
+Subject: [PATCH v4 1/2] dt-bindings: input: touchscreen: add Hynitron CST816X
+Date: Thu, 29 Aug 2024 23:20:13 +0200
+Message-Id: <20240829212014.111357-1-kuzhylol@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20240815204833.452132-1-jm@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On August 15, 2024 thus sayeth Judith Mendez:
-> The following patch adds ESM nodes and fixes ESM source
-> interrupts for Sitara K3 platforms. Currently watchdog cannot
-> reset the CPU because of misconfiguration or missing ESM node
-> in DT.
-> 
-> ESM node was added for am62ax and am65x. For am62px ESM source
-> interrupts are fixed. Comments were also added for clarity on what
-> source interrupts are routed to ESM based on device TRM.
-> 
-> ESM nodes like MCU ESM for am65x are added for device completion,
-> currently, some ESM0 events are not routed to MCU ESM, so watchdog
-> cannot reset the CPU using the current implementation.
-> 
-> Changes since v2:
-> - Fix commit message for patch 6/6
-> - cc linux-arm-kernel
-> 
-> Judith Mendez (5):
->   arm64: dts: ti: k3-am62a: Add ESM nodes
->   arm64: dts: ti: k3-am62p: Fix ESM interrupt sources
->   arm64: dts: ti: k3-am62: Add comments to ESM nodes
->   arm64: dts: ti: k3-am64: Add more ESM interrupt sources
->   arm64: dts: ti: k3-am65: Add ESM nodes
-> 
-> Santhosh Kumar K (1):
->   arm64: dts: ti: k3-am62p: Remove 'reserved' status for ESM
-> 
+Add documentation for the Hynitron CST816X touchscreen bindings.
 
-Thanks for sending these out Judith! 
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+---
 
-For the series:
+Changes in v4:
+ - Add Conor's Dooley "Reviewed-by" tag
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
+Changes in v3:
+ - Rename filename to hynitron,cst816s.yaml
+ - Update description with display details
 
-~Bryan
+Changes in v2:
+ - Apply pin definitions and DT headers
+ - Use generic name for DT node
+ - Drop status field
+
+ .../input/touchscreen/hynitron,cst816s.yaml   | 57 +++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816s.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816s.yaml b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816s.yaml
+new file mode 100644
+index 000000000000..ac9f1d8e8fc0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816s.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/hynitron,cst816s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Hynitron CST816S Touchscreen controller
++
++description:
++  Hynitron CST816S Touchscreen controller for 1.28-inch 240x240 Resolution
++  Touch LCD Display Module
++
++maintainers:
++  - Oleh Kuzhylnyi <kuzhylol@gmail.com>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    enum:
++      - hynitron,cst816s
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@15 {
++        compatible = "hynitron,cst816s";
++        reg = <0x15>;
++        interrupt-parent = <&gpio0>;
++        interrupts = <4 IRQ_TYPE_EDGE_RISING>;
++        reset-gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
++      };
++    };
++
++...
+-- 
+2.34.1
+
 
