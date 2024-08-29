@@ -1,131 +1,140 @@
-Return-Path: <devicetree+bounces-98071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38BD5964B69
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:19:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D25E964B7B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:20:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BF211C226B0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:19:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 494BA282557
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8381B5EB5;
-	Thu, 29 Aug 2024 16:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440DC1B78F5;
+	Thu, 29 Aug 2024 16:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gu3vu998"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mPd1GkGm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422301B3B1D;
-	Thu, 29 Aug 2024 16:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1D81B78FB;
+	Thu, 29 Aug 2024 16:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724948195; cv=none; b=tFlbhrGNf4zD+si8Gy7rexgLSLHKyVipRG8WbpWNZjDh5i7v+D6tIlQw15USq+zH42bRVCd3RkjJSo7EWPla2d0XTNDnv7xLnt7qa8BJC09+KSDPiFixZ16yNw0LXD/+I4WnBMhcTKO+qud6gUrRFJNtqmva+zxbNKPSR+BJeVg=
+	t=1724948283; cv=none; b=Wj8a7RtqYl25fIJJcui+hhbSTK8lrD/pSzMXpaORsSxTvHZU1zRelE6qAHWy/zfE0aigk7/Es6xMD10+91fr/hKe7x/xDLYO0BMjN+G2Tyf6eXxl3xbrFbDF8eiWVxjkIGPa9exBnG4AV75PQvXoJ1v458Go16asPYcAEq2/jQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724948195; c=relaxed/simple;
-	bh=HxPcbRMFcsJNqFKtugSZKtmx4npczuzpAat1MMw2FFk=;
+	s=arc-20240116; t=1724948283; c=relaxed/simple;
+	bh=pnVQOit5esrOdWDax1UHkIVI8KzUprZRWP+rRMTsqXM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Le+218cfn4IkN+BdAPEkXnDwKAXU29Z9/zlrZGZfezVEiaI97PZlZYbDtF9Y015rvQncZOyhOhGm5+NIwByRugwXhnQGBRUnA+C1fRUDz/q/De/LvXHy/g83Cv5a17fsWgS3Xo1hnw7sRvgVA7wY1eCFAC6GiKl8wcfVSsT+Ay8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu3vu998; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1277C4CEC2;
-	Thu, 29 Aug 2024 16:16:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724948194;
-	bh=HxPcbRMFcsJNqFKtugSZKtmx4npczuzpAat1MMw2FFk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gu3vu9985tehBLLpWjFYDXPNeRGf5KzowUGu7XAR7vA1/jCUwgGlEU19/YOl75g6t
-	 TMay80EKIq/vhlaQDBRu8Zta/68PuiZ7jjXSwGAFD+zjNI+sp1UoqflEcgRn8GcXOC
-	 Qi7ERfy7GZzOuPi5BeLdmVHf/IVofWRwxIR/sHg+FbqZYhxsEzhpbp/twR+8K8EKSc
-	 v7m4gKF/yFPx6rqhgMf28KhbMeFTqXgnGrRImgDsmSzYI0B8jL6GqWNcpUMn27gQTF
-	 A25Ecd+fU+ewLBIBJAGIxt38zO0nGhg4Jj//W18xnJHZuPi9ZyA7kimFIMFHA+buhU
-	 e65SI6ZOuuJKQ==
-Date: Thu, 29 Aug 2024 17:16:30 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: touchscreen: ad7877: add bindings
-Message-ID: <20240829-mossy-dispense-bab38650455f@spud>
-References: <20240829092007.25850-1-antoniu.miclaus@analog.com>
- <20240829092007.25850-2-antoniu.miclaus@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=owlTsPwUx7eAgFl/Y6x05CtLFdwE3EuvlddYNWThm1EMbbLW/xnQULRZIBgzk7k6ToOK4IsebxPlaExt6UnY4+L9sEk51Lj4O9nZ/Unbc4mtfSPRaX6p3dLq5I4TAuhOfnT1mtHM1WyGJpClIzsZUIbTcQ+7YiypLOq0XBtuJlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mPd1GkGm; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E154620003;
+	Thu, 29 Aug 2024 16:17:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1724948273;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PPbweNLOln15v4/LrRjZ9XZdej7S6QSQGVF/NJJi1Ug=;
+	b=mPd1GkGmHi486sj2v/JLrpOWlIDP8EIqkoFDqHq9cvOPGm6r9F8cOBbXl7pkGVTeD6zADp
+	ZflWJABmmj/yF1evEX6pbh8k79TCoyKFSM2MlAl844ZQRmReNnDROnDH1oNKJAHQu3tygD
+	abDD7/vsZrYBUSWA+MoGAP5DiUP7SA836V1YjtJ2sRIsOFdx54gqajy2d76XAaxmYqiqS3
+	BWc2Sww4mMaWXNKQvQEaT7WhtDuHqdeXp8dCBhs/MFxeCRJhhTHXzVGjXkb3Qz51XV3u7J
+	H7Dxq7WAP8RFKsYtWrcynH/TZXpJQJD5JRPl4LqoHn0w/f1aydEI1E6w4Z3lRg==
+Date: Thu, 29 Aug 2024 18:17:52 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: gomba007@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org, csokas.bence@prolan.hu,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 0/2] Add support for the DFRobot SD2405AL I2C RTC
+ Module.
+Message-ID: <202408291617526e31318b@mail.local>
+References: <20240829-rtc-sd2405al-v6-0-4fbfe2624aa7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hFaBAt629pkSLViP"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240829092007.25850-2-antoniu.miclaus@analog.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240829-rtc-sd2405al-v6-0-4fbfe2624aa7@gmail.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
+This looks good, can you send v7 adressint Conor's comment, don't forget
+to collect his tag.
 
---hFaBAt629pkSLViP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Aug 29, 2024 at 12:19:36PM +0300, Antoniu Miclaus wrote:
-> Add device tree bindings for the ad7877 driver.
->=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+On 29/08/2024 13:31:43+0200, Tóth János via B4 Relay wrote:
+> This patch series adds a driver and the documentation for the SD2405AL I2C RTC.
+> 
+> To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-rtc@vger.kernel.org
+> Cc: csokas.bence@prolan.hu
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Tóth János <gomba007@gmail.com>
+> 
+> Changes in v6:
+> - Add missing To-s and Cc-s.
+> - Rebased onto v6.11-rc5
+> - Link to v5: https://lore.kernel.org/r/20240828-rtc-sd2405al-v5-0-9e3f8fa5ea6b@gmail.com
+> 
+> Changes in v5:
+> - Rework based on Alexandre Belloni's suggestions.
+> - Drop explicit initialization of struct i2c_device_id::driver_data.
+> - Add documentation.
+> - Link to v4: https://lore.kernel.org/r/20240624-rtc-sd2405al-v4-1-2b2bc759f98f@gmail.com
+> 
+> Changes in v4:
+> - Implement more comprehensive data validation.
+> - Inline some temporary variables.
+> - Link to v3: https://lore.kernel.org/r/20240620-rtc-sd2405al-v3-1-65d5bb01af50@gmail.com
+> 
+> Changes in v3:
+> - #define-s of registers are reworked.
+> - Minor revisions based on the reviewer's suggestions.
+> - Link to v2: https://lore.kernel.org/r/20240619-rtc-sd2405al-v2-1-39bea29bd2a5@gmail.com
+> 
+> Changes in v2:
+> - Refactored based on reviewer's suggestions.
+> - I couldn't get the I2C IRQ to work on Raspberry Pi 4, so alarm is
+>   skipped.
+> - Link to v1: https://lore.kernel.org/r/20240607-rtc-sd2405al-v1-1-535971e7a866@gmail.com
+> 
 > ---
->  .../input/touchscreen/adi,ad7877.yaml         | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/a=
-di,ad7877.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/adi,ad78=
-77.yaml b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.ya=
-ml
-> new file mode 100644
-> index 000000000000..5fc5124c5999
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/adi,ad7877.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7877 Touch Screen Controller
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +  Analog Devices Touch Screen Controller
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
-7877.pdf
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> Tóth János (2):
+>       drivers: rtc: Add driver for SD2405AL.
+>       dt-bindings: rtc: Add support for SD2405AL.
+> 
+>  .../devicetree/bindings/rtc/trivial-rtc.yaml       |   2 +
+>  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+>  MAINTAINERS                                        |   6 +
+>  drivers/rtc/Kconfig                                |  10 +
+>  drivers/rtc/Makefile                               |   1 +
+>  drivers/rtc/rtc-sd2405al.c                         | 227 +++++++++++++++++++++
+>  6 files changed, 248 insertions(+)
+> ---
+> base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
+> change-id: 20240607-rtc-sd2405al-a0947377c73d
+> 
+> Best regards,
+> -- 
+> Tóth János <gomba007@gmail.com>
+> 
+> 
 
-> +
-> +unevaluatedProperties: false
-
-So, all of the properties in those two files are valid for this
-touchscreen controller?
-
---hFaBAt629pkSLViP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCe3gAKCRB4tDGHoIJi
-0iT8AP4pJ9a6awlbILTm7sxvIpWDpdBbhXEgx4ngjVqasbPQqAD8DQiAFH2A3p5f
-JPd29psXBmpBvhIG+Xi2vJGMjOF+Cgs=
-=mApE
------END PGP SIGNATURE-----
-
---hFaBAt629pkSLViP--
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
