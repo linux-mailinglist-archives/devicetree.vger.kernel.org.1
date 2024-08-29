@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-98091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D39A964CC3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:30:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1720D964CC7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:30:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02B101F231E0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:30:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8B99284327
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28C21B151F;
-	Thu, 29 Aug 2024 17:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AF81B78F4;
+	Thu, 29 Aug 2024 17:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XukKEq6r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MAyNDAN0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FF5640870;
-	Thu, 29 Aug 2024 17:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746AB1494BD;
+	Thu, 29 Aug 2024 17:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724952627; cv=none; b=iB74GBGERT9QfZK9M99vNOrjEP6kk/nhvcPwfpdLBJC7NAt2B7O+JJ3WeXkmBNduEQXYasMnSK8lDtTkRgajHmnIxlu2kAuetqzzEA+5TOM3GRIhO9YHhwa+lcvbJfzeO3G8FyOSJ2Faecm1FQigPdQeRnu7pKmtdpToSWEFb2M=
+	t=1724952633; cv=none; b=L2i2CeD0ezvV2f88dBa5RSFt6YZThZXWx54plF5SbgX93Q5Yfm+2+228Q/I/SPVzzdbb4jFUUZlF72/T8OLtTal8EAcKdN2EQFKs9y63V5vK+0M9nUQIfi1n40XGfgU3BeLLHQ3oX6VCDeKBHNMAiZVQe3IYfv2rJXo6OWgtFbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724952627; c=relaxed/simple;
-	bh=kWuFHoupUeoLMSNjGVbiL4lpeHmH38kYHoBuArnwaN0=;
+	s=arc-20240116; t=1724952633; c=relaxed/simple;
+	bh=0DKsWWtD98DXeeHZ/Lq4dI+NGfCIWVAYsiA73B5uPTY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=m+N5VvOkUSLg5jRkSWa8jNPsWgBiphluAKYl9x5ejCuVtGYXkdwvQPJPl8o8Gocn0JiY2Zv38LUV29WZS+3Z5H1L+56iROctAfo6BoFCGHnNWcJTd76SoNwj9Cw8EKlKkpY+RsxgTvWK8HN7EuLhAKJ51jpmLs/yQy0DSkZglIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XukKEq6r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40616C4CEC5;
-	Thu, 29 Aug 2024 17:30:24 +0000 (UTC)
+	 MIME-Version:Content-Type; b=M1ybqFlzqy1U8z61a74OjuUZx05yz/Z//S6XnrAC7m5Q1Jv7qmzxUgYIJT4cqqr8LDq0/MTfqfcHswF6XvJUNqWvvNZZGBq1k6zfJRiwfmYMbrHK07m1Ortn46o0uK0A0huMltEW0R63VAj8w0R6Nx5oHvohEz/2w9mO9WagCHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MAyNDAN0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81825C4CEC9;
+	Thu, 29 Aug 2024 17:30:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724952627;
-	bh=kWuFHoupUeoLMSNjGVbiL4lpeHmH38kYHoBuArnwaN0=;
+	s=k20201202; t=1724952632;
+	bh=0DKsWWtD98DXeeHZ/Lq4dI+NGfCIWVAYsiA73B5uPTY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=XukKEq6rmbwer+gAM2hmk7PLHsNHFve0Qwe270Q5CSsT7IXjwB8BJved+AhZtpNgZ
-	 tAgxvr4SeWS2yfqRBj9dSsMFEZcd90OiBqQJZEJu5Vm3v7r1cKhRrEcFOyXcgQaYml
-	 cMhsneue2jS/4xeO8PHk7UWD7fme7sdsIG1YPVHzqDVBwfUkt/hzUK9ocPvIsdaReW
-	 PGCn+UsOT/cAqOsx5f07vahH8fhM+KOacZ0Rxiucs3DY2BNTDgizahi/6yuU4bEWm2
-	 CTMwRdFzsrthPc0+nV9EFO8eh8VBeEC08143R/XY6FOEdCBTkNbklmXoxpWNIjhGnf
-	 QA8X4Fa6wxQKg==
+	b=MAyNDAN0YwAJwZBq+kC4JvFwZDNifbGh2drFVbaZq2cW4DDpZ3xsW7C98dwMW0BGY
+	 RYUZCPa1IPMUqWKhuS73Gd6sIpePgmni9g/m1QuX/CHxOLvAV0KIlyRUxh4p6thNd2
+	 +nNnDjd7KOoFuALLs1rPi9lTXMl1ATtcYDyAaJdWgAUTsMkpdW/bVjkZw/FvR/ud21
+	 d+SlmYihwplsAlQBwLaz1F8Klsn8ttI8eZipQ9YKnQ5YjKQwRyj21z+JB3v4cU5IE+
+	 zU9KqqxzUPjbbH0J8Mh09R1MpHgWN5OEg5zBj26fHs400Ufps7RxgF4ndFKpsFLoBq
+	 AVhQT+EtrEBPg==
 From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Keguang Zhang <keguang.zhang@gmail.com>
-Cc: linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Jiaxun Yang <jiaxun.yang@flygoat.com>
-In-Reply-To: <20240607-loongson1-dma-v8-0-f9992d257250@gmail.com>
-References: <20240607-loongson1-dma-v8-0-f9992d257250@gmail.com>
-Subject: Re: [PATCH v8 0/2] Add support for Loongson1 APB DMA
-Message-Id: <172495262390.385951.6697848658942844877.b4-ty@kernel.org>
-Date: Thu, 29 Aug 2024 23:00:23 +0530
+To: michal.simek@amd.com, robh@kernel.org, conor+dt@kernel.org, 
+ krzk+dt@kernel.org, u.kleine-koenig@pengutronix.de, 
+ radhey.shyam.pandey@amd.com, harini.katakam@amd.com, 
+ Abin Joseph <abin.joseph@amd.com>
+Cc: git@amd.com, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240808100024.317497-1-abin.joseph@amd.com>
+References: <20240808100024.317497-1-abin.joseph@amd.com>
+Subject: Re: [PATCH v2 0/2] Add support for ADMA
+Message-Id: <172495262916.385951.5476247700148608614.b4-ty@kernel.org>
+Date: Thu, 29 Aug 2024 23:00:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,32 +64,17 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Fri, 07 Jun 2024 20:12:22 +0800, Keguang Zhang wrote:
-> Add the driver and dt-binding document for Loongson1 APB DMA.
+On Thu, 08 Aug 2024 15:30:22 +0530, Abin Joseph wrote:
+> Add support for Versal Gen 2 DMA IP by adding a compatible string and
+> separate Versal Gen 2 DMA IP register offset.
 > 
-> Changes in v8:
-> - Change 'interrupts' property to an items list
-> - Link to v7: https://lore.kernel.org/r/20240329-loongson1-dma-v7-0-37db58608de5@gmail.com
-> 
-> Changes in v7:
-> - Change the comptible to 'loongson,ls1*-apbdma' (suggested by Huacai Chen)
-> - Update the title and description part accordingly
-> - Rename the file to loongson,ls1b-apbdma.yaml
-> - Add a compatible string for LS1A
-> - Delete minItems of 'interrupts'
-> - Change patterns of 'interrupt-names' to const
-> - Rename the file to loongson1-apb-dma.c to keep the consistency
-> - Update Kconfig and Makefile accordingly
-> - Link to v6: https://lore.kernel.org/r/20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com
-> 
-> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: dma: Add Loongson-1 APB DMA
-      commit: 7ea270bb93e4ce165bb4f834c29c05e9815b6ca8
-[2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA driver
-      commit: e06c432312148ddb550ec55b004e32671657ea23
+[1/2] dt-bindings: dmaengine: zynqmp_dma: Add a new compatible string
+      commit: 36545c6a68b858671cfeb71df682e8cc58b082da
+[2/2] dmaengine: zynqmp_dma: Add support for AMD Versal Gen 2 DMA IP
+      commit: 13113f750a4ae0b1770fa25dc94852977ebfb942
 
 Best regards,
 -- 
