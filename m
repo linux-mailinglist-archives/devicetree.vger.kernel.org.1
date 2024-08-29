@@ -1,114 +1,191 @@
-Return-Path: <devicetree+bounces-98034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0BAE96475F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:58:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B6E96479A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:07:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0045D1C22F7F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:58:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAA421C24E59
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C252C1AD3FC;
-	Thu, 29 Aug 2024 13:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60371AE87A;
+	Thu, 29 Aug 2024 14:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t7Th5bMi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z400QnWl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F1318CC1A;
-	Thu, 29 Aug 2024 13:58:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6151E1AE846;
+	Thu, 29 Aug 2024 14:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724939927; cv=none; b=KAitLrG0pVqBraRhvAV1jaDS7zlz6g6qcgclFsfpJP/kGQIRen6HBm5DubsaUTGDmpSdw93LcHTlWIaQCbIvIusvCSCNxSkTcagrONJW45ehRi/DhcgHSiHtXAwkdX0TFZ4eycWLYsyQET/zzcpnJsG0qSmpeqQkmt2yMpfvZEY=
+	t=1724940422; cv=none; b=oL4sNNVwgGLr5hi5cwjflshJB8xlwmBKyvdhul9tTJktc4s9fjxq3VgLu1+HjsiyHmeelMhSiZMHkE3lTzTRAA1cg5NkEGblzWwc2RgyRcdNMmxWuetHkSeLrW9SdFfUC/RC1SOFbzZ4rwGkBLxUsVlCPs4T8cHk8BhVN3y9Sos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724939927; c=relaxed/simple;
-	bh=0q2Ur2MUpnxOlKHJBVHPWz/HdHJLxmDIENnY11FuYXw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q0CWXqlZ4rhgws0dAYCfJY2Te9/JWJUg+MJXmzXxHjEt1Lzd/1IXmb6ug/X9cq19C5DkWgfzCSfGfQNAEynPX8vXJ0jgDktgrhyS/FMucKr6DN5p7W75YN3D2tnW1OLsX6GD39tQvfhAFp9yIXe1xTg3ZwKueE1gYhQdCTxfTU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t7Th5bMi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A1AFC4CEC1;
-	Thu, 29 Aug 2024 13:58:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724939927;
-	bh=0q2Ur2MUpnxOlKHJBVHPWz/HdHJLxmDIENnY11FuYXw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t7Th5bMiQpdMBxlOffFJ+GCJM2I+/UMt2ILZmIDUvSGphvKC6S7bSvhHl/TMfAj5A
-	 X+FJbv00VQxKC1CSYo0/gkSm9fbZuqQpNpQCdEz973TtCJsNDrojL+f0o3X8kuVIgu
-	 TUFUAXIKiu+/UfljTa/WqSi/kSJH8UQEwKKy24/QL45UcGun3hEMhjChB8yig4rYfD
-	 nDfZrNraj/IX0lGbPmsNWgAD0aslWPWQI1T+JOrV8g7xEY4mfNyk8FunhrBvn1q4KF
-	 T6ugzDVWW+JuFfYjR8L2EAzn0qOXocLWiKCFlwNJ85f72kiXXXzXLCPJ7PkE9kWN35
-	 JNJ3ppTQ47OMw==
-Date: Thu, 29 Aug 2024 08:58:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/7] dt-bindings: fuse: Move renesas,rcar-{efuse,otp}
- to nvmem
-Message-ID: <20240829135845.GA297607-robh@kernel.org>
-References: <cover.1721999833.git.geert+renesas@glider.be>
- <1a3d4ff8ce34a5e676d1cb1fafd40525378e29a4.1721999833.git.geert+renesas@glider.be>
- <20240730162435.GA1480758-robh@kernel.org>
- <CAMuHMdUwATmjM3E7WmwnCK739CwuyZH1w_YVYbroDcWEpzh8ig@mail.gmail.com>
- <67hcoj3haiptjh4f7qvaz4xwcdamr3x33xxrxusuwq2t3veiln@z2ggc7razty4>
- <CAMuHMdXSxMzzM6WgwObbymdWHcqUU2r6BOyS7ZzqSBx_gsWftw@mail.gmail.com>
- <c91167d8-df24-4a3c-bb92-811bd1543be3@kernel.org>
- <CAMuHMdUOi-jNLdfnG1iWORa8=EnZjM+DpREsWPyc9RMQwW80SA@mail.gmail.com>
+	s=arc-20240116; t=1724940422; c=relaxed/simple;
+	bh=Dnc97RZIVh4Cs30Qnu+fHSGTdzuC4rmOQI0ZaXzgC7w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bg/pLHN4FVbV7viIfBud9zQDjgPnZxaUcNiOQNbwiMIrHKjXhcGzo0GzgjM/2qYykChc1V9NHGIL7rPCWea0C2zqnThaiu4kavUi6UwLwk+scX9UbnpSlycYcb+BHy7F78i0eHdiCZI8YJnlgkouCBrh2LUWqEA2QnHjFeB3lYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z400QnWl; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7142e002aceso575596b3a.2;
+        Thu, 29 Aug 2024 07:07:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724940421; x=1725545221; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iK1IVOMJIxyZnFgv4BStIpf1YlI4C67hPRkMhKa7i/g=;
+        b=Z400QnWlTcuha2HuzdoMffJXpysUx0OY/fWAl5Zm+dV19b2OZW/e2JY7HhfRAmlWDp
+         YJ5fQ3faFu0ovLOCL8nfRKHFl61sKfZLNQcC8pI4rgVg6h+R9lDwSBioXH0Eo2FisKLS
+         XeEVIJ4G3qW3RziJmEugzfbRmY58W8sYZ1hVLwvqKP/6BDRir3Rw//gA199Lu/aQsYJz
+         3jESmTc5xxw+yXh5js9vaqrch6lSRlNWfpXo4iBIB0VottC9sLIdrzpsB346KiXof14d
+         PJPPjhJMXeLwvwLjTP17/+uu/t2JLljGDpcfR6dqpqbsD4W2PtUGoHd3QPoWhufe8SQC
+         QqEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724940421; x=1725545221;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iK1IVOMJIxyZnFgv4BStIpf1YlI4C67hPRkMhKa7i/g=;
+        b=SJmGc57NfJgXl/qt34Dg0A2uMFpDPY1tLGe6R5IQOBGgSv//vtmSWq5kDk6gDkDP/3
+         S+3d/0/3ZQOOoSYo3Eclz4H7cDV9Wgbf5eJwHH92zWXja3bKui+5gQbeenhQxbCytGUr
+         idcVBUJBlCPxX8GIjI68apgjGQ4434nzd8iqlmax6n7/Zts2SJYdpQKHeiYkNsc4RRsF
+         8CjfXoc60Lx0foKdJ5urLjn+GwmwDOWHqhudDWKyFYyoUvAhFmyZroEp+t6nlpebu2qB
+         dd+Fzir+nS6jh4qXLY3LG4bGqeQ8O/UstPFhHgBFJ9njxvVbLlOOCD+UIgjLz0pEzQer
+         X2sQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVhSqcvwFDz9pSv9ru5YjNmvjl0u/6ndIga8H6ydo3dVlIBp6ouoWKx03IzPd9kaKa/KnyCIGRGcqv0@vger.kernel.org, AJvYcCWMYGa7M8zYpuMDKfUlvzDN4Tvh6hzfonY3z+ALoKWu7nVMjfz5q4ukaq4Ud16GfSNdbwO7TOGLycaimby5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxzCLw1VYY/MEnamulIV/hIns8tfXCH/hOlmWbQT/B7Uas3VqT
+	qjDKY+AajLPb+ObxOVabcaCFHyIpBI00e77Mdwb5LUjn/tgYWv4jemDBFKLHHMc=
+X-Google-Smtp-Source: AGHT+IG2CyT+7KwKUd+VOi3UxpXYONelmRV4w2rkII4YQ8l9bIrb2V+UgLmErP8YyjI2/5thiSzKwQ==
+X-Received: by 2002:a05:6a00:1798:b0:70e:91ca:32ab with SMTP id d2e1a72fcca58-715dfaea829mr3436412b3a.6.1724940420644;
+        Thu, 29 Aug 2024 07:07:00 -0700 (PDT)
+Received: from [192.168.0.122] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e55b9c4esm1192104b3a.92.2024.08.29.07.06.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Aug 2024 07:07:00 -0700 (PDT)
+Message-ID: <e6377027-c4e5-4fd2-abf4-63cf6282542d@gmail.com>
+Date: Thu, 29 Aug 2024 22:06:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUOi-jNLdfnG1iWORa8=EnZjM+DpREsWPyc9RMQwW80SA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND 3/3] irqchip/apple-aic: Add a new "Global fast IPIs
+ only" feature level
+Content-Language: en-MW
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+References: <20240829110436.46052-1-towinchenmi@gmail.com>
+ <20240829110436.46052-4-towinchenmi@gmail.com>
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <20240829110436.46052-4-towinchenmi@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 29, 2024 at 11:10:41AM +0200, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
+
+
+On 29/8/2024 19:02, Nick Chan wrote:
+> Starting with the A11 (T8015) SoC, Apple began using arm64 sysregs for
+> fast IPIs. However, on A11, there is no such things as "Local" fast IPIs,
+> as the SYS_IMP_APL_IPI_RR_LOCAL_EL1 register does not seem to exist.
 > 
-> On Thu, Aug 29, 2024 at 10:55 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > On 28/08/2024 22:10, Geert Uytterhoeven wrote:
-> > > On Mon, Aug 19, 2024 at 1:11 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >> On Wed, Jul 31, 2024 at 09:37:36AM +0200, Geert Uytterhoeven wrote:
-> > >>> On Tue, Jul 30, 2024 at 6:24 PM Rob Herring <robh@kernel.org> wrote:
-> > >>>> On Fri, Jul 26, 2024 at 03:38:06PM +0200, Geert Uytterhoeven wrote:
-> > >>>>> The R-Car E-FUSE blocks can be modelled better using the nvmem
-> > >>>>> framework.
-> > >>>>>
-> > >>>>> Replace the R-Car V3U example by an R-Car S4-8 ES1.2 example, to show
-> > >>>>> the definition of nvmem cells.  While at it, drop unneeded labels from
-> > >>>>> the examples, and fix indentation.
-> > >>>>>
-> > >>>>> Add an entry to the MAINTAINERS file.
-> > >>>>>
-> > >>>>> Reported-by: Arnd Bergmann <arnd@arndb.de>
-> > >>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > >>>>> ---
-> > >>>>> v3:
-> > >>>>>   - New.
-> > >>>>>
-> > >>>>> I would expect that the calib@144 node needs:
-> > >>>>>
-> > >>>>>     #nvmem-cell-cells = <0>;
-> >
-> > So this is for mac-base...
+> Add a new feature level, used by the compatible "apple,t8015-aic",
+> controlled by a static branch key named use_local_fast_ipi. When
+> use_fast_ipi is true and use_local_fast_ipi is false, fast IPIs are used
+> but all IPIs goes through the register SYS_IMP_APL_IPI_RR_GLOBAL_EL1, as
+> "global" IPIs.
 > 
-> No, mac-base is not involved.
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> ---
+>  drivers/irqchip/irq-apple-aic.c | 25 ++++++++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
+> index 626aaeafa96c..1640074af2e1 100644
+> --- a/drivers/irqchip/irq-apple-aic.c
+> +++ b/drivers/irqchip/irq-apple-aic.c
+> @@ -236,6 +236,8 @@ enum fiq_hwirq {
+>  
+>  /* True if UNCORE/UNCORE2 and Sn_... IPI registers are present and used (A11+) */
+>  static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
+> +/* True if SYS_IMP_APL_IPI_RR_LOCAL_EL1 exists (M1+) */
+> +static DEFINE_STATIC_KEY_TRUE(use_local_fast_ipi);
+>  
+>  struct aic_info {
+>  	int version;
+> @@ -253,6 +255,7 @@ struct aic_info {
+>  
+>  	/* Features */
+>  	bool fast_ipi;
+> +	bool local_fast_ipi;
+>  };
+>  
+>  static const struct aic_info aic1_info __initconst = {
+> @@ -271,6 +274,16 @@ static const struct aic_info aic1_fipi_info __initconst = {
+>  	.fast_ipi	= true,
+>  };
+>  
+> +static const struct aic_info aic1_local_fipi_info __initconst = {
+> +	.version	= 1,
+> +
+> +	.event		= AIC_EVENT,
+> +	.target_cpu	= AIC_TARGET_CPU,
+> +
+> +	.fast_ipi	= true,
+> +	.local_fast_ipi = true,
+> +};
+> +
+>  static const struct aic_info aic2_info __initconst = {
+This patch is incorrectly disabling local fast IPI on aic2, it will be
+corrected in v2.
 
-It is because that's the only case that allows #nvmem-cell-cells in 
-fixed-cell.yaml. While fixed-cell.yaml allows additional properties, 
-where it is referenced in fixed-layout.yaml does not.
+>  	.version	= 2,
+>  
+> @@ -282,6 +295,10 @@ static const struct aic_info aic2_info __initconst = {
+>  static const struct of_device_id aic_info_match[] = {
+>  	{
+>  		.compatible = "apple,t8103-aic",
+> +		.data = &aic1_local_fipi_info,
+> +	},
+> +	{
+> +		.compatible = "apple,t8015-aic",
+>  		.data = &aic1_fipi_info,
+>  	},
+>  	{
+> @@ -748,7 +765,8 @@ static void aic_ipi_send_fast(int cpu)
+>  	u64 cluster = MPIDR_CLUSTER(mpidr);
+>  	u64 idx = MPIDR_CPU(mpidr);
+>  
+> -	if (MPIDR_CLUSTER(my_mpidr) == cluster)
+> +	if (static_branch_likely(&use_local_fast_ipi) &&
+> +	    MPIDR_CLUSTER(my_mpidr) == cluster)
+>  		write_sysreg_s(FIELD_PREP(IPI_RR_CPU, idx),
+>  			       SYS_IMP_APL_IPI_RR_LOCAL_EL1);
+>  	else
+> @@ -992,6 +1010,11 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
+>  	else
+>  		static_branch_disable(&use_fast_ipi);
+>  
+> +	if (irqc->info.local_fast_ipi)
+> +		static_branch_enable(&use_local_fast_ipi);
+> +	else
+> +		static_branch_disable(&use_local_fast_ipi);
+> +
+>  	irqc->info.die_stride = off - start_off;
+>  
+>  	irqc->hw_domain = irq_domain_create_tree(of_node_to_fwnode(node),
 
-Rob
+Nick Chan
 
