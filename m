@@ -1,146 +1,146 @@
-Return-Path: <devicetree+bounces-98061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1980C964A6B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:45:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BC3964A72
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:47:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A12B1C24484
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:45:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D0061F2432C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DB71B3741;
-	Thu, 29 Aug 2024 15:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32DD1B3758;
+	Thu, 29 Aug 2024 15:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZpX/oRyx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lwHGbfry"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0168533998;
-	Thu, 29 Aug 2024 15:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C6246B91;
+	Thu, 29 Aug 2024 15:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724946318; cv=none; b=neHer7tDtPfdn9sQI4RVDOSUewTHT5UaP8K8MLi5ogOxMCwgIOw+YpglZlgEwMGo0nHPg4cN9SutY0p3YbqOAbNgeXEDcG4RT9B2A73vO/yn6vibjS+m7ElRY1QUN9TUeKbembS4WZxFpoZgtofu623F3MH0UNYM2NbTHk210R0=
+	t=1724946424; cv=none; b=lvzeL1J5Kunjw/LeOCQ3bldUQj5rMz/B3kgY4zYO5oWo4MlL/eIuiyWclesKLlRjs9lWGcoay7/Iq2ESxvbU5B+QmTiVntftpjHMQhiMqtc1we/WQayM7VTADwajkcoXQoNPVM6ZToUwrWvDrhKsZg3YPEHATuJKBgpUI1NZ43M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724946318; c=relaxed/simple;
-	bh=VIY5HaE7JEsJLMzs9MMF9q38bi2uPDkUtjNeBnAxG/I=;
+	s=arc-20240116; t=1724946424; c=relaxed/simple;
+	bh=U2cO3Y3eW0lQ0P74rSCozMZbvUMOSpflSpyK9zSbO78=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZQQQxEv0T4WmXguxcOqZcrWQXtgXsxW0hytElAqaFoexycU1SyKaFrztuEylsjsBTGqd92JhNbmt/NUfdl19bfhw/XXBEB8GlUIFn+ybTbPa1Abw5XuLJx/oV7489NSykOm4y+QepXXJCF9/hOzzdjR8lIh1j28d3fhne/CK01I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZpX/oRyx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C421C4CEC1;
-	Thu, 29 Aug 2024 15:45:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=F+FHqqTd/ZA6TMLQyONU4Q62/keDh+LqljfrwLU/G6uJvzwjSWqsjAsL8OZTbyZdPbGiOAszia8PItZmktBgWhXtQ37gHj7PzmU2zcwfw5qa7E1FIN+GYDZc0O+y1A1Px0/vvxDwTrKvcPqKut3/Vesd37j99hCs6NxNPnX+CY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lwHGbfry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84673C4CEC1;
+	Thu, 29 Aug 2024 15:47:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724946317;
-	bh=VIY5HaE7JEsJLMzs9MMF9q38bi2uPDkUtjNeBnAxG/I=;
+	s=k20201202; t=1724946424;
+	bh=U2cO3Y3eW0lQ0P74rSCozMZbvUMOSpflSpyK9zSbO78=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZpX/oRyxClc9YiG9o6xKE5jQw2jRGFQMpdFckrio93oUHx5SCLEDiSKjiMlZn2Urh
-	 Ivumr6vnpv0dovvr+Ne7nYPjF8D9k7/nV7GDiyQr+N5y5rhpYwWIUKjdOUUhwz6BXQ
-	 FZte1sDARnCFVGUOkdba75ztEvoOpNnl23MP4lCBy4YqzOvjprYlf6CksH57SMYJEI
-	 RxHqbTyLkAAL3r4ShgrSCoDX0c7Fj7LYOGHAuURSnWVIJlsUJuOPXGTfNLVA++T4Sl
-	 dSlmVVeoNrQ5WCFBwabIAojPDfY6bLWgo+zGTW+GmfsoiKxoApSmXREUkDioMatkgG
-	 gY6cO8fb6y7tg==
-Date: Thu, 29 Aug 2024 10:45:15 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
-	linux-sound@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
-Subject: Re: [PATCH v4 1/9] of: property: add of_graph_get_next_port()
-Message-ID: <20240829154515.GD465065-robh@kernel.org>
-References: <87bk1d2pvt.wl-kuninori.morimoto.gx@renesas.com>
- <87a5gx2pva.wl-kuninori.morimoto.gx@renesas.com>
+	b=lwHGbfryA5pNISl2VdFb/CZPZ6GmuYLxUjN5YgaH1cb6ii/dBL3MjgSj4oOGCsvvu
+	 wHgna8VDhocU1eEpAIeLQ+T3NpacVqdP5x1DU5Ut7nG0JHHAt4xwUChOsYO5loQq8p
+	 cj35odTMzWwnv0r39n4gJP62cgoBdFRoN3WGGpYq29wI3TDu+60nrGGrbvC+nlpQ72
+	 s3t837McFO9ZoTGtyhXuFMZZahgQxztMeTV4Zb9UjoMpuHwfnoq+yPyjXswCURQh50
+	 97wIfEn+FjjkbO4UpnAkratAG1zzFbXDUHNZ54qUmEOefVY2AnHz6xgfDluKLR2Eo8
+	 6j5SpY3Pu0rLg==
+Date: Thu, 29 Aug 2024 16:46:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dlechner@baylibre.com
+Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
+ property
+Message-ID: <20240829-stopwatch-morality-a933abb4d688@spud>
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+ <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FtoiXBdIW3OmYFeF"
+Content-Disposition: inline
+In-Reply-To: <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
+
+
+--FtoiXBdIW3OmYFeF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87a5gx2pva.wl-kuninori.morimoto.gx@renesas.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 28, 2024 at 05:11:37AM +0000, Kuninori Morimoto wrote:
-> We have endpoint base functions
-> 	- of_graph_get_next_device_endpoint()
-> 	- of_graph_get_device_endpoint_count()
-> 	- for_each_of_graph_device_endpoint()
-> 
-> Here, for_each_of_graph_device_endpoint() loop finds each endpoints
-> 
-> 	ports {
-> 		port@0 {
-> (1)			endpoint {...};
-> 		};
-> 		port@1 {
-> (2)			endpoint {...};
-> 		};
-> 		...
-> 	};
-> 
-> In above case, it finds endpoint as (1) -> (2) -> ...
-> 
-> Basically, user/driver knows which port is used for what, but not in
-> all cases. For example on flexible/generic driver case, how many ports
-> are used is not fixed.
-> 
-> For example Sound Generic Card driver which is used from many venders
-> can't know how many ports are used. Because the driver is very
-> flexible/generic, it is impossible to know how many ports are used,
-> it depends on each vender SoC and/or its used board.
-> 
-> And more, the port can have multi endpoints. For example Generic Sound
-> Card case, it supports many type of connection between CPU / Codec, and
-> some of them uses multi endpoint in one port.
-> Then, Generic Sound Card want to handle each connection via "port"
-> instead of "endpoint".
-> But, it is very difficult to handle each "port" via existing
-> for_each_of_graph_device_endpoint(). Getting "port" via of_get_parent()
-> from "endpoint" doesn't work. see below.
-> 
-> 	ports {
-> 		port@0 {
-> (1)			endpoint@0 {...};
-> (2)			endpoint@1 {...};
-> 		};
-> 		port@1 {
-> (3)			endpoint {...};
-> 		};
-> 		...
-> 	};
-> 
-> In other case, we want to handle "ports" same as "port" for some reasons.
-> 
-> 	node {
-> =>		ports@0 {
-> 			port@0 { ... };
-> 			port@1 { ... };
-> 			...
-> 		};
-> =>		ports@1 {
-> 			...
-> 		};
-> 	};
+On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
+>=20
+> Add bus property.
 
-There is no schema that supports this structure. The closest thing we 
-have is in-ports and out-ports in Coresight bindings.
+RFC it may be, but you do need to explain what this bus-type actually
+describes for commenting on the suitability of the method to be
+meaningful.
 
-In any case, it should be a separate patch, not buried in here.
+>=20
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b=
+/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> index a55e9bfc66d7..a7ce72e1cd81 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> @@ -38,6 +38,15 @@ properties:
+>    clocks:
+>      maxItems: 1
 
-Rob
+You mentioned about new compatible strings, does the one currently
+listed in this binding support both bus types?
+
+Making the bus type decision based on compatible only really makes sense
+if they're different versions of the IP, but not if they're different
+configuration options for a given version.
+
+> +  bus-type:
+
+If, as you mentioned, there are multiple bus types, a non-flag property
+does make sense. However, I am really not keen on these "forced" numerical
+properties at all, I'd much rather see strings used here.
+
+Thanks,
+Conor.
+
+> +    maxItems: 1
+> +    description: |
+> +      Configure bus type:
+> +        - 0: none
+> +        - 1: qspi
+> +    enum: [0, 1]
+> +    default: 0
+> +
+>    '#io-backend-cells':
+>      const: 0
+> =20
+>=20
+> --=20
+> 2.45.0.rc1
+>=20
+
+--FtoiXBdIW3OmYFeF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCX8wAKCRB4tDGHoIJi
+0pmkAP4uV+pw1FeyYtkjnBsCgD0EHjgDRKD2ZRXw3NnI0rsCbQD/XQbICb7bCchB
+DM48Rzx7rHwTgNFWlNQBQtTWhOPzFg0=
+=NY/t
+-----END PGP SIGNATURE-----
+
+--FtoiXBdIW3OmYFeF--
 
