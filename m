@@ -1,104 +1,159 @@
-Return-Path: <devicetree+bounces-97898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B74964041
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:36:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846AB964056
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:38:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49FD41C2248C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:36:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D7EB2840C3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4476618CBF8;
-	Thu, 29 Aug 2024 09:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EEDB18DF86;
+	Thu, 29 Aug 2024 09:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WRsyJLdc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="TtWb0uEK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7DD18C331
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 09:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776FA18CC01;
+	Thu, 29 Aug 2024 09:37:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724924177; cv=none; b=g+5dZeUoeFSzGtZx5FoF5FeOsdVLi2mhio+BNoxNloV5Y9BrASpqcPc+DG7STiwcpAzPpYKEmI0Ls5CLDWfu4Muz176vmWEl0OEGSkw5mRdASturjxG0EpI16At2TGMn3tPt8vy2Zgz9ZVFX8PoSqnAQO4lFnqZkmmSh99DjHoQ=
+	t=1724924227; cv=none; b=SwB/7S3YzSi6vQ3cro3ZE8LYkmICps9X9X4guqJjboMP4fML8mZAwP8vr1uu/+6LvnLl56bukKRnGlYMKPc5TQ5PzEsYFEDFQLbBL9ihtjz2dWCO4HmFPyeTGZiOXJwLN8tJTpN32o9OSUh24/PNexoHv31LmJ0VRzbrcWZbAUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724924177; c=relaxed/simple;
-	bh=hlhLXUxpMLkHBSg7g/cTYCnIZnJZv5ajArX+OuxbXH4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=As5zbuWbmJEo75LR/OLX4WnjRVnD+0LldLRamtbTItJ2TiHFW5D+YH4DG7sQxcoRBQBTBGE0MYeE6fMKIbMOl5yGVvdUsi3ZN8UaAfCJYZweGZXhBEKFS5htzeqATwohSMurxvRkeTds9jffRiRsvKRUFlsGS9E+i6tfusnvIro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WRsyJLdc; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a86e9db75b9so39040766b.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 02:36:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724924174; x=1725528974; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bTNT9yXQN3AdBsM7Hvo07QH96T8VU0K/yy0t8WqdH2U=;
-        b=WRsyJLdc542bqCIAoRcV7iTvzWoeP8/enVkZrbWNJE2JWakwRvs6fVFdA7tS0Qlydx
-         O5KHgFIqIFWnnznnbmeRSj5319r3AcW3MqBaZ2W3giLYLmksTmHHTZb5Wr5jW9yfXE77
-         cNOySTsaFafUBkcYhqKVLIlBNo4IIgh1DK6nB5tQSx9QIwK4zkaEHOfgVusYf/kiRCmR
-         1jfFMgSfscJS9JC8OJB6Dl46o9gmATaDD94fWrtpvLQdg0Xn/gYYu6DbyHmzocqBdFDc
-         eCgqq0BG1GWvKEgfTo+8ICI/ZtstkjYkETjfiKiu9Rn9V14bMFjxg+7gZ9K9Dusmo11I
-         1u6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724924174; x=1725528974;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bTNT9yXQN3AdBsM7Hvo07QH96T8VU0K/yy0t8WqdH2U=;
-        b=ma67o/mBDijEXjFhCqzz/Oo/YYkGZasovVceusHWVU43QZ66pIAb7YQtSgb9+d/IUN
-         8Wq4aSSQ8E5GTbykWKBfQenPYb54N1NsWe08SyHU2QrUkXoBM7prL/Kb6e6KQcSwDTW1
-         sozYoEOvuw48sltoET+CUCCn0Ua+pLMuXndHmZZqrP6XOMhJ5oPGNHIBLVin+xkCGvsS
-         Bvh0kl91V5dI6yN8cPvN2GbloNpPsAJuFi8ghDjFvwCoQQZkIiJNICDjECbyKrISB7k2
-         /z1uUztYpmijrmLZq5trKPaoLvoOcFMnldFZXxmwF5zbpBPSe/YaHnA+x4Jgo4BeIQE1
-         QN/w==
-X-Forwarded-Encrypted: i=1; AJvYcCUuc3fO1qsGHKrwZF2wY8t6qOnU6fCCEBP8lm7W3nHiKkYKBn5V2n6dRMv/lBDcW3MNrrSaK/Uirp6s@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+aUjJGuPK3/MXPCVneKNa8I17ye7fWNicBqFelV7ChhJ+/4bz
-	sjheAuDm7rpdg9mlCOeU8Uir7B5UiMRFpHoKEPlD7/2WTFEOv77j9D9IgDLzFqs=
-X-Google-Smtp-Source: AGHT+IHN4C+WjAhb4ex1nVFmDZJXbTcRQA8CBNgpx2jfiHDO6/IuX96/T2C2Msyq3LgA0L+u9SV5Ag==
-X-Received: by 2002:a17:907:96a2:b0:a86:e9ab:f6c6 with SMTP id a640c23a62f3a-a897fad4ed5mr131683266b.68.1724924173489;
-        Thu, 29 Aug 2024 02:36:13 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8989222588sm54389466b.200.2024.08.29.02.36.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 02:36:13 -0700 (PDT)
-Message-ID: <3e44ffa2-f680-4bb8-bacc-65fbb65c110f@linaro.org>
-Date: Thu, 29 Aug 2024 10:36:12 +0100
+	s=arc-20240116; t=1724924227; c=relaxed/simple;
+	bh=82dXXvsSl7nPh9Mffs92ox5LvO9dlBIZwoU8wTP4E+k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n7wtxXtvWkDbEaDjFHwoUel460JDv/rjgEGpJ8ks9FpDS+bqTD6d5d2mpxdXKfwPa7DerxWT1TWjecFSzX7So1Uki88XmGi9SF/Zo3fGA4X38yAFOTluSCWz4m2GIySXuFKTUIx4c4LygYO9Hxy7abiLFp7TIXm04PrU0mcwzn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=TtWb0uEK; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=jcqQxRHrqDjRY4a9TzNalCHQ68bmxc540U58wjv9teQ=; b=TtWb0uEKIw0Mj8XzbE3gO9QHuR
+	g9vDx2FiuikCPQTi7W4x2rSeoOAD6AA5v9w74JPY3znHo47/Ies6n2PtD8Hwjfe1A8GSoIoMCxJgQ
+	CjF51T9+/dwHsNyi+ONAtiHTfdYuP+e2fiASStiQsXynvBKMjANLLwBMjx15LeEe7m1PX7PuMlCQE
+	PfXFuu1+09cMOgQQiTBv3QnMbxwokOyp7pSV1JsZLIxANUusFkt7It/FEXtOVmkvO9wIh/7SEIAyU
+	kQ+z3MSy/mKbBaWdpkvJwnu5nC44lZjCk+nQwy+OHvd7dlehZIC6cfFXwcF90LGSFoEgjEEQSDPUb
+	TBh9deTQ==;
+Received: from i5e861916.versanet.de ([94.134.25.22] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sjbaG-0002nq-Mv; Thu, 29 Aug 2024 11:36:52 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+	linux-kernel@vger.kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Sugar Zhang <sugar.zhang@rock-chips.com>,
+	linux-rockchip@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	kernel@collabora.com,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v7 1/3] dt-bindings: clock, reset: Add support for rk3576
+Date: Thu, 29 Aug 2024 11:36:47 +0200
+Message-ID: <172492351370.1695089.7443506809997782331.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <0102019199a76766-f3a2b53f-d063-458b-b0d1-dfbc2ea1893c-000000@eu-west-1.amazonses.com>
+References: <20240828154243.57286-1-detlev.casanova@collabora.com> <0102019199a76766-f3a2b53f-d063-458b-b0d1-dfbc2ea1893c-000000@eu-west-1.amazonses.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/29] media: iris: add platform driver for iris video
- device
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
- <20240827-iris_v3-v3-3-c5fdbbe65e70@quicinc.com>
- <74126160-57f9-4abf-a26c-3491c8f3dd78@linaro.org>
- <zfltcl5x4hol2foftyvr4oigxus4hnequd74zi7bdd7tsdv56q@3nphukr4zgmm>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <zfltcl5x4hol2foftyvr4oigxus4hnequd74zi7bdd7tsdv56q@3nphukr4zgmm>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 29/08/2024 10:13, Dmitry Baryshkov wrote:
->   What about adding sm8550 at this point and adding sm8250
-> at the end?
+On Wed, 28 Aug 2024 15:42:50 +0000, Detlev Casanova wrote:
+> Add clock and reset ID defines for rk3576.
+> 
+> Compared to the downstream bindings written by Elaine, this uses
+> continous gapless IDs starting at 0. Thus all numbers are
+> different between downstream and upstream, but names are kept
+> exactly the same.
+> 
+> [...]
 
-That works too.
+Applied, thanks!
+
+[1/3] dt-bindings: clock, reset: Add support for rk3576
+      commit: 49c04453db81fc806906e26ef9fc53bdb635ff39
+[2/3] clk: rockchip: Add new pll type pll_rk3588_ddr
+      commit: e781bffc296766b55dbd048890d558655031e8d1
+[3/3] clk: rockchip: Add clock controller for the RK3576
+      commit: cc40f5baa91bb7b031f5622e11a4e443cb771527
+
+
+general remark, please take a look at your mail setup.
+Amazon seems to break the generated message-ids.
+
+Your cover-letter is
+  0102019199a75f9b-aab57db6-806a-474b-8295-e5be5a99d424-000000@eu-west-1.amazonses.com
+
+while the patch (1-3) mails say
+  In-Reply-To: <20240828154243.57286-1-detlev.casanova@collabora.com>
+
+So that amazon thing somehow broke the message-ids in your mails.
+
+
+I've also dropped the whole module part.
+
+As always that Android GKI madness was cause for issues.
+The driver claims to be buildable as module, but it looks like nobody
+tried that:
+
+First build-failure:
+--------------------
+
+../drivers/clk/rockchip/clk-rk3576.c:1800:36: warning: ‘struct platform_device’ declared inside parameter list will not be visible outside of this definition or declaration
+ 1800 | static int clk_rk3576_probe(struct platform_device *pdev)
+      |                                    ^~~~~~~~~~~~~~~
+../drivers/clk/rockchip/clk-rk3576.c: In function ‘clk_rk3576_probe’:
+../drivers/clk/rockchip/clk-rk3576.c:1802:38: error: invalid use of undefined type ‘struct platform_device’
+ 1802 |         struct device_node *np = pdev->dev.of_node;
+      |                                      ^~
+
+...
+
+missing platform_device header
+
+Second build-failure, after fixing the whole module madnes:
+-----------------------------------------------------------
+
+  MODPOST Module.symvers
+ERROR: modpost: missing MODULE_LICENSE() in drivers/clk/rockchip/rst-rk3576.o
+ERROR: modpost: "rk3576_rst_init" [drivers/clk/rockchip/clk-rk3576.ko] undefined!
+make[3]: *** [../scripts/Makefile.modpost:145: Module.symvers] Fehler 1
+
+
+
+So when applying the series, I simply removed the whole module-part and made
+the init look like rk3588 for now.
+
+
+Somehow I always get the impression the whole "clock as a module" thing
+is just there so Rockchip can ship something completely out of tree on
+Android devices.
+
+
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
