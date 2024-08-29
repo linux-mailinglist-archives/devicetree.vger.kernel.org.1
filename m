@@ -1,130 +1,143 @@
-Return-Path: <devicetree+bounces-98051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D70349649FA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:27:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65DAF9649EF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:26:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6DBAB23DFC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:27:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C5251F23740
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796281B29C6;
-	Thu, 29 Aug 2024 15:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDAD1B151C;
+	Thu, 29 Aug 2024 15:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iLk138Dm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y99SYHQi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC6D31B0126
-	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 15:26:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D95E1B1411;
+	Thu, 29 Aug 2024 15:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724945206; cv=none; b=WIgxwJOOZpRVrPM9O7MD9Kfydb2IY9WH0WNVII/bC8POAg36hAh+Cs1De/4+70eIYlIXMwOs6ylO/GLkRQnbVFzsyCQRj5ZW/l98UF1vSAMwLFulDKY8tpIWqvtD0M71Xg+/BYuQAuEbYxZmmBQVvY8eGMdxt+FBx/Z2dUr8/Kg=
+	t=1724945175; cv=none; b=eu3ByUvZe+fhsjyLUo/JjHoe6Hb3QjzTHZ4Hrh4MGkVgdnYb42qpKCfHH6RrNhqRwX5cTzb1ammo6H4uU2GhZpfbqh7F/gcvRADV8ng+pMrDgjnvKaE2+MQFR+o0g9it2x4bqay80LlTlFYDd5WkUmCJa/bcWK08wAyFEPWFf64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724945206; c=relaxed/simple;
-	bh=4dvJdY5K5kxOqoCC7pXRpqwFhdbAnaNKbX4E/D+enOY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LF6zi/LDJdYUk1q7boNI9jAdXyJAUc/sd3k04jKc55piFbIYZ3V/iSm8WBCNFmMft/hDegcA6mUsEHs37U3pqc1Vd+ZtrVVeitWfadNuxQfMDVheddm1fNksm6PEF7FffLOhRvJ7bQbsq4IAqJRbGck1DjkGrq5M8O4NRQILf1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iLk138Dm; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a86acbaddb4so98761866b.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 08:26:44 -0700 (PDT)
+	s=arc-20240116; t=1724945175; c=relaxed/simple;
+	bh=E64+/rTlHIhV8w2ynBojlZI0qR87eW+72PsmAVPKhvs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FyfJimnHpcmXC8OB3aReCxm2y0KtBq8x+38pE1GBOog0AohJ0Lu5lCUR6ihfyXW91AqQ+7LV+vAv8TTdS1nMUkopu2NPS1pPUlCddrTma8JUh0Kdu0bGuDr4ukZV2sT5itVBjJr0zeB1TauJ6tdbkCrFrhAMn+FGDT4yesqvChc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y99SYHQi; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3718b5e9c4fso500975f8f.0;
+        Thu, 29 Aug 2024 08:26:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724945203; x=1725550003; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IIVRFaFvh25kJ2shkW0d6LgWcnTu2JPMWtkC2wxiE8c=;
-        b=iLk138DmuUR/gMoYbr0SRJadehtWKOy07A3t4/MS4xnlhm1Fsz7e1JxSkvVK01qO+w
-         KiaVHPTY9k1sJ3IufZZNtAdKdTezn5LYjB3Sk/yxwX/a+37NW75hpxKSZgzpf4M+nhMp
-         r5n7amg+em3PwlXIypgGviQVM1SLcm+VuBFrpc57kIFeEOhCmib2JcrXgEATVMojGACU
-         R8t0Mx48+cx1AqUn5rEXjHA0ypfXGDCYgM1Fz2m0gfN1fz3HZNxpufi4TbWzkfmELc7b
-         LD88e2Z2U11bSOXqwF7u5ZIYoiPH63yWpDINWFo+MZ2iqafnmr+2SCag8V+5K1fOGSzb
-         +n7A==
+        d=gmail.com; s=20230601; t=1724945172; x=1725549972; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oj8SbGZsIPIT2zmoQ3FCznFjgKHPHFcUOdD/u1KoOXU=;
+        b=Y99SYHQihsvbcnA1aAQZ1X2hUGKOEhw5m5czkm/8HFkD4YdsrxmurfQ0dtBnfhvG+w
+         YzHYkzJN/9McLLRii8xET6WQd9uRO7re/6q6UiWESNxTOgyr64+UywvAKo//UlISnrGi
+         9xrCoNC5g05jEuTqRF8P/v+jMT2oOgypWwdNaOml/ZYhuNGKYvVUB4/t63NHztn/dDSc
+         uenLWL41jhOsXTLLUCzxocLFImt/rFC7trxycUG60hUtdHzJ8n7LW4/o2rEJJn1rHkaS
+         tGJQprl87076F+p9YzIp2adxat5j4gEoEiaLHWcnsNSMOgNThjXB0/KUpDG9neBwG6QP
+         g8/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724945203; x=1725550003;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IIVRFaFvh25kJ2shkW0d6LgWcnTu2JPMWtkC2wxiE8c=;
-        b=Rbz40gwIRe/vQ5WprNO86+0yeHwn/CMw+A4AuJNiK6lXZjAfMbil/3AhRbfXG6Ed7R
-         /mC3cm7RNYtoCi865EMMdCf45nZFFhYXqGzsHkGud+IaYRl20SJGcD0pDxtx2E/ITcbj
-         +YgOq1w8yjDp+q4jXl7j6FBsnLK5rLi2XcbjqQNaVCW2g78frf1mnguEqcUroszRdWIT
-         yQGrTVNHGENk/KQByBZkvRktL83nnQOEbR9vnd2ABFXeIA/bcHolTWV1635WygETqjdS
-         1W1rfsKCKOvKI3UXH1AFn/KaDkJ10JznBr+uMgEu8az9h9emteLgLWdhUXEHYYJLL7Zx
-         dI4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXZISj3uvai0eS+NVy3T1jF9Cpak1J4u/+twKKEpkU8TcJZC2FAmhqeNjrrj4QF/XbTBH11vYVmhi3Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YzitRPZ1Fv7+RM5Pw2K98QKnkSVV7cSnsPjsQfK44Tsze8a2rPq
-	J+pUVjOKBxiwuDKjBN5lrTJEXqLbdPZiYmUhiu2Z/nr8tsdtN4V8Ucc8Rpcs1CpmdwT/69pbaV/
-	RmrsPa+1Gr/gfAfv9fmUBrv2UTJXnUS7czjvXYQ==
-X-Google-Smtp-Source: AGHT+IH2kueLQc5TRgnqFrkLjrGvJRIK/BMurN2noHpa1MBrWwQdN5e//Oya3AbhSVY9odHODdUMQtzGctXu6ADcfvk=
-X-Received: by 2002:a17:907:970f:b0:a86:894e:cd09 with SMTP id
- a640c23a62f3a-a897f78bdb5mr287428066b.9.1724945202995; Thu, 29 Aug 2024
- 08:26:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724945172; x=1725549972;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oj8SbGZsIPIT2zmoQ3FCznFjgKHPHFcUOdD/u1KoOXU=;
+        b=s9dbu86ESx1GTCaPt42EILoWUbgGRi5wbCLKQJOXc8uU1+9IUAFEnZinOLcacrTTbz
+         NTfAi+8dz2mASme+zA8qZLxqyF0+J/NJD6LNJMnAC4HhrKI9evox6cc6JTy0qZ1LwPio
+         Tv2PqJJf3TyIzSNxDCCfewd3gpAwg8T4gmBV2ev83qaDO+zd8hujaoBCpRg522guHeDa
+         mgnQb3DBeQrWmC+3nR1TM48NQwUKpVdNJLr6ao30HYKFfJctkIhtEcl1k8AT6zRP6x61
+         IE1mnunb1rY0Xp1c6PRpxDr+5gue0hqYd2sAfRbXvNpkD3O5gbZOhNQe9LWAfG97RzcS
+         9y7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVNKkaDtRDx74utCmknCJYUe30r+9QeZKE3B2DvGErBbEgVm9ePRCH1Q/EZYPaegZVib736dqNymUlVfjPd@vger.kernel.org, AJvYcCVsxRYIYuCMowL4Ln3v/odCI6hWl+opGyJCLrM59uXnzFz0Rnfq7eX0jHu4UmBvTtCqhoiYcoPnpQB5pc8=@vger.kernel.org, AJvYcCX+5HTg7p3GQvsAAbNRfAu0VkrSilOxo9XuujBCnR7Oz4SuN0f6zlM53POTWeL9K5yofKCw6hqOsaVg@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywb52jwoRAOGr4nEUiJW9pWJ6O2Y40ZiArXWM6Z90hPsqzFoeaw
+	XkHF7ZETAsZD98LAmtrudeknoQXowwJeFkR5ag3lOxZlIoB4HbUnLsCITioI
+X-Google-Smtp-Source: AGHT+IHP0OXJXv4WkuN1TcI72+6EAU4MNPCBF7fJ0ui7mZaXbtB/CGHPHVVxkmwaz7r45EsaI6jU+A==
+X-Received: by 2002:a5d:4a8d:0:b0:367:958e:9821 with SMTP id ffacd0b85a97d-3749b54d0c8mr2455333f8f.29.1724945171897;
+        Thu, 29 Aug 2024 08:26:11 -0700 (PDT)
+Received: from orome (p200300e41f29d300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f29:d300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba63abd2esm53798565e9.22.2024.08.29.08.26.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 08:26:11 -0700 (PDT)
+Date: Thu, 29 Aug 2024 17:26:10 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 00/11] Tegra114: complete TF701T device tree
+Message-ID: <deznx2y3vb4zj4y6n22okly5cqjq7sbe6lwmtlqkag65mcmcto@exthbprmgvpy>
+References: <20240806123906.161218-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 29 Aug 2024 17:26:04 +0200
-Message-ID: <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
-Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com, 
-	biju.das.jz@bp.renesas.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="w2xhdq6xdnppmbho"
+Content-Disposition: inline
+In-Reply-To: <20240806123906.161218-1-clamor95@gmail.com>
 
-On Thu, 22 Aug 2024 at 17:28, Claudiu <claudiu.beznea@tuxon.dev> wrote:
->
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Hi,
->
-> Series adds initial USB support for the Renesas RZ/G3S SoC.
->
-> Series is split as follows:
->
-> - patch 01/16           - add clock reset and power domain support for USB
-> - patch 02-04/16        - add reset control support for a USB signal
->                           that need to be controlled before/after
->                           the power to USB area is turned on/off.
->
->                           Philipp, Ulf, Geert, all,
->
->                           I detailed my approach for this in patch
->                           04/16, please have a look and let me know
->                           your input.
 
-I have looked briefly. Your suggested approach may work, but I have a
-few thoughts, see below.
+--w2xhdq6xdnppmbho
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If I understand correctly, it is the consumer driver for the device
-that is attached to the USB power domain that becomes responsible for
-asserting/de-asserting this new signal. Right?
+On Tue, Aug 06, 2024 at 03:38:55PM GMT, Svyatoslav Ryhel wrote:
+> Complete ASUS TF701T device tree with available information
+> about the device.
+>=20
+> Svyatoslav Ryhel (11):
+>   ARM: nvidia: tf701t: use unimomentary pinmux setup
+>   ARM: nvidia: tf701t: bind VDE device
+>   ARM: nvidia: tf701t: correct and complete PMIC and PMC bindings
+>   ARM: nvidia: tf701t: add HDMI bindings
+>   ARM: nvidia: tf701t: add Bluetooth node
+>   ARM: nvidia: tf701t: adjust sensors nodes
+>   ARM: nvidia: tf701t: complete sound bindings
+>   ARM: nvidia: tf701t: bind WIFI SDIO and EMMC
+>   ARM: nvidia: tf701t: re-group GPIO keys
+>   ARM: nvidia: tf701t: use dedicated backlight regulator
+>   ARM: nvidia: tf701t: configure USB
+>=20
+>  .../boot/dts/nvidia/tegra114-asus-tf701t.dts  | 1516 ++++++++++++++---
+>  1 file changed, 1289 insertions(+), 227 deletions(-)
 
-In this regard, please note that the consumer driver doesn't really
-know when the power domain really gets powered-on/off. Calling
-pm_runtime_get|put*() is dealing with the reference counting. For
-example, a call to pm_runtime_get*() just makes sure that the PM
-domain gets-or-remains powered-on. Could this be a problem from the
-reset-signal point of view?
+I've applied all of these with some minor tweak (mostly whitespace, but
+also updating the subject to use "ARM: tegra:" as prefix).
 
-[...]
+Thanks,
+Thierry
 
-Kind regards
-Uffe
+--w2xhdq6xdnppmbho
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmbQkxEACgkQ3SOs138+
+s6HVcg//SnxLMpgN4WY7+lFi4oZfB3Oq7hEZVTUuz2sptaYuj3ylkYn5JJzv2ApF
+dSbdO65D7dZajgWCaR6kRWISmbAMKmxCifQU9u/dQKnZegvxEBuKbloGAS4thWh2
+46KLg4GBjT235SbjOPoF1Lzoie0/SiJNWTbPeaLH+n1IrORVZs2QAbZFbl/X5+HW
+RqMsPGAndur/giCjtxYTLLAItGLA33/5X1+4nzTdFrL76Fzlr5hMX/NIZJ2n1/vh
+/N0GGKeVP20u6QegGNnfaeZQEJaOlMCRSiLuuCTrugYq9TCm1yEiiWVi2tc2UItf
+IMlJeL3r8Hizuc8nU1iQVEPTLxrRa0wO/u0gag2qJhA3w/qISSXFeviwm+/XVh+B
+KpFqr4vixOINZvK3p4/qmy8wL5LUF+IkYaNKXxruQH8BeiMYLptyJYZOc5FbeAmr
+EHvFFf8R24X1twMobTuK+3veDy+ZVH42DRa50Sz/X1GI8Oqn+ByqxZpR6VkmcbYu
+WcVsAQdOzMhf2vGPiwxTMhsmxTvjIR1YTr5PK0v6WEwLDM0sgyYZ2tTz1BEbDrgx
+dXjXBGw/U2khlZJzoRMnRIykMeC3Kf9zrH6ecGof99wc1dREPjRTkVRzx91BkRxi
+/3RRahQzuEO8BeStuwwgdsGbtDWue4bxsEmJfJqu91/UAXcQotk=
+=1owH
+-----END PGP SIGNATURE-----
+
+--w2xhdq6xdnppmbho--
 
