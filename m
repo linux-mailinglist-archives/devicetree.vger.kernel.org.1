@@ -1,140 +1,176 @@
-Return-Path: <devicetree+bounces-98072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D25E964B7B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:20:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC101964B7E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:21:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 494BA282557
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:20:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE5191C23386
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440DC1B78F5;
-	Thu, 29 Aug 2024 16:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F40F1B81D6;
+	Thu, 29 Aug 2024 16:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mPd1GkGm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UAGJi+B9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1D81B78FB;
-	Thu, 29 Aug 2024 16:18:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69171922FE;
+	Thu, 29 Aug 2024 16:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724948283; cv=none; b=Wj8a7RtqYl25fIJJcui+hhbSTK8lrD/pSzMXpaORsSxTvHZU1zRelE6qAHWy/zfE0aigk7/Es6xMD10+91fr/hKe7x/xDLYO0BMjN+G2Tyf6eXxl3xbrFbDF8eiWVxjkIGPa9exBnG4AV75PQvXoJ1v458Go16asPYcAEq2/jQc=
+	t=1724948302; cv=none; b=AelYCvUiSgdYSsA13uQI/YGNpStmFAeHm9PW264dl9aBGXqOZCyhxKCx6g4V0ntdmqJfgJmYUEvTcxui/oIm+gp1oUNYeF/BjUnhOA2iwZMgNjOLWDg9bXob5yLkUh8jT5Q8/kt1hQWDq5ZPj8vxyMAeEvT3Gi/MiWBt1bUwpsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724948283; c=relaxed/simple;
-	bh=pnVQOit5esrOdWDax1UHkIVI8KzUprZRWP+rRMTsqXM=;
+	s=arc-20240116; t=1724948302; c=relaxed/simple;
+	bh=0DFCIEnpEsAW/SjC51AnwDz3RJhoIFR9GB8cHGV8p5Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=owlTsPwUx7eAgFl/Y6x05CtLFdwE3EuvlddYNWThm1EMbbLW/xnQULRZIBgzk7k6ToOK4IsebxPlaExt6UnY4+L9sEk51Lj4O9nZ/Unbc4mtfSPRaX6p3dLq5I4TAuhOfnT1mtHM1WyGJpClIzsZUIbTcQ+7YiypLOq0XBtuJlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mPd1GkGm; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E154620003;
-	Thu, 29 Aug 2024 16:17:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1724948273;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PPbweNLOln15v4/LrRjZ9XZdej7S6QSQGVF/NJJi1Ug=;
-	b=mPd1GkGmHi486sj2v/JLrpOWlIDP8EIqkoFDqHq9cvOPGm6r9F8cOBbXl7pkGVTeD6zADp
-	ZflWJABmmj/yF1evEX6pbh8k79TCoyKFSM2MlAl844ZQRmReNnDROnDH1oNKJAHQu3tygD
-	abDD7/vsZrYBUSWA+MoGAP5DiUP7SA836V1YjtJ2sRIsOFdx54gqajy2d76XAaxmYqiqS3
-	BWc2Sww4mMaWXNKQvQEaT7WhtDuHqdeXp8dCBhs/MFxeCRJhhTHXzVGjXkb3Qz51XV3u7J
-	H7Dxq7WAP8RFKsYtWrcynH/TZXpJQJD5JRPl4LqoHn0w/f1aydEI1E6w4Z3lRg==
-Date: Thu, 29 Aug 2024 18:17:52 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: gomba007@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, csokas.bence@prolan.hu,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/2] Add support for the DFRobot SD2405AL I2C RTC
- Module.
-Message-ID: <202408291617526e31318b@mail.local>
-References: <20240829-rtc-sd2405al-v6-0-4fbfe2624aa7@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KGWN7ouoZWtgi/n3+9NSUASNGsvGB3tD6UoLgls9YyXrQ19uDbIJis99sM7jje1kiqWQnqk0ZrPaxfMxlhmOTWGwKf9U5tSDL1F1TCnxxCclTSyuknj02uM4s5WCqyIZ7g4z6Kh3U5cuczs1XAKHcuQZe11aOqtnzqpbWfpGkJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UAGJi+B9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B1F8C4CEC5;
+	Thu, 29 Aug 2024 16:18:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724948301;
+	bh=0DFCIEnpEsAW/SjC51AnwDz3RJhoIFR9GB8cHGV8p5Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UAGJi+B9G7+ByyYTIff3xkkjmNTvtXetrK7MraXov7GbqBK4stVR39FvWENtwLR2y
+	 DiS6pkiibezMP1HXyHh0jQvBRZcUNV216gv7u55c+LduKII9t7gur38dgEwaaTc0WJ
+	 6IMawqXsQvaRLr8ynXiHoRLOSW/X3LJKZmY7kj0jb6uJ2EkN8dCRz8oZ6e8jJaWeo+
+	 Me8/i22BFG48bmjL5K9LF6vXvbNzrgUcN3ms38IQPVzEqtTt3HKp9gWZSFOd9nDabb
+	 FUQ74IrtCj095vhYzPK6hUgnn1pSQsVeAi+4JER9g0V9hm9A/4/S4V8GaAadxBUhpL
+	 MietOEiOgq9rA==
+Date: Thu, 29 Aug 2024 17:18:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: add NXP PTN3222 eUSB2 to USB2
+ redriver
+Message-ID: <20240829-dandy-jingle-1002fb99b900@spud>
+References: <20240829-nxp-ptn3222-v1-0-46906bc4747a@linaro.org>
+ <20240829-nxp-ptn3222-v1-1-46906bc4747a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="lb2JHJxD1qBMGfou"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240829-rtc-sd2405al-v6-0-4fbfe2624aa7@gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20240829-nxp-ptn3222-v1-1-46906bc4747a@linaro.org>
 
-This looks good, can you send v7 adressint Conor's comment, don't forget
-to collect his tag.
 
-On 29/08/2024 13:31:43+0200, Tóth János via B4 Relay wrote:
-> This patch series adds a driver and the documentation for the SD2405AL I2C RTC.
-> 
-> To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-rtc@vger.kernel.org
-> Cc: csokas.bence@prolan.hu
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Tóth János <gomba007@gmail.com>
-> 
-> Changes in v6:
-> - Add missing To-s and Cc-s.
-> - Rebased onto v6.11-rc5
-> - Link to v5: https://lore.kernel.org/r/20240828-rtc-sd2405al-v5-0-9e3f8fa5ea6b@gmail.com
-> 
-> Changes in v5:
-> - Rework based on Alexandre Belloni's suggestions.
-> - Drop explicit initialization of struct i2c_device_id::driver_data.
-> - Add documentation.
-> - Link to v4: https://lore.kernel.org/r/20240624-rtc-sd2405al-v4-1-2b2bc759f98f@gmail.com
-> 
-> Changes in v4:
-> - Implement more comprehensive data validation.
-> - Inline some temporary variables.
-> - Link to v3: https://lore.kernel.org/r/20240620-rtc-sd2405al-v3-1-65d5bb01af50@gmail.com
-> 
-> Changes in v3:
-> - #define-s of registers are reworked.
-> - Minor revisions based on the reviewer's suggestions.
-> - Link to v2: https://lore.kernel.org/r/20240619-rtc-sd2405al-v2-1-39bea29bd2a5@gmail.com
-> 
-> Changes in v2:
-> - Refactored based on reviewer's suggestions.
-> - I couldn't get the I2C IRQ to work on Raspberry Pi 4, so alarm is
->   skipped.
-> - Link to v1: https://lore.kernel.org/r/20240607-rtc-sd2405al-v1-1-535971e7a866@gmail.com
-> 
+--lb2JHJxD1qBMGfou
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Aug 29, 2024 at 11:21:13AM +0300, Dmitry Baryshkov wrote:
+> The NXP PTN3222 is the single-port eUSB2 to USB2 redriver that performs
+> translation between eUSB2 and USB2 signalling schemes. It supports all
+> three data rates: Low Speed, Full Speed and High Speed.
+>=20
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> Tóth János (2):
->       drivers: rtc: Add driver for SD2405AL.
->       dt-bindings: rtc: Add support for SD2405AL.
-> 
->  .../devicetree/bindings/rtc/trivial-rtc.yaml       |   2 +
->  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
->  MAINTAINERS                                        |   6 +
->  drivers/rtc/Kconfig                                |  10 +
->  drivers/rtc/Makefile                               |   1 +
->  drivers/rtc/rtc-sd2405al.c                         | 227 +++++++++++++++++++++
->  6 files changed, 248 insertions(+)
-> ---
-> base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
-> change-id: 20240607-rtc-sd2405al-a0947377c73d
-> 
-> Best regards,
-> -- 
-> Tóth János <gomba007@gmail.com>
-> 
-> 
+>  .../devicetree/bindings/phy/nxp,ptn3222.yaml       | 55 ++++++++++++++++=
+++++++
+>  1 file changed, 55 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml b/Doc=
+umentation/devicetree/bindings/phy/nxp,ptn3222.yaml
+> new file mode 100644
+> index 000000000000..acec5bb2391d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/nxp,ptn3222.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP PTN3222 1-port eUSB2 to USB2 redriver
+> +
+> +maintainers:
+> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,ptn3222
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  vdd1v8-supply:
+> +    description: power supply (1.8V)
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+As a nit, these descriptions could just be ": true" like the
+reset-gpios, they're equally obvious.
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> +
+> +  vdd3v3-supply:
+> +    description: power supply (3.3V)
+> +
+> +  reset-gpios: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#phy-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        redriver@4f {
+> +            compatible =3D "nxp,ptn3222";
+> +            reg =3D <0x4f>;
+> +            #phy-cells =3D <0>;
+> +            vdd3v3-supply =3D <&vreg_3p3>;
+> +            vdd1v8-supply =3D <&vreg_1p8>;
+> +            reset-gpios =3D <&gpio_reset GPIO_ACTIVE_LOW>;
+> +        };
+> +    };
+> +...
+>=20
+> --=20
+> 2.39.2
+>=20
+
+--lb2JHJxD1qBMGfou
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCfSAAKCRB4tDGHoIJi
+0g0vAP0ULmArYvwsKhDXcZT3/4k+oqLJV5IRg5A/j6KAIiP0kAEA3keLUf3OdneN
+T8XD0nEmiPfqLNo/YVZtsIw/VcqqsQ4=
+=tE0b
+-----END PGP SIGNATURE-----
+
+--lb2JHJxD1qBMGfou--
 
