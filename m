@@ -1,56 +1,68 @@
-Return-Path: <devicetree+bounces-97813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90567963B5B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:25:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C096963B63
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 459D01F250BF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 06:25:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02ED02864E6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 06:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC80F1547D1;
-	Thu, 29 Aug 2024 06:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95A9C158DCE;
+	Thu, 29 Aug 2024 06:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJx0XCpo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKxNSZcQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6411547E4;
-	Thu, 29 Aug 2024 06:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D781547D5;
+	Thu, 29 Aug 2024 06:26:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724912670; cv=none; b=nxbhNn/4y3nQxy676xKalmjUiwwW10i2BHAKCst4axoPGxuQPai2xBJCvZLHh3+VsSC0sPtzQIRFcMfUobwlkI/GcKbw1JyFQ33uSn028sQJvYvfq1pox9+KtoULD6TEbORNn4buT+nT/6EHtL55f8w0kJPF2mS2rBr7aVcq6rI=
+	t=1724912793; cv=none; b=JfRcTEqbmp5ZX8jRFnKXSqXL/t6tYljPWilCgIGSIrbE6KWdtYOV5qOkBZLfwAj93fdVkvSZ/srJANuOSgnlXqzaaHs9NGdqg6m7o/qBQvV/jvJx+i2a/mhpAA3+teAyZeqfX2RcBCe2yQyX3dg/P6A9WDLXWAJJIZNa0XepAlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724912670; c=relaxed/simple;
-	bh=ulAcHw74Q+tiKNpuxivzK4jpkzIcYckUBh6qezE7LUA=;
+	s=arc-20240116; t=1724912793; c=relaxed/simple;
+	bh=X4b6JtUdMPQPMlJuLtBV2fk2oDdhcuWi2ciJPzgEQoQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QDT0dev0XONdFy2VVhfQd24hxi22Pw+LTY+e3ScToszxQvMqYY9CGiiVR56qJQBDKpqyk9MwEE1x89Q/Fbd26A/RJid8l4+hbHQi/RgD33Q5fQ8qmK0M0ihdc0S/Fb3PePdWFG27YF8WZ4BRtYHoDVnltzoKjcPZ2vKgkPUQK1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJx0XCpo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 667ABC4CEC1;
-	Thu, 29 Aug 2024 06:24:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lFazORoBNWic18n0BjRbX3WsaoANasJujJcREGqE8Te1T9ypRHvm6cSeh52y5gF1mCeiNLPmHkp2YjPm5qgGHiOzfDGDok/vLkyFGNDaUrA7Puu+/rsM773Kcsk8Lh+1zGh5Cm/fMb3+Lk1VNHdDDhf55xB6tShiC/nrhVFXzFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKxNSZcQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C979C4CEC1;
+	Thu, 29 Aug 2024 06:26:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724912670;
-	bh=ulAcHw74Q+tiKNpuxivzK4jpkzIcYckUBh6qezE7LUA=;
+	s=k20201202; t=1724912792;
+	bh=X4b6JtUdMPQPMlJuLtBV2fk2oDdhcuWi2ciJPzgEQoQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XJx0XCpofs9ieyBEV/PfMjMgFiSOBsH8YQBG4XDcCXWX8U625TazmJFw51z00Jxcu
-	 BfTQZVh7yCtTYWo5pPTeWsc46L7i+Otg8CSBr0F9OCAAS7AThnsPl5VHMR2ioHplQ6
-	 Qd6g946RwV+7fbFg9JAibhuU0zP4tx771s0LFoYPH7x4nzazEs90gi8l76wVBS8pU+
-	 L2UW0gWQMs9QY3KNlt+TYPjWFJr+vxiI0CCgusq/ZxcGz7vRptZALzbFN/33pNzumO
-	 Vj/blE6KnyvnOoU2YpC5Z190W27NklrRsJYGee6gP4W3CcJWvZvDsPF+M/QDDZObJD
-	 w2OOEyntncPhw==
-Date: Thu, 29 Aug 2024 08:24:26 +0200
+	b=aKxNSZcQtz4XSTWsLnqiPA98RPB5kQFA2Hv5lN4xJaOuvFqNTxIQ2jJFxb3VYaxoi
+	 GCN3KXW/d+E4uwicF3CuXFClgQAZfUM1zl49oMKnNZN12b93HK6MZrSv/LLLj78qE0
+	 ma+XslCKbnrgCdobzb2t9hGoLKa8KCi+CQiUF9ZaFFBeC0xgZDjxat/WGQAQ3llZdX
+	 EAiJkgwHLrIkDdheXjQKHqiRtL8ooZjnvoIRRg8UeHBjoAbxGQngtfwQQP1ZoEfqhS
+	 DLFXO/uqV98hlS1GAj7FD4h0qJ5k6f+pLmV7/cBoFLbiz5VtSdjhvAQWycA0Qi3Z0p
+	 Jb2AyHgmw60yA==
+Date: Thu, 29 Aug 2024 08:26:29 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-bindings: misc: fsl,qoriq-mc: remove ref for
- msi-parent
-Message-ID: <kasyt62uhb7cijyrmbs7zelwgjtted6p4ynsy2s47e2ycniicb@szosg55aejjh>
-References: <20240828163417.1130252-1-Frank.Li@nxp.com>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org, 
+	herbert@gondor.apana.org.au, davem@davemloft.net, sudeep.holla@arm.com, andi.shyti@kernel.org, 
+	tglx@linutronix.de, will@kernel.org, joro@8bytes.org, jassisinghbrar@gmail.com, 
+	lee@kernel.org, linus.walleij@linaro.org, amitk@kernel.org, 
+	thara.gopinath@gmail.com, broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net, 
+	robin.murphy@arm.com, cristian.marussi@arm.com, rui.zhang@intel.com, 
+	lukasz.luba@arm.com, vkoul@kernel.org, quic_gurus@quicinc.com, agross@kernel.org, 
+	bartosz.golaszewski@linaro.org, quic_rjendra@quicinc.com, robimarko@gmail.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org, arm-scmi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, iommu@lists.linux.dev, 
+	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel@quicinc.com, quic_psodagud@quicinc.com, 
+	quic_tsoni@quicinc.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH 01/22] dt-bindings: arm: qcom: add the SoC ID for SA8255P
+Message-ID: <vmz2tefrlti7y5boe3bx322skdndmpdqnr4tketl3ws6sibhgq@rnamodrsf5im>
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240828203721.2751904-2-quic_nkela@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,19 +71,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240828163417.1130252-1-Frank.Li@nxp.com>
+In-Reply-To: <20240828203721.2751904-2-quic_nkela@quicinc.com>
 
-On Wed, Aug 28, 2024 at 12:34:13PM -0400, Frank Li wrote:
-> msi-parent is standard property. Needn't ref to phandle. Add maxItems: 1
-> for it.
+On Wed, Aug 28, 2024 at 01:37:00PM -0700, Nikunj Kela wrote:
+> Add the SoC ID entry for SA8255P.
 > 
-> Fix below warning:
->   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: fsl-mc@80c000000: msi-parent:0: [16, 0] is too long
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
 > ---
-> Change from v1 to v2
-> - add maxItems: 1 for msi-parent
+>  include/dt-bindings/arm/qcom,ids.h | 1 +
+>  1 file changed, 1 insertion(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
