@@ -1,88 +1,76 @@
-Return-Path: <devicetree+bounces-97887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47332963FCB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:21:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C4C96403E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:35:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95BB6B248F2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:21:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31F3C1C24788
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6FE118D644;
-	Thu, 29 Aug 2024 09:21:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C864C18A6D3;
+	Thu, 29 Aug 2024 09:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Y00DVouM"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Jq2XZ2Wv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91CD189F37;
-	Thu, 29 Aug 2024 09:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9FB1547C8;
+	Thu, 29 Aug 2024 09:35:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724923263; cv=none; b=g0fs9dQW90EpNZUd6L+NpLnc3P6dDoy3a9PgQdYL0UsPQtcWJ9ls5A/m7hK1foIuHpIqfWktB9iOdIo08GQBs96B6hpQ1K+lCmW4WuvJuTDaFEvMX+R/bE5hpZwkqSyccLeg96wT2jaNOnne1LHY2CLsRKWZjfe9ZhXUPaz6Wok=
+	t=1724924144; cv=none; b=NNj76QkHJE6RjGQ+I6/tqNJWKTLnOzk+H0LM/BQgpQg0NF2CwL//WbzJ6or5w20fm2MxeTFIy6yGl48AZzf7MmAuTc/mYzVgGKysLwWfZjVh6PTDWJw9cxObfI+63nQS3STMvqQUNXgWgjcNPNUtOj83/chM2g0eQSYVAlREa74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724923263; c=relaxed/simple;
-	bh=XJugORg/LzFC55f/REHC966kTYTIH3sVOqWKZaSt80s=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JFNIU6uwuyY8i+0SygkWIgNJPL69GBJZrICKrCIcq6obsKPmIc9O07sTgzakYSZmqyeMV1ltZZ3BNu6G60yaZzKAPO5S/JV2vBQSa1+Mb3h+g6ZtHDmWpr7yY6W/jB1oUTONiVpBABC1ZN9oDi6shGnVbkBCMA0sp+hC7aRPxDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Y00DVouM; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47T5daQT023782;
-	Thu, 29 Aug 2024 05:20:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=uXjcL
-	JH5zyb2xQL1amE7PdnQiC7BzUxHgz8hwuNuQMs=; b=Y00DVouMj0auGQXYxhNbm
-	wlXCLTl009wbY1OlyBpHFR/DJqFt1HjDGPosxpOjh4Rk5IuGlr1rzjVMXxT0c2IR
-	PiYZe83AJiIhmyamGnpvdqv2aHOda4Qq1gcq5SaxnU0L0+PgBM/JPdR7ZRzDo413
-	mZyvdjTxQ7XnUkZMx+qvqGge/ElJ5CoCZmC2DkaBQLZgwBTWlvf+VipILU3iugKe
-	lm5jetPa4cn0WXlBaRCDsQv9t6hNh934kJwaVlwhAaiOkpJG5GK/EFPHkXU5UpIL
-	x90gmhySeRyE7dBl+VBJR6N7Xs6kJY3PjLa9aH3ybbjptxQpIdMWim+hZa9ugYbo
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 41ak1mgthf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Aug 2024 05:20:52 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 47T9KoBx021806
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Aug 2024 05:20:50 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 29 Aug 2024 05:20:50 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 29 Aug 2024 05:20:49 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 29 Aug 2024 05:20:49 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.124])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 47T9KVkU016079;
-	Thu, 29 Aug 2024 05:20:46 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] dt-bindings: touchscreen: ad7877: add bindings
-Date: Thu, 29 Aug 2024 12:19:36 +0300
-Message-ID: <20240829092007.25850-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240829092007.25850-1-antoniu.miclaus@analog.com>
-References: <20240829092007.25850-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1724924144; c=relaxed/simple;
+	bh=H9lfUPv3T1mST3tzbqShCdPOuFcAKP3xRCkh/nwpKwM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VbscrmygXeqz3bU389JY6S8m2QegVnsfrBaPZCjKGMrDFZu3CYmOoruH09lFOz5HRL62WOu/msdawZuqd5oW2xadjARn0NYKvAmwJpoKb9uXTgOhcjQ72kAHYznOWqB7jovNGdX8zTLGwuRDirweO0Qyy1VZS4nwZvElTPFHa6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Jq2XZ2Wv; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 6A1724157B;
+	Thu, 29 Aug 2024 11:27:55 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id BgBux_5UOXgm; Thu, 29 Aug 2024 11:27:54 +0200 (CEST)
+From: Yao Zi <ziyao@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1724923674; bh=H9lfUPv3T1mST3tzbqShCdPOuFcAKP3xRCkh/nwpKwM=;
+	h=From:To:Cc:Subject:Date;
+	b=Jq2XZ2WvwoOnB6Q/RKRhl9eBW6tXwK6poVcZiFavSh9HX2vyeZhJCqp0V12JOgMEp
+	 Y9XDP4ECZvXkBPjktrReKakwSa30mOpNX6TVBYsPbMPqFwSdl0tJf8PVjE/cMGFun1
+	 VfsEQATb/r/EDTUyFZiYfyZiH8Uf60RgzW+P4AlJP//1gbhh6OW0hlW7+0uON+nyLt
+	 9HmOsGKWzpFWa4bHHQZ23F92rpFG8HoI8Zh4kDJgBHxPw+kBjbZnzBLz2/7C3jZrhG
+	 IiUsd4HImvLCEYXDWtr+8AtB4rIZ2OSjAZXqWICiyIfnXvoS8kop/FZHsIrWs5zzbf
+	 UeMHGrvhitAUQ==
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Tim Lunn <tim@feathertop.org>,
+	Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Ondrej Jirman <megi@xff.cz>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Cc: Celeste Liu <CoelacanthusHex@gmail.com>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v4 0/4] Add initial support for Rockchip RK3528 SoC
+Date: Thu, 29 Aug 2024 09:27:01 +0000
+Message-ID: <20240829092705.6241-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,91 +78,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: 0A8cgR_m5zRsy1efZL13DtOtIeItD-Hc
-X-Proofpoint-ORIG-GUID: 0A8cgR_m5zRsy1efZL13DtOtIeItD-Hc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-29_02,2024-08-29_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- mlxlogscore=999 clxscore=1015 suspectscore=0 lowpriorityscore=0
- impostorscore=0 bulkscore=0 adultscore=0 phishscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408290068
 
-Add device tree bindings for the ad7877 driver.
+Rockchip RK3528 is a quad-core ARM Cortex-A53 SoC designed for
+multimedia application. This series add a basic device tree with CPU,
+interrupts and UART nodes for it and is able to boot into a kernel with
+only UART console.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- .../input/touchscreen/adi,ad7877.yaml         | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
+Has been tested on Radxa E20C board[1] with vendor U-boot, successfully
+booted into initramfs with this log[2].
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
-new file mode 100644
-index 000000000000..5fc5124c5999
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/adi,ad7877.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD7877 Touch Screen Controller
-+
-+maintainers:
-+  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-+
-+description: |
-+  Analog Devices Touch Screen Controller
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/AD7877.pdf
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7877
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    description: AD7877 SPI bus clock frequency.
-+    minimum: 10000
-+    maximum: 20000000
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      touchscreen@0 {
-+        compatible = "adi,ad7877";
-+        reg = <0>;
-+        spi-max-frequency = <20000000>;
-+        interrupts = <21 IRQ_TYPE_EDGE_FALLING>;
-+        interrupt-parent = <&gpio>;
-+      };
-+    };
-+...
+[1]: https://docs.radxa.com/en/e/e20c
+[2]: https://gist.github.com/ziyao233/b74523a1e3e8bf36286a572e008ca319
+
+Changed from v3:
+- move mmio devices into soc node
+https://lore.kernel.org/all/20240814155014.18097-1-ziyao@disroot.org/
+
+Changed from v2:
+- fix fixed-clock nodename
+https://lore.kernel.org/all/20240811140725.64866-1-ziyao@disroot.org/
+
+Changed from v1:
+- fix stdout-path
+- style improvements
+https://lore.kernel.org/all/20240803125510.4699-2-ziyao@disroot.org/
+
+Yao Zi (4):
+  dt-bindings: serial: snps-dw-apb-uart: Document Rockchip RK3528
+  dt-bindings: arm: rockchip: Add Radxa E20C board
+  arm64: dts: rockchip: Add base DT for rk3528 SoC
+  arm64: dts: rockchip: Add Radxa e20c board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../bindings/serial/snps-dw-apb-uart.yaml     |   1 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  22 ++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 189 ++++++++++++++++++
+ 5 files changed, 218 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
+
 -- 
 2.46.0
 
