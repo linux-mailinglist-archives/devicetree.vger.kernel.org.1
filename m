@@ -1,114 +1,105 @@
-Return-Path: <devicetree+bounces-97953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA3A9643AC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:00:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E57849643AE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47832B24247
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:00:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D75E1F231DA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 12:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F937192B83;
-	Thu, 29 Aug 2024 12:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590071922F2;
+	Thu, 29 Aug 2024 12:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q4ZR5VO6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ldaznfxl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9DCA18CC02;
-	Thu, 29 Aug 2024 12:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2C0191F9B;
+	Thu, 29 Aug 2024 12:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724932825; cv=none; b=LQgDUUAUmb6DpjfWM23AdKRGhryG0gt+MhrON55Y9GtyjsaIvlADyB2md5W5NXPby2Vr9nOJ2maSQP7YVWyZnkcmxuYtrCBP6pogLif/rS9ZtrmISmEwdLWTPKDr89nDaCuSPeGP8BIOL20yukTopxC+O7hPiyjFQdJ8tSDEDlg=
+	t=1724932845; cv=none; b=o9ocq9MneWFIVqTvPPM/Zc7ePQkewT50STFSyAxMo9eHH7qPE/xl1Iw+6N8lhb3ShVZyKE39LmMbOJjtwz+Lj5N+3NK0dpt5hKlKiv0nlw9/wLe1XMceySEkEtv0SXNXe6rLrEnjwQD/GZsO+aEzBm8PaHHHWZ32lYL0AqBfBQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724932825; c=relaxed/simple;
-	bh=+AFMsTioAXTYe+/OIC8TW55UGMedcr0nSW9NuwvwmP4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IrdV6Si/fGHSCBzlRdpLFFtT8MqK3NN63HVHVYJPxc0d/UkRvQj7w70daWsxK4IvUcsGkWi6LwtbY5NG0ORaP7QDO9YVaCjWle92Pt7igTwIeLvCs7Tg191LuGbuc2VYzbEk4s7A9z+NfwKFn5ZBE6zJrun2IcLg96cs/7WAxYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q4ZR5VO6; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-201fbd0d7c2so5194195ad.0;
-        Thu, 29 Aug 2024 05:00:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724932823; x=1725537623; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=27LAEgYBljGGhgNMpBJC2vTKDP+IyCsrvFLq2dI8Abg=;
-        b=Q4ZR5VO6ZXlnoCxF3kkcusyizhsSTFMsydl+bWSK5r94rs4OgB3K9TcCyCuJNOtaEM
-         RDAerZUs5okm92pkwTFekE/vrOUUgxP6uHfTMtn2o66J9XSO/jN0Lc0Uv9VsySSDjFo4
-         64jIESV5i7FidHslry6FyHZembJZQgROf/9tmDIUo93WMSLimZk3bPnzevjT6wMVJg2U
-         dBINgT4pUZ9pcFnW2I49om2MlD1oLRdqGhOL1X5kyKFhmvemBlJRBJJVXEJMn0F3vAFC
-         +VRBPlYMN5ojgY74rHKmSizWiByHmLVZdZRcc1USL5wQA7DDtEzfAaAZ6GtOI5jsqCNl
-         H0Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724932823; x=1725537623;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=27LAEgYBljGGhgNMpBJC2vTKDP+IyCsrvFLq2dI8Abg=;
-        b=BXnos9KJ2STJ8waH8K5eCLoxYXMwpLF4neZgkDXWycq6CgOFyZc6QPKRxG0cTxbNjQ
-         tcA38UkrpswjwTobAqIYabW1vKZpTF8bbSRD/BJk1AJG+aPM9eIyVzrN1EtMvEq6GZug
-         pQwKp5vGqWFGj7i3k9bIbDx/SDeF84jFmprpDXaSS00e6nGBvXC6R/R8hLLNnuUVqY9f
-         HMxmz8dkk/6GNYRd+Sch/NxAEANKhu1g8oKemIkzqk6qzXPZNkvh4/R4HAv6ckNCg9kX
-         D/de5vbQbfBWNnhYpALgihdFgZBacPKaX9U0V4jPmkLSALi7lNjBS9BdB3PCMkv/no/r
-         8lbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/oSR6sb3F2wi/WftugyoisFh2dq/EDQd99vOUTHRP9SDsDRgo6Bv6YZ25FhI7M5/+nPgj5Gas6Bdi@vger.kernel.org, AJvYcCWvzsU03Xqn0aFtNwy1zxzn/cKDK6W4/uD6J80uRq0j6Ut913XM/x8yRvH+d4TdslN49n8Ngpo74KcuQHgy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGwzGRo86+9nnZqiqIRAjwl+jPY1z/lVTaAFw+CByG3MPBQgPU
-	iDd0H77jYZCxqGAIhjWXKYqWuWQmo5F/EaaZdjxpw72pk0hPd5Xw
-X-Google-Smtp-Source: AGHT+IGSxZrGNk+/VLxv5dcGRLbTumgaEh9jEg3/DzzAzQRgXV7JusDx9MISGEMfgtbvbhJA7p08PQ==
-X-Received: by 2002:a17:902:d48a:b0:204:f324:e7a8 with SMTP id d9443c01a7336-2050c2186bdmr27634425ad.6.1724932822870;
-        Thu, 29 Aug 2024 05:00:22 -0700 (PDT)
-Received: from [192.168.0.122] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-205152b1326sm9998545ad.35.2024.08.29.05.00.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 05:00:20 -0700 (PDT)
-Message-ID: <8fb7bce8-e1bc-4ca8-8033-811ed67cc767@gmail.com>
-Date: Thu, 29 Aug 2024 20:00:16 +0800
+	s=arc-20240116; t=1724932845; c=relaxed/simple;
+	bh=6Ft/KL8L7LgfrsPn4DMB6dyWVmbt8YFZqfDlGEBBKeA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KwZ7wKj0IzRIt9JjFoadHHTN1kKaL4Z2BFTOHgE7mXvPbO+cLVUcDupduWgkLIFOKAOSgX55OMT4cSwTUQ4fhUbrKq9SEMYCcvHSR4aByX6vwzA97zVK0wtGoGcMB54hsJpA70FY4YbvQflPaS0DrtDhP2MinJxIMA3R9S5OGMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ldaznfxl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 831A9C4CEC3;
+	Thu, 29 Aug 2024 12:00:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724932844;
+	bh=6Ft/KL8L7LgfrsPn4DMB6dyWVmbt8YFZqfDlGEBBKeA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ldaznfxl2LBMdXPQF/xQnyBbZU6H/f1ComEyOf2LvXHfJFPgMi26OGlFtmuDor17G
+	 Fvb5EqMsLpdRyNA2chsc++YgEoL72AUDudCVNjebTeoc9WJHSXu/oy/NWK4ASd0vS+
+	 h4qQQzrRhox2GLvS0kFL5oa7dmIzv9c5C2Ew0YT3YxQXsje1W6+aYz6sdYH59nXcFe
+	 SQ9Xh6qQo4FaqzBpXu+EN2odzCIEQScAyEwgZvfV5M3KuUlE2g0CiRFM1zSyQ93Xej
+	 WdnJ2hWrG5/TnIVBNvJxUpFSYSGKNcW9GkKENalokaswfdwAgajLCVfGNyl7IAENOi
+	 6wqu0EgrvYcTA==
+Date: Thu, 29 Aug 2024 13:00:39 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: linux-spi@vger.kernel.org, otavio.salvador@ossystems.com.br,
+	heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH RESEND v2 1/3] dt-bindings: trivial-devices: Document
+ elgin,jg10309-01
+Message-ID: <39934c0b-f98c-4635-8b96-e36f678c13e7@sirena.org.uk>
+References: <20240828180057.3167190-1-festevam@gmail.com>
+ <0d6314a3-75a9-4f21-947b-194eaf1fe12f@sirena.org.uk>
+ <CAOMZO5Cjrj1V+qmheaOLkvn3gjQ5ocLodx5ijmOKha=FKpqoGA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 1/3] dt-bindings: apple,aic: Document A7-A11
- compatibles
-Content-Language: en-MW
-To: Krzysztof Kozlowski <krzk@kernel.org>, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht
-References: <20240829110436.46052-1-towinchenmi@gmail.com>
- <20240829110436.46052-2-towinchenmi@gmail.com>
- <220766f0-7cbb-4b4c-a976-477ca1d89fee@kernel.org>
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <220766f0-7cbb-4b4c-a976-477ca1d89fee@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8df5Sr0o2HsxnqA4"
+Content-Disposition: inline
+In-Reply-To: <CAOMZO5Cjrj1V+qmheaOLkvn3gjQ5ocLodx5ijmOKha=FKpqoGA@mail.gmail.com>
+X-Cookie: Go 'way!  You're bothering me!
 
 
+--8df5Sr0o2HsxnqA4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 29/8/2024 19:46, Krzysztof Kozlowski wrote:
-> Please do not resend different patch. Or rather explain - is this the
-> same? Looks different, so RESEND is not appropriate.
-> 
-> Follow submitting patches in this regard, you need v2. Just use b4 for
-> this process.
-Right. Since versions of patch series should not be sent too frequently,
-I suppose a v2 should be sent next week. (Sorry - not super familiar
-with the process)
+On Wed, Aug 28, 2024 at 09:09:30PM -0300, Fabio Estevam wrote:
+> On Wed, Aug 28, 2024 at 8:25=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
+rote:
 
->
-> Best regards,
+> > Is there some reason why this is v2 and not v3?  b4 gets terribly
+> > confused about what version of the series I might want.
 
-Nick Chan
+> That was my mistake, sorry.
+
+> I can resend the series as v4 to avoid confusion if needed.
+
+Please.
+
+--8df5Sr0o2HsxnqA4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbQYuYACgkQJNaLcl1U
+h9BPxwf5AUpff60o8jZAUVsojvd3bDcohpFYfImunFESIl+amxSAUx2Hg/i2HO9u
+KMYHDbwaI8QbrUX1y2TkxUWX2wI2f7PDjJnw2xfStW21YT8Y17pKLzln8CwtgItT
+dnUMDjHftBKFWFKUGbntm5KEKpi5i4RYWEXSHuEDxBJOSrh6tUoutMhi5SqCSSGB
+Y4d+wDZbz1g0hhym9NJHhIhMzjlC+LJ+9csyLM2/vMROln3r29z1LzbPm1YroIC8
+7gIQUSW5isamRRbZCT04J5uJKfw+9zJn0Co3ZvZbsyWU2aWDg1IDq3JZ6cfm37P6
+Lz0R+lBbIvMRkl26P2APN51mnER8iw==
+=fwdq
+-----END PGP SIGNATURE-----
+
+--8df5Sr0o2HsxnqA4--
 
