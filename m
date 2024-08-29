@@ -1,107 +1,130 @@
-Return-Path: <devicetree+bounces-98025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE7199646EC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:40:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1AC96470B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:42:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F24201C21014
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:40:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C45F0B24F5E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A376B1A38E7;
-	Thu, 29 Aug 2024 13:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B5C1A76D2;
+	Thu, 29 Aug 2024 13:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpUvT1IT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j5uY8mNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7831019408D;
-	Thu, 29 Aug 2024 13:40:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839761A707F;
+	Thu, 29 Aug 2024 13:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724938801; cv=none; b=NjozfiMl8G6VoKCUKrnRMh4krHcPsPWLzAHkMusFzAWc0Ih7LZzvfeWeDxTUmNA7pPbdpMbd+PykPC8Sr7IZWCCODpS1s9jarpDs0lifpqBrIDezsz933JkQvmRZ7gptkWGrNCVhYEjJXmXeX7mc9y8zJOz6rtsc7DfGHS13Ek4=
+	t=1724938849; cv=none; b=FWyH/eAsUzsZJOAPyyVqh4qCRFjf5Q9QuFM/Zly/DCJGefKiXib524DL9NW/SdU7IDUBtc1XQfR4GJJlklET+jdT+GHVUp+WotR1nhUmah+nRjmseGdpBheE8zNWkurIdpZNL2dCujk1TUovR9BL/bqjHKLPktQfRb4ex6R1QkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724938801; c=relaxed/simple;
-	bh=T8uq5UDm0y39JoS8gj7vYpV20ScMyzrUL55wcPe8U0A=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=BPsOPVgNKD46NZEz/U4NiFEjaUu8riZzWWkkhQqrECzsXjTIaqcDIhEgZSmKKzZQAPndQNJQSReE2NHvIgPD3+cczxzgIyghRFcrGSH7uYvdLS9gR9ptoAF5PAWJcT5AOoCvIDDrXUjPavuHRhh9I4EyS0cbBmGfrPvl+B8uJJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpUvT1IT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B40B9C4CEC1;
-	Thu, 29 Aug 2024 13:40:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724938801;
-	bh=T8uq5UDm0y39JoS8gj7vYpV20ScMyzrUL55wcPe8U0A=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=OpUvT1IT8u82MSNgks9scGD8Eo+HbsJrIlHP5QLs6GEgVc3kfN7p3isndrBUfQoyM
-	 2kG0qv1HNU6rxkzbgSf8WV2ivxtsLvAUy7hkRCLprCA6R8XYsJSHTm6WJJhhOnJs0J
-	 qoVWhjdyVTeTgu3Yk2ULi15KhxvgoJ63hXDz/UtZ48ptoLXJpplQ7LEjONdgkx8Txx
-	 w8vMXROxtlWJSuytsSZ05bn9kcRgicNf0K9a9xSc007Gw0tJCxy5mT7ceKMoXqWqO3
-	 fzBmaKsKTLYv0jM/sm1i5H4SPgcK2ksp+n+F7hvYCkUyBjpCaxAzUT0yxCL9WUgjEL
-	 w1XV+jdIjfrSg==
-Date: Thu, 29 Aug 2024 08:39:59 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1724938849; c=relaxed/simple;
+	bh=TZX246zT6gQOaJ4+SS0AG+6vRqVsq+2MpIwuMM1Le30=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Gb/R/w10cBy5eEqf4HuVZCm5Qq/iTND7nd/a6ckaqVOVWl7+PUHgojZb0X7a/kpFrxgNhiv6SLbgB7cRxVmyWLkg/jAis0MK3i3MVtk88QKkhUsOM4BfdDHUdAqT1pyt/S9GLGva+XZISTcDa7x0hcONlDV/fdO7R6tNsd4bP0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j5uY8mNU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47T8TqVp001073;
+	Thu, 29 Aug 2024 13:40:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=F8N1RrRjxwf5TgZ2pHhEI/
+	ywY+uRyWfuHMwGAA4KM8c=; b=j5uY8mNUfVmJuMLhTy7bbWtbrFD4IlSkkcypb0
+	+ogL92WfQL1SszMDZJLTUSEZaKwONJIhVgbIh3TRLitGzqaH8Gcj1a2D3m/NZej5
+	s3nbqGA3ILKj7L1L/LP/HRYX/HAsPQS+q/haK1FY31TZVT2qMiHCZHhEa9HzAjg4
+	ur1XpdsytfT/SSgz4DvRSiIWS9qXmnGdeeBbz7YirPVqnd39789NptJYDSKHU977
+	hCKtYS03kASvT5xfIgiQcf7IsdDdBpSffEIrx6+g4E0XPmfxfefCSJwVaxRqrP0r
+	cUOsubSpF2S6kQA4nR4BHXknjiKj0mGwA2GV0kAoRsOnzPwA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419puw5dxw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Aug 2024 13:40:43 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47TDegMZ014528
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Aug 2024 13:40:42 GMT
+Received: from hu-gokulsri-blr.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 29 Aug 2024 06:40:38 -0700
+From: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+To: <andersson@kernel.org>, <krzk+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_viswanat@quicinc.com>, <quic_mmanikan@quicinc.com>,
+        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>,
+        <quic_gokulsri@quiconc.com>
+Subject: [PATCH V2 0/4] Add new driver for WCSS secure PIL loading
+Date: Thu, 29 Aug 2024 19:10:17 +0530
+Message-ID: <20240829134021.1452711-1-quic_gokulsri@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Olivier Moysan <olivier.moysan@foss.st.com>, 
- Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
- Michael Hennerich <Michael.Hennerich@analog.com>, dlechner@baylibre.com, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
- <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
-Message-Id: <172493879919.232012.15230520873780726405.robh@kernel.org>
-Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
- property
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: fAgGmk-UDqX3Fl24mc1t33id-PG7OWYe
+X-Proofpoint-GUID: fAgGmk-UDqX3Fl24mc1t33id-PG7OWYe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-29_02,2024-08-29_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ priorityscore=1501 malwarescore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=525 suspectscore=0
+ adultscore=0 spamscore=0 impostorscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408290094
 
+- Secure PIL is signed, split firmware images which only TrustZone (TZ) can
+  authenticate and load. Linux kernel will send a request to TZ to
+  authenticate and load the PIL images.
 
-On Thu, 29 Aug 2024 14:32:02 +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
-> 
-> Add bus property.
-> 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
+- When secure PIL support was added to the existing wcss PIL driver
+  earlier in [2], Bjorn suggested not to overload the existing WCSS
+  rproc driver [2], instead post a new driver for secure PIL alone.
+  This series adds a new secure PIL driver for the same. 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+[1] https://patchwork.kernel.org/project/linux-arm-msm/cover/20240820055618.267554-1-quic_gokulsri@quicinc.com/
 
-yamllint warnings/errors:
+[2] https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml: properties:bus-type: 'enum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+changes since v1:
+	- Removed dependency of this series to q6 clock removal series
+	as recommended by Krzysztof
 
-doc reference errors (make refcheckdocs):
+Manikanta Mylavarapu (3):
+  dt-bindings: remoteproc: qcom: document hexagon based WCSS secure PIL
+  arm64: dts: qcom: ipq5332: add nodes to bringup q6
+  arm64: dts: qcom: ipq9574: add nodes to bring up q6
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com
+Vignesh Viswanathan (1):
+  remoteproc: qcom: add hexagon based WCSS secure PIL driver
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+ .../remoteproc/qcom,wcss-sec-pil.yaml         | 125 +++++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  62 +++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  58 +++
+ drivers/remoteproc/Kconfig                    |  22 ++
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/qcom_q6v5_wcss_sec.c       | 354 ++++++++++++++++++
+ 6 files changed, 622 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,wcss-sec-pil.yaml
+ create mode 100644 drivers/remoteproc/qcom_q6v5_wcss_sec.c
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.34.1
 
 
