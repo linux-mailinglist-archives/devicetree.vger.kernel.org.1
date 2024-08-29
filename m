@@ -1,204 +1,114 @@
-Return-Path: <devicetree+bounces-98033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6037964750
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:55:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BAE96475F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 15:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C3D8B2FA97
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:48:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0045D1C22F7F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 13:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988FF1AE056;
-	Thu, 29 Aug 2024 13:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C252C1AD3FC;
+	Thu, 29 Aug 2024 13:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k61X5c2r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t7Th5bMi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82CF19005B;
-	Thu, 29 Aug 2024 13:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F1318CC1A;
+	Thu, 29 Aug 2024 13:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724939297; cv=none; b=fnE64bPC6xNjTrGj8MLTTRJ4+Wt7NqM8cIXj2aB9/eBTXt5n/bVAkLkVBW9oMN83MLAIgIiUv8YkSm3kguaDkCe3ipvsKP3KayIMEJ7z6QIxPztrKEigMfjt83jcAWcXuQfyBm+UwGhOVw615IA5//Wtx4Ewj60oh3tlyiWB8t4=
+	t=1724939927; cv=none; b=KAitLrG0pVqBraRhvAV1jaDS7zlz6g6qcgclFsfpJP/kGQIRen6HBm5DubsaUTGDmpSdw93LcHTlWIaQCbIvIusvCSCNxSkTcagrONJW45ehRi/DhcgHSiHtXAwkdX0TFZ4eycWLYsyQET/zzcpnJsG0qSmpeqQkmt2yMpfvZEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724939297; c=relaxed/simple;
-	bh=bMd2+0+v0C0vkmvZ0a7gm12/MK8cw71SBn03PAdEUug=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D7DJD6jgFscx7APGEdeEQYrpPTJLHgLI7B16HeO53gSIJz+YlYuL78CBO1ThQ+YlzCwiOz0SoWVvTKjdnsphsdRmsRQDTnUWrBlo6wMdtkWftn4FrxwJSjdRdbHC707zddrS0bCpVog4SrvedS1Q184B6tO+pIbTJpVzrtjTaNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k61X5c2r; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5d5f9d68805so350579eaf.3;
-        Thu, 29 Aug 2024 06:48:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724939295; x=1725544095; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fij7bmUZ1BwtygZobmPkPFaBK/SFCbQ/kLne1FVouMA=;
-        b=k61X5c2rvs8K5UvKAvgH4VejKek9yM4p4frWdj2yth6Vt8L6IRq1l3nz34hw8x2K3B
-         HZU7iUWDAH4rhR0EiFdszrxK5vHMb2aSfHrXpdn3WAJDaJAVgdiYdtVYSV84Gtwa5pJ4
-         U4xKb3YvXvT2x2hPAQuNeOmklDzm0Y/3KWZZHdMuhsYWSoySIhaLwkqnJ9BCHv9fO+Yb
-         6wHA5QPFke6e0Y4CseYkwBxq0dc6e87QDw56pkR5YBiGsEtljM19ULU6t4QNzjwSPCwQ
-         UH6Ih8PFt7M1PZs+daku1pzDndf1FiPhfa5iSnm1ybj4fysQYtzr4jiBZlWYYNgzecK/
-         zP3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724939295; x=1725544095;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fij7bmUZ1BwtygZobmPkPFaBK/SFCbQ/kLne1FVouMA=;
-        b=X23h2Vr33wpgA/AE/GkkJpyg0AbgBVTQkuVo+llDGwzoHXP0wy3sdMJwdA5gzlluV2
-         yyAYf4dIZRzABdNIN6j7M7F9H6LB2E3W8GWlvZtOWQAzxHw2GvHY55SaQisW/ak2P7nJ
-         SAURXw4kCYgkOIc2ohJDnvuJmZmh6iY+KzMoN2Fytf/4D4OCcowXVOXfqUSSN+I2gQ4+
-         FgDGhazVfTwSitSUbsWjxNH/x9sRUGdZ1JgOeOVbsBu0cb+bhmb44AfranDJIkS/VryC
-         ut37X88Xq8sLHS6fHpM0fP/LPmRLbJUxYckDqOU4MiEPC9gsA+jHrBYBlAuFCZsW5odg
-         G3XQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUv/XhwPxgCXJhk+yUM1jmImf45qRlreQD2DpwI8lFDwzk6g1JJQoqa2j0TljiQ4goFvryqJXXiM0syy0cF@vger.kernel.org, AJvYcCXUBAdwzS9Cb5bJ4yvM4YLjlolFfcXKdV0MdI2twWysDnkJt01Ns8VvTM9OnXeit55zvh7fsp0KaJaw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFPBjqZIN/TqBFx0X4KMXVCY+BFbPcjmlg90mkzFNdEuGgaw1e
-	BHML3O0glwySrDPyegYStArsLbAdH6DyLYReOiHv25TnWQyX63Sv
-X-Google-Smtp-Source: AGHT+IGCpp26qT5ACYfhkp4StVnu7Amwf484YTNlNSrglEKytGqqjoOG91Qqwhfb8r2kOPo+eK2/Zw==
-X-Received: by 2002:a05:6359:4c10:b0:1a5:6b71:dde6 with SMTP id e5c5f4694b2df-1b603bebb88mr396283355d.3.1724939294686;
-        Thu, 29 Aug 2024 06:48:14 -0700 (PDT)
-Received: from [192.168.0.122] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d22e66d8f4sm1236270a12.0.2024.08.29.06.48.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 06:48:14 -0700 (PDT)
-Message-ID: <18007fe0-cc5d-4887-ab41-ed4cf8217b60@gmail.com>
-Date: Thu, 29 Aug 2024 21:48:10 +0800
+	s=arc-20240116; t=1724939927; c=relaxed/simple;
+	bh=0q2Ur2MUpnxOlKHJBVHPWz/HdHJLxmDIENnY11FuYXw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q0CWXqlZ4rhgws0dAYCfJY2Te9/JWJUg+MJXmzXxHjEt1Lzd/1IXmb6ug/X9cq19C5DkWgfzCSfGfQNAEynPX8vXJ0jgDktgrhyS/FMucKr6DN5p7W75YN3D2tnW1OLsX6GD39tQvfhAFp9yIXe1xTg3ZwKueE1gYhQdCTxfTU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t7Th5bMi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A1AFC4CEC1;
+	Thu, 29 Aug 2024 13:58:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724939927;
+	bh=0q2Ur2MUpnxOlKHJBVHPWz/HdHJLxmDIENnY11FuYXw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t7Th5bMiQpdMBxlOffFJ+GCJM2I+/UMt2ILZmIDUvSGphvKC6S7bSvhHl/TMfAj5A
+	 X+FJbv00VQxKC1CSYo0/gkSm9fbZuqQpNpQCdEz973TtCJsNDrojL+f0o3X8kuVIgu
+	 TUFUAXIKiu+/UfljTa/WqSi/kSJH8UQEwKKy24/QL45UcGun3hEMhjChB8yig4rYfD
+	 nDfZrNraj/IX0lGbPmsNWgAD0aslWPWQI1T+JOrV8g7xEY4mfNyk8FunhrBvn1q4KF
+	 T6ugzDVWW+JuFfYjR8L2EAzn0qOXocLWiKCFlwNJ85f72kiXXXzXLCPJ7PkE9kWN35
+	 JNJ3ppTQ47OMw==
+Date: Thu, 29 Aug 2024 08:58:45 -0500
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: fuse: Move renesas,rcar-{efuse,otp}
+ to nvmem
+Message-ID: <20240829135845.GA297607-robh@kernel.org>
+References: <cover.1721999833.git.geert+renesas@glider.be>
+ <1a3d4ff8ce34a5e676d1cb1fafd40525378e29a4.1721999833.git.geert+renesas@glider.be>
+ <20240730162435.GA1480758-robh@kernel.org>
+ <CAMuHMdUwATmjM3E7WmwnCK739CwuyZH1w_YVYbroDcWEpzh8ig@mail.gmail.com>
+ <67hcoj3haiptjh4f7qvaz4xwcdamr3x33xxrxusuwq2t3veiln@z2ggc7razty4>
+ <CAMuHMdXSxMzzM6WgwObbymdWHcqUU2r6BOyS7ZzqSBx_gsWftw@mail.gmail.com>
+ <c91167d8-df24-4a3c-bb92-811bd1543be3@kernel.org>
+ <CAMuHMdUOi-jNLdfnG1iWORa8=EnZjM+DpREsWPyc9RMQwW80SA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 2/3] irqchip/apple-aic: Only access IPI sysregs
- when use_fast_ipi is true
-Content-Language: en-MW
-To: Thomas Gleixner <tglx@linutronix.de>, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
- Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20240829110436.46052-1-towinchenmi@gmail.com>
- <20240829110436.46052-3-towinchenmi@gmail.com> <87zfova32u.ffs@tglx>
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <87zfova32u.ffs@tglx>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdUOi-jNLdfnG1iWORa8=EnZjM+DpREsWPyc9RMQwW80SA@mail.gmail.com>
 
+On Thu, Aug 29, 2024 at 11:10:41AM +0200, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> On Thu, Aug 29, 2024 at 10:55 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > On 28/08/2024 22:10, Geert Uytterhoeven wrote:
+> > > On Mon, Aug 19, 2024 at 1:11 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >> On Wed, Jul 31, 2024 at 09:37:36AM +0200, Geert Uytterhoeven wrote:
+> > >>> On Tue, Jul 30, 2024 at 6:24 PM Rob Herring <robh@kernel.org> wrote:
+> > >>>> On Fri, Jul 26, 2024 at 03:38:06PM +0200, Geert Uytterhoeven wrote:
+> > >>>>> The R-Car E-FUSE blocks can be modelled better using the nvmem
+> > >>>>> framework.
+> > >>>>>
+> > >>>>> Replace the R-Car V3U example by an R-Car S4-8 ES1.2 example, to show
+> > >>>>> the definition of nvmem cells.  While at it, drop unneeded labels from
+> > >>>>> the examples, and fix indentation.
+> > >>>>>
+> > >>>>> Add an entry to the MAINTAINERS file.
+> > >>>>>
+> > >>>>> Reported-by: Arnd Bergmann <arnd@arndb.de>
+> > >>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > >>>>> ---
+> > >>>>> v3:
+> > >>>>>   - New.
+> > >>>>>
+> > >>>>> I would expect that the calib@144 node needs:
+> > >>>>>
+> > >>>>>     #nvmem-cell-cells = <0>;
+> >
+> > So this is for mac-base...
+> 
+> No, mac-base is not involved.
 
+It is because that's the only case that allows #nvmem-cell-cells in 
+fixed-cell.yaml. While fixed-cell.yaml allows additional properties, 
+where it is referenced in fixed-layout.yaml does not.
 
-On 29/8/2024 21:08, Thomas Gleixner wrote:
-> On Thu, Aug 29 2024 at 19:02, Nick Chan wrote:
->> Starting from the A11 (T8015) SoC, Apple introuced system registers for
->> fast IPI and UNCORE PMC control. These sysregs do not exist on earlier
->> A7-A10 SoCs and trying to access them results in an instant crash.
->>
->> Restrict sysreg access within the AIC driver to configurations where
->> use_fast_ipi is true to allow AIC to function properly on A7-A10 SoCs.
-> 
-> use_fast_ipi is an implementation detail and does not mean anything
-> here. It's sufficient to say:
-> 
->    Only access system registers on SoCs which provide them.
-> 
-> Hmm?
-Seems like a good idea. Will be in v2. Though if the commit message
-is that generic, do you think it's correct to squash the third patch
-into this commit? It is also preventing sysreg access on SoC that
-do not provide them.
-
-> 
->> While at it, remove the IPI-always-ack path on aic_handle_fiq.
-> 
-> It's not while at it. It's part of handling this correctly.
-In v2 it will be mentioned as as part of the sysreg access restriction.
-
-> 
->> If we are able to reach there, we are on an IPI-capable system and
->> should be using one of the IPI-capable compatibles, anyway.
-> 
-> 'we' can't reach that code ever.
-> 
-> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#changelog
-Acked. In v2 the commit message will not impersonate the code anymore.
-
-> 
-> 
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
-> 
-> This Signed-off-by chain is invalid. If Konrad authored the patch then
-> you need to have a 'From: Konrad ...' line at the top of the change log.
-> 
-> If you worked together on this then this needs a Co-developed-by
-> tag. See Documentation/process/...
-This patch was entirely made by Konrad, but now that changes are requested,
-it will be a Co-developed-by in v2.
-
-> 
->>  
->> -	if (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING) {
->> -		if (static_branch_likely(&use_fast_ipi)) {
->> -			aic_handle_ipi(regs);
->> -		} else {
->> -			pr_err_ratelimited("Fast IPI fired. Acking.\n");
->> -			write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
->> -		}
->> +	if (static_branch_likely(&use_fast_ipi) &&
->> +	    (read_sysreg_s(SYS_IMP_APL_IPI_SR_EL1) & IPI_SR_PENDING)) {
->> +		aic_handle_ipi(regs);
->>  	}
->>  
->>  	if (TIMER_FIRING(read_sysreg(cntp_ctl_el0)))
->> @@ -574,8 +571,9 @@ static void __exception_irq_entry aic_handle_fiq(struct pt_regs *regs)
->>  					  AIC_FIQ_HWIRQ(irq));
->>  	}
->>  
->> -	if (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) == UPMCR0_IMODE_FIQ &&
->> -			(read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
->> +	if (static_branch_likely(&use_fast_ipi) &&
->> +	    (FIELD_GET(UPMCR0_IMODE, read_sysreg_s(SYS_IMP_APL_UPMCR0_EL1)) == UPMCR0_IMODE_FIQ) &&
->> +	    (read_sysreg_s(SYS_IMP_APL_UPMSR_EL1) & UPMSR_IACT)) {
->>  		/* Same story with uncore PMCs */
->>  		pr_err_ratelimited("Uncore PMC FIQ fired. Masking.\n");
->>  		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
->> @@ -811,7 +809,8 @@ static int aic_init_cpu(unsigned int cpu)
->>  	/* Mask all hard-wired per-CPU IRQ/FIQ sources */
->>  
->>  	/* Pending Fast IPI FIQs */
->> -	write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
->> +	if (static_branch_likely(&use_fast_ipi))
->> +		write_sysreg_s(IPI_SR_PENDING, SYS_IMP_APL_IPI_SR_EL1);
->>  
->>  	/* Timer FIQs */
->>  	sysreg_clear_set(cntp_ctl_el0, 0, ARCH_TIMER_CTRL_IT_MASK);
->> @@ -832,8 +831,9 @@ static int aic_init_cpu(unsigned int cpu)
->>  			   FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_OFF));
->>  
->>  	/* Uncore PMC FIQ */
->> -	sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
->> -			   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
->> +	if (static_branch_likely(&use_fast_ipi))
->> +		sysreg_clear_set_s(SYS_IMP_APL_UPMCR0_EL1, UPMCR0_IMODE,
->> +				   FIELD_PREP(UPMCR0_IMODE, UPMCR0_IMODE_OFF));
-> 
-> Please see the bracket rules in the tip maintainers doc.
-Acked. Brackets will be added to function references in commit message
-of v2.
-
-> 
-> Thanks,
-> 
->         tglx
-
-Nick Chan
+Rob
 
