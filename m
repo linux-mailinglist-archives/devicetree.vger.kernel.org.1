@@ -1,113 +1,87 @@
-Return-Path: <devicetree+bounces-98088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45926964C91
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:05:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5E2964C97
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:05:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77B901C22CC9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:05:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39C232844AC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 17:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B101B655F;
-	Thu, 29 Aug 2024 17:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD071B6539;
+	Thu, 29 Aug 2024 17:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZhGXw6ZI"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ROhFhDPO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E381B5327;
-	Thu, 29 Aug 2024 17:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12FE81B532A
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 17:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724951011; cv=none; b=KHYkRU9wGZoYgcHxC/I69bq5hUtVQ8P/Ohh89eUkhUbAxfilf48XvSP9/eHZhthv7KYyPEP7xQtOhEKitU5z1TeN9++1QYGeYEsFTi1555Iq4eEsT4ETZZFV0Rd6cV0p5RYGxyQqJgEWhVSVmjZAim2Wpt7Ht+kK5a758RZBU2I=
+	t=1724951122; cv=none; b=Jj0+VQ9PxLmoO6m/JmX9jN9ScVGUPIi9gi8ZZL7Zi6a7o8SC8eRFDaxvptMAeOA01K/hRvpGehowayY1FmZRIWvfScZfzJgnfMb+2g+PQt/2blBKlYdVIoFfUbpBQsrxMReyhF1MQfn3QZMML5X1BscIny5KVbnPzxckfyZCTXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724951011; c=relaxed/simple;
-	bh=fF3MZfjWlsFpCSUK05YMBeA2C4rmrtnhmYrTtq1uU0Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WW63gZSVoprUKRSAaRWq8wrvyvH1unqnO4Rkiiq1olTpHkM615AEqYVw+fpJ1tRR84EqUeoaHlfpKrWvfMahw+sCm86bPkhiAOJsh/tmz70KJL9hk1+9Ep+mAPacEqFQv1eRk9wf5HYQY2/sTAdh9j2oWKoakIy3GM6Oks8mXDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZhGXw6ZI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1892C4CEC1;
-	Thu, 29 Aug 2024 17:03:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724951011;
-	bh=fF3MZfjWlsFpCSUK05YMBeA2C4rmrtnhmYrTtq1uU0Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZhGXw6ZIpHaX7JtJXKxC+GfEC1uwdjGFdHd4u3KBEKsgNEMlsfLwY28AzyzstIyy2
-	 wuRnpC5FDa2d7QrnJCgninVC5chkrb2PVaVhnfIvb3ITaIJEqj/nH41BFD3ZSz9VM/
-	 SoSSYsOc81eMJWqMVcXpC1l24NfFd5ZNrHcib6NsTv+4+4ikTu7YF7mT4InIucpw0u
-	 48htY7e+QOgDMhcG62bBjp321l+7fdxiYxcVWLFLbPPFchXxQ2qNUbwdxUQMFbggO5
-	 I51KzR4bHsNR2nB0gU3r4wKJouSCitIS7TWi7J8KGrBLKvr2QwjU6oS0u0Dwx8KZ+u
-	 T9Wera6VSKTkg==
-Date: Thu, 29 Aug 2024 22:33:27 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v12 2/3] soc/sophgo: add top sysctrl layout file for
- CV18XX/SG200X
-Message-ID: <ZtCp346ucJq/V1kP@vaman>
-References: <IA1PR20MB495396729244074C36E51E11BB942@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953E0D56CE4010C470E4A71BB942@IA1PR20MB4953.namprd20.prod.outlook.com>
- <Zs9kUAeapWeN/4GS@vaman>
- <IA1PR20MB4953572077286AF23A747507BB962@IA1PR20MB4953.namprd20.prod.outlook.com>
+	s=arc-20240116; t=1724951122; c=relaxed/simple;
+	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n3NiquS4MsSyhCCLb41w6gCrs9DGnxd/OI4iaYFVyjpDDVBMQr0eaYVqhMcQ7HBSYU8+CMmnTGCvZ/g7JwfWsjoEMRXiSPG251L+KAnrqOeY6jds/degQjYYFnGBAgzbMXlq7GH2yxStOiL1aB6TPqR4FrK/kav2z3cx0CXN9a8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ROhFhDPO; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42bb6d93325so155e9.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 10:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1724951119; x=1725555919; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=ROhFhDPO9Ll9pWySk8+1RNzrFAIkqvOHeAt76Sekt/2Nq2RgyGnHOrg06nVAwJTbbx
+         zAi0uJwwJP0jqEYMfTHLkWaLJ2gekVim0k8G/dT0p2KPEwnnDBxr8vGAEIAbWGgwydbJ
+         27gRXfuhbdNIvrexgxiNmeLdRC7iD8eL/W8DICUJu+ZkoPpVwFJIzZtULYynfRQ7WJSf
+         hf3JckSyM3mS9++wZHTI426vRojfg3E4bT5gEo9V8aflq0OYneGz+LtgkdyczysS1TMQ
+         xYqLj5Joab5nUxH9a9uJl41/gt6GcyBRtoMAcugUPwyUekYoCs3c/38EOqb5F/7yf3PF
+         4aQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724951119; x=1725555919;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=TKT61EpkJUlCzg4B+9lbLfMoCDVq2UN5kTXOE/8D1YebCXvtIg9XrCl9QqqQ9amDj1
+         PTnkfej78BXIqZ2HnpmzP8uWHXpWNp4qmdacJydgTxnJ3f7FMIVSCcbQSF5t6Gc4b/6J
+         DZ/5YABkWZzzTqxTnWMgY4EanYXu8zbwXK0hqBqtmY+rnSvOops0aReatWXQwRCoSi9K
+         jlC0S05FwYXyGR2X+En3/a4kfUQDaCe/u0n/R7WL/rH6+uPb9gzYGDT+KKqHF5XpzZ0p
+         mItfQBG/LZI2N6Mtq2wM68qnOzUSPfs3gkJZbylzXVl97hQz1mCppU3hV7fJ6fWath3N
+         EwGQ==
+X-Gm-Message-State: AOJu0YwoMX4+AyRNo+8BO1A8SEH96ZDaTIzRhKFCZBUG3PffZr8p/Roo
+	OHZhOi/d5bCta47yTtkijL8zlkHTq1k6filwlRaeqdv3/8rlUrEI37CWm49E7+wBTVNwXmOq+OF
+	CL8JuDR2OJwdjNiEkWflQuAuNrhkeDu5z2WA=
+X-Gm-Gg: AV9I1ZS6BWKd/Kn0ZQqFBbLb352bayFTiAJopxyh4ioFcmWIhiw+7Hw4zkbk3aXtosT
+	jf03PkJTkdeN2iWyJdPDPw6Fa2DtLTndzg21YiNy5CgUM6NcqUzbJJNrTOsE=
+X-Google-Smtp-Source: AGHT+IF8ncbv3hPX6txBwjD+mljfVJFZjCz8WD9pS5r0ChWeEb3HcbLEeUEQAMuL4Kr+bb+8RiZA/+ov4ZUA9UxFSLs=
+X-Received: by 2002:a05:600c:6d12:b0:424:a2ae:8d1d with SMTP id
+ 5b1f17b1804b1-42bba2d4b89mr12755e9.2.1724951118768; Thu, 29 Aug 2024 10:05:18
+ -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953572077286AF23A747507BB962@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <CAFs7P=jk=wfo0nbHzqd1NrGX3NKpOezD4-u=nAMqzq7mq4Lidg@mail.gmail.com>
+In-Reply-To: <CAFs7P=jk=wfo0nbHzqd1NrGX3NKpOezD4-u=nAMqzq7mq4Lidg@mail.gmail.com>
+From: Joshua Pius <joshuapius@google.com>
+Date: Thu, 29 Aug 2024 13:04:40 -0400
+Message-ID: <CAFs7P=jPqv2Zr6Fnw584TKhj5joBRt7X7gMidE4MiK1ABAMiRQ@mail.gmail.com>
+Subject: Re: [PATCH] ALSA: Add logitech Audio profile quirk
+To: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-doc@vger.kernel.org, alsa-devel@alsa-project.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 29-08-24, 09:38, Inochi Amaoto wrote:
-> On Wed, Aug 28, 2024 at 11:24:24PM GMT, Vinod Koul wrote:
-> > On 27-08-24, 14:49, Inochi Amaoto wrote:
-> > > The "top" system controller of CV18XX/SG200X exposes control
-> > > register access for various devices. Add soc header file to
-> > > describe it.
-> > 
-> > I dont think I am full onboard this idea, 
-> 
-> Feel free to share your idea. I just added this file for
-> convenience to access the offset of the syscon device. 
-> In fact, I am not sure whether it is better to use reg
-> offset. Using reg adds some unncessary complexity, but
-> can avoid use this offset file. If you prefer this way,
-> it is OK for me to change.
 
-I would just add the offsets that I need in local driver header and move
-on...
-
-> 
-> > but still need someone to ack it
-> 
-> I am not sure there will be someone to ack it. If this patch
-> is kept.
-> 
-> > > 
-> > > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> > > ---
-> > >  include/soc/sophgo/cv1800-sysctl.h | 30 ++++++++++++++++++++++++++++++
-> > 
-> > is soc/sophgo/ right path? why not include/soc/sifive/... (sorry dont
-> > know much about this here...)
-> > 
-> 
-> CV1800 is a SoC from Sophgo, it is not from SiFive.
-
-As I said I am not sure, someone who is from this world should ack this
-header
-
--- 
-~Vinod
 
