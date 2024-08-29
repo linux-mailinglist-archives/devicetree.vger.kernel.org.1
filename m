@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-97854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 432F9963DCE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:56:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E681963DD7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:58:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 000B9287BD4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:56:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD16228846D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:58:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF9F1189F3F;
-	Thu, 29 Aug 2024 07:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B82F18A6C6;
+	Thu, 29 Aug 2024 07:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O5rzzodc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2cimbev"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1BA7189F36;
-	Thu, 29 Aug 2024 07:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0714E1B813;
+	Thu, 29 Aug 2024 07:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724918187; cv=none; b=SsxLglQgL2Y65dDQ7gtSTyOrt5xYB3kBAHEvBP0ShMaA5/8ZpEYUNZt6O/qhE3g465G3oezhS+wpeW+v3k9ncmf/ysADD0wclIachqWQPU7mKV9v8b6PPswGOXiWhSn1Ow/ogdBEi3ifYgHUuDQPec9LQRR8EGZWOgGjpqIGekk=
+	t=1724918285; cv=none; b=nDZ5sERqZXUwLVc6NgAdVYNsqD9Ed/pO4ZwZvjXPAasfV0U9IVeM3W4kntiYw/lrzriyqz27uz/MNTNYe+0wtmOhUPVZb/KtJlL/JvlfdVVl7qIjIRr4NZcckJB2O83yFNu/eDIbtnXbESARVnXBp7CGvVeglJcbJriBvqJzqSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724918187; c=relaxed/simple;
-	bh=L35tVttQDP3DiTHl/7msj81N0HAs96f+ggKxIEB/ncg=;
+	s=arc-20240116; t=1724918285; c=relaxed/simple;
+	bh=xxaLtv0q8WiO22sQEm0ulKg7KPVsl9z0GngcTOmfnXo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gb1+5lhFIZOw2SK0lBkwN90PeiOpfL1UbSf5EMa32+lX34Uba+V5zzSUr2RQpM4iyA3+MaAYjbYdqKMYneHwbiIVxDkybV0yyO63MLU4cnCrP85KAXRopf4PR8g3ciiIoIGB7gaMenjcSR8F4yJOh7EtfszlF9j5pS4XO4bPfbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O5rzzodc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88D10C4CEC1;
-	Thu, 29 Aug 2024 07:56:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ToXypwPasHKSGzK2/e1aGQINpq6dQzIiT7kA9S7FI7V5mdxOK1s3py2GpG/aXNZBoUakBs1jbNCOFDHku5xQ0YNIVsrM0S2p5xK6+CaUSn/Qd401J60eBnvr2PBPxrfzh+v6TOLrQVBP5IKpre9BaSRmIkfFM3paK6OcCuV/qas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2cimbev; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55287C4CEC1;
+	Thu, 29 Aug 2024 07:57:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724918187;
-	bh=L35tVttQDP3DiTHl/7msj81N0HAs96f+ggKxIEB/ncg=;
+	s=k20201202; t=1724918284;
+	bh=xxaLtv0q8WiO22sQEm0ulKg7KPVsl9z0GngcTOmfnXo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O5rzzodcYeVSU6L0YNdobG69J6rctkyh45HAsOuZLJHWVpm9V0nN0aU2duPJeIIii
-	 SyhvG0xRa9BBAs1LJGyC5wYL1HlPQD/0KI8caPz+ZSwJlpiRJd9Oz5YPx6nQLuM0HU
-	 yya/rLje/ZYu6jkKancbO9NQWcWHR5EzAu3Dmr9YVDdpvK+SCD+DLQt5xfXQZen4FU
-	 sUULdtMvbW+dKQfNU8HJyju16ppFc7ck3rLikhwqITPOVpRJohGfg8ZRIk7v305hcR
-	 6E3XNTEK60DW9qW7ZBZlKUdBowLX6QDIQanCO2MkAAtjMx0ZoqC5k0vfIWOBu6Tnf1
-	 4s1BuPhfVI98g==
-Message-ID: <51d48faf-9f62-431f-b1bf-b78f0a30ae14@kernel.org>
-Date: Thu, 29 Aug 2024 09:56:18 +0200
+	b=c2cimbevF8UQ8GLpaB0G5GGZz3Vi4r0CXj5nxuxOWbEMi9HqKxloOM+fldlyFIh6d
+	 Sqk64XiHSNlK73PHI4yfg9L94pje7akTIE1gJTqeUbr6fsDu6nYWtfpKAou3o5s+jD
+	 f8U8FB/4G+9Ji/n/Hfm5ExoVJ4wrJH8bqlAqCA2fMYsF8trznpd9nHORfOOnzJoG5c
+	 sLpPzXKcDH1w5zIdYV967zFFVcKodJeUibp7vM259IC/GSHbfxcbjb0uksg3n2EOjV
+	 YMCgQTT+CXRqUIrHSzBpNReYFzdbZ7YzwhkxTcuCGajwRbBdDmobHrRqZF9OuTvRJV
+	 hs3NIMhFuop1g==
+Message-ID: <11c897d7-ea9c-4474-81f6-1fc2198d289d@kernel.org>
+Date: Thu, 29 Aug 2024 09:57:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] media: aspeed: Allow to capture from SoC display
- (GFX)
-To: Jammy Huang <jammy_huang@aspeedtech.com>, robh@kernel.org,
- conor+dt@kernel.org, eajames@linux.ibm.com, mchehab@kernel.org,
- joel@jms.id.au, andrew@aj.id.au, hverkuil@xs4all.nl, pmenzel@molgen.mpg.de,
- krzk+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20240829064508.3706672-1-jammy_huang@aspeedtech.com>
- <20240829064508.3706672-3-jammy_huang@aspeedtech.com>
+Subject: Re: [PATCH 00/22] arm64: qcom: Introduce SA8255p Ride platform
+To: Nikunj Kela <quic_nkela@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
+ herbert@gondor.apana.org.au, davem@davemloft.net, sudeep.holla@arm.com,
+ andi.shyti@kernel.org, tglx@linutronix.de, will@kernel.org, joro@8bytes.org,
+ jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
+ amitk@kernel.org, thara.gopinath@gmail.com, broonie@kernel.org,
+ wim@linux-watchdog.org, linux@roeck-us.net
+Cc: robin.murphy@arm.com, cristian.marussi@arm.com, rui.zhang@intel.com,
+ lukasz.luba@arm.com, vkoul@kernel.org, quic_gurus@quicinc.com,
+ agross@kernel.org, bartosz.golaszewski@linaro.org, quic_rjendra@quicinc.com,
+ robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, iommu@lists.linux.dev,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel@quicinc.com, quic_psodagud@quicinc.com, quic_tsoni@quicinc.com,
+ quic_shazhuss@quicinc.com
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,44 +117,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240829064508.3706672-3-jammy_huang@aspeedtech.com>
+In-Reply-To: <20240828203721.2751904-1-quic_nkela@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/08/2024 08:45, Jammy Huang wrote:
-> ASPEED BMC IC has 2 different display engines. Please find AST2600's
-> datasheet to get detailed information.
+On 28/08/2024 22:36, Nikunj Kela wrote:
+> This series enables the support for SA8255p Qualcomm SoC and Ride
+> platform. This platform uses SCMI power, reset, performance, sensor
+> protocols for resources(e.g. clocks, regulator, interconnect, phy etc.)
+> management. SA8255p is a virtual platforms that uses Qualcomm smc/hvc
+> transport driver.
 > 
 
-...
+Who is supposed to merge it? The Cc-list is quite enormous and I got now
+20 bounces:
 
->  
-> +/*
-> + * Get regmap without checking res, such as clk/reset, that could lead to
-> + * conflict.
-> + */
-> +static struct regmap *aspeed_regmap_lookup(struct device_node *np, const char *property)
-> +{
-> +	struct device_node *syscon_np __free(device_node) = of_parse_phandle(np, property, 0);
-> +
-> +	if (!syscon_np)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	return device_node_to_regmap(syscon_np);
-> +}
-> +
->  static int aspeed_video_init(struct aspeed_video *video)
->  {
->  	int irq;
->  	int rc;
->  	struct device *dev = video->dev;
->  
-> +	video->scu = aspeed_regmap_lookup(dev->of_node, "aspeed,scu");
-> +	video->gfx = aspeed_regmap_lookup(dev->of_node, "aspeed,gfx");
+"    Too many recipients to the message"
 
-So that's a new property? Not related to conversion? Then split the
-patches. Conversion is one logical change. Adding properties for new
-hardware is completely different.
+at least drop some non-maintainer related, I counted 5-7 Qualcomm ones
+which should not be needed.
 
 Best regards,
 Krzysztof
