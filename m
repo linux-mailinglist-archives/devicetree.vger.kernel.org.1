@@ -1,120 +1,132 @@
-Return-Path: <devicetree+bounces-98172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4547965044
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:56:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34BE996505A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDEA5B244DB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:56:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5717286556
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3932D1BE874;
-	Thu, 29 Aug 2024 19:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09281BA86B;
+	Thu, 29 Aug 2024 19:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SOMCQ/VQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BHup4ZAb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A68E1BE868;
-	Thu, 29 Aug 2024 19:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9472E1B81DF;
+	Thu, 29 Aug 2024 19:53:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724960955; cv=none; b=GX4cXAVIMfwgkbpjo5TnrrXVWDSsMaKJiMMA5YHxTT2gDkj4+ERIThdDHhklsOaJoPq/xHnfd9jE4xRM2U6s6KOkvxxxwoPzPAipGLZU+0ibff1iEWazoSoRrXcQacIKSNl9mGTYiH1MlYI2ThmuuxewiTsmoUSXeZW4OiFC0Sc=
+	t=1724961196; cv=none; b=Wa0L5MnKOTauqwHquT1aOXBjFtoH6tFU3MNI8Q7WeZnil9ksLyMzdFi6YvB3uMUj6eGo99zA/SBWWfOBDLhyPQ2MhwiF1RyVcSAbBokDC/SjFC6BEaZUiAFHzeOpAauqr7/nYEVVqg9/JUscDU0D3QTZT9Sbhb4VYHwGB6IkfpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724960955; c=relaxed/simple;
-	bh=VQFkfIt1ZFmvcgrZPQB4L0rRyNlBeXoAfBINrTFokH8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B2cE+T6ETKdV6HDKWoROeiEuB/RXcnwMCd1voDT0ZxW79QS6I4ie7h5yrMgwmXXX8rm+2ZyDNpDBvYpyF/inZUTg34rqPXU3fkJhGz2SHd9PJMZYgwepPojj3/N5OiXALstjhC3m14hFG77WW7oIryyhPFIBdKZTYHgx/siQyFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SOMCQ/VQ; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5bed72ff2f2so1241471a12.2;
-        Thu, 29 Aug 2024 12:49:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724960952; x=1725565752; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C6zTyRy44LbsV/er+6Rmmr7d7exqhqQ5s8Va18uvln0=;
-        b=SOMCQ/VQpSXbRGvD4QN4FFC4PBjB6PFtgwQXM19lDbBTZhg5GeSPldyo0kBQb447Aa
-         KKZkp3UBQMNAXp/eN8GK8GGXHfT3sjePnK+wUPi8mGJwaSYDxcSdzGfk1KsgTtBO4Wvu
-         sgKOnMNkzaGmEhF2IHYqAqGLG07F/KhML7vfBNvZcb3DIyoiMeSxEUMtsbY9nhXXYZO9
-         19KnU2uEuJVVyGQ3OBIiMIymrFxK34o7SMnsbXKCs0fBle9lycaEIs41xXog2mt1U3/+
-         Xx8tJMp7/VG2rbkgv6bpCwmIHYVCTx/oIq3dRBouWeYbjRXSNH6VtLLJ6yVa0qLWWtD+
-         Z/YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724960952; x=1725565752;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C6zTyRy44LbsV/er+6Rmmr7d7exqhqQ5s8Va18uvln0=;
-        b=TdGfwPdVxU1XVe70IvKAiT5r9/KNtEpPBtXG/KNzJqYPQAC/QzTsvEATq0VnMDzkFe
-         Rivq1QVZ94MRQXit7W4sPvM+0Pe5zwvWIVnH1PKZJtKntrXRjRnbVsVKBdMXQ9o0PpTJ
-         2yMfKd3yjR6ZFbBGXl5SdqT9jei5wi3xDDfAWdrdme0RDrZsgtp+5Uxq0OGn7CcDhm0N
-         XpGoV2c1pVgNW/yJgIycavDKLTR4DMWW5gyfYka07fYwpRMbEDOu996T5dYMK77e9A7c
-         4P2gwd6ou/VZFg71bqK1BgyPdfcyReGjk1Tql5BuhM2woNmaYFNiIvj2JhNFpJ+mWAKK
-         QpuA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkY72gpC5F6BuQ3egZttU3tU/A0iMvh/xMQue3iL002fr1pPjhZpthK55ANzjN096Sy16LAJWbDDVYHHpS@vger.kernel.org, AJvYcCUt5zX7klMtj+Obdhb9RpEVDHc0CiPhgzibAESo1tnF26sivqyClcSRHieHA3jOGLewZpHErKIJRWKl@vger.kernel.org, AJvYcCV5HqpylIqjZYOqj6hAGntG8amjdnhzmDb5U4rwKxs38hZVY/PjRrvX/NnwbE5vVjStoHDrxlolgUE=@vger.kernel.org, AJvYcCW4jO7zBX6P3nMaIwN8QMcqOssdOHT/MrD5slHHl93DBJO9ut/M/2sgA52y1vaFIvyr9Mqw1MCel+w6jYTDbQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSjroT426onmSIErHLFNpxezt9blzJVqBXAv2drdUbH9p+Axu4
-	9x9W4rgNiHoARYCVp5Qi9OrzQuwZ4UsJ15XMUWGUviYpUk72xeuw
-X-Google-Smtp-Source: AGHT+IEG6BreU15tWsvDqXfz+6NfLSYPAoFtBNvZap0mdBrmPnCL4g6PIPExiJh2Sz2VysaWO/gXoQ==
-X-Received: by 2002:a17:907:7292:b0:a86:a909:4f67 with SMTP id a640c23a62f3a-a897fa759c4mr273076266b.52.1724960951288;
-        Thu, 29 Aug 2024 12:49:11 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8988feb9f7sm114184666b.42.2024.08.29.12.49.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Aug 2024 12:49:10 -0700 (PDT)
-Message-ID: <159df608-e52c-4317-a1f2-d0f94ebfc25a@gmail.com>
-Date: Thu, 29 Aug 2024 21:49:07 +0200
+	s=arc-20240116; t=1724961196; c=relaxed/simple;
+	bh=Uhx4a7Uk/gjBqwkYG9zbgHA+zupE9eLvr42o54btdDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rHmy0YOl347B7f7senahkcYdyje9BmGBW7+chetZlRDqjYphHAbwGTpqvn/QaGeXk18iLxIwBYsloXShOs5vtf4LRIdGOFjb6Ct501ampXVdiS4R25L5++tmyYMaHR+WE60OZt5R6FhjR7f1ZX9m2/N3XYp3Q3MnOhw5A/N1wKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BHup4ZAb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF792C4CEC2;
+	Thu, 29 Aug 2024 19:53:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724961196;
+	bh=Uhx4a7Uk/gjBqwkYG9zbgHA+zupE9eLvr42o54btdDs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BHup4ZAbQIDszLesnjFkYonoXAAftcq6rYOyspG92WaM2EGDWuUulXiOwWmnHKBrj
+	 befMozd3bzj1DGALLm9cBef/F1q3NXtlPG3eG9BAFiDNFGbdwqzvJw3Gjcs27yjjWr
+	 v8AjqcwRbBrycdt3sSWfpbrXxTB5hyZM22LaWSSW3f+4Kp1pULbPBbXRjniMTdUPhA
+	 j5vz+N6Q3pIFAvYvD1/klmf4IhUgBewiL7Md2HWT1HhvCxpAftRm9et1xXkHpWsn/E
+	 nqU3rplNQbiLrzmcpr3jSx3FT3eRZpO8fH2acDn64WnjO/HPq1GMv3eqhBh4t2yB2i
+	 ZEQPejuJrD8dw==
+Date: Thu, 29 Aug 2024 14:53:14 -0500
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Robert Marko <robimarko@gmail.com>,
+	Russell King <rmk+kernel@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: marvell,aquantia: add
+ properties to override MDI_CFG
+Message-ID: <20240829195314.GA916906-robh@kernel.org>
+References: <1cdfd174d3ac541f3968dfe9bd14d5b6b28e4ac6.1724885333.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] interconnect: qcom: add QCS8300 interconnect provider
- driver
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>,
- Danila Tikhonov <danila@jiaxyga.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Vladimir Lypak <vladimir.lypak@gmail.com>,
- Adam Skladowski <a39.skl@gmail.com>, Sibi Sankar <quic_sibis@quicinc.com>,
- Rohit Agarwal <quic_rohiagar@quicinc.com>,
- Rajendra Nayak <quic_rjendra@quicinc.com>,
- Andrew Halaney <ahalaney@redhat.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_mdtipton@quicinc.com,
- quic_okukatla@quicinc.com
-References: <20240827151622.305-1-quic_rlaggysh@quicinc.com>
- <20240827151622.305-3-quic_rlaggysh@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@gmail.com>
-In-Reply-To: <20240827151622.305-3-quic_rlaggysh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1cdfd174d3ac541f3968dfe9bd14d5b6b28e4ac6.1724885333.git.daniel@makrotopia.org>
 
-On 27.08.2024 5:16 PM, Raviteja Laggyshetty wrote:
-> Add driver for the Qualcomm interconnect buses found in QCS8300
-> based platforms. The topology consists of several NoCs that are
-> controlled by a remote processor that collects the aggregated
-> bandwidth for each master-slave pairs.
+On Wed, Aug 28, 2024 at 11:51:49PM +0100, Daniel Golle wrote:
+> Usually the MDI pair order reversal configuration is defined by
+> bootstrap pin MDI_CFG. Some designs, however, require overriding the MDI
+> pair order and force either normal or reverse order.
 > 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> Add mutually exclusive properties 'marvell,force-mdi-order-normal' and
+> 'marvell,force-mdi-order-reverse' for that purpose.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
+> v2: enforce mutually exclusive relationship of the two new properties in
+>     dt-schema.
+> 
+>  .../bindings/net/marvell,aquantia.yaml           | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> index 9854fab4c4db0..03b0cff239f70 100644
+> --- a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> +++ b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> @@ -22,6 +22,12 @@ description: |
+>  
+>  allOf:
+>    - $ref: ethernet-phy.yaml#
+> +  - if:
+> +      required:
+> +        - marvell,force-mdi-order-normal
+> +    then:
+> +      properties:
+> +        marvell,force-mdi-order-reverse: false
+>  
+>  select:
+>    properties:
+> @@ -48,6 +54,16 @@ properties:
+>    firmware-name:
+>      description: specify the name of PHY firmware to load
+>  
+> +  marvell,force-mdi-order-normal:
+> +    type: boolean
+> +    description:
+> +      force normal order of MDI pairs, overriding MDI_CFG bootstrap pin.
+> +
+> +  marvell,force-mdi-order-reverse:
+> +    type: boolean
+> +    description:
+> +      force reverse order of MDI pairs, overriding MDI_CFG bootstrap pin.
 
-[...]
+Why 2 properties for 1 setting? Just do something like this:
 
-> +static struct qcom_icc_bcm *dc_noc_bcms[] = {
-> +};
+marvell,mdi-cfg-order = <0|1>;
 
-Please drop such empty nodes
+1 means reverse, 0 means normal (or vise-versa). Not present then means 
+use MDI_CFG setting. Then the binding naturally avoids nonsensical 
+combinations of properties without the schema having to enforce it.
 
-Konrad
+Feel free to tweak the naming/values. I would make 0 and 1 align with 
+MDI_CFG states, but I don't know what those are.
+
+Rob
 
