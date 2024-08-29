@@ -1,146 +1,115 @@
-Return-Path: <devicetree+bounces-98046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07AA19648CB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:42:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88083964932
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:55:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7A3A281827
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:42:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9D09283523
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 14:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4526E1B14F8;
-	Thu, 29 Aug 2024 14:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33641B29AA;
+	Thu, 29 Aug 2024 14:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Gco9Pck2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y/hg1oCh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B71D1B14E5;
-	Thu, 29 Aug 2024 14:42:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F1B1B151B;
+	Thu, 29 Aug 2024 14:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724942536; cv=none; b=Dq/zaXC/I9u4KliXyZrK/oKmkwToWdZ1TrjokhGwhpC6UFXB07jD0yDtHcMokuG3THBB4eXxyGRs8hqGAm4jVn5uv0IXSUFTrcUhmaOsTBqWs9E9YzJIf8AesLpR5u9jUwBMa+iWLhJfj55P+5Sybj8ZDSwrBH2VnBgX03ztMhs=
+	t=1724943276; cv=none; b=LkBSU0ALh92+l2yNGdHCfCrIXaCX5xcOZpB99v7NOWSmWtPU7Z/QjQeUF5uNHAly5PoD1JPpdS60PT1wIUIIi3ZoYHunLma9hEF7lRbOCxjsQZNAJ0zGphfWJJIoyQXHa/Scsqyn3rflL5sjg8wJmimzbFxSq2zUiYiE+B9ZZW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724942536; c=relaxed/simple;
-	bh=sRYuU3YkOqesdGc/30AGkILwNmVUvPdw3djSMGL8CMs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=s0LcDD7+hSuWZvKl5Z2T14qn+RiCLI6trHAwxaT0hLsmf+QIlz8U/VGi4zufphc7BdCTi3tBQnHM5yM/4mDv1Ndxna7ELMS0pfz5maN6JZjeW8IHtjxqZ2pl7R3IVv8rA5ckFHMtQfYQnEnHbIh68Gyn7Gk70fnguNBQtWNDRY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Gco9Pck2; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1724942535; x=1756478535;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=sRYuU3YkOqesdGc/30AGkILwNmVUvPdw3djSMGL8CMs=;
-  b=Gco9Pck20J7iVr6byWlPiD7i3H6mAOu4pXjNpFI2dcLpXIeARAUeV1Rt
-   xQsFE8MO+lH0wLdBpCjtWwz51b7Vc3bnf307KRsKFGsCdw+8VfvjVAQK2
-   q15XLZr2vbcJekOYVsaXfXofxMeUIHecA+yDp1O5gC9RsZ/r05VBUo4l0
-   rwfQ2rKl77uNoEBVLVVVOcbE8ZV9MgGMQSHx1SIVLy7HkZMRTLZ7HT3a2
-   d241cq3NDzV8Bzh6LSuWVTRv0NV/yK7E8PhBv2lvfed3krVed7s4tdg8i
-   PwgbMD5gJfLrc80wkKced55NMjOgccnzcdmcdWoFngOlEZ/yyoUAPVj37
-   Q==;
-X-CSE-ConnectionGUID: LQAVLlwfT06Kc5IPejiGRQ==
-X-CSE-MsgGUID: WEyMVpPrTgWNZnZxmgygcA==
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; 
-   d="scan'208";a="31055475"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Aug 2024 07:42:14 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 29 Aug 2024 07:41:42 -0700
-Received: from [10.180.117.88] (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Thu, 29 Aug 2024 07:41:40 -0700
-Message-ID: <744af115-3cfe-4d3a-9bf7-e6ac0cd12378@microchip.com>
-Date: Thu, 29 Aug 2024 16:42:01 +0200
+	s=arc-20240116; t=1724943276; c=relaxed/simple;
+	bh=94sqycuEg7LZE3IfoAS/UYJHpdhV1CbtJdmFG3iWS1U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=II4rYzkPnCx8HXlGMKBBimi7h/9hsjUmIUORsBwuIa+PRgLfiQbDdSofqbuzIor4zHfuHH7Gz0N6aHE3kPEcNpGsuBtl9ygWOEPlVuR7crWeBQhJCm2PtiW0as3IbP+V25hgLAURIC796hY60QxcNpTPNTe2ucP3onJ6IMnhYj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y/hg1oCh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB876C4CEC3;
+	Thu, 29 Aug 2024 14:54:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724943276;
+	bh=94sqycuEg7LZE3IfoAS/UYJHpdhV1CbtJdmFG3iWS1U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y/hg1oCh+Ij6W4jgfibIcNLBH2y6qwXWngwcUcGr4b3eYryJduYRVobwRt6oxc42R
+	 H6f1zYxHYCrS7niInBO5J0AjCy8ecFWqNseOf/cmogScebBhrEna8OTyktEs8yEjrJ
+	 175Q0V6vAr2G+DQqxPtZGIdZNe+qIREnbKSj8qwgAhz5FNxTFMhz5yEsTHAxdoLS3i
+	 hI3xZDeYhtA/QPLEtmCboawwvUP6HlSbtj5geHqzV/za/0DVs4yDF5mOzTCBINi1xj
+	 x4gwu3HxpENBZpP5e0AkTwn4UUpF/Eb8me1jX0fvP6HHtr585Fv4o2jsG3R7yMmQpr
+	 Zda3hB26yi+pQ==
+Date: Thu, 29 Aug 2024 09:54:34 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH v4 9/9] media: xilinx-tpg: use new of_graph functions
+Message-ID: <20240829145434.GA465065-robh@kernel.org>
+References: <87bk1d2pvt.wl-kuninori.morimoto.gx@renesas.com>
+ <87y14h1b9f.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: Add SAMA7D65 PMC compatible string
-Content-Language: en-US, fr-FR
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Dharma Balasubiramani
-	<dharma.b@microchip.com>
-CC: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20240829-sama7d65-next-v1-1-53d4e50b550d@microchip.com>
- <20240829141003278e9ec2@mail.local>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20240829141003278e9ec2@mail.local>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87y14h1b9f.wl-kuninori.morimoto.gx@renesas.com>
 
-Alexandre,
-
-On 29/08/2024 at 16:10, Alexandre Belloni wrote:
-> On 29/08/2024 15:08:45+0530, Dharma Balasubiramani wrote:
->> Add the `microchip,sama7d65-pmc` compatible string to the existing binding,
->> since the SAMA7D65 PMC shares the same properties and clock requirements
->> as the SAMA7G5.
+On Wed, Aug 28, 2024 at 05:12:28AM +0000, Kuninori Morimoto wrote:
+> Now we can use new port related functions for port parsing. Use it.
 > 
-> Shouldn't you rather use a fallback if you currently have no driver
-> change?
-
-The clock/pmc driver is (will be) different. Only the binding of the PMC 
-uses the same properties and clocks specification as our recent SoCs (so 
-can be added to the "enum").
-
-Regards,
-   Nicolas
-
->> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
->> ---
->>   Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
->> index c9eb60776b4d..885d47dd5724 100644
->> --- a/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
->> @@ -43,6 +43,7 @@ properties:
->>                 - atmel,sama5d4-pmc
->>                 - microchip,sam9x60-pmc
->>                 - microchip,sam9x7-pmc
->> +              - microchip,sama7d65-pmc
->>                 - microchip,sama7g5-pmc
->>             - const: syscon
->>
->> @@ -90,6 +91,7 @@ allOf:
->>               enum:
->>                 - microchip,sam9x60-pmc
->>                 - microchip,sam9x7-pmc
->> +              - microchip,sama7d65-pmc
->>                 - microchip,sama7g5-pmc
->>       then:
->>         properties:
->>
->> ---
->> base-commit: b18bbfc14a38b5234e09c2adcf713e38063a7e6e
->> change-id: 20240829-sama7d65-next-a91d089b56a3
->>
->> Best regards,
->> --
->> Dharma Balasubiramani <dharma.b@microchip.com>
->>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> ---
+>  drivers/media/platform/xilinx/xilinx-tpg.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> diff --git a/drivers/media/platform/xilinx/xilinx-tpg.c b/drivers/media/platform/xilinx/xilinx-tpg.c
+> index e05e528ffc6f7..a25f216b2513c 100644
+> --- a/drivers/media/platform/xilinx/xilinx-tpg.c
+> +++ b/drivers/media/platform/xilinx/xilinx-tpg.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_graph.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/xilinx-v4l2-controls.h>
+>  
+> @@ -744,7 +745,7 @@ static int xtpg_parse_of(struct xtpg_device *xtpg)
+>  		}
+>  
 
+This function is looping over port nodes, why don't you make it use 
+for_each_of_graph_port()?
+
+>  		if (nports == 0) {
+> -			endpoint = of_get_next_child(port, NULL);
+> +			endpoint = of_graph_get_next_port_endpoint(port, NULL);
+>  			if (endpoint)
+>  				has_endpoint = true;
+>  			of_node_put(endpoint);
+> -- 
+> 2.43.0
+> 
 
