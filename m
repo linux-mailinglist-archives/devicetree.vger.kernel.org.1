@@ -1,157 +1,401 @@
-Return-Path: <devicetree+bounces-98074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3410964BA1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:25:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E816964BA8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:26:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 243B61C234A5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:25:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07FCA28124A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE021B29AD;
-	Thu, 29 Aug 2024 16:25:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72DB1B530F;
+	Thu, 29 Aug 2024 16:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NtBxUhC0"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Uzt6An6g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8741B143B;
-	Thu, 29 Aug 2024 16:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B2951B4C49
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 16:26:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724948704; cv=none; b=etu6JywDWsztMLp2yOvFCy2zNL/mM3lU1J8y4FOrunRD4uc0fLRxVc+r0rQRRsCKSMGzD5wKzL2SSAdlxP1D2nWqxlMVbpfGEIUWuqnaPFMY5dyinZxiYDU9MhkBEmW9u5HatiL5XZEnv7QVcc+k2aP6AkoCPRD4EFFp9Oz+ucg=
+	t=1724948796; cv=none; b=fu3MXKUC0YcY2nWj2kxPSFsQNzXVCW5VZZli7qLV45uZIbdBCW+EgbB8qXRY2eOOGh2WIkcnP29F8HcIZ08KHHcDUkzVVQTPT7z8Oh3V1VFZclctaFIKfFD9R59TSbJCkeNKJQnlDLKNKIDpDNNlSa84TZ6FPElZojns9iG+LFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724948704; c=relaxed/simple;
-	bh=aIRMgxzY9VHypLBoBhrhOUcrNQ0EeIWs2yI9DRC/ANs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uWPHoTPAnldfONR80Rn+GnPniOkaqI7nzYoFkxIG0qPQ+CgFuKABsRJT9F5IimUcM8lYpmrEfirPoVkLUPMvFVzV540VCUEy4XKD5M+QBiMyMvcRkHotbsCXXpNbRyx/1WzNWIV9W3tH4P81a3S8SSl6NIVZJK8B1xzcWNoq0nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NtBxUhC0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8EBFC4CEC1;
-	Thu, 29 Aug 2024 16:25:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724948704;
-	bh=aIRMgxzY9VHypLBoBhrhOUcrNQ0EeIWs2yI9DRC/ANs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NtBxUhC0Ppo4OIgaJyKp95Z3pSCFKfWD4JbRHlPulBv/E3I8b7UuamuCHDbbhziIz
-	 Vrtm82pn4dFOh1V3jxUsh8LybIGOwvSPahmM+MBjoRzt+dXtuXWl1dEbVef5oiM61N
-	 D+u13Gz+eRYIIJ+Eys8mCwzXUu8TqUjB3FH/tuyCxTLMKa9FqaLab3YuNY3iK4u7AJ
-	 eo4fguoIPqKtseZRtdwruROD/tMpVTUWQyiDXcgXsTDRHstLeo93IXGMLEAt9NQQcU
-	 tDLU6c5loqM6bAMsgBHxJ1uvyXbHtwYJc+s9jExAaYR0TKbEXP2hyHJpcppLs+bgSd
-	 eXCP4N2Fd/row==
-Date: Thu, 29 Aug 2024 17:24:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
+	s=arc-20240116; t=1724948796; c=relaxed/simple;
+	bh=wSMdYTDqsWlQtbEdlbCGxNPCwqGfc+W3ysTZG1vl+OQ=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uk6fsxcJrHqoO0j7scqT6SMNh62/T3CU4vjPCmDuogUnNfiavMRFfohVZHz8BWURaL2B7geHykGyCGgsEZW8qGvJ8NE9iU6/CteV1kToCk6DnwDaAiwZyD7ypZohDdGw6WY6scWW5PQuOvR+C5abwZTQrwKfVxKJaKv3kdOZjj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Uzt6An6g; arc=none smtp.client-ip=209.85.218.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f66.google.com with SMTP id a640c23a62f3a-a7a81bd549eso93587866b.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 09:26:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1724948792; x=1725553592; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KAvkMSrr0+E1+zBJdqJA8C79vOak/KYTC8lNAgyE4gY=;
+        b=Uzt6An6gBIvN5jPZ7Ou5DG93I5TQ6WK/NbjscB4fbSKzW6qYhXxgiVVgogJ/x4oP7p
+         6VmahSFm6j9L9ejkaUuGWlTuSdjS2bI5zccDeWpLU0fvNVuKWWSYkP8dLTLcswiaJC4h
+         OJ4ywXg75Jkr9IFyb4ZiMrZ/DwJ//NVB/Ib1dtTOrzOKxY9wUpMGHNoZBO7FTssUrZkE
+         B4U7ywuU0anUNNdemgt0F75DZyqTHOSmfFIOwTbtf3pPafVVtqnQIlwlA05bvjVAL7w+
+         y3KIFZNi4+lbJkmdtzsymNb/ZJZ1Lzp9KgOX0ZR61md4o9hdIJOAdy1q9l6cKzmtXYMd
+         njog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724948792; x=1725553592;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KAvkMSrr0+E1+zBJdqJA8C79vOak/KYTC8lNAgyE4gY=;
+        b=QQfY8CN27O5Jsz/AMUtFngARwt2iy9jIaxA0qDnZTmzX278PbQCPuzgjUnXr26LIcd
+         VQT/ADLgckyd9lAxEEEzfK91LlGloD01JpMLtc6BuRvxrfGxoGW4jN2Pq8LZ/WzQ5yt4
+         B8RVlxdnbjcd/gaizMONjuzUIO5bq7ColHpzIZX6Li4SoozUfGhF9wV7RhhRtlHAzlFy
+         nBGKqXfxRZ5he4uTD80eZpL3ZrRISW15RV3B5Gj9gIQaF5zDiR/PNBXJfQN1++UDyERN
+         4zZYVcmBQ+ruHeVDvC5wDrUZhwS3I6j5GvCskjXnMZpMQEOjfpO8NgfOhJMI0xazlHEN
+         DFqg==
+X-Forwarded-Encrypted: i=1; AJvYcCU43YDxqMDTgn9SyfBmzjt0XwQcJUXPrG6wIePHnpfPuHezup4sthTbNNQAkZHb8ZuUyaYoH+uRFNw3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRj4BcxWJISPGLwv9c1HCwtwHhkk3QfthZPn8WNeXple+bTowI
+	JYFGVamgA98lXxoG4C8/GAy+qFErQ46bbt0QTI+DIg1LzrtHbPZwMYjTO3uGWBA=
+X-Google-Smtp-Source: AGHT+IEyrUorcYaQDgmA8P7OeuK7+S76r1iJ4LhiWcyAFpkkq9s+nW06xAxw2EESujKhpFv3Xbz3ZA==
+X-Received: by 2002:a17:906:f5a6:b0:a86:9644:2a60 with SMTP id a640c23a62f3a-a897f78928amr287181666b.6.1724948791972;
+        Thu, 29 Aug 2024 09:26:31 -0700 (PDT)
+Received: from localhost (host-80-182-198-72.retail.telecomitalia.it. [80.182.198.72])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8989021f3bsm96587466b.85.2024.08.29.09.26.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 09:26:31 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 29 Aug 2024 18:26:38 +0200
+To: Rob Herring <robh@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Robert Marko <robimarko@gmail.com>,
-	Russell King <rmk+kernel@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: marvell,aquantia: add
- properties to override MDI_CFG
-Message-ID: <20240829-karate-fidgeting-1cff7773e213@spud>
-References: <1cdfd174d3ac541f3968dfe9bd14d5b6b28e4ac6.1724885333.git.daniel@makrotopia.org>
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 04/11] of: address: Preserve the flags portion on 1:1
+ dma-ranges mapping
+Message-ID: <ZtChPt4cD8PzfEkF@apocalypse>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <5ca13a5b01c6c737f07416be53eb05b32811da21.1724159867.git.andrea.porta@suse.com>
+ <20240821001618.GA2309328-robh@kernel.org>
+ <ZsWi86I1KG91fteb@apocalypse>
+ <CAL_JsqKN0ZNMtq+_dhurwLR+FL2MBOmWujp7uy+5HzXxUb_qDQ@mail.gmail.com>
+ <ZtBJ0jIq-QrTVs1m@apocalypse>
+ <CAL_Jsq+_-m3cjTRsFZ0RwVpot3Pdcr1GWt-qiiFC8kQvsmV7VQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="VC6WfCv/B70e6pcU"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1cdfd174d3ac541f3968dfe9bd14d5b6b28e4ac6.1724885333.git.daniel@makrotopia.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+_-m3cjTRsFZ0RwVpot3Pdcr1GWt-qiiFC8kQvsmV7VQ@mail.gmail.com>
 
+Hi Rob,
 
---VC6WfCv/B70e6pcU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 08:18 Thu 29 Aug     , Rob Herring wrote:
+> On Thu, Aug 29, 2024 at 5:13 AM Andrea della Porta
+> <andrea.porta@suse.com> wrote:
+> >
+> > Hi Rob,
+> 
+> BTW, I noticed your email replies set "reply-to" to everyone in To and
+> Cc. The result (with Gmail) is my reply lists everyone twice (in both
+> To and Cc). "reply-to" is just supposed to be the 1 address you want
+> replies sent to instead of the "from" address.
 
-On Wed, Aug 28, 2024 at 11:51:49PM +0100, Daniel Golle wrote:
-> Usually the MDI pair order reversal configuration is defined by
-> bootstrap pin MDI_CFG. Some designs, however, require overriding the MDI
-> pair order and force either normal or reverse order.
->=20
-> Add mutually exclusive properties 'marvell,force-mdi-order-normal' and
-> 'marvell,force-mdi-order-reverse' for that purpose.
->=20
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
-> v2: enforce mutually exclusive relationship of the two new properties in
->     dt-schema.
->=20
->  .../bindings/net/marvell,aquantia.yaml           | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml =
-b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-> index 9854fab4c4db0..03b0cff239f70 100644
-> --- a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-> +++ b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-> @@ -22,6 +22,12 @@ description: |
-> =20
->  allOf:
->    - $ref: ethernet-phy.yaml#
-> +  - if:
-> +      required:
-> +        - marvell,force-mdi-order-normal
-> +    then:
-> +      properties:
-> +        marvell,force-mdi-order-reverse: false
+IIUC you're probably referring to Mail-Reply-To, that address only one recipient
+at a time (i.e. you want to reply only to the author). Reply-To is a catch-all
+that will work as a fallback when you hit either reply or reply-all in your client.
+In fact, neither Reply-To nor Mail-Reply-To are included in my emails, the
+interesting one being Mail-Followup-To, that should override any of the above
+mentioned headers (including To: and Cc:) for the reply all function. How these
+headers are interpreted depends solely on the mail client, I'm afraid.
+Is it possible that your client is mistakenly merging both Mail-Followup-To 
+plus To and Cc lists?
+Anyway, I've disabled Mail-followup-To as it's added by mutt, can you please
+confirm that this mail now works for you? Hopefully it will not clobber the
+recipent list too much, since AFAIK that header was purposely invented to avoid
+such inconsistencies.
 
-Ordinarily, when there are property related constraints in here, the
-allOf is moved after the property definitions, since it is odd to talk
-about rules for properties prior to defining them. If you resend, please
-move these down. Otherwise,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> > On 16:29 Mon 26 Aug     , Rob Herring wrote:
+> > > On Wed, Aug 21, 2024 at 3:19 AM Andrea della Porta
+> > > <andrea.porta@suse.com> wrote:
+> > > >
+> > > > Hi Rob,
+> > > >
+> > > > On 19:16 Tue 20 Aug     , Rob Herring wrote:
+> > > > > On Tue, Aug 20, 2024 at 04:36:06PM +0200, Andrea della Porta wrote:
+> > > > > > A missing or empty dma-ranges in a DT node implies a 1:1 mapping for dma
+> > > > > > translations. In this specific case, rhe current behaviour is to zero out
+> > > > >
+> > > > > typo
+> > > >
+> > > > Fixed, thanks!
+> > > >
+> > > > >
+> > > > > > the entire specifier so that the translation could be carried on as an
+> > > > > > offset from zero.  This includes address specifier that has flags (e.g.
+> > > > > > PCI ranges).
+> > > > > > Once the flags portion has been zeroed, the translation chain is broken
+> > > > > > since the mapping functions will check the upcoming address specifier
+> > > > >
+> > > > > What does "upcoming address" mean?
+> > > >
+> > > > Sorry for the confusion, this means "address specifier (with valid flags) fed
+> > > > to the translating functions and for which we are looking for a translation".
+> > > > While this address has some valid flags set, it will fail the translation step
+> > > > since the ranges it is matched against have flags zeroed out by the 1:1 mapping
+> > > > condition.
+> > > >
+> > > > >
+> > > > > > against mismatching flags, always failing the 1:1 mapping and its entire
+> > > > > > purpose of always succeeding.
+> > > > > > Set to zero only the address portion while passing the flags through.
+> > > > >
+> > > > > Can you point me to what the failing DT looks like. I'm puzzled how
+> > > > > things would have worked for anyone.
+> > > > >
+> > > >
+> > > > The following is a simplified and lightly edited) version of the resulting DT
+> > > > from RPi5:
+> > > >
+> > > >  pci@0,0 {
+> > > >         #address-cells = <0x03>;
+> > > >         #size-cells = <0x02>;
+> > > >         ......
+> > > >         device_type = "pci";
+> > > >         compatible = "pci14e4,2712\0pciclass,060400\0pciclass,0604";
+> > > >         ranges = <0x82000000 0x00 0x00   0x82000000 0x00 0x00   0x00 0x600000>;
+> > > >         reg = <0x00 0x00 0x00   0x00 0x00>;
+> > > >
+> > > >         ......
+> > > >
+> > > >         rp1@0 {
+> > >
+> > > What does 0 represent here? There's no 0 address in 'ranges' below.
+> > > Since you said the parent is a PCI-PCI bridge, then the unit-address
+> > > would have to be the PCI devfn and you are missing 'reg' (or omitted
+> > > it).
+> >
+> > There's no reg property because the registers for RP1 are addressed
+> > starting at 0x40108000 offset from BAR1. The devicetree specs says
+> > that a missing reg node should not have any unit address specified
+> > (and AFAIK there's no other special directives for simple-bus specified
+> > in dt-bindings).
+> > I've added @0 just to get rid of the following warning:
+> >
+> >  Warning (unit_address_vs_reg): /fragment@0/__overlay__/rp1: node has
+> >  a reg or ranges property, but no unit name
+> 
+> It's still wrong as dtc only checks the unit-address is correct in a
+> few cases with known bus types.
 
-Thanks,
-Conor.
+Sorry, I don't follow you on this, I'm probably missing something. Could
+you please add some details?
 
-> =20
->  select:
->    properties:
-> @@ -48,6 +54,16 @@ properties:
->    firmware-name:
->      description: specify the name of PHY firmware to load
-> =20
-> +  marvell,force-mdi-order-normal:
-> +    type: boolean
-> +    description:
-> +      force normal order of MDI pairs, overriding MDI_CFG bootstrap pin.
-> +
-> +  marvell,force-mdi-order-reverse:
-> +    type: boolean
-> +    description:
-> +      force reverse order of MDI pairs, overriding MDI_CFG bootstrap pin.
-> +
->    nvmem-cells:
->      description: phandle to the firmware nvmem cell
->      maxItems: 1
-> --=20
-> 2.46.0
+> 
+> > coming from make W=1 CHECK_DTBS=y broadcom/rp1.dtbo.
+> > This is the exact same approach used by Bootlin patchset from:
+> >
+> > https://lore.kernel.org/all/20240808154658.247873-2-herve.codina@bootlin.com/
+> 
+> It is not. First, that has a node for the PCI device (i.e. the
+> LAN966x). You do not. You only have a PCI-PCI bridge and that is
+> wrong.
 
---VC6WfCv/B70e6pcU
-Content-Type: application/pgp-signature; name="signature.asc"
+I'm a little confused now, but I think the confusion is generated by
+the label node names I've chosen that are, admittedly, a bit sloppy.
+I'll try to make some clarity, please see below.
 
------BEGIN PGP SIGNATURE-----
+> 
+> BTW, you should Cc Herve and others that are working on this feature.
+> It is by no means fully sorted as you have found.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCg2gAKCRB4tDGHoIJi
-0tnvAQCDBKHcbN/YG2e1cKXa0oPfS+icXiqepZZXx+QJBrrJGQD9EOsgRZ4KAYzH
-3PWvuEgEZuNBrh8pVJ3APVi1azlqsAA=
-=oi4j
------END PGP SIGNATURE-----
+Sure, just added, thanks for the heads up.
 
---VC6WfCv/B70e6pcU--
+> 
+> > replied here below for convenience:
+> >
+> > +       pci-ep-bus@0 {
+> > +               compatible = "simple-bus";
+> > +               #address-cells = <1>;
+> > +               #size-cells = <1>;
+> > +
+> > +               /*
+> > +                * map @0xe2000000 (32MB) to BAR0 (CPU)
+> > +                * map @0xe0000000 (16MB) to BAR1 (AMBA)
+> > +                */
+> > +               ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
+> 
+> The 0 parent address here matches the unit-address, so all good in this case.
+
+Just to be sure, the parent address being the triple zeros in the ranges property,
+right?
+
+> 
+> > +                         0xe0000000 0x01 0x00 0x00 0x1000000>;
+> >
+> > Also, I think it's not possible to know the devfn in advance, since the
+> > DT part is pre-compiled as an overlay while the devfn number is coming from
+> > bus enumeration.
+> 
+> No. devfn is fixed unless you are plugging in a card in different
+> slots. The bus number is the part that is not known and assigned by
+> the OS, but you'll notice that is omitted.
+> 
+> In any case, the RP1 node should be generated, so its devfn is irrelevant.
+
+Which is a possibility, since the driver should possibly work also with RP1
+mounted on a PCI card, one day. But as you pointed out, since this is automatically
+generated, should not be a concern.
+
+> 
+> > Since the registers for sub-peripherals will start (as stated in ranges
+> > property) from 0xc040000000, I'd be inclined to use rp1@c040000000 as the
+> > node name and address unit. Is it feasible?
+> 
+> Yes, but that would be in nodes underneath ranges. Above, it is the
+> parent bus we are talking about.
+
+Right.
+
+> 
+> > > >                 #address-cells = <0x02>;
+> > > >                 #size-cells = <0x02>;
+> > > >                 compatible = "simple-bus";
+> > >
+> > > The parent is a PCI-PCI bridge. Child nodes have to be PCI devices and
+> > > "simple-bus" is not a PCI device.
+> >
+> > The simple-bus is needed to automatically traverse and create platform
+> > devices in of_platform_populate(). It's true that RP1 is a PCI device,
+> > but sub-peripherals of RP1 are platform devices so I guess this is
+> > unavoidable right now.
+> 
+> You are missing the point. A PCI-PCI bridge does not have a
+> simple-bus. However, I think it's just what you pasted here that's
+> wrong. From the looks of the RP1 driver and the overlay, it should be
+> correct.
+
+Trying to clarify: at first I thought of my rp1 node (in the dtso) as the pci
+endpoint device, but I now see that it should be intended as just the bus 
+attached to the real endpoint device (which is the dynamically generated dev@0,0).
+In this sense, rp1 is probably a really wrong name, let's say we use the same 
+name from Bootlin, i.e. pci-ep-bus. The DT tree would then be:
+
+pci@0,0         <- auto generated, this represent the pci bridge
+  dev@0,0       <- auto generated, this represent the pci ednpoint device, a.k.a. the RP1
+    pci-ep-bus  <- added from dtbo, this is the simple-bus to which peripherals are attached
+
+this view is much like Bootlin's approach, also my pci-ep-bus node now would look
+like this:
+ ...
+ pci-ep-bus@0 {
+	ranges = <0xc0 0x40000000
+                  0x01 0x00 0x00000000
+                  0x00 0x00400000>;
+	...
+ };
+
+and also the correct unit address here is 0 again, since the parent address in
+ranges is 0x01 0x00 0x00000000 (0x01 is the flags and in this case represent
+BAR1, I assume that for the unit address I should use only the address part that
+is 0, right?).
+
+> 
+> It would also help if you dumped out what "lspci -tvnn" prints.
+> 
+
+Here it is:
+
+localhost:~ # lspci -tvnn
+-[0002:00]---00.0-[01]----00.0  Raspberry Pi Ltd RP1 PCIe 2.0 South Bridge [1de4:0001]
+
+> > > The assumption so far with all of this is that you have some specific
+> > > PCI device (and therefore a driver). The simple-buses under it are
+> > > defined per BAR. Not really certain if that makes sense in all cases,
+> > > but since the address assignment is dynamic, it may have to. I'm also
+> > > not completely convinced we should reuse 'simple-bus' here or define
+> > > something specific like 'pci-bar-bus' or something.
+> >
+> > Good point. Labeling a new bus for this kind of 'appliance' could be
+> > beneficial to unify the dt overlay approach, and I guess it could be
+> > adopted by the aforementioned Bootlin's Microchip patchset too.
+> > However, since the difference with simple-bus would be basically non
+> > existent, I believe that this could be done in a future patch due to
+> > the fact that the dtbo is contained into the driver itself, so we do
+> > not suffer from the proliferation that happens when dtb are managed
+> > outside.
+> 
+> It's an ABI, so we really need to decide first.
+
+Okay. How should we proceed?
+
+> 
+> > > >                 ranges = <0xc0 0x40000000   0x01 0x00 0x00   0x00 0x400000>;
+> > > >                 dma-ranges = <0x10 0x00   0x43000000 0x10 0x00   0x10 0x00>;
+> > > >                 ......
+> > > >         };
+> > > >  };
+> > > >
+> > > > The pci@0,0 bridge node is automatically created by virtue of
+> > > > CONFIG_PCI_DYNAMIC_OF_NODES, and has no dma-ranges, hence it implies 1:1 dma
+> > > > mappings (flags for this mapping are set to zero).  The rp1@0 node has
+> > > > dma-ranges with flags set (0x43000000). Since 0x43000000 != 0x00 any translation
+> > > > will fail.
+> > >
+> > > It's possible that we should fill in 'dma-ranges' when making these
+> > > nodes rather than supporting missing dma-ranges here.
+> >
+> > I really think that filling dma-ranges for dynamically created pci
+> > nodes would be the correct approach.
+> > However, IMHO this does not imply that we could let inconsistent
+> > address (64 bit addr with 32 flag bit set) laying around the
+> > translation chain, and fixing that is currently working fine. I'd
+> > be then inclined to say the proposed change is outside the scope
+> > of the present patchset and to postpone it to a future patch.
+> 
+> Okay, but let's fix it with a test case. There's already a test case
+> for all this in the DT unittest which can be extended.
+
+I'm taking a look at the unittest framework right now.
+
+Many thanks,
+Andrea
+
+> 
+> Rob
 
