@@ -1,160 +1,125 @@
-Return-Path: <devicetree+bounces-98174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4453965061
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:59:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F36CC96508B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 22:13:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F3A21F248EF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:59:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 246141C21372
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 20:13:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E815A1B9B32;
-	Thu, 29 Aug 2024 19:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 073DB1B78F6;
+	Thu, 29 Aug 2024 20:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OirfZhhS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h4vpyHvI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8DB1B5824;
-	Thu, 29 Aug 2024 19:56:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9814847A76;
+	Thu, 29 Aug 2024 20:13:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724961379; cv=none; b=aymfSV4IIOG7yXtdG1ro2mMtrxdL79JavzqEqfUCceOGvDsxoc9R65IGGcZePaQxkO69nd9MEYFKZ+ByVb50CWceEvObHUGcb6Qefwmg9MUuVbBtHW/81NFpl6MwTzsFlBeuXZiQTwnfLnqSDQ09FOK5J5wAYAxRMOkkKUjTSH0=
+	t=1724962404; cv=none; b=aWbFG04RNawhSn43IniVouTxPrwgHhUo3feCcuReY7Yy6qOTiwkFm9CY7AMDmnVg6Px2Dy+VCcUGL6BIik0YSz6Hk/VhddpFjRFjCtAWC1FV7zaDesz0mwWB8Cvx1SFOyrmZrGJPdVmHGphBzfABTHSo9CsnkGLP26HxUZikF3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724961379; c=relaxed/simple;
-	bh=QkC3UofcSUSlZG40WCx2CWamtpvCsKeUqOwSeGLIDxw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=B35ytS1NSVhzt34AWhplI9/BMI6CQ+NUUk1+d1vAUQiPXr+h8itM4UKVelkHUHd8EHq1bMEf6rGxikTyV8nlcje4jeNovV4An4PLszA4K+i72/CKJS3ILV0jnYtZjrLxsOKHsyOpaGIpH7DonNjrlibzvHG6mI+oNdfsdb1ckfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OirfZhhS; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47TJuBs8106544;
-	Thu, 29 Aug 2024 14:56:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724961371;
-	bh=2UsUDj4tsR68w9vopHIC4AppVJtFGoZFsqs9JxFUHb8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=OirfZhhSnOLuRMmepKs7vFat/NbYjWKU9Wv9mNUavwAff8yDJNsXRyMpn5bqSAPB7
-	 aoFmWp9Nee6L78gHKXeEGlZ1W7Llh186a86zBtjuuZ3nHDOEhcQS02p3qlOiIKMO5U
-	 6PHkeEYYbodiZxVgYHLkP7Tx6Fwnqb71MF2hntKI=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47TJuBHP022558
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Aug 2024 14:56:11 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- Aug 2024 14:56:10 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 Aug 2024 14:56:10 -0500
-Received: from [128.247.81.191] (uda0499903.dhcp.ti.com [128.247.81.191])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47TJuAQL075553;
-	Thu, 29 Aug 2024 14:56:10 -0500
-Message-ID: <0f3764c4-22c5-4839-a541-8c333f5c2c6d@ti.com>
-Date: Thu, 29 Aug 2024 14:56:10 -0500
+	s=arc-20240116; t=1724962404; c=relaxed/simple;
+	bh=uDLKZSc3+6b+DS4mZ9GNvlmrn/Uy/8qe+FU5WJrKUVE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NInLI4CtE30NvpW4TyIVAtV++1TLCwHnK0L+DN9W1WvAcuBXxL2beqhRNjZa5FaConTSRhCLXdwL5h9CTo20uUJLBXTrRbTrty3DIgWGRP66RCkJap6a1CwWZd81VS2fMUSyxudG7ZiiXQUrwBRZi/DAtXgLYrdzIQLd9h+gXEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h4vpyHvI; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2020ac89cabso11723385ad.1;
+        Thu, 29 Aug 2024 13:13:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724962403; x=1725567203; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S6mAKO1L7Uf6xB6FLQZsVDkDOLx5WJyRN8bRA71hTC8=;
+        b=h4vpyHvIX8wRYV7i8FXNBVubSaZedTT/8fqFkQWHF7Sef2hFFd1dAHRgn8EJLcbzxT
+         8AyFRn6uSXSHKs51LML/joLWC10d/X8BR1A5V2D5l+V562BeJFdY9yV9/Ha2NODa1Mfp
+         IQryveDV5GCjD+0g742EAKl1c5dvbOq+gRWGaj0XzhjjbSaEt04sgzp91cM4Fhosjf+5
+         JA7pxhsJRvNGCRaBJvo8oRgiq/F9SDbP1i8R5j9E26WrE8zuGYcukPji5IFDt05nKuj0
+         8MPPjEgWNAvPYINEXgi14YL8vCeyw8y7cztCpHSUyOAFzAzCywgEs2LiRWB4dyh3XUEu
+         YY3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724962403; x=1725567203;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S6mAKO1L7Uf6xB6FLQZsVDkDOLx5WJyRN8bRA71hTC8=;
+        b=xJtzJZwl3oNAqnxsIRGQqG85E5t+amNn/ESHqxfS8NN6jaLRY4DnSOwFK+oQCDDLu2
+         yBh7XfwwYbJ8f/f1iAeSYUfKmET9OA3LTlKq1Gg8MwtGRdV5sJDP0VLZTNUuYotQsMn2
+         Jp4jNl6B4GloADd1ZW8w4a6OPvS31Yh7+tyUDOr+GnItbXc/YmH//Bu+ENlATjbeVfE2
+         nkr90V4sClBi9g+XWRImKvNMAnnT/WHa6e+mvu7F4X5GotXNq1AIs2keDmxboJXs2pXL
+         BYOKqXh0hCTg7PNGeXYqGOsQneMIuGusy9hWkiYgJs4d+G+B03e4UV+NVeMvGO+FUl6z
+         65Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHWe8zWfcb8AserWRg21MZ4CjhtsYDAYDoZs+NvkVD8qJUG72FIbZFfUi+Wuz26275t86lDWTMTURH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2M5bUSQ0qTMNjo1QHSlQreOr98oYMY6ypLr12jbxUyMnI9Kwc
+	NexkjuFuxN4giZxAhfLbSTTo27pxjO19SEC7RMom8il7Xw0hZeam
+X-Google-Smtp-Source: AGHT+IH3vovA0aK2ROQvRVWqCjQk4AzK9ChEhdjzl/8ASQriXDaGXSy+YkvE6tK0BY2r9Hbjf0e2pA==
+X-Received: by 2002:a17:902:d505:b0:1fc:6a13:a394 with SMTP id d9443c01a7336-2050c23829amr45616425ad.23.1724962402708;
+        Thu, 29 Aug 2024 13:13:22 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:adb0:3b7e:78c6:e307])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-205227baebfsm1996165ad.247.2024.08.29.13.13.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 13:13:22 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: broonie@kernel.org
+Cc: linux-spi@vger.kernel.org,
+	otavio.salvador@ossystems.com.br,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH 1/2] spi: dt-bindings: spi-peripheral-props: Document spi-cpha and spi-cpol
+Date: Thu, 29 Aug 2024 17:13:14 -0300
+Message-Id: <20240829201315.3412759-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7200: Fix register map for main
- domain pmx
-To: Nishanth Menon <nm@ti.com>, Aniket Limaye <a-limaye@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <mranostay@ti.com>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <u-kumar1@ti.com>
-References: <20240829071208.2172825-1-a-limaye@ti.com>
- <20240829183155.dpaia4koseebgmdm@sudoku>
-Content-Language: en-US
-From: Jared McArthur <j-mcarthur@ti.com>
-In-Reply-To: <20240829183155.dpaia4koseebgmdm@sudoku>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On 8/29/24 13:31, Nishanth Menon wrote:
-> On 12:42-20240829, Aniket Limaye wrote:
->> From: Jared McArthur <j-mcarthur@ti.com>
->>
->> Commit 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux
->> range") split the main_pmx0 into two nodes: main_pmx0 and main_pmx1
->> due to a non-addressable region, but incorrectly represented the
->> ranges. As a result, the memory map for the pinctrl is incorrect. Fix
->> this by introducing the correct ranges.
->>
->> The ranges are taken from the J7200 TRM (Table 5-695. CTRL_MMR0
->> Registers). Padconfig registers stretch from 0x11c000 to 0x11c168
->> with non-addressable portions from 0x11c10c to 0x11c10f, 0x11x114 to
->> 0x11c11b, and 0x11c128 to 0x11c163.
->>
->> Link: https://www.ti.com/lit/ug/spruiu1c/spruiu1c.pdf (TRM)
-> Use the canonical link that redirects to the latest document such as https://www.ti.com/lit/pdf/spruiu1
->
-> older versions of the TRM may not be retained in ti.com
+The 'spi-cpha' and 'spi-cpol' are commonly used SPI peripheral
+properties that indicate the device clock phase and polarity.
 
-Thank you, will do.
+Document these properties.
 
->> Fixes: 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux range")
->> Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
->> Signed-off-by: Aniket Limaye <a-limaye@ti.com>
->> ---
->>  .../dts/ti/k3-j7200-common-proc-board.dts     |  2 +-
->>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 22 +++++++++++++++++--
->>  2 files changed, 21 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
->> index 6593c5da82c0..df39f2b1ff6b 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
->> @@ -254,7 +254,7 @@ J721E_IOPAD(0x38, PIN_OUTPUT, 0) /* (Y21) MCAN3_TX */
->>  	};
->>  };
->>  
->> -&main_pmx1 {
->> +&main_pmx2 {
->>  	main_usbss0_pins_default: main-usbss0-default-pins {
->>  		pinctrl-single,pins = <
->>  			J721E_IOPAD(0x04, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
-> How is this change correct if you are changing the base from 0x1c to
-> 0x10 (previously it was pointing to 0x20, now to 0x14? what is the
-> correct offset of USB0_DRVBUS pin?)
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ .../devicetree/bindings/spi/spi-peripheral-props.yaml  | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-The base hasn't changed because it's switched to main_pmx2
-instead of main_pmx1. main_pmx2 is the same address range as the
-original main_pmx1. I agree that this should be explained in the
-commit message/diffstat.
-
-> Did you do an audit of all offsets of main_pmx2 and 3 and resultant
-> address split up (including overlays if applicable)?
-
-All current pinmuxing for J7200's dts and dtso files is within the
-main_pmx0, except for the USB0_DRVBUS pin. Since the address range for
-main_pmx0 has not changed, there are no other changes that need to be
-made.
-
-> Explain that in commit message / diffstat as appropriate
-
-I agree that this should be written out in a commit message /
-diffstat. Perhaps it should also be a separate patch within the same
-series.
-
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> index 9386bf3ef9f6..41adfa64418d 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> [...]
->
+diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+index 0bb443b8decd..b2e2717f3619 100644
+--- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+@@ -29,6 +29,16 @@ properties:
+     description:
+       Chip select used by the device.
+ 
++  spi-cpha:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      The device data is sampled on trailing (last) edge of the SPI clock.
++
++  spi-cpol:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      The device clock has a falling lead (first) edge.
++
+   spi-cs-high:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description:
 -- 
-Best,
-Jared McArthur
+2.34.1
 
 
