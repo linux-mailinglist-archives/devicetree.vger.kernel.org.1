@@ -1,217 +1,152 @@
-Return-Path: <devicetree+bounces-97878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8FB0963F41
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 10:56:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F82E964004
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D04A1F25179
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 08:56:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4975C285672
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788DE18CBF9;
-	Thu, 29 Aug 2024 08:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDAA18E045;
+	Thu, 29 Aug 2024 09:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ei8Q/WhB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a5CvwiHV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4933818CBF4;
-	Thu, 29 Aug 2024 08:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EE518DF7A;
+	Thu, 29 Aug 2024 09:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724921723; cv=none; b=I65W/Dqiuh8qO/PMD4g9gHd8NICGI2V6EbEZR/Q+z/q7efG5HVvJG8Y+E2thheHYoDZVUylZDg7w5VZN9rAi/5tqHbMZDzzuTbmWa4qxPsG8N/FUw5rqO968Z44Qwmizgtv54o9horX1LX5jVkh2KN+ozgfPaWQeNw2Ems4u65I=
+	t=1724923632; cv=none; b=tlEnR7c+qu8pmsMk5lmCIts6H+PO/qGcY6MSZbAXXafOb01/ENU4slcqCAWsWkHWpTuC/zQXrHFmuqd2UdSyZJ/HDvjLAXsbz9zhuwfXMKXOhEBKW1iGeJSDzSunGhMG2+SYT9bKSILxOAV/T4oO8UPRpZFAF9mjXfqffX6j1D0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724921723; c=relaxed/simple;
-	bh=gZnVsetwZBu6/xBERfrnXPEYkMTpgnZQKcNGJpJ07Dw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R1XHRPaoevDIl+863G2Qej7sVtFB5Y0QBd+KucZcE8uDYC6OZEYs63UTwNlT+c/13rqxqzmV4DXlKbzYT/YDxyFA9ZKNGD+uF0OuAPDF1/dpB05xkm0ADcTEYOLwwCV9TxweFI0x+wn5dVXzwYmnIoB4iN5N3WyVeTpNCKtVg1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ei8Q/WhB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 377FBC4CEC1;
-	Thu, 29 Aug 2024 08:55:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724921722;
-	bh=gZnVsetwZBu6/xBERfrnXPEYkMTpgnZQKcNGJpJ07Dw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ei8Q/WhB2a6U2Fbk8FvurbzlZSRlMDrfZU0XGmwJv1wSgEwKd3Dy3lcPBTJbDfXKr
-	 Ehqtkc8xWogCaCLsXl4GCdoQT3nycI2eStErL3NkIoMMMItMmADTYqWO/rPsE0rqqV
-	 ix4UuEJ3s03YDDKYWLr9fRm610yqkDhhnVtiVcQd3jsTaOZkmqhy/LigFzIyF5TBLK
-	 JNwhtEtqn3TYo5uHcNszW/T78RkXIqtf68AerRI3Gmt2dtBbbPocKLPWi0MfRv2Jbb
-	 FCmH140shKeAI9NtgS9xCc142TNNYRm0lVIBXl2+0zizq2hDYC5VvYaoOrl9w0nd9R
-	 xP/KNnGz2j1NA==
-Message-ID: <c91167d8-df24-4a3c-bb92-811bd1543be3@kernel.org>
-Date: Thu, 29 Aug 2024 10:55:16 +0200
+	s=arc-20240116; t=1724923632; c=relaxed/simple;
+	bh=g7vPCp6T2KzSgyaMPE1ZnoCnxjUR5ijKx+yapczFdz0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F/HasBjee6wgHRaaPsWK79WF5h2oUms8KLZ+ikn6rL+ID2GH++UVS9js8VkqnLgRCsMvZNIlBKsrWoblrkQbyF/kavVVEowgaYUKGiC5unNul02ax0h5QJM0qy714VzDZ+5RUZoPc/bG40/ngEa03gMK2YDbz7pY94Y9OWrGLqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a5CvwiHV; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-656d8b346d2so245861a12.2;
+        Thu, 29 Aug 2024 02:27:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724923631; x=1725528431; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dvjn3LozyX7PzUcM0O+kSIxcuZqvkXVUv2cAp4pQJyY=;
+        b=a5CvwiHV/+C+hNXHD2PcYCKym6BlPQTuhdSTZ/ZHfhMKxplnNNSLE0vaiQiCaw44UH
+         unYZIJJivZ8hJJ/g8fQx90Sd4oBHzFChKlilFongcSbAgEPfby2VBGJpGIbAdaT1zbcv
+         +Ac4VTjlFahiSQG5R5TRdXsx/SxwCjV8it2drHoNzrSxjnrKTEm+TnDu3Pga7v18BFdp
+         kCOhmoLZE/g+JIGTOqWMOrDOjHPbq44/BbJtW2TC+BpSHjNpWfgMudtH/OiGhp+NYXKh
+         GaMj6/8ogBg76eCTva5XdaAcAd8rcM/kGpTC+ac2yRmv7cS1G5DzgldOW/Gciq6QKhly
+         1yrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724923631; x=1725528431;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Dvjn3LozyX7PzUcM0O+kSIxcuZqvkXVUv2cAp4pQJyY=;
+        b=TpSzfvFq4496ckz3iv9vCkVLHVkOBoMpfaxuazA7HMaIPPPXkpjQFTL6g3E+dWtE80
+         SHUoFRG+Zxkb2gDTgpQcpePdD9W4AEMsjWVebhiJh2JOkKJ2HlwSgMdlznud1FFGDStB
+         z+k34GdXuf4yGdWL78+TqKP/J/EkKQug+Mfl06ts7ppNbDwKT25yuUIos7e+Qzw0tVvz
+         /VaCSvG5ILVF88Ti4zW2TF8OfJRl56ZN6J4zyu0KTZJg7y1/btlVwog8ecUHqC6qIl/d
+         kHIoK76mjco99HvOKZxHikJEJvW0ATxueuz10n0n9GNdVG8TzDTJuOKfEad4J6eHN2tM
+         womQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX/QR8usQG2pGn248z5JstiHaCnxP0LlDq2Uie+SHsOKFUfXYgAw7NtnjxGDE+kI/93PCgOcVkp06Ge5ExM@vger.kernel.org, AJvYcCXwhOWsZKX6LSqY2Nr94jOPR4LtyVNyjngFvYU5S2MgwNU50ZIoX+4WPV7qZGnFXbrx7PXJ1AbY9sX8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfT2QmFxKrk3Db7tJbetdjHJYwJL7Iyxy7JQJviEwmkUFRwg2I
+	O9WxIHI6CDAhF+UcRStHM3xmRv1K/IbxFEC+/9SIOVOcyWa51DdW
+X-Google-Smtp-Source: AGHT+IHH9msDkUh4C+HrO5ERn2jIh+PFRRJ3FprkC7wSKj6bergnvBcBclkRVm7iRpcIrBtCX3ESng==
+X-Received: by 2002:a05:6a20:c78e:b0:1c0:e49a:6900 with SMTP id adf61e73a8af0-1cce0fea52bmr2077586637.7.1724923630574;
+        Thu, 29 Aug 2024 02:27:10 -0700 (PDT)
+Received: from localhost.localdomain ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-20515552b6dsm7469245ad.249.2024.08.29.02.27.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 02:27:10 -0700 (PDT)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH 0/3] Add AIC support for A7-A11 SoCs
+Date: Thu, 29 Aug 2024 17:03:10 +0800
+Message-ID: <20240829092610.89731-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] dt-bindings: fuse: Move renesas,rcar-{efuse,otp}
- to nvmem
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1721999833.git.geert+renesas@glider.be>
- <1a3d4ff8ce34a5e676d1cb1fafd40525378e29a4.1721999833.git.geert+renesas@glider.be>
- <20240730162435.GA1480758-robh@kernel.org>
- <CAMuHMdUwATmjM3E7WmwnCK739CwuyZH1w_YVYbroDcWEpzh8ig@mail.gmail.com>
- <67hcoj3haiptjh4f7qvaz4xwcdamr3x33xxrxusuwq2t3veiln@z2ggc7razty4>
- <CAMuHMdXSxMzzM6WgwObbymdWHcqUU2r6BOyS7ZzqSBx_gsWftw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAMuHMdXSxMzzM6WgwObbymdWHcqUU2r6BOyS7ZzqSBx_gsWftw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 28/08/2024 22:10, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Mon, Aug 19, 2024 at 1:11 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On Wed, Jul 31, 2024 at 09:37:36AM +0200, Geert Uytterhoeven wrote:
->>> On Tue, Jul 30, 2024 at 6:24 PM Rob Herring <robh@kernel.org> wrote:
->>>> On Fri, Jul 26, 2024 at 03:38:06PM +0200, Geert Uytterhoeven wrote:
->>>>> The R-Car E-FUSE blocks can be modelled better using the nvmem
->>>>> framework.
->>>>>
->>>>> Replace the R-Car V3U example by an R-Car S4-8 ES1.2 example, to show
->>>>> the definition of nvmem cells.  While at it, drop unneeded labels from
->>>>> the examples, and fix indentation.
->>>>>
->>>>> Add an entry to the MAINTAINERS file.
->>>>>
->>>>> Reported-by: Arnd Bergmann <arnd@arndb.de>
->>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->>>>> ---
->>>>> v3:
->>>>>   - New.
->>>>>
->>>>> I would expect that the calib@144 node needs:
->>>>>
->>>>>     #nvmem-cell-cells = <0>;
+Hi,
 
+This series is a second attempt at adding support for A7-A11 SoCs to
+Linux, it is based on a previous attempt, which you can find at [1].
+However, there have been quite a bit of changes.
 
-So this is for mac-base...
+First, the boot process has changed, now, the boot process includes
+a "1337" version of checkra1n [2], a custom PongoOS binary [3], and
+a modified version of m1n1 [4]. The kernel is appended to m1n1 and loaded
+by it.
 
->>>>>
->>>>> but after adding that, "make dt_binding_check" starts complaining:
->>>>>
->>>>>     Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb: fuse@e6078800: nvmem-layout: 'oneOf' conditional failed, one must be fixed:
->>>>>           '#address-cells', '#size-cells', 'calib@144' do not match any of the regexes: 'pinctrl-[0-9]+'
->>>>>           Unevaluated properties are not allowed ('nvmem-cell-cells' was unexpected)
->>>>
->>>> Did you want 'nvmem-cell-cells' or '#nvmem-cell-cells'?
->>>
->>> Oops, I've been (manually) re-adding and removing it again too many
->>> times during my investigations. "#nvmem-cell-cells", of course.
->>> According to my build logs, I had it right at least once ;-)
->>>
->>>>>           'kontron,sl28-vpd' was expected
->>>>>           'onie,tlv-layout' was expected
->>>>>           from schema $id: http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
->>>>>     Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb: fuse@e6078800: nvmem-layout: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'calib@144' were unexpected)
->>>>>           from schema $id: http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
->>>>>     Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb: fuse@e6078800: Unevaluated properties are not allowed ('nvmem-layout' was unexpected)
->>>>>           from schema $id: http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
->>>
->>> Anyway, with or without the typo, the error message is about the same:
->>>
->>> - Unevaluated properties are not allowed ('nvmem-cell-cells' was unexpected)
->>> + Unevaluated properties are not allowed ('#nvmem-cell-cells' was unexpected)
->>
->> And if you test your schema or DTS with all nvmem (so also layouts)
->> schemas?
->>
->> Apparently fixed-layout schema was not applied.
-> 
-> With today's dt-schema:
-> 
-> Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb:
-> fuse@e6078800: nvmem-layout: 'oneOf' conditional failed, one must be
-> fixed:
->         '#address-cells', '#size-cells', 'calib@144' do not match any
-> of the regexes: 'pinctrl-[0-9]+'
->         Unevaluated properties are not allowed ('#nvmem-cell-cells'
-> was unexpected)
->         'kontron,sl28-vpd' was expected
->         'onie,tlv-layout' was expected
->         from schema $id:
-> http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
-> Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb:
-> fuse@e6078800: nvmem-layout: Unevaluated properties are not allowed
-> ('#address-cells', '#size-cells', 'calib@144' were unexpected)
->         from schema $id:
-> http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
-> Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb:
-> fuse@e6078800: Unevaluated properties are not allowed ('nvmem-layout'
-> was unexpected)
->         from schema $id:
-> http://devicetree.org/schemas/nvmem/renesas,rcar-efuse.yaml#
-> Documentation/devicetree/bindings/nvmem/renesas,rcar-efuse.example.dtb:
-> nvmem-layout: calib@144: Unevaluated properties are not allowed
-> ('#nvmem-cell-cells' was unexpected)
->         from schema $id:
-> http://devicetree.org/schemas/nvmem/layouts/fixed-layout.yaml#
-> 
-> According to the last line, fixed-layout.yaml is applied.
-> Am I missing something?
+This attempt also supports SMP, which has uncovered some differences
+in the A7-A11 AIC. Namely, although A11 supported fast IPI, it only
+supported "global" fast IPIs via SYS_IMP_APL_IPI_RR_GLOBAL_EL1,
+and SYS_IMP_APL_IPI_RR_LOCAL_EL1 does not exist on A11. As a result,
+there are now three feature levels:
 
-I cannot reproduce it. Neither on 2024.6.dev5+g0e44e14b7eb4 nor on
-todays 2024.6.dev16+gc51125d571ca (which is actually from 15th of Aug).
+A7 - A10: No fast IPI
+A11: "Global" fast IPI
+M1: Global and Local fast IPI
 
-But maybe we talk about modified patch, but then which exactly?
+Each feature level is strictly an extension of the previous, for example,
+M1 will also work with the A7-A10 compatible. As a result, the
+modifications only includes if'ing out of features, in order to make
+the existing driver work on older SoCs.
 
-Best regards,
-Krzysztof
+The A10(X) contains P-core and E-core pairs where only one core in each
+pair may be active at one time, controlled by CPU frequency. A RFC patch
+will be posted to disable 32-bit executable support on A10(X), as it only
+supported 16KB page size anyways. However, such a patch is not required
+to run AArch64 Linux on A10. At worst, any attempt to run 32-bit
+executables will result in the process crashing.
+
+Initial device trees will be posted in a later patch series, likely when
+the AIC modifications are accepted.
+
+Asahi Linux downstream kernel note:
+These patches will not work with the Asahi Linux downstream kernel,
+as these earlier SoCs do not support state retention across deep WFI,
+which results in the CPUs going back to RVBAR on cpuidle.
+
+[1]: https://lore.kernel.org/asahi/20221007200022.22844-1-konrad.dybcio@somainline.org/
+[2]: https://checkra.in/1337
+[3]: https://github.com/asdfugil/pongoOS/tree/mini
+[4]: https://github.com/asdfugil/m1n1-idevice
+
+Nick Chan (3):
+  dt-bindings: apple,aic: Document A7-A11 compatibles
+  irqchip/apple-aic: Only access IPI sysregs when use_fast_ipi is true
+  irqchip/apple-aic: Add a new "Global fast IPIs only" feature level
+
+ .../interrupt-controller/apple,aic.yaml       | 15 ++++--
+ drivers/irqchip/irq-apple-aic.c               | 49 ++++++++++++++-----
+ 2 files changed, 48 insertions(+), 16 deletions(-)
+
+-- 
+2.46.0
 
 
