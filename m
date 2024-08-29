@@ -1,146 +1,117 @@
-Return-Path: <devicetree+bounces-98130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6D6964ED2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:29:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFDC964EF8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 21:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 764C9B20CB4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:29:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A399281974
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 19:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591851B9B45;
-	Thu, 29 Aug 2024 19:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B41C1B81DE;
+	Thu, 29 Aug 2024 19:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nV4TTSlY"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZSBgRe5z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EA747A76;
-	Thu, 29 Aug 2024 19:29:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1E81898E0;
+	Thu, 29 Aug 2024 19:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724959769; cv=none; b=rh9rEa5fkcEPgL3feq1t7jDlv+/osNgJqm13rzxrhkWp+vvUXX+sqBIzZrHQz/Jbr3iR7kLxXuhYMSw0dc0wy0d6OCNPvmKBIExEchvNgkvCSJSsknsDKKuDhh+YPSUVk9hmwRihzuMwZiaAMlC0jQzwMnvz4v7NR6VC7NnIlQQ=
+	t=1724959984; cv=none; b=d43XjgN+prEwhN0Pdt0WIWdAa2Wnq6JhbOfpU/7m9kwaxvDjtvSN8bUaCFtjT3DBrg2WNEgVMYMeI3rF56e934QqpPHZRZgM7TkESAuIHn/5T9qOJhMWZEMIBXkn/kb4S4/YI5ggImoCkUdhIbxWfuJ+v9d9+ImekXvyFEaUNYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724959769; c=relaxed/simple;
-	bh=3KpG/wc2uvwyuNONFaqBxDlDvvAS4epRIbXbeEuwtwY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O5UAKduD/ymCyyg6mbN6CAkhjQQBS4YuZZTDWm9ej8s5ClH7xD+pN7+0tcAzcseVVPOngIjYnW5LecZuweaSliE/+Sre0kHNwivnWRQEmqVGdNb8x+ecabxzuCPC7ApNDoXsd/5MPhNvVVRFEEJBHJ9DV0MH2rXadimVyqX8RVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nV4TTSlY; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-4fcf40c9ed3so387392e0c.2;
-        Thu, 29 Aug 2024 12:29:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724959765; x=1725564565; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DGGo2SsQCJsSRPiHAjvLnUoOPi0Z0l/2WghbU6Jy+dI=;
-        b=nV4TTSlYu5R7IDdHne7y9pIfl4IER4snxqo+OV3wmbM4prFNYGDe7KK5HPkv57ZTIk
-         PZy7VszheVd6sU/Eg7fVWOUcSAofZbJdOV7u/lGn/DRPoGDMF+xpt420X3GHfJoo1Gr5
-         VLF1gIrcudUivK4QsytOoTYm2wKfM2+kZ5runZCdRuDs57idx4nLB4QGCI5uFv5bDOsq
-         OcVRrQAaxfLKZidUnuonhXxHy+XTDzaFFB1B1rsw+UfiAEIAZ+Vw249ngNqQcw+/lt6H
-         H56B3lCsFBR4mEhlOLAQY2+7C0XBEqHjKcwHYCRpLMXgbOaefvEx00hvBo/O1iVD51Ld
-         g1OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724959765; x=1725564565;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DGGo2SsQCJsSRPiHAjvLnUoOPi0Z0l/2WghbU6Jy+dI=;
-        b=Sf3iQ4Uy8Utq/E/vncD3Ksh7kx3lvmmj7GMLTPnWHX9iSaigVhtYxBJLvbbYUHn4LM
-         g3KXH8CnzEe+V+K/+0P9UD5cgh0zDJKk8u9//DYC81tOsXUes4OyTkF5cPD/B0PzjKIl
-         9hC3Sp+xmQ6kJHZuAilnDBoJHWWd4aGmCd5aUky3ykdsbzk6TS4t+yScPRPv+b652tSt
-         ztfazJwO8KiI3G7gfadxJ5dxWW5EdsrXrr7msqHXpLuEtAY1ZUKco32THROCSXxEgM6D
-         SLH8cR2K7Wh+n6Sw/U8JUG72GmwiQSbz4j4MWQciVQ6AfiXvEFL5tmznHFIsDU1pgO/g
-         LRMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGOFXZQCEHtY1grdTD7kg0avl6P31DFUQ4/CSw/XBvI6Lw1bXp2IV7PkpyflzaQomqWJO+SyXBrz4iLFFPxgQ=@vger.kernel.org, AJvYcCUeTR4T4wISmUnfHNDEhbXiOoKu/nxoBSWq9tX0qNiNzYsVFFjDN8LRKktmjBWK8DPG9M4ITvcw1uAZ@vger.kernel.org, AJvYcCUxYj0gWea/IwjnOmzGUlhw8pg36QWeB+cIFGdQdlSd/ifMNU/dsQFLZnHU1p2z49fnQ6GWNOjpLbuG9M/2@vger.kernel.org, AJvYcCWeHGhoGtGSTVXuDw9q1eiv1GFcUoy7lg9Y7kGn43RfbasKbK2GpwBE3c9KoyA2ouvJ7Kgj6RJgGOx5lIri/JkPcVs=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqURiJLy0pcwgblkB23L+H3jLKj8S/W6iMsij9SerKZtOpu6MM
-	JLc3dIoD5MnNwfHtibtJ/mRIU3V0dsPcAv4HNfUD0w2YSqurXwrcQLlbkuMvFPQml+gexnDfiX3
-	yFWCaQQqbI31llH3jPRM8mfEevn8=
-X-Google-Smtp-Source: AGHT+IHXKA2wunTaaLZKYHYRHBG7bSAniQ2ZxL8dU1VVslmMiYZoE7LHztbtU809u4jFkK9vfv83aNVqlxPAOYB8C48=
-X-Received: by 2002:a05:6122:32cb:b0:4eb:5cb9:f219 with SMTP id
- 71dfb90a1353d-4ffdc01e02dmr3845066e0c.0.1724959765459; Thu, 29 Aug 2024
- 12:29:25 -0700 (PDT)
+	s=arc-20240116; t=1724959984; c=relaxed/simple;
+	bh=qmGX9eJRgH1hbqst2Em1rnwLWLwIQK5OOkaNCPG8PGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tdMCxjcseRVeZWYy8chc7CYF5UowI99KWhQaDnQz4hexZGwgcMM2YNB4rM5vwlWKkiq3MPONM8U0addjUpAbloFBRbCth38UAtZEIJwizWP9mxsv1lMnvG/ScwgLpDrgzKytyrPe1Cn6PkDZDnYH2M7Ig4gh8A33baPxKTr0TRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZSBgRe5z; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47TJWgaQ099234;
+	Thu, 29 Aug 2024 14:32:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724959962;
+	bh=dyu/27ZfP1csr/zH6BWhuyjds/vmIq6uZY6YiBmUtec=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=ZSBgRe5zkgW95OlrPlOj/KU38puY/VvhGpgMhBCdkn+Mo8+HmFL4POYFvYnz/D5DP
+	 kw+2XwSkED+ci0J6j8hXLdXF4Qx09AvkPDnECJdZBqNlOk1K8mVofEa3OiYLmUMpi7
+	 xs7M1UxxWzaIQr2oXfnRcqidFPJ95CH8gPq1G248=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47TJWg07059052
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 29 Aug 2024 14:32:42 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
+ Aug 2024 14:32:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 29 Aug 2024 14:32:41 -0500
+Received: from [128.247.81.191] (uda0499903.dhcp.ti.com [128.247.81.191])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47TJWfjJ036644;
+	Thu, 29 Aug 2024 14:32:41 -0500
+Message-ID: <a39ebd71-0aef-4925-ab94-23dc2ee785fd@ti.com>
+Date: Thu, 29 Aug 2024 14:32:41 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240806210623.183842-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240806210623.183842-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUW8FjgNb9J4hsfZOk3EbXMmihemm2BkO4pLAaZ-QGNiw@mail.gmail.com>
-In-Reply-To: <CAMuHMdUW8FjgNb9J4hsfZOk3EbXMmihemm2BkO4pLAaZ-QGNiw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 29 Aug 2024 20:28:55 +0100
-Message-ID: <CA+V-a8sLppm1Mn08nVXxXOpmBtwmDmMQjzuAcuV9yku-0V=5Hg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: watchdog: renesas,wdt: Document
- RZ/V2H(P) SoC
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j7200: Fix register map for main
+ domain pmx
+To: Aniket Limaye <a-limaye@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <mranostay@ti.com>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <robh@kernel.org>, <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
+CC: <u-kumar1@ti.com>
+References: <20240829071208.2172825-1-a-limaye@ti.com>
+Content-Language: en-US
+From: Jared McArthur <j-mcarthur@ti.com>
+In-Reply-To: <20240829071208.2172825-1-a-limaye@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Geert,
+On 8/29/24 02:12, Aniket Limaye wrote:
+> From: Jared McArthur <j-mcarthur@ti.com>
+>
+> Commit 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux
+> range") split the main_pmx0 into two nodes: main_pmx0 and main_pmx1
+> due to a non-addressable region, but incorrectly represented the
+> ranges. As a result, the memory map for the pinctrl is incorrect. Fix
+> this by introducing the correct ranges.
+>
+> The ranges are taken from the J7200 TRM (Table 5-695. CTRL_MMR0
+> Registers). Padconfig registers stretch from 0x11c000 to 0x11c168
+> with non-addressable portions from 0x11c10c to 0x11c10f, 0x11x114 to
+> 0x11c11b, and 0x11c128 to 0x11c163.
 
-Thank you for the review.
+Still unsure whether these registers are correct. There is a
+conflict between the TRM [1] and the datasheet [2] on whether
+PADCONFIG63 exists. The datasheet doesn't think it does. I would like
+to confirm this before the patch is submitted/accepted, because the
+pinmuxing would need to change again if the datasheet is correct.
 
-On Thu, Aug 29, 2024 at 11:07=E2=80=AFAM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> Thanks for your patch!
->
-> On Tue, Aug 6, 2024 at 11:06=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
-.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add support for the Watchdog Timer (WDT) hardware found in the Renesas
-> > RZ/V2H(P) SoC to the `renesas,wdt` device tree bindings. The RZ/V2H(P)
-> > SoC features a WDT that is compatible with existing Renesas watchdog
-> > drivers.
->
-> Your patch "watchdog: Add Watchdog Timer driver for RZ/V2H(P)"
-> contradicts the last sentence, so please drop the latter.
->
-Ok, I'll update the commit message and send a v5.
+[1] https://www.ti.com/lit/pdf/spruiu1
+[2] https://www.ti.com/lit/gpn/dra821u
 
+> Link: https://www.ti.com/lit/ug/spruiu1c/spruiu1c.pdf (TRM)
+> Fixes: 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux range")
+> Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
+> Signed-off-by: Aniket Limaye <a-limaye@ti.com>
 
-Cheers,
-Prabhakar
+[...]
 
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
-> > --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> > +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
->
-> With the above fixed:
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+-- 
+Best,
+Jared McArthur
+
 
