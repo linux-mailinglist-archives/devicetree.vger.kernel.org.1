@@ -1,187 +1,302 @@
-Return-Path: <devicetree+bounces-97891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8772296400A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 839C2963F84
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 11:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DEB5283C08
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:29:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EF702864CB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6E518F2F7;
-	Thu, 29 Aug 2024 09:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8338418A920;
+	Thu, 29 Aug 2024 09:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bXeiLH94"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="LRBHRQD6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E5218E371;
-	Thu, 29 Aug 2024 09:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CBD316133E
+	for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 09:08:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724923647; cv=none; b=d+6EFvf4JwJ5mICUVQpaHqHg8qEQtoEsA/SqU6P3jHAtgNU5nmfoLv7Vm5zThBERQq0Cp9oiG0uAmS9tMRsfB1U1DgNGkPfAiARlqHBh4M+bDG4Qe21LWI4RTnMqRsVID7q8Lx03IuHNkVOTJsIY7koTOSk63/tz3IzjGCyPahk=
+	t=1724922509; cv=none; b=UKrdD9j/vY+0umfMVDh6drrm/5vEcAtzYAat9zwoUZLJTZZmGYObBzmjWs6jWZw3JJdF84rK7GpF4nYaLeBl7Agv3UaWEXO6T89WF1P7K1z8N2eOvMi30q0pTZ5gpum/dEXvGvIpEi+K0ozijM16lpSXzqccgRGZmGfvskQNSNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724923647; c=relaxed/simple;
-	bh=F8sxoW9XyGEiKGmU0+ncsNzA7kTIPGiGyUdz0ED2O5g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Q3eH6bPeKy3ZXZspArmoW/Ostr8HPcGuFZlOMmo8rLnS+O9xynZ6U2PgC9r7eYVtFixZy1H1MQqzYFePmufoLm5gq+OMVb/f+kINbp9ndNJG7L7KPWTtWvINWa0Z4qbszpzbTm+FrQ/H4dhLYgI8cC4U4ah/Igpb887/lqzCXmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bXeiLH94; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-201fba05363so3879025ad.3;
-        Thu, 29 Aug 2024 02:27:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724923644; x=1725528444; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ouhe0enBFjJUZqCtUzq8PmMdBjKDokZmZ4h8nJcgYbU=;
-        b=bXeiLH94qeSucQEqlJCSnUxSr+nytBSKqGIBabrIfCA8KEl1tq14OK1JbsLB9owzQ2
-         znTMUbLn3+LGK0itY0ch1mhYKkT8AV9KurVBy44sb89TDLUuAS/+SClqTofMkEy8iPhj
-         1ilctZE4G4ieMfieqNxAaH/YIO2tET8oBNMT8hCf8dLFUr9ZdFXwXsLRwtHx0EM4IZJ7
-         jZ8Uy5DS7Wpfo9dTlnl3e82EVd4H8KU5rPO5F1k4No4OLyRgr7scYqSbYso+DDnpbG/U
-         6OyklJNJYx+yyhVlft4GyeSBOuQz8RQVO0Je+xKKa5Yxwc6qwKwvBx0RTgYxIQXMPpEy
-         xzdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724923644; x=1725528444;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ouhe0enBFjJUZqCtUzq8PmMdBjKDokZmZ4h8nJcgYbU=;
-        b=GFZ5d8SkV7UwMpuHzbzAINaGNt5NDFxtFFiS37rzFSwFISN7tvxkVDsKhtCMldsGPG
-         QW5hNjjywoyoeX2AdIlocqWc+JNnzu+IGVKw9psbbmvU04CeONGVrO868jDeytoLaZXl
-         HwBeuOQqVOQuPqlpZMA92L2fE1+FvmQDU0Y8U75fkZy9bMHXWigxeMMv6cW3XlF8w3nD
-         40LpgIzyzqYECjAIb0sAldt3bvutMjWEwjRQYN7nRBCUJ7emLYuATmZOOTQcXqFrcdNC
-         sVbLmj0SZ4Fe34kT/l9gBiTXWvMuFx0MgIZuR1bbIa4N3nqhjyCq6ZNTgG07ti2nIkhr
-         LZUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWaxNM0sYtW2oEuB6kzl4xzxjha+J9NXjwd51mMl93oSyAIRvZseGbq+VJc4DUwbWEIc7Wq5E+QxdnK@vger.kernel.org, AJvYcCXEhDfv2QoEODCSfZf7exPCa5+rQiUdO1LTOg59FFojUNeEhgZnpo9n11BK6tIFxca16CzMprrL8U1/sC0C@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBqTVTfaTyQIPttUIl/G2zTEBaZxS2Exmn0K5jR1J3iTIhIgTU
-	7WhvzYMn/Y0GTuFYD+eHtqfd6aQkFOxogdFrnRNJo99CjupHkmpl
-X-Google-Smtp-Source: AGHT+IFrjUhQikLTv2qTwmStFWCrqusJSIZnC40sneETVUkJPqzLcvKuQheZLvCXJHwrdHmRDZZe5w==
-X-Received: by 2002:a17:902:d584:b0:203:a0b4:3e28 with SMTP id d9443c01a7336-2050c377592mr23038675ad.27.1724923644039;
-        Thu, 29 Aug 2024 02:27:24 -0700 (PDT)
-Received: from localhost.localdomain ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-20515552b6dsm7469245ad.249.2024.08.29.02.27.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 02:27:23 -0700 (PDT)
-From: Nick Chan <towinchenmi@gmail.com>
-To: Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	Nick Chan <towinchenmi@gmail.com>
-Subject: [PATCH 3/3] irqchip/apple-aic: Add a new "Global fast IPIs only" feature level
-Date: Thu, 29 Aug 2024 17:03:13 +0800
-Message-ID: <20240829092610.89731-4-towinchenmi@gmail.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240829092610.89731-1-towinchenmi@gmail.com>
-References: <20240829092610.89731-1-towinchenmi@gmail.com>
+	s=arc-20240116; t=1724922509; c=relaxed/simple;
+	bh=90VFIU4AH/4sYFLGZHSOhk+/IMY74kCnKaj3DguB14I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a79vOc3KvPp8RjHVRm5Lt5lAshelRRWdWO1lFQSlzkaqGh9goBuADw5xt7vtp8GmcC8Z27f1JhaHePDlJ66xINbm4791Ds9UJk5Ymc1CFZY9k6drHPfc997h7lAhE56oPSgmSbc58h7EJb+MuikFzsCcgZRszwLomPSBpkH/ooE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=LRBHRQD6; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 2782E866EB;
+	Thu, 29 Aug 2024 11:08:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1724922505;
+	bh=ET8wjvrqjV39C9fkxvIRJrGj3IcZRwoHrdDLXM+u/SU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LRBHRQD616T1qp3QhQi+hZo5cObJTJ3AghYeU5RgVbu7ff6NT0+nNT0Sx2exbgpLL
+	 jEjQysrnOgVU9AZkwF5/szM4QQ1hjkfv3bIch8/B35XOZ0LaHv1h6jFwEwKY95lLeU
+	 pDK+EpB4TFOpQJdx1dWsYLdi4s/OngggKBetyIfHPfAXrqNb6GRjBmH0TKItwwK1DK
+	 q08LO6TNgoYfGO5gC8vZSn3GgsP/mGyhKNHxhSKWgr70D0Si8AOV7adJkbgevjCOZT
+	 rrA2sBgFbJgsdVvqHQM/Y6vqrfjQ9adg33sGiG/9KoeK8eN8cuIjvjInQrRVuFwmMC
+	 vicm+H++RRtpw==
+Date: Thu, 29 Aug 2024 11:08:23 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] ARM: dts: imx23/8: Rename apbh and apbx nodes
+Message-ID: <20240829110823.4720bd02@wsk>
+In-Reply-To: <20240828194919.3192996-1-festevam@gmail.com>
+References: <20240828194919.3192996-1-festevam@gmail.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/heNIpFrN3x=kGokuZU34o=d";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Starting with the A11 (T8015) SoC, Apple began using arm64 sysregs for
-fast IPIs. However, on A11, there is no such things as "Local" fast IPIs,
-as the SYS_IMP_APL_IPI_RR_LOCAL_EL1 register does not seem to exist.
+--Sig_/heNIpFrN3x=kGokuZU34o=d
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Add a new feature level, used by the compatible "apple,t8015-aic",
-controlled by a static branch key named use_local_fast_ipi. When
-use_fast_ipi is true and use_local_fast_ipi is false, fast IPIs are used
-but all IPIs goes through the register SYS_IMP_APL_IPI_RR_GLOBAL_EL1, as
-"global" IPIs.
+On Wed, 28 Aug 2024 16:49:19 -0300
+Fabio Estevam <festevam@gmail.com> wrote:
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- drivers/irqchip/irq-apple-aic.c | 25 ++++++++++++++++++++++++-
- 1 file changed, 24 insertions(+), 1 deletion(-)
+> From: Fabio Estevam <festevam@denx.de>
+>=20
+> According to simple-bus.yaml, apbh and apbx are not valid bus names.
+>=20
+> Rename them to apbh-bus and apbx-bus to fix the following dt-schema
+> warnings:
+>=20
+> 'apbh@80000000' does not match
+> '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+> 'apbx@80040000' does not match
+> '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  arch/arm/boot/dts/nxp/mxs/imx23-evk.dts           | 4 ++--
+>  arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts     | 4 ++--
+>  arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts         | 4 ++--
+>  arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts | 4 ++--
+>  arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts          | 4 ++--
+>  arch/arm/boot/dts/nxp/mxs/imx23.dtsi              | 4 ++--
+>  arch/arm/boot/dts/nxp/mxs/imx28-cfa10037.dts      | 2 +-
+>  arch/arm/boot/dts/nxp/mxs/imx28.dtsi              | 4 ++--
+>  8 files changed, 15 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts index
+> 7365fe4581a3..33b36af1656f 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts +++
+> b/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts @@ -52,7 +52,7 @@ panel_in:
+> endpoint { };
+> =20
+>  	apb@80000000 {
+> -		apbh@80000000 {
+> +		apbh-bus@80000000 {
+>  			nand-controller@8000c000 {
+>  				pinctrl-names =3D "default";
+>  				pinctrl-0 =3D <&gpmi_pins_a
+> &gpmi_pins_fixup>; @@ -99,7 +99,7 @@ display_out: endpoint {
+>  			};
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			lradc@80050000 {
+>  				status =3D "okay";
+>  				fsl,lradc-touchscreen-wires =3D <4>;
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts index
+> 229e727b222e..e372e9327a47 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts +++
+> b/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts @@ -19,7 +19,7 @@
+> memory@40000000 { };
+> =20
+>  	apb@80000000 {
+> -		apbh@80000000 {
+> +		apbh-bus@80000000 {
+>  			ssp0: spi@80010000 {
+>  				compatible =3D "fsl,imx23-mmc";
+>  				pinctrl-names =3D "default";
+> @@ -64,7 +64,7 @@ ssp1: spi@80034000 {
+>  			};
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			lradc@80050000 {
+>  				status =3D "okay";
+>  			};
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts index
+> b23e7ada9c80..cb661bf2d157 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts +++
+> b/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts @@ -55,7 +55,7 @@
+> memory@40000000 { };
+> =20
+>  	apb@80000000 {
+> -		apbh@80000000 {
+> +		apbh-bus@80000000 {
+>  			ssp0: spi@80010000 {
+>  				compatible =3D "fsl,imx23-mmc";
+>  				pinctrl-names =3D "default";
+> @@ -100,7 +100,7 @@ MX23_PAD_PWM3__GPIO_1_29
+>  			};
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			pwm: pwm@80064000 {
+>  				pinctrl-names =3D "default";
+>  				pinctrl-0 =3D <&pwm2_pins_a>;
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts index
+> 69124ba6a666..b2b6f8514999 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts +++
+> b/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts @@ -16,7 +16,7 @@
+> memory@40000000 { };
+> =20
+>  	apb@80000000 {
+> -		apbh@80000000 {
+> +		apbh-bus@80000000 {
+>  			ssp0: spi@80010000 {
+>  				compatible =3D "fsl,imx23-mmc";
+>  				pinctrl-names =3D "default";
+> @@ -44,7 +44,7 @@ MX23_PAD_PWM4__GPIO_1_30
+>  			};
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			auart0: serial@8006c000 {
+>  				pinctrl-names =3D "default";
+>  				pinctrl-0 =3D <&auart0_pins_a>;
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts index
+> 28341d8315c2..0b088c8ab6b6 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts +++
+> b/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts @@ -54,7 +54,7 @@
+> memory@40000000 { };
+> =20
+>  	apb@80000000 {
+> -		apbh@80000000 {
+> +		apbh-bus@80000000 {
+>  			ssp0: spi@80010000 {
+>  				compatible =3D "fsl,imx23-mmc";
+>  				pinctrl-names =3D "default";
+> @@ -101,7 +101,7 @@ MX23_PAD_ROTARYB__GPIO_2_8
+>  			};
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			i2c: i2c@80058000 {
+>  				pinctrl-names =3D "default";
+>  				pinctrl-0 =3D <&i2c_pins_a>;
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx23.dtsi
+> b/arch/arm/boot/dts/nxp/mxs/imx23.dtsi index
+> 0309592af1e1..5e21252fb7c9 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx23.dtsi +++
+> b/arch/arm/boot/dts/nxp/mxs/imx23.dtsi @@ -45,7 +45,7 @@ apb@80000000
+> { reg =3D <0x80000000 0x80000>;
+>  		ranges;
+> =20
+> -		apbh@80000000 {
+> +		apbh-bus@80000000 {
+>  			compatible =3D "simple-bus";
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <1>;
+> @@ -476,7 +476,7 @@ tvenc@80038000 {
+>  			};
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			compatible =3D "simple-bus";
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <1>;
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10037.dts
+> b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10037.dts index
+> c72fe2d392f1..9053472ed6b9 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10037.dts +++
+> b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10037.dts @@ -38,7 +38,7 @@
+> MX28_PAD_SSP2_SS2__GPIO_2_21 };
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			usbphy1: usbphy@8007e000 {
+>  				status =3D "okay";
+>  			};
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+> b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi index
+> 4817fba2d938..bbea8b77386f 100644 ---
+> a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi +++
+> b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi @@ -56,7 +56,7 @@ apb@80000000
+> { reg =3D <0x80000000 0x80000>;
+>  		ranges;
+> =20
+> -		apbh@80000000 {
+> +		apbh-bus@80000000 {
+>  			compatible =3D "simple-bus";
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <1>;
+> @@ -1092,7 +1092,7 @@ armjtag: armjtag@8003c800 {
+>  			};
+>  		};
+> =20
+> -		apbx@80040000 {
+> +		apbx-bus@80040000 {
+>  			compatible =3D "simple-bus";
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <1>;
 
-diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-index 626aaeafa96c..9248ecff42a3 100644
---- a/drivers/irqchip/irq-apple-aic.c
-+++ b/drivers/irqchip/irq-apple-aic.c
-@@ -236,6 +236,8 @@ enum fiq_hwirq {
- 
- /* True if UNCORE/UNCORE2 and Sn_... IPI registers are present and used (A11+) */
- static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
-+/* True if SYS_IMP_APL_IPI_RR_LOCAL_EL1 exists (M1+) */
-+static DEFINE_STATIC_KEY_TRUE(use_local_fast_ipi);
- 
- struct aic_info {
- 	int version;
-@@ -253,6 +255,7 @@ struct aic_info {
- 
- 	/* Features */
- 	bool fast_ipi;
-+	bool local_fast_ipi;
- };
- 
- static const struct aic_info aic1_info __initconst = {
-@@ -271,6 +274,16 @@ static const struct aic_info aic1_fipi_info __initconst = {
- 	.fast_ipi	= true,
- };
- 
-+static const struct aic_info aic1_local_fipi_info __initconst = {
-+	.version	= 1,
-+
-+	.event		= AIC_EVENT,
-+	.target_cpu	= AIC_TARGET_CPU,
-+
-+	.fast_ipi	= true,
-+	.local_fast_ipi = true,
-+};
-+
- static const struct aic_info aic2_info __initconst = {
- 	.version	= 2,
- 
-@@ -282,6 +295,10 @@ static const struct aic_info aic2_info __initconst = {
- static const struct of_device_id aic_info_match[] = {
- 	{
- 		.compatible = "apple,t8103-aic",
-+		.data = &aic1_local_fipi_info,
-+	},
-+	{
-+		.compatible = "apple,t8015-aic",
- 		.data = &aic1_fipi_info,
- 	},
- 	{
-@@ -748,7 +765,8 @@ static void aic_ipi_send_fast(int cpu)
- 	u64 cluster = MPIDR_CLUSTER(mpidr);
- 	u64 idx = MPIDR_CPU(mpidr);
- 
--	if (MPIDR_CLUSTER(my_mpidr) == cluster)
-+	if (static_branch_likely(&use_local_fast_ipi) &&
-+		MPIDR_CLUSTER(my_mpidr) == cluster)
- 		write_sysreg_s(FIELD_PREP(IPI_RR_CPU, idx),
- 			       SYS_IMP_APL_IPI_RR_LOCAL_EL1);
- 	else
-@@ -992,6 +1010,11 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 	else
- 		static_branch_disable(&use_fast_ipi);
- 
-+	if (irqc->info.local_fast_ipi)
-+		static_branch_enable(&use_local_fast_ipi);
-+	else
-+		static_branch_disable(&use_local_fast_ipi);
-+
- 	irqc->info.die_stride = off - start_off;
- 
- 	irqc->hw_domain = irq_domain_create_tree(of_node_to_fwnode(node),
--- 
-2.46.0
+Reviewed-by: Lukasz Majewski <lukma@denx.de>
 
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/heNIpFrN3x=kGokuZU34o=d
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmbQOogACgkQAR8vZIA0
+zr0guAgAsirGxUnx04iAc0m8Z0vRWjrRIncWkLwpXHWroKMNWSU2y8WnbBvSjoDO
+lCOXMbFHfDrQWjaoTkbG0wU6foxFaf6cQiEYAzRgQgbNBDaiIKbBP8nSQKKQbgWM
+qFg0NS/D6s7jq2RvVqaBWXGeFETKOVn1Nur1vYcvH/CCX+9c6UfThaphoc5Dzly1
+fdGvlrcPwgckPnIJlKOMeen68TVn7kooOpHOMgxSd0uQJ0nifJzZSn/PxKOBDLb/
+2FNV4DtUTehKx4eSZq4P0rqWiduL4xmJm8O5gTMVnDOnNycDrmcWI/Sq1R4rbcFa
+8xBb7CN9JDw8+66xeOEf+U7CO6uKOQ==
+=ojzT
+-----END PGP SIGNATURE-----
+
+--Sig_/heNIpFrN3x=kGokuZU34o=d--
 
