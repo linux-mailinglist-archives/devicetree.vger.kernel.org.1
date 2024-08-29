@@ -1,103 +1,136 @@
-Return-Path: <devicetree+bounces-97843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-97844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B89D963D79
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:45:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BDA963D7F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 09:46:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4365A1F25A7A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:45:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 784C41F24225
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 07:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1AB1714CA;
-	Thu, 29 Aug 2024 07:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eBTAm3X+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933FB18A6A5;
+	Thu, 29 Aug 2024 07:45:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534D31494A8;
-	Thu, 29 Aug 2024 07:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E9D1494A8;
+	Thu, 29 Aug 2024 07:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724917543; cv=none; b=eEVS4L+EL4Uv5NuyhslhUl8aaLVG6HLJcUcJe5m7tOaUBZvLo1j6d+idtn7xLkpF5Bc1tlCzPJdoSouKQPmIO7zyFZThlxz5YiOD/brf/yhYM55mmrLbCl1k/tlVAosYpzWCLvFWwoptSqibaGqZc1pRomKzb2Apc1WhTtvqixk=
+	t=1724917548; cv=none; b=H81zMZPIalvPTJVQEEmm5Hetiw936MutPhpytCT0aUIblPWRMtsxt/RsZbBs4UYbtbYSPq19A32up0yOu96k5yTq8GxUTTUjc2m0RpbgaJxUg69f7g6uGOMcIiqNFNWwUVrCK0sDfhIrCzUL66GxTTyZIZmJTM52v6yknV2lKm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724917543; c=relaxed/simple;
-	bh=t2pBKlRiTMiOn/r8axKPW5Aqs9fi+ZgunPNBqEtBxRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U+QlZsNTL/79TX3ANwxrsh/B6Dh6z7qFSJRiFMNdi24mjUyNC3gJ5I0/IKHz4FNVNn1g4zol2bVPqpuP/X2T6HJP3ULf27NilVr0VCg3zu/iTftBEGEXb73jRvS0kD1p+rTI5MU2WIJhSJvgkyxMBnxk6/SyIodTpN/f0OXwakI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eBTAm3X+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B972FC4CEC1;
-	Thu, 29 Aug 2024 07:45:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724917542;
-	bh=t2pBKlRiTMiOn/r8axKPW5Aqs9fi+ZgunPNBqEtBxRY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eBTAm3X+wRwXIefQ5NCrSQ0W1fY37u9aIAsH1WepvhQAIVaS/0+LPKtUbnabvIOTS
-	 a7qz/rCdbvy2+o8D9EHCkS6NLnxgKQrx/FUyf0geFvZEDOcsXxxbtBVQmES/gLv0m/
-	 603xS1XELJ2De+Gg0379gD33Ns/QbrCxy719lRXIhW8qWZy5NA+pHJX07DdG7jijVb
-	 uFf23mGSP+GvYEsqmF89VJ76B+in9dsH9p+l0++rAfdEN8+rnMgtjnes/VU9boiVMa
-	 DXgT+VVfQs6UU5b85ALD7hqRfqMhxm5inIqS5Oze1afBciOPygNAXwlUFzlNsawCk0
-	 e8oityt+QFgTQ==
-Date: Thu, 29 Aug 2024 09:45:38 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, sudeep.holla@arm.com, andi.shyti@kernel.org, 
-	tglx@linutronix.de, will@kernel.org, joro@8bytes.org, jassisinghbrar@gmail.com, 
-	lee@kernel.org, linus.walleij@linaro.org, amitk@kernel.org, 
-	thara.gopinath@gmail.com, broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net, 
-	robin.murphy@arm.com, cristian.marussi@arm.com, rui.zhang@intel.com, 
-	lukasz.luba@arm.com, vkoul@kernel.org, quic_gurus@quicinc.com, agross@kernel.org, 
-	bartosz.golaszewski@linaro.org, quic_rjendra@quicinc.com, robimarko@gmail.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org, arm-scmi@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel@quicinc.com, quic_psodagud@quicinc.com, 
-	quic_tsoni@quicinc.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH 20/22] dt-bindings: firmware: arm,scmi: allow multiple
- virtual instances
-Message-ID: <sckognvfqfmkguimm3c2orolww6f5pigek46lb5o4w6kmx5rjs@xfaha3hxtsj5>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240828203721.2751904-21-quic_nkela@quicinc.com>
+	s=arc-20240116; t=1724917548; c=relaxed/simple;
+	bh=yKtD5jCkLGZgxEvKIW31UMTQNealQ96tDsaeBY1stys=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n6IAztR+3wv1yY7jkzXznsTHJdYee17ZsuTXlRCJx7rffxDZl1QI6SV3qjIpBb+buT7WjFbqYWSvTZeraq/3Ip1AVmeS0q3mYHViwDDrDMemP3pldyY6mkLkx20sHwBtL6bllUTKcOxsiXdgS9JgbZFTbxqsp/0Gv7pj5g3Zdd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B353C4CEC1;
+	Thu, 29 Aug 2024 07:45:46 +0000 (UTC)
+Message-ID: <d2400855-c9ec-4491-aa30-7b5147dcb43a@xs4all.nl>
+Date: Thu, 29 Aug 2024 09:45:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240828203721.2751904-21-quic_nkela@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Letux-kernel] [PATCHv2 0/6] drm/omap: hdmi: improve hdmi4 CEC,
+ add CEC for hdmi5
+To: "H. Nikolaus Schaller" <hns@goldelico.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Linux-OMAP <linux-omap@vger.kernel.org>, Sekhar Nori <nsekhar@ti.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-media@vger.kernel.org,
+ Discussions about the Letux Kernel <letux-kernel@openphoenux.org>
+References: <20210302162403.983585-1-hverkuil-cisco@xs4all.nl>
+ <43F64377-8394-448F-A6F0-4DA11DB9AEF5@goldelico.com>
+ <3c36b0cd-7b43-4a63-a832-1d8d14a4512a@ideasonboard.com>
+ <83b8be7b-a2c5-42f8-a42b-93dfc528a414@xs4all.nl>
+ <3D3C502B-C29B-4156-9616-E5EFDB89E4B7@goldelico.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <3D3C502B-C29B-4156-9616-E5EFDB89E4B7@goldelico.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 28, 2024 at 01:37:19PM -0700, Nikunj Kela wrote:
-> This change extends scmi node name so as to allow multiple virtual
-> SCMI instances.
+On 28/08/2024 21:41, H. Nikolaus Schaller wrote:
+> Hi all,
 > 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>> Am 28.08.2024 um 16:14 schrieb Hans Verkuil <hverkuil-cisco@xs4all.nl>:
+>>
+>> On 28/08/2024 15:57, Tomi Valkeinen wrote:
+>>> Hi,
+>>>
+>>> On 25/08/2024 23:31, H. Nikolaus Schaller wrote:
+>>>> Hi,
+>>>> CEC features are useful to e.g. control HDMI monitor standby.
+>>>>
+>>>> But I wonder what happened to this series?
+>>>>
+>>>> I could find some reviewed-by: and acked-by: in [1] but it wasn't merged upstream
+>>>> for unidentifiable reasons.
+>>>>
+>>>> We apparently had merged this series some years ago into our LetuxOS distro kernel
+>>>> and now we found it to be broken (NULL dereference) at least for omap5uevm
+>>>> (and likely Pyra Handheld) after rebasing to v6.11-rc (it was already broken
+>>>> since v6.9-rc1). Fixes were not difficult, but it would be better if it were
+>>>> part of upstream.
+>>>
+>>> There was a v3:
+>>>
+>>> 20210428132545.1205162-1-hverkuil-cisco@xs4all.nl
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 211f5254adf2..a168be6dd30c 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -24,7 +24,7 @@ description: |
->  
->  properties:
->    $nodename:
-> -    const: scmi
-> +    pattern: '^scmi\.*'
+> [A clickable link is here: https://lore.kernel.org/linux-media/20210428132545.1205162-1-hverkuil-cisco@xs4all.nl/ ]
+> 
+> Ah, I see. It wasn't sent to linux-omap so I didn't recognise/find it in my mails
+> or omap-patchwork.
+> 
+> 
+>>> I see there was a concern from Laurent in:
+>>>
+>>> YLjMZiX71mcQNQdO@pendragon.ideasonboard.com
+> 
+> Well, he didn't reject it although he had concerns, but I am not experienced with what
+> he is talking about for a proper solution...
+> 
+>>>
+>>> And we need an ack from the bridge maintainers for the drm_bridge parts. But the series is three years old, so I think someone would have to rebase on top of mainline and re-test and re-send first.
+>>
+>> I never really followed up with this. I still have the hardware, it is primarily
+>> time. And also that for me this is quite low priority since I don't use omap5.
+>>
+>> If someone wants to refresh this series and post it, then I would have no problem
+>> with it.
+> 
+> A far as I see it just needs a rebase - I guess on linux-next (or drm-misc?) and some
+> compile fixes I already have implemented for our distro kernel.
+> 
+> So if you agree I could work on it, test on omap4&5 and submit a v4 and hope that you
+> can jump in and support for the discussion. I would keep you (Hans) as commit author
+> and just add a signed-off: and tested-by:
 
+That would be fine.
 
-^scmi(-[0-9]+)?$
+For what it is worth, the last version I have is this one from 3 years ago:
 
-Best regards,
-Krzysztof
+https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=omap-bridge-cec
+
+I haven't looked at it since.
+
+Regards,
+
+	Hans
+
+> 
+> But I will also need some time...
+> 
+> BR and thanks,
+> Nikolaus
+> 
 
 
