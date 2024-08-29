@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-98070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 687FF964B47
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:16:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BD5964B69
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF75AB268E8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:16:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BF211C226B0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 16:19:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2CC1B4C51;
-	Thu, 29 Aug 2024 16:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8381B5EB5;
+	Thu, 29 Aug 2024 16:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="umeJptoh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gu3vu998"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C2D1B4C2B;
-	Thu, 29 Aug 2024 16:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422301B3B1D;
+	Thu, 29 Aug 2024 16:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724948099; cv=none; b=GRPRZP6PIk0yoI1zkAVVxEM7mgKaftZ7ZcwjTr+ZLNb6V6JjYali2PqpCjntDmdVfrOy4J/ytSVP8L5elKjsQMhdeXeVEb0TEbhXE4QvbYHmkOsW6Z020Pg+TyPlCp29Gzh1mYJi//jIVJzalRkVnaNimk9op/uO9N4coGTYlqc=
+	t=1724948195; cv=none; b=tFlbhrGNf4zD+si8Gy7rexgLSLHKyVipRG8WbpWNZjDh5i7v+D6tIlQw15USq+zH42bRVCd3RkjJSo7EWPla2d0XTNDnv7xLnt7qa8BJC09+KSDPiFixZ16yNw0LXD/+I4WnBMhcTKO+qud6gUrRFJNtqmva+zxbNKPSR+BJeVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724948099; c=relaxed/simple;
-	bh=Mf0zirgRUd5Tt6mF+dKXvbGoO+NMUyTVlyvxmQigBE8=;
+	s=arc-20240116; t=1724948195; c=relaxed/simple;
+	bh=HxPcbRMFcsJNqFKtugSZKtmx4npczuzpAat1MMw2FFk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=En9fwif10/1Yr1pLISxmHyYKWpDbGxb9iC247U4tVWIxSjk3YTJCsnJSOCZ5ww3DM87JlusLkbTmdm71SZTrmMsg+ZqrBB1/TZsIIAHOomjBhEynR5QeQ0biEBqlDmaWyys9wSHhtnRgr3DswJ9UzzSMHcKQDuW8zwQB/CeLS3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=umeJptoh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C83EC4CEC1;
-	Thu, 29 Aug 2024 16:14:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Le+218cfn4IkN+BdAPEkXnDwKAXU29Z9/zlrZGZfezVEiaI97PZlZYbDtF9Y015rvQncZOyhOhGm5+NIwByRugwXhnQGBRUnA+C1fRUDz/q/De/LvXHy/g83Cv5a17fsWgS3Xo1hnw7sRvgVA7wY1eCFAC6GiKl8wcfVSsT+Ay8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu3vu998; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1277C4CEC2;
+	Thu, 29 Aug 2024 16:16:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724948098;
-	bh=Mf0zirgRUd5Tt6mF+dKXvbGoO+NMUyTVlyvxmQigBE8=;
+	s=k20201202; t=1724948194;
+	bh=HxPcbRMFcsJNqFKtugSZKtmx4npczuzpAat1MMw2FFk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=umeJptohfaVQAFXe+iYXNhUsMsszKFXOxsJGECEqx6kz9E7QObuG6DHaKIA43eP5C
-	 HCui93WF52zT+CDSxJYLT9G+8qxFQG+NScSs4TOp+uIJhLCBiM/DhznDpSn3J+dVyU
-	 1jTKdIe0RqTOOiyVm9gI2iDnAAg93jTveyaJhSNyIZdvIDaWRR294E4aOmY2iw8NQS
-	 Q29Yf6HuJlSEl6rL8iEQgwrh2jujmj3hBP82pymrJnIqv4RzYa3rBigf+Vu8GCY9Zi
-	 wP9xikAcdM0XE2E3cCiyWI4vaWqKcTykoETDNgobGgLNIGYiS2o5WPY6thl4hBS/3p
-	 bm/py7SBeB7cQ==
-Date: Thu, 29 Aug 2024 17:14:54 +0100
+	b=Gu3vu9985tehBLLpWjFYDXPNeRGf5KzowUGu7XAR7vA1/jCUwgGlEU19/YOl75g6t
+	 TMay80EKIq/vhlaQDBRu8Zta/68PuiZ7jjXSwGAFD+zjNI+sp1UoqflEcgRn8GcXOC
+	 Qi7ERfy7GZzOuPi5BeLdmVHf/IVofWRwxIR/sHg+FbqZYhxsEzhpbp/twR+8K8EKSc
+	 v7m4gKF/yFPx6rqhgMf28KhbMeFTqXgnGrRImgDsmSzYI0B8jL6GqWNcpUMn27gQTF
+	 A25Ecd+fU+ewLBIBJAGIxt38zO0nGhg4Jj//W18xnJHZuPi9ZyA7kimFIMFHA+buhU
+	 e65SI6ZOuuJKQ==
+Date: Thu, 29 Aug 2024 17:16:30 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: Add SAMA7D65 PMC compatible string
-Message-ID: <20240829-difficult-zeppelin-9f121fa63369@spud>
-References: <20240829-sama7d65-next-v1-1-53d4e50b550d@microchip.com>
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: touchscreen: ad7877: add bindings
+Message-ID: <20240829-mossy-dispense-bab38650455f@spud>
+References: <20240829092007.25850-1-antoniu.miclaus@analog.com>
+ <20240829092007.25850-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,36 +62,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yropm2zuTxmL/jR0"
+	protocol="application/pgp-signature"; boundary="hFaBAt629pkSLViP"
 Content-Disposition: inline
-In-Reply-To: <20240829-sama7d65-next-v1-1-53d4e50b550d@microchip.com>
+In-Reply-To: <20240829092007.25850-2-antoniu.miclaus@analog.com>
 
 
---yropm2zuTxmL/jR0
+--hFaBAt629pkSLViP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 29, 2024 at 03:08:45PM +0530, Dharma Balasubiramani wrote:
-> Add the `microchip,sama7d65-pmc` compatible string to the existing bindin=
-g,
-> since the SAMA7D65 PMC shares the same properties and clock requirements
-> as the SAMA7G5.
+On Thu, Aug 29, 2024 at 12:19:36PM +0300, Antoniu Miclaus wrote:
+> Add device tree bindings for the ad7877 driver.
 >=20
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+>  .../input/touchscreen/adi,ad7877.yaml         | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/a=
+di,ad7877.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/adi,ad78=
+77.yaml b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.ya=
+ml
+> new file mode 100644
+> index 000000000000..5fc5124c5999
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/adi,ad7877.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD7877 Touch Screen Controller
+> +
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +  Analog Devices Touch Screen Controller
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
+7877.pdf
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> +
+> +unevaluatedProperties: false
 
---yropm2zuTxmL/jR0
+So, all of the properties in those two files are valid for this
+touchscreen controller?
+
+--hFaBAt629pkSLViP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCefgAKCRB4tDGHoIJi
-0g82AP9NFNG9mUS9GTsKnLvy5OayV2KaIQfbLpFnYpuwH59cIwEA5HTh+7GfMujl
-X8tOotN+PC3xF9h0AkaW4MluRjbwJw4=
-=4JUZ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtCe3gAKCRB4tDGHoIJi
+0iT8AP4pJ9a6awlbILTm7sxvIpWDpdBbhXEgx4ngjVqasbPQqAD8DQiAFH2A3p5f
+JPd29psXBmpBvhIG+Xi2vJGMjOF+Cgs=
+=mApE
 -----END PGP SIGNATURE-----
 
---yropm2zuTxmL/jR0--
+--hFaBAt629pkSLViP--
 
