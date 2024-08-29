@@ -1,119 +1,145 @@
-Return-Path: <devicetree+bounces-98105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6A0964DAD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 20:31:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD13964DB0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 20:32:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB0A81F222CA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:31:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 184482851AE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2024 18:32:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2F314A09E;
-	Thu, 29 Aug 2024 18:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91491B86C3;
+	Thu, 29 Aug 2024 18:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QNUbByXI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="y5+/oOah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270281B86E8;
-	Thu, 29 Aug 2024 18:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E569A1AE87D;
+	Thu, 29 Aug 2024 18:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724956267; cv=none; b=bcQDc5rpD28LddHUNMbQk+y/Z1VIQgXDDgi1/QR2jIEHEQ9Sg4tJD8I6HV6ENxKduYaR3/OMHl3HgGO7m0k5/1INId4SK5qt2QBwQQ4sH20X4TPVsdwqFCOwgDOv/WmaUT1DMmVGWf9d9vGm8/n5ubGElC3fScUjNqg0ie5LzgU=
+	t=1724956323; cv=none; b=EIQqmB52sDm34+mFV/AluqC+3bpZlcaDtZZ0RpMTPLNIhNleEJDbl36k+/V3/gEcNogY3XXUc3Y1LqEY780+8EQY882iIh107gySzip+zTSsuGIGnXBJj9j9St4C+/5JfG5JUB2/QExvgsQLOVTNvV7h8Q1VHzQ77EK4qDrSIao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724956267; c=relaxed/simple;
-	bh=HCnThirrnCTL5u5kIMiTPSS6iluwyP3BmzvFylk1Sjk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Reo2B9CYLnse3HxYk9FzUY2mcKu+MMD/WaVTU/vkMD7gL4HaaNsAV/Azgp2dv68z7ASZFB9Yd+IVoMf67O10DZfAXGRMftYmMJK1sn8mapfhAZtQqA40vOIjt394roFqh0aamG8+DYSLJnH8ETCw9IEwI5FfW3mk9Go+vkYtwfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QNUbByXI; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7141b04e7b5so604226b3a.2;
-        Thu, 29 Aug 2024 11:31:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724956264; x=1725561064; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FXXsLBbCuAUdcW6hMIQCpy+3FpxzM3x9bBAewi8hEEk=;
-        b=QNUbByXI/WbPQz50k9H8WWs18cppiNn0SiZSgWFQarlvFkWF7q3RXJct/pJ1hnJo6h
-         oOLmaywsZbjMutHC5Zu+GPJftVHEoRywACcuUQJbnKgRZ/i/vSeJdrcDAYXLwwd4udAo
-         MLIKiWGSzjZ+wO7cdvuYVKOMdul0rEkrdvQn0UFvHev9n3uieGhlIeX+UX9NtDt7dA0R
-         3X+SYa1CprovWKu/0HXzdZjyPjhAv4OeyWU/ecJOplxC8bLjXIcCyfUrqRJsR3AQJEEx
-         BDNvLuqoFiswvMeb4Cd33CBELp6EnSjgvyookplbD+OR8iDiaZxVWsn2rN89kS3XrynG
-         kk2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724956264; x=1725561064;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FXXsLBbCuAUdcW6hMIQCpy+3FpxzM3x9bBAewi8hEEk=;
-        b=KcdVzU0urLbb4P1RgnXjLvAbHw2yWcSIiBTwZm57eIyB5hxcYsUWENIFkB26I+zpBG
-         OUrkTJTBHSkPE7kiIWv7Q8Pp3khq13iPHhFHsVgHcUaY16N5/98VsucqXoGqa5T8MXd3
-         ThqbKjX0zkZTBVFqO+rW7XhGua6btgwLa5AV13dbby1zycRg3ZLT+I/SifjiVamUvXtO
-         6pReKcq1bW6O7IgqcKxBauFzBuCUVc68+mxkzedc4MMKxprb9jqnbjen0W69E++kpLIm
-         dRVn3MEnToktpb0FfSQeY5N35E5qZLjzism93lN83tMAqRm29j0bOXkFjRctRKLTINwO
-         Xbmg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2pG6SDjMM+Ddfqh0y5OmIy3l8UztqpN1aoda+Jkk11BeujEHzMRc3tZ+IYyxSmpCoK2llmYrDjhnF@vger.kernel.org, AJvYcCWIOFEsq5P9jrYASoRDsm5y96UyGIeUZSEpbONh7AOnChdjYzCAWJ8rjexzoSZ9x49l9wxjrqWp2z98JyY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDABpa/ZnrB/m/WuJ4trEzo4jR2dS/uPuXMYESYVZi1yrRW4hi
-	pj23rHHJCriU22GPN7AdFZz/UUvm5DBT5HKDUPxwLXFswspIE74i
-X-Google-Smtp-Source: AGHT+IHSp4JGdLl5wlGaYivhFLZFqXVUgQbecLz/fZ1j5f0jZoTUJVo0+jKkoUutEAw1tE2vWwGRTg==
-X-Received: by 2002:a05:6a20:6f05:b0:1c6:fa64:e5bc with SMTP id adf61e73a8af0-1cce10ab0e1mr3628583637.34.1724956264305;
-        Thu, 29 Aug 2024 11:31:04 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:adb0:3b7e:78c6:e307])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e56d78e4sm1431515b3a.163.2024.08.29.11.31.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2024 11:31:03 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: dmitry.torokhov@gmail.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] dt-bindings: input: touchscreen: goodix: Use generic node name
-Date: Thu, 29 Aug 2024 15:30:51 -0300
-Message-Id: <20240829183051.3392443-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240829183051.3392443-1-festevam@gmail.com>
-References: <20240829183051.3392443-1-festevam@gmail.com>
+	s=arc-20240116; t=1724956323; c=relaxed/simple;
+	bh=E1dL+m4Y3pjB3l/ly+oFrHp9rLfn/fMWKjGupxbtgHg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mIbtWgTymxFNi7zsVcqR+7Wa14hriPcYPWG9G3mtWDRRe9DGBK12HK0ux719vB/Vj90DAJud/RwsYLRWyTJo/orS/xP7ZkP6n2pP1ZO3DXw1Re24qtm22HT/VH5uxzAgkE+QsM2Ws+6kAb6WoqAk0ivwlsTRbG1w+ItazlFQHqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=y5+/oOah; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47TIVtoq123187;
+	Thu, 29 Aug 2024 13:31:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724956315;
+	bh=AfF050ET3/as3Io6OIzxN03aKX5m/WZW22J++N4SfmI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=y5+/oOahHmAEv/Kov3eThYXrUDRNt3+lyFkA72A9lCC0LsdUBxEG/rHCMzoyf26MK
+	 3a5O9giX1BeNaf/I+rwwhatdASfJeT1lWHupAZn4YvOZt7KgsEkpbtVTwxv4gGoTVX
+	 IJ3QyjmE2pcfFT/ISeT6mJOlm7PiyDHzXAWXvV60=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47TIVtju086955
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 29 Aug 2024 13:31:55 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
+ Aug 2024 13:31:55 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 29 Aug 2024 13:31:55 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47TIVtmZ107221;
+	Thu, 29 Aug 2024 13:31:55 -0500
+Date: Thu, 29 Aug 2024 13:31:55 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Aniket Limaye <a-limaye@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <mranostay@ti.com>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <u-kumar1@ti.com>,
+        Jared McArthur
+	<j-mcarthur@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j7200: Fix register map for main
+ domain pmx
+Message-ID: <20240829183155.dpaia4koseebgmdm@sudoku>
+References: <20240829071208.2172825-1-a-limaye@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240829071208.2172825-1-a-limaye@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Fabio Estevam <festevam@denx.de>
+On 12:42-20240829, Aniket Limaye wrote:
+> From: Jared McArthur <j-mcarthur@ti.com>
+> 
+> Commit 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux
+> range") split the main_pmx0 into two nodes: main_pmx0 and main_pmx1
+> due to a non-addressable region, but incorrectly represented the
+> ranges. As a result, the memory map for the pinctrl is incorrect. Fix
+> this by introducing the correct ranges.
+> 
+> The ranges are taken from the J7200 TRM (Table 5-695. CTRL_MMR0
+> Registers). Padconfig registers stretch from 0x11c000 to 0x11c168
+> with non-addressable portions from 0x11c10c to 0x11c10f, 0x11x114 to
+> 0x11c11b, and 0x11c128 to 0x11c163.
+> 
+> Link: https://www.ti.com/lit/ug/spruiu1c/spruiu1c.pdf (TRM)
 
-Node names should be generic.
+Use the canonical link that redirects to the latest document such as https://www.ti.com/lit/pdf/spruiu1
 
-Improve the binding example by using 'touchscreen' as the node name.
+older versions of the TRM may not be retained in ti.com
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Fixes: 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux range")
+> Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
+> Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+> ---
+>  .../dts/ti/k3-j7200-common-proc-board.dts     |  2 +-
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 22 +++++++++++++++++--
+>  2 files changed, 21 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index 6593c5da82c0..df39f2b1ff6b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> @@ -254,7 +254,7 @@ J721E_IOPAD(0x38, PIN_OUTPUT, 0) /* (Y21) MCAN3_TX */
+>  	};
+>  };
+>  
+> -&main_pmx1 {
+> +&main_pmx2 {
+>  	main_usbss0_pins_default: main-usbss0-default-pins {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0x04, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-index 2a2d86cfd104..eb4992f708b7 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-@@ -69,7 +69,7 @@ examples:
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
--      gt928@5d {
-+      touchscreen@5d {
-         compatible = "goodix,gt928";
-         reg = <0x5d>;
-         interrupt-parent = <&gpio>;
+How is this change correct if you are changing the base from 0x1c to
+0x10 (previously it was pointing to 0x20, now to 0x14? what is the
+correct offset of USB0_DRVBUS pin?)
+
+Did you do an audit of all offsets of main_pmx2 and 3 and resultant
+address split up (including overlays if applicable)?
+
+Explain that in commit message / diffstat as appropriate
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index 9386bf3ef9f6..41adfa64418d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+
+[...]
+
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
