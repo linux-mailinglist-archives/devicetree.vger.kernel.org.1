@@ -1,502 +1,338 @@
-Return-Path: <devicetree+bounces-98321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2601965C29
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 904F8965C36
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:59:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68CCC28329B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:55:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 485A6283D97
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358C616DC3C;
-	Fri, 30 Aug 2024 08:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC3C16EB42;
+	Fri, 30 Aug 2024 08:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="q8wBpj9m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eZRkFZrj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A561B16C84C;
-	Fri, 30 Aug 2024 08:55:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC2116DC3C
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725008106; cv=none; b=Wte+AeEoIv5fsQzVzlQUzouG4L/2em0YTGoINnBkgaqHjyGnjhh6yAeErci24RIEHjklh4liPoSbY2k5etDrAZ/c/4+dD8gp9NBMuk8Kc8Mj46BOo09CHBYbDtOS/b2ylatzGtp6jXPu/n1ZGR5JcvCOH3Jl/82iwxmzJxrVP0o=
+	t=1725008353; cv=none; b=he7M1H1DhMCP7oDduo2tBneqa2Ue7YOTk4kahwZhoRh6uVr3RABWNnVy2RMlXODglkx7n24wkumU6eFnWPFFdtVtaFWwrw2P6lHTEte1UoSFUvCVrdNDTXDzuh6VumD5K91seUjfTHCRu6Po/9Njrxl5Kx1v4ImbJbBSQZGvFv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725008106; c=relaxed/simple;
-	bh=LB4fnLxW0eP293XOQ0PiF1MoicvDs6n3r/uFaSDPtso=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FOl+WRDpNi+BcU9AEfv23MbthAZKKgVC5hj8sVDvgr8EblRdYMF69+ftA9sk3AJxrkU7Acbv0NaqsX//EYLYA3I6yoAeE4Ll1rmkqwFthc4KfFIwlD4F1KelcJc8FguFSUAphoIYwel50Msz9BfAAMivsGYKi4TVXnz8xPRBM0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=q8wBpj9m; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 6B2F088D3F;
-	Fri, 30 Aug 2024 10:55:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1725008100;
-	bh=y/oMdSrJZ8GmC/HbLc7HHpot5lLMNU3FuPcspf26QUY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=q8wBpj9m2SEPwm3kZvyWteHSf1CxSv9JGbqeBAji1EvOyfBKqle8cN6kRRTT2QSf/
-	 5lYr9NOblSMGm2+QYH2aiGRsLrf3WDUQUW+NkEy6VgfRNN7KKcIG/CGMpcMBotBkH2
-	 s+xkpgDsvc5HidKVV5tYZAqFoeekCW3QVUh0LahQrul4r1qrqYtgHUnOJkHPlR7OCY
-	 gdK8jmr5JMfKqwAAE2aDbD1p+D5G0/iL5s6pf4b0ehv2XyXoqv+BCIdlSiVzNvWJsq
-	 D+fKjJ1v5jkOx0ZHZpDVkas2rTutUtAjt80sTKTjdf8DBVSkyGfQnvbbDDVSeidTZ3
-	 geCQxxiS/IYdg==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH v3] dts: nxp: mxs: Add descriptions for imx287 based btt3-[012] devices
-Date: Fri, 30 Aug 2024 10:54:41 +0200
-Message-Id: <20240830085441.3589713-1-lukma@denx.de>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1725008353; c=relaxed/simple;
+	bh=onA0Rhh+UzLqUP5jEJTgKgOSRj6UGJ9Pt5npI0Xahjo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GurdfreeRVkkd7ANIWp2J7kG6DWL3gezJES5G755tn9pJJTgj6V2o1as7O4XYpzLodmFolBOfuqDBoqLi6Mj28ZHuY763svkn5dDKXzTsyat7/Ho27jh7QZU9IJGhBHMKfwbNATywiZZZxf3VacJBbZv40cjyzE904ukPE7Y/jA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eZRkFZrj; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3df0dc53ec1so708636b6e.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:59:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725008350; x=1725613150; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=71qAjwrIo/FbmBz5Myk4n9y6EiwPiLE9Dng5NwJZ7Bo=;
+        b=eZRkFZrjc0iKE9K16Fib4cMqp7Z/uq7YEjfEO5nRqCMWTWbMQw5ylQFSHNQrGklfWM
+         B2kKewDJhItywraG/5kjtqYyllONRyMGtBX0i0XGTrT3MqMz+NfPVkJF0UCdjXNLbvLT
+         9uCs6sR+t7NKZzcsUAitcgKMkpybg6il9tEvOHFd0Kw/PMEjEL4cOr3ZzIL6QDaDxVC0
+         tHer7UjbzbuNQ4QXz7rQ2q7JD2ZqXdoHOTsBTrxDKZE+1AlLmJphFXXqQ5sn+FR82fqS
+         I67RdvfsfnZVTRxKDle9yOIlW750vJHz7zhraKTAl+s6eJ7FNsL1FT8bGd2PYCRn+iK6
+         BEZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725008350; x=1725613150;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=71qAjwrIo/FbmBz5Myk4n9y6EiwPiLE9Dng5NwJZ7Bo=;
+        b=FLaG9pJtYONVF+jOxfEMxWcQMCoAocB5ugroeh82fFp0MgyDz61iFlx4sudyBbbF79
+         wGypfuJ9MCpVvrGGylwd2V8pW6AZi7oYF0DyBZFtaBg8QBkMzzw/h9Ng7hr1AOCdLD1O
+         FPrLHn0hw8ofv7Qb+f5mdsyG3cbbBX1F1NfKvFNN6aLYO0UxLg4i/eGBOxCLxvgRWpgC
+         8M7a1nYqDM6E/oTlLh4nPD0YfPu0J3lv3niVu/FJGzBnSFKemhX/pmcUBRu4G6vKPXNt
+         KfxEdf/fvBsckRE+7BCYtx6Vyi0sBMfHlrbp8QWjwG5qNLuQRReu7f8T7ib/UBo6GnwG
+         tExw==
+X-Forwarded-Encrypted: i=1; AJvYcCV10km+7oaE3482Tgufd7+FMybxWgjLIAZnBHW5p7has30WXhqq9VdM/m9vkWCWZvrJdDZafQxUKBCP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUG6MYSTaNhmRP7q0IqnHtINXQurltcAO+IE++upNOJ/NwcCI1
+	6ENtjmSdUgXUBqJZbuvDYnqzo/xPVrG1RnW3YNLSNdL/tXSPAxGtAwv9h/MxWw==
+X-Google-Smtp-Source: AGHT+IGJE/0+ObI0CkZ+IOdkM1nwpEnemU7pt2j1Bs59c55j95S6Wc2rMVcunwSLXz0CAPYJaOw1vg==
+X-Received: by 2002:a05:6808:1242:b0:3d9:384a:7e1a with SMTP id 5614622812f47-3df05c4e59amr5026350b6e.1.1725008350377;
+        Fri, 30 Aug 2024 01:59:10 -0700 (PDT)
+Received: from thinkpad ([117.193.213.95])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d22e9d721dsm2512363a12.87.2024.08.30.01.59.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Aug 2024 01:59:10 -0700 (PDT)
+Date: Fri, 30 Aug 2024 14:29:01 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Sricharan R <quic_srichara@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
+	konradybcio@kernel.org, p.zabel@pengutronix.de,
+	dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, robimarko@gmail.com
+Subject: Re: [PATCH V2 5/6] arm64: dts: qcom: ipq5018: Add PCIe related nodes
+Message-ID: <20240830085901.oeiuuijlvq2ydho2@thinkpad>
+References: <20240827045757.1101194-1-quic_srichara@quicinc.com>
+ <20240827045757.1101194-6-quic_srichara@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+In-Reply-To: <20240827045757.1101194-6-quic_srichara@quicinc.com>
 
-The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-some extend similar to already upstreamed XEA devices, hence are
-using common imx28-lwe.dtsi file.
+On Tue, Aug 27, 2024 at 10:27:56AM +0530, Sricharan R wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> 
+> Add phy and controller nodes for a 2-lane Gen2 and
+> 1-lane Gen2 PCIe buses.
+> 
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
+> ---
+>  [v2] Removed relocatable flags,  removed assigned-clock-rates,
+>       fixed rest of the cosmetic comments.
+> 
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 168 +++++++++++++++++++++++++-
+>  1 file changed, 166 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> index 7e6e2c121979..dd5d6b7ff094 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> @@ -9,6 +9,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
+>  #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
+> +#include <dt-bindings/gpio/gpio.h>
+>  
+>  / {
+>  	interrupt-parent = <&intc>;
+> @@ -143,7 +144,33 @@ usbphy0: phy@5b000 {
+>  			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+>  
+>  			#phy-cells = <0>;
+> +		};
+> +
+> +		pcie_x1phy: phy@7e000{
+> +			compatible = "qcom,ipq5018-uniphy-pcie-gen2x1";
+> +			reg = <0x0007e000 0x800>;
+> +			#phy-cells = <0>;
+> +			#clock-cells = <0>;
+> +			clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
+> +			clock-names = "pipe";
+> +			assigned-clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
+> +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
+> +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
+> +			reset-names = "phy", "common";
+> +			status = "disabled";
+> +		};
+>  
+> +		pcie_x2phy: phy@86000{
+> +			compatible = "qcom,ipq5018-uniphy-pcie-gen2x2";
+> +			reg = <0x00086000 0x1000>;
+> +			#phy-cells = <0>;
+> +			#clock-cells = <0>;
+> +			clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
+> +			clock-names = "pipe";
+> +			assigned-clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
+> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
+> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
+> +			reset-names = "phy", "common";
+>  			status = "disabled";
+>  		};
+>  
+> @@ -170,8 +197,8 @@ gcc: clock-controller@1800000 {
+>  			reg = <0x01800000 0x80000>;
+>  			clocks = <&xo_board_clk>,
+>  				 <&sleep_clk>,
+> -				 <0>,
+> -				 <0>,
+> +				 <&pcie_x2phy>,
+> +				 <&pcie_x1phy>,
+>  				 <0>,
+>  				 <0>,
+>  				 <0>,
+> @@ -387,6 +414,143 @@ frame@b128000 {
+>  				status = "disabled";
+>  			};
+>  		};
+> +
+> +		pcie0: pci@80000000 {
 
-New, imx28-btt3.dtsi has been added to embrace common DTS
-properties for different HW revisions for this device.
+pcie@
 
-As a result - changes introduced in imx28-btt3-[012].dts are
-minimal.
+> +			compatible = "qcom,pcie-ipq5018";
+> +			reg =  <0x80000000 0xf1d>,
+> +			       <0x80000f20 0xa8>,
+> +			       <0x80001000 0x1000>,
+> +			       <0x00078000 0x3000>,
+> +			       <0x80100000 0x1000>;
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
+Are you sure that the config space is only 4K?
 
----
+> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
+> +			device_type = "pci";
+> +			linux,pci-domain = <0>;
+> +			bus-range = <0x00 0xff>;
+> +			num-lanes = <1>;
+> +			max-link-speed = <2>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +
+> +			phys = <&pcie_x1phy>;
+> +			phy-names ="pciephy";
+> +
+> +			ranges = <0x01000000 0 0x80200000 0x80200000 0 0x00100000
 
-Changes for v2:
-- Rename dts file from btt3-[012] to imx28-btt3-[012] to match current
-  linux kernel naming convention
-- Remove 'wlf,wm8974' from compatible for codec@1a
+Please check the value of this field in other SoCs.
 
-Changes for v3:
-- Keep alphabethical order for Makefile entries
----
- arch/arm/boot/dts/nxp/mxs/Makefile         |   3 +
- arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts |  12 +
- arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts |   8 +
- arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts |  12 +
- arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi  | 320 +++++++++++++++++++++
- 5 files changed, 355 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
+> +				  0x02000000 0 0x80300000 0x80300000 0 0x10000000>;
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 0 142 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 2 &intc 0 0 143 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &intc 0 0 144 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &intc 0 0 145 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "global_irq";
 
-diff --git a/arch/arm/boot/dts/nxp/mxs/Makefile b/arch/arm/boot/dts/nxp/mxs/Makefile
-index a430d04f9c69..96dd31ea19ba 100644
---- a/arch/arm/boot/dts/nxp/mxs/Makefile
-+++ b/arch/arm/boot/dts/nxp/mxs/Makefile
-@@ -8,6 +8,9 @@ dtb-$(CONFIG_ARCH_MXS) += \
- 	imx28-apf28.dtb \
- 	imx28-apf28dev.dtb \
- 	imx28-apx4devkit.dtb \
-+	imx28-btt3-0.dtb \
-+	imx28-btt3-1.dtb \
-+	imx28-btt3-2.dtb \
- 	imx28-cfa10036.dtb \
- 	imx28-cfa10037.dtb \
- 	imx28-cfa10049.dtb \
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
-new file mode 100644
-index 000000000000..6ac46e4b21bb
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "imx28-btt3.dtsi"
-+
-+&hog_pins_rev {
-+	fsl,pull-up = <MXS_PULL_ENABLE>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
-new file mode 100644
-index 000000000000..213fe931c58b
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
-@@ -0,0 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "imx28-btt3.dtsi"
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
-new file mode 100644
-index 000000000000..c787c2d03463
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "imx28-btt3.dtsi"
-+
-+&lcdif {
-+	display = <&display_te_b>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-new file mode 100644
-index 000000000000..27a01e925e26
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-@@ -0,0 +1,320 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+/dts-v1/;
-+#include "imx28-lwe.dtsi"
-+
-+/ {
-+	model = "BTT3";
-+
-+	compatible = "lwn,btt3", "fsl,imx28";
-+
-+	chosen {
-+	       bootargs = "root=/dev/mmcblk0p2 rootfstype=ext4 ro rootwait console=ttyAMA0,115200 panic=1 quiet";
-+	};
-+
-+	memory@40000000 {
-+		reg = <0x40000000 0x10000000>;
-+		device_type = "memory";
-+	};
-+
-+	poweroff {
-+		compatible = "gpio-poweroff";
-+		gpios = <&gpio0 24 0>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "BTTC Audio";
-+		simple-audio-card,widgets = "Speaker", "BTTC Speaker";
-+		simple-audio-card,routing = "BTTC Speaker", "SPKOUTN", "BTTC Speaker", "SPKOUTP";
-+		simple-audio-card,dai-link@0 {
-+			format = "left_j";
-+			bitclock-master = <&dai0_master>;
-+			frame-master = <&dai0_master>;
-+			mclk-fs = <256>;
-+			dai0_master: cpu {
-+				sound-dai = <&saif0>;
-+			};
-+			codec {
-+				sound-dai = <&wm89xx>;
-+				clocks = <&saif0>;
-+			};
-+		};
-+	};
-+
-+	wifi_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_en_pin_bttc>;
-+		reset-gpios = <&gpio0 27 GPIO_ACTIVE_LOW>;
-+		/* W1-163 needs 60us for WL_EN to be low and */
-+		/* 150ms after high before downloading FW is possible */
-+		post-power-on-delay-ms = <200>;
-+		power-off-delay-us = <100>;
-+	};
-+};
-+
-+&auart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&auart0_2pins_a>;
-+	status = "okay";
-+};
-+
-+&auart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&auart3_pins_a>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	wm89xx: codec@1a {
-+		compatible = "wlf,wm8940";
-+		reg = <0x1a>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&lcdif_24bit_pins_a>, <&lcdif_sync_pins_bttc>,
-+		    <&lcdif_reset_pins_bttc>;
-+	lcd-supply = <&reg_3v3>;
-+	display = <&display0>;
-+	status = "okay";
-+	display0: display0 {
-+		bits-per-pixel = <32>;
-+		bus-width = <24>;
-+		display-timings {
-+			native-mode = <&timing0>;
-+			timing0: timing0 {
-+				clock-frequency = <6500000>;
-+				hactive = <320>;
-+				vactive = <240>;
-+				hfront-porch = <20>;
-+				hback-porch = <38>;
-+				hsync-len = <30>;
-+				vfront-porch = <4>;
-+				vback-porch = <14>;
-+				vsync-len = <4>;
-+				hsync-active = <0>;
-+				vsync-active = <0>;
-+				de-active = <0>;
-+				pixelclk-active = <1>;
-+			};
-+		};
-+	};
-+	display_te_b: display1 {
-+		bits-per-pixel = <32>;
-+		bus-width = <24>;
-+		display-timings {
-+			native-mode = <&timing0>;
-+			timing_te_b: timing0 {
-+				clock-frequency = <6500000>;
-+				hactive = <320>;
-+				vactive = <240>;
-+				hfront-porch = <20>;
-+				hback-porch = <68>;
-+				hsync-len = <30>;
-+				vfront-porch = <4>;
-+				vback-porch = <14>;
-+				vsync-len = <4>;
-+				hsync-active = <0>;
-+				vsync-active = <0>;
-+				de-active = <1>;
-+				pixelclk-active = <1>;
-+			};
-+		};
-+	};
-+
-+};
-+
-+&mac0 {
-+	clocks = <&clks 57>, <&clks 57>, <&clks 64>;
-+	clock-names = "ipg", "ahb", "enet_out";
-+	phy-handle = <&mac0_phy>;
-+	phy-mode = "rmii";
-+	phy-supply = <&reg_3v3>;
-+	local-mac-address = [ 00 11 B8 00 BF 8A ];
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		mac0_phy: ethernet-phy@0 {
-+			/* LAN8720Ai - PHY ID */
-+			compatible = "ethernet-phy-id0007.c0f0","ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			smsc,disable-energy-detect;
-+			max-speed = <100>;
-+
-+			reset-gpios = <&gpio4 12 GPIO_ACTIVE_LOW>; /* GPIO4_12 */
-+			reset-assert-us = <1000>;
-+			reset-deassert-us = <1000>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hog_pins_a>, <&hog_pins_rev>;
-+
-+	hog_pins_a: hog@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_RDY2__GPIO_0_22
-+			MX28_PAD_GPMI_RDY3__GPIO_0_23
-+			MX28_PAD_GPMI_RDN__GPIO_0_24
-+			MX28_PAD_LCD_VSYNC__GPIO_1_28
-+			MX28_PAD_SSP2_SS1__GPIO_2_20
-+			MX28_PAD_SSP2_SS2__GPIO_2_21
-+			MX28_PAD_AUART2_CTS__GPIO_3_10
-+			MX28_PAD_AUART2_RTS__GPIO_3_11
-+			MX28_PAD_GPMI_WRN__GPIO_0_25
-+			MX28_PAD_ENET0_RXD2__GPIO_4_9
-+			MX28_PAD_ENET0_TXD2__GPIO_4_11
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	hog_pins_rev: hog@1 {
-+		reg = <1>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_ENET0_RXD3__GPIO_4_10
-+			MX28_PAD_ENET0_TX_CLK__GPIO_4_5
-+			MX28_PAD_ENET0_COL__GPIO_4_14
-+			MX28_PAD_ENET0_CRS__GPIO_4_15
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	keypad_pins_bttc: keypad-bttc@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_D00__GPIO_0_0
-+			MX28_PAD_AUART0_CTS__GPIO_3_2
-+			MX28_PAD_AUART0_RTS__GPIO_3_3
-+			MX28_PAD_GPMI_D03__GPIO_0_3
-+			MX28_PAD_GPMI_D04__GPIO_0_4
-+			MX28_PAD_GPMI_D05__GPIO_0_5
-+			MX28_PAD_GPMI_D06__GPIO_0_6
-+			MX28_PAD_GPMI_D07__GPIO_0_7
-+			MX28_PAD_GPMI_CE1N__GPIO_0_17
-+			MX28_PAD_GPMI_CE2N__GPIO_0_18
-+			MX28_PAD_GPMI_CE3N__GPIO_0_19
-+			MX28_PAD_GPMI_RDY0__GPIO_0_20
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	lcdif_sync_pins_bttc: lcdif-bttc@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_LCD_DOTCLK__LCD_DOTCLK
-+			MX28_PAD_LCD_ENABLE__LCD_ENABLE
-+			MX28_PAD_LCD_HSYNC__LCD_HSYNC
-+			MX28_PAD_LCD_RD_E__LCD_VSYNC
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	lcdif_reset_pins_bttc: lcdif-bttc@1 {
-+		reg = <1>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_LCD_RESET__GPIO_3_30
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+
-+	ssp1_sdio_pins_a: ssp1-sdio@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_SSP1_DATA0__SSP1_D0
-+			MX28_PAD_GPMI_D01__SSP1_D1
-+			MX28_PAD_GPMI_D02__SSP1_D2
-+			MX28_PAD_SSP1_DATA3__SSP1_D3
-+			MX28_PAD_SSP1_CMD__SSP1_CMD
-+			MX28_PAD_SSP1_SCK__SSP1_SCK
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_8mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+
-+	wifi_en_pin_bttc: wifi_en_pin@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_CLE__GPIO_0_27
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_8mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm3_pins_a>;
-+	status = "okay";
-+};
-+
-+&reg_usb_5v {
-+	gpio = <&gpio1 28 0>;
-+};
-+
-+&saif0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&saif0_pins_a>;
-+	#sound-dai-cells = <0>;
-+	assigned-clocks = <&clks 53>;
-+	assigned-clock-rates = <12000000>;
-+	status = "okay";
-+};
-+
-+&saif1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&saif1_pins_a>;
-+	fsl,saif-master = <&saif0>;
-+	#sound-dai-cells = <0>;
-+	status = "okay";
-+};
-+
-+&ssp1 {
-+	compatible = "fsl,imx28-mmc";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ssp1_sdio_pins_a>;
-+	bus-width = <4>;
-+	no-1-8-v;       /* force 3.3V VIO */
-+	pm-ignore-notify;
-+	non-removable;
-+	vmmc-supply = <&reg_3v3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	keep-power-in-suspend;
-+	status = "okay";
-+
-+	wlan@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+&ssp2 {
-+	compatible = "fsl,imx28-spi";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi2_pins_a>;
-+	status = "okay";
-+};
+I'm pretty sure that this SoC has SPI based MSI interrupts. So they should be
+described even though ITS is supported.
+
+> +
+> +			clocks = <&gcc GCC_SYS_NOC_PCIE1_AXI_CLK>,
+> +				 <&gcc GCC_PCIE1_AXI_M_CLK>,
+> +				 <&gcc GCC_PCIE1_AXI_S_CLK>,
+> +				 <&gcc GCC_PCIE1_AHB_CLK>,
+> +				 <&gcc GCC_PCIE1_AUX_CLK>,
+> +				 <&gcc GCC_PCIE1_AXI_S_BRIDGE_CLK>;
+> +
+> +			clock-names = "iface",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "aux",
+> +				      "axi_bridge";
+> +
+> +			resets = <&gcc GCC_PCIE1_PIPE_ARES>,
+> +				 <&gcc GCC_PCIE1_SLEEP_ARES>,
+> +				 <&gcc GCC_PCIE1_CORE_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_MASTER_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_SLAVE_ARES>,
+> +				 <&gcc GCC_PCIE1_AHB_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_MASTER_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE1_AXI_SLAVE_STICKY_ARES>;
+> +
+> +			reset-names = "pipe",
+> +				      "sleep",
+> +				      "sticky",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "axi_m_sticky",
+> +				      "axi_s_sticky";
+> +
+> +			msi-map = <0x0 &v2m0 0x0 0xff8>;
+> +			status = "disabled";
+
+Please add the rootport node also as like other SoCs.
+
+Above comments applies to below PCIe node.
+
+- Mani
+
+> +		};
+> +
+> +		pcie1: pci@a0000000 {
+> +			compatible = "qcom,pcie-ipq5018";
+> +			reg =  <0xa0000000 0xf1d>,
+> +			       <0xa0000f20 0xa8>,
+> +			       <0xa0001000 0x1000>,
+> +			       <0x00080000 0x3000>,
+> +			       <0xa0100000 0x1000>;
+> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
+> +			device_type = "pci";
+> +			linux,pci-domain = <1>;
+> +			bus-range = <0x00 0xff>;
+> +			num-lanes = <2>;
+> +			max-link-speed = <2>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +
+> +			phys = <&pcie_x2phy>;
+> +			phy-names ="pciephy";
+> +
+> +			ranges = <0x01000000 0 0xa0200000 0xa0200000 0 0x00100000
+> +				  0x02000000 0 0xa0300000 0xa0300000 0 0x10000000>;
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 0 75 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 2 &intc 0 0 78 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &intc 0 0 79 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &intc 0 0 83 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "global_irq";
+> +
+> +			clocks = <&gcc GCC_SYS_NOC_PCIE0_AXI_CLK>,
+> +				 <&gcc GCC_PCIE0_AXI_M_CLK>,
+> +				 <&gcc GCC_PCIE0_AXI_S_CLK>,
+> +				 <&gcc GCC_PCIE0_AHB_CLK>,
+> +				 <&gcc GCC_PCIE0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE0_AXI_S_BRIDGE_CLK>;
+> +
+> +			clock-names = "iface",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "aux",
+> +				      "axi_bridge";
+> +
+> +			resets = <&gcc GCC_PCIE0_PIPE_ARES>,
+> +				 <&gcc GCC_PCIE0_SLEEP_ARES>,
+> +				 <&gcc GCC_PCIE0_CORE_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_MASTER_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_SLAVE_ARES>,
+> +				 <&gcc GCC_PCIE0_AHB_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_MASTER_STICKY_ARES>,
+> +				 <&gcc GCC_PCIE0_AXI_SLAVE_STICKY_ARES>;
+> +
+> +			reset-names = "pipe",
+> +				      "sleep",
+> +				      "sticky",
+> +				      "axi_m",
+> +				      "axi_s",
+> +				      "ahb",
+> +				      "axi_m_sticky",
+> +				      "axi_s_sticky";
+> +
+> +			msi-map = <0x0 &v2m0 0x0 0xff8>;
+> +			status = "disabled";
+> +		};
+> +
+>  	};
+>  
+>  	timer {
+> -- 
+> 2.34.1
+> 
+
 -- 
-2.39.2
-
+மணிவண்ணன் சதாசிவம்
 
