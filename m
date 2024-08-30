@@ -1,222 +1,120 @@
-Return-Path: <devicetree+bounces-98613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D771966C0B
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:07:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC45B966C23
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:16:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E4411C20E3A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:07:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC1A51F22E5B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ECEA1BA260;
-	Fri, 30 Aug 2024 22:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B8B1C172F;
+	Fri, 30 Aug 2024 22:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YcyxeCeR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BiJI/+ia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD97C2AE84;
-	Fri, 30 Aug 2024 22:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CD91BDAB1;
+	Fri, 30 Aug 2024 22:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725055617; cv=none; b=lHAx+kq30OnA+XHx2/I+autDvdeTvzxRKhNV3i3W9YG+jH5FldU3FYBw0sFVYCkEhXJq3btFKlFSheAzjjOwNcNs2dwu0VIJlLTJY8nyspvJ4pWnD7zgWXoX7WskGaYYk7RGGkHGhLnABGmKVfH6tqd/6e41bs9bYJYFMLgfaGY=
+	t=1725056177; cv=none; b=NNp4/diLn/EPJPDLUtmh4bugKuLWRsmuwbNMmjFwXpsuYNBoQtcIqGfgE26P/OQL9zLEDxCq1DsjC8EhJajWhPnJHmKWIYbe/0X+HJv8/e+MyypPtHoNKd8FjB2sOxvau5n1akGETEwlJk/dVXkdQOOlrFsdO/1ZxZpW3jZpuQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725055617; c=relaxed/simple;
-	bh=7bN0sMienvBAeh25nZnD/ikZz9WMFpkRfUC/yMfuCjI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mJXnBze2JWNbMq3Ag5r6KXRvFFSIoMRf6l5ewkq0ljE1vP/sOAh/w8XOYJFrQf14eVSj2brNti/MChUbncnyy8//MaO/oIMkaTfCT5n3KfFni8+wcwSUDhMiW0zLKTsnbvudMc8vb+ZieWObqK6KAQ9Dae7gsc3SVCZkcacoJrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YcyxeCeR; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 544CF20002;
-	Fri, 30 Aug 2024 22:06:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1725055606;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=l8qBh0nmHVI2zsvlOYgpiaVNXL8o7RxXMCFhilguwxA=;
-	b=YcyxeCeRcaegOnBeFj8fQRR/WQZ7T8h4KoG4bBSLoWz1XL8WOZfZ0i1cBnOF5YiVgxaX1e
-	UqzdotYf3mfzJhfN2yYUu/HlNvWeCTicnHf8A1BuiFY42Bp8yJrj0yeDQ4VdoYeKE9uZRL
-	V8HvwOiyRkBsU1cA7cvS4PTHgpFK5x3lAD4pM0zLdAOQD1ftfpCIwYHUQHHvbEV0EQgzT8
-	Z1WU8Vhk4aBohSSD9l2A8JTalLx3u2wR974JunW2jYixLyE/etNgodo/XlYNqzNEv/sRFd
-	+p5eIODFyJ0tXSZoJbO4LukcHTmtOrIigzHFIYPoBMnKhUwpPbmMWMT0GCwc/g==
-Date: Sat, 31 Aug 2024 00:06:44 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Claudiu <claudiu.beznea@tuxon.dev>, geert+renesas@glider.be,
-	mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, magnus.damm@gmail.com, p.zabel@pengutronix.de,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v3 01/12] dt-bindings: clock: renesas,r9a08g045-vbattb:
- Document VBATTB
-Message-ID: <20240830220644b8b36293@mail.local>
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
- <20240830174633.GA559043-robh@kernel.org>
+	s=arc-20240116; t=1725056177; c=relaxed/simple;
+	bh=eiAiaAMxrnwkQh8OZNgENo2OCIGfzf4Ul9qhg+3zyfY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QTq1jHFT8kZLQJMI/7JEKgoIT+cuCU3c1DHR/kjPhmxbaAtII/hrlHcR3qnroYamIMPCIXozSYpshPMQFHklRJxwAR7XOipmj2tBvZzOOfv2eHdd/GWbMKLMiFgVEph7akFdU9aeVg7hBfn8w8+LZCmGKw5emGsn4mkuU43Jbqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BiJI/+ia; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UFsQJk023319;
+	Fri, 30 Aug 2024 22:16:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	naL+DF9ioWHaYPmy57myekiuG522s2M1hb98q4d0hHk=; b=BiJI/+iae4Z7E9jd
+	nyfk1m73von9yTfpP9jgnjoNzImr1W6Xu6KiNyybLgpxlj6+Fxhkwlzj2+L59lhW
+	8lXaVRUqojol6WnJWKf+jt8z4zlMY/uynqCWxAI9Dcku4soOMiEwiu++8VNd6NSa
+	1/IBC/cjxnYugpwYM9lQpfS6liHs8PYV6/9CLG1QA5D58/bYszfFrGTj3iYbKeY9
+	1WSAutdpTbroE/t6xNO9wpxRUbVhIo3jAAKblVnjhPc5Q8L787iLKkNC2HWwI58T
+	1wmMjfAY4Qzl2Aw4vz5/3CW/jOufE5tht1JQ23FJaXtSV5bcRUUAmXKm7/RJOvB4
+	qxZIjw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41a612r7hr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 22:16:01 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47UMG05Y032297
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 22:16:00 GMT
+Received: from [10.110.126.215] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 30 Aug
+ 2024 15:15:59 -0700
+Message-ID: <02138a65-4cd7-4423-886d-35ad86afcff0@quicinc.com>
+Date: Fri, 30 Aug 2024 15:15:58 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240830174633.GA559043-robh@kernel.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/7] dt-bindings: arm: Add support for Coresight TGU
+ trace
+To: songchai <quic_songchai@quicinc.com>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>, James Clark
+	<james.clark@arm.com>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Andy Gross <agross@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20240830092311.14400-1-quic_songchai@quicinc.com>
+ <20240830092311.14400-2-quic_songchai@quicinc.com>
+Content-Language: en-US
+From: Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <20240830092311.14400-2-quic_songchai@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: exG77MoKoMk6EyX4HCq-mfpniNBrNMYr
+X-Proofpoint-ORIG-GUID: exG77MoKoMk6EyX4HCq-mfpniNBrNMYr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-30_11,2024-08-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ phishscore=0 spamscore=0 mlxlogscore=712 adultscore=0 impostorscore=0
+ mlxscore=0 suspectscore=0 bulkscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408300173
 
-On 30/08/2024 12:46:33-0500, Rob Herring wrote:
-> On Fri, Aug 30, 2024 at 04:02:07PM +0300, Claudiu wrote:
-> > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > 
-> > The VBATTB IP of the Renesas RZ/G3S SoC controls the clock for RTC,
-> > the tamper detector and a small general usage memory of 128B. Add
-> > documentation for it.
-> > 
-> > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > ---
-> > 
-> > Changes in v3:
-> > - moved the file to clock dt bindings directory as it is the
-> >   only functionality supported at the moment; the other functionalities
-> >   (tamper detector, SRAM) are offered though register spreaded
-> >   though the address space of the VBATTB IP and not actually
-> >   individual devices; the other functionalities are not
-> >   planned to be supported soon and if they will be I think they
-> >   fit better on auxiliary bus than MFD
-> > - dropped interrupt names as requested in the review process
-> > - dropped the inner node for clock controller
-> > - added #clock-cells
-> > - added rtx clock
-> > - updated description for renesas,vbattb-load-nanofarads
-> > - included dt-bindings/interrupt-controller/irq.h in examples section
-> > 
-> > Changes in v2:
-> > - changed file name and compatible
-> > - updated title, description sections
-> > - added clock controller part documentation and drop dedicated file
-> >   for it included in v1
-> > - used items to describe interrupts, interrupt-names, clocks, clock-names,
-> >   resets
-> > - dropped node labels and status
-> > - updated clock-names for clock controller to cope with the new
-> >   logic on detecting the necessity to setup bypass
-> > 
-> >  .../clock/renesas,r9a08g045-vbattb.yaml       | 81 +++++++++++++++++++
-> >  1 file changed, 81 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
-> > new file mode 100644
-> > index 000000000000..29df0e01fae5
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
-> > @@ -0,0 +1,81 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/renesas,r9a08g045-vbattb.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas Battery Backup Function (VBATTB)
-> > +
-> > +description:
-> > +  Renesas VBATTB is an always on powered module (backed by battery) which
-> > +  controls the RTC clock (VBATTCLK), tamper detection logic and a small
-> > +  general usage memory (128B).
-> > +
-> > +maintainers:
-> > +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: renesas,r9a08g045-vbattb
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: tamper detector interrupt
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: VBATTB module clock
-> > +      - description: RTC input clock (crystal oscillator or external clock device)
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bclk
-> > +      - const: rtx
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    items:
-> > +      - description: VBATTB module reset
-> > +
-> > +  renesas,vbattb-load-nanofarads:
-> 
-> Use defined units, don't add your own. So -picofarads should work for 
-> you.
+On 8/30/2024 2:23 AM, songchai wrote:
+>  |                         |                     |     |             |
+>  |-------------------------|                     |     |-------------|
+>  |                         |                     |     | prioroty[3] |
 
-We have a generic quartz-load-femtofarads property for RTCs which is
-what you define because the driver has VBATTB_XOSCCR_XSEL_4_PF which I
-guess is 4 pF which is 0.004 nF and 4000 fF.
 
-> 
-> > +    description: load capacitance of the on board crystal oscillator
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [ 4000, 7000, 9000, 12500 ]
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - '#clock-cells'
-> > +  - power-domains
-> > +  - resets
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/r9a08g045-cpg.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    vbattb@1005c000 {
-> 
-> clock-controller@...
-> 
-> > +        compatible = "renesas,r9a08g045-vbattb";
-> > +        reg = <0x1005c000 0x1000>;
-> > +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&vbattb_xtal>;
-> > +        clock-names = "bclk", "rtx";
-> > +        #clock-cells = <1>;
-> > +        power-domains = <&cpg>;
-> > +        resets = <&cpg R9A08G045_VBAT_BRESETN>;
-> > +        renesas,vbattb-load-nanofarads = <12500>;
-> > +    };
-> > -- 
-> > 2.39.2
-> > 
+s/prioroty/priority 
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+---Trilok Soni
+
 
