@@ -1,87 +1,77 @@
-Return-Path: <devicetree+bounces-98404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40341966036
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:11:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4F7966047
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:13:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F14A8286EB2
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:11:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88F351C22D94
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5C1C1AF4DE;
-	Fri, 30 Aug 2024 11:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C6418E37B;
+	Fri, 30 Aug 2024 11:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="A3p4XWMw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pDrSHi7k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5259A1AD5D6;
-	Fri, 30 Aug 2024 11:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4BB17B513;
+	Fri, 30 Aug 2024 11:10:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725016126; cv=none; b=FcgKVYJK6qFZalaS3crCrZxLpEW10X79g8bv+fkm0eExPSQbPVOuRZhlLVXn54+Gx3HaHwl2hYEYTSY4sY+QpY00HpvdLmOISwWkvFR1GNiWBpHASYhR8EL62/AII0wmOOaWHUZ4XahgeMpi2GLZbaxGgqRHCgCxH/5mdY07TPg=
+	t=1725016215; cv=none; b=a/9JgKMYyYBlrcayx8Bj0erK75bUE1dTTm2wFI93bMoQXZ14smWHeIXw5U+/MWLPtnplXU9XnCENh2T4Tp4yMzU49TWOs+oY6a6CD7pGMgiDR6SF92991PjXbS8uE74BfCOLvFSo2zI6cOgh4EnEzXTcImdI/4idvoczRrIhI/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725016126; c=relaxed/simple;
-	bh=/Fb5pZToC3tAN1tu7MCACdn0yLrFT2nb9lJ4ahlghS0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OhdUjkz1PTZDxJFgs/EemmxgT3g11zmWBlS7b1t3wua7w0W9f/u5RwFMYOLcAtpqWnsqnw7PS7HXCqhXj0p1KQdVpRVJ3yqRG5mYxDg8SMt5IY9+hpYUA0GcK97nSxshtt+i8GYmv+S0sVWV7rjdLQmjS37fpz+u8L5Lo7NTfHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=A3p4XWMw; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 2ff440d866c011ef8593d301e5c8a9c0-20240830
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=DipCJgAWyMm6MFO6I1vTU2aLQjwa5Kl2TSY0FW5qvoQ=;
-	b=A3p4XWMw4d04ZQtqSGgDGifhf7iZ7Wlitat9b3ylOuR3mGSCy0/Mxe97kT52qAzBl3ZAFdc5jL1lM7KgvIPcNDP/DkPqMVhXZYTqX+zM11RtflObYS3NT/dKghW5mdpWRxY4VsaEj+8BTbJNJs3Pikt3K0tJUJOJxUFZhrxeU6Q=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:1af36010-1799-43d8-a43b-af36f01b5a9a,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:35356fcf-7921-4900-88a1-3aef019a55ce,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 2ff440d866c011ef8593d301e5c8a9c0-20240830
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 510421618; Fri, 30 Aug 2024 19:08:29 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 30 Aug 2024 04:08:29 -0700
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 30 Aug 2024 19:08:29 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-leds@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>, Pavel Machek
-	<pavel@ucw.cz>, Sean Wang <sean.wang@mediatek.com>, Lee Jones
-	<lee@kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>, Flora Fu
-	<flora.fu@mediatek.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen
- Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-rtc@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
-Subject: [PATCH v2 7/7] dt-bindings: sound: mt6358: merge to MFD mediatek,mt6397 DT schema
-Date: Fri, 30 Aug 2024 19:07:32 +0800
-Message-ID: <20240830110732.30080-7-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240830110732.30080-1-macpaul.lin@mediatek.com>
-References: <20240830110732.30080-1-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1725016215; c=relaxed/simple;
+	bh=OHjj/tAnC+Y1kEF7BAvFkb85Nzu3wodRArUS0GgIzBI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ts1H0XuCb+7JOSI6tzvApiDIW8DMT7X8+GZlndbydHfChz070mdmWFNSto50nmO/6RrC6nEYUa/SPwS1VDGgpWYf+MAkCgcSeJj7i4dHDr7HfSgtoRbxNL4oY6VZLiGOJeSxq5YmG1jI8b/jlKlQq7V7QV3x7PFcJSnL7M0NSFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pDrSHi7k; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UBA65w107414;
+	Fri, 30 Aug 2024 06:10:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725016206;
+	bh=72miJdY/rcxK+EO0xK2JkDsYQAQxFOzf72LiKDXqYOc=;
+	h=From:To:CC:Subject:Date;
+	b=pDrSHi7kJgfq8IjazJAKCuZwH04gGqwU2eeZq42q1E+FRumbne3k8qyp9eRpM+zON
+	 E+bK/AfsS0A2SrZkdDvD/71ZvPXPIg17tVjO83plit6H0SmD0xkku5ztNU4jt1+bpD
+	 GyZJIomK8xuaKL9vKYHPDvfXhRPd82v0oRWkOmfw=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UBA6xZ019080;
+	Fri, 30 Aug 2024 06:10:06 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 06:10:06 -0500
+Received: from fllvsmtp8.itg.ti.com (10.64.41.158) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 06:10:06 -0500
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+	by fllvsmtp8.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UBA6gB105986;
+	Fri, 30 Aug 2024 06:10:06 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 47UBA5VI025882;
+	Fri, 30 Aug 2024 06:10:06 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        MD
+ Danish Anwar <danishanwar@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, <srk@ti.com>,
+        Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am654-idk: Fix dtbs_check warning in ICSSG dmas
+Date: Fri, 30 Aug 2024 16:40:00 +0530
+Message-ID: <20240830111000.232028-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,59 +80,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK: N
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Convert "sound/mt6358.txt" to be compatible with the DT schema.
-Since this is a simple audio codec device node, merge it into the
-parent file mediatek,mt6397.yaml. Subsequently, remove mt6358.txt
-with a separate patch.
+ICSSG doesn't use mgmnt rsp dmas. But these are added in the dmas for
+icssg1-eth and icssg0-eth node.
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+These mgmnt rsp dmas result in below dtbs_check warnings.
+
+/workdir/arch/arm64/boot/dts/ti/k3-am654-idk.dtb: icssg1-eth: dmas: [[39, 49664], [39, 49665], [39, 49666], [39, 49667], [39, 49668], [39, 49669], [39, 49670], [39, 49671], [39, 16896], [39, 16897], [39, 16898], [39, 16899]] is too long
+	from schema $id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+/workdir/arch/arm64/boot/dts/ti/k3-am654-idk.dtb: icssg0-eth: dmas: [[39, 49408], [39, 49409], [39, 49410], [39, 49411], [39, 49412], [39, 49413], [39, 49414], [39, 49415], [39, 16640], [39, 16641], [39, 16642], [39, 16643]] is too long
+	from schema $id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+
+Fix these warnings by removing mgmnt rsp dmas from icssg1-eth and
+icssg0-eth nodes.
+
+Fixes: a4d5bc3214eb ("arm64: dts: ti: k3-am654-idk: Add ICSSG Ethernet ports")
+Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 ---
- .../devicetree/bindings/sound/mt6358.txt      | 26 -------------------
- 1 file changed, 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/mt6358.txt
+ arch/arm64/boot/dts/ti/k3-am654-idk.dtso | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-Changes for v1 and v2:
- - This is the first version of converting "sound/mt6358.txt".
-   This is because converting sound/mt6358.txt together
-   with mfd/mediatek,mt6397.yaml, so we've create a patch set
-   instead of submitting single patch for each subdevice.
- - This patch has been made base on linux-next/master git repo.
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
+index 97f7eb34b99a..b0ce2cb2fdc8 100644
+--- a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
+@@ -59,9 +59,7 @@ icssg0_eth: icssg0-eth {
+ 		       <&main_udmap 0xc107>, /* egress slice 1 */
+ 
+ 		       <&main_udmap 0x4100>, /* ingress slice 0 */
+-		       <&main_udmap 0x4101>, /* ingress slice 1 */
+-		       <&main_udmap 0x4102>, /* mgmnt rsp slice 0 */
+-		       <&main_udmap 0x4103>; /* mgmnt rsp slice 1 */
++		       <&main_udmap 0x4101>; /* ingress slice 1 */
+ 		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+ 			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+ 			    "rx0", "rx1";
+@@ -127,9 +125,7 @@ icssg1_eth: icssg1-eth {
+ 		       <&main_udmap 0xc207>, /* egress slice 1 */
+ 
+ 		       <&main_udmap 0x4200>, /* ingress slice 0 */
+-		       <&main_udmap 0x4201>, /* ingress slice 1 */
+-		       <&main_udmap 0x4202>, /* mgmnt rsp slice 0 */
+-		       <&main_udmap 0x4203>; /* mgmnt rsp slice 1 */
++		       <&main_udmap 0x4201>; /* ingress slice 1 */
+ 		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+ 			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+ 			    "rx0", "rx1";
 
-diff --git a/Documentation/devicetree/bindings/sound/mt6358.txt b/Documentation/devicetree/bindings/sound/mt6358.txt
-deleted file mode 100644
-index fbe9e55..0000000
---- a/Documentation/devicetree/bindings/sound/mt6358.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Mediatek MT6358 Audio Codec
--
--The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
--For more detail, please visit Mediatek PMIC wrapper documentation.
--
--Must be a child node of PMIC wrapper.
--
--Required properties:
--
--- compatible - "string" - One of:
--    "mediatek,mt6358-sound"
--    "mediatek,mt6366-sound"
--- Avdd-supply : power source of AVDD
--
--Optional properties:
--- mediatek,dmic-mode : Indicates how many data pins are used to transmit two
--	channels of PDM signal. 0 means two wires, 1 means one wire. Default
--	value is 0.
--
--Example:
--
--mt6358_snd {
--	compatible = "mediatek,mt6358-sound";
--	Avdd-supply = <&mt6358_vaud28_reg>;
--	mediatek,dmic-mode = <0>;
--};
+base-commit: 985bf40edf4343dcb04c33f58b40b4a85c1776d4
 -- 
-2.45.2
+2.34.1
 
 
