@@ -1,258 +1,126 @@
-Return-Path: <devicetree+bounces-98450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBC19662B6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:14:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9BF9662D6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:25:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F7D0B2236F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:14:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9377C1F215A3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373EA1A76D1;
-	Fri, 30 Aug 2024 13:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16BF817E002;
+	Fri, 30 Aug 2024 13:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aI2lZoKd"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="1pFTjjXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0189B18E378;
-	Fri, 30 Aug 2024 13:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A418179652;
+	Fri, 30 Aug 2024 13:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725023667; cv=none; b=bEzXXiEeklM8Sxxrg1X+zZS1Lv/iwXlw8ZGCW6PNzCvPg9XmJ9buNC6PLiKTahZ3e6WKRtWKhCsSEeBb7H0s9D/ZSxFABQ65i23gs0913sKlisYKCoC/QcWH1G6D5qK1G67Xkonob9t9R21b2+4/GACcu8n8+HLktoWsIbqqN2w=
+	t=1725024353; cv=none; b=Z4acSPAF7t+6Pc6SNaMr0zVc8MS+Yk+rT4uPbuVqDP44KLM3XdD4W47cO9BJ/cKkIskxI3/IWssbn+vBKfdgpbMkZbLQidbyW/O243lTEvNHnnVHoC5JTvfJ4b4LZKexdF5bZVRICGjMDQR3B3FedI5sENdP5AOCtoWZ0UpTJQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725023667; c=relaxed/simple;
-	bh=TySXN9cetRSmWCN4veZ0Z+ZRgq1TPvA79rVPiBwac+4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D3auLFJI92jTUxK8JmZMMfBCo2Ru9XcRD907QTUKm5L2uNdcH+4tvE0/iEPOuuAsL7qPklM7/DTAOtAHEa7vge8TcnYdHE/xzvEgtytHedTNKr8TpV91XqAZEgRPJVYrE3lO4sTxfiWlI4pv5xhw1vW/IY+qRPHH0tQiNmPlfNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aI2lZoKd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9E2DC4CEC7;
-	Fri, 30 Aug 2024 13:14:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725023665;
-	bh=TySXN9cetRSmWCN4veZ0Z+ZRgq1TPvA79rVPiBwac+4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aI2lZoKdVO4xG0+gXii7ySQH3bs/WeE3GnlzN0ACXWuE8tQ+9WUgN4Zt4xfDHYJ3T
-	 hcfihE9fHi01molNCNcOd2meJ1QJIB+N8s4Ryz3S8XDuIIeqpWPNHLxSrJ54IxdsN0
-	 /1gskhy8CUBTDquIJE6AfgDEapIcSqLBsN2AlvWgAKBz++w0AI4DiY0P/PtKsM8Xgd
-	 dKjXb0ElyWB5NGP4RhIpf5qAgf3ebFIribKNoD08hSYFGTN9e97M2A/GfhcRMXhhuz
-	 sCZFCyY+/9QbCmcIgWxt7ygcOyjsSoUikJF3nFN1cIQgVoqRp2CkVdgCit6aXnRlTu
-	 BfF/EOCO6N46Q==
-Date: Fri, 30 Aug 2024 14:14:20 +0100
-From: Conor Dooley <conor@kernel.org>
-To: "Sperling, Tobias" <Tobias.Sperling@softing.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"jdelvare@suse.com" <jdelvare@suse.com>,
-	"linux@roeck-us.net" <linux@roeck-us.net>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"corbet@lwn.net" <corbet@lwn.net>,
-	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Introduce ADS71x8
-Message-ID: <20240830-chaos-unrivaled-04c5c4c6add9@spud>
-References: <BE1P281MB24208CB90AF549578AA5C384EF972@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1725024353; c=relaxed/simple;
+	bh=x69fBkm8eJRx5Z/+fN7J0krl+e+zIMwV7HYfJCr5IYY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PM68D+RdKPSucdR8e5U4yxqaYLKuoiV/iELGxTd4xucghTo6L83j5sGTq9m5e+cbDMwzVc9xqXgYqtFs0RcMYTJOqKy4f0jMdeTn3h0XPUjG733JChs/JSn3XdpXb7GwEqqjNDuDMN3W65o2nRaN43j1pJYAadtLTakkzeQTTK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=1pFTjjXk; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UCSfch029881;
+	Fri, 30 Aug 2024 15:25:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	o8btpO/cONHa3wl5inFcEt9BpKOPAQfxu+XbhlGEgtM=; b=1pFTjjXkj2hjXyBR
+	wx+fKlVjN/2TSAXHk3z4YlXRpVRgpS+2jnJ8SPBq4WbvS85xHM/hN6NFfrI2OBdm
+	jkWf9L7av8Bhb7/lQNmFW98ACaGnFXKF0dc16Wv5lID35CjzQSaUH1ANU4YPcugI
+	3U0NJOtkengoyb1gPPx7yMnbjF1WXM7AvM1u2TMO+zZIcF1S6F4LM3wR/HD1vRlX
+	oH3J7AQelWwoKEk0tOyffzEO4BmMnDJK24AfEaonzMmkzTTZ958ies+cZWbbZ2dD
+	xxHIflAb2Aoux4jLPJXRYPmIFFQA0nmtotcAP0Goyy3uFnGKYG8JFl1LOcQZKtAw
+	RPR7uA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41b14tb40r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 15:25:19 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 243BB4002D;
+	Fri, 30 Aug 2024 15:25:14 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F2E4C2681BF;
+	Fri, 30 Aug 2024 15:24:28 +0200 (CEST)
+Received: from [10.252.31.165] (10.252.31.165) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 30 Aug
+ 2024 15:24:28 +0200
+Message-ID: <9961070c-9e8e-454d-ae85-4759da4b4e79@foss.st.com>
+Date: Fri, 30 Aug 2024 15:24:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lRANKpXNUz7vXikp"
-Content-Disposition: inline
-In-Reply-To: <BE1P281MB24208CB90AF549578AA5C384EF972@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: Add missing gpio options for
+ sdmmc2_d47_pins_d
+To: Sean Nyekjaer <sean@geanix.com>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>,
+        Marcin Sloniewski
+	<marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+CC: Alexandre Torgue <alexandre.torgue@st.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240709121619.1588520-1-sean@geanix.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240709121619.1588520-1-sean@geanix.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-30_08,2024-08-30_01,2024-05-17_01
 
+Hi Sean
 
---lRANKpXNUz7vXikp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Tobias, Guenter, Jonathan,
-
-On Fri, Aug 30, 2024 at 11:49:53AM +0000, Sperling, Tobias wrote:
-> From b2e04ce5500faf274654be5284be9db4f3abefce Mon Sep 17 00:00:00 2001
-> From: Tobias Sperling <tobias.sperling@softing.com>
-> Date: Fri, 23 Aug 2024 12:08:33 +0200
-> Subject: [PATCH 1/2] dt-bindings: hwmon: Introduce ADS71x8
->=20
-> Add documentation for the driver of ADS7128 and ADS7138 12-bit, 8-channel
-> analog-to-digital converters. These ADCs have a wide operating range and
-> a wide feature set. Communication is based on an I2C interface.
-> The driver provides the functionality of manually reading single channels
-> or sequentially reading all channels automatically.
->=20
-> Signed-off-by: Tobias Sperling <tobias.sperling@softing.com>
+On 7/9/24 14:16, Sean Nyekjaer wrote:
+> This enables DDR50 mode for the eMMC on Octavo OSD32MP1-RED board.
+> 
+> Fixes: be78ab4f632c ("ARM: dts: stm32: add initial support for stm32mp157-odyssey board")
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
 > ---
->  .../devicetree/bindings/hwmon/ti,ads71x8.yaml |  85 +++++++++++
+>   arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi
+> index ae83e7b10232..70e132dc6147 100644
+> --- a/arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi
+> @@ -2229,6 +2229,9 @@ pins {
+>   				 <STM32_PINMUX('A', 9, AF10)>, /* SDMMC2_D5 */
+>   				 <STM32_PINMUX('E', 5, AF9)>, /* SDMMC2_D6 */
+>   				 <STM32_PINMUX('C', 7, AF10)>; /* SDMMC2_D7 */
+> +			slew-rate = <1>;
+> +			drive-push-pull;
+> +			bias-pull-up;
+>   		};
+>   	};
+>   
 
-If this is a "generic" adc, why is it going into hwmon?
-I would have expected this to be in iio/adc, and use more typical adc
-bindings, even if the driver is in hwmon.
+Applied on stm32-next.
 
-Guenter/Jonathan wdyt?
-
->  Documentation/hwmon/ads71x8.rst               | 140 ++++++++++++++++++
->  Documentation/hwmon/index.rst                 |   1 +
-
-And these two documents are not dt-bindings, so they should either be in
-their own commit or alongside the driver. Not sure how Guenter likes
-things.
-
->  3 files changed, 226 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ads71x8.ya=
-ml
-
->  create mode 100644 Documentation/hwmon/ads71x8.rst
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ads71x8.yaml b/Do=
-cumentation/devicetree/bindings/hwmon/ti,ads71x8.yaml
-> new file mode 100644
-> index 000000000000..e422c4ebd207
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ads71x8.yaml
-
-Please make the filename match a compatible.
-
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/ti,ads71x8.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments ADS7128/ADS7138 Analog to Digital Converter (AD=
-C)
-> +
-> +maintainers:
-> +  - None
-
-Nice trick..
-
-> +description: |
-> +  The ADS7128 is 12-Bit, 8-Channel Sampling Analog to Digital Converter =
-(ADC)
-> +  with an I2C interface.
-> +
-> +  Datasheets:
-> +    https://www.ti.com/product/ADS7128
-> +    https://www.ti.com/product/ADS7138
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,ads7128
-> +      - ti,ads7138
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-
-There's also a dvdd on the ads7128.
-
-> +    description:
-> +      The regulator used as analog supply voltage as well as reference v=
-oltage.
-> +
-> +  ti,mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: |
-> +      Operation mode
-> +      Mode 0 - Manual mode. A channel is only sampled when the according=
- input
-> +        in the sysfs is read.
-> +      Mode 1 - Auto mode. All channels are automatically sampled sequent=
-ially.
-> +        Reading an input returns the last valid sample. In this mode fur=
-ther
-> +        features like statistics and interrupts are available.
-> +    default: 0
-
-I don't think this ti,mode property is suitable for bindings. sysfs is a
-linux implementation detail, when to do sampling is an implementation
-detail of your driver. Bindings are only supposed to describe properties
-of the hardware, not set software policy.
-
-> +
-> +  ti,interval:
-> +    $ref: /schemas/types.yaml#/definitions/uint16
-> +    description: |
-> +      Only considered in mode 1!
-> +      Interval in microseconds a new sample is triggered. Is set to clos=
-est
-> +      possible interval, see datasheet.
-
-For iio devices, this is usually set from userspace, not from
-devicetree, because it is usually not a hardware property, but rather
-something a user may want to change at runtime.
-
-> +    default: 1
-> +
-> +  interrupts:
-> +    description: |
-> +      Only considered in mode 1!
-> +      Interrupt specifier the device's ALERT pin is connected to. Level =
-must be
-> +      IRQ_TYPE_LEVEL_LOW. If not configured the digital window comparato=
-r (DWC)
-> +      is not available.
-> +    maxItems: 1
-
-You've got 8 channels on the device, so I would be expecting to see
-these described here, with a reference to adc.yaml, even if the only
-suitable property is "label".
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        ads7138@10 {
-
-This should just be "dac@".
-
-> +            compatible =3D "ti,ads7138";
-> +            reg =3D <0x10>;
-> +            avdd-supply =3D <&reg_stb_3v3>;
-> +            ti,mode =3D /bits/ 8 <1>;
-> +            ti,interval =3D /bits/ 16 <1000>;
-> +            interrupt-parent =3D <&gpio2>;
-> +            interrupts =3D <12 IRQ_TYPE_LEVEL_LOW>;
-> +            status =3D "okay";
-> +        };
-> +    };
-oCheers,
-Conor.
-
---lRANKpXNUz7vXikp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHFrAAKCRB4tDGHoIJi
-0gGJAQDSrH+O91oma7P5k9E+GjH8BM9eGLiFTeSHh/mDeLBU0wEAnUlaR0cOocD3
-A5ar/PwXWSn7o6e3pz50rpHfAO4Iew8=
-=zvjM
------END PGP SIGNATURE-----
-
---lRANKpXNUz7vXikp--
+Thanks.
+Alex
 
