@@ -1,218 +1,466 @@
-Return-Path: <devicetree+bounces-98399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDDD0965FEF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:04:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1797A966040
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:12:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78DD11F2441A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:04:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 904DA1F2144F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A70317AE01;
-	Fri, 30 Aug 2024 11:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73AC51B1D71;
+	Fri, 30 Aug 2024 11:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h4Pelg4O"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="VjHZeoP5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737241531CD;
-	Fri, 30 Aug 2024 11:03:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824321AF4F6;
+	Fri, 30 Aug 2024 11:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725015834; cv=none; b=eR4Q422NF3IOHYiS60qPEGIESMscRZvtw/7AL5iIKEoePFq/EWdRVNe46CTClMZ6WP4+UUynYwwFoihf6fqylKvh3PggJXzNNuC3fqa8ud5YrGZCN4bIG+O6RnhycPTUpm84XKjVr6OD8imDr9l2Q4SioDpD3Hc2omYG7CSl6bQ=
+	t=1725016130; cv=none; b=rYm2KefX0x7pZqHDdi4WJ2uzsKKvlCsDMi02L7IXavyZE8Kk7g5AUOG/48LqDK/HT2J5chziBKBw6UDqs7fycIr+UpNvMwMt5VFAMHeBm2nowUHAeLw0DedZYOKyrBhZcyMhLYbmws0PHINeWEHmiPB5ZLi2ZG2bKNUNDIOJzOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725015834; c=relaxed/simple;
-	bh=usFsqN8rw6jJgzE3LoXO1ibr/w7v/sbbk6GzQgZo84s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UCe89kGG0KqSQb+61UF0X87w9r/wgPFT7raB4JjCOgbWOV12bgQd5Mp+x6PSqn3iYBxPViQJLJXwJjs1tCwP/AL+llY2Rdr0RWa9lZJXljaWiL89oHTpLjM+YTlKeESmQW7e4Ijy/NZrXNbgIbHi3xBSKxoJMwdurjMhx/jUzhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h4Pelg4O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 729DBC4CEC2;
-	Fri, 30 Aug 2024 11:03:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725015834;
-	bh=usFsqN8rw6jJgzE3LoXO1ibr/w7v/sbbk6GzQgZo84s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h4Pelg4OuZmSA+H86fQvajI5AX/6qqQwKsU/N0SkPzu8x7Qv6XnYd0tO0fKZM8dtG
-	 5OqqQ7YrT00eEyzkCd8+8kGcK07XgHLnFEQozGB+RS56vrwWjTDLLrX2jJ5wGHiG/T
-	 6ZURzv67kaNMHHQ7RnWe+qlXsD40z1eQrTfqa7EtstMZyYRXqbE/9U7d5XQ+XTEAm0
-	 2uJSYRnDIS6MyYsd9k4RYh6K3U5x6sfXbKUM8nwnVKjB6BNK3dH6XGCNo/13wuEVcu
-	 wvfpJvIrCs6oTlOosRd29bpl11gPAkhkxpzaatMlsKuKQ0OPnr4nPvLexVSlFWqVkP
-	 u4p9trkLVAJmw==
-Message-ID: <09aa43d6-9e8c-4f6e-ab49-dc4a9571e832@kernel.org>
-Date: Fri, 30 Aug 2024 13:03:46 +0200
+	s=arc-20240116; t=1725016130; c=relaxed/simple;
+	bh=OskdadYSBniy59J/B8pssmzHKi1W6jxxpM+Kpb6xMAU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hJRg5PyD7ZTRq25JHt1ua5ktQfkgZgIGsQO6+OFxlDqGbIMzpekNGMbIhXCY0QIMVLMka1D2xYIv9HddpgyuC++I0ZkYKD5/uiSLOGMoMlqilYJ+giUKOTYVt8omI4X8WW7twPZJ9osaxYwdK7Yg72hoquid33dXsdtxLx9XvJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=VjHZeoP5; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 2f177d8866c011ef8593d301e5c8a9c0-20240830
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=+ZuaROA05xOwCgrg04nVtZlCJoL6KxuioAV548mb4iY=;
+	b=VjHZeoP54mVXeljjcrfhM2RnMv0vzaMMlzf/mkhUMz3EPu/KTaWVwm46pMHRMJGGpSh5vfbxSr169UH9rrisroC+xVnIy966/AHR0375vhW2kSnjdaRpe1pb2APqBvefRffcYEBWnjyUuUiVwGFxEFWRaNsEZsyd4hwAmm1uno0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:74057d2e-326c-408d-85c2-177caa42b983,IP:0,U
+	RL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:25
+X-CID-META: VersionHash:6dc6a47,CLOUDID:7b840d15-737d-40b3-9394-11d4ad6e91a1,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 2f177d8866c011ef8593d301e5c8a9c0-20240830
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1642187719; Fri, 30 Aug 2024 19:08:28 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 30 Aug 2024 19:08:27 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 30 Aug 2024 19:08:27 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-leds@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>, Pavel Machek
+	<pavel@ucw.cz>, Sean Wang <sean.wang@mediatek.com>, Lee Jones
+	<lee@kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>, Flora Fu
+	<flora.fu@mediatek.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, "Sen
+ Chu" <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+	<linux-rtc@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
+Subject: [PATCH v2 1/7] regulator: dt-bindings: mt6323: Convert to DT schema
+Date: Fri, 30 Aug 2024 19:07:26 +0800
+Message-ID: <20240830110732.30080-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-To: Conor Dooley <conor.dooley@microchip.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>,
- Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
- Conor Dooley <conor@kernel.org>,
- Benjamin Larsson <benjamin.larsson@genexis.eu>,
- Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- upstream@airoha.com
-References: <66c8c50f.050a0220.d7871.f209@mx.google.com>
- <Zsj8bmBJhfUdH6qT@lore-desk> <20240826-kinsman-crunching-e3b75297088c@spud>
- <CAA2SeNJ2Gi+3Za+jvAVqqbx7xEGLqkDBkJ8vL=pA=ZbKWOfp=Q@mail.gmail.com>
- <CAL_JsqLBGwgX=PeCqP8+iFj6uvAO4O_dTvz7x1c+T1Kz+-q-QA@mail.gmail.com>
- <66ce1b04.df0a0220.a2131.6def@mx.google.com>
- <qro6jbupm27vvulymb4ckn7wm6qbvrvnydzjyd42metarlh2t2@hxdzvff4jdus>
- <66d187f1.050a0220.3213d8.ad53@mx.google.com>
- <2c9aafdd-000b-4e8f-b599-4f57e7eb0ca7@kernel.org>
- <ZtGlJBORZaFm_77K@lore-desk> <20240830-payphone-unexposed-75eed532c14d@wendy>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240830-payphone-unexposed-75eed532c14d@wendy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--4.091500-8.000000
+X-TMASE-MatchedRID: RW3m2Qp1xFwvRbVu13x7nlPjo7D4SFg4sEf8CpnIYtl94pGHg55PylNU
+	LV2RZwualTJXKqh1ne1M8qdoCvOVvms/tFw6ZTQWcX5PeMxy2v7tHf8AgB256HX+rbovv1tMEXF
+	HklABLo7C9TF0oEZxDBEDiHAifYwNjZZBLO7fNfcVglQa/gMvfPFx/IAdCCsIw1fpjG5NXlPidW
+	eecA3MU90WfWtP9mSp87a7Bu2IJjQwz9CL2iwNjev8QGaI25e3ecvjbu/xDjrdyIjG+fPOFQBRX
+	ardzXy/3VN4WLcWL3CAMuqetGVetr9k4V4N5ceA3QfwsVk0UbsIoUKaF27lxcQe/TIqw3r0dk1n
+	RhTthZYKarVqF8KXqPraJkfnyRmOra8oL3QbfoHTgs+SgeKJSC3P1ZDD2vxYNPuvbxytpP5yohc
+	6UMvtn2mnnl9kOWyvfhxj8HsmpdphnVHs1efQx0GaYJdwrIUUnqg/VrSZEiM=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--4.091500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 6A3AF234029412BE79B3B58FF620F809531CA447479DF10AA1BA799CFEF1F9572000:8
+X-MTK: N
 
-On 30/08/2024 13:01, Conor Dooley wrote:
-> On Fri, Aug 30, 2024 at 12:55:32PM +0200, Lorenzo Bianconi wrote:
->> [...]
->>
->>>>>>
->>>>>> Hi Rob, thanks a lot for the hint, I hope we can finally find a solution
->>>>>> on how to implement this.
->>>>>>
->>>>>> In Documentation the block is called GPIO Controller. As explained it does
->>>>>> expose pinctrl function AND pwm (with regs in the middle)
->>>>>>
->>>>>> Is this semplification really needed? It does pose some problem driver
->>>>>> wise (on where to put the driver, in what subsystem) and also on the
->>>>>
->>>>> Sorry, but no, dt-bindings do not affect the driver at all in such way.
->>>>> Nothing changes in your driver in such aspect, no dilemma where to put
->>>>> it (the same place as before).
->>>>>
->>>>
->>>> Ok, from the proposed node structure, is it problematic to move the
->>>> gpio-controller and -cells in the pinctrl node? And also the pwm-cells
->>>> to the pwm node?
->>>
->>> The move is just unnecessary and not neat. You design DTS based on your
->>> drivers architecture and this is exactly what we want to avoid.
->>>
->>>> This is similar to how it's done by broadcom GPIO MFD [1] that also
->>>
->>> There are 'reg' fields, which is the main problem here. I don't like
->>> that arguments because it entirely misses the discussions - about that
->>> binding or other bindings - happening prior to merge.
->>>
->>>> expose pinctrl and other device in the same register block as MFD
->>>> childs.
->>>>
->>>> This would be the final node block.
->>>>
->>>>                 mfd@1fbf0200 {
->>>>                         compatible = "airoha,en7581-gpio-mfd";
->>>>                         reg = <0x0 0x1fbf0200 0x0 0xc0>;
->>>>
->>>>                         interrupt-parent = <&gic>;
->>>>                         interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
->>>>
->>>>                         pio: pinctrl {
->>>>                                 compatible = "airoha,en7581-pinctrl";
->>>>
->>>>                                 gpio-controller;
->>>>                                 #gpio-cells = <2>;
->>>>
->>>>                                 interrupt-controller;
->>>>                                 #interrupt-cells = <2>;
->>>
->>> No resources here...
->>
->> ack. iiuc, all the properties will be in the parent node (mfd) and we will
->> have just the compatible strings in the child ones, right? Something like:
->>
->> 		mfd@1fbf0200 {
->> 			compatible = "airoha,en7581-gpio-mfd";
->> 			reg = <0x0 0x1fbf0200 0x0 0xc0>;
->> 			gpio-controller;
->> 			#gpio-cells = <2>;
->>
->> 			...
->> 			#pwm-cells = <3>;
->>
->> 			pio: pinctrl {
->> 				compatible = "airoha,en7581-pinctrl";
->> 			};
->>
->> 			pwm: pwm {
->> 				compatible = "airoha,en7581-pwm";
->> 			};
->> 		};
-> 
-> 
-> Didn't Rob basically tell you how to do it earlier in the thread?
-> What you've got now makes no sense, the compatibles only exist in that
-> to probe drivers, which you can do from the mfd driver with
-> mfd_add_devices() or w/e that function is called.
+Convert this from the old style text based binding to the new DT schema
+style.
 
-Yep, we are making circles.
+The examples have been trimmed down and move to parent schema
+mfd/mediatek,mt6397.yaml.
 
-I will repeat:
-"The move is just unnecessary and not neat. You design DTS based on your
-drivers architecture and this is exactly what we want to avoid."
+Add new maintainers and submitter from MediaTek.
 
-Best regards,
-Krzysztof
+Signed-off-by: Sen Chu <sen.chu@mediatek.com>
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ .../regulator/mediatek,mt6323-regulator.yaml  |  84 +++++++
+ .../bindings/regulator/mt6323-regulator.txt   | 237 ------------------
+ 2 files changed, 84 insertions(+), 237 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6323-regulator.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
+
+Changes for v1 and v2:
+ - This is the first version of converting mt6323-regulator.
+   This is because converting mt6323-regulator together
+   with mfd/mediatek,mt6397.yaml, so we've create a patch set
+   instead of single patch for each skydives.
+ - This patch has been made base on linux-next/master git repo.
+
+diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6323-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6323-regulator.yaml
+new file mode 100644
+index 0000000..f7c2a03
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6323-regulator.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/mediatek,mt6323-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek MT6323 Regulator
++
++maintainers:
++  - John Crispin <john@phrozen.org>
++  - Sen Chu <sen.chu@mediatek.com>
++  - Macpaul Lin <macpaul.lin@mediatek.com>
++
++description:
++  Regulator node of the PMIC. This node should under the PMIC's device node.
++  All voltage regulators provided by the PMIC are described as sub-nodes of
++  this node.
++
++properties:
++  compatible:
++    items:
++      - const: mediatek,mt6323-regulator
++
++patternProperties:
++  "^(buck_)?v(pa|proc|sys)$":
++    description: Buck regulators
++    type: object
++    $ref: regulator.yaml#
++    properties:
++      regulator-allowed-modes: false
++    unevaluatedProperties: false
++
++  "^(ldo_)?v(camio|cn18)$":
++    description: LDO with fixed 1.8V output and 0~100/10mV tuning
++    type: object
++    $ref: regulator.yaml#
++    properties:
++      regulator-allowed-modes: false
++    unevaluatedProperties: false
++
++  "^(ldo_)?v((io|rf)18)$":
++    description: LDOs with fixed 1.825V output and 0~100/10mV tuning
++    type: object
++    $ref: regulator.yaml#
++    properties:
++      regulator-allowed-modes: false
++    unevaluatedProperties: false
++
++  "^(ldo_)?v(a|rtc|tcxo|(cn|io)28)$":
++    description: LDOs with fixed 2.8V output and 0~100/10mV tuning
++    type: object
++    $ref: regulator.yaml#
++    properties:
++      regulator-allowed-modes: false
++    unevaluatedProperties: false
++
++  "^(ldo_)?vusb$":
++    description: LDOs with fixed 3.3V output and 0~100/10mV tuning
++    type: object
++    $ref: regulator.yaml#
++    properties:
++      regulator-allowed-modes: false
++    unevaluatedProperties: false
++
++  "^(ldo_)?v(cn33_(bt|wifi))$":
++    description: LDOs with variable 3.3V output and 0~100/10mV tuning
++    type: object
++    $ref: regulator.yaml#
++    properties:
++      regulator-allowed-modes: false
++    unevaluatedProperties: false
++
++  "^(ldo_)?v(cama|camaf|camd|emc3v3|gp[123]|ibr|m|mc|mch|sim[12])$":
++    description: LDOs with variable output and 0~100/10mV tuning
++    type: object
++    $ref: regulator.yaml#
++    properties:
++      regulator-allowed-modes: false
++    unevaluatedProperties: false
++
++required:
++  - compatible
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt b/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
+deleted file mode 100644
+index a48749d..0000000
+--- a/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
++++ /dev/null
+@@ -1,237 +0,0 @@
+-Mediatek MT6323 Regulator
+-
+-All voltage regulators are defined as subnodes of the regulators node. A list
+-of regulators provided by this controller are defined as subnodes of the
+-PMIC's node. Each regulator is named according to its regulator type,
+-buck_<name> and ldo_<name>. The definition for each of these nodes is defined
+-using the standard binding for regulators at
+-Documentation/devicetree/bindings/regulator/regulator.txt.
+-
+-The valid names for regulators are::
+-BUCK:
+-  buck_vproc, buck_vsys, buck_vpa
+-LDO:
+-  ldo_vtcxo, ldo_vcn28, ldo_vcn33_bt, ldo_vcn33_wifi, ldo_va, ldo_vcama,
+-  ldo_vio28, ldo_vusb, ldo_vmc, ldo_vmch, ldo_vemc3v3, ldo_vgp1, ldo_vgp2,
+-  ldo_vgp3, ldo_vcn18, ldo_vsim1, ldo_vsim2, ldo_vrtc, ldo_vcamaf, ldo_vibr,
+-  ldo_vrf18, ldo_vm, ldo_vio18, ldo_vcamd, ldo_vcamio
+-
+-Example:
+-
+-	pmic: mt6323 {
+-		mt6323regulator: regulators {
+-			mt6323_vproc_reg: buck_vproc{
+-				regulator-name = "vproc";
+-				regulator-min-microvolt = < 700000>;
+-				regulator-max-microvolt = <1350000>;
+-				regulator-ramp-delay = <12500>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vsys_reg: buck_vsys{
+-				regulator-name = "vsys";
+-				regulator-min-microvolt = <1400000>;
+-				regulator-max-microvolt = <2987500>;
+-				regulator-ramp-delay = <25000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vpa_reg: buck_vpa{
+-				regulator-name = "vpa";
+-				regulator-min-microvolt = < 500000>;
+-				regulator-max-microvolt = <3650000>;
+-			};
+-
+-			mt6323_vtcxo_reg: ldo_vtcxo{
+-				regulator-name = "vtcxo";
+-				regulator-min-microvolt = <2800000>;
+-				regulator-max-microvolt = <2800000>;
+-				regulator-enable-ramp-delay = <90>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vcn28_reg: ldo_vcn28{
+-				regulator-name = "vcn28";
+-				regulator-min-microvolt = <2800000>;
+-				regulator-max-microvolt = <2800000>;
+-				regulator-enable-ramp-delay = <185>;
+-			};
+-
+-			mt6323_vcn33_bt_reg: ldo_vcn33_bt{
+-				regulator-name = "vcn33_bt";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3600000>;
+-				regulator-enable-ramp-delay = <185>;
+-			};
+-
+-			mt6323_vcn33_wifi_reg: ldo_vcn33_wifi{
+-				regulator-name = "vcn33_wifi";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3600000>;
+-				regulator-enable-ramp-delay = <185>;
+-			};
+-
+-			mt6323_va_reg: ldo_va{
+-				regulator-name = "va";
+-				regulator-min-microvolt = <2800000>;
+-				regulator-max-microvolt = <2800000>;
+-				regulator-enable-ramp-delay = <216>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vcama_reg: ldo_vcama{
+-				regulator-name = "vcama";
+-				regulator-min-microvolt = <1500000>;
+-				regulator-max-microvolt = <2800000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vio28_reg: ldo_vio28{
+-				regulator-name = "vio28";
+-				regulator-min-microvolt = <2800000>;
+-				regulator-max-microvolt = <2800000>;
+-				regulator-enable-ramp-delay = <216>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vusb_reg: ldo_vusb{
+-				regulator-name = "vusb";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-enable-ramp-delay = <216>;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vmc_reg: ldo_vmc{
+-				regulator-name = "vmc";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-enable-ramp-delay = <36>;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vmch_reg: ldo_vmch{
+-				regulator-name = "vmch";
+-				regulator-min-microvolt = <3000000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-enable-ramp-delay = <36>;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vemc3v3_reg: ldo_vemc3v3{
+-				regulator-name = "vemc3v3";
+-				regulator-min-microvolt = <3000000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-enable-ramp-delay = <36>;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vgp1_reg: ldo_vgp1{
+-				regulator-name = "vgp1";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vgp2_reg: ldo_vgp2{
+-				regulator-name = "vgp2";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <3000000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vgp3_reg: ldo_vgp3{
+-				regulator-name = "vgp3";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vcn18_reg: ldo_vcn18{
+-				regulator-name = "vcn18";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vsim1_reg: ldo_vsim1{
+-				regulator-name = "vsim1";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <3000000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vsim2_reg: ldo_vsim2{
+-				regulator-name = "vsim2";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <3000000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vrtc_reg: ldo_vrtc{
+-				regulator-name = "vrtc";
+-				regulator-min-microvolt = <2800000>;
+-				regulator-max-microvolt = <2800000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vcamaf_reg: ldo_vcamaf{
+-				regulator-name = "vcamaf";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vibr_reg: ldo_vibr{
+-				regulator-name = "vibr";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-enable-ramp-delay = <36>;
+-			};
+-
+-			mt6323_vrf18_reg: ldo_vrf18{
+-				regulator-name = "vrf18";
+-				regulator-min-microvolt = <1825000>;
+-				regulator-max-microvolt = <1825000>;
+-				regulator-enable-ramp-delay = <187>;
+-			};
+-
+-			mt6323_vm_reg: ldo_vm{
+-				regulator-name = "vm";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-enable-ramp-delay = <216>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vio18_reg: ldo_vio18{
+-				regulator-name = "vio18";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-enable-ramp-delay = <216>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			mt6323_vcamd_reg: ldo_vcamd{
+-				regulator-name = "vcamd";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-
+-			mt6323_vcamio_reg: ldo_vcamio{
+-				regulator-name = "vcamio";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-enable-ramp-delay = <216>;
+-			};
+-		};
+-	};
+-- 
+2.45.2
 
 
