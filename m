@@ -1,129 +1,124 @@
-Return-Path: <devicetree+bounces-98411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D47B59660A5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5368E9660B7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9236128A713
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:27:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1108F28B569
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3607A1B1D78;
-	Fri, 30 Aug 2024 11:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60B4199FAE;
+	Fri, 30 Aug 2024 11:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CWCDqXH1"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="kQy1H/0y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33618192D79;
-	Fri, 30 Aug 2024 11:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89BC199FA9;
+	Fri, 30 Aug 2024 11:25:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725017101; cv=none; b=CxJ5eqldyUFl+h0jzrFIL7hoiU0Mdixh2X3O6XNnnfw6yQNC/v8Azph8W1sG8GEFrTPGZzRvbjgJBuIcRdt/0w6HyrmEzoknxVOLPR1KGNsRUSiUUEawTzqv2UH6vQzxbnrCOakzVLZgJA/Ns0QHUYuB6qr8dkNS+lbNtHn5/QM=
+	t=1725017143; cv=none; b=HxGF/p9jbaPIFPrb7lQxi/HOI3XDuHqCk8/iRfIAYm05JCpiAgebOGamAD1E87Xi9WTtnIu+KDst7LeLs1CBPHRscGXxZao3on3nzBh/ig9P++UfqOwWIOo1ptFgBRpBkuirsp2Jm1yKPTb2Pl3HizRH64LXZPUUjbEM9Yke+Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725017101; c=relaxed/simple;
-	bh=ys2Ou2uEsNPOrfeNWjFo3WFHgmDF+P2FLtJDB41f3/E=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W3HoNmas2HtBe4qycuQ+jXa8ju/Y0yxBnnzsnhLhcZPlANWhtwX65NHJuMt2FWY8roHlHDDJbCo0vav0gfHg80S362iQCAorH/8a4/niobzk31+wEcySY18fZVoMhuwQpL4VQh4TxKZ8zuo9qcKACTQGioUh1Qpiw/LCI/nYXC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CWCDqXH1; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UBOq74110121;
-	Fri, 30 Aug 2024 06:24:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725017092;
-	bh=TIEukrcez7k0Vd5WA4TMRIIlNJy5YtgOqtfdkYZcvVk=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=CWCDqXH1Uat7p+WMEwITec5HUGc7K34gSk6FiYlGDql0sdPnFZgGqowJ/XQZodHGZ
-	 PZkeq3EpiGWMFIv2rTOW5Sn18RTOWRKJlQaxPYlaPchrr02jeMV8wCD6kRkcZECZWB
-	 PtDMCQakzzCouoN1D3sxTW04LkekU3ZHmSDKmCGI=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UBOqFo111288
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 30 Aug 2024 06:24:52 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 06:24:52 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 06:24:52 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UBOqqJ041257;
-	Fri, 30 Aug 2024 06:24:52 -0500
-Date: Fri, 30 Aug 2024 06:24:52 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Prasanth Babu Mantena <p-mantena@ti.com>
-CC: <vigneshr@ti.com>, <krzk+dt@kernel.org>, <kristo@kernel.org>,
-        <robh@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        <sinthu.raja@ti.com>, <m-chawdhry@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-som: Update Partition info
- for OSPI Flash
-Message-ID: <20240830112452.geyv7tecpb6ydhmz@quotable>
-References: <20240828060830.555733-1-p-mantena@ti.com>
+	s=arc-20240116; t=1725017143; c=relaxed/simple;
+	bh=t2wncrwmiNH/c2wgm8EhCgtxeigtwWS9Ar5vjZFimZs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lVKvcE9o559DN9htjn6soK7Pz0RRUvwadufVDz+AmWVH+tU9GhRhvcqLto8TzJ7kBpvZxXIhcsSANsabFW1NDxQyz6WGlzsaMdj1AOCImunodG7Io4aj5EPH7DlqQjz8UgWxL1iOCj0kThd/vE22ESD8DHseGJVzQpnmK2PDYHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=kQy1H/0y; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 9273ca3866c211ef8b96093e013ec31c-20240830
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=8hFbDqdqARkXESCpWhEKpXy666gO0BZMnAA7bAJp/zY=;
+	b=kQy1H/0yHnVwaqCdm2FqJ1a1LSyGue3PSruFY0837fmDETWiFzQezOgrmtkd5t9Xq1v2t8Fw9sU2DKaWFP8uYjcczvD8Se8BsjqTOFkn969Fuim4y68l88uQyyfoEPgS18NrXwO4d9LgPUiazF61wy038o8T0SFnlgQzp1xhQ/0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:2f12afbd-22ce-4ef8-a279-ed567767174d,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:dbab0d15-737d-40b3-9394-11d4ad6e91a1,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 9273ca3866c211ef8b96093e013ec31c-20240830
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1355043557; Fri, 30 Aug 2024 19:25:33 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 30 Aug 2024 19:25:34 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Fri, 30 Aug 2024 19:25:33 +0800
+Message-ID: <2d2626a7-b920-6113-e81c-3b24463c1fe1@mediatek.com>
+Date: Fri, 30 Aug 2024 19:25:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240828060830.555733-1-p-mantena@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] dt-bindings: mfd: mediatek,mt6357: Fixup reference to
+ pwrap node
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+CC: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>, Flora
+ Fu <flora.fu@mediatek.com>, Bear Wang <bear.wang@mediatek.com>, Pablo Sun
+	<pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen Chu
+	<sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>, MediaTek
+ Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>, Chen-Yu
+ Tsai <wenst@chromium.org>
+References: <20240826065415.19641-1-macpaul.lin@mediatek.com>
+ <20240826-slurp-earphone-0d5173923ae8@spud>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20240826-slurp-earphone-0d5173923ae8@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 11:38-20240828, Prasanth Babu Mantena wrote:
-> Commit 73f1f26e2e4c ("arm64: dts: ti: k3-am68-sk-som: Add support
-> for OSPI flash") introduced the flash node with discontinuous
-> partitions. Updating the partition offset to be continuous from
-> the previous partition to maintain linearity.
+
+On 8/26/24 23:50, Conor Dooley wrote:
+> On Mon, Aug 26, 2024 at 02:54:15PM +0800, Macpaul Lin wrote:
+>> The mt6357 is a subnode of pwrap node. Previously, the documentation
+>> only included a note in the description of mt6357. This change adds the
+>> appropriate $ref for pwrap to ensure clarity and correctness.
 > 
-> Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
-> ---
-
-Please note my response to a similar patch
-https://lore.kernel.org/all/20240830092234.veog3e22te7qi3ao@dugout/
-
-I do not want us breaking existing users unless absolutely warranted,
-even then, I'd like us to be very cognizant of the minimum amount of
-disruption possible.
-
-Normally, I'd say no to this kind of patches. But, since this is in
-the backup env, I am not *that* worried, but I want to make sure folks
-understand breaking existing users without a just cause is a NO NO.
-
->  arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> I think this change is wrong and the existing binding is fine.
+> Adding the ref overcomplicates the binding completely, and stating that
+> this is a child node of another device is sufficient.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-> index 5c66e0ec6e82..2e5730216caa 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-> @@ -215,9 +215,9 @@ partition@680000 {
->  				reg = <0x680000 0x40000>;
->  			};
->  
-> -			partition@740000 {
-> +			partition@6c0000 {
->  				label = "ospi.env.backup";
-> -				reg = <0x740000 0x40000>;
-> +				reg = <0x6c0000 0x40000>;
->  			};
->  
->  			partition@800000 {
-> -- 
-> 2.34.1
+> Instead, if anything, the pwrap binding should have a ref to /this/
+> binding.
 > 
+> Thanks,
+> Conor.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thanks for the clarification of this parent-child relationship of the 
+binding. Will apply to further conversion tasks.
+
+There are many PMIC devices belongs to the pwrap bindings. Hope I'll 
+have time to fix this soon.
+
+>>
+>>    $ref: /schemas/soc/mediatek/mediatek,pwrap.yaml
+>>
+>> Additionally, the indentation for the pmic section has been adjusted
+>> to match the corresponding structure.
+
+Best regards,
+Macpaul Lin
 
