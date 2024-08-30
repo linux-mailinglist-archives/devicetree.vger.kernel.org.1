@@ -1,76 +1,73 @@
-Return-Path: <devicetree+bounces-98409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24437966082
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:22:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D47B59660A5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:27:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 700A9B21356
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:21:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9236128A713
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F0317B4F5;
-	Fri, 30 Aug 2024 11:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3607A1B1D78;
+	Fri, 30 Aug 2024 11:25:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HVs1GaTj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CWCDqXH1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E111D1312;
-	Fri, 30 Aug 2024 11:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33618192D79;
+	Fri, 30 Aug 2024 11:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725016883; cv=none; b=a1Sta/X0uzlbo3xWpWWVYJ9DPg+eI+H0hzjJhv9hKnCO7KFnbAAHPICC+WSm50KHQ6YgXrjKRh7wBcZMX+5/LSrWfN6FHbvrDfV6W6Kehb/BQ2exJvXyBNz55IxzdolYL69a8zUbjjb25y9DdhNsY6RD3DTMGFmFSJO7if16Gik=
+	t=1725017101; cv=none; b=CxJ5eqldyUFl+h0jzrFIL7hoiU0Mdixh2X3O6XNnnfw6yQNC/v8Azph8W1sG8GEFrTPGZzRvbjgJBuIcRdt/0w6HyrmEzoknxVOLPR1KGNsRUSiUUEawTzqv2UH6vQzxbnrCOakzVLZgJA/Ns0QHUYuB6qr8dkNS+lbNtHn5/QM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725016883; c=relaxed/simple;
-	bh=5k+CvSpHGNgUVRo7xeMaA/JoPXsvB00fIb0OLQ1ySso=;
+	s=arc-20240116; t=1725017101; c=relaxed/simple;
+	bh=ys2Ou2uEsNPOrfeNWjFo3WFHgmDF+P2FLtJDB41f3/E=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BvByTMnh7nl0PVhDM0yAunZAu7qwyHzukryNbz13g/ETLHGJA7rbmMS8/kbfizYJBmX7RqsqpBdfRLQhgbEX3veheMcS+taaVdCS+//+T+q/XSu/BPevehE43xFbR6yHChdelEUctDUaHdVP0PX3YJHIcBJ4kEOJrB29LKU4lh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HVs1GaTj; arc=none smtp.client-ip=198.47.19.142
+	 Content-Type:Content-Disposition:In-Reply-To; b=W3HoNmas2HtBe4qycuQ+jXa8ju/Y0yxBnnzsnhLhcZPlANWhtwX65NHJuMt2FWY8roHlHDDJbCo0vav0gfHg80S362iQCAorH/8a4/niobzk31+wEcySY18fZVoMhuwQpL4VQh4TxKZ8zuo9qcKACTQGioUh1Qpiw/LCI/nYXC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CWCDqXH1; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UBL8cP110032;
-	Fri, 30 Aug 2024 06:21:08 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UBOq74110121;
+	Fri, 30 Aug 2024 06:24:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725016868;
-	bh=jXwV1Hez2oUWWGiohE0jAsPPYVAFjS8TyhkGsm9S3Hw=;
+	s=ti-com-17Q1; t=1725017092;
+	bh=TIEukrcez7k0Vd5WA4TMRIIlNJy5YtgOqtfdkYZcvVk=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=HVs1GaTjoZahjDLnUD6MklDLgtSpRe/W28TKY6Cx0ygQ9gj49mTUzcMoS8aqOW6MM
-	 6ffD8WrqXj/KecWqXqhbMCbEDNxIQRqJ2nJhvwNlvBlM3XzVn7N1xmO+foc/BnIkma
-	 83ZislBhSRSxfZqlhqcn0D3vqgtHt5Xf9caKjHOY=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UBL8lT041289
+	b=CWCDqXH1Uat7p+WMEwITec5HUGc7K34gSk6FiYlGDql0sdPnFZgGqowJ/XQZodHGZ
+	 PZkeq3EpiGWMFIv2rTOW5Sn18RTOWRKJlQaxPYlaPchrr02jeMV8wCD6kRkcZECZWB
+	 PtDMCQakzzCouoN1D3sxTW04LkekU3ZHmSDKmCGI=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UBOqFo111288
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 30 Aug 2024 06:21:08 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 30 Aug 2024 06:24:52 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 06:21:08 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 06:24:52 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 06:21:08 -0500
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.68])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UBL7Oq037881;
-	Fri, 30 Aug 2024 06:21:07 -0500
-Date: Fri, 30 Aug 2024 16:51:07 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Nishanth Menon <nm@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Roger Quadros <rogerq@kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am642-evm-nand: Rename pinctrl node
- and gpio-hog names
-Message-ID: <20240830112107.z2lxw3hqq627h3pz@lcpd911>
-References: <20240830102709.3970209-1-nm@ti.com>
+ Frontend Transport; Fri, 30 Aug 2024 06:24:52 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UBOqqJ041257;
+	Fri, 30 Aug 2024 06:24:52 -0500
+Date: Fri, 30 Aug 2024 06:24:52 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Prasanth Babu Mantena <p-mantena@ti.com>
+CC: <vigneshr@ti.com>, <krzk+dt@kernel.org>, <kristo@kernel.org>,
+        <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
+        <sinthu.raja@ti.com>, <m-chawdhry@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-som: Update Partition info
+ for OSPI Flash
+Message-ID: <20240830112452.geyv7tecpb6ydhmz@quotable>
+References: <20240828060830.555733-1-p-mantena@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,58 +76,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240830102709.3970209-1-nm@ti.com>
+In-Reply-To: <20240828060830.555733-1-p-mantena@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
-
-On Aug 30, 2024 at 05:27:09 -0500, Nishanth Menon wrote:
-> Rename the pin mux and gpio-hog node names to match up with binding
-> rules. This fixes dtbs_check warnings:
-> 'gpmc0-pins-default' does not match any of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
-> 'gpio0-36' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+On 11:38-20240828, Prasanth Babu Mantena wrote:
+> Commit 73f1f26e2e4c ("arm64: dts: ti: k3-am68-sk-som: Add support
+> for OSPI flash") introduced the flash node with discontinuous
+> partitions. Updating the partition offset to be continuous from
+> the previous partition to maintain linearity.
 > 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
 > ---
-> Cc: Roger Quadros <rogerq@kernel.org>
-> 
-> This is a trivial fix, so applying Fixes seemed over-board.
-> 
->  arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 4 ++--
+
+Please note my response to a similar patch
+https://lore.kernel.org/all/20240830092234.veog3e22te7qi3ao@dugout/
+
+I do not want us breaking existing users unless absolutely warranted,
+even then, I'd like us to be very cognizant of the minimum amount of
+disruption possible.
+
+Normally, I'd say no to this kind of patches. But, since this is in
+the backup env, I am not *that* worried, but I want to make sure folks
+understand breaking existing users without a just cause is a NO NO.
+
+>  arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 4 ++--
 >  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-> index f08c0e272b53..f91589818e32 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-> @@ -12,7 +12,7 @@
->  #include "k3-pinctrl.h"
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+> index 5c66e0ec6e82..2e5730216caa 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+> @@ -215,9 +215,9 @@ partition@680000 {
+>  				reg = <0x680000 0x40000>;
+>  			};
 >  
->  &main_pmx0 {
-> -	gpmc0_pins_default: gpmc0-pins-default {
-> +	gpmc0_pins_default: gpmc0-default-pins {
-
-I mean, if you are anyway renaming,
-s/gpmc0_pins_default/gpmc0_default_pins
-
->  		bootph-all;
->  		pinctrl-single,pins = <
->  			AM64X_IOPAD(0x0094, PIN_INPUT, 7) /* (T19) GPMC0_BE1n.GPIO0_36 */
-> @@ -50,7 +50,7 @@ AM64X_IOPAD(0x00a4, PIN_OUTPUT, 0) /* (N17) GPMC0_DIR */
->  };
+> -			partition@740000 {
+> +			partition@6c0000 {
+>  				label = "ospi.env.backup";
+> -				reg = <0x740000 0x40000>;
+> +				reg = <0x6c0000 0x40000>;
+>  			};
 >  
->  &main_gpio0 {
-> -	gpio0-36 {
-> +	gpmc0-hog {
->  		bootph-all;
->  		gpio-hog;
->  		gpios = <36 0>;
-
-With the change,
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+>  			partition@800000 {
+> -- 
+> 2.34.1
+> 
 
 -- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
