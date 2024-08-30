@@ -1,120 +1,132 @@
-Return-Path: <devicetree+bounces-98462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 022F996639A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:04:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3FE96639F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:04:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 652F81F22DAE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:04:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69E1A2846EA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A50319ABBB;
-	Fri, 30 Aug 2024 14:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E601AF4F0;
+	Fri, 30 Aug 2024 14:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dwVr6Fhb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ND2xRNv8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C5C16C84C;
-	Fri, 30 Aug 2024 14:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5A81A4AB5;
+	Fri, 30 Aug 2024 14:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725026649; cv=none; b=ufIL8l02tFTP02oNLO6aZFIAGtJMDN+QMiTgd1Zet8IjUufYwH35KDnQVqpcFf2ns7iNNXSy+hvk4y5ElRwc976RnrLm0CN4Tqz6QYaBUrM0Chck2KW24YrFsXjCM6q8M8B8UGkqvy9yH2WgP1bJgiXqbZLluaVSwaGO/mLW8Ig=
+	t=1725026659; cv=none; b=nGdjx/FuBKLfrkjHYtWBP2yhumqHCzJ5C19z6EVf6mK8rc8/DhFX5yiRtKTy88gmxsSklKSn4TFc6FhkSS0Nj5MqoDXR9LcS/C9Xx0fuPjqSMGXO5VBpn1ptnrhcMoxUxfayd/e8aPtRD87mSgX2QTYERPiWtD7NNaHweAjum6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725026649; c=relaxed/simple;
-	bh=cUtegsdQGft/33fvng7kM3QvVXPpZ8tTkRiGBNE+zUg=;
+	s=arc-20240116; t=1725026659; c=relaxed/simple;
+	bh=5teBPgWMQMFVr/5PiCwOa6ly1sGzvaFc/kjjEHBv/Y8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YyIDNlzXnTcxqktKS8uSWlqfZ08G3K3j/pRq10B0SH4NlGv/5Z12NuAaX1SqomiCij4X0u6CChxLP7Zl86oj9JCcoKn7ncpOInt5oTwz3f9qHVxbhWzy13qST0308FM7enpoqxKmzSKPRcLkjhP30OjjDaacExzMwPfzuNUCy8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dwVr6Fhb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DDD6C4CEC7;
-	Fri, 30 Aug 2024 14:04:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725026648;
-	bh=cUtegsdQGft/33fvng7kM3QvVXPpZ8tTkRiGBNE+zUg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dwVr6Fhbu0HJyBQUEE/PYUHtHEHAjHlzPqeEJWv3PgtxGBbXmxsEmJ7CtWrUw32af
-	 T8X4E9xmQpZKVaPU3/FqHPn8BcXq6DsLqISWOun0l/O6Tn0TQISkWDOsla3pC4MnBj
-	 9nOtPFr3/vCtszYttV5ejjUY7Rni77fXf/3URqlpCcZ+RyLq08NUR+kDipQjpkpHtL
-	 55vHfDNPhOuCrB9aADukxJWh43pLgB0+RsQ3Qz/Gs9Oc79X3NYaYlzbLPYo5Al2Nji
-	 D79RoCmeElWQFw9D7KPiVWQOjiRINESDCm0xoX+qpBESDVErOfIwq2jsvuOp1jTSUZ
-	 eBX+RRhdMbkJw==
-Date: Fri, 30 Aug 2024 15:04:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	BMC-SW@aspeedtech.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: gpio: aspeed,ast2400-gpio: Support
- ast2700
-Message-ID: <20240830-untangled-charting-48503e510ea7@spud>
-References: <20240830034047.2251482-1-billy_tsai@aspeedtech.com>
- <20240830034047.2251482-2-billy_tsai@aspeedtech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DkGEO96koCUIDcLmz8yQU6rUthY+nCJISbn6v1nsf/wOHQIa9xcuWs49x6vyYZ/OoL7JPjBXEiJ1h67IgCrd9YCQOYxQKLv5b8tNd5YqPkBtIpil0EvWuDm7M3Ss9I0SxvKEGwXTzL/taMou9bi77P9g4r2S8XT0/7JHnQpzSXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ND2xRNv8; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725026657; x=1756562657;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5teBPgWMQMFVr/5PiCwOa6ly1sGzvaFc/kjjEHBv/Y8=;
+  b=ND2xRNv83oEAtdfPkbTuN7ON5FolOFp3jnHRL3H/WMbPSgDIohMCsUQY
+   ZBZ5FDIrylnZL8GhTiLTcH91eYbUyWDrT53ZaZ1Xtf89YWFN9jXRPAaTX
+   4CQYJxRXa83PUPGTWiH5lADyFzDLh12wgSEblfbjUDilEKbQ52jbFz6tn
+   PfTjLwNoBDtlXPn0Q5U0X1nF7n4C2CFYvn9rGIQRxNYrXcsHhUyhT7eSR
+   X7STFd5f36rmVzJhOtFkb8zt5ExG8+cvV615sBwJ+pDTcksj8oBiOBAF3
+   9waLk4d523F9kgJ8wQ2f1ZFUMAOoVwBpX+KVN/Ce3V92bujUZ5zno241n
+   A==;
+X-CSE-ConnectionGUID: wPuhxycRSJexmzPhpUTuyA==
+X-CSE-MsgGUID: VyL0EhLURxmPOFqFC5qV3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11180"; a="23549747"
+X-IronPort-AV: E=Sophos;i="6.10,189,1719903600"; 
+   d="scan'208";a="23549747"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2024 07:04:16 -0700
+X-CSE-ConnectionGUID: rnADDRIVR9SQ6y3xpFkmxw==
+X-CSE-MsgGUID: jpMlKVNFQcOXdF1O6ybyPA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,189,1719903600"; 
+   d="scan'208";a="68722895"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 30 Aug 2024 07:04:12 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sk2ET-0001WY-1D;
+	Fri, 30 Aug 2024 14:04:09 +0000
+Date: Fri, 30 Aug 2024 22:03:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ayush Singh <ayush@beagleboard.org>, lorforlinux@beagleboard.org,
+	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	greybus-dev@lists.linaro.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Ayush Singh <ayush@beagleboard.org>
+Subject: Re: [PATCH v3 3/3] greybus: gb-beagleplay: Add firmware upload API
+Message-ID: <202408302019.XfDrLOk7-lkp@intel.com>
+References: <20240825-beagleplay_fw_upgrade-v3-3-8f424a9de9f6@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gPClO003GyM59AhI"
-Content-Disposition: inline
-In-Reply-To: <20240830034047.2251482-2-billy_tsai@aspeedtech.com>
-
-
---gPClO003GyM59AhI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240825-beagleplay_fw_upgrade-v3-3-8f424a9de9f6@beagleboard.org>
 
-On Fri, Aug 30, 2024 at 11:40:44AM +0800, Billy Tsai wrote:
-> The AST2700 is the 7th generation SoC from Aspeed, featuring two GPIO
-> controllers: one with 12 GPIO pins and another with 216 GPIO pins.
->=20
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/gpio/aspeed,ast2400-gpio.yaml    | 46 ++++++++++++++++++-
->  1 file changed, 45 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.y=
-aml b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> index cf11aa7ec8c7..4d439972c14b 100644
-> --- a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> @@ -15,6 +15,7 @@ properties:
->        - aspeed,ast2400-gpio
->        - aspeed,ast2500-gpio
->        - aspeed,ast2600-gpio
-> +      - aspeed,ast2700-gpio
-> =20
->    reg:
->      maxItems: 1
-> @@ -42,7 +43,7 @@ properties:
->      const: 2
-> =20
->    ngpios:
-> -    minimum: 36
-> +    minimum: 12
->      maximum: 232
+Hi Ayush,
 
-Aren't you missing a corresponding update to gpio-line-names, which has
-a minimum of 36?
+kernel test robot noticed the following build errors:
 
---gPClO003GyM59AhI
-Content-Type: application/pgp-signature; name="signature.asc"
+[auto build test ERROR on f76698bd9a8ca01d3581236082d786e9a6b72bb7]
 
------BEGIN PGP SIGNATURE-----
+url:    https://github.com/intel-lab-lkp/linux/commits/Ayush-Singh/dt-bindings-net-ti-cc1352p7-Add-bootloader-backdoor-gpios/20240826-165903
+base:   f76698bd9a8ca01d3581236082d786e9a6b72bb7
+patch link:    https://lore.kernel.org/r/20240825-beagleplay_fw_upgrade-v3-3-8f424a9de9f6%40beagleboard.org
+patch subject: [PATCH v3 3/3] greybus: gb-beagleplay: Add firmware upload API
+config: sh-randconfig-001-20240830 (https://download.01.org/0day-ci/archive/20240830/202408302019.XfDrLOk7-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240830/202408302019.XfDrLOk7-lkp@intel.com/reproduce)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHRUwAKCRB4tDGHoIJi
-0qUNAPkB52NMtklicYstcjTeGcpQkkGuzLTEMofpB2ZohjYAaQD/TjytJlaCvEJi
-pT2l9A8yH2bXdPPSVl+JQxnmZmrnJAc=
-=Q1AY
------END PGP SIGNATURE-----
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408302019.XfDrLOk7-lkp@intel.com/
 
---gPClO003GyM59AhI--
+All errors (new ones prefixed by >>):
+
+   sh4-linux-ld: drivers/greybus/gb-beagleplay.o: in function `gb_beagleplay_remove':
+>> gb-beagleplay.c:(.text+0xec8): undefined reference to `firmware_upload_unregister'
+   sh4-linux-ld: drivers/greybus/gb-beagleplay.o: in function `gb_beagleplay_probe':
+>> gb-beagleplay.c:(.text+0x1128): undefined reference to `firmware_upload_register'
+>> sh4-linux-ld: gb-beagleplay.c:(.text+0x1138): undefined reference to `firmware_upload_unregister'
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for FW_UPLOAD
+   Depends on [n]: FW_LOADER [=n]
+   Selected by [y]:
+   - GREYBUS_BEAGLEPLAY [=y] && GREYBUS [=y] && SERIAL_DEV_BUS [=y]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
