@@ -1,116 +1,118 @@
-Return-Path: <devicetree+bounces-98289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FA09659F6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:18:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B39965A06
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:20:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2553CB21131
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:18:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A9ED1F2239E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66F4165F07;
-	Fri, 30 Aug 2024 08:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF83116C68F;
+	Fri, 30 Aug 2024 08:20:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="fCGmlhIf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35988167DA4;
-	Fri, 30 Aug 2024 08:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB57516D4C2;
+	Fri, 30 Aug 2024 08:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725005905; cv=none; b=SLkhPakLd3F/inCN4m8SO/6NAaKByZpr/r292XFHtr8daAzyQllorVGPzG5Bo4/HLk3UDAJxaCZidfyFpFW2asWQUqCaBqH+Mozeigmxk6ZbOysHc8nf6PHZvxLAeyOWWHNTA6pIoQWCDnXR9RyDBAvUwBtKOc+HQHZtfxu2+Vo=
+	t=1725006023; cv=none; b=MmBBricEHTH3EkT6rp0yIYfKcaatBkJCYAIpXabwyT5/UbURLNIdm3mZ8Kjdc/PCUSZCetzeAIq4alqFgrtI48u6yamarwvhh8cSDcHjEUjuwHhFh7Eu00BITP5LCmJiVeoo6y8stLfplLr0mYVw48GNgyAcG882xQH+ThZULgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725005905; c=relaxed/simple;
-	bh=35jDCi1Kj9oN2o02lDIyXMFMWMiUeUYXNfhFHuTbbIw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KlT4rxVt7S4FXAtokAYNmm7Em1Gzvru8w/Lx+jvQUDR6rgBMgmm9662WuZBhjmBhR4DRw2r5cpToQmQ6CkX/0iRzy1Krh5kZLxoyaDHpakTfJ/v+FHPagyoBjdEll0O1Yvn95iKB+wHaJieBPOuyNLPq8DibRSHv/sNIKgTFCcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6b8f13f28fbso13765337b3.1;
-        Fri, 30 Aug 2024 01:18:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725005902; x=1725610702;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NOPsquWW8Uy5MOnXlVH8v3N0MKkHs39P2/JigTaTeY0=;
-        b=O7NL4pYQEO4AVNTrGQPrfKkfre2hh4+MKcrvNxVPkeC3ogGZhdVu/RKIKgPKar4mTt
-         Xi+frVKV8n7d7O+ijP0f+rZ7RBQ7X841vDGjYGwd7ZM2U7fO0tqvw/PYwaHNdoAyI578
-         JZCaI/52RnwI3opGQRUTnqm8yKkm7Q6Ultcw2QFZWPf+06mc07pI338vfOfRxQh6oKXq
-         r4rDtSdn4xmMvjDbm/XfvD/I55cbqyV4xf/TDMLAjh3oCPe2G4TTQgzdIxX6Qo1EgTKM
-         QxEz0Ag53I1jWiRDoMqXuBwrji3S8G1Eb/amIgSTL8qj7pv2kuowx1WSPAMovEu+YBMh
-         OdDA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8RpUAOIG5HjYJXrYDEoVX0R7U9Em3laYEN4NosuR1gXVSWfo/+YdEhwWPd2rGCDJG9zH/RTbKQai0xZI=@vger.kernel.org, AJvYcCWIEJyJ8KO9y2P1o4BEPRLC+LMDn6QTDxJz/2MF+QTG1p048uFRaFO69mUk5aO6wjx8ELkLa/Pb07qp@vger.kernel.org, AJvYcCWeGVxvAMmK+2OcigXhD0NR3STZEjigT9ND/hvnM1KHg0NxEbK09e3HE9Wf/Lw0Tgoxo/yzEFhWV3hCdoDPgfnWjdI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFKSVx7n2t7gwIIeJPbN6RLTNcNSlejLhLv2YQwVJUDG67SUjY
-	TJ/0S5WuEyfpgLwr+gxtbxK/lgT2Hr27vvFpgeFZ4RL9BeN6t1qEnnjl0KhS
-X-Google-Smtp-Source: AGHT+IHsdKr+kkshSeqcDh/CV++c4SPsrXkT3SzEH8giiUkGSs4i5isHSShIPOYQMFDvxAuxeZufUg==
-X-Received: by 2002:a05:690c:3412:b0:6b5:916d:597 with SMTP id 00721157ae682-6d40e287027mr10637587b3.22.1725005902505;
-        Fri, 30 Aug 2024 01:18:22 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d57de61esm5507227b3.88.2024.08.30.01.18.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Aug 2024 01:18:21 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6d3c10af2efso6681727b3.0;
-        Fri, 30 Aug 2024 01:18:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU2EVopmcHwtn3k6dRRwfc1bIpVdLgGGWh1ECzDaZK2hC7/JhnMGZd/1HOHZ7xf4YqoWIaVWNCowlnm@vger.kernel.org, AJvYcCU7Yi74qMLLVNbKtCTjEpHEGYVL/z7xQS9W8oiMc0YOO/WrAn/MfmwbdggsNHxobE6Rjv24JwhoVPIQam0=@vger.kernel.org, AJvYcCWoI5t3KfWgMZKkoJqaGIVVbKLGcRrvqf8fQZj8KgxoIUNHjQ/FiVsUrJ5r8C6nF9YzH8BOFjsfaXHXbF4uI/vtBYo=@vger.kernel.org
-X-Received: by 2002:a05:690c:418f:b0:6ae:e4b8:6a46 with SMTP id
- 00721157ae682-6d4101031c7mr10599987b3.44.1725005901391; Fri, 30 Aug 2024
- 01:18:21 -0700 (PDT)
+	s=arc-20240116; t=1725006023; c=relaxed/simple;
+	bh=zcDaQYsKqxlDjCEArmeEbW9uCc+0/XUnK3g3iK7DY7U=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=BCyZ/3AHvzCpD50OWfryLs/bHZJIYWtbZPvqhYOv1urwyPoP3rDlSn/YqbtOpqxjSUlS9iCIertbeZTQxkM4K2/eBpPWxDUEEq7YZvss6nyXdwclZoj/WMrLdbGkrGFIQq4lLlNH6HPJX3FCzG1pD4T44hIpcESUgNcAVEm+D8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fCGmlhIf; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1725006022; x=1756542022;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=zcDaQYsKqxlDjCEArmeEbW9uCc+0/XUnK3g3iK7DY7U=;
+  b=fCGmlhIfbRD6w5k4UMsuy9XoeTU9UJYx92kuL0kwCPTSYeE6KtukH1g4
+   IvgWAlpVDxOwPvRKUAwtcZtkWBPOheuzIxAshNnRiJpNnM3QIfHhTf/fn
+   vXhvmrE2X9H2SlhwImVzUG1kzAFr0LB6375G/vsHTEUROIs0J5JPjxUTl
+   AWtPNSk/SpwINymOd2oLtlvwiQ1/DCr++k3RDY3W9ALeLjqEVpj4A06i6
+   4brDuZRHjwpdexoJAo5eWBbvda3Qz2NRUZ2ppd2Pn66gEXzBs6VHEe/aV
+   VqtZcV3MSPW07ZVyHd6KVR6edsSj8+aSRUJo1xerV+bdol/o1X2aA2o4n
+   g==;
+X-CSE-ConnectionGUID: Ea7i2hfpR3mZRIVK2YOgEg==
+X-CSE-MsgGUID: qihJpKHzQdmQo7OiSVUscA==
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; 
+   d="scan'208";a="262037837"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Aug 2024 01:20:21 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 30 Aug 2024 01:19:54 -0700
+Received: from che-lt-i70843lx.mchp-main.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 30 Aug 2024 01:19:50 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Subject: [PATCH v2 0/2] Update sdhci-atmel dt-binding documentation
+Date: Fri, 30 Aug 2024 13:49:41 +0530
+Message-ID: <20240830-atmel-sdhci-v2-0-b7f58973f3fc@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240829165051.2498867-1-niklas.soderlund+renesas@ragnatech.se> <20240829165051.2498867-4-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240829165051.2498867-4-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 30 Aug 2024 10:18:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVenR81cvQ5BbtKjULCXC3NN+pBCHbE4SVeZUBChvAYgg@mail.gmail.com>
-Message-ID: <CAMuHMdVenR81cvQ5BbtKjULCXC3NN+pBCHbE4SVeZUBChvAYgg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] media: staging: max96712: Move link frequency
- setting to device struct
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Sakari Ailus <sakari.ailus@iki.fi>, 
-	Julien Massot <julien.massot@collabora.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-staging@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ2A0WYC/23MQQrCMBCF4auUWRuZpEETV95DuojT0QzYpiSlK
+ KV3N3bt8n/wvhUKZ+ECl2aFzIsUSWMNc2iAYhifrKSvDQaNRdeiCvPAL1X6SKLIB2/uZ40nY6E
+ +pswPee/arasdpcwpf3Z80b/1v7NohQo1t0yOvEN7HYRyoijTkdIA3bZtX9qSv+uqAAAA
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Aubin Constans <aubin.constans@microchip.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Dharma Balasubiramani <dharma.b@microchip.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725005989; l=951;
+ i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
+ bh=zcDaQYsKqxlDjCEArmeEbW9uCc+0/XUnK3g3iK7DY7U=;
+ b=n0k7q+AZo3h4KmBpuC28AGMrUoqMMKvIdbmisIO1NzAlIDNzQQQMX6VmGww+LBYTjsT1l7A3h
+ Q4lbItekQu4DVYqEGCxAOw0b4kCChJG4dWlhQQ6tKgigry419CBTPwI
+X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
+ pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 
-On Thu, Aug 29, 2024 at 6:52=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Prepare for supporting MAX96724 by moving the soon device specific link
-> frequency setting into information structure. This struct will be
-> extended to carry more differences between the two devices supported.
->
-> While at it remove trailing comma in device table, no entries will be
-> appended after the sentinel.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
-> ---
-> * Changes since v2
-> - New in v3.
+This patch series converts the sdhci-atmel dt-binding to yaml format and adds
+the sama7d65,sama7g5 compatibles to the list.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+Changes in v2:
+- Add missing deleted file to the patch 
+"Documentation/devicetree/bindings/mmc/sdhci-atmel.txt"
+- Link to v1: https://lore.kernel.org/r/20240830-atmel-sdhci-v1-0-01e3ec8c9804@microchip.com
 
-Gr{oetje,eeting}s,
+---
+Dharma Balasubiramani (2):
+      dt-bindings: mmc: sdhci-atmel: Convert to json schema
+      dt-bindings: mmc: atmel,sama5d2-sdhci: Add sama7d65 compatible
 
-                        Geert
+ .../bindings/mmc/atmel,sama5d2-sdhci.yaml          | 103 +++++++++++++++++++++
+ .../devicetree/bindings/mmc/sdhci-atmel.txt        |  35 -------
+ 2 files changed, 103 insertions(+), 35 deletions(-)
+---
+base-commit: 985bf40edf4343dcb04c33f58b40b4a85c1776d4
+change-id: 20240830-atmel-sdhci-c9a92b710624
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Best regards,
+-- 
+Dharma Balasubiramani <dharma.b@microchip.com>
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
