@@ -1,130 +1,136 @@
-Return-Path: <devicetree+bounces-98489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A7C9664F7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A95909664FA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:06:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50717B21D2D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:05:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 332F4B21690
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9961B2EC0;
-	Fri, 30 Aug 2024 15:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217FD1B3B32;
+	Fri, 30 Aug 2024 15:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ht7PmoMb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCkCpvEe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF2B1B3B2D;
-	Fri, 30 Aug 2024 15:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83471B29CD;
+	Fri, 30 Aug 2024 15:06:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725030337; cv=none; b=KfLOgJrxpOK0xV5QpuAkzm0m3ryG+j5RLytGPx/BNBe9bd7VUzZ9siR9UMdYZ2Nfk5lZ02Tx6EMaumQkNw7kD6hHWnqYFBanKbt4q2jzbcOlPKRWhG/PxGqDoYTRVDSh3qKpLlPprZGjDknXc4i/NonJBDha0tWkMoFVlYLwd9A=
+	t=1725030371; cv=none; b=EMHT+BniQf/5/3sBtrgNHX7eTNeGwtzytaS1XcU+zNAgwggclvCYsDgT5LKa7t0fo5TakfcdzBvB1JDa1sZ3ISCVJUewSvMh7qlQvkGu33yT518pkFWSI0ZUBcgrk6Ciu5EwKIzszMg5dDoQqMfBXle4x8lFvjh+6VmH3dNCBCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725030337; c=relaxed/simple;
-	bh=wGjDLiVwN6M6gPX/q0yP9flSRyJMn6wvHbCanhi3VJo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=snOiAemlgpbUOu1T+ADyB6/VhERV7Ocgq7vsMGGMhOOayYFiDlnTw68ckjZ+KkUu2ItV9cjrcVzN0drhBmn58dezIeN1GjNlaN53BusdqkhcrFqM6O/D2Z8fWgeIdORHl7OWPoohnSYcJbq5VfPTWQB+O79cPtO0qjkh/GuNgUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ht7PmoMb; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5353cd18c20so2376952e87.0;
-        Fri, 30 Aug 2024 08:05:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725030334; x=1725635134; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ireDvuHVsozyU3taGw14ueQbQUF90HsxC8GVI542I9g=;
-        b=Ht7PmoMbczgNITWIdxK9v0S+B/ATBfE407RrdLmXcXvmsCWVBT5HsyUaVk9Z6APGYY
-         QD27feC2b+s8qIXcL38ffsW6wo3rFIbzMzP9LHtVJWkC1a+A6rSO9pcLGCWOkRl7yXfJ
-         4rabG7TyZcKRJ46N8SBxulTPc/chXLMHvNnAlcaL/cJH6q8W7dyqeVTEgsY8oIZiKfpx
-         ehmmIkz1WPI02lxxyUmGsy16uANU71aDr5IqvQPZnH8/qeSLVchI2xAdDGisnsQj7efo
-         NYIe4aJPWzMB64TnbRMZ6+qlW86J/FO5qioG38G0oj7SR426B8sPbY53vauIg/sZlrh9
-         emhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725030334; x=1725635134;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ireDvuHVsozyU3taGw14ueQbQUF90HsxC8GVI542I9g=;
-        b=dtzS57UT6bbLWzsqUIT8Q1TPlxL1d27aevxliiEx1q4jUPekmWpdP1r74z+JgXW7hU
-         JeOcqHGk5lDvKi51fZAo4ZgzZgclqewRbfgXH/SKD9QIdQ+qdBSS7GSzcKhGHfNJ3oon
-         Zy7DUREi0698uiElOQlr1AKOFh3+c0aIwMK0hJALVgNlRH9Xw0P2XM7Y5qyPYZdJQ3mw
-         ysPclhXvnajhKbmmM3vfbpolL9VlcoFlHz8qPHvKFp2ME8BaZgPEDkrlN6FZoAXISEK7
-         XQf6Y/v34ehOdmEQC1v+fii02Ghm88vagwdBz+LJDMIpAbb6YJOEmoUMLacCuIRLR7iH
-         iHpw==
-X-Forwarded-Encrypted: i=1; AJvYcCVhabUl1mlcyYvCP4UUmPzbZpm06SLXIIATUV7mAj1GUtkf2YtXx9WsJ+hk5tg3bhhp2ru4hiy+NOCK@vger.kernel.org, AJvYcCXl1un0cKO91qvWOXPY1X2fqdWGWaro9ugAiHpoML8ojB5rHr8hwlAdzfbF6DtXPVHFU/byRiHOcYyB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9xV+6594sgOtnb7UV3+gu/v4fbizSagXaWUvfV0xtzPuAEaow
-	Crn3DCQ3KVj8F4ec4v/odvB+FlTSmOh+3ucahlc/gRF2d/3qbhTaOQVKMyjUFW/NWOgrWHGgR20
-	9WmsCdr9rtFUrjx3gBK2SpJbdMQc=
-X-Google-Smtp-Source: AGHT+IHBPbeu15lHYGY3WPxj+lRuX2AuRCKP963v0C40uyirFm8K/blphkt/QPAcUhOHkj1uSGmS0pqb78ZBXhIyZDI=
-X-Received: by 2002:a05:6512:b94:b0:535:3dfb:a4fc with SMTP id
- 2adb3069b0e04-53546b0548dmr2178458e87.22.1725030332018; Fri, 30 Aug 2024
- 08:05:32 -0700 (PDT)
+	s=arc-20240116; t=1725030371; c=relaxed/simple;
+	bh=JPD/QwW76Ru7sqSaOhnm/av9Sp9NONR08vZrOEyi/bc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYXIXHljYtBGG1v1q91CtL251R24dV+aPFIiSofzhn6hjeybyuxXEpy5v/ovWN/oMOc8WP96TIcrj6hj6mhNUyl3KhtC1/Kcd1v2mBZAR00C5fS97+kSkElWkDTybngCm7LuKfyYfJEHQcN9JVNny1wJ34ixOeUIakecRmpSqY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCkCpvEe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D51A5C4CEC2;
+	Fri, 30 Aug 2024 15:06:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725030370;
+	bh=JPD/QwW76Ru7sqSaOhnm/av9Sp9NONR08vZrOEyi/bc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YCkCpvEeQL5ChVrD7gCgu2Eu3kG7nCRZuAL9n26aCzSyfZ/QVABCXdJpKB7mckCDG
+	 fwUD+uBNLlLRnNDKvGqAverga/5VMvDSjqRaPalMMYOVz1I2zVzW6F6+4630dm1GH7
+	 swTSwxxyALzhcvrG6se6T+b0LDnMT8xB2G2+GHKomdMQI/uzRI/5PMXY3hwOgucW4D
+	 ihVPtCKmHtlC21K9ZjkHIw48SkufC6AQYszwDsUjX7eXexPO7I+m3epyJFVVvUD0zh
+	 buRvuWFyWN61LEX5n9sw6vWS9vqVFhY7tcpd8w0FAJlwYerCXLHUkdwuJsWl55x9bu
+	 OrQk9N6jU0mvA==
+Date: Fri, 30 Aug 2024 16:06:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Angelo Dureghello <adureghello@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dlechner@baylibre.com
+Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
+ property
+Message-ID: <20240830-deviant-surging-4f617819ef47@spud>
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+ <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
+ <20240829-stopwatch-morality-a933abb4d688@spud>
+ <lets4c46zg4rzfqrjakeby3oa3zhxh4nyfcg4vxhfnufcpaxak@xmzdwb47xhx5>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240829201315.3412759-1-festevam@gmail.com> <20240829201315.3412759-2-festevam@gmail.com>
- <20240830-anchor-glucose-f8dcc1b0fd16@spud>
-In-Reply-To: <20240830-anchor-glucose-f8dcc1b0fd16@spud>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Fri, 30 Aug 2024 12:05:20 -0300
-Message-ID: <CAOMZO5AAyjq2M09Ynbu57jd_RyDe_5fN4oaoxMv1CeKjo2aG5Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: Add a reference to spi-peripheral-props.yaml
-To: Conor Dooley <conor@kernel.org>
-Cc: broonie@kernel.org, linux-spi@vger.kernel.org, 
-	otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/bLGyJppz6CoDdEB"
+Content-Disposition: inline
+In-Reply-To: <lets4c46zg4rzfqrjakeby3oa3zhxh4nyfcg4vxhfnufcpaxak@xmzdwb47xhx5>
+
+
+--/bLGyJppz6CoDdEB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Conor,
+On Fri, Aug 30, 2024 at 10:16:36AM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Aug 29, 2024 at 04:46:59PM +0100, Conor Dooley wrote:
+> > On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello wrote:
+> > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > >=20
+> > > Add bus property.
+> >=20
+> > RFC it may be, but you do need to explain what this bus-type actually
+> > describes for commenting on the suitability of the method to be
+> > meaningful.
+> >=20
+> > >=20
+> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 9 +++++=
+++++
+> > >  1 file changed, 9 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.ya=
+ml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > > index a55e9bfc66d7..a7ce72e1cd81 100644
+> > > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > > @@ -38,6 +38,15 @@ properties:
+> > >    clocks:
+> > >      maxItems: 1
+> >=20
+> > You mentioned about new compatible strings, does the one currently
+> > listed in this binding support both bus types?
+> >=20
+> > Making the bus type decision based on compatible only really makes sense
+> > if they're different versions of the IP, but not if they're different
+> > configuration options for a given version.
+> >=20
+>=20
+> Yeah, in general the parent defines the bus type.
 
-On Fri, Aug 30, 2024 at 11:14=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
+Right, if the bus that's being used isn't spi anymore, you should be
+able to detect that without a property. However, the device that "left"
+the spi bus is not this "adi,axi-dac" it is the adi,ad3552r. I think
+this property is actually representing the bus that this adi,axi-dac is
+/providing/, rather than the bus it is "consuming".
 
-> Since those don't come from spi-peripheral-props, not really the correct
-> justification (although why they don't, I'm not sure). If you still saw
-> dtbs_check complaints after the first patch, I maybe the controller
-> schema is missing a reference to spi-controller.yaml?
+--/bLGyJppz6CoDdEB
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I changed the first patch as suggested:
+-----BEGIN PGP SIGNATURE-----
 
---- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-@@ -29,6 +29,10 @@ properties:
-     description:
-       Chip select used by the device.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHf3QAKCRB4tDGHoIJi
+0q0JAQDaaVEWcprCBvDgrtMFvN7YqkRvgR3ujGgzpLVEhj3diQEAkMkm8736yvab
+r6qI+ZSEElTKzztkAKMHoqCBHrICAAw=
+=KcN/
+-----END PGP SIGNATURE-----
 
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-   spi-cs-high:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
-
-spi-rockchip.yaml does reference spi-controller.yaml, but I still get
-dtbs_check complaints after the first patch.
-
-$ make CHECK_DTBS=3Dy rockchip/rv1108-elgin-r1.dtb -j12
-  UPD     include/config/kernel.release
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  DTC [C] arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb
-/home/fabio/linux-next/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb:
-display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes:
-'pinctrl-[0-9]+'
-from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-
-I would appreciate some suggestions on how to fix this warning.
-
-Thanks
+--/bLGyJppz6CoDdEB--
 
