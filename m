@@ -1,118 +1,103 @@
-Return-Path: <devicetree+bounces-98302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D9D965A47
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:28:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32216965A4F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:30:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BF101F2661A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:28:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64F331C2271B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F6716726E;
-	Fri, 30 Aug 2024 08:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49B916726E;
+	Fri, 30 Aug 2024 08:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GFyz2gkn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n87VcqIl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47DD49625;
-	Fri, 30 Aug 2024 08:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A2514F13A;
+	Fri, 30 Aug 2024 08:30:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725006491; cv=none; b=o65BVKgA7L3sa6qmxGVMfmHZmXDKowWBlnrk2+Zl9+AtA6pmOjltffhFLt3tc+N7WqqtykBrpGopsc8jNQa6utTKGBtxmLquEQx2rXRL64lJeiAR5gWVVCgkZWZ+6QGqE4AIW8Q9+vSq7AEqp0V+79jnLcHszUIVuvhmA7jA+Rw=
+	t=1725006617; cv=none; b=SlNdlHqH7U2FKGQhEk2Q0UPfNWrGaHH/eEX2S3fvUkXv/BakBkYSxE/KGe7+BTVmYHn7C8bgzKVcnKboiiLxbePSyHGTd8TVrbQMiHCnvmnWGuY6S+WAXlU3n5k3fHuDVtdtxOed7TY56gxmvXzJ/vSODTCg7XfLEXCBefXavog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725006491; c=relaxed/simple;
-	bh=1CayOtffUqgYgyBF6mx88/fzOGczsfgglMDZaVTevPM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ft56rjPgy/ZNfAnZ6GLlb4sMnTKdHphH6PKCe4XFKs6aaMoT1ZMgbivtIM6OVqOcQgecLpXU+c2Ir1emRO4hAQTqtXK2srwWTK6aT3jRFkUDinFYROTr4zYjdz2uBDCQkqreCpAybxatTSNwADFqYKLfDJD/83APwIKLT4W91KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GFyz2gkn; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725006490; x=1756542490;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1CayOtffUqgYgyBF6mx88/fzOGczsfgglMDZaVTevPM=;
-  b=GFyz2gkngDScidu5e9yu0Up8xYfln6iWTBgkyfdIIFutITCBOxWxZ4Gt
-   KQK4r5T8s1rGzKAuBQ1dTZcXOfJESu+41W60ip6uu+G0eI8NTg1LLBlP2
-   4Z5C2DaK0jRiqdohfd6iVvUgN8ax1Diyp44wHU//DIjrdo7hd6FYo74/N
-   mgCKxUmQGvSK3cXd1PbSJh0WXa2eZbqdSHcTr7VJFj9Hy5gWaKqTbvtDJ
-   pnsyTSNVk3A8Xp1O9h2jtdJ+Ml6FeSEEoL1BB2p7HIsp01tBXKuTCpe7q
-   Hudn3LwqWoINndbQ4IKtr7GfdSrbbNs1xnvllkr9vEVUMkebyzCHMlfmM
-   A==;
-X-CSE-ConnectionGUID: 5+xr+/+zQ1OpBt0Xy6gYMA==
-X-CSE-MsgGUID: kM/S5TQFSgWcWX6sQHZymQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="26534879"
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; 
-   d="scan'208";a="26534879"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2024 01:28:09 -0700
-X-CSE-ConnectionGUID: Ar3Gh/53QMWdDJtMHvk19A==
-X-CSE-MsgGUID: j5jrXK30QUK1L1DDaznfgg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; 
-   d="scan'208";a="94662490"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2024 01:28:05 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 97A6611F843;
-	Fri, 30 Aug 2024 11:28:01 +0300 (EEST)
-Date: Fri, 30 Aug 2024 08:28:01 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Umang Jain <umang.jain@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Martina Krasteva <martinax.krasteva@intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] media: imx335: Fix reset-gpio handling
-Message-ID: <ZtGCkQtGYndCK1Aw@kekkonen.localdomain>
-References: <20240830-imx335-vflip-v4-0-cb9f20fc7b87@ideasonboard.com>
+	s=arc-20240116; t=1725006617; c=relaxed/simple;
+	bh=+qWkkkxG743ImM/aahK9UM7XRQPRK07QH/l7Lrn/2g4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=QLA2jMZC7TtrZ845uPtYsmT1I9L9tEthhxCaC/M2X7no9RcVqSgonYO4n3KxvhjPwhx/sdYH8VlD2TYje42vTPbZz1qh/b82M8yxivM2NfpzmnrqktOiSS/ptzlnTEsO8GstPxoetU2GAHHa94IgHNJQuezCu/I8FoWY2MKaWNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n87VcqIl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1355C4CEC2;
+	Fri, 30 Aug 2024 08:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725006617;
+	bh=+qWkkkxG743ImM/aahK9UM7XRQPRK07QH/l7Lrn/2g4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=n87VcqIld4h3oj7jmm7RfOPl4zckDOEs8srTmVTODlJPFoBWJTdLkpxKb/TTrDPNI
+	 RpHdWXpgebIFMc/qPmm4qzLIU/IUXikZBg9fEljw5P/AOGdNBkoPI9gH5NVY29Dhxj
+	 0X1uhyjUZT+Aui4Sd6KyzejiYNza+LZ5CXen9SIXDTegOWyX/nTpdat55CRq0o5GTY
+	 kwc8M8dElgz1oXzLOA1CYsDOeadPufbX+4woWWT7nRP10Yqzc9IYsRuD24HA4Io+QG
+	 F5nYBaRSeP36LV/Z3WWPzyZZZEr6rtTbrq62Rxt/JKgxUcvItsy5MM3zN18fyGINmP
+	 7xquAQuP5GK1g==
+From: Lee Jones <lee@kernel.org>
+To: linux-kernel@vger.kernel.org, 
+ Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andi Shyti <andi.shyti@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, 
+ Chukun Pan <amadeus@jmu.edu.cn>, Muhammed Efe Cetin <efectn@protonmail.com>, 
+ Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>, 
+ Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>, 
+ Jimmy Hon <honyuenkwun@gmail.com>, Elon Zhang <zhangzj@rock-chips.com>, 
+ Finley Xiao <finley.xiao@rock-chips.com>, 
+ Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>, 
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>, 
+ Jisheng Zhang <jszhang@kernel.org>, Jamie Iles <jamie@jamieiles.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-watchdog@vger.kernel.org, kernel@collabora.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <01020191998a2fd4-4d7b091c-9c4c-4067-b8d9-fe7482074d6d-000000@eu-west-1.amazonses.com>
+References: <20240828151028.41255-1-detlev.casanova@collabora.com>
+ <01020191998a2fd4-4d7b091c-9c4c-4067-b8d9-fe7482074d6d-000000@eu-west-1.amazonses.com>
+Subject: Re: (subset) [PATCH v3 04/11] dt-bindings: mfd: syscon: Add rk3576
+ QoS register compatible
+Message-Id: <172500660860.97285.13837050366813522297.b4-ty@kernel.org>
+Date: Fri, 30 Aug 2024 09:30:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240830-imx335-vflip-v4-0-cb9f20fc7b87@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-On Fri, Aug 30, 2024 at 11:41:50AM +0530, Umang Jain wrote:
-> These couple of patches intends to fix the reset-gpio handling
-> for imx335 driver.
+On Wed, 28 Aug 2024 15:10:55 +0000, Detlev Casanova wrote:
+> Document rk3576 compatible for QoS registers.
 > 
-> Patch 1/2 mentions reset-gpio polarity in DT binding example.
 > 
-> Patch 2/2 fixes the logical value of reset-gpio during
-> power-on/power-off sequence.
-> 
-> --
-> Changes in v4:
-> - rework 2/2 commit message
-> - Explain conclusions for 2/2 patch, in the '---' section.
 
-Thanks, Umang!
+Applied, thanks!
 
-I've applied these in my tree.
+[04/11] dt-bindings: mfd: syscon: Add rk3576 QoS register compatible
+        commit: 2f9709b8541dc742235743d19b8a6e2baa2e81d4
 
--- 
-Sakari Ailus
+--
+Lee Jones [李琼斯]
+
 
