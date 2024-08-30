@@ -1,144 +1,261 @@
-Return-Path: <devicetree+bounces-98529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD799666FA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB60E9666F6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:31:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B98531F22CE5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:32:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57DA81F225E7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:31:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676FF166F1C;
-	Fri, 30 Aug 2024 16:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100E41BA299;
+	Fri, 30 Aug 2024 16:30:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="OtbZu1T3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DrxWumWS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77CB514B949;
-	Fri, 30 Aug 2024 16:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9E31B5EBF;
+	Fri, 30 Aug 2024 16:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725035517; cv=none; b=iQ1kDynyix1EPs7kNk6j63fKlQISkDruHtSw2wc0eWZRfpft4FQqYpVEKpNfNB95fPf+KMtwV7Y5yWHALL68f8vf15ycTDeLF49NYVBhN3WpiVraliYIGIWYMDeTqCJoeY2KviS8adl/uDUaG8prfgWNxVri9qmaE6m7ORzEtI8=
+	t=1725035445; cv=none; b=lx7PzS7xwY5GVN4JFfmZlYTBo1v306f+KM6m3OyblrsiGJbNxJzhL1iEjEp3IkGodJAczduSCAimmqI4KDDzc/v5xG5/rpwBLQj87Y88A+2XjW8r1T5sRC2If926ojtevwr9t+Ft9yls7wAiePUZg+LszsoDZCe4k/psQaBafdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725035517; c=relaxed/simple;
-	bh=3BJIlDR+E6wpbgaIMfqeLxo7CRcaljbWFDg6cgsfwhQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=myzbVTdHlcUJ5jrp+Mqhi8Uz2aRFrpQOFtXI+FZDOvY5VTNsw+VSwfobxtdYRFcF0P1Aclb/VfeJcYLPVbtpruzOeokB35t2gQStPPUcgpsz8YieZuWokiYe2c0CgwAFYOpA/j8BaawK7CFCdIJToXK3Wo92ggbsOFurx7Ron4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=OtbZu1T3; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UC9Gn2029818;
-	Fri, 30 Aug 2024 18:31:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	c55TnbAQcwEgANv3HCyH02RkCKFOHECJ/MLSerth/Vc=; b=OtbZu1T3bv6bIYrM
-	YH0HaKycTAdjRZ+QfOArDjgnyCuET++v1a/df1HPttksgFl5gMUJzEBvv1B19HIc
-	R8MFNjPpQlLABnBPCxVlQrm15sTIVyN6xgfqnzRCzvtVurxyXFXbNO9ZUiqhF7dG
-	EQIKa13ThNP7MoqCkEtC1Ufn6+1XJp+3VP5KbfmAo4SOo9eJrfNBJ18OQdZw3Zlz
-	BJ/ISbOFvy8WjUdoGs6oBfLeXU1b6bM81ZOOJqQKDQW74qi+NXdEimRHtJZXuLRb
-	JyIgC4b5gI96N/8kkKxw/8UxAGpBz01mqZX+lG27s/ov019+0ar2gnzIfIuDmzeS
-	J3e0lw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41b14tbrbh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 18:31:33 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3CCC34002D;
-	Fri, 30 Aug 2024 18:31:29 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8188F27F641;
-	Fri, 30 Aug 2024 18:30:38 +0200 (CEST)
-Received: from [10.252.12.18] (10.252.12.18) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 30 Aug
- 2024 18:30:37 +0200
-Message-ID: <44ad0f01-4701-45e9-a3cb-e89222f8c60e@foss.st.com>
-Date: Fri, 30 Aug 2024 18:30:36 +0200
+	s=arc-20240116; t=1725035445; c=relaxed/simple;
+	bh=qCzga63KeKGmhvUCRSLeRGpmKyn6xKlZmu6N8oyL0m4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XPMusTrADzLdLtO0TAJ7CtTzL9+uhET+H+NbOMIDoLNSnoofNiDEMMOyxGwvyC3BoCyoPbfgxpK3DZ5xyOjXd2lGJqwa8jQydOFtXXBIpJppf64sxcBQaYwEPWsBui5laj3jzd8JD6Ob/Y04R5rAn0BDm7PYxJpo4efYgb/MsVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DrxWumWS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 319FBC4CECA;
+	Fri, 30 Aug 2024 16:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725035444;
+	bh=qCzga63KeKGmhvUCRSLeRGpmKyn6xKlZmu6N8oyL0m4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DrxWumWSVwLYlagAu2K/NmFbfGMjx5te98wy5Qth7GqZEgf6kjjpyCaVAUC0ezljE
+	 AA6DHBSsm3Eqlz2PS6mWkAApCYuWaLdP0TDmPCqNLFc/FlOOQ8ebKEXJKQATkRJmUW
+	 hfsOTjwXhDUfc7ZHfeW/RwGRXA0QZePcaE+oFSAZwFr5pafkl8FgBYdeLOIcWH6jAn
+	 h4u4GUF7mhLLlsq3JHto358x2bh9SYeGetfK3oUsWdddjT3cySqI4Wxny0mW0dh5Nl
+	 dm4LMdr7o9+T4GKiaE7Ca83Lgm4HZq7CXFWS9EXtC3t22j+IxGbfSw9RVCAdD66UQj
+	 qmB3a+FlV2mrQ==
+Date: Fri, 30 Aug 2024 11:30:42 -0500
+From: Rob Herring <robh@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
+	sre@kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, lee@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [RFC 1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
+Message-ID: <20240830163042.GA319200-robh@kernel.org>
+References: <20240829213102.448047-1-macroalpha82@gmail.com>
+ <20240829213102.448047-2-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: stm32: Add compatible strings
- for Protonic boards
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <kernel@pengutronix.de>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <20240809091615.3535447-1-o.rempel@pengutronix.de>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240809091615.3535447-1-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-30_10,2024-08-30_01,2024-05-17_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240829213102.448047-2-macroalpha82@gmail.com>
 
-Hi
-
-On 8/9/24 11:16, Oleksij Rempel wrote:
-> Add compatible strings for Protonic MECIO1r0 and MECT1S boards to the
-> STM32MP151-based boards section and Protonic MECIO1r1 board to the
-> STM32MP153-based boards section.
+On Thu, Aug 29, 2024 at 04:30:58PM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> MECIO1 is an I/O and motor control board used in blood sample analysis
-> machines. MECT1S is a 1000Base-T1 switch for internal machine networks
-> of blood sample analysis machines.
+> Document the Texas instruments BQ25703 series of charger managers/
+> buck/boost regulators.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->   Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 ++++++++
->   1 file changed, 8 insertions(+)
+>  .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 143 ++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index 58099949e8f3a..703d4b574398d 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -54,6 +54,8 @@ properties:
->         - description: ST STM32MP151 based Boards
->           items:
->             - enum:
-> +              - prt,mecio1r0 # Protonic MECIO1r0
-> +              - prt,mect1s   # Protonic MECT1S
->                 - prt,prtt1a   # Protonic PRTT1A
->                 - prt,prtt1c   # Protonic PRTT1C
->                 - prt,prtt1s   # Protonic PRTT1S
-> @@ -71,6 +73,12 @@ properties:
->             - const: dh,stm32mp151a-dhcor-som
->             - const: st,stm32mp151
->   
-> +      - description: ST STM32MP153 based Boards
-> +        items:
-> +          - enum:
-> +              - prt,mecio1r1   # Protonic MECIO1r1
-> +          - const: st,stm32mp153
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml b/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+> new file mode 100644
+> index 000000000000..e555aa60f9ad
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,bq25703a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->         - description: DH STM32MP153 DHCOM SoM based Boards
->           items:
->             - const: dh,stm32mp153c-dhcom-drc02
+> +title: BQ25703 Charger Manager/Buck/Boost Converter
 
-Applied on stm32-next.
+BQ25703A?
 
-Thanks
-Alex
+> +
+> +maintainers:
+> +  - Chris Morgan <macromorgan@hotmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,bq25703a
+> +
+> +  reg:
+> +    const: 0x6b
+> +    description: I2C slave address
+
+Drop description.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-supplies:
+> +    description:
+> +      phandle of the power supply that provides input power
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+
+Already has a type. You need a reference to power-supply.yaml at the 
+top level and 'maxItems: 1' here.
+
+> +
+> +  ti,charge-current:
+> +    description:
+> +      maximum current to apply to charging the battery
+> +    minimum: 0
+> +    maximum: 8128000
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+I guess this is copied from other TI parts, but really this should move 
+to a property with a unit suffix. Or these shared properties moved to a 
+shared schema so we aren't redefining the type multiple times.
+
+Same for the others here.
+
+> +
+> +  ti,current-limit:
+> +    description:
+> +      maximum total input current allowed
+> +    minimum: 50000
+> +    maximum: 6400000
+> +    default: 3250000
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  ti,max-charge-voltage:
+> +    description:
+> +      maximum voltage to apply to charging the battery
+> +    minimum: 1024000
+> +    maximum: 19200000
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  ti,minimum-sys-voltage:
+> +    description:
+> +      minimum system voltage while on battery power, with default value
+> +      depending based on cell configuration
+> +    minimum: 1024000
+> +    maximum: 16128000
+> +    default:
+> +      enum: [3584000, 6144000, 9216000, 16128000]
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  regulators:
+> +    type: object
+> +    additionalProperties: false
+> +    description:
+> +      Boost converter regulator output of bq257xx
+
+Doesn't this apply to "usb-otg-vbus"?
+
+Really, only one regulator, so you don't need a container node.
+
+> +
+> +    properties:
+> +      "usb-otg-vbus":
+
+Don't need quotes.
+
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml
+> +
+> +        properties:
+> +          regulator-name: true
+> +          regulator-min-microamp:
+> +            minimum: 0
+> +            maximum: 6350000
+> +          regulator-max-microamp:
+> +            minimum: 0
+> +            maximum: 6350000
+> +          regulator-min-microvolt:
+> +            minimum: 4480000
+> +            maximum: 20800000
+> +          regulator-max-microvolt:
+> +            minimum: 4480000
+> +            maximum: 20800000
+> +          enable-gpios:
+> +            description:
+> +              The BQ25703 may require both a register write and a GPIO
+> +              toggle to enable the boost regulator.
+> +
+> +        additionalProperties: true
+
+Nope.
+
+> +
+> +        required:
+> +          - regulator-name
+> +          - regulator-min-microamp
+> +          - regulator-max-microamp
+> +          - regulator-min-microvolt
+> +          - regulator-max-microvolt
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-supplies
+> +  - ti,charge-current
+> +  - ti,current-limit
+> +  - ti,max-charge-voltage
+> +  - ti,minimum-sys-voltage
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        bq25703: bq25703@6b {
+
+charger@6b
+
+> +            compatible = "ti,bq25703a";
+> +            reg = <0x6b>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <RK_PD5 IRQ_TYPE_LEVEL_LOW>;
+> +            power-supplies = <&fusb302>;
+> +            ti,charge-current = <2500000>;
+> +            ti,current-limit = <5000000>;
+> +            ti,max-charge-voltage = <8750000>;
+> +            ti,minimum-sys-voltage = <7400000>;
+> +
+> +            regulators {
+> +                usb_otg_vbus: usb-otg-vbus {
+> +                    enable-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
+> +                    regulator-max-microamp = <960000>;
+> +                    regulator-max-microvolt = <5088000>;
+> +                    regulator-min-microamp = <512000>;
+> +                    regulator-min-microvolt = <4992000>;
+> +                    regulator-name = "usb_otg_vbus";
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.34.1
+> 
 
