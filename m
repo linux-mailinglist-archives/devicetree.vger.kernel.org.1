@@ -1,139 +1,133 @@
-Return-Path: <devicetree+bounces-98219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2460965531
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 04:19:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E466965546
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 04:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C977284559
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 02:19:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D15041C227F4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 02:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FF77A13A;
-	Fri, 30 Aug 2024 02:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229CB2C18C;
+	Fri, 30 Aug 2024 02:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MqTsl9jB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628C02EAEA
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 02:19:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DCA1D1315;
+	Fri, 30 Aug 2024 02:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724984395; cv=none; b=bbQ90xbX8H/q6lqqEMaOti6DgmEqmMjKNxHK4tI8VcTe5ZhKW5KuHCM5dyEzMt9SlPQJTAflKL7AT5lFa53XbhfbIwGsyctoyoRWE/uWQuOiWUpqCCjpd0Ft5BQw57cqJA8O6sTIv3EIDz4pgPCHTz4FpB6Nf0zYwuPjuavzgu4=
+	t=1724985270; cv=none; b=fBfJuwL3tW+IQULllC+ZSUewybQtp90ypOy8vnVpQQhGLmnkxo4RLc9SeJcLfsH2QdJlnw06yyRtvtT0d5CsoohYxjFELSZdyvAS+DpXYl2z2zrlDnRpZKy4YRq4CPkicJHJlUStgVZshTvRtheLDtSRPCUBxSeevmK6pxJNp+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724984395; c=relaxed/simple;
-	bh=1IxVtiVj9eqgh/z6bCT6cUvbUUIZlfzVFbiw4w13xQo=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WX/e5rA97UpZ8zfLUXvSVcTuXnfdmPI70jnW7bjkFaO8ffSf/6zbCibPSU4pZatucZYs/e8esfU46P4Ks/4QLk8wkl4+wN8y6poyT7SAZRPJlIO4rcqJR+F4Zq/1tZ5G5rjcw0SCU0hxkfMJ3APJafLyAEPjrWAUtKUQ9P1xFDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.163.48])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Ww1zm4G0TzyQQG;
-	Fri, 30 Aug 2024 10:19:00 +0800 (CST)
-Received: from kwepemf500003.china.huawei.com (unknown [7.202.181.241])
-	by mail.maildlp.com (Postfix) with ESMTPS id 39EAE18005F;
-	Fri, 30 Aug 2024 10:19:51 +0800 (CST)
-Received: from huawei.com (10.175.112.208) by kwepemf500003.china.huawei.com
- (7.202.181.241) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Fri, 30 Aug
- 2024 10:19:50 +0800
-From: Zhang Zekun <zhangzekun11@huawei.com>
-To: <robh@kernel.org>, <saravanak@google.com>, <devicetree@vger.kernel.org>,
-	<zhangzekun11@huawei.com>
-Subject: [PATCH 3/3] of: property: Do some clean up with use of __free()
-Date: Fri, 30 Aug 2024 10:06:26 +0800
-Message-ID: <20240830020626.115933-4-zhangzekun11@huawei.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240830020626.115933-1-zhangzekun11@huawei.com>
-References: <20240830020626.115933-1-zhangzekun11@huawei.com>
+	s=arc-20240116; t=1724985270; c=relaxed/simple;
+	bh=LOof/t2NUWiTeBa2AsgWfvL+WqDqQ6X+dghfFyiWXTI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F+QwXQUL0f74LJMKHquoh1tH8i+ZOIydkzJy4zTj/Rr3yoLlhynp7W+f7dvdYe+PHtpqMQnXb1nv9hvf2yTfbT4ykW2K7B0NRpm/Fve53RF2hMjK+lAZCQX+M5anlyA+oibAKHMqjrBwqa/Ee6+y/u+mqCf1Xm3PKpcLp99TLkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MqTsl9jB; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5c218866849so1614546a12.0;
+        Thu, 29 Aug 2024 19:34:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724985267; x=1725590067; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h8Ad0vhCQH1uXxmJFwkA6/WDAbjLvvOwQmA263Zu0vg=;
+        b=MqTsl9jB22+wLsu8CWlHTeTdVqWUdDxjg1ois4E/Lba2haGI+4rR00c0d+KR5DBtQf
+         NkBJdq5JxDo4AtqXNGN20fI5wlePDBVl71EX7lEBn3MDaJ2bTWZr5QhSKLu3GhbuBm1i
+         Q+ipM0I7zOUxiyS5idubYhSSVTXKD5NkTQ+tlXTgjjIPsZMgfI9yLLyf4+4EeJ5wlD9T
+         czSa3phJBwNFqacdthAvMACwvafhz4EVrM9rQmEdL2vfC3WxNeyxfK61LSalmWnyJOY0
+         ZiiitQdbTWtxnlxvSyzDzFjiCok0nO8gd9Dn8jIR8mVVlmjjop7MYsfO7/DjfVKuNNch
+         VcMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724985267; x=1725590067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h8Ad0vhCQH1uXxmJFwkA6/WDAbjLvvOwQmA263Zu0vg=;
+        b=Ku2r8MqpNEoJx9FuYizdU2smTfSa/EKGKN1FyAeDPMQA7rYtTRRFDQ37BOVISz6Cjf
+         O2Kwf02cbQ9XieIcUnPU1nXuLLM8s9AEvx2bB3iLGGueORbtOUAif4E6jiV6sMWa+ChS
+         bQdE/BhMwSuOEegXQfPs4fGq2tVzlEJuCcRurkzRr6RleVImS5aqCjgsdm10upzgKod0
+         E40OhBBafUCduNPrRrN1gGgQvhokP/bTmqbJc3dAtGqqYkyT72oo2D3I+z1gx6LJyykF
+         Pio8WfiSY3Jd5ntzbp9B8uwgQnAC7LXWNs/iO67Ag7/GogSkmHCxBGv0G8WCdKpG0ia7
+         VoDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/+rKLGCGCHST40bQKQQb3fO3WHI7i5a1qcIRe2Kp7OHnMEKyd9H9erZIMYc884ecUZyKVO7hbqUMRnfoi@vger.kernel.org, AJvYcCUv+1QlSmKsXPs0O/bcC+R2Qcqf8tSwcwhxD1f58nt30ErYsX0dnKNVO5IFs+fk9FPgdasLEPcuA9RC@vger.kernel.org, AJvYcCVUMoLFAdC5mpAylzKKq2CkRbPJdVIRcfxLarvUVLILkjYSFxRxCBhwTEEnh3J+QCTd2l981pKCqemo@vger.kernel.org, AJvYcCX/Bb6qoRsOrQZwiLZP4cwLy05iVIhDJBuSS1npoAq/KEFxx816QB+HvHDHEXAgaGsGN5PPO9zkGi5Jpg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YygAqk6RFzKVf8l/E3+yvJFFNQvDW7fxJZlFb6KFeZ2wWhjD6Dz
+	uC8z4thxonXvdggdAXjCaPmNERdUap70K5/GO6eLUgcRr2pgBh7GX9Gt0HVGGagc5FhRIlsy2TW
+	FsirAUY1v7VBf7K4C2XfB9uvJJn0=
+X-Google-Smtp-Source: AGHT+IFQrNg75kF7kiJPUlYxIIiKf55yBoI6UVMLJgvVyo5i04fsIpAbiwR+z3ZW+wSuT9d0rrkbPaENP1uLevEziZQ=
+X-Received: by 2002:a05:6402:3201:b0:5be:e01c:6b5f with SMTP id
+ 4fb4d7f45d1cf-5c21ed9feb2mr4182113a12.33.1724985266036; Thu, 29 Aug 2024
+ 19:34:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemf500003.china.huawei.com (7.202.181.241)
+References: <20240809-loongson1-dma-v12-0-d9469a4a6b85@gmail.com> <172495263311.385951.8113964072819506950.b4-ty@kernel.org>
+In-Reply-To: <172495263311.385951.8113964072819506950.b4-ty@kernel.org>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Fri, 30 Aug 2024 10:33:49 +0800
+Message-ID: <CAJhJPsVVSCnhS0dMXu-e0XTc-eHounx9RX7MZnCogJx-tBRerw@mail.gmail.com>
+Subject: Re: [PATCH v12 0/2] Add support for Loongson1 APB DMA
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-__free() provides a scoped of_node_put() functionality to put the
-device_node automatically, and we don't need to call of_node_put()
-directly. Let's simplify the code a bit with the use of __free().
+On Fri, Aug 30, 2024 at 1:30=E2=80=AFAM Vinod Koul <vkoul@kernel.org> wrote=
+:
+>
+>
+> On Fri, 09 Aug 2024 18:30:57 +0800, Keguang Zhang wrote:
+> > Add the driver and dt-binding document for Loongson1 APB DMA.
+> >
+> > Changes in v12:
+> > - Delete superfluous blank lines in the examples section.
+> > - Move the call to devm_request_irq() into ls1x_dma_alloc_chan_resource=
+s()
+> >   to use dma_chan_name() as a parameter.
+> > - Move the call to devm_free_irq() into ls1x_dma_free_chan_resources() =
+accordingly.
+> > - Rename ls1x_dma_alloc_llis() to ls1x_dma_prep_lli().
+> > - Merge ls1x_dma_free_lli() into ls1x_dma_free_desc().
+> > - Add ls1x_dma_synchronize().
+> > - Fix the error handling of ls1x_dma_probe().
+> > - Some minor fixes and improvements.
+> > - Link to v11: https://lore.kernel.org/r/20240802-loongson1-dma-v11-0-8=
+5392357d4e0@gmail.com
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+Great!
+Thanks very much!
 
-Signed-off-by: Zhang Zekun <zhangzekun11@huawei.com>
----
- drivers/of/property.c | 28 ++++++++--------------------
- 1 file changed, 8 insertions(+), 20 deletions(-)
+> [1/2] dt-bindings: dma: Add Loongson-1 APB DMA
+>       commit: 7ea270bb93e4ce165bb4f834c29c05e9815b6ca8
+> [2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA driver
+>       commit: e06c432312148ddb550ec55b004e32671657ea23
+>
+> Best regards,
+> --
+> ~Vinod
+>
+>
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 164d77cb9445..940324225c34 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -773,16 +773,11 @@ EXPORT_SYMBOL(of_graph_get_port_parent);
- struct device_node *of_graph_get_remote_port_parent(
- 			       const struct device_node *node)
- {
--	struct device_node *np, *pp;
--
- 	/* Get remote endpoint node. */
--	np = of_graph_get_remote_endpoint(node);
--
--	pp = of_graph_get_port_parent(np);
-+	struct device_node *np __free(device_node) =
-+		of_graph_get_remote_endpoint(node);
- 
--	of_node_put(np);
--
--	return pp;
-+	return of_graph_get_port_parent(np);
- }
- EXPORT_SYMBOL(of_graph_get_remote_port_parent);
- 
-@@ -1064,19 +1059,15 @@ static void of_link_to_phandle(struct device_node *con_np,
- 			      struct device_node *sup_np,
- 			      u8 flags)
- {
--	struct device_node *tmp_np = of_node_get(sup_np);
-+	struct device_node *tmp_np __free(device_node) = of_node_get(sup_np);
- 
- 	/* Check that sup_np and its ancestors are available. */
- 	while (tmp_np) {
--		if (of_fwnode_handle(tmp_np)->dev) {
--			of_node_put(tmp_np);
-+		if (of_fwnode_handle(tmp_np)->dev)
- 			break;
--		}
- 
--		if (!of_device_is_available(tmp_np)) {
--			of_node_put(tmp_np);
-+		if (!of_device_is_available(tmp_np))
- 			return;
--		}
- 
- 		tmp_np = of_get_next_parent(tmp_np);
- 	}
-@@ -1440,16 +1431,13 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
- 		}
- 
- 		while ((phandle = s->parse_prop(con_np, prop_name, i))) {
--			struct device_node *con_dev_np;
-+			struct device_node *con_dev_np __free(device_node) =
-+				s->get_con_dev ? s->get_con_dev(con_np) : of_node_get(con_np);
- 
--			con_dev_np = s->get_con_dev
--					? s->get_con_dev(con_np)
--					: of_node_get(con_np);
- 			matched = true;
- 			i++;
- 			of_link_to_phandle(con_dev_np, phandle, s->fwlink_flags);
- 			of_node_put(phandle);
--			of_node_put(con_dev_np);
- 		}
- 		s++;
- 	}
--- 
-2.17.1
 
+--=20
+Best regards,
+
+Keguang Zhang
 
