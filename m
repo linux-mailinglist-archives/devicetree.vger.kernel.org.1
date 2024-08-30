@@ -1,107 +1,116 @@
-Return-Path: <devicetree+bounces-98288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E6519659F0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:17:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1FA09659F6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:18:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 813F51C213C5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:17:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2553CB21131
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EF716DEC3;
-	Fri, 30 Aug 2024 08:16:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCXsHsJq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66F4165F07;
+	Fri, 30 Aug 2024 08:18:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F3C1531CD;
-	Fri, 30 Aug 2024 08:16:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35988167DA4;
+	Fri, 30 Aug 2024 08:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725005800; cv=none; b=eB1plt6f01JkHu1eWjk9RpP1GbPJWSwcjUXdJmkRfkJdh/KLu1NcaZP6sx5yOWSpTSSn8yErkHWtke9N36quFlmaxdUXYIXDnwRQGFI9qbbxXeBvX7g6Sr3izr0S3kZFUc4mewok8QHTcxRP34BenCzLP8nLNFuv6bOHDCBZulE=
+	t=1725005905; cv=none; b=SLkhPakLd3F/inCN4m8SO/6NAaKByZpr/r292XFHtr8daAzyQllorVGPzG5Bo4/HLk3UDAJxaCZidfyFpFW2asWQUqCaBqH+Mozeigmxk6ZbOysHc8nf6PHZvxLAeyOWWHNTA6pIoQWCDnXR9RyDBAvUwBtKOc+HQHZtfxu2+Vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725005800; c=relaxed/simple;
-	bh=MG9+FSOwpHPPAIZp15fzWWgzZZG7+ro0BmYE/pM5Kvc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pv6MDdRmQ72kOg+C/tVbsEkvwCirlm7bDBa2DCB2VihmXsEPeH49yLAoOzE9UodoFa/D+FXUpIBXR0TChjCAqo/OAQdwkPnS01BlLwqFfzVfqfx+GsFR9f9OHePtz/Vc5o/qaEjWjn778KpJg/+lsWHAWO5YvmKVGxCHMGxjgmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCXsHsJq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CC71C4CED3;
-	Fri, 30 Aug 2024 08:16:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725005799;
-	bh=MG9+FSOwpHPPAIZp15fzWWgzZZG7+ro0BmYE/pM5Kvc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LCXsHsJqND33H+cT8yoYbcXxjUARgjBG94mxukWpolQ4HzYDeBtotYMJekZe/Tf3S
-	 zW3UE61X5FtKEtq/LAVYgGyT6da8F1mA6swt5npu5+WLPK4zNO4+IuSMcGjuQrSYhJ
-	 c9OBv1EP/5g3jvJpy0RumX0WOQu+RK6n1DnjeMeFkjJdYpkxANxiAeQ1LkEIOk9zdk
-	 VUsSEVDCYItvgqhRUD9SHd5Rx2BV054E2rLma2k0R6q8qNiwSBYk7+w+NCm5r7ShYP
-	 kj4wsQ3HgOIkSN0tDkhuPx1a3TA9U7BpI0H6iV+TQcqxXmOBq+lXFwurlHtV36NDgk
-	 RJRwOJwp/acNQ==
-Date: Fri, 30 Aug 2024 10:16:36 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Angelo Dureghello <adureghello@baylibre.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dlechner@baylibre.com
-Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
- property
-Message-ID: <lets4c46zg4rzfqrjakeby3oa3zhxh4nyfcg4vxhfnufcpaxak@xmzdwb47xhx5>
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
- <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
- <20240829-stopwatch-morality-a933abb4d688@spud>
+	s=arc-20240116; t=1725005905; c=relaxed/simple;
+	bh=35jDCi1Kj9oN2o02lDIyXMFMWMiUeUYXNfhFHuTbbIw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KlT4rxVt7S4FXAtokAYNmm7Em1Gzvru8w/Lx+jvQUDR6rgBMgmm9662WuZBhjmBhR4DRw2r5cpToQmQ6CkX/0iRzy1Krh5kZLxoyaDHpakTfJ/v+FHPagyoBjdEll0O1Yvn95iKB+wHaJieBPOuyNLPq8DibRSHv/sNIKgTFCcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6b8f13f28fbso13765337b3.1;
+        Fri, 30 Aug 2024 01:18:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725005902; x=1725610702;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NOPsquWW8Uy5MOnXlVH8v3N0MKkHs39P2/JigTaTeY0=;
+        b=O7NL4pYQEO4AVNTrGQPrfKkfre2hh4+MKcrvNxVPkeC3ogGZhdVu/RKIKgPKar4mTt
+         Xi+frVKV8n7d7O+ijP0f+rZ7RBQ7X841vDGjYGwd7ZM2U7fO0tqvw/PYwaHNdoAyI578
+         JZCaI/52RnwI3opGQRUTnqm8yKkm7Q6Ultcw2QFZWPf+06mc07pI338vfOfRxQh6oKXq
+         r4rDtSdn4xmMvjDbm/XfvD/I55cbqyV4xf/TDMLAjh3oCPe2G4TTQgzdIxX6Qo1EgTKM
+         QxEz0Ag53I1jWiRDoMqXuBwrji3S8G1Eb/amIgSTL8qj7pv2kuowx1WSPAMovEu+YBMh
+         OdDA==
+X-Forwarded-Encrypted: i=1; AJvYcCV8RpUAOIG5HjYJXrYDEoVX0R7U9Em3laYEN4NosuR1gXVSWfo/+YdEhwWPd2rGCDJG9zH/RTbKQai0xZI=@vger.kernel.org, AJvYcCWIEJyJ8KO9y2P1o4BEPRLC+LMDn6QTDxJz/2MF+QTG1p048uFRaFO69mUk5aO6wjx8ELkLa/Pb07qp@vger.kernel.org, AJvYcCWeGVxvAMmK+2OcigXhD0NR3STZEjigT9ND/hvnM1KHg0NxEbK09e3HE9Wf/Lw0Tgoxo/yzEFhWV3hCdoDPgfnWjdI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFKSVx7n2t7gwIIeJPbN6RLTNcNSlejLhLv2YQwVJUDG67SUjY
+	TJ/0S5WuEyfpgLwr+gxtbxK/lgT2Hr27vvFpgeFZ4RL9BeN6t1qEnnjl0KhS
+X-Google-Smtp-Source: AGHT+IHsdKr+kkshSeqcDh/CV++c4SPsrXkT3SzEH8giiUkGSs4i5isHSShIPOYQMFDvxAuxeZufUg==
+X-Received: by 2002:a05:690c:3412:b0:6b5:916d:597 with SMTP id 00721157ae682-6d40e287027mr10637587b3.22.1725005902505;
+        Fri, 30 Aug 2024 01:18:22 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d57de61esm5507227b3.88.2024.08.30.01.18.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Aug 2024 01:18:21 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6d3c10af2efso6681727b3.0;
+        Fri, 30 Aug 2024 01:18:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU2EVopmcHwtn3k6dRRwfc1bIpVdLgGGWh1ECzDaZK2hC7/JhnMGZd/1HOHZ7xf4YqoWIaVWNCowlnm@vger.kernel.org, AJvYcCU7Yi74qMLLVNbKtCTjEpHEGYVL/z7xQS9W8oiMc0YOO/WrAn/MfmwbdggsNHxobE6Rjv24JwhoVPIQam0=@vger.kernel.org, AJvYcCWoI5t3KfWgMZKkoJqaGIVVbKLGcRrvqf8fQZj8KgxoIUNHjQ/FiVsUrJ5r8C6nF9YzH8BOFjsfaXHXbF4uI/vtBYo=@vger.kernel.org
+X-Received: by 2002:a05:690c:418f:b0:6ae:e4b8:6a46 with SMTP id
+ 00721157ae682-6d4101031c7mr10599987b3.44.1725005901391; Fri, 30 Aug 2024
+ 01:18:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240829-stopwatch-morality-a933abb4d688@spud>
+References: <20240829165051.2498867-1-niklas.soderlund+renesas@ragnatech.se> <20240829165051.2498867-4-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240829165051.2498867-4-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 30 Aug 2024 10:18:09 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVenR81cvQ5BbtKjULCXC3NN+pBCHbE4SVeZUBChvAYgg@mail.gmail.com>
+Message-ID: <CAMuHMdVenR81cvQ5BbtKjULCXC3NN+pBCHbE4SVeZUBChvAYgg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] media: staging: max96712: Move link frequency
+ setting to device struct
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Sakari Ailus <sakari.ailus@iki.fi>, 
+	Julien Massot <julien.massot@collabora.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-staging@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 29, 2024 at 04:46:59PM +0100, Conor Dooley wrote:
-> On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello wrote:
-> > From: Angelo Dureghello <adureghello@baylibre.com>
-> > 
-> > Add bus property.
-> 
-> RFC it may be, but you do need to explain what this bus-type actually
-> describes for commenting on the suitability of the method to be
-> meaningful.
-> 
-> > 
-> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > index a55e9bfc66d7..a7ce72e1cd81 100644
-> > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > @@ -38,6 +38,15 @@ properties:
-> >    clocks:
-> >      maxItems: 1
-> 
-> You mentioned about new compatible strings, does the one currently
-> listed in this binding support both bus types?
-> 
-> Making the bus type decision based on compatible only really makes sense
-> if they're different versions of the IP, but not if they're different
-> configuration options for a given version.
-> 
+On Thu, Aug 29, 2024 at 6:52=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Prepare for supporting MAX96724 by moving the soon device specific link
+> frequency setting into information structure. This struct will be
+> extended to carry more differences between the two devices supported.
+>
+> While at it remove trailing comma in device table, no entries will be
+> appended after the sentinel.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+> * Changes since v2
+> - New in v3.
 
-Yeah, in general the parent defines the bus type.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Best regards,
-Krzysztof
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
