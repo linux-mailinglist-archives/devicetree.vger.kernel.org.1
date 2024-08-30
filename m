@@ -1,132 +1,131 @@
-Return-Path: <devicetree+bounces-98463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD3FE96639F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:04:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D12C29663C6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:09:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69E1A2846EA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:04:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 814FE1F22E44
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E601AF4F0;
-	Fri, 30 Aug 2024 14:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A051B2516;
+	Fri, 30 Aug 2024 14:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ND2xRNv8"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="trdoE/6L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5A81A4AB5;
-	Fri, 30 Aug 2024 14:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF907DA94
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 14:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725026659; cv=none; b=nGdjx/FuBKLfrkjHYtWBP2yhumqHCzJ5C19z6EVf6mK8rc8/DhFX5yiRtKTy88gmxsSklKSn4TFc6FhkSS0Nj5MqoDXR9LcS/C9Xx0fuPjqSMGXO5VBpn1ptnrhcMoxUxfayd/e8aPtRD87mSgX2QTYERPiWtD7NNaHweAjum6o=
+	t=1725026969; cv=none; b=gk0gyMfA301aUjpGyGS8oJDcT994WDmbT+b0th9so9UoOZo31j7DwVCCMud31Zv8WtSpbMNEzD4UtstNaexqW4SNKJg1GgUtkgZURdaA0teTYqzmRWQ0jDIilVTvOdo2VbYrziEL2dvGV2aVPjTtxUyPz7Cni+zvUxQRSF9Ux3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725026659; c=relaxed/simple;
-	bh=5teBPgWMQMFVr/5PiCwOa6ly1sGzvaFc/kjjEHBv/Y8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DkGEO96koCUIDcLmz8yQU6rUthY+nCJISbn6v1nsf/wOHQIa9xcuWs49x6vyYZ/OoL7JPjBXEiJ1h67IgCrd9YCQOYxQKLv5b8tNd5YqPkBtIpil0EvWuDm7M3Ss9I0SxvKEGwXTzL/taMou9bi77P9g4r2S8XT0/7JHnQpzSXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ND2xRNv8; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725026657; x=1756562657;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5teBPgWMQMFVr/5PiCwOa6ly1sGzvaFc/kjjEHBv/Y8=;
-  b=ND2xRNv83oEAtdfPkbTuN7ON5FolOFp3jnHRL3H/WMbPSgDIohMCsUQY
-   ZBZ5FDIrylnZL8GhTiLTcH91eYbUyWDrT53ZaZ1Xtf89YWFN9jXRPAaTX
-   4CQYJxRXa83PUPGTWiH5lADyFzDLh12wgSEblfbjUDilEKbQ52jbFz6tn
-   PfTjLwNoBDtlXPn0Q5U0X1nF7n4C2CFYvn9rGIQRxNYrXcsHhUyhT7eSR
-   X7STFd5f36rmVzJhOtFkb8zt5ExG8+cvV615sBwJ+pDTcksj8oBiOBAF3
-   9waLk4d523F9kgJ8wQ2f1ZFUMAOoVwBpX+KVN/Ce3V92bujUZ5zno241n
-   A==;
-X-CSE-ConnectionGUID: wPuhxycRSJexmzPhpUTuyA==
-X-CSE-MsgGUID: VyL0EhLURxmPOFqFC5qV3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11180"; a="23549747"
-X-IronPort-AV: E=Sophos;i="6.10,189,1719903600"; 
-   d="scan'208";a="23549747"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2024 07:04:16 -0700
-X-CSE-ConnectionGUID: rnADDRIVR9SQ6y3xpFkmxw==
-X-CSE-MsgGUID: jpMlKVNFQcOXdF1O6ybyPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,189,1719903600"; 
-   d="scan'208";a="68722895"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 30 Aug 2024 07:04:12 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sk2ET-0001WY-1D;
-	Fri, 30 Aug 2024 14:04:09 +0000
-Date: Fri, 30 Aug 2024 22:03:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ayush Singh <ayush@beagleboard.org>, lorforlinux@beagleboard.org,
-	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Johan Hovold <johan@kernel.org>,
-	Alex Elder <elder@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	greybus-dev@lists.linaro.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Ayush Singh <ayush@beagleboard.org>
-Subject: Re: [PATCH v3 3/3] greybus: gb-beagleplay: Add firmware upload API
-Message-ID: <202408302019.XfDrLOk7-lkp@intel.com>
-References: <20240825-beagleplay_fw_upgrade-v3-3-8f424a9de9f6@beagleboard.org>
+	s=arc-20240116; t=1725026969; c=relaxed/simple;
+	bh=Z8zuoo5zwwiLnWcaJWRmOCFQ4+9pBqW5fPGQjoW+1pY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QvkXXT3Evf72WW9SigXjqsN2psaU+gul828+tIUF+422598LlKhPBFFHZPrZUOkPwNBCmTopBPq2gddEOXQCWsjy9iQVUF8AxgW+9bwcWW4lqJZhTtsoqCd19wOWa6dS2wHYKwdxPTPHJBWq3dfLVUFNEIPbj5j6jKgGr/qj9Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=trdoE/6L; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UCXIK2000780;
+	Fri, 30 Aug 2024 16:08:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	q89NqSKTjel4CPwEWPxv9YmdnbhHoK/5N0GdARaXWxY=; b=trdoE/6LmGgmf0vl
+	nmxd+beSSPda8eGoveHUU6tkUC3x3yi91yf/QfbudxQdeIg7pMNMCY7J5iyUtfJY
+	yAQpbeZN5GBh4cAmMbgj7lqm5oA5+cWAS84ROmbUf+9wedKm97skTUBjj7M0Jv0v
+	vEl5QSNZgmDcJT57H8JC6TLFz3GkAZJ5vtoDB3AMtpi0oY9TsxY66bW/rh6GjGpR
+	vf3Kp9nt7WudAjjcP7mwEp8LTF6eR6nQMRxvM1ji3mFRxxX1w6+e2eSZkdIy+ffV
+	IiUHSrAw75mQJCMlasZ9uigHhH7Z2ybtE1YeAQXdJqBcijdVfrHLdB5A44nWgKyl
+	ZwW5ZQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41b14uk949-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 16:08:26 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1F45440044;
+	Fri, 30 Aug 2024 16:08:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EDE5426E530;
+	Fri, 30 Aug 2024 16:07:45 +0200 (CEST)
+Received: from [10.252.12.18] (10.252.12.18) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 30 Aug
+ 2024 16:07:45 +0200
+Message-ID: <8c56f13a-35a1-4dc5-8b3a-18251879c776@foss.st.com>
+Date: Fri, 30 Aug 2024 16:07:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240825-beagleplay_fw_upgrade-v3-3-8f424a9de9f6@beagleboard.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: Describe PHY LEDs in DH STM32MP13xx
+ DHCOR DHSBC board DT
+To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC: <kernel@dh-electronics.com>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240705215402.257070-1-marex@denx.de>
+ <e38b8da5-349d-4ee2-97d4-9c46c116120c@foss.st.com>
+ <b2bb5061-01e0-4f47-877b-edccedcf1aef@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <b2bb5061-01e0-4f47-877b-edccedcf1aef@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-30_08,2024-08-30_01,2024-05-17_01
 
-Hi Ayush,
 
-kernel test robot noticed the following build errors:
 
-[auto build test ERROR on f76698bd9a8ca01d3581236082d786e9a6b72bb7]
+On 8/30/24 14:57, Marek Vasut wrote:
+> On 8/30/24 2:47 PM, Alexandre TORGUE wrote:
+>> Hi Marek
+> 
+> Hi,
+> 
+>> I have a yaml validation issue applying this patch.
+>>
+>>    DTC_CHK arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb
+>> /local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet-phy@1: Unevaluated properties are not allowed ('interrupt-parent', 'interrupts', 'reg', 'reset-assert-us', 'reset-deassert-us', 'reset-gpios' were unexpected)
+>>      from schema $id: 
+>> http://devicetree.org/schemas/net/realtek,rtl82xx.yaml#
+>> /local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet-phy@1: leds:led@0:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+>>      'netdev' is not one of ['backlight', 'default-on', 'heartbeat', 
+>> 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 
+>> 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 
+>> 'kbd-capslock', 'mtd', 'nand-disk', 'none', 'torch', 'usb-gadget', 
+>> 'usb-host', 'usbport']
+>>      'netdev' does not match '^cpu[0-9]*$'
+>>      'netdev' does not match '^hci[0-9]+-p
+>>
+>> Can you have a look please ?
+> 
+> See this commit in linux-next, with that the validation should pass:
+> 
+> 616dbed65485 ("dt-bindings: leds: Document "netdev" trigger")
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ayush-Singh/dt-bindings-net-ti-cc1352p7-Add-bootloader-backdoor-gpios/20240826-165903
-base:   f76698bd9a8ca01d3581236082d786e9a6b72bb7
-patch link:    https://lore.kernel.org/r/20240825-beagleplay_fw_upgrade-v3-3-8f424a9de9f6%40beagleboard.org
-patch subject: [PATCH v3 3/3] greybus: gb-beagleplay: Add firmware upload API
-config: sh-randconfig-001-20240830 (https://download.01.org/0day-ci/archive/20240830/202408302019.XfDrLOk7-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240830/202408302019.XfDrLOk7-lkp@intel.com/reproduce)
+Thanks Marek !!
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408302019.XfDrLOk7-lkp@intel.com/
+Applied on stm32-next.
 
-All errors (new ones prefixed by >>):
-
-   sh4-linux-ld: drivers/greybus/gb-beagleplay.o: in function `gb_beagleplay_remove':
->> gb-beagleplay.c:(.text+0xec8): undefined reference to `firmware_upload_unregister'
-   sh4-linux-ld: drivers/greybus/gb-beagleplay.o: in function `gb_beagleplay_probe':
->> gb-beagleplay.c:(.text+0x1128): undefined reference to `firmware_upload_register'
->> sh4-linux-ld: gb-beagleplay.c:(.text+0x1138): undefined reference to `firmware_upload_unregister'
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for FW_UPLOAD
-   Depends on [n]: FW_LOADER [=n]
-   Selected by [y]:
-   - GREYBUS_BEAGLEPLAY [=y] && GREYBUS [=y] && SERIAL_DEV_BUS [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Cheers
+Alex
 
