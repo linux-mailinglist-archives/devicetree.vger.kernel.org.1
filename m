@@ -1,69 +1,68 @@
-Return-Path: <devicetree+bounces-98323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB352965C3B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:01:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF940965C4F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:07:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D4561F24BBB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:01:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FD15B208C7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C76316DC34;
-	Fri, 30 Aug 2024 09:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735BA16DEBC;
+	Fri, 30 Aug 2024 09:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="kF58sBm6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a5Pm0YTM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9911537D1;
-	Fri, 30 Aug 2024 09:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A40016EBF7;
+	Fri, 30 Aug 2024 09:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725008491; cv=none; b=UlSHaoV9A5UvaV0TKuIN3G583YX3sSeW08swospLhYzMqHrXOAE7u9++blq/d5gD1BlzcFdfgzbEdqgKVvmo/uCguPlKO4obmJASROUJXykN3SOGupgnVMb0j/6YYCfA1uIEy/Dxlm2f7SqubqZ28x0fHiQ8cQCT/CsD5+sFP80=
+	t=1725008838; cv=none; b=G6wBhrZxkj7hZriG7CChDI1txrhXr4oUDCXoVHYPn1h1jMYhywEWdVYx9PZyr7JATYBuOkDUY4Z6mSimVHFg8Wq7csfe90PrOFOdKhZ4nIJixgzZne3Bi1FhONBcFzIfOWF5qVru5h5ITIs6ec2Eoe9R4Aq9dMNcYZONSIecYH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725008491; c=relaxed/simple;
-	bh=aQcccC/pwXrZ5BASCm+J8C0zEShLh8Jf8cfyHqH0B70=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Fk0emy/0X+qBce5VQA0gV9BNNTf2+/xPeDNbkHQG3DjMDzRsf2YA/vOB5YThrZstOcKvNNvC8NiwNr3WY6OCR+juCzduP0ZQNBvvY5mga+knb4WiUdPVAmfBVoW6KQUHOPizBo4AYB42/VZeBXY8/yS3jgNQCpWpwC2DmEzLe/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=kF58sBm6; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 1B3F688D74;
-	Fri, 30 Aug 2024 11:01:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1725008486;
-	bh=2tjNE1MMuJ9pQoQqSYZdXnlM2vXm9UQ78avNU8WXADE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=kF58sBm6nZBKgANBt2Uw0Ov2n6bj2GklWmGx2HALoHqiy9x+GssBQRIshlYfJ6ykB
-	 gDkkDQ240BxLOWfy04RdVFEXnhqNAOl9AD4966pbQ+cWUU4j7Ucga4R4xARG75LLZg
-	 NRtK0jbNdgmU8aIYjiqRB58QsD1pwAL03RlzSyprLG/DjjikaTee1ddVzL+FOuBlJS
-	 Uo/a0EJdwaM2pPq9hrJzz8nwDKZuXw66U6/f34GAlQj5oIx4IgJJm2BpaSD5d+DdpF
-	 KDNBD0qtSBtaf9FN8bPhdgDMJIjJmbJ+CYmmyngTOsjjYAVgD6rHjonzb8JEwlz8az
-	 i8pzl7BwdlY8A==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@denx.de>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v5] ASoC: dt-bindings: Convert mxs-saif.txt to fsl,imx28-saif.yaml (imx28 saif)
-Date: Fri, 30 Aug 2024 11:01:11 +0200
-Message-Id: <20240830090111.3591648-1-lukma@denx.de>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1725008838; c=relaxed/simple;
+	bh=+LP/DEpXztM39akidcQnrRTsjr1MGtOlXaXVL27ajAM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UOXP1v6ArUDrVUgxJ6KMf7o/ALpNxf4+Arpwbua16mxBGnQWitAqhMR5dQqHtKulTG9EF88KwnJXzTMxmktWaMlEywoZNHz9+JJfHnUiRJ0J3iWSOjRG0Gs5dZvkyM4vhUYxMdYCKcnsZdpX/fLdigaUeMVx6CjtwTZlDZLRak4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=a5Pm0YTM; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47U977ZU033834;
+	Fri, 30 Aug 2024 04:07:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725008827;
+	bh=ZMBFgcLlr1GEeDaMxYzRxEYPhkoPe7DjymWsFmll1hY=;
+	h=From:To:CC:Subject:Date;
+	b=a5Pm0YTMVmJRi2odAES/iZtpkv/jhuIsYrZHOkSTZKJooWjOmPqfe5Uw5FKD3XLSU
+	 extMKK+O2/0QC/vmQAuGUQl4g8fT6hjvBgp2jVb8Oevky5fV/HlxZaV0cwhMS9eMNZ
+	 tr59ZrLLmY7ryrc+J8hv9a85FtXOOr/If7l4OhI8=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47U977V3080372;
+	Fri, 30 Aug 2024 04:07:07 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 04:07:06 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 04:07:06 -0500
+Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.227.151])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47U973uc023126;
+	Fri, 30 Aug 2024 04:07:04 -0500
+From: Beleswar Padhi <b-padhi@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <u-kumar1@ti.com>, <p-mantena@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: dts: ti: k3-am69-sk: Update OSPI partitions offsets
+Date: Fri, 30 Aug 2024 14:37:02 +0530
+Message-ID: <20240830090702.220402-1-b-padhi@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,178 +70,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-The 'fsl,imx28-saif' compatible has already the mxs-saif.txt description.
-This patch converts (and removes it) this file to fsl,imx28-saif.yaml.
+OSPI NOR flash was partitioned with a size of 1 MB for the initial
+bootloader ("ospi.tiboot3"). On the AM69-SK board, boot failures were
+sometimes observed when the initial bootloader size exceeded 512 KB. To
+address this, the initial bootloader image has been optimized to be
+smaller than 512 KB.
 
-Changes for the mxs-saif.txt:
-- Adds 'clocks', '#clock-cells' and '#sound-dai-cells' properties
-- Provide device description
+Therefore, limit the first OSPI partition size to 512 KB and adjust the
+remaining size across the subsequent partitions.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
+Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
 ---
-Changes for v5:
-- Keep 'saif0' label
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-Changes for v4:
-- Change file name to match compatible (fsl,imx28-saif.yaml)
-- Remove 'saif0' and 'saif1' labels as those are not needed in the
-  example node
-
-Changes for v3:
-- Add #clock-cells property
-
-Changes for v2:
-- Remove mxs-saif.txt
-- Add description with information about extensions required for this
-  device's current DTS description
----
- .../bindings/sound/fsl,imx28-saif.yaml        | 82 +++++++++++++++++++
- .../devicetree/bindings/sound/mxs-saif.txt    | 41 ----------
- 2 files changed, 82 insertions(+), 41 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/mxs-saif.txt
-
-diff --git a/Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml b/Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml
-new file mode 100644
-index 000000000000..4f55288e11e2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,imx28-saif.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale MXS Serial Audio Interface (SAIF)
-+
-+maintainers:
-+  - Lukasz Majewski <lukma@denx.de>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+description:
-+  The SAIF is based on I2S module that is used to communicate with audio codecs,
-+  but only with half-duplex manner (i.e. it can either transmit or receive PCM
-+  audio).
-+
-+properties:
-+  compatible:
-+    const: fsl,imx28-saif
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rx-tx
-+
-+  "#clock-cells":
-+    description: Configure the I2S device as MCLK clock provider.
-+    const: 0
-+
-+  clocks:
-+    maxItems: 1
-+
-+  fsl,saif-master:
-+    description: Indicate that saif is a slave and its phandle points to master
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+  - interrupts
-+  - dmas
-+  - dma-names
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    saif0: saif@80042000 {
-+        compatible = "fsl,imx28-saif";
-+        reg = <0x80042000 2000>;
-+        #sound-dai-cells = <0>;
-+        interrupts = <59>;
-+        dmas = <&dma_apbx 4>;
-+        dma-names = "rx-tx";
-+        #clock-cells = <0>;
-+        clocks = <&clks 53>;
-+    };
-+    saif@80046000 {
-+        compatible = "fsl,imx28-saif";
-+        reg = <0x80046000 2000>;
-+        #sound-dai-cells = <0>;
-+        interrupts = <58>;
-+        dmas = <&dma_apbx 5>;
-+        dma-names = "rx-tx";
-+        clocks = <&clks 53>;
-+        fsl,saif-master = <&saif0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/mxs-saif.txt b/Documentation/devicetree/bindings/sound/mxs-saif.txt
-deleted file mode 100644
-index 7ba07a118e37..000000000000
---- a/Documentation/devicetree/bindings/sound/mxs-saif.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--* Freescale MXS Serial Audio Interface (SAIF)
--
--Required properties:
--- compatible: Should be "fsl,<chip>-saif"
--- reg: Should contain registers location and length
--- interrupts: Should contain ERROR interrupt number
--- dmas: DMA specifier, consisting of a phandle to DMA controller node
--  and SAIF DMA channel ID.
--  Refer to dma.txt and fsl-mxs-dma.txt for details.
--- dma-names: Must be "rx-tx".
--
--Optional properties:
--- fsl,saif-master: phandle to the master SAIF.  It's only required for
--  the slave SAIF.
--
--Note: Each SAIF controller should have an alias correctly numbered
--in "aliases" node.
--
--Example:
--
--aliases {
--	saif0 = &saif0;
--	saif1 = &saif1;
--};
--
--saif0: saif@80042000 {
--	compatible = "fsl,imx28-saif";
--	reg = <0x80042000 2000>;
--	interrupts = <59>;
--	dmas = <&dma_apbx 4>;
--	dma-names = "rx-tx";
--};
--
--saif1: saif@80046000 {
--	compatible = "fsl,imx28-saif";
--	reg = <0x80046000 2000>;
--	interrupts = <58>;
--	dmas = <&dma_apbx 5>;
--	dma-names = "rx-tx";
--	fsl,saif-master = <&saif0>;
--};
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index 1e36965a1403..641236918379 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -1241,27 +1241,27 @@ partitions {
+ 
+ 			partition@0 {
+ 				label = "ospi.tiboot3";
+-				reg = <0x0 0x100000>;
++				reg = <0x0 0x80000>;
+ 			};
+ 
+-			partition@100000 {
++			partition@80000 {
+ 				label = "ospi.tispl";
+-				reg = <0x100000 0x200000>;
++				reg = <0x80000 0x200000>;
+ 			};
+ 
+-			partition@300000 {
++			partition@280000 {
+ 				label = "ospi.u-boot";
+-				reg = <0x300000 0x400000>;
++				reg = <0x280000 0x400000>;
+ 			};
+ 
+-			partition@700000 {
++			partition@680000 {
+ 				label = "ospi.env";
+-				reg = <0x700000 0x40000>;
++				reg = <0x680000 0x40000>;
+ 			};
+ 
+-			partition@740000 {
++			partition@6c0000 {
+ 				label = "ospi.env.backup";
+-				reg = <0x740000 0x40000>;
++				reg = <0x6c0000 0x40000>;
+ 			};
+ 
+ 			partition@800000 {
 -- 
-2.39.2
+2.34.1
 
 
