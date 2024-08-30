@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-98534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB4F196670C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:36:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFAA966741
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2E70284E1F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:36:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 033D8287306
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2911B16C6B4;
-	Fri, 30 Aug 2024 16:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F85C1B5EDB;
+	Fri, 30 Aug 2024 16:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i+md4WnA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pOMb1304"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE5D13BAE2;
-	Fri, 30 Aug 2024 16:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F1C1B5313;
+	Fri, 30 Aug 2024 16:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725035761; cv=none; b=Cxw2UYNMKfvN5bZxwmv85KOxumPuf9yApu5QZUa7BOlfkOmGAegxW5J+f8gs77JJtK5rUIYjtyzmY04xxVYuqYY1E7G0VGGDXUv/BAgSiYkKppTXZUqIqwDjzeUblC+SOIZzwc013P57shYySDGzHOJQ82vI68M4BRZaQC1okOY=
+	t=1725036296; cv=none; b=Cznkj3KwN0osqlPhjz4lpkI89/9lq68MFPYTDFOYawKpoU6z/w5b9J3ZFw+oJuJmP+B0P513WTobUsUW6c8sQ2pPBJ99WBXBdnUDibMvW93AfhUMlI84CQAW48B3uBfIJH6NW/snxNOkrweKH779pj1ArZ3IypSj6MY3fZCJFpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725035761; c=relaxed/simple;
-	bh=rgX8SAslmVIKpEMoWAeWNHrbuviZUn9GPTO/3yea1tg=;
+	s=arc-20240116; t=1725036296; c=relaxed/simple;
+	bh=cAx/CkSWaWBsOEdX3c4Sy30s5GhSkh62nw8fBxVHlBI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cagYBrYXPSmtHTGGSudv4QKIdOZ+dTvX9CjtGnFiYCl0kYozgKHtDGXGeZ5CWJhb3ILVtqf7/qi1u2YjFdkIIeIl7CNaxUWmg4yQIrD6t7DpyYKa2yNQUj/GCwecact0zyR/OAssTwdTvTByrkwNAdJz3sA1QlSMuTTcoEzjpuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i+md4WnA; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=Da4MMt9Ch3XDPpndtH3DHb3ePwxwCHsI5Dn4EshuBc0GxUvhk2Aaj1MoNFV8FsrL407y5/+26bCpOiBlWsS5EE6bPQKuaU3f3RCYN/LpcyRB7ThK7uW06bZxW42+rlHS43kY/kVog+eek71+4Xnr7m085GoV09YUkGezptYnT5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pOMb1304; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
 Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UGHBPg028956;
-	Fri, 30 Aug 2024 16:35:39 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UFI2jI028797;
+	Fri, 30 Aug 2024 16:44:42 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+3jUVHCU8Z6xeBgVwpy69fXyaiHuZQoYJBZ0GepdZzw=; b=i+md4WnAbwS2YHOf
-	7otXOJtq3A8XLxV05jC4Uf0dX+cN9G0iGJ7cZ9AY4py06mUjJBIT5lCaxUSDmAvP
-	B6QnNT4qtNqwE9klx57IGUpJ6oTrepQ9lIGrnlrq7OjJZK2FvzYUZcjkTArLpO8O
-	rvVjz+gKYU0pVT74xaw2lKpd6euPtJ/ndnKl7HVUblomKQWiSJghhHo8khUd3vQ6
-	NWhsdgxb0a4mVHCgRuhGe365anQyL2aU16OFgKLCvqfRIUTvqNlNUATFmMMU15er
-	cOWle63Rptl2J2dUPz9D8LDTupXrrhPESd5sKOHmuuRv90nGTtCTV5M8P9NDUNA3
-	buySjg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41ax4mk8aa-1
+	PTXvTkGDdGSjOfgJlvddv1N2iFsBozj7rOvj7GAdUJQ=; b=pOMb1304Cbvlf3TN
+	8p83Z/mIQfgAaovKh4Z/wSAJ1KQcsjCsBu3n7jfTST58JbXbRMRtwh1ZaPUl6H55
+	aN2+BxJ2a57zT3D/pjUa/RTZ+gt5RONggAGfdkwCbp4tCvGZz7MgPjaCXLYOHXXU
+	9mvA14URxvZS5JrNbpqAkPxkGXKIDhYPDNDYSARJvu1ar1CPb8sWbXQVzGOEx2iZ
+	30hV3X1pAz2v4gFNcMgYYglQSLFC7zP0yGC7nyVjqJ0JtPvxQ2z5IJhPITYtR/vA
+	HCpdCP0+EABsyu2hTzZbThYRbgL9bGF0DfsAcx4oYNxZD501CM6CtirbKk7D1cET
+	G5y2ag==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41ax4mk8x4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 16:35:39 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47UGZcF5019043
+	Fri, 30 Aug 2024 16:44:42 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47UGifL2032621
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 16:35:38 GMT
-Received: from [10.110.11.12] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 30 Aug 2024 16:44:41 GMT
+Received: from [10.110.126.215] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 30 Aug
- 2024 09:35:35 -0700
-Message-ID: <6408bb64-4ab7-4d46-9c15-d7eddc9d4e39@quicinc.com>
-Date: Fri, 30 Aug 2024 09:35:29 -0700
+ 2024 09:44:40 -0700
+Message-ID: <9b495b92-5b6f-4a8f-8877-fef111b7259c@quicinc.com>
+Date: Fri, 30 Aug 2024 09:44:40 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,138 +65,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] Dynamic Allocation of the reserved_mem array
-To: Andy Shevchenko <andy@black.fi.intel.com>
-CC: <robh@kernel.org>, <saravanak@google.com>, <klarasmodin@gmail.com>,
-        <aisheng.dong@nxp.com>, <hch@lst.de>, <m.szyprowski@samsung.com>,
-        <robin.murphy@arm.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
-        <will@kernel.org>, <catalin.marinas@arm.com>, <kernel@quicinc.com>
-References: <20240809184814.2703050-1-quic_obabatun@quicinc.com>
- <ZsN_p9l8Pw2_X3j3@black.fi.intel.com>
+Subject: Re: [PATCH v1 1/7] dt-bindings: arm: Add support for Coresight TGU
+ trace
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        songchai
+	<quic_songchai@quicinc.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        "Mike
+ Leach" <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20240830092311.14400-1-quic_songchai@quicinc.com>
+ <20240830092311.14400-2-quic_songchai@quicinc.com>
+ <0a79b9df-4ca4-4dc8-9930-3fa1dc7d3174@kernel.org>
 Content-Language: en-US
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <ZsN_p9l8Pw2_X3j3@black.fi.intel.com>
+From: Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <0a79b9df-4ca4-4dc8-9930-3fa1dc7d3174@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
+ nasanex01a.na.qualcomm.com (10.52.223.231)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8OGfLwHxQzNOXyFcTrfSGvoGgJ59vzu8
-X-Proofpoint-ORIG-GUID: 8OGfLwHxQzNOXyFcTrfSGvoGgJ59vzu8
+X-Proofpoint-GUID: NwKB0PFUnUcS7bfCt6_Q1lyvobbJ-T_m
+X-Proofpoint-ORIG-GUID: NwKB0PFUnUcS7bfCt6_Q1lyvobbJ-T_m
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-08-30_10,2024-08-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=788
  impostorscore=0 spamscore=0 suspectscore=0 adultscore=0 priorityscore=1501
  lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0 mlxscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408300127
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408300128
+
+On 8/30/2024 3:11 AM, Krzysztof Kozlowski wrote:
+>> Add a new coresight-tgu.yaml file to describe the bindings required to
+>> define the TGU in the device trees.
+>>
+>> Signed-off-by: songchai <quic_songchai@quicinc.com>
+> It feels like you are using login name as real name. Please investigate
+> this and confirm whether latin transcription/transliteration of your
+> name is like above.
+
+It should be "Signed-off-by: Sam Chai <quic_songchai@quicinc.com>" ? 
 
 
-On 8/19/2024 10:23 AM, Andy Shevchenko wrote:
-> On Fri, Aug 09, 2024 at 11:48:12AM -0700, Oreoluwa Babatunde wrote:
->> The reserved_mem array is used to store data for the different
->> reserved memory regions defined in the DT of a device.  The array
->> stores information such as region name, node reference, start-address,
->> and size of the different reserved memory regions.
->>
->> The array is currently statically allocated with a size of
->> MAX_RESERVED_REGIONS(64). This means that any system that specifies a
->> number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
->> will not have enough space to store the information for all the regions.
->>
->> This can be fixed by making the reserved_mem array a dynamically sized
->> array which is allocated using memblock_alloc() based on the exact
->> number of reserved memory regions defined in the DT.
->>
->> On architectures such as arm64, memblock allocated memory is not
->> writable until after the page tables have been setup.
->> This is an issue because the current implementation initializes the
->> reserved memory regions and stores their information in the array before
->> the page tables are setup. Hence, dynamically allocating the
->> reserved_mem array and attempting to write information to it at this
->> point will fail.
->>
->> Therefore, the allocation of the reserved_mem array will need to be done
->> after the page tables have been setup, which means that the reserved
->> memory regions will also need to wait until after the page tables have
->> been setup to be stored in the array.
->>
->> When processing the reserved memory regions defined in the DT, these
->> regions are marked as reserved by calling memblock_reserve(base, size).
->> Where:  base = base address of the reserved region.
->> 	size = the size of the reserved memory region.
->>
->> Depending on if that region is defined using the "no-map" property,
->> memblock_mark_nomap(base, size) is also called.
->>
->> The "no-map" property is used to indicate to the operating system that a
->> mapping of the specified region must NOT be created. This also means
->> that no access (including speculative accesses) is allowed on this
->> region of memory except when it is coming from the device driver that
->> this region of memory is being reserved for.[1]
->>
->> Therefore, it is important to call memblock_reserve() and
->> memblock_mark_nomap() on all the reserved memory regions before the
->> system sets up the page tables so that the system does not unknowingly
->> include any of the no-map reserved memory regions in the memory map.
->>
->> There are two ways to define how/where a reserved memory region is
->> placed in memory:
->> i) Statically-placed reserved memory regions
->> i.e. regions defined with a set start address and size using the
->>      "reg" property in the DT.
->> ii) Dynamically-placed reserved memory regions.
->> i.e. regions defined by specifying a range of addresses where they can
->>      be placed in memory using the "alloc_ranges" and "size" properties
->>      in the DT.
->>
->> The dynamically-placed reserved memory regions get assigned a start
->> address only at runtime. And this needs to  be done before the page
->> tables are setup so that memblock_reserve() and memblock_mark_nomap()
->> can be called on the allocated region as explained above.
->> Since the dynamically allocated reserved_mem array can only be
->> available after the page tables have been setup, the information for
->> the dynamically-placed reserved memory regions needs to be stored
->> somewhere temporarily until the reserved_mem array is available.
->>
->> Therefore, this series makes use of a temporary static array to store
->> the information of the dynamically-placed reserved memory regions until
->> the reserved_mem array is allocated.
->> Once the reserved_mem array is available, the information is copied over
->> from the temporary array into the reserved_mem array, and the memory for
->> the temporary array is freed back to the system.
->>
->> The information for the statically-placed reserved memory regions does
->> not need to be stored in a temporary array because their starting
->> address is already stored in the devicetree.
->> Once the reserved_mem array is allocated, the information for the
->> statically-placed reserved memory regions is added to the array.
->>
->> Note:
->> Because of the use of a temporary array to store the information of the
->> dynamically-placed reserved memory regions, there still exists a
->> limitation of 64 for this particular kind of reserved memory regions.
->> >From my observation, these regions are typically small in number and
->> hence I expect this to not be an issue for now.
->
-> This series (in particular the first patch) broke boot on Intel Meteor
-> Lake-P. Taking Linux next of 20240819 with these being reverted makes
-> things work again.
->
-> Taking into account bisectability issue (that's how I noticed the issue
-> in the first place) I think it would be nice to have no such patches at
-> all in the respective subsystem tree. On my side I may help with testing
-> whatever solution or next version provides.
-Hi Andy,
+-- 
+---Trilok Soni
 
-I have re-uploaded another version of my patches.
-Please can you help test it on your platform to confirm
-that the issue is no longer present?
-https://lore.kernel.org/all/20240830162857.2821502-1-quic_obabatun@quicinc.com/
-
-Thank you!
-Oreoluwa
 
