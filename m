@@ -1,119 +1,159 @@
-Return-Path: <devicetree+bounces-98493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E85F7966511
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:13:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F66966512
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55C35B21ED5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:13:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82D181C213EB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D951B3B1C;
-	Fri, 30 Aug 2024 15:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F150A136E3B;
+	Fri, 30 Aug 2024 15:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="X79uT/JW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Je/UMUO3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CD21B3B20;
-	Fri, 30 Aug 2024 15:13:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755414D8AD;
+	Fri, 30 Aug 2024 15:16:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725030809; cv=none; b=VgEa6L8NAcFw+9uSY3sbqXQlAn5PUH56zT0G1afBTZBuNIcDFEAU5zvbHxwA3SrLo5brwG05bTX3CKwh+UgrLqTqswSvtWZE5eFxKXcbolJVjobZPGyicicygXL++lLlQOhh6DNTthzWwtQ/QiWVD1jG3VVexcyjuF1QAAfbmKc=
+	t=1725030967; cv=none; b=GssqGcEwLIEMkUWtNJcnR9feFGPAq26eD+CUdz0Yb0fp9n1XMZZM6GpzkszQrdYMgwiTQaEmUi637WPhrtB0pFnnvbkGaYgwjKAz04iDU9/c6ExLmfw1orOeWX6nD6biQiJg3jSSgZC4aXM0loxrUBRTV8K/XWexaA6HDOf7KV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725030809; c=relaxed/simple;
-	bh=XN6UamdVy5YZ7poGi5VH5lYzP21Tv4XcrJEiiDjeTd4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dddlgzzl1A60qwA0V4mo/lrlGnZUWs0G4pwpU3oKFDZoukVHa/djLGuKQmhTxJFS4wuan7EWVsHoBcXzTvCaOkwLzqXNFe00NHTFmFu5O00oVIJn4JmE1W3bcntd0lrGp2VHupkePnBBNXKYatAo2huv2mH0Cl5l8Z2Oit9vlnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=X79uT/JW; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=mKoAUCPLIx2u8bDuKHDW2AwZSGh12y/DJxrGx1xVQAs=; b=X79uT/JWFVwscl4U2i8M02fhoP
-	kD3xNG8y1qE0GGmzAvTBZepPRr8LTp2O8vaC5ebYelXYmImEXCSoDzhqyC3e1rcrUZVON8gVYMcYq
-	OGajtNQ7E0qM1dJJxLWQSARZ528qEu/IupAKSC5d4lmEOhMrGZfhDxwYRhNAt45GWHyebuAcaXexC
-	MQHwrlxWafQYd0Szhsuv9UNczv8ud539gs4rkBtfQ9pMcEi0uG8eHkvlg4ob+WllA2acKrvpPMZY2
-	ZFbLh8L83boy2B+9urT+fIWN1hUYU4AXaFPlucJ66N8GdK+GQM5TpXtphWeC+IkO1WJgXpIqSpFDh
-	EdYTC1ZQ==;
-Received: from i5e861921.versanet.de ([94.134.25.33] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sk3JG-0004MP-Iy; Fri, 30 Aug 2024 17:13:10 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	linux-clk@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	andy.yan@rock-chips.com,
-	Michal Tomek <mtdev79b@gmail.com>,
-	huangtao@rock-chips.com,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	linux-rockchip@lists.infradead.org,
-	Chad LeClair <leclair@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	kernel@collabora.com,
-	Ilya K <me@0upti.me>
-Subject: Re: (subset) [PATCH v9 0/7] rockchip: clk: add GATE_LINK support
-Date: Fri, 30 Aug 2024 17:13:05 +0200
-Message-ID: <172503062006.1956268.2661371879547817382.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240325193609.237182-1-sebastian.reichel@collabora.com>
-References: <20240325193609.237182-1-sebastian.reichel@collabora.com>
+	s=arc-20240116; t=1725030967; c=relaxed/simple;
+	bh=sJRMMNi5vddokhNOECAwcIr8R9HGz84PzxRZsYhODqQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oRs3Z3RtTPwGGecpV9ZuWldtpsHNqFkEJ3Eem7eS7USdPFuomQjkhqRwvI73mdDwi4T8wkK3gRYQ9cUkiLdPF1yRYR8yNDwcB8OV2FPjxZdK3se3GrgqZEU8rNvjew7XINm4qqbHHXwsD5/8fKwNIKmYAaLyYxc4SSgxzKxlw6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Je/UMUO3; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UFFugT041417;
+	Fri, 30 Aug 2024 10:15:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725030956;
+	bh=V9lc16nTRv8sWHDVPTyvMu8NZ45iDDhmXlHbYEPXSUQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Je/UMUO3qpV4rw1fGNnP/hDRKOPkWVW+iok5ICLfqx4muKkP3GkrTEkU9nUrs6/Nl
+	 HENMGOL9cI5O0cKQ4ps4kH3/ZX+Ed3UqwcYTacdbSO+DzG7mcBQ74e5RSHaVHaVst0
+	 q8pqD4eXempFqX03rIesFVFfgAylFyxnyVDJ/Xc4=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UFFuda030671;
+	Fri, 30 Aug 2024 10:15:56 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 10:15:56 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 10:15:56 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UFFqW1041782;
+	Fri, 30 Aug 2024 10:15:53 -0500
+Message-ID: <bf111978-a70e-45d4-b36a-4f0126ebad54@ti.com>
+Date: Fri, 30 Aug 2024 20:45:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-
-On Mon, 25 Mar 2024 20:33:31 +0100, Sebastian Reichel wrote:
-> This implements proper GATE_LINK support following the suggestion from Stephen
-> Boyd to use clk PM operations by creating MFD dynamically. This required some
-> restructuring, since CLK_OF_DECLARE() is called before devices are available.
-> 
-> Apart from improved power consumption, this fixes the runtime errors from the
-> pmdomain driver (failed to set idle on domain '%s').
-> 
-> [...]
-
-Applied, thanks!
-
-[1/7] clk: rockchip: rk3588: drop unused code
-      commit: 2e7b3daa8cb1ebd17e6a7f417ef5e6553203035c
-
-@Detlev: I think the rk3576 driver I added days ago, might also want
-that change? Can you take a look please?
-[I don't have rk3576 hardware, so can't check myself ;-) ]
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Update OSPI partitions
+ offsets
+To: Nishanth Menon <nm@ti.com>, Beleswar Padhi <b-padhi@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p-mantena@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
+References: <20240830090702.220402-1-b-padhi@ti.com>
+ <20240830092234.veog3e22te7qi3ao@dugout>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240830092234.veog3e22te7qi3ao@dugout>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
-[5/7] clk: rockchip: fix error for unknown clocks
-      commit: 12fd64babaca4dc09d072f63eda76ba44119816a
+On 8/30/2024 2:52 PM, Nishanth Menon wrote:
+> On 14:37-20240830, Beleswar Padhi wrote:
+>> OSPI NOR flash was partitioned with a size of 1 MB for the initial
+>> bootloader ("ospi.tiboot3"). On the AM69-SK board, boot failures were
+>> sometimes observed when the initial bootloader size exceeded 512 KB. To
+> Why does the boot fail when > 512MB?
+>
+>> address this, the initial bootloader image has been optimized to be
+>> smaller than 512 KB.
+>>
+>> Therefore, limit the first OSPI partition size to 512 KB and adjust the
+>> remaining size across the subsequent partitions.
+> I am NOT a fan of redoing flash partition organization of platforms that
+> are already in production - all kinds of ecosystem messes happen as a
+> result. Alternatively - give the 512K to u-boot tispl partition and
+> leave all others as is - this will at least allow people's current env
+> to be retained.
 
-I've added a fixes that to that, looks like overlooked that issue
-way back in 2014 ... pure nostalgia.
 
+If preference to keep same partitions, which are defined once. Then 
+let's align u-boot with this.
 
-Anyway, rest of the series hopefully later today.
+Thanks to refactor in u-boot , now AM69 and J784S4 can stay at different 
+config.
 
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+>
+>> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 18 +++++++++---------
+>>   1 file changed, 9 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> index 1e36965a1403..641236918379 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> @@ -1241,27 +1241,27 @@ partitions {
+>>   
+>>   			partition@0 {
+>>   				label = "ospi.tiboot3";
+>> -				reg = <0x0 0x100000>;
+>> +				reg = <0x0 0x80000>;
+>>   			};
+>>   
+>> -			partition@100000 {
+>> +			partition@80000 {
+>>   				label = "ospi.tispl";
+>> -				reg = <0x100000 0x200000>;
+>> +				reg = <0x80000 0x200000>;
+>>   			};
+>>   
+>> -			partition@300000 {
+>> +			partition@280000 {
+>>   				label = "ospi.u-boot";
+>> -				reg = <0x300000 0x400000>;
+>> +				reg = <0x280000 0x400000>;
+>>   			};
+>>   
+>> -			partition@700000 {
+>> +			partition@680000 {
+>>   				label = "ospi.env";
+>> -				reg = <0x700000 0x40000>;
+>> +				reg = <0x680000 0x40000>;
+>>   			};
+>>   
+>> -			partition@740000 {
+>> +			partition@6c0000 {
+>>   				label = "ospi.env.backup";
+>> -				reg = <0x740000 0x40000>;
+>> +				reg = <0x6c0000 0x40000>;
+>>   			};
+>>   
+>>   			partition@800000 {
+>> -- 
+>> 2.34.1
+>>
 
