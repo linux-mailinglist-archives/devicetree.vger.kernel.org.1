@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-98503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050FD96656E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F7D966570
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1304E1C225BB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:29:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 126311C22EA3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7F921B532E;
-	Fri, 30 Aug 2024 15:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39211B581C;
+	Fri, 30 Aug 2024 15:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j+HkSAZj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N9/TC42j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACC3192D98;
-	Fri, 30 Aug 2024 15:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D1E192D98;
+	Fri, 30 Aug 2024 15:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725031752; cv=none; b=e/F5lS97fZ2TY6AxgYIZpqlc2IS7mEJxixw5zlUjWnHPptvOpmBI0amSuqufg7eEDf5+Xu1YYC6DubPSVDmVmaZUE7/dbmV2z9CNUZDSTck8xH2hpEpOZgzx2oJOGN8plAmUTJCcvD5wZO2GCcpWplKDDx881rUsSX7edQcvN80=
+	t=1725031765; cv=none; b=P2phJtgU80YOws0bvrWpCS1UY4UMgGHRsHLRgx02azUB0QH56gegMQXamU4bdHt7N6r7Kmd+B2F0EN+CgpY+hIUVE+41wwZ4OdWDDMLDuaYw44OiGmtuPnnZHlYXIXmcMLkq0A38UGemI5xLpQM5BnuFjf3g6P93r5tvWIJ+9QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725031752; c=relaxed/simple;
-	bh=UBHir9e9aoYiOymDC7F6H7OVKv7SZxZYlgAHmp1TAI4=;
+	s=arc-20240116; t=1725031765; c=relaxed/simple;
+	bh=p/WRyqZpeSIZmXbneiNcA85BgVx6dYrJbxl49Qtah/A=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EnTfsETEv2TF/LB5e9okNNVndOWuV6PXI7orSIFIPgssShzA/7DLI1GRm2ChNyg1EDKsi+pWVNTnV4x/Np7oeGSjUG6jBfcH3t9dMadSHkXI1hwbJPyCeLwpHCxWffAUlTx5x2AQr7oLUIZN9Z9IsHGUfeJHSt57b4qNWNpmsjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j+HkSAZj; arc=none smtp.client-ip=209.85.166.50
+	 MIME-Version; b=CrcvJibc6/0J8DfkBReM8Kjep/wJPGRoXM/hljMZObiVCMVA6AqtI6Bz8rMOxVy/4UQQPuq+DpVnOtKBdsE/DdMy+VXn5nsJlc8G6Rpw2SeYxg9kCEVsttPEeECnFaVtS/SuDlsiXnJ1FdmMcJKiV58T+FzOf30/nnOlbrULzpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N9/TC42j; arc=none smtp.client-ip=209.85.166.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-829e856a14eso91473639f.2;
-        Fri, 30 Aug 2024 08:29:10 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-82a3096ae9aso19715639f.0;
+        Fri, 30 Aug 2024 08:29:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725031750; x=1725636550; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1725031763; x=1725636563; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Yb3wjHwKHyyErGOdPoNDwcSg6+46HG6ew+HhAf+N6s0=;
-        b=j+HkSAZj1BG2cUiNA//eMlEDQjJAiQdl92wfUTwo4LKAF7fG7XOvUsL4gKQJra53Je
-         cJ0szEWjKzAYEvY1/xUS1++vXO2U5SUhnUQEB1HLm8zFgPW1nc8CNOjnzmvKlgZapdDu
-         /G4fv+WtXXoiISvraTH2gMFNCkhsHGfETu4Z4Xs6qLLeFvsaKnkfeTioD8swIZVB99BM
-         A3uZ7jIiAbwo2AmFD1w/jrwnXln01yJ0ROivxzGHKS6CtB1tycSJuvmyCF8K4TCbdD4w
-         HS12yBtK07tY4p27s8vmZzcie+QXsoS9DvSLzlXTrWn/18y6ld1h2HpxuL6rZZ4pxYxB
-         WQwA==
+        bh=cTbfsd8NvXwzdBfTnE3JqlL7neYrWLzy9hOrmppNIdI=;
+        b=N9/TC42jIPg141nHGTQIvVysDFXpWjrKXE5wbT7/iMKU+IN7uunhX3UnZb/BBfve4d
+         cHhvDAtHzwujbev/fnBhUqy167P8dvpswfQfAlGuzaKQwBEQCYh18fMvaDFHUMqrsGP6
+         qDyUqiq4gpVX8g13K0L9lWSbThE/5VXrCWPQJYsrA1JRTuv3oQg+/tsHrvpvKxh05eGc
+         do1PBLhgNenOMlb8Ihkui5ucxV/4izWq2Mdc9RJIsCo7JkdNIVxaJW3Evk0SwEjdNqOX
+         7+Y9s1kDnYd8uWU4vJqEOs0kkXWUai12yKHDQMeMeaeGH5ypD3qSLHf4q0HxS2YOKS6J
+         VNlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725031750; x=1725636550;
+        d=1e100.net; s=20230601; t=1725031763; x=1725636563;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Yb3wjHwKHyyErGOdPoNDwcSg6+46HG6ew+HhAf+N6s0=;
-        b=AkpGIWEnaNXfUWuGrS7/AjFic1ycmPrQPyUn8ABYNjr4HGmcyvdi7ZjeNAKdFLg/LQ
-         P4uWPguMjFEUyPLXTAPAUe/QJ7BR2XoxQecwYuzXwCbUnNQ7PPujBuTtgvdqhSTvkASZ
-         5XhSfNYZQmPGoPRjsNBiomPiheANVYGj2uYr3xz2FV1nm6t2qqGy+u/3mRw3OLwkEL3C
-         KlkXBwALAyV58G8ELXFNtQl6Md2TOYZXZk+e7Kk8g2w7eMrP8vHRwGKAAerFhtNOXMPM
-         KpzRGsYCvO2v+ok0dqaC9dDlMkm28lnPveCRwcImOtA5RIljg4s/gejL1Ue3s7VUcdDi
-         JuRg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ9FYSf+ww8gy5dL1CW7OB7tgc08k6g5FnEZxEnDn8UfVOsPknfP/eB/0Y0my8oyMRMaCkhr0USQKzcGNE@vger.kernel.org, AJvYcCVrPvgTT5H8R32uTaXcxG17g6/huTUG080a5u8/0ga4/5ze3Nz/XhE+nvWKZU+OcGQlr73flC8RaFcs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmwwV3R86ohBGgbq39uWRqUhEs9ymemuVYSy0YI0QYv2LLgV5M
-	Rc0NbhwHHg5ob1L6bmcqJLf6gX3dUt1Nlop+p/JNV50l9CAsKWKW
-X-Google-Smtp-Source: AGHT+IEz3mBaOKwLFj/ZjEG+4BFbjz/K3mBFBjE2qjFqGXqza5qxYjxCZaoYDNjR8MMS6ENuF16KGA==
-X-Received: by 2002:a05:6602:2d8e:b0:825:2c2c:bd8f with SMTP id ca18e2360f4ac-82a11094862mr827663739f.14.1725031750178;
-        Fri, 30 Aug 2024 08:29:10 -0700 (PDT)
+        bh=cTbfsd8NvXwzdBfTnE3JqlL7neYrWLzy9hOrmppNIdI=;
+        b=BcGClKBLspp6QlUr+QxoQ9LCyPeuWSS2fT2mjrHbszHjNyav1lQZqM7JrGkap/5b9w
+         oA6Wn6JAC5L2866FiTTF7s8ut3qeB6Lfsf9UFu6zFuNSDMIaLkopVBvN0pOMcm4jL+qc
+         mzUAF/rez3owsYJReMF9w97WTxO7XT/T0xRN53ZCPtDJJeAVrakUUaHqW7+TfeeRn1Or
+         360frkFdGicJ7F60QIYJNyG6CSlakNVe1eiygNV8gLSsFoH2p2vfvIrThXkVx+t8ue7K
+         uU7AF0xzbXJytOdY5r5sWGBVM7cFopqIoaryg7S677z5drvxpY1T+PEFgPsmWY30Xb1J
+         Gcww==
+X-Forwarded-Encrypted: i=1; AJvYcCVWhGsfaVp29x0b42fDADSmz6/3UrRITiG6tp17QP5Ktxzb9bi+GKMQ3OxR/yfV8gb0Mmv+6JfJmvqs9NNm@vger.kernel.org, AJvYcCWyGWiOH1qC2T2CRjbfbRTeTr/A1tZ4tpS61OzLMeT6XW9TXRzL9zi/omBCE680X8aqEYaW6HHtMP9F@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOEfQmKAeJrBmVbHJ0pq/TRR6PHkXajw9xtQx442twtywoYdyx
+	k1xTryS7VkD5fy/8WKFxBDA9UJ72NHe6Fk6gjbWmmjmtRZVmlRIE
+X-Google-Smtp-Source: AGHT+IEXGRlQ5gn33om3VWyG+YHGotjBlsNvFVFeEDYCIhlYkI3wne4qPmIsXyn/6trLmn+Wp0F5NA==
+X-Received: by 2002:a05:6602:160c:b0:82a:2385:74a6 with SMTP id ca18e2360f4ac-82a238575c7mr412786839f.5.1725031763161;
+        Fri, 30 Aug 2024 08:29:23 -0700 (PDT)
 Received: from localhost.localdomain (174-20-195-90.mpls.qwest.net. [174.20.195.90])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-82a1a2f081csm92197439f.10.2024.08.30.08.29.04
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ced2eaa1e7sm778553173.132.2024.08.30.08.29.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 08:29:09 -0700 (PDT)
+        Fri, 30 Aug 2024 08:29:22 -0700 (PDT)
 From: Shimrra Shai <shimrrashai@gmail.com>
 To: shimrrashai@gmail.com
 Cc: Laurent.pinchart@ideasonboard.com,
@@ -97,9 +97,9 @@ Cc: Laurent.pinchart@ideasonboard.com,
 	robh@kernel.org,
 	s.hauer@pengutronix.de,
 	tzimmermann@suse.de
-Subject: [PATCH v5? 5/6] dt-bindings: display: rockchip: Add schema for RK3588 DW HDMI QP TX machine
-Date: Fri, 30 Aug 2024 10:28:56 -0500
-Message-ID: <20240830152856.9079-1-shimrrashai@gmail.com>
+Subject: [PATCH v5? 6/6] dts: rockchip: add HDMI0 entry for RK3588 and change VO0/1 GRF compatibles
+Date: Fri, 30 Aug 2024 10:29:12 -0500
+Message-ID: <20240830152912.9092-1-shimrrashai@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240830152132.8894-1-shimrrashai@gmail.com>
 References: <20240830152132.8894-1-shimrrashai@gmail.com>
@@ -111,181 +111,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-new file mode 100644
-index 000000000..e71544ced
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-@@ -0,0 +1,171 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index b6e4df180..76cb0f7f7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -582,13 +582,13 @@ vop_grf: syscon@fd5a4000 {
+ 	};
+
+ 	vo0_grf: syscon@fd5a6000 {
+-		compatible = "rockchip,rk3588-vo-grf", "syscon";
++		compatible = "rockchip,rk3588-vo0-grf", "syscon";
+ 		reg = <0x0 0xfd5a6000 0x0 0x2000>;
+ 		clocks = <&cru PCLK_VO0GRF>;
+ 	};
+
+ 	vo1_grf: syscon@fd5a8000 {
+-		compatible = "rockchip,rk3588-vo-grf", "syscon";
++		compatible = "rockchip,rk3588-vo1-grf", "syscon";
+ 		reg = <0x0 0xfd5a8000 0x0 0x100>;
+ 		clocks = <&cru PCLK_VO1GRF>;
+ 	};
+@@ -1254,6 +1254,46 @@ i2s9_8ch: i2s@fddfc000 {
+ 		status = "disabled";
+ 	};
+
++	hdmi0: hdmi@fde80000 {
++		compatible = "rockchip,rk3588-dw-hdmi-qp";
++		reg = <0x0 0xfde80000 0x0 0x20000>;
++		clocks = <&cru PCLK_HDMITX0>,
++			 <&cru CLK_HDMITX0_EARC>,
++			 <&cru CLK_HDMITX0_REF>,
++			 <&cru MCLK_I2S5_8CH_TX>,
++			 <&cru CLK_HDMIHDP0>,
++			 <&cru HCLK_VO1>;
++		clock-names = "pclk", "earc", "ref", "aud", "hdp", "hclk_vo1";
++		interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "avp", "cec", "earc", "main", "hpd";
++		phys = <&hdptxphy_hdmi0>;
++		phy-names = "hdmi";
++		power-domains = <&power RK3588_PD_VO1>;
++		resets = <&cru SRST_HDMITX0_REF>, <&cru SRST_HDMIHDP0>;
++		reset-names = "ref", "hdp";
++		rockchip,grf = <&sys_grf>;
++		rockchip,vo1-grf = <&vo1_grf>;
++		#sound-dai-cells = <0>;
++		status = "disabled";
 +
-+title: Rockchip DW HDMI QP TX Encoder
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+maintainers:
-+  - Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-+  - Shimrra Shai <shimrrashai@gmail.com>
++			hdmi0_in: port@0 {
++				reg = <0>;
++			};
 +
-+description:
-+  The Rockchip RK3588 SoC integrates the Synopsys DesignWare HDMI QP TX
-+  controller IP and an HDMI/eDP TX Combo PHY based on a Samsung IP block.
++			hdmi0_out: port@1 {
++				reg = <1>;
++			};
++		};
++	};
 +
-+allOf:
-+  - $ref: /schemas/display/bridge/synopsys,dw-hdmi-qp.yaml#
-+  - $ref: /schemas/sound/dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3588-dw-hdmi-qp
-+
-+  clocks:
-+    minItems: 4
-+    items:
-+      - description: Peripheral/APB bus clock
-+      - description: EARC RX biphase clock
-+      - description: Reference clock
-+      - description: Audio interface clock
-+      # The next clocks are optional, but shall be specified in this
-+      # order when present.
-+      - description: TMDS/FRL link clock
-+      - description: Video datapath clock
-+
-+  clock-names:
-+    minItems: 4
-+    items:
-+      - const: pclk
-+      - const: earc
-+      - const: ref
-+      - const: aud
-+      - enum: [hdp, hclk_vo1]
-+      - const: hclk_vo1
-+
-+  interrupts:
-+    items:
-+      - description: AVP Unit interrupt
-+      - description: CEC interrupt
-+      - description: eARC RX interrupt
-+      - description: Main Unit interrupt
-+      - description: HPD interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: avp
-+      - const: cec
-+      - const: earc
-+      - const: main
-+      - const: hpd
-+
-+  phys:
-+    maxItems: 1
-+    description: The HDMI/eDP PHY.
-+
-+  phy-names:
-+    const: hdmi
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    minItems: 2
-+    maxItems: 2
-+
-+  reset-names:
-+    items:
-+      - const: ref
-+      - const: hdp
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  rockchip,grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Most HDMI QP related data is accessed through SYS GRF regs.
-+
-+  rockchip,vo1-grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Additional HDMI QP related data is accessed through VO1 GRF regs.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - interrupt-names
-+  - phys
-+  - phy-names
-+  - ports
-+  - resets
-+  - reset-names
-+  - rockchip,grf
-+  - rockchip,vo1-grf
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/rk3588-power.h>
-+    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      hdmi@fde80000 {
-+        compatible = "rockchip,rk3588-dw-hdmi-qp";
-+        reg = <0x0 0xfde80000 0x0 0x20000>;
-+        clocks = <&cru PCLK_HDMITX0>,
-+                 <&cru CLK_HDMITX0_EARC>,
-+                 <&cru CLK_HDMITX0_REF>,
-+                 <&cru MCLK_I2S5_8CH_TX>,
-+                 <&cru CLK_HDMIHDP0>,
-+                 <&cru HCLK_VO1>;
-+        clock-names = "pclk", "earc", "ref", "aud", "hdp", "hclk_vo1";
-+        interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH 0>;
-+        interrupt-names = "avp", "cec", "earc", "main", "hpd";
-+        phys = <&hdptxphy_hdmi0>;
-+        phy-names = "hdmi";
-+        power-domains = <&power RK3588_PD_VO1>;
-+        resets = <&cru SRST_HDMITX0_REF>, <&cru SRST_HDMIHDP0>;
-+        reset-names = "ref", "hdp";
-+        rockchip,grf = <&sys_grf>;
-+        rockchip,vo1-grf = <&vo1_grf>;
-+        #sound-dai-cells = <0>;
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@0 {
-+            reg = <0>;
-+
-+            hdmi0_in_vp0: endpoint {
-+                remote-endpoint = <&vp0_out_hdmi0>;
-+            };
-+          };
-+
-+          port@1 {
-+            reg = <1>;
-+
-+            hdmi0_out_con0: endpoint {
-+                remote-endpoint = <&hdmi_con0_in>;
-+            };
-+          };
-+        };
-+      };
-+    };
+ 	qos_gpu_m0: qos@fdf35000 {
+ 		compatible = "rockchip,rk3588-qos", "syscon";
+ 		reg = <0x0 0xfdf35000 0x0 0x20>;
 
