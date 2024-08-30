@@ -1,146 +1,276 @@
-Return-Path: <devicetree+bounces-98316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71CE9965B68
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:47:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66769965B9D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:47:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AF122834DA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:47:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A255FB21487
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:47:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13DCE177981;
-	Fri, 30 Aug 2024 08:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9252116DED8;
+	Fri, 30 Aug 2024 08:47:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Sh4uZATs"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="JQ47eqoU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2043.outbound.protection.outlook.com [40.107.94.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9609717624C
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:46:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725007570; cv=none; b=gJEkAnvO0AaYjCN6Ndpgz81utfVkptWQv52a+nx2SwKRAYs8c/Zw5W73cRhte3bTXjoVMJVI2zqL5A4ez/trCr/eMWQf48GOYZLtfjZ2aSxo2hoKUiZPATSOcUnEm14IJxrsSCxZIS85ysLOsFxkLafAcpsA6kqMuvOtU/Ucpyo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725007570; c=relaxed/simple;
-	bh=DMAcAD39Rf1n68oqND0JwpSAkm1di0q32zBsrM5swsc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ubat1PFQjBmfoexUdUrLDWVbxtmVYORjVbQbKfmZrUR1Wp1XsB3A0V7gLMB6yha5JS1/u6Y7bDBdAiBIhMRg5g23OUX8rBLFjKrovCJLFQhm0itr9retTRNphwoqqUaiUAy9V6uTTWhSaHLuGP/QSqp5490jmZCNe+J8jgmuL7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Sh4uZATs; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-714226888dfso1300026b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:46:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1725007568; x=1725612368; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c0MSD/vKECgZ6ipsqTjNJm7AvSs0y8L2jz9lADbJGXw=;
-        b=Sh4uZATs1LWBusDOq3XedlwuHEcVGha21TYrDvO9sJYY9mZsAVQXhrBx3CQKWCNfmW
-         /1UiBObUuSpwaHQZ+PlxVTiO8idY2l/firsYac7T0D/OtGxI9kKw9z1JXwQLGrVm8NAz
-         27XthFch4ZAF47HPmAvm3SE8CHTTlJxTTjkQs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725007568; x=1725612368;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c0MSD/vKECgZ6ipsqTjNJm7AvSs0y8L2jz9lADbJGXw=;
-        b=H4frfzdZ/bSkbzLyNR8PS+PbcQ7JxcMKkCGmxjCABcFPNm8J6v7iUnh2DOdz0p4dfA
-         l0oXanlo0kfnn66TJhv8yMRYExxRQLxBaLGbQHgcH5IqXqc6QuwoXo9kVJb97f9y1O6N
-         sgxzzC9FXAGSzoLfFtObrHj6Bl9nExOeM7tGCua/kXfdSMIquGCOYjA2e56YuzaqsnEL
-         GIs1ja/KBeqfw+uL1WE4O52MlMzDAO9w/Etm1o7Zswq82kQI/Xk49uO7UukkN00gOhNI
-         V7BqfZRwEIenx3x6ob6F0sbgBn8nkluJl8+R+NmOS39d0C1XNA87I4Agcl+1+2IMedlX
-         D/vg==
-X-Forwarded-Encrypted: i=1; AJvYcCX7dvLZyY62xqeE3n1VmmJ4eYJoZectzfUr7XYywkU/LpIo1uysz0jLCauaQ5Cmzs0N5Lm33njY6C3O@vger.kernel.org
-X-Gm-Message-State: AOJu0YyW3FJotx6I82tY4uF23pOWBqn0xbeYCCdIbiWKi+XoEm6czQi0
-	mFa1hKkHpUxizLWaY2h4Ov+BUJ1AB80EqaKRPIITxshLENNRx/r5oIPic6BUuA==
-X-Google-Smtp-Source: AGHT+IF/Ev+xp5G1M+ToeusxjN0ThDIfMD72jH6J5Y7yXu9dlnTUI7Td1DwM8MVKcLVb5RSdY4uPIQ==
-X-Received: by 2002:a05:6a20:4386:b0:1c4:214c:cc0d with SMTP id adf61e73a8af0-1cce10ab1ccmr4853891637.36.1725007567866;
-        Fri, 30 Aug 2024 01:46:07 -0700 (PDT)
-Received: from localhost (117.196.142.34.bc.googleusercontent.com. [34.142.196.117])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-715e55a3a7bsm2288304b3a.47.2024.08.30.01.46.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Aug 2024 01:46:07 -0700 (PDT)
-From: Rohit Agarwal <rohiagar@chromium.org>
-To: chunkuang.hu@kernel.org,
-	p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ck.hu@mediatek.com,
-	jitao.shi@mediatek.com
-Cc: dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Rohit Agarwal <rohiagar@chromium.org>
-Subject: [PATCH v4 3/3] arm64: dts: mediatek: mt8186: Add svs node
-Date: Fri, 30 Aug 2024 08:45:44 +0000
-Message-ID: <20240830084544.2898512-4-rohiagar@chromium.org>
-X-Mailer: git-send-email 2.46.0.469.g59c65b2a67-goog
-In-Reply-To: <20240830084544.2898512-1-rohiagar@chromium.org>
-References: <20240830084544.2898512-1-rohiagar@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDC216DC3C;
+	Fri, 30 Aug 2024 08:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725007630; cv=fail; b=ml5ZQyqF2flfTk02QXzDXlfRSv+au8OPkAzJl5zrJjRaVR+EqDC1ERa7ZV9nfezlEAKeBjG+4fPm/A1dYC4sDorE5nVqudupZoFHln7xjSq8rajIfvrHmOnj6CblZnIcjnurfDmUSQwvgOfNUDk/WwvfmFTt4kFLeeGhvsLs6lc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725007630; c=relaxed/simple;
+	bh=85u+UDOrWI/OQDqnfIzLaXaUjlODAeK8AnOO19rqSa8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=tNtTIPncZjTdxAubLR5gdDiCuVxRZhZOsKr0CiEfQwlFFR6rx4W4bPuwIY/GuzVj8jEmzt4soqgXa24gXPipesYghUw7l61/nh0XsumXge/+o7Xa7iVVZ3SqtU9ZObsRSmiojKq6qZSD8cb6lWUm5i/K1S5JnnaGOkbE3C0h1rM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=JQ47eqoU; arc=fail smtp.client-ip=40.107.94.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MVLc+EaSOYt25sIstwl/pcr+rtoJukvPyR3oSAoJD704FFzpfgbI6BMUMVNMd0ngNZIrWQBkMvpSZBtXuWfdhPwbg2alfsX3RYMIy+KYsmEnkIOIfUd0jG3FIMdauazKFoBComfItLNGUCgFJcaDQkLNXnVlcLQHyvDBemlmck4FECmJZS8OR/7mEEDQI0hbmBAfGISESWvlYRC9AFXNUEmsX8zB2tCyBNoNy8Fvf0dwCdLV2rXDxWFdrIWV3cg2Mi4IO40aIo6FTPV1iWlW6eYa1sY0dbW/rIDbvrppnePotEsRhjmcYwXSzsLNTJsaL8XP//LiEb4xOplv88267g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XxNoJiwrPFBjmNnH6we5vltCbw7Lkg1og1x/2okJqv4=;
+ b=sIcIeQ7H535idrQeVSWxu/znR1I+XdmedcUZo2X+myX4Oj4RrVdcuiw9GmxCR8xyCJTtB4xCoz367g4n3mm/Zim9i/LufGWZ47rEobJtQiDanvHZChme2yL3HCNQuQliAOfs8qIDq1QfJC4pBxU7SZH6S3U4TMX0uM4SW8OKOdBzGdqM6g4gsryPLEE91vbLLunISyhCpGZiHgax5Vnw0V0bH6umG0dHHT0jNLVSVuiy+CRxqMjysVdZ1Lkc5y1mt8/QgWZs4Gl8I9v+WWJN7+BzlI/H7DFd3vAobMnJktI69aVjf/HDeUUcYRAjQiwZuYK7rwaTdU1sCf0e80uKcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XxNoJiwrPFBjmNnH6we5vltCbw7Lkg1og1x/2okJqv4=;
+ b=JQ47eqoUo/vbK2sUYhpDtEg1K17rI9AmaHqobyYo4lqg1Frq59YWLQpvLQqMTBm3VPD6H8h7Xdqj/bFNETlDo167BR9S90ThKsFy6cVv4TIA/242/c1Pzml5IDOP8E5E2gCHcdMQCYejyHPgJJr65geuAHbFdAi8b6wxCoPLu5A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MN0PR12MB6002.namprd12.prod.outlook.com (2603:10b6:208:37e::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.28; Fri, 30 Aug
+ 2024 08:47:05 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.7918.019; Fri, 30 Aug 2024
+ 08:47:05 +0000
+Message-ID: <4a498990-2d9e-4555-85f3-d1d22e26b9dd@amd.com>
+Date: Fri, 30 Aug 2024 10:46:56 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/4] dma-buf: heaps: restricted_heap: add no_map
+ attribute
+To: Jens Wiklander <jens.wiklander@linaro.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ op-tee@lists.trustedfirmware.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Cc: Olivier Masse <olivier.masse@nxp.com>,
+ Thierry Reding <thierry.reding@gmail.com>, Yong Wu <yong.wu@mediatek.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
+ "T . J . Mercier" <tjmercier@google.com>, Sumit Garg
+ <sumit.garg@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
+ <20240830070351.2855919-2-jens.wiklander@linaro.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240830070351.2855919-2-jens.wiklander@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR5P281CA0018.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f1::18) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN0PR12MB6002:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52d67aa5-1c57-4e75-648a-08dcc8d05310
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eVhmSUJRcWxpZk91UDhQa2duV2EvY01EYkk1YzZXSVo1a0J2M2ZCUmF3QzAz?=
+ =?utf-8?B?T0RYT2JrQWRjLzRmZitHeS95UlVhNXBSaVFHL082L2Y1VzI5VUlZeEUvN2pk?=
+ =?utf-8?B?YzAyL3Ntanlwd0JSQUhqdXl0R1ZpNy9KNDh3VDJvTUJSeDBBdmY0Sng0SjZ0?=
+ =?utf-8?B?Z0lSaGVCY0ZGd3RLYW9ScjBjNlFWcC9Gczc2dGVrcStyQkszbzJSTkYwQ1Y3?=
+ =?utf-8?B?d1pnRFVaQTJDamtHS3h0UGdpOGs1Zlc0SjB0eFRET1hGRVBFK2Y3TWwyUVhw?=
+ =?utf-8?B?azQvcUxRNGFUMGxmWktpMitwWkVSN2dOTzdUb2wvQWpxM3ZoSzVnUXplZ2k4?=
+ =?utf-8?B?a2o5bmpQWFY2Si90b3VpZE04SGtIaXRNb3Z1eUhkb3duU3lxK3ZSQ0g5MEx5?=
+ =?utf-8?B?OGtJYnhjYWwzd1psZjY3bUcybm4xRWIxbUp3SzU0KzhsNFlMOThZRmlZeldC?=
+ =?utf-8?B?MUQzb0l6RTV1OGVTZzFtOHhVd2VqbDI1Q3Q1VU5FZVRtdm9yaS9WYWdvZENt?=
+ =?utf-8?B?eXFxV1dNNGFXL0FrVnI0bXhyRURsZ2dkNXhRelNNMTBDZy8yVGdWSUlNT0cr?=
+ =?utf-8?B?KytXcnVwbzl2NkZwNlRJenk2cFp1eENBczNiUjhETmJrWVlLQ3haVHBUVk5a?=
+ =?utf-8?B?MkdWT0k2QmFtSTMrQ28xRUl5U1NmU1M1WTY5SjNGeUU5SVJIa001Y1BoL1I2?=
+ =?utf-8?B?TngxYnZ6bE1taTVVMkFzK05RN0NoT0RKa1Qrbk5ZdjRESVVUdFZCL1NIVDNw?=
+ =?utf-8?B?aGZjTUJ0VmZQRFdWQmhqa0pQNHlEN0c3bzhjZHhLbjYvd1g3RndnZXRvaGlU?=
+ =?utf-8?B?cllCU1hldlV0QlN1bVYyR0JYQlJWTklGOFcwS2xiN1F3SzQ0VHp5OVFuMkF4?=
+ =?utf-8?B?cFNveUYrRVQvUG8veU4rTTNKVXJVYmtOcVI0eW5EYWVxaUt0TUNVbVZZaDk0?=
+ =?utf-8?B?Q29FTVhlanNCMUx1WmtML2ZWUXdKNEIyZE5zT2hmUGNvdEtjaU5nZTFYbk1h?=
+ =?utf-8?B?M2RVN2pya0N3cy84WXNIQ0JmM1pyZlFGdUVXTkx6MEJZb1ozL1ZaTmp2eFRS?=
+ =?utf-8?B?U2QxTTZybUJrWWl5cXptQ2U0UXoycStyL1FVOTRNT1FKbVZDdlZHZGFBNVBy?=
+ =?utf-8?B?aktjZy9RaFhndWgxeUFyVURHUDBrU1YrbE9VMkpkMjc5ZlI2Ynp6OVRNTmNt?=
+ =?utf-8?B?MGxWa05KeWc2RUNoM0FIay9lc1kzNW1Sdk5YMEIwN3lDcUx4ZDUycHFmcFpN?=
+ =?utf-8?B?V3FybDNCRVhPdzBBM1ZieVprT01FYTFEQVRYeUVzbExjWlBiNWdadkRraGty?=
+ =?utf-8?B?R0ZPNGRNWUk2bUJJcG5ya1VMQkpXaTFzT1ZWZTRJOTZpMEtKZ3lXMjZSb0hM?=
+ =?utf-8?B?cUhxdGFhKzFzOHFNVmZTUzJYem1GOFJFMnRGM0lRam01U1czbURDSEVudVhw?=
+ =?utf-8?B?UndXSWk4Sm9LT3F3VFBXMk1LQkRYRUNKVnpYSkZ6OWhWRVZpL2ZEVmlsUndo?=
+ =?utf-8?B?NDZvcWQ0YXhiMk0zcTl4MVJiK1Y4MWZUam51eEp0eXRPT2EzdFByRlBDOWhY?=
+ =?utf-8?B?QWdEcjRHY1JxaDM5SHlUdFdyUUU3aXRxYnNZcWRUOTlHZWlWMVgycWI0QnAv?=
+ =?utf-8?B?eWdpaW43ZUwwWmJLR2xiK0UydG9LSU5ITzd3SENaY0xQbytEK2VhakZYcDhr?=
+ =?utf-8?B?ZUh0U01yNUFkZTFocUE2MDdQTjZIclozS2NuOXA5Um1TQW85bmVJY25oSjMz?=
+ =?utf-8?B?VDFxQzZqSTgwTWJZOGRGV09EOTY2UVhlRGgwdTBKMXIwUWVETFNlOXNoRk12?=
+ =?utf-8?B?ejR4U3VTU0NheWFpemRiQT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bGJLSkhXdFI0SEhqNkdaeEZ2K2xXN3lMVEpWT0d4NGpNcFVmV3puZXZyZE1s?=
+ =?utf-8?B?NXBoVFc2ZmNMTFlEaWxFSm5EVXJFYms1UnV5MW1CeUVjaXYxajBEWlJBY0dq?=
+ =?utf-8?B?Y2FqVzhDVFpsaVFsNEVWa0lNRnVVb29jMzFVcFgwZFQrZStNRkxGanR2WHpU?=
+ =?utf-8?B?ellvMWltWnZWU3U2MEtoTlYvaWRhUmxXYnZTTm53ZzBSVVU1VURPQ1htUktC?=
+ =?utf-8?B?WXYrYzBoYTR4MFBXVkNDT3dhNWFmUGdmdFNxYjhMSUdaLzhmclhxWXZjMzJR?=
+ =?utf-8?B?ZVRwemJiZkF0ZklRL1pQblJKZ3MySlhFd2pmMC93MFYwTTErcm9CdkNJZGJ5?=
+ =?utf-8?B?NGZ6dEpxamp0d0Zta0dOc3A1UzYwTCtGVEFIRlRWeXlWa1pqS3ZxRXlzTlZX?=
+ =?utf-8?B?L0JlekZLK3NCQ2Y0S3NOYUYrT0tkcTBqcGpXZ3JXZTYwOENBY09JeFVnVFha?=
+ =?utf-8?B?Y2R5dnU0akYwZFZ6a2w1Z1J2K0pFYWZmalYrWUltWDFwdDJSMkc4VHdtSDNI?=
+ =?utf-8?B?dDBjRlZuVGp5aEUwTVVMeUYrZVVrRXhCVjU0MkNQZ0xSQ1hLQ1AxeXNUU1Rl?=
+ =?utf-8?B?akhHdjVpREJzY0h0OWpjTytPSlBuaDNrVnoyNGRFaXdCSjlIdlZGOCtNRmRW?=
+ =?utf-8?B?Tk42bzVjT0VUd3JRMzhjQXhYS3NWa09rYThYbVZ4Mk9jaUdVZ3NEZCtDMUF3?=
+ =?utf-8?B?TThpNGNBN09qdWs1SFBGSDRNUjJqOUNSOW00MGk4WEpUSTVsS2hnVkNVZzRn?=
+ =?utf-8?B?bTNDOW9jMFhvY3gxeSsvN1RhL0NBOEtxZTM1MjduN3FwRWdTU0JpQjJickxp?=
+ =?utf-8?B?eTdTZWtaNVRDeDRxTE9jdUN6clhIeWdSQlg5VmNhV3NCSDNvY1ZWcU5YbEs0?=
+ =?utf-8?B?bzVVS3N3T2syY0FPd1YwQkpTYjRZWkxCRm00V3J6cTRmeXExempqQTA4cS9I?=
+ =?utf-8?B?Y3Arall4WVYrb1c3NytUSS9kZmZqUDBkNFgrVXBGVHJET3hWN3VlakpYL09Z?=
+ =?utf-8?B?dHRNVkZYdGZhcFBXdzY2Ty94SUNOYllWRldQOVU3WDM3Qzkrb2VNYnRPazdZ?=
+ =?utf-8?B?MU5OSXdUMUVPSTdIWnBWb0V1ZHFzMTdObkhkcWozR09mR2s0TnBsd2Flcllu?=
+ =?utf-8?B?eGFBWURZOWN5QjlsV2tnNlhXMzdGbC96eG04WTNqeXhXWC9HZ0lJSzRyQVo5?=
+ =?utf-8?B?Q3ZZUm1DZHdaMXZFZHc1MU1NeUR3bkZTcnRpOHJmMHlaZDVQRTFIb2dRM2tw?=
+ =?utf-8?B?RGozVlFWOVl1YUNFQityVW8xc0dQaFVZQm5mK255VG9yTXV6Y0UvUU91dXd6?=
+ =?utf-8?B?SnAwejdJaUdsQ1hKdDBMU0lUTkw4bGhic2l6UU0xOVFZVEM5aFFhVzhGUUNN?=
+ =?utf-8?B?blVvRnIyb21HNm1KTXp3NGYxZEhQTnpJRmpiYjVSTEJRRkIydGVOWjFvWXV4?=
+ =?utf-8?B?aEU0WHBhNG11UDEva20vYmcyRGppdFhGbkpISXhQVVpLNmxjTXFlVWs5ci83?=
+ =?utf-8?B?aWtuTE5pM01XN2JpdkJpaWtwNE12VjR0Vjh6a1BMcFU4QTJDb3ZmdllnZlor?=
+ =?utf-8?B?VVBRNU9UYk9WL2VqUHlIeit3UEdSWGcwZjI4a2JNd2VOdWRHMTJKWHRCWVJS?=
+ =?utf-8?B?V0tKM0FFRGlWcGZCT1BZeVFhTkxOZWtuRi9oWlhzMG1JaGNaTk1LNkFnNDNs?=
+ =?utf-8?B?TFhtTWgxMkJqZ3pZSS9QVThmSzhGYWhmNjZaUUNuQ2h1aG1DaGlnZFNzSm40?=
+ =?utf-8?B?cHBZRWRaWHBwb0VsMEhSd1lYZUlaY3lCREFHRituRi9wdUxTVWpOR3h6MDVi?=
+ =?utf-8?B?eFd6MWt4MWJQWSswUm9PMzY3YXdGUHZYWTNkWHN5ZkFiMEdMU2Y1NGJlVXdM?=
+ =?utf-8?B?L0lsWFpkTEROSGN1cXJmK3FNU3BSZWpkR043QytGeE0wMHZteDFFbDFZbUdQ?=
+ =?utf-8?B?VWN3RXg3blhrUWhobW1FMCt3bWdkWWJKeG5VVnUycVdMZ0xxQUJTelBCbGtt?=
+ =?utf-8?B?MmF1YWh2MWxWZ3R0ZmFCUDQyckJkUkc4Wk8vNXFsdjlwdUZYU2c3K0NhaDFs?=
+ =?utf-8?B?Q2xmUTFVNU5Fd0FFbVB1N2EyaDhGNUJDcGVWR21WSlBXK1ZuYnJUTnpmN2FU?=
+ =?utf-8?Q?3hmxXg7zjL7BOn3BXlhoNxuOd?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52d67aa5-1c57-4e75-648a-08dcc8d05310
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2024 08:47:05.3296
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: x41DR3UQ1E2B+XduNb3t/BCzYnp6SijkHzqVzE+RBxRdeTLH+aGDpBj2ujhzCbPd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6002
 
-Add clock/irq/efuse setting in svs nodes for mt8186 SoC.
+Am 30.08.24 um 09:03 schrieb Jens Wiklander:
+> Add a no_map attribute to struct restricted_heap_attachment and struct
+> restricted_heap to skip the call to dma_map_sgtable() if set. This
+> avoids trying to map a dma-buf that doens't refer to memory accessible
+> by the kernel.
 
-Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+You seem to have a misunderstanding here dma_map_sgtable() is called to 
+map a table into IOMMU and not any kernel address space.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index 85b77ec033c1..3bd023cdcac0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -1372,6 +1372,18 @@ lvts: thermal-sensor@1100b000 {
- 			#thermal-sensor-cells = <1>;
- 		};
- 
-+		svs: svs@1100bc00 {
-+			compatible = "mediatek,mt8186-svs";
-+			reg = <0 0x1100bc00 0 0x400>;
-+			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-+			clock-names = "main";
-+			nvmem-cells = <&svs_calibration>, <&lvts_efuse_data1>;
-+			nvmem-cell-names = "svs-calibration-data", "t-calibration-data";
-+			resets = <&infracfg_ao MT8186_INFRA_PTP_CTRL_RST>;
-+			reset-names = "svs_rst";
-+		};
-+
- 		pwm0: pwm@1100e000 {
- 			compatible = "mediatek,mt8186-disp-pwm", "mediatek,mt8183-disp-pwm";
- 			reg = <0 0x1100e000 0 0x1000>;
-@@ -1695,6 +1707,10 @@ lvts_efuse_data2: lvts2-calib@2f8 {
- 				reg = <0x2f8 0x14>;
- 			};
- 
-+			svs_calibration: calib@550 {
-+				reg = <0x550 0x50>;
-+			};
-+
- 			gpu_speedbin: gpu-speedbin@59c {
- 				reg = <0x59c 0x4>;
- 				bits = <0 3>;
--- 
-2.46.0.469.g59c65b2a67-goog
+So please explain why you need that?
+
+Regards,
+Christian.
+
+>
+> Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
+> ---
+>   drivers/dma-buf/heaps/restricted_heap.c | 17 +++++++++++++----
+>   drivers/dma-buf/heaps/restricted_heap.h |  2 ++
+>   2 files changed, 15 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/dma-buf/heaps/restricted_heap.c b/drivers/dma-buf/heaps/restricted_heap.c
+> index 8bc8a5e3f969..4bf28e3727ca 100644
+> --- a/drivers/dma-buf/heaps/restricted_heap.c
+> +++ b/drivers/dma-buf/heaps/restricted_heap.c
+> @@ -16,6 +16,7 @@
+>   struct restricted_heap_attachment {
+>   	struct sg_table			*table;
+>   	struct device			*dev;
+> +	bool no_map;
+>   };
+>   
+>   static int
+> @@ -54,6 +55,8 @@ restricted_heap_memory_free(struct restricted_heap *rheap, struct restricted_buf
+>   static int restricted_heap_attach(struct dma_buf *dmabuf, struct dma_buf_attachment *attachment)
+>   {
+>   	struct restricted_buffer *restricted_buf = dmabuf->priv;
+> +	struct dma_heap *heap = restricted_buf->heap;
+> +	struct restricted_heap *rheap = dma_heap_get_drvdata(heap);
+>   	struct restricted_heap_attachment *a;
+>   	struct sg_table *table;
+>   
+> @@ -70,6 +73,7 @@ static int restricted_heap_attach(struct dma_buf *dmabuf, struct dma_buf_attachm
+>   	sg_dma_mark_restricted(table->sgl);
+>   	a->table = table;
+>   	a->dev = attachment->dev;
+> +	a->no_map = rheap->no_map;
+>   	attachment->priv = a;
+>   
+>   	return 0;
+> @@ -92,9 +96,12 @@ restricted_heap_map_dma_buf(struct dma_buf_attachment *attachment,
+>   	struct sg_table *table = a->table;
+>   	int ret;
+>   
+> -	ret = dma_map_sgtable(attachment->dev, table, direction, DMA_ATTR_SKIP_CPU_SYNC);
+> -	if (ret)
+> -		return ERR_PTR(ret);
+> +	if (!a->no_map) {
+> +		ret = dma_map_sgtable(attachment->dev, table, direction,
+> +				      DMA_ATTR_SKIP_CPU_SYNC);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +	}
+>   	return table;
+>   }
+>   
+> @@ -106,7 +113,9 @@ restricted_heap_unmap_dma_buf(struct dma_buf_attachment *attachment, struct sg_t
+>   
+>   	WARN_ON(a->table != table);
+>   
+> -	dma_unmap_sgtable(attachment->dev, table, direction, DMA_ATTR_SKIP_CPU_SYNC);
+> +	if (!a->no_map)
+> +		dma_unmap_sgtable(attachment->dev, table, direction,
+> +				  DMA_ATTR_SKIP_CPU_SYNC);
+>   }
+>   
+>   static int
+> diff --git a/drivers/dma-buf/heaps/restricted_heap.h b/drivers/dma-buf/heaps/restricted_heap.h
+> index 7dec4b8a471b..94cc0842f70d 100644
+> --- a/drivers/dma-buf/heaps/restricted_heap.h
+> +++ b/drivers/dma-buf/heaps/restricted_heap.h
+> @@ -27,6 +27,8 @@ struct restricted_heap {
+>   	unsigned long		cma_paddr;
+>   	unsigned long		cma_size;
+>   
+> +	bool			no_map;
+> +
+>   	void			*priv_data;
+>   };
+>   
 
 
