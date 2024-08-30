@@ -1,148 +1,141 @@
-Return-Path: <devicetree+bounces-98426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE3A96616A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:18:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD2D966198
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:27:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B04FFB26878
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:18:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E6831C2115C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:27:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9CB199FD6;
-	Fri, 30 Aug 2024 12:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A641AD5E8;
+	Fri, 30 Aug 2024 12:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YX6Gpw1i"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Hr4RhoAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964D516F0DD;
-	Fri, 30 Aug 2024 12:18:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3977C199951
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 12:25:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725020300; cv=none; b=UzLAl+rnpPaxdQS5JdChZII0tJ90XvYwhgzgWuKZl3guOUarCAsnVRr6dQ33SEjBrCvY1Eg9unj/QbxQLZ7/BDSpD2p1QVtmwywhe8UiL+39Sz7TZgmR8EOu4+68I+oc/i1giD37mOOV9sAJeRAilZAtCuJ8er7W3yV79khiYms=
+	t=1725020725; cv=none; b=DZYksNsRWxv21MAaVsKMa34l2IrkBZn51+mVnnMLcy56e0RC7JZkpJeKnyJ1HEzoV9hc00GtT/1dieT92t0CkJirj6Ei3dAj8Etpxr3Y9ECpeJ6YC5aNktOwVk7bN+5jYs97GEK1bUZdVEHXkugyMJ8Sh895lFtTqlf+sVokT38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725020300; c=relaxed/simple;
-	bh=fzW3G+TfB+bO5ebL/bX9LdeCTen9lbExGhAdJz/gUE8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JCOYKhNKdjUkdcVhM/ZCo+oFU42QmpQJuYH2L8iFPtW2daQpwZmiOMVj7MrDE0wrORDCBfVyq3vQwj38PFDFslDTGxFuYBV0q7FLkJNcNghOrugRiaiiHNGhmT79puVsk7Ap+cp7UvAFoyXZMpgUBnFmBpsVJlHgXp/NYRetDp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YX6Gpw1i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15310C4CECD;
-	Fri, 30 Aug 2024 12:18:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725020300;
-	bh=fzW3G+TfB+bO5ebL/bX9LdeCTen9lbExGhAdJz/gUE8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=YX6Gpw1iAM1qcXKu7BASnn7Qo45teZi4XXjDrmwn/Vm4TnZW3bXHuZf+aIV8rnhz0
-	 7VJ9gf240vFlFx69v7Gytuo+daKbx/S4payvqKJCL+wpO6Oj2vwKuHWo7VYnjGJPaH
-	 41rQ1hCheK7YWyiteSj1QCLB193pxleVPtw7pyJvPaKHgasT2isgNCGwpSMjSXlqGC
-	 ec5a8ppcWoJn+0Tc8EDxaWlAPdgEfZCp/oJarZBv6gWXXd/cQRri2pRcMwEFPnD7H/
-	 vm9Fdfxn+WilUW8TBmM/UkaC0ahgKu+wuig8BUCdyRxxq9ujl/xkxdJs1NJJWOBhSV
-	 9hwmywR7owrdQ==
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2050b059357so14245875ad.2;
-        Fri, 30 Aug 2024 05:18:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXia+W3NVa7gtupN3ZW7E5a69dWHXAOBZKOExiNEcgK+aMknr1uJU1/LCEnqrMbp1sJTt5eBeIBLeoF@vger.kernel.org, AJvYcCXuq8I5bvvPEh33rK6ZFWaVaR3JSkTHIYpHcXe73y9u4n/hIbGZ2kafFllWjG6v7/R8v8TSOnU0iSgfGXWi@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBycV7wOumDV8CFvOKEhOdZ1otB3WiZgZFO0yAW5NiEcV+R1jN
-	Nw6Zl4xA3U7JRdkR6FJ5FYiy4yqMqp8LhpMDhFs7DcCuHMOnV/cWw/JRO71Qr3yrYgSY3u7nYjx
-	sLEH2iC0Xoy+hE830XxKtOpbhNg==
-X-Google-Smtp-Source: AGHT+IF2p5CQY3b8HPQl1+/RqA1ZHqHcuWEQh2qoVHx4PAKoc7yqtJdfN0iZ0lNlEvXu5ud9ENOdM8aJpEyK48XB/pY=
-X-Received: by 2002:a17:903:124c:b0:202:18de:b419 with SMTP id
- d9443c01a7336-2050c524e84mr78003075ad.63.1725020299631; Fri, 30 Aug 2024
- 05:18:19 -0700 (PDT)
+	s=arc-20240116; t=1725020725; c=relaxed/simple;
+	bh=zD5xGrx7XfryEK140cBN5eFp9Z3SX4N15qyok8KVf0k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fz5OklUh74ktJnK/XrRzBIiAyR0vsicbagZeJEaHlqq/9Ag3XhIb2xnCzADeX40OqTApuTA1GxL7CF42Ssocj47LWr1Xjo8g9P+9NUhrkMvQWeL1dyv1bbrAxKrOs9iJGsNzmK6a+GPqDqaUrMOqGKwx40PrDUW/cwEFvmUegjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Hr4RhoAZ; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47U9WunB031603;
+	Fri, 30 Aug 2024 14:24:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	lG0YkwvjoRVkb29Wnnls7jNtFX6fUrXZjtamsJi0YHQ=; b=Hr4RhoAZ9uuhdJug
+	98ZGdt8vP1Rff6U3r2lZMWvlLvcJcRG/dtBB032Zjb+BKax2p4z314SbBC8M7E0Z
+	bIPddONAvRmatn9izyWt1Zex3QoEegZKferC3sbtBCmmTVarQLtD9GtR3VLQ4v6u
+	5Y6WlDU3ZRSPg/fjbuPgcJGmdij9ROpJOWseN7zesTMYMqwy40xkN7ei1OnD/0VP
+	w6Yf/og7r5aVqlcHgEslHatyHgF7mQJk4ITPY65qHYda4VcUSTDWucmvWSFks+Uc
+	FPwbW+kihABQrzqUU4Q0wcSIIVXXJUK4k9c704ae5G7uaNMTSZhnFjJvsVVM/VNn
+	w1wbfw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 419putmkn8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 14:24:56 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9BB1D4002D;
+	Fri, 30 Aug 2024 14:24:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D99A926334A;
+	Fri, 30 Aug 2024 14:24:14 +0200 (CEST)
+Received: from [10.252.31.165] (10.252.31.165) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 30 Aug
+ 2024 14:24:14 +0200
+Message-ID: <c54a6ab4-a880-4d45-a20f-9cc2a0d74b97@foss.st.com>
+Date: Fri, 30 Aug 2024 14:24:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830084544.2898512-1-rohiagar@chromium.org> <20240830084544.2898512-2-rohiagar@chromium.org>
-In-Reply-To: <20240830084544.2898512-2-rohiagar@chromium.org>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Fri, 30 Aug 2024 20:18:33 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-1bT-=jU4vCZTfe18Ks6WiAL=7M3y0eK3DyGkfWmsFKA@mail.gmail.com>
-Message-ID: <CAAOTY_-1bT-=jU4vCZTfe18Ks6WiAL=7M3y0eK3DyGkfWmsFKA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: mediatek: dpi: Add power domains
-To: Rohit Agarwal <rohiagar@chromium.org>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	ck.hu@mediatek.com, jitao.shi@mediatek.com, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: Disable PHY clock output on DH
+ STM32MP13xx DHCOR DHSBC board
+To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC: <kernel@dh-electronics.com>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240705080118.75899-1-marex@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240705080118.75899-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-30_07,2024-08-30_01,2024-05-17_01
 
-Hi, Rohit:
+Hi Marek
 
-Rohit Agarwal <rohiagar@chromium.org> =E6=96=BC 2024=E5=B9=B48=E6=9C=8830=
-=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:46=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Add power domain binding to the mediatek DPI controller
-> for MT8186.
-> Also, add power domain binding for other SoCs like
-> MT6795 and MT8173 that already had power domain property.
-
-For this patch, applied to mediatek-drm-next [1], thanks.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
->
-> Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+On 7/5/24 10:01, Marek Vasut wrote:
+> The RTL8211F PHY clock output is not used on DH STM32MP13xx DHCOR DHSBC
+> board, disable it to improve EMI characteristics.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../bindings/display/mediatek/mediatek,dpi.yaml | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
-yaml
-> index 5ca7679d5427..3a82aec9021c 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
-l
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
-l
-> @@ -62,6 +62,9 @@ properties:
->        - const: default
->        - const: sleep
->
-> +  power-domains:
-> +    maxItems: 1
-> +
->    port:
->      $ref: /schemas/graph.yaml#/properties/port
->      description:
-> @@ -76,6 +79,20 @@ required:
->    - clock-names
->    - port
->
-> +allOf:
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - mediatek,mt6795-dpi
-> +                - mediatek,mt8173-dpi
-> +                - mediatek,mt8186-dpi
-> +    then:
-> +      properties:
-> +        power-domains: false
-> +
->  additionalProperties: false
->
->  examples:
-> --
-> 2.46.0.469.g59c65b2a67-goog
->
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Christophe Roullier <christophe.roullier@foss.st.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>   arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
+> index 3cc9ad88d61bc..425deb5641c17 100644
+> --- a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
+> +++ b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
+> @@ -96,6 +96,7 @@ ethphy1: ethernet-phy@1 {
+>   			interrupt-parent = <&gpiog>;
+>   			interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
+>   			reg = <1>;
+> +			realtek,clkout-disable;
+>   			reset-assert-us = <15000>;
+>   			reset-deassert-us = <55000>;
+>   			reset-gpios = <&gpioa 11 GPIO_ACTIVE_LOW>;
+> @@ -125,6 +126,7 @@ ethphy2: ethernet-phy@1 {
+>   			interrupt-parent = <&gpiog>;
+>   			interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+>   			reg = <1>;
+> +			realtek,clkout-disable;
+>   			reset-assert-us = <15000>;
+>   			reset-deassert-us = <55000>;
+>   			reset-gpios = <&gpiog 8 GPIO_ACTIVE_LOW>;
+
+Applied on stm32-next.
+
+Regards
+Alex
 
