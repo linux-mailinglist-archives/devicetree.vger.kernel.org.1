@@ -1,112 +1,127 @@
-Return-Path: <devicetree+bounces-98466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6BB69663CE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:10:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BB7E9663D6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:11:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93610281892
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:10:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F3C91C23D95
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219C41B1D5D;
-	Fri, 30 Aug 2024 14:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AA41B1D5F;
+	Fri, 30 Aug 2024 14:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="haLZ8908"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kDEJO/qQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B2D1AF4F8;
-	Fri, 30 Aug 2024 14:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF88C1AF4F8;
+	Fri, 30 Aug 2024 14:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725027051; cv=none; b=WwcKJFIlFpbA0CkPdQJVT9b5txmR78mpiaPQKCLnts7yMKAdIkeTYn+yrVSO8YNpk14/4bXrQXLQCHco+oA1c1KNAE/Uyjj2c5SI3Ebl5/9eSQc0V+VoMxv/CZdCMseSwG2wgeAIq+8KR/PODS2M8FF0wCJWceoubcUBbVN136I=
+	t=1725027065; cv=none; b=rdJgQzGMLmg6sXPL7m7+Aoz6gTbfXpEtOUM9ZlPRnrxno7edX5BM40FZXaknUS/qxwUryPRPyDROZ4jq/Ej+pTPjx2kg7FogUSjLXizuSZRAYhBfwOlyuuas9Gabzbox3v3EvcnOrGlQSvrw0v39N43Aix18Ns5f6/ZCvoCQaDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725027051; c=relaxed/simple;
-	bh=s4ofsPLllTgoEZz5zcK/aCOTMmpqFnd/GqJpSB5kJaM=;
+	s=arc-20240116; t=1725027065; c=relaxed/simple;
+	bh=VixJdVFdm8BFxXamRIKnJaWEE3dVUHj2+gBnP1juWtA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ha1U3BLkzqNOteFXI8o33OYn6b4g5JwQZegN0RSUnYlebdj3Qd0/B63ZsQeeW/ST9ZQKDheAdwApGsZB1IljjAai7Du/zaOH0SQvKtZOXB5fnKKjrvtoaM+89IT/9aTfkMOdgwvKcr4+BZdUmJK3fJYSqmPvwfcEP1RTtoU1+/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=haLZ8908; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=uDcaebjvS3BGJm2mNwOKtW7qt1HOm0LrXI8UJBsCjr4=; b=haLZ8908g6RDC+VOGOw83NdP89
-	CeMPQLDvAK1hacZ5Q+EEj1yIsZ0PaIMoSfgNYOvLOOaN27XdqMy1bcvmuVBG9AD3sycn7kPSdsGk0
-	RpiOOZLgoac+3bM3ztwfjZr04JbHp+Wh6jTzzcYEBpmYIy8VRneE9X7tOYOkBojC8bBU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sk2KZ-0068J6-EH; Fri, 30 Aug 2024 16:10:27 +0200
-Date: Fri, 30 Aug 2024 16:10:27 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 00/11] Add support for RaspberryPi RP1 PCI device using a
- DT overlay
-Message-ID: <334b382a-c9ab-47e4-b860-b8477f04c3fb@lunn.ch>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <14990d25-40a2-46c0-bf94-25800f379a30@kernel.org>
- <Zsb_ZeczWd-gQ5po@apocalypse>
- <45a41ed9-2e42-4fd5-a1d5-35de93ce0512@lunn.ch>
- <ZtBjMpMGtA4WfDij@apocalypse>
- <e6e6c230-370f-4b04-8cb7-4158dd51efdc@lunn.ch>
- <ZtFWyAX_7OR5yYDS@apocalypse>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IZ2vT+gvf1XbeWqM7+Qv0wU6d1eq3zVUXe223cvQzXn3avZPcYuJ8d7vz6NHdx42CODf7fUd6Go40DY1dhBatwryVeNgEfK7wpEemjs6fnxggCO1ZMRRcAtPvNhKAcTmKxkgJcWqpmeYp2szD7FbWOkOuoZhflQ50bb5kXyO/dM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kDEJO/qQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E508DC4CEDC;
+	Fri, 30 Aug 2024 14:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725027065;
+	bh=VixJdVFdm8BFxXamRIKnJaWEE3dVUHj2+gBnP1juWtA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kDEJO/qQcV8f300DNrO0MCVyJcpl+69dR01YEfgqML1ke9JjltoAtGj3Bpkcy6A3u
+	 eWF7lQUfF7MTKtvVTiN8c2F2a4Z+Buq8FWOtFAi7sZokPxrMEzeK2cxzhi/wlCQ51H
+	 RAo4a51f1AW0R4VxSXFhKwUzNqAvZbkE+PZqLK4rvcj7vESwas9hmai9jGO+PH4H39
+	 ee8vvP50sRn/RP2vXDuf42ZorG2rsZeF6cjKUToTAZ+rsXM4yKxH31uCtkmrI3T+2I
+	 Dn/6PgwLSQJjHPT0VDACPqjEm/UzhSTchBopU05Cz97R/0C/rtfemxSoNDgq/kRYQg
+	 Yl10ref4g8yPw==
+Date: Fri, 30 Aug 2024 15:11:00 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: broonie@kernel.org, linux-spi@vger.kernel.org,
+	otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: spi-peripheral-props: Document
+ spi-cpha and spi-cpol
+Message-ID: <20240830-factsheet-winking-ddae24977938@spud>
+References: <20240829201315.3412759-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fRWsun4WanjycqP/"
+Content-Disposition: inline
+In-Reply-To: <20240829201315.3412759-1-festevam@gmail.com>
+
+
+--fRWsun4WanjycqP/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZtFWyAX_7OR5yYDS@apocalypse>
+Content-Transfer-Encoding: quoted-printable
 
-> On a second thought, are you really sure we want to proceed with the header file?
-> After all the only line in it would be the extern declaration and the only one to
-> include it would be rp1-dev.c. Moreover, an header file would convey the false
-> premise that you can include it and use that symbol while in fact it should be
-> only used inside the driver.
-> OTOH, not creating that header file will continue to trigger the warning...
+On Thu, Aug 29, 2024 at 05:13:14PM -0300, Fabio Estevam wrote:
+> The 'spi-cpha' and 'spi-cpol' are commonly used SPI peripheral
+> properties that indicate the device clock phase and polarity.
+>=20
+> Document these properties.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> ---
+>  .../devicetree/bindings/spi/spi-peripheral-props.yaml  | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.y=
+aml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> index 0bb443b8decd..b2e2717f3619 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> @@ -29,6 +29,16 @@ properties:
+>      description:
+>        Chip select used by the device.
+> =20
+> +  spi-cpha:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      The device data is sampled on trailing (last) edge of the SPI cloc=
+k.
+> +
+> +  spi-cpol:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      The device clock has a falling lead (first) edge.
 
-The header file does not need to be in global scope. It could be in
-the driver source directory. As such, nothing outside of the driver
-can use it.
+These two should just be usable with "spi-cpha: true", they're applied
+by the controller schema to it's child nodes, so you don't need to
+redefine their type here.
 
-Headers like this have multiple proposes. One is they make a symbol
-visible to the linker. But having two different .c files include the
-header enables type checking, which for long term maintenance is just
-as important. So a one line header is fine.
+> +
+>    spi-cs-high:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
+> --=20
+> 2.34.1
+>=20
 
-	Andrew
+--fRWsun4WanjycqP/
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHS9AAKCRB4tDGHoIJi
+0hOkAP9McrdjlG8xVA5W3kzseaEjzrtrxyh0RKvvBwW7AHv3cAD+JtnpA2mOB5t5
+PnatZiI6DfPio3cSXD7LZJhi5HYpggw=
+=uXhL
+-----END PGP SIGNATURE-----
+
+--fRWsun4WanjycqP/--
 
