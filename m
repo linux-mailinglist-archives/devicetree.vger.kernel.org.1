@@ -1,112 +1,100 @@
-Return-Path: <devicetree+bounces-98394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 783DF965FA4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:53:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 235C8965FA9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:54:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB4561C234AB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:53:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55E301C235E8
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181E918E742;
-	Fri, 30 Aug 2024 10:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86EA518EFDD;
+	Fri, 30 Aug 2024 10:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NRWVImWb"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="O/bkr3+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296A117B4F9;
-	Fri, 30 Aug 2024 10:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E1C15C138;
+	Fri, 30 Aug 2024 10:54:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725015212; cv=none; b=SiOhhujogsS9WXzM0dXILuxdaw9VOXK3xp2InHCcA7B74fchVamoYfQEquy4WXKA0zEMvxDHDeGBaALo9Masai7xWPXznibxsUPxQsvYvi5rvP4IedIinrkTdaNGjqjEglOOp/IZ362EG/awfop2ExdHqIBjaIXd+pVf56ToC4c=
+	t=1725015289; cv=none; b=GwUMEm0kOIdAyM+VCYKrWG9KLvX+Nbl/uone0jOxPo8nG3rFI6pYQGon93Yyhhc0HtTlKArPQspcc0V0AfVO4k/PTksakeky4KgTy4GrFch68JEXpStWM7x2rTvSStJZuDGrru2uvCOK6J1qVM6ntwyWE2R07oGzLmfcroaxKJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725015212; c=relaxed/simple;
-	bh=O9KGuHA2ZA1Eb8lRka+CR0EIeZxGOlxwyRPT8n1DNts=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AZ+uaKMWjTJZ2ASNLOdcu+QiJz3A+FnNtlOyPb/c9gji5gomFnsiYfzHihUITG1ElbZSWx9S0ICArTfTsR/pFkBNCHqBXGl8xkO6/N1cTYwk7ACQ9B4bSPY8R87G4+OIlrPhu8TsMGfETCW7zJNZBggNu3rCxFwb5X/WfTeBDw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NRWVImWb; arc=none smtp.client-ip=198.47.19.141
+	s=arc-20240116; t=1725015289; c=relaxed/simple;
+	bh=1s7khTLZ5wyKPUa8n87VRFstv1zhJhmgu8JwlRGgl8Q=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tgQufuaiA4+rAzCm1EtHhz5zz0jcInZtLZ7PXRnKNR8ymmY44v11GDgRZMgeYF3HtXwe1w24tEkp288WMWYMy+ktDlpqQhKVjY3qoKx1b2GIa5hlfBcswPHW9bsKPvLoli6WOLVIpYviHEiqDTy6DDfVASbmmVQOe98dY7hp2d0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=O/bkr3+e; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UArMIc101755;
-	Fri, 30 Aug 2024 05:53:22 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UAse8q105188;
+	Fri, 30 Aug 2024 05:54:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725015202;
-	bh=KUOgx+nr0Fdd/U00rm4qzZJfvik05ytOlpn9p/ouBH8=;
-	h=From:To:CC:Subject:Date;
-	b=NRWVImWbs7jZ12VLz4r/DKXBGPc8M0cu20KRKBPDV+v3Z156O5hiYonuviIyP77TQ
-	 6K853QRxazjjAm68VhX+HX8PEgNWvKaw1SOdnsFlHq76kyANFBBEIujPajRucveRbb
-	 X8Ae5HLweEExBElldZspQhgYsmOmm9JfGgYxnus4=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UArMRk012191
+	s=ti-com-17Q1; t=1725015280;
+	bh=R8lCaUe1zudIS4CmdNIdupOWcZxkErAdDnNNQhe1Uok=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=O/bkr3+e/6dt9Trwk5hfobHnRTfEYv+RkBL1QDiPzcS+thgCLtLloFXW5ZzyrDU2G
+	 fwmz+7wdvEkwDJice2cpx8EQL3HoVkLkJZncSfmsGfDJOC02oK3v66K2YaAZLWHoPN
+	 +eUK3TQ4PQYNR+CdQOKVwEIoQkdH5UgaxDzN2PtQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UAsefc026548
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 30 Aug 2024 05:53:22 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 30 Aug 2024 05:54:40 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 05:53:22 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ Aug 2024 05:54:40 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
  (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 05:53:21 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UArHDB009586;
-	Fri, 30 Aug 2024 05:53:18 -0500
+ Frontend Transport; Fri, 30 Aug 2024 05:54:40 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UAsdq0021022;
+	Fri, 30 Aug 2024 05:54:40 -0500
+Date: Fri, 30 Aug 2024 16:24:38 +0530
 From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <sjakhade@cadence.com>,
-        <yamonkar@cadence.com>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <nm@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH] dt-bindings: phy: cadence-sierra: Allow PHY types QSGMII and SGMII
-Date: Fri, 30 Aug 2024 16:23:16 +0530
-Message-ID: <20240830105316.1824319-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.40.1
+To: Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2-evm-gesi-exp-board: Rename
+ gpio-hog node name
+Message-ID: <c82b1d5f-c601-49a9-a77f-ca9988279731@ti.com>
+References: <20240830102822.3970269-1-nm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240830102822.3970269-1-nm@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-The Sierra SERDES can be configured for QSGMII and SGMII protocols. Hence,
-update the bindings to treat "PHY_TYPE_QSGMII" and "PHY_TYPE_SGMII" as
-valid values for the "cdns,phy-type" property.
+On Fri, Aug 30, 2024 at 05:28:22AM -0500, Nishanth Menon wrote:
+> Fix the gpio hog node name to p15-hog to match up with gpio-hog
+> convention. This fixes dtbs_check warning:
+> p15: $nodename:0: 'p15' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+Thank you for fixing this.
 
-Hello,
-
-This patch is based on linux-next tagged next-20240830.
+Acked-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
 Regards,
 Siddharth.
-
- Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
-index 37f028f7a095..137ac5703853 100644
---- a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
-+++ b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
-@@ -96,7 +96,7 @@ patternProperties:
-           Specifies the type of PHY for which the group of PHY lanes is used.
-           Refer include/dt-bindings/phy/phy.h. Constants from the header should be used.
-         $ref: /schemas/types.yaml#/definitions/uint32
--        enum: [2, 4]
-+        enum: [2, 4, 8, 9]
- 
-       cdns,num-lanes:
-         description:
--- 
-2.40.1
-
 
