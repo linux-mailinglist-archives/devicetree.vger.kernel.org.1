@@ -1,182 +1,178 @@
-Return-Path: <devicetree+bounces-98551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A6B9668E0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 20:24:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2979668E7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 20:28:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1FEF2857FC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:24:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABE1E1F24383
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D231BC07B;
-	Fri, 30 Aug 2024 18:24:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397D11BC068;
+	Fri, 30 Aug 2024 18:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jpr92px7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZw9zYlB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6730B1BBBF7;
-	Fri, 30 Aug 2024 18:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01E614C585;
+	Fri, 30 Aug 2024 18:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725042262; cv=none; b=QzrfzZONy1ZzLLhZ4mFH6wwL2BWBCac+TExB9I0W3/4ysDhUCe2/2AvIJr/PEZU9RfetzxllsmzW6KGupgnVvavUAVZgc4XN8Eq7W+Q7CEBS9sTkloJTldnHYIHhDtEyZi/Is2WoWTmyC0QiqPMzsOafzW65EPpFwlkJChXe6bg=
+	t=1725042482; cv=none; b=bifIiTyzvQ81x5HsL6Q0pp258ubAlscxi0CBLU1UNxkHSNpOmyB/mhJC3cJg0EGGCbZp+U0G4j99atk376PmqbGVDQUmwi4DQYjql8OYdODF/pryyYymz8NJ4y98MQXtVp+ju6OFqXI3aiT9b9HpRhHG8mqmVuqSljKj7IdYrWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725042262; c=relaxed/simple;
-	bh=u32ftu/mfLpMRTkCyzbPhIrEDF/8+LpV8WcZVnbI2Qw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MoDPAMyEeyA72orGx6WYmi0S4Ij3dSqOpC4OfSVM4FoGzKEA1kiI5BzIAoR6mKoNuQi3xolhJ89BhlRKlhk9NpvQh6ksPtnoJeFHtv7udF9UlDlYAdcF1iU3MHSGMgwIqi20pjxXxcWv60N+51DG+n+uoK1GQEajvisEdy7Lt0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jpr92px7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6F91C4CEC2;
-	Fri, 30 Aug 2024 18:24:19 +0000 (UTC)
+	s=arc-20240116; t=1725042482; c=relaxed/simple;
+	bh=f5Uc5k5MsEWXT0HDmaPjKPSyz/7E7DKh4+BY1PUsbVo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BWBioSQNWb6FWj6Xv5X1sAdbTbyjMD/qHT9AjA+jXqVxf18G+YHvQp0k0Tsaz9Rm9IZi+R6OWw9UnmjlBlSOI+/8sXXGDBevXiUc8lkjK5X6jzWl7CIs/BgHYUnE0UehRJ7o/A2OAN6vkf2xrcih7Da1tPUMgzPQ1dWzEzX7Jh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZw9zYlB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77642C4CEC4;
+	Fri, 30 Aug 2024 18:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725042261;
-	bh=u32ftu/mfLpMRTkCyzbPhIrEDF/8+LpV8WcZVnbI2Qw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jpr92px7tsAWyPY/TMMQmZHvM3AxhvQGcnAKnX2cGjDUrF4MqgeQXQeYOiStSQ9Yg
-	 aUWtdtrszMNuprAn50W/Tzbm0bXUdaXacOhJWPhBrKemwQTh0jgfsvDFFpNuecRPRV
-	 tM7XFpPOCRimeH6xfTlG2zCweOoDMR3VxVPhSD9U/KAnDvsJHbdKi+0MeMJ7NHlDyx
-	 WMacXW3rO+x99vBBSoOvYD5l1o4NkrIEH3tGYfN9QQNwyR73XPHeiQsj1tGEuehb51
-	 TSA3Gum/Z0ZZ9bQbfbX8OhxGbzjYRTz9Hn4cs8Ef8UlZYpQAsO4YOIV7WlA2kT0J4Q
-	 AaovFlrdRd4+Q==
-Date: Fri, 30 Aug 2024 19:24:17 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>, broonie@kernel.org,
-	linux-spi@vger.kernel.org, otavio.salvador@ossystems.com.br,
-	heiko@sntech.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: Add a reference to
- spi-peripheral-props.yaml
-Message-ID: <20240830-swiftness-clover-24dca1262c32@spud>
-References: <20240829201315.3412759-1-festevam@gmail.com>
- <20240829201315.3412759-2-festevam@gmail.com>
- <20240830-anchor-glucose-f8dcc1b0fd16@spud>
- <CAOMZO5AAyjq2M09Ynbu57jd_RyDe_5fN4oaoxMv1CeKjo2aG5Q@mail.gmail.com>
- <20240830-rockfish-shun-da3e42b69f1d@spud>
- <20240830180509.GA565970-robh@kernel.org>
+	s=k20201202; t=1725042481;
+	bh=f5Uc5k5MsEWXT0HDmaPjKPSyz/7E7DKh4+BY1PUsbVo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=tZw9zYlBB3g5eplwmqwDuXZj66pLzG7m+54tkBkcDUj1oZ68+xI6EdlFYTOrcHQzc
+	 5X8AXWsHcPvAr2C5XAbm56EwdXy57n3WnPP5I3SFK4pPrFcY2GlBof6kBPHR19rK2t
+	 UHSGAPt1+B/ZYSUOnTnAlgjPWh+VHTVOjtGrZy1Mhpea1jqm+qnuNsb76/G4ACeBdt
+	 PDVROZTa5ctZ30DiryM3zkZeZG9FeGri895jfshIvfAEPtxkTCCKE2VcMabMeHKqpO
+	 NGMIwjO2SHaFrqc5pzuDyNaD/ORFAMGoBgCRaQaK0OteHQm+krqqpV1+3/ba+RXpc/
+	 nHg5W/6dMTgnA==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5334c4d6829so2855708e87.2;
+        Fri, 30 Aug 2024 11:28:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUKM00D8wAxF98/OLZM1pMgT3jUJbid4mC87dmL4ZMIW6TaO28FMV+LwYxvgDxJx6BmPnBQGtWPBdPL@vger.kernel.org, AJvYcCUbclfWQJ1jDVhtC+CtouBNY+rrdb5JCAeiv4t16ZUp5EBNCdqp+vLgKnMLIkmFTv8+eRduXDe7N6ha3d0D@vger.kernel.org, AJvYcCVTwhY5+WgmAbWOSRQdDYEgdChsnHh5vo59HAp9ZJdfV/it6GZpgZu8NzlRXMyevICVUv0M0OlurAUJ@vger.kernel.org, AJvYcCWQrdUp/m+ntbNJFxhXix0POwyFHF55fnYwNBFTFj/XRDEanUkObyshx0GOlt6gFSyUs7H5gZs6KnZL0Q==@vger.kernel.org, AJvYcCWUj3YOEqr+KLSGTm+J3iJG9l15c1hhW/nFj79lXSyzXZ6lp3M5ilktW01F0kiMmi/g90QmqZZcKxT+@vger.kernel.org, AJvYcCX0Wvh5bPaFkcMM3VCrT8LgzNm3Bd1JDau2ie2xDNW00osddV3Bi7a3Ar906ZsDSJlW8prr43ERbEYzSw==@vger.kernel.org, AJvYcCX9cvq+VctDLzp/0rILSKogQy7yqM61yyYEkriJBIjVfbVI7f4kx6Zs13Vq2GLchPtiLn25EQKj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5OVsLE+q1tQET83J3sx03PV/6dDvL27gOJDoCaplDyg1rPA4u
+	kcdJO5XLptJnO7hkCmpvSHhiltAw8U/dv2wRMJ+fUplddi5kqV6tFmDOPMHUDPOSMniKjGgR1Q9
+	pdQrE7/DQnB3+rT8wHzJ7pBssBw==
+X-Google-Smtp-Source: AGHT+IHkKGY89CPI6FFA16aU1d1oJTlBeNFiYnaYKv5/UM42MiQxOpY0Lv8jGLq5OjBzmO9YOzgtvsD8lUsQ5sxBIsk=
+X-Received: by 2002:a05:6512:2c92:b0:530:e323:b1cd with SMTP id
+ 2adb3069b0e04-53546bab46bmr2046490e87.40.1725042479576; Fri, 30 Aug 2024
+ 11:27:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="TwRbPJ4+RhCeAFJu"
-Content-Disposition: inline
-In-Reply-To: <20240830180509.GA565970-robh@kernel.org>
-
-
---TwRbPJ4+RhCeAFJu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <cover.1724159867.git.andrea.porta@suse.com> <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+ <98c570cb-c2ca-4816-9ca4-94033f7fb3fb@gmx.net> <ZshZ6yAmyFoiF5qu@apocalypse>
+ <015a0dd9-7a13-45b7-971a-19775a6bdd04@gmx.net> <Zsi5fNftL21vqJ3w@apocalypse>
+In-Reply-To: <Zsi5fNftL21vqJ3w@apocalypse>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 30 Aug 2024 13:27:46 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+XSWEfNF-Dn3paf1io0vxTmfFNbPf7AfRWFf4XiOYkaw@mail.gmail.com>
+Message-ID: <CAL_Jsq+XSWEfNF-Dn3paf1io0vxTmfFNbPf7AfRWFf4XiOYkaw@mail.gmail.com>
+Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
+To: Stefan Wahren <wahrenst@gmx.net>, Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-arch@vger.kernel.org, Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 30, 2024 at 01:05:09PM -0500, Rob Herring wrote:
-> On Fri, Aug 30, 2024 at 04:17:02PM +0100, Conor Dooley wrote:
-> > On Fri, Aug 30, 2024 at 12:05:20PM -0300, Fabio Estevam wrote:
-> > > Hi Conor,
-> > >=20
-> > > On Fri, Aug 30, 2024 at 11:14=E2=80=AFAM Conor Dooley <conor@kernel.o=
-rg> wrote:
-> > >=20
-> > > > Since those don't come from spi-peripheral-props, not really the co=
-rrect
-> > > > justification (although why they don't, I'm not sure). If you still=
- saw
-> > > > dtbs_check complaints after the first patch, I maybe the controller
-> > > > schema is missing a reference to spi-controller.yaml?
-> > >=20
-> > > I changed the first patch as suggested:
-> > >=20
-> > > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > @@ -29,6 +29,10 @@ properties:
-> > >      description:
-> > >        Chip select used by the device.
-> > >=20
-> > > +  spi-cpha: true
-> > > +
-> > > +  spi-cpol: true
-> > > +
-> > >    spi-cs-high:
-> > >      $ref: /schemas/types.yaml#/definitions/flag
-> > >      description:
-> > >=20
-> > > spi-rockchip.yaml does reference spi-controller.yaml, but I still get
-> > > dtbs_check complaints after the first patch.
-> > >=20
-> > > $ make CHECK_DTBS=3Dy rockchip/rv1108-elgin-r1.dtb -j12
-> > >   UPD     include/config/kernel.release
-> > >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > >   DTC [C] arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb
-> > > /home/fabio/linux-next/arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb:
-> > > display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes:
-> > > 'pinctrl-[0-9]+'
-> > > from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > >=20
-> > > I would appreciate some suggestions on how to fix this warning.
-> >=20
-> > Ah, I think I suggested something garbage, because I misread the diff,
-> > as my quoted mail evidences. I was really trying to suggest putting
-> > spi-cpha: true
-> > spi-cpol: true
-> > in trivial-devices.yaml, but I didn't notice that the patch was to
-> > spi-peripheral-props rather than trivial-devices. These properties are
-> > defined (for reasons I don't quite understand) in spi-controller.yaml
-> > and applied to children of the controller node by that binding and I
-> > wanted to avoid the redefinition.
->=20
-> I steered Fabio wrong...
->=20
-> I think we originally had these in spi-peripheral-props, but then=20
-> decided they are properties of the device, not the controller.
+On Fri, Aug 23, 2024 at 11:31=E2=80=AFAM Andrea della Porta
+<andrea.porta@suse.com> wrote:
+>
+> Hi Stefan,
+>
+> On 12:23 Fri 23 Aug     , Stefan Wahren wrote:
+> > Hi Andrea,
+> >
+> > Am 23.08.24 um 11:44 schrieb Andrea della Porta:
+> > > Hi Stefan,
+> > >
+> > > On 18:20 Wed 21 Aug     , Stefan Wahren wrote:
+> > > > Hi Andrea,
+> > > >
+> > > > Am 20.08.24 um 16:36 schrieb Andrea della Porta:
+> > > > > The RaspberryPi RP1 is ia PCI multi function device containing
+> > > > > peripherals ranging from Ethernet to USB controller, I2C, SPI
+> > > > > and others.
+> > > > sorry, i cannot provide you a code review, but just some comments. =
+multi
+> > > > function device suggests "mfd" subsystem or at least "soc" . I won'=
+t
+> > > > recommend misc driver here.
+> > > It's true that RP1 can be called an MFD but the reason for not placin=
+g
+> > > it in mfd subsystem are twofold:
+> > >
+> > > - these discussions are quite clear about this matter: please see [1]
+> > >    and [2]
+> > > - the current driver use no mfd API at all
+> > >
+> > > This RP1 driver is not currently addressing any aspect of ARM core in=
+ the
+> > > SoC so I would say it should not stay in drivers/soc / either, as als=
+o
+> > > condifirmed by [2] again and [3] (note that Microchip LAN966x is a ve=
+ry
+> > > close fit to what we have here on RP1).
+> > thanks i was aware of these discussions. A pointer to them or at least =
+a
+> > short statement in the cover letter would be great.
+>
+> Sure, consider it done.
+>
+> > >
+> > > > > Implement a bare minimum driver to operate the RP1, leveraging
+> > > > > actual OF based driver implementations for the on-borad periphera=
+ls
+> > > > > by loading a devicetree overlay during driver probe.
+> > > > Can you please explain why this should be a DT overlay? The RP1 is
+> > > > assembled on the Raspberry Pi 5 PCB. DT overlays are typically for =
+loose
+> > > > connections like displays or HATs. I think a DTSI just for the RP1 =
+would
+> > > > fit better and is easier to read.
+> > > The dtsi solution you proposed is the one adopted downstream. It has =
+its
+> > > benefits of course, but there's more.
+> > > With the overlay approach we can achieve more generic and agnostic ap=
+proach
+> > > to managing this chipset, being that it is a PCI endpoint and could b=
+e
+> > > possibly be reused in other hw implementations. I believe a similar
+> > > reasoning could be applied to Bootlin's Microchip LAN966x patchset as
+> > > well, and they also choose to approach the dtb overlay.
+> > Could please add this point in the commit message. Doesn't introduce
+>
+> Ack.
+>
+> > (maintainence) issues in case U-Boot needs a RP1 driver, too?
+>
+> Good point. Right now u-boot does not support RP1 nor PCIe (which is a
+> prerequisite for RP1 to work) on Rpi5 and I'm quite sure that it will be
+> so in the near future. Of course I cannot guarantee this will be the case
+> far away in time.
+>
+> Since u-boot is lacking support for RP1 we cannot really produce some tes=
+t
+> results to check the compatibility versus kernel dtb overlay but we can
+> speculate a little bit about it. AFAIK u-boot would probably place the rp=
+1
+> node directly under its pcie@12000 node in DT while the dtb overlay will =
+use
+> dynamically created PCI endpoint node (dev@0) as parent for rp1 node.
 
-I don't follow, how would them being properties of the "device", make them
-unsuitable for spi-peripheral-props? Is the differentiation supposed to
-be that the things in spi-peripheral-props are actually there to do
-per-"device" tweaks for special controller features and the things
-applied by spi-controller to child nodes of SPI buses are the ones that
-describe requirements of the device?
+u-boot could do that and it would not be following the 25+ year old
+PCI bus bindings. Some things may be argued about as "Linux bindings",
+but that isn't one of them.
 
-Even if that is a rather WTF responsibility distribution between files
-(partly that's down to naming), the usage does make sense.
-spi-peripheral-props can be unconditionally included by all SPI devices,
-since the controller determines what properties are relevant, and spa-cpha
-etc only get permitted when explicitly set as "true".
-
-> These=20
-> properties should really only be needed if the device supports different=
-=20
-> modes. If what a device supports is fixed, then that can be implicit.
-
-Right. That's very inconsistently done though, even if it makes sense.
-I'd wager there are very few devices that actually support both
-configurations but conversely very few drivers for active-high-only
-devices that don't rely on the spi-cs-active-high (or w/e it is)
-property to function correctly.
-
-I should send a patch for pcf2123 to make it required, because that is
-the one I know for sure requires active high off the top of my head.
-
->=20
-> There's one other case I see with "dh,dhcom-board". So I guess add=20
-> spi-cpha and spi-cpol directly to trivial-devices.yaml.
->=20
-> Rob
-
---TwRbPJ4+RhCeAFJu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtIOUQAKCRB4tDGHoIJi
-0qWrAP41MxkRul04+1FJ1Xma4pGBB2xF0ngqVQ1rWd8BTTPAuAEAg2G1V3azTwyv
-gyshdN/zngROy4ZEiGcxqtnOv5tI8Ak=
-=emxH
------END PGP SIGNATURE-----
-
---TwRbPJ4+RhCeAFJu--
+Rob
 
