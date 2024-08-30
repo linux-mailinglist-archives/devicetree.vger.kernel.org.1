@@ -1,238 +1,124 @@
-Return-Path: <devicetree+bounces-98385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2102B965F15
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:27:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61005965F20
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:28:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBEBD28EA62
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:27:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F34728B5F0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CDE5192D6A;
-	Fri, 30 Aug 2024 10:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD8A188A27;
+	Fri, 30 Aug 2024 10:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eLmZmi7b"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EgYiu1u1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29621917ED;
-	Fri, 30 Aug 2024 10:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D56B17B4FE;
+	Fri, 30 Aug 2024 10:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725013483; cv=none; b=j605ivKc4ts7mNDqnRAFRCx49O+QwY8PB+ST88462GlE0Gcv/w3j8wqnYA/r0nJWb21tyhVfynQHjoGs95ACFg4+nQYnUL193vg/Oz4hybMoayGtN96pOKHfavUV6mPoluYKa/JMcEMLyo1+MemOW+jsiV79qB5XHQgkosg/qAo=
+	t=1725013639; cv=none; b=iral3qtZoIt9jVEj4YtZL0SX7UA4xBJPiJK9IcW38rQX/XYoNwStZHodfgG8sCl/LgGfRMfdR2QGkdC4RSs3xVraiid7a8qj6blPJXVpnKhLX/W90cu0lM4NvUMhByKAmntzVBrZ1fOA9+w/Eo+x1R2JHOQ4OXZE17lplt483UQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725013483; c=relaxed/simple;
-	bh=wbRjVaY021e1Ru6tFv9/hHGq0msE+MdSlakr4cmQyaU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pXQyAlClbNZlfdX9pWz17UDRE7CqKVG86olXZws67bJt3sT5vCqZYhfiaruxjCreHV+4XDTNLFWCQNindmB0CNdAzTD1fsW9PXhrto5eoiSWQko/U+5mS31HzZoVpRvI142qt3M6kLjlk5lwFIuJwm6XlE26ZlTe+kkJQWXUC4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eLmZmi7b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C425C4CEC6;
-	Fri, 30 Aug 2024 10:24:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725013482;
-	bh=wbRjVaY021e1Ru6tFv9/hHGq0msE+MdSlakr4cmQyaU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eLmZmi7b8Gfvy730GIvY8ljpUAlAxp60fksmctjJ3arSzSIYG/E8+9fNxP2Ie84s1
-	 zQiMXkjVrV3ZRZLHxn14NExZJhnJvNHCMs5U/rre13pwWeD9cmYN42QKD7jtTAKekL
-	 cwTBI6n9iZkeM8o1Gsximqj7JiKOK8T6OacHEtCehX5DitE81Yy8Tq2Pez5ArOaVtj
-	 ESCY6NEcZvW8OYeFsPEf6KschieYLJRYkb82KIdlQFg8K2PUeDcDmIcMRTP274u/MT
-	 cgbK2dgQdECYgSmUpKv3YrB7dv1PUvJUCYtaZnNNCIEHPI/r+xdHfkwR345CvW5ZSy
-	 BlQawzqsJVL7g==
-Message-ID: <db2bc170-052e-4c9b-a191-4d916bbe0993@kernel.org>
-Date: Fri, 30 Aug 2024 12:24:34 +0200
+	s=arc-20240116; t=1725013639; c=relaxed/simple;
+	bh=n5x96yz0plQXi0jNRmIFh/xZ8EZ6kyjM+6+zAuiZYPs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=k8vYOPHvyG3gpjrg+OezuPjMz/MTdfZ2QWe0G3YpPAQCBzmS++OEp+JT/0UBAVP1ezsBVPwbfRroQmbniBkePkR5egNI+TlKuWVMsvFnKJRw/yrly4bcn/W15anH4tB3QYAwHWIiG7Bj27hmA3OLMOG7AiFW1705KQdu5DK6KGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EgYiu1u1; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UARAb1059403;
+	Fri, 30 Aug 2024 05:27:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725013630;
+	bh=SWIJULiquba5lxHob3BxH9YjKU7LdekAg30JvEMazqM=;
+	h=From:To:CC:Subject:Date;
+	b=EgYiu1u13UiA3sdBymMUKPXi1IixCWce0ZCt98bPQWK8ZcOofpOt/iGmZDggPpAhI
+	 hFSvaTRCq0jD1CI7DvvLtDQDsvCQRjhORQajSiQk2w6Siq06FLOR3gCG3skSPtXK1u
+	 6B3BLpRA7fJlRllmlDT4Yk7Ha4yVUe5eOxOSRXXM=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UARA1D125739;
+	Fri, 30 Aug 2024 05:27:10 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 05:27:10 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 05:27:10 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UARAXX120457;
+	Fri, 30 Aug 2024 05:27:10 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>
+CC: Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Roger
+ Quadros <rogerq@kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am642-evm-nand: Rename pinctrl node and gpio-hog names
+Date: Fri, 30 Aug 2024 05:27:09 -0500
+Message-ID: <20240830102709.3970209-1-nm@ti.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/7] coresight: Add coresight TGU driver
-To: songchai <quic_songchai@quicinc.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240830092311.14400-1-quic_songchai@quicinc.com>
- <20240830092311.14400-3-quic_songchai@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240830092311.14400-3-quic_songchai@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Texas Instruments, Inc.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 30/08/2024 11:23, songchai wrote:
-> Add driver to support Coresight device TGU (Trigger Generation Unit).
-> TGU is a Data Engine which can be utilized to sense a plurality of
-> signals and create a trigger into the CTI or generate interrupts to
-> processors. Add probe/enable/disable functions for tgu.
-> 
-> Signed-off-by: songchai <quic_songchai@quicinc.com>
+Rename the pin mux and gpio-hog node names to match up with binding
+rules. This fixes dtbs_check warnings:
+'gpmc0-pins-default' does not match any of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
+'gpio0-36' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
 
-...
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+Cc: Roger Quadros <rogerq@kernel.org>
 
-> +
-> +static struct attribute *tgu_common_attrs[] = {
-> +	&dev_attr_enable_tgu.attr,
-> +	NULL,
-> +};
-> +
-> +static struct attribute_group tgu_common_grp = {
+This is a trivial fix, so applying Fixes seemed over-board.
 
-Not const?
+ arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +	.attrs = tgu_common_attrs,
-> +	NULL,
-> +};
-> +
-> +static const struct attribute_group *tgu_attr_groups[] = {
-> +	&tgu_common_grp,
-> +	NULL,
-> +};
-> +
-> +static int tgu_probe(struct amba_device *adev, const struct amba_id *id)
-> +{
-> +	int ret = 0;
-> +	struct device *dev = &adev->dev;
-> +	struct coresight_platform_data *pdata;
-> +	struct tgu_drvdata *drvdata;
-> +	struct coresight_desc desc = { 0 };
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
+index f08c0e272b53..f91589818e32 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
+@@ -12,7 +12,7 @@
+ #include "k3-pinctrl.h"
+ 
+ &main_pmx0 {
+-	gpmc0_pins_default: gpmc0-pins-default {
++	gpmc0_pins_default: gpmc0-default-pins {
+ 		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM64X_IOPAD(0x0094, PIN_INPUT, 7) /* (T19) GPMC0_BE1n.GPIO0_36 */
+@@ -50,7 +50,7 @@ AM64X_IOPAD(0x00a4, PIN_OUTPUT, 0) /* (N17) GPMC0_DIR */
+ };
+ 
+ &main_gpio0 {
+-	gpio0-36 {
++	gpmc0-hog {
+ 		bootph-all;
+ 		gpio-hog;
+ 		gpios = <36 0>;
 
-Code is quite mixed here... Bring some order - declarations with and
-without assignments.
-
-> +
-> +	desc.name = coresight_alloc_device_name(&tgu_devs, dev);
-> +	if (!desc.name)
-> +		return -ENOMEM;
-> +
-> +	pdata = coresight_get_platform_data(dev);
-> +	if (IS_ERR(pdata))
-> +		return PTR_ERR(pdata);
-> +
-> +	adev->dev.platform_data = pdata;
-> +
-> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	drvdata->dev = &adev->dev;
-> +	dev_set_drvdata(dev, drvdata);
-> +
-> +	drvdata->base = devm_ioremap_resource(dev, &adev->res);
-> +	if (!drvdata->base)
-> +		return -ENOMEM;
-> +
-> +	spin_lock_init(&drvdata->spinlock);
-> +
-> +	drvdata->enable = false;
-> +	desc.type = CORESIGHT_DEV_TYPE_HELPER;
-> +	desc.pdata = adev->dev.platform_data;
-> +	desc.dev = &adev->dev;
-> +	desc.ops = &tgu_ops;
-> +	desc.groups = tgu_attr_groups;
-> +
-> +	drvdata->csdev = coresight_register(&desc);
-> +	if (IS_ERR(drvdata->csdev)) {
-> +		ret = PTR_ERR(drvdata->csdev);
-> +		goto err;
-> +	}
-> +
-> +	pm_runtime_put(&adev->dev);
-> +	dev_dbg(dev, "TGU initialized\n");
-
-Drop, useless. Kernel provides you already ways to know probe status.
-
-> +	return 0;
-> +err:
-> +	pm_runtime_put(&adev->dev);
-> +	return ret;
-> +}
-> +
-> +static struct amba_id tgu_ids[] = {
-
-Not const?
-
-> +	{
-> +		.id = 0x0003b999,
-> +		.mask = 0x0003ffff,
-> +		.data = "TGU",
-> +	},
-> +	{ 0, 0 },
-> +};
-
-No module device table?
-
-> +
-> +static struct amba_driver tgu_driver = {
-> +	.drv = {
-> +			.name = "coresight-tgu",
-> +			.owner = THIS_MODULE,
-
-Please drop. Also one-less indentation.
-
-> +			.suppress_bind_attrs = true,
-> +		},
-> +	.probe = tgu_probe,
-> +	.id_table = tgu_ids,
-> +};
-> +
-> +module_amba_driver(tgu_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("CoreSight TGU driver");
-Best regards,
-Krzysztof
+base-commit: d2bafcf224f3911b183113b2fcb536c9e90684a3
+prerequisite-patch-id: a9c45d98345ca492c945cd5050191ad605de242b
+-- 
+2.46.0
 
 
