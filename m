@@ -1,152 +1,112 @@
-Return-Path: <devicetree+bounces-98393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E80965F98
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:51:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 783DF965FA4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:53:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D42BB2CA4B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:42:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB4561C234AB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0596E18EFFB;
-	Fri, 30 Aug 2024 10:42:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181E918E742;
+	Fri, 30 Aug 2024 10:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tFQHhGKG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NRWVImWb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6306B165F05
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 10:42:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296A117B4F9;
+	Fri, 30 Aug 2024 10:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725014537; cv=none; b=P8KwM57ZqMAfeNj1d332lnNqKI8ROxyvv33VOdmcj0LizVqWpCuhPMsGR7+ZoCTQ6/I/uvCLLkPCUsBljxQNw1sBEYJ1DU+szSRMQ281XBoj0JxusW8eISNxBiUN0V1Z5uTI8HqclRQCFNnyvxhQQ7jIaIuUmX/MfqO8ysuFVLc=
+	t=1725015212; cv=none; b=SiOhhujogsS9WXzM0dXILuxdaw9VOXK3xp2InHCcA7B74fchVamoYfQEquy4WXKA0zEMvxDHDeGBaALo9Masai7xWPXznibxsUPxQsvYvi5rvP4IedIinrkTdaNGjqjEglOOp/IZ362EG/awfop2ExdHqIBjaIXd+pVf56ToC4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725014537; c=relaxed/simple;
-	bh=GU8GsIPo5vVjv/FvznuyCG2RVrBUnZEpDYjAsHhlquw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rb7l94w1ANGmcosyhNPLbE8ZKkExTVdqZ9whM6T+lXlVs1f0m7Vj67UjL4DCCE1q6j0ql7stq+hmxcT7u3s4/z2j4v2Z6A1pnLKLCzGg6Cl0ec+mIJ/Q4/4RRkr0rvqTrA1G25kKx1zq5HpX/5jWiwpEXSrsOh9UuBV+L+FRkLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tFQHhGKG; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2f43de7ad5eso21629631fa.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 03:42:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725014533; x=1725619333; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nnBATt0aCdgUC6P5YWHuzTeqt0mGO1EjpThrCVktSJU=;
-        b=tFQHhGKGHNM1rtvgKIlpxuNJPRDt33PXee+r4BAR4dg72iHb7VtG0x+1Tgz4LD6JCR
-         bQrB7/wCRo+8tZ09EnY35f5Q9NLhvUtnVEUhQ9qn70NR4UeCeM23QL5vgoef+vT61ry7
-         /3TxOv7JNW+nlCJwhfmb4MJPF58jEzDzYmgMIVnzflG3L+c1zMBpNm6Sej5Iu+xvj2YH
-         0yTEgliQJclplRn/QzVHGPRnmVviOSoLa0cXkCLaJsYv1Lr3X0z88guGkZ7OIrdYL73M
-         3gPBt+/cNKxasTB7nk0NzyDeLVVd/D473J8yFMhpPRjzHZ3njR44MLpSgJB/BZmL7QS5
-         RfBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725014533; x=1725619333;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nnBATt0aCdgUC6P5YWHuzTeqt0mGO1EjpThrCVktSJU=;
-        b=MRvNF6VVgxTNC1dRMZJ3AoErxzNqGnDQzHsMFtrMHHWyu8OQfCYiFRZtW7cEqrcvqp
-         K9SYcXoMTXmImoM+06OiMNIhj4gUJbZEd7xmp0UZl0DqbkwjG5vkloJtLHLJJOu4lm4K
-         k+Qq66ahmhVDcXiWWzuOMdb1a6ne1B+BhGRoIaumBrxqQZb4VOaQp4F3sZf6IgBq+kQ8
-         TGeoXV8BBl8aO3x2U5CXwLsBIEM2Ccf8eBxaSNm2E2R/gJpr3K+4v8A6tczcDtmN9xGL
-         qVIoT4r9Cl7vTI6IhZDsmRwHw71aulTp1o9SZQGqV4SChh8zyQiyxOo0/SPiAeu28J59
-         d4Xw==
-X-Forwarded-Encrypted: i=1; AJvYcCWajSV+tLx6tuEEY5qxS0EdsY7s0PI6sdXook2Cfno/QIUh3JIy0RCsf2JejbSmRuzAcZVAnbJPT+9v@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAuItBvX8tFwQHpyWagoITP6UtO9RulZfQZy3PVg/52VB0xq5Q
-	G3JoVgvOjzCrkTsqeUuQ3paEHhSlksKE9hJgZJF/6GEiUx06KU0L3qXVFr8IvWWuWorLzANGB/V
-	r
-X-Google-Smtp-Source: AGHT+IHIVMMpPiudJNRkic59qjcS0uvC6Loc8Pvi0x8IGyPMyVB8soyXpzs69J1ZylJShtWwpCcRFA==
-X-Received: by 2002:a05:6512:3c99:b0:52e:9f17:841a with SMTP id 2adb3069b0e04-53546af3048mr1391073e87.6.1725014532644;
-        Fri, 30 Aug 2024 03:42:12 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5354079bb9dsm540503e87.21.2024.08.30.03.42.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 03:42:11 -0700 (PDT)
-Date: Fri, 30 Aug 2024 13:42:10 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
- Document the X1E80100 QMP PCIe PHY Gen4 x4
-Message-ID: <gvx3sdsdxigel3iwu7vgvvgxohvnaqq6suogsqojeumobhwhdk@5qct23m5ncda>
-References: <20240823-x1e80100-phy-add-gen4x4-v3-0-b7765631ca01@linaro.org>
- <20240823-x1e80100-phy-add-gen4x4-v3-1-b7765631ca01@linaro.org>
+	s=arc-20240116; t=1725015212; c=relaxed/simple;
+	bh=O9KGuHA2ZA1Eb8lRka+CR0EIeZxGOlxwyRPT8n1DNts=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AZ+uaKMWjTJZ2ASNLOdcu+QiJz3A+FnNtlOyPb/c9gji5gomFnsiYfzHihUITG1ElbZSWx9S0ICArTfTsR/pFkBNCHqBXGl8xkO6/N1cTYwk7ACQ9B4bSPY8R87G4+OIlrPhu8TsMGfETCW7zJNZBggNu3rCxFwb5X/WfTeBDw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NRWVImWb; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UArMIc101755;
+	Fri, 30 Aug 2024 05:53:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725015202;
+	bh=KUOgx+nr0Fdd/U00rm4qzZJfvik05ytOlpn9p/ouBH8=;
+	h=From:To:CC:Subject:Date;
+	b=NRWVImWbs7jZ12VLz4r/DKXBGPc8M0cu20KRKBPDV+v3Z156O5hiYonuviIyP77TQ
+	 6K853QRxazjjAm68VhX+HX8PEgNWvKaw1SOdnsFlHq76kyANFBBEIujPajRucveRbb
+	 X8Ae5HLweEExBElldZspQhgYsmOmm9JfGgYxnus4=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UArMRk012191
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 30 Aug 2024 05:53:22 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 05:53:22 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 05:53:21 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UArHDB009586;
+	Fri, 30 Aug 2024 05:53:18 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <sjakhade@cadence.com>,
+        <yamonkar@cadence.com>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <nm@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH] dt-bindings: phy: cadence-sierra: Allow PHY types QSGMII and SGMII
+Date: Fri, 30 Aug 2024 16:23:16 +0530
+Message-ID: <20240830105316.1824319-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240823-x1e80100-phy-add-gen4x4-v3-1-b7765631ca01@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Fri, Aug 23, 2024 at 10:04:15AM GMT, Abel Vesa wrote:
-> The sixth PCIe instance on X1E80100 can be used in either 4-lane mode or
-> 2-lane mode. Document the 4-lane mode as a separate compatible.
+The Sierra SERDES can be configured for QSGMII and SGMII protocols. Hence,
+update the bindings to treat "PHY_TYPE_QSGMII" and "PHY_TYPE_SGMII" as
+valid values for the "cdns,phy-type" property.
 
-As the patches were merged, it's too late for this series, but as a
-note: we should think of a way to describe the PHY configuration without
-changing the compatibility strings. The hardware stays the same, it's
-just the number of lanes being wired that changes.
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
 
-The obvious way to handle platform-specific differences is by using
-num-lanes property of the PCIe host and then passing required
-configuration (num lanes, max speed, etc.) to the PCIe PHY via
-phy_configure() call.
+Hello,
 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> index 03dbd02cf9e7..dcf4fa55fbba 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> @@ -40,6 +40,7 @@ properties:
->        - qcom,sm8650-qmp-gen4x2-pcie-phy
->        - qcom,x1e80100-qmp-gen3x2-pcie-phy
->        - qcom,x1e80100-qmp-gen4x2-pcie-phy
-> +      - qcom,x1e80100-qmp-gen4x4-pcie-phy
->  
->    reg:
->      minItems: 1
-> @@ -118,6 +119,7 @@ allOf:
->            contains:
->              enum:
->                - qcom,sc8280xp-qmp-gen3x4-pcie-phy
-> +              - qcom,x1e80100-qmp-gen4x4-pcie-phy
->      then:
->        properties:
->          reg:
-> @@ -169,6 +171,7 @@ allOf:
->                - qcom,sc8280xp-qmp-gen3x1-pcie-phy
->                - qcom,sc8280xp-qmp-gen3x2-pcie-phy
->                - qcom,sc8280xp-qmp-gen3x4-pcie-phy
-> +              - qcom,x1e80100-qmp-gen4x4-pcie-phy
->      then:
->        properties:
->          clocks:
-> 
-> -- 
-> 2.34.1
-> 
+This patch is based on linux-next tagged next-20240830.
 
+Regards,
+Siddharth.
+
+ Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
+index 37f028f7a095..137ac5703853 100644
+--- a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
++++ b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
+@@ -96,7 +96,7 @@ patternProperties:
+           Specifies the type of PHY for which the group of PHY lanes is used.
+           Refer include/dt-bindings/phy/phy.h. Constants from the header should be used.
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        enum: [2, 4]
++        enum: [2, 4, 8, 9]
+ 
+       cdns,num-lanes:
+         description:
 -- 
-With best wishes
-Dmitry
+2.40.1
+
 
