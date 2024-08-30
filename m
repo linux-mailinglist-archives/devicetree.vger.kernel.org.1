@@ -1,85 +1,52 @@
-Return-Path: <devicetree+bounces-98540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DED99667D4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:19:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258689667D7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:20:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC2EB1F2472A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:19:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE9451F2227F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82BA1B5813;
-	Fri, 30 Aug 2024 17:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CGBsSjYV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C3E1BB6A3;
+	Fri, 30 Aug 2024 17:19:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A941AF4ED;
-	Fri, 30 Aug 2024 17:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96361BA860;
+	Fri, 30 Aug 2024 17:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725038340; cv=none; b=lRNyMjgceCSw2ywpzeM3ZFxMmD38I1W0mX54TDSNPSWqxbUq0ZDrxwDWBDMeGtsLD43HUNOO7PgPS6Q5Zb/2d3OyBo6iL4U+iEcQhalxACZde3amLXtyG5tGVs/OLxZM4VnMrEc2kNuQm4caQgPXr78NdRoRNv2389NRHqG8Y2Q=
+	t=1725038391; cv=none; b=DnVCp7iH0XFph2ojebaz/A3iCBV4NKjlORHTY+6YtQmuULi+VV1oDka3q49mgJka6HEVb1jhqSFCxIBSFbDfcyqkbhsMS0COR7oecBmKWPF2ODOWs4kpEadHEvkMLlB2hbUoWqvhpsxW7oDbd7SJtNAsHPWA1R596ZX7uOlI+fA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725038340; c=relaxed/simple;
-	bh=+jpUXLmR5pSAvOQj2ANjYSi5Q2MTOLMGHwbe1u79XZY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HkvUFqYEvU3YXa/rp6374N2SeOjo5LUMcFKttP8o0+H8bihrDYhWbpy7APblMgrVyGTR1y+zPt9n6Tl8J5LOeD6fITqBc9I59lbmlh6/0fYDaNyFzOlKiQ90OYyGkyjPbAfL+feqiU1lXYmyOth2SyTZiOtxHBWg7VZLa86e6Zk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CGBsSjYV; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-714302e7285so1858979b3a.2;
-        Fri, 30 Aug 2024 10:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725038339; x=1725643139; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oU7Y9rgoKN0I/lBGj6nVMpMCGbyMF8VZWxC6PLhbawA=;
-        b=CGBsSjYVArncMBJyv+sSG4HJ560p5pIxMaDDmtTbPlyUckG7GxnwAoUiQV0VKFnUi1
-         cedFljt88OHbGVhFl67cxChHFxXL89fDk5Fwt0yUtjSqsK3AK9Xeez2qXw/PZCACYROV
-         kio3UkbrxnubxELszXmcC8lnM1yB5iQ7NOchYYnqnBVb5MnaEdJ6Urhe05DxEJmwaU2V
-         H3T83mQH2W0AM9ebhRyUc2aCdjQCeTto0N1OsI/19T+pI5SQVzdvulSgjW2RjAeeGVqK
-         EFvU+Y5FdOYk6zVdfYvlt7Y37eKU+TBJ6HzktHFDt0ESQiQ1ipPhm0ufVpgkuYD/WmzX
-         ulAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725038339; x=1725643139;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oU7Y9rgoKN0I/lBGj6nVMpMCGbyMF8VZWxC6PLhbawA=;
-        b=UhLQqRz/5lQ0AIOQUiKLIaPG4y7tJxHSDssMU76GgCE57CbJVK4rXiqNS82idI7mj3
-         YIbmegX/XcD+xT6uQC6WEe4W6rNNVrZvzhvqxT1lf0ln95Lhz5H+4Y2iDXjm3EzRJrW7
-         12794R4dT4oRfitZaiQaJpDe1xQttVZlLn25fMr9ApjcyGGgOGnODFxFANIhVZexO9fW
-         6H7hAkLNVsiz4aLQ0xjgrrT/cJs89qP2SO46mVDFHsDl0o4rJHWx4Qu8lBHWq3M8xRiy
-         Yuj7vu9ChLDO+leFiJloKbUJRWRV8p4twxNHlmlzCAAu3+oAlWW3rBYJ0vCtTVI+20Vm
-         sBvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWhqr4lM+m5tU1T1NfxADMLISJiZLTunX8vK/mHK2R2FWl9y35IS9UVXlmpG6LviSEVPTq1n/uEbt4/@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywfci9/TxUb5Ihx5K9VKJYvjkw8Zkaah1CJ8WhbbXdcPargqhw3
-	16/jt/KRnodAYvt4TmCuE7ViS57BVi/ULjLLYFm5n/e6+yZvDSKNhMMOjQ==
-X-Google-Smtp-Source: AGHT+IEwynOk7MmdonDrz7jfFT5a01s6rrlgZ1wLgGtw1SUwLarImqNTp7DEpZIfN9osrXq5pTf4DA==
-X-Received: by 2002:a05:6a00:234a:b0:714:1fc3:79f7 with SMTP id d2e1a72fcca58-715dfc506a0mr9081131b3a.17.1725038338533;
-        Fri, 30 Aug 2024 10:18:58 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:79a1:1962:99bd:89d3])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e569eee3sm3015156b3a.134.2024.08.30.10.18.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 10:18:58 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: linux-spi@vger.kernel.org,
-	otavio.salvador@ossystems.com.br,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1725038391; c=relaxed/simple;
+	bh=lIgLln/zPB1RpPJPx0whGSqDqOO4FG9Xn0vMf5BK8Kw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=YXn7PSl8KxD6h92A1a/B54RA4aH1E/5f7fQdz2Zht3uMGb1b3vYjyL4A5sLu4Kc4fuDNwndWjUdg4SZJsbtdxVZf/okJseyLz7lZMfeJ1DFJoWjRk22lVhyFF4E9I2wEQYz7pWQA70+SMi7/4/ojLOws2fO363/oqIoNvZnIcyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90D1D1477;
+	Fri, 30 Aug 2024 10:20:15 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 5FD993F66E;
+	Fri, 30 Aug 2024 10:19:48 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: will@kernel.org
+Cc: mark.rutland@arm.com,
 	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v2] dt-bindings: trivial-devices: Document spi-cpha and spi-cpol
-Date: Fri, 30 Aug 2024 14:18:49 -0300
-Message-Id: <20240830171849.3750165-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-kernel@vger.kernel.org,
+	jialong.yang@shingroup.cn,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/3] dt-bindings/perf: Add Arm NI-700 PMU
+Date: Fri, 30 Aug 2024 18:19:33 +0100
+Message-Id: <5f86237580219116de37e5e54d8b7eb0c9ed580d.1725037424.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
+In-Reply-To: <cover.1725037424.git.robin.murphy@arm.com>
+References: <cover.1725037424.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,38 +55,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-There may be cases where a trivial-device needs to describe
-the SPI clock polarity and phase via spi-cpol and spi-cpha
-properties.
+Add an initial binding for the Arm NI-700 interconnect PMU. As with the
+Arm CMN family, there are already future NI products on the roadmap, so
+the overall binding is named generically just in case any
+non-discoverable incompatibility between generations crops up.
 
-Document these properties to fix the following dt-schema warnings:
-
-rv1108-elgin-r1.dtb: display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes: 'pinctrl-[0-9]+'
-
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Cc: <devicetree@vger.kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
-Changes since v1:
-- Add spi-cpha and spi-cpol to trivial-devices.yaml. (Conor)
 
- Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+v3: No change
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 75a5fad08c44..f7c11eb6e5fd 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -24,6 +24,10 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  spi-cpha: true
+ .../devicetree/bindings/perf/arm,ni.yaml      | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,ni.yaml
+
+diff --git a/Documentation/devicetree/bindings/perf/arm,ni.yaml b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+new file mode 100644
+index 000000000000..d66fffa256d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/arm,ni.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+  spi-cpol: true
++title: Arm NI (Network-on-Chip Interconnect) Performance Monitors
 +
-   spi-max-frequency: true
- 
-   compatible:
++maintainers:
++  - Robin Murphy <robin.murphy@arm.com>
++
++properties:
++  compatible:
++    const: arm,ni-700
++
++  reg:
++    items:
++      - description: Complete configuration register space
++
++  interrupts:
++    minItems: 1
++    maxItems: 32
++    description: Overflow interrupts, one per clock domain, in order of domain ID
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
 -- 
-2.34.1
+2.39.2.101.g768bb238c484.dirty
 
 
