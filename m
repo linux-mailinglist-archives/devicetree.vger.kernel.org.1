@@ -1,94 +1,117 @@
-Return-Path: <devicetree+bounces-98455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E80379662F6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:32:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A923596630A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:39:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 935051F243DF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:32:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 558EC1F20FC4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:39:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742661A4AAB;
-	Fri, 30 Aug 2024 13:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA68D1A2875;
+	Fri, 30 Aug 2024 13:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OJj1nbaq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L7aY1pXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C84F17BB17;
-	Fri, 30 Aug 2024 13:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3BF61D1305;
+	Fri, 30 Aug 2024 13:39:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725024747; cv=none; b=KuURoKsQGGFRg++5dnKbhZl2+5Z1I+MOwLxPllqmAbgATfj4W4sXiHQZ4ioQoZb9ahEksuS3E0wcph406mRz4z9pZYpqBIP5r2ONPUohiWs8xjWQsstIgOuQC1b6sGoXvscuiq+3sAotbx5uD6AdRkSNh+iW3qNT8uYUuuVPZeI=
+	t=1725025170; cv=none; b=CNunh4XsH9nXKI9of8WwOZPXUTuL1S+Rb/ilZwXJhN0ZCdp01MyBE//6224HH78MNYs5lSZZjeaQQvbf7x296DNA+xHXAOQXv6wougmHrxmvKlxsSXFjA4D6ACeQjnkFiSvUs/e2l2+qfC7ltW72ZggbTTfjpbUGErAoeHBqJn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725024747; c=relaxed/simple;
-	bh=7e72g1sG3Aetpfg2qZQ6u07s6zBI2/8LUyBugxKUU4o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o0NijilK8d4fveRjutazPPsbP63d77gMjhPOHHep/0+xYN162Fgap8RwuPjHKcpO0ide1+fLgwL275O0KEioG/thfFOy17jcJGTx6+ePnhPMjVRLRgkRnEiigLFXXXIOQRVp2D28EpL6BJXd7272a9SBVbRVwhD6FLAe23x0iUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OJj1nbaq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24EB4C4CEC2;
-	Fri, 30 Aug 2024 13:32:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725024746;
-	bh=7e72g1sG3Aetpfg2qZQ6u07s6zBI2/8LUyBugxKUU4o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OJj1nbaqCh5A93DOZ1+oFS3JWTvEm9mbXmqsbIlGiGzlMoQABx3zCuWx6PHnwNZZp
-	 j6YhFUnRm+FQETx4AsFdEMH/TBZaZxr4djx2nfT/U/qkVlrBrYs+fVczHUNDRSWuZh
-	 rfdtbFX6Pk8NMfnUFeV303E/4FBkiYV3rrt5yfq1uCBy1el7KBRMab1igHT0PcMOqJ
-	 ZL3gwQFdfpevvgGKlR2ktDNc8CCCe6CoGc9fVKear2XkHUfQFoP5fACXPAXWwwAxUy
-	 XnaBMcUXbdendbFZB1VI2/J2mcYakL9JH01Z82Ik4ZQwSc7Y2aq861eLBkdBGy1An8
-	 6EX40SlBDhShg==
-Date: Fri, 30 Aug 2024 14:32:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, sjakhade@cadence.com,
-	yamonkar@cadence.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, srk@ti.com
-Subject: Re: [PATCH] dt-bindings: phy: cadence-sierra: Allow PHY types QSGMII
- and SGMII
-Message-ID: <20240830-juncture-observant-f979caae1c52@spud>
-References: <20240830105316.1824319-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1725025170; c=relaxed/simple;
+	bh=uVq1JUP82sSYRL8HVnjc53Jwj+KQIHIMQcKZeNj96Mw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B0iV2tq/NNsd3ukD1uiV0iNjysbvaTnOwpByWmlplY4bszoPtBmJLcAY0vcADLxwAHDwX2c35MhI+10y0weHnXmn2VTYonPDM8Q+q4njm+RpF/ZBF8JQ4y4WBHMPFaq612Ys3uzf8BU69iNtjFYdzjDvotEAV9KegFSPaPxpGN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L7aY1pXW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47U80BZI011434;
+	Fri, 30 Aug 2024 13:39:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=CoOr2HN15nF8r7fQEfoG1Y
+	3ol5UgNAjHoywlmgPJch8=; b=L7aY1pXWoTJH4mJ0bRvvqODeFwkQfspQmFGhkY
+	w/Q9YFlXddw6uxt7X3wJUTv6pCZye43U6R41EymhonkSn8CyfpVS2NFybX1ak4sn
+	LjJ+CJakhISwcGzeXLH8EslWaIz45UCR3ct05kQs2IDvsS75HLBNc42YEI2bt/Qe
+	K9uEvkXwBQsogSIETXHZ/NYsDBDEWqlsHox+JZX/qiT2scewUV9z4SHCwq7FJz3V
+	6oHa7tZMKTKQNi2cN8IrLR4IBqpobs6iu2rkXA1jqiL9Uiltn8k6yjsV+B839l/1
+	KoPMle5UfDhIl5MbcpctV7qEbz2QXbH94vpE5Cc+ayQ1ZUtA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv0s4d0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 13:39:25 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47UDdNpa011828
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 13:39:23 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 30 Aug 2024 06:39:20 -0700
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <konradybcio@kernel.org>, <andersson@kernel.org>, <lee@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mukesh Ojha <quic_mojha@quicinc.com>,
+        "Elliot
+ Berman" <quic_eberman@quicinc.com>
+Subject: [PATCH v2 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for sa8775p
+Date: Fri, 30 Aug 2024 19:09:07 +0530
+Message-ID: <20240830133908.2246139-1-quic_mojha@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="M6rR9CDKVnFegJOM"
-Content-Disposition: inline
-In-Reply-To: <20240830105316.1824319-1-s-vadapalli@ti.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: e_ImQjHIbGK6EzfyfyQk0uuEYvUkIZa0
+X-Proofpoint-ORIG-GUID: e_ImQjHIbGK6EzfyfyQk0uuEYvUkIZa0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-30_08,2024-08-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=968 bulkscore=0 impostorscore=0 phishscore=0 clxscore=1011
+ mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408300104
 
+Document the compatible for sa8775p SoC.
 
---M6rR9CDKVnFegJOM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Elliot Berman <quic_eberman@quicinc.com>
+Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+---
+Changes in v2:
+ - Added R-by tag and rebased it.
 
-On Fri, Aug 30, 2024 at 04:23:16PM +0530, Siddharth Vadapalli wrote:
-> The Sierra SERDES can be configured for QSGMII and SGMII protocols. Hence,
-> update the bindings to treat "PHY_TYPE_QSGMII" and "PHY_TYPE_SGMII" as
-> valid values for the "cdns,phy-type" property.
->=20
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+ Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+index c6bd14ec5aa0..7d0b0b403150 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+@@ -21,6 +21,7 @@ properties:
+           - qcom,msm8998-tcsr
+           - qcom,qcm2290-tcsr
+           - qcom,qcs404-tcsr
++          - qcom,sa8775p-tcsr
+           - qcom,sc7180-tcsr
+           - qcom,sc7280-tcsr
+           - qcom,sc8280xp-tcsr
+-- 
+2.34.1
 
---M6rR9CDKVnFegJOM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHJ5QAKCRB4tDGHoIJi
-0jxRAP9/gABn2MmITzGpHBdNrboXK3lxJHTriCPGEXmZ7YC62QD9GW28ROZ21O4I
-C0Ni6P8GH4RmP1OxiqV7VM9sosabxQc=
-=0g22
------END PGP SIGNATURE-----
-
---M6rR9CDKVnFegJOM--
 
