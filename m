@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-98510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B4599665E0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:40:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E489665EF
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:44:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DE261C23C3D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:40:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE9ACB22CDD
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038FD1B81AC;
-	Fri, 30 Aug 2024 15:39:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4E81B3B32;
+	Fri, 30 Aug 2024 15:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AcNUeDk4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tVAtELA0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86C81B790A;
-	Fri, 30 Aug 2024 15:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFF0EEC9;
+	Fri, 30 Aug 2024 15:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725032369; cv=none; b=SGkx5NEJLSkO5rBudM+/DZHvWDQK5ZoEDxIyyFtb6giB49QozXc9PkfylwUz2kf+2C/f/hSaYF40mdceLeTNRjBM+vvKrrSbFoAqb/Rk3yJOXxd5Zmqio9XFQVJAKxedSpFkN9EbF3C3791firGP8n/kmFyfd2/6ykXvw8tJH5o=
+	t=1725032647; cv=none; b=iHqLgOmPqHeF/Jw2+Y8oTc//69UigQlwwJJCWl//RHKUmD53aPqPUMW53lcG/67sYecFFustIsYkfDjtj4ktNypWjI6AiFMvixuAIiVjIufd467iBcI+hBHrcx+CosygfVwQne7iGEjcmTy/VsDLEulmlSQdbpftzg3A8wqY4vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725032369; c=relaxed/simple;
-	bh=9vHiUqg3ApyNG+2sA25nvEMVkVkFkPbc2lr9nngHSZ8=;
+	s=arc-20240116; t=1725032647; c=relaxed/simple;
+	bh=VkZDandq3JSMzzDGwRJwhrbaal1xkOQ+HGnJE8SjBsM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ghKy1O/+DrbFbxAxIf8/lcB8Thsph60TJfXF0Ya+WnTeiS73eDtOIsBgOJtY5McwXiKcVLenGyYsdjIVfZqIp7gH36YlkbjEdEeykVSWROZnu51+GHc7xve3ecr8CNqtXCMMwB1xdMn0HZvZRnrfqx16uk2uDUF8JqFuiKhFA1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AcNUeDk4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CACCC4CEC2;
-	Fri, 30 Aug 2024 15:39:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nGthhWUH0Mq/XQ0w6r9Y+d2AjwBGXdGOgtNeiblUuszVW+FlnCsuib9AqkQUZKArW0i+Cn9qmldrM1UY7FBIRzcVcNKMLgJQEC7K2icCm6L9iLe7yHdGzrQdqhGyUhfD0xOCIkG4BrxEH6FFs3LUQquLrCE6sDb/Go8HXoGt/oE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tVAtELA0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5152AC4CEC2;
+	Fri, 30 Aug 2024 15:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725032369;
-	bh=9vHiUqg3ApyNG+2sA25nvEMVkVkFkPbc2lr9nngHSZ8=;
+	s=k20201202; t=1725032646;
+	bh=VkZDandq3JSMzzDGwRJwhrbaal1xkOQ+HGnJE8SjBsM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AcNUeDk4etZAwFjcxBBZl6FfmF6vg6QUcnkNUqcn9r1msToyyqhM0gqGu+fZqs21s
-	 p4VXv1okuGY6JJr4FTTaTU2wNuCh7qXXcETjkIrrEu+VzA2dqEXIph2w5iCA/rGLgE
-	 OeeCXrooVUJCK7t3oVvAFaGmGq1vq4cb/QM+Gh8QJrH7Ld7TOYCp5AWiXFbXl7paSk
-	 4OOdx6W4eYeuME8N6kY5LsKZo6JqYI3kz4Y+PXElQ4Br7YKpVZ9TFV+gJ+8UFaD0xq
-	 GwjUN3mW2lkC411pXMLL3AuebrmgmkgTErlkUYPTMht6Rbh4ofYmnrNEhR0Wi9YdS5
-	 HplRsKeCIWgEA==
-Date: Fri, 30 Aug 2024 10:39:27 -0500
-From: Rob Herring <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: dmitry.torokhov@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 2/2] dt-bindings: input: touchscreen: goodix: Use generic
- node name
-Message-ID: <20240830153927.GA36571-robh@kernel.org>
-References: <20240829183051.3392443-1-festevam@gmail.com>
- <20240829183051.3392443-2-festevam@gmail.com>
+	b=tVAtELA0KeGQegt8ntHg1wiWQe7Yv26xq5TPF9n0MGbMbz0OjOvp/IEvp42gC7FMt
+	 M2w1ikHzeSKcH4HY4PGnn3ITcMVi1HSNOVeWBTdj0OwFgwapDVRBt07X4HZrrobXsM
+	 X6YkkTfa8VFe0f4EBgqnSC59+9AVv9wNWLDzIJ2Fpm9LsjnJ0YZZPnYZmEHGnOCQzI
+	 o1RUx06J0fkqlIpIrw/uKoZ0x/HAlviXUlVCYOVZVqYpaEtDiq5P283J0LHCnEjGU6
+	 cj18RjP/lmR2MuIcNX7Tl6OPQRuBPgHdbZukp94IyESyQ3vydIFWnLCtIN00gSyAet
+	 Poy6op0SOty0w==
+Date: Fri, 30 Aug 2024 10:44:04 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: linux-rtc@vger.kernel.org, p.zabel@pengutronix.de, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, geert+renesas@glider.be,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	mturquette@baylibre.com, magnus.damm@gmail.com, conor+dt@kernel.org,
+	sboyd@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, alexandre.belloni@bootlin.com
+Subject: Re: [PATCH v3 05/12] dt-bindings: rtc: renesas,rzg3s-rtc: Document
+ the Renesas RTCA-3 IP
+Message-ID: <172503263744.44904.9725810011067270873.robh@kernel.org>
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240830130218.3377060-6-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,39 +64,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240829183051.3392443-2-festevam@gmail.com>
+In-Reply-To: <20240830130218.3377060-6-claudiu.beznea.uj@bp.renesas.com>
 
-On Thu, Aug 29, 2024 at 03:30:51PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
 
-Why 2 different subjects for the same change?
-
-Really, both of these go to the same maintainer, so they can be 1 patch.
-
+On Fri, 30 Aug 2024 16:02:11 +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> Node names should be generic.
+> Document the RTC IP (RTCA-3) available on the Renesas RZ/G3S SoC.
+> The RTC IP available on Renesas RZ/V2H is almost identical with the
+> one found on Renesas RZ/G3S (it misses the time capture functionality
+> which is not yet implemented on proposed driver). For this, added also a
+> generic compatible that will be used at the moment as fallback for both
+> RZ/G3S and RZ/V2H.
 > 
-> Improve the binding example by using 'touchscreen' as the node name.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> index 2a2d86cfd104..eb4992f708b7 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> @@ -69,7 +69,7 @@ examples:
->      i2c {
->        #address-cells = <1>;
->        #size-cells = <0>;
-> -      gt928@5d {
-> +      touchscreen@5d {
->          compatible = "goodix,gt928";
->          reg = <0x5d>;
->          interrupt-parent = <&gpio>;
-> -- 
-> 2.34.1
+> Changes in v3:
+> - added RTC bus clock, reset and power-domain; it has been detected
+>   by reverse engineering that RTC and VBATTB clock, reset and power
+>   domain are shared; HW manual doesn't mention it
+> - updated example with these and with assigned-clock properties
+>   needed to configure the VBATTCLK MUX with proper parent
+> - updated example section with dt-bindings/clock/r9a08g045-cpg.h
+>   and dt-bindings/clock/r9a08g045-vbattb.h includes
+> - for all these, dropped Conor's Rb tag
 > 
+> Changes in v2:
+> - updated patch description and title
+> - included reference to rtc.yaml
+> - updated compatible list with a generic compatible as explained in
+>   patch description; with this the node in examples section has also been
+>   updated
+> - used items to describe interrupts, interrupt-names, clock, clock-names
+> - updated title section
+> 
+>  .../bindings/rtc/renesas,rz-rtca3.yaml        | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/renesas,rz-rtca3.yaml
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
