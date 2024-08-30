@@ -1,103 +1,98 @@
-Return-Path: <devicetree+bounces-98303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32216965A4F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:30:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C751C965A69
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:34:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64F331C2271B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:30:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81FD028607F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49B916726E;
-	Fri, 30 Aug 2024 08:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0596116C86B;
+	Fri, 30 Aug 2024 08:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n87VcqIl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pw6s1CII"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A2514F13A;
-	Fri, 30 Aug 2024 08:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C985816EB42;
+	Fri, 30 Aug 2024 08:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725006617; cv=none; b=SlNdlHqH7U2FKGQhEk2Q0UPfNWrGaHH/eEX2S3fvUkXv/BakBkYSxE/KGe7+BTVmYHn7C8bgzKVcnKboiiLxbePSyHGTd8TVrbQMiHCnvmnWGuY6S+WAXlU3n5k3fHuDVtdtxOed7TY56gxmvXzJ/vSODTCg7XfLEXCBefXavog=
+	t=1725006874; cv=none; b=o0pqJqPYqONtTWGbQX1Uh6VNIC9HLTgwRj6nK107fiIROBoQdZOqsRsvwCRWkx1wPvn9sLu/oqdzF8zkGYE7vqgYur5HxMVQlZozi2dunM1K5MSXx/+794QKAisGuRqJx2FR0xcnra/ic8BK2vZcmt28n2QgYlZrkWV81+3F8HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725006617; c=relaxed/simple;
-	bh=+qWkkkxG743ImM/aahK9UM7XRQPRK07QH/l7Lrn/2g4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=QLA2jMZC7TtrZ845uPtYsmT1I9L9tEthhxCaC/M2X7no9RcVqSgonYO4n3KxvhjPwhx/sdYH8VlD2TYje42vTPbZz1qh/b82M8yxivM2NfpzmnrqktOiSS/ptzlnTEsO8GstPxoetU2GAHHa94IgHNJQuezCu/I8FoWY2MKaWNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n87VcqIl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1355C4CEC2;
-	Fri, 30 Aug 2024 08:30:08 +0000 (UTC)
+	s=arc-20240116; t=1725006874; c=relaxed/simple;
+	bh=U9qy+SkXALOXvlSMMq6arVH245/dtt7i7Ysg6+KWb7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=suk4bbcx0mWFoNXnas9zLRMKz3zVYHj/WyjEfzEpPvcF5c4RPp0sN6eCTRj5ESZCTq1xwu3/BFwG/bPyvz6GInt0Pt5kZJYXRswq00h10JX/hc8QOcH0GqCW8VUd/8YptwL5Lrdrhg+PTw476NloMbOMTTgSsE4U6tFSJamwXmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pw6s1CII; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 352B8C4CEC2;
+	Fri, 30 Aug 2024 08:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725006617;
-	bh=+qWkkkxG743ImM/aahK9UM7XRQPRK07QH/l7Lrn/2g4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=n87VcqIld4h3oj7jmm7RfOPl4zckDOEs8srTmVTODlJPFoBWJTdLkpxKb/TTrDPNI
-	 RpHdWXpgebIFMc/qPmm4qzLIU/IUXikZBg9fEljw5P/AOGdNBkoPI9gH5NVY29Dhxj
-	 0X1uhyjUZT+Aui4Sd6KyzejiYNza+LZ5CXen9SIXDTegOWyX/nTpdat55CRq0o5GTY
-	 kwc8M8dElgz1oXzLOA1CYsDOeadPufbX+4woWWT7nRP10Yqzc9IYsRuD24HA4Io+QG
-	 F5nYBaRSeP36LV/Z3WWPzyZZZEr6rtTbrq62Rxt/JKgxUcvItsy5MM3zN18fyGINmP
-	 7xquAQuP5GK1g==
+	s=k20201202; t=1725006874;
+	bh=U9qy+SkXALOXvlSMMq6arVH245/dtt7i7Ysg6+KWb7c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pw6s1CIIZ7F2jb5LjcXbQKQ8uJ/uYDx6FcLM4Bp6MLnTTCYeKrYWpcfsL/bishn6o
+	 ox89cSr2bjyyMwcYC6bJEaUGpr96+RqsPg0OcnjpcWb2zP1pfjUu4Jgs3L1sdYzNi4
+	 MO7fjhjQzPHmBfC65nsm0mShvkcTKdSBMFE6m1mkLNyuaArpyRLHmHxdnMFJscNpIT
+	 VnEEO4EkdU/K7F0Yk7Vs+W4NTa93F1eOmdz/5DIDiPbvjdhK4EU5FR2nGb8vj5NDHV
+	 mNPuVSkphDEIGEQfXnzTPzL+vDfPDdAZPSGuuPwcv/FiS5ROZzqdFy2fLk8+KN4A82
+	 1OWVlQJqCVJsQ==
+Date: Fri, 30 Aug 2024 09:34:27 +0100
 From: Lee Jones <lee@kernel.org>
-To: linux-kernel@vger.kernel.org, 
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andi Shyti <andi.shyti@kernel.org>, Lee Jones <lee@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, 
- Chukun Pan <amadeus@jmu.edu.cn>, Muhammed Efe Cetin <efectn@protonmail.com>, 
- Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>, 
- Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>, 
- Jimmy Hon <honyuenkwun@gmail.com>, Elon Zhang <zhangzj@rock-chips.com>, 
- Finley Xiao <finley.xiao@rock-chips.com>, 
- Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>, 
- Yifeng Zhao <yifeng.zhao@rock-chips.com>, 
- Jisheng Zhang <jszhang@kernel.org>, Jamie Iles <jamie@jamieiles.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, 
- linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-watchdog@vger.kernel.org, kernel@collabora.com, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <01020191998a2fd4-4d7b091c-9c4c-4067-b8d9-fe7482074d6d-000000@eu-west-1.amazonses.com>
-References: <20240828151028.41255-1-detlev.casanova@collabora.com>
- <01020191998a2fd4-4d7b091c-9c4c-4067-b8d9-fe7482074d6d-000000@eu-west-1.amazonses.com>
-Subject: Re: (subset) [PATCH v3 04/11] dt-bindings: mfd: syscon: Add rk3576
- QoS register compatible
-Message-Id: <172500660860.97285.13837050366813522297.b4-ty@kernel.org>
-Date: Fri, 30 Aug 2024 09:30:08 +0100
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com,
+	mripard@kernel.org, tgamblin@baylibre.com,
+	aidanmacdonald.0x0@gmail.com, u.kleine-koenig@pengutronix.de,
+	samuel@sholland.org, jernej.skrabec@gmail.com, sre@kernel.org,
+	wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+	robh@kernel.org, lars@metafoo.de, jic23@kernel.org,
+	jonathan.cameron@huawei.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: [GIT PULL] Immutable branch between MFD, IIO and Power due for the
+ v6.12 merge window
+Message-ID: <20240830083427.GT6858@google.com>
+References: <20240821215456.962564-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+In-Reply-To: <20240821215456.962564-1-macroalpha82@gmail.com>
 
-On Wed, 28 Aug 2024 15:10:55 +0000, Detlev Casanova wrote:
-> Document rk3576 compatible for QoS registers.
-> 
-> 
+Enjoy!
 
-Applied, thanks!
+The following changes since commit 8400291e289ee6b2bf9779ff1c83a291501f017b:
 
-[04/11] dt-bindings: mfd: syscon: Add rk3576 QoS register compatible
-        commit: 2f9709b8541dc742235743d19b8a6e2baa2e81d4
+  Linux 6.11-rc1 (2024-07-28 14:19:55 -0700)
 
---
+are available in the Git repository at:
+
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-for-iio-power-v6.12
+
+for you to fetch changes up to 2e1a57d5b0adbb5bd1d85245ec29b6d3cc7edc69:
+
+  mfd: axp20x: Add ADC, BAT, and USB cells for AXP717 (2024-08-29 13:16:24 +0100)
+
+----------------------------------------------------------------
+Immutable branch between MFD, IIO and Power due for the v6.12 merge window
+
+----------------------------------------------------------------
+Chris Morgan (1):
+      mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
+
+ drivers/mfd/axp20x.c       | 25 ++++++++++++++++++++++++-
+ include/linux/mfd/axp20x.h | 26 ++++++++++++++++++++++++++
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+
+-- 
 Lee Jones [李琼斯]
-
 
