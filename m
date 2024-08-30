@@ -1,329 +1,298 @@
-Return-Path: <devicetree+bounces-98252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F1A965805
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:05:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D836D965809
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:06:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3987C1F24AE5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 07:05:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64FFA1F22FA3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 07:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9936B165F05;
-	Fri, 30 Aug 2024 07:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FFA616A947;
+	Fri, 30 Aug 2024 07:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MB8koRi2"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="PfqTNQ3G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC80715F41D
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 07:04:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063E0168490
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 07:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725001486; cv=none; b=pVVtCY+aipmEEM+U2hq4N31S7vdsiqPCxjN6Lq5yEGYmQGuTpFCtE5QVo9HF0RNA+IVqzNvrH7xavJ+lg7tJH5mEQPtZs1142cMZWXrAO+NwoGJDP7IOKFsagvRhHehfu8R0YqfBlZpnxD1PPW6SW9k+SyFuLgL6yHJw6aPz3l8=
+	t=1725001490; cv=none; b=UtkCJQix7DTN8lpN8relvQIF5uhIM2PSEQ5C97uGydyQijvNhcmfXBkn8N4lbRqEbnGGD1lZHM1J6z/KMnMjVQDU1Dv1PkX6DLtlVq5W/ARwv8PxYma9kkARQ3GBcJdS178M+zmFyPGbuuLmAY/MhcAvMOTwkS/egraNFRBE9uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725001486; c=relaxed/simple;
-	bh=kI/UXHauiF8++61m2LvIvOun+fgX4sFxPktQctCIRkA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=l47HF3ww5C14cRe+IEDDuQ0eYFQAvBR/nqjBqY83AoFM+m38BjpjxN2eHsIHWExyLVZnKC8Nxo/bmjUCt3FnTTIrCRQ4yC5T1nt+R/rZ1C2COx8H5sRAkh153iLLz65h1t/C6ljfeaPIDnQCgazPZ+p1RiS1OLR/u0X+FXAwSXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MB8koRi2; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a7a9cf7d3f3so165974566b.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 00:04:44 -0700 (PDT)
+	s=arc-20240116; t=1725001490; c=relaxed/simple;
+	bh=eVwNtLZHmhWU/2lTbpeA+2Q2eA2Fy8/APevulXiBTos=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=g2I2bjvbv14P+5ZoTn6iLUtmbyrOC9Fkak/gDzwKcqs2O6TT/wYkRG8eu0wvHQlvu1KcATT0cUx3AfULU/BHmqd3rZgmXWX+iO6tlq7TRYjxlJ07O7Y+X/5D5eBnnuLFVLfoLJPNYc2XkNhvEkfLqBKPcxaeM077qTo9KGIgHzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=PfqTNQ3G; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5bed72ff443so1709677a12.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 00:04:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725001483; x=1725606283; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=sifive.com; s=google; t=1725001487; x=1725606287; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tldNdGEbq2JT8UwGW+1a5h0B/fw6VCiuTMNVKqNaJKU=;
-        b=MB8koRi26jgg1r2oCnPajH5326DFHXf6ekjG33sJyJbokGUD/dlWT/LUAJE3blR7aW
-         BKSeoGOlD+Ybt2sqZn7Gl9SMPhLf18sxiQh97kTbFbcWRNdzMNcGSfmQOFRcWZrMcDLP
-         QhXn6WohxlmNILoGuRbMdQ5zWevR4sDqOK2ah4c1iadOkkFZ3ds6v1QhwdTb1KyPUxvU
-         Rwr8hbIiofzcCIiKOqNXlzDHQo26J8mRvH/1tQeLIPJIoII4GGk3CRuYPxsgwuw56VtV
-         U05P/YdTapl4vMftTpVO5zogAVeixol16FZ/YPNoHIoRflyIBcWclxlKprcEsjvztaC1
-         o8DQ==
+        bh=CVwpPrfqZBi2nHqvlji9DNnqgOvs+fljgqDbmRHEQSs=;
+        b=PfqTNQ3G+n0ZPu6p3jRil+bHABMrXYBeaoo8nn7MeRFWZ9YCByL7huAvpSInhbfp4d
+         iHvyivhCtGM2hG8+VmF8NKTQ6e/eCAkCgUtwtm/ZeZo/i4mP8/98/7ErLdq7ztJ3RGDW
+         VST31QVmBFqkeoLRFJA2hPgAH0uMfC/NMJycGqKBVy9TYHhsSpWQ9UR41PqufyZBy2TK
+         7bLWtGy/pdUQgPNqlh2MtmLZC4qEgL8qhYZvjZFtN/a2qLX+ZiIi974Wo0VrXxf9Q33+
+         Z4HZ5+j96NiCU24JhVlCRtGBMI29sbCcBdw/ptG0WmeRroqKWEKXojIEra/3j7A56zWN
+         gKmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725001483; x=1725606283;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1725001487; x=1725606287;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tldNdGEbq2JT8UwGW+1a5h0B/fw6VCiuTMNVKqNaJKU=;
-        b=szkR3H51gWZt3eYL4a2kEdOFBdIQtnegz+1/fte+efk+rc1W5QfxFRA6y8zwdVkDux
-         X2EDK+fAGn004zJUX3N3Ow858OO3ZHql43ShGBUMPW1cMWOFbeY4nNmWAIhoctNzhTde
-         /x9jOU0jc01X2zJr69UphCNnyKJHRem12L3km2QQm5A0/xG0aafmWjFF93pGIvsumwRW
-         DfVdiqEH53aOQVviAjYNVKbMaMAoErww4lzbE65jPZFn0+ImXtNbKp/TqWlmagsAL7bU
-         AqEwteX60upVIyp8+lJX/UlL2gCCxU0/sTnjuvqI2ciXKqC/hKrJ2FTPqWHfHqOyRYur
-         A7wA==
-X-Forwarded-Encrypted: i=1; AJvYcCVtWc9HZprxTTrRzUxcEIZrsyqnb1edJ2bHyxTHP/zdJP28gaDVP4cEnNeiP/2INF6ValwCpjenkDR4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJtU47dejXj7wO91D9R0WdKvT+ZArOarlnQyZwKgwP2y4rscXc
-	ThijiLQutVr5UTiEJyCtpkh2I7/xOnZnWe3hBUKM2MCsxcoi4sAGL6IGOwasB2M=
-X-Google-Smtp-Source: AGHT+IEjl8tdNQ8jnRsKsySyLyIRKzAgwSRLlK6Mh9bwxDbOAC7WmuH6DFlPs4IQfyp+DQUGhLPnww==
-X-Received: by 2002:a17:907:2d25:b0:a86:80a8:cee7 with SMTP id a640c23a62f3a-a897f836ce9mr393312366b.27.1725001482962;
-        Fri, 30 Aug 2024 00:04:42 -0700 (PDT)
-Received: from rayden.urgonet (h-217-31-164-171.A175.priv.bahnhof.se. [217.31.164.171])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89892232c7sm178026866b.222.2024.08.30.00.04.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 00:04:42 -0700 (PDT)
-From: Jens Wiklander <jens.wiklander@linaro.org>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org,
-	op-tee@lists.trustedfirmware.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Olivier Masse <olivier.masse@nxp.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Yong Wu <yong.wu@mediatek.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	John Stultz <jstultz@google.com>,
-	"T . J . Mercier" <tjmercier@google.com>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	Sumit Garg <sumit.garg@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>
-Subject: [RFC PATCH 4/4] dma-buf: heaps: add Linaro restricted dmabuf heap support
-Date: Fri, 30 Aug 2024 09:03:51 +0200
-Message-Id: <20240830070351.2855919-5-jens.wiklander@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240830070351.2855919-1-jens.wiklander@linaro.org>
-References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
+        bh=CVwpPrfqZBi2nHqvlji9DNnqgOvs+fljgqDbmRHEQSs=;
+        b=GFWFMi0aMI1v6h/CqpeZVo8qhJlR2rzuxhzHzTXUiK7HyIuuIcT8i8RllnBtgqZ1Ag
+         4Jhaall/+tRQBeQKXB/s54ualLPRNznclw9tJMIj8bycnQQ+Zx6APayKgXIK4wn0pemU
+         8WDSH+5dkZWRL7DMLBhqKZFhR2Mt/RtG3nLUiCnJEUvoIuPVKnO19xuYeSaBOcBsHF5g
+         ahDATSzcVSoM3eJOX0cUrrqE0A40Bs9NqVVNvlXFvML6+HypUsGmfsxg5OVN4/Kyqp46
+         ngypqICG+AehAatYyUa6BApM0sNpRS3dAP+T/SL3CDCckDm6Re7zKtqud+zDhSwxkxuV
+         LQpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUyCDyW7X5RDbMtIu3nC6fr6Y7yZHg+lSsIDQtMWu9sIE+yB1RU57gk0CSwP1PHsZWE0tbfStZ8Afrf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsxuxyrXhTUxz+9GRpfnADjEvMIwW40fyPT4ClSUxnBIr/yXSY
+	J/CHTu2a4ueg7dIR+ismgWjCPDrTHqYJWpKT/4BNMG+vS+B87Yq9h3VdZ4XrXZUbH9lVkG9wUhc
+	ec8zIFM9A99zXzhuMyHtAa9vd8nwfm5aq3fC1PA==
+X-Google-Smtp-Source: AGHT+IG5+UfnbfxkXyVLqKMncggD6DiL+xZoZyb1S4HjdlcoRnDAxgwhgJrQSSHikJw7XAUm8zwwT/R8zXLbusS4lOc=
+X-Received: by 2002:a05:6402:541b:b0:5c2:2fb6:9f50 with SMTP id
+ 4fb4d7f45d1cf-5c22fb6a433mr813596a12.25.1725001486802; Fri, 30 Aug 2024
+ 00:04:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1718388908.git.tjeznach@rivosinc.com> <e2792d6559f9f3e02b2243538647ef60f14176fd.1718388909.git.tjeznach@rivosinc.com>
+In-Reply-To: <e2792d6559f9f3e02b2243538647ef60f14176fd.1718388909.git.tjeznach@rivosinc.com>
+From: Jim Shu <jim.shu@sifive.com>
+Date: Fri, 30 Aug 2024 15:04:35 +0800
+Message-ID: <CALw707q=B4h4CF3CvJOiRMMYqzvO_NG+taMLzZquCP=A9bgu0g@mail.gmail.com>
+Subject: Re: [PATCH v8 3/7] iommu/riscv: Add RISC-V IOMMU PCIe device driver
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, linux@rivosinc.com, 
+	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	Sebastien Boeuf <seb@rivosinc.com>, iommu@lists.linux.dev, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Nick Kossifidis <mick@ics.forth.gr>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org, 
+	Lu Baolu <baolu.lu@linux.intel.com>, Zong Li <zong.li@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add a Linaro restricted heap using the linaro,restricted-heap bindings
-implemented based on the generic restricted heap.
+Hi Tomasz,
 
-The bindings defines a range of physical restricted memory. The heap
-manages this address range using genalloc. The allocated dma-buf file
-descriptor can later be registered with the TEE subsystem for later use
-via Trusted Applications in the secure world.
+QEMU RISC-V IOMMU will switch the PCIe vendor/device ID to Red Hat one
+[1] in the latest v6 patch.
+Will we also support the PCIe ID of Red Hat one in the Linux driver?
 
-Co-developed-by: Olivier Masse <olivier.masse@nxp.com>
-Signed-off-by: Olivier Masse <olivier.masse@nxp.com>
-Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
----
- drivers/dma-buf/heaps/Kconfig                 |  10 ++
- drivers/dma-buf/heaps/Makefile                |   1 +
- .../dma-buf/heaps/restricted_heap_linaro.c    | 165 ++++++++++++++++++
- 3 files changed, 176 insertions(+)
- create mode 100644 drivers/dma-buf/heaps/restricted_heap_linaro.c
+[1] https://patchew.org/QEMU/20240801154334.1009852-1-dbarboza@ventanamicro=
+.com/20240801154334.1009852-5-dbarboza@ventanamicro.com/
 
-diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-index 58903bc62ac8..82e2c5d09242 100644
---- a/drivers/dma-buf/heaps/Kconfig
-+++ b/drivers/dma-buf/heaps/Kconfig
-@@ -28,3 +28,13 @@ config DMABUF_HEAPS_RESTRICTED_MTK
- 	help
- 	  Enable restricted dma-buf heaps for MediaTek platform. This heap is backed by
- 	  TEE client interfaces. If in doubt, say N.
-+
-+config DMABUF_HEAPS_RESTRICTED_LINARO
-+	bool "Linaro DMA-BUF Restricted Heap"
-+	depends on DMABUF_HEAPS_RESTRICTED
-+	help
-+	  Choose this option to enable the Linaro restricted dma-buf heap.
-+	  The restricted heap pools are defined according to the DT. Heaps
-+	  are allocated in the pools using gen allocater.
-+	  If in doubt, say N.
-+
-diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
-index 0028aa9d875f..66b2f67c47b5 100644
---- a/drivers/dma-buf/heaps/Makefile
-+++ b/drivers/dma-buf/heaps/Makefile
-@@ -2,4 +2,5 @@
- obj-$(CONFIG_DMABUF_HEAPS_CMA)		+= cma_heap.o
- obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED)	+= restricted_heap.o
- obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_MTK)	+= restricted_heap_mtk.o
-+obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_LINARO)	+= restricted_heap_linaro.o
- obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+= system_heap.o
-diff --git a/drivers/dma-buf/heaps/restricted_heap_linaro.c b/drivers/dma-buf/heaps/restricted_heap_linaro.c
-new file mode 100644
-index 000000000000..4b08ed514023
---- /dev/null
-+++ b/drivers/dma-buf/heaps/restricted_heap_linaro.c
-@@ -0,0 +1,165 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * DMABUF secure heap exporter
-+ *
-+ * Copyright 2021 NXP.
-+ * Copyright 2024 Linaro Limited.
-+ */
-+
-+#define pr_fmt(fmt)     "rheap_linaro: " fmt
-+
-+#include <linux/dma-buf.h>
-+#include <linux/err.h>
-+#include <linux/genalloc.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_fdt.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/scatterlist.h>
-+#include <linux/slab.h>
-+
-+#include "restricted_heap.h"
-+
-+#define MAX_HEAP_COUNT	2
-+#define HEAP_NAME_LEN	32
-+
-+struct resmem_restricted {
-+	phys_addr_t base;
-+	phys_addr_t size;
-+
-+	char name[HEAP_NAME_LEN];
-+
-+	bool no_map;
-+};
-+
-+static struct resmem_restricted restricted_data[MAX_HEAP_COUNT] = {0};
-+static unsigned int restricted_data_count;
-+
-+static int linaro_restricted_memory_allocate(struct restricted_heap *heap,
-+					     struct restricted_buffer *buf)
-+{
-+	struct gen_pool *pool = heap->priv_data;
-+	unsigned long pa;
-+	int ret;
-+
-+	buf->size = ALIGN(buf->size, PAGE_SIZE);
-+	pa = gen_pool_alloc(pool, buf->size);
-+	if (!pa)
-+		return -ENOMEM;
-+
-+	ret = sg_alloc_table(&buf->sg_table, 1, GFP_KERNEL);
-+	if (ret) {
-+		gen_pool_free(pool, pa, buf->size);
-+		return ret;
-+	}
-+
-+	sg_set_page(buf->sg_table.sgl, phys_to_page(pa), buf->size, 0);
-+
-+	return 0;
-+}
-+
-+static void linaro_restricted_memory_free(struct restricted_heap *heap,
-+					  struct restricted_buffer *buf)
-+{
-+	struct gen_pool *pool = heap->priv_data;
-+	struct scatterlist *sg;
-+	unsigned int i;
-+
-+	for_each_sg(buf->sg_table.sgl, sg, buf->sg_table.nents, i)
-+		gen_pool_free(pool, page_to_phys(sg_page(sg)), sg->length);
-+	sg_free_table(&buf->sg_table);
-+}
-+
-+static const struct restricted_heap_ops linaro_restricted_heap_ops = {
-+	.alloc = linaro_restricted_memory_allocate,
-+	.free = linaro_restricted_memory_free,
-+};
-+
-+static int add_heap(struct resmem_restricted *mem)
-+{
-+	struct restricted_heap *heap;
-+	struct gen_pool *pool;
-+	int ret;
-+
-+	if (mem->base == 0 || mem->size == 0) {
-+		pr_err("restricted_data base or size is not correct\n");
-+		return -EINVAL;
-+	}
-+
-+	heap = kzalloc(sizeof(*heap), GFP_KERNEL);
-+	if (!heap)
-+		return -ENOMEM;
-+
-+	pool = gen_pool_create(PAGE_SHIFT, -1);
-+	if (!pool) {
-+		ret = -ENOMEM;
-+		goto err_free_heap;
-+	}
-+
-+	ret = gen_pool_add(pool, mem->base, mem->size, -1);
-+	if (ret)
-+		goto err_free_pool;
-+
-+	heap->no_map = mem->no_map;
-+	heap->priv_data = pool;
-+	heap->name = mem->name;
-+	heap->ops = &linaro_restricted_heap_ops;
-+
-+	ret = restricted_heap_add(heap);
-+	if (ret)
-+		goto err_free_pool;
-+
-+	return 0;
-+
-+err_free_pool:
-+	gen_pool_destroy(pool);
-+err_free_heap:
-+	kfree(heap);
-+
-+	return ret;
-+}
-+
-+static int __init rmem_restricted_heap_setup(struct reserved_mem *rmem)
-+{
-+	size_t len = HEAP_NAME_LEN;
-+	const char *s;
-+	bool no_map;
-+
-+	if (WARN_ONCE(restricted_data_count >= MAX_HEAP_COUNT,
-+		      "Cannot handle more than %u restricted heaps\n",
-+		      MAX_HEAP_COUNT))
-+		return -EINVAL;
-+
-+	no_map = of_get_flat_dt_prop(rmem->fdt_node, "no-map", NULL);
-+	s = strchr(rmem->name, '@');
-+	if (s)
-+		len = umin(s - rmem->name + 1, len);
-+
-+	restricted_data[restricted_data_count].base = rmem->base;
-+	restricted_data[restricted_data_count].size = rmem->size;
-+	restricted_data[restricted_data_count].no_map = no_map;
-+	strscpy(restricted_data[restricted_data_count].name, rmem->name, len);
-+
-+	restricted_data_count++;
-+	return 0;
-+}
-+
-+RESERVEDMEM_OF_DECLARE(linaro_restricted_heap, "linaro,restricted-heap",
-+		       rmem_restricted_heap_setup);
-+
-+static int linaro_restricted_heap_init(void)
-+{
-+	unsigned int i;
-+	int ret;
-+
-+	for (i = 0; i < restricted_data_count; i++) {
-+		ret = add_heap(&restricted_data[i]);
-+		if (ret)
-+			return ret;
-+	}
-+	return 0;
-+}
-+
-+module_init(linaro_restricted_heap_init);
-+MODULE_DESCRIPTION("Linaro Restricted Heap Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
 
+Regards,
+Jim Shu
+
+
+
+On Sat, Jun 15, 2024 at 1:29=E2=80=AFPM Tomasz Jeznach <tjeznach@rivosinc.c=
+om> wrote:
+>
+> Introduce device driver for PCIe implementation
+> of RISC-V IOMMU architected hardware.
+>
+> IOMMU hardware and system support for MSI or MSI-X is
+> required by this implementation.
+>
+> Vendor and device identifiers used in this patch
+> matches QEMU implementation of the RISC-V IOMMU PCIe
+> device, from Rivos VID (0x1efd) range allocated by the PCI-SIG.
+>
+> MAINTAINERS | added iommu-pci.c already covered by matching pattern.
+>
+> Link: https://lore.kernel.org/qemu-devel/20240307160319.675044-1-dbarboza=
+@ventanamicro.com/
+> Co-developed-by: Nick Kossifidis <mick@ics.forth.gr>
+> Signed-off-by: Nick Kossifidis <mick@ics.forth.gr>
+> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+> Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
+> ---
+>  drivers/iommu/riscv/Kconfig     |   5 ++
+>  drivers/iommu/riscv/Makefile    |   1 +
+>  drivers/iommu/riscv/iommu-pci.c | 119 ++++++++++++++++++++++++++++++++
+>  3 files changed, 125 insertions(+)
+>  create mode 100644 drivers/iommu/riscv/iommu-pci.c
+>
+> diff --git a/drivers/iommu/riscv/Kconfig b/drivers/iommu/riscv/Kconfig
+> index 5dcc5c45aa50..c071816f59a6 100644
+> --- a/drivers/iommu/riscv/Kconfig
+> +++ b/drivers/iommu/riscv/Kconfig
+> @@ -13,3 +13,8 @@ config RISCV_IOMMU
+>
+>           Say Y here if your SoC includes an IOMMU device implementing
+>           the RISC-V IOMMU architecture.
+> +
+> +config RISCV_IOMMU_PCI
+> +       def_bool y if RISCV_IOMMU && PCI_MSI
+> +       help
+> +         Support for the PCIe implementation of RISC-V IOMMU architectur=
+e.
+> diff --git a/drivers/iommu/riscv/Makefile b/drivers/iommu/riscv/Makefile
+> index e4c189de58d3..f54c9ed17d41 100644
+> --- a/drivers/iommu/riscv/Makefile
+> +++ b/drivers/iommu/riscv/Makefile
+> @@ -1,2 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_RISCV_IOMMU) +=3D iommu.o iommu-platform.o
+> +obj-$(CONFIG_RISCV_IOMMU_PCI) +=3D iommu-pci.o
+> diff --git a/drivers/iommu/riscv/iommu-pci.c b/drivers/iommu/riscv/iommu-=
+pci.c
+> new file mode 100644
+> index 000000000000..e675acceb290
+> --- /dev/null
+> +++ b/drivers/iommu/riscv/iommu-pci.c
+> @@ -0,0 +1,119 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +/*
+> + * Copyright =C2=A9 2022-2024 Rivos Inc.
+> + * Copyright =C2=A9 2023 FORTH-ICS/CARV
+> + *
+> + * RISCV IOMMU as a PCIe device
+> + *
+> + * Authors
+> + *     Tomasz Jeznach <tjeznach@rivosinc.com>
+> + *     Nick Kossifidis <mick@ics.forth.gr>
+> + */
+> +
+> +#include <linux/compiler.h>
+> +#include <linux/init.h>
+> +#include <linux/iommu.h>
+> +#include <linux/kernel.h>
+> +#include <linux/pci.h>
+> +
+> +#include "iommu-bits.h"
+> +#include "iommu.h"
+> +
+> +/* Rivos Inc. assigned PCI Vendor and Device IDs */
+> +#ifndef PCI_VENDOR_ID_RIVOS
+> +#define PCI_VENDOR_ID_RIVOS             0x1efd
+> +#endif
+> +
+> +#ifndef PCI_DEVICE_ID_RIVOS_IOMMU
+> +#define PCI_DEVICE_ID_RIVOS_IOMMU       0xedf1
+> +#endif
+> +
+> +static int riscv_iommu_pci_probe(struct pci_dev *pdev, const struct pci_=
+device_id *ent)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct riscv_iommu_device *iommu;
+> +       int rc, vec;
+> +
+> +       rc =3D pcim_enable_device(pdev);
+> +       if (rc)
+> +               return rc;
+> +
+> +       if (!(pci_resource_flags(pdev, 0) & IORESOURCE_MEM))
+> +               return -ENODEV;
+> +
+> +       if (pci_resource_len(pdev, 0) < RISCV_IOMMU_REG_SIZE)
+> +               return -ENODEV;
+> +
+> +       rc =3D pcim_iomap_regions(pdev, BIT(0), pci_name(pdev));
+> +       if (rc)
+> +               return dev_err_probe(dev, rc, "pcim_iomap_regions failed\=
+n");
+> +
+> +       iommu =3D devm_kzalloc(dev, sizeof(*iommu), GFP_KERNEL);
+> +       if (!iommu)
+> +               return -ENOMEM;
+> +
+> +       iommu->dev =3D dev;
+> +       iommu->reg =3D pcim_iomap_table(pdev)[0];
+> +
+> +       pci_set_master(pdev);
+> +       dev_set_drvdata(dev, iommu);
+> +
+> +       /* Check device reported capabilities / features. */
+> +       iommu->caps =3D riscv_iommu_readq(iommu, RISCV_IOMMU_REG_CAPABILI=
+TIES);
+> +       iommu->fctl =3D riscv_iommu_readl(iommu, RISCV_IOMMU_REG_FCTL);
+> +
+> +       /* The PCI driver only uses MSIs, make sure the IOMMU supports th=
+is */
+> +       switch (FIELD_GET(RISCV_IOMMU_CAPABILITIES_IGS, iommu->caps)) {
+> +       case RISCV_IOMMU_CAPABILITIES_IGS_MSI:
+> +       case RISCV_IOMMU_CAPABILITIES_IGS_BOTH:
+> +               break;
+> +       default:
+> +               return dev_err_probe(dev, -ENODEV,
+> +                                    "unable to use message-signaled inte=
+rrupts\n");
+> +       }
+> +
+> +       /* Allocate and assign IRQ vectors for the various events */
+> +       rc =3D pci_alloc_irq_vectors(pdev, 1, RISCV_IOMMU_INTR_COUNT,
+> +                                  PCI_IRQ_MSIX | PCI_IRQ_MSI);
+> +       if (rc <=3D 0)
+> +               return dev_err_probe(dev, -ENODEV,
+> +                                    "unable to allocate irq vectors\n");
+> +
+> +       iommu->irqs_count =3D rc;
+> +       for (vec =3D 0; vec < iommu->irqs_count; vec++)
+> +               iommu->irqs[vec] =3D msi_get_virq(dev, vec);
+> +
+> +       /* Enable message-signaled interrupts, fctl.WSI */
+> +       if (iommu->fctl & RISCV_IOMMU_FCTL_WSI) {
+> +               iommu->fctl ^=3D RISCV_IOMMU_FCTL_WSI;
+> +               riscv_iommu_writel(iommu, RISCV_IOMMU_REG_FCTL, iommu->fc=
+tl);
+> +       }
+> +
+> +       return riscv_iommu_init(iommu);
+> +}
+> +
+> +static void riscv_iommu_pci_remove(struct pci_dev *pdev)
+> +{
+> +       struct riscv_iommu_device *iommu =3D dev_get_drvdata(&pdev->dev);
+> +
+> +       riscv_iommu_remove(iommu);
+> +}
+> +
+> +static const struct pci_device_id riscv_iommu_pci_tbl[] =3D {
+> +       {PCI_VENDOR_ID_RIVOS, PCI_DEVICE_ID_RIVOS_IOMMU,
+> +        PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
+> +       {0,}
+> +};
+> +
+> +static struct pci_driver riscv_iommu_pci_driver =3D {
+> +       .name =3D KBUILD_MODNAME,
+> +       .id_table =3D riscv_iommu_pci_tbl,
+> +       .probe =3D riscv_iommu_pci_probe,
+> +       .remove =3D riscv_iommu_pci_remove,
+> +       .driver =3D {
+> +               .suppress_bind_attrs =3D true,
+> +       },
+> +};
+> +
+> +builtin_pci_driver(riscv_iommu_pci_driver);
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
