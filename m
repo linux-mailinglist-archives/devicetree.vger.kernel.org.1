@@ -1,146 +1,115 @@
-Return-Path: <devicetree+bounces-98616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D66D2966C35
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:22:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6046C966C40
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:24:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0717B1C218EE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:22:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 929A71C21D12
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8064F1C1755;
-	Fri, 30 Aug 2024 22:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5EF1C2306;
+	Fri, 30 Aug 2024 22:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="ft7x5kfX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oYxrm/Nm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D3B136337;
-	Fri, 30 Aug 2024 22:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725056563; cv=pass; b=Pubc11FeNvog2tQUvyrXdWMChxAQDMQhLCd8aNAxNLcNGmptXn93R3KgKrYE7OK0cEm3Uqu3xqexjW/hk9J1VJayjPqCppMQRqkyhhnzXJwa7uWosnsRIjfFPyH41loEhYqxsyC1VdAxigVt5bPwgl4OmARQ+f8YP6t55C5K1/s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725056563; c=relaxed/simple;
-	bh=8KdzrkiTCS4+gtZ06eotVmsrEANc5d+xnrjxoY3+PP4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gtnphKLVudzrX+narZMF1kBdvA7CFef26cnI4Ks0lcBb78gpQUUOVUoIuHFUtNz76Qqkt7ISP2GhVJ+Bx3unEIKVJw54AokUmVM9x414nrlQO4LOrO429FXwjT3oGfvX2Kb+tweYzuFtuV8moczUA2AUNCkjClzjVep+BQi7SwI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=ft7x5kfX; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1725056517; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=VP8/aryapCMCOF1SvDqoG+mRd3WtRhCLgjOtagvUQv3gqKX4nVkiuEvUgItXy/JgzrdG3C5lJxhaCzEFhCN9V2fPKpzRLSqDac2xAP6Bs9VpQuoldASU00MihKa733wg54HZlQi6dH9O0yjl5DTZqDLownvRG3jYFfyQ4JwpHHw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1725056517; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=LhR+kXGC+DFHGvsEu1DDE6tCIMiI45kjz9hxbZ3s88o=; 
-	b=OHX6tglUjZBxq6KskH5aloVBl/7MZVJGxFkVt83NERgb20gLMVjBDUECe1g53MSgXD1ofJUCXTWs9xoGXYd4IG10yS3JTp/nn63ANpsMMXAXWFa3a5CeIqj/DME/Zq0A22S0OIyhg8WonQpkORQycXgUzBDx1l8i9F6Ka3d3+PQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
-	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725056517;
-	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=LhR+kXGC+DFHGvsEu1DDE6tCIMiI45kjz9hxbZ3s88o=;
-	b=ft7x5kfX3ak042gww8Zh/AvfQWRO3NFXaFPMO99JnFMaRWRXu0K0NgTlk+aX4t/c
-	5h6Wjxh83wq2oxv5xioutYFwnVetxj1ZXfwqzmWCxrsq2oNLsYfeGUYpCzKLsBc85fQ
-	N40NdU5mslkZ/wmUBzKgqD58Ro1Gtdi3G9LRZPIU=
-Received: by mx.zohomail.com with SMTPS id 1725056516094200.5079858589844;
-	Fri, 30 Aug 2024 15:21:56 -0700 (PDT)
-Message-ID: <34422b7a-ce70-445d-a574-60ac36322119@collabora.com>
-Date: Sat, 31 Aug 2024 01:21:48 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E731C1ADD;
+	Fri, 30 Aug 2024 22:24:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725056661; cv=none; b=lgcYUr+PmFCE4Iajus0qJUHyDx3b4xd3Wuvuu0RiGruonI+DdowUyA+gnX+ttaVfQ8hpwpTLGIaHxfKeqwXGPbj87ys7LMGrIQF7y1Gw6aAaU+X6w5jax7Q7PqgNRaBCMAh1l9X1fFqRZeEWRtjH3rRBV/5QmDNIj2fiZB60A58=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725056661; c=relaxed/simple;
+	bh=tWP459tjU7LJnpj72if5jNzojTE3v+xzK/7UHnew5Po=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=OYHmDNIB4a9u+V06SexJWTg3RfpMXej1LmPj6YKtcTThPwYkyHKpyAGkDiEkQ4RjkYnMQVbg0PwabcU+MbcEW4caPuUQvjJSRspQveS0f2a9L37D2vak4gH+eEWsH+z0eysc60QY+jBgj6xlvplsioY+F9mHxX7Z94IWp+uRxQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oYxrm/Nm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 283C9C4CEC2;
+	Fri, 30 Aug 2024 22:24:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725056661;
+	bh=tWP459tjU7LJnpj72if5jNzojTE3v+xzK/7UHnew5Po=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=oYxrm/NmgImPQzJHr75X/xK20n+JKF4sHrKYO+yw+OCg7F+YD0W5UiNHViN9id+H7
+	 xUTxUrL8PfoisNFAjePH4JebEMf4VbdofvQB+OpV8q7/UC3qItx7JLtUhTi3bMhy0C
+	 V2vgaL7d2xNmfZtvy7RsV44OCLm0t7/3FwpdZc8nd17dOvdjGdzBhl+LH+KrcV2sY4
+	 rb0S9y1RSO8sQIxogl1pvBFmWMZtD+4rzcQrdfC5vUu4C5fubXSLxLUAXNIsTYT3K0
+	 tCLFY3nCZGlHF/wsQOgl5ONFzUv5XQ3vPMv+AvjS3K5bUV+Hh4k2vIpNljOGldFbtT
+	 z/l1MscwAjobw==
+Message-ID: <04944b77ce6327ba5f4ec96348a9cda2.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] drm/bridge: synopsys: Add DW HDMI QP TX Controller
- support library
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <20240819-b4-rk3588-bridge-upstream-v4-2-6417c72a2749@collabora.com>
- <20240827-armored-magnificent-badger-ffb025@houat>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20240827-armored-magnificent-badger-ffb025@houat>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <7736d0d0-634d-403d-b70f-f33b7402456c@quicinc.com>
+References: <20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com> <20240827-qcom_ipq_cmnpll-v3-2-8e009cece8b2@quicinc.com> <d7b374670eb2f6d442f351106ab1221a.sboyd@kernel.org> <7f4d41a0-b1b9-4b63-8590-63f4fcf1a359@quicinc.com> <7736d0d0-634d-403d-b70f-f33b7402456c@quicinc.com>
+Subject: Re: [PATCH v3 2/4] clk: qcom: Add CMN PLL clock controller driver for IPQ SoC
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_pavir@quicinc.com, quic_linchen@quicinc.com, quic_leiwei@quicinc.com, bartosz.golaszewski@linaro.org, srinivas.kandagatla@linaro.org
+To: Bjorn Andersson <andersson@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Jie Luo <quic_luoj@quicinc.com>, Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>
+Date: Fri, 30 Aug 2024 15:24:19 -0700
+User-Agent: alot/0.10
 
-On 8/27/24 11:58 AM, Maxime Ripard wrote:
-> On Mon, Aug 19, 2024 at 01:29:29AM GMT, Cristian Ciocaltea wrote:
->> +static irqreturn_t dw_hdmi_qp_main_hardirq(int irq, void *dev_id)
->> +{
->> +	struct dw_hdmi_qp *hdmi = dev_id;
->> +	struct dw_hdmi_qp_i2c *i2c = hdmi->i2c;
->> +	u32 stat;
->> +
->> +	stat = dw_hdmi_qp_read(hdmi, MAINUNIT_1_INT_STATUS);
->> +
->> +	i2c->stat = stat & (I2CM_OP_DONE_IRQ | I2CM_READ_REQUEST_IRQ |
->> +			    I2CM_NACK_RCVD_IRQ);
->> +
->> +	if (i2c->stat) {
->> +		dw_hdmi_qp_write(hdmi, i2c->stat, MAINUNIT_1_INT_CLEAR);
->> +		complete(&i2c->cmp);
->> +	}
->> +
->> +	if (stat)
->> +		return IRQ_HANDLED;
->> +
->> +	return IRQ_NONE;
->> +}
-> 
-> If the scrambler is enabled, you need to deal with hotplug. On hotplug,
-> the monitor will drop its TMDS ratio and scrambling status, but the
-> driver will keep assuming it's been programmed.
-> 
-> If you don't have a way to deal with hotplug yet, then I'd suggest to
-> just drop the scrambler setup for now.
+Quoting Jie Luo (2024-08-30 09:14:28)
+> Hi Stephen,
+> Please find below a minor update to my earlier message on clk_ops usage.
 
-Thanks for the heads up!
+Ok. Next time you can trim the reply to save me time.
 
-HPD is partially handled by the RK platform driver, which makes use of
-drm_helper_hpd_irq_event(). Since the bridge sets DRM_BRIDGE_OP_DETECT
-flag, the dw_hdmi_qp_bridge_detect() callback gets executed, which in turn
-verifies the PHY status via ->read_hpd() implemented as
-dw_hdmi_qp_rk3588_read_hpd() in the platform driver.
+> On 8/28/2024 1:44 PM, Jie Luo wrote:
+> > On 8/28/2024 7:50 AM, Stephen Boyd wrote:
+> >> Quoting Luo Jie (2024-08-27 05:46:00)
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case 48000000:
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 val |=3D FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 break;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case 50000000:
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 val |=3D FIELD_PREP(CMN_PLL_REFCLK_INDEX, 8);
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 break;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case 96000000:
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 val |=3D FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 val &=3D ~CMN_PLL_REFCLK_DIV;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 val |=3D FIELD_PREP(CMN_PLL_REFCLK_DIV, 2);
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 break;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default:
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 return -EINVAL;
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+> >>
+> >> Why isn't this done with struct clk_ops::set_rate() or clk_ops::init()?
+> >=20
+> > OK, I will move this code into the clk_ops::init().
+>=20
+> This code is expected to be executed once for initializing the CMN PLL
+> to enable output clocks, and requires the parent clock rate to be
+> available. However the parent clock rate is not available in the
+> clk_ops::init(). Hence clk_ops::set_rate() seems to be the right option
+> for this. Please let us know if this approach is fine. Thanks.
 
-During my testing so far it worked reliably when switching displays with
-different capabilities.  I don't have a 4K@60Hz display at the moment, but
-used the HDMI RX port on the Rock 5B board in a loopback connection to
-verify this mode, which triggered the high TMDS clock ratio and scrambling
-setup as well.
+Sure. It actually sounds like the PLL has a mux to select different
+reference clks. Is that right? If so, it seems like there should be
+multiple 'clocks' for the DT property and many parents possible. If
+that's the case then it should be possible to have something like
 
-I just submitted v5 [1] where I reworked a bit the scrambling handling,
-which allowed for some code simplification.
+	clocks =3D <0>, <&refclk>, <0>;
 
-[1] https://lore.kernel.org/lkml/20240831-b4-rk3588-bridge-upstream-v5-0-9503bece0136@collabora.com/
-
-Regards,
-Cristian
-
+in the DT node and then have clk_set_rate() from the consumer actually
+set the parent index in hardware. If that's all static then it can be
+done with assigned-clock-parents or assigned-clock-rates.
 
