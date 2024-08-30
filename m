@@ -1,227 +1,165 @@
-Return-Path: <devicetree+bounces-98338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5E0965CBC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:25:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CB16965D01
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E929A284F3D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:25:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B27CA1C23ED4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE9317C23B;
-	Fri, 30 Aug 2024 09:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF72D178CE4;
+	Fri, 30 Aug 2024 09:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mcjGsjOh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hcyBQB5G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000731531D0;
-	Fri, 30 Aug 2024 09:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE5A175D3E
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 09:33:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725009837; cv=none; b=D0sY648lNWG1CcUp1xidBMqaidwC7usF/obFPTcEfra3sFBUA5TA4gd7dD+0RR75k90g5gtsY6E94S7WCq00b4U9rhpjxxDuzXFX2Hv4E8hSHQlYWKsOpo5qeXR08vdJJDe9+5j237kgYGviTYr+msRMQ2GpB8h1R+JFUMPxajs=
+	t=1725010440; cv=none; b=DEbOPUExl/8Kl9vI3p4+t4IQYBiKxd/Lc3xVsEAEu+cSPoopuGn7jAdsfJjJnieseyYl3pcqGZqSe1ApESOTiSi3TB6uV/KeY3gj5w7DgmUcm80nHlRgnOmrcweUorUfPnLZ4MejbLQ9KT1rbK5NUo+jphbjndbRkzIsLitbbTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725009837; c=relaxed/simple;
-	bh=/3m2quepIcHYK+rXAlyO2Al903bIDY8w1wV9Fq+PPfE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iOfMiVsq/JL61f6YxrThMjJb3i9QipBgYLPW7rsn2jo6HgdMV8XucEpnV1YXj+Qgvf49M9xGt2ahkwbkbOzB5Daad2pPHPNTTrIiBFNfmEFtWnw3n6VKeeYGHJZ/cNjtpP39eFb1Zf8GHVH7aLMuTQR0hDPT959FL9iHTfO/FMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mcjGsjOh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47U8HCQb013551;
-	Fri, 30 Aug 2024 09:23:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BB3WySCQ5Jk4iR0NJ3P3yIH6CknP1BiZnIbWGddtiq4=; b=mcjGsjOhlpEtFJdV
-	Mgypkb7gQsGoAPZB1+uWJFcTunzlPG59O4ezit68OT1BFF2djYoqJJMDZ8FTrlGX
-	U9KlAXLJY4bhDwnlAe89eRrdhFThQbZE7zMZus2+LkyOJ2cdX4IArraol4XXNtPO
-	qJDOBd/oEGI7ka85YnS75qOR74GLpySaW9KYJUZmgDNedmIQSvBpv6wT1cz9ptTh
-	2tFxCwFc75qBMnscoZS/i/OvlWF+9JU7ZL8ucBkFi+Njepersj+k+4X2/EbGwNHD
-	+9Rq7odkincuXfGnuEpT5AQ/A8B80mx4tYM43MjojXro652aSfJ2B4VjfRqaSqVq
-	AWwedA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419px5r1f4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 09:23:46 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47U9Nj3j019425
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 09:23:45 GMT
-Received: from 3b5b8f7e4007.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 30 Aug 2024 02:23:44 -0700
-From: songchai <quic_songchai@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: songchai <quic_songchai@quicinc.com>, <linux-kernel@vger.kernel.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v1 7/7] coresight-tgu: add reset node to initialize
-Date: Fri, 30 Aug 2024 17:23:08 +0800
-Message-ID: <20240830092311.14400-8-quic_songchai@quicinc.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240830092311.14400-1-quic_songchai@quicinc.com>
-References: <20240830092311.14400-1-quic_songchai@quicinc.com>
+	s=arc-20240116; t=1725010440; c=relaxed/simple;
+	bh=5yslXqhvWQX9TnBSismjUh88BdfvlGVmkN25fRbxHH4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e7xC6KqW8vCmGkTcOD+gVVheS3GqmY4YP2PIuF5QijgvZ64Q1nnIsmGwuexsWu3XP2435eeCshojMf3LVW5HV7emZMpwh8Rs5GJTBKQTd4n9rvfGPb3uLWRIvd2EUyRIQ4gKcIWrUYwrRDTwuletJBsBtCLDg6iJ2PfmlzCV8JM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hcyBQB5G; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42baecbd4fbso2220805e9.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 02:33:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725010437; x=1725615237; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=pGZek37s7JUS9g9ervJ2hRM13bZo2pmesux2WExpQN8=;
+        b=hcyBQB5GftII3BLkLnFzIcMznhMJV3Wp5Ue4LD0/Uvo3sVvsRFf6pI/lSlWXuemLnh
+         Rw9JAYfRxDIyvwHb+8DNM+ovCyN4qUIYqXWk7kD3w4HezEO257LJGb/1pzvE933cpd0r
+         nwt4MR59ob9nx2qRTRFktcseiE4i+oWdcUkOUbIh700kj7FTlDm/fKW3Wb5U18x/glC+
+         9oCGtMvdZbDpcdVtZ2PJO1oxRwz4FC20txv5zOKlhugHe8JDwXE+ltIQ/wwB7T6SC0+E
+         yORAmT04xmvxw7IF45v8JWzgfVjiKVzhEbagoI4O3mj5B5t8I59uv5IEvZJrBXoE3G7d
+         c7MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725010437; x=1725615237;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pGZek37s7JUS9g9ervJ2hRM13bZo2pmesux2WExpQN8=;
+        b=W2ahlHWPlk7Qp8er8U6dzQa7mHvumM74GQZDhCjTlRiWnnByFo1GE08UfVRb0fATKB
+         OvESn4oHia3weHmao+QEw6dwEnDo0/JdrYHjwk4lbusSN8qFGc+sbErqMO9DWOdQFK4P
+         h/wcIcnEgZHNr7vTghWBpgPPjnsJTXwdceeML09pCkCuZab9kmuAQkRvHGoASwLOqGN6
+         snmLLZMIdsszjfbPzSnSF2m2VxaYaxtTAUL1RdsyaNipWiKE46B5iogcUpYwlPd1Dg4z
+         7zFC1dEBbE84hIRSdyMz1O8L8SCSP1+aMJ51iWghDhHeLgkhTwo4v8pTWmrmv6YbOBaV
+         xriA==
+X-Forwarded-Encrypted: i=1; AJvYcCWgP+K2dDOaco8cKhaqdHQ1ijpe11+dI1UT8iJkN3+3hc60GV075jSsN1MxcP5BkuozY80iouTPhrUB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHQrtpXP1v3LR8dfaGbF8o64wrblfI707frgBfJBfGvomgfEUP
+	FAygeYcBOPvOvLo82eXH1gQTVUWUcJmD2QQZxLV/8xdfdTAVRJwh4NTukYvEOSU=
+X-Google-Smtp-Source: AGHT+IE+rnx/YrsfDOYvW2dfT+oacSiNX/1n93tiIETgoAZ48JpJutDBDzth7kSn1IPt8lBVd3JHmQ==
+X-Received: by 2002:a05:600c:a49:b0:426:6cd1:d104 with SMTP id 5b1f17b1804b1-42bbb43a575mr7096425e9.4.1725010437310;
+        Fri, 30 Aug 2024 02:33:57 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bba3f2875sm18328365e9.41.2024.08.30.02.33.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Aug 2024 02:33:56 -0700 (PDT)
+Message-ID: <54632ada-d657-4c73-a88c-469eb6066608@linaro.org>
+Date: Fri, 30 Aug 2024 11:33:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LoDkVErZqghbtzhIiz2PWelMPw8tG6Dm
-X-Proofpoint-GUID: LoDkVErZqghbtzhIiz2PWelMPw8tG6Dm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-30_04,2024-08-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
- adultscore=0 suspectscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0
- priorityscore=1501 bulkscore=0 mlxscore=0 malwarescore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408300069
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/17] arm64: dts: qcom: msm: change labels to
+ lower-case
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240829-dts-qcom-label-v2-0-5deaada3e6b2@linaro.org>
+ <20240829-dts-qcom-label-v2-2-5deaada3e6b2@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240829-dts-qcom-label-v2-2-5deaada3e6b2@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add reset node to initialize the value of
-priority/condition_decode/condition_select/timer/counter nodes
+On 29/08/2024 14:34, Krzysztof Kozlowski wrote:
+> DTS coding style expects labels to be lowercase.  No functional impact.
+> Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi           | 100 ++++++++++-----------
+>  arch/arm64/boot/dts/qcom/msm8939.dtsi           | 110 ++++++++++++------------
+>  arch/arm64/boot/dts/qcom/msm8953.dtsi           |  68 +++++++--------
+>  arch/arm64/boot/dts/qcom/msm8976.dtsi           |  32 +++----
+>  arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts    |  12 +--
+>  arch/arm64/boot/dts/qcom/msm8992.dtsi           |   4 +-
+>  arch/arm64/boot/dts/qcom/msm8994.dtsi           |  52 +++++------
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi           |  54 ++++++------
+>  arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi |  32 +++----
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi           |  92 ++++++++++----------
+>  arch/arm64/boot/dts/qcom/sdm632.dtsi            |  26 +++---
+>  11 files changed, 291 insertions(+), 291 deletions(-)
+> 
 
-Signed-off-by: songchai <quic_songchai@quicinc.com>
----
- .../testing/sysfs-bus-coresight-devices-tgu   |  7 ++
- drivers/hwtracing/coresight/coresight-tgu.c   | 79 +++++++++++++++++++
- 2 files changed, 86 insertions(+)
+v3 will be needed, I forgot to update arm32.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
-index e404e0d6f8f0..0c8ea23ce9a3 100644
---- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
-+++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
-@@ -42,3 +42,10 @@ KernelVersion   6.10
- Contact:        Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Sam Chai (QUIC) <quic_songchai@quicinc.com>
- Description:
-                 (RW) Set/Get the counter value with specific step for TGU.
-+
-+What:           /sys/bus/coresight/devices/<tgu-name>/reset_tgu
-+Date:           August 2024
-+KernelVersion   6.10
-+Contact:        Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Sam Chai (QUIC) <quic_songchai@quicinc.com>
-+Description:
-+                (Write) Reset the dataset for TGU.
-diff --git a/drivers/hwtracing/coresight/coresight-tgu.c b/drivers/hwtracing/coresight/coresight-tgu.c
-index a5f194fecdb0..56abfc9429ef 100644
---- a/drivers/hwtracing/coresight/coresight-tgu.c
-+++ b/drivers/hwtracing/coresight/coresight-tgu.c
-@@ -343,6 +343,84 @@ static ssize_t enable_tgu_store(struct device *dev,
- }
- static DEVICE_ATTR_RW(enable_tgu);
- 
-+/* reset_tgu_store - Reset Trace and Gating Unit (TGU) configuration. */
-+static ssize_t reset_tgu_store(struct device *dev,
-+			       struct device_attribute *attr, const char *buf,
-+			       size_t size)
-+{
-+	unsigned long value;
-+	struct tgu_drvdata *drvdata = dev_get_drvdata(dev->parent);
-+	int i, j, ret;
-+
-+	if (kstrtoul(buf, 0, &value))
-+		return -EINVAL;
-+
-+	if (!drvdata->enable) {
-+		ret = pm_runtime_get_sync(drvdata->dev);
-+		if (ret < 0) {
-+			pm_runtime_put(drvdata->dev);
-+			return ret;
-+		}
-+	}
-+
-+	spin_lock(&drvdata->spinlock);
-+	CS_UNLOCK(drvdata->base);
-+
-+	if (value) {
-+		tgu_writel(drvdata, 0, TGU_CONTROL);
-+
-+		if (drvdata->value_table->priority)
-+			memset(drvdata->value_table->priority, 0,
-+			       MAX_PRIORITY * drvdata->max_step *
-+				       drvdata->max_reg * sizeof(unsigned int));
-+
-+		if (drvdata->value_table->condition_decode)
-+			memset(drvdata->value_table->condition_decode, 0,
-+			       drvdata->max_condition_decode * drvdata->max_step *
-+				       sizeof(unsigned int));
-+
-+		/* Initialize all condition registers to NOT(value=0x1000000) */
-+		for (i = 0; i < drvdata->max_step; i++) {
-+			for (j = 0; j < drvdata->max_condition_decode; j++) {
-+				drvdata->value_table
-+					->condition_decode[calculate_array_location(
-+						drvdata, i, TGU_CONDITION_DECODE, j)] =
-+					0x1000000;
-+			}
-+		}
-+
-+		if (drvdata->value_table->condition_select)
-+			memset(drvdata->value_table->condition_select, 0,
-+			       drvdata->max_condition_select * drvdata->max_step *
-+				       sizeof(unsigned int));
-+
-+		if (drvdata->value_table->timer)
-+			memset(drvdata->value_table->timer, 0,
-+			       (drvdata->max_step) *
-+				       (drvdata->max_timer_counter) *
-+				       sizeof(unsigned int));
-+
-+		if (drvdata->value_table->counter)
-+			memset(drvdata->value_table->counter, 0,
-+			       (drvdata->max_step) *
-+				       (drvdata->max_timer_counter) *
-+				       sizeof(unsigned int));
-+
-+		dev_dbg(dev, "Coresight-TGU reset complete\n");
-+	} else {
-+		dev_dbg(dev, "Coresight-TGU invalid input\n");
-+	}
-+
-+	CS_LOCK(drvdata->base);
-+
-+	drvdata->enable = false;
-+	spin_unlock(&drvdata->spinlock);
-+	pm_runtime_put(drvdata->dev);
-+
-+	return size;
-+}
-+static DEVICE_ATTR_WO(reset_tgu);
-+
- static const struct coresight_ops_helper tgu_helper_ops = {
- 	.enable = tgu_enable,
- 	.disable = tgu_disable,
-@@ -354,6 +432,7 @@ static const struct coresight_ops tgu_ops = {
- 
- static struct attribute *tgu_common_attrs[] = {
- 	&dev_attr_enable_tgu.attr,
-+	&dev_attr_reset_tgu.attr,
- 	NULL,
- };
- 
+Best regards,
+Krzysztof
 
 
