@@ -1,148 +1,132 @@
-Return-Path: <devicetree+bounces-98310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD348965A82
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:37:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACFA2965A8B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E751B20F1F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:37:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF5FA1C203A6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0015C16D9B8;
-	Fri, 30 Aug 2024 08:37:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C8316D9C0;
+	Fri, 30 Aug 2024 08:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aCjjKoNm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x4f+cYvs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7072D16D31C;
-	Fri, 30 Aug 2024 08:37:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5521216D31C
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725007030; cv=none; b=KMjgABFECdqD+9n2CE5pL2tJKyN+16qX7FeIMSyzleEVSgJRwRRdT0CISVwqokcsQWZw93J8C+ZDqabqXfodBB+6ZJtUN1V+klvr4zOeT4nPIM1zRy9ZnWmDtTkJrT5equFhNy8J0DZKr38kPljzsUaKEEHS/XVqDFPUPTsxdKA=
+	t=1725007143; cv=none; b=sIascBw667aYsBlqTTMD7hRq2UhyEFdvkHtXoJH30FrQFBwOS0x8xh65TedIH9dIsVyJI2RdZeXsNK/W5a9pLsHZDtij/+MC2OYSDW4rACr+bFHiMapF+vQBFSki5oP4ybW4EDj4txMd8ELX+qoW3LiTG5fVAL2nCBcznNsVDj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725007030; c=relaxed/simple;
-	bh=9shBE0H2zwNmx3u97BgFCqYlaYKFOAo34QjRe1zHXUc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JeFMn/+M0QSXRjlVzTtZ8g/KAhLRCh3kp/lQKkdWmf+sxgpDFrat2cETQ8NYGra8kDU9t4eLwl9j0J57FcLxwpxMrWW/CDPsNf+lcCVMuqaOasB/7O71mRlTbIVcCanqS6RxHupgpaIIQ9iyp8gvOdRp/oAIfS3JvsSB6fXACBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aCjjKoNm; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-690ad83d4d7so13478447b3.3;
-        Fri, 30 Aug 2024 01:37:09 -0700 (PDT)
+	s=arc-20240116; t=1725007143; c=relaxed/simple;
+	bh=QgGIBFmGJcu8oS0bxChlbmIIRpq/P3PoDC6EkqBKtAQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rFTXcCO4qeCZmX6QN1Eze+nwgJ9a4LIpa+PQO0fhdibudgxeJade4ac/Ts4eiETH6tNpz99hTiAmgByGZ7e66kKOFMbz4jmErPtjborgy6i8NG3eJBhjQwsxZoS5+MBHwU4m5D+wNXiXjKLvLOHf33aGcEtTyJNRj4Z5jdGzZQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x4f+cYvs; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-202146e93f6so15384285ad.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:39:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725007028; x=1725611828; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=31d7hZq/3IptMCIezPTJphlV/fOaIPteID4cgke+Fm0=;
-        b=aCjjKoNmZFlVfIST8VnKPDclOt2s5aXnFr5TYTOWceAQ3Ni4oJJMKRcTPQ59vy4ir1
-         npSn9uEmV6BlQPw9tWIDKfOM7axpFxxkAHVsDdY8+PX8Nqyu5xFp0404cyHUqxvRNhdR
-         UNhxPSN2N3cmzGyfX6HKQngtSjLNLty4ByWk/xsKbZnoTR5UAK6cpwCghzqOB/QaS+GP
-         +TIh+9QzTRDPAyDWFExmIjSORoz32qOh+HQ+xdKRB/Z7VMxg7sJsFnf5Le3prOGFTmEa
-         RrSw6E+7aewBdwKQ236Mpev8TfP2RJL+F3bty97OTPeIQ6OXEyExJmxNxs5MCYuONI7m
-         uPOw==
+        d=linaro.org; s=google; t=1725007141; x=1725611941; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cCl06/mkbTdzDoh26+WSUkUO8N6VKXw4ZrIDH+64Ass=;
+        b=x4f+cYvsKMDypSfQgzqTj09Vpw11SkwBZenDy5wh9xjTzsplAW5SZZUU80GQfFdZ4w
+         MrhHUz7yF9rkm5DWU4hKaO/mmxSpFsi2FP8m0qPm9Isk4a1/YlOQKYooX7dcGP5No90o
+         uOrvoZHA1PrGU8YA4bzt2PxYAZjzwoFXQlQ2PRfGwRJ4KDTbQpjM6cIEc6aqQVTRG+Nc
+         vWrlRRhYlAu6vs63KgjlIC0h4hItGiwZuvrXspLWzVfOs/J20VCxQFQJJrhoEQQgpnnP
+         ilfhHCIyhrQE9Ekyvn4IQlEV0/3ZIpR9OpYyg/7vv14lBiPqikwiJI9XV5r9HAs+LOJk
+         TyEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725007028; x=1725611828;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=31d7hZq/3IptMCIezPTJphlV/fOaIPteID4cgke+Fm0=;
-        b=Z1xY8ixN502A/y8tTIh9FvxqhlefFCqqIOoGHFCTqjk5WOPWqjSaW4Ta/sS3A9/NOL
-         oBRXAkbS5RDqhRX69hmxSz7VWgSeuKUKnmgRotmEyaFWHn6UAVe/fX0kCtXKc2+htQ1Z
-         gUvm3xBfJH3JFunodSMdVQmg/ZQBbCh8mZQVIEn28eiHSEqSpcLV7LyPuh7X4kMoZO6n
-         EHjZ98AoYHQnxsB94fewBVRs1wx4iG6eHFUI9wh3l753PPp4AtFy22KUDNVzmtib7TRt
-         ZlWr9ciRgVg3OyuAIQhKfvXRfaYmaPn/uxKRctUAqqdbFGXdvDXs6DMohP+3f4hUkYk4
-         STdw==
-X-Forwarded-Encrypted: i=1; AJvYcCVG1/2aK3VactHt9ndMe6bBfIJ44Tyngx02qCSFPUxoUShnPuXGlfMj0lT8wHpDwLL9kma8kvCHsEm7@vger.kernel.org, AJvYcCVG7nNREcWsXKtZW6kH4lDN5IIT26uVGGW76iEVPX8cSrtazPFV4ZNR+HRLVWFn1IpNaHVuPIo4QtQf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+WeGbPxzVjnqibrzaSVzhqFS91XOkckeHMhcKzMnE6Ntmm4up
-	K4H3ADftbuvfmcs3xuD5OP3OYfBwnQADSfPRobn2kBbPrF4ARys89mUzQZi5+LHyVKQrkP+O6kU
-	rxTHFrIHPm1mqIw2b1QkrVNy4th6wGmCi
-X-Google-Smtp-Source: AGHT+IGv646FbyuGE3nSt1USD81qaCTmkIsKuR1GVErqyBk4BGsOTCdJ41R5AwVCpk1z3YAtl3HfPbWoPoCieHUNZYk=
-X-Received: by 2002:a05:690c:10c:b0:6b5:5042:2c9d with SMTP id
- 00721157ae682-6d40e77fd6emr11447737b3.24.1725007028363; Fri, 30 Aug 2024
- 01:37:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725007141; x=1725611941;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cCl06/mkbTdzDoh26+WSUkUO8N6VKXw4ZrIDH+64Ass=;
+        b=dOvJ+xxokwxNITGkliMUMMp/BlyhGgrtREECaTCwICLZVfsbqZkOPeDmBbaaii+aqY
+         vTJqKih03rbIGIFuEjgWqBPCq+VlfSVKFYekKnW1NO6o8cH4e63uULfCUmnxcOo/kkus
+         TfMsi1BTo/lFHU4h05PCsXXbTXkbCaGCTotZ7FSl8VVB3NNu4SVzEYk5ih46Sre/WKgA
+         TdXxzqVIJ41dEZySS0MtF3EfpR/DYF7csw/sgCpJ2gmqTo3IbQrnW0EA+j3t9E0wxB7n
+         vR1a48SjajO3rpIO1HcqCeCzQlqpHvSOCeF40mUGTk3CCBNb1z2WxxQYDZZDlWDRXDN7
+         drpA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUXnlq14PSQ/q4rzzhKBAQSNab+62UEe7p9htOUeEpKVee5zavbo1xsCqngRcnG3UJrlzDRII1wdhe@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv1dPeNeSeSgwGz8U/9rLlL7Z8jkJaNiqOxGq5AxYfbqbC/2/3
+	g4SYbCb+81kdLX4jKNYiGomkfCDMevSroK+P+cGX6j1k4Q9xBYcpeIuGw0kJyQ==
+X-Google-Smtp-Source: AGHT+IHrr8qxwqPpMj/6fjnsb+IBk8CE2csKZT9RjyfDiOO3cnN33KW/WbjOQS6JZ6qagTLq0paL1g==
+X-Received: by 2002:a17:903:32d2:b0:203:a0c6:91e7 with SMTP id d9443c01a7336-2050c354a61mr46560005ad.16.1725007141481;
+        Fri, 30 Aug 2024 01:39:01 -0700 (PDT)
+Received: from thinkpad ([117.193.213.95])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-205152b129dsm22701905ad.42.2024.08.30.01.38.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Aug 2024 01:39:01 -0700 (PDT)
+Date: Fri, 30 Aug 2024 14:08:52 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Sricharan R <quic_srichara@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
+	konradybcio@kernel.org, p.zabel@pengutronix.de,
+	dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, robimarko@gmail.com
+Subject: Re: [PATCH V2 4/6] PCI: qcom: Add support for IPQ5018
+Message-ID: <20240830083852.cwjc6skgypva6u6u@thinkpad>
+References: <20240827045757.1101194-1-quic_srichara@quicinc.com>
+ <20240827045757.1101194-5-quic_srichara@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822105238.213019-1-ilordash02@gmail.com> <20240822105238.213019-2-ilordash02@gmail.com>
- <ZtC6S6I/QKihcsyu@vaman>
-In-Reply-To: <ZtC6S6I/QKihcsyu@vaman>
-From: Ilya Orazov <ilordash02@gmail.com>
-Date: Fri, 30 Aug 2024 11:36:56 +0300
-Message-ID: <CAGCz5HmTNtGJHoXmuFhC_43jTObDN+Bxn0rLK3OfH-DBhacomA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/1] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6561
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aswath Govindraju <a-govindraju@ti.com>, linux-can@vger.kernel.org, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240827045757.1101194-5-quic_srichara@quicinc.com>
 
-On Thu, 29 Aug 2024 at 21:13, Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 22-08-24, 13:52, Ilya Orazov wrote:
-> > Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> > It is pin-compatible with TI TCAN1042 and has a compatible programming
-> > model, therefore use ti,tcan1042 as fallback compatible.
-> >
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
-> > ---
-> >  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
-> >  1 file changed, 9 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > index 79dad3e89aa6..4a8c3829d85d 100644
-> > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > @@ -14,10 +14,15 @@ properties:
-> >      pattern: "^can-phy"
-> >
-> >    compatible:
-> > -    enum:
-> > -      - nxp,tjr1443
-> > -      - ti,tcan1042
-> > -      - ti,tcan1043
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - microchip,ata6561
-> > +          - const: ti,tcan1042
-> > +      - enum:
-> > +          - ti,tcan1042
-> > +          - ti,tcan1043
-> > +          - nxp,tjr1443
->
-> No driver/dt for new compatibles?
+On Tue, Aug 27, 2024 at 10:27:55AM +0530, Sricharan R wrote:
+> Introduce a new compatible and re-use 2_9_0 ops.
+> 
 
-There is phy-can-transceiver.c driver that can be used also for
-ata6561. I used this PHY in my own DTS. It is a popular chip, so I
-decided to add ATA6561 to the kernel, as I believe it would be
-beneficial.
+While adding a new SoC, please add more info about the controller. Like the
+hardware revision (internal/synopsys), max number of lanes supported, max link
+speed, is it a derivative etc...
 
+- Mani
 
->
-> >
-> >    '#phy-cells':
-> >      const: 0
-> > --
-> > 2.34.1
->
-> --
-> ~Vinod
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
+> ---
+>  [v2] Rebased on top of latest tip and only compatiable addition is required
+> 
+>  drivers/pci/controller/dwc/pcie-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 6f953e32d990..e814d6cc062d 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1722,6 +1722,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>  	{ .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
+>  	{ .compatible = "qcom,pcie-apq8084", .data = &cfg_1_0_0 },
+>  	{ .compatible = "qcom,pcie-ipq4019", .data = &cfg_2_4_0 },
+> +	{ .compatible = "qcom,pcie-ipq5018", .data = &cfg_2_9_0 },
+>  	{ .compatible = "qcom,pcie-ipq6018", .data = &cfg_2_9_0 },
+>  	{ .compatible = "qcom,pcie-ipq8064", .data = &cfg_2_1_0 },
+>  	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
+> -- 
+> 2.34.1
+> 
 
-
-
---
-Best regards,
-Ilya Orazov
+-- 
+மணிவண்ணன் சதாசிவம்
 
