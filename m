@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-98491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96EA1966502
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:09:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DC10966507
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:11:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2C86B2146C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:09:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12721F24B1F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9901B3B30;
-	Fri, 30 Aug 2024 15:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 782811B3B1F;
+	Fri, 30 Aug 2024 15:11:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uhlHyz73"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bnaiL27t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5A21DA26;
-	Fri, 30 Aug 2024 15:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B7F1DA26;
+	Fri, 30 Aug 2024 15:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725030537; cv=none; b=iSOV77PRqvgifXHy6zOG0GgNKFVG5c7xVYOVeMqPHEa0oT46vevdGWMf8pDTI3pO76kT2kcHa8LzoiK38ydxOIWCCsshE1La9M1MKVL4OzDUEe1BqsvWxRvI8xBDuTtwxqWN3HDzhsDkQcKyOO9lEz/JfSVajQeh8MJyPaEYFg4=
+	t=1725030668; cv=none; b=Z9CHZfaT2rFPofYVnL4MnPqYI2Wi6rvzpni25PDgZaeMs57Ykey3hNRCUFCHXBArcQ2y+4e+9diu7b4OLpgstKIDPgY2TTWeAvVEfqauLpwqhcaGMQnGWwAfTzqSGsPi6mlkXROkse29fwIab4g04LDmN+LFRTQ9n0xjlWBer5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725030537; c=relaxed/simple;
-	bh=dRTn44tqlK43XG4GNPrp/ZBSsVdPkPESatr6n0q8fAY=;
+	s=arc-20240116; t=1725030668; c=relaxed/simple;
+	bh=k0MHcD6fGcBRoGoAYkXiaRGvEEgp/XNQ8KfBL7zEbY4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JhMUCfo1KPmicscfahzh+PhTwz8ghtlNZVolSQODH6rboRHtxYXr7SPcqPJ9fV8p+n1hTQj8PEq6t989/NqpV7cMW+dyNIG0qhU1zBojDqVN39w7eLxIVjrZ5wrdGvCNrisLYZ/Atod2CXg3QXCHjgF+Co9iWHeEN5YFxE34GdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uhlHyz73; arc=none smtp.client-ip=198.47.19.142
+	 In-Reply-To:Content-Type; b=b/IBONBGnFPZiFQHTw4n/ORMii3fZHt+5F1u+askPDn9RW77a7Xo3d4uavQwEmgo+zo4XTBx+KoxNFkoobo+idDsjeVG+LsrGHDSyXruoZKJrqV7V5xaVBXSBNu9ZUmvNfS+ndNsq5NsABtintVR88l4oLXRmTszJounsFxGx3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bnaiL27t; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UF8mI7038731;
-	Fri, 30 Aug 2024 10:08:48 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UFB02o043535;
+	Fri, 30 Aug 2024 10:11:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725030528;
-	bh=4h8MQU0Zt+0s2wbizjkuI4pJr2b6Rtl49Ga6qg7LuKc=;
+	s=ti-com-17Q1; t=1725030660;
+	bh=cFtmf837AAq1zuiS8MEL5I5amHqOsrkqaChyfLvPtFM=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=uhlHyz73nkYGuQpqcKClj8obNe0Oa2WSflleiwdF3OhQB3SudeVMBM7LnoiBooY2T
-	 s6vTy9oy/wiMq6sdzTsA7UCXhgyUwCci3AhgHpP6rujIKPeL7sO8fZNRxI3Kh0dZPe
-	 bfmuEOAqYph7pKRd/qJXA2xNOL/o6g+z0osjKn4s=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UF8mC1026740;
-	Fri, 30 Aug 2024 10:08:48 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	b=bnaiL27tf6fmDQlFqNMJMoTvgvCxQpC+FpR+TEwjxqNpig9/UXqw4W4hkbftrHd/O
+	 mlLIrajOfqno46OtoUQRZAvGe4qQSGPW9e6nSVWGK7cWIIs/YeEPoHUiSWxrabW3C0
+	 N07HcIhAfXEapZS1U+DlggNdDdwNp62NB0kX+Zg8=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UFB05w027682;
+	Fri, 30 Aug 2024 10:11:00 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 10:08:47 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 10:10:59 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 10:08:47 -0500
-Received: from [10.249.130.61] ([10.249.130.61])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UF8eOJ023313;
-	Fri, 30 Aug 2024 10:08:41 -0500
-Message-ID: <451abe2a-7568-43c7-8483-242a9919684d@ti.com>
-Date: Fri, 30 Aug 2024 20:38:39 +0530
+ Frontend Transport; Fri, 30 Aug 2024 10:10:59 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UFAtXK035736;
+	Fri, 30 Aug 2024 10:10:56 -0500
+Message-ID: <d6bf10b1-9671-4c21-8093-48a4065ceb3c@ti.com>
+Date: Fri, 30 Aug 2024 20:40:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,97 +64,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Update OSPI partitions
- offsets
-To: Nishanth Menon <nm@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <u-kumar1@ti.com>,
-        <p-mantena@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20240830090702.220402-1-b-padhi@ti.com>
- <20240830092234.veog3e22te7qi3ao@dugout>
+Subject: Re: [PATCH v4 1/2] arm64: dts: ti: k3-j722s-main: Add R5F and C7x
+ remote processor nodes
+To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <j-choudhary@ti.com>, <vaishnav.a@ti.com>, <afd@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
+References: <20240829060932.3441295-1-b-padhi@ti.com>
+ <20240829060932.3441295-2-b-padhi@ti.com>
 Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <20240830092234.veog3e22te7qi3ao@dugout>
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240829060932.3441295-2-b-padhi@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
-On 30-08-2024 14:52, Nishanth Menon wrote:
-> On 14:37-20240830, Beleswar Padhi wrote:
->> OSPI NOR flash was partitioned with a size of 1 MB for the initial
->> bootloader ("ospi.tiboot3"). On the AM69-SK board, boot failures were
->> sometimes observed when the initial bootloader size exceeded 512 KB. To
-> Why does the boot fail when > 512MB?
-
-
-It is a limitation by BOOT ROM where it can not bring up the initial 
-bootloader when its size exceeds 512 KB in the DFU boot mode.
-
+On 8/29/2024 11:39 AM, Beleswar Padhi wrote:
+> From: Apurva Nandan <a-nandan@ti.com>
 >
->> address this, the initial bootloader image has been optimized to be
->> smaller than 512 KB.
->>
->> Therefore, limit the first OSPI partition size to 512 KB and adjust the
->> remaining size across the subsequent partitions.
-> I am NOT a fan of redoing flash partition organization of platforms that
-> are already in production - all kinds of ecosystem messes happen as a
-> result. Alternatively - give the 512K to u-boot tispl partition and
-> leave all others as is - this will at least allow people's current env
-> to be retained.
-
-
-This sounds good to me. I will let Prasanth comment over this.
-
+> The K3 J722S SoCs have one single-core Arm Cortex-R5F processor in each
+> of the WAKEUP, MCU and MAIN voltage domain, and two C71x DSP subsystems
+> in MAIN voltage domain. Add the DT nodes to support Inter-Processor
+> Communication.
 >
->> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 18 +++++++++---------
->>   1 file changed, 9 insertions(+), 9 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> index 1e36965a1403..641236918379 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> @@ -1241,27 +1241,27 @@ partitions {
->>   
->>   			partition@0 {
->>   				label = "ospi.tiboot3";
->> -				reg = <0x0 0x100000>;
->> +				reg = <0x0 0x80000>;
->>   			};
->>   
->> -			partition@100000 {
->> +			partition@80000 {
->>   				label = "ospi.tispl";
->> -				reg = <0x100000 0x200000>;
->> +				reg = <0x80000 0x200000>;
->>   			};
->>   
->> -			partition@300000 {
->> +			partition@280000 {
->>   				label = "ospi.u-boot";
->> -				reg = <0x300000 0x400000>;
->> +				reg = <0x280000 0x400000>;
->>   			};
->>   
->> -			partition@700000 {
->> +			partition@680000 {
->>   				label = "ospi.env";
->> -				reg = <0x700000 0x40000>;
->> +				reg = <0x680000 0x40000>;
->>   			};
->>   
->> -			partition@740000 {
->> +			partition@6c0000 {
->>   				label = "ospi.env.backup";
->> -				reg = <0x740000 0x40000>;
->> +				reg = <0x6c0000 0x40000>;
->>   			};
->>   
->>   			partition@800000 {
->> -- 
->> 2.34.1
->>
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> [ refactoring changes to k3-j722s-main.dtsi ]
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> [...]
+>   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 61 +++++++++++++++++++++++
+>   1 file changed, 61 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> index cadb4f7c2ea9..ed6f4ba08afc 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> @@ -153,6 +153,67 @@ usb1: usb@31200000{
+>   			dr_mode = "otg";
+>   		};
+>   	};
+> +
+> +	main_r5fss0: r5fss@78400000 {
+> +		compatible = "ti,am62-r5fss";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x78400000 0x00 0x78400000 0x8000>,
+> +			 <0x78500000 0x00 0x78500000 0x8000>;
+> +		power-domains = <&k3_pds 261 TI_SCI_PD_EXCLUSIVE>;
+> +		status = "disabled";
+> +
+> +		main_r5fss0_core0: r5f@78400000 {
+> +			compatible = "ti,am62-r5f";
+> +			reg = <0x78400000 0x00008000>,
+> +			      <0x78500000 0x00008000>;
+> +			reg-names = "atcm", "btcm";
+> +			resets = <&k3_reset 262 1>;
+> +			firmware-name = "j722s-main-r5f0_0-fw";
+
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+
+> +			ti,sci = <&dmsc>;
+> +			ti,sci-dev-id = <262>;
+> +			ti,sci-proc-ids = <0x04 0xff>;
+> +			ti,atcm-enable = <1>;
+> +			ti,btcm-enable = <1>;
+> +			ti,loczrama = <1>;
+> +		};
+> +	};
+> +
+> +	c7x_0: dsp@7e000000 {
+> +		compatible = "ti,am62a-c7xv-dsp";
+> +		reg = <0x00 0x7e000000 0x00 0x00200000>;
+> +		reg-names = "l2sram";
+> +		resets = <&k3_reset 208 1>;
+> +		firmware-name = "j722s-c71_0-fw";
+> +		ti,sci = <&dmsc>;
+> +		ti,sci-dev-id = <208>;
+> +		ti,sci-proc-ids = <0x30 0xff>;
+> +		status = "disabled";
+> +	};
+> +
+> +	c7x_1: dsp@7e200000 {
+> +		compatible = "ti,am62a-c7xv-dsp";
+> +		reg = <0x00 0x7e200000 0x00 0x00200000>;
+> +		reg-names = "l2sram";
+> +		resets = <&k3_reset 268 1>;
+> +		firmware-name = "j722s-c71_1-fw";
+> +		ti,sci = <&dmsc>;
+> +		ti,sci-dev-id = <268>;
+> +		ti,sci-proc-ids = <0x31 0xff>;
+> +		status = "disabled";
+> +	};
+> +};
+> +
+> +/* MCU domain overrides */
+> +
+> +&mcu_r5fss0_core0 {
+> +	firmware-name = "j722s-mcu-r5f0_0-fw";
+> +};
+> +
+> +/* Wakeup domain overrides */
+> +
+> +&wkup_r5fss0_core0 {
+> +	firmware-name = "j722s-wkup-r5f0_0-fw";
+>   };
+>   
+>   &main_conf {
 
