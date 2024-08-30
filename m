@@ -1,178 +1,130 @@
-Return-Path: <devicetree+bounces-98238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74D9696576B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:12:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB569657AA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:35:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28620283DE9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 06:12:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A22271C20B10
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 06:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2731537B5;
-	Fri, 30 Aug 2024 06:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97AD14F9CA;
+	Fri, 30 Aug 2024 06:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s4/sHg8A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UQn1fci/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0935314D44F;
-	Fri, 30 Aug 2024 06:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA4514D420
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 06:35:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724998338; cv=none; b=qnAIeMwPM4MJlc1UbUX2JvfJx8CEv/M9OpAgRIz9ZmhHNPI4aL0ncJTJ/sYviq0oex2xa2CKUqf5iJJMO6WtsVgNsza7+jrGRJ9Nob5YyILLZYsaqPNGHAV3ghRdYwXKScVTWurFgfijkyPBOc6oQcij4NaGbwcwcc6tB5YAlN0=
+	t=1724999706; cv=none; b=n3j9efraRfaWnNruY/QWIXouKz9ZVYhwrsVpKgEXKWbUcPf059wjkCg2d2Qfw74Qe2W6tsx2prUmmg40FqDwphR6PrngSCT4Ch04iR+T/dXyZ9oFxW6gd48CmLfiu23JYM802nV4c5ZwMmUXXTu1J7YCpjCw6GFMfMiX2cMdNKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724998338; c=relaxed/simple;
-	bh=RS94icNT3Eg1ti5P4VHowp58hHjlEiQghewC7c9ZRdY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=k4dqTAt2gQYyQcQ9FjtcR2aBFHK9gU9ATmHSqZHrGSYUl0iM4Cem8ADrGkGRP2iPzfaPe6MdMecxJsiQy0g76zonWTWTffMBFRvArVFIcWqN1BUwPffdTSjk4N5XzrKp2jZ/M3kmSn+nQ9ZozvYvr37yKWdw9mdHs0ikbcrH8PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=s4/sHg8A; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.29.25] (unknown [IPv6:2405:201:2015:f873:55f8:639e:8e9f:12ec])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C059AAD8;
-	Fri, 30 Aug 2024 08:11:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1724998266;
-	bh=RS94icNT3Eg1ti5P4VHowp58hHjlEiQghewC7c9ZRdY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=s4/sHg8ALwJUHm5ZOWL54xlfL0miILM7yRdGp8SIFrYZk9gIqMrChE8nFIghJt2Sj
-	 6vMCCV+PnOhBrcSIpiawk6l3b1Wj2vuw+CUepu00LqfzxRB8um52J3UxKj9u3cGn6C
-	 fL3WFQRB1Hf/Nn1FP9/GLUNrx0bcq/ZD/1tcohfw=
-From: Umang Jain <umang.jain@ideasonboard.com>
-Date: Fri, 30 Aug 2024 11:41:52 +0530
-Subject: [PATCH v4 2/2] media: imx335: Fix reset-gpio handling
+	s=arc-20240116; t=1724999706; c=relaxed/simple;
+	bh=SS9fXxH3VoyBjmFZPFaxsc0VsNSPJvIu5TKSPiboAjg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TlCZ6AcCUDeRGQFJBClsvpGuS0Uz3RBMdN4GmZn+aexwY3XJgrwD6CetxGA+nMzyilTa3SXFqgIfOiiFoMxfRtyU+iVKC+JqOL1gyne8ODMt39q70jy6fnMXf6un3O2Ko5bVoKiSVz5P7xRNC2KP7X1sUteICH0M/k6FAwHOF3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UQn1fci/; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f3fcdfa099so1129901fa.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 23:35:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724999703; x=1725604503; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OuzaFf05L8J4fgAxusny/qESzZ92lsZab8WC1NT5JfU=;
+        b=UQn1fci/wmKfWZkkPRYS3K0ZeLtL93yQT+cXyx5RyyUy5Y3uAZkufGkaR5KbquTfxX
+         fUHV0jIBq5B+oFNo/KrBnp6x2NCsFYp0VwBrvFtKGlnuDTuZmt5IEzMNKfOTwzpnfqdL
+         Yl1crFxgME16ZcsQiOE0SzNGe+mgQjeB0gyPq5WbwvQOUBt3yts4Dh4Kw5cco6KCv8vw
+         1grmv/KuBmJ5YXC7kCdt6eummyH0Cebk6rIy/KgkWzEPMbj/GXS4n+WX5iDLeWR6kIUS
+         KXDBEp53iuppR6FwA6J7OelGzTrhpjuu7urdqsFfX1Yr9GwAW80wUIGDQL+T49u4ZZ3M
+         TL+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724999703; x=1725604503;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OuzaFf05L8J4fgAxusny/qESzZ92lsZab8WC1NT5JfU=;
+        b=RVLh/uJ/lB6GF7TMqPM86DHTZlnJqU38a3e7ejMlR3sf1XC2P6VHnba0G8+ke30fsK
+         uVgcNG4HY1do5ldGxH2+Yi9KFqKKTlz3CFHTRobF66mGmTOyHeJ1aKoB+asPkNxYS8BP
+         fMlIlOGdVVElKeE/GIeDJJvclgfzyMYJ+gi6c4f8o2nuRJcd4nzyvD48yzgsUC/I88Sy
+         4TVLRiRavt2FSK8YZVp3MiEkh16hXDTITHdrEXcDegk8qynYBM+6R8uvNw9b33O5WozI
+         mYmdw3iCo1s4tjdpOGqqc66Kzj590MmqJ6EQmChDpD6NLHpPDXIrcJH0BVTCW81INK/s
+         9FJg==
+X-Forwarded-Encrypted: i=1; AJvYcCVwG4isyP6MqMMzSFgZY+p5eGX/h0ZyHYBeacTE7XsnZMTGFlFflj84XuNXCeenm29g6qAWWQkAOJVi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4fEANQaCRuUQHejQr0XoCmP87gJCSBadb6T7UGe6lBEWWaGia
+	cZ+aDOxID9C02pw0UQTkJRCRyEAoEuocrfU0pHXjQTFxdAIFDSIiDxGyPdP7nNX8uAZeG+CMA8U
+	t
+X-Google-Smtp-Source: AGHT+IECBAzYuRQVXIyCTTslKd+vLutFaNZSxSBOn57mqzHVwdBqdN8y/7a2eGosLZiJmio+ZCbp4w==
+X-Received: by 2002:a05:651c:198c:b0:2f3:e2f0:5140 with SMTP id 38308e7fff4ca-2f61e0266e7mr3980151fa.2.1724999702650;
+        Thu, 29 Aug 2024 23:35:02 -0700 (PDT)
+Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f614f00860sm4879441fa.45.2024.08.29.23.35.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2024 23:35:02 -0700 (PDT)
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 0/6] media: i2c: og01a1b: Add OF support to OmniVision OG01A1B
+Date: Fri, 30 Aug 2024 09:34:53 +0300
+Message-ID: <20240830063459.3088895-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240830-imx335-vflip-v4-2-cb9f20fc7b87@ideasonboard.com>
-References: <20240830-imx335-vflip-v4-0-cb9f20fc7b87@ideasonboard.com>
-In-Reply-To: <20240830-imx335-vflip-v4-0-cb9f20fc7b87@ideasonboard.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- "Paul J. Murphy" <paul.j.murphy@intel.com>, 
- Daniele Alessandrelli <daniele.alessandrelli@intel.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Martina Krasteva <martinax.krasteva@intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Umang Jain <umang.jain@ideasonboard.com>, stable@vger.kernel.org
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724998323; l=4046;
- i=umang.jain@ideasonboard.com; s=20240731; h=from:subject:message-id;
- bh=RS94icNT3Eg1ti5P4VHowp58hHjlEiQghewC7c9ZRdY=;
- b=WS3Iz29bSo0Je4ynMwl7AtWMEvgu1kXD2Vj39Q3XQoJvlK12wlS4WynKSj2FSGR1XrSLK0I1r
- oTr5rI22EBFDNJcjICZjBu0skjOJ8Qr7EeCK5ZZKmwFgTil6Z+Hhg5+
-X-Developer-Key: i=umang.jain@ideasonboard.com; a=ed25519;
- pk=7pvnIBNsDpFUMiph0Vlhrr01+rAn5fSIn/QtDeLeXL0=
+Content-Transfer-Encoding: 8bit
 
-Rectify the logical value of reset-gpio so that it is set to
-0 (disabled) during power-on and to 1 (enabled) during power-off.
+The change adds basic support of OmniVision OG01A1B image sensor on OF
+platforms, and a few follow-up changes from the series extend runtime
+power management support.
 
-Set the reset-gpio to GPIO_OUT_HIGH at initialization time to make
-sure it starts off in reset. Also drop the "Set XCLR" comment which
-is not-so-informative.
+Previous version of the change is found as a shorter patchset:
+v3 https://lore.kernel.org/all/20240823102731.2240857-1-vladimir.zapolskiy@linaro.org/
+v2 https://lore.kernel.org/all/20240813102035.1763559-1-vladimir.zapolskiy@linaro.org/
+v1 https://lore.kernel.org/all/20240620124745.1265011-1-vladimir.zapolskiy@linaro.org/
 
-The existing usage of imx335 had reset-gpios polarity inverted
-(GPIO_ACTIVE_HIGH) in their device-tree sources. With this patch
-included, those DTS will not be able to stream imx335 anymore. The
-reset-gpio polarity will need to be rectified in the device-tree
-sources as shown in [1] example, in order to get imx335 functional
-again (as it remains in reset prior to this fix).
+Changes from v3 to v4:
+* inserted correct delays in power up/down sequences, thanks to Sakari.
 
-Cc: stable@vger.kernel.org
-Fixes: 45d19b5fb9ae ("media: i2c: Add imx335 camera sensor driver")
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Link: https://lore.kernel.org/linux-media/20240729110437.199428-1-umang.jain@ideasonboard.com/
-Signed-off-by: Umang Jain <umang.jain@ideasonboard.com>
----
-Following conclusions has been observed and discussed [2]:
+Changes from v2 to v3 (no code changes):
+* fix of a typo in a commit message found by Kieran,
+* updated a commit subject per ask from Rob Herring,
+* added a review tag given by Conor Dooley.
 
-- Original driver was reviewed [3] but, the improper handling of
-  reset-gpios was missed in review.
-- Commit fea91ee73b7c ("media: i2c: imx335: Enable regulator supplies")
-  shows the driver didn't had regulator enablement support. The driver
-  would have only worked for cases when the supplies were always-on.
-- Commit 14a60786d72e ("media: imx335: Set reserved register to default value")
-  reflects that the imx335 driver was un-usable due to a reserved
-  register not been set to default.
-- The original author is no longer using the driver nor it is used for its
-  original purpose any more (confirmed by Sakari Ailus).
-- It's extremely unlikely the driver has been or continues to be in
-  use on ACPI based systems (comment by Sakari Ailus).
+Changes from v1 to v2:
+* updated device tree documentation according to review comments received
+  from Krzysztof and Sakari,
+* extended runtime power management support, added functional support of
+  optional XSHUTDOWN GPIO, XVCLK supply clock and 3 supply regulators.
 
-The above discussion points in a direction that driver does not cater
-to a large user-base. Nonetheless, the breakage will be noticed by a few
-users (if at all) hence, this explanation would help resolve the breakage
-as soon as noticed (by using correct reset-gpio polarity as mentioned
-in [1]).
+Vladimir Zapolskiy (6):
+  media: dt-bindings: Add OmniVision OG01A1B image sensor
+  media: i2c: og01a1b: Add OF support to the image sensor driver
+  media: i2c: og01a1b: Add stubs of runtime power management functions
+  media: i2c: og01a1b: Add support of xvclk supply clock in power
+    management
+  media: i2c: og01a1b: Add management of optional reset GPIO
+  media: i2c: og01a1b: Add management of optional sensor supply lines
 
-[1]: Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
-[2]: https://lore.kernel.org/linux-media/20240729110437.199428-1-umang.jain@ideasonboard.com/
-[3]: https://lore.kernel.org/all/20210527142145.173-3-martinax.krasteva@linux.intel.com/
----
----
- drivers/media/i2c/imx335.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/media/i2c/imx335.c b/drivers/media/i2c/imx335.c
-index 990d74214cc2..54a1de53d497 100644
---- a/drivers/media/i2c/imx335.c
-+++ b/drivers/media/i2c/imx335.c
-@@ -997,7 +997,7 @@ static int imx335_parse_hw_config(struct imx335 *imx335)
- 
- 	/* Request optional reset pin */
- 	imx335->reset_gpio = devm_gpiod_get_optional(imx335->dev, "reset",
--						     GPIOD_OUT_LOW);
-+						     GPIOD_OUT_HIGH);
- 	if (IS_ERR(imx335->reset_gpio)) {
- 		dev_err(imx335->dev, "failed to get reset gpio %ld\n",
- 			PTR_ERR(imx335->reset_gpio));
-@@ -1110,8 +1110,7 @@ static int imx335_power_on(struct device *dev)
- 
- 	usleep_range(500, 550); /* Tlow */
- 
--	/* Set XCLR */
--	gpiod_set_value_cansleep(imx335->reset_gpio, 1);
-+	gpiod_set_value_cansleep(imx335->reset_gpio, 0);
- 
- 	ret = clk_prepare_enable(imx335->inclk);
- 	if (ret) {
-@@ -1124,7 +1123,7 @@ static int imx335_power_on(struct device *dev)
- 	return 0;
- 
- error_reset:
--	gpiod_set_value_cansleep(imx335->reset_gpio, 0);
-+	gpiod_set_value_cansleep(imx335->reset_gpio, 1);
- 	regulator_bulk_disable(ARRAY_SIZE(imx335_supply_name), imx335->supplies);
- 
- 	return ret;
-@@ -1141,7 +1140,7 @@ static int imx335_power_off(struct device *dev)
- 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
- 	struct imx335 *imx335 = to_imx335(sd);
- 
--	gpiod_set_value_cansleep(imx335->reset_gpio, 0);
-+	gpiod_set_value_cansleep(imx335->reset_gpio, 1);
- 	clk_disable_unprepare(imx335->inclk);
- 	regulator_bulk_disable(ARRAY_SIZE(imx335_supply_name), imx335->supplies);
- 
+ .../bindings/media/i2c/ovti,og01a1b.yaml      | 107 ++++++++++
+ MAINTAINERS                                   |   1 +
+ drivers/media/i2c/og01a1b.c                   | 187 ++++++++++++++++--
+ 3 files changed, 281 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
 
 -- 
-2.45.0
+2.45.2
 
 
