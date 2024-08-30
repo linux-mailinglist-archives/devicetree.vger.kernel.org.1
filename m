@@ -1,54 +1,48 @@
-Return-Path: <devicetree+bounces-98436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1402796622A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:58:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7388B966226
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:58:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B26C01F25642
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:58:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6ADE1C20DAB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F11E1A2871;
-	Fri, 30 Aug 2024 12:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E301A284A;
+	Fri, 30 Aug 2024 12:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="mC6N3ul7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MgeGhM3S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF13619995B
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 12:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B7219ABAA;
+	Fri, 30 Aug 2024 12:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725022695; cv=none; b=SEqHoaz6vtc41GXnZXMbF6y+UnuX9OZKLlYgpKcsauGPpwk/bfGpN9JW11mVxmynPpRqko9UOse1Ywp3VPvwHpiyh4xnzxyJJWD5rqvuJcZK6gacAjm7AELywfTeMD+nDhTOPpoR80jiZADwloc3ffFWCfw+B2D/y7N7fepGzVY=
+	t=1725022684; cv=none; b=EWrQxq49Sr0Js2PDatwq/JWR5pydb0Ynh2GWF6x7yW+nAjeZ6SZ46lTpGX+15GWHoY1x8ec3CzaSVSFnlmFRsqVn8aoovcbhD5a9CID6t7w5onK9geTWVlKT1uA3Hrb31vSUlryjzEq6BLjocKMcBjCxOYxANkbvn877dBjMjKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725022695; c=relaxed/simple;
-	bh=sINeCk+cgv+R6t/A85aV2cAAX4XeEXeO9CSBMz2RlSo=;
+	s=arc-20240116; t=1725022684; c=relaxed/simple;
+	bh=pRzr4dw+htikBqyVyR2UfwtO0f/g1Jd6QIJAItLjm9c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zyc+mfXRI6NMrEt3UazxoTGKLoWW6/79dClWzfefy6mKHYBGwFMfu/2J/RFeyVofrgt4qHe1IN1uPwXw9y56YRO+VRS2OrHmpV2H1fWkyQm+75/CyTNozq88Rp4M6pt/BZ3MxNvL0KL4fO5SIYFeBqRLImoQD+kjSYxwfgE8G88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=mC6N3ul7; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 212C388BCF;
-	Fri, 30 Aug 2024 14:58:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1725022685;
-	bh=ldaBCijM7jpy64WBglfsb4+/lYq4Vb5VPPiRz9MS/oQ=;
+	 In-Reply-To:Content-Type; b=Qr/sRhgmyi/ovRzEzPBVAjYY01JWIQcX9oYTVn/DAXKsvrq5u0DuOELZNWmKAaiMY8d1jvP4fkEYeP/lULB6wPts/dzTLo1cziXYzG2ho6oleeOcgNDxBrSu1J+pu6RwIUXKxhSGiRcsuLBLVpaYUMgGJ1YwfLJkKAKUtlQ140Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MgeGhM3S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8EB8C4CEC2;
+	Fri, 30 Aug 2024 12:57:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725022684;
+	bh=pRzr4dw+htikBqyVyR2UfwtO0f/g1Jd6QIJAItLjm9c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mC6N3ul7JXrXa3gns4aCIK7e11WQQJkuw2ODtGZ/yAGHDLUeGUwJg4C2wgJerzvSs
-	 91Ab/kn4YMPxoXJywAKv2Ij+alplvKGnBBN8hP6ENiFK7AMqnMM639kGLLSj3Iqk7S
-	 09M+iYp4nER0SVm0IZOoDnDeDhyeQDP2jY2J8NauPEFYKQCm/VHp+PFMON37wLH/jR
-	 8nYOak+AsGLqky92sxIZwOtKkO4m1feV0H+jBOABwtefvtExv7A2onkqaGP+AsETgL
-	 8fC9XyTE9ALRffCgXpnMYI+OwSRtIRezxsnhWu9DJBcUfZ2/FWompMvgXvQy7mqheb
-	 qWCQGwXSN5b5g==
-Message-ID: <b2bb5061-01e0-4f47-877b-edccedcf1aef@denx.de>
-Date: Fri, 30 Aug 2024 14:57:41 +0200
+	b=MgeGhM3S5Skkm3/czz9Sb4Q/cLEXI9TleH0U3Vau8IqpzVb/X/pDF1kqKFqwYbimK
+	 HNtT7qR9MMOBs7/rPoReRuwDBqSWcQub+lzuzCTUiny9hXVbWJWhHcrx+HH46cUU/1
+	 si/G+nON+U61JVnqQY2LTk+1TCnedYwS6voFpwCPblt5H4WNbzBdvDiuyieAjudA46
+	 Y4GZ2CJ4UEZ3bnyJecRQp+T7JwEf4eX840m+PRjzx4gHFPqf1Xfy4RbPHcRc6tmqHM
+	 g62Vw/9VGJ++mllrkCxjUKe30z5fXiRPRJGGguqj9qa1vYUFxElS23O1hbhP/VdoQ0
+	 cPNTshwv7omjA==
+Message-ID: <998609e2-0fa4-43e8-9f72-05af40cf62c2@kernel.org>
+Date: Fri, 30 Aug 2024 14:57:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,49 +50,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32: Describe PHY LEDs in DH STM32MP13xx
- DHCOR DHSBC board DT
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- linux-arm-kernel@lists.infradead.org
-Cc: kernel@dh-electronics.com,
- Christophe Roullier <christophe.roullier@foss.st.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20240705215402.257070-1-marex@denx.de>
- <e38b8da5-349d-4ee2-97d4-9c46c116120c@foss.st.com>
+Subject: Re: [PATCH v3 3/3] platform/surface: Add OF support
+To: Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Maximilian Luz <luzmaximilian@gmail.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
+ <20240814-topic-sam-v3-3-a84588aad233@quicinc.com>
+ <ZszrjQChQ2aS5YjV@surfacebook.localdomain>
+ <d08d41ad-edcb-48ad-a848-53edc45ab8eb@gmail.com>
+ <CAHp75VcbjR8HQqPASLFEGiyYLfTFQDa6Ri+jFy+7Q1xz7gY39Q@mail.gmail.com>
+ <53a56539-1d95-42ac-ad07-1b689702b2ed@gmail.com>
+ <CAHp75VdsksKPrj-CwmR4QLBrm_FfaG4aZys-_jnee_L=3ZnRPQ@mail.gmail.com>
 Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <e38b8da5-349d-4ee2-97d4-9c46c116120c@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <CAHp75VdsksKPrj-CwmR4QLBrm_FfaG4aZys-_jnee_L=3ZnRPQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-On 8/30/24 2:47 PM, Alexandre TORGUE wrote:
-> Hi Marek
-
-Hi,
-
-> I have a yaml validation issue applying this patch.
+On 28.08.2024 9:06 PM, Andy Shevchenko wrote:
+> On Wed, Aug 28, 2024 at 8:40 PM Maximilian Luz <luzmaximilian@gmail.com> wrote:
+>> On 8/28/24 6:56 PM, Andy Shevchenko wrote:
+>>> On Wed, Aug 28, 2024 at 12:10 PM Maximilian Luz <luzmaximilian@gmail.com> wrote:
 > 
->    DTC_CHK arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb
-> /local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet-phy@1: Unevaluated properties are not allowed ('interrupt-parent', 'interrupts', 'reg', 'reset-assert-us', 'reset-deassert-us', 'reset-gpios' were unexpected)
->      from schema $id: 
-> http://devicetree.org/schemas/net/realtek,rtl82xx.yaml#
-> /local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet-phy@1: leds:led@0:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
->      'netdev' is not one of ['backlight', 'default-on', 'heartbeat', 
-> 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 
-> 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 
-> 'kbd-capslock', 'mtd', 'nand-disk', 'none', 'torch', 'usb-gadget', 
-> 'usb-host', 'usbport']
->      'netdev' does not match '^cpu[0-9]*$'
->      'netdev' does not match '^hci[0-9]+-p
+> ...
 > 
-> Can you have a look please ?
+>>> Yes, and software nodes for DT are quite strange things! Why can't you
+>>> simply fix the DT to begin with?
+>>
+>> For the ARM/DT variants we could do that. But we still have to deal with
+>> the x86/ACPI ones here.
+> 
+> So, then fix it there! Currently it's an abuse of software nodes
+> inside the Linux kernel.
+> 
+>> So for me it makes more sense to have it unified
+>> and just deal with everything in this module.
+> 
+> I understand the desire, but DT is DT and ACPI is ACPI, they are
+> different despite having some common APIs in the Linux kernel.
+> Moreover, DT has a validation tools and everything, making that being
+> a software nodes has at least these disadvantages:
+> - no official schema that must be supported and users are known of
+> - no validation done
+> - bloating of the Linux kernel binary and hence memory footprint
 
-See this commit in linux-next, with that the validation should pass:
+Arguably the last point isn't very strong.. DT also has to store some
+strings and pointers to represent devices
 
-616dbed65485 ("dt-bindings: leds: Document "netdev" trigger")
+> 
+>> Also, if we consider that at some point we might get ACPI PEP support (I
+>> know, far fetched right now): With that, ACPI on ARM might be feasible
+>> and then we'd have to manage the same thing in two places...
+> 
+> This (PEP) is something I have no knowledge about. But I think it's
+> still orthogonal to the software nodes usage.
+
+The PEP (Power Engine Plugin) unfortunately is the reason we can't have
+ACPI-based boot on WoA platforms.. This two-or-three-digit megabyte
+Windows driver hardcodes almost everything related to the on-SoC power
+management (buses, clocks, etc.) and only uses the bare minimum ACPI it
+needs to connect devices to a bus or get notifications on standard events..
+
+> 
+>> And lastly, the EC subdevices are quite contained and I don't see them
+>> interacting with any other components in the DT, so it's more of a
+>> stylistic choice where to put them.
+> 
+> They are still part of hardware and DT describes hardware.
+
+Unfortunately the "Surface Aggregator Module" is just a firmware
+exposed on some range of MCUs running MSFT's code..
+
+Given how.. peculiarly the "bus" that it hosts """devices""" on is
+constructed (5-level-deep hierarchy without it making much sense
+beyond maaaybe the first two), it's not really easy to describe in
+DT in a way that would be both true to the bigger picture and make
+enough sense to convince the DT maintainers, I don't think
+
+Konrad
 
