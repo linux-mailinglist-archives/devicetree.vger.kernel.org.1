@@ -1,110 +1,83 @@
-Return-Path: <devicetree+bounces-98246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B29A9657E7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:01:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E61B99657E9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:02:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB309285E8E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 07:01:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 250F61C21ABE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 07:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90DD814EC75;
-	Fri, 30 Aug 2024 07:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87FBF15217F;
+	Fri, 30 Aug 2024 07:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BRx5unVa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mf7pgy18"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F8413632B;
-	Fri, 30 Aug 2024 07:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E8B13632B;
+	Fri, 30 Aug 2024 07:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725001293; cv=none; b=IHUYOSf3fjElvd3XPtQ7QMCX/ZrPQatP0wH5OtZODZj/unOQvsuLerKRkAEEhvG6odU4IWfepjpAgW+1QWouN5tVEMTzhLFvztIQhAbZHzJw8R3XkEk3rBtGh4jkMKXPUhJ9YwXeRYxTiFrt2uIEV1iQyqRYRtYYso/kpqq8gyk=
+	t=1725001346; cv=none; b=roJkrTdq677r67wP1qMD4YLSb+q8NHl5+FCf4QnQG69ivPXXZmPS7721D4km1KWvPz1c7UvmdsT3BPsl6DcZ63J36G4gjLkEW+wvUe7VrHUfPLJT9WM/OCCsnYI26GLAOobEfaBSsy0bd41n9t5/viCog65m3zzoq/gVT/PQKOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725001293; c=relaxed/simple;
-	bh=roUrAwD6Mfamk0VVuy51w0oIeK3LcXL9+iW1zKIlYQ0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NzCsW2fEvhpxiVl2GQCLb16/nxQWrzSAJm5Xqqwy5Z/8ZSsXTCP7GRrrqabUewaqLaJez3zd6Y5x2uEGkG+gKW37FVlwszUonK7pJHboiVyCzQrw5V6o+0C/iSF+EGvJJFDYT4O0Z1f3ja38nWaS0f9Cj475BTn7u7lubw0xNNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BRx5unVa; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5343eeb4973so2250194e87.2;
-        Fri, 30 Aug 2024 00:01:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725001289; x=1725606089; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EJWZKHVVLlONzA4x5xRAz9qJwfWJ9BhWAQh5+mGuTHc=;
-        b=BRx5unVavy9egIiLEx6pYbgRwa5WLBF2VsgH0t+B98d4i6cPsUa278XG9KwRgQkOHA
-         6mG5Tlcd6HJqTFnTSlNGHEHQpMA63veUQxsemZlVEh2sVJ2SDJM7/tECXzPyZWeiijrx
-         oWZaTa9SZ/JTTc70HDDpCn1FqjuqVn3Az3JMKGtraj2d0yDWQDYUyOj743W2fTkwE6vT
-         4SmYdAmweL0JT5AZDZ6amDzsFnNvmWAfhh2NQ4TmiV6OCB2r7f5cyw3jOSMMLggovJoY
-         QYphnaR1SlSssLH/mwOEOqWK0ESc/3NzVbeMdJKHEbyAkLmv42BCWlqSR/mAr+4T/epE
-         e1Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725001289; x=1725606089;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EJWZKHVVLlONzA4x5xRAz9qJwfWJ9BhWAQh5+mGuTHc=;
-        b=gQ/QkF7AAoOM5umsR+pYRWy/Gz+1kT7Fl5dSsQyf3rL3C/7w7Ico5dEOcdmFZWtayY
-         Oc4YBUC4B7IO9uVzF+KtgehK8SrYSoUAOLw3O2dfLMGQrR29MR5+Cu+W/92KPDKqqE6D
-         MGrgzMJLkhVzg0ao4Y0yVRmB4GfceUkDmxpVHuERuNejxdTH96dQW4WgK1IcaXstDV7H
-         hCrKBEdInvJmn5jDYeOXdGqb9LLIQ8+/6SNVn3BIacTwvnd/aLP3QP6cL1Py0iP8+h0Q
-         96uDZ4m5orVHVdEoe+6IUmRQ0TSFUvKc0twIXP+AcZZeSUv/RrHya7KPavCEWHd1SI0y
-         LyGA==
-X-Forwarded-Encrypted: i=1; AJvYcCXme29RzDS+PEOGO3iZvmq4scoWyvuwNKryc/d9dfrAEgHzkx1ErhaLlXBGq4/udKoc5e91iWigGvx3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPAxPwvokkohtmvJNzYi79MPhDEHGpDQ45jwSXQhE7XSXv5SlM
-	/kfZL7cKIgMb7RcTKTL717V4d9chG9lLXHxpZnimmz/Uo7mJXvk+Hi1z75Qufo8=
-X-Google-Smtp-Source: AGHT+IFt4guMcNJTUuabiNexzhE/moV9FJPY1jZ3jRs986HiwdduMovtdIQl95NL0/ahyIEGQXrlxQ==
-X-Received: by 2002:a05:6512:3a89:b0:530:ab68:25c5 with SMTP id 2adb3069b0e04-53546b1e1d7mr822055e87.2.1725001288599;
-        Fri, 30 Aug 2024 00:01:28 -0700 (PDT)
-Received: from localhost.localdomain ([188.243.23.53])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5354079bc1bsm452676e87.16.2024.08.30.00.01.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 00:01:28 -0700 (PDT)
-From: Alexander Shiyan <eagle.alexander923@gmail.com>
-To: linux-media@vger.kernel.org
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org,
-	Alexander Shiyan <eagle.alexander923@gmail.com>
-Subject: [PATCH 3/3] media: dt-bindings: i2c: ds90ub960: Add DS90UB954 chip to DS90UB960 bindings
-Date: Fri, 30 Aug 2024 10:01:17 +0300
-Message-Id: <20240830070117.9534-1-eagle.alexander923@gmail.com>
-X-Mailer: git-send-email 2.39.1
+	s=arc-20240116; t=1725001346; c=relaxed/simple;
+	bh=e7xlw6l/apKeXFx69GdTklnR4Cj8sE4nAxQVfqOlJQo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XWrCRKgHIiEbAE+8A9N0adbXVXCGksrUA3/h1+9w4ZkNaHbXD+CoURW9qCMNFKj4GDn4Fw0y5Xl0Gh9bZgKG4GWf0qB4KKnhLn6qaGqZl9SFl+Monbc4TIGJvYSJP3pn0BgGPm7XkABBs4+isLiQ3iPncss45YyJfr7c5GYikmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mf7pgy18; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB7D7C4CEC2;
+	Fri, 30 Aug 2024 07:02:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725001345;
+	bh=e7xlw6l/apKeXFx69GdTklnR4Cj8sE4nAxQVfqOlJQo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mf7pgy185Mln6f06yY8mICXyr4Uy1VM/Oc5bvpoFl1i63PlvVfOwfkVJcoXumuDn7
+	 NzlfIURZHI2kObk0LgGEevXDCk53fFfZE2z0kvS7U58meWx032JgdrzWCJbJGjevOp
+	 46/N0x48xJuM4UuTqHZY0rqtibQALiky35eo6wykDkMADXT/mwWFogo44TiZT2QUpY
+	 mMAaYHYfEh5gH8it+8ZpciQYOH2yWs8z6jbREto7pNl2WsfK/Ucs11DWV/3PoPClUk
+	 w6O3Ew02jHt6qynydWHOo56i/Bvq3YJPfwVpgGQrIKY2ptGisfd2LkLdPoLgNm7u/f
+	 FX3lz/uSBQt5w==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sjveZ-000000004jx-2EIe;
+	Fri, 30 Aug 2024 09:02:39 +0200
+Date: Fri, 30 Aug 2024 09:02:39 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Marcus Glocker <marcus@nazgul.ch>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH v5 4/6] arm64: dts: qcom: Add UFS node
+Message-ID: <ZtFuj9Qswmgg4bBu@hovoldconsulting.com>
+References: <p3mhtj2rp6y2ezuwpd2gu7dwx5cbckfu4s4pazcudi4j2wogtr@4yecb2bkeyms>
+ <g5vlxrttgvfqkktlkhu4uzhtvnp3qtjcbr7l2uztapzqwhrsem@wg574xldh5ar>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <g5vlxrttgvfqkktlkhu4uzhtvnp3qtjcbr7l2uztapzqwhrsem@wg574xldh5ar>
 
-The ds90ub960 driver can now be used for the DS90UB954 chip as it has
-a similar register set and configuration.
-Let's add an additional compatibility line to the bindings.
+On Sat, Aug 17, 2024 at 10:38:39PM +0200, Marcus Glocker wrote:
+> Add the UFS Host Controller node.  This was basically copied from the
+> arch/arm64/boot/dts/qcom/sc7180.dtsi file.
+> 
+> Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
----
- Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Also, when respinning, please add the missing "x1e80100: " to the
+Subject prefix.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-index 0b71e6f911a8..86d43d949dd3 100644
---- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-@@ -19,6 +19,7 @@ allOf:
- properties:
-   compatible:
-     enum:
-+      - ti,ds90ub954-q1
-       - ti,ds90ub960-q1
-       - ti,ds90ub9702-q1
- 
--- 
-2.39.1
-
+Johan
 
