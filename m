@@ -1,134 +1,229 @@
-Return-Path: <devicetree+bounces-98457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BA8396630E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:39:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B10E0966358
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:48:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 110CF1F23D60
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:39:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61EC22846E1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:48:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 057661AF4C1;
-	Fri, 30 Aug 2024 13:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC06517DFFF;
+	Fri, 30 Aug 2024 13:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SPHrjCWS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kKvebFtR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3781AD417;
-	Fri, 30 Aug 2024 13:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA461758F;
+	Fri, 30 Aug 2024 13:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725025175; cv=none; b=CpagKU9X9tMnqc1m+ycaIYOvTr/JdvvKPF90YXi+Ew4KE2K4ChGKI2z3ZC9TQ4CSFXYcLbBXWE5fsJP2BFD9jEqAGfWiqdRbNqq9aYHokBJuxG3GQ7Q4DyT2KEz0MW/VN1DmvZPYLYSqnxp8fAzBTd8L2whXS6U0MzOZ2ZYbm6U=
+	t=1725025708; cv=none; b=P7XfsXxNxKgZ/HWcQOFAEL8YOHXUz+K2ndJW/lRrVQedaLLK+LYGoED2fD7Xf0ZzznyXoDKF+8Vt0SAgP04iHPweYt2nlddfm9OYP+LNJoKs+084MNYCQDRAl2HjM8ntO1xzPWNMmshD2M9NXqqcjL0uFNMljt8Fpcqa+ptArF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725025175; c=relaxed/simple;
-	bh=0/U/Bu+zOnQLAhL/T7RnTo2korB4XLSYHTcuH5Wk9So=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pI1P/aRUW0RiDPWcSDueYNA5AVqKI/+HO0Ap1i3/dJOVkwFE8lUK72+Zm76/Lx4FqzHoAmK1fzBo3BrfJidSscxV5FcYg5xpcMlq2cy5yQoH0VqQ3KP44+T2ZCuV2X8ZOeANuo0CJK8959kHIo5si7YV4mu898554mMvpb+VdHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SPHrjCWS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UAACtp025957;
-	Fri, 30 Aug 2024 13:39:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FJMQAHkfajua+LW4bUHx/O3tHQ5nAUmKjgurZsgHtbQ=; b=SPHrjCWSpHXzjKMd
-	RaMG1XvMELdvHLQximNTfa706zQjNkvLwFwnG514KD4zesTP8bfNBuFi3ZncJfWF
-	M2Yfcni/uhcd0+ktFFsn/BVm5XxtWBRm1gOK1bSkaxCgS6ctGpNG7AYlZ14OhWxt
-	xbcG4/f7VhTnqcFWeMqKu42yMSXN0hTwBPT6Gr6rytS7mFRGR3MXacLMzCXBz2Z4
-	X5YvLRRbA8RsObEW1sg77WVAFGmVE5G1LfSMvX3N3dQ0YUKspi4Vx0nGAE6Imsc0
-	syCGgTsGF3gkoATtZXTMxRhfQ4ncaUtfCzG0Y4ot4fQR9WeluBsC9fVqhgssBlfp
-	6bDYUg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41arax3xm9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 13:39:30 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47UDdT4A010457
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 13:39:29 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 30 Aug 2024 06:39:26 -0700
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-To: <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <konradybcio@kernel.org>, <andersson@kernel.org>, <lee@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Mukesh Ojha <quic_mojha@quicinc.com>,
-        "Elliot
- Berman" <quic_eberman@quicinc.com>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sa8775p: Add TCSR halt register space
-Date: Fri, 30 Aug 2024 19:09:08 +0530
-Message-ID: <20240830133908.2246139-2-quic_mojha@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240830133908.2246139-1-quic_mojha@quicinc.com>
-References: <20240830133908.2246139-1-quic_mojha@quicinc.com>
+	s=arc-20240116; t=1725025708; c=relaxed/simple;
+	bh=C7SzgnZQ5XbL0Poy8QlUNW6+CVwAR6aH2vrX/N/Txxw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EgtWmrL8WjpJwuWJrtW+T1oCAHRqvFiIYJmkJ9+0/bZEt6K31bw7kf4/VtBIJHdT8jvbV78wp7aRvjwt7s4kZ9TZYxyPuuKT7khs8LReze6sIb31+bY6vS43m7iy+UUX0QbzKk0VUp2S5saf98H+xJj2TTo2u394JhieXkaVcMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kKvebFtR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8895EC4CEC2;
+	Fri, 30 Aug 2024 13:48:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725025708;
+	bh=C7SzgnZQ5XbL0Poy8QlUNW6+CVwAR6aH2vrX/N/Txxw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kKvebFtRV+e4c4onP/eArXUHfNnw+SSvW4ORRbhw1Rjjg3fMsXfAr4B+w3zJt+E3+
+	 6WQykcEprwYkvPJOmEoRoIEu7lWKUhIL68FNSgE57SF5I631cRIdoy4hz8OlElR3Hl
+	 hRlAC2IJFcPyR5GMgsgGE25vQOZyFxBiocdP9H/SMrscBNjggBl9LK3zVRLoav5Yg+
+	 aJRV11RhcN+9scvQI/STiYvV9p4zW+uoJFenWbw0wKEk/5RHUoMKcDxBte1jJkuyUn
+	 5Xgznb6ICztJcLc/qKHX8usYgssCOEPn8dlgEbR+RIWt8M/8y4IHgp4MFvGghYHQOY
+	 EjGGbyRsNiLdg==
+Date: Fri, 30 Aug 2024 14:48:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Aubin Constans <aubin.constans@microchip.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: sdhci-atmel: Convert to json
+ schema
+Message-ID: <20240830-satisfy-dislike-27ed075138b3@spud>
+References: <20240830-atmel-sdhci-v2-0-b7f58973f3fc@microchip.com>
+ <20240830-atmel-sdhci-v2-1-b7f58973f3fc@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RvCTlc2o1J23cGKuIxHaH61_YytioJb_
-X-Proofpoint-GUID: RvCTlc2o1J23cGKuIxHaH61_YytioJb_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-30_08,2024-08-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- lowpriorityscore=0 adultscore=0 mlxlogscore=789 malwarescore=0
- impostorscore=0 priorityscore=1501 spamscore=0 clxscore=1015 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408300104
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BDXgFad7zf52Vic3"
+Content-Disposition: inline
+In-Reply-To: <20240830-atmel-sdhci-v2-1-b7f58973f3fc@microchip.com>
 
-Enable download mode for sa8775p which can help collect
-ramdump for this SoC.
 
-Reviewed-by: Elliot Berman <quic_eberman@quicinc.com>
-Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
----
-Changes in v2:
- - Added R-by tag and rebased it.
+--BDXgFad7zf52Vic3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Fri, Aug 30, 2024 at 01:49:42PM +0530, Dharma Balasubiramani wrote:
+> Convert sdhci-atmel documentation to yaml format. The new file will inher=
+it
+> from sdhci-common.yaml.
+>=20
+> Note: Add microchip,sama7g5-sdhci to compatible list as we already use it
+> in the DT.
+>=20
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+>  .../bindings/mmc/atmel,sama5d2-sdhci.yaml          | 98 ++++++++++++++++=
+++++++
+>  .../devicetree/bindings/mmc/sdhci-atmel.txt        | 35 --------
+>  2 files changed, 98 insertions(+), 35 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.ya=
+ml b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
+> new file mode 100644
+> index 000000000000..91d18b2545e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/atmel,sama5d2-sdhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel SDHCI controller
+> +
+> +maintainers:
+> +  - Aubin Constans <aubin.constans@microchip.com>
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +
+> +description:
+> +  Bindings for the SDHCI controller found in Atmel/Microchip SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - atmel,sama5d2-sdhci
+> +          - atmel,sama5d3-sdhci
+> +          - atmel,sama5d4-sdhci
+> +          - microchip,sam9x60-sdhci
+> +      - items:
+> +          - enum:
+> +              - microchip,sama7g5-sdhci
+> +          - const: microchip,sam9x60-sdhci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 3
+> +    description: |
+> +      The sama5d2 family includes three clocks: `hclock`, `multclk`, and=
+ `baseclk`.
+> +      For other families, including sam9x60 and sam9x7, only `hclock` an=
+d `multclk` are used.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index e8dbc8d820a6..fa057073ee2d 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -281,6 +281,7 @@ eud_in: endpoint {
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-sa8775p", "qcom,scm";
-+			qcom,dload-mode = <&tcsr 0x13000>;
- 			memory-region = <&tz_ffi_mem>;
- 		};
- 	};
-@@ -3072,6 +3073,11 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		tcsr: syscon@1fc0000 {
-+			compatible = "qcom,sa8775p-tcsr", "syscon";
-+			reg = <0x0 0x1fc0000 0x0 0x30000>;
-+		};
-+
- 		gpucc: clock-controller@3d90000 {
- 			compatible = "qcom,sa8775p-gpucc";
- 			reg = <0x0 0x03d90000 0x0 0xa000>;
--- 
-2.34.1
+This should instead be an items list, rather than a text based
+description.
 
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 3
+
+We prefer that you describe the entries at this level, and constrain
+them in the conditional bits below. IOW, move the items list here,
+and only use minItems/maxItems below.
+
+> +
+> +  microchip,sdcal-inverted:
+> +    type: boolean
+> +    description:
+> +      When present, polarity on the SDCAL SoC pin is inverted.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +allOf:
+> +  - $ref: sdhci-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,sama5d2-sdhci
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+
+maxItems: 3 or minItems: 3? Your answer will depend on whether or not
+baseclk is optional on sama5d2.
+
+Cheers,
+Conor.
+
+> +        clock-names:
+> +          items:
+> +            - const: hclock
+> +            - const: multclk
+> +            - const: baseclk
+> +    else:
+> +      properties:
+> +        clocks:
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: hclock
+> +            - const: multclk
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/at91.h>
+> +    mmc@a0000000 {
+> +        compatible =3D "atmel,sama5d2-sdhci";
+> +        reg =3D <0xa0000000 0x300>;
+> +        interrupts =3D <31 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        clocks =3D <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
+> +        clock-names =3D "hclock", "multclk", "baseclk";
+> +        assigned-clocks =3D <&sdmmc0_gclk>;
+> +        assigned-clock-rates =3D <480000000>;
+> +    };
+
+--BDXgFad7zf52Vic3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHNpwAKCRB4tDGHoIJi
+0hybAQDUlIVOHIEiR1wC9Pruszi99jufighJpzE4S1psUqavTAEA2IlB4SSTQg7j
+Ypqt/472eU2lCY9H6m0T51AJB5hbzw8=
+=bSGL
+-----END PGP SIGNATURE-----
+
+--BDXgFad7zf52Vic3--
 
