@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-98544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD91966839
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:43:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7C596684D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3715A1F22D94
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:43:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 022641C21652
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810B31BB68F;
-	Fri, 30 Aug 2024 17:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E521BAEEA;
+	Fri, 30 Aug 2024 17:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMY24y3f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMC4O0QH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B481C6A5;
-	Fri, 30 Aug 2024 17:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21F0A1B2516;
+	Fri, 30 Aug 2024 17:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725039784; cv=none; b=d+fpAYlEZhJfdWn125vrG7sZLwZoiQuBjEsKbknBlCA/a1LBo3nVIME7OEIerYzep0my1Qfu3TqEMmtUPAimCF2E+L43JyT8kRopD+y8G84P2Si1lpys2phexK2Sc1DGmf6KIWA6DorEIB73x0iP9r8vwMzol6O39PKTfGW4AHU=
+	t=1725039996; cv=none; b=ourg/o6OWqVypGH6O3k9cl9M5dCsLtGME8NfPDgTDGcTKgYqYIdzqTbYacc5/AMbTAon85NcynaaZfPfm8KZO1Yhyu/HQofoa/NDAYleZRBPY3jg3Yffo4Yjkc5u2I0mIYYB/ga5zSDtbA9/lfmViGKBr43CTMTszKMAxVN8YuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725039784; c=relaxed/simple;
-	bh=uG9/JQIdbEu96p4oSPxyLfmE2ss4VuClCzwnEHEd22Q=;
+	s=arc-20240116; t=1725039996; c=relaxed/simple;
+	bh=aPZD1XgQShLnoHZyj31EvMq28IpHZmfxKQCW6h9WZKc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n/TklF5PuLDAFFk5Bu8YrqbBOo10Aok2YXoMBggTDiwF2PmPRcGyFTZjNVS5x9JA7b1rovNH77bDLseDvXMrkR4Ozqn/TGjzVw0VurU3xkl0JACPxX98U6bTCZC4TPMW7MLgYlzammw33XS1m69tsgWQuddUq3fhLPbtISlwDa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMY24y3f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BB1DC4CEC2;
-	Fri, 30 Aug 2024 17:43:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z9vGtxdQFqL5NqoQ4xxFHLYq/SeJFrTy2wrrApplY2ozmXmo7hJrLacwLfzLNsa0k+rTxVJE8w21OY5vmqKAF0B4gWOi2/nFINbgyipJqLXlUeTTizwlG/VLkmUnrIxA5oRN396cPSG6L9BlJdiJBbC2lCOs/swgGenooqCS1L0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMC4O0QH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E3E3C4CEC2;
+	Fri, 30 Aug 2024 17:46:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725039783;
-	bh=uG9/JQIdbEu96p4oSPxyLfmE2ss4VuClCzwnEHEd22Q=;
+	s=k20201202; t=1725039995;
+	bh=aPZD1XgQShLnoHZyj31EvMq28IpHZmfxKQCW6h9WZKc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tMY24y3fqm3RrXNMQJyMYA/rf7AeYALggfmKOq0odYWcDsz11dMiKMhC/m485kK3x
-	 68h0KBrW830HXw9lwy1tXecOASizcUcyX9I8i76GKHpCnyQ4m5zBKc6qTrx76iRtWx
-	 rw95H0KjRmA9h5p5jyTgqKEADo38kSwk6k4pB72vwk+ZrfIOg0Q+Kmbzfu0XEwFBzj
-	 QefRMQOXiV6GliOv22oSVsFV0+8UfJw6zUT0+ds9qje3DtOYFJTrGCqwUs6oL+hA4t
-	 2g6+269msUVRq1GA7f1hKjCt3Fnbv/7Jj16o1lHyilyCDmV5hDcvcfmore+OxojdbX
-	 y9TQvwInF+XMw==
-Date: Fri, 30 Aug 2024 12:43:02 -0500
+	b=WMC4O0QHCt5WGcmOshgTKPmnkbkBb7GaV0+uiisqi/0Co6cRRWy7tT2fW/kyMbhMx
+	 Rl8Zr+OsZceeHurDfdLNvA+bKEbAP47B5XAQBLhS8uZJ5SLimAAY8CWgXptxSq+9za
+	 AIr4jNcgD2vcC58pRUccGnOWDZanXmCLy6lB1J7cFBoI5Oh929Lt2i790aq1ATY4Zc
+	 jsLXqEum+cvWr55w0+HXHsug6VIEPRUo7k9VwBLLTg8UENAhgvX53xDUXhbfTfvY0W
+	 V4DyTxr6DSbn4h4NUXsMYPBKRNZIRxIOyyhpLSgnR6SP1zJ3VuUHOya5wAMQxhVPG7
+	 ZwgiEgI3ishvQ==
+Date: Fri, 30 Aug 2024 12:46:33 -0500
 From: Rob Herring <robh@kernel.org>
-To: Roger Quadros <rogerq@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-	srk@ti.com, linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: ti, gpmc-nand: support partitions node
-Message-ID: <20240830174302.GA551760-robh@kernel.org>
-References: <20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	alexandre.belloni@bootlin.com, magnus.damm@gmail.com,
+	p.zabel@pengutronix.de, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v3 01/12] dt-bindings: clock: renesas,r9a08g045-vbattb:
+ Document VBATTB
+Message-ID: <20240830174633.GA559043-robh@kernel.org>
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,39 +65,143 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org>
+In-Reply-To: <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
 
-On Fri, Aug 30, 2024 at 03:27:53PM +0300, Roger Quadros wrote:
-> Allow fixed-partitions to be specified through a partitions
-> node.
+On Fri, Aug 30, 2024 at 04:02:07PM +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> Fixes the below dtbs_check warning:
+> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock for RTC,
+> the tamper detector and a small general usage memory of 128B. Add
+> documentation for it.
 > 
-> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: nand@0,0: Unevaluated properties are not allowed ('partitions' was unexpected)
-> 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-> index 115682fa81b7..c2143f943e7f 100644
-> --- a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-> @@ -61,6 +61,11 @@ properties:
->        GPIO connection to R/B signal from NAND chip
->      maxItems: 1
->  
-> +  partitions:
-> +    type: object
-> +    description:
-> +      Node containing description of fixed partitions.
+> Changes in v3:
+> - moved the file to clock dt bindings directory as it is the
+>   only functionality supported at the moment; the other functionalities
+>   (tamper detector, SRAM) are offered though register spreaded
+>   though the address space of the VBATTB IP and not actually
+>   individual devices; the other functionalities are not
+>   planned to be supported soon and if they will be I think they
+>   fit better on auxiliary bus than MFD
+> - dropped interrupt names as requested in the review process
+> - dropped the inner node for clock controller
+> - added #clock-cells
+> - added rtx clock
+> - updated description for renesas,vbattb-load-nanofarads
+> - included dt-bindings/interrupt-controller/irq.h in examples section
+> 
+> Changes in v2:
+> - changed file name and compatible
+> - updated title, description sections
+> - added clock controller part documentation and drop dedicated file
+>   for it included in v1
+> - used items to describe interrupts, interrupt-names, clocks, clock-names,
+>   resets
+> - dropped node labels and status
+> - updated clock-names for clock controller to cope with the new
+>   logic on detecting the necessity to setup bypass
+> 
+>  .../clock/renesas,r9a08g045-vbattb.yaml       | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
+> new file mode 100644
+> index 000000000000..29df0e01fae5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/renesas,r9a08g045-vbattb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  patternProperties:
->    "@[0-9a-f]+$":
->      $ref: /schemas/mtd/partitions/partition.yaml
+> +title: Renesas Battery Backup Function (VBATTB)
+> +
+> +description:
+> +  Renesas VBATTB is an always on powered module (backed by battery) which
+> +  controls the RTC clock (VBATTCLK), tamper detection logic and a small
+> +  general usage memory (128B).
+> +
+> +maintainers:
+> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,r9a08g045-vbattb
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: tamper detector interrupt
+> +
+> +  clocks:
+> +    items:
+> +      - description: VBATTB module clock
+> +      - description: RTC input clock (crystal oscillator or external clock device)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bclk
+> +      - const: rtx
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: VBATTB module reset
+> +
+> +  renesas,vbattb-load-nanofarads:
 
-This and the addition should be replaced with a mtd.yaml reference.
+Use defined units, don't add your own. So -picofarads should work for 
+you.
 
-Rob
+> +    description: load capacitance of the on board crystal oscillator
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 4000, 7000, 9000, 12500 ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    vbattb@1005c000 {
+
+clock-controller@...
+
+> +        compatible = "renesas,r9a08g045-vbattb";
+> +        reg = <0x1005c000 0x1000>;
+> +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&vbattb_xtal>;
+> +        clock-names = "bclk", "rtx";
+> +        #clock-cells = <1>;
+> +        power-domains = <&cpg>;
+> +        resets = <&cpg R9A08G045_VBAT_BRESETN>;
+> +        renesas,vbattb-load-nanofarads = <12500>;
+> +    };
+> -- 
+> 2.39.2
+> 
 
