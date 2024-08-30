@@ -1,338 +1,248 @@
-Return-Path: <devicetree+bounces-98322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904F8965C36
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:59:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB352965C3B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 485A6283D97
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:59:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D4561F24BBB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC3C16EB42;
-	Fri, 30 Aug 2024 08:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C76316DC34;
+	Fri, 30 Aug 2024 09:01:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eZRkFZrj"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="kF58sBm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC2116DC3C
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9911537D1;
+	Fri, 30 Aug 2024 09:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725008353; cv=none; b=he7M1H1DhMCP7oDduo2tBneqa2Ue7YOTk4kahwZhoRh6uVr3RABWNnVy2RMlXODglkx7n24wkumU6eFnWPFFdtVtaFWwrw2P6lHTEte1UoSFUvCVrdNDTXDzuh6VumD5K91seUjfTHCRu6Po/9Njrxl5Kx1v4ImbJbBSQZGvFv0=
+	t=1725008491; cv=none; b=UlSHaoV9A5UvaV0TKuIN3G583YX3sSeW08swospLhYzMqHrXOAE7u9++blq/d5gD1BlzcFdfgzbEdqgKVvmo/uCguPlKO4obmJASROUJXykN3SOGupgnVMb0j/6YYCfA1uIEy/Dxlm2f7SqubqZ28x0fHiQ8cQCT/CsD5+sFP80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725008353; c=relaxed/simple;
-	bh=onA0Rhh+UzLqUP5jEJTgKgOSRj6UGJ9Pt5npI0Xahjo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GurdfreeRVkkd7ANIWp2J7kG6DWL3gezJES5G755tn9pJJTgj6V2o1as7O4XYpzLodmFolBOfuqDBoqLi6Mj28ZHuY763svkn5dDKXzTsyat7/Ho27jh7QZU9IJGhBHMKfwbNATywiZZZxf3VacJBbZv40cjyzE904ukPE7Y/jA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eZRkFZrj; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3df0dc53ec1so708636b6e.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:59:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725008350; x=1725613150; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=71qAjwrIo/FbmBz5Myk4n9y6EiwPiLE9Dng5NwJZ7Bo=;
-        b=eZRkFZrjc0iKE9K16Fib4cMqp7Z/uq7YEjfEO5nRqCMWTWbMQw5ylQFSHNQrGklfWM
-         B2kKewDJhItywraG/5kjtqYyllONRyMGtBX0i0XGTrT3MqMz+NfPVkJF0UCdjXNLbvLT
-         9uCs6sR+t7NKZzcsUAitcgKMkpybg6il9tEvOHFd0Kw/PMEjEL4cOr3ZzIL6QDaDxVC0
-         tHer7UjbzbuNQ4QXz7rQ2q7JD2ZqXdoHOTsBTrxDKZE+1AlLmJphFXXqQ5sn+FR82fqS
-         I67RdvfsfnZVTRxKDle9yOIlW750vJHz7zhraKTAl+s6eJ7FNsL1FT8bGd2PYCRn+iK6
-         BEZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725008350; x=1725613150;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=71qAjwrIo/FbmBz5Myk4n9y6EiwPiLE9Dng5NwJZ7Bo=;
-        b=FLaG9pJtYONVF+jOxfEMxWcQMCoAocB5ugroeh82fFp0MgyDz61iFlx4sudyBbbF79
-         wGypfuJ9MCpVvrGGylwd2V8pW6AZi7oYF0DyBZFtaBg8QBkMzzw/h9Ng7hr1AOCdLD1O
-         FPrLHn0hw8ofv7Qb+f5mdsyG3cbbBX1F1NfKvFNN6aLYO0UxLg4i/eGBOxCLxvgRWpgC
-         8M7a1nYqDM6E/oTlLh4nPD0YfPu0J3lv3niVu/FJGzBnSFKemhX/pmcUBRu4G6vKPXNt
-         KfxEdf/fvBsckRE+7BCYtx6Vyi0sBMfHlrbp8QWjwG5qNLuQRReu7f8T7ib/UBo6GnwG
-         tExw==
-X-Forwarded-Encrypted: i=1; AJvYcCV10km+7oaE3482Tgufd7+FMybxWgjLIAZnBHW5p7has30WXhqq9VdM/m9vkWCWZvrJdDZafQxUKBCP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUG6MYSTaNhmRP7q0IqnHtINXQurltcAO+IE++upNOJ/NwcCI1
-	6ENtjmSdUgXUBqJZbuvDYnqzo/xPVrG1RnW3YNLSNdL/tXSPAxGtAwv9h/MxWw==
-X-Google-Smtp-Source: AGHT+IGJE/0+ObI0CkZ+IOdkM1nwpEnemU7pt2j1Bs59c55j95S6Wc2rMVcunwSLXz0CAPYJaOw1vg==
-X-Received: by 2002:a05:6808:1242:b0:3d9:384a:7e1a with SMTP id 5614622812f47-3df05c4e59amr5026350b6e.1.1725008350377;
-        Fri, 30 Aug 2024 01:59:10 -0700 (PDT)
-Received: from thinkpad ([117.193.213.95])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d22e9d721dsm2512363a12.87.2024.08.30.01.59.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 01:59:10 -0700 (PDT)
-Date: Fri, 30 Aug 2024 14:29:01 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Sricharan R <quic_srichara@quicinc.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
-	konradybcio@kernel.org, p.zabel@pengutronix.de,
-	dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, robimarko@gmail.com
-Subject: Re: [PATCH V2 5/6] arm64: dts: qcom: ipq5018: Add PCIe related nodes
-Message-ID: <20240830085901.oeiuuijlvq2ydho2@thinkpad>
-References: <20240827045757.1101194-1-quic_srichara@quicinc.com>
- <20240827045757.1101194-6-quic_srichara@quicinc.com>
+	s=arc-20240116; t=1725008491; c=relaxed/simple;
+	bh=aQcccC/pwXrZ5BASCm+J8C0zEShLh8Jf8cfyHqH0B70=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Fk0emy/0X+qBce5VQA0gV9BNNTf2+/xPeDNbkHQG3DjMDzRsf2YA/vOB5YThrZstOcKvNNvC8NiwNr3WY6OCR+juCzduP0ZQNBvvY5mga+knb4WiUdPVAmfBVoW6KQUHOPizBo4AYB42/VZeBXY8/yS3jgNQCpWpwC2DmEzLe/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=kF58sBm6; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 1B3F688D74;
+	Fri, 30 Aug 2024 11:01:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725008486;
+	bh=2tjNE1MMuJ9pQoQqSYZdXnlM2vXm9UQ78avNU8WXADE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kF58sBm6nZBKgANBt2Uw0Ov2n6bj2GklWmGx2HALoHqiy9x+GssBQRIshlYfJ6ykB
+	 gDkkDQ240BxLOWfy04RdVFEXnhqNAOl9AD4966pbQ+cWUU4j7Ucga4R4xARG75LLZg
+	 NRtK0jbNdgmU8aIYjiqRB58QsD1pwAL03RlzSyprLG/DjjikaTee1ddVzL+FOuBlJS
+	 Uo/a0EJdwaM2pPq9hrJzz8nwDKZuXw66U6/f34GAlQj5oIx4IgJJm2BpaSD5d+DdpF
+	 KDNBD0qtSBtaf9FN8bPhdgDMJIjJmbJ+CYmmyngTOsjjYAVgD6rHjonzb8JEwlz8az
+	 i8pzl7BwdlY8A==
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Lukasz Majewski <lukma@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v5] ASoC: dt-bindings: Convert mxs-saif.txt to fsl,imx28-saif.yaml (imx28 saif)
+Date: Fri, 30 Aug 2024 11:01:11 +0200
+Message-Id: <20240830090111.3591648-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240827045757.1101194-6-quic_srichara@quicinc.com>
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Tue, Aug 27, 2024 at 10:27:56AM +0530, Sricharan R wrote:
-> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> 
-> Add phy and controller nodes for a 2-lane Gen2 and
-> 1-lane Gen2 PCIe buses.
-> 
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> ---
->  [v2] Removed relocatable flags,  removed assigned-clock-rates,
->       fixed rest of the cosmetic comments.
-> 
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 168 +++++++++++++++++++++++++-
->  1 file changed, 166 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> index 7e6e2c121979..dd5d6b7ff094 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
->  #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
-> +#include <dt-bindings/gpio/gpio.h>
->  
->  / {
->  	interrupt-parent = <&intc>;
-> @@ -143,7 +144,33 @@ usbphy0: phy@5b000 {
->  			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
->  
->  			#phy-cells = <0>;
-> +		};
-> +
-> +		pcie_x1phy: phy@7e000{
-> +			compatible = "qcom,ipq5018-uniphy-pcie-gen2x1";
-> +			reg = <0x0007e000 0x800>;
-> +			#phy-cells = <0>;
-> +			#clock-cells = <0>;
-> +			clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
-> +			clock-names = "pipe";
-> +			assigned-clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
-> +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
-> +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
-> +			reset-names = "phy", "common";
-> +			status = "disabled";
-> +		};
->  
-> +		pcie_x2phy: phy@86000{
-> +			compatible = "qcom,ipq5018-uniphy-pcie-gen2x2";
-> +			reg = <0x00086000 0x1000>;
-> +			#phy-cells = <0>;
-> +			#clock-cells = <0>;
-> +			clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
-> +			clock-names = "pipe";
-> +			assigned-clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
-> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
-> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
-> +			reset-names = "phy", "common";
->  			status = "disabled";
->  		};
->  
-> @@ -170,8 +197,8 @@ gcc: clock-controller@1800000 {
->  			reg = <0x01800000 0x80000>;
->  			clocks = <&xo_board_clk>,
->  				 <&sleep_clk>,
-> -				 <0>,
-> -				 <0>,
-> +				 <&pcie_x2phy>,
-> +				 <&pcie_x1phy>,
->  				 <0>,
->  				 <0>,
->  				 <0>,
-> @@ -387,6 +414,143 @@ frame@b128000 {
->  				status = "disabled";
->  			};
->  		};
-> +
-> +		pcie0: pci@80000000 {
+The 'fsl,imx28-saif' compatible has already the mxs-saif.txt description.
+This patch converts (and removes it) this file to fsl,imx28-saif.yaml.
 
-pcie@
+Changes for the mxs-saif.txt:
+- Adds 'clocks', '#clock-cells' and '#sound-dai-cells' properties
+- Provide device description
 
-> +			compatible = "qcom,pcie-ipq5018";
-> +			reg =  <0x80000000 0xf1d>,
-> +			       <0x80000f20 0xa8>,
-> +			       <0x80001000 0x1000>,
-> +			       <0x00078000 0x3000>,
-> +			       <0x80100000 0x1000>;
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Are you sure that the config space is only 4K?
+---
+Changes for v5:
+- Keep 'saif0' label
 
-> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
-> +			device_type = "pci";
-> +			linux,pci-domain = <0>;
-> +			bus-range = <0x00 0xff>;
-> +			num-lanes = <1>;
-> +			max-link-speed = <2>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			phys = <&pcie_x1phy>;
-> +			phy-names ="pciephy";
-> +
-> +			ranges = <0x01000000 0 0x80200000 0x80200000 0 0x00100000
+Changes for v4:
+- Change file name to match compatible (fsl,imx28-saif.yaml)
+- Remove 'saif0' and 'saif1' labels as those are not needed in the
+  example node
 
-Please check the value of this field in other SoCs.
+Changes for v3:
+- Add #clock-cells property
 
-> +				  0x02000000 0 0x80300000 0x80300000 0 0x10000000>;
-> +
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0x7>;
-> +			interrupt-map = <0 0 0 1 &intc 0 0 142 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 2 &intc 0 0 143 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 3 &intc 0 0 144 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 4 &intc 0 0 145 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global_irq";
+Changes for v2:
+- Remove mxs-saif.txt
+- Add description with information about extensions required for this
+  device's current DTS description
+---
+ .../bindings/sound/fsl,imx28-saif.yaml        | 82 +++++++++++++++++++
+ .../devicetree/bindings/sound/mxs-saif.txt    | 41 ----------
+ 2 files changed, 82 insertions(+), 41 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/mxs-saif.txt
 
-I'm pretty sure that this SoC has SPI based MSI interrupts. So they should be
-described even though ITS is supported.
-
-> +
-> +			clocks = <&gcc GCC_SYS_NOC_PCIE1_AXI_CLK>,
-> +				 <&gcc GCC_PCIE1_AXI_M_CLK>,
-> +				 <&gcc GCC_PCIE1_AXI_S_CLK>,
-> +				 <&gcc GCC_PCIE1_AHB_CLK>,
-> +				 <&gcc GCC_PCIE1_AUX_CLK>,
-> +				 <&gcc GCC_PCIE1_AXI_S_BRIDGE_CLK>;
-> +
-> +			clock-names = "iface",
-> +				      "axi_m",
-> +				      "axi_s",
-> +				      "ahb",
-> +				      "aux",
-> +				      "axi_bridge";
-> +
-> +			resets = <&gcc GCC_PCIE1_PIPE_ARES>,
-> +				 <&gcc GCC_PCIE1_SLEEP_ARES>,
-> +				 <&gcc GCC_PCIE1_CORE_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE1_AXI_MASTER_ARES>,
-> +				 <&gcc GCC_PCIE1_AXI_SLAVE_ARES>,
-> +				 <&gcc GCC_PCIE1_AHB_ARES>,
-> +				 <&gcc GCC_PCIE1_AXI_MASTER_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE1_AXI_SLAVE_STICKY_ARES>;
-> +
-> +			reset-names = "pipe",
-> +				      "sleep",
-> +				      "sticky",
-> +				      "axi_m",
-> +				      "axi_s",
-> +				      "ahb",
-> +				      "axi_m_sticky",
-> +				      "axi_s_sticky";
-> +
-> +			msi-map = <0x0 &v2m0 0x0 0xff8>;
-> +			status = "disabled";
-
-Please add the rootport node also as like other SoCs.
-
-Above comments applies to below PCIe node.
-
-- Mani
-
-> +		};
-> +
-> +		pcie1: pci@a0000000 {
-> +			compatible = "qcom,pcie-ipq5018";
-> +			reg =  <0xa0000000 0xf1d>,
-> +			       <0xa0000f20 0xa8>,
-> +			       <0xa0001000 0x1000>,
-> +			       <0x00080000 0x3000>,
-> +			       <0xa0100000 0x1000>;
-> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
-> +			device_type = "pci";
-> +			linux,pci-domain = <1>;
-> +			bus-range = <0x00 0xff>;
-> +			num-lanes = <2>;
-> +			max-link-speed = <2>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			phys = <&pcie_x2phy>;
-> +			phy-names ="pciephy";
-> +
-> +			ranges = <0x01000000 0 0xa0200000 0xa0200000 0 0x00100000
-> +				  0x02000000 0 0xa0300000 0xa0300000 0 0x10000000>;
-> +
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0x7>;
-> +			interrupt-map = <0 0 0 1 &intc 0 0 75 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 2 &intc 0 0 78 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 3 &intc 0 0 79 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 4 &intc 0 0 83 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global_irq";
-> +
-> +			clocks = <&gcc GCC_SYS_NOC_PCIE0_AXI_CLK>,
-> +				 <&gcc GCC_PCIE0_AXI_M_CLK>,
-> +				 <&gcc GCC_PCIE0_AXI_S_CLK>,
-> +				 <&gcc GCC_PCIE0_AHB_CLK>,
-> +				 <&gcc GCC_PCIE0_AUX_CLK>,
-> +				 <&gcc GCC_PCIE0_AXI_S_BRIDGE_CLK>;
-> +
-> +			clock-names = "iface",
-> +				      "axi_m",
-> +				      "axi_s",
-> +				      "ahb",
-> +				      "aux",
-> +				      "axi_bridge";
-> +
-> +			resets = <&gcc GCC_PCIE0_PIPE_ARES>,
-> +				 <&gcc GCC_PCIE0_SLEEP_ARES>,
-> +				 <&gcc GCC_PCIE0_CORE_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE0_AXI_MASTER_ARES>,
-> +				 <&gcc GCC_PCIE0_AXI_SLAVE_ARES>,
-> +				 <&gcc GCC_PCIE0_AHB_ARES>,
-> +				 <&gcc GCC_PCIE0_AXI_MASTER_STICKY_ARES>,
-> +				 <&gcc GCC_PCIE0_AXI_SLAVE_STICKY_ARES>;
-> +
-> +			reset-names = "pipe",
-> +				      "sleep",
-> +				      "sticky",
-> +				      "axi_m",
-> +				      "axi_s",
-> +				      "ahb",
-> +				      "axi_m_sticky",
-> +				      "axi_s_sticky";
-> +
-> +			msi-map = <0x0 &v2m0 0x0 0xff8>;
-> +			status = "disabled";
-> +		};
-> +
->  	};
->  
->  	timer {
-> -- 
-> 2.34.1
-> 
-
+diff --git a/Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml b/Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml
+new file mode 100644
+index 000000000000..4f55288e11e2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/fsl,imx28-saif.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/fsl,imx28-saif.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MXS Serial Audio Interface (SAIF)
++
++maintainers:
++  - Lukasz Majewski <lukma@denx.de>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++description:
++  The SAIF is based on I2S module that is used to communicate with audio codecs,
++  but only with half-duplex manner (i.e. it can either transmit or receive PCM
++  audio).
++
++properties:
++  compatible:
++    const: fsl,imx28-saif
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: rx-tx
++
++  "#clock-cells":
++    description: Configure the I2S device as MCLK clock provider.
++    const: 0
++
++  clocks:
++    maxItems: 1
++
++  fsl,saif-master:
++    description: Indicate that saif is a slave and its phandle points to master
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
++  - interrupts
++  - dmas
++  - dma-names
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    saif0: saif@80042000 {
++        compatible = "fsl,imx28-saif";
++        reg = <0x80042000 2000>;
++        #sound-dai-cells = <0>;
++        interrupts = <59>;
++        dmas = <&dma_apbx 4>;
++        dma-names = "rx-tx";
++        #clock-cells = <0>;
++        clocks = <&clks 53>;
++    };
++    saif@80046000 {
++        compatible = "fsl,imx28-saif";
++        reg = <0x80046000 2000>;
++        #sound-dai-cells = <0>;
++        interrupts = <58>;
++        dmas = <&dma_apbx 5>;
++        dma-names = "rx-tx";
++        clocks = <&clks 53>;
++        fsl,saif-master = <&saif0>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/mxs-saif.txt b/Documentation/devicetree/bindings/sound/mxs-saif.txt
+deleted file mode 100644
+index 7ba07a118e37..000000000000
+--- a/Documentation/devicetree/bindings/sound/mxs-saif.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-* Freescale MXS Serial Audio Interface (SAIF)
+-
+-Required properties:
+-- compatible: Should be "fsl,<chip>-saif"
+-- reg: Should contain registers location and length
+-- interrupts: Should contain ERROR interrupt number
+-- dmas: DMA specifier, consisting of a phandle to DMA controller node
+-  and SAIF DMA channel ID.
+-  Refer to dma.txt and fsl-mxs-dma.txt for details.
+-- dma-names: Must be "rx-tx".
+-
+-Optional properties:
+-- fsl,saif-master: phandle to the master SAIF.  It's only required for
+-  the slave SAIF.
+-
+-Note: Each SAIF controller should have an alias correctly numbered
+-in "aliases" node.
+-
+-Example:
+-
+-aliases {
+-	saif0 = &saif0;
+-	saif1 = &saif1;
+-};
+-
+-saif0: saif@80042000 {
+-	compatible = "fsl,imx28-saif";
+-	reg = <0x80042000 2000>;
+-	interrupts = <59>;
+-	dmas = <&dma_apbx 4>;
+-	dma-names = "rx-tx";
+-};
+-
+-saif1: saif@80046000 {
+-	compatible = "fsl,imx28-saif";
+-	reg = <0x80046000 2000>;
+-	interrupts = <58>;
+-	dmas = <&dma_apbx 5>;
+-	dma-names = "rx-tx";
+-	fsl,saif-master = <&saif0>;
+-};
 -- 
-மணிவண்ணன் சதாசிவம்
+2.39.2
+
 
