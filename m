@@ -1,175 +1,119 @@
-Return-Path: <devicetree+bounces-98492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DC10966507
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:11:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E85F7966511
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:13:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12721F24B1F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:11:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55C35B21ED5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 782811B3B1F;
-	Fri, 30 Aug 2024 15:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D951B3B1C;
+	Fri, 30 Aug 2024 15:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bnaiL27t"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="X79uT/JW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B7F1DA26;
-	Fri, 30 Aug 2024 15:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CD21B3B20;
+	Fri, 30 Aug 2024 15:13:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725030668; cv=none; b=Z9CHZfaT2rFPofYVnL4MnPqYI2Wi6rvzpni25PDgZaeMs57Ykey3hNRCUFCHXBArcQ2y+4e+9diu7b4OLpgstKIDPgY2TTWeAvVEfqauLpwqhcaGMQnGWwAfTzqSGsPi6mlkXROkse29fwIab4g04LDmN+LFRTQ9n0xjlWBer5g=
+	t=1725030809; cv=none; b=VgEa6L8NAcFw+9uSY3sbqXQlAn5PUH56zT0G1afBTZBuNIcDFEAU5zvbHxwA3SrLo5brwG05bTX3CKwh+UgrLqTqswSvtWZE5eFxKXcbolJVjobZPGyicicygXL++lLlQOhh6DNTthzWwtQ/QiWVD1jG3VVexcyjuF1QAAfbmKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725030668; c=relaxed/simple;
-	bh=k0MHcD6fGcBRoGoAYkXiaRGvEEgp/XNQ8KfBL7zEbY4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=b/IBONBGnFPZiFQHTw4n/ORMii3fZHt+5F1u+askPDn9RW77a7Xo3d4uavQwEmgo+zo4XTBx+KoxNFkoobo+idDsjeVG+LsrGHDSyXruoZKJrqV7V5xaVBXSBNu9ZUmvNfS+ndNsq5NsABtintVR88l4oLXRmTszJounsFxGx3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bnaiL27t; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UFB02o043535;
-	Fri, 30 Aug 2024 10:11:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725030660;
-	bh=cFtmf837AAq1zuiS8MEL5I5amHqOsrkqaChyfLvPtFM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=bnaiL27tf6fmDQlFqNMJMoTvgvCxQpC+FpR+TEwjxqNpig9/UXqw4W4hkbftrHd/O
-	 mlLIrajOfqno46OtoUQRZAvGe4qQSGPW9e6nSVWGK7cWIIs/YeEPoHUiSWxrabW3C0
-	 N07HcIhAfXEapZS1U+DlggNdDdwNp62NB0kX+Zg8=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UFB05w027682;
-	Fri, 30 Aug 2024 10:11:00 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 10:10:59 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 10:10:59 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UFAtXK035736;
-	Fri, 30 Aug 2024 10:10:56 -0500
-Message-ID: <d6bf10b1-9671-4c21-8093-48a4065ceb3c@ti.com>
-Date: Fri, 30 Aug 2024 20:40:55 +0530
+	s=arc-20240116; t=1725030809; c=relaxed/simple;
+	bh=XN6UamdVy5YZ7poGi5VH5lYzP21Tv4XcrJEiiDjeTd4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dddlgzzl1A60qwA0V4mo/lrlGnZUWs0G4pwpU3oKFDZoukVHa/djLGuKQmhTxJFS4wuan7EWVsHoBcXzTvCaOkwLzqXNFe00NHTFmFu5O00oVIJn4JmE1W3bcntd0lrGp2VHupkePnBBNXKYatAo2huv2mH0Cl5l8Z2Oit9vlnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=X79uT/JW; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=mKoAUCPLIx2u8bDuKHDW2AwZSGh12y/DJxrGx1xVQAs=; b=X79uT/JWFVwscl4U2i8M02fhoP
+	kD3xNG8y1qE0GGmzAvTBZepPRr8LTp2O8vaC5ebYelXYmImEXCSoDzhqyC3e1rcrUZVON8gVYMcYq
+	OGajtNQ7E0qM1dJJxLWQSARZ528qEu/IupAKSC5d4lmEOhMrGZfhDxwYRhNAt45GWHyebuAcaXexC
+	MQHwrlxWafQYd0Szhsuv9UNczv8ud539gs4rkBtfQ9pMcEi0uG8eHkvlg4ob+WllA2acKrvpPMZY2
+	ZFbLh8L83boy2B+9urT+fIWN1hUYU4AXaFPlucJ66N8GdK+GQM5TpXtphWeC+IkO1WJgXpIqSpFDh
+	EdYTC1ZQ==;
+Received: from i5e861921.versanet.de ([94.134.25.33] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sk3JG-0004MP-Iy; Fri, 30 Aug 2024 17:13:10 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	linux-clk@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	andy.yan@rock-chips.com,
+	Michal Tomek <mtdev79b@gmail.com>,
+	huangtao@rock-chips.com,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	linux-rockchip@lists.infradead.org,
+	Chad LeClair <leclair@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	kernel@collabora.com,
+	Ilya K <me@0upti.me>
+Subject: Re: (subset) [PATCH v9 0/7] rockchip: clk: add GATE_LINK support
+Date: Fri, 30 Aug 2024 17:13:05 +0200
+Message-ID: <172503062006.1956268.2661371879547817382.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240325193609.237182-1-sebastian.reichel@collabora.com>
+References: <20240325193609.237182-1-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] arm64: dts: ti: k3-j722s-main: Add R5F and C7x
- remote processor nodes
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <j-choudhary@ti.com>, <vaishnav.a@ti.com>, <afd@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
-References: <20240829060932.3441295-1-b-padhi@ti.com>
- <20240829060932.3441295-2-b-padhi@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240829060932.3441295-2-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-
-On 8/29/2024 11:39 AM, Beleswar Padhi wrote:
-> From: Apurva Nandan <a-nandan@ti.com>
->
-> The K3 J722S SoCs have one single-core Arm Cortex-R5F processor in each
-> of the WAKEUP, MCU and MAIN voltage domain, and two C71x DSP subsystems
-> in MAIN voltage domain. Add the DT nodes to support Inter-Processor
-> Communication.
->
-> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-> [ refactoring changes to k3-j722s-main.dtsi ]
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+On Mon, 25 Mar 2024 20:33:31 +0100, Sebastian Reichel wrote:
+> This implements proper GATE_LINK support following the suggestion from Stephen
+> Boyd to use clk PM operations by creating MFD dynamically. This required some
+> restructuring, since CLK_OF_DECLARE() is called before devices are available.
+> 
+> Apart from improved power consumption, this fixes the runtime errors from the
+> pmdomain driver (failed to set idle on domain '%s').
+> 
 > [...]
->   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 61 +++++++++++++++++++++++
->   1 file changed, 61 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> index cadb4f7c2ea9..ed6f4ba08afc 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> @@ -153,6 +153,67 @@ usb1: usb@31200000{
->   			dr_mode = "otg";
->   		};
->   	};
-> +
-> +	main_r5fss0: r5fss@78400000 {
-> +		compatible = "ti,am62-r5fss";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x78400000 0x00 0x78400000 0x8000>,
-> +			 <0x78500000 0x00 0x78500000 0x8000>;
-> +		power-domains = <&k3_pds 261 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
-> +
-> +		main_r5fss0_core0: r5f@78400000 {
-> +			compatible = "ti,am62-r5f";
-> +			reg = <0x78400000 0x00008000>,
-> +			      <0x78500000 0x00008000>;
-> +			reg-names = "atcm", "btcm";
-> +			resets = <&k3_reset 262 1>;
-> +			firmware-name = "j722s-main-r5f0_0-fw";
 
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+Applied, thanks!
 
-> +			ti,sci = <&dmsc>;
-> +			ti,sci-dev-id = <262>;
-> +			ti,sci-proc-ids = <0x04 0xff>;
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +	};
-> +
-> +	c7x_0: dsp@7e000000 {
-> +		compatible = "ti,am62a-c7xv-dsp";
-> +		reg = <0x00 0x7e000000 0x00 0x00200000>;
-> +		reg-names = "l2sram";
-> +		resets = <&k3_reset 208 1>;
-> +		firmware-name = "j722s-c71_0-fw";
-> +		ti,sci = <&dmsc>;
-> +		ti,sci-dev-id = <208>;
-> +		ti,sci-proc-ids = <0x30 0xff>;
-> +		status = "disabled";
-> +	};
-> +
-> +	c7x_1: dsp@7e200000 {
-> +		compatible = "ti,am62a-c7xv-dsp";
-> +		reg = <0x00 0x7e200000 0x00 0x00200000>;
-> +		reg-names = "l2sram";
-> +		resets = <&k3_reset 268 1>;
-> +		firmware-name = "j722s-c71_1-fw";
-> +		ti,sci = <&dmsc>;
-> +		ti,sci-dev-id = <268>;
-> +		ti,sci-proc-ids = <0x31 0xff>;
-> +		status = "disabled";
-> +	};
-> +};
-> +
-> +/* MCU domain overrides */
-> +
-> +&mcu_r5fss0_core0 {
-> +	firmware-name = "j722s-mcu-r5f0_0-fw";
-> +};
-> +
-> +/* Wakeup domain overrides */
-> +
-> +&wkup_r5fss0_core0 {
-> +	firmware-name = "j722s-wkup-r5f0_0-fw";
->   };
->   
->   &main_conf {
+[1/7] clk: rockchip: rk3588: drop unused code
+      commit: 2e7b3daa8cb1ebd17e6a7f417ef5e6553203035c
+
+@Detlev: I think the rk3576 driver I added days ago, might also want
+that change? Can you take a look please?
+[I don't have rk3576 hardware, so can't check myself ;-) ]
+
+
+[5/7] clk: rockchip: fix error for unknown clocks
+      commit: 12fd64babaca4dc09d072f63eda76ba44119816a
+
+I've added a fixes that to that, looks like overlooked that issue
+way back in 2014 ... pure nostalgia.
+
+
+Anyway, rest of the series hopefully later today.
+
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
