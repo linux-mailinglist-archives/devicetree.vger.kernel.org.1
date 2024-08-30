@@ -1,120 +1,130 @@
-Return-Path: <devicetree+bounces-98428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C3E96619F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:28:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E61F9661B9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:30:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CB351C2321F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:28:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13B0D1F22B07
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB9161974FA;
-	Fri, 30 Aug 2024 12:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD6D199FDC;
+	Fri, 30 Aug 2024 12:29:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k27Qnlml"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7r9MGDW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3480192D95;
-	Fri, 30 Aug 2024 12:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E25199FC5;
+	Fri, 30 Aug 2024 12:29:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725020879; cv=none; b=Apd96tDHlmDfXyw6ZiAXyueTEXfKvEXwoD9r3FzVzDQxfSOlkBA9meN0Z7gq1ksRJ66i2HDEwKEb84tmX2ApCAkabFHnnI6fr6rw+U6GCsJCoDS210lVbKlMbyBodZChgqa0kcg6dyyLEZcQ23w2zQBbt6cWOxI9SWO8nCXa75s=
+	t=1725020966; cv=none; b=LhyoG7L6kyzU0Mfz70eVerout2lQEiRUqcx1fei9kykWRHhoO/Wf9PsJbCWf4mfkWsHRR2CQMBj5T5ASHnMzbFWlceUj0vUdoTE+v8DWJibuwWpc+f22xRZG5KbpTMax6Y3PVcHqRoBi/xtixRBNH8ngi+6PifHFstX2DVKR32I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725020879; c=relaxed/simple;
-	bh=Qv3PljZ0K9tSka2ZTwGzebPtb9WGtHhBrtQHmVgyQb0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=luxT4iKl/7gbLA5JFahgU8WOoZ1V0GNx74UaklKkdgddvFBsqg/ZDhoLTNX8nPiTsU4/g1oQ6VnxiAKPVb4SOsUD6sh6tdViQeB0WXD20eIgCHj3m0Ig9F8tOXVDewvE/K1bs47pm0I4RlxzljQmTFt3BfEtvPgxQZjCXpV9lUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k27Qnlml; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AFC0C4CEC2;
-	Fri, 30 Aug 2024 12:27:56 +0000 (UTC)
+	s=arc-20240116; t=1725020966; c=relaxed/simple;
+	bh=dWcO4HpmxD2VUhZ0j6XxpQ5q7RtFhg5rZL51PUt1w2I=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ujzmwahMbBM7+nh/l+FCx7E7opiCEmSVqDiJLnmduxu03nqS6ffb8TGSgD5n1MvKM4GA12p8MypB1MQ0n+eWUpgaeJKAgqIsLEomljS1vHa5ZOzNFJx+8JOtAJgu8Ywv8FywJUcd0NQ+dT/0PMMlpDDbFuuEO6Ej9oDhTF4PXNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7r9MGDW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FC3C4CEC2;
+	Fri, 30 Aug 2024 12:29:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725020879;
-	bh=Qv3PljZ0K9tSka2ZTwGzebPtb9WGtHhBrtQHmVgyQb0=;
-	h=From:Date:Subject:To:Cc:From;
-	b=k27QnlmluJrrumul7FRNB5J5I0g845ic8Xn2z126p8zup49FwMYqwe9vc9PRJhQoO
-	 QkTUe9ZZYQns96OZpXt6YYt/v/sP2iy0Sz40EejBqmFC7LSAFZU7lOhOOi0cuXTIN6
-	 K/BaKQgJLFUxc6fLqRZEaYXw1h9caqUeNhnZtPs5yW5txvG1oR0TfM3SOWbpFlkSwc
-	 Uo/ryL7bU90DNgtYrQ9PhVOJ6iB4uQj4tF0xw10EWqVBcmaAZBk8DvTezikW8PQpdT
-	 ZZd9dxH2OGp2tziIz6z9OJ2JwjXAKMSQc4RkiSG/LIDLtVnMy3U66hITeVXXeZxBEZ
-	 53vh8RC0Paz+A==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Fri, 30 Aug 2024 15:27:53 +0300
-Subject: [PATCH] dt-bindings: mtd: ti, gpmc-nand: support partitions node
+	s=k20201202; t=1725020966;
+	bh=dWcO4HpmxD2VUhZ0j6XxpQ5q7RtFhg5rZL51PUt1w2I=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=i7r9MGDWKFdIUkU0YekBibM1WFwxMlYCk5qxWxdeCbp4l4DrC/Q+s5zC1z8vrYGSy
+	 vL8fOqwV/DL2Hti30wTdcn2nvdEoLPT5Yw92x/H1R7eqrGwNqvfx0/U3WJJtqUFZYR
+	 68/wATucLIxOONL/A28TQOMK+T0AIdNvamp3dLqHzbj2TSd07iaKLvqFXu5xZfiqgE
+	 btVgyGLHYqWYXEllwk1polYJTO84ctWiw5xuj0yLS83WpN3k9MpDvicJud8EJUGWEZ
+	 9pUEIUAlhyb9p7Jrnz7MI9+KAJVnd/XEgOVVqDZVbe5pDR03k9eNT30L330htOnqHd
+	 eFFifg3u1sTEw==
+Date: Fri, 30 Aug 2024 07:29:24 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAMi60WYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDC2MD3fSC3GTdlJIk3ZRUo+RUI4vE5LQkMyWg8oKi1LTMCrBR0bG1tQD
- fn2VaWgAAAA==
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Nishanth Menon <nm@ti.com>
-Cc: srk@ti.com, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1164; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=Qv3PljZ0K9tSka2ZTwGzebPtb9WGtHhBrtQHmVgyQb0=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBm0brMkt5XayPMdgB1M2Au8oX6WERcC3svX6+Ui
- 1xN8sYJgRiJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZtG6zAAKCRDSWmvTvnYw
- k1rcD/42JmCN4RRQBkVab/Oeo/gA5UdqT+rN6fmdU451xq2gkLQg+IuAxSSdS5Rr2d1Rb//WpYO
- 60haGbAyyrSCq54JeK95wADI3JftE1NlHRzqYHy636GrY9laQw2BH2Y5cqlJZ7jqvmcWxJYvjSx
- rJ3ormDDq/vLPyuKy+LdQ0wBrq4QmscXZFBtw6ai5h1/vhn/dSAHdP1jwAxkVlqeAtOF2iTYGYW
- 25QGi5XBsSuvhm1Hz8yTCYdkdrSJKtMRY9FXDvBF0B3DSOlF6beDcie1nD5p3XNuYwhEVuBjYd5
- qkkLRl96aChrUNX0AL41fwH05nKJzAF1U7nmJD4HCcokiOeZJmLH6nCowiXE3RSmnenQxvG5M9F
- JZMF6VRLohpwZ+G8zrTUzmPxoT/3Q9W5S2E2wcywCozjspbMDlY5Ex5yJoilQ+e+o7d8RBQ6tnV
- 1Z2v2oM8zEjsweayV9iRjcdxYW7bc27ABNai8vQfD4MOWk4Z6jUQvFZ/LoLdtWZYOqe+gKY9ld2
- Oj9IA83EcEJYsVd5bZlCAFxQLrwFhYT+WCZ4uH8dXaMmw1yI0eum1kC1dRhdKVRyqKRirPti5Ic
- u5UEAJeDbldc7+n8aa8unHcWR21z3PdUf2FnNk654+Xo5JgooCeqLcCofj6cE29taXEG4riQF1J
- 5cp9IOWDfaDXPbQ==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: linux-arm-kernel@lists.infradead.org, Sen Chu <sen.chu@mediatek.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Macpaul Lin <macpaul@gmail.com>, devicetree@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, Pavel Machek <pavel@ucw.cz>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Sean Wang <sean.wang@mediatek.com>, 
+ MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+ Bear Wang <bear.wang@mediatek.com>, Mark Brown <broonie@kernel.org>, 
+ linux-sound@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Chris-qj chen <chris-qj.chen@mediatek.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>, linux-pm@vger.kernel.org, 
+ Sebastian Reichel <sre@kernel.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Pablo Sun <pablo.sun@mediatek.com>, linux-leds@vger.kernel.org, 
+ Lee Jones <lee@kernel.org>, linux-rtc@vger.kernel.org
+In-Reply-To: <20240830110732.30080-1-macpaul.lin@mediatek.com>
+References: <20240830110732.30080-1-macpaul.lin@mediatek.com>
+Message-Id: <172502096265.3785833.16915280284565594254.robh@kernel.org>
+Subject: Re: [PATCH v2 1/7] regulator: dt-bindings: mt6323: Convert to DT
+ schema
 
-Allow fixed-partitions to be specified through a partitions
-node.
 
-Fixes the below dtbs_check warning:
+On Fri, 30 Aug 2024 19:07:26 +0800, Macpaul Lin wrote:
+> Convert this from the old style text based binding to the new DT schema
+> style.
+> 
+> The examples have been trimmed down and move to parent schema
+> mfd/mediatek,mt6397.yaml.
+> 
+> Add new maintainers and submitter from MediaTek.
+> 
+> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>  .../regulator/mediatek,mt6323-regulator.yaml  |  84 +++++++
+>  .../bindings/regulator/mt6323-regulator.txt   | 237 ------------------
+>  2 files changed, 84 insertions(+), 237 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6323-regulator.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
+> 
+> Changes for v1 and v2:
+>  - This is the first version of converting mt6323-regulator.
+>    This is because converting mt6323-regulator together
+>    with mfd/mediatek,mt6397.yaml, so we've create a patch set
+>    instead of single patch for each skydives.
+>  - This patch has been made base on linux-next/master git repo.
+> 
 
-arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: nand@0,0: Unevaluated properties are not allowed ('partitions' was unexpected)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
- Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+yamllint warnings/errors:
 
-diff --git a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-index 115682fa81b7..c2143f943e7f 100644
---- a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-@@ -61,6 +61,11 @@ properties:
-       GPIO connection to R/B signal from NAND chip
-     maxItems: 1
- 
-+  partitions:
-+    type: object
-+    description:
-+      Node containing description of fixed partitions.
-+
- patternProperties:
-   "@[0-9a-f]+$":
-     $ref: /schemas/mtd/partitions/partition.yaml
+dtschema/dtc warnings/errors:
 
----
-base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
-change-id: 20240830-gpmc-dtb-de2ce28acfb6
 
-Best regards,
--- 
-Roger Quadros <rogerq@kernel.org>
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml references a file that doesn't exist: Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
+Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml: Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240830110732.30080-1-macpaul.lin@mediatek.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
