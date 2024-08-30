@@ -1,162 +1,94 @@
-Return-Path: <devicetree+bounces-98454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAB609662F0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:30:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E80379662F6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:32:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A050D1F24E6E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:30:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 935051F243DF
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F471A4B71;
-	Fri, 30 Aug 2024 13:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742661A4AAB;
+	Fri, 30 Aug 2024 13:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RcKRJj/3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OJj1nbaq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C076C19992E;
-	Fri, 30 Aug 2024 13:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C84F17BB17;
+	Fri, 30 Aug 2024 13:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725024627; cv=none; b=qxq2bfJMOH4Y4hKiLNbhfU92uCezpVMCdLDJaZf3YTulo70/D/Thy5doz2tgZaQ5TB1fOWnJdFoyZLADiDYAp7GiyDXKDdd8chRFd+DDElq88uFbq6ms4x+NuhinZYLoVWOTZKByFLFKa0ZcXGTztVUUmbrgv1BN5j2sEntB5/E=
+	t=1725024747; cv=none; b=KuURoKsQGGFRg++5dnKbhZl2+5Z1I+MOwLxPllqmAbgATfj4W4sXiHQZ4ioQoZb9ahEksuS3E0wcph406mRz4z9pZYpqBIP5r2ONPUohiWs8xjWQsstIgOuQC1b6sGoXvscuiq+3sAotbx5uD6AdRkSNh+iW3qNT8uYUuuVPZeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725024627; c=relaxed/simple;
-	bh=akX9i3Y6YtjIaJLO68HWJOg04kx/lPLhkR4q/41kdMI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Pc2RNjgBEnOTMGKoBAy8BNDm0gkiOdBY3cyNv5rS35u6vLbuEM7FXnqy6mGCB4uE/tk4IBfG4nezm4yPsV3PadEpb/ufu1ey87Q4LEA8qjTlJnaljqZljy4jAaALUueg6I/Lz35wc8XBPQeIilhh+jGIgLWcbNJHTXdietVkYnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RcKRJj/3; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UDUFb0012666;
-	Fri, 30 Aug 2024 08:30:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725024615;
-	bh=zijsqgcnQrWmj900qtVdBFJMu40Rzgd2539slK46iqE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=RcKRJj/3Sd6OAmSgok2Gmaf/EAnG3FkCrw8csYr7ks31yVr89emOhI7w3Io1Wdimq
-	 aDkudWWMokhFkKv8rwfihUAzOUE9aO5Ruy0tnMe7bn6gLNmdjz+YQYclVGrqCPW+wX
-	 D3cMx9J5qgko4ilvyqSZOSHqxzWRU7BTcmNXx9MI=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UDUFwc054299
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 30 Aug 2024 08:30:15 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 08:30:14 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 08:30:15 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UDUAN4057042;
-	Fri, 30 Aug 2024 08:30:11 -0500
-Message-ID: <c2568770-c80c-44d6-b3d5-a1a18f213d42@ti.com>
-Date: Fri, 30 Aug 2024 19:00:09 +0530
+	s=arc-20240116; t=1725024747; c=relaxed/simple;
+	bh=7e72g1sG3Aetpfg2qZQ6u07s6zBI2/8LUyBugxKUU4o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o0NijilK8d4fveRjutazPPsbP63d77gMjhPOHHep/0+xYN162Fgap8RwuPjHKcpO0ide1+fLgwL275O0KEioG/thfFOy17jcJGTx6+ePnhPMjVRLRgkRnEiigLFXXXIOQRVp2D28EpL6BJXd7272a9SBVbRVwhD6FLAe23x0iUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OJj1nbaq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24EB4C4CEC2;
+	Fri, 30 Aug 2024 13:32:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725024746;
+	bh=7e72g1sG3Aetpfg2qZQ6u07s6zBI2/8LUyBugxKUU4o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OJj1nbaqCh5A93DOZ1+oFS3JWTvEm9mbXmqsbIlGiGzlMoQABx3zCuWx6PHnwNZZp
+	 j6YhFUnRm+FQETx4AsFdEMH/TBZaZxr4djx2nfT/U/qkVlrBrYs+fVczHUNDRSWuZh
+	 rfdtbFX6Pk8NMfnUFeV303E/4FBkiYV3rrt5yfq1uCBy1el7KBRMab1igHT0PcMOqJ
+	 ZL3gwQFdfpevvgGKlR2ktDNc8CCCe6CoGc9fVKear2XkHUfQFoP5fACXPAXWwwAxUy
+	 XnaBMcUXbdendbFZB1VI2/J2mcYakL9JH01Z82Ik4ZQwSc7Y2aq861eLBkdBGy1An8
+	 6EX40SlBDhShg==
+Date: Fri, 30 Aug 2024 14:32:22 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, sjakhade@cadence.com,
+	yamonkar@cadence.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, nm@ti.com, srk@ti.com
+Subject: Re: [PATCH] dt-bindings: phy: cadence-sierra: Allow PHY types QSGMII
+ and SGMII
+Message-ID: <20240830-juncture-observant-f979caae1c52@spud>
+References: <20240830105316.1824319-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] arm64: dts: ti: Refactor J784s4 SoC files to a
- common file
-To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
-        <u-kumar1@ti.com>
-References: <20240828-b4-upstream-j742s2-v5-0-9aaa02a0faee@ti.com>
- <20240828-b4-upstream-j742s2-v5-1-9aaa02a0faee@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240828-b4-upstream-j742s2-v5-1-9aaa02a0faee@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-
-Hi Manorit
-
-Overall series looks ok but few comments below
-
-On 8/28/2024 4:44 PM, Manorit Chawdhry wrote:
-> Refactor J784s4 SoC files to a common file which uses the
-> superset device to allow reuse in j742s2-evm which uses the subset part.
->
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
->   .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  150 ++
->   .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2667 ++++++++++++++++++
->   ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
->   ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
->   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
->   arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  135 +-
->   6 files changed, 2914 insertions(+), 2887 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
-> new file mode 100644
-> index 000000000000..43fee57f0926
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
-> @@ -0,0 +1,150 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Device Tree Source for J784S4 and J742S2 SoC Family
-> + *
-> + * TRM (j784s4) (SPRUJ43 JULY 2022): https://www.ti.com/lit/zip/spruj52
-> + * TRM (j742s2): https://www.ti.com/lit/pdf/spruje3
-> + *
-> [..]		 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
-> +			 <0x00 0x04210000 0x00 0x04210000 0x00 0x00010000>, /* VPU0 */
-> +			 <0x00 0x04220000 0x00 0x04220000 0x00 0x00010000>, /* VPU1 */
-> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIe0 Core*/
-> +			 <0x00 0x0d800000 0x00 0x0d800000 0x00 0x00800000>, /* PCIe1 Core*/
-> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00800000>, /* PCIe2 Core*/
-> +			 <0x00 0x0e800000 0x00 0x0e800000 0x00 0x00800000>, /* PCIe3 Core*/
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="M6rR9CDKVnFegJOM"
+Content-Disposition: inline
+In-Reply-To: <20240830105316.1824319-1-s-vadapalli@ti.com>
 
 
-PCie2 and PCIe3 ranges are not common across these devices,
+--M6rR9CDKVnFegJOM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Do you want to move this into J784s4 specific file
+On Fri, Aug 30, 2024 at 04:23:16PM +0530, Siddharth Vadapalli wrote:
+> The Sierra SERDES can be configured for QSGMII and SGMII protocols. Hence,
+> update the bindings to treat "PHY_TYPE_QSGMII" and "PHY_TYPE_SGMII" as
+> valid values for the "cdns,phy-type" property.
+>=20
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-Same comment for PCIe region DAT below
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> [..]
+--M6rR9CDKVnFegJOM
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 			 <0x42 0x00000000 0x42 0x00000000 0x01 0x00000000>, /* PCIe2 DAT1 */
-> +			 <0x43 0x00000000 0x43 0x00000000 0x01 0x00000000>, /* PCIe3 DAT1 */
+-----BEGIN PGP SIGNATURE-----
 
-[..]
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHJ5QAKCRB4tDGHoIJi
+0jxRAP9/gABn2MmITzGpHBdNrboXK3lxJHTriCPGEXmZ7YC62QD9GW28ROZ21O4I
+C0Ni6P8GH4RmP1OxiqV7VM9sosabxQc=
+=0g22
+-----END PGP SIGNATURE-----
 
-+#include "k3-j784s4-j742s2-main-common.dtsi"
-> +#include "k3-j784s4-j742s2-mcu-wakeup-common.dtsi"
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> [...]
-> +
-> +&cbass_main {
-> +	msmc_ram: sram@70000000 {
-> +		compatible = "mmio-sram";
-> +		reg = <0x00 0x70000000 0x00 0x800000>;
-
-Table 2-1 of J742S2 TRM says msmc RAM is 4MB and on J784S4 this is 8MB
-
-Please see, if you can address that
-
-
-> [...]
->
+--M6rR9CDKVnFegJOM--
 
