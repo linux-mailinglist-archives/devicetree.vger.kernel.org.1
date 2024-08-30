@@ -1,570 +1,188 @@
-Return-Path: <devicetree+bounces-98223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A4B9965562
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 04:46:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3070965592
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 05:15:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 304FF2844AD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 02:46:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53EA5284EF4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 03:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B775133987;
-	Fri, 30 Aug 2024 02:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863A9136328;
+	Fri, 30 Aug 2024 03:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="FMo5kMCe"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="E4xFr4YG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012012.outbound.protection.outlook.com [52.101.66.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B960312F59C
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 02:46:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724985967; cv=none; b=pmoIifZld9Fvbd1pSnC9wOVbbogGa49B08/AGUprLLz739FXSOREdjbIVzBPU/NQnBT5ZJyTVkYvLs53vfxp4Kpd/ypHzB7zZ6nUuEy+6pgM6eikJGw4P0g6U90leD4KILz0QA4xXzDM/w/Eou85Uy+8dA0O2tqJYh5sj8cdR2M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724985967; c=relaxed/simple;
-	bh=wtWkvGSjlXZXTYQKx6/38CslYo9+83dsq1V6yyUkNPk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pFM9r8xO3pi+mB/5kX3DHhXu1hymWTgIdm58xB6KJlk3DsHzx3Tt6dEuaGe2oL8AXVih1bFHw+YM3MWXP0FP7OeWQaJ9EyLgocPF7M2MgRk2uKq86fXK2tnHKJegrknrZt2xd5JbTB4s5pBK5j2nEWyffoOEF160WNA2lR/ym30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org; spf=pass smtp.mailfrom=kali.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=FMo5kMCe; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5c210e23651so1441164a12.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2024 19:46:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1724985962; x=1725590762; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2NLQbhC1282ULxsCaBihcnXu9jioILEFI4pw0BnUik0=;
-        b=FMo5kMCe2wHvALEzR1tRQnMP3pT7lKmX26ULOP6oA6xolEBb8PvyBXBC+tAJiNpNnZ
-         rM7XGbV8kJMeL1QBQMbLrfMMWTiLgzyRMJJgz6bSegEge9vptAMSnJMbLAkAMOVNs8d1
-         SBhYyMZo8xOLWCJfhkKPzQHSbCBMyM2x2CNemeppo/RWXaZeXUnkcwmAbwk7Eq45yQib
-         4/md9SCyKXoJgYKDtWqsXYEyuOv5JB+EbpugQbzxS101KpKLiCcFnkksjIGguNA51ipO
-         hrdIp/A7pTE70+gUkGpsV6qFmEYdRbBJ6/bNvfoSi0rtnJYuit6L80H7fUxsdtAh869j
-         7d0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724985962; x=1725590762;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2NLQbhC1282ULxsCaBihcnXu9jioILEFI4pw0BnUik0=;
-        b=b+1pA1sg/xRW3Xyr16ArEonMgW5j6klwemZnywKWVfxEmUG899J1JH05NvwCXZbLSF
-         +LRcLQfN/5CwPoMaKi+brcQ7mn5LPS7OHBCB8hjPscPgAPG1HAMwGWSzj6z8LuGuL+Qp
-         K7aVyA/eqdToDBufq/7dsRWiWP2ezqdVMJYX2pCMMZNyGDQVVK1blB2rxIbXEBqTA5Md
-         qYyFGS3Z9sVNTT880wc37yFl+DA/Guck5SXQH0MG7l0pEYcNS2UE4YeCiuOO/J4M88qC
-         N5bVblCZ9/tV/6Cf9jbmTgabHhuXgg1JkjdQL3Lms3OesRtNu4vDuTZMlqpXOP/vMCLY
-         ckTw==
-X-Forwarded-Encrypted: i=1; AJvYcCX3XYgsmTH7/c5wyJC6iTHAN966EI516+5qtrcRH1ZQoMftnnSXUzpeYz9yMahFZJD629eDPOXiUqTq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2RmYfgRkhkHJ3J2sw4SO9z1HFJ7ojMSzsvI8ea83fCgmQ92ru
-	J7YboiOKejjkPJXDZDpyEfUIqVNMq9lGMk/rszloUQKuiMuvpG7K91OFpRmLTtZk3Zb+HNC1ZPa
-	bMhBgwSf1iPd+8gEWQf5sCW95cAHFPbIATnnJ4A==
-X-Google-Smtp-Source: AGHT+IGfVznspNbF11C2UWiJwxcg9xhRwrx6BhnGzJT7LtCnIoWZZZeWx2FrkQDENIrKQGJO62nbFjB2O+t212QmwtM=
-X-Received: by 2002:a05:6402:4313:b0:5c0:ad94:1d3 with SMTP id
- 4fb4d7f45d1cf-5c21eda3e88mr4451621a12.32.1724985961666; Thu, 29 Aug 2024
- 19:46:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FB34C7E;
+	Fri, 30 Aug 2024 03:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724987729; cv=fail; b=fkXoKyHx8Te//R9ghRYQtWMfl5S6yBvwZpbkUGiPIQmMmZsM88OWtpX2XE/NXOhAfd7XhqU7Lxq/HNDT0VikqkmWPc44fiTuhfdzQubutW7EGh/KRW/ZT+ADwzg86axZuJ+IRtsuk4aZrHcpAM14QAakH96fKVACkPoodZ3AcHU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724987729; c=relaxed/simple;
+	bh=kuYJoFtqiI9o2pY5tHyaEQxKkSQMaDomHZXXX4ZezdU=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=CFIxSXV20VaF8KOOBx/hAHF+ISmFy2thpRVk/RaPw3c4ynyorSL0cujNEgsljL+kVHYw972J1IPRqlc/q/oICfzFqZr9EXNVfyAPzSphQc+Om/TN1u3oGzQuN5ifsYb4tTaOPOwhn/xbc4bxLb4cuAsWUMr350sVeRzRUbSqmEU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=E4xFr4YG; arc=fail smtp.client-ip=52.101.66.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s0CKzw8fX+iqni1mY+VUYuQbPLmXlI9E/rL7781Fhd6gLuH2+7kDE9+NWC3p3it6VaJOH2h0CR/vc01XkkI3rNEaf4yZSTeJ1r+lOQrK25kxEN1ipLeva5lAIQihzwfCTsAG95rfepzLzdAPHVzqYPpqWZ7biLz0OytXzyq/NI4Ww72lWMTLNFd5wSwTW4/e52hn6Ev9HQUKTetbl9EJpqCuleHqa0nGtq9yyuAaCw6/mKWs+QajZsNCf1WRWaYQg+ydQ6lJl/H9sEiiYRcr7pNioJS2rdmtq2JcF2z43PiacaBNlpQzUB4tbLXqJi5uSD8VtcKBREIVw2+t0I3BuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t+N0CTPK795UBaMyeJwOh9ukZA03cAWmDc1XEiZsGcg=;
+ b=nkvZ2gApMx56elGSk4IOudByLnptdMu2QJtyQu9A3ISnlYoALs1kUnLiD+3eunZEh0ruBDCCnr+piQU4KkFIzGzq166V1T03Ia6rkLKe/QuwZ78XAUxJCBBSwcvsWiF++DNVIYnUNaHm8li66WFPrvrVRuHbz2UpXdnETSwzfRcwxmBzFNOALg2vLLsIOp0keA3LDpOioxUCJkTP8Nht0kTLzDXM3kcjvCOVUmAigYfr875nPT27namo0n33lPA1piuQYRrZaaFiBvt+LO0xLmDq5H0jsUS8toT0V4OMqmNhfpiLYcBE66nBNI2mL0cnFDnGStQskBKycShYuSq3Hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t+N0CTPK795UBaMyeJwOh9ukZA03cAWmDc1XEiZsGcg=;
+ b=E4xFr4YGIN5yoIcTO+Wt8rYaMmZVIE+C5XW9ofI0pwzTCGdXR/hCKkQ33xhCy4mGipMUdXPMCEkqfdNC2zjZuB2x4hGSSRrXdddQWLY6OpOM2TX9jCIBU38En1+dgqKrzAiMswwVZE5qxECz2BzsbMxR2U6iZp/PGBkRG0WvsnlPqws57d7w+z8FPRCeYyXm0RoEJK+aHVvZaAEFB2uuIVr7HZUmVNhHaz6iJN1h2kKT+We/nr5QZWAaSOrhc0WhAitnAIT9PieEa4bbyRMS+0Rf5hZl/qdDXfM93hrMNkUNfOOXOFkUvuF0SCAxxfOzb8g8dWxhDf6FIpQteP2reg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
+ by GVXPR04MB10612.eurprd04.prod.outlook.com (2603:10a6:150:225::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.20; Fri, 30 Aug
+ 2024 03:15:22 +0000
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c]) by AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c%3]) with mapi id 15.20.7897.027; Fri, 30 Aug 2024
+ 03:15:22 +0000
+From: Joy Zou <joy.zou@nxp.com>
+To: ye.li@nxp.com,
+	ping.bai@nxp.com,
+	peng.fan@nxp.com,
+	shawnguo@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: ls1088ardb: add new RTC PCF2131 support
+Date: Fri, 30 Aug 2024 11:22:56 +0800
+Message-Id: <20240830032256.3701116-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0252.apcprd06.prod.outlook.com
+ (2603:1096:4:ac::36) To AS4PR04MB9386.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4e9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240829-dts-qcom-label-v2-0-5deaada3e6b2@linaro.org> <20240829-dts-qcom-label-v2-5-5deaada3e6b2@linaro.org>
-In-Reply-To: <20240829-dts-qcom-label-v2-5-5deaada3e6b2@linaro.org>
-From: Steev Klimaszewski <steev@kali.org>
-Date: Thu, 29 Aug 2024 21:45:50 -0500
-Message-ID: <CAKXuJqiT-6WXSV3aFeMqRp0K3Nr16OKQKX+gwypsnoiRxj-GfA@mail.gmail.com>
-Subject: Re: [PATCH v2 05/17] arm64: dts: qcom: sc8280xp: change labels to lower-case
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|GVXPR04MB10612:EE_
+X-MS-Office365-Filtering-Correlation-Id: 80c2f59c-9548-472d-d250-08dcc8a1fbf8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?WhiEEvlkackgqzEE1HP/EFguY1zuLgD8XGlJJhXImm7fW+XSQ5Cu8u17zg3r?=
+ =?us-ascii?Q?tjrEpSC8SQlgFuBeGitixfczUMDFM1FB65fNOInOd09zn4rRfGRNzaqjI5iu?=
+ =?us-ascii?Q?nVLOizEwfgvSGxBTvXPopifdzy9OCbehqfwRga9i/+EneadDCE+XGuSj1lAe?=
+ =?us-ascii?Q?RR2nyHhC9dDI8f6E4iYD5Oo7SlUnVC7JUTSEUMZQu7uGn4qCSJiiSpBIhfQX?=
+ =?us-ascii?Q?975UDWExIb04tWCsAWHlIQOebVkuh7oiFiNt4B8a3K0jA5hrziJSF2ZVDohw?=
+ =?us-ascii?Q?hRxSBdremnhyO9cq6LqY1YffQCRwcA8tJT4goDwalPKeUxvRYX+qGBDczNzF?=
+ =?us-ascii?Q?JSKaCUjpR/QuAZvOYktW31CUmGMLWv5IKo3AtPB41NExnFhFRC7x+AVtEPy4?=
+ =?us-ascii?Q?81d/I2k4N6hAaMXtdVk+bHhYfoSpquyTBU/O35CO7Ksz4mLUMaPspb6p7UIe?=
+ =?us-ascii?Q?H7R6MTG2wulyLn30kWxnB3VOxjJ670LDiWefhM7bf288rR9hFmlhpndGz7lq?=
+ =?us-ascii?Q?ScGoV8R3p01LcrwAjQv0rxCqbjmRafA/gQrXPM8l2LTQThfQibOguZqkQGhB?=
+ =?us-ascii?Q?IawqE54oJMh9mT9yUlTPm62RCj8ITdCPShcLNSBhbYW1QX/vJ2WJ62NIr3/g?=
+ =?us-ascii?Q?vkae6vL0TpIEgqY0ySnM/HMXs2j6XXhLJUfkn5kx8orISHRAwWn4GVSJ65fg?=
+ =?us-ascii?Q?nyHwremh2hYu5MuKL3IJdPXPIatRJUGAM8JpKV4DkDuQU+XMqQJEndLoJA83?=
+ =?us-ascii?Q?ncscfPIAjUbssZ+iFdLqYJgE5L5d7sEBstrDGXxMwt7KulrXPEkyoxfxJGIs?=
+ =?us-ascii?Q?5g1DUmOsazgk869ZSrE+I4Uw2m266ON0mB5D/hKa34Amdn0tRZtmiWUy9Rx3?=
+ =?us-ascii?Q?L6HarKR9xHYQs0Ret5p8ERipZ4B0aOOlyd17l+9b3iDwfsy0HrjMFbF+AqWY?=
+ =?us-ascii?Q?lp2UgIFOALNC3iCnCwyuZZAmyq2bs0H3JhtU7JqmDxATfvMNlUUCTZD1C/aB?=
+ =?us-ascii?Q?OrW0XiWE632WkPwFRgebQw3ISy/cjN7QgHUkFMfUL8JxHCX9lSuvKHUUluXC?=
+ =?us-ascii?Q?bb3R4NUvhnlBcmcqA9TTjco74/KVQ3PLiYbVaR4Bfn6UIW+PSkdTPQGH8a6b?=
+ =?us-ascii?Q?Z7QaGEbwYEJ3w6k56e7GJzG2eiaih/ChjLRM5htyRShsKBaC1k7FHDR/PA8f?=
+ =?us-ascii?Q?gWO8SiYOfzegh0NJ0oBNVaveNPC7NVwty8dSwkERiOCOsIrHXZydw2kZRrJa?=
+ =?us-ascii?Q?o2mbeTx24on/m/a7GJ7h6B2PHEctuMDsavh0PXnjeT1z9MjNDlvj2e4EJ2Nx?=
+ =?us-ascii?Q?l8+XhFmoI9T6NJa+WfRoi5lCvvhshWZjZ1WNhvNietYQz039hqAmAcIb1cYj?=
+ =?us-ascii?Q?VPD1JlkbzRtnvHSW+cSelPahZedlKouaEpPVjBphaQtja+plmQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?wFitrlkL8eKE9TUrsS16jnIU+OCMTYBTiUrmhU3yDI+IhYPpxNNAahVKsXrC?=
+ =?us-ascii?Q?Yrjx54xUuQStJlnmxEVikbKFP1hLP+uYDPUNeCxv0QBDfOoETyfMBjicz56A?=
+ =?us-ascii?Q?yDdj7MpqjrSAGz9usEyBpOkALm1r6eQGzowkdWJU+wWDdAcs5VGFynQshm/t?=
+ =?us-ascii?Q?i5ZyrVQJFfIVn9FjfPOrwL8AMqr8bNQyQxYIJelxBB/sXO87RSH9eBwTTq7g?=
+ =?us-ascii?Q?MEm33dRqV3v39NjukHwOtZUO5BCShjUHOcQ+xaTKsVomWTK3BwQ6SRPpH4y1?=
+ =?us-ascii?Q?43SvhZXb1H3X58dRtWeVHFbw3WbPjE241NhT60IyQolX6RZlyJ5lWbZlNqxB?=
+ =?us-ascii?Q?QIyDFdyd75Q46kqPXxDgjOXogRKdKSShIPMqhdYkGYak8XHRA8unbeO/uoem?=
+ =?us-ascii?Q?V695NNavikfua7bsO2Pj7rJChTmC0B03Gm0MEYerdZ1ls5aXhcYtbCW7bqfK?=
+ =?us-ascii?Q?E8CPmuyCibLz5pG2JJ3uJpHdJOobd3vxLm5d69/ty/hJdPr6s8PXmfp9DZX/?=
+ =?us-ascii?Q?Hx8dqyOiLMw3fXgaom3Fdqsj8m6iqjMcD1IEUcaD7rVleM/JXJqTYRpgt4NA?=
+ =?us-ascii?Q?aUcByshDDsWhHDIwS7f5eJ3QmyGFDcmxq8oROwlgtAl8Llp/NR4eeZfqkRDg?=
+ =?us-ascii?Q?1jGqXnmY8j2unFuZSNkn0dGHYEH4Be4uOtVOJCPCAxxU/8ggjf5MmrJ4Ybow?=
+ =?us-ascii?Q?8zM84wkOx5rtlfB3SMEY4Nf6p5vkYEWLiRZlgs6jbigbCycaBmfILVo64QW9?=
+ =?us-ascii?Q?hK3Tprd+19j/Whb48vwLiFaeLx8DdSaEKL0R42M0PpjhFBnB8lS9S8NZo6Dk?=
+ =?us-ascii?Q?oucCsro4d7N6D2WkXxnZGey8E+PLWqp7DoXiWa82aq+RfUUNyDRhRRdYcUnc?=
+ =?us-ascii?Q?f0CH1ZzXeJAEcob+CQtpKCKCNmqqRSYpcwR6OmFZZBRO6Oq08Rjk82isBPzG?=
+ =?us-ascii?Q?DH9B66e/QDos54x85MvSo64IUTYkIyAu+KX9NfqNo0JPoLa8uqjwnSrE5Y+7?=
+ =?us-ascii?Q?c6UOXZGrhj1PxY0JKH2aLDE0ycyvF7HHVLLfI6MM7tJittidnkIFU+SIc5IV?=
+ =?us-ascii?Q?wf3FdyoHJuUla8hSjszKOq6bNXQtRnJN2mC0POYDfuA9uWh73i2r912ArWUm?=
+ =?us-ascii?Q?1fDGteooILwKp1GfXzLrZg+xtty76Y6dz/FCX9T3bfzZzWRin04wTjGjZr2m?=
+ =?us-ascii?Q?JOEwkDCLZu/2ziruaU80gszuInjzfAC8Mz5LdIrbuVIwHoQXMYSlaWhc64dD?=
+ =?us-ascii?Q?lAxu9qWKzlFsvu/o974l9FJLL5Y6TZanm8F0mDrBaLS4fN94uy6bcnKX8lgv?=
+ =?us-ascii?Q?tbKNxtI0OB5o9JPy1O7pkU9bADFrguYoq2f7eTaNlCiWEKKtN3wStiEFL8+A?=
+ =?us-ascii?Q?Izf119BDxFKuSbyyCVzMU8T7ErC3qqhMCve6j02NDTJQhp2x/yZyqiFCI/T/?=
+ =?us-ascii?Q?nipZoIXJuFiASiqbSFTveNpn1gwmA3pQPyZh4UI4YuC2t01B7riHhWybMQKX?=
+ =?us-ascii?Q?lvr5hCSRkvD5H7RV0xwQTfhCL0+DGFab4ZPq1l3kbhFE9aSBFU0Q0lGM3RNF?=
+ =?us-ascii?Q?xnt1uH/t/2HeC4zwZ6Ttz8jjyTGl3ZR+70iKM/3o?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80c2f59c-9548-472d-d250-08dcc8a1fbf8
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2024 03:15:22.5599
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gbNlFTfmVV+vVJLN7UFBs2ISrT0JEHNCU82o27RdYN1LzwfUH175XJO0dALQNYk4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10612
 
-On Thu, Aug 29, 2024 at 7:41=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> DTS coding style expects labels to be lowercase.  No functional impact.
-> Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  16 +--
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 158 ++++++++++-----=
-------
->  2 files changed, 87 insertions(+), 87 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b=
-/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 6a28cab97189..83208b10f994 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -346,18 +346,18 @@ skin-temp-crit {
->                         cooling-maps {
->                                 map0 {
->                                         trip =3D <&skin_temp_alert0>;
-> -                                       cooling-device =3D <&CPU4 THERMAL=
-_NO_LIMIT THERMAL_NO_LIMIT>,
-> -                                                        <&CPU5 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> -                                                        <&CPU6 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> -                                                        <&CPU7 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>;
-> +                                       cooling-device =3D <&cpu4 THERMAL=
-_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&cpu5 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&cpu6 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&cpu7 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>;
->                                 };
->
->                                 map1 {
->                                         trip =3D <&skin_temp_alert1>;
-> -                                       cooling-device =3D <&CPU4 THERMAL=
-_NO_LIMIT THERMAL_NO_LIMIT>,
-> -                                                        <&CPU5 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> -                                                        <&CPU6 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> -                                                        <&CPU7 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>;
-> +                                       cooling-device =3D <&cpu4 THERMAL=
-_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&cpu5 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&cpu6 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&cpu7 THERMAL_N=
-O_LIMIT THERMAL_NO_LIMIT>;
->                                 };
->                         };
->                 };
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts=
-/qcom/sc8280xp.dtsi
-> index 80a57aa22839..2f2fb074d804 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -44,7 +44,7 @@ cpus {
->                 #address-cells =3D <2>;
->                 #size-cells =3D <0>;
->
-> -               CPU0: cpu@0 {
-> +               cpu0: cpu@0 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-a78c";
->                         reg =3D <0x0 0x0>;
-> @@ -52,19 +52,19 @@ CPU0: cpu@0 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <981>;
->                         dynamic-power-coefficient =3D <549>;
-> -                       next-level-cache =3D <&L2_0>;
-> -                       power-domains =3D <&CPU_PD0>;
-> +                       next-level-cache =3D <&l2_0>;
-> +                       power-domains =3D <&cpu_pd0>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 0>;
->                         operating-points-v2 =3D <&cpu0_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_0: l2-cache {
-> +                       l2_0: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> -                               L3_0: l3-cache {
-> +                               next-level-cache =3D <&l3_0>;
-> +                               l3_0: l3-cache {
->                                         compatible =3D "cache";
->                                         cache-level =3D <3>;
->                                         cache-unified;
-> @@ -72,7 +72,7 @@ L3_0: l3-cache {
->                         };
->                 };
->
-> -               CPU1: cpu@100 {
-> +               cpu1: cpu@100 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-a78c";
->                         reg =3D <0x0 0x100>;
-> @@ -80,22 +80,22 @@ CPU1: cpu@100 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <981>;
->                         dynamic-power-coefficient =3D <549>;
-> -                       next-level-cache =3D <&L2_100>;
-> -                       power-domains =3D <&CPU_PD1>;
-> +                       next-level-cache =3D <&l2_100>;
-> +                       power-domains =3D <&cpu_pd1>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 0>;
->                         operating-points-v2 =3D <&cpu0_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_100: l2-cache {
-> +                       l2_100: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> +                               next-level-cache =3D <&l3_0>;
->                         };
->                 };
->
-> -               CPU2: cpu@200 {
-> +               cpu2: cpu@200 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-a78c";
->                         reg =3D <0x0 0x200>;
-> @@ -103,22 +103,22 @@ CPU2: cpu@200 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <981>;
->                         dynamic-power-coefficient =3D <549>;
-> -                       next-level-cache =3D <&L2_200>;
-> -                       power-domains =3D <&CPU_PD2>;
-> +                       next-level-cache =3D <&l2_200>;
-> +                       power-domains =3D <&cpu_pd2>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 0>;
->                         operating-points-v2 =3D <&cpu0_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_200: l2-cache {
-> +                       l2_200: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> +                               next-level-cache =3D <&l3_0>;
->                         };
->                 };
->
-> -               CPU3: cpu@300 {
-> +               cpu3: cpu@300 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-a78c";
->                         reg =3D <0x0 0x300>;
-> @@ -126,22 +126,22 @@ CPU3: cpu@300 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <981>;
->                         dynamic-power-coefficient =3D <549>;
-> -                       next-level-cache =3D <&L2_300>;
-> -                       power-domains =3D <&CPU_PD3>;
-> +                       next-level-cache =3D <&l2_300>;
-> +                       power-domains =3D <&cpu_pd3>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 0>;
->                         operating-points-v2 =3D <&cpu0_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_300: l2-cache {
-> +                       l2_300: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> +                               next-level-cache =3D <&l3_0>;
->                         };
->                 };
->
-> -               CPU4: cpu@400 {
-> +               cpu4: cpu@400 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-x1c";
->                         reg =3D <0x0 0x400>;
-> @@ -149,22 +149,22 @@ CPU4: cpu@400 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <1024>;
->                         dynamic-power-coefficient =3D <590>;
-> -                       next-level-cache =3D <&L2_400>;
-> -                       power-domains =3D <&CPU_PD4>;
-> +                       next-level-cache =3D <&l2_400>;
-> +                       power-domains =3D <&cpu_pd4>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 1>;
->                         operating-points-v2 =3D <&cpu4_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_400: l2-cache {
-> +                       l2_400: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> +                               next-level-cache =3D <&l3_0>;
->                         };
->                 };
->
-> -               CPU5: cpu@500 {
-> +               cpu5: cpu@500 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-x1c";
->                         reg =3D <0x0 0x500>;
-> @@ -172,22 +172,22 @@ CPU5: cpu@500 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <1024>;
->                         dynamic-power-coefficient =3D <590>;
-> -                       next-level-cache =3D <&L2_500>;
-> -                       power-domains =3D <&CPU_PD5>;
-> +                       next-level-cache =3D <&l2_500>;
-> +                       power-domains =3D <&cpu_pd5>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 1>;
->                         operating-points-v2 =3D <&cpu4_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_500: l2-cache {
-> +                       l2_500: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> +                               next-level-cache =3D <&l3_0>;
->                         };
->                 };
->
-> -               CPU6: cpu@600 {
-> +               cpu6: cpu@600 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-x1c";
->                         reg =3D <0x0 0x600>;
-> @@ -195,22 +195,22 @@ CPU6: cpu@600 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <1024>;
->                         dynamic-power-coefficient =3D <590>;
-> -                       next-level-cache =3D <&L2_600>;
-> -                       power-domains =3D <&CPU_PD6>;
-> +                       next-level-cache =3D <&l2_600>;
-> +                       power-domains =3D <&cpu_pd6>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 1>;
->                         operating-points-v2 =3D <&cpu4_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_600: l2-cache {
-> +                       l2_600: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> +                               next-level-cache =3D <&l3_0>;
->                         };
->                 };
->
-> -               CPU7: cpu@700 {
-> +               cpu7: cpu@700 {
->                         device_type =3D "cpu";
->                         compatible =3D "arm,cortex-x1c";
->                         reg =3D <0x0 0x700>;
-> @@ -218,53 +218,53 @@ CPU7: cpu@700 {
->                         enable-method =3D "psci";
->                         capacity-dmips-mhz =3D <1024>;
->                         dynamic-power-coefficient =3D <590>;
-> -                       next-level-cache =3D <&L2_700>;
-> -                       power-domains =3D <&CPU_PD7>;
-> +                       next-level-cache =3D <&l2_700>;
-> +                       power-domains =3D <&cpu_pd7>;
->                         power-domain-names =3D "psci";
->                         qcom,freq-domain =3D <&cpufreq_hw 1>;
->                         operating-points-v2 =3D <&cpu4_opp_table>;
->                         interconnects =3D <&epss_l3 MASTER_EPSS_L3_APPS &=
-epss_l3 SLAVE_EPSS_L3_SHARED>;
->                         #cooling-cells =3D <2>;
-> -                       L2_700: l2-cache {
-> +                       l2_700: l2-cache {
->                                 compatible =3D "cache";
->                                 cache-level =3D <2>;
->                                 cache-unified;
-> -                               next-level-cache =3D <&L3_0>;
-> +                               next-level-cache =3D <&l3_0>;
->                         };
->                 };
->
->                 cpu-map {
->                         cluster0 {
->                                 core0 {
-> -                                       cpu =3D <&CPU0>;
-> +                                       cpu =3D <&cpu0>;
->                                 };
->
->                                 core1 {
-> -                                       cpu =3D <&CPU1>;
-> +                                       cpu =3D <&cpu1>;
->                                 };
->
->                                 core2 {
-> -                                       cpu =3D <&CPU2>;
-> +                                       cpu =3D <&cpu2>;
->                                 };
->
->                                 core3 {
-> -                                       cpu =3D <&CPU3>;
-> +                                       cpu =3D <&cpu3>;
->                                 };
->
->                                 core4 {
-> -                                       cpu =3D <&CPU4>;
-> +                                       cpu =3D <&cpu4>;
->                                 };
->
->                                 core5 {
-> -                                       cpu =3D <&CPU5>;
-> +                                       cpu =3D <&cpu5>;
->                                 };
->
->                                 core6 {
-> -                                       cpu =3D <&CPU6>;
-> +                                       cpu =3D <&cpu6>;
->                                 };
->
->                                 core7 {
-> -                                       cpu =3D <&CPU7>;
-> +                                       cpu =3D <&cpu7>;
->                                 };
->                         };
->                 };
-> @@ -272,7 +272,7 @@ core7 {
->                 idle-states {
->                         entry-method =3D "psci";
->
-> -                       LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-> +                       little_cpu_sleep_0: cpu-sleep-0-0 {
->                                 compatible =3D "arm,idle-state";
->                                 idle-state-name =3D "little-rail-power-co=
-llapse";
->                                 arm,psci-suspend-param =3D <0x40000004>;
-> @@ -282,7 +282,7 @@ LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
->                                 local-timer-stop;
->                         };
->
-> -                       BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
-> +                       big_cpu_sleep_0: cpu-sleep-1-0 {
->                                 compatible =3D "arm,idle-state";
->                                 idle-state-name =3D "big-rail-power-colla=
-pse";
->                                 arm,psci-suspend-param =3D <0x40000004>;
-> @@ -294,7 +294,7 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->                 };
->
->                 domain-idle-states {
-> -                       CLUSTER_SLEEP_0: cluster-sleep-0 {
-> +                       cluster_sleep_0: cluster-sleep-0 {
->                                 compatible =3D "domain-idle-state";
->                                 arm,psci-suspend-param =3D <0x4100c344>;
->                                 entry-latency-us =3D <3263>;
-> @@ -593,57 +593,57 @@ psci {
->                 compatible =3D "arm,psci-1.0";
->                 method =3D "smc";
->
-> -               CPU_PD0: power-domain-cpu0 {
-> +               cpu_pd0: power-domain-cpu0 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&LITTLE_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&little_cpu_sleep_0>;
->                 };
->
-> -               CPU_PD1: power-domain-cpu1 {
-> +               cpu_pd1: power-domain-cpu1 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&LITTLE_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&little_cpu_sleep_0>;
->                 };
->
-> -               CPU_PD2: power-domain-cpu2 {
-> +               cpu_pd2: power-domain-cpu2 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&LITTLE_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&little_cpu_sleep_0>;
->                 };
->
-> -               CPU_PD3: power-domain-cpu3 {
-> +               cpu_pd3: power-domain-cpu3 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&LITTLE_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&little_cpu_sleep_0>;
->                 };
->
-> -               CPU_PD4: power-domain-cpu4 {
-> +               cpu_pd4: power-domain-cpu4 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&BIG_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&big_cpu_sleep_0>;
->                 };
->
-> -               CPU_PD5: power-domain-cpu5 {
-> +               cpu_pd5: power-domain-cpu5 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&BIG_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&big_cpu_sleep_0>;
->                 };
->
-> -               CPU_PD6: power-domain-cpu6 {
-> +               cpu_pd6: power-domain-cpu6 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&BIG_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&big_cpu_sleep_0>;
->                 };
->
-> -               CPU_PD7: power-domain-cpu7 {
-> +               cpu_pd7: power-domain-cpu7 {
->                         #power-domain-cells =3D <0>;
-> -                       power-domains =3D <&CLUSTER_PD>;
-> -                       domain-idle-states =3D <&BIG_CPU_SLEEP_0>;
-> +                       power-domains =3D <&cluster_pd>;
-> +                       domain-idle-states =3D <&big_cpu_sleep_0>;
->                 };
->
-> -               CLUSTER_PD: power-domain-cpu-cluster0 {
-> +               cluster_pd: power-domain-cpu-cluster0 {
->                         #power-domain-cells =3D <0>;
-> -                       domain-idle-states =3D <&CLUSTER_SLEEP_0>;
-> +                       domain-idle-states =3D <&cluster_sleep_0>;
->                 };
->         };
->
-> @@ -5111,7 +5111,7 @@ apps_rsc: rsc@18200000 {
->                         qcom,tcs-config =3D <ACTIVE_TCS  2>, <SLEEP_TCS  =
- 3>,
->                                           <WAKE_TCS    3>, <CONTROL_TCS 1=
->;
->                         label =3D "apps_rsc";
-> -                       power-domains =3D <&CLUSTER_PD>;
-> +                       power-domains =3D <&cluster_pd>;
->
->                         apps_bcm_voter: bcm-voter {
->                                 compatible =3D "qcom,bcm-voter";
->
-> --
-> 2.43.0
->
->
-Tested on the Thinkpad X13s
-Tested-by: Steev Klimaszewski <steev@kali.org>
+The ls1088ardb new board use RTC PCF2131, so add new RTC node.
+
+Signed-off-by: Joy Zou <joy.zou@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
+index ee8e932628d1..2df16bfb901c 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
+@@ -170,6 +170,13 @@ rtc@51 {
+ 				/* IRQ_RTC_B -> IRQ0_B(CPLD) -> IRQ00(CPU), active low */
+ 				interrupts-extended = <&extirq 0 IRQ_TYPE_LEVEL_LOW>;
+ 			};
++
++			rtc@53 {
++				compatible = "nxp,pcf2131";
++				reg = <0x53>;
++				/* IRQ_RTC_B -> IRQ0_B(CPLD) -> IRQ00(CPU), active low */
++				interrupts-extended = <&extirq 0 IRQ_TYPE_LEVEL_LOW>;
++			};
+ 		};
+ 	};
+ };
+-- 
+2.37.1
+
 
