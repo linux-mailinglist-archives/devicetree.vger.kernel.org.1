@@ -1,104 +1,655 @@
-Return-Path: <devicetree+bounces-98628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ED7F966CB8
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:50:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56855966CBA
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:52:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B908F1F23ED4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:50:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A8701C21E25
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1541518BC36;
-	Fri, 30 Aug 2024 22:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3957618C033;
+	Fri, 30 Aug 2024 22:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZjWcnxXr"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="t+JOF9gW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0EF165F0B;
-	Fri, 30 Aug 2024 22:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5898189907
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 22:52:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725058253; cv=none; b=VFk9uRfc2bbK04uFr9MkgetqqtOxzZwNE8BgVhNWiopRG1IkOWQpP/u0RZENO2T9Ikfp9WrnS07VJT7GodR05L5aKRzT00TrzbW/ca44st5VtIakLv5zI7BWvKyi2YDoDkfy85hx0sVbqdT0IQUo8kOuaNlF/s8oBNCybxXqZQI=
+	t=1725058333; cv=none; b=smveUjqKI4qz5mdnFpupt4AuXuVV7YQ210aK35tCeof3HNzqkNYl6gq19XUPxpqDNVoOseWePIyYoRq+79IY0/v3YKHowvAiV36D4i/2D0n3MB6RwqPyZF758Oan9CyB9LcOXredWnE71iD1oSqah4DDhhaa/F0jXO7+OIolp4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725058253; c=relaxed/simple;
-	bh=OLTIlPpa+v4c60pxBvkB0sb99UmhCoAw0VWc01EiOB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M3f0TNTm+cVDw6QLw9etTfh0+AWF/ftMKMO1B8Pfhli2raJJ4Bj+nE+FMyuAlcMVMw8zIXzuNHHVK+msSelWlMvNZATuC6rT9y+yZo1ByJ2BBWvUsseOzduxmhM/fWRVdQH3ALclPY8h4COTGh82O550Zf21lN4icihwctNeU34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZjWcnxXr; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-7d1fa104851so1303599a12.3;
-        Fri, 30 Aug 2024 15:50:51 -0700 (PDT)
+	s=arc-20240116; t=1725058333; c=relaxed/simple;
+	bh=gxOxhYBDbajQXeDcm4+m410j7vqMfY9SlJyavj7ERpc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LGW9a4OUcaExIAvaYA2nLgOxeSbVRxlV0rCnpVYtj6tR72gx782t1LFd6Dunh8W0M//fwwGR4e3Uq4PUhhPP4UbxnrikdjHwYn3JG2u2dLiNGO9IXWJGNLoXb+2MtOe+zwBRwCaEQOWQBJM3NAPf0ZvJ7mkltB7YbmiyQDlK+68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=t+JOF9gW; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5c24374d8b6so1946a12.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 15:52:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725058251; x=1725663051; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=65LIKbIRP/1nqSoA8pyNVDo/Zs1EoaJfqqWrC0sNrZk=;
-        b=ZjWcnxXrWzv7fFR3ocFQA+QglscI+xV/m3qr2pbXU4lxr2WLZYWQvlElpqqoo4/S1K
-         A9fyqQXrRZTyXfvQhlaRxLIhZPr7JbOYge7vBEViHGBY6ZnemzwxzmXUgWOc7h4qdug3
-         r6ehF0gQsoCNyQUdoDBHG78nZQmObqD7cAtKLi6nMZi9FJXpIRmn/YA3629vhNPOnus7
-         mO5gubiTVPcWx3VGWuiswplgn2eZqBpNI7OuyGffq2J8U+GJGP4Wd+Gwk12J9spoYTWv
-         vtUbuepnwWkEtG97tPCBd+q8VmbmBvdI7dqXgJYxwLKYLD1fkYbM/9S14G9JLbFqxeU2
-         V/Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725058251; x=1725663051;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1725058329; x=1725663129; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=65LIKbIRP/1nqSoA8pyNVDo/Zs1EoaJfqqWrC0sNrZk=;
-        b=a/hk2yGbND0S4OUdmSk1K6M0e9Q/fDv55RH2VlCncOvQqiQW7ZWdouDTMXR1qS4Uhy
-         zunOJKazjz8PIWe4i5EDfRPEKFe5fAZGid/wVM0neKdF2Cq8lGoNugKvyxAScE8br5Km
-         XJhfXEmKBiPdjjyYN/Pig8WOCegvqSvnl/CGG+n2Xy+NWyYStaUjaOq+8KteXRqh2tZV
-         vzlUHx0G1Uj76+zOju7bwV4RGHUephnr+S9oIAEyoInGNFCB3tnC0PeNkD+eAk2fYp8d
-         qs3LnnZFubvFRoN1cLh3w21VBmgQhdK51aERc4wcjqCMPn+Z4Pybn3d5m1vjYJSZk90r
-         Zffw==
-X-Forwarded-Encrypted: i=1; AJvYcCX5IYsXnTyh9l3mQj364IhsELhkTmKMIrISa5nNt9ycoRw05VUF7K8HzI2anIG5vlPAlO7xDCtBqa43@vger.kernel.org, AJvYcCXMY9vm7ZA5R/HpJ4xDNxkmyGMoj83gRehC1BH8L9dhx9oXSQXW7WgYdekW/O2s/VT26DWyY0bnW9HJbKY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuPoeHHMikCCeWe7K1Iy4hn9GLX6vn/086NT7vp1klnbiaf0UA
-	meqT0dSGdcpsRsB68vsr3RwXmEKEBZwM0iA9BPkBnzm7xKoENvzX
-X-Google-Smtp-Source: AGHT+IFj3tUQDVnRHCVW0OPOd+JfJPvohp2+ENJAsJ6FBawIv0bVWDU2WiZ05D8IkNSeGPF2diTxDQ==
-X-Received: by 2002:a17:90b:224e:b0:2cb:55f9:b7c5 with SMTP id 98e67ed59e1d1-2d8561a1482mr8376670a91.12.1725058250662;
-        Fri, 30 Aug 2024 15:50:50 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:bf97:5ce2:737d:1e6f])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d84462afb6sm6939409a91.33.2024.08.30.15.50.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 15:50:50 -0700 (PDT)
-Date: Fri, 30 Aug 2024 15:50:47 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2] dt-bindings: input: touchscreen: Use generic node name
-Message-ID: <ZtJMx46dqn9HNz4T@google.com>
-References: <20240830194331.3774408-1-festevam@gmail.com>
+        bh=cH9IXkuD7yeaJ2XxyqB5qRHFsRijGF7vwxcwESC9IPc=;
+        b=t+JOF9gWayqvsa7RY/nLmJLqTSFW2bED9JGrDP+ol0XF/5hZ87kC8Fw+55Sv5g0c66
+         BJMZhBiSfWtuxo3Qv2wIgKHgpAyK49qzbC52a1IQnoObwXf5FhzSMTWsmponCnk20oeW
+         Q9VrOk8L0PhBae6F29P53cqGdnCuN+rycqEYpsjlp7SzcA+kAkHB837iDu2SQzS/vP4C
+         KWJ+/HVUcbCkuiK7fqzw/E2A7KZBOeYegBJ3NkiUnCvJHT8VXGovoSbwSfdnLF7+TUsF
+         Nh1d5OonCMy30uSrW2K2KIcFNZEN/DIRodusqX1zc2fuaj2kj/VfrwvDc0pyaFj4pt5u
+         1ZBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725058329; x=1725663129;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cH9IXkuD7yeaJ2XxyqB5qRHFsRijGF7vwxcwESC9IPc=;
+        b=vWiFvJqCdGmefadkTZ9YRDs9GTBVFOkDAUCX2oZcmd57a8S26sL6DKES4X1uhCaoKK
+         HsqjsRSNdiBoZGo1hDEayWwD4ShmxkWWU6pjRB+hsZGFjKsqEl238/XHcNSc3Cif2YXK
+         SGyubDCUj/NCPFATsgwzNpoPcjbcBBRNzagjWg2GpgtYmVXBM5SVvVgrJmshjKToibi3
+         7Eoh+sc72iwAFiR1du+fBrFU5UzZ2c1CqUP9Kv0U+zmJ0JlimuUayqvD9/KVecmNaG8B
+         JOVNBV0+o3oaLdengAyo2VqQBYbtpmkAHil/c8XjWKb80FrLxhidPfP5U6RCRTPI0zMK
+         iTkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUL7UHpdBIdWTqop2A0ga/NOYOO/cFzgiGUjpN5v9xuluP/oXDwtM+EDh61FZ9fxfIgrAyI8LWmHglz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9AEwtvMi3HNSdz2Vlyw/T3qD03WF30q6v2OJHnbDsRZqz0xN+
+	wLtht0TxleBjJHMB6K/py679YzfOV53lG0705N9sblgDFcZoPKNJAqiPeuCO2ncXquGDozI1NCa
+	DNHlHluRNogGqVv9tgPl6HoceN+tDaEDXp+4N
+X-Google-Smtp-Source: AGHT+IGopOqpvD2/VK6IZTdKr8pK7dF9i94/MKTfilLc6SgVH38AqvTz0xg5bG+cxlriW0ez3Ui9ngIcmvDO2Jgaf58=
+X-Received: by 2002:a05:6402:2113:b0:5be:c28a:97cf with SMTP id
+ 4fb4d7f45d1cf-5c245b707camr26940a12.5.1725058328465; Fri, 30 Aug 2024
+ 15:52:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240830194331.3774408-1-festevam@gmail.com>
+References: <20240521043102.2786284-1-davidai@google.com> <20240521043102.2786284-3-davidai@google.com>
+ <CABN1KCKirjdVxF7Mc38tToB9OKH3n2kdN6k1tJbC-cyUtsVAFA@mail.gmail.com>
+ <CAJZ5v0jcZW92zm916VAD2a9_CMusuG-K968hWBS+tS1BL-Lspw@mail.gmail.com> <CAGETcx9jDaTcTu38s2WEmgWQaj=RSUvHMRQJLApa4b8z1_8vfQ@mail.gmail.com>
+In-Reply-To: <CAGETcx9jDaTcTu38s2WEmgWQaj=RSUvHMRQJLApa4b8z1_8vfQ@mail.gmail.com>
+From: David Dai <davidai@google.com>
+Date: Fri, 30 Aug 2024 15:51:57 -0700
+Message-ID: <CABN1KC+L=ag088FO5HxdbR4a_S5XNt3ipJ_0hq19jVPHw+fM6w@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] cpufreq: add virtual-cpufreq driver
+To: Saravana Kannan <saravanak@google.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Quentin Perret <qperret@google.com>, 
+	Masami Hiramatsu <mhiramat@google.com>, Will Deacon <will@kernel.org>, 
+	Peter Zijlstra <peterz@infradead.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
+	Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
+	Dietmar Eggemann <dietmar.eggemann@arm.com>, Pavan Kondeti <quic_pkondeti@quicinc.com>, 
+	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>, kernel-team@android.com, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 30, 2024 at 04:43:31PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> Node names should be generic.
-> 
-> Improve the binding example by using 'touchscreen' as the node name.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Tue, Jul 9, 2024 at 5:08=E2=80=AFPM Saravana Kannan <saravanak@google.co=
+m> wrote:
+>
+> On Fri, Jun 28, 2024 at 5:01=E2=80=AFAM Rafael J. Wysocki <rafael@kernel.=
+org> wrote:
+> >
+> > Hi,
+> >
+> > On Thu, Jun 27, 2024 at 11:22=E2=80=AFPM David Dai <davidai@google.com>=
+ wrote:
+> > >
+> > > Hi folks,
+> > >
+> > > Gentle nudge on this patch to see if there's any remaining concerns?
+> >
+> > Yes, there are.
+> >
+> > The dependency of OF is pretty much a no-go from my perspective.
+>
+> If you are talking about the "depends on OF" I think that can and
+> should be dropped.
+>
+> There's nothing really OF specific about this driver except the probe
+> function being for a platform device/driver. We can easily write an
+> ACPI driver variant of the probe function and have the same driver
+> work for both OF and ACPI versions of the device. We don't have any
+> ACPI experience or a test set up to test the ACPI variant. That's why
+> we haven't added it. We are more than happy to accept tested patches
+> on top of this that'll enable this for ACPI variants too.
+>
+> If we drop the "depends on OF", will you accept this patch? If not,
+> can you give some guidance on what you are looking for?
 
-Applied, thank you.
+Hi Rafael,
 
--- 
-Dmitry
+Just wanted to follow up and see what your thoughts are on this?
+
+Thanks,
+David
+
+>
+> Thanks,
+> Saravana
+>
+>
+>
+>
+> >
+> > Thanks!
+> >
+> >
+> > > On Mon, May 20, 2024 at 10:32=E2=80=AFPM David Dai <davidai@google.co=
+m> wrote:
+> > > >
+> > > > Introduce a virtualized cpufreq driver for guest kernels to improve
+> > > > performance and power of workloads within VMs.
+> > > >
+> > > > This driver does two main things:
+> > > >
+> > > > 1. Sends the frequency of vCPUs as a hint to the host. The host use=
+s the
+> > > > hint to schedule the vCPU threads and decide physical CPU frequency=
+.
+> > > >
+> > > > 2. If a VM does not support a virtualized FIE(like AMUs), it querie=
+s the
+> > > > host CPU frequency by reading a MMIO region of a virtual cpufreq de=
+vice
+> > > > to update the guest's frequency scaling factor periodically. This e=
+nables
+> > > > accurate Per-Entity Load Tracking for tasks running in the guest.
+> > > >
+> > > > Co-developed-by: Saravana Kannan <saravanak@google.com>
+> > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > Signed-off-by: David Dai <davidai@google.com>
+> > > > ---
+> > > >  drivers/cpufreq/Kconfig           |  14 ++
+> > > >  drivers/cpufreq/Makefile          |   1 +
+> > > >  drivers/cpufreq/virtual-cpufreq.c | 335 ++++++++++++++++++++++++++=
+++++
+> > > >  include/linux/arch_topology.h     |   1 +
+> > > >  4 files changed, 351 insertions(+)
+> > > >  create mode 100644 drivers/cpufreq/virtual-cpufreq.c
+> > > >
+> > > > diff --git a/drivers/cpufreq/Kconfig b/drivers/cpufreq/Kconfig
+> > > > index 94e55c40970a..9aa86bec5793 100644
+> > > > --- a/drivers/cpufreq/Kconfig
+> > > > +++ b/drivers/cpufreq/Kconfig
+> > > > @@ -217,6 +217,20 @@ config CPUFREQ_DT
+> > > >
+> > > >           If in doubt, say N.
+> > > >
+> > > > +config CPUFREQ_VIRT
+> > > > +       tristate "Virtual cpufreq driver"
+> > > > +       depends on OF && GENERIC_ARCH_TOPOLOGY
+> > > > +       help
+> > > > +         This adds a virtualized cpufreq driver for guest kernels =
+that
+> > > > +         read/writes to a MMIO region for a virtualized cpufreq de=
+vice to
+> > > > +         communicate with the host. It sends performance requests =
+to the host
+> > > > +         which gets used as a hint to schedule vCPU threads and se=
+lect CPU
+> > > > +         frequency. If a VM does not support a virtualized FIE suc=
+h as AMUs,
+> > > > +         it updates the frequency scaling factor by polling host C=
+PU frequency
+> > > > +         to enable accurate Per-Entity Load Tracking for tasks run=
+ning in the guest.
+> > > > +
+> > > > +         If in doubt, say N.
+> > > > +
+> > > >  config CPUFREQ_DT_PLATDEV
+> > > >         tristate "Generic DT based cpufreq platdev driver"
+> > > >         depends on OF
+> > > > diff --git a/drivers/cpufreq/Makefile b/drivers/cpufreq/Makefile
+> > > > index 8d141c71b016..eb72ecdc24db 100644
+> > > > --- a/drivers/cpufreq/Makefile
+> > > > +++ b/drivers/cpufreq/Makefile
+> > > > @@ -16,6 +16,7 @@ obj-$(CONFIG_CPU_FREQ_GOV_ATTR_SET)   +=3D cpufre=
+q_governor_attr_set.o
+> > > >
+> > > >  obj-$(CONFIG_CPUFREQ_DT)               +=3D cpufreq-dt.o
+> > > >  obj-$(CONFIG_CPUFREQ_DT_PLATDEV)       +=3D cpufreq-dt-platdev.o
+> > > > +obj-$(CONFIG_CPUFREQ_VIRT)             +=3D virtual-cpufreq.o
+> > > >
+> > > >  # Traces
+> > > >  CFLAGS_amd-pstate-trace.o               :=3D -I$(src)
+> > > > diff --git a/drivers/cpufreq/virtual-cpufreq.c b/drivers/cpufreq/vi=
+rtual-cpufreq.c
+> > > > new file mode 100644
+> > > > index 000000000000..59ce2bda3913
+> > > > --- /dev/null
+> > > > +++ b/drivers/cpufreq/virtual-cpufreq.c
+> > > > @@ -0,0 +1,335 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > +/*
+> > > > + * Copyright (C) 2024 Google LLC
+> > > > + */
+> > > > +
+> > > > +#include <linux/arch_topology.h>
+> > > > +#include <linux/cpufreq.h>
+> > > > +#include <linux/init.h>
+> > > > +#include <linux/sched.h>
+> > > > +#include <linux/kernel.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of_address.h>
+> > > > +#include <linux/of_platform.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/slab.h>
+> > > > +
+> > > > +/*
+> > > > + * CPU0..CPUn
+> > > > + * +-------------+-------------------------------+--------+-------=
++
+> > > > + * | Register    | Description                   | Offset |   Len =
+|
+> > > > + * +-------------+-------------------------------+--------+-------=
++
+> > > > + * | cur_perf    | read this register to get     |    0x0 |   0x4 =
+|
+> > > > + * |             | the current perf (integer val |        |       =
+|
+> > > > + * |             | representing perf relative to |        |       =
+|
+> > > > + * |             | max performance)              |        |       =
+|
+> > > > + * |             | that vCPU is running at       |        |       =
+|
+> > > > + * +-------------+-------------------------------+--------+-------=
++
+> > > > + * | set_perf    | write to this register to set |    0x4 |   0x4 =
+|
+> > > > + * |             | perf value of the vCPU        |        |       =
+|
+> > > > + * +-------------+-------------------------------+--------+-------=
++
+> > > > + * | perftbl_len | number of entries in perf     |    0x8 |   0x4 =
+|
+> > > > + * |             | table. A single entry in the  |        |       =
+|
+> > > > + * |             | perf table denotes no table   |        |       =
+|
+> > > > + * |             | and the entry contains        |        |       =
+|
+> > > > + * |             | the maximum perf value        |        |       =
+|
+> > > > + * |             | that this vCPU supports.      |        |       =
+|
+> > > > + * |             | The guest can request any     |        |       =
+|
+> > > > + * |             | value between 1 and max perf  |        |       =
+|
+> > > > + * |             | when perftbls are not used.   |        |       =
+|
+> > > > + * +---------------------------------------------+--------+-------=
++
+> > > > + * | perftbl_sel | write to this register to     |    0xc |   0x4 =
+|
+> > > > + * |             | select perf table entry to    |        |       =
+|
+> > > > + * |             | read from                     |        |       =
+|
+> > > > + * +---------------------------------------------+--------+-------=
++
+> > > > + * | perftbl_rd  | read this register to get     |   0x10 |   0x4 =
+|
+> > > > + * |             | perf value of the selected    |        |       =
+|
+> > > > + * |             | entry based on perftbl_sel    |        |       =
+|
+> > > > + * +---------------------------------------------+--------+-------=
++
+> > > > + * | perf_domain | performance domain number     |   0x14 |   0x4 =
+|
+> > > > + * |             | that this vCPU belongs to.    |        |       =
+|
+> > > > + * |             | vCPUs sharing the same perf   |        |       =
+|
+> > > > + * |             | domain number are part of the |        |       =
+|
+> > > > + * |             | same performance domain.      |        |       =
+|
+> > > > + * +-------------+-------------------------------+--------+-------=
++
+> > > > + */
+> > > > +
+> > > > +#define REG_CUR_PERF_STATE_OFFSET 0x0
+> > > > +#define REG_SET_PERF_STATE_OFFSET 0x4
+> > > > +#define REG_PERFTBL_LEN_OFFSET 0x8
+> > > > +#define REG_PERFTBL_SEL_OFFSET 0xc
+> > > > +#define REG_PERFTBL_RD_OFFSET 0x10
+> > > > +#define REG_PERF_DOMAIN_OFFSET 0x14
+> > > > +#define PER_CPU_OFFSET 0x1000
+> > > > +
+> > > > +#define PERFTBL_MAX_ENTRIES 64U
+> > > > +
+> > > > +static void __iomem *base;
+> > > > +static DEFINE_PER_CPU(u32, perftbl_num_entries);
+> > > > +
+> > > > +static void virt_scale_freq_tick(void)
+> > > > +{
+> > > > +       int cpu =3D smp_processor_id();
+> > > > +       u32 max_freq =3D (u32)cpufreq_get_hw_max_freq(cpu);
+> > > > +       u64 cur_freq;
+> > > > +       unsigned long scale;
+> > > > +
+> > > > +       cur_freq =3D (u64)readl_relaxed(base + cpu * PER_CPU_OFFSET
+> > > > +                       + REG_CUR_PERF_STATE_OFFSET);
+> > > > +
+> > > > +       cur_freq <<=3D SCHED_CAPACITY_SHIFT;
+> > > > +       scale =3D (unsigned long)div_u64(cur_freq, max_freq);
+> > > > +       scale =3D min(scale, SCHED_CAPACITY_SCALE);
+> > > > +
+> > > > +       this_cpu_write(arch_freq_scale, scale);
+> > > > +}
+> > > > +
+> > > > +static struct scale_freq_data virt_sfd =3D {
+> > > > +       .source =3D SCALE_FREQ_SOURCE_VIRT,
+> > > > +       .set_freq_scale =3D virt_scale_freq_tick,
+> > > > +};
+> > > > +
+> > > > +static unsigned int virt_cpufreq_set_perf(struct cpufreq_policy *p=
+olicy,
+> > > > +                                         unsigned int target_freq)
+> > > > +{
+> > > > +       writel_relaxed(target_freq,
+> > > > +                      base + policy->cpu * PER_CPU_OFFSET + REG_SE=
+T_PERF_STATE_OFFSET);
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static unsigned int virt_cpufreq_fast_switch(struct cpufreq_policy=
+ *policy,
+> > > > +                                            unsigned int target_fr=
+eq)
+> > > > +{
+> > > > +       virt_cpufreq_set_perf(policy, target_freq);
+> > > > +       return target_freq;
+> > > > +}
+> > > > +
+> > > > +static u32 virt_cpufreq_get_perftbl_entry(int cpu, u32 idx)
+> > > > +{
+> > > > +       writel_relaxed(idx, base + cpu * PER_CPU_OFFSET +
+> > > > +                      REG_PERFTBL_SEL_OFFSET);
+> > > > +       return readl_relaxed(base + cpu * PER_CPU_OFFSET +
+> > > > +                            REG_PERFTBL_RD_OFFSET);
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_target(struct cpufreq_policy *policy,
+> > > > +                              unsigned int target_freq,
+> > > > +                              unsigned int relation)
+> > > > +{
+> > > > +       struct cpufreq_freqs freqs;
+> > > > +       int ret =3D 0;
+> > > > +
+> > > > +       freqs.old =3D policy->cur;
+> > > > +       freqs.new =3D target_freq;
+> > > > +
+> > > > +       cpufreq_freq_transition_begin(policy, &freqs);
+> > > > +       ret =3D virt_cpufreq_set_perf(policy, target_freq);
+> > > > +       cpufreq_freq_transition_end(policy, &freqs, ret !=3D 0);
+> > > > +
+> > > > +       return ret;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_get_sharing_cpus(struct cpufreq_policy *po=
+licy)
+> > > > +{
+> > > > +       u32 cur_perf_domain, perf_domain;
+> > > > +       struct device *cpu_dev;
+> > > > +       int cpu;
+> > > > +
+> > > > +       cur_perf_domain =3D readl_relaxed(base + policy->cpu *
+> > > > +                                       PER_CPU_OFFSET + REG_PERF_D=
+OMAIN_OFFSET);
+> > > > +
+> > > > +       for_each_possible_cpu(cpu) {
+> > > > +               cpu_dev =3D get_cpu_device(cpu);
+> > > > +               if (!cpu_dev)
+> > > > +                       continue;
+> > > > +
+> > > > +               perf_domain =3D readl_relaxed(base + cpu *
+> > > > +                                           PER_CPU_OFFSET + REG_PE=
+RF_DOMAIN_OFFSET);
+> > > > +
+> > > > +               if (perf_domain =3D=3D cur_perf_domain)
+> > > > +                       cpumask_set_cpu(cpu, policy->cpus);
+> > > > +       }
+> > > > +
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_get_freq_info(struct cpufreq_policy *polic=
+y)
+> > > > +{
+> > > > +       struct cpufreq_frequency_table *table;
+> > > > +       u32 num_perftbl_entries, idx;
+> > > > +
+> > > > +       num_perftbl_entries =3D per_cpu(perftbl_num_entries, policy=
+->cpu);
+> > > > +
+> > > > +       if (num_perftbl_entries =3D=3D 1) {
+> > > > +               policy->cpuinfo.min_freq =3D 1;
+> > > > +               policy->cpuinfo.max_freq =3D virt_cpufreq_get_perft=
+bl_entry(policy->cpu, 0);
+> > > > +
+> > > > +               policy->min =3D policy->cpuinfo.min_freq;
+> > > > +               policy->max =3D policy->cpuinfo.max_freq;
+> > > > +
+> > > > +               policy->cur =3D policy->max;
+> > > > +               return 0;
+> > > > +       }
+> > > > +
+> > > > +       table =3D kcalloc(num_perftbl_entries + 1, sizeof(*table), =
+GFP_KERNEL);
+> > > > +       if (!table)
+> > > > +               return -ENOMEM;
+> > > > +
+> > > > +       for (idx =3D 0; idx < num_perftbl_entries; idx++)
+> > > > +               table[idx].frequency =3D virt_cpufreq_get_perftbl_e=
+ntry(policy->cpu, idx);
+> > > > +
+> > > > +       table[idx].frequency =3D CPUFREQ_TABLE_END;
+> > > > +       policy->freq_table =3D table;
+> > > > +
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_cpu_init(struct cpufreq_policy *policy)
+> > > > +{
+> > > > +       struct device *cpu_dev;
+> > > > +       int ret;
+> > > > +
+> > > > +       cpu_dev =3D get_cpu_device(policy->cpu);
+> > > > +       if (!cpu_dev)
+> > > > +               return -ENODEV;
+> > > > +
+> > > > +       ret =3D virt_cpufreq_get_freq_info(policy);
+> > > > +       if (ret) {
+> > > > +               dev_warn(cpu_dev, "failed to get cpufreq info\n");
+> > > > +               return ret;
+> > > > +       }
+> > > > +
+> > > > +       ret =3D virt_cpufreq_get_sharing_cpus(policy);
+> > > > +       if (ret) {
+> > > > +               dev_warn(cpu_dev, "failed to get sharing cpumask\n"=
+);
+> > > > +               return ret;
+> > > > +       }
+> > > > +
+> > > > +       /*
+> > > > +        * To simplify and improve latency of handling frequency re=
+quests on
+> > > > +        * the host side, this ensures that the vCPU thread trigger=
+ing the MMIO
+> > > > +        * abort is the same thread whose performance constraints (=
+Ex. uclamp
+> > > > +        * settings) need to be updated. This simplifies the VMM (V=
+irtual
+> > > > +        * Machine Manager) having to find the correct vCPU thread =
+and/or
+> > > > +        * facing permission issues when configuring other threads.
+> > > > +        */
+> > > > +       policy->dvfs_possible_from_any_cpu =3D false;
+> > > > +       policy->fast_switch_possible =3D true;
+> > > > +
+> > > > +       /*
+> > > > +        * Using the default SCALE_FREQ_SOURCE_CPUFREQ is insuffici=
+ent since
+> > > > +        * the actual physical CPU frequency may not match requeste=
+d frequency
+> > > > +        * from the vCPU thread due to frequency update latencies o=
+r other
+> > > > +        * inputs to the physical CPU frequency selection. This add=
+itional FIE
+> > > > +        * source allows for more accurate freq_scale updates and o=
+nly takes
+> > > > +        * effect if another FIE source such as AMUs have not been =
+registered.
+> > > > +        */
+> > > > +       topology_set_scale_freq_source(&virt_sfd, policy->cpus);
+> > > > +
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_cpu_exit(struct cpufreq_policy *policy)
+> > > > +{
+> > > > +       topology_clear_scale_freq_source(SCALE_FREQ_SOURCE_VIRT, po=
+licy->related_cpus);
+> > > > +       kfree(policy->freq_table);
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_online(struct cpufreq_policy *policy)
+> > > > +{
+> > > > +       /* Nothing to restore. */
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_offline(struct cpufreq_policy *policy)
+> > > > +{
+> > > > +       /* Dummy offline() to avoid exit() being called and freeing=
+ resources. */
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_verify_policy(struct cpufreq_policy_data *=
+policy)
+> > > > +{
+> > > > +       if (policy->freq_table)
+> > > > +               return cpufreq_frequency_table_verify(policy, polic=
+y->freq_table);
+> > > > +
+> > > > +       cpufreq_verify_within_cpu_limits(policy);
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static struct cpufreq_driver cpufreq_virt_driver =3D {
+> > > > +       .name           =3D "virt-cpufreq",
+> > > > +       .init           =3D virt_cpufreq_cpu_init,
+> > > > +       .exit           =3D virt_cpufreq_cpu_exit,
+> > > > +       .online         =3D virt_cpufreq_online,
+> > > > +       .offline        =3D virt_cpufreq_offline,
+> > > > +       .verify         =3D virt_cpufreq_verify_policy,
+> > > > +       .target         =3D virt_cpufreq_target,
+> > > > +       .fast_switch    =3D virt_cpufreq_fast_switch,
+> > > > +       .attr           =3D cpufreq_generic_attr,
+> > > > +};
+> > > > +
+> > > > +static int virt_cpufreq_driver_probe(struct platform_device *pdev)
+> > > > +{
+> > > > +       u32 num_perftbl_entries;
+> > > > +       int ret, cpu;
+> > > > +
+> > > > +       base =3D devm_platform_ioremap_resource(pdev, 0);
+> > > > +       if (IS_ERR(base))
+> > > > +               return PTR_ERR(base);
+> > > > +
+> > > > +       for_each_possible_cpu(cpu) {
+> > > > +               num_perftbl_entries =3D readl_relaxed(base + cpu * =
+PER_CPU_OFFSET +
+> > > > +                                                   REG_PERFTBL_LEN=
+_OFFSET);
+> > > > +
+> > > > +               if (!num_perftbl_entries || num_perftbl_entries > P=
+ERFTBL_MAX_ENTRIES)
+> > > > +                       return -ENODEV;
+> > > > +
+> > > > +               per_cpu(perftbl_num_entries, cpu) =3D num_perftbl_e=
+ntries;
+> > > > +       }
+> > > > +
+> > > > +       ret =3D cpufreq_register_driver(&cpufreq_virt_driver);
+> > > > +       if (ret) {
+> > > > +               dev_err(&pdev->dev, "Virtual CPUFreq driver failed =
+to register: %d\n", ret);
+> > > > +               return ret;
+> > > > +       }
+> > > > +
+> > > > +       dev_dbg(&pdev->dev, "Virtual CPUFreq driver initialized\n")=
+;
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int virt_cpufreq_driver_remove(struct platform_device *pdev=
+)
+> > > > +{
+> > > > +       cpufreq_unregister_driver(&cpufreq_virt_driver);
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static const struct of_device_id virt_cpufreq_match[] =3D {
+> > > > +       { .compatible =3D "qemu,virtual-cpufreq", .data =3D NULL},
+> > > > +       {}
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(of, virt_cpufreq_match);
+> > > > +
+> > > > +static struct platform_driver virt_cpufreq_driver =3D {
+> > > > +       .probe =3D virt_cpufreq_driver_probe,
+> > > > +       .remove =3D virt_cpufreq_driver_remove,
+> > > > +       .driver =3D {
+> > > > +               .name =3D "virt-cpufreq",
+> > > > +               .of_match_table =3D virt_cpufreq_match,
+> > > > +       },
+> > > > +};
+> > > > +
+> > > > +static int __init virt_cpufreq_init(void)
+> > > > +{
+> > > > +       return platform_driver_register(&virt_cpufreq_driver);
+> > > > +}
+> > > > +postcore_initcall(virt_cpufreq_init);
+> > > > +
+> > > > +static void __exit virt_cpufreq_exit(void)
+> > > > +{
+> > > > +       platform_driver_unregister(&virt_cpufreq_driver);
+> > > > +}
+> > > > +module_exit(virt_cpufreq_exit);
+> > > > +
+> > > > +MODULE_DESCRIPTION("Virtual cpufreq driver");
+> > > > +MODULE_LICENSE("GPL");
+> > > > diff --git a/include/linux/arch_topology.h b/include/linux/arch_top=
+ology.h
+> > > > index b721f360d759..d5d848849408 100644
+> > > > --- a/include/linux/arch_topology.h
+> > > > +++ b/include/linux/arch_topology.h
+> > > > @@ -49,6 +49,7 @@ enum scale_freq_source {
+> > > >         SCALE_FREQ_SOURCE_CPUFREQ =3D 0,
+> > > >         SCALE_FREQ_SOURCE_ARCH,
+> > > >         SCALE_FREQ_SOURCE_CPPC,
+> > > > +       SCALE_FREQ_SOURCE_VIRT,
+> > > >  };
+> > > >
+> > > >  struct scale_freq_data {
+> > > > --
+> > > > 2.45.0.215.g3402c0e53f-goog
+> > > >
+> > >
 
