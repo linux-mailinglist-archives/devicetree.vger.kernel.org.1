@@ -1,286 +1,120 @@
-Return-Path: <devicetree+bounces-98513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC3E96660F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C11966622
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:53:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD9481F23C55
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:50:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A2F41F2488E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5021B81AB;
-	Fri, 30 Aug 2024 15:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E521B653A;
+	Fri, 30 Aug 2024 15:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lmr2dc00"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27DD1B2EF6;
-	Fri, 30 Aug 2024 15:49:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152651A4ABC;
+	Fri, 30 Aug 2024 15:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725032990; cv=none; b=l6bXTjWFhkecRWXdA/Fpu0MCX9YkELfhv4RM0HbyxLh4/DWkiSNjS1CN9gQvcOcG9T57cg34q0M+JCT4rRfqg234Nzf/CC/3Lpfu0IQcP0ftcSDHoMQD9Enp/UnS6/wxyLiwLZ1OJ1h2hLLagS8zanfYFU9C/Jhc2UiGjWyxDZM=
+	t=1725033217; cv=none; b=MvRhzxXodIN6AkzrGR6HadCNATJhcy/oRkN2yx7kRvzvVQzDu6C9CcCuajEHtlEMqYaZCk1Ig88CmN6TCRPHUocemCUNUL+OlvtMef1DJCyIdAbskgS7tiE5G6wT2+hgVQh0U5p67KkFick7L6JK8OeHvhg+SNYWG4wz3PWrxR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725032990; c=relaxed/simple;
-	bh=sCuP9k2SvnU6BxO72VXBd/pgd8sCAH51nempaZ5KRyQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T+DkSR2H56SCHi9G3APf+tQFrX8gJnGORHrrobJvryXNOeInt6D42CADs9PUeYjq1YriXrYe2hjavB4LF7wBWNQHhLETx8Usd6+28/Dhex3HeZEF/HSA2+HIET+n2VWS83+67zWfFgxtooT4QpP05qheSrxXb4NNyyIDUhF17fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 26BE71063;
-	Fri, 30 Aug 2024 08:50:11 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 378F83F762;
-	Fri, 30 Aug 2024 08:49:42 -0700 (PDT)
-Message-ID: <f330e50c-677a-4982-8ede-dd1e35cc3954@arm.com>
-Date: Fri, 30 Aug 2024 16:49:40 +0100
+	s=arc-20240116; t=1725033217; c=relaxed/simple;
+	bh=KAS1HKScQz/1K1cMzMLfhKEY+ldYMSUTNl3Vz1DJ+M4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=T75D93lB/McRPyJX40Es65GJ4y4UyoG+yzvGRFtXVv4AHGEGv3UtDkCPbVA/Autz37S/IDKW20AHYzpdIJdRBGtvLca10RAgljhJUZFu8E5OmGJNnZyC+GlxTOaFCO6GmvJLvBBhl3xi3swZUdGKiah9Y5WG70fkDP+2bc7pTcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lmr2dc00; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50F57C4CEC2;
+	Fri, 30 Aug 2024 15:53:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725033216;
+	bh=KAS1HKScQz/1K1cMzMLfhKEY+ldYMSUTNl3Vz1DJ+M4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Lmr2dc00ZmFRCVzd3vvCJr7LiOnH42EfDnhudpuGJrzQJ7icx7oHsCr6ukpKdAWAW
+	 mHk+x0HFijY9yYSd5k9q+ut9GHbyknyfaPkSm5WV07ZdN/IBAJYR41Y93+tPzlau2q
+	 A0abwh8Q5drgfm2m8ZccJsplgYmP8NzQAB/TwQzrrWVNwgmytW/iYtA1oJgie8Ah1v
+	 pU3kOiZ8xX7eux99KllIIBrdpFY8FOS7bb8RvXV9oaqI+fA+Wm+8XPYq8xny9Nxjrt
+	 o7Q5ebCJ3fr9ean4YTFUOpnuXU9jE/g9tuOvFufcWH35qhagP2aAGvyFhtavNf4NfB
+	 jAJbCG96wkT9g==
+Date: Fri, 30 Aug 2024 10:53:33 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: Sean Anderson <sean.anderson@linux.dev>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Markus Elfring <Markus.Elfring@web.de>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+	Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
+	Bharat Kumar Gogada <bharatku@xilinx.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Michal Simek <michal.simek@xilinx.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] PCI: xilinx-nwl: Add phy support
+Message-ID: <20240830155333.GA104046@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/7] iommu/riscv: Add RISC-V IOMMU PCIe device driver
-To: Tomasz Jeznach <tjeznach@rivosinc.com>, Jim Shu <jim.shu@sifive.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
- linux@rivosinc.com, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Sebastien Boeuf <seb@rivosinc.com>,
- iommu@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
- Nick Kossifidis <mick@ics.forth.gr>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org,
- Lu Baolu <baolu.lu@linux.intel.com>, Zong Li <zong.li@sifive.com>
-References: <cover.1718388908.git.tjeznach@rivosinc.com>
- <e2792d6559f9f3e02b2243538647ef60f14176fd.1718388909.git.tjeznach@rivosinc.com>
- <CALw707q=B4h4CF3CvJOiRMMYqzvO_NG+taMLzZquCP=A9bgu0g@mail.gmail.com>
- <CAH2o1u5qU8y=FHRANQ74WnGfMim24Pho2av17rE5ZObZywjB4g@mail.gmail.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <CAH2o1u5qU8y=FHRANQ74WnGfMim24Pho2av17rE5ZObZywjB4g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <150898c0-c3b6-41d2-9ce1-dda6607c1648@amd.com>
 
-On 30/08/2024 4:37 pm, Tomasz Jeznach wrote:
-> On Fri, Aug 30, 2024 at 12:04 AM Jim Shu <jim.shu@sifive.com> wrote:
->>
->> Hi Tomasz,
->>
->> QEMU RISC-V IOMMU will switch the PCIe vendor/device ID to Red Hat one
->> [1] in the latest v6 patch.
->> Will we also support the PCIe ID of Red Hat one in the Linux driver?
->>
+On Fri, Aug 30, 2024 at 04:08:08PM +0200, Michal Simek wrote:
+> Hi Bjorn,
 > 
-> Absolutely yes. I've been holding of with adding Red Hat PID/VID to
-> limit number of changes outside iommu subsystem in this patch series,
-> planing to sent single change adding new PCI IDs once this series is
-> accepted.
-
-It shouldn't entail any changes outside this code - per pci_ids.h, 
-PCI_VENDOR_ID_REDHAT is already defined, while the individual IOMMU 
-device IDs *should* stay local to this driver as the only user of them. 
-Similarly, the Rivos vendor ID would only warrant factoring out once 
-another driver turns up wanting to share it.
-
-Thanks,
-Robin.
-
-> Driver implementation is generic and should correctly
-> interact with QEMU model and other hardware implementations of RISC-V
-> IOMMU specification.
+> On 8/9/24 21:54, Bjorn Helgaas wrote:
+> > On Fri, May 31, 2024 at 12:13:30PM -0400, Sean Anderson wrote:
+> > > Add phy subsystem support for the xilinx-nwl PCIe controller. This
+> > > series also includes several small fixes and improvements.
+> > > 
+> > > Changes in v4:
+> > > - Clarify dt-bindings commit subject/message
+> > > - Explain likely effects of the off-by-one error
+> > > - Trim down UBSAN backtrace
+> > > - Move if to after pci_host_probe
+> > > - Remove if in err_phy
+> > > - Fix error path in phy_enable skipping the first phy
+> > > - Disable phys in reverse order
+> > > - Use dev_err instead of WARN for errors
+> > > 
+> > > Changes in v3:
+> > > - Document phys property
+> > > - Expand off-by-one commit message
+> > > 
+> > > Changes in v2:
+> > > - Remove phy-names
+> > > - Add an example
+> > > - Get phys by index and not by name
+> > > 
+> > > Sean Anderson (7):
+> > >    dt-bindings: pci: xilinx-nwl: Add phys property
+> > >    PCI: xilinx-nwl: Fix off-by-one in IRQ handler
+> > >    PCI: xilinx-nwl: Fix register misspelling
+> > >    PCI: xilinx-nwl: Rate-limit misc interrupt messages
+> > >    PCI: xilinx-nwl: Clean up clock on probe failure/removal
+> > >    PCI: xilinx-nwl: Add phy support
+> > 
+> > Applied the above to pci/controller/xilinx for v6.12, thanks!
+> > 
+> > I assume the DTS update below should go via some other tree, but let
+> > me know if I should pick it up.
 > 
-> Best regards,
->   - Tomasz
-> 
->> [1] https://patchew.org/QEMU/20240801154334.1009852-1-dbarboza@ventanamicro.com/20240801154334.1009852-5-dbarboza@ventanamicro.com/
->>
->>
->> Regards,
->> Jim Shu
->>
->>
->>
->> On Sat, Jun 15, 2024 at 1:29 PM Tomasz Jeznach <tjeznach@rivosinc.com> wrote:
->>>
->>> Introduce device driver for PCIe implementation
->>> of RISC-V IOMMU architected hardware.
->>>
->>> IOMMU hardware and system support for MSI or MSI-X is
->>> required by this implementation.
->>>
->>> Vendor and device identifiers used in this patch
->>> matches QEMU implementation of the RISC-V IOMMU PCIe
->>> device, from Rivos VID (0x1efd) range allocated by the PCI-SIG.
->>>
->>> MAINTAINERS | added iommu-pci.c already covered by matching pattern.
->>>
->>> Link: https://lore.kernel.org/qemu-devel/20240307160319.675044-1-dbarboza@ventanamicro.com/
->>> Co-developed-by: Nick Kossifidis <mick@ics.forth.gr>
->>> Signed-off-by: Nick Kossifidis <mick@ics.forth.gr>
->>> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
->>> Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
->>> ---
->>>   drivers/iommu/riscv/Kconfig     |   5 ++
->>>   drivers/iommu/riscv/Makefile    |   1 +
->>>   drivers/iommu/riscv/iommu-pci.c | 119 ++++++++++++++++++++++++++++++++
->>>   3 files changed, 125 insertions(+)
->>>   create mode 100644 drivers/iommu/riscv/iommu-pci.c
->>>
->>> diff --git a/drivers/iommu/riscv/Kconfig b/drivers/iommu/riscv/Kconfig
->>> index 5dcc5c45aa50..c071816f59a6 100644
->>> --- a/drivers/iommu/riscv/Kconfig
->>> +++ b/drivers/iommu/riscv/Kconfig
->>> @@ -13,3 +13,8 @@ config RISCV_IOMMU
->>>
->>>            Say Y here if your SoC includes an IOMMU device implementing
->>>            the RISC-V IOMMU architecture.
->>> +
->>> +config RISCV_IOMMU_PCI
->>> +       def_bool y if RISCV_IOMMU && PCI_MSI
->>> +       help
->>> +         Support for the PCIe implementation of RISC-V IOMMU architecture.
->>> diff --git a/drivers/iommu/riscv/Makefile b/drivers/iommu/riscv/Makefile
->>> index e4c189de58d3..f54c9ed17d41 100644
->>> --- a/drivers/iommu/riscv/Makefile
->>> +++ b/drivers/iommu/riscv/Makefile
->>> @@ -1,2 +1,3 @@
->>>   # SPDX-License-Identifier: GPL-2.0-only
->>>   obj-$(CONFIG_RISCV_IOMMU) += iommu.o iommu-platform.o
->>> +obj-$(CONFIG_RISCV_IOMMU_PCI) += iommu-pci.o
->>> diff --git a/drivers/iommu/riscv/iommu-pci.c b/drivers/iommu/riscv/iommu-pci.c
->>> new file mode 100644
->>> index 000000000000..e675acceb290
->>> --- /dev/null
->>> +++ b/drivers/iommu/riscv/iommu-pci.c
->>> @@ -0,0 +1,119 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only
->>> +
->>> +/*
->>> + * Copyright © 2022-2024 Rivos Inc.
->>> + * Copyright © 2023 FORTH-ICS/CARV
->>> + *
->>> + * RISCV IOMMU as a PCIe device
->>> + *
->>> + * Authors
->>> + *     Tomasz Jeznach <tjeznach@rivosinc.com>
->>> + *     Nick Kossifidis <mick@ics.forth.gr>
->>> + */
->>> +
->>> +#include <linux/compiler.h>
->>> +#include <linux/init.h>
->>> +#include <linux/iommu.h>
->>> +#include <linux/kernel.h>
->>> +#include <linux/pci.h>
->>> +
->>> +#include "iommu-bits.h"
->>> +#include "iommu.h"
->>> +
->>> +/* Rivos Inc. assigned PCI Vendor and Device IDs */
->>> +#ifndef PCI_VENDOR_ID_RIVOS
->>> +#define PCI_VENDOR_ID_RIVOS             0x1efd
->>> +#endif
->>> +
->>> +#ifndef PCI_DEVICE_ID_RIVOS_IOMMU
->>> +#define PCI_DEVICE_ID_RIVOS_IOMMU       0xedf1
->>> +#endif
->>> +
->>> +static int riscv_iommu_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->>> +{
->>> +       struct device *dev = &pdev->dev;
->>> +       struct riscv_iommu_device *iommu;
->>> +       int rc, vec;
->>> +
->>> +       rc = pcim_enable_device(pdev);
->>> +       if (rc)
->>> +               return rc;
->>> +
->>> +       if (!(pci_resource_flags(pdev, 0) & IORESOURCE_MEM))
->>> +               return -ENODEV;
->>> +
->>> +       if (pci_resource_len(pdev, 0) < RISCV_IOMMU_REG_SIZE)
->>> +               return -ENODEV;
->>> +
->>> +       rc = pcim_iomap_regions(pdev, BIT(0), pci_name(pdev));
->>> +       if (rc)
->>> +               return dev_err_probe(dev, rc, "pcim_iomap_regions failed\n");
->>> +
->>> +       iommu = devm_kzalloc(dev, sizeof(*iommu), GFP_KERNEL);
->>> +       if (!iommu)
->>> +               return -ENOMEM;
->>> +
->>> +       iommu->dev = dev;
->>> +       iommu->reg = pcim_iomap_table(pdev)[0];
->>> +
->>> +       pci_set_master(pdev);
->>> +       dev_set_drvdata(dev, iommu);
->>> +
->>> +       /* Check device reported capabilities / features. */
->>> +       iommu->caps = riscv_iommu_readq(iommu, RISCV_IOMMU_REG_CAPABILITIES);
->>> +       iommu->fctl = riscv_iommu_readl(iommu, RISCV_IOMMU_REG_FCTL);
->>> +
->>> +       /* The PCI driver only uses MSIs, make sure the IOMMU supports this */
->>> +       switch (FIELD_GET(RISCV_IOMMU_CAPABILITIES_IGS, iommu->caps)) {
->>> +       case RISCV_IOMMU_CAPABILITIES_IGS_MSI:
->>> +       case RISCV_IOMMU_CAPABILITIES_IGS_BOTH:
->>> +               break;
->>> +       default:
->>> +               return dev_err_probe(dev, -ENODEV,
->>> +                                    "unable to use message-signaled interrupts\n");
->>> +       }
->>> +
->>> +       /* Allocate and assign IRQ vectors for the various events */
->>> +       rc = pci_alloc_irq_vectors(pdev, 1, RISCV_IOMMU_INTR_COUNT,
->>> +                                  PCI_IRQ_MSIX | PCI_IRQ_MSI);
->>> +       if (rc <= 0)
->>> +               return dev_err_probe(dev, -ENODEV,
->>> +                                    "unable to allocate irq vectors\n");
->>> +
->>> +       iommu->irqs_count = rc;
->>> +       for (vec = 0; vec < iommu->irqs_count; vec++)
->>> +               iommu->irqs[vec] = msi_get_virq(dev, vec);
->>> +
->>> +       /* Enable message-signaled interrupts, fctl.WSI */
->>> +       if (iommu->fctl & RISCV_IOMMU_FCTL_WSI) {
->>> +               iommu->fctl ^= RISCV_IOMMU_FCTL_WSI;
->>> +               riscv_iommu_writel(iommu, RISCV_IOMMU_REG_FCTL, iommu->fctl);
->>> +       }
->>> +
->>> +       return riscv_iommu_init(iommu);
->>> +}
->>> +
->>> +static void riscv_iommu_pci_remove(struct pci_dev *pdev)
->>> +{
->>> +       struct riscv_iommu_device *iommu = dev_get_drvdata(&pdev->dev);
->>> +
->>> +       riscv_iommu_remove(iommu);
->>> +}
->>> +
->>> +static const struct pci_device_id riscv_iommu_pci_tbl[] = {
->>> +       {PCI_VENDOR_ID_RIVOS, PCI_DEVICE_ID_RIVOS_IOMMU,
->>> +        PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
->>> +       {0,}
->>> +};
->>> +
->>> +static struct pci_driver riscv_iommu_pci_driver = {
->>> +       .name = KBUILD_MODNAME,
->>> +       .id_table = riscv_iommu_pci_tbl,
->>> +       .probe = riscv_iommu_pci_probe,
->>> +       .remove = riscv_iommu_pci_remove,
->>> +       .driver = {
->>> +               .suppress_bind_attrs = true,
->>> +       },
->>> +};
->>> +
->>> +builtin_pci_driver(riscv_iommu_pci_driver);
->>> --
->>> 2.34.1
->>>
->>>
->>> _______________________________________________
->>> linux-riscv mailing list
->>> linux-riscv@lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Would be good if you can pick it up with the series together.
+> I have already acked that patch before.
+
+Thanks, I picked up patch 7/7 "arm64: zynqmp: Add PCIe phys" as well!
+
+Bjorn
 
