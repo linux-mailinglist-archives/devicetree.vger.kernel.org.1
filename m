@@ -1,117 +1,157 @@
-Return-Path: <devicetree+bounces-98554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303869668F0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 20:30:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A5F966924
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 20:49:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 651BCB2176C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:30:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E843C1F23871
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 18:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98C71BBBD4;
-	Fri, 30 Aug 2024 18:30:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23ED81BC9ED;
+	Fri, 30 Aug 2024 18:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CF+Cqugv"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="YKAXFqgZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A538136353;
-	Fri, 30 Aug 2024 18:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922FF3DBB6
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 18:48:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725042637; cv=none; b=coCnS7VV6OECDTgjtB1DsnYVTjBSERJx/LmMmi5jIJfRiMLj9oCYUki/YaKESTT6icvW2pUwPULfGFJEPOkPnW6Dtn+f8cR5mmwxhCWBb/oyGw7ffAOciIBbys/EfIbeX9PR0FK4Dcur9p3zoz1eTBpEqSBd+tc9Jw6urCiYaDM=
+	t=1725043736; cv=none; b=HkA8kDh8c1IHlmo0AsKhiFwUNKb7G/JUeFhe9pGXuzLbnkDERfaneGvnY8SMmweb9MyWoLLVmS6g4uQjmv75hYCh8ZnUCWa0JBU8Bczj5olNaW34mxjIqL0WRDwj+4NLopMbf1g2gzxqbjtYejwYcirzmhlJa+Cry5Jd5nlq7SI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725042637; c=relaxed/simple;
-	bh=fH2Jp83DT0nnZfcR5go8oS1EOcfKbfB2+QGFbM+syNg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PC+XeEy2VUSkxzzvGX0TtaecnDAvW3piC0+aQl2HicbNgx993wU3N5rIOOxaORpLQx4W3TlhnAVikBC9F+7bE+QsQ9yFLrMOHN3V30M3HjXSdTnQwam1kKskcL3oJHDqLNjrtmtsa0UdpT05dBbwlVU5nb08NMTjHrWa0WYP7mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CF+Cqugv; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UIUPtk080819;
-	Fri, 30 Aug 2024 13:30:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725042625;
-	bh=jHEa1WSAt7/ZTUf0s7cB0K91wd9S8ZH92X+c2jpZJrA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=CF+CqugvrGh6GSR/Vbimz6/+IxmKWqxEPavqnYDoLk37qyTaruajQz8e91gCBmJ20
-	 3c2nnA/ynqW4oSMDof061W4fMjgmcnEc242bsc+S+I9u8C+bNrrlyRfQZlmfM4oNKh
-	 jbiIkjDmafSJRDmBcjadA2bTTr2gAR6RQaw8g8iI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UIUPZX017362;
-	Fri, 30 Aug 2024 13:30:25 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 13:30:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 13:30:24 -0500
-Received: from [128.247.81.191] (uda0499903.dhcp.ti.com [128.247.81.191])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UIUOx5118074;
-	Fri, 30 Aug 2024 13:30:24 -0500
-Message-ID: <4c694d18-040f-4520-bce2-e56ab15f25f3@ti.com>
-Date: Fri, 30 Aug 2024 13:30:24 -0500
+	s=arc-20240116; t=1725043736; c=relaxed/simple;
+	bh=nEn0QkS7/Ic2zxK811xtJa99EQfJRizjc5CVl0W6Qes=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uK6fxIjSqv6xHBFYKzE3yCbjNWPsDUZgB5/ZyVUNQkdNUs6B1fkoOC/7pMU2Y+dZFTb4qcLMV45rGrC10NYI04XN9RAye9rALMU+k40kpREs6yBl4djE0tPxjJwdho9ogWHBCLBiOzYlf9dB84gNFNW1IhA/Rw5p6HDzzc7M52s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=YKAXFqgZ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+spee87MBqrIxvSjUtbiDAQhzt54H1xuEhae6jiT1wM=; b=YKAXFqgZNvF6CDMP8VU0jZHpF3
+	UeINTvYDUMKyg8XtcBLs/KttVpRlYeGKdbc5IclbwUjXVu3ZaPvK2o+b0Vt2GXFHHKYuN2Z33QTTy
+	0E+oWmRtzIKBpafnYPAqWaTtgETA3MWHG6O6f4BO0srbimJJ5vEOjw8ypIisE+L5oH78T+lV/sKYl
+	I8eu40x0DMU8K/sZTZvKLsFGFwLIc3Ez9VNMxVtQEu0Pgg/YaCXdVHi1zVLIxoiYIhLh3DhR0Zvge
+	EQnRXv+rp5VBjJ8M14E3Pg42LXXMFh6dp7QU9AH8k4d9htb5hOfHuM2v6X0CxeqyAtW5+7ZMNaViD
+	7yvTHQ0A==;
+Received: from i5e861921.versanet.de ([94.134.25.33] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sk6fk-0005x9-JB; Fri, 30 Aug 2024 20:48:36 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Chris Morgan <macroalpha82@gmail.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: zzc@rock-chips.com, andyshrk@163.com, jonas@kwiboo.se,
+ linux-rockchip@lists.infradead.org, Chris Morgan <macromorgan@hotmail.com>,
+ jagan@edgeble.ai, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+ conor+dt@kernel.org
+Subject: Re: [PATCH V2 0/3] Add GameForce Ace
+Date: Fri, 30 Aug 2024 20:49:59 +0200
+Message-ID: <2314970.8uLHfb51uz@diego>
+In-Reply-To: <172503553992.420479.9699991919956159507.robh@kernel.org>
+References:
+ <20240829204517.398669-1-macroalpha82@gmail.com>
+ <172503553992.420479.9699991919956159507.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: ti: Add BeagleY-AI
-To: Robert Nelson <robertcnelson@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nishanth Menon
-	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-        Andrei Aldea
-	<a-aldea@ti.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Deepak Khatri
-	<lorforlinux@beagleboard.org>,
-        Drew Fustini <drew@beagleboard.org>
-References: <20240829213929.48540-1-robertcnelson@gmail.com>
-Content-Language: en-US
-From: Jared McArthur <j-mcarthur@ti.com>
-In-Reply-To: <20240829213929.48540-1-robertcnelson@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 8/29/24 16:39, Robert Nelson wrote:
-> This board is based on ti,j722s family using the am67a variation.
->
-> https://beagley-ai.org/
-> https://openbeagle.org/beagley-ai/beagley-ai
->
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Vignesh Raghavendra <vigneshr@ti.com>
-> CC: Tero Kristo <kristo@kernel.org>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Andrew Davis <afd@ti.com>
-> CC: Jared McArthur <j-mcarthur@ti.com>
-> CC: Andrei Aldea <a-aldea@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> CC: Drew Fustini <drew@beagleboard.org>
+Am Freitag, 30. August 2024, 18:33:50 CEST schrieb Rob Herring (Arm):
+> 
+> On Thu, 29 Aug 2024 15:45:14 -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add support for the GameForce Ace. The GameForce Ace is an RK3588s
+> > based gaming device with a 1080p display, touchscreen, hall effect
+> > joysticks and triggers, 128GB of eMMC, 8GB or 12GB of RAM, WiFi 5,
+> > and support for a 2242 NVME.
+> > 
+> > Changes since V1:
+> >  - Update eMMC changes to note proper authorship.
+> >  - Removed cw2015 changes for dual cell configuration. For the moment
+> >    it's just cosmetic (aside from voltage_now reading incorrectly, no
+> >    other issues were observed).
+> >  - Removed USB bindings because vbus regulator isn't ready yet.
+> > 
+> > Alex Zhao (1):
+> >   arm64: dts: rockchip: rk3588s fix sdio pins to pull up
+> > 
+> > Chris Morgan (2):
+> >   dt-bindings: arm: rockchip: Add GameForce Ace
+> >   arm64: dts: rockchip: Add GameForce Ace
+> > 
+> >  .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+> >  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+> >  .../dts/rockchip/rk3588-base-pinctrl.dtsi     |   10 +-
+> >  .../dts/rockchip/rk3588s-gameforce-ace.dts    | 1237 +++++++++++++++++
+> >  4 files changed, 1248 insertions(+), 5 deletions(-)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
+> > 
+> > --
+> > 2.34.1
+> > 
+> > 
+> > 
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y rockchip/rk3588s-gameforce-ace.dtb' for 20240829204517.398669-1-macroalpha82@gmail.com:
+> 
+> arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: video-codec@fdb50000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['rockchip,rk3588-vpu121', 'rockchip,rk3568-vpu'] is too long
+> 	'rockchip,rk3588-vpu121' is not one of ['rockchip,rk3036-vpu', 'rockchip,rk3066-vpu', 'rockchip,rk3288-vpu', 'rockchip,rk3328-vpu', 'rockchip,rk3399-vpu', 'rockchip,px30-vpu', 'rockchip,rk3568-vpu', 'rockchip,rk3588-av1-vpu']
+> 	'rockchip,rk3188-vpu' was expected
+> 	'rockchip,rk3228-vpu' was expected
+> 	'rockchip,rk3066-vpu' was expected
+> 	'rockchip,rk3399-vpu' was expected
+> 	from schema $id: http://devicetree.org/schemas/media/rockchip-vpu.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: /video-codec@fdb50000: failed to match any schema with compatible: ['rockchip,rk3588-vpu121', 'rockchip,rk3568-vpu']
+> arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: /video-codec@fdba0000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
+> arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: /video-codec@fdba4000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
+> arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: /video-codec@fdba8000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
+> arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dtb: /video-codec@fdbac000: failed to match any schema with compatible: ['rockchip,rk3588-vepu121']
 
-Reviewed-by: Jared McArthur <j-mcarthur@ti.com>
--- 
-Best,
-Jared McArthur
+That is not Chris' fault ;-) .
+The relevant vpu binding patches have made it to the media-tree [0], but
+not linux-next yet it seems.
+
+So this should sort itself shortly I hope.
+
+[0]
+https://git.linuxtv.org/media_stage.git/commit/?id=1e490a1ea64396b98db8c233360093e264b0c10b
+for ['rockchip,rk3588-vpu121', 'rockchip,rk3568-vpu']
+
+https://git.linuxtv.org/media_stage.git/commit/?id=b92346d2dba0048bfce7114225250bef73f83ad2
+for ['rockchip,rk3588-vepu121']
+
+
 
 
