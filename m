@@ -1,143 +1,142 @@
-Return-Path: <devicetree+bounces-98537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A1D96678F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:04:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E837966795
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:07:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7ECF1C22CCB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:04:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 482701F24D71
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6521B86D2;
-	Fri, 30 Aug 2024 17:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2CBE1B3B2D;
+	Fri, 30 Aug 2024 17:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOGqfcoH"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="eUgTB7/4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C4E64B5AE
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 17:04:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725037446; cv=none; b=bptzkWJEWf0KTldNjn5ET3jDxsz2rHWpf4GmyMDXD0tTENYV8YHWJkvmg7bgRLvD6+kWn7XCwRbB++ThlP328tiehewW9cqJJURZmo4w5s5fYXHzun+YqarDGB5WdLQ0aycOiJI/NjjJ+lTqsSa5k4DbmjX0+qjpoQG6tPIEhOE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725037446; c=relaxed/simple;
-	bh=lAx0zO96bneoXnGjvwWk6B5DMCeWpvCV9qGbbiX3WE4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yp2m5KqBPysFa65kqMQIo38zD+OkXbLyb46Zm1m56qQ5Q8/1iNXzqvHmTrjNiHj5O1kl4ngsQqAol/0kiLjsWBmGSbPmSajHUNICXOR74S3XxIis7m3TloZJ/6cMX7MCvwAY5spGFNW/C1jT7uiWFDNFi3qc/yV3w5WoR41b06o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOGqfcoH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9FC7C4CEC2;
-	Fri, 30 Aug 2024 17:04:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725037446;
-	bh=lAx0zO96bneoXnGjvwWk6B5DMCeWpvCV9qGbbiX3WE4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZOGqfcoHQt6xDyIefu7cm07ioT8p59pu0ECyQCiwHoMiUz3p9VfdGTwIBfyEJdgw5
-	 9UG44C8aHpYm6FMt5aYjuzTI3FrN4sumCojgIABTsQivYfUb58jgwrdfeq57iwUXak
-	 WGD3VolT18oAj4cT4I+EhcNmYrY6EBl2iKGAuOBVX5Yol+SUuxRrh2wjdm5bhFUCe7
-	 ZX+AH1TbNaXm0SV5YprXVwDfjZKqcRcFtSXVDCeen9eX7izpZqYtrjvf9sqYaHm5be
-	 rd1Sc9ScD6rhGfIbB8x0wpfnpfu6tji7gaJLxSY/mWfrBlbhJ2XT8ipnL+ESUDBGOw
-	 +FbeZ3S3Bbm+A==
-Date: Fri, 30 Aug 2024 12:04:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: Zhang Zekun <zhangzekun11@huawei.com>
-Cc: saravanak@google.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] of: device: Do some clean up with use of __free()
-Message-ID: <20240830170404.GA418406-robh@kernel.org>
-References: <20240830020626.115933-1-zhangzekun11@huawei.com>
- <20240830020626.115933-2-zhangzekun11@huawei.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CD867A0D;
+	Fri, 30 Aug 2024 17:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725037624; cv=pass; b=TPTl812a3t7GfB1/5od0P+1pfIlZTaw4N4C3zWLewQi6RoFCbJ/zl1bYyDBKQC8pV1/tZBbwjTiJWKoXvXCDfaUWNrAcRRfL53YRyh5R7BpN8vDmbFbssPcGrhLiRdvGSCfjzSldTi07jQXFPlg31VwVe5F+Er63C/5r//RbfBQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725037624; c=relaxed/simple;
+	bh=/Zr4THWkvyzAq3Ws9q1ZhCjeQx91hbNDTqTfFqRuqdg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rNKfBzXB//VDnT2pbLzQQ4oBZU0O3QH31n2/Z9JnkPtkN9nNXavW5DZMTmqwozImnVJzD69jejiFxCXqF4ZNYqpFqxq4135Z6sISYtfOPwYOjHTFCIjLcAg+py3XFzJqKZrZwWfWqlVqn5XmSJur/0QmvA2EyMe6iatVDH/Z1zw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=eUgTB7/4; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1725037583; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ngV+QYPPC8w8D6ME0lzSoqJLcXzhr8+rM3pIQnklsjTFqrR2Sbws/ZcdVmyt/JSh5NU9VeoMzWqkKzdZUTU81Gogk4fUu64s7/vEh7KazhA9zZ6KAPXdiTbu98QQlOe8ZMM5sJYW0wZGx+o4PNAO4dEs858OpzA0gNjRiI8gRDw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1725037583; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=KnpKeemAO2VMc6FHLD9U8mKtZUQ/q0cWnYTv+8kFLZ0=; 
+	b=NvPaCsIjVPL8C/FDpDW6qF8B8M+Rg+P52Zst2GA1uMV5dFzxsvAJG9riFUkwSmO4IVXvmByE+rbvc9rpQYnGXH13+jljg8JHX9/OgYGl15LSS4jozmLCD4ScJ4lKdTfmP9NFEkmB6q4XLx+56OHBWPBgiqTyH5kslLaIAw0aKt4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725037583;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=KnpKeemAO2VMc6FHLD9U8mKtZUQ/q0cWnYTv+8kFLZ0=;
+	b=eUgTB7/4+R6rELo4C367GkmtuSW8hZ8Ii2ubfeFkdIvBmQ3cq4f7yiBGOu5T8E1r
+	mLnrMyQPArepmiWwoCsrdzgtZg7UIjUMMFoI06LCfzP+hnQmFxqBKExkqcWSDpyqnR9
+	2ngxm30h68NeSIYva+jjP4cKmnvHy2WKjihePMSs=
+Received: by mx.zohomail.com with SMTPS id 1725037581937540.2732611536068;
+	Fri, 30 Aug 2024 10:06:21 -0700 (PDT)
+Message-ID: <68e78629-5a2c-433b-8c83-50ffced04268@collabora.com>
+Date: Fri, 30 Aug 2024 20:06:14 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240830020626.115933-2-zhangzekun11@huawei.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5? 0/6] Tweaked basic Synopsys DW HDMI QP TX driver for
+ Rockchip RK3588
+To: Shimrra Shai <shimrrashai@gmail.com>, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ markyao0591@gmail.com, s.hauer@pengutronix.de
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, aarnoud@me.com, ldearquer@gmail.com,
+ algea.cao@rock-chips.com
+References: <20240830152132.8894-1-shimrrashai@gmail.com>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240830152132.8894-1-shimrrashai@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Fri, Aug 30, 2024 at 10:06:24AM +0800, Zhang Zekun wrote:
-> __free() provides a scoped of_node_put() functionality to put the
-> device_node automatically, and we don't need to call of_node_put()
-> directly. Let's simplify the code a bit with the use of __free().
+Hi Shimrra,
+
+On 8/30/24 6:21 PM, Shimrra Shai wrote:
+> Hi,
 > 
-> Signed-off-by: Zhang Zekun <zhangzekun11@huawei.com>
-> ---
->  drivers/of/device.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
+> I saw Cristian Ciocaltea's proposed basic driver for the Synopsys DW
+> HDMI QP transmit (TX) facility on the Rockchip RK3588 and noticed that
+> it had seen some critique and thought I'd help it along a little by
+> making some of the changes that others had suggested in the discussion
+> thread. This package is mostly like his(?) original but features the
+> following changes suggested by Conor Dooley and Heiko Stuebner:
+
+Please stop doing this!  
+
+I appreciate your intention to help, but this is not the proper way of
+doing it.  This is a work-in-progress series and you should have asked
+before taking over.  Please do not interfere with other people's work
+without having a preliminary agreement with the author(s).
+
+Additionally, before submitting any other patches, you should get 
+familiar with the process - see [1] for a starting point.
+
+>  * Documentation for the device tree bindings specifies the various
+>    clocks explicitly in both the general (synopsys,dw-hdmi-qp.yaml)
+>    and Rockchip-specific (rockchip,rk3588-dw-hdmi-qp.yaml) files.
+
+Why? Did you read [2]?
+
+>  * Changed the compatibles for the RK3588 VO0 and VO1 GRFs in the
+>    Device Trees (rk3588-base.dtsi) to reflect their different natures.
+
+This has been already handled - see [3].
+
+> and some of my own changes:
 > 
-> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> index edf3be197265..7a71ef2aa16e 100644
-> --- a/drivers/of/device.c
-> +++ b/drivers/of/device.c
-> @@ -35,7 +35,7 @@ EXPORT_SYMBOL(of_match_device);
->  static void
->  of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
->  {
-> -	struct device_node *node, *of_node = dev->of_node;
-> +	struct device_node *of_node = dev->of_node;
->  	int count, i;
->  
->  	if (!IS_ENABLED(CONFIG_DMA_RESTRICTED_POOL))
-> @@ -54,17 +54,16 @@ of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
->  	}
->  
->  	for (i = 0; i < count; i++) {
-> -		node = of_parse_phandle(of_node, "memory-region", i);
-> +		struct device_node *node __free(device_node) =
-> +			of_parse_phandle(of_node, "memory-region", i);
->  		/*
->  		 * There might be multiple memory regions, but only one
->  		 * restricted-dma-pool region is allowed.
->  		 */
->  		if (of_device_is_compatible(node, "restricted-dma-pool") &&
->  		    of_device_is_available(node)) {
-> -			of_node_put(node);
->  			break;
->  		}
-> -		of_node_put(node);
->  	}
+>  * Tweaked the driver code slightly - mostly organizational, but also
+>    added a mutex around device access in the dw_hdmi_qp_... method
+>    that was present in the downstream BSP driver which might have been
+>    necessary to prevent thread bugs.
+>  * Improved grammar & punctuation in some of the English on the
+>    Kconfigs and output messages.
+> 
+> Let me know how you like it. I hope this is suitable enough for kernel
+> integration as I'd really like to be able to get some of the newest
+> kernels having video bringup out of the box. 
 
-Actually, I'd re-write this function like this (untested):
+That's definitely not suitable as you made lots of other mistakes while
+preparing the patches, i.e. preserving authorship, missing commit
+descriptions, SoB tags, etc.
 
-static void
-of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
-{
-	struct device_node *of_node = dev->of_node;
-	struct of_phandle_iterator it;
-	int rc, match = -1, i = 0;
+Regards,
+Cristian
 
-	if (!IS_ENABLED(CONFIG_DMA_RESTRICTED_POOL))
-		return;
+[1] https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+[2] https://lore.kernel.org/lkml/038073d0-d4b9-4938-9a51-ea2aeb4530f6@collabora.com/
+[3] https://lore.kernel.org/lkml/20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com/
 
-	/*
-	 * If dev->of_node doesn't exist or doesn't contain memory-region, try
-	 * the OF node having DMA configuration.
-	 */
-	if (!of_property_present(of_node, "memory-region"))
-		of_node = np;
-
-	of_for_each_phandle(&it, of_node, rc, "memory-region", NULL, 0) {
-		/*
-		 * There might be multiple memory regions, but only one
-		 * restricted-dma-pool region is allowed.
-		 */
-		if ((match < 0) && of_device_is_compatible(it.node, "restricted-dma-pool") &&
-		    of_device_is_available(it.node)) {
-			match = i;
-			if (of_reserved_mem_device_init_by_idx(dev, of_node, i))
-				dev_warn(dev, "failed to initialise \"restricted-dma-pool\" memory node\n");
-		}
-		i++;
-	}
-}
-
-
-of_parse_phandle() is implemented using of_for_each_phandle(), so every 
-call to of_parse_phandle() is iterating i times.
-
-Rob
 
