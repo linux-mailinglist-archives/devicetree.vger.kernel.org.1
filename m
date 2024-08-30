@@ -1,117 +1,140 @@
-Return-Path: <devicetree+bounces-98460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C749966382
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:57:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C037966387
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:57:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8E60281B19
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:57:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6D891F24EB2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:57:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779DA1B1D4B;
-	Fri, 30 Aug 2024 13:57:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A14A1B14F4;
+	Fri, 30 Aug 2024 13:57:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bLv031er"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ODIyyxfR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE1C1B1D43;
-	Fri, 30 Aug 2024 13:57:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDB4179652;
+	Fri, 30 Aug 2024 13:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725026231; cv=none; b=rGMXr20O5EevCeKZK4OqC1qb6Uu9vGPXdEbl16ekwNrguvIlGQE2vN8TSaOL4PEOi8cKzNln0OX8NtIIXPlKKU/kBO6VEXF/VbzkaRVd6lPfoNI5n0ky8nB+epYQRcBcbOvb0AlqGOYGeMBQDWA90AliTPjZ+zaFMyCxD4NtDUc=
+	t=1725026251; cv=none; b=jXsdOfjpn1FYQdbTPpRNB607MJzSadBCPMQmTSZ6utDNCK99rJAPgryrBuYNo2CHB6wzKtseif4KYR4aCTHT1mcEcdtN1NTRgMh4LynMQiwPQcqugVIwMOnZOeu44kU0OSMEO1/RGZA788U/tHmbjQkPPExxBrRWK+KzDCo3AP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725026231; c=relaxed/simple;
-	bh=edqn2YVzn1eD9OEuKsVzDSWt1beqz0UsKRVfdSWSe3s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ta+gG2XymxqfhszuJXaAtSuOQWcXKBqZn4WILUtJbGwY8MAEoLGFWcII2JVh/boEUaNqPQgKbj34gUB+X8nLLBmxwxEjHXeRjTfbmvMBJstHaX85NRN0O9O/kZSxtW5VtPd7Mm9Xt3Nosc8nqiKB9u5e7IQqREe0PclsoA4PNgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bLv031er; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BF8AC4CEC7;
-	Fri, 30 Aug 2024 13:57:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725026229;
-	bh=edqn2YVzn1eD9OEuKsVzDSWt1beqz0UsKRVfdSWSe3s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bLv031erXIxRE/HxVebTvxSqOWZAMgremWWA53VD2rzNWnVjzG/Z4N/T0i4o1P5Zn
-	 wcIpPljO4ITupUeNThttP3KxpOAx4xtkp5DHsDFe3qN9UeNh0A9qygbduAmlZfMrtL
-	 X8uXi/ZQ9a32EV769QQ8Sr0v0U74/gFSVPap6LCfSbdkqz4uZEXWIKcTfEkC5cdBge
-	 Fk3ARsKAksud3X4PSZeiW9ItanxCmZV1WjBtnNM0BMHvTFtLRAXuwCXoEhFS/sVy0E
-	 xV+uXAQc/gjMevVbC71lbgHhPy9AoAmpsaE7VI/lwXtHBbaGsqfJgm8gCXQgsJR5sP
-	 P9NkvmnpJV9PQ==
-Date: Fri, 30 Aug 2024 14:57:06 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alexander Shiyan <eagle.alexander923@gmail.com>
-Cc: linux-media@vger.kernel.org,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] media: dt-bindings: i2c: ds90ub960: Add DS90UB954
- chip to DS90UB960 bindings
-Message-ID: <20240830-endanger-unroll-2c74e9254a3e@spud>
-References: <20240830070117.9534-1-eagle.alexander923@gmail.com>
+	s=arc-20240116; t=1725026251; c=relaxed/simple;
+	bh=zbsxPfwaGioyk3vzNd7TZ+fws8QWWmM/wVKo78ysYUA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CuuzuiH/DHfJ/f0kbHZ0ge8Y/XIP5B3lo9oVWthakOLeiuQHP+pxT5eyEbJhAlxTQCTSVA9p5iliVYH+D8U3jHSQ+sBKujOeHSWLrWEdSFTnYt4M8/vPY/cU0y8xQIseJ25t41ROO64jetLNt0cR8AgnYr1SVBnUNBCT7RzmTXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ODIyyxfR; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UDvNB7017791;
+	Fri, 30 Aug 2024 08:57:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725026243;
+	bh=mNEeyjy6cbgjkLcIEQVWG1qzIGE7ZhsXUJX1Fa/WPKs=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=ODIyyxfR7uX7Dfan2+bQNRmiDnbmqPOxfe4WIuGzSKUA141jJFHHQh2sn/8OhOFhC
+	 bxse8Fr89RXhj7oSB5GA5q1pDLAi98sLOSVtRRYByDmdz0WzbzpGFixfa2zkn0BS9e
+	 Op/czvKxwfIZT96IdzisBepOSXuJfu/HSpBW50I0=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UDvMgS113506;
+	Fri, 30 Aug 2024 08:57:22 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 08:57:22 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 08:57:22 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UDvIYT083496;
+	Fri, 30 Aug 2024 08:57:18 -0500
+Message-ID: <bb36b4e1-c8c3-45aa-a2d2-056ef4a6e448@ti.com>
+Date: Fri, 30 Aug 2024 19:27:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fl8VduBGvLOpE37P"
-Content-Disposition: inline
-In-Reply-To: <20240830070117.9534-1-eagle.alexander923@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: ti: k3-j722s-evm: Enable
+ Inter-Processor Communication
+To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <j-choudhary@ti.com>, <vaishnav.a@ti.com>, <afd@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
+References: <20240829060932.3441295-1-b-padhi@ti.com>
+ <20240829060932.3441295-3-b-padhi@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240829060932.3441295-3-b-padhi@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
---fl8VduBGvLOpE37P
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 8/29/2024 11:39 AM, Beleswar Padhi wrote:
+> From: Apurva Nandan <a-nandan@ti.com>
+>
+> The K3 J722S-EVM platform is based on the J722S SoC which has one
+> single-core Arm Cortex-R5F processor in each of the WAKEUP, MCU and MAIN
+> voltage domain, and two C71x DSP subsystems in MAIN voltage domain.
+>
+> The Inter-Processor communication between the A72 cores and these R5F
 
-On Fri, Aug 30, 2024 at 10:01:17AM +0300, Alexander Shiyan wrote:
-> The ds90ub960 driver can now be used for the DS90UB954 chip as it has
-> a similar register set and configuration.
-> Let's add an additional compatibility line to the bindings.
->=20
-> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
+Should be A53 core not A72
 
-FYI, your threading is broken on this series, patch 1 & 2 are linked,
-but the binding patch is not.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> and DSP remote cores is achieved through shared memory and Mailboxes.
+> Thus, add the memory carveouts and enable the mailbox clusters required
+> for communication.
+>
+> Also, The remoteproc firmware like of R5F and DSPs in the MAIN voltage
+> domain use timers. Therefore, change the status of the timer nodes to
+> "reserved" to avoid any clash during booting of remotecores. Usage is
+> described as below:
+>
+> 	+===================+=============+
+> 	|  Remoteproc Node  | Timer Node  |
+> 	+===================+=============+
+> 	| main_r5fss0_core0 | main_timer0 |
+> 	+-------------------+-------------+
+> 	| c7x_0             | main_timer1 |
+> 	+-------------------+-------------+
+> 	| c7x_1             | main_timer2 |
+> 	+-------------------+-------------+
+>
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> [ Enabled mailbox instances and Reserved timer nodes ]
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> [..]
+>   
+> +&mailbox0_cluster0 {
+> +	status = "okay";
+> +
+> +	mbox_r5_0: mbox-r5-0 {
 
-> ---
->  Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yam=
-l b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> index 0b71e6f911a8..86d43d949dd3 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> @@ -19,6 +19,7 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - ti,ds90ub954-q1
->        - ti,ds90ub960-q1
->        - ti,ds90ub9702-q1
-> =20
-> --=20
-> 2.39.1
->=20
->=20
+Could you choose name like mbox_wkup_r5_0 like other name of mbox
 
---fl8VduBGvLOpE37P
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHPsgAKCRB4tDGHoIJi
-0gjXAQC81i+tJvhqiBWFxoN+PsSC1GWxdAt0u5N4Kmy9jBZ1ZgD/cGFOAuuofZqu
-QDVuhjuHiFQK51jDPDlE+uApJwaO7QA=
-=V9Uq
------END PGP SIGNATURE-----
-
---fl8VduBGvLOpE37P--
+> +		ti,mbox-rx = <0 0 0>;
+> +		ti,mbox-tx = <1 0 0>;
+> +	};
+> +};
+> +
+> +&mailbox0_cluster1 {
+> +	status = "okay";
+> +
+> +	mbox_mcu_r5_0: mbox-mcu-r5-0 {
+> +		ti,mbox-rx = <0 0 0>;
+> +		ti,mbox-tx = <1 0 0>;
+> [..]
 
