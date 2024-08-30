@@ -1,127 +1,107 @@
-Return-Path: <devicetree+bounces-98287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A86F9659EA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:17:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E6519659F0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:17:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB0FF1C222CA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:17:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 813F51C213C5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FA016C87E;
-	Fri, 30 Aug 2024 08:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EF716DEC3;
+	Fri, 30 Aug 2024 08:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCXsHsJq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A529315C143;
-	Fri, 30 Aug 2024 08:16:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F3C1531CD;
+	Fri, 30 Aug 2024 08:16:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725005768; cv=none; b=UM7tgenR8W+KylbpRuCsZUzzXzVpR6koKw08/U/WVlYeo32NEIjfZwSd6WfBLoKHFMXYgAWmHNF3EXGaDZBFTt2tAMRpWGPvVlqe3RGVqIW2VB7DDXxiXBKr+Xt9Zo8MVweUP4jid33zknwSNogM213GeEbTPA37bQIpZiEiUIk=
+	t=1725005800; cv=none; b=eB1plt6f01JkHu1eWjk9RpP1GbPJWSwcjUXdJmkRfkJdh/KLu1NcaZP6sx5yOWSpTSSn8yErkHWtke9N36quFlmaxdUXYIXDnwRQGFI9qbbxXeBvX7g6Sr3izr0S3kZFUc4mewok8QHTcxRP34BenCzLP8nLNFuv6bOHDCBZulE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725005768; c=relaxed/simple;
-	bh=Usj4NDMMSuTQv4/ZNF1nZLx1UwIIHViFNSe98IS9hVA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Q+lhpzPA599q6z1sybijYNISy5a7WSKJGlgNqh/BfbPBQ/2wjNRAmlInGzh+56ukvPp0ApyAK4keybaDGUZ0y4Cxb5yPhT+l/QVaxrLTlGuWNBHwy1H2VgzpFg1zTXTotQSEkVsKyvLJDnC1YSoVUnjGhMbFjZz95wLPOkkzeRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e04196b7603so1553110276.0;
-        Fri, 30 Aug 2024 01:16:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725005765; x=1725610565;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p4Ql5/in0ZIVOL75Q1qx4NaZGeDqu/Tw36Q8q0H0JF8=;
-        b=lXB6z/77QCyU/MXg9U4xW5mqizuw39XhOfwvF7tY7akTctsPjuzLdpY3jSoEJMYZ9T
-         0yDzgJOWRScH9mhanS/qlaPONG1d3YjQPGW2LzOQAPKRKDYlbfJMxrgp8YlmYBD7Tw0x
-         jqp4eVKCuCK031LLZCm9eDv910/LvKLO27FcFH/SS1W1X+2qRA5Eup0PoY8IwEoheojv
-         BUXkaEZkWv216lfA0AbCQpEM4fBqhlAygxR9hnwIAdUGylwRLkM2G1MPZZq6j5t8glpf
-         Wadzy7Qe+08j06seUvELRCB6clFHULi0Ri1Y0bjfn+VYDQksLLg/cyrZSOsp2UuX2n+0
-         HfwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUh68GRaLgzVjIcBdKT3Db1XSi7Tl8YijQdRuPzXHTZfHt6SoDC+YgMjaBbUY8C9TPXrRfu0We38A5T@vger.kernel.org, AJvYcCVwbFUi5mD3Bcro5We0FiBHaB+2MotDvHnoui3QulRPp9vhzw//1dNyV8QZLwa/EQEIngKvxs4tCuv5qyNEYlE5hxM=@vger.kernel.org, AJvYcCX5ERNJosECQonBjLgG17qsjUPw+xThmH3sp1yYv214VrVnQVDzdB3UxYlEUyw9TMyuyukV+7hC1kC4fyo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKzvqYzg901F9CxPSJdqInWpbGWgpe6tGkTJe9YeO3UKXd0Zyz
-	pLjVUZyMeZmuPLEOFS8NtVgl0VI22JyKi0SMWBt1akBDVogo+Cuz4V+eC2Gv
-X-Google-Smtp-Source: AGHT+IEdVjeEYAgvU+Ldb5lS/pERLG5CZqOULCrzmz+ayCalrbmGO5/GRyNCtPDvGxxp5JgaqOKf4Q==
-X-Received: by 2002:a05:6902:10c7:b0:e11:7578:ffbb with SMTP id 3f1490d57ef6-e1a7a1a7dcdmr1489029276.36.1725005764753;
-        Fri, 30 Aug 2024 01:16:04 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e1a6266ec15sm553172276.20.2024.08.30.01.16.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Aug 2024 01:16:04 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6b8f13f28fbso13748957b3.1;
-        Fri, 30 Aug 2024 01:16:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVhsCzqvBzq5b2XjzYNgaSC7WegU4GeIb16FqsI1HePMZHPMDk/ZVrmZIC6Nsn/Psy/t5rMOJSrJEDeVoY=@vger.kernel.org, AJvYcCVr/DJ5ec93ya5g30FViaACqDNJdeO6eQuK1/Q+tdjnAVkoUc98uHVI1q8XGnwFrUSDoPqolgg5zYuADMZCvmJ/8Vk=@vger.kernel.org, AJvYcCVwXJQ0oy8ohzYfuJ41QGj8MatRVcc2KF5lvoDsNd8lYG1UxOknSMSiEaLKqCIIHyUL7rmmuoUw2jkR@vger.kernel.org
-X-Received: by 2002:a05:690c:6384:b0:664:4b9c:3de with SMTP id
- 00721157ae682-6d40de67fbdmr12609087b3.13.1725005764298; Fri, 30 Aug 2024
- 01:16:04 -0700 (PDT)
+	s=arc-20240116; t=1725005800; c=relaxed/simple;
+	bh=MG9+FSOwpHPPAIZp15fzWWgzZZG7+ro0BmYE/pM5Kvc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pv6MDdRmQ72kOg+C/tVbsEkvwCirlm7bDBa2DCB2VihmXsEPeH49yLAoOzE9UodoFa/D+FXUpIBXR0TChjCAqo/OAQdwkPnS01BlLwqFfzVfqfx+GsFR9f9OHePtz/Vc5o/qaEjWjn778KpJg/+lsWHAWO5YvmKVGxCHMGxjgmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCXsHsJq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CC71C4CED3;
+	Fri, 30 Aug 2024 08:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725005799;
+	bh=MG9+FSOwpHPPAIZp15fzWWgzZZG7+ro0BmYE/pM5Kvc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LCXsHsJqND33H+cT8yoYbcXxjUARgjBG94mxukWpolQ4HzYDeBtotYMJekZe/Tf3S
+	 zW3UE61X5FtKEtq/LAVYgGyT6da8F1mA6swt5npu5+WLPK4zNO4+IuSMcGjuQrSYhJ
+	 c9OBv1EP/5g3jvJpy0RumX0WOQu+RK6n1DnjeMeFkjJdYpkxANxiAeQ1LkEIOk9zdk
+	 VUsSEVDCYItvgqhRUD9SHd5Rx2BV054E2rLma2k0R6q8qNiwSBYk7+w+NCm5r7ShYP
+	 kj4wsQ3HgOIkSN0tDkhuPx1a3TA9U7BpI0H6iV+TQcqxXmOBq+lXFwurlHtV36NDgk
+	 RJRwOJwp/acNQ==
+Date: Fri, 30 Aug 2024 10:16:36 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Angelo Dureghello <adureghello@baylibre.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dlechner@baylibre.com
+Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
+ property
+Message-ID: <lets4c46zg4rzfqrjakeby3oa3zhxh4nyfcg4vxhfnufcpaxak@xmzdwb47xhx5>
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+ <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
+ <20240829-stopwatch-morality-a933abb4d688@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240829165051.2498867-1-niklas.soderlund+renesas@ragnatech.se> <20240829165051.2498867-5-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240829165051.2498867-5-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 30 Aug 2024 10:15:52 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUGzK9EMneHzTJXPQiYRSpnTgP5A9_ZMeSc353ZwR4VKw@mail.gmail.com>
-Message-ID: <CAMuHMdUGzK9EMneHzTJXPQiYRSpnTgP5A9_ZMeSc353ZwR4VKw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] media: staging: max96712: Document the DEBUG_EXTRA register
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Sakari Ailus <sakari.ailus@iki.fi>, 
-	Julien Massot <julien.massot@collabora.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-staging@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240829-stopwatch-morality-a933abb4d688@spud>
 
-Hi Niklas,
+On Thu, Aug 29, 2024 at 04:46:59PM +0100, Conor Dooley wrote:
+> On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello wrote:
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Add bus property.
+> 
+> RFC it may be, but you do need to explain what this bus-type actually
+> describes for commenting on the suitability of the method to be
+> meaningful.
+> 
+> > 
+> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > ---
+> >  Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > index a55e9bfc66d7..a7ce72e1cd81 100644
+> > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > @@ -38,6 +38,15 @@ properties:
+> >    clocks:
+> >      maxItems: 1
+> 
+> You mentioned about new compatible strings, does the one currently
+> listed in this binding support both bus types?
+> 
+> Making the bus type decision based on compatible only really makes sense
+> if they're different versions of the IP, but not if they're different
+> configuration options for a given version.
+> 
 
-On Thu, Aug 29, 2024 at 6:52=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> The DEBUG_EXTRA register is not part of soon to be added MAX96724
-> device. To make it easier to understand the differences when reading the
-> code prepare for the addition by creating named defines for the
-> register.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
-> ---
-> * Changes since v2
-> - New in v3.
+Yeah, in general the parent defines the bus type.
 
-Thanks for your patch!
+Best regards,
+Krzysztof
 
-> --- a/drivers/staging/media/max96712/max96712.c
-> +++ b/drivers/staging/media/max96712/max96712.c
-> @@ -16,6 +16,10 @@
->  #include <media/v4l2-fwnode.h>
->  #include <media/v4l2-subdev.h>
->
-> +#define DEBUG_EXTRA_REG                        0x09
-> +#define DEBUG_EXTRE_PCLK_25MHZ         0x00
-> +#define DEBUG_EXTRE_PCLK_75MHZ         0x01
-
-s/EXTRE/EXTRA/
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
