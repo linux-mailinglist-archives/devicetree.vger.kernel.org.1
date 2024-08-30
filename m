@@ -1,58 +1,65 @@
-Return-Path: <devicetree+bounces-98538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E837966795
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:07:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B2589667BF
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 482701F24D71
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:07:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FCDD1C20ED4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2CBE1B3B2D;
-	Fri, 30 Aug 2024 17:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C931BAEE3;
+	Fri, 30 Aug 2024 17:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="eUgTB7/4"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zi9qqszB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CD867A0D;
-	Fri, 30 Aug 2024 17:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725037624; cv=pass; b=TPTl812a3t7GfB1/5od0P+1pfIlZTaw4N4C3zWLewQi6RoFCbJ/zl1bYyDBKQC8pV1/tZBbwjTiJWKoXvXCDfaUWNrAcRRfL53YRyh5R7BpN8vDmbFbssPcGrhLiRdvGSCfjzSldTi07jQXFPlg31VwVe5F+Er63C/5r//RbfBQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725037624; c=relaxed/simple;
-	bh=/Zr4THWkvyzAq3Ws9q1ZhCjeQx91hbNDTqTfFqRuqdg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rNKfBzXB//VDnT2pbLzQQ4oBZU0O3QH31n2/Z9JnkPtkN9nNXavW5DZMTmqwozImnVJzD69jejiFxCXqF4ZNYqpFqxq4135Z6sISYtfOPwYOjHTFCIjLcAg+py3XFzJqKZrZwWfWqlVqn5XmSJur/0QmvA2EyMe6iatVDH/Z1zw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=eUgTB7/4; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1725037583; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ngV+QYPPC8w8D6ME0lzSoqJLcXzhr8+rM3pIQnklsjTFqrR2Sbws/ZcdVmyt/JSh5NU9VeoMzWqkKzdZUTU81Gogk4fUu64s7/vEh7KazhA9zZ6KAPXdiTbu98QQlOe8ZMM5sJYW0wZGx+o4PNAO4dEs858OpzA0gNjRiI8gRDw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1725037583; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=KnpKeemAO2VMc6FHLD9U8mKtZUQ/q0cWnYTv+8kFLZ0=; 
-	b=NvPaCsIjVPL8C/FDpDW6qF8B8M+Rg+P52Zst2GA1uMV5dFzxsvAJG9riFUkwSmO4IVXvmByE+rbvc9rpQYnGXH13+jljg8JHX9/OgYGl15LSS4jozmLCD4ScJ4lKdTfmP9NFEkmB6q4XLx+56OHBWPBgiqTyH5kslLaIAw0aKt4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
-	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725037583;
-	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=KnpKeemAO2VMc6FHLD9U8mKtZUQ/q0cWnYTv+8kFLZ0=;
-	b=eUgTB7/4+R6rELo4C367GkmtuSW8hZ8Ii2ubfeFkdIvBmQ3cq4f7yiBGOu5T8E1r
-	mLnrMyQPArepmiWwoCsrdzgtZg7UIjUMMFoI06LCfzP+hnQmFxqBKExkqcWSDpyqnR9
-	2ngxm30h68NeSIYva+jjP4cKmnvHy2WKjihePMSs=
-Received: by mx.zohomail.com with SMTPS id 1725037581937540.2732611536068;
-	Fri, 30 Aug 2024 10:06:21 -0700 (PDT)
-Message-ID: <68e78629-5a2c-433b-8c83-50ffced04268@collabora.com>
-Date: Fri, 30 Aug 2024 20:06:14 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B634B1BAEFB;
+	Fri, 30 Aug 2024 17:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725038062; cv=none; b=IoNOt3HE9AAiqZYavALREe8BLeIg7yL8Zvh0B2rfMhoUcNl9hNU4OBhRs4EiCXQ+5Zmx5c5Vhks0PfB/7e0pxKEfJqDaOLfsWw4eB+ZlGslNCKAc5sK9ku0/cVfutJ/Rku2bqhz3NI7OCUZGqFC0nuxaFIenGdJIMLkz9V0VIhI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725038062; c=relaxed/simple;
+	bh=bNov/hvird6GkWne9y1j1TAje8MHmHRpOmZDPjjjEWc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tPMgqTFtX02sqQKbZ6SsIwpqfFjXGBwCnPtHCJ89LXHohvfXhko1fRrBb7k3E7eQ/N85RIbt/cKL8cu8kXYdSdCPybqUqphQu79irvHzv4qcDNyAb7HvAucxeyRVQbc91OWNHsAygG2XkOE/13B2ix4IllgNm3KKFIxN9RzkVMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=zi9qqszB; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UCJ7gX000352;
+	Fri, 30 Aug 2024 19:14:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	dn5dQsELpWmxinQFESjPspMgz2jixe1Aiq8SsjC0ziM=; b=zi9qqszBsWYtNPTZ
+	U/IE9FEOg0WOPHlBwrvHMs5DlYcwoeqdoIGi200KGxMTNjL2W3CBBq2hFAEyyk8R
+	eR3kdONLI3+rrigKLxLTAkbXm1bV3MDZ3FRd/4ZEB+5FAXuLB2GMNaOL+b1y3aUk
+	ntHa5IbvuBBm0Xs0scUU/tuNcK5HhnLJkYfazvf+e9x6vd1vgFs1Y1jeeknNUWxg
+	iuTgIxheM4T2UuSA1l/yrumk3MJfqcXJKCjyWsjGaYcEDlOctIQ1kR2usIOlhu2h
+	DebYpxtHvyrNohLYPSi3AYZVM01PobmicEY1q2jmDUU26YWJ88e6tJUR71eGVPP6
+	B9+KDw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41b14uku9g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 19:13:59 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 386B840048;
+	Fri, 30 Aug 2024 19:13:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0583925E20B;
+	Fri, 30 Aug 2024 19:11:52 +0200 (CEST)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 30 Aug
+ 2024 19:11:51 +0200
+Message-ID: <4ae91d0f-e37b-4325-a5aa-8448b95db431@foss.st.com>
+Date: Fri, 30 Aug 2024 19:11:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,83 +67,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5? 0/6] Tweaked basic Synopsys DW HDMI QP TX driver for
- Rockchip RK3588
-To: Shimrra Shai <shimrrashai@gmail.com>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- markyao0591@gmail.com, s.hauer@pengutronix.de
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, aarnoud@me.com, ldearquer@gmail.com,
- algea.cao@rock-chips.com
-References: <20240830152132.8894-1-shimrrashai@gmail.com>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+To: Conor Dooley <conor@kernel.org>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>
+References: <20240828143452.1407532-1-christian.bruel@foss.st.com>
+ <20240828143452.1407532-2-christian.bruel@foss.st.com>
+ <20240828-handsfree-overarch-cd1af26cb0c5@spud>
+ <005a2f7d-ab46-46c8-a0cc-b343685caf7c@foss.st.com>
+ <20240829-manifesto-tray-65443d6e7e6e@spud>
+ <777a92d9-ed52-4fa1-b235-e3a4a6321634@foss.st.com>
+ <20240830-jumbo-wriggly-39c84108371b@spud>
 Content-Language: en-US
-In-Reply-To: <20240830152132.8894-1-shimrrashai@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20240830-jumbo-wriggly-39c84108371b@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-30_10,2024-08-30_01,2024-05-17_01
 
-Hi Shimrra,
 
-On 8/30/24 6:21 PM, Shimrra Shai wrote:
-> Hi,
-> 
-> I saw Cristian Ciocaltea's proposed basic driver for the Synopsys DW
-> HDMI QP transmit (TX) facility on the Rockchip RK3588 and noticed that
-> it had seen some critique and thought I'd help it along a little by
-> making some of the changes that others had suggested in the discussion
-> thread. This package is mostly like his(?) original but features the
-> following changes suggested by Conor Dooley and Heiko Stuebner:
+On 8/30/24 16:55, Conor Dooley wrote:
+> On Fri, Aug 30, 2024 at 02:53:15PM +0200, Christian Bruel wrote:
+>> On 8/29/24 18:44, Conor Dooley wrote:
+>>> On Thu, Aug 29, 2024 at 01:06:53PM +0200, Christian Bruel wrote:
+>>>> On 8/28/24 18:11, Conor Dooley wrote:
+>>>>> On Wed, Aug 28, 2024 at 04:34:48PM +0200, Christian Bruel wrote:
+>>>>>> +  st,syscfg:
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>>> +    description: Phandle to the SYSCON entry required for configuring PCIe
+>>>>>> +      or USB3.
+>>>>> Why is a phandle required for this lookup, rather than doing it by
+>>>>> compatible?
+>>>> the phandle is used to select the sysconf SoC configuration register
+>>>> depending on the PCIe/USB3 mode (selected by xlate function), so it's not
+>>>> like a lookup here.
+>>> If "syscon_regmap_lookup_by_phandle()" is not a lookup, then I do not
+>>> know what is. An example justification for it would be that there are
+>>> multiple combophys on the same soc, each using a different sysconf
+>>> region. Your dts suggests that is not the case though, since you have
+>>> st,syscfg = <&syscfg>; in it, rather than st,syscfg = <&syscfg0>;.
+>> I didn't get your suggestion earlier to use "syscon_regmap_lookup_by_compatible()".
+>>
+>> We have several other syscon in the other. That's why we choose a direct syscfg phandle
+> In the other what? SoCs?
+>
+> Way I see it, if you're going to support different socs in the same
+> driver, it's almost a certainty that the offsets within a syscon that
+> particular features lie at are going to change between socs, so even if
+> you have a phandle you're going to need to have the offsets in your
+> match data. And if you're going to have offsets in match data, you may
+> as well have the compatibles for the syscon in match data too.
+> If the layout of the syscon hasn't changed between devices, then you
+> should have a fallback compatible for the syscon too, making
+> syscon_regmap_lookup_by_compatible() function without changes to the
+> driver.
+>
+> If you do have multiple syscons, but they do different things, they
+> should have different compatibles, so having multiple syscons doesn't
+> justify using a property for this either in and of itself. If you have
+> multiple syscons with the same layout (and therefore the same
+> compatible) then a phandle makes sense, but if that's the case then you
+> almost certainly have multiple combophys too! Otherwise, if you have one
+> syscon, but the controls for more than one combophy are in it, then
+> having a phandle _with an offset_ makes sense.
+>
+> If you know there are other SoCs with more than one combo phy, do they
+> use different syscons, or is the same syscon used for more than one
+> combophy?
 
-Please stop doing this!  
+we have other syscon for other subsystem in the same SoC, but I not the same layout
 
-I appreciate your intention to help, but this is not the proper way of
-doing it.  This is a work-in-progress series and you should have asked
-before taking over.  Please do not interfere with other people's work
-without having a preliminary agreement with the author(s).
+We indeed have a different compatible for the syscfg top (not the COMBOPHY registers), I can use
+"syscon_regmap_lookup_by_compatible(st,stm32mp25-syscfg)" effectively
 
-Additionally, before submitting any other patches, you should get 
-familiar with the process - see [1] for a starting point.
+one justification I had in mind for using a phandle is that we can use an argument to the
+COMBOPHY registers offset in the syscfg. Having this DT flexibility to adjust the offset
+for new SoC revisions using the same driver looked like a nice to have.
+For the time being the lookup_by_compatible pointing the syscfg syscon is OK
 
->  * Documentation for the device tree bindings specifies the various
->    clocks explicitly in both the general (synopsys,dw-hdmi-qp.yaml)
->    and Rockchip-specific (rockchip,rk3588-dw-hdmi-qp.yaml) files.
+thanks for the clarification.
 
-Why? Did you read [2]?
-
->  * Changed the compatibles for the RK3588 VO0 and VO1 GRFs in the
->    Device Trees (rk3588-base.dtsi) to reflect their different natures.
-
-This has been already handled - see [3].
-
-> and some of my own changes:
-> 
->  * Tweaked the driver code slightly - mostly organizational, but also
->    added a mutex around device access in the dw_hdmi_qp_... method
->    that was present in the downstream BSP driver which might have been
->    necessary to prevent thread bugs.
->  * Improved grammar & punctuation in some of the English on the
->    Kconfigs and output messages.
-> 
-> Let me know how you like it. I hope this is suitable enough for kernel
-> integration as I'd really like to be able to get some of the newest
-> kernels having video bringup out of the box. 
-
-That's definitely not suitable as you made lots of other mistakes while
-preparing the patches, i.e. preserving authorship, missing commit
-descriptions, SoB tags, etc.
-
-Regards,
-Cristian
-
-[1] https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-[2] https://lore.kernel.org/lkml/038073d0-d4b9-4938-9a51-ea2aeb4530f6@collabora.com/
-[3] https://lore.kernel.org/lkml/20240828-rk3588-vo-grf-compat-v2-0-4db2f791593f@collabora.com/
+Christian
 
 
