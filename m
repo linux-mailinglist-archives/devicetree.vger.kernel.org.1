@@ -1,137 +1,161 @@
-Return-Path: <devicetree+bounces-98353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E5C965DB7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:59:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B442D965DBB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EB901F278DD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:59:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C58A281073
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2483517B425;
-	Fri, 30 Aug 2024 09:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6844165EF0;
+	Fri, 30 Aug 2024 10:00:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pHwsvixE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XcnojyBo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C65AE16D324
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 09:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D3316D302;
+	Fri, 30 Aug 2024 10:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725011973; cv=none; b=J7s7aJdo7svsgS2mWUtejsBC5m4Yjoaf0Iny8dp8VwUjmFSBgl15mmx8XsdQJ6IWCX7mlIiE7XUHYB7q5vG2zRxjrifMTMreQKosxiYMOfwYIXNv8BIUerEtlBzuoZvDfRijwIJzsxD4Fs5G8Tz3cNUnufqQ8bJks6uIsw3y79c=
+	t=1725012055; cv=none; b=Go4lCfVVlOxSkYjwUHEhylAajvtlDShAZVcCtN69Y7UDyI7tJwTjjbzSbEUS0q15yqL/DCPPdWHaMNKyld95jtrK5tCn4jW/XWQXSk0QO4P4REnJVqwMgcmzQBVprFWAjFLOHMpfiA6GZ822XVSIBilh23nRJRR30mqmoayG57Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725011973; c=relaxed/simple;
-	bh=eZJ60bYB9XfBbv97tdApJ/91VcLhKNNaro4hUfGAKtQ=;
+	s=arc-20240116; t=1725012055; c=relaxed/simple;
+	bh=C3ag8Y3EtU5RLIBr1X7bSD/nVTfEcPkUuGp8nq5gfug=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Me6kqTyhK8hk/RF4usXtm+Vbrv0ScjtE0t5a8X/d9MefIDDMlWOj9idrxXdrbURK9iiqcWho03EAsWvJon/RPLBbR87BXPlMqN+cZP8jhAIlQYGrlHKB9aSkoS3cQIO85Je1BzqqOkDzwhzWHoaKfs4j8Hyihr031QokJJqXlio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pHwsvixE; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3717ff2358eso1074183f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 02:59:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725011969; x=1725616769; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oFRjgJLup1MnUFrYzfu39ZRhA8FvaRP/4WA8tKvuOks=;
-        b=pHwsvixE0ciqzsGxeCWdeMTLiVsPOt3Rxxg3vHBHKCZnV53q38pmcHBkbC2+F+MV/R
-         n7o9Rki0C50RH4mnG0RFhipHYC8Hvm+SwUz2atusAi3tcQD+u+OAUjVlb6M7IZYaASGS
-         RJmbkP9rn2S9o6DVjPMg2nt2PODjT+KwSogrNXJMNwVUlUn1KGUavOvQYYwyt5szs5rw
-         lFXjOplD7kY4PvuuoaYLTlyGgx3kIoHUgIMYjFOOe3B3E4Z0le8ZXwg28SCyXdSaw0df
-         nZjLDzX1QtZXobVZJpHjjljBAv4Te7L34OJS7tpoAfBM+xXrOqbqBhC9XjIU1hVKUACf
-         fMKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725011969; x=1725616769;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oFRjgJLup1MnUFrYzfu39ZRhA8FvaRP/4WA8tKvuOks=;
-        b=b7j5OmbkR0qjOiThsIk9PYSBO2thLJNJwY7KNobIy8s8lNbQgweRSEzwoE7NcXi8Kw
-         zBV6kVQcsoWy3hTvfh5X3hP/5JKLdRc7YMKqcrRp013BT0A0aK6Qwad1L6qOYOlRYEZg
-         vBISBAw+3A6HJGUUQFC47MCpa9MiPJ9nuyggjM6vUkEtuVQ5Wj0MYH15ub71xLD4A7NH
-         91gX4HYRVa8omDk99zICvgAm9BeIQ9SRhR7kDvRaKTCbMdpZrAAAOY++LmEhd0cfew/W
-         8SM8S6/PNrHyA+vPLn7RRbT8mNKKhj/P7dSh3+errK/Ts8TWfHynYbZeytQWruIgRSUL
-         wceQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUvOUUEpOPX4SS240A+yoQGtCtrd8vRgjM2hAjWtmfwnOm5Pjg58p6F7sXrkbzyHGy1GZ/ER/4ka03S@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwX/Zh4uqjuBZVC4DU3Lq9zhtQ3K2sA4gp1NC1K/fDiTwxdaA9
-	P5hhe8vbu3JhqnFzOVXuPmLXw579ZFenBmA+V+7d7kSYrV+Vl5Ow+BQaeLXd5wY=
-X-Google-Smtp-Source: AGHT+IEnFTaPLGbW9YtYqHCcQQDVJbUsxG1P0RaZiuimZTPDfuGtZT6aUIXSTDQ9CZrfRQ0Ie1PejQ==
-X-Received: by 2002:a5d:4e83:0:b0:371:7c71:9ab2 with SMTP id ffacd0b85a97d-3749b5874c3mr3779369f8f.52.1725011969020;
-        Fri, 30 Aug 2024 02:59:29 -0700 (PDT)
-Received: from [192.168.1.17] (host-80-47-105-51.as13285.net. [80.47.105.51])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ef7e94bsm3531661f8f.85.2024.08.30.02.59.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Aug 2024 02:59:28 -0700 (PDT)
-Message-ID: <c399748e-05ca-45df-9e40-2d38b132f97a@linaro.org>
-Date: Fri, 30 Aug 2024 10:59:27 +0100
+	 In-Reply-To:Content-Type; b=C5MpCjbBlAacZZLNpUC8mqa9siQoNhWunmnSSykZYzR9dRTTPinbwjFgMhnNidKEiTmPwj81j2x+YBB8zt8WlRCEt2BS9RNZXvRAFWhkbDbdULxRLwMm+Jc87GUM8NeYea+LMG2LjVWp/Njb3+CSCaheN5pr8rLrCKn3tXiv1rY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XcnojyBo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08AA0C4CEC2;
+	Fri, 30 Aug 2024 10:00:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725012055;
+	bh=C3ag8Y3EtU5RLIBr1X7bSD/nVTfEcPkUuGp8nq5gfug=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XcnojyBoEw03okmEUhYyiuVGiudJln6+lDRs8RxPWqbnTVTN6kE3HlvahTSw+mzJf
+	 pvSuQIZGDFm5q7+PodHvHA+dKD54Xnc+KvOhMDDquwXX6MwvUMNevlgnga7+gF0liv
+	 etjGaB3lkh0Je4N09EdQu9CEAlXQ/vs40UgVTUTBSqM5vnBJ8s+libUlWcfcv5pJ3J
+	 8R2RznLX2M2oPYtLBta2qNizJWyc9vaRMvvZQytr+/SVRq4HibkkWVkyl6ltP6VhlB
+	 TcLdC+eKkVuq5aN9IBkdbZYrkKv8jadgoTwXPMmC0qulvRKpVx2+VqAc+OaUedNLyj
+	 KtqvrSS0g2iXQ==
+Message-ID: <b6c1a81e-1533-4a17-8d6a-49a209a38557@kernel.org>
+Date: Fri, 30 Aug 2024 12:00:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Linux)
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280.dtsi: Fix PMU nodes for Cortex
- A55 and A78
-To: Danila Tikhonov <danila@jiaxyga.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 14/22] dt-bindings: arm-smmu: document the support on
+ SA8255p
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
+ viresh.kumar@linaro.org, herbert@gondor.apana.org.au, davem@davemloft.net,
+ sudeep.holla@arm.com, andi.shyti@kernel.org, tglx@linutronix.de,
+ will@kernel.org, joro@8bytes.org, jassisinghbrar@gmail.com, lee@kernel.org,
+ linus.walleij@linaro.org, amitk@kernel.org, thara.gopinath@gmail.com,
+ broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
+ robin.murphy@arm.com, cristian.marussi@arm.com, rui.zhang@intel.com,
+ lukasz.luba@arm.com, vkoul@kernel.org, quic_gurus@quicinc.com,
+ agross@kernel.org, bartosz.golaszewski@linaro.org, quic_rjendra@quicinc.com,
+ robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux@mainlining.org
-References: <20240818192905.120477-1-danila@jiaxyga.com>
+ linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, iommu@lists.linux.dev,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel@quicinc.com, quic_psodagud@quicinc.com, quic_tsoni@quicinc.com,
+ quic_shazhuss@quicinc.com
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240828203721.2751904-15-quic_nkela@quicinc.com>
+ <ompfueg7civ5spjdumkhd7qgx4cnvjcftznf3z3q5duuxppt5d@fao7zx4oxfm3>
+ <e8e9cdcf-63c8-4bfa-aacc-d99338c7f8fa@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20240818192905.120477-1-danila@jiaxyga.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <e8e9cdcf-63c8-4bfa-aacc-d99338c7f8fa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 18/08/2024 20:29, Danila Tikhonov wrote:
-> The SC7280, SM7325, and QCM6490 platforms feature an 8-core setup
-> consisting of:
-> - 1x Kryo 670 Prime (Cortex-A78) / Kryo 670 Gold Plus (Cortex-A78)
-> - 3x Kryo 670 Gold (Cortex-A78)
-> - 4x Kryo 670 Silver (Cortex-A55)
-> (The CPU cores in the SC7280 are simply called Kryo, but are
-> nevertheless based on the same Cortex A78 and A55).
+On 29/08/2024 17:39, Nikunj Kela wrote:
 > 
-> Use the correct compatibility.
+> On 8/29/2024 12:36 AM, Krzysztof Kozlowski wrote:
+>> On Wed, Aug 28, 2024 at 01:37:13PM -0700, Nikunj Kela wrote:
+>>> Add compatible for smmu representing support on SA8255p.
+>>>
+>>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>> Your subjects contain quite redundant/excessive information. In the same
+>> time they lack information about device. 
+>>
+>> 1. s/document the support on/add/
+>> 2. s/SA8255p/SA8255p SMMU-or-whatever-device-it-is/
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Okay. I thought arm-smmu tag already indicate which device this patch is
+> for but would put SMMU explicitly in the subject.
 
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 +++++++--
->   1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 91cc5e74d8f5..ab024a3c3653 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -845,8 +845,13 @@ wlan_smp2p_in: wlan-wpss-to-ap {
->   		};
->   	};
->   
-> -	pmu {
-> -		compatible = "arm,armv8-pmuv3";
-> +	pmu-a55 {
-> +		compatible = "arm,cortex-a55-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	pmu-a78 {
-> +		compatible = "arm,cortex-a78-pmu";
->   		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
->   	};
->   
+arm,smmu indicates the binding file which might be or might not exactly
+be the same as actual device. Sometimes they have difference names. I am
+not saying that it would be beneficial here, but some other patches
+could benefit probably.
 
--- 
-// Caleb (they/them)
+Best regards,
+Krzysztof
+
 
