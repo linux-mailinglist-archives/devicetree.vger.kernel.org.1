@@ -1,136 +1,160 @@
-Return-Path: <devicetree+bounces-98490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95909664FA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:06:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96EA1966502
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:09:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 332F4B21690
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:06:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2C86B2146C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217FD1B3B32;
-	Fri, 30 Aug 2024 15:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9901B3B30;
+	Fri, 30 Aug 2024 15:08:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCkCpvEe"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uhlHyz73"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83471B29CD;
-	Fri, 30 Aug 2024 15:06:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5A21DA26;
+	Fri, 30 Aug 2024 15:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725030371; cv=none; b=EMHT+BniQf/5/3sBtrgNHX7eTNeGwtzytaS1XcU+zNAgwggclvCYsDgT5LKa7t0fo5TakfcdzBvB1JDa1sZ3ISCVJUewSvMh7qlQvkGu33yT518pkFWSI0ZUBcgrk6Ciu5EwKIzszMg5dDoQqMfBXle4x8lFvjh+6VmH3dNCBCU=
+	t=1725030537; cv=none; b=iSOV77PRqvgifXHy6zOG0GgNKFVG5c7xVYOVeMqPHEa0oT46vevdGWMf8pDTI3pO76kT2kcHa8LzoiK38ydxOIWCCsshE1La9M1MKVL4OzDUEe1BqsvWxRvI8xBDuTtwxqWN3HDzhsDkQcKyOO9lEz/JfSVajQeh8MJyPaEYFg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725030371; c=relaxed/simple;
-	bh=JPD/QwW76Ru7sqSaOhnm/av9Sp9NONR08vZrOEyi/bc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYXIXHljYtBGG1v1q91CtL251R24dV+aPFIiSofzhn6hjeybyuxXEpy5v/ovWN/oMOc8WP96TIcrj6hj6mhNUyl3KhtC1/Kcd1v2mBZAR00C5fS97+kSkElWkDTybngCm7LuKfyYfJEHQcN9JVNny1wJ34ixOeUIakecRmpSqY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCkCpvEe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D51A5C4CEC2;
-	Fri, 30 Aug 2024 15:06:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725030370;
-	bh=JPD/QwW76Ru7sqSaOhnm/av9Sp9NONR08vZrOEyi/bc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YCkCpvEeQL5ChVrD7gCgu2Eu3kG7nCRZuAL9n26aCzSyfZ/QVABCXdJpKB7mckCDG
-	 fwUD+uBNLlLRnNDKvGqAverga/5VMvDSjqRaPalMMYOVz1I2zVzW6F6+4630dm1GH7
-	 swTSwxxyALzhcvrG6se6T+b0LDnMT8xB2G2+GHKomdMQI/uzRI/5PMXY3hwOgucW4D
-	 ihVPtCKmHtlC21K9ZjkHIw48SkufC6AQYszwDsUjX7eXexPO7I+m3epyJFVVvUD0zh
-	 buRvuWFyWN61LEX5n9sw6vWS9vqVFhY7tcpd8w0FAJlwYerCXLHUkdwuJsWl55x9bu
-	 OrQk9N6jU0mvA==
-Date: Fri, 30 Aug 2024 16:06:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Angelo Dureghello <adureghello@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dlechner@baylibre.com
-Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
- property
-Message-ID: <20240830-deviant-surging-4f617819ef47@spud>
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
- <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
- <20240829-stopwatch-morality-a933abb4d688@spud>
- <lets4c46zg4rzfqrjakeby3oa3zhxh4nyfcg4vxhfnufcpaxak@xmzdwb47xhx5>
+	s=arc-20240116; t=1725030537; c=relaxed/simple;
+	bh=dRTn44tqlK43XG4GNPrp/ZBSsVdPkPESatr6n0q8fAY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JhMUCfo1KPmicscfahzh+PhTwz8ghtlNZVolSQODH6rboRHtxYXr7SPcqPJ9fV8p+n1hTQj8PEq6t989/NqpV7cMW+dyNIG0qhU1zBojDqVN39w7eLxIVjrZ5wrdGvCNrisLYZ/Atod2CXg3QXCHjgF+Co9iWHeEN5YFxE34GdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uhlHyz73; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UF8mI7038731;
+	Fri, 30 Aug 2024 10:08:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725030528;
+	bh=4h8MQU0Zt+0s2wbizjkuI4pJr2b6Rtl49Ga6qg7LuKc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=uhlHyz73nkYGuQpqcKClj8obNe0Oa2WSflleiwdF3OhQB3SudeVMBM7LnoiBooY2T
+	 s6vTy9oy/wiMq6sdzTsA7UCXhgyUwCci3AhgHpP6rujIKPeL7sO8fZNRxI3Kh0dZPe
+	 bfmuEOAqYph7pKRd/qJXA2xNOL/o6g+z0osjKn4s=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UF8mC1026740;
+	Fri, 30 Aug 2024 10:08:48 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 10:08:47 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 10:08:47 -0500
+Received: from [10.249.130.61] ([10.249.130.61])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UF8eOJ023313;
+	Fri, 30 Aug 2024 10:08:41 -0500
+Message-ID: <451abe2a-7568-43c7-8483-242a9919684d@ti.com>
+Date: Fri, 30 Aug 2024 20:38:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/bLGyJppz6CoDdEB"
-Content-Disposition: inline
-In-Reply-To: <lets4c46zg4rzfqrjakeby3oa3zhxh4nyfcg4vxhfnufcpaxak@xmzdwb47xhx5>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Update OSPI partitions
+ offsets
+To: Nishanth Menon <nm@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <u-kumar1@ti.com>,
+        <p-mantena@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20240830090702.220402-1-b-padhi@ti.com>
+ <20240830092234.veog3e22te7qi3ao@dugout>
+Content-Language: en-US
+From: Beleswar Prasad Padhi <b-padhi@ti.com>
+In-Reply-To: <20240830092234.veog3e22te7qi3ao@dugout>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
---/bLGyJppz6CoDdEB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 30-08-2024 14:52, Nishanth Menon wrote:
+> On 14:37-20240830, Beleswar Padhi wrote:
+>> OSPI NOR flash was partitioned with a size of 1 MB for the initial
+>> bootloader ("ospi.tiboot3"). On the AM69-SK board, boot failures were
+>> sometimes observed when the initial bootloader size exceeded 512 KB. To
+> Why does the boot fail when > 512MB?
 
-On Fri, Aug 30, 2024 at 10:16:36AM +0200, Krzysztof Kozlowski wrote:
-> On Thu, Aug 29, 2024 at 04:46:59PM +0100, Conor Dooley wrote:
-> > On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello wrote:
-> > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > >=20
-> > > Add bus property.
-> >=20
-> > RFC it may be, but you do need to explain what this bus-type actually
-> > describes for commenting on the suitability of the method to be
-> > meaningful.
-> >=20
-> > >=20
-> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 9 +++++=
-++++
-> > >  1 file changed, 9 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.ya=
-ml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > index a55e9bfc66d7..a7ce72e1cd81 100644
-> > > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > @@ -38,6 +38,15 @@ properties:
-> > >    clocks:
-> > >      maxItems: 1
-> >=20
-> > You mentioned about new compatible strings, does the one currently
-> > listed in this binding support both bus types?
-> >=20
-> > Making the bus type decision based on compatible only really makes sense
-> > if they're different versions of the IP, but not if they're different
-> > configuration options for a given version.
-> >=20
->=20
-> Yeah, in general the parent defines the bus type.
 
-Right, if the bus that's being used isn't spi anymore, you should be
-able to detect that without a property. However, the device that "left"
-the spi bus is not this "adi,axi-dac" it is the adi,ad3552r. I think
-this property is actually representing the bus that this adi,axi-dac is
-/providing/, rather than the bus it is "consuming".
+It is a limitation by BOOT ROM where it can not bring up the initial 
+bootloader when its size exceeds 512 KB in the DFU boot mode.
 
---/bLGyJppz6CoDdEB
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+>> address this, the initial bootloader image has been optimized to be
+>> smaller than 512 KB.
+>>
+>> Therefore, limit the first OSPI partition size to 512 KB and adjust the
+>> remaining size across the subsequent partitions.
+> I am NOT a fan of redoing flash partition organization of platforms that
+> are already in production - all kinds of ecosystem messes happen as a
+> result. Alternatively - give the 512K to u-boot tispl partition and
+> leave all others as is - this will at least allow people's current env
+> to be retained.
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHf3QAKCRB4tDGHoIJi
-0q0JAQDaaVEWcprCBvDgrtMFvN7YqkRvgR3ujGgzpLVEhj3diQEAkMkm8736yvab
-r6qI+ZSEElTKzztkAKMHoqCBHrICAAw=
-=KcN/
------END PGP SIGNATURE-----
+This sounds good to me. I will let Prasanth comment over this.
 
---/bLGyJppz6CoDdEB--
+>
+>> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 18 +++++++++---------
+>>   1 file changed, 9 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> index 1e36965a1403..641236918379 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> @@ -1241,27 +1241,27 @@ partitions {
+>>   
+>>   			partition@0 {
+>>   				label = "ospi.tiboot3";
+>> -				reg = <0x0 0x100000>;
+>> +				reg = <0x0 0x80000>;
+>>   			};
+>>   
+>> -			partition@100000 {
+>> +			partition@80000 {
+>>   				label = "ospi.tispl";
+>> -				reg = <0x100000 0x200000>;
+>> +				reg = <0x80000 0x200000>;
+>>   			};
+>>   
+>> -			partition@300000 {
+>> +			partition@280000 {
+>>   				label = "ospi.u-boot";
+>> -				reg = <0x300000 0x400000>;
+>> +				reg = <0x280000 0x400000>;
+>>   			};
+>>   
+>> -			partition@700000 {
+>> +			partition@680000 {
+>>   				label = "ospi.env";
+>> -				reg = <0x700000 0x40000>;
+>> +				reg = <0x680000 0x40000>;
+>>   			};
+>>   
+>> -			partition@740000 {
+>> +			partition@6c0000 {
+>>   				label = "ospi.env.backup";
+>> -				reg = <0x740000 0x40000>;
+>> +				reg = <0x6c0000 0x40000>;
+>>   			};
+>>   
+>>   			partition@800000 {
+>> -- 
+>> 2.34.1
+>>
 
