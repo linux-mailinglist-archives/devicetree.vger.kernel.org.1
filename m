@@ -1,158 +1,94 @@
-Return-Path: <devicetree+bounces-98581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F769669FF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 21:43:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7CF2966A08
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 21:46:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93E491C20E16
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:43:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 064531C217C2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B201BBBDC;
-	Fri, 30 Aug 2024 19:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC31D1BD02C;
+	Fri, 30 Aug 2024 19:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OTI/tKDL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQ42NSii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E99233CD1;
-	Fri, 30 Aug 2024 19:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A38033CD1;
+	Fri, 30 Aug 2024 19:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725047025; cv=none; b=Z3VA/MQ8vuZynLnPk0psl2TkRJjHbq3eQqduFnQ3ZSqREtGal7i057i6AFtiIKeHZT1n8faRaIboReZX8eaCFx9cqX1e8GwpvEj1jxA3/hUGpM8BIxtODAz7Q127HL4haRya5M+uR5lFSVNZ44A2cY+zNYMOW+QVNB5F4DNtXGo=
+	t=1725047198; cv=none; b=HEjfHsM0xye/sLFbgXWZai7MovwEyoQw3itV2bcEWS+CFO2yFapzjLIbIwhpwZ0padiGlK22qV9lP/E7CxMZvay5JmgROYt0PEvdPvjpcmXeC24xVnsqTZN9HWIuyVEtUE6/ML/4ZY55bC+UY7PUTjoBM6VdB/7FuK7Syn3vTik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725047025; c=relaxed/simple;
-	bh=YMdDHMzh1eilmRncn6uRrHYQQ0dxZhvUHERYroWFXlQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rJGpWQw/Uto5fv8slfDmn8fc/KDedA6GfZWggpUhRHbkyAkAYaz5NzqY45TLWE5eV6Wk7ivihax/ztdaYkGRmQ2A7O0tZt+dIEL11EIzersGfSvPKI3aa7ymXjxnOR7TOYPa9V4CZ1Q7iqbTIsy18rxK9KI+u8A8tElJ4EWjNhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OTI/tKDL; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-716609a0e2bso1064772b3a.0;
-        Fri, 30 Aug 2024 12:43:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725047023; x=1725651823; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+VkW3u97zkF3Zr7o+exMtL4ZUdBNqBx4SuBjN4XsZx0=;
-        b=OTI/tKDLcobSHUjVlqUcZu1PJv+ocP4Hw5qvwDg9mcxchKKLPX1Tmowu8fYudEunBI
-         InmS4yRCdbOiPKwlOioiBxRVR9pMlf7/evSey0s9fz59q8/+aMRrQ8Ll+VAV447Lv5ls
-         hQCvuTY6naQqp7orxJY1xsPzsz2iGYkChsZhq4CxuGhRJeAMImDlCfb9Kft8CDf1WRJC
-         x4cw6i/WOJEL31k4AXxR6rWnDaIwJlTde3/0DkfVqSdzLJ3T3KF6yRMS8sqSs2+f/p23
-         GHHYbnVLFlcNYyRnv2ZlyqjyCt7EwbvQtHWFxrorLeIxbytOjsEl6cQxNAW+gMaonkBB
-         Jchg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725047023; x=1725651823;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+VkW3u97zkF3Zr7o+exMtL4ZUdBNqBx4SuBjN4XsZx0=;
-        b=k0mjN987VRUdEgGnasIUSZg7XGKtCVtdWXNC1mB65GuVuDcnPqzlRzbr4awhxO08t9
-         P+qHRYY3EJexGRaGFrL1Wce013ooiM3zLFMsFYbo6vgSVPnAXgvB43eKVQZ1tY4BRvic
-         HQa0Z0qmODsq+QuK+CjYfUYsUgjcZTdt/Cgxy+SAJyCkIuS7JhYiq9V9b03ZW/7ccllr
-         pN0c3fWezUdc5YYZGDat625RKfSRNkpUkvXPBwVb+S5ftO1AHG0ekr6DR610exMsn/Bl
-         SiC4LvPVuF3K3GeBb1GD77Sv5vvvXpbxutjQWEHIzG+15TG7Oa4R/IB3zV6KvM5VvRK2
-         si1g==
-X-Forwarded-Encrypted: i=1; AJvYcCU0HyiEgpwmckuamAGTSZgWBZzKinCss3Rk4LZO+Ij1CM+EwHTQSQkEDTikEvvu6AaZp7Q4T0fO+nS8w3o=@vger.kernel.org, AJvYcCUAs+W1NMRSkTAXbFyBvvN6lPPA1OcxpiZnXKJ7wP5d/DB15yw/x/8UG7izu/t3RapJHJmFLi3oVOMp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyi/d0xTvRzE75G03CRqiHnR/iIiUVr7rB5t8GVWoD01pPxnojA
-	NDxsdGrXF58hypjQxRX6FTd8bliO4peoF/wCVH0ej8H8qvZ8nGu9
-X-Google-Smtp-Source: AGHT+IEthLATbMCftKpOrMtJ9/0aEtBtHhs1qfQG6V3F6IPCnW/uoQbZv65X3PT85S54xWUUzcDSYQ==
-X-Received: by 2002:a05:6a00:4fc9:b0:706:6408:7917 with SMTP id d2e1a72fcca58-715dfc7629dmr8905855b3a.26.1725047023387;
-        Fri, 30 Aug 2024 12:43:43 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:79a1:1962:99bd:89d3])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e56d8827sm3117288b3a.161.2024.08.30.12.43.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 12:43:42 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: dmitry.torokhov@gmail.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2] dt-bindings: input: touchscreen: Use generic node name
-Date: Fri, 30 Aug 2024 16:43:31 -0300
-Message-Id: <20240830194331.3774408-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1725047198; c=relaxed/simple;
+	bh=srlQl2hfntMUZ3gDAS9tafJno7Ca9Nn0VC725vi9Hcs=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:To:Date; b=qLkSRbtNjE1+MOBZrrgCqPm7HYHmIlol4GU3heCkB2+0czajGoR/238aWbl62JpnGNC3itFer0XpYvvkhxnTMk337L2LwxSet8qr2BdZNJ2oKyfz27CgqipoghNBz+KLXh7G876xELF60EXIZNV/X0eNeiOvO1rY/dCHbU9xb+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQ42NSii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B3C5C4CEC2;
+	Fri, 30 Aug 2024 19:46:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725047197;
+	bh=srlQl2hfntMUZ3gDAS9tafJno7Ca9Nn0VC725vi9Hcs=;
+	h=In-Reply-To:References:Subject:From:To:Date:From;
+	b=oQ42NSiippJMnwZECJlJ14DPMsnKjzT551O0eUYTg3N52LLWe8b46CIz7qz1/b3Rc
+	 dwkv+HxKU06gfCzrh8lVQlutAtkOGnE0Cr7NRWnmChvg7mTMCBZDbcKWIW6JOV+55/
+	 aUMR6NI3F2JSsq3BaUEfqbinZukYIMj7ZGnUEkNvWahTsU4IBZIJSoakX6xwITwUew
+	 ivchz6A3fihB5j6p+MU6PHG+G60KhgyXaxHy9fYvtes/FN+91WGuK6oKkeuaRjkl9m
+	 1Hi5S44oHi/nYegKIS2j9wzKhfMFKjVN66771sWYaVLYz/yVjaeOnnqrbd2Z9U3q0n
+	 4zatQMsP9dgXA==
+Message-ID: <2113b8df52164733a0ee3860bb793d6e.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <12d0909b1612fb6d2caa42b4fda5e5ae63d623a3.1724159867.git.andrea.porta@suse.com>
+References: <cover.1724159867.git.andrea.porta@suse.com> <12d0909b1612fb6d2caa42b4fda5e5ae63d623a3.1724159867.git.andrea.porta@suse.com>
+Subject: Re: [PATCH 05/11] vmlinux.lds.h: Preserve DTB sections from being discarded after init
+From: Stephen Boyd <sboyd@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>, Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bjorn Helgaas <bhelgaas@google.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Catalin Marinas <catalin.marinas@arm.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley <conor+dt@kernel.org>, David S. Miller <davem@davemloft.net>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Eric Dumazet <edumazet@google.com>, Florian Fainelli <florian.fainelli@broadcom.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Stefan Wahren <wahrenst@gmx.net>, Will Deacon <will@kernel.o
+ rg>, devicetree@vger.kernel.org, linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, netdev@vger.kernel.org
+Date: Fri, 30 Aug 2024 12:46:35 -0700
+User-Agent: alot/0.10
 
-From: Fabio Estevam <festevam@denx.de>
+Quoting Andrea della Porta (2024-08-20 07:36:07)
+> The special section .dtb.init.rodata contains dtb and dtbo compiled
+> as objects inside the kernel and ends up in .init.data sectiion that
+> will be discarded early after the init phase. This is a problem for
+> builtin drivers that apply dtb overlay at runtime since this happens
+> later (e.g. during bus enumeration) and also for modules that should
+> be able to do it dynamically during runtime.
+> Move the dtb section to .data.
+>=20
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  include/asm-generic/vmlinux.lds.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/include/asm-generic/vmlinux.lds.h b/include/asm-generic/vmli=
+nux.lds.h
+> index ad6afc5c4918..3ae9097774b0 100644
+> --- a/include/asm-generic/vmlinux.lds.h
+> +++ b/include/asm-generic/vmlinux.lds.h
+> @@ -365,6 +365,7 @@
+>         TRACE_PRINTKS()                                                 \
+>         BPF_RAW_TP()                                                    \
+>         TRACEPOINT_STR()                                                \
+> +       KERNEL_DTB()                                                    \
 
-Node names should be generic.
+The KERNEL_DTB() macro shows the section name is dtb.init.rodata. Can
+you remove the ".init." part if this isn't initdata anymore? And
+shouldn't it be in the RO_DATA() macro?
 
-Improve the binding example by using 'touchscreen' as the node name.
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes since v1:
-- Squash the patches. (Rob)
-
- .../devicetree/bindings/input/touchscreen/azoteq,iqs7211.yaml | 4 ++--
- .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml     | 2 +-
- .../devicetree/bindings/input/touchscreen/goodix.yaml         | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/azoteq,iqs7211.yaml b/Documentation/devicetree/bindings/input/touchscreen/azoteq,iqs7211.yaml
-index 8cf371b99f19..e4dbbafb3779 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/azoteq,iqs7211.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/azoteq,iqs7211.yaml
-@@ -666,7 +666,7 @@ examples:
-             #address-cells = <1>;
-             #size-cells = <0>;
- 
--            touch@56 {
-+            touchscreen@56 {
-                     compatible = "azoteq,iqs7210a";
-                     reg = <0x56>;
-                     irq-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
-@@ -704,7 +704,7 @@ examples:
-             #address-cells = <1>;
-             #size-cells = <0>;
- 
--            touch@56 {
-+            touchscreen@56 {
-                     compatible = "azoteq,iqs7211e";
-                     reg = <0x56>;
-                     irq-gpios = <&gpio 4 (GPIO_ACTIVE_LOW |
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-index 51d48d4130d3..70a922e213f2 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-@@ -126,7 +126,7 @@ examples:
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
--      edt-ft5x06@38 {
-+      touchscreen@38 {
-         compatible = "edt,edt-ft5406";
-         reg = <0x38>;
-         interrupt-parent = <&gpio2>;
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-index 2a2d86cfd104..eb4992f708b7 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-@@ -69,7 +69,7 @@ examples:
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
--      gt928@5d {
-+      touchscreen@5d {
-         compatible = "goodix,gt928";
-         reg = <0x5d>;
-         interrupt-parent = <&gpio>;
--- 
-2.34.1
-
+It would be nice to keep the initdata properties when this isn't used
+after init as well. Perhaps we need another macro and/or filename to
+indicate that the DTB{O} can be thrown away after init/module init.
 
