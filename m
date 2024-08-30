@@ -1,95 +1,148 @@
-Return-Path: <devicetree+bounces-98425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3871966159
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:09:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE3A96616A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:18:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E83F1F27448
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:09:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B04FFB26878
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:18:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D953519994F;
-	Fri, 30 Aug 2024 12:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9CB199FD6;
+	Fri, 30 Aug 2024 12:18:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ts4mj0PW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YX6Gpw1i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA66F1384B3;
-	Fri, 30 Aug 2024 12:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964D516F0DD;
+	Fri, 30 Aug 2024 12:18:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725019752; cv=none; b=YKfyo3HfOhQoEY1Kq+YX0pOMeTfCwcNa26vvjN6Odf7w6JMvOJKy1GH5SgmfF73P7Aoaqttsk4LYvH9kBckk3bwQu4eDJo2VDnTAPxsz3Mvi9ztZx+5FIJL2nJ/a14+ukgYAKEJVJjewRnSGtqulIkTf+faM5OdJY7185Ms/DKQ=
+	t=1725020300; cv=none; b=UzLAl+rnpPaxdQS5JdChZII0tJ90XvYwhgzgWuKZl3guOUarCAsnVRr6dQ33SEjBrCvY1Eg9unj/QbxQLZ7/BDSpD2p1QVtmwywhe8UiL+39Sz7TZgmR8EOu4+68I+oc/i1giD37mOOV9sAJeRAilZAtCuJ8er7W3yV79khiYms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725019752; c=relaxed/simple;
-	bh=+PdqaIAnbvFWzUlrXS5dGz+94tQph/rZhL6Pzhzm0RM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pLDEmUxQIGYRwab4e50sY2SV0voV7vdtPfF6OICKUrPumOrcaIc0XUPViycAUyHDbwRIY86028+7EVT0RgWdW7WK4z4Pl2tdQVk4NujtEH8X+QUBAo7FwqWroofOcP/FmppGfUjbmuxlj+23S60pp2VBHZTF8hgj6hFTYswnWLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ts4mj0PW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27319C4CEC2;
-	Fri, 30 Aug 2024 12:09:12 +0000 (UTC)
+	s=arc-20240116; t=1725020300; c=relaxed/simple;
+	bh=fzW3G+TfB+bO5ebL/bX9LdeCTen9lbExGhAdJz/gUE8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JCOYKhNKdjUkdcVhM/ZCo+oFU42QmpQJuYH2L8iFPtW2daQpwZmiOMVj7MrDE0wrORDCBfVyq3vQwj38PFDFslDTGxFuYBV0q7FLkJNcNghOrugRiaiiHNGhmT79puVsk7Ap+cp7UvAFoyXZMpgUBnFmBpsVJlHgXp/NYRetDp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YX6Gpw1i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15310C4CECD;
+	Fri, 30 Aug 2024 12:18:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725019752;
-	bh=+PdqaIAnbvFWzUlrXS5dGz+94tQph/rZhL6Pzhzm0RM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ts4mj0PWgjvWJ/9Hvw6e2c8sBU3UXW4VOt1XBc3uiwzIHodYOSPFnXiXmn6oQ1aXn
-	 hNIpT7dx1M0e+NcN5fStkUQIccy6aZERUXEiA4hVf0eoD3epSzGBiC7R4IJLSaHi8S
-	 c1VpE7Hu9OZWLZ1T/O4bgx6l4pnxyWxu10ohFpd1hcbxOGkjLpES/Foo+Y5hs++i1/
-	 3eDhCkMA52nD5ghHSz4IRP8LsHnvTRPtF+P5TkJVrlOF+HHGafZI3veIRAC9nsncid
-	 BGYDdQlw+ohuFc6+fqJctBVx1Zh6rRl0CtO4QtKWev0AeKem/9mCK8kfBWWAEKxxKH
-	 k9KqumZy+tG9Q==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sk0RR-000000006vI-47q4;
-	Fri, 30 Aug 2024 14:09:26 +0200
-Date: Fri, 30 Aug 2024 14:09:25 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
- Document the X1E80100 QMP PCIe PHY Gen4 x4
-Message-ID: <ZtG2dUVkdwBpBbix@hovoldconsulting.com>
-References: <20240823-x1e80100-phy-add-gen4x4-v3-0-b7765631ca01@linaro.org>
- <20240823-x1e80100-phy-add-gen4x4-v3-1-b7765631ca01@linaro.org>
- <gvx3sdsdxigel3iwu7vgvvgxohvnaqq6suogsqojeumobhwhdk@5qct23m5ncda>
+	s=k20201202; t=1725020300;
+	bh=fzW3G+TfB+bO5ebL/bX9LdeCTen9lbExGhAdJz/gUE8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=YX6Gpw1iAM1qcXKu7BASnn7Qo45teZi4XXjDrmwn/Vm4TnZW3bXHuZf+aIV8rnhz0
+	 7VJ9gf240vFlFx69v7Gytuo+daKbx/S4payvqKJCL+wpO6Oj2vwKuHWo7VYnjGJPaH
+	 41rQ1hCheK7YWyiteSj1QCLB193pxleVPtw7pyJvPaKHgasT2isgNCGwpSMjSXlqGC
+	 ec5a8ppcWoJn+0Tc8EDxaWlAPdgEfZCp/oJarZBv6gWXXd/cQRri2pRcMwEFPnD7H/
+	 vm9Fdfxn+WilUW8TBmM/UkaC0ahgKu+wuig8BUCdyRxxq9ujl/xkxdJs1NJJWOBhSV
+	 9hwmywR7owrdQ==
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2050b059357so14245875ad.2;
+        Fri, 30 Aug 2024 05:18:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXia+W3NVa7gtupN3ZW7E5a69dWHXAOBZKOExiNEcgK+aMknr1uJU1/LCEnqrMbp1sJTt5eBeIBLeoF@vger.kernel.org, AJvYcCXuq8I5bvvPEh33rK6ZFWaVaR3JSkTHIYpHcXe73y9u4n/hIbGZ2kafFllWjG6v7/R8v8TSOnU0iSgfGXWi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBycV7wOumDV8CFvOKEhOdZ1otB3WiZgZFO0yAW5NiEcV+R1jN
+	Nw6Zl4xA3U7JRdkR6FJ5FYiy4yqMqp8LhpMDhFs7DcCuHMOnV/cWw/JRO71Qr3yrYgSY3u7nYjx
+	sLEH2iC0Xoy+hE830XxKtOpbhNg==
+X-Google-Smtp-Source: AGHT+IF2p5CQY3b8HPQl1+/RqA1ZHqHcuWEQh2qoVHx4PAKoc7yqtJdfN0iZ0lNlEvXu5ud9ENOdM8aJpEyK48XB/pY=
+X-Received: by 2002:a17:903:124c:b0:202:18de:b419 with SMTP id
+ d9443c01a7336-2050c524e84mr78003075ad.63.1725020299631; Fri, 30 Aug 2024
+ 05:18:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <gvx3sdsdxigel3iwu7vgvvgxohvnaqq6suogsqojeumobhwhdk@5qct23m5ncda>
+References: <20240830084544.2898512-1-rohiagar@chromium.org> <20240830084544.2898512-2-rohiagar@chromium.org>
+In-Reply-To: <20240830084544.2898512-2-rohiagar@chromium.org>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Fri, 30 Aug 2024 20:18:33 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-1bT-=jU4vCZTfe18Ks6WiAL=7M3y0eK3DyGkfWmsFKA@mail.gmail.com>
+Message-ID: <CAAOTY_-1bT-=jU4vCZTfe18Ks6WiAL=7M3y0eK3DyGkfWmsFKA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: display: mediatek: dpi: Add power domains
+To: Rohit Agarwal <rohiagar@chromium.org>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+	ck.hu@mediatek.com, jitao.shi@mediatek.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 30, 2024 at 01:42:10PM +0300, Dmitry Baryshkov wrote:
-> On Fri, Aug 23, 2024 at 10:04:15AM GMT, Abel Vesa wrote:
-> > The sixth PCIe instance on X1E80100 can be used in either 4-lane mode or
-> > 2-lane mode. Document the 4-lane mode as a separate compatible.
-> 
-> As the patches were merged, it's too late for this series, but as a
-> note: we should think of a way to describe the PHY configuration without
-> changing the compatibility strings. The hardware stays the same, it's
-> just the number of lanes being wired that changes.
+Hi, Rohit:
 
-No, this is not about configuration and we need two separate compatibles
-as the two PHY instances are distinct and only one of them can be used
-in 4-lane mode.
+Rohit Agarwal <rohiagar@chromium.org> =E6=96=BC 2024=E5=B9=B48=E6=9C=8830=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:46=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Add power domain binding to the mediatek DPI controller
+> for MT8186.
+> Also, add power domain binding for other SoCs like
+> MT6795 and MT8173 that already had power domain property.
 
-The mistake was to ever describe pcie6a as 2-lane in the x1e80100 dtsi
-(and possibly also in the ambiguous commit message above). Whether
-pcie6a is used in 4-lane or 2-lane mode is determined by a TCSR
-register.
+For this patch, applied to mediatek-drm-next [1], thanks.
 
-Johan
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
+>
+> Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> ---
+>  .../bindings/display/mediatek/mediatek,dpi.yaml | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
+yaml
+> index 5ca7679d5427..3a82aec9021c 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
+l
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
+l
+> @@ -62,6 +62,9 @@ properties:
+>        - const: default
+>        - const: sleep
+>
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    port:
+>      $ref: /schemas/graph.yaml#/properties/port
+>      description:
+> @@ -76,6 +79,20 @@ required:
+>    - clock-names
+>    - port
+>
+> +allOf:
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - mediatek,mt6795-dpi
+> +                - mediatek,mt8173-dpi
+> +                - mediatek,mt8186-dpi
+> +    then:
+> +      properties:
+> +        power-domains: false
+> +
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.46.0.469.g59c65b2a67-goog
+>
 
