@@ -1,124 +1,139 @@
-Return-Path: <devicetree+bounces-98412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5368E9660B7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:30:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87FF59660CA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:32:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1108F28B569
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:29:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CFCC1F29AB9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60B4199FAE;
-	Fri, 30 Aug 2024 11:25:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CE6192D6C;
+	Fri, 30 Aug 2024 11:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="kQy1H/0y"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Di4xAqLA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89BC199FA9;
-	Fri, 30 Aug 2024 11:25:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02A417BB0A;
+	Fri, 30 Aug 2024 11:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725017143; cv=none; b=HxGF/p9jbaPIFPrb7lQxi/HOI3XDuHqCk8/iRfIAYm05JCpiAgebOGamAD1E87Xi9WTtnIu+KDst7LeLs1CBPHRscGXxZao3on3nzBh/ig9P++UfqOwWIOo1ptFgBRpBkuirsp2Jm1yKPTb2Pl3HizRH64LXZPUUjbEM9Yke+Hg=
+	t=1725017507; cv=none; b=lfDtOuKCAPHOzFjGejOpWgoQdPjhER1bMAjjkxEiIYa4U+iwvJ92s2S41Y1+iMe24ihlsPvBrToQEEop+DPGIVaDc6KNz5578QBywHD/xkpfyO1jU5WmNmnMNsaQ4cCu6tr8Ty+v7U6ZG1Aq6iCqvg8ZPkLCNqljjQ3k2Dj67aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725017143; c=relaxed/simple;
-	bh=t2wncrwmiNH/c2wgm8EhCgtxeigtwWS9Ar5vjZFimZs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lVKvcE9o559DN9htjn6soK7Pz0RRUvwadufVDz+AmWVH+tU9GhRhvcqLto8TzJ7kBpvZxXIhcsSANsabFW1NDxQyz6WGlzsaMdj1AOCImunodG7Io4aj5EPH7DlqQjz8UgWxL1iOCj0kThd/vE22ESD8DHseGJVzQpnmK2PDYHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=kQy1H/0y; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 9273ca3866c211ef8b96093e013ec31c-20240830
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=8hFbDqdqARkXESCpWhEKpXy666gO0BZMnAA7bAJp/zY=;
-	b=kQy1H/0yHnVwaqCdm2FqJ1a1LSyGue3PSruFY0837fmDETWiFzQezOgrmtkd5t9Xq1v2t8Fw9sU2DKaWFP8uYjcczvD8Se8BsjqTOFkn969Fuim4y68l88uQyyfoEPgS18NrXwO4d9LgPUiazF61wy038o8T0SFnlgQzp1xhQ/0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:2f12afbd-22ce-4ef8-a279-ed567767174d,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:dbab0d15-737d-40b3-9394-11d4ad6e91a1,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
-	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 9273ca3866c211ef8b96093e013ec31c-20240830
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1355043557; Fri, 30 Aug 2024 19:25:33 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 30 Aug 2024 19:25:34 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Fri, 30 Aug 2024 19:25:33 +0800
-Message-ID: <2d2626a7-b920-6113-e81c-3b24463c1fe1@mediatek.com>
-Date: Fri, 30 Aug 2024 19:25:30 +0800
+	s=arc-20240116; t=1725017507; c=relaxed/simple;
+	bh=YkWpl99ADp00PTbnerWY1taC+nN4P78uHCamb3Y1YCE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FeRDf4n/ZfBqKd/j6Eyncdbd1hthwtcuUx+4y/uSWkzVZflh4y2JtbQaV4vgatDTFe4sXFu5OZFZV8VR7LzvCujafspRVMFAyiorB+etJ2qM63y3yrrj2SWVkZ2oY+v5ZanYEEBGmylXFV1kxZGvdzd/ZE+yVgRF+XbNaYmivug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Di4xAqLA; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UBVdQV070277;
+	Fri, 30 Aug 2024 06:31:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725017499;
+	bh=Sw3OmQAxPKmlZz5JNo3EyM7bMOOW0KcfzHrl+gM1ueU=;
+	h=From:To:CC:Subject:Date;
+	b=Di4xAqLA5SR8ngVHPZDBXgwiefDYLv8zkkA6hEEZZyKGRjggDXJ3UJ4XThEUoh5/H
+	 qOc/p9OKL+1JEqq4/m+QotHzSj68wgfcOnOYeYlDI7ZzwuhK24yu4iX3QhwWkQnek2
+	 1JnPqKokhtH4c/EK4Ybc/crfKrT2brGNb5FCxsWk=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UBVd3W029545;
+	Fri, 30 Aug 2024 06:31:39 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 06:31:38 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 06:31:38 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UBVcrN049020;
+	Fri, 30 Aug 2024 06:31:38 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>
+CC: Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Dhruva
+ Gole <d-gole@ti.com>, Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH V2] arm64: dts: ti: k3-am642-evm-nand: Rename pinctrl node and gpio-hog names
+Date: Fri, 30 Aug 2024 06:31:37 -0500
+Message-ID: <20240830113137.3986091-1-nm@ti.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: mfd: mediatek,mt6357: Fixup reference to
- pwrap node
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-CC: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>, Flora
- Fu <flora.fu@mediatek.com>, Bear Wang <bear.wang@mediatek.com>, Pablo Sun
-	<pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen Chu
-	<sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>, MediaTek
- Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>, Chen-Yu
- Tsai <wenst@chromium.org>
-References: <20240826065415.19641-1-macpaul.lin@mediatek.com>
- <20240826-slurp-earphone-0d5173923ae8@spud>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <20240826-slurp-earphone-0d5173923ae8@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Organization: Texas Instruments, Inc.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Rename the pin mux and gpio-hog node names to match up with binding
+rules. This fixes dtbs_check warnings:
+'gpmc0-pins-default' does not match any of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
+'gpio0-36' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
 
-On 8/26/24 23:50, Conor Dooley wrote:
-> On Mon, Aug 26, 2024 at 02:54:15PM +0800, Macpaul Lin wrote:
->> The mt6357 is a subnode of pwrap node. Previously, the documentation
->> only included a note in the description of mt6357. This change adds the
->> appropriate $ref for pwrap to ensure clarity and correctness.
-> 
-> I think this change is wrong and the existing binding is fine.
-> Adding the ref overcomplicates the binding completely, and stating that
-> this is a child node of another device is sufficient.
-> 
-> Instead, if anything, the pwrap binding should have a ref to /this/
-> binding.
-> 
-> Thanks,
-> Conor.
+While at it, change the phandle name to be consistent with the pinctrl
+naming.
 
-Thanks for the clarification of this parent-child relationship of the 
-binding. Will apply to further conversion tasks.
+Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
 
-There are many PMIC devices belongs to the pwrap bindings. Hope I'll 
-have time to fix this soon.
+Changes since V1:
+* Picked up Reviewed-by
+* Updated phandle name to match up with with standard pin naming.
 
->>
->>    $ref: /schemas/soc/mediatek/mediatek,pwrap.yaml
->>
->> Additionally, the indentation for the pmic section has been adjusted
->> to match the corresponding structure.
+V1: https://lore.kernel.org/linux-arm-kernel/20240830102709.3970209-1-nm@ti.com/
 
-Best regards,
-Macpaul Lin
+ arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
+index f08c0e272b53..92faf762894c 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
+@@ -12,7 +12,7 @@
+ #include "k3-pinctrl.h"
+ 
+ &main_pmx0 {
+-	gpmc0_pins_default: gpmc0-pins-default {
++	gpmc0_default_pins: gpmc0-default-pins {
+ 		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM64X_IOPAD(0x0094, PIN_INPUT, 7) /* (T19) GPMC0_BE1n.GPIO0_36 */
+@@ -50,7 +50,7 @@ AM64X_IOPAD(0x00a4, PIN_OUTPUT, 0) /* (N17) GPMC0_DIR */
+ };
+ 
+ &main_gpio0 {
+-	gpio0-36 {
++	gpmc0-hog {
+ 		bootph-all;
+ 		gpio-hog;
+ 		gpios = <36 0>;
+@@ -67,7 +67,7 @@ &elm0 {
+ &gpmc0 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&gpmc0_pins_default>;
++	pinctrl-0 = <&gpmc0_default_pins>;
+ 	#address-cells = <2>;
+ 	#size-cells = <1>;
+ 
+
+base-commit: 20371ba120635d9ab7fc7670497105af8f33eb08
+-- 
+2.46.0
+
 
