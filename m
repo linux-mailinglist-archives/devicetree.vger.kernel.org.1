@@ -1,187 +1,111 @@
-Return-Path: <devicetree+bounces-98622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDBA5966C78
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:32:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AAE0966C7F
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:33:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40E7B1F22B72
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:32:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E0321C206A9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23BA1C2DBF;
-	Fri, 30 Aug 2024 22:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1091BD02E;
+	Fri, 30 Aug 2024 22:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="IrI86eVD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rfnKxrKB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66C2E1C1AD0
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 22:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0677C17B4E9
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 22:32:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725057120; cv=none; b=m7kTzOibnGyYby3CB46odi9sJAhRai7IlC7nlE9t24+NW80YuQ5UrQrlQUYw3NKqpbDa6Wu06pk3uFbn0ZGfZskS6+wSmO0yISSHfBjtLiRyWRLyS7FyYwYlZUPnpxWn8YHLuX1icP5RPxslg5Ps0BsxKn72WWc/8NdnsuKUKCA=
+	t=1725057159; cv=none; b=M6cgPg3gpLV0UV+HCxUpbK/Zqly/7J9uBVg4iYVAlCNKv81DhzggEWbZezqWtxhAmLJs/Sk7bolZPfxBBdB7AVcbb1bOGTPKiP5YwHn4E6071ZrR+vIBIwas6m2an9xaxV2ryVb5y6663mFh977392alUhqFhZrmIF1q6YH4Qxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725057120; c=relaxed/simple;
-	bh=hHzLblhbrXJK+/G9raoIs399iqss/9FXwR5tgGPtjHI=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TlnyMXdlenhdG9zHBjdv1RSY+DGTIbwOt1ukS85aUXeQyoRH/Zh2pSJ7Y7fz66oIWRQy2AIthqUkButfr/73vWxv3oeeh/ibJHjdbhy8pp2whrFGap/TfBPwYm5EoSgWQXvVe6Bs+gTXtcR/IetILLQBNujDt9bBO97Oiry940o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=IrI86eVD; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53349d3071eso3082875e87.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 15:31:58 -0700 (PDT)
+	s=arc-20240116; t=1725057159; c=relaxed/simple;
+	bh=O4BVzo4/O12zJnAXRC6H/18YaBmS+B36iZcOSvO8Wdk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lhxDuU6eTTkY5UdOkzHP2GL5CKK9FJrKWNTmpePl5iPNecgEWBtGmg0jrBRNkP3KzSWYbvUKoJ7NZOOPm4rHMKfCtu6S3E4/VsPZ+lrKb5HKx94QENSTD8JUfPhL4ORtquVp60jhiA2szOKYaeUBzPcjewFiq1/uxYeDGd6euHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rfnKxrKB; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e03caab48a2so1944637276.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 15:32:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1725057116; x=1725661916; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FuOHjHN01pwLhTn870hGi0iyigFDRibUrDrwMdxDl98=;
-        b=IrI86eVDg2/wYDZQDlPMxC9/wv3dhUk6p8jIbcb0ybgmlva31/PINL3i3+UDhiZqiP
-         MVUt4Fnifkv1ske37BXvH3v9WBAxMv53Eztln2qqrTrxmE7TxOVdr4VbkqME4bEqNStj
-         XO+R4S0AMifdsZEueHH8AQQOqlDtRL0RSGlvB78AgLE0v1OOyaVCmbnQufRuNt7kJAjb
-         XD2k6NAJLCnHFEGStm/In2cnhT84ZannyVhPNt5lejbruB+WM/+h0En6qVZxkSW79teL
-         JaKBuHDtxCuGT+YHO/ECn13UxmmJ/ult2z5vWtuSTBD62XlR8xS7WFBkjXdE+qNyppS1
-         cx4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725057116; x=1725661916;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1725057157; x=1725661957; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FuOHjHN01pwLhTn870hGi0iyigFDRibUrDrwMdxDl98=;
-        b=dihWXIq3RPas43yr4uIDqEmi69HDjJ6BFgC4sRAiShHiBHAXFkc8YfKIG6ZJZaGOMh
-         Jn9/JWYlaCoLJqeTWrHsidG4eJuGOF7wsJK1P1ugfpsSweEuf+aZLrZ0Sk1I83mVemO3
-         BNjntDJZb7i0uwed8icKcu/2IEhJ8QcnOgQZ6iRFyWVcLWdB1ZC2OI3xsBOK96A1IVCu
-         nUu3BG/zP2ipSzyd1AAFXXWEzZcROcW7rGW793X50W58ut8Xq1V+C80Ysi9x3CbjcNgf
-         Q4ZwaGglrvu+oHOXLPEitFYUDhl3KR/kHFH8QZLCPQZ+LGvNFw2LpzzcexA9isC77aC9
-         VWuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVLAj442FH/LRHb91+1NmD6eHI/B0fm0HfdvkzCM61xdkpsm0JBKUs7etp6QHBuUFaugMAqpBQ5WOsM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRZ4F079H4rxyqKWVi/SXRKI8RhcOAL9x3FNPGRJvagbGfcCMO
-	tIfB19ejOQyVqxiku2uYHYTBTl2XtEUP3qx53bbk8Raf5bLBiSryie2hV+42g3w=
-X-Google-Smtp-Source: AGHT+IGclcXXmfEYFitTuWbyIOxJTqBHu8I4vUSw06+6AvY4Xvz0PRfaVlPP3p7/PlrqVhE+LPRQGg==
-X-Received: by 2002:a05:6512:3b11:b0:52c:e054:4149 with SMTP id 2adb3069b0e04-53546b052fdmr2712927e87.15.1725057115910;
-        Fri, 30 Aug 2024 15:31:55 -0700 (PDT)
-Received: from localhost (host-80-182-198-72.pool80182.interbusiness.it. [80.182.198.72])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891d6f9esm260898466b.154.2024.08.30.15.31.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 15:31:55 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Sat, 31 Aug 2024 00:32:02 +0200
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 10/11] net: macb: Add support for RP1's MACB variant
-Message-ID: <ZtJIYsBa07nJE6os@apocalypse>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <775000dfb3a35bc691010072942253cb022750e1.1724159867.git.andrea.porta@suse.com>
- <cfysm2r6sswmvrch34pk5dx4wum3rohcxdla7i5qoh6vizgklb@pk5i7nzlnp67>
+        bh=O4BVzo4/O12zJnAXRC6H/18YaBmS+B36iZcOSvO8Wdk=;
+        b=rfnKxrKBpB4EIwpnGRFvzfFPFtF5qw8wflecgdm8PrJT1nGkeKPW7oUlm0ZYwuRv6x
+         EOKC6ckH9SnxvLbdpfbZCz5LFr66UStvj+SOxHjDoCiCermKPZuhjuriuYPHewXfJnrc
+         47fbbq4H91b97+tkaAfMqjMku2MtYf3cjq19FOJJbIMLGgVrN9o+DJfp+HsaHmR8w1lW
+         ydt22Z1HbkdnKbfIKpu00UWcG0H8E2a+GHrVIvQKkVpuU7Kdh1PZ89324BGrGLiZRTYQ
+         3N8H8trseMi8T+Y+NqSx0ZOkJHKfmjVKjr0S9QlHGR7yocCjP4xriPBLL6A86fQiLB18
+         MWhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725057157; x=1725661957;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O4BVzo4/O12zJnAXRC6H/18YaBmS+B36iZcOSvO8Wdk=;
+        b=CeHSETSUlSVWB0UJnIfoDpwxxDGt63O+JpgxV/K+Xf3zd/1je7QorU/amviTb3xuF0
+         9zFJYpG99H0lIsCO0wRbIJ6JFuj9nhOZXrx9kkAGdJ03VJYJjy98JjyuDpDfvooKmtU+
+         OQy0UO76kKDJ9x3WSf0MlNsRIMTcM5ve2Os+at8oeXwrEOsYHztPQUIrTe2IVtPChyAh
+         FCdt7GVE5ENEe8YYlgXKKL7d9+lfC5KC72O9IsqKCNwtFu++vSf238dfRowA9kuYQ4nh
+         6bKTAw+0xVXzEN9Xmz11B2C9cz7uFcCf+GhaaCS1PumBvy939t8yKsQnDazTgpk31g3x
+         5auw==
+X-Forwarded-Encrypted: i=1; AJvYcCX49Ru2+gSHTVw7OvBi/FuqsERdDQKTm/xgrT00V4EfyBUQJsHIjggWYQlRPk7OlgQtNk1adt8Lz3WV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4pc+OXeoAdLuhriCbHAv/aVjO9ejYRwclAMZadNzKB3w0+wrz
+	mc0Q4YrxAcxAWKUbcRp4Og9f3XuIYSQhPM6/zI9arawWASDqCdchj0xq7FGWyd619Cua3B5udB4
+	YOiL9R3CHqfRpI/rBTHxnbn6iq8EYVnf1s4l/0Q==
+X-Google-Smtp-Source: AGHT+IGY8O84DiR2Aaig1136Hn1BZ4NVKNmKGEF29tIOvuMMt+pTTKh5RAqmh/aYiy5yQpsPuZ+gYm0rdnzyEcUt/SA=
+X-Received: by 2002:a25:8391:0:b0:e16:7070:97e6 with SMTP id
+ 3f1490d57ef6-e1a5c648a4fmr6700554276.9.1725057156927; Fri, 30 Aug 2024
+ 15:32:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cfysm2r6sswmvrch34pk5dx4wum3rohcxdla7i5qoh6vizgklb@pk5i7nzlnp67>
+References: <20240828-dt-bindings-gpio-hog-v1-0-63b83e47d804@linaro.org> <20240828-dt-bindings-gpio-hog-v1-2-63b83e47d804@linaro.org>
+In-Reply-To: <20240828-dt-bindings-gpio-hog-v1-2-63b83e47d804@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Sat, 31 Aug 2024 00:32:25 +0200
+Message-ID: <CACRpkdZzF5yJQnnDsjU8cTr9Fpe7wZZXoW3K-wFYuAq2vv8XxA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: qcom: add missing type to GPIO hogs
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, Masahiro Yamada <yamada.masahiro@socionext.com>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor.dooley@microchip.com>, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Wed, Aug 28, 2024 at 11:36=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-On 10:49 Wed 21 Aug     , Krzysztof Kozlowski wrote:
-> On Tue, Aug 20, 2024 at 04:36:12PM +0200, Andrea della Porta wrote:
-> > RaspberryPi RP1 contains Cadence's MACB core. Implement the
-> > changes to be able to operate the customization in the RP1.
-> > 
-> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> 
-> 
-> > @@ -5100,6 +5214,11 @@ static int macb_probe(struct platform_device *pdev)
-> >  			}
-> >  		}
-> >  	}
-> > +
-> > +	device_property_read_u8(&pdev->dev, "cdns,aw2w-max-pipe", &bp->aw2w_max_pipe);
-> > +	device_property_read_u8(&pdev->dev, "cdns,ar2r-max-pipe", &bp->ar2r_max_pipe);
-> 
-> Where are the bindings?
+> GPIO hog nodes should define type, otherwise "dummy-hog" boolean
+> properties would be allowed.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-As stated in the cover letter, this patch (and the dtb patch #11 for macb) is completely
-unpolished and intended only for a quick test of the ethernet peripheral underneath
-the RP1.  As such, it's not intended to be upstreamed yet.
-However, your feedback is really appreaciated and will be used in a future patch that
-will deal with ethernet mac support.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> 
-> > +	bp->use_aw2b_fill = device_property_read_bool(&pdev->dev, "cdns,use-aw2b-fill");
-> > +
-> >  	spin_lock_init(&bp->lock);
-> >  
-> >  	/* setup capabilities */
-> > @@ -5155,6 +5274,21 @@ static int macb_probe(struct platform_device *pdev)
-> >  	else
-> >  		bp->phy_interface = interface;
-> >  
-> > +	/* optional PHY reset-related properties */
-> > +	bp->phy_reset_gpio = devm_gpiod_get_optional(&pdev->dev, "phy-reset",
-> 
-> Where is the binding?
+I suppose it's best of Bartosz applies this to the GPIO tree with
+the rest of the series?
 
-Ditto.
-
-> 
-> > +						     GPIOD_OUT_LOW);
-> > +	if (IS_ERR(bp->phy_reset_gpio)) {
-> > +		dev_err(&pdev->dev, "Failed to obtain phy-reset gpio\n");
-> > +		err = PTR_ERR(bp->phy_reset_gpio);
-> > +		goto err_out_free_netdev;
-> > +	}
-> > +
-> > +	bp->phy_reset_ms = 10;
-> > +	of_property_read_u32(np, "phy-reset-duration", &bp->phy_reset_ms);
-> 
-> Where is the binding?
-
-Ditto.
-
-Cheers,
-Andrea
-
-> 
-> > +	/* A sane reset duration should not be longer than 1s */
-> > +	if (bp->phy_reset_ms > 1000)
-> > +		bp->phy_reset_ms = 1000;
-> > +
-> >  	/* IP specific init */
-> >  	err = init(pdev);
-> 
-> Best regards,
-> Krzysztof
-> 
+Yours,
+Linus Walleij
 
