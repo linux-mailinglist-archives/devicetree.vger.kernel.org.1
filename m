@@ -1,114 +1,162 @@
-Return-Path: <devicetree+bounces-98453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2B699662D8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAB609662F0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 15:30:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77CD51F21256
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:26:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A050D1F24E6E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04E6199952;
-	Fri, 30 Aug 2024 13:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F471A4B71;
+	Fri, 30 Aug 2024 13:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BI+ILC2W"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RcKRJj/3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D89179652;
-	Fri, 30 Aug 2024 13:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C076C19992E;
+	Fri, 30 Aug 2024 13:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725024360; cv=none; b=j90rRXl1xjsU1YKk3kg7rS5XYguGWsq0m4BS0aqxquYb/3NdcPY918Az2njM0wN3yyVmbW7QiziRB7ckVUFSeox+ADMVhEP8A0ycSC/0q5OS0+MB52bNrmPt0QSH+/M7+SzUFM8JJjHV/Y90isnModtwgLt210NLylDH54HtVqg=
+	t=1725024627; cv=none; b=qxq2bfJMOH4Y4hKiLNbhfU92uCezpVMCdLDJaZf3YTulo70/D/Thy5doz2tgZaQ5TB1fOWnJdFoyZLADiDYAp7GiyDXKDdd8chRFd+DDElq88uFbq6ms4x+NuhinZYLoVWOTZKByFLFKa0ZcXGTztVUUmbrgv1BN5j2sEntB5/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725024360; c=relaxed/simple;
-	bh=yNTgcxt0Jvmr1cytFFcqGGu1C6A7n+7i6AMHuwra94s=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=msOhP/gMgYbJ/R00kMgllF8T9supJRg6RfIOnnIAfX2CiMtBYFfKLXLc3B3UzI55P/jNMXytjCOG0r9Slx2RKDzjh9j9LvUqJlxqSF//SBOhxM7arWDHTUvFs9T1UY569VLxg7h7hfPdNn/LC6/vEjcxTsuDSY0FcV5/JEccR0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BI+ILC2W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73574C4CEC2;
-	Fri, 30 Aug 2024 13:25:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725024360;
-	bh=yNTgcxt0Jvmr1cytFFcqGGu1C6A7n+7i6AMHuwra94s=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=BI+ILC2WBeJTDWqQrcORGhSJsg6K2Pz+RbA7txVBNCZbIFbJGr1sLhCKonLQQsV9L
-	 VvITUft3oYcXxBAYx158mDpAeIJW1LzwZeXXDjLwltTWiLfAAj28T9sJo3vXsG4ZiI
-	 TPxCvcnL4dwMiVPDPcFIZKyWXgSpEqQ1RdArVD/Y1JOh6uPrgIlEBvI9pCTsMW5vuf
-	 P+8dAXUHiBMNlDsNZphv+FSnM+U9s0vEkLCaAr6bIYV9plDFnVsUZbEu60htGMAcnY
-	 wTOtyqUK4vXhSIO1g8dlRiNt4JNg7YiNYa1hgKGKLucL90XuPxT321iwazF/agsdeI
-	 lJa6oh9ZKcY2A==
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20240828-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v2-0-58159abf0779@linaro.org>
-References: <20240828-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v2-0-58159abf0779@linaro.org>
-Subject: Re: (subset) [PATCH v2 0/3] ASoC: dt-bindings:
- amlogic-sound-cards: document clocks property
-Message-Id: <172502435719.145062.8812088921353096920.b4-ty@kernel.org>
-Date: Fri, 30 Aug 2024 14:25:57 +0100
+	s=arc-20240116; t=1725024627; c=relaxed/simple;
+	bh=akX9i3Y6YtjIaJLO68HWJOg04kx/lPLhkR4q/41kdMI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Pc2RNjgBEnOTMGKoBAy8BNDm0gkiOdBY3cyNv5rS35u6vLbuEM7FXnqy6mGCB4uE/tk4IBfG4nezm4yPsV3PadEpb/ufu1ey87Q4LEA8qjTlJnaljqZljy4jAaALUueg6I/Lz35wc8XBPQeIilhh+jGIgLWcbNJHTXdietVkYnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RcKRJj/3; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UDUFb0012666;
+	Fri, 30 Aug 2024 08:30:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725024615;
+	bh=zijsqgcnQrWmj900qtVdBFJMu40Rzgd2539slK46iqE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=RcKRJj/3Sd6OAmSgok2Gmaf/EAnG3FkCrw8csYr7ks31yVr89emOhI7w3Io1Wdimq
+	 aDkudWWMokhFkKv8rwfihUAzOUE9aO5Ruy0tnMe7bn6gLNmdjz+YQYclVGrqCPW+wX
+	 D3cMx9J5qgko4ilvyqSZOSHqxzWRU7BTcmNXx9MI=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UDUFwc054299
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 30 Aug 2024 08:30:15 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 08:30:14 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 08:30:15 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UDUAN4057042;
+	Fri, 30 Aug 2024 08:30:11 -0500
+Message-ID: <c2568770-c80c-44d6-b3d5-a1a18f213d42@ti.com>
+Date: Fri, 30 Aug 2024 19:00:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/5] arm64: dts: ti: Refactor J784s4 SoC files to a
+ common file
+To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
+        <u-kumar1@ti.com>
+References: <20240828-b4-upstream-j742s2-v5-0-9aaa02a0faee@ti.com>
+ <20240828-b4-upstream-j742s2-v5-1-9aaa02a0faee@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240828-b4-upstream-j742s2-v5-1-9aaa02a0faee@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-37811
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, 28 Aug 2024 15:53:53 +0200, Neil Armstrong wrote:
-> Following an off-list discution with Jerome about fixing the following
-> DTBs check errors:
->     sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
->         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
->     sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
->         from schema $id: http://devicetree.org/schemas/sound/amlogic,gx-sound-card.yaml#
->     sound: 'anyOf' conditional failed, one must be fixed:
->         'clocks' is a required property
->         '#clock-cells' is a required property
->         from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-> 
+Hi Manorit
+
+Overall series looks ok but few comments below
+
+On 8/28/2024 4:44 PM, Manorit Chawdhry wrote:
+> Refactor J784s4 SoC files to a common file which uses the
+> superset device to allow reuse in j742s2-evm which uses the subset part.
+>
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+> ---
+>   .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  150 ++
+>   .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2667 ++++++++++++++++++
+>   ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
+>   ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
+>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
+>   arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  135 +-
+>   6 files changed, 2914 insertions(+), 2887 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+> new file mode 100644
+> index 000000000000..43fee57f0926
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+> @@ -0,0 +1,150 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Device Tree Source for J784S4 and J742S2 SoC Family
+> + *
+> + * TRM (j784s4) (SPRUJ43 JULY 2022): https://www.ti.com/lit/zip/spruj52
+> + * TRM (j742s2): https://www.ti.com/lit/pdf/spruje3
+> + *
+> [..]		 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
+> +			 <0x00 0x04210000 0x00 0x04210000 0x00 0x00010000>, /* VPU0 */
+> +			 <0x00 0x04220000 0x00 0x04220000 0x00 0x00010000>, /* VPU1 */
+> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIe0 Core*/
+> +			 <0x00 0x0d800000 0x00 0x0d800000 0x00 0x00800000>, /* PCIe1 Core*/
+> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00800000>, /* PCIe2 Core*/
+> +			 <0x00 0x0e800000 0x00 0x0e800000 0x00 0x00800000>, /* PCIe3 Core*/
+
+
+PCie2 and PCIe3 ranges are not common across these devices,
+
+Do you want to move this into J784s4 specific file
+
+Same comment for PCIe region DAT below
+
+> [..]
+
+> 			 <0x42 0x00000000 0x42 0x00000000 0x01 0x00000000>, /* PCIe2 DAT1 */
+> +			 <0x43 0x00000000 0x43 0x00000000 0x01 0x00000000>, /* PCIe3 DAT1 */
+
+[..]
+
++#include "k3-j784s4-j742s2-main-common.dtsi"
+> +#include "k3-j784s4-j742s2-mcu-wakeup-common.dtsi"
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
 > [...]
+> +
+> +&cbass_main {
+> +	msmc_ram: sram@70000000 {
+> +		compatible = "mmio-sram";
+> +		reg = <0x00 0x70000000 0x00 0x800000>;
 
-Applied to
+Table 2-1 of J742S2 TRM says msmc RAM is 4MB and on J784S4 this is 8MB
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Please see, if you can address that
 
-Thanks!
 
-[1/3] ASoC: dt-bindings: amlogic,axg-sound-card: document clocks property
-      commit: 4b1d9019b26fd654ebc2d0d2e100ed56ef1821f0
-[2/3] ASoC: dt-bindings: amlogic,gx-sound-card: document clocks property
-      commit: f189c972f86b00318cf2547b62e461cb98374e34
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> [...]
+>
 
