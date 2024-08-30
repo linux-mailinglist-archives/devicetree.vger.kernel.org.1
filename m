@@ -1,172 +1,209 @@
-Return-Path: <devicetree+bounces-98397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21503965FDA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32117965FE8
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 13:03:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BF891F247E6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:02:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B63BB1F2399B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:03:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB1517AE01;
-	Fri, 30 Aug 2024 11:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E09C619ABA9;
+	Fri, 30 Aug 2024 11:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Kcnm/uL6"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="GA5zSlZj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43B87173C;
-	Fri, 30 Aug 2024 11:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B15019ABBB;
+	Fri, 30 Aug 2024 11:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725015628; cv=none; b=fIGpw+GXtzv6WEGd3mFf9UyL9vbsKSBzl1de09dGUt/GJvKEraKEAWU5fKlaBvFkZcmALamVY8umpoyW2wf1Hcc2jmacd4r7hvIJh1ZbKAMcb+mMXbQgiumvrtrB+EOwUiVfEeCAsdhmt39RXdU0XDTtBAWnwawvkHbYvhQzvzo=
+	t=1725015724; cv=none; b=RDw9vxi2sQUuWW1JwUacAR4XFi4u2up90U0CADJBDHPzjFBJKwJpKaYe+5MY3K9q/qSDmkCH+Nt07xFBL6O4v+mXq+KUf2k6HmZ1ac1yOVHAL56q38owl0DP6R1SGxlxq3tdMzcJfFz+Z/1UOEcLMh7McvP0FkV1zUf2SfDSE9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725015628; c=relaxed/simple;
-	bh=3FOKTEeg0512kcdkWSBnWWhRJDALh7A+US0Aj396lvU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HRoOoNiylt69hrHAyG8Ffprmn0rcCrMtoY8Yx4S1xwyUyVyTPHlI6pYvhw0wI/5oPJf8o61n7AIJymEBeEgxuVogP68jOWS86gYAcYhKGaPbfJBuHToYqomBNwvQz8W0Biq3GYOS+5JuMHW3vArb9KlkjYK5NfEko5hEHEbINO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Kcnm/uL6; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UB0CGE104110;
-	Fri, 30 Aug 2024 06:00:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725015612;
-	bh=CwdsOLB1r/WHgT4vLJLWYMr77VY6J1vobJDBuWvIC6g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Kcnm/uL6WE5hM1vyM+48d2g6TstrmVf71p3bKfEfkk1381I4BgKQQDZYUFnpMtr1/
-	 Duu7IXH+IVIaIGW5HHkLxuaYbPB/drfoTdiN5JoSlKvLlfQbIMO4vxJ1MFq97CxmPY
-	 V8uHCdNqTKr6I6FGcDKwMCLH7pNAxr1sk02reNPk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UB0COI099276
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 30 Aug 2024 06:00:12 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 06:00:11 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 06:00:11 -0500
-Received: from [172.24.227.241] (santhoshkumark.dhcp.ti.com [172.24.227.241])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UB08XC016683;
-	Fri, 30 Aug 2024 06:00:09 -0500
-Message-ID: <da3410c9-232a-4044-9ba1-087e8fef7549@ti.com>
-Date: Fri, 30 Aug 2024 16:30:07 +0530
+	s=arc-20240116; t=1725015724; c=relaxed/simple;
+	bh=TDfK2OXLeyP1NsBRvK2CqLKE67BvroyGJQRQiZTW4AU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F/H37y46XmwUZTt2s0xvbIB4JAWg7McBPHIloL20R0/BOffyMaTVWVEMbX2ZsdikLfgx8kbdFzyyWoP6vVTTQeknG/5l2ER6pccqZf9sxCaj3KRX5tuiVYtOfR9rLA/SVEGMz+GpFY23TUWbBr8eluisAEm9R1VpcMMAx1LyfuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=GA5zSlZj; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1725015722; x=1756551722;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TDfK2OXLeyP1NsBRvK2CqLKE67BvroyGJQRQiZTW4AU=;
+  b=GA5zSlZjlBK05UcOa8fkVjUK5neWkXsGAq6gHusApf9Ggw8NZYc91jB6
+   LyhgDK0SS8bH9n7iE2EQC2ETmGv6jBGn8A13uqKqjl38/Mr8Xw9paJ7jw
+   gz8Yx4ttjkiOEJ4VHCMEjfAFfDr5C4rNmjdUoQmcE98R4+/srjbIjtRO8
+   yOxUOVFk7p8nuVD9sfe63kiYJV7DVfmksbxcL+XcQNcsn0i/NTk6IuEBC
+   2WIrw3PdKBBIjAcUoSoz26NTn7xw0pEBnXA0G0E9sVKJ8bdcyb4tXuyWt
+   G3nSERceBswJkSdoOux4BVvh+/4j0xA7fUq5Yn/W+KLfBfc9oKLWrCW1f
+   Q==;
+X-CSE-ConnectionGUID: 491UwJ12S2WuGIiIBwqZ7Q==
+X-CSE-MsgGUID: OvBJOUT7RViFE4CCask+Fw==
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; 
+   d="asc'?scan'208";a="198533155"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Aug 2024 04:02:01 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 30 Aug 2024 04:01:58 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 30 Aug 2024 04:01:50 -0700
+Date: Fri, 30 Aug 2024 12:01:19 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, Christian Marangi
+	<ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>, Lorenzo Bianconi
+	<lorenzo.bianconi83@gmail.com>, Conor Dooley <conor@kernel.org>, Benjamin
+ Larsson <benjamin.larsson@genexis.eu>, Linus Walleij
+	<linus.walleij@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>,
+	<linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<upstream@airoha.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+ controller
+Message-ID: <20240830-payphone-unexposed-75eed532c14d@wendy>
+References: <66c8c50f.050a0220.d7871.f209@mx.google.com>
+ <Zsj8bmBJhfUdH6qT@lore-desk>
+ <20240826-kinsman-crunching-e3b75297088c@spud>
+ <CAA2SeNJ2Gi+3Za+jvAVqqbx7xEGLqkDBkJ8vL=pA=ZbKWOfp=Q@mail.gmail.com>
+ <CAL_JsqLBGwgX=PeCqP8+iFj6uvAO4O_dTvz7x1c+T1Kz+-q-QA@mail.gmail.com>
+ <66ce1b04.df0a0220.a2131.6def@mx.google.com>
+ <qro6jbupm27vvulymb4ckn7wm6qbvrvnydzjyd42metarlh2t2@hxdzvff4jdus>
+ <66d187f1.050a0220.3213d8.ad53@mx.google.com>
+ <2c9aafdd-000b-4e8f-b599-4f57e7eb0ca7@kernel.org>
+ <ZtGlJBORZaFm_77K@lore-desk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-am65: Include entire FSS region
- in ranges
-To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240828172956.26630-1-afd@ti.com>
- <20240828172956.26630-2-afd@ti.com>
-Content-Language: en-US
-From: Santhosh Kumar K <s-k6@ti.com>
-In-Reply-To: <20240828172956.26630-2-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BTdQ0ZNkxqHmGinK"
+Content-Disposition: inline
+In-Reply-To: <ZtGlJBORZaFm_77K@lore-desk>
 
-Hi, Andrew,
+--BTdQ0ZNkxqHmGinK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 28/08/24 22:59, Andrew Davis wrote:
-> Add FSS regions at 0x50000000, 0x400000000, and 0x600000000. Although
-> not used currently by the Linux FSS driver, these regions belong to
-> the FSS and should be included in the ranges mapping.
-> 
-> While here, a couple of these numbers had missing zeros which was
-> hidden by odd alignments, fix both these issues.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> Reviewed-by: Santhosh Kumar K <s-k6@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi |  8 ++++----
->   arch/arm64/boot/dts/ti/k3-am65.dtsi     | 12 +++++-------
->   2 files changed, 9 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> index 43c6118d2bf0f..1a251d13f80ab 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> @@ -292,13 +292,13 @@ fss: bus@47000000 {
->   		ranges = <0x0 0x47000000 0x0 0x47000000 0x0 0x100>, /* FSS Control */
->   			 <0x0 0x47040000 0x0 0x47040000 0x0 0x100>, /* OSPI0 Control */
->   			 <0x0 0x47050000 0x0 0x47050000 0x0 0x100>, /* OSPI1 Control */
-> -			 <0x5 0x00000000 0x5 0x00000000 0x1 0x0000000>, /* OSPI0 Memory */
-> -			 <0x7 0x00000000 0x7 0x00000000 0x1 0x0000000>; /* OSPI1 Memory */
-> +			 <0x0 0x50000000 0x0 0x50000000 0x0 0x10000000>, /* FSS data region 1 */
-> +			 <0x4 0x00000000 0x4 0x00000000 0x4 0x00000000>; /* FSS data region 0/3 */
->   
->   		ospi0: spi@47040000 {
->   			compatible = "ti,am654-ospi", "cdns,qspi-nor";
->   			reg = <0x0 0x47040000 0x0 0x100>,
-> -				<0x5 0x00000000 0x1 0x0000000>;
-> +			      <0x5 0x00000000 0x1 0x00000000>;
->   			interrupts = <GIC_SPI 552 IRQ_TYPE_LEVEL_HIGH>;
->   			cdns,fifo-depth = <256>;
->   			cdns,fifo-width = <4>;
-> @@ -316,7 +316,7 @@ ospi0: spi@47040000 {
->   		ospi1: spi@47050000 {
->   			compatible = "ti,am654-ospi", "cdns,qspi-nor";
->   			reg = <0x0 0x47050000 0x0 0x100>,
-> -				<0x7 0x00000000 0x1 0x00000000>;
-> +			      <0x7 0x00000000 0x1 0x00000000>;
->   			interrupts = <GIC_SPI 553 IRQ_TYPE_LEVEL_HIGH>;
->   			cdns,fifo-depth = <256>;
->   			cdns,fifo-width = <4>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-> index c59baebc5a25b..c74a0a25832cb 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-> @@ -69,11 +69,10 @@ cbass_main: bus@100000 {
->   			 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>,
->   			 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>,
->   			 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
-> -			 <0x00 0x50000000 0x00 0x50000000 0x00 0x8000000>,
-> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>,
->   			 <0x00 0x6f000000 0x00 0x6f000000 0x00 0x00310000>, /* A53 PERIPHBASE */
-> -			 <0x00 0x70000000 0x00 0x70000000 0x00 0x200000>,
-> -			 <0x05 0x00000000 0x05 0x00000000 0x01 0x0000000>,
-> -			 <0x07 0x00000000 0x07 0x00000000 0x01 0x0000000>;
-> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00200000>,
-> +			 <0x04 0x00000000 0x04 0x00000000 0x04 0x00000000>;
+On Fri, Aug 30, 2024 at 12:55:32PM +0200, Lorenzo Bianconi wrote:
+> [...]
+>=20
+> > >>>
+> > >>> Hi Rob, thanks a lot for the hint, I hope we can finally find a sol=
+ution
+> > >>> on how to implement this.
+> > >>>
+> > >>> In Documentation the block is called GPIO Controller. As explained =
+it does
+> > >>> expose pinctrl function AND pwm (with regs in the middle)
+> > >>>
+> > >>> Is this semplification really needed? It does pose some problem dri=
+ver
+> > >>> wise (on where to put the driver, in what subsystem) and also on the
+> > >>
+> > >> Sorry, but no, dt-bindings do not affect the driver at all in such w=
+ay.
+> > >> Nothing changes in your driver in such aspect, no dilemma where to p=
+ut
+> > >> it (the same place as before).
+> > >>
+> > >=20
+> > > Ok, from the proposed node structure, is it problematic to move the
+> > > gpio-controller and -cells in the pinctrl node? And also the pwm-cells
+> > > to the pwm node?
+> >=20
+> > The move is just unnecessary and not neat. You design DTS based on your
+> > drivers architecture and this is exactly what we want to avoid.
+> >=20
+> > > This is similar to how it's done by broadcom GPIO MFD [1] that also
+> >=20
+> > There are 'reg' fields, which is the main problem here. I don't like
+> > that arguments because it entirely misses the discussions - about that
+> > binding or other bindings - happening prior to merge.
+> >=20
+> > > expose pinctrl and other device in the same register block as MFD
+> > > childs.
+> > >=20
+> > > This would be the final node block.
+> > >=20
+> > >                 mfd@1fbf0200 {
+> > >                         compatible =3D "airoha,en7581-gpio-mfd";
+> > >                         reg =3D <0x0 0x1fbf0200 0x0 0xc0>;
+> > >=20
+> > >                         interrupt-parent =3D <&gic>;
+> > >                         interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL_HIG=
+H>;
+> > >=20
+> > >                         pio: pinctrl {
+> > >                                 compatible =3D "airoha,en7581-pinctrl=
+";
+> > >=20
+> > >                                 gpio-controller;
+> > >                                 #gpio-cells =3D <2>;
+> > >=20
+> > >                                 interrupt-controller;
+> > >                                 #interrupt-cells =3D <2>;
+> >=20
+> > No resources here...
+>=20
+> ack. iiuc, all the properties will be in the parent node (mfd) and we will
+> have just the compatible strings in the child ones, right? Something like:
+>=20
+> 		mfd@1fbf0200 {
+> 			compatible =3D "airoha,en7581-gpio-mfd";
+> 			reg =3D <0x0 0x1fbf0200 0x0 0xc0>;
+> 			gpio-controller;
+> 			#gpio-cells =3D <2>;
+>=20
+> 			...
+> 			#pwm-cells =3D <3>;
+>=20
+> 			pio: pinctrl {
+> 				compatible =3D "airoha,en7581-pinctrl";
+> 			};
+>=20
+> 			pwm: pwm {
+> 				compatible =3D "airoha,en7581-pwm";
+> 			};
+> 		};
 
-Suggested changes have been added, thanks!
 
-Acked-by: Santhosh Kumar K <s-k6@ti.com>
+Didn't Rob basically tell you how to do it earlier in the thread?
+What you've got now makes no sense, the compatibles only exist in that
+to probe drivers, which you can do from the mfd driver with
+mfd_add_devices() or w/e that function is called.
 
->   
->   		cbass_mcu: bus@28380000 {
->   			compatible = "simple-bus";
-> @@ -89,9 +88,8 @@ cbass_mcu: bus@28380000 {
->   				 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>, /* MMRs, remaining NAVSS */
->   				 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>, /* CPSW */
->   				 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>, /* OSPI space 1 */
-> -				 <0x00 0x50000000 0x00 0x50000000 0x00 0x8000000>, /*  FSS OSPI0 data region 1 */
-> -				 <0x05 0x00000000 0x05 0x00000000 0x01 0x0000000>, /* FSS OSPI0 data region 3*/
-> -				 <0x07 0x00000000 0x07 0x00000000 0x01 0x0000000>; /* FSS OSPI1 data region 3*/
-> +				 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>, /* FSS data region 1 */
-> +				 <0x04 0x00000000 0x04 0x00000000 0x04 0x00000000>; /* FSS data region 0/3 */
->   
->   			cbass_wakeup: bus@42040000 {
->   				compatible = "simple-bus";
+Cheers,
+Conor.
+
+--BTdQ0ZNkxqHmGinK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtGmfwAKCRB4tDGHoIJi
+0sEcAQCQDluOGutoHHSxi1RRVaYRPSJP0f1MJmoiZYp/4PI/ugD+IRBsC22377IK
+Ef6OU0NVQVpsYSIGHZUMn0A7WR8tYwM=
+=YVf8
+-----END PGP SIGNATURE-----
+
+--BTdQ0ZNkxqHmGinK--
 
