@@ -1,253 +1,139 @@
-Return-Path: <devicetree+bounces-98211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D421B96541B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 02:38:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A8296544D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 02:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 554F41F250D8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 00:38:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30947B21B6C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 00:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2A523BE;
-	Fri, 30 Aug 2024 00:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070174690;
+	Fri, 30 Aug 2024 00:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ef7eWCdt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="G8V+SsEW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2094.outbound.protection.outlook.com [40.92.103.94])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 609364690;
-	Fri, 30 Aug 2024 00:38:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.94
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724978294; cv=fail; b=gpemzOP7jnP84OKLfFEPXSg7vf5LGxut0W5kKyI60TN+C5HaSzXFpukC7MAS+EhJT/yjZoSbfJ9JpU0CTG3pqvlsygjq8BfUgu4Q9Vyl66xWdLvfqp0X3lgrY5bm5z9+yqFVG2roGf/hkxyXwr8FCL96XyvgxEevtUnDRHS/dzk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724978294; c=relaxed/simple;
-	bh=1Jt3qmxDRII6BcYejnLo0jgQTn1UNscU1quDA/DUpbI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=daDcVFTCJYiBiKV4k06upmZfUObCf0Sf26cVvaw70M/ZRB/Y2Z9ssDfdVCIUHXq/0I7bvaaQa9yM6wjY4KCh1HF9NnJa+6SEMJwWQaNweoauJBT+iwlKk+eX7EgCwdHCG53al8LwWBE+WZmpDZQ8BkKdTZPkwvhEUJqjRl3OxPA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ef7eWCdt; arc=fail smtp.client-ip=40.92.103.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ltie8+sMpsyscBktnoms4Nj2MT4cKgkRBb0VPeRWOyk8gCDn6X1C91gASVPeF405ZdbMiwA7jvCXeJgChXH2ugKz0GGc/7ytlO0zwM//ThC4Whizbd29cBzSE0gxxZw/SawCgm8zJttBdpEYrsQc56G6/FXgQ4i0ow+L4DUDYndmk1HcyvsQmfDTYk4P3TU4IukUBlS+5DYzJYoOFXmTC2nXtAf8YDzTibyml7+NQGF8IEQd02agkUIzf6FaAbNomx/EMTSiGNXCdTp2oMVyyNspmCXywlrt0qN5enN47whhiXhad+gzDy7dGbH6lKyHGlMiA1CxfjR85WmM+NVklA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ubaVuQ8h27Ml98HZcEN9lYK8gHSIrxa/JRN3erGOcnU=;
- b=Xowv4I27gIOmhOk36Ol8HJbdHmetgz7d25DclnHwO7qblvGpm0maOOqNyk+HY99wgxcGFNWM8+E7EmslvWfb42vSMH7QGW2UiT6NH/UbDzyT05liWll1gCusC3omhiVxZHaTCisor2M04CuJJBa2ZLd0CGBBGz4fM8epSdwAmJaj7miTFBrOGCzhr4HBdEoSNAcJlwdB5CeuF2yLXflefKgt5G1jSx2oFbcH0/KuZ6dabd19fEa06IiajX6fxWqRGv1HYDfr5rA1KSH+mGtCaV6IUMxM5jgfQEova+FEuiS994nCisKHWlBzVXKn7gC3k/T/ROfsOlIM2UD6Rc0epw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ubaVuQ8h27Ml98HZcEN9lYK8gHSIrxa/JRN3erGOcnU=;
- b=ef7eWCdt9XpU6pK3A+WXkx/XFWU6zJZMH2VV9CTzic0nujBq6kigMUhFCfR3k3NwJnnwJb0cZk5lASvOmJtpRs3l5HrOAaFnFg26pjQOoCE2gBHGb2XmGwmpG24HjNIsXHTDuLqF+SSqC94ERXR4FYwglh7Ix3MQjfcMeKdvjoXMIhc2BQz+e7g8FKY6LdGV/hMli0hQFh8ELrs1ywxA9P0ickuHoh7W0tbT2lt3DZnXK9hjOep+4fQ55XZ2cMIrIk2UEYhdOYihENxVssmIten7n1+y+qTHGBlybGeCfK+vZfgYLX3HlnbkqJTwNmZyQ/69hOPs2Vb2UG4vkaQulg==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by MA0P287MB1576.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:fb::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.28; Fri, 30 Aug
- 2024 00:37:45 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%6]) with mapi id 15.20.7897.027; Fri, 30 Aug 2024
- 00:37:45 +0000
-Message-ID:
- <MA0P287MB2822AC58BC43FDE03802E773FE972@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Fri, 30 Aug 2024 08:37:28 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] riscv: dts: sophgo: Add LicheeRV Nano board device
- tree
-To: Inochi Amaoto <inochiama@outlook.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Chao Wei <chao.wei@sophgo.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
- <20240711-sg2002-v4-4-d97ec2367095@bootlin.com>
- <IA1PR20MB4953612773890B94FFD0C9EABB962@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB4953612773890B94FFD0C9EABB962@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [c5DH7VgKmTay6Wqzg3F09+5gjkHXCPRJ]
-X-ClientProxiedBy: TYAPR03CA0012.apcprd03.prod.outlook.com
- (2603:1096:404:14::24) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <a3296aad-a576-4999-8d45-47ad6c97f41a@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2780F23BE;
+	Fri, 30 Aug 2024 00:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724979500; cv=none; b=RYWJcLmgszAGOtW/DXg31T1kCnI4Fn36eaZxGJCslEYSNHHgOc/UvAJUX0BFh9xlEaMwFrj1bYeon4Z9gZNzI5shEHfoPP+B9ek+Ml05s7rBqbzDZ4Xxlrh4KPvb3ojGUWp0t13d/QD6hzcV5QmGYQ35MF0GOXiHZQHk06PY23Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724979500; c=relaxed/simple;
+	bh=x3PkcUYbk93wlv0T8Lo2vEKgSgWzq8eNSQhUcpy26JY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=U6nmt0pN/ZhpwTBBhTvECouUT0vkiw6sQa/QTRlYNO1Pe1r/WEj8ztOiPLsDsT7T4RyR1k6mA8XPGQcUirhR/oN0ZpX86Z6dwVEBubbQEPs3tILg/jBQiNrmpd62Xbd+YijKnjLTmDqZjknKt7odcXg5hXkxzMGXw1W4rryh4uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=G8V+SsEW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47TGoTlK012453;
+	Fri, 30 Aug 2024 00:58:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/WHiyZwuFXaUdRDCgl5OHcim/e2B56+x9mCP/4nGyAI=; b=G8V+SsEWUbmmH+ZQ
+	wM2LjTxIgBFxUDTZDZcEEzQi6vHJfGBNbfxo3MKtiGTDyr1ZfUpL9UOBGbqsB77j
+	HErvbQ/g2ZOxRy45/CgAmEbIYZxHA9uKcGXbuyq/VZ0CyL9XZNq7qG8r3/ApNh6m
+	5OYrQP2ysWAsS5DLJO0EqalKuCiFYe7+yefu5GCNp5L13tNfarwJdBTHkvw8wX1v
+	+C1QLDpSi8cWPPVGkHhU6PV5sU4xDNSVs8nOI4X8BzjMOj8Wo/l7Xc1+rlgTlo0Q
+	JdkN1nNhPnEwhWPiSKQOsu6R/3Tt1KbT+tfuQzlOmUbwEfOt22dzqub1y35elf4q
+	oJ5jaQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 419pv0q43q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 00:58:07 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47U0w53F026871
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 Aug 2024 00:58:05 GMT
+Received: from [10.111.142.110] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 29 Aug
+ 2024 17:58:01 -0700
+Message-ID: <958333ec-a636-4eee-a582-0b26daf5856e@quicinc.com>
+Date: Fri, 30 Aug 2024 02:57:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB1576:EE_
-X-MS-Office365-Filtering-Correlation-Id: 913bc18d-d5ba-4830-3740-08dcc88bf748
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|15080799006|8060799006|5072599009|19110799003|6090799003|461199028|1602099012|440099028|4302099013|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	4fgmQtVxbfE0ROywALEv40kgQkP7NjvGbpDBN3gdVrGXChSZ139PAC8DuL5YedpyldAu3sm1hCA9l0khZAYC1GdmFxCXc5tQowpnCtlEkPCFhqMBGvIJPL8MUQuF4h6GhKF8ftwhz2ZNV8KoQZ7pJccLnEUcKJtnqEjggG6d8urBIHbWDij2NxYVIRYxv2FBeogNyaSzYOiLiJPd6oVov4+n8uIRYaYzn/eRh7PrPe7li2uwLh+ef/s/m6cxLe3VbH0mLQvyahzC6fAmAJuD3zrsQ1mSbVuvuzStcOGt8KOfHGTF4vbbThKcdkuZM4fTGaL+3MfvNipR1VM0GH6AvRlQ+IRmi7x5e1fpO1JuZm0PP3UoezQQIKY8zFJLZ3X26aVo5d+3r6Qy8apZ+ZHsLEGfRwCSZ0k8CHwNjmazsNJ3df4UCYhP9EtQezigtLW7ZGsxXzFgjirVA/sSHhH1rCbEBMoJORJ/CSNKDHLOxpsUnIHa8DaPTYjd3uWdhh3bFddaCERyytxEE4eLZaXS63C51YpB22JgeXL467rBAFejDquLpCV5CjbBUdZXHlzIt3WNNdEJQqgojofhLSdFCnzXTqbc+AnjGckJBwjCqACvmgXdBuU7cgTItApoEA/hokXg2+TnquwEC/xMucuQtdUIZA+7B1Cw51Q9ro1ozyj9Bjv03UILoqxQYGy/QvpdvuQ+vJAcLOSLx0hmz9Fmkei+j9D3nvJfaAGKTrxF9b1sFN411pW5beNoj5BmXwebyA5fx6ca/PuSitHzzp0DlCLZvGfoA3k9RnWXWrLgnAZZeZxV8Ir0Bb6tqib/9Hi7MMUCyKeugIj1BmEAcEtLEg==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NDUxeUlKb3g5Q0hXVW1kL0RKdkVFcE43VWgzdzNZaDM3ay9ES00yWXhYajB4?=
- =?utf-8?B?K2FqQnd3UmUrYTlRWmRtU2tvMHBGUUpTV1Q2VjAzc3BXU21jUFF5bVM2bklw?=
- =?utf-8?B?T0twNG1QbkR1T2ovTFdYZCs2TDNXZ2t3ZW82SnJSMktJSytKZ2lhazdQZXA3?=
- =?utf-8?B?LytPUElpTURkeU90YXVkWlJ5UEI0VHYzcXhTbkhRbWdQNDRSSUpZSWhrdmJy?=
- =?utf-8?B?MXBlNkFobi9VcW8wdUdGRW1aY0x0a0VzV2U3OXhUdTJGUVpWZkxoNVdRRCtt?=
- =?utf-8?B?ZlJqZEoyLzE5NTA0NVRCNzlqYUdTQThEL0VwSHE3VTN6eldjeWJSTkRwSlNt?=
- =?utf-8?B?MWdGdEhIYkpxZ0RTV2kxZGdLS2J0NEpQbENoUlVRZTNmRzVqNEhBZTE2Q2Vx?=
- =?utf-8?B?TjEvbVZWUExOMzlzS2kwZ3cyYjRFQlZDTVJKaWhSV0l2ZHU0RXBnbHZoejJL?=
- =?utf-8?B?eHFOTWFFNTVaTU43MjJTWjYxZjdsalJaWUoxdmJRdVZqL0V0SGJxUkhENHZG?=
- =?utf-8?B?eHZHcHZBdlJ1dFVsVGFMbEFpZE9JWmRJbVBnZ0Z2MFZsYXBBOUlBS2VBUXRU?=
- =?utf-8?B?aFFra2NoL1VDWFlCS0I5T0VCbE9qUUMzNzdMSWExYzNUUWVHdnl2Slo4Rk5E?=
- =?utf-8?B?M1RDZXRUVE4vUjMwcm9oeVlNY1N0YWdzblJqUVd6RDhudXVGVzNnL21VUCtx?=
- =?utf-8?B?MThFQ3JNZmwrMmZsaVJPRUpyWXBjNit2VFQyMXVZL3diNExPOWtPMVQ1UlNB?=
- =?utf-8?B?YWZlSmx3bXhrOG4zYkdVVVhRd1FUWW5jaWc2UWNibmlmNkZKUHp4eHBudnYv?=
- =?utf-8?B?QnhDQk9ZRmJ2bVgzYWN6dkJLYWlBMG94RXJPQ2ZHSVFRQXh6dkJ2T0tMUHRU?=
- =?utf-8?B?MXpWa2Y1M0NQalg2ZVVOeFRaS0NJYjhrWHUyTVNXeHBiSlV4K3JhTTVxdkIy?=
- =?utf-8?B?MUdob0N0S2gycVVXeHdXWVZEWklXZXJBaTN3VVZSV2lZc1ZrWDVJSXJpbU1a?=
- =?utf-8?B?WUE4RVNsQzZTYWhQN01QbWN5c0hPZEJya1F0cFlCL1FucmJQQzB1c0lqYUh0?=
- =?utf-8?B?eWlPS3VqamdoK0RZMjMwNjFWMFNCWmpnV2piVjVISi9qWXRuQ01lUW9nZHg0?=
- =?utf-8?B?SXhadENseHVqSW1sVFZvSVJPSENZZUxUc25JdDJlRWdoNFc2eFFhdUY2ZXlo?=
- =?utf-8?B?QTdsY3FCZ3h5THdzWlF5VUZRc3hRd0RDNTRkTk84bDY4eU5YUnNkcDdOejht?=
- =?utf-8?B?TGorU05xWjdrQ2ZJOTMrRElTMmdpR2c4YkV0VzFvS1FOS2RLVXlXNlB0WTEy?=
- =?utf-8?B?REREMXlZNk91VWNINWhud2sxWkNUbFlST211YU9CR0Z4bDQvVDV1Q2JYN2la?=
- =?utf-8?B?WW9TNzE4aTA4STNBQWw3VDJKd3NmclFMNVBQR2hqQVliS1BIR2lNUjRPZ0tL?=
- =?utf-8?B?ZkZmMmgxMDBSM0JqYW9LcTZBSFNPSUJnNWlIOVRsMVJTTzFsRjhJK1B0NVRB?=
- =?utf-8?B?STNzRzdqT1VKY2hrUEUrQjF0REZjdjRkVUlRdXNBNjVtMjZYc1hIR2M1L0NE?=
- =?utf-8?B?S0VGY2l5NzZENUtsVGh3dXRaU2JpTFl4OGgvYU9xQnhLSzgvbTdlazV1ZTJD?=
- =?utf-8?B?WWJ5bHhYWEdISTI4TytGRlRSMEkzVXVoV1BmV2tKUWlsUktuOTA3blV6SVp3?=
- =?utf-8?Q?f8X1DVb/CMJ02VxeRf3g?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 913bc18d-d5ba-4830-3740-08dcc88bf748
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2024 00:37:45.6296
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1576
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 0/2] usb: typec: Add new driver for Parade PS8830
+ Type-C Retimer
+To: Abel Vesa <abel.vesa@linaro.org>,
+        Heikki Krogerus
+	<heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        "Sibi
+ Sankar" <quic_sibis@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20240829-x1e80100-ps8830-v1-0-bcc4790b1d45@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+In-Reply-To: <20240829-x1e80100-ps8830-v1-0-bcc4790b1d45@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cg7TzyTvItGoD-p8egykMd1xzKGUq5oE
+X-Proofpoint-ORIG-GUID: cg7TzyTvItGoD-p8egykMd1xzKGUq5oE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-29_06,2024-08-29_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=671 bulkscore=0 impostorscore=0 phishscore=0 clxscore=1011
+ mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408300006
 
 
-On 2024/8/29 13:52, Inochi Amaoto wrote:
-> On Thu, Jul 11, 2024 at 12:01:31PM GMT, Thomas Bonnefille wrote:
->> LicheeRV Nano B [1] is an embedded development platform based on the SOPHGO
->> SG2002 chip, the B(ase) version is deprived of Wifi/Bluetooth and Ethernet.
->>
->> Add only support for UART and SDHCI.
->>
->> Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html [1]
->>
->> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> ---
->>   arch/riscv/boot/dts/sophgo/Makefile                |  1 +
->>   .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 54 ++++++++++++++++++++++
->>   2 files changed, 55 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
->> index 57ad82a61ea6..47d4243a8f35 100644
->> --- a/arch/riscv/boot/dts/sophgo/Makefile
->> +++ b/arch/riscv/boot/dts/sophgo/Makefile
->> @@ -1,4 +1,5 @@
->>   # SPDX-License-Identifier: GPL-2.0
->>   dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
->>   dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
->> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
->>   dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
->> diff --git a/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
->> new file mode 100644
->> index 000000000000..fc98b6a0ddf7
->> --- /dev/null
->> +++ b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
->> @@ -0,0 +1,54 @@
->> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->> +/*
->> + * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "sg2002.dtsi"
->> +
->> +/ {
->> +	model = "LicheeRV Nano B";
->> +	compatible = "sipeed,licheerv-nano-b", "sipeed,licheerv-nano", "sophgo,sg2002";
->> +
->> +	aliases {
->> +		gpio0 = &gpio0;
->> +		gpio1 = &gpio1;
->> +		gpio2 = &gpio2;
->> +		gpio3 = &gpio3;
->> +		serial0 = &uart0;
->> +		serial1 = &uart1;
->> +		serial2 = &uart2;
->> +		serial3 = &uart3;
->> +		serial4 = &uart4;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +};
->> +
->> +&osc {
->> +	clock-frequency = <25000000>;
->> +};
->> +
->> +&sdhci0 {
->> +	status = "okay";
->> +	bus-width = <4>;
->> +	no-1-8-v;
->> +	no-mmc;
->> +	no-sdio;
->> +	disable-wp;
->> +};
->> +
->> +&uart0 {
->> +	status = "okay";
->> +};
->> +
->> +&uart1 {
->> +	status = "okay";
->> +};
->> +
->> +&i2c0 {
->> +	status = "okay";
->> +};
->>
->> -- 
->> 2.45.2
->>
-> Have you test you patch with a real board? Especially
-> for device "uart1" and "i2c0", I suspect your
-> configuartion does not work by default.
 
-Hi, Thomas Bonnefille,
+On 29-Aug-24 20:44, Abel Vesa wrote:
+> The Parade PS8830 is a Type-C multi-protocol retimer that is controlled
+> via I2C. It provides altmode and orientation handling and usually sits
+> between the Type-C port and the PHY.
+> 
+> It is currently used alongside Qualcomm Snapdragon X Elite SoCs on quite
+> a few laptops already.
+> 
+> This new driver adds support for the following 3 modes:
+>  - DP 4lanes - with pin assignments C and E
+>  - USB3
+>  - DP 2lanes + USB3
+> 
+> Only DP 4lanes and USB3 modes have been succesfully tested on
+> Qualcomm (X Elite) CRD and Lenovo Thinkpad T14s so fat.
+> Devicetree patches for these 2 boards will follow.
+> 
+> The DP 2lanes + USB3 is still work-in-progress as it might involve changes
+> outside of this retimer driver.
 
-Can you please double check and feedback, I want to confirm this before 
-acking this change.
+Yep, it's the QC combo PHY being grumpy, this one's fine
 
-As you know, rc6 will come next week and I'm planning a pr next week.
+Tested-by: Konrad Dybcio <quic_kdybcio@quicinc.com> # x1e80100-romulus
 
-Regards,
-
-Chen
-
-
+Konrad
 
