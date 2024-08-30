@@ -1,132 +1,267 @@
-Return-Path: <devicetree+bounces-98474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3071B966414
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:22:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3242966420
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:26:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C503A1F21818
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:22:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7A701C22A28
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:26:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2F21B2501;
-	Fri, 30 Aug 2024 14:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92261B2501;
+	Fri, 30 Aug 2024 14:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="g8/ybE5R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BsUEulbA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE0F16DC3D;
-	Fri, 30 Aug 2024 14:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC311A287C;
+	Fri, 30 Aug 2024 14:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725027735; cv=none; b=dfsryDH9RIK3pSuZMrDTJ6Yhn05pxy5s68k+QcA0WIpGdClS3LIracXcWRrS/DE5Nuc7cOlp4lWMQJg/N5Ya7rxE+Suryiuqcd65XbONWX8a4MLcAFgPFuFEoaY21p0cBrj0f8fNNh6I+rKLphjTxaO10MD195QKJH2vlmDNNxY=
+	t=1725027978; cv=none; b=mC1PI2Bq/EXN0vW3S8CYngR/16icwxHsD5juJ8Kh1jdQeYXtb4yJCa/Inijmekmh1WoCtgCOpPMfgN5r4tabqzQR0fsuq9ohdj7ApQgaRjal9r7Ky57ItxJftrLxRnBpGYtIFzwdPpM1ykmlbmxfKdYcR8gXYJgIXqvoCLIm4nA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725027735; c=relaxed/simple;
-	bh=VSxdJN6tHPVIdLHJP/3S3iq04oDernv5VLzrgKR8idI=;
+	s=arc-20240116; t=1725027978; c=relaxed/simple;
+	bh=/lxB6OM0MBV+zgCQ/1R66rLa9t2Xg5JuxvAWQNcvk9U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ubE82tdyYvztMdEQAaaW6uuqDZFgVWYWY07AUkyou8sXnqOarPDGSHVe9DOa7vyhN5mHifqESY4jvfXLbfu/o8Olp7DEIBbfjI6qYfeiMUTymj5LWaL4xhW0efJZjJxZ41RQ4JPHpsanrtHl6gRI50voFnMEmPvHyx4sj/r5coM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=g8/ybE5R; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=bu+WwSmIw/oLOQaFMHKFaLYX5AWLg2UzmPKEeZok/Fs=; b=g8/ybE5RMs2beJopUs3A2zGyNo
-	U+3WuRhEZmZEtSmQfCf47ewOP0MKjJTfTHzs2lDS4T5Wg3KUJfCKSnr/VRQvXyxnXi+Cf3M6RUKp1
-	YroXQk8hzSQimnQMshWZZHIoYZc5bjReKEhnsLSvZSbZ2rkpek0o0fTzliUXZNNe5QHw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sk2Vh-0068QR-0H; Fri, 30 Aug 2024 16:21:57 +0200
-Date: Fri, 30 Aug 2024 16:21:56 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <26efbff0-ba1a-4e9a-bc5e-4fd53ac0ed99@lunn.ch>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
- <lrv7cpbt2n7eidog5ydhrbyo5se5l2j23n7ljxvojclnhykqs2@nfeu4wpi2d76>
- <ZtHN0B8VEGZFXs95@apocalypse>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nG7Aeu3EU/QCopM0HttJwdQ3+e8bmnpyo/TM4Lxhwe/kTxVGT4STscaF4x2t26qxuM6l+Oqe+BPNd94JPrbeAV6RKJk4ZpNUx3p8bOlfzF61QSmdMMgYmMMsYWjwaU0MIAzrvldehaSbfyeyR0eHD12KkOjoXR+JXkL6CgYpFL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BsUEulbA; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4568780a168so9010811cf.0;
+        Fri, 30 Aug 2024 07:26:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725027976; x=1725632776; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=164jGs/89Um/AnOtSvrzje4FuBBYrC6pESzJaoUHWtE=;
+        b=BsUEulbA+4czh/Ym2h90qGvXW1H0xXujljo/y9SrmCaCRvbyuCMvXyUdmU5LR57NGE
+         oDHBQ5hGQ7BBuw+DUvYYUGcpI5oAwiJFNtPdFSz1y4LINRDFSoR1MMI3VxmpNVQMkK6Z
+         ugUSHWTcKZGMOsybzMyj1ONcb7jUxWBsC6hx1vkK5znDG+i53FquTNwhWZZZCQMbjXtR
+         UVJPlsxQydZQq1cKC0bG+7eSExVmxXivXUyWlSjUS1cBWQ8uwZ9VX4+sZbBIkfru3ZF4
+         iHwljdGBwpshpeuyOWfxIPHNluP1F8vFmewNsWBrBQk1OlR99fBAGSmQ8xxpE5BfsLV2
+         jxhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725027976; x=1725632776;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=164jGs/89Um/AnOtSvrzje4FuBBYrC6pESzJaoUHWtE=;
+        b=RqtByZ7JJSdQV7w1YCRRS8yM5aaXXjS6Ru9Q6dVd0Gze652Aeouv0O9bs8plVbKQ2t
+         JZiKG4ksJpJ+pfIy0Z95HI6g0+8JkEzxZnX4AFzitRj08bQctHUDIpYx6ijdnIPTvR6a
+         kGoX6MbSx4XlJRrEtsdF0qNhxWOJ+TCInBWvlVHoyHNnc1Kpvy52quL6IeF21onBxx05
+         7KGbkjAZYMqlNuUlSSghxZRqkI/bL/wkWWPYUZkTT4qrBWMf8IIjXwHTHF+FSys88Jtv
+         qwX+Lr3a8RbbBPSWygHTXbjpceE+XoDRB8rEGemI3oGG1fJpyOcfFtuXSgQtfz95TERO
+         /wHg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCt+rI7CDCNZvssdx+YaByhsbjSBD/lv8Ke/il7GL7A8v6/m8MEHwsFTOCpHipomju6BFt9GMj+6yryH+d@vger.kernel.org, AJvYcCWq8zUZbwlsY4xvlF3V/GQ/sOjj2uRxwJuDzMls/VModgSjhrVaaHJLSl9Y++ty5t8sDfGSYhHmyz00@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdTx9ClkNMcN7vUyl+MKFLkAItIRL336ttp6zKGNyUJJV30RnT
+	nEFuMoy8RjeI9GkIepGWTteA2ZToyKJlatwSupVra2RyU+Qhm13L
+X-Google-Smtp-Source: AGHT+IGtqcgwB7aiUspmKw2bWDAFI8RK/cwOxSXe7Pj969PwCKlkOWWz/klTvLJp/wHKXlKwMNZbew==
+X-Received: by 2002:ac8:7c92:0:b0:456:81d1:dfe5 with SMTP id d75a77b69052e-45681d1e484mr48660541cf.40.1725027975851;
+        Fri, 30 Aug 2024 07:26:15 -0700 (PDT)
+Received: from VM-Arch (ip-185-104-139-72.ptr.icomera.net. [185.104.139.72])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45682c865fcsm13994151cf.17.2024.08.30.07.26.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Aug 2024 07:26:15 -0700 (PDT)
+Date: Fri, 30 Aug 2024 10:26:11 -0400
+From: Alex Lanzano <lanzano.alex@gmail.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: airlied@gmail.com, conor+dt@kernel.org, daniel@ffwll.ch, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, krzk+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com, mehdi.djait@bootlin.com, 
+	mripard@kernel.org, robh@kernel.org, tzimmermann@suse.de
+Subject: Re: [RESEND PATCH v4 2/2] drm/tiny: Add driver for Sharp Memory LCD
+Message-ID: <xjimc7o6lgaivockfugwfmdsae6fm7hz2cd4nvvwkuavabjjkd@kvo4alvvoqzl>
+References: <20240819214943.1610691-1-lanzano.alex@gmail.com>
+ <20240819214943.1610691-3-lanzano.alex@gmail.com>
+ <3c8359ae-9a12-41c8-9799-86de9024fcd4@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ZtHN0B8VEGZFXs95@apocalypse>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3c8359ae-9a12-41c8-9799-86de9024fcd4@wanadoo.fr>
 
-On Fri, Aug 30, 2024 at 03:49:04PM +0200, Andrea della Porta wrote:
-> Hi Krzysztof,
+On Tue, Aug 20, 2024 at 08:53:07AM GMT, Christophe JAILLET wrote:
+> Le 19/08/2024 à 23:49, Alex Lanzano a écrit :
+> > Add support for the monochrome Sharp Memory LCDs.
 > 
-> On 10:38 Wed 21 Aug     , Krzysztof Kozlowski wrote:
-> > On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
-> > > The RaspberryPi RP1 is ia PCI multi function device containing
-> > > peripherals ranging from Ethernet to USB controller, I2C, SPI
-> > > and others.
-> > > Implement a bare minimum driver to operate the RP1, leveraging
-> > > actual OF based driver implementations for the on-borad peripherals
-> > > by loading a devicetree overlay during driver probe.
-> > > The peripherals are accessed by mapping MMIO registers starting
-> > > from PCI BAR1 region.
-> > > As a minimum driver, the peripherals will not be added to the
-> > > dtbo here, but in following patches.
-> > > 
-> > > Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
-> > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > > ---
-> > >  MAINTAINERS                           |   2 +
-> > >  arch/arm64/boot/dts/broadcom/rp1.dtso | 152 ++++++++++++
-> > 
-> > Do not mix DTS with drivers.
-> > 
-> > These MUST be separate.
+> Hi,
 > 
-> Separating the dtso from the driver in two different patches would mean
-> that the dtso patch would be ordered before the driver one. This is because
-> the driver embeds the dtbo binary blob inside itself, at build time. So
-> in order to build the driver, the dtso needs to be there also. This is not
-> the standard approach used with 'normal' dtb/dtbo, where the dtb patch is
-> ordered last wrt the driver it refers to.
-> Are you sure you want to proceed in this way?
+> a few nitpick below, should thre be a v5.
+> 
+> ...
+> 
+> > +struct sharp_memory_device {
+> > +	struct drm_device drm;
+> > +	struct spi_device *spi;
+> > +
+> > +	const struct drm_display_mode *mode;
+> > +
+> > +	struct drm_crtc crtc;
+> > +	struct drm_plane plane;
+> > +	struct drm_encoder encoder;
+> > +	struct drm_connector connector;
+> > +
+> > +	struct gpio_desc *enable_gpio;
+> > +
+> > +	struct task_struct *sw_vcom_signal;
+> > +	struct pwm_device *pwm_vcom_signal;
+> > +
+> > +	enum sharp_memory_vcom_mode vcom_mode;
+> > +	u8 vcom;
+> > +
+> > +	u32 pitch;
+> > +	u32 tx_buffer_size;
+> > +	u8 *tx_buffer;
+> > +
+> > +	/* When vcom_mode == "software" a kthread is used to
+> > +	 * periodically send a 'maintain display' message over
+> > +	 * spi. This mutex ensures tx_buffer access and spi bus
+> > +	 * usage is synchronized in this case
+> 
+> This comment could take only 3 lines and still be with < 80 lines.
+> A dot could also be added at the end of the 2nd sentence.
+> 
+> > +	 */
+> > +	struct mutex tx_mutex;
+> > +};
+> 
+> ...
+> 
+> > +static int sharp_memory_probe(struct spi_device *spi)
+> > +{
+> > +	int ret;
+> > +	struct device *dev;
+> > +	struct sharp_memory_device *smd;
+> > +	struct drm_device *drm;
+> > +	const char *vcom_mode_str;
+> > +
+> > +	ret = spi_setup(spi);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(&spi->dev, ret, "Failed to setup spi device\n");
+> > +
+> > +	dev = &spi->dev;
+> 
+> If done earlier (when dev is declared?), it could already be used in the
+> dev_err_probe() just above?
+> 
+> > +	if (!dev->coherent_dma_mask) {
+> > +		ret = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
+> > +		if (ret)
+> > +			return dev_err_probe(dev, ret, "Failed to set dma mask\n");
+> > +	}
+> > +
+> > +	smd = devm_drm_dev_alloc(dev, &sharp_memory_drm_driver,
+> > +				 struct sharp_memory_device, drm);
+> > +	if (!smd)
+> > +		return -ENOMEM;
+> > +
+> > +	spi_set_drvdata(spi, smd);
+> > +
+> > +	smd->spi = spi;
+> > +	drm = &smd->drm;
+> > +	ret = drmm_mode_config_init(drm);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to initialize drm config\n");
+> > +
+> > +	smd->enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
+> > +	if (!smd->enable_gpio)
+> > +		dev_warn(dev, "Enable gpio not defined\n");
+> > +
+> > +	/*
+> > +	 * VCOM is a signal that prevents DC bias from being built up in
+> > +	 * the panel resulting in pixels being forever stuck in one state.
+> > +	 *
+> > +	 * This driver supports three different methods to generate this
+> > +	 * signal depending on EXTMODE pin:
+> > +	 *
+> > +	 * software (EXTMODE = L) - This mode uses a kthread to
+> > +	 * periodically send a "maintain display" message to the display,
+> > +	 * toggling the vcom bit on and off with each message
+> > +	 *
+> > +	 * external (EXTMODE = H) - This mode relies on an external
+> > +	 * clock to generate the signal on the EXTCOMM pin
+> > +	 *
+> > +	 * pwm (EXTMODE = H) - This mode uses a pwm device to generate
+> > +	 * the signal on the EXTCOMM pin
+> > +	 *
+> > +	 */
+> > +	if (device_property_read_string(&spi->dev, "sharp,vcom-mode", &vcom_mode_str))
+> 
+> just dev?
+> 
+> > +		return dev_err_probe(dev, -EINVAL,
+> > +				     "Unable to find sharp,vcom-mode node in device tree\n");
+> > +
+> > +	if (!strcmp("software", vcom_mode_str)) {
+> > +		smd->vcom_mode = SHARP_MEMORY_SOFTWARE_VCOM;
+> > +
+> > +	} else if (!strcmp("external", vcom_mode_str)) {
+> > +		smd->vcom_mode = SHARP_MEMORY_EXTERNAL_VCOM;
+> > +
+> > +	} else if (!strcmp("pwm", vcom_mode_str)) {
+> > +		smd->vcom_mode = SHARP_MEMORY_PWM_VCOM;
+> > +		ret = sharp_memory_init_pwm_vcom_signal(smd);
+> > +		if (ret)
+> > +			return dev_err_probe(dev, ret,
+> > +					     "Failed to initialize external COM signal\n");
+> > +	} else {
+> > +		return dev_err_probe(dev, -EINVAL, "Invalid value set for vcom-mode\n");
+> > +	}
+> > +
+> > +	drm->mode_config.funcs = &sharp_memory_mode_config_funcs;
+> > +	smd->mode = spi_get_device_match_data(spi);
+> > +
+> > +	smd->pitch = (SHARP_ADDR_PERIOD + smd->mode->hdisplay + SHARP_DUMMY_PERIOD) / 8;
+> > +	smd->tx_buffer_size = (SHARP_MODE_PERIOD +
+> > +			       (SHARP_ADDR_PERIOD + (smd->mode->hdisplay) + SHARP_DUMMY_PERIOD) *
+> > +			       smd->mode->vdisplay) / 8;
+> > +
+> > +	smd->tx_buffer = devm_kzalloc(&spi->dev, smd->tx_buffer_size, GFP_KERNEL);
+> 
+> Just dev?
+> 
+> > +	if (!smd->tx_buffer)
+> > +		return -ENOMEM;
+> > +
+> > +	mutex_init(&smd->tx_mutex);
+> > +
+> > +	drm->mode_config.min_width = smd->mode->hdisplay;
+> > +	drm->mode_config.max_width = smd->mode->hdisplay;
+> > +	drm->mode_config.min_height = smd->mode->vdisplay;
+> > +	drm->mode_config.max_height = smd->mode->vdisplay;
+> > +
+> > +	ret = sharp_memory_pipe_init(drm, smd, sharp_memory_formats,
+> > +				     ARRAY_SIZE(sharp_memory_formats),
+> > +				     NULL);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to initialize display pipeline.\n");
+> > +
+> > +	drm_plane_enable_fb_damage_clips(&smd->plane);
+> > +	drm_mode_config_reset(drm);
+> > +
+> > +	ret = drm_dev_register(drm, 0);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to register drm device.\n");
+> > +
+> > +	drm_fbdev_dma_setup(drm, 0);
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> CJ
+> 
 
-It is more about they are logically separate things. The .dtb/dtbo
-describes the hardware. It should be possible to review that as a
-standalone thing. The code them implements the binding. It makes no
-sense to review the code until the binding is correct, because changes
-to the binding will need changes to the code. Hence, we want the
-binding first, then the code which implements it.
-
-	Andrew
+Thank you for the review! Will address in v5
 
