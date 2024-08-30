@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-98469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2884A9663ED
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:14:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C5D69663F2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 16:16:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B5D11C22F95
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:14:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC22DB209B0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 14:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4614818FC81;
-	Fri, 30 Aug 2024 14:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD4C1AF4FE;
+	Fri, 30 Aug 2024 14:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B98t+uoI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ugd9ODmX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAE316D4E5;
-	Fri, 30 Aug 2024 14:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24B115C12D;
+	Fri, 30 Aug 2024 14:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725027277; cv=none; b=qPlnB9OS6H/VCqAfboBEadOyDRI22PuvLNdUtTsXbO5v9Juy/HraZU1RjFKL8dmV3h6TYj/vtLy50WOnprtJNzRLnIwxArL3lq//z+ijsaQa+C/Y2G3rg5QRkrOquh5Rb9zDosNiQt0upYaz0Xa9TrfRKq3PA+R1BmgsM9uBBGE=
+	t=1725027393; cv=none; b=Ydkjm8EvcNOD+9aVZainFqI+VHDTSdkdm9HqiXKvc3m17+nRW/ibIQ9BZfWDz8Zi7ckFAPqa2u4NFpIk3ISNUYB1bDqjDwJ0+TdaREcEbZdSp3PRBhTw7lYSEOKZsKQIa7SzKfgWSYYQRXxKbruqgol8YDi10V6RlVF1TEVSEKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725027277; c=relaxed/simple;
-	bh=5j7HFB56Qes7cUqNRYyxZbdUq7SCpbJ5SR/AqrEbXS0=;
+	s=arc-20240116; t=1725027393; c=relaxed/simple;
+	bh=6k0EBPAToTHacrO5Vk2++06yO8LBCkYLbbqyVIV3Nyc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aK2Diapi74YSC8E3m8+lsPZYUaKZ6e2XNxJpwtCBXvKoKhK0Ocb7LISGprhK/V7D7IQPVTtQZKZbKIAsM2KemnpEpSC/wcMuR3pYOw6xtjMXavjLvTM0SgrN6LJIoyYGWfm1BBLLYr5c3g1YANylj1DGKHO4osWk7eOGVgSs4jY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B98t+uoI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84557C4CEC2;
-	Fri, 30 Aug 2024 14:14:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eg7f8vWrP1+VoPvkyzCc2nR5Kvd0oUL+7IvuIhRv8eM9Ipzszahnu8KFmp6GRU0QKID1ZRLWyIX/4GQ66xURY+2Ns/7CzqIjKBTmn9/5VTF5j8C5j0Lm3BuMY7hwRzeZqcYhU2MGduHrWknLehqZBMa3Bu19kUD5bgnN2CGhTT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ugd9ODmX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C51C4CEC2;
+	Fri, 30 Aug 2024 14:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725027275;
-	bh=5j7HFB56Qes7cUqNRYyxZbdUq7SCpbJ5SR/AqrEbXS0=;
+	s=k20201202; t=1725027391;
+	bh=6k0EBPAToTHacrO5Vk2++06yO8LBCkYLbbqyVIV3Nyc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B98t+uoISTwZgIdwFFb49Q+0WxtjN/hAxtwIAIOVvQ82isK25mwJH+WO9rMO6TYsR
-	 /ITgdeMdg9nxXdNuWBbUvcqrZdq3QVp3uBM1BrvMIiu4lXwKFTKkwWKosLI2YRduf8
-	 WAEEEsUGzEBiTRbphnLDwS9+WPaP12bVRDiU0xhaGpPlhum5xgV08KtKKqnDs1xvRf
-	 bUNPbaMl99KDwVc4kVnyClI4qEMWd9Ft8bV4lYw85Zq8fjr3sUZsoYYZrlOjakodsb
-	 16MWn4CXLbmAluDqAaaBXeBVN1k3NmUC12AGxHw++d00mpLrWWvxYYtW3kFNfh/4vJ
-	 SKwSLZau0m+rw==
-Date: Fri, 30 Aug 2024 15:14:31 +0100
+	b=ugd9ODmX3NVQo5A8dl6N88A1o4+8y5g2DAg1agAi3/pD61gFqNz85A9VVD4zYj548
+	 Y69GIOmUjRuIHTzbp6r+lGhS7tuBMTJ2uVoeSJzdJhS+MrsyLLopTzbpa8eWFL8Mhu
+	 ZXz0Jc2XtZLMqfT0r2blTRUGpchkG+U0geSIMWU0XyizzAsSBK+g8lqmAbTpJaTXig
+	 CkSNNlO9TUYZWxu5vEL4HlvHLpTZyh2rL6M3gi1IWXkoxF7C6T0lQg+O/x30ovl7i7
+	 VBUJS+VI3zVmMUuJ+ksBqLdTVIegnqBJAHAdXKcu0Atat794rh0dfyfDNyGKpdfW+8
+	 YXExgpd0UttPA==
+Date: Fri, 30 Aug 2024 15:16:26 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: broonie@kernel.org, linux-spi@vger.kernel.org,
-	otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: Add a reference to
- spi-peripheral-props.yaml
-Message-ID: <20240830-anchor-glucose-f8dcc1b0fd16@spud>
-References: <20240829201315.3412759-1-festevam@gmail.com>
- <20240829201315.3412759-2-festevam@gmail.com>
+To: Dharma.B@microchip.com
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	Aubin.Constans@microchip.com, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: sdhci-atmel: Convert to json
+ schema
+Message-ID: <20240830-retry-ranger-fdd01812a120@spud>
+References: <20240830-atmel-sdhci-v2-0-b7f58973f3fc@microchip.com>
+ <20240830-atmel-sdhci-v2-1-b7f58973f3fc@microchip.com>
+ <20240830-satisfy-dislike-27ed075138b3@spud>
+ <9e9c8274-6bf2-45f9-8b65-ddc73a0802bc@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,69 +64,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="69Vy0EJSs26on1AY"
+	protocol="application/pgp-signature"; boundary="s794SldV2zC1SmKv"
 Content-Disposition: inline
-In-Reply-To: <20240829201315.3412759-2-festevam@gmail.com>
+In-Reply-To: <9e9c8274-6bf2-45f9-8b65-ddc73a0802bc@microchip.com>
 
 
---69Vy0EJSs26on1AY
+--s794SldV2zC1SmKv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 29, 2024 at 05:13:15PM -0300, Fabio Estevam wrote:
-> There may be cases where a trivial-device needs to describe
-> the SPI clock polarity and phase via spi-cpol and spi-cpha
-> properties.
+On Fri, Aug 30, 2024 at 02:12:48PM +0000, Dharma.B@microchip.com wrote:
+> Hi Conor,
+>=20
+> On 30/08/24 7:18 pm, Conor Dooley wrote:
+> > On Fri, Aug 30, 2024 at 01:49:42PM +0530, Dharma Balasubiramani wrote:
+> >> Convert sdhci-atmel documentation to yaml format. The new file will in=
+herit
+> >> from sdhci-common.yaml.
+> >>
+> >> Note: Add microchip,sama7g5-sdhci to compatible list as we already use=
+ it
+> >> in the DT.
+> >>
+> >> Signed-off-by: Dharma Balasubiramani<dharma.b@microchip.com>
+> >> ---
+> >>   .../bindings/mmc/atmel,sama5d2-sdhci.yaml          | 98 ++++++++++++=
+++++++++++
+> >>   .../devicetree/bindings/mmc/sdhci-atmel.txt        | 35 --------
+> >>   2 files changed, 98 insertions(+), 35 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci=
+=2Eyaml b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
+> >> new file mode 100644
+> >> index 000000000000..91d18b2545e1
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
+> >> @@ -0,0 +1,98 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id:http://devicetree.org/schemas/mmc/atmel,sama5d2-sdhci.yaml#
+> >> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Atmel SDHCI controller
+> >> +
+> >> +maintainers:
+> >> +  - Aubin Constans<aubin.constans@microchip.com>
+> >> +  - Nicolas Ferre<nicolas.ferre@microchip.com>
+> >> +
+> >> +description:
+> >> +  Bindings for the SDHCI controller found in Atmel/Microchip SoCs.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    oneOf:
+> >> +      - enum:
+> >> +          - atmel,sama5d2-sdhci
+> >> +          - atmel,sama5d3-sdhci
+> >> +          - atmel,sama5d4-sdhci
+> >> +          - microchip,sam9x60-sdhci
+> >> +      - items:
+> >> +          - enum:
+> >> +              - microchip,sama7g5-sdhci
+> >> +          - const: microchip,sam9x60-sdhci
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  interrupts:
+> >> +    maxItems: 1
+> >> +
+> >> +  clocks:
+> >> +    minItems: 2
+> >> +    maxItems: 3
+> >> +    description: |
+> >> +      The sama5d2 family includes three clocks: `hclock`, `multclk`, =
+and `baseclk`.
+> >> +      For other families, including sam9x60 and sam9x7, only `hclock`=
+ and `multclk` are used.
+> > This should instead be an items list, rather than a text based
+> > description.
+> Sure, I will update it like this below
+>=20
+> clocks:
+>    items:
+>      - description: hclock
+>      - description: multclk
+>      - description: baseclk
+>    minItems: 2
+>    maxItems: 3
 
-Since those don't come from spi-peripheral-props, not really the correct
-justification (although why they don't, I'm not sure). If you still saw
-dtbs_check complaints after the first patch, I maybe the controller
-schema is missing a reference to spi-controller.yaml?
-That said, I think the reference is useful for other the properties,
-like spi-max-frequency, so the diff here is sound.
+This shouldn't pass dt_binding_check, because the max in this snippet is
+redundant due to it matching the size of the items list.
 
-Thanks,
-Conor.
->=20
-> Add a reference to spi-peripheral-props.yaml to allow that.
->=20
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
-umentation/devicetree/bindings/trivial-devices.yaml
-> index 75a5fad08c44..356b89ade6a8 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -424,6 +424,9 @@ required:
->    - compatible
->    - reg
-> =20
-> -additionalProperties: false
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> =20
->  ...
-> --=20
-> 2.34.1
->=20
-
---69Vy0EJSs26on1AY
+--s794SldV2zC1SmKv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHTxwAKCRB4tDGHoIJi
-0sOAAP9yK04bIiTPD5Sfk5DzJgGryfVA1de8A9yAys6RNugj/gEAmGmC8Bu5HGX4
-LlQSfsQxgaa4DtMSr15pHxP+4HRGUAk=
-=qdxo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtHUOgAKCRB4tDGHoIJi
+0mRbAQDWBI8NgkX+ksGcgXOabPePzRu6PCDTAOkCM3/F9x0RbQEA26WvR+3rxxKM
+by1bfuJKmyiFwGLR2bZj041Nr82IjA0=
+=4oBx
 -----END PGP SIGNATURE-----
 
---69Vy0EJSs26on1AY--
+--s794SldV2zC1SmKv--
 
