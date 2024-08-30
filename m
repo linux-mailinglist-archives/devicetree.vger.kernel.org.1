@@ -1,215 +1,129 @@
-Return-Path: <devicetree+bounces-98312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3E4965A9B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:42:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D67965B13
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:46:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C9B0282283
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:42:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5B83B23648
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D5D16DC27;
-	Fri, 30 Aug 2024 08:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C013C1662EF;
+	Fri, 30 Aug 2024 08:45:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IqyVOyCA"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OVQfYSky"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED9A16D9C0
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:42:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2CD16EB4C
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725007367; cv=none; b=WhFKDLJtspX4xlI7BeXt2iN8phFdqrXTaSZxosO3yHtV6pJbyWfLf+QPnTKnYvGhGQBk57CqnB8QCoCTLd71fZd71fgrE0Wi/rR0AKSztZ6Mzp+vtrM4cSIU5GuP1DRxuIRVhKDEZgUOh0r0Lsnj183BMTsniYJOISeIWLuAkZQ=
+	t=1725007554; cv=none; b=jKm+arEOEx0L2JXGgEl0S2NIQaNelm1v2XRIvsECyp7sshALxYFtJUelyNlbkeAJYmpFE1ruL42xOvSuGrrr9n9t3LaAp70bikS0dG4VPEg1nrUTTywl8JpFO/89IGr+DKm8SJRSZUslp7Zr1j73uLeLK8klZYJMSI1Obkz612k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725007367; c=relaxed/simple;
-	bh=3HZp0lzLztTvVH8SqxLgBJ8KySpa1DaNcgUQkAFt00k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GkmOb8HfWu9byg5nIApc79yBFMY7AtcdHXOVC2Yf0O1+a3yHaxOQra0uHga5SRXB6qxdiO3Ivokkkqd475bAGoPg9CGHJonsx7m4NCVnuLPOQNjm9NoKxRaJfk9xlJXyOStzZz3a3O6Af0l5lPic6f/fE3MH2d3cE5BVJGzPfW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IqyVOyCA; arc=none smtp.client-ip=209.85.161.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5dccc6cdc96so963837eaf.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:42:45 -0700 (PDT)
+	s=arc-20240116; t=1725007554; c=relaxed/simple;
+	bh=/DejoH0F8FI47zS0x7vpbj4RvJX01YssJVt4KW1Zszo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mxr01SKLLdy/K/JXUDNeXJdV7OTWUZgyMmakwj4krco0oncbEQLii+Roxr3+rAd+8p/Q+T3oFyvne2r8VbTHI3H2wcEm9Hh9gf7UpGrmx57DvlGzPklVv84r9PaAHDx/nf1o6VMC55TsdcZWwXWBCSPBNjfqQzPIwEBK4Ek6+U4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OVQfYSky; arc=none smtp.client-ip=209.85.161.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5df9343b5b8so985057eaf.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:45:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725007364; x=1725612164; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hFoJ8uGU6Wt+2B+a3U8PT9o5qr4L6h8Nf/lLSdsGyCQ=;
-        b=IqyVOyCAFA3zEgqjMLKlw3dt2A9ExgUu8lqdrp4x+OEnmbhAMHgWVDsHugaHIIrrvJ
-         Mj2RrlY/kSOSN+4eXTNb9bB2B0FQ1127x2L4M25lNBmaSklo4zk36dCXOAj56nF4KjVz
-         xteAzXHjy6kVAdRkgSshOMAQtDMSs4fwE5B/+mAMsrB3opLAyoEK7BwWiuBNZYyj7CHX
-         1wzuwUMs0hP2LBgMsYiCx0mLaE0NpGJByOINsjvWtFkFOyjhDDqXhabMKTDdRe301CC5
-         qEakr/W0058gHbvATJQMpAvwnrzPoIu8NT11VE6wGxg7jErQ++Fr5NHuc+uEhLAJU85f
-         c6cg==
+        d=chromium.org; s=google; t=1725007552; x=1725612352; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uwb4ryjHwd1WNWOHt2dYb4LFy2usK3hFXIPxUh2iuvY=;
+        b=OVQfYSky39meRcC3THWwS4DRBGeH3wyd2apYzy/hl6/zdhHQGFNoIi6FVoXF+dvgFn
+         DYMRlvhdd8BmxmhosgPutiU5oW3HyuuKqzOCquMjzhP6MdJOyL2C2J+vfy/0P1iGilHw
+         6y1iYrFYZhLZGgrObeMCNA84IcZWP1yPnrkIU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725007364; x=1725612164;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hFoJ8uGU6Wt+2B+a3U8PT9o5qr4L6h8Nf/lLSdsGyCQ=;
-        b=OnoQKNr307DSCcOZziJunJc/DJSV1ZNJasBa1Sm0T8H8jkpWOFw3GXxMKP02TOQhpq
-         AhYvGpOwg5S1BpiCr6ZQJsQhOBYD1jGv9c2jHbppxH2Z61utYaLN2NidX0ulUbCBlvhE
-         d+VNnHJZ9NU3pPMi7aubOvkTSdr8dAaYnD07FxcY3/+zJn3Hb2/RFY0KXAqWMFp5A1QZ
-         8E1Iwlc0w4CPPqAKNuubZiR8kHSzcZdM6SHoqZZF6ZRohi31P9M9lbIv6RLfVqaliia+
-         wyqGYEEnRigdCJb0NB12c09EoTKXPu3OCOP7jm+ZDVBH4xGU2/Gr5rafhZagaKiU2CUN
-         rp4w==
-X-Forwarded-Encrypted: i=1; AJvYcCX1pLSlcgxXteuZmCmj8o+YR8h2Bgk5peaRj6m+XAK/0whCsyhLsioN0nMI8w0SNU4djP0ZAiF+sXfE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCTxzzjOGMi+tdNPXJvjp9IjWaSol0rDDSJJ21HxoEfzXZw19h
-	dPT8vqqIRz/P6AT22CPtGZ3tRUxM5SZKMUaTglw+a4Y5GcAQpc8fDt1g61KuEjh1Uhdxw0pjAvd
-	HG/phLVEIxzTLAavwXNZoEbk+niUeBSrFzhzoBA==
-X-Google-Smtp-Source: AGHT+IHBEq2kXBcob7OwHZwxMgPl68xRTiaqYdA20dFyB6L5ns13TYFSRrWJQJLVdlnc+h48Q+Hs/qXBirYHpgAHAeU=
-X-Received: by 2002:a05:6820:2216:b0:5d6:ae6:a852 with SMTP id
- 006d021491bc7-5dfacf28289mr1998086eaf.6.1725007364035; Fri, 30 Aug 2024
- 01:42:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725007552; x=1725612352;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uwb4ryjHwd1WNWOHt2dYb4LFy2usK3hFXIPxUh2iuvY=;
+        b=qShi9s7Nx+9EqIoWFuQBhTaRRSJvSbxIU/Xkm0vEstsw6ICFrZ2Rw/y9kGB8g+znAu
+         lNvwJRGXxstQFDt2P/JnX89K1p3YxmdK2VwH+lcqsxkAYqPt5PRERuq+swkPPgTdXUuy
+         ur39fifsKgDoFtfu8DwzPuw9HdARvnCJ6pnj+wiNJWiKqq43GLSAQyT5WE4ZDyunyvxb
+         CiDc+pq1tm8LFp72mrzYuHAJdCPI3QmZilvhG2nZOAxwZuFY4qGmx0Ao1fY7jtalZ2gT
+         tO7hIRLBzUu6kgFcYblIGvwIxG7PI+21KUc8Wj8iZr4hhViDqv7FZoCBrFGVmBI0oZMc
+         IdOA==
+X-Forwarded-Encrypted: i=1; AJvYcCVA9R2R0b93XEPoOkB4p5Avucp4c+1cJi4PheXENnZRZpTiB7TxZ4YyPZ8LtRFMijXp6JANzopJpN0A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz14vx1LM1pTDmllrMC28T+zVmqiYnmha0J0H42YO4T8Xw6qRQ4
+	ETAWW1D9K4baf8MpFUvsagVX6Dj+nLpdqivNmfDbGw4bRQXlqnf3wbP5jwgCFQ==
+X-Google-Smtp-Source: AGHT+IGHGLA1gX/XRVCRV3NVqvnH4tc1FAiIFTMavidgJQhJ0QHl48VQRGJQ8UpPf3x2Xi2MLTe3DQ==
+X-Received: by 2002:a05:6359:7c15:b0:19f:4c24:d9ad with SMTP id e5c5f4694b2df-1b603cb75d1mr694374055d.24.1725007552239;
+        Fri, 30 Aug 2024 01:45:52 -0700 (PDT)
+Received: from localhost (117.196.142.34.bc.googleusercontent.com. [34.142.196.117])
+        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-7d22e742774sm2467245a12.18.2024.08.30.01.45.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Aug 2024 01:45:51 -0700 (PDT)
+From: Rohit Agarwal <rohiagar@chromium.org>
+To: chunkuang.hu@kernel.org,
+	p.zabel@pengutronix.de,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	ck.hu@mediatek.com,
+	jitao.shi@mediatek.com
+Cc: dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Rohit Agarwal <rohiagar@chromium.org>
+Subject: [PATCH v4 0/3] Devicetree updates for MT8186 
+Date: Fri, 30 Aug 2024 08:45:41 +0000
+Message-ID: <20240830084544.2898512-1-rohiagar@chromium.org>
+X-Mailer: git-send-email 2.46.0.469.g59c65b2a67-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
- <20240830070351.2855919-4-jens.wiklander@linaro.org> <3bqb6mktkvbdl6h4eekad4mpjhyvzx7mjidhnanboygbwu2asz@6ros56bp6isd>
-In-Reply-To: <3bqb6mktkvbdl6h4eekad4mpjhyvzx7mjidhnanboygbwu2asz@6ros56bp6isd>
-From: Jens Wiklander <jens.wiklander@linaro.org>
-Date: Fri, 30 Aug 2024 10:42:32 +0200
-Message-ID: <CAHUa44Fd-Eo5-CUfxDgCFpRVbJP0gzA7LX_-5=cBfBd8NxhpDw@mail.gmail.com>
-Subject: Re: [RFC PATCH 3/4] dt-bindings: reserved-memory: add linaro,restricted-heap
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linaro-mm-sig@lists.linaro.org, op-tee@lists.trustedfirmware.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Olivier Masse <olivier.masse@nxp.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Yong Wu <yong.wu@mediatek.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T . J . Mercier" <tjmercier@google.com>, 
-	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Sumit Garg <sumit.garg@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 30, 2024 at 10:20=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On Fri, Aug 30, 2024 at 09:03:50AM +0200, Jens Wiklander wrote:
-> > From: Olivier Masse <olivier.masse@nxp.com>
-> >
-> > DMABUF reserved memory definition for OP-TEE secure data path feature.
-> >
-> > Signed-off-by: Olivier Masse <olivier.masse@nxp.com>
-> > Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
-> > ---
-> >  .../linaro,restricted-heap.yaml               | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/l=
-inaro,restricted-heap.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/linaro,r=
-estricted-heap.yaml b/Documentation/devicetree/bindings/reserved-memory/lin=
-aro,restricted-heap.yaml
-> > new file mode 100644
-> > index 000000000000..0ab87cf02775
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/linaro,restrict=
-ed-heap.yaml
-> > @@ -0,0 +1,56 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/reserved-memory/linaro,restricted-h=
-eap.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Linaro Secure DMABUF Heap
-> > +
-> > +maintainers:
-> > +  - Olivier Masse <olivier.masse@nxp.com>
-> > +
-> > +description:
-> > +  Linaro OP-TEE firmware needs a reserved memory for the
-> > +  Secure Data Path feature (aka SDP).
-> > +  The purpose is to provide a restricted memory heap which allow
-> > +  the normal world OS (REE) to allocate/free restricted buffers.
-> > +  The TEE is reponsible for protecting the SDP memory buffers.
-> > +  TEE Trusted Application can access restricted memory references
-> > +  provided as parameters (DMABUF file descriptor).
->
-> And what is the difference from regular reserved memory? Why it cannot
-> be used?
+Hi,
 
-Good question. I need a compatible =3D "linaro,restricted-heap" to find
-it, but it appears that's permitted with regular reserved memory.
-Let's drop this patch. Thanks for pointing me in the right direction.
+Changes in v4:
+ - Rebased on this series https://lore.kernel.org/all/20240603-mtk-thermal-mt818x-dtsi-v7-0-8c8e3c7a3643@baylibre.com/
+ - Updated the overlapping starting address of svs node.
 
->
-> > +
-> > +allOf:
-> > +  - $ref: "reserved-memory.yaml"
->
-> It does not look like you tested the bindings, at least after quick
-> look. Please run  (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> Maybe you need to update your dtschema and yamllint.
+Changes in v3:
+ - Update some formatting errors in the bindings patch.
 
-You're right, sorry.
+Changes in v2:
+ - Update the binding to include power domain in only some
+   specific variants.
 
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: linaro,restricted-heap
-> > +
-> > +  reg:
-> > +    description:
-> > +      Region of memory reserved for OP-TEE SDP feature
-> > +
-> > +  no-map:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      Avoid creating a virtual mapping of the region as part of the OS=
-'
-> > +      standard mapping of system memory.
-> > +
-> > +unevaluatedProperties: false
->
-> This goes after "required:" block.
-
-OK
-
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - no-map
-> > +
-> > +examples:
-> > +  - |
-> > +  reserved-memory {
-> > +    #address-cells =3D <2>;
-> > +    #size-cells =3D <2>;
-> > +
-> > +    sdp@3e800000 {
-> > +      compatible =3D "linaro,restricted-heap";
-> > +      no-map;
-> > +      reg =3D <0 0x3E800000 0 0x00400000>;
->
-> lowercase hex
->
-
-OK
-
+This series updates the DPI node to add power domain and
+adds the Mediatek SVS node as well to MT8186.
 
 Thanks,
-Jens
+Rohit.
 
-> Best regards,
-> Krzysztof
->
+Rohit Agarwal (3):
+  dt-bindings: display: mediatek: dpi: Add power domains
+  arm64: dts: mediatek: mt8186: Add power domain for DPI
+  arm64: dts: mediatek: mt8186: Add svs node
+
+ .../bindings/display/mediatek/mediatek,dpi.yaml | 17 +++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi        | 17 +++++++++++++++++
+ 2 files changed, 34 insertions(+)
+
+-- 
+2.46.0.469.g59c65b2a67-goog
+
 
