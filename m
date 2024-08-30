@@ -1,127 +1,182 @@
-Return-Path: <devicetree+bounces-98542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 850EA9667F0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:24:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D46966806
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:32:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7A071C23EC0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:24:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FD17283235
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 699081BA860;
-	Fri, 30 Aug 2024 17:24:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="akRed3gr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4451BA279;
+	Fri, 30 Aug 2024 17:32:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from gollum.nazgul.ch (gollum.nazgul.ch [81.221.21.253])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3937E1B2EC8;
-	Fri, 30 Aug 2024 17:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4F9815C153;
+	Fri, 30 Aug 2024 17:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.221.21.253
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725038657; cv=none; b=lKfjM7XLa2PIm17EmCI/SuECAnc67omeglzldL/SG3aO270ZP5ThrV2eFJFuEVdtq/KpRcBUj12YxrWmcz8Ufn/y3b1JR/enj7ZQ0nxZsTsprItCSChvQZOnuflwOdGu8eNx0BBjeRYCto4qGPyfmfwfqzV5jTVCQLGw/OgVH6w=
+	t=1725039158; cv=none; b=GyIlJx1isTuLcaupEat8gj/HZkfhbXut3gOMjmnk5sKoEa1JIsbQsHgsCd4OtBDWi0PBfcrPhqxr/qOZyuwM6NXB9gqCAToTZDH8ieNOLUOXknDwR0D3gH9bjtV4EhuV9yhgkqOmFws/kywoCCu3nYHdQVLLw7gU3hOx9degS5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725038657; c=relaxed/simple;
-	bh=PMa1w9wViDROucA4Q9WgZ/QMB8a6JVGkNlXnhoxUWTE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TtqUw7ULDsUx7FIWbglJRrWo4CmAVDyOjiE6QN4PtFUAB0NBAX6uI2coeUPsh+vmN7eNntmVytZeHp8Q8xUcRX+W2L/8zyjoNMm+S+Y4azf11VC0ptjLY3Mk0FcsOlrWe1LVFQldays7AWIh14gABpVIN9YtsEOfVLbuMp3rRxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=akRed3gr; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47UHO7Dd022963;
-	Fri, 30 Aug 2024 12:24:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725038647;
-	bh=6bj066I79BDcrPxQSOA/Xu2j4XxdgGo59tSZOuTfsiM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=akRed3grc+8B2sGrj59mVS/EBOA/u1r+3Vhdey0kD0Ha2HiCaAu5Sfa23YIYPHMbz
-	 kj/S1GzVQsklfSZDgZOqa/OJ13Jv5Fu9cNbzCd0BblxhLDgj1bqNdyTsLZFtWMqkeI
-	 AxaOidwQtZ/w3t88pip29taPLWNygXeOoJR9xkhk=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47UHO7Rs062114
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 30 Aug 2024 12:24:07 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- Aug 2024 12:24:06 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 Aug 2024 12:24:06 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47UHO00N041951;
-	Fri, 30 Aug 2024 12:24:01 -0500
-Message-ID: <6fe3da57-d93b-4782-a9b1-91833abb6d77@ti.com>
-Date: Fri, 30 Aug 2024 22:53:59 +0530
+	s=arc-20240116; t=1725039158; c=relaxed/simple;
+	bh=zyVt9psjs8zEXvo7436G4vkXueW/Jhz/sxgi1VJhsKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fRNNP04mw+c/qD3VVTQmWCiF5QaxRa6PAPV8QaA4AdSbCMuXuadv9KFf5U2UnL9yUasDKIjUpL6Qhziao7rW6IUhkWWzbzHT/wuRmtll3N8So2Bu4pdgk8HPfoVzqfFL/BhfeUASNB7BIC8DOTtUzaGQtW3YsePuaUPa9iP9Rko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nazgul.ch; spf=pass smtp.mailfrom=nazgul.ch; arc=none smtp.client-ip=81.221.21.253
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nazgul.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nazgul.ch
+Received: from localhost (gollum.nazgul.ch [local])
+	by gollum.nazgul.ch (OpenSMTPD) with ESMTPA id dcec7dd3;
+	Fri, 30 Aug 2024 19:25:52 +0200 (CEST)
+Date: Fri, 30 Aug 2024 19:25:52 +0200
+From: Marcus Glocker <marcus@nazgul.ch>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+	Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH v5 4/6] arm64: dts: qcom: Add UFS node
+Message-ID: <l5vwputpefdkweti56em37i5asrd3vb7pxhwlzir7webfuk3fl@afcqm3faq2gt>
+References: <p3mhtj2rp6y2ezuwpd2gu7dwx5cbckfu4s4pazcudi4j2wogtr@4yecb2bkeyms>
+ <g5vlxrttgvfqkktlkhu4uzhtvnp3qtjcbr7l2uztapzqwhrsem@wg574xldh5ar>
+ <cd9d5a7c-ec0b-4f0a-bac2-f747799bf295@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: ti: k3-j722s-evm: Enable
- Inter-Processor Communication
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <j-choudhary@ti.com>, <vaishnav.a@ti.com>, <afd@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
-References: <20240830161742.925145-1-b-padhi@ti.com>
- <20240830161742.925145-3-b-padhi@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240830161742.925145-3-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cd9d5a7c-ec0b-4f0a-bac2-f747799bf295@kernel.org>
 
+On Fri, Aug 30, 2024 at 02:05:48AM +0200, Konrad Dybcio wrote:
 
-On 8/30/2024 9:47 PM, Beleswar Padhi wrote:
-> From: Apurva Nandan <a-nandan@ti.com>
->
-> The K3 J722S-EVM platform is based on the J722S SoC which has one
-> single-core Arm Cortex-R5F processor in each of the WAKEUP, MCU and MAIN
-> voltage domain, and two C71x DSP subsystems in MAIN voltage domain.
->
-> The Inter-Processor communication between the A53 cores and these R5F
-> and DSP remote cores is achieved through shared memory and Mailboxes.
-> Thus, add the memory carveouts and enable the mailbox clusters required
-> for communication.
->
-> Also, The remoteproc firmware like of R5F and DSPs in the MAIN voltage
-> domain use timers. Therefore, change the status of the timer nodes to
-> "reserved" to avoid any clash during booting of remotecores. Usage is
-> described as below:
->
-> 	+===================+=============+
-> 	|  Remoteproc Node  | Timer Node  |
-> 	+===================+=============+
-> 	| main_r5fss0_core0 | main_timer0 |
-> 	+-------------------+-------------+
-> 	| c7x_0             | main_timer1 |
-> 	+-------------------+-------------+
-> 	| c7x_1             | main_timer2 |
-> 	+-------------------+-------------+
+> On 17.08.2024 10:38 PM, Marcus Glocker wrote:
+> > Add the UFS Host Controller node.  This was basically copied from the
+> > arch/arm64/boot/dts/qcom/sc7180.dtsi file.
+> >
+> > Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 72 ++++++++++++++++++++++++++
+> >  1 file changed, 72 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi 
+> > b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index 7bca5fcd7d52..9f01b3ff3737 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -2878,6 +2878,78 @@ mmss_noc: interconnect@1780000 {
+> >  			#interconnect-cells = <2>;
+> >  		};
+> >
+> > +		ufs_mem_hc: ufs@1d84000 {
+> > +			compatible = "qcom,x1e80100-ufshc", "qcom,ufshc",
+> > +				     "jedec,ufs-2.0";
+> > +			reg = <0 0x01d84000 0 0x3000>;
+> > +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> > +			phys = <&ufs_mem_phy>;
+> > +			phy-names = "ufsphy";
+> > +			lanes-per-direction = <1>;
+> > +			#reset-cells = <1>;
+> > +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> > +			reset-names = "rst";
+> > +
+> > +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
+> > +
+> > +			iommus = <&apps_smmu 0xa0 0x0>;
+> 
+> Looks like this should be 0x1a0 maybe
+> > +
+> > +			clock-names = "core_clk",
+> > +				      "bus_aggr_clk",
+> > +				      "iface_clk",
+> > +				      "core_clk_unipro",
+> > +				      "ref_clk",
+> > +				      "tx_lane0_sync_clk",
+> > +				      "rx_lane0_sync_clk";
+> > +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+> > +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> > +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+> > +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> > +				 <&rpmhcc RPMH_CXO_CLK>,
+> > +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>;
+> 
+> You also want
+> 
+> <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>
+> 
+> > +			freq-table-hz = <50000000 200000000>,
+> 25000000 300000000
+> 
+> > +					<0 0>,
+> > +					<0 0>,
+> > +					<37500000 150000000>,
+> 75000000 300000000
+> 
+> > +					<0 0>,
+> > +					<0 0>,
+> > +					<0 0>;
+> > +
+> > +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+> > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> > +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
+> > +			interconnect-names = "ufs-ddr", "cpu-ufs";
+> > +
+> > +			qcom,ice = <&ice>;
+> > +
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		ufs_mem_phy: phy@1d87000 {
+> > +			compatible = "qcom,x1e80100-qmp-ufs-phy";
+> > +			reg = <0 0x01d87000 0 0x1000>;
+> 
+> most definitely should be 0x01d80000 with a size of 0x2000
+> 
+> > +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+> > +				 <&tcsr TCSR_UFS_PHY_CLKREF_EN>;
+> > +			clock-names = "ref",
+> > +				      "ref_aux",
+> > +				      "qref";
+> > +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
+> > +			resets = <&ufs_mem_hc 0>;
+> > +			reset-names = "ufsphy";
+> > +			#phy-cells = <0>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		ice: crypto@1d90000 {
+> > +			compatible = "qcom,x1e80100-inline-crypto-engine",
+> > +				     "qcom,inline-crypto-engine";
+> > +			reg = <0 0x01d90000 0 0x8000>;
+> 
+> 0x1d88000
+> 
+> 
+> All this combined means you probably wrote your init sequence into some
+> free(?) register space and the one left over from the bootloader was
+> good enough :P
+> 
+> Konrad
 
+I have not done anything special in our sub-system to boot this DTB.
+Changing the values as suggested by you also doesn't make any difference
+to me.
 
-Reviewed-by: Udit Kumar<u-kumar1@ti.com>
+Anyway, I think I'll give up at this point, since this process is
+getting too time consuming for me.  We'll go ahead with out downstream
+patches, which works for us so far.
 
-> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-> [ Enabled mailbox instances and Reserved timer nodes ]
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
-> v5: Changelog:
-> 1) Updated commit message to correctly reflect the host core name (A53
-> not A72).
-> 2) Updated mbox DT node label and name to "mbox_wkup_r5_0" from
-> "mbox_r5_0" for clarity.
->
-> [..]
+Cheers,
+Marcus
 
