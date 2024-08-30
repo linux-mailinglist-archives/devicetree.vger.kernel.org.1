@@ -1,138 +1,127 @@
-Return-Path: <devicetree+bounces-98283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 542F09659DA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:15:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A86F9659EA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:17:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 005EE1F234DD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB0FF1C222CA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946CB16D9C0;
-	Fri, 30 Aug 2024 08:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W2anGV1k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FA016C87E;
+	Fri, 30 Aug 2024 08:16:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F3016D4FF
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A529315C143;
+	Fri, 30 Aug 2024 08:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725005705; cv=none; b=tn56sRuC8QhxuHDlhNi6LntJxJCQe9PXcQncimDx6o5oMKXH8DCZHLFBmLuXZPTtBC1Nhu2kmg2i7Zev0YBzpAjY4f+FY0Se+s6MwCOaIkAh780lPyuWss5aq0hvUC6yukCx1SA/2u7XU1wNqDTkyiM32rK9zCaUYaEWcGxcjLg=
+	t=1725005768; cv=none; b=UM7tgenR8W+KylbpRuCsZUzzXzVpR6koKw08/U/WVlYeo32NEIjfZwSd6WfBLoKHFMXYgAWmHNF3EXGaDZBFTt2tAMRpWGPvVlqe3RGVqIW2VB7DDXxiXBKr+Xt9Zo8MVweUP4jid33zknwSNogM213GeEbTPA37bQIpZiEiUIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725005705; c=relaxed/simple;
-	bh=bJJEH8RtsAcOHW2xNGOEfQbMncbmYjIgC6YnxDXglC0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=hDwwrUNIJMN3Cz2fbam04QOnem/KciI2jd0PjpGu8zrqB1BEdQlXskpLIRUKKF0yhM/cDl0u2gj8ac8TmP2X9NZMfRClgSwLScElZqrnnDYm8lVQFQMDzp5LYLT8yb5m/pg9RpateKXztUqmehxTjy/xkrlMk5b3lecnotlf250=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W2anGV1k; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42bb81e795bso11058035e9.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:15:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725005702; x=1725610502; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TwEbYTlIGuEKRIfnYKcbOmgEE1eULYFkwpGJpyvLzJI=;
-        b=W2anGV1kVSVXYP4gDuV3yO7CtUxJHvoP8LUp0a9ig6moYIX8kWn/hpPPcX1dv8Q/WK
-         ZPey4AMPoqPsBWZgpZ9MdcaP6rxVLg/AqDGeuIHoViu9eyb+eorSxfFVLGxSNux+p2V1
-         t1bwFcn1xO4GiXkbgxUjb2wHdD6lY3NXu19BsotwItQKmJ+pu7YctK4v1XHXwot2zjw6
-         mQh24xKfMQU9Qpein6xnbegk/WeoUygsqAdeobHOV93iqUblc3jJFGkIl3grDAQwaHqi
-         ULKEZByz+W7TYopYlgGHDsRHF1rKfK+W/+R2IaeVRBKkfErVcNViMg3m1C3vnko7s9qs
-         +cGw==
+	s=arc-20240116; t=1725005768; c=relaxed/simple;
+	bh=Usj4NDMMSuTQv4/ZNF1nZLx1UwIIHViFNSe98IS9hVA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q+lhpzPA599q6z1sybijYNISy5a7WSKJGlgNqh/BfbPBQ/2wjNRAmlInGzh+56ukvPp0ApyAK4keybaDGUZ0y4Cxb5yPhT+l/QVaxrLTlGuWNBHwy1H2VgzpFg1zTXTotQSEkVsKyvLJDnC1YSoVUnjGhMbFjZz95wLPOkkzeRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e04196b7603so1553110276.0;
+        Fri, 30 Aug 2024 01:16:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725005702; x=1725610502;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1725005765; x=1725610565;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TwEbYTlIGuEKRIfnYKcbOmgEE1eULYFkwpGJpyvLzJI=;
-        b=Nhepk7SUFLtKztTWdQmzJkIK3PKvgW/MBSTv4Z5GDTEYNnoD+FO7MddrR4GHifNz8/
-         7e2Uh2veyqvwD2r7wS9WZtrNzj1rPghepE3CRWmL79Pshv9HvlG3hz4eNab1nEITIhOf
-         LcgaQ8vQCbhS7p5bIul+7fGjeSkgIKqH8hcGwraEesSSQRy5OQBTBhwL5G5EFOhslODY
-         Ybz7QDhKRZqI6y6TfWTzLarmpQaVbM4qJsaP2lJnQXzocVakeBWO7r/PLjqup7ZGCYl1
-         nI+hIcheZ+RTxBmp3ZoXMgJ/EabOUyp+bjVV+XpTkDFNXENkMXEp4Cs1lp0BgwX9drqT
-         1sdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVCtz/FZYPNFqWtULVFXHzNmgn2DLlmZ/fFs63HoJmpSW2BUahCoJuLOoHkvhFuVbOkMVS5+YokHl5p@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNbE6jr7dBgtPnRa9W13oHw+TfEj0PDXBohOdzqrzDHnT6EYRX
-	7AxhFhlcjNb7AIGMu9hYJIzqB1P2AR82pFiO0zyjVTE+X5ql5xvRdnN7EMQeJTc=
-X-Google-Smtp-Source: AGHT+IGlVWCwctNLM1H849kElS12n9ORO2J3+8cTg/CDN3AGEVqfp3UvIq1xbGyrpDfqOXMmx4PQYw==
-X-Received: by 2002:a05:600c:3b93:b0:426:5e0b:5823 with SMTP id 5b1f17b1804b1-42bbb44114emr11034305e9.34.1725005701276;
-        Fri, 30 Aug 2024 01:15:01 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ef8113asm3269284f8f.89.2024.08.30.01.15.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2024 01:15:00 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20240830-c3_add_node-v4-0-b56c0511e9dc@amlogic.com>
-References: <20240830-c3_add_node-v4-0-b56c0511e9dc@amlogic.com>
-Subject: Re: [PATCH v4 0/3] add some node for amlogic c3
-Message-Id: <172500570043.143584.9400880712807220818.b4-ty@linaro.org>
-Date: Fri, 30 Aug 2024 10:15:00 +0200
+        bh=p4Ql5/in0ZIVOL75Q1qx4NaZGeDqu/Tw36Q8q0H0JF8=;
+        b=lXB6z/77QCyU/MXg9U4xW5mqizuw39XhOfwvF7tY7akTctsPjuzLdpY3jSoEJMYZ9T
+         0yDzgJOWRScH9mhanS/qlaPONG1d3YjQPGW2LzOQAPKRKDYlbfJMxrgp8YlmYBD7Tw0x
+         jqp4eVKCuCK031LLZCm9eDv910/LvKLO27FcFH/SS1W1X+2qRA5Eup0PoY8IwEoheojv
+         BUXkaEZkWv216lfA0AbCQpEM4fBqhlAygxR9hnwIAdUGylwRLkM2G1MPZZq6j5t8glpf
+         Wadzy7Qe+08j06seUvELRCB6clFHULi0Ri1Y0bjfn+VYDQksLLg/cyrZSOsp2UuX2n+0
+         HfwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUh68GRaLgzVjIcBdKT3Db1XSi7Tl8YijQdRuPzXHTZfHt6SoDC+YgMjaBbUY8C9TPXrRfu0We38A5T@vger.kernel.org, AJvYcCVwbFUi5mD3Bcro5We0FiBHaB+2MotDvHnoui3QulRPp9vhzw//1dNyV8QZLwa/EQEIngKvxs4tCuv5qyNEYlE5hxM=@vger.kernel.org, AJvYcCX5ERNJosECQonBjLgG17qsjUPw+xThmH3sp1yYv214VrVnQVDzdB3UxYlEUyw9TMyuyukV+7hC1kC4fyo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKzvqYzg901F9CxPSJdqInWpbGWgpe6tGkTJe9YeO3UKXd0Zyz
+	pLjVUZyMeZmuPLEOFS8NtVgl0VI22JyKi0SMWBt1akBDVogo+Cuz4V+eC2Gv
+X-Google-Smtp-Source: AGHT+IEdVjeEYAgvU+Ldb5lS/pERLG5CZqOULCrzmz+ayCalrbmGO5/GRyNCtPDvGxxp5JgaqOKf4Q==
+X-Received: by 2002:a05:6902:10c7:b0:e11:7578:ffbb with SMTP id 3f1490d57ef6-e1a7a1a7dcdmr1489029276.36.1725005764753;
+        Fri, 30 Aug 2024 01:16:04 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e1a6266ec15sm553172276.20.2024.08.30.01.16.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Aug 2024 01:16:04 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6b8f13f28fbso13748957b3.1;
+        Fri, 30 Aug 2024 01:16:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVhsCzqvBzq5b2XjzYNgaSC7WegU4GeIb16FqsI1HePMZHPMDk/ZVrmZIC6Nsn/Psy/t5rMOJSrJEDeVoY=@vger.kernel.org, AJvYcCVr/DJ5ec93ya5g30FViaACqDNJdeO6eQuK1/Q+tdjnAVkoUc98uHVI1q8XGnwFrUSDoPqolgg5zYuADMZCvmJ/8Vk=@vger.kernel.org, AJvYcCVwXJQ0oy8ohzYfuJ41QGj8MatRVcc2KF5lvoDsNd8lYG1UxOknSMSiEaLKqCIIHyUL7rmmuoUw2jkR@vger.kernel.org
+X-Received: by 2002:a05:690c:6384:b0:664:4b9c:3de with SMTP id
+ 00721157ae682-6d40de67fbdmr12609087b3.13.1725005764298; Fri, 30 Aug 2024
+ 01:16:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+References: <20240829165051.2498867-1-niklas.soderlund+renesas@ragnatech.se> <20240829165051.2498867-5-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240829165051.2498867-5-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 30 Aug 2024 10:15:52 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUGzK9EMneHzTJXPQiYRSpnTgP5A9_ZMeSc353ZwR4VKw@mail.gmail.com>
+Message-ID: <CAMuHMdUGzK9EMneHzTJXPQiYRSpnTgP5A9_ZMeSc353ZwR4VKw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] media: staging: max96712: Document the DEBUG_EXTRA register
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Sakari Ailus <sakari.ailus@iki.fi>, 
+	Julien Massot <julien.massot@collabora.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-staging@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Niklas,
 
-On Fri, 30 Aug 2024 13:26:07 +0800, Xianwei Zhao wrote:
-> Add some node for board AW409 and support board C308l AW419.
-> 
-> 
+On Thu, Aug 29, 2024 at 6:52=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> The DEBUG_EXTRA register is not part of soon to be added MAX96724
+> device. To make it easier to understand the differences when reading the
+> code prepare for the addition by creating named defines for the
+> register.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+> * Changes since v2
+> - New in v3.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/arm64-dt)
+Thanks for your patch!
 
-[1/3] dt-bindings: clock: fix C3 PLL input parameter
-      https://git.kernel.org/amlogic/c/4ccba8cb2c5ca573d9bbf366e7d9d5e9761518c0
-[2/3] arm64: dts: amlogic: add some device nodes for C3
-      https://git.kernel.org/amlogic/c/520b792e83171efc8ec0b004412b44dabc044de0
-[3/3] arm64: dts: amlogic: add C3 AW419 board
-      https://git.kernel.org/amlogic/c/d4bd8f3023b68f72431e05ec6cbc793519b449cf
+> --- a/drivers/staging/media/max96712/max96712.c
+> +++ b/drivers/staging/media/max96712/max96712.c
+> @@ -16,6 +16,10 @@
+>  #include <media/v4l2-fwnode.h>
+>  #include <media/v4l2-subdev.h>
+>
+> +#define DEBUG_EXTRA_REG                        0x09
+> +#define DEBUG_EXTRE_PCLK_25MHZ         0x00
+> +#define DEBUG_EXTRE_PCLK_75MHZ         0x01
 
-These changes has been applied on the intermediate git tree [1].
+s/EXTRE/EXTRA/
 
-The v6.12/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Gr{oetje,eeting}s,
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+                        Geert
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
