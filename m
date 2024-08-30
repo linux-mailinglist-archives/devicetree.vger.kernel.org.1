@@ -1,75 +1,48 @@
-Return-Path: <devicetree+bounces-98341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB16965D01
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:34:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F3BA965D56
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B27CA1C23ED4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:34:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1BECB22D8E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF72D178CE4;
-	Fri, 30 Aug 2024 09:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DA416FF44;
+	Fri, 30 Aug 2024 09:51:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hcyBQB5G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jICfdczX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE5A175D3E
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 09:33:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51AE91531CD;
+	Fri, 30 Aug 2024 09:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725010440; cv=none; b=DEbOPUExl/8Kl9vI3p4+t4IQYBiKxd/Lc3xVsEAEu+cSPoopuGn7jAdsfJjJnieseyYl3pcqGZqSe1ApESOTiSi3TB6uV/KeY3gj5w7DgmUcm80nHlRgnOmrcweUorUfPnLZ4MejbLQ9KT1rbK5NUo+jphbjndbRkzIsLitbbTM=
+	t=1725011500; cv=none; b=kqgj/fmkmyCMtMA7fvjxPFD9NwpF42GYq0692v6/VicGceMPphlzJfXkSNDkgBOlnCJ/wmXk1FfNfrwMGCWO/9NqSDQWxg5EswDNaEy9fUHphF/l9uXXK1evBOgB+5duMr1HyOWYZmFa6StplkwKzDh8Tto+B0XPNGxk++1USR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725010440; c=relaxed/simple;
-	bh=5yslXqhvWQX9TnBSismjUh88BdfvlGVmkN25fRbxHH4=;
+	s=arc-20240116; t=1725011500; c=relaxed/simple;
+	bh=NDukMRi0OurMDQvb5Qn4QuwFUZUeJJQIQoFalgKICzI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e7xC6KqW8vCmGkTcOD+gVVheS3GqmY4YP2PIuF5QijgvZ64Q1nnIsmGwuexsWu3XP2435eeCshojMf3LVW5HV7emZMpwh8Rs5GJTBKQTd4n9rvfGPb3uLWRIvd2EUyRIQ4gKcIWrUYwrRDTwuletJBsBtCLDg6iJ2PfmlzCV8JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hcyBQB5G; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42baecbd4fbso2220805e9.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 02:33:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725010437; x=1725615237; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pGZek37s7JUS9g9ervJ2hRM13bZo2pmesux2WExpQN8=;
-        b=hcyBQB5GftII3BLkLnFzIcMznhMJV3Wp5Ue4LD0/Uvo3sVvsRFf6pI/lSlWXuemLnh
-         Rw9JAYfRxDIyvwHb+8DNM+ovCyN4qUIYqXWk7kD3w4HezEO257LJGb/1pzvE933cpd0r
-         nwt4MR59ob9nx2qRTRFktcseiE4i+oWdcUkOUbIh700kj7FTlDm/fKW3Wb5U18x/glC+
-         9oCGtMvdZbDpcdVtZ2PJO1oxRwz4FC20txv5zOKlhugHe8JDwXE+ltIQ/wwB7T6SC0+E
-         yORAmT04xmvxw7IF45v8JWzgfVjiKVzhEbagoI4O3mj5B5t8I59uv5IEvZJrBXoE3G7d
-         c7MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725010437; x=1725615237;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pGZek37s7JUS9g9ervJ2hRM13bZo2pmesux2WExpQN8=;
-        b=W2ahlHWPlk7Qp8er8U6dzQa7mHvumM74GQZDhCjTlRiWnnByFo1GE08UfVRb0fATKB
-         OvESn4oHia3weHmao+QEw6dwEnDo0/JdrYHjwk4lbusSN8qFGc+sbErqMO9DWOdQFK4P
-         h/wcIcnEgZHNr7vTghWBpgPPjnsJTXwdceeML09pCkCuZab9kmuAQkRvHGoASwLOqGN6
-         snmLLZMIdsszjfbPzSnSF2m2VxaYaxtTAUL1RdsyaNipWiKE46B5iogcUpYwlPd1Dg4z
-         7zFC1dEBbE84hIRSdyMz1O8L8SCSP1+aMJ51iWghDhHeLgkhTwo4v8pTWmrmv6YbOBaV
-         xriA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgP+K2dDOaco8cKhaqdHQ1ijpe11+dI1UT8iJkN3+3hc60GV075jSsN1MxcP5BkuozY80iouTPhrUB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHQrtpXP1v3LR8dfaGbF8o64wrblfI707frgBfJBfGvomgfEUP
-	FAygeYcBOPvOvLo82eXH1gQTVUWUcJmD2QQZxLV/8xdfdTAVRJwh4NTukYvEOSU=
-X-Google-Smtp-Source: AGHT+IE+rnx/YrsfDOYvW2dfT+oacSiNX/1n93tiIETgoAZ48JpJutDBDzth7kSn1IPt8lBVd3JHmQ==
-X-Received: by 2002:a05:600c:a49:b0:426:6cd1:d104 with SMTP id 5b1f17b1804b1-42bbb43a575mr7096425e9.4.1725010437310;
-        Fri, 30 Aug 2024 02:33:57 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bba3f2875sm18328365e9.41.2024.08.30.02.33.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Aug 2024 02:33:56 -0700 (PDT)
-Message-ID: <54632ada-d657-4c73-a88c-469eb6066608@linaro.org>
-Date: Fri, 30 Aug 2024 11:33:54 +0200
+	 In-Reply-To:Content-Type; b=h1pm6g9KKFmLKPAK422LO1MB6gKcsUfBgnzNfoWgcj0zJnSsIbqgb+/QZcEYkgjRTfEU8biR2OxwxU4DZxlw8k4ElzKDekExeCQ06SmGHC8EiuhO4e1UtKfTbiffVbBEOchyEKIS9pTnURVyq8zpCZBElR4caWqWfrAQuKH1djM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jICfdczX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 981B9C4CEC2;
+	Fri, 30 Aug 2024 09:51:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725011499;
+	bh=NDukMRi0OurMDQvb5Qn4QuwFUZUeJJQIQoFalgKICzI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jICfdczXbXRdkEcM9Xcn4s8UALWsaTcW+IxWBMT057MQ09wJVZduiDaJVbGZoks9I
+	 S5Iw6ni1FK8QoyFwfn2TarwefKowsrASoq1u2Gz5Dmf4AVVtMfF3u/1QYP7mMiWDyG
+	 FvSNza0qF9lYEVEsk9Um162KDVu2Zzue5dp1rqws5KLWyj1w+d63Bbg88CGdSnJr8T
+	 r2pmxgVPrAOxoSSzJOsodyUEp4psJVqEW2PPPTRiYwuPRjhu9uqqvU63u81uN7NIzD
+	 8ViVemtWP21Zqmcw0IkAmjyF+GeGqXNasiXqm6oQFCr+yPTvXUmTNuaZKvy3exh10e
+	 WPLYsJFx+M3lQ==
+Message-ID: <095f5048-5c39-438d-b5a9-7519199a8e9f@kernel.org>
+Date: Fri, 30 Aug 2024 11:51:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +50,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/17] arm64: dts: qcom: msm: change labels to
- lower-case
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240829-dts-qcom-label-v2-0-5deaada3e6b2@linaro.org>
- <20240829-dts-qcom-label-v2-2-5deaada3e6b2@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 22/22] arm64: dts: qcom: Add reduced functional DT for
+ SA8255p Ride platform
+To: Nikunj Kela <quic_nkela@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
+ herbert@gondor.apana.org.au, davem@davemloft.net, sudeep.holla@arm.com,
+ andi.shyti@kernel.org, tglx@linutronix.de, will@kernel.org, joro@8bytes.org,
+ jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
+ amitk@kernel.org, thara.gopinath@gmail.com, broonie@kernel.org,
+ wim@linux-watchdog.org, linux@roeck-us.net
+Cc: robin.murphy@arm.com, cristian.marussi@arm.com, rui.zhang@intel.com,
+ lukasz.luba@arm.com, vkoul@kernel.org, quic_gurus@quicinc.com,
+ agross@kernel.org, bartosz.golaszewski@linaro.org, quic_rjendra@quicinc.com,
+ robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, iommu@lists.linux.dev,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel@quicinc.com, quic_psodagud@quicinc.com, quic_tsoni@quicinc.com,
+ quic_shazhuss@quicinc.com
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240828203721.2751904-23-quic_nkela@quicinc.com>
+ <746be896-8798-44b0-aa86-e77cf34655e1@kernel.org>
+ <57eee144-cdc4-48e7-838b-103cda6ec1dd@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -99,65 +88,128 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240829-dts-qcom-label-v2-2-5deaada3e6b2@linaro.org>
+ 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 fv0=
+In-Reply-To: <57eee144-cdc4-48e7-838b-103cda6ec1dd@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/08/2024 14:34, Krzysztof Kozlowski wrote:
-> DTS coding style expects labels to be lowercase.  No functional impact.
-> Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
+On 29/08/2024 21:06, Nikunj Kela wrote:
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8916.dtsi           | 100 ++++++++++-----------
->  arch/arm64/boot/dts/qcom/msm8939.dtsi           | 110 ++++++++++++------------
->  arch/arm64/boot/dts/qcom/msm8953.dtsi           |  68 +++++++--------
->  arch/arm64/boot/dts/qcom/msm8976.dtsi           |  32 +++----
->  arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts    |  12 +--
->  arch/arm64/boot/dts/qcom/msm8992.dtsi           |   4 +-
->  arch/arm64/boot/dts/qcom/msm8994.dtsi           |  52 +++++------
->  arch/arm64/boot/dts/qcom/msm8996.dtsi           |  54 ++++++------
->  arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi |  32 +++----
->  arch/arm64/boot/dts/qcom/msm8998.dtsi           |  92 ++++++++++----------
->  arch/arm64/boot/dts/qcom/sdm632.dtsi            |  26 +++---
->  11 files changed, 291 insertions(+), 291 deletions(-)
-> 
+> On 8/29/2024 12:49 AM, Krzysztof Kozlowski wrote:
+>> On 28/08/2024 22:37, Nikunj Kela wrote:
+>>> SA8255p Ride platform is an automotive virtual platform. This platform
+>>> abstracts resources such as clocks, regulators etc. in the firmware VM.
+>>> The device drivers request resources operations over SCMI using power,
+>>> performance, reset and sensor protocols.
+>>>
+>>> Multiple virtual SCMI instances are being employed for greater parallelism.
+>>> These instances are tied to devices such that devices can have dedicated
+>>> SCMI channel. Firmware VM (runs SCMI platform stack) is SMP enabled and
+>>> can process requests from agents in parallel. Qualcomm smc transport is
+>>> used for communication between SCMI agent and platform.
+>>>
+>>> Let's add the reduced functional support for SA8255p Ride board.
+>>> Subsequently, the support for PCIe, USB, UFS, Ethernet will be added.
+>>>
+>>> Co-developed-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+>>> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+>>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/Makefile           |    1 +
+>>>  arch/arm64/boot/dts/qcom/sa8255p-pmics.dtsi |   80 +
+>>>  arch/arm64/boot/dts/qcom/sa8255p-ride.dts   |  149 ++
+>>>  arch/arm64/boot/dts/qcom/sa8255p-scmi.dtsi  | 2312 ++++++++++++++++++
+>>>  arch/arm64/boot/dts/qcom/sa8255p.dtsi       | 2405 +++++++++++++++++++
+>>>  5 files changed, 4947 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/sa8255p-pmics.dtsi
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/sa8255p-ride.dts
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/sa8255p-scmi.dtsi
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/sa8255p.dtsi
+>>>
+>> ...
+>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sa8255p-ride.dts b/arch/arm64/boot/dts/qcom/sa8255p-ride.dts
+>>> new file mode 100644
+>>> index 000000000000..1dc03051ad92
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sa8255p-ride.dts
+>>> @@ -0,0 +1,149 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +
+>>> +#include "sa8255p.dtsi"
+>>> +#include "sa8255p-pmics.dtsi"
+>>> +#include "sa8255p-scmi.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Qualcomm Technologies, Inc. SA8255P Ride";
+>>> +	compatible = "qcom,sa8255p-ride", "qcom,sa8255p";
+>>> +
+>>> +	aliases {
+>>> +		i2c11 = &i2c11;
+>>> +		i2c18 = &i2c18;
+>>> +		serial0 = &uart10;
+>>> +		serial1 = &uart4;
+>>> +		spi16 = &spi16;
+>>> +		scmichannels = &scmichannels;
+>> Nothing parses this.
+>>
+> We are using this alias in bootloader to speed up the parsing. Since we
 
-v3 will be needed, I forgot to update arm32.
+Then please provide link to the bindings in this open-source upstream
+bootloader.
+
+Otherwise it is a clear no-go for me. We don't add properties because
+some downstream wants them. Imagine what would happen if we opened that
+can of worms...
+
+> are using 64 SCMI instances and SCMI smc transport driver for
+> Qualcomm(drivers/firmware/arm_scmi/transports/smc.c) expects
+> cap-id(created by hypervisor at boot time), our bootloader gets those
+> cap-id for each channel and populate them. This alias is an optimization
+> to save boottime as in automotive, boot KPIs are critical.
+
+I will refrain about commenting on KPIs...
+
+
 
 Best regards,
 Krzysztof
