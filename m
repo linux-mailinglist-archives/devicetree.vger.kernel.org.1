@@ -1,113 +1,108 @@
-Return-Path: <devicetree+bounces-98584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBC0966A43
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:16:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D629966A83
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 22:30:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F4242846E8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 20:16:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDB1E282533
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 20:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BDE1BD00F;
-	Fri, 30 Aug 2024 20:16:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YNy+ey6I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53788163A9B;
+	Fri, 30 Aug 2024 20:30:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9A9EEC3;
-	Fri, 30 Aug 2024 20:16:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9B315B117;
+	Fri, 30 Aug 2024 20:30:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725048966; cv=none; b=BVNBffGQ+NmauwaWaBN03pSA2fpPNIYUtbiE/ZZZ7o9MrbuR5qw5t7D/eHzym0wEb0M8mQ2L8bt8EtYM5VZu7UVuul1rt7N9Aq9GwqGhRxjGsKNSm2ormv29bQ+VskJUMHUn167i2RxrHVKORCwdhbGYz/AE1yPXPlzjgtM+gmw=
+	t=1725049831; cv=none; b=blFZpzeJC+u/f3183Uww4+prx6P8IXkDtxZFl/tNWaeYoxSg9DjZ3zrHUe1yfBdeDEfOxnMIC0Vl2tSe5HdhEmyt7Yd/z3m4OrlESQsGgHNjG+5eFT3MXqCWwumBqdZjdBMTSj/HbQQCeIaYg6OgDzKVFT7JnSeZw1nRmZHcr1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725048966; c=relaxed/simple;
-	bh=BHJAPCRkkwvBrJQihBZsj9YydNkC0N902Xxm8U4CrfE=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=iQw2A9jPM0Zh3zFaf/KuciVf9Q0HJJI6i8mcrq4Ik3g16IGtylSMOY3CvGMQ8ONhmwRCiITmpeky/0BblnsUT1TxseuvgXaSZsJ9peqgRTyNqXQoFD/XZQqZDb1XXLtDR7nVtkhKnBSLw3MEo/DL8iOnr2TUJShF1jCFTX6cyAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YNy+ey6I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FF73C4CEC2;
-	Fri, 30 Aug 2024 20:16:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725048965;
-	bh=BHJAPCRkkwvBrJQihBZsj9YydNkC0N902Xxm8U4CrfE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=YNy+ey6INHaAq9MsgntpjXQRnsDtR4mQxaT5mip9SwXlpm49c7B5zp9PkHSqyPx+b
-	 AwMLMRu0e3WmZ3ZhpSPb6+xqc67eCDC6KidvQPHC8PV4+bwl/Q4h2v7nJoES2QOszJ
-	 bCVw9kWyVi0mhWJf6yeQsmlhORy47rpMoyJiGyvZIpNAahjD78TJf1ONtCa0LCI+wG
-	 TvXRYfI3/F8Bro8sv/+QV4179CosziWun+hm+KkkU4dHYkIl2UcPDEnGuuy45lvgv+
-	 xB0UqtTuGn5ikLwp364HDjVLCgG0ZPyilgdFDMxyrkpxPVs785/RRVRH1rb2EebrZt
-	 hkVENzPwrWwmQ==
-Date: Fri, 30 Aug 2024 15:16:03 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1725049831; c=relaxed/simple;
+	bh=r+vleoUyp+YLco4inMrnkZ9PxfRAdtFda/5YsmJJPzU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bbJYX+OPepGXRdz0zNA03ZPLWOUjY4JirXedw/iMK421JoBjvNT1RSAKZ1ypjIzSO85l3MMHvvCEJizzS33wOfPj06g1QE4w1D0/jRKXjFS0kv6ey3KQ0oNmT48HN5ap2BEtqrS/+BmSHxIaH+8iw/tPKFvZPqLXGrew7WjRNGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.10,189,1719846000"; 
+   d="scan'208";a="217084506"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 31 Aug 2024 05:30:20 +0900
+Received: from localhost.localdomain (unknown [10.226.92.75])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id DE8C5406DF57;
+	Sat, 31 Aug 2024 05:30:17 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2 RESEND 0/3] Enable serial NOR flash on RZ/G2UL SMARC EVK
+Date: Fri, 30 Aug 2024 21:30:02 +0100
+Message-ID: <20240830203014.199326-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: David Jander <david.jander@protonic.nl>, 
- Jakub Kicinski <kuba@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- Heiko Stuebner <heiko@sntech.de>, Elaine Zhang <zhangqing@rock-chips.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- kernel@pengutronix.de, linux-can@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
- Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- Eric Dumazet <edumazet@google.com>, Simon Horman <horms@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>
-In-Reply-To: <20240830-rockchip-canfd-v3-1-d426266453fa@pengutronix.de>
-References: <20240830-rockchip-canfd-v3-0-d426266453fa@pengutronix.de>
- <20240830-rockchip-canfd-v3-1-d426266453fa@pengutronix.de>
-Message-Id: <172504896361.968651.6212275556677921387.robh@kernel.org>
-Subject: Re: [PATCH can-next v3 01/20] dt-bindings: can: rockchip_canfd:
- add rockchip CAN-FD controller
+Content-Transfer-Encoding: 8bit
 
+This patch series aims to enable serial NOR flash on RZ/G2UL SMARC EVK.
 
-On Fri, 30 Aug 2024 21:25:58 +0200, Marc Kleine-Budde wrote:
-> Add documentation for the rockchip rk3568 CAN-FD controller.
-> 
-> Co-developed-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> ---
->  .../bindings/net/can/rockchip,rk3568-canfd.yaml    | 74 ++++++++++++++++++++++
->  MAINTAINERS                                        |  7 ++
->  2 files changed, 81 insertions(+)
-> 
+The RZ/{G2L,G2LC,V2L} SMARC EVK uses Micron MT25QU412A flash and RZ/G2UL
+SMARC EVK uses Renesas AT25QL128A flash. With current pin setting for
+IOVF pin, 4-bit flash write fails for AT25QL128A flash. Use Hi-Z state
+as the default for IOVF pins, so that spi controller driver in linux will
+be independent of flash type.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+To support this, during board production, the bit 4 of the NV config
+register must be cleared by the bootloader for Micron flash.
 
-yamllint warnings/errors:
+Output from u-boot after clearing bit4 of NVCR register.
+=> renesas_micron_flash_nvcr
+SF: Detected mt25qu512a with page size 256 Bytes, erase size 64 KiB, total 64 MiB
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/rockchip,rk3568-canfd.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/net/can/rockchip,canfd.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/rockchip,rk3568-canfd.yaml
+Update partition table for spi-nor flash, so that we can flash bootloaders
+in Linux by executing the below commands:
+flash_erase /dev/mtd0  0 0
+flash_erase /dev/mtd1  0 0
+mtd_debug write /dev/mtd0 0 ${BL2_FILE_SIZE} ${BL2_IMAGE}
+mtd_debug write /dev/mtd1 512 ${FIP_FILE_SIZE} ${FIP_IMAGE}
 
-doc reference errors (make refcheckdocs):
+v2->v2 resend:
+ * Rebased to next
+RFC->v2:
+ * Dropped patches related to set_iofv() callback
+ * Used Hi-Z state as the default for IOVF pin state.
+ * Enabled Serial NOR flash on RZ/G2UL SMARC EVK
+ * Updated partition table on RZ/{G2L,G2LC,V2L} SMARC EVK in order to
+   flash bootloader images from Linux.
+ 
+RFC: https://lore.kernel.org/all/c9b0cffbb1566a7d38f2251ac7c8883a@walle.cc/
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240830-rockchip-canfd-v3-1-d426266453fa@pengutronix.de
+Biju Das (3):
+  memory: renesas-rpc-if: Use Hi-Z state as the default setting for IOVF
+    pins
+  arm64: dts: renesas: rzg2ul-smarc-som: Enable serial NOR flash
+  arm64: dts: renesas: rz{g2l,g2lc}-smarc-som: Update partition table
+    for spi-nor flash
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 15 ++++--
+ .../boot/dts/renesas/rzg2lc-smarc-som.dtsi    | 15 ++++--
+ .../boot/dts/renesas/rzg2ul-smarc-som.dtsi    | 48 +++++++++++++++++++
+ drivers/memory/renesas-rpc-if.c               |  2 +-
+ 4 files changed, 71 insertions(+), 9 deletions(-)
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.43.0
 
 
