@@ -1,62 +1,87 @@
-Return-Path: <devicetree+bounces-98304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C751C965A69
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:34:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49EFD965A70
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81FD028607F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:34:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE894286D7B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 08:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0596116C86B;
-	Fri, 30 Aug 2024 08:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7D916D4DC;
+	Fri, 30 Aug 2024 08:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pw6s1CII"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MWtnQLDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C985816EB42;
-	Fri, 30 Aug 2024 08:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFCEC16D327
+	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 08:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725006874; cv=none; b=o0pqJqPYqONtTWGbQX1Uh6VNIC9HLTgwRj6nK107fiIROBoQdZOqsRsvwCRWkx1wPvn9sLu/oqdzF8zkGYE7vqgYur5HxMVQlZozi2dunM1K5MSXx/+794QKAisGuRqJx2FR0xcnra/ic8BK2vZcmt28n2QgYlZrkWV81+3F8HQ=
+	t=1725006962; cv=none; b=BOQHKKGndv5vAiTviEvRsZz4Y+RAmJ+WKT+PIX6WDrSngJQUiSNlmvw5GacIrHuI7p247idDTA981/otWZTadTE6PL4iJl1P+x369xn90t9BCWiIGxPo0Pf/76nKTO4s+z4hp1HPJ9+mG8ljb0uBY/v+kC1P0jZg0vJFEnOnPe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725006874; c=relaxed/simple;
-	bh=U9qy+SkXALOXvlSMMq6arVH245/dtt7i7Ysg6+KWb7c=;
+	s=arc-20240116; t=1725006962; c=relaxed/simple;
+	bh=AQdl9xmsK8ZMt1kvTa1HmFVUzpMAE8Xf7jM0R7oI+ZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=suk4bbcx0mWFoNXnas9zLRMKz3zVYHj/WyjEfzEpPvcF5c4RPp0sN6eCTRj5ESZCTq1xwu3/BFwG/bPyvz6GInt0Pt5kZJYXRswq00h10JX/hc8QOcH0GqCW8VUd/8YptwL5Lrdrhg+PTw476NloMbOMTTgSsE4U6tFSJamwXmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pw6s1CII; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 352B8C4CEC2;
-	Fri, 30 Aug 2024 08:34:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725006874;
-	bh=U9qy+SkXALOXvlSMMq6arVH245/dtt7i7Ysg6+KWb7c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pw6s1CIIZ7F2jb5LjcXbQKQ8uJ/uYDx6FcLM4Bp6MLnTTCYeKrYWpcfsL/bishn6o
-	 ox89cSr2bjyyMwcYC6bJEaUGpr96+RqsPg0OcnjpcWb2zP1pfjUu4Jgs3L1sdYzNi4
-	 MO7fjhjQzPHmBfC65nsm0mShvkcTKdSBMFE6m1mkLNyuaArpyRLHmHxdnMFJscNpIT
-	 VnEEO4EkdU/K7F0Yk7Vs+W4NTa93F1eOmdz/5DIDiPbvjdhK4EU5FR2nGb8vj5NDHV
-	 mNPuVSkphDEIGEQfXnzTPzL+vDfPDdAZPSGuuPwcv/FiS5ROZzqdFy2fLk8+KN4A82
-	 1OWVlQJqCVJsQ==
-Date: Fri, 30 Aug 2024 09:34:27 +0100
-From: Lee Jones <lee@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com,
-	mripard@kernel.org, tgamblin@baylibre.com,
-	aidanmacdonald.0x0@gmail.com, u.kleine-koenig@pengutronix.de,
-	samuel@sholland.org, jernej.skrabec@gmail.com, sre@kernel.org,
-	wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	robh@kernel.org, lars@metafoo.de, jic23@kernel.org,
-	jonathan.cameron@huawei.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: [GIT PULL] Immutable branch between MFD, IIO and Power due for the
- v6.12 merge window
-Message-ID: <20240830083427.GT6858@google.com>
-References: <20240821215456.962564-1-macroalpha82@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FAJQX3hAAy1ZVBC7NrK2BH18dkAoGXfZwye1aaeOdJ4dLvwbMnsJJcYAsUmufg3erjvavrYvDUa/HTXy+pkasPG+JOw3f+i9FBQogut3t2o93QzzHu2n7rBUaXHtV3x3opCo+7USarRpYLvS4tXrWxi5Fin5xPLvvA6g5y4eOdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MWtnQLDE; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7cda0453766so533089a12.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 01:36:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725006960; x=1725611760; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HRHmHWrP9aGbtsGBj3sSUa2W5O9vCt0AWItUOkadt2Y=;
+        b=MWtnQLDEotjVGwRD8x2jJQlPXUavaLCtAok/8AauIKs8WgpKFuVk5dfUSdnXya6hFb
+         7xDyebGN3RKnW0xAbTarnWJjq5CG4LSjmNG7xKybp9ifd2Qo2swh5Qe3oUmdjXNpiBBk
+         WJr9vCbtQiBmxt1bAfVNgvcnGbJ+Xo9oO//0csk3YgOQXZfKTi0pnWymStsbVTe8Sww7
+         Rg18jgVpcNhV1T/mOV8xNnp7UQU9LNRwN+tmvwe8JjDvvUcfqOag2yD2rAB9O8PzfOSG
+         snw1T629O+zDuEbz+DxCZkbGb2pzwr1C9z5WL8Qh8q7KupWuU71XjPtoy1ahvPZ+7oXd
+         1NgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725006960; x=1725611760;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HRHmHWrP9aGbtsGBj3sSUa2W5O9vCt0AWItUOkadt2Y=;
+        b=aZgS6jWQenDuullrT7H142+CtqGIvwf7FL15BO0WwR9Ccsp/V+EEdPnx8MEPFUwoqQ
+         HSL40OgeAYFPYEeXJHJ/PQtPHsc0TuxTXU4xyb5HEojJh1H9/2jLwg5I1j8MrerC40j/
+         EyGCuu8ISiNBDX/esYbLvjx8xbiLigDvIpzaCJtu+4XYbsfiwSg9ULUwOueJ1mpopyvP
+         t4jBub4yGZHmVtdnvDscm1gVpbm7DZod5kAXILpnpt6xoU9BJcqnZcCDy+aN6NZFbP3A
+         K44H2DhGLoF/Rp8KBat0smHGvv/htTEze/rCjfSvLHN0/lQnYpWuo/Vz35EZ2XrjE52B
+         TufA==
+X-Forwarded-Encrypted: i=1; AJvYcCUztTf+tsR0HXCZKl4NddoOoiiSofXW60sV3RLWZkrYKayvvlqjCnlYIMmcsR+GP4+bjJjGHOnl0sTG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXoflH5HbLj4K1cyGsDuCM0GuTg71Hj0xom8D5jOYcIVCBZw6i
+	dl/uxiEUZ3D4tk/0t7vWmjLDyi71B6XyMSDcRvczcimZ0M2esHhrj9GGvet6Eg==
+X-Google-Smtp-Source: AGHT+IEg701oVGHlnE52pK3OQhbcRTjhhzAp3dBmqRMQAHDvR10F57i/IZHuH1pve1bxSwuJqV6lAQ==
+X-Received: by 2002:a17:90b:4b01:b0:2d3:ce8d:f7f1 with SMTP id 98e67ed59e1d1-2d8561c7556mr6135729a91.25.1725006960007;
+        Fri, 30 Aug 2024 01:36:00 -0700 (PDT)
+Received: from thinkpad ([117.193.213.95])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d85b39ce64sm3134091a91.39.2024.08.30.01.35.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Aug 2024 01:35:59 -0700 (PDT)
+Date: Fri, 30 Aug 2024 14:05:51 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Sricharan R <quic_srichara@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
+	konradybcio@kernel.org, p.zabel@pengutronix.de,
+	dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, robimarko@gmail.com
+Subject: Re: [PATCH V2 2/6] dt-bindings: PCI: qcom: Add IPQ5108 SoC
+Message-ID: <20240830083551.yazww3kj2shf4ocq@thinkpad>
+References: <20240827045757.1101194-1-quic_srichara@quicinc.com>
+ <20240827045757.1101194-3-quic_srichara@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,33 +91,92 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240821215456.962564-1-macroalpha82@gmail.com>
+In-Reply-To: <20240827045757.1101194-3-quic_srichara@quicinc.com>
 
-Enjoy!
+On Tue, Aug 27, 2024 at 10:27:53AM +0530, Sricharan R wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> 
+> Add support for the PCIe controller on the Qualcomm
+> IPQ5108 SoC to the bindings.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 
-The following changes since commit 8400291e289ee6b2bf9779ff1c83a291501f017b:
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-  Linux 6.11-rc1 (2024-07-28 14:19:55 -0700)
+- Mani
 
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-for-iio-power-v6.12
-
-for you to fetch changes up to 2e1a57d5b0adbb5bd1d85245ec29b6d3cc7edc69:
-
-  mfd: axp20x: Add ADC, BAT, and USB cells for AXP717 (2024-08-29 13:16:24 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, IIO and Power due for the v6.12 merge window
-
-----------------------------------------------------------------
-Chris Morgan (1):
-      mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
-
- drivers/mfd/axp20x.c       | 25 ++++++++++++++++++++++++-
- include/linux/mfd/axp20x.h | 26 ++++++++++++++++++++++++++
- 2 files changed, 50 insertions(+), 1 deletion(-)
+> ---
+>  [v2] Added reviewed by tag
+> 
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index f867746b1ae5..c12efa27b8d8 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -21,6 +21,7 @@ properties:
+>            - qcom,pcie-apq8064
+>            - qcom,pcie-apq8084
+>            - qcom,pcie-ipq4019
+> +          - qcom,pcie-ipq5018
+>            - qcom,pcie-ipq6018
+>            - qcom,pcie-ipq8064
+>            - qcom,pcie-ipq8064-v2
+> @@ -312,6 +313,39 @@ allOf:
+>              - const: ahb # AHB reset
+>              - const: phy_ahb # PHY AHB reset
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pcie-ipq5018
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 6
+> +          maxItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: iface # PCIe to SysNOC BIU clock
+> +            - const: axi_m # AXI Master clock
+> +            - const: axi_s # AXI Slave clock
+> +            - const: ahb # AHB clock
+> +            - const: aux # Auxiliary clock
+> +            - const: axi_bridge # AXI bridge clock
+> +        resets:
+> +          minItems: 8
+> +          maxItems: 8
+> +        reset-names:
+> +          items:
+> +            - const: pipe # PIPE reset
+> +            - const: sleep # Sleep reset
+> +            - const: sticky # Core sticky reset
+> +            - const: axi_m # AXI master reset
+> +            - const: axi_s # AXI slave reset
+> +            - const: ahb # AHB reset
+> +            - const: axi_m_sticky # AXI master sticky reset
+> +            - const: axi_s_sticky # AXI slave sticky reset
+> +
+>    - if:
+>        properties:
+>          compatible:
+> @@ -503,6 +537,7 @@ allOf:
+>                enum:
+>                  - qcom,pcie-apq8064
+>                  - qcom,pcie-ipq4019
+> +                - qcom,pcie-ipq5018
+>                  - qcom,pcie-ipq8064
+>                  - qcom,pcie-ipq8064v2
+>                  - qcom,pcie-ipq8074
+> -- 
+> 2.34.1
+> 
 
 -- 
-Lee Jones [李琼斯]
+மணிவண்ணன் சதாசிவம்
 
