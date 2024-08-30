@@ -1,239 +1,155 @@
-Return-Path: <devicetree+bounces-98328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1CC965C94
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:22:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D95965CA0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 11:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92734B21F75
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:22:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BA5328395D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 09:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777C0170836;
-	Fri, 30 Aug 2024 09:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E853171652;
+	Fri, 30 Aug 2024 09:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="j0SYs6ZJ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vCShmVvC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2100.outbound.protection.outlook.com [40.92.103.100])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C86416F909;
-	Fri, 30 Aug 2024 09:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725009742; cv=fail; b=cqZuFRDPNE4oSWOtnMFvrxXbkaHObzoM2LWfLHIPYlXZPO5DaOD96UJ0z36AqVao/FZtvpkhW2Uuf4X+v3UbUbAz4Xc5Da8WdXu8bnoLZHTy0ZpmzNkNMMoAw0S+2jmglvTKqBhz5brp4oCIaDr1fuKiKr6Dwwol/xdWalBvDzo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725009742; c=relaxed/simple;
-	bh=TXJOkk+HGZDU0vbnwsHRmlIj2mNvR4VZOTbWt0KQ13s=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=amJM2xU+LH+vscX+dGMmIMgxjohZnyWL0voNtuptmjDWDvThJ2PHDPFDjI7EmCZff+8GgN7egPHqgIhNT0WIpL1+r3lImfvrvnJ9x2GNyVBr4nSIVL5nBcDkCNSObyeg8twBipmOHH0zNVgSpDdMamN/iXp95uFmwfzw/bnVqeE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=j0SYs6ZJ; arc=fail smtp.client-ip=40.92.103.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZRzGtmQqSGkQuxwbrITJjCyjQm2MRi1+NeTea282jLTu/DwVpfZCMZYMouaTv5dXHIZxlCbh31d5qSsCL4QU+0rYBwrZC6+kPR+wHf0jUWCnjwuAhOPw4usa4YfVhsiyB6pL9s7hU9XdqkJppfIEozw0ldXt/MPTVG7qyL4PFtHQDGjn6kokEHD7sYLp0SWm4qKRLnkiXWhHLBFMd+Lsbh8HvqXo0mBIuFFdr3LaE7l0mIOojLncZpN4b8Ma/BxhoVm+5XCdGGuG2hEnJ34TTNFf5sb02ztpnteARuF+X3nw62U/QcQY2C5l+O20uwC5a+R+wxeAaJCHseUkIRngnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=npiffF0hWFrgm8MozfhJ+1kSAcTV+i+0C1q7G4xT9qE=;
- b=vwKdOA/5Z8pLqwd3jqULQpvP7u0R+K+tMmOxjqW2hO8OaCOxNL67DstMtHlT+YZA7CB6JHLIpLhIRNYT2ucqcl9GwVtPPw00BLj26FQ9AREjhgg6wSdvgA6wdAEyPmHBulUgJA1VkYDjjZcLZddfhFnNhQ5OiOJV5Kp2P5QYpqKzxRDVwmLO0JV2G1wFWwNdSV2mSO7hkbgCs61QLauCsH4pFukbWBGuwkMIqorD3i1pV/gspR4rNOL1IZnVIEsT2SA1E2dPUvAeZWqG2pJ/22IsdOpAW3Ko17n7vW2XDSmkuggtBhJYzLnl2AYbzyUfvV3KoSi33oYq5A1KsH/joQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=npiffF0hWFrgm8MozfhJ+1kSAcTV+i+0C1q7G4xT9qE=;
- b=j0SYs6ZJK+bRz4/M0qxb3oRg+IvWkaclo9l0PDmFzDTqQo42vQwJwUuFRWOZmPrc9VWXhd0JHGyNwztCm3W06rs/kgkGZzQImSEf7H91YzPl0jom7bdK5JzQ/301mh/3kNpgmdq1VXDrQW3K31IKeJWhpjS9QE90Dz62IaGwOrj6waMqdBIUn8PB/HNHsJEt0J1p/ke1WMrwnLKATpycBwLQXtzXwMWGjEBUWrKnkgeqztBmW8QIDgVqIvjOb6swgoNkvqT6XCMn3rxQ4liO+kafz/kWn6qlwQtFS+jQEGls/QU3gC50T6vEatdfFjeQvFEhee9KEBkl+HXXiP5N4A==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN2P287MB0722.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:f5::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.28; Fri, 30 Aug
- 2024 09:22:13 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%7]) with mapi id 15.20.7918.019; Fri, 30 Aug 2024
- 09:22:13 +0000
-Message-ID:
- <MA0P287MB2822919DFEBDA9B9663F8333FE972@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Fri, 30 Aug 2024 17:22:01 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] riscv: dts: sophgo: Add LicheeRV Nano board device
- tree
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
- <20240711-sg2002-v4-4-d97ec2367095@bootlin.com>
- <IA1PR20MB4953612773890B94FFD0C9EABB962@IA1PR20MB4953.namprd20.prod.outlook.com>
- <MA0P287MB2822AC58BC43FDE03802E773FE972@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <1b202582-0487-483c-ba80-47125551eb5d@bootlin.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <1b202582-0487-483c-ba80-47125551eb5d@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [vyBi7WWVjZZvLUQo/o/t37iBEe2jmFm4]
-X-ClientProxiedBy: TYWP286CA0031.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:262::19) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <a6fcb025-5781-44aa-a297-8ac6e27fa7e2@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE64170A0A;
+	Fri, 30 Aug 2024 09:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725009777; cv=none; b=QIpPBQb+rw0MtZAh9VVXdvH61AecNFwIm/aupQl8VWI6g9OY9uMINUI69E4BqebxYOJCF53yRmEHOSD3NUyatfCQceX+zfVQ+exN7yX78a/hh71C8/rHzmuDE7Tgx+5R6/EGUf1S37QywZKUCnwJJ7snpYQi98r8lSaKWVHchO8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725009777; c=relaxed/simple;
+	bh=hWVichCFb4//lsUtCk/pXGdF7ONLFMuLV87yk9v6tXE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=txHfD182p11+zkdEeyatxjKCS5s5O9u7Rcis0IKukSWn2Xkk7wT8BzNucqAz5Qr+YShBvT7ruLsob5k+c7F0Sx/AQ/LuBVJjdtYQxskB7Km1q2sNqC0dbn3jFxOxVvFLBFkEgS986rdBjEhwPVpO1RnYODbrwvwDG5ZMxWxneKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vCShmVvC; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47U9MZmX088209;
+	Fri, 30 Aug 2024 04:22:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725009755;
+	bh=VttVYtwTVNwYW4XO+dnpQXqxlbZocIVFmvoOhBcDkC8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=vCShmVvCjnitnZAVtUFHLDyWagRTAa3dJ40WNcVI7Nikm46e9XPoTuSXhKWQVNnhn
+	 m1+co56AaMDKb0ydpJrDrMjEouDSa/saO6ftdhivQxdLZ78Pku0711/v9CDp59BUBH
+	 kMZqJ2LGeWyb93MldGlnMu4zSSG1KKXeaY0DXv/M=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47U9MZor044001
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 30 Aug 2024 04:22:35 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ Aug 2024 04:22:34 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 Aug 2024 04:22:34 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47U9MYIV038397;
+	Fri, 30 Aug 2024 04:22:34 -0500
+Date: Fri, 30 Aug 2024 04:22:34 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Beleswar Padhi <b-padhi@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <u-kumar1@ti.com>,
+        <p-mantena@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Update OSPI partitions
+ offsets
+Message-ID: <20240830092234.veog3e22te7qi3ao@dugout>
+References: <20240830090702.220402-1-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN2P287MB0722:EE_
-X-MS-Office365-Filtering-Correlation-Id: 598fcaef-cd43-4013-40b6-08dcc8d53a84
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|5072599009|6090799003|15080799006|19110799003|8022599003|8060799006|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	/01JoDbh6dT6avYDcg92v+9j7i5LMxa83GAhWFSznuOQKPMlFEj9kwF4XD9veGfDRWdS0AjOJpzj6QilJMJliVJRby3x/5HkSwKLvwVwGC0tvKyuhpuR+jimZm764rsPfWifYaYbvlfo5ZNtstAVFZOX535zG4cgWJ0GCBuiXJcs3NOKqi9rO8tKst5333npFTCmuFeAbqYu/peOAbKmaXmwrpQYPcMvcHc9GCLcJilAM4eqF2XIXvNNa1zBn+dr7m/quUJdEUMjk+XGXSmNQlmTQXbWsQU+Rqt3D9E41EkoQ8/+UEmJnlQ0CCPyaNV7ZVAbZHFmc7418D5QCEMaTbBGVnmisAd0WM9B96v1nyDxrlwjZIX5DiQm71tt6lh8rlJFd5UcPD5Noxa69fevt4oV5YYLb6sDowqevQqxoKRE43nM6xwZISaHO0UOtwEvd1fHWGcoVH8AOKZvTBVv+yKrEKSLGrJ7aGGqIDYL0Vd1FFwcQRQXjKiNQF0dE0dsUrJOfnr5z9+1ZNRMidYZB25BJw4WGYfYb9XuhM1PTBZufQyNBQfBhu3RN194XlFHfGvUDZz0dVDqOWWJFdKsALFYOuxGJi5O9if5BUAEhD+ww63wmBi7bTuvaG6Yy+H6doweS52RDSTzGCVkLFMr6YyrRoOk0L9wrYP6JU34B3MNS6orS311TxJkmZQjiLdeBMIIMqsmeNVWhsPrYqlRHs7g7vZOWuR3GZdJMCJGsrUNvWpbr8ALsSs4GiaSk2IjECdm113mynWhSGQesh1h5g==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bU45bXVzREF6RDVycS9BTXZHcGZlMWxSTWhTWkRUWkM0UzNrWWR6YWFvTVNx?=
- =?utf-8?B?bWdEMysxQnY1TnVKSm9ydytrR21WazRxWVdKMGwvODVEWjI2WVBMSjd0U01u?=
- =?utf-8?B?YkJZMkNVUzZ2TkxJOVl2ak80NzJMTnVoRXUvQ2k4YVl2TDN6enVzems1ZHE0?=
- =?utf-8?B?UCtDcWpBT1hxM1lmUm4yTDN0ekNxSC9kSlpJM2NmRjBydFZEclJWZDIyRk5R?=
- =?utf-8?B?cHA2ZmxmaTJ2aTduMWFhOHR2c0h5U0JJWXV3VThuK05yWDRqNUM1SnBaTHhN?=
- =?utf-8?B?RHZUSWZFSkxxWHZyZ2lFbHBXaW9JcTRTWndHblMrbHFNaFVObnp0ODdManUr?=
- =?utf-8?B?MWlVRXFPUHYzY0JYNkN6TjZ6ZlJ6Z1NNRDh6bUJjWWRhRVNBTE9OZlprS2Qz?=
- =?utf-8?B?SExmZGNtNGlYdldxazNPc2d4eVpkQ2g0VGlNR0dkcmUrVlBwa2dWTEovNUJr?=
- =?utf-8?B?YnEyeVNIYWVRSDVXM3ZlYXlxWHRic1pHd0ZaSm1hZ3RWWFZTN1BqODNrRW5z?=
- =?utf-8?B?ZHFPYkVhRlBJZmRQS3h5TkdHK3V3b2UrNlVaZ2dmaHV1cjA2WjFwYjV1TFQ1?=
- =?utf-8?B?cUhENU9uandRbzlaSFV2TDJVc2hFWU1ULzAraUx2TlorM2diY3hBYkZjMTdX?=
- =?utf-8?B?WWRlZ3lQaWFPcGdhdmhsMU9rb0FBVEt1OXFzdmVnWWZOYmlDNEZjVzlpY0Nu?=
- =?utf-8?B?K2lqUHBzQXhXei8vSFcvTDR1akdGbzVqWFM2TGVtcWhuYWlXRDNldTB5bkRP?=
- =?utf-8?B?UzFWV1pyMklOUkFIang3dXNUcWVHbHdLbGVubHNGOWw0aThMcTQzWjA2TTds?=
- =?utf-8?B?Umt3eDllUDhpbkdXTlFoNk9aVEUyaStqMmNaOEYzT0ROczhjS21DaW8vczJ1?=
- =?utf-8?B?U2NpS1JDRjdzODFGWmFCZU45WVRvU3RxVEdPNGN3dUJSU1FsNDRhZTQ3NXVt?=
- =?utf-8?B?dU0vWWRDTmswMk9SQjlKMVo3YkhlYTJZTTljZXV5aWM2VWNtQnJ3eENWbnFX?=
- =?utf-8?B?Y1ZIOER4QUhPZ294cWNjQlhZVi9PN2sxWnNqT2hISXB0ZXplUW1BN2NxOWQx?=
- =?utf-8?B?S3NGSUNhK01vZ2tlVlFqWi80bGVhNjl6cnZtNGJLZnFsaXAwVmtVMmd0cWc4?=
- =?utf-8?B?STBaTkhtMHhKZGV4NmlDd2RvSEdrTkZVWTJOSW9Jc2FTRXdvRDVDbEYyNnYr?=
- =?utf-8?B?MHhRbmdWeERTYTRRcEwxMUExeEdNSEZHOVB5SGhmV0F3dUJ4WDMzMmhnLzRz?=
- =?utf-8?B?a0VFQ2NPenBCSlpVMmlPT0M2emo3S3UyUWRiWG44ZGJDejhZajZoVjBZWHpL?=
- =?utf-8?B?d3p6VVFtM0o3VEN1bVUwcVlQVmVIOFVSY0lER0l5TzVWcGtzdk9na3dUY2c2?=
- =?utf-8?B?eVhBdlFnVktqaUczb09JZjJ1MWVWYUwzYjc0SzRKZ0dwYnBPWHo4Z3FRTGsy?=
- =?utf-8?B?R2hDVTdQa0VEYyt5YkJzbGc4WWxFVndGVlJvNklJa3VFS0Fselg2bWJKUTVQ?=
- =?utf-8?B?VkhUMEtmclBYMGwvOGdzK01aU1cwYTlYYVdiRU1uYlY4OGFUZ3NhV2V1b0ox?=
- =?utf-8?B?VUYxekdDSmljSHFkVlRGT2pIRGdaOHFKWGpCcHZVYnhrQ3ptR28xbGwwZ0xa?=
- =?utf-8?B?QjBOeTY1VVhXKzhLL1piWEFOdktiU200NmhYUWZXZk1NMnc0U2phMXRMOFJF?=
- =?utf-8?Q?m8EgNQJgoVjYOk6Yeffh?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 598fcaef-cd43-4013-40b6-08dcc8d53a84
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2024 09:22:13.0491
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0722
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240830090702.220402-1-b-padhi@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On 14:37-20240830, Beleswar Padhi wrote:
+> OSPI NOR flash was partitioned with a size of 1 MB for the initial
+> bootloader ("ospi.tiboot3"). On the AM69-SK board, boot failures were
+> sometimes observed when the initial bootloader size exceeded 512 KB. To
 
-On 2024/8/30 16:06, Thomas Bonnefille wrote:
->>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>>> +/*
->>>> + * Copyright (C) 2024 Thomas Bonnefille 
->>>> <thomas.bonnefille@bootlin.com>
->>>> + */
->>>> +
->>>> +/dts-v1/;
->>>> +
->>>> +#include "sg2002.dtsi"
->>>> +
->>>> +/ {
->>>> +    model = "LicheeRV Nano B";
->>>> +    compatible = "sipeed,licheerv-nano-b", "sipeed,licheerv-nano", 
->>>> "sophgo,sg2002";
->>>> +
->>>> +    aliases {
->>>> +        gpio0 = &gpio0;
->>>> +        gpio1 = &gpio1;
->>>> +        gpio2 = &gpio2;
->>>> +        gpio3 = &gpio3;
->>>> +        serial0 = &uart0;
->>>> +        serial1 = &uart1;
->>>> +        serial2 = &uart2;
->>>> +        serial3 = &uart3;
->>>> +        serial4 = &uart4;
->>>> +    };
->>>> +
->>>> +    chosen {
->>>> +        stdout-path = "serial0:115200n8";
->>>> +    };
->>>> +};
->>>> +
->>>> +&osc {
->>>> +    clock-frequency = <25000000>;
->>>> +};
->>>> +
->>>> +&sdhci0 {
->>>> +    status = "okay";
->>>> +    bus-width = <4>;
->>>> +    no-1-8-v;
->>>> +    no-mmc;
->>>> +    no-sdio;
->>>> +    disable-wp;
->>>> +};
->>>> +
->>>> +&uart0 {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&uart1 {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&i2c0 {
->>>> +    status = "okay";
->>>> +};
->>>>
->>>> -- 
->>>> 2.45.2
->>>>
->>> Have you test you patch with a real board? Especially
->>> for device "uart1" and "i2c0", I suspect your
->>> configuartion does not work by default.
->>
->> Hi, Thomas Bonnefille,
->>
->> Can you please double check and feedback, I want to confirm this 
->> before acking this change.
->>
->> As you know, rc6 will come next week and I'm planning a pr next week.
->>
->> Regards,
->>
->> Chen
->>
-> Hello Chen and Inochi,
->
-> I'm really sorry, indeed, those nodes certainly don't work, it was a 
-> mistake on my side introduced between v1 and v2.
-> However, I can ensure that "uart0" and "sdhci0" are working fine.
-> May I suggest to remove those two nodes? I can send a new iteration if 
-> it's easier for you to handle?
+Why does the boot fail when > 512MB?
 
-I'm fine with this, just go ahead please.
+> address this, the initial bootloader image has been optimized to be
+> smaller than 512 KB.
+> 
+> Therefore, limit the first OSPI partition size to 512 KB and adjust the
+> remaining size across the subsequent partitions.
 
-Thanks,
+I am NOT a fan of redoing flash partition organization of platforms that
+are already in production - all kinds of ecosystem messes happen as a
+result. Alternatively - give the 512K to u-boot tispl partition and
+leave all others as is - this will at least allow people's current env
+to be retained.
 
-Chen
+> 
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 18 +++++++++---------
+>  1 file changed, 9 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> index 1e36965a1403..641236918379 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> @@ -1241,27 +1241,27 @@ partitions {
+>  
+>  			partition@0 {
+>  				label = "ospi.tiboot3";
+> -				reg = <0x0 0x100000>;
+> +				reg = <0x0 0x80000>;
+>  			};
+>  
+> -			partition@100000 {
+> +			partition@80000 {
+>  				label = "ospi.tispl";
+> -				reg = <0x100000 0x200000>;
+> +				reg = <0x80000 0x200000>;
+>  			};
+>  
+> -			partition@300000 {
+> +			partition@280000 {
+>  				label = "ospi.u-boot";
+> -				reg = <0x300000 0x400000>;
+> +				reg = <0x280000 0x400000>;
+>  			};
+>  
+> -			partition@700000 {
+> +			partition@680000 {
+>  				label = "ospi.env";
+> -				reg = <0x700000 0x40000>;
+> +				reg = <0x680000 0x40000>;
+>  			};
+>  
+> -			partition@740000 {
+> +			partition@6c0000 {
+>  				label = "ospi.env.backup";
+> -				reg = <0x740000 0x40000>;
+> +				reg = <0x6c0000 0x40000>;
+>  			};
+>  
+>  			partition@800000 {
+> -- 
+> 2.34.1
+> 
 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
