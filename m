@@ -1,128 +1,92 @@
-Return-Path: <devicetree+bounces-98382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9829B965EE3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:23:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C2D965EE9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 12:24:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16D9DB27C11
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:23:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259711F27B69
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 10:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE3F618FDCD;
-	Fri, 30 Aug 2024 10:18:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA64193426;
+	Fri, 30 Aug 2024 10:19:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7872818FDA9;
-	Fri, 30 Aug 2024 10:18:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93C3192D95;
+	Fri, 30 Aug 2024 10:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725013138; cv=none; b=s/x7d5uYIZtwf7QMVqTXlg3ARYnolUJHXtsAW/SW9h31GxWgeCdn1bzEJXoLkS6fJsDircmNsZC1wj2MXfOBA7wVA99jDLAzj7xhZr7/sGs4v8FXMnkE4uu7KEh5ewfRSdtlML79/8+REYgtZo50qr+l6pWjHV5xyAOkN+S9+xU=
+	t=1725013157; cv=none; b=J6lnsN0IiFdFYka47M5sovPbe1gJ5ddHST03Dq6mQOX4n5fT4l0qhZ/nMY5NVy9JdeD0y4m5pjzMQk8ckkJk8okW93M5dTGaJhDBSvKulcBqjhPSiqIc9qRfwv5I/9gw56REdteNAw2J8bj4cpIQ801lZsPrOdcKx1H0arlhCCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725013138; c=relaxed/simple;
-	bh=BKM4Y8640YHOSxpYLdRchVJEVqdN78D/G8cjvnB1WNE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R8DNsHhWQV8vir+DYg0fe0O1cSwDvywePqfTtFs+3rN51SxB/6nvhSXXtHStAnwkAS/5Nn3YLt/qqhL7yY5nN0rnyRdK/ceNIL57C9l40sM0yEqraGX5WmX1x27AR/zyYZoRZr54xUY4c23BQp0UsG8PbzCnoKzJCpyfRy9tzdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6d3f017f80eso5435917b3.1;
-        Fri, 30 Aug 2024 03:18:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725013134; x=1725617934;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5GGMKBcmbf1+MN7Za1nAGnUfJRRRTNcwjVDt2pFW88g=;
-        b=Z+Z5sg0z6hcEzZ9t9TnqbDt20NJ0xmtaypTqi+3sdR6oF5p54nwHWfeIq/I1UDeVP9
-         OzgPZssVZpZjYemk4Uvw5tWUJPql1iJYI8F9me5AUPJjfxA9pLT7nnMWnx8pzXeMyC/A
-         Yd2Y9nrHWSGxiYPcJvNLU639zXXicH/1pNi1onH4GVsIMmYVjoteKHSLAMUybSg5HuTz
-         jnkAl0jd1ZZ++oUWhfMt79YEWXE42lg4IHwbq/s77RG77VGwSt+a9e7+er1QtzqfCzGB
-         ab0a35q4RqJfXgBmTNaUZVLZU9EJQ0H5YwsNCAcBQh0iLLyOUivB22zLu047GYwxNxrG
-         4Qnw==
-X-Forwarded-Encrypted: i=1; AJvYcCV8zb142hNjYLtqVqcE13kjqUU4MedHMPNSBeir39AAWPLbVkK3ahSWAaIr39uOvsPsJ7o0ilmQylQU@vger.kernel.org, AJvYcCVBDbolwh4hSpp42BRPFUs8lsE3/i3V+9CkQIU4BrBrEwL1BOU0o9MzBsOwsHc21Ftg5+dJLpr41NYl@vger.kernel.org, AJvYcCVavFw1PKKLXVTa4L817t5Ojp4ZcFIS3eJgWkS5xlAB8FjBP2FzO9DiYBCIKrGrrgk2dRZgrEyz2GvPoNC+xCZ+HDE=@vger.kernel.org, AJvYcCW4jvmDj21LuvjEuPxYKJJ9plEQPlaJv7KcN+QU6StyK/4I0EWwP9tNNSU63kqwYqTDCvLmEXzR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWCD13Yr4XldAkxglQ0NKyMbwBozMjYb6gJzafaU3RGyv8IUxD
-	NIouOwc8zF496SE+2LA1R8TXZwozy2w0mHYI2HAbYn99PsTeY4wefQPK05Sw
-X-Google-Smtp-Source: AGHT+IFIcWTscoMaY9F5lW6e5cXl9IsGdZ8dGUKb9EUUK06g/tauOut0+cd1kBUS7dfeE6rQ7KDeYQ==
-X-Received: by 2002:a05:690c:4dc2:b0:6c1:2b6d:197f with SMTP id 00721157ae682-6d410da9029mr11163797b3.36.1725013134221;
-        Fri, 30 Aug 2024 03:18:54 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d40a7825sm5711267b3.55.2024.08.30.03.18.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Aug 2024 03:18:53 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6b0c5b1adfaso14828857b3.0;
-        Fri, 30 Aug 2024 03:18:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUgcuJi4AZyHLvbmaPkV6J96SzYIcfqLUAjuL07pxbM3wBw/cMc6k1mlfA+0mA1My7QKOJLtvPF@vger.kernel.org, AJvYcCVCdCKgwJ+q10ocikBZn911w+M25n2+eoNb6VPyk+8oQeIwKMkd7nX+vwI6B1V4c0Ts+fFSR8CvnSTk@vger.kernel.org, AJvYcCVgn6n77mpgbDfk+Iwj6xpmAVNW5aBtJ1aoXH9oHkpOxA22tOfa4q5w5BadyED8I7jPC4QMXJLKENkW@vger.kernel.org, AJvYcCWsR/5x/PvEATcx4M06mwNMeP+Nnu6/6y9pGRLcR80uFkgy74cBMKziUvjv/lZdhNWVeGEAY9/Sg9EUjUnvZWJx1NE=@vger.kernel.org
-X-Received: by 2002:a05:690c:60c1:b0:62f:aaaa:187a with SMTP id
- 00721157ae682-6d40f4393afmr17601517b3.14.1725013132771; Fri, 30 Aug 2024
- 03:18:52 -0700 (PDT)
+	s=arc-20240116; t=1725013157; c=relaxed/simple;
+	bh=vzleYBf8VBpQAaH+oPojEUNbBndhfbTL2F8q37iES2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GhxWxtjSD+0mxTWy7SyOSeb39ouDk1PMJYlfgTitDVFe2VBANQng3T1awL/lAVjj3Sd+qK+0qji4dQe0ChpHjiWz8uAuevdgY6htCC675p1EQhAPBWy2DSSOSTB8VloLwQPuMIaLJ1N725cTc7avgenNCY7pIjyJnM6T2wZy+ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC2EF1063;
+	Fri, 30 Aug 2024 03:19:40 -0700 (PDT)
+Received: from bogus (e107155-lin.cambridge.arm.com [10.1.198.42])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B5FC3F762;
+	Fri, 30 Aug 2024 03:19:12 -0700 (PDT)
+Date: Fri, 30 Aug 2024 11:19:09 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-rtc@vger.kernel.org,
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v8 6/7] rtc: support i.MX95 BBM RTC
+Message-ID: <ZtGcnTYlGlZ8eC-6@bogus>
+References: <20240823-imx95-bbm-misc-v2-v8-0-e600ed9e9271@nxp.com>
+ <20240823-imx95-bbm-misc-v2-v8-6-e600ed9e9271@nxp.com>
+ <Zs2rz1FT1UsKQBj6@bogus>
+ <20240830091246fce62c34@mail.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
- <20240806-fragrant-nimble-crane-c5a129-mkl@pengutronix.de>
-In-Reply-To: <20240806-fragrant-nimble-crane-c5a129-mkl@pengutronix.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 30 Aug 2024 12:18:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXy09rrzB1sc9Soy5mUvMo=u=r_-Yf0iah_HTsYJ+fNDg@mail.gmail.com>
-Message-ID: <CAMuHMdXy09rrzB1sc9Soy5mUvMo=u=r_-Yf0iah_HTsYJ+fNDg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: can: renesas,rcar-canfd: Document R-Car
- V4M support
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Duy Nguyen <duy.nguyen.rh@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240830091246fce62c34@mail.local>
 
-Hi Marc,
-
-On Tue, Aug 6, 2024 at 9:15=E2=80=AFPM Marc Kleine-Budde <mkl@pengutronix.d=
-e> wrote:
-> On 01.08.2024 16:03:17, Geert Uytterhoeven wrote:
-> > From: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> >
-> > Document support for the CAN-FD Interface on the Renesas R-Car V4M
-> > (R8A779H0) SoC, which supports up to four channels.
-> >
-> > The CAN-FD module on R-Car V4M is very similar to the one on R-Car V4H,
-> > but differs in some hardware parameters, as reflected by the Parameter
-> > Status Information part of the Global IP Version Register.  However,
-> > none of this parameterization should have any impact on the driver, as
-> > the driver does not access any register that is impacted by the
-> > parameterization (except for the number of channels).
-> >
-> > Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> > [geert: Clarify R-Car V4M differences]
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> Added to linux-can-next.
-
-Looks like you are back from holidays, but haven't pushed linux-can-next
-recently?
+On Fri, Aug 30, 2024 at 11:12:46AM +0200, Alexandre Belloni wrote:
+> On 27/08/2024 11:34:55+0100, Sudeep Holla wrote:
+> > Hi Alexandre,
+> > 
+> > On Fri, Aug 23, 2024 at 05:05:22PM +0800, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > > 
+> > > The BBM module provides RTC feature. To i.MX95, this module is managed by
+> > > System Manager and exported System Control Management Interface(SCMI).
+> > > Linux could use i.MX SCMI BBM Extension protocol to use RTC feature.
+> > > 
+> > > This driver is to use SCMI interface to get/set RTC.
+> > >
+> > 
+> > Are you fine if I take this along with dependent SCMI changes via SoC tree ?
+> 
+> Sure, please do.
+> 
 
 Thanks!
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Regards,
+Sudeep
 
