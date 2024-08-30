@@ -1,162 +1,125 @@
-Return-Path: <devicetree+bounces-98539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B2589667BF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:14:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DED99667D4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 19:19:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FCDD1C20ED4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:14:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC2EB1F2472A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 17:19:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C931BAEE3;
-	Fri, 30 Aug 2024 17:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82BA1B5813;
+	Fri, 30 Aug 2024 17:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zi9qqszB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CGBsSjYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B634B1BAEFB;
-	Fri, 30 Aug 2024 17:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A941AF4ED;
+	Fri, 30 Aug 2024 17:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725038062; cv=none; b=IoNOt3HE9AAiqZYavALREe8BLeIg7yL8Zvh0B2rfMhoUcNl9hNU4OBhRs4EiCXQ+5Zmx5c5Vhks0PfB/7e0pxKEfJqDaOLfsWw4eB+ZlGslNCKAc5sK9ku0/cVfutJ/Rku2bqhz3NI7OCUZGqFC0nuxaFIenGdJIMLkz9V0VIhI=
+	t=1725038340; cv=none; b=lRNyMjgceCSw2ywpzeM3ZFxMmD38I1W0mX54TDSNPSWqxbUq0ZDrxwDWBDMeGtsLD43HUNOO7PgPS6Q5Zb/2d3OyBo6iL4U+iEcQhalxACZde3amLXtyG5tGVs/OLxZM4VnMrEc2kNuQm4caQgPXr78NdRoRNv2389NRHqG8Y2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725038062; c=relaxed/simple;
-	bh=bNov/hvird6GkWne9y1j1TAje8MHmHRpOmZDPjjjEWc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tPMgqTFtX02sqQKbZ6SsIwpqfFjXGBwCnPtHCJ89LXHohvfXhko1fRrBb7k3E7eQ/N85RIbt/cKL8cu8kXYdSdCPybqUqphQu79irvHzv4qcDNyAb7HvAucxeyRVQbc91OWNHsAygG2XkOE/13B2ix4IllgNm3KKFIxN9RzkVMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=zi9qqszB; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47UCJ7gX000352;
-	Fri, 30 Aug 2024 19:14:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	dn5dQsELpWmxinQFESjPspMgz2jixe1Aiq8SsjC0ziM=; b=zi9qqszBsWYtNPTZ
-	U/IE9FEOg0WOPHlBwrvHMs5DlYcwoeqdoIGi200KGxMTNjL2W3CBBq2hFAEyyk8R
-	eR3kdONLI3+rrigKLxLTAkbXm1bV3MDZ3FRd/4ZEB+5FAXuLB2GMNaOL+b1y3aUk
-	ntHa5IbvuBBm0Xs0scUU/tuNcK5HhnLJkYfazvf+e9x6vd1vgFs1Y1jeeknNUWxg
-	iuTgIxheM4T2UuSA1l/yrumk3MJfqcXJKCjyWsjGaYcEDlOctIQ1kR2usIOlhu2h
-	DebYpxtHvyrNohLYPSi3AYZVM01PobmicEY1q2jmDUU26YWJ88e6tJUR71eGVPP6
-	B9+KDw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41b14uku9g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 Aug 2024 19:13:59 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 386B840048;
-	Fri, 30 Aug 2024 19:13:52 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0583925E20B;
-	Fri, 30 Aug 2024 19:11:52 +0200 (CEST)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 30 Aug
- 2024 19:11:51 +0200
-Message-ID: <4ae91d0f-e37b-4325-a5aa-8448b95db431@foss.st.com>
-Date: Fri, 30 Aug 2024 19:11:45 +0200
+	s=arc-20240116; t=1725038340; c=relaxed/simple;
+	bh=+jpUXLmR5pSAvOQj2ANjYSi5Q2MTOLMGHwbe1u79XZY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HkvUFqYEvU3YXa/rp6374N2SeOjo5LUMcFKttP8o0+H8bihrDYhWbpy7APblMgrVyGTR1y+zPt9n6Tl8J5LOeD6fITqBc9I59lbmlh6/0fYDaNyFzOlKiQ90OYyGkyjPbAfL+feqiU1lXYmyOth2SyTZiOtxHBWg7VZLa86e6Zk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CGBsSjYV; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-714302e7285so1858979b3a.2;
+        Fri, 30 Aug 2024 10:18:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725038339; x=1725643139; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oU7Y9rgoKN0I/lBGj6nVMpMCGbyMF8VZWxC6PLhbawA=;
+        b=CGBsSjYVArncMBJyv+sSG4HJ560p5pIxMaDDmtTbPlyUckG7GxnwAoUiQV0VKFnUi1
+         cedFljt88OHbGVhFl67cxChHFxXL89fDk5Fwt0yUtjSqsK3AK9Xeez2qXw/PZCACYROV
+         kio3UkbrxnubxELszXmcC8lnM1yB5iQ7NOchYYnqnBVb5MnaEdJ6Urhe05DxEJmwaU2V
+         H3T83mQH2W0AM9ebhRyUc2aCdjQCeTto0N1OsI/19T+pI5SQVzdvulSgjW2RjAeeGVqK
+         EFvU+Y5FdOYk6zVdfYvlt7Y37eKU+TBJ6HzktHFDt0ESQiQ1ipPhm0ufVpgkuYD/WmzX
+         ulAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725038339; x=1725643139;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oU7Y9rgoKN0I/lBGj6nVMpMCGbyMF8VZWxC6PLhbawA=;
+        b=UhLQqRz/5lQ0AIOQUiKLIaPG4y7tJxHSDssMU76GgCE57CbJVK4rXiqNS82idI7mj3
+         YIbmegX/XcD+xT6uQC6WEe4W6rNNVrZvzhvqxT1lf0ln95Lhz5H+4Y2iDXjm3EzRJrW7
+         12794R4dT4oRfitZaiQaJpDe1xQttVZlLn25fMr9ApjcyGGgOGnODFxFANIhVZexO9fW
+         6H7hAkLNVsiz4aLQ0xjgrrT/cJs89qP2SO46mVDFHsDl0o4rJHWx4Qu8lBHWq3M8xRiy
+         Yuj7vu9ChLDO+leFiJloKbUJRWRV8p4twxNHlmlzCAAu3+oAlWW3rBYJ0vCtTVI+20Vm
+         sBvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWhqr4lM+m5tU1T1NfxADMLISJiZLTunX8vK/mHK2R2FWl9y35IS9UVXlmpG6LviSEVPTq1n/uEbt4/@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywfci9/TxUb5Ihx5K9VKJYvjkw8Zkaah1CJ8WhbbXdcPargqhw3
+	16/jt/KRnodAYvt4TmCuE7ViS57BVi/ULjLLYFm5n/e6+yZvDSKNhMMOjQ==
+X-Google-Smtp-Source: AGHT+IEwynOk7MmdonDrz7jfFT5a01s6rrlgZ1wLgGtw1SUwLarImqNTp7DEpZIfN9osrXq5pTf4DA==
+X-Received: by 2002:a05:6a00:234a:b0:714:1fc3:79f7 with SMTP id d2e1a72fcca58-715dfc506a0mr9081131b3a.17.1725038338533;
+        Fri, 30 Aug 2024 10:18:58 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:79a1:1962:99bd:89d3])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e569eee3sm3015156b3a.134.2024.08.30.10.18.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Aug 2024 10:18:58 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: broonie@kernel.org
+Cc: linux-spi@vger.kernel.org,
+	otavio.salvador@ossystems.com.br,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v2] dt-bindings: trivial-devices: Document spi-cpha and spi-cpol
+Date: Fri, 30 Aug 2024 14:18:49 -0300
+Message-Id: <20240830171849.3750165-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
-To: Conor Dooley <conor@kernel.org>
-CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>
-References: <20240828143452.1407532-1-christian.bruel@foss.st.com>
- <20240828143452.1407532-2-christian.bruel@foss.st.com>
- <20240828-handsfree-overarch-cd1af26cb0c5@spud>
- <005a2f7d-ab46-46c8-a0cc-b343685caf7c@foss.st.com>
- <20240829-manifesto-tray-65443d6e7e6e@spud>
- <777a92d9-ed52-4fa1-b235-e3a4a6321634@foss.st.com>
- <20240830-jumbo-wriggly-39c84108371b@spud>
-Content-Language: en-US
-From: Christian Bruel <christian.bruel@foss.st.com>
-In-Reply-To: <20240830-jumbo-wriggly-39c84108371b@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-30_10,2024-08-30_01,2024-05-17_01
 
+There may be cases where a trivial-device needs to describe
+the SPI clock polarity and phase via spi-cpol and spi-cpha
+properties.
 
-On 8/30/24 16:55, Conor Dooley wrote:
-> On Fri, Aug 30, 2024 at 02:53:15PM +0200, Christian Bruel wrote:
->> On 8/29/24 18:44, Conor Dooley wrote:
->>> On Thu, Aug 29, 2024 at 01:06:53PM +0200, Christian Bruel wrote:
->>>> On 8/28/24 18:11, Conor Dooley wrote:
->>>>> On Wed, Aug 28, 2024 at 04:34:48PM +0200, Christian Bruel wrote:
->>>>>> +  st,syscfg:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>> +    description: Phandle to the SYSCON entry required for configuring PCIe
->>>>>> +      or USB3.
->>>>> Why is a phandle required for this lookup, rather than doing it by
->>>>> compatible?
->>>> the phandle is used to select the sysconf SoC configuration register
->>>> depending on the PCIe/USB3 mode (selected by xlate function), so it's not
->>>> like a lookup here.
->>> If "syscon_regmap_lookup_by_phandle()" is not a lookup, then I do not
->>> know what is. An example justification for it would be that there are
->>> multiple combophys on the same soc, each using a different sysconf
->>> region. Your dts suggests that is not the case though, since you have
->>> st,syscfg = <&syscfg>; in it, rather than st,syscfg = <&syscfg0>;.
->> I didn't get your suggestion earlier to use "syscon_regmap_lookup_by_compatible()".
->>
->> We have several other syscon in the other. That's why we choose a direct syscfg phandle
-> In the other what? SoCs?
->
-> Way I see it, if you're going to support different socs in the same
-> driver, it's almost a certainty that the offsets within a syscon that
-> particular features lie at are going to change between socs, so even if
-> you have a phandle you're going to need to have the offsets in your
-> match data. And if you're going to have offsets in match data, you may
-> as well have the compatibles for the syscon in match data too.
-> If the layout of the syscon hasn't changed between devices, then you
-> should have a fallback compatible for the syscon too, making
-> syscon_regmap_lookup_by_compatible() function without changes to the
-> driver.
->
-> If you do have multiple syscons, but they do different things, they
-> should have different compatibles, so having multiple syscons doesn't
-> justify using a property for this either in and of itself. If you have
-> multiple syscons with the same layout (and therefore the same
-> compatible) then a phandle makes sense, but if that's the case then you
-> almost certainly have multiple combophys too! Otherwise, if you have one
-> syscon, but the controls for more than one combophy are in it, then
-> having a phandle _with an offset_ makes sense.
->
-> If you know there are other SoCs with more than one combo phy, do they
-> use different syscons, or is the same syscon used for more than one
-> combophy?
+Document these properties to fix the following dt-schema warnings:
 
-we have other syscon for other subsystem in the same SoC, but I not the same layout
+rv1108-elgin-r1.dtb: display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-We indeed have a different compatible for the syscfg top (not the COMBOPHY registers), I can use
-"syscon_regmap_lookup_by_compatible(st,stm32mp25-syscfg)" effectively
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+Changes since v1:
+- Add spi-cpha and spi-cpol to trivial-devices.yaml. (Conor)
 
-one justification I had in mind for using a phandle is that we can use an argument to the
-COMBOPHY registers offset in the syscfg. Having this DT flexibility to adjust the offset
-for new SoC revisions using the same driver looked like a nice to have.
-For the time being the lookup_by_compatible pointing the syscfg syscon is OK
+ Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-thanks for the clarification.
-
-Christian
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 75a5fad08c44..f7c11eb6e5fd 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -24,6 +24,10 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  spi-cpha: true
++
++  spi-cpol: true
++
+   spi-max-frequency: true
+ 
+   compatible:
+-- 
+2.34.1
 
 
