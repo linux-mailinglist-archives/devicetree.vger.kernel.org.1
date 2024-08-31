@@ -1,190 +1,169 @@
-Return-Path: <devicetree+bounces-98721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076D1967154
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:36:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E35967159
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:38:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2736E1C2113E
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:36:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A91C51F2298D
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246D717DFE9;
-	Sat, 31 Aug 2024 11:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF15617DFEE;
+	Sat, 31 Aug 2024 11:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tuiw6oRC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RFYeiGEV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E25E17C21C;
-	Sat, 31 Aug 2024 11:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A152B6A8CF;
+	Sat, 31 Aug 2024 11:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725104195; cv=none; b=DIqRvSgaDUPSjuLf9DlpgB2aDaXx5H6ldJwscXooqUkA0IDwbXDd0iwes+kYsH5KkDbDytAf3A/uJExuXPE6F+UT9nJAfGwupBbtL/ooGvAla97W7HRP/Wk4DqyKrVZaJT60+xSJdAbo+xNYI+SekZNriXXsGEIlkGHYlfNs7xo=
+	t=1725104326; cv=none; b=CBVltLUk3cW4zeR4+tJDzmVDyTUTBXFEl9ncTgFmXJo+a6lozz/Xek6ib51aaZjNTFCHYZsncuLrgWPbMxnyytwFPnw32VScDzGpcWEVSfTETcbfkV2jyrzjy3swXlEU1xtotJ1w+3k0Q0+z2T9HyJ2Yo7keTvOQokV1+QrDA+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725104195; c=relaxed/simple;
-	bh=OyGTBD0zWa3blsUCOwFvlsbl9D8mhJOLTNMIcOsRCpk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OwR6lvJAr4/iqJCvcWeZw3qbC4ER/WLC1UMc21ShJ5Don044kiv1oYkbitZsT3mOXWHtUstaXhDQ1iu7tg20G8UAYp2CLz6Bu8IaTSaMUkdYvYB/GGzGRoZbOVDt3L0BsXg+bgfhvJqdkOI+2WKyEkJ7A47eNsx06OEBQW/vK9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tuiw6oRC; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f3eabcd293so29524231fa.2;
-        Sat, 31 Aug 2024 04:36:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725104191; x=1725708991; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DW5o2YvVHbNPYWo6fwu2OHoD9wQjry9RZ8/xUuq9ccU=;
-        b=Tuiw6oRCt9xyGIRE/YGScU6atq6MoZb38HRoLKUFRIaO7+zLFMwLKnEZYHEIR4NcPw
-         oGtlB7zq8NTDjWpMzIl/4xq6XWh3n3B7kQ6+mz2JrZmbSIYry0rTpTMDwpP947JA7ajM
-         3+WBZlODOIMMKahVcxcEYqmOkGP4bfxcpz6Ixs1fJWTB9oL96/OLqQuewecHK/cp6bFA
-         I99yko8YpJ6rt0aLRtN9ZXX3ayOOIloeY4CmvPEewcqK29E+RwmWxYRpm6lrbNcquPZY
-         /2MhtybO2N8vEO0Q5Hv+9k/MqwXCl4Ppuw8MDupIDS0ZXKhDQ0H/iMVNsENRgUF0J6QY
-         5gKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725104191; x=1725708991;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DW5o2YvVHbNPYWo6fwu2OHoD9wQjry9RZ8/xUuq9ccU=;
-        b=LwsHdp+hfsEhKRBZtXcLVy5JbTui9/xz7VI4yRnEehiSeGvAEWdvyk2dcmObVGzSYR
-         RHTjFnQW1BgUiXTo45TMBEv3TBP4gRUHlBOYKmECdXDoPtBwz74wIDkMaDeGShYjA2Uu
-         YBxvJ34XjJs1yvgvE5A4Xq+TG1oMuYx9P/be5KsFVCJhtLKANfr4x7TR+nRmNaAQA4gN
-         DdEJ/ms8fr8Kheqv39FwmKX7KWLrn4+zM6mTXMlhtwsGc+hZsmOMRTbY6SGqFk2AyDR2
-         AaPvz04e4mMoxUeeWuWXkRHqpmt79dEHF3lD/BSptoAQfDbBvIR0KElJa7BnjZ3V/hC4
-         izeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVU8rxHPyu/FD9r0WSU6a5vNM8QaAHXqLhRvjFjNxg9aNP7bM5l8sQoYyiUwHTCFGmDKLamcqgKZSWC@vger.kernel.org, AJvYcCWxojzw+XgTHC1xzgedGGcspdIXpWgBq8TcglxCihHzONEUI4KHHWgB274g0F4cj/p4CEDnqT65ztLOthKn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9yIXdu6arpNAiBkmdHpM15I3bkDVbC6oBTF7JHhlwAHBmAo2b
-	vaWJKjCL7H7YxU2rXUBRkIlHCy9O8v02XV4Z0yuMjE4Y9DRYEtTy
-X-Google-Smtp-Source: AGHT+IHHNejUCl2NXL5+Twx1GLp1uz8JoLh9RVEQPg+qgl3Oa4CJXifFuSUIJs/dn4QjoxCNq1qJPw==
-X-Received: by 2002:a2e:be9e:0:b0:2f3:aed8:aa9b with SMTP id 38308e7fff4ca-2f62902dcd4mr10651691fa.5.1725104190488;
-        Sat, 31 Aug 2024 04:36:30 -0700 (PDT)
-Received: from ?IPV6:2001:678:a5c:1202:4fb5:f16a:579c:6dcb? (soda.int.kasm.eu. [2001:678:a5c:1202:4fb5:f16a:579c:6dcb])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f614ed1787sm10456961fa.10.2024.08.31.04.36.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 31 Aug 2024 04:36:30 -0700 (PDT)
-Message-ID: <4b6295c6-d792-4fc8-893c-3be0b26cd22c@gmail.com>
-Date: Sat, 31 Aug 2024 13:36:28 +0200
+	s=arc-20240116; t=1725104326; c=relaxed/simple;
+	bh=26XxgTbdOhTuCSD4I9b4ByqUILFzK3wcbjqL8EuM6gE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JzRx0i2fGdxFILH+n9nox9rrdyLQs6YleAWuV+tZ7BnaMh9uE0LbFRPkC8/b/+nCfzrg491I1czhQR3ARhsj+HzH05MCtSbO65yNfU/qWonF/3jUbdzrVmlocqBY48eQ+WObS1qt/mfqo9eU6r9+xiERHzu8IgRiGvS79dXnZKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RFYeiGEV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD656C4CEC0;
+	Sat, 31 Aug 2024 11:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725104326;
+	bh=26XxgTbdOhTuCSD4I9b4ByqUILFzK3wcbjqL8EuM6gE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=RFYeiGEVSAqhiaBzzTBp/EqS4UZZC+5ZDB0Fb7o9UR1b9mLVzw0adrWVQkE5j+WcN
+	 7Rn/k/p6WYZWv3NuoZr5AItEKO+zeBPm0fbLZOZuTftz0osl0HUCnbPbLZYa8EQ9Az
+	 zbdHhFqJhLfpyjHMO3XrVAzyE42wmCMQHvL7rl8AKX944pAOLN3OaqdhdpynWSQtbE
+	 QyKyLQsWiAswVKacrGmcABvt2Vf408qg7/wgFGS7SgMLhUDGC2c/xxA31HkirRA8Cp
+	 6Peepq2PwJVzv/ZxEitP3KTNDXev2yC0faMq+u2Xk3b11dwK7Si+esgOPSlMc8egaf
+	 eDiDba09LaSUQ==
+Date: Sat, 31 Aug 2024 12:38:37 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dlechner@baylibre.com
+Subject: Re: [RFC PATCH 0/8] iio: dac: introducing ad3552r-axi
+Message-ID: <20240831123837.26a1070a@jic23-huawei>
+In-Reply-To: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/2] Dynamic Allocation of the reserved_mem array
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, robh@kernel.org
-Cc: andy@black.fi.intel.com, aisheng.dong@nxp.com, catalin.marinas@arm.com,
- devicetree@vger.kernel.org, hch@lst.de, iommu@lists.linux.dev,
- kernel@quicinc.com, linux-kernel@vger.kernel.org, m.szyprowski@samsung.com,
- robin.murphy@arm.com, saravanak@google.com, will@kernel.org
-References: <20240830162857.2821502-1-quic_obabatun@quicinc.com>
-Content-Language: en-US, sv-SE
-From: Klara Modin <klarasmodin@gmail.com>
-In-Reply-To: <20240830162857.2821502-1-quic_obabatun@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Thu, 29 Aug 2024 14:31:58 +0200
+Angelo Dureghello <adureghello@baylibre.com> wrote:
 
-On 2024-08-30 18:28, Oreoluwa Babatunde wrote:
-> The reserved_mem array is used to store data for the different
-> reserved memory regions defined in the DT of a device.  The array
-> stores information such as region name, node reference, start-address,
-> and size of the different reserved memory regions.
-> 
-> The array is currently statically allocated with a size of
-> MAX_RESERVED_REGIONS(64). This means that any system that specifies a
-> number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
-> will not have enough space to store the information for all the regions.
-> 
-> This can be fixed by making the reserved_mem array a dynamically sized
-> array which is allocated using memblock_alloc() based on the exact
-> number of reserved memory regions defined in the DT.
-> 
-> On architectures such as arm64, memblock allocated memory is not
-> writable until after the page tables have been setup.
-> This is an issue because the current implementation initializes the
-> reserved memory regions and stores their information in the array before
-> the page tables are setup. Hence, dynamically allocating the
-> reserved_mem array and attempting to write information to it at this
-> point will fail.
-> 
-> Therefore, the allocation of the reserved_mem array will need to be done
-> after the page tables have been setup, which means that the reserved
-> memory regions will also need to wait until after the page tables have
-> been setup to be stored in the array.
-> 
-> When processing the reserved memory regions defined in the DT, these
-> regions are marked as reserved by calling memblock_reserve(base, size).
-> Where:  base = base address of the reserved region.
-> 	size = the size of the reserved memory region.
-> 
-> Depending on if that region is defined using the "no-map" property,
-> memblock_mark_nomap(base, size) is also called.
-> 
-> The "no-map" property is used to indicate to the operating system that a
-> mapping of the specified region must NOT be created. This also means
-> that no access (including speculative accesses) is allowed on this
-> region of memory except when it is coming from the device driver that
-> this region of memory is being reserved for.[1]
-> 
-> Therefore, it is important to call memblock_reserve() and
-> memblock_mark_nomap() on all the reserved memory regions before the
-> system sets up the page tables so that the system does not unknowingly
-> include any of the no-map reserved memory regions in the memory map.
-> 
-> There are two ways to define how/where a reserved memory region is
-> placed in memory:
-> i) Statically-placed reserved memory regions
-> i.e. regions defined with a set start address and size using the
->       "reg" property in the DT.
-> ii) Dynamically-placed reserved memory regions.
-> i.e. regions defined by specifying a range of addresses where they can
->       be placed in memory using the "alloc_ranges" and "size" properties
->       in the DT.
-> 
-> The dynamically-placed reserved memory regions get assigned a start
-> address only at runtime. And this needs to  be done before the page
-> tables are setup so that memblock_reserve() and memblock_mark_nomap()
-> can be called on the allocated region as explained above.
-> Since the dynamically allocated reserved_mem array can only be
-> available after the page tables have been setup, the information for
-> the dynamically-placed reserved memory regions needs to be stored
-> somewhere temporarily until the reserved_mem array is available.
-> 
-> Therefore, this series makes use of a temporary static array to store
-> the information of the dynamically-placed reserved memory regions until
-> the reserved_mem array is allocated.
-> Once the reserved_mem array is available, the information is copied over
-> from the temporary array into the reserved_mem array, and the memory for
-> the temporary array is freed back to the system.
-> 
-> The information for the statically-placed reserved memory regions does
-> not need to be stored in a temporary array because their starting
-> address is already stored in the devicetree.
-> Once the reserved_mem array is allocated, the information for the
-> statically-placed reserved memory regions is added to the array.
-> 
-> Note:
-> Because of the use of a temporary array to store the information of the
-> dynamically-placed reserved memory regions, there still exists a
-> limitation of 64 for this particular kind of reserved memory regions.
->  From my observation, these regions are typically small in number and
-> hence I expect this to not be an issue for now.
-> 
+> Hi, asking for comments for this patchset, that is mostly=20
+> ready, at least feature-complete and functionally tested.
+>=20
+> I am introducing ad3552r-axi variant, controlled from a fpga-based
+> AXI IP, as a platform driver, using the DAC backend. The patchset is
+> actually based on linux-iio, since some needed DAC backend features
+> was already there on that repo only, still to be merged in mainline.
+>=20
+> Comments i would like to ask are:
+>=20
+> - i added some devicetree bindings inside current ad3552r yaml,
+>   device is the same, so i wouldn't create a different yaml file.=20
 
-I tested the series on the same systems as previously and did not see 
-anything suspicious.
+Agreed. If same device, it's usually better to keep it in one file.
 
-In addition I tested my x86_64 desktop with CONFIG_OF enabled and this 
-new version boots fine for me and did not show any new issues from what 
-I could tell.
+>=20
+> - if it's ok adding the bus-type property in the DAC backend:
+>   actually, this platform driver uses a 4 lanes parallel bus, plus
+>   a clock line, similar to a qspi. This to read an write registers
+>   and as well to send samples at double data rate. Other DAC may=20
+>   need "parallel" or "lvds" in the future.
 
-Regards,
-Tested-by: Klara Modin <klarasmodin@gmail.com>
+If it is for register read + write as well, sounds to me like you need
+to treat this as a new bus type, possibly then combined with a
+backend, or something similar to spi offload?
+
+What bus does this currently sit on in your DT bindings?
+(add an example)
+
+>=20
+> - adding the bus-type property vs. a boolean property vs. adding=20
+>   a new compatible string.
+>=20
+> - how external synchronization should be handled. Actually, i added
+>   2 backend calls to enable or disable this external trigger.
+
+That seems more or less fine.  Is there any control over the external
+trigger?  This feels a bit like some of the complex stm32 hardware
+triggers in that a 'hidden' trigger is being enabled.
+If it is controllable or selectable (between say a PWM or an external
+pin) then you may need to be careful how to expose that control.
+
+>=20
+> - is a read-only sampling-frequency useful ?
+Yes. If it is easy to provide, it can be useful to userspace to
+allow it to figure out how much data to expect.
+
+Jonathan
+
+>=20
+> Thanks a lot for your feedbacks.
+>=20
+> To: Lars-Peter Clausen <lars@metafoo.de>
+> To: Michael Hennerich <Michael.Hennerich@analog.com>
+> To: Nuno S=C3=A1 <nuno.sa@analog.com>
+> To: Jonathan Cameron <jic23@kernel.org>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Olivier Moysan <olivier.moysan@foss.st.com>
+> Cc: linux-iio@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: dlechner@baylibre.com
+>=20
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
+> Angelo Dureghello (8):
+>       dt-bindings: iio: dac: ad3552r: add io-backend property
+>       iio: backend: extend features
+>       iio: backend adi-axi-dac: backend features
+>       dt-bindings: iio: dac: add adi axi-dac bus property
+>       iio: dac: ad3552r: changes to use FIELD_PREP
+>       iio: dac: ad3552r: extract common code (no changes in behavior inte=
+nded)
+>       iio: dac: ad3552r: add axi platform driver
+>       iio: ABI: add DAC sysfs synchronous_mode parameter
+>=20
+>  Documentation/ABI/testing/sysfs-bus-iio-dac        |   7 +
+>  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   |  39 +-
+>  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   |   9 +
+>  drivers/iio/dac/Kconfig                            |  11 +
+>  drivers/iio/dac/Makefile                           |   3 +-
+>  drivers/iio/dac/ad3552r-axi.c                      | 572 +++++++++++++++=
+++++++
+>  drivers/iio/dac/ad3552r-common.c                   | 163 ++++++
+>  drivers/iio/dac/ad3552r.c                          | 394 +++-----------
+>  drivers/iio/dac/ad3552r.h                          | 199 +++++++
+>  drivers/iio/dac/adi-axi-dac.c                      | 250 ++++++++-
+>  drivers/iio/industrialio-backend.c                 | 151 ++++++
+>  include/linux/iio/backend.h                        |  24 +
+>  12 files changed, 1494 insertions(+), 328 deletions(-)
+> ---
+> base-commit: 7ccb2c2db44572deadb795c4637273cdabbe8b66
+> change-id: 20240829-wip-bl-ad3552r-axi-v0-b1e379c986d3
+>=20
+> Best regards,
+
 
