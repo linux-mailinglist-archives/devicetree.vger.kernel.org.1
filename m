@@ -1,246 +1,190 @@
-Return-Path: <devicetree+bounces-98720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE7496714F
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:34:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 076D1967154
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:36:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53D66280F67
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:34:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2736E1C2113E
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4746817C23B;
-	Sat, 31 Aug 2024 11:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246D717DFE9;
+	Sat, 31 Aug 2024 11:36:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rL/Mtpnf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tuiw6oRC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187E819BB7;
-	Sat, 31 Aug 2024 11:34:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E25E17C21C;
+	Sat, 31 Aug 2024 11:36:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725104064; cv=none; b=Z9JSNX9JY0O6sVfgncVnKM4tIgRNwFnd1ahWtEpaDSAhcoOGgedXLjEKTDOGtP04STO8q5LmvWNY76Xy/Siw+loous1avl8k43yNyKeT3iEUGsSkazqZ1Gg34YQw+oQPN2e2uXdHgkY/ovO2rkjNCOpRd7rrKgqmBgeKWQ03zXE=
+	t=1725104195; cv=none; b=DIqRvSgaDUPSjuLf9DlpgB2aDaXx5H6ldJwscXooqUkA0IDwbXDd0iwes+kYsH5KkDbDytAf3A/uJExuXPE6F+UT9nJAfGwupBbtL/ooGvAla97W7HRP/Wk4DqyKrVZaJT60+xSJdAbo+xNYI+SekZNriXXsGEIlkGHYlfNs7xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725104064; c=relaxed/simple;
-	bh=pTuBiz0aBmLlXkooQ8sY+Trgbzt3HvaZXF0VH5ok2+c=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tPEffnViuGCPxgAPbMTUBJeR/Mct7gLHbYba18DfY+5VgXu8ucv9+VWB4R0sdIl56dkM64dLHzUYrysi7LVHsh2rqbycKYJACUIqfNYBUcfCVskCJZtilfvCIwalxo7kZcf14cRcXbIemLbkEJUaLAu370pB1UjkdG7IVE5ekAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rL/Mtpnf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A4FEC4CEC0;
-	Sat, 31 Aug 2024 11:34:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725104063;
-	bh=pTuBiz0aBmLlXkooQ8sY+Trgbzt3HvaZXF0VH5ok2+c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rL/Mtpnfrnwj+i0+5owDZ0wnjNAxb9lcQgLrxWDKmtJAyXsMc82TkhwEnFD9h828y
-	 7RP3SX2fqLAlTIEwdHWD5rzv0GNy5LEVVKPVNaRTIh2UmQ2y86xAIU8UIyyt7yAm4R
-	 3eAtLyB5bhTyUm/hesD8sJ3JmTlZQ6I13mLCXnsuMMBgotGZUD5lCX/7qNiYyzAvd/
-	 7RgP+KpzCcDqkKFz5v0QVxW+rq4yqg5xGRM088fcwmY5C3knjascOPEBCmVRqguM6o
-	 54Xnj4IK7RpIgcd3I7/1c/e3DTmvGEsEnjIUHJdog7LXUrUoMsIMiePKZmTEJGlhcP
-	 FSpjnrw3Jw4jw==
-Date: Sat, 31 Aug 2024 12:34:18 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
- <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dlechner@baylibre.com
-Subject: Re: [PATCH RFC 3/8] iio: backend adi-axi-dac: backend features
-Message-ID: <20240831123418.6bef6039@jic23-huawei>
-In-Reply-To: <20240829-wip-bl-ad3552r-axi-v0-v1-3-b6da6015327a@baylibre.com>
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
-	<20240829-wip-bl-ad3552r-axi-v0-v1-3-b6da6015327a@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1725104195; c=relaxed/simple;
+	bh=OyGTBD0zWa3blsUCOwFvlsbl9D8mhJOLTNMIcOsRCpk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OwR6lvJAr4/iqJCvcWeZw3qbC4ER/WLC1UMc21ShJ5Don044kiv1oYkbitZsT3mOXWHtUstaXhDQ1iu7tg20G8UAYp2CLz6Bu8IaTSaMUkdYvYB/GGzGRoZbOVDt3L0BsXg+bgfhvJqdkOI+2WKyEkJ7A47eNsx06OEBQW/vK9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tuiw6oRC; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f3eabcd293so29524231fa.2;
+        Sat, 31 Aug 2024 04:36:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725104191; x=1725708991; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DW5o2YvVHbNPYWo6fwu2OHoD9wQjry9RZ8/xUuq9ccU=;
+        b=Tuiw6oRCt9xyGIRE/YGScU6atq6MoZb38HRoLKUFRIaO7+zLFMwLKnEZYHEIR4NcPw
+         oGtlB7zq8NTDjWpMzIl/4xq6XWh3n3B7kQ6+mz2JrZmbSIYry0rTpTMDwpP947JA7ajM
+         3+WBZlODOIMMKahVcxcEYqmOkGP4bfxcpz6Ixs1fJWTB9oL96/OLqQuewecHK/cp6bFA
+         I99yko8YpJ6rt0aLRtN9ZXX3ayOOIloeY4CmvPEewcqK29E+RwmWxYRpm6lrbNcquPZY
+         /2MhtybO2N8vEO0Q5Hv+9k/MqwXCl4Ppuw8MDupIDS0ZXKhDQ0H/iMVNsENRgUF0J6QY
+         5gKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725104191; x=1725708991;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DW5o2YvVHbNPYWo6fwu2OHoD9wQjry9RZ8/xUuq9ccU=;
+        b=LwsHdp+hfsEhKRBZtXcLVy5JbTui9/xz7VI4yRnEehiSeGvAEWdvyk2dcmObVGzSYR
+         RHTjFnQW1BgUiXTo45TMBEv3TBP4gRUHlBOYKmECdXDoPtBwz74wIDkMaDeGShYjA2Uu
+         YBxvJ34XjJs1yvgvE5A4Xq+TG1oMuYx9P/be5KsFVCJhtLKANfr4x7TR+nRmNaAQA4gN
+         DdEJ/ms8fr8Kheqv39FwmKX7KWLrn4+zM6mTXMlhtwsGc+hZsmOMRTbY6SGqFk2AyDR2
+         AaPvz04e4mMoxUeeWuWXkRHqpmt79dEHF3lD/BSptoAQfDbBvIR0KElJa7BnjZ3V/hC4
+         izeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVU8rxHPyu/FD9r0WSU6a5vNM8QaAHXqLhRvjFjNxg9aNP7bM5l8sQoYyiUwHTCFGmDKLamcqgKZSWC@vger.kernel.org, AJvYcCWxojzw+XgTHC1xzgedGGcspdIXpWgBq8TcglxCihHzONEUI4KHHWgB274g0F4cj/p4CEDnqT65ztLOthKn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9yIXdu6arpNAiBkmdHpM15I3bkDVbC6oBTF7JHhlwAHBmAo2b
+	vaWJKjCL7H7YxU2rXUBRkIlHCy9O8v02XV4Z0yuMjE4Y9DRYEtTy
+X-Google-Smtp-Source: AGHT+IHHNejUCl2NXL5+Twx1GLp1uz8JoLh9RVEQPg+qgl3Oa4CJXifFuSUIJs/dn4QjoxCNq1qJPw==
+X-Received: by 2002:a2e:be9e:0:b0:2f3:aed8:aa9b with SMTP id 38308e7fff4ca-2f62902dcd4mr10651691fa.5.1725104190488;
+        Sat, 31 Aug 2024 04:36:30 -0700 (PDT)
+Received: from ?IPV6:2001:678:a5c:1202:4fb5:f16a:579c:6dcb? (soda.int.kasm.eu. [2001:678:a5c:1202:4fb5:f16a:579c:6dcb])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f614ed1787sm10456961fa.10.2024.08.31.04.36.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 31 Aug 2024 04:36:30 -0700 (PDT)
+Message-ID: <4b6295c6-d792-4fc8-893c-3be0b26cd22c@gmail.com>
+Date: Sat, 31 Aug 2024 13:36:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 0/2] Dynamic Allocation of the reserved_mem array
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, robh@kernel.org
+Cc: andy@black.fi.intel.com, aisheng.dong@nxp.com, catalin.marinas@arm.com,
+ devicetree@vger.kernel.org, hch@lst.de, iommu@lists.linux.dev,
+ kernel@quicinc.com, linux-kernel@vger.kernel.org, m.szyprowski@samsung.com,
+ robin.murphy@arm.com, saravanak@google.com, will@kernel.org
+References: <20240830162857.2821502-1-quic_obabatun@quicinc.com>
+Content-Language: en-US, sv-SE
+From: Klara Modin <klarasmodin@gmail.com>
+In-Reply-To: <20240830162857.2821502-1-quic_obabatun@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 29 Aug 2024 14:32:01 +0200
-Angelo Dureghello <adureghello@baylibre.com> wrote:
+Hi,
 
-> From: Angelo Dureghello <adureghello@baylibre.com>
+On 2024-08-30 18:28, Oreoluwa Babatunde wrote:
+> The reserved_mem array is used to store data for the different
+> reserved memory regions defined in the DT of a device.  The array
+> stores information such as region name, node reference, start-address,
+> and size of the different reserved memory regions.
 > 
-> Extend DAC backend with new features required for the AXI driver
-> version for the a3552r DAC.
+> The array is currently statically allocated with a size of
+> MAX_RESERVED_REGIONS(64). This means that any system that specifies a
+> number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
+> will not have enough space to store the information for all the regions.
 > 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-Hi Angelo
-Minor comments inline.
->  
->  static int axi_dac_enable(struct iio_backend *back)
-> @@ -460,7 +493,13 @@ static int axi_dac_data_source_set(struct iio_backend *back, unsigned int chan,
->  	case IIO_BACKEND_EXTERNAL:
->  		return regmap_update_bits(st->regmap,
->  					  AXI_DAC_REG_CHAN_CNTRL_7(chan),
-> -					  AXI_DAC_DATA_SEL, AXI_DAC_DATA_DMA);
-> +					  AXI_DAC_DATA_SEL,
-> +					  AXI_DAC_DATA_DMA);
+> This can be fixed by making the reserved_mem array a dynamically sized
+> array which is allocated using memblock_alloc() based on the exact
+> number of reserved memory regions defined in the DT.
+> 
+> On architectures such as arm64, memblock allocated memory is not
+> writable until after the page tables have been setup.
+> This is an issue because the current implementation initializes the
+> reserved memory regions and stores their information in the array before
+> the page tables are setup. Hence, dynamically allocating the
+> reserved_mem array and attempting to write information to it at this
+> point will fail.
+> 
+> Therefore, the allocation of the reserved_mem array will need to be done
+> after the page tables have been setup, which means that the reserved
+> memory regions will also need to wait until after the page tables have
+> been setup to be stored in the array.
+> 
+> When processing the reserved memory regions defined in the DT, these
+> regions are marked as reserved by calling memblock_reserve(base, size).
+> Where:  base = base address of the reserved region.
+> 	size = the size of the reserved memory region.
+> 
+> Depending on if that region is defined using the "no-map" property,
+> memblock_mark_nomap(base, size) is also called.
+> 
+> The "no-map" property is used to indicate to the operating system that a
+> mapping of the specified region must NOT be created. This also means
+> that no access (including speculative accesses) is allowed on this
+> region of memory except when it is coming from the device driver that
+> this region of memory is being reserved for.[1]
+> 
+> Therefore, it is important to call memblock_reserve() and
+> memblock_mark_nomap() on all the reserved memory regions before the
+> system sets up the page tables so that the system does not unknowingly
+> include any of the no-map reserved memory regions in the memory map.
+> 
+> There are two ways to define how/where a reserved memory region is
+> placed in memory:
+> i) Statically-placed reserved memory regions
+> i.e. regions defined with a set start address and size using the
+>       "reg" property in the DT.
+> ii) Dynamically-placed reserved memory regions.
+> i.e. regions defined by specifying a range of addresses where they can
+>       be placed in memory using the "alloc_ranges" and "size" properties
+>       in the DT.
+> 
+> The dynamically-placed reserved memory regions get assigned a start
+> address only at runtime. And this needs to  be done before the page
+> tables are setup so that memblock_reserve() and memblock_mark_nomap()
+> can be called on the allocated region as explained above.
+> Since the dynamically allocated reserved_mem array can only be
+> available after the page tables have been setup, the information for
+> the dynamically-placed reserved memory regions needs to be stored
+> somewhere temporarily until the reserved_mem array is available.
+> 
+> Therefore, this series makes use of a temporary static array to store
+> the information of the dynamically-placed reserved memory regions until
+> the reserved_mem array is allocated.
+> Once the reserved_mem array is available, the information is copied over
+> from the temporary array into the reserved_mem array, and the memory for
+> the temporary array is freed back to the system.
+> 
+> The information for the statically-placed reserved memory regions does
+> not need to be stored in a temporary array because their starting
+> address is already stored in the devicetree.
+> Once the reserved_mem array is allocated, the information for the
+> statically-placed reserved memory regions is added to the array.
+> 
+> Note:
+> Because of the use of a temporary array to store the information of the
+> dynamically-placed reserved memory regions, there still exists a
+> limitation of 64 for this particular kind of reserved memory regions.
+>  From my observation, these regions are typically small in number and
+> hence I expect this to not be an issue for now.
+> 
 
-Unrelated change.   If you want to change this, separate patch.
+I tested the series on the same systems as previously and did not see 
+anything suspicious.
 
-> +	case IIO_BACKEND_INTERNAL_RAMP_16:
-> +		return regmap_update_bits(st->regmap,
-> +					  AXI_DAC_REG_CHAN_CNTRL_7(chan),
-> +					  AXI_DAC_DATA_SEL,
-> +					  AXI_DAC_DATA_INTERNAL_RAMP_16);
->  	default:
->  		return -EINVAL;
->  	}
-> @@ -518,9 +557,204 @@ static int axi_dac_reg_access(struct iio_backend *back, unsigned int reg,
->  	return regmap_write(st->regmap, reg, writeval);
->  }
->  
+In addition I tested my x86_64 desktop with CONFIG_OF enabled and this 
+new version boots fine for me and did not show any new issues from what 
+I could tell.
 
-> +
-> +static int axi_dac_bus_reg_write(struct iio_backend *back,
-> +				 u32 reg, void *val, size_t size)
-
-Maybe just pass an unsigned int for val?
-So follow what regmap does? You will still need the size, but it
-will just be configuration related rather than affecting the type
-of val.
-
-
-
-> +{
-> +	struct axi_dac_state *st = iio_backend_get_priv(back);
-> +
-> +	if (!st->bus_type)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (st->bus_type == AXI_DAC_BUS_TYPE_QSPI) {
-
-As below, I'd use a switch and factor out this block as a separate
-bus specific function.
-
-> +		int ret;
-> +		u32 ival;
-> +
-> +		if (size != 1 && size != 2)
-> +			return -EINVAL;
-> +
-> +		switch (size) {
-> +		case 1:
-> +			ival = FIELD_PREP(AXI_DAC_DATA_WR_8, *(u8 *)val);
-> +			break;
-> +		case 2:
-> +			ival =  FIELD_PREP(AXI_DAC_DATA_WR_16, *(u16 *)val);
-> +			break;
-> +		default:
-> +			return  -EINVAL;
-
-Hopefully compiler won't need this and the above. I'd drop the size != 1..
-check in favour of just doing it in this switch.
-
-> +		}
-> +
-> +		ret = regmap_write(st->regmap, AXI_DAC_CNTRL_DATA_WR, ival);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/*
-> +		 * Both REG_CNTRL_2 and AXI_DAC_CNTRL_DATA_WR need to know
-> +		 * the data size. So keeping data size control here only,
-> +		 * since data size is mandatory for to the current transfer.
-> +		 * DDR state handled separately by specific backend calls,
-> +		 * generally all raw register writes are SDR.
-> +		 */
-> +		if (size == 1)
-> +			ret = regmap_set_bits(st->regmap, AXI_DAC_REG_CNTRL_2,
-> +					      AXI_DAC_SYMB_8B);
-> +		else
-> +			ret = regmap_clear_bits(st->regmap, AXI_DAC_REG_CNTRL_2,
-> +						AXI_DAC_SYMB_8B);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_update_bits(st->regmap, AXI_DAC_REG_CUSTOM_CTRL,
-> +					 AXI_DAC_ADDRESS,
-> +					 FIELD_PREP(AXI_DAC_ADDRESS, reg));
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_update_bits(st->regmap, AXI_DAC_REG_CUSTOM_CTRL,
-> +					 AXI_DAC_TRANSFER_DATA,
-> +					 AXI_DAC_TRANSFER_DATA);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_read_poll_timeout(st->regmap,
-> +					       AXI_DAC_REG_CUSTOM_CTRL, ival,
-> +					       ival & AXI_DAC_TRANSFER_DATA,
-> +					       10, 100 * KILO);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return regmap_clear_bits(st->regmap, AXI_DAC_REG_CUSTOM_CTRL,
-> +					  AXI_DAC_TRANSFER_DATA);
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int axi_dac_bus_reg_read(struct iio_backend *back,
-> +				u32 reg, void *val, size_t size)
-As for write, I'd just use an unsigned int * for val like
-regmap does.
-
-
-> +{
-> +	struct axi_dac_state *st = iio_backend_get_priv(back);
-> +
-> +	if (!st->bus_type)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (st->bus_type == AXI_DAC_BUS_TYPE_QSPI) {
-
-It got mentioned in binding review but if this isn't QSPI, even
-if similar don't call it that.
-Maybe use a switch from the start give it will make sense
-anyway the moment there is a second bus type.
-
-I'd be tempted to factor the rest of this block out.
-I guess expectation is we'll see more bus types so that factoring
-out will be needed soon anyway.
-
-
-> +		int ret;
-> +		u32 bval;
-		u32 bval = 0;
-> +
-> +		if (size != 1 && size != 2)
-> +			return -EINVAL;
-> +
-> +		bval = 0;
-> +		ret = axi_dac_bus_reg_write(back,
-> +					    AXI_DAC_RD_ADDR(reg), &bval, size);
-
-Ugly wrap.   Move more stuff on to first line.
-
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_read_poll_timeout(st->regmap, AXI_DAC_UI_STATUS,
-> +					       bval, bval != AXI_DAC_BUSY,
-> +					       10, 100);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return regmap_read(st->regmap, AXI_DAC_CNTRL_DATA_RD, val);
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
+Regards,
+Tested-by: Klara Modin <klarasmodin@gmail.com>
 
