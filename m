@@ -1,126 +1,159 @@
-Return-Path: <devicetree+bounces-98772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2459672D7
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 19:35:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91BB39672ED
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 20:11:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 476891C20D82
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 17:35:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 257881F217FC
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 18:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C092558210;
-	Sat, 31 Aug 2024 17:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A0C74C08;
+	Sat, 31 Aug 2024 18:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SdfP09vQ"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="ylVd4Od3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB062557A;
-	Sat, 31 Aug 2024 17:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6106E611
+	for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 18:11:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725125720; cv=none; b=qfpqlYBbmS0V7AnfF0I51dHC7QsmHadIcGxxcrnvKvyYhcptQlaY274dwKgNZTYkkw+IpZDobr5vW0Z1G+Kj4IZtHnlgojoQZcuatBMyb2n+m8fGSWVbQLC89MVPy9WbrhBFa0hMlpMX1spm8Bq6fHcKA7NqP+VP0dJ7abVt8to=
+	t=1725127907; cv=none; b=bLk3+lRFf4aTcVU6DG9atTqfj0a1H8ezPURrTRctXwO9mxJ6HoohG2sfSa2s7JXeQ6e7Tz4bhFFn4dxOdX7kv+byBWTJpnCWDx+XpJla40cA0mxAenAUspUPzjizMYQiB1EUgHnmCc6fAp8bm68gE5M2jtRuHdoXWQ3+b2RCM2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725125720; c=relaxed/simple;
-	bh=XN2PsVitdwqyT+0EuFJyx51meuS/idl3glEF5fMYEO0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sgGL66L1JgwjFkgzvhg7k4keKtlRvUOXfE3E7tFDsrj3kFqdMigsRccQpknhJC/xc4zysUBG346I6Pc61VQFKv/AkGcHWiMhkdPq0wKgJ/LGjUUPrg4K23KlEvBVV++5pm0CVNDeIwX7AqLsVEXKmySG/lfak8CqrdQQrm6IQX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SdfP09vQ; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725125719; x=1756661719;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XN2PsVitdwqyT+0EuFJyx51meuS/idl3glEF5fMYEO0=;
-  b=SdfP09vQuoExcpD9inn0lQszbINo8yTg2Ef0L7KGDmnx2nDytYcsLfPm
-   jppCZAXhYFKRd7rWn10DPN+NQjF2HP0TeJCVAYLzO/02VSQluosvGjNTj
-   bDzlheEdh2/aZPISo4AaYzItckiuI8D+R0xCoU7dBapOFkJkstMGs1w5q
-   ngA/6HK+21taVj6dQtCRL2c9cOw3K8jov+5+b1IN6xEKwcGxI8k9fXTvG
-   bTAZQpDKWrBUHTG2maTOyWnRFY5OFheebWHmJbtPlFdGQxoBB43hwd/wV
-   nTFQSBT0VjgRHGU5P1GvMgd1VvebZxNtQLqtMCi36yMvRC/OOWBwyAtib
-   g==;
-X-CSE-ConnectionGUID: siq+2CthRASfwtJCQcwUwQ==
-X-CSE-MsgGUID: U0SuGwkgQgabUjyyOSw/Lw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11181"; a="46258293"
-X-IronPort-AV: E=Sophos;i="6.10,192,1719903600"; 
-   d="scan'208";a="46258293"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2024 10:35:18 -0700
-X-CSE-ConnectionGUID: PT2O5JZcSyCtWNy+z3Irog==
-X-CSE-MsgGUID: qyimSlEjTtmy07lmiKhruw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,192,1719903600"; 
-   d="scan'208";a="63885974"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 31 Aug 2024 10:35:14 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1skS0G-0002yK-0M;
-	Sat, 31 Aug 2024 17:35:12 +0000
-Date: Sun, 1 Sep 2024 01:35:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-mediatek@lists.infradead.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
-	benjamin.larsson@genexis.eu, ansuelsmth@gmail.com,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] pinctrl: airoha: Add support for EN7581 SoC
-Message-ID: <202409010106.kqFZrO3g-lkp@intel.com>
-References: <20240831-en7581-pinctrl-v3-4-98eebfb4da66@kernel.org>
+	s=arc-20240116; t=1725127907; c=relaxed/simple;
+	bh=JyNaWK9K0s83lLJcoD0b4TQy7rpDyJf4ZrqoMGJ3XMQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FZwOHHnmUqWrDFXTs6woQHR2MLP/ThSl5AqtwQaxKb1waIxaLBRpZ5SnI7GMrmqsu/znKzSIrILLOr64HhVe5OoKIKlZAKrZjQAVAVeuWFpCMm+iGJUiSdzNNbu9O95VrKmusT6Mpbm5OLo9vx5mPb3nllIPVhB5AWCA/VhBzzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=ylVd4Od3; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-2021537a8e6so24502855ad.2
+        for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 11:11:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1725127905; x=1725732705; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C+5XzVjLCMuTjYv9Ok00f+cf4AkYWNfkNc3fqTvrp/0=;
+        b=ylVd4Od3VL+WmqB1I4T0C2lG7VDHTntSF72nV4SGHvOC2LHkUjywoXw0Fp3i4gK5cv
+         7zU3f61uWRP75a1Wz2xBjbm26zW5Sc0qqDK14UCLf3wLachsJp/JaN/3V9YdLHD662in
+         VwX9HvlvYhDI0BHxiH+ICK0aUwqmWcrK58bRbNu3HWJRL6Oopm9HRAYYzsb+Q3nDRVPe
+         ziJFKLiD/oN04DR+AEkcEthpjujMqZs24girL6KlAe+8JvxLFjOUBsBvPEXfkwYXmJ5P
+         VUWIKkz+egpSJ+YuMGmcv6bN5mQYzT2EIIlHWYPG/PKbzf06UQuJACgfOaCHf0mcFVZ9
+         xq+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725127905; x=1725732705;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C+5XzVjLCMuTjYv9Ok00f+cf4AkYWNfkNc3fqTvrp/0=;
+        b=A5QUPrZ/T5vXSmXbcL8a2GFMDQTLKeQSjuwpgNnxS7SoRkmVXYI9HPcM17gWEb2IK1
+         crp8NlmNBuwdxRrp69hTP3h+IeoHcjcqKo2t29OTJmu8SjjATqAlOLlVQmDc0KPNlvVO
+         1yN8o9C2uChkbUKX6lX9Y/O9W+/Y1qPoKCbyyVgwzFv/gpEKX7HjoHLgRNUM6ZCfkmYg
+         O7h+S41vAkgzSlBfoXCGPotSjgf7GEQxSQtwFCNpjuwc+RmSRplco13dOboB1tr2KK2s
+         Cd7oCZSqYWIzxTaPKGP48GW/DLIV28sKeCmYpy1lpYHTQyQ9hzeSCw8fcAi4f9FE20+M
+         xoYw==
+X-Forwarded-Encrypted: i=1; AJvYcCWQigaWtE9Snr4oQPsfIyWFop4+DxQ7Jucd5UDJ4BqZx+0x1+ZxZXIjuy/716tL459FYXdqoVn970Sn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwS+FQpYz5Frs6qfg/qALJfanWivOZOwRiNJrAxX65pNTsbu2dD
+	VwUjl8xdnsJerl3dKcx1AEOwKgQizaqJaRyb978gBaR8e3GX1672mKx9oarMxA==
+X-Google-Smtp-Source: AGHT+IFQNwjO5fnCQzoxZ9MZgPdmCvdFiQl6lsMfwMOKhxYBfGKuDEbEGB1vFlHxRZvrR2ve39znhw==
+X-Received: by 2002:a17:902:d481:b0:202:45a7:84d1 with SMTP id d9443c01a7336-2050c46e83amr105743905ad.52.1725127904987;
+        Sat, 31 Aug 2024 11:11:44 -0700 (PDT)
+Received: from [172.16.118.100] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-205152d03fasm43302265ad.114.2024.08.31.11.11.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 31 Aug 2024 11:11:44 -0700 (PDT)
+Message-ID: <e2558820-f36f-406d-8f83-95c7188c0ce3@beagleboard.org>
+Date: Sat, 31 Aug 2024 23:41:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240831-en7581-pinctrl-v3-4-98eebfb4da66@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/7] dt-bindings: connector: Add mikrobus-connector
+Content-Language: en-US
+To: Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Andrew Lunn <andrew@lunn.ch>, jkridner@beagleboard.org,
+ robertcnelson@beagleboard.org
+Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
+ <20240627-mikrobus-scratch-spi-v5-1-9e6c148bf5f0@beagleboard.org>
+ <D2AYUH4XY0SK.1SYOUCT0PLAKT@kernel.org>
+ <e0f9754e-4d84-4ab4-82a4-34cb12800927@beagleboard.org>
+ <D2AZMD2YYGAQ.1B3AGXIC7B44@kernel.org>
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <D2AZMD2YYGAQ.1B3AGXIC7B44@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Lorenzo,
+>> But here you can have subnodes, no? These could then be just
+>> enumerated as usual.
+>>
+>> &mikrobus_board {
+>> 	mikrobus_gpio: gpio {
+>> 		gpio-controller;
+>> 		#gpio-cells = <1>;
+>> 	};
+>>
+>> 	spi {
+>> 		cs-gpios = <&mikrobus_gpio 1>;
+>>
+>> 		spi@0 {
+>> 			compatible = "mydevice";
+>> 			reg = <0>;
+>> 		};
+>> 	};
+>> };
+>>
 
-kernel test robot noticed the following build warnings:
+Hi, I am now working on an approach for mikroBUS based on the apprach 
+described here: [1]
 
-[auto build test WARNING on defaf1a2113a22b00dfa1abc0fd2014820eaf065]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-arm-airoha-Add-the-chip-scu-node-for-EN7581-SoC/20240831-222958
-base:   defaf1a2113a22b00dfa1abc0fd2014820eaf065
-patch link:    https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-4-98eebfb4da66%40kernel.org
-patch subject: [PATCH v3 4/5] pinctrl: airoha: Add support for EN7581 SoC
-reproduce: (https://download.01.org/0day-ci/archive/20240901/202409010106.kqFZrO3g-lkp@intel.com/reproduce)
+I am thinking of the gpio-controller approach you seem to have used 
+here. So I wanted to inquire if there already exists a gpio-controller 
+driver that can create a proxy controller that forwards stuff to the 
+underlying actual controller. So something like the following:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409010106.kqFZrO3g-lkp@intel.com/
 
-All warnings (new ones prefixed by >>):
+&mikrobus_gpio: gpio {
 
-   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
-   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/exynos/
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pinctrl/airoha,en7581-pinctrl.yaml
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-   Using alabaster theme
+     gpio-controller;
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+     #gpio-cells = <2>;
+
+     gpios = <&gpio1 0>, <&gpi2 1>;
+
+};
+
+
+spi {
+
+     cs-gpios = <&mikrobus_gpio 1 GPIO_ACTIVE_HIGH>;
+
+};
+
+
+There does exist gpio0-virtio, but that seems to be for vm context.
+
+
+[1]: 
+https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
+
+
+Ayush Singh
+
 
