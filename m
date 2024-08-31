@@ -1,142 +1,176 @@
-Return-Path: <devicetree+bounces-98632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA036966CFD
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 01:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B98966E47
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 02:50:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A410728249A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2024 23:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A585289FE0
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 00:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E7318FDDB;
-	Fri, 30 Aug 2024 23:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3692C6B6;
+	Sat, 31 Aug 2024 00:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XHHAI1eQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MWTSE9Br"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1CC1758F
-	for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 23:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E8B1C6B5;
+	Sat, 31 Aug 2024 00:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725061520; cv=none; b=STF5S+YitFHY34Krz8Tsh6oXiVa29QHrh+oZZxQSLj0zG3RskJR93F3FTN4ipCE7ChUYJYxDfJdV/Zp8CORtRrxHFktXUX8YC6rfSKQ3BFdbKFN5u3c2800faK7fNpPCaPP3pvDCQuLWh52LZbPq7TdCS9aftHeSlBEoc8HHiW8=
+	t=1725065149; cv=none; b=SX3TArwHzrCJGDuGUNvMWlAoVlvTSMVNrGSTJ7vG6ed8xbQbuh1zD1JszZpqRELrhubVXdTET9UDFN2Bc8oIscv31uKXlR4mQY7WVw/NIccFRYECeBLviHPKM58JBvCOSn+UP1Q/2m3kHN3h/L1zwF22D+nBFpUo6/eeeIzgwl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725061520; c=relaxed/simple;
-	bh=BJrJHWK2hrRviWc8RTcAUobYhqxsaxKanbop8FqZH3w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i77uN1F8JXznih55ABtWbH6LKFTUL7qvkSjZSAfw012oTmHozRWCS2LwvIDKYsnBHxnvu05s4DMIG5biymKiQkhzx5hsoR1BiFiG7cfWz/FfGs+U+UM1I9l5XSscYl+Tk8ZsuxrZquI2g5h9/dLeyxZU4GW2LgafmYZ0Zc7YlTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XHHAI1eQ; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6b8d96aa4c3so20148567b3.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2024 16:45:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725061516; x=1725666316; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=s6RDRV/2cMLBxQkdzyFPsx7+tarsO2IXXvRThC1aAb4=;
-        b=XHHAI1eQL60aX69x6/I7Zm4WA6bX4rxWBSF+lOSPxKd1r1G+V0SVZZ1/B2QE1cfpff
-         tt+j6SY/wmRRO7BQWtpWZtC3lJScrIPAvAKDN30rvqARw86rDD1b3x7lmH/1qsVzXN2s
-         8LRIvnxRHzSP6Qc/kJwmpHw+spNUmk7uS87VMBOOj3o00/TMQTGRZtC/ggN6GnK8KvdZ
-         K4LQ9qFZLT8/+NT1NNcVoGcE/RBZEhIEd1YIVQZLMJSnXqRY0PLFNNlsATMaxQK0xe0Z
-         1I0j+X8PRuYoWtirH5dMaDhZ6rE7Hj/1/NGRAmdGbGqBryhrjG2LTwue/WtY/5W4papy
-         smQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725061516; x=1725666316;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s6RDRV/2cMLBxQkdzyFPsx7+tarsO2IXXvRThC1aAb4=;
-        b=XK8P3iAzBUY3ebOLNxyzf3439WNVqUL9DIx7fBJyYo/sVnlBXLyGJl0CMxJCyc3ylG
-         pr/eircIlVsHiDaddPPzrq7ZcNuPsYPAqGhCQb3E/ujFPPS+ZzD/vSR3tqvw8gtu6ez1
-         2hAwQMYBAPsYI1dPYAoXObUCBBvZhY6VPNs2K/XK9S16iT5gflyMu+exBhHhTyIAh4KC
-         ZL7fd9kINyNF9VSzZDDFHp6OGcGOKulhC2w1xZKrkBU9fbHPZIXMW/22E+sL+NEcggub
-         l93RGKVoS29lazYkDlh/wH9GIP78vi8bGYGPCMvIPBCCXCzqSxRDUw2fXdOiYvkQA2qx
-         ovtw==
-X-Forwarded-Encrypted: i=1; AJvYcCWsQ/YIguP1AyMtXxbRxhG6iCN057e00w72NbIhHxODycPI5U1Xi6KPVEik5fKhvwMFaaAPkI7xiYrM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8p0/rqpWN+/GKApHafq8XfGuk5uWK5m7CHFK5PCllwpq1mRV6
-	LzdUC3EEphBqx587HiruMaxUxN0am4BesEWCjFjXCyuXupLUwMybG1GwwogtfsIlzAHIEoYlM3M
-	WDhLZHD7zub3yUjF9BWSN0kOk3xG4mqqpTJNx0A==
-X-Google-Smtp-Source: AGHT+IHfhSbm43+Kc4Ly206lcH17lzoQ0MsCuKhc2fSpqgnSY7QJASQeQlrIK7n1P7aXyz3Fk75oT++EVgArwU/kRyY=
-X-Received: by 2002:a05:690c:660b:b0:6be:28ab:d873 with SMTP id
- 00721157ae682-6d40d88b9e1mr47313387b3.2.1725061516161; Fri, 30 Aug 2024
- 16:45:16 -0700 (PDT)
+	s=arc-20240116; t=1725065149; c=relaxed/simple;
+	bh=m2q0EIE3WOnElSaZtNtUDPmT9aG++HAOSqsq5F8ycZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n/qH6Q98w7AIxEhX9KT1B+/LYnYpNRjuIrmMmSIbhaEn1UkLZQLduP2iXE9yryA4z7f8Y8aXzqcvK8OD3GhEAnpwhdvM7P6DlEkAM6h7WZ2gHfgV/HtGgpkKLoNtBfGhWR6l7OvoumPzTtvlcFSPcD6KG6W5NVIpJ506wi1+hM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MWTSE9Br; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725065148; x=1756601148;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=m2q0EIE3WOnElSaZtNtUDPmT9aG++HAOSqsq5F8ycZo=;
+  b=MWTSE9BrC/5wP9addTlwbMw1dEATUI7rCIfIYUbugJkwl1SJt4kS6XAt
+   kKaHQO9aF4jNREzLw1nG6+D1xWn5Nr3YhPmZ/LwcWMwovgRImF3eWuUZE
+   A8o5JEK36S42uFjj3xZ7uyA0foB08EZR/YfH3e7Pt1h6WhGfbx3q1GroC
+   1ZD6L+e6BP/XlMdLChPE8m2351zVwUz5GCqUFkrW5AI/dWtpllpV15Lei
+   2xpIKWyfiofZGied+59zT1hGcBohExjkl1HchBOXEIUoRWV7uqYtFzssz
+   89SgVcJKeWb1ci9U7Pp0IqTIkafNUrWFR+WRh0/Lf9k4dFIgz8jFQyiqp
+   A==;
+X-CSE-ConnectionGUID: /F8T9exoRvyR/XD7KIZIOw==
+X-CSE-MsgGUID: lOJJfuMDSjWrvDP13Vkx3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11180"; a="23892878"
+X-IronPort-AV: E=Sophos;i="6.10,190,1719903600"; 
+   d="scan'208";a="23892878"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2024 17:45:47 -0700
+X-CSE-ConnectionGUID: u/GJuGqQQlK5hrQMr3hglw==
+X-CSE-MsgGUID: k697wz3HTuSYiLlEI6//FQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,190,1719903600"; 
+   d="scan'208";a="68458817"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 30 Aug 2024 17:45:43 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1skCFJ-0002Fc-06;
+	Sat, 31 Aug 2024 00:45:41 +0000
+Date: Sat, 31 Aug 2024 08:45:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Subject: Re: [PATCH v5 2/3] iio: adc: sophgo-saradc: Add driver for Sophgo
+ CV1800B SARADC
+Message-ID: <202408310817.GT3TMpnv-lkp@intel.com>
+References: <20240829-sg2002-adc-v5-2-aacb381e869b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830-nxp-ptn3222-v2-0-4c6d8535cf6c@linaro.org>
- <20240830-nxp-ptn3222-v2-2-4c6d8535cf6c@linaro.org> <6fcaa893-70a4-44f4-afc0-853799e30774@quicinc.com>
-In-Reply-To: <6fcaa893-70a4-44f4-afc0-853799e30774@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 31 Aug 2024 02:45:05 +0300
-Message-ID: <CAA8EJpoTb_-HtBPv2=FecHvtHYQD4ipqfq3C98ky=qXEXB=_6Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] phy: add NXP PTN3222 eUSB2 to USB2 redriver
-To: Song Xue <quic_songxue@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240829-sg2002-adc-v5-2-aacb381e869b@bootlin.com>
 
-On Sat, 31 Aug 2024 at 02:13, Song Xue <quic_songxue@quicinc.com> wrote:
-> On 8/30/2024 4:20 PM, Dmitry Baryshkov wrote:
-> > The NXP PTN3222 is the single-port eUSB2 to USB2 redriver that performs
-> > translation between eUSB2 and USB2 signalling schemes. It supports all
-> > three data rates: Low Speed, Full Speed and High Speed.
-> >
-> > The reset state enables autonegotiation of the PHY role and of the data
-> > rate, so no additional programming is required.
-> >
-> > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > Tested-by: Konrad Dybcio <konradybcio@kernel.org>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >   drivers/phy/Kconfig           |  11 ++++
-> >   drivers/phy/Makefile          |   1 +
-> >   drivers/phy/phy-nxp-ptn3222.c | 123 ++++++++++++++++++++++++++++++++++++++++++
-> >   3 files changed, 135 insertions(+)
+Hi Thomas,
 
-[trimmed]
+kernel test robot noticed the following build warnings:
 
-> > +
-> > +MODULE_DESCRIPTION("NXP PTN3222 eUSB2 Redriver driver");
-> > +MODULE_LICENSE("GPL");
-> >
-> The I2C driver just realizes the function on reset and PWR. What about
-> other I2C driver function like I2C interface operations,
+[auto build test WARNING on 5be63fc19fcaa4c236b307420483578a56986a37]
 
-I don't quite understand what you mean by this. Could you please clarify?
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Bonnefille/dt-bindings-iio-adc-sophgo-cv1800b-saradc-Add-Sophgo-CV1800B-SARADC/20240829-203431
+base:   5be63fc19fcaa4c236b307420483578a56986a37
+patch link:    https://lore.kernel.org/r/20240829-sg2002-adc-v5-2-aacb381e869b%40bootlin.com
+patch subject: [PATCH v5 2/3] iio: adc: sophgo-saradc: Add driver for Sophgo CV1800B SARADC
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240831/202408310817.GT3TMpnv-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240831/202408310817.GT3TMpnv-lkp@intel.com/reproduce)
 
->  auto-suspend,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408310817.GT3TMpnv-lkp@intel.com/
 
-I think you mean pm_runtime here. It's a valid case, but granted that
-it should stay enabled when USB controller is enabled, the gain should
-be pretty limited. I'll consider a followup patch implementing
-pm_runtime for the sake of being able to disable I2C host if DWC3
-controller disables the PHY.
+All warnings (new ones prefixed by >>):
 
-> remote wakeup,
+>> drivers/iio/adc/sophgo-cv1800b-adc.c:120:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+     120 |                 u32 status_reg = readl(saradc->regs + CV1800B_ADC_CYC_SET_REG);
+         |                 ^
+   1 warning generated.
 
-Not supported by design. PTN3222 doesn't have IRQ pins to report
-events to the host.
 
-> memory maps etc.
+vim +120 drivers/iio/adc/sophgo-cv1800b-adc.c
 
-huh?
-
->  Who will enable these? I think it is not
-> incomplete I2C driver, if on someday, ptn3222 is used as I2C device.
-
-Well, I'm using it as an I2C device.
+    88	
+    89	static int cv1800b_adc_read_raw(struct iio_dev *indio_dev,
+    90					struct iio_chan_spec const *chan,
+    91					int *val, int *val2, long mask)
+    92	{
+    93		struct cv1800b_adc *saradc = iio_priv(indio_dev);
+    94	
+    95		switch (mask) {
+    96		case IIO_CHAN_INFO_RAW:{
+    97			u32 sample;
+    98	
+    99			scoped_guard(mutex, &saradc->lock) {
+   100				int ret;
+   101	
+   102				cv1800b_adc_start_measurement(saradc, chan->scan_index);
+   103				ret = cv1800b_adc_wait(saradc);
+   104				if (ret < 0)
+   105					return ret;
+   106	
+   107				sample = readl(saradc->regs + CV1800B_ADC_CH_RESULT_REG(chan->scan_index));
+   108			}
+   109			if (!(sample & CV1800B_ADC_CH_VALID))
+   110				return -ENODATA;
+   111	
+   112			*val = sample & CV1800B_ADC_CH_RESULT;
+   113			return IIO_VAL_INT;
+   114			}
+   115		case IIO_CHAN_INFO_SCALE:
+   116			*val = 3300;
+   117			*val2 = 12;
+   118			return IIO_VAL_FRACTIONAL_LOG2;
+   119		case IIO_CHAN_INFO_SAMP_FREQ:
+ > 120			u32 status_reg = readl(saradc->regs + CV1800B_ADC_CYC_SET_REG);
+   121			int clk_div = (1 + FIELD_GET(CV1800B_MASK_CLKDIV, status_reg));
+   122			int freq = clk_get_rate(saradc->clk) / clk_div;
+   123			int nb_startup_cycle = 1 + FIELD_GET(CV1800B_MASK_STARTUP_CYCLE, status_reg);
+   124			int nb_sample_cycle = 1 + FIELD_GET(CV1800B_MASK_SAMPLE_WINDOW, status_reg);
+   125			int nb_compare_cycle = 1 + FIELD_GET(CV1800B_MASK_COMPARE_CYCLE, status_reg);
+   126	
+   127			*val = freq / (nb_startup_cycle + nb_sample_cycle + nb_compare_cycle);
+   128			return IIO_VAL_INT;
+   129		default:
+   130			return -EINVAL;
+   131		}
+   132	}
+   133	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
