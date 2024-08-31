@@ -1,180 +1,157 @@
-Return-Path: <devicetree+bounces-98716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43827967132
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:14:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3746967137
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E22891F210C9
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:14:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D5B6B22690
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:15:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAACD17DE16;
-	Sat, 31 Aug 2024 11:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939D817E01C;
+	Sat, 31 Aug 2024 11:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="t0VEA7Ie"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgRa8u81"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E641181317
-	for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 11:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D4D17DFEB;
+	Sat, 31 Aug 2024 11:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725102815; cv=none; b=SU3w+60AA5NQxBVxeYCId1QA3owjnfLyxSMnREaohndH6lshfOlbySi4oqSZvllvzJvM5dSto4CIgjwYR5PATOaq21+zi3yyYXDhnhZpRUDZujC/ARyvI/IB5eIGgxGM+o3PVY08co6YpXbTdftPyPFyyS2xz5DnKQ5yb82yAp0=
+	t=1725102867; cv=none; b=FOp9TsvLx5TfpxGYoKfs21X2u0oQOeIxlHT4rJrGfMCBvAJt90MfhPbKNHPU/26e6HmaNZNCGvMSkcU+bTnMA/64qAzL65uqHW9BDaOXR8VHbEjG9AKtjcr73qpVcZSGxy2KGgpiiic2SuXRrfZg3SRfNIM6bTUgJxAwsoTVeX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725102815; c=relaxed/simple;
-	bh=edbM/3TAGfeqort+xVmo0O+PZME0wyHoMvqOD2fEG1E=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pa9vAEBLOnUUC6znh84fG/IBN8ZdJJ+pOoT6ILk3eDu/UYxUM28raVyg7vVUWANRrWU6yvyHO7VF89/rwPf0guLRym8woPGnU0GvsBYTRNmt8jZHZNSfvRYLNF3GoLB2JsAeFy+GGk/PooL34PdL3b14ubTDRvDgiWGBEUoP3aM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=t0VEA7Ie; arc=none smtp.client-ip=185.70.40.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1725102812; x=1725362012;
-	bh=G1HciThtxbRjzDlZaKZyocJPb1VkjxqvDwhyzO94G+I=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=t0VEA7IeLBAMyOltI5bAl456/ebap4GLdP/zftos12hBuY1b/3FYi1HFt/XQ0RTzM
-	 3vAGPsnsOOWDAkZB6afhDX8HSsiEru5McQP7h4Pl+BZw+h30TbCTTAd/YmyExK3VZq
-	 Jklmu1TsoM9cD+e4j+wkK0mD+DRXt6s1o1JZ9xYPpOD/UZRzP6o5cq5YkVrBfS9LyZ
-	 ojBuW3hr8+oZvuGfML6tu1mnXE7HhYMko6GcZ+tBi/n+awC/DAKznhGhaBqmPJEr6V
-	 87NoywDqRMX1TCE/1GA/tq6DEFXDh4Ypq4VbPo+6z4b6/9ggaitvXWa6VMD8VZDAEB
-	 eJ7UP35+KQXyg==
-Date: Sat, 31 Aug 2024 11:13:26 +0000
-To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-From: Harry Austen <hpausten@protonmail.com>
-Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Harry Austen <hpausten@protonmail.com>
-Subject: [PATCH 6/6] clk: clocking-wizard: move dynamic reconfig setup behind flag
-Message-ID: <20240831111056.3864-7-hpausten@protonmail.com>
-In-Reply-To: <20240831111056.3864-1-hpausten@protonmail.com>
-References: <20240831111056.3864-1-hpausten@protonmail.com>
-Feedback-ID: 53116287:user:proton
-X-Pm-Message-ID: ca92a0caa7a068db06bbfe0ef97d3fbcd5490ea2
+	s=arc-20240116; t=1725102867; c=relaxed/simple;
+	bh=JoeQ1+9FykwPktoL15ThTao/9Vu+3+00UVGBonSwU0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=db6ZV6+aC1jO/fPnDihBOldihxUehoJspyDqZMA5INPw26ffN/QVRlRkLau8oCwdgKJUWHQOUnzzMrnp3MKKu9ZbCZn811DO6eK88DwPowfsOrpkCMZ9OwN2xnwMk5WDWovm+qTyAs3dtputSpoB4ZPDb/fXqqQYqJTy/m0B6GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgRa8u81; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C2E8C4CEC0;
+	Sat, 31 Aug 2024 11:14:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725102866;
+	bh=JoeQ1+9FykwPktoL15ThTao/9Vu+3+00UVGBonSwU0A=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PgRa8u81fp8I5BesmFFAMHoypMHilmrdMf9Iy5m16yRQ5eYOhlRIJrS/QzzfabJjD
+	 z7V+taqA+3T0WLSH5OeGxM9HgmAV5ZfzlpH3gYKK4KeXO3PccYtG7H9LC67vhK+D2k
+	 9PXfWXMF9DPSlGB7jh5Uq39NdeBxUvluSQngLrf+IZsuucRUtBuRLspNFhj7Wuw6nu
+	 BT77xAEngPGRXXktE3Hc6L1q3ebrVJmCw/6YsvRi+/EnCjlPv/aLFn4GvEixoaKFtk
+	 Kyu46zCyrZ4hbYuhPQY7wJck/9Rp9A4fycU+A2A00nPBGjQbrikLT4hYw8EQhH3m/6
+	 oG623bSI1gUyg==
+Date: Sat, 31 Aug 2024 12:14:15 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, =?UTF-8?B?TWlxdcOobA==?= Raynal
+ <miquel.raynal@bootlin.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 0/3] Add SARADC support on Sophgo CV18XX series
+Message-ID: <20240831121415.4888cf11@jic23-huawei>
+In-Reply-To: <20240829-sg2002-adc-v5-0-aacb381e869b@bootlin.com>
+References: <20240829-sg2002-adc-v5-0-aacb381e869b@bootlin.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Xilinx clocking wizard IP core's dynamic reconfiguration support is
-optionally enabled at build time. Use the new boolean devicetree
-property to indicate whether the hardware supports this feature or not.
+On Thu, 29 Aug 2024 14:31:49 +0200
+Thomas Bonnefille <thomas.bonnefille@bootlin.com> wrote:
 
-Signed-off-by: Harry Austen <hpausten@protonmail.com>
----
- drivers/clk/xilinx/clk-xlnx-clock-wizard.c | 73 +++++++++++-----------
- 1 file changed, 38 insertions(+), 35 deletions(-)
+> This patchset adds initial ADC support for Sophgo CV18XX series SoC. This driver can
+> work with or without interrupt.
+> 
+> Link: https://github.com/sophgo/sophgo-doc/releases/download/sg2002-trm-v1.0/sg2002_trm_en.pdf
+> 
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Applied patches 1 and 2 to the togreg branch of iio.git. Currently that's
+just pushed out as testing because I want to rebase shortly to get some
+usptream fixes needed for other series.
 
-diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xilin=
-x/clk-xlnx-clock-wizard.c
-index 1a65a7d153c35..967eacc28050d 100644
---- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-+++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-@@ -1146,20 +1146,6 @@ static int clk_wzrd_probe(struct platform_device *pd=
-ev)
- =09if (IS_ERR(clk_wzrd->base))
- =09=09return PTR_ERR(clk_wzrd->base);
-=20
--=09ret =3D of_property_read_u32(np, "xlnx,speed-grade", &clk_wzrd->speed_g=
-rade);
--=09if (!ret) {
--=09=09if (clk_wzrd->speed_grade < 1 || clk_wzrd->speed_grade > 3) {
--=09=09=09dev_warn(&pdev->dev, "invalid speed grade '%d'\n",
--=09=09=09=09 clk_wzrd->speed_grade);
--=09=09=09clk_wzrd->speed_grade =3D 0;
--=09=09}
--=09}
--
--=09clk_wzrd->clk_in1 =3D devm_clk_get(&pdev->dev, "clk_in1");
--=09if (IS_ERR(clk_wzrd->clk_in1))
--=09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->clk_in1),
--=09=09=09=09     "clk_in1 not found\n");
--
- =09clk_wzrd->axi_clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
- =09if (IS_ERR(clk_wzrd->axi_clk))
- =09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->axi_clk),
-@@ -1170,31 +1156,48 @@ static int clk_wzrd_probe(struct platform_device *p=
-dev)
- =09=09return -EINVAL;
- =09}
-=20
--=09ret =3D clk_wzrd_register_output_clocks(&pdev->dev, nr_outputs);
--=09if (ret)
--=09=09return ret;
--
--=09clk_wzrd->clk_data.num =3D nr_outputs;
--=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_get, =
-&clk_wzrd->clk_data);
--=09if (ret) {
--=09=09dev_err(&pdev->dev, "unable to register clock provider\n");
--=09=09return ret;
--=09}
-+=09if (of_property_read_bool(np, "xlnx,dynamic-reconfig")) {
-+=09=09ret =3D of_property_read_u32(np, "xlnx,speed-grade", &clk_wzrd->spee=
-d_grade);
-+=09=09if (!ret) {
-+=09=09=09if (clk_wzrd->speed_grade < 1 || clk_wzrd->speed_grade > 3) {
-+=09=09=09=09dev_warn(&pdev->dev, "invalid speed grade '%d'\n",
-+=09=09=09=09=09 clk_wzrd->speed_grade);
-+=09=09=09=09clk_wzrd->speed_grade =3D 0;
-+=09=09=09}
-+=09=09}
-=20
--=09if (clk_wzrd->speed_grade) {
--=09=09clk_wzrd->nb.notifier_call =3D clk_wzrd_clk_notifier;
-+=09=09clk_wzrd->clk_in1 =3D devm_clk_get(&pdev->dev, "clk_in1");
-+=09=09if (IS_ERR(clk_wzrd->clk_in1))
-+=09=09=09return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->clk_in1),
-+=09=09=09=09=09     "clk_in1 not found\n");
-=20
--=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
--=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09ret =3D clk_wzrd_register_output_clocks(&pdev->dev, nr_outputs);
- =09=09if (ret)
--=09=09=09dev_warn(&pdev->dev,
--=09=09=09=09 "unable to register clock notifier\n");
-+=09=09=09return ret;
-+
-+=09=09clk_wzrd->clk_data.num =3D nr_outputs;
-+=09=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_ge=
-t,
-+=09=09=09=09=09=09  &clk_wzrd->clk_data);
-+=09=09if (ret) {
-+=09=09=09dev_err(&pdev->dev, "unable to register clock provider\n");
-+=09=09=09return ret;
-+=09=09}
-=20
--=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
--=09=09=09=09=09=09 &clk_wzrd->nb);
--=09=09if (ret)
--=09=09=09dev_warn(&pdev->dev,
--=09=09=09=09 "unable to register clock notifier\n");
-+=09=09if (clk_wzrd->speed_grade) {
-+=09=09=09clk_wzrd->nb.notifier_call =3D clk_wzrd_clk_notifier;
-+
-+=09=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
-+=09=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09=09if (ret)
-+=09=09=09=09dev_warn(&pdev->dev,
-+=09=09=09=09=09 "unable to register clock notifier\n");
-+
-+=09=09=09ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
-+=09=09=09=09=09=09=09 &clk_wzrd->nb);
-+=09=09=09if (ret)
-+=09=09=09=09dev_warn(&pdev->dev,
-+=09=09=09=09=09 "unable to register clock notifier\n");
-+=09=09}
- =09}
-=20
- =09return 0;
---=20
-2.46.0
+Thanks,
 
+Jonathan
+
+
+
+
+> ---
+> Changes in v5:
+> - Add the ability to read the sample frequency
+> - Edit commit message to remove No-Die reference and add precision on
+>   the ADC series
+> - Rename binding and driver file to match compatible
+> - Reformat the channel property in the binding
+> - Clean driver code
+> - Link to v4: https://lore.kernel.org/r/20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com
+> 
+> Changes in v4:
+> - Lowercase register hexadecimal value in dts
+> - Reorder properties in dts
+> - Use only a const in the compatible property of the device tree bindings
+> - Specify the series of SoC in the driver to avoid confusing with other
+>   Sophgo SoCs
+> - Add channel description in the bindings
+> - Use FIELD_PREP in the default configuration
+> - Index channels from 0
+> - Return PTR_ERR instead of IS_ERR
+> - Link to v3: https://lore.kernel.org/r/20240731-sg2002-adc-v3-0-5ac40a518c0a@bootlin.com
+> 
+> Changes in v3:
+> - Subdivide default cycle configuration into multiple elementary
+>   configurations
+> - Fix formatting in the driver
+> - Use devm_mutex_init
+> - Use devm_clk_get_enabled now because the clock is no more optional
+> - Remove handling of Saradc in No-Die Domain as RTC isn't implemented yet
+> - Use cv1800-saradc as default compatible instead of a wildcard
+> - Remove platform_set_drvdata as it wasn't used
+> - Link to v2: https://lore.kernel.org/r/20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com
+> 
+> Changes in v2:
+> - Drop modifications in MAINTAINERS file
+> - Rename the ADC from "sophgo-adc" to "sophgo-cv18xx-adc" to avoid
+>   conflict with ADCs available in future Sophgo SoCs.
+> - Reorder nodes in DT to match DTS coding style
+> - Switch from including <linux/of.h> to <linux/mod_devicetable.h>
+> - Use scoped_guard instead of mutex_lock/unlock
+> - Check IRQ Status in the handler
+> - Change IIO device name
+> - Use devm_clk_get_optional_enabled instead of a clock variable
+> - Init completion before the IRQ request
+> - Removed unnecessary iio_info structure in the private data of the
+>   driver
+> - Use SoC specific compatible in the bindings and device trees
+> - Link to v1: https://lore.kernel.org/r/20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com
+> 
+> ---
+> Thomas Bonnefille (3):
+>       dt-bindings: iio: adc: sophgo,cv1800b-saradc: Add Sophgo CV1800B SARADC
+>       iio: adc: sophgo-saradc: Add driver for Sophgo CV1800B SARADC
+>       riscv: dts: sophgo: Add SARADC description for Sophgo CV1800B
+> 
+>  .../bindings/iio/adc/sophgo,cv1800b-saradc.yaml    |  83 ++++++++
+>  arch/riscv/boot/dts/sophgo/cv18xx.dtsi             |  22 +++
+>  drivers/iio/adc/Kconfig                            |  10 +
+>  drivers/iio/adc/Makefile                           |   1 +
+>  drivers/iio/adc/sophgo-cv1800b-adc.c               | 218 +++++++++++++++++++++
+>  5 files changed, 334 insertions(+)
+> ---
+> base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
+> change-id: 20240527-sg2002-adc-924b862cd3f2
+> 
+> Best regards,
 
 
