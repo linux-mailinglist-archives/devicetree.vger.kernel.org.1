@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-98659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26E7966FBF
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 08:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CE8966FC2
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 08:23:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D36BF1C21757
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 06:20:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 132DC1C21843
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 06:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDBE1537A3;
-	Sat, 31 Aug 2024 06:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B64215A4B3;
+	Sat, 31 Aug 2024 06:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tRu8rxLK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mRoHtdHd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930581531F2;
-	Sat, 31 Aug 2024 06:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F3C1E493;
+	Sat, 31 Aug 2024 06:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725085238; cv=none; b=PrI3gz8qd570lO2MEFzFnkUm6MoKBIS9c7eZP/HQDV7cf93LJC8yaIKpkLcc/LAICE34pMWLLnUHyOt6c8osTazgqN7NZs9ofDd7bP3t+fxzQD2vtE4Lxj9LbrcHqzVC2XaYljh8eoOf2q+KDrM0XzS/8apUlUkQ7KibWqSB37E=
+	t=1725085410; cv=none; b=N31iAcFXH+P2+CLM4kewrjhfii6SHd/3y/bKYB5c5q//IKHG2bBKU/cKlxDEpWmTc7SNynzZIMtgGGTW733TKbDz7z/OvtsT8sxgOZ7dPIWYVurAZW8C0onPi6iNmO7l296kp+1lsQRN9Hvb/Ac8gkCwbju8TQYoazRDAQyl2Xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725085238; c=relaxed/simple;
-	bh=YNJVpvPoHgrYf5lFtoCPb60BgybDZKL6rDp195m3bak=;
+	s=arc-20240116; t=1725085410; c=relaxed/simple;
+	bh=bRNfiGRxfdz8XKeOi6s0p/bqBMfMbr0d5Gc66yCOE68=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dzr7IYP0/A3ZSp6uotDaOkwRoFEvS5mx2Hz4LKz+5zGsq2594x4rHX+S+mH2GQY735q7ur5R6qIYZtlBbwshsVl2Krva1kS5QYjRKjYwP/fT3sOluGmYjIYV5sJbVrSJf3HLq/q06De87qTDXRWq4VHb6HDqJwdw4a/odLdV0+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tRu8rxLK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DDEEC4CEC0;
-	Sat, 31 Aug 2024 06:20:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HPSTcvPYMnGfpBn30EVhrvDkCjTCj0EcXc2Iz2DJgEzrKJApBRKWj+2aguQz/AZTNxW3EQNHorD/8YS1COGvLbXsQWq4d5BfFl3aYvNSZyJ4QkO7rucfu6Ih34r5bJ638gByqm/rFufXacZhKdi2MV5/mQvOGttmDXKi5KhO5kY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mRoHtdHd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7E5CC4CEC0;
+	Sat, 31 Aug 2024 06:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725085238;
-	bh=YNJVpvPoHgrYf5lFtoCPb60BgybDZKL6rDp195m3bak=;
+	s=k20201202; t=1725085409;
+	bh=bRNfiGRxfdz8XKeOi6s0p/bqBMfMbr0d5Gc66yCOE68=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tRu8rxLKpKT9kvCicA9U9XuTp3xqW+DK1miYOIk7X7G1XeRKamDJM/xwlcPgd6wdU
-	 ac7MBKoufON7LhWg3aNAKs+o9uNHOkqUVH6hCLfafoAjiIblVOoNcOF8jJbLSp+deV
-	 9Y3U2QUtTSOrBPvEHIR9eFrgcutEqd8Hxt2Qbe0C53z5wzWGcz4ffT+lKc83b0UOrX
-	 fcCRLu9a7ZGQjfeTjsZPwkBtK5gmgNhO/bZusmVgyuku2YSKWDSe0HJGR1MwGgmW40
-	 Ufp27fYXDHsIFM2rUjfB7kbKuf6zQJehDjITTtg8hmLP2peG9RnuLnct1AmZFHfDr/
-	 4WfRYFJiOOl7Q==
-Date: Sat, 31 Aug 2024 08:20:35 +0200
+	b=mRoHtdHdOkFzmPNKWC7PE4AK3PEytKSWPhRCWTSIzUB2kD7anv8odmlxDXZNLlXKT
+	 nKNU0jLJmRsZtJQWWdMfsZ9vPfPFNbdsNuIX09vm9B+q1KGcvjzp4//XHFZEQ3rplf
+	 OkMkWWa3i5S/oHIR24bThBcZmz2b040QtkROy9ta9XWfAjZsAKSFHs0Mr66JlaqZ2M
+	 X96sEnGa7LQapHjC7EY/NDyek2TzqGqoGjFK+mTYTNGMgvQtrVLp21Exi0ZaZzh5YK
+	 07G6pxXF8WGcb+CnEhLhetAcpEEqCKo9AOsNpKBhCYuMRbnOHCcyJoWBQzkbxMGgbl
+	 QCQ+jpCNl5xMw==
+Date: Sat, 31 Aug 2024 08:23:26 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Aubin Constans <aubin.constans@microchip.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: atmel,sama5d2-sdhci: Add
- sama7d65 compatible
-Message-ID: <3wysn3i3syox3n7howwnewuy6h7457goeafbrilptewxyuqitr@cdyjlzp5s7bu>
-References: <20240830-atmel-sdhci-v3-0-7c97a0872af4@microchip.com>
- <20240830-atmel-sdhci-v3-2-7c97a0872af4@microchip.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: broonie@kernel.org, linux-spi@vger.kernel.org, 
+	otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: trivial-devices: Document spi-cpha and
+ spi-cpol
+Message-ID: <cyjfrkrszis2ye6vbuasblze4ufesk3wagfwrva6ljv4yfxnxc@2sqin2agzmle>
+References: <20240830171849.3750165-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +59,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240830-atmel-sdhci-v3-2-7c97a0872af4@microchip.com>
+In-Reply-To: <20240830171849.3750165-1-festevam@gmail.com>
 
-On Fri, Aug 30, 2024 at 08:21:21PM +0530, Dharma Balasubiramani wrote:
-> Add mmc binding documentation for sama7d65.
+On Fri, Aug 30, 2024 at 02:18:49PM -0300, Fabio Estevam wrote:
+> There may be cases where a trivial-device needs to describe
+> the SPI clock polarity and phase via spi-cpol and spi-cpha
+> properties.
 > 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Document these properties to fix the following dt-schema warnings:
+> 
+> rv1108-elgin-r1.dtb: display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 > ---
->  Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Changes since v1:
+> - Add spi-cpha and spi-cpol to trivial-devices.yaml. (Conor)
 > 
 
-Where is any user of this? Why are you adding bindings without users?
+No, this does not look correct. Why suddenly all devices get CPHA/CPOL?
+This is supposed to be only for devices REALLY needing it (as discussed
+with patch moving it out of spi-peripheral-props, did anything change
+here?).
+
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
 Best regards,
 Krzysztof
