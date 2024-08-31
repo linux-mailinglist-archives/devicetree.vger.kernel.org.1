@@ -1,563 +1,119 @@
-Return-Path: <devicetree+bounces-98760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C375967237
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 16:28:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EEBF967257
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 17:18:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F9131F21A21
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 14:28:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C95F21C213FF
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 15:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5231CF92;
-	Sat, 31 Aug 2024 14:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09D3200AE;
+	Sat, 31 Aug 2024 15:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NIhS9k7s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ik5vziBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D971CD23;
-	Sat, 31 Aug 2024 14:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AF51CF92
+	for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 15:18:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725114530; cv=none; b=O99++vlseP70MibIO3b2W1s1MXa/zfvLWjJfzHZBhsMHIOzq9dp3stc9InSkmOt3OWBZSAn1/88TqlbaYqIMOHpkcyrI1XHobZXE5Z9PFtnd3PIevEGjJ1zSn10o0F4V9rUM1WiLVMfrz0YaYRKv0cgjm5G7jHwlmx7GPqr+yHI=
+	t=1725117520; cv=none; b=s8qag1TB08ovfNqMfASgCsve8lpIRSszb760ws81O0RO36KVUC6h5TVwyP7fjBDMuhP2NBwEk0hnQg9cwYV0OrUXP6iK+vnGzgaqTbLEq00vbHSoZwP9ZwKbIuTqtCQVnmpkuQhe1xNl2n4Lr9cQI4GoOgR1vCjrwzgD872Vc6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725114530; c=relaxed/simple;
-	bh=fjyDdgd4bThsNIbVXL57SaqHE6NEjNPnO3YyDw4MVLU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fJ3LQByPOkbt1BlIYlgJ52nGGey4XaoU8o0XFHfBPkeVNeHlWKKTDqo1g2/ULM1eqcUgvDrnHReYfGPtdLfSlMdBHyeW6oasswf+QVpjlHfK0uT7BOCEXB8T471rTy2ZhnEh02XT0xdGgDeh+emjGs9KUOeRNujbFqce7lSKElY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NIhS9k7s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7717BC4CEC0;
-	Sat, 31 Aug 2024 14:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725114529;
-	bh=fjyDdgd4bThsNIbVXL57SaqHE6NEjNPnO3YyDw4MVLU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=NIhS9k7sGsLVXjfhH+uy3mVIX3PfPrh5GL23V3xz0RMx7La47hI1xiqgQ5tjjVFxi
-	 h+D8gIofAdJeLsVj66eJEftQrgpkFZp1CDm1T3uJWLrOGzFVN9K8is5KJUg2p9LWS+
-	 8iCbfn8cuw/+6+eIsSY9DlRXDfNKq9mycYxAldLNcET+M8wFaN0bPl4hSUwGbrbfqB
-	 T8FJbLMt2UAauqKEW7vfKDcQDUc60kGkrdxNJxaeBvI8BgnXNuL9yWT/l17NzhkpJf
-	 /pel8nYl3w7X7Wv6PyQtaF0tojZ7sU9gm8W16pI8sYougXcJ5kF3gF7X7OE4oSezv0
-	 jtrnbqOFBo4ug==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Sat, 31 Aug 2024 16:27:50 +0200
-Subject: [PATCH v3 5/5] pwm: airoha: Add support for EN7581 SoC
+	s=arc-20240116; t=1725117520; c=relaxed/simple;
+	bh=6xJLtaObDmOGaeShpdDpq7LWbPbmVbNlIV8spAi9Etg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DeUS/MY+iQjXlGXu/TZO2jlDIk9kosb0vDzpARxxeZfXUT1Ifi2CjkyC7t8wV+3QIMUIO/yUgjQFZNX+hIYPE/8mK+GXgTCQEASHEnRbP6meAMW0twE/+0u8luU0j2X5SdPBGMM+CsWaQtGHwWZolhknZ3nDNjyv/WmyK9b7WW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ik5vziBB; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-533521cd1c3so3229428e87.1
+        for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 08:18:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725117517; x=1725722317; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q2UMVUI4g4jmAYzAMZaHww404e5oQuUeTuA5pQ89qzU=;
+        b=ik5vziBBgN4Vik6Ihqxl25uhwEM8ViJScI9wpxzBiXPO2oLP162E3cO/NAHRx1Had9
+         KFdQTecrggKFLkWi4TqomBRiQroT2TkZbIMYGVO+eWKNYc4E4z1aC6u310ItKYqNYZ8o
+         wd2oqehxTd9VJWrFQRjeUWbmfzaNUTMKt+5SvoKp4agy5Gr//CcwZ+zEAiXEcKy7HNVN
+         KWE4XChjN7N1b8ZC4KfNt09FASx3SAg23otryZ8O6i1i9r5kLgCHu/41KAk2r/x748Ou
+         SrNcT4rmRX1OUeWmfF0K84do15cHWGXZrrWukrUjcE2OpwgqIL4G63RHNTsAgB52xB65
+         E13w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725117517; x=1725722317;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q2UMVUI4g4jmAYzAMZaHww404e5oQuUeTuA5pQ89qzU=;
+        b=kbOY1DlYBJEDnZtygLhdcxU3TzCkx451ao5JJAqCz4wzsvshuxWMATfONESkotWTwg
+         EcBoXSZc+x1ifukIFpv4mpL30UGom80xgtEpNyzr8/gu//Mm+EZC6X7YlmJS24EE9zr3
+         iZnkWbor+K+vjyyAlTOVA/TM0i9n/6qojzZb8QW3ptINELRRmor+wV4NATORD0obj457
+         Y8d5m6qJoyQcTxmSI5EIp3Iy0Rp7IbsS+taQIg+eAMowSgk+M021mDNItm+tSXdDIGBk
+         IAI2RJCAGsbSt/Ks6vcDHVXVHWYpayOYhnVu4wsn+lcRklXxFKFr2UrpseHv7+pK0Y3z
+         3U9g==
+X-Forwarded-Encrypted: i=1; AJvYcCWvR2o7RBiJC2IMPmU/jmC/wye1SrEvX5OfhUUIgmNdy1mdixIGCA1j9BVfE33lUvkCdZscfveT34dM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0x4cWQY3bihRXsHGW2UJZDmZJjIFvq6SpoG8nO4RUSZKBk7Jn
+	PCVf8v0hGjqsfNE1c2XFlalHh6tJa5j4RfvEx1P1sQWggup471MftcCIrdBiM+E=
+X-Google-Smtp-Source: AGHT+IHnYlkS8E4REc8Ny1vlpDOc+iNi6ECflb4ffQMy+IrZrp40HBH8iEQemeWdfUX1zjiECecP8w==
+X-Received: by 2002:a05:6512:108f:b0:533:4785:82ab with SMTP id 2adb3069b0e04-53546b223d3mr4451419e87.1.1725117516947;
+        Sat, 31 Aug 2024 08:18:36 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8989221c24sm332116066b.196.2024.08.31.08.18.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 31 Aug 2024 08:18:36 -0700 (PDT)
+Message-ID: <3a62b4cb-5c41-4c76-a957-af8e594ca8b1@linaro.org>
+Date: Sat, 31 Aug 2024 16:18:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/29] Qualcomm iris video decoder driver
+To: quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Vedang Nagar <quic_vnagar@quicinc.com>
+References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240831-en7581-pinctrl-v3-5-98eebfb4da66@kernel.org>
-References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
-In-Reply-To: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Lee Jones <lee@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
- linux-pwm@vger.kernel.org
-X-Mailer: b4 0.14.1
 
-From: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> The result of v4l2-compliance test on SM8250:
+> 
+> v4l2-compliance 1.29.0-5239, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: a1ebb4dad512 2024-08-08 20:00:17
+> 
+> Compliance test for iris_driver device /dev/video0:
+> 
+> Driver Info:
+>          Driver name      : iris_driver
+>          Card type        : iris_decoder
 
-Introduce driver for PWM module available on EN7581 SoC.
+Hmm, so this is decoder only ?
 
-Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+What's the intention here for encoding support ?
+
+I've verified your results on the test branch but I just noticed that 
+sm8250 with the iris driver is decoder only - whereas the venus driver 
+does both, which strikes me as a bit odd.
+
+Is your intention to publish more patches to enable the encoder in 
+another series ?
+
 ---
- drivers/pwm/Kconfig      |  10 ++
- drivers/pwm/Makefile     |   1 +
- drivers/pwm/pwm-airoha.c | 435 +++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 446 insertions(+)
-
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 3e53838990f5..0a78bda0707d 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -47,6 +47,16 @@ config PWM_AB8500
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-ab8500.
- 
-+config PWM_AIROHA
-+	tristate "Airoha PWM support"
-+	depends on ARCH_AIROHA || COMPILE_TEST
-+	depends on OF
-+	help
-+	  Generic PWM framework driver for Airoha SoC.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-airoha.
-+
- config PWM_APPLE
- 	tristate "Apple SoC PWM support"
- 	depends on ARCH_APPLE || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 0be4f3e6dd43..7ee61822d88d 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
-+obj-$(CONFIG_PWM_AIROHA)	+= pwm-airoha.o
- obj-$(CONFIG_PWM_APPLE)		+= pwm-apple.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
-diff --git a/drivers/pwm/pwm-airoha.c b/drivers/pwm/pwm-airoha.c
-new file mode 100644
-index 000000000000..54dc12d20da4
---- /dev/null
-+++ b/drivers/pwm/pwm-airoha.c
-@@ -0,0 +1,435 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2022 Markus Gothe <markus.gothe@genexis.eu>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/mfd/airoha-en7581-mfd.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/gpio.h>
-+#include <linux/bitops.h>
-+#include <asm/div64.h>
-+
-+#define REG_SGPIO_CFG			0x0024
-+#define REG_FLASH_CFG			0x0038
-+#define REG_CYCLE_CFG			0x0098
-+
-+#define REG_SGPIO_LED_DATE		0x0000
-+#define SGPIO_LED_SHIFT_FLAG		BIT(31)
-+#define SGPIO_LED_DATA			GENMASK(16, 0)
-+
-+#define REG_SGPIO_CLK_DIVR		0x0004
-+#define REG_SGPIO_CLK_DLY		0x0008
-+
-+#define REG_SIPO_FLASH_MODE_CFG		0x000c
-+#define SERIAL_GPIO_FLASH_MODE		BIT(1)
-+#define SERIAL_GPIO_MODE		BIT(0)
-+
-+#define REG_GPIO_FLASH_PRD_SET(_n)	(0x0004 + ((_n) << 2))
-+#define GPIO_FLASH_PRD_MASK(_n)		GENMASK(15 + ((_n) << 4), ((_n) << 4))
-+
-+#define REG_GPIO_FLASH_MAP(_n)		(0x0014 + ((_n) << 2))
-+#define GPIO_FLASH_SETID_MASK(_n)	GENMASK(2 + ((_n) << 2), ((_n) << 2))
-+#define GPIO_FLASH_EN(_n)		BIT(3 + ((_n) << 2))
-+
-+#define REG_SIPO_FLASH_MAP(_n)		(0x001c + ((_n) << 2))
-+
-+#define REG_CYCLE_CFG_VALUE(_n)		(0x0000 + ((_n) << 2))
-+#define WAVE_GEN_CYCLE_MASK(_n)		GENMASK(7 + ((_n) << 3), ((_n) << 3))
-+
-+struct airoha_pwm {
-+	void __iomem *sgpio_cfg;
-+	void __iomem *flash_cfg;
-+	void __iomem *cycle_cfg;
-+
-+	struct device_node *np;
-+	u64 initialized;
-+
-+	struct {
-+		/* Bitmask of PWM channels using this bucket */
-+		u64 used;
-+		u64 period_ns;
-+		u64 duty_ns;
-+		enum pwm_polarity polarity;
-+	} bucket[8];
-+};
-+
-+/*
-+ * The first 16 GPIO pins, GPIO0-GPIO15, are mapped into 16 PWM channels, 0-15.
-+ * The SIPO GPIO pins are 16 pins which are mapped into 17 PWM channels, 16-32.
-+ * However, we've only got 8 concurrent waveform generators and can therefore
-+ * only use up to 8 different combinations of duty cycle and period at a time.
-+ */
-+#define PWM_NUM_GPIO	16
-+#define PWM_NUM_SIPO	17
-+
-+/* The PWM hardware supports periods between 4 ms and 1 s */
-+#define PERIOD_MIN_NS	4000000
-+#define PERIOD_MAX_NS	1000000000
-+/* It is represented internally as 1/250 s between 1 and 250 */
-+#define PERIOD_MIN	1
-+#define PERIOD_MAX	250
-+/* Duty cycle is relative with 255 corresponding to 100% */
-+#define DUTY_FULL	255
-+
-+static u32 airoha_pwm_rmw(struct airoha_pwm *pc, void __iomem *addr,
-+			  u32 mask, u32 val)
-+{
-+	val |= (readl(addr) & ~mask);
-+	writel(val, addr);
-+
-+	return val;
-+}
-+
-+#define airoha_pwm_sgpio_rmw(pc, offset, mask, val)				\
-+	airoha_pwm_rmw((pc), (pc)->sgpio_cfg + (offset), (mask), (val))
-+#define airoha_pwm_flash_rmw(pc, offset, mask, val)				\
-+	airoha_pwm_rmw((pc), (pc)->flash_cfg + (offset), (mask), (val))
-+#define airoha_pwm_cycle_rmw(pc, offset, mask, val)				\
-+	airoha_pwm_rmw((pc), (pc)->cycle_cfg + (offset), (mask), (val))
-+
-+#define airoha_pwm_sgpio_set(pc, offset, val)					\
-+	airoha_pwm_sgpio_rmw((pc), (offset), 0, (val))
-+#define airoha_pwm_sgpio_clear(pc, offset, mask)				\
-+	airoha_pwm_sgpio_rmw((pc), (offset), (mask), 0)
-+#define airoha_pwm_flash_set(pc, offset, val)					\
-+	airoha_pwm_flash_rmw((pc), (offset), 0, (val))
-+#define airoha_pwm_flash_clear(pc, offset, mask)				\
-+	airoha_pwm_flash_rmw((pc), (offset), (mask), 0)
-+
-+static int airoha_pwm_get_waveform(struct airoha_pwm *pc, u64 duty_ns,
-+				   u64 period_ns)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(pc->bucket); i++) {
-+		if (!pc->bucket[i].used)
-+			continue;
-+
-+		if (duty_ns == pc->bucket[i].duty_ns &&
-+		    period_ns == pc->bucket[i].period_ns)
-+			return i;
-+
-+		/*
-+		 * Unlike duty cycle zero, which can be handled by
-+		 * disabling PWM, a generator is needed for full duty
-+		 * cycle but it can be reused regardless of period
-+		 */
-+		if (duty_ns == DUTY_FULL && pc->bucket[i].duty_ns == DUTY_FULL)
-+			return i;
-+	}
-+
-+	return -1;
-+}
-+
-+static void airoha_pwm_free_waveform(struct airoha_pwm *pc, unsigned int hwpwm)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(pc->bucket); i++)
-+		pc->bucket[i].used &= ~BIT_ULL(hwpwm);
-+}
-+
-+static int airoha_pwm_consume_waveform(struct airoha_pwm *pc,
-+				       u64 duty_ns, u64 period_ns,
-+				       enum pwm_polarity polarity,
-+				       unsigned int hwpwm)
-+{
-+	int id = airoha_pwm_get_waveform(pc, duty_ns, period_ns);
-+
-+	if (id < 0) {
-+		int i;
-+
-+		/* find an unused waveform generator */
-+		for (i = 0; i < ARRAY_SIZE(pc->bucket); i++) {
-+			if (!(pc->bucket[i].used & ~BIT_ULL(hwpwm))) {
-+				id = i;
-+				break;
-+			}
-+		}
-+	}
-+
-+	if (id >= 0) {
-+		airoha_pwm_free_waveform(pc, hwpwm);
-+		pc->bucket[id].used |= BIT_ULL(hwpwm);
-+		pc->bucket[id].period_ns = period_ns;
-+		pc->bucket[id].duty_ns = duty_ns;
-+		pc->bucket[id].polarity = polarity;
-+	}
-+
-+	return id;
-+}
-+
-+static int airoha_pwm_sipo_init(struct airoha_pwm *pc)
-+{
-+	u32 clk_divr_val = 3, sipo_clock_delay = 1;
-+	u32 val, sipo_clock_divisor = 32;
-+
-+	if (!(pc->initialized >> PWM_NUM_GPIO))
-+		return 0;
-+
-+	/* Select the right shift register chip */
-+	if (of_property_read_bool(pc->np, "hc74595"))
-+		airoha_pwm_sgpio_set(pc, REG_SIPO_FLASH_MODE_CFG,
-+				     SERIAL_GPIO_MODE);
-+	else
-+		airoha_pwm_sgpio_clear(pc, REG_SIPO_FLASH_MODE_CFG,
-+				       SERIAL_GPIO_MODE);
-+
-+	if (!of_property_read_u32(pc->np, "sipo-clock-divisor",
-+				  &sipo_clock_divisor)) {
-+		switch (sipo_clock_divisor) {
-+		case 4:
-+			clk_divr_val = 0;
-+			break;
-+		case 8:
-+			clk_divr_val = 1;
-+			break;
-+		case 16:
-+			clk_divr_val = 2;
-+			break;
-+		case 32:
-+			clk_divr_val = 3;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+	/* Configure shift register timings */
-+	writel(clk_divr_val, pc->sgpio_cfg + REG_SGPIO_CLK_DIVR);
-+
-+	of_property_read_u32(pc->np, "sipo-clock-delay", &sipo_clock_delay);
-+	if (sipo_clock_delay < 1 || sipo_clock_delay > sipo_clock_divisor / 2)
-+		return -EINVAL;
-+
-+	/*
-+	 * The actual delay is sclkdly + 1 so subtract 1 from
-+	 * sipo-clock-delay to calculate the register value
-+	 */
-+	sipo_clock_delay--;
-+	writel(sipo_clock_delay, pc->sgpio_cfg + REG_SGPIO_CLK_DLY);
-+
-+	/*
-+	 * It it necessary to after muxing explicitly shift out all
-+	 * zeroes to initialize the shift register before enabling PWM
-+	 * mode because in PWM mode SIPO will not start shifting until
-+	 * it needs to output a non-zero value (bit 31 of led_data
-+	 * indicates shifting in progress and it must return to zero
-+	 * before led_data can be written or PWM mode can be set)
-+	 */
-+	if (readl_poll_timeout(pc->sgpio_cfg + REG_SGPIO_LED_DATE, val,
-+			       !(val & SGPIO_LED_SHIFT_FLAG), 10,
-+			       200 * USEC_PER_MSEC))
-+		return -ETIMEDOUT;
-+
-+	airoha_pwm_sgpio_clear(pc, REG_SGPIO_LED_DATE, SGPIO_LED_DATA);
-+	if (readl_poll_timeout(pc->sgpio_cfg + REG_SGPIO_LED_DATE, val,
-+			       !(val & SGPIO_LED_SHIFT_FLAG), 10,
-+			       200 * USEC_PER_MSEC))
-+		return -ETIMEDOUT;
-+
-+	/* Set SIPO in PWM mode */
-+	airoha_pwm_sgpio_set(pc, REG_SIPO_FLASH_MODE_CFG,
-+			     SERIAL_GPIO_FLASH_MODE);
-+
-+	return 0;
-+}
-+
-+static void airoha_pwm_config_waveform(struct airoha_pwm *pc, int index,
-+				       u64 duty_ns, u64 period_ns,
-+				       enum pwm_polarity polarity)
-+{
-+	u32 period, duty, mask, val;
-+
-+	duty = clamp_val(div64_u64(DUTY_FULL * duty_ns, period_ns), 0,
-+			 DUTY_FULL);
-+	if (polarity == PWM_POLARITY_INVERSED)
-+		duty = DUTY_FULL - duty;
-+
-+	period = clamp_val(div64_u64(25 * period_ns, 100000000), PERIOD_MIN,
-+			   PERIOD_MAX);
-+
-+	/* Configure frequency divisor */
-+	mask = WAVE_GEN_CYCLE_MASK(index % 4);
-+	val = (period << __ffs(mask)) & mask;
-+	airoha_pwm_cycle_rmw(pc, REG_CYCLE_CFG_VALUE(index / 4), mask, val);
-+
-+	/* Configure duty cycle */
-+	duty = ((DUTY_FULL - duty) << 8) | duty;
-+	mask = GPIO_FLASH_PRD_MASK(index % 2);
-+	val = (duty << __ffs(mask)) & mask;
-+	airoha_pwm_flash_rmw(pc, REG_GPIO_FLASH_PRD_SET(index / 2), mask, val);
-+}
-+
-+static void airoha_pwm_config_flash_map(struct airoha_pwm *pc,
-+					unsigned int hwpwm, int index)
-+{
-+	u32 addr, mask, val;
-+
-+	if (hwpwm < PWM_NUM_GPIO) {
-+		addr = REG_GPIO_FLASH_MAP(hwpwm / 8);
-+	} else {
-+		addr = REG_SIPO_FLASH_MAP(hwpwm / 8);
-+		hwpwm -= PWM_NUM_GPIO;
-+	}
-+
-+	if (index < 0) {
-+		/*
-+		 * Change of waveform takes effect immediately but
-+		 * disabling has some delay so to prevent glitching
-+		 * only the enable bit is touched when disabling
-+		 */
-+		airoha_pwm_flash_clear(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
-+		return;
-+	}
-+
-+	mask = GPIO_FLASH_SETID_MASK(hwpwm % 8);
-+	val = ((index & 7) << __ffs(mask)) & mask;
-+	airoha_pwm_flash_rmw(pc, addr, mask, val);
-+	airoha_pwm_flash_set(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
-+}
-+
-+static int airoha_pwm_config(struct airoha_pwm *pc, struct pwm_device *pwm,
-+			     u64 duty_ns, u64 period_ns,
-+			     enum pwm_polarity polarity)
-+{
-+	int index = -1;
-+
-+	index = airoha_pwm_consume_waveform(pc, duty_ns, period_ns, polarity,
-+					    pwm->hwpwm);
-+	if (index < 0)
-+		return -EBUSY;
-+
-+	if (!(pc->initialized & BIT_ULL(pwm->hwpwm)) &&
-+	    pwm->hwpwm >= PWM_NUM_GPIO)
-+		airoha_pwm_sipo_init(pc);
-+
-+	if (index >= 0) {
-+		airoha_pwm_config_waveform(pc, index, duty_ns, period_ns,
-+					   polarity);
-+		airoha_pwm_config_flash_map(pc, pwm->hwpwm, index);
-+	} else {
-+		airoha_pwm_config_flash_map(pc, pwm->hwpwm, index);
-+		airoha_pwm_free_waveform(pc, pwm->hwpwm);
-+	}
-+
-+	pc->initialized |= BIT_ULL(pwm->hwpwm);
-+
-+	return 0;
-+}
-+
-+static void airoha_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct airoha_pwm *pc = pwmchip_get_drvdata(chip);
-+
-+	/* Disable PWM and release the waveform */
-+	airoha_pwm_config_flash_map(pc, pwm->hwpwm, -1);
-+	airoha_pwm_free_waveform(pc, pwm->hwpwm);
-+
-+	pc->initialized &= ~BIT_ULL(pwm->hwpwm);
-+	if (!(pc->initialized >> PWM_NUM_GPIO))
-+		airoha_pwm_sgpio_clear(pc, REG_SIPO_FLASH_MODE_CFG,
-+				       SERIAL_GPIO_FLASH_MODE);
-+
-+	/*
-+	 * Clear the state to force re-initialization the next time
-+	 * this PWM channel is used since we cannot retain state in
-+	 * hardware due to limited number of waveform generators
-+	 */
-+	memset(&pwm->state, 0, sizeof(pwm->state));
-+}
-+
-+static int airoha_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    const struct pwm_state *state)
-+{
-+	struct airoha_pwm *pc = pwmchip_get_drvdata(chip);
-+	u64 duty = state->enabled ? state->duty_cycle : 0;
-+
-+	if (!state->enabled) {
-+		airoha_pwm_free(chip, pwm);
-+		return 0;
-+	}
-+
-+	if (state->period < PERIOD_MIN_NS || state->period > PERIOD_MAX_NS)
-+		return -EINVAL;
-+
-+	return airoha_pwm_config(pc, pwm, duty, state->period,
-+				 state->polarity);
-+}
-+
-+static int airoha_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				struct pwm_state *state)
-+{
-+	struct airoha_pwm *pc = pwmchip_get_drvdata(chip);
-+	int i;
-+
-+	/* find hwpwm in waveform generator bucket */
-+	for (i = 0; i < ARRAY_SIZE(pc->bucket); i++) {
-+		if (pc->bucket[i].used & BIT_ULL(pwm->hwpwm)) {
-+			state->enabled = pc->initialized & BIT_ULL(pwm->hwpwm);
-+			state->polarity = pc->bucket[i].polarity;
-+			state->period = pc->bucket[i].period_ns;
-+			state->duty_cycle = pc->bucket[i].duty_ns;
-+			break;
-+		}
-+	}
-+
-+	if (i == ARRAY_SIZE(pc->bucket))
-+		state->enabled = false;
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops airoha_pwm_ops = {
-+	.get_state = airoha_pwm_get_state,
-+	.apply = airoha_pwm_apply,
-+	.free = airoha_pwm_free,
-+};
-+
-+static int airoha_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct airoha_mfd *mfd;
-+	struct airoha_pwm *pc;
-+	struct pwm_chip *chip;
-+
-+	/* Assign parent MFD of_node to dev */
-+	dev->of_node = of_node_get(dev->parent->of_node);
-+	mfd = dev_get_drvdata(dev->parent);
-+
-+	chip = devm_pwmchip_alloc(dev, PWM_NUM_GPIO + PWM_NUM_SIPO,
-+				  sizeof(*pc));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	pc = pwmchip_get_drvdata(chip);
-+	pc->np = dev->of_node;
-+	pc->sgpio_cfg = mfd->base + REG_SGPIO_CFG;
-+	pc->flash_cfg = mfd->base + REG_FLASH_CFG;
-+	pc->cycle_cfg = mfd->base + REG_CYCLE_CFG;
-+
-+	chip->ops = &airoha_pwm_ops;
-+	chip->of_xlate = of_pwm_xlate_with_flags;
-+
-+	return devm_pwmchip_add(&pdev->dev, chip);
-+}
-+
-+static struct platform_driver airoha_pwm_driver = {
-+	.driver = {
-+		.name = "airoha-pwm",
-+	},
-+	.probe = airoha_pwm_probe,
-+};
-+module_platform_driver(airoha_pwm_driver);
-+
-+MODULE_AUTHOR("Lorenzo Bianconi <lorenzo@kernel.org>");
-+MODULE_AUTHOR("Markus Gothe <markus.gothe@genexis.eu>");
-+MODULE_AUTHOR("Benjamin Larsson <benjamin.larsson@genexis.eu>");
-+MODULE_DESCRIPTION("Airoha EN7581 PWM driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.46.0
-
+bod
 
