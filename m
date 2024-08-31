@@ -1,223 +1,101 @@
-Return-Path: <devicetree+bounces-98674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 495A4966FF5
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 09:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6984E966FFF
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 09:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE0E41F22DF5
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 07:06:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13D081F23046
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 07:19:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C4116DC0E;
-	Sat, 31 Aug 2024 07:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 418F91662E4;
+	Sat, 31 Aug 2024 07:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="H0TLueDx";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nzj/0dTA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="twNVno/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh1-smtp.messagingengine.com (fhigh1-smtp.messagingengine.com [103.168.172.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F63D161326;
-	Sat, 31 Aug 2024 07:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195BA1D12E6;
+	Sat, 31 Aug 2024 07:19:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725087965; cv=none; b=qo4HdYOOQvahx1lQSQQdcc92GGjSpxmREYwi1BpAuDEzwG8kkUtq4HsiD8E7negabad6MNm5c93lGxDdlLQnLyeDWXIQBQddRSYEKeHMS/VngYkZdrgt3b3o4x8uiy7RAPrUIIxyy5ll6iTOqeicSaZBuTMmCnCRLT1Bq/kJSwE=
+	t=1725088748; cv=none; b=sVa/phHAPartxUfV6sDKIJVrbk+RMxmgxDBk8ZBjOoSUR++SWFpLwIJjhmgGSvKnFrDgZhIaDT2zDD026D1TiEurFCAwqxxsTgoSCRLY3TiwYwoUb/GDbLULiCrGqChboC2kWpv1gQ8M4BQQjnWfbx1S7OZLUUsuwqWo6trpcIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725087965; c=relaxed/simple;
-	bh=6Hi53CaTME2Ebi8syWQ/1uJ40kzCigIEHluZ0P4NkH0=;
-	h=Content-Type:From:Mime-Version:Subject:Date:Message-Id:References:
-	 Cc:In-Reply-To:To; b=f7ZEBwdROBNUpq/BrOLZW7EhbWxoapnJF6nDgy8uiRXRpvuF0u3DsHxjM2s9izmZP9unIHIyvzqnJu9H6D4kM6gW7ZQLxVI4ZATUHzaBloo7xQA1E3eZ/Bs67e8ndCHybxDInTB4V7zuu0qholLWSg1ePfpvT0ym0b/RgZEVae4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=H0TLueDx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nzj/0dTA; arc=none smtp.client-ip=103.168.172.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-08.internal (phl-compute-08.nyi.internal [10.202.2.48])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id B3034114060D;
-	Sat, 31 Aug 2024 03:06:02 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-08.internal (MEProxy); Sat, 31 Aug 2024 03:06:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1725087962; x=1725174362; bh=/T1bfOUPYYzScaMq5P6hnUwfWlzujRpW
-	wVsHEjQEmYM=; b=H0TLueDxi6d928Vlm6k4RRKm4UK8mJP755amtUx3FCEaXpdx
-	NKzuCh5SaIDYvfpsmwL7153AzfRTWnsQ4nHy5mov9mIgtyq1J5Uihce2c1sAuTmf
-	ZfYgx1LPgHg3oMxxuImcfPaF51qObNbaWqqjdmarS7qBniZ5urGjouusxeBCGjPc
-	+DKGEmcJLZjDjTMKIs9zEE5DC08GxjDpfbXVYXsDdxr2J2vUzdpSQSEZMUcKoZqQ
-	JKOWaxWhchcEQxVfu2YT+7iX0t2GKh2GqHAIs/+313DUtiQNTWr7lZLp3UFnXLaN
-	ABNml02IISseiqidvE7l3f5Zk+YqlIcng2wckQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1725087962; x=
-	1725174362; bh=/T1bfOUPYYzScaMq5P6hnUwfWlzujRpWwVsHEjQEmYM=; b=n
-	zj/0dTAISeRr64Xh8UneSnfw9ng1a4Feh+GPiUByBGsY4p7xPr3jaDg6u7Xb6P1h
-	Z/3QtXJnn4rywt9D5/t25zO7yUHoEF2IYl5uba3bTe3ObbVZI65MQN2rTLesvKw2
-	W6ew/6Sy5Q1+2gJSQuwCR7zY7tEd7h3hYq16YdcyutwNA8ibqZOpylsUhdmJCanx
-	/I4/U9Whk9TxR+cKVoiHZ50EjlCKzKOB3DuvtM9v4TcBHBrE5qau7kxhZflEfHOv
-	4vXYrHI+5opdbtnbAw9KLeXtHFJMGxfovk+fvcLEPo63/5RX/C8dCdidV9bK3WUv
-	PyPgguNg+ZH9IdtDPaJuw==
-X-ME-Sender: <xms:2sDSZjNtXAS2jxEhpMLuiMXBc8Ux0K2Xsk7iUqpVVnI_fALuoqTNPg>
-    <xme:2sDSZt9scBKO6Jo-SGa3LNSB_wzyh3eQPoyDdxt-gdGKbGSrtxNWHokEW9U4YvMVM
-    ZPntrhO0T_zqbgNL7I>
-X-ME-Received: <xmr:2sDSZiQNo5K8qMv2t9Qu_nbyXtCrL6lHlXSdBj2q9pkyTvADzsoRCY-I4GM-ovVjCbIGS2cAj9B73RpMC6rpqqN8HLuMYnDO4hcGve73ewrXWl2_Mcu24FqSIuw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudefjedguddugecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpegtgffhggfufffkfhevjgfvofesthhqmhdthhdt
-    jeenucfhrhhomhepufhvvghnucfrvghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrd
-    guvghvqeenucggtffrrghtthgvrhhnpedvhfdtudduvdeujeeufffgudekvdefvefgueei
-    iedvledtheegieevffdtteekudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
-    epmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvhdpnhgspghrtghp
-    thhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeimphhoshhtmhgrrh
-    hkvghtohhssdhuphhsthhrvggrmhhinhhgsehlihhsthhsrdhsrhdrhhhtpdhrtghpthht
-    oheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqd
-    hkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeht
-    ghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehkrhiikhdoughtsehkvg
-    hrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhsthhsrdhlihhnuhigrdgu
-    vghvpdhrtghpthhtohepthhofihinhgthhgvnhhmihesghhmrghilhdrtghomhdprhgtph
-    htthhopehkohhnrhgrugdrugihsggtihhosehsohhmrghinhhlihhnvgdrohhrghdprhgt
-    phhtthhopehmrghrtggrnhesmhgrrhgtrghnrdhsth
-X-ME-Proxy: <xmx:2sDSZntcToeLQMts6aRKZG8rOsqdZVPJ2RQb44L1TlEFIU0qaLp0EQ>
-    <xmx:2sDSZremGysfn7_s673amKOetK6HOHSceQdJIiOtkkNFlYnirP1hNg>
-    <xmx:2sDSZj0CKRbyfjdbA8IS6ZfsJHATsxDwKKUR36h1XoX_69c9uyMjfg>
-    <xmx:2sDSZn9TUrAAYSjWRnnqXJsiczk_jJJH2fyexR_heYN2Hr5BEVJZeQ>
-    <xmx:2sDSZm-pE1OXg5IJJocP9luLGahLwus20cnPEwz10LTgrRqGb7nAlIOy>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 31 Aug 2024 03:06:02 -0400 (EDT)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From: Sven Peter <sven@svenpeter.dev>
+	s=arc-20240116; t=1725088748; c=relaxed/simple;
+	bh=l9Jwb+2S98IROy4dg0RuvgbMHyh5Cilt3dxPnrkZO6M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o8bUt7yD7WkmOue99+i2K6woPl5DwqCY4WVKxntc7aGlH0YF7jyUz2CfcjozmqTBZaT0fnNIC+zCuNWEcC6i1KK64FeHAvVIbX0/oNccGv0wuNNiTZkQAJUncchD23tAn/P0PlCYYZ/HI5E2moxgAbIKQTCequI8AdTjTH4RifA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=twNVno/l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C6D0C4CEC0;
+	Sat, 31 Aug 2024 07:19:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725088747;
+	bh=l9Jwb+2S98IROy4dg0RuvgbMHyh5Cilt3dxPnrkZO6M=;
+	h=From:Subject:Date:To:Cc:From;
+	b=twNVno/lfMeLIU03ClNwSFPitbwmUbmY/m5eVAdXeQVQgrGg5prBDI5Ja7unP6uKJ
+	 YE0LUYRvC6KEwRKNhTds+oPfGqYBOo84Vr7V/WWsNWMTXqsB1hV+PoJvbzwzyVIe4C
+	 pbt9IglelyN3bG/AL8jpHxu9Ogg2LMLOcJAXWCwR5bN9fXq1+SZzB2yy5Y9MSd3rTm
+	 YJ3LHEk+TjpY+MPjgfNRW2bM4j4UFOPOE9k3bl1gxUCUFwegswb8clyFgnhfG4s+ZB
+	 cIRhCyO5m1djtXEXztnThZoWdOUvJHM3u3MgVHAdTl2uC1komNSJs2nNluPiWAfBw3
+	 wDZecZAICaebA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH 0/7] clk: en7523: Update register mapping for EN7581
+Date: Sat, 31 Aug 2024 09:18:42 +0200
+Message-Id: <20240831-clk-en7581-syscon-v1-0-5c2683541068@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH v2 3/4] irqchip/apple-aic: Add a new "Global fast IPIs only" feature level
-Date: Sat, 31 Aug 2024 09:05:50 +0200
-Message-Id: <612CCDB4-26A7-432C-89F9-48743D547859@svenpeter.dev>
-References: <20240831055605.3542-4-towinchenmi@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
- ~postmarketos/upstreaming@lists.sr.ht
-In-Reply-To: <20240831055605.3542-4-towinchenmi@gmail.com>
-To: Nick Chan <towinchenmi@gmail.com>
-X-Mailer: iPhone Mail (21G93)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANLD0mYC/0XMQQ6CMBCF4auQWTvJtNBSuYphUctUG02BVomGc
+ HcbWLj8X/K+FTKnwBm6aoXES8hhjCXEqQJ3t/HGGIbSIEk2ZGSN7vlAjq0yAvM3uzGiIHKarSa
+ nCMpvSuzDZzcv/dGJ53ehX8f4l7tqd1tS6MeEGoXA6+TR1s2ZvSMzeNMtEvpt+wGNIsdiqgAAA
+ A==
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ upstream@airoha.com, angelogioacchino.delregno@collabora.com, 
+ linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com, 
+ ansuelsmth@gmail.com, Lorenzo Bianconi <lorenzo@kernel.org>
+X-Mailer: b4 0.14.1
 
+Map all clock-controller memory region in a single block for EN7581 SoC.
+Introduce chip_scu regmap pointer since EN7581 SoC will access chip-scu
+memory area through a syscon node.
+REG_PCIE*_MEM and REG_PCIE*_MEM_MASK memory regions (PBUS_CSR) are not
+part of the scu block on the EN7581 SoC, so configure them via a
+dedicated syscon node.
+This series does not introduce any backward incompatibility since the
+dts for EN7581 SoC is not public yet.
 
->=20
-> On 31. Aug 2024, at 07:57, Nick Chan <towinchenmi@gmail.com> wrote:
->=20
-> =EF=BB=BFStarting with the A11 (T8015) SoC, Apple began using arm64 sysreg=
-s for
-> fast IPIs. However, on A11, there is no such things as "Local" fast IPIs,
-> as the SYS_IMP_APL_IPI_RR_LOCAL_EL1 register does not seem to exist.
->=20
-> Add a new feature level, used by the compatible "apple,t8015-aic",
-> controlled by a static branch key named use_local_fast_ipi. When
-> use_fast_ipi is true and use_local_fast_ipi is false, fast IPIs are used
-> but all IPIs goes through the register SYS_IMP_APL_IPI_RR_GLOBAL_EL1, as
-> "global" IPIs.
->=20
-> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
-> ---
+---
+Lorenzo Bianconi (7):
+      dt-bindings: clock: airoha: update reg mapping for EN7581 SoC.
+      clk: en7523: set REG_PCIE*_{MEM,MEM_MASK} via syscon
+      clk: en7523: move clock_register in hw_init callback
+      clk: en7523: introduce chip_scu regmap
+      clk: en7523: fix estimation of fixed rate for EN7581
+      clk: en7523: move en7581_reset_register() in en7581_clk_hw_init()
+      clk: en7523: map io region in a single block
 
-Reviewed-by: Sven Peter <sven@svenpeter.dev>
+ .../bindings/clock/airoha,en7523-scu.yaml          |  12 +-
+ drivers/clk/clk-en7523.c                           | 311 ++++++++++++++-------
+ 2 files changed, 220 insertions(+), 103 deletions(-)
+---
+base-commit: f0e992956eb617c8f16119944bfe101dea074147
+change-id: 20240823-clk-en7581-syscon-100c6ea60c50
+prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
 
-> drivers/irqchip/irq-apple-aic.c | 24 +++++++++++++++++++++++-
-> 1 file changed, 23 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-a=
-ic.c
-> index 8d81d5fb3c50..01a3c79054f5 100644
-> --- a/drivers/irqchip/irq-apple-aic.c
-> +++ b/drivers/irqchip/irq-apple-aic.c
-> @@ -235,6 +235,8 @@ enum fiq_hwirq {
-> };
->=20
-> static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
-> +/* True if SYS_IMP_APL_IPI_RR_LOCAL_EL1 exists for local fast IPIs (M1+) *=
-/
-> +static DEFINE_STATIC_KEY_TRUE(use_local_fast_ipi);
->=20
-> struct aic_info {
->    int version;
-> @@ -252,6 +254,7 @@ struct aic_info {
->=20
->    /* Features */
->    bool fast_ipi;
-> +    bool local_fast_ipi;
-> };
->=20
-> static const struct aic_info aic1_info __initconst =3D {
-> @@ -270,17 +273,32 @@ static const struct aic_info aic1_fipi_info __initco=
-nst =3D {
->    .fast_ipi    =3D true,
-> };
->=20
-> +static const struct aic_info aic1_local_fipi_info __initconst =3D {
-> +    .version    =3D 1,
-> +
-> +    .event        =3D AIC_EVENT,
-> +    .target_cpu    =3D AIC_TARGET_CPU,
-> +
-> +    .fast_ipi    =3D true,
-> +    .local_fast_ipi =3D true,
-> +};
-> +
-> static const struct aic_info aic2_info __initconst =3D {
->    .version    =3D 2,
->=20
->    .irq_cfg    =3D AIC2_IRQ_CFG,
->=20
->    .fast_ipi    =3D true,
-> +    .local_fast_ipi =3D true,
-> };
->=20
-> static const struct of_device_id aic_info_match[] =3D {
->    {
->        .compatible =3D "apple,t8103-aic",
-> +        .data =3D &aic1_local_fipi_info,
-> +    },
-> +    {
-> +        .compatible =3D "apple,t8015-aic",
->        .data =3D &aic1_fipi_info,
->    },
->    {
-> @@ -750,7 +768,8 @@ static void aic_ipi_send_fast(int cpu)
->    u64 cluster =3D MPIDR_CLUSTER(mpidr);
->    u64 idx =3D MPIDR_CPU(mpidr);
->=20
-> -    if (MPIDR_CLUSTER(my_mpidr) =3D=3D cluster)
-> +    if (static_branch_likely(&use_local_fast_ipi) &&
-> +        MPIDR_CLUSTER(my_mpidr) =3D=3D cluster)
->        write_sysreg_s(FIELD_PREP(IPI_RR_CPU, idx),
->                   SYS_IMP_APL_IPI_RR_LOCAL_EL1);
->    else
-> @@ -990,6 +1009,9 @@ static int __init aic_of_ic_init(struct device_node *=
-node, struct device_node *p
->    if (!irqc->info.fast_ipi)
->        static_branch_disable(&use_fast_ipi);
->=20
-> +    if (!irqc->info.local_fast_ipi)
-> +        static_branch_disable(&use_local_fast_ipi);
-> +
->    irqc->info.die_stride =3D off - start_off;
->=20
->    irqc->hw_domain =3D irq_domain_create_tree(of_node_to_fwnode(node),
-> --
-> 2.46.0
->=20
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
 
 
