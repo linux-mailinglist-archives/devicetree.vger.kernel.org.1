@@ -1,159 +1,110 @@
-Return-Path: <devicetree+bounces-98773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91BB39672ED
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 20:11:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B5D09672FF
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 20:25:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 257881F217FC
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 18:11:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBCED1F22488
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 18:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A0C74C08;
-	Sat, 31 Aug 2024 18:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE31477102;
+	Sat, 31 Aug 2024 18:25:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="ylVd4Od3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c9yy7/LZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6106E611
-	for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 18:11:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589521F95A;
+	Sat, 31 Aug 2024 18:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725127907; cv=none; b=bLk3+lRFf4aTcVU6DG9atTqfj0a1H8ezPURrTRctXwO9mxJ6HoohG2sfSa2s7JXeQ6e7Tz4bhFFn4dxOdX7kv+byBWTJpnCWDx+XpJla40cA0mxAenAUspUPzjizMYQiB1EUgHnmCc6fAp8bm68gE5M2jtRuHdoXWQ3+b2RCM2A=
+	t=1725128700; cv=none; b=ExInSdimxMSlciwatySnSotPwWEBOE2bGKA484RJvJ8Sczbtx+7wWUHLnA+NN1/ZQFB3OLCGlgzRR+HcDsLKV0vzEUZhusiTKX4CYuk3C4fbJUabLPqtOs5wGmm/UtcIoj9U07lwJt12SXCVn1Ow7AFU3+2DflaMeXQ91riacWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725127907; c=relaxed/simple;
-	bh=JyNaWK9K0s83lLJcoD0b4TQy7rpDyJf4ZrqoMGJ3XMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FZwOHHnmUqWrDFXTs6woQHR2MLP/ThSl5AqtwQaxKb1waIxaLBRpZ5SnI7GMrmqsu/znKzSIrILLOr64HhVe5OoKIKlZAKrZjQAVAVeuWFpCMm+iGJUiSdzNNbu9O95VrKmusT6Mpbm5OLo9vx5mPb3nllIPVhB5AWCA/VhBzzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=ylVd4Od3; arc=none smtp.client-ip=209.85.214.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-2021537a8e6so24502855ad.2
-        for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 11:11:45 -0700 (PDT)
+	s=arc-20240116; t=1725128700; c=relaxed/simple;
+	bh=SZkGb/suidooOF7CNIyTK3j26VEn6eagFIulsSPcXpU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=e4Gv6n5PmNOgh7PYpWd5G8Kr/65hw6Cr/hsHBfxjPVPmaYLkX/GlNRY+KJ6SxC1lCqIRqf8iohk92tslH3M9qS6wVWzY6OxnBxsMWA7hdIPuqVYkmN+/EVCqxJrP7w9XAgEnZydY5y5k+6af5qu7caF//G27BfRSMQLKy8/tFdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c9yy7/LZ; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7d21b0c8422so272344a12.0;
+        Sat, 31 Aug 2024 11:24:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1725127905; x=1725732705; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C+5XzVjLCMuTjYv9Ok00f+cf4AkYWNfkNc3fqTvrp/0=;
-        b=ylVd4Od3VL+WmqB1I4T0C2lG7VDHTntSF72nV4SGHvOC2LHkUjywoXw0Fp3i4gK5cv
-         7zU3f61uWRP75a1Wz2xBjbm26zW5Sc0qqDK14UCLf3wLachsJp/JaN/3V9YdLHD662in
-         VwX9HvlvYhDI0BHxiH+ICK0aUwqmWcrK58bRbNu3HWJRL6Oopm9HRAYYzsb+Q3nDRVPe
-         ziJFKLiD/oN04DR+AEkcEthpjujMqZs24girL6KlAe+8JvxLFjOUBsBvPEXfkwYXmJ5P
-         VUWIKkz+egpSJ+YuMGmcv6bN5mQYzT2EIIlHWYPG/PKbzf06UQuJACgfOaCHf0mcFVZ9
-         xq+A==
+        d=gmail.com; s=20230601; t=1725128699; x=1725733499; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8DhX/kaFZeCTg+YwZd6U7tYPU4NZdXw1PzKarghSqxA=;
+        b=c9yy7/LZ+oT06jsGyjAcWR7kd8YHIYrnNSRe/vG8wxS6/IgF419oRPog1Q7mO8YJBs
+         YtYMYCW+Devk+jpzEDYorOkBA7+simRIqEH9qW7tsvJ1zHZo8OTrVotO3r/sUhS+nBpa
+         kQCwA1Pkf7zTt3ETyhZR1A3l+TxzlBVY0kc68HR8OLgXMO8oEDy4DFvysyD1maEoTsy1
+         j0P6JvZeCvtX+vQiBOkqhNimxxr4gOvo2/pzBLU9gcyapaoLBESN1en7cxgJDyGfiEv2
+         JYpG4MW8i4u7lBHT4xtegNZnaZjVmgZ8Locl7PTFbvhr4Y2+1qO7aQISWu27ndNWx0v1
+         YCrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725127905; x=1725732705;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C+5XzVjLCMuTjYv9Ok00f+cf4AkYWNfkNc3fqTvrp/0=;
-        b=A5QUPrZ/T5vXSmXbcL8a2GFMDQTLKeQSjuwpgNnxS7SoRkmVXYI9HPcM17gWEb2IK1
-         crp8NlmNBuwdxRrp69hTP3h+IeoHcjcqKo2t29OTJmu8SjjATqAlOLlVQmDc0KPNlvVO
-         1yN8o9C2uChkbUKX6lX9Y/O9W+/Y1qPoKCbyyVgwzFv/gpEKX7HjoHLgRNUM6ZCfkmYg
-         O7h+S41vAkgzSlBfoXCGPotSjgf7GEQxSQtwFCNpjuwc+RmSRplco13dOboB1tr2KK2s
-         Cd7oCZSqYWIzxTaPKGP48GW/DLIV28sKeCmYpy1lpYHTQyQ9hzeSCw8fcAi4f9FE20+M
-         xoYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWQigaWtE9Snr4oQPsfIyWFop4+DxQ7Jucd5UDJ4BqZx+0x1+ZxZXIjuy/716tL459FYXdqoVn970Sn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwS+FQpYz5Frs6qfg/qALJfanWivOZOwRiNJrAxX65pNTsbu2dD
-	VwUjl8xdnsJerl3dKcx1AEOwKgQizaqJaRyb978gBaR8e3GX1672mKx9oarMxA==
-X-Google-Smtp-Source: AGHT+IFQNwjO5fnCQzoxZ9MZgPdmCvdFiQl6lsMfwMOKhxYBfGKuDEbEGB1vFlHxRZvrR2ve39znhw==
-X-Received: by 2002:a17:902:d481:b0:202:45a7:84d1 with SMTP id d9443c01a7336-2050c46e83amr105743905ad.52.1725127904987;
-        Sat, 31 Aug 2024 11:11:44 -0700 (PDT)
-Received: from [172.16.118.100] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-205152d03fasm43302265ad.114.2024.08.31.11.11.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 31 Aug 2024 11:11:44 -0700 (PDT)
-Message-ID: <e2558820-f36f-406d-8f83-95c7188c0ce3@beagleboard.org>
-Date: Sat, 31 Aug 2024 23:41:35 +0530
+        d=1e100.net; s=20230601; t=1725128699; x=1725733499;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8DhX/kaFZeCTg+YwZd6U7tYPU4NZdXw1PzKarghSqxA=;
+        b=afi5Mnsn3AVqaa9Zd501m96jU1DmLodigDl4rwESY5qOSZ1U36D36m7aH5WoDG1B3T
+         Ocxv4wCw5SZ/rhqFNOY59RiPy4K2GWMPVOUSlGBqhrIbK93ETM8BuPQDqYiWT+UA8u2n
+         69kuqFgisTATSPXO+v+iUVjbvHRzqJIrLSOeoGpneoldP/uqhiUOG4Q4J4BRyvponlNm
+         m9pQ43kT9Gy0aOPmqRgG903zuAue0w60EbDFDDlgJVeoniwTwuuI7NiRAsDY/wTjMv/t
+         jkCI+LMzhdQcnKCjgMKvBSnfl4IeStZ7othIKUPah2L/JRgymmNkLYrCu9NoYT6UG49s
+         LDKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVjMEEk3ZforYQRVGXQFXyXbRe1RNqrwByA1LjZCjIgCH6EsKFQPdzFXLf7J0A5xnE5XEMLt4x6KOl4@vger.kernel.org, AJvYcCXSZhZqFF8z7JCw3TcJDn9MXBt+xIvbVy/aiKEQTr67iIyUuUV8LwkAHqr/ljxalWxj0jcGsncT7ygUHYRU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyJjXa0wAvKhLYxvN7+2ECYvw0pSiR/WVowTDRluinqb+dSmw1
+	4CVfXdhvOa87jhf44H3fuCekr8ZcqGXmcQwKZhPlW4U7xBPj1gkq
+X-Google-Smtp-Source: AGHT+IG5caGJp3kbJu0q1H7IeKVEyQQ0/VkfM/U6HyNtpT+EQPNfyxzSIWN5x86SGzgyTJfYp1ncfA==
+X-Received: by 2002:a17:90b:3a50:b0:2c8:e8ed:8a33 with SMTP id 98e67ed59e1d1-2d86b8819demr3430149a91.4.1725128698323;
+        Sat, 31 Aug 2024 11:24:58 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.134.146])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d8b2725332sm553855a91.34.2024.08.31.11.24.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Aug 2024 11:24:57 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/1] media: rockchip: rga: Add rk3588 support
+Date: Sun,  1 Sep 2024 02:24:23 +0800
+Message-Id: <20240831182424.758816-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] dt-bindings: connector: Add mikrobus-connector
-Content-Language: en-US
-To: Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
- Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
- Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, jkridner@beagleboard.org,
- robertcnelson@beagleboard.org
-Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <20240627-mikrobus-scratch-spi-v5-1-9e6c148bf5f0@beagleboard.org>
- <D2AYUH4XY0SK.1SYOUCT0PLAKT@kernel.org>
- <e0f9754e-4d84-4ab4-82a4-34cb12800927@beagleboard.org>
- <D2AZMD2YYGAQ.1B3AGXIC7B44@kernel.org>
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <D2AZMD2YYGAQ.1B3AGXIC7B44@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
->> But here you can have subnodes, no? These could then be just
->> enumerated as usual.
->>
->> &mikrobus_board {
->> 	mikrobus_gpio: gpio {
->> 		gpio-controller;
->> 		#gpio-cells = <1>;
->> 	};
->>
->> 	spi {
->> 		cs-gpios = <&mikrobus_gpio 1>;
->>
->> 		spi@0 {
->> 			compatible = "mydevice";
->> 			reg = <0>;
->> 		};
->> 	};
->> };
->>
+This enables support for rga2 in the RK3588 base devicetree.
+Dt-binding of rockchip,rk3588-rga is already merged to v6.11.
 
-Hi, I am now working on an approach for mikroBUS based on the apprach 
-described here: [1]
+Changes in v3:
+- Rebase commit to next-20240830
 
+Changes in v2:
+- Sort node by bus-address based on next-20240604
 
-I am thinking of the gpio-controller approach you seem to have used 
-here. So I wanted to inquire if there already exists a gpio-controller 
-driver that can create a proxy controller that forwards stuff to the 
-underlying actual controller. So something like the following:
+Jianfeng Liu (1):
+  arm64: dts: rockchip: Add RGA2 support to rk3588
 
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-&mikrobus_gpio: gpio {
-
-     gpio-controller;
-
-     #gpio-cells = <2>;
-
-     gpios = <&gpio1 0>, <&gpi2 1>;
-
-};
-
-
-spi {
-
-     cs-gpios = <&mikrobus_gpio 1 GPIO_ACTIVE_HIGH>;
-
-};
-
-
-There does exist gpio0-virtio, but that seems to be for vm context.
-
-
-[1]: 
-https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
-
-
-Ayush Singh
+-- 
+2.34.1
 
 
