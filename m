@@ -1,124 +1,152 @@
-Return-Path: <devicetree+bounces-98701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3801E9670F1
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 12:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8B5967104
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:04:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C795CB21A21
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 10:47:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6956FB224FE
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66DA178398;
-	Sat, 31 Aug 2024 10:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1A2174EE4;
+	Sat, 31 Aug 2024 11:04:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="dTrpm3qR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PMggorzQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021921BC39;
-	Sat, 31 Aug 2024 10:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402001BC39;
+	Sat, 31 Aug 2024 11:04:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725101260; cv=none; b=uyii+TzcHmIDBxKGAhPPqOAi1oc5Q+6LHiNDG8CU0kTzRRkHUnyjjlvPqdO9CJxQ8siC5z6Lb/OU8e1VHEISaFHzxahEt6X2LbI8XQ6OMsE2TQvdOk66K2XUyhKgrbzA2LGfB7u2CG/A+mK6znYbCAH7HUA9mGu3N1H+Jik1/JA=
+	t=1725102273; cv=none; b=VqK4bWHhDzqPdwWOjNxkFCtIVJqzqGqLi6P84IkSQGdO/umnIMvE4zaDKhavGlDttW5LX60fr/hiVNqvCI7MmyC0UjyikPjiPvcR1KZSjFZ4cXp11GnIFWBORkjZf+QZpmEwB1HpCvI+Uq5w2iwUcnrr47fdx4zAQkJEAZGqgxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725101260; c=relaxed/simple;
-	bh=kiivoI+Gg3Yauqhf1p5rlFAeUkG50p5IxgGsSDPsX3k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HK5wHE4ac2+XgCQr1LQmxC4+X1sM4/EdnFhgtf/iRsPZe4VoUxvrXkK3jkk9tI8LFQOW+uf2Ay0PPhz3II6PxG/d7Ns+wyYsJpweldh7aSMedTcF7rvZ3h4xjbL/Ksnu5Enm2Zj71kGBCC8x2V0/Tqlw4+jdvBEdbbnEbnUT3OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=dTrpm3qR; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=IM9d6UMpZ5gjX3hzI1jszjTrPvmLv8VkOEdEYbhUEYg=; b=dTrpm3qRvmfG9mvD434IzmZFCR
-	NomrNe9Tz+wJCs1zU+zvcFj+QJjIn03C4BERDDQxtbrgwzZYSnXC+tsz6LdRkRxMcz2tsgPfWddgG
-	ha2oABJPK0bbI8R5snHdi3YlYu/fZdAWTgXHjRzb6fjjghBGXUXCRwrNilBPcn5q2gbxdmtRfQk6P
-	LuRdnNf0YHVmrnQZWwx54n4tFnJfkNHQ6F4zuw+mbiUgqoH1z+2eO7SrfqkUbc6AFvdIn16f6Yxas
-	M96a07RJOg/+GP9pPPV0l7VdsGnJeM9jFtRpPPYtZu8dfOIEVYQEvJoAUutqSD0HXXDB3ZN6A1c2g
-	dIBT2AQw==;
-Received: from i53875be3.versanet.de ([83.135.91.227] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1skLdf-0002ra-GW; Sat, 31 Aug 2024 12:47:27 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Elaine Zhang <zhangqing@rock-chips.com>,
- Kever Yang <kever.yang@rock-chips.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, huangtao@rock-chips.com,
- andy.yan@rock-chips.com, Michal Tomek <mtdev79b@gmail.com>,
- Ilya K <me@0upti.me>, Chad LeClair <leclair@gmail.com>,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com
-Subject:
- Re: [PATCH v9 2/7] clk: rockchip: handle missing clocks with -EPROBE_DEFER
-Date: Sat, 31 Aug 2024 12:48:54 +0200
-Message-ID: <2405227.9fHWaBTJ5E@diego>
-In-Reply-To: <20240325193609.237182-3-sebastian.reichel@collabora.com>
-References:
- <20240325193609.237182-1-sebastian.reichel@collabora.com>
- <20240325193609.237182-3-sebastian.reichel@collabora.com>
+	s=arc-20240116; t=1725102273; c=relaxed/simple;
+	bh=DyPI+ghGw3V76yOFNfDBNteyNZJ32yycnLbezM1s5Vc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tCoJKh/M3CxWQW1r4H6K1Ag3Uy/r+wsC2JxD12sIXIfXKw8XTwlleC+nTSHuQj36ZNDL/NsaHGkv7QcDGVP2hO6199xMEluoCQSXJ9mUvDfCdyCRHIIsrCOzl7GwluxreroTi5q3OA22YizSFV14w6aio1aF0M0tP9qa1DAEIvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PMggorzQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B1AC4CEC0;
+	Sat, 31 Aug 2024 11:04:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725102272;
+	bh=DyPI+ghGw3V76yOFNfDBNteyNZJ32yycnLbezM1s5Vc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PMggorzQtVFKo4PvUDf10V1KBDGRo6ZaZnm45dYM/ZmCPWmnzjLIQ461+F9Xp6aLG
+	 8qvOQTaoUuviGUI5F3BV0ipsb1dy9mxglzWK+WAXT2UiRSuot0lEoPZMgGra7CiCq/
+	 atMcvNX+ySpEFynQUt/Xf0QTQOh7DC489q3jclNiJ8uONuxLnA3pNGEaU8merb/VOy
+	 AAzsSyD4p9joIff+g5lyqrQgI2dkua2dMcz6YOftOFXOAYUjami0i0MmBt78zGKUe7
+	 Nk0WvxsHaTzFDrV+vYA1DD+WOnX0rAdDK8PGQWhXpzGohiW4tGOb1JyOcgGOEFOC5V
+	 ZYwMznPDqGhmg==
+Date: Sat, 31 Aug 2024 12:04:20 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
+ biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
+ semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v4 6/7] iio: pressure: bmp280: Add data ready trigger
+ support
+Message-ID: <20240831120420.46e73425@jic23-huawei>
+In-Reply-To: <20240829191957.GE3493@vamoiridPC>
+References: <20240828205128.92145-1-vassilisamir@gmail.com>
+	<20240828205128.92145-7-vassilisamir@gmail.com>
+	<ZtBsQg_JIcY4F-0h@smile.fi.intel.com>
+	<20240829191957.GE3493@vamoiridPC>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Am Montag, 25. M=E4rz 2024, 20:33:33 CEST schrieb Sebastian Reichel:
-> In the future some clocks will be registered using CLK_OF_DECLARE
-> and some are registered later from the driver probe routine. Any
-> clock handled by the probe routine should return -EPROBE_DEFER
-> until that routine has been called.
+On Thu, 29 Aug 2024 21:19:57 +0200
+Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
 
-So this changes the behaviour for misconfigured systems/devicetrees.
-Before a driver would get the ENOENT if they requested a clock from an
-empty lookup field, but now they will just defer forever.
+> On Thu, Aug 29, 2024 at 03:40:34PM +0300, Andy Shevchenko wrote:
+> > On Wed, Aug 28, 2024 at 10:51:26PM +0200, Vasileios Amoiridis wrote:  
+> > > The BMP3xx and BMP5xx sensors have an interrupt pin which can be used as
+> > > a trigger for when there are data ready in the sensor for pick up.
+> > > 
+> > > This use case is used along with NORMAL_MODE in the sensor, which allows
+> > > the sensor to do consecutive measurements depending on the ODR rate value.
+> > > 
+> > > The trigger pin can be configured to be open-drain or push-pull and either
+> > > rising or falling edge.
+> > > 
+> > > No support is added yet for interrupts for FIFO, WATERMARK and out of range
+> > > values.  
+> >   
+> > > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> > > ---
+> > >  drivers/iio/pressure/bmp280-core.c | 231 ++++++++++++++++++++++++++++-
+> > >  drivers/iio/pressure/bmp280.h      |  21 +++
+> > >  2 files changed, 250 insertions(+), 2 deletions(-)  
+> > 
+> > ...
+> >   
+> > > +static int __bmp280_trigger_probe(struct iio_dev *indio_dev,
+> > > +				  const struct iio_trigger_ops *trigger_ops,
+> > > +				  int (*int_config)(struct bmp280_data *data),
+> > > +				  irq_handler_t irq_thread_handler)
+> > > +{
+> > > +	struct bmp280_data *data = iio_priv(indio_dev);  
+> > 
+> > With
+> > 
+> > 	struct device *dev = data->dev;
+> > 
+> > you may shorten some lines below and collapse a few.
+> >   
+> 
+> ACK.
+> 
+> > > +	struct fwnode_handle *fwnode;
+> > > +	int ret, irq, irq_type;  
+> > 
+> > Why irq_type is signed?
+> >   
+> 
+> True, this can be made u32.
+> 
+> > Also try to make that returned variable is closer to the end of the definition
+> > block. And it might be worth to follow reversed xmas tree order (longer lines
+> > first).
+> >   
+> > > +	struct irq_data *desc;
+> > > +
+> > > +	irq = fwnode_irq_get(dev_fwnode(data->dev), 0);
+> > > +	if (irq < 0)
+> > > +		return dev_err_probe(data->dev, irq, "No interrupt found.\n");
+> > > +
+> > > +	desc = irq_get_irq_data(irq);
+> > > +	irq_type = irqd_get_trigger_type(desc);  
+> > 
+> > So, altogether it may be written as
+> > 
+> > 	irq_type = irqd_get_trigger_type(irq_get_irq_data(irq));
+> > 
+> > And looking further, we have a helper for that:
+> > irq_get_trigger_type(). Why not use it?
+> >   
+> 
+> I was not aware of that, I can definitely change it.
 
-Can we do some rockchip_clk_finalize() that runs after _all_ clocks are
-registered (in the CLK_OF_DECLARE function for most drivers, at the end
-of probe for i.e. rk3588) that takes all lookup entries that are still
-EPROBE_DEFER and set it to ENOENT again please?
+Nice.  A quick grep suggests a bunch of other places
+where this cleanup applies.
 
+Maybe I'll do it this weekend, but if not patches welcome ;)
 
-Thanks
-Heiko
-
-
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  drivers/clk/rockchip/clk.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/clk/rockchip/clk.c b/drivers/clk/rockchip/clk.c
-> index 73d2cbdc716b..31b7cc243d82 100644
-> --- a/drivers/clk/rockchip/clk.c
-> +++ b/drivers/clk/rockchip/clk.c
-> @@ -376,7 +376,7 @@ struct rockchip_clk_provider *rockchip_clk_init(struc=
-t device_node *np,
->  		goto err_free;
-> =20
->  	for (i =3D 0; i < nr_clks; ++i)
-> -		clk_table[i] =3D ERR_PTR(-ENOENT);
-> +		clk_table[i] =3D ERR_PTR(-EPROBE_DEFER);
-> =20
->  	ctx->reg_base =3D base;
->  	ctx->clk_data.clks =3D clk_table;
->=20
-
-
+Jonathan
 
 
 
