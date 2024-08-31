@@ -1,118 +1,149 @@
-Return-Path: <devicetree+bounces-98686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1F7D967063
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 10:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CA79670A4
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 12:01:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E59C31C21D18
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 08:50:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 884AE1C21367
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 10:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E0116B75C;
-	Sat, 31 Aug 2024 08:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15903175D4F;
+	Sat, 31 Aug 2024 10:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VPtNQsZ0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VNdAUUS9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35D013B797;
-	Sat, 31 Aug 2024 08:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB13D8468;
+	Sat, 31 Aug 2024 10:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725094197; cv=none; b=qfQcTLZkaNb2vE6ueTwX7CnDAVu6jdqt3upAjj1rg2qagBZKteskmepjCXNhLqDUwyfSce37sQKp+1P13EmxkA3vbCwjzQio9w88dIK2mXTY1KiLbHhdzvVh+b7/eB1KeSLVRp3S/e7uxtGa26Orv7hwKM9jvrfKeWnWz2z5htg=
+	t=1725098483; cv=none; b=rCOOF5ZM/nzg9Lit4qNANiD+MdxGlB4XFb3B4vec3VqMIwDShuN/AchRiTg+7wKbSp8SrqHKhDB1x4UJdcXf3K8WZiBll1EfvysSaDIh2a2sNeh9OgrgvM9oSY9kVsmIy5SOiFQsKpAERoCAW27I9Fcim/clEbSNgoXSu8Qs9E0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725094197; c=relaxed/simple;
-	bh=Qtwn4MMSQwPVIkrDa8LfPR7jXofCn96dS1Y0GPTstBo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RfCavYyJFUfE4mU2Ag1jT33U6GzvdVpdWhNYHqBwbm3CBNKxoXlAqSUbLZEBBIJpVhX1xB25FZb99qMrHxFu1Ti3iGcO/+BMKuaGHkLrp6r4+dE45MJg5xppWbLSvOr2W/tV/ci3yA1DziFQG7FwgUEP/2ubpZhBbXtLCyLAypo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VPtNQsZ0; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725094195; x=1756630195;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Qtwn4MMSQwPVIkrDa8LfPR7jXofCn96dS1Y0GPTstBo=;
-  b=VPtNQsZ05RIi0QAx1qaYQqNsVdEjdmDXYIKhXtjPtjyfP9m13XQc3048
-   x1vhvJ4hkByZVlvbnU5lVwFa19EKJmFHpvLHxib6W5cp1zOw8M7zGEEfP
-   /6hPxYj0Tv3qzwEZLidJCEvusvnQos8zVh5UWl2JQ4A/7qEcc+wkQFs9E
-   P4fEnB6HRguil1xZCvUsbyLHcMIEJQLX92fSn94N0pf24zphdHnZg67ej
-   ysuGQUJ2hIrOT/+lKaaD+1cQoLQxH/HDJ0EDY/4JjrgGVIgHKlscDxBql
-   EnrHPrYGDekJG0ahzf/JC9epkSdI0QTQwYgaGBffLK7yYLzY9X7Q1XLIx
-   A==;
-X-CSE-ConnectionGUID: Buas4pi6TeaopqP1mxAmOg==
-X-CSE-MsgGUID: 0Ilf8048TQKGoW4uAo/MGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11180"; a="23863000"
-X-IronPort-AV: E=Sophos;i="6.10,191,1719903600"; 
-   d="scan'208";a="23863000"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2024 01:49:55 -0700
-X-CSE-ConnectionGUID: NA9CVosaQ76HRFxiqyDTEQ==
-X-CSE-MsgGUID: D9nNyHbbSlGFAa3u55Njtg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,191,1719903600"; 
-   d="scan'208";a="64865875"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 31 Aug 2024 01:49:53 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1skJnq-0002Tq-0d;
-	Sat, 31 Aug 2024 08:49:50 +0000
-Date: Sat, 31 Aug 2024 16:49:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Masahiro Yamada <masahiroy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Frank Rowand <frowand.list@gmail.com>,
-	Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH] of: move empty_root and unittest data DTBs to
- .init.rodata section
-Message-ID: <202408311656.JgYqHrnC-lkp@intel.com>
-References: <20240826124802.1552738-1-masahiroy@kernel.org>
+	s=arc-20240116; t=1725098483; c=relaxed/simple;
+	bh=nrEkWt81J6H3ttTmKA+t6pIm9o90tetoQINzh4TM3TU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VnRKdtd1SgSaZ4Y9oD9n8HPGWiwsTFZjSllIk3qeBCFxMPj+Pvrj4/Od1yP+nBWvGT7ngLiNnXOjP9MTJKWod7Xj4G8mgIYzPQRHEtEJ7uL7EbkIaX9EGsoIdWM69PWE65WeKp3fKfgM68SL+zsRV5hVzBQIaTkpVH/vesI4M4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VNdAUUS9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75A29C4CEC0;
+	Sat, 31 Aug 2024 10:01:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725098482;
+	bh=nrEkWt81J6H3ttTmKA+t6pIm9o90tetoQINzh4TM3TU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VNdAUUS9uGGiplHGjiXOEfZLqtZyV+j2RVOZALlAGdykjBkFAUxUxBAsLWwx0LS0m
+	 5dTjdfxs+bP9aiza71yBfMGcJcj/jd6j0IuuyFQgWYXR34Fe2MRBdSo8UalR1UvSnB
+	 kw0FrZUBJSgsXty8aCXv4Wd2e8vaVepDk4D9JLeL2dl7okmHfJyzRnR2H008OAbGkd
+	 6YMWhdojXpXSo2dUvQPG8Tu7zq/AdDSyFS3hbT4w7SvZg54lveC6nJ5W1uoE9klGG2
+	 wHtZDKSozOR+89bIriht6cmFwZxulF7l59faD9Pv+ktA4mB+VGLjZPVO77WfkY+Hsp
+	 D7kADDeqdbiRw==
+Message-ID: <18399b69-235e-47f9-b876-45fb2a4766e4@kernel.org>
+Date: Sat, 31 Aug 2024 12:01:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240826124802.1552738-1-masahiroy@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/8] dt-bindings: clock: add Qualcomm IPQ5332 NSSCC
+ clock and reset definitions
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, djakov@kernel.org,
+ richardcochran@gmail.com, geert+renesas@glider.be,
+ neil.armstrong@linaro.org, arnd@arndb.de, nfraprado@collabora.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+ netdev@vger.kernel.org, Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+References: <20240829082830.56959-1-quic_varada@quicinc.com>
+ <20240829082830.56959-4-quic_varada@quicinc.com>
+ <gomm5yozebwfuhmgziajmkflbj6knmbwae4mls5kuwl5ngcbrx@mndpiktfken2>
+ <CAA8EJpoSZwqw7_UVVXzwOd77Xh6j5LzKus-ZfuL_f5yrc8AYkg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAA8EJpoSZwqw7_UVVXzwOd77Xh6j5LzKus-ZfuL_f5yrc8AYkg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Masahiro,
+On 31/08/2024 08:56, Dmitry Baryshkov wrote:
+> On Sat, 31 Aug 2024 at 09:11, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Thu, Aug 29, 2024 at 01:58:25PM +0530, Varadarajan Narayanan wrote:
+>>> From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>>
+>>> Add NSSCC clock and reset definitions for Qualcomm IPQ5332.
+>>> Enable interconnect provider ability for use by the ethernet
+>>> driver.
+>>>
+>>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>> ---
+>>> v5: Marked #power-domain-cells as false
+>>>     Included #interconnect-cells
+>>
+>> Then this might not be GCC-like clock controller or gcc.yaml
+>> should not include power-domain-cells.
+> 
+> qcom,gcc.yaml already doesn't mark #power-domain-cells as required, so
+> it should be fine. See qcom,gcc-apq8064.yaml or qcom,gcc-ipq4019.yaml.
+> 
 
-kernel test robot noticed the following build warnings:
+I know, I am not saying whether code is correct or not, but whether it
+makes sense. If it does not have power domains, but instead interconnect
+cells, maybe it should not be considered a "GCC" like block.
 
-[auto build test WARNING on masahiroy-kbuild/for-next]
-[also build test WARNING on masahiroy-kbuild/fixes linus/master v6.11-rc5]
-[cannot apply to robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Masahiro-Yamada/of-move-empty_root-and-unittest-data-DTBs-to-init-rodata-section/20240826-205316
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild.git for-next
-patch link:    https://lore.kernel.org/r/20240826124802.1552738-1-masahiroy%40kernel.org
-patch subject: [PATCH] of: move empty_root and unittest data DTBs to .init.rodata section
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20240831/202408311656.JgYqHrnC-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240831/202408311656.JgYqHrnC-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408311656.JgYqHrnC-lkp@intel.com/
-
-All warnings (new ones prefixed by >>, old ones prefixed by <<):
-
->> WARNING: modpost: vmlinux: section mismatch in reference: testdrv_probe+0x30 (section: .text) -> overlays (section: .init.data)
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_objpool.o
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
