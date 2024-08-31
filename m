@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-98639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAA5966F05
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 05:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF25966F0B
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 05:19:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29D53B23015
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 03:19:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DF03B231B8
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 03:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 732F313634E;
-	Sat, 31 Aug 2024 03:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FC713C90A;
+	Sat, 31 Aug 2024 03:18:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZBszon8D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tbVYKLle"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E30E61FDA;
-	Sat, 31 Aug 2024 03:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3AB13C68E;
+	Sat, 31 Aug 2024 03:18:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725074333; cv=none; b=WBXhMTVYhfvwj3jq2txfe4KHJzYfoyL+iFO6VkI5JoBcnYacurioWuR5kVXkp6EwNqiOYopRebfaGnFiycBpUD1IghyVbSmTiBJu5U9GKgFbMUXajtqRco2xUPiJsp9f9O9jdKUzDcbkX66PFKIrmGOz/UgiIJ0c3qS8KCUIbwk=
+	t=1725074337; cv=none; b=NJFDpVfyF/2Xn9Gm1vC+9ZDS1/LIPG1XCNcgauNv5e85zXYeeETLc7IgE/TedDPPAxbZH3jaepFDfLDOOa8icERMuHtZNL9g1ZwjiiYC1KSdf7+WzisZVp9XWXyN/3/rNo8cfooG4NaaY0V1oV6AwWoh+4NhNODLWCbS5WNROK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725074333; c=relaxed/simple;
-	bh=1xvvX8nGW9Yk2sPBvk44WXpp1oxAbBo8PtVxgg3kkgk=;
+	s=arc-20240116; t=1725074337; c=relaxed/simple;
+	bh=Z/C4jbQoZhpuH06E5YtrvtuIdZmaT78NRqr20g8IN88=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QmvGopB7ASJgmWt5pjVj/7G4AVIWmVt/KqhTwjTxtNfpFRXqy3c/bq9qQgQK1t5m8jfZHTo2w6fB4cXKZfaH7xGKzXkGE6UTW1UeWQ6wh221CrN1I8ItsnHmFBQSntkt5vnoywL4DxvYjUibKCECA5LXVyJmLet4z90p7m72sc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZBszon8D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A69C8C4CEC9;
-	Sat, 31 Aug 2024 03:18:50 +0000 (UTC)
+	 MIME-Version:Content-Type; b=OrvtTbFHCn/BNouXWGM87oAcAcY7IMNPVvOMe0XsEdr7BogvTGiKYxoccYuqsCi1Uz/ve04SP0lq5iDaQdl/e9ZGroIqa4iL3qQj1GRmwzGemOtHUKoqwP8c2/vwolYZi6gJz50et4YdCWTJGztJm+sw/lLwrq1pSfx/IgwHKLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tbVYKLle; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48B9BC4CEC0;
+	Sat, 31 Aug 2024 03:18:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725074332;
-	bh=1xvvX8nGW9Yk2sPBvk44WXpp1oxAbBo8PtVxgg3kkgk=;
+	s=k20201202; t=1725074337;
+	bh=Z/C4jbQoZhpuH06E5YtrvtuIdZmaT78NRqr20g8IN88=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZBszon8DF0RHiopG3H4es+SJhI/IhsJoWXby+uVeMBaxLFIxIc2wEds7HlMnLhVD0
-	 25/DJdXmiDCct02zehCHEd2i1NUiIG4iYjHhfUpjgIruty8dRdyjB+CPxwJMJ+pkpJ
-	 Ak7zVx7yuj/9KH7DerrAFrIfy2erpMKVQnq+3q3eaFZ4iUDXn5A8P3bZEcX7yJ9t1I
-	 UIaltUanAA+m+2CKCFauOmos9bYGzzvEw6YEWyyN8KYB84oDYNkFUozwgYYJAADvg0
-	 /IxK6avVNIFKctTIiZYMtt+iJv6MPy0z+8LxlWlRSp2SgczuAQihSADEhipKPq+XXH
-	 We8kf92Mva6Dw==
+	b=tbVYKLlePUtrVfzV8jnO3ywdONj/k0NzHuRJL8mKguwljtDNbXvO4CBe4hPnulkTD
+	 aZ7WMUG+ViIFvg9PcNP03bCUBKUL19IvlebegP+AtQfGWop1HvYnlA4Aw8oI6mpkWG
+	 lZAIzDpStJpTHFidaje8/IPjs3a3Vt5owOfZmyE1u4vB+bHIkqNQ8h8M3sa5IvC1AN
+	 EvsVOhlmRA9YgJ1vxB/s57MojZDxsY5hKO3ugM/1AmYDRzXdozfxCK7K9xjjTZ4tvs
+	 bro2I7VrspiKBvXx02bH7+hwN/ChifdzLsKGZUDqAseAP8YJMZLW02DzY1W+ioCD+j
+	 khHbwMKFS5vRw==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Abel Vesa <abel.vesa@linaro.org>
-Cc: Johan Hovold <johan@kernel.org>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Fix PHY for DP2
-Date: Fri, 30 Aug 2024 22:18:36 -0500
-Message-ID: <172507431834.12792.6648009518755254915.b4-ty@kernel.org>
+Subject: Re: [PATCH] Revert "arm64: dts: qcom: msm8939-longcheer-l9100: Add rear flash"
+Date: Fri, 30 Aug 2024 22:18:38 -0500
+Message-ID: <172507431836.12792.1003409106538102062.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240829-x1e80100-dts-dp2-use-qmpphy-ss2-v1-1-9ba3dca61ccc@linaro.org>
-References: <20240829-x1e80100-dts-dp2-use-qmpphy-ss2-v1-1-9ba3dca61ccc@linaro.org>
+In-Reply-To: <20240830-revert_flash-v1-1-ad7057ea7e6e@apitzsch.eu>
+References: <20240830-revert_flash-v1-1-ad7057ea7e6e@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,17 +68,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 29 Aug 2024 15:03:28 +0300, Abel Vesa wrote:
-> The actual PHY used by MDSS DP2 is the USB SS2 QMP one. So switch to it
-> instead. This is needed to get external DP support on boards like CRD
-> where the 3rd Type-C USB port (right-hand side) is connected to DP2.
+On Fri, 30 Aug 2024 22:49:50 +0200, André Apitzsch wrote:
+> Patch "arm64: dts: qcom: msm8939-longcheer-l9100: Add rear flash" has
+> been applied twice. This reverts the older version of the patch.
+> 
+> Revert the commit f98bdb21cfc9 ("arm64: dts: qcom:
+> msm8939-longcheer-l9100: Add rear flash")
 > 
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1e80100: Fix PHY for DP2
-      commit: ba728bda663b0e812cb20450d18af5d0edd803a2
+[1/1] Revert "arm64: dts: qcom: msm8939-longcheer-l9100: Add rear flash"
+      commit: 4b520e4983c37b2e33ea0dd5171cb8a79fd7e022
 
 Best regards,
 -- 
