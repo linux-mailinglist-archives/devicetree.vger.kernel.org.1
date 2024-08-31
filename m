@@ -1,90 +1,128 @@
-Return-Path: <devicetree+bounces-98643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB42966F14
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 05:20:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59F13966F1F
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 05:40:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5C1A1F2397E
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 03:20:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C60131F23339
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 03:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CFD15443B;
-	Sat, 31 Aug 2024 03:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B414D8A3;
+	Sat, 31 Aug 2024 03:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDRD4bvf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L9+cKLg0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22C815099B;
-	Sat, 31 Aug 2024 03:19:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78ED2F2E;
+	Sat, 31 Aug 2024 03:39:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725074346; cv=none; b=eXfxzAuQEdGGziDLjBmpWkLb/yBD+0jqDfokqXSbqLXIpXnHtZ4EpPq2I+PXzzHa6oduLqH6AymAEDvWJM410T+CGu2vdJcf9ILzzcaMBZvQ0SckhvehE+CgrH9CwsVAZ8iHApvZl8mNPNj8m5rZRvJ6tOhAVIpQtVmWIp0wxF8=
+	t=1725075596; cv=none; b=ZbdXQgtCO6utmIcVaGnb8jjzLcLdPc1e70KEEYV/EXgwHpLylE81DrbtuzReeD3Hl55R6k7yXoErrRbWe8iFJpSTpcpr6vd7G7QmT3BYPdXXByJ7gGotEhSWh2yzMbUamx6rLYDiENAkYoh3hm6uDCMdsxXi2ViNFnB/0fsqNjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725074346; c=relaxed/simple;
-	bh=Lp0q530IdV/hpTMrQs3hFIcEYPKLeusmgXaDnrjVndI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pekCxTodlFdBwzFi2A5uf+Q1k642kvuGVKAmyJUM7hlwiw4IoPQ3WHkEN5h5wJbft1N9O6Wd+Mucssht1rp5wEB598GHZt62vaYGWVTkH+/4a3c/jrnXTxwuLsa71UPwXvzqnXOROIfe6mODe+Fy+QUGcz/u5lCZ654uzUQX1VU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDRD4bvf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A13FBC4CEC7;
-	Sat, 31 Aug 2024 03:19:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725074345;
-	bh=Lp0q530IdV/hpTMrQs3hFIcEYPKLeusmgXaDnrjVndI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bDRD4bvfO9xdTm+DVDCk2sho1V670AowwJBopkmO2yzDBqIMqPewaFYWt0AMTcDXY
-	 aKq7HtLNHBkb+F0rzLh4fvbyEr5Dfegmhcb8CtKi3Pf0c36kL2/CVCJmr33JpG9RZI
-	 ypxB4VbY97spo6zqr008J5dd2HYVDXOIH3KG9DiASO1y/PdQA07W/ui6ZKj82zMcla
-	 R2CC6jwpLTPIyVgLxGwCoOhwapu/mYP+rEYJevFgP4DA79tHJNUNvhSX4KWFskrV6V
-	 oDqpi/GZYol8s+BR28XlusoPZmKgHMpQ300VZurS4wAzWygonYN3tVJQQe2FSseRUD
-	 qMTSjlotOFQbg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sachin Gupta <quic_sachgupt@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	quic_nitirawa@quicinc.com,
-	quic_bhaskarv@quicinc.com,
-	quic_narepall@quicinc.com,
-	quic_rampraka@quicinc.com,
-	quic_sartgarg@quicinc.com,
-	quic_mapa@quicinc.com,
-	quic_cang@quicinc.com,
-	quic_nguyenb@quicinc.com
-Subject: Re: [PATCH V2] arm64: dts: qcom: Add SD Card node for qcm6490-idp
-Date: Fri, 30 Aug 2024 22:18:41 -0500
-Message-ID: <172507431833.12792.13543272937622578069.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240829114748.9661-1-quic_sachgupt@quicinc.com>
-References: <20240829114748.9661-1-quic_sachgupt@quicinc.com>
+	s=arc-20240116; t=1725075596; c=relaxed/simple;
+	bh=E3vRu46hlWxy6N2bSPsweS01OPMGvsArMoRLzr9AZOA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CFER2nUjy1Q41Wk6eN5L1+gcOJVPPhEG/g0nzAhRk4UvvIqKmCxqNjv4RA+2YZ0HJTmxHKRUBlGiUrkyiw2brvILg4gRYgIpm3h7TLF09MwzK05LQ2soHUqnmjZkMolmFKvvR1gZTgCGVlrY1UfOZO2fBng72Jxo8SrrnUfFHIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L9+cKLg0; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725075595; x=1756611595;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=E3vRu46hlWxy6N2bSPsweS01OPMGvsArMoRLzr9AZOA=;
+  b=L9+cKLg0WZ2Cr9JyIwKfGGX96jbr2yrtMT3BTULMudwPp3+aKNxjDySc
+   Ncba3EjidJI7weOZw6IGj2gjKZvb1DpQU5opc3HZ+n8WO8IblfAM99jlT
+   O03OFMZB2zdc145kWjAyOm+Dne+LRdm5V2tVhzUAYcsLJ6TABZmZgaQWj
+   NaoTAf1W0d9N1zKn4GsPWOBhG70JufkEXqCtQSJ8GJ7i72vvie61jrptV
+   gQwLANGfETJzVj6us4YZnZcRU8SN2J1kYCmP3qGxFNasExkG4+voHJM/l
+   GM4xUOJw3DLzS0VPAyGmwnGtPL1wxhdZHJzry+PMZmzr33D2QvEfHBDRC
+   w==;
+X-CSE-ConnectionGUID: /CjWC7IrSoqKniAQTwLhyw==
+X-CSE-MsgGUID: MOe9c4Y8Sp2bAsjnK47jFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11180"; a="23592806"
+X-IronPort-AV: E=Sophos;i="6.10,190,1719903600"; 
+   d="scan'208";a="23592806"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2024 20:39:54 -0700
+X-CSE-ConnectionGUID: e3zhyya4TkGgJU8661giWg==
+X-CSE-MsgGUID: FVPujpNEQdiXXGkrmCT8Gw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,190,1719903600"; 
+   d="scan'208";a="68740810"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 30 Aug 2024 20:39:45 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1skExj-0002KF-1g;
+	Sat, 31 Aug 2024 03:39:43 +0000
+Date: Sat, 31 Aug 2024 11:39:13 +0800
+From: kernel test robot <lkp@intel.com>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, linus.walleij@linaro.org,
+	brgl@bgdev.pl, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 4/4] gpio: aspeed: Support G7 Aspeed gpio controller
+Message-ID: <202408311104.T3i0AxEf-lkp@intel.com>
+References: <20240830034047.2251482-5-billy_tsai@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240830034047.2251482-5-billy_tsai@aspeedtech.com>
 
+Hi Billy,
 
-On Thu, 29 Aug 2024 17:17:48 +0530, Sachin Gupta wrote:
-> Add SD Card node for Qualcomm qcm6490-idp Board.
-> 
-> 
+kernel test robot noticed the following build warnings:
 
-Applied, thanks!
+[auto build test WARNING on brgl/gpio/for-next]
+[also build test WARNING on linus/master v6.11-rc5 next-20240830]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-[1/1] arm64: dts: qcom: Add SD Card node for qcm6490-idp
-      commit: fec09568a355ec70cbad254168da4391e0241238
+url:    https://github.com/intel-lab-lkp/linux/commits/Billy-Tsai/dt-bindings-gpio-aspeed-ast2400-gpio-Support-ast2700/20240830-114325
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
+patch link:    https://lore.kernel.org/r/20240830034047.2251482-5-billy_tsai%40aspeedtech.com
+patch subject: [PATCH v2 4/4] gpio: aspeed: Support G7 Aspeed gpio controller
+config: openrisc-randconfig-r131-20240830 (https://download.01.org/0day-ci/archive/20240831/202408311104.T3i0AxEf-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 14.1.0
+reproduce: (https://download.01.org/0day-ci/archive/20240831/202408311104.T3i0AxEf-lkp@intel.com/reproduce)
 
-Best regards,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408311104.T3i0AxEf-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+   drivers/gpio/gpio-aspeed.c:1181:26: sparse: sparse: symbol 'aspeed_g4_llops' was not declared. Should it be static?
+>> drivers/gpio/gpio-aspeed.c:1215:26: sparse: sparse: symbol 'aspeed_g7_llops' was not declared. Should it be static?
+
+vim +/aspeed_g7_llops +1215 drivers/gpio/gpio-aspeed.c
+
+  1214	
+> 1215	struct aspeed_gpio_llops aspeed_g7_llops = {
+  1216		.copro_request = NULL,
+  1217		.copro_release = NULL,
+  1218		.reg_bits_set = aspeed_g7_reg_bits_set,
+  1219		.reg_bits_read = aspeed_g7_reg_bits_read,
+  1220	};
+  1221	
+
 -- 
-Bjorn Andersson <andersson@kernel.org>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
