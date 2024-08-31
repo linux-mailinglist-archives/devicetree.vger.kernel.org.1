@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-98708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0407F967119
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:12:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B59296711C
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:12:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D711F22999
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:12:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD26A1C20C54
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 11:12:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2DE017C7CC;
-	Sat, 31 Aug 2024 11:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA4617C7AF;
+	Sat, 31 Aug 2024 11:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8vhu9tb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gqNwVwiw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89B617C7AF;
-	Sat, 31 Aug 2024 11:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E4054279;
+	Sat, 31 Aug 2024 11:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725102720; cv=none; b=kzsi0QLz3NAw0F4lzRo+VB2X5ZCBVp25WocW6XfQ2KUARQE99kKoYOt4eODChPUk8ZD/V2Odhv8Oj04I36rPmPVvnHj9FGj6KkpZzQrC1d37lfFk48STfq0zDKRuSfyl1PfLutPgNTng+NXe+vp1kHOhUlQobagegew4ecC7mpQ=
+	t=1725102766; cv=none; b=her31FPbjEYdcqUTP2hwwDxkiEybXRXk2eDIKE6HutN7tdDZX2n6KGBvu7JesyCeH3VJCK2VO7qfPlSbV3Yp4c0n1GC4p3uz+K/lp22K/z8vBM3tJPZGJVJhBLAC6nfRxz/zZQBQG3Uatncm2/L+6pl+3/K2Dbmuh2GA52tSA5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725102720; c=relaxed/simple;
-	bh=6Tc7RsbCHU6apA/esYfyd/F8YwR9o2cw7PHhVhzyfsg=;
+	s=arc-20240116; t=1725102766; c=relaxed/simple;
+	bh=jhybjwDE7lclpsZ2PGeailhwj2mkqqNz9ZcUZxZhke8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hYb6uh37qEW9TfWI+w1axzX+ahEzsGsIMbA2CWod4yXVtMXjf/LTbOF05CG1k4LPFSxGPu6TdkPcJt4Rdg/Ga9wS0hpNaQCRM2/aI6dc9LmbYJyrn/DsM8KpAkS/Fi05Z9WXPUh9m02q0TSgTYDU19eUTbu2LmDX1BXNGr8zJ4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8vhu9tb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39648C4CEC0;
-	Sat, 31 Aug 2024 11:11:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bTlcAszzwhls76elD83zv1wZDIwFBMC5eyqoU9/RC4w8i1KQSJvhefm1VpmksnmeLUuaXZe3mO5ZkiepNWORVhgjHHNqcnuLm1o+Fk+4K3xRqAfuSq1qTKRF8iFfoN4IImEtVC4vg34pmp3zGb83/gcVqkVTuZ2aIuJLucanu9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gqNwVwiw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CBC4C4CEC0;
+	Sat, 31 Aug 2024 11:12:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725102720;
-	bh=6Tc7RsbCHU6apA/esYfyd/F8YwR9o2cw7PHhVhzyfsg=;
+	s=k20201202; t=1725102766;
+	bh=jhybjwDE7lclpsZ2PGeailhwj2mkqqNz9ZcUZxZhke8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j8vhu9tb9t3HUYiyXLBxHRfkFdTHbYpgE2+YYuJzZvdpz0ksQaDZCszdSN/ZXnYY+
-	 Xzm2SxUr1mc8ktUBqtUIXUxNVXlMJXWAwBetO9Wwy2hn5YZMUoYsWabb1WRBLxNSTV
-	 f6n7TID2x37moy85Cw/9+EGug1tdaonpeKxur6DrlAgjsvo2uydFOFpM92E3Xs245+
-	 D/Mzgr2c9o4qg/t/fLU2WznLOrYXBJ8lXCWIMl3CgiGtwFJ/Ei3Np1FXFgdL0zNCnD
-	 rmvUzbaAXQ0Yjtv3pHBqJ6EFDg3lqlAEy51t5BXnt51l278UU72kNcMY24XH1i2Zub
-	 DbCFoqbhvPK7g==
-Message-ID: <c4145009-b9ae-40b3-b550-cdb90ddc39eb@kernel.org>
-Date: Sat, 31 Aug 2024 13:11:49 +0200
+	b=gqNwVwiwVC1fUrq3ligvcdo4jltdWaKGnXWGuOiVBktlD619ds8pq7DERcc1vChhh
+	 afDcEDTx4S7yvzHYy4quTs+kMNXQBUFUzuQd25NlBsoFdOxyEIjzWDM5vowHsibCkE
+	 ljX/Xrgkxmhr8bD4xyzO+XYJpMHD0aBPB+Xu4+FfOH0IUNgLOsBFIAjENLqJddk0m0
+	 juUE8qmi/HklX7mi6BX+i7NKPTRlojKl+uJ98VC2f2qxDurTky1Ods3bkPypS2Cjij
+	 2oKOecDipUogRoYvQ+wT4pcZaYRw/au7xYQz9hfMThLAYfIjWNNAlcaLdHAnf5zs1g
+	 ohmHqFx/bEEHA==
+Message-ID: <5f0c0f6b-d542-44b2-b2fe-2d4f897fb1eb@kernel.org>
+Date: Sat, 31 Aug 2024 13:12:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5? 4/6] dt-bindings: soc: rockchip: Document VO0/1 GRF
- compatible string changes
+Subject: Re: [PATCH v5? 5/6] dt-bindings: display: rockchip: Add schema for
+ RK3588 DW HDMI QP TX machine
 To: Shimrra Shai <shimrrashai@gmail.com>
 Cc: Laurent.pinchart@ideasonboard.com, aarnoud@me.com, airlied@gmail.com,
  algea.cao@rock-chips.com, andrzej.hajda@intel.com, andy.yan@rock-chips.com,
@@ -65,7 +65,7 @@ Cc: Laurent.pinchart@ideasonboard.com, aarnoud@me.com, airlied@gmail.com,
  rfoss@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
  tzimmermann@suse.de
 References: <20240830152132.8894-1-shimrrashai@gmail.com>
- <20240830152840.9066-1-shimrrashai@gmail.com>
+ <20240830152856.9079-1-shimrrashai@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,25 +111,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240830152840.9066-1-shimrrashai@gmail.com>
+In-Reply-To: <20240830152856.9079-1-shimrrashai@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30/08/2024 17:28, Shimrra Shai wrote:
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> index 78c6d5b64..8fd539125 100644
-> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> @@ -31,7 +31,8 @@ properties:
->                - rockchip,rk3588-pcie3-pipe-grf
->                - rockchip,rk3588-usb-grf
->                - rockchip,rk3588-usbdpphy-grf
-> -              - rockchip,rk3588-vo-grf
-> +              - rockchip,rk3588-vo0-grf
-> +              - rockchip,rk3588-vo1-grf
->                - rockchip,rk3588-vop-grf
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+> new file mode 100644
+> index 000000000..e71544ced
+> --- /dev/null
 
-NAK, this does not make any sense. Just random code changes...
+Nope, please carefully read submitting patches.
 
 Best regards,
 Krzysztof
