@@ -1,136 +1,223 @@
-Return-Path: <devicetree+bounces-98673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B86966FF3
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 09:06:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 495A4966FF5
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 09:06:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EE9BB228A3
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 07:06:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE0E41F22DF5
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 07:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14B217CA04;
-	Sat, 31 Aug 2024 07:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C4116DC0E;
+	Sat, 31 Aug 2024 07:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="edQ7Gt8m"
+	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="H0TLueDx";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nzj/0dTA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from fhigh1-smtp.messagingengine.com (fhigh1-smtp.messagingengine.com [103.168.172.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84AA16D4FF;
-	Sat, 31 Aug 2024 07:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F63D161326;
+	Sat, 31 Aug 2024 07:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725087901; cv=none; b=iGBIg0GU/M398RzNBNYunXK9PdNx8vK9REmFZfgfg0Pa2A4pV+xHu9YfohU0iNwPcGFHYduqUX/ExTZF6jtNQ93HgdW01pYOhjGI+dH0bi3aHLRGwWgWjjNmHftBmzezayFKYftDX+yLEFjIfr8L+NXjN1PP4zSHpFU6kqr6wRM=
+	t=1725087965; cv=none; b=qo4HdYOOQvahx1lQSQQdcc92GGjSpxmREYwi1BpAuDEzwG8kkUtq4HsiD8E7negabad6MNm5c93lGxDdlLQnLyeDWXIQBQddRSYEKeHMS/VngYkZdrgt3b3o4x8uiy7RAPrUIIxyy5ll6iTOqeicSaZBuTMmCnCRLT1Bq/kJSwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725087901; c=relaxed/simple;
-	bh=2MIvjife9TxEOVM4N//TXAhsxKXULju5kqrwtaSFDZI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MlSWikrWS/P96BIo92EMU07/hwntbHvWLeBEXD1WPRf9dznPfwh4lb5qJzhbW+g1fFq+4VlvKv2dzUA6oD5+C4V8i85SUTWy1qv38pD2Y1WG8NsfZ7Lf/D4T23H4jCU72YhPxwGfDT6QOHCdTJqVZmmFSlR1eBaG8KBkDl2u29o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=edQ7Gt8m; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725087897; x=1756623897;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2MIvjife9TxEOVM4N//TXAhsxKXULju5kqrwtaSFDZI=;
-  b=edQ7Gt8mmXBpdXS9M/rn/3IwDMuaaSnCpuiz4eJEPB9rRkL5FPvCnoo5
-   lTSK1r3E/Hrshovh9++k5y8xbV8JGP+5LYX51+K/iqEvL4QvFNVS0BITY
-   BuieiZWpTGXH2hrVCx3AHsa/YrkVaMQxnhK5AtOyqp9+RD7CRKHTYY4fY
-   FLMHC3GrJ3b4PIq/h+zeWc5WzQYLoNY1m3XlEykh5P1YyR9FAr7/01Ms8
-   yebvpIqB8ze8h1yINOONHoG5uU8ELn0g3qr65ONOrVSGp9IarO8eK1B7k
-   hZTpnE1AJYHKf83mdcwLNjKMy6a0e2UacyinreffO0XpSBdsVL4WQxUbv
-   Q==;
-X-CSE-ConnectionGUID: 9DsinZPPTMGN9Fwb6WQmUQ==
-X-CSE-MsgGUID: QIXGcIBHRRqI5hgpLNw4Gw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11180"; a="35142355"
-X-IronPort-AV: E=Sophos;i="6.10,191,1719903600"; 
-   d="scan'208";a="35142355"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2024 00:04:56 -0700
-X-CSE-ConnectionGUID: pBaWsdrATdClvQIISpIntA==
-X-CSE-MsgGUID: PGOW7AjMQ2qLPMI3JEsoQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,191,1719903600"; 
-   d="scan'208";a="64160004"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 31 Aug 2024 00:04:50 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1skIAC-0002Ps-0A;
-	Sat, 31 Aug 2024 07:04:48 +0000
-Date: Sat, 31 Aug 2024 15:04:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Macpaul Lin <macpaul.lin@mediatek.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>,
-	Pavel Machek <pavel@ucw.cz>, Sean Wang <sean.wang@mediatek.com>,
-	Lee Jones <lee@kernel.org>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Flora Fu <flora.fu@mediatek.com>
-Cc: oe-kbuild-all@lists.linux.dev, Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Sen Chu <sen.chu@mediatek.com>,
-	Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v2 2/7] dt-bindings: mfd: mediatek: mt6397: Convert to DT
- schema format
-Message-ID: <202408311453.Ui9YGyJc-lkp@intel.com>
-References: <20240830110732.30080-2-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1725087965; c=relaxed/simple;
+	bh=6Hi53CaTME2Ebi8syWQ/1uJ40kzCigIEHluZ0P4NkH0=;
+	h=Content-Type:From:Mime-Version:Subject:Date:Message-Id:References:
+	 Cc:In-Reply-To:To; b=f7ZEBwdROBNUpq/BrOLZW7EhbWxoapnJF6nDgy8uiRXRpvuF0u3DsHxjM2s9izmZP9unIHIyvzqnJu9H6D4kM6gW7ZQLxVI4ZATUHzaBloo7xQA1E3eZ/Bs67e8ndCHybxDInTB4V7zuu0qholLWSg1ePfpvT0ym0b/RgZEVae4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=H0TLueDx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nzj/0dTA; arc=none smtp.client-ip=103.168.172.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
+Received: from phl-compute-08.internal (phl-compute-08.nyi.internal [10.202.2.48])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id B3034114060D;
+	Sat, 31 Aug 2024 03:06:02 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-08.internal (MEProxy); Sat, 31 Aug 2024 03:06:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1725087962; x=1725174362; bh=/T1bfOUPYYzScaMq5P6hnUwfWlzujRpW
+	wVsHEjQEmYM=; b=H0TLueDxi6d928Vlm6k4RRKm4UK8mJP755amtUx3FCEaXpdx
+	NKzuCh5SaIDYvfpsmwL7153AzfRTWnsQ4nHy5mov9mIgtyq1J5Uihce2c1sAuTmf
+	ZfYgx1LPgHg3oMxxuImcfPaF51qObNbaWqqjdmarS7qBniZ5urGjouusxeBCGjPc
+	+DKGEmcJLZjDjTMKIs9zEE5DC08GxjDpfbXVYXsDdxr2J2vUzdpSQSEZMUcKoZqQ
+	JKOWaxWhchcEQxVfu2YT+7iX0t2GKh2GqHAIs/+313DUtiQNTWr7lZLp3UFnXLaN
+	ABNml02IISseiqidvE7l3f5Zk+YqlIcng2wckQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1725087962; x=
+	1725174362; bh=/T1bfOUPYYzScaMq5P6hnUwfWlzujRpWwVsHEjQEmYM=; b=n
+	zj/0dTAISeRr64Xh8UneSnfw9ng1a4Feh+GPiUByBGsY4p7xPr3jaDg6u7Xb6P1h
+	Z/3QtXJnn4rywt9D5/t25zO7yUHoEF2IYl5uba3bTe3ObbVZI65MQN2rTLesvKw2
+	W6ew/6Sy5Q1+2gJSQuwCR7zY7tEd7h3hYq16YdcyutwNA8ibqZOpylsUhdmJCanx
+	/I4/U9Whk9TxR+cKVoiHZ50EjlCKzKOB3DuvtM9v4TcBHBrE5qau7kxhZflEfHOv
+	4vXYrHI+5opdbtnbAw9KLeXtHFJMGxfovk+fvcLEPo63/5RX/C8dCdidV9bK3WUv
+	PyPgguNg+ZH9IdtDPaJuw==
+X-ME-Sender: <xms:2sDSZjNtXAS2jxEhpMLuiMXBc8Ux0K2Xsk7iUqpVVnI_fALuoqTNPg>
+    <xme:2sDSZt9scBKO6Jo-SGa3LNSB_wzyh3eQPoyDdxt-gdGKbGSrtxNWHokEW9U4YvMVM
+    ZPntrhO0T_zqbgNL7I>
+X-ME-Received: <xmr:2sDSZiQNo5K8qMv2t9Qu_nbyXtCrL6lHlXSdBj2q9pkyTvADzsoRCY-I4GM-ovVjCbIGS2cAj9B73RpMC6rpqqN8HLuMYnDO4hcGve73ewrXWl2_Mcu24FqSIuw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudefjedguddugecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpegtgffhggfufffkfhevjgfvofesthhqmhdthhdt
+    jeenucfhrhhomhepufhvvghnucfrvghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrd
+    guvghvqeenucggtffrrghtthgvrhhnpedvhfdtudduvdeujeeufffgudekvdefvefgueei
+    iedvledtheegieevffdtteekudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+    epmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvhdpnhgspghrtghp
+    thhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeimphhoshhtmhgrrh
+    hkvghtohhssdhuphhsthhrvggrmhhinhhgsehlihhsthhsrdhsrhdrhhhtpdhrtghpthht
+    oheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqd
+    hkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeht
+    ghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehkrhiikhdoughtsehkvg
+    hrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhsthhsrdhlihhnuhigrdgu
+    vghvpdhrtghpthhtohepthhofihinhgthhgvnhhmihesghhmrghilhdrtghomhdprhgtph
+    htthhopehkohhnrhgrugdrugihsggtihhosehsohhmrghinhhlihhnvgdrohhrghdprhgt
+    phhtthhopehmrghrtggrnhesmhgrrhgtrghnrdhsth
+X-ME-Proxy: <xmx:2sDSZntcToeLQMts6aRKZG8rOsqdZVPJ2RQb44L1TlEFIU0qaLp0EQ>
+    <xmx:2sDSZremGysfn7_s673amKOetK6HOHSceQdJIiOtkkNFlYnirP1hNg>
+    <xmx:2sDSZj0CKRbyfjdbA8IS6ZfsJHATsxDwKKUR36h1XoX_69c9uyMjfg>
+    <xmx:2sDSZn9TUrAAYSjWRnnqXJsiczk_jJJH2fyexR_heYN2Hr5BEVJZeQ>
+    <xmx:2sDSZm-pE1OXg5IJJocP9luLGahLwus20cnPEwz10LTgrRqGb7nAlIOy>
+Feedback-ID: i51094778:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 31 Aug 2024 03:06:02 -0400 (EDT)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From: Sven Peter <sven@svenpeter.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240830110732.30080-2-macpaul.lin@mediatek.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PATCH v2 3/4] irqchip/apple-aic: Add a new "Global fast IPIs only" feature level
+Date: Sat, 31 Aug 2024 09:05:50 +0200
+Message-Id: <612CCDB4-26A7-432C-89F9-48743D547859@svenpeter.dev>
+References: <20240831055605.3542-4-towinchenmi@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+In-Reply-To: <20240831055605.3542-4-towinchenmi@gmail.com>
+To: Nick Chan <towinchenmi@gmail.com>
+X-Mailer: iPhone Mail (21G93)
 
-Hi Macpaul,
 
-kernel test robot noticed the following build warnings:
+>=20
+> On 31. Aug 2024, at 07:57, Nick Chan <towinchenmi@gmail.com> wrote:
+>=20
+> =EF=BB=BFStarting with the A11 (T8015) SoC, Apple began using arm64 sysreg=
+s for
+> fast IPIs. However, on A11, there is no such things as "Local" fast IPIs,
+> as the SYS_IMP_APL_IPI_RR_LOCAL_EL1 register does not seem to exist.
+>=20
+> Add a new feature level, used by the compatible "apple,t8015-aic",
+> controlled by a static branch key named use_local_fast_ipi. When
+> use_fast_ipi is true and use_local_fast_ipi is false, fast IPIs are used
+> but all IPIs goes through the register SYS_IMP_APL_IPI_RR_GLOBAL_EL1, as
+> "global" IPIs.
+>=20
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> ---
 
-[auto build test WARNING on broonie-regulator/for-next]
-[also build test WARNING on lee-mfd/for-mfd-next robh/for-next lee-mfd/for-mfd-fixes linus/master v6.11-rc5 next-20240830]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Reviewed-by: Sven Peter <sven@svenpeter.dev>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Macpaul-Lin/dt-bindings-mfd-mediatek-mt6397-Convert-to-DT-schema-format/20240830-191309
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-patch link:    https://lore.kernel.org/r/20240830110732.30080-2-macpaul.lin%40mediatek.com
-patch subject: [PATCH v2 2/7] dt-bindings: mfd: mediatek: mt6397: Convert to DT schema format
-reproduce: (https://download.01.org/0day-ci/archive/20240831/202408311453.Ui9YGyJc-lkp@intel.com/reproduce)
+> drivers/irqchip/irq-apple-aic.c | 24 +++++++++++++++++++++++-
+> 1 file changed, 23 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-a=
+ic.c
+> index 8d81d5fb3c50..01a3c79054f5 100644
+> --- a/drivers/irqchip/irq-apple-aic.c
+> +++ b/drivers/irqchip/irq-apple-aic.c
+> @@ -235,6 +235,8 @@ enum fiq_hwirq {
+> };
+>=20
+> static DEFINE_STATIC_KEY_TRUE(use_fast_ipi);
+> +/* True if SYS_IMP_APL_IPI_RR_LOCAL_EL1 exists for local fast IPIs (M1+) *=
+/
+> +static DEFINE_STATIC_KEY_TRUE(use_local_fast_ipi);
+>=20
+> struct aic_info {
+>    int version;
+> @@ -252,6 +254,7 @@ struct aic_info {
+>=20
+>    /* Features */
+>    bool fast_ipi;
+> +    bool local_fast_ipi;
+> };
+>=20
+> static const struct aic_info aic1_info __initconst =3D {
+> @@ -270,17 +273,32 @@ static const struct aic_info aic1_fipi_info __initco=
+nst =3D {
+>    .fast_ipi    =3D true,
+> };
+>=20
+> +static const struct aic_info aic1_local_fipi_info __initconst =3D {
+> +    .version    =3D 1,
+> +
+> +    .event        =3D AIC_EVENT,
+> +    .target_cpu    =3D AIC_TARGET_CPU,
+> +
+> +    .fast_ipi    =3D true,
+> +    .local_fast_ipi =3D true,
+> +};
+> +
+> static const struct aic_info aic2_info __initconst =3D {
+>    .version    =3D 2,
+>=20
+>    .irq_cfg    =3D AIC2_IRQ_CFG,
+>=20
+>    .fast_ipi    =3D true,
+> +    .local_fast_ipi =3D true,
+> };
+>=20
+> static const struct of_device_id aic_info_match[] =3D {
+>    {
+>        .compatible =3D "apple,t8103-aic",
+> +        .data =3D &aic1_local_fipi_info,
+> +    },
+> +    {
+> +        .compatible =3D "apple,t8015-aic",
+>        .data =3D &aic1_fipi_info,
+>    },
+>    {
+> @@ -750,7 +768,8 @@ static void aic_ipi_send_fast(int cpu)
+>    u64 cluster =3D MPIDR_CLUSTER(mpidr);
+>    u64 idx =3D MPIDR_CPU(mpidr);
+>=20
+> -    if (MPIDR_CLUSTER(my_mpidr) =3D=3D cluster)
+> +    if (static_branch_likely(&use_local_fast_ipi) &&
+> +        MPIDR_CLUSTER(my_mpidr) =3D=3D cluster)
+>        write_sysreg_s(FIELD_PREP(IPI_RR_CPU, idx),
+>                   SYS_IMP_APL_IPI_RR_LOCAL_EL1);
+>    else
+> @@ -990,6 +1009,9 @@ static int __init aic_of_ic_init(struct device_node *=
+node, struct device_node *p
+>    if (!irqc->info.fast_ipi)
+>        static_branch_disable(&use_fast_ipi);
+>=20
+> +    if (!irqc->info.local_fast_ipi)
+> +        static_branch_disable(&use_local_fast_ipi);
+> +
+>    irqc->info.die_stride =3D off - start_off;
+>=20
+>    irqc->hw_domain =3D irq_domain_create_tree(of_node_to_fwnode(node),
+> --
+> 2.46.0
+>=20
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408311453.Ui9YGyJc-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/mt6397.txt
-   Warning: Documentation/devicetree/bindings/leds/leds-mt6323.txt references a file that doesn't exist: Documentation/devicetree/bindings/mfd/mt6397.txt
-   Warning: Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml references a file that doesn't exist: Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
-   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
