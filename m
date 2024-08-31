@@ -1,504 +1,202 @@
-Return-Path: <devicetree+bounces-98698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FE09670DF
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 12:29:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 341049670E7
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 12:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A6D1F247C0
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 10:29:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 553C31C2156A
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 10:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC8D17E011;
-	Sat, 31 Aug 2024 10:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B024117C200;
+	Sat, 31 Aug 2024 10:32:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="apOXRYVj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K79//bN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10D817DFE8
-	for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 10:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B416176AA5
+	for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 10:32:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725100119; cv=none; b=KufWix7RuuWVauz10UbopD2nG3V2MYffmpZkpzSb3RLBoWRRQE5Uaepq1FS3U+vkvo95vlCN4TN9fM9YWHElKAjXf1+KKz6YTZHRatameChNc/e4tJiIYlN3BTFINM+RrpBkEmhitdV60dF0FTCgeM8oNqKzpcddQrygVjcv1aQ=
+	t=1725100362; cv=none; b=kG59g+AMP50FjfJR1L5zzwGlLn0l1a4AQq4QUbvgE1oM8zoG2+fBG3xHa87vuBguoyxTsGbpqChW04Y4Jf5GpQc9ZT9GGzZCac6VYGf9qK16DLKOMU8lN+w21SjY3DWozqmKpsMMxmfGBGptAkJucPG8ds0Hym7+8/QwCXLTW0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725100119; c=relaxed/simple;
-	bh=+XgOIAGc54NmeGJRFJTeDnLlTkRP9TEIQ/DEMZFkmh8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Xvx3qCtIDcFBdryNHOp+5qhh9xoZXte6+t9qrxIWk2RRsqsbktYbvQZrqoOuEWwDPcBxPKRDMp4m6hWTnG4if2xAYQUIxFyO3o0rgl2Opz2qQ2GWQUsCAapUsNS0+caAwOs6B0X6zwW/O15gQCi4QBl0TlmUfos+/an4QVkz5sE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=apOXRYVj; arc=none smtp.client-ip=209.85.128.50
+	s=arc-20240116; t=1725100362; c=relaxed/simple;
+	bh=LS7JjNLNOai5U4tKMxi9bIxoMnNaywIh2Nz/2XzTViE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=S8gED11WUDv/HFlteFge7UEuqMxHAwKQiLJfdFUxopFlqWQz/v5T9AqOp+GmnDsoR9wPkKJIMwZC3BkHiGaCble0XqByRJWQGeh5AXJvkvuwS1cyVQKCWShO5q4UYMHgQmGg/g50a3VrdhHpuTdonFYysZ3rrrcGYeLIDhq9Obo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K79//bN8; arc=none smtp.client-ip=209.85.219.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42bb8ba2814so3242865e9.3
-        for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 03:28:37 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dff1ccdc17bso2837882276.0
+        for <devicetree@vger.kernel.org>; Sat, 31 Aug 2024 03:32:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725100116; x=1725704916; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8PQ7TU+TRCd05plV/lsYBMtHZnloycwGHJL8+Z4Y7Do=;
-        b=apOXRYVjydLEAjw8YQ0roNNKTGbn7u70sQqiXV7vo67ZwGLJvLjZ9UkG0ePDWwjnxD
-         FyRA5xp/miYUF3BsyRIazSmscxDelmGaB+RAbaC/v0KTU/TOK4p5sQUtui5TU5aK8Q2B
-         4uPkoYqPX0GF/PdYoQBdwAJEjCDV2tMK87hytY4TaPwIOeS7fEhlZjDpFNfZvSOkEtie
-         p7wiVZYYo+ab9f7oXPS5NTSpitNV1Z50sI/esbmdKqEgZdaw0SW6o6x6I8ZSJKreVj0n
-         Mu/jN5ionxFAXAR83qmw80Wm14xcpDATobCii87pFKnPofSWVyl3olTDMwboOL4pntpf
-         ehYg==
+        d=linaro.org; s=google; t=1725100360; x=1725705160; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tKxIacQXeZ2qcUvNmDUUVII5ysi793GfJwtJp8UupOo=;
+        b=K79//bN8cXBhdsmHCleEkY4jKCZWc7vZw5bVpr+9ezF/Tq9yh1+AQko2aps9jV6Nra
+         L3nUQSBVdDPzzAsctwyEh26AqNfkQnXhfTKx0aojqdEI8gv5BjVAuA2+xBBr1rH1wAtc
+         yiWEUy1EZCGryL4OB5YQUkSL5aAXA3sGcD85ZAL4shyVE7asTxQMohCD4zVZ0qcqazA+
+         b53sCQ6XKu59mdeupIEFnm/dF5Ob8dzrs1MmEDemLvq5f8/ydxpoIgty/SaFvRDwTE85
+         iFPmNSWBYjRCQXEJXCFHh80/KOlBz+bZXN+Kne31Q2Xfyrmax4lC7xpTONo/KgnTjNEo
+         +BGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725100116; x=1725704916;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8PQ7TU+TRCd05plV/lsYBMtHZnloycwGHJL8+Z4Y7Do=;
-        b=XoEaEPDZrDpajjrqq9UkfmDM/Fhid0BdUf5RkfNwU6Nv00xgKICjiGJ5ifonxYwL1V
-         dm6G/gkwuuaQqt7XL6XbkcYF9mGvONG4s00tG57/aFfG2Nnohwbc/g2VV6O+ge9vxyjZ
-         S75ZFnnkGulTmma3GEedKUDDIrZl3VzkNIJAVj+n+19mP04w6PAJf4HBw9yfOyVfWkdv
-         7b/xTshZnliSBf2Pua4BicFsu5GehMRmjj3hIoTGglrnpuHGw4Rw71+MysJ61xsBu5Zp
-         ClCgwUogunCqEWl9+O7+D1ZQBJSmQCJZbqbv2PY2TlQdwXCw84dMnjhjObojtgKVrYPs
-         j9JQ==
-X-Gm-Message-State: AOJu0YyToQQJqyTcT369D2Ye7ovqvG4OxNn5YlDuS7bBmkX5b3XTMlll
-	lt/KCJ7QqTO47iZs+gb+6Y7PC1yw4T20hjeh9Vea5KZe/poo27qfND7wEQH9sCQ=
-X-Google-Smtp-Source: AGHT+IFKG2NsgPvdlzeiPUcFqypd8reEl1V1Xgj5bvXeck4f8KJqk/iLdd6LnHVh5p4piLLapaNPdA==
-X-Received: by 2002:a05:600c:4fd6:b0:425:6dfa:c005 with SMTP id 5b1f17b1804b1-42bbb204f9dmr20014055e9.2.1725100115992;
-        Sat, 31 Aug 2024 03:28:35 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba63aba23sm104502155e9.21.2024.08.31.03.28.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Aug 2024 03:28:35 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Sat, 31 Aug 2024 12:28:21 +0200
-Subject: [PATCH 4/4] ARM: dts: imx6qdl: align pin config nodes with
- bindings
+        d=1e100.net; s=20230601; t=1725100360; x=1725705160;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tKxIacQXeZ2qcUvNmDUUVII5ysi793GfJwtJp8UupOo=;
+        b=oKk5eqagi5bWlCJbR5S1BSCPiACVjMFAAj14p9iFpYHCt89QIT4nfOtNrePFWB4/Pj
+         s8Pz2De7jJQSwrzNVzfQTtFXP75tLbN08j/pD3F0D+zNPRNs4uFQ2UoeXTSEnSyI9bvY
+         YNh59zgeVqtQecG6o4M7DIedDlswHAtf/avyhS6E4MPotDjkQe6r+6AGmLV/RNmNiS+y
+         DtPrvz+zauHPyfYwD5tUULbWvKunLj008W2176FfDta2+nZ1Mlca3B4f9SuCcdzW/yI0
+         PlbVdpNzcaB+chT71eYVxrteRyKUCj6tD+7IzVMQ1uzYkBbTgtfNknCzg6zlY1x90MtQ
+         bgXw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRj5ohL6IWmX4PI+lv0NVS+pqkiPUbsETmiL4ZjCohxf1aMtcfTtkGcc8V4GJOfkIzDVq8KPj2gb23@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKRIkm+b7895M0E/DdzFp7O6+UwvRtA+5QKGwobPJ936DJkb6P
+	Bf8Q8YlfN4L05ky7fDeGJdXy9sfs45XYYdTWNF/jPSrAdO54pnpD3GnZetTQbs2NqQNs9YFQayX
+	a1OJg1PsDGt3dIU/ABxm+P8Us3A4K+UcgfsGYkQ==
+X-Google-Smtp-Source: AGHT+IH8Eb7EYXiidD/DrNNChHQ2lwNk48tFSRFBB77aRxIJWoIIPagMeOtludSNPt8BV9FsjbJZVJT8vUY8xBCkml0=
+X-Received: by 2002:a05:6902:1145:b0:e0b:a7c1:9dcc with SMTP id
+ 3f1490d57ef6-e1a7a019106mr5308764276.20.1725100360016; Sat, 31 Aug 2024
+ 03:32:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240831-dts-nxp-imx6-pinctrl-v1-4-f5811032bd40@linaro.org>
-References: <20240831-dts-nxp-imx6-pinctrl-v1-0-f5811032bd40@linaro.org>
-In-Reply-To: <20240831-dts-nxp-imx6-pinctrl-v1-0-f5811032bd40@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=14467;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=+XgOIAGc54NmeGJRFJTeDnLlTkRP9TEIQ/DEMZFkmh8=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm0vBKr2xI/6eYbX0GjX2qHad67+HXJeKVsp37A
- LX0DcQ35A+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZtLwSgAKCRDBN2bmhouD
- 12ARD/0bS69oz/IFaINlbW5zhDmDnaGGQ6qS91FIx4vBDu9+waApbVmykB0U0hJIEz0R2ct7KIL
- icGy2NOB8ksP3v1b3AqZ348odUPj2370kYy90f6kL2cckVdYM+u9rcmVMaauS9IXgqvmsZIsOeC
- I0ImqItYCD7A+PpXdOKjsW+ZhLzEAuxfQrGPd+21L3A/RfuTKePp0Ef//F7EKXSBWd+3bBD4k54
- pkiBSAsWLzqQgffVIM80wBZ+PkMjFDIP1YKRC7GIlI4oF3Za0j7yuX2aPrG0BmQbLdCkTaUz3i+
- e1+9B0JCRloDkQwarKhIzA/+BRU6bn3blA+QoQLo6MlDxRVx7S0z509vcN9ICxte4FuqUdCS1H4
- 2Cla6OKtQCtjstDrRlN5WUPtoZew43VbBjW6nXVsp4yVe89CrY6Koi4LRa0LvwnK9JvHzH235EQ
- 33uS06RkuN3pYUpJi2wv9BQtnH46SaqTgbJ329STi/Ij8RKZVWuuiQxD8bOquofLbZ46Cv4dkCh
- E/s3KLKSWf00Xkt7zjP45ExuV8NwSq2Fp1LpZjIEg8ESrnMoggiFP4NAzqQq/aH6wACXpQP46K7
- 6XrRqhhgoYHVTUXKthjh9H6sXfby76L60lhX4vfAWO+owQQuSnkvDzEGwa9nrg9eI6S+FvOdsrt
- n4UMuEclc7au4Vw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
+ <99bef301-9f6c-4797-b47e-c83e56dfbda9@tuxon.dev> <CAPDyKFrVS2vpsJqTvjKCJ7ADqXc4D4k2eeCBsaK4T+=pXDnKUA@mail.gmail.com>
+ <fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev>
+In-Reply-To: <fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Sat, 31 Aug 2024 12:32:02 +0200
+Message-ID: <CAPDyKFrkkASq7rfRN=9sEet-p8T8t+f__PdnSNRN3bMNipnNNw@mail.gmail.com>
+Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
+	magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com, 
+	sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com, 
+	biju.das.jz@bp.renesas.com, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Bindings for other NXP pin controllers expect pin configuration nodes in
-pinctrl to match certain naming, so adjust these as well, even though
-their bindings are not yet in dtschema format.
+[...]
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi |  2 +-
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw52xx.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw53xx.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw54xx.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw560x.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw5903.dtsi        | 10 +++++-----
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw5910.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-gw5912.dtsi        |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-icore-rqs.dtsi     |  8 ++++----
- arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi     |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi           |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-var-dart.dtsi      |  4 ++--
- arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi       |  4 ++--
- 15 files changed, 34 insertions(+), 34 deletions(-)
+> >
+> > If not, there are two other options that can be considered I think.
+> > *) Using the genpd on/off notifiers, to really allow the consumer
+> > driver of the reset-control to know when the PM domain gets turned
+> > on/off.
+> > **) Move the entire reset handling into the PM domain provider, as it
+> > obviously knows when the domain is getting turned on/off.
+>
+> This option is what I've explored, tested on my side.
+>
+> I explored it in 2 ways:
+>
+> 1/ SYSC modeled as an individual PM domain provider (this is more
+>    appropriate to how HW manual described the hardware) with this the PHY
+>    reset DT node would have to get 2 PM domains handlers (one for the
+>    current PM domain provider and the other one for SYSC):
+>
+> +               phyrst: usbphy-ctrl@11e00000 {
+> +                       compatible = "renesas,r9a08g045-usbphy-ctrl";
+> +                       reg = <0 0x11e00000 0 0x10000>;
+> +                       clocks = <&cpg CPG_MOD R9A08G045_USB_PCLK>;
+> +                       resets = <&cpg R9A08G045_USB_PRESETN>;
+> +                       power-domain-names = "cpg", "sysc";
+> +                       power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc
+> R9A08G045_SYSC_PD_USB>;
+> +                       #reset-cells = <1>;
+> +                       status = "disabled";
+> +
+> +                       usb0_vbus_otg: regulator-vbus {
+> +                               regulator-name = "vbus";
+> +                       };
+> +               };
+> +
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
-index 758eaf9d93d2..f7fac86f0a6b 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
-@@ -506,7 +506,7 @@ MX6QDL_PAD_EIM_A22__GPIO2_IO16		0x1b0b0 /* PCIe reset */
- 		>;
- 	};
- 
--	pinctrl_gpmi_nand: gpmi-nand {
-+	pinctrl_gpmi_nand: gpminandgrp {
- 		fsl,pins = <
- 			MX6QDL_PAD_NANDF_CLE__NAND_CLE     0xb0b1
- 			MX6QDL_PAD_NANDF_ALE__NAND_ALE     0xb0b1
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw52xx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw52xx.dtsi
-index 082a2e3a391f..b57f4073f881 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw52xx.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw52xx.dtsi
-@@ -761,7 +761,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x170b9
-@@ -774,7 +774,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw53xx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw53xx.dtsi
-index 8ec442038ea0..090c0057d117 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw53xx.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw53xx.dtsi
-@@ -750,7 +750,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -763,7 +763,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw54xx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw54xx.dtsi
-index 9df9f79affae..0ed6d25024a2 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw54xx.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw54xx.dtsi
-@@ -833,7 +833,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -846,7 +846,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi
-index 7f16c602cc07..c6e231de674a 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi
-@@ -704,7 +704,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -717,7 +717,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw560x.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw560x.dtsi
-index 7693f92195d5..d0f648938cae 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw560x.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw560x.dtsi
-@@ -896,7 +896,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -909,7 +909,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5903.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5903.dtsi
-index 9d0836df0fed..71911df881cc 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5903.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5903.dtsi
-@@ -680,7 +680,7 @@ MX6QDL_PAD_KEY_COL4__GPIO4_IO14		0x1b0b0 /* OC */
- 		>;
- 	};
- 
--	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_NANDF_D3__GPIO2_IO03		0x4001b0b0 /* EMMY_EN */
- 			MX6QDL_PAD_NANDF_D4__GPIO2_IO04		0x4001b0b0 /* EMMY_CFG1# */
-@@ -710,7 +710,7 @@ MX6QDL_PAD_KEY_ROW1__SD2_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD2_CMD__SD2_CMD		0x170b9
- 			MX6QDL_PAD_SD2_CLK__SD2_CLK		0x100b9
-@@ -723,7 +723,7 @@ MX6QDL_PAD_KEY_ROW1__SD2_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD2_CMD__SD2_CMD		0x170f9
- 			MX6QDL_PAD_SD2_CLK__SD2_CLK		0x100f9
-@@ -752,7 +752,7 @@ MX6QDL_PAD_SD3_DAT7__SD3_DATA7		0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -768,7 +768,7 @@ MX6QDL_PAD_SD3_DAT7__SD3_DATA7		0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi
-index f4cb9e1d34a9..716c324a7458 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi
-@@ -817,7 +817,7 @@ MX6QDL_PAD_SD3_DAT7__SD3_DATA7		0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -833,7 +833,7 @@ MX6QDL_PAD_SD3_DAT7__SD3_DATA7		0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5910.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5910.dtsi
-index 424dc7fcd533..453dee4d9227 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5910.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5910.dtsi
-@@ -629,7 +629,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x170b9
-@@ -642,7 +642,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5912.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5912.dtsi
-index 49ea25c71967..add700bc11cc 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5912.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5912.dtsi
-@@ -569,7 +569,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -582,7 +582,7 @@ MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-icore-rqs.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-icore-rqs.dtsi
-index d339957cc097..dff184a119f3 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-icore-rqs.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-icore-rqs.dtsi
-@@ -397,7 +397,7 @@ MX6QDL_PAD_GPIO_4__GPIO1_IO04  0x1f059	/* PWR */
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD    0x170B1
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK    0x100B1
-@@ -408,7 +408,7 @@ MX6QDL_PAD_SD3_DAT3__SD3_DATA3 0x170B1
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp_200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD    0x170F9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK    0x100F9
-@@ -434,7 +434,7 @@ MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x17070
- 		>;
- 	};
- 
--	pinctrl_usdhc4_100mhz: usdhc4grp_100mhz {
-+	pinctrl_usdhc4_100mhz: usdhc4-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD4_CMD__SD4_CMD    0x170B1
- 			MX6QDL_PAD_SD4_CLK__SD4_CLK    0x100B1
-@@ -449,7 +449,7 @@ MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x170B1
- 		>;
- 	};
- 
--	pinctrl_usdhc4_200mhz: usdhc4grp_200mhz {
-+	pinctrl_usdhc4_200mhz: usdhc4-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD4_CMD__SD4_CMD    0x170F9
- 			MX6QDL_PAD_SD4_CLK__SD4_CLK    0x100F9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi
-index 0a3deaf92eea..99386421a48d 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi
-@@ -690,7 +690,7 @@ MX6QDL_PAD_SD3_DAT7__SD3_DATA7		0x17059
- 			>;
- 		};
- 
--		pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+		pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
- 			fsl,pins = <
- 				MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170b9
- 				MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100b9
-@@ -705,7 +705,7 @@ MX6QDL_PAD_SD3_DAT7__SD3_DATA7		0x170b9
- 			>;
- 		};
- 
--		pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+		pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
- 			fsl,pins = <
- 				MX6QDL_PAD_SD3_CMD__SD3_CMD		0x170f9
- 				MX6QDL_PAD_SD3_CLK__SD3_CLK		0x100f9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
-index e2fe337f7d9e..5a194f4c0cb9 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
-@@ -373,7 +373,7 @@ MX6QDL_PAD_KEY_COL1__AUD5_TXFS		0x130b0 /* SSI1_FS */
- 		>;
- 	};
- 
--	pinctrl_disp0_1: disp0grp-1 {
-+	pinctrl_disp0_1: disp0-1-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK 0x10
- 			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15       0x10
-@@ -406,7 +406,7 @@ MX6QDL_PAD_DISP0_DAT23__IPU1_DISP0_DATA23  0x10
- 		>;
- 	};
- 
--	pinctrl_disp0_2: disp0grp-2 {
-+	pinctrl_disp0_2: disp0-2-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK 0x10
- 			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15       0x10
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-dart.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-dart.dtsi
-index 200559d7158d..d8283eade43e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-dart.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-dart.dtsi
-@@ -346,7 +346,7 @@ MX6QDL_PAD_SD3_RST__GPIO7_IO08  0x17071
- 		>;
- 	};
- 
--	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD1_CMD__SD1_CMD	0x170B9
- 			MX6QDL_PAD_SD1_CLK__SD1_CLK	0x100B9
-@@ -357,7 +357,7 @@ MX6QDL_PAD_SD1_DAT3__SD1_DATA3	0x170B9
- 		>;
- 	};
- 
--	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhz-grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD1_CMD__SD1_CMD	0x170F9
- 			MX6QDL_PAD_SD1_CLK__SD1_CLK	0x100F9
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-index a1ea33c4eeb7..79d80632ee45 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-@@ -436,7 +436,7 @@ MX6QDL_PAD_SD3_RST__GPIO7_IO08  0x13059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp100mhzgrp {
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grpgrp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD	0x170B9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK	0x100B9
-@@ -451,7 +451,7 @@ MX6QDL_PAD_SD3_RST__GPIO7_IO08  0x130B9
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp200mhzgrp {
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grpgrp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_CMD__SD3_CMD	0x170F9
- 			MX6QDL_PAD_SD3_CLK__SD3_CLK	0x100F9
+According to what you have described earlier/above, modelling the SYSC
+as a PM domain provider seems like a better description of the HW to
+me. Although, as I said earlier, if you prefer the reset approach, I
+would not object to that.
 
--- 
-2.43.0
+>
+> and the PHY reset driver will get bulky with powering on/off both of these,
+> at least with my current implementation, something like (and the following
+> code is in probe()):
+>
+> +       if (priv->set_power) {
+> +               priv->cpg_genpd_dev = dev_pm_domain_attach_by_name(dev, "cpg");
+> +               if (IS_ERR(priv->cpg_genpd_dev)) {
+> +                       dev_err_probe(dev, error, "Failed to attach CPG PM
+> domain!");
+> +                       error = PTR_ERR(priv->cpg_genpd_dev);
+> +                       goto err_pm_runtime_put;
+> +               }
+> +
+> +               priv->sysc_genpd_dev = dev_pm_domain_attach_by_name(dev,
+> "sysc");
+> +               if (IS_ERR(priv->sysc_genpd_dev)) {
+> +                       dev_err_probe(dev, error, "Failed to attach sysc PM
+> domain!");
+> +                       error = PTR_ERR(priv->sysc_genpd_dev);
+> +                       goto err_genpd_cpg_detach;
+> +               }
+> +
+> +               priv->cpg_genpd_dl = device_link_add(dev, priv->cpg_genpd_dev,
+> +                                                    DL_FLAG_PM_RUNTIME |
+> +                                                    DL_FLAG_STATELESS);
+> +               if (!priv->cpg_genpd_dl) {
+> +                       dev_err_probe(dev, -ENOMEM, "Failed to add CPG
+> genpd device link!");
+> +                       goto err_genpd_sysc_detach;
+> +               }
+> +
+> +               priv->sysc_genpd_dl = device_link_add(dev,
+> priv->sysc_genpd_dev,
+> +                                                     DL_FLAG_PM_RUNTIME |
+> +                                                     DL_FLAG_STATELESS);
+> +               if (!priv->sysc_genpd_dl) {
+> +                       dev_err_probe(dev, -ENOMEM, "Failed to add sysc
+> genpd device link!");
+> +                       goto err_genpd_cpg_dl_del;
+> +               }
+> +
+> +
+> +               error = pm_runtime_resume_and_get(priv->cpg_genpd_dev);
+> +               if (error) {
+> +                       dev_err_probe(dev, error, "Failed to runtime resume
+> cpg PM domain!");
+> +                       goto err_genpd_sysc_dl_del;
+> +               }
+> +
+> +               error = pm_runtime_resume_and_get(priv->sysc_genpd_dev);
+> +               if (error) {
+> +                       dev_err_probe(dev, error, "Failed to runtime resume
+> sysc PM domain!");
+> +                       goto err_genpd_cpg_off;
+> +               }
+> +       }
 
+Indeed, the code above looks bulky.
+
+Fortunately, we now have dev|devm_pm_domain_attach_list(), which
+replaces all of the code above.
+
+[...]
+
+Kind regards
+Uffe
 
