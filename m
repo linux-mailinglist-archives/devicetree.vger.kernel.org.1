@@ -1,72 +1,62 @@
-Return-Path: <devicetree+bounces-98733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F869671B0
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 15:10:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A24F9671B4
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 15:16:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F28EB21DCF
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:10:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 304311C21282
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2024 13:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04EE74C8C;
-	Sat, 31 Aug 2024 13:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187B110A1C;
+	Sat, 31 Aug 2024 13:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="KZGpWoYn"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="F48ETAZ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513D37494;
-	Sat, 31 Aug 2024 13:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88264C74;
+	Sat, 31 Aug 2024 13:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725109797; cv=none; b=ah13OJdIST5yGAzendlDncxxw6nmJjFwTpNZU4csl805EG5oU36C7ykbE/lQkzjBJd+MZTNvzVFPiqDzqQQrBidwe7mlDRWRLckL+GbAKADfMcBm5fnoroTjhfILvnrBZPEWBZDXj4dOXcvZDH26T+zxxBm/GajkZCbQYxbKRIw=
+	t=1725110173; cv=none; b=dQR2s1irQICy9xva5jt1IWaGbyEdf7aoIgkrJ3xZ13eWBxhU1ohXgZuqmhWMBzdh9b04VaNr/e4J89jFAI3KNu588gKAHvBMFfNsf09TVrO5vD/IR7AwtjZHL3HxucPyPDdDSAPfhRTWnCnQ/o3auzGT1o8ye5jjlia1JCf70vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725109797; c=relaxed/simple;
-	bh=JhbA8SLC7PqTOJM4EjydUp66srUh+KBL2NPDw8VnI+0=;
+	s=arc-20240116; t=1725110173; c=relaxed/simple;
+	bh=tLcADBlUpicJI7YwEir5KwcWT1YA0FCaATHsP3sCmXg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AA/cqAxo/O1CIUoBbjkij/lEUF/PnFPPdQ+86adbXd7w9mOGEIDv7n4n1PnjpSyzvo0pUcngnKtVitQSRKEYSrp3d/Nu0ZQXRLCai2TghShvDw7mA4vXApmc5pzJ9PCbdb24HcvK4mUkD86e+p0ZidmFgB8ZABKi3EGeoMewMgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=KZGpWoYn; arc=none smtp.client-ip=220.197.32.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=fntCAIHXZs58pZC/3zIes4fWT01UXEN0tcAX4W6yaSjteRbZQpnvrwb6Oa6T+tkjnNPDF+79EyRRbxM75tRe/b4OLI7FGTDg0A6kQZD3IaQdJ1h16AvyVYmNWqdTm4rAUKtG1qFhkJ590dmFYQuI28yDwwT08RNyA4Z4IB0OGzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=F48ETAZ5; arc=none smtp.client-ip=1.95.21.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=hBxY1wW+vCTmGRcQG2NrNyjhBF4l614KDLIpuKsQrS4=;
-	b=KZGpWoYnBnxUI9tXJzTbd1KZVZDPR3pqI9QC4nSUmkNoa01s+BCekOiZWobjfC
-	HfRMcMJ7SGvFt3I/6vsmjhVeMf1iVP8z1F7dkW79BbUbCdwGdDnT2RvnCBHWVwnr
-	lpl70qEeXE6cQ+0nwGkAdLmEZLa0Tk9YWj/Scm9Px8u+A=
+	Content-Type; bh=EuKozmDV8mePyOV+B4UXYcEUDBeI4bY+pV28D9Slulo=;
+	b=F48ETAZ5kO1ZMjlO3CUi2tRVnvEyZjbVCxnB93pjLZYT0QiBPRgQVhtx4MWaHr
+	Rd2/azDlXKsaM+A2X5doMP5F8YJUsFLEZ7E0t3I1wrjq2aFWMtIwQL5IgeBwc1Qk
+	3jYAE8FmWyHV13W0MPlUHPZNuYoa3mjg9Y6GiEuJvbZMY=
 Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3X_LAFdNmMzI6AA--.19966S3;
-	Sat, 31 Aug 2024 21:08:18 +0800 (CST)
-Date: Sat, 31 Aug 2024 21:08:16 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3VwAZF9Nmsz06AA--.20596S3;
+	Sat, 31 Aug 2024 21:14:03 +0800 (CST)
+Date: Sat, 31 Aug 2024 21:14:01 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Adam Ford <aford173@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Marek Vasut <marex@denx.de>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Shawn Guo <shawnguo@kernel.org>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Fabio Estevam <festevam@denx.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Parthiban Nallathambi <parthiban@linumiz.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v5 0/2] Add support for Kontron OSM-S i.MX93 SoM and
- carrier board
-Message-ID: <ZtMVwKT5NbTywXtQ@dragon>
-References: <20240813084934.46004-1-frieder@fris.de>
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Clarify csis clock frequency
+Message-ID: <ZtMXGbpyv/1loJZM@dragon>
+References: <20240813234010.17852-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,43 +65,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240813084934.46004-1-frieder@fris.de>
-X-CM-TRANSID:M88vCgD3X_LAFdNmMzI6AA--.19966S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrtF1DKr47Ar4UCry8KFyDZFb_yoWfJrbE9a
-	4UWa4DK3W8G3WIkF1Fyr1kX3ZxKay0kryq9wn0gw4fXFW7JrW5tFZ5Kry3Wa4rWFWrCa4v
-	ya1kXa9rAw429jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUbD5r5UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxBMZWbS-Ekw8QAAsy
+In-Reply-To: <20240813234010.17852-1-laurent.pinchart@ideasonboard.com>
+X-CM-TRANSID:M88vCgD3VwAZF9Nmsz06AA--.20596S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWruFyxJF18CF47WrW8XF1DZFb_yoWDGwc_ua
+	9xKFnrAw1UAF1fXw4DG34rW342k3W5CF48Zw1Iqr43tryUXrWku3W2v34jvw40gay2qwsI
+	k34kK3W7C3s7WjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0eT5JUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCQ5MZWbS+P46mQAAs-
 
-On Tue, Aug 13, 2024 at 10:49:03AM +0200, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Wed, Aug 14, 2024 at 02:40:10AM +0300, Laurent Pinchart wrote:
+> The DT nodes for the MIPI CSI-2 receivers (MIPI_CSI) configure the
+> CAM1_PIX and CAM2_PIX clocks to 266 MHz through the assigned-clock-rates
+> property, and report that frequency in the clock-frequency property. The
+> i.MX8MP reference manual and datasheet list 266 MHz as a nominal
+> frequency when using both CSI-2 receivers, so all looks normal.
 > 
-> Patch 1: board DT bindings
-> Patch 2: add devicetrees
+> In reality, the clock is actually set to 250 MHz, as the selected
+> parent, IMX8MP_SYS_PLL2_1000M, has a 1/4 output that is selected as the
+> closest frequency to 266 MHz. This doesn't break operation of the
+> device, but is clearly misleading.
 > 
-> Changes for v5:
-> * Address Shawn's review comments (thanks!)
+> Clarify the clock configuration by selecting the IMX8MP_SYS_PLL2_250M
+> parent, dropping the redundant assigned-clock-rates, and setting
+> clock-frequency to 250 MHz. This doesn't cause any functional change.
 > 
-> Changes for v4:
-> * Reorder enable-active-high property
-> * Add dedicated pinctrl settings for different SDHC speed modes
-> * Add SION bit for SDHC pinctrls as workaround for SoC erratum
-> 
-> Changes for v3:
-> * remove applied patches
-> * rebase onto v6.11-rc1
-> 
-> Changes for v2:
-> * remove applied patches 1 and 2
-> * add tags
-> * improvements suggested by Krzysztof (thanks!)
-> * add missing Makefile entry for DT
-> 
-> Frieder Schrempf (2):
->   dt-bindings: arm: fsl: Add Kontron i.MX93 OSM-S based boards
->   arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier
->     board
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Applied both, thanks!
+Applied, thanks!
 
 
