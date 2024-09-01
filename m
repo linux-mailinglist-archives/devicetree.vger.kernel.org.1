@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-98819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533929675E3
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 12:24:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E69419675E5
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 12:27:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F02E01F211C3
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 10:24:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DB1CB218E9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 10:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2197C1459EA;
-	Sun,  1 Sep 2024 10:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8026E14B08C;
+	Sun,  1 Sep 2024 10:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vKxcORiy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eIe/YD/n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E558733985;
-	Sun,  1 Sep 2024 10:24:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A9E1448E3;
+	Sun,  1 Sep 2024 10:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725186287; cv=none; b=WTaES9Lm+75DG4AKhb0EmPTgqET3HVMgPgJfWLyn1w3RCVR+w0qNKhkW5M5y2tNxjSlzJC79MSLhzM4uwvSJQ/lA/tFgDKu3TUI+2BQuq9pIKgeXbnUxwcdtWxSPCPSap6i5Wb795Q4UW6O9HstAlcKP/aoxMBlfY0/D5PpjrHQ=
+	t=1725186423; cv=none; b=EiTel6SKXJOcL08BGxO7gMXNK+i2ZxBMAvQh26i1ju/DMjltxHI5YNv3QyETwMYb7LHxtNfc/OiutBLYuu4z6fJJPV0JwrnIAld2PC94Y8ebhEp+4t39wmmmKBS6JsOFTZvOH+eXzfblqHVgyqJIV2muLADPz40+R+b9aFgp1cY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725186287; c=relaxed/simple;
-	bh=Qg4qA5HbL6F1ktr67dTxgeXMX9wMbcRM2Jj3R23dgdc=;
+	s=arc-20240116; t=1725186423; c=relaxed/simple;
+	bh=J8NsIZc4fWtfVb8jxcYgwofFkO1BZ09EtRsFD+tYgh4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oZT4ocNgSJERlP1Z+mmJPUv5ATxLZ/SJfxBvwebLmronDV3EhmnyZpgnQr141BhNzB8Uni4CQ4ah6Faix7HXTr5X9v+6ouiW0IE2bXQJ6U4txUDwMRUNYsGUYPPV1N3ieawUI8jfXDmQ7f8P2vTegsgchYWM7w5WYzatKa0OzWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vKxcORiy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DC13C4CEC8;
-	Sun,  1 Sep 2024 10:24:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=lnFaw9WxqktTJAYm9ztLX/Qc0y5BAlgw7YEKd+7ypetYapZnkRZZSpvTwIbKrVvZTkMPH9FkX2MC2h4cxk43yz+jdLQBB7VtozIgJHh2XL3VFuxqOABSVATYFisBU5rquqPy+CMsZKVGpF7xThwtH/I5dQ2Ix3kQ8x9MpsnJZxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eIe/YD/n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A625EC4CEC3;
+	Sun,  1 Sep 2024 10:26:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725186286;
-	bh=Qg4qA5HbL6F1ktr67dTxgeXMX9wMbcRM2Jj3R23dgdc=;
+	s=k20201202; t=1725186422;
+	bh=J8NsIZc4fWtfVb8jxcYgwofFkO1BZ09EtRsFD+tYgh4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vKxcORiy8rru3FbG+6+rzBqZtKrctB9ECfd734sD2W4bi+8+qNAXqm4ofnFQHdXTg
-	 O8g0w/qnGxQorETjsutdc/LntXhe9YWE09CnAsDcZyA5X8kN4V3+T4y6gbpXUEsWqS
-	 KZ1wcNKI/UCbuLA751n0y2KPu5IZ/8DapblO8NFITSRFm/AKiPzJUuuJfZv1wK8u+E
-	 eNBgrJ7eOBBCQz1t5E55pLuYQlw/ZS91F5eoA0I2SQYBDdnwwR1oTy7+3TeKLKVN11
-	 htTbEUOtUii88cnINxwGvBFWBfbRlVgzKziN7oqsD/bYbSaCs7XhbRr+uvfi6OVMyI
-	 oyj+bFcPZw6KQ==
-Message-ID: <605836ad-d1d6-448a-b963-89d758cb24b3@kernel.org>
-Date: Sun, 1 Sep 2024 12:24:41 +0200
+	b=eIe/YD/nNAZRkTS8mMUKUdT1aVNZJDFKT/GPIW44+mVO+jLtwF+erlBU4GRL4li8C
+	 VfIMHdVrQzxWSXknCJY+6eGKiqTk3RGyXuXdFAInJD7KuuPXcfVJq+VV74Uq0FJE8/
+	 8KZ79R9kylhy3smDQ5pcjl50DIgZX1YuLLrSuNZnL3494nlZSOgqqP1v8tjBLnf2G7
+	 kKOX3D/T+jZ49g2rsfBO3m6e9xGGIWxEk7EXKsws4zra0BPNBPFQ0N7evlnXWpJ2Us
+	 y0zmRiToj+3v0WaR3a656GyD7LLgkwphg+W/DMYtu8dZZvm1EPqPBg5jRZCps2flTo
+	 cx34Xu3rmkaSg==
+Message-ID: <084bc911-a51c-4257-b5bb-25bed445f3b9@kernel.org>
+Date: Sun, 1 Sep 2024 12:26:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: trivial-devices: Document spi-cpha and
- spi-cpol
-To: Fabio Estevam <festevam@gmail.com>
-Cc: broonie@kernel.org, linux-spi@vger.kernel.org,
- otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240830171849.3750165-1-festevam@gmail.com>
- <cyjfrkrszis2ye6vbuasblze4ufesk3wagfwrva6ljv4yfxnxc@2sqin2agzmle>
- <CAOMZO5BH=fRdQ6vg9wjhWNnwt699bSx+MsUwhJwmq6B5CCU3xA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: Add Variscite Symphony board
+ and VAR-SOM-MX8MP SoM
+To: Tarang Raval <tarang.raval@siliconsignals.io>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "festevam@gmail.com" <festevam@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Hiago De Franco <hiago.franco@toradex.com>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Mathieu Othacehe <m.othacehe@gmail.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Parthiban Nallathambi <parthiban@linumiz.com>, Yannic Moog
+ <y.moog@phytec.de>, Josua Mayer <josua@solid-run.com>,
+ Li Yang <leoyang.li@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20240831110743.14280-1-tarang.raval@siliconsignals.io>
+ <20240831110743.14280-3-tarang.raval@siliconsignals.io>
+ <3b28a1e7-586d-452b-bb00-4473d82976b6@kernel.org>
+ <PN3P287MB182994A2AA56868084D70CC28B902@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,26 +121,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAOMZO5BH=fRdQ6vg9wjhWNnwt699bSx+MsUwhJwmq6B5CCU3xA@mail.gmail.com>
+In-Reply-To: <PN3P287MB182994A2AA56868084D70CC28B902@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 31/08/2024 21:58, Fabio Estevam wrote:
-> Hi Krzysztof,
+On 31/08/2024 15:51, Tarang Raval wrote:
+> Hi ,
 > 
-> On Sat, Aug 31, 2024 at 3:23 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>                 - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
+>>> +              - variscite,var-som-mx8mp   # i.MX8MP Variscite VAR-SOM-MX8M Plus module
+>>
+>> That's not correct. You cannot use this SoM alone.
 > 
->> No, this does not look correct. Why suddenly all devices get CPHA/CPOL?
->> This is supposed to be only for devices REALLY needing it (as discussed
->> with patch moving it out of spi-peripheral-props, did anything change
->> here?).
-> 
-> I tried like to apply spi-cpha and spi-cpol only to elgin,jg10309-01:
-> 
+> I took the reference from var-som-imx8mm, where they use "variscite,var-som-mx8mm" in a similar manner. However, if you still believe it's incorrect, I will change it.
 
-I think the device should be moved out of trivial devices to its own
-schema. However wait for feedback from Rob, because he proposed this
-patch here.
+I posted that patch, but I don't think it was correct.
+
+> 
+> One more thing: should I change "VAR-SOM-MX8M Plus" to "VAR-SOM-MX8MP" in the DTSI model name and in the YAML file as well, or keep it as it is?
+
+No clue, these comments are basically repeating compatible name so not
+much helpful anyway.
 
 Best regards,
 Krzysztof
