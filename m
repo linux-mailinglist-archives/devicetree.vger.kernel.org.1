@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-98818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D3F9675E1
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 12:23:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 533929675E3
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 12:24:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79FCEB218D0
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 10:23:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F02E01F211C3
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 10:24:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340A91459EA;
-	Sun,  1 Sep 2024 10:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2197C1459EA;
+	Sun,  1 Sep 2024 10:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f0z51M9D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vKxcORiy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C9B13E02D;
-	Sun,  1 Sep 2024 10:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E558733985;
+	Sun,  1 Sep 2024 10:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725186215; cv=none; b=hR7QHIMqwS0u2nq7+MJUkxRfUR7Mns10Qqt5hfKjToUTLCM+a6MnhZGliHGKfeXp5EkvXSclQHp1dgCOdhtBhK6oS5hqBETsgskBjaASf3c0qqfw7wIOzeQfZ/hMJGdy+QsTlasCIe8udH3tY0xO7U8JrDVWDEIbOR9nMh0Isos=
+	t=1725186287; cv=none; b=WTaES9Lm+75DG4AKhb0EmPTgqET3HVMgPgJfWLyn1w3RCVR+w0qNKhkW5M5y2tNxjSlzJC79MSLhzM4uwvSJQ/lA/tFgDKu3TUI+2BQuq9pIKgeXbnUxwcdtWxSPCPSap6i5Wb795Q4UW6O9HstAlcKP/aoxMBlfY0/D5PpjrHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725186215; c=relaxed/simple;
-	bh=NkMBUIsxlLeO24IVny1Yg0LP9ir138ns50UgAd34fQM=;
+	s=arc-20240116; t=1725186287; c=relaxed/simple;
+	bh=Qg4qA5HbL6F1ktr67dTxgeXMX9wMbcRM2Jj3R23dgdc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AAXADLNRzDB4jA8hoCe5UeGzACObme0gvjbIJToUx5R/xiu79sh1U5XQrSdDMYTkwcJ5s3koqSBxJkXEqh6sZZS7OM3lFBuV4/jjlkbmuW5iHM1w0pTIosU14z/s3dfjGUpSeY1fVtG57CifddH9LGRrcPT31ugGTTpwc+truCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f0z51M9D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 592C6C4CEC3;
-	Sun,  1 Sep 2024 10:23:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oZT4ocNgSJERlP1Z+mmJPUv5ATxLZ/SJfxBvwebLmronDV3EhmnyZpgnQr141BhNzB8Uni4CQ4ah6Faix7HXTr5X9v+6ouiW0IE2bXQJ6U4txUDwMRUNYsGUYPPV1N3ieawUI8jfXDmQ7f8P2vTegsgchYWM7w5WYzatKa0OzWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vKxcORiy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DC13C4CEC8;
+	Sun,  1 Sep 2024 10:24:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725186214;
-	bh=NkMBUIsxlLeO24IVny1Yg0LP9ir138ns50UgAd34fQM=;
+	s=k20201202; t=1725186286;
+	bh=Qg4qA5HbL6F1ktr67dTxgeXMX9wMbcRM2Jj3R23dgdc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f0z51M9DDJ+FPRhuddqfkQiYr8xka/5kwyqyIiRia4J0yzVns1Uad3qox8PBL3kuj
-	 rr6O/27Yt1MBB9n3zXA3vuxjQrn6Jlb4eO7scw2hm1gG3/+sxE3ukrxO2T+9rCnjwE
-	 6Yx/moBBQ17jDwfFoFZsowg9plBa/qWf9wrBqs1oI6hS94Ms8HFHgdQCmkpUHw9/Ub
-	 WTVxX0RXZooJoX4ePsfMyYfU6182tpLfd97HjipI9dwIMQOjizLBtaQRGqp0e8QfRh
-	 gP+L5c6TM2eV5q88xmjEcMrhKrvsoQEa1fH7XRz50hxOzXBehJyoKyDP0rKsxdsM3T
-	 ffhxv9L2nVQyQ==
-Message-ID: <3dc027f4-d5e0-4d0f-823a-f2ca82ab2cd8@kernel.org>
-Date: Sun, 1 Sep 2024 12:23:25 +0200
+	b=vKxcORiy8rru3FbG+6+rzBqZtKrctB9ECfd734sD2W4bi+8+qNAXqm4ofnFQHdXTg
+	 O8g0w/qnGxQorETjsutdc/LntXhe9YWE09CnAsDcZyA5X8kN4V3+T4y6gbpXUEsWqS
+	 KZ1wcNKI/UCbuLA751n0y2KPu5IZ/8DapblO8NFITSRFm/AKiPzJUuuJfZv1wK8u+E
+	 eNBgrJ7eOBBCQz1t5E55pLuYQlw/ZS91F5eoA0I2SQYBDdnwwR1oTy7+3TeKLKVN11
+	 htTbEUOtUii88cnINxwGvBFWBfbRlVgzKziN7oqsD/bYbSaCs7XhbRr+uvfi6OVMyI
+	 oyj+bFcPZw6KQ==
+Message-ID: <605836ad-d1d6-448a-b963-89d758cb24b3@kernel.org>
+Date: Sun, 1 Sep 2024 12:24:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindings: display: bridge: Add schema for
- Synopsys DW HDMI QP TX IP
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>
-References: <20240831-b4-rk3588-bridge-upstream-v5-0-9503bece0136@collabora.com>
- <20240831-b4-rk3588-bridge-upstream-v5-1-9503bece0136@collabora.com>
- <57wj2vwjv7eehlix2bmvbm3z4agv5fsyp6vmwwqzotkdsadx7n@azqg2kkaeuxz>
- <10210346.L8ug28u51p@diego>
+Subject: Re: [PATCH v2] dt-bindings: trivial-devices: Document spi-cpha and
+ spi-cpol
+To: Fabio Estevam <festevam@gmail.com>
+Cc: broonie@kernel.org, linux-spi@vger.kernel.org,
+ otavio.salvador@ossystems.com.br, heiko@sntech.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240830171849.3750165-1-festevam@gmail.com>
+ <cyjfrkrszis2ye6vbuasblze4ufesk3wagfwrva6ljv4yfxnxc@2sqin2agzmle>
+ <CAOMZO5BH=fRdQ6vg9wjhWNnwt699bSx+MsUwhJwmq6B5CCU3xA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,30 +105,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <10210346.L8ug28u51p@diego>
+In-Reply-To: <CAOMZO5BH=fRdQ6vg9wjhWNnwt699bSx+MsUwhJwmq6B5CCU3xA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 31/08/2024 15:58, Heiko Stübner wrote:
+On 31/08/2024 21:58, Fabio Estevam wrote:
+> Hi Krzysztof,
 > 
-> so I guess the fifth interrupt is meant to be the hotplug?
-> Though I guess this should be specificed in the name-list too.
+> On Sat, Aug 31, 2024 at 3:23 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 > 
-> From the SoC's manual it looks like the controller is set up from
-> different modules.
-> Like AVP is the audio-video-packet-module, there is a Main and CEC Module
-> as well as a eARC RX controller inside. I'd guess it might be possible
-> other SoC vendors could leave out specific modules?
+>> No, this does not look correct. Why suddenly all devices get CPHA/CPOL?
+>> This is supposed to be only for devices REALLY needing it (as discussed
+>> with patch moving it out of spi-peripheral-props, did anything change
+>> here?).
 > 
+> I tried like to apply spi-cpha and spi-cpol only to elgin,jg10309-01:
 > 
-> TL;DR I think those clocks and interrupts are dependent on how the
-> IP core was synthesized, so for now I'd think we can only guarantee
-> that they are true for rk3588 and rk3576.
-> 
-> So I guess they should move to the rockchip-specific part of the binding
-> until we have more hdmi-qp controllers in the field?
 
-Which would leave empty "common" binding.
+I think the device should be moved out of trivial devices to its own
+schema. However wait for feedback from Rob, because he proposed this
+patch here.
 
 Best regards,
 Krzysztof
