@@ -1,242 +1,105 @@
-Return-Path: <devicetree+bounces-98822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591A19675F7
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 12:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDF47967625
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 13:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14ADE2821DB
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 10:55:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB5F8282164
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 11:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36337152178;
-	Sun,  1 Sep 2024 10:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784241552FF;
+	Sun,  1 Sep 2024 11:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="snIbC2cI"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="pXRBCHA9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091051F951;
-	Sun,  1 Sep 2024 10:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E5761FEB
+	for <devicetree@vger.kernel.org>; Sun,  1 Sep 2024 11:20:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725188126; cv=none; b=UXLcl5nFu+4uCP6sRnOs1+C0j0GHJhINXW6J68A9xbMidqzqKvJBe3pXEIOyqnb/mxuJqIgyKCT8MLzu/VaHOr2+EYSolTmubd1a0T5WkR1QMzTDd9nVimOiX4gf2HbRZvu7AHb1z0InfqCsMbMoTY0LBAWMmlIK1QRgsZyoqF4=
+	t=1725189648; cv=none; b=L50E9AFeKyuB6pWSBSwA9ek+551mVdQZNW3n4frJXFvD8oPGBXc7JuojPhU9cS4rxIXyyTfxvsfVnSy6IPNhlK8Lx8ddXqYXMPTcBuNjibfWbcyOkcsaSQ0mtIT64gU+DdrSs/fwh8sg9CmTmwd1kURplUBQ1d2OuIhjeIIphFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725188126; c=relaxed/simple;
-	bh=plraTNt54P+K1V16ayCFlHbsakgVBMkJL+ftRk9B3+w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LO3VqJc6U4fDToir2uO/N/lfkOhm1gsKFz4utsP1oM4np2fR3zVDxSLd7OYuNpSNZ/qdYNobo8QzQc6G9YE+pFRKUhMd7nO48hilKXz3i131PGNtic4yt01XW6/C3cbX5QD3rAK7fZunnzioFRWbkWkdJhJE2iFjpocTtMSNghI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=snIbC2cI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63F9AC4CEC3;
-	Sun,  1 Sep 2024 10:55:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725188125;
-	bh=plraTNt54P+K1V16ayCFlHbsakgVBMkJL+ftRk9B3+w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=snIbC2cItHQrF3rilQGwIjmsM/tQ25x+Ri3zNnhnnBDQRkEHOfsTzX5M5UoSV67QV
-	 yV5XL1CCK52Uc0ZNMNpA3GxJIf+4t2I+3juws8FfCPJ6xoB4TgUOf0y8Hl9UBBVyv+
-	 6DV0zddiF9EZ7yQtUPrLo2TEJThHrsAZciy6i6eEKscPV6dOfuy9Bmxzu8DCXtLMTz
-	 VRhhz/taDkiJXqqMJ3X77imli91Q17F46QDv0O/NatHBjP0xrxVsnsaePJfbOm5Gf4
-	 +L/Z6F4WTN5bV/HvJhE1agzfAT35OisK69BJzxXa4sTowXjUsKUhZfW3oUL6FPAEt9
-	 JAwLH4VI3MCrw==
-Date: Sun, 1 Sep 2024 12:55:21 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Haylen Chu <heylenay@outlook.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: spacemit: Add clock controlers
- of Spacemit K1 SoC
-Message-ID: <w4alphet2d56ojfpm5ibgxdkleb54uvvfsrw5iktzph7xsg3zj@ybofz6uo7qd4>
-References: <SEYPR01MB4221B3178F5233EAB5149E41D7902@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
- <SEYPR01MB4221019943A7F5361957811FD7902@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+	s=arc-20240116; t=1725189648; c=relaxed/simple;
+	bh=CyAmyZ6ZrmPLChEXlKTG+VR1Re8KLV++wlaMgsHeqjc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sC60TjQFLytWRRZX8kuSAeNaBxKiCnsQzBTqAIXWwP3xX8A+sDgZ3sg0r2h7c97QlBKQ6x5a17aJY7nO+CVvD1/7sVl7Zzd1aQPhnmi0DQssaV45vNToaLR20/PVL5jzttT9lrFSS7neG9m+/zWvZfhyW938xl4CXRbJDX0Q/HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=pXRBCHA9; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1725189628;
+ bh=Z89W5F2t063lBkCLEwxf85Xb/ma4isw7uhvOFuWSdqo=;
+ b=pXRBCHA93OvgpublXaezeiHguPr+yYPV6mnYN1vPf2/UuVM7UNyoFzkBPldyxdjHMumVbFZPA
+ G7jzOalbVYobbmTivxWzAH8sWFyXH6BO8lq8rk8VP9PBPbXhDjCm9OchDvSjPTIOzVLHBzhVnwi
+ iAq08pG6y5GxbC0/d1VgmFAeBfcmwdXAJ7nd4bTU1zI0lijENLUiuwEq0PF9RAzMeHixrP1U3z6
+ ki9ZKLLgY9N1DAAsQCOfjUKh7gzs6vgNSSvLG+xjytRQiH0Fo7zalhtMjVKDbiCThor8tauTJIJ
+ Xs30XiJVhM3OWQZG9ey9bbXDRVFlLtDG38Njk0DdUKBA==
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Dongjin Kim <tobetter@gmail.com>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH 0/2] arm64: dts: rockchip: Add Hardkernel ODROID-M2
+Date: Sun,  1 Sep 2024 11:20:13 +0000
+Message-ID: <20240901112020.3224704-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <SEYPR01MB4221019943A7F5361957811FD7902@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66d44dfb556ab34bbda73d05
 
-On Sat, Aug 31, 2024 at 03:47:12PM +0000, Haylen Chu wrote:
-> Add definition for the clock controllers of Spacemit K1 SoC. The clock
-> tree is managed by several SoC parts, thus different compatible strings
-> are added for each.
-> 
-> Signed-off-by: Haylen Chu <heylenay@outlook.com>
-> ---
+This series add initial support for the Hardkernel ODROID-M2 board.
 
-This wasn't ever tested...
+The Hardkernel ODROID-M2 is a single-board computer based on Rockchip
+RK3588S2 SoC. It features e.g. 8/16 GB LPDDR5 RAM, 64 GB eMMC, SD-card,
+GbE LAN, HDMI 2.0, M.2 NVMe and USB 2.0/3.0/Type-C.
 
->  .../bindings/clock/spacemit,ccu.yaml          | 116 +++++++++++
->  include/dt-bindings/clock/spacemit,ccu.h      | 197 ++++++++++++++++++
->  2 files changed, 313 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/spacemit,ccu.yaml
->  create mode 100644 include/dt-bindings/clock/spacemit,ccu.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/spacemit,ccu.yaml b/Documentation/devicetree/bindings/clock/spacemit,ccu.yaml
-> new file mode 100644
-> index 000000000000..90ddfc5e2a2f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/spacemit,ccu.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/spacemit,ccu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Spacemit SoC Clock Controller
+Schematics for ODROID-M2 can be found at:
+https://wiki.odroid.com/_media/odroid-m2/hardware/m2_main_rev1.0_240611.pdf
 
-What's the SoC name?
+The device tree was created based on the schematics with regulator
+voltage values adjusted to closer match vendor downstream device tree.
 
-> +
-> +maintainers:
-> +  - Haylen Chu <heylenay@outlook.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - spacemit,ccu-apbs
-> +      - spacemit,ccu-mpmu
-> +      - spacemit,ccu-apbc
-> +      - spacemit,ccu-apmu
-> +
-> +  clocks: true
+Testing was done booting into Linux using mainline U-Boot from [1],
+a test build of mainline U-Boot for ODROID-M2 can be found at [2].
 
-No, this must be specific. min/maxItems
+U-Boot patches will be sent once DT reach the devicetree-rebasing tree.
 
-> +
-> +  clock-names: true
+[1] https://github.com/Kwiboo/u-boot-rockchip/commits/rk3xxx-2024.10/
+[2] https://github.com/Kwiboo/u-boot-build/actions/runs/10653436524
 
-No, this must be specific. min/maxItems
+Jonas Karlman (2):
+  dt-bindings: arm: rockchip: Add Hardkernel ODROID-M2
+  arm64: dts: rockchip: Add Hardkernel ODROID-M2
 
-> +
-> +  spacemit,mpmu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon managing "Main PMU (MPMU)" registers
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588s-odroid-m2.dts   | 903 ++++++++++++++++++
+ 3 files changed, 909 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-odroid-m2.dts
 
-Explain what for.
-
-
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +    description:
-> +      See <dt-bindings/clock/spacemit,ccu.h> for valid indices.
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-
-This goes after allOf block.
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: spacemit,ccu-apbs
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +
-> +        clock-names:
-> +          const: pll1_2457p6_vco
-
-Don't use some weird, fake names. That's pll or vco or whatever the
-input is called.
-
-> +
-> +      required:
-> +        - compatible
-> +        - clocks
-> +        - clock-names
-> +        - "#clock-cells"
-> +        - spacemit,mpmu
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: spacemit,ccu-apbc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 4
-> +
-> +        clock-names:
-> +          items:
-> +            - const: clk_32k
-> +            - const: vctcxo_1
-> +            - const: vctcxo_24
-> +            - const: vctcxo_3
-> +
-> +      required:
-> +        - compatible
-> +        - clocks
-> +        - clock-names
-> +        - "#clock-cells"
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: spacemit,ccu-apmu
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +
-> +        clock-names:
-> +          const: vctcxo_24
-> +
-> +      required:
-> +        - compatible
-> +        - clocks
-> +        - clock-names
-> +        - "#clock-cells"
-> +
-> +examples:
-> +  - |
-> +    syscon_apbs: system-control@d4090000 {
-> +        compatible = "spacemit,mpmu-syscon", "syscon",
-> +        "simple-mfd";
-
-Messed indentation.
-
-Anyway, parent device nodes should have complete example.
-
-> +        reg = <0x0 0xd4090000 0x0 0x1000>;
-> +
-> +        clk_apbs: clock-controller {
-> +            compatible = "spacemit,ccu-apbs";
-> +            clocks = <&pll1_2457p6_vco>;
-> +            clock-names = "pll1_2457p6_vco";
-> +            #clock-cells = <1>;
-> +            spacemit,mpmu = <&syscon_mpmu>;
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/clock/spacemit,ccu.h b/include/dt-bindings/clock/spacemit,ccu.h
-> new file mode 100644
-> index 000000000000..ce84690684ff
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/spacemit,ccu.h
-> @@ -0,0 +1,197 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-
-Use the same license. (one pointed out by checkpatch)
-
-Best regards,
-Krzysztof
+-- 
+2.46.0
 
 
