@@ -1,54 +1,58 @@
-Return-Path: <devicetree+bounces-98809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB71967577
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 09:39:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D9C967579
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 09:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC4671C211EF
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 07:39:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 078F21F21C00
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 07:52:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF52F1386C0;
-	Sun,  1 Sep 2024 07:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7EA136643;
+	Sun,  1 Sep 2024 07:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NvXgLli6"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="DKWK3Saw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67391442F6;
-	Sun,  1 Sep 2024 07:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E553B2AEE0;
+	Sun,  1 Sep 2024 07:52:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725176376; cv=none; b=uo25hafjtS0gyR8+h702E4flWbUSdCO4OLjCJvfPLbr9b4WyLUoMn/ymrlkYhho2PoZhFrseaQOLiq4CaXGS9xg2kTCR1/vhQkm4nJSnkzWMH0ShPG8NGN9OwM9E5GFNZL17dGMJjNmf2K6YsjmFFRk1IhDWa+aSYHiwT8dxLHU=
+	t=1725177141; cv=none; b=cXSVUfaxThmq/ZKBj1miKNoCJrqvZMRTVl9IScb8j8/QIFS185Uj3mnrGs9ePz38PrytBW4Bh8mYeLgEhAOJwJ/7/Xz5YkQk3V+FFTFVkutdxbpdvAxfnHgCq+46mb1MgctQsT/6pjWSHQ7bvdwUqYN31YD1JXAVgGud3auWDgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725176376; c=relaxed/simple;
-	bh=gMVfahwDd8Bg+Um22R0oyOMnqP9JF6rpt1c3+R0yPsE=;
+	s=arc-20240116; t=1725177141; c=relaxed/simple;
+	bh=IMoBy3oqfpuTJd+qdgKqGUsbleakqi9u6DLCiEE5BOg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O8SOFbkiIx0t80uHRCrAQn48CAjsrmLkElXp8GjAw2vWGKvy8hLzwLxzbKLBQ5REUcKKOAZBwsRASgSFkr4IM+pbI+fG317SvUvO0JCyuFxX3b6sWT0lJi1AtyFGK0JYj5GRURPzOEsUL03gs2XZ0SGzjYUzed1yalDN/7yVSzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NvXgLli6; arc=none smtp.client-ip=220.197.32.18
+	 Content-Type:Content-Disposition:In-Reply-To; b=bTqtwIoGNVQEkr1UGtQfY0NZPDq3xAZEjCP0LeeXsWF6XlskG/rjfWNo51o6J9LbhXNxeNhXsUZ1UFErWyrKTFPxCg2csp6BtZ9p2QM0UKiSoLLVO3BYsoGzpJd0JgQEZ0kVvuoD9BgwNd2UzlnFyjUFEVPcQmAhHc5XZaIxoMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=DKWK3Saw; arc=none smtp.client-ip=220.197.32.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=nkkAvqscjV3VwDh+ot+genWNqMJPdPuo/uhphejIV/s=;
-	b=NvXgLli6WLZPoDQ0XyEKC0aYGmLi5vKPbv810e9CQOKyPf8ZsCORYmIkYEPbUY
-	8N87NWGO7meYMWjaaEeHToUwgLswt5FNE6NxucUp/NJ+QYwZOggLj77PxoLGWilM
-	yEzEF08+NmrlksQI1awmve6oeeBdUW8smfNt3NoeO1L9w=
+	Content-Type; bh=8Cuq/gfx/IIgSkmvxnEdXczuBE1tETsjswZ+yzDi/OA=;
+	b=DKWK3SawITxTiFDpTk+cUFhxscwf6IHL2jGm7KxowGpVLzrSYOnVVAZ1HiG44q
+	/9+fmrq7GkciPOV9XQBQE14RLle0dER7BHFPYrNS7Ji8S1Zy6nud2OCJV/Iyw8sN
+	g26cRSwYrilPBwqB8MoqQC7jt7Bf7ZyZWK39IKa/DUwqo=
 Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDH7SYQGtRmwxNDAA--.6687S3;
-	Sun, 01 Sep 2024 15:38:58 +0800 (CST)
-Date: Sun, 1 Sep 2024 15:38:56 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDnXz7wHNRmGV9EAA--.21759S3;
+	Sun, 01 Sep 2024 15:51:13 +0800 (CST)
+Date: Sun, 1 Sep 2024 15:51:11 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, alexander.stein@ew.tq-group.com
-Subject: Re: [PATCH v2] arm64: dts: imx8mp-evk: Add native HDMI output
-Message-ID: <ZtQaEFhedn3X7Cpp@dragon>
-References: <20240823021257.1067054-1-victor.liu@nxp.com>
+To: Benjamin Hahn <B.Hahn@phytec.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Teresa Remmet <t.remmet@phytec.de>, upstream@lists.phytec.de,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: imx8mp-phyboard-pollux-rdk: Add support
+ for PCIe
+Message-ID: <ZtQc76VJuNTWXVTg@dragon>
+References: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,17 +61,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240823021257.1067054-1-victor.liu@nxp.com>
-X-CM-TRANSID:Mc8vCgDH7SYQGtRmwxNDAA--.6687S3
+In-Reply-To: <20240823-wip-bhahn-add_pcie_support-v3-1-8b86af45e73f@phytec.de>
+X-CM-TRANSID:Ms8vCgDnXz7wHNRmGV9EAA--.21759S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4GQ6DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBB9NZWbUC2If0QAAsm
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUI2Q6DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgpNZWbUDSsimgAAsM
 
-On Fri, Aug 23, 2024 at 10:12:57AM +0800, Liu Ying wrote:
-> J17 on i.MX8mp EVK base board is a HDMI type A connector.
-> It connects with i.MX8mp HDMI PHY.  Add support for it.
+On Fri, Aug 23, 2024 at 10:01:32AM +0200, Benjamin Hahn wrote:
+> Add support for the Mini PCIe slot.
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
 
 Applied, thanks!
 
