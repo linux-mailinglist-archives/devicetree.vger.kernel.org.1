@@ -1,148 +1,173 @@
-Return-Path: <devicetree+bounces-98813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A57B967587
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 10:07:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 212F696759E
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 10:55:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B16A1C20BF7
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 08:07:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAC171F2174F
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 08:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7A8143879;
-	Sun,  1 Sep 2024 08:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C401420A8;
+	Sun,  1 Sep 2024 08:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="FPrdAQY1"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="jEOqepz6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E0514290C;
-	Sun,  1 Sep 2024 08:07:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F84C5C8FC;
+	Sun,  1 Sep 2024 08:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725178063; cv=none; b=ELEEhtgnH//kV0c1Sgwath7/NtzNUZvHi1Ll4CNCYLWJIEUyYtqM8ClX40jnA9qnkfrvgaUFhkDWXugh/BuqwS8SqnQexPkTTQpAqDJXcZRIxrLllIs0zVPAsgfyW7Jbp1uV6s2TbvD+usWWazkZLzLQCdIxX9jPJSTc7zTvQpU=
+	t=1725180918; cv=none; b=DuyTII6KYuMnvuOQvsghUhqhdHYF6S74U3u/itPuyTDNHMxfZmU21EZRvrWDzMM2gZelpq/+LmrXIpMEJusHLqOV4iD2cDSzwbGinxp9i/rYGSGMv4iiE2MJ6pOJ7q2EAO39KU0AVrFKkYGA+nlD2EKNWHW+X0jsUiGJWq3Samg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725178063; c=relaxed/simple;
-	bh=H+4H1RjbMlERyYCXKegid4WbrgXMo/agjaeT4+ZdI/Y=;
+	s=arc-20240116; t=1725180918; c=relaxed/simple;
+	bh=9B0dx6QzXe/WbkNamti9BfZY9NXtY5ZG1h9ESGCq/9g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MNYlKD3hNrXOm7KbhuazkLT43YjND2P9ZoXT2eWUk8tneigWvWLe7YpvKR4QerUIJUGLQspF2zVWQq8b08CnIvgsuCNOPzf8wX3AWiMui3NTXD82r5hFn+4zvkZ0kMGcj2ORhwe7EM+TU76ETO7IXSggNtn55B/G/W80Fpkiyu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=FPrdAQY1; arc=none smtp.client-ip=220.197.32.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=GtBuhQOXnlo+QhLm5KxSlwzzJ2vGqipDtlD3SD3eURsYZQdVmLO6Br9reZTYXemurkni0jWgWqflKnEuZtG+nycqkvxaqAPVnEX2d7AQ50EHOU4y8jP6UaXhpHDXX/L/bGqfWk7hEU5io4Ht9aUg21KPiP6fOcYwIDMK1usWmfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=jEOqepz6; arc=none smtp.client-ip=220.197.32.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=7u7AOaHLwE9q3P+6liu00OMqbJ/gWmnFJKpZmoN9Dr8=;
-	b=FPrdAQY1DM27COWhDwJugxNQf/KqQIdLYBlWIyNlx4Q1HyepMrxfzJmnt0tK/v
-	bCT1rOMfSo9mbsab8xCxYj3K6072FOB4oX8XjRXJOYAELyGr1GMQHtbKSPu/dF+t
-	M2DeA5hzAT8zMroZOJvu0fCy6aIoMAdynhxjPvK+i58X8=
+	Content-Type; bh=DwmaDeFGxVT3LGj8Okf1GlUPv+mg0vHPAzThLCoAjoM=;
+	b=jEOqepz6ioNeTy3xf7N5ZLCtbI8k3biUWOuhGvQ+YxY8QfGQK9Lft4jsrZLuiN
+	Bun7BAlppwH6JVnqkO1VNygm/mcAotNH6EPwQeHAmS6bCwDVFwIi2ivPhluvjAZF
+	fg1hlbVyrwmTi0N32Duwp+aONtzv5Rg3p9eyHgPP8x0gk=
 Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDnzwKlINRmKt9CAA--.32856S3;
-	Sun, 01 Sep 2024 16:07:03 +0800 (CST)
-Date: Sun, 1 Sep 2024 16:07:01 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3z+LHK9RmbUFDAA--.33375S3;
+	Sun, 01 Sep 2024 16:54:33 +0800 (CST)
+Date: Sun, 1 Sep 2024 16:54:31 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, Frank.Li@nxp.com, jun.li@nxp.com,
-	l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com,
-	alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
 	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] arm64: dts: imx95: add usb3 related nodes
-Message-ID: <ZtQgpYY9KjP9FUi5@dragon>
-References: <20240826070854.1948347-1-xu.yang_2@nxp.com>
- <20240826070854.1948347-4-xu.yang_2@nxp.com>
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 04/10] arm64: dts: colibri-imx8x: Add sound card
+Message-ID: <ZtQrxzTNJTQd7zHK@dragon>
+References: <20240826215922.13225-1-francesco@dolcini.it>
+ <20240826215922.13225-5-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240826070854.1948347-4-xu.yang_2@nxp.com>
-X-CM-TRANSID:M88vCgDnzwKlINRmKt9CAA--.32856S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KFyftrW8CrWDCr1xCw47twb_yoW8try8p3
-	srGayUZrs2gF1IkFWaqF48KF95J3y0kFZ5ur1fWryjkr9xZ3sFgFWIkF1S9r18XrsrXw4j
-	qFsaqF12kFnxtw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j4g4fUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgtNZWbUDSsrwgAAsc
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240826215922.13225-5-francesco@dolcini.it>
+X-CM-TRANSID:M88vCgD3z+LHK9RmbUFDAA--.33375S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGry5Xr4UAFW5WFW8Xw45GFg_yoW5Aw4kp3
+	97urZ3CrWFvryIy3WFq3s7WrZ5W398KFWv9r13G3y8Crs2yFnrJF17Jw15uF18Jrs7Zw4a
+	qFyDZryxKF98t3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jIhFxUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRNNZWbUDFlF4AAAsw
 
-On Mon, Aug 26, 2024 at 03:08:53PM +0800, Xu Yang wrote:
-> Add usb3 phy and controller nodes for imx95.
+On Mon, Aug 26, 2024 at 11:59:16PM +0200, Francesco Dolcini wrote:
+> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> Add audio support for Colibri-iMX8X sound card.
 > 
+> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
-> Changes in v2:
->  - no changes
-> Changes in v3:
->  - no changes
-> ---
->  arch/arm64/boot/dts/freescale/imx95.dtsi | 43 ++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
+>  .../boot/dts/freescale/imx8x-colibri.dtsi     | 47 ++++++++++++++++++-
+>  1 file changed, 46 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> index 1bbf9a0468f6..06a7c2f1e211 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -1188,5 +1188,48 @@ pcie1_ep: pcie-ep@4c380000 {
->  			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
->  			status = "disabled";
->  		};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+> index aa9c45c290b9..1d22002103c4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+> @@ -38,6 +38,13 @@ reg_module_3v3: regulator-module-3v3 {
+>  		regulator-max-microvolt = <3300000>;
+>  	};
+>  
+> +	reg_module_3v3_avdd: regulator-module-3v3-avdd {
+> +		compatible = "regulator-fixed";
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-name = "+V3.3_AVDD_AUDIO";
+> +	};
 > +
-> +		usb3_phy: phy@4c1f0040 {
-> +			compatible = "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
-> +			reg = <0x0 0x4c1f0040 0x0 0x40>,
-> +			      <0x0 0x4c1fc000 0x0 0x100>;
-> +			clocks = <&scmi_clk IMX95_CLK_HSIO>;
-> +			clock-names = "phy";
-> +			#phy-cells = <0>;
-> +			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> +			orientation-switch;
-> +			status = "disabled";
+>  	reg_module_vref_1v8: regulator-module-vref-1v8 {
+>  		compatible = "regulator-fixed";
+>  		regulator-max-microvolt = <1800000>;
+> @@ -55,6 +62,23 @@ reg_usbh_vbus: regulator-usbh-vbus {
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-name = "usbh_vbus";
+>  	};
+> +
+> +	sound-card {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,bitclock-master = <&dailink_master>;
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,frame-master = <&dailink_master>;
+> +		simple-audio-card,name = "colibri-imx8x";
+> +
+> +		dailink_master: simple-audio-card,codec {
+> +			clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
+> +			sound-dai = <&sgtl5000_a>;
 > +		};
 > +
-> +		usb3: usb@4c010010 {
+> +		simple-audio-card,cpu {
+> +			sound-dai = <&sai0>;
+> +		};
+> +	};
+>  };
+>  
+>  /* Colibri Analogue Inputs */
+> @@ -109,6 +133,21 @@ touchscreen@2c {
+>  		status = "disabled";
+>  	};
+>  
+> +	sgtl5000_a: audio-codec@a {
 
-Please try to sort nodes with unit-address in the address.
+Please sort I2C device nodes in slave address.
 
 Shawn
 
-> +			compatible = "fsl,imx95-dwc3", "fsl,imx8mp-dwc3";
-> +			reg = <0x0 0x4c010010 0x0 0x04>,
-> +			      <0x0 0x4c1f0000 0x0 0x20>;
-> +			clocks = <&scmi_clk IMX95_CLK_HSIO>,
-> +				 <&scmi_clk IMX95_CLK_32K>;
-> +			clock-names = "hsio", "suspend";
-> +			interrupts = <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> +			dma-ranges = <0x0 0x0 0x0 0x0 0x10 0x0>;
-> +			status = "disabled";
+> +		compatible = "fsl,sgtl5000";
+> +		reg = <0xa>;
+> +		#sound-dai-cells = <0>;
+> +		assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
+> +				  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
+> +				  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
+> +				  <&mclkout0_lpcg IMX_LPCG_CLK_0>;
+> +		assigned-clock-rates = <786432000>, <49152000>, <12000000>, <12000000>;
+> +		clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
+> +		VDDA-supply = <&reg_module_3v3_avdd>;
+> +		VDDD-supply = <&reg_module_vref_1v8>;
+> +		VDDIO-supply = <&reg_module_3v3>;
+> +	};
 > +
-> +			usb3_dwc3: usb@4c100000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x0 0x4c100000 0x0 0x10000>;
-> +				clocks = <&scmi_clk IMX95_CLK_HSIO>,
-> +					 <&scmi_clk IMX95_CLK_24M>,
-> +					 <&scmi_clk IMX95_CLK_32K>;
-> +				clock-names = "bus_early", "ref", "suspend";
-> +				interrupts = <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
-> +				phys = <&usb3_phy>, <&usb3_phy>;
-> +				phy-names = "usb2-phy", "usb3-phy";
-> +				snps,gfladj-refclk-lpm-sel-quirk;
-> +				snps,parkmode-disable-ss-quirk;
-> +				iommus = <&smmu 0xe>;
-> +			};
-> +		};
->  	};
->  };
+>  	gpio_expander_43: gpio@43 {
+>  		compatible = "fcs,fxl6408";
+>  		reg = <0x43>;
+> @@ -373,7 +412,13 @@ &lsio_pwm2 {
+>  
+>  /* TODO on-module PCIe for Wi-Fi */
+>  
+> -/* TODO On-module i2s / Audio */
+> +/* On-module I2S */
+> +&sai0 {
+> +	#sound-dai-cells = <0>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sai0>;
+> +	status = "okay";
+> +};
+>  
+>  &usbotg1 {
+>  	adp-disable;
 > -- 
-> 2.34.1
+> 2.39.2
 > 
 
 
