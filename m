@@ -1,128 +1,120 @@
-Return-Path: <devicetree+bounces-98831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FE7296769B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 15:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3DED96769E
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 15:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8FBBB21348
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 13:28:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 090F7B21372
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 13:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE08517CA09;
-	Sun,  1 Sep 2024 13:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3D3B13D606;
+	Sun,  1 Sep 2024 13:31:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Rcz6cVzZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ek31ZHao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D2516F265;
-	Sun,  1 Sep 2024 13:28:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8051523AB;
+	Sun,  1 Sep 2024 13:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725197330; cv=none; b=ESh2GTcJp7Y9sAA+ABPKtF5mypAFh48AaU4JZjudGL7CQ1Ie4ZuC1C/WPY2pzCA9fd216gTGRhEpGXrpQ9VTYXfcyNRv/5Kl8SNXSg0/tl+a8wrHrL5m5tihOfA9hcHWpiUHOdAMEVJuDK1iuVdEbLPlP7MHj0B5O1kw6FKefEU=
+	t=1725197509; cv=none; b=s8fP8PfTGfVhcF9W5/dqTA3PtD8tikltT4+Zt+FGxsjN7+i7yiZbfx+Nqt4D0uJaWwrxApRwuamm5mdFrMgvSGPw+4fyjP4jP9N8tdDnBc9Zcrxewa1TTYceVdYLthj5ndJVb/PHeaiLOBStmEeM0nD1vg0MqE07AluLg5+knd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725197330; c=relaxed/simple;
-	bh=B1Ym6T0bBnsNcRUf8vZAOZRZpf/YLk3MxfySZOJtVwY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BiX8D5FBCHFj+1p51yhGQLwTBS4pQKChtYA5Ph+mrPRLCzrNW2WsAmoN+jTwDf7KSjUK3kMzsTuRpoVJJD7a/B3knXtREWy37aSr34TypZlkfR8/sUMb7CGeNHpmdpewIdBwA9QtBR5vGFYZDddToKTmQBLL0cYArfeD4YUpt/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Rcz6cVzZ; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725197329; x=1756733329;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=B1Ym6T0bBnsNcRUf8vZAOZRZpf/YLk3MxfySZOJtVwY=;
-  b=Rcz6cVzZSFtzt5bdu9pKMYBjdH5VbR1C1SeHbO8is4gwv80l9IwVfovU
-   bUP42m15p3EXXMGzFpFXTg0ehlRHbtUO2xZgEy5i1XR/au/P6pnSngC72
-   6vifkzCh+BLp1ADKBEjeohok8LEXL4h09J4zrzULfdrUQmulnQICrpHUw
-   lyVUNVfrr6r/Uqz6OtmhiP9QsE3eaITsHkg0GhIc+v27Of1D1lkNGeVBE
-   vhCJL6tVB5syedzad00xSySBhtAeAoPi1QsURw7fozB73HWBMgkMxP4ww
-   ozPBIHu0PjWs6HgRMTNIlha79FauFeghyqDFiN2EbD4FZqoNclz/HpuXP
-   Q==;
-X-CSE-ConnectionGUID: i57buahxSianayOv9tEdiw==
-X-CSE-MsgGUID: ng1R93gPQq6Eh8f2XwQKIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11181"; a="34446837"
-X-IronPort-AV: E=Sophos;i="6.10,194,1719903600"; 
-   d="scan'208";a="34446837"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2024 06:28:49 -0700
-X-CSE-ConnectionGUID: N7yVSMzrQCWOdRkFLSXZvg==
-X-CSE-MsgGUID: IjNOdIuCTVue7+VsX/XmMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,194,1719903600"; 
-   d="scan'208";a="64388335"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 01 Sep 2024 06:28:45 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1skkdG-0003gf-2L;
-	Sun, 01 Sep 2024 13:28:42 +0000
-Date: Sun, 1 Sep 2024 21:28:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-mediatek@lists.infradead.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
-	benjamin.larsson@genexis.eu, ansuelsmth@gmail.com,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] pinctrl: airoha: Add support for EN7581 SoC
-Message-ID: <202409012045.91oDLtEE-lkp@intel.com>
-References: <20240831-en7581-pinctrl-v3-4-98eebfb4da66@kernel.org>
+	s=arc-20240116; t=1725197509; c=relaxed/simple;
+	bh=JNljzAsLk1yix2R94u1el+6SzsoPt7b0S5WPiCNk9lo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j8USlSG/J10FOYtzDOnJF9bSnNRTM8vf2oh42cbrMdLi21EXZEAIQQUZOCi/Itpy072Crh9kuYKzQ3H1I92mSM9b/gBJ7UQthYTR34fi8D1wnrcMohpYNmpn9Nq4Gb9wZhuyahKFXsz6+B3W2lxIhRg0CZS1u+XqLt06NN3H00I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ek31ZHao; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2055a3f80a4so3388365ad.2;
+        Sun, 01 Sep 2024 06:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725197508; x=1725802308; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YsKWtzwZWeFCKs3FaZQWcU1tv/xpkAb6aBGtye2T5F0=;
+        b=Ek31ZHao5L+hxnrkqW9bPl2ntlEMLBkD+w/3x0KATR2fo6VAZFDwvVeUEtdtd0L725
+         Ud4chjkLlTJSNXjwQyJMhvdNDQTRY/Bd/kHspMJP3vLvZyMV/NuI9CkbBuK7yHIc2dbI
+         jZfUS5Ah8Wg1Y5IsFQx9h2ggZJaKJuBUH2qMGBbWufueTTf5swb0LM4SkO+Oh9ltKR6+
+         Xg+rpGiWU48AN1ToAMo3r4ntz45+axXwoJPOIPtCOzYiXBUg3bp9r0sih+7cQaIQmyok
+         wuJbW6YMbc0i6ujS3pr8PoCK/vqI4Qj53NGWOf2SdmGoozVhC/29urXnWZEt8Fav0PJQ
+         S7RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725197508; x=1725802308;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YsKWtzwZWeFCKs3FaZQWcU1tv/xpkAb6aBGtye2T5F0=;
+        b=LAEhMqvIHTvlmZAANnpoXgmVIZIFun/jytHFJfDZz4RyrKQRp8Qs1+3/6QaxrJj0GU
+         jF9QX57alODRO3HWmpaNuQGwKRpAPSvhkaTMNygey5mMO0qPri1PYOQZUrYbZqXpFICf
+         zt4aWB3kh/0slRqWnKLNwEGM1KIU5jMbD060cFJaGZbfZVmLnDNcwXojB38JlcvxZTqN
+         mrN5VV0E77ZEriYGbrHdNGwLZrIjmcowvU9mPA+0/zmSVYjUqWBnVgTujlr1qJoqVPBf
+         krQ0xAEdXOqCjFokwWG7idYVAeZJDC+VzljUohvM8eExLZkg/UlIWtbKxDVhqjnHxXJg
+         17MQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULYX6OLVh2XDe7D48u2SkQFuMy7CaaioCmEmYNod65GuKPOceDYrqzg/bI3TQ5L82Ol8v6IZiP/ixB1Dhq@vger.kernel.org, AJvYcCVWY6SYDY4J8ctp6qH9UvmzcvJbAKv5kvqu64puI0WsTC1TmoOcqkDoIbCE9uR/BHj/i4zD5pqYajYm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXakDzqQFSX+JNVgivQiS/JThexyauDOG1r2Uk8iIphQMMD3Mm
+	S2yFmV/qJQQlAjJuXNC2BlpYua2/w++RrZhebBGZRPpfwGBBgZNr
+X-Google-Smtp-Source: AGHT+IHQskFo37TXYCxhkNM81uJOuzYc6x2rHUQiqaFyx3ld7bVbcmmjdrJ/L9XTt8DUGUelsCLEcA==
+X-Received: by 2002:a17:903:228c:b0:202:508c:b5a6 with SMTP id d9443c01a7336-2054477bfafmr50122015ad.46.1725197506157;
+        Sun, 01 Sep 2024 06:31:46 -0700 (PDT)
+Received: from eleanor-wkdl.. ([140.116.96.205])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20515537a2csm52691525ad.176.2024.09.01.06.31.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Sep 2024 06:31:45 -0700 (PDT)
+From: Yu-Chun Lin <eleanor15x@gmail.com>
+To: laurent.pinchart@ideasonboard.com,
+	thierry.reding@gmail.com
+Cc: maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	visitorckw@gmail.com,
+	Yu-Chun Lin <eleanor15x@gmail.com>
+Subject: [PATCH] docs: devicetree: Fix typo in lvds.yaml
+Date: Sun,  1 Sep 2024 21:30:46 +0800
+Message-ID: <20240901133046.962263-1-eleanor15x@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240831-en7581-pinctrl-v3-4-98eebfb4da66@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-Hi Lorenzo,
+Corrected the spelling in the description of LVDS Display Common
+Properties.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Yu-Chun Lin <eleanor15x@gmail.com>
+---
+ Documentation/devicetree/bindings/display/lvds.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[auto build test ERROR on defaf1a2113a22b00dfa1abc0fd2014820eaf065]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-arm-airoha-Add-the-chip-scu-node-for-EN7581-SoC/20240831-222958
-base:   defaf1a2113a22b00dfa1abc0fd2014820eaf065
-patch link:    https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-4-98eebfb4da66%40kernel.org
-patch subject: [PATCH v3 4/5] pinctrl: airoha: Add support for EN7581 SoC
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20240901/202409012045.91oDLtEE-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240901/202409012045.91oDLtEE-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409012045.91oDLtEE-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   m68k-linux-ld: drivers/pinctrl/mediatek/pinctrl-airoha.o: in function `airoha_pinconf_get':
-   pinctrl-airoha.c:(.text+0xa7a): undefined reference to `__ffsdi2'
->> m68k-linux-ld: pinctrl-airoha.c:(.text+0xb5e): undefined reference to `__ffsdi2'
-   m68k-linux-ld: pinctrl-airoha.c:(.text+0xc2a): undefined reference to `__ffsdi2'
-   m68k-linux-ld: drivers/pinctrl/mediatek/pinctrl-airoha.o: in function `airoha_pinconf_set':
-   pinctrl-airoha.c:(.text+0xf84): undefined reference to `__ffsdi2'
-   m68k-linux-ld: pinctrl-airoha.c:(.text+0xfda): undefined reference to `__ffsdi2'
-   m68k-linux-ld: drivers/pinctrl/mediatek/pinctrl-airoha.o:pinctrl-airoha.c:(.text+0x10b0): more undefined references to `__ffsdi2' follow
-
+diff --git a/Documentation/devicetree/bindings/display/lvds.yaml b/Documentation/devicetree/bindings/display/lvds.yaml
+index 224db4932011..b74efbea3be2 100644
+--- a/Documentation/devicetree/bindings/display/lvds.yaml
++++ b/Documentation/devicetree/bindings/display/lvds.yaml
+@@ -16,7 +16,7 @@ maintainers:
+ description:
+   This binding extends the data mapping defined in lvds-data-mapping.yaml.
+   It supports reversing the bit order on the formats defined there in order
+-  to accomodate for even more specialized data formats, since a variety of
++  to accommodate for even more specialized data formats, since a variety of
+   data formats and layouts is used to drive LVDS displays.
+ 
+ properties:
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
