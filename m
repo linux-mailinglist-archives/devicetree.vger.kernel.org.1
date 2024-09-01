@@ -1,106 +1,100 @@
-Return-Path: <devicetree+bounces-98842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491DC96774C
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 17:59:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADE8296788B
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 18:33:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4A37B212DB
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 15:59:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56DA01F212E9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 16:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7FC185B7B;
-	Sun,  1 Sep 2024 15:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425E9183CD8;
+	Sun,  1 Sep 2024 16:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="qvWkYrfH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qp0Dm8Xk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A2A185925;
-	Sun,  1 Sep 2024 15:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C5F183CBD;
+	Sun,  1 Sep 2024 16:33:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725206272; cv=none; b=uJvDLg7AYAJxkIyTBdGphnLGdg/Xx1xulXe1VEsciZfrKamzMrMIPiSKRM7nMS/bO2YAtxbZxAGHk8g+vMmyWjxGwQU+yfiwJbZOMJ4KiZMvrtISN/dtBoWnsMa+o8v358Pv8AvmcV3mM755WS6l3EdtKhHj1x26AutZjXMtmLE=
+	t=1725208383; cv=none; b=lDSyzOtuHU0nlqIltqj3ljpog72iM5z1u1COFbmKHHW98S26UTlyN5JEZyzquWwj3FJWm6DtQ08gubkC0/S0iE2m8i1XtwX0R5TX20slFM2nB3xk4Ta26/mxYfIsYh3VlEhEbinFzARvH90RxP3MJv/AGIl/KHO4675XmDLrWu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725206272; c=relaxed/simple;
-	bh=RGZzKIj0Qs00e/ZOVZpGiXIzRYgcbt/8qh85+64yUjA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ss2ldy3e2R0asDZfSm8Hw6FCKlfqfxv6dL9tqD9N3wgPRYRYxKCYmm9VSht7Y7lFrVweKyxVhRffMkxSTJx4FabDN6zSfK6FlJePm3JTmeocDZJPKJS9D1KHpB8DT7RHW7AT3CGP9g9jWmVgTu7oqkV4UcfAmZKqOSvkJsq/DH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=qvWkYrfH; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 77C021FB22;
-	Sun,  1 Sep 2024 17:57:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1725206261;
-	bh=RNvOcUq9hCoNQl4k0iHcvMfQMn0dWq6B44up8cQLmwA=; h=From:To:Subject;
-	b=qvWkYrfHy1jUHoJpAZbMqVAbUQ7vrwGCMKdQ1hATVQoQ5RuLmngiUiG0WIUc1rJE2
-	 24ffIBdclX9rK6x4PAjWQosL3FlK38dF/Cu4gok6ZufBYjO9LVsyt4e42S3gFlEmhn
-	 tZI8Kq/z/s9+T8S+K3lLI4YSCuwQGuxraNfReJkjTFN8TU0Ld59XJbwYHXEZ8KQHPi
-	 TQDhPXEqdryr1u5tSocxiz3xBeup21GELBTJVJDcR+rFbCWw8HgaUFWOIQZJj6J+Sx
-	 euhVYM4fuxUY4dHBtSECTWMtVdPC10zQuJj3fMXhXV7Kf/lLiPTP6tNcOg9f8qzMFy
-	 zgfMQtg+0aCbw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1725208383; c=relaxed/simple;
+	bh=iMGDRvpGmErh3kT77LApW0C+MmED9uptTCxVciaFglc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qM1g2CHdqYZ2RY1DTLJfS23aoOqRYbL9qw5ZOpyU1DxND9t1zE2HfmqJjzoYkJzD5nj84Wczv6OYB8GJNbyAAccsit/5/Cwm8kr1TRg75or1/zVDc5ORSqqXxHqCp6SAqr0flmb9lGqEGUmX/BRka1fUMPwKW9wuKi8fUhIBPvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qp0Dm8Xk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B658C4CEC8;
+	Sun,  1 Sep 2024 16:33:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725208382;
+	bh=iMGDRvpGmErh3kT77LApW0C+MmED9uptTCxVciaFglc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qp0Dm8Xkyz6mVcS4CLaMgcdwI2IiOxMPJLS0MOSPfed0zjIYIUu82N2Y8pBciQppd
+	 6Yu3j/FmCx5SGPd1jtQSwUnpOyBLiv6qo3+/Op0FTxP3CZCm4z3y3huJxF83Ov/Skm
+	 T3enHKYTUF6118sa8SXSl2Pn8Dj+gz15PkKA+mHb0VIgGnLfki+DyAaRyTkfpl6c/h
+	 pmuvOmDvWG8lUiGYn+k1jgWm2pzkNqTcSaAUum4q5U5/nlk2Dc3++Apu2hoTOaf5qv
+	 lWyVG/ZOdIEqzWuKkCXko8jpwktL/UivpIIcliZBKoJCEl9fp6HXRUBCXQ4des7yLZ
+	 CH2TIip3HFVFw==
+Date: Sun, 1 Sep 2024 22:02:54 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v2 10/10] arm64: dts: colibri-imx8x: Cleanup comments
-Date: Sun,  1 Sep 2024 17:57:21 +0200
-Message-Id: <20240901155721.7912-11-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240901155721.7912-1-francesco@dolcini.it>
-References: <20240901155721.7912-1-francesco@dolcini.it>
+	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v3 0/2] phy: qcom: qmp-pcie: Add support for Gen4 4-lane
+ mode for X1E80100
+Message-ID: <ZtSXNt5ZSrM2t5xK@vaman>
+References: <20240823-x1e80100-phy-add-gen4x4-v3-0-b7765631ca01@linaro.org>
+ <172495833400.405683.4328817324548517864.b4-ty@kernel.org>
+ <4ab9dcb6-4a0b-493c-943b-5de05457c592@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4ab9dcb6-4a0b-493c-943b-5de05457c592@kernel.org>
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On 30-08-24, 12:01, Krzysztof Kozlowski wrote:
+> On 29/08/2024 21:05, Vinod Koul wrote:
+> > 
+> > On Fri, 23 Aug 2024 10:04:14 +0300, Abel Vesa wrote:
+> >> On all X Elite boards currently supported upstream, the NVMe sits
+> >> on the PCIe 6. Until now that has been configured in dual lane mode
+> >> only. The schematics reveal that the NVMe is actually using 4 lanes.
+> >> So add support for the 4-lane mode and document the compatible for it.
+> >>
+> >> This patchset depends on:
+> >> https://lore.kernel.org/all/20240805-phy-qcom-qmp-pcie-write-all-tbls-second-port-v3-1-6967c6bf61d1@linaro.org/
+> >>
+> >> [...]
+> > 
+> > Applied, thanks!
+> > 
+> > [1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the X1E80100 QMP PCIe PHY Gen4 x4
+> >       commit: 0c5f4d23f77631f657b60ef660676303f7620688
+> 
+> Heh, we discussed yesterday on IRC that this should wait.
 
-Remove unnecessary comments. The Colibri-iMX8X doesn't support FlexCAN,
-and the GPU is already enabled in the SOC dtsi.
-
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: no changes
----
- arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index cf689904c166..edba5b582414 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -121,10 +121,6 @@ &enet0_lpcg {
- 			     "enet0_lpcg_ipg_s_clk";
- };
+I must have miseed that...
  
--/* TODO flexcan1 - 3 */
--
--/* TODO GPU */
--
- /* On-module I2C */
- &i2c0 {
- 	#address-cells = <1>;
--- 
-2.39.2
+> Why do we keep discussing things in private...
 
+This ideally should have followed up as a reply to this thread...
+
+-- 
+~Vinod
 
