@@ -1,141 +1,174 @@
-Return-Path: <devicetree+bounces-98958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E745968210
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:35:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B88A196822D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:39:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A9091F23014
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:35:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7496A283D41
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB70187338;
-	Mon,  2 Sep 2024 08:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FED818628F;
+	Mon,  2 Sep 2024 08:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HMMw1CeK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ic84Q8kd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A85D757EA
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 08:34:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163FA16EB76;
+	Mon,  2 Sep 2024 08:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725266075; cv=none; b=b6mZPH3WNKaZ3wf8i5L8631k9z65jpb0ruIdkYwZV1tQ5sgtXD3vgQdIGpbhKRXU/abeId4x8jkHTfpfJNI71UcoK9J/D1vylZpcQxu6BejpMFVMPrifLNEeRqwzdw3P7duYQEoIo5vRzwyCZm89mursDUeLWJO8I996UTgRQXM=
+	t=1725266381; cv=none; b=Q48wupFVT+eGtpOx9GvROs0fBG7sx3a5XhEVp0vnGthK8HitmT66qJrL0UtlmHp1MH5F8Dcw1sWh1P2x3j3tzEoF101IGeZ/vpdeJbjWBHvbR7Snboc+aFNtxdOKMrC6zNjURp1/ySj0e+yqkLVrfyIaAfeLTpiARw5aT10A39k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725266075; c=relaxed/simple;
-	bh=MnDoeT7vCt952wLfteYkGvY6GHFHpBb0+PURR7QujnE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=USc3oE2JMgNuBJbdmrJg7bVE9VdE4e58SnCcEYW22SU6OKnVyjL4IokIer7sVldZJNycGPEHzljlVbT/8HsxxhzUVYQQq8ejP2VaGTCuzbtEooCETiPr6ICv7vn7zVqaNsz6kj3bDccISW6Qt6vGp1WBIt4Ci7BDjCpYDkmu9dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HMMw1CeK; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42c2e50ec13so16504915e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 01:34:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725266071; x=1725870871; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zTtz4aJ6WOg0pDCld3WKbgJIlmwIlok5mPiJNkSVlqI=;
-        b=HMMw1CeKvRNBJJm1dlqbzXmZGOlsOk3Ba9wM6hGO+MSDYJDTEGM2TTBM8adUpSC083
-         53212+AaO8wcMDgP4/XSHpumemJraFlJsf46xeBL3D8/cPbJfEV8E/7f7O1MHZJtEwjt
-         rr1/kG3dSKqCHd/CbfO1lJhjJfCiXtQxnTj+1ZuMR5OmRjotgQNDhw9RqgXR+Vkek3er
-         1fZIUy4ViG1Iw723xsZ9xQMF2cImDlelkX56XhzVoXIY2bvhZxiB7XSZ1EHAjp2XrIaH
-         +2bA2qXyiND3Mqsr6fyd/t/JNUM0CoR0/FJhspzvlKPi5uwoxUJABHTUG9O+mlZpevmP
-         jcwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725266071; x=1725870871;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zTtz4aJ6WOg0pDCld3WKbgJIlmwIlok5mPiJNkSVlqI=;
-        b=Su7FhWK+qLYCzAWqHMpI7Hit0v9rZXTqrTxaOkd+fm0PDVDseNcdZCeuxxVE+R5r3k
-         DgAjEB9XWpOQgru2JMT+fbgipG5EJg/fIm46A0Bb6+AgC58PCginplNCG0Algt+5AmAe
-         Bev+XNAA8MRb60Y97j6fPv8w2ELWRwr6PcrDMOWT4rcF1ULp7+SseWEVnm65jUYHWhZZ
-         1JucUU0UEluXsdj9rEzP/mbvXG4Frya1kA+dI8BoYab8K8QXowjiQAsgRFTRFu7s4ah1
-         I5M2sPe+CB282ZEd9H72W01zMAYZSFV2btz3XViy9Uz69+D7XjrJIup4gzQRN0yIErlX
-         AysA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbMo1ElRaOGxtpgvEo4qFafavhdOja6aKzylRL9VXZs+13kSAb0wFS40DUkAM6V/ptJVC2nI3aF/Dz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxd5RexB6uy6cQJWZjrvz36P2xMwrdPqa8AuU2lhDyrMnjhyBbM
-	k2vYzMVuWhQoSqZ+iiT/z9NhiGpuWmlzbeDfNyOCWCAkQd6JGf9vgubzweReIy4=
-X-Google-Smtp-Source: AGHT+IEW/pesy5OKJ0IGSRRTNmo3lQ2HG8HktgHM07V8Q3+5V8e1ooBtP7Edf8e8UGZ5iZ6agRXHgQ==
-X-Received: by 2002:adf:f4cb:0:b0:374:c03e:22d4 with SMTP id ffacd0b85a97d-374c03e253cmr3159185f8f.1.1725266070437;
-        Mon, 02 Sep 2024 01:34:30 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374bfbfc7b7sm5807456f8f.88.2024.09.02.01.34.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2024 01:34:30 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20240828-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v2-0-58159abf0779@linaro.org>
-References: <20240828-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v2-0-58159abf0779@linaro.org>
-Subject: Re: (subset) [PATCH v2 0/3] ASoC: dt-bindings:
- amlogic-sound-cards: document clocks property
-Message-Id: <172526606951.2176850.4026983419764013991.b4-ty@linaro.org>
-Date: Mon, 02 Sep 2024 10:34:29 +0200
+	s=arc-20240116; t=1725266381; c=relaxed/simple;
+	bh=K+N0AwVPDVYqKgXVy/s8jrXl7HXvOgLS6WajR7PRvTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k7gJiYpFBi9XG5pIKphK7Bjiu9+nZwyh361yNWqPUPBAg33IKHOi9QsXiXQMRCgVJ4cSTXcjO65pU59bpTrff21pUOB7nMZ8NrPrxk93nW0NOi/kL8M0f11Ugw4Hb6pIUkdoE6cmEezr63kAcbzaGEhyRvOstPbAvg9GfmuAQOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ic84Q8kd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A4D0C4CEC2;
+	Mon,  2 Sep 2024 08:39:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725266380;
+	bh=K+N0AwVPDVYqKgXVy/s8jrXl7HXvOgLS6WajR7PRvTI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ic84Q8kdvBwXWqnyYHwc+wlkBVY+K1vG3+AbXbd6O0j0TyuxgJekV33R7vasQQybx
+	 2k38yBomJSQuIWIA8Mv8o0J01jdlbvidpNLiEC2T1g931EYx7Xlt6nnOWbLP4KxTq5
+	 3mRHMpsFV3tDqZkY1z0wjmEA3tQ2m59dxV6y8x7ZlDhZh46FV9qlneF18addutvxYJ
+	 NLskJrQt1zvoqnNn7e5TOfah3+arl9n9vgzWiT74zN34dJSg5829rtMWu/yB3+G6nn
+	 oCLXARFWy+zSTZA3e0imfa2wTw+euUv/ZBsyxSGhRQYC0/z1cIFwX4InDR48KY7y2J
+	 ErvjGnHdRBCKA==
+Date: Mon, 2 Sep 2024 10:39:36 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 1/7] dt-bindings: clock: airoha: update reg mapping for
+ EN7581 SoC.
+Message-ID: <ZtV5yNbdEE0s38US@lore-desk>
+References: <20240831-clk-en7581-syscon-v1-0-5c2683541068@kernel.org>
+ <20240831-clk-en7581-syscon-v1-1-5c2683541068@kernel.org>
+ <20240902-sandbank-aging-79e6a5cf383b@squawk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="noRtV0VyWOrDm8cy"
+Content-Disposition: inline
+In-Reply-To: <20240902-sandbank-aging-79e6a5cf383b@squawk>
 
-Hi,
 
-On Wed, 28 Aug 2024 15:53:53 +0200, Neil Armstrong wrote:
-> Following an off-list discution with Jerome about fixing the following
-> DTBs check errors:
->     sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
->         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
->     sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
->         from schema $id: http://devicetree.org/schemas/sound/amlogic,gx-sound-card.yaml#
->     sound: 'anyOf' conditional failed, one must be fixed:
->         'clocks' is a required property
->         '#clock-cells' is a required property
->         from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-> 
-> [...]
+--noRtV0VyWOrDm8cy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/arm64-dt)
+> On Sat, Aug 31, 2024 at 09:18:43AM +0200, Lorenzo Bianconi wrote:
+> > clk-en7523 driver for EN7581 SoC is mapping all the scu memory region
+> > while it is configuring the chip-scu one via a syscon. Update the reg
+> > mapping definition for this device. This patch does not introduce any
+> > backward incompatibility since the dts for EN7581 SoC is not public yet.
+>=20
+> What does "not public yet" mean? The bindings are public, so someone
+> could have built a dtb without whatever non-public dts you currently
+> have. Do you mean, has not yet made it into a released kernel?
 
-[3/3] arm64: dts: amlogic: add clock and clock-names to sound cards
-      https://git.kernel.org/amlogic/c/9b5d25117985e51faf61a808c4b3e15432d55f85
+I was not so clear on this point, sorry for that. What I mean is these devi=
+ces
+(clock, pinctrl, ethernet, pwm, ...) are not supported in the dts upstream =
+(in
+the kernel or other corss-compiling systems link OpenWrt). For EN7581 SoC we
+have just basic support upstream at the moment [0].
+Since we have this weird hw architecture, we agreed with Angelo to post the=
+ full
+dts just when all drivers are merged in order to avoid possible backward
+compatibility issues adding more devices support into the kernel.
 
-These changes has been applied on the intermediate git tree [1].
+Regards,
+Lorenzo
 
-The v6.12/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+[0] https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/airoh=
+a/en7581.dtsi
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+>=20
+> Cheers,
+> Conor.
+>=20
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  .../devicetree/bindings/clock/airoha,en7523-scu.yaml         | 12 +++-=
+--------
+> >  1 file changed, 3 insertions(+), 9 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.=
+yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > index 84353fd09428..ca426c328535 100644
+> > --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > @@ -34,8 +34,8 @@ properties:
+> >            - airoha,en7581-scu
+> > =20
+> >    reg:
+> > -    minItems: 2
+> > -    maxItems: 4
+> > +    minItems: 1
+> > +    maxItems: 2
+> > =20
+> >    "#clock-cells":
+> >      description:
+> > @@ -75,9 +75,6 @@ allOf:
+> >          reg:
+> >            items:
+> >              - description: scu base address
+> > -            - description: misc scu base address
+> > -            - description: reset base address
+> > -            - description: pb scu base address
+> > =20
+> >  additionalProperties: false
+> > =20
+> > @@ -98,10 +95,7 @@ examples:
+> > =20
+> >        scuclk: clock-controller@1fa20000 {
+> >          compatible =3D "airoha,en7581-scu";
+> > -        reg =3D <0x0 0x1fa20000 0x0 0x400>,
+> > -              <0x0 0x1fb00000 0x0 0x90>,
+> > -              <0x0 0x1fb00830 0x0 0x8>,
+> > -              <0x0 0x1fbe3400 0x0 0xfc>;
+> > +        reg =3D <0x0 0x1fb00000 0x0 0x970>;
+> >                #clock-cells =3D <1>;
+> >                #reset-cells =3D <1>;
+> >        };
+> >=20
+> > --=20
+> > 2.46.0
+> >=20
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+--noRtV0VyWOrDm8cy
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Neil
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZtV5yAAKCRA6cBh0uS2t
+rFD7AQD3XAK61xeAV/HoOQXNQ15ZHSy+FS6yiGZLk9JFnX9YzQD/fJSwqoJ56vHl
+PheC3VvB3/Z0+gH53Np35I3dsS1COAw=
+=WyW2
+-----END PGP SIGNATURE-----
+
+--noRtV0VyWOrDm8cy--
 
