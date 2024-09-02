@@ -1,252 +1,142 @@
-Return-Path: <devicetree+bounces-99077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C3FA968A70
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:58:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A33A0968A8E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 17:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B66E62834C1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 14:57:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B3F51F221B3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 15:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEC521019D;
-	Mon,  2 Sep 2024 14:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6B119F134;
+	Mon,  2 Sep 2024 15:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Zl0uvYjT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="toNQvgNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6097A1A3052
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 14:55:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515081CB506
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 15:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725288924; cv=none; b=gFP+hKBFiYQ5t2qOxa1VpDpmISOw0mUKh3GrH60KUoWk01bHyQACoYZ37lZqtqEL3w4w3Y92OGvdEyN04J+IGEypYT8FRQkmpvzk8SMlCnMJeVGs+ghSUFWkBH0CEtN/uQfs5OhXiHg8kFUSbMDdnIO5pbR9MnXMdrGJVXgj1og=
+	t=1725289316; cv=none; b=Pnre7fV8A20953tWcA7oZZgZstd7G+M2mC7E2HEfQi/QEGnmlQOB0hhe42qBYhlD6wsLff0I0nSTA59m849Q7nRQvTbUc3t0kkLiYLm66/bRWQm7y+d4G0XdxZjlxwm/0cN45C+7zic3e356MIwyS76ZWWCcm4NWYRor+4zINSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725288924; c=relaxed/simple;
-	bh=8SlZUFryXJrm68jQ50NWK0B6fJBIRODDLJSlDmtuRMU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MZqMruTrL6jt+A50uUOnZXG9BuPfy36m32JhIgUWN7ZI9p20I4rch1anPdkR4eBe9ROEo7CTq/CYIjtv6SUUH+FYXqmrxnEGw2IkMJmKXlbyUU/nlCPUfUXQsjkvSWl9J5y/Q0KRAvKLb879Ku6RDjPHxluM5jh0dGiBlDA6O80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Zl0uvYjT; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a86acbaddb4so508069966b.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 07:55:22 -0700 (PDT)
+	s=arc-20240116; t=1725289316; c=relaxed/simple;
+	bh=a5A8lrDqI7aFR/XW1zOdLm52l4YORaA4kyHAIIBduoM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LgFSTH1R8l36/P09r6yR13NHVR3P69D1owdNg1mEMt3wyVC7HRF02j9/bbOTpn+tDgKNKCRiyn+lv/721BVmm00BOryNS5IkCYH9zOP+96JPPptjgu2Yr3Iv8b9ytGoMVr6PniohRJAZnL0eLpO4ID2FryrP4NUe5Gh7VKWUgfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=toNQvgNX; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5334c4cc17fso6070009e87.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 08:01:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1725288921; x=1725893721; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0Naf0XscJRnO2TJWmGa7OVEJLkB3kuTYZUkolR4Kul4=;
-        b=Zl0uvYjTgdKVxIshwt/xykbntOLOUVd4w0PMVaLNpYFhU/2K3/pH6xww4DZQ7nY4QG
-         SdXSw4YuBCAYS1vbCYpOfzUtVokwuhUllWJHUO98K+sIbH6XLMFD+aiS9yHv0RdEPQo8
-         CuyzcF/x6k/zoFquYQEhZPiH7ywTOgHA364QE8j8I1V1wl9e6cQy4QCKk0gzSEJy6Uo4
-         sHFHU9J+VLee/jIhLrZzfC3vz1J9dsVTqqZP7ybFYQdpZ+nnucR0xPXg2e78kStGoKn9
-         ZboSDt7R2K09dmTasEapNpncx4LK+6xVP/+IXyMAOMAPkN12iNpLsT7gadxkgY7ilrlQ
-         UZkA==
+        d=linaro.org; s=google; t=1725289311; x=1725894111; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cO1TeBbYIYHALWkaQ6znvGEY3FTlPVW1y1SlK7fzBG0=;
+        b=toNQvgNX3crI7QSbypTQmCvCVDoMPIgy8TBJgqX8I+M/TtiavQvK2bvIm7dhD8tQCh
+         7PY4Jd7gccNyxbURiEvQUxK8fsmHDxrlYslfaiFq68GU+WOKXQ5l9agn1gTi1B4p+Wk/
+         3omrzmoJcpD1aJwZ422Adgav0VOH943sqOOBBhzVtXZbB6TLVQVrZS2LVLc/ST96UxeM
+         ZD/J6uZNYnFBP+rfCyPIs0enVgDNPNAEq862zPIq+VI4ET+lr6sD4JLuEuWB7B6KzzTg
+         CoeIz9v8Z0VRpDt7U0kOAW3IjFPDypm9YWqKBdda1qxt9TCfEeusfhftzu1e8Gif25SV
+         9IYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725288921; x=1725893721;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Naf0XscJRnO2TJWmGa7OVEJLkB3kuTYZUkolR4Kul4=;
-        b=aHwnOu5AM9aHraAffld1gk+veLelUkc3KVaKB+9lh0xenzznFjD+VbV1D6YBf3suHC
-         icwohOdBxeGMTtpHAbfCg+1aBxHhc6F7MPA2VYtxfPUNWrwpRPV19mMGvPUocly0fQI7
-         yRWK14oDc5o0Wg/0Cajj+nj+r1+CbbQ9LMm8tWT7qfeq+ThToMNMvLBDs/Uqs5FeHx70
-         jErI0tBySlAtEqY0yGhbfvaGNXK6LyHXKofVzW5d/2ObNoD7q6vUQmCxyTCLlEeZVzct
-         gFU9jb5nlLMDZrhx6CjJ6dkVHeZqUGtYTXMul6c6hPmKTwC9cg1sTaClocCEWGuYDhoq
-         n+gQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNg88wwR3XZZG3dPeHEfoKVhqUYhv8WO1tHgicpZWtUIqtBjqTM3W53c6w/ntpwOHKhix/+KskuJAr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP26X4cg6c1sUfhEI5J2keok/CLNar7Dx6cKiFShuk0BNMAXSd
-	jE2lFEB+0/2aXP9BggvlDQzU9BVX6n5lGyM7nHqFMP2TafsUtpI1jgk9gSU4Y64=
-X-Google-Smtp-Source: AGHT+IH88P2UchQfuyJn4Ig/8aL8sFGLYB2Le79fmkAMZIjuFdt4o/On+vh4v2Bfc56FcpWJDt9N3A==
-X-Received: by 2002:a17:906:6a09:b0:a7d:9f92:9107 with SMTP id a640c23a62f3a-a897fad4ec9mr1154579666b.58.1725288920667;
-        Mon, 02 Sep 2024 07:55:20 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8989196980sm566454166b.126.2024.09.02.07.55.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Sep 2024 07:55:20 -0700 (PDT)
-Message-ID: <e307b4a9-09ba-4200-98f7-1a830e3e0fb8@tuxon.dev>
-Date: Mon, 2 Sep 2024 17:55:18 +0300
+        d=1e100.net; s=20230601; t=1725289311; x=1725894111;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cO1TeBbYIYHALWkaQ6znvGEY3FTlPVW1y1SlK7fzBG0=;
+        b=MMNxTCx7rffUgSQ6SfqhqkuTyZnpNp+1zgWN1/27U9rcJBzvdWwCjU1SJoBU4y/JiS
+         TeL33m1LmZLhkz437NjwYJQdXW7Mhdz1C/ruB8XT6JOXaTv81v0huNWH+k5mSoTiJEM5
+         2kbXMoQLUAFXH7iOHzgC4XJ1jbDYi/Evj4BMbPAHtQAqfVTCPgfosJsIZuID27rfX6VD
+         jhKlR1HYPPpWeKI/+aVRwXOQYEuilSawrUazEEgiSaGq4+vW5HJp+XGAifk2WU2/7XOF
+         ElOAhCjh9a1g6JFLEl3U9LuWljqauN+x+6LRq6Wke7U5Y8CTFdmKnhJpNw0rIzxDXgo2
+         /mLw==
+X-Forwarded-Encrypted: i=1; AJvYcCUgJ4lIrkm0EXHPqflAVEJ8rn0zujYq7pL5lkYoM5XlLoGX03fNtt1i8fZEr7V0VJ6Bj/eO327Eou02@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTaGG2PnIS7XvrualxJiGUjrS8Y2Ym9hvdAByEf5CIgmbRaRZn
+	JeK26C/DDqS4xYqsVZmQ0iqgxM/2Y+2IT9orHPS717rPbDoaDZXqNz5hntAVxqY=
+X-Google-Smtp-Source: AGHT+IH2YT7rJocKs0+uuQx+mqu6cGEnnz9isj+MTJuPQadaagNcOFaopjl/zwMkyPz6WYXDJbToMg==
+X-Received: by 2002:a05:6512:68c:b0:52c:d76f:7f61 with SMTP id 2adb3069b0e04-53546bb4d04mr5408823e87.56.1725289310903;
+        Mon, 02 Sep 2024 08:01:50 -0700 (PDT)
+Received: from [127.0.1.1] ([82.79.186.176])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb6deb1ebsm140726115e9.3.2024.09.02.08.01.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Sep 2024 08:01:50 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: x1e80100: Add external DP support to
+ CRD and T14s
+Date: Mon, 02 Sep 2024 18:01:34 +0300
+Message-Id: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-0-899c264c0eb7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/12] dt-bindings: clock: renesas,r9a08g045-vbattb:
- Document VBATTB
-Content-Language: en-US
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
- p.zabel@pengutronix.de, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
- <20240830174633.GA559043-robh@kernel.org> <20240830220644b8b36293@mail.local>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240830220644b8b36293@mail.local>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE7T1WYC/x3NwQrCMAyA4VcZORtIu02qryIeypJpQLqSdlIYe
+ 3eLx+/y/wcUMZUC9+EAk68W3VKHuwywvGN6CSp3gyc/UfA3bE4COSJcjJFrwciM0qpYih/kjGX
+ PebOKgeM6xtldgx+h57LJqu2/ejzP8wfZ7JmHegAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1141; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=a5A8lrDqI7aFR/XW1zOdLm52l4YORaA4kyHAIIBduoM=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBm1dNWNFqyXrRXAxBH/1HLx31mMJe3qk7v4lBMz
+ vO/YuiJIM6JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZtXTVgAKCRAbX0TJAJUV
+ VvuVD/9BEYvrzyVbSQUpZUdk/y94RgWp7nAR6xAEoyNUR8/iXABZrEJieqRGVUC5fuUKoCNftr4
+ kZO3lOlWWHqD26C6BHCWTSHhyniHxlKqYWvRr4aA1Ke3n+d4J/SICJg5mjAYjO6Dn1NRl2ZX5Ds
+ nr3z+oSyGGarAzJa07rNnUxKlkoZUKyqpN6HoYH+dBySJ3YoxZwNSO2QZQtyLBOn6XvPTOTDH/r
+ DzhHZpz8LoQ4Eo2xkJ6TE9nGhXPPIETZzv5wRn6GRIMBuPLrjmN/uecoKRvUaKVMSmP0RLoXLyf
+ X2BnL6GVkz76Y69NUAgikn9gq/wuL/sayWc4KnJ3Cin2H3up6pd2dxsfXXLuteSlnpiE+6lAULW
+ kcuC5LbhaREcdX8PTv23Mca3kWKVYbtzXW1Jcth7BVbbEVH/RoeX/T0KSo6eT5FBQgtm0k2ebo7
+ KnBdW01Ky0k3Zrml5beMMV12GUM7ydMs6K8sHmeN9c2SSMOzMfjjHzxBqhE5Zlx7aIOtn/nCAFR
+ TU7UWdPmeRkTZsitYHQjxRAokNeebLYkIdfx8GwK2vCftU8PzFWRBl6I9SHAzVSxVt+D51HVhK0
+ JgL8IfxoATyWBsV2S9ivgNJ9krWbknbB/kF2U10ilPZxaorbCywTt7VUE/6lGmy5/eioH6iCi3k
+ w2tRiGtDKhmf5nQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
+Both the CRD and T14s support altmode for external DisplayPort over the
+USB Type-C connectors. The CRD has 3 such connectors while the T14s has
+only 2.
 
+Enabling DP altmode requires the support for the Parade PS8830 USB Type-C
+retimer. [1]
 
-On 31.08.2024 01:06, Alexandre Belloni wrote:
-> On 30/08/2024 12:46:33-0500, Rob Herring wrote:
->> On Fri, Aug 30, 2024 at 04:02:07PM +0300, Claudiu wrote:
->>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>
->>> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock for RTC,
->>> the tamper detector and a small general usage memory of 128B. Add
->>> documentation for it.
->>>
->>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>> ---
->>>
->>> Changes in v3:
->>> - moved the file to clock dt bindings directory as it is the
->>>   only functionality supported at the moment; the other functionalities
->>>   (tamper detector, SRAM) are offered though register spreaded
->>>   though the address space of the VBATTB IP and not actually
->>>   individual devices; the other functionalities are not
->>>   planned to be supported soon and if they will be I think they
->>>   fit better on auxiliary bus than MFD
->>> - dropped interrupt names as requested in the review process
->>> - dropped the inner node for clock controller
->>> - added #clock-cells
->>> - added rtx clock
->>> - updated description for renesas,vbattb-load-nanofarads
->>> - included dt-bindings/interrupt-controller/irq.h in examples section
->>>
->>> Changes in v2:
->>> - changed file name and compatible
->>> - updated title, description sections
->>> - added clock controller part documentation and drop dedicated file
->>>   for it included in v1
->>> - used items to describe interrupts, interrupt-names, clocks, clock-names,
->>>   resets
->>> - dropped node labels and status
->>> - updated clock-names for clock controller to cope with the new
->>>   logic on detecting the necessity to setup bypass
->>>
->>>  .../clock/renesas,r9a08g045-vbattb.yaml       | 81 +++++++++++++++++++
->>>  1 file changed, 81 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
->>> new file mode 100644
->>> index 000000000000..29df0e01fae5
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/renesas,r9a08g045-vbattb.yaml
->>> @@ -0,0 +1,81 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/renesas,r9a08g045-vbattb.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Renesas Battery Backup Function (VBATTB)
->>> +
->>> +description:
->>> +  Renesas VBATTB is an always on powered module (backed by battery) which
->>> +  controls the RTC clock (VBATTCLK), tamper detection logic and a small
->>> +  general usage memory (128B).
->>> +
->>> +maintainers:
->>> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: renesas,r9a08g045-vbattb
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    items:
->>> +      - description: tamper detector interrupt
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: VBATTB module clock
->>> +      - description: RTC input clock (crystal oscillator or external clock device)
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: bclk
->>> +      - const: rtx
->>> +
->>> +  '#clock-cells':
->>> +    const: 1
->>> +
->>> +  power-domains:
->>> +    maxItems: 1
->>> +
->>> +  resets:
->>> +    items:
->>> +      - description: VBATTB module reset
->>> +
->>> +  renesas,vbattb-load-nanofarads:
->>
->> Use defined units, don't add your own. So -picofarads should work for 
->> you.
-> 
-> We have a generic quartz-load-femtofarads property for RTCs which is
-> what you define because the driver has VBATTB_XOSCCR_XSEL_4_PF which I
-> guess is 4 pF which is 0.004 nF and 4000 fF.
+Currently, only the DP 4lanes and USB3 modes have been successfully
+tested on both CRD and T14s. The DP 2lanes + USB3 mode seems to suggest
+that changes are further needed in the QMP PHY driver.
 
-I'll use this one in the next version.
+[1]
+https://lore.kernel.org/all/20240829-x1e80100-ps8830-v1-0-bcc4790b1d45@linaro.org/
 
-Thank you for your review,
-Claudiu Beznea
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Abel Vesa (2):
+      arm64: dts: qcom: x1e80100-crd: Enable external DP support
+      arm64: dts: qcom: x1e80100-t14s: Add external DP support
 
-> 
->>
->>> +    description: load capacitance of the on board crystal oscillator
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [ 4000, 7000, 9000, 12500 ]
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clocks
->>> +  - clock-names
->>> +  - '#clock-cells'
->>> +  - power-domains
->>> +  - resets
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    vbattb@1005c000 {
->>
->> clock-controller@...
->>
->>> +        compatible = "renesas,r9a08g045-vbattb";
->>> +        reg = <0x1005c000 0x1000>;
->>> +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
->>> +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&vbattb_xtal>;
->>> +        clock-names = "bclk", "rtx";
->>> +        #clock-cells = <1>;
->>> +        power-domains = <&cpg>;
->>> +        resets = <&cpg R9A08G045_VBAT_BRESETN>;
->>> +        renesas,vbattb-load-nanofarads = <12500>;
->>> +    };
->>> -- 
->>> 2.39.2
->>>
-> 
+ .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 278 +++++++++++++-
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts          | 414 ++++++++++++++++++++-
+ 2 files changed, 682 insertions(+), 10 deletions(-)
+---
+base-commit: ecc768a84f0b8e631986f9ade3118fa37852fef0
+change-id: 20240829-x1e80100-crd-dts-add-external-dp-support-8daf3a516823
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
