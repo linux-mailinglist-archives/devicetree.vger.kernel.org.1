@@ -1,127 +1,129 @@
-Return-Path: <devicetree+bounces-98873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01800967C4B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 23:15:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0D9967CE5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 02:02:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 380AC1C21330
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2024 21:15:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDFAC2817E1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 00:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0AB139CFF;
-	Sun,  1 Sep 2024 21:15:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 477178BEC;
+	Mon,  2 Sep 2024 00:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NhsY6n/Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jGE0VhGY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73FB53E22;
-	Sun,  1 Sep 2024 21:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77581320E
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 00:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725225348; cv=none; b=kGOri4gc9zIUMHWPWEAB1CdW6xF3bHh/v8jt1O6Oelb9TmGIc91RF045Dghp91rdoC+Emg3P1b6RZOhD5V/sCK6uWSWhCZxIMvdycjNVlvS2MIxq1PfoImLN4NiaENZP16lEa4IMViS5Z13je++uoIZN1Dkq+lAIdonEL1wwO1Y=
+	t=1725235328; cv=none; b=O0cXGFzEvRsLF2wIfyclGdYsleW8PMDi4DQaj6KBL9GrlwDFKFc3osG3ZfqhdjUMvIBhbWeN+ocZYE8A0IBrBll2RHtysZRdS2kLbLbugXRUsY5U0/cPRbWPZhKWa6onFqMQ+chXtGC/634edLGrRx6iCgmIHJKfdHmnIN86atA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725225348; c=relaxed/simple;
-	bh=lRidtMEWLd9+QwbEUXUvDHAs+HY9t5mjG5L8fjcyWq0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fdbkQ9skD8HxZG79tn4XPS7ElrFrCPf1kGH15ZqQWk9Xh01yeaGUisz2J4LG/GM+RTqVMy9MI72W+n/20lbLyJZMNzy+WNbA5Gb0K3eN1D8WRwKGOAGqGEH77EROCPDnUM+DdfZYFESPJE5xUBdqdynG1oH4WKHVvuGrjZSAbvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NhsY6n/Z; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 481LFdGE085501;
-	Sun, 1 Sep 2024 16:15:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725225339;
-	bh=PBrrMAd7KEbZhXrYvNWs11hT4u7Pvv65Fz+cZMwgh+c=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=NhsY6n/Z8i6mdnsQEYZ6HmnjeQappDzC0MOzrv8AhE+ThL2TTFyVNs6CgCkIiILZK
-	 uqkysqqo+i+0KxGHCZOjGEym/qIdkCyLe88o//o+LZUQr6gU/10lGlw82zQfcwtJxP
-	 mLMSk3xNRJNykr6G56eoCJjTvuQtCZM/N6c3sEus=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 481LFdGv022102
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 1 Sep 2024 16:15:39 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 1
- Sep 2024 16:15:39 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 1 Sep 2024 16:15:39 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 481LFdGN071033;
-	Sun, 1 Sep 2024 16:15:39 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        Beleswar Padhi <b-padhi@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <u-kumar1@ti.com>, <j-choudhary@ti.com>,
-        <vaishnav.a@ti.com>, <afd@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 0/2] Add Remoteproc Support for TI's J722S SoCs
-Date: Sun, 1 Sep 2024 16:15:37 -0500
-Message-ID: <172522532253.1011545.14727446934564211822.b4-ty@ti.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240830161742.925145-1-b-padhi@ti.com>
-References: <20240830161742.925145-1-b-padhi@ti.com>
+	s=arc-20240116; t=1725235328; c=relaxed/simple;
+	bh=jihjezE4SKxxXHigHPjddOU+sXmPRtYhm5RHPU8ik18=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fO7cBTHUU/asjgB6uCDEYItVfv7hc3zgwcFVm7UjmR183nwo2lQMaZTtXhpBx0dShgT+gawSl3ilRdKo6fk0Xj0zAh6ZA9P6k6t47GvLbEDs81XqTcy6vYvwjyvIQTYXgCdj2ljgp6BPdBcWy9QDsaJwa5dK1jnfp7exr1BtjD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jGE0VhGY; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-533463f6b16so4644810e87.1
+        for <devicetree@vger.kernel.org>; Sun, 01 Sep 2024 17:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725235324; x=1725840124; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q9++1ZHzcZI4fcRNlptm+zAcB1O/Jr3h7F0QPCUj+I4=;
+        b=jGE0VhGYQJc82tG/3vgEFrrGSOpotm5Oegx1utzMh0C5aXnYJerOF4avlKU0FXzShY
+         PlVVawlOV0buU3+h28LbgWwrqVE3M/b3X1/uwvTKL2sKVxJFQRoEvqfp7e+ukoI4Icc2
+         vqUBMB4Br5Dli6rnL0qs2RqRlWU/sYXRyoKbuZ9ms1pI0YxVqb0NmrpjYhSfI1WR4otq
+         S9tRe6CbLovBObbb8KnWXuMVcIhKnYmp/6cgJl/Hy99XzEgbPnaiMabFv3Froy6BCFx3
+         6gHxvxFhzICtKLL72sJPPHXCRLpmfULpBxOj9iHK4wS6zSZuAjqVE1rw/0j/wjqWvTdR
+         qVOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725235324; x=1725840124;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Q9++1ZHzcZI4fcRNlptm+zAcB1O/Jr3h7F0QPCUj+I4=;
+        b=YDXLacd7QeToKSi5fa6eKbZr+ajVHl6atu5bKUIFxL0xrm2HUV56RF8CO43b4qZaOJ
+         8vvlYr0hdYPPrOi5UPm7OztLaVc0AimxJ0O0VE3NEtVh12d4YlK+nRRIKK2AGSPqdwHP
+         xMvtUwGpWAH6M3xJGMGF0BpprYoMMpl+96qnJsp4uwCbuob8KJnf4ONWkjt0oFMnuVsC
+         XeHI+jx8LEsK8/e8I/CQQW0MhooH2eQ6+YrLyjBr2594Ek82Wxq54OufeN8AXFaSv9Ee
+         4bXC3enlVzUELarpj1fwqy7WoV0CfEE9d9MUBfd5Ijzw/gX6WhUwrl3dZyhBYdg9WLHx
+         o6AA==
+X-Forwarded-Encrypted: i=1; AJvYcCVzVdAOcVG2a/ZP1v9+a0FZ8/i3EJEefvthLJTRQN5inos4mI1rSxZQJPpEEB0HpRn2KCSh7EAwSk9X@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPf+KXVOd9XXKYg2FOCAOR0QZ6Sm18Nkn2Ujic2el7RlqWuy2U
+	gi327LyUSWsqdJxoz/lVVFoVHvBaOhj4Xd4+uwVUn4lUtcInnqv9bqUzDMlS+EA=
+X-Google-Smtp-Source: AGHT+IECIQ8duDhzqxT+Vo3df1TEVRNCkaDmJpN6C1Sl4Mk9RAef7hTVdU+HKUJDzazX/Oygc8itYw==
+X-Received: by 2002:a05:6512:1598:b0:52f:cbce:b9b7 with SMTP id 2adb3069b0e04-53546a56c49mr5702705e87.0.1725235323524;
+        Sun, 01 Sep 2024 17:02:03 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5354079bd95sm1383884e87.62.2024.09.01.17.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Sep 2024 17:02:02 -0700 (PDT)
+Date: Mon, 2 Sep 2024 03:02:01 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Vedang Nagar <quic_vnagar@quicinc.com>
+Subject: Re: [PATCH v3 00/29] Qualcomm iris video decoder driver
+Message-ID: <xwkibtfakensuzrj4ycmyh4nqjr4nwkgqr63og7n6ejiw3hjqo@rvl3hhznfftx>
+References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+ <3a62b4cb-5c41-4c76-a957-af8e594ca8b1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3a62b4cb-5c41-4c76-a957-af8e594ca8b1@linaro.org>
 
-Hi Beleswar Padhi,
-
-On Fri, 30 Aug 2024 21:47:40 +0530, Beleswar Padhi wrote:
-> The K3 J722S SoCs have one single-core Arm Cortex-R5F processor in each
-> of the WAKEUP, MCU and MAIN voltage domain, and two C71x DSP subsystems
-> in MAIN voltage domain. Thus, this series adds the DT Nodes for the
-> remote processors to add support for IPC.
+On Sat, Aug 31, 2024 at 04:18:35PM GMT, Bryan O'Donoghue wrote:
+> > The result of v4l2-compliance test on SM8250:
+> > 
+> > v4l2-compliance 1.29.0-5239, 64 bits, 64-bit time_t
+> > v4l2-compliance SHA: a1ebb4dad512 2024-08-08 20:00:17
+> > 
+> > Compliance test for iris_driver device /dev/video0:
+> > 
+> > Driver Info:
+> >          Driver name      : iris_driver
+> >          Card type        : iris_decoder
 > 
-> This series also enables IPC on the J722S-EVM platform based on the
-> above SoC by adding the mailbox instances, shared memory carveouts and
-> reserving the conflicting timer nodes (as they are used by remoteproc
-> firmware).
+> Hmm, so this is decoder only ?
 > 
-> [...]
+> What's the intention here for encoding support ?
+> 
+> I've verified your results on the test branch but I just noticed that sm8250
+> with the iris driver is decoder only - whereas the venus driver does both,
+> which strikes me as a bit odd.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+I think we all have discussed this during the review of the previous
+series: complete driver becomes very huge and complicated to review. So
+the recommendation was to submit the limited features driver (decoding,
+1 codec) and get more features (more codecs, encoding support, etc)
+after getting the Iris driver in. Of course sm8250 support in Venus
+driver will stay in until Iris driver reaches feature parity.
 
-[1/2] arm64: dts: ti: k3-j722s-main: Add R5F and C7x remote processor nodes
-      commit: 05b1653c4fc148189743e4b3cbef798e49db61f0
-[2/2] arm64: dts: ti: k3-j722s-evm: Enable Inter-Processor Communication
-      commit: 5b035d14a508efd065895607ae7a6f913b26fef8
+> 
+> Is your intention to publish more patches to enable the encoder in another
+> series ?
+> 
+> ---
+> bod
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+With best wishes
+Dmitry
 
