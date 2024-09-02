@@ -1,127 +1,130 @@
-Return-Path: <devicetree+bounces-98978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D334D9683CC
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:55:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A35C19683F1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 12:01:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9C561C2279C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:55:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D5E41F21524
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0D31D1F6E;
-	Mon,  2 Sep 2024 09:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8CC13D2B2;
+	Mon,  2 Sep 2024 10:01:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34EC76035;
-	Mon,  2 Sep 2024 09:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E802B1311B6
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 10:01:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725270947; cv=none; b=gfZoYOXFz8ml1FIQcbOs9Zs1hkmaNoHTZXh1Xjw9ouLrnAY1PypP4XZvXvi6tAWGwf6U+YxXU9XbklO2VPFVEAIb8spxvc6DCCI2xGfp3vqgud+LUlb8GDiigjD0Kk1+NtHIxVg9RC0IAvm7HpcALvtNqQlEBlEWO6ekZFOhemw=
+	t=1725271294; cv=none; b=e64uddABcE+4ejgPknfHeXeLOtrb7OdjyRbvmKFjVgYQXAdmG8OmfYOP4g6PXWWUXvb3sQZgKLYUzk7LQe0tKo8phklMRvEq+uoTaeon4ZDzPB3GZh9Eom6iL8uo4Lqk1T4cvqk7XJKnP4USMai4+j4CdlLXxMVPC8BD39dWzxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725270947; c=relaxed/simple;
-	bh=N1G+YOdCXmW6ZM5XS6QgL8CFfLIUCedjbdwaaDSoylU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s+QJ2Lpu8qNHIOqI6FtiCqnbKUjfAATw0LDF1d8JcctV56mDdhMzv9mCjRix87onZPxDh1w44AbznpNOxnvPCERRlJg4V+EIXrGawRwNeJOAspHg5RRcwMZrM9Bz3RVK/cgK5VFSvbdX6MgxhaVMbOknsYP0k4lP2wsUxzcNUVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6d5893cd721so15636517b3.0;
-        Mon, 02 Sep 2024 02:55:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725270944; x=1725875744;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+MAn5qVpDY22aHv+DFM/MBUkQ/9x+sYh3IxT5133w4g=;
-        b=bK5B73Tpd6I9+GDHybEefl/xaREHvldjWWRw7ajEQZa4xbqdGmDWkoyYrSxYcJM1iz
-         guWww2HSGX1wH/b7X0TQSeAZ7mHTIEqalvvoH0rcZA9xSWu+qqfgbmWhEmwlHcI5o5HC
-         KHLMUvhGNdkC5juDHfKjNn4irM8cJZe9uDvU39Bbdb+AC5fltuDdQXQ1ofp8kV8GjOoS
-         mZ/tBMH/DLWMnyAshwttpu2qQuLm11rzDV1Wi+yEHsdceMcPbIh5iR5NA/tH/D/UdB9d
-         3fkMn2+VeOQqOqD4KcweBvODHzh0mwO0gH76HoZ0e8Ypf+YvuRNQX0Rrf8zAz+M9lBuw
-         5UPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXTWtkwNloUMkuOnUWjRUffK/U1k0mjceQgayGItGJtqMP4PsD5zjMrcjQPSQhyMfYfUBSeSCvyTaQ3@vger.kernel.org, AJvYcCXZsJfADVvUPAzePPsF0oI4kI9pqc1w2B4xCqr2YH1QazRWph2sjgQCHPofzGyK5r+hIkjbR2il2iml@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP+1JRDvAjlhRkJmGmnVZw2NPB5QwDWVmBHD3c5xrVyna4JsZG
-	csIwKxXLYEC3vespyHXlWw5cFL9lNEvVzjrR7wCXGB5fLPDhlW4nROf3yncO
-X-Google-Smtp-Source: AGHT+IEJ+ptSMdMs26WdNp0s8JHpnHf+1nwtv1QlQhRD1U9a+bp1XcduxpH0bJSM/9wkGKfF4t4VjA==
-X-Received: by 2002:a05:690c:6309:b0:6be:2044:9367 with SMTP id 00721157ae682-6d40e17ff2amr112413307b3.15.1725270944361;
-        Mon, 02 Sep 2024 02:55:44 -0700 (PDT)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d438e15dsm15247087b3.66.2024.09.02.02.55.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Sep 2024 02:55:44 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6d5893cd721so15636357b3.0;
-        Mon, 02 Sep 2024 02:55:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVWCOH/kIGAaw+t0W2WsGzDqna50Je9b7LJGOBMwoQVSwzI24ROo0oYqKW1mhYWYjNhwpzK27ARZTzG@vger.kernel.org, AJvYcCXlDuO63eonStLW66r8CsBLHHjuU71fndhbVCsHsVdpWy0+qiZcPKG+CAKIa63uxYWgfDwCBFVqVwRz@vger.kernel.org
-X-Received: by 2002:a05:690c:62c6:b0:6d7:4dea:5f16 with SMTP id
- 00721157ae682-6d74dea5f7bmr31804377b3.26.1725270943798; Mon, 02 Sep 2024
- 02:55:43 -0700 (PDT)
+	s=arc-20240116; t=1725271294; c=relaxed/simple;
+	bh=DLwcNSQz8RWmdGdVUt99mUKMNZeOYDfKI+/lFn9dl2Y=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=s4N28wvnu434zTk5tPmLfrvO1OQ9EUak8s5bOSc1/Z0514Oponf90XuocowpAshhTlwUp0hk1nTyrDOwGzTYb6IGZYxO2/jbI+M4BGtUui+QmOKWQTZhqxJV/GFK46xXxKLS5wCXEkaTADMCUgqTqZU+hyz1hd2W5n4O/juDz54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sl3rr-00071B-ST; Mon, 02 Sep 2024 12:01:03 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sl3rp-004sA6-MO; Mon, 02 Sep 2024 12:01:01 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sl3rp-000gII-1q;
+	Mon, 02 Sep 2024 12:01:01 +0200
+Message-ID: <0676fcf89ca07dde911b8759b8e8b10df4bcf6cd.camel@pengutronix.de>
+Subject: Re: [PATCH v5 7/8] reset: core: add get_device()/put_device on rcdev
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Herve Codina <herve.codina@bootlin.com>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Andy Shevchenko <andy.shevchenko@gmail.com>, Simon
+ Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
+ <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lars Povlsen
+ <lars.povlsen@microchip.com>, Steen Hegelund
+ <Steen.Hegelund@microchip.com>,  Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>,  Saravana Kannan <saravanak@google.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew
+ Lunn <andrew@lunn.ch>,  linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Allan
+ Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>,  Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?=
+ <clement.leger@bootlin.com>
+Date: Mon, 02 Sep 2024 12:01:01 +0200
+In-Reply-To: <20240808154658.247873-8-herve.codina@bootlin.com>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+	 <20240808154658.247873-8-herve.codina@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240826150840.25497-4-wsa+renesas@sang-engineering.com>
- <20240826150840.25497-5-wsa+renesas@sang-engineering.com> <CAMuHMdXiOLPm11-nBnFPC4pRa0WP1VviwCwYVVPHAeHLgXLe0g@mail.gmail.com>
- <ZtM3Ufj1akqZckuu@shikoro>
-In-Reply-To: <ZtM3Ufj1akqZckuu@shikoro>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 2 Sep 2024 11:55:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVEBVoBmWVKiVYcKp0As6mo=C9u-bHFwt0zPeRbAgCkvQ@mail.gmail.com>
-Message-ID: <CAMuHMdVEBVoBmWVKiVYcKp0As6mo=C9u-bHFwt0zPeRbAgCkvQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: i2c: renesas,rcar-i2c: document
- SMBusAlert usage
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On Do, 2024-08-08 at 17:46 +0200, Herve Codina wrote:
+> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+>=20
+> Since the rcdev structure is allocated by the reset controller drivers
+> themselves, they need to exists as long as there is a consumer. A call to
+> module_get() is already existing but that does not work when using
+> device-tree overlays. In order to guarantee that the underlying reset
+> controller device does not vanish while using it, add a get_device() call
+> when retrieving a reset control from a reset controller device and a
+> put_device() when releasing that control.
+>=20
+> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  drivers/reset/core.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+> index dba74e857be6..999c3c41cf21 100644
+> --- a/drivers/reset/core.c
+> +++ b/drivers/reset/core.c
+> @@ -812,6 +812,7 @@ __reset_control_get_internal(struct reset_controller_=
+dev *rcdev,
+>  	kref_init(&rstc->refcnt);
+>  	rstc->acquired =3D acquired;
+>  	rstc->shared =3D shared;
+> +	get_device(rcdev->dev);
+> =20
+>  	return rstc;
+>  }
+> @@ -826,6 +827,7 @@ static void __reset_control_release(struct kref *kref=
+)
+>  	module_put(rstc->rcdev->owner);
+> =20
+>  	list_del(&rstc->list);
+> +	put_device(rstc->rcdev->dev);
+>  	kfree(rstc);
+>  }
 
-On Sat, Aug 31, 2024 at 5:31=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> > IIUIC, this is not a property of the hardware, but a side-channel
-> > independent from the actual I2C controller hardware? Then a generic
-> > "smbus-alert-gpios" property sounds more appropriate to me.
->
-> It is not generic. While it is true that most I2C controllers do need
-> GPIOs as a side channel, there are controllers having...
->
-> > BTW, are you aware of any I2C controller having a dedicated input pin
-> > for this?
->
-> ... this. Check 'i2c-stm32f7.c' or 'i2c-xlp9xx.c'.
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-OK...
-
-Still, this interrupt is not a property of the R-Car i2C hardware block,
-so it should not be modelled as such.
-
-To me, this looks similar to hardware flow control on serial ports:
-some ports support this in hardware, other ports need to use GPIOs,
-or board designers may still decide to use a GPIO anyway.
-
-See Documentation/devicetree/bindings/serial/serial.yaml and
-drivers/tty/serial/serial_mctrl_gpio.c, which uses GPIO interrupts.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+regards
+Philipp
 
