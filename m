@@ -1,140 +1,130 @@
-Return-Path: <devicetree+bounces-99116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524B9968D6D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:29:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E404C968D82
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1119F1F23120
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:29:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A15552838B4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C95A519CC21;
-	Mon,  2 Sep 2024 18:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17C11C62B4;
+	Mon,  2 Sep 2024 18:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UY9Z1Chi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y4IeYJjb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDD23D7A
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 18:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA6719CC31
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 18:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725301743; cv=none; b=k54hV8mbp+UObLNOWw7qvRrWoroEaQoYz5facQ04MXB9h35yf9YzcdE5bkpSTpV/I1pmr/jRyy872yCjg5M+nFI1e5zfgUP++WHAf9eYFrq7D0qu9+J5ESfSQiQe5DnhLAREJk0S1ZhjJ3RyF7ugvxcJaQO0NRIie9JL7SuMj4c=
+	t=1725301966; cv=none; b=ttLpBMXFE7ZxAyERTa9ZU/fSLiMdZYMjOYcNMYcGhokwlZ4qxL2a9YhAVJJ9WzuM85/tXxfTtKRlJ0Wu7l5Htng4jg7KkjCENh5mz8GBSiXsF0wTtxa+XqeQILwUgSuR3hCyt2fi8waZaQPznfCvHAqdedg+fT6rfw7OSswU0Vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725301743; c=relaxed/simple;
-	bh=t0E67JOygrLpMEMGSs25nFjDBPpRV6ypA1lR9ObqNU8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T/lVIKLlxZCYgeenwlNvaQIvFRKor314z6kTeiKt0dbynShvRBAnAELDzN6TBcnx0t5UcDnfcH/wuFkvgW7bg+vd6ZWmdXzljeyIA2AOwSN4M0209e6i6W9Q+bN+uiZUX0MxyaQMNBNCGCx5EltxohBdjuqivU38SXLGae3+rkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UY9Z1Chi; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-846c588fa52so396907241.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 11:29:00 -0700 (PDT)
+	s=arc-20240116; t=1725301966; c=relaxed/simple;
+	bh=2bhsdKcMRpmC7lcu20iYO4nQImhTbdGjiKkJUnNLMrE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bb+jtVMKdKp7gaHD0/doRfk//Ce0O8zPrWl2rLMuox4CbqrAyXSRCNK14fQeSztdGnGIJqbqS3Upi8yhK/SkGm+5LrSlU0JRyp9HM9FO9WGGuipVpqPaySPDNhVruPa5x8wwIQMJIeEHyMf576S2x+pNIUtqAkwBrGdrBADx6UA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y4IeYJjb; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f3e9fb6ee9so56237001fa.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 11:32:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725301739; x=1725906539; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UIf5ftqS5rRzhHiAEScVat73BFgeVAnuYHMec3uMxpc=;
-        b=UY9Z1ChintIBXZvS7iiHgdT1/6nZXbyqjO9TaJVljF0kMo+pnDiPQY5CmefkoJIaOE
-         PbStIQw3m0cegOqufJPOzULEZzqlbYLnnkpDaA8ZBS7g+q3nKGo4bWXv4n5GkF5Vr6LF
-         MQS7Rs1d66z2el+GUIXw9032xRxGvzv6+NmZKi1ARIqEFhlP6fF+sKjowuqJJ4F0DDrY
-         Z8AzhIBdoMdvxInahapjX6VcQnuIgE5Lhc513CQUNMfoS4+yofQzzQv4h6PpCMZcYMnF
-         zA1fsKg8tfuLQIxnI0xkF4+0eMyA4iQ1ubqgmgGmIfEbYjRTPOssxttLz956wxXGkak+
-         zIhA==
+        d=linaro.org; s=google; t=1725301963; x=1725906763; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XAmaK13K/WB/CMiEFbhMPPJZl/VZU34ltwhJvlIpIAU=;
+        b=Y4IeYJjbuHeMQ0FEBlIO/oYqGuMOqtbwhg7qHZs/Mhu4bp+JDajDk1qrWRFHd+d8Xk
+         5wz3+WKB7Rkn9i0dpkwbihzx7NZjG2kOYmwU3TnyqvxHZBQAiIpy9okCT/KEV1BuButP
+         dRXBnboakEp5AcQhT+O/VAK2fARmpSW4VchUfRlmsNeAXhtt/jTOP6t/EJ80CN3ilfrP
+         rjaUVz+gm6dTguoFc8kuZCu5HpoJV8rBhczJaMwD5K+oLQLlWD1ETLQaSua6xVPbJdNO
+         LSQ4VZ+jr/cAYj1eqc2QcJV4AKals+RCoK0E1v17JIIQfh57NvYD0CFKNcSUjbuIlqpj
+         o8RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725301739; x=1725906539;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UIf5ftqS5rRzhHiAEScVat73BFgeVAnuYHMec3uMxpc=;
-        b=YabKTiMQJmIEUS1NNyd9vW/r3zK2D97hE0gsIkf8T67noxk00HvVkIvNuHhzYZWF9o
-         lAu7vBBzOgIdCa1xiJy5UWc5uNrCsM9OuphYM3rVC1Kp9teDpYPI4WX830mF3fkRSr1j
-         b0vfHXDDPTP/ckcrkkfvAZsq2FSwCvwvHRcoa782cWeQNGzeZhbzVy+YZ6/tKJVs75r2
-         9P18k+QMho+eaBc4SVANW3Y9qm/BlWo4Lw0HurIlVxyKpLgJS8brIiz6GX9gzPDw3fX1
-         Aab+Vna5/eIafKETK+arD72eSJk25vf/41SrPOWfJspa/K9++7rq24+S7lTTnUCSh47V
-         A/0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX+2jyICYEl5PkXEu3I4HbC3ewI4Drfh9Prlgvl6JJsyTjCIOd9/eJ3Zs5D+fcy6Qn+ARXj36cvtnfB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHJMKUxFkHtgtbUxknu4Ibh7K0NPSe9P5xZUKoFbvjYdQ+kLG1
-	rUPBnk69nB0iZqpZ0S5YphHbkUsLxCDIdY6DcRG7CsjDNMcrYIJ5GDWtexNHEtYtLZ6yIwDG9Ql
-	nmGq52jNUviV+oDGzfAZvrzRx3gcO/sPvHvGhVg==
-X-Google-Smtp-Source: AGHT+IFNN2YsGI4d9NkyVLuaCOIeDwnWgM8L40kWHQUqrjU70AVxBuLatdXI26wVgPjb7BnwfErs7+wo7zLY8grbChg=
-X-Received: by 2002:a05:6122:2225:b0:4fc:e5c6:be51 with SMTP id
- 71dfb90a1353d-4ffe4a5d540mr17617641e0c.3.1725301739139; Mon, 02 Sep 2024
- 11:28:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725301963; x=1725906763;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XAmaK13K/WB/CMiEFbhMPPJZl/VZU34ltwhJvlIpIAU=;
+        b=ewEj0TGH77Ky3GzibrWbUEJ24GPHUcbitMeC63Rw9T+e2Qbo08OFczWRiuR6nFK0Zq
+         5Ymme2kQ8mqAORcQVGY0D6sLXCJqc9zBUPkXWfA/+dmApPF9WxcVhezEzLfw7CXcQ3DT
+         gE8wCu/Gk3ZxheWvDbJ03g1ueyAAhCHNe8/7K05PtIjkTIi1tbITtD3OWkGF7h3eS7PZ
+         mDkdBafmnIh5ffuNyOkRFNl+0V9Muc+q/+y14qpKxXnRsov9CHyW45pXLq6Zw9k5AwCf
+         AcU+lrwaCEVoVMnFjTCIavJuO8voFz5t7rYFB07l/2/4NmHYX9wn8XHz9BfhlTN8ZCta
+         GjKw==
+X-Forwarded-Encrypted: i=1; AJvYcCW1DJyust5iDC6WEdpA/rsQb1I6WpS0tcIuD2hrE8+PPyLVFS0mggHbmzzF2Wa4wUgTBIeoPIjOp6cA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNK7juG8+oIZh+Gesm/McR/XiPaOT2f/KRKjz5qacTfdjBXiEX
+	iLjfZwU1xxl8QbuRUk9e50FxkYjwGxPRNag9wBBp0znvCVfzL7ZbXEfDuZGpncM=
+X-Google-Smtp-Source: AGHT+IFoxXqWCv/ngb9lgpMsTD9vhJJKzXGkPrdhSMLDmCQIQH9tyjM0XY+PSycHN7Ixop/BuNjPWw==
+X-Received: by 2002:a05:651c:1548:b0:2ef:2d3a:e70a with SMTP id 38308e7fff4ca-2f636a1372amr28845121fa.18.1725301962343;
+        Mon, 02 Sep 2024 11:32:42 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f614f3396esm19546081fa.54.2024.09.02.11.32.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Sep 2024 11:32:41 -0700 (PDT)
+Date: Mon, 2 Sep 2024 21:32:39 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, cros-qcom-dts-watchers@chromium.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Jingoo Han <jingoohan1@gmail.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, andersson@kernel.org, quic_vbadigan@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 7/8] PCI: qcom: Add support for host_stop_link() &
+ host_start_link()
+Message-ID: <ar63lbc5nl6jujeadd4srfd2dacsjk7la5kzma24bi2cqb7awj@vfawrbnr7an4>
+References: <20240806191203.GA73014@bhelgaas>
+ <9c37c36d-1091-5d5e-58d4-4a20bda65244@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240902103638.686039-1-aardelean@baylibre.com>
- <20240902103638.686039-7-aardelean@baylibre.com> <pu536g76q5xanhwnvhpr52mttonb4gkmxfwwof4fyo4sww2g3l@6s7x3joiuzfa>
-In-Reply-To: <pu536g76q5xanhwnvhpr52mttonb4gkmxfwwof4fyo4sww2g3l@6s7x3joiuzfa>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Mon, 2 Sep 2024 21:28:48 +0300
-Message-ID: <CA+GgBR_uO-qOP8mRCmWdhEFMJRz4KvVvpx2tVVsZy2iZCvPD-w@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] dt-bindings: iio: adc: document diff-channels
- corner case for some ADCs
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
-	gstols@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9c37c36d-1091-5d5e-58d4-4a20bda65244@quicinc.com>
 
-On Mon, Sep 2, 2024 at 2:54=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Mon, Sep 02, 2024 at 01:36:29PM +0300, Alexandru Ardelean wrote:
-> > Some ADCs have channels with negative and positive inputs, which can be
-> > used to measure differential voltage levels. These inputs/pins are
-> > dedicated (to the given channel) and cannot be muxed as with other ADCs=
-.
-> >
-> > For those types of setups, the 'diff-channels' property can be specifie=
-d to
-> > be used with the channel number (or reg property) for both negative and
-> > positive inputs/pins.
-> >
-> > Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/adc.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Docum=
-entation/devicetree/bindings/iio/adc/adc.yaml
-> > index 8e7835cf36fd..9b7a8e149639 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> > @@ -37,6 +37,10 @@ properties:
-> >        to both the positive and negative inputs of a differential ADC.
-> >        The first value specifies the positive input pin, the second
-> >        specifies the negative input pin.
-> > +      There are also some ADCs, where the differential channel has ded=
-icated
-> > +      positive and negative inputs which can be used to measure differ=
-ential
-> > +      voltage levels. For those setups, this property can be configure=
-d with
-> > +      the the 'reg' property (i.e. diff-channels =3D <reg reg>).
->
-> Please run scripts/checkpatch.pl and fix reported warnings. Then please
-> run  and (probably) fix more warnings.
-> Some warnings can be ignored, especially from --strict run, but the code
-> here looks like it needs a fix. Feel free to get in touch if the warning
-> is not clear.
+On Mon, Sep 02, 2024 at 12:21:22PM GMT, Krishna Chaitanya Chundru wrote:
+> 
+> 
+> On 8/7/2024 12:42 AM, Bjorn Helgaas wrote:
+> > On Sat, Aug 03, 2024 at 08:52:53AM +0530, Krishna chaitanya chundru wrote:
+> > > For the switches like QPS615 which needs to configure it before
+> > > the PCIe link is established.
+> > > 
+> > > if the link is not up assert the PERST# and disable LTSSM bit so
+> > > that PCIe controller will not participate in the link training
+> > > as part of host_stop_link().
+> > > 
+> > > De-assert the PERST# and enable LTSSM bit back in host_start_link().
+> > > 
+> > > Introduce ltssm_disable function op to stop the link training.
+> > 
+> > pcie-qcom.c is a driver for a PCIe host controller.  Apparently QPS615
+> > is a switch in a hierarchy that could be below any PCIe host
+> > controller, so I'm missing the connection with pcie-qcom.c.
+> > 
+> > Does this fix a problem that only occurs with pcie-qcom.c?  What
+> > happens if you put a QPS615 below some other controller?
+> > 
+> Hi Bjorn,
+> 
+> The qps615 is the qualcomm in-house PCIe switch it is not available to
+> others. so we are trying to add for qualcomm soc's only.
 
-Right.
-Will fix.
-Seems checkpatch.pl is able to catch my stutter.
+Any guarantee that the status quo will stay so in future? Or that it
+won't appear on Qualcomm platform with the virtualized PCIe controller?
 
->
-> Best regards,
-> Krzysztof
->
+-- 
+With best wishes
+Dmitry
 
