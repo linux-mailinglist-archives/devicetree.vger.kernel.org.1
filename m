@@ -1,84 +1,136 @@
-Return-Path: <devicetree+bounces-98928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D639680A2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:33:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB699680BA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:35:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 586201C21757
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 07:33:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A39F1C217C8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 07:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECBAE156242;
-	Mon,  2 Sep 2024 07:33:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2AA5156962;
+	Mon,  2 Sep 2024 07:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="J//+N2NG"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="zXV/B7U6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2099.outbound.protection.outlook.com [40.107.117.99])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2071.outbound.protection.outlook.com [40.107.104.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766781547C3;
-	Mon,  2 Sep 2024 07:32:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D9A14900E;
+	Mon,  2 Sep 2024 07:34:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.71
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725262380; cv=fail; b=dcSehP6v7wGdAY+SyTNgkkPx/B4FNyOmkiR0NWwMLw66akZIHJf+FpOREDouF/GNjFLisDLCMF1vZTXqvEJWqRb/qmBRrWgk69lbMutnfJ6mZM3GlmzPdyPNebF8vCA7XbzIjasmaypFtOzMj7LhT9E+fix6HrLlYRPoaFLh2KA=
+	t=1725262502; cv=fail; b=UOWGQgN73/ua70c6V+19Ot7vR7ehVGVymnUB6w2D9QoqKer1ny/xFNwToGcnfXUdTcJVAJqjR4RQqSZhXQOqjzFWh4x0muNMOrJ3VcUb3AFyjyLBNiobZmcrYUOFbxbHltf/2S1w6cHyK1x2BAUA/wD6ZUnWiD4ptuuimqK9ir8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725262380; c=relaxed/simple;
-	bh=YVoDmlUdEGGimvetfkji4rKo7rv5u3GkHpHD9AA0+0o=;
+	s=arc-20240116; t=1725262502; c=relaxed/simple;
+	bh=5nyPT9IT+XzPbvursygOyIOK1oatv5LEHI1d9rSuacQ=;
 	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=UV3NIfUUvqaXHzVqt+q+PWmALHN910UA42c5IvmbbnLV2e9Y9H+/O9DgqArFbMyxfxrzOn0y6kGALA0rs9zR7grNCKh2PnAD3kTc3X8aXnh9ptNmGSAIfpao/lkZvF/sMrh0zUsJoLqIREoB9I68cgPtKf/VrO3Y9gHGW9aWVSY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=J//+N2NG; arc=fail smtp.client-ip=40.107.117.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+	 Content-Type:MIME-Version; b=Fm8J2ySZHV7FWfvmhGAWoWnxf5JsuKDZyZ70aqAdLMMNqt/wnkRwgJNG1rP7L2HA+RMfXYntvh9Ssu7EFIT8EUkHmUWFdDh/zPsv5ZuSSpjSzfo+fcix1gRGnOuzb3jswotFY6K1M2iApFlnWw5JVJXKpkpD78akOMbf50H1hBM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=zXV/B7U6; arc=fail smtp.client-ip=40.107.104.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ap6xYkllN4VuUxurHkfBUKfiP+d/WIqryCF3Y4Cmt+ixP4nNmdQF4y89h8AAsSYDjGgsxiF4dN3fKkDFI4hv1lLHCU3vvTHDxnq1v9ZAmlRZyRRWtwZQJvfxJVf4znR+2oNFvivzk1UnsFXH4vGN8gZXsDz5YhzwcFd41C6uAFQh/0xgRWadY9UJSfKnE2DBUuMoj48CpyhUie4NZqROam8126n5k2cGaSZacFrSTuRPeNN6s6+HHpqvy0wmgkfBejg1I5eBwisFMylKwwGrTaVYq83xKsxkIwMncQQE7+mlO/8p0MZdqnmS4rctOea71FPKcCYFKQszzsqeTOGuLg==
+ b=VICcU4wEExZXluAhAvKaHLPFDCwHFZEa/scHe0ywNvjK3BD+MDJXrXzaGYM+RGp//+WiSZDVvqVunW1/5ofoa3N5MqeFjRMkuF28oH4VGN8WdXKe3NCMhgjU0Qhi+pCNfm6qO2uXxnI9fcptFhe/esrTzhUqUm3Lj9Hlhw4ufLXU6PugWxBHqnF8A8Ya5lVYLSVz9iRtGuIep4fDRKJPBUPkeVZ85q28ZjW8D69omDzQjUVzo21ZY83UtDcLI3tNDrXV8b/2vvmEJmziLsV+l3un1T0UtoBuzSbVkwRdxbGC0qhyTHFDF2YI7tFZz3K3xJBlabPBxGHRvhOrAc39vA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f1bZXYGSV/bEYceMqbG1Nnew16oLZsMFd8pKnSld2kk=;
- b=yG4F36bcKomtHaR4kIIXmL7+HPLFLhoQ1/SQRCh59hcDZBfTPXWNP4Jqi6veSfBTpR3pVBA/bw3puZzRneZ79V62iwx6n5skEWQKK/G/slsViqohX/XVco4BeQ/ng30wvPQ5F1NE/jjh5qGddWfzRJkHdAOTqV5B/dgh1ScVF2V6olOC48j7xc9LYKhT0C4sjoGKksBtKrUKYinF2KGH2EMtvnqV3TM6saDVzc34YQ5WKUwuuSU46uz1Yy6hUh5KkYZVNwtQ+gMw6miqOcVwZkSP6l8QtYMR2i1slw0mf0ki80LeC72fxTcsWLto2oF77KK/KuJP23jeHsCd4MIKfg==
+ bh=pvZIZqaV/VlOoGzZxQAm0s96ErouO5a3aIJ/MXCBiwE=;
+ b=spj2W6QOFvF3Nlhn1///p904kSkhoZxA9q/6m3K9boqM8KtdBQgoVlH8eHokmitRlknqzz0asUV/dNlem7WDlyBwa+dGFKWA0aPFk/r2bYHj5Uxyfn4JvDcRS6OrTn/sPJOjXh5U/s3/xEB7fb9/RlwryqR5+hsni9qI5FPZ0pHaKnH+W6ZjzT0ZklP72JaKRetQa5lUc60tET7Jp5qI1wyaGPlFXOYL4xT2TdhrGDpddSBirYqDxZ+wDxhriDtOZojFBeWATxns8ufX8YX+XJZ4Nb9rqKosP3c/i0cAJyBPbTbU3zkD89IXGJjWZYRTn4vcFj71m4oDqJI7qbEgJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f1bZXYGSV/bEYceMqbG1Nnew16oLZsMFd8pKnSld2kk=;
- b=J//+N2NG/wwP3Se0TtaFgWgg/FoCbJYk8MjbXxK4oHMQrO3mrACJvdHnCNzM9DavlX/VQE/CH6fDNmZXtevNG2J7iPOR9MybUsvSZQg4ZBqKXzdb8PU68y0kz1oCW2rL8h5GZT6vX1avoiJU/kS6XNSljLCRR9x7ly3yXQDmWJz4iEWs+Xon5G0yxsCjPZRk8nvYOSffEWJRyLBeQCEOUXiEX2+uuW7IdhseenzeOY7b22QRUNRx2e0LiI6aLYLzolNGLhueOEzx+VkbmKjL46tGpqBLGoFiGiY+SB9SZBBqe/B5jHYWaUcKgztoYA3v474B544hKOXG6wiRoqpAIA==
+ bh=pvZIZqaV/VlOoGzZxQAm0s96ErouO5a3aIJ/MXCBiwE=;
+ b=zXV/B7U6ixRTVtkN6oHbL1Ym2/60ajlkQWlxuyrwndIFs52ShLgdyY1iicFZby086P/HQ119Y6sExsV9CG9x1RI3DTOJUpit/BfzTfvRrRQmxVr31U188cveEPRiA8MBwMPyNV1662OH2vmjnIX+TZWaVYYFtVYLI8SWYEbmDTf01J+Ml7nzgLb24Ywhb4yksp9Eo4M8OJQtJdP54pu/y11u6n54UlQx37gwjeEs6k45PrCWUJb6V0LKI5ooZs6ErJ+90ZwGrS311UzlArYuj1/XB/pQgcCamraIjdSdrzPnSBpWWswUQzHZjQ3Jx6b9JulgDGgzUEBnbkBCFsYWGQ==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEYPR03MB7415.apcprd03.prod.outlook.com (2603:1096:101:13e::11) with
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
+ by AS8PR10MB6054.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:535::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.24; Mon, 2 Sep
- 2024 07:32:51 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.7918.020; Mon, 2 Sep 2024
- 07:32:50 +0000
-Message-ID: <e9ebbc1b-0d27-495b-9350-f635ed6ddfa3@amlogic.com>
-Date: Mon, 2 Sep 2024 15:32:45 +0800
+ 2024 07:34:56 +0000
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8fe1:7e71:cf4a:7408]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8fe1:7e71:cf4a:7408%3]) with mapi id 15.20.7918.020; Mon, 2 Sep 2024
+ 07:34:56 +0000
+Message-ID: <c7e618bd-c33e-4042-b769-392546cb9297@siemens.com>
+Date: Mon, 2 Sep 2024 09:34:51 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] rtc: support for the Amlogic on-chip RTC
+Subject: Re: [PATCH net-next v7 2/2] net: ti: icssg-prueth: Add support for PA
+ Stats
+To: "Anwar, Md Danish" <a0501179@ti.com>, MD Danish Anwar
+ <danishanwar@ti.com>, Suman Anna <s-anna@ti.com>,
+ Sai Krishna <saikrishnag@marvell.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Diogo Ivo <diogo.ivo@siemens.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
+ Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, "David S. Miller" <davem@davemloft.net>,
+ Roger Quadros <rogerq@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Santosh Shilimkar <ssantosh@kernel.org>, Nishanth Menon <nm@ti.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ srk@ti.com, Vignesh Raghavendra <vigneshr@ti.com>
+References: <20240822122652.1071801-1-danishanwar@ti.com>
+ <20240822122652.1071801-3-danishanwar@ti.com>
+ <8cfcb7f7-1779-463a-9e77-e0e09234a35f@siemens.com>
+ <e2333f3c-7481-446a-8293-6afac14a34a0@ti.com>
+From: Jan Kiszka <jan.kiszka@siemens.com>
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Yiting Deng <yiting.deng@amlogic.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
- <20240823-rtc-v1-2-6f70381da283@amlogic.com>
- <dcc28bf5-0b3e-4133-80c4-e677ecb38388@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <dcc28bf5-0b3e-4133-80c4-e677ecb38388@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2PR02CA0031.apcprd02.prod.outlook.com
- (2603:1096:4:195::16) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+Autocrypt: addr=jan.kiszka@siemens.com; keydata=
+ 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
+In-Reply-To: <e2333f3c-7481-446a-8293-6afac14a34a0@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0420.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:d0::17) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:588::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,578 +138,160 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB7415:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01f63e5c-2c60-44e9-1321-08dccb2172c7
+X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|AS8PR10MB6054:EE_
+X-MS-Office365-Filtering-Correlation-Id: 66341fda-df15-4f8c-957c-08dccb21be1c
+X-MS-Exchange-AtpMessageProperties: SA
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|366016|921020;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NzBja0pvaVZTVlZIcXVUemRDTDlGbTRJaklaWEloYTdzQWJ3RGY4bjJmdWVj?=
- =?utf-8?B?dmZiVWJKRHl3NGYxVmEyU0tWVlhvaVAva0VQMXRJQ0tVbzh4ZUhJVUQxdm11?=
- =?utf-8?B?bEZuOGhhNjFMNEQvMUxUcEtvalpWSHpFVUJRVzBUcVJndjFZQ045bitLaFpm?=
- =?utf-8?B?d0c2ZnFoRVpKcXk0eGh6aFgxSG1sYWthWEw2N3pmZ0kxeUFqUFJ0b25TSFpz?=
- =?utf-8?B?WFJLRmFMWE10ejRadkZ4eU9OQkFRdDlSNDdKeXF1UzRJdi8zVDBtdFdXbUpr?=
- =?utf-8?B?cUh4VVNabE9Kb3g0cE5uUkZWR0tqWUgrYVlFL29zL0owZ1dCUXgxZm5JaXk1?=
- =?utf-8?B?bVM4b3RBZlJraENkY0sxSG5PWVRQdjJ3QkR6VXZyZFNaelVLM1NKUGdxQklM?=
- =?utf-8?B?WmV1WGR2TS9YREIzb3NDZERnNmZlVUF2aGhKT00yOXRFNi9WeGl1UGw4MzU4?=
- =?utf-8?B?STEyMURSNS9JOFJXOXlKc3d0Z3hHRGxvNGFudnBxY3U5VVRxeEQzNCswTHdJ?=
- =?utf-8?B?NEFIbHBoQU5oRG4wNmluSkxRVFBNeWJpaG92YUZvWGhudzd4VkhnMVRtRUVT?=
- =?utf-8?B?NDV0TC9WcVZnanJrREdKcUh3TGJkQ2FGaG1RRTNEMm1FWXVxQ3N3K1RacTMy?=
- =?utf-8?B?dzhGNXdVTXpEZDRFRWc5dDB5ZkRxbWU3Zjl0U2s0YWFSY3psR0c2WGVRMURT?=
- =?utf-8?B?L1lUdDJwMlA2a2FTd2d3eldFRUU0SUV6c0d4cGdJSklZL0VlbHg2bFY2Rit5?=
- =?utf-8?B?bG1YL3VHT3pRaHZsRzZNbTYzOFJRUExhb1BZTXlLOVl0ZFJYQjVsczdxWHlz?=
- =?utf-8?B?c0Vuand5YXNDbGRsbEFoc0V4V0NrbDN5VFU2NjlCUjBiMmJiZFpEK0YzQXE3?=
- =?utf-8?B?UzBsZzdUWVg2UG1yazEycmZ2MFRmdFpOQWt1VVdORkFCb3VqcUl5YWFNVFVH?=
- =?utf-8?B?a3dKbE9rUW9CR0QyUmlWanlwbExwd2h1TzhZS0FENlZybFA2VmxVQWEvb0ZG?=
- =?utf-8?B?a1dhMzYzT1RHajluUkxNNUtNR0pPZVRyTC9RRlJiTlo4bnU1N3JHakw5RmND?=
- =?utf-8?B?VkZRQ21kOGM3dzJwWXdXNFQ2ZkNlS3JyT1JrMnFSNjZQM1NESHJKYTE1QktE?=
- =?utf-8?B?eDVUYWVtWHpBNXU2aWtLblMrby9tdGZ2MjVXeENyQW9xdGdzaUdzSi9vUVZK?=
- =?utf-8?B?dHRBdXdmUWZqanZIRWtIOTNESXlzR1JoK0Uza2VSTllpUkY3S2VOZVFES1FW?=
- =?utf-8?B?QS9DYm81T0dzcm9XR1NSZXV1cTZteWl4OUNGV2U2cW1GTXBocmx2bFFZNFgz?=
- =?utf-8?B?Z0dVdE5QbS91S0hLNllUNnlRdmx4cGg5ZzVCUFlGa0VZNU9Kbkc1eEZzVWZn?=
- =?utf-8?B?NTZIdDROUlFYdTliUjYwdGRuN2RVaFZTT295ZytPSG9pNTFzUG5TTXFmcDIz?=
- =?utf-8?B?S0UrUHRIYUpxU09iRFJpQktUL2dHV25PY0FuaU1FTGxyL2NQVTVmRVh3ZTVN?=
- =?utf-8?B?Wk5HVmozYUwyL09vRGM1eGFlOXo5c3pCRlNKbEY1SGR1UTJSV0cvZHN4M1lj?=
- =?utf-8?B?SE9RQXhlbXlNakVJZ3lpRkk0eER0QkY3L0ZtcGVyaTFiR042bVVMVU5Rb0d0?=
- =?utf-8?B?NkphYnNnUGJSNG1zOGJJWEJqSHlUanlKaHN2TWJnWU9TbmJ1d3J2TGVGYXNW?=
- =?utf-8?B?Ky9ld3pnU01NVzhFNTNuWHd4V0E5TEpkamRYQmNuTTBkcFdzRWF4dFRINDRt?=
- =?utf-8?B?Z0VtZ1VQZU5pZG93aUJBSzFWNmFCeERHSGwwQmRCekpGRHNrTWNDS3BQaC9T?=
- =?utf-8?B?OEwwSGRlR1c1ZnNsWk94UT09?=
+	=?utf-8?B?NTNpMlVpNGNJMGxiclZWYVpTMVhKc3UranEvNmE4ci96RmNVcHJKMHFYMHkx?=
+ =?utf-8?B?eWlmZ1dyMzkwSTdGck5GMTVrbzBjc0h5b0N0YzRVSEhZeVcyQnVVM2J6NXpE?=
+ =?utf-8?B?N3htOGFCdXZQdVU3SzhRVEo3Z1BHS05CWWQ3WXJ1Tmt0ZjRGU1REZ2FldXQr?=
+ =?utf-8?B?ajlvSktCK0pNSXBrd0Y3bU5UZVNlQ1NGZ3JhUmpTZ2ZYSVdNK1g1bUoycDNL?=
+ =?utf-8?B?UStNbklxRTY2SW4yUmZLRjlDc1NUNXNIWGR1amZrU3BjemgxRitLd0ZMK0JY?=
+ =?utf-8?B?QXBnbmUybFBUcmdwU3BSRk1qRElsQk9wczgwU253MnJEUzFUU2o4SlFNQ2xB?=
+ =?utf-8?B?dVF2VFAyMFZCM0Z6WnZxOFFnYVo1YUJtdVMxSCt0RkswMjJjNzM0QU5nTzkr?=
+ =?utf-8?B?VXBIMkxrTGpLTGNGbVgvMnhyWXVOaGVkaGhhZFFhY3hQaW1UWktyMXF6NUV1?=
+ =?utf-8?B?Q09JYzJjUndIdTA1Y1BuUmVocE5YSlFlU2xMdjFITEk4UHVwZnBqc3Rzelli?=
+ =?utf-8?B?UGpZakpEd1orakJIYVhRM3FkZ1ZZT3VtREV3YzdyMjd2cHBxMSs5ZC9PZ1dq?=
+ =?utf-8?B?by83K1FLSVA5QzJXcEJBaUNtdEtheXhmOGFyNm1yTXZoQUZsMHduSHJvS3JK?=
+ =?utf-8?B?WHBxblpiK1l1YjBISFZEK1ozdi9ya2RGeUsvNVRYb1g0UmJ1ck9Jd0E3SE4v?=
+ =?utf-8?B?RDBxN2YvaXJHR3NPZnRLTTVuaFZQeFFaQWc0T2oxQlNxRGk4TWgyVE9xVkVL?=
+ =?utf-8?B?bEJLdlAxOHNOUWJScU1VbGcycS81K1JVNjZteW9tZWIrVkpkZmJKREJtWWJN?=
+ =?utf-8?B?bGFTQitqQ3VDNkdJVGRUUW9BUWlsU3cvYWc3elI4aUdtVWhiS0UvcGJRUkpK?=
+ =?utf-8?B?NGdNVm9qZzB3cmJyYVZGSDhFckQ0dXkrdXhWTUI5TnhEOW1weDhLcmI0Ujla?=
+ =?utf-8?B?bTFHeU5aZWJQcWR2UmtRL1hiMUZGUk1rT1hYVnF3ZW1JcjhOQmIxdW9URDdk?=
+ =?utf-8?B?WEpQZVROa1ppNGlwOXh2OUFtN3JWUWdNV2V1UHgyQk01aW9EWVlUN0ZjRWxN?=
+ =?utf-8?B?YXdXMUd6ZnBWUlZjWFMvaWZLNjcxLysrMlc4OWxwdXNKRnAzd1k5OWJMQitK?=
+ =?utf-8?B?UGp1QUhGMk1PYTdrbHR5TDlXT1NWbWFlVE5sQzR1bFNac3ZjS1k1UXowc0E3?=
+ =?utf-8?B?RUNRNDdMTUlmTExOVzV2dzBGSm9uREVBR0RDQnc0M0pXdFNKdE9KNlNPNjZx?=
+ =?utf-8?B?KzY2bVlJY2tKblBSS2tFNVRkMXpBdUdNb3JUenBjaUtQZytVSGx5WGhrd0pr?=
+ =?utf-8?B?cGkrZFVLY093QWU1RjFlb2VQbjZOMzZPdlMrczlpcVZ3UkdBV1BORWdjRHM4?=
+ =?utf-8?B?eG5KRFJwczRUcWV1TjhhQkFFQlQ2cXZkZ2JHR3Z6bVFrRmZLUDJGUlczSkps?=
+ =?utf-8?B?amdoaHB6aVdHRzFHR0I2Q3dvOWh4QmFkN2lvOUpYblR4QnBQdzBwa2RldlhI?=
+ =?utf-8?B?a2IzUlZ5RW1oN0F6N2NEZi9qQ0EydXg2dURQTWx5blI3STROS1V6RnBMb204?=
+ =?utf-8?B?SW5jUXE2OEZRZjQ5U21MSWpCQ3o1UVJhaUpralRJSEhqQmpNSHBLYWJsZGtS?=
+ =?utf-8?B?ZU1uZkJqNVBkS01uTnFLSEVubENReitRdlFMNzNORWYvTC81QjFoR2E1NkVL?=
+ =?utf-8?B?dHJ4UDUrRmFnZWJVU0pQcGw2eHNybU9tNDBhYjJGd2JnbzlqWjczQTZWaFhk?=
+ =?utf-8?B?STgzbTA4cGJwVTVJcVRzaFZNblBWaXZnYzJXeG9GblRpZTZ3WUtpbkIyTHFP?=
+ =?utf-8?B?MXJKbUYra1grOFpjUUwvclh4eTNUMG5oeWFjdDVaUG5yRzFvbXV2a1l1dzFK?=
+ =?utf-8?B?eDVheVo3Y2VlTzRVdUhFWlB6UWo4VlhORXdkL0RqQXRwOUE9PQ==?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(921020);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aUpFeGkxb2hHMVdURE9veURHOWdmWVFOL0pwQnJaYi9rMDZPbnhRSjRLL0hK?=
- =?utf-8?B?ZXBlVkQ2TjRjamJtdk5xOE5GdUJSa2NlZlkrSnZYQ0ZPT3ROcmFSV0NNMHZq?=
- =?utf-8?B?UFgzdDhmMStvMVZEK3p0WXpEWXc2YUloeW9Nc3JsMFdXamR1YUo1UFlmNjhy?=
- =?utf-8?B?Q2ZtU215am5CaGg5U2RUanVFRGVwWFlPNGkyb2pSdEszZlJZYTZDT05obFRG?=
- =?utf-8?B?VXd1Wklqamp2RVlWVGhObk5mb2RXbGlId3NsQ05MN2JPYmxqN0diYXFhU215?=
- =?utf-8?B?R045amM1Mi81NnFJQUo0TG5HS2t0LzVZU2ZGQXkxdHVZbTZNTFk5KzVOYTFD?=
- =?utf-8?B?Mnd0b3pYeVJBQTZjeUVSVWp6YzkrSGl1NTYwdTZ6SGhoRlEzcjVjYlU2N2RP?=
- =?utf-8?B?MmtOaFdCdStXZlRRQW9XWnlrMTRJL1RpQkZxRklHeGh1Mk9aWk5hQkhsa1p0?=
- =?utf-8?B?L0szdGt4VjNZYWYvWXhqNlpRd0VjQUJLM0diQWwwaDBwdVY2REUwQkZkTlN2?=
- =?utf-8?B?VDhTUkYwVnQ1VHNqUnlhQW5uOFJzN01QREdjOWUyQjFISHVCK1NzMFlYVTZB?=
- =?utf-8?B?ZW9pT1lwM3Q2b2Y3NHZXRmYreXF5amp0ZGpyMTRXSSs0RUtPZ1h3a0lXR0Nz?=
- =?utf-8?B?NVY5cmxuSm56QUJUd3JVN1g5K1NKeUxRQ3k1WGY1VVE1MHdmVU5QOUN1elpO?=
- =?utf-8?B?NytieGpvVDdkSGJYOWpoMHNLVFVZMndHOEZMVE9HSXJGV3VoaURJZUhpeDBs?=
- =?utf-8?B?LzhxeUdiOU81UWNRdG5aSXVuQlBHdm1QNVlMcDFDUUtSZzFieXJ4NWZra29n?=
- =?utf-8?B?clBoZjhpbHRxZlI0bDBPc3lMSU8xeklZR3ZnWExCcXBIdnVOaUJQWG13T0ts?=
- =?utf-8?B?QnlxMXd3dmFaVUhYYjdMNXlSWG9HWlh0WTFZL0lvUEhMY3Q4N0R0UjVkZHl3?=
- =?utf-8?B?cE9IQnlTTmtVUG5hb3RkYTV0TmN3QVF6cTYxQmtCR2JGVkYvd0VKeXdvUytz?=
- =?utf-8?B?VVJ6eVZob2gxWi9HU2UweWZMWU1vV29sTVRlbG01ZnJhampac2FtbmxJVDJH?=
- =?utf-8?B?M3hjUjVEdGhsUEwrS3labWxneVJ2bHVCcWJQcGNVRUhJaGxPOWVoNWxySFZZ?=
- =?utf-8?B?MjBBSUQvTUU2RmlVRXU0QXhrQ2o2TWRpZWtHcWppRmVIS3lwSC9XUmhxRk1Q?=
- =?utf-8?B?anNkVzdSN1Bvai83bjB3UWNOSkFONERIbkw3THNxZnRoai9JeTE1UHRiZVUz?=
- =?utf-8?B?WnMraWcvUWpDSkRNSHJqV1Uwa0hyV1dwSmNaTGI3S0hiMnc0TVlNMFhLNjJw?=
- =?utf-8?B?czI3Ym9saEZZQVd1cURJMWtBdDJWY1ZUNXRwN040R0JiYmYwU252MTc3RlYy?=
- =?utf-8?B?d1RuL1FOUHU5Y0MrK1FEVmdwbEJsMnp4ZzY2YUtTTm5PY2FCT2pSazVUY3N1?=
- =?utf-8?B?elh2eU9IcGtYN3hTU3hXeGQ3Z0t5YVRRY2VnWWFEbVRYR05VUG1sWENHVmk5?=
- =?utf-8?B?V3lxRktUZDR6bXVSWlpZWkVsNS9pNkgrVUUzYWlyamNxR01xcWtxK3hWV2xC?=
- =?utf-8?B?WFpMNmFHeXV3MzdYT3hNMkplUmI0VERmOE1nSjMrbzFUbVIzVVNqaTlPTU00?=
- =?utf-8?B?Yi9VRUxXOHZiYmdySVlVMW9lK2hLZnJuY2pxaFNLeVRBRmxZVnM2cTUvUTE4?=
- =?utf-8?B?czcvTHc5OXFJeWNGSXBtYkEyeUFMMjFiZTZncGxkNU4wYnJNcmRRVUhJUGRh?=
- =?utf-8?B?V0ZFMFgwZjBUSlppdnluRUdOUzEwU1d4QWVOUXNNc2pEd3Q2UVF2dFNmV1V0?=
- =?utf-8?B?eWgxanY3eGpXWUZnUE1zVlBQL2QwSXQwaVpRUGZ2WUV0M21Lams4c0NTUmJN?=
- =?utf-8?B?b0RQRFpmcHFzTERCbUZOMThpRUxCQ3ZQZTdhWkhoSTdKZjEyOWE1djJNV0Vz?=
- =?utf-8?B?amhhNzJTb1J3NGNOc2VEclZoaVhwR0pTUW9vREQ3UXlzMW16d2lEQUdRcGM2?=
- =?utf-8?B?dVRLRkI1UE8ybXNGZEQ2dm1jTy9yckxzOWJWdGtJUmlPRmpSZkQ4Y25EU2Js?=
- =?utf-8?B?UGo5eWFLYmlvK1A4WWx2bmRQRVBFSVhidlh2N3A1TkFVNllDSGhlbUEvSkFW?=
- =?utf-8?B?TWpUVWwvNGVNTzdVcGpMUWhCTmdSbTN2a080a2M4NkM1ZTJzM1dHS2U3dU5L?=
- =?utf-8?B?OXc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01f63e5c-2c60-44e9-1321-08dccb2172c7
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+	=?utf-8?B?MHQzdUhVY3RQZ2J0eTJVRExhTkJNNFcwRGNFSE9mSVB5V2RHdjkySlNNNTJR?=
+ =?utf-8?B?aHA4Y0hRelJxdG1IMEF5L0ZUb08zRnE2ZGYyZnkyeFN3SWxHL2ozRm1lVExl?=
+ =?utf-8?B?T3kvdTFzZjlmTUxGMktNZklLd3JyNEJGOUgycUswQWl0K1NtL09MeEJ1UitW?=
+ =?utf-8?B?SmJhQ0FpWm9OZE9JSU5tUnQ0cVlvZWlQTDIyUDU2Z1ZFOU52cXc4NW1VdVM1?=
+ =?utf-8?B?dnRZNFRtb3Y2Y2J4STFvUSszVS94aWdvRXFBTUY2WWJFRk1RMkd5bUYrd0ll?=
+ =?utf-8?B?bHFIcHJ5cGVYVjh0eXMzRWtidTlSb21LY1Y4bUkxaHNKZ2QxNmtpL25TVHcr?=
+ =?utf-8?B?bVhSbFZ2U0hlaVNHUzNITTRkN2xYN1BVaUZaSUgxREJIdzdBUTc4djBncmpK?=
+ =?utf-8?B?b0dpYXBJcS9Bc2pneWJxdkx1eWNGalZrclp2NTVkOE15SDBKc0ttaW51QWhB?=
+ =?utf-8?B?bGtsVkdzUWplL08ydTRXNU45RmI1VEROUGRsY0xCeGwwdVdlbW9URzYwRCtj?=
+ =?utf-8?B?WGpLQVBKeXYxNHhxT0llMVZIY0llcEVsakdaSGVQcW1BbFVwSWlTNVpya2E5?=
+ =?utf-8?B?NThnTUNuT1ZHbUpPZ3hXYUhiUEw5UnRIUFdIOCtOc1RzelB6Yk53RnJERFN3?=
+ =?utf-8?B?cjJSeExKM0RWVlpZd3psbjBsdTRKSXY2a3cwVkNqaDJXaGUwSG1seWVmVXVy?=
+ =?utf-8?B?RUgvOGdtWlJXb2NyNytrcWUzKzE5bGJOcjl3N0trbVJSZ3VPWXpNWEQ2Vkp6?=
+ =?utf-8?B?MlZNNllhWHMzcE5qdnlhN2ptdkJZM3MzNlBwTjRKOU54NkJiLzdtR1lvdlVm?=
+ =?utf-8?B?ME14emo1M09TdGc5MUVpVVd2TnNFcFZZY0NEckpxbWVMeDhLNUxnMk1FTWJk?=
+ =?utf-8?B?TUFJQmtoLzNSL24vMExXakx3T1BZdTcra2xiL05aRFc0ZGhVcWJuRTJaWU9E?=
+ =?utf-8?B?Q3JBejJYOURpQ0pUU0dNcjd2eFhxM3J4MzBRQnRnN3pwRG45TWp4VWJSMlNG?=
+ =?utf-8?B?bk1aNXoxZldiR2pZTjFXM1lWK0VjdEc1NWxiSnpOeDBQSzRGVUVYbDA0M3R6?=
+ =?utf-8?B?TUUvYjJsUHUzUkZsWURUbVFYcThDektPNnVGbzc1SWVmdnJJVnFBMlVsczBR?=
+ =?utf-8?B?S3pxYUFPNHoxcHFCTzVwL0ptd0toY3UrL0tnRUFqc1FMK1QzbURZeXdZa2ps?=
+ =?utf-8?B?cGlHaVNkM0YzQnNOK0FmQjZSVlVyNlluVzJiRG4zZTRVYjhPeVgvK3picVFa?=
+ =?utf-8?B?SXJna0tDSG1DTzNYMVY5WnA2N085T1YycnVXbFVOeVlIczhZczJ3QTBSbEtU?=
+ =?utf-8?B?d3lxMWpMMDRRVWNrWFZXNDIwOW1zcEp3NmtFRVJOVmQyQ3p5T0ovR3NZeUp0?=
+ =?utf-8?B?TVJLRXJiLzNQVGExbWZ2eC9DUGpiZWRwZlV2WXZiSHNaWmt6L3JmRjJuckFl?=
+ =?utf-8?B?clhUNlBWSFBGK0c2bzNWNFErbzhwU3hxYnArWmJWN0RjMm1LQlhKMkkwdjA3?=
+ =?utf-8?B?WDc4Wm4vSnZIUnE3ZXRRRjRpRXN4Y1E4bkNZNjIvZGZwMTFJOXNrQmdOUU1N?=
+ =?utf-8?B?Ri96OVF5YWJzSzg5L1Vsc1Q0MG1jT2paRDFxR3V5a1pNMkZVVVd2czlaSjdl?=
+ =?utf-8?B?Qk9sdjJFSzBaMmN3U3dhc3Q1cHJNMFBCdHV4UC93MmxwK2M4OGFYT1BvQndV?=
+ =?utf-8?B?UkRUUVFibzdoZ1hnUkNVRmFIT2ZWL0JIR29TMnFSM2FzSXdpdm02dWtJSGhU?=
+ =?utf-8?B?VkJuSjRhcXA3ZWc5eDNUWitaOTFyb2dHUUZrRlNkR2lwUXZrNmNIcUQ5b0Yz?=
+ =?utf-8?B?MDRTcmdGVVBzNHFOZFQ4bUhiUy9rT1ltYjF3ZXU2VHFUWlAwZnBXTlpqaXZH?=
+ =?utf-8?B?cnViaVhOb0ZCTGUzUzZ4NXpIUm9JZkxYcXl0U1krbE1UeXExSTVlaFlMaVZj?=
+ =?utf-8?B?YjVBRDQ1ckorTklNWG1QNWZVUG5WcGc3N2FyNlB2WFJBcEJZRkcxdWhZbmN1?=
+ =?utf-8?B?U2xEaDlDbTZsdmdWWm0rUW14Wk9YMzQrMWg5WjU3TFFyc3FjUUlOL0N4QjlU?=
+ =?utf-8?B?MmUrbVNxamRFdkNudjdyWmV1OEREVFkvYUpUalI0bUlZc25kdE9DZ2gzVkFO?=
+ =?utf-8?Q?94AOnjBvW/Oz+q0lwKqSEzw/Q?=
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66341fda-df15-4f8c-957c-08dccb21be1c
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2024 07:32:50.2187
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2024 07:34:56.5172
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B6BpFzlKrMUqoNbJ+gOZgN7UtF46rYXFDLNSxDfLwSija/syAegx7YT5u5pIuEitbybN5jG5BGDUb1EM5KYhWyBTvyLjCZEV3ovU0+hovt4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7415
+X-MS-Exchange-CrossTenant-UserPrincipalName: pygld/WgnZdLg51OrYApngodwpFxldJBo8423oRi40vRwC1yyV2IhUkleX+iJyzvPHtBD8mLK1olldfwcTIBYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB6054
 
-Hi Krzysztof,
-    Thanks for your reply.
-
-On 2024/8/26 16:27, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
+On 02.09.24 09:28, Anwar, Md Danish wrote:
 > 
-> On 23/08/2024 11:19, Xianwei Zhao via B4 Relay wrote:
->> From: Yiting Deng <yiting.deng@amlogic.com>
+> 
+> On 9/2/2024 12:52 PM, Jan Kiszka wrote:
+>> On 22.08.24 14:26, MD Danish Anwar wrote:
+>>> Add support for dumping PA stats registers via ethtool.
+>>> Firmware maintained stats are stored at PA Stats registers.
+>>> Also modify emac_get_strings() API to use ethtool_puts().
+>>>
+>>> This commit also maintains consistency between miig_stats and pa_stats by
+>>> - renaming the array icssg_all_stats to icssg_all_miig_stats
+>>> - renaming the structure icssg_stats to icssg_miig_stats
+>>> - renaming ICSSG_STATS() to ICSSG_MIIG_STATS()
+>>> - changing order of stats related data structures and arrays so that data
+>>>   structures of a certain stats type is clubbed together.
+>>>
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+>>>  drivers/net/ethernet/ti/icssg/icssg_ethtool.c |  19 ++-
+>>>  drivers/net/ethernet/ti/icssg/icssg_prueth.c  |   6 +
+>>>  drivers/net/ethernet/ti/icssg/icssg_prueth.h  |   9 +-
+>>>  drivers/net/ethernet/ti/icssg/icssg_stats.c   |  31 +++-
+>>>  drivers/net/ethernet/ti/icssg/icssg_stats.h   | 158 +++++++++++-------
+>>>  5 files changed, 140 insertions(+), 83 deletions(-)
+>>>
 >>
->> Support for the on-chip RTC found in some of Amlogic's SoCs such as the
->> A113L2 and A113X2.
+>> ...
 >>
->> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   drivers/rtc/Kconfig       |  12 +
->>   drivers/rtc/Makefile      |   1 +
->>   drivers/rtc/rtc-amlogic.c | 589 ++++++++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 602 insertions(+)
+>>> diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+>>> index 53a3e44b99a2..f623a0f603fc 100644
+>>> --- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+>>> +++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+>>> @@ -1182,6 +1182,12 @@ static int prueth_probe(struct platform_device *pdev)
+>>>  		return -ENODEV;
+>>>  	}
+>>>  
+>>> +	prueth->pa_stats = syscon_regmap_lookup_by_phandle(np, "ti,pa-stats");
+>>> +	if (IS_ERR(prueth->pa_stats)) {
+>>> +		dev_err(dev, "couldn't get ti,pa-stats syscon regmap\n");
+>>> +		return -ENODEV;
 >>
->> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
->> index 2a95b05982ad..0dd042701c3b 100644
->> --- a/drivers/rtc/Kconfig
->> +++ b/drivers/rtc/Kconfig
->> @@ -2043,4 +2043,16 @@ config RTC_DRV_SSD202D
->>          This driver can also be built as a module, if so, the module
->>          will be called "rtc-ssd20xd".
+>> I was just beaten for potentially not being backward compatible, but
+>> this is definitely not working with existing DTs, just ran into it.
 >>
->> +config RTC_DRV_AMLOGIC
->> +     tristate "Amlogic RTC"
->> +     depends on ARCH_MESON || COMPILE_TEST
 > 
-> So the third driver? What is wrong with existing ones? And why this one
-> is named so differently?
+> Jan, I had posted the DT patch needed for this [1]. But the DT patch
+> goes to different tree and it was dependent on binding patch of this
+> series. My intention was once the binding is in, I will post the DT
+> patch in the next window. Till then ICSSG driver will break here but
+> once DT gets merged it will be alright. If that's not the best solution,
+> I can post DT here, but it will need to get merged via net-next.
 > 
-
-This RTC hardware includes a timing function and an alarm function.
-But the existing has only timing function, alarm function is using the 
-system clock to implement a virtual alarm.
-The "meson" string is meaningless, it just keeps going, and now the new 
-hardware uses the normal naming.
-
->> +     select REGMAP_MMIO
->> +     default y
->> +     help
->> +       If you say yes here you get support for the RTC block on the
->> +       Amlogic A113L2(A4) and A113X2(A5) SoCs.
->> +
->> +       This driver can also be built as a module. If so, the module
->> +       will be called "rtc-amlogic".
->> +
->>   endif # RTC_CLASS
->> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
->> index 3004e372f25f..d4a56ddb4246 100644
->> --- a/drivers/rtc/Makefile
->> +++ b/drivers/rtc/Makefile
->> @@ -26,6 +26,7 @@ obj-$(CONFIG_RTC_DRV_ABB5ZES3)      += rtc-ab-b5ze-s3.o
->>   obj-$(CONFIG_RTC_DRV_ABEOZ9) += rtc-ab-eoz9.o
->>   obj-$(CONFIG_RTC_DRV_ABX80X) += rtc-abx80x.o
->>   obj-$(CONFIG_RTC_DRV_AC100)  += rtc-ac100.o
->> +obj-$(CONFIG_RTC_DRV_AMLOGIC)        += rtc-amlogic.o
->>   obj-$(CONFIG_RTC_DRV_ARMADA38X)      += rtc-armada38x.o
->>   obj-$(CONFIG_RTC_DRV_AS3722) += rtc-as3722.o
->>   obj-$(CONFIG_RTC_DRV_ASM9260)        += rtc-asm9260.o
-> 
-> 
->> +
->> +static int aml_rtc_adjust_sec(struct device *dev, u32 match_counter,
->> +                           int ops, int enable)
->> +{
->> +     struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
->> +     u32 reg_val;
->> +
->> +     if (!FIELD_FIT(RTC_MATCH_COUNTER, match_counter)) {
->> +             pr_err("%s: invalid match_counter\n", __func__);
-> 
-> No, do not use pr_, but driver ones.
+> [1] https://lore.kernel.org/all/20240729113226.2905928-4-danishanwar@ti.com/
 > 
 
-Will do.
+Why not respect in the driver that the dtbinding says this property is
+only optional?
 
-> 
->> +             return -EINVAL;
->> +     }
->> +
->> +     reg_val = FIELD_PREP(RTC_SEC_ADJUST_CTRL, ops)
->> +               | FIELD_PREP(RTC_MATCH_COUNTER, match_counter)
->> +               | FIELD_PREP(RTC_ADJ_VALID, enable);
->> +     /* Set sec_adjust_ctrl, match_counter and Valid adjust */
->> +     regmap_write(rtc->map, RTC_SEC_ADJUST_REG, reg_val);
->> +
->> +     return 0;
->> +}
->> +
->> +static int aml_rtc_set_calibration(struct device *dev, u32 calibration)
->> +{
->> +     int cal_ops, enable, match_counter;
->> +     int ret;
->> +
->> +     match_counter = FIELD_GET(RTC_MATCH_COUNTER, calibration);
->> +     cal_ops = FIELD_GET(RTC_SEC_ADJUST_CTRL, calibration);
->> +     enable = FIELD_GET(RTC_ADJ_VALID, calibration);
->> +
->> +     ret = aml_rtc_adjust_sec(dev, match_counter, cal_ops, enable);
->> +     dev_dbg(dev, "%s: Success to store RTC calibration attribute\n",
->> +             __func__);
->> +
->> +     return ret;
->> +}
->> +
->> +static int aml_rtc_get_calibration(struct device *dev, u32 *calibration)
->> +{
->> +     struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
->> +     u32 reg_val;
->> +
->> +     regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
->> +     *calibration = FIELD_GET(RTC_SEC_ADJUST_CTRL | RTC_MATCH_COUNTER, reg_val);
->> +     /* BIT is only UL defined，and GENMASK has no type, its' donot used together */
->> +     *calibration |= FIELD_PREP(RTC_ADJ_VALID, FIELD_GET(RTC_ADJ_VALID, reg_val));
->> +
->> +     return 0;
->> +}
->> +
->> +/**
->> + * The calibration value transferred from buf takes bit[18:0] to represent
->> + * match_counter, while takes bit[20:19] to represent sec_adjust_ctrl, bit[23]
->> + * to represent adj_valid. enable/disable sec_adjust_ctrl and match_counter.
->> + * @buf: Separate buf to match_counter, sec_adjust_ctrl and adj_valid
->> + *    match_counter: bit[18:0], value is 0 ~ 0x7fff
->> + *    sec_adjust_ctrl: bit[20:19], value is 0 ~ 2. 3 to insert a second once every
->> + *    match_counter+1 seconds, 2 to swallow a second once every match_counter+1 seconds
->> + *    0 or 1 to no adjustment
->> + *    adj_valid: bit[23], value is 0 or 1, 0 to disable sec_adjust_ctrl and
->> + *    match_counter, and 1 to enable them.
-> 
-> Messed kerneldoc. You have warning shere. Fix it.
-> 
+Jan
 
-I will delete it.
+-- 
+Siemens AG, Technology
+Linux Expert Center
 
->> + */
->> +static ssize_t rtc_calibration_store(struct device *dev,
->> +                                  struct device_attribute *attr,
->> +                                  const char *buf, size_t count)
->> +{
->> +     int retval;
->> +     int calibration = 0;
->> +
->> +     if (sscanf(buf, " %i ", &calibration) != 1) {
->> +             dev_err(dev, "Failed to store RTC calibration attribute\n");
-> 
-> Where is the ABI documented?
-> 
-
-I will move it to the standard RTC API to handle calibration.
-So here will delete it.
-
->> +             return -EINVAL;
->> +     }
->> +     retval = aml_rtc_set_calibration(dev, calibration);
->> +
->> +     return retval ? retval : count;
->> +}
->> +
->> +static ssize_t rtc_calibration_show(struct device *dev,
->> +                                 struct device_attribute *attr, char *buf)
->> +{
->> +     int  retval = 0;
->> +     u32  calibration = 0;
->> +
->> +     retval = aml_rtc_get_calibration(dev, &calibration);
->> +     if (retval < 0) {
->> +             dev_err(dev, "Failed to read RTC calibration attribute\n");
->> +             sprintf(buf, "0\n");
->> +             return retval;
->> +     }
->> +
->> +     return sprintf(buf, "0x%x\n", calibration);
->> +}
->> +static DEVICE_ATTR_RW(rtc_calibration);
-> 
-> Document the ABI.
-> 
-
-I will move it to the standard RTC API to handle calibration.
-So here will delete it.
-
->> +
->> +static int rtc_set_div256_adjust(struct device *dev, u32 *value)
->> +{
->> +     struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
->> +     u32 div256_adj;
->> +
->> +     div256_adj = FIELD_PREP(RTC_DIV256_ADJ_DSR | RTC_DIV256_ADJ_VAL, *value);
->> +     /*
->> +      * AO_RTC_SEC_ADJUST_REG bit 24 insert/remove(1/0) a div256 cycle,
->> +      * bit 25 valid/invalid(1/0) div256_adj_val
->> +      */
->> +     regmap_write_bits(rtc->map, RTC_SEC_ADJUST_REG,
->> +                       RTC_DIV256_ADJ_DSR | RTC_DIV256_ADJ_VAL, div256_adj);
->> +     /* rtc need about 30ms to adjust its time after written */
->> +     mdelay(30);
->> +
->> +     return 0;
->> +}
->> +
->> +static int rtc_get_div256_adjust(struct device *dev, u32 *value)
->> +{
->> +     struct aml_rtc_data *rtc = dev_get_drvdata(dev->parent);
->> +     u32 reg_val;
->> +
->> +     regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
->> +     *value = FIELD_GET(RTC_DIV256_ADJ_DSR | RTC_DIV256_ADJ_VAL, reg_val);
->> +
->> +     return 0;
->> +}
->> +
->> +/**
->> + * div256 adjust function is controlled using bit[24] and bit[25].
->> + * transferred buf takes bit[0] to represent div256 adj val, bit[1]
->> + * to represent div256 adj enable/disable. div256 cycle means that adjust
->> + * 1/32768/256 once by written once, it's val is equal to 1/128s
->> + * @buf: 3: enable div256 adjust and insert a div256 cycle
->> + *    2: enable div256 adjust and remove a div256 cycle
->> + *    1 or 0: disable div256 adjust
-> 
-> Again incorrect kerneldoc.
->
-
-This is not used functions, I will delete it.
-
->> + */
->> +static ssize_t rtc_div256_adjust_store(struct device *dev,
->> +                                    struct device_attribute *attr,
->> +                                    const char *buf, size_t count)
->> +{
->> +     int retval;
->> +     u32 value = 0;
->> +
->> +     if (sscanf(buf, " %i ", &value) != 1) {
->> +             dev_err(dev, "Failed to store RTC div256 adjust attribute\n");
->> +             return -EINVAL;
->> +     }
->> +     retval = rtc_set_div256_adjust(dev, &value);
->> +
->> +     return retval ? retval : count;
->> +}
->> +
->> +static ssize_t rtc_div256_adjust_show(struct device *dev,
->> +                                   struct device_attribute *attr, char *buf)
->> +{
->> +     int retval = 0;
->> +     u32 value = 0;
->> +
->> +     retval = rtc_get_div256_adjust(dev, &value);
->> +     if (retval < 0) {
->> +             dev_err(dev, "Failed to read RTC div256 adjust attribute\n");
->> +             sprintf(buf, "0\n");
->> +             return retval;
->> +     }
->> +
->> +     return sprintf(buf, "0x%x\n", value);
->> +}
->> +static DEVICE_ATTR_RW(rtc_div256_adjust);
->> +
->> +static struct attribute *aml_rtc_attrs[] = {
->> +     &dev_attr_rtc_calibration.attr,
->> +     &dev_attr_rtc_div256_adjust.attr,
->> +     NULL,
->> +};
->> +
->> +static const struct attribute_group aml_rtc_sysfs_files = {
->> +     .attrs  = aml_rtc_attrs,
->> +};
->> +
->> +static void aml_rtc_init(struct device *dev, struct aml_rtc_data *rtc)
->> +{
->> +     u32 reg_val;
->> +     u32 rtc_enable;
->> +
->> +     regmap_read(rtc->map, RTC_CTRL, &reg_val);
->> +     rtc_enable = FIELD_GET(RTC_ENABLE, reg_val);
->> +     if (!rtc_enable) {
->> +             if (clk_get_rate(rtc->sclk) == OSC_24M) {
->> +                     /* select 24M oscillator */
->> +                     regmap_update_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, RTC_OSC_SEL);
->> +
->> +                     /*
->> +                      * Set RTC oscillator to freq_out to freq_in/((N0*M0+N1*M1)/(M0+M1))
->> +                      * Enable clock_in gate of oscillator 24MHz
->> +                      * Set N0 to 733, N1 to 732
->> +                      */
->> +                     reg_val = FIELD_PREP(RTC_OSCIN_IN_EN, 1)
->> +                               | FIELD_PREP(RTC_OSCIN_OUT_CFG, 1)
->> +                               | FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_N0)
->> +                               | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_N1);
->> +                     regmap_write_bits(rtc->map, RTC_OSCIN_CTRL0, RTC_OSCIN_IN_EN
->> +                                       | RTC_OSCIN_OUT_CFG | RTC_OSCIN_OUT_N0M0
->> +                                       | RTC_OSCIN_OUT_N1M1, reg_val);
->> +
->> +                     /* Set M0 to 2, M1 to 3, so freq_out = 32768 Hz*/
->> +                     reg_val = FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_M0)
->> +                               | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_M1);
->> +                     regmap_write_bits(rtc->map, RTC_OSCIN_CTRL1, RTC_OSCIN_OUT_N0M0
->> +                                       | RTC_OSCIN_OUT_N1M1, reg_val);
->> +             } else {
->> +                     /* select 32K oscillator */
->> +                     regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, 0);
->> +             }
->> +             /* Enable RTC */
->> +             regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
->> +             usleep_range(100, 200);
->> +     }
->> +     regmap_write_bits(rtc->map, RTC_INT_MASK,
->> +                       RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
->> +     regmap_write_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN, 0);
->> +}
->> +
->> +static int aml_rtc_probe(struct platform_device *pdev)
->> +{
->> +     struct aml_rtc_data *rtc;
->> +     void __iomem *base;
->> +     struct clk *core_clk;
->> +     int ret = 0;
->> +
->> +     rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
->> +     if (!rtc)
->> +             return -ENOMEM;
->> +
->> +     rtc->config = of_device_get_match_data(&pdev->dev);
->> +     if (!rtc->config)
->> +             return -ENODEV;
->> +
->> +     base = devm_platform_ioremap_resource(pdev, 0);
->> +     if (IS_ERR(base)) {
->> +             dev_err(&pdev->dev, "resource ioremap failed\n");
->> +             return PTR_ERR(base);
->> +     }
->> +
->> +     rtc->map = devm_regmap_init_mmio(&pdev->dev, base, &aml_rtc_regmap_config);
->> +     if (IS_ERR(rtc->map)) {
->> +             dev_err(&pdev->dev, "regmap init failed\n");
->> +             return PTR_ERR(rtc->map);
->> +     }
->> +
->> +     rtc->irq = platform_get_irq(pdev, 0);
->> +     if (rtc->irq < 0)
->> +             return rtc->irq;
->> +
->> +     rtc->sclk = devm_clk_get(&pdev->dev, "rtc_osc");
-> 
-> Clock name should be: "osc"
-> 
-
-Will do.
-
->> +     if (IS_ERR(rtc->sclk))
->> +             return PTR_ERR(rtc->sclk);
->> +     if (clk_get_rate(rtc->sclk) != OSC_32K && clk_get_rate(rtc->sclk) != OSC_24M) {
->> +             dev_err(&pdev->dev, "Invalid clock configuration\n");
->> +             return -EINVAL;
->> +     }
->> +
->> +     core_clk = devm_clk_get(&pdev->dev, "rtc_sys_clk");
-> 
-> Clock name: "sys"
-
-Will do.
-
-> 
->> +     if (IS_ERR(core_clk)) {
->> +             dev_err(&pdev->dev, "failed to get rtc sys clk\n");
-> 
-> Syntax is return dev_err_probe.
-> 
-
-Will do.
-
->> +             return PTR_ERR(core_clk);
->> +     }
->> +     clk_prepare_enable(core_clk);
->> +
->> +     aml_rtc_init(&pdev->dev, rtc);
->> +
->> +     device_init_wakeup(&pdev->dev, 1);
->> +     platform_set_drvdata(pdev, rtc);
->> +
->> +     rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
->> +     if (IS_ERR(rtc->rtc_dev))
->> +             return PTR_ERR(rtc->rtc_dev);
->> +
->> +     ret = devm_request_irq(&pdev->dev, rtc->irq, aml_rtc_handler,
->> +                            IRQF_ONESHOT, "aml-rtc alarm", rtc);
->> +     if (ret) {
->> +             dev_err(&pdev->dev, "IRQ%d request failed, ret = %d\n",
->> +                     rtc->irq, ret);
-> 
-> Your code is buggy. You leave with prepared clock.
-> 
-> Use devm_clk_get_enabled where applicable.
-> 
-
-Will fix it.
-
->> +             return ret;
->> +     }
->> +
->> +     rtc->rtc_dev->ops = &aml_rtc_ops;
->> +     rtc->rtc_dev->range_min = 0;
->> +     rtc->rtc_dev->range_max = U32_MAX;
->> +
->> +     ret = rtc_add_group(rtc->rtc_dev, &aml_rtc_sysfs_files);
->> +     if (ret) {
->> +             dev_err(&pdev->dev, "Failed to create sysfs group: %d\n", ret);
->> +             return ret;
->> +     }
->> +
->> +     return devm_rtc_register_device(rtc->rtc_dev);
->> +}
->> +
->> +static int aml_rtc_suspend(struct device *dev)
->> +{
->> +     struct aml_rtc_data *rtc = dev_get_drvdata(dev);
->> +
->> +     if (device_may_wakeup(dev))
->> +             enable_irq_wake(rtc->irq);
->> +
->> +     return 0;
->> +}
->> +
->> +static int aml_rtc_resume(struct device *dev)
->> +{
->> +     struct aml_rtc_data *rtc = dev_get_drvdata(dev);
->> +
->> +     if (device_may_wakeup(dev))
->> +             disable_irq_wake(rtc->irq);
->> +
->> +     return 0;
->> +}
->> +
-> 
-> Where is the remove to cleanup?
-> 
-
-Will add remove function.
-
->> +static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
->> +                      aml_rtc_suspend, aml_rtc_resume);
->> +
->> +static const struct aml_rtc_config a5_rtc_config = {
->> +};
->> +
->> +static const struct aml_rtc_config a4_rtc_config = {
->> +     .gray_stored = true,
->> +};
->> +
->> +static const struct of_device_id aml_rtc_device_id[] = {
->> +     {
->> +             .compatible = "amlogic,a4-rtc",
->> +             .data = &a4_rtc_config,
->> +     },
->> +     {
->> +             .compatible = "amlogic,a5-rtc",
->> +             .data = &a5_rtc_config,
->> +     },
->> +};
->> +MODULE_DEVICE_TABLE(of, aml_rtc_device_id);
->> +
->> +static struct platform_driver aml_rtc_driver = {
->> +     .probe = aml_rtc_probe,
->> +     .driver = {
->> +             .name = "aml-rtc",
->> +             .of_match_table = of_match_ptr(aml_rtc_device_id),
-> 
-> Drop of_match_ptr. You have a warning here.
-> 
-
-Will do.
-
->> +             .pm = &aml_rtc_pm_ops,
->> +     },
-> Best regards,
-> Krzysztof
-> 
 
