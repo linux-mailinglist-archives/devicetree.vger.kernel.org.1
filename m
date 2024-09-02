@@ -1,193 +1,123 @@
-Return-Path: <devicetree+bounces-99019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 821209685DB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:13:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B89D96860F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A20EE1C2097F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:13:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85599B272AA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822AE181BA8;
-	Mon,  2 Sep 2024 11:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B8A1C3309;
+	Mon,  2 Sep 2024 11:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nU0mvZjj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iJ8ZqelK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B435175A5;
-	Mon,  2 Sep 2024 11:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96535184524
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 11:13:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725275584; cv=none; b=gREDnDXN9gc8L70xtDrEW6L8nTnIauMo9w1QVYuVv0OnsaCdLt+7dSimHdTpaNOcV5Vm5DpybhQ8NvaPi3AG+d70VtRkfjmsbGmovpil3DoHb5v47Uyc2/etX8HPjjKA35I/6S8JPT93l7XvaxrgWUfvSt40lE0ab4dLcJ2iCno=
+	t=1725275599; cv=none; b=gRH9klvK11P8bMtWibYckReC6UEgNYZDWoL9iouG/xDHPFxCDJYvhh3PNV9ANRftO+z/W6JVIBfSWmHB7r1sjrsxQzrUzeawy+YIFWkAOuYrGMnSInAfn67yXniOasO34eUCXpropZkSTPXFNjm1UJOmEQ/IEet5aa8vNCT9aug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725275584; c=relaxed/simple;
-	bh=+uulfcVXT6YjoKghtTgzQhPkoYdQXxqT7443vnr5b58=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VUwiH3sDWQDBBx/iEvGGARbgauUZ7VyeEF0Wympj5pCZz6T4/lesNSqoCsZJec7p8M0wf55SGWlWiOjmt2Ypi2k1seaFsyqWV5hZxvsLH9yfMdFWrNG2W26FprP/CAOYs6uN7ENJG8yxSOAZqDC90YQOBE+0Vhce7XzCtA/Iw34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nU0mvZjj; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725275583; x=1756811583;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+uulfcVXT6YjoKghtTgzQhPkoYdQXxqT7443vnr5b58=;
-  b=nU0mvZjjBdUpc63/RyqeEOYDOia6NVzSyGn9+ZGe9C1I0z+1T6TUXoF4
-   3084XQTdqQqY8KzAtAvIIvZ7Glz0CEzh229DgL1bPg4L/yKAhnaxLmkFX
-   WLjYrKRmM3uiu///xzbuEqz0FYn8lvYF0YMeZyG2Gqcc4Lt2TGi8HD3Yw
-   Z+GunjyjjS8WOGDHdeY+NzAybdR9oartpI441u6t+hbP0GJbhUWfMrXJG
-   RK/3A9ZLRgMdEeCh2sK4ouRqL/WlsZ/jKOIRyvyi6VSPG1+4P8LyjvzDu
-   JPNKZ+N+A+RyA5c5mPy70qAMhOCOynWgD5K2qgdwq+52W6YL0XK5FUmAJ
-   Q==;
-X-CSE-ConnectionGUID: 8kP6ifzkSUSLVpg2X1vS5Q==
-X-CSE-MsgGUID: CiWX05+aQp6MBUaD76TB0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="41352606"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; 
-   d="scan'208";a="41352606"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 04:13:02 -0700
-X-CSE-ConnectionGUID: ltWCpk/5SMKI28+OWW8xEg==
-X-CSE-MsgGUID: 9PxBVm5wQcWh8LoEG16rjQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; 
-   d="scan'208";a="68716707"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 04:12:54 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sl4zK-00000004Kz6-11Uq;
-	Mon, 02 Sep 2024 14:12:50 +0300
-Date: Mon, 2 Sep 2024 14:12:49 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v4 11/18] device property: Add remote endpoint to devcon
- matcher
-Message-ID: <ZtWdsZrFxfjYLgaG@smile.fi.intel.com>
-References: <20240901040658.157425-1-swboyd@chromium.org>
- <20240901040658.157425-12-swboyd@chromium.org>
+	s=arc-20240116; t=1725275599; c=relaxed/simple;
+	bh=DWzn1hYA+MqPVdMdjEmyelcVAh57NyETVCIWQcpDC9k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I3HE2KpklOqTT2mU3a8k4MSul6TTwFymttKPH17ccTiSHfRrK5RgLYz2n5lhMCTGtFSFzLvXmOHRGfk0V5fXwSsOsEDCDg4xM6EGbPyj3FbFzToUSQCBailbhtB6wEV9qBx6KDSUqP9LCz1jxm3TO6+JSP4Yt2SBIZjHCc8odj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iJ8ZqelK; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42bbc70caa4so24404695e9.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 04:13:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725275595; x=1725880395; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t0y66KZsilWy5/q39E1+glqNVuSns5JZhAjLByhViBs=;
+        b=iJ8ZqelKXJymdJWrC2q1XKRPSuI2+MxDVEE6CjA+fjLWqla5YFbXnVmIWbQCAbylI2
+         FIumhjKQ+gJlmKiiezMg/SyqPoDKb6aoIKpOHyIwYyqLt2eyZ7vrn18EvwFt7qaY7eYi
+         33xZkr7vhpE/QY+7gvnj4rOhyIdneZf75T7nv8WfLbhlkxe1FVc+wu/NbrsL1KslhacT
+         yNjyIHwSerKUnMI6wdyntu48ZInsMmdSUm4bk0IgTGC7rfHT008SkKlVANK6Tjz7+2eK
+         EWJXGe7JlGEuFOq2aXPuQkuvykzst+jnKHUS6B5ukPlTQuXpH9Zt8pe47tKjg4TCcTXM
+         r0GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725275595; x=1725880395;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t0y66KZsilWy5/q39E1+glqNVuSns5JZhAjLByhViBs=;
+        b=t4o3YKIjI6s7Xn7kbBgg0NZhrnILi/4pcXKZx4aeadwEuWkZqWaXS3CtcwjEUSi6Nn
+         I8aiZyK7HbXUO2kax0X8keoDH1hXNU02/FHx0a9gMLhqnJ7MQfu7wtbB4+e35t2icNI6
+         lnxLFqsgC8C5Zi35l0yIsMQPzGx8z4xxYNX0xl7S8qW92X6c7xpbXRegNhs6md0fyUbz
+         0+vdLZPawAfo5d2GDQXG2kUyZE542ECW070LjhJRu3ElgemeFvztkHFjfvVyqbB0NPvy
+         aRtvwHonq+xJOlGoKhT/Mtb0KVLC8JN31zrIT37/XHgAhyuNQyBMMKfRJEtwBtpIFbEK
+         iI0A==
+X-Forwarded-Encrypted: i=1; AJvYcCUk6NuTnPxbKw+1D4L97vLMaP5MKixAEtVOAC3YPklS2tBPQMAEyEZ/XhxBqmF4BD/ACJlQg2gPIdnb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8PsYuCpMcm/w8fuU18dUXi+9vsdC8rOrNLuk+6XkcPaV2vgPV
+	EgyqNvC5afKbiIXCXdC4UyGZhk7uY6r58llWspMWQhddBVbFrwU/SuXxXuuvdfQ=
+X-Google-Smtp-Source: AGHT+IFxCzBbJEBnXgmaDcBmR8nMNXjOhCACiDRaC3OZHxGXv/tYXf8mnP+AgdXOfY0pl7t3Hw1Y7g==
+X-Received: by 2002:a05:600c:3b25:b0:426:6320:7ddf with SMTP id 5b1f17b1804b1-42bb01fb0fbmr100596305e9.35.1725275594477;
+        Mon, 02 Sep 2024 04:13:14 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42bb6e274ccsm136021455e9.37.2024.09.02.04.13.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Sep 2024 04:13:14 -0700 (PDT)
+Message-ID: <ad18f559-b067-4f2b-9bbc-6830bbe2f252@linaro.org>
+Date: Mon, 2 Sep 2024 13:13:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240901040658.157425-12-swboyd@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/22] dt-bindings: thermal: tsens: document support on
+ SA8255p
+To: Nikunj Kela <quic_nkela@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
+ herbert@gondor.apana.org.au, davem@davemloft.net, sudeep.holla@arm.com,
+ andi.shyti@kernel.org, tglx@linutronix.de, will@kernel.org, joro@8bytes.org,
+ jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
+ amitk@kernel.org, thara.gopinath@gmail.com, broonie@kernel.org,
+ wim@linux-watchdog.org, linux@roeck-us.net
+Cc: robin.murphy@arm.com, cristian.marussi@arm.com, rui.zhang@intel.com,
+ lukasz.luba@arm.com, vkoul@kernel.org, quic_gurus@quicinc.com,
+ agross@kernel.org, bartosz.golaszewski@linaro.org, quic_rjendra@quicinc.com,
+ robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, iommu@lists.linux.dev,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel@quicinc.com, quic_psodagud@quicinc.com, quic_tsoni@quicinc.com,
+ quic_shazhuss@quicinc.com
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240828203721.2751904-14-quic_nkela@quicinc.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240828203721.2751904-14-quic_nkela@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sat, Aug 31, 2024 at 09:06:49PM -0700, Stephen Boyd wrote:
-> When a single DT node has a graph connected to more than one
-> usb-c-connector node we can't differentiate which typec switch
-> registered for the device is associated with the USB connector because
-> the devcon matcher code assumes a 1:1 relationship between remote node
-> and typec switch. Furthermore, we don't have a #typec-switch-cells
-> property so there can only be one node per typec switch.
+On 28/08/2024 22:37, Nikunj Kela wrote:
+> Add compatible for sensors representing support on SA8255p.
 > 
-> Support multiple USB typec switches exposed by one node by passing the
-> remote endpoint node in addition to the remote node to the devcon
-> matcher function (devcon_match_fn_t). With this change, typec switch
-> drivers can register switches with the device node pointer for a graph
-> endpoint so that they can support more than one typec switch if
-> necessary. Either way, a DT property like 'mode-switch' is always in the
-> graph's parent node and not in the endpoint node.
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> ---
 
-> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Cc: Daniel Scally <djrscally@gmail.com>
-> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
-> Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Ivan Orlov <ivan.orlov0322@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: <linux-usb@vger.kernel.org>
-> Cc: <linux-acpi@vger.kernel.org>
-> Cc: Pin-yen Lin <treapking@chromium.org>
-
-Is it possible to move these Cc:s after --- line below?
-
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-
-...
-
->  /**
->   * devcon_match_fn_t - device connection match function
->   * @fwnode: Remote connection's device node
-> + * @endpoint: Remote connection's endpoint node
->   * @con_id: Identifier for the connection
->   * @data: Match function caller specific data
->   *
->   * Implement a callback with this function signature to search a fwnode's
->   * connections for a match with a function like device_connection_find_match().
->   * This function will be called possibly multiple times, once for each
-> - * connection. The match function should inspect the @fwnode to look for a
-> - * match. The @con_id and @data provided are the same as the @con_id and @data
-> - * arguments passed to the functions that take a devcon_match_fn_t argument.
-> + * connection. The match function should inspect the connection's @fwnode
-> + * and/or @endpoint to look for a match. The @con_id and @data provided are the
-> + * same as the @con_id and @data arguments passed to the functions that take a
-> + * devcon_match_fn_t argument.
-
-So, struct fwnode_handle is a single-linked list. Can we utilise that instead
-of adding a new parameter? I.o.w. do those objects (@fwnode and @endpoint) have
-anything in common and can be chained?
-
->   * Note: This function can be called multiple times.
-
-What does this mean? Is it idempotent? Or what is the effect of being called
-multiple times?
-
->   *
->   * Return: Pointer to match or NULL if no match found.
->   */
+Applied, thanks
 
 -- 
-With Best Regards,
-Andy Shevchenko
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
