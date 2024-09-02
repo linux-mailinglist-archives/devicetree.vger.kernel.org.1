@@ -1,107 +1,140 @@
-Return-Path: <devicetree+bounces-99138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EE43968EA9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 22:05:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5DE7968ECD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 22:20:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D9E4B222E3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:05:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E903C1C21F60
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8835C1C62B5;
-	Mon,  2 Sep 2024 20:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9441A3ABA;
+	Mon,  2 Sep 2024 20:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPsrhTfc"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eiNxWOC5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC1C1A2656;
-	Mon,  2 Sep 2024 20:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E251A3AA5;
+	Mon,  2 Sep 2024 20:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725307516; cv=none; b=Xgt43cLJy2sWL0SecPwEKjXP5sMBkogkqpwdC5yE+YGxx9r99s6jZTvZ65b9ip6FUCTPXKD7hGvCzg+3hBqkF9E4R7F8nzIRec10yst9If3iJb+pZ3hArVCCiipAgRJTi5u88Us0uAg/kTx0JETTs5YvdGiCCeBrPgEBoqXkGSM=
+	t=1725308406; cv=none; b=fOETq4XXKVSQmY9pGBIOpUoYyP3AKxep0tD6BUBBwjm5wmYmIp8vRqMsRDTpGjSCzrIhGP1uJdsOVMnxsCHiRhOHkD1glhUOaaIzwURWP91ETEho+j7Xfl6vim3B0xo1yoGUMiT96tdx51Rsi/Ai6BGz2iBhFoirSaMYN4RTCyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725307516; c=relaxed/simple;
-	bh=hTs8v+dIotmZYJZL8iDde0DHOaDQoZeGsavc9Jc1hYU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W+WIm8nlthJkQlvgTts3hFGP+0ZfrV8q8969lXGTfy/d2yvxOeA7/HgeyIQJOaXRNf9lJwF8whWZxjbmfoUpIvfeyu0T+BKKpPtyhdThESCUB+6etVg4uXbyK9VIkR9kWGxuuBDkzSVKa0OkKrqAUC2fLB7+/nYlCVUjUW8nOxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPsrhTfc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7184C4CEC2;
-	Mon,  2 Sep 2024 20:05:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725307515;
-	bh=hTs8v+dIotmZYJZL8iDde0DHOaDQoZeGsavc9Jc1hYU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QPsrhTfc7DmbvvMNNcf/S2p88IYwck9izHx6jW5DkcF53RzIlsi8PAFGXBqXVyAlY
-	 fo+mH96KJJ4R5YrSAKTUrnmJ+N0QuRj1cORyi88VnZlSlKxyzT4WflvEdYBc3Byu0R
-	 58hJhTqPOC8sgcgZdcENiOniLjmmUgJJdPwxDVot+LaVZ/0+KNAklJuzf6CMRhuRkX
-	 EG51NGtRRzSXBsZqFWQT9YMlIVBvoZ1oVSKpHmBLw3nVIM+33b6ChZfOOixez+79bW
-	 KpoG0QHTsk769qTiuE+cS1LrGOtVMKWzc3ddziwIOGRhj214J3wau+jZo8nwsFbQjS
-	 iJ15BZ6PUMdxQ==
-Message-ID: <29c63407-d32a-4afd-ac92-498bf5855359@kernel.org>
-Date: Mon, 2 Sep 2024 22:05:10 +0200
+	s=arc-20240116; t=1725308406; c=relaxed/simple;
+	bh=CpfGXUsaMycF4jl2l9nIICgEeKqNYaKOEAKloppFIw8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cbyt4y4zgh/5dp5N2nMpqFfWfKMQvw+h9zKi5Poggce0uT7to84YvQjm2wn5Jaiol7nXj/+8qiEvaTUzjAnD43JcRYSOiaFCeeeZKWvx2sxJ2ZjrY4gu8Gr0eAJazmQCnwZpFjU/fWPFViIH4ML0z8bRgtrExGXlrkMyNTLcxBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eiNxWOC5; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1EF2C20004;
+	Mon,  2 Sep 2024 20:19:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725308396;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5LLNc9i9feX+98+maMNyDk10kJ8aqshRdCfXQ8V0pLQ=;
+	b=eiNxWOC55M5AEZpFSO0e8abL2V1c2pzRlSTOUG4KQeaHLtV9KJF5Ei0vXoD9LYpnqFYL+u
+	2EXwfinJDj27LsxrLtLnU8XiBb08C/AIaRW0ZKkpa+x1w/i+NTpg7Ry/nRUuxpGAtkcqWd
+	i14o5IJ4sr/dgMdHexG0J7ZEhBibIUqmN6l5tH6SvdR15LA3HfNA8hnKjwfwHdIyPnMJRT
+	uC+KbPv9sat1yNnFgMG1SBMhuhV0TBND9jd6+NlawQlE0YmV8gpMyR/9dKIz/ypmCU8CSr
+	Y+DkoZK3DQEUDBg5+YdwAcyJsh2ATkjJVxrUJzw7JeRQYjjMJDl8ajVyr+VxYA==
+Date: Mon, 2 Sep 2024 22:19:54 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Yiting Deng <yiting.deng@amlogic.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] rtc: support for the Amlogic on-chip RTC
+Message-ID: <2024090220195462df6c95@mail.local>
+References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
+ <20240823-rtc-v1-2-6f70381da283@amlogic.com>
+ <2024082609451907fd19e2@mail.local>
+ <20ffd260-3c24-460f-bdbc-965573e110e3@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: x1e80100-crd: Enable external DP
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-0-899c264c0eb7@linaro.org>
- <20240902-x1e80100-crd-dts-add-external-dp-support-v1-1-899c264c0eb7@linaro.org>
- <th2x3gtx56fr7zuhhleuj77eghfe7kgbfhok7ul5egez4iq5v2@qy5wy4hxpb5s>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <th2x3gtx56fr7zuhhleuj77eghfe7kgbfhok7ul5egez4iq5v2@qy5wy4hxpb5s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20ffd260-3c24-460f-bdbc-965573e110e3@amlogic.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On 2.09.2024 8:54 PM, Dmitry Baryshkov wrote:
-> On Mon, Sep 02, 2024 at 06:01:35PM GMT, Abel Vesa wrote:
->> The Qualcomm Snapdragon X Elite CRD board has 3 USB Type-C ports,
->> all of them supporting external DP altmode. Between each QMP
->> combo PHY and the corresponding Type-C port, sits one Parade PS8830
->> retimer which handles both orientation and SBU muxing. Add nodes for
->> each retimer, fix the graphs between connectors and the PHYs accordingly,
->> add the voltage regulators needed by each retimer and then enable all
->> 3 remaining DPUs.
->>
->> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->> ---
+On 02/09/2024 16:14:45+0800, Xianwei Zhao wrote:
+> Hi Alexandre,
+>     Thanks for your reply.
+> 
+> On 2024/8/26 17:45, Alexandre Belloni wrote:
+> > [ EXTERNAL EMAIL ]
+> > 
+> > On 23/08/2024 17:19:45+0800, Xianwei Zhao via B4 Relay wrote:
+> > > From: Yiting Deng <yiting.deng@amlogic.com>
+> > > 
+> > > Support for the on-chip RTC found in some of Amlogic's SoCs such as the
+> > > A113L2 and A113X2.
+> > > 
+> > > Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
+> > > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> > > ---
+> > >   drivers/rtc/Kconfig       |  12 +
+> > >   drivers/rtc/Makefile      |   1 +
+> > >   drivers/rtc/rtc-amlogic.c | 589 ++++++++++++++++++++++++++++++++++++++++++++++
+> > 
+> > As pointed out, this is the third amlogic driver so the name of the file
+> > must be more specific.
+> > 
+> 
+> This RTC hardware includes a timing function and an alarm function.
+> But the existing has only timing function, alarm function is using the
+> system clock to implement a virtual alarm. And the relevant register access
+> method is also different.
+> 
+> The "meson" string is meaningless, it just keeps going, and now the new
+> hardware uses the normal naming.
 
-[...]
+The proper naming is then definitively not just amlogic, because in 5
+year, you are going to say the exact same thing about this driver
+"register access is different, this is for old SoCs, etc"
+
+amlogc-a4 would be more appropriate.
+
+> > > +             /* Enable RTC */
+> > > +             regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
+> > 
+> >                  This must not be done at probe time, else you loose the
+> >                  important information taht the time has never been set. Instead,
+> >                  it should only be enabled on the first .set_time invocation do
+> >                  you could now in .read_time that the time is currently invalid.
+> > 
+> There are some doubts about this place.
+> 
+> You mean that after the system is up, unless the time is set, it will fail
+> to read the time at any time, and the alarm clock will also fail.
+> In this case, the system must set a time.
+
+Exactly, reading the time must not succeed if the time is known to be
+bad.
 
 > 
->> @@ -1164,7 +1566,7 @@ &usb_1_ss0_dwc3_hs {
->>  };
->>  
->>  &usb_1_ss0_qmpphy_out {
->> -	remote-endpoint = <&pmic_glink_ss0_ss_in>;
->> +	remote-endpoint = <&retimer_ss0_ss_in>;
->>  };
-> 
-> orientation-switch
+> When read time invlalid, system is will set time.
+> This part of the logic I see the kernel part has not been implemented, so
+> only the user application has been implemented. Whether this is reasonable,
+> if not set time, you will never use RTC module.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=17c5909f53e01c151c91f66949a9c4f191756bae
+This is not going to be implemented in the kernel. The kernel can't know
+what is the proper time to set unless userspace tells it.
 
-> and mode-switch for the QMP PHY?
-
-Oops! Looks like adding it and fixing some bugs in the qmpphy driver makes
-usb+dp work every now and then..
-
-Konrad
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
