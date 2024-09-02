@@ -1,90 +1,141 @@
-Return-Path: <devicetree+bounces-99144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7755968F1C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 23:12:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A34E1968F79
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 00:15:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C5F1F227C4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 21:12:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2F2C1C2253F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 22:15:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E681917F4EC;
-	Mon,  2 Sep 2024 21:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2751865EE;
+	Mon,  2 Sep 2024 22:15:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jg0uee8T"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="fECWOFVL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA5E13D260;
-	Mon,  2 Sep 2024 21:12:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725311562; cv=none; b=K50RCm7hYyvpNZoGIjh8ygblbzuHGfsj+0Jm4WuoRaum01EMRn/QywOu4GA1XijjA3dCYZ8cZjlqJB0a8P52pJb71NMlMC612dmkdMxXUzwWDwcY+fCyFNpm857Q7iYv58rjpBBLs0PdThlBtGBk8bSzbG033LkdK8sBmJYJkbI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725311562; c=relaxed/simple;
-	bh=lORzwTXT57dhMR/bpO4ifz86tt0oau7aGv/z53yqMO0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=oJHe9HsUZN0JIXHh42QNf1x2Lu68vz3UQFAlG1Tc3hiFxzoAloILXoRqsNGEGuApQ3UW1urVKogFsHGBTWS8rdPPKffckkRc0tIfbdqhxFRsK6hB3KC5U6b34EeBEd4eXQba0jfUIEE8bYMLTEJSlWn8BUk+YNAVGcM7y//yJ3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jg0uee8T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D4FC4CEC2;
-	Mon,  2 Sep 2024 21:12:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725311562;
-	bh=lORzwTXT57dhMR/bpO4ifz86tt0oau7aGv/z53yqMO0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=jg0uee8T0ltCRUGD1+vdZHV/vbB3c/HU4kHMjKDCxwFNnHXuDy/8MtuUhiAJlv7Um
-	 h7L0kO+mzDv0sVQEq0Gw05RbsWfVldBEc30kzimFaE++oAAiXbQ0iMZOU8y7wmBP4L
-	 JG8f+UPARiORk54IZXT2rtx3gpqjmXMHZcm5J6aMrOva4K/Yrc2f2KlhhfmfzcylzS
-	 NAoRIfSrKNxKzRpMdqLq6pPT7ltEVj7o7hZYitqobbCvdVuJnxVHnbKeGS4dA3gCiH
-	 huMgIdf07m5vERDMH5l6B1dyl6XtW9oqlNfpeGaPUXu9bZIhrbWjrbWlPCiCz9kXk4
-	 tBy7SRjo+AgxQ==
-Date: Mon, 2 Sep 2024 16:12:40 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 01/11] PCI: imx6: Fix establish link failure in EP
- mode for iMX8MM and iMX8MP
-Message-ID: <20240902211240.GA228125@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7722E1A4E8A;
+	Mon,  2 Sep 2024 22:15:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725315345; cv=pass; b=IdMLgJJ33ybkCXUFPwLdhDq7QPIDDn444e0slG8bN1GAsgjj4bDy9Vy9rzma+VimRitbjzlTzkuTqT81RQahduq1NuKGicaDlgTKhYd8CcqAZUGfsC1IWECORh9uPmKo3uCxw7ZGcSB7ZernYKmeEkE0WRgm9sGXoVQQJ/tFRJ0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725315345; c=relaxed/simple;
+	bh=wpbQVBN3cfxfxQr/CA+w2EkvAHuAKzC4YOiVKYS1I2M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F0pFNNk0GF4EiJu+WoYRxt1Lp1T+wqzEQtYUuuFTkNgGXRFHaj6E3Y9uVb6r7JHSoR7Hvahr82I2PhSgquvO4JY24xFYo2q7AEvjfLv3ZVi5eQurxJ5AgI3lxq+bVanzmu+OJZvt76UPs4HGD9Zd1ASLReh9OU7jc+jLsV0Lw1Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=fECWOFVL; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1725315292; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=SQpuusukbpN6JVHx9Vp3GmqH3RMB9VT4zhStc/T0Kjuf6/jpeY8F3w/YP4rjHG9NBe2Xk3AxtYQzLx7ctSBrvWS3lMoZvZFZjkgBZeOWv/Ok2eVfWI7gU3awl/jaWcWjbjKUzTgtKfRpE6kxA4n5CqQIgyX5rCCjMoxVpCGTvTA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1725315292; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=QDNIvKtrO8pIYCbZxhaqDHVt24NXNrWagRGRYHJHozM=; 
+	b=BwlnaS+p845Tv3Ms99pwrryj6c//3S95iWRU+qHu31RkWOb1TOOLYXul4jBsVCecT4EugEOJUQkDkt4b9FRNbvvxcx2Mf3IdlzeVHbADl4eVxC4W8RI/E1zWTo3fTfV39J3iB9f6xEcNyZbUAvumPhP0fn/6pcR5E7j70lfGyfo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725315292;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=QDNIvKtrO8pIYCbZxhaqDHVt24NXNrWagRGRYHJHozM=;
+	b=fECWOFVLFmmzV1WR2D/aPVwqiIbnjZi+FsoTTLknC2nX6xgeTVWzxj+2g0Mg0qJO
+	kAFC0WfOX+FroleSd1Fa0P/pi4LJ0wW2vlAn+Yg6yl52BJfW2LGAqOPVyigvW5REgLv
+	g1TEx9waorek+ZWIuX7hpi/l0505b5e4suDsIQPQ=
+Received: by mx.zohomail.com with SMTPS id 1725315290251290.71260809194837;
+	Mon, 2 Sep 2024 15:14:50 -0700 (PDT)
+Message-ID: <eb9f2d20-9b51-45e1-bf32-504267747f06@collabora.com>
+Date: Tue, 3 Sep 2024 01:14:42 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240729-pci2_upstream-v8-1-b68ee5ef2b4d@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] dt-bindings: display: rockchip: Add schema for
+ RK3588 HDMI TX Controller
+To: Shimrra Shai <shimrrashai@gmail.com>
+Cc: Laurent.pinchart@ideasonboard.com, aarnoud@me.com, airlied@gmail.com,
+ andrzej.hajda@intel.com, andy.yan@rock-chips.com, conor+dt@kernel.org,
+ daniel@ffwll.ch, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, heiko@sntech.de, hjc@rock-chips.com,
+ jernej.skrabec@gmail.com, jonas@kwiboo.se, kernel@collabora.com,
+ krzk+dt@kernel.org, krzk@kernel.org, ldearquer@gmail.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, maarten.lankhorst@linux.intel.com,
+ markyao0591@gmail.com, mripard@kernel.org, neil.armstrong@linaro.org,
+ rfoss@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+ tzimmermann@suse.de
+References: <5ea24ad3-7faa-4a59-ba10-d43b32b3b40e@collabora.com>
+ <20240902010948.3654-1-shimrrashai@gmail.com>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20240902010948.3654-1-shimrrashai@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Mon, Jul 29, 2024 at 04:18:08PM -0400, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
+On 9/2/24 4:09 AM, Shimrra Shai wrote:
+> Cristian Ciocaltea wrote:
+>> On 8/31/24 9:13 AM, Krzysztof Kozlowski wrote:
+>>>
+>>> Please define all clocks.
+>>
+>> The other clocks are defined in the common binding, should we reiterate
+>> them?
+> 
+> I would suggest yes, they should be reduplicated, if only to maintain
+> consistency with all the other docs. A grep through the bridge docs
+> shows that there are virtually none which use a "{}" placeholder like
+> this. 
 
-Maybe "iMX8MP" in this subject should be "i.MX8MP" as in the subject
-of the next patch?
+Are you sure about that?  This is precisely the approach followed by the
+upstream DW HDMI TX controller binding [1].  Moreover, I've already pointed this
+out in [2].
 
-And if so, maybe it should be "i.MX8MM" here, too?
+> While it seems kind of like one might worry about "don't
+> repeat yourself" syndrome, keep in mind this is not code, but human-
+> used documentation. Having all the information available at a glance
+> would seem to be the most convenient to the end (developer) user, so
+> they aren't having to toggle between two separate files. 
 
-That seems to match usage in the rest of the series (although "PCI:
-imx6: Add i.MX8Q PCIe Root Complex (RC) support" uses "iMX8MP" once in
-the commit log).
+I think that's pretty subjective to be stated as a general rule, e.g. I don't
+have any problem toggling between multiple files as I regularly keep over 50
+files opened in my IDE.  Personally, I'd always go for the slightly less 
+readable approach if I can avoid duplicating content.
+
+I'd suggest to follow the whole thread [2], as this topic has been already
+discussed.
+
+> Of course
+> there may be some questions regarding docs becoming out of sync, but
+> *ideally* we don't want to break backward compatibility with device
+> trees (esp. given how I am imagining firmware integration to work on
+> these platforms, as the RK3588 is at at least low-end desktop-grade
+> performance and UEFI packages have already been built for it), though
+> of course that doesn't mean adding new options is off the table.
+> 
+> (FWIW, this is what I did in my now-withdrawn-at-your-request
+> re-submission; I reduplicated the bindings as it seemed that's what
+> others here were pushing for and thus that felt like the quickest way
+> to get this important driver approved.)
+
+This is not really a blocker for the series.  Please remember to be patient
+while involved (one way or another) in the upstreaming process, as maintainers
+need time to review *all* the patches.  This might be very important for you,
+but there are, usually, tons of other way more important things the maintainers
+need to handle in parallel.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml#n46
+[2] https://lore.kernel.org/lkml/ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com/
+
 
