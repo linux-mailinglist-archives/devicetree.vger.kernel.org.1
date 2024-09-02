@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-99092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE97968B7C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:02:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7FA0968B87
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:03:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 047CD280C85
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:02:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDC601C2178C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C491A2639;
-	Mon,  2 Sep 2024 16:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9D41A3058;
+	Mon,  2 Sep 2024 16:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CRAXP0Ih"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XaQ0RyRW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D942A8D0;
-	Mon,  2 Sep 2024 16:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619341A302E;
+	Mon,  2 Sep 2024 16:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725292952; cv=none; b=WuqvvmJCSw2CCjNS0lRgSoiKaogO7wwu/qiaHWPsAO/rpBYREc84q/N3+EwMp80o0iwvddZQTYDE+3QmKLabYosZf3+sYsfosF+QXxlcsO6yoJV8XZkaCoOsDJpaY3hzdyrqUgcoed/pvxc0ErF8ru53jun46S72LlEPbFONGmU=
+	t=1725293015; cv=none; b=D3YqkAooxBlYHO8fbso+lHZriQ0BCE125UB21s2R9OEKJAb+WD2MkcELuMs5rN/6yGRNxQu8DDXN8uNeI4YYNHEw8DNkAEv5FcWs8NqPRW/ES2yQpciEWTM7LaaZ5E93w/N+zkM9sv9UL89MkME9wDwDN+z9s12Te8cQ7OJcXQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725292952; c=relaxed/simple;
-	bh=6LeCsdM8CqtOIi4hNTfkKo04Af3xwWWjHmr/+DqmEPo=;
+	s=arc-20240116; t=1725293015; c=relaxed/simple;
+	bh=r3TP/0lyfRYWbzIzSDicRQkQHchH96nDet4lScmpUCk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WQIxDB2TsYclJM5taWIO0vUnSucY6VFPwbCOAg05wDlb0n7k05cr5pxl4GfDUg1wGXjmvwqNiZvfe2ljkmbNir1eASJLAAK2HT8q9QymXPvZBo6Fc/FenxDoyf9MHEwPnJblJoHYA7T+eBhDUVKAYQy94ltweHJBGj/DQe+xwnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CRAXP0Ih; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC3D6C4CEC2;
-	Mon,  2 Sep 2024 16:02:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725292951;
-	bh=6LeCsdM8CqtOIi4hNTfkKo04Af3xwWWjHmr/+DqmEPo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CRAXP0IhQSi+6W2FU8hkG1UG9b9yeW0eF3Dd1kxh2x3nqJ4T/Y/34p1IBpSVix4MD
-	 XS4/rjeoVnkI/VCPvk4xZvpqgsQDosxPhUeZaQVmRWJ81ZCgoFl8ysDcUwEWFoGwXv
-	 psbdS3MPjdcC1BffysLVBd0t+mATAN6jYzv1uqRPI9OeqMpLQ8gE5mRWMOQHE9p0nc
-	 x91ZGo+z/e1fubYOy2IhNmp1ISwnYMWuOXSZwYwA2U2W7dmFFxJIBMOaQwa3/+gOHw
-	 HdCiVD/ckhhKfCvnffXUNO1dvIzWLRAWqaKtQNRWcnPDITAcO83tpWnyqBm9XUqnXO
-	 DEoxU3PHv5eQw==
-Message-ID: <45037518-41b7-4cc1-a7f4-c4a0c9873950@kernel.org>
-Date: Mon, 2 Sep 2024 18:02:24 +0200
+	 In-Reply-To:Content-Type; b=SuTmgxMbHgDZ0jodA3USYzdZduLnz+tjqtHnOjakoiCnYOUheqHtHq82MjnZ0sKqLRv/3yPo2HTyttwnSe3kbIlbaZCX0+7D5Mx1SD282oP3FsMgGiI6d6Ox1/2l7HCXFIxiKc8SidUcqbBcEhbO7lvtxFydcI/bg6snu43lre0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XaQ0RyRW; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5c25554ec1eso1409503a12.1;
+        Mon, 02 Sep 2024 09:03:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725293011; x=1725897811; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Kv/apDvPrExBQ5X/4dafVzGVDaldCIfwo7y23syOH4=;
+        b=XaQ0RyRWVkOhCGq9e55ruXmyn+aKIcNTFg0M09GNrvF4k7+HAEdxuobnYhrnAthp0g
+         mzL9mT3qJ8asjl2Fqpfmmoj8RWNyaR1P01x52oqdskoezv8x7SqdFU0aRAAGdtp3zckH
+         oqbprgVCskurcuNM96VHhLIWfL/KWNmIEPbHgWF6sEMq7UO1ZYQ1m+6UQyo40lKyRnya
+         WWgWlCyv1wsah52uFkkYXLNggUIT8cRIlcHEwCbVjWRGTVi06UphfTNDVoZ4esgCzTO8
+         YA/XDIAzUflqdNUqxiwJk9H6l27i+lzxG5NX5uRwnVN+FBs9pM9FxmDAP7UCtfoEUstR
+         6hQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725293011; x=1725897811;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Kv/apDvPrExBQ5X/4dafVzGVDaldCIfwo7y23syOH4=;
+        b=IfZcxOVMXDyobpNCxBDzOVQPqvKQQB4gZnu/HhBOmGNt0p0jspqFZzZUcbFFKhi4tm
+         XihhJADzERftmbjSwqzdhzfywd/3Ix5KSJ1KaHSOjiM52bNJSZBxuUn3Ga1MeMZNkqRo
+         rcFu6idyYQbk8Ew+0viizRZRzvuLFXDIa8ployyQ5ARtAHmTJ/0CnP6EQZBJFXjdR7/3
+         gckRSFu3wP4c2SmOsBW87c+9PGVqLF/UglZP2xE55NsHK6ZLU9hlIE7TlJFjAscch06A
+         7ge/u4Q0RCQELITCuVpBRZwPVEmUttU/wp8k1HwlPL0+V8PBSnJIusS/bMFh2a4FIMza
+         o5xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVd0LH7WFN2cR1OsbxDp3uzTmGulcWpr97Y6Untqq8lCkOYc9vTnEpzPlFIpjg/mKzbsrWJW+L0srgEv54=@vger.kernel.org, AJvYcCXMqdVwdPYGKSuJuxzgFHXpNu2+jYHWqL6WDj6rfKRr5wMtSTHVIBvyIFKt3+mv8Za9B8HPE+NJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7KmiaAvI1fOlDuvc+eIorDeQubOW0+3hzhdEJivR1QOzYT3s5
+	hSvDEqMzhvUjpzEfn8KYBhdRH/AZPxVcV6v27F0D5raRjdf0sXda
+X-Google-Smtp-Source: AGHT+IFwZe3vVzPMqvX+UqTwajDfeT9bDtU/z3lfwpijGNagFI21EwhcugsW/nwlZeHUF+s2trUicw==
+X-Received: by 2002:a05:6402:27d1:b0:5c0:b333:b2e1 with SMTP id 4fb4d7f45d1cf-5c21ed52b96mr11240428a12.20.1725293010839;
+        Mon, 02 Sep 2024 09:03:30 -0700 (PDT)
+Received: from [192.168.0.20] ([148.56.230.39])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c226ccfe84sm5359695a12.71.2024.09.02.09.03.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Sep 2024 09:03:29 -0700 (PDT)
+Message-ID: <bb0dba5a-68e9-4c03-bbea-6788f4cc7d16@gmail.com>
+Date: Mon, 2 Sep 2024 18:03:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,179 +77,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: AW: [PATCH 1/2] dt-bindings: hwmon: Introduce ADS71x8
-To: "Sperling, Tobias" <Tobias.Sperling@Softing.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "jdelvare@suse.com" <jdelvare@suse.com>,
- "linux@roeck-us.net" <linux@roeck-us.net>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "corbet@lwn.net"
- <corbet@lwn.net>
-References: <BE1P281MB24208CB90AF549578AA5C384EF972@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
- <ypez4vjmasehqflgi4ylylpicldabf2dc6wwjco34qr2zmkdvx@enejrjjyaulf>
- <BE1P281MB24208DE67DB0B1E9A75823ECEF922@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <BE1P281MB24208DE67DB0B1E9A75823ECEF922@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola: Disable DPI display
+ interface
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Stephen Boyd <swboyd@chromium.org>, Pin-yen Lin <treapking@chromium.org>,
+ Alper Nebi Yasak <alpernebiyasak@gmail.com>, stable@vger.kernel.org
+References: <20240821042836.2631815-1-wenst@chromium.org>
+Content-Language: en-US, ca-ES, es-ES
+From: Matthias Brugger <matthias.bgg@gmail.com>
+Autocrypt: addr=matthias.bgg@gmail.com; keydata=
+ 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
+In-Reply-To: <20240821042836.2631815-1-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/09/2024 15:48, Sperling, Tobias wrote:
->> On Fri, Aug 30, 2024 at 11:49:53AM +0000, Sperling, Tobias wrote:
->>> >From b2e04ce5500faf274654be5284be9db4f3abefce Mon Sep 17 00:00:00
->> 2001
->>
->> Some junk ^^^ above. Please investigate how you send patches.
-> 
-> Yeah also saw this line, but of course tried to apply the patch again after sending it
-> as mail and that worked fine. But just checked again and seems like this line can be
-> dropped.
-> And yes, I sent the patches manually, as we likely have some restrictions for smtp,
-> but as I was able to apply them again it's fine I guess.
-> 
->>> From: Tobias Sperling <tobias.sperling@softing.com>
->>> Date: Fri, 23 Aug 2024 12:08:33 +0200
->>> Subject: [PATCH 1/2] dt-bindings: hwmon: Introduce ADS71x8
->>
->> And all this suggests malformed patch.
-> 
-> Why? If I drop this I'm not able to apply the patch, so I think this should be fine.
 
-OK, it works with b4, but seeing duplicated subject is not expected and
-might not work with all tools.
 
+On 21/08/2024 06:28, Chen-Yu Tsai wrote:
+> The DPI display interface feeds the external display pipeline. However
+> the pipeline representation is currently incomplete. Efforts are still
+> under way to come up with a way to represent the "creative" repurposing
+> of the DP bridge chip's internal output mux, which is meant to support
+> USB type-C orientation changes, to output to one of two type-C ports.
 > 
->>>
->>> Add documentation for the driver of ADS7128 and ADS7138 12-bit, 8-channel
->>> analog-to-digital converters. These ADCs have a wide operating range and
->>> a wide feature set. Communication is based on an I2C interface.
->>> The driver provides the functionality of manually reading single channels
->>> or sequentially reading all channels automatically.
->>>
->>> Signed-off-by: Tobias Sperling <tobias.sperling@softing.com>
->>> ---
->>>  .../devicetree/bindings/hwmon/ti,ads71x8.yaml |  85 +++++++++++
->>>  Documentation/hwmon/ads71x8.rst               | 140 ++++++++++++++++++
->>>  Documentation/hwmon/index.rst                 |   1 +
->>
->> Please run scripts/checkpatch.pl and fix reported warnings. Then please
->> run  and (probably) fix more warnings.
->> Some warnings can be ignored, especially from --strict run, but the code
->> here looks like it needs a fix. Feel free to get in touch if the warning
->> is not clear.
+> Until that is finalized, the external display can't be fully described,
+> and thus won't work. Even worse, the half complete graph potentially
+> confuses the OS, breaking the internal display as well.
 > 
-> Had done this already before submitting the patches (at least without --strict),
-> but only reports a warning about splitting the patch (which I got wrong here)
-> and updating the maintainers.
-> I guess you were about suggesting a second script to run. Which one is that?
+> Disable the external display interface across the whole Corsola family
+> until the DP / USB Type-C muxing graph binding is ready.
+> 
+> Reported-by: Alper Nebi Yasak <alpernebiyasak@gmail.com>
+> Closes: https://lore.kernel.org/linux-mediatek/38a703a9-6efb-456a-a248-1dd3687e526d@gmail.com/
+> Fixes: 8855d01fb81f ("arm64: dts: mediatek: Add MT8186 Krabby platform based Tentacruel / Tentacool")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Please split the patches.
+Applied, thanks
 
+> ---
+> Stephen has recently posted the "platform/chrome: Add DT USB/DP
+> muxing/topology support" patch series, which is now up to v3 [1].
+> More work based on this series is needed for the DP bridge drivers.
 > 
->>> +$id:
->> https://deu01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.
->> org%2Fschemas%2Fhwmon%2Fti%2Cads71x8.yaml%23&data=05%7C02%7C%7C
->> ff09fedbe2744394f78508dcc9881ee7%7Cfe3606fad3974238999768dcd7851f64
->> %7C1%7C0%7C638606833686313557%7CUnknown%7CTWFpbGZsb3d8eyJWIjoi
->> MC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C
->> %7C%7C&sdata=vZaCpdaNzELpNNnd6wp5P9MNLQTnAmWXYD%2BNKQYCJ78%
->> 3D&reserved=0
->>> +$schema:
->> https://deu01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.
->> org%2Fmeta-
->> schemas%2Fcore.yaml%23&data=05%7C02%7C%7Cff09fedbe2744394f78508dcc
->> 9881ee7%7Cfe3606fad3974238999768dcd7851f64%7C1%7C0%7C63860683368
->> 6326954%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2lu
->> MzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=EJflznuTZYGR
->> BRjULwohiHk8gPF9iRusSbmF8CKkl5Q%3D&reserved=0
->>> +
->>> +title: Texas Instruments ADS7128/ADS7138 Analog to Digital Converter (ADC)
->>> +
->>> +maintainers:
->>> +  - None
->>
->> Fidn a person... otherwise why would we care?
+> [1] https://lore.kernel.org/dri-devel/20240819223834.2049862-1-swboyd@chromium.org/
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> I know it's not nice, but we are likely not implementing further features, but OK, will
-> add myself then.
-> 
->>> +    default: 1
->>> +
->>> +  interrupts:
->>> +    description: |
->>> +      Only considered in mode 1!
->>
->> What is "considered"? Driver considers? This does not matter. Describe
->> the hardware and if this is hardware related, you should have
->> allOf:if:then restricting this.
-> 
-> It's possible to define a mode, either manual sampling or autosampling. In the
-> latter mode, also the hardware capabilities change, e.g. the driver is able to
-> trigger an interrupt so defining the interrupt only makes sense in that mode.
-> Will have a look to allOf:if:then then.
-> 
->>> +            compatible = "ti,ads7138";
->>> +            reg = <0x10>;
->>> +            avdd-supply = <&reg_stb_3v3>;
->>> +            ti,mode = /bits/ 8 <1>;
->>> +            ti,interval = /bits/ 16 <1000>;
->>> +            interrupt-parent = <&gpio2>;
->>> +            interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
->>> +            status = "okay";
->>
->> Drop
-> 
-> I guess, I shall only drop the "status" not the whole section?
-
-Only status
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> index 0c4a26117428..682c6ad2574d 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> @@ -353,7 +353,8 @@ &dpi {
+>   	pinctrl-names = "default", "sleep";
+>   	pinctrl-0 = <&dpi_pins_default>;
+>   	pinctrl-1 = <&dpi_pins_sleep>;
+> -	status = "okay";
+> +	/* TODO Re-enable after DP to Type-C port muxing can be described */
+> +	status = "disabled";
+>   };
+>   
+>   &dpi_out {
 
