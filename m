@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-98912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 061C6967FD1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:58:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D12967FDA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A930B223DF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 06:58:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4CA11F2204E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 06:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD60161310;
-	Mon,  2 Sep 2024 06:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8090815CD78;
+	Mon,  2 Sep 2024 06:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRJMAn5h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIC0q2tW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28CD15DBB3;
-	Mon,  2 Sep 2024 06:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557A4156993;
+	Mon,  2 Sep 2024 06:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725260257; cv=none; b=B84iPuG9WbFJH15ArE0zw3JupksfcYiglnNaOVAiE9y90jpYPdqK3G3mj0UKiRYbbfyYvRM5oeMlsl74MHqEfvBApQuTX/soQ7atUxr/z2wRaS7oZfXjI012rFGRIfQKNGn9M8qtIgRb8xCgLCOJc3BwN0Nyvon4eC0NmK+1mEA=
+	t=1725260351; cv=none; b=LuIr/93ExdrSSqpBdiOaZHG+YjxTarzUfnM4NwOZK7RP133Eu1JKFuaEcjetxdKDA/23+ra3Yh956lFY3rHufXcrPe3B0XVLrEzHX2Av6ZPv8W+TIKixMzUhLGwAh7KxZNwouYhx3h395m4V3xkDgWq3xYeWxRxMcyK/J0GUqXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725260257; c=relaxed/simple;
-	bh=Kqrv9cfVyU7CIyI860bU9es+OK2FtVbb0Ro5sruPtpQ=;
+	s=arc-20240116; t=1725260351; c=relaxed/simple;
+	bh=yPm4oH8FeOcwnlw7Y03dlBz2ZzbeQw4TfXKVJEdhfzA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TCZCEPSDg3hylBZvMiC88Q7tlaJ/ekvyvMSXnoJtU8Z84s/y2Bj4JPkRhqWXP62rsOMwjMUXLxvuBfFWYMY+OLadcd8Zi2houNKEYx3iLfKQeLWcCPs5P7x/VQCx+YW3ZbS6EBylKwAcy7DJh2s4E6XkjdiMJomg7wRfypwkphQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRJMAn5h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FE11C4CEC4;
-	Mon,  2 Sep 2024 06:57:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GJL3Dlp9lM4bl05qYeNw41tAfseL4n7vpUUxuZHW+F3id+WRgTr6+o+4B/XNzF+O/5bw9peNrnBwd21OFQpne+Fn6YjoJwEXXyOmgl1jD/LsgfEoFJYSh3UntVN52GozK9vMo/ccG96fUamoja+ePq5i8s2VSA199QkSI3yLktc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIC0q2tW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAD13C4CEC2;
+	Mon,  2 Sep 2024 06:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725260257;
-	bh=Kqrv9cfVyU7CIyI860bU9es+OK2FtVbb0Ro5sruPtpQ=;
+	s=k20201202; t=1725260351;
+	bh=yPm4oH8FeOcwnlw7Y03dlBz2ZzbeQw4TfXKVJEdhfzA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jRJMAn5hGDH922zo2Hf5C5aWIVLLVVzF8DLDJWr7hempElwWss1CmBIvjdQe0HV5V
-	 Li99C6oQtXPn/qurR40LfRNACFb8B2TfezTM1BjqUU7D8+LuBWBS+izbs99tF3BiQ4
-	 yfrbE97wmd6y7WAe1nVsg6bdDVYB8fuUi5vsjlKgh7AhuirqOtYwIDSxucJVqxEQV3
-	 jGi+OEpxfrRgzqio2CadNNCjsW7UFyRi4TBzXHr9u1s8uBOarhfX64hD/pmuzsP2T6
-	 H1eXP4nOf5ceAgaPFzQ+E6UDKRqNrtC50NMhgr7otMWd09CTlE9h+i9MvoZi5WLNgt
-	 ILiyLPhbu83zg==
-Message-ID: <3afc4f40-83ac-4ad1-be58-af33168273ac@kernel.org>
-Date: Mon, 2 Sep 2024 08:57:30 +0200
+	b=pIC0q2tWttbsM3AxRXWX+M4++SjouCh7uJ7cGcU64knVq6cWPbtrfyQjrdRpeIiIe
+	 E9Oue04ssrAOtTi31VrNw4EEpg+67SDjF3TNIV2LVMjiPXjAnlUkEZtBR00fNSjV47
+	 +/q9FWdweDdhdJjNIgRGDg9dQtbXrZ4cU200A+vrS5N/DewP4yUTjCxVtJrja+mjVH
+	 zUfCkFIEicDUcefK+vuu7oE0XsffazduSev9ZuEyIRitqwMK/px+s/r9j+63tcSlRz
+	 jll3n7T2DaU/z8ACtcqnEqokfoRYPrCzITAxgzUj9UnlrySdU5HqAcNLzDPnPhuBTZ
+	 vXMgq2SnnwA2A==
+Message-ID: <f3f65c33-335f-4769-958c-9b75fa7083dd@kernel.org>
+Date: Mon, 2 Sep 2024 08:59:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: media: convert aspeed-video.txt to
- dt-schema
-To: Jammy Huang <jammy_huang@aspeedtech.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "eajames@linux.ibm.com" <eajames@linux.ibm.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@aj.id.au" <andrew@aj.id.au>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
- "pmenzel@molgen.mpg.de" <pmenzel@molgen.mpg.de>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240829064508.3706672-1-jammy_huang@aspeedtech.com>
- <20240829064508.3706672-2-jammy_huang@aspeedtech.com>
- <8ce757a9-ea4c-4dd2-8aaa-e04f21eb3f63@kernel.org>
- <TYZPR06MB65685EF88A548AEC26A54EC8F1922@TYZPR06MB6568.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: arm: fsl: Add Variscite Symphony
+ board and VAR-SOM-MX8MP SoM
+To: Tarang Raval <tarang.raval@siliconsignals.io>, shawnguo@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, festevam@gmail.com
+Cc: Conor Dooley <conor+dt@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Hiago De Franco <hiago.franco@toradex.com>,
+ Mathieu Othacehe <m.othacehe@gmail.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Josua Mayer <josua@solid-run.com>, Yannic Moog <y.moog@phytec.de>,
+ Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20240902065606.8072-1-tarang.raval@siliconsignals.io>
+ <20240902065606.8072-3-tarang.raval@siliconsignals.io>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,36 +113,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <TYZPR06MB65685EF88A548AEC26A54EC8F1922@TYZPR06MB6568.apcprd06.prod.outlook.com>
+In-Reply-To: <20240902065606.8072-3-tarang.raval@siliconsignals.io>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 02/09/2024 03:44, Jammy Huang wrote:
-> Hi Krzysztof,
+On 02/09/2024 08:56, Tarang Raval wrote:
+> Adds support for the Variscite VAR-SOM-MX8MP System on Module and
+> the Variscite Symphony Evaluation Kit.
 > 
+> Signed-off-by: Tarang Raval <tarang.raval@siliconsignals.io>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> On 2024/8/29 下午 03:56, Krzysztof Kozlowski wrote:
->>
->> On 29/08/2024 08:45, Jammy Huang wrote:
->>> Convert the ASPEED SoCs video txt bindings to dt-schema.
->>>
->>> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
->>> ---
->>>  .../bindings/media/aspeed,video-engine.yaml   | 78
->> +++++++++++++++++++
->>>  .../bindings/media/aspeed-video.txt           | 33 --------
->>>  2 files changed, 78 insertions(+), 33 deletions(-)  create mode
->>> 100644
->>> Documentation/devicetree/bindings/media/aspeed,video-engine.yaml
->>>  delete mode 100644
->>> Documentation/devicetree/bindings/media/aspeed-video.txt
->>
->> Fix the paths in kernel (git grep).
-> Sorry, I don't know exactly how to fix that.
-> Do you mean I need to change the file name from 'drivers/media/platform/aspeed/aspeed-video.c'
-> to ' drivers/media/platform/aspeed/aspeed-video-engine.c'???
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 6d185d09cb6a..99555767f8d0 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1071,6 +1071,7 @@ properties:
+>                - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
+>                - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
+>                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
+> +              - variscite,var-som-mx8mp-symphony # i.MX8MP Variscite VAR-SOM-MX8M-PLUS Symphony evaluation board
+>            - const: fsl,imx8mp
 
-No. You have warnings for stale paths.
+<form letter>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
 
 Best regards,
 Krzysztof
