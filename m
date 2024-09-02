@@ -1,97 +1,122 @@
-Return-Path: <devicetree+bounces-99157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 133C6969046
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 01:02:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B71E969071
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 01:35:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4BB728524C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 23:01:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB7DF28285A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 23:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D153188901;
-	Mon,  2 Sep 2024 22:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4AD1482F0;
+	Mon,  2 Sep 2024 23:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AIErJMG7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gAugWOpv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6361E188007;
-	Mon,  2 Sep 2024 22:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D37136D;
+	Mon,  2 Sep 2024 23:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725317963; cv=none; b=h/W8Ntka/fBAAfJt8ytGaklDTQ39Zx2EspmT1JMaYA6/U/tCv8yzH+6wEwTlwYyDo32y7Wc+w93visXNZ9g3XexbhVagoIyP+e5AmsMNx8+zpYTBf9d6nanwbAzO4fzuTCHv+KSHvuiSZQeetHlwEHPNv2fR4Z78S0813mB0Fmc=
+	t=1725320103; cv=none; b=Uow+vEUL3yA6YwlO369Nazn2eCP9Uuepp0tMjyvH1+DAT8Xi2qCRHE6+A/nEAiB6d/F/QyXGdW15hpNI7o/giOryg7HaDJ54vm+/wrhxI7ajKNYntL2qFwhnVSmE72pLlahDgRqnzjipML4+5BJHmjDqbdD4orXXbm+z/B1ycVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725317963; c=relaxed/simple;
-	bh=Km/6KlnmQOWJjXq++Cne0pmAvoAL3JA6Ik/pIQ5aMsc=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=KlHIw9IZzez4JYiYkLf5oX2eX25TcNAnmyOWnqhru2nKeN3SVPWYNLCuj5rcjULfcLAms8SqGM1u8AfAszOq1XCaxY2snEvT5edRtMLF8tXumXsCJ9lQRUofA2P6luL0OHRa6rMM+ud7Tn/p1hQPjCyQxY8nKiEL8OJjHaH+Auc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AIErJMG7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7C12C4CEC2;
-	Mon,  2 Sep 2024 22:59:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725317963;
-	bh=Km/6KlnmQOWJjXq++Cne0pmAvoAL3JA6Ik/pIQ5aMsc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=AIErJMG7cKzgaRygrtjzs5mL/pC6veeZwCogVHvV/WBtBT/cKLnuDR62hPgSMcBe8
-	 /yuQvKlu7eI5fNCDD4J/dgkzx3ooEmujnp/daGOhR5v+4eVZtVVrMG6e2PG0iFSRZF
-	 NIrYhg19ylgXYLM2wQvCc4o/jRlPuA9dEeuQ9jUM3iaLWlUG5Nz2p9/Gke8q0PWRiS
-	 gkFDR8G5EB7ytWVL5yqqdSrm6GfhVY2FI1lTb/B4Wd7W2cvFQPmCDCXe7szd35TzKm
-	 tlnvY4CVN8T/3+7HoZ8o1Y5GcnDRVLLdtp21+GlcY5VliDWak3j8Yi1r0hUiRotEtK
-	 IByHh8ZKne3NQ==
-Date: Mon, 2 Sep 2024 17:59:21 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 01/11] PCI: imx6: Fix establish link failure in EP
- mode for iMX8MM and iMX8MP
-Message-ID: <20240902225921.GA232316@bhelgaas>
+	s=arc-20240116; t=1725320103; c=relaxed/simple;
+	bh=RYDMyGqz9zahG15EoJTKPIKmn7xMLA+UZItnWz0xoZI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mFdQqIlGJVDv/49/Yaoq+1MRF7ddcya8s+qyFQFFyNOR3qFhYsl7jja5nCgjIATINR2a0eleydM1U+DlyT9ENkmlF4ivPY94+qg3qmKAcJIac+I+eiDPYigaeZhxg2vWqo1h+TOvkFOmriqDnywEdD8i57C2mpBaocrA+NEbhbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gAugWOpv; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 482NYd48047223;
+	Mon, 2 Sep 2024 18:34:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725320079;
+	bh=/wfMYXCVgFOUz9ObTrkeq3S4B+T5tceen76AFBjlnWw=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=gAugWOpvTlt8KqxUYzlYnJr2vAs4YrckpakBLbOF0kL/uk4012jrond09xKh248ef
+	 3Ah/AwdoCq6Sq5J4BQCab8z3MljeRXZQw+wXz7v/nybwnSGEVZPbIIRR9grpcPnO88
+	 gekDJemPZ3+PahsrjAMOKvVZJWw4xXF5Qr5P9xbg=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 482NYdsF116611;
+	Mon, 2 Sep 2024 18:34:39 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
+ Sep 2024 18:34:39 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 2 Sep 2024 18:34:39 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 482NYdtl003525;
+	Mon, 2 Sep 2024 18:34:39 -0500
+Date: Mon, 2 Sep 2024 18:34:39 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Dhruva Gole <d-gole@ti.com>
+CC: "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar
+	<viresh.kumar@linaro.org>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>, <vibhore@ti.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/2] cpufreq: ti-cpufreq: Make the AM625 efuse_offset 0
+Message-ID: <20240902233439.z5kpszcwaswkch6q@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20240902093222.2828345-1-d-gole@ti.com>
+ <20240902093222.2828345-3-d-gole@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <ZtZBeL6LqpIKseXc@lizhi-Precision-Tower-5810>
+In-Reply-To: <20240902093222.2828345-3-d-gole@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Sep 02, 2024 at 06:51:36PM -0400, Frank Li wrote:
-> On Mon, Sep 02, 2024 at 04:12:40PM -0500, Bjorn Helgaas wrote:
-> > On Mon, Jul 29, 2024 at 04:18:08PM -0400, Frank Li wrote:
-> > > From: Richard Zhu <hongxing.zhu@nxp.com>
-> >
-> > Maybe "iMX8MP" in this subject should be "i.MX8MP" as in the subject
-> > of the next patch?
-> >
-> > And if so, maybe it should be "i.MX8MM" here, too?
+On September  2, 2024 thus sayeth Dhruva Gole:
+> Since the efuse_offset is basically derived from the syscon node, we no
+> longer need to use any efuse_offset for AM625. This is in line with how
+> the AM62Ax and AM62Px are already doing.
 > 
-> i.MX8MP and i.MX8MM is more formal. Many other place in kernel tree also
-> use iMX8MP and iMX8MM.
+> Signed-off-by: Dhruva Gole <d-gole@ti.com>
+> ---
+>  drivers/cpufreq/ti-cpufreq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Do you need me repost it?
+> diff --git a/drivers/cpufreq/ti-cpufreq.c b/drivers/cpufreq/ti-cpufreq.c
+> index ba621ce1cdda..98e320832f78 100644
+> --- a/drivers/cpufreq/ti-cpufreq.c
+> +++ b/drivers/cpufreq/ti-cpufreq.c
+> @@ -313,7 +313,7 @@ static const struct soc_device_attribute k3_cpufreq_soc[] = {
+>  
+>  static struct ti_cpufreq_soc_data am625_soc_data = {
+>  	.efuse_xlate = am625_efuse_xlate,
+> -	.efuse_offset = 0x0018,
+> +	.efuse_offset = 0x0,
+>  	.efuse_mask = 0x07c0,
+>  	.efuse_shift = 0x6,
+>  	.rev_offset = 0x0014,
 
-No, no point it that, we can tidy that easily.
+This may work but it really shouldn't. Unfortunately when I sent out the 
+am62ax and am62px support I missed the .rev_offset and now it's pointed 
+to some random spot in the WKUP_CTRL_MMR space. How it worked on my 
+bench was complete luck (or bad luck depending on how we view this).
 
-Same for the stable tag, we can add that.
+We'll need to pull out a OMAP3 chip and try to separate the OMAP and K3 
+OPN decoding before we can move the .efuse_offset
+
+~Bryan
 
