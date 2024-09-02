@@ -1,189 +1,119 @@
-Return-Path: <devicetree+bounces-98953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F0D89681DB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:30:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E5F9681E9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:31:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 769FEB20A17
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:30:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6B9F28124F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF88187334;
-	Mon,  2 Sep 2024 08:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775321865FE;
+	Mon,  2 Sep 2024 08:31:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nWoiN9+4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k8iCUpru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D23185E7A;
-	Mon,  2 Sep 2024 08:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BD0185B78
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 08:31:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725265759; cv=none; b=Goz4fHlbtNsK8Y31XEQ1SUKWZl9aIX3sVlfPrP6k95/mKQK5/ynw4aDQXq4Yj/oH64n+EKFiwa1RR8oPjOJy0CU+l/kGV3JNu1FJVUaXU4GdUHhs3r+1VczRJf4Iyr64Yx4JGfg/y9JmD8zfxWfv7t5+1Q6xo5XuNKDNzMKkIPU=
+	t=1725265884; cv=none; b=iq+Z/9uROD8YLp6hG/124a3x99BRekrLdwA4VFWZAxROvQ+cFyTw0scMKlp8EIuEQMYVxVp9ZMe+T+AXuVTc76knzXZwUJ9VbuZjQOCn1630KgQuHyDdeyQqWSLgPbCtkXMsWm52Bj/dnLR9VgmFmvxN1gFwLzjsaCIJkAxLkc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725265759; c=relaxed/simple;
-	bh=1QQSYNf/9davETjHtX9nXur4gamS9mOlitDg8q/aAO4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BVYZU/PtdvF2+7IbIfWHCsAlVIBV96nfjNA6DDK6qychnzxcemFIdySxFMTFQWnnxiolrvROi2nYme/5mO0RwzCbnzS7Cmj4RIT3NZOQ5ZPkoesqcEzlKUXD02DjU6367gCVGW2WYmTNfZVH+K/KCYSGeVj3gTmrQqrYAuz+QzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nWoiN9+4; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4828TAHL129833;
-	Mon, 2 Sep 2024 03:29:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725265750;
-	bh=FRwU/1Z0xpuj4174yifkOeuysvpwAOfJ9PtmBd5F88M=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=nWoiN9+4p7ii0c88KjlvyISv0dpy5A5XpiJXewxm/p+gObnGLKIjEE4Y6PNpL9tOX
-	 aZPm9cifJj33Fvwur0fQdCLWO5FM7SnP51o+lXF9yYE2cZRI6E2EAcy4cg1Ub61yN/
-	 XJYxc4qHbIr+0MHHUSZvFstis5CSE9lzqx83iPtw=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4828TANk128004;
-	Mon, 2 Sep 2024 03:29:10 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
- Sep 2024 03:29:09 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 2 Sep 2024 03:29:09 -0500
-Received: from [172.24.23.68] (lt5cd2489kgj.dhcp.ti.com [172.24.23.68])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4828T5Po011196;
-	Mon, 2 Sep 2024 03:29:06 -0500
-Message-ID: <ab46b9c7-a132-4846-a4d8-a671fbf38533@ti.com>
-Date: Mon, 2 Sep 2024 13:59:05 +0530
+	s=arc-20240116; t=1725265884; c=relaxed/simple;
+	bh=G3gV11q86gLSIWi/VQcr+bcHn2gjDOR7s+fdLQWwkBQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Content-Type; b=PuD3u/1xiddTXvy1JdYqgvmROSucWUvd2P5d4Kuc6Aku6+VSy49vfVTddQ3wvT3eoj48kJSBKpJbO3DXNHtFf0SIQpS1GFGtYBGinjqZ5jp9br2i5+1wE2VnkWyr7TqwxE63ygMC5/Lrufpz6m1GLdH4UBjBVbfH7Zj8FIziMfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k8iCUpru; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f51e5f0656so43419151fa.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 01:31:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725265881; x=1725870681; darn=vger.kernel.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G3gV11q86gLSIWi/VQcr+bcHn2gjDOR7s+fdLQWwkBQ=;
+        b=k8iCUpru2ZYEtf8BugTdGqVeWrsM8qpLdOykuK3mL1XxjfDE8EAT421V5bhuCX5I3W
+         dvyfPp/CkmOkJE2jwWuumUkdHAs0B50N9LTK5aaOcDahgDamNGRKvcQMoM4fX0ZKrK7v
+         X7UM4+4O5+lfoFdfNDDyk/nDpInQeE8n7XXmmCxShHIZUFSDgDxCZKZseUhR2gUtZi5T
+         9fFqcGjK8iWbOdGKDHucoWPT6TQf77cfrMM2jLTfXVssxEXpMIOgI/QDGQqAvJdoCWK3
+         UB+5h7GCTcCdch2DVYaQwRkW0Y60JVd4gJnpO9gg0PCkgIqlrLIx5ssKOfADaqbejMrJ
+         2Wrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725265881; x=1725870681;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G3gV11q86gLSIWi/VQcr+bcHn2gjDOR7s+fdLQWwkBQ=;
+        b=ib22u1if7EZRdlngUpmNsRlV17t0DKEf0Socdeg7/+qQHPPQRN12PmoLN57OPMOFmk
+         eYTBFZPbcWWAy+UDApnhRgOkavSbBZFNliMAhh4DL1hGI0XWtrqm2SCIv1nRTTIQRWkO
+         sL946bnPn609QP5HTbpkNGJTYZjCkfuk/URAiF0ji27NWPkkZaHam6JE91qwjtcItZAk
+         5n1zDCdPRamFnSSidf5+A4miBoz73FChS+qBsG6r2n5A1Bo8oh2Karx+bbiwJ+BetsAd
+         Ikc78f6oYYDpFl/46Liy0ONjXMnv2wtvVdONtdCh5T/eLugZLevhjSS33QhZqU4g4mdu
+         XdLw==
+X-Forwarded-Encrypted: i=1; AJvYcCXSSGeVMBcBLF014k0L+SBH2mx1a4BLmPk5gCi5mk8Jyg9Ruo2A2U0JIeGedCN/FVyZSZaTKNqVBGaJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIvnfuK0aTUYs2JNrTJYUAe/q3NNGjJ2o0uIWbuoqhLtyz45mY
+	EwiBJGkPq36HYgCLKP4Wg0jf0Poq/yAKSE/BuIHixsPTq5YTRTWADS2UaYBIuuE3TYqLDcxZNzC
+	/f4aFwzblViIRVQbHlxx35ip4FNsc2RN8owRc/Q==
+X-Google-Smtp-Source: AGHT+IGRL8h6r+SD4R0zZ+kiLxe7VKFRZsEj6vy9zcV4VOcD5QNZi35zdLfodwPasLFWGC0AC3H+OmYWi8fYlu//JVQ=
+X-Received: by 2002:a05:6512:1328:b0:533:466d:698c with SMTP id
+ 2adb3069b0e04-53546b91ecdmr6646060e87.39.1725265880099; Mon, 02 Sep 2024
+ 01:31:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] arm64: dts: ti: Refactor J784s4 SoC files to a
- common file
-To: Manorit Chawdhry <m-chawdhry@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
-        <u-kumar1@ti.com>
-References: <20240828-b4-upstream-j742s2-v5-0-9aaa02a0faee@ti.com>
- <20240828-b4-upstream-j742s2-v5-1-9aaa02a0faee@ti.com>
- <c2568770-c80c-44d6-b3d5-a1a18f213d42@ti.com>
- <20240902081125.luplg4esldhw6ycp@uda0497581>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240902081125.luplg4esldhw6ycp@uda0497581>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <cover.1724159867.git.andrea.porta@suse.com> <eb39a5f3cefff2a1240a18a255dac090af16f223.1724159867.git.andrea.porta@suse.com>
+ <CACRpkdbdXNeL6B43uV-2evCfr6iv8fUsSVtAND+2U0H5mSL2rw@mail.gmail.com> <Zs9BN_w4Ueq-VkJr@apocalypse>
+In-Reply-To: <Zs9BN_w4Ueq-VkJr@apocalypse>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 2 Sep 2024 10:31:09 +0200
+Message-ID: <CACRpkda7RjjBLApun1v=i9v-G1zbCX66ZcXsx=T54RkMH0zozA@mail.gmail.com>
+Subject: Re: [PATCH 07/11] pinctrl: rp1: Implement RaspberryPi RP1 gpio support
+To: Linus Walleij <linus.walleij@linaro.org>, Andrea della Porta <andrea.porta@suse.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-arch@vger.kernel.org, Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Stefan Wahren <wahrenst@gmx.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Aug 28, 2024 at 5:24=E2=80=AFPM Andrea della Porta
+<andrea.porta@suse.com> wrote:
 
-On 9/2/2024 1:41 PM, Manorit Chawdhry wrote:
-> Hi Udit,
+> > Looks a bit like a reimplementation of regmap-mmio? If you want to do
+> > this why not use regmap-mmio?
 >
-> On 19:00-20240830, Kumar, Udit wrote:
->> Hi Manorit
->>
->> Overall series looks ok but few comments below
->>
->> On 8/28/2024 4:44 PM, Manorit Chawdhry wrote:
->>> Refactor J784s4 SoC files to a common file which uses the
->>> superset device to allow reuse in j742s2-evm which uses the subset part.
->>>
->>> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
->>> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
->>> ---
->>>    .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  150 ++
->>>    .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2667 ++++++++++++++++++
->>>    ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
->>>    ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
->>>    arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
->>>    arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  135 +-
->>>    6 files changed, 2914 insertions(+), 2887 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
->>> new file mode 100644
->>> index 000000000000..43fee57f0926
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
->>> @@ -0,0 +1,150 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
->>> +/*
->>> + * Device Tree Source for J784S4 and J742S2 SoC Family
->>> + *
->>> + * TRM (j784s4) (SPRUJ43 JULY 2022): https://www.ti.com/lit/zip/spruj52
->>> + * TRM (j742s2): https://www.ti.com/lit/pdf/spruje3
->>> + *
->>> [..]		 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
->>> +			 <0x00 0x04210000 0x00 0x04210000 0x00 0x00010000>, /* VPU0 */
->>> +			 <0x00 0x04220000 0x00 0x04220000 0x00 0x00010000>, /* VPU1 */
->>> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIe0 Core*/
->>> +			 <0x00 0x0d800000 0x00 0x0d800000 0x00 0x00800000>, /* PCIe1 Core*/
->>> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00800000>, /* PCIe2 Core*/
->>> +			 <0x00 0x0e800000 0x00 0x0e800000 0x00 0x00800000>, /* PCIe3 Core*/
->>
->> PCie2 and PCIe3 ranges are not common across these devices,
->>
->> Do you want to move this into J784s4 specific file
->>
->> Same comment for PCIe region DAT below
-> This was already discussed in the previous revision and my stance is not
-> to change it due to maintainance reasons [0].
+> Agreed. I can leverage regmail_field to get rid of the reimplemented code
+> for the pin->pad register region. Do you think it could be worth using
+> regmap-mmio also on pin->gpio, pin->inte, pin->ints and pin->rio even
+> though they are not doing any special field manipulation as the pin->pad
+> case?
 
+Don't know without looking at the result, I bet you will see what
+looks best when you edit the patch, let's see what you come
+up with, I trust you on this.
 
-Thanks for reference,
-
->
->>> [..]
->>> 			 <0x42 0x00000000 0x42 0x00000000 0x01 0x00000000>, /* PCIe2 DAT1 */
->>> +			 <0x43 0x00000000 0x43 0x00000000 0x01 0x00000000>, /* PCIe3 DAT1 */
->> [..]
->>
->> +#include "k3-j784s4-j742s2-main-common.dtsi"
->>> +#include "k3-j784s4-j742s2-mcu-wakeup-common.dtsi"
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
->>> [...]
->>> +
->>> +&cbass_main {
->>> +	msmc_ram: sram@70000000 {
->>> +		compatible = "mmio-sram";
->>> +		reg = <0x00 0x70000000 0x00 0x800000>;
->> Table 2-1 of J742S2 TRM says msmc RAM is 4MB and on J784S4 this is 8MB
->>
->> Please see, if you can address that
->>
-> I think this was thought through before. So from my understanding, this
-> memory map is just a dummy node that the bootloaders is supposed to be
-> fixing up based on it's usecase [1]. Though ig it's not very intuitive
-> looking at the DT, let me add a comment in the corresponding node to
-> clarify this.
->
-> "MSMC is configured by bootloaders and a runtime fixup is done in the DT
-> for this node"
->
-> Would you be okay with the following comment in the DT node for MSMC but
-> keeping the following node in common file only?
-
-
-Yes please comments , it will help.
-
-
-> Regards,
-> Manorit
->
-> [0]: https://lore.kernel.org/linux-arm-kernel/20240827082445.bfx2r7z4iry4fdax@uda0497581/
-> [1]: https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/general/core.html?highlight=query#tisci-msg-query-msmc
->>> [...]
->>>
+Yours,
+Linus Walleij
 
