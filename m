@@ -1,74 +1,62 @@
-Return-Path: <devicetree+bounces-98952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190169681CF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:29:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0D89681DB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:30:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E46C1F22DBA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:29:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 769FEB20A17
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:30:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A6A18755D;
-	Mon,  2 Sep 2024 08:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF88187334;
+	Mon,  2 Sep 2024 08:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="qd4FSUXZ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nWoiN9+4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51383187324
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 08:28:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D23185E7A;
+	Mon,  2 Sep 2024 08:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725265712; cv=none; b=Pw9Ti+gcBQfWXpv+JIEmQJJ/29mvEgL2nRi+Msf29kJ7tYHvOMOG5nv4O61mFqmFWM6FsEVy/671oiQnNKWozin/FkpmlekH9Kqu+gZNmUPv2iyrkQQaHsfZIdPZlL5RngZCaHwmczwN50Mgerdt3k65na0qz4YFq3ivPzs26ww=
+	t=1725265759; cv=none; b=Goz4fHlbtNsK8Y31XEQ1SUKWZl9aIX3sVlfPrP6k95/mKQK5/ynw4aDQXq4Yj/oH64n+EKFiwa1RR8oPjOJy0CU+l/kGV3JNu1FJVUaXU4GdUHhs3r+1VczRJf4Iyr64Yx4JGfg/y9JmD8zfxWfv7t5+1Q6xo5XuNKDNzMKkIPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725265712; c=relaxed/simple;
-	bh=rnpVTjL4kf4dMqWQgikUzL9UOIZNjCvBFJeMtodla3M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tgMoLNWj4aIPx+ZJnNKU+5qgDEglmMp+9/eEyFcNPik2PcWzSQmT9B8Lhl/zieGUJMN1WmZLVdq1XQfntKLK4bSykCFDcYEr4iAOatHDG0jqyeHVir14OpkIAuB5G5aQW/12YM2mJiu5lh0PNQ3+ZCBxu24V/rdgwgjuxd2xMmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=qd4FSUXZ; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5bf009cf4c0so3901250a12.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 01:28:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1725265709; x=1725870509; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xuSIAX3TkFJwp4EKqR8txlbKQ8ME5wdxgrNK5MzVZqo=;
-        b=qd4FSUXZHwG0Meg+YbcvpkGXy7BFowdm/+/mRSu3CwvviIkAudmc3/odkCcT/3rOxu
-         xdFZQeNTSgwvajA/STsjKwT0fhmc2jSr15blVwcbrO0vLi6zUWDEND1R02poiy8roeg2
-         NWzad0p30kb9lpel2EdSOduw12Y12uU6tDldAghbbmjwqRfUM7zwCzGtv6ZI2KRSlwg8
-         /RpOPHinZpTeTYFmWY1a4Iq42KooB6lSpaqBsHjfZkE4DRf0g69wfA9FPdguAOnqiB4G
-         etW6BtHR9LQmaqUvORGK0H9DfC9QOMHqa1GZnRsxsZW/FBKZH09Mf1AelNi+sruHjmbi
-         XQPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725265709; x=1725870509;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xuSIAX3TkFJwp4EKqR8txlbKQ8ME5wdxgrNK5MzVZqo=;
-        b=ty2GQ/h8dQ++ln3WuObm94Zhr+U/ylgo3AQ2l9L23RoWwaozjMDhfCFiaK4AqcDc1g
-         upPyjkxnq2ura/9joddmzeuCIICy0yDr/XfVh+7PqK9kh8iCcHPqq9Uxa6t4LUxDlA5E
-         UrUAaA4QEv6jeE4olecuq4V8AJguuasw0ThFAtWSsrdpqKWQ00kDSBEUuf3WrI4uNYAP
-         JekkjtY3hcUoh7Kf4+ljRbrTDxUg/FSSeWyJGsmXTslap/ODoVRDVk8jEe4Wry0zGUCW
-         jr8z6ttqrs7dNRXmzuG8oBvScCb6R1I/u0Q33O4HSuc4FISEeRJE51/gN+rbJ0V2CMkd
-         F25w==
-X-Forwarded-Encrypted: i=1; AJvYcCWx1D1voBftzHX98DRHrNcCYSUFPSxdT6Ql3GE+B/dJbM3vW1GqVS/B1jJR1c/3PurCcWyU8v9lar+0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg1hSdCabZ4/FijtNQbg0FC18TC38erAgCdPGHLA/Alga4seF8
-	i7Vw8o7eq4XiC8vseOYavMVgvO3p/xXAgh72Y4XR6uWViaxPuCVPdZo9OgBoQTk=
-X-Google-Smtp-Source: AGHT+IFnSS3AyZyXwK3tX+2059zJpEoBIuXq5dRlOW8dSAq2eAxT17MymZumSDwZSnEQaWTkK5CbQg==
-X-Received: by 2002:a17:907:944c:b0:a7a:97ca:3058 with SMTP id a640c23a62f3a-a897f7910e8mr1024209166b.5.1725265708448;
-        Mon, 02 Sep 2024 01:28:28 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891d6f87sm522330766b.158.2024.09.02.01.28.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Sep 2024 01:28:28 -0700 (PDT)
-Message-ID: <90df82c1-bb09-4c91-ba7f-af328066bd43@tuxon.dev>
-Date: Mon, 2 Sep 2024 11:28:25 +0300
+	s=arc-20240116; t=1725265759; c=relaxed/simple;
+	bh=1QQSYNf/9davETjHtX9nXur4gamS9mOlitDg8q/aAO4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BVYZU/PtdvF2+7IbIfWHCsAlVIBV96nfjNA6DDK6qychnzxcemFIdySxFMTFQWnnxiolrvROi2nYme/5mO0RwzCbnzS7Cmj4RIT3NZOQ5ZPkoesqcEzlKUXD02DjU6367gCVGW2WYmTNfZVH+K/KCYSGeVj3gTmrQqrYAuz+QzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nWoiN9+4; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4828TAHL129833;
+	Mon, 2 Sep 2024 03:29:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725265750;
+	bh=FRwU/1Z0xpuj4174yifkOeuysvpwAOfJ9PtmBd5F88M=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=nWoiN9+4p7ii0c88KjlvyISv0dpy5A5XpiJXewxm/p+gObnGLKIjEE4Y6PNpL9tOX
+	 aZPm9cifJj33Fvwur0fQdCLWO5FM7SnP51o+lXF9yYE2cZRI6E2EAcy4cg1Ub61yN/
+	 XJYxc4qHbIr+0MHHUSZvFstis5CSE9lzqx83iPtw=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4828TANk128004;
+	Mon, 2 Sep 2024 03:29:10 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
+ Sep 2024 03:29:09 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 2 Sep 2024 03:29:09 -0500
+Received: from [172.24.23.68] (lt5cd2489kgj.dhcp.ti.com [172.24.23.68])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4828T5Po011196;
+	Mon, 2 Sep 2024 03:29:06 -0500
+Message-ID: <ab46b9c7-a132-4846-a4d8-a671fbf38533@ti.com>
+Date: Mon, 2 Sep 2024 13:59:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,180 +64,126 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+Subject: Re: [PATCH v5 1/5] arm64: dts: ti: Refactor J784s4 SoC files to a
+ common file
+To: Manorit Chawdhry <m-chawdhry@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
+        <u-kumar1@ti.com>
+References: <20240828-b4-upstream-j742s2-v5-0-9aaa02a0faee@ti.com>
+ <20240828-b4-upstream-j742s2-v5-1-9aaa02a0faee@ti.com>
+ <c2568770-c80c-44d6-b3d5-a1a18f213d42@ti.com>
+ <20240902081125.luplg4esldhw6ycp@uda0497581>
 Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
- "kishon@kernel.org" <kishon@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
- <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
- <99bef301-9f6c-4797-b47e-c83e56dfbda9@tuxon.dev>
- <TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240902081125.luplg4esldhw6ycp@uda0497581>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
-
-On 31.08.2024 08:13, Biju Das wrote:
-> Hi Claudiu,
-> 
->> -----Original Message-----
->> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->> Sent: Friday, August 30, 2024 9:23 AM
->> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+On 9/2/2024 1:41 PM, Manorit Chawdhry wrote:
+> Hi Udit,
+>
+> On 19:00-20240830, Kumar, Udit wrote:
+>> Hi Manorit
 >>
->> Hi, Ulf,
+>> Overall series looks ok but few comments below
 >>
->> On 29.08.2024 18:26, Ulf Hansson wrote:
->>> On Thu, 22 Aug 2024 at 17:28, Claudiu <claudiu.beznea@tuxon.dev> wrote:
->>>>
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> Hi,
->>>>
->>>> Series adds initial USB support for the Renesas RZ/G3S SoC.
->>>>
->>>> Series is split as follows:
->>>>
->>>> - patch 01/16           - add clock reset and power domain support for USB
->>>> - patch 02-04/16        - add reset control support for a USB signal
->>>>                           that need to be controlled before/after
->>>>                           the power to USB area is turned on/off.
->>>>
->>>>                           Philipp, Ulf, Geert, all,
->>>>
->>>>                           I detailed my approach for this in patch
->>>>                           04/16, please have a look and let me know
->>>>                           your input.
+>> On 8/28/2024 4:44 PM, Manorit Chawdhry wrote:
+>>> Refactor J784s4 SoC files to a common file which uses the
+>>> superset device to allow reuse in j742s2-evm which uses the subset part.
 >>>
->>> I have looked briefly. Your suggested approach may work, but I have a
->>> few thoughts, see below.
+>>> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+>>> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+>>> ---
+>>>    .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  150 ++
+>>>    .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2667 ++++++++++++++++++
+>>>    ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
+>>>    ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
+>>>    arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
+>>>    arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  135 +-
+>>>    6 files changed, 2914 insertions(+), 2887 deletions(-)
 >>>
->>> If I understand correctly, it is the consumer driver for the device
->>> that is attached to the USB power domain that becomes responsible for
->>> asserting/de-asserting this new signal. Right?
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+>>> new file mode 100644
+>>> index 000000000000..43fee57f0926
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+>>> @@ -0,0 +1,150 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>>> +/*
+>>> + * Device Tree Source for J784S4 and J742S2 SoC Family
+>>> + *
+>>> + * TRM (j784s4) (SPRUJ43 JULY 2022): https://www.ti.com/lit/zip/spruj52
+>>> + * TRM (j742s2): https://www.ti.com/lit/pdf/spruje3
+>>> + *
+>>> [..]		 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
+>>> +			 <0x00 0x04210000 0x00 0x04210000 0x00 0x00010000>, /* VPU0 */
+>>> +			 <0x00 0x04220000 0x00 0x04220000 0x00 0x00010000>, /* VPU1 */
+>>> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIe0 Core*/
+>>> +			 <0x00 0x0d800000 0x00 0x0d800000 0x00 0x00800000>, /* PCIe1 Core*/
+>>> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00800000>, /* PCIe2 Core*/
+>>> +			 <0x00 0x0e800000 0x00 0x0e800000 0x00 0x00800000>, /* PCIe3 Core*/
 >>
->> Right!
+>> PCie2 and PCIe3 ranges are not common across these devices,
 >>
->>>
->>> In this regard, please note that the consumer driver doesn't really
->>> know when the power domain really gets powered-on/off. Calling
->>> pm_runtime_get|put*() is dealing with the reference counting. For
->>> example, a call to pm_runtime_get*() just makes sure that the PM
->>> domain gets-or-remains powered-on. Could this be a problem from the
->>> reset-signal point of view?
+>> Do you want to move this into J784s4 specific file
 >>
->> It should be safe. From the HW manual I understand the hardware block is something like the following:
->>
->>
->>                   USB area
->>          +-------------------------+
->>          |                         |
->>          | PHY --->USB controller  |
->> SYSC --> |  ^                      |
->>          |  |                      |
->>          | PHY reset               |
->>          +-------------------------+
-> 
-> How USB PWRRDY signal is connected to USB? 
-
-HW manual mentions this in the chapter describing the SYS_USB_PWRRDY register:
-
-Controls PWRRDY terminal of USB
-
-0: PWRRDY
-
-1: PWRRDY down
-
-When turning off the *USB region* power, set this bit to 1.
-
-When turning on the *USB region* power, set this bit to 0
-
-By USB region I get the that it is related to the SoC area where resides
-all the USB IPs. I cannot tell more than what is in the hardware manual.
+>> Same comment for PCIe region DAT below
+> This was already discussed in the previous revision and my stance is not
+> to change it due to maintainance reasons [0].
 
 
-> 
-> USB block consists of PHY control, PHY, USB HOST and USB OTG Controller IPs.
-> 
-> Is it connected to top level block or connected to each IP's for turning off the USB region power?
+Thanks for reference,
 
-I cannot tell more than it is in the hardware manual.
+>
+>>> [..]
+>>> 			 <0x42 0x00000000 0x42 0x00000000 0x01 0x00000000>, /* PCIe2 DAT1 */
+>>> +			 <0x43 0x00000000 0x43 0x00000000 0x01 0x00000000>, /* PCIe3 DAT1 */
+>> [..]
+>>
+>> +#include "k3-j784s4-j742s2-main-common.dtsi"
+>>> +#include "k3-j784s4-j742s2-mcu-wakeup-common.dtsi"
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+>>> [...]
+>>> +
+>>> +&cbass_main {
+>>> +	msmc_ram: sram@70000000 {
+>>> +		compatible = "mmio-sram";
+>>> +		reg = <0x00 0x70000000 0x00 0x800000>;
+>> Table 2-1 of J742S2 TRM says msmc RAM is 4MB and on J784S4 this is 8MB
+>>
+>> Please see, if you can address that
+>>
+> I think this was thought through before. So from my understanding, this
+> memory map is just a dummy node that the bootloaders is supposed to be
+> fixing up based on it's usecase [1]. Though ig it's not very intuitive
+> looking at the DT, let me add a comment in the corresponding node to
+> clarify this.
+>
+> "MSMC is configured by bootloaders and a runtime fixup is done in the DT
+> for this node"
+>
+> Would you be okay with the following comment in the DT node for MSMC but
+> keeping the following node in common file only?
 
-> 
-> ? Or Just PHY (HW manual mentions for AWO, the USB PWRRDY signal->USB PHY PWRRDY signal control)?
-> 
-> If the USBPWRRDY signal is connected across modules with this reset signal approach
-> then you may need to update bindings [1] with that reset signal
-> 
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240822152801.602318-12-claudiu.beznea.uj@bp.renesas.com/
 
-If that is true, then this signal may need to be routed to the PHY for
-better hardware description.
+Yes please comments , it will help.
 
->  
-> 
-> Cheers,
-> Biju
-> 
->>
->> Where:
->> - SYSC is the system controller that controls the new signal for which
->>   I'm requesting opinions in this series
->> - PHY reset: is the block controlling the PHYs
->> - PHY: is the block controlling the USB PHYs
->> - USB controller: is the USB controller
->>
->> Currently, I passed the SYSC signal handling to the PHY reset driver; w/o PHY reset the rest of the
->> USB logic cannot work (neither PHY block nor USB controller).
->>
->> Currently, the PHY reset driver call pm_runtime_resume_and_get() in probe and pm_runtime_put() in
->> remove. The struct reset_control_ops::{assert, deassert} only set specific bits in registers (no
->> pm_runtime* calls).
->>
->> The PHY driver is taking its PHY reset in probe and release it in remove().
->> With this approach the newly introduced SYSC signal will be de-asserted/asserted only in the PHY reset
->> probe/remove (either if it is handled though PM domain or reset control signal).
->>
->> If the SYSC signal would be passed to all the blocks in the USB area (and it would be handled though
->> PM domains) it should be no problem either, AFAICT, because of reference counting the
->> pm_runtime_get|put*() is taking care of. As the PHY reset is the root node the in the devices node
->> tree for USB the reference counting should work, too (I may miss something though, please correct me
->> if I'm wrong).
->>
->> If the SYSC signal would be handled though a reset control driver (as proposed in this series) and we
->> want to pass this reference to all the blocks in the USB area then we can request the reset signal as
->> shared and, AFAIK, this is also reference counted. The devices node tree should help with the order,
->> too, if I'm not wrong.
->>
->> Thank you for looking at this,
->> Claudiu Beznea
->>
->>>
+
+> Regards,
+> Manorit
+>
+> [0]: https://lore.kernel.org/linux-arm-kernel/20240827082445.bfx2r7z4iry4fdax@uda0497581/
+> [1]: https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/general/core.html?highlight=query#tisci-msg-query-msmc
 >>> [...]
 >>>
->>> Kind regards
->>> Uffe
 
