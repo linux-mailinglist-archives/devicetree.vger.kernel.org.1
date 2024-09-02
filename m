@@ -1,120 +1,215 @@
-Return-Path: <devicetree+bounces-99033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D48A96868A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:47:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6379686B4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:52:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDD8AB24C63
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:47:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AEF128182A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8C1A1D6DB0;
-	Mon,  2 Sep 2024 11:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646E81D6DC9;
+	Mon,  2 Sep 2024 11:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="oD1K7pIx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E4Etz+uz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72151D6C5F;
-	Mon,  2 Sep 2024 11:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AE51D6C73;
+	Mon,  2 Sep 2024 11:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725277639; cv=none; b=YQvvtC11UgC5Fe7yopvCzB3SxkrXmMPhZ631qqThNsclD/LqWIJiV54ZKBlhqVfIjl3NBAQc7lCEMBEfcKA0e5ubItjBqjmdnRhD18bIJXp3Ai4Z+wbd4xPxC/x01A8RXEu+SiY7lBVuOt808TRc7VTPO49RjJQHCBqJXRTR75E=
+	t=1725277924; cv=none; b=VKRpdHPlJ2hZnqxTCUPwahlxr3zW/Otxs9I0tDDfoRBSK9JuQBFoZhzmCom7KZengJzsyLSW9s/Ci6ubvuWPMXirZQ+oXYuFbueDktytP6xBP2kSj/QQ0vVks4a3fo6xmw8zE1YaUB/K+llGdj/WFZEQ2tj9EqqfZngG4qK0vSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725277639; c=relaxed/simple;
-	bh=ph0MXoamEmViMh9DYvXuPU1uK0cgYTDOZbMQjokOiXM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=H5vV9YuOZuAmJmAZXg9YjwkPBavyPnbcioAW/rKmV9bZb1MGppwQpJUDHypY+zykIRU17ZLSB77SSOD/puDQuCIkho/RNNEPg/ew/picwv2OHcvWKpn95uAiqzwNavIEpKQXFw4YZuftLpOocOqJIK+coQBin6ch9eU7UCGfHIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=oD1K7pIx; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 940A988785;
-	Mon,  2 Sep 2024 13:47:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1725277629;
-	bh=P4vx2HgIR3izh1J5lW2uPXrQvIDhXOL/Lp6N6ZdGDzY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oD1K7pIxexTWCY7Bpg/yDdcKIIYW6UbhmtpLBQw6/13pL7deVunHNSW6wXqVZkmXd
-	 vCsSr3XOytu1FotzH78pvrSPcYO2338QaKleWvugJRUjEUvkfJBg7C398EDm01BP3y
-	 WlgR1wMpK7Asml0OqWrg7GQw0FhOunjx4IGOeeVgYcMw0Dcho0yO9CQ4tK1y3kmrgW
-	 SE9TCf1kcgcvwdeyHWXGkRQfMsO5ybGFipYAoiXTjFkt09NxJc7siaPu2UCeodb23i
-	 Iz1LLF0yNkdfhhOMvDFY+n/mwcaf1Ut4vBSqhoLflgWQHn7fKALmAoymhtN2RL5HsS
-	 kemOQWfhcwkQQ==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH] ARM: dts: imx28-lwe: Remove saif[01] definitions
-Date: Mon,  2 Sep 2024 13:46:52 +0200
-Message-Id: <20240902114652.893272-3-lukma@denx.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240902114652.893272-1-lukma@denx.de>
-References: <20240902114652.893272-1-lukma@denx.de>
+	s=arc-20240116; t=1725277924; c=relaxed/simple;
+	bh=ClG945cLDYt80cvq7MHU0MZy2pQK+a2zhTll8AQVeEM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L4uRq1CQ21g3oLqTRpkyjLdv+7sY3opBHpN3Ce7S1ib1L9MD4sHfqM9G6KvJR9to6kT9MzG1tJwa1IaO7OgsJezI99//N03fWAiQ88LIs1G5mgKg3elqMtbU70WM/ww983Af1qSlOzns52hWXnkl5jZWMxw3fsAb0HVfFTgSOXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E4Etz+uz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3043BC4CEC6;
+	Mon,  2 Sep 2024 11:52:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725277923;
+	bh=ClG945cLDYt80cvq7MHU0MZy2pQK+a2zhTll8AQVeEM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E4Etz+uzb+RpZxNmqRFMSO/q14B1JYKHuWA/gxjKaoF6m2/upq7RLVVb6/hXOA40D
+	 RJAHzEQHq+4Hlhqkjeiu0IAuTPAOvEF5ozEETq0cAPS+loH4qHuEsSI4gweYF4vXAY
+	 QCu7d2Dm6rLBWKbwJbY+sV+zWQoqMSfW1lWHjgc8bILnVKwkjhAcinKB2ZZ+ibL5jL
+	 YKzpVKUoAh3TOR9el1itnPUlQwCR7blj5ZWTuaMSUBo3WrgjNtR1yLjP/0+inkynb3
+	 qw00QG5+gbGuMKbezWj7GstYA4g3OcTNXSuzF6g3ENPQFiH77tKaFN/YVsbTGG+XLp
+	 0bGpdoCJNhVKA==
+Date: Mon, 2 Sep 2024 13:52:00 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: touchscreen: ad7877: add bindings
+Message-ID: <h6vvttsj3bu2rrmpzr4sazyn6lylh3yfzins2y2vk3rjkz76az@xy2yraidasu2>
+References: <20240902082707.4325-1-antoniu.miclaus@analog.com>
+ <20240902082707.4325-3-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240902082707.4325-3-antoniu.miclaus@analog.com>
 
-The saif[01] nodes are specific to other group of the imx287
-based devices, so need to be moved to different devices description file.
+On Mon, Sep 02, 2024 at 11:24:33AM +0300, Antoniu Miclaus wrote:
+> Add device tree bindings for the ad7877 driver.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v2:
+>  - add only the used properties from touchscreen.yaml
+>  - add vendor properties.
+>  - update dt example.
+>  .../input/touchscreen/adi,ad7877.yaml         | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
+> new file mode 100644
+> index 000000000000..035e2d5bbcb8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7877.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/adi,ad7877.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD7877 Touch Screen Controller
+> +
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +  Analog Devices Touch Screen Controller
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD7877.pdf
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7877
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    description: AD7877 SPI bus clock frequency.
+> +    minimum: 10000
+> +    maximum: 20000000
+> +
+> +  adi,stopacq-polarity:
+> +    description: The polarity of the signal applied to the STOPACQ pin.
+> +                 0 = active low
+> +                 1 = active high
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1]
 
-Leaving them here causes issues with next revision of XEA device.
+I think I was already commenting on this for analog... If using numbers,
+why this is reversed from standard GPIO property? Or maybe this should
+be just string.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
----
- arch/arm/boot/dts/nxp/mxs/imx28-lwe.dtsi | 17 -----------------
- 1 file changed, 17 deletions(-)
+> +
+> +  adi,first-conv-delay:
+> +    description: Delay before the first conversion.
 
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-lwe.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28-lwe.dtsi
-index 0fc74eeac217..410dfe17f8ca 100644
---- a/arch/arm/boot/dts/nxp/mxs/imx28-lwe.dtsi
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-lwe.dtsi
-@@ -55,23 +55,6 @@ &i2c0 {
- 	status = "okay";
- };
- 
--&saif0 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&saif0_pins_a>;
--	#sound-dai-cells = <0>;
--	assigned-clocks = <&clks 53>;
--	assigned-clock-rates = <12000000>;
--	status = "okay";
--};
--
--&saif1 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&saif1_pins_a>;
--	fsl,saif-master = <&saif0>;
--	#sound-dai-cells = <0>;
--	status = "okay";
--};
--
- &spi3_pins_a {
- 	fsl,pinmux-ids = <
- 		MX28_PAD_AUART2_RX__SSP3_D4
--- 
-2.39.2
+No, use proper unit suffix.
+
+> +                 0 = 0.5us
+> +                 1 = 128us
+> +                 2 = 1ms
+> +                 3 = 8ms
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1, 2, 3]
+> +
+> +  adi,pen-down-acc-interval:
+
+Use proper unit suffix.
+
+> +    description: Enable the ADC to repeatedly perform conversions.
+> +                  0 = covert once
+> +                  1 = every 0.5 ms
+> +                  2 = every 1 ms
+> +                  3 = every 8 ms
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1, 2, 3]
+
+How is it supposed to work? These are optional but there are no
+defaults?
+
+> +
+> +  adi,acquisition-time:
+> +    description:  Select acquisition times for the ADC.
+> +                  0 = 2us
+> +                  1 = 4us
+> +                  2 = 8us
+> +                  3 = 16us
+
+Same problem
+
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1, 2, 3]
+> +
+> +  adi,vref-delay-usecs:
+> +    description: Delay required for the SPI transfers depending on the VREF used.
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +
+> +  touchscreen-average-samples:
+> +    enum: [1, 4, 8, 16]
+> +
+> +  touchscreen-x-plate-ohms: true
+> +  touchscreen-y-plate-ohms: true
+> +  touchscreen-min-x: true
+> +  touchscreen-min-y: true
+> +  touchscreen-max-x: true
+> +  touchscreen-max-y: true
+> +  touchscreen-max-pressure: true
+> +  touchscreen-min-pressure: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - touchscreen-average-samples
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      touchscreen@0 {
+> +        compatible = "adi,ad7877";
+> +        reg = <0>;
+> +        spi-max-frequency = <20000000>;
+> +        interrupts = <21 IRQ_TYPE_EDGE_FALLING>;
+> +        interrupt-parent = <&gpio>;
+> +        touchscreen-average-samples = <16>;
+
+Make the example complete.
+
+Best regards,
+Krzysztof
 
 
