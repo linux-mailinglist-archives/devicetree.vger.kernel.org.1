@@ -1,216 +1,255 @@
-Return-Path: <devicetree+bounces-98948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5E49681BD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 190169681CF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:29:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4D7B1F22C12
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:27:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E46C1F22DBA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74B01865F9;
-	Mon,  2 Sep 2024 08:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A6A18755D;
+	Mon,  2 Sep 2024 08:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="OlSfwIUs"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="qd4FSUXZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2118.outbound.protection.outlook.com [40.107.215.118])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FFA17A5BD;
-	Mon,  2 Sep 2024 08:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.118
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725265660; cv=fail; b=F/SonbYXItE7FAvLFs0uVafDslN4sCYE2zRgEa8r1oBWFOnklI5I1VHFCISnEciHoWk1YhiLmuoWKxeINAhcpZW3OS8Oz+3HIqABaOCxp2ydsVyS0vQtf4jKYuxgLt06YB9afiZnYsH/6NFbri89YcSMvtUXI7GJopR9jNFYc7I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725265660; c=relaxed/simple;
-	bh=SF3efS6JJddd4KZqFw7MQUWZPF57NG3CvKygWzI+DcI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cqKjr4JBJZIQl+LjwxtofKPAg154J+MMaxDqIf/FEUWoFkwNynSXzb/tN2yJS9ECLn1qm489nTkAXk2ZQGVqVuyRevCQXA5SkmlnS02itMCqClWt7UBFMZiHOnrNxH5SgMN6Ge8rznGe7tJK8uq3eOBGWs3NPtGtPsT1gaO0hps=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=OlSfwIUs; arc=fail smtp.client-ip=40.107.215.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eD4hZqg3sEZ9RKRHCTmFV4wMZz0w6lZvbuH4VTdkr3hz2SK02dXIzel0OhyhdYEZX9wxyUq8/N/YETw0eIct2UiPlDO9mCI8hA4EBUcqROvWcs6FbOyZmh5+M9P5UE8ppnW2jmn+Lk7ksEbt2vmKe5fIFE448hBctWhfZdp3HcHvg92HHOX+ec1ymUzOuPrhVeO1cxDYipFe0h4+eCfsJZM9oGKjfIgV4XeNlvVcV2dal6YcKgF2D4RfYBpd3rk096eS7o/BdPp3AhQf4LfVEve+vRt6E9uJUo8pIClFB5US0xzHXnQvzEsGPvOHmYrdg1NWHMyN03Kxm9AQK4ZN5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sUZeETGtmA5nZjcPbblvs/z0HFESX80PF/sLS3KmaWg=;
- b=SH0FcCdVvTscPrOAGGY+OfpTlteXrNRvnzTLyKE6UegK60MncweCyXNEO+lVfwpTE2RvqDpAHyGUrpFrSNZB0GdSR3BvAlf3YC2hVSPbc/vz1JCsKhD58DhFD7rTkGxnVNcgjz1lNTSVyTBtVfVHP64auSacPexycuS1fYuVOFqvNho+E3U6G0IfvMoUceRKucOS/3N8gj0GS8mtuXaVVM0MUU1toAjq4YgSwgAYZDUBttul1osTda52krYfqEF5H0LIl6nuB/wpmV2v3oGIqKRYa8P1rgR1YKj+byqICqxpqDhofajvUfReH7ts5KTUhQsXacmG0JwDtc58gR1j9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sUZeETGtmA5nZjcPbblvs/z0HFESX80PF/sLS3KmaWg=;
- b=OlSfwIUsZqX/yVveTawido0+B5JDOO/5I2d2iiLxWUK4uui3LjWtEuSWrWdnHsF2QySXEUsBUDciS3Sq87JpASpNnA95OfAzWyo9E3OFjewjoRF98ZrF6N3CV/2giovCOdOETneR5Sfuz7hVeQy4iOovJ4DAMjDuOokBBs1pFp/6ggv/0YmWqCjUSOxqLGKmnGTdCyPPkBHjuIeFL6G/ZWQqE5t3PR1ZiITKoYRv1w0bKEUeIuW1O4CmraGhZMUp6BbwFqfA4tCkgywP/ffarl4DdIruhZJI3TMNyEbcwrbQ/QzjTV/TYSlgKNS3AHG8vT45rwCrkU4Y6xs740nJlw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by TYSPR03MB8592.apcprd03.prod.outlook.com (2603:1096:405:83::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.23; Mon, 2 Sep
- 2024 08:27:34 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.7918.020; Mon, 2 Sep 2024
- 08:27:34 +0000
-Message-ID: <3e889ca9-e124-413a-a672-c7369cd2b3c0@amlogic.com>
-Date: Mon, 2 Sep 2024 16:27:28 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Yiting Deng <yiting.deng@amlogic.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
- <20240823-rtc-v1-3-6f70381da283@amlogic.com>
- <4b79fb7e-7ff6-499b-b615-e1bd69a46d0b@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <4b79fb7e-7ff6-499b-b615-e1bd69a46d0b@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR02CA0051.apcprd02.prod.outlook.com
- (2603:1096:4:196::10) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51383187324
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 08:28:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725265712; cv=none; b=Pw9Ti+gcBQfWXpv+JIEmQJJ/29mvEgL2nRi+Msf29kJ7tYHvOMOG5nv4O61mFqmFWM6FsEVy/671oiQnNKWozin/FkpmlekH9Kqu+gZNmUPv2iyrkQQaHsfZIdPZlL5RngZCaHwmczwN50Mgerdt3k65na0qz4YFq3ivPzs26ww=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725265712; c=relaxed/simple;
+	bh=rnpVTjL4kf4dMqWQgikUzL9UOIZNjCvBFJeMtodla3M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tgMoLNWj4aIPx+ZJnNKU+5qgDEglmMp+9/eEyFcNPik2PcWzSQmT9B8Lhl/zieGUJMN1WmZLVdq1XQfntKLK4bSykCFDcYEr4iAOatHDG0jqyeHVir14OpkIAuB5G5aQW/12YM2mJiu5lh0PNQ3+ZCBxu24V/rdgwgjuxd2xMmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=qd4FSUXZ; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5bf009cf4c0so3901250a12.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 01:28:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1725265709; x=1725870509; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xuSIAX3TkFJwp4EKqR8txlbKQ8ME5wdxgrNK5MzVZqo=;
+        b=qd4FSUXZHwG0Meg+YbcvpkGXy7BFowdm/+/mRSu3CwvviIkAudmc3/odkCcT/3rOxu
+         xdFZQeNTSgwvajA/STsjKwT0fhmc2jSr15blVwcbrO0vLi6zUWDEND1R02poiy8roeg2
+         NWzad0p30kb9lpel2EdSOduw12Y12uU6tDldAghbbmjwqRfUM7zwCzGtv6ZI2KRSlwg8
+         /RpOPHinZpTeTYFmWY1a4Iq42KooB6lSpaqBsHjfZkE4DRf0g69wfA9FPdguAOnqiB4G
+         etW6BtHR9LQmaqUvORGK0H9DfC9QOMHqa1GZnRsxsZW/FBKZH09Mf1AelNi+sruHjmbi
+         XQPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725265709; x=1725870509;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xuSIAX3TkFJwp4EKqR8txlbKQ8ME5wdxgrNK5MzVZqo=;
+        b=ty2GQ/h8dQ++ln3WuObm94Zhr+U/ylgo3AQ2l9L23RoWwaozjMDhfCFiaK4AqcDc1g
+         upPyjkxnq2ura/9joddmzeuCIICy0yDr/XfVh+7PqK9kh8iCcHPqq9Uxa6t4LUxDlA5E
+         UrUAaA4QEv6jeE4olecuq4V8AJguuasw0ThFAtWSsrdpqKWQ00kDSBEUuf3WrI4uNYAP
+         JekkjtY3hcUoh7Kf4+ljRbrTDxUg/FSSeWyJGsmXTslap/ODoVRDVk8jEe4Wry0zGUCW
+         jr8z6ttqrs7dNRXmzuG8oBvScCb6R1I/u0Q33O4HSuc4FISEeRJE51/gN+rbJ0V2CMkd
+         F25w==
+X-Forwarded-Encrypted: i=1; AJvYcCWx1D1voBftzHX98DRHrNcCYSUFPSxdT6Ql3GE+B/dJbM3vW1GqVS/B1jJR1c/3PurCcWyU8v9lar+0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzg1hSdCabZ4/FijtNQbg0FC18TC38erAgCdPGHLA/Alga4seF8
+	i7Vw8o7eq4XiC8vseOYavMVgvO3p/xXAgh72Y4XR6uWViaxPuCVPdZo9OgBoQTk=
+X-Google-Smtp-Source: AGHT+IFnSS3AyZyXwK3tX+2059zJpEoBIuXq5dRlOW8dSAq2eAxT17MymZumSDwZSnEQaWTkK5CbQg==
+X-Received: by 2002:a17:907:944c:b0:a7a:97ca:3058 with SMTP id a640c23a62f3a-a897f7910e8mr1024209166b.5.1725265708448;
+        Mon, 02 Sep 2024 01:28:28 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.144])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891d6f87sm522330766b.158.2024.09.02.01.28.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Sep 2024 01:28:28 -0700 (PDT)
+Message-ID: <90df82c1-bb09-4c91-ba7f-af328066bd43@tuxon.dev>
+Date: Mon, 2 Sep 2024 11:28:25 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TYSPR03MB8592:EE_
-X-MS-Office365-Filtering-Correlation-Id: c389c5d8-dc68-4a34-46f1-08dccb29182b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ckNVQzFtaHlmU294Y1A5RFVSaWU2dDN0ODZycFBNWnExMU9pRExRcWlRejRY?=
- =?utf-8?B?TCs2dmtadFlKSUpGWUVIZjBzZnVyeWZoTFZ0L1ZMaSs0M3Q4anV3Y1oxOHh5?=
- =?utf-8?B?UERuc1JhV2VUK0tEemF3TWtSZjI1TnE3VFQ0ZFVlUWErNVA4M0xqQ3lHYkl1?=
- =?utf-8?B?bjgrNzQ3dEYvelRQbFJTSC9yeC8zdUZpcGpUV1hsZEdqdEVmaFo4L1kxUTRB?=
- =?utf-8?B?MHZQRHNxV0IzK09CMFppMzJFS0U3VzIrVXBwUjcvYnJwWmlBNDFCMk5DdzF3?=
- =?utf-8?B?elN4M1BIVWxFV01NMVdSdTllajdqa1JJS1o2Q3VrMThUbGN2THdxcm1tRmF2?=
- =?utf-8?B?Mm9SNlA0ZnZUUkJOMHVhNS82RzRFSTl1bGxCZ0NHaEpPdmNTOGZoTTVNMEVu?=
- =?utf-8?B?QUtTUHpDNjdncU52WEdqWk56SEc0QnVuLzYwSm9nNkRyZ1ZlK1V1Wk43NE1t?=
- =?utf-8?B?WHd3Z0ZWL1MzQWxscVN6dkxxN3FwL0JIRlR3MXZXSnZZeHhtYnphQmJlc1du?=
- =?utf-8?B?RXhRNHBEMkptTTVSRC85WkV2cnhkaTVGK09JS1BIamZsNmNXNndvaHBqSzVN?=
- =?utf-8?B?K202Rkd4WHZHTWtmMXhpN1VRbjdvdzFkVWlqenhBaG8vK3Q2bm5aMldKckRt?=
- =?utf-8?B?V2h4bXg0aXpjOXFBVnU4TzNWTHdFNlhVOHl1ejhTZjU5bzRMZndkM0lvYmNs?=
- =?utf-8?B?MGRWVEI2a0ZqVDY3T3N4VVUvV3dMWWk1NDlmbkgvbHFnWk5yYWNvS2V5TXV0?=
- =?utf-8?B?MHUxQWpyLzMxaVNITGxUSEdWT2ZzK3R3c2d0MzVpQlF0T05LelFVNFZ0K0s1?=
- =?utf-8?B?SzByUUZZaDVMKzA4NmRwMVkzR25DN0lVM2x1VkhZTVM3aENHK3Q4ZWVGa21C?=
- =?utf-8?B?UmxIUnBDVXM4Vzh5KzNWYTk2THFwSVY1WTZPMm9IWXhlOEhWQkNqSXphVGN5?=
- =?utf-8?B?ZFhTNXdTL0dRWVI0ekRzeHoyR1FvY3gxQnVpYk12L3hhUUFva3BtQTNiR01i?=
- =?utf-8?B?YXZlWWFsbTN4NFRKaiticlB1WDllK3lXSGJwdzE1K1piamdFNnRuR0Y4Z0Rl?=
- =?utf-8?B?N3F5WFNlb1RZb01TRXRZUzd1bTdod0E0MWdWOGZyanliUlU0bWJxS3VOT0hD?=
- =?utf-8?B?WkFCcW00bnhJOHpES0hUV21ac0lGUXNhYmtxZDd0YTVEbi9zSGRLL1pMRHZG?=
- =?utf-8?B?cndjNnhjMzZ4eDB0c0dCd0V0ejAvQUZBM2VYWVpGUHZKNlBnaGoybmJuaHJI?=
- =?utf-8?B?cXIrYmhKcDBuVDA5VGczR21JT2kwQnFHYm91azUwK05zYkxnMS9tc1RzcXB4?=
- =?utf-8?B?RmZnYXhwR2pBSDVhUnZZY3JILzZDNXNxSFg5YlJnVlM3TUhkeVhvRnRvNWFn?=
- =?utf-8?B?b1g5SzlIZ1Y1NkdENkdZRGRPRG5MeDlwRXZ1Mk5zeUordW51S21GRUFWVDc1?=
- =?utf-8?B?c3kyMnJ4VlFjN2xyVXdoeXJ6dEdSOFI4TjN0NThCSW5yZjBWT0U1U3pTRGFE?=
- =?utf-8?B?cDZvWkpBQ0JDQWc5MUNLdzhZeC9odVdicnNRTnMxVUZKeW5BN2tRNjZFUFVN?=
- =?utf-8?B?cDZNQ0xaVmVXRzdpOWQ3bVRtK2lpY3dRd3gwWlNFQWJvM2FsdWxmQ25iSFky?=
- =?utf-8?B?MUdOM3lyOVF1cjB3ZzcvSkxBemNYbFdZa2FxMlJSZ29ocTJsNmtDMlFJQytu?=
- =?utf-8?B?YmNzUWRBT2FDbkFxYWFDOHNabWVzcmVrRVJKd0VqV1VFdEp1dDByN3M2eVp4?=
- =?utf-8?B?cnpKajJHRmsvOHJ1MkgyQm10Y3E4cnZ3SUZsejk2YmU3bFJPZTJVbVVBc3hP?=
- =?utf-8?B?bGpTSXdEblB0SWd3Vm42UT09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MzFscHdkbnhhTVl0WGxRYXB1MDRGRmJnMGc4czF4TmRCNHNSYWcyZlFzcy82?=
- =?utf-8?B?dlc5SmF4RnA3cDJxNkRFSytFSGIyS1d1Zk9wdXhwaXU4a3ZUenVPdkJRU1lI?=
- =?utf-8?B?OGVxRERWbHIzREdxbkRPZmE4RC8rTzRKWHR4anpXVllrU2l0cGthMXFBcGRR?=
- =?utf-8?B?NURHam1mVVJCOVZjMVhWazd1Q25GTG1oREFpYWVQb3M5RlZTdWFWQVY3MThY?=
- =?utf-8?B?ME9BblNKUHU4eG5EMnNyVjkwb3FOY0pNZFhQL0FhRG1EczRUaTllYUtaa2l4?=
- =?utf-8?B?a0lJUDRJSnRTcGlXKzl4TDlsQ1NlOXdnaWJVTmpUQzRhY0hvM1FKdkdtVGs5?=
- =?utf-8?B?NEYxTGxZdk9UWDZPUlV4WUZYem5JNlVCYTJKaXNWV09QRkZESVhrZjBVL0Fi?=
- =?utf-8?B?NGlxZmk0UU14UjBYdDQwZERnRzhOTUJEemxhZVZ6Q3ZEUkdUZ3ZqbnArdTZL?=
- =?utf-8?B?Rk9qYjZ3MTdVbVRxc3hDZzhlOTlVdUlWemJQZ09UUzdwSUhJWDN0ampueDRq?=
- =?utf-8?B?UVhERWZpUVRFajBlUmpoMWRaRHNXaGVOQXFWZGZzaCswMzhLem91QjZQOEZD?=
- =?utf-8?B?YUhQYzFscjBMQzJ4M2JHYnBYbzk3ZmtwWjRYdFYzUTF3dDVFZUVkSzkzZCtW?=
- =?utf-8?B?NTBZYzQ0NkVyU2JXSlE1S2dEdi9tMjc4a3ZpbmdSVDdSREVHOU1UTWxsdDRa?=
- =?utf-8?B?Zk81dmc2WGhlK0lmQmxobXRMR3RIYVduMFBqTy8vSEVFcjloWkRSRXVRZmNj?=
- =?utf-8?B?MXJVR3RRSCtaTnoxNHY5dEJDai85SS9tMVR3alNZM3JqblhXdGdyYndPWXBT?=
- =?utf-8?B?WG1Sc0Q4dXdNQnRmMndQTVNTYzlVbCtnVXdRY0YxTjJGYXRsemNBblB6aFNB?=
- =?utf-8?B?YitROGFCbEJTdVNsSDdadU5KMnhQTnZIZTJJRUNHTzVmajVTS0Jxdmw2SzFa?=
- =?utf-8?B?YzFLVHlyWmxqRFV1N1BvSFhoejBzZUxhNGwrUytodXhMa0hwMFZBK3NQbkx1?=
- =?utf-8?B?VmhHbGRvQTV3dTRmSk42ZWE0VUtaZWZXbVZHaDJXTlB6bWsrRndpekl6dmhj?=
- =?utf-8?B?UzJ1THVsOExqNFJNcEllRnVIcEtWVGJCR0YxREVncXF3VDhJa01XQnNDbVZU?=
- =?utf-8?B?Uk5SZmtCclNjblJuL1F0cXhSd2E4TWxGZ0lQMy9ZbXlzYmZVR3BVOGw2dVE2?=
- =?utf-8?B?TmtseXo2TTNUeVFCc3NOYmc4MWwrQ01abnRQWk95eDAvNWt0QURQaDRTaTlM?=
- =?utf-8?B?a0s3d2sxWjY5TzZZV3V1U1F3cTF0Tkg0SlhXU3ZGcVBkeUhyRkVqUCtkemFH?=
- =?utf-8?B?Y1kxZjFWSHdDUUlCWERCN25sNUlsMUhTVjYwanBURG1yYjA2TXd1RVlmTXpD?=
- =?utf-8?B?Ui9oaElHSEZUZk9tZEk2VHVzSnBNRVpGS3FkSEhaSUlsblpkcjVpMEtHRjZY?=
- =?utf-8?B?eVp1ZkV0RDlNRWI4QnE4VkNSelNudmVmU3lKZlV2U2pLSktrRFBSZERFQlNB?=
- =?utf-8?B?TUxXNC9XOUNUTVF3WjhNNGltekNpR204NmZpY01wMHN2eVBsNm1HZFV1bTJT?=
- =?utf-8?B?MElwRTZWcDduc0JYckZ5Wk03cmZ0ZHFicU13SCtKcmpuSkh4cEZUQjNDcWdv?=
- =?utf-8?B?WWxaQ2R2Y0tOa2JPbEIweGVDVmxOaWR1amZPeGlKZUlFZWlmblZ4ZzVVcGdC?=
- =?utf-8?B?cU9yMHZ4bzAxTTUxelBOeU45ak9zcVRaemQxOWJHdlZQOXJpYnQ3Q0JPL25P?=
- =?utf-8?B?ZkxGNWxDWHBZZ3VyWjJRSlBUMld0OTVPZlppRUw3WHdiYmZoMm80c1dtcWNr?=
- =?utf-8?B?R3RQNzRxeWdWUGFrQm1ER2FzMGdkNGVtOEpjYXBTZEFNaWdXNEsyclNnamRp?=
- =?utf-8?B?OUZhMXlMRk4yODRKR0pRS0VQWDhFUjJBMkJNM1ZySnZuQys1RVVVUjd2TGVk?=
- =?utf-8?B?bzN4Mmd3ajlGT1FLS2RMVjlWQjNQRmNlRFRTTldZcnVmbGpWZFZrNXVKaDRX?=
- =?utf-8?B?S0lXWFdNNDU0NmtkYVE0V201Zk9WSndYMnZJQ1hUMXBHeXZoK3FQc2dQeUNS?=
- =?utf-8?B?TlB6WUhUdERPQUdHMXoxM1dhVllBS3crVmUweUNOK0xQZUxJVW90dDdsMHFR?=
- =?utf-8?B?dCtRNFdOejZ3SmluWGlQR3B0ZVhqU2wzTHhaZ3RSU3pETExaVEdxcnhnWXpu?=
- =?utf-8?B?Qnc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c389c5d8-dc68-4a34-46f1-08dccb29182b
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2024 08:27:34.1165
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Txhji8aepdIrw8fE7dz2QAX5fMKd6O85tQxr/vYK6gRAP2SyZ8OUrkQ1aZ8ZQRJi88A25IaAGowDfGwhCaTXWOSZRAZ1NpTReyCkhP+PaMc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8592
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+Content-Language: en-US
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
+ "kishon@kernel.org" <kishon@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
+ <99bef301-9f6c-4797-b47e-c83e56dfbda9@tuxon.dev>
+ <TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
-    Thanks for your reply.
 
-On 2024/8/26 16:28, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 23/08/2024 11:19, Xianwei Zhao via B4 Relay wrote:
->> From: Yiting Deng <yiting.deng@amlogic.com>
->>
->> Add Amlogic RTC entry to MAINTAINERS to clarify the maintainers
->>
->> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   MAINTAINERS | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 42decde38320..672290dddaaa 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -2481,6 +2481,14 @@ F:     drivers/irqchip/irq-mvebu-*
->>   F:   drivers/pinctrl/mvebu/
->>   F:   drivers/rtc/rtc-armada38x.c
->>
->> +ARM/Amlogic RTC Driver
-> 
-> "ARM" is for Soc entries, not individual drivers. Drop. Place it
-> correctly and use capital letters.
-> 
 
-Will do.
+On 31.08.2024 08:13, Biju Das wrote:
+> Hi Claudiu,
 > 
+>> -----Original Message-----
+>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>> Sent: Friday, August 30, 2024 9:23 AM
+>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+>>
+>> Hi, Ulf,
+>>
+>> On 29.08.2024 18:26, Ulf Hansson wrote:
+>>> On Thu, 22 Aug 2024 at 17:28, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>>>>
+>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>
+>>>> Hi,
+>>>>
+>>>> Series adds initial USB support for the Renesas RZ/G3S SoC.
+>>>>
+>>>> Series is split as follows:
+>>>>
+>>>> - patch 01/16           - add clock reset and power domain support for USB
+>>>> - patch 02-04/16        - add reset control support for a USB signal
+>>>>                           that need to be controlled before/after
+>>>>                           the power to USB area is turned on/off.
+>>>>
+>>>>                           Philipp, Ulf, Geert, all,
+>>>>
+>>>>                           I detailed my approach for this in patch
+>>>>                           04/16, please have a look and let me know
+>>>>                           your input.
+>>>
+>>> I have looked briefly. Your suggested approach may work, but I have a
+>>> few thoughts, see below.
+>>>
+>>> If I understand correctly, it is the consumer driver for the device
+>>> that is attached to the USB power domain that becomes responsible for
+>>> asserting/de-asserting this new signal. Right?
+>>
+>> Right!
+>>
+>>>
+>>> In this regard, please note that the consumer driver doesn't really
+>>> know when the power domain really gets powered-on/off. Calling
+>>> pm_runtime_get|put*() is dealing with the reference counting. For
+>>> example, a call to pm_runtime_get*() just makes sure that the PM
+>>> domain gets-or-remains powered-on. Could this be a problem from the
+>>> reset-signal point of view?
+>>
+>> It should be safe. From the HW manual I understand the hardware block is something like the following:
+>>
+>>
+>>                   USB area
+>>          +-------------------------+
+>>          |                         |
+>>          | PHY --->USB controller  |
+>> SYSC --> |  ^                      |
+>>          |  |                      |
+>>          | PHY reset               |
+>>          +-------------------------+
 > 
-> Best regards,
-> Krzysztof
+> How USB PWRRDY signal is connected to USB? 
+
+HW manual mentions this in the chapter describing the SYS_USB_PWRRDY register:
+
+Controls PWRRDY terminal of USB
+
+0: PWRRDY
+
+1: PWRRDY down
+
+When turning off the *USB region* power, set this bit to 1.
+
+When turning on the *USB region* power, set this bit to 0
+
+By USB region I get the that it is related to the SoC area where resides
+all the USB IPs. I cannot tell more than what is in the hardware manual.
+
+
 > 
+> USB block consists of PHY control, PHY, USB HOST and USB OTG Controller IPs.
+> 
+> Is it connected to top level block or connected to each IP's for turning off the USB region power?
+
+I cannot tell more than it is in the hardware manual.
+
+> 
+> ? Or Just PHY (HW manual mentions for AWO, the USB PWRRDY signal->USB PHY PWRRDY signal control)?
+> 
+> If the USBPWRRDY signal is connected across modules with this reset signal approach
+> then you may need to update bindings [1] with that reset signal
+> 
+> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240822152801.602318-12-claudiu.beznea.uj@bp.renesas.com/
+
+If that is true, then this signal may need to be routed to the PHY for
+better hardware description.
+
+>  
+> 
+> Cheers,
+> Biju
+> 
+>>
+>> Where:
+>> - SYSC is the system controller that controls the new signal for which
+>>   I'm requesting opinions in this series
+>> - PHY reset: is the block controlling the PHYs
+>> - PHY: is the block controlling the USB PHYs
+>> - USB controller: is the USB controller
+>>
+>> Currently, I passed the SYSC signal handling to the PHY reset driver; w/o PHY reset the rest of the
+>> USB logic cannot work (neither PHY block nor USB controller).
+>>
+>> Currently, the PHY reset driver call pm_runtime_resume_and_get() in probe and pm_runtime_put() in
+>> remove. The struct reset_control_ops::{assert, deassert} only set specific bits in registers (no
+>> pm_runtime* calls).
+>>
+>> The PHY driver is taking its PHY reset in probe and release it in remove().
+>> With this approach the newly introduced SYSC signal will be de-asserted/asserted only in the PHY reset
+>> probe/remove (either if it is handled though PM domain or reset control signal).
+>>
+>> If the SYSC signal would be passed to all the blocks in the USB area (and it would be handled though
+>> PM domains) it should be no problem either, AFAICT, because of reference counting the
+>> pm_runtime_get|put*() is taking care of. As the PHY reset is the root node the in the devices node
+>> tree for USB the reference counting should work, too (I may miss something though, please correct me
+>> if I'm wrong).
+>>
+>> If the SYSC signal would be handled though a reset control driver (as proposed in this series) and we
+>> want to pass this reference to all the blocks in the USB area then we can request the reset signal as
+>> shared and, AFAIK, this is also reference counted. The devices node tree should help with the order,
+>> too, if I'm not wrong.
+>>
+>> Thank you for looking at this,
+>> Claudiu Beznea
+>>
+>>>
+>>> [...]
+>>>
+>>> Kind regards
+>>> Uffe
 
