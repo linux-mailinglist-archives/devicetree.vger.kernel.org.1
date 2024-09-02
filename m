@@ -1,132 +1,166 @@
-Return-Path: <devicetree+bounces-99143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A22968EFC
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 22:59:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3548B968F20
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 23:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E0232831F8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:59:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E053128375B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 21:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5291865FB;
-	Mon,  2 Sep 2024 20:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBAC19F123;
+	Mon,  2 Sep 2024 21:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTSOvv0g"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="kDv/6r5g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A2F69959;
-	Mon,  2 Sep 2024 20:59:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725310777; cv=none; b=s1SbLbeU2rBQoYlllj977a6uagz476pKOR8csfeoncrwv2UHFma+OU4JFg/rob9qNtlhr6NKvvjIGOfboEX0e+OvvAoyEIQO+z0iOjziwSsOgZdVRTDu7NYN+XicjeIWtvIlX5YAnEMzlc+8dOvNcfgytM4pzXgXWcUpLhxqykQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725310777; c=relaxed/simple;
-	bh=r9qaTh+53ujld32cT6POMGMmnH20RcpZ6t2TTllW2Hw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=nuQ3sh5T3dQpmA64lT/FLJJYwFeeWIcMQIdi4es375S2DvkNhFc+beYwEydfPhzd7cB80kaZYB+kOhSA7M7EAL7XYiCNfR03b/Zy1XMKQMJgb2Cm4uxWSAqktbnTDLgASbf3VpXEhuGI6CQP3jH9EniahJmQdmtjZgPO+9jnBHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTSOvv0g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A5D6C4CEC2;
-	Mon,  2 Sep 2024 20:59:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725310776;
-	bh=r9qaTh+53ujld32cT6POMGMmnH20RcpZ6t2TTllW2Hw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=aTSOvv0ge41O8LerqN8uWFZtaSDOgysBtJ8534F0opdMVWDxru2yIsGdNOPi+y3WA
-	 xaQV0Y5QVUT5+1Ly2uwOzRixSARVkaY8NAN8qnMmS5w8CbAlbljTcbbmoVsa3ZIhKO
-	 yGcFLWdKFXpSKfNy0e/iRQpcckh2yu+daDnuYY8nMfbQ2WNnwTskGAc2cBIxH1OcXn
-	 Q9ULidDmdbnWSOz7O1ZSjoAc2QAlRnAT1dpbErxU9JPQ29KpkbbNw9sJ1vBcG87HVA
-	 k85R53LYg1DT2JxnXckQVeS2DKsovSZp6tbYltmvYi/1H2ZYK/bQFBEJDcj+NPCoaq
-	 IPNg4fOyUEh8w==
-Date: Mon, 2 Sep 2024 15:59:34 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 01/11] PCI: imx6: Fix establish link failure in EP
- mode for iMX8MM and iMX8MP
-Message-ID: <20240902205934.GA227711@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C176019CC0A;
+	Mon,  2 Sep 2024 21:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.18
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725311578; cv=pass; b=UQdsDOcp1OA/BKrpwLnEqpGvHFOt4yVdaz0V6eFsj4S9CHxgcY0uDOvq0ErwY3RGBN2IAnVwAv0M8McWe3UzEQMRc6uwzEs8tmr+xDHtOFO9Gki6JKYPZWHYHzaCGo8OW657lbPHIFm0qu4RLJC4xwBEvElpRMNtOB0F3DZJfhM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725311578; c=relaxed/simple;
+	bh=82JS3J8b4G3g22pxevQZoT45sO0ad2YjVMFeqqnzguY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bWe3a6Q0FNaE2zuhMOnOBTA7HHXXryLd/G/Z8PmnaaLQ0rF0maXbtndXDKoEfwiGwiNtGUR8aljYXHueGiV//s3oMLXES7HMvSrCBvZgZYQBad4ScLHw7pDaR4sXDtI0vzzvARYts+09lN6b5xYMSpkbMWsIMilG0axx9Ii/NTE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=kDv/6r5g; arc=pass smtp.client-ip=136.143.184.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1725311533; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=JwAKCfgdatJkOj+LpW6Ekfn324S4piCedRCyzcE3OihQ52UM3hR04c6dURjvhz0mvqCHAh2q7TFiOsMvsps8jPK8C9AeC5SO0jyrrluM/ELIrj/j2ajamuoBCXYikopmWUeIh9LyrKiXCGiAKcqV8pos47rR/CDYIchX5pIs6iU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1725311533; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=gcEMGv0FHpr9nNpZ/Gd7YBKiaJiXZ1zN6+bJa53L2CY=; 
+	b=ei+qCc4NjAw/WmxNzbGYXPc53dO+llpzmDkXRd3tOUSvprAOSkIMx0CdEBKrymrFMKhhbhHeJNdHMDHZmWBcxQC7cQYO1oz9qt25H/lXcrqzNmXI8vBLfFKLEmdTuHEJD2+O7cCxEBCjE7Do+9+q21jP+iuR4evwxO60Bht5mcc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725311533;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=gcEMGv0FHpr9nNpZ/Gd7YBKiaJiXZ1zN6+bJa53L2CY=;
+	b=kDv/6r5gyxkyU9MDc6BAPTO89AvtwgPqAhRwO7Hnk9p3rAulIJEVMA+Av0DHG4MI
+	6vkXDc+5X9MyQoBzbFP9+IVSaLbfKYulR29gc/KWMvQkU6kxXlurxK091YcXWH6s9rB
+	3zAMs5y9MOLWK8tZOwikhRKyQ7Pf8pdUDD04vk4w=
+Received: by mx.zohomail.com with SMTPS id 1725311530551764.3736823391141;
+	Mon, 2 Sep 2024 14:12:10 -0700 (PDT)
+Message-ID: <6e20410a-a24d-4454-8577-2cff65319a2a@collabora.com>
+Date: Tue, 3 Sep 2024 00:12:02 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240729-pci2_upstream-v8-1-b68ee5ef2b4d@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] drm/bridge: synopsys: Add DW HDMI QP TX Controller
+ support library
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+ Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
+References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
+ <20240819-b4-rk3588-bridge-upstream-v4-2-6417c72a2749@collabora.com>
+ <20240827-armored-magnificent-badger-ffb025@houat>
+ <34422b7a-ce70-445d-a574-60ac36322119@collabora.com>
+ <20240902-turtle-of-major-glory-efb4e8@houat>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240902-turtle-of-major-glory-efb4e8@houat>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Mon, Jul 29, 2024 at 04:18:08PM -0400, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
+On 9/2/24 10:36 AM, Maxime Ripard wrote:
+> On Sat, Aug 31, 2024 at 01:21:48AM GMT, Cristian Ciocaltea wrote:
+>> On 8/27/24 11:58 AM, Maxime Ripard wrote:
+>>> On Mon, Aug 19, 2024 at 01:29:29AM GMT, Cristian Ciocaltea wrote:
+>>>> +static irqreturn_t dw_hdmi_qp_main_hardirq(int irq, void *dev_id)
+>>>> +{
+>>>> +	struct dw_hdmi_qp *hdmi = dev_id;
+>>>> +	struct dw_hdmi_qp_i2c *i2c = hdmi->i2c;
+>>>> +	u32 stat;
+>>>> +
+>>>> +	stat = dw_hdmi_qp_read(hdmi, MAINUNIT_1_INT_STATUS);
+>>>> +
+>>>> +	i2c->stat = stat & (I2CM_OP_DONE_IRQ | I2CM_READ_REQUEST_IRQ |
+>>>> +			    I2CM_NACK_RCVD_IRQ);
+>>>> +
+>>>> +	if (i2c->stat) {
+>>>> +		dw_hdmi_qp_write(hdmi, i2c->stat, MAINUNIT_1_INT_CLEAR);
+>>>> +		complete(&i2c->cmp);
+>>>> +	}
+>>>> +
+>>>> +	if (stat)
+>>>> +		return IRQ_HANDLED;
+>>>> +
+>>>> +	return IRQ_NONE;
+>>>> +}
+>>>
+>>> If the scrambler is enabled, you need to deal with hotplug. On hotplug,
+>>> the monitor will drop its TMDS ratio and scrambling status, but the
+>>> driver will keep assuming it's been programmed.
+>>>
+>>> If you don't have a way to deal with hotplug yet, then I'd suggest to
+>>> just drop the scrambler setup for now.
+>>
+>> Thanks for the heads up!
+>>
+>> HPD is partially handled by the RK platform driver, which makes use of
+>> drm_helper_hpd_irq_event(). Since the bridge sets DRM_BRIDGE_OP_DETECT
+>> flag, the dw_hdmi_qp_bridge_detect() callback gets executed, which in turn
+>> verifies the PHY status via ->read_hpd() implemented as
+>> dw_hdmi_qp_rk3588_read_hpd() in the platform driver.
 > 
-> Add IMX6_PCIE_FLAG_HAS_APP_RESET flag to IMX8MM_EP and IMX8MP_EP drvdata.
-> This flag was overlooked during code restructuring. It is crucial to
-> release the app-reset from the System Reset Controller before initiating
-> LTSSM to rectify the issue
-
-What exactly is the issue?  What does it look like to a user?  The
-endpoint doesn't establish a link correctly?
-
-> Fixes: 0c9651c21f2a ("PCI: imx6: Simplify reset handling by using *_FLAG_HAS_*_RESET")
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-
-Does this need a -stable tag?
-
-0c9651c21f2a appeared in v6.9, but this could arguably be v6.11
-material if it fixes a serious issue.
-
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> It's not only about hotplug detection, it's also about what happens
+> after you've detected a disconnection / reconnection.
 > 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 964d67756eb2b..42fd17fbadfa5 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -1562,7 +1562,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
->  	},
->  	[IMX8MM_EP] = {
->  		.variant = IMX8MM_EP,
-> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
-> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
-> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
->  		.mode = DW_PCIE_EP_TYPE,
->  		.gpr = "fsl,imx8mm-iomuxc-gpr",
->  		.clk_names = imx8mm_clks,
-> @@ -1573,7 +1574,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
->  	},
->  	[IMX8MP_EP] = {
->  		.variant = IMX8MP_EP,
-> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
-> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
-> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
->  		.mode = DW_PCIE_EP_TYPE,
->  		.gpr = "fsl,imx8mp-iomuxc-gpr",
->  		.clk_names = imx8mm_clks,
+> The framework expects to keep the current mode as is, despite the
+> monitor not being setup to use the scrambler anymore, and the display
+> remains black.
+
+AFAICS, the ->atomic_enable() callback is always invoked upon
+reconnection, hence the scrambler gets properly (re)enabled via
+dw_hdmi_qp_setup().
+
+>> During my testing so far it worked reliably when switching displays with
+>> different capabilities.  I don't have a 4K@60Hz display at the moment, but
+>> used the HDMI RX port on the Rock 5B board in a loopback connection to
+>> verify this mode, which triggered the high TMDS clock ratio and scrambling
+>> setup as well.
 > 
-> -- 
-> 2.34.1
-> 
+> How did you test exactly?
+
+I initially tested with Sway/wlroots having an app running
+(eglgears_wayland) while unplugging/replugging the HDMI connectors in
+every possible sequence I could think of (e.g. several times per
+display, switching to a different one, repeating, switching again, etc).
+
+I've just retested the whole stuff with Weston and confirm it works as
+expected, i.e. no black screen (or bad capture stream for the 4K@60Hz
+case) after any of the reconnections.
+
+Regards,
+Cristian
 
