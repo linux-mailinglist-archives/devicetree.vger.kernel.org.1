@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-98997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE47496847A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 12:20:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33066968483
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 12:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 622F21F2210B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:20:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5484A1C22B09
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7623513D628;
-	Mon,  2 Sep 2024 10:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE44B13B284;
+	Mon,  2 Sep 2024 10:20:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MCHVdbly"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K7+6kU3i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5B913B5A1
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 10:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CBA13C9A3
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 10:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725272397; cv=none; b=e5ozSxidnXK4AudNWySsDV+GpjmWSEQfLEAAX4k9dix90E47azf0styOEWpVrUEvbN6SYfPvzUnzS/40Zb10YOlTGdX3Yb3AKrWWfYTllYdDO3eJWN2z9oo+95ncSx0BQT9sHaiHYK4AO+EZO2q4L/ysfeRscRWz2R8ls7CXba0=
+	t=1725272433; cv=none; b=SAlVzdr+aNzjjTYvbU6Xcy5uBTn3WODaJidMbF1Ubtr6vFC2OJv4KTwaVKulozMne8JRr15cP57oT1l+nRU9YR/lvlflmziohe0PcZYAax1U5ULX16ETqI9Z+fDdDbZK8LPPvDveZGizN51A7l1xcmRYHkw5jmu6nN3BwjOsKxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725272397; c=relaxed/simple;
-	bh=M5Dk1DR76FCutQXB41Y8ZbzvG44gAJn5FSu1u6qiuS0=;
+	s=arc-20240116; t=1725272433; c=relaxed/simple;
+	bh=m2+SbPzms8UxM+xJL/ev64HbjIgPl7KAqZRsS7pn7eY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mH0qrDIED7z02ND10Qazlvtapy1TJIQB6l9CMA4j+xWyCh68BlQvf3V32GHx/OeBASTuyVCbm5h2vWwWfzVE028iRW7I+m6qNBmngxOJzghipssDrgsQ+PwrYsdQIle8mcC+Pp4SsadyLez+i6uiT4AZV7bQmJ0g41IbsHKepoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MCHVdbly; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=r8scw+005vCBBzEwocJrczikDI44BWRfxPDWC3crzzYCQIdT0K1FXCztuMvBD63X57AGo288lDxyV4J3ZNVdlOQJ50eI6WvWnoDK2n3Z4jXYuSXhG7/YflwXbUAMcfB+N+sigxScXk6ypsEdMXOp5JMaZ4AGgSFDbr9NWejcnDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K7+6kU3i; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42baecbd4fbso5746515e9.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 03:19:54 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42baecbd4fbso5747345e9.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 03:20:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725272393; x=1725877193; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yB0m1PaaQZ5aM1VaopXlx4ZLr5GQtRTo/OSTIwNnsfo=;
-        b=MCHVdblyWvaz6Ya1/9dJ9kN8AlQfhnbBpNoXOsw0Ew6W0LhEKZe23dLbj8Jt8Gi1Kt
-         rrtrK87ls3lNQKzhwkK+KgbNz+eV5ONHIL332D1jVETKbUn0WAg8MzRp38veJSH7DjJS
-         VdnVrzeF3KD/D2sg/JWCpMfh3u20nNJfSkmTcrpwa1b/r3BEfqr83k85zfeAfhwAj2X0
-         GxSmwswD+iITmcZkAtMgn7mKPzga42BZ4Jg6MmhOhXTjGCVko+vMycvQdFkrOz71J3lP
-         /8lRBIyWkrnWgrLANWCUNS6EqrkmJifegWOm2lQLFaTeBBKSjCVI+0/CyzfEZSCLyUgk
-         x9pA==
+        d=linaro.org; s=google; t=1725272430; x=1725877230; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=vRSKkhAdeleXt0LAg5y5qL40UQ/77V2R6wYH8YoUM0s=;
+        b=K7+6kU3iJa6LEPNbbcyRijt4UlnHCvgwBsDbdBwwP9mesu5kNzz0elwtRQBbLPvzeo
+         C34sx8mPn65HIkZcov23qEUX4txpmcs8v8jrm4kP8EIUYKQhr5KhAhFFSWG4wEhgE6u1
+         pxU0dq0++f+zmGYgIIf90mn8Lw/4lJQfIvbqOYuYxFT7GjCs1Z+tBHl78NkKV/8doyYm
+         dQaf6G/Wyjs3sSEva8tc+coG9RESMgS1o9luLfS3nEN4BeXxcugHdQji7iCWKM2i9jy/
+         s5GHS3BkqCcPsVeotGS8jNAklfSCcHLhpTUYe3O+37OFcFwMeb901AjL+YKwNTjc58d6
+         BDAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725272393; x=1725877193;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yB0m1PaaQZ5aM1VaopXlx4ZLr5GQtRTo/OSTIwNnsfo=;
-        b=wzAxYjwFg6mdQNCY7U/Py2aD0jtTx8H1oIy7UFxtdJR7/Jnuco4Q4BPEmGpD3+JYXJ
-         IN7ikQ8MJWbtC48VgGW1/vMKVcCR+KfIaaRIFQcKLl8U0pBuwfVf7F8xGYCHH1FHOi8R
-         uZ/4rUee+P9++q87t7ovcv96USIX8MEdrCZilJcdVs5xnwhmp+z1WpCTyxWovfkNPDdB
-         V3pmbZ9hIh82VBLBeftVX7tcHIEJba2tug1XY6yniuwajTsrCk9PGtMatDN0MRVrwoOc
-         BAhWkB9rGY1/7qUTTlaj/D2wo579yY3zlhUVHb9BPtxK1Lb0xsqwSIeMqCW5UfgNl1+m
-         c0vw==
-X-Forwarded-Encrypted: i=1; AJvYcCX63LN3OX3SOrIPazAB6kAJ3tDrSUcwVqUmncLuT3dLKM3cOhdnC3TqAVsVlH8c3YBIJfCTaYm5xJsI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxSu+7Y8N4+W4MXeblb33UDs7fXZbD63EJxQ2hNR1DaTtBuvbx
-	rvm5ZjBmg1Eld2tVMAYzn4wsfYpgcrbPIz19yhG/24HX6eKWa0iUUe5JkCIiziU=
-X-Google-Smtp-Source: AGHT+IGghnVNFM35t4xUZUUsLVLz8sb17LpnDS62KKdW6kZiRcsgHzzg6aJ9AUskGiV9JDyUlEWMMQ==
-X-Received: by 2002:a05:6000:2a5:b0:364:8215:7142 with SMTP id ffacd0b85a97d-374a953f858mr3766027f8f.1.1725272392716;
-        Mon, 02 Sep 2024 03:19:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725272430; x=1725877230;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vRSKkhAdeleXt0LAg5y5qL40UQ/77V2R6wYH8YoUM0s=;
+        b=mp0/xCv6d6i7EczsWyUPLzjlza3PsuUC4qnfDf03v8n1+Woa1bWrMga30jGpambHO1
+         Tgap9k+mvUNG2mN2iNx2V6g23vy6xEu2rlb86xqCnIGndLnLqlY6LNLoZNQu0yT1JAiq
+         rErOgUczjDAR2FjXL+yBkwLtMDokc5uC38BMMkVw2coTwuCgrxRG+b7NdpKRvrELk0Eg
+         Xw2DchyMqYrGTsibVO310/RC4tf95lvKifP6e28gzpjL1Sxis2SKcMOWVZ98Du/brju+
+         iyH2FG560AHcy3vyAQDG/FqChSlEDl0R/M1bVJfAO2jiTRAF5yLz1qnyIdvdSO8ln1l5
+         Onww==
+X-Forwarded-Encrypted: i=1; AJvYcCU8OzcESpEtDUg/zj9CiPRyoP/F8gR4+lWSKP90Haq+4grDJokrv2RdnyOgF+LQploouDBgC/m33kjP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxMnQezCc1Rl+wRYuZWXdRuzbJdKujbXEZtXCP0n2vRTUCRWGj
+	c5vFAQhPLoU55vujG1uBAORSrqno0Uqsfnlp9zDzf3Q2BkRzLYh1efdvqkr/Dw0=
+X-Google-Smtp-Source: AGHT+IGjtdOTho2XQUieF5n90G9IGbxC8GYlG09ryb+5aH9rGBOQeeQHSZh6Pjs3rtK+CDlStyH+jQ==
+X-Received: by 2002:a05:600c:46c9:b0:424:ac9f:5c61 with SMTP id 5b1f17b1804b1-42bbb43423dmr38592725e9.3.1725272430441;
+        Mon, 02 Sep 2024 03:20:30 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee4a55fsm10997734f8f.10.2024.09.02.03.19.50
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb6df100csm132306735e9.20.2024.09.02.03.20.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Sep 2024 03:19:51 -0700 (PDT)
-Message-ID: <7fbc4549-79e0-4fb0-9468-41a0babae95a@linaro.org>
-Date: Mon, 2 Sep 2024 12:19:50 +0200
+        Mon, 02 Sep 2024 03:20:29 -0700 (PDT)
+Message-ID: <91ca3ddc-c33f-45ca-b55a-0e0d4a8835a4@linaro.org>
+Date: Mon, 2 Sep 2024 12:20:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mm-var-som: drop unused top-level
- compatible
+Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: drop usage of VAR-SOM-MX8MM
+ SoM compatible alone
 To: Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
@@ -89,9 +90,10 @@ To: Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
  "imx@lists.linux.dev" <imx@lists.linux.dev>,
  "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 References: <20240902075220.27971-1-krzysztof.kozlowski@linaro.org>
- <PAXPR04MB8459FB36872E71E1605DDC2088922@PAXPR04MB8459.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <20240902075220.27971-2-krzysztof.kozlowski@linaro.org>
+ <PAXPR04MB84596E0C1F9ED62F6A5B5FCE88922@PAXPR04MB8459.eurprd04.prod.outlook.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -136,44 +138,43 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <PAXPR04MB8459FB36872E71E1605DDC2088922@PAXPR04MB8459.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB84596E0C1F9ED62F6A5B5FCE88922@PAXPR04MB8459.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/09/2024 12:13, Peng Fan wrote:
->> Subject: [PATCH 1/2] arm64: dts: imx8mm-var-som: drop unused top-
->> level compatible
+On 02/09/2024 12:15, Peng Fan wrote:
+>> Subject: [PATCH 2/2] dt-bindings: arm: fsl: drop usage of VAR-SOM-
+>> MX8MM SoM compatible alone
 >>
 >> The Variscite VAR-SOM-MX8MM System-on-Module cannot be used
->> alone without motherboard, so drop the top-level compatible field to
->> avoid any false impression that such usage is possible.
+>> alone without motherboard, so drop the usage of its compatible alone.
 >>
 >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >> ---
->>  arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi | 1 -
+>>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 -
 >>  1 file changed, 1 deletion(-)
 >>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
->> b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
->> index d7830df5b6f9..cdfacbc35db5 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
->> @@ -8,7 +8,6 @@
->>
->>  / {
->>  	model = "Variscite VAR-SOM-MX8MM module";
->> -	compatible = "variscite,var-som-mx8mm", "fsl,imx8mm";
->>
->>  	chosen {
->>  		stdout-path = &uart4;
->> --
->> 2.43.0
+>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
+>> b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> index 1abdeb804468..e5f982fa750b 100644
+>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> @@ -953,7 +953,6 @@ properties:
+>>                - toradex,verdin-imx8mm     # Verdin iMX8M Mini Modules
+>>                - toradex,verdin-imx8mm-nonwifi  # Verdin iMX8M Mini
+>> Modules without Wi-Fi / BT
+>>                - toradex,verdin-imx8mm-wifi  # Verdin iMX8M Mini Wi-Fi /
+>> BT Modules
+>> -              - variscite,var-som-mx8mm   # i.MX8MM Variscite VAR-SOM-
+>> MX8MM module
+>>                - prt,prt8mm                # i.MX8MM Protonic PRT8MM Board
+>>            - const: fsl,imx8mm
 >>
 > 
-> Should the " variscite,var-som-mx8mm " also removed from
-> imx8mm-var-som-symphony.dts?
+> Line 1072
+> "const: variscite,var-som-mx8mm" should this one also need removed?
 
-No, why?
+Of course not! How is this related to patch description?
 
 Best regards,
 Krzysztof
