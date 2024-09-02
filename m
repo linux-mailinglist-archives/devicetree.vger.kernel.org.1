@@ -1,277 +1,193 @@
-Return-Path: <devicetree+bounces-99018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F4F968593
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:02:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 821209685DB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:13:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67176B21373
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:02:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A20EE1C2097F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E703F1D6DDF;
-	Mon,  2 Sep 2024 10:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822AE181BA8;
+	Mon,  2 Sep 2024 11:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Fl/3HtTx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nU0mvZjj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87C11D6DAE;
-	Mon,  2 Sep 2024 10:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B435175A5;
+	Mon,  2 Sep 2024 11:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725274670; cv=none; b=XaLNMe0JSXiF9TBtjErRe0xKnpSR559r5MgLkdPG3nZRW/3c1xtiQckIcj9ZldLz4QCECYXuzp2vjt7DonHYbk2Vvi6K0OXYQ6n4wR35RnGORbaOnSi9QzV+1LrDF9MKEWsBX04YjN5zpdkgtDp952kfr4nbwc6Zm6pyg25NwlA=
+	t=1725275584; cv=none; b=gREDnDXN9gc8L70xtDrEW6L8nTnIauMo9w1QVYuVv0OnsaCdLt+7dSimHdTpaNOcV5Vm5DpybhQ8NvaPi3AG+d70VtRkfjmsbGmovpil3DoHb5v47Uyc2/etX8HPjjKA35I/6S8JPT93l7XvaxrgWUfvSt40lE0ab4dLcJ2iCno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725274670; c=relaxed/simple;
-	bh=5BbWc1k6oA1tQz42t0Be4gA3NCk1QECpPKKme5UwU68=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=GUpmqlMdVO67v8GW1xpSATpwiviU3Y0TSQ9Sp7WbJC64CkWc6XWrL8bA7n1MXy1BZVh47CW1UmLP88mFivuT4Dslc9YUVck2yh9OVRK+NWSbRc7Ma0fCKYoeeUnRzJ+oyAw2gjk4gVZdGIlLmmV+dqKX3UzzY0Mh397Eksn/fCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Fl/3HtTx; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1725275584; c=relaxed/simple;
+	bh=+uulfcVXT6YjoKghtTgzQhPkoYdQXxqT7443vnr5b58=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VUwiH3sDWQDBBx/iEvGGARbgauUZ7VyeEF0Wympj5pCZz6T4/lesNSqoCsZJec7p8M0wf55SGWlWiOjmt2Ypi2k1seaFsyqWV5hZxvsLH9yfMdFWrNG2W26FprP/CAOYs6uN7ENJG8yxSOAZqDC90YQOBE+0Vhce7XzCtA/Iw34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nU0mvZjj; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725274668; x=1756810668;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=5BbWc1k6oA1tQz42t0Be4gA3NCk1QECpPKKme5UwU68=;
-  b=Fl/3HtTxhadhjoWVdvhu3vj0ZYJBI1RNlMy5rkRE/EWVeUqsK57BXm1v
-   QUHGysbQqtXR5kFzPaRu0shURavcWKVRndnRo1Mi1mwyYjOb37W8zndv6
-   VZnq69XU7mi8IVzGSCWEIJwfndKK14BUT5N7vlWOtDSxOeZMP+1S1WM+w
-   x/c/+hTYGtxNPaaQcOu1LjqE9jknpFMpxXBnCaW5lz2MbooD8ShFbo4uz
-   2OqkAIt78dKAHbZsRsTU7gdTYFDK26uJi5GWjbpDHioJLYmNHshN09n/9
-   kHK3bansEBdi4X5jghg6osQtiBpdaMG0twstcuD/dOs1/8JU7LT9nKAeb
-   g==;
-X-CSE-ConnectionGUID: UGwwVVYkSCW8ZZOAd5HOeA==
-X-CSE-MsgGUID: IBCickTLSQiDyGRm7UbQ6w==
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725275583; x=1756811583;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+uulfcVXT6YjoKghtTgzQhPkoYdQXxqT7443vnr5b58=;
+  b=nU0mvZjjBdUpc63/RyqeEOYDOia6NVzSyGn9+ZGe9C1I0z+1T6TUXoF4
+   3084XQTdqQqY8KzAtAvIIvZ7Glz0CEzh229DgL1bPg4L/yKAhnaxLmkFX
+   WLjYrKRmM3uiu///xzbuEqz0FYn8lvYF0YMeZyG2Gqcc4Lt2TGi8HD3Yw
+   Z+GunjyjjS8WOGDHdeY+NzAybdR9oartpI441u6t+hbP0GJbhUWfMrXJG
+   RK/3A9ZLRgMdEeCh2sK4ouRqL/WlsZ/jKOIRyvyi6VSPG1+4P8LyjvzDu
+   JPNKZ+N+A+RyA5c5mPy70qAMhOCOynWgD5K2qgdwq+52W6YL0XK5FUmAJ
+   Q==;
+X-CSE-ConnectionGUID: 8kP6ifzkSUSLVpg2X1vS5Q==
+X-CSE-MsgGUID: CiWX05+aQp6MBUaD76TB0A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="41352606"
 X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; 
-   d="scan'208";a="31845450"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Sep 2024 03:57:46 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 2 Sep 2024 03:57:27 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 2 Sep 2024 03:57:16 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Mon, 2 Sep 2024 16:27:09 +0530
-Subject: [PATCH v4] dt-bindings: mmc: sdhci-atmel: Convert to json schema
+   d="scan'208";a="41352606"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 04:13:02 -0700
+X-CSE-ConnectionGUID: ltWCpk/5SMKI28+OWW8xEg==
+X-CSE-MsgGUID: 9PxBVm5wQcWh8LoEG16rjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; 
+   d="scan'208";a="68716707"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 04:12:54 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sl4zK-00000004Kz6-11Uq;
+	Mon, 02 Sep 2024 14:12:50 +0300
+Date: Mon, 2 Sep 2024 14:12:49 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev, devicetree@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Pin-yen Lin <treapking@chromium.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Benson Leung <bleung@chromium.org>,
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	dri-devel@lists.freedesktop.org,
+	Guenter Roeck <groeck@chromium.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Lee Jones <lee@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Prashant Malani <pmalani@chromium.org>,
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH v4 11/18] device property: Add remote endpoint to devcon
+ matcher
+Message-ID: <ZtWdsZrFxfjYLgaG@smile.fi.intel.com>
+References: <20240901040658.157425-1-swboyd@chromium.org>
+ <20240901040658.157425-12-swboyd@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240902-atmel-sdhci-v4-1-96912fab6b2d@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAASa1WYC/33NTQ6CMBCG4auQrq3pD9rWlfcwLsrQ2kmEkpYQD
- eHuFrYSlt8kzzszyS6hy+RWzSS5CTPGvoz6VBEItn85im3ZRDBRMy0ZtWPn3jS3AZCCsUY0irO
- rqEkRQ3IeP1vt8Sw7YB5j+m7xia/X/c7EKaOMO+lAg9GsvncIKULA4QyxI2trEgdeFN8of9FGS
- S897Hl54GXxCoyyTCth/d//ZVl+CTttgCoBAAA=
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Aubin Constans <aubin.constans@microchip.com>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Dharma Balasubiramani <dharma.b@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725274635; l=6278;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=5BbWc1k6oA1tQz42t0Be4gA3NCk1QECpPKKme5UwU68=;
- b=wRvoDXOxjyA2kABOBSV5jStVdpWIVysKjfXncXOkFQDC3cgE3O5fvNUDu0qHsspga4Izl+ORe
- o4WEHHSaGRLBoqByLqikn4sFnGceo5d3schF7vlbIp79dXjsWqSTLpV
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240901040658.157425-12-swboyd@chromium.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Convert sdhci-atmel documentation to yaml format. The new file will inherit
-from sdhci-common.yaml.
+On Sat, Aug 31, 2024 at 09:06:49PM -0700, Stephen Boyd wrote:
+> When a single DT node has a graph connected to more than one
+> usb-c-connector node we can't differentiate which typec switch
+> registered for the device is associated with the USB connector because
+> the devcon matcher code assumes a 1:1 relationship between remote node
+> and typec switch. Furthermore, we don't have a #typec-switch-cells
+> property so there can only be one node per typec switch.
+> 
+> Support multiple USB typec switches exposed by one node by passing the
+> remote endpoint node in addition to the remote node to the devcon
+> matcher function (devcon_match_fn_t). With this change, typec switch
+> drivers can register switches with the device node pointer for a graph
+> endpoint so that they can support more than one typec switch if
+> necessary. Either way, a DT property like 'mode-switch' is always in the
+> graph's parent node and not in the endpoint node.
 
-Note: Add microchip,sama7g5-sdhci to compatible list as we already use it
-in the DT.
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Daniel Scally <djrscally@gmail.com>
+> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+> Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Ivan Orlov <ivan.orlov0322@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <linux-usb@vger.kernel.org>
+> Cc: <linux-acpi@vger.kernel.org>
+> Cc: Pin-yen Lin <treapking@chromium.org>
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
-This patch series converts the sdhci-atmel dt-binding to yaml format and adds
-the sama7d65,sama7g5 compatibles to the list.
----
-Changes in v4:
-- remove the "atmel,sama5d3-sdhci" and "atmel,sama5d4-sdhci" compatibles and
-  add back the "microchip,sam9x7-sdhci" compatible from old binding which was missed.
-- drop the addition of sama7d65 in binding, will be sent along with the dts patch series.
-- Add the entire description of "microchip,sdcal-inverted" from old txt binding.
-- The microchip,sam9x7-sdhci is yet to be merged in DTS
-https://lore.kernel.org/lkml/20240729070934.1991467-1-varshini.rajendran@microchip.com/
-- Link to v3: https://lore.kernel.org/r/20240830-atmel-sdhci-v3-0-7c97a0872af4@microchip.com
+Is it possible to move these Cc:s after --- line below?
 
-Changes in v3:
-- update the items in clocks instead of plain description.
-- move the items list to clock-names.
-- since baseclk is must, change maxitems to minitems: 3, and modify the
-  conditional bits accordingly.
-- Link to v2: https://lore.kernel.org/r/20240830-atmel-sdhci-v2-0-b7f58973f3fc@microchip.com
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 
-Changes in v2:
-- Add missing deleted file to the patch 
-"Documentation/devicetree/bindings/mmc/sdhci-atmel.txt"
-- Link to v1: https://lore.kernel.org/r/20240830-atmel-sdhci-v1-0-01e3ec8c9804@microchip.com
----
- .../bindings/mmc/atmel,sama5d2-sdhci.yaml          | 92 ++++++++++++++++++++++
- .../devicetree/bindings/mmc/sdhci-atmel.txt        | 35 --------
- 2 files changed, 92 insertions(+), 35 deletions(-)
+...
 
-diff --git a/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
-new file mode 100644
-index 000000000000..8c8ade88e8fe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/atmel,sama5d2-sdhci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel SDHCI controller
-+
-+maintainers:
-+  - Aubin Constans <aubin.constans@microchip.com>
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+
-+description:
-+  Bindings for the SDHCI controller found in Atmel/Microchip SoCs.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,sama5d2-sdhci
-+          - microchip,sam9x60-sdhci
-+      - items:
-+          - enum:
-+              - microchip,sam9x7-sdhci
-+              - microchip,sama7g5-sdhci
-+          - const: microchip,sam9x60-sdhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: hclock
-+      - description: multclk
-+      - description: baseclk
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: hclock
-+      - const: multclk
-+      - const: baseclk
-+    minItems: 2
-+
-+  microchip,sdcal-inverted:
-+    type: boolean
-+    description:
-+      When present, polarity on the SDCAL SoC pin is inverted. The default
-+      polarity for this signal is described in the datasheet. For instance on
-+      SAMA5D2, the pin is usually tied to the GND with a resistor and a
-+      capacitor (see "SDMMC I/O Calibration" chapter).
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - $ref: sdhci-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - atmel,sama5d2-sdhci
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          minItems: 3
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    mmc@a0000000 {
-+        compatible = "atmel,sama5d2-sdhci";
-+        reg = <0xa0000000 0x300>;
-+        interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
-+        clocks = <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
-+        clock-names = "hclock", "multclk", "baseclk";
-+        assigned-clocks = <&sdmmc0_gclk>;
-+        assigned-clock-rates = <480000000>;
-+    };
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
-deleted file mode 100644
-index a9fb0a91245f..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
-+++ /dev/null
-@@ -1,35 +0,0 @@
--* Atmel SDHCI controller
--
--This file documents the differences between the core properties in
--Documentation/devicetree/bindings/mmc/mmc.txt and the properties used by the
--sdhci-of-at91 driver.
--
--Required properties:
--- compatible:		Must be "atmel,sama5d2-sdhci" or "microchip,sam9x60-sdhci"
--			or "microchip,sam9x7-sdhci", "microchip,sam9x60-sdhci".
--- clocks:		Phandlers to the clocks.
--- clock-names:		Must be "hclock", "multclk", "baseclk" for
--			"atmel,sama5d2-sdhci".
--			Must be "hclock", "multclk" for "microchip,sam9x60-sdhci".
--			Must be "hclock", "multclk" for "microchip,sam9x7-sdhci".
--
--Optional properties:
--- assigned-clocks:	The same with "multclk".
--- assigned-clock-rates	The rate of "multclk" in order to not rely on the
--			gck configuration set by previous components.
--- microchip,sdcal-inverted: when present, polarity on the SDCAL SoC pin is
--  inverted. The default polarity for this signal is described in the datasheet.
--  For instance on SAMA5D2, the pin is usually tied to the GND with a resistor
--  and a capacitor (see "SDMMC I/O Calibration" chapter).
--
--Example:
--
--mmc0: sdio-host@a0000000 {
--	compatible = "atmel,sama5d2-sdhci";
--	reg = <0xa0000000 0x300>;
--	interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
--	clocks = <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
--	clock-names = "hclock", "multclk", "baseclk";
--	assigned-clocks = <&sdmmc0_gclk>;
--	assigned-clock-rates = <480000000>;
--};
+>  /**
+>   * devcon_match_fn_t - device connection match function
+>   * @fwnode: Remote connection's device node
+> + * @endpoint: Remote connection's endpoint node
+>   * @con_id: Identifier for the connection
+>   * @data: Match function caller specific data
+>   *
+>   * Implement a callback with this function signature to search a fwnode's
+>   * connections for a match with a function like device_connection_find_match().
+>   * This function will be called possibly multiple times, once for each
+> - * connection. The match function should inspect the @fwnode to look for a
+> - * match. The @con_id and @data provided are the same as the @con_id and @data
+> - * arguments passed to the functions that take a devcon_match_fn_t argument.
+> + * connection. The match function should inspect the connection's @fwnode
+> + * and/or @endpoint to look for a match. The @con_id and @data provided are the
+> + * same as the @con_id and @data arguments passed to the functions that take a
+> + * devcon_match_fn_t argument.
 
----
-base-commit: 4b7d983dd85a5cdf4938f4a0a93adedf697ac04d
-change-id: 20240830-atmel-sdhci-c9a92b710624
+So, struct fwnode_handle is a single-linked list. Can we utilise that instead
+of adding a new parameter? I.o.w. do those objects (@fwnode and @endpoint) have
+anything in common and can be chained?
 
-Best regards,
+>   * Note: This function can be called multiple times.
+
+What does this mean? Is it idempotent? Or what is the effect of being called
+multiple times?
+
+>   *
+>   * Return: Pointer to match or NULL if no match found.
+>   */
+
 -- 
-Dharma Balasubiramani <dharma.b@microchip.com>
+With Best Regards,
+Andy Shevchenko
+
 
 
