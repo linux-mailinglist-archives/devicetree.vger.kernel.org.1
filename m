@@ -1,59 +1,71 @@
-Return-Path: <devicetree+bounces-99142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57376968EE5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 22:37:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88A22968EFC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 22:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E52F0B22176
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:37:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E0232831F8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8265C1428E0;
-	Mon,  2 Sep 2024 20:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5291865FB;
+	Mon,  2 Sep 2024 20:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTSOvv0g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw21-7.mail.saunalahti.fi (fgw21-7.mail.saunalahti.fi [62.142.5.82])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A541A4E7F
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 20:37:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.82
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A2F69959;
+	Mon,  2 Sep 2024 20:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725309441; cv=none; b=t/V8lr7lyqrFMoK5Y+nOwF1P3QWco3FYF97XdsFlCXEV3wtSkWkQ5O19s/HxmbJSafxbVByTgiwXqlt8HcXa3DqQq8La/6BbyTyVp9bimglX2B8Ys7QJRh7JDWAdhLRrJA/2/a+F4jyqzvAVUtIb7u5tr4xWetyDfM1Ar5qsVWo=
+	t=1725310777; cv=none; b=s1SbLbeU2rBQoYlllj977a6uagz476pKOR8csfeoncrwv2UHFma+OU4JFg/rob9qNtlhr6NKvvjIGOfboEX0e+OvvAoyEIQO+z0iOjziwSsOgZdVRTDu7NYN+XicjeIWtvIlX5YAnEMzlc+8dOvNcfgytM4pzXgXWcUpLhxqykQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725309441; c=relaxed/simple;
-	bh=kfH2+W1R2W5ZJM+H60zVdLSui4KadwG9+9YnszFJ9F0=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pOH6OTttErTPVp1H09pYVwNIXBVTOlcmimPUPOipenGvyULd3kU3TYUkn8pH0E3IeTVuvdPhgctZm6cMMqsVnqld/mR5e+aSLG71IMHS98zOv7RfYnx9u/dZRFT+wA2DIcyKm3Ib1tPg7u4ySr+496dSFTaK8vsqkmWpp9GLrp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-25-87.elisa-laajakaista.fi [88.113.25.87])
-	by fgw23.mail.saunalahti.fi (Halon) with ESMTP
-	id 1a2ba198-696b-11ef-8256-005056bdfda7;
-	Mon, 02 Sep 2024 23:37:01 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 2 Sep 2024 23:36:59 +0300
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 2/3] iio: adc: sophgo-saradc: Add driver for Sophgo
- CV1800B SARADC
-Message-ID: <ZtYh6xUcP8zo3xMj@surfacebook.localdomain>
-References: <20240829-sg2002-adc-v5-0-aacb381e869b@bootlin.com>
- <20240829-sg2002-adc-v5-2-aacb381e869b@bootlin.com>
+	s=arc-20240116; t=1725310777; c=relaxed/simple;
+	bh=r9qaTh+53ujld32cT6POMGMmnH20RcpZ6t2TTllW2Hw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=nuQ3sh5T3dQpmA64lT/FLJJYwFeeWIcMQIdi4es375S2DvkNhFc+beYwEydfPhzd7cB80kaZYB+kOhSA7M7EAL7XYiCNfR03b/Zy1XMKQMJgb2Cm4uxWSAqktbnTDLgASbf3VpXEhuGI6CQP3jH9EniahJmQdmtjZgPO+9jnBHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTSOvv0g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A5D6C4CEC2;
+	Mon,  2 Sep 2024 20:59:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725310776;
+	bh=r9qaTh+53ujld32cT6POMGMmnH20RcpZ6t2TTllW2Hw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=aTSOvv0ge41O8LerqN8uWFZtaSDOgysBtJ8534F0opdMVWDxru2yIsGdNOPi+y3WA
+	 xaQV0Y5QVUT5+1Ly2uwOzRixSARVkaY8NAN8qnMmS5w8CbAlbljTcbbmoVsa3ZIhKO
+	 yGcFLWdKFXpSKfNy0e/iRQpcckh2yu+daDnuYY8nMfbQ2WNnwTskGAc2cBIxH1OcXn
+	 Q9ULidDmdbnWSOz7O1ZSjoAc2QAlRnAT1dpbErxU9JPQ29KpkbbNw9sJ1vBcG87HVA
+	 k85R53LYg1DT2JxnXckQVeS2DKsovSZp6tbYltmvYi/1H2ZYK/bQFBEJDcj+NPCoaq
+	 IPNg4fOyUEh8w==
+Date: Mon, 2 Sep 2024 15:59:34 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 01/11] PCI: imx6: Fix establish link failure in EP
+ mode for iMX8MM and iMX8MP
+Message-ID: <20240902205934.GA227711@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,196 +74,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240829-sg2002-adc-v5-2-aacb381e869b@bootlin.com>
+In-Reply-To: <20240729-pci2_upstream-v8-1-b68ee5ef2b4d@nxp.com>
 
-Thu, Aug 29, 2024 at 02:31:51PM +0200, Thomas Bonnefille kirjoitti:
-> This adds a driver for the Sophgo CV1800B SARADC.
+On Mon, Jul 29, 2024 at 04:18:08PM -0400, Frank Li wrote:
+> From: Richard Zhu <hongxing.zhu@nxp.com>
+> 
+> Add IMX6_PCIE_FLAG_HAS_APP_RESET flag to IMX8MM_EP and IMX8MP_EP drvdata.
+> This flag was overlooked during code restructuring. It is crucial to
+> release the app-reset from the System Reset Controller before initiating
+> LTSSM to rectify the issue
 
-Jonathan, please consider the below improvements to be folded in as well.
+What exactly is the issue?  What does it look like to a user?  The
+endpoint doesn't establish a link correctly?
 
-...
+> Fixes: 0c9651c21f2a ("PCI: imx6: Simplify reset handling by using *_FLAG_HAS_*_RESET")
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-+ array_size.h
+Does this need a -stable tag?
 
-> +#include <linux/bitfield.h>
+0c9651c21f2a appeared in v6.9, but this could arguably be v6.11
+material if it fixes a serious issue.
 
-+ bits.h
-+ cleanup.h
-
-> +#include <linux/clk.h>
-> +#include <linux/completion.h>
-
-+ err.h
-
-> +#include <linux/interrupt.h>
-
-> +#include <linux/iio/iio.h>
-
-I would split it into a separate group already.
-
-> +#include <linux/iopoll.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-
-+ types.h
-
-...
-
-> +#define CV1800B_READ_TIMEOUT_MS				1000
-> +#define CV1800B_READ_TIMEOUT_US				(CV1800B_READ_TIMEOUT_MS * 1000)
-
-Effectively these may be written as
-
-(1 * MSEC_PER_SEC)
-(1 * USEC_PER_SEC)
-
-...
-
-> +static int cv1800b_adc_wait(struct cv1800b_adc *saradc)
-> +{
-> +	if (saradc->irq < 0) {
-> +		u32 reg;
-> +
-> +		return readl_poll_timeout(saradc->regs + CV1800B_ADC_STATUS_REG,
-> +					  reg, !(reg & CV1800B_ADC_BUSY),
-> +					  500, CV1800B_READ_TIMEOUT_US);
-> +	}
-> +
-> +	return wait_for_completion_timeout(&saradc->completion,
-> +					  msecs_to_jiffies(CV1800B_READ_TIMEOUT_MS)) > 0
-> +					  ? 0 : -ETIMEDOUT;
-
-Usually we leave "?" part on the previous line.
-
-> +}
-> +
-> +static int cv1800b_adc_read_raw(struct iio_dev *indio_dev,
-> +				struct iio_chan_spec const *chan,
-> +				int *val, int *val2, long mask)
-> +{
-> +	struct cv1800b_adc *saradc = iio_priv(indio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:{
-
-Missing space
-
-> +		u32 sample;
-> +
-> +		scoped_guard(mutex, &saradc->lock) {
-> +			int ret;
-> +
-> +			cv1800b_adc_start_measurement(saradc, chan->scan_index);
-> +			ret = cv1800b_adc_wait(saradc);
-> +			if (ret < 0)
-> +				return ret;
-> +
-> +			sample = readl(saradc->regs + CV1800B_ADC_CH_RESULT_REG(chan->scan_index));
-> +		}
-> +		if (!(sample & CV1800B_ADC_CH_VALID))
-> +			return -ENODATA;
-> +
-> +		*val = sample & CV1800B_ADC_CH_RESULT;
-> +		return IIO_VAL_INT;
-> +		}
-
-This should be indented as 'c' in the above 'case'.
-
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = 3300;
-> +		*val2 = 12;
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		u32 status_reg = readl(saradc->regs + CV1800B_ADC_CYC_SET_REG);
-
-> +		int clk_div = (1 + FIELD_GET(CV1800B_MASK_CLKDIV, status_reg));
-> +		int freq = clk_get_rate(saradc->clk) / clk_div;
-
-Why are these signed?
-
-> +		int nb_startup_cycle = 1 + FIELD_GET(CV1800B_MASK_STARTUP_CYCLE, status_reg);
-> +		int nb_sample_cycle = 1 + FIELD_GET(CV1800B_MASK_SAMPLE_WINDOW, status_reg);
-> +		int nb_compare_cycle = 1 + FIELD_GET(CV1800B_MASK_COMPARE_CYCLE, status_reg);
-> +
-> +		*val = freq / (nb_startup_cycle + nb_sample_cycle + nb_compare_cycle);
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-...
-
-> +static int cv1800b_adc_probe(struct platform_device *pdev)
-> +{
-
-Having
-
-	struct device *dev = &pdev->dev;
-
-here helps making below code neater.
-
-> +	struct cv1800b_adc *saradc;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*saradc));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	saradc = iio_priv(indio_dev);
-> +	indio_dev->name = "sophgo-cv1800b-adc";
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->info = &cv1800b_adc_info;
-> +	indio_dev->num_channels = ARRAY_SIZE(sophgo_channels);
-> +	indio_dev->channels = sophgo_channels;
-> +
-> +	saradc->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(saradc->clk))
-> +		return PTR_ERR(saradc->clk);
-> +
-> +	saradc->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(saradc->regs))
-> +		return PTR_ERR(saradc->regs);
-> +
-> +	saradc->irq = platform_get_irq_optional(pdev, 0);
-> +	if (saradc->irq >= 0) {
-
-'=' is redundant
-
-> +		init_completion(&saradc->completion);
-> +		ret = devm_request_irq(&pdev->dev, saradc->irq,
-> +				       cv1800b_adc_interrupt_handler, 0,
-> +				       dev_name(&pdev->dev), saradc);
-> +		if (ret)
-> +			return ret;
-> +
-> +		writel(1, saradc->regs + CV1800B_ADC_INTR_EN_REG);
-
-BIT(0)
-
-> +	}
-> +
-> +	ret = devm_mutex_init(&pdev->dev, &saradc->lock);
-> +	if (ret)
-> +		return ret;
-
-+ blank line?
-
-> +	writel(FIELD_PREP(CV1800B_MASK_STARTUP_CYCLE, 15) |
-> +	       FIELD_PREP(CV1800B_MASK_SAMPLE_WINDOW, 15) |
-> +	       FIELD_PREP(CV1800B_MASK_CLKDIV, 1) |
-> +	       FIELD_PREP(CV1800B_MASK_COMPARE_CYCLE, 15),
-> +	       saradc->regs + CV1800B_ADC_CYC_SET_REG);
-> +
-> +	return devm_iio_device_register(&pdev->dev, indio_dev);
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> ---
+>  drivers/pci/controller/dwc/pci-imx6.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 964d67756eb2b..42fd17fbadfa5 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -1562,7 +1562,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX8MM_EP] = {
+>  		.variant = IMX8MM_EP,
+> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
+> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+>  		.clk_names = imx8mm_clks,
+> @@ -1573,7 +1574,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX8MP_EP] = {
+>  		.variant = IMX8MP_EP,
+> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
+> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+>  		.clk_names = imx8mm_clks,
+> 
+> -- 
+> 2.34.1
+> 
 
