@@ -1,678 +1,212 @@
-Return-Path: <devicetree+bounces-99010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517949684E7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 12:38:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AE89684F9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 12:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 720041C22C27
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:38:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 869FF2812CE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745E01D2F5B;
-	Mon,  2 Sep 2024 10:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F440143738;
+	Mon,  2 Sep 2024 10:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gkWkKtlz"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XdjEl5aG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2058.outbound.protection.outlook.com [40.107.92.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A9D1D3188
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 10:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725273433; cv=none; b=JSwWaRPAtVbUFJZJiwSf9mM3P7AwAk7mWKis4EqopDLbKs99fGc3/p2YgDf0J1v3QO2VpLw+1xwaifd1ZrwA29EoRfJgy+FqPt8WsyLT3ytK1FkyGasafq9BxrTUAj1CuO9oetvZ72AMY9S6n+n5GEPw3ha5hJXERD/4Mx1fZj8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725273433; c=relaxed/simple;
-	bh=6p6FOGpX6uqW4M2PkCc6c9coEL+O43QEUugHVoIhm3s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WTuXSV+SCrxgt1kTCG/aNj6n32eWzTJ43sfUm8VJWU/7M+sBkgMisPG3ajeg7FQEoDM18TbbTfQ+ww1b0yWXsayAzjEJC091qN+y/nksu+8Kq2F8kKEbBkwq6jdwDFAHCXLlM8BP1oiA9J1GvGc4Ex7XCuj2vKrvTDBb1L1L1F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gkWkKtlz; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5334adf7249so5266977e87.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 03:37:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725273428; x=1725878228; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2jeeXqaSzseqvKVfLM9ZsyRmU/0rFAs0pAHit46xeQ4=;
-        b=gkWkKtlzTBDvNYUKcaBpq7zT99nT7joJF1kAy5NrJzudRCA7ZKGRdtBf5qA/ZLcsvh
-         BE1rZh3sD3bvBU5U2ZMSY27XuEgk9Ir9yAqEDOaP6tsvV/unGvQgSLS+NHuTyNk/BrmK
-         Xl98xTbAw/vdHahGUi6sazhtTiuDnIZGVBBiN8rdRUykFGOh2cCbmnGe2HXwKB18nUre
-         ey4sGFGMv0ZVeJTzShKkmnt43+0E3iBPS8z4A5WogzZahS6qra4fDqEUw1YeY87NHPlY
-         8Xfa5X37JNZoX9qpaGTYJjG8DQ77zsmobtSl63tOZl2j4+9f4hn6XpIxD2W90CFGd5k9
-         m8zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725273428; x=1725878228;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2jeeXqaSzseqvKVfLM9ZsyRmU/0rFAs0pAHit46xeQ4=;
-        b=eWaiXfAPkFrCHN7uNBBw0R4+ZVd5h9fuXZEGHJtuYRVzudHNPGowVMkPKalMCBR0X4
-         nlW94ICHw1mEDVsOmvNdhHFqNPXvE8ONKoggEMvaEiOirWwy2ZnBMv27EhnqWhyVCUVf
-         F0LKI8PIrbk3m64dYLnWM9fZkyo0ld8AiEmQtXUDbBVczR2pG9dQ4TnjVate+ZhJX2Al
-         oAq05tgahjGTJ5bkejsmAMXIyg4amdauq4d3+ZNxkfxvvSLxDYExSdspYNu7lm+hRwpP
-         MksFz8ggd0cNu4vCOuHqdQPL2zQyEjmc/PT1Z+GiC8iWzAxcJ640o+DoVbxvXTXmFG0c
-         YCDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU90BgyTy4xnkKrC0SrQqERQs/NKgHUcbwcyWf9ESqeIt2o1WtDP4qayXbksWlLFoP3K/nFJV7GKCHp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKnhQ2vVXbnWyepWNoer1lV7dKB0l7YiC6e1lGOZyCMF6cxnCc
-	fdxUN25dLAg54jiMZ6c+mak2aWkmjbi5QAOl8VB5ofHlMC+KQQPn0O9kebLBQi4=
-X-Google-Smtp-Source: AGHT+IE7/TkfBXh8TnrG/+rqvpXfCwLKdPR9AP0AqwF1clYuNsZwLff4ijW5J26kWUjlTynIoih9Wg==
-X-Received: by 2002:a05:6512:1251:b0:52b:9c8a:734f with SMTP id 2adb3069b0e04-53546bb2b1fmr7298770e87.50.1725273427733;
-        Mon, 02 Sep 2024 03:37:07 -0700 (PDT)
-Received: from neptune.local ([2a02:2f0e:3004:6100:e124:ce40:67a4:fcf0])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891da22bsm540876766b.182.2024.09.02.03.37.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2024 03:37:07 -0700 (PDT)
-From: Alexandru Ardelean <aardelean@baylibre.com>
-To: linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: jic23@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	lars@metafoo.de,
-	michael.hennerich@analog.com,
-	gstols@baylibre.com,
-	Alexandru Ardelean <aardelean@baylibre.com>
-Subject: [PATCH v2 8/8] iio: adc: ad7606: add support for AD7606C-{16,18} parts
-Date: Mon,  2 Sep 2024 13:36:31 +0300
-Message-ID: <20240902103638.686039-9-aardelean@baylibre.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240902103638.686039-1-aardelean@baylibre.com>
-References: <20240902103638.686039-1-aardelean@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7A41E51D;
+	Mon,  2 Sep 2024 10:40:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725273636; cv=fail; b=sc+gFRSUmEnVXY73j5RZ/zb92qrmHjaY+KSaC3wJt7zrOTcYepzAuPvo7hOEs+dI1S8pmwofnNZz3Uaunj5PhLksiWhu0e2oF1tmmPPKlz11gUYVI8R+O/OhPm7za/QPQg/L3YrvQU4d9L3vcVZ8JSGMqzBEltai2APAV0j83/A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725273636; c=relaxed/simple;
+	bh=BjNyCUoF6Y4ZuGs/ZCjd+J6ZowfMziPTIzAtT+TMS9A=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=oi1uVutJGV2MoRWPo0ZhrXGrYug1tVz8SCQm1ua+EnDDBnAe0zoCI3K7oZJwPCyGmmDH+/Lf95QWTkLJitOWPCi78KUtb9Ter1ODfyPPwA09KVmvWCety/TptLi30WiLbaMsFosr9kLvCwlqxR9OltyAtGEvtj0SHDSA8cohU+U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XdjEl5aG; arc=fail smtp.client-ip=40.107.92.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZbpA6NcEiO8+PipcTL8PvbnwkRao/lt4RZxK8yY1pbBHlwIfbNCASj2iH8yi/gi10Hc/Anp05S7qMqfDlXP49cueRnRAJGvp8RVFVEcDTmi6AwTlwBr7RdX5jRP4OlIytX4Y3z6CPriMz9MzcssaYi1V4GLiM8A18V0d93sSESxjDn1suhOybLaD0Wmyy1KV9ADGTRroKZUaWuuqpYaXzKYEyLb7zXKxTbFfHuLnLPvTVi3ZK2VPvwr8SEqVW0qVbpQGEL7oyCTY2GESTBTFs9ITwGAYSVI3qPlFyWehFdOBpJ83pnJ3i8ccz9k0iWzIdYM39r8oG/lgr+sh1HAvTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BjNyCUoF6Y4ZuGs/ZCjd+J6ZowfMziPTIzAtT+TMS9A=;
+ b=lsnICpqZ9JAmWNzGPF2aDn2dMmUQ34cDEaJkiVhRJBCznmfI/Xdwxu3zSD09GZV75ar/EQ27liMJmMDY4gp6nTWYpiSIEjXUlxAsinN5mdRHavc9aYlAgJO7xHoW2tqTcT3cLoLeRP13XAl2TbGHUlOPLNAPyBKlAjgCFdkhbQcAvTSWyZXCP9oTBXt0SIA1VFz6FqsPoaJn6QCqo3uIERrc06kOy3ZqOmLul6wcsjeTesBifdhYRaBC36z+bEhKFZnXbQHvo9u6smYcANyIsPh3J1VaP/jvGW0MMfA8QFJgCfetAbaZUoXtwZAu2Ck5WYxiW5o0YGjaFCPwGFS9Lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BjNyCUoF6Y4ZuGs/ZCjd+J6ZowfMziPTIzAtT+TMS9A=;
+ b=XdjEl5aGt+ql1Edf4NBf7FBnKBlWlbdN1IXX7TcOZQBlRTn+HQbvS5MuihyUUMa9JTVn7RPkLoOVoYmqDPk/li1DSBtoo6m+K38Hoxg96A1E1YpLjE7CwtYe4SK7uO99OQYQtflGI4JpNS6GI5mit+JmOgtgGV6m60qLTBeT3v2bhfm3hw7Ezk4GLpClcH+G8x/gxuNc4J5O2rAYCDzh9dsjHg2vr4BAaHGxw1c0BOraBkz7FL/WfNKu9bU2MGasBiDS4yRD3P8RDkv01pEpb7pUUXsYyHlxp86biYena+6Lmvfcgg2X/B2UL1PQc4q2u7iLBUiiafuRR+4lZA1XWw==
+Received: from BL3PR11MB6436.namprd11.prod.outlook.com (2603:10b6:208:3bc::11)
+ by LV8PR11MB8698.namprd11.prod.outlook.com (2603:10b6:408:205::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.26; Mon, 2 Sep
+ 2024 10:40:29 +0000
+Received: from BL3PR11MB6436.namprd11.prod.outlook.com
+ ([fe80::dbcf:4176:b06b:3aaf]) by BL3PR11MB6436.namprd11.prod.outlook.com
+ ([fe80::dbcf:4176:b06b:3aaf%3]) with mapi id 15.20.7918.024; Mon, 2 Sep 2024
+ 10:40:27 +0000
+From: <Dharma.B@microchip.com>
+To: <krzk@kernel.org>
+CC: <ulf.hansson@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<Aubin.Constans@microchip.com>, <linux-mmc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: atmel,sama5d2-sdhci: Add
+ sama7d65 compatible
+Thread-Topic: [PATCH v3 2/2] dt-bindings: mmc: atmel,sama5d2-sdhci: Add
+ sama7d65 compatible
+Thread-Index: AQHa+uxFfu+1V0z6EU6+8OxYXtwdIbJA5e6AgAAZVACAAGHwAIAC8gAA
+Date: Mon, 2 Sep 2024 10:40:27 +0000
+Message-ID: <428294e1-fcba-4be1-bc4c-060a09224bd0@microchip.com>
+References: <20240830-atmel-sdhci-v3-0-7c97a0872af4@microchip.com>
+ <20240830-atmel-sdhci-v3-2-7c97a0872af4@microchip.com>
+ <3wysn3i3syox3n7howwnewuy6h7457goeafbrilptewxyuqitr@cdyjlzp5s7bu>
+ <44e7a3a4-52f9-4985-b2dd-2bcf35d34737@microchip.com>
+ <d275ea37-735a-4203-bb17-f0cd2320df07@kernel.org>
+In-Reply-To: <d275ea37-735a-4203-bb17-f0cd2320df07@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL3PR11MB6436:EE_|LV8PR11MB8698:EE_
+x-ms-office365-filtering-correlation-id: 68c6a177-5c88-4433-4a8c-08dccb3ba885
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR11MB6436.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?WktCaEdZUmkwUEwwd0paZmpsRjZ0SjB5OVh2bCtzM2l5c2s0TldGV2ZPOFdi?=
+ =?utf-8?B?bU80SElEYVF3N211N2MxdzExSUZuc3Y3U1I5SXlRaWdEdzFRQTlLQVB0eHRY?=
+ =?utf-8?B?OUZ5bnZTQW9iU01aUG1jbnFhaWRsaVo4dFdvSy9ib1lTUFJjOG12MXFaZVVD?=
+ =?utf-8?B?RzVvR1htWVJBeUx6WGdXMW90d251SzNWaUo0cjFLMGtoUlRNN3VRY1JIQU9H?=
+ =?utf-8?B?QjUwYXNvS2FIVDNaOWIyekR2RzhDMElaRHh0eXpmdCtXV093UTlhMzUrOFZS?=
+ =?utf-8?B?ZHhMTUtrM0VyaW0xSUxjaFliQThyTHBRc2xLcFFvNmtXUDIyN3VKamc4cVhQ?=
+ =?utf-8?B?Z3VaK09YTEVkMFZiS2ZhbVZXVUNLeVdvZFlYZ0lUdWUrMjJreVE3ZWRyR2Rr?=
+ =?utf-8?B?MXBSTWxRZUJsaHU2SFhPYWdreHZoMThjVitBcDA4U3FZTHhFVHQ2R3dPcWxZ?=
+ =?utf-8?B?dTlCUm1TOS8zZTR2aFBPRFBJc1NJczBUd2FQN0RDTDZRU1lGcWRGYWNENXJ5?=
+ =?utf-8?B?Znppb29GNlZHRjRMaktaYWpac2xyeEdJVlRDRXNwNG1lWG4rV0VrckQyaXlK?=
+ =?utf-8?B?UTg3czQ3cFdaWkJ5ZUxYNmwrRmJwNjBpUzhtQzYxZk5idFJRS3BCTXZ0emI1?=
+ =?utf-8?B?cW9EdzExODZRV0I3bWhaNG44K0kzNTFJMDFzcWZyVVM3UnE4TEU2bSs3OEh0?=
+ =?utf-8?B?S0xsNkdiWkdZVHJXUkF2cC9LS2RyN2dFWXd0eS9VME0yY0k2czIxUVYvNWhm?=
+ =?utf-8?B?dFhDVmFiT2VPUXhEZlpudGFCNnVCMk92UXdyaFVYUkxrM1JwTTg5cmw5Rmdv?=
+ =?utf-8?B?aFF2Y1VGSUEwVEJwMlgyR0ppWWl4azRWbUhucVFvMW94R0cyVDZybTlPMS82?=
+ =?utf-8?B?c2MyRDcwSURnNy9SbGNsUUZLQ0FNZTRld285N3J3dzZ3VEd5aVdvUXNIQUNS?=
+ =?utf-8?B?U2FKb3VsOHcxYkJwTklKQ200K2liLzZUSVBtMlIyMm83cEgzZ3B5b3pFQnhO?=
+ =?utf-8?B?VTQrMmRpT2x2NE9oQjlhY0VKWkhhOHk2WVlNbUJ5MkV5OUxpbzR1aGNSRk1w?=
+ =?utf-8?B?eFZEYjlLUkJNTmI5KzBGR3pPZ3BjRkh6OEg0NjcrcnVnRDNFaEE2cm1hSXZL?=
+ =?utf-8?B?disvV0c5Yy9KK0tCRWh1T0pVTnJ2c0xncDd2eWFkSkRWQlFzNTR3bm45RllK?=
+ =?utf-8?B?UVlDR0dVY1d6N1U4ZEowTnc5ZzVhMzVvMWF4SnhRUU9GSHkyWlJwVTQ0R2lX?=
+ =?utf-8?B?REVvWWdpTXYybUdHcElaWDk3dGtNamVRVzVVbkFJOVJVVC9FWm41QTFUMUph?=
+ =?utf-8?B?bm1kSThhQTlUSmFvVjZVTkkyekdjemhWTC9nVnRpTTBBQ2JZcEg5MWZCaWth?=
+ =?utf-8?B?V3lCL2RCdHF3N09yZkR2S0hUU2tWbkpTWmJYT3RkNTZMdHZLRGg4V01zRDRy?=
+ =?utf-8?B?TEI5RStUcUNHZUYzYW1EVHBzVFBCZDJkYjdVSTM4Rzh1K29RemViMWlPcU9p?=
+ =?utf-8?B?RzRDYmtYSWF2Qm5JSTlNeTMrRG5TL0xKSURTVTl2bUxSSC82ZjRpZnNiUS8y?=
+ =?utf-8?B?cDVXcDBTcFhtUmNTNGdOUTF3dkYzVGh5cmxNREduY2F4VVRIN2ZNYmdta1Bp?=
+ =?utf-8?B?dGYvdkhHd0FnTVh5QlZucUVRN0IxMUVHeU1RQWUzWHY3dWJrT2hodUkwZ1NS?=
+ =?utf-8?B?NzRxV0xMQXE4RUt6VzNkaXYvbytqaEhFbWY3cXpBVWpaNnJjZjlNVmJyU1pW?=
+ =?utf-8?B?SENTbnp5UlZMN1czaklVTXlSSkJsMGZVOHJKQ0t2V3FVbWJEOTJ1NzgrVC9Q?=
+ =?utf-8?B?NHpDYXpxNkxZZWJRV2VZKzFVZjVqSHFXL2hpbEFUYjJiVTh5MWh3M3ZCeDV5?=
+ =?utf-8?B?eWRhMTEvMUdiSXNHL25hekJabUVDanhBMlh2ZkkwaHBab1E9PQ==?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?clk2N204elVJeFkwK1hKOWdkN2t2TjR3UWdmZ2JYejlJVXJ0V0FoU0ZRTVpz?=
+ =?utf-8?B?MmYzcEovWFlmVm5Icm96WFBuRkphdXFCbXNMdlEwTks1Mmc4bzdUekJOT0RJ?=
+ =?utf-8?B?eTJYTDQ4R0Z6MWg1RDI1Y3A3amFMVnc1YjVvcE05QmdCMTgxVzJFRHdPaFdT?=
+ =?utf-8?B?Z1cyMGJHamEyNlE5QVk0WHJvc2V6OWl2ZU00ZzlJd0NrQ1FxZXFFM3l5YTFs?=
+ =?utf-8?B?N2JXMDRKMUJDd2NLWENjdkwwSGNwQzNYVFdBY2QySDVzM3FPU21LcVdaa1U2?=
+ =?utf-8?B?dk5FYmNoNTNDVGR6aFBzNWl1NlBWRGhGeXpCSUZHTis2TUpxaUJxNHpIYVZG?=
+ =?utf-8?B?bW9oSlU1bUZmMld4RlZqV0JhTjhyMlQ5Z1Raa3dRUFhQTVlXU053MnRQb0lz?=
+ =?utf-8?B?S3FYTVJaVFB2aUV2VWJyU0J0MlZaYVpUNVBSbDRxcXBjNVN5MVpTVko4RGFV?=
+ =?utf-8?B?MHZxZnBPY2ptRGU3c0ZvM3h3aS9xWUJweUVuMmJzekNySkJBc1VaYTB2bnVo?=
+ =?utf-8?B?SEhSKy84aFVpVXlGWnJ4MmVNUndSVXVXZXcvSDN5dXlqV20rQUx0UzY0M2kr?=
+ =?utf-8?B?dnUzRG9GTGFXbDZ3OVFqaGhXMnBidEphL0wyS01nZ3hKRnRNQ3FEcmUvYlNL?=
+ =?utf-8?B?RUdZME5PNmZkcXA3NDcrT1RkSmpuYlhyNlQ5Z1R2WVdrR01RUGJhVXozbFoy?=
+ =?utf-8?B?Wml5aHdPMDhhckpWczExTW5XbWh4SWdLME9PcllxTFFVL0dIbG9Wb3lLME9p?=
+ =?utf-8?B?ZHBpZ3pGNTVhN2krMUlLK0grdkNhd1hRSEswbmV3d3J0R2t4OWs2a25EME5G?=
+ =?utf-8?B?aVIyMlE3MUwzYWI1czJnd3F5WHlhek1IeTJlcU5NZW05Y0lTRURjaVJXYTlr?=
+ =?utf-8?B?WjlvenVTbzFuV3ZKdnR1MXYzRGVvQm05bDRDSWJhRy92UEVMd2gxZi96elhR?=
+ =?utf-8?B?RVUxQys0VitiU2lKazlZeWFKRktxclhuRE5hQ1I3SmpLMis5SUxpbTBpeU9t?=
+ =?utf-8?B?K2t5OVp6Y016QlFkYXZRYm9lVXJPWlVFRFhpYzlTUnZ0SWhVTHhicG43YUhr?=
+ =?utf-8?B?Z0g2aEVWQmFHZ1VzbHpjR1hwa21teTl3MHdEQ2pFSmd4WnR0aVhoVm5PalQr?=
+ =?utf-8?B?aE5hSmh0eG9hdjNBVkRNK0pJWWk0UDBOVmJTREtEWjM3N1AzcnM2NjJIMmlT?=
+ =?utf-8?B?Lzl6aXh2MUdsOEpoY2V6MDN3TFIvS1NqS0JvVXZvZkFuYmdoQ3YyRXJwZXFs?=
+ =?utf-8?B?Z3E0UWtGS3hFdzlsUnI3czlrR05SeTZSdWlWOXVCVjF5eVl4QVArNmJGd1Na?=
+ =?utf-8?B?RWgyc3FWQ3hqZFNNUjNxa3BJNDVVTEtielB1eXIxUUhjSG1yd21NVjJodFh0?=
+ =?utf-8?B?aWhUNDFaaVVRc213MlhTUy82MlMxUzBIRCsxTmNPanNLWEQ0b2FqaW1mZlN5?=
+ =?utf-8?B?VmNZT1EvTXhuZ2xmOTY3Y0tra3lOMHBURm5ycUsvRXhyY1gzN3grZlhaWkdK?=
+ =?utf-8?B?QkhMWXN1Ri8xVzVrTG1zaE1qczRtdFo1MnZaK2Y4bzBYSUhpZ0ljZE9PTUYw?=
+ =?utf-8?B?UW5UQlhnZUFhWW1WUE5kenJQaGtKcFJ5USt2d1FPWEdDandTNEtURVc0UVVj?=
+ =?utf-8?B?dDBvTzRBcEZvQVJCaVZDaHVxWVEzWFg0QTZrODNEUTN5WUNCYUtJZ0Vhdi9k?=
+ =?utf-8?B?NUxtM3ljdFV5Y2x5TkRHMzlrdmZucjM5eXp1T000dDMra3djT1FiaGFpRk9T?=
+ =?utf-8?B?WGNBZzNwZTQxQWdtcnF3NXREYUNKK0xWMzRhVXBDcFdsdmx6dU1xZTBZejJ3?=
+ =?utf-8?B?WVpjSnR2cnc0Y2FDZ2kyZW5sK1IwN2lzbmFuVVpodFNMOWFua1poOU1xcVZy?=
+ =?utf-8?B?YzM3a0o4ZHo4a1RVK2NzN0Q5UXh4TGRmWEtNbUpFaGNtSHFodmYzMHNZNEhi?=
+ =?utf-8?B?Q2Z0UkZ5cE9JemxVNUtmL1BzTXNreHpudzlaVXFHMkRkREpUSVViWTNVald5?=
+ =?utf-8?B?MUxRRVg1akJNL21nZnhWdWhTdE9Bb2pYV3VySEJBM1gwdjhCc3h3c2pZUTVZ?=
+ =?utf-8?B?MFlsWUNudzN3MWlqelNpVFRnZFdyZzBtT291cU4xTVJ1TGRCbXFJOFZLL0J6?=
+ =?utf-8?Q?XEvbuamczlv5Bv8+Dg3dZbAlD?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D0D35986C8243D4BA52FAF34838F324C@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6436.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68c6a177-5c88-4433-4a8c-08dccb3ba885
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2024 10:40:27.0550
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oKS5misoq0AahJykaijfK2ETIP8vfQf61+UspphUA4dqWCO+W7ad2jbrv20kugPfUcwmRA7lDvc29BgYIaTWCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8698
 
-The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
-The main difference between AD7606C-16 & AD7606C-18 is the precision in
-bits (16 vs 18).
-Because of that, some scales need to be defined for the 18-bit variants, as
-they need to be computed against 2**18 (vs 2**16 for the 16 bit-variants).
-
-Because the AD7606C-16,18 also supports bipolar & differential channels,
-for SW-mode, the default range of 10 V or ±10V should be set at probe.
-On reset, the default range (in the registers) is set to value 0x3 which
-corresponds to '±10 V single-ended range', regardless of bipolar or
-differential configuration.
-
-Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
-
-The AD7606C-18 variant offers 18-bit precision. Because of this, the
-requirement to use this chip is that the SPI controller supports padding
-of 18-bit sequences to 32-bit arrays.
-
-Datasheet links:
-  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-16.pdf
-  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf
-
-Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
----
- drivers/iio/adc/ad7606.c     | 263 +++++++++++++++++++++++++++++++----
- drivers/iio/adc/ad7606.h     |  17 ++-
- drivers/iio/adc/ad7606_spi.c |  55 ++++++++
- 3 files changed, 306 insertions(+), 29 deletions(-)
-
-diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index 4c3fbb28f790..e5ef1e18d1a9 100644
---- a/drivers/iio/adc/ad7606.c
-+++ b/drivers/iio/adc/ad7606.c
-@@ -28,14 +28,44 @@
- 
- #include "ad7606.h"
- 
-+typedef void (*ad7606c_chan_setup_cb_t)(struct ad7606_state *st, int ch,
-+					bool bipolar, bool differential);
-+
- /*
-  * Scales are computed as 5000/32768 and 10000/32768 respectively,
-  * so that when applied to the raw values they provide mV values
-  */
--static const unsigned int ad7606_scale_avail[2] = {
-+static const unsigned int ad7606_16bit_hw_scale_avail[2] = {
- 	152588, 305176
- };
- 
-+static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
-+	38147, 76294
-+};
-+
-+static const unsigned int ad7606c_16_scale_single_ended_unipolar_avail[3] = {
-+	76294, 152588, 190735,
-+};
-+
-+static const unsigned int ad7606c_16_scale_single_ended_bipolar_avail[5] = {
-+	76294, 152588, 190735, 305176, 381470
-+};
-+
-+static const unsigned int ad7606c_16_scale_differential_bipolar_avail[4] = {
-+	152588, 305176, 381470, 610352
-+};
-+
-+static const unsigned int ad7606c_18_scale_single_ended_unipolar_avail[3] = {
-+	19073, 38147, 47684
-+};
-+
-+static const unsigned int ad7606c_18_scale_single_ended_bipolar_avail[5] = {
-+	19073, 38147, 47684, 76294, 95367
-+};
-+
-+static const unsigned int ad7606c_18_scale_differential_bipolar_avail[4] = {
-+	38147, 76294, 95367, 152588
-+};
- 
- static const unsigned int ad7616_sw_scale_avail[3] = {
- 	76293, 152588, 305176
-@@ -82,11 +112,19 @@ static int ad7606_reg_access(struct iio_dev *indio_dev,
- 	}
- }
- 
--static int ad7606_read_samples(struct ad7606_state *st)
-+static int ad7606_read_samples(struct ad7606_state *st, bool sign_extend_samples)
- {
-+	unsigned int storagebits = st->chip_info->channels[1].scan_type.storagebits;
- 	unsigned int num = st->chip_info->num_channels - 1;
--	u16 *data = st->data;
--	int ret;
-+	u32 *data32 = st->data.d32;
-+	u16 *data16 = st->data.d16;
-+	void *data;
-+	int i, ret;
-+
-+	if (storagebits > 16)
-+		data = data32;
-+	else
-+		data = data16;
- 
- 	/*
- 	 * The frstdata signal is set to high while and after reading the sample
-@@ -108,11 +146,25 @@ static int ad7606_read_samples(struct ad7606_state *st)
- 			return -EIO;
- 		}
- 
--		data++;
-+		if (storagebits > 16)
-+			data32++;
-+		else
-+			data16++;
- 		num--;
- 	}
- 
--	return st->bops->read_block(st->dev, num, data);
-+	ret = st->bops->read_block(st->dev, num, data);
-+	if (ret)
-+		return ret;
-+
-+	if (storagebits == 16 || !sign_extend_samples)
-+		return 0;
-+
-+	/* For 18 bit samples, we need to sign-extend samples to 32 bits */
-+	for (i = 0; i < num; i++)
-+		data32[i] = sign_extend32(data32[i], 17);
-+
-+	return 0;
- }
- 
- static irqreturn_t ad7606_trigger_handler(int irq, void *p)
-@@ -124,11 +176,11 @@ static irqreturn_t ad7606_trigger_handler(int irq, void *p)
- 
- 	guard(mutex)(&st->lock);
- 
--	ret = ad7606_read_samples(st);
-+	ret = ad7606_read_samples(st, true);
- 	if (ret)
- 		goto error_ret;
- 
--	iio_push_to_buffers_with_timestamp(indio_dev, st->data,
-+	iio_push_to_buffers_with_timestamp(indio_dev, st->data.d16,
- 					   iio_get_time_ns(indio_dev));
- error_ret:
- 	iio_trigger_notify_done(indio_dev->trig);
-@@ -142,6 +194,7 @@ static int ad7606_scan_direct(struct iio_dev *indio_dev, unsigned int ch,
- 			      int *val)
- {
- 	struct ad7606_state *st = iio_priv(indio_dev);
-+	unsigned int storagebits = st->chip_info->channels[1].scan_type.storagebits;
- 	int ret;
- 
- 	gpiod_set_value(st->gpio_convst, 1);
-@@ -152,9 +205,13 @@ static int ad7606_scan_direct(struct iio_dev *indio_dev, unsigned int ch,
- 		goto error_ret;
- 	}
- 
--	ret = ad7606_read_samples(st);
--	if (ret == 0)
--		*val = sign_extend32(st->data[ch], 15);
-+	ret = ad7606_read_samples(st, false);
-+	if (ret == 0) {
-+		if (storagebits > 16)
-+			*val = sign_extend32(st->data.d32[ch], 17);
-+		else
-+			*val = sign_extend32(st->data.d16[ch], 15);
-+	}
- 
- error_ret:
- 	gpiod_set_value(st->gpio_convst, 0);
-@@ -267,7 +324,7 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
- 			ch = chan->address;
- 		cs = &st->chan_scales[ch];
- 		i = find_closest(val2, cs->scale_avail, cs->num_scales);
--		ret = st->write_scale(indio_dev, ch, i);
-+		ret = st->write_scale(indio_dev, ch, i + cs->reg_offset);
- 		if (ret < 0)
- 			return ret;
- 		cs->range = i;
-@@ -350,6 +407,18 @@ static const struct iio_chan_spec ad7606_channels_16bit[] = {
- 	AD7606_CHANNEL(7, 16),
- };
- 
-+static const struct iio_chan_spec ad7606_channels_18bit[] = {
-+	IIO_CHAN_SOFT_TIMESTAMP(8),
-+	AD7606_CHANNEL(0, 18),
-+	AD7606_CHANNEL(1, 18),
-+	AD7606_CHANNEL(2, 18),
-+	AD7606_CHANNEL(3, 18),
-+	AD7606_CHANNEL(4, 18),
-+	AD7606_CHANNEL(5, 18),
-+	AD7606_CHANNEL(6, 18),
-+	AD7606_CHANNEL(7, 18),
-+};
-+
- /*
-  * The current assumption that this driver makes for AD7616, is that it's
-  * working in Hardware Mode with Serial, Burst and Sequencer modes activated.
-@@ -410,6 +479,18 @@ static const struct ad7606_chip_info ad7606_chip_info_tbl[] = {
- 		.oversampling_avail = ad7606_oversampling_avail,
- 		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
- 	},
-+	[ID_AD7606C_16] = {
-+		.channels = ad7606_channels_16bit,
-+		.num_channels = 9,
-+		.oversampling_avail = ad7606_oversampling_avail,
-+		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
-+	},
-+	[ID_AD7606C_18] = {
-+		.channels = ad7606_channels_18bit,
-+		.num_channels = 9,
-+		.oversampling_avail = ad7606_oversampling_avail,
-+		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
-+	},
- 	[ID_AD7616] = {
- 		.channels = ad7616_channels,
- 		.num_channels = 17,
-@@ -581,7 +662,119 @@ static const struct iio_trigger_ops ad7606_trigger_ops = {
- 	.validate_device = iio_trigger_validate_own_device,
- };
- 
--static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
-+static void ad7606c_18_chan_setup(struct ad7606_state *st, int ch,
-+				  bool bipolar, bool differential)
-+{
-+	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+
-+	if (differential) {
-+		cs->scale_avail =
-+			ad7606c_18_scale_differential_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_18_scale_differential_bipolar_avail);
-+		/* Bipolar differential ranges start at 8 (b1000) */
-+		cs->reg_offset = 8;
-+		cs->range = 1;
-+	} else if (bipolar) {
-+		cs->scale_avail =
-+			ad7606c_18_scale_single_ended_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_18_scale_single_ended_bipolar_avail);
-+		cs->range = 3;
-+	} else {
-+		cs->scale_avail =
-+			ad7606c_18_scale_single_ended_unipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_18_scale_single_ended_unipolar_avail);
-+		/* Unipolar single-ended ranges start at 5 (b0101) */
-+		cs->reg_offset = 5;
-+		cs->range = 1;
-+	}
-+}
-+
-+static void ad7606c_16_chan_setup(struct ad7606_state *st, int ch,
-+				  bool bipolar, bool differential)
-+{
-+	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+
-+	if (differential) {
-+		cs->scale_avail =
-+			ad7606c_16_scale_differential_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_16_scale_differential_bipolar_avail);
-+		/* Bipolar differential ranges start at 8 (b1000) */
-+		cs->reg_offset = 8;
-+		cs->range = 1;
-+	} else if (bipolar) {
-+		cs->scale_avail =
-+			ad7606c_16_scale_single_ended_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_16_scale_single_ended_bipolar_avail);
-+		cs->range = 3;
-+	} else {
-+		cs->scale_avail =
-+			ad7606c_16_scale_single_ended_unipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_16_scale_single_ended_unipolar_avail);
-+		/* Unipolar single-ended ranges start at 5 (b0101) */
-+		cs->reg_offset = 5;
-+		cs->range = 1;
-+	}
-+}
-+
-+static int ad7606c_sw_mode_setup_channels(struct iio_dev *indio_dev,
-+					  ad7606c_chan_setup_cb_t chan_setup_cb)
-+{
-+	unsigned int num_channels = indio_dev->num_channels - 1;
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+	bool chan_configured[AD760X_MAX_CHANNELS] = {};
-+	struct device *dev = st->dev;
-+	int ret;
-+	u32 ch;
-+
-+	/* We need to hook this first */
-+	ret = st->bops->sw_mode_config(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	device_for_each_child_node_scoped(dev, child) {
-+		bool bipolar, differential;
-+		u32 pins[2];
-+
-+		ret = fwnode_property_read_u32(child, "reg", &ch);
-+		if (ret)
-+			continue;
-+
-+		if (ch >= num_channels) {
-+			dev_warn(st->dev,
-+				 "Invalid channel number (ignoring): %d\n", ch);
-+			continue;
-+		}
-+
-+		bipolar = fwnode_property_present(child, "bipolar");
-+
-+		ret = fwnode_property_read_u32_array(child, "diff-channels",
-+						     pins, ARRAY_SIZE(pins));
-+		/* Channel is differential, if pins are the same as 'reg' */
-+		if (ret == 0 && pins[0] == ch && pins[1] == ch)
-+			differential = true;
-+		else
-+			differential = false;
-+
-+		chan_setup_cb(st, ch, bipolar, differential);
-+		chan_configured[ch] = true;
-+	}
-+
-+	/* Apply default configuration to unconfigured (via DT) channels */
-+	for (ch = 0; ch < num_channels; ch++) {
-+		if (!chan_configured[ch])
-+			chan_setup_cb(st, ch, false, false);
-+	}
-+
-+	return 0;
-+}
-+
-+static int ad7606_sw_mode_setup(struct iio_dev *indio_dev, unsigned int id)
- {
- 	unsigned int num_channels = indio_dev->num_channels - 1;
- 	struct ad7606_state *st = iio_priv(indio_dev);
-@@ -596,17 +789,30 @@ static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
- 
- 	indio_dev->info = &ad7606_info_sw_mode;
- 
--	/* Scale of 0.076293 is only available in sw mode */
--	/* After reset, in software mode, ±10 V is set by default */
--	for (ch = 0; ch < num_channels; ch++) {
--		struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+	switch (id) {
-+	case ID_AD7606C_18:
-+		ret = ad7606c_sw_mode_setup_channels(indio_dev,
-+						     ad7606c_18_chan_setup);
-+		break;
-+	case ID_AD7606C_16:
-+		ret = ad7606c_sw_mode_setup_channels(indio_dev,
-+						     ad7606c_16_chan_setup);
-+		break;
-+	default:
-+		/* Scale of 0.076293 is only available in sw mode */
-+		/* After reset, in software mode, ±10 V is set by default */
-+		for (ch = 0; ch < num_channels; ch++) {
-+			struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+
-+			cs->scale_avail = ad7616_sw_scale_avail;
-+			cs->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
-+			cs->range = 2;
-+		}
- 
--		cs->scale_avail = ad7616_sw_scale_avail;
--		cs->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
--		cs->range = 2;
-+		ret = st->bops->sw_mode_config(indio_dev);
-+		break;
- 	}
- 
--	ret = st->bops->sw_mode_config(indio_dev);
- 	if (ret)
- 		return ret;
- 
-@@ -655,9 +861,16 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 	st->oversampling = 1;
- 
- 	cs = &st->chan_scales[0];
--	cs->range = 0;
--	cs->scale_avail = ad7606_scale_avail;
--	cs->num_scales = ARRAY_SIZE(ad7606_scale_avail);
-+	switch (id) {
-+	case ID_AD7606C_18:
-+		cs->scale_avail = ad7606_18bit_hw_scale_avail;
-+		cs->num_scales = ARRAY_SIZE(ad7606_18bit_hw_scale_avail);
-+		break;
-+	default:
-+		cs->scale_avail = ad7606_16bit_hw_scale_avail;
-+		cs->num_scales = ARRAY_SIZE(ad7606_16bit_hw_scale_avail);
-+		break;
-+	}
- 
- 	ret = devm_regulator_get_enable(dev, "avcc");
- 	if (ret)
-@@ -706,7 +919,7 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 	st->write_scale = ad7606_write_scale_hw;
- 	st->write_os = ad7606_write_os_hw;
- 
--	ret = ad7606_sw_mode_setup(indio_dev);
-+	ret = ad7606_sw_mode_setup(indio_dev, id);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-index 1cc257374ba7..2619ce626742 100644
---- a/drivers/iio/adc/ad7606.h
-+++ b/drivers/iio/adc/ad7606.h
-@@ -22,7 +22,7 @@
- 		.scan_type = {					\
- 			.sign = 's',				\
- 			.realbits = (bits),			\
--			.storagebits = (bits),			\
-+			.storagebits = (bits) > 16 ? 32 : 16,	\
- 			.endianness = IIO_CPU,			\
- 		},						\
- }
-@@ -45,7 +45,7 @@
- 		.scan_type = {					\
- 			.sign = 's',				\
- 			.realbits = (bits),			\
--			.storagebits = (bits),			\
-+			.storagebits = (bits) > 16 ? 32 : 16,	\
- 			.endianness = IIO_CPU,			\
- 		},						\
- }
-@@ -88,6 +88,8 @@ struct ad7606_chip_info {
-  *			such that it can be read via the 'read_avail' hook
-  * @num_scales		number of elements stored in the scale_avail array
-  * @range		voltage range selection, selects which scale to apply
-+ * @reg_offset		offset for the register value, to be applied when
-+ *			writing the value of 'range' to the register value
-  */
- struct ad7606_chan_scale {
- #define AD760X_MAX_SCALE_SHOW		(AD760X_MAX_CHANNELS * 2)
-@@ -95,6 +97,7 @@ struct ad7606_chan_scale {
- 	int				scale_avail_show[AD760X_MAX_SCALE_SHOW];
- 	unsigned int			num_scales;
- 	unsigned int			range;
-+	unsigned int			reg_offset;
- };
- 
- /**
-@@ -151,9 +154,13 @@ struct ad7606_state {
- 	/*
- 	 * DMA (thus cache coherency maintenance) may require the
- 	 * transfer buffers to live in their own cache lines.
--	 * 16 * 16-bit samples + 64-bit timestamp
-+	 * 16 * 16-bit samples + 64-bit timestamp - for AD7616
-+	 * 8 * 32-bit samples + 64-bit timestamp - for AD7616C-18 (and similar)
- 	 */
--	unsigned short			data[20] __aligned(IIO_DMA_MINALIGN);
-+	union {
-+		unsigned short d16[20];
-+		unsigned int d32[10];
-+	} data __aligned(IIO_DMA_MINALIGN);
- 	__be16				d16[2];
- };
- 
-@@ -192,6 +199,8 @@ enum ad7606_supported_device_ids {
- 	ID_AD7606_6,
- 	ID_AD7606_4,
- 	ID_AD7606B,
-+	ID_AD7606C_16,
-+	ID_AD7606C_18,
- 	ID_AD7616,
- };
- 
-diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
-index e00f58a6a0e9..b8d630ad156d 100644
---- a/drivers/iio/adc/ad7606_spi.c
-+++ b/drivers/iio/adc/ad7606_spi.c
-@@ -77,6 +77,18 @@ static const struct iio_chan_spec ad7606b_sw_channels[] = {
- 	AD7606_SW_CHANNEL(7, 16),
- };
- 
-+static const struct iio_chan_spec ad7606c_18_sw_channels[] = {
-+	IIO_CHAN_SOFT_TIMESTAMP(8),
-+	AD7606_SW_CHANNEL(0, 18),
-+	AD7606_SW_CHANNEL(1, 18),
-+	AD7606_SW_CHANNEL(2, 18),
-+	AD7606_SW_CHANNEL(3, 18),
-+	AD7606_SW_CHANNEL(4, 18),
-+	AD7606_SW_CHANNEL(5, 18),
-+	AD7606_SW_CHANNEL(6, 18),
-+	AD7606_SW_CHANNEL(7, 18),
-+};
-+
- static const unsigned int ad7606B_oversampling_avail[9] = {
- 	1, 2, 4, 8, 16, 32, 64, 128, 256
- };
-@@ -120,6 +132,19 @@ static int ad7606_spi_read_block(struct device *dev,
- 	return 0;
- }
- 
-+static int ad7606_spi_read_block18to32(struct device *dev,
-+				       int count, void *buf)
-+{
-+	struct spi_device *spi = to_spi_device(dev);
-+	struct spi_transfer xfer = {
-+		.bits_per_word = 18,
-+		.len = count,
-+		.rx_buf = buf,
-+	};
-+
-+	return spi_sync_transfer(spi, &xfer, 1);
-+}
-+
- static int ad7606_spi_reg_read(struct ad7606_state *st, unsigned int addr)
- {
- 	struct spi_device *spi = to_spi_device(st->dev);
-@@ -283,6 +308,19 @@ static int ad7606B_sw_mode_config(struct iio_dev *indio_dev)
- 	return 0;
- }
- 
-+static int ad7606c_18_sw_mode_config(struct iio_dev *indio_dev)
-+{
-+	int ret;
-+
-+	ret = ad7606B_sw_mode_config(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->channels = ad7606c_18_sw_channels;
-+
-+	return 0;
-+}
-+
- static const struct ad7606_bus_ops ad7606_spi_bops = {
- 	.read_block = ad7606_spi_read_block,
- };
-@@ -305,6 +343,15 @@ static const struct ad7606_bus_ops ad7606B_spi_bops = {
- 	.sw_mode_config = ad7606B_sw_mode_config,
- };
- 
-+static const struct ad7606_bus_ops ad7606c_18_spi_bops = {
-+	.read_block = ad7606_spi_read_block18to32,
-+	.reg_read = ad7606_spi_reg_read,
-+	.reg_write = ad7606_spi_reg_write,
-+	.write_mask = ad7606_spi_write_mask,
-+	.rd_wr_cmd = ad7606B_spi_rd_wr_cmd,
-+	.sw_mode_config = ad7606c_18_sw_mode_config,
-+};
-+
- static int ad7606_spi_probe(struct spi_device *spi)
- {
- 	const struct spi_device_id *id = spi_get_device_id(spi);
-@@ -315,8 +362,12 @@ static int ad7606_spi_probe(struct spi_device *spi)
- 		bops = &ad7616_spi_bops;
- 		break;
- 	case ID_AD7606B:
-+	case ID_AD7606C_16:
- 		bops = &ad7606B_spi_bops;
- 		break;
-+	case ID_AD7606C_18:
-+		bops = &ad7606c_18_spi_bops;
-+		break;
- 	default:
- 		bops = &ad7606_spi_bops;
- 		break;
-@@ -333,6 +384,8 @@ static const struct spi_device_id ad7606_id_table[] = {
- 	{ "ad7606-6", ID_AD7606_6 },
- 	{ "ad7606-8", ID_AD7606_8 },
- 	{ "ad7606b",  ID_AD7606B },
-+	{ "ad7606c-16",  ID_AD7606C_16 },
-+	{ "ad7606c-18",  ID_AD7606C_18 },
- 	{ "ad7616",   ID_AD7616 },
- 	{ }
- };
-@@ -344,6 +397,8 @@ static const struct of_device_id ad7606_of_match[] = {
- 	{ .compatible = "adi,ad7606-6" },
- 	{ .compatible = "adi,ad7606-8" },
- 	{ .compatible = "adi,ad7606b" },
-+	{ .compatible = "adi,ad7606c-16" },
-+	{ .compatible = "adi,ad7606c-18" },
- 	{ .compatible = "adi,ad7616" },
- 	{ }
- };
--- 
-2.46.0
-
+T24gMzEvMDgvMjQgNzoxMSBwbSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gRVhURVJO
+QUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5
+b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBPbiAzMS8wOC8yMDI0IDA5OjUxLCBE
+aGFybWEuQkBtaWNyb2NoaXAuY29tIHdyb3RlOg0KPj4gSGkgS3J6eXN6dG9mLA0KPj4NCj4+IE9u
+IDMxLzA4LzI0IDExOjUwIGFtLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPj4+IEVYVEVS
+TkFMIEVNQUlMOiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3Mg
+eW91IGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZQ0KPj4+DQo+Pj4gT24gRnJpLCBBdWcgMzAsIDIw
+MjQgYXQgMDg6MjE6MjFQTSArMDUzMCwgRGhhcm1hIEJhbGFzdWJpcmFtYW5pIHdyb3RlOg0KPj4+
+PiBBZGQgbW1jIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiBmb3Igc2FtYTdkNjUuDQo+Pj4+DQo+Pj4+
+IFNpZ25lZC1vZmYtYnk6IERoYXJtYSBCYWxhc3ViaXJhbWFuaSA8ZGhhcm1hLmJAbWljcm9jaGlw
+LmNvbT4NCj4+Pj4gLS0tDQo+Pj4+ICAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9tbWMvYXRtZWwsc2FtYTVkMi1zZGhjaS55YW1sIHwgNSArKysrKw0KPj4+PiAgICAxIGZpbGUg
+Y2hhbmdlZCwgNSBpbnNlcnRpb25zKCspDQo+Pj4+DQo+Pj4NCj4+PiBXaGVyZSBpcyBhbnkgdXNl
+ciBvZiB0aGlzPyBXaHkgYXJlIHlvdSBhZGRpbmcgYmluZGluZ3Mgd2l0aG91dCB1c2Vycz8NCj4+
+DQo+PiBXZSB3aWxsIHVwc3RyZWFtIHRoZSBzYW1hN2Q2NSBib2FyZCBkdHMgZmlsZXMgc29vbiwg
+aGVuY2UgYWRkaW5nIHN1cHBvcnQNCj4+IGZvciBpdCBiZWZvcmUgaGFuZCBpbiBiaW5kaW5ncy4N
+Cj4+DQo+IA0KPiBOb3Qgc29vbi4gVHdvIG9mIHlvdXIgb3RoZXIgcG9zdGluZ3MgYXJlIGNsZWFy
+bHkgd3JvbmdseSBzcGxpdCwgc28gSQ0KPiBkb24ndCB0cnVzdCB0aGlzIG9uZSBlaXRoZXIuDQo+
+IA0KPiBQb3N0IGV2ZXJ5dGhpbmcuIFlvdXIgZHJpdmVycyB3aXRoIHRoZWlyIGJpbmRpbmdzLiBZ
+b3VyIERUUyBnb2VzIHdpdGgNCj4gYm9hcmQgYmluZGluZ3MsIGluIHNlcGFyYXRlIHBhdGNoc2V0
+IChvbmUhKSB3aXRoIGxvcmUgbGluayB0byB0aGUgZHJpdmVyDQo+IGJpbmRpbmdzIHNvIHdlIGNh
+biB2ZXJpZnkgaXQuDQoNCk9rYXksIEkgd2lsbCBkcm9wIHRoaXMgbm93LCBJIHdpbGwganVzdCBz
+ZW5kIHRoZSBjb252ZXJzaW9uIGZyb20gdGV4dCB0byANCmpzb24gaW4gdGhlIG5leHQgcmV2aXNp
+b24gb2YgdGhpcyBwYXRjaC4NCg0KV2lsbCBzZW5kIGl0IGFsb25nIHdpdGggdGhlIGR0cyBhcyB5
+b3Ugc3VnZ2VzdC4NClRoYW5rcy4NCg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YN
+Cj4gDQoNCg0KLS0gDQpXaXRoIEJlc3QgUmVnYXJkcywNCkRoYXJtYSBCLg0K
 
