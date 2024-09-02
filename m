@@ -1,282 +1,184 @@
-Return-Path: <devicetree+bounces-98940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D541C96815B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:05:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4DE968169
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 10:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 648751F226F4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:05:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C91F1C219E1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FEA185B52;
-	Mon,  2 Sep 2024 08:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BC017E017;
+	Mon,  2 Sep 2024 08:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="axqFzcnl"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ADgtYXnH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0554A17C9A3;
-	Mon,  2 Sep 2024 08:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E69717F4EC;
+	Mon,  2 Sep 2024 08:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725264307; cv=none; b=bPj63bp/6mEVFxTLnTHirDy0Aw0VMGsfgWYLbEqv+0w/lhaz8PG8MGGurRAeCZv7OgHWG6Mhhje00XusLr6MpMc+ewTOOXhaKc00TM2Rmb3YX+SgwUb1UWMo2U55P1TOOL8eycpm+pnLj77TZ5wIYyLsrnCfqxbxAdSd5rWCZFo=
+	t=1725264697; cv=none; b=nQCw5Ls+M069+VU26wGemznOYBIM7xKhBcmEVPTaZs+Qs98xGO7qLBkZzg6k6bG6Z/KdU4Q8JQeVsZCxCGYyTulhRdEn7D4kVw4AWYYZFyn2BcwdLl4UTHKLIVk7lig5gPD6UVhYFppYucxK9JXCYXOeVLOSKZSRAw+xF7Bfv+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725264307; c=relaxed/simple;
-	bh=LdMLWG5zKL76KMGJrDvVCBkrbnNIzGG0F7TUP1x/cFI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iHEHUhm3AQ3nf+6Ezwffq8gDH9r04sVxTxlIedI2T3rjOVnJSx8Pqcrd7H8GydwVoPeUVGWDOPsl7sheFfk6bE/SensfnyV7VGqTVc1Xeil4yPFx5eTGKbq4Wq11tEgYDaKtAd88kCkpN3KhCWNLyyZXK/dpAxL42upNLQQnyIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=axqFzcnl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D6BDC4CEC2;
-	Mon,  2 Sep 2024 08:05:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725264306;
-	bh=LdMLWG5zKL76KMGJrDvVCBkrbnNIzGG0F7TUP1x/cFI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=axqFzcnlOOn9q0DFdlC8TYhx2g9hmLaBW22qwIZfyRYgQlksanwl7QpVZCZm2byd9
-	 P6hxd6MEalFaqIqeCtqq7di/TXZNrQajSsvACV9rm98+Km/teZRgH+D4kmUnLlwJC7
-	 qfSW0wR3MV69zO6QMOvBEGhfSlFY8ggnuHuergK4uCA1YD2Wk+FqBC30Q74cRIAfex
-	 RrYE/kbiykE+s0NuKmnWcaxWrvKQXPLKWrYh/AA0X5QcohGjd8hgqo1NuBR4cBVStz
-	 t74/ZZxcOysNwG3rrhK48fb6RanAUVA2TdDvC1wSxGXaK7Sr1WXKyrrbLeKJIwrHzU
-	 ostPu2zlya7Gw==
-Message-ID: <51b9e189-7fa0-48b1-b5d2-b043fa1d8ed1@kernel.org>
-Date: Mon, 2 Sep 2024 10:05:01 +0200
+	s=arc-20240116; t=1725264697; c=relaxed/simple;
+	bh=Hy/p2S+XsCNkvbN3oj3Azd3tICZv+++Zge4afnbauz8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MAtGQPUFpB9GopK2OBHI6OqbkU+qVq9kwCDMouxw15lAdLhFRRG50lkp+hU2endfCBxYyXNna7uWHN6u7qzFp7WxDa3igVcpXX0huyDG53Fffe/+7TNCmlcb08kub+3PWPyjXBvE9k663Q9aRxDOmk7KIEeNL8zbofXTUAiIGWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ADgtYXnH; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4828BRJO126670;
+	Mon, 2 Sep 2024 03:11:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725264687;
+	bh=sBsE1Q+E+NOzFYwa6tYGVaWt64Eys64dy0TSfuFYUVg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ADgtYXnHmkCvX1529Wpy4Bza8eN+PLPa+a2FJLf3RU+5YpqplzuXKr5QCOY3HriO1
+	 NoAucdtRB61GVvkv6sIrLsdLyya664vaD2WFqF9ELIqaKa5GyB2ZgzuBaZtBJkXjqB
+	 wUmQ2Q2pj57OT15VX5jVZLkkClf4g7yw59juZvug=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4828BRih015122
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 2 Sep 2024 03:11:27 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
+ Sep 2024 03:11:26 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 2 Sep 2024 03:11:27 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4828BQOD013182;
+	Mon, 2 Sep 2024 03:11:26 -0500
+Date: Mon, 2 Sep 2024 13:41:25 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: "Kumar, Udit" <u-kumar1@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>
+Subject: Re: [PATCH v5 1/5] arm64: dts: ti: Refactor J784s4 SoC files to a
+ common file
+Message-ID: <20240902081125.luplg4esldhw6ycp@uda0497581>
+References: <20240828-b4-upstream-j742s2-v5-0-9aaa02a0faee@ti.com>
+ <20240828-b4-upstream-j742s2-v5-1-9aaa02a0faee@ti.com>
+ <c2568770-c80c-44d6-b3d5-a1a18f213d42@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/7] dt-bindings: arm: Add support for Coresight TGU
- trace
-To: songchai <quic_songchai@quicinc.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240830092311.14400-1-quic_songchai@quicinc.com>
- <20240830092311.14400-2-quic_songchai@quicinc.com>
- <0a79b9df-4ca4-4dc8-9930-3fa1dc7d3174@kernel.org>
- <65732921-988f-41f7-886e-94415b07608e@quicinc.com>
- <d4e424f0-5485-4ccc-83e1-d1eb3008af9f@kernel.org>
- <aef09e24-bdd0-4638-8ddc-55c4d39e37ec@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <aef09e24-bdd0-4638-8ddc-55c4d39e37ec@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c2568770-c80c-44d6-b3d5-a1a18f213d42@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 02/09/2024 09:24, songchai wrote:
+Hi Udit,
+
+On 19:00-20240830, Kumar, Udit wrote:
+> Hi Manorit
 > 
-> On 9/2/2024 3:02 PM, Krzysztof Kozlowski wrote:
->> On 02/09/2024 05:14, songchai wrote:
->>> On 8/30/2024 6:11 PM, Krzysztof Kozlowski wrote:
->>>> On 30/08/2024 11:23, songchai wrote:
->>>>> The Trigger Generation Unit (TGU) is designed to detect patterns or
->>>>> sequences within a specific region of the System on Chip (SoC). Once
->>>>> configured and activated, it monitors sense inputs and can detect a
->>>>> pre-programmed state or sequence across clock cycles, subsequently
->>>>> producing a trigger.
->>>>>
->>>>>      TGU configuration space
->>>>>           offset table
->>>>>    x-------------------------x
->>>>>    |                         |
->>>>>    |                         |
->>>>>    |                         |                           Step configuration
->>>>>    |                         |                             space layout
->>>>>    |   coresight management  |                           x-------------x
->>>>>    |        registers        |                     |---> |             |
->>>>>    |                         |                     |     |  reserve    |
->>>>>    |                         |                     |     |             |
->>>>>    |-------------------------|                     |     |-------------|
->>>>>    |                         |                     |     | prioroty[3] |
->>>>>    |         step[7]         |<--                  |     |-------------|
->>>>>    |-------------------------|   |                 |     | prioroty[2] |
->>>>>    |                         |   |                 |     |-------------|
->>>>>    |           ...           |   |Steps region     |     | prioroty[1] |
->>>>>    |                         |   |                 |     |-------------|
->>>>>    |-------------------------|   |                 |     | prioroty[0] |
->>>>>    |                         |<--                  |     |-------------|
->>>>>    |         step[0]         |-------------------->      |             |
->>>>>    |-------------------------|                           |  condition  |
->>>>>    |                         |                           |             |
->>>>>    |     control and status  |                           x-------------x
->>>>>    |           space         |                           |             |
->>>>>    x-------------------------x                           |Timer/Counter|
->>>>>                                                          |             |
->>>>> 						       x-------------x
->>>>> TGU Configuration in Hardware
->>>>>
->>>>> The TGU provides a step region for user configuration, similar
->>>>> to a flow chart. Each step region consists of three register clusters:
->>>>>
->>>>> 1.Priority Region: Sets the required signals with priority.
->>>>> 2.Condition Region: Defines specific requirements (e.g., signal A
->>>>> reaches three times) and the subsequent action once the requirement is
->>>>> met.
->>>>> 3.Timer/Counter (Optional): Provides timing or counting functionality.
->>>>>
->>>>> Add a new coresight-tgu.yaml file to describe the bindings required to
->>>>> define the TGU in the device trees.
->>>>>
->>>>> Signed-off-by: songchai<quic_songchai@quicinc.com>
->>>> It feels like you are using login name as real name. Please investigate
->>>> this and confirm whether latin transcription/transliteration of your
->>>> name is like above.
->>> yes.. it's my login name. Will use my real name in next version.
->>>>> ---
->>>>>    .../bindings/arm/qcom,coresight-tgu.yaml      | 136 ++++++++++++++++++
->>>>>    1 file changed, 136 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..c261252e33e0
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
->>>>> @@ -0,0 +1,136 @@
->>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>>> +# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id:http://devicetree.org/schemas/arm/qcom,coresight-tgu.yaml#
->>>>> +$schema:http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Trigger Generation Unit - TGU
->>>>> +
->>>>> +description: |
->>>>> +  The Trigger Generation Unit (TGU) is a Data Engine which can be utilized
->>>>> +  to sense a plurality of signals and create a trigger into the CTI or
->>>>> +  generate interrupts to processors. The TGU is like the trigger circuit
->>>>> +  of a Logic Analyzer.The corresponding trigger logic can be realized by
->>>>> +  configuring the conditions for each step after sensing the signal.
->>>>> +  Once setup and enabled, it will observe sense inputs and based upon
->>>>> +  the activity of those inputs, even over clock cycles, may detect a
->>>>> +  preprogrammed state/sequence and then produce a trigger or interrupt.
->>>>> +
->>>>> +  The primary use case of the TGU is to detect patterns or sequences on a
->>>>> +  given set of signals within some region of the SoC.
->>>>> +
->>>>> +maintainers:
->>>>> +  - Mao Jinlong<quic_jinlmao@quicinc.com>
->>>>> +  - Sam Chai<quic_songchai@quicinc.com>
->>>>> +
->>>>> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
->>>>> +select:
->>>>> +  properties:
->>>>> +    compatible:
->>>>> +      contains:
->>>>> +        enum:
->>>>> +          - qcom,coresight-tgu
->>>>> +  required:
->>>>> +    - compatible
->>>>> +
->>>>> +properties:
->>>>> +  $nodename:
->>>>> +    pattern: "^tgu(@[0-9a-f]+)$"
->>>> Drop the pattern (and anyway @ is not optional).
->>> There will be several TGUs in the SoC, and we want to use the address of
->>> each to distinguish them.
->> How is this related?
->>
->>> This is why we added the nodename pattern here.
->> How is this related?
->>
->>> Additionally, I noticed that both TPDM and CTI also use this format to
->>> define the nodename.
->>>
->>> Could you please share any concerns you have about using this pattern?
->> I don't get why you insist, but sure:
->> The name does not follow DT spec recommendation, plus child schema is
->> not really supposed to define the names.
-> Thanks for you clarification, will drop in the next version.
->>
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - const: qcom,coresight-tgu
->>>>> +      - const: arm,primecell
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clocks:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clock-names:
->>>>> +    items:
->>>>> +      - const: apb_pclk
->>>>> +
->>>>> +  qcom,tgu-steps:
->>>>> +    description:
->>>>> +      The trigger logic is realized by configuring each step after sensing
->>>>> +      the signal. The parameter here is used to describe the maximum of steps
->>>>> +      that could be configured in the current TGU.
->>>> Why this is board or SoC level property? All below also feel like
->>>> unnecessary stuff from downstream.
->>> There are actually four properties used to describe the number of
->>> registers with different functionality for TGUs at the SoC level.
->>>
->>> Each TGU may have a different number of registers, so we need to add
->>> these four properties to describe each TGU’s hardware design.
->> Each TGU on the same SoC?
-> yes, in other words, there will be several TGUs in the SoC.
+> Overall series looks ok but few comments below
+> 
+> On 8/28/2024 4:44 PM, Manorit Chawdhry wrote:
+> > Refactor J784s4 SoC files to a common file which uses the
+> > superset device to allow reuse in j742s2-evm which uses the subset part.
+> > 
+> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> > Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+> > ---
+> >   .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  150 ++
+> >   .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2667 ++++++++++++++++++
+> >   ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
+> >   ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
+> >   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
+> >   arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  135 +-
+> >   6 files changed, 2914 insertions(+), 2887 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+> > new file mode 100644
+> > index 000000000000..43fee57f0926
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi
+> > @@ -0,0 +1,150 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> > +/*
+> > + * Device Tree Source for J784S4 and J742S2 SoC Family
+> > + *
+> > + * TRM (j784s4) (SPRUJ43 JULY 2022): https://www.ti.com/lit/zip/spruj52
+> > + * TRM (j742s2): https://www.ti.com/lit/pdf/spruje3
+> > + *
+> > [..]		 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
+> > +			 <0x00 0x04210000 0x00 0x04210000 0x00 0x00010000>, /* VPU0 */
+> > +			 <0x00 0x04220000 0x00 0x04220000 0x00 0x00010000>, /* VPU1 */
+> > +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIe0 Core*/
+> > +			 <0x00 0x0d800000 0x00 0x0d800000 0x00 0x00800000>, /* PCIe1 Core*/
+> > +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00800000>, /* PCIe2 Core*/
+> > +			 <0x00 0x0e800000 0x00 0x0e800000 0x00 0x00800000>, /* PCIe3 Core*/
+> 
+> 
+> PCie2 and PCIe3 ranges are not common across these devices,
+> 
+> Do you want to move this into J784s4 specific file
+> 
+> Same comment for PCIe region DAT below
 
-This I understood, but I am asking if each TGU on the same SoC will have
-different number of registers and other properties?
+This was already discussed in the previous revision and my stance is not
+to change it due to maintainance reasons [0].
 
-Best regards,
-Krzysztof
+> 
+> > [..]
+> 
+> > 			 <0x42 0x00000000 0x42 0x00000000 0x01 0x00000000>, /* PCIe2 DAT1 */
+> > +			 <0x43 0x00000000 0x43 0x00000000 0x01 0x00000000>, /* PCIe3 DAT1 */
+> 
+> [..]
+> 
+> +#include "k3-j784s4-j742s2-main-common.dtsi"
+> > +#include "k3-j784s4-j742s2-mcu-wakeup-common.dtsi"
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> > [...]
+> > +
+> > +&cbass_main {
+> > +	msmc_ram: sram@70000000 {
+> > +		compatible = "mmio-sram";
+> > +		reg = <0x00 0x70000000 0x00 0x800000>;
+> 
+> Table 2-1 of J742S2 TRM says msmc RAM is 4MB and on J784S4 this is 8MB
+> 
+> Please see, if you can address that
+> 
 
+I think this was thought through before. So from my understanding, this
+memory map is just a dummy node that the bootloaders is supposed to be
+fixing up based on it's usecase [1]. Though ig it's not very intuitive
+looking at the DT, let me add a comment in the corresponding node to
+clarify this.
+
+"MSMC is configured by bootloaders and a runtime fixup is done in the DT
+for this node"
+
+Would you be okay with the following comment in the DT node for MSMC but
+keeping the following node in common file only?
+
+Regards,
+Manorit
+
+[0]: https://lore.kernel.org/linux-arm-kernel/20240827082445.bfx2r7z4iry4fdax@uda0497581/
+[1]: https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/general/core.html?highlight=query#tisci-msg-query-msmc
+> 
+> > [...]
+> > 
 
