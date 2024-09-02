@@ -1,143 +1,135 @@
-Return-Path: <devicetree+bounces-98889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99096967D3D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 03:10:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C08967D4A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 03:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5C1BB2107A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 01:10:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB1881F2154B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 01:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781EB125DB;
-	Mon,  2 Sep 2024 01:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346C7175A5;
+	Mon,  2 Sep 2024 01:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cw79jg3D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxSDHSyO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072934A0F;
-	Mon,  2 Sep 2024 01:10:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CCF8F6C;
+	Mon,  2 Sep 2024 01:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725239424; cv=none; b=KNFO8dM1TFcFcM+JcVgFR8hcCRnE0CGC/zdtuYgGDCt2ahPkq9WFZSM+IQrqPocJffiKbqFtwDVkFdAobk6p7xIoWMeLhapBPuKHS9j56S7CUWAVAsdaSjpjf9d9Df1kmUd9D6T8xJ8DEkTfofJQZXg2tVNFvG4msqx6wClYZ6Y=
+	t=1725240203; cv=none; b=LYj13obtpVytFcBSejx3kgT8BE3MaNEt2rV75sky/bYDhoG5nfHzDR+oneu8fis1aIlAQM2hxrKCQURPj+eSAkuKle6/RRPYxw0sMAlOsEDaa19Wct/3cXEsOeHNOyi3YQkgze0yUSj7nh7ffZ69K+SOM4dKoSaSSfe4Y0yt4TQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725239424; c=relaxed/simple;
-	bh=E4gzV92PxZE+qFNA+RekwmEuIebSetmvmkFXMiYp3PY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ErlsuV59133d3Su9FmLT+YNQhHRQ0f7Y+vcdamzdDa+Wexd3R08uboDRioYTYQeRkrEs7e+pqjg4jp6bCwfnwqUobZk1q7BUBnXkq701ocuNd9FtTAhAfeH71OddQojihkuTdMo93DWxAOzxvjvFlhs1sMus7NlV6hQUgNiMt9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cw79jg3D; arc=none smtp.client-ip=209.85.166.180
+	s=arc-20240116; t=1725240203; c=relaxed/simple;
+	bh=rcY86Xh8hmdWc/GwfHJUqqLAtLfP8/R+o7Jjb71rsCI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uld3dL40a4fB/o615I7pOk7Jfp2dmgt5TE6CP5HMtVJgoeqItA/lk+wKanieFEfYuZF8YW0wY/ZLtwxph2E8ymFKOH2eWS7+A2JUR7I7moraHRJ0dzXg1VKd78q2A/ArLsz4U/sZCguLUcCJ7OUm3BanArLF7BkVVWoLdHI8C1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxSDHSyO; arc=none smtp.client-ip=209.85.167.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-39f539a83e0so3899245ab.2;
-        Sun, 01 Sep 2024 18:10:22 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3df07fe03acso2347062b6e.3;
+        Sun, 01 Sep 2024 18:23:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725239422; x=1725844222; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E4gzV92PxZE+qFNA+RekwmEuIebSetmvmkFXMiYp3PY=;
-        b=Cw79jg3DiUssKVxFQSzY/3SyS/2b5SSwQEhF/VMzGUjD9pqtTkvaFGWezdHhAcNXxm
-         vKuyKgtW66Xdr5/b0geYlAU5CdgvqNFz+dE5Uuc8rA98h5vCrf4dA9/R4dJ4Do4hcdGV
-         FLR+qkKITbyy9VqecasQdG5nAOUYoiHX6Bauila9QPEHYjGJhzXP08YGKwZIkxWELN8U
-         f5B70t6ABYH5Kf55vllohXcyZUF5D6/fZIq/IYq6FyPedBAOuxM0cESKbYff7dKzrdYA
-         +qxhJ1xkN4zYuusrzJ6fjE9sGqQoKprpXJBpszEEIBZywGTaW6djo7ZND6wUuwTn8G3h
-         yTQA==
+        d=gmail.com; s=20230601; t=1725240200; x=1725845000; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=u/xe9QZ+gYCeSq3BZh2r9ujizGNk/decUAVyH1Yg/YA=;
+        b=LxSDHSyO5pc0OffgDnnK+B2TJglcpQNi/N+q09Xjctle93q4GMG/Jita6yMFoNIPMT
+         TIh688VvQZ0+PnhPbno3IubG9/RkzneU3GHgdj9arA0KZPuGADV98Q1E4H8kDKFzF/ca
+         4WB/4r/XLnjpUXRv/LOqV/L3ZIl0CidQHAd9RV3lpwrSxvWvx9hTRRoGZDDrUEnaLius
+         nJlLuI9qG/VASr7WCQ/55qWIqV4zzk/Un4KMV6O4in/7bcbSnY572SD1/+klEXC1MVc2
+         ptF9pbO9eIzRM/BNmkPygjYVAzOvtWr4EKYXK3ZisEEdFt2M9Mh2azfNOdPuAhMMMYO6
+         W6TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725239422; x=1725844222;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E4gzV92PxZE+qFNA+RekwmEuIebSetmvmkFXMiYp3PY=;
-        b=r8lQi9Dc1Vq7HbMaHlvTfxzQznTnKRuWRkVzseA92LLlGoHwFq9BB9Qywg3JbcX9S6
-         UGBHTnNA2VNAUPfO7nauA/PYmN/feAWf2Kw/KGgwVBe8HlK7QnnF4hM3U9LWA4B7rupk
-         WHcCUPqkr1fQt5mRn+UII9JlrrYfCoJa9JVWtHnwtZBTCytHIoCFv4iCqFiQQXTOhr/E
-         qOWZCWa8s9KycFnmOQumyivPRxzXT+caA1pEnlDUjDv9wMhXjfaW+my8b6Kw1q5Zpo27
-         nnD5YHz76B3jHZpht36yhf1EzW2lF063A68xm3/HO8oXS8yMsFJTNw0oF9GbKVqgn4jH
-         rk4A==
-X-Forwarded-Encrypted: i=1; AJvYcCUYq2pry3Gbu2sGNtCy//qrXNv4AyZdNtSVjMgRlDafYwsnUwYD/qQd9M31osbik8/R4GIFltJc38Bynu8/@vger.kernel.org, AJvYcCVYVk1O8rXSUQ7Vm9OQN6qmd4S6WqyUUNJkQE/LHht1CKjt0OEQlcyeP0vkKoPjS77ae7buvyBdGec6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyXFIvdh+P3xvZ/cScoyYjFY6jVtriHEadIrw19Ev/nRplVClp
-	zzRPtJ/cU/PX4rWrq+rqExaT/gT+n34e3U4J8PJHfx9t+0pmaaZC
-X-Google-Smtp-Source: AGHT+IFyhMM0xDEm3decKqdzpa8ZS+bTABQJ0zYWbmUuOdCfCFThXfgY07/epTd0Cp/ktdQ+h6vMgg==
-X-Received: by 2002:a05:6e02:194d:b0:397:6dfc:993a with SMTP id e9e14a558f8ab-39f4e11924fmr65501285ab.21.1725239421925;
-        Sun, 01 Sep 2024 18:10:21 -0700 (PDT)
-Received: from localhost.localdomain (174-20-195-90.mpls.qwest.net. [174.20.195.90])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-39f552cd162sm9103755ab.17.2024.09.01.18.10.16
+        d=1e100.net; s=20230601; t=1725240200; x=1725845000;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u/xe9QZ+gYCeSq3BZh2r9ujizGNk/decUAVyH1Yg/YA=;
+        b=xPqoa7Ev7mZZvVsOJxjAMRDPJIer8TVOe+h9L8bx/FA7u2S7RCUKR+JqMSmcA7VrQT
+         D9GTz/Q0J4wbhlZYnJcv6a0y/yg8Ljt5ICCjSM3zoi6DMv0SoPwr+er6ajFjsMZEBnGS
+         wjgHRNRAfnESVXoDXerAX7BFiX5bhXWs4ii3A4wEjQoVvwBxF7UH+7/s9xX9F1UyPnAL
+         OYY4BK7W+vfgG8k+5GOj54/NL+Ya9/AAdscYmLJgBcRYKR1HK9jB75yEPt8VSwLs5zvc
+         ANEZSYMcd3bGvbjjwYidgYqXAm0themEpul/3W+xdccyf7j8BgoqNAcTKR4G7KIK+7OV
+         Nz3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUWpY8tqfjEuNKTtNx6A9P+Rdq7nwVIqSAQPWgKjxLSqV6sDaFKzh45ux0z4mMkEDn9MVODZxTUxh+Uvjmz@vger.kernel.org, AJvYcCXb4UFtxjufyt9B8suy4O8KG05IuzL9XoGayvArygHIGyFHIbuEPOGQrfjNtuTp60qce4VkAr9C47S9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2JH28JSKS0iMYiyBsxBctZ+Y6hSA3RxxQpDLC32RMM1OTS2pQ
+	uSv1R35vH/DB2Bwd8a6Hx3cybivwWaeAPMoB+jFXu90GhtumJ+pc
+X-Google-Smtp-Source: AGHT+IH6KvwfF320D8xw/jut+hpZ9VMsVm9fprd9ay7D3ASB+9t79VFPwlYZxN0fUjpgiNxSLJSNJg==
+X-Received: by 2002:a05:6870:9e98:b0:254:affe:5a05 with SMTP id 586e51a60fabf-277d044346cmr6761684fac.21.1725240200505;
+        Sun, 01 Sep 2024 18:23:20 -0700 (PDT)
+Received: from visitorckw-System-Product-Name ([140.113.216.168])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e56d9716sm6038692b3a.174.2024.09.01.18.23.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Sep 2024 18:10:21 -0700 (PDT)
-From: Shimrra Shai <shimrrashai@gmail.com>
-To: cristian.ciocaltea@collabora.com
-Cc: Laurent.pinchart@ideasonboard.com,
-	aarnoud@me.com,
-	airlied@gmail.com,
-	andrzej.hajda@intel.com,
-	andy.yan@rock-chips.com,
-	conor+dt@kernel.org,
-	daniel@ffwll.ch,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	heiko@sntech.de,
-	hjc@rock-chips.com,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	kernel@collabora.com,
-	krzk+dt@kernel.org,
-	krzk@kernel.org,
-	ldearquer@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	maarten.lankhorst@linux.intel.com,
-	markyao0591@gmail.com,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	robh@kernel.org,
-	s.hauer@pengutronix.de,
-	tzimmermann@suse.de
-Subject: Re: Re: [PATCH v5 3/4] dt-bindings: display: rockchip: Add schema for RK3588 HDMI TX Controller
-Date: Sun,  1 Sep 2024 20:09:48 -0500
-Message-ID: <20240902010948.3654-1-shimrrashai@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <5ea24ad3-7faa-4a59-ba10-d43b32b3b40e@collabora.com>
-References: <5ea24ad3-7faa-4a59-ba10-d43b32b3b40e@collabora.com>
+        Sun, 01 Sep 2024 18:23:19 -0700 (PDT)
+Date: Mon, 2 Sep 2024 09:23:15 +0800
+From: Kuan-Wei Chiu <visitorckw@gmail.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Yu-Chun Lin <eleanor15x@gmail.com>
+Cc: Yu-Chun Lin <eleanor15x@gmail.com>, thierry.reding@gmail.com,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] docs: devicetree: Fix typo in lvds.yaml
+Message-ID: <ZtUTg0C81FwChfDh@visitorckw-System-Product-Name>
+References: <20240901133046.962263-1-eleanor15x@gmail.com>
+ <20240901151745.GB6713@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240901151745.GB6713@pendragon.ideasonboard.com>
 
-Cristian Ciocaltea wrote:
-> On 8/31/24 9:13 AM, Krzysztof Kozlowski wrote:
-> >
-> > Please define all clocks.
+On Sun, Sep 01, 2024 at 06:17:45PM +0300, Laurent Pinchart wrote:
+> Hi Yu-Chun,
+> 
+> Thank you for the patch.
+> 
+> On Sun, Sep 01, 2024 at 09:30:46PM +0800, Yu-Chun Lin wrote:
+> > Corrected the spelling in the description of LVDS Display Common
+> > Properties.
+> > 
+> > Signed-off-by: Yu-Chun Lin <eleanor15x@gmail.com>
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 >
-> The other clocks are defined in the common binding, should we reiterate
-> them?
+LGTM. Feel free to add:
 
-I would suggest yes, they should be reduplicated, if only to maintain
-consistency with all the other docs. A grep through the bridge docs
-shows that there are virtually none which use a "{}" placeholder like
-this. While it seems kind of like one might worry about "don't
-repeat yourself" syndrome, keep in mind this is not code, but human-
-used documentation. Having all the information available at a glance
-would seem to be the most convenient to the end (developer) user, so
-they aren't having to toggle between two separate files. Of course
-there may be some questions regarding docs becoming out of sync, but
-*ideally* we don't want to break backward compatibility with device
-trees (esp. given how I am imagining firmware integration to work on
-these platforms, as the RK3588 is at at least low-end desktop-grade
-performance and UEFI packages have already been built for it), though
-of course that doesn't mean adding new options is off the table.
+Reviewed-by: Kuan-Wei Chiu <visitorckw@gmail.com>
 
-(FWIW, this is what I did in my now-withdrawn-at-your-request
-re-submission; I reduplicated the bindings as it seemed that's what
-others here were pushing for and thus that felt like the quickest way
-to get this important driver approved.)
+Regards,
+Kuan-Wei
 
-- Shimrra Shai
+> > ---
+> >  Documentation/devicetree/bindings/display/lvds.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/lvds.yaml b/Documentation/devicetree/bindings/display/lvds.yaml
+> > index 224db4932011..b74efbea3be2 100644
+> > --- a/Documentation/devicetree/bindings/display/lvds.yaml
+> > +++ b/Documentation/devicetree/bindings/display/lvds.yaml
+> > @@ -16,7 +16,7 @@ maintainers:
+> >  description:
+> >    This binding extends the data mapping defined in lvds-data-mapping.yaml.
+> >    It supports reversing the bit order on the formats defined there in order
+> > -  to accomodate for even more specialized data formats, since a variety of
+> > +  to accommodate for even more specialized data formats, since a variety of
+> >    data formats and layouts is used to drive LVDS displays.
+> >  
+> >  properties:
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
 
