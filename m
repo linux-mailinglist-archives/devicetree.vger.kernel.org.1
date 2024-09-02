@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-99079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A33A0968A8E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 17:02:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E960968A8C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 17:02:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B3F51F221B3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 15:02:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 407461C21BFD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 15:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6B119F134;
-	Mon,  2 Sep 2024 15:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F66F19F10A;
+	Mon,  2 Sep 2024 15:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="toNQvgNX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cJe4/Z3/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515081CB506
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 15:01:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804131CB50E
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 15:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725289316; cv=none; b=Pnre7fV8A20953tWcA7oZZgZstd7G+M2mC7E2HEfQi/QEGnmlQOB0hhe42qBYhlD6wsLff0I0nSTA59m849Q7nRQvTbUc3t0kkLiYLm66/bRWQm7y+d4G0XdxZjlxwm/0cN45C+7zic3e356MIwyS76ZWWCcm4NWYRor+4zINSY=
+	t=1725289316; cv=none; b=txU6M4EU5KigoIUxetzWv3maz0XuohfcTXWsXpBXo32iFlFFNb9rQCt2HLTJJ61JCI//Lj+2B7dP3nkRvB5bTFW3gHgEawBmOhWOfmdYIvBOfNOCYZirEzwwSzWW83H7QRuXoR6jNFPdrAfIXn3+EiAHlOQGqSFHieqhTa6iQyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1725289316; c=relaxed/simple;
-	bh=a5A8lrDqI7aFR/XW1zOdLm52l4YORaA4kyHAIIBduoM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LgFSTH1R8l36/P09r6yR13NHVR3P69D1owdNg1mEMt3wyVC7HRF02j9/bbOTpn+tDgKNKCRiyn+lv/721BVmm00BOryNS5IkCYH9zOP+96JPPptjgu2Yr3Iv8b9ytGoMVr6PniohRJAZnL0eLpO4ID2FryrP4NUe5Gh7VKWUgfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=toNQvgNX; arc=none smtp.client-ip=209.85.167.43
+	bh=ArsmYDW55cKASTnQ6hcua5UnQZJb2h3ZYLRZ6WJ8EUU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=cHs4ZQXnE96pI87/LdnXrzsDnYLPo5v8YlLZ8Q7zWJu2LLBapJHKIapZXDB6cWVn+0EB0o/OpAxGg7Zopup7m2OC+TviLltO6AOmlTg8kJ533HzJ1/jNZ/lWyq4xse1mUbNAgqOt4nobES4/FXmgkLBL+hnlKnlO6t+ddwiAsdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cJe4/Z3/; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5334c4cc17fso6070009e87.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 08:01:53 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5334a8a1b07so5267768e87.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 08:01:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725289311; x=1725894111; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cO1TeBbYIYHALWkaQ6znvGEY3FTlPVW1y1SlK7fzBG0=;
-        b=toNQvgNX3crI7QSbypTQmCvCVDoMPIgy8TBJgqX8I+M/TtiavQvK2bvIm7dhD8tQCh
-         7PY4Jd7gccNyxbURiEvQUxK8fsmHDxrlYslfaiFq68GU+WOKXQ5l9agn1gTi1B4p+Wk/
-         3omrzmoJcpD1aJwZ422Adgav0VOH943sqOOBBhzVtXZbB6TLVQVrZS2LVLc/ST96UxeM
-         ZD/J6uZNYnFBP+rfCyPIs0enVgDNPNAEq862zPIq+VI4ET+lr6sD4JLuEuWB7B6KzzTg
-         CoeIz9v8Z0VRpDt7U0kOAW3IjFPDypm9YWqKBdda1qxt9TCfEeusfhftzu1e8Gif25SV
-         9IYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725289311; x=1725894111;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1725289313; x=1725894113; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cO1TeBbYIYHALWkaQ6znvGEY3FTlPVW1y1SlK7fzBG0=;
-        b=MMNxTCx7rffUgSQ6SfqhqkuTyZnpNp+1zgWN1/27U9rcJBzvdWwCjU1SJoBU4y/JiS
-         TeL33m1LmZLhkz437NjwYJQdXW7Mhdz1C/ruB8XT6JOXaTv81v0huNWH+k5mSoTiJEM5
-         2kbXMoQLUAFXH7iOHzgC4XJ1jbDYi/Evj4BMbPAHtQAqfVTCPgfosJsIZuID27rfX6VD
-         jhKlR1HYPPpWeKI/+aVRwXOQYEuilSawrUazEEgiSaGq4+vW5HJp+XGAifk2WU2/7XOF
-         ElOAhCjh9a1g6JFLEl3U9LuWljqauN+x+6LRq6Wke7U5Y8CTFdmKnhJpNw0rIzxDXgo2
-         /mLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgJ4lIrkm0EXHPqflAVEJ8rn0zujYq7pL5lkYoM5XlLoGX03fNtt1i8fZEr7V0VJ6Bj/eO327Eou02@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTaGG2PnIS7XvrualxJiGUjrS8Y2Ym9hvdAByEf5CIgmbRaRZn
-	JeK26C/DDqS4xYqsVZmQ0iqgxM/2Y+2IT9orHPS717rPbDoaDZXqNz5hntAVxqY=
-X-Google-Smtp-Source: AGHT+IH2YT7rJocKs0+uuQx+mqu6cGEnnz9isj+MTJuPQadaagNcOFaopjl/zwMkyPz6WYXDJbToMg==
-X-Received: by 2002:a05:6512:68c:b0:52c:d76f:7f61 with SMTP id 2adb3069b0e04-53546bb4d04mr5408823e87.56.1725289310903;
-        Mon, 02 Sep 2024 08:01:50 -0700 (PDT)
+        bh=B3pvwUMo0iJndMRUEcqbJ1B6l2vhr6vHtYLMGbW108E=;
+        b=cJe4/Z3/jGmxzjSqHX20NDqXaaTuKGZZQS9QvBy5Zjd1dbeD9T9WWAwGtzXdhV5ZxX
+         SSRawmyQQXVIJUGt8gJ7HeNIOAnbuFVmv0t8tLWva3N2vWpdNKCu+u1B0hLZJmPRGQ14
+         acjtzUV82cHnC87rf9ZHHSsl3t2yeH7ryHI5edIzLswZEh85bJ6R2MC+REzyBxuDwSmb
+         0T0DiJv4274567SNjk7m5d4hErjQIf46vTgdgVLdmj1EMRHKS4WPtczT62Du1Iqe3e3f
+         c+J7UHS2Rc8QnX2QJGFTsK9wm8pMYvrpaeiPEsAwg6P15rE4RP9htyxAUs7advC1P3LZ
+         HhrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725289313; x=1725894113;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B3pvwUMo0iJndMRUEcqbJ1B6l2vhr6vHtYLMGbW108E=;
+        b=wk9hjeMkgmddIjdYB0Ul0DF39Pv5Nr+Ym+wcNebh83Mapu2EhOo6pd+Q8Kj12PbimC
+         ztW6Ddmz4boCk0lVog1aBya5e1VYmCmJhmH5Z2AFWZm8qhOVmJdbBlfVe9oa5HZLdy/h
+         VK8FIxKSX3MLIvNb0MSolypf7B4TLMzlfsyaMXxCgrQU22KnjbfrQVvbYAAKZxWTv87f
+         jZJs25RKKZqotrx2wjTlEvOFnZjopmcxTdyDHP9crevh8h+Wsmj7lLsjy2cyXW7kUAWC
+         vB7Z/Rxnsu0StubMWb+qMaIxfY4fM6/iUWCeVXWbpJofy0luXe/6MfjEZcekU71Qor0p
+         23Ug==
+X-Forwarded-Encrypted: i=1; AJvYcCWTSR1eNd+jnjCF7FPNXSccBztzG6y/nLm4eCXTs6yOwYcjYQx/CPXDagN0YQ2pmtyExZ6MUJI/IFLP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4khL0G7OR4ccE1iwd7RL78CrkozxM5pUOZ+3G9BRyv5bNgYPJ
+	ZEECs4LuKJn1EQfIe0ayuaFTNEohzeR1ia6VhHImz+ofhhDBZQ/jCCIoa4b4hW0=
+X-Google-Smtp-Source: AGHT+IEUpfkkhnqYuZWu5uQpN0jifICl8ddqys0S7znON5JPKahdlXacEdMa0Hdy5+ZvWR6WxIixJg==
+X-Received: by 2002:a05:6512:3d1d:b0:533:4722:ebbe with SMTP id 2adb3069b0e04-53546b33564mr7349587e87.26.1725289312394;
+        Mon, 02 Sep 2024 08:01:52 -0700 (PDT)
 Received: from [127.0.1.1] ([82.79.186.176])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb6deb1ebsm140726115e9.3.2024.09.02.08.01.49
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb6deb1ebsm140726115e9.3.2024.09.02.08.01.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2024 08:01:50 -0700 (PDT)
+        Mon, 02 Sep 2024 08:01:51 -0700 (PDT)
 From: Abel Vesa <abel.vesa@linaro.org>
-Subject: [PATCH 0/2] arm64: dts: qcom: x1e80100: Add external DP support to
- CRD and T14s
-Date: Mon, 02 Sep 2024 18:01:34 +0300
-Message-Id: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-0-899c264c0eb7@linaro.org>
+Date: Mon, 02 Sep 2024 18:01:35 +0300
+Subject: [PATCH 1/2] arm64: dts: qcom: x1e80100-crd: Enable external DP
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,9 +79,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAE7T1WYC/x3NwQrCMAyA4VcZORtIu02qryIeypJpQLqSdlIYe
- 3eLx+/y/wcUMZUC9+EAk68W3VKHuwywvGN6CSp3gyc/UfA3bE4COSJcjJFrwciM0qpYih/kjGX
- PebOKgeM6xtldgx+h57LJqu2/ejzP8wfZ7JmHegAAAA==
+Message-Id: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-1-899c264c0eb7@linaro.org>
+References: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-0-899c264c0eb7@linaro.org>
+In-Reply-To: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-0-899c264c0eb7@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -91,52 +92,531 @@ Cc: Johan Hovold <johan@kernel.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Abel Vesa <abel.vesa@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1141; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=a5A8lrDqI7aFR/XW1zOdLm52l4YORaA4kyHAIIBduoM=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBm1dNWNFqyXrRXAxBH/1HLx31mMJe3qk7v4lBMz
- vO/YuiJIM6JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZtXTVgAKCRAbX0TJAJUV
- VvuVD/9BEYvrzyVbSQUpZUdk/y94RgWp7nAR6xAEoyNUR8/iXABZrEJieqRGVUC5fuUKoCNftr4
- kZO3lOlWWHqD26C6BHCWTSHhyniHxlKqYWvRr4aA1Ke3n+d4J/SICJg5mjAYjO6Dn1NRl2ZX5Ds
- nr3z+oSyGGarAzJa07rNnUxKlkoZUKyqpN6HoYH+dBySJ3YoxZwNSO2QZQtyLBOn6XvPTOTDH/r
- DzhHZpz8LoQ4Eo2xkJ6TE9nGhXPPIETZzv5wRn6GRIMBuPLrjmN/uecoKRvUaKVMSmP0RLoXLyf
- X2BnL6GVkz76Y69NUAgikn9gq/wuL/sayWc4KnJ3Cin2H3up6pd2dxsfXXLuteSlnpiE+6lAULW
- kcuC5LbhaREcdX8PTv23Mca3kWKVYbtzXW1Jcth7BVbbEVH/RoeX/T0KSo6eT5FBQgtm0k2ebo7
- KnBdW01Ky0k3Zrml5beMMV12GUM7ydMs6K8sHmeN9c2SSMOzMfjjHzxBqhE5Zlx7aIOtn/nCAFR
- TU7UWdPmeRkTZsitYHQjxRAokNeebLYkIdfx8GwK2vCftU8PzFWRBl6I9SHAzVSxVt+D51HVhK0
- JgL8IfxoATyWBsV2S9ivgNJ9krWbknbB/kF2U10ilPZxaorbCywTt7VUE/6lGmy5/eioH6iCi3k
- w2tRiGtDKhmf5nQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10887; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=ArsmYDW55cKASTnQ6hcua5UnQZJb2h3ZYLRZ6WJ8EUU=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBm1dNbs3SG9XUSejydzuinRf5Ksnly7I4Wc3M0G
+ 0dhWbppXC+JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZtXTWwAKCRAbX0TJAJUV
+ VgQ6D/9C6dfsbbIdMdB+IbTGubYiIUhmVDgvTxGdJiD/LhlWC0LxryjRoogNW/BzMCvbjr0c6T1
+ pCXNiEFKqxUJxSJkUv/kgK5naLkvvbwT9lwGiaOgoke4nQ8tKVUH9O0popGtga79C7KVohYnkl3
+ LNLYZS3EWxyNOC1fUCN9L0BpzqWzHNewiAImyDzHY9xtL8VjxHOvM3mcy497lZB8nhMwLmL5UUW
+ IVU0xukmFRu44Lu6DenCWZfZqNcjf1Ytp6nbxnJvU1bmiNYi4tWDlzz5q3QyMFJNmHgYex/WQtF
+ iPTNbpGIN0J6ROg2NtHQsDwO4APbhL6d9RiOC7SSf2C+lbhH1DoyM9mC63VegaFGpp4pz7DPHWr
+ iBQ2Cct+MrUQVsigPHsJ85YgwnoDJBx8NUsmMo5nifXCrNrqyd6+cOa8ZVUcOeK0PoNOecxTMcU
+ ALzGjx7lXdi6K4jRUA05i3D5uQQkj0MMcfSfOsLj/o70Pkt6KBwjmZG75lIkLcYZb68br8aiJ+n
+ PMUR4hrv0MqmgwlUsomTq9z5ne3yW6KYEpbOh/fFdKYVMHkPI/3Sc/P9G+oodgbyOTbMQICDjCX
+ dRZrVfI/m7wDcrSg8Eo9KqAZEQYOudgULoQI78Uv81p/EbAKZNRy5WWpJfauk9uMrPM3AoX5ed2
+ Py+CRlk/wLfMpqA==
 X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Both the CRD and T14s support altmode for external DisplayPort over the
-USB Type-C connectors. The CRD has 3 such connectors while the T14s has
-only 2.
-
-Enabling DP altmode requires the support for the Parade PS8830 USB Type-C
-retimer. [1]
-
-Currently, only the DP 4lanes and USB3 modes have been successfully
-tested on both CRD and T14s. The DP 2lanes + USB3 mode seems to suggest
-that changes are further needed in the QMP PHY driver.
-
-[1]
-https://lore.kernel.org/all/20240829-x1e80100-ps8830-v1-0-bcc4790b1d45@linaro.org/
+The Qualcomm Snapdragon X Elite CRD board has 3 USB Type-C ports,
+all of them supporting external DP altmode. Between each QMP
+combo PHY and the corresponding Type-C port, sits one Parade PS8830
+retimer which handles both orientation and SBU muxing. Add nodes for
+each retimer, fix the graphs between connectors and the PHYs accordingly,
+add the voltage regulators needed by each retimer and then enable all
+3 remaining DPUs.
 
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
-Abel Vesa (2):
-      arm64: dts: qcom: x1e80100-crd: Enable external DP support
-      arm64: dts: qcom: x1e80100-t14s: Add external DP support
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 414 +++++++++++++++++++++++++++++-
+ 1 file changed, 408 insertions(+), 6 deletions(-)
 
- .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 278 +++++++++++++-
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts          | 414 ++++++++++++++++++++-
- 2 files changed, 682 insertions(+), 10 deletions(-)
----
-base-commit: ecc768a84f0b8e631986f9ade3118fa37852fef0
-change-id: 20240829-x1e80100-crd-dts-add-external-dp-support-8daf3a516823
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+index 10b28d870f08..6dfc85eda354 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+@@ -99,7 +99,15 @@ port@1 {
+ 					reg = <1>;
+ 
+ 					pmic_glink_ss0_ss_in: endpoint {
+-						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
++						remote-endpoint = <&retimer_ss0_ss_out>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					pmic_glink_ss0_con_sbu_in: endpoint {
++						remote-endpoint = <&retimer_ss0_con_sbu_out>;
+ 					};
+ 				};
+ 			};
+@@ -128,7 +136,15 @@ port@1 {
+ 					reg = <1>;
+ 
+ 					pmic_glink_ss1_ss_in: endpoint {
+-						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
++						remote-endpoint = <&retimer_ss1_ss_out>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					pmic_glink_ss1_con_sbu_in: endpoint {
++						remote-endpoint = <&retimer_ss1_con_sbu_out>;
+ 					};
+ 				};
+ 			};
+@@ -157,7 +173,15 @@ port@1 {
+ 					reg = <1>;
+ 
+ 					pmic_glink_ss2_ss_in: endpoint {
+-						remote-endpoint = <&usb_1_ss2_qmpphy_out>;
++						remote-endpoint = <&retimer_ss2_ss_out>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					pmic_glink_ss2_con_sbu_in: endpoint {
++						remote-endpoint = <&retimer_ss2_con_sbu_out>;
+ 					};
+ 				};
+ 			};
+@@ -288,6 +312,134 @@ vreg_edp_3p3: regulator-edp-3p3 {
+ 		regulator-boot-on;
+ 	};
+ 
++	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR0_1P15";
++		regulator-min-microvolt = <1150000>;
++		regulator-max-microvolt = <1150000>;
++
++		gpio = <&pm8550ve_8_gpios 8 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&rtmr0_1p15_reg_en>;
++		pinctrl-names = "default";
++	};
++
++	vreg_rtmr0_1p8: regulator-rtmr0-1p8 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR0_1P8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++
++		gpio = <&pm8550ve_9_gpios 8 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&rtmr0_1p8_reg_en>;
++		pinctrl-names = "default";
++	};
++
++	vreg_rtmr0_3p3: regulator-rtmr0-3p3 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR0_3P3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&pm8550_gpios 11 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&rtmr0_3p3_reg_en>;
++		pinctrl-names = "default";
++	};
++
++	vreg_rtmr1_1p15: regulator-rtmr1-1p15 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR1_1P15";
++		regulator-min-microvolt = <1150000>;
++		regulator-max-microvolt = <1150000>;
++
++		gpio = <&tlmm 188 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtmr1_1p15_reg_en>;
++	};
++
++	vreg_rtmr1_1p8: regulator-rtmr1-1p8 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR1_1P8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++
++		gpio = <&tlmm 175 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtmr1_1p8_reg_en>;
++	};
++
++	vreg_rtmr1_3p3: regulator-rtmr1-3p3 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR1_3P3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&tlmm 186 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtmr1_3p3_reg_en>;
++	};
++
++	vreg_rtmr2_1p15: regulator-rtmr2-1p15 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR2_1P15";
++		regulator-min-microvolt = <1150000>;
++		regulator-max-microvolt = <1150000>;
++
++		gpio = <&tlmm 189 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtmr2_1p15_reg_en>;
++	};
++
++	vreg_rtmr2_1p8: regulator-rtmr2-1p8 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR2_1P8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++
++		gpio = <&tlmm 126 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtmr2_1p8_reg_en>;
++	};
++
++	vreg_rtmr2_3p3: regulator-rtmr2-3p3 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_RTMR2_3P3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&tlmm 187 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtmr2_3p3_reg_en>;
++	};
++
++
++
+ 	vreg_nvme: regulator-nvme {
+ 		compatible = "regulator-fixed";
+ 
+@@ -709,6 +861,163 @@ keyboard@3a {
+ 	};
+ };
+ 
++&i2c1 {
++	clock-frequency = <400000>;
++
++	status = "okay";
++
++	typec-mux@8 {
++		compatible = "parade,ps8830";
++		reg = <0x08>;
++
++		clocks = <&rpmhcc RPMH_RF_CLK5>;
++		clock-names = "xo";
++
++		vdd15-supply = <&vreg_rtmr2_1p15>;
++		vdd18-supply = <&vreg_rtmr2_1p8>;
++		vdd33-supply = <&vreg_rtmr2_3p3>;
++
++		reset-gpios = <&tlmm 185 GPIO_ACTIVE_HIGH>;
++
++		orientation-switch;
++		retimer-switch;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				retimer_ss2_ss_out: endpoint {
++					remote-endpoint = <&pmic_glink_ss2_ss_in>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				retimer_ss2_ss_in: endpoint {
++					remote-endpoint = <&usb_1_ss2_qmpphy_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				retimer_ss2_con_sbu_out: endpoint {
++					remote-endpoint = <&pmic_glink_ss2_con_sbu_in>;
++				};
++			};
++		};
++	};
++};
++
++&i2c3 {
++	clock-frequency = <400000>;
++
++	status = "okay";
++
++	typec-mux@8 {
++		compatible = "parade,ps8830";
++		reg = <0x08>;
++
++		clocks = <&rpmhcc RPMH_RF_CLK3>;
++		clock-names = "xo";
++
++		vdd15-supply = <&vreg_rtmr0_1p15>;
++		vdd18-supply = <&vreg_rtmr0_1p8>;
++		vdd33-supply = <&vreg_rtmr0_3p3>;
++
++		reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_HIGH>;
++
++		retimer-switch;
++		orientation-switch;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				retimer_ss0_ss_out: endpoint {
++					remote-endpoint = <&pmic_glink_ss0_ss_in>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				retimer_ss0_ss_in: endpoint {
++					remote-endpoint = <&usb_1_ss0_qmpphy_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				retimer_ss0_con_sbu_out: endpoint {
++					remote-endpoint = <&pmic_glink_ss0_con_sbu_in>;
++				};
++			};
++		};
++	};
++};
++
++&i2c7 {
++	clock-frequency = <400000>;
++
++	status = "okay";
++
++	typec-mux@8 {
++		compatible = "parade,ps8830";
++		reg = <0x8>;
++
++		clocks = <&rpmhcc RPMH_RF_CLK4>;
++		clock-names = "xo";
++
++		vdd15-supply = <&vreg_rtmr1_1p15>;
++		vdd18-supply = <&vreg_rtmr1_1p8>;
++		vdd33-supply = <&vreg_rtmr1_3p3>;
++
++		reset-gpios = <&tlmm 176 GPIO_ACTIVE_HIGH>;
++
++		retimer-switch;
++		orientation-switch;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				retimer_ss1_ss_out: endpoint {
++					remote-endpoint = <&pmic_glink_ss1_ss_in>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				retimer_ss1_ss_in: endpoint {
++					remote-endpoint = <&usb_1_ss1_qmpphy_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				retimer_ss1_con_sbu_out: endpoint {
++					remote-endpoint = <&pmic_glink_ss1_con_sbu_in>;
++				};
++			};
++
++		};
++	};
++};
++
+ &i2c8 {
+ 	clock-frequency = <400000>;
+ 
+@@ -756,6 +1065,30 @@ &mdss {
+ 	status = "okay";
+ };
+ 
++&mdss_dp0 {
++	status = "okay";
++};
++
++&mdss_dp0_out {
++	data-lanes = <0 1 2 3>;
++};
++
++&mdss_dp1 {
++	status = "okay";
++};
++
++&mdss_dp1_out {
++	data-lanes = <0 1 2 3>;
++};
++
++&mdss_dp2 {
++	status = "okay";
++};
++
++&mdss_dp2_out {
++	data-lanes = <0 1 2 3>;
++};
++
+ &mdss_dp3 {
+ 	compatible = "qcom,x1e80100-dp";
+ 	/delete-property/ #sound-dai-cells;
+@@ -854,6 +1187,33 @@ &pcie6a_phy {
+ 	status = "okay";
+ };
+ 
++&pm8550_gpios {
++	rtmr0_3p3_reg_en: rtmr0-3p3-reg-en-state {
++		pins = "gpio11";
++		function = "func1";
++		input-disable;
++		output-enable;
++	};
++};
++
++&pm8550ve_8_gpios {
++	rtmr0_1p15_reg_en: rtmr0-1p15-reg-en-state {
++		pins = "gpio8";
++		function = "func1";
++		input-disable;
++		output-enable;
++	};
++};
++
++&pm8550ve_9_gpios {
++	rtmr0_1p8_reg_en: rtmr0-1p8-reg-en-state {
++		pins = "gpio8";
++		function = "func1";
++		input-disable;
++		output-enable;
++	};
++};
++
+ &pmc8380_3_gpios {
+ 	edp_bl_en: edp-bl-en-state {
+ 		pins = "gpio4";
+@@ -1093,6 +1453,48 @@ wake-n-pins {
+ 		};
+ 	};
+ 
++	rtmr1_1p15_reg_en: rtmr1-1p15-reg-en-state {
++		pins = "gpio188";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	rtmr1_1p8_reg_en: rtmr1-1p8-reg-en-state {
++		pins = "gpio175";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	rtmr1_3p3_reg_en: rtmr1-3p3-reg-en-state {
++		pins = "gpio186";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	rtmr2_1p15_reg_en: rtmr2-1p15-reg-en-state {
++		pins = "gpio189";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	rtmr2_1p8_reg_en: rtmr2-1p8-reg-en-state {
++		pins = "gpio126";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	rtmr2_3p3_reg_en: rtmr2-3p3-reg-en-state {
++		pins = "gpio187";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
+ 	tpad_default: tpad-default-state {
+ 		pins = "gpio3";
+ 		function = "gpio";
+@@ -1164,7 +1566,7 @@ &usb_1_ss0_dwc3_hs {
+ };
+ 
+ &usb_1_ss0_qmpphy_out {
+-	remote-endpoint = <&pmic_glink_ss0_ss_in>;
++	remote-endpoint = <&retimer_ss0_ss_in>;
+ };
+ 
+ &usb_1_ss1_hsphy {
+@@ -1196,7 +1598,7 @@ &usb_1_ss1_dwc3_hs {
+ };
+ 
+ &usb_1_ss1_qmpphy_out {
+-	remote-endpoint = <&pmic_glink_ss1_ss_in>;
++	remote-endpoint = <&retimer_ss1_ss_in>;
+ };
+ 
+ &usb_1_ss2_hsphy {
+@@ -1228,5 +1630,5 @@ &usb_1_ss2_dwc3_hs {
+ };
+ 
+ &usb_1_ss2_qmpphy_out {
+-	remote-endpoint = <&pmic_glink_ss2_ss_in>;
++	remote-endpoint = <&retimer_ss2_ss_in>;
+ };
 
-Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+2.34.1
 
 
