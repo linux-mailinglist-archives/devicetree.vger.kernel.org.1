@@ -1,92 +1,128 @@
-Return-Path: <devicetree+bounces-99070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FE3D9689A0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:16:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA0A9689B1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:17:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B3EB28452E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 14:16:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FFBA1C227A6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 14:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C26319F13C;
-	Mon,  2 Sep 2024 14:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NaBkOlsx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C602210190;
+	Mon,  2 Sep 2024 14:17:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C7619F12B;
-	Mon,  2 Sep 2024 14:15:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE7A919E97B;
+	Mon,  2 Sep 2024 14:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725286556; cv=none; b=HDNGGBQWU06mWiYRqf+wX+TMCYme/V/VGOY1za9dBb1GcGHPgK5R3Oj2ddB30MO/GuF0NpR5L/Nn1Lbc7m5gN6W0Jsq3jpffxI6JyZAPdkRlC8tVQaTMR+LLRuKsipDA7cs6vhzVcheyEMMcWPkl48Orl42eXscWnvL9+scOj5k=
+	t=1725286634; cv=none; b=IIalNgPC+61RNYzLCEnxqll1OodoarSGJTthWw5Vp/V6Pk8xCl6ztYjebwRZytlCuy+K+cD2MEFIYS1VXi9YKJShSvk2RjtUSQP9xGgpiCrdr4YsVakC6CC9fGwTRnNY4TSlTpcQjY1qc7xhWhlsLiHasbNleLX+tdoaraBm/JQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725286556; c=relaxed/simple;
-	bh=5jwDa3PRkmciPQ3iVY3JqQxUmt5O5yF50ztP2V2MNPE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KVfgfAOMtoIOK4dHnaCi/VGBS9X8uQ/jxxIsOPA6lkFHrEkLHyrTh8NYCkPCa0k3INmk6MVCBUMMzXhSOnLKWXQHb+mRvpiJLPXdRVT+o31WLdc0sxTeJu1PBJNFu0YFPnIn9rVZykO88q0lAzA74ykJlmRqJWvqDqgFHXuTyzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NaBkOlsx; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F11F024000B;
-	Mon,  2 Sep 2024 14:15:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1725286547;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AOSscpEkGa8ztu4bWIy6JMXncsbMSioQscFLJZpRFy8=;
-	b=NaBkOlsx82b0muYAnPtFPlQxzwMuxdw+Y5othV1AQKOuVoi2GnSwP2mDoOnGfl9VjutxoC
-	LRsmTfXcAwnCJ6zZUZpNi7V7oSFhZ/5A5IAkPBskcTKUAGjfpGUzqqC398EbnOwTnOt0B8
-	1z9ZGmBDqdWh42aT1Le0X9SNqKH26owrm38dUuWb/pnku2H7V3X44A36+aT2CJy7roPgXA
-	7kmX/9nyClohjwTSHmSLbSnIlr9NToq56GpjaIEiHlSNwE5uYNAwiZ6ZgOWxptCgrrXWLu
-	IHkju4Y/yVxRygvQBrPYkODCG42uYG8jY4/b5Gt0jqd/biPjaCr5XrwMBbLQ7w==
-Date: Mon, 2 Sep 2024 16:15:45 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Roger Quadros <rogerq@kernel.org>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tony Lindgren
- <tony@atomide.com>, Nishanth Menon <nm@ti.com>, srk@ti.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: ti, gpmc-nand: support partitions
- node
-Message-ID: <20240902161545.3ca266de@xps-13>
-In-Reply-To: <20240830174302.GA551760-robh@kernel.org>
-References: <20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org>
-	<20240830174302.GA551760-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1725286634; c=relaxed/simple;
+	bh=DiqcYK8CgR5lVnVbP4NtFJ4uxP3RlOM1WRhaMpOIZg0=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Eht5Cw1rS6zf+vimIkqNfxerUIDpzAtfvJgsM2t+p6chihMK36RwU0q3cp3fgn1niA1wznnbKWuUgnlzYxBL1gfHdRS6AyRH76jso9lv2qBWJKPTyRc8w8WBzORWJ/E3Duai13yFWCjDhTiY4VCmaR9p98L6wHISmzTNfSvysPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Wy9ht5zqTz6K5kP;
+	Mon,  2 Sep 2024 22:13:34 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 3EC29140A08;
+	Mon,  2 Sep 2024 22:17:08 +0800 (CST)
+Received: from localhost (10.203.177.66) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 2 Sep
+ 2024 15:17:07 +0100
+Date: Mon, 2 Sep 2024 15:17:06 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: "Sperling, Tobias" <Tobias.Sperling@Softing.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, "jdelvare@suse.com"
+	<jdelvare@suse.com>, "linux@roeck-us.net" <linux@roeck-us.net>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"corbet@lwn.net" <corbet@lwn.net>, "linux-iio@vger.kernel.org"
+	<linux-iio@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Introduce ADS71x8
+Message-ID: <20240902151706.0000334f@Huawei.com>
+In-Reply-To: <BE1P281MB2420D75334A568E60823BE48EF922@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+References: <BE1P281MB24208CB90AF549578AA5C384EF972@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+	<20240830-chaos-unrivaled-04c5c4c6add9@spud>
+	<20240831132159.2073994f@jic23-huawei>
+	<BE1P281MB2420D75334A568E60823BE48EF922@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-Hi,
+On Mon, 2 Sep 2024 13:24:59 +0000
+"Sperling, Tobias" <Tobias.Sperling@Softing.com> wrote:
 
-> > +  partitions:
-> > +    type: object
-> > +    description:
-> > +      Node containing description of fixed partitions.
-> > +
-> >  patternProperties:
-> >    "@[0-9a-f]+$":
-> >      $ref: /schemas/mtd/partitions/partition.yaml =20
->=20
-> This and the addition should be replaced with a mtd.yaml reference.
+> > > > +  ti,mode:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > > > +    description: |
+> > > > +      Operation mode
+> > > > +      Mode 0 - Manual mode. A channel is only sampled when the according  
+> > input  
+> > > > +        in the sysfs is read.
+> > > > +      Mode 1 - Auto mode. All channels are automatically sampled  
+> > sequentially.  
+> > > > +        Reading an input returns the last valid sample. In this mode further
+> > > > +        features like statistics and interrupts are available.
+> > > > +    default: 0  
+> > >
+> > > I don't think this ti,mode property is suitable for bindings. sysfs is a
+> > > linux implementation detail, when to do sampling is an implementation
+> > > detail of your driver. Bindings are only supposed to describe properties
+> > > of the hardware, not set software policy.  
+> > 
+> > Agreed. With an IIO driver this will become a switch based on what usespace
+> > interfaces are enabled.
+> > So if events are on or buffered data capture, enable automode.
+> > If just sysfs reads, then manual mode is fine.  
+> 
+> Not quite sure if I understood you correctly. With the mode I intended to give
+> control about the sampling behavior.
+> In manual mode channels are only sampled if they are accessed/read.
+> In auto mode they are sampled all the time sequentially. This also offers to use
+> some extended features, like triggering an interrupt if a measurement crosses a
+> defined limit.
+> So the mode mainly affects the hardware behavior and just offers the possibility
+> to catch that in userspace, if configured accordingly, but that's not a must-have.
+> 
+> Anyway, did I understood it correctly, that you suggest to configure the mode
+> according some symbols in the kconfig and check that with #ifdef? Do you have
+> the specific symbol names for me or a driver as example, so I can have a look?
+No, this is not a build time of firmware config question. It is a question of
+what the user is 'doing' with the device. Configure the mode according to what
+userspace has enabled.
 
-Yes, indeed.
+If it enables threshold detection, then turn on continuous mode.
+If it enables capture of data via a chardev (so fast path) then turn on continuous
+mode.  If neither of those, then run in manual mode.
 
-Thanks,
-Miqu=C3=A8l
+Jonathan
+
+> 
+> Thanks and regards
+> Tobias
+> 
+
 
