@@ -1,232 +1,154 @@
-Return-Path: <devicetree+bounces-98972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD0EF968360
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:34:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE5B968305
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:21:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75F372839EB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:34:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F2D41C22515
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC411D2F5F;
-	Mon,  2 Sep 2024 09:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A66E1C32E4;
+	Mon,  2 Sep 2024 09:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="UA7k4zL2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2131.outbound.protection.partner.outlook.cn [139.219.17.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696A61D27A7;
-	Mon,  2 Sep 2024 09:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.131
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725269651; cv=fail; b=Bbo+oRLMTQIT6Y0CDIHDIGZn9BnBJZW2/fCBuSR2zyEr7z1eojZn1v2QMSfD1qjTxdHA1OlVdBdX9owlLG6gZJhaf5S9bMMiS+JBcxtVKg1WUUnJFsPSpxkGsf3fzL+dZ7FgTF2X1XQSh3UMHtx6uTksKEx3k+nHWAJTbk/bTnA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725269651; c=relaxed/simple;
-	bh=6ImnsclLme/KtMHX4JpSccwhujSum/X/ngfsqnRPIKE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=l7vEyU8MuVrwP2qeQfhBuDlpk2IUZLravQM0iX4hbKWpBh6zmQorSjmvyryeiTRa3O4c3HvwV+JpbvI+EJsFCw+34Iu/YSH3VK/g7nPtsyp01HdAOxwxftyGIDKGu8UxOsA3JYVWyJBE+Kb64J+doQEgm3TWqsf4M+QohW/w/Ls=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fBkfgacbTUpZnM6EPnA0zf2M0afssU43qpWQfoXZMiWdBlq8qE3s293QiBDgpJSzlZzr1Oqku+goata2x3HspiT1NPSmdrJkKycvsQvmfYJnQ2oMr8PPflAJxLYZZMhQGBjXLdNaKw6+bq0ThhdHkzWtuqKI68yq1rjo4jVLAttzHuiyjIr25eN+dJEsVnn9DSsDa3UHckakCLoZ6hm61iB+rxS6EFY8dzeJRK0kYFULGh0MApHCJJP2xxM5B860RrAtLXKq6DyWlwNNI1BYBfZZ84ymWgCdi2CjTLspKI8gJMHG7vIaQi91mOcC+pRIisuDcKJ3+bkHP2RKvvnSWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r2Qa+BOFe7WUy5JkpJRa9t8lAnu3Cn+nLJZpGLJgLOs=;
- b=W8EaF8UvbNFg8OLHv+uTpsJYGMr7xf6Tnm9wOf0VB4uJD9G/Vuhk77VrFhPmnVMGeA6/zgM01ybIkqsmWiVXWdk/U0f0FzvZeZkwWJOl/bkndzL3NqhAhDJX+nuse8i7MTLxAaSAAeCoJ3mLQG02PSyrthlf2AF5n0wIFiYU3u5gQRhJeVdQAEAYBbuBP4lTpThva3IaRPhOznK93fUjEUrUC65Jd5hjS+2uxaHqDW33AeUr59WYQvSPvIGAwtPh2Rzz24uN4et4R3Kw/+Dtvk48S5it3Hd+sCNEQBis4lHjGNVG1EZpDILNrYvAdjHmMK46PbDZdi2Az7AregFaGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15) by SHXPR01MB0670.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:26::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.31; Mon, 2 Sep
- 2024 09:19:29 +0000
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- ([fe80::3f35:8db2:7fdf:9ffb]) by
- SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::3f35:8db2:7fdf:9ffb%5])
- with mapi id 15.20.7897.027; Mon, 2 Sep 2024 09:19:29 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Conor Dooley <conor.dooley@microchip.com>, Jan Kiszka
-	<jan.kiszka@siemens.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham
- I <kishon@kernel.org>, "linux-phy@lists.infradead.org"
-	<linux-phy@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Dan Carpenter <dan.carpenter@linaro.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: jh7110-usb-phy: Add sys-syscon
- property
-Thread-Topic: [PATCH v2 1/3] dt-bindings: phy: jh7110-usb-phy: Add sys-syscon
- property
-Thread-Index: AQHa/Rk2nIla84OkdUyCXgqm7iSxew==
-Date: Mon, 2 Sep 2024 09:19:29 +0000
-Message-ID:
- <SHXPR01MB08632E50DFE53BE0CFAA99ABE6922@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
-References: <cover.1723472153.git.jan.kiszka@siemens.com>
- <30f3ca9f6bd788e16767b36aa22c0e9dc4d1c6a4.1723472153.git.jan.kiszka@siemens.com>
- <20240812-overstuff-skirt-7a8aabbcdc6f@spud>
- <8cdba8b0-7364-4c09-b18a-f3f59da1eae2@siemens.com>
- <20240813-haiku-pusher-f2fb037a2f49@wendy>
- <SHXPR01MB08633B523DA1F6C5632F6D9DE6802@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
- <20240815-endless-credible-324438d164f4@spud>
-In-Reply-To: <20240815-endless-credible-324438d164f4@spud>
-Accept-Language: en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0670:EE_
-x-ms-office365-filtering-correlation-id: 46d7797e-4a03-477e-cf68-08dccb30591a
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|41320700013|7416014|38070700018;
-x-microsoft-antispam-message-info:
- KRyB2MiHhMOWuxG10Ns9JxjgOJfTYzlkdBExw4Zpwz9UGmpD0Sz3qZ9LHtinimx963U/ZKxTVKZiy0/nui83fXzig2HZyE2g7Cg2KkGWdtzYSO89xEd5oFTZqEfLrXu7GOtXyUZKV1Ja6zFGiQiwQ1Xj4FJr0RebKq0nhHAPaMKdqA2A+m8X7vHdIXCeJmY5xGjRL5r3eev0P9fjDPtdsD3jtCJtY3LKFrt2kl2Frf9sQBouWyLctoXzFpkrZd6vehzXlXfGo8K8GWeyQ7Z3+h1NxBKS9IZOD44R6JNBzw54GJMYJOpWUVxetvRx87VWGS9X7YBS6UBVdYgb/zQ5OeCStO+eGU6dGKGWpf5bs2BNpOXkgfdHfp8k50UiJLIMxI129uOcgCoDLHUOKbP7+gle0684jBPxtMknqNGk4snly3N5NFAWYPcZh/PELZ/j/6UmCHDl6lNZy/E8QZF1zk+BqhQ3+zGxSYDagaYpLlpSAGN5azTY8mjBHgB201fYNTWNYipIADdoPMZBPLrg6NRvNaCwwMuXY9nSNBm0QfCVIGxd0J/2JruvJUJ4/Y0wEKelu4miaqdelyG0Lwa0A+JLc9j2DawSvAgyHPwAVVAONzxSd/PYqB0DVfGfZQGr
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(41320700013)(7416014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?NiHY1GGDnak/sDonsOO+5ArVsDIzKKBGWmDoSyAbZTZPRgJHZbUOwDS4PRIf?=
- =?us-ascii?Q?UbgHaCh3RlDTjZilAH6+cBLQtpQWd/3oS5LBCCk3+X/Bb72nDkXZmX0Z4jCE?=
- =?us-ascii?Q?Uoh0ch9H8TrIKlj0X1Ts50yDpHmBs+1JdHb9qPjzJj5J4woEjM67xB+wjJVu?=
- =?us-ascii?Q?4hjjRb3t+81OyKTPIfEfaUftx0pVTn1SN7fRCsliunhyDX5ruLY4hVV/h9oh?=
- =?us-ascii?Q?1sWwnRnf76D3n96WmMqpfw0Stn4liyKPp00lrCyW1YXtcwhVgrY1zEtu7eFB?=
- =?us-ascii?Q?na1bxLrsthddFdHHpIwPZmdoQln2zKwzvCDYuMAArqPYP/V0eNGkOfTPZ/ap?=
- =?us-ascii?Q?uzYOwpOjDiBNFLtfAtlnjSzNL/M4p8wYRsTgQBcLwrWogvioWkUghorajpBZ?=
- =?us-ascii?Q?c0hp6BceDVgiTgg+uXwjuDCw0WyZjx56DuOy6Dp3illviw5yhlviDYp/POVY?=
- =?us-ascii?Q?3J/aOc1H0/FT3r4JA0kCGeHWeOvZVtGrOtXpT/Fw7bK09TGLVwVNAKTYjVJR?=
- =?us-ascii?Q?0PeF5c6/Lq3IOGqRYIYJUgB5KN72Mp23Jy6qUbtUoUKwzdwGJ9RzMGmG57x4?=
- =?us-ascii?Q?zqpGxzxWqZCESNIf1XYRHxZrqsiKe7bPeUI72mc79GDqT/Y8NSBAW2IUxdB0?=
- =?us-ascii?Q?+9OO2jlFckWTLn8jLuG5xCdkkR4gnELkqlAwCFg+nAsnz8CG9TUUoE8VXyjD?=
- =?us-ascii?Q?832jthJHsLXgsA3OKX4F1voYuevj6B9m2AGrvZN2WE0uAupclloFFzy1GLsQ?=
- =?us-ascii?Q?DxxJ2AGazKQIiNEZEq3F8yKOSy9Z/pA8k/8uAXEJvIDdEBtRcHpiHtBBb7WD?=
- =?us-ascii?Q?6pDqgHQbFebkiTgzu2CSYS6x69xJ2cuNlZf4voayauGwno6h2mt4pjSQKjGW?=
- =?us-ascii?Q?syUdSA2f4FkPwvzdbVm5zJsBgzNRkUgtgGEqmybSONvQkBuX98iYG4V1Ry85?=
- =?us-ascii?Q?DX57xDyuIAzlROiSLIRKNIt6MWU9b3VJyzXls4zD+885S0KlpxjrOrL7b8Ne?=
- =?us-ascii?Q?ESYBe/p7GGCk9JewkuA/oYZKVu3qYU/YnSRJDK0YybC2n3dzuPWUgS7ALEYA?=
- =?us-ascii?Q?dkl4OuY7FlHR4NOnHc/h7J/WwVJqHbUOg4zEksnNLL7jVA2SaZ5pHMXaScrF?=
- =?us-ascii?Q?BPEbQwlirHssDCNyG1zX4Dq7y9QNoLpGFGS/wHxtqDLT+Mw3odZXSdrAlPGp?=
- =?us-ascii?Q?UEukJkwNDR8Zy0APBM6HGFCjgc+4SvzJdoPGxL5w8GdUwMXP5uZF5dMI0SAF?=
- =?us-ascii?Q?SgzKMa3KGB2kODf/eocmNuinWPuSXY/4VsFF3Tv/gd38iBHvAImoA2APfG4T?=
- =?us-ascii?Q?96XPtSqBme2SyQs8M/xJ7dYHRDHEb3Gcn+3G1FacLb3QWW2AzE3E8yAaiJ1t?=
- =?us-ascii?Q?xQZEb6AIHvicCwTO4unBfithZSipmg/oXAGt8+hs0tAAKGASNAh+fFRHyTzr?=
- =?us-ascii?Q?bz7gBcNwTM4VBH3ifXXWPNeyLfEwboOhsqKEFpzx3854CfuuOfqRXOwAukPp?=
- =?us-ascii?Q?hrHDjWxobYG2qXGVG8env3g9xi6zo3WkUZhcVHceci5j/Qvl34frLBCzMGmE?=
- =?us-ascii?Q?4oE8+CcE22F0GFrMJmXvBdsQuGwFtMcFyS6CZDnQ?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3662D1C330E
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 09:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725268898; cv=none; b=jpO7fWSpSRbneZH2dy6CdwT7T7bf1wD0GaSXST3tlFKy9K0+utiBFdloY6MDVVErd4Z/Gc9Ef01vG7lU2bCFNI0fK4wJ3tYulNppbFEPXJ+pyCSbjUk91BxKZN9+Vjpvs0M6QsaAzOPfaeWBWu2F73kG7kq5dqfzaxXsuJEIU10=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725268898; c=relaxed/simple;
+	bh=BSpqubEdJ/sRUU6vWaBwncVg7qOd28rdyPPZgAweRno=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oyyrPSz+kiigdl9pkqNXoKaK3AE9xjPC3kEMZPc5I6Jmm4pOFyTHSUwRM3L0VzWRi1/bThlimD9nq/hQHIamRp7MPMOYG2ETNToqoPNheHido+FqB3Q9GiGc5L+vbdjVjGmPUTCozHaNXFojFXLW+p9wXCfkc22xzExy+ZryMqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=UA7k4zL2; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a869f6ce2b9so428140966b.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 02:21:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1725268894; x=1725873694; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1ZDs/9l3dOZ4/JRpcNDnT31Gwsua2/3rtLsltEu9Mww=;
+        b=UA7k4zL27EtQiyL1sHrgRCfTMPBXKeFmHxdZe3ebhOMpjrG/LvCIEKtNXE/wR+fdC0
+         nGc8eVPdONCBPfmOl9gVV5Fv0lB3hSjTq0u7jK/66YtY2pXMeS7fTFAN/VGpzWJRkzbn
+         XkzYzfEsazl03MK/eExlEnIgkIx/NmtK0yvuqYc+fGv4VEIvD6oZ63hEUR6e55d0Th+H
+         ragU4vi9H2cqQqxMviFP196JUbdigDpKSrLJLnTZGWB3zija/D7YC9Eh6CtjA96jSPtL
+         GZudEXjpOBEz/hjpIjWhdIeragV3oITHm659ApbXz3h2is871vprXeJBwVBuOXrAGPUJ
+         LX/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725268894; x=1725873694;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1ZDs/9l3dOZ4/JRpcNDnT31Gwsua2/3rtLsltEu9Mww=;
+        b=qYK8acvUuD9dGI/T/fyNuiBm8vV2N0eMdj8UpliAo6NnZzQe7mPOaCeSsuOQPv1vmB
+         lN+MgdzKpyDdVi54fCr/p4yPkDi66+prypFmct3v/culRjOn1/notSD0Wh+X+GrwxSnw
+         Szg23C7iIVkafgWTxukb1pPknBJ4BbS4iO+Q2dvKfG+txtPiXkHQJQJBb8qj51NJ+B1p
+         fWmgWSjsJzXyqHPYYmCPXJQrFdqmFZs7UvYwc5t/faPPOT/UZDzszj/81i5Fr04OmtDL
+         Xe+XuKVKHF7y5F0G27J23eZ/S63sWYjkgjPyGP+b8BP5o8/1t3fMBKgqVZbOM607YtCg
+         QE6g==
+X-Forwarded-Encrypted: i=1; AJvYcCXpZkqARntxDA+zXSj/WVfsWNPbfCcT9M2WQAK/jqNRpDXJZQJ0ml6JPCpNCQD9tKTWn+1J1jcf/S51@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzp0M1Xvf/haXMT3M4BPH+QlWjH+Ls1YlheM0iWVeScmCaV0oGy
+	D4TTTykC4koFBm3KY12ogjli1UqGBI1PqgLpOm2oxywEyfXKLQIHimpG5bO3+0w=
+X-Google-Smtp-Source: AGHT+IFiJyKI83M4pAEH+bJt4D+2x9ZKVCIWaumLPxOS3x0JckDJtyYxve6HAvVZNlN6e2kKZafDDw==
+X-Received: by 2002:a17:907:6094:b0:a7a:adac:57d5 with SMTP id a640c23a62f3a-a897f84d7efmr930072566b.18.1725268894023;
+        Mon, 02 Sep 2024 02:21:34 -0700 (PDT)
+Received: from localhost (host-80-182-198-72.retail.telecomitalia.it. [80.182.198.72])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891db42fsm527788266b.184.2024.09.02.02.21.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Sep 2024 02:21:33 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Mon, 2 Sep 2024 11:21:41 +0200
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 00/11] Add support for RaspberryPi RP1 PCI device using a
+ DT overlay
+Message-ID: <ZtWDpaqUG9d9yPPf@apocalypse>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <14990d25-40a2-46c0-bf94-25800f379a30@kernel.org>
+ <Zsb_ZeczWd-gQ5po@apocalypse>
+ <45a41ed9-2e42-4fd5-a1d5-35de93ce0512@lunn.ch>
+ <ZtBjMpMGtA4WfDij@apocalypse>
+ <e6e6c230-370f-4b04-8cb7-4158dd51efdc@lunn.ch>
+ <ZtFWyAX_7OR5yYDS@apocalypse>
+ <334b382a-c9ab-47e4-b860-b8477f04c3fb@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46d7797e-4a03-477e-cf68-08dccb30591a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2024 09:19:29.3158
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8NsRkzD1LTDQ7VaZA+kGUyeowrirOg3/GaERVTpl8IpuYOWtFn9c/tslyKNGhZw35mOh/kQ5j1rCg1K1xBg0vMHEdzMDphMk1RvEnXZFgAw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0670
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <334b382a-c9ab-47e4-b860-b8477f04c3fb@lunn.ch>
 
+Hi Andrew,
 
+On 16:10 Fri 30 Aug     , Andrew Lunn wrote:
+> > On a second thought, are you really sure we want to proceed with the header file?
+> > After all the only line in it would be the extern declaration and the only one to
+> > include it would be rp1-dev.c. Moreover, an header file would convey the false
+> > premise that you can include it and use that symbol while in fact it should be
+> > only used inside the driver.
+> > OTOH, not creating that header file will continue to trigger the warning...
+> 
+> The header file does not need to be in global scope. It could be in
+> the driver source directory. As such, nothing outside of the driver
+> can use it.
 
->=20
-> On Thu, Aug 15, 2024 at 10:33:55AM +0000, Minda Chen wrote:
-> >
-> >
-> > >
-> > > On Tue, Aug 13, 2024 at 07:31:50AM +0200, Jan Kiszka wrote:
-> > > > On 12.08.24 17:55, Conor Dooley wrote:
-> > > > > On Mon, Aug 12, 2024 at 04:15:51PM +0200, Jan Kiszka wrote:
-> > > > >> From: Jan Kiszka <jan.kiszka@siemens.com>
-> > > > >>
-> > > > >> Analogously to the PCI PHY, access to sys_syscon is needed to
-> > > > >> connect the USB PHY to its controller.
-> > > > >>
-> > > > >> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> > > > >> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > > >> ---
-> > > > >> CC: Rob Herring <robh@kernel.org>
-> > > > >> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > > > >> CC: Conor Dooley <conor+dt@kernel.org>
-> > > > >> ---
-> > > > >>  .../bindings/phy/starfive,jh7110-usb-phy.yaml         | 11
-> > > +++++++++++
-> > > > >>  1 file changed, 11 insertions(+)
-> > > > >>
-> > > > >> diff --git
-> > > > >> a/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy
-> > > > >> .yam
-> > > > >> l
-> > > > >> b/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy
-> > > > >> .yam l index 269e9f9f12b6..eaf0050c6f17 100644
-> > > > >> ---
-> > > > >> a/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy
-> > > > >> .yam
-> > > > >> l
-> > > > >> +++ b/Documentation/devicetree/bindings/phy/starfive,jh7110-usb
-> > > > >> +++ -phy
-> > > > >> +++ .yaml
-> > > > >> @@ -19,6 +19,16 @@ properties:
-> > > > >>    "#phy-cells":
-> > > > >>      const: 0
-> > > > >>
-> > > > >> +  starfive,sys-syscon:
-> > > > >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > > >> +    items:
-> > > > >> +      - items:
-> > > > >> +          - description: phandle to System Register Controller
-> > > sys_syscon node.
-> > > > >> +          - description: PHY connect offset of
-> > > SYS_SYSCONSAIF__SYSCFG register for USB PHY.
-> > > > >
-> > > > > Why is having a new property for this required? The devicetree
-> > > > > only has a single usb phy, so isn't it sufficient to look up the
-> > > > > syscon by compatible, rather than via phandle + offset?
-> > > > >
-> > > >
-> > > > I didn't design this, I just copied it from
-> > > > starfive,jh7110-pcie-phy.yaml. As that already exists, I'm neither
-> > > > sure we want to change that anymore nor deviate in the pattern here=
-.
-> > >
-> > > To be honest, I think some of the other users of phandle + offset on
-> > > this soc were just copy-pasted without thinking about whether or not =
-they
-> were required too.
-> > > This one seems like it should just be a lookup by compatible in the
-> > > driver instead of by phandle. As a bonus, it will work with existing
-> > > devicetrees - whereas your current implementation will fail to probe
-> > > on systems that have the old devicetree, a regression for systems
-> > > running with that devicetree and downstream firmware.
-> > >
-> > > Cheers,
-> > > Conor.
-> > >
-> > Hi Conor
-> > I know you would like to put the offset value to the code, Just set sys=
-con in dts.
-> > Just like pcie-starfive.c. right?
->=20
-> No, not quite. That still uses a phandle lookup, I was talking about usin=
-g
-> syscon_regmap_lookup_by_compatible().
+Ack.
 
-Okay. Using syscon_regmap_lookup_by_compatible() can just modify the driver=
- code only.
-But syscon_regmap_lookup_by_compatible() is not exist in uboot now. If I wa=
-nt to enable
-CONFIG_OF_UPSTREAM in uboot. I have to add this function in u-boot...
+> 
+> Headers like this have multiple proposes. One is they make a symbol
+> visible to the linker. But having two different .c files include the
+
+Hmm... not sure what second file is including it, since only rp1_pci.c needs it.
+
+> header enables type checking, which for long term maintenance is just
+> as important. So a one line header is fine.
+
+Done.
+
+Cheers,
+Andrea
+
+> 
+> 	Andrew
+> 
 
