@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-99098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCA62968BA5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:09:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD0F968BE7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:18:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D83BB2302D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:09:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A31051F23A3A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C68F1A265A;
-	Mon,  2 Sep 2024 16:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2801A305F;
+	Mon,  2 Sep 2024 16:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fkNtgEiX"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oboYHzKE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C56A1A3035
-	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 16:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D321A2646
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 16:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725293365; cv=none; b=TXPJNT1LHtZcgjTqzvPJZYY12/vEiG3N860guNVj71Es4ckTALn27uBDqFvbBi8z34OxC/AgpOYLx/jDOpvWmAn8d229b1cvzybphcD7hiFZvo+2X+JfuXaNEW7uOUC6rYuJtXqgVn2aDxMw+lRQco0NzufmDhZ2WKzBIpdHFZs=
+	t=1725293816; cv=none; b=YwDQQIYivBI4WqGwx9zH6wgNKnMXcZQi5hgP6Pdq6ycKjIhaMfpC9I347cOyla/On5rYf8cQH0kJRAB99fS/aCRnylpEUFCPKfihOg9UxnRs3s8/Ye5JIg3pzxj4ouZZayrMnPVoZGXibDFQtC3nr9FJnmju/Yla962mq/j8viI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725293365; c=relaxed/simple;
-	bh=vZ0hcu0WdCXigcKyq1CEUHRpBRn1lmg8WfyHLp3O+6A=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SA2MqWWAmjfuZAF1ijD2eIznoN+ZTl+40MZ6A31WG3egFjyO4zpblZ+YmmW6cZAtI3DpBrC4TYcwzaayAevLu+E6mHVJ4FUGzE3CKxTmQ+80y6a9w0aiVLsJjt3aKPZJjq3J4jqhWUZFqAqihUFe2opO5VXzLOdQXw+tnR8lQS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fkNtgEiX; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-428e0d184b4so36763575e9.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 09:09:23 -0700 (PDT)
+	s=arc-20240116; t=1725293816; c=relaxed/simple;
+	bh=279AYoB6M6LUfQWrroj3/71+NSd4D3D9x57DTZOMsl8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KxntHNtcV8gvpSbthakNvcGBdu/jTJHAzG+l3cibW6oVfpftQeKbEKpjNwMINbIA9yf3fkYz7da1OX4WQVg6Nt+onZVgFPfVf+Z83z9kc6xSXcmFq8F/C6Tjv+DTI2H+YbHKnPpLGksrwkayNNYkRW48vxK9qTGn0pnjhxPY1n0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oboYHzKE; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42bfb50e4e6so20240785e9.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 09:16:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725293362; x=1725898162; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CBT6lkn8ZK8Bhla+c4LRfo8zJd8uqrdVz88guMjqgyg=;
-        b=fkNtgEiX9wXNDnci52robCBTz0Mx/epMzE8zagSQ0STFgpNhEpQNqvnQbMocjdZ8Do
-         Qq1Zt7iEoNfru+aX9jE3HUoXj7ztkL6kdxMym1yoUHMLAkJcIzc8voMUUVg4WqT+6WxJ
-         k53xPpSxjSF85mkGXovgxDPx36dRctuK7axBcPs6yBAt8ZWK5WEahC5EZprcYN13kSos
-         EyGrJNmyUgSM19wZosIQ6wa2dphTq+6XWhCwYcYhr+6Q6Mj3Kg8jpC24a9EvzjLGnSlG
-         21NPoF+86QlF9dffnvktgUddbcoJuRINWsqE1f89p1mqwb9xzvR1lJ6pOBOeiPrt97m/
-         sAXg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725293813; x=1725898613; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Q8h/EGszP6xFdvE6sZAaqQlIirsRwUlWC1I0F8vKGJM=;
+        b=oboYHzKEXDObutJxWvlJ0KXsvupktBkpbbpaW8yVC+AeNBh96phKjumM0oKTGB7CYh
+         1NtpTkr44mwUWx2VK8khLz9TnvnhbRpHuQM4XCswGvEQBt9zimoh7ORn/G5ZlWSbKXav
+         wdAkl5PfSssyh9uWxGzTVLkx2pI+XLDewUQvV6kyKFTU3OG0NHQtjXU5ppt7pTR2mya9
+         rDvG5+wfxq4KIY7kIuWNrNMt8P+GsM5oNHIuUIE/k3kk7RBASsZ4Zr2EIKdAeweOXQOt
+         pWgAj5ZGqPBsZJZlU1d4+asETGFKu8oaxVkMt/LE9eFokGsK5dLbS6ub2VlnbWjezOh0
+         qoNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725293362; x=1725898162;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=CBT6lkn8ZK8Bhla+c4LRfo8zJd8uqrdVz88guMjqgyg=;
-        b=ck9ienDQAt+eJmPK9JhydjLRHtmqyvXA4d0R1eCm+iuf4j/zJslrDSk652XbvxDUVd
-         sqwXVnqF2BS5L6Iof79aiEK17erL+LQcLAXkSckmpzt2pwrfW/UBdXjpmjOK+U7N7n7C
-         8b5eH7bTL+NibRUlwFWevaVXGGTNEXoWsTTyHjd00WYRXawJXpAGxQQTnBcDk9+qiqp9
-         wiBlVmPZv8wANm0vi4pZvNNdnqbVbt4gvsHrWP3lMLvx335GHiJ97juF9yl7cCuHEFq7
-         OMymYtIQdcnnEN/bAN6Vg+L5KbduKOKKxpqC+F4R/zjcckE947UCEantheu0Eknhl33b
-         B+7g==
-X-Forwarded-Encrypted: i=1; AJvYcCXJz25xvdjiOb3cBN2jKzOwXXHrU9bh7jKUSkDZjcYhcRnHEUROYL0OdHYKc4CF38/tR3nWoVa94+WV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMJP92YLorrenW46579k1gbVvdyRdSk9z1yS7wdbTTpjp7MxTo
-	FlK4lTRsIhyiYDBAeXWMwUQbrJURxuonBWKnI7m+vTeycB9RzN55JTaI+6lgX5Y=
-X-Google-Smtp-Source: AGHT+IG4KtZkxzTrDxxtmyN/G73pYEBB6VJdn7Ut4aMFJaWdA93xOcKmSIQpZLe2W1FntJDprgaIZw==
-X-Received: by 2002:a05:600c:c13:b0:428:abd:1df1 with SMTP id 5b1f17b1804b1-42c7b5a8d28mr46717395e9.9.1725293361172;
-        Mon, 02 Sep 2024 09:09:21 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7dba:3cd0:a1f4:e3fa? ([2a01:e0a:982:cbb0:7dba:3cd0:a1f4:e3fa])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb6e36626sm142355315e9.47.2024.09.02.09.09.20
+        d=1e100.net; s=20230601; t=1725293813; x=1725898613;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q8h/EGszP6xFdvE6sZAaqQlIirsRwUlWC1I0F8vKGJM=;
+        b=Jl4gxKUtplekAvc7rtVBw/a8wQAuW1sJ5CjNPijHMvIUv4wOPsqFFBDmslwdPbpc0M
+         PoKILAAAekNA+tdWIQbvcsfr6ePYMuAxiKONYAC3IURpjC7eLVa+6n8CaJqxsD94Gu72
+         SEXhuugNmt4m7W7zb2k1GND9bRMyucDoS9K38YuGw3RkQpvvPpQc+4X66H5bC7jpsR4b
+         7sm1uYD1ss0j/ULAgEBiNrZdAvng/LdN+ITzzaeaIMoHw1jTYK5iMRnKqRECUf9JTaQm
+         kR193o1rGv0Fcp3YHsVn4k8HQ8bx3vh2QJOD6hOFtpcZvZBkFcVTFefFKPSWKV97mSW1
+         E+xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWxVeHux770f6O70neQ214rFweKBDZw01GWGkH6Qj4xPzCZHm/j7XkR0y2iIEY/sfi8KfS0L4J6YR4y@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHSn1GbooLfTHZVKqSZiY7nCyPIAjE4cwOhxU7vHCmFvVtSvyR
+	l6DgAZaf3ZCYyHACIulg2RopSaPs+DubCQo7lR22V858VMbD39yjEbMZYUiYYAo=
+X-Google-Smtp-Source: AGHT+IEmOkVDfJIoDWZjj/iaAv98BJrAju1GPOB28FkfzY8GNSwwTPs7KU6TSWiaChCcdpz0zMtN7Q==
+X-Received: by 2002:a05:600c:4505:b0:426:60b8:d8ba with SMTP id 5b1f17b1804b1-42bb27a9ca8mr116220405e9.28.1725293813003;
+        Mon, 02 Sep 2024 09:16:53 -0700 (PDT)
+Received: from [192.168.0.2] (host-95-233-232-76.retail.telecomitalia.it. [95.233.232.76])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb6deb273sm143693955e9.8.2024.09.02.09.16.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Sep 2024 09:09:20 -0700 (PDT)
-Message-ID: <7762a199-9091-46d7-a172-5cccc51a26e9@linaro.org>
-Date: Mon, 2 Sep 2024 18:09:20 +0200
+        Mon, 02 Sep 2024 09:16:51 -0700 (PDT)
+Message-ID: <b305c86a-1dab-41ef-ad04-49526389dd97@baylibre.com>
+Date: Mon, 2 Sep 2024 18:15:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,95 +76,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-romulus: Set up USB
- Multiport controller
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Konrad Dybcio <quic_kdybcio@quicinc.com>,
- 20240830-nxp-ptn3222-v2-0-4c6d8535cf6c@linaro.org
-References: <20240902-topic-sl7_updates-v1-0-3ee667e6652d@quicinc.com>
- <20240902-topic-sl7_updates-v1-2-3ee667e6652d@quicinc.com>
- <925061d3-9894-4332-8c2a-e494ad22c66b@linaro.org>
- <eb17ba5c-d7b4-4463-a0a3-95ab584988f6@kernel.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <eb17ba5c-d7b4-4463-a0a3-95ab584988f6@kernel.org>
+Subject: Re: [PATCH RFC 5/8] iio: dac: ad3552r: changes to use FIELD_PREP
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dlechner@baylibre.com
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+ <20240829-wip-bl-ad3552r-axi-v0-v1-5-b6da6015327a@baylibre.com>
+ <20240831124847.5c679e55@jic23-huawei>
+Content-Language: en-US
+From: Angelo Dureghello <adureghello@baylibre.com>
+In-Reply-To: <20240831124847.5c679e55@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 02/09/2024 18:07, Konrad Dybcio wrote:
-> On 2.09.2024 6:01 PM, neil.armstrong@linaro.org wrote:
->> On 02/09/2024 16:50, Konrad Dybcio wrote:
->>> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
->>>
->>> The USB MP controller is wired up to the USB-A port on the left side
->>> and to the Surface Connector on the right side. Configure it.
->>>
->>> While at it, remove a stray double \n.
->>>
->>> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
->>> ---
->>>    .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 59 +++++++++++++++++++++-
->>>    1 file changed, 57 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
->>> index 5419d0b02785..ac2acf949b70 100644
->>> --- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
->>> @@ -572,7 +572,17 @@ &i2c5 {
->>>          status = "okay";
->>>    -    /* Something @4f */
->>> +    ptn3222: redriver@4f {
->>> +        compatible = "nxp,ptn3222";
->>> +        reg = <0x4f>;
->>> +
->>> +        reset-gpios = <&tlmm 7 GPIO_ACTIVE_LOW>;
->>> +
->>> +        vdd3v3-supply = <&vreg_l13b>;
->>> +        vdd1v8-supply = <&vreg_l4b>;
->>> +
->>> +        #phy-cells = <0>;
+
+On 31/08/24 1:48 PM, Jonathan Cameron wrote:
+> On Thu, 29 Aug 2024 14:32:03 +0200
+> Angelo Dureghello <adureghello@baylibre.com> wrote:
+>
+>> From: Angelo Dureghello <adureghello@baylibre.com>
 >>
->> It's unrelated to mutiport USB-A, should go in a separate change,
->> and also probably in a bigger change enabling usb-c features using
->> the retimer.
-> 
-> No, this chip converts between eUSB on the PHY and USB on the port
+>> Changes to use FIELD_PREP, so that driver-specific ad3552r_field_prep
+>> is removed. Variables (arrays) that was used to call ad3552r_field_prep
+>> are removerd too.
+> removed
+fixed thanks.
+>
+> LGTM
 
-Oh my bad, indeed, sorry for the confusion
+Regards,
+Angelo
 
-Neil
-
-> 
-> Konrad
+-- 
+  ,,,      Angelo Dureghello
+:: :.     BayLibre -runtime team- Developer
+:`___:
+  `____:
 
 
