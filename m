@@ -1,276 +1,111 @@
-Return-Path: <devicetree+bounces-99129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E90968DC9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:44:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CEC968DCF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 20:44:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAC6D1F213FE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:44:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3670E1C2245C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 18:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC9D3DABFC;
-	Mon,  2 Sep 2024 18:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2771A3AB3;
+	Mon,  2 Sep 2024 18:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GQgYtZvw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oGU2/0r7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C6BF21C187;
-	Mon,  2 Sep 2024 18:42:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7BA11A3AAF
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 18:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725302559; cv=none; b=kNERde9h0BltJxhsTPjo1RnILOZBbu6rDSEyxV4BdhWJuUuDrjdrbNmSXyszK3Z7n4U6AnVx8XNQoeJuRddi0L8KioOR6Syb2kEOVkP4RDunt2KQWdJv3ClvKdFXA43UGFQIkKRAYo8D4qrp9vEx3N9CMCtJKvvuNZJjQaXQW2g=
+	t=1725302596; cv=none; b=sLqe0BPKwaYaJ0N3FVlvEHbOke48DEqWqPbYqCLN88vCrBYCmAasN7nYZOFJ2vNWA9gL+FDYt95Lev8gxuEjB9GKSHAx9jP+LPdoudA3fMCL05fb1UJmvE3MGopoSxq2T0WMVi3CUJQ3p9yIYlkYs77QO1z/nWi2Z2o6jUisYbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725302559; c=relaxed/simple;
-	bh=WWAmhNjah9crhyBMvMVbn/J1Sxemr78dk9V2kbGeanU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=q6boGKWJgKnEskJjWbwH2j1ymVFpbOJUuWltiE649pm7KkxZdg9/9243GBCdpzMxB9jggRENn/qO+BNG3qTLpULKCIEtu8Sx8ljY0SFUYQ2ZaqorXgHCwi6SItPwdL4WsbjQ/oFjTPlL2X+v3gY8BQ3nOqRQenLsoEGnR20iDLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GQgYtZvw; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-533488ffaf7so6130818e87.0;
-        Mon, 02 Sep 2024 11:42:35 -0700 (PDT)
+	s=arc-20240116; t=1725302596; c=relaxed/simple;
+	bh=1bbiaZ0NWXgadUCHZY6bnVNo9uK6o9FPeWUhkyQFo7M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XvagxEVSP+oCuY1yUl4yRHDAIr+fsBe57vfiMhmkSp2U6hcyJPZP3jmPspK7cadJHJw9WxXXlCxb2P6B/OdMoZqwTmjUyaPaTS4xpxNu7ZuWU7CdJemNz0uaunJS/uvjfEWtTEG0ODXp+2dgBjaRjAr1NrOuMRRConJcZixSRVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oGU2/0r7; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-533496017f8so6065529e87.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 11:43:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725302554; x=1725907354; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i9ss9HdLsigH+9uZPMqVFlBWKlXTSDUOX9N8A2zmG7U=;
-        b=GQgYtZvwgYu8/gkzv2ccmMDjbumu9FU3AADCirGmI4KIv25g2dhn3wgF3fTWtqA7H/
-         kbFJDuzhiIJIBrOm2ZjwIh3hZxl5QXBT7uW8nlZcAmx9YGM645QJg4VO9wGHXebxLTQb
-         N6s0OLXp5yNhQ5hXFRgl5jgPcMpC528nSngnatr6xUxKjx7j48G2beWGOdtg3lFNItkS
-         ewWhKxPdu+JDBfF0c2VNkHB9CbdapR1MMroQhdP0qc2uNdLSq6P7X+jhtFJtknF/8+Os
-         04BL/YZh5Yx2oUfvT0CkCMn1t7befFhRyEoGPnEwjrfnBRkDafUgc5ZErNZKBzbQkFxr
-         Ia+Q==
+        d=linaro.org; s=google; t=1725302593; x=1725907393; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7qcoVRQb/pS6osGt1mWOLTNXwlWse+J6Rw0TSoP66u4=;
+        b=oGU2/0r7BGPKzRNmjaEdTxuN6IVvKO8eFomOG1f8uEaX3ZnFtvSzRIipizfrvEx/36
+         ecVnZsOeNSW9MoSZqYjOJgVdzTtrgiPM55waFW6iosgFQDvwMep9asoknpm0wPIMbezU
+         PEVkyDll2z7IyHiOHvwMy09qNpjKiakt1mPtPe8TjxX4x5EZW9+ym6JlDnh9Uqk/lW12
+         6lFQVthYCPDhgwdt2dO4GNO5cbqDA4jUoVsea7DsFrEpmNl4BATAvohpmV0ZnBSJMDjR
+         isdWY6uagzNnP/ewr677rWLtDTzsvy3wY+c5Dwfrk5EPNo2RjX1MYkdu2zzXaeqvy99X
+         Hrbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725302554; x=1725907354;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i9ss9HdLsigH+9uZPMqVFlBWKlXTSDUOX9N8A2zmG7U=;
-        b=Ob2rjHbmDeidHBOuWOOsPb1ezgmrl0Y4aTGOkYL+hsv/Mj1rPGgRRhzE16garE5Ry1
-         vXIiL97K15IE2fkSl5m2R9s+7mo/bybnmhwoILW1ejE28A0CiN5/RnGb5x3hEakJk0bU
-         FwytorP7nJvhucv2SZc/zibGHx56/ZJrSFt8jvlGdDmhtcOUpcNNY1uRR3dmFwwBTzTu
-         H7EB3HyvbygDy9OSDBHJ4mIcyw0SkwPheqy0wOp88+nOS5Zl1Qr/cA7rYa6Kdufu3gZb
-         Fa8uIfSY0kj4658P0+wfQTEwiAPeQJp7fkdYGN+TRdSCsVxLEawgsjHAGDcvQWTh80G7
-         VfYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHYNzHPcP+xL7NXlSKDwPYAoBu4AyZWj5KZqcK7ewDOZaMIqDn31QZNyk7eha9h1TVV4tPAa167kUo@vger.kernel.org, AJvYcCUwmjxgVnvKg3LvFizoiOa3im/TQncIR/mgsWD6Fl4iLQNjtvJenUoyC0GatGiRVEK3/3ELXIiXWmBO@vger.kernel.org, AJvYcCVdUwGXU5P2nXkDq0Xq6GbjTLkpVyqwk22FmzrSi/V26KfI9M8b8o9+jswjOt0fd8U6ceaSjIkG8Dk8nO+T@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz238Yv0dyBvn+cvbde5U1G4MOeYQva/TQJq+sAzBn80T7muQA0
-	Gampjc/cnHux/Iv1112sHwblA361jKvRir3/m0cS6n2yoQjd/EWd
-X-Google-Smtp-Source: AGHT+IEvG6aAsQWI5Tw/ZncjxuPde+5tWIhRizQHOA6cZB2zK1HUQX7NkowjXvIHEe7E69vcO8dbzg==
-X-Received: by 2002:a05:6512:2309:b0:52e:9b9e:a6cb with SMTP id 2adb3069b0e04-53546b24bfbmr8207456e87.15.1725302553513;
-        Mon, 02 Sep 2024 11:42:33 -0700 (PDT)
-Received: from localhost.localdomain ([2a04:ee41:82:7577:bc14:b544:1196:d1a])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a898900ec0asm590537966b.53.2024.09.02.11.42.32
+        d=1e100.net; s=20230601; t=1725302593; x=1725907393;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7qcoVRQb/pS6osGt1mWOLTNXwlWse+J6Rw0TSoP66u4=;
+        b=j8tw7kulUYLvbwbhZPiAtCp05X3W43Lg0n4AI8xezqv8yL6yKYUxFgKpAmgI+J6gpV
+         yRsUE55n+bnRa9FWKuQ/p6+O4DrGChVdFs3dVkfhsNo/RGYlhjqKul2NAIVqmaYR3zFw
+         8fOM8aCQG1iotN6HUow5ot0ZVH2fUd5jGAIpC+/Ccv9+bDWekfpqOX6llitHgj1c2Knr
+         jdZIiImxG7YuPT7jzngjOIBAjPo5/ZiQXFTF+wRej2XUiuD+ed/C1YUUAbB8P8FRMQit
+         KHuwcZJqM3Rf3Z9oVEaNoXifn1fmYErlfKeutbEZEpWycETAbI5EtiUY+IgV7yvwPXD/
+         3jgg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrNPgdv+yu5ZF3ACCYB59OtxL1QDfMIm1JLzhmsfooR2+ctD9hov0+MlT0Kzg9A2IcZxKtGS9bug9S@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsIXddJcSS+0vNL10cykMg/jUAteqJSx6UK8gjGTea4djMEtdH
+	EtleavOsISNlzuZEPfEjO3m4Nb4E8SIKNDWXnfb+Om8nR03/bqunGnyCH3BCsbM=
+X-Google-Smtp-Source: AGHT+IEKj8e0DGH0IXL1EvzsJMVmLAGBgaS9VocL7h1EUrManS+QZRdErDq+tnhJINDLOvsL3YRdDw==
+X-Received: by 2002:a05:6512:3c81:b0:52e:a7a6:ed7f with SMTP id 2adb3069b0e04-53546bbdf6amr5700636e87.60.1725302592251;
+        Mon, 02 Sep 2024 11:43:12 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53540841332sm1715733e87.203.2024.09.02.11.43.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2024 11:42:33 -0700 (PDT)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: jic23@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andriy.shevchenko@linux.intel.com
-Cc: vassilisamir@gmail.com,
-	ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org,
-	biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com,
-	semen.protsenko@linaro.org,
-	579lpy@gmail.com,
-	ak@it-klinger.de,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr
-Subject: [PATCH v5 7/7] iio: pressure: bmp280: Move bmp085 interrupt to new configuration
-Date: Mon,  2 Sep 2024 20:42:22 +0200
-Message-Id: <20240902184222.24874-8-vassilisamir@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240902184222.24874-1-vassilisamir@gmail.com>
-References: <20240902184222.24874-1-vassilisamir@gmail.com>
+        Mon, 02 Sep 2024 11:43:11 -0700 (PDT)
+Date: Mon, 2 Sep 2024 21:43:10 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <quic_kdybcio@quicinc.com>, 
+	20240830-nxp-ptn3222-v2-0-4c6d8535cf6c@linaro.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-romulus: Set up USB
+ Multiport controller
+Message-ID: <ag2rteealf3j6ejc4mdixlinrgx6orhkfzpi6wyuj4sgq25azf@5pemq5ymn5th>
+References: <20240902-topic-sl7_updates-v1-0-3ee667e6652d@quicinc.com>
+ <20240902-topic-sl7_updates-v1-2-3ee667e6652d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240902-topic-sl7_updates-v1-2-3ee667e6652d@quicinc.com>
 
-This commit intends to add the old BMP085 sensor to the new IRQ interface
-of the driver for consistence. No functional changes intended.
+On Mon, Sep 02, 2024 at 04:50:34PM GMT, Konrad Dybcio wrote:
+> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+> 
+> The USB MP controller is wired up to the USB-A port on the left side
+> and to the Surface Connector on the right side. Configure it.
+> 
+> While at it, remove a stray double \n.
+> 
+> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+> ---
+>  .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 59 +++++++++++++++++++++-
+>  1 file changed, 57 insertions(+), 2 deletions(-)
+> 
 
-The BMP085 sensor is equivalent with the BMP180 with the only difference of
-BMP085 having an extra interrupt pin to inform about an End of Conversion.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
----
- drivers/iio/pressure/bmp280-core.c | 63 +++++++++++++++++++++++-------
- drivers/iio/pressure/bmp280-i2c.c  |  4 +-
- drivers/iio/pressure/bmp280-spi.c  |  4 +-
- drivers/iio/pressure/bmp280.h      |  1 +
- 4 files changed, 54 insertions(+), 18 deletions(-)
-
-diff --git a/drivers/iio/pressure/bmp280-core.c b/drivers/iio/pressure/bmp280-core.c
-index 74233778df35..2cfe29f7681b 100644
---- a/drivers/iio/pressure/bmp280-core.c
-+++ b/drivers/iio/pressure/bmp280-core.c
-@@ -3056,13 +3056,16 @@ static irqreturn_t bmp085_eoc_irq(int irq, void *d)
- 	return IRQ_HANDLED;
- }
- 
--static int bmp085_fetch_eoc_irq(struct device *dev,
--				const char *name,
--				int irq,
--				struct bmp280_data *data)
-+static int bmp085_trigger_probe(struct iio_dev *indio_dev)
- {
-+	struct bmp280_data *data = iio_priv(indio_dev);
-+	struct device *dev = data->dev;
- 	unsigned long irq_trig;
--	int ret;
-+	int ret, irq;
-+
-+	irq = fwnode_irq_get(dev_fwnode(dev), 0);
-+	if (irq < 0)
-+		return dev_err_probe(dev, irq, "No interrupt found.\n");
- 
- 	irq_trig = irqd_get_trigger_type(irq_get_irq_data(irq));
- 	if (irq_trig != IRQF_TRIGGER_RISING) {
-@@ -3072,13 +3075,8 @@ static int bmp085_fetch_eoc_irq(struct device *dev,
- 
- 	init_completion(&data->done);
- 
--	ret = devm_request_threaded_irq(dev,
--			irq,
--			bmp085_eoc_irq,
--			NULL,
--			irq_trig,
--			name,
--			data);
-+	ret = devm_request_irq(dev, irq, bmp085_eoc_irq, irq_trig,
-+			       indio_dev->name, data);
- 	if (ret) {
- 		/* Bail out without IRQ but keep the driver in place */
- 		dev_err(dev, "unable to request DRDY IRQ\n");
-@@ -3086,9 +3084,48 @@ static int bmp085_fetch_eoc_irq(struct device *dev,
- 	}
- 
- 	data->use_eoc = true;
-+
- 	return 0;
- }
- 
-+/* Identical to bmp180_chip_info + bmp085_trigger_probe */
-+const struct bmp280_chip_info bmp085_chip_info = {
-+	.id_reg = BMP280_REG_ID,
-+	.chip_id = bmp180_chip_ids,
-+	.num_chip_id = ARRAY_SIZE(bmp180_chip_ids),
-+	.regmap_config = &bmp180_regmap_config,
-+	.start_up_time = 2000,
-+	.channels = bmp280_channels,
-+	.num_channels = ARRAY_SIZE(bmp280_channels),
-+	.avail_scan_masks = bmp280_avail_scan_masks,
-+
-+	.oversampling_temp_avail = bmp180_oversampling_temp_avail,
-+	.num_oversampling_temp_avail =
-+		ARRAY_SIZE(bmp180_oversampling_temp_avail),
-+	.oversampling_temp_default = 0,
-+
-+	.oversampling_press_avail = bmp180_oversampling_press_avail,
-+	.num_oversampling_press_avail =
-+		ARRAY_SIZE(bmp180_oversampling_press_avail),
-+	.oversampling_press_default = BMP180_MEAS_PRESS_8X,
-+
-+	.temp_coeffs = bmp180_temp_coeffs,
-+	.temp_coeffs_type = IIO_VAL_FRACTIONAL,
-+	.press_coeffs = bmp180_press_coeffs,
-+	.press_coeffs_type = IIO_VAL_FRACTIONAL,
-+
-+	.chip_config = bmp180_chip_config,
-+	.read_temp = bmp180_read_temp,
-+	.read_press = bmp180_read_press,
-+	.read_calib = bmp180_read_calib,
-+	.set_mode = bmp180_set_mode,
-+	.wait_conv = bmp180_wait_conv,
-+
-+	.trigger_probe = bmp085_trigger_probe,
-+	.trigger_handler = bmp180_trigger_handler,
-+};
-+EXPORT_SYMBOL_NS(bmp085_chip_info, IIO_BMP280);
-+
- static int bmp280_buffer_preenable(struct iio_dev *indio_dev)
- {
- 	struct bmp280_data *data = iio_priv(indio_dev);
-@@ -3260,8 +3297,6 @@ int bmp280_common_probe(struct device *dev,
- 	 * so we look for an IRQ if we have that.
- 	 */
- 	if (irq > 0) {
--		if (chip_id == BMP180_CHIP_ID)
--			ret = bmp085_fetch_eoc_irq(dev, name, irq, data);
- 		if (data->chip_info->trigger_probe)
- 			ret = data->chip_info->trigger_probe(indio_dev);
- 		if (ret)
-diff --git a/drivers/iio/pressure/bmp280-i2c.c b/drivers/iio/pressure/bmp280-i2c.c
-index 5c3a63b4327c..2f7b25984c7b 100644
---- a/drivers/iio/pressure/bmp280-i2c.c
-+++ b/drivers/iio/pressure/bmp280-i2c.c
-@@ -27,7 +27,7 @@ static int bmp280_i2c_probe(struct i2c_client *client)
- }
- 
- static const struct of_device_id bmp280_of_i2c_match[] = {
--	{ .compatible = "bosch,bmp085", .data = &bmp180_chip_info },
-+	{ .compatible = "bosch,bmp085", .data = &bmp085_chip_info },
- 	{ .compatible = "bosch,bmp180", .data = &bmp180_chip_info },
- 	{ .compatible = "bosch,bmp280", .data = &bmp280_chip_info },
- 	{ .compatible = "bosch,bme280", .data = &bme280_chip_info },
-@@ -38,7 +38,7 @@ static const struct of_device_id bmp280_of_i2c_match[] = {
- MODULE_DEVICE_TABLE(of, bmp280_of_i2c_match);
- 
- static const struct i2c_device_id bmp280_i2c_id[] = {
--	{"bmp085", (kernel_ulong_t)&bmp180_chip_info },
-+	{"bmp085", (kernel_ulong_t)&bmp085_chip_info },
- 	{"bmp180", (kernel_ulong_t)&bmp180_chip_info },
- 	{"bmp280", (kernel_ulong_t)&bmp280_chip_info },
- 	{"bme280", (kernel_ulong_t)&bme280_chip_info },
-diff --git a/drivers/iio/pressure/bmp280-spi.c b/drivers/iio/pressure/bmp280-spi.c
-index d18549d9bb64..49aa8c2cd85b 100644
---- a/drivers/iio/pressure/bmp280-spi.c
-+++ b/drivers/iio/pressure/bmp280-spi.c
-@@ -114,7 +114,7 @@ static int bmp280_spi_probe(struct spi_device *spi)
- }
- 
- static const struct of_device_id bmp280_of_spi_match[] = {
--	{ .compatible = "bosch,bmp085", .data = &bmp180_chip_info },
-+	{ .compatible = "bosch,bmp085", .data = &bmp085_chip_info },
- 	{ .compatible = "bosch,bmp180", .data = &bmp180_chip_info },
- 	{ .compatible = "bosch,bmp181", .data = &bmp180_chip_info },
- 	{ .compatible = "bosch,bmp280", .data = &bmp280_chip_info },
-@@ -126,7 +126,7 @@ static const struct of_device_id bmp280_of_spi_match[] = {
- MODULE_DEVICE_TABLE(of, bmp280_of_spi_match);
- 
- static const struct spi_device_id bmp280_spi_id[] = {
--	{ "bmp085", (kernel_ulong_t)&bmp180_chip_info },
-+	{ "bmp085", (kernel_ulong_t)&bmp085_chip_info },
- 	{ "bmp180", (kernel_ulong_t)&bmp180_chip_info },
- 	{ "bmp181", (kernel_ulong_t)&bmp180_chip_info },
- 	{ "bmp280", (kernel_ulong_t)&bmp280_chip_info },
-diff --git a/drivers/iio/pressure/bmp280.h b/drivers/iio/pressure/bmp280.h
-index 0c32b6430677..e0e47bf22472 100644
---- a/drivers/iio/pressure/bmp280.h
-+++ b/drivers/iio/pressure/bmp280.h
-@@ -535,6 +535,7 @@ struct bmp280_chip_info {
- };
- 
- /* Chip infos for each variant */
-+extern const struct bmp280_chip_info bmp085_chip_info;
- extern const struct bmp280_chip_info bmp180_chip_info;
- extern const struct bmp280_chip_info bmp280_chip_info;
- extern const struct bmp280_chip_info bme280_chip_info;
 -- 
-2.25.1
-
+With best wishes
+Dmitry
 
