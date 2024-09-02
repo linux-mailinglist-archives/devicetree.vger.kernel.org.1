@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-99088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50ACA968B53
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 17:54:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F0C968B58
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 17:56:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 753101C22068
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 15:54:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FB34283BCD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 15:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD90C1A2627;
-	Mon,  2 Sep 2024 15:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E021A2653;
+	Mon,  2 Sep 2024 15:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A71V68La"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jO99RXgm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE481CB533;
-	Mon,  2 Sep 2024 15:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE801CB533;
+	Mon,  2 Sep 2024 15:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725292461; cv=none; b=At9bQ1bN5hudFDYck87bk2d9SBz60fnF0Q327l+xs1+y7fQw7mxwbqqhUaBaCb4RVfcQcygQi+A3iA80f+31VqJFqeTKigjtYB+CENySjjBGaDOxqG6wVg+L2PFkgaF/qFm30zU68AUnQayYITMakcVzi0vmS2E9jPsh4nhG+AM=
+	t=1725292566; cv=none; b=XT/8Ps37kQw9A0EPazF2dsNBYIjPBkdJdNkm+CIhHPvEGuFlsEOuZ/pWHQHfnC1KuDj4sCLE501rGbzqCuaeI/Coc51byIyR+Pa8Hi0P8+yX/HHS4EoN8kSb2rKLTLZb02lfCBG3XZes5HA2k8rZeF87oUGbqGa3PZ9fXnNVXFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725292461; c=relaxed/simple;
-	bh=EyzxpZaiqoJjpt6G2AcyN0MauggcldSzdz0TEoW9yvI=;
+	s=arc-20240116; t=1725292566; c=relaxed/simple;
+	bh=axhsVtSKS2mGMFqWbdshH9lnYkJ4yN60V14MfT55jTM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IcdH68ehGII5I7giVOqmeDxsdgWxZQhSbtiaJjK7x05EYP2e21ov24/BM8C90nBffravudACqPCbuDz9KffUNJomxvspfntAMALs9RN48k4ErdKcSvNhPh8g1yJDd8tenWzizQ7GRIjx95GmYk1X3UIOLKT0R/EZB8mz72huA1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A71V68La; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:Content-Type; b=k2C1Jb3a4by1M41YsWU+O9hXbvNr0nnX7mgxRRy0iWtHh9e0q9GNMYNG30dCR6/YtORnDT4lqi1814iBZE0Ye7CkyUG8Z7XtEaARTqyEzTN4kvlVG7dVABxWSleB02T76o7gXKFBh6LmtJRDVyKFXV8kzN4ReUi0PYnfw0QA/Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jO99RXgm; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a869332c2c2so856829666b.0;
-        Mon, 02 Sep 2024 08:54:19 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5c251ba0d1cso1293109a12.3;
+        Mon, 02 Sep 2024 08:56:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725292458; x=1725897258; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1725292563; x=1725897363; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4cP2dHj6d2ZZxQr7eLgquWgY/MJjFzFp7m1ULBgCRrE=;
-        b=A71V68LaM/8aaJiqB2ri5izQGurgDTKr0iNP8dnA5cVuMYjSOLx/P3A4ufBwvqMN7x
-         jIvZoGk9Hiduv+l+IZ7xBlccv3J3Dww3loPvLEUa+yui4kyI5wMmCGFncPl9UFSkTbJA
-         Pa3kZxQG/UpqUgI3OsYRrV8qGAIsNY67dARoYAZBp5/6WT7qrqn8xXPCtdXjUaZGqS2N
-         rmA3F28RmOsOSThfD5MiU7llS8gFbYmVCXa1u60VigKZTffgUKuSybne/MmAOG8m0YjL
-         pQGxd8FzUfQuAqGoSKxN0+MkK04ecngsy/3OY0L0uIlfHvMCSTt20qIQERiGYMdb0ITx
-         CNLQ==
+        bh=uqrIFFIBuT9fXuo9sjt1fU701rtujCx6+oPYTycRxhw=;
+        b=jO99RXgmTu6nXE97iVpkrwci4llHb3h+7D9PF2RJXvu+yn0a4U2p3hc493IEOiBMjq
+         10GeAlJZuDhIVlCJhUIjUtp4IyIXaICibhvKrdaed/Y8xp1DsaSNYBH/BzaHZqxrcPra
+         UZD8+xSTohjLTPVm1T1wvY6UyEOvA/uNWCSHcIEbAWpzQBMzPoXRE+M6A5gP0akhanW6
+         AF5uNLw59eDIkWdfeoesHt961XVl+wFtc/QHFJH4HWWFmlqfrH/vV0t0zfe94ehjWwU6
+         HWzvzhP2IhPq7NwdxU7z8THwrup6gOgK8FktTisGfpF71lmw5TscvTJmLxdfuGfHD8L+
+         W4Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725292458; x=1725897258;
+        d=1e100.net; s=20230601; t=1725292563; x=1725897363;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4cP2dHj6d2ZZxQr7eLgquWgY/MJjFzFp7m1ULBgCRrE=;
-        b=fqHMhWiXpMzF0zXN3sR2AlAgIMIBsKJCP1MCJ4wKE/ku6UjCwWTLX0QlBlllAAqOvx
-         Gu3mO2lrq0eCVkjMiFZdiihfqzhe6I7xtFegUHaUoBD0JTNz1baubcSC/P1owFQGHpKp
-         TrGTZSyVopgPyZQFnuDcZj5addDwFnzSIQ7TD9xyqJ92i+B3Z6rNKp+SsidPju0odV0C
-         HXaNVTqXpSHhVJEDN5nXW20ZuJvKl4pbSiCLDhwHMtf17giYL3ZZfg/Tur5okhD9IL+I
-         zJ1ysG+0Hs1TmgMHCf6J2GHRJLNIN21dgjdkgPIYInIiPZee1XtBExvKlBnnpWvTfhFp
-         jcuA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTgExcUCSa43rvQ3cgd9Bo13MngKFWwkzBkb1clZK+80dH2SPeXyr2N0DheJXayxGxha5lctIxyvtf@vger.kernel.org, AJvYcCUaWA6s1VrQB76ZWwRWgapWZE0q0MWa5o+sq0nZFgKYhsTDU2D/mj6rxvrrCURApJhPn4pxz3E/njw38agE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWuS+WU6DWnTeZQ7rH/EmJ8mlQX++pSJOHkI8yedos/RP9KST3
-	fAh2v8a31duiD0QfB3XlH6K8L5VBhrbRNf+r38iBR+TD6A0naFC3
-X-Google-Smtp-Source: AGHT+IFjeDTiTBRfvpDJVE9X0cTiZpwVlLd9lMbUR3Mi8Y4e8APmznCpbyZDjhrj6mS8oiSJ7snFvQ==
-X-Received: by 2002:a17:907:805:b0:a77:d9b5:ad4b with SMTP id a640c23a62f3a-a89823c9ecbmr1476806166b.9.1725292457920;
-        Mon, 02 Sep 2024 08:54:17 -0700 (PDT)
+        bh=uqrIFFIBuT9fXuo9sjt1fU701rtujCx6+oPYTycRxhw=;
+        b=Hw25x916j6sLqSsqZPfVpx+s4AvTT6itac/Hin19yIiWnhRwEQtrpUjADlRD4MzDL/
+         ZAzXQoW46ZFQQVc41VGBbug+4nInEaaY7q8Ry8NokCnpfazU2ZtYajCbRMgbdLhmIO1h
+         h4VltIzakia5YORV4qmv+PMApetFZFGx3Yx2ZXiObiqjwOBdQGKstQ59VF2o3WbzTC2q
+         bO1YfsL8pZEAN/YPRRV1WKjMi0VzZzdBhhg8sc/kY/yFQTdW/riwCgR2DBRIGCJ3c0ax
+         tbg3qY/Uc1BtKieH8pbok+T+DzYBoOO1fjOr2v6nQA7KzeFtGRRESOv0Xf5duOC056At
+         SuYw==
+X-Forwarded-Encrypted: i=1; AJvYcCVghshUdGWz68MaNBsUKSKedLmJ6LnvNKp/ZV71izxfX0TGULV4WsH+164KbjxTH8sPWB48eTnf9559rCQi@vger.kernel.org, AJvYcCVuInM0SYdCQadfqkshTYJ7K2gHaVx1+skAAQCtEQnbkW4JIUnY6nDFN5ILNHG30SGorRmgMiJsnpyz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJzkMpMJt/10pBOdiVLi5eAJ30StdHLVwBmfJxeZGW5fdEzhlW
+	CHqsQA9bmxT16HlcOFMmRDWZfCSSRIrtlj3wHSB+8lW1R0pZpTUI
+X-Google-Smtp-Source: AGHT+IGJpF9fNgWm0ITi3ee/hUoYJvUXoCSyQ2oj82pSrGszpg1RCTmEuV72xcab9PyRcmGIhRFZ5Q==
+X-Received: by 2002:a05:6402:354a:b0:5c2:6314:11c4 with SMTP id 4fb4d7f45d1cf-5c263141257mr1776017a12.2.1725292562888;
+        Mon, 02 Sep 2024 08:56:02 -0700 (PDT)
 Received: from [192.168.0.20] ([148.56.230.39])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891d6d88sm576946266b.151.2024.09.02.08.54.15
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c226c7c3a8sm5403524a12.49.2024.09.02.08.56.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Sep 2024 08:54:16 -0700 (PDT)
-Message-ID: <9649e485-1f46-4dff-9dac-9bd13740e558@gmail.com>
-Date: Mon, 2 Sep 2024 17:54:14 +0200
+        Mon, 02 Sep 2024 08:56:01 -0700 (PDT)
+Message-ID: <200d30d0-783f-4ca9-8bad-60499b65a33d@gmail.com>
+Date: Mon, 2 Sep 2024 17:56:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] arm64: dts: mediatek: mt8186: Add power domain for
- DPI
+Subject: Re: [PATCH v4 3/3] arm64: dts: mediatek: mt8186: Add svs node
 To: Rohit Agarwal <rohiagar@chromium.org>, chunkuang.hu@kernel.org,
  p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
@@ -89,7 +88,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20240830084544.2898512-1-rohiagar@chromium.org>
- <20240830084544.2898512-3-rohiagar@chromium.org>
+ <20240830084544.2898512-4-rohiagar@chromium.org>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
@@ -135,34 +134,55 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20240830084544.2898512-3-rohiagar@chromium.org>
+In-Reply-To: <20240830084544.2898512-4-rohiagar@chromium.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 30/08/2024 10:45, Rohit Agarwal wrote:
-> Add power domain phandle to the DPI controller in mediatek
-> mt8186 SoC.
+> Add clock/irq/efuse setting in svs nodes for mt8186 SoC.
 > 
 > Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
 
 Applied, thanks
 
 > ---
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 1 +
->   1 file changed, 1 insertion(+)
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index caec83f5eece..85b77ec033c1 100644
+> index 85b77ec033c1..3bd023cdcac0 100644
 > --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
 > +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -1843,6 +1843,7 @@ dpi: dpi@1400a000 {
->   			assigned-clocks = <&topckgen CLK_TOP_DPI>;
->   			assigned-clock-parents = <&topckgen CLK_TOP_TVDPLL_D2>;
->   			interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_LOW 0>;
-> +			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
->   			status = "disabled";
+> @@ -1372,6 +1372,18 @@ lvts: thermal-sensor@1100b000 {
+>   			#thermal-sensor-cells = <1>;
+>   		};
 >   
->   			port {
+> +		svs: svs@1100bc00 {
+> +			compatible = "mediatek,mt8186-svs";
+> +			reg = <0 0x1100bc00 0 0x400>;
+> +			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
+> +			clock-names = "main";
+> +			nvmem-cells = <&svs_calibration>, <&lvts_efuse_data1>;
+> +			nvmem-cell-names = "svs-calibration-data", "t-calibration-data";
+> +			resets = <&infracfg_ao MT8186_INFRA_PTP_CTRL_RST>;
+> +			reset-names = "svs_rst";
+> +		};
+> +
+>   		pwm0: pwm@1100e000 {
+>   			compatible = "mediatek,mt8186-disp-pwm", "mediatek,mt8183-disp-pwm";
+>   			reg = <0 0x1100e000 0 0x1000>;
+> @@ -1695,6 +1707,10 @@ lvts_efuse_data2: lvts2-calib@2f8 {
+>   				reg = <0x2f8 0x14>;
+>   			};
+>   
+> +			svs_calibration: calib@550 {
+> +				reg = <0x550 0x50>;
+> +			};
+> +
+>   			gpu_speedbin: gpu-speedbin@59c {
+>   				reg = <0x59c 0x4>;
+>   				bits = <0 3>;
 
