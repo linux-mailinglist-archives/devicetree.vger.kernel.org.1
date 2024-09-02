@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-98913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D12967FDA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 08:59:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A5E967FE7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:02:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4CA11F2204E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 06:59:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 325FE2828B2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 07:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8090815CD78;
-	Mon,  2 Sep 2024 06:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E849154BEE;
+	Mon,  2 Sep 2024 07:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIC0q2tW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0x3wCJh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557A4156993;
-	Mon,  2 Sep 2024 06:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DB732C85;
+	Mon,  2 Sep 2024 07:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725260351; cv=none; b=LuIr/93ExdrSSqpBdiOaZHG+YjxTarzUfnM4NwOZK7RP133Eu1JKFuaEcjetxdKDA/23+ra3Yh956lFY3rHufXcrPe3B0XVLrEzHX2Av6ZPv8W+TIKixMzUhLGwAh7KxZNwouYhx3h395m4V3xkDgWq3xYeWxRxMcyK/J0GUqXk=
+	t=1725260548; cv=none; b=UlfVQv51c0BG5fl0NMMAqApvadyhrgoie8iGBmSFyODQRv84VJHi2lSbo4C9ixtb1GurxPnZkiAxiT6G7nxg8lFRU1fAW5lMpj5Bl6J6Q9kpYDKPGwP+UYK2w679TzDGGLcrlBU7Nuzd7DHkpiaQvGEuqWMFSSsvWwS/5E4IMig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725260351; c=relaxed/simple;
-	bh=yPm4oH8FeOcwnlw7Y03dlBz2ZzbeQw4TfXKVJEdhfzA=;
+	s=arc-20240116; t=1725260548; c=relaxed/simple;
+	bh=NQyR548cxB2tzzv6MPgGYmDf3REvIzYPst0ZvmaPQ8I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GJL3Dlp9lM4bl05qYeNw41tAfseL4n7vpUUxuZHW+F3id+WRgTr6+o+4B/XNzF+O/5bw9peNrnBwd21OFQpne+Fn6YjoJwEXXyOmgl1jD/LsgfEoFJYSh3UntVN52GozK9vMo/ccG96fUamoja+ePq5i8s2VSA199QkSI3yLktc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIC0q2tW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAD13C4CEC2;
-	Mon,  2 Sep 2024 06:59:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OS+JVdrjeKYPjCA4iCQFZx9jfR1vapUgCgXlIWxIvmFwe432IdzTF/Dwvc6ZQ0jNprgIEGFcdGSUiWmg33pGjo8jufHLqMj791gmYPi90xgabqyOzdMLoULdSj+WBLLIOLlbVXG6+K/btrHU50RDvYgMjWYQvLRybRQ63oHYZd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o0x3wCJh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A1B0C4CEC2;
+	Mon,  2 Sep 2024 07:02:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725260351;
-	bh=yPm4oH8FeOcwnlw7Y03dlBz2ZzbeQw4TfXKVJEdhfzA=;
+	s=k20201202; t=1725260548;
+	bh=NQyR548cxB2tzzv6MPgGYmDf3REvIzYPst0ZvmaPQ8I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pIC0q2tWttbsM3AxRXWX+M4++SjouCh7uJ7cGcU64knVq6cWPbtrfyQjrdRpeIiIe
-	 E9Oue04ssrAOtTi31VrNw4EEpg+67SDjF3TNIV2LVMjiPXjAnlUkEZtBR00fNSjV47
-	 +/q9FWdweDdhdJjNIgRGDg9dQtbXrZ4cU200A+vrS5N/DewP4yUTjCxVtJrja+mjVH
-	 zUfCkFIEicDUcefK+vuu7oE0XsffazduSev9ZuEyIRitqwMK/px+s/r9j+63tcSlRz
-	 jll3n7T2DaU/z8ACtcqnEqokfoRYPrCzITAxgzUj9UnlrySdU5HqAcNLzDPnPhuBTZ
-	 vXMgq2SnnwA2A==
-Message-ID: <f3f65c33-335f-4769-958c-9b75fa7083dd@kernel.org>
-Date: Mon, 2 Sep 2024 08:59:04 +0200
+	b=o0x3wCJhMuOlHzpK1vfhjzAUprEFjALPFU3vqOocbCTw2+Z/kkDFil6/4CXD8fi3v
+	 3tL1nQ5CTHXILxrSGConCKLHPRLmRfRP/qy+deky2Acn5e0eK3+ZgulM/qvWNs/iDK
+	 3f+TQEk5W/SDCJANDI1PMJ6rAad3f12sEu9Qs4vNxIuhrhRNAX5bpxolaWetRvXkj7
+	 hNc2dJ9Titzw7tzyW+d+dCR3UlOUcJwJ6LX8DGGOtO5L9wAwgfsYY1rbubKaf0vZOB
+	 VOiidM/tOLwxkLn9IMS+4kasl807OaTcuYU7XCJqFgBVSogB+WVacDwwCEAs48cq/7
+	 iW+4+6hPk3oWA==
+Message-ID: <d4e424f0-5485-4ccc-83e1-d1eb3008af9f@kernel.org>
+Date: Mon, 2 Sep 2024 09:02:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: fsl: Add Variscite Symphony
- board and VAR-SOM-MX8MP SoM
-To: Tarang Raval <tarang.raval@siliconsignals.io>, shawnguo@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, festevam@gmail.com
-Cc: Conor Dooley <conor+dt@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Gregor Herburger <gregor.herburger@ew.tq-group.com>,
- Joao Paulo Goncalves <joao.goncalves@toradex.com>,
- Hiago De Franco <hiago.franco@toradex.com>,
- Mathieu Othacehe <m.othacehe@gmail.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Josua Mayer <josua@solid-run.com>, Yannic Moog <y.moog@phytec.de>,
- Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20240902065606.8072-1-tarang.raval@siliconsignals.io>
- <20240902065606.8072-3-tarang.raval@siliconsignals.io>
+Subject: Re: [PATCH v1 1/7] dt-bindings: arm: Add support for Coresight TGU
+ trace
+To: songchai <quic_songchai@quicinc.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240830092311.14400-1-quic_songchai@quicinc.com>
+ <20240830092311.14400-2-quic_songchai@quicinc.com>
+ <0a79b9df-4ca4-4dc8-9930-3fa1dc7d3174@kernel.org>
+ <65732921-988f-41f7-886e-94415b07608e@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,40 +111,174 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240902065606.8072-3-tarang.raval@siliconsignals.io>
+In-Reply-To: <65732921-988f-41f7-886e-94415b07608e@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/09/2024 08:56, Tarang Raval wrote:
-> Adds support for the Variscite VAR-SOM-MX8MP System on Module and
-> the Variscite Symphony Evaluation Kit.
+On 02/09/2024 05:14, songchai wrote:
 > 
-> Signed-off-by: Tarang Raval <tarang.raval@siliconsignals.io>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> On 8/30/2024 6:11 PM, Krzysztof Kozlowski wrote:
+>> On 30/08/2024 11:23, songchai wrote:
+>>> The Trigger Generation Unit (TGU) is designed to detect patterns or
+>>> sequences within a specific region of the System on Chip (SoC). Once
+>>> configured and activated, it monitors sense inputs and can detect a
+>>> pre-programmed state or sequence across clock cycles, subsequently
+>>> producing a trigger.
+>>>
+>>>     TGU configuration space
+>>>          offset table
+>>>   x-------------------------x
+>>>   |                         |
+>>>   |                         |
+>>>   |                         |                           Step configuration
+>>>   |                         |                             space layout
+>>>   |   coresight management  |                           x-------------x
+>>>   |        registers        |                     |---> |             |
+>>>   |                         |                     |     |  reserve    |
+>>>   |                         |                     |     |             |
+>>>   |-------------------------|                     |     |-------------|
+>>>   |                         |                     |     | prioroty[3] |
+>>>   |         step[7]         |<--                  |     |-------------|
+>>>   |-------------------------|   |                 |     | prioroty[2] |
+>>>   |                         |   |                 |     |-------------|
+>>>   |           ...           |   |Steps region     |     | prioroty[1] |
+>>>   |                         |   |                 |     |-------------|
+>>>   |-------------------------|   |                 |     | prioroty[0] |
+>>>   |                         |<--                  |     |-------------|
+>>>   |         step[0]         |-------------------->      |             |
+>>>   |-------------------------|                           |  condition  |
+>>>   |                         |                           |             |
+>>>   |     control and status  |                           x-------------x
+>>>   |           space         |                           |             |
+>>>   x-------------------------x                           |Timer/Counter|
+>>>                                                         |             |
+>>> 						       x-------------x
+>>> TGU Configuration in Hardware
+>>>
+>>> The TGU provides a step region for user configuration, similar
+>>> to a flow chart. Each step region consists of three register clusters:
+>>>
+>>> 1.Priority Region: Sets the required signals with priority.
+>>> 2.Condition Region: Defines specific requirements (e.g., signal A
+>>> reaches three times) and the subsequent action once the requirement is
+>>> met.
+>>> 3.Timer/Counter (Optional): Provides timing or counting functionality.
+>>>
+>>> Add a new coresight-tgu.yaml file to describe the bindings required to
+>>> define the TGU in the device trees.
+>>>
+>>> Signed-off-by: songchai<quic_songchai@quicinc.com>
+>> It feels like you are using login name as real name. Please investigate
+>> this and confirm whether latin transcription/transliteration of your
+>> name is like above.
+> yes.. it's my login name. Will use my real name in next version.
+>>
+>>> ---
+>>>   .../bindings/arm/qcom,coresight-tgu.yaml      | 136 ++++++++++++++++++
+>>>   1 file changed, 136 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
+>>> new file mode 100644
+>>> index 000000000000..c261252e33e0
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
+>>> @@ -0,0 +1,136 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>>> +%YAML 1.2
+>>> +---
+>>> +$id:http://devicetree.org/schemas/arm/qcom,coresight-tgu.yaml#
+>>> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Trigger Generation Unit - TGU
+>>> +
+>>> +description: |
+>>> +  The Trigger Generation Unit (TGU) is a Data Engine which can be utilized
+>>> +  to sense a plurality of signals and create a trigger into the CTI or
+>>> +  generate interrupts to processors. The TGU is like the trigger circuit
+>>> +  of a Logic Analyzer.The corresponding trigger logic can be realized by
+>>> +  configuring the conditions for each step after sensing the signal.
+>>> +  Once setup and enabled, it will observe sense inputs and based upon
+>>> +  the activity of those inputs, even over clock cycles, may detect a
+>>> +  preprogrammed state/sequence and then produce a trigger or interrupt.
+>>> +
+>>> +  The primary use case of the TGU is to detect patterns or sequences on a
+>>> +  given set of signals within some region of the SoC.
+>>> +
+>>> +maintainers:
+>>> +  - Mao Jinlong<quic_jinlmao@quicinc.com>
+>>> +  - Sam Chai<quic_songchai@quicinc.com>
+>>> +
+>>> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
+>>> +select:
+>>> +  properties:
+>>> +    compatible:
+>>> +      contains:
+>>> +        enum:
+>>> +          - qcom,coresight-tgu
+>>> +  required:
+>>> +    - compatible
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    pattern: "^tgu(@[0-9a-f]+)$"
+>> Drop the pattern (and anyway @ is not optional).
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 6d185d09cb6a..99555767f8d0 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1071,6 +1071,7 @@ properties:
->                - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
->                - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
->                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
-> +              - variscite,var-som-mx8mp-symphony # i.MX8MP Variscite VAR-SOM-MX8M-PLUS Symphony evaluation board
->            - const: fsl,imx8mp
+> There will be several TGUs in the SoC, and we want to use the address of 
+> each to distinguish them.
 
-<form letter>
-This is a friendly reminder during the review process.
+How is this related?
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
+> 
+> This is why we added the nodename pattern here.
 
-Thank you.
-</form letter>
+How is this related?
+
+> 
+> Additionally, I noticed that both TPDM and CTI also use this format to 
+> define the nodename.
+> 
+> Could you please share any concerns you have about using this pattern?
+
+I don't get why you insist, but sure:
+The name does not follow DT spec recommendation, plus child schema is
+not really supposed to define the names.
+
+> 
+>>
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: qcom,coresight-tgu
+>>> +      - const: arm,primecell
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: apb_pclk
+>>> +
+>>> +  qcom,tgu-steps:
+>>> +    description:
+>>> +      The trigger logic is realized by configuring each step after sensing
+>>> +      the signal. The parameter here is used to describe the maximum of steps
+>>> +      that could be configured in the current TGU.
+>> Why this is board or SoC level property? All below also feel like
+>> unnecessary stuff from downstream.
+> 
+> There are actually four properties used to describe the number of 
+> registers with different functionality for TGUs at the SoC level.
+> 
+> Each TGU may have a different number of registers, so we need to add 
+> these four properties to describe each TGU’s hardware design.
+
+Each TGU on the same SoC?
+
+
 
 Best regards,
 Krzysztof
