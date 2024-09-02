@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-98932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F1D19680E6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:47:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16F79680F2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB7B81F20FA2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 07:47:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 760C91F21CC0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 07:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A97A15DBB3;
-	Mon,  2 Sep 2024 07:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401CA181310;
+	Mon,  2 Sep 2024 07:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YSmLLnbI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xn44svXP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06ED15382C;
-	Mon,  2 Sep 2024 07:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFBE17D354;
+	Mon,  2 Sep 2024 07:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725263253; cv=none; b=IKErSNQXwwxhaG+BO0lKbwtSW/E+JcNM5aUfWqtdwC5gBGHPa4hveO40rl7Y42suWO/keasJHSWpyhKLtsgk6kelxoVykxc2pw+y0BvU4omDYO7zAPZR8J+o3VgyiHzmZcL7U5y9MDsCkho1IWHFCfZQHYqB4JPXGNbSJWnVa4w=
+	t=1725263496; cv=none; b=SWpYi0xkkVW/YjnV7w4QIOCSCTA1rlJLva2CFl3Shle4V4gT3mmbp9GsrZNk6mrYWgjhAw1Rhh5+ehIbzvUn+U+RhQ/rFQd6Jrk5/SJKrPGDGySSxgHaR+84LUyLDnDBNzaSxb3cMx716QMI6Xk4N3KL0SXRIZxbter1r+X/2O8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725263253; c=relaxed/simple;
-	bh=zaQa0W/lWAq86PBVE9eO9YvaPbLNrwo61FWQzJWC3rA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a/fn1/uM1rbAas4feL+0x7THg6TEjv74aZhZAF+djsQuXPJMERFbQOC2CQ4W2eBkAumBA033ic910Mw9fPTmpJMXuo4lS5TYl3E84d2zxlvuiuNMoirhg4syLoPke5wC6TRdvHiQwZYGB35GcIL2f9vRY1r5c59bg85hbrgOOvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YSmLLnbI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2F47C4CEC2;
-	Mon,  2 Sep 2024 07:47:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725263252;
-	bh=zaQa0W/lWAq86PBVE9eO9YvaPbLNrwo61FWQzJWC3rA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YSmLLnbIdYQcZ4DR8W1/q7dGjXRjnum5BPPpt71BxsM+a5G1sI9U3PWlmHZKziBAz
-	 G3q8mfdtXzeEeYLzR3NJP5QQahw064FFCS6CUzFW+8IgpZiHTbgIS/KzN59ck2XJ0W
-	 QLhsuQM/8PoYyMoCcwnGRLuNcIlsruK4Edi/ftO0u+acUcQKJgLj7EJJOVETfc441C
-	 /DUnpr53WZIMn8AGkI1NOyiz31cYSrVfGHXYdDsapvVv4Q8SYvAJb/PPWB4LULT5g9
-	 /YyCGtHUAFJJ+Jvg/aHBs0sPaXbhjYExgePbek0G2rxkSuKlOChEUze8KXV4s3oGqY
-	 tPF9UgE0D1ZxA==
-Message-ID: <e294c334-8d02-4f56-b4ba-e63d94a70a12@kernel.org>
-Date: Mon, 2 Sep 2024 09:47:23 +0200
+	s=arc-20240116; t=1725263496; c=relaxed/simple;
+	bh=LGdFzXCZV9e9fm6i3YukXBcr3+13OxC9jSKEmGUaFUo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=V9y0kNKYqr58V5vvA3hzOSes45uWJm9epmdHPORG4WPgVE0dyIOCNP47zb80cby2ZTRDhaO1cJSr5OjaH/VlUZ6/DR+enC5vWZm6Nh1CBKXw5mY/OidNc7j69d9yZgHZvW3EV/GgHlUK+Iaj58nZaHNYg9RcyW81SmAtzIyvmtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xn44svXP; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4827pERA122063;
+	Mon, 2 Sep 2024 02:51:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725263474;
+	bh=89ojlR2cAueP1WxvY/oiDyv2Ng1YgXcasPazDykYRyg=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=xn44svXPWAxVynNHyUpwKxyKQ+Kxl8sYnw1ChX6H3ySG2P+CRdlHdITCrAiYz16Fq
+	 ACrybzXj+iK7WFaefmLOS/J++TvIgAEqbzA2uVIO6doOgt8yXg7MRonDcyrrqi3pyE
+	 SzTcq13ydLXQhWglx6g3N2fxK872nPwRW8v2v+U4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4827pEe2029413
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 2 Sep 2024 02:51:14 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
+ Sep 2024 02:51:14 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 2 Sep 2024 02:51:13 -0500
+Received: from [10.249.135.225] ([10.249.135.225])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4827p5PI092461;
+	Mon, 2 Sep 2024 02:51:07 -0500
+Message-ID: <9f7dfdc0-954c-4924-90c3-7742120b487c@ti.com>
+Date: Mon, 2 Sep 2024 13:21:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,98 +65,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: fsl: Add Variscite Symphony
- board and VAR-SOM-MX8MP SoM
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: Conor Dooley <conor+dt@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Gregor Herburger <gregor.herburger@ew.tq-group.com>,
- Joao Paulo Goncalves <joao.goncalves@toradex.com>,
- Hiago De Franco <hiago.franco@toradex.com>,
- Mathieu Othacehe <m.othacehe@gmail.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Josua Mayer <josua@solid-run.com>, Yannic Moog <y.moog@phytec.de>,
- Li Yang <leoyang.li@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240902065606.8072-1-tarang.raval@siliconsignals.io>
- <20240902065606.8072-3-tarang.raval@siliconsignals.io>
- <f3f65c33-335f-4769-958c-9b75fa7083dd@kernel.org>
- <PN3P287MB18293C640A4A027E6292758C8B922@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
- <taacgew4rjjh6q53pog4jv2waamso7ytor5a2womrm3txowjo3@t3yimdusgc6g>
- <PN3P287MB182944940AB38804B65D58888B922@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next v7 2/2] net: ti: icssg-prueth: Add support for PA
+ Stats
+To: Jan Kiszka <jan.kiszka@siemens.com>, MD Danish Anwar <danishanwar@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sai Krishna <saikrishnag@marvell.com>,
+        Dan
+ Carpenter <dan.carpenter@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Diogo Ivo <diogo.ivo@siemens.com>,
+        Kory Maincent <kory.maincent@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>, Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski
+	<kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Roger Quadros <rogerq@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>, Nishanth Menon
+	<nm@ti.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <srk@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+References: <20240822122652.1071801-1-danishanwar@ti.com>
+ <20240822122652.1071801-3-danishanwar@ti.com>
+ <8cfcb7f7-1779-463a-9e77-e0e09234a35f@siemens.com>
+ <e2333f3c-7481-446a-8293-6afac14a34a0@ti.com>
+ <c7e618bd-c33e-4042-b769-392546cb9297@siemens.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <PN3P287MB182944940AB38804B65D58888B922@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <c7e618bd-c33e-4042-b769-392546cb9297@siemens.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 02/09/2024 09:23, Tarang Raval wrote:
-> Hi,
-> 
->>> as per your comment, I did update the board name to "variscite,var-som-mx8mp-symphony" instead of "variscite,var-som-mx8mp."
+
+
+On 9/2/2024 1:04 PM, Jan Kiszka wrote:
+> On 02.09.24 09:28, Anwar, Md Danish wrote:
 >>
->> ??? No, there is no difference. You did not test your patches either.
+>>
+>> On 9/2/2024 12:52 PM, Jan Kiszka wrote:
+>>> On 22.08.24 14:26, MD Danish Anwar wrote:
+>>>> Add support for dumping PA stats registers via ethtool.
+>>>> Firmware maintained stats are stored at PA Stats registers.
+>>>> Also modify emac_get_strings() API to use ethtool_puts().
+>>>>
+>>>> This commit also maintains consistency between miig_stats and pa_stats by
+>>>> - renaming the array icssg_all_stats to icssg_all_miig_stats
+>>>> - renaming the structure icssg_stats to icssg_miig_stats
+>>>> - renaming ICSSG_STATS() to ICSSG_MIIG_STATS()
+>>>> - changing order of stats related data structures and arrays so that data
+>>>>   structures of a certain stats type is clubbed together.
+>>>>
+>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>> ---
+>>>>  drivers/net/ethernet/ti/icssg/icssg_ethtool.c |  19 ++-
+>>>>  drivers/net/ethernet/ti/icssg/icssg_prueth.c  |   6 +
+>>>>  drivers/net/ethernet/ti/icssg/icssg_prueth.h  |   9 +-
+>>>>  drivers/net/ethernet/ti/icssg/icssg_stats.c   |  31 +++-
+>>>>  drivers/net/ethernet/ti/icssg/icssg_stats.h   | 158 +++++++++++-------
+>>>>  5 files changed, 140 insertions(+), 83 deletions(-)
+>>>>
+>>>
+>>> ...
+>>>
+>>>> diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+>>>> index 53a3e44b99a2..f623a0f603fc 100644
+>>>> --- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+>>>> +++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+>>>> @@ -1182,6 +1182,12 @@ static int prueth_probe(struct platform_device *pdev)
+>>>>  		return -ENODEV;
+>>>>  	}
+>>>>  
+>>>> +	prueth->pa_stats = syscon_regmap_lookup_by_phandle(np, "ti,pa-stats");
+>>>> +	if (IS_ERR(prueth->pa_stats)) {
+>>>> +		dev_err(dev, "couldn't get ti,pa-stats syscon regmap\n");
+>>>> +		return -ENODEV;
+>>>
+>>> I was just beaten for potentially not being backward compatible, but
+>>> this is definitely not working with existing DTs, just ran into it.
+>>>
+>>
+>> Jan, I had posted the DT patch needed for this [1]. But the DT patch
+>> goes to different tree and it was dependent on binding patch of this
+>> series. My intention was once the binding is in, I will post the DT
+>> patch in the next window. Till then ICSSG driver will break here but
+>> once DT gets merged it will be alright. If that's not the best solution,
+>> I can post DT here, but it will need to get merged via net-next.
+>>
+>> [1] https://lore.kernel.org/all/20240729113226.2905928-4-danishanwar@ti.com/
+>>
 > 
-> I did test my patches using "dt_binding_check" and "CHECK_DTBS," and there were no warnings or errors.
-
-Ah, you are right, I missed what actually changed.
-
+> Why not respect in the driver that the dtbinding says this property is
+> only optional?
 > 
->> When I wrote "This is not correct", it means you should drop it.
->> Incorrect compatibles should not be added.
-> 
-> Sure I will Drop it.
 
-I guess I wasn't precise. Please drop that one diff hunk.
 
-Best regards,
-Krzysztof
+Sure Jan, In that case, I will send out a fix making this optional in
+driver.
 
+-- 
+Thanks and Regards,
+Md Danish Anwar
 
