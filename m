@@ -1,65 +1,48 @@
-Return-Path: <devicetree+bounces-99081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3275968AAD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 17:10:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52073968AFF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 17:29:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 716A1283ABF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 15:10:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F17861F226DD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 15:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B6D1CB526;
-	Mon,  2 Sep 2024 15:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F291A305F;
+	Mon,  2 Sep 2024 15:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="qVDBewNr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KSnQlPnJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484761CB519;
-	Mon,  2 Sep 2024 15:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1291A3053;
+	Mon,  2 Sep 2024 15:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725289804; cv=none; b=CngB3wkV22oOJgajCP4QnWPyrxreP/hcKPXBLpy8TVnw5+i+T9S4XF3nKvB+MACyUXw7/akT3rzDgCTab04QwFRFV156irUojulO5fbAK/86MTTld+my7LFB7AyqOJGZxsveOfgFhjQSl1SLw6b0sh0Aj8Rl7MBaOQPWMOGcPeU=
+	t=1725290860; cv=none; b=ayHQ6z/auAOJDmqGpblUDT0RfMdhcdKd66vwOkvJNk+DNhnynMXuJo6MRVJNBX4MiZyI8huvNjDXXA+sNYyQ10re0iPAU/sfEntLOx4jCOcqkZ/QQGYYdQW/HK/IkRAxJxToXk3RIn6r5PGQtrlYbaROQm4SWpowM2Rk8fTrEgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725289804; c=relaxed/simple;
-	bh=rKuyikaFh3uMsnW94QkPolNVJ18V2RJFMNOetFaCfp0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FIOWDqxcYhk46BCCgzdZSYPQO70rq/6T4u77jAViLQav4/lRQD6g6HkUGuzh2lBMlVp11zdqoEQWCjuoP+dv5fwk5rknT0Zos4pjQxVWLO91ybO0tc1wO2+VYiftiT1q61tBmxoO0zZYAPdMECXG4jKrhwvL1J/WxnoTAda3Dwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=qVDBewNr; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725289802; x=1756825802;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=rKuyikaFh3uMsnW94QkPolNVJ18V2RJFMNOetFaCfp0=;
-  b=qVDBewNrtz4/w8hB4+DGpJjKwblz2JHFbrv52KzKSdvWLsjXaY3ogDTI
-   uPTUdvVgj7wXYvyc1G//owEDAci2BTPwS+SjeoVmVJOKy9eZYX7lsfoXG
-   5t79r/qPg5PilrFyTUhAiHTzRRgYPZZV4yfsAQt3I1ieC0V5ebEfc8rAx
-   yvHF+WAl4FAqgPqJ/R+jetAnmN7m/ZsvcKqw/NnM9gvLvaQPKWjKTyZ/O
-   daf5op6HalmSl/ltNgOK9dz5GJ7zOuD+RI0JO9oI6JdzRYcK1XnGi7NZN
-   Lkxk42DPa/c+68jhaWRYUX/4hYfQPousaVdAvuY0Iltmhg4pQaD53evOR
-   w==;
-X-CSE-ConnectionGUID: HNcldJOFSlqbqQixbRg1xA==
-X-CSE-MsgGUID: AQggWDGBQHGAHwopq+ge7A==
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; 
-   d="scan'208";a="262151402"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Sep 2024 08:10:01 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 2 Sep 2024 08:09:46 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 2 Sep 2024 08:09:44 -0700
-Message-ID: <7a4160cf-d170-4bbd-a4bc-da69c2c43d55@microchip.com>
-Date: Mon, 2 Sep 2024 17:10:05 +0200
+	s=arc-20240116; t=1725290860; c=relaxed/simple;
+	bh=99aNM2h57RcQAhdS8xa1IUa2iuaL/BnSjqqzdDL6WzA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p4++oao1K7zXYTcEoYhT1/k1W+6PT9/cy8OBHjcW8VpR8dqJNzIyj3ltTShhonL6ZpyydGvfopW61DhIxPoFjSVt5PbeY6gx201kKMOrMVGtcEcyQGdon9f6/F+xcO42bOTdCDUOTVAIsuZVEX9ZAOT8rwAjV4oFkq/vBPchXG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KSnQlPnJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BF82C4CEC2;
+	Mon,  2 Sep 2024 15:27:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725290860;
+	bh=99aNM2h57RcQAhdS8xa1IUa2iuaL/BnSjqqzdDL6WzA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KSnQlPnJ6PmI1dURgo+Q7OhIJ8CAsEBfgKALWvmwsA2FasA+KAw4PhAjyPsKzZtBh
+	 5rmGRRYAQVgf0rDw87N5XPe5jjxcV/3NDZQawLyGT51//EbFoV01onDTSw3Mn8QDvx
+	 xwiNHAekOrCaJt6U8NndbMwlYOj/YDx0ZljgKJo5ltK8ejro0mZgGCvARSuwtSV4g2
+	 VZ9n3UvAXs7SijyiJ5WCEyEqKGbkVZXOZ/Mm0SmDcuBi33m1zBODb1a0N/hh4XhOge
+	 o2w/REI3gTAzo4Inxk54oAfycB/b6Xw/iOhcXkM1Xurwz1eTVsHOpUZuj1PIsvY0vC
+	 io8ahzXJ0dmQQ==
+Message-ID: <f6813e5a-9b8e-4728-abb2-ad5926d6fa41@kernel.org>
+Date: Mon, 2 Sep 2024 17:27:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,91 +50,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: ARM: at91: Document Microchip SAMA7D65
- Curiosity
-Content-Language: en-US, fr-FR
-To: Krzysztof Kozlowski <krzk@kernel.org>, Dharma Balasubiramani
-	<dharma.b@microchip.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Arnd Bergmann <arnd@arndb.de>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Romain Sioen <romain.sioen@microchip.com>,
-	Ryan Wanner <Ryan.Wanner@microchip.com>, Varshini Rajendran
-	<Varshini.Rajendran@microchip.com>
-References: <20240829-sama7d65-core-dt-v1-1-e5d882886f59@microchip.com>
- <eb96bcf2-8bcd-4801-b381-96583d733b87@kernel.org>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <eb96bcf2-8bcd-4801-b381-96583d733b87@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH v1 0/1] arm64: dts: qcom: Add coresight components for
+ x1e80100
+To: Jie Gan <quic_jiegan@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>, Tao Zhang <quic_taozha@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Song Chai <quic_songchai@quicinc.com>, Yushan Li <quic_yushli@quicinc.com>
+References: <20240827072724.2585859-1-quic_jiegan@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240827072724.2585859-1-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/08/2024 at 15:38, Krzysztof Kozlowski wrote:
-> On 29/08/2024 11:57, Dharma Balasubiramani wrote:
->> From: Romain Sioen <romain.sioen@microchip.com>
->>
->> Document device tree binding of the Microchip SAMA7D65 Curiosity board.
->>
->> Signed-off-by: Romain Sioen <romain.sioen@microchip.com>
->> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
->> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
->> ---
->>   Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
->> index 82f37328cc69..8e897680d43a 100644
->> --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
->> +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
->> @@ -174,6 +174,13 @@ properties:
->>             - const: atmel,sama5d4
->>             - const: atmel,sama5
->>
->> +      - description: Microchip SAMA7D65 Curiosity Board
->> +        items:
->> +          - const: microchip,sama7d65-curiosity
->> +          - const: microchip,sama7d65
->> +          - const: microchip,sama7d6
->> +          - const: microchip,sama7
->> +
+On 27.08.2024 9:27 AM, Jie Gan wrote:
+> Add coresight components for x1e80100. This change includes CTI,
+> dummy sink, dynamic Funnel, Replicator, STM, TPDM, TPDA and TMC ETF.
 > 
-> No. This must go with the DTS.
+> Change in V1:
+> Check the dtb with dtbs_check W=1, and fix the warnings for
+> the change.
 > 
-> It's second patch you sent entirely split from the rest. That's not how
-> upstreaming of DTS and drivers work.
 
-Krzystof,
+Applying this series and enabling CORESIGHT=m (along with all the options
+in menuconfig) breaks booting on my X1E Surface Laptop 7
 
-We have been upstreaming sam9x75 SoC and now are trying with sama7d65 
-SoC using a different approach.
-
-It was mentioned to us to reduce the number of patches sent in a series, 
-convert the remaining DT bindings from txt to yaml (we had quite a few), 
-avoid generating new errors from the DT bot when sending new .dtsi/dts 
-files... So we're trying to comply to these (valid) requirements... But 
-well, it's not easy and I would like to emphasize that we are doing our 
-best to address most of the (sometimes contradictory) challenges.
-
-So now, we're trying to be very minimal in what we're sending. Address 
-peripherals incrementally with trying to generate as few DT check errors 
-as possible. Trying this, we're facing chicken and eggs problems: How to 
-comply to a binding that is not yet accepted? How to organize 
-introduction of a new SoC with a limited number of patch in a series? 
-How to convert bindings to yaml and still be able to add new SoCs?
-
-Be sure that we have been coordinating internally to be ready and send 
-these patch series together. We're a team and are splitting the 
-workload, I believe that it should be possible.
-I feel that upstreaming a SoC is becoming overly difficult, and I added 
-quite a few to Mainline throughout the years.
-
-Can you please let us post this minimal set of patch series, give you 
-the needed information and cross-reference links, but also understand 
-that we're adding pieces of a big puzzle that would require a bit of 
-flexibility?
-
-Thanks for your understanding. Best regards,
-   Nicolas
-
+Konrad
 
