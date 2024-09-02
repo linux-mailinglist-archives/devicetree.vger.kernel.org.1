@@ -1,65 +1,57 @@
-Return-Path: <devicetree+bounces-98918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-98919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0837A96803C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E3DE96806A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 09:22:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE4F1F23AFE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 07:14:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32F761F2556E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 07:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB254156C7B;
-	Mon,  2 Sep 2024 07:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B50E185E65;
+	Mon,  2 Sep 2024 07:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMQzWI68"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EpCC68db"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAB915573F;
-	Mon,  2 Sep 2024 07:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451E61862AE;
+	Mon,  2 Sep 2024 07:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725261244; cv=none; b=Kp9NXMr6qWdJqrRhMew7PCpYyscLpOh4vUmBB0dhz+9n/XnpujkJ10S9buhxTFCP0KTXUXemDnPa5PW9zhx5i5lj08OxUq4h3p3k+U+5BWESq0uree4aqwrlSxn6qUEaY71aKYvWaxMlqmUrOm0crXYSoleARVM9U78gToibcwg=
+	t=1725261506; cv=none; b=bgBB6AyPRRAw987vL4nJS1jCZXDLC2b0PHn0Ok6+ewTB5gyEQ9hW0FA2O7UebnMBo1SIBoVelKtXnu4/pmr1z9f+FI3wSP+RkMzS/navCDcp4zXnyzP7ZlUDbhowS3JMtXblQiyNDFx9mmG7ZhFQkxw1BMbnv1oU407q2l//wQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725261244; c=relaxed/simple;
-	bh=O3qnO4tVE96dExdElJgrtwb4RNjNBLk/w49FLco314M=;
+	s=arc-20240116; t=1725261506; c=relaxed/simple;
+	bh=t3O+Haqt881Ky7t8Rj0Jw62sr6ssAiXOVQAeAImmuM8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EyFYs03YY8+6DeBHqhLGZi2GTtfvDY0MkiSFPQgzIyVKS4FvD9h2/nv/Xoi7khwgxfp7AH1HHqt6LYSZqTIrkWPAFwBvogPmQCEWqlOCK6BnGrYorTISA39BorYvjuVByhRaEbP4CUKhqusPAT00aZZTYKf1BOnT7D2HVlElxks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMQzWI68; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B162C4CEC4;
-	Mon,  2 Sep 2024 07:14:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ncqe8aHRZqNLNAMUcJn10AP98b5FZreeLBgYf7aCQ+8MUU6xlMZxhL5/3rtiOdvcBNzjhgrej3qC4aY5Q5DsyYSU4AnGOFWflKVm28L4OlzFklTzSjWgqzSujt3TmtxiHeXbq0TH/OAZM3mqS+Y7Wurf+GFS37Y7x3e0wLIbp54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EpCC68db; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EE09C4CEC2;
+	Mon,  2 Sep 2024 07:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725261244;
-	bh=O3qnO4tVE96dExdElJgrtwb4RNjNBLk/w49FLco314M=;
+	s=k20201202; t=1725261506;
+	bh=t3O+Haqt881Ky7t8Rj0Jw62sr6ssAiXOVQAeAImmuM8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cMQzWI68iVxcoQd0OdaF9PXjcNlkC8twkvXk9oFvQ8vQWQVdmZniY3iL5tMiOSjV7
-	 x3933fz6aApN6lW2g5arQrbPeNqoZGkA23llNxCyVcNmAlFaDaZuAb+HAOckNTQsqH
-	 KKzlQfLSMdYgeLbIGq24X27AjRDUNy+6ZqEFY8zPfrgb2VK0NFeHgDLEQVPa45M3qS
-	 0eS9gijm/EScufrUkg+SHpqzFLGT8ShccjMtUVEuRzGnNgvTdzlKqRDPAbXnWh+gEJ
-	 vy4ILa/LKKsH76n2CHq3IOug+5q6osjVkvMwiChvauylnHCIw4XwMadOwyNa0qIFjR
-	 6htPZ7v3XKxGg==
-Date: Mon, 2 Sep 2024 09:14:00 +0200
+	b=EpCC68dbEmo2/+mIi/v055ItB5z6LNlBLnJBCFvX1IB5+DhCZRV9T/S6cyYy3AsxD
+	 tSS9g80IH0mbbTkU158+fsH7rLIKR2/dzEiP9Em9dvzU2HCiUrB1YL3aNs28CB6yPa
+	 J61SFJvYYRg6fOLUDYdpuPTTot/isZ8ntfBXNHc5Twjt8xZpC7NaHdlDD8isVYPl+C
+	 zJWSU4656qXw7zfBTdjfB5peXcAfdCMIuoWSSCAJmOAOiGhbFKys4s1kBkK6cJFsTP
+	 olJ8NDXKlrvkybnTnKkgvkbCWL/ypXgkRbu83en+NCmq8NlxBLaJUabOn0I1693o2h
+	 xY+62Ka8cPcmA==
+Date: Mon, 2 Sep 2024 09:18:22 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>, Hiago De Franco <hiago.franco@toradex.com>, 
-	Mathieu Othacehe <m.othacehe@gmail.com>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	Josua Mayer <josua@solid-run.com>, Yannic Moog <y.moog@phytec.de>, Li Yang <leoyang.li@nxp.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: fsl: Add Variscite Symphony
- board and VAR-SOM-MX8MP SoM
-Message-ID: <taacgew4rjjh6q53pog4jv2waamso7ytor5a2womrm3txowjo3@t3yimdusgc6g>
-References: <20240902065606.8072-1-tarang.raval@siliconsignals.io>
- <20240902065606.8072-3-tarang.raval@siliconsignals.io>
- <f3f65c33-335f-4769-958c-9b75fa7083dd@kernel.org>
- <PN3P287MB18293C640A4A027E6292758C8B922@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+To: Yu-Chun Lin <eleanor15x@gmail.com>
+Cc: laurent.pinchart@ideasonboard.com, thierry.reding@gmail.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	visitorckw@gmail.com
+Subject: Re: [PATCH] docs: devicetree: Fix typo in lvds.yaml
+Message-ID: <n6rbeaomxoey5acg7jyxcclg3z7p7ucxlxzflpizq2j4cktqep@o35wquc7ioav>
+References: <20240901133046.962263-1-eleanor15x@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,36 +60,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <PN3P287MB18293C640A4A027E6292758C8B922@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <20240901133046.962263-1-eleanor15x@gmail.com>
 
-On Mon, Sep 02, 2024 at 07:07:02AM +0000, Tarang Raval wrote:
-> Hi,
->=20
-> >>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 - toradex,verdin-imx8mp-wifi=C2=A0 # Verdin iMX8M Plu=
-s Wi-Fi / BT Modules
-> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - variscite,var-som-mx8mp-symphony # i.MX8MP=C2=A0Variscite VAR-S=
-OM-MX8M-PLUS Symphony evaluation board
-> >>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - co=
-nst: fsl,imx8mp
-> >
-> ><form letter>
-> >This is a friendly reminder during the review process.
-> >
-> > It seems my or other reviewer's previous comments were not fully
-> addressed. Maybe the feedback got lost between the quotes, maybe you
-> just forgot to apply it. Please go back to the previous discussion and
-> either implement all requested changes or keep discussing them.
->=20
-> as per your comment, I did update the board name to "variscite,var-som-mx=
-8mp-symphony" instead of "variscite,var-som-mx8mp."
+On Sun, Sep 01, 2024 at 09:30:46PM +0800, Yu-Chun Lin wrote:
+> Corrected the spelling in the description of LVDS Display Common
+> Properties.
+> 
+> Signed-off-by: Yu-Chun Lin <eleanor15x@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/display/lvds.yaml | 2 +-
 
-??? No, there is no difference. You did not test your patches either.
+Replacing one typo in one place is a churn. Fix several typos.
 
-When I wrote "This is not correct", it means you should drop it.
-Incorrect compatibles should not be added.
+You engaged three people to review this, so three people spent their
+time on reviewing and answering this trivial stuff.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with  on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
 Best regards,
 Krzysztof
