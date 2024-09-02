@@ -1,130 +1,92 @@
-Return-Path: <devicetree+bounces-99067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C0C968955
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE3D9689A0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 16:16:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D722E2812F7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 14:02:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B3EB28452E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 14:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D69B19C57E;
-	Mon,  2 Sep 2024 14:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C26319F13C;
+	Mon,  2 Sep 2024 14:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="gg2EymqO"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NaBkOlsx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6B219E98B;
-	Mon,  2 Sep 2024 14:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C7619F12B;
+	Mon,  2 Sep 2024 14:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725285755; cv=none; b=T4SvwlM8rwQTXSiIydIxt+L7oxOWPQx0DpGlBQzK+WR3cVdNY5zdalOIUM4R9vJg8n46Y6BOmkE1PA3PsYEEEZLVQAm5KApcaIlG4pSNUeeLWmAPLMMsS36BEdrRg9+EW72M2P2r8Dv1A6WLLS9OUoV7IbllusDj8KKNsfajcFU=
+	t=1725286556; cv=none; b=HDNGGBQWU06mWiYRqf+wX+TMCYme/V/VGOY1za9dBb1GcGHPgK5R3Oj2ddB30MO/GuF0NpR5L/Nn1Lbc7m5gN6W0Jsq3jpffxI6JyZAPdkRlC8tVQaTMR+LLRuKsipDA7cs6vhzVcheyEMMcWPkl48Orl42eXscWnvL9+scOj5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725285755; c=relaxed/simple;
-	bh=dGr0hmtqgEG2bKigM03F+K7XEGLbxyVTsJM6AuXa2o0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ClTksdNUXjPOL86eQDWemTdHykQkHMuJ8G4+v4og4aQCCVY/rp3rfOIjStOE6iAyVnsSsVSUsr/09gPLFWTd9VWwX4KBisr5RiU8W4Kx2+NPRKRUk8ErLHMjBjdWIZz2Cf85o+lNgBE779xQ6VMTG+AgDa8PSf2ETqUo342n9nA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=gg2EymqO; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Q5kDo072oqXPIANlSuSJ0omtBEVMG7dk+/GwwjwoW+w=; b=gg2EymqOeUoXG4PwS/2Ul/RuXY
-	yhOW3w+ES5SGi+fp1XpY9szPDM0lRbquthZ7K10Rwv9MnyjlJhWZSdSEB5IAz71AixgeujUEF5Wnw
-	B2uE14oAuMhHmuw4B4wxK7FvuZMjMzDk3o7sJNNo+RKNSx2Sn5mxfxo4gsodVNlNW5XxOqdhAz9KL
-	nsMexdPcvQ6MyNSLejNfQJrt38bgroQF4xO8mfKgKiNnA6FwKGmUfe5A+EdQvzB7LJLbs7Y2pkl3o
-	/NFQKyHvx9of7CFcOKcLzwpUX3w2o/dU9Sl0id9k/6dO3VVAMCBiq6AiUrSLEMKZQurGmijKxp5XU
-	5BYxlsxQ==;
-Received: from i5e860d00.versanet.de ([94.134.13.0] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sl7dM-0002as-Px; Mon, 02 Sep 2024 16:02:20 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Elaine Zhang <zhangqing@rock-chips.com>,
- Kever Yang <kever.yang@rock-chips.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, huangtao@rock-chips.com,
- andy.yan@rock-chips.com, Michal Tomek <mtdev79b@gmail.com>,
- Ilya K <me@0upti.me>, Chad LeClair <leclair@gmail.com>,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com
-Subject: Re: [PATCH v9 6/7] clk: rockchip: implement linked gate clock support
-Date: Mon, 02 Sep 2024 16:03:56 +0200
-Message-ID: <2299897.AOvM4ru3NT@diego>
-In-Reply-To: <20240325193609.237182-7-sebastian.reichel@collabora.com>
-References:
- <20240325193609.237182-1-sebastian.reichel@collabora.com>
- <20240325193609.237182-7-sebastian.reichel@collabora.com>
+	s=arc-20240116; t=1725286556; c=relaxed/simple;
+	bh=5jwDa3PRkmciPQ3iVY3JqQxUmt5O5yF50ztP2V2MNPE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KVfgfAOMtoIOK4dHnaCi/VGBS9X8uQ/jxxIsOPA6lkFHrEkLHyrTh8NYCkPCa0k3INmk6MVCBUMMzXhSOnLKWXQHb+mRvpiJLPXdRVT+o31WLdc0sxTeJu1PBJNFu0YFPnIn9rVZykO88q0lAzA74ykJlmRqJWvqDqgFHXuTyzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NaBkOlsx; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id F11F024000B;
+	Mon,  2 Sep 2024 14:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725286547;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=AOSscpEkGa8ztu4bWIy6JMXncsbMSioQscFLJZpRFy8=;
+	b=NaBkOlsx82b0muYAnPtFPlQxzwMuxdw+Y5othV1AQKOuVoi2GnSwP2mDoOnGfl9VjutxoC
+	LRsmTfXcAwnCJ6zZUZpNi7V7oSFhZ/5A5IAkPBskcTKUAGjfpGUzqqC398EbnOwTnOt0B8
+	1z9ZGmBDqdWh42aT1Le0X9SNqKH26owrm38dUuWb/pnku2H7V3X44A36+aT2CJy7roPgXA
+	7kmX/9nyClohjwTSHmSLbSnIlr9NToq56GpjaIEiHlSNwE5uYNAwiZ6ZgOWxptCgrrXWLu
+	IHkju4Y/yVxRygvQBrPYkODCG42uYG8jY4/b5Gt0jqd/biPjaCr5XrwMBbLQ7w==
+Date: Mon, 2 Sep 2024 16:15:45 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Roger Quadros <rogerq@kernel.org>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Nishanth Menon <nm@ti.com>, srk@ti.com,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: ti, gpmc-nand: support partitions
+ node
+Message-ID: <20240902161545.3ca266de@xps-13>
+In-Reply-To: <20240830174302.GA551760-robh@kernel.org>
+References: <20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org>
+	<20240830174302.GA551760-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Am Montag, 25. M=E4rz 2024, 20:33:37 CEST schrieb Sebastian Reichel:
-> Recent Rockchip SoCs have a new hardware block called Native Interface
-> Unit (NIU), which gates clocks to devices behind them. These clock
-> gates will only have a running output clock when all of the following
-> conditions are met:
+Hi,
+
+> > +  partitions:
+> > +    type: object
+> > +    description:
+> > +      Node containing description of fixed partitions.
+> > +
+> >  patternProperties:
+> >    "@[0-9a-f]+$":
+> >      $ref: /schemas/mtd/partitions/partition.yaml =20
 >=20
-> 1. the parent clock is enabled
-> 2. the enable bit is set correctly
-> 3. the linked clock is enabled
->=20
-> To handle them this code registers them as a normal gate type clock,
-> which takes care of condition 1 + 2. The linked clock is handled by
-> using runtime PM clocks. Handling it via runtime PM requires setting
-> up a struct device for each of these clocks with a driver attached
-> to use the correct runtime PM operations. Thus the complete handling
-> of these clocks has been moved into its own driver.
->=20
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> This and the addition should be replaced with a mtd.yaml reference.
 
-> +static void rk_clk_gate_link_remove(struct platform_device *pdev)
-> +{
-> +	struct rockchip_gate_link_platdata *pdata;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct clk *clk, *linked_clk;
-> +
-> +	pdata =3D dev_get_platdata(dev);
-> +	clk =3D rockchip_clk_get_lookup(pdata->ctx, pdata->clkbr->id);
-> +	linked_clk =3D rockchip_clk_get_lookup(pdata->ctx, pdata->clkbr->linked=
-_clk_id);
-> +	rockchip_clk_set_lookup(pdata->ctx, ERR_PTR(-ENODEV), pdata->clkbr->id);
-> +	clk_unregister_gate(clk);
-> +	pm_clk_remove_clk(dev, linked_clk);
-> +}
-> +
-> +static const struct dev_pm_ops rk_clk_gate_link_pm_ops =3D {
-> +	SET_RUNTIME_PM_OPS(pm_clk_suspend, pm_clk_resume, NULL)
-> +};
-> +
-> +struct platform_driver rk_clk_gate_link_driver =3D {
-> +	.probe		=3D rk_clk_gate_link_probe,
-> +	.remove_new	=3D rk_clk_gate_link_remove,
+Yes, indeed.
 
-what's the use-case for remove?
-
-We don't allow the main clock driver to be unbound, so I guess we might
-want to do the same here? On a system-level they're getting registered
-automatically but never unregistered, so the only case here would be
-a manual unbind - but I'd think that would cause mayhem anyway?
-
-
-
+Thanks,
+Miqu=C3=A8l
 
