@@ -1,337 +1,171 @@
-Return-Path: <devicetree+bounces-99025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5827896864E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 804BC96865E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 13:40:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C50E1C21A02
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:36:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A15EF1C22403
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2024 11:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68E6187847;
-	Mon,  2 Sep 2024 11:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656BE1D618B;
+	Mon,  2 Sep 2024 11:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RpVnQEAj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mcr0MeAc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DA313B59B;
-	Mon,  2 Sep 2024 11:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740E01D6180
+	for <devicetree@vger.kernel.org>; Mon,  2 Sep 2024 11:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725276960; cv=none; b=WeVdR8c3C6iqcPZcrHlUM2CToYCYPi2ROMDadpOeeNslx2SZTijh7xMpvB7TlaNBVLiMlXSs49hzBy/M3mcU0Xr8s2cUns6mmANLz+ZVKcWqjg45U645SnNyJqHVyCCTZBDlVz6/fda2o5x7rW0k7ZGsGDAeTs9RVJ8tt5hTJPs=
+	t=1725277252; cv=none; b=gmiL9reH/AWbd8Limw9AYpm4xew91ks4zf+FGf8MbFwm8IFYlSazPuRw8aGM77xFhDj1XKGhnepijQboCbg7qHNt3qh1HuzvwSaz/xsHf0VnSZ7Er4uiT34nTySLy4h3M+jKYau9zLzUV7ZfGO2QJD96W3I9Ns8f+b3wAf4GoRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725276960; c=relaxed/simple;
-	bh=ijLYhyyOfFYUMsUXfR6J6D9+QxK+paVNZEW3dTYB+HQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VkDJhhlTncWb6FaUAh2Zb+fcVpSYz5Np6cicl8t3WotolUljQNZm+1GWnMF8jjf2O/9K3LlChh5cPqidpcRQh6tPNocqnMC+igKspAYSJe/PYQ/jVq2vj3jAJqDa9aIaiNFgVUY2pBrCNIEzkDV0sneW8P4EN2JjyXUNWFIeHdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RpVnQEAj; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725276959; x=1756812959;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ijLYhyyOfFYUMsUXfR6J6D9+QxK+paVNZEW3dTYB+HQ=;
-  b=RpVnQEAj4w5UJw1wGZkb5N9sJw+c5SRYB7bkS8VkEJmql6IPmtbTekyS
-   gyRpSAx4c6663hiTWSJAs8t+JxmU865hL1k0XrBjiwRFoR6bLNONWKpiu
-   2boMaRjkMYrnX4dZGOeOp0+J4ssJY1R0jvA7Alzwzxh0DJmMmRePegKr/
-   AXOndQbgIbKvI7k/SSujr1DwMbDHXyuNNq6yOe9keTyqyB0GHKRYLUYh6
-   fR0XQxhfD20zCbvZlMTkSI3VVvmtCWCPCjV8xCCai+JSNc9hV/Q0UMGFg
-   QfyGVQhyCDgcCfUCoWX9xBknAL0Nb8fGKEGh7jRnTHMGAaCfU/oYX4VDJ
-   w==;
-X-CSE-ConnectionGUID: 4B/dOr4BTQKNjnaRrMm++w==
-X-CSE-MsgGUID: uIHTK2r9RZ+OYCVaMpd0OQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="13329088"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; 
-   d="scan'208";a="13329088"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 04:35:58 -0700
-X-CSE-ConnectionGUID: dYg4LNV0Tgayw6N9btAGjg==
-X-CSE-MsgGUID: JiwWAzMER72Z6q3Er8BeYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; 
-   d="scan'208";a="69207807"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2024 04:35:50 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sl5LW-00000004LMj-1ywK;
-	Mon, 02 Sep 2024 14:35:46 +0300
-Date: Mon, 2 Sep 2024 14:35:46 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v4 06/18] drm/bridge: aux-hpd: Support USB Type-C DP
- altmodes via DRM lane assignment
-Message-ID: <ZtWjEudmlR51zkU9@smile.fi.intel.com>
-References: <20240901040658.157425-1-swboyd@chromium.org>
- <20240901040658.157425-7-swboyd@chromium.org>
+	s=arc-20240116; t=1725277252; c=relaxed/simple;
+	bh=GqYwfy3C8buj3wjtrDwLQoBSAzkARfETSztvR9cAM1w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i5rRDWfdZxBNPCncGMOL01Ys2SePO5IimNd3NNKt/FYWDsMuOumFDJpmlN2mEXReyYlXciLObsfcvZnVZZ0NIOHySZ0K6WtHO5mlxl1wVbIcB++kpWwuSmkvSK04FnqNnKSZh7pH+Bt0AEpeGmXxi08vzE0rSwzXulmhLaM76NI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mcr0MeAc; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42bbea92505so3955395e9.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 04:40:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725277249; x=1725882049; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0c87l9HizZr/gVCQ7mdytqHKt3WBojzubXbqdO2h8ME=;
+        b=mcr0MeAcLAO1L6HX5rYzFVdAN0n+A0GDN13jNf7hbeq5/14HW8VOA+I89bisnioexs
+         EcnKq53HWTdzeu9LsYyJRfC644lCUqDCoheYo0qTyKtwszm4+S9HiQN1hyX3c2F/tbe3
+         3b7TAzopRrKF12JqA9XAckdWcFJRAkyHOypJ89gqA4LpAmPtD6zDvfVuAVyPLaWy2fKQ
+         yexpGSLVL5UPy1L3F1fZeInf46llGQqWs7YfLVvHlhl/LXqrcjFp6eVflEolBpjC7tZX
+         OtX9aKSI3VM0NE859tuEPOoNoQvwRaClMh/AOAhM4UtzP+CVQB2D+1tyAMyVIDNmr7r8
+         gYiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725277249; x=1725882049;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0c87l9HizZr/gVCQ7mdytqHKt3WBojzubXbqdO2h8ME=;
+        b=rO7YBCL6lEqqi363sYHNHZ2nZ3WjILz8mlvXFdg73PbGlykyBlfL7sQDJ+1gX9l7B/
+         QIOCk8XV/WWR15aVpLXldVeYRrwoq7T/hoWn09tzyWP2MHX0Z1ofr6iAgJ++NyN+D1a5
+         pWnVgDK6Hu6cTe7tkl75fjnvHrDjvSKwi4d8I5JXmhGcIld24ixM2P9drLnIqblBPn/U
+         9GG1lS4EC0cwmihCC6FIc+3qegGAk3jpU1tyzUzbvFR6HAJ2q/MN4wLKhLpsBIoLpQb1
+         nLdSNPY7MKQMjCTBSNjLceIKuzO6ZFvEPpwZb9nWu866fOOkGL8WpLma4eBjAFbbNBOw
+         ymxw==
+X-Gm-Message-State: AOJu0Yzb+UQiVR/N+KnyCVL2wYLDqixCd2X0ndn1+u2kMpy8V8lIEJIW
+	ExZUWI2SdlDC957zHONdSb7tf9btvBVv7Ht4bVmF5RJQu7FJQABZ0Q+4vKCVFv1EwF0eljmhk+M
+	AgNE=
+X-Google-Smtp-Source: AGHT+IG/7KS8r0mZp+XmomeF1weh0MUMEE3dkcvGgU+H9bSVTStWXW3sU0djdrdQP34ZuMuWHPw7pw==
+X-Received: by 2002:a5d:6d8c:0:b0:374:cd01:8b72 with SMTP id ffacd0b85a97d-374cd018dd8mr738256f8f.9.1725277248541;
+        Mon, 02 Sep 2024 04:40:48 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba642594dsm171515245e9.47.2024.09.02.04.40.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Sep 2024 04:40:47 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/4] ARM: dts: nxp: imx: mnor pinctrl node improvements
+Date: Mon, 02 Sep 2024 13:40:36 +0200
+Message-Id: <20240902-dts-nxp-imx6-pinctrl-v2-0-ab8196baa07a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240901040658.157425-7-swboyd@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADSk1WYC/22NQQqDMBBFryKz7pQk2pB25T2KCzVRB2wiE5EU8
+ e5Npcsu34P//g7RMbkIj2IHdhtFCj6DuhTQT60fHZLNDEqoShh1R7tG9GlBeiWNC/l+5RmNcNr
+ qTlrTlpCnC7uB0pl9Npknimvg9/myya/9BUv5P7hJFDjcjJSiVJ2tRD2TbzlcA4/QHMfxARiZ/
+ s25AAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3142;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=GqYwfy3C8buj3wjtrDwLQoBSAzkARfETSztvR9cAM1w=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm1aQ3qDxf7xFAdwIWqHV45pdOryGWihIIjK1y5
+ Zm5akcFgFOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZtWkNwAKCRDBN2bmhouD
+ 1y01D/wIWcdUSsQ3C0b8PZEcXW2ROSbq9HCc+rilGVcppDS/RPKWX6NM+cMAf0EvgCPCE6/0Yik
+ FQcPnkIL3OcnQY8ATyYwDyx1p55lG2oGbutTFJ5GqjBa4/bgWZpi9O3aEAU4vsm2D3B6QqlJkjD
+ VGxI2lNrYDOosTz9crGVucNSrura0+w19AvuETGSd4r0f6BUTm2EKzsKc1pZ10xUGyBaeHCtkvC
+ 5TqAWoMY7j3SoMgAQa7FVCDiNZRYmYM3fTadgbJeBMuJF/d9/kzKePsY6ecduX95BUms5Mrv7IU
+ e3rts3OO+Aq19T1X8U/UE5rsmG+R9JTBbLq7235Ovz/Ob68LfiopGVsHWhutjVy4eWbPo7eqrcM
+ HgzJCUE94ulMDJX5To7FpEx2sg5eAr6lwQziDyDIg3sxrlBdTiMf3xdUdsp9znhsh1mAMrY8Grf
+ IxoVtxChrH4K4FOXy1TyKYE5JEj3EgkRvcWy6e8RZG4tDPjVBH/Zo1BDrbStL5sv0ltYQS4039R
+ T2TpNlCQ0IwUUx1d6pcB+xIsDnHsXlBcKF7Wqq1oGb0raFHucA2vdyVK3AyvjSwVppHO6YoS+MX
+ Z/2ZgTtU9Tu/6n38e4LN3rHFMaDl5qDTG3GusBwWXxeZssWmM/Q/kT/cD4PMvLJuVlRmE18vXvI
+ /6ITc8HwzeBLyyA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-On Sat, Aug 31, 2024 at 09:06:44PM -0700, Stephen Boyd wrote:
-> Extend the aux-hpd bridge driver to support assigning DP lanes to USB
-> type-c pins based on typec mux state entry. Existing users of this
-> driver only need the HPD signaling support, so leave that in place and
-> wrap the code with a variant that supports more features of USB type-c
+Changes in v2:
+- Fix "grpgrp" -> "grp"
+- Link to v1: https://lore.kernel.org/r/20240831-dts-nxp-imx6-pinctrl-v1-0-f5811032bd40@linaro.org
 
-Isn't the proper spelling "USB Type-C"?
+Align the pinctrl node names with the bindings.
 
-> DP altmode, i.e. pin configurations. Prefix that code with
-> 'drm_dp_typec_bridge' to differentiate it from the existing
-> 'drm_aux_hpd_bridge' code.
-> 
-> Parse the struct typec_mux_state members to determine if DP altmode has
-> been entered and if HPD is asserted or not. Signal HPD to the drm bridge
-> chain when HPD is asserted. Similarly, parse the pin assignment and map
-> the DP lanes to the usb-c output lanes, taking into account any lane
-> remapping from the data-lanes endpoint property. Pass that lane mapping
-> to the previous drm_bridge in the bridge chain during the atomic check
-> phase.
+Best regards,
+Krzysztof
 
-...
+---
+Krzysztof Kozlowski (4):
+      ARM: dts: imx6ul-tx6ul: drop empty pinctrl placeholder
+      ARM: dts: imx6ul: align pin config nodes with bindings
+      ARM: dts: imx6sl: align pin config nodes with bindings
+      ARM: dts: imx6qdl: align pin config nodes with bindings
 
-> +static inline struct drm_dp_typec_bridge_data *
-> +hpd_bridge_to_typec_bridge_data(struct drm_aux_hpd_bridge_data *hpd_data)
-> +{
-> +	return container_of(hpd_data, struct drm_dp_typec_bridge_data, hpd_bridge);
+ arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi   |  2 +-
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw52xx.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw53xx.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw54xx.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw560x.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw5903.dtsi          | 10 +++++-----
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw5910.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw5912.dtsi          |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-icore-rqs.dtsi       |  8 ++++----
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi       |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi             |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-var-dart.dtsi        |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi         |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6sl-evk.dts               | 12 ++++++------
+ arch/arm/boot/dts/nxp/imx/imx6sl-warp.dts              |  8 ++++----
+ arch/arm/boot/dts/nxp/imx/imx6ul-14x14-evk.dtsi        |  4 ++--
+ .../arm/boot/dts/nxp/imx/imx6ul-ccimx6ulsbcexpress.dts |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6ul-ccimx6ulsbcpro.dts    | 14 +++++++-------
+ arch/arm/boot/dts/nxp/imx/imx6ul-ccimx6ulsom.dtsi      |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts              |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi            |  4 ++--
+ .../arm/boot/dts/nxp/imx/imx6ul-kontron-bl-common.dtsi |  2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ul-liteboard.dts         |  2 +-
+ .../dts/nxp/imx/imx6ul-phytec-segin-peb-wlbt-05.dtsi   |  4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6ul-phytec-segin.dtsi     |  6 +++---
+ arch/arm/boot/dts/nxp/imx/imx6ul-tqma6ul-common.dtsi   |  2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-mainboard.dts   |  2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi            | 18 ++++++------------
+ arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi   |  8 ++++----
+ .../boot/dts/nxp/imx/imx6ull-seeed-npi-dev-board.dtsi  |  8 ++++----
+ arch/arm/boot/dts/nxp/imx/imx6ull-seeed-npi.dtsi       |  6 +++---
+ arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts       |  2 +-
+ arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi                 |  6 +++---
+ 35 files changed, 91 insertions(+), 97 deletions(-)
+---
+base-commit: 07f4822c25a849fc553d74e52c7b0c6953fd230a
+change-id: 20240829-dts-nxp-imx6-pinctrl-80e6d6b1d8a3
 
-+ container_of.h ?
-
-With that said, can the argument be const here?
-
-> +}
-
-...
-
-Ditto for the two more helpers, added in this change.
-
-...
-
-> +static void drm_dp_typec_bridge_release(struct device *dev)
-> +{
-> +	struct drm_dp_typec_bridge_dev *typec_bridge_dev;
-> +	struct auxiliary_device *adev;
-> +
-> +	typec_bridge_dev = to_drm_dp_typec_bridge_dev(dev);
-> +	adev = &typec_bridge_dev->adev;
-> +
-> +	ida_free(&drm_aux_hpd_bridge_ida, adev->id);
-
-> +	of_node_put(adev->dev.platform_data);
-> +	of_node_put(adev->dev.of_node);
-
-I'm wondering why it's not made fwnode to begin with...
-From the file / function names it's not obvious that it's OF-only code. Neither
-there is no explanations why this must be OF-only code (among all fwnode types
-supported).
-
-> +	kfree(typec_bridge_dev);
-> +}
-
-...
-
-> +		return ERR_PTR(dev_err_probe(parent, -ENODEV, "Missing typec endpoint(s) port@0\n"));
-
-We have a new helper for such cases.
-
-...
-
-> +	adev->dev.of_node = of_node_get(parent->of_node);
-
-device_set_node() ?
-
-...
-
-> +	ret = auxiliary_device_init(adev);
-> +	if (ret) {
-> +		of_node_put(adev->dev.platform_data);
-> +		of_node_put(adev->dev.of_node);
-> +		ida_free(&drm_aux_hpd_bridge_ida, adev->id);
-> +		kfree(adev);
-> +		return ERR_PTR(ret);
-
-Can cleanup.h be utilised here and in other error paths in this function?
-
-> +	}
-
-> +	ret = devm_add_action_or_reset(parent, drm_aux_hpd_bridge_free_adev, adev);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	return typec_bridge_dev;
-> +}
-
-...
-
-> +static int dp_lane_to_typec_lane(enum dp_lane lane)
-> +{
-> +	switch (lane) {
-> +	case DP_ML0:
-> +		return USB_SSTX2;
-> +	case DP_ML1:
-> +		return USB_SSRX2;
-> +	case DP_ML2:
-> +		return USB_SSTX1;
-> +	case DP_ML3:
-> +		return USB_SSRX1;
-> +	}
-
-> +	return -EINVAL;
-
-Hmm... This can be simply made as default case.
-
-> +}
-> +
-> +static int typec_to_dp_lane(enum usb_ss_lane lane)
-> +{
-> +	switch (lane) {
-> +	case USB_SSRX1:
-> +		return DP_ML3;
-> +	case USB_SSTX1:
-> +		return DP_ML2;
-> +	case USB_SSTX2:
-> +		return DP_ML0;
-> +	case USB_SSRX2:
-> +		return DP_ML1;
-> +	}
-> +
-> +	return -EINVAL;
-
-Ditto.
-
-> +}
-
-...
-
-> +	for (i = 0; i < num_lanes; i++) {
-> +		/* Get physical type-c lane for DP lane */
-> +		typec_lane = dp_lane_to_typec_lane(i);
-> +		if (typec_lane < 0) {
-> +			dev_err(&adev->dev, "Invalid type-c lane configuration at DP_ML%d\n", i);
-> +			return -EINVAL;
-
-Most likely typec_lane contains an error code here. If yes, it would be rather
-
-			return typec_lane;
-
-If no, why not make that happen?
-
-> +		}
-> +
-> +		/* Map physical to logical type-c lane */
-> +		typec_lane = lane_mapping[typec_lane];
-> +
-> +		/* Map logical type-c lane to logical DP lane */
-> +		dp_lanes[i] = typec_to_dp_lane(typec_lane);
-> +	}
-
-...
-
-> +static int drm_dp_typec_bridge_atomic_check(struct drm_bridge *bridge,
-> +					   struct drm_bridge_state *bridge_state,
-> +					   struct drm_crtc_state *crtc_state,
-> +					   struct drm_connector_state *conn_state)
-> +{
-> +	struct drm_dp_typec_bridge_data *data;
-> +	struct drm_lane_cfg *in_lanes;
-> +	u8 *dp_lanes;
-> +	size_t num_lanes;
-
-> +	int i;
-
-Does it need to be signed? Can it theoretically overflow as num_lanes defined
-as size_t?
-
-> +	data = to_drm_dp_typec_bridge_data(bridge);
-> +	num_lanes = data->num_lanes;
-> +	if (!num_lanes)
-> +		return 0;
-> +	dp_lanes = data->dp_lanes;
-> +
-> +	in_lanes = kcalloc(num_lanes, sizeof(*in_lanes), GFP_KERNEL);
-> +	if (!in_lanes)
-> +		return -ENOMEM;
-> +
-> +	bridge_state->input_bus_cfg.lanes = in_lanes;
-> +	bridge_state->input_bus_cfg.num_lanes = num_lanes;
-> +
-> +	for (i = 0; i < num_lanes; i++)
-> +		in_lanes[i].logical = dp_lanes[i];
-> +
-> +	return 0;
-> +}
-
-...
-
-> +		port->typec_data = typec_data;
-> +		if (of_property_read_u32_array(ep.local_node, "data-lanes",
-> +					       port->lane_mapping,
-> +					       ARRAY_SIZE(port->lane_mapping))) {
-
-> +			memcpy(port->lane_mapping, mapping, sizeof(mapping));
-
-Hmm... I'm wondering if direct assignment will save a few .text bytes
-
-		port->lane_mapping = ...;
-		of_property_read_u32_array(ep.local_node, "data-lanes",
-					   port->lane_mapping,
-					   ARRAY_SIZE(port->lane_mapping));
-
-Also note that conditional is not needed in this case.
-
-(And again, why OF-centric code?)
-
-> +		}
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
