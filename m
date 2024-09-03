@@ -1,133 +1,264 @@
-Return-Path: <devicetree+bounces-99503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C5A96A04D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:23:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B76496A081
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05A87285973
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:23:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1489D2873F7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EB96F2F7;
-	Tue,  3 Sep 2024 14:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676C9188910;
+	Tue,  3 Sep 2024 14:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gPkkoc7b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gL8CyPot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93B813F43B;
-	Tue,  3 Sep 2024 14:22:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEAA217D377;
+	Tue,  3 Sep 2024 14:26:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725373378; cv=none; b=HZVdl6Ys0KurK8Vp5k2OeM4g6I44FvwmdOwK7jBB7KXWiUN9pKdjuVmEb/Cfh05xzQ28JDXFZAoU5ciYqAPj+/ZFS6AJI5zLrpWIwzRvk7l4Tnsm07FxvJL+7K4reGPRRLV+/TINEB+/hOEVu9eZ3NCtO0b8Hgsktvik6X+LVMM=
+	t=1725373607; cv=none; b=NfOAc4avGyd4YBN+DWqHG4bvPmyZogvCojRiwgEqU0SuhOBGN23TP2r+G6qy9sy0RhHQLNhnys16VPDNADLK+euG55dTBzMKRs5I05GwuBBe38ROCl1Er6TJmrAvnQt6g6nFRWRL4RAOaWtJfcAyRdYWSCnPnH/QQwtOYCcp0Z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725373378; c=relaxed/simple;
-	bh=2G38JyYAiYuwQ/PJ/PSFTe3pd18vrq+YXe8lpCcykEU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qaSyOhI2zF0C00NP3FBO7X4B2WtIMc55dqEnkuU/1UD462IaUeuhlGdXEJlfe1hS/vo+37a8ZXTP467CRUuAJDalnEvGnJIFBjhHD8SWY0rCmxLzI5yg4wLZNqcDecIFM4d1wwbgsVWzuwfVTbd1JYwQwPQRbdEtiANnxKJOXrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gPkkoc7b; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 483BJZQO018884;
-	Tue, 3 Sep 2024 14:22:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5X5QFp29hmQ7by+9qCpUoFC+TAzM7t4IqLCLAuIpOTE=; b=gPkkoc7bp40UJapE
-	X7PfAT3pqWVLbGb4bc5RujGXS38oqPup31do8NZhBRKgJaZrF7wtDgwOn0cKtw4/
-	LOpxMnAXbrtTQpnjaQGn3cE2BwkDD2T5icoOuVZ7b8hCFaJSQNsC5eyrmtcKHDZU
-	zNeJgMUY+hVcYaqYZLoAlzCb5IPlACFatRyB6nHTmA/SrM37pXDfeT2O4jNUzvZm
-	VascZVMDjj0x52vFsR5GoIZuGxz9hOwr8OaXSppbbuTaGdETjcqqHCxSzA4qD23T
-	W3E01byOSK9p/FZDZqrdBpwJ1z7nRo/1c/29VN8BDjKSTECdBijq3BtRaKBWXkhx
-	blbwLQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41bt4rfnra-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Sep 2024 14:22:35 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 483EMYMt025782
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Sep 2024 14:22:34 GMT
-Received: from [10.216.9.110] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Sep 2024
- 07:22:29 -0700
-Message-ID: <57a810e0-c072-7792-1f5f-3ddbeb0c97a3@quicinc.com>
-Date: Tue, 3 Sep 2024 19:52:25 +0530
+	s=arc-20240116; t=1725373607; c=relaxed/simple;
+	bh=3OW9yKbvIY8C5sR5js5XCVdDweVPBC7mpgMW7jqcDiE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSGrAzl+Aklx7+5Boylp0eiPr3AlAkomxXZlm0YXmczgUxkrViOLybxie3vNLbhVq4pphsykvohDqzIYJWLUyX9XtlFaThWrqPm4EUrwLpxwngyYmqWSsR5dvt4dO9RuJw9W0/EdEHBJpofMaBxn11OBdUHylrRyMI9spU4OANE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gL8CyPot; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725373605; x=1756909605;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3OW9yKbvIY8C5sR5js5XCVdDweVPBC7mpgMW7jqcDiE=;
+  b=gL8CyPot4Snw1JuTYRwcWC6FXMui3OjJHFmYttrn5Jpf6/+6X+ENar6i
+   SFwTYqQWap4bOe8vVwWTcMrNB8uDrlfBN53DF1JWn+/xT6oMlvxHPYypw
+   N2u9vnuvhd/kXh5U957Hww2I2SHfsnUYMHIusqPu5cIu/AJnIxYkC/1LF
+   eenanZLlTLShWT8ov7eu+rr4FPL9wHqau26GvLTwhSyChvYBfOiCejDq8
+   FP7XWgA/q2YB5gkSbZ67RQ9fgFP9JFr5ulTSnmE/IPja+T+NLLjnOJs8j
+   Als26+LdS6OhktzeGpBEIVgtjnkNzbdeNvgkn5su7o8wwIXwxggeCmjvU
+   Q==;
+X-CSE-ConnectionGUID: 4xgq4R5OSGqwdhl4DAnw8w==
+X-CSE-MsgGUID: S2bsS8ElR9a4iUaZXFUwig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="24141969"
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="24141969"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:26:45 -0700
+X-CSE-ConnectionGUID: e4AxFbz1QeWi+nLVwwV0NA==
+X-CSE-MsgGUID: qnirlIZASlW37H3RipBi5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="88175236"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:26:41 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1slUUQ-00000004jdd-2KZt;
+	Tue, 03 Sep 2024 17:26:38 +0300
+Date: Tue, 3 Sep 2024 17:26:38 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v5 4/7] iio: pressure: bmp280: Use sleep and forced mode
+ for oneshot captures
+Message-ID: <ZtccnvhmcxyRQVuf@smile.fi.intel.com>
+References: <20240902184222.24874-1-vassilisamir@gmail.com>
+ <20240902184222.24874-5-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v8 0/8] Add QPIC SPI NAND driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, <broonie@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <esben@geanix.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>
-References: <20240820104239.1774600-1-quic_mdalam@quicinc.com>
- <5169761b-422d-70ab-ba53-a898cb7bfa2f@quicinc.com>
- <fed18a8f-446f-4d61-a9ce-4c5e09bf0aaa@kernel.org>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <fed18a8f-446f-4d61-a9ce-4c5e09bf0aaa@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rttAid4ooQgcOR3iwRLcnkjL--9ZVPR3
-X-Proofpoint-ORIG-GUID: rttAid4ooQgcOR3iwRLcnkjL--9ZVPR3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-03_02,2024-09-03_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- bulkscore=0 malwarescore=0 impostorscore=0 mlxlogscore=999
- priorityscore=1501 spamscore=0 mlxscore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2409030117
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240902184222.24874-5-vassilisamir@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Mon, Sep 02, 2024 at 08:42:19PM +0200, Vasileios Amoiridis wrote:
+> Add forced mode support in sensors BMP28x, BME28x, BMP3xx and BMP58x.
+> Sensors BMP18x and BMP085 are old and do not support this feature so
+> their operation is not affected at all.
+> 
+> Essentially, up to now, the rest of the sensors were used in normal mode
+> all the time. This means that they are continuously doing measurements
+> even though these measurements are not used. Even though the sensor does
+> provide PM support, to cover all the possible use cases, the sensor needs
+> to go into sleep mode and wake up whenever necessary.
+> 
+> The idea is that the sensor is by default in sleep mode, wakes up in
+> forced mode when a oneshot capture is requested, or in normal mode
+> when the buffer is enabled. The difference lays in the fact that in
+> forced mode, the sensor does only one conversion and goes back to sleep
+> while in normal mode, the sensor does continuous measurements with the
+> frequency that was set in the ODR registers.
+> 
+> The bmpX_chip_config() functions which are responsible for applying
+> the requested configuration to the sensor, are modified accordingly
+> in order to set the sensor by default in sleep mode.
+> 
+> DEEP STANDBY, Low Power NORMAL and CONTINUOUS modes, supported only by
+> the BMP58x version, are not added.
+
+...
+
+> +static int bmp280_wait_conv(struct bmp280_data *data)
+> +{
+> +	unsigned int reg, meas_time_us;
+> +	int ret;
+> +
+> +	/* Check if we are using a BME280 device */
+> +	if (data->oversampling_humid)
+> +		meas_time_us += BMP280_PRESS_HUMID_MEAS_OFFSET +
+> +				(BIT(data->oversampling_humid) * BMP280_MEAS_DUR);
+
+The outer parentheses are not needed.
+
+> +	/* Pressure measurement time */
+> +	meas_time_us += BMP280_PRESS_HUMID_MEAS_OFFSET +
+> +			(BIT(data->oversampling_press) * BMP280_MEAS_DUR);
+
+Ditto.
+
+> +	/* Temperature measurement time */
+> +	meas_time_us += BIT(data->oversampling_temp) * BMP280_MEAS_DUR;
+> +
+> +	/* Waiting time according to the BM(P/E)2 Sensor API */
+> +	fsleep(meas_time_us);
+> +
+> +	ret = regmap_read(data->regmap, BMP280_REG_STATUS, &reg);
+> +	if (ret) {
+> +		dev_err(data->dev, "failed to read status register.\n");
+> +		return ret;
+> +	}
+> +
+> +	if (reg & BMP280_REG_STATUS_MEAS_BIT) {
+> +		dev_err(data->dev, "Measurement cycle didn't complete.\n");
+> +		return -EBUSY;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int bmp380_wait_conv(struct bmp280_data *data)
+> +{
+> +	unsigned int reg;
+> +	int ret, meas_time_us;
+> +
+> +	/* Offset measurement time */
+> +	meas_time_us = BMP380_MEAS_OFFSET;
+> +
+> +	/* Pressure measurement time */
+> +	meas_time_us += BMP380_PRESS_MEAS_OFFSET +
+> +		     (BIT(data->oversampling_press) * BMP380_MEAS_DUR);
+
+Ditto.
+
+> +	/* Temperature measurement time */
+> +	meas_time_us += BMP380_TEMP_MEAS_OFFSET +
+> +		     (BIT(data->oversampling_temp) * BMP380_MEAS_DUR);
+
+Ditto.
+
+> +	/* Measurement time defined in Datasheet Section 3.9.2 */
+> +	fsleep(meas_time_us);
+> +
+> +	ret = regmap_read(data->regmap, BMP380_REG_STATUS, &reg);
+> +	if (ret) {
+> +		dev_err(data->dev, "failed to read status register.\n");
+> +		return ret;
+> +	}
+
+> +	if (!(reg & BMP380_STATUS_DRDY_PRESS_MASK) ||
+> +	    !(reg & BMP380_STATUS_DRDY_TEMP_MASK)) {
+> +		dev_err(data->dev, "Measurement cycle didn't complete.\n");
+> +		return -EBUSY;
+> +	}
+
+Alternatively
+
+	if (!((reg & BMP380_STATUS_DRDY_PRESS_MASK) &&
+	    !(reg & BMP380_STATUS_DRDY_TEMP_MASK)) {
+		dev_err(data->dev, "Measurement cycle didn't complete.\n");
+		return -EBUSY;
+	}
+
+> +	return 0;
+> +}
+
+...
+
+> +static int bmp580_wait_conv(struct bmp280_data *data)
+> +{
+> +	/*
+> +	 * Taken from datasheet, Section 2 "Specification, Table 3 "Electrical
+> +	 * characteristics.
+> +	 */
+> +	static const int time_conv_press[] = {
+> +		0, 1050, 1785, 3045, 5670, 10920, 21420, 42420,
+> +		84420,
+> +	};
+> +	static const int time_conv_temp[] = {
+> +		0, 1050, 1105, 1575, 2205, 3465, 6090, 11340,
+> +		21840,
+> +	};
+> +	int meas_time_us;
+
+> +	meas_time_us = 4 * USEC_PER_MSEC + time_conv_temp[data->oversampling_temp]
+> +			 + time_conv_press[data->oversampling_press];
+
+	meas_time_us = 4 * USEC_PER_MSEC + time_conv_temp[data->oversampling_temp] +
+		       time_conv_press[data->oversampling_press];
+
+OR
+
+	meas_time_us = 4 * USEC_PER_MSEC +
+		       time_conv_temp[data->oversampling_temp] +
+		       time_conv_press[data->oversampling_press];
 
 
+> +	/* Measurement time mentioned in Chapter 2, Table 4 of the datasheet. */
 
-On 9/3/2024 7:14 PM, Krzysztof Kozlowski wrote:
-> On 03/09/2024 11:15, Md Sadre Alam wrote:
->> Hi Miquel,
->>
->> On 8/20/2024 4:12 PM, Md Sadre Alam wrote:
->>> v8:
->>>    * Fixed compilation warning reported by kernel test robot
->>>    * Added "chip" description in nandc_set_read_loc_first()
->>>    * Added "chip" description" in nandc_set_read_loc_last()
->>>    * Changed data type of read_location0, read_location1,
->>>      read_location2, read_location3, addr0, addr1, cmd, cfg0,
->>>      cfg1, ecc_bch_cfg, ecc_buf_cfg, clrflashstatus, clrreadstatus,
->>>      orig_cmd1, orig_vld to __le32 to fix compilation warning.
->>>    * Included bitfield.h header file in spi-qpic-snand.c to
->>>      fix compilation warning
->>>    * Removed unused variable "steps" variable from
->>>      qcom_spi_ecc_init_ctx_pipelined()
->>>
->>       I have addressed your comments to v6 and further posted till v8.
->>       Could you please let me know if this is fine.
->>       and how to get this merged ?
-> 
-> Two weeks ago you received reports that your code does not build
-> properly. So no, it is not fine. Please respond to the reports and/or
-> send corrected code.
-   Sorry I missed it, will fix and post next revision.
-> 
-> Best regards,
-> Krzysztof
-> 
+Since there is a constant in use (4ms) it would be nice to explain it
+separately, the rest kinda obvious from the variable names.
+So it allows roughly understand the timeout value without even looking into
+the datasheet.
+
+> +	fsleep(meas_time_us);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	fsleep(data->start_up_time + 500);
+
+Ditto.
+
+Something like
+
+	/* 500us margin for ... */
+
+(but write the real meaning of it).
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
