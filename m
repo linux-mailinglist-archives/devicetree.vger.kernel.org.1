@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-99330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66EE9697ED
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:55:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B10069697F3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:56:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2713EB27A6F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:55:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 667C5281618
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E3E1C7674;
-	Tue,  3 Sep 2024 08:55:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A0B1C766A;
+	Tue,  3 Sep 2024 08:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nWUNW2WB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cgsCF0SO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591851C7670;
-	Tue,  3 Sep 2024 08:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BE41C7660;
+	Tue,  3 Sep 2024 08:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725353720; cv=none; b=M0mWxYLErCicqp6CdrzHU6tDS86PbwFkMD47c3YzSn8lWim59ktLIeFCiugw9FCe2XSl2RuDBPTxJCdyTP+PAm8L5xAW/uXZSo2VKSyx4D+nK3+1QCO/+Kj7byUJAjF5ENRSDvVJWVbQgUm6RVH3T24tPLl6NWh54Xhl4aiii+Q=
+	t=1725353779; cv=none; b=hUfplH7Zlolt3qbn/h4OoEC/Iu+w430KQbbJCiQJbHcPjjKkZmpxG/FomKBjTmhYWaYOTiTbig7+PJQEYtqH60Pv7/a4ooVGgJuHgp1Y4nrrcqwwAngJ5JsOrYWNiPHoX0ctsOenti0ebVmVbFj4TtxK57HxFrhD7G12glh4Jh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725353720; c=relaxed/simple;
-	bh=cTedcZ8hlk8BBeNA32IaZRluSOfswXpiyNdSYI5HIJ8=;
+	s=arc-20240116; t=1725353779; c=relaxed/simple;
+	bh=bBs3t/wyJeM+F7XWg8cpCXTonGyeMCyXxXyfqG9COEI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fvelzZ0ANS9o6YmANFPKGAL2P0xXdoIcQe1/sWyVOenpsIW6Fvd2ima4toYA3Ki3xhfn13aJmKRv/ZI1axmgwn+pkG2C9CnyX6SjnZ6WWyGnRjHp2XTXd2DHnxoU9qhG/uXFxdlT300FoajGXILDIbZ6MEsK+J8ejKLzQWIFoEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nWUNW2WB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4997CC4CEC4;
-	Tue,  3 Sep 2024 08:55:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LouQfTLPeDXR5DvnmzzkgFyx4rgPG9TVmfLdHo1gEecO/qltyi164L7dsRaCsOQOniNM6aCtbcW3Y285O56qKrmfd5BQjEus3tzmBvfQHkBkJQ70y0Rng4o6HPzp2ZyWaossWTZjBQGK3Lf8fzip+h6AIzqwv9zqIFzpKFU6hug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgsCF0SO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2055DC4CEC4;
+	Tue,  3 Sep 2024 08:56:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725353719;
-	bh=cTedcZ8hlk8BBeNA32IaZRluSOfswXpiyNdSYI5HIJ8=;
+	s=k20201202; t=1725353779;
+	bh=bBs3t/wyJeM+F7XWg8cpCXTonGyeMCyXxXyfqG9COEI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nWUNW2WBCFDTREqMTT7FFOwqI0aosNJccxCLAK3hxH59k5F2/5Jel1DSLc4LvxoQv
-	 fk+PJv+8tEO1VY+ouAMI6qMZEZS8vvzFNg55t05n7GMev745qqd0A4+5SAohsLKUNm
-	 FuFcWng/uIZODlSOTljW5yh0FYT+bYl4wS+HCu2ywdalev1wQdfplqtkVtKQgEpZku
-	 3ALy4Y+WVbGsMLW8D0hzih7xAGrrV0klxH+hCxY9si3xtvfHBD6pDr1RJ79qjEiWhg
-	 Bx8afM+pAUd+Ut+dHvDW84j4DI+Ldg0fT82wlgD+Uw0g2QNMBTaTLgv2AR0+/SELys
-	 ZY188AbGbibWA==
-Message-ID: <db829bd7-e26b-44ed-b813-c1ccfd30c687@kernel.org>
-Date: Tue, 3 Sep 2024 10:55:14 +0200
+	b=cgsCF0SO6zto1hgwE9kJhXYr8jbu3WetoaL42zdxxEhVAlHFp9T8bBJrRlHUgtjV7
+	 4vsZ/cVI/7VVEk9vgISqqoyWaARkkTMMqNKWkktesSyx2QHEVL0wScOb0fQXuxGARd
+	 SDTgHcdbJiLDSmcQtas+YRut2D6ELNBBzlQBWsoACLdZoJNZN/oUXzmoWa89HoQmvi
+	 PRvGuHmdkA5iPx5ZQImeSwDBVRpOfLdOf5vtaHUmH4nqQvBl7c8Zf0RUWvyiiauUbP
+	 uUEhPDNY/nZeVT1e3Af8mBBo9a8LlA1Eym3Wnt7Zh4KB/G2Hib1Lb1u6z3nye4nT8Q
+	 5aaTVVnl3MwJQ==
+Message-ID: <d77a0178-7e6d-445b-bc08-3a63606bc598@kernel.org>
+Date: Tue, 3 Sep 2024 10:56:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: irondevice,sma1307: Add initial
- DT binding
-To: Ki-Seok Jo <kiseok.jo@irondevice.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+Subject: Re: [PATCH 1/4] dt-bindings: cache: qcom,llcc: add num-banks property
+To: Jingyi Wang <quic_jingyw@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Application <application@irondevice.com>
-References: <20240903054435.2659-1-kiseok.jo@irondevice.com>
- <20240903054435.2659-3-kiseok.jo@irondevice.com>
- <afb4bwvowfjjrkdh63wx7afz3gyydz7tpuhz2i6g6ahubat3vy@7t5vciiv2yp7>
- <SL2P216MB2337D3255ABE335E9AE8CB378C932@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com>
+ <20240903-qcs8300_llcc_driver-v1-1-228659bdf067@quicinc.com>
+ <g7fyt57kzynzpux5nea2v22gcuu24asbr54axzms7mhdh4jq5a@xdyqifloofbk>
+ <ac1b3ba2-ac57-411c-acdb-69d288d88355@quicinc.com>
+ <21715065-c48a-4172-98ec-ce48c6a1126e@kernel.org>
+ <7688ac1c-14da-46a2-a5dc-f01c104485f8@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,51 +108,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <SL2P216MB2337D3255ABE335E9AE8CB378C932@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
+In-Reply-To: <7688ac1c-14da-46a2-a5dc-f01c104485f8@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/09/2024 10:39, Ki-Seok Jo wrote:
->>
->> On Tue, Sep 03, 2024 at 02:44:34PM +0900, Kiseok Jo wrote:
->>> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
->>
->> Empty commit? Read submitting-patches.
->>
-> 
-> Okay I'll add next patch.
+On 03/09/2024 10:38, Jingyi Wang wrote:
 > 
 > 
->> Please run scripts/checkpatch.pl and fix reported warnings. Then please run
->> and (probably) fix more warnings.
->> Some warnings can be ignored, especially from --strict run, but the code here
->> looks like it needs a fix. Feel free to get in touch if the warning is not
->> clear.
->>
-> 
-> When I checked, I didn't encounter any errors or warnings when using 'checkpatch.pl'.
-> What options might be needed?
+> On 9/3/2024 4:00 PM, Krzysztof Kozlowski wrote:
+>> On 03/09/2024 09:30, Jingyi Wang wrote:
+>>>
+>>>
+>>> On 9/3/2024 3:10 PM, Krzysztof Kozlowski wrote:
+>>>> On Tue, Sep 03, 2024 at 02:21:29PM +0800, Jingyi Wang wrote:
+>>>>> Add a property "num-banks" for errata.
+>>>>
+>>>> This you said in commit subject and we see in the diff. You *MUST*
+>>>> explain why.
+>>>>
+> Usually the num of LLCC banks is read from hardware, but there is errata
+> on some SoCs to get the wrong bank num from LLCC_COMMON_STATUS0. Add a
+> property "num-banks" to indicate the accurate data.
 
-That's not true and I am not happy that I need to prove to you obvious
-thing. You do not need any options. Look:
-
-WARNING: Missing commit description - Add an appropriate one
-
-You could at least now double check if reviewer pointed it out instead
-of immediately disagreeing with review.
-
-> 
-> 
->>> ---
->>
->> Where is the changelog? What happened in v2? Why are you sending the same
->> patch?
->>
-> 
-> I understand that the file has not been applied yet, so it needs to be rewritten again until applied.
-> 
-
-Read submitting patches.
+You have compatible for that. Anyway, your future patch must clearly
+explain the problem in details.
 
 Best regards,
 Krzysztof
