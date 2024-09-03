@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-99476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CD3969E5C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:51:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7901E969E7A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:57:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 537C2288953
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:51:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5479B203DF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908901CA6B3;
-	Tue,  3 Sep 2024 12:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF651A42C5;
+	Tue,  3 Sep 2024 12:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UVC0b0NQ"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="P+LbduX/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE841CA687;
-	Tue,  3 Sep 2024 12:51:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33721CA6A4
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 12:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725367910; cv=none; b=jEGokaDzu6x4LetYebBucIQV/S/Px1UsH0SpQnIPwtKx27hg1oHR3MU3GKmeKUyjZFa3U8BK5K3JbkrzID2GGMLZtXH25miFg+oKR7dz6WCRk1WEC0GMAUX09NNhiYp1UKRUpWCx5DRnxbbeQbP2Jt/qJcp87laVV9mhW1t39pE=
+	t=1725368239; cv=none; b=rMHOIT7p9eAADzo7i+iZq7AQlA1w5tS3tgc0DaA/4Wkf/IO4j9V/CBDQpESMvCC/jtFFN0z2ktNWYbCJcTDmyY9/qkmrwBWsx4r6xJLqh6XHkFARgW85VQOwkqd/2f5KlP3OE1/dQ/BwXn+TfUyp9xuuEPx0l9acz/US7R+nrXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725367910; c=relaxed/simple;
-	bh=O1/2050F39XQfvPLXCTizegImM8YWOlhzXwUWl0cmGc=;
+	s=arc-20240116; t=1725368239; c=relaxed/simple;
+	bh=Cso/wpl/yeMkWTb7DkdYbxAtmVl36+WAAEZqRrLLhr4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ghBmBWcVoUrdROecbWYx5vamBzFfbXqq0rtzVvKRJqpM44eoYc0E5IXxv/hUMFHXqSP9iCsVpCPL3Bojl91focyJtxAc/MUkfy+1NRPA7fXCYuj02cDE6LhgSaVEoxXKdUxseO6eX2R34q4+alq4yv0tgiCjG83NdnNEjVx9+tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UVC0b0NQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B26D8C4CEC8;
-	Tue,  3 Sep 2024 12:51:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725367909;
-	bh=O1/2050F39XQfvPLXCTizegImM8YWOlhzXwUWl0cmGc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UVC0b0NQj7rgTFak72/K9eNJK53Q/LY20+pdBaml/kH3932/NnVhKhTs2pwDi49mP
-	 37DpJeBWYNWqe8gIfuoVVB0nYjYID0ZJPxuY/01jDlqgcDSkkOkpdxKPWEYkTRRTEm
-	 7r4P4BmCHGVgyAH28hoc5UIoyBtz/2R95vJXgcrjYQ83gVK18S73YmvwAlkAo9kIur
-	 w6PVeG5Q05GIgwWqxrf0ISdswgNBBQxTJPB5jxb79iH4lOztZT34D+E1Up3oBxBYao
-	 gleCTnUrHgUsMxH9XQGGNAvADbVYuO66wCq1tRN9YdsB4vaWONy8KNZTkAiGti2bjR
-	 2QZms2dkKEAmQ==
-Message-ID: <558d6214-b408-484c-992e-bbb58ffd161b@kernel.org>
-Date: Tue, 3 Sep 2024 14:51:43 +0200
+	 In-Reply-To:Content-Type; b=HgotT//X6fCQMPtiksxGC6InJVGt7/n3VAnbaZB6dcT1U2v49eSRAz4LvGTRJ5IuHFIL84IofFvXkL3ZUw8lFqw52Xy0VrP+3HXEzzO7q7W41uZ/FT1jYx84MtGpnikI2RF44/4I22hucusHc/gAOcC98A3KVdFOtKGWG+pqtKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=P+LbduX/; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a83597ce5beso844804366b.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 05:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1725368236; x=1725973036; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8p5yg7eSpfkF7KfEUeaswPPeaoWpvFoniZltR7IGrLo=;
+        b=P+LbduX/4blADViUq5pJ3RS8Fo7Vwkw4jhVHAN+nQsSJqwPxv5HdaIGaHl/zIj3WVR
+         NdfeNLSXiyFFsLzJHdomGi1zKjdwJkdTu1fy6qJ88EaBId7FURsM0m7cFIdgWRnkznFM
+         jqtLNuWI9rYRzzg3PxltYxF4QFTV3eZrwtVh8n4QEJ56G1o+ZpgwxkeQOEaGGmlBGLxQ
+         gtqKi4913YBUbpVj1h/YDjZ3R1zAKUuECWG59+N8e1EK28PNx1NNxCQjysKZ1o1z7uR2
+         6nOzjkS/IRa3pGXlRpXun+YCSRWJxXLzfeuaiI5VRCYpbY8sfyNELG4Ti0BdlyjfQvt7
+         fIIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725368236; x=1725973036;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8p5yg7eSpfkF7KfEUeaswPPeaoWpvFoniZltR7IGrLo=;
+        b=osBIePT21SpUsyBnqTrUEM/aAs77/Kq9y+2v5MDw1xC6fl7XqVR6450qHo1LfPzaKL
+         IDiQrwb4/ue8XBhW4pUZSGVT0Blbyw4bAnUurga8bJWqKSeLph3ty+8qInZifTKFJesw
+         xuwg4hVyRva6GgK9TYmkFgyH+1O8mwjNzYgQ4huDthKMdCer9lgoNPH3A/fR6g2awmYi
+         4+UApUGfGQgjU9f31kb8JBYrA+i0jC3NdvHUX8srcKOmDCV4E50xSjK7LRgXs65d4lDs
+         0Y3fRuI6qoDSmpFZEljVptiX7n4wktQwGjTHqxNEo8NEFBJunixk3kzAm/7HE1qQpN7P
+         EWMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlZbBpXAiZttezI1QJVB9AFYmXfXPXFlDVThACfK/RE3yvsdE14nhB+DRMgFpBk1BTc4H52eFLbxjW@vger.kernel.org
+X-Gm-Message-State: AOJu0YywTaFaZ66ew/7Aa4Kla2V8YxbLlKV5Rgu1AJ8QZ6LN5BEtFrEk
+	w1xwQwL7CvvvE4sg53vJE/yk3gJNAZaHyh/tP6Yaeca0pGkmTPLdmEJEaoQ9mIE=
+X-Google-Smtp-Source: AGHT+IHZXUf4gCvoTnaido/Qhn8cqkw+YBP7i7FYjIQcDtkx87EhKcdM6qoGHvRSR0AuY4uEo+anoQ==
+X-Received: by 2002:a17:907:7248:b0:a77:ca3b:996c with SMTP id a640c23a62f3a-a89a267a567mr1608923766b.16.1725368235772;
+        Tue, 03 Sep 2024 05:57:15 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.144])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8988feb31fsm690077166b.17.2024.09.03.05.57.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Sep 2024 05:57:15 -0700 (PDT)
+Message-ID: <5bcdc677-e61e-4312-a19b-57b4600685d3@tuxon.dev>
+Date: Tue, 3 Sep 2024 15:57:13 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,91 +76,161 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] dt-bindings: vendor-prefixes: Add Relfor labs
-To: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- alexandre.belloni@bootlin.com
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org
-References: <20240903105245.715899-1-karthikeyan@linumiz.com>
- <20240903105245.715899-7-karthikeyan@linumiz.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240903105245.715899-7-karthikeyan@linumiz.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
+ "kishon@kernel.org" <kishon@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <TY3PR01MB113464D53083F4C8A5DBBA36586922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <590a4fb2-24b2-432b-92db-534c5a52ed0b@tuxon.dev>
+ <TY3PR01MB11346505565B81AD2894E035586922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <35dc7414-f5bd-4ed4-bfa1-f723f4f0078c@tuxon.dev>
+ <TY3PR01MB11346A4814F83FE296A1DED8886922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <TY3PR01MB1134648BF51F1B52BFE34DD6D86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <fbfa9179-2f52-429f-8b69-f7f4064e796b@tuxon.dev>
+ <TYCPR01MB11332EF1A8D064C491D8F261286932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <f7c57e76-b890-491f-880d-62d060b7b31e@tuxon.dev>
+ <TYCPR01MB11332BE2EDB318950B9C7B54C86932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <TY3PR01MB113469FC8A9F49D9B1FA432FD86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <0b73544b-0253-43b9-b631-6578b48eaca8@tuxon.dev>
+ <TY3PR01MB1134689573A785E91A9041E1886932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <TY3PR01MB1134689573A785E91A9041E1886932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/09/2024 12:52, Karthikeyan Krishnasamy wrote:
-> Add Relfor Labs Pvt. Ltd. vendor prefixes
-> https://www.relfor.com/
+
+
+On 03.09.2024 15:37, Biju Das wrote:
 > 
-> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-> ---
 > 
+>> -----Original Message-----
+>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>> Sent: Tuesday, September 3, 2024 1:26 PM
+>> To: Biju Das <biju.das.jz@bp.renesas.com>; Ulf Hansson <ulf.hansson@linaro.org>
+>> Cc: vkoul@kernel.org; kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
+>> p.zabel@pengutronix.de; geert+renesas@glider.be; magnus.damm@gmail.com; gregkh@linuxfoundation.org;
+>> mturquette@baylibre.com; sboyd@kernel.org; Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>;
+>> linux-phy@lists.infradead.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+>> renesas-soc@vger.kernel.org; linux-usb@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>> clk@vger.kernel.org; linux-pm@vger.kernel.org; Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+>>
+>>
+>>
+>> On 03.09.2024 15:00, Biju Das wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Biju Das <biju.das.jz@bp.renesas.com>
+>>>> Sent: Tuesday, September 3, 2024 12:07 PM
+>>>> To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>; Ulf Hansson
+>>>> <ulf.hansson@linaro.org>
+>>>> Cc: vkoul@kernel.org; kishon@kernel.org; robh@kernel.org;
+>>>> krzk+dt@kernel.org; conor+dt@kernel.org; p.zabel@pengutronix.de;
+>>>> geert+renesas@glider.be; magnus.damm@gmail.com;
+>>>> gregkh@linuxfoundation.org; mturquette@baylibre.com;
+>>>> sboyd@kernel.org; Yoshihiro Shimoda
+>>>> <yoshihiro.shimoda.uh@renesas.com>;
+>>>> linux-phy@lists.infradead.org; devicetree@vger.kernel.org;
+>>>> linux-kernel@vger.kernel.org; linux- renesas-soc@vger.kernel.org;
+>>>> linux-usb@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>>>> linux- clk@vger.kernel.org; linux-pm@vger.kernel.org; Claudiu Beznea
+>>>> <claudiu.beznea.uj@bp.renesas.com>
+>>>> Subject: RE: [PATCH 00/16] Add initial USB support for the Renesas
+>>>> RZ/G3S SoC
+>>>>
+>>>> Hi Claudiu,
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>>>>> Sent: Tuesday, September 3, 2024 12:00 PM
+>>>>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas
+>>>>> RZ/G3S SoC
+>>>>>
+>>>>>
+>>>>>
+>>>>> On 03.09.2024 13:31, Biju Das wrote:
+>>>>>>>> During boot clr USB PWR READY signal in TF-A.
+>>>>>>>> STR case, suspend set USB PWR READY signal in TF-A.
+>>>>>>>> STR case, resume clr USB PWR READY signal in TF-A.
+>>>>>>> As I said previously, it can be done in different ways. My point
+>>>>>>> was to let Linux set what it needs for all it's devices to work. I
+>>>>>>> think the way to go forward is a
+>>>>> maintainer decision.
+>>>>>>
+>>>>>> I agree, there can be n number of solution for a problem.
+>>>>>>
+>>>>>> Since you modelled system state signal (USB PWRRDY) as reset
+>>>>>> control signal, it is reset/DT maintainer's decision to say the
+>>>>>> final word whether this signal fits in reset
+>>>>> system framework or not?
+>>>>>
+>>>>> I was thinking:
+>>>>> 1/ Geert would be the best to say if he considers it OK to handle this
+>>>>>    in Linux
+>>>>
+>>>> I agree Geert is the right person for taking SYSTEM decisions, since
+>>>> the signal is used only during state transitions (Table 41.6.4 AWO to
+>>>> ALL_ON and 41.6.3 ALL_ON to AWO)
+>>>
+>>> One more info, as per [1], this USB PWRRDY signal setting to be before Linux kernel boots.
+>>
+>> The "controlled by" column mentions CA-55 on PWRRDY signal control line and it is b/w steps "DDR exits
+>> from retention mode" and  "clock start settings for system bus and peripheral modules". AFAICT, after
+>> DDR exists retention mode Linux is ready to run.
+> 
+> DDR retention exit happens in TF-A and it jumps into reset code where it executes BL2 in TF_A. Bl2 checks for warm or cold reset.
+> If it is warm reset, it sets required minimal clocks/resets and pass the control to linux by calling the
+> SMC callback handler. Which in turn calls resume(step 11-->14) path.
 
-<form letter>
-This is a friendly reminder during the review process.
+Is this from HW manual or some specific documentation? I'm referring at
+"resume" == "steps 11-->14"
 
-It looks like you received a tag and forgot to add it.
+> 
+> Step 8, Cortex-A55 Exit from DDR retention mode (when using) Setting for exiting form DDR retention mode
+> Step 9, Cortex-A55 USB PHY PWRRDY signal control (if use USB) SYS_USB_PWRRDY
+> Step 10, Cortex-A55 PCIe RST_RSM_B signal control (if use PCIe) SYS_PCIE_RST_RSM_B
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+Note *if use*: how does the TF-A know if USB/PCIe is used by Linux? The
+documentation mention to set it *if use*. Same note is on ALL_ON to VBATT
+transition documentation (namely "if using USB", "if using PCIe"). If TF-A
+will do this it should set this signals unconditionally. It will not be
+something wrong though. We don't know at the moment what this involves in
+terms of power consumption, if it means something...
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
-Best regards,
-Krzysztof
-
+> Step 11, Cortex-A55 Clock start setting for system bus and desired peripheral modules in PD_ISOVCC CPG_CLKON_***ep 
+> (***: GIC600, MHU, SDHI, USB, ETH, DDR, PCI,AXI_COM_BUS, PERI_COM, AXI_TZCDDR,
+> OTFDE_DDR)
+> Step 12, Cortex-A55 Release reset setting for system bus and desired peripheral modules in PD_ISOVCC CPG_RST_***
+> (***: GIC600, MHU, SDHI, USB, ETH, DDR, PCI, AXI_COM_BUS, PERI_COM, AXI_TZCDDR,OTFDE_DDR)
+> Step 13, Cortex-A55 Release MSTOP bit for system bus and desired peripheral modules in PD_ISOVCC CPG_BUS_***_MSTOP
+> (***: ACPU, PERI_COM, PERI_DDR, TZCDDR),
+> CPG_MHU_MSTOP.
+> Step14) Cortex-A55 Clock start setting and reset release setting for Cortex-M33_FPU (if use Cortex-M33_FPU)
+> CPG_CLKON_CM33, CPG_RST_CM33
+> 
+> Cheers,
+> Biju
 
