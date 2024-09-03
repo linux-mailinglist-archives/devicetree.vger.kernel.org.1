@@ -1,109 +1,86 @@
-Return-Path: <devicetree+bounces-99530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA6396A164
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:57:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0747296A16F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:59:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1EB71F2474F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:57:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A69571F24794
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFDB18784F;
-	Tue,  3 Sep 2024 14:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76DE158DD2;
+	Tue,  3 Sep 2024 14:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Q0Tc4FtZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e0fEm3h/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com [209.85.208.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8C8187325
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 14:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD4013DBBE;
+	Tue,  3 Sep 2024 14:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725375406; cv=none; b=svNtrQ3C5c+Ldy4MI68UiDz5i/PdtlFUg3sWNqawJ4EQNN7mjlxa5L9j5IRS/17kI8V7nJKZefgegJqEf0AozJYKeSb6XspuXfKNtMS67j+C+yPBEwwdFJNoszfzYaHUaMTNks0Zv8G2fjvZD8rH4n8HSLPweI8iozF/dvm93bM=
+	t=1725375565; cv=none; b=aAIgB2vU6QVqvYUBuDv3as5gevBhR+KrydiP2idEhEj5l/2kO91ud96O8Ry5gYU5u3xK5/L88b+lCASn7jEsHwQZkQctpwLWK5JBvOdGjQ6o1r+BoCK/Dsz3n5JbDaVJaE0hbBMznXkOiYgCRbiLSUR8XKL8THLuDDb1ehqXn3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725375406; c=relaxed/simple;
-	bh=gXdcYhlkFiZc7PZFYt6CuTb/sBzByoIKPWKoUDitZO4=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GAmBacFwWM0NlHEyUVvcUiCjJO7Ur56TYQlpvoS8J8iRzW6dBE+jptlTuv64/EQbo2SvKvtzLrf0hLpd5a7deCKkxpuKV92fcLA7FrSPSG7PmVIY0HmGLel/7w8I7hicAr57OKpwTz6+4BbuuApTPXNI2ibUGgODtjY7KmJD9w4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Q0Tc4FtZ; arc=none smtp.client-ip=209.85.208.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lj1-f193.google.com with SMTP id 38308e7fff4ca-2f406034874so65776161fa.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 07:56:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1725375402; x=1725980202; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DIv1iCvMP6bRoC9RIud+CJguG+zl0N1bX8dXz6wFLmQ=;
-        b=Q0Tc4FtZ9SyE23cE51CxIDm3wr4xpdfEF1VKGG6D4hTRBcgGU5VbqgJQ2ZOvvsiokB
-         O897E9H8Ceu35GO2fLP7wWkVj1zNiOz8o/yzTXtv1IQpcjEu6FZE0i20hK5UhLjGfpm3
-         Tz6y34T9Z+D6FaXMRl6+35GiVoDPpbhYuIjsnFnc64aLPewU1Wpn9QNkXUdtRMzZjRF/
-         UOo6xTuJ2HKJHVHXFdcjiVlLeFiRL5Uvov8jurz90Zh9bm/54N4qQ0PIecWdbt1GRigt
-         wvuLIAD+7FbwJsD2yJkqpyEEpiIUpSI9lBYP8DhbFcnzaN5Kg/pp8wcDzR/7FMWCasNB
-         wjpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725375402; x=1725980202;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DIv1iCvMP6bRoC9RIud+CJguG+zl0N1bX8dXz6wFLmQ=;
-        b=BKdiu+enFazgQmDiCyAnyZs7IQNBscJ7A3v5zDw3Ck8IxDtMhHQDWB8FaZuZ2RUQ3c
-         VsIOPUGhnjDbJDaTnzh2GcxoTQlZKgBkS8cw6GrM2NWcJHb0AVVJ4Qe2v8KpCM+zxy+6
-         qp0myFPaT3B4XIm4/PPW+wyeXXGrN5AlTzECosO/ORvVSmsfKs7n5gjGU9Wv+H+hiBYg
-         vVeWO/V1nzG2y8h4q8Kb/LfXcF2yqPGlPJ7M99BrjeXCZiTQbGQHFsWaGw+Jra6E/K/y
-         1B9YWLMXsJi0NJhaoh2D/8LZHuXtOvhw8nSJUk00efjfJ7BA7Ngvx9HQ2H7vbFNARH9j
-         yCFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBR58A8q8fci5YJCzfHSurAfEgZo7gYakmHpToL21QlNzT9WXhvqLytpVXRiT2JXceA4kSyjxUKisc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWj9H7cSAuLp7ggVCrn1BENiRyaSK0sYMGsDlY16/p6qUQgWYv
-	OuPedD3drV5UQ19VfVEJlITrEJNi0JBa+oHF+F0FBAPNPI6zRvTbFdW9He54wdM=
-X-Google-Smtp-Source: AGHT+IGPXzXKjSyzj6ohNmy2x1Ly5xLLwbpSN9O7C4k6PqMn2bhMNSeS1m3Dv1qGKiKQSC913q2XHw==
-X-Received: by 2002:a2e:4e01:0:b0:2f3:b76e:4983 with SMTP id 38308e7fff4ca-2f64d4aa546mr6486601fa.22.1725375401093;
-        Tue, 03 Sep 2024 07:56:41 -0700 (PDT)
-Received: from localhost (host-80-182-198-72.retail.telecomitalia.it. [80.182.198.72])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c226c6a29bsm6517320a12.17.2024.09.03.07.56.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2024 07:56:40 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 3 Sep 2024 16:56:48 +0200
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <ZtcjsHnIb7iuDfhw@apocalypse>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
- <lrv7cpbt2n7eidog5ydhrbyo5se5l2j23n7ljxvojclnhykqs2@nfeu4wpi2d76>
- <ZtHN0B8VEGZFXs95@apocalypse>
- <26efbff0-ba1a-4e9a-bc5e-4fd53ac0ed99@lunn.ch>
+	s=arc-20240116; t=1725375565; c=relaxed/simple;
+	bh=Uj/bj+aMeseWyuoqf9Z4Fj1Khz5w5nI0phGG8JGDfxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e8NJiIygt1cn1TiVmbYdNYJBQDjHUzJZRs8o0cTjnLZipMOyuCoYN5YI4mTO2TWw+8Zstv63wSfokRSRODQVL9R/R2fpmEjt6oRkwTMtG2ZqXzE/+cf6tVkyyNT57qO/aZLoHOSnK10o+oG4/nN1JgflI64oqL1KSOsrw0NE3NU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e0fEm3h/; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725375564; x=1756911564;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Uj/bj+aMeseWyuoqf9Z4Fj1Khz5w5nI0phGG8JGDfxY=;
+  b=e0fEm3h/HvDm9vDCw1Zto3iOpOZl9F/wahfhGV9Wh4+TT2jIXV4NAxAQ
+   I6q062+Buo1G3IFsrTLJ2HFyZ8WyLnwOx3JYF1rB/O+6tAF3W2F9EgIDH
+   KneyCVoJt0Fwm0Qi+AggrF9e6roUXtjIXf/K5I3jT3HdgpEeHxMXyuJnb
+   2IDI87d8td4ytq8cXWoZF9P5Jf11jAeDYEKEsM3BsTcSVfTwp8fGX/dgr
+   GdTx/GmIdtAeOld81oaB3V15OTU5DwV7VvvvUmnb9hXhJMCOmSMPnrBig
+   2bfXMGsdJgh+OL5snRZcL0+TL6Xz/fxiWsCVjg85QVuLr3ZwTu6DVXwNH
+   g==;
+X-CSE-ConnectionGUID: ypgA+7NMT0iL6j+s7zzRVQ==
+X-CSE-MsgGUID: 3pvgxQVzSredmghNlJsirQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="41474853"
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="41474853"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:59:24 -0700
+X-CSE-ConnectionGUID: 6HGTB+h+TEu2438Hwul7dw==
+X-CSE-MsgGUID: qZhtsFsVR06mrzCAQHoN3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="69567174"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:59:17 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1slUzj-00000004kDE-1Vwy;
+	Tue, 03 Sep 2024 17:58:59 +0300
+Date: Tue, 3 Sep 2024 17:58:59 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, nico@fluxnic.net,
+	pabeni@redhat.com, daniel@ffwll.ch, davem@davemloft.net,
+	kuba@kernel.org, olteanv@gmail.com, saravanak@google.com,
+	linux-kernel@vger.kernel.org, mripard@kernel.org,
+	edumazet@google.com, netdev@vger.kernel.org,
+	brcm80211-dev-list.pdl@broadcom.com, f.fainelli@gmail.com,
+	linux-wireless@vger.kernel.org, airlied@gmail.com,
+	linus.walleij@linaro.org, brcm80211@lists.linux.dev, andrew@lunn.ch,
+	devicetree@vger.kernel.org, linux@armlinux.org.uk,
+	alsi@bang-olufsen.dk, tzimmermann@suse.de, kvalo@kernel.org,
+	arend.vanspriel@broadcom.com, maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH v1 7/7] of/irq: Make use of irq_get_trigger_type()
+Message-ID: <ZtckM-uRzxAnS15o@smile.fi.intel.com>
+References: <20240902225534.130383-1-vassilisamir@gmail.com>
+ <20240902225534.130383-8-vassilisamir@gmail.com>
+ <172537438003.978249.2559307502514402788.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -112,57 +89,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <26efbff0-ba1a-4e9a-bc5e-4fd53ac0ed99@lunn.ch>
+In-Reply-To: <172537438003.978249.2559307502514402788.robh@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Andrew,
+On Tue, Sep 03, 2024 at 09:39:43AM -0500, Rob Herring (Arm) wrote:
+> On Tue, 03 Sep 2024 00:55:34 +0200, Vasileios Amoiridis wrote:
 
-On 16:21 Fri 30 Aug     , Andrew Lunn wrote:
-> On Fri, Aug 30, 2024 at 03:49:04PM +0200, Andrea della Porta wrote:
-> > Hi Krzysztof,
-> > 
-> > On 10:38 Wed 21 Aug     , Krzysztof Kozlowski wrote:
-> > > On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
-> > > > The RaspberryPi RP1 is ia PCI multi function device containing
-> > > > peripherals ranging from Ethernet to USB controller, I2C, SPI
-> > > > and others.
-> > > > Implement a bare minimum driver to operate the RP1, leveraging
-> > > > actual OF based driver implementations for the on-borad peripherals
-> > > > by loading a devicetree overlay during driver probe.
-> > > > The peripherals are accessed by mapping MMIO registers starting
-> > > > from PCI BAR1 region.
-> > > > As a minimum driver, the peripherals will not be added to the
-> > > > dtbo here, but in following patches.
-> > > > 
-> > > > Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
-> > > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > > > ---
-> > > >  MAINTAINERS                           |   2 +
-> > > >  arch/arm64/boot/dts/broadcom/rp1.dtso | 152 ++++++++++++
-> > > 
-> > > Do not mix DTS with drivers.
-> > > 
-> > > These MUST be separate.
-> > 
-> > Separating the dtso from the driver in two different patches would mean
-> > that the dtso patch would be ordered before the driver one. This is because
-> > the driver embeds the dtbo binary blob inside itself, at build time. So
-> > in order to build the driver, the dtso needs to be there also. This is not
-> > the standard approach used with 'normal' dtb/dtbo, where the dtb patch is
-> > ordered last wrt the driver it refers to.
-> > Are you sure you want to proceed in this way?
-> 
-> It is more about they are logically separate things. The .dtb/dtbo
-> describes the hardware. It should be possible to review that as a
-> standalone thing. The code them implements the binding. It makes no
-> sense to review the code until the binding is correct, because changes
-> to the binding will need changes to the code. Hence, we want the
-> binding first, then the code which implements it.
+...
 
-Ack.
+> Applied, thanks!
 
-Cheers,
-Andrea
+It was fast :-)
 
-> 
-> 	Andrew
+Vasileios, consider my previous comment as a material for followup,
+if Rob likes the idea.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
