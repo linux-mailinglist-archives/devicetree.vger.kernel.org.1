@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-99179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53DEE9692B8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:09:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEE8E9692B9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF7A8284C3A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 04:09:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FC101C22485
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 04:09:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554EC1CEAC3;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1B41CEACE;
 	Tue,  3 Sep 2024 04:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="TcVzvmWf"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="AOh/KCAg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D461CDFDD
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 04:08:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0F51CE70C
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 04:08:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725336538; cv=none; b=ZlyrQY2C3cG86NJJJcKLm+H7Xlbo7iZqKNKjklICitG/9YdkzYqZJPqgYR3aoNVMFACEhrnwG+67GOsgrNdea7mpCo7ii/TYJaVAdmoIPusMKCHFUI5gNOlIvVOdXb8LWxg8b2f2ew2KsMIIYecknOJ43a0wLW7sgALk1O7ZmDI=
+	t=1725336538; cv=none; b=DzkYzjt+nnlzqUo/jD7hhOGLBFnmgVWCorrEdEcj613VP3RYM+2xc9q1ipzz+9DgDUPZTPTsgXmcZhFiRN/emKyZEPaY2tBmL8d4BEF0uIV7tnzhv9yIaWRvmwAbW4DPKwZH0hI0MmEX9OraWLpSquIX3zKd0RbXThVRYAY9IF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1725336538; c=relaxed/simple;
-	bh=5wWZ7techati+aOfPvJMxyFSH5Wti/es60OR5gL0P5E=;
+	bh=TmLPgmMuQA5WHRw4DbLGENXxsmigBRHBovUbmz2xWfc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BDo2UYa9KWFmR1gSUGp2a59va47B/+Mh12Uk7PwdqMdk8+mAvSN7t0h6yJCIW5XzQALLX2iw+br5hDuNcf7MTu+4V6PlZATKApRKqQkLMTh+l/RXe+wENgMvdPlJE4QS5WtPE9uU3c51MlLrMPcM/6OcolsgzUab8QVet1gPBmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=TcVzvmWf; arc=none smtp.client-ip=209.85.210.179
+	 In-Reply-To:To:Cc; b=eTdCtGXcgGJ/nBoBhgz9bjY/tBrfsXTqxDYv0w+Yq7TbPWC/hqpdm5S3lW0CmKD6slzYMSYw/BRS0YMdRhwKkMnqGZ33Nm/s5vHYONJ1U5pK7BatQKcjwnNsJU01garFcEQuds7Kx2evRuSS8jejmAfYIlHj2m4t9tWYOvoS7VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=AOh/KCAg; arc=none smtp.client-ip=209.85.160.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-71456acebe8so3716775b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 21:08:55 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-2704d461058so2532798fac.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2024 21:08:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1725336535; x=1725941335; darn=vger.kernel.org;
+        d=tenstorrent.com; s=google; t=1725336536; x=1725941336; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NiQQIOurN5s0FJRXD43MLGWhBSOLzbp34+DraYLBvAg=;
-        b=TcVzvmWf7sHy4I7+fBP5fDmLBa+ZDCBWzmMGx16iF7wx8ARTj+lCmQvM7XvNyE321m
-         fiL/gyeoncbRe55l426JX573lq1QDuiuZi+1EgDd3sC7rIl5AwAHTsXo2+8Nv7ygD8f4
-         pQYLQfB3+VMLZ1JlEAfkZkcoorj4QeqBTzhi2BhbyLsH3LXzeT8Mf4V8YMxtO/uUTajg
-         KmNz9nbdvR+IsFuTzjhF8tbNblD/G3a6YYs7KQsZvkZavzGSw72s42Po4kJFzQGgyz9Q
-         Z10xVXKE1mjEdzPIbjaCDIsSRtiG0VPky5YTTC8W+YaKJsH08xGA/qV1OTuIxLOT2MrX
-         W/ug==
+        bh=kZ4BL5w+jZbnBcrACJr3d5UErDD67jcver4i8Xfl9kU=;
+        b=AOh/KCAg/2WIWnBfkuuarMIWpSSyRkWHP7n8qKiPoXTJpluQqdI1D7w0MzDPwwLVSd
+         AZbDYPgDK42w29bIqz9XRnVfeweLozdUC+alQ0FTJge8j6rmqSDZz6yTPnjXSErrVh0N
+         tKe1kT81ryVZpPJqN5IaQu9BbBANJ8nGyTI8zuYAqbwqDy9bkSjVHJVABi5w1VbDwn3U
+         rnAwTI+w2LzFugbMPjWro08wyPpQk5ybQXf+Qmj1dAiN40y7+q7gLuIBnkj/lDIkiTcG
+         o+VNoK9ibo9zMCP7PtTbwTnU2vZSfupzx4xm/fJ5xUT5jJXm8R02F7J5OuhJX6LMtaL5
+         PoBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725336535; x=1725941335;
+        d=1e100.net; s=20230601; t=1725336536; x=1725941336;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NiQQIOurN5s0FJRXD43MLGWhBSOLzbp34+DraYLBvAg=;
-        b=G/n6/ZtfVaP6F/+yt6/OInKIVumpsqEFlZSQaPZ3Nlk0Ebz5Ohj7Koq9gkrBBr8lf2
-         zwpRoHC4Jh8Tiyl+I2fkMFQiM/VZs1s0WKxxVuQxF6ixe8Erm2E2//HmnbC7ID7k4LqC
-         LgOjsym3M7uZyBRUughltD1/6L+RQTSL/9/p/2kkxQHwj6eOrCG0nAA+v3QzG7S1ymKZ
-         MGSi+iJmxZQhMXbddoVWvkeDLkSVNxrvzUawHxcDJjN+5OzKTNM8/sEy90L29noQity/
-         fGYQBX2Iv4NhCDSe/XfHjuxdGdI9QMsQEoKA7bstIUBFbj/C8fYJAon4lx7rMRDNP3M6
-         bVfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWlD2nXGy0dw5jJyz6b3bQyaa81v4UjS7K4gu5OyNf4V2yim61F/yRL0Yac2Q8tJS+PFj2F9QlRbZO5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYpjUbYRoIxFeEiIs+0RGop3jlZcZBVSDtjLrghTUrvjgMR7rl
-	wHrA1ApYl32Ba5LnXWHroQYuVYSrjYoHfnTHPMHBCTBiJysHZAWL8OhlqZo/SoE=
-X-Google-Smtp-Source: AGHT+IGzyiuhlkMwYG0YMzdnnd3LOlKnGZxIN1H4tU/WAf0wybOl/XWFUTDfriwcPu5zruQGDsplqg==
-X-Received: by 2002:a05:6a00:13a6:b0:70b:5394:8cae with SMTP id d2e1a72fcca58-715dfc76152mr19057737b3a.28.1725336534809;
-        Mon, 02 Sep 2024 21:08:54 -0700 (PDT)
+        bh=kZ4BL5w+jZbnBcrACJr3d5UErDD67jcver4i8Xfl9kU=;
+        b=TohFzxDMX7TBTNmi/ux/cLvWY+raf1EU0pKiqKjJpMlOAcACKsUlLHox+5OSVFOaF0
+         uW1CFH0l9HyRTbXq3YYsqLFym/U2aYd2xyKd0LTgcc1e2mCxej7UqtwoRr0/Cp8llTpI
+         me67d2UxV61/HEWd+4Mb1GJbFQsTNUqkVxoYbvshIjNbJgmHoGVxpI09Vg5eASn69pie
+         QrkAE1D//2n7S0moGStDHKWRMOskR6+qnHAp8jG+z81ezxVEIsU48e7isKmNa2Ep77uQ
+         N2BM1Bsdiiz6GmSaU6y2Nmbe7K7UImAMT2QXpIoWoYNJ5CXJ8tzRUR8hq7z65Zkxkqgz
+         jrVw==
+X-Forwarded-Encrypted: i=1; AJvYcCWNeHwppzB2AF0dw78vPFwRcI292IdRm4ruvOBnz4qt+eRmOmMRooE2vsfJYzAE4Zv7fHGMsXlw6SRr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrjkUV+TAS1GMtpGMy+rl1zpSldhFIgPRcRHiX8/MZBicof2tW
+	Zj5o+0XWYQXRhX5LdiSg+edVB1U7xYXl8HqvC/CgNBW3C8GRVsPj4YfC1ud/PNKZcAe2ujxfwUP
+	W
+X-Google-Smtp-Source: AGHT+IF4pX9A1K6vCNuazJY8FE8Q32M3mUa+nGa1uX74lj9BVRLLaU+asl6F6Kfv3PXZHMCKYZWoVQ==
+X-Received: by 2002:a05:6871:1c2:b0:270:1850:f898 with SMTP id 586e51a60fabf-2781a7aa5c2mr1087930fac.12.1725336535908;
+        Mon, 02 Sep 2024 21:08:55 -0700 (PDT)
 Received: from [127.0.1.1] (75-164-215-68.ptld.qwest.net. [75.164.215.68])
         by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-715e569ef39sm7532701b3a.122.2024.09.02.21.08.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2024 21:08:54 -0700 (PDT)
+        Mon, 02 Sep 2024 21:08:55 -0700 (PDT)
 From: Drew Fustini <dfustini@tenstorrent.com>
-Date: Mon, 02 Sep 2024 21:06:56 -0700
-Subject: [PATCH 3/8] riscv: dts: thead: Add TH1520 pin control nodes
+Date: Mon, 02 Sep 2024 21:06:57 -0700
+Subject: [PATCH 4/8] riscv: dts: thead: Add TH1520 GPIO ranges
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240902-th1520-pinctrl-v1-3-639bf83ef50a@tenstorrent.com>
+Message-Id: <20240902-th1520-pinctrl-v1-4-639bf83ef50a@tenstorrent.com>
 References: <20240902-th1520-pinctrl-v1-0-639bf83ef50a@tenstorrent.com>
 In-Reply-To: <20240902-th1520-pinctrl-v1-0-639bf83ef50a@tenstorrent.com>
 To: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
@@ -96,103 +97,80 @@ X-Mailer: b4 0.14.1
 
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Add nodes for pin controllers on the T-Head TH1520 RISC-V SoC.
+Add gpio-ranges properties to the TH1520 device tree, so user space can
+change basic pinconf settings for GPIOs and are not allowed to use pads
+already used by other functions.
 
+Adjust number of GPIOs available for the different controllers.
+
+Acked-by: Rob Herring <robh@kernel.org>
 Tested-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
 ---
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts |  4 ++++
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi    |  4 ++++
- arch/riscv/boot/dts/thead/th1520.dtsi              | 24 ++++++++++++++++++++++
- 3 files changed, 32 insertions(+)
+ arch/riscv/boot/dts/thead/th1520.dtsi | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index d9b4de9e4757..be85e3aee56e 100644
---- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -44,6 +44,10 @@ &osc_32k {
- 	clock-frequency = <32768>;
- };
- 
-+&aonsys_clk {
-+	clock-frequency = <73728000>;
-+};
-+
- &apb_clk {
- 	clock-frequency = <62500000>;
- };
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index 1365d3a512a3..530648ad64f6 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -25,6 +25,10 @@ &osc_32k {
- 	clock-frequency = <32768>;
- };
- 
-+&aonsys_clk {
-+	clock-frequency = <73728000>;
-+};
-+
- &apb_clk {
- 	clock-frequency = <62500000>;
- };
 diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 3c9974062c20..834dcd1fe7d8 100644
+index 834dcd1fe7d8..9889b557c494 100644
 --- a/arch/riscv/boot/dts/thead/th1520.dtsi
 +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -215,6 +215,12 @@ osc_32k: 32k-oscillator {
- 		#clock-cells = <0>;
- 	};
- 
-+	aonsys_clk: aonsys-clk {
-+		compatible = "fixed-clock";
-+		clock-output-names = "aonsys_clk";
-+		#clock-cells = <0>;
-+	};
-+
- 	apb_clk: apb-clk-clock {
- 		compatible = "fixed-clock";
- 		clock-output-names = "apb_clk";
-@@ -357,6 +363,12 @@ portd: gpio-controller@0 {
- 			};
- 		};
- 
-+		padctrl1_apsys: pinctrl@ffe7f3c000 {
-+			compatible = "thead,th1520-pinctrl";
-+			reg = <0xff 0xe7f3c000 0x0 0x1000>;
-+			clocks = <&apb_clk>;
-+		};
-+
- 		gpio0: gpio@ffec005000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xec005000 0x0 0x1000>;
-@@ -393,6 +405,12 @@ portb: gpio-controller@0 {
- 			};
- 		};
- 
-+		padctrl0_apsys: pinctrl@ffec007000 {
-+			compatible = "thead,th1520-pinctrl";
-+			reg = <0xff 0xec007000 0x0 0x1000>;
-+			clocks = <&apb_clk>;
-+		};
-+
- 		uart2: serial@ffec010000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0xff 0xec010000 0x0 0x4000>;
-@@ -529,6 +547,12 @@ porte: gpio-controller@0 {
- 			};
- 		};
- 
-+		padctrl_aosys: pinctrl@fffff4a000 {
-+			compatible = "thead,th1520-pinctrl";
-+			reg = <0xff 0xfff4a000 0x0 0x2000>;
-+			clocks = <&aonsys_clk>;
-+		};
-+
- 		ao_gpio1: gpio@fffff52000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xfff52000 0x0 0x1000>;
+@@ -338,6 +338,7 @@ portc: gpio-controller@0 {
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+ 				ngpios = <32>;
++				gpio-ranges = <&padctrl0_apsys 0 0 32>;
+ 				reg = <0>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+@@ -355,7 +356,8 @@ portd: gpio-controller@0 {
+ 				compatible = "snps,dw-apb-gpio-port";
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+-				ngpios = <32>;
++				ngpios = <23>;
++				gpio-ranges = <&padctrl0_apsys 0 32 23>;
+ 				reg = <0>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+@@ -380,6 +382,7 @@ porta: gpio-controller@0 {
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+ 				ngpios = <32>;
++				gpio-ranges = <&padctrl1_apsys 0 0 32>;
+ 				reg = <0>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+@@ -397,7 +400,8 @@ portb: gpio-controller@0 {
+ 				compatible = "snps,dw-apb-gpio-port";
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+-				ngpios = <32>;
++				ngpios = <31>;
++				gpio-ranges = <&padctrl1_apsys 0 32 31>;
+ 				reg = <0>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+@@ -539,7 +543,8 @@ porte: gpio-controller@0 {
+ 				compatible = "snps,dw-apb-gpio-port";
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+-				ngpios = <32>;
++				ngpios = <16>;
++				gpio-ranges = <&padctrl_aosys 0 9 16>;
+ 				reg = <0>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
+@@ -563,7 +568,8 @@ portf: gpio-controller@0 {
+ 				compatible = "snps,dw-apb-gpio-port";
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+-				ngpios = <32>;
++				ngpios = <23>;
++				gpio-ranges = <&padctrl_aosys 0 25 22>, <&padctrl_aosys 22 7 1>;
+ 				reg = <0>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
 
 -- 
 2.34.1
