@@ -1,235 +1,170 @@
-Return-Path: <devicetree+bounces-99609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F6196A6DE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 20:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB8596A6E8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 20:50:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 335B41F24C6C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:48:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4524E1F227AF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505F0192B63;
-	Tue,  3 Sep 2024 18:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19753192B82;
+	Tue,  3 Sep 2024 18:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BOVzyx8F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TnpYIPNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241141922CC;
-	Tue,  3 Sep 2024 18:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CED1925AB;
+	Tue,  3 Sep 2024 18:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725389267; cv=none; b=KiuSAtkbdYVH2Ojs9/SJ7K1rXo0/nR/Bqjwmm20dD1aZKEKxDBcqSe8D/6xc0wkiSARtZCnVO2iCQTiBckBCSx0LLfhQIXg/31QRXGpyEKvPkAvAl/Ajlh7qgwxng0XITVVj2Ki3BybRX4idYxS6kaNsDbyT4tW3kSttDtDvT60=
+	t=1725389433; cv=none; b=UGr/SfKEo9bvO9n8di2qOLoHcz9HbpYtk3YUrZgOGsAobyc0KSLV290RoH/rct3D6VxY9Qq3rtvgjbgxgHLAnE3zP2Rxwfb+A9Z++GOfbmleE0Neqgj9JDHzsJQqmrHjfH8L2u/T4Nc/p/06TY17YLecWVAOhLmJn76EenghrWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725389267; c=relaxed/simple;
-	bh=OUj8Q4CfO7rGEBhRXqf1GUwsr5oV4HXwtedQHeL/IzY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B1VCtRnICMIRn+WyParXK4/zbSHfITsBHLbtzbWp3ii6sM1Pi+5V/QKydjyAH2/+H+EoKEcc+lcNJhXg2iKNYipv4pLSlkXq3yXEdAQKMfjcX5OCInCv/xMxTPE4lUtJPXmPsNO0oLCbsnrzMkopeStIktIANDf9VKl0ubVgRvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BOVzyx8F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 979CFC4CEC4;
-	Tue,  3 Sep 2024 18:47:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725389266;
-	bh=OUj8Q4CfO7rGEBhRXqf1GUwsr5oV4HXwtedQHeL/IzY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BOVzyx8FSuPxAkF4TFNeDSSKdcAwuSgerUz9HiG1AKBnYZobVJseZeG22oN6o/epe
-	 ioETSyl73GcfBjAZ1qWVO8OxNLoR+ES5L/BRUnwlCp0SZjye2qvhjzEC4eo4MkuYqY
-	 rgGQFSqk0gd/Qh/uDZzeT/ys9GEicFY5YCq6Cw2CrONtDuf2r57ttK4onoQLERP01O
-	 +Lk/RwdO79mrWVIINeqExJcb7D/iQC2txVTurLNMyEG7mSKVX/vIP4Zz1np0OeauTZ
-	 uxd5YElsVaKUd8QO5HM9TvYuzFN/kny34oSeKWjuPH5ZWvXSAHcO5wCzDTkUgsieqO
-	 nFVRTAmyI/Nqg==
-Message-ID: <c84b783a-0118-43d8-8f03-a98fdf5bd8c5@kernel.org>
-Date: Tue, 3 Sep 2024 20:47:38 +0200
+	s=arc-20240116; t=1725389433; c=relaxed/simple;
+	bh=kSg1533I0r0PkbK2TEZPHjRsuMCYmQmvrMKSfsnHYpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DTefv8TKbeie/EjS2qsx+TunC9i3kciTPQH/Sg0eCl7OCFajtWt0Exigsr2qwBGvtHQ8sFdCzCFrA2JyYjoiDGVPIj5zcBQY3fdNjhhud23+9JZ2bbmd8YF0QpaK90wpGJgac8xT6Lxj7P0SAXjtI3vgiR/eBpAof37DdNuy/6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TnpYIPNj; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2da4ea59658so1219373a91.0;
+        Tue, 03 Sep 2024 11:50:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725389431; x=1725994231; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bu4GQe3UiaUM0tGnHsfH7VdXeNCJgGZKmohYeo4w/J8=;
+        b=TnpYIPNj//0HBopWY0grKmGBZ3zGd8fnts+YcJMiNDNNmov/RAvhqzh1paYz5nroqk
+         fPkqT8zaXZyEAtNI9+jqk+5qwcWbqxFgQ7blOBaOxAuGhSHt1aemuLlKDgV954+yGnG/
+         f71JteaXrNQCyBVV1xEUNUkH3xlXry7zd228HILimOsOz0Hmg0KjxhkPe4g8I6ZdLqAt
+         RbFS6TNUN+C3uS0kASJa3ccBA76uVhhOPxfNV2ECnW5EsHhDxG6M8u4CmYG90norJ38f
+         KqJLGaggH9eVMFI+vebLjVn2LVRYk7SeoP3h0xj+PyrkyKihRFh7IiRofQrHDnmpddld
+         sc0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725389431; x=1725994231;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bu4GQe3UiaUM0tGnHsfH7VdXeNCJgGZKmohYeo4w/J8=;
+        b=i26k8bXOboeYKlFri9fwHp5QZM9lGuqKDSwM+uaonzdfgT71p8ZDRS8yeFUHITR0kG
+         hHBqs+BWUZD+XEFWDGIWesXZyUud8lV5nygU9T7oQe8Jqu+G4K3M4T8XBtydFWD5qwyd
+         XZrSSHXz8S7MPczwlaegUrnMEbI0TudQUfE5UZNoLuKy4DO+VdVyCVnT1M+aOvjh6iyh
+         PY9zIRZFyg1h6RJQxZHpPa3fKzL8aJG6dmzqg921y+8rs5WsC9qZynnOQws/hSBPyC0S
+         MwUAds82BfuCacc330E+zUAYwoYR04EtwkY6TtBSvt1ZOEc+cGTmXDdL3WPa2yE9cRLN
+         rGuA==
+X-Forwarded-Encrypted: i=1; AJvYcCV37MM/neQuy6W49dk3GFYO2+bNW1+2D0hpJ9296hPgoJ0jlWS2YyJ3aCAZNIIrgZGxf/1Xk8khKjBwL4I=@vger.kernel.org, AJvYcCVF1pC/INIZk2I3INcgKZU4bjDgJYXWEf0V36ZI5P8DrweosgU+Yw02C7tEc2+cpgHBW7J3seEAG00n@vger.kernel.org, AJvYcCXe5nBx7/TsyC/gS7a7X3c8/yT5YlCJ6Ah7cM0/mMyluV1ZKy+fwUYzk0tKSE+5tbD95Bh4Hiub1cAWBwju@vger.kernel.org
+X-Gm-Message-State: AOJu0YytSB1bEYABCEoEHM2c+Xov0lNCXxXwnPiaIVM6GN6+BxWMMn62
+	BBDqSIsGZky/IpiXkMLvFq2SPIBXAcOrWV00i78/Z0SmS2ZZ+v+Q
+X-Google-Smtp-Source: AGHT+IH7i+s8ay2RYSBwbw0EFEWCvvj5h6jWEmYf/dWAvwbObT9pZF3N5UCpn3lN33Kc/lIg2ODlAA==
+X-Received: by 2002:a17:90a:f2d8:b0:2cf:cc0d:96cc with SMTP id 98e67ed59e1d1-2d88d6680b5mr13365416a91.9.1725389430525;
+        Tue, 03 Sep 2024 11:50:30 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:e682:e3dc:908:eef0])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2da7ba49b57sm734102a91.18.2024.09.03.11.50.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2024 11:50:30 -0700 (PDT)
+Date: Tue, 3 Sep 2024 11:50:27 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] input: touchscreen: ad7877: add dt support
+Message-ID: <Ztdac2BANNpShK2t@google.com>
+References: <20240902082707.4325-1-antoniu.miclaus@analog.com>
+ <20240902082707.4325-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: wireless: wilc1000: Document WILC3000
- compatible string
-To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
- Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240829004510.178016-1-marex@denx.de>
- <52e7b6d2-5d31-4ae1-bf1d-44e63a22774d@bootlin.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <52e7b6d2-5d31-4ae1-bf1d-44e63a22774d@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240902082707.4325-2-antoniu.miclaus@analog.com>
 
-On 03/09/2024 18:09, Alexis Lothoré wrote:
-> Hello everyone,
-> 
-> On 8/29/24 02:44, Marek Vasut wrote:
->> Document compatible string for the WILC3000 chip. The chip is similar
->> to WILC1000, except that the register layout is slightly different and
->> it does not support WPA3/SAE.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Marek Vasut <marex@denx.de>
-> 
-> [...]
-> 
->>  .../bindings/net/wireless/microchip,wilc1000.yaml           | 6 +++++-
->>  1 file changed, 5 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
->> index 2460ccc082371..5d40f22765bb6 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
->> @@ -16,7 +16,11 @@ description:
->>  
->>  properties:
->>    compatible:
->> -    const: microchip,wilc1000
->> +    oneOf:
->> +      - items:
->> +          - const: microchip,wilc3000
->> +          - const: microchip,wilc1000
->> +      - const: microchip,wilc1000
->>  
->>    reg: true
-> 
-> Following this series first revision, I have been taking a look at how to
-> implement bluetooth feature for wilc3000 (the chip supports Bluetooth LE through
-> a separated UART, see [1]), and I am facing some constraints. I feel like the
-> possible solutions would conflict with this new binding, so even if I am a bit
-> late to the party, I would like to expose the issue before the binding is merged
-> in case we can find something which would allow to add bluetooth support without
-> too much pain after the wlan part.
-> 
-> Downstream driver currently does not implement bluetooth as a standard bluetooth
-> driver (module in drivers/bluetooth, registering a HCI device) but only performs
-> a minimal set of operations directly in the wlan part ([2]). Getting a version
-> valid for upstream would need the following points to be addressed:
-> 1. despite being controlled from a serial port for nominal operations, the
-> bluetooth part also depends on the "wlan" bus (spi or sdio) for initialization
-> 2. yet init steps are not performed on any kind of subsystem ops but through
-> writes to a custom chardev
-> 3. the driver does not register itself a hci interface, it is expected to be
-> done by userspace (hciattach).
-> 
-> It is only after those 3 steps that the chip can be used with standard hci
-> commands over serial port. IMHO 1 is the biggest point, because it means that
-> **a bluetooth driver for wilc3000 needs access to the bus used by wlan part**
-> (so only describing the bluetooth part of the chip as a child node of an uart
-> controller is not enough). Aside from bus access, I also expect some
-> interactions between bluetooth and wifi (eg: power management, sleep/wakeup)
-> 
-> After considering multiple solutions to try to share this bus between existing
-> wlan driver and a new bt driver (mfd device, auxiliary bus, device link + some
+Hi Antoniu,
 
-Driver design should not have impact on bindings.
-
-> handles, etc), my current best guess is to convert wilc driver to a MFD driver
-> for wilc3000. I guess some work can be done so that the driver can still be
-> shared between wilc1000 and wilc3000 _while_ remaining compatible with current
-> wilc1000 description, but it would impact the DT description for wilc3000, which
-> would need to switch from this:
+On Mon, Sep 02, 2024 at 11:24:32AM +0300, Antoniu Miclaus wrote:
+> Add devicetree support within the driver.
 > 
->   spi {
->     wifi@0 {
->       compatible = "microchip,wilc3000";
->       [...]
->     };
->   };
+> Make the old platform data approach optional.
+
+Nobody is using it, so simply remove it.
+
 > 
-> To something like this:
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> new in v2.
+>  drivers/input/touchscreen/ad7877.c | 68 +++++++++++++++++++++++++++++-
+>  1 file changed, 66 insertions(+), 2 deletions(-)
 > 
->   spi {
->     wilc@0 {
->       compatible = "microchip,wilc3000"; /* mfd driver */
+> diff --git a/drivers/input/touchscreen/ad7877.c b/drivers/input/touchscreen/ad7877.c
+> index 7886454a19c6..3fa38043b561 100644
+> --- a/drivers/input/touchscreen/ad7877.c
+> +++ b/drivers/input/touchscreen/ad7877.c
+> @@ -27,6 +27,7 @@
+>  #include <linux/input.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/pm.h>
+> +#include <linux/property.h>
+>  #include <linux/slab.h>
+>  #include <linux/spi/spi.h>
+>  #include <linux/spi/ad7877.h>
+> @@ -667,6 +668,68 @@ static void ad7877_setup_ts_def_msg(struct spi_device *spi, struct ad7877 *ts)
+>  	}
+>  }
+>  
+> +static struct ad7877_platform_data *ad7877_parse_props(struct device *dev)
+> +{
+> +	struct ad7877_platform_data *pdata;
+> +	u32 value, average;
+> +
+> +	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
+> +	if (!pdata)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	pdata->model = (uintptr_t)device_get_match_data(dev);
+> +
+> +	device_property_read_u8(dev, "adi,stopacq-polarity",
+> +				&pdata->stopacq_polarity);
+> +	device_property_read_u8(dev, "adi,first-conv-delay",
+> +				&pdata->first_conversion_delay);
+> +	device_property_read_u8(dev, "adi,pen-down-acc-interval",
+> +				&pdata->pen_down_acc_interval);
+> +	device_property_read_u8(dev, "adi,acquisition-time",
+> +				&pdata->acquisition_time);
+> +
+> +	device_property_read_u16(dev, "adi,vref-delay-usecs",
+> +				 &pdata->vref_delay_usecs);
+> +
+> +	device_property_read_u32(dev, "touchscreen-x-plate-ohms", &value);
+> +	pdata->x_plate_ohms = (u16)value;
+> +	device_property_read_u32(dev, "touchscreen-y-plate-ohms", &value);
+> +	pdata->y_plate_ohms = (u16)value;
+> +	device_property_read_u32(dev, "touchscreen-min-x", &value);
+> +	pdata->x_min = (u16)value;
+> +	device_property_read_u32(dev, "touchscreen-min-y", &value);
+> +	pdata->y_min = (u16)value;
+> +	device_property_read_u32(dev, "touchscreen-max-x", &value);
+> +	pdata->x_max = (u16)value;
+> +	device_property_read_u32(dev, "touchscreen-max-y", &value);
+> +	pdata->y_max = (u16)value;
+> +	device_property_read_u32(dev, "touchscreen-max-pressure", &value);
+> +	pdata->pressure_max = (u16)value;
+> +	device_property_read_u32(dev, "touchscreen-min-pressure", &value);
+> +	pdata->pressure_min = (u16)value;
 
-I do not see any reason why... or rather: What is MFD here? MFD is Linux
-stuff and we talk about hardware.
+Please use touchscreen_parse_properties() and also apply transformations
+via touchscreen_report_pos() instead of rolling your own logic.
 
->       wifi {
->         compatible = "microchip,wilc3000-wlan";
+Thanks.
 
-Why? Just merge it to parent...
-
->         [...]
->       };
->       bt {
->         compatible = "microchip,wilc3000-bt";
->         XXXX; /* some link to the uart controller connected to the chip */
-
-That's not how we represent UART devices. I don't understand why do you
-need these - if for power sequencing, then use power sequencing
-framework and describe associated hardware (there are some talks coming
-about it in 2 weeks). If for something else, then for what?
-
->         [...]
->       };
->     };
->   };
-> 
-> (and similar thing when wilc is driven over a sdio bus)
-> 
-> Any opinion on this ? Would it make sense to describe wilc3000 chip that way ?
-> 
-
-You described drivers, not wilc3000 chip...
-
-Best regards,
-Krzysztof
-
+-- 
+Dmitry
 
