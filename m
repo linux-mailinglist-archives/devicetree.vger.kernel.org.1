@@ -1,193 +1,156 @@
-Return-Path: <devicetree+bounces-99449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 505E6969D6F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:26:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32074969D7F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:27:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EEF21C235B2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:26:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D192A1F23D7B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:27:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6FB11C9875;
-	Tue,  3 Sep 2024 12:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ba6EToGn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E481C9875;
+	Tue,  3 Sep 2024 12:27:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87641C9851
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 12:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8411C7688;
+	Tue,  3 Sep 2024 12:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725366361; cv=none; b=NQS3O/s1XsUtZmpPaKFIfzFw7Bw7p3vmjkc+nTXUKR18P8ZWbdbLhGjwrJRzgCFgBziwFZIjgXUGizX2Twawi350qk8v1Ki4sZ0h/L6o/oeyFi4WqU4rIFdVd13/mKXkklick7pp50CXGepMXlVxeQMtUdNaCwE+N/ZsT442vVM=
+	t=1725366437; cv=none; b=n3pHzcE018FWKg/wYpyBxGmZYtYEyv93LZ17cIyTEbYlJLgKzHwswMxi3qZHLrZQ6yJNOQVHcqAJ3I2Q4YHwHFETuztCk7jnJvuHZb9lmkcBY13eWQHyjwOgtFr+9kNLvLlfCO1Pjj12AGBoaB1F9dFb2IPB8+dbKu38N5Gwb+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725366361; c=relaxed/simple;
-	bh=a0Dd4JWmM7haDwR0iXBE1kfomv0PSlhhIKArOk1RZzg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nImq6Y13jXxcFyhattodTcK35gIrfrqZhoni8ZkCTvB10xQcvnETyWIDGVYcsbLu5oRSSo3OUft3WLEOb5sV7SnjUsi3m+VzS4qGosq+32v0/VspXXfWinG9XMO6Xp7hOsYM2WWmP8VHfrn9hPjIkBt5gH2K25BFaPEAs/6TVdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ba6EToGn; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c26311c6f0so1821705a12.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 05:25:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1725366358; x=1725971158; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+cdIRXo5VTqWR2KdDzO1DTS+Vt8PiHUf2RGCvnaGFsQ=;
-        b=ba6EToGnZTcjtlxOZnx4KqVxMNNTjMd9eK/EiS3OXuLybDIRe/EAOXmxjOAyakw0qL
-         Y4TUlOKJEv4sKlfLgwyBCBSCoGYrLNIRgYT0R3Zpj39eTIylWHzinbHFa/6hmWuKU6sZ
-         KMaCSCvyFLzagyJKL+yjieGzCBVbu09BMr3FnJtbyAyKh0TTGhTkg/EErV63OnZPli8b
-         TIhWCDyBFFHHc3H0DQALOhttviHm2xd/Fsf4XYgTaP6lPdfr7YZVZPJ2hVBH54xYe/Vt
-         /9XBaakV8wZuG7WtCMeRTrQ8YWgAoDUypyOU2Ye/JIZpkQbnG284zwgT7dm4RFT/JNSv
-         vrPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725366358; x=1725971158;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+cdIRXo5VTqWR2KdDzO1DTS+Vt8PiHUf2RGCvnaGFsQ=;
-        b=O6TJ6FcZNOhyqX3bx/pr+XMtpaiTuvkON/rKXFvTl5AV6DnhBNzUYwo+w74UtP7rcB
-         VmjWezfd/KvPAypF9eh0tbMtLPJFlHiiL/a8nfQvdZUOJQ7HI9L2kY4//vMSJY2YZzlN
-         8RQ6hd99VVVFkca7Szwy0rrMmn6h5KHNkQynRsDCE0xNq+YWvrV0SEZFsOMw3hNF4dWt
-         KvDM4Zcu7LfOn2kRgNroaG62fyvAFkJt9zvXdndqbsruRuarXTgB0Gt5c5gzpiKb8wU5
-         FvHi3dCHpxcaIFH2eXHQ2NTbqcvKj7pzDZlx2c56w//Y/MjSyq6/iImKBDWum47fjAcq
-         QfnA==
-X-Forwarded-Encrypted: i=1; AJvYcCVZvQWjfsv21bzMJuC2ezDXAodbf1Gzluf0ItdKSLH6CcDdNlpOs0wkcKAmc/QmC3Hw4WtyhNypJDKH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHsiZXpc2wKRNoa4FYnN6guvFwGtQNZFCCcFKWmvYrJhNa0EDb
-	6kzK/CrU5WBbnOy/PCbF2a4C7ZtqfsgOWjzS5IZn8sNYpHz5x/0z7243A+kMTII=
-X-Google-Smtp-Source: AGHT+IGCJSAfsQxh53LJgcY+qGaZ+a7jTX6q5V6OFCLQvyiQ7yrxNllyp0cepO9Zz23djK5zaAK9PQ==
-X-Received: by 2002:a05:6402:4310:b0:5a2:2654:7fc4 with SMTP id 4fb4d7f45d1cf-5c25c3a717amr5389144a12.8.1725366357788;
-        Tue, 03 Sep 2024 05:25:57 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.144])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c226c6a3cdsm6412278a12.12.2024.09.03.05.25.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Sep 2024 05:25:57 -0700 (PDT)
-Message-ID: <0b73544b-0253-43b9-b631-6578b48eaca8@tuxon.dev>
-Date: Tue, 3 Sep 2024 15:25:55 +0300
+	s=arc-20240116; t=1725366437; c=relaxed/simple;
+	bh=Pwn7mZql+l/6H4k0w9z5e/b4dnAhIH+ZWTPs4Uj3+QA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eKUoOKRyAMw+MhOZgxv8u+J7x9cmsmG413kVCKyXAWvC+ingbaxc/eu7+M3O0fZhvr0V7NYzPaCFXemvrqiCcXRuhofEraSK5q+K58WEzuBdQbHgm8mmsW6VLtzCpleL6/F7jr4MMssaUc2riLsXFkyYbc63iURtojE7BLn3c5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH v4 0/3] riscv: spacemit: add pinctrl support to K1 SoC
+Date: Tue, 03 Sep 2024 12:26:43 +0000
+Message-Id: <20240903-02-k1-pinctrl-v4-0-d76c00a33b2b@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
- "kishon@kernel.org" <kishon@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB113467275C519B729FCAB1ACB86922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <5556d176-cca7-492c-ba21-48256d5d6338@tuxon.dev>
- <TY3PR01MB113464D53083F4C8A5DBBA36586922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <590a4fb2-24b2-432b-92db-534c5a52ed0b@tuxon.dev>
- <TY3PR01MB11346505565B81AD2894E035586922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <35dc7414-f5bd-4ed4-bfa1-f723f4f0078c@tuxon.dev>
- <TY3PR01MB11346A4814F83FE296A1DED8886922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <TY3PR01MB1134648BF51F1B52BFE34DD6D86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <fbfa9179-2f52-429f-8b69-f7f4064e796b@tuxon.dev>
- <TYCPR01MB11332EF1A8D064C491D8F261286932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <f7c57e76-b890-491f-880d-62d060b7b31e@tuxon.dev>
- <TYCPR01MB11332BE2EDB318950B9C7B54C86932@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <TY3PR01MB113469FC8A9F49D9B1FA432FD86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB113469FC8A9F49D9B1FA432FD86932@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIMA12YC/2WQy26DMBBFfwV5XVeesTGGVf+j6sKPIbHa4MRQ1
+ Cri32tgkZYur61zdO/c2Ug50si66s4yzXGMaShBPVXMn+1wIh5DyQwFKtEIwwXyd+DXOPgpf3B
+ p0QnyIEEAK8w1Ux+/Nt/r254z3T6LdtofH9au2pwa9SoUwJ0do+dh4mCtBCJyPmA316u3/BH36
+ XKJUyknwYNWmqA32rWq7a3Upqbe18JpLUpSHp1ma4NzHKeUv7eBM2wV9i3QHrbMpQVH2Vpfu6Y
+ JQb+caJhSek75tKlmfOAG6yOOBQ8hSGOlqgPgP1z+xo+XnGXBoaegLaKj1vzBl2X5AUf6Bp6rA
+ QAA
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Conor Dooley <conor@kernel.org>
+Cc: Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>, 
+ Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+ Meng Zhang <zhangmeng.kevin@spacemit.com>, 
+ Meng Zhang <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3473; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=Pwn7mZql+l/6H4k0w9z5e/b4dnAhIH+ZWTPs4Uj3+QA=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBm1wCR/7ec9bZkLiJChSs3C4x3sOWCBlX9YlyEs
+ qb4AQXB4W2JApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZtcAkV8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277baEEACAMkwr8T+fb5zT2q
+ 9/PaffoJvsSbmWyeZZyFewVkWBu976EVHwAm6thC2+/KfusEyEBQJg78VPk+ff90EQs4Iv76CUZ
+ /ghU+6OLa+o6bOW1sgimJSmyUCTduCSdZHO//Zrtw0II2hSwZ1aBNyfYcmB8pdEgUXG8xdnOF+c
+ SQHLwHHK5nZOpPz7sTtoUj7EgXZiGu7lGT8S4F0giOXYAHl+2Gtx/2LsNqR5y12EC7xNjZgHBte
+ el1yHTSTx3k91ifjwpuwrvvDF5SVTHwjWsg7/TPf5r1b6ceNiJz4uWrYvSLgJZzjkS5XmQFj3SZ
+ CVJkhMwAR9b2pN9aZifQBjIBcj6ZgzyasQVsKbk7bbdsvnFz+fV5TIOA922pB0TiRNDGBCkMA3e
+ 8dzFuotCNqD9h34d6QOVbdxFq8jRyEbVcxLQfHRJPvfPso50uYauBVnOsjPQgQIGIssPRSs5agj
+ dZ5XQbI4lR0MMg4BRvBZWwPVPKL203WxA3MtqQoLg58JymB7bkgHQaN0kxypq5trqXx60BZJ2xE
+ /G2TQl/8Yv7IwxXuvmiuqcLZQ/CyDnrtcIDGCS0WOTU7KSEKIGp4bzU1NBUNUMsZT7NooeyQti4
+ rywIXjY3kROtXx9AgC1zUXt/O7LoMfcfPugqEip/r1af+hduOrtUSW8+r0l8m8LLNgTw==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
+This series adds pinctrl support to SpacemiT's K1 SoC, the controller
+uses a single register to describe all pin functions, including
+bias pull up/down, drive strength, schmitter trigger, slew rate,
+strong pull-up, mux mode. In patch #3, we add the pinctrl property of
+uart device for the Bananapi-F3 board.
 
+You can find the pinctrl docs of K1 here[1], and the original vendor's 
+pinctrl dts data here[2].
 
-On 03.09.2024 15:00, Biju Das wrote:
-> 
-> 
->> -----Original Message-----
->> From: Biju Das <biju.das.jz@bp.renesas.com>
->> Sent: Tuesday, September 3, 2024 12:07 PM
->> To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>; Ulf Hansson <ulf.hansson@linaro.org>
->> Cc: vkoul@kernel.org; kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
->> p.zabel@pengutronix.de; geert+renesas@glider.be; magnus.damm@gmail.com; gregkh@linuxfoundation.org;
->> mturquette@baylibre.com; sboyd@kernel.org; Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>;
->> linux-phy@lists.infradead.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
->> renesas-soc@vger.kernel.org; linux-usb@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->> clk@vger.kernel.org; linux-pm@vger.kernel.org; Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> Subject: RE: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
->>
->> Hi Claudiu,
->>
->>> -----Original Message-----
->>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>> Sent: Tuesday, September 3, 2024 12:00 PM
->>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas
->>> RZ/G3S SoC
->>>
->>>
->>>
->>> On 03.09.2024 13:31, Biju Das wrote:
->>>>>> During boot clr USB PWR READY signal in TF-A.
->>>>>> STR case, suspend set USB PWR READY signal in TF-A.
->>>>>> STR case, resume clr USB PWR READY signal in TF-A.
->>>>> As I said previously, it can be done in different ways. My point
->>>>> was to let Linux set what it needs for all it's devices to work. I
->>>>> think the way to go forward is a
->>> maintainer decision.
->>>>
->>>> I agree, there can be n number of solution for a problem.
->>>>
->>>> Since you modelled system state signal (USB PWRRDY) as reset control
->>>> signal, it is reset/DT maintainer's decision to say the final word
->>>> whether this signal fits in reset
->>> system framework or not?
->>>
->>> I was thinking:
->>> 1/ Geert would be the best to say if he considers it OK to handle this
->>>    in Linux
->>
->> I agree Geert is the right person for taking SYSTEM decisions, since the signal is used only during
->> state transitions (Table 41.6.4 AWO to ALL_ON and 41.6.3 ALL_ON to AWO)
-> 
-> One more info, as per [1], this USB PWRRDY signal setting to be before Linux kernel boots.
+Note, we rewrite this series as an independent pinctrl driver for K1 SoC,
+which means it does not use pinctrl-single driver as the model anymore,
+see the suggestion from Krzysztof at [3].
 
-The "controlled by" column mentions CA-55 on PWRRDY signal control line and
-it is b/w steps "DDR exits from retention mode" and  "clock start settings
-for system bus and peripheral modules". AFAICT, after DDR exists retention
-mode Linux is ready to run.
+Link: https://developer.spacemit.com/documentation?token=An1vwTwKaigaXRkYfwmcznTXned [1]
+Link: https://gitee.com/bianbu-linux/linux-6.1/blob/bl-v1.0.y/arch/riscv/boot/dts/spacemit/k1-x_pinctrl.dtsi [2]
+Link: https://lore.kernel.org/all/b7a01cba-9f68-4a6f-9795-b9103ee81d8b@kernel.org/ [3]
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
+---
+Changes in v4:
+- squash dts patch (drop patch #3)
+- collect review tags
+- Patch #2
+ - fix pin id mapping
+ - improve pinconf debugfs
+- Link to v3: https://lore.kernel.org/r/20240828-02-k1-pinctrl-v3-0-1fed6a22be98@gentoo.org
 
-E.g. on resume Linux doesn't sets the clocks of all peripheral in sequence
-and then runs the rest of settings for each peripheral, in turn it sets the
-clock of one peripheral along with all the other necessary peripheral
-settings and then continues with the rest of peripherals (including their
-clocks).
+Changes in v3:
+- dt-bindings: drop vendor specific properties, fix format
+- rework pinctrl's gpio request function
+- fix logic of slew rate & drive strength
+- add power-source check
+- improve debugfs info
+- Link to v2: https://lore.kernel.org/r/20240825-02-k1-pinctrl-v2-0-ddd38a345d12@gentoo.org
 
-> 
-> All clocks/reset happens after setting USB PWRRDY signal
-> 
-> https://pasteboard.co/qbz021q7KPyi.png
-> 
-> Cheers,
-> Biju
+Changes in v2:
+- drop using pinctrl-single driver for K1
+- rewite as independent pinctrl driver
+- rebase to v6.11-rc5
+- Link to v1: https://lore.kernel.org/r/20240719-02-k1-pinctrl-v1-0-239ac5b77dd6@gentoo.org
+
+---
+Yixun Lan (3):
+      dt-bindings: pinctrl: spacemit: add support for K1 SoC
+      pinctrl: spacemit: add support for SpacemiT K1 SoC
+      riscv: dts: spacemit: add pinctrl property to uart0 in BPI-F3
+
+ .../bindings/pinctrl/spacemit,k1-pinctrl.yaml      |  124 +++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |    3 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |   20 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |    5 +
+ drivers/pinctrl/Kconfig                            |    1 +
+ drivers/pinctrl/Makefile                           |    1 +
+ drivers/pinctrl/spacemit/Kconfig                   |   17 +
+ drivers/pinctrl/spacemit/Makefile                  |    3 +
+ drivers/pinctrl/spacemit/pinctrl-k1.c              | 1078 ++++++++++++++++++++
+ drivers/pinctrl/spacemit/pinctrl-k1.h              |   40 +
+ 10 files changed, 1292 insertions(+)
+---
+base-commit: 431c1646e1f86b949fa3685efc50b660a364c2b6
+change-id: 20240708-02-k1-pinctrl-3a2b0ec13101
+prerequisite-change-id: 20240626-k1-01-basic-dt-1aa31eeebcd2:v5
+prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
+prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
+prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
+prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
+prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
+prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
+prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
+prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
+prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
+prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
+
+Best regards,
+-- 
+Yixun Lan <dlan@gentoo.org>
+
 
