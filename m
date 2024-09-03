@@ -1,119 +1,92 @@
-Return-Path: <devicetree+bounces-99324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774559697A6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:47:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6430B9697CD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:51:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02CCDB22BD0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:47:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 224DE289A87
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE2411C984A;
-	Tue,  3 Sep 2024 08:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5911AD241;
+	Tue,  3 Sep 2024 08:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="eZZTYjIf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03751B984B;
-	Tue,  3 Sep 2024 08:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FC919F436;
+	Tue,  3 Sep 2024 08:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725353066; cv=none; b=lLntUqtBgybxvkJcPQCQEt0LRt0z5qCfLAMu1po1onPAk7XqNi5pC1JgcdUAUtU/xH1KJWfzbKH82UIi8bZd59Qoiu2sgSSFxV1e9Y3oM28YBXPWzpWLrY9XRg4Nd4Zh29++b467PPZhjDnRTf/mLKN2q7UzZRUYkU2WERSX1fA=
+	t=1725353308; cv=none; b=c1jFDYdcCxVTmqJbTHzMelEubmhvcxSTDUuru5M2fi6vXGbv8CAFkC/fbola7XkJlfr04u42kjJdUF1MnGu/nxVPbMwMAJ1FbpnaOIO/1Y7Su7CrA3kMDLTaBlQULU6d8LR85XRwNlKB6JCSyM4Y/afjKlOvegjRqSHp30CHO8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725353066; c=relaxed/simple;
-	bh=c/2X/wcjltZ9G+w1mU8HRZYclrI90PAhceXyxXMB2Eo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mgbpDWrzla2OnVnnjcGgWv1X3vCVIJi0SuczEH6TxLQF96sdCdrWNC3OvDTSU9W0c1jIN0VJpA5bs4LoV0Cx4BoKFm/GIRZ9SrX0MywzG8UOdtyI7UmiH3cE/jJmKvOPZUXjkdEf60vibuvYLh3brSa4Owq5N8y2EINpqlthjro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4WyfLZ5NCCz9sSC;
-	Tue,  3 Sep 2024 10:44:22 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ei9JIriNpoNU; Tue,  3 Sep 2024 10:44:22 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4WyfLZ4Xrtz9sS7;
-	Tue,  3 Sep 2024 10:44:22 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 85BDC8B76E;
-	Tue,  3 Sep 2024 10:44:22 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id 7IFIJofcuulb; Tue,  3 Sep 2024 10:44:22 +0200 (CEST)
-Received: from [172.25.230.108] (unknown [172.25.230.108])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 55B0E8B768;
-	Tue,  3 Sep 2024 10:44:22 +0200 (CEST)
-Message-ID: <7688f95f-3f08-404b-8c01-813ca5e23a3d@csgroup.eu>
-Date: Tue, 3 Sep 2024 10:44:22 +0200
+	s=arc-20240116; t=1725353308; c=relaxed/simple;
+	bh=sElBf8ySjKlJFo0FWycNZ8r+AmDIv4aPy2vC//s49nA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tOKq7FYbF/o9LKfEdEGFu55CJzQsfTeDdZ2MqGFx5PH9WFTuLBh2Bno9mndzJqNLiQeDyK1ksqSx19cMkCEbhHNbdLq11luZmNXYwDFXl05B7vgt6Qb29qNDc81CkfEBjdvb7s1bam9vMI3mqjN9Lq1uYyRXN+oi7inRcCflix8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=eZZTYjIf; arc=none smtp.client-ip=1.95.21.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=dmTmVn7+b+7knv63OjIIhNmzwrdlD/kG9NEDBxzlBAs=;
+	b=eZZTYjIf1yiW+cQ3REaTTugu7J/ACx4aYjk9QORXmH82uTaHcGzSKpDGjhhSH3
+	drcD3EelFuYcOKzd5Hj+8he8x1gIQZh1qGZh+kNZmg9D8/BJfy7ScvkAm0G2BonN
+	nknaDwhJ8CTv3ssLRAihHIbnbF0A3TLLQnwyrvCrYwGnI=
+Received: from dragon (unknown [114.216.210.89])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3v_QtzdZmBlBbAA--.1919S3;
+	Tue, 03 Sep 2024 16:47:43 +0800 (CST)
+Date: Tue, 3 Sep 2024 16:47:41 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>
+Subject: Re: [PATCH v3 1/1] arm64: dts: imx: rename gpio hog as <gpio
+ name>-hog
+Message-ID: <ZtbNLcP5CPRI1oTa@dragon>
+References: <20240902193013.1456513-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/36] soc: fsl: Add support for QUICC Engine TSA and
- QMC
-To: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Mark Brown <broonie@kernel.org>
-Cc: linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20240808071132.149251-1-herve.codina@bootlin.com>
-Content-Language: fr-FR
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <20240808071132.149251-1-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240902193013.1456513-1-Frank.Li@nxp.com>
+X-CM-TRANSID:M88vCgD3v_QtzdZmBlBbAA--.1919S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Wr15Ww4kZFy3WFyxAw43Wrg_yoWDGrX_Aa
+	s7JrnxZr4kCayIg3WSyr4rG3y0kFZ5Zw1aqrn5Xwn7Gr43XayDtF4xJFWFkw1akFZIkr98
+	AryfJrsxtrWrKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0_gA7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxRPZWbWykwJXgAAsU
 
+On Mon, Sep 02, 2024 at 03:30:12PM -0400, Frank Li wrote:
+> Rename admin_led_lower to admin-led-lower-hog.
+> Rename gpio rs485_en as rs485-en-hog.
+> Rename gpio uart4_rs485_en to uart4-rs485-en-hog.
+> 
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: gpio@76:
+>   'admin_led_lower' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
+> arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs232-rts.dtb:
+>   gpio@30230000: 'rs485_en' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
+> arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dtb:
+>   gpio@30220000: 'uart4_rs485_en' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
+> 
+> Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
+Applied, thanks!
 
-Le 08/08/2024 à 09:10, Herve Codina a écrit :
-> Hi,
-> 
-> This series add support for the QUICC Engine (QE) version of TSA and QMC
-> components.
-> 
-> CPM1 version is already supported and, as the QE version of those
-> component are pretty similar to the CPM1 version, the series extend
-> the already existing drivers to support for the QE version.
-> 
-> The TSA and QMC components are tightly coupled and so the series
-> provides modifications on both components.
-> Of course, this series can be split if it is needed. Let me know.
-> 
-> The series is composed of:
-> - Patches 1 and 2: Fixes related to TRNSYNC in the QMC driver
-> - Patches 3..6: Fixes of checkpatch detected issues in the TSA driver
-> - Patch 7: The QE TSA device-tree binding
-> - Patches 8..13: TSA driver preparations for adding support for QE
-> - Patches 14 and 15: The support for QE in TSA + MAINTAINERS update
-> - Patch 16: A TSA API improvement needed for the QE QMC driver
-> - Patch 17: A clarification in the QE QMC driver
-> - Patches 18..22: Fixes of checkpatch detected issues in the QMC driver
-> - Patch 23: The QE QMC device-tree binding
-> - Patches 24..31: QMC driver preparations for adding support for QE
-> - Patches 32 and 33: Missing features additions in QE code
-> - Patches 34..36: The QMC support for QE in QMC + MAINTAINERS update
-> 
-> Compared to the previous iteration, this v2 series updates device-tree
-> bindings and fixes issues detected by kernel test robots.
-> 
-> Related to the QE QMC device-tree binding, I kept the unit address in
-> decimal and the 3 compatible strings in order to avoid blocking the
-> review waiting for a confirmation. Of course, this can be change in a
-> next iteration.
-
-Series applied for 6.12
-
-Thanks
-Christophe
 
