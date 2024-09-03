@@ -1,126 +1,219 @@
-Return-Path: <devicetree+bounces-99515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C493E96A0B4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:32:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 218C796A0C6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:36:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F0651F29620
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:32:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 471001C236C2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5AE2E636;
-	Tue,  3 Sep 2024 14:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7200713CF86;
+	Tue,  3 Sep 2024 14:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="as3ak4Ua"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C30013F43A
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 14:31:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8CA1CA69B;
+	Tue,  3 Sep 2024 14:36:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725373899; cv=none; b=JsxtPmFoyvB2h1OwaprnIXUkqp8R/g1d1OVZftiXHFMApKNeUudrygRrtB7r508wP1A/d/3J1f0La3XE2n8oeXNyrWCBix8+nU+zziyChfAGGSTL5XnEr/eoM7JKobw1pu12MuXsZDkcEI0TG/a+hv7U2dG2djFEU7i0SuCVECA=
+	t=1725374183; cv=none; b=CErmFC4NOGzfUjfawEWPXEIqS6foxIf4S8jjRE/2awBfmGIKsil1Tefocaqv1Lzs0RCKUdMJc6ttkryet4YK4alIyAgE02PxnFFmaX2MVS5VlFfBJA+Y/FCFwaUP5T/I7oBcD41o3CDYmydxz7QD3QsaxIG1T1ahlPJuOrTYb5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725373899; c=relaxed/simple;
-	bh=EqGFIA81wnRezVMfHSYdxtcN967iyCH9/w9O9okFG2o=;
+	s=arc-20240116; t=1725374183; c=relaxed/simple;
+	bh=L3d++NF7GGQmjzBQ/nJ21+8BA6gNGXIquAP/O/uoey4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=REXfxK4TodaM8z5yZa7Yrq8pgXZQcc0Bh28QaztWrFxDBHxbDtTmXSvcC8VkeWsmtn3rR2mxX0ZRb0/Hb4QzNoVB0LweUJastWk2w0CsKXw3uWUKLZvt7hOgvePdkZsSDJOrDVH9jo3EH3MffeaSPjsTfNbv42krwYScW4XmZmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1slUYy-00046g-5J; Tue, 03 Sep 2024 16:31:20 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1slUYx-005DeT-8T; Tue, 03 Sep 2024 16:31:19 +0200
-Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id D9EEF331669;
-	Tue, 03 Sep 2024 14:31:18 +0000 (UTC)
-Date: Tue, 3 Sep 2024 16:31:18 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Tarang Raval <tarang.raval@siliconsignals.io>, linux-kernel@vger.kernel.org, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, shawnguo@kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals
- Support
-Message-ID: <20240903-amazing-shaggy-ant-6751f7-mkl@pengutronix.de>
-References: <20240903091720.443091-1-tarang.raval@siliconsignals.io>
- <172537334994.875077.18308965320836312656.robh@kernel.org>
- <CAOMZO5BNYopFt=_o5qrK7piwxYwF4E10DzCKPW4oh0k4Yj0hUQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pD2X1zGfmifo4rmZcg0GEB6z08qXqyxUbvTb3Lz07/gecB6ZPj8JVLylajNFPcVwroH4tZnsblABcAUQKiH+TZn3v0UTn/417cgZbBVzSL+ozga1WLTkKTkeRVTdK2Y/qFZqLIZ8m1Co1vy2rJSURHo5WUR7z7tI2afoNqgY7DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=as3ak4Ua; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725374183; x=1756910183;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=L3d++NF7GGQmjzBQ/nJ21+8BA6gNGXIquAP/O/uoey4=;
+  b=as3ak4UatUU0Sw1hMCF3dDXOHo7bMJrQBMF4Kjg+WUANv3pOVnXc41GZ
+   ozb039GVHNL8VYUhny4NX6etOaT0PxPixH437nD4CGgevCEGisSbJfEmV
+   AYm3/DKIDMQOmBYwrPMotzYqVAVFrymmC/2c6xygPqRVGwGaadyQsEfV2
+   MYPlGI1zwqMkZzPfvjKsRO3eugqs91thK37P7nIasV6M5JfsaIXz6gS8q
+   T96oshs+gkbloxah88pe7dVNwgAGm6VfBVj/EPSbcy84exCSN88O70bz7
+   XcvuyGm1wHRd9z9rzQxk64YfPLgMu3ASLKCmtxbY8d9b1Sr1Buzjc5GwJ
+   w==;
+X-CSE-ConnectionGUID: XoY1pK66TNSHUAVtE+Ijsg==
+X-CSE-MsgGUID: e7Ftzcq7TgqeLXOehMcRvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="46503276"
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="46503276"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:36:22 -0700
+X-CSE-ConnectionGUID: C6pkwfu/Rsa8jOseirDcmA==
+X-CSE-MsgGUID: /x162Ds3SfKmtavCPRkXgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="69791485"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:36:18 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1slUdi-00000004jnj-0SQs;
+	Tue, 03 Sep 2024 17:36:14 +0300
+Date: Tue, 3 Sep 2024 17:36:13 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v5 6/7] iio: pressure: bmp280: Add data ready trigger
+ support
+Message-ID: <Ztce3XuXZ-hxwU8h@smile.fi.intel.com>
+References: <20240902184222.24874-1-vassilisamir@gmail.com>
+ <20240902184222.24874-7-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uj5endkg7ttsx65g"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAOMZO5BNYopFt=_o5qrK7piwxYwF4E10DzCKPW4oh0k4Yj0hUQ@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240902184222.24874-7-vassilisamir@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Mon, Sep 02, 2024 at 08:42:21PM +0200, Vasileios Amoiridis wrote:
+> The BMP3xx and BMP5xx sensors have an interrupt pin which can be used as
+> a trigger for when there are data ready in the sensor for pick up.
+> 
+> This use case is used along with NORMAL_MODE in the sensor, which allows
+> the sensor to do consecutive measurements depending on the ODR rate value.
+> 
+> The trigger pin can be configured to be open-drain or push-pull and either
+> rising or falling edge.
+> 
+> No support is added yet for interrupts for FIFO, WATERMARK and out of range
+> values.
+
+...
+
+> +static int __bmp280_trigger_probe(struct iio_dev *indio_dev,
+> +				  const struct iio_trigger_ops *trigger_ops,
+> +				  int (*int_config)(struct bmp280_data *data),
+> +				  irq_handler_t irq_thread_handler)
+
+Would it make sense (note, I do *not* know the correct answer!) to have
+something like
+
+struct foo {
+	const struct iio_trigger_ops *trigger_ops;
+	int (*int_config)(struct bmp280_data *data);
+	irq_handler_t irq_thread_handler;
+};
+
+and pass it around?
+
+Also int_config sounds non-related to interrupt, however it's about interrupt
+pin, right? perhaps name it differently here?
+
+E.g.,
+
+	interrupt_pin_config
+
+?
+
+> +{
+> +	struct bmp280_data *data = iio_priv(indio_dev);
+> +	struct device *dev = data->dev;
+> +	struct fwnode_handle *fwnode;
+> +	u32 irq_type;
+> +	int ret, irq;
+> +
+> +	irq = fwnode_irq_get(dev_fwnode(dev), 0);
+> +	if (irq < 0)
+> +		return dev_err_probe(dev, irq, "No interrupt found.\n");
+> +
+> +	irq_type = irq_get_trigger_type(irq);
+> +	switch (irq_type) {
+> +	case IRQF_TRIGGER_RISING:
+> +		data->trig_active_high = true;
+> +		break;
+> +	case IRQF_TRIGGER_FALLING:
+> +		data->trig_active_high = false;
+> +		break;
+> +	default:
+> +		return dev_err_probe(dev, -EINVAL, "Invalid interrupt type specified.\n");
+> +	}
+> +
+> +	data->trig_open_drain =
+> +		fwnode_property_read_bool(fwnode, "int-open-drain");
 
 
---uj5endkg7ttsx65g
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Where do you initialise fwnode?
 
-On 03.09.2024 11:28:29, Fabio Estevam wrote:
-> On Tue, Sep 3, 2024 at 11:26=E2=80=AFAM Rob Herring (Arm) <robh@kernel.or=
-g> wrote:
->=20
-> > New warnings running 'make CHECK_DTBS=3Dy freescale/imx8mm-emtop-basebo=
-ard.dtb' for 20240903091720.443091-1-tarang.raval@siliconsignals.io:
-> >
-> > arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dtb: /soc@0/bus@30=
-800000/spba-bus@30800000/spi@30830000/can@0: failed to match any schema wit=
-h compatible: ['microchip,mcp2515']
->=20
-> There is a patch from Frank to address this compatible:
->=20
-> https://lore.kernel.org/lkml/20240814164407.4022211-1-Frank.Li@nxp.com/T/
+> +	ret = int_config(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	data->trig = devm_iio_trigger_alloc(data->dev, "%s-dev%d",
+> +					    indio_dev->name,
+> +					    iio_device_id(indio_dev));
+> +	if (!data->trig)
+> +		return -ENOMEM;
+> +
+> +	data->trig->ops = trigger_ops;
+> +	iio_trigger_set_drvdata(data->trig, data);
+> +
+> +	ret = devm_request_threaded_irq(data->dev, irq, NULL,
+> +					irq_thread_handler, IRQF_ONESHOT,
+> +					indio_dev->name, indio_dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "request irq failed.\n");
 
-It's in net-next (for v6.12) with 09328600c2f9 ("dt-bindings: can:
-convert microchip,mcp251x.txt to yaml").
+IRQ
 
-Marc
+> +	ret = devm_iio_trigger_register(data->dev, data->trig);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "iio trigger register failed.\n");
+> +
+> +	indio_dev->trig = iio_trigger_get(data->trig);
+> +
+> +	return 0;
+> +}
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+...
 
---uj5endkg7ttsx65g
-Content-Type: application/pgp-signature; name="signature.asc"
+> +static int bmp580_data_rdy_trigger_set_state(struct iio_trigger *trig,
+> +					     bool state)
+> +{
+> +	struct bmp280_data *data = iio_trigger_get_drvdata(trig);
+> +	int ret;
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	ret = regmap_update_bits(data->regmap, BMP580_REG_INT_CONFIG,
+> +				 BMP580_INT_CONFIG_INT_EN,
+> +				 FIELD_PREP(BMP580_INT_CONFIG_INT_EN, !!state));
+> +	if (ret)
+> +		dev_err(data->dev,
+> +			"Could not %s interrupt.\n", str_enable_disable(state));
+> +	return ret;
 
------BEGIN PGP SIGNATURE-----
+Somewhere above (or in another patch) you used the style with 'return 0;' at
+the end. Please, check the resulting code for the consistency and choose one
+style for all.
 
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbXHbMACgkQKDiiPnot
-vG9j4Qf/RkUhlwPsrPQTurTEXeycXn3Vdwx8e3Z7uSNRip0XtR/yXpFfO49nOldd
-isCHKkNv8flTk9+xh2PEieP1f+jN61TwZt/4R923Oby6qfvFQ/C65HsLFcKbgi+u
-YvpIljMTBV88CTb9EAIhAhvr/pRdtB6yRXSKKgQoASg2FQB/7WTISVy42Y0o/9TU
-a+uNuH6irUuX3RNYhztYtD0J0umTAfGK83LVQ65XMvLnln+BPgkuvZmPRBisx7pF
-BiWwGn/9qH5CVrjYvWr0PKTM89BR3sfMpc5E1haMacRDPqHCqZDDt23D72j8Ih7o
-cb6QVe7gh4qDg+5rSrVTw2M6+BCyFQ==
-=SicB
------END PGP SIGNATURE-----
+> +}
 
---uj5endkg7ttsx65g--
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
