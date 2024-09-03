@@ -1,135 +1,102 @@
-Return-Path: <devicetree+bounces-99481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C966D969EC3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:12:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308D1969F15
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AB3DB20B6E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E243E286765
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A048C1A724C;
-	Tue,  3 Sep 2024 13:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E72315C3;
+	Tue,  3 Sep 2024 13:32:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="R5kT24XS"
+	dkim=pass (2048-bit key) header.d=terefe.re header.i=@terefe.re header.b="BEhArPy+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from terefe.re (terefe.re [5.255.96.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D953B1CA6B5;
-	Tue,  3 Sep 2024 13:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 308805684;
+	Tue,  3 Sep 2024 13:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.255.96.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725369150; cv=none; b=A3wj7zikJ/n1xgPO6WSOo4FPL6pBUzwsM8LCcPZ0mwp9sLd/WrlJfI7e7eLrCjtj6CfPLVr/IbCnCLh1gVs8T1zT0m3Sr+wG09SXRgjLZCuNYtnt1dPMAQPUoMA2YVwcJS4oQ829Ue2uMo49wGYSLATAqq/0Ky/xs3UUUpI4smk=
+	t=1725370335; cv=none; b=VubInlK43bXgNLiITt4kEp5bKr+lkAWHn1o1TNnwCHJ1EtkHLq3VmjvLZczeJ9NsGhaitLJnuFy0f+ZzDJGrv/2BuSAodW8jvyFUGWckiaSoJZXR4xi4FvzdffsP6LDsQjKBMysPaQTL6wc9UKNBofnsw/wkIl/BXRU6YKXUzNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725369150; c=relaxed/simple;
-	bh=cEUEgUfK2VJKwSdXTwN56m3l5tttmANwIWAPrH3n0F8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r3LXeQG0G8QnbfoD1wt6uWLEHjvO5j3dKWDWlD/ptvEXhw0KqcXg4AXZLmDBsJ9hnZOJI43oOyCTeUGPPxPiyGiK20xTJ8DYrghA58lu9IVjYuOhFecVtPxjvOT7G1ViAyn7mnMD5dQh/OSLYmmbZ0cg7vjZHanSQivhjoZcDPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=R5kT24XS; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iuEYWyd+FkBmHpEwRM4wRGxRSybUGjHcHitebzsyO4Y=; b=R5kT24XS1hNQLKAnN8rrJQxjJy
-	2uus18smDr03HNh29fOC7YfQp/VduL8+SvxY8BzMcCxuu4sMw8piNjpUGdi5+BsfLHApa1Nwm/On9
-	ujW2y4jJui+KsWTmw+PF3rhw/PR/eUM/otRlTFEqRpBLP3F/wOwG5DFrChlLb0IVXSLg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1slTKS-006QdE-2o; Tue, 03 Sep 2024 15:12:16 +0200
-Date: Tue, 3 Sep 2024 15:12:16 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: Re: [PATCH net] dt-bindings: net: tja11xx: fix the broken binding
-Message-ID: <bc68a8c5-b3d7-4b87-a192-ba825bfafb50@lunn.ch>
-References: <20240902063352.400251-1-wei.fang@nxp.com>
- <8bd356c9-1cf4-4e79-81ba-582c270982e8@lunn.ch>
- <PAXPR04MB85100D0AEC1F73214B2087CB88932@PAXPR04MB8510.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1725370335; c=relaxed/simple;
+	bh=MMjjOmscQiumevRnZT3RgPpiEGiI+t4U1IBVrmUKeCk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=oAEKcr/Qa9xnzb1gHexXBqwHG4tUvLPjfMMaQi2F+0cLuG0jmek7fphYakSu8wJMQY0PfKwI9q6azlSkUlF1dCcPNZM+fsV1brOOiba8tD52UPYNbwYXX0xgol0YHRnAaNTpEcYcHdw75PRLsWJyDxWUNH6NmCTGjNZZNgpOXMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=terefe.re; spf=pass smtp.mailfrom=terefe.re; dkim=pass (2048-bit key) header.d=terefe.re header.i=@terefe.re header.b=BEhArPy+; arc=none smtp.client-ip=5.255.96.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=terefe.re
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=terefe.re
+Received: from localhost.localdomain (unknown [212.106.161.95])
+	by terefe.re (Postfix) with ESMTPSA id CAA7A200DF;
+	Tue,  3 Sep 2024 15:22:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=terefe.re; s=default;
+	t=1725369741; bh=MMjjOmscQiumevRnZT3RgPpiEGiI+t4U1IBVrmUKeCk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=BEhArPy+VtVGdzNZ4kl0FsJvgdbtkMWAnMJUOAduey84uUeKcoJab+53ogm9OdyC/
+	 mW9XLPWdRgm9r4cBhGphT4wW+16te9nzSY537hG7OpG/i6IS+yYtWH4WsWYGxWsG8Y
+	 IfqcdzEk1zuziRco5qUCUtWarKHAhKXvSZn9IYH62+AasPGMrOPImzqBDWKHjv135A
+	 341ZMxdcMg5kRQ8fHoHuVWWscvcLk3d8pNq6KeeTKtciwVu1/wJEzzT2lhP8+0o+4Q
+	 sLIMLnMv17JhchiQ5SZWS/daHy0cRQqrtFPddHNql3uD2vL4ewlOxOXnimbMkzsFeS
+	 brRpcaT5Ao2JA==
+From: Tomasz Maciej Nowak <tmn505@terefe.re>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	oe-kbuild-all@lists.linux.dev,
+	linux-mm@kvack.org,
+	Tomasz Maciej Nowak <tmn505@gmail.com>,
+	kernel test robot <lkp@intel.com>
+Subject: [PATCH] arm64: tegra: p2180: Add mandatory compatible for WiFi node
+Date: Tue,  3 Sep 2024 15:21:48 +0200
+Message-ID: <20240903132200.3350-1-tmn505@terefe.re>
+X-Mailer: git-send-email 2.46.0
+In-Reply-To: <202409030438.8tumAnp1-lkp@intel.com>
+References: <202409030438.8tumAnp1-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB85100D0AEC1F73214B2087CB88932@PAXPR04MB8510.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 03, 2024 at 02:17:04AM +0000, Wei Fang wrote:
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - ethernet-phy-id0180.dc40
-> > > +      - ethernet-phy-id0180.dd00
-> > > +      - ethernet-phy-id0180.dc80
-> > > +      - ethernet-phy-id001b.b010
-> > > +      - ethernet-phy-id001b.b031
-> > 
-> > This shows the issues with using a compatible. The driver has:
-> > 
-> > #define PHY_ID_TJA_1120                 0x001BB031
-> > 
-> >                 PHY_ID_MATCH_MODEL(PHY_ID_TJA_1120),
-> > 
-> > which means the lowest nibble is ignored. The driver will quite happy also probe
-> > for hardware using 001b.b030, 001b.b032, 001b.b033, ... 001b.b03f
-> > 
-> > Given you are inside NXP, do any of these exist? Was 001b.b030 too broken it
-> > never left the QA lab? Are there any hardware issues which might result in a
-> > new silicon stepping?
-> 
-> Yes, some of the revisions do exist, but the driver should be compatible with
-> these different revisions.
-> 
-> For 001b.b030, I don't think it is broken, based on the latest data sheet of
-> TJA1120 (Rev 0.6 26 January 2023), the PHY ID is 001b.b030. I don't know
-> why it is defined as 001b.b031 in the driver, it may be a typo.
+From: Tomasz Maciej Nowak <tmn505@gmail.com>
 
-More likely, the board Radu Pirea has does have a device with this ID.
+The dtschema requires to specify common ancestor which all SDIO chips are
+derived from, so add accordingly.
 
-> > 
-> > Does ethernet-phy-id0180.dc41 exist? etc.
-> I think other TJA PHYs should also have different revisions.
-> 
-> Because the driver ignores the lowest nibble of the PHY ID, I think it is fine to
-> define the lowest nibble of the PHY ID in these compatible strings as 0, and
-> there is no need to list all revisions. And I don't know which revisions exist,
-> because I haven't found or have no permission to download some PHY data
-> sheets. I think what I can do is to modify "ethernet-phy-id001b.b031" to
-> "ethernet-phy-id001b.b030".
+Fixes: a50d5dcd2815 ("arm64: tegra: Wire up WiFi on Jetson TX1 module")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202409030438.8tumAnp1-lkp@intel.com
+Signed-off-by: Tomasz Maciej Nowak <tmn505@gmail.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-You have to be careful here. Stating a compatible forces the PHY
-ID. So if the compatible is "ethernet-phy-id001b.b031", but the board
-actually has a "ethernet-phy-id001b.b030". phydev->phy_id is going to
-be set to 0x001bb031. Any behaviour in the driver which look at that
-revision nibble is then going to be wrong.
-
-Maybe, now, today, that does not matter, because the driver never
-looks at the revision. But it does mean developers might put the wrong
-compatible in DT. And then when you do need to add code looking at the
-revision, it does not always work, because there are some boards with
-the wrong compatible in DT.
-
-Listing all possible compatibles suggests to developers they need to
-be careful and use the correct value. Or add a comment in the DT
-bindings that not using a compatible is probably safer.
-
-	Andrew
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+index c00db75e3910..1c53ccc5e3cb 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+@@ -351,7 +351,7 @@ mmc@700b0200 {
+ 		#size-cells = <0>;
+ 
+ 		wifi@1 {
+-			compatible = "brcm,bcm4354-fmac";
++			compatible = "brcm,bcm4354-fmac", "brcm,bcm4329-fmac";
+ 			reg = <1>;
+ 			interrupt-parent = <&gpio>;
+ 			interrupts = <TEGRA_GPIO(H, 2) IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.46.0
 
 
