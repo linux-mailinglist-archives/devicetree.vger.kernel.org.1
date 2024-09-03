@@ -1,250 +1,117 @@
-Return-Path: <devicetree+bounces-99371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF2796991E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:35:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B661969966
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 867D3283C19
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:35:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA9EAB2754E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66AFB1D094A;
-	Tue,  3 Sep 2024 09:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510241C62C6;
+	Tue,  3 Sep 2024 09:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="ID+2qPcP"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="vrieUW9k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A2F81D0940
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 09:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FEF1A0BE2
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 09:36:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725355989; cv=none; b=Ip8BHFqSi13we1adHaPo8Qu71A3pOcgKclRgK3frb6ZiRueCbkSe2tV5LjBBAOS/rZakjcsXqLPYnkOIk26M34NSG45FBjjh/FoDRwjHHcqg6N6yVq/S9xrE2Gu/Gsgwi+/qEVT32zYoeQBkCgvEZvnQfQGeaMT9cGCagqsz8/8=
+	t=1725356204; cv=none; b=f9H4AOHYBT87Xx27ASE2O18AcmTHhhhWOm6ICe1/LzLA+7SXWS5zMddf0C/kpUrKRbzWpnMsu97w0w3LokAldA1crLHxt9vxIbuZ5qH+R32474HzCwWUZdV9xoyg991T/jzUbsQZhj8rrcSriY4/ttNycVkgxg9CoP+ITUYQ4RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725355989; c=relaxed/simple;
-	bh=9bwQymfzf4ndqd3FHXuhSQAaB8hV+38lgAKZNuAsONE=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nB+5bGF4uMg5U2ichV4YjCcEz9n6efzNtDkBP+83RrnoqFZLHgdnQY+z/BTc4pAWSp4OGKgNL01eTYHqyB1nh+sZ7Ql49hXswg47eUFBIS+qCSjUrfZOO66Fmg/IDr++NZW7JlwDaioRLLnX7LfZQ23auj5Z1k4RDPkSRse+aC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=ID+2qPcP; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a8692bbec79so569008766b.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 02:33:06 -0700 (PDT)
+	s=arc-20240116; t=1725356204; c=relaxed/simple;
+	bh=l9la1v0zUehD2cTbZj5grL20PvMsJjIx3qzzkBecL00=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YoVyEwoUOXqRnrPnBD4uyAcAqVQ9RxlzXlLE2ipwx96Yt5LP77a5BqkY5vy3bf3u2FsFkBCvRreDp1CYGfGX3E7tW6YYmlbCAdtDRMH0yxK3yf1rjHOfYwvczGPII5lVrLfVXLzIEaR9fg4lC22kGBXBOBtAThTpSbusCxEF5yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=vrieUW9k; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-374c3400367so1837496f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 02:36:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1725355985; x=1725960785; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=wTnKFrfUmE/uIkrL7Z9DoBSa27AtxRfrH2Z2SWNCR6U=;
-        b=ID+2qPcPviliUAh87/JIQZz+GwIz0+ikXhuwcYGZa9KU6XMlIU8hFqVZRSbEdsPIqr
-         MZ78jllU9dwC2lQ7yQsdVW9FRGjchQFvttzbA8u9FExn48Ek0g8SwUcTUp6kABIsboFJ
-         p4N4aWiEW0akaDfCUe+a/XbTz0mC65VUvR6UxL93A7ImF5ivD7UTiuPVUm1cGNzWM514
-         xPQfTF0sp6IBRDO/nNmPZd3k8qjC1RGxuwvbITv5tPpgzgva7ucgxfmgn98mN7dhFPnC
-         AOkbFRyJv6vQJSMupMAO1d7rVN2dxZAPCccFCd6xrJi3fMINK4Xy6po0g50gS0w3rNZT
-         0yig==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725356200; x=1725961000; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DUig6PMN77FfWMVlDW1tFQu8YNW+SV2Jr7UO2hwr6hE=;
+        b=vrieUW9k+uqWKnVm1UuWrKN9O0+htRt21pVCG693wC3BVMOX8efDkRuYXGLeoZ0AXj
+         1E8UnKkLgHYMj34dWNHgHjPhBsnSUs4/4ID2zC2BrC3UQCgrGhcMJ90LAUNu5vn1hOmW
+         Ls9iokxp/4HwkE6mOwMkFcT73VGph9M4l2dPPjaOn2433Aa+1Qnlpf+H8Pqt0r4m4rIS
+         Y3vUD0dywkV9JtpICHJPOvUi9jtEaibaxwvaH8i+dFU+2wIfOV3E+DPZ/PBUbLJRYkN4
+         CAmWpS5bqlBdZBA2RkJ6nie5eUF7p2wkBvGeXSyVpJWmdUILEjzxu9sORi0EHMwhMSHs
+         c4aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725355985; x=1725960785;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wTnKFrfUmE/uIkrL7Z9DoBSa27AtxRfrH2Z2SWNCR6U=;
-        b=p/dlnxW+Db9gTNB3ON1B0GFDDlN5FQjs/vF419NXM1v1PmZ40L7agBmMyaQYV9jnHd
-         acbpi6J3NhI/6pvIfTVulBWVNfIFSap1MYGFj8K75Et/KHwDHPW7OSviq1TE32v8KwAQ
-         v5XFE7CdVm3oFNd7HrTFWb0UodyqzRFgaTIXikvlDOtd/QPVDwaJqnDHK7x/2Z7k2mCA
-         ARyiTLDKFqXJiOUDWj0FDBuTF58jogxlgQIAT3k42j0+A3iQYZlQlVRL0A0O/5i9LZPY
-         Y355b2TI8uLf+yI3WoGJEvkLbGBjWu2PA9ZB+c2RE80pIU5pArOX4BnmeynTWwR8D58X
-         vm5g==
-X-Forwarded-Encrypted: i=1; AJvYcCWVW/Gg+AU/QP/Z0V9fFgeK7tzNT9KbAMUudSSc/GAHZMZLZrjLMx6fBbJIirD8xGvQEf8BafI96gkb@vger.kernel.org
-X-Gm-Message-State: AOJu0YySpwsFhOymojU5vUllG20dJbW/gh6B6MgqiTsUOPz77aYcy/TK
-	yM3gtc9bzj+98Ie6maLfD2gibsvHxeewIh+fbq13n+ZSu5nr7HxgN5wE7lXVjk8=
-X-Google-Smtp-Source: AGHT+IF1reVINALdSgJc0RMsY6rt9TxEJ4rR+Xojf3y9r57wj6wnX0V9PBsi2NJ940berEZ0OfsA7Q==
-X-Received: by 2002:a17:907:72c7:b0:a86:a30f:4aef with SMTP id a640c23a62f3a-a89a35dee4cmr901597466b.22.1725355985011;
-        Tue, 03 Sep 2024 02:33:05 -0700 (PDT)
-Received: from localhost (host-80-182-198-72.retail.telecomitalia.it. [80.182.198.72])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8988bdcf57sm659603066b.0.2024.09.03.02.33.04
+        d=1e100.net; s=20230601; t=1725356200; x=1725961000;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DUig6PMN77FfWMVlDW1tFQu8YNW+SV2Jr7UO2hwr6hE=;
+        b=GRcoB5pM4LjfA4JHKYa4HFKMV+1MkPwbGlk2t50fedwlzpUbDu0D0Z8MWAH9k6HhVd
+         d8iNfL1suOAQkAdmPs98yWw+5yeNmmPnOODe0Zq4DfxEYfLuHAMzq1eFJs2hmN9ya9rQ
+         YGOTAkg7SsI2HLLukAxp85+YMiV6wUSGCBrisYf2MrEC4+QdQOdtIvYUyOS51fcXavvS
+         ELuMtyUTsPvJpBMm757Y9Yu4KY5jtggAnvQB0byE+VbNeCC646+l1+rO5x6u3/xD5zpc
+         AY2GKSqKwyIDxfXY3TfdqQ02h1RtT+JY8k86T/5PXIQRiEW0G3yPDRYJe6OqCjo/EoDO
+         5lFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgI7eJ+RPXFBQd379vXPyc2SlehP2Ki/AbBkE6D1/96ca9EYsdQt/LY8UxSXU5Omk+0RifuHclOc5o@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy49evpJSrB9Qxv2GwnrKzlpSSE6ShRR2Bhz8R5ATbwfMb6Ubxp
+	9KjEcdDIOdFMsy+9QkmMuaCwfHcB7w49pOr3Cs9Uebq1sCgF3JUFQItY5sR01McQ80oMvtS/HF0
+	e
+X-Google-Smtp-Source: AGHT+IFC/d7s36B8VDRRB0siJljwsah44aMKCzW17pW4yn2cf6YkAVprUlhE33xt5YCFHls4D4CBZg==
+X-Received: by 2002:adf:f892:0:b0:374:c64d:536a with SMTP id ffacd0b85a97d-374c64d543emr5427571f8f.27.1725356199126;
+        Tue, 03 Sep 2024 02:36:39 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:e61d:37d0:a59f:d06f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-376914bfca1sm790793f8f.18.2024.09.03.02.36.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2024 02:33:04 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 3 Sep 2024 11:33:12 +0200
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+        Tue, 03 Sep 2024 02:36:38 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 04/11] of: address: Preserve the flags portion on 1:1
- dma-ranges mapping
-Message-ID: <ZtbX2NZ6A6ATqQLh@apocalypse>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <5ca13a5b01c6c737f07416be53eb05b32811da21.1724159867.git.andrea.porta@suse.com>
- <20240821001618.GA2309328-robh@kernel.org>
- <ZsWi86I1KG91fteb@apocalypse>
- <CAL_JsqKN0ZNMtq+_dhurwLR+FL2MBOmWujp7uy+5HzXxUb_qDQ@mail.gmail.com>
- <ZtBJ0jIq-QrTVs1m@apocalypse>
- <CAL_Jsq+_-m3cjTRsFZ0RwVpot3Pdcr1GWt-qiiFC8kQvsmV7VQ@mail.gmail.com>
- <ZtChPt4cD8PzfEkF@apocalypse>
- <CAL_JsqJNcZx-HH-TJhsNai2fqwPJ+dtcWTdPagRjgqM31wsJkA@mail.gmail.com>
- <20240903110953.2b1f55b6@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v2 0/3] arm64: dts: qcom: sc8280xp: enable WLAN and Bluetooth
+Date: Tue,  3 Sep 2024 11:36:25 +0200
+Message-ID: <20240903093629.16242-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240903110953.2b1f55b6@bootlin.com>
 
-Hi Herve,
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-On 11:09 Tue 03 Sep     , Herve Codina wrote:
-> Hi,
-> 
-> On Fri, 30 Aug 2024 14:37:54 -0500
-> Rob Herring <robh@kernel.org> wrote:
-> 
-> ...
-> 
-> > > this view is much like Bootlin's approach, also my pci-ep-bus node now would look
-> > > like this:
-> > >  ...
-> > >  pci-ep-bus@0 {
-> > >         ranges = <0xc0 0x40000000
-> > >                   0x01 0x00 0x00000000
-> > >                   0x00 0x00400000>;
-> > >         ...
-> > >  };
-> > >
-> > > and also the correct unit address here is 0 again, since the parent address in
-> > > ranges is 0x01 0x00 0x00000000 (0x01 is the flags and in this case represent
-> > > BAR1, I assume that for the unit address I should use only the address part that
-> > > is 0, right?).  
-> > 
-> > No, it should be 1 for BAR1. It's 1 node per BAR.
-> 
-> It should be 1 node per BAR but in some cases it is not.
-> 
-> Indeed, in the LAN966x case, the pci-ep-bus need to have access to several
-> BARs and we have:
+This enables WLAN and Bluetooth on two boards using the sc8280xp SoC.
+For the sc8280xp-crd we add the PMU, wifi and bluetooth nodes with the
+correctly modelled wiring between them. For the X13s, we rework existing
+nodes so that they align with the new DT bindings contract.
 
-I second this, on RP1 there are multiple BARs too, but for this minimal
-implementation we need only one. Splitting them in one bus per BAR or
-merging them with multiple ranges entries depend on whether the peripherals
-can access different BARs simultaneously. Besides this contraint, I would
-say both approach are viable.
+v1 -> v2:
+- fix commit message in patch 1/3
+- drop drive-strength from the wlan enable pin function
+- drop the calibration variant property from the wifi node of the CRD
 
-> 	...
-> 	pci-ep-bus@0 {
-> 		compatible = "simple-bus";
-> 		#address-cells = <1>;
-> 		#size-cells = <1>;
-> 
-> 		/*
-> 		 * map @0xe2000000 (32MB) to BAR0 (CPU)
-> 		 * map @0xe0000000 (16MB) to BAR1 (AMBA)
-> 		 */
-> 		ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
-> 		          0xe0000000 0x01 0x00 0x00 0x1000000>;
-> 	...
-> 
-> Some devices under this bus need to use both BARs and use two regs values
-> in their reg properties to access BAR0 and BAR1.
-> 
-> 
-> > > > > > The assumption so far with all of this is that you have some specific
-> > > > > > PCI device (and therefore a driver). The simple-buses under it are
-> > > > > > defined per BAR. Not really certain if that makes sense in all cases,
-> > > > > > but since the address assignment is dynamic, it may have to. I'm also
-> > > > > > not completely convinced we should reuse 'simple-bus' here or define
-> > > > > > something specific like 'pci-bar-bus' or something.  
-> > > > >
-> > > > > Good point. Labeling a new bus for this kind of 'appliance' could be
-> > > > > beneficial to unify the dt overlay approach, and I guess it could be
-> > > > > adopted by the aforementioned Bootlin's Microchip patchset too.
-> > > > > However, since the difference with simple-bus would be basically non
-> > > > > existent, I believe that this could be done in a future patch due to
-> > > > > the fact that the dtbo is contained into the driver itself, so we do
-> > > > > not suffer from the proliferation that happens when dtb are managed
-> > > > > outside.  
-> > > >
-> > > > It's an ABI, so we really need to decide first.  
-> > >
-> > > Okay. How should we proceed?  
-> > 
-> > I think simple-bus where you have it is fine. It is really 1 level up
-> > that needs to be specified. Basically something that's referenced from
-> > the specific PCI device's schema (e.g. the RP1 schema (which you are
-> > missing)).
-> > 
-> > That schema needs to roughly look like this:
-> > 
-> > properties:
-> >   "#address-cells":
-> >     const: 3
-> >   "#size-cells":
-> >     const: 2
-> >   ranges:
-> >     minItems: 1
-> >     maxItems: 6
-> >     items:
-> >       additionalItems: true
-> >       items:
-> >         - maximum: 5  # The BAR number
-> >         - const: 0
-> >         - const: 0
-> >         - # TODO: valid PCI memory flags
-> > 
-> > patternProperties:
-> >   "^bar-bus@[0-5]$":
-> >     type: object
-> >     additionalProperties: true
-> >     properties:
-> >       compatible:
-> >         const: simple-bus
-> >       ranges: true
-> > 
-> 
-> IMHO, the node should not have 'bar' in the name.
-> In the LAN966x PCI use case, multiple BARs have to be accessed by devices
-> under this simple-bus. That's why I choose pci-ep-bus for this node name.
->
+Bartosz Golaszewski (2):
+  arm64: dts: qcom: sc8280xp-crd: enable bluetooth
+  arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6855
 
-Agreed for your scenario. Anyway, since the dtbo and driver are shipped together,
-we are free to change the name anytime without impacting anything.
+Konrad Dybcio (1):
+  arm64: dts: qcom: sc8280xp-crd: model the PMU of the on-board wcn6855
 
-Many thanks,
-Andrea
- 
-> Best regards,
-> Hervé
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 166 ++++++++++++++++++
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  98 +++++++++--
+ 2 files changed, 252 insertions(+), 12 deletions(-)
+
+-- 
+2.43.0
+
 
