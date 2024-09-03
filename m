@@ -1,151 +1,94 @@
-Return-Path: <devicetree+bounces-99388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D01969A45
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:35:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D325E969A80
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADFD41F23EEE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:35:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E9061C2017E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867361B9843;
-	Tue,  3 Sep 2024 10:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7108E1B9829;
+	Tue,  3 Sep 2024 10:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sovQNizJ"
+	dkim=pass (2048-bit key) header.d=metrotek.ru header.i=@metrotek.ru header.b="RXCxfsvB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+	(using TLSv1.1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44181A0BEC
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 10:35:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900EB1AB6E7;
+	Tue,  3 Sep 2024 10:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.18.215.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725359751; cv=none; b=bqp5C74Q7X0TN6bfc+Sh0Blqlha2NbDHs+vD6g8eV6iiPEoc/Km5ZRIwwo9Nl6jDdshFkvr0b93AxTFqwUeUXoL/PI9GobOkZ0M4eW7bFTow47CZyWP6I2OE2nXWmzmuh3s8MONt0QnIVCKl7TjhV24Udaag8HGndxzKmr74V3c=
+	t=1725360389; cv=none; b=DqAI33OnPKR9v6nTjXfZz1xn/i+r/Zsu5lB9oDbXhX4mxIehFoxIVoyw872kdkl6zL4qXUDXIxC83oDF/lidDFGhZSHhJeQ1TdI4otqOmxi89F7eqMuO1o2+J2+is5QbQKELxQRzKzKo0PyVzeC+mcqSZ6C0w9kVo4f+GQ+jlK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725359751; c=relaxed/simple;
-	bh=YmkObPnyVEltJM+bKrCa4h0N/EDBel+3Kr+3oHWQ2A4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RcJxwK69tMERIFecaLAX8VYKYsMmYCCj5iWnhRopD5MgcJko80B5Y+iUNUmH6g9udC9BpI7ugSeMWGoS2ikJxD5COwEqL6cz04NYrrCVLmBZUgYK9ENhTUxJUKLpCerejt1M4fac5mA9SDDeyHdVF+ZMKualIrouy5h3RT+Eb9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sovQNizJ; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e04196b7603so5534427276.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 03:35:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725359749; x=1725964549; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wk8IQrj3Ag1NuoIr8ToTqjuTDbNQapkqLJ16Fkg4zcI=;
-        b=sovQNizJxr+0yvKgumskp0xKen9pTaJ8GptymK4oIeq42YTMxsgeCYcG7575+Wb6dZ
-         UGtifC4UVeFVq4PFMrcDhsPyqPcsj9miMflt60nthF/GkXBRZYUh1AMUOpdcx7sS5D/q
-         ow1NJ1nGolKafoGzEHAEou4VfOJOyRcGXZmL1HYsSefkDf+fYYH3MT6aPh1crSZ6y+sV
-         S2kuldHCGyJ70u3sz54wPvNFrTeWKFt/k4PxF7Lt5i+OLJSIa24WR2eExCoRbYnaJ58r
-         mS3xkcKpz9v4YbNDRQgea9yxhkEvUyOHZPlwRWjDtUXN/+8tj54bFeXz8eNRp/x13Kv3
-         4yxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725359749; x=1725964549;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wk8IQrj3Ag1NuoIr8ToTqjuTDbNQapkqLJ16Fkg4zcI=;
-        b=sUPOA4FZ7Ekf7gaN2G1H8uyVT3uIwAwRxpdXyQv7e/5P95Xx8m5iVbywJriixYMKNv
-         AUB+IXm/6E9LFLlmv5cb4E+FHttVpU7Pc6wHfFkbrmZq3XRUYzekmQUz9CDPTdX+hiRy
-         edsiQw1ewhUvRwJTiJWsmdZwpnc2qSRHf6Cy19WJqXYSheYaHY+ElRyCxiMfkM2sgwhH
-         0T/qtAtTUDN/p5kWh+7GB5v5r1SiPrNPQDmWdl+2sGr4rbtZkvJj5dLR1hI0GBl008Dz
-         RsIqykxVDQSQ/P++x5y/nFUNq0iGCa6P8sqn41KPAA2IKZxNNdpZbMK8tnC4nnf/NOOz
-         bRvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXv03zMgVWEfxaB3MJs8l1nBpAOaq2kRfiQC9SF1Av2uAKosvrZB6yxkovRRHZeq1b+QccRUq86YkC5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyq2Ys14sb1BIUpao5K+C6186DtD75vVLpv2yP16l7YgIbxFB8S
-	L86e4hi6AY+FUjzID5RO2YePohS0xz3Ht7Rnnt+ZmdUxAoGeYTE2tsUVZs7cIN8ypwOPG95Fpq7
-	nqwpiBQPFQlc0D1WxZy+dEaN+wpxXabKqt4pneA==
-X-Google-Smtp-Source: AGHT+IEptjQ9HnzO7IsNO1D9S4qr5WM4xYdZM3VIT60UnRxgn+glo0EzcUHzkrVnacRkJvKM+kyKu9xW5IsYaduxCjQ=
-X-Received: by 2002:a05:6902:120d:b0:e16:55cc:215c with SMTP id
- 3f1490d57ef6-e1a79fe3948mr17521678276.6.1725359748806; Tue, 03 Sep 2024
- 03:35:48 -0700 (PDT)
+	s=arc-20240116; t=1725360389; c=relaxed/simple;
+	bh=7wyzaZUZ5APSgDe+WjKcf97u96IonNrHPHUv0em4dKA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CR1bN7qN4j/qL1zrMZIaUpADnR804ACHkA7E9Xhhic8P7meHAhhmw8jukz8Mg7h789fc8meLH9h7pozJlVEaSztMTF/d9+Zzc3CSC6t35pVCXNU2qBD1bf62CdBT4aii7+kou5jud2lTzjd5V8UoiLFX9SD0OnQ8XyOcIM2HZ+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=metrotek.ru; spf=pass smtp.mailfrom=metrotek.ru; dkim=pass (2048-bit key) header.d=metrotek.ru header.i=@metrotek.ru header.b=RXCxfsvB; arc=none smtp.client-ip=178.18.215.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=metrotek.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=metrotek.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=metrotek.ru; s=mail;
+	h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+	bh=7wyzaZUZ5APSgDe+WjKcf97u96IonNrHPHUv0em4dKA=;
+	b=RXCxfsvBj/YwBY1XwiFEvG+Z87+Y+CjTYPITsAUK6m5nZ5NLQbpgRCM9ysKB0pan3qjb9YcmDZntm
+	 YaXX7K9ZRTm7RpJ+WbDl4l4Y3bIu8czVdFWiJqjU/TPM3nqnD+BZLNnxWzGQNSNf9kZ3iG6AowPZlY
+	 4/hDWMGq3pZaDruC0BXSIhFHVMddhxSxnknfqf+fmqJHlzq1/jAnIlLfgoViHwildpbhm96Us/YaRa
+	 cyQK6AvyGEHpoFi9AM+dkZZY+JH1wG1uzvxcFvjcaT4Q2A37O4XYZJkGsdkIPwrBI1M0mHJtFxBxCI
+	 ZRTnNpEiWSRM15TwtnqAThacBgKpN2g==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.18.2.1544, Stamp: 3], Multi: [Enabled, t: (0.000009,0.004679)], BW: [Enabled, t: (0.000016,0.000001)], RTDA: [Enabled, t: (0.094081), Hit: No, Details: v2.79.0; Id: 15.qp9sj.1i6rnrulo.7qi3], total: 0(700)
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from fort.ddg ([85.143.252.66])
+	(authenticated user d.dolenko@metrotek.ru)
+	by mail.pr-group.ru with ESMTPSA
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+	Tue, 3 Sep 2024 13:46:10 +0300
+From: Dmitry Dolenko <d.dolenko@metrotek.ru>
+To: pantelis.antoniou@gmail.com
+Cc: geert+renesas@glider.be,
+	nava.manne@xilinx.com,
+	radhey.shyam.pandey@xilinx.com,
+	austin.zhang@intel.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	system@metrotek.ru
+Subject: of: Status of DT-Overlay configfs patch
+Date: Tue,  3 Sep 2024 13:46:08 +0300
+Message-Id: <20240903104608.184988-1-d.dolenko@metrotek.ru>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
- <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
- <99bef301-9f6c-4797-b47e-c83e56dfbda9@tuxon.dev> <CAPDyKFrVS2vpsJqTvjKCJ7ADqXc4D4k2eeCBsaK4T+=pXDnKUA@mail.gmail.com>
- <fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev> <CAPDyKFrkkASq7rfRN=9sEet-p8T8t+f__PdnSNRN3bMNipnNNw@mail.gmail.com>
-In-Reply-To: <CAPDyKFrkkASq7rfRN=9sEet-p8T8t+f__PdnSNRN3bMNipnNNw@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 3 Sep 2024 12:35:12 +0200
-Message-ID: <CAPDyKFpLnREr4C=wZ7o8Lb-CZbQa4Nr2VTuYdZHZ26Rcb1Masg@mail.gmail.com>
-Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com, 
-	biju.das.jz@bp.renesas.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Sat, 31 Aug 2024 at 12:32, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> [...]
->
-> > >
-> > > If not, there are two other options that can be considered I think.
-> > > *) Using the genpd on/off notifiers, to really allow the consumer
-> > > driver of the reset-control to know when the PM domain gets turned
-> > > on/off.
-> > > **) Move the entire reset handling into the PM domain provider, as it
-> > > obviously knows when the domain is getting turned on/off.
-> >
-> > This option is what I've explored, tested on my side.
-> >
-> > I explored it in 2 ways:
-> >
-> > 1/ SYSC modeled as an individual PM domain provider (this is more
-> >    appropriate to how HW manual described the hardware) with this the PHY
-> >    reset DT node would have to get 2 PM domains handlers (one for the
-> >    current PM domain provider and the other one for SYSC):
-> >
-> > +               phyrst: usbphy-ctrl@11e00000 {
-> > +                       compatible = "renesas,r9a08g045-usbphy-ctrl";
-> > +                       reg = <0 0x11e00000 0 0x10000>;
-> > +                       clocks = <&cpg CPG_MOD R9A08G045_USB_PCLK>;
-> > +                       resets = <&cpg R9A08G045_USB_PRESETN>;
-> > +                       power-domain-names = "cpg", "sysc";
-> > +                       power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc
-> > R9A08G045_SYSC_PD_USB>;
-> > +                       #reset-cells = <1>;
-> > +                       status = "disabled";
-> > +
-> > +                       usb0_vbus_otg: regulator-vbus {
-> > +                               regulator-name = "vbus";
-> > +                       };
-> > +               };
-> > +
->
-> According to what you have described earlier/above, modelling the SYSC
-> as a PM domain provider seems like a better description of the HW to
-> me. Although, as I said earlier, if you prefer the reset approach, I
-> would not object to that.
+Hi,
 
-Following the discussion I believe I should take this back. If I
-understand correctly, SYSC signal seems best to be modelled as a
-reset.
+Is there any place where the status of patch "OF: DT-Overlay configfs
+interface" could be found?
 
- Although, it looks like the USB PM domain provider should rather be
-the consumer of that reset, instead of having the reset being consumed
-by the consumers of the USB PM domain.
+As I can see, such a question has been raised in [1], but remained
+unanswered.
 
-Did that make sense?
+I assume it is maintained separately in vendor trees starting from some
+version of the patch. Is it so?
 
-[...]
+There are several versions of dt-overlay configfs that I have found in the
+trees of different vendors:
 
-Kind regards
-Uffe
+   - Renesas: [2]
+   - Xilinx: [3]
+   - Altera: [4]
+
+Link: https://lore.kernel.org/all/CAAMH-ysawX29vKsqkjjNG=YNTuxjZoAeax2RCycWq_Me7Gz2Jg@mail.gmail.com/ [1]
+Link: https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/commit/?h=topic/renesas-overlays-v6.11-rc1&id=7c8efb1ea31bc7a06ed20d7bb0e76bcd6db722f8 [2]
+Link: https://github.com/Xilinx/linux-xlnx/commit/7e42c87c489b702795794e480fb5483897ff9e91 [3]
+Link: https://github.com/altera-opensource/linux-socfpga/commits/socfpga-6.6.22-lts/drivers/of/configfs.c [4]
+
 
