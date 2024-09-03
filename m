@@ -1,48 +1,40 @@
-Return-Path: <devicetree+bounces-99297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45516969667
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:01:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A48DB969689
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:08:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA224B22211
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:01:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DC50285AB6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF98205E07;
-	Tue,  3 Sep 2024 08:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="spnDgZCq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0225200117;
+	Tue,  3 Sep 2024 08:08:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3C220127B;
-	Tue,  3 Sep 2024 08:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE451D61AB
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 08:08:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725350452; cv=none; b=W1v3gKcTaCYNDNsM5UJnZU24PRiX4Kuq0amWIGwrq+KpUc1LHNvx2ovt5YH1N1jgZs0wcAFP355wgcuNJAvQ3br46gr7oX6zv5R+yCr6OAP51Jak4xEQ2mbTVuj+7+4ytkwe4k0HSezTl5Y6KiZe2ggIvkL2FbdW00xI5/V1AnM=
+	t=1725350893; cv=none; b=YfnIY9OpYU50ajucwB0GMpoIgJUplpmWnlJuBj7AxJIDpEOEXSUnUM7gabCRolH6RoQYf2BKyCGGcehcdRiJnN6jvycfkuIPXKEsvKrViL5dhbsbLJqrwbmoguyCYz/e+PAidOorGmWVjKWp2yLN4qmnXmZWz2mjSMieUTajP0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725350452; c=relaxed/simple;
-	bh=bY9rS+9Le+E+V2ifcZVbT3PeCL4VZOcHAM6oxFLCdI4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qaq5C7duKWVHcFBcGXZJID/n83hvsHryjL9clBeeJxtY2rxFKRFmfJaPOKs9pJEULYmjavTKuZ2tsVvkRg5txMPBzXFYJFbulrFqZdVDWeZTOxDI2St+B3UZbmzt9SYkNqsKLEeLOij1IMXBZyZVrDH9YuGIfSaQOCJiJBSq+H4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=spnDgZCq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D56FC4CEC5;
-	Tue,  3 Sep 2024 08:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725350451;
-	bh=bY9rS+9Le+E+V2ifcZVbT3PeCL4VZOcHAM6oxFLCdI4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=spnDgZCqKfHOtePmDd287D8BqAjtjBNpdzS2KFqpX17id08/HPXEQ25WxUiDMh+Io
-	 1UcE5g1ZdWxkL7uyvHWsSlHAwdsuJR79FQtMcHajJDeovRgLExda+s5OErIwYl5AG6
-	 n36UOvDgNlLL3gULu9gIutGKw+qncSKw3taVG/Rrr8McI3daz+wljJ/X6jDxr3EZuy
-	 rVza9NbWC+Z9MIcffihrOL2A7pry3m8EEJMEzu5IdDkLrhii2Aj/ThLzUVQhsnbQ4j
-	 Fln/4KuOCBXHimVLQuWLitN0cv45a7xvxdis9L1NBLj9G3V7czM6TVJe5v1RgPVjn+
-	 9wQPFRwYZg3sg==
-Message-ID: <21715065-c48a-4172-98ec-ce48c6a1126e@kernel.org>
-Date: Tue, 3 Sep 2024 10:00:45 +0200
+	s=arc-20240116; t=1725350893; c=relaxed/simple;
+	bh=EJQ4HorIieLDPMk6rDfCSch6KPnFw0QNj71EaIN1MVo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ZBWZEleemfIjGv8Z7gp+fl85v9kBxj1uLwVFMw2hQ8L3Mfm4JxPxgm+Z6DKxs6W2mU385gIZve2tVNMt+8hvRqLktJ/1X0Eu278NHfMna3MEXli3KG8eJZ4u7LksUTLyl9cts6PhFaUJIGIo0fVZZPGU66nEKUUnL/UfnHzx778=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 03D8AFEC;
+	Tue,  3 Sep 2024 01:08:36 -0700 (PDT)
+Received: from [192.168.178.92] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 41D943F73F;
+	Tue,  3 Sep 2024 01:08:07 -0700 (PDT)
+Message-ID: <5bbdd041-02a3-41de-832b-7f68cadca073@arm.com>
+Date: Tue, 3 Sep 2024 09:08:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,107 +42,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: cache: qcom,llcc: add num-banks property
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
+Subject: Re: [PATCH 3/3] arm64: dts: allwinner: a64: Add WiFi/BT on Pine64
+To: Icenowy Zheng <uwu@icenowy.me>, Peter Robinson <pbrobinson@gmail.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com>
- <20240903-qcs8300_llcc_driver-v1-1-228659bdf067@quicinc.com>
- <g7fyt57kzynzpux5nea2v22gcuu24asbr54axzms7mhdh4jq5a@xdyqifloofbk>
- <ac1b3ba2-ac57-411c-acdb-69d288d88355@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20240901122135.1389702-1-pbrobinson@gmail.com>
+ <20240901122135.1389702-3-pbrobinson@gmail.com>
+ <34afe6c1857190a23521815d85660f6125f0d302.camel@icenowy.me>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ac1b3ba2-ac57-411c-acdb-69d288d88355@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <34afe6c1857190a23521815d85660f6125f0d302.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 03/09/2024 09:30, Jingyi Wang wrote:
+Hi,
+
+On 03/09/2024 06:50, Icenowy Zheng wrote:
+> 在 2024-09-01星期日的 13:21 +0100，Peter Robinson写道：
+>> Enable the rtl8723bs WiFi/BT modules on the Pine64.
 > 
+> I think the maintainer previously prefer to enable these modules with
+> DT overlays.
+
+Yes, we cannot have this enabled unconditionally, especially since this 
+is explicitly given as the reason for the first two patches.
+So either this would just stay on the list, for reference, (maybe marked 
+as DON'T MERGE), or, better: we indeed rewrite this as an overlay.
+
+I will give the series a test once I am back with my beloved boards.
+
+Cheers,
+Andre
+
 > 
-> On 9/3/2024 3:10 PM, Krzysztof Kozlowski wrote:
->> On Tue, Sep 03, 2024 at 02:21:29PM +0800, Jingyi Wang wrote:
->>> Add a property "num-banks" for errata.
 >>
->> This you said in commit subject and we see in the diff. You *MUST*
->> explain why.
+>> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+>> ---
+>>   .../boot/dts/allwinner/sun50i-a64-pine64.dts    | 17
+>> ++++++++++++++++-
+>>   1 file changed, 16 insertions(+), 1 deletion(-)
 >>
->>>
->>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->>> ---
->>>  Documentation/devicetree/bindings/cache/qcom,llcc.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
->>> index 68ea5f70b75f..03241b719c98 100644
->>> --- a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
->>> +++ b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
->>> @@ -56,6 +56,11 @@ properties:
->>>      items:
->>>        - const: multi-chan-ddr
->>>  
->>> +  num-banks:
->>
->> No vendor prefix? So this is generic property? Then add to some common
->> schema with proper explanation WHY.
->>
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      The num of llcc banks
->>
->> And what are llcc (or LLCC?) banks?
->>
->>
-> Will add the vendor prefix and description in the next series.
-
-You did not provide rationale nor answer to concerns so far.
-
-Best regards,
-Krzysztof
-
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+>> b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+>> index f04f0f1badc4..1d514859e664 100644
+>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+>> @@ -138,6 +138,14 @@ &mmc1 {
+>>          mmc-pwrseq = <&wifi_pwrseq>;
+>>          bus-width = <4>;
+>>          non-removable;
+>> +       status = "okay";
+>> +
+>> +       rtl8723bs: wifi@1 {
+>> +               reg = <1>;
+>> +               interrupt-parent = <&r_pio>;
+>> +               interrupts = <0 3 IRQ_TYPE_LEVEL_LOW>; /* PL3 */
+>> +               interrupt-names = "host-wake";
+>> +       };
+>>   };
+>>   
+>>   &ohci0 {
+>> @@ -303,7 +311,14 @@ &uart1 {
+>>          pinctrl-names = "default";
+>>          pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
+>>          uart-has-rtscts;
+>> -       status = "disabled";
+>> +       status = "okay";
+>> +
+>> +       bluetooth {
+>> +               compatible = "realtek,rtl8723bs-bt";
+>> +               device-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /*
+>> PL6 */
+>> +               enable-gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4
+>> */
+>> +               host-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /*
+>> PL5 */
+>> +       };
+>>   };
+>>   
+>>   /* On Pi-2 connector */
+> 
 
