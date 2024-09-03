@@ -1,89 +1,79 @@
-Return-Path: <devicetree+bounces-99534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F55796A18E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F2E96A199
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:07:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82F451C23387
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:05:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 338D41C2449D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26E81684AC;
-	Tue,  3 Sep 2024 15:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1AD17C7C3;
+	Tue,  3 Sep 2024 15:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DRIRAocq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kMWA6gD9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D562AE66;
-	Tue,  3 Sep 2024 15:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35618154BE9;
+	Tue,  3 Sep 2024 15:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725375935; cv=none; b=SPr48Ar8qGcAJ2osSLRE/80b3yMeqRAy63KZEQkQUbus4VRdpNgBChyId7cXhQi/q6S63IOfnmdI/kA8GZPWAl4k9upfD39YTEJ3Bxp32Ucwg0tFbGD7e0eYNDWd2HUryJI2IydmAMzkRr20AlB4eIywMNLpqsCMQr8bMLjtc18=
+	t=1725376021; cv=none; b=e8cupVhRbr9Z8nS0U//eKfzua5dGWVKriQyMAAftr+BG1opz5DdrEpj1KabZW35k6XuIALuVPptkLOibi7CX+6lwP1seaFxsvS+IhEM4kTgI3cgWXLlZU1ZvrH17Sfttx+eavQkgXpxhu/QogXq5xkbbpGMc+lRszq6vlLp3t4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725375935; c=relaxed/simple;
-	bh=KL0RQRwssSJZNsqC3FsLLADFxblDIjhPUl1YLEacyms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dSUw611KMdZMvkfMvb3pvp36JfMYPeOZswvB5XLshWhb0D2rqHRR0m8pSmau/Uev+SyG54pocc4xSjiMNeRvQcoqyMOO7bH+XlAbhqoE7PRbQl08tgBUvfqaWZ8BonL+4BcG4Aww7G0coCvVeYbtU1T7AH5dP2aITHVkN7Ll1A8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DRIRAocq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3E00C4CEC4;
-	Tue,  3 Sep 2024 15:05:34 +0000 (UTC)
+	s=arc-20240116; t=1725376021; c=relaxed/simple;
+	bh=dCX/+ymEEizv2lXNgJZKqJY4+xncuX9LLS1eaiFIiuo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=foPUMz3Q86XwPNGV9U6vMWZzTVAX9OoymuzI6VbLwc8JTBtqdtk98TVSETQVcRhj4O0YChGn0yW925DDIwXusN+yfHL8D6XjUl/P/LfK7iX8GFPFO74b5ZVOS9bQjM11e/4TRl0F2kWvqxvxmdlpI2vYeWjfogq+bgxNhODysKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kMWA6gD9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB2AEC4CEC4;
+	Tue,  3 Sep 2024 15:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725375935;
-	bh=KL0RQRwssSJZNsqC3FsLLADFxblDIjhPUl1YLEacyms=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DRIRAocqMOoyi0rW8os/xYVVD6vNIkBzoAlQ6hS2tSqR1dB70Nr3njU0wCyg3zgwu
-	 LacEso3uef9loUUnpQphxgtcE7qUvZSzFxL7C3t7jDK9reXbttX+aQ7Qz35fAggN0o
-	 lkn8P30kt6mxExCkPfIH18o2hQZhMeslMjkRnbqR8pQsmFuB9RGfxWBbFN/O/EzPo8
-	 6hw5ms6StC7SwGIY5PlV2myw4czbRwVcF3KNidbGniUstdvQJ458e83ikt7ISlZ3uL
-	 Onbf/nglN5e3FjWS9Wl8N/NCX9+JzjhDjF3IRsS9zdcTZ+i35Mg31/jZ7zmq7UHmGQ
-	 cgsEf0ky6UuxQ==
-Date: Tue, 3 Sep 2024 10:05:34 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org,
-	upstream@airoha.com, Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-gpio@vger.kernel.org, benjamin.larsson@genexis.eu,
-	ansuelsmth@gmail.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: arm: airoha: Add the chip-scu node
- for EN7581 SoC
-Message-ID: <172537593271.1018147.17791430767383351676.robh@kernel.org>
-References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
- <20240831-en7581-pinctrl-v3-1-98eebfb4da66@kernel.org>
+	s=k20201202; t=1725376020;
+	bh=dCX/+ymEEizv2lXNgJZKqJY4+xncuX9LLS1eaiFIiuo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=kMWA6gD9+MGiN8c+7bAolZdVxIkbf9Zg+/o0aG8H08AVGirxihv2GdoqubplHQQZl
+	 lepfH4RjnA0s/FOOknmljqot7SwTTAflzQCYvkcairG9rEIlamrasYy4Vy3wTl9IlF
+	 TiQQplvJ8IUJzmri/7mQQXQ2/gCt1UjVXb0GeTGklE9fXYEOPvYZ9GPzsObogTRX41
+	 xIYeFAZScvnkxTiCi7KFpBAFdsKLeui36Xj57leNLCGN/+jS6ym2MEM2IEJKb9OZoY
+	 AwL63FfqLsn1bEizByvDdo6r1QMhFclBsaSK+7KaSHD0vjxDGbDzCmtp8Rk18pqFis
+	 9JMTSAqpJd7CA==
+From: Lee Jones <lee@kernel.org>
+To: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
+ konradybcio@kernel.org, andersson@kernel.org, lee@kernel.org, 
+ Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <20240830133908.2246139-1-quic_mojha@quicinc.com>
+References: <20240830133908.2246139-1-quic_mojha@quicinc.com>
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: mfd: qcom,tcsr: Add
+ compatible for sa8775p
+Message-Id: <172537601848.1262771.2330175079813010884.b4-ty@kernel.org>
+Date: Tue, 03 Sep 2024 16:06:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240831-en7581-pinctrl-v3-1-98eebfb4da66@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-
-On Sat, 31 Aug 2024 16:27:46 +0200, Lorenzo Bianconi wrote:
-> This patch adds the chip-scu document bindings for EN7581 SoC.
-> The airoha chip-scu block provides a configuration interface for clock,
-> io-muxing and other functionalities used by multiple controllers (e.g.
-> clock, pinctrl, ecc.) on EN7581 SoC.
+On Fri, 30 Aug 2024 19:09:07 +0530, Mukesh Ojha wrote:
+> Document the compatible for sa8775p SoC.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../bindings/arm/airoha,en7581-chip-scu.yaml       | 42 ++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
+
+[1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for sa8775p
+      commit: 9a9f2a66f8d1362f1217b33bfb1f702b5ef3a2e4
+
+--
+Lee Jones [李琼斯]
 
 
