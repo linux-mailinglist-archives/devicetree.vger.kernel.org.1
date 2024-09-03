@@ -1,77 +1,80 @@
-Return-Path: <devicetree+bounces-99251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0C2969491
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:04:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC5D19694A3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD3321F23A59
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:04:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 234611C22491
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232F01D47C0;
-	Tue,  3 Sep 2024 07:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B79E1D678C;
+	Tue,  3 Sep 2024 07:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZEfVjjOR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tr/arqyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA7D1CE6EA;
-	Tue,  3 Sep 2024 07:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEA21CE6EA;
+	Tue,  3 Sep 2024 07:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725347081; cv=none; b=flR1W9wZsq7BguxDvg28AGaTuJItGgHyR6hkFAufDgWiECbNgA43pmB3GzUUXi9BBrdR4fDkj4Xq7F1UhMzm2m7IzDjzzxx1DNgzAjRqSDfZkselZIEaxxc0CwtlyAItqzlS2FAMm4UtDh+A3ZybEmw7PArTwHxVT8I7NS2qjMk=
+	t=1725347133; cv=none; b=PdKfi/M/7hmykyU+vaHRErImNrlTd41M5Gz0WDNUAyCQSmFzQlgOGuCPWNwADcQCDG7MeoH2OND+qRwUMewk7VVGacFor5lvFfnz9K+Ue5BHQtgNZRZTvJMODJpNQmYTXpZd266ws7kQxDGF+tCX7scNekOMkL1zA7gLcGp4Zag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725347081; c=relaxed/simple;
-	bh=54woJQz+5ijdRGgHZexgNM1OLDQAS3przto38Kwiygw=;
+	s=arc-20240116; t=1725347133; c=relaxed/simple;
+	bh=XgobwF8j1pd6lyIIAqDJIYHlE0ymWaDN0bpPjwRiSVE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uer4W5s7GO3VAnQ4pd18TbTnlK7Q/rdH6oPzwmnjAIb9l8AUPjxYovU+0a5EBK50yuKDZr0YaMb0JJ9fuqQWAvcGawE13uO1XKn1aEZwXwm8YzNeKRUlCAwkhPQe+SRQ88EbA2Qc7ep/aR04CA1PTlXM5JR4UtEqBKgVu7SFwEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZEfVjjOR; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=760U01fPK5vwIsNnOzgMhiCsuAQbyv3hm5HmSlaeDdQ=;
-	b=ZEfVjjORGGSryolJTU8/5ucSfYQys3mY88ATn9qGC9JLAD4/eBP97zphSlF9qU
-	1I4qmktm7I1S+6R9k6dwrl6qImGQHJvPpSJl7qXZANHDZjfhLLcP7Dsbkv2o4Xf8
-	B4zr5CtNfwRBvk+LClFprRNhRzWxxCyolxAwtt/YAT89M=
-Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3v0nbtNZmi3ZcAA--.51275S3;
-	Tue, 03 Sep 2024 15:03:57 +0800 (CST)
-Date: Tue, 3 Sep 2024 15:03:55 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] ARM: dts: imx28-lwe: Fix partitions definitions
-Message-ID: <Zta029K48fGUwV4g@dragon>
-References: <20240902114652.893272-1-lukma@denx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sLINu1ijHjNnyFwerOBtGK6HStDsXXdTBlFjaCN2UVx12zHXrDYlON+v3yy//ma/O12RNqA4pMQqMlwU0PDZQM/NGKSfdv9DG6zB6vURGYA4tQHMWzGRSaJ+zMRj2prsve+4mLitbyFov2zG8aak7cm24Opn470DE0jPGi9JUSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tr/arqyW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A25B4C4CEC6;
+	Tue,  3 Sep 2024 07:05:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725347132;
+	bh=XgobwF8j1pd6lyIIAqDJIYHlE0ymWaDN0bpPjwRiSVE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tr/arqyWnyGYET8E0UgldazWFHMwTbXD7jKL2y/kO8F/dI2veZMHhAgXhPcV8ESkb
+	 FXZjcMPPaTUwU1kEWMVz9t/iqJ1GdpCuxKIzsDBXOOpK5ZfiDPiv7i0xThD/KCnofs
+	 A3/d3xWTKNH+s3YM25DK57nATVdLcf/KbMEfo8X4uYEssTAOyhJGLQj7rc/6aaOhMV
+	 P3QOrdtGEDEwZucRxF0QgkLejYcvSR48d/eGiZzgRgg4lhAie9HTKlkySJVn72iC+O
+	 ru0up3jN4WcjDwUfAbSHkq/5YigusPRAwiysqqYac/mWeBPPjPIqn78W9rd1z+RfA0
+	 iEdHyKOt8dd4A==
+Date: Tue, 3 Sep 2024 09:05:29 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Antoni Pokusinski <apokusinski01@gmail.com>, jic23@kernel.org, 
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org
+Cc: pmeerw@pmeerw.net, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: temperature: tmp006: document
+ interrupt
+Message-ID: <siejrijvfrkyhmliamwk5kzw2qqdxrgjejn2fowayjhyfhyyfj@zk5jtl3uoizz>
+References: <20240902125946.350635-1-apokusinski01@gmail.com>
+ <20240902125946.350635-3-apokusinski01@gmail.com>
+ <a4655147-94b0-4f13-a35c-4ca858ae1f74@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240902114652.893272-1-lukma@denx.de>
-X-CM-TRANSID:Ms8vCgD3v0nbtNZmi3ZcAA--.51275S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIWE_DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQNPZWbWfDOzYwAAsX
+In-Reply-To: <a4655147-94b0-4f13-a35c-4ca858ae1f74@kernel.org>
 
-On Mon, Sep 02, 2024 at 01:46:50PM +0200, Lukasz Majewski wrote:
-> The SPI-NOR memory layout has evolved during time lifetime of the
-> device - for example special partitions to keep track of booted devices
-> for A/B booting scheme were added.
+On Mon, Sep 02, 2024 at 06:04:15PM +0200, Krzysztof Kozlowski wrote:
+> On 02/09/2024 14:59, Antoni Pokusinski wrote:
+> > Update the example with interrupt bindings and add "interrupts" property
 > 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> But why? Commit msg should answer this question. E.g. because hardware
+> has interrupts or any other hardware-related reason
+> 
 
-Applied all, thanks!
+And please point me which pin on the diagram/schematics is the interrupt
+pin.
+
+Best regards,
+Krzysztof
 
 
