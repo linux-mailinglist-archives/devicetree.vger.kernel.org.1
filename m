@@ -1,250 +1,143 @@
-Return-Path: <devicetree+bounces-99581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF5E96A40E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:17:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A483296A442
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 817FA1F272A5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:17:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6A181C22BF5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF03218B466;
-	Tue,  3 Sep 2024 16:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53B718B499;
+	Tue,  3 Sep 2024 16:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vxVZ+v3T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UOtWxojh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E56418A6A7
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 16:17:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB8B18A951
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 16:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725380249; cv=none; b=Y5uVkL2r9BrT8FB2/Fm/f8qT8tNu+ZdaajrTeyyD4gOJ/CCz8xeIQxGJXYPpEAW8loQZfzv5raDdRBWsEwbPyg0jhOwg2AXzGeuU8UD4/GAWk/B7L+CLjD21Wqk/h9i3MMKniahUkhLpNZEwNTzVXoLuQwmyoQ1lJnK0D9lMLRQ=
+	t=1725380862; cv=none; b=ceWiQQDdBzK+B5iEhzg6Xyaw8lPpuqPVxpt02T5O+9Lenua17kHLIpf6ao7dsPjhjUk9lJ1s0/a4oM5CzuB7JCa/njs5rkBSN9QLHClQeravwAdZc/umjHgha6lDWZoNLWq4zs3CZSyaFPkpHJ6rYB+MP10UWNtznvp4TsacImQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725380249; c=relaxed/simple;
-	bh=QUrDmjGxDWVKFhcNoy+HxAmj0c8osU6YyWrVQMdtj1o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=acPZB1dTA6rw9jWjDl+OTQpd8Tu4g1ezc9IT4sXvBH8KwL8JuMwU5uXUqhvHpc0U4fUWcRoh35DmhyMmvIugcEhYzWhOYRaDHhHOvfP2mcYjP3LK/zc+KVILzkcKbGhiqDzvmMjb6bUGDROX/SbgH9czYWnknWAiDoDcbqlb1mM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vxVZ+v3T; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-70b3b62025dso3793284a34.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 09:17:27 -0700 (PDT)
+	s=arc-20240116; t=1725380862; c=relaxed/simple;
+	bh=y4lqeonZkRRoG/8McwnrcegzTshsZjBbdKfCusayZxA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hohHD72G7V8xgWJZSDSSshZFdRkRIDfuIjV0/0l+qlsVq0U/Z3hu4QZnwna86zW60/BuNZWMBgTSqWTvi7Naj2JIRgbnraBC3iAY4NG1TDqEJeE2UL7awPU9uTMW/3VVU35PAJZAUacBtZrldhD5IgFXkIUGzdD/hE9rg4InAqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UOtWxojh; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2053616fa36so34270935ad.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 09:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725380246; x=1725985046; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=53GiOZpe/Mi1YNWuIB9EhTKXzBDKqq6MqraEG6tJCLo=;
-        b=vxVZ+v3TwtDPT8w9+afpdOjiOGpM1Y1AkdGzRLtBB19QBo/1OFxKowXzOJNoUmyRxL
-         yd7RLz9I52TSVvygBytT5/tpR6TGCQTdS442PgXfbsA2PCIgzD+hi5HE8DhXI2OrwnnP
-         LuR8V7OVqGMdvBE9z+NmWasqR1uJxbgeupXNSn5vFGL4jiDIs5/kZh26BEz+EmhfELQd
-         RG7WOfsSevRw7KvJrxeeryDcglWp3NHfmnW1p55SxhFYG8oVyDB0BevwXgi4ZLumx89o
-         xrMag5qBcGNGiglA/U5xPgTK5m5q10vWCoMbUZUwQeNhyKJtU7a3e6IvPvUrWIRP/R0T
-         pPmg==
+        d=gmail.com; s=20230601; t=1725380860; x=1725985660; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ViZ2Qk+Vtw2VzGYfDD4Bo4v3B7DoDiJQtKRYgmWotpA=;
+        b=UOtWxojhBO3e4vmRfp2/zG14z/p4m90JO3I3RSV2/R38ma633Eme1KUEGv3pyiqMa/
+         c5gPkbJlZio67ASTs8h7DFuyCGA7X0Z+meu3VB65Jf2B7TcirNI5llzaIH1knP1j2U9x
+         RMQzDDEglmWarwXh55IY1HLjOC/HlBozRc3bNB8NBjcK8MjoNihjIOavliVLJXl6gItv
+         k1H2tYHFbzNNSelgZEU2yPbcqif84xgvsSAnvjG8fXXlNjdkB34pcCD7EarHojbnLuEY
+         +3gJA7+117KdOiX81yMTPKSjeTdD4Tzm9wMMw2yPROK6/gankWID0O8B6i1GVdc4yhPH
+         t9YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725380246; x=1725985046;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=53GiOZpe/Mi1YNWuIB9EhTKXzBDKqq6MqraEG6tJCLo=;
-        b=XRAnNu7GfHCJgpZeNh4QYmh7unpxddTbfvljA+zzxK8Uws0eKW1hqOBxdC5DaPO3NL
-         bQwVdDKSFgGsNypIZypRpftJXfFSPi3O6u23phlcsw8Zz8u3bkDV7xiofGW+KZ/f5aFL
-         db1W0vzXDBZNm5N1SThrANcHCveresKfGucWnVqD5Cu+P1o50PX5M7mDvVJVVOoFByFt
-         TB/owecNZZJ9oQwWSHzfEi0hWHPzglMPH0nqNz1JBIDSVBvsH47okPooH58NMf2TdYNS
-         VLCNe4h6nqAUOS5pfCoFc+MCIbEOjZ3sdwU6VAOj+Glial1V5zcu5GBeslcv9zaZYPVJ
-         K9qQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVdvhmhTDeOaMMrEuWHid54BxlgGgq0SscRcwhgLjBwFZPPJN/iKjryigPX45NrlNlampThWdafkWyX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXd+Kl1xNK7TD0Wr9hYC2tvQ+d8yZSvMk+1YdSII2X1asRzwNT
-	Q3Kt5P6dLF5jscQM6xNZjKCqIqnosj95BnFhovIaPPK+ONfQXS9WmLnC8MuTWcY=
-X-Google-Smtp-Source: AGHT+IHTlOQ2HrzrTU2Q3N454srcRMdp7zFoL+AYKDmUWAD5RYsVkxQj4bH6We19C8bVDozpvH490g==
-X-Received: by 2002:a05:6830:dc8:b0:70c:92ee:5662 with SMTP id 46e09a7af769-70f71efed69mr13403446a34.8.1725380246297;
-        Tue, 03 Sep 2024 09:17:26 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-70f671a82a0sm2413574a34.60.2024.09.03.09.17.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Sep 2024 09:17:25 -0700 (PDT)
-Message-ID: <4a62ea7b-a8af-49e0-9718-30d927a69038@baylibre.com>
-Date: Tue, 3 Sep 2024 11:17:24 -0500
+        d=1e100.net; s=20230601; t=1725380860; x=1725985660;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ViZ2Qk+Vtw2VzGYfDD4Bo4v3B7DoDiJQtKRYgmWotpA=;
+        b=cuhDu6qryBtpfYTmENV4ShG4PUz9mxZZhrdi3ivyoNX1qiMOEgwVPfJuP4uMb5L4F/
+         Xuw9ybnbHf8EwwjKqXEEG1e27wBbOEvfpNjhZRhcNvEFIcSaq+hgbAkM1Ow346/qvWz/
+         Z5escoi5c/IgdcK4KDZ1gIFdXxTqwWL9iY/EdjGwVgJYgjbJLWlzwojl2H2SPSHyED+/
+         mSir2OS5x6Q0JWrya9gPZMQ9SqUn6O2KqaSOA/bn8Qv03sLI29Qvcji/RwgrevGrLeGT
+         mMmRWfGu6WNa8PLTHfIQZIPbFrAjfxq0vpN+q7RaTmgHSV1omr2Zm/oRdjDZ5YJRHMHh
+         FXqg==
+X-Forwarded-Encrypted: i=1; AJvYcCU7WNui+duSU7KfaoCnAU6iKIT8/VrgZgCwjJu8j+X2oHEidyIJUKSfBfXs7bFDJi0IgPPgfs938BbA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYl+BIO4KMBRLBy9I+4Z9Hjt2IK1E+QNRo9v5pdkpq07FVy6Qh
+	IaTsGcUMdw9Q9B3abTVty5n1dsvUpGNu76C+DBl+9w7HJkUHLCBXdZrZpg==
+X-Google-Smtp-Source: AGHT+IFWoAsi71mQ5SIl33bBxgwV2NfZspH9Nu1mtON226BSC45BsRnCT2jmiAIN44wzjafp79E0Zw==
+X-Received: by 2002:a17:902:d48a:b0:205:968b:31ab with SMTP id d9443c01a7336-205968b34cbmr33233955ad.58.1725380860399;
+        Tue, 03 Sep 2024 09:27:40 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:ec5f:2356:2bac:7d11])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-206aea37cc2sm466115ad.160.2024.09.03.09.27.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2024 09:27:39 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: mripard@kernel.org
+Cc: marex@denx.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: lcdif: Document the dmas/dma-names properties
+Date: Tue,  3 Sep 2024 13:27:29 -0300
+Message-Id: <20240903162729.1151134-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/8] iio: dac: introducing ad3552r-axi
-To: Angelo Dureghello <adureghello@baylibre.com>,
- Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
- <20240831123837.26a1070a@jic23-huawei>
- <74e0b200-d4c0-4aa3-9ee6-f49ac3f1467d@baylibre.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <74e0b200-d4c0-4aa3-9ee6-f49ac3f1467d@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 9/3/24 3:34 AM, Angelo Dureghello wrote:
-> Hi Jonathan and all,
-> 
-> 
-> On 31/08/24 1:38 PM, Jonathan Cameron wrote:
->> On Thu, 29 Aug 2024 14:31:58 +0200
->> Angelo Dureghello <adureghello@baylibre.com> wrote:
->>
->>> Hi, asking for comments for this patchset, that is mostly
->>> ready, at least feature-complete and functionally tested.
->>>
->>> I am introducing ad3552r-axi variant, controlled from a fpga-based
->>> AXI IP, as a platform driver, using the DAC backend. The patchset is
->>> actually based on linux-iio, since some needed DAC backend features
->>> was already there on that repo only, still to be merged in mainline.
->>>
->>> Comments i would like to ask are:
->>>
->>> - i added some devicetree bindings inside current ad3552r yaml,
->>>    device is the same, so i wouldn't create a different yaml file.
->> Agreed. If same device, it's usually better to keep it in one file.
->>
->>> - if it's ok adding the bus-type property in the DAC backend:
->>>    actually, this platform driver uses a 4 lanes parallel bus, plus
->>>    a clock line, similar to a qspi. This to read an write registers
->>>    and as well to send samples at double data rate. Other DAC may
->>>    need "parallel" or "lvds" in the future.
->> If it is for register read + write as well, sounds to me like you need
->> to treat this as a new bus type, possibly then combined with a
->> backend, or something similar to spi offload?
->>
->> What bus does this currently sit on in your DT bindings?
->> (add an example)
-> 
-> 
-> &amba {
-> 
->     ref_clk: clk@44B00000 {
->         compatible = "adi,axi-clkgen-2.00.a";
->         reg = <0x44B00000 0x10000>;
->         #clock-cells = <0>;
->         clocks = <&clkc 15>, <&clkc 15>;
->         clock-names = "s_axi_aclk", "clkin1";
->         clock-output-names = "ref_clk";
->     };
-> 
->     dac_tx_dma: dma-controller@0x44a30000 {
->         compatible = "adi,axi-dmac-1.00.a";
->         reg = <0x44a30000 0x10000>;
->         #dma-cells = <1>;
->         interrupt-parent = <&intc>;
->         interrupts = <0 57 IRQ_TYPE_LEVEL_HIGH>;
->         clocks = <&clkc 15>;
-> 
->         adi,channels {
->             #size-cells = <0>;
->             #address-cells = <1>;
-> 
->             dma-channel@0 {
->                 reg = <0>;
->                 adi,source-bus-width = <32>;
->                 adi,source-bus-type = <0>;
->                 adi,destination-bus-width = <32>;
->                 adi,destination-bus-type = <1>;
->             };
->         };
->     };
-> 
->     backend: controller@44a70000 {
->         compatible = "adi,axi-dac-9.1.b";
->         reg = <0x44a70000 0x1000>;
->         dmas = <&dac_tx_dma 0>;
->         dma-names = "tx";
->         #io-backend-cells = <0>;
->         clocks = <&ref_clk>;
->         bus-type = <1>;  /* IIO QSPI */
->     };
-> 
->     axi-ad3552r {
->         compatible = "adi,ad3552r";
->         reset-gpios = <&gpio0 92 GPIO_ACTIVE_LOW>;
->         io-backends = <&backend>;
->         #address-cells = <1>;
->         #size-cells = <0>;
->         channel@0 {
->             reg = <0>;
->             adi,output-range-microvolt = <(-10000000) (10000000)>;
->         };
->     };
+From: Fabio Estevam <festevam@denx.de>
 
-Shouldn't the axi-ad3552r node be one level higher since it isn't
-a memory-mapped device, but rather an external chip?
+i.MX28 has an RX DMA channel associated with the LCDIF controller.
 
-But based on the other feedback we got in this series and some
-#devicetree IRC chat here is an alternate binding suggestion we
-could consider.
+Document the 'dmas' and 'dma-names' properties to fix the following
+dt-schema warnings:
 
-First, even though the FPGA IP block for use with AD3225R uses
-the same register map as the AXI DAC IP block, some of the
-registers behave differently, so it makes sense to have a
-different compatible string rather than using the bus-type
-property to tell the difference between the two IP blocks.
-There are likely more differences than just the bus type.
+lcdif@80030000: 'dma-names', 'dmas' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-Second, technically, the AXI DAC IP block can't be used as
-a generic SPI controller, so it wouldn't make sense to put
-it in drivers/spi. But, from wiring point of view, it could
-still make sense to use SPI DT bindings since we have SPI
-wiring. At the same time, the AXI DAC IP block is also
-providing extra functionality in addition to the SPI bus
-so it makes sense to keep the io-backend bindings for those
-extra bits.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../bindings/display/fsl,lcdif.yaml           | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-    backend: spi@44a70000 {
-        compatible = "adi,axi-dac-ad3225r";
-        reg = <0x44a70000 0x1000>;
-        dmas = <&dac_tx_dma 0>;
-        dma-names = "tx";
-        #io-backend-cells = <0>;
-        clocks = <&ref_clk>;
-
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        dac@0 {
-            compatible = "adi,ad3552r";
-            reg = <0>;
-
-            /* 
-             * Not sure how right this is - attempting to say that
-             * the QSPI select pin is hardwired high, so the 4 SPI I/O
-             * pins on the DAC are always functioning as SDIO0/1/2/3
-             * as opposed to the usual 2 SDI/SDO pins and 2 unused.
-             */
-            spi-3-wire;
-            spi-tx-bus-width = <4>;
-            spi-rx-bus-width = <4>;
-
-            reset-gpios = <&gpio0 92 GPIO_ACTIVE_LOW>;
-            io-backends = <&backend>;
-
-            #address-cells = <1>;
-            #size-cells = <0>;
-
-            channel@0 {
-                reg = <0>;
-                adi,output-range-microvolt = <(-10000000) (10000000)>;
-            };
-        };
-    };
-
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index 0681fc49aa1b..dd462abd61f8 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -50,6 +50,14 @@ properties:
+       - const: disp_axi
+     minItems: 1
+ 
++  dmas:
++    items:
++      - description: DMA specifier for the RX DMA channel.
++
++  dma-names:
++    items:
++      - const: rx
++
+   interrupts:
+     items:
+       - description: LCDIF DMA interrupt
+@@ -156,6 +164,17 @@ allOf:
+         interrupts:
+           maxItems: 1
+ 
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              enum:
++                - fsl,imx28-lcdif
++    then:
++      properties:
++        dmas: false
++        dma-names: false
+ examples:
+   - |
+     #include <dt-bindings/clock/imx6sx-clock.h>
+-- 
+2.34.1
 
 
