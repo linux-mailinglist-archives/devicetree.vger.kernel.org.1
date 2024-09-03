@@ -1,130 +1,157 @@
-Return-Path: <devicetree+bounces-99583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A62A96A44E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:30:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 918A096A4AD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:42:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E99AF1F24E73
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:30:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FA5AB203B4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C11A18BB9F;
-	Tue,  3 Sep 2024 16:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 105A818BBB5;
+	Tue,  3 Sep 2024 16:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="obYyIdBi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XgCqPXZa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92EB18A94E;
-	Tue,  3 Sep 2024 16:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA701E492;
+	Tue,  3 Sep 2024 16:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725381005; cv=none; b=lwscdmrWhaVNOf3wsAX4ZoR6uildN6iFy6G1a6plCR/inbwzw7KkMvG4cqAaSc9gudvyE/Odxpcl5mS2lj5iK90rtnPdoPwYJRS6GbjFl1NCXHj8GAeNn4kxtRGRs1Fdb8tVOCfvm+rfmXo3xjdjtgLyrVuRmgylpeV9KjDcVRk=
+	t=1725381745; cv=none; b=YSYHG854Xuq8998zug2+NNJBUvpsN6PKdKIJae6IgE64MbUs1M1HVU4skPS6PcGwG5II2Fe77oed41Iy/IjDjB45LNjFi9OfFtA9SMo/YfIYxWZ7lHnTTlYKEU7HkWVKkC1Wq8ZxuuXh5GSvO9pD2RzqOIox1ESVZ752jRlMUSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725381005; c=relaxed/simple;
-	bh=ZB0ZGid7oYvX+NEZ2K4bE2HWU1BmgbIDt4uG0XbOQ00=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=TtbNDjkIHuRntod45Cwbp+0Vx0bZ7GwSbuZkz8AH0lFE8XH56Pw9ocq//GWcOuCZZyHN59P/xVD+UIYCbyvOrkuKmHkxKwGZJ7CDyf6bY7GY60bcr80uK7miUdv1O8dql70xCq9FCf9boea36fCH1seXlJtV+6n6b9w6NISLTRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=obYyIdBi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C65EC4CEC4;
-	Tue,  3 Sep 2024 16:30:01 +0000 (UTC)
+	s=arc-20240116; t=1725381745; c=relaxed/simple;
+	bh=ysx2yq2EzG2SmeMo3CLySNMcvk3ddYkzx0Kw43XPAxo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CuvbiJqUwGe8I1RaEfq/DBlgANOv91ZwXsH4VE5c3xuzzKFbxV+5/eRvMYdA2LvqTAr9TYepvcvkHYAIcS2BZnhQPpojMcl3BnfGNyxgXt6AwmWesTZp3DXWmFa+7Ecf/8Ykuq1dxne8q52sJqiKPejwFCAsvYUfqiMXhHgnRAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XgCqPXZa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A82BC4CEC4;
+	Tue,  3 Sep 2024 16:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725381005;
-	bh=ZB0ZGid7oYvX+NEZ2K4bE2HWU1BmgbIDt4uG0XbOQ00=;
-	h=From:Date:Subject:To:Cc:From;
-	b=obYyIdBi0lHyyRze0F9LXfG3EYfQ3K2Ec2vQyalVmEezN0wqQ645aFB/1OqMgJle1
-	 O2TpvXlGt8N2LpVsrG5vH2y6JCNTNhPIek2dVQHOhCWATjfGLXCtwxvSanqPh/sAyj
-	 nHd4J7n5SxJLL0vo34KObKKHHH1x3jFl0WD4u+V13WC3uHLoXuxZXX+6eJMFN00kEn
-	 gCSkyTbUiA+HJRqKe4r272tzHMsttb/Xcm81pKSNsderfddwX2XHWpNJI2NCqrs7Xf
-	 gPZv+s8FORKHdv2tJXoFlnlBd+CdIo/vbOO3tLLxndb61nmLQgg0WzJyvwWGa95D+D
-	 f4QzY23Lpn6wA==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Tue, 03 Sep 2024 19:29:57 +0300
-Subject: [PATCH v2] dt-bindings: mtd: ti, gpmc-nand: support partitions
- node
+	s=k20201202; t=1725381744;
+	bh=ysx2yq2EzG2SmeMo3CLySNMcvk3ddYkzx0Kw43XPAxo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XgCqPXZazwzGXgfGAhqlE+vpCryS6mxbB6qDi2nJMtReK0UuPyw1UIERUdA36XOgx
+	 WDxqlO5jl7O5CapgicZ8MVPOkcojtyHi3qvPdKgYDGAzo9OtCWfBzAZh7QqeQC3MrK
+	 1VrUL5vWukZR8FWRGHp14byhFqupVrqQpdh985FojvyqjwFs4XVGr5ZJAvd6PglQ4U
+	 XQk5k3/pmyZBDIQdpxVRXXGile+ffCXoRKvpg0sEZmBvfU5PVA9tametbMV8sM87Jn
+	 o84+B+tFOlo+AgtR5XGka5zi/SBUFzD/yIQOeONzQyeIzkRV4u7WAn1fGUSuI4RW7Z
+	 YQeezY7rQRlQA==
+Date: Tue, 3 Sep 2024 17:42:18 +0100
+From: Lee Jones <lee@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Add support for Airoha EN7581
+ GPIO System Controller
+Message-ID: <20240903164218.GC6858@google.com>
+References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
+ <20240831-en7581-pinctrl-v3-2-98eebfb4da66@kernel.org>
+ <20240903153353.GZ6858@google.com>
+ <66d72ea9.df0a0220.21f5f.029f@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240903-gpmc-dtb-v2-1-8046c1915b96@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAIQ512YC/23MQQ7CIBCF4as0sxYD1Gh11XuYLugwUKLSZmiIp
- uHuYtcu/5eXb4NEHCjBrdmAKYcU5lhDHxrAyURPItjaoKU+ya6Vwi8vFHYdhSWNpDuDbjxDvS9
- MLrx36j7UnkJaZ/7scla/9Q+SlVDictVoUJFrEfsHcaTncWYPQynlCyBjt9WhAAAA
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Nishanth Menon <nm@ti.com>, Enric Balletbo i Serra <eballetbo@gmail.com>, 
- Javier Martinez Canillas <javier@dowhile0.org>
-Cc: srk@ti.com, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1396; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=ZB0ZGid7oYvX+NEZ2K4bE2HWU1BmgbIDt4uG0XbOQ00=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBm1zmJbaVP/ewIJ9pyrYDtWXsaHySvmZFudVp4y
- qiaMKE3kUKJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZtc5iQAKCRDSWmvTvnYw
- k921D/9P8/VEILXiD9ZI1cn1LOZMD27ku1ZqmP9k0r3XFDDrmuuJhm7DKSetMG6jU7HEVEEDYvU
- qIjK5KlIY6XJfWcrvo5eVhPXrUD3NChWFYdOz8Os1TIxlsP153tC50xZ7vJ/1HtHJk94zR6cYhX
- wZ9zB9aWQqe8u78Fn9KFovJlmpmn2ABDIbNBuW/l6nljG9QOwWhNRm8KgcmcERfIkof0RQUl6st
- oni8LAqlLfaUkH69B0nd/PotqKpvGsr5xv0/W5TDvqLLj4WtFBMEVk/9dzxm0MUqnxm1czWtezT
- Y47sbwzn9gCcgBEV/ZJ9vpxCJalNnAa3kigTmf0Kr/j/8ptmsNYVo46CQrxFbbqXxfvLMjSZ/dA
- WT9zLxy2ji0hCHYBl6h80EiwfijSLT0Dx7yCz/PYQFLV10WOr9UiHJIDqY9o0RRw3oXkZj/JpBH
- Ygeo0wpv5+fbxUx8igsC5Z2oa/PXzfsnw5EEGtz2gY5gU1Y2gNMXfcwXglIq+AHx3CoMJJvUbsu
- foZkWHPL1OXkIf6tTEb0WeEeehAzYrJ2ggLBWGk13hzqth0WWBYKyMqugAsLXCK8fQ3TtMTILw+
- SuMa1Vyks4q9F60ELtKmqK0yXbO1gtC1G2kxDbuLpJO/u0wofmC3eEpKyiOrAdch1gyyVlQhxzV
- I+QnRMJUTQ1DEJw==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <66d72ea9.df0a0220.21f5f.029f@mx.google.com>
 
-Allow fixed-partitions to be specified through a partitions
-node.
+On Tue, 03 Sep 2024, Christian Marangi wrote:
 
-Fixes the below dtbs_check warning:
+> On Tue, Sep 03, 2024 at 04:33:53PM +0100, Lee Jones wrote:
+> > On Sat, 31 Aug 2024, Lorenzo Bianconi wrote:
+> > 
+> > > From: Christian Marangi <ansuelsmth@gmail.com>
+> > > 
+> > > Add support for Airoha EN7581 GPIO System Controller which provide a
+> > > register map for controlling the GPIO, pinctrl and PWM of the SoC.
+> > > 
+> > > Schema define cells for both gpio/interrupt controller and PWM.
+> > > Moreover it provides a dedicated pinctrl node for pins and config
+> > > definitions.
+> > > 
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > ---
+> > >  .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    | 433 +++++++++++++++++++++
+> > >  1 file changed, 433 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mfd/airoha,en7581-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/airoha,en7581-gpio-sysctl.yaml
+> > > new file mode 100644
+> > > index 000000000000..a9080c7f50f9
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mfd/airoha,en7581-gpio-sysctl.yaml
+> > > @@ -0,0 +1,433 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mfd/airoha,en7581-gpio-sysctl.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Airoha EN7581 GPIO System Controller
+> > > +
+> > > +maintainers:
+> > > +  - Christian Marangi <ansuelsmth@gmail.com>
+> > > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > > +
+> > > +description:
+> > > +  Airoha EN7581 SoC GPIO system controller which provided a register map
+> > > +  for controlling the GPIO, pins and PWM of the SoC.
+> > 
+> > This whole thing is just about pins.
+> > 
+> > The MFD portion of this submission doesn't do anything.
+> >
+> 
+> Hi Lee,
+> 
+> thanks for the review. I think you missed the other series as it was
+> requested to use MFD implementation due to shared register map.
+> 
+> > Please rework this to omit the MFD driver.
+> 
+> I'm a bit confused by this you mean in the schema? Putting PWM property
+> in a pinctrl schema looks wrong to me :(
+> 
+> > 
+> > After just a glance, it looks like simple-mfd _might_ work.
+> 
+> Simple-mfd works if register map are well defined and you can have
+> something like
+> - parent define the whole register
+> - child can user reg property to register offset and subsection of the
+>   parent register
+> 
+> Here it's all mixed and scrambled and also it was requested to have a
+> very simple node that include both pwm and pinctrl property (cause that
+> is how the HW register block is designed and schema must reflect HW)
+> 
+> Hope you can understand these reasons.
 
-arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: nand@0,0: Unevaluated properties are not allowed ('partitions' was unexpected)
+Thinking very quickly before I have to rush off.
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
-Changes in v2:
-- reference mtd.yaml for standard mtd properties like partition as
-  suggested by Rob Herring.
-- Link to v1: https://lore.kernel.org/r/20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org
----
- Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Have you considered syscon?
 
-diff --git a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-index 115682fa81b7..00540302bcae 100644
---- a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
-@@ -61,12 +61,9 @@ properties:
-       GPIO connection to R/B signal from NAND chip
-     maxItems: 1
- 
--patternProperties:
--  "@[0-9a-f]+$":
--    $ref: /schemas/mtd/partitions/partition.yaml
--
- allOf:
-   - $ref: /schemas/memory-controllers/ti,gpmc-child.yaml
-+  - $ref: mtd.yaml#
- 
- required:
-   - compatible
-
----
-base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
-change-id: 20240830-gpmc-dtb-de2ce28acfb6
-
-Best regards,
 -- 
-Roger Quadros <rogerq@kernel.org>
-
+Lee Jones [李琼斯]
 
