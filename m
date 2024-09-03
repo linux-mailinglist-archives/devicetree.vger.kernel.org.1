@@ -1,165 +1,109 @@
-Return-Path: <devicetree+bounces-99454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4C3969D95
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:29:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D743A969DB0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:35:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA14E1F219EF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:29:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 154B01C22B1E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:35:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 163901D0954;
-	Tue,  3 Sep 2024 12:29:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="IbY6SCP4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B895C1C768A;
+	Tue,  3 Sep 2024 12:35:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 605211CB539
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 12:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A36E41B12F0;
+	Tue,  3 Sep 2024 12:35:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725366556; cv=none; b=Ad0U6PCYUl7W7SpbR+75uxLEZ+Lxip2mROCvN6XmRdUPZjQMpca/a7DqaXvdUigyw/WX+PWhOix2dasswsZZfgGnj2fsWYRhxEGS0AbJIcsYPgKVDbMcFUbCPNelD1dxQMfvtd3BoLHSsTEKlEtLC57JPActT4hXBOMGKspXEHo=
+	t=1725366934; cv=none; b=d0Ra6rMb1fhQ76k0kTlGTpZWAznNxPzyGx5QGC2kP9L/IQXDIE28zEGMAPtKGSEGu1EYM5PHfnRWHs3i6Ye3DiFJ6CmLUwSmRMq9ajfnHTedee47nw0qt3O+zqG4ZF8p5/PcAbusfr00aLJhvwt1Y65/Cu6zbKr3J5UOvq895YQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725366556; c=relaxed/simple;
-	bh=LYZ3g1BOQrAmEV2a5L00wMHSlNaPPgLH0lWGP87X9VE=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rps2qk8B0wTkz30KRv+yE8JhHO2ic3t+fUQdkyFE/BWasD74juxHa9YA91pGPib98AKCptpjA25qgLjk09qSyWg18GTIziF1HiOg9o0NlP8toCUAVbhtLb5c7zQtcu9pFYXlmLf+/APyagmjr8B4ErRBUQXiInhuiOlYJdWdo7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=IbY6SCP4; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53345604960so6085952e87.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 05:29:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1725366551; x=1725971351; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pQaEXKZRWyREIUo8wC8RcTnNWfD1rXPNnUAij9Sr27k=;
-        b=IbY6SCP4WWPPL2wU29cTSHcvBDgNnVeuU2grWCJXHhk+8cJGN+SSnRloO9PpTLhe4b
-         LfHYLzWEfoCva2m/GdE8rJ7f62g5YKa0X0eUeeJlCOfybn5LI79N6kFW66kvOiFeQsI4
-         nwhl2hdZbXWiAMrbE89ngBhyAfDA6Df5AKAs07lJUXb6dklEVIGdpN3/ZMrhQn61wc8k
-         NCfOuJ+8YGx7apRuj0krn9P0DlpMk0AeQ+/8hLUd/EjOSK4WIsr6Fz8kMpCSPR04ocF7
-         Ur+e4xK+Hlp8/W0ymMOcrQ9WaxoE++Mj9jQUuF92/3dQCfDuJ/lUIytA6SwFu0eK6Jvt
-         /r1A==
+	s=arc-20240116; t=1725366934; c=relaxed/simple;
+	bh=pukqGh/nMdQYmxb7CPZWFPfGwfpTJMXvd81j+CMTfxs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FrKkkrLWfBRpRw8cLh3Wt4ITG08AgAsRGqmHm4pHTENpRdcjewnzi3uXbuoPcY5pJ8oiSMhEKp3iExikmFjjSxR7+Ao9a5F/8diHhc2uFG/l3gBJuBnT/cJpU/84Cky5jCBglTCtemw5k8CHWyATJXl74ZRtxOWetDx9d0M4SlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e116d2f5f7fso4621725276.1;
+        Tue, 03 Sep 2024 05:35:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725366551; x=1725971351;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pQaEXKZRWyREIUo8wC8RcTnNWfD1rXPNnUAij9Sr27k=;
-        b=Ti10KPrmOL4OkR7xVqRsFUpXrMOgqO8+D+8VD25N28hg7om4AdmCQHmMJjW0th4j+X
-         AN6mIe9kMzCKbqeZk3ziAFb9hNTZ6Xsk/IHv5Sgvxe2IXgTm4JdM7jp0+UyLhOHjkQVH
-         dPIjJpoHx3/uwYNlZS7P9rHj0QmCteiggzlGEpuduCpU8Xz/QA74IHnuotXb252lG49p
-         JXvEAAcE15aHrJZXTnsuJkGtg9tD4yA7NJdXMJls2kK0pCex5evBNew3mfMqvHYUrJ5t
-         cW69B7sOf0DJ1n5RLY4gMNrErA6+p7CYqJ1XK3NpV6BSE/ip10PbEFzzgoVkPZotPvJe
-         Faug==
-X-Forwarded-Encrypted: i=1; AJvYcCU1Sl7hrcZit7vMD0T3SUJdXHrdQ9tqo6qlIViLQ/nuz3t+USto4YTu9BgCEKdeLdnm6C64jxSAoALe@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnaCFx9Q8lBa7UgMFJZyKawl9FnhpK4e/1S8P1sXChxGM5tTdw
-	iBUIoA7n/UXHmwGRs7NjSge9vviAHNgn1BE+GpKPuYnCkDKoTvKx2hDPOXiSvRw=
-X-Google-Smtp-Source: AGHT+IFq5h7rZ8oQIIXm6nz6CibNpWmLcPJNLG4TGtm/2ICu6a9ZqKTz9NHYYqSXDVwrc61upSj1pQ==
-X-Received: by 2002:a05:6512:2254:b0:530:ea60:7e07 with SMTP id 2adb3069b0e04-53546bb9455mr9237621e87.58.1725366550821;
-        Tue, 03 Sep 2024 05:29:10 -0700 (PDT)
-Received: from localhost (host-80-182-198-72.retail.telecomitalia.it. [80.182.198.72])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891d7834sm688285166b.177.2024.09.03.05.29.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2024 05:29:10 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 3 Sep 2024 14:29:18 +0200
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stefan Wahren <wahrenst@gmx.net>, Will Deacon <will@kernel.org>,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH 05/11] vmlinux.lds.h: Preserve DTB sections from being
- discarded after init
-Message-ID: <ZtcBHvI9JxgH9iFT@apocalypse>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <12d0909b1612fb6d2caa42b4fda5e5ae63d623a3.1724159867.git.andrea.porta@suse.com>
- <2113b8df52164733a0ee3860bb793d6e.sboyd@kernel.org>
+        d=1e100.net; s=20230601; t=1725366928; x=1725971728;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bgoCHMHFNIt/XhiUpMbOZHv3vnXPL+Zu29fZEZr3HEE=;
+        b=lMv24B6nw5GA7m/lHAtH7difgpAhuxaC304vkYr2w9iSCcSzFPtte0F+NVl8INrfkF
+         ZIecd/3oedOYr/PmZCQKbx9cfIglD4wG/zswPkAB9plnp+XfXM/t3MEghzJijc8UIF88
+         l2inJ8L56J9fqE8DD98m0592DdNbqhOJ1I+UIi5a6weHgQG3VX7bz60dkC89A7Tsdrvc
+         RtSC19nMD+lpRndfqLlqN1MDpzhKu8R9U1Aga8xEH5XChv5r87aO3dD/dWv1jeFN1RhF
+         Mp/JpiFmvDQ4JnUMVrM0T5n8iTeo50CE/i9PbxbSUdGv8TbPox23X/0btdoydL/MmcgX
+         U1/w==
+X-Forwarded-Encrypted: i=1; AJvYcCUBpOOeFqgNfelrMKGIjZnrae5DkiUJSkvvpIml5JxEkX9wqsfo4isWl7xDdnBuFCtrygaYKUmVRCjK@vger.kernel.org, AJvYcCWyBLHVim3qdMn80fgsWZbgKn0NjtpG9VBrC+3ZjnkXVwixnInzbkFc6LbtZbWYfjs5gggD9VtXox0mFA0Y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/8zVJ11/zSWHuWkhWtobTk99AA9IyCtlCvfH5+CH3sQZ2VsTV
+	lUL7PO5GXeEdvnamHJIRCDKjtBQgyZ1pFD+shgTXvRvz3rZhPymJaw5t9k1M
+X-Google-Smtp-Source: AGHT+IFqdO4qT6pAN7x3MNZI1r6KD88CJa4+82jbSISdXKPKCouoa+dB5M30qmWLoByklNRMll8YRA==
+X-Received: by 2002:a05:690c:ec6:b0:6d5:ccc5:e2f4 with SMTP id 00721157ae682-6d5ccc5eademr80201437b3.2.1725366928473;
+        Tue, 03 Sep 2024 05:35:28 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d4988bdbbcsm14650077b3.12.2024.09.03.05.35.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Sep 2024 05:35:28 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e116d2f5f7fso4621661276.1;
+        Tue, 03 Sep 2024 05:35:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVd2vjor8pjXacJQGeOw3Au8SS3jnmRutdpAkc2wZTIt/rY+i+4CnyWqE/PpsoMuqdwqMlStA8ujH6n@vger.kernel.org, AJvYcCXfKkFoliviKZUvVQly/EJCCT+mk35sdqg7KI84I0mpDQMJaIe9aQMCzgMF/24mTH3fRyMfiC+lB1Vwf2EA@vger.kernel.org
+X-Received: by 2002:a05:690c:668e:b0:6d8:a9a1:7cac with SMTP id
+ 00721157ae682-6d8a9a17ef4mr49319937b3.12.1725366927206; Tue, 03 Sep 2024
+ 05:35:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2113b8df52164733a0ee3860bb793d6e.sboyd@kernel.org>
+References: <20240903104608.184988-1-d.dolenko@metrotek.ru>
+In-Reply-To: <20240903104608.184988-1-d.dolenko@metrotek.ru>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 3 Sep 2024 14:35:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVuJFRrHAR8Q+HkXbaf29TaUFgvxYY4Ua9xQ7mGZoBsnQ@mail.gmail.com>
+Message-ID: <CAMuHMdVuJFRrHAR8Q+HkXbaf29TaUFgvxYY4Ua9xQ7mGZoBsnQ@mail.gmail.com>
+Subject: Re: of: Status of DT-Overlay configfs patch
+To: Dmitry Dolenko <d.dolenko@metrotek.ru>
+Cc: pantelis.antoniou@gmail.com, nava.manne@xilinx.com, 
+	radhey.shyam.pandey@xilinx.com, austin.zhang@intel.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, system@metrotek.ru
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Stephen,
+Hi Dmitry,
 
-On 12:46 Fri 30 Aug     , Stephen Boyd wrote:
-> Quoting Andrea della Porta (2024-08-20 07:36:07)
-> > The special section .dtb.init.rodata contains dtb and dtbo compiled
-> > as objects inside the kernel and ends up in .init.data sectiion that
-> > will be discarded early after the init phase. This is a problem for
-> > builtin drivers that apply dtb overlay at runtime since this happens
-> > later (e.g. during bus enumeration) and also for modules that should
-> > be able to do it dynamically during runtime.
-> > Move the dtb section to .data.
-> > 
-> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > ---
-> >  include/asm-generic/vmlinux.lds.h | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/include/asm-generic/vmlinux.lds.h b/include/asm-generic/vmlinux.lds.h
-> > index ad6afc5c4918..3ae9097774b0 100644
-> > --- a/include/asm-generic/vmlinux.lds.h
-> > +++ b/include/asm-generic/vmlinux.lds.h
-> > @@ -365,6 +365,7 @@
-> >         TRACE_PRINTKS()                                                 \
-> >         BPF_RAW_TP()                                                    \
-> >         TRACEPOINT_STR()                                                \
-> > +       KERNEL_DTB()                                                    \
-> 
-> The KERNEL_DTB() macro shows the section name is dtb.init.rodata. Can
-> you remove the ".init." part if this isn't initdata anymore? And
-> shouldn't it be in the RO_DATA() macro?
+On Tue, Sep 3, 2024 at 12:46=E2=80=AFPM Dmitry Dolenko <d.dolenko@metrotek.=
+ru> wrote:
+> Is there any place where the status of patch "OF: DT-Overlay configfs
+> interface" could be found?
 
-Ack.
+I try to keep it up-to-date in [1].  In fact I have just pushed a
+rebase to v6.11-rc5, to fix a merge conflict with a recent upstream
+change.
 
-> 
-> It would be nice to keep the initdata properties when this isn't used
-> after init as well. Perhaps we need another macro and/or filename to
-> indicate that the DTB{O} can be thrown away after init/module init.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.g=
+it/commit/?h=3Dtopic/renesas-overlays
 
-We can certainly add some more filename extension that would place the
-relevant data in a droppable section. 
-Throwing away the dtb/o after init is like the actual KERNEL_DTB macro that
-is adding teh data to section .init.data, but this would mean t would be
-useful only at very early init stage, just like for CONFIG_OF_UNITTEST.
-Throwing after module init could be more difficult though, I think,
-for example we're not sure when to discard the section in case of deferred
-modules probe.
+Gr{oetje,eeting}s,
 
-Many thanks,
-Andrea
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
