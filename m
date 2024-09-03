@@ -1,295 +1,94 @@
-Return-Path: <devicetree+bounces-99682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 024DA96AC05
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:20:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3072C96AC0D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:20:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 203331C245E8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C29F1B2228E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:20:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FFAC1C9DC0;
-	Tue,  3 Sep 2024 22:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E4B19CC2F;
+	Tue,  3 Sep 2024 22:20:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VTvrZ2V6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h77gm+0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1A8192B68
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 22:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1833D126C16;
+	Tue,  3 Sep 2024 22:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725402018; cv=none; b=dJyBfnotjkbAFkmpHZoKpafnR565WCLgviCt+QCwIM33HLDtNbZxcvd3d4QOoQz/omfDeIDUh6Uwb0xnVpFmHuI/ttNcsimZ0hmxv/ajYXWt5GlcKwGGoF2+ChXYNA6oxeWsD6tHfN4UvwxlQ1lMABgk2m/bFyHxIK0kKgNug4o=
+	t=1725402038; cv=none; b=o5IgLf0A/XYWyQ5hDkIl3OGDwskd4BjCQaFmn5eS4oIFENBfMAdVEBJg04rf0vtmc+WdnISFlg7PaWgu1mzDyjHSY4GaIa3xjBFvTWQPsfPfG0wwZZVYBftJo4utRNTZWpxKAIJAo31U4xaT3H7XfQKJZdr15zfy7y9FrkapGuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725402018; c=relaxed/simple;
-	bh=VgukLIdAqyeSxA2DG9cLyohXbxxYr/YDX0u8EHAwkCo=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XzwmHJDziKcocTUKe2dS+9UN6IlvFMpc3sTD8O3LlOrT1mwosT0v07rYU+SbMkKsyo35yGyjc17AckbSMx9nZFH2zC8DRhdaSjeba5IDxtfT2ANv4F2lFdd7jUVvQ1fJFdERa12kAPRO0/yrZOjWBIg3eXn463DUGHg2nptKI8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VTvrZ2V6; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-690aabe2600so48446047b3.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 15:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1725402015; x=1726006815; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/+hY8C/Csnv3M/LgsDuLYd+cu/lwq52aGSpQU/ytorc=;
-        b=VTvrZ2V603HQdo/9/LWa4zQ44amdPFCY7kfke0lr/B3rLqLVhOB7lYsh8TqxSRR778
-         dTcQ3DAqK4wJBYcl/IFucWhVytIaiCaEWvXb+DhAZnuBOjX7qp/lBTeV9aeXtcYWaTjF
-         ZbLTIK/dvZY0E5on/qd0KUA2Oa+wlAcgBF4ZQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725402015; x=1726006815;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/+hY8C/Csnv3M/LgsDuLYd+cu/lwq52aGSpQU/ytorc=;
-        b=Ce2+XGVDG7LSYa4wR3rLDgA9MKpQFe/1i1MILeJdYoe1j03+0KA+0ayb11Or+ebcJ/
-         sA4+7c3yJk5TWiRxKWpUk+ofQ2eHpDfhd9hxnr2qe2EC8bwRMq2k/9XBz7W6UmaUjAzY
-         W/LpZjkdJgcpQ2jybf0AsJVPx/dDUiU/IiYpzp0YYDeggVG90cfjoYe3//MImi2TED+y
-         KKXg8IW4kzNsheviiLYbZiXee9RVjofc5CEPekGgGqp7J4jHQ3oh7oj7IWELzIPPv/pk
-         XLx2kAqOnhz756yjviTlFDR5/GqcgY4nqZqeGg3ZvV0fMWyeZ86Jcnl7kTPuiyulRDPU
-         uW7A==
-X-Forwarded-Encrypted: i=1; AJvYcCX/QlCB+IXm82JZufy7OT4UejzBw7A80fyRoxE6bo8bfKjYg8593ODJipMdkzVvyh1sCk/8GKLGsl+a@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywv1E5MaQjWkUOhS0vwPbEHAsJJdh8YaP/tPhzxr/mdiclIpj8P
-	QB2+sKFeQy26DVWKgWLOQmKOyn/6116KomiAsZf2mEjbaehJ0J2tRBrUtjU1z8q50+2IwI0qthO
-	zEFgvNLiPSQ25wkTwgl8FQo//wZ89gUHBg9Ey
-X-Google-Smtp-Source: AGHT+IFwXAJ53tzp721XKIBWOOUK4nFlwB+WIRkuEoAHaKs0HLbFhY0QtOfcaSBF6O58JI106A7GqiGJo71sW3vWmWA=
-X-Received: by 2002:a05:690c:fca:b0:6af:8662:ff37 with SMTP id
- 00721157ae682-6d40f82a5e9mr204127277b3.21.1725402015390; Tue, 03 Sep 2024
- 15:20:15 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 3 Sep 2024 18:20:14 -0400
+	s=arc-20240116; t=1725402038; c=relaxed/simple;
+	bh=8CrIzbvXoLHq+nV32EseS4c9azbPQK5+QG+wtMsi3Vo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VcqJhf7SXumwtHV0fwzw6kN07IU+6m3CMXHI2pEGhQJHkuzHzaIfl30ICcnM4ppNWOn0rd+1YccFoevQLFoyxnm2eLggfcU58qtHq+S4mYdAd8LEUHE32ICJLRBmzOeBs0ncyh6/3nh1tgUrBZul8j2Nj2OVkn3Oi3pRgS8Mv08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h77gm+0s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEE64C4CEC4;
+	Tue,  3 Sep 2024 22:20:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725402037;
+	bh=8CrIzbvXoLHq+nV32EseS4c9azbPQK5+QG+wtMsi3Vo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h77gm+0s4Z3/Mhiqmggr4tkyfwkyV0tx4Z0V8LJFBvkyKyd76nUqxVwD3e/ocZvo0
+	 QoeXOFNgYjKrLSYiDUpm0HENEsaInAijd6qIHmi1MLpopuORbnhAOw052RWjQ+0VTh
+	 eFlvrkutQMPc2eA/WE8NZATT1yqHEhTbMHreoRdIEE3b61l4ch+42lZEfmEF7J4KEe
+	 5xUrTxtdsk7S8W4FBaJ9boRAn/8WmbSD96myiDHlNdVx9O+10hDauIVP2Jgp+V6orx
+	 lxtzBT/rJRjmrutSDv9HxbNXs5tUf1g9pg5h6rFIEzvs7mhsgEQxWRjYJSvTbwElyB
+	 AXfidFvfQOjrA==
+Date: Wed, 4 Sep 2024 00:20:33 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, Andy Yan <andyshrk@163.com>, 
+	Muhammed Efe Cetin <efectn@protonmail.com>, Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>, 
+	Ondrej Jirman <megi@xff.cz>, Michael Riesch <michael.riesch@wolfvision.net>, 
+	Jimmy Hon <honyuenkwun@gmail.com>, Elon Zhang <zhangzj@rock-chips.com>, 
+	Alexey Charkov <alchark@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>, Finley Xiao <finley.xiao@rock-chips.com>, 
+	Liang Chen <cl@rock-chips.com>, Jamie Iles <jamie@jamieiles.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org, kernel@collabora.com, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 3/9] dt-bindings: i2c: i2c-rk3x: Add rk3576 compatible
+Message-ID: <3crgu77c6mgwqqeuiy6m4pupypjwqpwo56z4ydl3emm35m54vu@y354e3jckogf>
+References: <20240903152308.13565-1-detlev.casanova@collabora.com>
+ <20240903152308.13565-4-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <ZtWjEudmlR51zkU9@smile.fi.intel.com>
-References: <20240901040658.157425-1-swboyd@chromium.org> <20240901040658.157425-7-swboyd@chromium.org>
- <ZtWjEudmlR51zkU9@smile.fi.intel.com>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Tue, 3 Sep 2024 18:20:14 -0400
-Message-ID: <CAE-0n51eSxxvnJXwnfPrXx1=rei=8OGGEtCAgw6nhCktZ0iQDw@mail.gmail.com>
-Subject: Re: [PATCH v4 06/18] drm/bridge: aux-hpd: Support USB Type-C DP
- altmodes via DRM lane assignment
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, devicetree@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
-	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Scally <djrscally@gmail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
-	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240903152308.13565-4-detlev.casanova@collabora.com>
 
-Quoting Andy Shevchenko (2024-09-02 04:35:46)
-> On Sat, Aug 31, 2024 at 09:06:44PM -0700, Stephen Boyd wrote:
-> > Extend the aux-hpd bridge driver to support assigning DP lanes to USB
-> > type-c pins based on typec mux state entry. Existing users of this
-> > driver only need the HPD signaling support, so leave that in place and
-> > wrap the code with a variant that supports more features of USB type-c
->
-> Isn't the proper spelling "USB Type-C"?
+Hi,
 
-Perhaps in a title?
+On Tue, Sep 03, 2024 at 11:22:33AM GMT, Detlev Casanova wrote:
+> Just like RK356x and RK3588, RK3576 is compatible to the existing
+> rk3399 binding.
+> 
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Heiko Stuebner <heiko@sntech.de>
 
->
-> > DP altmode, i.e. pin configurations. Prefix that code with
-> > 'drm_dp_typec_bridge' to differentiate it from the existing
-> > 'drm_aux_hpd_bridge' code.
-> >
-> > Parse the struct typec_mux_state members to determine if DP altmode has
-> > been entered and if HPD is asserted or not. Signal HPD to the drm bridge
-> > chain when HPD is asserted. Similarly, parse the pin assignment and map
-> > the DP lanes to the usb-c output lanes, taking into account any lane
-> > remapping from the data-lanes endpoint property. Pass that lane mapping
-> > to the previous drm_bridge in the bridge chain during the atomic check
-> > phase.
->
-> ...
->
-> > +static inline struct drm_dp_typec_bridge_data *
-> > +hpd_bridge_to_typec_bridge_data(struct drm_aux_hpd_bridge_data *hpd_data)
-> > +{
-> > +     return container_of(hpd_data, struct drm_dp_typec_bridge_data, hpd_bridge);
->
-> + container_of.h ?
->
-> With that said, can the argument be const here?
+merged to i2c/i2c-host.
 
-You mean 'hpd_data'? Don't think so because then we would want
-container_of_const(), and to return a const pointer from this function
-when drm_dp_typec_bridge_assign_pins() wants to modify struct
-drm_dp_typec_bridge_data::num_lanes.
-
->
-> > +}
->
-> ...
->
-> Ditto for the two more helpers, added in this change.
-
-Ditto.
-
->
-> ...
->
-> > +static void drm_dp_typec_bridge_release(struct device *dev)
-> > +{
-> > +     struct drm_dp_typec_bridge_dev *typec_bridge_dev;
-> > +     struct auxiliary_device *adev;
-> > +
-> > +     typec_bridge_dev = to_drm_dp_typec_bridge_dev(dev);
-> > +     adev = &typec_bridge_dev->adev;
-> > +
-> > +     ida_free(&drm_aux_hpd_bridge_ida, adev->id);
->
-> > +     of_node_put(adev->dev.platform_data);
-> > +     of_node_put(adev->dev.of_node);
->
-> I'm wondering why it's not made fwnode to begin with...
-> From the file / function names it's not obvious that it's OF-only code. Neither
-> there is no explanations why this must be OF-only code (among all fwnode types
-> supported).
-
-When in Rome? The drm_bridge code doesn't work with fwnode today, and
-making it support fwnode is a much larger change. I'm not going to make
-drm_bridge work with fwnode. Maybe when ACPI describes elements in the
-display chain we can convert drm_bridge to use fwnode.
-
->
-> > +     kfree(typec_bridge_dev);
-> > +}
->
-> ...
->
-> > +             return ERR_PTR(dev_err_probe(parent, -ENODEV, "Missing typec endpoint(s) port@0\n"));
->
-> We have a new helper for such cases.
-
-Thanks!
-
->
-> ...
->
-> > +     adev->dev.of_node = of_node_get(parent->of_node);
->
-> device_set_node() ?
-
-Or device_set_of_node_from_dev()?
-
->
-> ...
->
-> > +     ret = auxiliary_device_init(adev);
-> > +     if (ret) {
-> > +             of_node_put(adev->dev.platform_data);
-> > +             of_node_put(adev->dev.of_node);
-> > +             ida_free(&drm_aux_hpd_bridge_ida, adev->id);
-> > +             kfree(adev);
-> > +             return ERR_PTR(ret);
->
-> Can cleanup.h be utilised here and in other error paths in this function?
-
-It looks like we can set these later and save on the of_node_put()s
-until after the auxiliary_device_init() is called. Doing that allows
-them to be in one place, the release function.
-
-> > +static int dp_lane_to_typec_lane(enum dp_lane lane)
-> > +{
-> > +     switch (lane) {
-> > +     case DP_ML0:
-> > +             return USB_SSTX2;
-> > +     case DP_ML1:
-> > +             return USB_SSRX2;
-> > +     case DP_ML2:
-> > +             return USB_SSTX1;
-> > +     case DP_ML3:
-> > +             return USB_SSRX1;
-> > +     }
->
-> > +     return -EINVAL;
->
-> Hmm... This can be simply made as default case.
-
-And then the enum is always "covered" and the compiler doesn't complain
-about missing cases (I don't think we have -Wswitch-enum)? Seems worse.
-
->
-> > +}
->
-> ...
->
-> > +     for (i = 0; i < num_lanes; i++) {
-> > +             /* Get physical type-c lane for DP lane */
-> > +             typec_lane = dp_lane_to_typec_lane(i);
-> > +             if (typec_lane < 0) {
-> > +                     dev_err(&adev->dev, "Invalid type-c lane configuration at DP_ML%d\n", i);
-> > +                     return -EINVAL;
->
-> Most likely typec_lane contains an error code here. If yes, it would be rather
->
->                         return typec_lane;
->
-> If no, why not make that happen?
-
-Sure.
-
->
-> > +static int drm_dp_typec_bridge_atomic_check(struct drm_bridge *bridge,
-> > +                                        struct drm_bridge_state *bridge_state,
-> > +                                        struct drm_crtc_state *crtc_state,
-> > +                                        struct drm_connector_state *conn_state)
-> > +{
-> > +     struct drm_dp_typec_bridge_data *data;
-> > +     struct drm_lane_cfg *in_lanes;
-> > +     u8 *dp_lanes;
-> > +     size_t num_lanes;
->
-> > +     int i;
->
-> Does it need to be signed? Can it theoretically overflow as num_lanes defined
-> as size_t?
-
-I guess it could but seems highly unlikely. Using unsigned is fine.
-
->
-> > +             port->typec_data = typec_data;
-> > +             if (of_property_read_u32_array(ep.local_node, "data-lanes",
-> > +                                            port->lane_mapping,
-> > +                                            ARRAY_SIZE(port->lane_mapping))) {
->
-> > +                     memcpy(port->lane_mapping, mapping, sizeof(mapping));
->
-> Hmm... I'm wondering if direct assignment will save a few .text bytes
->
->                 port->lane_mapping = ...;
->                 of_property_read_u32_array(ep.local_node, "data-lanes",
->                                            port->lane_mapping,
->                                            ARRAY_SIZE(port->lane_mapping));
->
-> Also note that conditional is not needed in this case.
->
-
-Ok. I'm fine with either way here. Maybe Dmitry has an opinion.
+Thanks,
+Andi
 
