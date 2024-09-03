@@ -1,67 +1,48 @@
-Return-Path: <devicetree+bounces-99482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D3F9969F08
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:29:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24329969F4D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053221F250CE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:29:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C269F1F2449F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748C81B12DA;
-	Tue,  3 Sep 2024 13:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67468472;
+	Tue,  3 Sep 2024 13:44:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="OpBi4fYX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjpbXkS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omta036.useast.a.cloudfilter.net (omta036.useast.a.cloudfilter.net [44.202.169.35])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DF61A726A
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 13:29:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8946923D7;
+	Tue,  3 Sep 2024 13:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725370182; cv=none; b=Asoiu9tdQ58uwQann6BpG2XVOvXqrExIpj/ORsmY1waRHqOfbNdF7LXonhkGEebTHt+A+rZ/hlHNnG4VcwDMZfwu6vOGDklopeDNY9QBMMEZGshGnLgc97G10t0etH2EZL6yGkFtNMx8bzDs865YLJf1QUJXKc/o6b2x3kK34H4=
+	t=1725371087; cv=none; b=Ra6PZstop5cerGPBeacv9XMrc4/9ig2WG0ImKFTvYT+CmTTfK2XsTC2/b6fyI/9ykRWWqOaiYcrqDZphBngiGw1PQzjakug1PJsGGSnxsvUFUpdRU2+3cF76+iABDLiJXTFicFgzT7iNpnvAGZ/datQGFOy6ddtAyfrwrXg8c0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725370182; c=relaxed/simple;
-	bh=sUFoHKHsNtlpiEkAg1QiZApjgXML3bAHfXiEy3+lhsE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NtgdXqC0oleTPcu+B/VACouEMcRs522ThBaJZmtXrbiSZEKyLbwD2ChSJWpzC1eYi+SK9b7//Fo4nqToDdppZ8Goo/OkcTNyVhBMWGRT61VmmEL6uXxhetl3C46NDGbl1A8RXrqldblelHAKhSbrGdI/sAkLhvNSWMJhRmDdLSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=OpBi4fYX; arc=none smtp.client-ip=44.202.169.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-Received: from eig-obgw-6001a.ext.cloudfilter.net ([10.0.30.140])
-	by cmsmtp with ESMTPS
-	id lRGXsK0bFiA19lTbHsJ19h; Tue, 03 Sep 2024 13:29:39 +0000
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-	by cmsmtp with ESMTPS
-	id lTbDsGxqdZlJQlTbFsc59h; Tue, 03 Sep 2024 13:29:38 +0000
-X-Authority-Analysis: v=2.4 cv=DMBE4DNb c=1 sm=1 tr=0 ts=66d70f42
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
- a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=-pn6D5nKLtMA:10 a=vU9dKmh3AAAA:8
- a=P-IC7800AAAA:8 a=HSDmG33uGC2uzMr5-wEA:9 a=QEXdDO2ut3YA:10
- a=rsP06fVo5MYu2ilr0aT5:22 a=d3PnA9EDa4IxuAV0gXij:22 a=ZCPYImcxYIQFgLOT52_G:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=EjfaqFqF+XmogTpsGQkFuU8JUSJBnI7pUXSKmfynpwM=; b=OpBi4fYXDVLm0dvEsGWGdc3T6p
-	hRQh5liMUUNo5hOBsz/2Cj7JJMDgYTsRrMRkgSOUP+w3K6p3iedTqLQ38rHqyUbEfsy96WGpNsiYr
-	jrXPATJ+oOwe45v6GvbdC5pu8f/Fik3npp3nXw0CsZ4iqt7vl4LCtVxcWLxhHfnatvls21gIjV77h
-	qju6o2emyvn5z6lULd9qvk1G5liL3Ogu/9Hu47fWCzltVpQAmdPGqu6dC+uLPfSMfOecTnydLOUjn
-	OvrcUnSbO6VYA04LwEvN8zlFEqi9/xkd+HFocDdu2B3uOtsJY4Q5VO/6MWuH9eW/HjuJTA6zBxA0X
-	37ZE9kjg==;
-Received: from [122.165.245.213] (port=37192 helo=[192.168.1.106])
-	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <karthikeyan@linumiz.com>)
-	id 1slTbC-00282Z-1y;
-	Tue, 03 Sep 2024 18:59:34 +0530
-Message-ID: <2374e41a-0ba2-4a99-906d-8c165baa6344@linumiz.com>
-Date: Tue, 3 Sep 2024 18:59:31 +0530
+	s=arc-20240116; t=1725371087; c=relaxed/simple;
+	bh=Do5/A2DczknYKVHUXlyVpJJsXBPGjVZ0HASVclzlsZM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=VIjyU4u903hJkNyP5s9LCfLN0h8rqutW8BBPGflYqhKBpa1KPMEE9AuB1nuzbrrnQ+3mTplZR5zLQiMmVQg99pnJTJTo23nPBpa6dDiJmlZyPs3v7xLekBJp1YqkALj9I3AZbDBFzLACzLWcPecC4nYAdsbN+cuTL1osD33KvaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjpbXkS3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6649FC4CEC4;
+	Tue,  3 Sep 2024 13:44:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725371087;
+	bh=Do5/A2DczknYKVHUXlyVpJJsXBPGjVZ0HASVclzlsZM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=WjpbXkS37j8qmqVgbi7TuA6r6LTvYI9NUwNQuoAPhm2iaPfKcxA3zGyrpj1i04eDW
+	 i6BSAMkrztxv5k+/46HkEQfNleLKMvSNGblf+b9fnxbvjdtfIK74IDFx3Lj5dqLMJA
+	 zQbCSPKz1SEQZaVtnNwSJJ7egs6lPZxASn1/qlZbNBIfAXPHWebsNrpBM36rYm7E5M
+	 7lOZhP3wfIe94P8322BwCpJXU2tluQyM/6mbSRQHIedJ5swkyag8f9Oh0uE1o6DXNo
+	 LD8Vg0m0UxCjzmdxYtRvpUyq8k0PFvlUQuB7a1jMhA/RhOZVVcwFiFyYiQgSOwQhj4
+	 CQsVPIcvun+/w==
+Message-ID: <fed18a8f-446f-4d61-a9ce-4c5e09bf0aaa@kernel.org>
+Date: Tue, 3 Sep 2024 15:44:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,84 +50,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] dt-bindings: rtc: microcrystal,rv3028: add
- clock-cells property
-To: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- alexandre.belloni@bootlin.com
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org
-References: <20240903105245.715899-1-karthikeyan@linumiz.com>
- <20240903105245.715899-6-karthikeyan@linumiz.com>
- <e1513eb7-4ac5-4703-b4ff-2791908f1ec8@kernel.org>
+Subject: Re: [PATCH v8 0/8] Add QPIC SPI NAND driver
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, broonie@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, miquel.raynal@bootlin.com,
+ richard@nod.at, vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
+ esben@geanix.com, linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mtd@lists.infradead.org
+References: <20240820104239.1774600-1-quic_mdalam@quicinc.com>
+ <5169761b-422d-70ab-ba53-a898cb7bfa2f@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: karthikeyan <karthikeyan@linumiz.com>
-In-Reply-To: <e1513eb7-4ac5-4703-b4ff-2791908f1ec8@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <5169761b-422d-70ab-ba53-a898cb7bfa2f@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 122.165.245.213
-X-Source-L: No
-X-Exim-ID: 1slTbC-00282Z-1y
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.1.106]) [122.165.245.213]:37192
-X-Source-Auth: karthikeyan@linumiz.com
-X-Email-Count: 5
-X-Org: HG=dishared_whb_net_legacy;ORG=directi;
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfI00wfNypjJFXEzNjr3LlRaTOKI3r+KBpE1fFh+h+TXZ0Vyil722JZW5FvZNKbIpoRPD+/4SaKnMV2qO4c1FqcYSbjTJdLe+rYF/CNLGs9Wd8rSmPcod
- sHoK7w5Um+Sftrr/cIfII5XGA346uQlOYOMBK78NVETZjUa/uSolGjTKSTiCNYqPR/nHdSk8fRJaDWa7bwNmPBJRru1Z4sN5etg=
 
-
-
-On 9/3/24 18:21, Krzysztof Kozlowski wrote:
-> On 03/09/2024 12:52, Karthikeyan Krishnasamy wrote:
->> consume clkout from rv3028 rtc which is able to provide
->> different clock frequency upon configuration
+On 03/09/2024 11:15, Md Sadre Alam wrote:
+> Hi Miquel,
+> 
+> On 8/20/2024 4:12 PM, Md Sadre Alam wrote:
+>> v8:
+>>   * Fixed compilation warning reported by kernel test robot
+>>   * Added "chip" description in nandc_set_read_loc_first()
+>>   * Added "chip" description" in nandc_set_read_loc_last()
+>>   * Changed data type of read_location0, read_location1,
+>>     read_location2, read_location3, addr0, addr1, cmd, cfg0,
+>>     cfg1, ecc_bch_cfg, ecc_buf_cfg, clrflashstatus, clrreadstatus,
+>>     orig_cmd1, orig_vld to __le32 to fix compilation warning.
+>>   * Included bitfield.h header file in spi-qpic-snand.c to
+>>     fix compilation warning
+>>   * Removed unused variable "steps" variable from
+>>     qcom_spi_ecc_init_ctx_pipelined()
 >>
->> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
->> ---
->>
->> Notes:
->>      v2:
->>      - fix commit message subject
-> 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
-> 
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
-> 
-> Best regards,
-> Krzysztof
-> 
+>      I have addressed your comments to v6 and further posted till v8.
+>      Could you please let me know if this is fine.
+>      and how to get this merged ?
 
-Apologies. I'm new to the process, somewhat i'm missing this 
-information. I will change it in the future patches.
-
-Thanks for suggesting b4, i will look into it.
+Two weeks ago you received reports that your code does not build
+properly. So no, it is not fine. Please respond to the reports and/or
+send corrected code.
 
 Best regards,
-Karthikeyan
+Krzysztof
+
 
