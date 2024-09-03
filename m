@@ -1,195 +1,216 @@
-Return-Path: <devicetree+bounces-99381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 691609699A8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:59:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9DF9699F8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:19:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0F47B24C8C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:59:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32661C2318C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E89F1A4E8D;
-	Tue,  3 Sep 2024 09:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0D981AD26D;
+	Tue,  3 Sep 2024 10:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="OFxJCAnc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205A819F42D;
-	Tue,  3 Sep 2024 09:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68411AD249
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 10:19:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725357594; cv=none; b=oRe4XMyVc1LFaiI3UDNtRqskyL3sHdSD+y4BDkDvVJar6OofjjOkoloJR3IESedKg2Em+m+3nwDqeWGkhOjA+XBzaqCv4dX2Xtgifw+7Pzm7ZvebXGu/CvxlWaStXKPPq2DTwglfWKinb8D649vjVTh8VorsA14JLESZ2fzuRXo=
+	t=1725358790; cv=none; b=Rg/Z10gHTHiAX3B5sFhyPImVnU6HrJRUr1rjD7BcpUPPU1GMH0h/SqUfhS3fAPo8nJAeh1i/iNDJcW7pmqyrEhRX3UYL7NQ2ZWv4Cnnm1hpJBuY0ZHgWivW4uXQltd2boYkGx24xWGT5/0J8iTmiuB8Po/Nq5gFCCePUt4QB1TA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725357594; c=relaxed/simple;
-	bh=kpYh5Vbgr2QEdHEMAjI5GDUKDsowxzPMpAQCAPZxGKs=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=GJsJTvujFIaHyBWlKnshSQ564orFXYFldTrPTm9f4Vo9+3xhyiU6kXnAX02AEmuAxW8dcNTwW0sGJ28QrSvLYchp81eYjfraO1m2k432/5NYXxxebaKeUEqtEALHy8LziSqx9Zw087DdpzyHBE/vDCxYX8R5whYO/x1EKlsRRZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.20.42.164])
-	by gateway (Coremail) with SMTP id _____8CxaZoQ3tZmfRApAA--.43098S3;
-	Tue, 03 Sep 2024 17:59:44 +0800 (CST)
-Received: from [10.20.42.164] (unknown [10.20.42.164])
-	by front2 (Coremail) with SMTP id qciowMBxjcUO3tZmeMEEAA--.12849S2;
-	Tue, 03 Sep 2024 17:59:43 +0800 (CST)
-Subject: Re: [PATCH v2 2/2] Loongarch: EDAC driver for loongson memory
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- chenhuacai@kernel.org, linux-edac@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@xen0n.name,
- bp@alien8.de, tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
- rric@kernel.org, loongarch@lists.linux.dev
-References: <20240903015354.9443-1-zhaoqunqin@loongson.cn>
- <20240903015354.9443-3-zhaoqunqin@loongson.cn>
- <jkdyayyjrzuhhfaueiessntfdof2m55xjxedkl3zp2jalf4sii@3fo65j64c6rv>
- <549969b7-26c4-a203-b5a0-2e89ab7e7d79@loongson.cn>
- <979d67cc-cbd2-408c-a8ca-a063030bcec2@kernel.org>
-From: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Message-ID: <cca91e87-ea98-5b16-0503-4d51fd524f24@loongson.cn>
-Date: Tue, 3 Sep 2024 17:59:14 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	s=arc-20240116; t=1725358790; c=relaxed/simple;
+	bh=C8KF0NATt/6MEKo6hjD8oYxBGb+BnkEDDEBROE2tMCg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hkCQGToe5YYtDgnibE3R5l6jj/QsGtWoNmQzbXQzLk2m9oWXRVcaOxaSQLHP6TrSPz0i1W6OHhTTFkg0CfGGKi+G3xG9qA92VEAwVzQdO6OWu8OwGR3pVJfu1kChdUIO36jXVhnB0/DnMtNpEmewKz37WntSDPiK9kdlKXY2ZvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=OFxJCAnc; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53345dcd377so7108448e87.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 03:19:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1725358787; x=1725963587; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iJS4mKwDt71f+czvCGcc6KmwF1qHOE0EcsdjnmVJivo=;
+        b=OFxJCAncAWZH82ldEgVo3pSwlwXgGZ6kPzJIcnSj0b2oRNk4qg46x0VhvupnrCk97w
+         LmIOT0HFm4ZDSTe7IIKcY5rlfUfgTjggUqQLU1IObU8a3uZSgnTOTZwAra0kwd17wyqx
+         Hnb4PDBG3NWND+zyFG/j0eaUHKmabelAToIS1nT57HQga7sPC/jSccWAG5gAkT5XjFz7
+         m1dQl6Oef4O+40Tqu+mjNXTqOhZcQHvcGJtxy4mTadb6kMsxxGdf5YHWrmANnhmNUDyF
+         eGFXbgaywzYAvuEr3bwjQ1jWejN6QWR6BzlaWBRFGG80dRYbQeKEYTNqhStI/mLzTwJd
+         uJhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725358787; x=1725963587;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iJS4mKwDt71f+czvCGcc6KmwF1qHOE0EcsdjnmVJivo=;
+        b=HfFfi6FmS+jUzsIaomL2CklnqXpMWSdL70Ji10tY+oxy1QUVpINH/T+S8cbCYbpvMN
+         J7bfuhw7NRnnxqj7za/+slrjkInioOdGfG+YkAprGIqIVg9qwBTFKe0yE+6zPqvA1bj9
+         fx+dQxczkWnkYEUnGYe6MGWpuAEFUYT2lGqJWhJ3IZktgvLviI7MO/sp7CVZ6FaZd2Xz
+         JGMoSmzIK4BectdFarPe6+qmrFIrHblyDp3C2IpFgsZSiSg4ZIq8l9j8EhhXREiUHsp6
+         mpIR6adZWzXrtHl9m1izpm16rZGuYkfGGGIay/H4fyE38C5xH7HTv+dmL3Ve2Fq86jsR
+         0dMg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwtEXbOnD5PQLFSghxi8vIyOgs2XOZ/Sw2SpNg0a3Rv9AXbEouC+7BPTUBPeFITdbEUawbfvZEmSBI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMWrXWBRxJbY/jOUnZvUbefkTVUNNJHH1PntoCi9SjtAhSzMMH
+	BPad+EpqgtbPUa+QnJBOBPV0IG5eGM0CwLWtw42uH3sK80kJECyJY79LuEzc7hw=
+X-Google-Smtp-Source: AGHT+IEls7cIQ+6hQSbZxyc8bV5YfWpE5Og0ZDGcEK0Z3VxswtkW6lt0WU0csWHFdZCyWxXy9FAPkw==
+X-Received: by 2002:a05:6512:108c:b0:52e:7125:c70a with SMTP id 2adb3069b0e04-53546b93fd9mr8417306e87.47.1725358786595;
+        Tue, 03 Sep 2024 03:19:46 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.144])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8988feb0e5sm675067666b.12.2024.09.03.03.19.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Sep 2024 03:19:46 -0700 (PDT)
+Message-ID: <4cb2f788-1ba6-40f6-a48d-1fd2e5293aa8@tuxon.dev>
+Date: Tue, 3 Sep 2024 13:19:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <979d67cc-cbd2-408c-a8ca-a063030bcec2@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
 Content-Language: en-US
-X-CM-TRANSID:qciowMBxjcUO3tZmeMEEAA--.12849S2
-X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxGr1DCr4Dur45ur1kCF48GrX_yoWrGF48pr
-	n7Aa1fCr47Ka13Jrsav34jgFnIqwn7tr43Wrn3Ka4qgryqyFy3uFy8Xry29FyDur1kGrW8
-	ZFyFka4akF45JacCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUPab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
-	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
-	AVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
-	8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vI
-	r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67
-	AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIY
-	rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14
-	v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWx
-	JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU4qg4DU
-	UUU
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
+ "kishon@kernel.org" <kishon@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
+ <99bef301-9f6c-4797-b47e-c83e56dfbda9@tuxon.dev>
+ <TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <TY3PR01MB113467275C519B729FCAB1ACB86922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <5556d176-cca7-492c-ba21-48256d5d6338@tuxon.dev>
+ <TY3PR01MB113464D53083F4C8A5DBBA36586922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <590a4fb2-24b2-432b-92db-534c5a52ed0b@tuxon.dev>
+ <TY3PR01MB11346505565B81AD2894E035586922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <35dc7414-f5bd-4ed4-bfa1-f723f4f0078c@tuxon.dev>
+ <TY3PR01MB11346A4814F83FE296A1DED8886922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <TY3PR01MB11346A4814F83FE296A1DED8886922@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-在 2024/9/3 下午3:58, Krzysztof Kozlowski 写道:
-> On 03/09/2024 09:24, Zhao Qunqin wrote:
->> 在 2024/9/3 下午2:47, Krzysztof Kozlowski 写道:
->>> On Tue, Sep 03, 2024 at 09:53:54AM +0800, Zhao Qunqin wrote:
->>>> Report single bit errors (CE) only.
+
+On 02.09.2024 13:47, Biju Das wrote:
+> Hi Claudiu,
+> 
+>> -----Original Message-----
+>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>> Sent: Monday, September 2, 2024 11:41 AM
+>> Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+>>
+>>
+>>
+>> On 02.09.2024 12:18, Biju Das wrote:
+>>>>>>> Do you have any plan to control this power transitions(ALL_ON to AWO and vice versa) in linux?
+>>>>>> As you know, the RZ/G3S USB PM code is already prepared. This is
+>>>>>> also configuring these signals when going to suspend/exiting from resume.
+>>>>>> W/o configuring properly these signals the USB is not working after a suspend/resume cycle.
+>>>>> One option is to handle SYSC USB PWRRDY signal in TF-A, if you plan
+>>>>> to handle system transitions
+>>>> there??
 >>>>
->>>> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
->>>> ---
->>>>    MAINTAINERS                  |   1 +
->>>>    arch/loongarch/Kconfig       |   1 +
->>>>    drivers/edac/Kconfig         |   8 ++
->>>>    drivers/edac/Makefile        |   1 +
->>>>    drivers/edac/ls3a5000_edac.c | 187 +++++++++++++++++++++++++++++++++++
->>>>    5 files changed, 198 insertions(+)
->>>>    create mode 100644 drivers/edac/ls3a5000_edac.c
->>>>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index 6cc8cfc8f..b43f82279 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -13242,6 +13242,7 @@ M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
->>>>    L:	linux-edac@vger.kernel.org
->>>>    S:	Maintained
->>>>    F:	Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
->>>> +F:	drivers/edac/ls3a5000_edac.c
->>>>    
->>>>    LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->>>>    M:	Sathya Prakash <sathya.prakash@broadcom.com>
->>>> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
->>>> index 70f169210..348030c24 100644
->>>> --- a/arch/loongarch/Kconfig
->>>> +++ b/arch/loongarch/Kconfig
->>>> @@ -182,6 +182,7 @@ config LOONGARCH
->>>>    	select PCI_QUIRKS
->>>>    	select PERF_USE_VMALLOC
->>>>    	select RTC_LIB
->>>> +	select EDAC_SUPPORT
->>> I think you got here comment before. How did you address it?
->> I just randomly found a spot, and I will put it at the end(next version
->> patch).
-> No, the comment was different. You must not select user-visible symbols.
-
-Last version patch is:
-
-@@ -182,6 +182,7 @@ config LOONGARCH
-   	select PCI_QUIRKS
-   	select PERF_USE_VMALLOC
-   	select RTC_LIB
-+	select EDAC_SUPPORT
-+	select EDAC
-
-I delet "select EDAC" in this version patch. Other arch's Kconfig has "select EDAC_SUPPORT", such as arch/x86/Kconfig and arch/arm64/Kconfig
-.
-
->
->>>>    	select SPARSE_IRQ
->>>>    	select SYSCTL_ARCH_UNALIGN_ALLOW
->>>>    	select SYSCTL_ARCH_UNALIGN_NO_WARN
->>>> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
->>>> index 16c8de505..2d10256f0 100644
->>>> --- a/drivers/edac/Kconfig
->>>> +++ b/drivers/edac/Kconfig
->>>> @@ -573,5 +573,13 @@ config EDAC_VERSAL
->>>>    	  Support injecting both correctable and uncorrectable errors
->>>>    	  for debugging purposes.
->>>>    
->>> ...
->>>
->>>    +
->>>> +static int loongson_edac_probe(struct platform_device *pdev)
->>>> +{
->>>> +	struct resource *rs;
->>>> +	struct mem_ctl_info *mci;
->>>> +	struct edac_mc_layer layers[2];
->>>> +	struct loongson_edac_pvt *pvt;
->>>> +	u64 *vbase = NULL;
->>>> +
->>>> +	rs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>>> +	/* not return if can not find resource or resource start equals NULL */
->>> Why?
->> Because there are multiple memory controllers in the ls3x soc,
+>>>> As I mentioned, the settings in these registers may be changed by intermediary booting
+>> applications.
+>>>> Depending on that, Linux need to control it also on probe for USB to
+>>>> work (it should be the same with PCIe, these signals seems similar from HW manual description).
+>>> You mean system transition settings will be override by U-boot, so Linux needs to restore it back??
 >>
->> but the ECC function of some memory controllers cannot be used.
-> Then what does the driver do for such memory controllers? Your binding
-> is quite clear here that above code is just bogus. It is not possible to
-> have node without reg.
-
-I will rewrite the code above.
-
-> Please point us to your DTS and results of dtbs_check.
->
->> But in any case, a node must be created in /sys/devices/system/edac/mc/
->> through edac_mc_add_mc(mci).
+>> It was talking about booting...
+> 
+> I am also referring to boot. Boot starts with TF-A and it has a system state.
+> 
 >>
->> Then if the ECC function of the memory controller cannot be used, set
->> start to NULL or do not pass mem resource,
+>> You proposed to handle SYSC signals from TF-A in a discussion about system power transitions:
 >>
->> which is equivalent to enumeration of memory controller, and the CE
->> count will always be zero.
+>> "One option is to handle SYSC USB PWRRDY signal in TF-A,  if you plan to handle system transitions"
 >>
->>>> +	if (rs && rs->start) {
->>>> +		vbase = devm_ioremap_resource(&pdev->dev, rs);
->>>> +		if (IS_ERR(vbase))
->>>> +			return PTR_ERR(vbase);
->>>> +	}
->
-> Best regards,
-> Krzysztof
+>> (I was guessing the "system transition" statement there refers to power states transitions, ALL_ON <->
+>> AWO/VBAT)
+> 
+> That is correct.
+> 
+>>
+>> and I gave the booting process as a counter example: if we handle it in TF-A it may not be enough as
+>> these signals might be changed by intermediary booting applications (e.g., U-Boot).
+> 
+> Why should U-boot override, system state signals such as USB PWRREADY? Can you please give an example.
 
+I didn't say *should* but *might* and I was referring to a hypothetical
+situation where any used application (bootloader) might trigger this signal
+for whatever reason. My point was to let Linux to handle all the settings
+that it can do for a particular functionality. The resisters in SYSC
+address space controlling these signals are accessible to normal world
+compared to others in the SYSC address spaces.
+
+> 
+>>
+>> To conclude, there are 3 scenarios I see where these signals need to be
+>> handled:
+>> 1/ booting 
+>> 2/ suspend to RAM
+>> 3/ driver unbind/bind
+> 
+> --> It should be OK as linux is not handling USB PWRREADY signal.
+> 
+>>
+>> In case of booting: if we have TF-A to set signals there might be intermediary booting applications
+>> (e.g. U-Boot) that set these signals also. If it leaves it in improper state and Linux wants to use
+>> USB then the USB will not work (if Linux doesn't handle it).
+> 
+> That is the problem of U-boot. U-boot should not override system state signals such as USB PWRREADY.
+
+U-Boot can also use USB as well.
+
+> 
+>>
+>> In case of suspend to RAM: as TF-A is the only application in the suspend to RAM chain, it should work
+>> handling it in TF-A.
+> 
+> That is correct, TF-A should handle based on system state.
+> 
+>>
+>> In case of unbind/bind: currently we don't know if these signals introduces any kind of power saving
+>> so asserting/de-asserting them in Linux may be useful from this perspective, if any.
+> 
+> These are system signals, according to me should not be used in unbind/bind.
+
+It can be done whatever way. I would just prefer to work for all scenarios.
+
+Thank you,
+Claudiu Beznea
+
+> 
+> I may be wrong.
+> 
+> Cheers,
+> Biju
 
