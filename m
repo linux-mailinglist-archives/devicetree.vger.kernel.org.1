@@ -1,445 +1,718 @@
-Return-Path: <devicetree+bounces-99397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED6F969AA9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:50:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C32969A8A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FCAE1C237EF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:50:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39F7428625D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B531C9879;
-	Tue,  3 Sep 2024 10:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F36A1C9842;
+	Tue,  3 Sep 2024 10:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="vyRIAD2m"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="V7vcJBTq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDAC61C9856;
-	Tue,  3 Sep 2024 10:48:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE931C62B5
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 10:47:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725360537; cv=none; b=AD/Z6Tj9z1y9yrVxHgKlQtG+0w9gpBBDh/LG9HOgLnU6meow7V7y0dkyPXGrkp+Bp6VdAwZejlgNCJuXBPgjVdLW/n7RNzCW1KzErvNP7GPYG7lSys06Q2Z/vAuQe5zrD7hDveoKR2OWRxZyN63P/zVvEBvaTWaJKSwliVnajjc=
+	t=1725360424; cv=none; b=eQdv5MO/6/+PE3xzFxVy837+UxaYGExSY+oFfX6s94WVCVSdxFp+m6P8eYs2Br0aOSFP3I/pLP+doXjqbQsfBB6WRItpXYKb6pyL3SWF7mlsXkhT47v6U/n7iH9Cqc+UL5FQNc25jVJRiQQpSK/Oy++jkotfbZH8tq+JqQxrSFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725360537; c=relaxed/simple;
-	bh=dLBSNhfXtcYX4kBTM/5pzsARi0SjRQE4zP+21tij2kQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sZ27FIAQN/wsrGqRRgk9tPru2emYPWinB0W0zVu47IpP89dJqUsu4mZTyX5574hnirbsgyMHVfLEI/wuurocmAUsX2T2lOZ9WNqrdMFBW95weFHFDPLhiu1eXCrG3EcRcCyUwcSM/HVytcc2zSjxlnsHIp1ad8JZRmYoba/YS9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=vyRIAD2m; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725360537; x=1756896537;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=dLBSNhfXtcYX4kBTM/5pzsARi0SjRQE4zP+21tij2kQ=;
-  b=vyRIAD2mB8MJ1nJoTdHZX0dnGjT5k9U6s6bGZ6WUhKYZHE7R31ECSl8r
-   ayZt2GD9lSeA8JtTwxBFfK0Vhm5ApzrF3oS0EHuxZ/HbMkmkAaKWO1mPl
-   X2sVV+z4h2UsqWLpfaKotPOpGElbQoL6SSqF/h//cfG0gM7IYOmLMkDgP
-   EnfZhiLqTH9uEgO0kUn2EUMMo2GKQR6Eve87GlguZNE5lfgIwY41iTJmQ
-   eh1qMIDWJ4RAgb2IX2exPBjpSDPyofdlhvCThUBkbuGZTbKoalNRgUh3+
-   g1ibWM0SXz19wKCF41nmis2jSkB+Li/zvkRnuy57sJqhNc5IgPUYkbRXO
-   Q==;
-X-CSE-ConnectionGUID: fThCcpFNTJeS1Hu2CWwLdA==
-X-CSE-MsgGUID: PVKEUWF1Se+7tQVg/XqD9w==
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; 
-   d="scan'208";a="262184323"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Sep 2024 03:48:55 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 3 Sep 2024 03:48:28 -0700
-Received: from che-ll-i17164.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 3 Sep 2024 03:48:18 -0700
-From: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-To: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <horms@kernel.org>, <saeedm@nvidia.com>,
-	<anthony.l.nguyen@intel.com>, <netdev@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <andrew@lunn.ch>, <corbet@lwn.net>,
-	<linux-doc@vger.kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <horatiu.vultur@microchip.com>,
-	<ruanjinjie@huawei.com>, <steen.hegelund@microchip.com>,
-	<vladimir.oltean@nxp.com>
-CC: <parthiban.veerasooran@microchip.com>, <masahiroy@kernel.org>,
-	<alexanderduyck@fb.com>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-	<rdunlap@infradead.org>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-	<UNGLinuxDriver@microchip.com>, <Thorsten.Kummermehr@microchip.com>,
-	<Pier.Beruto@onsemi.com>, <Selvamani.Rajagopal@onsemi.com>,
-	<Nicolas.Ferre@microchip.com>, <benjamin.bigler@bernformulastudent.ch>,
-	<linux@bigler.io>, <markku.vorne@kempower.com>, Parthiban Veerasooran
-	<Parthiban.Veerasooran@microchip.com>
-Subject: [PATCH net-next v7 06/14] net: ethernet: oa_tc6: implement internal PHY initialization
-Date: Tue, 3 Sep 2024 16:16:57 +0530
-Message-ID: <20240903104705.378684-7-Parthiban.Veerasooran@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240903104705.378684-1-Parthiban.Veerasooran@microchip.com>
-References: <20240903104705.378684-1-Parthiban.Veerasooran@microchip.com>
+	s=arc-20240116; t=1725360424; c=relaxed/simple;
+	bh=wHlT9Of1hT/zoKO2W0YLgSnmJWnrKDEL4c8hM0K8Xww=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HeeqrbVDN13VzDxOFuZlxEg+pDZ2cUQPLgxDCvlgknQdEaXK5HxbWswO0hARp75MOVr7FcnU9bJtbyiD16SnuD3U03SDF7ltWGb7hX7gEQMM8YXyT1wFObqGqFZ+eE0ouvcCOzyNX9V8c8chMQiQI4yPMgnuSa0ca9pXiZY61rA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=V7vcJBTq; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5bf009cf4c0so5239449a12.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 03:47:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725360420; x=1725965220; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4umYbcZ0b+sOSGAj+Oq1NFycyEsAC59fT5uNZWwoeU4=;
+        b=V7vcJBTqRzyvPzWifcistW/vQcNK0F0qlX6hEFCObGTK0fdCFoviXSJjwaKwUvDMZG
+         WBNJM4aGVFfOGu9sYsvIYesTMnIRM7XDVPJosvIGyUR3Ku2l8y0BYc/VdEGnxNrIiwXw
+         LflLN9Z9xAXV3sdj9YXZQ9uPDqX9yc0oIP7SKZexPcWmIet6Nr4HoA43SHhV2b1XcMxV
+         6kyDP69ujqPxsLm5SCMqzsFeMfAHVAlVighT8Pxa9Ki60u9kXFo30m/uoJtFeClCf5Nm
+         oaNwrPpMsnlJP1rVO0c4EQ9YK5CFaCvKniOh7lBV+uKihbRYzvApdhJ/wVAjvPUfuVG/
+         5shQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725360420; x=1725965220;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4umYbcZ0b+sOSGAj+Oq1NFycyEsAC59fT5uNZWwoeU4=;
+        b=k/FM+RJCg65ljCuS2R5h/asUn7eeTu1g3emXIF8kUNKEQxSTnO536GnSVKgPXy0xti
+         dq5VeQdRC7hWhfRIkOWtAcQ0hoDoT2a6TRn73pBkWd3TQUK7ZCNxXWpSpS1u3PcLdPtm
+         reV+Iqk1q4/OKfeuYTKVIYmYJuk5G58SQd8k1EUjvDYYDV0b6lgcMtTyuaEdBsmn8Eml
+         Be9AJLOXAdK2XhSENAP0FQFwirpMS/AExlEnFt+hudIVW2ACg7LTqIkd4TLtcTAGu9YG
+         EvkOZTYUJjotvl3962zS8yvU8xc5UTpmtzcIJq3zWrCLTGMCxgQtl50KQbGcANR0pe3L
+         DYRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUwm8BO3KYYx3PPEo65Ny1qSW8VB61aBFdfxqo6+xqqF6o/QaMJ1c9DafNirV3VfdFZD+qx+Qxdxi9q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1cI7NkxAY9uOAH1/7I2fP27n1BQNm8KZVFCc6RIQnkvbvU3ri
+	Q9LyoMDOZKJJXDexccsb56Wqbr1N77XrL6b7/Wkw7yOtzf2CkXrRq/R0WALrjP0=
+X-Google-Smtp-Source: AGHT+IGgYRkw1SDOUq0lQnzzs2I5aHryZGs6yz1j3swbXveBrYRLbcENX7PHHVTWqGmRE/+HgnBnIA==
+X-Received: by 2002:a05:6402:401a:b0:5c2:61a7:62e4 with SMTP id 4fb4d7f45d1cf-5c2757d6926mr219652a12.10.1725360419472;
+        Tue, 03 Sep 2024 03:46:59 -0700 (PDT)
+Received: from localhost (p5dc68f76.dip0.t-ipconnect.de. [93.198.143.118])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c226ccf2a0sm6260879a12.64.2024.09.03.03.46.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2024 03:46:59 -0700 (PDT)
+Date: Tue, 3 Sep 2024 12:46:57 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <yfqmlca6cnhrghpo5s6tml36tngmekcfbyjakxs7or7wtap3ka@7qlrxjowo4ou>
+References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
+ <20240831-en7581-pinctrl-v3-5-98eebfb4da66@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xrkzyim6vsn2dpvr"
+Content-Disposition: inline
+In-Reply-To: <20240831-en7581-pinctrl-v3-5-98eebfb4da66@kernel.org>
 
-Internal PHY is initialized as per the PHY register capability supported
-by the MAC-PHY. Direct PHY Register Access Capability indicates if PHY
-registers are directly accessible within the SPI register memory space.
-Indirect PHY Register Access Capability indicates if PHY registers are
-indirectly accessible through the MDIO/MDC registers MDIOACCn defined in
-OPEN Alliance specification. Currently the direct register access is only
-supported.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
----
- drivers/net/ethernet/oa_tc6.c | 230 +++++++++++++++++++++++++++++++++-
- include/linux/oa_tc6.h        |   4 +-
- include/uapi/linux/mdio.h     |   1 +
- 3 files changed, 233 insertions(+), 2 deletions(-)
+--xrkzyim6vsn2dpvr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-index 86b032cdbee1..fc276d881dc9 100644
---- a/drivers/net/ethernet/oa_tc6.c
-+++ b/drivers/net/ethernet/oa_tc6.c
-@@ -7,9 +7,15 @@
- 
- #include <linux/bitfield.h>
- #include <linux/iopoll.h>
-+#include <linux/mdio.h>
-+#include <linux/phy.h>
- #include <linux/oa_tc6.h>
- 
- /* OPEN Alliance TC6 registers */
-+/* Standard Capabilities Register */
-+#define OA_TC6_REG_STDCAP			0x0002
-+#define STDCAP_DIRECT_PHY_REG_ACCESS		BIT(8)
-+
- /* Reset Control and Status Register */
- #define OA_TC6_REG_RESET			0x0003
- #define RESET_SWRESET				BIT(0)	/* Software Reset */
-@@ -25,6 +31,10 @@
- #define INT_MASK0_RX_BUFFER_OVERFLOW_ERR_MASK	BIT(3)
- #define INT_MASK0_TX_PROTOCOL_ERR_MASK		BIT(0)
- 
-+/* PHY Clause 22 registers base address and mask */
-+#define OA_TC6_PHY_STD_REG_ADDR_BASE		0xFF00
-+#define OA_TC6_PHY_STD_REG_ADDR_MASK		0x1F
-+
- /* Control command header */
- #define OA_TC6_CTRL_HEADER_DATA_NOT_CTRL	BIT(31)
- #define OA_TC6_CTRL_HEADER_WRITE_NOT_READ	BIT(29)
-@@ -33,6 +43,15 @@
- #define OA_TC6_CTRL_HEADER_LENGTH		GENMASK(7, 1)
- #define OA_TC6_CTRL_HEADER_PARITY		BIT(0)
- 
-+/* PHY – Clause 45 registers memory map selector (MMS) as per table 6 in the
-+ * OPEN Alliance specification.
-+ */
-+#define OA_TC6_PHY_C45_PCS_MMS2			2	/* MMD 3 */
-+#define OA_TC6_PHY_C45_PMA_PMD_MMS3		3	/* MMD 1 */
-+#define OA_TC6_PHY_C45_VS_PLCA_MMS4		4	/* MMD 31 */
-+#define OA_TC6_PHY_C45_AUTO_NEG_MMS5		5	/* MMD 7 */
-+#define OA_TC6_PHY_C45_POWER_UNIT_MMS6		6	/* MMD 13 */
-+
- #define OA_TC6_CTRL_HEADER_SIZE			4
- #define OA_TC6_CTRL_REG_VALUE_SIZE		4
- #define OA_TC6_CTRL_IGNORED_SIZE		4
-@@ -46,6 +65,10 @@
- 
- /* Internal structure for MAC-PHY drivers */
- struct oa_tc6 {
-+	struct device *dev;
-+	struct net_device *netdev;
-+	struct phy_device *phydev;
-+	struct mii_bus *mdiobus;
- 	struct spi_device *spi;
- 	struct mutex spi_ctrl_lock; /* Protects spi control transfer */
- 	void *spi_ctrl_tx_buf;
-@@ -298,6 +321,191 @@ int oa_tc6_write_register(struct oa_tc6 *tc6, u32 address, u32 value)
- }
- EXPORT_SYMBOL_GPL(oa_tc6_write_register);
- 
-+static int oa_tc6_check_phy_reg_direct_access_capability(struct oa_tc6 *tc6)
-+{
-+	u32 regval;
-+	int ret;
-+
-+	ret = oa_tc6_read_register(tc6, OA_TC6_REG_STDCAP, &regval);
-+	if (ret)
-+		return ret;
-+
-+	if (!(regval & STDCAP_DIRECT_PHY_REG_ACCESS))
-+		return -ENODEV;
-+
-+	return 0;
-+}
-+
-+static void oa_tc6_handle_link_change(struct net_device *netdev)
-+{
-+	phy_print_status(netdev->phydev);
-+}
-+
-+static int oa_tc6_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
-+{
-+	struct oa_tc6 *tc6 = bus->priv;
-+	u32 regval;
-+	bool ret;
-+
-+	ret = oa_tc6_read_register(tc6, OA_TC6_PHY_STD_REG_ADDR_BASE |
-+				   (regnum & OA_TC6_PHY_STD_REG_ADDR_MASK),
-+				   &regval);
-+	if (ret)
-+		return ret;
-+
-+	return regval;
-+}
-+
-+static int oa_tc6_mdiobus_write(struct mii_bus *bus, int addr, int regnum,
-+				u16 val)
-+{
-+	struct oa_tc6 *tc6 = bus->priv;
-+
-+	return oa_tc6_write_register(tc6, OA_TC6_PHY_STD_REG_ADDR_BASE |
-+				     (regnum & OA_TC6_PHY_STD_REG_ADDR_MASK),
-+				     val);
-+}
-+
-+static int oa_tc6_get_phy_c45_mms(int devnum)
-+{
-+	switch (devnum) {
-+	case MDIO_MMD_PCS:
-+		return OA_TC6_PHY_C45_PCS_MMS2;
-+	case MDIO_MMD_PMAPMD:
-+		return OA_TC6_PHY_C45_PMA_PMD_MMS3;
-+	case MDIO_MMD_VEND2:
-+		return OA_TC6_PHY_C45_VS_PLCA_MMS4;
-+	case MDIO_MMD_AN:
-+		return OA_TC6_PHY_C45_AUTO_NEG_MMS5;
-+	case MDIO_MMD_POWER_UNIT:
-+		return OA_TC6_PHY_C45_POWER_UNIT_MMS6;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int oa_tc6_mdiobus_read_c45(struct mii_bus *bus, int addr, int devnum,
-+				   int regnum)
-+{
-+	struct oa_tc6 *tc6 = bus->priv;
-+	u32 regval;
-+	int ret;
-+
-+	ret = oa_tc6_get_phy_c45_mms(devnum);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = oa_tc6_read_register(tc6, (ret << 16) | regnum, &regval);
-+	if (ret)
-+		return ret;
-+
-+	return regval;
-+}
-+
-+static int oa_tc6_mdiobus_write_c45(struct mii_bus *bus, int addr, int devnum,
-+				    int regnum, u16 val)
-+{
-+	struct oa_tc6 *tc6 = bus->priv;
-+	int ret;
-+
-+	ret = oa_tc6_get_phy_c45_mms(devnum);
-+	if (ret < 0)
-+		return ret;
-+
-+	return oa_tc6_write_register(tc6, (ret << 16) | regnum, val);
-+}
-+
-+static int oa_tc6_mdiobus_register(struct oa_tc6 *tc6)
-+{
-+	int ret;
-+
-+	tc6->mdiobus = mdiobus_alloc();
-+	if (!tc6->mdiobus) {
-+		netdev_err(tc6->netdev, "MDIO bus alloc failed\n");
-+		return -ENOMEM;
-+	}
-+
-+	tc6->mdiobus->priv = tc6;
-+	tc6->mdiobus->read = oa_tc6_mdiobus_read;
-+	tc6->mdiobus->write = oa_tc6_mdiobus_write;
-+	/* OPEN Alliance 10BASE-T1x compliance MAC-PHYs will have both C22 and
-+	 * C45 registers space. If the PHY is discovered via C22 bus protocol it
-+	 * assumes it uses C22 protocol and always uses C22 registers indirect
-+	 * access to access C45 registers. This is because, we don't have a
-+	 * clean separation between C22/C45 register space and C22/C45 MDIO bus
-+	 * protocols. Resulting, PHY C45 registers direct access can't be used
-+	 * which can save multiple SPI bus access. To support this feature, PHY
-+	 * drivers can set .read_mmd/.write_mmd in the PHY driver to call
-+	 * .read_c45/.write_c45. Ex: drivers/net/phy/microchip_t1s.c
-+	 */
-+	tc6->mdiobus->read_c45 = oa_tc6_mdiobus_read_c45;
-+	tc6->mdiobus->write_c45 = oa_tc6_mdiobus_write_c45;
-+	tc6->mdiobus->name = "oa-tc6-mdiobus";
-+	tc6->mdiobus->parent = tc6->dev;
-+
-+	snprintf(tc6->mdiobus->id, ARRAY_SIZE(tc6->mdiobus->id), "%s",
-+		 dev_name(&tc6->spi->dev));
-+
-+	ret = mdiobus_register(tc6->mdiobus);
-+	if (ret) {
-+		netdev_err(tc6->netdev, "Could not register MDIO bus\n");
-+		mdiobus_free(tc6->mdiobus);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void oa_tc6_mdiobus_unregister(struct oa_tc6 *tc6)
-+{
-+	mdiobus_unregister(tc6->mdiobus);
-+	mdiobus_free(tc6->mdiobus);
-+}
-+
-+static int oa_tc6_phy_init(struct oa_tc6 *tc6)
-+{
-+	int ret;
-+
-+	ret = oa_tc6_check_phy_reg_direct_access_capability(tc6);
-+	if (ret) {
-+		netdev_err(tc6->netdev,
-+			   "Direct PHY register access is not supported by the MAC-PHY\n");
-+		return ret;
-+	}
-+
-+	ret = oa_tc6_mdiobus_register(tc6);
-+	if (ret)
-+		return ret;
-+
-+	tc6->phydev = phy_find_first(tc6->mdiobus);
-+	if (!tc6->phydev) {
-+		netdev_err(tc6->netdev, "No PHY found\n");
-+		oa_tc6_mdiobus_unregister(tc6);
-+		return -ENODEV;
-+	}
-+
-+	tc6->phydev->is_internal = true;
-+	ret = phy_connect_direct(tc6->netdev, tc6->phydev,
-+				 &oa_tc6_handle_link_change,
-+				 PHY_INTERFACE_MODE_INTERNAL);
-+	if (ret) {
-+		netdev_err(tc6->netdev, "Can't attach PHY to %s\n",
-+			   tc6->mdiobus->id);
-+		oa_tc6_mdiobus_unregister(tc6);
-+		return ret;
-+	}
-+
-+	phy_attached_info(tc6->netdev->phydev);
-+
-+	return 0;
-+}
-+
-+static void oa_tc6_phy_exit(struct oa_tc6 *tc6)
-+{
-+	phy_disconnect(tc6->phydev);
-+	oa_tc6_mdiobus_unregister(tc6);
-+}
-+
- static int oa_tc6_read_status0(struct oa_tc6 *tc6)
- {
- 	u32 regval;
-@@ -354,11 +562,12 @@ static int oa_tc6_unmask_macphy_error_interrupts(struct oa_tc6 *tc6)
- /**
-  * oa_tc6_init - allocates and initializes oa_tc6 structure.
-  * @spi: device with which data will be exchanged.
-+ * @netdev: network device interface structure.
-  *
-  * Return: pointer reference to the oa_tc6 structure if the MAC-PHY
-  * initialization is successful otherwise NULL.
-  */
--struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
-+struct oa_tc6 *oa_tc6_init(struct spi_device *spi, struct net_device *netdev)
- {
- 	struct oa_tc6 *tc6;
- 	int ret;
-@@ -368,6 +577,8 @@ struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
- 		return NULL;
- 
- 	tc6->spi = spi;
-+	tc6->netdev = netdev;
-+	SET_NETDEV_DEV(netdev, &spi->dev);
- 	mutex_init(&tc6->spi_ctrl_lock);
- 
- 	/* Set the SPI controller to pump at realtime priority */
-@@ -400,10 +611,27 @@ struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
- 		return NULL;
- 	}
- 
-+	ret = oa_tc6_phy_init(tc6);
-+	if (ret) {
-+		dev_err(&tc6->spi->dev,
-+			"MAC internal PHY initialization failed: %d\n", ret);
-+		return NULL;
-+	}
-+
- 	return tc6;
- }
- EXPORT_SYMBOL_GPL(oa_tc6_init);
- 
-+/**
-+ * oa_tc6_exit - exit function.
-+ * @tc6: oa_tc6 struct.
-+ */
-+void oa_tc6_exit(struct oa_tc6 *tc6)
-+{
-+	oa_tc6_phy_exit(tc6);
-+}
-+EXPORT_SYMBOL_GPL(oa_tc6_exit);
-+
- MODULE_DESCRIPTION("OPEN Alliance 10BASE‑T1x MAC‑PHY Serial Interface Lib");
- MODULE_AUTHOR("Parthiban Veerasooran <parthiban.veerasooran@microchip.com>");
- MODULE_LICENSE("GPL");
-diff --git a/include/linux/oa_tc6.h b/include/linux/oa_tc6.h
-index 85aeecf87306..606ba9f1e663 100644
---- a/include/linux/oa_tc6.h
-+++ b/include/linux/oa_tc6.h
-@@ -7,11 +7,13 @@
-  * Author: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
-  */
- 
-+#include <linux/etherdevice.h>
- #include <linux/spi/spi.h>
- 
- struct oa_tc6;
- 
--struct oa_tc6 *oa_tc6_init(struct spi_device *spi);
-+struct oa_tc6 *oa_tc6_init(struct spi_device *spi, struct net_device *netdev);
-+void oa_tc6_exit(struct oa_tc6 *tc6);
- int oa_tc6_write_register(struct oa_tc6 *tc6, u32 address, u32 value);
- int oa_tc6_write_registers(struct oa_tc6 *tc6, u32 address, u32 value[],
- 			   u8 length);
-diff --git a/include/uapi/linux/mdio.h b/include/uapi/linux/mdio.h
-index c0c8ec995b06..f0d3f268240d 100644
---- a/include/uapi/linux/mdio.h
-+++ b/include/uapi/linux/mdio.h
-@@ -23,6 +23,7 @@
- #define MDIO_MMD_DTEXS		5	/* DTE Extender Sublayer */
- #define MDIO_MMD_TC		6	/* Transmission Convergence */
- #define MDIO_MMD_AN		7	/* Auto-Negotiation */
-+#define MDIO_MMD_POWER_UNIT	13	/* PHY Power Unit */
- #define MDIO_MMD_C22EXT		29	/* Clause 22 extension */
- #define MDIO_MMD_VEND1		30	/* Vendor specific 1 */
- #define MDIO_MMD_VEND2		31	/* Vendor specific 2 */
--- 
-2.34.1
+Hello,
 
+On Sat, Aug 31, 2024 at 04:27:50PM +0200, Lorenzo Bianconi wrote:
+> From: Benjamin Larsson <benjamin.larsson@genexis.eu>
+>=20
+> Introduce driver for PWM module available on EN7581 SoC.
+>=20
+> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  drivers/pwm/Kconfig      |  10 ++
+>  drivers/pwm/Makefile     |   1 +
+>  drivers/pwm/pwm-airoha.c | 435 +++++++++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 446 insertions(+)
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 3e53838990f5..0a78bda0707d 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -47,6 +47,16 @@ config PWM_AB8500
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-ab8500.
+> =20
+> +config PWM_AIROHA
+> +	tristate "Airoha PWM support"
+> +	depends on ARCH_AIROHA || COMPILE_TEST
+> +	depends on OF
+> +	help
+> +	  Generic PWM framework driver for Airoha SoC.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-airoha.
+> +
+>  config PWM_APPLE
+>  	tristate "Apple SoC PWM support"
+>  	depends on ARCH_APPLE || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 0be4f3e6dd43..7ee61822d88d 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_PWM)		+=3D core.o
+>  obj-$(CONFIG_PWM_AB8500)	+=3D pwm-ab8500.o
+> +obj-$(CONFIG_PWM_AIROHA)	+=3D pwm-airoha.o
+>  obj-$(CONFIG_PWM_APPLE)		+=3D pwm-apple.o
+>  obj-$(CONFIG_PWM_ATMEL)		+=3D pwm-atmel.o
+>  obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+=3D pwm-atmel-hlcdc.o
+> diff --git a/drivers/pwm/pwm-airoha.c b/drivers/pwm/pwm-airoha.c
+> new file mode 100644
+> index 000000000000..54dc12d20da4
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-airoha.c
+> @@ -0,0 +1,435 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2022 Markus Gothe <markus.gothe@genexis.eu>
+> + */
+
+Would you please add a "Limitations" paragraph here covering the
+following questions:
+
+ - How does the hardware behave on changes of configuration (does it
+   complete the currently running period? Are there any glitches?)
+ - How does the hardware behave on disabling?
+
+Please stick to the format used in several other drivers such that=20
+
+	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/*.c
+
+emits the informations.
+
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/mfd/airoha-en7581-mfd.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/gpio.h>
+> +#include <linux/bitops.h>
+> +#include <asm/div64.h>
+> +
+> +#define REG_SGPIO_CFG			0x0024
+> +#define REG_FLASH_CFG			0x0038
+> +#define REG_CYCLE_CFG			0x0098
+> +
+> +#define REG_SGPIO_LED_DATE		0x0000
+> +#define SGPIO_LED_SHIFT_FLAG		BIT(31)
+> +#define SGPIO_LED_DATA			GENMASK(16, 0)
+
+Please make the bit fields's names start with the register name.
+
+> +#define REG_SGPIO_CLK_DIVR		0x0004
+> +#define REG_SGPIO_CLK_DLY		0x0008
+> +
+> +#define REG_SIPO_FLASH_MODE_CFG		0x000c
+> +#define SERIAL_GPIO_FLASH_MODE		BIT(1)
+> +#define SERIAL_GPIO_MODE		BIT(0)
+> +
+> +#define REG_GPIO_FLASH_PRD_SET(_n)	(0x0004 + ((_n) << 2))
+> +#define GPIO_FLASH_PRD_MASK(_n)		GENMASK(15 + ((_n) << 4), ((_n) << 4))
+> +
+> +#define REG_GPIO_FLASH_MAP(_n)		(0x0014 + ((_n) << 2))
+> +#define GPIO_FLASH_SETID_MASK(_n)	GENMASK(2 + ((_n) << 2), ((_n) << 2))
+> +#define GPIO_FLASH_EN(_n)		BIT(3 + ((_n) << 2))
+> +
+> +#define REG_SIPO_FLASH_MAP(_n)		(0x001c + ((_n) << 2))
+> +
+> +#define REG_CYCLE_CFG_VALUE(_n)		(0x0000 + ((_n) << 2))
+> +#define WAVE_GEN_CYCLE_MASK(_n)		GENMASK(7 + ((_n) << 3), ((_n) << 3))
+> +
+> +struct airoha_pwm {
+> +	void __iomem *sgpio_cfg;
+> +	void __iomem *flash_cfg;
+> +	void __iomem *cycle_cfg;
+> +
+> +	struct device_node *np;
+> +	u64 initialized;
+> +
+> +	struct {
+> +		/* Bitmask of PWM channels using this bucket */
+> +		u64 used;
+> +		u64 period_ns;
+> +		u64 duty_ns;
+> +		enum pwm_polarity polarity;
+> +	} bucket[8];
+> +};
+> +
+> +/*
+> + * The first 16 GPIO pins, GPIO0-GPIO15, are mapped into 16 PWM channels=
+, 0-15.
+> + * The SIPO GPIO pins are 16 pins which are mapped into 17 PWM channels,=
+ 16-32.
+
+How can 16 pins be mapped to 17 PWM channels?
+
+> + * However, we've only got 8 concurrent waveform generators and can ther=
+efore
+> + * only use up to 8 different combinations of duty cycle and period at a=
+ time.
+
+That's an information to add to the Limitations paragraph.
+
+> + */
+> +#define PWM_NUM_GPIO	16
+> +#define PWM_NUM_SIPO	17
+> +
+> +/* The PWM hardware supports periods between 4 ms and 1 s */
+> +#define PERIOD_MIN_NS	4000000
+> +#define PERIOD_MAX_NS	1000000000
+> +/* It is represented internally as 1/250 s between 1 and 250 */
+> +#define PERIOD_MIN	1
+> +#define PERIOD_MAX	250
+> +/* Duty cycle is relative with 255 corresponding to 100% */
+> +#define DUTY_FULL	255
+> +
+> +static u32 airoha_pwm_rmw(struct airoha_pwm *pc, void __iomem *addr,
+> +			  u32 mask, u32 val)
+> +{
+> +	val |=3D (readl(addr) & ~mask);
+> +	writel(val, addr);
+> +
+> +	return val;
+> +}
+
+pc is unused here, please drop it.
+
+> +#define airoha_pwm_sgpio_rmw(pc, offset, mask, val)				\
+> +	airoha_pwm_rmw((pc), (pc)->sgpio_cfg + (offset), (mask), (val))
+> +#define airoha_pwm_flash_rmw(pc, offset, mask, val)				\
+> +	airoha_pwm_rmw((pc), (pc)->flash_cfg + (offset), (mask), (val))
+> +#define airoha_pwm_cycle_rmw(pc, offset, mask, val)				\
+> +	airoha_pwm_rmw((pc), (pc)->cycle_cfg + (offset), (mask), (val))
+> +
+> +#define airoha_pwm_sgpio_set(pc, offset, val)					\
+> +	airoha_pwm_sgpio_rmw((pc), (offset), 0, (val))
+
+That does the right thing, but I'd consider
+
+	#define airoha_pwm_sgpio_set(pc, offset, val)					\
+		airoha_pwm_sgpio_rmw((pc), (offset), (val), (val))
+
+to be more understandable (or ~0 instead of the last (val)?)
+
+> +#define airoha_pwm_sgpio_clear(pc, offset, mask)				\
+> +	airoha_pwm_sgpio_rmw((pc), (offset), (mask), 0)
+> +#define airoha_pwm_flash_set(pc, offset, val)					\
+> +	airoha_pwm_flash_rmw((pc), (offset), 0, (val))
+> +#define airoha_pwm_flash_clear(pc, offset, mask)				\
+> +	airoha_pwm_flash_rmw((pc), (offset), (mask), 0)
+> +
+> +static int airoha_pwm_get_waveform(struct airoha_pwm *pc, u64 duty_ns,
+> +				   u64 period_ns)
+
+Given that "waveform" will gain some specific semantic soon, but this
+usage is different, I'd like to see this function renamed.
+
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(pc->bucket); i++) {
+> +		if (!pc->bucket[i].used)
+> +			continue;
+> +
+> +		if (duty_ns =3D=3D pc->bucket[i].duty_ns &&
+> +		    period_ns =3D=3D pc->bucket[i].period_ns)
+> +			return i;
+> +
+> +		/*
+> +		 * Unlike duty cycle zero, which can be handled by
+> +		 * disabling PWM, a generator is needed for full duty
+> +		 * cycle but it can be reused regardless of period
+> +		 */
+> +		if (duty_ns =3D=3D DUTY_FULL && pc->bucket[i].duty_ns =3D=3D DUTY_FULL)
+> +			return i;
+> +	}
+> +
+> +	return -1;
+> +}
+> +
+> +static void airoha_pwm_free_waveform(struct airoha_pwm *pc, unsigned int=
+ hwpwm)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(pc->bucket); i++)
+> +		pc->bucket[i].used &=3D ~BIT_ULL(hwpwm);
+> +}
+> +
+> +static int airoha_pwm_consume_waveform(struct airoha_pwm *pc,
+> +				       u64 duty_ns, u64 period_ns,
+> +				       enum pwm_polarity polarity,
+> +				       unsigned int hwpwm)
+> +{
+> +	int id =3D airoha_pwm_get_waveform(pc, duty_ns, period_ns);
+> +
+> +	if (id < 0) {
+> +		int i;
+> +
+> +		/* find an unused waveform generator */
+> +		for (i =3D 0; i < ARRAY_SIZE(pc->bucket); i++) {
+> +			if (!(pc->bucket[i].used & ~BIT_ULL(hwpwm))) {
+> +				id =3D i;
+> +				break;
+> +			}
+> +		}
+> +	}
+> +
+> +	if (id >=3D 0) {
+> +		airoha_pwm_free_waveform(pc, hwpwm);
+> +		pc->bucket[id].used |=3D BIT_ULL(hwpwm);
+> +		pc->bucket[id].period_ns =3D period_ns;
+> +		pc->bucket[id].duty_ns =3D duty_ns;
+> +		pc->bucket[id].polarity =3D polarity;
+> +	}
+
+One downside of the (nearly) maximal flexibility implemented here is
+that if you have 9 (or more) requested pwm devices configuration is
+quite limited.  So it might happen that a consumer changes the
+configuration for pwm#2 from pwm_state A to pwm_state B but cannot
+change back to A later.
+
+If you limit the number of requested pwm devices to 8, the code gets a
+tad simpler (because you can map a fixed bucket to each pwm device and
+don't need to search during .apply()) and each consumer has maximal
+freedom to configure its device.
+
+> +
+> +	return id;
+> +}
+> +
+> +static int airoha_pwm_sipo_init(struct airoha_pwm *pc)
+> +{
+> +	u32 clk_divr_val =3D 3, sipo_clock_delay =3D 1;
+> +	u32 val, sipo_clock_divisor =3D 32;
+> +
+> +	if (!(pc->initialized >> PWM_NUM_GPIO))
+> +		return 0;
+> +
+> +	/* Select the right shift register chip */
+> +	if (of_property_read_bool(pc->np, "hc74595"))
+> +		airoha_pwm_sgpio_set(pc, REG_SIPO_FLASH_MODE_CFG,
+> +				     SERIAL_GPIO_MODE);
+> +	else
+> +		airoha_pwm_sgpio_clear(pc, REG_SIPO_FLASH_MODE_CFG,
+> +				       SERIAL_GPIO_MODE);
+> +
+> +	if (!of_property_read_u32(pc->np, "sipo-clock-divisor",
+> +				  &sipo_clock_divisor)) {
+> +		switch (sipo_clock_divisor) {
+> +		case 4:
+> +			clk_divr_val =3D 0;
+> +			break;
+> +		case 8:
+> +			clk_divr_val =3D 1;
+> +			break;
+> +		case 16:
+> +			clk_divr_val =3D 2;
+> +			break;
+> +		case 32:
+> +			clk_divr_val =3D 3;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	}
+> +	/* Configure shift register timings */
+> +	writel(clk_divr_val, pc->sgpio_cfg + REG_SGPIO_CLK_DIVR);
+> +
+> +	of_property_read_u32(pc->np, "sipo-clock-delay", &sipo_clock_delay);
+> +	if (sipo_clock_delay < 1 || sipo_clock_delay > sipo_clock_divisor / 2)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * The actual delay is sclkdly + 1 so subtract 1 from
+> +	 * sipo-clock-delay to calculate the register value
+> +	 */
+> +	sipo_clock_delay--;
+> +	writel(sipo_clock_delay, pc->sgpio_cfg + REG_SGPIO_CLK_DLY);
+> +
+> +	/*
+> +	 * It it necessary to after muxing explicitly shift out all
+> +	 * zeroes to initialize the shift register before enabling PWM
+> +	 * mode because in PWM mode SIPO will not start shifting until
+> +	 * it needs to output a non-zero value (bit 31 of led_data
+> +	 * indicates shifting in progress and it must return to zero
+> +	 * before led_data can be written or PWM mode can be set)
+> +	 */
+> +	if (readl_poll_timeout(pc->sgpio_cfg + REG_SGPIO_LED_DATE, val,
+> +			       !(val & SGPIO_LED_SHIFT_FLAG), 10,
+> +			       200 * USEC_PER_MSEC))
+> +		return -ETIMEDOUT;
+> +
+> +	airoha_pwm_sgpio_clear(pc, REG_SGPIO_LED_DATE, SGPIO_LED_DATA);
+> +	if (readl_poll_timeout(pc->sgpio_cfg + REG_SGPIO_LED_DATE, val,
+> +			       !(val & SGPIO_LED_SHIFT_FLAG), 10,
+> +			       200 * USEC_PER_MSEC))
+> +		return -ETIMEDOUT;
+> +
+> +	/* Set SIPO in PWM mode */
+> +	airoha_pwm_sgpio_set(pc, REG_SIPO_FLASH_MODE_CFG,
+> +			     SERIAL_GPIO_FLASH_MODE);
+> +
+> +	return 0;
+> +}
+> +
+> +static void airoha_pwm_config_waveform(struct airoha_pwm *pc, int index,
+> +				       u64 duty_ns, u64 period_ns,
+> +				       enum pwm_polarity polarity)
+> +{
+> +	u32 period, duty, mask, val;
+> +
+> +	duty =3D clamp_val(div64_u64(DUTY_FULL * duty_ns, period_ns), 0,
+> +			 DUTY_FULL);
+
+DUTY_FULL * duty_ns might overflow. Also the calculation is wrong.
+For example if the following is requested:
+
+	.period =3D 23999999,
+	.duty_cycle =3D 8000000,
+
+you're supposed to configure period =3D 16000000 ns and duty_cycle =3D
+8000000 ns.
+
+(I.e.: Pick the biggest possible period not bigger than the requested
+period. For that pick the biggest possible duty_cycle not bigger than
+the requested duty_cycle.)
+
+If you implement .get_state() in a way to return the actually configured
+state, enabling PWM_DEBUG and intensive testing helps to get this right.
+
+> +	if (polarity =3D=3D PWM_POLARITY_INVERSED)
+> +		duty =3D DUTY_FULL - duty;
+
+This alone doesn't switch the polarity of the signal. Please only claim
+to be able to implement the settings that the hardware actually can do.
+
+> +	period =3D clamp_val(div64_u64(25 * period_ns, 100000000), PERIOD_MIN,
+> +			   PERIOD_MAX);
+> +
+> +	/* Configure frequency divisor */
+> +	mask =3D WAVE_GEN_CYCLE_MASK(index % 4);
+> +	val =3D (period << __ffs(mask)) & mask;
+> +	airoha_pwm_cycle_rmw(pc, REG_CYCLE_CFG_VALUE(index / 4), mask, val);
+> +
+> +	/* Configure duty cycle */
+> +	duty =3D ((DUTY_FULL - duty) << 8) | duty;
+> +	mask =3D GPIO_FLASH_PRD_MASK(index % 2);
+> +	val =3D (duty << __ffs(mask)) & mask;
+> +	airoha_pwm_flash_rmw(pc, REG_GPIO_FLASH_PRD_SET(index / 2), mask, val);
+> +}
+> +
+> +static void airoha_pwm_config_flash_map(struct airoha_pwm *pc,
+> +					unsigned int hwpwm, int index)
+> +{
+> +	u32 addr, mask, val;
+> +
+> +	if (hwpwm < PWM_NUM_GPIO) {
+> +		addr =3D REG_GPIO_FLASH_MAP(hwpwm / 8);
+> +	} else {
+> +		addr =3D REG_SIPO_FLASH_MAP(hwpwm / 8);
+> +		hwpwm -=3D PWM_NUM_GPIO;
+> +	}
+> +
+> +	if (index < 0) {
+> +		/*
+> +		 * Change of waveform takes effect immediately but
+> +		 * disabling has some delay so to prevent glitching
+> +		 * only the enable bit is touched when disabling
+> +		 */
+> +		airoha_pwm_flash_clear(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
+> +		return;
+> +	}
+> +
+> +	mask =3D GPIO_FLASH_SETID_MASK(hwpwm % 8);
+> +	val =3D ((index & 7) << __ffs(mask)) & mask;
+> +	airoha_pwm_flash_rmw(pc, addr, mask, val);
+> +	airoha_pwm_flash_set(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
+> +}
+> +
+> +static int airoha_pwm_config(struct airoha_pwm *pc, struct pwm_device *p=
+wm,
+> +			     u64 duty_ns, u64 period_ns,
+> +			     enum pwm_polarity polarity)
+> +{
+> +	int index =3D -1;
+> +
+> +	index =3D airoha_pwm_consume_waveform(pc, duty_ns, period_ns, polarity,
+> +					    pwm->hwpwm);
+> +	if (index < 0)
+> +		return -EBUSY;
+> +
+> +	if (!(pc->initialized & BIT_ULL(pwm->hwpwm)) &&
+> +	    pwm->hwpwm >=3D PWM_NUM_GPIO)
+> +		airoha_pwm_sipo_init(pc);
+> +
+> +	if (index >=3D 0) {
+> +		airoha_pwm_config_waveform(pc, index, duty_ns, period_ns,
+> +					   polarity);
+> +		airoha_pwm_config_flash_map(pc, pwm->hwpwm, index);
+> +	} else {
+> +		airoha_pwm_config_flash_map(pc, pwm->hwpwm, index);
+> +		airoha_pwm_free_waveform(pc, pwm->hwpwm);
+> +	}
+> +
+> +	pc->initialized |=3D BIT_ULL(pwm->hwpwm);
+> +
+> +	return 0;
+> +}
+> +
+> +static void airoha_pwm_free(struct pwm_chip *chip, struct pwm_device *pw=
+m)
+> +{
+> +	struct airoha_pwm *pc =3D pwmchip_get_drvdata(chip);
+> +
+> +	/* Disable PWM and release the waveform */
+> +	airoha_pwm_config_flash_map(pc, pwm->hwpwm, -1);
+> +	airoha_pwm_free_waveform(pc, pwm->hwpwm);
+> +
+> +	pc->initialized &=3D ~BIT_ULL(pwm->hwpwm);
+> +	if (!(pc->initialized >> PWM_NUM_GPIO))
+> +		airoha_pwm_sgpio_clear(pc, REG_SIPO_FLASH_MODE_CFG,
+> +				       SERIAL_GPIO_FLASH_MODE);
+> +
+> +	/*
+> +	 * Clear the state to force re-initialization the next time
+> +	 * this PWM channel is used since we cannot retain state in
+> +	 * hardware due to limited number of waveform generators
+> +	 */
+> +	memset(&pwm->state, 0, sizeof(pwm->state));
+
+Please don't reconfigure the hardware in .free(). Instead assume that
+the consumer disabled the PWM before releasing it or that they know what
+they do.
+
+Also don't write to pwm->state, that is supposed to only happen in the
+core.
+
+> +}
+> +
+> +static int airoha_pwm_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct airoha_pwm *pc =3D pwmchip_get_drvdata(chip);
+> +	u64 duty =3D state->enabled ? state->duty_cycle : 0;
+> +
+> +	if (!state->enabled) {
+> +		airoha_pwm_free(chip, pwm);
+> +		return 0;
+> +	}
+> +
+> +	if (state->period < PERIOD_MIN_NS || state->period > PERIOD_MAX_NS)
+> +		return -EINVAL;
+
+Please handle state->period > PERIOD_MAX_NS by configuring a period of
+PERIOD_MAX_NS.
+
+> +	return airoha_pwm_config(pc, pwm, duty, state->period,
+> +				 state->polarity);
+> +}
+> +
+> +static int airoha_pwm_get_state(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+> +				struct pwm_state *state)
+> +{
+> +	struct airoha_pwm *pc =3D pwmchip_get_drvdata(chip);
+> +	int i;
+> +
+> +	/* find hwpwm in waveform generator bucket */
+> +	for (i =3D 0; i < ARRAY_SIZE(pc->bucket); i++) {
+> +		if (pc->bucket[i].used & BIT_ULL(pwm->hwpwm)) {
+> +			state->enabled =3D pc->initialized & BIT_ULL(pwm->hwpwm);
+> +			state->polarity =3D pc->bucket[i].polarity;
+> +			state->period =3D pc->bucket[i].period_ns;
+> +			state->duty_cycle =3D pc->bucket[i].duty_ns;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (i =3D=3D ARRAY_SIZE(pc->bucket))
+> +		state->enabled =3D false;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops airoha_pwm_ops =3D {
+> +	.get_state =3D airoha_pwm_get_state,
+> +	.apply =3D airoha_pwm_apply,
+> +	.free =3D airoha_pwm_free,
+> +};
+> +
+> +static int airoha_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct airoha_mfd *mfd;
+> +	struct airoha_pwm *pc;
+> +	struct pwm_chip *chip;
+> +
+> +	/* Assign parent MFD of_node to dev */
+> +	dev->of_node =3D of_node_get(dev->parent->of_node);
+
+I think you want
+device_set_of_node_from_dev(dev->parent, dev)
+here.
+
+> +	mfd =3D dev_get_drvdata(dev->parent);
+> +
+> +	chip =3D devm_pwmchip_alloc(dev, PWM_NUM_GPIO + PWM_NUM_SIPO,
+> +				  sizeof(*pc));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +
+> +	pc =3D pwmchip_get_drvdata(chip);
+> +	pc->np =3D dev->of_node;
+> +	pc->sgpio_cfg =3D mfd->base + REG_SGPIO_CFG;
+> +	pc->flash_cfg =3D mfd->base + REG_FLASH_CFG;
+> +	pc->cycle_cfg =3D mfd->base + REG_CYCLE_CFG;
+
+Is it really worth to store these values in the private data struct? My
+intuition would be to only store .base in pc and then define the
+register accessors macros like:
+
+	#define airoha_pwm_cycle_rmw(pc, offset, mask, val)				\
+		airoha_pwm_rmw((pc), (pc)->base + REG_CYCLE_CFG + (offset), (mask), (val))
+
+> +	chip->ops =3D &airoha_pwm_ops;
+> +	chip->of_xlate =3D of_pwm_xlate_with_flags;
+
+Please don't assign .of_xlate, the core does
+
+        if (!chip->of_xlate)
+                chip->of_xlate =3D of_pwm_xlate_with_flags;
+
+> +
+> +	return devm_pwmchip_add(&pdev->dev, chip);
+> +}
+> +
+> +static struct platform_driver airoha_pwm_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "airoha-pwm",
+> +	},
+> +	.probe =3D airoha_pwm_probe,
+> +};
+> +module_platform_driver(airoha_pwm_driver);
+> +
+> +MODULE_AUTHOR("Lorenzo Bianconi <lorenzo@kernel.org>");
+> +MODULE_AUTHOR("Markus Gothe <markus.gothe@genexis.eu>");
+> +MODULE_AUTHOR("Benjamin Larsson <benjamin.larsson@genexis.eu>");
+> +MODULE_DESCRIPTION("Airoha EN7581 PWM driver");
+> +MODULE_LICENSE("GPL");
+
+Best regards
+Uwe
+
+--xrkzyim6vsn2dpvr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmbW6R8ACgkQj4D7WH0S
+/k4P4gf+N6uWIy5Nqj2hfh4osyIXsAYyH0Rbg++uwe24C9sxSEGWSC+4H2+DeL1G
+cI/3mpQTnt0h36ZKPH0gi97dytc6QSYN0mnPao7RfZHIi3QPQMqjvmPcneRefnQB
+YN/HPOAJlhJHnYl8VBgP6F39p3ihtYZrlAZbck34Sz3RhESMaREJ4vRYV8UeFMVr
+rl2hX/0SwVavz7yEMWSIxkKvx6zh+yzqGg2b/urdUrT+zjtbycjWlhzAdhvd+W+f
+ymD54NEAggpK1s7Ptp6pWWwgrBKEM9HMGhL0rRPJ4dGnmBhHFOFFFhqh9avlmPdC
+tyibTqX+hAkfuwZu+A56i4iKQDy79Q==
+=ti50
+-----END PGP SIGNATURE-----
+
+--xrkzyim6vsn2dpvr--
 
