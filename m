@@ -1,339 +1,202 @@
-Return-Path: <devicetree+bounces-99434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7CB969C56
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:47:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 670FD969C69
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:50:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D34551F24EE0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:47:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA22D1F21F7D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D181A42B8;
-	Tue,  3 Sep 2024 11:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F841B984D;
+	Tue,  3 Sep 2024 11:50:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SOriQXDt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBE91B9832;
-	Tue,  3 Sep 2024 11:46:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC581A42D8
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 11:50:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725364018; cv=none; b=dIisBitpZNp13FZYar7XWoybYITWnyli6UoOjNwChfHAB67142szj6kvcksKqGYDd5wWwSzgiqzbPJmZmqxdCxteZXRTXaSsURsEayr2DQn2x0b9gXZXMr6YttkSZsM7R88Xdz6QlLHv964cqCDOv/ehZNBbp5aBWT6KtRZgM8s=
+	t=1725364245; cv=none; b=V0Llqti2ldZrrGC9QLx1x+whw4kKK+ojyWQgYst8yqY8hc+4sC8/5eIs3w/IrFgBQlR14/ehhVb5O61MnAjYh4JrcXqyAYAN0XRYrZ/QTr3eH/A/t028rQE01zoTr+rdcUu6COqp1PvZBVHI5swmuQdQ18JcJCW69HN7n6Yw4Lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725364018; c=relaxed/simple;
-	bh=CauLRKl4IZMp81aR69sHirfUgGb4Iz8K/McsZya+AOM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=d1ReWCj79TA10bxBjMn3maJTspkIpd0XVqkRNjfjngpjeCBVHvBiC+OReim9lPkqLnzV6iuic46rqIGDjNNULlQfz+J4uUa1iDwdN1APV3uIlPur3J3Zvq9SAdA9rYHWzG/l1/WJD9vZ1Z58hP4KMMrNjFflXj+uNF+yeCjFoh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.40.54.90])
-	by gateway (Coremail) with SMTP id _____8Bxa+ov99ZmNiUpAA--.14512S3;
-	Tue, 03 Sep 2024 19:46:55 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.40.54.90])
-	by front2 (Coremail) with SMTP id qciowMAxvsUr99ZmONYEAA--.13062S4;
-	Tue, 03 Sep 2024 19:46:54 +0800 (CST)
-From: Zhao Qunqin <zhaoqunqin@loongson.cn>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	chenhuacai@kernel.org
-Cc: linux-edac@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@xen0n.name,
-	bp@alien8.de,
-	tony.luck@intel.com,
-	james.morse@arm.com,
-	mchehab@kernel.org,
-	rric@kernel.org,
-	loongarch@lists.linux.dev,
-	Zhao Qunqin <zhaoqunqin@loongson.cn>
-Subject: [PATCH V3 2/2] Loongarch: EDAC driver for loongson memory controller
-Date: Tue,  3 Sep 2024 19:47:14 +0800
-Message-Id: <20240903114714.11428-3-zhaoqunqin@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20240903114714.11428-1-zhaoqunqin@loongson.cn>
-References: <20240903114714.11428-1-zhaoqunqin@loongson.cn>
+	s=arc-20240116; t=1725364245; c=relaxed/simple;
+	bh=4E0xulKVYycTdN6kmcI0wSr9SBqan18ie1bBK3rYCq0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GH4qM0mBwZTxldg4F6e829tzfegzQwlZDXu+SOW43RXpQd2+jHoB6VgJgF791N6ch/u3NVzmjBHhtPxx72lb01mUAhcwFj1+KjWnc8ULQJ1OOzN00rNi3vPAFpY+TIKRH8VoyYh0dDnDXl/v2MlvPA68k2CArxmgCvXxgNmHTA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SOriQXDt; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e116d2f5f7fso4585585276.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 04:50:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725364243; x=1725969043; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=M6oe5mOo0/Q2QUx8kdHtHzBteg518/H7oafdVdtWZ8E=;
+        b=SOriQXDtzTCxY7hGSVqMQYMwLDq2J+rnEi8OZxrIxATKAQ9u4zSHqL8VK5W80tUHT0
+         05yna/3MsWgBwRhK/SO8KZi2QtBZ4gN5ty2dxyCMlk3mefcMY8lgrDZsfrpv7b7G9ygz
+         3NVtDylH4bhYlgxNdiYUOQrp5SB7mLoweFls1yv/3Fwn9r/nH6lx6vJHdSIAUie9wLfG
+         CGpqnvm1MHdNT1NMQaNk+WiJWx64iP5b6DY4VBFA6C97nENNb6vqLxhwEkoEMcSu6Ol7
+         f8WdbrxrhgMF011LzY+Iu1NhUQ4ewwmHwM7ZG7cBSiGcmfvDYX+0o4dUThR7q/WsJPSA
+         wIMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725364243; x=1725969043;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M6oe5mOo0/Q2QUx8kdHtHzBteg518/H7oafdVdtWZ8E=;
+        b=PQ1V+UDV2fRMd7dD3aJmKYPnc2489LY5AYTx6jgq3tZXbFbhKrBUBsFFuy6tdFcNw5
+         SM4dTChgw0ARnEYV6IvCjIoH0aB6c6c+rSn/XR972eejQkZiivHcxY6v1v9T1ZARoWoO
+         Yi1WLb+h1oBrHCJSGlovpoQmu6PqCQWvDgxIhtP3PRLzJihYImxBShCqZ1X3vqzVVBdd
+         iMQcs+34y187UMQcM9t1xBp+Q8d2P/M0Gm26PjHhE1hP0v5BDl7tleYu8toH06mOEu+U
+         CZHYuf4qg0FBzSkhZyInzzQjDMYquIYSWv0QkY89VxA5Tp0bVBDf84x9poMzFzQXp6q3
+         P4HA==
+X-Forwarded-Encrypted: i=1; AJvYcCXTQ3i3PozgbkuU9PACNW5Wtckj8rdmPHqLOS52fozAU7Y5PT5lSDkdAcRP/t7NEsilmaxbY/FIM4Xu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/WqvRXcglHG/FTDdomLGTTV+S8i73kyCTqt4cJ6MzM6bS1yQA
+	HB6/9KbeHTdGltQY7uuqtR86kwV8Zcf/uFOfff5y+3/kQ+35OclGhqjBD6j5x2+si00zxm55kgl
+	W661G9DjLm0+Ry4Db7oncVkzXxJnDPAfbS8RIBQ==
+X-Google-Smtp-Source: AGHT+IGQtMOS4YakO3mVRU55aBPqdi3LzajbKXFr5W6dpvH6QZXYvNNBmu8gXnrpyyZN1Wg9oeBHgUN50f5gy2PQASY=
+X-Received: by 2002:a05:6902:e92:b0:e0e:8740:2a76 with SMTP id
+ 3f1490d57ef6-e1a7a3d95d9mr9063263276.26.1725364242841; Tue, 03 Sep 2024
+ 04:50:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qciowMAxvsUr99ZmONYEAA--.13062S4
-X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3ArWUXr18Kr45Jr1DJw15KFX_yoWxZFy5pr
-	13A3W3GrWftr13uws3ArWDuF1Yyw4Sva42kay3A3yjkr9xAryDZ34ktFy2yFnrCryDJrW3
-	X34rGw4UCF4UGrbCm3ZEXasCq-sJn29KB7ZKAUJUUUUJ529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBmb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-	wI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-	xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-	Wrv_ZF1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
-	Ij64vIr41lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jw0_GFylx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
-	8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
-	2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6x
-	AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIE
-	c7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjxUhGNtUUUUU
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
+ <99bef301-9f6c-4797-b47e-c83e56dfbda9@tuxon.dev> <CAPDyKFrVS2vpsJqTvjKCJ7ADqXc4D4k2eeCBsaK4T+=pXDnKUA@mail.gmail.com>
+ <fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev> <CAPDyKFrkkASq7rfRN=9sEet-p8T8t+f__PdnSNRN3bMNipnNNw@mail.gmail.com>
+ <CAPDyKFpLnREr4C=wZ7o8Lb-CZbQa4Nr2VTuYdZHZ26Rcb1Masg@mail.gmail.com> <da4c57ff-de2b-418f-ba2c-e83c1d399b94@tuxon.dev>
+In-Reply-To: <da4c57ff-de2b-418f-ba2c-e83c1d399b94@tuxon.dev>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 3 Sep 2024 13:50:07 +0200
+Message-ID: <CAPDyKFpkCYuK=T6ZGzJ=V67Jj7C6CSKv1GH1W_apWs2rKF4q-g@mail.gmail.com>
+Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
+	magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com, 
+	sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com, 
+	biju.das.jz@bp.renesas.com, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Reports single bit errors (CE) only.
+On Tue, 3 Sept 2024 at 12:58, claudiu beznea <claudiu.beznea@tuxon.dev> wrote:
+>
+>
+>
+> On 03.09.2024 13:35, Ulf Hansson wrote:
+> > On Sat, 31 Aug 2024 at 12:32, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> >>
+> >> [...]
+> >>
+> >>>>
+> >>>> If not, there are two other options that can be considered I think.
+> >>>> *) Using the genpd on/off notifiers, to really allow the consumer
+> >>>> driver of the reset-control to know when the PM domain gets turned
+> >>>> on/off.
+> >>>> **) Move the entire reset handling into the PM domain provider, as it
+> >>>> obviously knows when the domain is getting turned on/off.
+> >>>
+> >>> This option is what I've explored, tested on my side.
+> >>>
+> >>> I explored it in 2 ways:
+> >>>
+> >>> 1/ SYSC modeled as an individual PM domain provider (this is more
+> >>>    appropriate to how HW manual described the hardware) with this the PHY
+> >>>    reset DT node would have to get 2 PM domains handlers (one for the
+> >>>    current PM domain provider and the other one for SYSC):
+> >>>
+> >>> +               phyrst: usbphy-ctrl@11e00000 {
+> >>> +                       compatible = "renesas,r9a08g045-usbphy-ctrl";
+> >>> +                       reg = <0 0x11e00000 0 0x10000>;
+> >>> +                       clocks = <&cpg CPG_MOD R9A08G045_USB_PCLK>;
+> >>> +                       resets = <&cpg R9A08G045_USB_PRESETN>;
+> >>> +                       power-domain-names = "cpg", "sysc";
+> >>> +                       power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc
+> >>> R9A08G045_SYSC_PD_USB>;
+> >>> +                       #reset-cells = <1>;
+> >>> +                       status = "disabled";
+> >>> +
+> >>> +                       usb0_vbus_otg: regulator-vbus {
+> >>> +                               regulator-name = "vbus";
+> >>> +                       };
+> >>> +               };
+> >>> +
+> >>
+> >> According to what you have described earlier/above, modelling the SYSC
+> >> as a PM domain provider seems like a better description of the HW to
+> >> me. Although, as I said earlier, if you prefer the reset approach, I
+> >> would not object to that.
+> >
+> > Following the discussion I believe I should take this back. If I
+> > understand correctly, SYSC signal seems best to be modelled as a
+> > reset.
+> >
+> >  Although, it looks like the USB PM domain provider should rather be
+> > the consumer of that reset, instead of having the reset being consumed
+> > by the consumers of the USB PM domain.
+>
+> The PM domain provider for USB is the provider for the rest of IPs. To work
+> like this the SYSC these signals should be handled in the USB domains power
+> on/off function. It's not impossible to have it implemented like this but
+> it will complicate a bit the code, AFAICT. This will not describe the
+> hardware, also.
+>
+> With the information that we had up to yesterday, the connection b/w HW
+> blocks was something as follows:
+>
+>                  USB area
+>               +--------------------------+
+>       sig     | PHY -> USB controller X  |
+> SYSC -------->|  ^                       |
+>               |  |                       |
+>               | PHY reset                |
+>               +--------------------------+
+>
+> In this implementation the SYSC signal was connected to PHY reset block as
+> it is the root of the devices used in the USB setup and no USB
+> functionality can exist w/o the PHY reset being setup.
+>
+> There is a new information arrived just yesterday from hardware team saying
+> this about SYSC signals: "When turning off USB PHY and PCIe PHY, if they
+> are not controlled, PHY may break" which may means that it is just
+> connected to the PHYs not to the USB area/region or PCIe area/region as
+> initially expressed in HW manual.
+>
+> With that the HW connection b/w the USB devices and SYSC might become
+> something like:
+>
+>                  USB area
+>               +--------------------------+
+>      sig   +--->PHY -> USB controller X  |
+> SYSC ------+  |  ^                       |
+>               |  |                       |
+>               | PHY reset                |
+>               +--------------------------+
+>
+> I haven't got the chance to test this topology, though.
+>
+> With this new information would you be OK to still have it as a reset
+> signal and connected only to the PHY driver ?
 
-Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
----
- MAINTAINERS                  |   1 +
- arch/loongarch/Kconfig       |   1 +
- drivers/edac/Kconfig         |   8 ++
- drivers/edac/Makefile        |   1 +
- drivers/edac/loongson_edac.c | 182 +++++++++++++++++++++++++++++++++++
- 5 files changed, 193 insertions(+)
- create mode 100644 drivers/edac/loongson_edac.c
+As long as it's a better description of the HW, I am fine with that too.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6cc8cfc8f..5b4526638 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13242,6 +13242,7 @@ M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
- L:	linux-edac@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
-+F:	drivers/edac/loongson_edac.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
- M:	Sathya Prakash <sathya.prakash@broadcom.com>
-diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
-index 70f169210..9c135f1a2 100644
---- a/arch/loongarch/Kconfig
-+++ b/arch/loongarch/Kconfig
-@@ -181,6 +181,7 @@ config LOONGARCH
- 	select PCI_MSI_ARCH_FALLBACKS
- 	select PCI_QUIRKS
- 	select PERF_USE_VMALLOC
-+	select EDAC_SUPPORT
- 	select RTC_LIB
- 	select SPARSE_IRQ
- 	select SYSCTL_ARCH_UNALIGN_ALLOW
-diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index 16c8de505..1193e92f6 100644
---- a/drivers/edac/Kconfig
-+++ b/drivers/edac/Kconfig
-@@ -573,5 +573,13 @@ config EDAC_VERSAL
- 	  Support injecting both correctable and uncorrectable errors
- 	  for debugging purposes.
- 
-+config EDAC_LOONGSON3
-+	tristate "Loongson-3 Memory Controller"
-+	depends on LOONGARCH || COMPILE_TEST
-+	help
-+	  Support for error detection and correction on the Loongson-3
-+	  family memory controller. This driver reports single bit
-+	  errors (CE) only. Loongson-3A5000/3C5000/3D5000/3C5000L/3A6000/3C6000
-+	  are compatible.
- 
- endif # EDAC
-diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-index 4edfb83ff..7d04ac43d 100644
---- a/drivers/edac/Makefile
-+++ b/drivers/edac/Makefile
-@@ -89,3 +89,4 @@ obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
- obj-$(CONFIG_EDAC_NPCM)			+= npcm_edac.o
- obj-$(CONFIG_EDAC_ZYNQMP)		+= zynqmp_edac.o
- obj-$(CONFIG_EDAC_VERSAL)		+= versal_edac.o
-+obj-$(CONFIG_EDAC_LOONGSON3)		+= loongson_edac.o
-diff --git a/drivers/edac/loongson_edac.c b/drivers/edac/loongson_edac.c
-new file mode 100644
-index 000000000..b89d6e0e7
---- /dev/null
-+++ b/drivers/edac/loongson_edac.c
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Loongson Technology Corporation Limited.
-+ */
-+
-+#include <linux/edac.h>
-+#include <linux/module.h>
-+#include <linux/init.h>
-+#include <linux/platform_device.h>
-+
-+#include "edac_module.h"
-+
-+enum ecc_index {
-+	ECC_SET = 0,
-+	ECC_RESERVED,
-+	ECC_COUNT,
-+	ECC_CS_COUNT,
-+	ECC_CODE,
-+	ECC_ADDR,
-+	ECC_DATA0,
-+	ECC_DATA1,
-+	ECC_DATA2,
-+	ECC_DATA3,
-+};
-+
-+struct loongson_edac_pvt {
-+	u64 *ecc_base;
-+	int last_ce_count;
-+};
-+
-+static void loongson_update_ce_count(struct mem_ctl_info *mci,
-+					int chan,
-+					int new)
-+{
-+	int add;
-+	struct loongson_edac_pvt *pvt = mci->pvt_info;
-+
-+	add = new - pvt->last_ce_count;
-+
-+	/* Store the new value */
-+	pvt->last_ce_count = new;
-+
-+	/* device resume or any other exceptions*/
-+	if (add < 0)
-+		return;
-+
-+	/*updated the edac core */
-+	if (add != 0) {
-+		edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, add,
-+					0, 0, 0,
-+					chan, 0, -1, "error", "");
-+		edac_mc_printk(mci, KERN_INFO, "add: %d", add);
-+	}
-+}
-+
-+static int loongson_read_ecc(struct mem_ctl_info *mci)
-+{
-+	u64 ecc;
-+	int cs = 0;
-+	struct loongson_edac_pvt *pvt = mci->pvt_info;
-+
-+	if (!pvt->ecc_base)
-+		return pvt->last_ce_count;
-+
-+	ecc = pvt->ecc_base[ECC_CS_COUNT];
-+	cs += ecc & 0xff;		// cs0
-+	cs += (ecc >> 8) & 0xff;	// cs1
-+	cs += (ecc >> 16) & 0xff;	// cs2
-+	cs += (ecc >> 24) & 0xff;	// cs3
-+
-+	return cs;
-+}
-+
-+static void loongson_edac_check(struct mem_ctl_info *mci)
-+{
-+	loongson_update_ce_count(mci, 0, loongson_read_ecc(mci));
-+}
-+
-+static int get_dimm_config(struct mem_ctl_info *mci)
-+{
-+	u32 size, npages;
-+	struct dimm_info *dimm;
-+
-+	/* size not used */
-+	size = -1;
-+	npages = MiB_TO_PAGES(size);
-+
-+	dimm = edac_get_dimm(mci, 0, 0, 0);
-+	dimm->nr_pages = npages;
-+	snprintf(dimm->label, sizeof(dimm->label),
-+			"MC#%uChannel#%u_DIMM#%u",
-+			mci->mc_idx, 0, 0);
-+	dimm->grain = 8;
-+
-+	return 0;
-+}
-+
-+static void loongson_pvt_init(struct mem_ctl_info *mci, u64 *vbase)
-+{
-+	struct loongson_edac_pvt *pvt = mci->pvt_info;
-+
-+	pvt->ecc_base = vbase;
-+	pvt->last_ce_count = loongson_read_ecc(mci);
-+}
-+
-+static int loongson_edac_probe(struct platform_device *pdev)
-+{
-+	struct mem_ctl_info *mci;
-+	struct edac_mc_layer layers[2];
-+	struct loongson_edac_pvt *pvt;
-+	u64 *vbase = NULL;
-+	int ret;
-+
-+	vbase = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(vbase))
-+		return PTR_ERR(vbase);
-+
-+	/* allocate a new MC control structure */
-+	layers[0].type = EDAC_MC_LAYER_CHANNEL;
-+	layers[0].size = 1;
-+	layers[0].is_virt_csrow = false;
-+	layers[1].type = EDAC_MC_LAYER_SLOT;
-+	layers[1].size = 1;
-+	layers[1].is_virt_csrow = true;
-+	mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, sizeof(*pvt));
-+	if (mci == NULL)
-+		return -ENOMEM;
-+
-+	mci->mc_idx = edac_device_alloc_index();
-+	mci->mtype_cap = MEM_FLAG_RDDR4;
-+	mci->edac_ctl_cap = EDAC_FLAG_NONE;
-+	mci->edac_cap = EDAC_FLAG_NONE;
-+	mci->mod_name = "loongson_edac.c";
-+	mci->ctl_name = "loongson_edac_ctl";
-+	mci->dev_name = "loongson_edac_dev";
-+	mci->ctl_page_to_phys = NULL;
-+	mci->pdev = &pdev->dev;
-+	mci->error_desc.grain = 8;
-+	/* Set the function pointer to an actual operation function */
-+	mci->edac_check = loongson_edac_check;
-+
-+	loongson_pvt_init(mci, vbase);
-+	get_dimm_config(mci);
-+
-+	ret = edac_mc_add_mc(mci);
-+	if (ret) {
-+		edac_dbg(0, "MC: failed edac_mc_add_mc()\n");
-+		edac_mc_free(mci);
-+		return ret;
-+	}
-+	edac_op_state = EDAC_OPSTATE_POLL;
-+
-+	return 0;
-+}
-+
-+static void loongson_edac_remove(struct platform_device *pdev)
-+{
-+	struct mem_ctl_info *mci = edac_mc_del_mc(&pdev->dev);
-+
-+	if (mci)
-+		edac_mc_free(mci);
-+}
-+
-+static const struct of_device_id loongson_edac_of_match[] = {
-+	{ .compatible = "loongson,ls3a5000-mc-edac", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, loongson_edac_of_match);
-+
-+static struct platform_driver loongson_edac_driver = {
-+	.probe		= loongson_edac_probe,
-+	.remove		= loongson_edac_remove,
-+	.driver		= {
-+		.name	= "loongson-mc-edac",
-+		.of_match_table = loongson_edac_of_match,
-+	},
-+};
-+module_platform_driver(loongson_edac_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Zhao Qunqin <zhaoqunqin@loongson.cn>");
-+MODULE_DESCRIPTION("EDAC driver for loongson memory controller");
--- 
-2.43.0
+Although, please note that pm_runtime_get|put() doesn't give you full
+controll of how the USB PM domain is being powered. So in that case,
+it sounds like you need to use the genpd on/off notifiers too.
 
+Kind regards
+Uffe
 
