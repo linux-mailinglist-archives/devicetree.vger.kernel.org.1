@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-99533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D4596A18B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:04:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F55796A18E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:05:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F2BE28206F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:04:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82F451C23387
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D2915666D;
-	Tue,  3 Sep 2024 15:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26E81684AC;
+	Tue,  3 Sep 2024 15:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JiGr66dR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DRIRAocq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378A92AE66;
-	Tue,  3 Sep 2024 15:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D562AE66;
+	Tue,  3 Sep 2024 15:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725375880; cv=none; b=i42NxPMGhSzdvk9zjZfN3RN19CJ8gY5sTplZ1umT352N2Ccfg9WhegNPOpPyOo5wzQ8lZKtn4rrTWrGfTkg91dYqIe20tE76XRXRd5hSckq3TyulexbRwOI3O50VYp8QdKp2xgauowdrfMShZCS+fgr+N1tS3OQpaM0ASbMpIz4=
+	t=1725375935; cv=none; b=SPr48Ar8qGcAJ2osSLRE/80b3yMeqRAy63KZEQkQUbus4VRdpNgBChyId7cXhQi/q6S63IOfnmdI/kA8GZPWAl4k9upfD39YTEJ3Bxp32Ucwg0tFbGD7e0eYNDWd2HUryJI2IydmAMzkRr20AlB4eIywMNLpqsCMQr8bMLjtc18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725375880; c=relaxed/simple;
-	bh=sf3xNg203/lr8nt9OtokONsd4BgI7GDuvGcxFo78X+o=;
+	s=arc-20240116; t=1725375935; c=relaxed/simple;
+	bh=KL0RQRwssSJZNsqC3FsLLADFxblDIjhPUl1YLEacyms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ilq462CgPvM8G42VYuAiHoFmHO5+vO8hzE6OEtRWmiUX5CEc1JJTXLC6RtHS9NowwKJAj0uz/sDp3WCB7HKmJib5iI9kcvuGCc1+2kFQDdp5Zx4jAMsiFJYT4DXCajz3sKoI22LeAjFcm42kgpBPvgysTeAjA+VIaLrJaBPPsjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JiGr66dR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F2FBC4CEC4;
-	Tue,  3 Sep 2024 15:04:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dSUw611KMdZMvkfMvb3pvp36JfMYPeOZswvB5XLshWhb0D2rqHRR0m8pSmau/Uev+SyG54pocc4xSjiMNeRvQcoqyMOO7bH+XlAbhqoE7PRbQl08tgBUvfqaWZ8BonL+4BcG4Aww7G0coCvVeYbtU1T7AH5dP2aITHVkN7Ll1A8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DRIRAocq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3E00C4CEC4;
+	Tue,  3 Sep 2024 15:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725375879;
-	bh=sf3xNg203/lr8nt9OtokONsd4BgI7GDuvGcxFo78X+o=;
+	s=k20201202; t=1725375935;
+	bh=KL0RQRwssSJZNsqC3FsLLADFxblDIjhPUl1YLEacyms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JiGr66dRo72VmOAc29W41ELqSFMOOqKgnA1OPWzIih5KTat9VKMC91k50pdB65QDc
-	 yiVJn6AuPC8CPVBxQUqri90qDBy3D4CdfqqoFfuriBmycV0Ah8PWaRtOnz8J83Z1va
-	 7Rmuhm1r3E8w+4G2d10XXLNsG2dl1tF1ckLXa6k4qv6f7MQlME3sETQAhKWlhQNYOJ
-	 3BzYzrf6+ruGFfgs0FtIWtQsWWY4We2rNdQrA2BNMHQZ4TR5Zj/OvhLyffF4xkKuRO
-	 daiNlB8OF+jPEP0mU9lSPRhsXAG+AC6Jwd3L/jl3SqqObpMFDBOHd7atGc0twCdCl/
-	 wDPFqRC5hoo8Q==
-Date: Tue, 3 Sep 2024 10:04:38 -0500
-From: Rob Herring <robh@kernel.org>
+	b=DRIRAocqMOoyi0rW8os/xYVVD6vNIkBzoAlQ6hS2tSqR1dB70Nr3njU0wCyg3zgwu
+	 LacEso3uef9loUUnpQphxgtcE7qUvZSzFxL7C3t7jDK9reXbttX+aQ7Qz35fAggN0o
+	 lkn8P30kt6mxExCkPfIH18o2hQZhMeslMjkRnbqR8pQsmFuB9RGfxWBbFN/O/EzPo8
+	 6hw5ms6StC7SwGIY5PlV2myw4czbRwVcF3KNidbGniUstdvQJ458e83ikt7ISlZ3uL
+	 Onbf/nglN5e3FjWS9Wl8N/NCX9+JzjhDjF3IRsS9zdcTZ+i35Mg31/jZ7zmq7UHmGQ
+	 cgsEf0ky6UuxQ==
+Date: Tue, 3 Sep 2024 10:05:34 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+Cc: devicetree@vger.kernel.org,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org,
+	upstream@airoha.com, Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH 1/7] dt-bindings: clock: airoha: update reg mapping for
- EN7581 SoC.
-Message-ID: <20240903150438.GA1008227-robh@kernel.org>
-References: <20240831-clk-en7581-syscon-v1-0-5c2683541068@kernel.org>
- <20240831-clk-en7581-syscon-v1-1-5c2683541068@kernel.org>
+	linux-gpio@vger.kernel.org, benjamin.larsson@genexis.eu,
+	ansuelsmth@gmail.com,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: arm: airoha: Add the chip-scu node
+ for EN7581 SoC
+Message-ID: <172537593271.1018147.17791430767383351676.robh@kernel.org>
+References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
+ <20240831-en7581-pinctrl-v3-1-98eebfb4da66@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,47 +69,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240831-clk-en7581-syscon-v1-1-5c2683541068@kernel.org>
+In-Reply-To: <20240831-en7581-pinctrl-v3-1-98eebfb4da66@kernel.org>
 
-On Sat, Aug 31, 2024 at 09:18:43AM +0200, Lorenzo Bianconi wrote:
-> clk-en7523 driver for EN7581 SoC is mapping all the scu memory region
-> while it is configuring the chip-scu one via a syscon. Update the reg
-> mapping definition for this device. This patch does not introduce any
-> backward incompatibility since the dts for EN7581 SoC is not public yet.
+
+On Sat, 31 Aug 2024 16:27:46 +0200, Lorenzo Bianconi wrote:
+> This patch adds the chip-scu document bindings for EN7581 SoC.
+> The airoha chip-scu block provides a configuration interface for clock,
+> io-muxing and other functionalities used by multiple controllers (e.g.
+> clock, pinctrl, ecc.) on EN7581 SoC.
 > 
 > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  .../devicetree/bindings/clock/airoha,en7523-scu.yaml         | 12 +++---------
->  1 file changed, 3 insertions(+), 9 deletions(-)
+>  .../bindings/arm/airoha,en7581-chip-scu.yaml       | 42 ++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> index 84353fd09428..ca426c328535 100644
-> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> @@ -34,8 +34,8 @@ properties:
->            - airoha,en7581-scu
->  
->    reg:
-> -    minItems: 2
-> -    maxItems: 4
-> +    minItems: 1
-> +    maxItems: 2
 
-This should really have the 'items' list here instead of in the if/then 
-schemas.
->  
->    "#clock-cells":
->      description:
-> @@ -75,9 +75,6 @@ allOf:
->          reg:
->            items:
->              - description: scu base address
-> -            - description: misc scu base address
-> -            - description: reset base address
-> -            - description: pb scu base address
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-And then this would be just 'maxItems: 1' and the other if 'minItems: 
-2'.
-
-Rob
 
