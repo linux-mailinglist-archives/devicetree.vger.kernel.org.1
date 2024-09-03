@@ -1,87 +1,131 @@
-Return-Path: <devicetree+bounces-99654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F2AA96AAB8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:58:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B68E96AAC1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:59:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC6791F25076
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:58:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E4891C22ECD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540B41D5892;
-	Tue,  3 Sep 2024 21:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F10CF1CB52A;
+	Tue,  3 Sep 2024 21:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ZJ7sGUQX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29CD51D223A;
-	Tue,  3 Sep 2024 21:58:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AEA91D54C6;
+	Tue,  3 Sep 2024 21:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725400681; cv=none; b=JhS6uWp0/HDU/cZBbbCfCHldZWKz+0Vnar58WMyKA+Ne6WjkooQuzlI1tR1JNRGD036cgTLUHai04KWGXBLh2vqPf3pIegzRU1qF78vjPRMCZiy9SXuJ1fdu0Lfq9UlHjGpaCuNDKLfWbbPGnWhyIdPoIuTOPvBpArZjfQaERKk=
+	t=1725400712; cv=none; b=MPrub3QsqfXPcTvwRSyr7y09oG+PzGyl9lGgfTIi28FjqMslwfT+53pgVeJ2hTDixevHl4m7t+c72hMptP/cMUm/Sce+ptFdA9LnW6GzaWnUbR4ZyPOtVO+G73RqQh4wPSbAfwRy6jZvDDwDaOAfPJbh4CQE2cJ/j7mkfF4zsNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725400681; c=relaxed/simple;
-	bh=bfkASTT+Az0WHoeeWuQspysfBtzPVt+pivV/Wg/6HLk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=B6cwA6V3rDlEj+EcxpNojgtiYdWyBrzyJxhugjN156A3NYW3LCrgz5YejIccuq1pLunyFgMs4TFBn112fENH8QkpiZO6eFuDTrNUa4kT1RqU8Y5toEneqLDadCgfnCA/HQTta8EYE+gHNkap45x7tZP8mAHmRB5/qgmnnfXq1AU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CD69C4CEC9;
-	Tue,  3 Sep 2024 21:58:00 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 473811060534; Tue, 03 Sep 2024 23:57:58 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
- quentin.schulz@free-electrons.com, mripard@kernel.org, 
- tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com, 
- u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org, 
- jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org, 
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de, 
- jic23@kernel.org, jonathan.cameron@huawei.com, 
- Chris Morgan <macromorgan@hotmail.com>
-In-Reply-To: <20240821215456.962564-1-macroalpha82@gmail.com>
-References: <20240821215456.962564-1-macroalpha82@gmail.com>
-Subject: Re: (subset) [PATCH V4 00/15] Add Battery and USB Supply for
- AXP717
-Message-Id: <172540067828.972525.2485048078454932049.b4-ty@collabora.com>
-Date: Tue, 03 Sep 2024 23:57:58 +0200
+	s=arc-20240116; t=1725400712; c=relaxed/simple;
+	bh=+36XtkLue95cvlXX/DCu5KZUdM2/qpeN3Y6e7xOR+1I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Humj6gBzwlmhvd1LbJfoPTMxOt6Oqe1SDG2RNJN8q963gHrespV80tv/xAESpsVMyDL2GO0B+es46acD0S9uGhlnu5QdX2Nd/5+ANjGDxfdXtU+gTSxllrfZ8f5m79AI4F2bGqxcV9mX+9CxHlEk3Lci79mjTSgowMhFpthhIhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ZJ7sGUQX; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+j6f5if+f2W86QKE1LKn/g5w4kYrcF6g49PNUZ3ZNP4=; b=ZJ7sGUQXwRu0Z1LawQGUT7OBit
+	KFbquRc4bhEA1OEQ2VHQWfx46V+JOwjnHO/o61Mo6y0dAt48EA+LO2qSs8DTMU1lfeKuKHshqU1zl
+	P0rtWSHVVQQ/+rKmX6IFNw5UHexXkrIgSsJgU+Wz1fl4QZghKbyNGiiouVXxCXIg7VlgPY4185KSA
+	CTUlgT/4VY+IibQ1NXqABFZtd0OEsmxOTcctKd6RcfTRErVbQVcVkjQDC4Jc9+JGNBacNP/AT00h7
+	cad9Dn43pVCGeqTMwFp7PrQwUf45OEgBw9kLmvPq2cFzf9VNdpllH0cgz9KY6GfqsGdRjVgZJoxbA
+	YviFHN2w==;
+Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1slbWj-00032m-2x; Tue, 03 Sep 2024 23:57:29 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+ Ondrej Jirman <megi@xff.cz>, Michael Riesch <michael.riesch@wolfvision.net>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Elon Zhang <zhangzj@rock-chips.com>,
+ Alexey Charkov <alchark@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>,
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+ Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ Jamie Iles <jamie@jamieiles.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel@collabora.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 3/9] dt-bindings: i2c: i2c-rk3x: Add rk3576 compatible
+Date: Tue, 03 Sep 2024 23:59:12 +0200
+Message-ID: <23007922.5W6oEpyPa8@diego>
+In-Reply-To: <ycbhqmkwz2hirnvp6j47kz3cxnli3db3i5ah76gngrezs5ww2r@57x2gxnr5hyk>
+References:
+ <20240903152308.13565-1-detlev.casanova@collabora.com>
+ <12506188.O9o76ZdvQC@bootstrap>
+ <ycbhqmkwz2hirnvp6j47kz3cxnli3db3i5ah76gngrezs5ww2r@57x2gxnr5hyk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-
-On Wed, 21 Aug 2024 16:54:41 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+Am Dienstag, 3. September 2024, 18:47:17 CEST schrieb Andi Shyti:
+> On Tue, Sep 03, 2024 at 11:59:34AM GMT, Detlev Casanova wrote:
+> > On Tuesday, 3 September 2024 11:46:00 EDT Andi Shyti wrote:
+> > > Hi,
+> > > 
+> > > On Tue, Sep 03, 2024 at 11:22:33AM GMT, Detlev Casanova wrote:
+> > > > Just like RK356x and RK3588, RK3576 is compatible to the existing
+> > > > rk3399 binding.
+> > > > 
+> > > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > Acked-by: Heiko Stuebner <heiko@sntech.de>
+> > > 
+> > > I will apply this after 1 and 2 have been merged.
+> > 
+> > Sure, although it is not really dependent on 1 and 2.
 > 
-> Add support for monitoring the USB charger and battery charger on the
-> AXP717 PMIC. This required some driver refactoring of the axp20x USB
-> and battery charger as the AXP717 is somewhat different but can still
-> benefit from some common elements.
+> yes, but I want to be sure that everything is coming in.
 > 
-> [...]
+> > > BTW, who is maintaining rockchip.yaml?
+> > 
+> > Heiko Stuebner is the maintainer of Rockchip SoC support.
+> 
+> I would guess so, but I think we should also add the entry to
+> the maintainer's file :-)
 
-Applied, thanks!
+now you made me doubt the wildcards we have in place ;-)
 
-[09/15] dt-bindings: power: supply: axp20x: Add AXP717 compatible
-        commit: e44c5691822962dc6f50793029bef5e71f5b0a62
-[10/15] dt-bindings: power: supply: axp20x: Add AXP717 compatible
-        commit: e44c5691822962dc6f50793029bef5e71f5b0a62
-[13/15] power: supply: axp20x_usb_power: Add support for AXP717
-        commit: 75098176d17fab88c06120b453b4b0d1641e2a41
-[14/15] power: supply: axp20x_battery: add support for AXP717
-        commit: 6625767049c2e0960ba9835392a6ef9143170be6
+# scripts/get_maintainer.pl -f Documentation/devicetree/bindings/arm/rockchip.yaml
+[...]
+Heiko Stuebner <heiko@sntech.de> (maintainer:ARM/Rockchip SoC support)
+[...]
+linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
 
-Best regards,
--- 
-Sebastian Reichel <sebastian.reichel@collabora.com>
+So Maintainers seems to be correct ... *phew* :-)
+
 
 
