@@ -1,128 +1,83 @@
-Return-Path: <devicetree+bounces-99254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082009694B7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:09:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8DFF9694BF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:09:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B04A1C22919
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:09:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D15AB21A69
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:09:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D35811D1F63;
-	Tue,  3 Sep 2024 07:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C62761D6C72;
+	Tue,  3 Sep 2024 07:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="17x5NNP9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kKtHUvx/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7FA1A4E7F;
-	Tue,  3 Sep 2024 07:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1011D6C68;
+	Tue,  3 Sep 2024 07:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725347335; cv=none; b=uk58Pb3ETOycdEFdFPaKQrIMVh/Nf7HLj2vvagIyMC6KHVt0K8+DNx9o2UyVa/Ff/vGpRcNBC+9V3ULLkPDTqBWVDOtwu+yDfHSSSvM9E1P4gYNUgXrsbkkoZ0hVXxmCU5qcRJTvrMFITo+PmB8IOcWdEceOGC48xmfBJoCdmwE=
+	t=1725347347; cv=none; b=oWS+8triqBoyZwt/YLmgp3p1gUhktNZcns2hrEfluhwzQZT4hBR6JkbQ7rQkkDdHczd8r3wpFOML//az9o8SrFHPbRfDxNha8uPGIBQ63NOceDsonwoFIDpPEkzx7zUTo3Kheo8wjpJ3B6D8w7czZT+VTHvw36Swf5dIgtbplEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725347335; c=relaxed/simple;
-	bh=bTovO0s/85vxVwC1EVSDWJ6CYsHfXmbw+NNS3x21Hb0=;
+	s=arc-20240116; t=1725347347; c=relaxed/simple;
+	bh=RV1DL4EWhw1Iqgi6fDlqAVV21a+LAaW/eDxabMVQgtU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=etCfUtJ3iFojKlHxDnxEQuY2dC4agiE0rVRt1YzIcPrMoarphbIPy5EoL4zlSNQLiN7izttaYa1to005AMr9CCNhadawUNPc6X4nuGmZPsirDqjWIrbgFZiQQ0gexiuWpCzkaIWhz2Rj1NDs1ICv4xqLGE+Szii6GreMGvjRT+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=17x5NNP9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85EA0C4CEC5;
-	Tue,  3 Sep 2024 07:08:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1725347335;
-	bh=bTovO0s/85vxVwC1EVSDWJ6CYsHfXmbw+NNS3x21Hb0=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=CodMz5S6svtT3a3EbcaBdUkv9DrKEMUSOtpxDAP7AUMCL0MMMxOmY2ivMAL2jOltPjEmrrDGbWJOoKdNpI2UnFUwtc16gK32mDNSQfJaRsXDYiMU8+ZYtdAOke7YtryOk/0vEaOFG0tMHe8Rnf7BcqznwKXNVaOwQKAv5bjgvdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kKtHUvx/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FFE7C4CEC6;
+	Tue,  3 Sep 2024 07:09:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725347347;
+	bh=RV1DL4EWhw1Iqgi6fDlqAVV21a+LAaW/eDxabMVQgtU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=17x5NNP9Idwc8DE5dLqI55XntnLQ1/kNaElYPEhprdklN3M6SNkSO4SGvYShIZ380
-	 6w9NeCLSeTnmK9SKKHdBBPOmTLzRphQocTfpO4sjDUL8StIWVcpMVbsKQrXKCsEutb
-	 kSEbYbYcWsus+Iw4egdLvfQywd0mp9mK6jwBz3MI=
-Date: Tue, 3 Sep 2024 09:08:52 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	peter.chen@kernel.org, herve.codina@bootlin.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-usb@vger.kernel.org, jun.li@nxp.com
-Subject: Re: [PATCH v2 3/6] dt-bindings: phy: mxs-usb-phy: add nxp,sim
- property
-Message-ID: <2024090332-smokiness-virus-5f65@gregkh>
-References: <20240726113207.3393247-1-xu.yang_2@nxp.com>
- <20240726113207.3393247-3-xu.yang_2@nxp.com>
- <20240829090935.ktc7jgd2en4qay2h@hippo>
+	b=kKtHUvx/hP/0KkhraxYmABpceQJQz/L6YAkP06Dt77kaWqGyMn8hkeWLtVSu5V9h/
+	 UXhudOUmMcdz1nwZciLUWZDBVPAFJRYdxtlWuKVK+yzX3j1A4+BDY4gIwoM62CyiLm
+	 kgQcHJlrqpRpU0L95EFH/HwyG0B4GFxIz7ZEU6V37oQQhpamLQrcuHATAipXpNDGb3
+	 hykxUP1b5B4bSVESTwMRypChDlabJFnnx/iR3msXhbnd7MnPXXcMe0aPXzrAXBpzke
+	 7Ww/9ikmb/3gkCcMLmcPK/dlLzxLgraODNmf9M1z46G0VQTcKsWkO3iAxEplMpzHg9
+	 3inKYa0e300Lg==
+Date: Tue, 3 Sep 2024 09:09:03 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, 
+	linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch, f.fainelli@gmail.com, 
+	olteanv@gmail.com, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, 
+	pabeni@redhat.com, nico@fluxnic.net, arend.vanspriel@broadcom.com, kvalo@kernel.org, 
+	robh@kernel.org, saravanak@google.com, andriy.shevchenko@linux.intel.com, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 7/7] of/irq: Make use of irq_get_trigger_type()
+Message-ID: <m3zzseb7rhc3l3ol5ecaikbvvp6nvu2oc56wr7bv7oxgmkchma@al6ywvqogvxc>
+References: <20240902225534.130383-1-vassilisamir@gmail.com>
+ <20240902225534.130383-8-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240829090935.ktc7jgd2en4qay2h@hippo>
+In-Reply-To: <20240902225534.130383-8-vassilisamir@gmail.com>
 
-On Thu, Aug 29, 2024 at 05:09:35PM +0800, Xu Yang wrote:
-> Hi Greg,
+On Tue, Sep 03, 2024 at 12:55:34AM +0200, Vasileios Amoiridis wrote:
+> Convert irqd_get_trigger_type(irq_get_irq_data(irq)) cases to the more
+> simple irq_get_trigger_type(irq).
 > 
-> On Fri, Jul 26, 2024 at 07:32:04PM +0800, Xu Yang wrote:
-> > i.MX7ULP need properly set System Integration Module(SIM) module to make
-> > usb wakeup work well. This will add a "nxp,sim" property.
-> > 
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > 
-> > ---
-> > Changes in v2:
-> >  - add else branch suggested by Rob
-> > ---
-> >  .../devicetree/bindings/phy/fsl,mxs-usbphy.yaml | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> > index f4b1ca2fb562..ce665a2779b7 100644
-> > --- a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
-> > @@ -87,6 +87,12 @@ properties:
-> >      maximum: 119
-> >      default: 100
-> >  
-> > +  nxp,sim:
-> > +    description:
-> > +      The system integration module (SIM) provides system control and chip
-> > +      configuration registers.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -110,6 +116,17 @@ allOf:
-> >        required:
-> >          - fsl,anatop
-> >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          const: fsl,imx7ulp-usbphy
-> > +    then:
-> > +      required:
-> > +        - nxp,sim
-> > +    else:
-> > +      properties:
-> > +        nxp,sim: false
-> > +
-> >  additionalProperties: false
-> >  
-> >  examples:
-> 
-> 
-> Could you please pick up patch #3? Rest of the patches are mainlined.
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> ---
+>  drivers/of/irq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Can you please resend it as an individual patch with the reviewed-by
-added to it?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-thanks,
+Best regards,
+Krzysztof
 
-greg k-h
 
