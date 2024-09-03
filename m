@@ -1,91 +1,80 @@
-Return-Path: <devicetree+bounces-99215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 980349693FD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:44:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C109969407
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52561285AFD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:44:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A54E28619B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BB51D6194;
-	Tue,  3 Sep 2024 06:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3200B1D61AD;
+	Tue,  3 Sep 2024 06:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KwpyAA4U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LphKs8CF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD041D6186;
-	Tue,  3 Sep 2024 06:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F16CD1D54E4;
+	Tue,  3 Sep 2024 06:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725345849; cv=none; b=E/Rb6dlDPByAEhYQMicZiQIGfqVtwP1hDh5DMZ4bvAOY+BOGFbeiGVrokNSZCqwpYlVCy2heTFJ33xVM5BtywxspztGuWzdlBRvjcHHxHO2/gtY4eenUOELHhkVoY7RnKiNGAmbg8SjpoQsilAjzGMByoLFjaV9IcFHGwOw9Uyw=
+	t=1725345869; cv=none; b=GSWBmgAf5GLXtxD7mCN34yBlpTQBtxydcwMbcoE7SjLI5tmv/Yv0/h2Z4qBDjbmi09QPqeyAIlgM8TFxWbDnm7GsXTM3r3EWuWMuC9Z+n3gluCkW3WMi9XPaJOYX3P3bE7Gh4DEqKi6V50pWAxmHYX2CoZ4PQGV2v3JM3A80Q8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725345849; c=relaxed/simple;
-	bh=y+qVchVRj2J0kurjqFF3Kzdqtrymg26dJqbZeQt5kvw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pRHQ/dKxgaWNDnnq2pBsMaqDRxvwsJv42IsLt2T99OovlgzKCTFalview1UAdCfXx8aEXc4bv6dK1JlX8PQ9/ADKTA9j1coy+UmTcAG3zvPAlUVgfaouG8w4eUoeg6cp01g4ZnnYZGUVr4ZE8lBOQ5xQzYXfnFEvVmKO3Fp9UXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KwpyAA4U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0498C4CEC5;
-	Tue,  3 Sep 2024 06:44:05 +0000 (UTC)
+	s=arc-20240116; t=1725345869; c=relaxed/simple;
+	bh=L8/JzkSa3jocuq+XpNsY5gjIzY2JH8JzCv/oAmQ491E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EYHMIWdiwqN1/zEJPPVHoPkTTOZ4+X7aNDM9YdO1WDueKGyvd7FNb/+/F6SLiUMoXjaFV3fbLT58ZBz4DEtGpFWdIPU6Jg47A6tSNVf0R3mtQHjqY1c9Ord9g4qkaPxwg1+UXOC2XOtUiSs0aW9jolwbHGW7CFrJtS1sG1aGI30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LphKs8CF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A88DC4CEC5;
+	Tue,  3 Sep 2024 06:44:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725345848;
-	bh=y+qVchVRj2J0kurjqFF3Kzdqtrymg26dJqbZeQt5kvw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KwpyAA4U7s4FyZ4JYwp7GY20eFDluiIC6+6NseD68NxdpMKhO0aTDVpjNFIrDHgma
-	 q1e+K+1vxDMluzb+7idcch0rjCQxGhc2AdJr1g1Nx/AJcJkM4xAEalQyLv0BFN7TWr
-	 A5Gx7wEV7FqaiXOl9Fp1xZUpwvh1qByTMawRS03WF6SlJFOgvf5NbV3ntJouROYcnc
-	 NnDuASkCmu/gmKBL4MivVSuiyG6XoQgKgjmjYEVQKfCGJjaHJ6WhcKKsvgPO5Gps14
-	 nyC2JI2WyZQw/63VLF9xSr6No9DKX9pJq3W+mlvyExKitS3JhSBqyyi1032vyJpgA+
-	 z6Z51T8o5wSqg==
-Message-ID: <f5a1d0bd-59d6-45cc-9e8e-0e665e7fbe65@kernel.org>
-Date: Tue, 3 Sep 2024 09:44:02 +0300
+	s=k20201202; t=1725345868;
+	bh=L8/JzkSa3jocuq+XpNsY5gjIzY2JH8JzCv/oAmQ491E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LphKs8CF+JBJPUvK9DmEbTAbuXds+pgPKhChhvnzbphKiSDShoy0LfeSdwARNoI+h
+	 6EKZmTdpoK/HSOT7qLIw/iLssjofQ91+cypmdV01sNIY1ToAjnIyDMx9ceM0VLwQAb
+	 +HSDYADspFAz2dQ82f5Y8/ErNkrvcXt8++dRXtnAbru3IekvrbcTfm8eysk3P1XIsx
+	 6hsqVBym1PGEhqabHPPW/b5SrBwTyg8geCHD3ygD5tQPWCzfFowOm51W0q/AEi6uhs
+	 UEauzo91MOLujuoBAjIrUEH9TLxz0bGaPi/dwYpQZK2JoPsBKE65FZCVW62ENoWrqv
+	 JmeZuWqHV8/7A==
+Date: Tue, 3 Sep 2024 08:44:24 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Zhao Qunqin <zhaoqunqin@loongson.cn>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	chenhuacai@kernel.org, linux-edac@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@xen0n.name, bp@alien8.de, tony.luck@intel.com, 
+	james.morse@arm.com, mchehab@kernel.org, rric@kernel.org, loongarch@lists.linux.dev
+Subject: Re: [PATCH v2 1/2] dt-bindings: EDAC for ls3a5000 memory controller
+Message-ID: <rbatux54v2lj34osoee6dyu5nia3ucozjebvob2uxpim3zt4cz@zyzztjdwrv6m>
+References: <20240903015354.9443-1-zhaoqunqin@loongson.cn>
+ <20240903015354.9443-2-zhaoqunqin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mtd: ti, gpmc-nand: support partitions node
-To: Miquel Raynal <miquel.raynal@bootlin.com>, Rob Herring <robh@kernel.org>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Nishanth Menon <nm@ti.com>, srk@ti.com, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org>
- <20240830174302.GA551760-robh@kernel.org> <20240902161545.3ca266de@xps-13>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240902161545.3ca266de@xps-13>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240903015354.9443-2-zhaoqunqin@loongson.cn>
 
-
-
-On 02/09/2024 17:15, Miquel Raynal wrote:
-> Hi,
+On Tue, Sep 03, 2024 at 09:53:53AM +0800, Zhao Qunqin wrote:
+> add device tree bindings for ls3a5000 EDAC driver.
 > 
->>> +  partitions:
->>> +    type: object
->>> +    description:
->>> +      Node containing description of fixed partitions.
->>> +
->>>  patternProperties:
->>>    "@[0-9a-f]+$":
->>>      $ref: /schemas/mtd/partitions/partition.yaml  
->>
->> This and the addition should be replaced with a mtd.yaml reference.
-> 
-> Yes, indeed.
+> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
+> ---
+>  .../edac/loongson,ls3a5000-mc-edac.yaml       | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
 
-Thanks. Will revise and send v2.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-cheers,
--roger
+Best regards,
+Krzysztof
+
 
