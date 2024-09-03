@@ -1,141 +1,132 @@
-Return-Path: <devicetree+bounces-99239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11545969468
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:01:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F7096946B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:01:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1FCE28365F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:01:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EFF51F23CD9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7BD1D6C67;
-	Tue,  3 Sep 2024 06:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1928A1D6DBB;
+	Tue,  3 Sep 2024 06:58:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mkvo63dq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MIP+ydZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB541D678C;
-	Tue,  3 Sep 2024 06:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA101D61B8;
+	Tue,  3 Sep 2024 06:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725346707; cv=none; b=pl6+HVYqEwzMko9465iJYTRQfIDkHQZFmgzTp5h9SC7NnObqOABvnb6x4xNA/waTWnpnFEIt9bNURtMGIu7x/pyf4PTFE/+QSfOdZZnLoreyVfJsPjCtROsD4LMFZ0809jHc8p0qADY5ZEAE/Jif9PDcS0SiJLBF/B9S+JpjijQ=
+	t=1725346719; cv=none; b=KTPzf5O22QWpMQIYA3vkz6NN+ekH1Iqq/d8NPxeaKnd+ng4aQQPzfpYbvhfa0MHAnymWE24tZwKp5ybgRbiByCOGfwiPLxvUxOR7iuEH5rDByqIN+lVMqwfLxME/ftjbKFXsgNhWE6HjDi96k8LoFYb8RPOPDIF/UBGzHLlhA9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725346707; c=relaxed/simple;
-	bh=yv/Z0GEpB1+sbSxl+VXAqeLadyLb/CPg1AGYZ65fzDo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=rrw/S7WwWGBPqPT6uok5B1k0dFsJXgNK8mpxszdLjtmoDWaJHGqLSHxyweY06Vxpi5mkjc0opGzs4oZJZEvzd6iEB/nErhrnXDtnfk1h+VZ8Zo4Cf43F3Xmw9lffD6W7cSN3TrX3BBgxMc3rFMjQ9dyO8RBseg4FHJKZtv/aR24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mkvo63dq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C1B4C4CEC5;
-	Tue,  3 Sep 2024 06:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725346706;
-	bh=yv/Z0GEpB1+sbSxl+VXAqeLadyLb/CPg1AGYZ65fzDo=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=mkvo63dqBMJKVB9b+/8kDPPkMo4Z6t0vzxa1D2OJIC0zpOSg2kGzb+Cs9uXidVwRP
-	 a9XYJcc6ZYLXj6iguycEwHvSeTR1sD7aOu10RhRRaHbMg3/RjD04Phya8hmCM+8lHK
-	 4smx0zhrtdHDvwTYxd2oqmImvZMfmkii1Rd2kaTYfhL5dBRSEGDjjDf5foXMl9u/jH
-	 JIeBsUKXtm1jkkljlKYKiq7Fc7I0PZMNG5AD48zfJNiv0EUF+uuqFpLRYr1k1PxcaG
-	 KprkOr+542F2pUfmPE3SEyL2lF4z+P+xUZNHIBP4ydeHza5DUamFA+XyLwO4iZQZv1
-	 EKrGEM0bESZiw==
-Message-ID: <6648b7d3-3883-4d48-9b71-b8394a84fda5@kernel.org>
-Date: Tue, 3 Sep 2024 08:58:19 +0200
+	s=arc-20240116; t=1725346719; c=relaxed/simple;
+	bh=bIS19lMtHeOrnpD3tHXVlWbdXhU7EUk6GpOiiPc4fkE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kpz9JpTRo8hfw/OLK+nDDsfe6ox/gGUWCM+0FIxfh5ZG/2dELnAMQocdn7rGHPYbDLKdjsBs1NW4g3VULA1NATlLOAMk7n9Ga0V2tcoTFVCjrXCBhnKWBO/pLbuCLXyAp14HC77QTjF+1bbvxSoFvyA+LNv7GUQPCpCbUcCIvms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MIP+ydZr; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4836wNS9111883;
+	Tue, 3 Sep 2024 01:58:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725346703;
+	bh=7QS/PP+dEulS9kB1nTQtMHUpd4L7Wp9gyX90/Aocf1g=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=MIP+ydZrrFcs8UKfYRRA6Nz3BE9U90yHy8kbCQ/q2zDzupQDDQF9pLCLMP5i7mYhj
+	 OcidhjH++y2pHn6NxUjdKVrO3PqXG2ZqO4gCWDhoxl4XUj4h06ncMZ0sKQ3zlgC/7E
+	 W5Ug//OuQzlKJkTHTdrOm1Cz6QTrbIgC+CSMtOYY=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4836wNpQ096024
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 3 Sep 2024 01:58:23 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Sep 2024 01:58:22 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Sep 2024 01:58:23 -0500
+Received: from localhost (dhcp-10-24-72-81.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4836wLtP119241;
+	Tue, 3 Sep 2024 01:58:22 -0500
+Date: Tue, 3 Sep 2024 12:28:21 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Manorit Chawdhry <m-chawdhry@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
+	<b-padhi@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 3/5] dt-bindings: arm: ti: Add bindings for J742S2
+ SoCs and Boards
+Message-ID: <da17b246-13de-4473-8f73-a29c20467082@ti.com>
+References: <20240902-b4-upstream-j742s2-v6-0-6a7aa2736797@ti.com>
+ <20240902-b4-upstream-j742s2-v6-3-6a7aa2736797@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] ASoC: sma1307: Add driver for Iron Device SMA1307
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kiseok Jo <kiseok.jo@irondevice.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- application@irondevice.com
-References: <20240903054435.2659-1-kiseok.jo@irondevice.com>
- <20240903054435.2659-2-kiseok.jo@irondevice.com>
- <3gu6u7euavq272kaf2znmyn5p3rd3vupvqldvfxnq7nh5ul6jx@apwfcxvgkoyj>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <3gu6u7euavq272kaf2znmyn5p3rd3vupvqldvfxnq7nh5ul6jx@apwfcxvgkoyj>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240902-b4-upstream-j742s2-v6-3-6a7aa2736797@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 03/09/2024 08:57, Krzysztof Kozlowski wrote:
-> On Tue, Sep 03, 2024 at 02:44:33PM +0900, Kiseok Jo wrote:
->> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
->> ---
->>  sound/soc/codecs/Kconfig   |    8 +
-
-...
-
+On Mon, Sep 02, 2024 at 05:56:51PM +0530, Manorit Chawdhry wrote:
+> Add devicetree bindings for J742S2 family of devices.
 > 
->> +	if (ret) {
->> +		dev_err(&client->dev, "%s: failed to register component\n",
->> +			__func__);
->> +
->> +		return ret;
->> +	}
->> +
->> +	sma1307->attr_grp = &sma1307_attr_group;
->> +	ret = sysfs_create_group(sma1307->kobj, sma1307->attr_grp);
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> ---
 > 
-> Where is sysfs ABI documented?
+> Notes:
+>     v6: No change
 > 
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index 5df99e361c21..b0be02f9d125 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -144,6 +144,12 @@ properties:
+>                - ti,j722s-evm
+>            - const: ti,j722s
+>  
+> +      - description: K3 J742S2 SoC
 
-Ah, now I see your sysfs ABI documentation, but you ordered patches
-incorrectly. Documentation comes before its usage.
+Is it J742S2 or J742s2? The naming seems to be inconsistent considering
+that it is a lowercase 's' for J784s4 below.
 
-Best regards,
-Krzysztof
-
+> +        items:
+> +          - enum:
+> +              - ti,j742s2-evm
+> +          - const: ti,j742s2
+> +
+>        - description: K3 J784s4 SoC
+>          items:
+>            - enum:
+> 
+> -- 
+> 2.46.0
+> 
 
