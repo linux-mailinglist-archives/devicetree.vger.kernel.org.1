@@ -1,137 +1,205 @@
-Return-Path: <devicetree+bounces-99607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79A096A6C9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 20:45:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D711B96A6CF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 20:47:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73E0928A519
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:45:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5626A1F227BB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC2718E764;
-	Tue,  3 Sep 2024 18:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2504118FDC3;
+	Tue,  3 Sep 2024 18:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="U/yA3uiw";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="BZWB11Es"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TXiyYpVx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-30.smtp-out.eu-west-1.amazonses.com (a7-30.smtp-out.eu-west-1.amazonses.com [54.240.7.30])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66E2188902;
-	Tue,  3 Sep 2024 18:45:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.30
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83A518E030;
+	Tue,  3 Sep 2024 18:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725389153; cv=none; b=ryDGZdhRmgfcOgGSFTfVPuCrRBrbjFCH8WyLPQKwkDQe54W4di5hpQc2HfeRxk5UoTWyW/y+2wq4c0RLcCioGlEimqHKZa9/0QzswWC8kEHR1Gem+RX6dQ0sf8Grk2hsArKZo+71LD6bKxcVt1jzbrzS2btk04cCEgI//7dxs5c=
+	t=1725389226; cv=none; b=bK09cLDVI+RGIFB1UyV5slm5s9POsKdUR0cpUHiUtjShOdnkAbm9mGYevEPnpidJ4MgMlMZ6tT8ffKlH9NzOGshKeFboxmeXuowPydDxa7QY9xRP26EENohZNQkhA4jOiprDEw3USQRnzcjwycbGdmbSqFdhr3yad12dgd1h1G0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725389153; c=relaxed/simple;
-	bh=FUY9hYn5geADyH+kdrj52y9UIdFcNquhedRUD29Fsik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iJ1TxwmlprkG67iFTJOtwUi6iTX/J55TOu6CNIILI9sbvfOFCc3JilEWnLpq4L/YH4+fJ+NLAC/IRWN5pxv4FM+Zk7/QlhjRRJBmZnwZ2tMB6iYENySERjlXqBjx+1xdOtjBo1yVAKTOvonWvgd+7yd7zLBJL0WwJrt61pF9c6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=U/yA3uiw; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=BZWB11Es; arc=none smtp.client-ip=54.240.7.30
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725389150;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To;
-	bh=FUY9hYn5geADyH+kdrj52y9UIdFcNquhedRUD29Fsik=;
-	b=U/yA3uiwzFGhejaMOTgEn71VUbXXA4FtBZKW+nooVzpoxugqe1P19DU55BH7S1pI
-	2xC3f1sWZQBpmUiFkAOAdfRg9hD3BOze93fxdLv9Tr9C/gxW4zJTDoJ68wj0QJlFG0S
-	A9/GnWCR3JXmCIF74c6CIXzscPSXtZYyUEIIdOEAnuCa172F8ymtsPs8PFwxImrKf98
-	pwQjUzd7oWkwJqY9X3P0u2tgBW2ral/qnITw38Qwm0oQheOI/+YnKWy7qbkFSeKSjGD
-	zDksJLtJYrlVCuQClX3U6exICA2fyJYhadYW7YSFiqtdDSnaq5BKOVWkNcSPg6iOPMm
-	0swq0dJqng==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725389150;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Feedback-ID;
-	bh=FUY9hYn5geADyH+kdrj52y9UIdFcNquhedRUD29Fsik=;
-	b=BZWB11Es4si9zzmuv6tVg/epWhn8fEnKy3A0X/YeeZ0hmSMFSO1jNpT2bOCcRkwy
-	2ne/IOOnfd5KnghclRpq7Kk2+OUzCVhVKUTGQbGSgPWqsEfzFR0uLX9VbUrkdKwDHj2
-	024+N72czJ3qCAy2PFJjB/BQwKKJCu7cV2uU3Nwc=
-Date: Tue, 3 Sep 2024 18:45:50 +0000
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Detlev Casanova <detlev.casanova@collabora.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org, 
-	kernel@collabora.com
-Subject: Re: [PATCH v4 3/9] dt-bindings: i2c: i2c-rk3x: Add rk3576 compatible
-Message-ID: <01020191b9351729-306930b8-deac-4ce7-a447-dfee781cf267-000000@eu-west-1.amazonses.com>
-References: <20240903152308.13565-1-detlev.casanova@collabora.com>
- <20240903152308.13565-4-detlev.casanova@collabora.com>
- <bnpwnuhikwkqyf3jos67qwywhfge3vm6tfmlfitypd5k62jzdn@fri4swkl2zbq>
- <12506188.O9o76ZdvQC@bootstrap>
- <ycbhqmkwz2hirnvp6j47kz3cxnli3db3i5ah76gngrezs5ww2r@57x2gxnr5hyk>
+	s=arc-20240116; t=1725389226; c=relaxed/simple;
+	bh=nd6Wtvx8pQAMupTyQ6h0Xwk0uJUJcdsSVJ5cX/m07m4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UsD/LvMVgM0di7Y9qzU7ZB7pNMCW1dWXa9/bL08dL/ZbJnuwtKNzYL/ULR7cKR2oUVOcuuTNsZ4uA4EiTFuDHxzd8gu8bfmrTMQHL6TyiUQOaAW9QzANn+ySWdzGrYoc/7ecKm2ZinrchrFmocGrTvXOHTFwf4FI0FDTTJtjR78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TXiyYpVx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57BABC4CECC;
+	Tue,  3 Sep 2024 18:47:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725389225;
+	bh=nd6Wtvx8pQAMupTyQ6h0Xwk0uJUJcdsSVJ5cX/m07m4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=TXiyYpVxtIwVZw6k1PFiIFhAbnoHBA0CXi7tGuk5BEvj7s8MeJq8orlX4JMPOAoDe
+	 FmCmFzUFDcXAhR+Px8WOsWA5nV7DNGfkFo4Gjm9qgIuGVoGS27RIWZOpppOZoJRtzz
+	 RuE9zvO2RoSXWQleP6Nw0Yql7B1KNkBrZtCJDuiYEPto/6W7cNzJ3Zy3AYdIuq+E5v
+	 eA1h9TR+Sxxl3O8XGo4orHQ9wJpyQlCGC4oWiZLBZG60/3+SiEjTBtASP1ivFdW6Y4
+	 q6xtOAXAmiJQYR3cjIreNu/RO0h5SiBEzbU7tpcLe6BTuvZ0Mz91sCvWe4Z7cmCwli
+	 YXWJg5pGAkyXw==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5334c4cc17fso8044388e87.2;
+        Tue, 03 Sep 2024 11:47:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUC5SrydgVHT/ziGCdYg6WIDCVNVvYSHWXYbD6ME+Iy5nDaBRoNESjcgMHCIAU7+DIrYf0eMSXr+RpD@vger.kernel.org, AJvYcCUTRFMN39NpKl8mXZG0qarIHm2yvoM9TT/ybtzObxXugZj7F8PCDaVZRBQ1mJZCGbp/OLZ3g/Bd@vger.kernel.org, AJvYcCVDMpMVUyvAJGxlVi2KwnRSMFQTGPX9Y4EXS7bG39BSdeUmYUcF++M7vN4YlbFjcm4bZBfNfIRamw2s@vger.kernel.org, AJvYcCVX9JosvuU9GstaPjWMYsMEm+YoDUjsZl84zkvTh7tJ8qEzBC3ZOMAg+VEkSHSvhaUxmEVlLqo9Z+iPNMM6@vger.kernel.org, AJvYcCWl9R46DHctWaHJN9N65qRWwDY9/NmdjuiwC2EB9ajjpMS/8LXizjOwU70/kbdKvSLw1CNsjlfGzvTgvg==@vger.kernel.org, AJvYcCWvvmbJZ+GfDpEqqNa+ntfdJT9+VTXP0kQWU8TLvivgDV7zvI8Cxyza8zNynB8+8WyVFMdWxH10miGL@vger.kernel.org, AJvYcCXhqhKF8uKa6lFpgWpGfED2fUHfMfm8p8fW3na8LEh2YHCeo7WHnbix54ovbzJBRamxhjr30pj5qi1zoA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrPFZi7uRk6DYed6Qie+YHe9ds2N6iF+AuKgp6MvsT8qt72yrG
+	rXAogyeVlcRhIXI3Gldw5fftVExJEPOrQEkCifsAK/ma24i22Frh5MG7daqbzGS8yakkrroKKCB
+	66Tup0PqFNpO+Ue0nez5wT5ttSw==
+X-Google-Smtp-Source: AGHT+IFPPQF+VZ9KwhNwRdiTpvXZs2B9iqZYAcu8DtAQ5kIA/StJNR3uCDFdRTvA7hWnuCKoLYPHIEkeiaJO+kFnqP8=
+X-Received: by 2002:a05:6512:1244:b0:530:c212:4a5a with SMTP id
+ 2adb3069b0e04-53546b25966mr12549174e87.22.1725389223674; Tue, 03 Sep 2024
+ 11:47:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zv4mythi77pto3d4"
-Content-Disposition: inline
-In-Reply-To: <ycbhqmkwz2hirnvp6j47kz3cxnli3db3i5ah76gngrezs5ww2r@57x2gxnr5hyk>
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.03-54.240.7.30
-
-
---zv4mythi77pto3d4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <cover.1724159867.git.andrea.porta@suse.com> <5ca13a5b01c6c737f07416be53eb05b32811da21.1724159867.git.andrea.porta@suse.com>
+ <20240821001618.GA2309328-robh@kernel.org> <ZsWi86I1KG91fteb@apocalypse>
+ <CAL_JsqKN0ZNMtq+_dhurwLR+FL2MBOmWujp7uy+5HzXxUb_qDQ@mail.gmail.com>
+ <ZtBJ0jIq-QrTVs1m@apocalypse> <CAL_Jsq+_-m3cjTRsFZ0RwVpot3Pdcr1GWt-qiiFC8kQvsmV7VQ@mail.gmail.com>
+ <ZtChPt4cD8PzfEkF@apocalypse> <CAL_JsqJNcZx-HH-TJhsNai2fqwPJ+dtcWTdPagRjgqM31wsJkA@mail.gmail.com>
+ <Ztc2DadAnxLIYFj-@apocalypse>
+In-Reply-To: <Ztc2DadAnxLIYFj-@apocalypse>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 3 Sep 2024 13:46:51 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+mpVEDthuViQZ6T7tDQ_krgxYSQ0Qg1pBMNW8Kpr+Qcw@mail.gmail.com>
+Message-ID: <CAL_Jsq+mpVEDthuViQZ6T7tDQ_krgxYSQ0Qg1pBMNW8Kpr+Qcw@mail.gmail.com>
+Subject: Re: [PATCH 04/11] of: address: Preserve the flags portion on 1:1
+ dma-ranges mapping
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-arch@vger.kernel.org, Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-[remove a bunch of people from Cc]
+On Tue, Sep 3, 2024 at 11:15=E2=80=AFAM Andrea della Porta
+<andrea.porta@suse.com> wrote:
+>
+> Hi Rob,
+>
+> On 14:37 Fri 30 Aug     , Rob Herring wrote:
+> > On Thu, Aug 29, 2024 at 11:26=E2=80=AFAM Andrea della Porta
+> > <andrea.porta@suse.com> wrote:
+> > >
+> > > Hi Rob,
+> > >
+>
+> ...
+>
+> >
+> > I think simple-bus where you have it is fine. It is really 1 level up
+> > that needs to be specified. Basically something that's referenced from
+> > the specific PCI device's schema (e.g. the RP1 schema (which you are
+> > missing)).
+> >
+> > That schema needs to roughly look like this:
+> >
+> > properties:
+> >   "#address-cells":
+> >     const: 3
+> >   "#size-cells":
+> >     const: 2
+> >   ranges:
+> >     minItems: 1
+> >     maxItems: 6
+> >     items:
+> >       additionalItems: true
+> >       items:
+> >         - maximum: 5  # The BAR number
+> >         - const: 0
+> >         - const: 0
+> >         - # TODO: valid PCI memory flags
+> >
+> > patternProperties:
+> >   "^bar-bus@[0-5]$":
+> >     type: object
+> >     additionalProperties: true
+> >     properties:
+> >       compatible:
+> >         const: simple-bus
+> >       ranges: true
+> >
+>
+> Hmmm.. not sure how this is going to work. The PCI device (RP1) will
+> havei, at runtime, a compatible like this:
+>
+> compatible =3D "pci1de4,1\0pciclass,0200000\0pciclass,0200";
+>
+> that is basically generated automatically by the OF framework. So, in the
+> schema you proposed above, I can put something like:
+>
+> properties:
+>   compatible:
+>     contains:
+>       pattern: '^pci1de4,1'
 
-Hi,
+No, it should be like this:
 
-On Tue, Sep 03, 2024 at 06:47:17PM GMT, Andi Shyti wrote:
-> On Tue, Sep 03, 2024 at 11:59:34AM GMT, Detlev Casanova wrote:
-> > On Tuesday, 3 September 2024 11:46:00 EDT Andi Shyti wrote:
-> > > On Tue, Sep 03, 2024 at 11:22:33AM GMT, Detlev Casanova wrote:
-> > > > Just like RK356x and RK3588, RK3576 is compatible to the existing
-> > > > rk3399 binding.
-> > > >=20
-> > > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > Acked-by: Heiko Stuebner <heiko@sntech.de>
-> > >=20
-> > > I will apply this after 1 and 2 have been merged.
-> >=20
-> > Sure, although it is not really dependent on 1 and 2.
->=20
-> yes, but I want to be sure that everything is coming in.
+compatible:
+  items:
+    - const: pci1de4,1
+    - const: pciclass,0200000
+    - const: pciclass,0200
 
-Why? Patch 1 is not even for RK3576 itself, but for a specific
-board. I would say the ordering is pretty much arbitrary for
-patches 1-7, so I2C could have been the first patch.
+or
 
-(no pressure, I'm just trying to understand the rationale)
+compatible:
+  addtionalItems: true
+  maxItems: 3
+  items:
+    - const: pci1de4,1
 
-Greetings,
 
--- Sebastian
+Alternatively, we could instead only generate 'pciclass' compatibles
+for bridge nodes. The reason being that being an ethernet controller
+doesn't really tell us anything. There's no standard interface
+associated with that class.
 
---zv4mythi77pto3d4
-Content-Type: application/pgp-signature; name="signature.asc"
+> or maybe I could omit the compatible entirely, like in:
 
------BEGIN PGP SIGNATURE-----
+No.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbXWVkACgkQ2O7X88g7
-+pom8A//QngGZOrAOUAOYiA0FZniXpg8o7yPHD/P8hQ5TZ/Ul2p9fO4AI4a3/qZZ
-oVZ4zwzw6cEFu25LgelCfbhfdxk5UmKVW1iZDOXBnTej5SKSxWKghFAl4IUxxdrw
-2heZBl5ay8rN/o8VYVfQT6uxJ5mnE/aM57/2In/3FAg+8ENPgVnCUY1t5pPA3bkf
-aRO6dcVivniOgi1MU1xsTkMvH6ronX1MQquePQUdXusaxL1OLPL5Ic6rzczalqdX
-OGyRjuJXLoEEdz59W7fissu3yDzGL0etSNsrM8fFQTdLTh3dQPnLeOwlhtKrvKfF
-sPYUlGflQYRwwt3FFIDU7/Mt82WIA72f9EOhIMLBO84FvAnxYcFbTlvPGdsiW4z+
-907lrBZovjLVUEppl2jTYN8wdL7DGguJ7l8nHRnXmQPkD3JoNuevmSTNnsbDPL0s
-I6fgxjImNPtcA2HSHoZw9Vj+M8T7vQsOIFkgEAV4cFwFrefAXsVM7h0fGTT3gp+O
-z/KkoLisffVnY9p1VsEUyRluA30kV+cL7P7yIdimZEzqn71CzJwP4nyXQ26iIZtk
-WYd2/43OewrskJraciciiKok5+U5WBYZcUWellWDYhkwaCV0+WpZGzIV0zXEIFtt
-+fa1D/WGGCx7EBovacX/EgocLiUkKbSqzQ1DQuje5OZRtGiZCQ8=
-=vDja
------END PGP SIGNATURE-----
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pc=
+i/pci-iommu.yaml
 
---zv4mythi77pto3d4--
+That's not a device node, but just part of pci-host-bridge.yaml.
+
+> that seems to refer to generic compatible values.
+> In both cases though, I don't see how these binding could work with
+> make dt_binding_check, since there's no compatible known at compile
+> time (for the first approach), or no compatible at all (the second
+> approach).
+> Is it intended only as a loose documentation?
+
+No, schemas define exactly what a binding can and can't contain. But
+they are divided into device schemas and common schemas. The latter
+are incomplete and are included by the former. Generally, "compatible"
+goes in device schemas.
+
+> Or are you proposing that for a future new bus (hence with a new, specifi=
+c,
+> compatible) that could be described by the schema above?
+
+The above schema would be the common schema included by a RP1 schema,
+LAN966x schema, or any other device doing the same thing.
+Rob
 
