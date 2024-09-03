@@ -1,208 +1,130 @@
-Return-Path: <devicetree+bounces-99439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052BC969D12
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB57969D34
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:15:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A38B1C23220
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:10:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72B261C23BC7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9543A1C986D;
-	Tue,  3 Sep 2024 12:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503E61D0965;
+	Tue,  3 Sep 2024 12:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SQQFb0/3"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XFVVCikL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B08719F42F
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 12:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702841D0970;
+	Tue,  3 Sep 2024 12:14:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725365427; cv=none; b=rAJovhKxIukYOo+iz1B6rqY6NwBUVg4iNsvQB+vWzUjPZlZvDwm3ovDT/aYxSXBiCLrGu32j82XmdVEffybRidXwo2X2qchFxRbl/0b+ud+QdnQAoTO7NH3p+cmdg501COxpRfNp1rUA4Wl0dqTCrvpS9vKDz/XDimo/BeVkzwQ=
+	t=1725365691; cv=none; b=Uyufs41Ty5c9DOVCD3YOl0Xeov+UGF4rK7ayQgfn/8b7Rujxx8JyQnQofvjgTGwBzkT/fqZIAwHaN0tGmhAOgG8iaMcAAxCTzKTyjVQto4Q/j8qr/EeqhhMyNbedBb9PZxOE+lQ5IcKnCatu7FATJiu+Vajsv28ty5a48ObUgyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725365427; c=relaxed/simple;
-	bh=znd28+CqTJ4ghTxFrhF5A7Pb6/pnoUS7WGw5WGe/JFo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=prPJmwSPMetjEd+HoR4/4neLTWDul/yVbSKZgHY6aRMCOiNEKtq/A6ZOSarfL3c+XGcsAz3QBt6u7oAJYyck6BC2xaiN33D02PwJCN+AfsYfLD4RTacNIMY35kQvPWIwMDMqFaJOQiqgquiQGqZaV2R3ficWN6+9Q8gMfnK6pgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SQQFb0/3; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e17c1881a52so4399803276.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 05:10:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725365424; x=1725970224; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4An20D90YPhjOzkwF+Hg8QYD3SJoIXYWy8cZWiHm4HE=;
-        b=SQQFb0/3adlLAu/pdNV9dt0/K4hdwnFZS1vR5KUwk/lQY1jXbaPD5o7B+DqPVpWI0f
-         CtFcltEL1sm1k/gaGds7efULROhFaLIM2tAoGBjQHbxcrqDJDveMsS4z1UbLUy/Js0aD
-         j3B7mqCY6w+HZKjlMmjqw5yXDop3IJIvdx5BCQkI5nez0BMN2Qc5msFI74KTzAdv0mMh
-         VxursKcGeYWsgXgmRy/LOfOG4xyBxOA9swXLcUCxJePCGRgwqH3zG5q1Chnxk8cxgpLG
-         dEpfVlS/jygBW9v4o6HvQ429OSyO/iOVJbS2HVkfENZIHqA6+t+NJTGGePVIJxJrmV1Y
-         a//A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725365424; x=1725970224;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4An20D90YPhjOzkwF+Hg8QYD3SJoIXYWy8cZWiHm4HE=;
-        b=qUi32YFwurHQqD2NA9OpsdmHcCcZWNfIxIonRkioHxR5GAXKc8oFJfSz51gjOI4Eb/
-         shwTUfpVMjp88FZcfrnmK+FgRcyTPGdvbArVIt31HL1zqOadtIhxU+vFeIXoIr1RVTOS
-         Z6KsoI3aygFxHR2iRqIE3EbMcijz6oI5Db2tfuqnB1evjm8WYAhEAoveXbAFGYkmU9f8
-         xIF/DrVqFbAGiyQrSUmukheWYTJG9vohlRXOpVIxEsuk8yIA2ED5nIkSDp7qfW5+nY34
-         OYwD+Vn+6yWkgaecYl0f9a/8GErpWK3k5emmlOFwdMj7WiWN9mbwMDDoinIcVaVOzqmT
-         FxVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUf3E07OM9cIFqnEN9kH+nHWtID7jf988y7aV43GIOs8J7HZrYgXlpE9x8AU04WlQpRx9QAenn+GWjU@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywp15K0j7Y/tyHfaHlZF1YvGYDcS4TmC5EXKUGm5nfr1SCvPWHt
-	z7NvSD9WOz2AftW2T/EVEkuVd+b9Sw9wnNziwWFSLdHqWRrixDhVY5RkBQkc77KyKcJ1ABZ0rVL
-	se6EFVur3/unmspht1aR1eq96LUPszbsua6tCtA==
-X-Google-Smtp-Source: AGHT+IFX1MKd7/CniZfZMCZVstNgR+E8MEOhVGOhXHV1ehVIWPMeYpmWq3hGrzVCf5n6CzgXPAzIGrO6KiCqLNwVX0w=
-X-Received: by 2002:a05:6902:1002:b0:e03:c692:c8b5 with SMTP id
- 3f1490d57ef6-e1a7a1d20camr11923156276.19.1725365424176; Tue, 03 Sep 2024
- 05:10:24 -0700 (PDT)
+	s=arc-20240116; t=1725365691; c=relaxed/simple;
+	bh=L8RRnWihN4ho/kOUuMPXZ7VvrJTkc6VO/Kbd8ZkUROY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SiyWbiiVfwiAJ39F7thd6aTycJ1EwgyL40MnToCEZRLcU7ImOW2ytSzpnpvUXioB9gXU4jJ8n+uhHUBdWOrBMbOc+wtEr5OxNXY9K4V8sWjn+sRbERqBH1ARkSGV/t8CXOUc/bq3xGicLLESSpgsLu2LrkRrh/ueYUwjnjzqNeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XFVVCikL; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 483BjWrH029157;
+	Tue, 3 Sep 2024 14:14:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=JXSvegFYtTN90pjhfv7KPP
+	8miO/vxkxO0WY7Swryz28=; b=XFVVCikLW110y6jLA4puq0FuvCVmzi4OAQTxCX
+	PJbVjdBVKJyKpWINGpqpTr2gTE2m57i0f5mxptUbpDdDQtdjRb7okaHwKQaYXw4b
+	Dmre05zUPOdn025pxwt6CQwZgNOAolOmPojP6/HXWzPvxr3uVcajdc/NMqYAiPKB
+	HnQXWex6XRn8WS/fIMyhTu+d26i7hAeecC7uKCj2Y1NfZKXuxHcU9TjeaOicap7P
+	qV/wb3R3FdgkyFbQpnJOyYfWHj+PoH7VCVCfn+9ZQLL2Tdi6Cosz3k2vfRZUXSYp
+	g0gxxbf4H9gHT4BCd0xKO+JCUday2ju3KuGd93Cd/oiYBk0A==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41brkg4pm4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Sep 2024 14:14:15 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9AFDC4004F;
+	Tue,  3 Sep 2024 14:14:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A85C224E1F8;
+	Tue,  3 Sep 2024 14:13:20 +0200 (CEST)
+Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 3 Sep
+ 2024 14:13:20 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v5 0/5] Add STM32MP25 USB3/PCIE COMBOPHY driver 
+Date: Tue, 3 Sep 2024 14:12:58 +0200
+Message-ID: <20240903121303.2953150-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240828151028.41255-1-detlev.casanova@collabora.com> <01020191998a55a9-697c3a2c-237e-49bb-b3dd-45762198d74f-000000@eu-west-1.amazonses.com>
-In-Reply-To: <01020191998a55a9-697c3a2c-237e-49bb-b3dd-45762198d74f-000000@eu-west-1.amazonses.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 3 Sep 2024 14:09:47 +0200
-Message-ID: <CAPDyKFoJoqwNTKvpK93QtK1wA9vzVUTzCrP32s_HEZcrujN2Mg@mail.gmail.com>
-Subject: Re: [PATCH v3 06/11] dt-bindings: mmc: Add support for rk3576 eMMC
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Andi Shyti <andi.shyti@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, Chukun Pan <amadeus@jmu.edu.cn>, 
-	Muhammed Efe Cetin <efectn@protonmail.com>, Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>, 
-	Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>, Jimmy Hon <honyuenkwun@gmail.com>, 
-	Elon Zhang <zhangzj@rock-chips.com>, Finley Xiao <finley.xiao@rock-chips.com>, 
-	Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>, 
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>, Jisheng Zhang <jszhang@kernel.org>, 
-	Jamie Iles <jamie@jamieiles.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	kernel@collabora.com, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-02_06,2024-09-03_01,2024-09-02_01
 
-On Wed, 28 Aug 2024 at 17:11, Detlev Casanova
-<detlev.casanova@collabora.com> wrote:
->
-> The device is compatible with rk3588, so add an entry for the 2
-> compatibles together.
->
-> The rk3576 device has a power-domain that needs to be on for the eMMC to
-> be used. Add it as a requirement.
->
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes in v5:
+   - Drop syscfg phandle and change driver to use lookup_by_compatible
+   - Use clk_bulk API and drop stm32_combophy_enable/disable_clocks
+   - Reorder required: list.
+   - Fix access-controllers maxItems
+   
+Changes in v4:
+   - "#phy-cells": Drop type item description since it is specified
+     by user node phandle.
+   - Rename stm32-combophy.yaml to match compatible
+   - Drop wakeup-source from bindings (should be generic)
+   - Alphabetically reorder required: list.
+   - Drop "Reviewed-by" since those previous changes
 
-This one doesn't apply as I have other changes queued up.
+Changes in v3:
+   - Reorder MAINTAINERS patch
 
-Can you please re-base and post a new version based upon
-git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc.git next.
+Changes in v2:
+   - Reorder entries
+   - Rename clock_names and reset_names bindings
+   - Rename and clarify rx-equalizer binding 
 
-Kind regards
-Uffe
+Christian Bruel (5):
+  dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+  phy: stm32: Add support for STM32MP25 COMBOPHY.
+  MAINTAINERS: add entry for ST STM32MP25 COMBOPHY driver
+  arm64: dts: st: Add combophy node on stm32mp251
+  arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
 
-> ---
->  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 38 +++++++++++++------
->  1 file changed, 26 insertions(+), 12 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> index 4d3031d9965f..aff8106ec361 100644
-> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> @@ -10,18 +10,19 @@ maintainers:
->    - Ulf Hansson <ulf.hansson@linaro.org>
->    - Jisheng Zhang <Jisheng.Zhang@synaptics.com>
->
-> -allOf:
-> -  - $ref: mmc-controller.yaml#
-> -
->  properties:
->    compatible:
-> -    enum:
-> -      - rockchip,rk3568-dwcmshc
-> -      - rockchip,rk3588-dwcmshc
-> -      - snps,dwcmshc-sdhci
-> -      - sophgo,cv1800b-dwcmshc
-> -      - sophgo,sg2002-dwcmshc
-> -      - thead,th1520-dwcmshc
-> +    oneOf:
-> +      - items:
-> +          - const: rockchip,rk3576-dwcmshc
-> +          - const: rockchip,rk3588-dwcmshc
-> +      - enum:
-> +          - rockchip,rk3568-dwcmshc
-> +          - rockchip,rk3588-dwcmshc
-> +          - snps,dwcmshc-sdhci
-> +          - sophgo,cv1800b-dwcmshc
-> +          - sophgo,sg2002-dwcmshc
-> +          - thead,th1520-dwcmshc
->
->    reg:
->      maxItems: 1
-> @@ -38,7 +39,6 @@ properties:
->        - description: block clock for rockchip specified
->        - description: timer clock for rockchip specified
->
-> -
->    clock-names:
->      minItems: 1
->      items:
-> @@ -48,6 +48,9 @@ properties:
->        - const: block
->        - const: timer
->
-> +  power-domains:
-> +    maxItems: 1
-> +
->    resets:
->      maxItems: 5
->
-> @@ -63,7 +66,6 @@ properties:
->      description: Specify the number of delay for tx sampling.
->      $ref: /schemas/types.yaml#/definitions/uint8
->
-> -
->  required:
->    - compatible
->    - reg
-> @@ -71,6 +73,18 @@ required:
->    - clocks
->    - clock-names
->
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3576-dwcmshc
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          minItems: 1
-> +
->  unevaluatedProperties: false
->
->  examples:
-> --
-> 2.46.0
->
+ .../bindings/phy/st,stm32mp25-combophy.yaml   | 119 ++++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  16 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 +
+ drivers/phy/st/Kconfig                        |  11 +
+ drivers/phy/st/Makefile                       |   1 +
+ drivers/phy/st/phy-stm32-combophy.c           | 590 ++++++++++++++++++
+ 7 files changed, 757 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
+ create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+
+-- 
+2.34.1
+
 
