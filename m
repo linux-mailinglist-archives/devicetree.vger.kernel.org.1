@@ -1,239 +1,187 @@
-Return-Path: <devicetree+bounces-99378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A902396993D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:38:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C5A969910
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:33:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DB931F24B1A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:38:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C52471F26609
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4001C985F;
-	Tue,  3 Sep 2024 09:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7B81B982C;
+	Tue,  3 Sep 2024 09:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="re7qty/c"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="muQCbDsM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2070.outbound.protection.outlook.com [40.107.21.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B361B984F
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 09:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725356205; cv=none; b=qTwmkCYkqBBfk1yPMS781B29y6qxJxKstMltMI9zv/bG7ncfSOgyEyODRN3mKzcGHH93NIBZgo2o2LI9e54A/umUeovVLAPV2hzPmSmuwVslkxd4MFP+ACA9CU6KhMwZIucgGEvrSobSBuuETeif7QRySJgjQbLiubIA8aPFLfA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725356205; c=relaxed/simple;
-	bh=UDY8mN7NLkOQeS1dWllQkhgyygy99CoGI6WWaVJHSv0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dfWBSGBCKfcB4Ji4YRTFYdUVoZgPqhyAA0z43GBAEXEByWDLoVuNtB2Yu69rRZGjNbCqY9yghpAJdtRaBHBiyUTuilY0zvXiB1ZetcUNsbeYIV0xzAVQQCq4UJeQrSlli8oE44xzzujWiJwGANK55taPzCdHCBr1NclFEJLVwbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=re7qty/c; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42c7b5b2d01so29950885e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 02:36:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725356202; x=1725961002; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wpoQwlpkGQNE662npRSFJddFIL23SgdklNOB5QSDny8=;
-        b=re7qty/csErTHOrZPVzqlyVw0tBtVKZlLwhdNbzd7pa33GM5pn6U5UXQPW25d/YGwI
-         kzuGVMR/4m/ShCed8zEL88z3SdcI1Vg47Q+vGuyWE4ik3w31lthtln/kmLHqcwLM3gQN
-         aPCaWgDKb9BmX6U40SD9oEJIz8js1d4AYEUrHvInPe34dP0LzP/vtnrZtWAtgLMCpH8f
-         Nt0B+/JHZV7CTlxR0E8zSriwJoexv4PToYVopXGeA9esQg7Ipgd3e35kvLOV1elD+Nzt
-         GMFp7C4et4SHAnhmLFANh/ZTJ9hjGhHVc3aqWbHO1F04mnlj3cCNeo/FbELuzPyf99OU
-         iY1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725356202; x=1725961002;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wpoQwlpkGQNE662npRSFJddFIL23SgdklNOB5QSDny8=;
-        b=AqVTKcxgV7dzW9eSy5WqPCTDuFSAdOQZHxZEpcR1U7BudRrKEV92imWC5SxRjbZV5D
-         WZh92DWEE9p01fv5s8FTs8CjZ4U2d6744wRFqsheWsOrDlfDEYatzqEiZJp8q0D5Lnr8
-         9aJCGZqWQZyCKjG+yL6DNTuH/XG253YDRqbhXNj0Rml2P0lUGgdmocZcDkxPABdv15fD
-         IJvWuoXpD3+3gjH7XRQ9becl1S90OmL4jf0ibJwMEEy1r0TKXKGEgSTVE8hioad0BTSg
-         OmrJPIWF/kcKJbJ3IN28VRoqY0R0e5hld1tr3W8uOtBBkRvmFjMh1rdCODoM6cDicXdc
-         9gUw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmm+MnNTLu1OQIhH6/T1CSI+NUWBIno3JIIQrcznyCYXw/hYCg+a4Z07oiNq2lwcbR9Gd7Hud3lCKg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfxTdN30w6S7FHuWPSCGUAGAeQCfsdDqsnGhAwWpfbHpJkBQXj
-	h67K/4fpovNOWjMxGP35i8JQP9ndWSQIgA5loHDRr+fPj/frfjXivXxoeaVQKt8=
-X-Google-Smtp-Source: AGHT+IG20/vMr5jO3sKFFFJav6yaQrsxk/jjUlMdrKQn/ggqADpoZqnLaMRYzeuxybOr8SZG4u5HAw==
-X-Received: by 2002:a05:600c:1548:b0:426:59d3:8cae with SMTP id 5b1f17b1804b1-42bb01b9302mr149065675e9.13.1725356201956;
-        Tue, 03 Sep 2024 02:36:41 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:e61d:37d0:a59f:d06f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-376914bfca1sm790793f8f.18.2024.09.03.02.36.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2024 02:36:41 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76681AD276;
+	Tue,  3 Sep 2024 09:30:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725355811; cv=fail; b=HZtG3uTsQ5a8WBxeKWmcuQvszgOqnXaqJDu2et2/VH6MHXyohwr3+rY6Joz9sByUMxyYqf/JkzqcW1IPpLVV0ozi5oWwfwiJV7w6Zm6piqalkZ6hsDsbV4EuQisONNzg4UHWociqBMWvAs+Vr+IsKGSyhgk1kSjViAhXf4lUT7o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725355811; c=relaxed/simple;
+	bh=ySPsgBcx21f9QEB3cbhg8DG/keAtJWSzqxdelT3HUh0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=QRyRofxHSOBAsP3aD0KjD7GDkN08Ezv5YA8PnFCzYM3SNY9fMBP9XXtUDHzO1QJ6Wqij+F96IS6zKxQsXOe/7n0I9jrG8ct8M3IZ5M5pNCunRDtp3wM/QR+r9NqvIyL1WtuwS11wmlQmid6CPyOc7Mkxy6w6arRFWEB8BXP4rzA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=muQCbDsM; arc=fail smtp.client-ip=40.107.21.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vEUcVs6qJrmX0TvoUr7iVMwI+Z93rr68ijgE+mIknUb4hHm2PpufuXCLCU8jDdLVEW6nvuOCitocYeRN9AaUS0BKN8kLAhSxu/XESEBMXZjRmwNY+izPFkccjUjQLTY8roukP3cH6mCHHECoZRXvBRrYe6TdIUTq7BwoLVHeuyuG++aNgYDhQKYyvLOXNFYM+CNNSlpQrzdmLqZsJ60g8hxxxx7d8hUG0vogNr/jvz0Y4FWJ7mrPO5vJz6bP58New5sDFLjZKdi8K/sE5kE4uHnShLpH8OhaywcGLTXJzSArLXF9b/y+48+sPVGZ6eCqOGvp+PaI+R2OnZGZOI3n5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MLcb4RF9LAhuQIBlrefIgHm94V2jbcFjbodcFQfE3EA=;
+ b=Q/enyPRPRJbQTA8PUkLbAkhuUIPweYd7yFJhqcjvGJ43LuQXbtFitxnZal1lxm/KkW2PldqyLN5lZIKoNlsHbpM4a9+kbv+hzaZ7JDrR5vAQodVPCJ0zvLBgyeMYCR0IOnSuczsvZfLZLppXXQqwcMoqbmiDHpHIxHTeVCMFsAtZ8SLk2TDC2A3NkGcYVqEXw9GbdzdjaOaCK51g2PaAnUexCQZaYowRrPKDhlUIIoaiQwGGr0TRdU++yYj6eNbr9WxiPcTDA7S6n8Y+T4GXN0ILnJ2hDU5SVV91/5klHwAceoLC6N00mKFb0sDaqtxb9GpCLQSMY5lsBwZ3N7UNGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MLcb4RF9LAhuQIBlrefIgHm94V2jbcFjbodcFQfE3EA=;
+ b=muQCbDsM18/j1ZzfdW1CRDada25xYc+CE8yKZgpDOEdXMu4rttUHA0qx6iBZ4iI/clV4J9HuJLmZeTtJWEVs0RyhQGgKPjOlnj6c+5KE/aJGi0Pkbdeb8HeRPNRCUMg9a4ApVSE3HssY4toUd8mmT5kP4mT9gVvcAhl61oV9MnbYYzloHazEzcf0cRpzGtjrJItBeMSgyiW240Qjlh/3rY3UnMX6ned97hzaISADU3Xx88mfuTD0wOmU33AtyUb4jE+LnkdYeypYc+eTjNGUYQ90/rZL7jB+mYuW2Y3w6xVtmWeGEcP+HRjyaRXnqXn+GQrkzZi9VoleDA6oRHMMvQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5005.eurprd04.prod.outlook.com (2603:10a6:803:57::30)
+ by PA2PR04MB10412.eurprd04.prod.outlook.com (2603:10a6:102:41d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Tue, 3 Sep
+ 2024 09:30:05 +0000
+Received: from VI1PR04MB5005.eurprd04.prod.outlook.com
+ ([fe80::3a57:67cf:6ee0:5ddb]) by VI1PR04MB5005.eurprd04.prod.outlook.com
+ ([fe80::3a57:67cf:6ee0:5ddb%4]) with mapi id 15.20.7918.019; Tue, 3 Sep 2024
+ 09:30:05 +0000
+From: Carlos Song <carlos.song@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Steev Klimaszewski <steev@kali.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6855
-Date: Tue,  3 Sep 2024 11:36:28 +0200
-Message-ID: <20240903093629.16242-4-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240903093629.16242-1-brgl@bgdev.pl>
-References: <20240903093629.16242-1-brgl@bgdev.pl>
+	frank.li@nxp.com,
+	Carlos Song <carlos.song@nxp.com>
+Subject: [PATCH] arm64: dts: imx93-11x11-evk: remove redundant "sleep" pinctrl in lpi2c2 node
+Date: Tue,  3 Sep 2024 17:39:11 +0800
+Message-Id: <20240903093911.3235306-1-carlos.song@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG3P274CA0015.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::27)
+ To VI1PR04MB5005.eurprd04.prod.outlook.com (2603:10a6:803:57::30)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5005:EE_|PA2PR04MB10412:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8d1335a3-3048-421f-19a6-08dccbfafe74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?iGFx1b9bEREKJ7Vj8YAWcbB0T8d7rt6JQSbMscOPO0gB6B2ufxphBwLvvLHy?=
+ =?us-ascii?Q?xDJ7lO4PCYtim+cdfbT30O4E2TDmsQWTAJhy/ZpNJu6GJ3dubn4BbIDffrDg?=
+ =?us-ascii?Q?yj832Zb04NcWP/fzD8ARLRgMqAAogZKyXUuxEyfCvE8ddDn2t/zztDnZ/I43?=
+ =?us-ascii?Q?PquJqYrWH3/ve74uxwpuWphyK48fWW9Dm5gAmI7ObNogzth+MEnUO33mSqT4?=
+ =?us-ascii?Q?xttnwVUDZDYIsYHca7vXYPfbpM7/f7y1lYUus9QhUp9DwUK6wfiV5OSVu/y3?=
+ =?us-ascii?Q?hXPy/5ImTEQO1P5RsBT7QTrKrEoNMRiuV+HxwHmPaYW9BiHEYrsNo0nWD9aX?=
+ =?us-ascii?Q?u+6pxsZBd8hwvYlM9Waj/WBG7wLqY1Fu3rcRF0DKMzGkfj5mUBTq0e5fZOj5?=
+ =?us-ascii?Q?nKjlUJFU5DH2aFmqHCoF3EGfi8bNGG6csV+eCDd4gbcB+wui7e/kb+exAxz0?=
+ =?us-ascii?Q?HETF+Weudb44Qzi+9MV9Hh7gjFK/gtZjJNxj+m0MKKDFJJGYINVDDVaOKBFd?=
+ =?us-ascii?Q?WYjzHA9CqMZq07n3Hu9Ga7xWbg7DuLVb1Eltb8FeCxnW0EDH/cE5rDn4BoW2?=
+ =?us-ascii?Q?Vqk/VipB1DRY/rUwWqeaDCEkx9dyzQlMlG+RK1MRxjn1oyz//abVKt3Pnq1D?=
+ =?us-ascii?Q?XhdxkujU1ncGZ5kkJZPNaG9qbW5m/SdWlfl2QrRg0xcrAkM5MDpy/ryU93iE?=
+ =?us-ascii?Q?fOk3Qg6CkygEjH/oRXP1/YBAcZgCWpLwTBm9zUwX+hYSbJLc2IpjhL2/AqvO?=
+ =?us-ascii?Q?/oeqfIEeX0M2Od8dlKStXXzeMhUITNgzQjd9RJ41OmGA62YjinVniNZ1byO3?=
+ =?us-ascii?Q?QzCVeMCQFwVkmGXuqz/hAeAxe+43VzJRyzVkXz7359uAwbvHj4pxM5WTMLi8?=
+ =?us-ascii?Q?MUo5URHGxhR7iLPANkOyh51v7vCc1k4pgBPa5VQ7Fg9vthTSNc/AsJtSvEw5?=
+ =?us-ascii?Q?R+FeeGnNXde6uydXaBHs8bwphUNM2FUEsWwux6Wek3rZEfXG/IqCc0IcVciW?=
+ =?us-ascii?Q?FAsEyPJfwURgMOCsdVZVvOfPBx8nO4pnuDwluV95MwxRO9wQdulZVPiaTE4G?=
+ =?us-ascii?Q?p5tc3j6WiAFqpf6VkP2EGSYOIC4JvXduz+lNOTlqigWY3m8rk3ixzL3xG0qs?=
+ =?us-ascii?Q?MeHPnmucJ24fZU0CFZ8EEAhArak4t+qYJGuXAmh+u+ogMK0sVpwKvLS4lZtI?=
+ =?us-ascii?Q?7hnosutSUmxm6itpHxTRzt6LtEXoHQ9gUaNfN8qRQdlR27nKRzZnRrNK64VT?=
+ =?us-ascii?Q?kUjBSchYe7Qnkk4nXfkgiRYfg9MeSb0yBMkXE9jg57WxX0+gz8k2FHs0WAdH?=
+ =?us-ascii?Q?Qo6bs/lqab0p4caxKnZzExeijNiULj3+Dc3TxNmUe9hr0SXeVSL70h31Q7//?=
+ =?us-ascii?Q?/paA6M+oYGEIsbA7dT882OH+PKQ/vHDM5H1xS3XISbValPPiIw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5005.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?4tmrQB/Y08Ycn7WlsmJHNukqYCL3a5fpY8t2syt4AID1e2QYR9X3Qd2TQJrQ?=
+ =?us-ascii?Q?fGTSuZkVyMlIzFjEPoA0jlU6MsvQOu2AFnlo7+IUbK4KYnrYt0nPaow8UKF6?=
+ =?us-ascii?Q?+RzTaGRYKZulc1CSn6SY54QANsFLVYfqb5lgDK40q0/7OxYSh7ThZe6gz4iT?=
+ =?us-ascii?Q?QzxcGnWlmwl6TSfKO1M0Q9UCrL2pJrW+cTbVqOubmUsPH910KTVjZiEz/yhf?=
+ =?us-ascii?Q?COeGfGUL2GW6hE8PfbguTtSNB1QY/T30rLtTq1aL4mpn28gBcdzRYGwhqTCJ?=
+ =?us-ascii?Q?XfO6aSQ4rQY/mIYyX3UmZQyfUZD0Olu6v8tMXZrCihiusAsH6o7OEeZLXhRB?=
+ =?us-ascii?Q?FF2C4sv2y9xTjwjyvy+MirSpi0Itx/OkQybnkyNC72fMiVArL/YA7v01FQLJ?=
+ =?us-ascii?Q?hD+g2GTjsK0LJHIQQ7o7PTK/q2wrg5eIRhELOvttJpzJxW9wUlCMFyDOEph4?=
+ =?us-ascii?Q?rgQ8RzmbdksJ8WL6TxGzUtoYE2rsokLchp4FtxUnBixQrxk9Sl9UjUCQ6nxr?=
+ =?us-ascii?Q?5uW075wMG9wER3mh+BUxhGBzadTOS6s7DB+tQX8HDy0Bzz4TNb9l8Qdtr4s4?=
+ =?us-ascii?Q?a78D8ymg0jW+bldb7P/3Mx1M2N0qxPi9F0tQZ7lx+E2UMRwbabLvWH/yneeH?=
+ =?us-ascii?Q?odYAvl+YFYBxs9EeMBGO5XCJUXhKTXwudlAkqUniAMoVp0FHiH4L7Qfn/hC6?=
+ =?us-ascii?Q?0+pDqLI/KUpS7s8chAc2cSXElufTAcXH+PfWGh8zY9zK20ZCg9XKWgFD/WGo?=
+ =?us-ascii?Q?nmjScxcv2Io5my1LdoaDq9ouLYl1BFKqZHfQ9TN3wJHhosWP9xvauMa7y8wb?=
+ =?us-ascii?Q?Gmxq5dY6+mFqv0zvJstjS07dbQPrFAmad+TJ08q4oaR+Omjtz3CoyLZyupkM?=
+ =?us-ascii?Q?tTZq70VxT5qnWC/b54BX2CjK4fgZM1R0igKbmOUFndJi9GIh4bkCGfnT7kpE?=
+ =?us-ascii?Q?FPJdAfqOdiAwb6XhP0a3Uj7ll2Tc2oiIZVgGKYuqPpVfNPTJn5T+JbGrYi0K?=
+ =?us-ascii?Q?H8rf3y3k9sfEOggRJfmK/INcvU1Rp42v4oASaOYKsEKPGYTqwDwPo27PUYJH?=
+ =?us-ascii?Q?nyWv3EO597lM1QBhqVVywiVQFTsmeb5hLC+xPYBCtqjY1B7HLTwZNGL8uyYZ?=
+ =?us-ascii?Q?245zU5qlmpJXMLggf9cnPua3+sHpHWkOmHJgWczjXKu76pdLxxM0Xzsq72Ed?=
+ =?us-ascii?Q?58o1oKz6Jamy7MtwatXssD8L8TgXquGjyJSmwUObQeM2KBDpRLSvwQykGqpa?=
+ =?us-ascii?Q?LhSq5YosRzYnJ5g3SOqSoqpKMwLcVVjRtvpca3vzODsT4bD/CPsaFpRsQ98C?=
+ =?us-ascii?Q?PiMMhZn/bk5Myb6om+tfaoMgCusLuPgNEdsDVQB0nz6M+B/vxRiQ6XLsj7cY?=
+ =?us-ascii?Q?G0hpmXE8DXE7H73HBGL39EXk2oS60EXQa5KmT1C/HkAnCQvvwG6iRVfXL+eU?=
+ =?us-ascii?Q?KMOmqdKF0/APNCUEfHTUkG3zLsr7N/dVEVrF48pkeR11Nut+Y+1ZLJdY5UoY?=
+ =?us-ascii?Q?PyanwksleM7YrkCgmXMaGhPTag0/njHYbgfUCfZVfHwI7VMxhLMrHBwnadtr?=
+ =?us-ascii?Q?fKc621YlsVbbnl5GRJ1diyDK4rC4EN8ulmU86pS/?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d1335a3-3048-421f-19a6-08dccbfafe74
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5005.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2024 09:30:05.4446
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9s1QrF5nLpJYVJrvbDdK/drgz71vTKDJIY2hMN9IPbvjL8clslsrHCu2GgW/6mGiJBeD0KyEwXgJodc5Y+o8iQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10412
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+In lpi2c2 node, default pinctrl and sleep pinctrl have the same value.
+So "sleep" pinctrl is redundant and remove it.
 
-Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
-and bluetooth nodes to consume the PMU's outputs.
-
-Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Signed-off-by: Carlos Song <carlos.song@nxp.com>
 ---
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 98 ++++++++++++++++---
- 1 file changed, 86 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 6a28cab97189..88b31550f9df 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -400,6 +400,67 @@ usb1_sbu_mux: endpoint {
- 			};
- 		};
- 	};
-+
-+	wcn6855-pmu {
-+		compatible = "qcom,wcn6855-pmu";
-+
-+		pinctrl-0 = <&wlan_en>;
-+		pinctrl-names = "default";
-+
-+		wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
-+		bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+
-+		vddio-supply = <&vreg_s10b>;
-+		vddaon-supply = <&vreg_s12b>;
-+		vddpmu-supply = <&vreg_s12b>;
-+		vddrfa0p95-supply = <&vreg_s12b>;
-+		vddrfa1p3-supply = <&vreg_s11b>;
-+		vddrfa1p9-supply = <&vreg_s1c>;
-+		vddpcie1p3-supply = <&vreg_s11b>;
-+		vddpcie1p9-supply = <&vreg_s1c>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn_0p8: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn_0p8";
-+			};
-+
-+			vreg_pmu_aon_0p8: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p8";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p8: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p8";
-+			};
-+
-+			vreg_pmu_btcmx_0p8: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p8";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo5 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo6 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo8 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p7: ldo9 {
-+				regulator-name = "vreg_pmu_rfa_1p7";
-+			};
-+		};
-+	};
- };
+diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+index 8d036b3962e9..ca6de0e3a2d9 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+@@ -230,9 +230,8 @@ inertial-meter@6a {
  
- &apps_rsc {
-@@ -927,6 +988,16 @@ wifi@0 {
- 		compatible = "pci17cb,1103";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
+ &lpi2c2 {
+ 	clock-frequency = <400000>;
+-	pinctrl-names = "default", "sleep";
++	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_lpi2c2>;
+-	pinctrl-1 = <&pinctrl_lpi2c2>;
+ 	status = "okay";
  
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-+		vddaon-supply = <&vreg_pmu_aon_0p8>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+
- 		qcom,ath11k-calibration-variant = "LE_X13S";
- 	};
- };
-@@ -1258,20 +1329,16 @@ &uart2 {
- 	bluetooth {
- 		compatible = "qcom,wcn6855-bt";
- 
--		vddio-supply = <&vreg_s10b>;
--		vddbtcxmx-supply = <&vreg_s12b>;
--		vddrfacmn-supply = <&vreg_s12b>;
--		vddrfa0p8-supply = <&vreg_s12b>;
--		vddrfa1p2-supply = <&vreg_s11b>;
--		vddrfa1p7-supply = <&vreg_s1c>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-+		vddaon-supply = <&vreg_pmu_aon_0p8>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p8>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
- 
- 		max-speed = <3200000>;
--
--		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
--		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
--
--		pinctrl-0 = <&bt_default>;
--		pinctrl-names = "default";
- 	};
- };
- 
-@@ -1761,4 +1828,11 @@ reset-pins {
- 			bias-disable;
- 		};
- 	};
-+
-+	wlan_en: wlan-en-state {
-+		pins = "gpio134";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-down;
-+	};
- };
+ 	pcal6524: gpio@22 {
 -- 
-2.43.0
+2.34.1
 
 
