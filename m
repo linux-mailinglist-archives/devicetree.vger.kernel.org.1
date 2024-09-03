@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-99542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A21196A22B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:24:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D113C96A235
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:25:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D6961C23090
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:24:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DA9F1F2245B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B6518990B;
-	Tue,  3 Sep 2024 15:19:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C19D18DF91;
+	Tue,  3 Sep 2024 15:20:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fbk2iYQU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r9YX1tUn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893811885BC;
-	Tue,  3 Sep 2024 15:19:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345BC18BBB4;
+	Tue,  3 Sep 2024 15:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725376786; cv=none; b=NUkQwXewyBReqPSds8cDCdYSCw20kvXddb3zbzvmos/EpG81U5uy9paHE7CKPcv++bRRSr2JKwtLkamaDiSjtgkjprsZ4bz3x10Ug7zI5t1X/F1EzBaqiDI0IFUk2BQquQzLFzSpdOizj8wXUkcXc74NylZD1q4P8vbv9pYKGno=
+	t=1725376843; cv=none; b=Zn216/Hdp//dB1zJhP73FxLUWQlb4H6SjSOF56XY2fUwUU445HhMGkc0KbhIbJ7aMTpGsx6dgzyRjcHvAPDWCF9BOyKirXrv3hu7qp83nV0DWkZL2L2nzoXt6WsdTQKQvlOwGpfStFnaC2r7RT/TI3W2pSoKV7DPZ79OJB2berM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725376786; c=relaxed/simple;
-	bh=+0qkQcTLuPB/TnUCPxHpSWHlgBQAayfiJ/jdPsTKGCo=;
+	s=arc-20240116; t=1725376843; c=relaxed/simple;
+	bh=5iC3YJfhcms46vJFVZprBYhNqUflnATL0Z4TG63eMro=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YtyQwGJLcTt1Jw5wdFsHDFo+/jT5yX/NHGrsbYna/RemnqS0SqHYqTh48womn70g7V9mX5wSaMWVqvPFhnB0hf+gvEyhVmI/Sn+Cx4y5RLk+2KdH/pGq60g1Hf2L0REUsaRPh4mG183HE+YBxPw6Ptu/6OgqAbwQKntGp/vbiUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fbk2iYQU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2AA5C4CEC4;
-	Tue,  3 Sep 2024 15:19:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CdMv+JudoOQ+Pq4fLeFr5rYemCkbVDhPL3vDsLn5jGkjFm2R5cH03zxdwUF7b6UytcQvxsGu4OeVETZnxshncep4Nbkx7VYf5BC9NrEaq5q4NtC8xT3kop2h06dIrJwY7yrIKtW9eL80pndMjgmtxZ9BNKf3q7kq4V59m0sBa/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r9YX1tUn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96255C4CEC4;
+	Tue,  3 Sep 2024 15:20:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725376786;
-	bh=+0qkQcTLuPB/TnUCPxHpSWHlgBQAayfiJ/jdPsTKGCo=;
+	s=k20201202; t=1725376842;
+	bh=5iC3YJfhcms46vJFVZprBYhNqUflnATL0Z4TG63eMro=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fbk2iYQU+0fzlBCM4zIU1hq2PbTV+m6T+gE03cnaTsRBd0kxvb7M77dq0sTfsO7Op
-	 t5R+mR2gvAu1yeEt6m283kqR7SU3vXERoVR/Xfr32UhXiSJ2Hv4vbR+BiVxpEXw2ao
-	 hS6EZMvmgL03S6K4TEqbxrO3GMv6OECRc3X5xmgFCJkdRGyxLFDkxYYcIHLBVdBDBB
-	 a9nuh9lXbCnFFfvHyyzp1DEu1QR1b7fen6tiQX5Z4AY9UEOcV7ZQexQY58cygrWMOO
-	 nCfBHJQzpsUDOwmX+tWFU8ZYqybjbmOb3Dv3RioTngWUN7G4J9edoVvvMkuLgiUp/e
-	 zw1I82amoQtqw==
-Date: Tue, 3 Sep 2024 10:19:45 -0500
+	b=r9YX1tUn/g5AN4rnuH9BysGElutmb9zFtUvr+j2gnH2hLXqacdNIEU13EnMsByCDE
+	 lmJEmSPKxiHAt2gUzfzcSe4GVYi8oZ1eNsaPZnQPMWlZP5Bg0w8LzdpmcAYAIQydVf
+	 IdWHUljXB02MBFfVSdVI7Ft6FJf03rJuaQWcXpysqo4xSsfx6Q1YSssEmWMqKq2LOi
+	 C/jOQliu4VNNE69SqkpEO3WkeRIh1Ptp3Pn+sqp+Gf+Vmk0cgOj5pNNjwHVdJ/hmlq
+	 6LDrdQim6zOIU/kyQxy8wKQhTwb1n9U4k4Rnjuhq8o43gq2h4sD1GavDZFb29L6U67
+	 F4s5w5mjNbo6w==
+Date: Tue, 3 Sep 2024 10:20:41 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	alexandre.belloni@bootlin.com, linux-kernel@vger.kernel.org,
-	claudiu.beznea@tuxon.dev, conor@kernel.org,
-	nicolas.ferre@microchip.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 02/12] dt-bindings: microchip: atmel,at91rm9200-tcb:
- add sam9x7 compatible
-Message-ID: <172537678441.1036972.2017632915833338890.robh@kernel.org>
+Cc: krzk+dt@kernel.org, claudiu.beznea@tuxon.dev, dharma.b@microchip.com,
+	nicolas.ferre@microchip.com, tglx@linutronix.de,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	alexandre.belloni@bootlin.com
+Subject: Re: [PATCH v7 03/12] dt-bindings: interrupt-controller: Add support
+ for sam9x7 aic
+Message-ID: <172537684088.1038142.4709954220078086737.robh@kernel.org>
 References: <20240903063913.48307-1-varshini.rajendran@microchip.com>
- <20240903064233.49366-1-varshini.rajendran@microchip.com>
+ <20240903064240.49415-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +62,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240903064233.49366-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20240903064240.49415-1-varshini.rajendran@microchip.com>
 
 
-On Tue, 03 Sep 2024 12:12:33 +0530, Varshini Rajendran wrote:
-> Add support for sam9x7 device compatible with sama5d2 compatible as the
-> fallback as the sam9x7 SoC uses the same tcb IP as the latter.
+On Tue, 03 Sep 2024 12:12:40 +0530, Varshini Rajendran wrote:
+> Document the support added for the Advanced interrupt controller(AIC)
+> chip in the sam9x7 SoC family. New compatible is introduced to capture
+> the differences like the number of interrupts supported in the
+> integration of the IP to that of the previous designs.
 > 
 > Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 > ---
 > Changes in v7:
 > 
-> - Elaborated the commit message with justifications to the fallback.
+> - Elaborated the commit message by explaining the difference in IP.
 > ---
->  .../soc/microchip/atmel,at91rm9200-tcb.yaml   | 20 ++++++++++++-------
->  1 file changed, 13 insertions(+), 7 deletions(-)
+>  .../devicetree/bindings/interrupt-controller/atmel,aic.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
