@@ -1,162 +1,149 @@
-Return-Path: <devicetree+bounces-99685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0003996AC2C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:26:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 798E196AC2E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:26:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8034FB23D76
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:26:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B6B61F22644
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:26:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0057F1D460A;
-	Tue,  3 Sep 2024 22:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE4761D5897;
+	Tue,  3 Sep 2024 22:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MEXBPFRg";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="EkqoBtoD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dZn4TZXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-49.smtp-out.eu-west-1.amazonses.com (a7-49.smtp-out.eu-west-1.amazonses.com [54.240.7.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B541EBFE4;
-	Tue,  3 Sep 2024 22:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5E51EBFE4;
+	Tue,  3 Sep 2024 22:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725402372; cv=none; b=cpAjIhgjNSycgI8VMs3fIX7w5B7eUs4cYwSmEKFpia+7VX0/6iZYjcFoYNCunssLbUhSM+m0zs6nWoTj38PXOYUAUM74yeeJskS7VGX6PPVqdFKquI6A2LjXRhrQW4BkMmJn4zqrynAe7zyZNMKV0Y6Wn8QXXKyJWz7Su3sOkyU=
+	t=1725402406; cv=none; b=nDLxfs5UW/Qeh6He6KB0MfPwPE/grdeGGxDR469836Ph5SgumU4hoAfGwWtwNIUiRVMsk5Pg8SiAL0SyAljToD++j8XLm1LHmMbnYmYjFIgsok8ddRUnkgKoZKji4ICjPc7+bspNSnIForNeZKgGyPakq/1B4+KI7VxE/InvPM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725402372; c=relaxed/simple;
-	bh=J75C0zW3aFD9/wWABSs9a0MGOHQsWYII8iomrBYquwQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cygvHyDJ3UYjOf3vkNW0+5TtH9aSfH73H1EjogbiCbHmtsGHRSdedrbqAzBk75Gs+BVNxXSqxqniEegtYpMtN7USvAkZEg6orBVfXpjiPqZP5m1MoEa8Nsxtx8rn+59BDKMJPD3JC2y0SvdalH1C/HHhsWvtFuItV1U97o7jCpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MEXBPFRg; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=EkqoBtoD; arc=none smtp.client-ip=54.240.7.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725402367;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To;
-	bh=J75C0zW3aFD9/wWABSs9a0MGOHQsWYII8iomrBYquwQ=;
-	b=MEXBPFRgWQzDuhb4aVPME+9Kz2deQ65lINz1o1mGUKLs32qYu18Mrn9xFasjDxaP
-	3+RL2g1YU6QKnBGHi5GAVMrN8jcFd+yYBNMB9k39HDTXwNd9wnFrvsgCyY1eoVrDlVz
-	gnp21UzehZ/c74v9AXGD6YiwBn/pUnovJfykY0/g2lYbjwoIRQwHoPDqIOPoRmXQKwX
-	qB5LQKNmcJtJC7Sl7BnomSp+sKYaiE24GnClGQAJEosT8Y8zpiPMmTNuhUSkixF9LEw
-	c1gvnZGViAKu9U9wt2t531g8AaLrfvE5QNUWR9MHH/HCJ3KXWb2yhpy6cWYdz1enPV4
-	1MvtoSWdZA==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725402367;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Feedback-ID;
-	bh=J75C0zW3aFD9/wWABSs9a0MGOHQsWYII8iomrBYquwQ=;
-	b=EkqoBtoDhy7s0jSAZhVw5zM0N10sN2c5ethkUQsDhM5fhjrGzto4Z3RloidOQO78
-	7VFdFxnOfiFVnDIwZrUNbsTLXrGgQsNZjhUzV2WKyQj/R0LDjpzPjHbouW6e7jFQ2fX
-	SHYv+atVdMhujose+YekUUYPOfwxdzb9rgUQ53N0=
-Date: Tue, 3 Sep 2024 22:26:07 +0000
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev, 
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
-	quentin.schulz@free-electrons.com, mripard@kernel.org, 
-	tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com, 
-	u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org, 
-	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org, 
-	krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de, 
-	jic23@kernel.org, jonathan.cameron@huawei.com, 
-	Philippe Simons <simons.philippe@gmail.com>
-Subject: Re: [PATCH V4 14/15] power: supply: axp20x_battery: add support for
- AXP717
-Message-ID: <01020191b9fec51a-2b9bc6b4-37b6-4651-9127-b0ab066262b3-000000@eu-west-1.amazonses.com>
-References: <20240821215456.962564-1-macroalpha82@gmail.com>
- <20240821215456.962564-15-macroalpha82@gmail.com>
- <kpcnvalhcfzludd6ifjn4mkeipihkselgr3e4bzog2zfyap4jz@ib7cg2drpd4p>
- <MN2PR16MB2941BBB5A36AE70195F3D1B2A5972@MN2PR16MB2941.namprd16.prod.outlook.com>
+	s=arc-20240116; t=1725402406; c=relaxed/simple;
+	bh=YXQIagdDPc90ZbJET9jNpaM1MPJKmJ5Y5fngYc6zZ5E=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=VZMM6QfOdfOIsPgcFMIvR2Co69DR7Vwe9M2ZEKtZZ6911mC8xz9L4Hl6YD6H7dv+Je6L9OfqOa1ZE4MtzfXdRAzUeYBwUmlHv08Bru2sfpZq77UfYVbB/QVYjrrDWC9kFf02JsvFpcfQcj60PoXPtwU5KMExDBb2qHgOT07xXiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dZn4TZXV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE497C4CEC4;
+	Tue,  3 Sep 2024 22:26:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725402406;
+	bh=YXQIagdDPc90ZbJET9jNpaM1MPJKmJ5Y5fngYc6zZ5E=;
+	h=Date:From:To:Subject:In-Reply-To:From;
+	b=dZn4TZXVbXEzEwa3ibet6GkytN3NXh0+F+/hWh7n22CyMZmwuMO1drbR6aDqPSH/m
+	 1onS+XmaNIzxiX4h1AD6FfLhQyYnaF2/AgM8LQSsl2aVq3kh1VZZBtMEcyN3NWmoV7
+	 WlGawzRAr97kNfsueOFPzVcWLHcCL9fx1uyE4BVpWiZCD3Br+lCJ4EnLT86dFuTSFv
+	 RNtwJ1gX9LNZsCrEFoRM1ff4GhTGAT9H3wladciEnJy5WJx+dAMD0kSmMMoulZg4hk
+	 aulQSWoX0q7ifdHNpRfXx5NwOgTa64bW7nZm0ZcA6mpu5hGiXwivszhbdpATg3smEr
+	 PHbM0Q+6gtxrw==
+Date: Tue, 3 Sep 2024 17:26:44 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
+ parsed from DT
+Message-ID: <20240903222644.GA126427@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="f3sncq3laka6j44d"
-Content-Disposition: inline
-In-Reply-To: <MN2PR16MB2941BBB5A36AE70195F3D1B2A5972@MN2PR16MB2941.namprd16.prod.outlook.com>
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.03-54.240.7.49
-
-
---f3sncq3laka6j44d
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <Zszcps6bnCcdFa54@apocalypse>
 
-Hi,
+On Mon, Aug 26, 2024 at 09:51:02PM +0200, Andrea della Porta wrote:
+> On 10:24 Wed 21 Aug     , Bjorn Helgaas wrote:
+> > On Tue, Aug 20, 2024 at 04:36:05PM +0200, Andrea della Porta wrote:
+> > > The of_pci_set_address() function parses devicetree PCI range
+> > > specifier assuming the address is 'sanitized' at the origin,
+> > > i.e. without checking whether the incoming address is 32 or 64
+> > > bit has specified in the flags.  In this way an address with no
+> > > OF_PCI_ADDR_SPACE_MEM64 set in the flags could leak through and
+> > > the upper 32 bits of the address will be set too, and this
+> > > violates the PCI specs stating that in 32 bit address the upper
+> > > bit should be zero.
 
-On Thu, Aug 29, 2024 at 08:11:09PM GMT, Chris Morgan wrote:
-> On Tue, Aug 27, 2024 at 06:24:42PM +0200, Sebastian Reichel wrote:
-> > On Wed, Aug 21, 2024 at 04:54:55PM GMT, Chris Morgan wrote:
-> > > +	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-> > > +		ret =3D iio_read_channel_processed(axp20x_batt->batt_v,
-> > > +						 &val->intval);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +
-> > > +		/* IIO framework gives mV but Power Supply framework gives uV */
-> > > +		val->intval *=3D 1000;
-> > > +		return 0;
-> >=20
-> > I see you followed the existing pattern for these two drivers. Can
-> > you please add another patch, which converts both drivers to the
-> > following pattern:
-> >=20
-> > return iio_read_channel_processed_scale(adc_chan, &val->intval, 1000);
->=20
-> Would it be okay if I sent a patch series on top of this one (rather
-> than rebasing now that some of these are starting to get pulled)?
->=20
-> It's probably a simple enough change so I don't mind.
+> > I don't understand this code, so I'm probably missing something.  It
+> > looks like the interesting path here is:
+> > 
+> >   of_pci_prop_ranges
+> >     res = &pdev->resource[...];
+> >     for (j = 0; j < num; j++) {
+> >       val64 = res[j].start;
+> >       of_pci_set_address(..., val64, 0, flags, false);
+> >  +      if (OF_PCI_ADDR_SPACE_MEM64)
+> >  +        prop[1] = upper_32_bits(val64);
+> >  +      else
+> >  +        prop[1] = 0;
+> > 
+> > OF_PCI_ADDR_SPACE_MEM64 tells us about the size of the PCI bus
+> > address, but the address (val64) is a CPU physical address, not a PCI
+> > bus address, so I don't understand why of_pci_set_address() should use
+> > OF_PCI_ADDR_SPACE_MEM64 to clear part of the CPU address.
+> 
+> It all starts from of_pci_prop_ranges(), that is the caller of
+> of_pci_set_address().
 
-Yes, please make this a follow-up patch and update all occurances of
-the pattern in axp20x_ac_power.c, axp20x_battery.c and
-axp20x_usb_power.c.
+> val64 (i.e. res[j].start) is the address part of a struct resource
+> that has its own flags.  Those flags are directly translated to
+> of_pci_range flags by of_pci_get_addr_flags(), so any
+> IORESOURCE_MEM_64 / IORESOURCE_MEM in the resource flag will
+> respectively become OF_PCI_ADDR_SPACE_MEM64 /
+> OF_PCI_ADDR_SPACE_MEM32 in pci range.
 
-Thanks!
+> What is advertised as 32 bit at the origin (val64) should not become
+> a 64 bit PCI address at the output of of_pci_set_address(), so the
+> upper 32 bit portion should be dropped. 
 
-> > > +		 * AXP717 can go up to 4.35, 4.4, and 5.0 volts which
-> > > +		 * seem too high for lithium batteries, so do not allow.
-> >=20
-> > 4.35V and 4.4V batteries exists. You can find them when you search
-> > for LiHV (Lithium High Voltage).
->=20
-> Do you think I should add it then? Full disclosure, I basically opted
-> to not add this because while this series was written more or less
-> exclusively off of the datasheet I did peek at the BSP implementation
-> and I think they restricted these voltages. Again, as a fast-follow
-> once these patches finish getting pulled (I can start work on it now
-> though).
+> This is explicitly stated in [1] (see page 5), where a space code of 0b10
+> implies that the upper 32 bit of the address must be zeroed out.
 
-Feel free to ignore that information. Support can always be added later
-once somebody needs to use the chip with a LiHV battery.
+OK, I was confused and thought IORESOURCE_MEM_64 was telling us
+something about the *CPU* address, but it's actually telling us
+something about what *PCI bus* addresses are possible, i.e., whether
+it's a 32-bit BAR or a 64-bit BAR.
 
--- Sebastian
+However, the CPU physical address space and the PCI bus address are
+not the same.  Generic code paths should account for that different by
+applying an offset (the offset will be zero on many platforms where
+CPU and PCI bus addresses *look* the same).
 
---f3sncq3laka6j44d
-Content-Type: application/pgp-signature; name="signature.asc"
+So a generic code path like of_pci_prop_ranges() that basically copies
+a CPU physical address to a PCI bus address looks broken to me.
 
------BEGIN PGP SIGNATURE-----
+Maybe my expectation of this being described in DT is mistaken.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbXjPwACgkQ2O7X88g7
-+pqfNQ//b9NVzVqyM1E6kjRdA9UPORt9gmyCNkVelM/Azk9IISpM9rsV+glJ0qcr
-l/6Y1b9kYMG4aEf0h52WeXVh7lAutxPTwrW13KqmWuj7Kv5aE2dhUAOWN07RhC4w
-P3cA2y1nP9lOrS4NR4Pc1NXU1PxkQW9BPSF/UessK9h2lkWVNw3BQJhGrcblnvZi
-k+qDB0k801cuWaraHvVrU5RgpVSl4GS8d9HTIpnoag3BIIgBVGZShMLxSEGNHKis
-MWTNRWC1ZTHfyM8hpIECmYEjuOaaOTyY48iuhEHO4h1yQLxGCNhyQYl+CnnM9ntF
-sgTAsWAywAulpUb5clG50ewC66SZrGTfud7Nbo943Js4H0cs1L351KlkFVXaZ9m5
-iXAjFpPreH+9EFtBRBzg45k6JfJObXbZAKxWwMNhtckmh2Y9qHmBXL6LykYxpWut
-iCP7SlUjPAyWLJb/h0BG4fItRZebmb+dTyALl2xdceTDUvv5RicBA+GCyIcIINLb
-ak536WLkIgM16VfHA3qL1xI7wlEXBSSJfSL4TBFNMR0UMIaVs6mgLFh/sq3dh66H
-t0mNAshlYlYbnp9C9HNY2GdV9h/m8VPWNetiOpf6hKDZItUEoGvx0kLnvCckbsLo
-5hePZpjMpBd5iFnNprVA9kp3BryXybT84Wz78Iazq4Qdg2YzOjY=
-=c/Zb
------END PGP SIGNATURE-----
-
---f3sncq3laka6j44d--
+Bjorn
 
