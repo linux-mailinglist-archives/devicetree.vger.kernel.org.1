@@ -1,149 +1,134 @@
-Return-Path: <devicetree+bounces-99575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6995196A381
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:01:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2048A96A385
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CC601C23E9A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:01:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53AF81C244C8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608B4189BB1;
-	Tue,  3 Sep 2024 16:00:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44BD188A22;
+	Tue,  3 Sep 2024 16:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Ac12rxJA"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c+Fmen+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F58B189BAE;
-	Tue,  3 Sep 2024 16:00:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725379257; cv=pass; b=TilnlNE6Yo52EIxk04KNlZJxjXzCmRxlyv4jo/zkN5xAbP+VnZ1PdyQGGJxWd/AOLrQ4F6cbGUcTsy+JABEqPq1bHfQJmT6WoNu/SJqIEQGUYbYL4BSjm/tzRLrDs58KKnTUBUZlCiNSJpRUgYCuwUFfMFiNrj36ODo8+IaRzUo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725379257; c=relaxed/simple;
-	bh=DoF5r0u+6KPtzRJ2gCLtOA74hZjZQKMdqLUSJFztaO8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YV7jM/XG2pO896Xs5JIYWH5oZNi30mAQwap4MlDGZp4sN1UWFaz8imcSYC8EzVnXQZwdPj+O+Jmg5Ogy4eVc9tyMsqlCW6ZUZ8tluUZ+DXiKix05GtKthwnf7dZ3HGTvmjKh6XdPnqepchex1Df/PWM3vWwkQM4DaOFJIacTWOU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Ac12rxJA; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1725379180; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=j7W+b6AKvTMiIp6zna4Phg0s4BvUKBWwdAFzlwD3yxdkmVUkgV226jpfwFtqSnDngKmtHC+J7XRYl8JW2CIzT+6R75rfSvJcjxQWa1Wq6r4Y072X5au/IhhR2Ns+1JfYil09hrhbCUwbjSryQHWoitBwp9GhbbmGfjbi1rRjXpo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1725379180; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Y/bWoW06nAsYTfJtM+dT/HctpDxY0caM4f/6npCsav4=; 
-	b=DcW7jXgOcrFG/T624VWQk524Qc6OWhcUZEOuq3jWESy+mGhMRYwyU7e1HN8UpN3SCobwVQfoDwm4wzZjDixTbMdVhXzlT9CIHinwkBQ++b3/CyFL3ixd6ss1EkX4Eg206IxLCgU3rPE4ZtZ0b6sTb12nF+TWspPK08mxkCjwoe0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725379180;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=Y/bWoW06nAsYTfJtM+dT/HctpDxY0caM4f/6npCsav4=;
-	b=Ac12rxJAuHEgPBTE7VP5gB/POfoA00l1p6G5Zru/RUnCEnF0JMRTpamew0P3lFkd
-	Kmp0V2A6Pr3m+MYabAm8YPJ2kp/8Df8UEX9lknMggWnKDWx5PMLTQ0U7/hKfn9+c9JH
-	EfnVDwwoeFI4x+D5sUdaCgyo0qwqF8W/rMY+FWR0=
-Received: by mx.zohomail.com with SMTPS id 1725379178937833.0492919077691;
-	Tue, 3 Sep 2024 08:59:38 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>,
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
- Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
- Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
- Ondrej Jirman <megi@xff.cz>, Michael Riesch <michael.riesch@wolfvision.net>,
- Jimmy Hon <honyuenkwun@gmail.com>, Elon Zhang <zhangzj@rock-chips.com>,
- Alexey Charkov <alchark@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>,
- Yifeng Zhao <yifeng.zhao@rock-chips.com>,
- Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
- Jamie Iles <jamie@jamieiles.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-watchdog@vger.kernel.org, kernel@collabora.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 3/9] dt-bindings: i2c: i2c-rk3x: Add rk3576 compatible
-Date: Tue, 03 Sep 2024 11:59:34 -0400
-Message-ID: <12506188.O9o76ZdvQC@bootstrap>
-In-Reply-To: <bnpwnuhikwkqyf3jos67qwywhfge3vm6tfmlfitypd5k62jzdn@fri4swkl2zbq>
-References:
- <20240903152308.13565-1-detlev.casanova@collabora.com>
- <20240903152308.13565-4-detlev.casanova@collabora.com>
- <bnpwnuhikwkqyf3jos67qwywhfge3vm6tfmlfitypd5k62jzdn@fri4swkl2zbq>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB3F188903;
+	Tue,  3 Sep 2024 16:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725379290; cv=none; b=Yn5Yq+NwPeIZRy1Bw3T0gasA3VH+1LsXF7qSjJU4eCnRmLq4CRD7+SYar2NBDb2VVTUQVW6b9HUI2ZZnDAMGWKPi2Nsy1tYH7Hv3PwfagPE7gJI6dUdy2Ejny0izUBd9IWgTaV4w8raR7SV6C67V/4Nd5ABhuRc/85Iy51NnVz0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725379290; c=relaxed/simple;
+	bh=JHkZaHTyZr8FrXiNtLB8ONHDQXBeymJgLt3plAsYQ9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GcFl7jV40vwN7D2LHgHnufBSk8/V3u3WVHBSeENDWPGWPIq8ul+4EYB6q97otQDgjAPGVhWoV2UA2LDWfsT4dE9VcgBEFuout2utDhn463YVO45AyAIoON4KDNf0UKv2BL2W5jhGPGo2AS4xUoH5IsyqOpgGSxRzNY4usmdjRyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=c+Fmen+1; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1695160003;
+	Tue,  3 Sep 2024 16:01:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725379280;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TOEHRL0jTkqVJGqC1aF4rVCGmks2TS1OH/JK8xFsn/A=;
+	b=c+Fmen+107aZTxRPesX1RF0jOVv9G1jUVeZALqhujtGQggZXA7w9Up9m2Q8ybdjodWqpK/
+	WM+uKhy6OpKV6HrweUA8FA5wjh1QA4ljeH5VoAYJufX0f/z2nnBTXwYrToXqs1C6F+bImD
+	5sTuQ+ub2E9GLdELHmZb3HsAWADILFlGNR7iAqLPdUT8Op+8sURREaOQMQUB+pVoRnomcC
+	9AFaVAkqVi6FG/bVN/dETRKnJQslq7jw3IMydXJa50GsULYLzKRSh2TZ+KTyDH+JPYbZ+X
+	O8MRC1YafAcQsnU92sLa/Cw2YKVTqNXq6U/J/ePSLIaPIRFXW8NdkjdTCbAoFg==
+Date: Tue, 3 Sep 2024 18:01:16 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Lee Jones <lee@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Arnd Bergmann
+ <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
+ Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
+ <clement.leger@bootlin.com>
+Subject: Re: [PATCH v5 3/8] mfd: syscon: Add reference counting and device
+ managed support
+Message-ID: <20240903180116.717a499b@bootlin.com>
+In-Reply-To: <20240903153839.GB6858@google.com>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+	<20240808154658.247873-4-herve.codina@bootlin.com>
+	<20240903153839.GB6858@google.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hello,
+Hi Lee,
 
-On Tuesday, 3 September 2024 11:46:00 EDT Andi Shyti wrote:
-> Hi,
+On Tue, 3 Sep 2024 16:38:39 +0100
+Lee Jones <lee@kernel.org> wrote:
+
+> On Thu, 08 Aug 2024, Herve Codina wrote:
 > 
-> On Tue, Sep 03, 2024 at 11:22:33AM GMT, Detlev Casanova wrote:
-> > Just like RK356x and RK3588, RK3576 is compatible to the existing
-> > rk3399 binding.
+> > From: Clément Léger <clement.leger@bootlin.com>
 > > 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Acked-by: Heiko Stuebner <heiko@sntech.de>
-> 
-> I will apply this after 1 and 2 have been merged.
-
-Sure, although it is not really dependent on 1 and 2.
-
-> BTW, who is maintaining rockchip.yaml?
-
-Heiko Stuebner is the maintainer of Rockchip SoC support.
-
-> Thanks,
-> Andi
-> 
+> > Syscon releasing is not supported.
+> > Without release function, unbinding a driver that uses syscon whether
+> > explicitly or due to a module removal left the used syscon in a in-use
+> > state.
+> > 
+> > For instance a syscon_node_to_regmap() call from a consumer retrieves a
+> > syscon regmap instance. Internally, syscon_node_to_regmap() can create
+> > syscon instance and add it to the existing syscon list. No API is
+> > available to release this syscon instance, remove it from the list and
+> > free it when it is not used anymore.
+> > 
+> > Introduce reference counting in syscon in order to keep track of syscon
+> > usage using syscon_{get,put}() and add a device managed version of
+> > syscon_regmap_lookup_by_phandle(), to automatically release the syscon
+> > instance on the consumer removal.
+> > 
+> > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > > ---
-> > 
-> >  Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
-> > b/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml index
-> > 82b9d6682297..a9dae5b52f28 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
-> > 
-> > @@ -38,6 +38,7 @@ properties:
-> >                - rockchip,rk3308-i2c
-> >                - rockchip,rk3328-i2c
-> >                - rockchip,rk3568-i2c
-> > 
-> > +              - rockchip,rk3576-i2c
-> > 
-> >                - rockchip,rk3588-i2c
-> >                - rockchip,rv1126-i2c
-> >            
-> >            - const: rockchip,rk3399-i2c
+> >  drivers/mfd/syscon.c       | 138 ++++++++++++++++++++++++++++++++++---
+> >  include/linux/mfd/syscon.h |  16 +++++
+> >  2 files changed, 144 insertions(+), 10 deletions(-)  
+> 
+> This doesn't look very popular.
+> 
+> What are the potential ramifications for existing users?
+> 
 
+Existing user don't use devm_syscon_regmap_lookup_by_phandle() nor
+syscon_put_regmap().
 
+So refcount is incremented but never decremented. syscon is never
+released. Exactly the same as current implementation.
+Nothing change for existing users.
 
-
+Best regards,
+Hervé
 
