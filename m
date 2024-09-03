@@ -1,190 +1,117 @@
-Return-Path: <devicetree+bounces-99190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF95969348
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:45:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A424969353
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:51:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8622284D06
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 05:45:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 081CA281D8F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 05:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DF01CEAB0;
-	Tue,  3 Sep 2024 05:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AEED1CDA30;
+	Tue,  3 Sep 2024 05:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="XyCVZLRO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEVP216CU002.outbound.protection.outlook.com (mail-koreacentralazon11022113.outbound.protection.outlook.com [40.107.43.113])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD601CEAA4;
-	Tue,  3 Sep 2024 05:44:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.43.113
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79DC91C36
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 05:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725342300; cv=fail; b=Byv2sCy/Hxb9UiFC6jr/PaXUUdUXbWk62yb5nEaQjYNN1ova/a5EBF1pnB4UU2sEPRH14B3aVBbjGTyWEmAUaGZvlHFcDTdP0m5w4B/+o2SgrYsf5homqZ6xe7+A7i+26TWextaY/CuaQop9xchGIOkqxteuPkcRbI/wlzKXB8s=
+	t=1725342687; cv=pass; b=c9T5+UI2IrJ+Ca6igSIiOBdPG+cTmOZ6A5Mb3SGPPpuNKxAMlTHj22dxziOkiGELh+OIX7gQHer3+BtLZYtFHqCzsJ2udR9/gMjVqEDHqqpckN0PfeG/2bhFbfvv3zG2YvaI9tUl1q52/d6aHUEmY3DYyzrQHG4x49QFnucYsmA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725342300; c=relaxed/simple;
-	bh=qLDiSgvoSI4teVeBrXThBgRBn958L2I0D7r8XjfvzCc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lEK4hHIDX8xN7FDszVbpncYKpWr6eRiFh//YTordYP5BWqAlpRqykqgbDgC57Eh0u+KkkAFQxmwhtyPDcsQ48NaIs3sHqQmGDLozzeGrtme3lSzCZgdAPowyM6LOVtmkYWj7t6UjykBd0gOgkEq8Y6GU9gpZ5h8mY5QSrgiqnro=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=irondevice.com; spf=pass smtp.mailfrom=irondevice.com; arc=fail smtp.client-ip=40.107.43.113
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=irondevice.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=irondevice.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cdiZBmwk7AYpWT7c12ytjJGDJ2BUSRWZPmgnQPGkxJytSKQ19B9YcApdPABrLEk/iELi1allDcGciFRu4I9gCtdtYjkMBQe6dK4bqGvhEKmjTXWnrv2pTo7ZvQqFIgK2lW6xBFK+EQhSBPESimK8yw6LJMMmJJIRNx5PM6jT4pKq/gCEc0Cz+R44Ow7yanP3o/7YZ/654gQ7M/lfUkVsrawzldHvDyO7ZjAlmI9DA029PdQenpF9gJ3JMeGDoEk5S5tAPlTVwUWq6MJuVf34hWWOnWJ3bUKEqB+vJsufsjcGO1SPl/nLxd3c0K2O6W0VQJ3Gyywr83H67DE9fuvduw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gjzjubUPDlKBcK5PuNlY2GVPUkRu7WCZ8UtR2jp78eY=;
- b=n8h1y9Ipa7ojjXPP+KuvIOrAsUD9ELp51yJXD1WWcQz0N+vHK0NMQDvs1+xV5HYnuDkRhcODUChlWwnnoyRzqz3YNpAymq+RMcKK6A0JY3GHv4otBMXL0VmIo5qd+Dgcurcyztbq85oYhqhoGoYRWZsgECtFSzPdASgVaJGbK7qukH8p9wd6AY1mvH9FxYSP3u/wvWFSrt+Fv7B/13it8LC1vEyRuhXd/4jsrR1BifejPHiDANg7/Wrs75OAuhi5nWPO7h1bNu46pAQPjmpIrexnYcgi27pjKS4ngGiib6yNOl0/je1QT2yiTliSx9mHLbXrZyXOp8mdHaJa6yiVxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=irondevice.com; dmarc=pass action=none
- header.from=irondevice.com; dkim=pass header.d=irondevice.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=irondevice.com;
-Received: from SL2P216MB2337.KORP216.PROD.OUTLOOK.COM (2603:1096:101:14c::11)
- by SE1P216MB1543.KORP216.PROD.OUTLOOK.COM (2603:1096:101:29::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Tue, 3 Sep
- 2024 05:44:57 +0000
-Received: from SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
- ([fe80::7e8d:9550:c46b:2756]) by SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
- ([fe80::7e8d:9550:c46b:2756%3]) with mapi id 15.20.7918.024; Tue, 3 Sep 2024
- 05:44:57 +0000
-From: Kiseok Jo <kiseok.jo@irondevice.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	application@irondevice.com,
-	Kiseok Jo <kiseok.jo@irondevice.com>
-Subject: [PATCH v2 3/3] doc: ABI: testing: sma1307: Add support for SMA1307
-Date: Tue,  3 Sep 2024 14:44:35 +0900
-Message-Id: <20240903054435.2659-4-kiseok.jo@irondevice.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240903054435.2659-1-kiseok.jo@irondevice.com>
-References: <20240903054435.2659-1-kiseok.jo@irondevice.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SE2P216CA0056.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:115::7) To SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:14c::11)
+	s=arc-20240116; t=1725342687; c=relaxed/simple;
+	bh=Asacfa8oCipwNiYXQVn9REN5uoZngBF6Q6zI9Dz/bdw=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VioXskrmMoaozSq3tNXrC1N9zZj68Oj0aeiDWWDmDFreiDiox6967gLtuHV9GNulTIFmSvm4uo0AYGxiorbZdJ6Gvastz3KwoIfZQyXr31c8OdeieJQItGud9HnLqVfV83YiYKtapf2+BjJ1QX5wOyPkJIKEAhszeG4AyOIPvdg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=XyCVZLRO; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1725342669; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=d8GQhO1fHmoboE1FJwUCrihjkhjeIBsggkmMFyM10DMg0Kop9tRrHI4/EBRQrEuh9K85oOE+5FTZD9oqvGbJYoUlSRO3dBv5Eqz6zNPGImxXHBOBlPxpEq0Q3/y5Z5Mre0x/FfS/QRlEnBzPAsB4aPvQ9ThewJv6aMupym1KGFk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1725342669; h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To:Cc; 
+	bh=Asacfa8oCipwNiYXQVn9REN5uoZngBF6Q6zI9Dz/bdw=; 
+	b=i3rxpu+l1cK+Ajn3oEdwT8bwC8H106Je4Y12V2MjcxB21r1gFkazEgb3r2yGnaw+dvn5Z1so7OJOWWmxBEXNucWPAzCiP6nIUxPvQm6lO10DqN08SZK82eb6RqOz1N+ew6aczE3uig3AzXByNAFmTTG+14ZQKNivvPtilcwQbS4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725342669;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To:Cc;
+	bh=Asacfa8oCipwNiYXQVn9REN5uoZngBF6Q6zI9Dz/bdw=;
+	b=XyCVZLROwb3AK8le4SdPdY+culb9+h50WvszxApSrXAgvv743dUEsdjH5EXdqEuW
+	figZdveoNgNd0PfFV61fZSnLGjAtXzwxcJwOhBMp7zpUchRC576UFGBrcapqdpGO0Hz
+	cskpm7v5rArb+sOmIMFzS4JmjwMONDnEw6DG6y9IQIEcFBh/hCQhLflmNo1vv2DJcT+
+	cf7obWTQlfCs3AbgEZGLMYV8yzbJLi6c3TT3/Q30GSJeCcp4GFDQJLEl//IZaO4mk1l
+	n6Lr/xBuosz/nyrJ8kkX4Rl1y3dl/BigQDdtVss8Z1E1bGdiEuUVEUNRXdoDKWNCn8l
+	6QQ9eIBwPw==
+Received: by mx.zohomail.com with SMTPS id 172534266742979.07579990685713;
+	Mon, 2 Sep 2024 22:51:07 -0700 (PDT)
+Message-ID: <34afe6c1857190a23521815d85660f6125f0d302.camel@icenowy.me>
+Subject: Re: [PATCH 3/3] arm64: dts: allwinner: a64: Add WiFi/BT on Pine64
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Peter Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+	 <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+	 <samuel@sholland.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Date: Tue, 03 Sep 2024 13:50:59 +0800
+In-Reply-To: <20240901122135.1389702-3-pbrobinson@gmail.com>
+References: <20240901122135.1389702-1-pbrobinson@gmail.com>
+	 <20240901122135.1389702-3-pbrobinson@gmail.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SL2P216MB2337:EE_|SE1P216MB1543:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6bfa86c-b495-4ae2-64c3-08dccbdb8b2e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?HvNbNWnUrZYfmTH79jnSdScACsFmnyQb3bMXlzt81a024h9QnExXVUYabJQG?=
- =?us-ascii?Q?gKNlAQJMPTAARltqu3Z1lOs2niOWTJ/c0sGydNd2K6W/bgmR988TB7XKuitm?=
- =?us-ascii?Q?NQXKIAM6sLT44UhzBRvQEm0mHs5QHSlGoAroyhWi3l/ZeJrG7ACbq/0juW4E?=
- =?us-ascii?Q?HPEaXxtsif8aQe+WfsbTG2xCXF8g1GVH6RG9sg57RjpRw0iBgiBU9VXnaOo0?=
- =?us-ascii?Q?26r8gTrmSbLHK/7Wo5gjpph8SR3BzPcz6X9lOS5shqDY0et6BfjnpI5e/gOK?=
- =?us-ascii?Q?bsYFKSCEid5tTuyBg0W/IE5/vsunIvXAE80jfPFHI/eoxkeRgj1WqBIBZv/D?=
- =?us-ascii?Q?f5O2c6LiNqePk5uYUuNnRYBJLuoU+ZQKUt80iOCu72Xns7ytUPzEL+tgp3CD?=
- =?us-ascii?Q?XssP08sVQxsGt0VX2TCeDdviCdvj4iNNllQIISES6qyL6ooplOnG1CrKBn+1?=
- =?us-ascii?Q?inDn97Ucdol8P5PmdLaOszjCD0nv3eCn6FZOXWB37JrmdqNyaMXbUT8E9mxf?=
- =?us-ascii?Q?A/fbkikD7Ms++NbHL1dn3wlH+BHIkfvd19O0CGQVBLVceAt+NDpstzf3yJLX?=
- =?us-ascii?Q?tAPb43e7F6PzxK6aJuZkGG1p5OVD3YgoocDUNs6MZIdUFptGhncfo+FfSGx4?=
- =?us-ascii?Q?5X7PXmD9l3OrAhJK9h69ApYUwIuTBvhU5gJv6/5JmCAmw95CUIUr6B8sYnC/?=
- =?us-ascii?Q?v7sp3rEBpJwUpE7EN7pjYV/jiGh1bmXUCfLZXWUs+yhKM3FtWLGZ5IepAuds?=
- =?us-ascii?Q?IneLWIjVgMszD1NstZRWxadvTjp6NKUupJaDPrPwloZK0GhV2Ad7ZM73XV1l?=
- =?us-ascii?Q?4xn+FpK6AbjaeWREobxY1EAdn+20HRtNTjvJuEgHEkjcunMdyPWaWsDwNXPo?=
- =?us-ascii?Q?PM1SEomZAy+SmYnC3LiySBZFaUANsJJZ7O609MJYD2Kn9wS+jKbYWRRuBR2K?=
- =?us-ascii?Q?b+sDynpTDr+jN3xTTQ8IRN2iUwX3BAWlKkwdFECn5UoXbnkPB+jkpPpYL1B8?=
- =?us-ascii?Q?DXe/49MYKu3weFZYBSMvOcF0/pl3s1Q9gEnilsCCe70BMl2/xUTCqqwn6ymr?=
- =?us-ascii?Q?WTG7dQx7I/mcG/iC80v2Ry/VvRgX+R6bmS8jwNeKMqw6HlOQt3DNZXgFiuzR?=
- =?us-ascii?Q?1WitPGUqqhgqkoxiHXqdyBt/xkRLGkB49SCKudpyrGBl50HFkHBKajo/iroI?=
- =?us-ascii?Q?Unv5M3F68Btfg25/7bDoq1Y3M06NWbhWwhu2bwhsVnqBz+k38iwQJwB5lrWT?=
- =?us-ascii?Q?mAFCr7QRk2Blxh8tUb4dN2/paHmcYlJ8MSPF/b+fMYH30+IR2dncSEsJt0cj?=
- =?us-ascii?Q?hFiSVQLU4ZRk0mMlsVN+Dm+wHb7ah2IupofLF3i0EqqUmrNMtssjB8+fxS1f?=
- =?us-ascii?Q?CeyTQ/TlREu/+m7QCTDBzidxfYUDH7vjW0dE5G8387U7AgOMhw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2P216MB2337.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ZcBcOWcQRIDOZWibUjvU1zqBAufaBjyez1CO2iO+iO8aaLNyYOLVdacqKDhi?=
- =?us-ascii?Q?dAqr/504v1gHgQ9D8iuhdwu2IQH0hxbGRQqRTByLrS+hfCbh09E3WvtQ84FG?=
- =?us-ascii?Q?IxHIyaQInau9srLWquxtxb2X2qCh/70T3IDdWpBzRkp7Ssyc6cysdsYr6Eg9?=
- =?us-ascii?Q?nUTSREmF5dGHGddhWu/Awiwiuu4Nkn6sY+u17SVKZd1XFsm275A1RXHI8ODY?=
- =?us-ascii?Q?cJ7SRuKA/lUOGzKFj7HeTA9/fOp8pF2reWE3IGUXh+otEDUof36o3HdN5aPO?=
- =?us-ascii?Q?+nPFfH3qk32/SB5U2CSbhpzagIQcUTfaqhzgQrnLYqYG5zJ6xmUDboCukEB3?=
- =?us-ascii?Q?K4/pzndu3/zAE6tsOTwY7lK9kQzlWQh3nU8hl0bveH8hC5XrVJY+MqYhzROU?=
- =?us-ascii?Q?QfXB89+jSJeWnKDS/eTPiEyohKXPuWa980ehdsWgG6BpI3QcLUipG0CcUpGG?=
- =?us-ascii?Q?chKxGmY45tJZdtJXdtWNVU2ErMivxTsZMYPNVMr6s4F8TDzMgZHjeP523ZlC?=
- =?us-ascii?Q?gazmRrafIb5WcKx0agR9eum8sp3QzFF837uzRDcVhlSl+mxHYQ3KdQJuCHC6?=
- =?us-ascii?Q?ul9IeTbXU8Ibpj+rmkqNJoKjXKPGTWWYuPI5sB8PHyaQ9tEonvlQxR7x893Y?=
- =?us-ascii?Q?9OLs7fPM8yDxAsI6c532FVJT68BuY5AZ2+44qIX3Z3GqhDUUZLX1qtf49drV?=
- =?us-ascii?Q?ryTS5gpsa0hp9S0q0riW3QTyv3CdPsg9rTg7qkWs+ChAEZxCtFEAUzoc+P2b?=
- =?us-ascii?Q?5SbwU9/7w+5ZgJzTxPAmGnVoboS7BjNmkmvnIGJtbORWyfbi+eB2y8IWkiab?=
- =?us-ascii?Q?451vAyBMrgI2JRZKgoJgPDUdoMpV1R2ucJOcs4y/helkrgFR5/SQBQw9cg2b?=
- =?us-ascii?Q?xhUmjUyAqGf1KHPPWvlGeK9S48lZFVKzgDgVFiWge/ZD6nSvBF/PDPnEbc/Q?=
- =?us-ascii?Q?/hskX4V4Lu01QabPmE8CMcF1a7UX8vpZs1lhSKMPQh54MKUhFQWmAx+xEKPC?=
- =?us-ascii?Q?e+QlL6KcEUbU2loY8SuJtmZkj3w3IW+Vf6abBtRVuChYC0NB657UaDJHIG/Y?=
- =?us-ascii?Q?8Ps/GOO7//QxOugrHHRlBYN03yaeJLwpBKDFlr0MElmyNW6SHegJj194Q/di?=
- =?us-ascii?Q?EurOynHIfI0BkIZmglVdE4o/f53HFWExBmS1JvCaRaxSMhKbitlGYvnwdycQ?=
- =?us-ascii?Q?pa3FCijDrfHrDIKooHJ4ktgzj5odEudP9dDkYmelR1C33xU/gr0XrHWEUXCr?=
- =?us-ascii?Q?WdqNyZfmI3us8NmrJJzZIh/dCp3bclVjBQ/I6SsEx0vdxDPAO5dX7ecbOjZP?=
- =?us-ascii?Q?PbBKT3WDZvv57ObacvHMjdDKRwm4cRR6m75dLwoM8mwaoDJVXDGbraKRL+fb?=
- =?us-ascii?Q?zRCOIQbe1dw9woUYTzu5WJx1bhGLUFK8MDiETp3swAPKSJQ15SvSmnQpk2Hn?=
- =?us-ascii?Q?xEmM0PJivnAzL2IfSmDwZP9vm1ySjGMgRGYei6ArSigp8VKp3Dx9I3gqqK3+?=
- =?us-ascii?Q?5/H7vkASZYYcUKtzgZOWKi+fKFzEfYS8OhnECuuPcfQqsp2JPuLRHPn5WD/3?=
- =?us-ascii?Q?E7iw4DXDgDrPvwEJDKOZUTfSMOeoIqSXYolvITID?=
-X-OriginatorOrg: irondevice.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6bfa86c-b495-4ae2-64c3-08dccbdb8b2e
-X-MS-Exchange-CrossTenant-AuthSource: SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2024 05:44:57.4746
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b4849faa-3337-494e-a76a-cb25a3b3d7d1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i4rB+XBkUhovSg1V0nLwak5OhklDRwxSCO0ZjqFj2g4KlAUjXSdMT7VTu3T2sTJLzz/7GFhNiGK3fwnV5s5cqYRt0i0b7KFrTHAEX4l4D4k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1P216MB1543
+X-ZohoMailClient: External
 
-Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
----
- .../ABI/testing/sysfs-bus-i2c-devices-sma1307   | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-sma1307
-
-diff --git a/Documentation/ABI/testing/sysfs-bus-i2c-devices-sma1307 b/Documentation/ABI/testing/sysfs-bus-i2c-devices-sma1307
-new file mode 100644
-index 000000000..8046d8bfc
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-i2c-devices-sma1307
-@@ -0,0 +1,17 @@
-+What:		/sys/bus/i2c/.../check_fault_period
-+Date:		August, 2024
-+KernelVersion:	6.12
-+Contact:	Kiseok Jo <kiseok.jo@irondevice.com>
-+Description:
-+		Value for the polling interval to check the device status.
-+		The unit is seconds, and the default value is set to 1 second.
-+
-+What:		/sys/bus/i2c/.../check_fault_status
-+Date:		August, 2024
-+KernelVersion:	6.12
-+Contact:	Kiseok Jo <kiseok.jo@irondevice.com>
-+Description:
-+		To check the device status, the device's status value is read
-+		perodically. This value determines whether the operation is
-+		enabled or disabled. The default value is 1(true), and to
-+		disable it, set the value to 0(false).
--- 
-2.39.2
+5ZyoIDIwMjQtMDktMDHmmJ/mnJ/ml6XnmoQgMTM6MjEgKzAxMDDvvIxQZXRlciBSb2JpbnNvbuWG
+memBk++8mgo+IEVuYWJsZSB0aGUgcnRsODcyM2JzIFdpRmkvQlQgbW9kdWxlcyBvbiB0aGUgUGlu
+ZTY0LgoKSSB0aGluayB0aGUgbWFpbnRhaW5lciBwcmV2aW91c2x5IHByZWZlciB0byBlbmFibGUg
+dGhlc2UgbW9kdWxlcyB3aXRoCkRUIG92ZXJsYXlzLgoKPiAKPiBTaWduZWQtb2ZmLWJ5OiBQZXRl
+ciBSb2JpbnNvbiA8cGJyb2JpbnNvbkBnbWFpbC5jb20+Cj4gLS0tCj4gwqAuLi4vYm9vdC9kdHMv
+YWxsd2lubmVyL3N1bjUwaS1hNjQtcGluZTY0LmR0c8KgwqDCoCB8IDE3Cj4gKysrKysrKysrKysr
+KysrKy0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0p
+Cj4gCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYWxsd2lubmVyL3N1bjUwaS1h
+NjQtcGluZTY0LmR0cwo+IGIvYXJjaC9hcm02NC9ib290L2R0cy9hbGx3aW5uZXIvc3VuNTBpLWE2
+NC1waW5lNjQuZHRzCj4gaW5kZXggZjA0ZjBmMWJhZGM0Li4xZDUxNDg1OWU2NjQgMTAwNjQ0Cj4g
+LS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9hbGx3aW5uZXIvc3VuNTBpLWE2NC1waW5lNjQuZHRz
+Cj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbGx3aW5uZXIvc3VuNTBpLWE2NC1waW5lNjQu
+ZHRzCj4gQEAgLTEzOCw2ICsxMzgsMTQgQEAgJm1tYzEgewo+IMKgwqDCoMKgwqDCoMKgwqBtbWMt
+cHdyc2VxID0gPCZ3aWZpX3B3cnNlcT47Cj4gwqDCoMKgwqDCoMKgwqDCoGJ1cy13aWR0aCA9IDw0
+PjsKPiDCoMKgwqDCoMKgwqDCoMKgbm9uLXJlbW92YWJsZTsKPiArwqDCoMKgwqDCoMKgwqBzdGF0
+dXMgPSAib2theSI7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoHJ0bDg3MjNiczogd2lmaUAxIHsKPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVnID0gPDE+Owo+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1cHQtcGFyZW50ID0gPCZyX3Bpbz47Cj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVycnVwdHMgPSA8MCAzIElSUV9UWVBFX0xFVkVMX0xP
+Vz47IC8qIFBMMyAqLwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1cHQt
+bmFtZXMgPSAiaG9zdC13YWtlIjsKPiArwqDCoMKgwqDCoMKgwqB9Owo+IMKgfTsKPiDCoAo+IMKg
+Jm9oY2kwIHsKPiBAQCAtMzAzLDcgKzMxMSwxNCBAQCAmdWFydDEgewo+IMKgwqDCoMKgwqDCoMKg
+wqBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+IMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAg
+PSA8JnVhcnQxX3BpbnM+LCA8JnVhcnQxX3J0c19jdHNfcGlucz47Cj4gwqDCoMKgwqDCoMKgwqDC
+oHVhcnQtaGFzLXJ0c2N0czsKPiAtwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlzYWJsZWQiOwo+
+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiArCj4gK8KgwqDCoMKgwqDCoMKgYmx1
+ZXRvb3RoIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJy
+ZWFsdGVrLHJ0bDg3MjNicy1idCI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRl
+dmljZS13YWtlLWdwaW9zID0gPCZyX3BpbyAwIDYgR1BJT19BQ1RJVkVfSElHSD47IC8qCj4gUEw2
+ICovCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVuYWJsZS1ncGlvcyA9IDwmcl9w
+aW8gMCA0IEdQSU9fQUNUSVZFX0hJR0g+OyAvKiBQTDQKPiAqLwo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBob3N0LXdha2UtZ3Bpb3MgPSA8JnJfcGlvIDAgNSBHUElPX0FDVElWRV9I
+SUdIPjsgLyoKPiBQTDUgKi8KPiArwqDCoMKgwqDCoMKgwqB9Owo+IMKgfTsKPiDCoAo+IMKgLyog
+T24gUGktMiBjb25uZWN0b3IgKi8KCg==
 
 
