@@ -1,106 +1,392 @@
-Return-Path: <devicetree+bounces-99312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66299696EF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:24:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A05B9969707
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:28:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50F961F25234
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:24:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27D341F24FCA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6698201246;
-	Tue,  3 Sep 2024 08:24:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7834A205E08;
+	Tue,  3 Sep 2024 08:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="MUQkk+NS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MeZDbgvX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F091845003
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 08:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF43205E07;
+	Tue,  3 Sep 2024 08:28:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725351857; cv=none; b=OAZ8Yf/seQLvsy9kojnNzZ9xEK+Nab9UkfVu1Ziv4LEH5BouTJ+96Ev9y1R1nMQVEinuu3X9RJ/tlEIlilyeCET6YobQr4m+9nZLZfIaYXDMMYn2uYq3oXGKY2ln+N869A4VptubICovgjEp56UDDR4JAAp1sgJ4ICNJ1VLh4t4=
+	t=1725352092; cv=none; b=KgXGkmJpYLxkxGCXLvcyBU1HsmbcO97DGsYB8FZlY75Ryab/mzhzjuQGMqWGbXTSgLfCuwYeLy4nPjPjHhI6rTovsLFCDoDuoEYBJ+kVEQkmAFSThl4huC5yusaX4SBfAEAS589sAzMX89/RcV+sXHXiyiOL7rkJzW8Xc5Uv/n8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725351857; c=relaxed/simple;
-	bh=UBRsMMFSNOoxQTn48bmNg+UTpYlav4KfZZr9VG/9Jmk=;
+	s=arc-20240116; t=1725352092; c=relaxed/simple;
+	bh=2vmO40whD4KxOuL/zfxgcoBdpoYt/RmIIPf8OfLz+k0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dyNnw4k/szIy7ehrEO2dwcuhz/DiYeVR6Ids5o1RFGb0lMFvQkGiLKBxfFjm3qYzNJ+xR8Pi+KHq6+4exIOSI+hrORb4BYT9ePSyJxa2PsHdFAU9FCs1pOYDgZrqHfW91sF7evwwdqLSzARwUL7YMSGfooxYXm9JdcmJPiyH6q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=MUQkk+NS; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=hHIbKMU0eFVSQhOkA6x7aazhokgZoPN9lZRG1jFjLro=;
-	b=MUQkk+NS2Fqisce3rXkZVzoeWHg2q8CI8WwxKsyCkM6ywdWtasfeXKDCeZE4we
-	yrDYBXIJe4EhFkl+IJXInVYukCGkFjDtu1KZqqyAcNU0o7qgzAyMfMjMAOWxspHH
-	S/aSPf8NkzL58UcWAno2Zme6FMuOv7/CS8guGJ/PVTkSY=
-Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3D1mLx9ZmnJ9bAA--.64487S3;
-	Tue, 03 Sep 2024 16:23:41 +0800 (CST)
-Date: Tue, 3 Sep 2024 16:23:39 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, lukma@denx.de,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] ARM: dts: imx23/8: Rename apbh and apbx nodes
-Message-ID: <ZtbHi+vWQHIhBM3X@dragon>
-References: <20240828194919.3192996-1-festevam@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mU2VMkXN0JMg5aq4j08txefGovALtiBm77O3+BhXBY0HwoP/LvkD+eTt0ATLYPfumy33GMZy2k2arKKgieFBEieS8cv8K8LfchUh3GtBXPJTiHPP6N+dO2jdw6s5bS6x0liKLYjp5dQvwR6eI1AKrFds7bJvL09PtzKb0YM8npw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MeZDbgvX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5332DC4CEC4;
+	Tue,  3 Sep 2024 08:28:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725352091;
+	bh=2vmO40whD4KxOuL/zfxgcoBdpoYt/RmIIPf8OfLz+k0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MeZDbgvXqgpBINkwUE7Q2/jfrapSbjC0vcAZpuaOfHvkC+OzfEGLUlitfja8TmTfp
+	 FVUXbiL7wVUohsqotNV8e7CAMGaq57HIyjRwzDU6BgZGBxqNyNNMS10BV0gvzlrFUm
+	 cTWoHt3RQTUgE5X/dO+oEWeaxHKRUN9x7sCis+bhX8gA5FwX8vQwDmsnF8mTnaaADE
+	 sPad2WNRJdxauvpQ1IdVxBqJyhkdrkuLPTTvZ0FqbWm4XCA7ZAtdJGivzhzjNWRSl1
+	 vHV6ZKRh4LeHWni2kMkrDs1PeBUyJAEBkikbquDEXy9dN4c4Z1JitLQdM208eCwORB
+	 qZjiUE3UWx7Og==
+Date: Tue, 3 Sep 2024 10:28:09 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Sandor Yu <sandor.yu@nxp.com>
+Cc: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>, 
+	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, "airlied@gmail.com" <airlied@gmail.com>, 
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
+	"vkoul@kernel.org" <vkoul@kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
+	dl-linux-imx <linux-imx@nxp.com>, Oliver Brown <oliver.brown@nxp.com>, 
+	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, "sam@ravnborg.org" <sam@ravnborg.org>
+Subject: Re: [PATCH v16 4/8] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+Message-ID: <20240903-gay-capable-hound-3cbef2@houat>
+References: <cover.1719903904.git.Sandor.yu@nxp.com>
+ <359914108b879e995d4a39de32a33310009f0fab.1719903904.git.Sandor.yu@nxp.com>
+ <20240702-quartz-salamander-of-culture-eec264@houat>
+ <PAXPR04MB94480AB0490BBF00D2BA17BBF4932@PAXPR04MB9448.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="7aicz37iwjniln2o"
 Content-Disposition: inline
-In-Reply-To: <20240828194919.3192996-1-festevam@gmail.com>
-X-CM-TRANSID:Mc8vCgD3D1mLx9ZmnJ9bAA--.64487S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJryrZF4fWr1fCF4rWF18AFb_yoW8Gryfpw
-	17ArZrKr4xGFyfKa4DXrWvgF15Aa1rAFn5ZFs8tw17Jrn3ZFyYqrn2yasxtry8WF4rX3WI
-	9wn3u3WIyw15u3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j7db8UUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxtPZWbWfG72ggAAss
+In-Reply-To: <PAXPR04MB94480AB0490BBF00D2BA17BBF4932@PAXPR04MB9448.eurprd04.prod.outlook.com>
 
-On Wed, Aug 28, 2024 at 04:49:19PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> According to simple-bus.yaml, apbh and apbx are not valid bus names.
-> 
-> Rename them to apbh-bus and apbx-bus to fix the following dt-schema
-> warnings:
-> 
-> 'apbh@80000000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-> 'apbx@80040000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  arch/arm/boot/dts/nxp/mxs/imx23-evk.dts           | 4 ++--
->  arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts     | 4 ++--
->  arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts         | 4 ++--
->  arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts | 4 ++--
->  arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts          | 4 ++--
->  arch/arm/boot/dts/nxp/mxs/imx23.dtsi              | 4 ++--
->  arch/arm/boot/dts/nxp/mxs/imx28-cfa10037.dts      | 2 +-
 
-I think imx28-cfa10037.dts missed the change below.
-@@ -14,7 +14,7 @@ / {
-        compatible = "crystalfontz,cfa10037", "crystalfontz,cfa10036", "fsl,imx28";
- 
-        apb@80000000 {
--               apbh@80000000 {
-+               apbh-bus@80000000 {
-                        pinctrl@80018000 {
-                                usb_pins_cfa10037: usb-10037@0 {
-                                        reg = <0>;
+--7aicz37iwjniln2o
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I fixed it up.
+On Tue, Sep 03, 2024 at 06:07:25AM GMT, Sandor Yu wrote:
+> Hi Maxime,
+>=20
+> Thanks for your comments,
+>=20
+> > -----Original Message-----
+> > From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of
+> > Maxime Ripard
+> > Sent: 2024=E5=B9=B47=E6=9C=882=E6=97=A5 21:25
+> > To: Sandor Yu <sandor.yu@nxp.com>
+> > Cc: dmitry.baryshkov@linaro.org; andrzej.hajda@intel.com;
+> > neil.armstrong@linaro.org; Laurent Pinchart
+> > <laurent.pinchart@ideasonboard.com>; jonas@kwiboo.se;
+> > jernej.skrabec@gmail.com; airlied@gmail.com; daniel@ffwll.ch;
+> > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+> > vkoul@kernel.org; dri-devel@lists.freedesktop.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org;
+> > kernel@pengutronix.de; dl-linux-imx <linux-imx@nxp.com>; Oliver Brown
+> > <oliver.brown@nxp.com>; alexander.stein@ew.tq-group.com;
+> > sam@ravnborg.org
+> > Subject: [EXT] Re: [PATCH v16 4/8] drm: bridge: Cadence: Add MHDP8501
+> > DP/HDMI driver
+> >=20
+> > Hi,
+> >=20
+> > There's still the scrambler issue we discussed on v15, but I have some =
+more
+> > comments.
+> >=20
+> > On Tue, Jul 02, 2024 at 08:22:36PM GMT, Sandor Yu wrote:
+> > > +enum drm_connector_status cdns_mhdp8501_detect(struct
+> > > +cdns_mhdp8501_device *mhdp) {
+> > > +	u8 hpd =3D 0xf;
+> > > +
+> > > +	hpd =3D cdns_mhdp8501_read_hpd(mhdp);
+> > > +	if (hpd =3D=3D 1)
+> > > +		return connector_status_connected;
+> > > +	else if (hpd =3D=3D 0)
+> > > +		return connector_status_disconnected;
+> > > +
+> > > +	dev_warn(mhdp->dev, "Unknown cable status, hdp=3D%u\n", hpd);
+> > > +	return connector_status_unknown;
+> > > +}
+> > > +
+> > > +static void hotplug_work_func(struct work_struct *work) {
+> > > +	struct cdns_mhdp8501_device *mhdp =3D container_of(work,
+> > > +						     struct cdns_mhdp8501_device,
+> > > +						     hotplug_work.work);
+> > > +	enum drm_connector_status status =3D cdns_mhdp8501_detect(mhdp);
+> > > +
+> > > +	drm_bridge_hpd_notify(&mhdp->bridge, status);
+> > > +
+> > > +	if (status =3D=3D connector_status_connected) {
+> > > +		/* Cable connected  */
+> > > +		DRM_INFO("HDMI/DP Cable Plug In\n");
+> > > +		enable_irq(mhdp->irq[IRQ_OUT]);
+> > > +	} else if (status =3D=3D connector_status_disconnected) {
+> > > +		/* Cable Disconnected  */
+> > > +		DRM_INFO("HDMI/DP Cable Plug Out\n");
+> > > +		enable_irq(mhdp->irq[IRQ_IN]);
+> > > +	}
+> > > +}
+> >=20
+> > You shouldn't play with the interrupt being enabled here: hotplug inter=
+rupts
+> > should always enabled.
+> >=20
+> > If you can't for some reason, the reason should be documented in your d=
+river.
+>=20
+> iMX8MQ have two HPD interrupters, one for plugout and the other for plugi=
+n,
+> because they could not be masked, so we have to enable one and disable th=
+e other.
+> I will add more comments here.
 
-Shawn
+Right, but why do you need to enable and disable them? Do you get
+spurious interrupts?
 
->  arch/arm/boot/dts/nxp/mxs/imx28.dtsi              | 4 ++--
->  8 files changed, 15 insertions(+), 15 deletions(-)
+> >=20
+> > > +	/* Mailbox protect for HDMI PHY access */
+> > > +	mutex_lock(&mhdp->mbox_mutex);
+> > > +	ret =3D phy_init(mhdp->phy);
+> > > +	mutex_unlock(&mhdp->mbox_mutex);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "Failed to initialize PHY: %d\n", ret);
+> > > +		goto clk_disable;
+> > > +	}
+> > > +
+> > > +	/* Mailbox protect for HDMI PHY access */
+> > > +	mutex_lock(&mhdp->mbox_mutex);
+> > > +	ret =3D phy_set_mode(mhdp->phy, phy_mode);
+> > > +	mutex_unlock(&mhdp->mbox_mutex);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "Failed to configure PHY: %d\n", ret);
+> > > +		goto clk_disable;
+> > > +	}
+> >=20
+> > Why do you need a shared mutex between the phy and HDMI controller?
+>=20
+> Both PHY and HDMI controller could access to the HDMI firmware by mailbox,
+> So add mutex to avoid race condition.
 
+That should be handled at either the phy or mailbox level, not in your
+hdmi driver.
+
+> >=20
+> > > +static enum drm_mode_status
+> > > +cdns_hdmi_tmds_char_rate_valid(const struct drm_bridge *bridge,
+> > > +			       const struct drm_display_mode *mode,
+> > > +			       unsigned long long tmds_rate) {
+> > > +	struct cdns_mhdp8501_device *mhdp =3D bridge->driver_private;
+> > > +	union phy_configure_opts phy_cfg;
+> > > +	int ret;
+> > > +
+> > > +	phy_cfg.hdmi.tmds_char_rate =3D tmds_rate;
+> > > +
+> > > +	/* Mailbox protect for HDMI PHY access */
+> > > +	mutex_lock(&mhdp->mbox_mutex);
+> > > +	ret =3D phy_validate(mhdp->phy, PHY_MODE_HDMI, 0, &phy_cfg);
+> > > +	mutex_unlock(&mhdp->mbox_mutex);
+> > > +	if (ret < 0)
+> > > +		return MODE_CLOCK_RANGE;
+> > > +
+> > > +	return MODE_OK;
+> > > +}
+> > > +
+> > > +static enum drm_mode_status
+> > > +cdns_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
+> > > +			    const struct drm_display_info *info,
+> > > +			    const struct drm_display_mode *mode) {
+> > > +	unsigned long long tmds_rate;
+> > > +
+> > > +	/* We don't support double-clocked and Interlaced modes */
+> > > +	if (mode->flags & DRM_MODE_FLAG_DBLCLK ||
+> > > +	    mode->flags & DRM_MODE_FLAG_INTERLACE)
+> > > +		return MODE_BAD;
+> > > +
+> > > +	/* MAX support pixel clock rate 594MHz */
+> > > +	if (mode->clock > 594000)
+> > > +		return MODE_CLOCK_HIGH;
+> >=20
+> > This needs to be in the tmds_char_rate_valid function
+> This clock rate check is covered by function tmds_char_rate_valid()
+> It could be removed if keep function tmds_char_rate_valid() be called by =
+mode_valid.
+
+Yeah, it's not something you should have to duplicate.
+
+> >=20
+> > > +	if (mode->hdisplay > 3840)
+> > > +		return MODE_BAD_HVALUE;
+> > > +
+> > > +	if (mode->vdisplay > 2160)
+> > > +		return MODE_BAD_VVALUE;
+> > > +
+> > > +	tmds_rate =3D mode->clock * 1000ULL;
+> > > +	return cdns_hdmi_tmds_char_rate_valid(bridge, mode, tmds_rate);
+> >=20
+> > It will already be called by the core so this is redundant.
+>=20
+> mode_valid function is use to filter the mode list in drm_helper_probe_si=
+ngle_connector_modes(),
+> if function cdns_hdmi_tmds_char_rate_valid() is not called, unsupported m=
+odes will in mode list.
+
+It's probably something we should deal with in the core somehow. I'm not
+entirely sure how to reconcile drm_bridge_connector and the hdmi
+framework there, but we should at the very least provide a mode_valid
+helper for bridges.
+
+> >=20
+> > > +static void cdns_hdmi_bridge_atomic_enable(struct drm_bridge *bridge,
+> > > +					   struct drm_bridge_state *old_state) {
+> > > +	struct cdns_mhdp8501_device *mhdp =3D bridge->driver_private;
+> > > +	struct drm_atomic_state *state =3D old_state->base.state;
+> > > +	struct drm_connector *connector;
+> > > +	struct video_info *video =3D &mhdp->video_info;
+> > > +	struct drm_crtc_state *crtc_state;
+> > > +	struct drm_connector_state *conn_state;
+> > > +	struct drm_display_mode *mode =3D &mhdp->mode;
+> > > +	union phy_configure_opts phy_cfg;
+> > > +	int ret;
+> > > +
+> > > +	connector =3D drm_atomic_get_new_connector_for_encoder(state,
+> > > +							     bridge->encoder);
+> > > +	if (WARN_ON(!connector))
+> > > +		return;
+> > > +
+> > > +	mhdp->curr_conn =3D connector;
+> > > +
+> > > +	conn_state =3D drm_atomic_get_new_connector_state(state, connector);
+> > > +	if (WARN_ON(!conn_state))
+> > > +		return;
+> > > +
+> > > +	crtc_state =3D drm_atomic_get_new_crtc_state(state, conn_state->crt=
+c);
+> > > +	if (WARN_ON(!crtc_state))
+> > > +		return;
+> > > +
+> > > +	video->color_fmt =3D conn_state->hdmi.output_format;
+> > > +	video->bpc =3D conn_state->hdmi.output_bpc;
+> > > +
+> > > +	drm_mode_copy(&mhdp->mode, &crtc_state->adjusted_mode);
+> >=20
+> > Why do you need a copy of all these fields? You should pass the connect=
+or /
+> > bridge state around and not copy these fields.
+> >=20
+> OK, mode will be removed, and it will replace by drm_connector_state.
+>=20
+> > > +	/* video mode check */
+> > > +	if (mode->clock =3D=3D 0 || mode->hdisplay =3D=3D 0 || mode->vdispl=
+ay =3D=3D 0)
+> > > +		return;
+> >=20
+> > This should be checked in atomic_check, but I'm pretty sure it's redund=
+ant.
+> OK, It will be removed.
+> >=20
+> > > +	dev_dbg(mhdp->dev, "Mode: %dx%dp%d\n",
+> > > +		mode->hdisplay, mode->vdisplay, mode->clock);
+> > > +
+> > > +	drm_atomic_helper_connector_hdmi_update_infoframes(connector,
+> > > +state);
+> > > +
+> > > +	/* Line swapping */
+> > > +	cdns_mhdp_reg_write(&mhdp->base, LANES_CONFIG, 0x00400000 |
+> > > +mhdp->lane_mapping);
+> > > +
+> > > +	mhdp->hdmi.char_rate =3D drm_hdmi_compute_mode_clock(mode,
+> > > +							   mhdp->video_info.bpc,
+> > > +							   mhdp->video_info.color_fmt);
+> >=20
+> > The TMDS char rate is already available in the connector_state so there=
+ no
+> > need to recompute it.
+> >=20
+> > > +	phy_cfg.hdmi.tmds_char_rate =3D mhdp->hdmi.char_rate;
+> >=20
+> > And you shouldn't store a copy either.
+> OK, variable char_rate will be removed and will use the drm_connector_sta=
+te-> hdmi.tmds_char_rate
+>=20
+> >=20
+> > > +	/* Mailbox protect for HDMI PHY access */
+> > > +	mutex_lock(&mhdp->mbox_mutex);
+> > > +	ret =3D phy_configure(mhdp->phy, &phy_cfg);
+> > > +	mutex_unlock(&mhdp->mbox_mutex);
+> > > +	if (ret) {
+> > > +		dev_err(mhdp->dev, "%s: phy_configure() failed: %d\n",
+> > > +			__func__, ret);
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	cdns_hdmi_sink_config(mhdp);
+> > > +
+> > > +	ret =3D cdns_hdmi_ctrl_init(mhdp);
+> > > +	if (ret < 0) {
+> > > +		dev_err(mhdp->dev, "%s, ret =3D %d\n", __func__, ret);
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	/* Config GCP */
+> > > +	if (mhdp->video_info.bpc =3D=3D 8)
+> > > +		cdns_hdmi_disable_gcp(mhdp);
+> > > +	else
+> > > +		cdns_hdmi_enable_gcp(mhdp);
+> > > +
+> > > +	ret =3D cdns_hdmi_mode_config(mhdp, mode, &mhdp->video_info);
+> > > +	if (ret < 0) {
+> > > +		dev_err(mhdp->dev, "CDN_API_HDMITX_SetVic_blocking ret
+> > =3D %d\n", ret);
+> > > +		return;
+> > > +	}
+> > > +}
+> > > +
+> > > +static int cdns_hdmi_bridge_clear_infoframe(struct drm_bridge *bridg=
+e,
+> > > +					    enum hdmi_infoframe_type type) {
+> > > +	return 0;
+> > > +}
+> >=20
+> > Either implement it or don't, but an empty function is dead code.
+> Must have function hdmi_clear_infoframe when set DRM_BRIDGE_OP_HDMI flag =
+in &drm_bridge->ops,=20
+> otherwise the drm_bridge_connector_init() will fail.
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/=
+drivers/gpu/drm/drm_bridge_connector.c?h=3Dnext-20240902#n419
+
+That's a strong hint that you should implement it, not workaround it :)
+
+Maxime
+
+--7aicz37iwjniln2o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZtbImAAKCRAnX84Zoj2+
+dgGHAX9FDkhLFPtquyrUMgxPr9xY0ivsn0sWmHUKQ09hJXUEoHtpdPatT0QCOvzV
+2AKWQMoBf0z6Lm15+lli3Igf3sSvOanU7WV5rlMuAlOiL8GCrKGv4Rcsvk04mUJP
+0YTWhKrakw==
+=IrmI
+-----END PGP SIGNATURE-----
+
+--7aicz37iwjniln2o--
 
