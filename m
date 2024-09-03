@@ -1,126 +1,112 @@
-Return-Path: <devicetree+bounces-99307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382C89696B3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:16:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBD199696CB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:18:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA864281DE2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:16:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91F741F26D01
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 977621DAC5F;
-	Tue,  3 Sep 2024 08:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCE0205E2F;
+	Tue,  3 Sep 2024 08:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kYE/ijij"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N3NnP+NE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E922519C562;
-	Tue,  3 Sep 2024 08:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7FC205E2E;
+	Tue,  3 Sep 2024 08:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725351371; cv=none; b=IgXmecR4srzohG7zgkGfPC6/wAZYaQkjjn+mUtLiWxYMAl1iRM+wV1SXdREPaEZp4JGZh4eTbysbGEJnvXnXleMTLK0Yj/zH6+vLHGtvRRQZs/pkNUOy/6DmNyiQ+lQntbcriByai3OrggqxiPJuTXf6Xmwo68KpV1SC/hngbiA=
+	t=1725351455; cv=none; b=mbtGYzI8kwZL931ZEMWpczZilVoDQaamha3S8nQtS278VQ63WPMbBnmqaC1agsLF9+/WBBH/E/I6gSoqv5DHtFFE+KXyDzJ9E97AYPPlslw8C8WVi5GqlbzzsWcTENYOeAWTJKh9GUuofRndOqK3+3IFtCupx4n4fSL4HrzKgZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725351371; c=relaxed/simple;
-	bh=Lcee6+sOVA87hrJeKC4oisQYXFgVo1X5IP6lYlxWxNE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O6jgYmZh3H3yiPHsfoZCYGnOZNHqt99hkiEGZfX0lmuxO7K4cyskNM7haLkTmtEoZHNQFuCtYs9Yf5JRHBwBDDGaMAZjn+gEJtALmqGrLacyUxXbC5bbMBrgXdVkq+LTOm/FR2wbG6tkbZ3JEewhed/b3CngmQRinPCC4M2/kEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kYE/ijij; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4838G3PA050684;
-	Tue, 3 Sep 2024 03:16:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725351363;
-	bh=JXEDvySkzYxZUupzmkZp26uSUZx+30Vm4A8Rk8NYurs=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=kYE/ijijR3CjOACnLU2dqSIH+sBRMmbt4kdsc9Uwry5KQovl+0zwEijWAf9VMcfeD
-	 nET8G60zHbImZzTVmeNaCQoEbtADtWqgzj7l247sVPwZOshNr+lSGUgNoMaf1v4tvI
-	 oyXFQY4LKY4IQBn1uzpX+bJ9W4uwPLI8NRtB1emo=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4838G3bj025888;
-	Tue, 3 Sep 2024 03:16:03 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Sep 2024 03:16:02 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Sep 2024 03:16:02 -0500
-Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4838G1Wd066175;
-	Tue, 3 Sep 2024 03:16:02 -0500
-Date: Tue, 3 Sep 2024 13:46:01 +0530
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
-        Neha Malcom
- Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
-	<b-padhi@ti.com>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>
-Subject: Re: [PATCH v6 2/5] arm64: dts: ti: Refactor J784s4-evm to a common
- file
-Message-ID: <20240903081601.msfrnt77otpahjxi@uda0497581>
-References: <20240902-b4-upstream-j742s2-v6-0-6a7aa2736797@ti.com>
- <20240902-b4-upstream-j742s2-v6-2-6a7aa2736797@ti.com>
- <4avtzi22ue6nfusdrvyl2x3apwjgmuwa246qu5kh2dk2fdb4si@hka6nygye75z>
+	s=arc-20240116; t=1725351455; c=relaxed/simple;
+	bh=mEX9tnWXR3cFtbYXouRT5ym7a1wznmHwUZEiyP3DrSo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Bt+IdAiHBrmUCaSD8SQd11mtKr9Nvu0zgCALfK1BMqd0CHUlX5ieEYFigqnmIOtvamcLbsjNKqd1TshD1CQfwK3NDzsw+TH+KX1gTMtQxTpIrdcPqudAhjs3AxebnoXu8Wjx+TjBg4ttS/Z+Pu/nlXWRX9ToydVlZiEdvwl52TE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N3NnP+NE; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 14F6420005;
+	Tue,  3 Sep 2024 08:17:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725351447;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zmIXjpJKzCn9i7GqnQZIA4OaYjs0BIH0eFIXR+EDLa4=;
+	b=N3NnP+NEASy/fL3DgTJHSr+WS4uuGObddxciJCx/iFaHtQtqzUJOVUSisDYvke3jaHiGjB
+	RltDyu0W+ALqfsWF4T7wOUr8EXZB+rY3FDe1donYKWZxkVX1p6yymzzl7F1eUlV2HhP4Ti
+	BSpLvEiicIgD+A0SOPj9shH3Rbd9EVhVAY/fN6blxUm0TsjTSCdj8KCzxAc0+/MBIlPeys
+	ngFsv3OE8mIGeHimaANoTzI1JAF73pF1SvKhTCkHCYMsbqq0uApKKg1x2NrEIwSFDLF/7b
+	JRFBNwFjF96hXLz9lngtkD0zTNEbXCJJpRA1GnSjB/74yu0T4wPUtDzQsS0Kaw==
+Date: Tue, 3 Sep 2024 10:17:24 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Lee Jones
+ <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
+ <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Herve Codina
+ <herve.codina@bootlin.com>, Bjorn Helgaas <bhelgaas@google.com>, Philipp
+ Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew
+ Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Allan
+ Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 0/8] Add support for the LAN966x PCI device using a
+ DT overlay
+Message-ID: <20240903101724.291ad0f7@bootlin.com>
+In-Reply-To: <20240808154658.247873-1-herve.codina@bootlin.com>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4avtzi22ue6nfusdrvyl2x3apwjgmuwa246qu5kh2dk2fdb4si@hka6nygye75z>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Krzysztof,
+Hi,
 
-On 08:39-20240903, Krzysztof Kozlowski wrote:
-> On Mon, Sep 02, 2024 at 05:56:50PM +0530, Manorit Chawdhry wrote:
-> > Refactor J784s4-evm to a common file which uses the
-> > superset device to allow reuse in j742s2-evm which uses the subset part.
-> > 
-> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> > Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
-> > ---
-> > 
-> > Notes:
-> >     v6:
-> >     - Rebased with conflicts
-> > 
-> >  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts           | 1488 +------------------
-> >  .../boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 1490 ++++++++++++++++++++
-> >  2 files changed, 1497 insertions(+), 1481 deletions(-)
-> >
+On Thu,  8 Aug 2024 17:46:49 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
+
+...
+
+> In order to add this PCI driver, a number of preparation changes are
+> needed:
+>  - Patches 1, 2 introduce the LAN996x PCI driver itself, together with
+>    its DT overlay and the related MAINTAINTER entry.
 > 
-> It's impossible to review this. You need to use -B/-M/-C arguments when
-> creating patch.
-
-Apologies, have resend the series with the following change [0]. Hopefully
-it will be more readable now.
-
-Regards,
-Manorit
-
-> 
-> Best regards,
-> Krzysztof
+>  - Patches 3 to 8 allow the reset driver used for the LAN996x to be
+>    built as a module. Indeed, in the case where Linux runs on the ARM
+>    cores, it is common to have the reset driver built-in. However, when
+>    the LAN996x is used as a PCI device, it makes sense that all its
+>    drivers can be loaded as modules.
 > 
 
-[0]: https://lore.kernel.org/linux-devicetree/20240903-b4-upstream-j742s2-v6-0-49d980fed889@ti.com/T/#t
+Patch 7 was applied my Philipp and patch 1 was acked by Greg.
+
+No feedback received on other patches.
+What can I do to move forward on this series and have it applied ?
+
+Best regards,
+Hervé
 
