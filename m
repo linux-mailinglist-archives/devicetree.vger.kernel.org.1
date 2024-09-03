@@ -1,74 +1,52 @@
-Return-Path: <devicetree+bounces-99578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CC296A3AE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:09:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6FC96A3BA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E89501C242A5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:09:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FED81F26710
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE3B189BAE;
-	Tue,  3 Sep 2024 16:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61FD4189BB1;
+	Tue,  3 Sep 2024 16:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="mbK6qNV4"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="G/ZBMJI7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0F226AFC
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 16:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBBAB189B88;
+	Tue,  3 Sep 2024 16:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725379747; cv=none; b=iOrRnP0DULd5vzlx1uZqu8Jwrr3yyQDYeBez9W3JEHybVMTU9/ORag0ByKyIh/OH60VgzvbmP6JQWx5IV0OMTosiysSpHb8GLENQai2xz6KdCu/nsW8hpfitOfL4xOYAq+RBZrfgBHj5f/AOcJAGBVBSITSR8EZq5p61NjLCQDo=
+	t=1725379762; cv=none; b=olmgDkrpi8iMfgqMesvtNfReZx/VJfi5b1OrWSHzhQTqFBHHfEZ+0BnwGuMKv0v+WxmRL9dkEZx+MicCbrQIkvgcyvOObBWRyQKTjcfXBNZ9w7CuA4vYX+jIUfDK4hQtVIBeNZoSoyhJdpdE1vML6rlyrTtUEgV2luzEVbdle7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725379747; c=relaxed/simple;
-	bh=y5SL93VBSG2PaFcIjScLBdkpp7+Kda8Df14EgSpWRn0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=knTB+jLvMqBd46NfV2nqGgAxC2Z7c7WT1WVtuW+7wa7vauh3mdsk60BRTREcnlHLDoPy+5JxTJrn+wWBzw82vWEMBu7OiPxCcTE8fSC8iiFIGMHkmyczuJtAh9xSSpdzTVWla2Y3T8igQ0N3OlGBRG0/Ql2O38dwOmUwqzDcFT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=mbK6qNV4; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-534366c194fso5071903e87.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 09:09:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1725379743; x=1725984543; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8l/509FpNkymjZk6uQDQhCFKV86rdSFlJhhBluR1lWQ=;
-        b=mbK6qNV4Fi9dqEktBv1jzHT0Mnt0m0mWZTCV1q0uqJpV5Nfuxkm03fVg2NukbcEkgo
-         Ryqsph6TqgcGAJYnwaUgsaFTusB/2a/wgzLMiVo6LobZOGhov+X0Rvn4k/WzqLsFv6lx
-         +HW+fs96QRi3+AuFsADiiXZYyKLE+fHQsFickhgG45QywOFlgfvzRJ0OkcSsCo/PuTWd
-         GY0CT02kV/Sj1hRqWau/JCjgHQE3l1FEZYLRMH7FRhcpRYF7CV5/t4hACP3RF1JvbI+G
-         dtBxWIFph5o8qzQf7WoZZFWmaE9hFTo4bJiDcDcblEQyDJ1uhCAK+sBx0p0fsy4CllxT
-         dSyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725379743; x=1725984543;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8l/509FpNkymjZk6uQDQhCFKV86rdSFlJhhBluR1lWQ=;
-        b=nKJpK8ymC8iFDR2c9lmwo3+UK9BhKMkYCiBU4cRjHiLPmg/AivBkY3gMtFLmjUEzbc
-         cjAUT8grDYpN3RepGXSSHnFnYjiYKYnQ12P1RnanjUXnbiXOrr3bR/LpDk7xIANtIbkT
-         SupI0yYEpJOUuXinsJyVTCZWIJTs7d1KaVd78zY0k8AZ9Rp5ZIAdL869SwgQSDmq/pox
-         ZZynrw8U5V1nRMOQPzPPZwyvZ+0kHz1/bcBaTDt3sfQkhNfZTQ5I0OMERP1m0u305X+G
-         3EMm/Y+uRrHQz+Nu5hgckTOWeg+exqYuPgqqrnVc0En8kHIvsLmEEpkUyGeMMDClSJ3C
-         Xz+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV2YiDN8G/z+BSjc4RRjyUTxpA7t2Iip/8XIOeG0UwYywY/X2a4KoGXp8pOySlLjDAGY56wcJlaarGb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKKXdA1gEoPMpD9GJDDSesw3vUf7RXDXGI4wN3hHJyK4TGh/Dm
-	SfeB5sKNUWrt5/wy+Ftjbr6YouN2RIYiaqG8Gjh4q1dF/OLxBAMfSTpu1WDAvjI=
-X-Google-Smtp-Source: AGHT+IHRgADNb3niI6r59DDvi2vKw+KXHb9j7aF21MTBrDxSrH2/p6N4jk8lRMTOk+xwkvlxmsucsA==
-X-Received: by 2002:a05:6512:b98:b0:52f:2adf:d445 with SMTP id 2adb3069b0e04-53546baacdbmr10597606e87.41.1725379743051;
-        Tue, 03 Sep 2024 09:09:03 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a898919686bsm693150066b.134.2024.09.03.09.09.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Sep 2024 09:09:02 -0700 (PDT)
-Message-ID: <2e49b73c-c645-446c-8606-7a531e0a74f8@tuxon.dev>
-Date: Tue, 3 Sep 2024 19:09:00 +0300
+	s=arc-20240116; t=1725379762; c=relaxed/simple;
+	bh=jawaCYi7YB1S/nE3YHVprZpILDdSvxcJZrLcPKY+Wg0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DWUkZ8wp4GiuCDOa0YWjwtMknH8pch8n7pA56yude4kh5RbDYcq2uKRuj/TRMujUOWTImY4rSiNUV1q5l3Y5k0Sl6J17+O/vQ5OlY2NtNZiiREP30J+iqzVTrrf6DUmhddbhFD0bi5sshlIDpwUtjW2p+9RBeHMewfEJh8Xaf9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=G/ZBMJI7; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 04CD1C0002;
+	Tue,  3 Sep 2024 16:09:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725379752;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Rbv+YpGecw0fPUIchwhJ5PCJRkLWlECr33dmW73zeLA=;
+	b=G/ZBMJI7Z1PH0JcEfVTv1X/yW7V5QRM9v+jTGdsas/UjyfmvOItsdfTSxVktJ0gc2G5m3W
+	D6qnTyjEfjHh6QaYLM7X4zUZxPZ9Fr9PWqawBBXU2B8wlZFSJBuVvC/NhrZvG1Rhp7vCQT
+	V3D50yKjqench43+5pn2HHlg5C/FPsFMQOqpV0Zx7z2Se1n7HPl5hIu7u2ijDpIdHrESqb
+	rKKw1yziJaw9H0vjy3XZ/zK4tMAldGyxjyxE/Q5EHrj9sFSSwHEF7n8izbTsFIzZgJBVtY
+	3mqXStXM6kQXrI+kB4SAhW7BIyh9+kkDaVijQhMc53wdUJN2D6E7LV4Kqr4Mgg==
+Message-ID: <52e7b6d2-5d31-4ae1-bf1d-44e63a22774d@bootlin.com>
+Date: Tue, 3 Sep 2024 18:09:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,200 +54,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/12] rtc: renesas-rtca3: Add driver for RTCA-3
- available on Renesas RZ/G3S SoC
+Subject: Re: [PATCH v4 1/5] dt-bindings: wireless: wilc1000: Document WILC3000
+ compatible string
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240829004510.178016-1-marex@denx.de>
 Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- kernel test robot <lkp@intel.com>
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-7-claudiu.beznea.uj@bp.renesas.com>
- <202408302225417622f1e7@mail.local>
- <a7f0a36b-3169-45f8-9169-50bb0c6c04dd@tuxon.dev>
-In-Reply-To: <a7f0a36b-3169-45f8-9169-50bb0c6c04dd@tuxon.dev>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+In-Reply-To: <20240829004510.178016-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-Hi, Alexandre,
+Hello everyone,
 
-On 02.09.2024 17:49, claudiu beznea wrote:
-> Hi, Alexandre,
+On 8/29/24 02:44, Marek Vasut wrote:
+> Document compatible string for the WILC3000 chip. The chip is similar
+> to WILC1000, except that the register layout is slightly different and
+> it does not support WPA3/SAE.
 > 
-> On 31.08.2024 01:25, Alexandre Belloni wrote:
->> On 30/08/2024 16:02:12+0300, Claudiu wrote:
->>> +	priv->rtc_dev->range_min = mktime64(2000, 1, 1, 0, 0, 0);
->>
->> RTC_TIMESTAMP_BEGIN_2000
-> 
-> OK
-> 
->>
->>> +	priv->rtc_dev->range_max = mktime64(2099, 12, 31, 23, 59, 59);
->>
->> RTC_TIMESTAMP_END_2099
-> 
-> OK
-> 
->>
->>> +
->>> +	return devm_rtc_register_device(priv->rtc_dev);
->>> +}
->>> +
->>> +static void rtca3_remove(struct platform_device *pdev)
->>> +{
->>> +	struct rtca3_priv *priv = platform_get_drvdata(pdev);
->>> +
->>> +	guard(spinlock_irqsave)(&priv->lock);
->>> +
->>> +	/* Disable alarm, periodic interrupts. */
->>> +	rtca3_alarm_irq_set_helper(priv, RTCA3_RCR1_AIE | RTCA3_RCR1_PIE, 0);
->>
->> Why do you disable alarms on driver remove? I think you need to add a
->> comment if this is because it can't system up, else this is a bad
->> practice.
-> 
-> The RTC cannot power on the system after a power off. It can't also resume
-> it from a deep sleep state (when only the SoC area where the RTC resides
-> remains power on (there is no way to signal from RTC to the power supply
-> chain that an alarm happened)). It can only wake it up from s2idle mode
-> where all SoC components remains powered on.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-FTR, this is still valid.
+[...]
 
+>  .../bindings/net/wireless/microchip,wilc1000.yaml           | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
-> Also, w/o this change the RTC remains blocked under the following scenarios
-> if the interrupts are not disabled in remove:
+> diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+> index 2460ccc082371..5d40f22765bb6 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+> @@ -16,7 +16,11 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: microchip,wilc1000
+> +    oneOf:
+> +      - items:
+> +          - const: microchip,wilc3000
+> +          - const: microchip,wilc1000
+> +      - const: microchip,wilc1000
+>  
+>    reg: true
 
-This intrigued me and did some further investigation. I found that
-something is wrong on the driver as described bellow.
+Following this series first revision, I have been taking a look at how to
+implement bluetooth feature for wilc3000 (the chip supports Bluetooth LE through
+a separated UART, see [1]), and I am facing some constraints. I feel like the
+possible solutions would conflict with this new binding, so even if I am a bit
+late to the party, I would like to expose the issue before the binding is merged
+in case we can find something which would allow to add bluetooth support without
+too much pain after the wlan part.
 
-The failures described in the previous emails were due to the fact that the
-RTC counter clock was requested by the driver as devres managed resource.
-This is the clock that feeds the RTC counting logic.
+Downstream driver currently does not implement bluetooth as a standard bluetooth
+driver (module in drivers/bluetooth, registering a HCI device) but only performs
+a minimal set of operations directly in the wlan part ([2]). Getting a version
+valid for upstream would need the following points to be addressed:
+1. despite being controlled from a serial port for nominal operations, the
+bluetooth part also depends on the "wlan" bus (spi or sdio) for initialization
+2. yet init steps are not performed on any kind of subsystem ops but through
+writes to a custom chardev
+3. the driver does not register itself a hci interface, it is expected to be
+done by userspace (hciattach).
 
-With the bellow diff applied on top of this series scenarios 1/ and 2/
-described in the previous email works just fine.
+It is only after those 3 steps that the chip can be used with standard hci
+commands over serial port. IMHO 1 is the biggest point, because it means that
+**a bluetooth driver for wilc3000 needs access to the bus used by wlan part**
+(so only describing the bluetooth part of the chip as a child node of an uart
+controller is not enough). Aside from bus access, I also expect some
+interactions between bluetooth and wifi (eg: power management, sleep/wakeup)
 
-For scenario 3/ the system is not powered up (as expected) but there are no
-more failures on the next boots.
+After considering multiple solutions to try to share this bus between existing
+wlan driver and a new bt driver (mfd device, auxiliary bus, device link + some
+handles, etc), my current best guess is to convert wilc driver to a MFD driver
+for wilc3000. I guess some work can be done so that the driver can still be
+shared between wilc1000 and wilc3000 _while_ remaining compatible with current
+wilc1000 description, but it would impact the DT description for wilc3000, which
+would need to switch from this:
 
-diff --git a/drivers/rtc/rtc-renesas-rtca3.c b/drivers/rtc/rtc-renesas-rtca3.c
-index f908d2a1017d..c9adcadc58c0 100644
---- a/drivers/rtc/rtc-renesas-rtca3.c
-+++ b/drivers/rtc/rtc-renesas-rtca3.c
-@@ -747,10 +747,14 @@ static int rtca3_probe(struct platform_device *pdev)
-        if (ret)
-                return ret;
+  spi {
+    wifi@0 {
+      compatible = "microchip,wilc3000";
+      [...]
+    };
+  };
 
--       clk = devm_clk_get_enabled(dev, "counter");
-+       clk = devm_clk_get(dev, "counter");
-        if (IS_ERR(clk))
-                return PTR_ERR(clk);
+To something like this:
 
-+       ret = clk_prepare_enable(clk);
-+       if (ret)
-+               return ret;
-+
-        spin_lock_init(&priv->lock);
-        atomic_set(&priv->alrm_sstep, RTCA3_ALRM_SSTEP_DONE);
-        init_completion(&priv->set_alarm_completion);
-@@ -783,7 +787,7 @@ static void rtca3_remove(struct platform_device *pdev)
+  spi {
+    wilc@0 {
+      compatible = "microchip,wilc3000"; /* mfd driver */
+      wifi {
+        compatible = "microchip,wilc3000-wlan";
+        [...]
+      };
+      bt {
+        compatible = "microchip,wilc3000-bt";
+        XXXX; /* some link to the uart controller connected to the chip */
+        [...]
+      };
+    };
+  };
 
-        guard(spinlock_irqsave)(&priv->lock);
+(and similar thing when wilc is driven over a sdio bus)
 
--       rtca3_alarm_irq_set_helper(priv, RTCA3_RCR1_AIE | RTCA3_RCR1_PIE, 0);
-+       //rtca3_alarm_irq_set_helper(priv, RTCA3_RCR1_AIE | RTCA3_RCR1_PIE, 0);
- }
+Any opinion on this ? Would it make sense to describe wilc3000 chip that way ?
 
-Question is: the RTC counter clock should stay on when the driver is
-unbinded, right?
+Thanks,
+Alexis
 
-Thank you,
-Claudiu Beznea
+[1] https://www.microchip.com/en-us/product/atwilc3000
+[2]
+https://github.com/linux4sam/linux-at91/blob/linux-6.6-mchp/drivers/net/wireless/microchip/wilc1000/bt.c
 
-> 
-> 1/ Configure wake alarm and unbind the RTC driver with the following commands:
-> # echo +10 > /sys/class/rtc/rtc0/wakealarm
-> # echo /sys/bus/platform/drivers/rtc-rtca3/1004ec00.rtc > unbind
-> # sleep 12
-> # echo /sys/bus/platform/drivers/rtc-rtca3/1004ec00.rtc > bind
-> 
-> When rebinding the re-configuration of the RTC device times out:
-> [  121.854190] rtc-rtca3 1004ec00.rtc: error -ETIMEDOUT: Failed to setup
-> the RTC!
-> [  121.861511] rtc-rtca3 1004ec00.rtc: probe with driver rtc-rtca3 failed
-> with error -110
-> -sh: echo: write error: Connection timed out
-> 
-> 2/ Configure wake alarm, unbind the RTC driver and switch to s2idle with
-> the following commands:
-> # echo s2idle > /sys/power/mem_sleep
-> # echo +10 > /sys/class/rtc/rtc0/wakealarm
-> # echo /sys/bus/platform/drivers/rtc-rtca/31004ec00.rtc > unbind
-> # echo mem > /sys/power/state
-> # #system is resumed by non RTC wakeup source (as the RTC alarm is not
-> working anymore in this case)
-> # echo /sys/bus/platform/drivers/rtc-rtca/1004ec00.rtc > bind
-> 
-> The system is not waked up from RTC alarm (as expected) and the rebinding
-> fails again:
-> 
-> [  172.483688] rtc-rtca3 1004ec00.rtc: error -ETIMEDOUT: Failed to setup
-> the RTC!
-> [  172.491003] rtc-rtca3 1004ec00.rtc: probe with driver rtc-rtca3 failed
-> with error -110
-> -sh: echo: write error: Connection timed out
-> 
-> 3/ configure the RTC alarm, unbind and power off (with the following commands):
-> # echo +60 > /sys/class/rtc/rtc0/wakealarm
-> # echo /sys/bus/platform/drivers/rtc-rtca/1004ec00.rtc > unbind
-> # poweroff
-> 
-> The system is not started after 60 seconds and at the next reboot the RTC
-> configuration on probe is failing the same:
-> 
-> [    0.292068] rtc-rtca3 1004ec00.rtc: error -ETIMEDOUT: Failed to setup
-> the RTC!
-> [    0.292182] rtc-rtca3 1004ec00.rtc: probe with driver rtc-rtca3 failed
-> with error -110
-> 
-> In all scenarios the RTC is recovered only if removing/re-applying the
-> power to the SoC area where it resides.
-> 
-> These tests were done with the patches in this series and then I tried it
-> with the following diff on top of the patches in this series. The results
-> were the same:
-> 
-> diff --git a/drivers/rtc/rtc-renesas-rtca3.c b/drivers/rtc/rtc-renesas-rtca3.c
-> index 822c055b6e4d..720fdac3adc6 100644
-> --- a/drivers/rtc/rtc-renesas-rtca3.c
-> +++ b/drivers/rtc/rtc-renesas-rtca3.c
-> @@ -586,7 +586,7 @@ static int rtca3_initial_setup(struct clk *clk, struct
-> rtca3_priv *priv)
->         usleep_range(sleep_us, sleep_us + 10);
-> 
->         /* Disable alarm and carry interrupts. */
-> -       mask = RTCA3_RCR1_AIE | RTCA3_RCR1_CIE;
-> +       mask = RTCA3_RCR1_AIE | RTCA3_RCR1_CIE | RTCA3_RCR1_PIE;
->         ret = rtca3_alarm_irq_set_helper(priv, mask, 0);
->         if (ret)
->                 return ret;
-> @@ -784,7 +784,7 @@ static void rtca3_remove(struct platform_device *pdev)
->         guard(spinlock_irqsave)(&priv->lock);
-> 
->         /* Disable alarm, periodic interrupts. */
-> -       rtca3_alarm_irq_set_helper(priv, RTCA3_RCR1_AIE | RTCA3_RCR1_PIE, 0);
-> +       //rtca3_alarm_irq_set_helper(priv, RTCA3_RCR1_AIE | RTCA3_RCR1_PIE, 0);
->  }
-> 
-> Thank you,
-> Claudiu Beznea
-> 
+-- 
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
