@@ -1,131 +1,327 @@
-Return-Path: <devicetree+bounces-99680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E18996ABE4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:14:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DA596ABFA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:17:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7745B267F6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:14:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B6A2282CC7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB651D6C78;
-	Tue,  3 Sep 2024 22:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827EE1D5CDA;
+	Tue,  3 Sep 2024 22:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="w+y9IjSJ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZTmY122Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A4A91D5CD5;
-	Tue,  3 Sep 2024 22:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0F51A4E80
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 22:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725401451; cv=none; b=bUCdhdNHHN6VvmGwG7JZYqpRuVgAtc3VvsVlRedxoCZyOcrn077RgTy10Dl+DEvj28uXsZvMsdJgIDo1n8tKqMxak/JK7F/g60n/A64bOufoF4HZlr7a4qx5Ew1NnzuxMMyAwoIkOcIk/2+hFPLTlLVIA6if5cQZZIMVmDtm7Uo=
+	t=1725401847; cv=none; b=fW9apLOjGJ6Z3qPJM6m9QsevoJa5l2SC9uDibyECp9KBK8LOUyqs3kJenlOT+OPmwdnV3KzaYEsx/njAbJqqadOOQ1j50d6+/+oi7yjn5aPuoGunEnv7AexTjnMfj9lJX9/nbEwlDMJBigWFtFq3WGBP8SKHUbvqcEqHhiW9GUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725401451; c=relaxed/simple;
-	bh=lUVot6sx53PMH7AVdyfYZF5smN2L99/Ta+PwbWV98qU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pE+qPrdGJ7ZhqQYOA57jJTNlCn6EKosJToxtSa7cmFmZngZzhU6fkW8gXz2X6E1LA+8AvqF+7ecGEwxaoy3w8F4ACUkjBK8+It4f6w5qa+dc0EpHRLRXGynGD5qJ3s0Xrk2l+pK7+87RYpqoiPHqnosAareYwqjJ9pfFFAgRHDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=w+y9IjSJ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=PmAan6NPVAhVozSYoq921sKeDS6etdaKRx0WGKUNzPg=; b=w+y9IjSJDl3NsTLiQuOYJKEffo
-	RLLqIhTKjPF80cWIwGyfcjQX1yDaAPqgMUrXE5fzV7afKReFLBeWf7XhpEyshPQPH6XqWqbpcHLGo
-	iynY4oFTmd2qzmsovTZ1CnbYmB0GR8Y8l5QrU70dkuyhYQy2iLlKm9VIKPnXVpPmDood1YGkp8lz3
-	JZh6j0lfWw5LZhQy/8BqQLLKUNovMNsyQPzvSwVI93Kse7gj8yKeMTpAHPfmbY5KXjWGSMxqNZK0P
-	WEq2rtZTZTgydAJ2HE/vYW4BE02Ynl2aNUkopQSyYydfcfHHdvU1xF0F5UaJ4a9BNaoOsSqR0JQ2Z
-	zx+2+0dg==;
-Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1slbjR-0003Ah-7l; Wed, 04 Sep 2024 00:10:37 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Detlev Casanova <detlev.casanova@collabora.com>,
-	linux-kernel@vger.kernel.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-	Rob Herring <robh@kernel.org>,
-	linux-i2c@vger.kernel.org,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	kernel@collabora.com,
-	Jamie Iles <jamie@jamieiles.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Liang Chen <cl@rock-chips.com>,
-	linux-spi@vger.kernel.org,
-	Andy Yan <andyshrk@163.com>,
-	linux-watchdog@vger.kernel.org,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	devicetree@vger.kernel.org,
-	Maxime Ripard <mripard@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-rockchip@lists.infradead.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dragan Simic <dsimic@manjaro.org>,
-	David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-serial@vger.kernel.org,
-	Muhammed Efe Cetin <efectn@protonmail.com>,
-	Tim Lunn <tim@feathertop.org>,
-	Ondrej Jirman <megi@xff.cz>,
-	Jimmy Hon <honyuenkwun@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Elon Zhang <zhangzj@rock-chips.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: (subset) [PATCH v4 0/9] Add device tree for ArmSoM Sige 5 board
-Date: Wed,  4 Sep 2024 00:10:33 +0200
-Message-ID: <172540141128.2569462.10719274439402034002.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240903152308.13565-1-detlev.casanova@collabora.com>
-References: <20240903152308.13565-1-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1725401847; c=relaxed/simple;
+	bh=6nSKMdl8/rMSTMas7fu7iffrXDBuMrREFVYndWL2WPM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zi3a6u68WD0mMs2y2xMv9KAjhmzNeCHAOYP+kqGyGpipqOLoCSshSk7kU6vWPxnMjXLNeqhx+uZ5e+5xzddjf21oLxN1nq4x57UIMXRJw9EeZNkf/WmRjrxZFPRvRB/Wkccp0CS8WRaxAjX9TeJNd6ebfwwPvVLj/u7mUCD7S8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZTmY122Z; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1725401843;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uX67JJ48/X+mbq8S3u6zeSeVmMvnaUsc25ToyEvfFRg=;
+	b=ZTmY122ZtzOHLAtbHw0c4M6rXfsTOP8DzJ7v9rm/k8quprz7XmzcIzbTHJQL87ja3/OBra
+	dbGPqFkMAxKOqGz0swrr8KS1ReY0OefNyDIjssArIWY+0o2+3GkuY3lUl4jrjVdLnh4Rbx
+	D9UEwOQbfadzYIRzc8pV/n5AqLdRz/Q=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-328-dKKPlkcfMau-iCOCeld2lQ-1; Tue, 03 Sep 2024 18:17:22 -0400
+X-MC-Unique: dKKPlkcfMau-iCOCeld2lQ-1
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-45798aa2bacso51351681cf.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 15:17:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725401842; x=1726006642;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uX67JJ48/X+mbq8S3u6zeSeVmMvnaUsc25ToyEvfFRg=;
+        b=HHICyWkSYXbjTePcDSy5Xzz2lskBHQ434T6FPAzPRMvO+mvww7Bmalsdc9R9K1UIwI
+         y3b7k25lf+77hOHsR/ArvcKCt752F4yN0XpdBn80OzWNAE0kqtdWjnFEcIcabN5FIhqn
+         WoFOBZPb7SgXRhPrZL66ozpYvGIR4Tc/ntJnHv96r3mgeb9Fs7Lmgc+NOCRrpdjndKGI
+         E3c5I5QELebnIZebzZBt/wHPH2v6Xr4oz+Vz1h7XSvBY+AO5xfCQnSr3mi7XwQJOnfc/
+         ZdBLJn3njeHCFUVlPKmltIKpqJxS9RWeFFfyQ+ZFiNFD0+pfLt+JUrikxxVsoWmNUWio
+         9PEA==
+X-Forwarded-Encrypted: i=1; AJvYcCUvHSP42+DRpOmeRxQkJ6k1hzaPvkJ0TV29pTMMMG0yfZSvq4LLFM1nNO/56OEpbmvL3aKititnnnxW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxESf+b125SMQuY4o3Kyi/GamBQDmiSule0L0GBxey/uUTH0Lzj
+	HJdeffbDAYWG5z74uUYXvk+l8jGvz6OIqqEP9om2pEHiC0IDyD9DZfXbAwsAFXAMfKhDDYHN4ol
+	aDTHI8RLn6dZDlgsv5U71VmPgCMXCq6d1ZtyG/EN3zqscn6Z3XGObhSH2E/E=
+X-Received: by 2002:a05:622a:4892:b0:456:80dd:2b74 with SMTP id d75a77b69052e-456f166a883mr180080061cf.2.1725401841788;
+        Tue, 03 Sep 2024 15:17:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGF+ADqf+HvwhdXdoU9v++JYfldALmtFlgglwFanWYamzzbURjrFGiQObND/oVCHlOkCKZ8dQ==
+X-Received: by 2002:a05:622a:4892:b0:456:80dd:2b74 with SMTP id d75a77b69052e-456f166a883mr180079751cf.2.1725401841295;
+        Tue, 03 Sep 2024 15:17:21 -0700 (PDT)
+Received: from x1gen2nano ([2600:1700:1ff0:d0e0::40])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45682c8788asm54097881cf.1.2024.09.03.15.17.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2024 15:17:20 -0700 (PDT)
+Date: Tue, 3 Sep 2024 17:17:18 -0500
+From: Andrew Halaney <ahalaney@redhat.com>
+To: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, Prasad Sodagudi <psodagud@quicinc.com>, 
+	Rob Herring <robh@kernel.org>, kernel@quicinc.com
+Subject: Re: [PATCH net] net: stmmac: Stop using a single dma_map() for
+ multiple descriptors
+Message-ID: <yy2prsz3tjqwjwxgsrumt3qt2d62gdvjwqsti3favtfmf7m5qs@eychxx5qz25f>
+References: <20240902095436.3756093-1-quic_jsuraj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240902095436.3756093-1-quic_jsuraj@quicinc.com>
 
-On Tue, 3 Sep 2024 11:22:30 -0400, Detlev Casanova wrote:
-> Add the rk3576-armsom-sige5 device tree as well as its rk3576.dtsi base
-> and pinctrl information in rk3576-pinctrl.dtsi.
+On Mon, Sep 02, 2024 at 03:24:36PM GMT, Suraj Jaiswal wrote:
+> Currently same page address is shared
+> between multiple buffer addresses and causing smmu fault for other
+> descriptor if address hold by one descriptor got cleaned.
+> Allocate separate buffer address for each descriptor
+> for TSO path so that if one descriptor cleared it should not
+> clean other descriptor address.
+
+I think maybe you mean something like:
+
+    Currently in the TSO case a page is mapped with dma_map_single(), and then
+    the resulting dma address is referenced (and offset) by multiple
+    descriptors until the whole region is programmed into the descriptors.
+
+    This makes it possible for stmmac_tx_clean() to dma_unmap() the first of the
+    already processed descriptors, while the rest are still being processed
+    by the DMA engine. This leads to an iommu fault due to the DMA engine using
+    unmapped memory as seen below:
+
+    <insert splat>
+
+    You can reproduce this easily by <reproduction steps>.
+
+    To fix this, let's map each descriptor's memory reference individually.
+    This way there's no risk of unmapping a region that's still being
+    referenced by the DMA engine in a later descriptor.
+
+That's a bit nitpicky wording wise, but your first sentence is hard
+for me to follow (buffer addresses seems to mean descriptor?). I think
+showing a splat and mentioning how to reproduce is always a bonus as
+well.
+
 > 
-> The other commits add DT bindings documentation for the devices that
-> already work with the current corresponding drivers.
+> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+
+Fixes: ?
+
+At a quick glance I think its f748be531d70 ("stmmac: support new GMAC4")
+
+> ---
 > 
-> Note that as is, the rockchip gpio driver needs the gpio nodes
-> to be children of the pinctrl node, even though this is deprecated.
+> Changes since v2:
+> - Fixed function description 
+> - Fixed handling of return value.
 > 
-> [...]
 
-Applied, thanks!
+This is v1 as far as netdev is concerned :)
 
-[5/9] dt-bindings: gpu: Add rockchip,rk3576-mali compatible
-      commit: 053d157840870fc56aad8c4d3122690a65b2d462
-      drm-misc-next
+> 
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 63 ++++++++++++-------
+>  1 file changed, 42 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 83b654b7a9fd..5948774c403f 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -4136,16 +4136,18 @@ static bool stmmac_vlan_insert(struct stmmac_priv *priv, struct sk_buff *skb,
+>  /**
+>   *  stmmac_tso_allocator - close entry point of the driver
+>   *  @priv: driver private structure
+> - *  @des: buffer start address
+> + *  @addr: Contains either skb frag address or skb->data address
+>   *  @total_len: total length to fill in descriptors
+>   *  @last_segment: condition for the last descriptor
+>   *  @queue: TX queue index
+> + * @is_skb_frag: condition to check whether skb data is part of fragment or not
+>   *  Description:
+>   *  This function fills descriptor and request new descriptors according to
+>   *  buffer length to fill
+> + *  This function returns 0 on success else -ERRNO on fail
+>   */
+> -static void stmmac_tso_allocator(struct stmmac_priv *priv, dma_addr_t des,
+> -				 int total_len, bool last_segment, u32 queue)
+> +static int stmmac_tso_allocator(struct stmmac_priv *priv, void *addr,
+> +				int total_len, bool last_segment, u32 queue, bool is_skb_frag)
+>  {
+>  	struct stmmac_tx_queue *tx_q = &priv->dma_conf.tx_queue[queue];
+>  	struct dma_desc *desc;
+> @@ -4153,6 +4155,8 @@ static void stmmac_tso_allocator(struct stmmac_priv *priv, dma_addr_t des,
+>  	int tmp_len;
+>  
+>  	tmp_len = total_len;
+> +	unsigned int offset = 0;
+> +	unsigned char *data = addr;
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Reverse xmas tree order, offset is always set below so you could just
+declare it, and data really doesn't seem necessary to me vs using addr
+directly.
+
+https://docs.kernel.org/process/maintainer-netdev.html#local-variable-ordering-reverse-xmas-tree-rcs
+
+>  
+>  	while (tmp_len > 0) {
+>  		dma_addr_t curr_addr;
+> @@ -4161,20 +4165,44 @@ static void stmmac_tso_allocator(struct stmmac_priv *priv, dma_addr_t des,
+>  						priv->dma_conf.dma_tx_size);
+>  		WARN_ON(tx_q->tx_skbuff[tx_q->cur_tx]);
+>  
+> +		buff_size = tmp_len >= TSO_MAX_BUFF_SIZE ? TSO_MAX_BUFF_SIZE : tmp_len;
+> +
+>  		if (tx_q->tbs & STMMAC_TBS_AVAIL)
+>  			desc = &tx_q->dma_entx[tx_q->cur_tx].basic;
+>  		else
+>  			desc = &tx_q->dma_tx[tx_q->cur_tx];
+>  
+> -		curr_addr = des + (total_len - tmp_len);
+> +		offset = total_len - tmp_len;
+> +		if (!is_skb_frag) {
+> +			curr_addr = dma_map_single(priv->device, data + offset, buff_size,
+> +						   DMA_TO_DEVICE);
+
+Instead of defining "data" above, can't you just use "addr" directly here?
+
+> +
+> +			if (dma_mapping_error(priv->device, curr_addr))
+> +				return -ENOMEM;
+> +
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].buf = curr_addr;
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].len = buff_size;
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].map_as_page = false;
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].buf_type = STMMAC_TXBUF_T_SKB;
+> +		} else {
+> +			curr_addr = skb_frag_dma_map(priv->device, addr, offset,
+> +						     buff_size,
+> +						     DMA_TO_DEVICE);
+> +
+> +			if (dma_mapping_error(priv->device, curr_addr))
+> +				return -ENOMEM;
+> +
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].buf = curr_addr;
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].len = buff_size;
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].map_as_page = true;
+> +			tx_q->tx_skbuff_dma[tx_q->cur_tx].buf_type = STMMAC_TXBUF_T_SKB;
+> +		}
+> +
+>  		if (priv->dma_cap.addr64 <= 32)
+>  			desc->des0 = cpu_to_le32(curr_addr);
+>  		else
+>  			stmmac_set_desc_addr(priv, desc, curr_addr);
+>  
+> -		buff_size = tmp_len >= TSO_MAX_BUFF_SIZE ?
+> -			    TSO_MAX_BUFF_SIZE : tmp_len;
+> -
+>  		stmmac_prepare_tso_tx_desc(priv, desc, 0, buff_size,
+>  				0, 1,
+>  				(last_segment) && (tmp_len <= TSO_MAX_BUFF_SIZE),
+> @@ -4182,6 +4210,7 @@ static void stmmac_tso_allocator(struct stmmac_priv *priv, dma_addr_t des,
+>  
+>  		tmp_len -= TSO_MAX_BUFF_SIZE;
+>  	}
+> +	return 0;
+
+nit: add a newline before return 0
+
+>  }
+>  
+>  static void stmmac_flush_tx_descriptors(struct stmmac_priv *priv, int queue)
+> @@ -4351,25 +4380,17 @@ static netdev_tx_t stmmac_tso_xmit(struct sk_buff *skb, struct net_device *dev)
+>  		pay_len = 0;
+>  	}
+>  
+> -	stmmac_tso_allocator(priv, des, tmp_pay_len, (nfrags == 0), queue);
+> +	if (stmmac_tso_allocator(priv, (skb->data + proto_hdr_len),
+> +				 tmp_pay_len, nfrags == 0, queue, false))
+> +		goto dma_map_err;
+
+Changing the second argument here is subtly changing the dma_cap.addr64 <= 32
+case right before this. Is that intentional?
+
+i.e., prior, pretend des = 0 (side note but des is a very confusing
+variable name for "dma address" when there's also mentions of desc meaning
+"descriptor" in the DMA ring). In the <= 32 case, we'd call
+stmmac_tso_allocator(priv, 0) and in the else case we'd call
+stmmac_tso_allocator(priv, 0 + proto_hdr_len).
+
+With this change in both cases its called with the (not-yet-dma-mapped)
+skb->data + proto_hdr_len always (i.e. like the else case).
+
+Honestly, the <= 32 case reads weird to me without this patch. It
+seems some of the buffer is filled but des is not properly incremented?
+
+I don't know how this hardware is supposed to be programmed (no databook
+access) but that seems fishy (and like a separate bug, which would be
+nice to squash if so in its own patch). Would you be able to explain the
+logic there to me if it does make sense to you?
+
+>  
+>  	/* Prepare fragments */
+>  	for (i = 0; i < nfrags; i++) {
+> -		const skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
+> +		skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
+>  
+> -		des = skb_frag_dma_map(priv->device, frag, 0,
+> -				       skb_frag_size(frag),
+> -				       DMA_TO_DEVICE);
+> -		if (dma_mapping_error(priv->device, des))
+> +		if (stmmac_tso_allocator(priv, frag, skb_frag_size(frag),
+> +					 (i == nfrags - 1), queue, true))
+
+Personally I think it would be nice to change stmmac_tso_allocator() so
+you can keep the frag const above... i.e. something like
+stmmac_tso_allocator(..., void *addr, ..., const skb_frag_t *frag)
+and just check if frag is NULL to determine if you're dealing with a
+frag or not (instead of passing the boolean in to indicate that).
+
+I'm curious if someone else can think of a cleaner API than that for
+that function, even that's not super pretty...
+
+>  			goto dma_map_err;
+> -
+> -		stmmac_tso_allocator(priv, des, skb_frag_size(frag),
+> -				     (i == nfrags - 1), queue);
+> -
+> -		tx_q->tx_skbuff_dma[tx_q->cur_tx].buf = des;
+> -		tx_q->tx_skbuff_dma[tx_q->cur_tx].len = skb_frag_size(frag);
+> -		tx_q->tx_skbuff_dma[tx_q->cur_tx].map_as_page = true;
+> -		tx_q->tx_skbuff_dma[tx_q->cur_tx].buf_type = STMMAC_TXBUF_T_SKB;
+>  	}
+>  
+>  	tx_q->tx_skbuff_dma[tx_q->cur_tx].last_segment = true;
+> -- 
+> 2.25.1
+> 
+
 
