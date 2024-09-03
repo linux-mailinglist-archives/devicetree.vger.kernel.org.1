@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-99209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B01F9693DE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:39:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 539649693EC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:42:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1556DB21C6F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:39:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3EB4B207CF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F161D54E4;
-	Tue,  3 Sep 2024 06:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1561D47D3;
+	Tue,  3 Sep 2024 06:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DbKZukXE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nBkUiCeI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199C61D54DB;
-	Tue,  3 Sep 2024 06:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25101D47C0;
+	Tue,  3 Sep 2024 06:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725345563; cv=none; b=b8RQ/N+MSxAWFjHNEL3DY4u1hWIuzSh/QdItL/M0Az2tPjPpfViUIFDf/dq91Yd8zWfonufdf7y48hINn8NsdmcNFDrgyWZRVfHnH0Nq7RsKWwGSU3y0xiNTTA59gh3T/PWdaouUqqkilq8kn6Ac+92Cfish6dJZp/uNGsqsmdE=
+	t=1725345724; cv=none; b=G4kHAIFTWS/oISXZFsWY1+2dNAAMmKUquVirvQIq+6zc/EGUd3NogEGsC0IodFG3cEx8d5iavhOc+WfXCAmgs8tcNTnjblj55hkD+ntiqlB6sc0G8FSiVmYyAd+dvbdQBAc8M8wca31MNhzkdCRw6fZhBaHh17WGZK0co9QhtAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725345563; c=relaxed/simple;
-	bh=BvsPQXp0NFlGoX8kbT6UTK+OyBs1VxhW4vkwizjesMA=;
+	s=arc-20240116; t=1725345724; c=relaxed/simple;
+	bh=v5Mkeh5XuM/WtcNCeVglJVrRSD/xcF/Bp43vNtWY7UQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FG55E3aOEyoJeGuph2DHP8FvDkwY5W/prx3SBuWaW7ZufVyww3Hkvcd7yW5Y/yiuzE8jhdgFJV5P/6nE2Xe4okc1jp+b4bo7pDW1tPH/mcBevHl4Xy3Lgw6EEjyrtWPljB8CGeFc7JmJncqoDdGFyAZxGg+H03nHqKwe9foH6sA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DbKZukXE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE0BC4CEC5;
-	Tue,  3 Sep 2024 06:39:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mKxYZy3vzbepg1hh6RCJrsIdsLZGdc4Uv3JMJZm1EzFGVijqVDxr9f8RTAP6W9/iaxPasNR98MQPDDoMJfkU2elYcdQ4IfOc/2LdQZFght51XgmG/U915nLueX8OSbRsG2bwzPWAeF6W/jefV4wwyHA82m3IPCWEmYYf/V75tfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nBkUiCeI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69238C4CEC5;
+	Tue,  3 Sep 2024 06:42:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725345562;
-	bh=BvsPQXp0NFlGoX8kbT6UTK+OyBs1VxhW4vkwizjesMA=;
+	s=k20201202; t=1725345723;
+	bh=v5Mkeh5XuM/WtcNCeVglJVrRSD/xcF/Bp43vNtWY7UQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DbKZukXE5RVS6lTOkbxBzeB+fXb56/qevkylK8BOg4ZyPxvrjDk/nAYsPk3pyW0xG
-	 iOemgE9SsUGbzlRdDOr0sHQjYVA3+obPN2MpQqfJcP9NEVo85xVukhmp2SNKUDxlCT
-	 Bo0210a7Go3z7h2t4CeSTKJ0OXx9ndF8x8Xh0+ktI7TgLzR49wO7Y9EuYH/q2TNy5f
-	 8q5U+Oj/Ep4O0QEwUlLSfcmzC3Q4+7Mm55z2Zee+BcfcDF+nRRDmD71+iia+0AkZJ6
-	 d4GbIjzT7CICTCoSdz3auyhf9DNO96NM9lASaHDAcEU7dUiLbVIQMABqs2fvn6tHy/
-	 ClXyDMP2ZKvbA==
-Date: Tue, 3 Sep 2024 08:39:19 +0200
+	b=nBkUiCeIhWgNRp/VtK3XO9SMZXUDuPwyQaWRblQcZRjY+OrbmaiuUmsbteF/AmU2f
+	 VCC73aqiug320bdUwgtg9rI5UbAQ7j+UI+KIVSuiTOwkB8q2HUsyC81LmO1u21tWQq
+	 9nGbJNKu8Jj1kUbqTKrIX7kI76s/YUKvuIQENBdhNnaadupRHSzFD+c7OGNyZr7RmT
+	 X3m5uIiZlA5vN0O3gUkJGBaRYIot5bzWkwOgZ0LPbsqiZjk/FAxT8pop/NqeMFa5lj
+	 KN6qiUIf2dC/zVSuHfEtqaSW/MYh8Mk4hkg6mkbiZEEKG0kLu6pmCu/TDeEtq22/2M
+	 ptn8s2AXVgHjQ==
+Date: Tue, 3 Sep 2024 08:41:59 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Manorit Chawdhry <m-chawdhry@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Udit Kumar <u-kumar1@ti.com>, Neha Malcom Francis <n-francis@ti.com>, 
-	Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>, 
-	Siddharth Vadapalli <s-vadapalli@ti.com>
-Subject: Re: [PATCH v6 2/5] arm64: dts: ti: Refactor J784s4-evm to a common
- file
-Message-ID: <4avtzi22ue6nfusdrvyl2x3apwjgmuwa246qu5kh2dk2fdb4si@hka6nygye75z>
-References: <20240902-b4-upstream-j742s2-v6-0-6a7aa2736797@ti.com>
- <20240902-b4-upstream-j742s2-v6-2-6a7aa2736797@ti.com>
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Aubin Constans <aubin.constans@microchip.com>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: mmc: sdhci-atmel: Convert to json schema
+Message-ID: <wquehk3mm3izuqfxfyjovy7lqmtxycdj5sy5s3jzcjlgcdaptx@ybwlfp34qdpb>
+References: <20240902-atmel-sdhci-v4-1-96912fab6b2d@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,27 +61,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240902-b4-upstream-j742s2-v6-2-6a7aa2736797@ti.com>
+In-Reply-To: <20240902-atmel-sdhci-v4-1-96912fab6b2d@microchip.com>
 
-On Mon, Sep 02, 2024 at 05:56:50PM +0530, Manorit Chawdhry wrote:
-> Refactor J784s4-evm to a common file which uses the
-> superset device to allow reuse in j742s2-evm which uses the subset part.
+On Mon, Sep 02, 2024 at 04:27:09PM +0530, Dharma Balasubiramani wrote:
+> Convert sdhci-atmel documentation to yaml format. The new file will inherit
+> from sdhci-common.yaml.
 > 
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+> Note: Add microchip,sama7g5-sdhci to compatible list as we already use it
+> in the DT.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 > ---
-> 
-> Notes:
->     v6:
->     - Rebased with conflicts
-> 
->  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts           | 1488 +------------------
->  .../boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 1490 ++++++++++++++++++++
->  2 files changed, 1497 insertions(+), 1481 deletions(-)
->
+> This patch series converts the sdhci-atmel dt-binding to yaml format and adds
+> the sama7d65,sama7g5 compatibles to the list.
 
-It's impossible to review this. You need to use -B/-M/-C arguments when
-creating patch.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
