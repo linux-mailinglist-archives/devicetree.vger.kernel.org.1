@@ -1,81 +1,125 @@
-Return-Path: <devicetree+bounces-99314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EBF3969711
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:30:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21698969715
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:31:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8F711F25016
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:30:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D172628425E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EB1205E2F;
-	Tue,  3 Sep 2024 08:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3DA11D6191;
+	Tue,  3 Sep 2024 08:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wyYEej1x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xry111.site (xry111.site [89.208.246.23])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD5B1DAC4D;
-	Tue,  3 Sep 2024 08:30:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CFC1D04BF;
+	Tue,  3 Sep 2024 08:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725352224; cv=none; b=cExbwHmY7Vr/uX52EN9tSIGPwKOdq9G5Dv/ehNfy7UgDcysUboYmZ3yzs2BTjatoUWRAVblL8I643BClYgdXDB/wgQG83hoU4v31lwNSQpR2OhQv74p/cSgYrawryvHYcTSgvGn57/un1FOJmHr8AVep0Xjw2Qsu6bGTTzcie9g=
+	t=1725352294; cv=none; b=bDmZvIcxlkBLUL8/CrxM5orcIGuG4PC3mgCbkWcFlsB08z8yhOojd34h5cvm8oGH/LO+fvnGdeSqDNSSNU1aQ0bd+zq3NJmJGLndTMF7iRXOElXD8QnTNLnT5L0ZchqF/FZHLixtqNA3uADeGoGZ1K6EnqDB/K0mJtqwbvYthok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725352224; c=relaxed/simple;
-	bh=M6JcT0iepMiXrkvVS8NhkD1BtIrnIm22E0HeLr/NOa8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NXoXfEdc3kcPiDveJ94xq6CRmz/lOO6o9ffBN/SBgUpNwoZf1Cu6tLbCRk+poMn/3KlklXWKpi1EAy15k5pNtDFDsBP1EmF3tJ1WLifypdsxR3GZiitYAzCJeEyTi3cA43q4R6/DGbcXebKq518VDMxiolhqAhbmt49HHd279DE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; arc=none smtp.client-ip=89.208.246.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
-Received: from [192.168.124.6] (unknown [113.200.174.110])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 872021A3F67;
-	Tue,  3 Sep 2024 04:30:11 -0400 (EDT)
-Message-ID: <5c0003ae887f2f80f7852498e1c1a3ff2c07129e.camel@xry111.site>
-Subject: Re: [PATCH v2 2/2] Loongarch: EDAC driver for loongson memory
- controller
-From: Xi Ruoyao <xry111@xry111.site>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Zhao Qunqin
- <zhaoqunqin@loongson.cn>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- chenhuacai@kernel.org, linux-edac@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- kernel@xen0n.name, bp@alien8.de, tony.luck@intel.com,  james.morse@arm.com,
- mchehab@kernel.org, rric@kernel.org,  loongarch@lists.linux.dev
-Date: Tue, 03 Sep 2024 16:30:08 +0800
-In-Reply-To: <979d67cc-cbd2-408c-a8ca-a063030bcec2@kernel.org>
-References: <20240903015354.9443-1-zhaoqunqin@loongson.cn>
-	 <20240903015354.9443-3-zhaoqunqin@loongson.cn>
-	 <jkdyayyjrzuhhfaueiessntfdof2m55xjxedkl3zp2jalf4sii@3fo65j64c6rv>
-	 <549969b7-26c4-a203-b5a0-2e89ab7e7d79@loongson.cn>
-	 <979d67cc-cbd2-408c-a8ca-a063030bcec2@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3 
+	s=arc-20240116; t=1725352294; c=relaxed/simple;
+	bh=lYG7sWLNubhIsgn0ldrRT8aWjANoNzPbDyV9QnNk6nw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KkwnD43sdKMrUUw+ROhxBSUY3+tp/4hlzcS27m8Ghble/3mQKImWEZQSzQcdgRST+KZWYl52NCxZV4RSrGIVvgQJTR1NOO0zuLXRpuqahZrhop+ylC/bGuGPYkNz30HvKPceuyqIs+mL1HYvGuo7ojKGU45dplrPfipePHnMjXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wyYEej1x; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4838VCSw012770;
+	Tue, 3 Sep 2024 03:31:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725352272;
+	bh=hqeyzmvGdqaZH7UmCcauPjdhGh8RVSEQWcfiZFqvHec=;
+	h=From:To:CC:Subject:Date;
+	b=wyYEej1xCaI5MpeQQNwiZAQEoZWuo15tmtN2nVNydgU630xNy+rCOAkAA2ZmZNIVW
+	 HNkdYXUjshXE35Sai4jafegILJLCGQMeCrKXbeEfA6GT7zliLRqUJYDjefBIRoaxNF
+	 2w6WZjAR9RFu5k9fkcJ00aTFm/DgFw8qOizfS110=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4838VCrZ036671;
+	Tue, 3 Sep 2024 03:31:12 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Sep 2024 03:31:11 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Sep 2024 03:31:11 -0500
+Received: from uda0490681.. ([10.24.69.142])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4838V7kU085647;
+	Tue, 3 Sep 2024 03:31:08 -0500
+From: Vaishnav Achath <vaishnav.a@ti.com>
+To: <tglx@linutronix.de>, <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <xen-devel@lists.xenproject.org>,
+        <u-kumar1@ti.com>, <vaishnav.a@ti.com>
+Subject: [RFC PATCH 0/1] Add interrupts property to interrupt aggregators/routers
+Date: Tue, 3 Sep 2024 14:01:06 +0530
+Message-ID: <20240903083107.3562816-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, 2024-09-03 at 09:58 +0200, Krzysztof Kozlowski wrote:
-> > > > +	select EDAC_SUPPORT
-> > > I think you got here comment before. How did you address it?
-> > I just randomly found a spot, and I will put it at the end(next version=
-=20
-> > patch).
->=20
-> No, the comment was different. You must not select user-visible symbols.
+The interrupt aggregator in TI K3 devices currently uses a
+custom vendor property "ti,interrupt-ranges" [1] to specify the interrupt
+source to parent mapping. As per interrupt controller bindings [2],
+it is mandatory for Nodes that describe devices which generate
+interrupts to contain an "interrupts" property, an "interrupts-extended"
+property, or both.
 
-EDAC_SUPPORT isn't user-visible.  EDAC is and it has been removed.
+Without this, standard DT parsing code cannot identify the mapping, 
+for example while booting these platforms with Xen hypervisor, we see
+that the interrupts are not injected to the guest Linux since the mapping
+is missing, and Xen expects standard properties to specify the mapping[3],
+while adding the interrupts fixes the issue, for some platforms the list of
+interrupts can be so large with more than 192 entries[4], moreover in some
+systems (like TI K3 platforms), system designers can change the mappings
+according to system needs and a long list of repeating entries is error prone
+and difficult to maintain.
 
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
+Are there any existing solution to solve this problem of maintaining long list
+of identical interrupt properties (mostly continuous) other than adding individual
+entries one by one?
+
+It looks like such general solutions will help multiple platforms, TI platforms
+use ti,interrupt-ranges[1], Socionext platforms make use of socionext,interrupt-ranges[5]
+and multiple other platforms which maintain long list of interrupts in DT[6] can benefit
+from such general implementation. If there are no existing solution is it okay to add new
+support for a general property, my proposal is for sometihing similar to interrupt-template
+and interrupt-ranges as described in [7].
+
+1- https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi#n111
+2- https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+3- https://xenbits.xen.org/gitweb/?p=xen.git;a=blob;f=xen/common/device-tree/device-tree.c#l1135
+4- https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi#n1346
+5- https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi#n228
+6- https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/nvidia/tegra234.dtsi#n126
+7- https://android.googlesource.com/kernel/common/+/android-trusty-4.4/Documentation/devicetree/bindings/trusty/trusty-irq.txt#10
+
+Thanks and Regards,
+Vaishnav
+
+Vaishnav Achath (1):
+  arm64: dts: ti: k3-am62p-main: Add interrupts property for DMSS INTA
+
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 35 +++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+-- 
+2.34.1
+
 
