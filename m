@@ -1,99 +1,129 @@
-Return-Path: <devicetree+bounces-99593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0D896A4F7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 19:02:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66CD796A50F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 19:10:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CEAF1C2125D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:02:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DF8B1F256CB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E737E18BBBE;
-	Tue,  3 Sep 2024 17:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE57A18C921;
+	Tue,  3 Sep 2024 17:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E1fTPKNZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UtG3Hw/j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4586A1C14
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 17:02:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3462B18BC1C;
+	Tue,  3 Sep 2024 17:10:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725382973; cv=none; b=pt5iiLHkZuhWJxLv+T82BafRPlfgPX1b5tOoQkx9MeNS3qjNBzcivCJdyPhk6eGTS1YTNVjXNwwOBTQulJILQk3KLFlNdocaGNX4sCWOTEAyVlRYGqVpL0/f9sAmJEtJUVzTMIvxjH8bNxAWKgP6Lm5YWBpCzOZ9LOtsKQLmkbo=
+	t=1725383428; cv=none; b=idTt9v8UEXBOQRrtASXCktPZ5rVx3SLGQ+52+twaCsYHd55N1yBrt0nJkNljocVMV9um4kAfQY900BGEvayNKXkvzoXX9gqE/np5uVT8bRFNS7f7UnCDqKryZWzmsViqA+MWONntqetr6WOFHwpxjZBAhKuf0v7Zqn/GvCkIjMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725382973; c=relaxed/simple;
-	bh=Q3YzhK8R11bkvUF8+DllZk6A0z430wy/iDWP4hGpx1g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZJG8sxZCQ0LwhmyBZOPw6fD2ENqOSTE/yebgTie0tdOMl6F5rgRr48btba39QyBQO3W3Yrjygu0mh3nTH2mOQkli2ukOadpPXF+tVZ8TZLmeeg1DJX2Lp+X7/8zSZGXAoT57gg8LEd1uAc6PiAoBW+0cBLAs/gIgCxz4FUKz0pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E1fTPKNZ; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2f4f24263acso83640101fa.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 10:02:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725382970; x=1725987770; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q3YzhK8R11bkvUF8+DllZk6A0z430wy/iDWP4hGpx1g=;
-        b=E1fTPKNZbV5p9iIvV7H7zoa0BN+2hufuRoIbnZ6pMcbNMU3D2M6A2OlUOmXwcZ4tDX
-         Y+V04ME/juyQw36OYvFvBTivEN/t1DImDcDRi3KRViolS3wWvYLfxMbUf8xdy4xb7I9k
-         DylvndBJL2M3PXTF5n2tWbg4FOC2zOzq+0nynbdy61APlQcxdw4xy2Emm70nVooyEZel
-         UrxCQIhkdq3PI03p5Z/z5X3vSP5hqtaw7o01QTkI2lkDqT7meqD14GlmpYw8kqU237mh
-         6rszficsRnSnDEdzWpX8TNAvsPGlCYK+Fz8IcxWLlXKQzPwDy6n9AhTRNWokHNgAf7SY
-         TKKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725382970; x=1725987770;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q3YzhK8R11bkvUF8+DllZk6A0z430wy/iDWP4hGpx1g=;
-        b=ZDf35LngRaC9xb3KraOfhxXO9eaOUIE8oPaT9npA1WDaoa9301VhNPXxe11US2dGZm
-         s4emjxOmkR13acivITyHH42Daxxkiwac3WeJrAEWHdJcZ6gtRfz2rthIJTEhXPJPCor8
-         klNqQkXZOOucLV3A/an3BXUDF+J7CmIiNV9BHLq88mSqSU4Sjem6ZXrXJKlseWF0MxmE
-         j7uCx+mP5nqY7UPSLZOkuVtSKUSiVFE95AFRYHhfQYXtRmJqklRlC7+uo51a1Z2iPqeH
-         t2ShACYBhDi3gnzyrtuBqynVzmql9jmybCXhB+H34Vr7VRXbbXsOoNWO+auobJJOo0cb
-         iVsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVTLXkpjXwz5GVonvF7f2wwPn524yPaFpjAyrGkEJR6dWpMPxC0QEMqMcUAG4Hb4z4pxonGH26EOQan@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxoa6jgg70xsL96f3Mion6cQz3GlVzJUhiNlSGAb59e6BmhPL0a
-	Mt+uZrHZHqfSdeHRd8G1ZEy35ah2WkUUt59ANP0/aM7o6eXPSQu5e0x52kS23kd2VOAt1b7a+xn
-	0/t+3Fz0m/pAsRnmh0VgzrrT98Q4=
-X-Google-Smtp-Source: AGHT+IEzMBGRuqLEiLcO65zri6rKRHx9lCYrxdw3EN0gYO/mD+Tx4K5tZUtqqFzR0RMJZ0s8O33zOc9QJHxxisc+9l8=
-X-Received: by 2002:a2e:819:0:b0:2f0:1a95:7106 with SMTP id
- 38308e7fff4ca-2f61089392fmr114095061fa.39.1725382969868; Tue, 03 Sep 2024
- 10:02:49 -0700 (PDT)
+	s=arc-20240116; t=1725383428; c=relaxed/simple;
+	bh=0l4evwdyan87dgGb7txNM2qR7iGQ5qw8nvVrzVmrYsk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q8SMDPeF+qfT36J1/ljfTMKuzjlVuW/TF01mJktQ9RpubzTImLah3qgBAgxe8MVu6ulcptbnZAgXMMMX276I+RiqMxwe+vNYBnfkmYXkVqkw/T7tQPPdnsSl+ZnM9vY6CoBZbU6Wg5NFzeh+0Yp67a0JewkqT/gfbFFJk8KWct0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UtG3Hw/j; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725383427; x=1756919427;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0l4evwdyan87dgGb7txNM2qR7iGQ5qw8nvVrzVmrYsk=;
+  b=UtG3Hw/jA6gYkB7bpJDEV6DJ+SB4FIXfo+D3+xNQ6Vz3JYJzdRjmatoG
+   i9Mqgn/qMap+3r2g4nvnj+q+hp7aceV6ifYv/6aUE8ObZrpWdxC2MYx/d
+   i3kl3SzcATJm6wXrDApJtFpRfulRLlbTuMbsjXA/e5GtFtb1KhB4griwx
+   QW0QdUdJVv4/vLHGSnW3okP0plzfczvUCMJMq10VIPFjlWP2UKAu5CpH7
+   oLdMdg2Ya3UPf4vaq64jXNrt84IxJ3Q4uL67YWT5nJTMVUrE3qiylssIi
+   6crU3Fe68RO9Y3LIQfUiiLjPtGA9POz4kknefL13BR9BXZzqyQJqj9GGs
+   w==;
+X-CSE-ConnectionGUID: +Atj3CcKSdSzYuKHvgv8tg==
+X-CSE-MsgGUID: 8EdiBQCMTcKvflmaLTdfBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="34662246"
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="34662246"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 10:10:26 -0700
+X-CSE-ConnectionGUID: 8wDNQEu0Qga0yw2/nvqSwg==
+X-CSE-MsgGUID: s/qtCeb5QmWdBmBdcM73FQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
+   d="scan'208";a="95713609"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 03 Sep 2024 10:10:21 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1slX2p-0006wY-04;
+	Tue, 03 Sep 2024 17:10:19 +0000
+Date: Wed, 4 Sep 2024 01:09:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de,
+	Alibek Omarov <a1ba.omarov@gmail.com>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	David Jander <david.jander@protonic.nl>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Marc Kleine-Budde <mkl@pengutronix.de>
+Subject: Re: [PATCH can-next v4 01/20] dt-bindings: can: rockchip_canfd: add
+ rockchip CAN-FD controller
+Message-ID: <202409040039.TNDhtsSe-lkp@intel.com>
+References: <20240903-rockchip-canfd-v4-1-1dc3f3f32856@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240903162729.1151134-1-festevam@gmail.com> <0b97acc0-2720-4962-b3c3-bb444cf81e66@denx.de>
-In-Reply-To: <0b97acc0-2720-4962-b3c3-bb444cf81e66@denx.de>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 3 Sep 2024 14:02:38 -0300
-Message-ID: <CAOMZO5CBLLO2sL6aJD346O721mRwPKBysRMPnXkq1KXNKo8axw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: lcdif: Document the dmas/dma-names properties
-To: Marek Vasut <marex@denx.de>
-Cc: mripard@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240903-rockchip-canfd-v4-1-1dc3f3f32856@pengutronix.de>
 
-Hi Marek,
+Hi Marc,
 
-On Tue, Sep 3, 2024 at 1:51=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+kernel test robot noticed the following build warnings:
 
-> This also applies to MX23 , that one also has the support for
-> command-mode LCDs which are then driven by pumping commands via DMA. I
-> don't think Linux actually supports this mode of operation, but I do
-> recall using it some long time ago on MX23.
+[auto build test WARNING on da4f3b72c8831975a06eca7e1c27392726f54d20]
 
-I checked the i.MX23 Reference Manual and no LCDIF DMA entry is listed in
-either Table 10-1. APBH DMA Channel Assignments or Table 11-1. APBX
-DMA Channel Assignments.
+url:    https://github.com/intel-lab-lkp/linux/commits/Marc-Kleine-Budde/dt-bindings-can-rockchip_canfd-add-rockchip-CAN-FD-controller/20240903-173243
+base:   da4f3b72c8831975a06eca7e1c27392726f54d20
+patch link:    https://lore.kernel.org/r/20240903-rockchip-canfd-v4-1-1dc3f3f32856%40pengutronix.de
+patch subject: [PATCH can-next v4 01/20] dt-bindings: can: rockchip_canfd: add rockchip CAN-FD controller
+reproduce: (https://download.01.org/0day-ci/archive/20240904/202409040039.TNDhtsSe-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409040039.TNDhtsSe-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/exynos/
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/net/can/rockchip,rk3568-canfd.yaml
+   Using alabaster theme
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
