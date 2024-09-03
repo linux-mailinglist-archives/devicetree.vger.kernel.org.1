@@ -1,98 +1,203 @@
-Return-Path: <devicetree+bounces-99634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7F596A9C5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:10:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDAD496A9DF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8C611F215E3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:10:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86E9228334A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D8D1EC013;
-	Tue,  3 Sep 2024 21:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D269A1EC006;
+	Tue,  3 Sep 2024 21:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIs57Wl9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Bx4JhlQN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB9E1EC011;
-	Tue,  3 Sep 2024 21:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0801EC002;
+	Tue,  3 Sep 2024 21:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725397762; cv=none; b=Acro83MF5fRt/IIefJ0NQXFT44PpVAjV9SFTanpRLUmhyXD7QvZOIXpc0IVU7rraMtPRUKuUJ4+Nfv6dkYfqHIauGRSLtnGJ9/aHqBcvxE9AdDBi0HXGgkuUxfqIHTl2AqQkEBu4aRmDmAVuloqJoqYIpV9z0/yGL64pryPyg+4=
+	t=1725398350; cv=none; b=SUsojfOl8XeDyOFsXeR1l1VHwogATxDLvVy5IRojux0vUTEpmkOBSneinJjKLxCZASczDq2F/EdcWx0VRtiApEn1FhVcrsOeyxg3XsY2sr0Fr4a8Ls46Z3l5xlgOw8KJxztCO3gEhSsFipUAZKqVDkpVzPirjudFe/YI8yreovE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725397762; c=relaxed/simple;
-	bh=zMYA+LcGsMb9VFlyyQ4rB4esNt0Wsi3Z7wJ735oK+TQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=RUU/rXfiqoLn5vuFQXuaIxlnKK6jIrbbSN6Ld5kH8tSR+M8hsQiSd0uBQHNDZcBWwGLdNr5IxJAYYKfhEHlYlWn7WYsjMimj/N29WBjGv0OopnCB2YWXiAeWNoqKwptRZJBTzyLnf+r3RQlu8Pj2JQP05uJkqMHAYQZqT0qHJLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qIs57Wl9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 592A7C4CEC4;
-	Tue,  3 Sep 2024 21:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725397761;
-	bh=zMYA+LcGsMb9VFlyyQ4rB4esNt0Wsi3Z7wJ735oK+TQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=qIs57Wl9jXFEqhkEJPkefxf7DNEpJ/KpO+Vz3giW1hy7mMsLHGeVdOQkkjx/+NmmV
-	 negBj0xkg1WEhOt0XYT1iCrGGzGIJjYOxxCttFb3gTJdQXofcN90AjhNG7CpX04DtM
-	 KZRTymWXV6TvKAfXJsYwF/8MLR3SFgpQ3A2G9pGoe7h5HvQZUN1YNvmHVLrMQz1Z4l
-	 2ikCqhcsHbDY86LeQwgeqBYLxKygEr8a9LXBVjf8UWZukvXPDMYqHdu01RuCB2vuiW
-	 BGoMAVReWhiBiAHDqtZ3Qws9SVbgQPKBWbRxUKIcOCWb8KeuNEhpfNWrdR44PJ3vnL
-	 nsP/xhzYHVYBw==
-Date: Tue, 3 Sep 2024 16:09:19 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 11/11] PCI: imx6: Add i.MX8Q PCIe root complex (RC)
- support
-Message-ID: <20240903210919.GA277611@bhelgaas>
+	s=arc-20240116; t=1725398350; c=relaxed/simple;
+	bh=U1ukEr8EN1FDDvS4Y7RULLGTH93cVAvfVFqw0l1CRb8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cVLm6No3ghNg/+ESAo/GLMezLpJ3O0RNBW/4Gz5Ye1HymzM465k564vWBj+g4EvzK/uhSH9MvzvGYVJGktg67Rl3a7SGQ2weTRna4a3BOghO8BHh9QuHY+cXKtCzBeyI0QD8+XTXM0J2KmCiHO0MF/gBisf3OK/uJBijjjJ/AyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Bx4JhlQN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 483D99Pm014645;
+	Tue, 3 Sep 2024 21:18:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ccVhMBdxEk5S4mL0cUcGF7PalslkLp70MYvdg4jGv40=; b=Bx4JhlQNp4Mr4rRu
+	3MWe1AssFm+F4CHy5VhRZ3BjpoN2yB3csvRBWkLkprI/xAQGZJbPNWhx0AaZIrIm
+	mAfwCKFSfYoLcoJnaXt/yaZXcEgvmUigyRylvKtghA2K9O9No8LHrpGk8Fdzyfka
+	qrLgeZnbAvN/k7+VxkPC8Hmmrh3sZreo7ZweNA9ilpFqlQRHIJASugyOtXzrtoZ8
+	+GeYzosmCwLSIDTRYE5eviuKd4dKB7wyBQDOgfY7UJHlYf2VL8ZolXkhmrrZwj4u
+	JzePcTc+ZynZsxZTSdX1mziwIu9x45dj/QazjTSIJ4edSo+329AexEcIyL0s90be
+	dbmR/g==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41dt69avfe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Sep 2024 21:18:38 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 483LIbs9019044
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Sep 2024 21:18:37 GMT
+Received: from [10.71.114.155] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Sep 2024
+ 14:18:36 -0700
+Message-ID: <5b23cbaf-05e2-4310-aad0-7e5bd01c9d3b@quicinc.com>
+Date: Tue, 3 Sep 2024 14:18:36 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZtdzIxr3YnDAW5VY@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v26 21/33] ASoC: qcom: qdsp6: Add USB backend ASoC driver
+ for Q6
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <tiwai@suse.com>, <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240829194105.1504814-1-quic_wcheng@quicinc.com>
+ <20240829194105.1504814-22-quic_wcheng@quicinc.com>
+ <afe37014-8ec5-4808-bc24-09ac0f2d93b6@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <afe37014-8ec5-4808-bc24-09ac0f2d93b6@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zJj5FS5k0LAWrU0MGLzu1kKo2bkGDL1O
+X-Proofpoint-ORIG-GUID: zJj5FS5k0LAWrU0MGLzu1kKo2bkGDL1O
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-03_09,2024-09-03_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 bulkscore=0 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
+ phishscore=0 priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409030171
 
-On Tue, Sep 03, 2024 at 04:35:47PM -0400, Frank Li wrote:
-> On Mon, Sep 02, 2024 at 08:49:27PM -0500, Bjorn Helgaas wrote:
-> > On Mon, Jul 29, 2024 at 04:18:18PM -0400, Frank Li wrote:
-> > > From: Richard Zhu <hongxing.zhu@nxp.com>
-> > >
-> > > Implement i.MX8Q (i.MX8QM, i.MX8QXP, and i.MX8DXL) PCIe RC support. While
-> > > the controller resembles that of iMX8MP, the PHY differs significantly.
-> > > Notably, there's a distinction between PCI bus addresses and CPU addresses.
-> >
-> > This bus/CPU address distinction is unrelated to the PHY despite the
-> > fact that this phrasing suggests they might be related.
-> 
-> This just list two indepentent differences.
+Hi Pierre,
 
-Yes.  But using "Notably" here connects them by suggesting that the
-address space translation is a major part of what came before.  Weird
-subtlety of English usage, I guess.
+On 8/30/2024 2:21 AM, Pierre-Louis Bossart wrote:
+>
+> On 8/29/24 21:40, Wesley Cheng wrote:
+>> Create a USB BE component that will register a new USB port to the ASoC USB
+>> framework.  This will handle determination on if the requested audio
+>> profile is supported by the USB device currently selected.
+>>
+>> Check for if the PCM format is supported during the hw_params callback.  If
+>> the profile is not supported then the userspace ALSA entity will receive an
+>> error, and can take further action.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>  include/sound/q6usboffload.h  |  20 +++
+>>  sound/soc/qcom/Kconfig        |  10 ++
+>>  sound/soc/qcom/qdsp6/Makefile |   1 +
+>>  sound/soc/qcom/qdsp6/q6usb.c  | 246 ++++++++++++++++++++++++++++++++++
+>>  4 files changed, 277 insertions(+)
+>>  create mode 100644 include/sound/q6usboffload.h
+>>  create mode 100644 sound/soc/qcom/qdsp6/q6usb.c
+>>
+>> diff --git a/include/sound/q6usboffload.h b/include/sound/q6usboffload.h
+>> new file mode 100644
+>> index 000000000000..49ab2c34b84c
+>> --- /dev/null
+>> +++ b/include/sound/q6usboffload.h
+>> @@ -0,0 +1,20 @@
+>> +/* SPDX-License-Identifier: GPL-2.0
+>> + *
+>> + * linux/sound/q6usboffload.h -- QDSP6 USB offload
+> not sure about the linux/ prefix?
+>
+>> + *
+>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +/**
+>> + * struct q6usb_offload
+>> + * @dev - dev handle to usb be
+>> + * @sid - streamID for iommu
+>> + * @intr_num - usb interrupter number
+>> + * @domain - allocated iommu domain
+>> + **/
+>> +struct q6usb_offload {
+>> +	struct device *dev;
+>> +	long long sid;
+>> +	u16 intr_num;
+>> +	struct iommu_domain *domain;
+>> +};
+> consider reordering to avoid holes/alignment issues, e.g. all pointers
+> first, then long long then u16
+>
+Will fix these.
+>> +static int q6usb_hw_params(struct snd_pcm_substream *substream,
+>> +			   struct snd_pcm_hw_params *params,
+>> +			   struct snd_soc_dai *dai)
+>> +{
+>> +	struct q6usb_port_data *data = dev_get_drvdata(dai->dev);
+>> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+>> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+>> +	int direction = substream->stream;
+>> +	struct q6afe_port *q6usb_afe;
+>> +	struct snd_soc_usb_device *sdev;
+>> +	int ret = -EINVAL;
+>> +
+>> +	mutex_lock(&data->mutex);
+>> +
+>> +	/* No active chip index */
+>> +	if (list_empty(&data->devices))
+>> +		goto out;
+> -ENODEV for the default return value>?
+Sure.
+>> +
+>> +	sdev = list_last_entry(&data->devices, struct snd_soc_usb_device, list);
+>> +
+>> +	ret = snd_soc_usb_find_supported_format(sdev->chip_idx, params, direction);
+>> +	if (ret < 0)
+>> +		goto out;
+>> +
+>> +	q6usb_afe = q6afe_port_get_from_id(cpu_dai->dev, USB_RX);
+>> +	if (IS_ERR(q6usb_afe))
+>> +		goto out;
+>> +
+>> +	/* Notify audio DSP about the devices being offloaded */
+>> +	ret = afe_port_send_usb_dev_param(q6usb_afe, sdev->card_idx,
+>> +					  sdev->ppcm_idx[sdev->num_playback - 1]);
+> don't you need a symmetrical notification upon hw_free()?
+>
+> Also what happens if there are multiple calls to hw_params, which is
+> quite legit in ALSA/ASoC?
 
-Krzysztof, if you have a chance, just s/Notably/Also/ here.
+The afe_port_send_usb_dev_param() is meant to just update the device selected for offload on the audio DSP end, and this won't be referenced until our Q6AFE DAI sends the port start command in its prepare() callback.  Don't think we need to handle anything specific in the hw_free() case.  As long as the hw_params() callback is called before any audio session is started, then we'll ensure that the device selected is always updated to the audio DSP.
+
+Thanks
+
+Wesley Cheng
+
 
