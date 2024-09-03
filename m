@@ -1,349 +1,207 @@
-Return-Path: <devicetree+bounces-99636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A3696A9F3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:20:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FEEF96AA44
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:36:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70B221F25837
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:20:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7C06B23C0B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4FC23D7;
-	Tue,  3 Sep 2024 21:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88C8126C15;
+	Tue,  3 Sep 2024 21:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="npd9CLWx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aFdQl9rq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC951EC013
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 21:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A2C126BF9;
+	Tue,  3 Sep 2024 21:36:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725398418; cv=none; b=C3BupL4txdtrM6d+OiPA3zkii8/oGgWJUBZmyoWsXovJyGBO2IE++bu9AL4hFedJe94eWKcnMOOVVE4ZR2Wf5wbZX6GFW16vsSlSu5baFS865gHwYjlBQpn/nQCZSkVFWbas1f7R75HDUzcS0tjnfFO/TwdLyUo7N+F/YUMf/zA=
+	t=1725399392; cv=none; b=K+K9AA3tq53W3Qon8QWPlZIxkEePU3vi31S1lGjH4B5ugtLUid6QjoX7GwiaWDRW5TIkLnbCHLZoFdHJCSqUE4sx82RnHyJMaMC+M0h0BkO56dRSJx0OCsPCvhMdvuEX71Z39rsnhTZMeu2iFvjtph0rMmKp0addK0TR3bCZVEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725398418; c=relaxed/simple;
-	bh=zGw+WJkdThsfd9X27i2yWNeI8B8dXTd1oEncs8KiCOY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KY6760FcDDcmQ6tBRoKVsuDdnXNuXaAb+HO7L2wt406gLHNj4HehCi0NDA/mt1ZxcSp3qzI3nOZ5tPdCL5yJcS+O4Ehxhot7UIAE7KlOhAYG+n7TrgkEiBnyjyBBqx1EHe5pvkUrmM5NdOCH8wkMgZytSDZkmwBIwUS9x62JzQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=npd9CLWx; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-699ac6dbf24so50122057b3.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 14:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725398415; x=1726003215; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OGgWpFqjKdXqQ+We9v9Bm3uUeVDDVvqu7jm5vMgKaSQ=;
-        b=npd9CLWxjh6/Zds/WsdLhLkdq1ALqbNjsL8PgiUsaKzE5p1YVphgzAZ4HQfLAIQeiu
-         kXaTFdudi8R0O9FI4kfKVIKKEYgWaParXf2p4PO0L4Dw8pRKQIRI/v2GDTMpsCJUAliy
-         AzR+7S70RUKc/W84dbZvMjemgPjo73hI8UDmHHlxrY+RXPrr75LfOYyTzo9QCPVMUHR1
-         US4HMtejUaTrMXdPbpaKE3XHN96F1jMD50+J8AxpeU4aLVyBlHYQcxh4fUee43DaTzos
-         M3vUTsnP9iXIs/fafdgqDsEStXutD4YUYaDG3R5u20IFOyEkmQW8phHtD5oq1sp4jeMA
-         yDUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725398415; x=1726003215;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OGgWpFqjKdXqQ+We9v9Bm3uUeVDDVvqu7jm5vMgKaSQ=;
-        b=hgLQDfE8LWTZyU2OPn/hP9XiTmBlSUZvqxI1ko8OytbV4f3VAeLGFWQy6IouEIPyEd
-         2b0xEXnTkDmxyHqCOyi0aa3pnFio+hUmLVlJBJkqqYFgi6YelLJUgC4k9s4rLpG+QJMe
-         K6TEqW+2OV33xP2GYqNwc/4VMxSjVBCG4k/bjdQhx3mNYXF+WGp45JEzNcD7qTRESflO
-         QDBrb2xTco/qO055jf2W8b1xYZ8G6LkWaCrV90bBwDUtlGcajZmiGd/HuUgMvVXuuJ+3
-         0XAlhz8D6AVO2fEfYMTLiMD+hu2bhYkY85B4Lto5wjbN41YvSk9ZuYq1Xt6Ibf3NTDoz
-         WBCg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWwpippQ8o3Kw0gKXmIT1z7Sbut/kW3PskMYZK/aFFLcR/lYb+jjaB4dIZKq1pD84fX7Oz5NIEdXXF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWoTLs6ckU0+7QKQ1AYO9p3I03D1kP0UctcIkUDrvUdFyHjReA
-	Kk4mDQLJbQbXump+lpxeUF0XVW3nkbr6TKWujkEE07r/Z4KPSBsMf1TnSHvSSy1rroaR/lN+VVe
-	EADu0APbRUMNLWwNrqGlX+/3pPkEg3HeiOkfpgw==
-X-Google-Smtp-Source: AGHT+IFytbcUiayfRWAYEBNABArUGnVyJm0Qn9ouaRXgvkcvfg7aIGFmg+Fw0IPzhQndUnCFie5xZeU3v+x6yFT5W2Q=
-X-Received: by 2002:a05:690c:6703:b0:6d3:b708:7b19 with SMTP id
- 00721157ae682-6d40e782513mr147731587b3.27.1725398415487; Tue, 03 Sep 2024
- 14:20:15 -0700 (PDT)
+	s=arc-20240116; t=1725399392; c=relaxed/simple;
+	bh=sNqNWqOObyh0Yd8IjFNXY0gFjc5VMHgPntz99N56vvI=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=rpi8FNta85PZN7Ydgy4IdvgXJkBf2x5IryGqojOSk144zciLcO91yZg7T0Y9FcbQuZKdczJE4/1yT586WZWqqM57cZAQg0/cNBR/Q0JfVJy6Da2nXKzFvxjXxD5DNcW84MCGywXVssHJY9qltiZXnE4bsXjkvCb1b8CZoZBQnP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aFdQl9rq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E725C4CEC4;
+	Tue,  3 Sep 2024 21:36:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725399392;
+	bh=sNqNWqOObyh0Yd8IjFNXY0gFjc5VMHgPntz99N56vvI=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=aFdQl9rqcGVYn5lj+mLlLxKHqkhhK0MQ9UB6a8BGbdHwgk5gIOMF4i5ItkrhFLWP3
+	 +xZX3j0QiCo4SRg7LLK8KO3bTdrck6b8/M3CHUd8njEr3jb2mUaG+rCjBOx+j/y34d
+	 iQl/FA4VNKWFlO7p0EnQbgY+mhs1TRN6RA2C4zh5pGHheu9zfXcjAksRHsQAqaWwWq
+	 HPgVw6kZq+DBKyEPtxM3tdsiFCaNQERIh6MqQp2FtLYf40AaDMwDa5cqspn325HQrS
+	 HFzUDAMqJ5PpJIyeSUunBXoRib4HuS3ACNMaXL0uSmgpcrGc9pCUICr1/OqlmToHoR
+	 gF4tpcBnPjK2A==
+Message-ID: <c9ffecd72199926fc3d8a8e57208818c.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240903124429.107076-1-ivo.ivanov.ivanov1@gmail.com> <20240903124429.107076-6-ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20240903124429.107076-6-ivo.ivanov.ivanov1@gmail.com>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Tue, 3 Sep 2024 16:20:04 -0500
-Message-ID: <CAPLW+4ns=6eO=S4Cz70aBSyVO8CJ5=ixmKL38dZDjD3UgO98ZA@mail.gmail.com>
-Subject: Re: [PATCH v3 05/10] pinctrl: samsung: Add exynos8895 SoC pinctrl configuration
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAA8EJpqSFp_cETNE_3iiC1viLhPD5TE+H1F=m8UksybEpAvKHQ@mail.gmail.com>
+References: <20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com> <20240827-qcom_ipq_cmnpll-v3-2-8e009cece8b2@quicinc.com> <d7b374670eb2f6d442f351106ab1221a.sboyd@kernel.org> <7f4d41a0-b1b9-4b63-8590-63f4fcf1a359@quicinc.com> <7736d0d0-634d-403d-b70f-f33b7402456c@quicinc.com> <04944b77ce6327ba5f4ec96348a9cda2.sboyd@kernel.org> <ecc34401-68c2-463f-b630-6a81ad95625e@quicinc.com> <6sk7sx4pz2gnne2tg3d5lsphmnp6vqjj2tjogqcop7fwn3yk3r@ftevsz77w6pt> <492e3c19-c06d-4faa-8064-e6b73c46b13e@quicinc.com> <CAA8EJpqSFp_cETNE_3iiC1viLhPD5TE+H1F=m8UksybEpAvKHQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] clk: qcom: Add CMN PLL clock controller driver for IPQ SoC
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_pavir@quicinc.com, quic_linchen@quicinc.com, quic_leiwei@quicinc.com, bartosz.golaszewski@linaro.org, srinivas.kandagatla@linaro.org
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jie Luo <quic_luoj@quicinc.com>
+Date: Tue, 03 Sep 2024 14:36:30 -0700
+User-Agent: alot/0.10
 
-On Tue, Sep 3, 2024 at 7:46=E2=80=AFAM Ivaylo Ivanov
-<ivo.ivanov.ivanov1@gmail.com> wrote:
->
-> Add support for the pin-controller found on the Exynos8895 SoC
-> used in Samsung Galaxy S8 and S8 Plus phones.
->
-> It has a newly applied pinctrl register layer for FSYS0 with a
-> different bank type offset that consists of the following bit
-> fields:
->
-> CON: 4, DAT: 1, PUD: 2, DRV: 3, CONPDN: 2, PUDPDN: 2
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
+Quoting Dmitry Baryshkov (2024-09-03 07:08:07)
+> On Tue, 3 Sept 2024 at 17:00, Jie Luo <quic_luoj@quicinc.com> wrote:
+> >
+> >
+> >
+> > On 9/3/2024 2:39 AM, Dmitry Baryshkov wrote:
+> > > On Mon, Sep 02, 2024 at 11:33:57PM GMT, Jie Luo wrote:
+> > >>
+> > >>
+> > >> On 8/31/2024 6:24 AM, Stephen Boyd wrote:
+> > >>> Quoting Jie Luo (2024-08-30 09:14:28)
+> > >>>> Hi Stephen,
+> > >>>> Please find below a minor update to my earlier message on clk_ops =
+usage.
+> > >>>
+> > >>> Ok. Next time you can trim the reply to save me time.
+> > >>
+> > >> OK.
+> > >>
+> > >>>
+> > >>>> On 8/28/2024 1:44 PM, Jie Luo wrote:
+> > >>>>> On 8/28/2024 7:50 AM, Stephen Boyd wrote:
+> > >>>>>> Quoting Luo Jie (2024-08-27 05:46:00)
+> > >>>>>>> +       case 48000000:
+> > >>>>>>> +               val |=3D FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+> > >>>>>>> +               break;
+> > >>>>>>> +       case 50000000:
+> > >>>>>>> +               val |=3D FIELD_PREP(CMN_PLL_REFCLK_INDEX, 8);
+> > >>>>>>> +               break;
+> > >>>>>>> +       case 96000000:
+> > >>>>>>> +               val |=3D FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+> > >>>>>>> +               val &=3D ~CMN_PLL_REFCLK_DIV;
+> > >>>>>>> +               val |=3D FIELD_PREP(CMN_PLL_REFCLK_DIV, 2);
+> > >>>>>>> +               break;
+> > >>>>>>> +       default:
+> > >>>>>>> +               return -EINVAL;
+> > >>>>>>> +       }
+> > >>>>>>
+> > >>>>>> Why isn't this done with struct clk_ops::set_rate() or clk_ops::=
+init()?
+> > >>>>>
+> > >>>>> OK, I will move this code into the clk_ops::init().
+> > >>>>
+> > >>>> This code is expected to be executed once for initializing the CMN=
+ PLL
+> > >>>> to enable output clocks, and requires the parent clock rate to be
+> > >>>> available. However the parent clock rate is not available in the
+> > >>>> clk_ops::init(). Hence clk_ops::set_rate() seems to be the right o=
+ption
+> > >>>> for this. Please let us know if this approach is fine. Thanks.
+> > >>>
+> > >>> Sure. It actually sounds like the PLL has a mux to select different
+> > >>> reference clks. Is that right? If so, it seems like there should be
+> > >>> multiple 'clocks' for the DT property and many parents possible. If
+> > >>> that's the case then it should be possible to have something like
+> > >>>
+> > >>>     clocks =3D <0>, <&refclk>, <0>;
+> > >>>
+> > >>> in the DT node and then have clk_set_rate() from the consumer actua=
+lly
+> > >>> set the parent index in hardware. If that's all static then it can =
+be
+> > >>> done with assigned-clock-parents or assigned-clock-rates.
+> > >>
+> > >> Thanks Stephen. The CMN PLL block always uses a single input referen=
+ce
+> > >> clock pin on any given IPQ SoC, however its rate may be different on
+> > >> different IPQ SoC. For example, its rate is 48MHZ on IPQ9574 and 96M=
+HZ
+> > >> on IPQ5018.
 
-Other than minor comments below, LGTM:
+How many input pins are there on the hardware block? It makes sense that
+only one pin would be used in practice, but I'm wondering if there are
+multiple pins in general. Why is the field called CMN_PLL_REFCLK_INDEX
+if it's not picking the reference clk desired (i.e. the pin that is
+actually connected)?
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > >>
+> > >> Your second suggestion seems more apt for this device. I can define =
+the
+> > >> DT property 'assigned-clock-parents' to configure the clock parent of
+> > >> CMN PLL. The code for reference clock selection will be added in
+> > >> clk_ops::set_parent(). Please let us know if this approach is fine.
+> > >
+> > > What is the source of this clock? Can you call clk_get_rate() on this
+> > > input?
+> > >
+> >
+> > The source (parent clock) for CMN PLL is always from on-board Wi-Fi
+> > block for any given IPQ SoC.
+> >
+> >  From the discussion so far, it seems there are two approaches possible
+> > which I would like to summarize below to be clear. Please let us know
+> > if this understanding or approach needs correction. Thanks.
+> >
+> > 1. clk_get_rate() requires the parent clock instance to be acquired by
+> > devm_clk_get(). Per our understanding from Stephen's previous comment,
+> > it is preferred that a clock provider driver (this) does not use the
+> > _get_ APIs on the parent clock to get the rate. Instead the parent rate
+> > should be passed to the clk_ops using parent data.
 
->  .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 137 ++++++++++++++++++
->  drivers/pinctrl/samsung/pinctrl-exynos.h      |  10 ++
->  drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
->  drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
->  4 files changed, 150 insertions(+)
->
-> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pin=
-ctrl/samsung/pinctrl-exynos-arm64.c
-> index 5480e0884..0d5d14cf0 100644
-> --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> @@ -58,6 +58,15 @@ static const struct samsung_pin_bank_type exynos850_ba=
-nk_type_alive =3D {
->         .reg_offset =3D { 0x00, 0x04, 0x08, 0x0c, },
->  };
->
-> +/*
-> + * Bank type for non-alive type. Bit fields:
-> + * CON: 4, DAT: 1, PUD: 2, DRV: 3, CONPDN: 2, PUDPDN: 2
-> + */
-> +static const struct samsung_pin_bank_type exynos8895_bank_type_off  =3D =
-{
-> +       .fld_width =3D { 4, 1, 2, 3, 2, 2, },
-> +       .reg_offset =3D { 0x00, 0x04, 0x08, 0x0c, 0x10, 0x14, },
-> +};
-> +
->  /* Pad retention control code for accessing PMU regmap */
->  static atomic_t exynos_shared_retention_refcnt;
->
-> @@ -866,6 +875,134 @@ const struct samsung_pinctrl_of_match_data exynosau=
-tov920_of_data __initconst =3D
->         .num_ctrl       =3D ARRAY_SIZE(exynosautov920_pin_ctrl),
->  };
->
-> +/* pin banks of exynos8895 pin-controller 0 (ALIVE) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks0[] __init=
-const =3D {
-> +       EXYNOS_PIN_BANK_EINTW(8, 0x020, "gpa0", 0x00),
-> +       EXYNOS_PIN_BANK_EINTW(8, 0x040, "gpa1", 0x04),
-> +       EXYNOS_PIN_BANK_EINTW(8, 0x060, "gpa2", 0x08),
-> +       EXYNOS_PIN_BANK_EINTW(8, 0x080, "gpa3", 0x0c),
-> +       EXYNOS_PIN_BANK_EINTW(7, 0x0A0, "gpa4", 0x24),
-> +};
-> +
-> +/* pin banks of exynos8895 pin-controller 1 (ABOX) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks1[] __init=
-const =3D {
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x000, "gph0", 0x00),
-> +       EXYNOS_PIN_BANK_EINTG(7, 0x020, "gph1", 0x04),
-> +       EXYNOS_PIN_BANK_EINTG(4, 0x040, "gph3", 0x08),
-> +};
-> +
-> +/* pin banks of exynos8895 pin-controller 2 (VTS) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks2[] __init=
-const =3D {
-> +       EXYNOS_PIN_BANK_EINTG(3, 0x000, "gph2", 0x00),
-> +};
-> +
-> +/* pin banks of exynos8895 pin-controller 3 (FSYS0) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks3[] __init=
-const =3D {
-> +       EXYNOS8895_PIN_BANK_EINTG(3, 0x000, "gpi0", 0x00),
-> +       EXYNOS8895_PIN_BANK_EINTG(8, 0x020, "gpi1", 0x04),
-> +};
-> +
-> +/* pin banks of exynos8895 pin-controller 4 (FSYS1) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks4[] __init=
-const =3D {
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x000, "gpj1", 0x00),
-> +       EXYNOS_PIN_BANK_EINTG(7, 0x020, "gpj0", 0x04),
-> +};
-> +
-> +/* pin banks of exynos8895 pin-controller 5 (BUSC) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks5[] __init=
-const =3D {
-> +       EXYNOS_PIN_BANK_EINTG(2, 0x000, "gpb2", 0x00),
-> +};
-> +
-> +/* pin banks of exynos8895 pin-controller 6 (PERIC0) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks6[] __init=
-const =3D {
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x000, "gpd0", 0x00),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x020, "gpd1", 0x04),
-> +       EXYNOS_PIN_BANK_EINTG(4, 0x040, "gpd2", 0x08),
-> +       EXYNOS_PIN_BANK_EINTG(5, 0x060, "gpd3", 0x0C),
+struct clk_parent_data doesn't pass parent rate information to the
+clk_ops. I'd like you to not use any clk consumer APIs (clk.h) if
+possible.
 
-Here and below: please use lower-case letters for hex values. So 0x0C
--> 0x0c, etc.
+> So the parent clock
+> > should be specified in the DT using assigned-clock-parents property, and
+> > can be accessed from the clk_ops::set_parent(). This seems like a more
+> > reasonable method.
 
-> +       EXYNOS_PIN_BANK_EINTG(4, 0x080, "gpb1", 0x10),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x0A0, "gpe7", 0x14),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x0C0, "gpf1", 0x18),
-> +};
-> +
-> +/* pin banks of exynos8895 pin-controller 7 (PERIC1) */
-> +static const struct samsung_pin_bank_data exynos8895_pin_banks7[] __init=
-const =3D {
-> +       EXYNOS_PIN_BANK_EINTG(3, 0x000, "gpb0", 0x00),
-> +       EXYNOS_PIN_BANK_EINTG(5, 0x020, "gpc0", 0x04),
-> +       EXYNOS_PIN_BANK_EINTG(5, 0x040, "gpc1", 0x08),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x060, "gpc2", 0x0C),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x080, "gpc3", 0x10),
-> +       EXYNOS_PIN_BANK_EINTG(4, 0x0A0, "gpk0", 0x14),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x0C0, "gpe5", 0x18),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x0e0, "gpe6", 0x1C),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x100, "gpe2", 0x20),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x120, "gpe3", 0x24),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x140, "gpe4", 0x28),
-> +       EXYNOS_PIN_BANK_EINTG(4, 0x160, "gpf0", 0x2C),
-> +       EXYNOS_PIN_BANK_EINTG(8, 0x180, "gpe1", 0x30),
-> +       EXYNOS_PIN_BANK_EINTG(2, 0x1A0, "gpg0", 0x34),
-> +};
-> +
-> +static const struct samsung_pin_ctrl exynos8895_pin_ctrl[] __initconst =
-=3D {
-> +       {
-> +               /* pin-controller instance 0 Alive data */
+Yes, this makes sense if the clk actually has multiple possible parents.
+Don't read the rate of the clk in the clk_ops::set_parent() callback
+though. The callback should only program the hardware to select the
+parent based on the index passed to the clk_op.
 
-Wouldn't it be better to capitalize it, i.e. Alive -> ALIVE?
+If the clk only has one possible parent then it's different. I'd do it
+through clk_ops::set_rate() and use assigned-clock-rates or just let the
+first child clk of the PLL set the rate and configure the PLL by having
+the PLL's determine_rate() callback figure out if the parent rate is
+valid.
 
-> +               .pin_banks      =3D exynos8895_pin_banks0,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks0),
-> +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> +               .eint_wkup_init =3D exynos_eint_wkup_init,
-> +               .suspend        =3D exynos_pinctrl_suspend,
-> +               .resume         =3D exynos_pinctrl_resume,
-> +       }, {
-> +               /* pin-controller instance 1 ABOX data */
-> +               .pin_banks      =3D exynos8895_pin_banks1,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks1),
-> +       }, {
-> +               /* pin-controller instance 2 VTS data */
-> +               .pin_banks      =3D exynos8895_pin_banks2,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks2),
-> +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> +       }, {
-> +               /* pin-controller instance 3 FSYS0 data */
-> +               .pin_banks      =3D exynos8895_pin_banks3,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks3),
-> +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> +               .suspend        =3D exynos_pinctrl_suspend,
-> +               .resume         =3D exynos_pinctrl_resume,
-> +       }, {
-> +               /* pin-controller instance 4 FSYS1 data */
-> +               .pin_banks      =3D exynos8895_pin_banks4,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks4),
-> +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> +               .suspend        =3D exynos_pinctrl_suspend,
-> +               .resume         =3D exynos_pinctrl_resume,
-> +       }, {
-> +               /* pin-controller instance 5 BUSC data */
-> +               .pin_banks      =3D exynos8895_pin_banks5,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks5),
-> +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> +               .suspend        =3D exynos_pinctrl_suspend,
-> +               .resume         =3D exynos_pinctrl_resume,
-> +       }, {
-> +               /* pin-controller instance 6 PERIC0 data */
-> +               .pin_banks      =3D exynos8895_pin_banks6,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks6),
-> +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> +               .suspend        =3D exynos_pinctrl_suspend,
-> +               .resume         =3D exynos_pinctrl_resume,
-> +       }, {
-> +               /* pin-controller instance 7 PERIC1 data */
-> +               .pin_banks      =3D exynos8895_pin_banks7,
-> +               .nr_banks       =3D ARRAY_SIZE(exynos8895_pin_banks7),
-> +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> +               .suspend        =3D exynos_pinctrl_suspend,
-> +               .resume         =3D exynos_pinctrl_resume,
-> +       },
-> +};
-> +
-> +const struct samsung_pinctrl_of_match_data exynos8895_of_data __initcons=
-t =3D {
-> +       .ctrl           =3D exynos8895_pin_ctrl,
-> +       .num_ctrl       =3D ARRAY_SIZE(exynos8895_pin_ctrl),
-> +};
-> +
->  /*
->   * Pinctrl driver data for Tesla FSD SoC. FSD SoC includes three
->   * gpio/pin-mux/pinconfig controllers.
-> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.h b/drivers/pinctrl/s=
-amsung/pinctrl-exynos.h
-> index 305cb1d31..7b7ff7ffe 100644
-> --- a/drivers/pinctrl/samsung/pinctrl-exynos.h
-> +++ b/drivers/pinctrl/samsung/pinctrl-exynos.h
-> @@ -141,6 +141,16 @@
->                 .name           =3D id                            \
->         }
->
-> +#define EXYNOS8895_PIN_BANK_EINTG(pins, reg, id, offs)         \
-> +       {                                                       \
-> +               .type           =3D &exynos8895_bank_type_off,    \
-> +               .pctl_offset    =3D reg,                          \
-> +               .nr_pins        =3D pins,                         \
-> +               .eint_type      =3D EINT_TYPE_GPIO,               \
-> +               .eint_offset    =3D offs,                         \
-> +               .name           =3D id                            \
-> +       }
-> +
->  #define EXYNOSV920_PIN_BANK_EINTG(pins, reg, id, con_offs, mask_offs, pe=
-nd_offs)       \
->         {                                                       \
->                 .type                   =3D &exynos850_bank_type_off,    =
- \
-> diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/=
-samsung/pinctrl-samsung.c
-> index 623df65a5..ea3214897 100644
-> --- a/drivers/pinctrl/samsung/pinctrl-samsung.c
-> +++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
-> @@ -1409,6 +1409,8 @@ static const struct of_device_id samsung_pinctrl_dt=
-_match[] =3D {
->                 .data =3D &exynos7885_of_data },
->         { .compatible =3D "samsung,exynos850-pinctrl",
->                 .data =3D &exynos850_of_data },
-> +       { .compatible =3D "samsung,exynos8895-pinctrl",
-> +               .data =3D &exynos8895_of_data },
->         { .compatible =3D "samsung,exynosautov9-pinctrl",
->                 .data =3D &exynosautov9_of_data },
->         { .compatible =3D "samsung,exynosautov920-pinctrl",
-> diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.h b/drivers/pinctrl/=
-samsung/pinctrl-samsung.h
-> index d50ba6f07..f18877f2f 100644
-> --- a/drivers/pinctrl/samsung/pinctrl-samsung.h
-> +++ b/drivers/pinctrl/samsung/pinctrl-samsung.h
-> @@ -363,6 +363,7 @@ extern const struct samsung_pinctrl_of_match_data exy=
-nos5433_of_data;
->  extern const struct samsung_pinctrl_of_match_data exynos7_of_data;
->  extern const struct samsung_pinctrl_of_match_data exynos7885_of_data;
->  extern const struct samsung_pinctrl_of_match_data exynos850_of_data;
-> +extern const struct samsung_pinctrl_of_match_data exynos8895_of_data;
->  extern const struct samsung_pinctrl_of_match_data exynosautov9_of_data;
->  extern const struct samsung_pinctrl_of_match_data exynosautov920_of_data=
-;
->  extern const struct samsung_pinctrl_of_match_data fsd_of_data;
-> --
-> 2.34.1
->
->
+That register field with "index" makes me suspicious that this is a mux
+that we're trying to hide behind the parent rate. Quite possibly that's
+actually a hardware multiplier, i.e. l-val, and we need to set the index
+to pick which multiplier is used to achieve whatever frequency is
+desired for the PLL itself. I assume the 353MHz output clk is actually
+the one that is deciding what the index should be, and the other ones
+all fall out of the PLL somewhere else through a post-divider or
+something.
+
+What frequency does the PLL run at?
+
+>=20
+> assigned-clock-parents is necessary if there are multiple possible
+> parents. As you wrote that there is just one possible parent, then
+> there is no need to use it.
+> Stephen, your opinion?
+>=20
+> > 2. Alternatively, if it is architecturally acceptable to use
+> > devm_clk_get() and clk_get_rate() in this clock provider driver, we can
+> > save this parent clock rate into a local driver data structure and then
+> > access it from clk_ops::init() for configuring the PLL.
+>=20
+
+No, it isn't acceptable.
 
