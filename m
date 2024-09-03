@@ -1,132 +1,80 @@
-Return-Path: <devicetree+bounces-99240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4F7096946B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:01:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 815D6969471
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:01:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EFF51F23CD9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:01:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E90DEB233A1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1928A1D6DBB;
-	Tue,  3 Sep 2024 06:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FED1DAC72;
+	Tue,  3 Sep 2024 06:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MIP+ydZr"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IwJdRubT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA101D61B8;
-	Tue,  3 Sep 2024 06:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230A41D6185
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 06:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725346719; cv=none; b=KTPzf5O22QWpMQIYA3vkz6NN+ekH1Iqq/d8NPxeaKnd+ng4aQQPzfpYbvhfa0MHAnymWE24tZwKp5ybgRbiByCOGfwiPLxvUxOR7iuEH5rDByqIN+lVMqwfLxME/ftjbKFXsgNhWE6HjDi96k8LoFYb8RPOPDIF/UBGzHLlhA9Y=
+	t=1725346783; cv=none; b=D8vPmJqQYamCALK7OZBf2aPNFXFp+Hmk3whQHE69rYgNURf7VTcvPRtBGVM42bGnpHAK6/hjuMcHgtu3568msXvYEXF0SUl4MCs1Q4QnoiCEX2G5qHVEe2mbWfl07+LNcUiYBlK3XDpStBXrFMLxO99r+jh/pCv3f2lxsjy5rok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725346719; c=relaxed/simple;
-	bh=bIS19lMtHeOrnpD3tHXVlWbdXhU7EUk6GpOiiPc4fkE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kpz9JpTRo8hfw/OLK+nDDsfe6ox/gGUWCM+0FIxfh5ZG/2dELnAMQocdn7rGHPYbDLKdjsBs1NW4g3VULA1NATlLOAMk7n9Ga0V2tcoTFVCjrXCBhnKWBO/pLbuCLXyAp14HC77QTjF+1bbvxSoFvyA+LNv7GUQPCpCbUcCIvms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MIP+ydZr; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4836wNS9111883;
-	Tue, 3 Sep 2024 01:58:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725346703;
-	bh=7QS/PP+dEulS9kB1nTQtMHUpd4L7Wp9gyX90/Aocf1g=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=MIP+ydZrrFcs8UKfYRRA6Nz3BE9U90yHy8kbCQ/q2zDzupQDDQF9pLCLMP5i7mYhj
-	 OcidhjH++y2pHn6NxUjdKVrO3PqXG2ZqO4gCWDhoxl4XUj4h06ncMZ0sKQ3zlgC/7E
-	 W5Ug//OuQzlKJkTHTdrOm1Cz6QTrbIgC+CSMtOYY=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4836wNpQ096024
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Sep 2024 01:58:23 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Sep 2024 01:58:22 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Sep 2024 01:58:23 -0500
-Received: from localhost (dhcp-10-24-72-81.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4836wLtP119241;
-	Tue, 3 Sep 2024 01:58:22 -0500
-Date: Tue, 3 Sep 2024 12:28:21 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Manorit Chawdhry <m-chawdhry@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
-        Neha Malcom
- Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
-	<b-padhi@ti.com>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 3/5] dt-bindings: arm: ti: Add bindings for J742S2
- SoCs and Boards
-Message-ID: <da17b246-13de-4473-8f73-a29c20467082@ti.com>
-References: <20240902-b4-upstream-j742s2-v6-0-6a7aa2736797@ti.com>
- <20240902-b4-upstream-j742s2-v6-3-6a7aa2736797@ti.com>
+	s=arc-20240116; t=1725346783; c=relaxed/simple;
+	bh=13hTXJBOUaHkpft0WgtH3Lgjq3FE4hbFwAehR9W1beM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fEIs32gcqY3yyTFQh7Qcjd221vB/sg6/KXUgYRx3WiydQKydgfkLEs1mLvmhxElg7Uh9bRCSdBAkJP4NuuPfYSxqAVOLcx4OjJY7zxKBjAjJshnawYPgeO7O265DxnNu8ENNjzcMDdtgCoV86kRw016crNcb+aylgeBJiB5jITI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IwJdRubT; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Xzdx2PlkgXu/ukcJYsdXxV7bCTw3dgWJdAMWL0imyRM=;
+	b=IwJdRubTv9IJwtRX9NdE7QK3X0o2HwzOro7gcjCM6P8+Nv7s8xoo6xtNJD4Ax0
+	cME9upOQv/MdzXULv1irqFmtefaJrlNF6qdQJxQfqPim47W6oIBFX9IlCkafMR3B
+	RU5VymbXkBQm/plUXmqxzetRiuuXCVZr+JYHkiuakOrY4=
+Received: from dragon (unknown [114.216.210.89])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgDnzwK6s9Zm+DxaAA--.426S3;
+	Tue, 03 Sep 2024 14:59:07 +0800 (CST)
+Date: Tue, 3 Sep 2024 14:59:05 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, LW@karo-electronics.de,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] ARM: dts: imx28-tx28: Fix the fsl,saif-master usage
+Message-ID: <ZtazuUOj0Ag6N23T@dragon>
+References: <20240902181036.924188-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240902-b4-upstream-j742s2-v6-3-6a7aa2736797@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20240902181036.924188-1-festevam@gmail.com>
+X-CM-TRANSID:M88vCgDnzwK6s9Zm+DxaAA--.426S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcR6zUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRpPZWbWeZS49wAAsr
 
-On Mon, Sep 02, 2024 at 05:56:51PM +0530, Manorit Chawdhry wrote:
-> Add devicetree bindings for J742S2 family of devices.
+On Mon, Sep 02, 2024 at 03:10:36PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> ---
+> According to fsl,saif.yaml, fsl,saif-master is a phandle to the master
+> SAIF.
 > 
-> Notes:
->     v6: No change
+> Change it accordingly, to fix the following dt-schema warnings:
 > 
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> saif@80042000: fsl,saif-master: True is not of type 'array'
+> saif@80042000: Unevaluated properties are not allowed ('fsl,saif-master' was unexpected)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index 5df99e361c21..b0be02f9d125 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -144,6 +144,12 @@ properties:
->                - ti,j722s-evm
->            - const: ti,j722s
->  
-> +      - description: K3 J742S2 SoC
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Is it J742S2 or J742s2? The naming seems to be inconsistent considering
-that it is a lowercase 's' for J784s4 below.
+Applied, thanks!
 
-> +        items:
-> +          - enum:
-> +              - ti,j742s2-evm
-> +          - const: ti,j742s2
-> +
->        - description: K3 J784s4 SoC
->          items:
->            - enum:
-> 
-> -- 
-> 2.46.0
-> 
 
