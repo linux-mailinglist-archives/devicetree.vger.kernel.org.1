@@ -1,583 +1,210 @@
-Return-Path: <devicetree+bounces-99414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41BB5969AF7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:56:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B550969B02
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 12:58:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2BED1F24A51
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:56:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FE711C23EAF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C5D1A42CB;
-	Tue,  3 Sep 2024 10:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98BDC1B12D6;
+	Tue,  3 Sep 2024 10:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="Lyh9dkk5"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="QF44Gsyk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omta36.uswest2.a.cloudfilter.net (omta36.uswest2.a.cloudfilter.net [35.89.44.35])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874503DAC1F
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 10:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57971B12CA
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 10:58:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725360796; cv=none; b=YMVr1luUXu3FUZjKT48LVcJBpvPZ2+wJ0Oalu9dp9kYbSTAYWbV/FeXpwXgb/nXMIFUKKeeToXjMxrzyg3CNuoJSR5ILX4yYTQkIx+kd6RqkMNlHsp+68Cf1Xn5PWPnR3xq31dF7wJBawFshJDy0Wrlt94xpC5j1TUJJbXyz474=
+	t=1725361101; cv=none; b=qubChpTL011yvp0DDey1gD8AB3I0cSSVnWeI//WpNE+YoVB7ExPVdgjZGY+CZoSlHjwGH4k5OLW1mB5OEM18WgtNmWqm0bidAcaj4lPydcHCg5rF4CpYoBJ51DzI1UIhaxHmZl5EJf0WVenyu08kLc6sJcjIdC9TcQrAvN/C3BE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725360796; c=relaxed/simple;
-	bh=dfI00woBvcKg2CbTZdihN8sqaoKEHRak+2O4sIhl8AI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eacMEUHDRvNJ7gPDL6XyCS6uc6+35weukpTyP0zVAAD8LJYjl3HptM+HA2XufvanK4SpmFQIhbi5VMKYqyToMpfO1iA1ynSdOREYU08IfJzsiQh9QbUqLryWVKpQXXzO1rwNa/nwy7+nrLmOnzMCniI3kWhr5LBHxgqN7fToECk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=Lyh9dkk5; arc=none smtp.client-ip=35.89.44.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-Received: from eig-obgw-6006a.ext.cloudfilter.net ([10.0.30.182])
-	by cmsmtp with ESMTPS
-	id lJcUsuMB4qvuolR9usFU92; Tue, 03 Sep 2024 10:53:14 +0000
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-	by cmsmtp with ESMTPS
-	id lR9qsietz37DYlR9tsXmv3; Tue, 03 Sep 2024 10:53:14 +0000
-X-Authority-Analysis: v=2.4 cv=dNqgmvZb c=1 sm=1 tr=0 ts=66d6ea9a
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
- a=EaEq8P2WXUwA:10 a=-pn6D5nKLtMA:10 a=vU9dKmh3AAAA:8 a=ysWAApoHgwdluuWrw7MA:9
- a=rsP06fVo5MYu2ilr0aT5:22 a=ZCPYImcxYIQFgLOT52_G:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-	; s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=nlET/eU7Foi4UdKNRBcIkZI5nyPyuEXlsaCMK0uFxcw=; b=Lyh9dkk5YyHFin11S3V7/ZNhtO
-	W7ykPklji/ZqnP51wnjDwEiWF1sZ2kSgBt2ZJx6QgldsZB3ozEOHfptAPxYCDaIgrAo33aqwcUUsv
-	w1dBZFIQzD3ju/jHu6xDz1rO3GkjvndQ9Bj5c1/pAsJfSoFe6im57CsX2JBr2BnFi7j/8awVERmfg
-	hfiYUGi2H0jexzy7cM0ugq3by4vGlVoNqCXjR8XEdxuHtLJbqPl+Y2onhv6gl+stXvRravRhBI+D3
-	v8V+TkBW5TGRh0JLebsrlTPRYHrX1pFTxCjWVNJbQ1OVwbiWS/FoMHBNnuIoEamseFLKKZ0+yxPxo
-	ohjudvRQ==;
-Received: from [122.165.245.213] (port=41440 helo=localhost.localdomain)
-	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <karthikeyan@linumiz.com>)
-	id 1slR9p-000Elu-0q;
-	Tue, 03 Sep 2024 16:23:09 +0530
-From: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	alexandre.belloni@bootlin.com
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org,
-	Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-Subject: [PATCH v2 8/8] ARM: dts: rockchip: Add Relfor Saib board
-Date: Tue,  3 Sep 2024 16:22:45 +0530
-Message-Id: <20240903105245.715899-9-karthikeyan@linumiz.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240903105245.715899-1-karthikeyan@linumiz.com>
-References: <20240903105245.715899-1-karthikeyan@linumiz.com>
+	s=arc-20240116; t=1725361101; c=relaxed/simple;
+	bh=G+wfkTxv/p3JhAs8yWro+dghNLKXoq5Zfa8T3z/KDrE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CWegbaa1FEb7DhI8bkSQ+oIOpqDHDDJ5LS0iRP8AoIJdZ/z7i7Z6r6YhhTmMQVypyW3gIX+kMOqnD3cp5C4Q24wIA9xkT6vH87A+6XjR2qIb2dVcFBufz12vejLfQu1GqeG9wbkgTPe0iPQ0tyQSQau1WoFBkQb7GI2yz9WaBrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=QF44Gsyk; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42bb8cf8abeso41053585e9.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 03:58:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1725361098; x=1725965898; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IiyTYtjACDnUS+yMHRQJxA78DUiZLSpdAQkLFojBlZU=;
+        b=QF44Gsyk1qkIlHRsOoPGAevX5PIlOx6q35ITfgDBRLOvA4s83fI5PFzij4VCz68Ilg
+         CG1UCHqeR+5rB4nQ9y4wvYAQV0ZW/B6WR6ofppY3zSglnl3gAj11N0YFtPIZzUsbVuvX
+         mJrvf8ffU+mRGxh/2Nvsu6XqnF6EKjDgSWi5oVVEbrTUrQ0krUBG9u9tQ7v+9MGqhJvG
+         ChRdSsUXf+IrFfkJFra6UbiYTiCOOdTjakK4EqjNiN475tzrkpRn8Fpo8TzXsI0UJOHP
+         om9b0AzjtoInvvFInwYqExkSB59q3Pp3FVgIsq6QJxLz2MshAaTaVftfcpdStO5jrUh+
+         TOHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725361098; x=1725965898;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IiyTYtjACDnUS+yMHRQJxA78DUiZLSpdAQkLFojBlZU=;
+        b=AD6jcBHFjXt+BTRFsNzUxQsH1IPmHhPN4n6JVB8EPT2eKmbFmuwt4vVnJiiHCTKLqP
+         LBvommiTxOeOZa/KowD/RZi3fO11XmuNtwGXUG7rIq8XQ035Vd6CTqSm1/5H//gy5wUS
+         a4NM6+bdGK4fHlYsw7sv4CVYm44gs1nR3yYsAT9OmmwmFvCxJ7khpH6zLN8t9Aie6h1g
+         ICcIwBF9UvIRYjSHMwSyofOFSV1pQFS/V5n8f+QZNiXdcnmki1aHgQeESBWwa87jc5bZ
+         eoOsmpjq0rP5Y+e4XTy3e4IgUFKt7vpapL2axTFQfGqdRC8f0SUkuI/2UFUYgR1OmY+w
+         QGJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUO+wrrO1ZB8okOwtXIzo6207LDt65jNJdKYCP+6NYcefNw/1FyvX9bDC/2Mn+07+JZNM5NV8Xm04lh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzG12GJRBroSEtqoxOOcxNGdF/eGQYk1n4wZHNqW5emI78kcrMo
+	xFIgdnscl0d5QDcUSo30EP4Ia3GY55WapSM98/KFe8PHaRDyjBB2HNVm7EgA9j4=
+X-Google-Smtp-Source: AGHT+IGznagqoviE6ySUvt6lxPt835b+hPmScaIpmlICIM82eo24CPYzqVSzQJR1lwMuNCXz+hrYhg==
+X-Received: by 2002:a5d:5387:0:b0:374:c69c:2273 with SMTP id ffacd0b85a97d-376dd80faadmr265958f8f.37.1725361097737;
+        Tue, 03 Sep 2024 03:58:17 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42bb73e20b7sm168108285e9.14.2024.09.03.03.58.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Sep 2024 03:58:17 -0700 (PDT)
+Message-ID: <da4c57ff-de2b-418f-ba2c-e83c1d399b94@tuxon.dev>
+Date: Tue, 3 Sep 2024 13:58:15 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 122.165.245.213
-X-Source-L: No
-X-Exim-ID: 1slR9p-000Elu-0q
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: (localhost.localdomain) [122.165.245.213]:41440
-X-Source-Auth: karthikeyan@linumiz.com
-X-Email-Count: 86
-X-Org: HG=dishared_whb_net_legacy;ORG=directi;
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfFttZvjDeHHiI6Hz0+uQuYqxMu7hR75Dus7oUKj8InIMxZyPQc2km5kJZB0ApSiyc6eUPSnKsPT/Sa2CaQdwn5u3S3x9xuNMF7AxM42nhKRTcSMjT0L9
- RtiCv03R9VbWQj7z++9ushqh4KpZZ5f196QfMFDbN7kOD58fac1bG9sXZZdHk3OyZ+jaLRLctCsqiz3irw1N7yoj+mRrpu+DrdY=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/16] Add initial USB support for the Renesas RZ/G3S SoC
+Content-Language: en-US
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
+ magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com,
+ sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com,
+ biju.das.jz@bp.renesas.com, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com>
+ <99bef301-9f6c-4797-b47e-c83e56dfbda9@tuxon.dev>
+ <CAPDyKFrVS2vpsJqTvjKCJ7ADqXc4D4k2eeCBsaK4T+=pXDnKUA@mail.gmail.com>
+ <fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev>
+ <CAPDyKFrkkASq7rfRN=9sEet-p8T8t+f__PdnSNRN3bMNipnNNw@mail.gmail.com>
+ <CAPDyKFpLnREr4C=wZ7o8Lb-CZbQa4Nr2VTuYdZHZ26Rcb1Masg@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAPDyKFpLnREr4C=wZ7o8Lb-CZbQa4Nr2VTuYdZHZ26Rcb1Masg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Saib is an consumer electronics board from Relfor labs
-Features:
-    - Rockchip RV1109
-    - 1GB DDR4
-    - 4GB eMMC
-    - Realtek RTL8821CS Wi-Fi/BT
-    - IR transmitter/receiver
-    - RV3028 RTC
-    - Switch
-    - User leds
 
-Add support for it.
 
-Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
----
+On 03.09.2024 13:35, Ulf Hansson wrote:
+> On Sat, 31 Aug 2024 at 12:32, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>>
+>> [...]
+>>
+>>>>
+>>>> If not, there are two other options that can be considered I think.
+>>>> *) Using the genpd on/off notifiers, to really allow the consumer
+>>>> driver of the reset-control to know when the PM domain gets turned
+>>>> on/off.
+>>>> **) Move the entire reset handling into the PM domain provider, as it
+>>>> obviously knows when the domain is getting turned on/off.
+>>>
+>>> This option is what I've explored, tested on my side.
+>>>
+>>> I explored it in 2 ways:
+>>>
+>>> 1/ SYSC modeled as an individual PM domain provider (this is more
+>>>    appropriate to how HW manual described the hardware) with this the PHY
+>>>    reset DT node would have to get 2 PM domains handlers (one for the
+>>>    current PM domain provider and the other one for SYSC):
+>>>
+>>> +               phyrst: usbphy-ctrl@11e00000 {
+>>> +                       compatible = "renesas,r9a08g045-usbphy-ctrl";
+>>> +                       reg = <0 0x11e00000 0 0x10000>;
+>>> +                       clocks = <&cpg CPG_MOD R9A08G045_USB_PCLK>;
+>>> +                       resets = <&cpg R9A08G045_USB_PRESETN>;
+>>> +                       power-domain-names = "cpg", "sysc";
+>>> +                       power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc
+>>> R9A08G045_SYSC_PD_USB>;
+>>> +                       #reset-cells = <1>;
+>>> +                       status = "disabled";
+>>> +
+>>> +                       usb0_vbus_otg: regulator-vbus {
+>>> +                               regulator-name = "vbus";
+>>> +                       };
+>>> +               };
+>>> +
+>>
+>> According to what you have described earlier/above, modelling the SYSC
+>> as a PM domain provider seems like a better description of the HW to
+>> me. Although, as I said earlier, if you prefer the reset approach, I
+>> would not object to that.
+> 
+> Following the discussion I believe I should take this back. If I
+> understand correctly, SYSC signal seems best to be modelled as a
+> reset.
+> 
+>  Although, it looks like the USB PM domain provider should rather be
+> the consumer of that reset, instead of having the reset being consumed
+> by the consumers of the USB PM domain.
 
-Notes:
-    v2:
-    - Drop status=okay in new nodes
+The PM domain provider for USB is the provider for the rest of IPs. To work
+like this the SYSC these signals should be handled in the USB domains power
+on/off function. It's not impossible to have it implemented like this but
+it will complicate a bit the code, AFAICT. This will not describe the
+hardware, also.
 
- arch/arm/boot/dts/rockchip/Makefile           |   1 +
- .../boot/dts/rockchip/rv1109-relfor-saib.dts  | 429 ++++++++++++++++++
- 2 files changed, 430 insertions(+)
- create mode 100644 arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts
+With the information that we had up to yesterday, the connection b/w HW
+blocks was something as follows:
 
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index ab4cd9aab722..716f5540e438 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rv1108-elgin-r1.dtb \
- 	rv1108-evb.dtb \
-+	rv1109-relfor-saib.dtb \
- 	rv1109-sonoff-ihost.dtb \
- 	rv1126-edgeble-neu2-io.dtb \
- 	rv1126-sonoff-ihost.dtb \
-diff --git a/arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts b/arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts
-new file mode 100644
-index 000000000000..97235118923b
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts
-@@ -0,0 +1,429 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Relfor Labs Pvt. Ltd.
-+ */
-+
-+
-+/dts-v1/;
-+#include "rv1109.dtsi"
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Rockchip RV1109 Relfor Saib Board";
-+	compatible = "relfor,saib", "rockchip,rv1109";
-+
-+	vcc5v0_sys: vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	/* Power sequence 1 */
-+	vcc_0v8: vcc-0v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_0v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <800000>;
-+		startup-delay-us = <150>;
-+		regulator-max-microvolt = <800000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* Power sequence 2 */
-+	vdd_npu_vepu: vdd-npu-vepu {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm1 0 5000 1>;
-+		regulator-name = "vdd_npu_vepu";
-+		regulator-min-microvolt = <650000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-settling-time-up-us = <18000>;
-+		pwm-supply = <&vcc3v3_sys>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_arm: vdd-arm {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm0 0 5000 1>;
-+		regulator-name = "vdd_arm";
-+		regulator-min-microvolt = <720000>;
-+		regulator-max-microvolt = <1000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-settling-time-up-us = <18000>;
-+		pwm-supply = <&vcc3v3_sys>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* Power sequence 3 */
-+	vcc_1v8: vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		startup-delay-us = <51000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* Power sequence 4 */
-+	vcc_1v2_ddr: vcc-1v2-ddr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v2_ddr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		startup-delay-us = <75000>;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* Power sequence 5 */
-+	vcc3v3_sys: vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		startup-delay-us = <75000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	/* LDO 2.5V */
-+	vcc_2v5_ddr: vcc-2v5-ddr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_2v5_ddr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	/* Power IR transmitter */
-+	vcc1v8_ir: vcc1v8-ir {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc1v8_ir";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	sdio_pwrseq: pwrseq-sdio {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rtc0>;
-+		clock-names = "ext_clock";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		reset-gpios = <&gpio1 RK_PD0 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	ir_receiver: ir-receiver {
-+		compatible = "gpio-ir-receiver";
-+		gpios = <&gpio3  RK_PB4 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ir_rx>;
-+	};
-+
-+	ir_transmitter: ir-transmitter {
-+		compatible = "pwm-ir-tx";
-+		pwms = <&pwm11 0 10000000 1>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button {
-+			gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_HIGH>;
-+			linux,code = <KEY_DATA>;
-+			label = "GPIO User Switch";
-+			linux,input-type = <1>;
-+		};
-+	};
-+
-+	led-controller {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_INDICATOR;
-+			max-brightness = <65535>;
-+
-+			led-0 {
-+				active-low;
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm9 0 50000 0>;
-+			};
-+
-+			led-1 {
-+				active-low;
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm6 0 50000 0>;
-+			};
-+
-+			led-2 {
-+				active-low;
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm10 0 50000 0>;
-+			};
-+		};
-+	};
-+
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		led-0 {
-+			pwms = <&pwm2 0 50000 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "none";
-+		};
-+
-+		led-1 {
-+			pwms = <&pwm8 0 50000 0>;
-+			max-brightness = <0>;
-+			linux,default-trigger = "none";
-+		};
-+
-+		led-2 {
-+			pwms = <&pwm5 0 50000 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "none";
-+		};
-+	};
-+
-+	thermal_sensor1: thermal-sensor1 {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "sensor-channel";
-+		temperature-lookup-table = <(-40000) 826
-+					    85000 609>;
-+	};
-+
-+	thermal_sensor2: thermal-sensor2 {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&saradc 2>;
-+		io-channel-names = "sensor-channel";
-+		temperature-lookup-table = <(-40000) 826
-+					    85000 609>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emmc_bus8 &emmc_cmd &emmc_clk>;
-+	rockchip,default-sample-phase = <90>;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c3m2_xfer>;
-+	pinctrl-names = "default";
-+
-+	rtc0: rtc@52 {
-+		compatible = "microcrystal,rv3028";
-+		reg = <0x52>;
-+		#clock-cells = <0>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&rtc_int>;
-+	};
-+};
-+
-+&i2s0 {
-+	/delete-property/ pinctrl-0;
-+	status = "okay";
-+	rockchip,trcm-sync-rx-only;
-+	pinctrl-names = "default";
-+	pinctrl-0 =  <&i2s0m0_sclk_rx>,
-+		     <&i2s0m0_lrck_rx>,
-+		     <&i2s0m0_sdi0>;
-+};
-+
-+&pinctrl {
-+	bluetooth-pins {
-+		bt_reset: bt-reset {
-+			rockchip,pins =
-+			<1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		bt_wake_dev: bt-wake-dev {
-+			rockchip,pins =
-+			<1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		bt_wake_host: bt-wake-host {
-+			rockchip,pins =
-+			<1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	buttons {
-+		switch: switch {
-+			rockchip,pins = <2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	ir {
-+		ir_rx: ir-rx {
-+			rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pwm {
-+		pwm0m0_pins_pull_up: pwm0m0-pins-pull-up {
-+			rockchip,pins =
-+			/* pwm0_pin_m0 */
-+			<0 RK_PB6 3 &pcfg_pull_up>;
-+		};
-+		pwm1m0_pins_pull_up: pwm1m0-pins-pull-up {
-+			rockchip,pins =
-+			/* pwm1_pin_m0 */
-+			<0 RK_PB7 3 &pcfg_pull_up>;
-+		};
-+	};
-+
-+	rtc {
-+		rtc_int: rtc-int {
-+			rockchip,pins = <2 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <1 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	status = "okay";
-+	pmuio0-supply = <&vcc3v3_sys>;
-+	pmuio1-supply = <&vcc3v3_sys>;
-+	vccio4-supply = <&vcc3v3_sys>;
-+	vccio5-supply = <&vcc3v3_sys>;
-+	vccio6-supply = <&vcc3v3_sys>;
-+	vccio7-supply = <&vcc3v3_sys>;
-+};
-+
-+&pwm0 {
-+	/delete-property/ pinctrl-0;
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm0m0_pins_pull_up>;
-+};
-+
-+&pwm1 {
-+	/delete-property/ pinctrl-0;
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm1m0_pins_pull_up>;
-+};
-+
-+&pwm2 {
-+	/delete-property/ pinctrl-0;
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm2m1_pins>;
-+};
-+
-+&pwm5 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm5m0_pins>;
-+};
-+
-+&pwm6 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm6m0_pins>;
-+};
-+
-+&pwm8 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm8m1_pins>;
-+};
-+
-+&pwm9 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm9m1_pins>;
-+};
-+
-+&pwm10 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm10m1_pins>;
-+};
-+
-+&pwm11 {
-+	/delete-property/ pinctrl-0;
-+	status = "okay";
-+	pinctrl-0 = <&pwm11m1_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vcc_1v8>;
-+};
-+
-+&sdio {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	max-frequency = <100000000>;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	no-mmc;
-+	no-sd;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc1_clk &sdmmc1_cmd &sdmmc1_bus4>;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_xfer &uart0_ctsn &uart0_rtsn>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8822cs-bt";
-+		device-wake-gpios = <&gpio1 RK_PC5 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&bt_reset>, <&bt_wake_dev>, <&bt_wake_host>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2m1_xfer>;
-+	status = "okay";
-+};
--- 
-2.39.2
+                 USB area
+              +--------------------------+
+      sig     | PHY -> USB controller X  |
+SYSC -------->|  ^                       |
+              |  |                       |
+              | PHY reset                |
+              +--------------------------+
 
+In this implementation the SYSC signal was connected to PHY reset block as
+it is the root of the devices used in the USB setup and no USB
+functionality can exist w/o the PHY reset being setup.
+
+There is a new information arrived just yesterday from hardware team saying
+this about SYSC signals: "When turning off USB PHY and PCIe PHY, if they
+are not controlled, PHY may break" which may means that it is just
+connected to the PHYs not to the USB area/region or PCIe area/region as
+initially expressed in HW manual.
+
+With that the HW connection b/w the USB devices and SYSC might become
+something like:
+
+                 USB area
+              +--------------------------+
+     sig   +--->PHY -> USB controller X  |
+SYSC ------+  |  ^                       |
+              |  |                       |
+              | PHY reset                |
+              +--------------------------+
+
+I haven't got the chance to test this topology, though.
+
+With this new information would you be OK to still have it as a reset
+signal and connected only to the PHY driver ?
+
+Thank you,
+Claudiu Beznea
+
+> 
+> Did that make sense?
+> 
+> [...]
+> 
+> Kind regards
+> Uffe
 
