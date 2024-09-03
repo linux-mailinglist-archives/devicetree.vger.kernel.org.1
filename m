@@ -1,162 +1,200 @@
-Return-Path: <devicetree+bounces-99572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1165996A331
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:47:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A434E96A334
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:47:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1A3A282224
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:47:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F2081F24523
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E24B189516;
-	Tue,  3 Sep 2024 15:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A950C18991A;
+	Tue,  3 Sep 2024 15:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PxepmGAM"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="L48TaurI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8DB22301;
-	Tue,  3 Sep 2024 15:47:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F32A189532
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 15:47:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725378440; cv=none; b=pHoo59RWNpO1Z/d0joWScnNYd74iKFiA8SiQUOvE/FP3m7MEayCTrGbAMOnN2CS+B7oSenQsbw04mWd8KMQ4BtljRhzHob0XBxnhedE4E/f188lVAFc+149HlOPgDS5oqpQo1vqRki1HpO8N0ITYTYhpDmhVDd1wLC0Xcamoyfs=
+	t=1725378443; cv=none; b=KsPwe1cKh+XQezNPGQlERWpCqmAqxu/upRFPJcyrZulcNi08Dds5hvyZEJJrubFzT46I8Ugj/jhbfIZz5bz36UzfEBVDnZRYlDwhnioFvS0+WnQ5rFueurgp4232g41dyPkHZ0i3Bklwcke0XfqAjP/0u/lAU02jG0YjLWwLOkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725378440; c=relaxed/simple;
-	bh=7EcydActpMSaA+SPWxDp1h3wd9kMVHEG/yenpXVGaz4=;
+	s=arc-20240116; t=1725378443; c=relaxed/simple;
+	bh=LvBXEbIisKwGT6qOIk72h1Fr9uy96Bh5J6Eqpru+ceY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SSiOk5UbsrjVOaqgtANfty/vVrBUtu9i1ab+qzHj8u3Hpa1tG+aYgKPZCE5e4FvnGoFYf4QNhZNhO7+VbSgLUZaUz2ThDaJJa79PD+4Fk4skdW16FWBYIhZbARrlubwtj/l7Ob66L5+UUO9tPknk5EeGc5UrUhOpb+54eRJchk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PxepmGAM; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725378439; x=1756914439;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7EcydActpMSaA+SPWxDp1h3wd9kMVHEG/yenpXVGaz4=;
-  b=PxepmGAMXZJvnIjNb15yaqewdk+yohRbI91HWM4vPcttsYbfqwcf5mpo
-   wV5cCZtUuTGH+xq2TwEQKFC90qHtGIt6p+TRxzc6Nwx+xsNhPcd80bOfD
-   tJLqGA0IpaZCvqqLgGKouiqQMcwfNgqNQk5blbkYIXRPfRENktL1ofQRo
-   d+/5mG8dU2z9UUWcxWyDYu+4ZYF0A3I+hy7kWqaYkZonduW41wuineM6j
-   M+2I/SOvVmaAJgccI3rgMd8TN1PB8MIbj5MVTP7fIhab2/j3GSeZ4iTOR
-   /6Xx3UkOWlFmXkMIdODMGiRP7vXTFt2fDsg+GD8ASFTAe8yGjdkRuxUjA
-   g==;
-X-CSE-ConnectionGUID: fdvRvBsDQ/+UX4zJxug83g==
-X-CSE-MsgGUID: zl4SoSjZSW+QuCDW17kazw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="24176674"
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
-   d="scan'208";a="24176674"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 08:47:18 -0700
-X-CSE-ConnectionGUID: ect5Q1kXRmWAmR9WPo/Gdg==
-X-CSE-MsgGUID: vSr+q9uKQfKGWn/gw/DOuA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
-   d="scan'208";a="88202642"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 03 Sep 2024 08:47:14 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1slVkO-0006qw-1G;
-	Tue, 03 Sep 2024 15:47:12 +0000
-Date: Tue, 3 Sep 2024 23:46:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alex Lanzano <lanzano.alex@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: oe-kbuild-all@lists.linux.dev, christophe.jaillet@wanadoo.fr,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] drm/tiny: Add driver for Sharp Memory LCD
-Message-ID: <202409032359.jHPOaDBF-lkp@intel.com>
-References: <20240901201118.3179206-3-lanzano.alex@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WdUa72dTjgu1XQKgHo2By9dt9BK3nZMlw8UD3PEcKHJW28rSRWdBwWvBGpSrottyeBwJ+2ID33TU218j7mzkIUlk9bxTiIFE/PaRqBJ3arptrjRyN9rHbE6BbUTOO5vQrvscJ8QJ5FYxAw63wqd5CDzse6fIKZiVM1nxaC+insQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=L48TaurI; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-374c3400367so2176340f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 08:47:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725378440; x=1725983240; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4J1hWIhMeEBX4XcRwGAiYhtZhrFDDZNJhYxSDwEqNxg=;
+        b=L48TaurIne0KuKBhM5SsgvkUF52TSzvf8eK8g5FrPFOljkzNJQsMUnEaEon1+Cegv6
+         EMID8NiSM5BYlylUVwhuh2aFs7At3aVsvYTEM3FKIiYHskCVgxaGzqTw+ELaoKM7Lx87
+         yMiTd3XDPlaXP4JPafD7+/JtkF7DykYV7jpP2tEAg+wrKwqm9mYzbBgL+JUCcMqdHO/5
+         DY3pp3EuwNgGOEnzbj1upJqqHzLfWFfFN1dW7KE1OgdT70mHH0j6ReTF9O6kz6tZ23PF
+         8mdoONPEcP6lIWawscTKRvlYQ4gyb5OGz+qI+7b7SDvFStkRaP6wO/9oWsDUAOZIDoSi
+         lJeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725378440; x=1725983240;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4J1hWIhMeEBX4XcRwGAiYhtZhrFDDZNJhYxSDwEqNxg=;
+        b=shnt7SfTZ1okTu7MPbd4ZHyR2Qy2MviiNd2dZqGryLDKJ5HnQZU3AztkElisyWeH0Q
+         W918M4VygdyMlbmhss43UYHH3H2OvU1D63/5bhYXwAee8Xqk8Drlm2Bok2Pl1BlLtBWE
+         SGLHdXjiNb6fjpnOAAykbWRbqxKOe1Obbq28iJ0eqWWBb0yhGcADPLjl0LLtFq//YAfK
+         6M6dqqRXmYFSKYvO8mOOW9ijQJnf2Xrwhxs2ubH03JliH2bZ73hFSHI5XyR2Qmfu1qSS
+         sQtcrD7KamNF9hXS3RexnWRWm/oashGccIfb8MoycfUqNJDOh8lw4BlRzofp2lZB4CPj
+         a2Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCXxyq1QDOeEo8DL1ZFA3DpsLBb9Np/dgp/4grsg/5xN0GRQ9b/YjYC5Qa/5MtsuFHTaD2pq3YDR4D1X@vger.kernel.org
+X-Gm-Message-State: AOJu0YzseSGIElXnm8x6fkp0HddfrxBMNBdLKpf+G5BBq5DV4SVZLySB
+	ONwq2JocM7G+aHQAaBFz3CVZl9kce46mdqWmkRomnpBpDzVjkvxTvk3+N535nZY=
+X-Google-Smtp-Source: AGHT+IGjH/wqwzifWC85mnNCghQMRNaevAc3MRc1SI1ZJsOicR9cri3LYdbd5RxgvIaDuVDdAGoZiw==
+X-Received: by 2002:a05:6000:4014:b0:374:d07a:c136 with SMTP id ffacd0b85a97d-374d07ac2f2mr5572813f8f.36.1725378439436;
+        Tue, 03 Sep 2024 08:47:19 -0700 (PDT)
+Received: from localhost (p5dc68f76.dip0.t-ipconnect.de. [93.198.143.118])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8988feb592sm708368466b.13.2024.09.03.08.47.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2024 08:47:18 -0700 (PDT)
+Date: Tue, 3 Sep 2024 17:47:16 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sean Wang <sean.wang@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	upstream@airoha.com, ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <t2f5kockuvfi66qqumda6jxf5a4c4zf35ld5ainsnksavkchyj@kdueaqlhjoar>
+References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
+ <20240831-en7581-pinctrl-v3-5-98eebfb4da66@kernel.org>
+ <yfqmlca6cnhrghpo5s6tml36tngmekcfbyjakxs7or7wtap3ka@7qlrxjowo4ou>
+ <d9298199-fe10-4b28-8e28-dc252bd6832c@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ohdzxy7xz4ztpby7"
 Content-Disposition: inline
-In-Reply-To: <20240901201118.3179206-3-lanzano.alex@gmail.com>
-
-Hi Alex,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on drm-misc/drm-misc-next linus/master v6.11-rc6 next-20240903]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Lanzano/dt-bindings-display-Add-Sharp-Memory-LCD-bindings/20240902-041405
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240901201118.3179206-3-lanzano.alex%40gmail.com
-patch subject: [PATCH v5 2/2] drm/tiny: Add driver for Sharp Memory LCD
-config: x86_64-randconfig-102-20240903 (https://download.01.org/0day-ci/archive/20240903/202409032359.jHPOaDBF-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240903/202409032359.jHPOaDBF-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409032359.jHPOaDBF-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/tiny/sharp-memory.c: In function 'sharp_memory_crtc_enable':
->> drivers/gpu/drm/tiny/sharp-memory.c:344:17: error: implicit declaration of function 'pwm_apply_state'; did you mean 'pwm_apply_args'? [-Werror=implicit-function-declaration]
-     344 |                 pwm_apply_state(smd->pwm_vcom_signal, &pwm_state);
-         |                 ^~~~~~~~~~~~~~~
-         |                 pwm_apply_args
-   cc1: some warnings being treated as errors
+In-Reply-To: <d9298199-fe10-4b28-8e28-dc252bd6832c@genexis.eu>
 
 
-vim +344 drivers/gpu/drm/tiny/sharp-memory.c
+--ohdzxy7xz4ztpby7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   318	
-   319	static void sharp_memory_crtc_enable(struct drm_crtc *crtc,
-   320					     struct drm_atomic_state *state)
-   321	{
-   322		struct pwm_state pwm_state;
-   323		struct sharp_memory_device *smd = drm_to_sharp_memory_device(crtc->dev);
-   324	
-   325		sharp_memory_clear_display(smd);
-   326	
-   327		if (smd->enable_gpio)
-   328			gpiod_set_value(smd->enable_gpio, 1);
-   329	
-   330		switch (smd->vcom_mode) {
-   331		case SHARP_MEMORY_SOFTWARE_VCOM:
-   332			smd->sw_vcom_signal = kthread_run(sharp_memory_sw_vcom_signal_thread,
-   333							  smd, "sw_vcom_signal");
-   334			break;
-   335	
-   336		case SHARP_MEMORY_EXTERNAL_VCOM:
-   337			break;
-   338	
-   339		case SHARP_MEMORY_PWM_VCOM:
-   340			pwm_get_state(smd->pwm_vcom_signal, &pwm_state);
-   341			pwm_state.period =    1000000000;
-   342			pwm_state.duty_cycle = 100000000;
-   343			pwm_state.enabled = true;
- > 344			pwm_apply_state(smd->pwm_vcom_signal, &pwm_state);
-   345			break;
-   346		}
-   347	}
-   348	
+Hello Benjamin,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On Tue, Sep 03, 2024 at 01:58:30PM +0200, Benjamin Larsson wrote:
+> On 2024-09-03 12:46, Uwe Kleine-K=F6nig wrote:
+> > Would you please add a "Limitations" paragraph here covering the
+> > following questions:
+> >=20
+> >   - How does the hardware behave on changes of configuration (does it
+> >     complete the currently running period? Are there any glitches?)
+> >   - How does the hardware behave on disabling?
+> >=20
+> > Please stick to the format used in several other drivers such that
+> >=20
+> > 	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/*.c
+> >=20
+> > emits the informations.
+>=20
+> The answer to your questions are currently unknown. Is this information
+> needed for a merge of the driver ?
+
+It would be very welcome and typically isn't that hard to work out if
+you have an LED connected to the output or a similar means to observe
+the output. An oscilloscope makes it still easier.
+
+For example to check if the current period is completed configure the
+PWM with period =3D 1s and duty_cycle =3D 0 disabling the LED. (I leave it
+as an exercise for the reader what to do if duty_cycle =3D 0 enables the
+LED :-) Then do:
+
+	pwm_apply_might_sleep(mypwm, &(struct pwm_state){
+		.period =3D NSEC_PER_SEC,
+		.duty_cycle =3D NSEC_PER_SEC,
+		.enabled =3D true,
+	});
+	pwm_apply_might_sleep(mypwm, &(struct pwm_state){
+		.period =3D NSEC_PER_SEC,
+		.duty_cycle =3D 0,
+		.enabled =3D true,
+	});
+
+Iff that enables the LED for a second, the period is completed. The
+question about glitches is a bit harder to answer, but with a tool like
+memtool should be possible to answer. Alternatively add delays and
+printk output to .apply() in the critical places.
+
+> > > +#define airoha_pwm_sgpio_clear(pc, offset, mask)				\
+> > > +	airoha_pwm_sgpio_rmw((pc), (offset), (mask), 0)
+> > > +#define airoha_pwm_flash_set(pc, offset, val)					\
+> > > +	airoha_pwm_flash_rmw((pc), (offset), 0, (val))
+> > > +#define airoha_pwm_flash_clear(pc, offset, mask)				\
+> > > +	airoha_pwm_flash_rmw((pc), (offset), (mask), 0)
+> > > +
+> > > +static int airoha_pwm_get_waveform(struct airoha_pwm *pc, u64 duty_n=
+s,
+> > > +				   u64 period_ns)
+> > Given that "waveform" will gain some specific semantic soon, but this
+> > usage is different, I'd like to see this function renamed.
+>=20
+> I suggest pwm_generator. Is that acceptable ?
+
+This function determines the register values to write for a given
+duty_ns + period_ns combination, right? airoha_pwm_calc_bucket_config()?
+=20
+> > If you limit the number of requested pwm devices to 8, the code gets a
+> > tad simpler (because you can map a fixed bucket to each pwm device and
+> > don't need to search during .apply()) and each consumer has maximal
+> > freedom to configure its device.
+>=20
+> The main use for this solution is for led-dimming which uses the same tim=
+ing
+> among groups of leds. Most (of our) products have more then 8 leds in tot=
+al,
+> with a limit of only 8 pwm devices it would not be possible to use the
+> mainline driver with our hardware. I suggest that the current logic is ke=
+pt
+> but properly documented in the limitations section.
+
+Fine for me.
+
+Best regards
+Uwe
+
+--ohdzxy7xz4ztpby7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmbXL4IACgkQj4D7WH0S
+/k7Qxgf9HKjh6qEXybuTmQsw9gXqCLG6sQDJ3eltrqYR5ftvRUSX2bTTaElsodvb
+9ybgn2+uGwILAgr9v1bJO5q2fdzbz2zkNQFni+drU/p5HdGMKMk+YFDUnNLfIn4n
+UzjD9kIPDy3Vzud/yHLRipP6Wx3EsqGhC6pLD6fJkHI9m1OdSYzVXhMUkKDhZuNT
+awjxQL2cojXnkT5P1LggRuod+rFEZvlVDtrA76PkQlfUz4Thq+BHQcU1sjc+6Wh+
+wgMaaGdl4W50Je77nYiZds7n5+KNgheNggsf3Z+BHUYEnjOAtYihydQw5U0pXeWM
+Gccw6+nVraP9M4BPw5I2un855jsxIg==
+=tWuu
+-----END PGP SIGNATURE-----
+
+--ohdzxy7xz4ztpby7--
 
