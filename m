@@ -1,81 +1,64 @@
-Return-Path: <devicetree+bounces-99517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B60896A0CC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:37:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D922A96A0D5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:39:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A223E1C238D4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:37:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1866F1C23846
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4024313CF8E;
-	Tue,  3 Sep 2024 14:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B530913CFB7;
+	Tue,  3 Sep 2024 14:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lFHDrx6s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hyPBWZPD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74CE1CA69B;
-	Tue,  3 Sep 2024 14:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9F11CA69B;
+	Tue,  3 Sep 2024 14:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725374240; cv=none; b=rG8FsRCFYdK/DztFfqCyD+KvhUfyz5WoCLWRQIjLBQAxojZF7iZ55bLI1Na04+nx75jKRDWlATeYoNf1k9moVVQrku9zx3nBpW44lW/nZOS5vdR15V8PVeKjNQ6w+u9SDY4WqHXGKqqwFKPWxAwY7hUiy92xQsId7H7Y6GX6PTk=
+	t=1725374385; cv=none; b=d4LMLiJbTyjatOOEzg0uKnZAvzyD264JIid7HJxkb07eQwMrXIhz2jW1I8leZqEIH15jyg7qGl4kxVxa741tH8jimjUcw7Xq43qyxPv+d/vrHTugkbh20H2rTrOU9nyjqNTE2/qwcQXHNhi1y9oFVVoQYGlF58gVwxxac1O4T7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725374240; c=relaxed/simple;
-	bh=mc5whrycKE1zZyd4VrCEjvI4WG+qhy2PVteQgWMSXtw=;
+	s=arc-20240116; t=1725374385; c=relaxed/simple;
+	bh=D9Cdv5s5uqz98UZ38zDPKTwaHhmtDL/60jvVsg3/qPA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KtpyZkvt8rb9JYPNtk/rzy7AF30jsRlgNR8cRK7TQ+JYev9IDgq4Vy1segS55cAOZnrcJJvclzkYxhS66AJTK/x3LBgBmBcbqLTHsbi9AuDpJdUftC2Twj5tyy+B4rZyDJ4AJ86oqlHPa0gt5fBZYzvhQRv9eq4HYHlT0CI2yPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lFHDrx6s; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725374238; x=1756910238;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mc5whrycKE1zZyd4VrCEjvI4WG+qhy2PVteQgWMSXtw=;
-  b=lFHDrx6sQpQOA31y3Solv/y8Jd4ZtioPIZ35mvjL7N2ZHzUx5ixTO0VB
-   B0mCfYTqKnnNh3ICSzQmx2RCRCWNlAyy9kNEkUcNkbYp4tW/j66OjsXdn
-   ZVk0WcrPj+4GUA/gmvjRuhU+/vuENQZR8v6cwWd+ScH3Hmzm0aR132v7I
-   tu0oFC8okBRSKVr3YEWvXoK83xeO+eYQDOAPEJwxfaQmZxeljbUpbQZfZ
-   OHD2W2y2Vwtwk674V2Yvpmwu8YJnIKMvg97ifOPHS+hEb1wu3TDwrV739
-   569PGBDUIkJ/xKEd01adD5gt19ae/lFt9QT6QmE+iguZ1gt/AvQfBoE0t
-   Q==;
-X-CSE-ConnectionGUID: WlEhgYZZQNCd0f4mrrv2Lw==
-X-CSE-MsgGUID: ZEUxrHXXQkq3/nKJ7yD/Aw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="41448282"
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
-   d="scan'208";a="41448282"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:37:18 -0700
-X-CSE-ConnectionGUID: Yx364v7fQOiVDbEliVDe2g==
-X-CSE-MsgGUID: 3zheBD5OSe6COrbaFU7NIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
-   d="scan'208";a="64933040"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 07:37:14 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1slUeP-00000004job-1DuJ;
-	Tue, 03 Sep 2024 17:36:57 +0300
-Date: Tue, 3 Sep 2024 17:36:57 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MbQfXU147fGB54f3JR6s7JifjHgSE5xf55lY6i/frqAFrNezlYbSWc6AXcP7DOxpQb8RH9kqnNknUmW0+fG6s3j9fGKWm7VfDUd2rYORdsuxX/1J55wklYAPaYcx6BuMuCAk8B4uXTBf41+MOc5FvbWdvflDkCiyRYPEKten4Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hyPBWZPD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1F48C4CEC4;
+	Tue,  3 Sep 2024 14:39:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725374385;
+	bh=D9Cdv5s5uqz98UZ38zDPKTwaHhmtDL/60jvVsg3/qPA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hyPBWZPDeICY9ZBtXSc7LSZtnnn18oNHYc3kNzVVj4ZF8b+0opmKhC80/kVyTTJox
+	 8soqTepKaf2TPia5hcdQit0VzzeRrtEP86sZO+qIQRRzdrVuur11qUNX2imBKT7hJQ
+	 xCS/ctKh/L01UWhhXNbPx7bMHOrxP5LLGapGGIJE1ShcSi9Hz54TTn7LdvTSWAKvsO
+	 QNArc8AfDXTS7/11r+m+RiFpvrl3ezBNZEaXpQdb5qr/0zYRCbCScmP6mh/7ymrJKc
+	 SFnnk2jRuCRHydK24y37jZhLxHATNhv6Jf7G86I8BcMpJEhTtoQvQ2A6C8r4KC0O6b
+	 Osp/1o0/B0mdQ==
+Date: Tue, 3 Sep 2024 09:39:43 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v5 0/7] pressure: bmp280: Minor cleanup and interrupt
- support
-Message-ID: <ZtcfCVcV_1hCVp7N@smile.fi.intel.com>
-References: <20240902184222.24874-1-vassilisamir@gmail.com>
+Cc: nico@fluxnic.net, pabeni@redhat.com, daniel@ffwll.ch,
+	davem@davemloft.net, kuba@kernel.org, olteanv@gmail.com,
+	saravanak@google.com, andriy.shevchenko@linux.intel.com,
+	linux-kernel@vger.kernel.org, mripard@kernel.org,
+	edumazet@google.com, netdev@vger.kernel.org,
+	brcm80211-dev-list.pdl@broadcom.com, f.fainelli@gmail.com,
+	linux-wireless@vger.kernel.org, airlied@gmail.com,
+	linus.walleij@linaro.org, brcm80211@lists.linux.dev, andrew@lunn.ch,
+	devicetree@vger.kernel.org, linux@armlinux.org.uk,
+	alsi@bang-olufsen.dk, tzimmermann@suse.de, kvalo@kernel.org,
+	arend.vanspriel@broadcom.com, maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH v1 7/7] of/irq: Make use of irq_get_trigger_type()
+Message-ID: <172537438003.978249.2559307502514402788.robh@kernel.org>
+References: <20240902225534.130383-1-vassilisamir@gmail.com>
+ <20240902225534.130383-8-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,19 +67,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240902184222.24874-1-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240902225534.130383-8-vassilisamir@gmail.com>
 
-On Mon, Sep 02, 2024 at 08:42:15PM +0200, Vasileios Amoiridis wrote:
-> Depends on this: https://lore.kernel.org/linux-iio/20240823172017.9028-1-vassilisamir@gmail.com
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+On Tue, 03 Sep 2024 00:55:34 +0200, Vasileios Amoiridis wrote:
+> Convert irqd_get_trigger_type(irq_get_irq_data(irq)) cases to the more
+> simple irq_get_trigger_type(irq).
+> 
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> ---
+>  drivers/of/irq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-for the patches 1,2, and 3.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Applied, thanks!
 
 
