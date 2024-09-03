@@ -1,195 +1,116 @@
-Return-Path: <devicetree+bounces-99379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A6E969967
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:42:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9594D969985
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:52:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBFC61F21C3F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:42:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 758B5B22152
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9991A0BD4;
-	Tue,  3 Sep 2024 09:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1489419F43E;
+	Tue,  3 Sep 2024 09:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpWJiwrw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZE9Pjgo2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731701A0BCB;
-	Tue,  3 Sep 2024 09:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC363207;
+	Tue,  3 Sep 2024 09:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725356549; cv=none; b=PAvGfaQUGb9+skl2tSvW0TbWj2CwAJqD+1Uu7fpjaTIxK1oSio/x52b/Hw4rdZyXeVzBfnQD7nur601bHDiCmXWswdmgkA+VWFshr8+AQzXCgcTJ7WLZKzIK4N2mJpY9jcYpQJe5VewsVgozH5u1Dr5/FSHn4+5KLIuTZDRTs7o=
+	t=1725357117; cv=none; b=e654eQp2Hoqow/g8XSJuI08bDvwuDBsiQbsojaxB6vCtYF0kPB1nf0i7CjNbZrw7woBonOfcscCuYJ0hQHjX5mtwgp42HcLdLnipNRm1cttBQLLQrSIpM8G2E94zvdPl6YEGhtEfj+Y032OOrXbqL8EUFjIGL5JKxeXUTEViNeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725356549; c=relaxed/simple;
-	bh=5BLz5g5ZXnWApa/H8Ah2Nu3ZSoDtsGE5Qt5nhSeqhdk=;
+	s=arc-20240116; t=1725357117; c=relaxed/simple;
+	bh=gAYyJ180rea+x6P6PLkWT1Nc5VwQs+jQogMrIZ/L/FY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gkcxFDsi1Z5R+rj4lSK2lghuM3WebwpDC0o1Mcqcv5GUzIRmvwUlprYJ1UpqTmC/wFw7XBLl2lyHf77XMl5V57KZ9UxcxbCKjnQxtdN8inT7j2OLomJbA0+Rq0bJ4KtPvlAfxgfC9DwXzvKgVhzATfp9c7vpUFsYN2TW4YE4Ncs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpWJiwrw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBE20C4CEC4;
-	Tue,  3 Sep 2024 09:42:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IjZz3ZaTItK1eYDoGvV67PqH8nRkBy5uiLUvSUFTdnOtIfqJH5VJN4e5r/kTrpvKfbNXm61xYyh1EEVg68QGs3j/uHyTIrkrT1yd79I2t0eIVrR61Rqme9PcuN2IcFHUVYgIprYTsM4saVAzEytX28+XmsblE9+T8q55Jx3VJUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZE9Pjgo2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA39AC4CEC4;
+	Tue,  3 Sep 2024 09:51:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725356549;
-	bh=5BLz5g5ZXnWApa/H8Ah2Nu3ZSoDtsGE5Qt5nhSeqhdk=;
+	s=k20201202; t=1725357116;
+	bh=gAYyJ180rea+x6P6PLkWT1Nc5VwQs+jQogMrIZ/L/FY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fpWJiwrwBxT7rWN+9/oKqNvpR+ufP71dFF1FTsDNfzANX/Nj/bigOjITeTIxXHdOt
-	 nG3Ot6/tpDS03RaC2jtz+XgT9WwZQz7UEJjsxed+xrO24kTIfBNlCtVa3v+Kc0bt3B
-	 ZYs1ebjQXYxPPfq11YzTKqL8Voc16LR7exKuRy6/OlL7TPsSgt6mxoOg9txiYJe4u+
-	 jzXNfGLZH+BpA22zL1XF1JJMEY+D23K96KK5SUDZVnHnttnVOc1JkkObL8um+4+fZM
-	 z5KEvA4BwWDThCEMjQaj7AKNDQkBgbE5vZVFNbyBUNCY0hqmJQjjUHCnCXJlf3ZOw/
-	 qPcsTSZBncIFA==
-Date: Tue, 3 Sep 2024 10:42:30 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Jan Kiszka <jan.kiszka@siemens.com>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: jh7110-usb-phy: Add sys-syscon
- property
-Message-ID: <20240903-gating-shamrock-c0d4415d1eb3@squawk>
-References: <cover.1723472153.git.jan.kiszka@siemens.com>
- <30f3ca9f6bd788e16767b36aa22c0e9dc4d1c6a4.1723472153.git.jan.kiszka@siemens.com>
- <20240812-overstuff-skirt-7a8aabbcdc6f@spud>
- <8cdba8b0-7364-4c09-b18a-f3f59da1eae2@siemens.com>
- <20240813-haiku-pusher-f2fb037a2f49@wendy>
- <SHXPR01MB08633B523DA1F6C5632F6D9DE6802@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
- <20240815-endless-credible-324438d164f4@spud>
- <SHXPR01MB08632E50DFE53BE0CFAA99ABE6922@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+	b=ZE9Pjgo2OqPkmUuDeQAp/GzujhN6tPlg/Wz2VmdzMqM6+5MBNUcFBBS9A1KqDTy/s
+	 8wpCR33z37YPSHNJKLFLP5GPa9Hr4YY0kzLL5zRPfjbf0lPh11q0IuYAj15hX1QWj6
+	 Si4z7+fedl3RDJmFGhhhh13JLaN44Jlq8t9QPlw8v5bferof1ZqnoUt92iVfw3arFr
+	 92KsfnO2H09KZD/HwS1uEAK+ZqYQo+kkAeawhDpqrZo9hbQEBc2Us4FSPTiC7dcyuw
+	 95Ka40Db3hkslwYLwkednXAaAjAhuXMl3cXiytoCtEqFubleYUb/BHvg7qh+O4aP+X
+	 KAgAbLnwbxr1w==
+Date: Tue, 3 Sep 2024 10:51:47 +0100
+From: Lee Jones <lee@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>, Arnd Bergmann <arnd@arndb.de>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Simon Horman <horms@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 0/8] Add support for the LAN966x PCI device using a DT
+ overlay
+Message-ID: <20240903095147.GU6858@google.com>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+ <20240903101724.291ad0f7@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="V8qJgUi9TxzWpM4h"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <SHXPR01MB08632E50DFE53BE0CFAA99ABE6922@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240903101724.291ad0f7@bootlin.com>
 
+On Tue, 03 Sep 2024, Herve Codina wrote:
 
---V8qJgUi9TxzWpM4h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Hi,
+> 
+> On Thu,  8 Aug 2024 17:46:49 +0200
+> Herve Codina <herve.codina@bootlin.com> wrote:
+> 
+> ...
+> 
+> > In order to add this PCI driver, a number of preparation changes are
+> > needed:
+> >  - Patches 1, 2 introduce the LAN996x PCI driver itself, together with
+> >    its DT overlay and the related MAINTAINTER entry.
+> > 
+> >  - Patches 3 to 8 allow the reset driver used for the LAN996x to be
+> >    built as a module. Indeed, in the case where Linux runs on the ARM
+> >    cores, it is common to have the reset driver built-in. However, when
+> >    the LAN996x is used as a PCI device, it makes sense that all its
+> >    drivers can be loaded as modules.
+> > 
+> 
+> Patch 7 was applied my Philipp and patch 1 was acked by Greg.
+> 
+> No feedback received on other patches.
+> What can I do to move forward on this series and have it applied ?
 
-On Mon, Sep 02, 2024 at 09:19:29AM +0000, Minda Chen wrote:
->=20
->=20
-> >=20
-> > On Thu, Aug 15, 2024 at 10:33:55AM +0000, Minda Chen wrote:
-> > >
-> > >
-> > > >
-> > > > On Tue, Aug 13, 2024 at 07:31:50AM +0200, Jan Kiszka wrote:
-> > > > > On 12.08.24 17:55, Conor Dooley wrote:
-> > > > > > On Mon, Aug 12, 2024 at 04:15:51PM +0200, Jan Kiszka wrote:
-> > > > > >> From: Jan Kiszka <jan.kiszka@siemens.com>
-> > > > > >>
-> > > > > >> Analogously to the PCI PHY, access to sys_syscon is needed to
-> > > > > >> connect the USB PHY to its controller.
-> > > > > >>
-> > > > > >> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> > > > > >> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > > > >> ---
-> > > > > >> CC: Rob Herring <robh@kernel.org>
-> > > > > >> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > > > > >> CC: Conor Dooley <conor+dt@kernel.org>
-> > > > > >> ---
-> > > > > >>  .../bindings/phy/starfive,jh7110-usb-phy.yaml         | 11
-> > > > +++++++++++
-> > > > > >>  1 file changed, 11 insertions(+)
-> > > > > >>
-> > > > > >> diff --git
-> > > > > >> a/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy
-> > > > > >> .yam
-> > > > > >> l
-> > > > > >> b/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy
-> > > > > >> .yam l index 269e9f9f12b6..eaf0050c6f17 100644
-> > > > > >> ---
-> > > > > >> a/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy
-> > > > > >> .yam
-> > > > > >> l
-> > > > > >> +++ b/Documentation/devicetree/bindings/phy/starfive,jh7110-usb
-> > > > > >> +++ -phy
-> > > > > >> +++ .yaml
-> > > > > >> @@ -19,6 +19,16 @@ properties:
-> > > > > >>    "#phy-cells":
-> > > > > >>      const: 0
-> > > > > >>
-> > > > > >> +  starfive,sys-syscon:
-> > > > > >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > > > >> +    items:
-> > > > > >> +      - items:
-> > > > > >> +          - description: phandle to System Register Controller
-> > > > sys_syscon node.
-> > > > > >> +          - description: PHY connect offset of
-> > > > SYS_SYSCONSAIF__SYSCFG register for USB PHY.
-> > > > > >
-> > > > > > Why is having a new property for this required? The devicetree
-> > > > > > only has a single usb phy, so isn't it sufficient to look up the
-> > > > > > syscon by compatible, rather than via phandle + offset?
-> > > > > >
-> > > > >
-> > > > > I didn't design this, I just copied it from
-> > > > > starfive,jh7110-pcie-phy.yaml. As that already exists, I'm neither
-> > > > > sure we want to change that anymore nor deviate in the pattern he=
-re.
-> > > >
-> > > > To be honest, I think some of the other users of phandle + offset on
-> > > > this soc were just copy-pasted without thinking about whether or no=
-t they
-> > were required too.
-> > > > This one seems like it should just be a lookup by compatible in the
-> > > > driver instead of by phandle. As a bonus, it will work with existing
-> > > > devicetrees - whereas your current implementation will fail to probe
-> > > > on systems that have the old devicetree, a regression for systems
-> > > > running with that devicetree and downstream firmware.
-> > > >
-> > > > Cheers,
-> > > > Conor.
-> > > >
-> > > Hi Conor
-> > > I know you would like to put the offset value to the code, Just set s=
-yscon in dts.
-> > > Just like pcie-starfive.c. right?
-> >=20
-> > No, not quite. That still uses a phandle lookup, I was talking about us=
-ing
-> > syscon_regmap_lookup_by_compatible().
->=20
-> Okay. Using syscon_regmap_lookup_by_compatible() can just modify the driv=
-er code only.
-> But syscon_regmap_lookup_by_compatible() is not exist in uboot now. If I =
-want to enable
-> CONFIG_OF_UPSTREAM in uboot. I have to add this function in u-boot...
+Arnd needs to be okay with the syscon ref-counting idea.
 
-You can use
-	node =3D ofnode_by_compatible(ofnode_null(), "foo");
-	*regmap =3D syscon_node_to_regmap(node);
-in U-Boot.
-
-
---V8qJgUi9TxzWpM4h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZtbaAQAKCRB4tDGHoIJi
-0qddAQCykV/8wdobsflqJGegk8VpG4PfIyVD95Ps/lFiN6N8EAEA3A0m+qTJUFXs
-meGu8AGVsKo0mah3sBBHmXQzCetNhA8=
-=t0GZ
------END PGP SIGNATURE-----
-
---V8qJgUi9TxzWpM4h--
+-- 
+Lee Jones [李琼斯]
 
