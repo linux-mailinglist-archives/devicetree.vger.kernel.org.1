@@ -1,120 +1,88 @@
-Return-Path: <devicetree+bounces-99567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46ACE96A304
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:40:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2136196A30D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:41:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 796DC1C20E8A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:40:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF3141F2A276
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:41:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E6218734B;
-	Tue,  3 Sep 2024 15:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QODztkH6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD73D18892F;
+	Tue,  3 Sep 2024 15:40:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0907518453F;
-	Tue,  3 Sep 2024 15:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6643718891A;
+	Tue,  3 Sep 2024 15:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725377928; cv=none; b=tZWVn464Lsv8gATPQ9j8xeX3vduCFXfmUGIu5q9at5QRLsQJ6Yz9g4zZ0tAM+yuIVblHUj+uuoUp1nMaFrXKsJLN7WdYuKKZze0l8p7b2JADsv3KXL03NfDmSL3oPQX352Y0N+3ooqmFaxn0/uF7L+i7M27kPRVDLxK7JH4nU8s=
+	t=1725378018; cv=none; b=Z1/RyOapRzQw09V1SBfCUiktU1gIq4P8WuBxOTROalevcnFViy0JmZvGtrIWDnbhdBwhnfjld0vBQcmGyLGB+qjnj+U9k5N6A273PrrBUW1YxZUj/f2L1r/4BLbZ2giiPZbeFKkX2TW9XZXV7O27VM0AMFwnFZA/XBQ6TweAZ6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725377928; c=relaxed/simple;
-	bh=S5CoP4L+Z9i13ubnj1t4i0TX9PPx6KHBRTxC+jRT8do=;
+	s=arc-20240116; t=1725378018; c=relaxed/simple;
+	bh=XdgZeiDfpysWm9lWTgXqvjatGdoyBFeI3d1tG17BlSs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=efM8tNXMMF3TELJtKI43atw2+m4ehJHVXZwVt5+TAbgQrv4zfVGP9mpna71Kqbv4uOOOjxN02N0+oSWcponFqPlaeJzCo0gYJ8H5PfxsE9NuaExJGpAgctxM5RuJalpTjlPOOU4z+sTxNL8rlb05NLXhviTS4Rwqsj5Pp9CGVto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QODztkH6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 326CCC4CEC8;
-	Tue,  3 Sep 2024 15:38:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725377927;
-	bh=S5CoP4L+Z9i13ubnj1t4i0TX9PPx6KHBRTxC+jRT8do=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QODztkH6u7BRnJThucAKNoOr795B2lvtmtFY+IUg4yvPmPrqS+agtzwSw6CiGSsTr
-	 36GwN4s7ehdVPUd54QoFjYOtThqT1cXEu/hA3bgENux1uxsfa0weXEoow0sXRNxj4T
-	 MbhiHAzUKo/KHAHMqBB/WRJf5Su9O2cvVwo17ec3y5MSadZTXz3YV71O9IogkZe1PS
-	 NaD/XrQftLmGcW1KMoLfeeqr2CZaRDdf9iV+qK7woBMpyhjtPVkAjK7SyaPklNHr4z
-	 XHDaJ8wB2F+EY+Y9q+hbvClT7YWWSK7YAYXn6cSvMRXuPyJq8p1bDA3aJlL6SSS79R
-	 m4X1SbPTkB6HQ==
-Date: Tue, 3 Sep 2024 16:38:39 +0100
-From: Lee Jones <lee@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Simon Horman <horms@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Subject: Re: [PATCH v5 3/8] mfd: syscon: Add reference counting and device
- managed support
-Message-ID: <20240903153839.GB6858@google.com>
-References: <20240808154658.247873-1-herve.codina@bootlin.com>
- <20240808154658.247873-4-herve.codina@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VgDGWY/roHEfdUu/IaTXKzopfsy84C3IFf98Yq3csnsjj3ktg9bOO9rJc71dh5vgUnEK0tZY5/KqD0B7xhWRBrD1QCugw+xNyyAKux+/JKawgvvR8otDydncLX1xXBI1gYG+thKS8dQyC8/MaauaI43lLPnmKQdK/cLF0aMB0Mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A13FFEC;
+	Tue,  3 Sep 2024 08:40:43 -0700 (PDT)
+Received: from bogus (unknown [10.57.81.106])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B479C3F66E;
+	Tue,  3 Sep 2024 08:40:14 -0700 (PDT)
+Date: Tue, 3 Sep 2024 16:40:00 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
+	justin.chen@broadcom.com, opendmb@gmail.com,
+	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v4 2/2] firmware: arm_scmi: Support 'reg-io-width'
+ property for shared memory
+Message-ID: <20240903154000.GA2080277@bogus>
+References: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
+ <20240827182450.3608307-3-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240808154658.247873-4-herve.codina@bootlin.com>
+In-Reply-To: <20240827182450.3608307-3-florian.fainelli@broadcom.com>
 
-On Thu, 08 Aug 2024, Herve Codina wrote:
+On Tue, Aug 27, 2024 at 11:24:50AM -0700, Florian Fainelli wrote:
+> Some shared memory areas might only support a certain access width,
+> such as 32-bit, which memcpy_{from,to}_io() does not adhere to at least
+> on ARM64 by making both 8-bit and 64-bit accesses to such memory.
+>
+> Update the shmem layer to support reading from and writing to such
+> shared memory area using the specified I/O width in the Device Tree. The
+> various transport layers making use of the shmem.c code are updated
+> accordingly to pass the I/O accessors that they store.
+>
 
-> From: Clément Léger <clement.leger@bootlin.com>
-> 
-> Syscon releasing is not supported.
-> Without release function, unbinding a driver that uses syscon whether
-> explicitly or due to a module removal left the used syscon in a in-use
-> state.
-> 
-> For instance a syscon_node_to_regmap() call from a consumer retrieves a
-> syscon regmap instance. Internally, syscon_node_to_regmap() can create
-> syscon instance and add it to the existing syscon list. No API is
-> available to release this syscon instance, remove it from the list and
-> free it when it is not used anymore.
-> 
-> Introduce reference counting in syscon in order to keep track of syscon
-> usage using syscon_{get,put}() and add a device managed version of
-> syscon_regmap_lookup_by_phandle(), to automatically release the syscon
-> instance on the consumer removal.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  drivers/mfd/syscon.c       | 138 ++++++++++++++++++++++++++++++++++---
->  include/linux/mfd/syscon.h |  16 +++++
->  2 files changed, 144 insertions(+), 10 deletions(-)
+This looks good to me now, much simpler. I will push this to -next soon,
+but it won't be for v6.12. I have already sent PR for that. I want this
+to be in -next for longer just to see if anyone has any comments and
+doesn't break any platform(which it shouldn't anyways).
 
-This doesn't look very popular.
+Just hoping if anyone looks at it and have feedback once it is in -next.
+I will apply formally at v6.12-rc1 and report back if no one complains
+until then.
 
-What are the potential ramifications for existing users?
-
--- 
-Lee Jones [李琼斯]
+--
+Regards,
+Sudeep
 
