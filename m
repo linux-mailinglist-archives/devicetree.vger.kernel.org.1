@@ -1,136 +1,106 @@
-Return-Path: <devicetree+bounces-99625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BEA396A78A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:40:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 885DC96A7BB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E71AB23955
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 19:40:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45969283E9E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 19:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9A61922D3;
-	Tue,  3 Sep 2024 19:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD8C1DC732;
+	Tue,  3 Sep 2024 19:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rism4ooS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WaOiBXY/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08291D7E2B;
-	Tue,  3 Sep 2024 19:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5201DC720;
+	Tue,  3 Sep 2024 19:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725392439; cv=none; b=RSUtq7z8tJo415z9KGu2g5UugySF3csEWEZ0SeaCb/ICPBXfeh001/ueJL6F7yIukdCP2yv5kPX8IUj0eEAUegXwgV13X60696JbIXXlhZcCYTRzfpoiFaWKxeWvnhEbF12bc6+tKJlmjaOE61tSoMGg2Ys5jkHOS350rcawKT0=
+	t=1725392886; cv=none; b=E4sqaFolTM9pRXSDRbJbtEu+Ov+rWlIqZRREMQstgwtGGIDbr202hrM7x4We1Hs6lroKz3K6gCbbAlOIzB6LD/9ZwDZlzhf6lHcx9Eisf11Hkas0+beOFaUsu3wXFbTD387dJIXt3pJCzq6fHqPBTZ/3mToWQ7XHf0Q0Fd9K4o0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725392439; c=relaxed/simple;
-	bh=7YUsp2sSGpccyYlbWGKOUrCSuBjr2Eoe65NIdAll4zI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AsqFHEc1orbDkrt6LGEzVMrodIhEtuiM6E7J6pIt3nBtfksh0GkEYuBEG7djFdNXI9zBwl35ZX5Rr0WhGH0jSJIzoi97OE9kPnuqHTJcyYys+ZFJP0bS3RpVYIeDcRDX6tO/r7cFAqpjmaz/YRfSqiu7k4NATaS85L1OS0FuK3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rism4ooS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94156C4CEC4;
-	Tue,  3 Sep 2024 19:40:32 +0000 (UTC)
+	s=arc-20240116; t=1725392886; c=relaxed/simple;
+	bh=3p0g7g5p3i50KQ2x/lFG1FmicesjihiO7bM0HYwDHBY=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=dQ+FkNlt4qppexpm0z9atIeqQBosP87a465F1ccGT/8bFVW2XjbMkFw7nQishmBWEhofgE1gwJfHk/h2RbG0Sfxfq46io5IIqFWNJeYnsb8MDzgAvwywbVpH9tDOYFVqzqel3tXyAAZMijbcpAcEhchx/1wlNC82uaxGdXbpQuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WaOiBXY/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6D6BC4CEC4;
+	Tue,  3 Sep 2024 19:48:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725392438;
-	bh=7YUsp2sSGpccyYlbWGKOUrCSuBjr2Eoe65NIdAll4zI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Rism4ooSvjr+D1jsqZWle8stW18mdRgw01hSx4fFZasqrUyAwDemdxO+BDOFNUlP5
-	 TeGj/8olIPLl0+HEXNPNUgRytntQzwSEU2Rgihsj1Ho33Ow15tMDtEMBpRRcydHqY9
-	 QmxzMVxGH97Meka8R2B0Qxttl/BeJKhtVjYbuIBcw77wWdK3riw4uXYx7zjY9STdYi
-	 3i6Yx1L9Er38/y7sLIyDRTGo2vATknrM20MbpGzLiJyqOBfDlqhOF9x/5n/XPrWPvn
-	 55UfsmdvWhcKhYkGczkebwB2lm6/+KMDuqH/KNdrS4b+F/j6ulfE5HJL8yFpUTCaQf
-	 i26sfULaptvhQ==
-Date: Tue, 3 Sep 2024 20:40:27 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Sperling, Tobias" <Tobias.Sperling@Softing.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "jdelvare@suse.com" <jdelvare@suse.com>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "corbet@lwn.net"
- <corbet@lwn.net>, "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Introduce ADS71x8
-Message-ID: <20240903204027.72ae7e4d@jic23-huawei>
-In-Reply-To: <BE1P281MB2420EBD112C4F7A96598AE05EF922@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
-References: <BE1P281MB24208CB90AF549578AA5C384EF972@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
-	<20240830-chaos-unrivaled-04c5c4c6add9@spud>
-	<766b9892-ef54-4f0a-96dd-19e8a1b3279c@roeck-us.net>
-	<20240831131824.03141d4a@jic23-huawei>
-	<BE1P281MB2420EBD112C4F7A96598AE05EF922@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1725392885;
+	bh=3p0g7g5p3i50KQ2x/lFG1FmicesjihiO7bM0HYwDHBY=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=WaOiBXY/KVKWzml45UCJb+WWIBSw0lvuhE0Mv7k/zWUsAqIsb4Mma5kz3NxWBQ0bq
+	 Q5p2ZfbrI+3zDeagmBF4/6SsbBGUnCt9Gb07whtcTgm+Yn9V4kqIHjm2WRtzTCL3Ti
+	 etT4gj82eXuH2jyWUUA61XPuxMAYeWXuCztfUklSF0l/KuB+auXZVOC2lwBBoR2ulI
+	 5OnSKLo0z4pYiY++tp1dAgKItd46IXo+cd8RZ7GM6DotjLox9rxNPM1u2FKZ9vOsj6
+	 WrMHdMs4peE8U35yOBAcPUURlOazdQiP08efgujoHR0JylWzVrkkfqi+wYLOQtSJYs
+	 z+Y3lm9vigyDA==
+Message-ID: <83fac884d749bda0cf0b346e4e869bc8.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com>
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v3 07/12] arm64: dts: renesas: r9a08g045: Add VBATTB node
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: claudiu.beznea@tuxon.dev, linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+To: Claudiu <claudiu.beznea@tuxon.dev>, alexandre.belloni@bootlin.com, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org
+Date: Tue, 03 Sep 2024 12:48:03 -0700
+User-Agent: alot/0.10
 
-On Mon, 2 Sep 2024 13:04:55 +0000
-"Sperling, Tobias" <Tobias.Sperling@Softing.com> wrote:
+Quoting Claudiu (2024-08-30 06:02:13)
+> diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot=
+/dts/renesas/r9a08g045.dtsi
+> index 067a26a66c24..247fa80a4f53 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> @@ -160,6 +160,18 @@ i2c3: i2c@10090c00 {
+>                         status =3D "disabled";
+>                 };
+> =20
+> +               vbattb: vbattb@1005c000 {
+> +                       compatible =3D "renesas,r9a08g045-vbattb";
+> +                       reg =3D <0 0x1005c000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&=
+vbattb_xtal>;
+> +                       clock-names =3D "bclk", "rtx";
+> +                       #clock-cells =3D <1>;
+> +                       power-domains =3D <&cpg>;
+> +                       resets =3D <&cpg R9A08G045_VBAT_BRESETN>;
+> +                       status =3D "disabled";
+> +               };
+> +
+>                 cpg: clock-controller@11010000 {
+>                         compatible =3D "renesas,r9a08g045-cpg";
+>                         reg =3D <0 0x11010000 0 0x10000>;
+> @@ -425,4 +437,11 @@ timer {
+>                 interrupt-names =3D "sec-phys", "phys", "virt", "hyp-phys=
+",
+>                                   "hyp-virt";
+>         };
+> +
+> +       vbattb_xtal: vbattb-xtal {
 
-> > On Fri, 30 Aug 2024 07:30:16 -0700
-> > Guenter Roeck <linux@roeck-us.net> wrote:
-> >   
-> > > On 8/30/24 06:14, Conor Dooley wrote:  
-> > > > Hey Tobias, Guenter, Jonathan,
-> > > >
-> > > > On Fri, Aug 30, 2024 at 11:49:53AM +0000, Sperling, Tobias wrote:  
-> > > >>  From b2e04ce5500faf274654be5284be9db4f3abefce Mon Sep 17 00:00:00  
-> > 2001  
-> > > >> From: Tobias Sperling <tobias.sperling@softing.com>
-> > > >> Date: Fri, 23 Aug 2024 12:08:33 +0200
-> > > >> Subject: [PATCH 1/2] dt-bindings: hwmon: Introduce ADS71x8
-> > > >>
-> > > >> Add documentation for the driver of ADS7128 and ADS7138 12-bit, 8-channel
-> > > >> analog-to-digital converters. These ADCs have a wide operating range and
-> > > >> a wide feature set. Communication is based on an I2C interface.
-> > > >> The driver provides the functionality of manually reading single channels
-> > > >> or sequentially reading all channels automatically.
-> > > >>
-> > > >> Signed-off-by: Tobias Sperling <tobias.sperling@softing.com>
-> > > >> ---
-> > > >>   .../devicetree/bindings/hwmon/ti,ads71x8.yaml |  85 +++++++++++  
-> > > >
-> > > > If this is a "generic" adc, why is it going into hwmon?
-> > > > I would have expected this to be in iio/adc, and use more typical adc
-> > > > bindings, even if the driver is in hwmon.
-> > > >
-> > > > Guenter/Jonathan wdyt?
-> > > >  
-> > >
-> > > Same thought here. While the chip supports limits, making it suitable for
-> > > hardware monitoring, its primary use seems to be as ADC, not as hardware
-> > > monitoring device. The hardware monitoring API isn't well suited for the
-> > > fast sample rate supported by this chip.  
-> > 
-> > Agreed, looks like a typical IIO ADC.
-> > 
-> > If the particular board needs it for hardware monitoring we have
-> > the bridge that should work for that (iio-hwmon).  
-> 
-> Just some addition. In theory the chip also provides the possibility to use some
-> channels as GPIO making it not only work as ADC.
-> But yes, driver mainly implements reading of the ADC. Will try to make it an
-> IIO ADC device then.
-That's fairly common.  If you want to support it then provide the gpio_chip
-etc and +CC the relevant maintainers and mailing lists.
+The node name should be something like clock-<frequency> but if the
+frequency is different per-board then I don't know what should happen
+here. Can you leave the vbattb_xtal phandle up above and then require
+the node to be defined in the board with the proper frequency after the
+dash?
 
-Jonathan
-
-> 
-> > Jonathan
-> >   
-> > >
-> > > Guenter
-> > >  
-> 
-> Regards
-> Tobias
-
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               /* This value must be overridden by the board. */
+> +               clock-frequency =3D <0>;
 
