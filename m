@@ -1,101 +1,88 @@
-Return-Path: <devicetree+bounces-99422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BEAF969B5B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32E42969B81
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 13:21:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3657E1F2487D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:15:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D17A61F248D2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:21:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2886188937;
-	Tue,  3 Sep 2024 11:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072871A3A9F;
+	Tue,  3 Sep 2024 11:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OpdMmhym"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T/SRsrIy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA5A17DFF5;
-	Tue,  3 Sep 2024 11:15:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DA61A0BF4;
+	Tue,  3 Sep 2024 11:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725362138; cv=none; b=SD8EzJiiuzoGnOv3OYDVwMgh8MqG0l0vITVzbRbiW536J7fL6bvyVebsDjPuwe27Kqxjg+89IuZSSyyeFzoPzGOVi/9I7G+Xpz1nkWBUstvBv54HzPeqa90GJkqDXEndoh/WsoIZFJvfDogjZLrSl2G/xscbSGWdHlOdAs2oOuE=
+	t=1725362503; cv=none; b=EYAaPxN/WwDZdIlHi6hsw8Dm1bQfepzWR9QZulrx72S78Dhda5vspz7ecL0bMi5BGIJhl5TXKiwWnh1mWCvi2YQjcRFH7YTzrdfsDscPlVofU+9FUvXdUbYiFz3pYB3vx3eXlhCYo8zbPBtWbMIseRxaV4zdVKyhyYrW9C8A+Rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725362138; c=relaxed/simple;
-	bh=BqJPlt44MeNTjunDONHtThoDBK8zbPy2hRTgHU608OI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ooci2dV7SIPk2q8XAEoiPiwCKO9hxwNIPlGOn/V2WhhuBU7Di23oxtYNZQKtTnH4oeXRnCtyKNmAw4V4cGe275YgmyiYkn7XDcaab6JL6BKya591S4FLScFBn8Cqxi2KaK70VsWlzJX8arOGD9TiGScJgQHADldJELTFZzvWvzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OpdMmhym; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f401b2347dso45632261fa.1;
-        Tue, 03 Sep 2024 04:15:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725362135; x=1725966935; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BqJPlt44MeNTjunDONHtThoDBK8zbPy2hRTgHU608OI=;
-        b=OpdMmhymucEbWBtoidDmKeyVWYSwaefczkvpshg1kIc/qz3iCve1ODkXRp2+fZx0zZ
-         r62fe/ujGWTrHx6qXfSPPtnrLKcGTUOP5sHkT4WK1x/yGyIwrhuq0X5KUKJcTyV43c9A
-         PTHsdUdf9GsGp8lfioNgudiJRl2SgBtzFzDjADJGYOAJFoVU/NxKgF205xnWfCTBRkr9
-         xVGIoD8D85OfPSUHkA+C4BvPT34kV9V0LISp60gxWxO2VgzFF3VhV5b+D7EKOTJIxTHn
-         r0byaG1vfVA4ppMC+WvPzFLSXReFNdErovIi/dRC7chZs3pisHcCxA3gRB1hL9Aw/PYv
-         P0cQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725362135; x=1725966935;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BqJPlt44MeNTjunDONHtThoDBK8zbPy2hRTgHU608OI=;
-        b=emccr+g2V8KUQ+cZsNWlbEPYqOx0IZA3ipPqtcwTWCkiaUtPSAgycL9FO7xNmEW31m
-         FM1Z3MWbG+4c0nR6/3QRlTBRDPNXW+i/UOnqJCge5l59k+gL/pZiS2FkTTKoacBAeqcb
-         /dhazmuMOVwW6D9uN8X000qHItF/JUURbCvh8rTBzROR1HJrLD+R4ug0jaPMEs2SHxjs
-         f7FKU0kxE9nXfTLpVPxKU9z3ofKElV+sZgbsIoMqZCddFIgi2D+mlJ7BW9kbCcHQ17Rg
-         20aDl35dwGWfm5ABA+lZfq0mQPTHxZCDhLJ/ZXXXrVXmovYQjZ2Q8djCiooyd/vgGKSi
-         DbEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsAV85MZNuiox9rsicw8Fc//DTAEZSfN2xszzsQ3kRTrtMGZ4gIHeX8TBK+c7QYieopklx6JbbCMK1ITke@vger.kernel.org, AJvYcCVZEWiNw+N3OkuIBSdZQL97SRd6v+8IUgu4wHSEpMW1TvWKLcaZTuksakxXs+zu0K0m/AKygmDTEAj6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhdHMLZ4LAcA9otB0YapANlLTCF660YSpBefbHQkZ4kkBqvzDh
-	+z12NcVBU4rIEi50bQvrLAc7zCNdPIou6m49+F2TfgwipsWhRQvVAkVnHEiYZFDXA/CbIw8SLxv
-	06NGwruB5WiL7Gh0fnpK110O1wBs=
-X-Google-Smtp-Source: AGHT+IE8SjM0Ms3di5cXWgcpB7iUkzE4YJxI+Ckuk4QQ044JC4VZuODzzCPoUd7IBUnkokoQYv1d6k7FzBjdigKSPYc=
-X-Received: by 2002:a05:651c:19a2:b0:2ef:2e5d:3710 with SMTP id
- 38308e7fff4ca-2f61299bd88mr59721361fa.3.1725362134721; Tue, 03 Sep 2024
- 04:15:34 -0700 (PDT)
+	s=arc-20240116; t=1725362503; c=relaxed/simple;
+	bh=4FE56k1UVGjsv95hynE4fUeRYp7Znden7WBX7cfLRK4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=SA1SLqNRcN8SLuYYrVbP5yLcszeMViiBQbIC2MTg/q+rEcMbxw3NYvHvR34YNS4nUHk6ic2uUsFWJJn9WAt6sNAwQ5QmJwXrA8AeeiJzLTytRhHLWQnySJj5MiBK96NpVXYF8ShVXo/JCeHDBX5jZ9CXf9DDnptjWEfEd+XPW1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T/SRsrIy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 058BAC4CEC4;
+	Tue,  3 Sep 2024 11:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725362503;
+	bh=4FE56k1UVGjsv95hynE4fUeRYp7Znden7WBX7cfLRK4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=T/SRsrIycJO8yXAjB7vCNpF0WYVy/zDdQ/awA04cqEZd1XkHSUu8x0ypLs7CuXv5m
+	 IHBQB349TRqSroeBVlAVm+TBrnsOWTIDl4xxXXqE0czlA/bCwJV7IpzNsy70Dm7ViJ
+	 J8R9e5CmUSyF+1zZ1TD4h8DMTDGIREApLSKvmlBLNPo/G4iU4a2yLAtnkl+7ahWM7j
+	 28p9FFYMhglh9u0OOSHUJn+ZKof1Tt4pGupXbxXdPJ1+4TX0erE9qKghjvFmz3+aF6
+	 8eW3DgM+Vp4j4Nrm/+qum3MO29eg9D4HTp84zUMJoJyQbioEH0/7WVUmejg70z9oj3
+	 nUPUaEqvCbBfQ==
+Date: Tue, 3 Sep 2024 13:21:40 +0200 (CEST)
+From: Jiri Kosina <jikos@kernel.org>
+To: Doug Anderson <dianders@google.com>
+cc: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>, 
+    bentiss@kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+    robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+    linus.walleij@linaro.org, hsinyi@google.com, 
+    dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] Add Add elan-ekth6a12nay on the basis of
+ elan-ekth6915
+In-Reply-To: <nycvar.YFH.7.76.2408222059160.12664@cbobk.fhfr.pm>
+Message-ID: <nycvar.YFH.7.76.2409031321260.31206@cbobk.fhfr.pm>
+References: <20240722073136.8123-1-lvzhaoxiong@huaqin.corp-partner.google.com> <CAD=FV=V8ivgWn5krEYzt5C4aiHMMK07mtMVwJaCeSQHG6ZscSg@mail.gmail.com> <nycvar.YFH.7.76.2408222059160.12664@cbobk.fhfr.pm>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240903093911.3235306-1-carlos.song@nxp.com>
-In-Reply-To: <20240903093911.3235306-1-carlos.song@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 3 Sep 2024 08:15:23 -0300
-Message-ID: <CAOMZO5C_dpYGYvc=KE7ackdJH2RfhrHP6_Z=cxM=9X+hX5W8Jg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx93-11x11-evk: remove redundant "sleep"
- pinctrl in lpi2c2 node
-To: Carlos Song <carlos.song@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	frank.li@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 
-Hi Carlos,
+On Thu, 22 Aug 2024, Jiri Kosina wrote:
 
-On Tue, Sep 3, 2024 at 6:30=E2=80=AFAM Carlos Song <carlos.song@nxp.com> wr=
-ote:
->
-> In lpi2c2 node, default pinctrl and sleep pinctrl have the same value.
-> So "sleep" pinctrl is redundant and remove it.
->
-> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+> > Jiri / Ben,
+> [ ... snip ... ]
+> > I think this series is ready for you to merge at your leisure. If
+> > there's anything blocking it then please yell. Thanks! :-)
+> 
+> Hmm, for some reason the only mentions of this series in my inbox are your 
+> Reviewed-by: from Jun 10th, but nothing else whatsoever. Seems like some 
+> spam filter really didn't like it.
+> 
+> I will pick it up.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Now in hid.git#for-6.12/elan.
+
+Thanks,
+
+-- 
+Jiri Kosina
+SUSE Labs
+
 
