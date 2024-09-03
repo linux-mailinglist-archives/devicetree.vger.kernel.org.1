@@ -1,172 +1,106 @@
-Return-Path: <devicetree+bounces-99206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5717969398
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:23:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8E29693BA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:34:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA2E81C22CDF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:23:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1730C280D58
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CA31D54ED;
-	Tue,  3 Sep 2024 06:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7206C1D54FA;
+	Tue,  3 Sep 2024 06:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Pq6J/mqk"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="i4Lt/3da"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBFCC1D173A;
-	Tue,  3 Sep 2024 06:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6441D54D2;
+	Tue,  3 Sep 2024 06:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725344535; cv=none; b=Fpf/6vFfsRLUd18j/qwpEKkAzbE+4zlYb7/dX7G1xuk24Ius5c6Faq8br1x4IWONZ40MTd3Zf/6/QfiHH6dd0MFkVMoIN6abjgKvKTzuw+VGscGG5a39doKyurEX5RLKFNF404UJJ1wD9L/e5FQH0G9oFZiRXlYfFyj+ffUu89Q=
+	t=1725345226; cv=none; b=EW70vryCAUGiGAWu8ZpZUDjPXam5rmN8N5BELLn2Iy20i5irgX6rpzFq6QoJ8QZaPqVGsNfHy7B1C6EIKUoJztYXS3WW3rDos9FBSp4vtjHFOEmfAPGFY2sQ5V0dbfElU9U7EPjbL/7bkqkchcPHiMaiwPcPYblDe8a8CXrN/Vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725344535; c=relaxed/simple;
-	bh=4ooSc8z/Zvu2qO49BvsP6kwomtfPjPo44k1t2bUTWEo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=OsIrD8To0WjS+QJT5usaBPR6NUMwxGulgSp/UuyFLcMDEoF1o+DtN7jUmWLzm7b4JtSGSRCoRuzM3YZkMCiWKHO/QPWY+Y7BXBG7hkuHwyVQ1WD+y/6SHkuEdSQ4a0y0FG9pIuLA1eZ/rDy2kvlW38bELRhy13RwdfbzXt/0uQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Pq6J/mqk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 482Lr3gu003208;
-	Tue, 3 Sep 2024 06:22:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2racNi40TWyVqqJAsL9ChJG+TC3NC2eAEmxYTq1I4D4=; b=Pq6J/mqkW8W5Zc5G
-	X6LUxnaEiDGbNftmMIhDH9htVUvUAIhlYJSPG3aQ8vWuK0f8dSm8hgOlHO8rq+Hz
-	XrNrabhBIlbs/mja4sCoShJDRQQHziz4Su0Bj0q2NNN8xfl51Jx1+FPLjpyFAELo
-	Rb5eW9boOjJIAyQmGWYeLKQdUH+9PTmN8ENUIaT/Lf5BtUjMM3b/e9de9inlgs10
-	b1tQNv7y1xR0ocI3F9+iscQwSnlaQTvDk736//wVRUdNWbRdBkNyqhWWYQAekIjk
-	nSlr9qUCehU3+gv7i9udYbAMF5xfxWrPubEoUBEbV9fv4lePPfYTi9jV0cVrU6PQ
-	OkR/5Q==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41buj6xb85-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Sep 2024 06:22:03 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4836M2Bd012927
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Sep 2024 06:22:02 GMT
-Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 2 Sep 2024 23:21:59 -0700
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-Date: Tue, 3 Sep 2024 14:21:32 +0800
-Subject: [PATCH 4/4] soc: qcom: llcc: Add llcc configuration support for
- the QCS8300 platform
+	s=arc-20240116; t=1725345226; c=relaxed/simple;
+	bh=0X5JD1dKXlRjMro9PE7Xoxlt20rlpE2CIb0nggH/kC4=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=fr1CmuzXibTWrZhpoecRh7l8wG65G9oY0TZM3uQwdINBpQE0xYMY2TuOKVGBGu1Vt041vEDFu7kW15ut68zAk7JCDnpm264LW3mgK6asPyG9JexTovgG6eIjdOFJQ+jY1YE3JHqOF420jIRoUWSYzsVEj3upIrawF2XgDHb6LcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=i4Lt/3da; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1725345194; x=1725949994; i=markus.elfring@web.de;
+	bh=0X5JD1dKXlRjMro9PE7Xoxlt20rlpE2CIb0nggH/kC4=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=i4Lt/3daxsTzXVqbQcdzqz4DeWpUFHPsA67NnLaf06eVWIzQ39hEszelNn7kSFWR
+	 AZ4RE+mL+OtuKCtYS1ZvQnbqP698Xd6ZfCwDipxu/qmKtLGtGgetD3Fkwsq3p6F+e
+	 eHO9Dw6Xw5pq+2kL8VyDzez4h0GB7+9y14KdeHtMy4PRf/EnCX8C0I36s5LUVg/Ef
+	 90QEOxl+Bmra2r5V1cgKfi96IHpqizKevnPDAempffsObjx2fCCPJ2ZjBmyBDPz9d
+	 N5y+DQJeYkAv/nONzXjq/u5Phv13xn77YhhqiL1cv4U1ypN0KamUpKtNGUfyd94eh
+	 I1M4c7F9jTwFEcluCw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.84.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N45xt-1s3Xq705ib-00yDDw; Tue, 03
+ Sep 2024 08:33:14 +0200
+Message-ID: <f338a355-4ce6-4d63-8659-21b9d6c7eebc@web.de>
+Date: Tue, 3 Sep 2024 08:33:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240903-qcs8300_llcc_driver-v1-4-228659bdf067@quicinc.com>
-References: <20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com>
-In-Reply-To: <20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Conor Dooley <conor@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jingyi Wang <quic_jingyw@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725344509; l=2447;
- i=quic_jingyw@quicinc.com; s=20240829; h=from:subject:message-id;
- bh=4ooSc8z/Zvu2qO49BvsP6kwomtfPjPo44k1t2bUTWEo=;
- b=RXW4iJwjHB57fgGFjGFrP4KdRbfPiuzvrQeNTeNXSA5YXAY/hN/GaELArqZLbkuNWvVnSLht2
- sNIBZ5Nw4qxB9i9S9zq5+rvCQ0MD806bdjDP2BkbBn0IVyIuYtVIgkU
-X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
- pk=3tHAHZsIl3cClXtU9HGR1okpPOs9Xyy1M0jzHw6A/qs=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -2viYQwGphrDFULQm9o_GJsOwfv1SlUo
-X-Proofpoint-GUID: -2viYQwGphrDFULQm9o_GJsOwfv1SlUo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-02_06,2024-09-02_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- mlxlogscore=999 impostorscore=0 suspectscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2409030049
+User-Agent: Mozilla Thunderbird
+To: Zhao Qunqin <zhaoqunqin@loongson.cn>, loongarch@lists.linux.dev,
+ linux-edac@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Borislav Petkov <bp@alien8.de>,
+ James Morse <james.morse@arm.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Robert Richter <rric@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, Wang Xuerui <kernel@xen0n.name>
+References: <20240903015354.9443-3-zhaoqunqin@loongson.cn>
+Subject: Re: [PATCH v2 2/2] Loongarch: EDAC driver for loongson memory
+ controller
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240903015354.9443-3-zhaoqunqin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:4Hlp5eHDrSoTYVZtwFAtDx/TeawGpx05iO1xdWvBpc/dEbAIHHb
+ mk2GdAM/RmmWc8X2mjY65VmHrH/pdO58GL5cLR+XpGcVFS7ja2Ebf0gDRBLzivF1YWpBFrP
+ VTuafOk2YhupyuIGmEM44aLOZc5XeazfatyjqEHLohUZQXy3zWnW81ye5qwwb6pzTGK0jQm
+ QyZ9BhllqMAtHliWSZRCw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:kkAEESP15LY=;CORj+QSknKwLWZYgR2mUgJt54FQ
+ sgHt+w/sx+JlcCyaoE9dOyagoLj74/2W3vHOBTeD4sMPNSXBwYe9W0JOcMslPC0EgkbrwOqJT
+ Yqmy8QmFlgJM+8DvJv9dCuoZT9X9yvQSD6E9V3xT2SD3UYeg5hmLXK/5kYW9FevcfdZgZja/o
+ NaSXxJchzRmefuxJFeA7uLqCP2DAC1rxNCxu/U5UEOOkfkqkbs7NCugRylpJEfXe9YOMzOIaR
+ CftXgqR1+//tEX1NMz2L9ghVekTkxdI6X963+ZnQ1RmHhbE6delAOF8tZwtEaACsE678D8VBG
+ R6ZO5dK0N93cZLA8hYb1Ypgw9Q4qiZCpX3r236CuJNTe7BRMBpmlO6hwm2NSYGkOCgS64hAoT
+ FhYEefxqOZy6CTzZ8Wac/bLSUgXXsCuYnPVa0NrLRYN9/2iPP435aS4Ll1dWSv39f9Dw6xw42
+ RDG04lHXxuzYK/prJASUiM/YtfVF57MfaQrfo1Ow8aUmo+5dfaZKPT8BrdU7Vs2jNwpxX5gcw
+ dg1/tbNQc/Lcehz1yhbJizpnoK6It98WKlOh5yyU7aSfIt0KSvhtVHr1ajR5mRh8tiYz2NGSx
+ g4asoFM47jCWO+oJ84DD3nNilGOfpGMu7pPDlDTc9fW72OqxtrkOEnrlxxDYLmhYMVDr+ac1j
+ 8jUdLH+pPPZGyGvMPJvw2gmUQyVGsoA5cICWAnmUeNTnaNIsRrmGArYavtPWqVIffho5p46HX
+ Y9FGVLM+CBzg8mfaR5sBinWABjv6O8NOzeyZzwS/wjv3C028g+E+tPQgvZTy6H/J6QVcvsGbN
+ jVAjhWYcrj0/ACoyjda8j1uQ==
 
-Add llcc configuration support for the QCS8300 platform.
+=E2=80=A6
+> +++ b/drivers/edac/ls3a5000_edac.c
+> @@ -0,0 +1,187 @@
+=E2=80=A6
+> +MODULE_AUTHOR("Zhao Qunqin <zhaoqunqin@loongson.cn>\n");
 
-Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
----
- drivers/soc/qcom/llcc-qcom.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+How do you think about to omit a line break character from such a string l=
+iteral?
 
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index 3fb45e625d82..571fb6045f25 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -422,6 +422,14 @@ static const struct llcc_slice_config sm8650_data[] = {
- 	{LLCC_VIDVSP,   28,  256, 3, 1, 0xFFFFFF, 0x0,      0, 0x0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
- };
- 
-+static struct llcc_slice_config qcs8300_data[] =  {
-+	{LLCC_GPUHTW,   11, 128, 1, 1, 0x00F, 0x0, 0, 0, 0, 1, 0, 0, 0},
-+	{LLCC_GPU,      12, 512, 1, 1, 0x00F, 0x0, 0, 0, 0, 1, 0, 1, 0},
-+	{LLCC_MMUHWT,   13, 128, 1, 1, 0x00F, 0x0, 0, 0, 0, 0, 1, 0, 0},
-+	{LLCC_ECC,      26, 256, 3, 1, 0x00F, 0x0, 0, 0, 0, 0, 1, 0, 0},
-+	{LLCC_WRCACHE,	31, 128, 1, 1, 0x00F, 0x0, 0, 0, 0, 0, 1, 0, 0},
-+};
-+
- static const struct llcc_slice_config qdu1000_data_2ch[] = {
- 	{ LLCC_MDMHPGRW, 7, 512, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
- 	{ LLCC_MODHW,    9, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-@@ -539,6 +547,16 @@ static const u32 llcc_v2_1_reg_offset[] = {
- 	[LLCC_COMMON_STATUS0]	= 0x0003400c,
- };
- 
-+static const struct qcom_llcc_config qcs8300_cfg[] = {
-+	{
-+		.sct_data	= qcs8300_data,
-+		.size		= ARRAY_SIZE(qcs8300_data),
-+		.need_llcc_cfg	= true,
-+		.reg_offset	= llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+};
-+
- static const struct qcom_llcc_config qdu1000_cfg[] = {
- 	{
- 		.sct_data       = qdu1000_data_8ch,
-@@ -721,6 +739,11 @@ static const struct qcom_llcc_config x1e80100_cfg[] = {
- 	},
- };
- 
-+static const struct qcom_sct_config qcs8300_cfgs = {
-+	.llcc_config	= qcs8300_cfg,
-+	.num_config	= ARRAY_SIZE(qcs8300_cfg),
-+};
-+
- static const struct qcom_sct_config qdu1000_cfgs = {
- 	.llcc_config	= qdu1000_cfg,
- 	.num_config	= ARRAY_SIZE(qdu1000_cfg),
-@@ -1380,6 +1403,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id qcom_llcc_of_match[] = {
-+	{ .compatible = "qcom,qcs8300-llcc", .data = &qcs8300_cfgs},
- 	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
- 	{ .compatible = "qcom,sa8775p-llcc", .data = &sa8775p_cfgs },
- 	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
-
--- 
-2.25.1
-
+Regards,
+Markus
 
