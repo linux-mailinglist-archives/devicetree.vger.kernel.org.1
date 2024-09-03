@@ -1,190 +1,270 @@
-Return-Path: <devicetree+bounces-99511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3859D96A088
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5A2996A097
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:29:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E406C2870A4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:28:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E3F3287317
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 14:29:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1341418991A;
-	Tue,  3 Sep 2024 14:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38969154426;
+	Tue,  3 Sep 2024 14:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F9kNe6Bj"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Khq2s4f6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5A21898EA;
-	Tue,  3 Sep 2024 14:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A5513D245
+	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 14:28:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725373609; cv=none; b=dYVhwvMfiPYCM4MNoS70oYF3v981izzBz681DUPt4P2DD0J4q7hfVbszdReoLGoZfJHVmEOqE96ASs+aH7SPxh2u6d7czAumbNo7tBK7nXFV4/n1Ff/v5H2ABQ8UNFJ9TpwQE5M4fwTSJIPdX1Bq7f5Ve+CAma4bFZ7DZGw60Cg=
+	t=1725373690; cv=none; b=S+tWP6ni6bK45eGAtSxmZTCUAXBA9udMfqAieEMvv6i08XbB9J5m1xAB/UDtXYM72aIP7abThwIIyrA+aWH7BFHdCppqejzwRO4wLHDlEF1YvTfsjL9P3uMd8jKoodjBnBLmUNQQog9dRxlYkcdWogFrk0bzA81X1FdIr/VixEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725373609; c=relaxed/simple;
-	bh=1EzdlpZs3q7uuOeXlGHHUIIkv3ehXf+bom0i5XRFrho=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=EAZue5KCfBa/LdfHuj/qdcevMhT3caoRbwa742e2oOQkcLWv/N/cEYEw3OamyX0Z1i7GWmkSP9EW4K4wEUYEyJqkBC84baz3jsJz4LPAnq+4R+QqakjgVeMKj+cVoEWQJag7gxK9NsmOPXmBkrkvHuW61T+jJWVwH7a84QvDnWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F9kNe6Bj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86D9AC4CEC4;
-	Tue,  3 Sep 2024 14:26:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725373609;
-	bh=1EzdlpZs3q7uuOeXlGHHUIIkv3ehXf+bom0i5XRFrho=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=F9kNe6BjuehbUTMfgcTXZIuqk8Qh8Xp1IcFCkosaNvDqNOGmscr9+MYuz48BeNEQg
-	 6BZr8yBGtq9t3hHo1qeXpgxPfh7ocAerglY2A+VghxDgvCmfUgf73EzQQsa9d/5ZhN
-	 uKBQbBHBXyXhjgnj+QeF5+9iZxa9WSl/0sOIWtxeNX8ClgkMoRuDb9jbBwASrIULto
-	 mRvwfbYww/HFKWJFynNsDFsh93CABXF8hXl49zqXkEk3OKRcOQUzjiF7DISn1Z6XUv
-	 AdMtJL0YL7s/Oq/ToZEz1Chr/v0tosGOhG3SuYEARO8dBy2uBHexUX+T4jCilyDpKN
-	 J7Xrq6OKIxWlQ==
-Date: Tue, 03 Sep 2024 09:26:48 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1725373690; c=relaxed/simple;
+	bh=ojz+7WparPkVQwWyEjl4rdXO1jICIRfxsnlaOrFuNlA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RmNbKBdf2igVT6YiGhQWp+RK3ed2Gff5j3/UF45JmJZ5gIPSBS9QfZW+kfykRYR8gjESvxrajfWd4IntqeU9aI8SwK3p0Ba2ROGV45KbP+PE6GV0+bsFxEzqNKjIX5lN+U7a5agIBOaRQY2Ks4hry3qNaQ7HVRklG1YGIPyByR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Khq2s4f6; arc=none smtp.client-ip=95.215.58.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <7348caab-726c-4c30-8634-a7820aec97d1@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1725373685;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ymhIc+2OBz7c40DDcJxEUjad+Et8wdGnqysD/7o2s18=;
+	b=Khq2s4f686heVHMRR8ofZwIgYqRYWzjWwUl8nXBKpHbqHbJbsBtCaKhGArrrLur05F9Sl9
+	35ceY7w+71vvS4uimweBoLi16R0G8++NiTSZVmh11YHxvnHkKbZFjXHBQTuOkmF7qc+JpO
+	EU7MZuSv5cVlo6pRUhG33j4Q0bINjxY=
+Date: Tue, 3 Sep 2024 10:27:49 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- linux-gpio@vger.kernel.org
-In-Reply-To: <20240903124429.107076-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20240903124429.107076-1-ivo.ivanov.ivanov1@gmail.com>
-Message-Id: <172537335246.875854.15313329352879668341.robh@kernel.org>
-Subject: Re: [PATCH v3 00/10] Add minimal Exynos8895 SoC and SM-G950F
- support
+Subject: Re: [PATCH 3/3] arm64: zynqmp: Add thermal zones
+To: "Thangaraj, Senthil Nathan" <SenthilNathan.Thangaraj@amd.com>,
+ "Simek, Michal" <michal.simek@amd.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20240812215129.3599832-1-sean.anderson@linux.dev>
+ <20240812215129.3599832-4-sean.anderson@linux.dev>
+ <LV3PR12MB9260AC14D997DED122284940E2932@LV3PR12MB9260.namprd12.prod.outlook.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <LV3PR12MB9260AC14D997DED122284940E2932@LV3PR12MB9260.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
+On 9/3/24 04:32, Thangaraj, Senthil Nathan wrote:
+> Hi Sean,
+> 
+> Please find my review comments inline.
+> 
+> Thanks,
+> Senthil.
+> 
+>> -----Original Message-----
+>> From: Sean Anderson <sean.anderson@linux.dev>
+>> Sent: Monday, August 12, 2024 2:51 PM
+>> To: Simek, Michal <michal.simek@amd.com>; linux-arm-
+>> kernel@lists.infradead.org
+>> Cc: Rob Herring <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+>> Krzysztof Kozlowski <krzk+dt@kernel.org>; linux-kernel@vger.kernel.org;
+>> devicetree@vger.kernel.org; Sean Anderson <sean.anderson@linux.dev>
+>> Subject: [PATCH 3/3] arm64: zynqmp: Add thermal zones
+>> 
+>> Add some thermal trip points. We can't undervolt the CPUs to save power
+>> when we underclock them, so there isn't really a point in throttling them until
+>> we are about to overheat. As such, the passive trip point is right below the
+>> critical trip point.
+>> 
+>> The critical trip point is the extended/industrial-grade maximum junction
+>> temperature of 100C minus the maximum temperature sensor error of 3.5C
+>> (in the range -55C to 110C). Automotive- and military-grade parts can go up
+>> to 125C, but as far as I can tell there is no way to detect them at runtime.
+>> Userspace can adjust the trip points at runtime, but this may not be viable
+>> when booting above 100C. I think it's reasonable to ask automotive/military
+>> users to edit their device trees to bump the trip points, but if that proves to be
+>> an issue we can always go with no default temperatures. However, that
+>> wouldn't be too nice for the majority of extended/industrial users.
+>> 
+>> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+>> ---
+>> 
+>>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 86
+>> ++++++++++++++++++++++++++
+>>  1 file changed, 86 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> index 21c1adbaf35f..467f084c6469 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> @@ -18,6 +18,7 @@
+>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>  #include <dt-bindings/power/xlnx-zynqmp-power.h>
+>>  #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
+>> +#include <dt-bindings/thermal/thermal.h>
+>> 
+>>  / {
+>>  	compatible = "xlnx,zynqmp";
+>> @@ -36,6 +37,7 @@ cpus {
+>>  		#size-cells = <0>;
+>> 
+>>  		cpu0: cpu@0 {
+>> +			#cooling-cells = <2>;
+>>  			compatible = "arm,cortex-a53";
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>> @@ -46,6 +48,7 @@ cpu0: cpu@0 {
+>>  		};
+>> 
+>>  		cpu1: cpu@1 {
+>> +			#cooling-cells = <2>;
+>>  			compatible = "arm,cortex-a53";
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>> @@ -56,6 +59,7 @@ cpu1: cpu@1 {
+>>  		};
+>> 
+>>  		cpu2: cpu@2 {
+>> +			#cooling-cells = <2>;
+>>  			compatible = "arm,cortex-a53";
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>> @@ -66,6 +70,7 @@ cpu2: cpu@2 {
+>>  		};
+>> 
+>>  		cpu3: cpu@3 {
+>> +			#cooling-cells = <2>;
+>>  			compatible = "arm,cortex-a53";
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>> @@ -406,6 +411,87 @@ ams {
+>>  			<&xilinx_ams 27>, <&xilinx_ams 28>, <&xilinx_ams
+>> 29>;
+>>  	};
+>> 
+>> +
+>> +	tsens_apu: thermal-sensor-apu {
+>> +		compatible = "generic-adc-thermal";
+>> +		#thermal-sensor-cells = <0>;
+>> +		io-channels = <&xilinx_ams 7>;
+>> +		io-channel-names = "sensor-channel";
+>> +	};
+>> +
+>> +	tsens_rpu: thermal-sensor-rpu {
+>> +		compatible = "generic-adc-thermal";
+>> +		#thermal-sensor-cells = <0>;
+>> +		io-channels = <&xilinx_ams 8>;
+>> +		io-channel-names = "sensor-channel";
+>> +	};
+>> +
+>> +	tsens_pl: thermal-sensor-pl {
+>> +		compatible = "generic-adc-thermal";
+>> +		#thermal-sensor-cells = <0>;
+>> +		io-channels = <&xilinx_ams 20>;
+>> +		io-channel-names = "sensor-channel";
+>> +	};
+>> +
+>> +	thermal-zones {
+>> +		apu-thermal {
+>> +			polling-delay-passive = <1000>;
+>> +			polling-delay = <5000>;
+> 
+> How did we arrive at these delays, 1000 and 5000 ? could you please clarify ?
 
-On Tue, 03 Sep 2024 15:44:19 +0300, Ivaylo Ivanov wrote:
-> Hi folks,
-> 
-> This series adds initial SoC support for the Exynos 8895 SoC and also
-> initial board support for Samsung Galaxy S8 phone (SM-G950F), codenamed
-> dreamlte.
-> 
-> The Exynos 8895 SoC is also used in S8 Plus (dream2lte), Note 8 (greatlte)
-> and Meizu 15 Plus (m1891). Currently DT is added for the Exynos 8895 SoC
-> and dreamlte, but it should be really easy to adapt for the other devices
-> with the same SoC.
-> 
-> The support added in this series consists of:
-> * cpus
-> * pinctrl
-> * gpio
-> * simple-framebuffer
-> * pstore
-> 
-> This is enough to reach a minimal initramfs shell using an upstream kernel.
-> More platform support will be added in the future.
-> 
-> The preferred way to boot this device is by using a small shim bl called
-> uniLoader [1], which packages the mainline kernel and DT and jumps to
-> the kernel. This is done in order to work around some issues caused by
-> the stock, and non-replacable Samsung S-Boot bootloader. For example,
-> S-Boot leaves the decon trigger control unset, which causes the framebuffer
-> to not refresh.
-> 
-> [1] https://github.com/ivoszbg/uniLoader
-> 
-> Changes in v2:
-> - No patch changes were made, only fixed the issues with my git send-email
-> 
-> Changes in v3:
-> - Added a-b tags by Rob Herring and Linus Walleij
-> - Ordered the Samsung Mongoose M2 compatible in cpus.yaml
-> - Ordered the EXYNOS8895 information in exynos-chipid.c
-> - Made the commit message for pinctrl support more detailed
-> - Made the commit message for exynos-pmu.yaml more detailed
-> - Fixed suffixes for the exynos8895 pinctrl device tree
-> - Removed redundant nodes from the exynos8895 pinctrl device tree
-> - Made the arm-a53-pmu node cover only the Cortex A53 cores
-> - Added a comment mentioning the lack of a PMU model for Mongoose cores
-> - Added a comment mentioning the issue with CNTFRQ_EL0
-> - Removed the redundant fixed rate clocks wrapper
-> - Ordered the nodes by the DTS coding style in all 8895 DT files
-> - Removed the redundant status property from the simple-framebuffer node
-> - Switch to dual licensing (GPL-2.0 OR BSD-3-Clause) for the DT files
-> 
-> Kind regards,
-> 
-> Ivaylo.
-> 
-> Ivaylo Ivanov (10):
->   dt-bindings: arm: cpus: Add Samsung Mongoose M2
->   dt-bindings: hwinfo: samsung,exynos-chipid: add exynos8895 compatible
->   soc: samsung: exynos-chipid: add exynos8895 SoC support
->   dt-bindings: pinctrl: samsung: Add compatible for Exynos8895 SoC
->   pinctrl: samsung: Add exynos8895 SoC pinctrl configuration
->   dt-bindings: pinctrl: samsung: add exynos8895-wakeup-eint compatible
->   dt-bindings: soc: samsung: exynos-pmu: Add exynos8895 compatible
->   arm64: dts: exynos: Add initial support for exynos8895 SoC
->   dt-bindings: arm: samsung: Document dreamlte board binding
->   arm64: dts: exynos: Add initial support for Samsung Galaxy S8
-> 
->  .../devicetree/bindings/arm/cpus.yaml         |    1 +
->  .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
->  .../hwinfo/samsung,exynos-chipid.yaml         |    1 +
->  .../samsung,pinctrl-wakeup-interrupt.yaml     |    1 +
->  .../bindings/pinctrl/samsung,pinctrl.yaml     |    1 +
->  .../bindings/soc/samsung/exynos-pmu.yaml      |    1 +
->  arch/arm64/boot/dts/exynos/Makefile           |    1 +
->  .../boot/dts/exynos/exynos8895-dreamlte.dts   |  126 ++
->  .../boot/dts/exynos/exynos8895-pinctrl.dtsi   | 1092 +++++++++++++++++
->  arch/arm64/boot/dts/exynos/exynos8895.dtsi    |  249 ++++
->  .../pinctrl/samsung/pinctrl-exynos-arm64.c    |  137 +++
->  drivers/pinctrl/samsung/pinctrl-exynos.h      |   10 +
->  drivers/pinctrl/samsung/pinctrl-samsung.c     |    2 +
->  drivers/pinctrl/samsung/pinctrl-samsung.h     |    1 +
->  drivers/soc/samsung/exynos-chipid.c           |    1 +
->  15 files changed, 1630 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> 
-> --
-> 2.34.1
-> 
-> 
-> 
+They're just arbitrary. Feel free to suggest other numbers. I could find
+no guidance on this matter (or anything else thermal-related).
 
+>> +			thermal-sensors = <&tsens_apu>;
+>> +
+>> +			trips {
+>> +				apu_passive: passive {
+>> +					temperature = <93000>;
+>> +					hysteresis = <3500>;
+>> +					type = "passive";
+>> +				};
+>> +
+>> +				apu_critical: critical {
+>> +					temperature = <96500>;
+>> +					hysteresis = <3500>;
+>> +					type = "critical";
+>> +				};
+>> +			};
+>> +
+>> +			cooling-maps {
+>> +				map {
+>> +					trip = <&apu_passive>;
+>> +					cooling-device =
+>> +						<&cpu0 THERMAL_NO_LIMIT
+>> THERMAL_NO_LIMIT>,
+>> +						<&cpu1 THERMAL_NO_LIMIT
+>> THERMAL_NO_LIMIT>,
+>> +						<&cpu2 THERMAL_NO_LIMIT
+>> THERMAL_NO_LIMIT>,
+>> +						<&cpu3 THERMAL_NO_LIMIT
+>> THERMAL_NO_LIMIT>;
+>> +				};
+>> +			};
+>> +		};
+>> +
+>> +		rpu-thermal {
+>> +			polling-delay = <10000>;
+> 
+> Same questions, how did we come up with number 10000
+> 
+>> +			thermal-sensors = <&tsens_rpu>;
+>> +
+>> +			trips {
+>> +				critical {
+>> +					temperature = <96500>;
+>> +					hysteresis = <3500>;
+>> +					type = "critical";
+>> +				};
+> 
+> Any reason why we haven't defined for passive trip point for RPU ?
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+What is there to do? It is up to the RPU software to do something if the
+RPU is going to overheat. But the more-likely occurrence is that the APU
+is overheating and the heat is spreading to the RPU. In which case, the
+APU passive trip point will handle things.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y exynos/exynos8895-dreamlte.dtb' for 20240903124429.107076-1-ivo.ivanov.ivanov1@gmail.com:
-
-arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dtb: pinctrl@11430000: 'sd2-clk_fast_slew_rate_1x-pins', 'sd2-clk_fast_slew_rate_2x-pins', 'sd2-clk_fast_slew_rate_3x-pins', 'sd2-clk_fast_slew_rate_4x-pins' do not match any of the regexes: '^(initial|sleep)-state$', '^[a-z0-9-]+-pins$', '^[a-z]+[0-9]*-gpio-bank$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/samsung,pinctrl.yaml#
-arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dtb: pinctrl@164b0000: gpa1-gpio-bank:#interrupt-cells: 2 was expected
-	from schema $id: http://devicetree.org/schemas/pinctrl/samsung,pinctrl.yaml#
-arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dtb: pinctrl@164b0000: 'key-power', 'key-voldown', 'key-volup', 'key-wink', 'pcie_wake-pins', 'wlan_host_wake-pins' do not match any of the regexes: '^(initial|sleep)-state$', '^[a-z0-9-]+-pins$', '^[a-z]+[0-9]*-gpio-bank$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/samsung,pinctrl.yaml#
-
-
-
-
-
+>> +			};
+>> +		};
+>> +
+>> +		pl-thermal {
+>> +			polling-delay = <10000>;
+>> +			thermal-sensors = <&tsens_pl>;
+>> +
+>> +			trips {
+>> +				critical {
+>> +					temperature = <96500>;
+>> +					hysteresis = <3500>;
+>> +					type = "critical";
+>> +				};
+>> +			};
+> Same question, any reason why we haven't defined for passive trip point for PL ?
+>> +		};
+>> +	};
+>> +
+>>  	amba: axi {
+>>  		compatible = "simple-bus";
+>>  		bootph-all;
+>> --
+>> 2.35.1.1320.gc452695387.dirty
+> 
 
