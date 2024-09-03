@@ -1,152 +1,137 @@
-Return-Path: <devicetree+bounces-99645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A55596AA70
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:40:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2772E96AA78
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 029A01F217CF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:40:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 181F11C20EC7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 21:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F891C9DC4;
-	Tue,  3 Sep 2024 21:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2261922CD;
+	Tue,  3 Sep 2024 21:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rkEN7c+Q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EuvPBfsF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED95219CC2F;
-	Tue,  3 Sep 2024 21:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565551EC013;
+	Tue,  3 Sep 2024 21:42:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725399630; cv=none; b=SzVJ9/LS9SRSUsE2leWhANn0pDd8/GZ8emTV062vle4KBG4LENwnCJogHJzOf/Ot5JuSE7oPlf0EkThctZSJ1S2frIgc/bJgXccCgnV6bjaxd2kGn2qONMY3MeEmggdAi+BMBlj5uuVQV804lwCLrZoMdJP8cKwjmd1VbLQK12g=
+	t=1725399735; cv=none; b=IivTvX59vAqG0QuLd1+7TuDKOInRgyWeURscSOmjKsm7B6cDlKCs6MGu9/MxaSBVVkFNB3k2/5aNihRYjUjkHZCKXnW+CHUnfONx1jjDv0Y1m/C3CQfjXamw/nv68BQcsGSIrqzZU+PpBBsYh3/zlqQTxCPYjNcKDiPEyzVotUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725399630; c=relaxed/simple;
-	bh=AdkbPzAh+zDtLdmmxzCPVT53dh7L9hVnwre5LDtz2N0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jdWGylyLXZo4Ut+Y+yhwNMngyjKA4Y8rsN9ob79o4gFEesrQYatsW7y0u4QvIuc202nt8e94nvHWf2zz2fivTGJVWo/I24KL4Hp76rR/2G9I+wzynkPexNqLLnQzqJkZk2ptAHxfzOsDMdkfganON+/f285jKQbT3kpNVp/1xRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rkEN7c+Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A49CC4CEC4;
-	Tue,  3 Sep 2024 21:40:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725399629;
-	bh=AdkbPzAh+zDtLdmmxzCPVT53dh7L9hVnwre5LDtz2N0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=rkEN7c+QLFi3PkKiTLLPiJSJI/+KkD3tRMmDSlF+iGIFbbliG0HzyShYCEdPFHmz0
-	 eKnw9KanqOTKrtxu+LL8bEwRPwQFDdaqaTpbcLadTtnakLvhwYYY0PwhCZMNg2r0n6
-	 qSIjVF06hWYuskyMD22r16eoHpgwOOjBRtBFVoOO7sI+AdT2C8C+KO0XmRzoWOy7nX
-	 mifRmc+d5ZwKOtuCUrIsYL/p3eWht66l2zvhJg6vnUVdNnyt8pOsDLgUVKVXaoRTmS
-	 jhXa96/a5YKKvhF7YIo71xJ9d5sAbWu2UkLBMaUArPmgW0hNC2cLd9kw6qQtn2oD01
-	 BW2/f8YyEPlrQ==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Tue, 03 Sep 2024 23:39:51 +0200
-Subject: [PATCH v2 7/7] clk: en7523: map io region in a single block
+	s=arc-20240116; t=1725399735; c=relaxed/simple;
+	bh=uoNkzLOA4+bEXXauGFDuvi535BjiyR9hC+LwDmtgCi0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lksBI3+TzLExD2JcnuCMHgzE+YFJcZpl89qLN7oM2KPFkzy35EbXZxwpZccTLIS2MaNwKQxPm1PNwQoTPlE0cagqh7veV20GQIrzArI2wK4UQ5AqmlHXbGcR+ZMiWPy+7lvKtmtTRAoZbOqWRsZ+ibLhksDZC6jR4qtY5l54QGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EuvPBfsF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 483K9d8N001873;
+	Tue, 3 Sep 2024 21:41:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	i4kb4yVx+3sH1ZmXJNcJnqmzTK7YhWN2/t9HdImh6b0=; b=EuvPBfsFHXRwOXwL
+	qOi16J/OHKzUTy/gG+tMz4HUXwHK2KaaGSH/Pokkl9Mqe+XSWTnMknoPGnU4CSP2
+	dmlpbGjhY2gxbIDzBwk8yIx1k/8X9D6L6t00YqQ4UzP2JC3Ee2R7TqflVnO5whHR
+	6xBRAzu4tuQgGS/P008pSf6KcsP/6CUY2MwrmRkH9qeSRcNh9Cr0dA03LfeB1/wp
+	fcowbu0YUSQKz/eUq1P708Z2jmkr8/6WkUPNBQ0/VXdtZMbDNJDaYjoN5Jfu3gOL
+	oQE5DBRAyK18qfhGPMZG5VQNdEqwMAM93YcjXf743I6I5o0vzGdu+oT7+ecJ+oYW
+	p6P9Mg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41dxy226se-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Sep 2024 21:41:55 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 483LfspF010185
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Sep 2024 21:41:54 GMT
+Received: from [10.71.114.155] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Sep 2024
+ 14:41:53 -0700
+Message-ID: <abc9713f-3230-4a5d-98fd-f1cb293bc26a@quicinc.com>
+Date: Tue, 3 Sep 2024 14:41:53 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240903-clk-en7581-syscon-v2-7-86fbe2fc15c3@kernel.org>
-References: <20240903-clk-en7581-syscon-v2-0-86fbe2fc15c3@kernel.org>
-In-Reply-To: <20240903-clk-en7581-syscon-v2-0-86fbe2fc15c3@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- upstream@airoha.com, angelogioacchino.delregno@collabora.com, 
- linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com, 
- ansuelsmth@gmail.com, Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v26 22/33] ASoC: qcom: qdsp6: Add headphone jack for
+ offload connection status
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <tiwai@suse.com>, <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240829194105.1504814-1-quic_wcheng@quicinc.com>
+ <20240829194105.1504814-23-quic_wcheng@quicinc.com>
+ <39e1e90e-116c-4f13-b223-84e6991c8a32@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <39e1e90e-116c-4f13-b223-84e6991c8a32@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: GItmiVfHicGlp-DsAfCqnyYQEbqHxlPh
+X-Proofpoint-ORIG-GUID: GItmiVfHicGlp-DsAfCqnyYQEbqHxlPh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-03_09,2024-09-03_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ lowpriorityscore=0 mlxlogscore=837 spamscore=0 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409030174
 
-Map all clock-controller memory region in a single block.
-This patch does not introduce any backward incompatibility since the dts
-for EN7581 SoC is not upstream yet.
+Hi Pierre,
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/clk/clk-en7523.c | 32 +++++++++++++-------------------
- 1 file changed, 13 insertions(+), 19 deletions(-)
+On 8/30/2024 2:27 AM, Pierre-Louis Bossart wrote:
+>
+>>  		/* Selects the latest USB headset plugged in for offloading */
+>> +		if (data->hs_jack && list_empty(&data->devices))
+>> +			snd_jack_report(data->hs_jack->jack, SND_JACK_USB);
+>> +
+> with the list_empty check, this looks like only the first connected
+> headset will be handled, not the last?
 
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index 60dc938144d7..e52c5460e927 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -39,8 +39,8 @@
- #define REG_PCIE_XSI1_SEL_MASK		GENMASK(12, 11)
- #define REG_CRYPTO_CLKSRC2		0x20c
- 
--#define REG_RST_CTRL2			0x00
--#define REG_RST_CTRL1			0x04
-+#define REG_RST_CTRL2			0x830
-+#define REG_RST_CTRL1			0x834
- 
- struct en_clk_desc {
- 	int id;
-@@ -645,15 +645,9 @@ static const struct reset_control_ops en7581_reset_ops = {
- 	.status = en7523_reset_status,
- };
- 
--static int en7581_reset_register(struct platform_device *pdev)
-+static int en7581_reset_register(struct device *dev, void __iomem *base)
- {
--	struct device *dev = &pdev->dev;
- 	struct en_rst_data *rst_data;
--	void __iomem *base;
--
--	base = devm_platform_ioremap_resource(pdev, 1);
--	if (IS_ERR(base))
--		return PTR_ERR(base);
- 
- 	rst_data = devm_kzalloc(dev, sizeof(*rst_data), GFP_KERNEL);
- 	if (!rst_data)
-@@ -677,27 +671,27 @@ static int en7581_reset_register(struct platform_device *pdev)
- static int en7581_clk_hw_init(struct platform_device *pdev,
- 			      struct clk_hw_onecell_data *clk_data)
- {
--	void __iomem *np_base;
- 	struct regmap *map;
-+	void __iomem *base;
- 	u32 val;
- 
- 	map = syscon_regmap_lookup_by_compatible("airoha,en7581-chip-scu");
- 	if (IS_ERR(map))
- 		return PTR_ERR(map);
- 
--	np_base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(np_base))
--		return PTR_ERR(np_base);
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
- 
--	en7581_register_clocks(&pdev->dev, clk_data, map, np_base);
-+	en7581_register_clocks(&pdev->dev, clk_data, map, base);
- 
--	val = readl(np_base + REG_NP_SCU_SSTR);
-+	val = readl(base + REG_NP_SCU_SSTR);
- 	val &= ~(REG_PCIE_XSI0_SEL_MASK | REG_PCIE_XSI1_SEL_MASK);
--	writel(val, np_base + REG_NP_SCU_SSTR);
--	val = readl(np_base + REG_NP_SCU_PCIC);
--	writel(val | 3, np_base + REG_NP_SCU_PCIC);
-+	writel(val, base + REG_NP_SCU_SSTR);
-+	val = readl(base + REG_NP_SCU_PCIC);
-+	writel(val | 3, base + REG_NP_SCU_PCIC);
- 
--	return en7581_reset_register(pdev);
-+	return en7581_reset_register(&pdev->dev, base);
- }
- 
- static int en7523_clk_probe(struct platform_device *pdev)
+Sorry, the comment is misplaced.  It should be meant to explain:
 
--- 
-2.46.0
+/* Selects the latest USB headset plugged in for offloading */
+list_add_tail(&sdev->list, &data->devices);
 
+The above IF check is to say that we'll only notify the USB jack if there is an available USB audio device (capable of offloading) connected.  I guess it might make sense to notify the snd jack on every USB audio device connection.  Currently, it will notify on the first device identified (present) and the last device removed (not present).
+
+Thanks
+
+Wesley Cheng
+
+>>  		list_add_tail(&sdev->list, &data->devices);
+>>  	} else {
+>>  		list_del(&sdev->list);
+>> +
+>> +		if (data->hs_jack && list_empty(&data->devices))
+>> +			snd_jack_report(data->hs_jack->jack, 0);
+>>  	}
+>>  	mutex_unlock(&data->mutex);
+>>  
+>>  	return 0;
+>>  }
 
