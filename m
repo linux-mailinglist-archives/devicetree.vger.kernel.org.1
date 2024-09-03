@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-99222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F82A969414
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:47:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 845C296941B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9EDE3B2167D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:47:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B65D81C210EE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 180D41D27A9;
-	Tue,  3 Sep 2024 06:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28611D173D;
+	Tue,  3 Sep 2024 06:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TKQRWhuG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rmWz7C7L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D29FF1C62B2;
-	Tue,  3 Sep 2024 06:47:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D411CB527;
+	Tue,  3 Sep 2024 06:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725346064; cv=none; b=KHVjelBP5olGEXJ2w/NneKS/wgTsOHNHdcW+2Hru6O6SYUywFTwpom++7OiMNPNZVkD+6lT6IR3hZXBKfYV1odkcFh8ejh+TmXAwcBsbpBc0txkbVcY4YDFGJhkvzfotsg0mtWh4Tt3sAYE7iNqdIeXjqKXipoxbjxte5PFPO04=
+	t=1725346165; cv=none; b=ncPPN32D3kB2SXLqr9Cc8pXRE3kH+PLzDJ6Rabqw/uzXVx+fmCabcO4BjhBK9O+fx8z3hXjGy4XrKGlc11GI529Jm6wSBiekVz5t8aT1qfTB9pXWprRRgYc2zhqKGlEbyiZyNMMx3FEt6smAcJlR600+GScgaDXArPFHvLsmB6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725346064; c=relaxed/simple;
-	bh=EQkIndtccDDEeOKmo5Phhl8fdv2L3+KxXXStytcrfFg=;
+	s=arc-20240116; t=1725346165; c=relaxed/simple;
+	bh=ub9hHPzWCg2ZO7IESniZCUNBELQpnPcRyQyrABcGDT0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ti5iFyV0E5MArNJFaz3TYg7s/UmSdNAldnk/ibCbY0fGyJ64YIN38Qvw0VHovHhHhW3ZUXYqAVZFEnfMTTXxnYGr/x++pb+emiEO0VxlXtasENT+1gsEz7EWLPBsEBjmt/8a8KA0F/K1+MQefWwtH/r6GIBq5AbkZF5L+baJQIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TKQRWhuG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C847C4CEC5;
-	Tue,  3 Sep 2024 06:47:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DJHhZfMP00gfaB+5oF3Q0LMGYVWHzAD3FF857pQ2lA4Jie1ZhztkKkoTS0+ngQcSQAvc13TEU8lHc6H712phDsF2gEBXET5DIGNRLEWOa70pKvt0ZfI/Q85SgCM6l29ihaG+BgswrTZRzSWi2tjR6uORSANHJrB1Ng1PHH0MeKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rmWz7C7L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35D22C4CEC5;
+	Tue,  3 Sep 2024 06:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725346063;
-	bh=EQkIndtccDDEeOKmo5Phhl8fdv2L3+KxXXStytcrfFg=;
+	s=k20201202; t=1725346165;
+	bh=ub9hHPzWCg2ZO7IESniZCUNBELQpnPcRyQyrABcGDT0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TKQRWhuGHlaT6J8yCXfLBy1Io+e/P9EsO83U1RDW3xFACV2bogjp3j2FDM1kKOwvI
-	 incunCtU+VahDJR8uWtDdWmVZBTXwfPMBHXW37LagNIC1534lhoAIn6T6g0xZNCNU4
-	 USDZc3y104VrxKA9vApTYdzo591fpFNyqrbxRaTT2lwzdXJ1UQcfE4NGy64ilsOWEa
-	 5ZzXpaGEuosfWkQRHiyEQtR8vp2V8wMe954JFKsIApjfRLwOKuv4CFKHdDl8RYmStY
-	 3mnAfoKFE5fTfF+d54HPK8YqfpQeCFYWHzY/k1msAL4SzqNtyNefBAqlmLHGr3Hp/x
-	 x+nZgaDBm6U/w==
-Date: Tue, 3 Sep 2024 08:47:39 +0200
+	b=rmWz7C7Lc6E/IoufuRNWFhBxrXYdzPrtMn5vbDk1SY3npCwYbfDtZLZlNuSBMXbWn
+	 I0is3bL/cIvP/uWMfzHsJDRuiJcCLuP9RJgbfJd3icvz/dKkBCvtA/mSm/IJFCFKso
+	 ZmsIdxs55sGZte+Gge2oG7WqTVL510RsIYaiSivf7C6MFhGe0jL6c1K9jV2ST35bSB
+	 20KzF1s77GGrschL13bpvU8vqxgNj7RGR8rVITQqEExOZPf0kXiJVp8IQsJSe0o0Vd
+	 cN/mvy886GSAlTdK35QyRFfbYJch3MEz9EaAFKesjuO66N+Wo3Kb0P6KFbXrTCpKT/
+	 1hmYTF8Zp076A==
+Date: Tue, 3 Sep 2024 08:49:21 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	chenhuacai@kernel.org, linux-edac@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@xen0n.name, bp@alien8.de, tony.luck@intel.com, 
-	james.morse@arm.com, mchehab@kernel.org, rric@kernel.org, loongarch@lists.linux.dev
-Subject: Re: [PATCH v2 2/2] Loongarch: EDAC driver for loongson memory
- controller
-Message-ID: <jkdyayyjrzuhhfaueiessntfdof2m55xjxedkl3zp2jalf4sii@3fo65j64c6rv>
-References: <20240903015354.9443-1-zhaoqunqin@loongson.cn>
- <20240903015354.9443-3-zhaoqunqin@loongson.cn>
+To: Kiseok Jo <kiseok.jo@irondevice.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, application@irondevice.com
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: irondevice,sma1307: Add
+ initial DT binding
+Message-ID: <afb4bwvowfjjrkdh63wx7afz3gyydz7tpuhz2i6g6ahubat3vy@7t5vciiv2yp7>
+References: <20240903054435.2659-1-kiseok.jo@irondevice.com>
+ <20240903054435.2659-3-kiseok.jo@irondevice.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,155 +61,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240903015354.9443-3-zhaoqunqin@loongson.cn>
+In-Reply-To: <20240903054435.2659-3-kiseok.jo@irondevice.com>
 
-On Tue, Sep 03, 2024 at 09:53:54AM +0800, Zhao Qunqin wrote:
-> Report single bit errors (CE) only.
-> 
-> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
+On Tue, Sep 03, 2024 at 02:44:34PM +0900, Kiseok Jo wrote:
+> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
+
+Empty commit? Read submitting-patches.
+
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run  and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
+
 > ---
->  MAINTAINERS                  |   1 +
->  arch/loongarch/Kconfig       |   1 +
->  drivers/edac/Kconfig         |   8 ++
->  drivers/edac/Makefile        |   1 +
->  drivers/edac/ls3a5000_edac.c | 187 +++++++++++++++++++++++++++++++++++
->  5 files changed, 198 insertions(+)
->  create mode 100644 drivers/edac/ls3a5000_edac.c
+
+Where is the changelog? What happened in v2? Why are you sending the
+same patch?
+
+>  .../bindings/sound/irondevice,sma1307.yaml    | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6cc8cfc8f..b43f82279 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13242,6 +13242,7 @@ M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
->  L:	linux-edac@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
-> +F:	drivers/edac/ls3a5000_edac.c
->  
->  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->  M:	Sathya Prakash <sathya.prakash@broadcom.com>
-> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
-> index 70f169210..348030c24 100644
-> --- a/arch/loongarch/Kconfig
-> +++ b/arch/loongarch/Kconfig
-> @@ -182,6 +182,7 @@ config LOONGARCH
->  	select PCI_QUIRKS
->  	select PERF_USE_VMALLOC
->  	select RTC_LIB
-> +	select EDAC_SUPPORT
+> diff --git a/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml b/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
+> new file mode 100644
+> index 000000000..0bb4ee664
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/irondevice,sma1307.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Iron Device SMA1307 Audio Amplifier
+> +
+> +maintainers:
+> +  - Kiseok Jo <kiseok.jo@irondevice.com>
+> +
+> +description:
+> +  SMA1307 boosted digital speaker amplifier
+> +  with feedback-loop.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - irondevice,sma1307a
+> +      - irondevice,sma1307aq
+> +    description:
+> +      If a 'q' is added, it indicated the product is AEC-Q100
+> +      qualified for automotive applications. SMA1307A supports
+> +      both WLCSP and QFN packages. However, SMA1307AQ only
+> +      supports the QFN package.
 
-I think you got here comment before. How did you address it?
+Difference is only in package bin? That does not warrant new compatible.
 
->  	select SPARSE_IRQ
->  	select SYSCTL_ARCH_UNALIGN_ALLOW
->  	select SYSCTL_ARCH_UNALIGN_NO_WARN
-> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> index 16c8de505..2d10256f0 100644
-> --- a/drivers/edac/Kconfig
-> +++ b/drivers/edac/Kconfig
-> @@ -573,5 +573,13 @@ config EDAC_VERSAL
->  	  Support injecting both correctable and uncorrectable errors
->  	  for debugging purposes.
->  
+Best regards,
+Krzysztof
 
-...
-
- +
-> +static int loongson_edac_probe(struct platform_device *pdev)
-> +{
-> +	struct resource *rs;
-> +	struct mem_ctl_info *mci;
-> +	struct edac_mc_layer layers[2];
-> +	struct loongson_edac_pvt *pvt;
-> +	u64 *vbase = NULL;
-> +
-> +	rs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	/* not return if can not find resource or resource start equals NULL */
-
-Why?
-
-> +	if (rs && rs->start) {
-> +		vbase = devm_ioremap_resource(&pdev->dev, rs);
-> +		if (IS_ERR(vbase))
-> +			return PTR_ERR(vbase);
-> +	}
-> +
-> +	/* allocate a new MC control structure */
-> +	layers[0].type = EDAC_MC_LAYER_CHANNEL;
-> +	layers[0].size = 1;
-> +	layers[0].is_virt_csrow = false;
-> +	layers[1].type = EDAC_MC_LAYER_SLOT;
-> +	layers[1].size = 1;
-> +	layers[1].is_virt_csrow = true;
-> +	mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, sizeof(*pvt));
-> +	if (mci == NULL)
-> +		return -ENOMEM;
-> +
-> +	edac_dbg(0, "MC: mci = %p\n", mci);
-
-Nope, drop. You should never print pointers.
-
-> +
-> +	mci->mc_idx = edac_device_alloc_index();
-> +	mci->mtype_cap = MEM_FLAG_RDDR4;
-> +	mci->edac_ctl_cap = EDAC_FLAG_NONE;
-> +	mci->edac_cap = EDAC_FLAG_NONE;
-> +	mci->mod_name = "loongson_edac.c";
-> +	mci->ctl_name = "loongson_edac_ctl";
-> +	mci->dev_name = "loongson_edac_dev";
-> +	mci->ctl_page_to_phys = NULL;
-> +	mci->pdev = &pdev->dev;
-> +	mci->error_desc.grain = 8;
-> +	/* Set the function pointer to an actual operation function */
-> +	mci->edac_check = loongson_edac_check;
-> +
-> +	loongson_pvt_init(mci, vbase);
-> +	get_dimm_config(mci);
-> +
-> +	if (edac_mc_add_mc(mci)) {
-> +		edac_dbg(0, "MC: failed edac_mc_add_mc()\n");
-> +		edac_mc_free(mci);
-
-That's still a success of probe? Weird a bit.
-
-> +	}
-> +	edac_op_state = EDAC_OPSTATE_POLL;
-> +
-> +	return 0;
-> +}
-> +
-> +static void loongson_edac_remove(struct platform_device *pdev)
-> +{
-> +	struct mem_ctl_info *mci = edac_mc_del_mc(&pdev->dev);
-> +
-> +	if (mci)
-> +		edac_mc_free(mci);
-> +}
-> +
-> +static const struct of_device_id loongson_edac_of_match[] = {
-> +	{ .compatible = "loongson,ls3a5000-mc-edac", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, loongson_edac_of_match);
-> +
-> +static struct platform_driver loongson_edac_driver = {
-> +	.probe		= loongson_edac_probe,
-> +	.remove		= loongson_edac_remove,
-> +	.driver		= {
-> +		.name	= "ls-mc-edac",
-> +		.of_match_table = loongson_edac_of_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(loongson_edac_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Zhao Qunqin <zhaoqunqin@loongson.cn>\n");
-
-Drop \n.
-
-> +MODULE_DESCRIPTION("EDAC driver for loongson memory controller");
-> -- 
-> 2.43.0
-> 
 
