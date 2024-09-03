@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-99536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A69196A1B8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:10:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5677896A1C9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:13:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1290A281652
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:10:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1AF4B20DA4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971D3188912;
-	Tue,  3 Sep 2024 15:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A075184554;
+	Tue,  3 Sep 2024 15:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z2G2SLdR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="omWlnZO3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FA82A1DC;
-	Tue,  3 Sep 2024 15:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393E613DB92;
+	Tue,  3 Sep 2024 15:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725376195; cv=none; b=skuLYswgzt9UaZU0wPEmCFcBaBCs14w5HxtX3FV1RXvp7tnjfnR+MVpie5PDXp3Zh/UKQWzNmLjf8/uSJJA26NwCEHj8TPMm6UtmQhf/3glON4ginokmS6SaqlnyLfbBuh3kaCJLZLBtkZcA584XvxERYLww1+tVD4fiRvSX5n0=
+	t=1725376405; cv=none; b=L8BQ28l2WgqojuF08S6g/ELjt0gxUWTnChFmsE6mJUjrYgYkeBHlY+c71OK0mqQOZAnybCmwJL/CWeCgfcEWoRXPftmcshZQ42dhpT9mJeM84Kufz1dHcmwtYNb/P7vzxs3p1tqbTsPBMKgFD4T6e7Cs4jpn3Q1Uv+csKdp1Kb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725376195; c=relaxed/simple;
-	bh=jIW79MyAeLnLk8Tf9pgkACo++H/cWJ8aF/7auE5Di5E=;
+	s=arc-20240116; t=1725376405; c=relaxed/simple;
+	bh=mqSG8zmYkLbysxx98xITPffGwNgDwNQDDeyLT76Ts00=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pQJAq1mstTXqNI8rCRAYS/1NAF26xm7tHng1b+fbi6f4c/BbUB9Iw8n8+HxJW7wspvD54TqO/7RDumrZFBUFpg2x654HFD/Z+kmb5ceq6gWRXXrA43LVfJf9fwSKw2VQN+8wNZ9TB9XFiEXANEPNBk6e2qfo/vsSCXnrmJ4YkDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z2G2SLdR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC08AC4CEC6;
-	Tue,  3 Sep 2024 15:09:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=W7s6pMyquJTPrlSKLC7dAf6dMEwc2TEinSKdb95xJWIWf7WX5f7vVctvZ+wLRw3x1wY75GqlkazKFx9hcPl7UasaiSLTXyL//Pc4VdXDgE2WGDdlkml6RtuhuXvRbKtHzTFwRvIiV/j18SADWIm/O8lMud2PAg4FPXGdP/g/i4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=omWlnZO3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31914C4CEC4;
+	Tue,  3 Sep 2024 15:13:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725376194;
-	bh=jIW79MyAeLnLk8Tf9pgkACo++H/cWJ8aF/7auE5Di5E=;
+	s=k20201202; t=1725376404;
+	bh=mqSG8zmYkLbysxx98xITPffGwNgDwNQDDeyLT76Ts00=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z2G2SLdRclDbvhec0I/IM6qfdwMkFkKRdAwrbdb4LcwYBforMi081pghUbCiH+ikU
-	 pf8eOgNuu4GKjJndPsp0bUpLQsqyL/xQojXURGO6pRw16lavL3OXlcHMNtsnrSE7DA
-	 9Pk1ZYCw09IArWMq/tyHVR358Rb9nHAjMhyuNjyfiS4Pdl543MYWdZSZyXk98ErRsN
-	 RIrkdgdzsjK4rAJGFn8oo71d5M4VYVkGVVP9G2q91VhjomojxPxx8y+NyLbo5tNMHu
-	 kB/+4nYrU4F/yg8rQ/uVBGDrS4tBosF+4pMjH4Xs5uigffi/atniW5MuL6N7zdz5si
-	 lP9qrfXXFcrCA==
-Date: Tue, 3 Sep 2024 10:09:53 -0500
-From: Rob Herring <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Add support for Airoha EN7581
- GPIO System Controller
-Message-ID: <20240903150953.GA1018489-robh@kernel.org>
-References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
- <20240831-en7581-pinctrl-v3-2-98eebfb4da66@kernel.org>
+	b=omWlnZO38v/uzvDFb7eGgU1lN0MaIhjFVkxx2TTKBUa5tV62bj2kd7/YzKn65tk9I
+	 XpbPwxy/aks95eUWT+fjT+2XB0PaeALE/J39M+rZ04HdoMn+6H5AS4IA/ZVxK5gDdH
+	 ykdarH/HyzA6G+oKC33xdzNe+HFElh2lgJU6xu/UwAd4N44HA5/ljCTMuwxm7aN9BG
+	 HOCOcZVg8zKF4Iw7VkeRCDQ5kwfD5FpXpdU+gnonn0yUKSfPWg0EwHxhi7W8MrSkut
+	 dGMxfkf7505s0XX2gWP5qyH1YXbzqx3W0aSHI2i/WEE6QAdym4t8HNnB8BSpZmVU3k
+	 aNlhpRRpN8QYg==
+Date: Tue, 3 Sep 2024 17:13:21 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Farouk Bouabid <farouk.bouabid@cherry.de>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Peter Rosin <peda@axentia.se>, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Heiko Stuebner <heiko@sntech.de>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v7 2/8] i2c: muxes: add support for tsd,mule-i2c
+ multiplexer
+Message-ID: <fvk5u2j7wu7pjrlpbbnggp3vhopotctu2vr3fh77kl2icrvnyt@tukh2ytkiwdz>
+References: <20240902-dev-mule-i2c-mux-v7-0-bf7b8f5385ed@cherry.de>
+ <20240902-dev-mule-i2c-mux-v7-2-bf7b8f5385ed@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,317 +64,164 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240831-en7581-pinctrl-v3-2-98eebfb4da66@kernel.org>
+In-Reply-To: <20240902-dev-mule-i2c-mux-v7-2-bf7b8f5385ed@cherry.de>
 
-On Sat, Aug 31, 2024 at 04:27:47PM +0200, Lorenzo Bianconi wrote:
-> From: Christian Marangi <ansuelsmth@gmail.com>
+Hi Farouk,
+
+Before jumping into the review, who is going to take this and the
+previous patch?
+
+Peter shall I take it?
+
+Now to the review :-)
+
+On Mon, Sep 02, 2024 at 06:38:15PM GMT, Farouk Bouabid wrote:
+> Theobroma Systems Mule is an MCU that emulates a set of I2C devices,
+> among which an amc6821 and devices that are reachable through an I2C-mux.
+> The devices on the mux can be selected by writing the appropriate device
+> number to an I2C config register (amc6821 reg 0xff).
 > 
-> Add support for Airoha EN7581 GPIO System Controller which provide a
-> register map for controlling the GPIO, pinctrl and PWM of the SoC.
+> This driver is expected to be probed as a platform device with amc6821
+> as its parent i2c device.
 > 
-> Schema define cells for both gpio/interrupt controller and PWM.
-> Moreover it provides a dedicated pinctrl node for pins and config
-> definitions.
+> Add support for the mule-i2c-mux platform driver. The amc6821 driver
+
+Along the driver I expressed some concern about the prefixes.
+
+You should avoid prefixes such as mux_* or MUX_* because they
+don't belong to your driver. You should always use your driver's
+name:
+
+ 1. mule_*
+ 2. mule_mux_*
+ 3. mule_i2c_mux_*
+
+You have used the 3rd, I'd rather prefer the 1st. Because when
+you are in i2c/muxex/ it's implied that you are an i2c mux
+device. But it's a matter of personal taste.
+
+Other than this, there is still, one major error down below.
+
+> support for the mux will be added in a later commit.
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    | 433 +++++++++++++++++++++
->  1 file changed, 433 insertions(+)
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
+
+...
+
+> +#include <linux/i2c-mux.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +
+> +#define MUX_CONFIG_REG  0xff
+> +#define MUX_DEFAULT_DEV 0x0
+
+Please define these as MULE_I2C_MUX_*
+
+> +
+> +struct mule_i2c_reg_mux {
+> +	struct regmap *regmap;
+> +};
+> +
+> +static int mux_select(struct i2c_mux_core *muxc, u32 dev)
+> +{
+> +	struct mule_i2c_reg_mux *mux = muxc->priv;
+> +
+> +	return regmap_write(mux->regmap, MUX_CONFIG_REG, dev);
+> +}
+> +
+> +static int mux_deselect(struct i2c_mux_core *muxc, u32 dev)
+> +{
+> +	return mux_select(muxc, MUX_DEFAULT_DEV);
+> +}
+> +
+> +static void mux_remove(void *data)
+
+Please call these mule_i2c_mux_*(), the mux_ prefix doesn't
+belong to this driver.
+
+> +{
+> +	struct i2c_mux_core *muxc = data;
+> +
+> +	i2c_mux_del_adapters(muxc);
+> +
+> +	mux_deselect(muxc, MUX_DEFAULT_DEV);
+> +}
+
+...
+
+> +	/* Create device adapters */
+> +	for_each_child_of_node(mux_dev->of_node, dev) {
+> +		u32 reg;
+> +
+> +		ret = of_property_read_u32(dev, "reg", &reg);
+> +		if (ret)
+> +			return dev_err_probe(mux_dev, ret,
+> +					     "No reg property found for %s\n",
+> +					     of_node_full_name(dev));
+> +
+> +		if (old_fw && reg != 0) {
+> +			dev_warn(mux_dev,
+> +				 "Mux is not supported, please update Mule FW\n");
+> +			continue;
+> +		}
+> +
+> +		ret = mux_select(muxc, reg);
+> +		if (ret) {
+> +			dev_warn(mux_dev,
+> +				 "Device %d not supported, please update Mule FW\n", reg);
+> +			continue;
+> +		}
+> +
+> +		ret = i2c_mux_add_adapter(muxc, 0, reg);
+> +		if (ret)
+> +			return ret;
+
+do we need to delete the adapters we added in previous cycles?
+
+> +	}
+> +
+> +	mux_deselect(muxc, MUX_DEFAULT_DEV);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id mule_i2c_mux_of_match[] = {
+> +	{.compatible = "tsd,mule-i2c-mux",},
+
+if you are going to resend, can you leave one space after the
+'{' and before the '}'
+
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mule_i2c_mux_of_match);
+> +
+> +static struct platform_driver mule_i2c_mux_driver = {
+> +	.driver		= {
+
+I don't see the need for this '\t' here, the alignment is too
+far. It just looks bad. Your choice, though.
+
+Thanks,
+Andi
+
+> +		.name	= "mule-i2c-mux",
+> +		.of_match_table = mule_i2c_mux_of_match,
+> +	},
+> +	.probe		= mule_i2c_mux_probe,
+> +};
+> +
+> +module_platform_driver(mule_i2c_mux_driver);
+> +
+> +MODULE_AUTHOR("Farouk Bouabid <farouk.bouabid@cherry.de>");
+> +MODULE_DESCRIPTION("I2C mux driver for Theobroma Systems Mule");
+> +MODULE_LICENSE("GPL");
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/airoha,en7581-gpio-sysctl.yaml b/Documentation/devicetree/bindings/mfd/airoha,en7581-gpio-sysctl.yaml
-> new file mode 100644
-> index 000000000000..a9080c7f50f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/airoha,en7581-gpio-sysctl.yaml
-> @@ -0,0 +1,433 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/airoha,en7581-gpio-sysctl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Airoha EN7581 GPIO System Controller
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +  - Lorenzo Bianconi <lorenzo@kernel.org>
-> +
-> +description:
-> +  Airoha EN7581 SoC GPIO system controller which provided a register map
-> +  for controlling the GPIO, pins and PWM of the SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: airoha,en7581-gpio-sysctl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +  pinctrl:
-> +    type: object
-> +
-> +    $ref: /schemas/pinctrl/pinctrl.yaml
-> +
-> +    patternProperties:
-> +      '-pins$':
-> +        type: object
-> +
-> +        patternProperties:
-> +          '^.*mux.*$':
-
-Do you really need 'mux' anywhere in the node names? Isn't either a 
-prefix or a suffix enough?
-
-> +            type: object
-> +
-> +            description:
-> +              pinmux configuration nodes.
-> +
-> +            $ref: /schemas/pinctrl/pinmux-node.yaml
-> +
-> +            properties:
-> +              function:
-> +                description:
-> +                  A string containing the name of the function to mux to the group.
-> +                enum: [pon, tod_1pps, sipo, mdio, uart, i2c, jtag, pcm, spi,
-> +                       pcm_spi, i2s, emmc, pnand, pcie_reset, pwm, phy1_led0,
-> +                       phy2_led0, phy3_led0, phy4_led0, phy1_led1, phy2_led1,
-> +                       phy3_led1, phy4_led1]
-> +
-> +              groups:
-> +                description:
-> +                  An array of strings. Each string contains the name of a group.
-> +
-> +            required:
-> +              - function
-> +              - groups
-> +
-> +            allOf:
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: pon
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [pon]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: tod_1pps
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [pon_tod_1pps, gsw_tod_1pps]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: sipo
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [sipo, sipo_rclk]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: mdio
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [mdio]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: uart
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      items:
-> +                        enum: [uart2, uart2_cts_rts, hsuart, hsuart_cts_rts, uart4,
-> +                               uart5]
-> +                      maxItems: 2
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: i2c
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [i2c1]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: jtag
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [jtag_udi, jtag_dfd]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: pcm
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [pcm1, pcm2]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: spi
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      items:
-> +                        enum: [spi_quad, spi_cs1]
-> +                      maxItems: 2
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: pcm_spi
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      items:
-> +                        enum: [pcm_spi, pcm_spi_int, pcm_spi_rst, pcm_spi_cs1,
-> +                               pcm_spi_cs2_p156, pcm_spi_cs2_p128, pcm_spi_cs3,
-> +                               pcm_spi_cs4]
-> +                      maxItems: 7
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: i2c
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [i2s]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: emmc
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [emmc]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: pnand
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [pnand]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: pcie_reset
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [pcie_reset0, pcie_reset1, pcie_reset2]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: pwm
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio0, gpio1, gpio2, gpio3, gpio4, gpio5, gpio6,
-> +                             gpio7, gpio8, gpio9, gpio10, gpio11, gpio12, gpio13,
-> +                             gpio14, gpio15, gpio16, gpio17, gpio18, gpio19,
-> +                             gpio20, gpio21, gpio22, gpio23, gpio24, gpio25,
-> +                             gpio26, gpio27, gpio28, gpio29, gpio30, gpio31,
-> +                             gpio36, gpio37, gpio38, gpio39, gpio40, gpio41,
-> +                             gpio42, gpio43, gpio44, gpio45, gpio46, gpio47]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy1_led0
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio33, gpio34, gpio35, gpio42]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy2_led0
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio33, gpio34, gpio35, gpio42]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy3_led0
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio33, gpio34, gpio35, gpio42]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy4_led0
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio33, gpio34, gpio35, gpio42]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy1_led1
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio43, gpio44, gpio45, gpio46]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy2_led1
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio43, gpio44, gpio45, gpio46]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy3_led1
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio43, gpio44, gpio45, gpio46]
-> +              - if:
-> +                  properties:
-> +                    function:
-> +                      const: phy4_led1
-> +                then:
-> +                  properties:
-> +                    groups:
-> +                      enum: [gpio43, gpio44, gpio45, gpio46]
-> +
-> +            additionalProperties: false
-> +
-> +          '^.*conf.*$':
-
-Same here.
-
-Otherwise, LGTM.
-
-Rob
+> -- 
+> 2.34.1
+> 
 
