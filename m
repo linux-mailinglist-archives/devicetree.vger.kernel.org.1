@@ -1,162 +1,121 @@
-Return-Path: <devicetree+bounces-99341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1686969870
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:13:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E081F96987F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 11:16:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6003528324D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:13:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62F35B28313
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D31C1B982D;
-	Tue,  3 Sep 2024 09:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075201A4E7C;
+	Tue,  3 Sep 2024 09:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="ZBcNMMMM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VdGUxvQP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61831A2656;
-	Tue,  3 Sep 2024 09:12:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647E31A4E89;
+	Tue,  3 Sep 2024 09:16:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725354775; cv=none; b=ULeO/WJRMKPkzqz/tu2T3h47IjB+Wqg23HFrsZykohHM/Tqc95ZvIVTAGtuR3ajfzWCW+eMfYiWWaSMpfW+rMJD0tAx3v2XFz/mk/pDlXVtORihSGzRmaMaCvKbkzU2ThF3nvgnoYFJLN2zLN6FWmaIUJS3nDIgpKccc+wyeMrY=
+	t=1725354989; cv=none; b=WSobYEK5NolBdsG1Mgr8iQcKLknXDGczayYLQraeT0sJWLLIJt14qsoBe7XDqhdD3W6FYOFhUr9V+posS+3mEvI44JQAYDmr6mLSUVMnOj4XGZEqH/v2Qd6LdW2uNDq1YBEt6BHK2u52jnwQ2LfO8joMTeTGSPI3FS5rv/ajlmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725354775; c=relaxed/simple;
-	bh=6JBBplIDsA2HJb4B4/pBx6RbbKhR6nm1mI9apDqN9t0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ldXbPwY74vCPEbjXxGNXOdIq3Fs7hs4zp0rf9fxFxuHWKdv75ENntnFvPkJQjnihZOBbzlAmViWEIIxlKJGLsoL+QmToFdpvqDiwg9mbw3W/xmgAAd/D/GcPVBMm46r3AGsKmThWJpXBb3KQADod1bYy6MX/VVxwFIesKHXtRwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=ZBcNMMMM; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 48AFA22A41;
-	Tue,  3 Sep 2024 11:12:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1725354765;
-	bh=x/Dc4MQ75tXldUcMe+uDn+5jK81jvSQu/e9iblTqqOE=; h=From:To:Subject;
-	b=ZBcNMMMM9DGx4CkLJvKDOx0/Y1GgTN5K396FH3a2ngka2xMWw+3hGhprC4pYK/63W
-	 JiRizBBGNxwss2JtOuyKLOm97bDGMpg6obM5Is1e3sRk5A3p9x5jQrdNoRe9z+s+0V
-	 m36EA/oXW/amkqbPyg7noF+3hFEwpWABcTv/8c/yYl9nIstqdhAZk4kJkr3mEifM5d
-	 rhtgyP5PFdA03W0H/CIFmrepy+R1AfyJE0GsVT7YudgGBOM5YQ1K9CY6ZHZHcFGwLy
-	 dXXzEOz2sl5F2X0IllfgvOO8g2Bt+hTlSwOOeXRqGgUwWF0U5FtbFrkD87VI1lCqCa
-	 9Vku0Seo6NhNQ==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v2 5/5] arm64: dts: imx8-apalis: Add usb4 host support
-Date: Tue,  3 Sep 2024 11:12:31 +0200
-Message-Id: <20240903091231.20035-6-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240903091231.20035-1-francesco@dolcini.it>
-References: <20240903091231.20035-1-francesco@dolcini.it>
+	s=arc-20240116; t=1725354989; c=relaxed/simple;
+	bh=Y42K+VKdaOGaWK9Z/RB9RHq/t5rX2mCJb59mIktkP64=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
+	 In-Reply-To:Content-Type; b=CCpKyJXA57KZ2NNz4Thv4ElewQkgh7sKvamX4ccsQCZ5TuHBCnMbtCwuJidXIYsorssIXF+oRGFalGBBrz5NT6oEUYgCvLBv9y21WRI70ZZIb2qRYBi4YA8PLCdsxv63wEf9ijV3RouFCudbDoCpPrOWBbmgakbkw4OhduHyke0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VdGUxvQP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4835AldG009037;
+	Tue, 3 Sep 2024 09:15:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	f+aDtDkpqgV1KQ/TcVWTCcSca/Y0X5xFWjMV1qZhGnM=; b=VdGUxvQPWzKAoMkO
+	T0himFDsc9/6hcdNDyf3bIY1Sjq/GTEqWqb3E2JJz1P+TyvKhLrPOs+DeiO6Q0GW
+	40NDT2z+W2Y7k21QWUt0N5l5a5Hmql+HLdacfuhBsIRQgvervtpD1zhYhL0gk28n
+	I3O0ph/u5L1v0CkIPxEzsZSm7nvXzOBLseAoQe8uyareib8c+uueetl0ji00oAQ1
+	YblUxjC7yuMjZ+CGTx68PLhntYsy8IH6PKz6Fa6UZQ8c6V+GuRCP9Yna61xAWd81
+	AL8HIfEm2/nLVdKhOF8vVsht4xCfkencTutYkKg5jC1jkYr4/SgLWGSMTwdSoqdR
+	J3ajvg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41bt66xu4s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Sep 2024 09:15:55 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4839Fs58008084
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Sep 2024 09:15:54 GMT
+Received: from [10.216.9.110] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Sep 2024
+ 02:15:49 -0700
+Message-ID: <5169761b-422d-70ab-ba53-a898cb7bfa2f@quicinc.com>
+Date: Tue, 3 Sep 2024 14:45:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v8 0/8] Add QPIC SPI NAND driver
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <esben@geanix.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>
+References: <20240820104239.1774600-1-quic_mdalam@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20240820104239.1774600-1-quic_mdalam@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: UmnCr2WGft70bqzkiVvBtlXxBDElRjoT
+X-Proofpoint-GUID: UmnCr2WGft70bqzkiVvBtlXxBDElRjoT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-02_06,2024-09-03_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ bulkscore=0 mlxscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 lowpriorityscore=0 spamscore=0 clxscore=1011
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409030074
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+Hi Miquel,
 
-Add USB4 HOST to Apalis-iMX8QM SOM and its carrier boards.
+On 8/20/2024 4:12 PM, Md Sadre Alam wrote:
+> v8:
+>   * Fixed compilation warning reported by kernel test robot
+>   * Added "chip" description in nandc_set_read_loc_first()
+>   * Added "chip" description" in nandc_set_read_loc_last()
+>   * Changed data type of read_location0, read_location1,
+>     read_location2, read_location3, addr0, addr1, cmd, cfg0,
+>     cfg1, ecc_bch_cfg, ecc_buf_cfg, clrflashstatus, clrreadstatus,
+>     orig_cmd1, orig_vld to __le32 to fix compilation warning.
+>   * Included bitfield.h header file in spi-qpic-snand.c to
+>     fix compilation warning
+>   * Removed unused variable "steps" variable from
+>     qcom_spi_ecc_init_ctx_pipelined()
+> 
+     I have addressed your comments to v6 and further posted till v8.
+     Could you please let me know if this is fine.
+     and how to get this merged ?
 
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: no changes
----
- arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi |  5 ++++-
- .../boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi  |  5 ++++-
- .../boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi  |  5 ++++-
- arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 13 ++++++++++++-
- 4 files changed, 24 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-index 5f24356ad4e2..dc127298715b 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-@@ -135,4 +135,7 @@ &usbotg1 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis USBH4 SuperSpeed */
-+/* Apalis USBH4 SuperSpeed */
-+&usbotg3_cdns3 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-index 4ec2227750f4..d4a1ad528f65 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-@@ -222,7 +222,10 @@ &usbotg1 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis USBH4 SuperSpeed */
-+/* Apalis USBH4 SuperSpeed */
-+&usbotg3_cdns3 {
-+	status = "okay";
-+};
- 
- /* Apalis MMC1 */
- &usdhc2 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-index 606d9328ac99..5e132c83e1b2 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-@@ -271,7 +271,10 @@ &usbotg1 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis USBH4 SuperSpeed */
-+/* Apalis USBH4 SuperSpeed */
-+&usbotg3_cdns3 {
-+	status = "okay";
-+};
- 
- /* Apalis MMC1 */
- &usdhc2 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-index 91fd631b7ebd..a3fc945aea16 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-@@ -807,7 +807,18 @@ &spdif0 {
- 
- /* TODO: Apalis USBH2, Apalis USBH3 and on-module Wi-Fi via on-module HSIC Hub */
- 
--/* TODO: Apalis USBH4 */
-+/* Apalis USBH4 */
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&usbotg3 {
-+	status = "okay";
-+};
-+
-+&usbotg3_cdns3 {
-+	dr_mode = "host";
-+};
- 
- /* Apalis USBO1 */
- &usbphy1 {
--- 
-2.39.2
-
+Regards,
+Alam.
 
