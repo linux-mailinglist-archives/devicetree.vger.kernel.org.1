@@ -1,199 +1,149 @@
-Return-Path: <devicetree+bounces-99574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32D3296A36E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:57:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6995196A381
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:01:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89D6CB25BD0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:57:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CC601C23E9A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED39189536;
-	Tue,  3 Sep 2024 15:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608B4189BB1;
+	Tue,  3 Sep 2024 16:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lo6QQz0I"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Ac12rxJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303501898E6;
-	Tue,  3 Sep 2024 15:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725379040; cv=none; b=j8yHzcDcpU7AuduWCqdQP3LZenCH78uEk+aydi5wASYy/m0v4T1TmzGt2uQW01fDONdW7xA0ybQXmitxfZWcn6KIxn/YepHn1cdeyfGI2DZAziCWcqZ79kw0vYuFiua07diFIp68lVBWVKA+g/mOaqjgursBzEx1nO4bNh+Z3oE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725379040; c=relaxed/simple;
-	bh=dqTzY8p3sHUzU8UjqwSvZd4CiJ8xkwss1UPetyRjYQo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hRnvgczk+nVPQSvLBJmlUTYRO2k4vuPDN2mB180RPpq9KtNe5hwP/q1WLbEQ0WCMB8d8mPwii3dVeMqcD/x+aQAbCLnOgmMZXhnXZ0/zV8yuXYNYh1Wtdc6ZtN7aKU5rE8yHkkGz+gN2dUQjxvJpDn/CSmby2U9RNjLuT8lUlg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lo6QQz0I; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725379039; x=1756915039;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dqTzY8p3sHUzU8UjqwSvZd4CiJ8xkwss1UPetyRjYQo=;
-  b=lo6QQz0IYIBdmgL1ecYnPlsqMVrrPEHh67eq6sgvbWQsmij0Ok5QQ2d7
-   oHWwVEqoSwAmBRcxcB6TWtM0A/UWQ9jsjmAy37Bf5BwlaDR20aidjsTaE
-   Oe+BM1k4C5Y7SW93Iv/NYXh5lF4ByvzNkZq8kTDvNY0hb3nLhRNHDPmDj
-   I3TzBzGm2/H72IRpCIK1tD/rliJ/ORZfb3sTko0/UsKttp7FYKEaz0NZl
-   tFiwUxzF3pkNqS/Qu6Z0RHCGgjBo6nM4H4HZL4Ue50VqlZ1AzZC0dc8gG
-   NOyfMNJ/3WL2pBJHR07YhhfcX65UxYtlg9zi7dZWBuqY/Dc75ZHERhgfb
-   w==;
-X-CSE-ConnectionGUID: +mf2H8pQQpCysJrzxWe2zQ==
-X-CSE-MsgGUID: XdxjBe6sQYG9eNGnOe7ztA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="46514795"
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
-   d="scan'208";a="46514795"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2024 08:57:19 -0700
-X-CSE-ConnectionGUID: zX3m1XBpSGaLYYwc8K/arQ==
-X-CSE-MsgGUID: 8WfA5OuMR2aagxB/eZ7EgQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,199,1719903600"; 
-   d="scan'208";a="64949427"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 03 Sep 2024 08:57:16 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1slVu5-0006rW-1T;
-	Tue, 03 Sep 2024 15:57:13 +0000
-Date: Tue, 3 Sep 2024 23:57:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kiseok Jo <kiseok.jo@irondevice.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	application@irondevice.com, Kiseok Jo <kiseok.jo@irondevice.com>
-Subject: Re: [PATCH v2 1/3] ASoC: sma1307: Add driver for Iron Device SMA1307
-Message-ID: <202409032357.hPIdG9kb-lkp@intel.com>
-References: <20240903054435.2659-2-kiseok.jo@irondevice.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F58B189BAE;
+	Tue,  3 Sep 2024 16:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725379257; cv=pass; b=TilnlNE6Yo52EIxk04KNlZJxjXzCmRxlyv4jo/zkN5xAbP+VnZ1PdyQGGJxWd/AOLrQ4F6cbGUcTsy+JABEqPq1bHfQJmT6WoNu/SJqIEQGUYbYL4BSjm/tzRLrDs58KKnTUBUZlCiNSJpRUgYCuwUFfMFiNrj36ODo8+IaRzUo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725379257; c=relaxed/simple;
+	bh=DoF5r0u+6KPtzRJ2gCLtOA74hZjZQKMdqLUSJFztaO8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YV7jM/XG2pO896Xs5JIYWH5oZNi30mAQwap4MlDGZp4sN1UWFaz8imcSYC8EzVnXQZwdPj+O+Jmg5Ogy4eVc9tyMsqlCW6ZUZ8tluUZ+DXiKix05GtKthwnf7dZ3HGTvmjKh6XdPnqepchex1Df/PWM3vWwkQM4DaOFJIacTWOU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Ac12rxJA; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1725379180; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=j7W+b6AKvTMiIp6zna4Phg0s4BvUKBWwdAFzlwD3yxdkmVUkgV226jpfwFtqSnDngKmtHC+J7XRYl8JW2CIzT+6R75rfSvJcjxQWa1Wq6r4Y072X5au/IhhR2Ns+1JfYil09hrhbCUwbjSryQHWoitBwp9GhbbmGfjbi1rRjXpo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1725379180; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Y/bWoW06nAsYTfJtM+dT/HctpDxY0caM4f/6npCsav4=; 
+	b=DcW7jXgOcrFG/T624VWQk524Qc6OWhcUZEOuq3jWESy+mGhMRYwyU7e1HN8UpN3SCobwVQfoDwm4wzZjDixTbMdVhXzlT9CIHinwkBQ++b3/CyFL3ixd6ss1EkX4Eg206IxLCgU3rPE4ZtZ0b6sTb12nF+TWspPK08mxkCjwoe0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725379180;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=Y/bWoW06nAsYTfJtM+dT/HctpDxY0caM4f/6npCsav4=;
+	b=Ac12rxJAuHEgPBTE7VP5gB/POfoA00l1p6G5Zru/RUnCEnF0JMRTpamew0P3lFkd
+	Kmp0V2A6Pr3m+MYabAm8YPJ2kp/8Df8UEX9lknMggWnKDWx5PMLTQ0U7/hKfn9+c9JH
+	EfnVDwwoeFI4x+D5sUdaCgyo0qwqF8W/rMY+FWR0=
+Received: by mx.zohomail.com with SMTPS id 1725379178937833.0492919077691;
+	Tue, 3 Sep 2024 08:59:38 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+ Ondrej Jirman <megi@xff.cz>, Michael Riesch <michael.riesch@wolfvision.net>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Elon Zhang <zhangzj@rock-chips.com>,
+ Alexey Charkov <alchark@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>,
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+ Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ Jamie Iles <jamie@jamieiles.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel@collabora.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 3/9] dt-bindings: i2c: i2c-rk3x: Add rk3576 compatible
+Date: Tue, 03 Sep 2024 11:59:34 -0400
+Message-ID: <12506188.O9o76ZdvQC@bootstrap>
+In-Reply-To: <bnpwnuhikwkqyf3jos67qwywhfge3vm6tfmlfitypd5k62jzdn@fri4swkl2zbq>
+References:
+ <20240903152308.13565-1-detlev.casanova@collabora.com>
+ <20240903152308.13565-4-detlev.casanova@collabora.com>
+ <bnpwnuhikwkqyf3jos67qwywhfge3vm6tfmlfitypd5k62jzdn@fri4swkl2zbq>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240903054435.2659-2-kiseok.jo@irondevice.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-Hi Kiseok,
+Hello,
 
-kernel test robot noticed the following build warnings:
+On Tuesday, 3 September 2024 11:46:00 EDT Andi Shyti wrote:
+> Hi,
+> 
+> On Tue, Sep 03, 2024 at 11:22:33AM GMT, Detlev Casanova wrote:
+> > Just like RK356x and RK3588, RK3576 is compatible to the existing
+> > rk3399 binding.
+> > 
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Acked-by: Heiko Stuebner <heiko@sntech.de>
+> 
+> I will apply this after 1 and 2 have been merged.
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on robh/for-next linus/master v6.11-rc6 next-20240903]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Sure, although it is not really dependent on 1 and 2.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kiseok-Jo/ASoC-sma1307-Add-driver-for-Iron-Device-SMA1307/20240903-134558
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20240903054435.2659-2-kiseok.jo%40irondevice.com
-patch subject: [PATCH v2 1/3] ASoC: sma1307: Add driver for Iron Device SMA1307
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240903/202409032357.hPIdG9kb-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240903/202409032357.hPIdG9kb-lkp@intel.com/reproduce)
+> BTW, who is maintaining rockchip.yaml?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409032357.hPIdG9kb-lkp@intel.com/
+Heiko Stuebner is the maintainer of Rockchip SoC support.
 
-All warnings (new ones prefixed by >>):
+> Thanks,
+> Andi
+> 
+> > ---
+> > 
+> >  Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
+> > b/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml index
+> > 82b9d6682297..a9dae5b52f28 100644
+> > --- a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
+> > +++ b/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
+> > 
+> > @@ -38,6 +38,7 @@ properties:
+> >                - rockchip,rk3308-i2c
+> >                - rockchip,rk3328-i2c
+> >                - rockchip,rk3568-i2c
+> > 
+> > +              - rockchip,rk3576-i2c
+> > 
+> >                - rockchip,rk3588-i2c
+> >                - rockchip,rv1126-i2c
+> >            
+> >            - const: rockchip,rk3399-i2c
 
-   sound/soc/codecs/sma1307.c: In function 'sma1307_setting_loaded':
->> sound/soc/codecs/sma1307.c:1772:44: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-    1772 |         int *data, size, offset, num_mode, ret;
-         |                                            ^~~
 
 
-vim +/ret +1772 sound/soc/codecs/sma1307.c
 
-  1768	
-  1769	static void sma1307_setting_loaded(struct sma1307_priv *sma1307, const char *file)
-  1770	{
-  1771		const struct firmware *fw;
-> 1772		int *data, size, offset, num_mode, ret;
-  1773	
-  1774		ret = request_firmware(&fw, file, sma1307->dev);
-  1775	
-  1776		if (!fw) {
-  1777			dev_err(sma1307->dev, "%s: failed to read \"%s\"\n",
-  1778				__func__, setting_file);
-  1779			release_firmware(fw);
-  1780			sma1307->set.status = false;
-  1781			return;
-  1782		} else if ((fw->size) < SMA1307_SETTING_HEADER_SIZE) {
-  1783			dev_err(sma1307->dev, "%s: Invalid file\n", __func__);
-  1784			release_firmware(fw);
-  1785			sma1307->set.status = false;
-  1786			return;
-  1787		}
-  1788	
-  1789		data = kzalloc(fw->size, GFP_KERNEL);
-  1790		size = fw->size >> 2;
-  1791		memcpy(data, fw->data, fw->size);
-  1792	
-  1793		release_firmware(fw);
-  1794	
-  1795		/* HEADER */
-  1796		sma1307->set.header_size = SMA1307_SETTING_HEADER_SIZE;
-  1797		sma1307->set.checksum = data[sma1307->set.header_size - 2];
-  1798		sma1307->set.num_mode = data[sma1307->set.header_size - 1];
-  1799		num_mode = sma1307->set.num_mode;
-  1800		sma1307->set.header = devm_kzalloc(sma1307->dev,
-  1801						   sma1307->set.header_size,
-  1802						   GFP_KERNEL);
-  1803		memcpy(sma1307->set.header, data,
-  1804		       sma1307->set.header_size * sizeof(int));
-  1805	
-  1806		if ((sma1307->set.checksum >> 8) != SMA1307_SETTING_CHECKSUM) {
-  1807			dev_err(sma1307->dev, "%s: failed by dismatch \"%s\"\n",
-  1808				__func__, setting_file);
-  1809			sma1307->set.status = false;
-  1810			return;
-  1811		}
-  1812	
-  1813		/* DEFAULT */
-  1814		sma1307->set.def_size = SMA1307_SETTING_DEFAULT_SIZE;
-  1815		sma1307->set.def
-  1816		    = devm_kzalloc(sma1307->dev,
-  1817				   sma1307->set.def_size * sizeof(int), GFP_KERNEL);
-  1818		memcpy(sma1307->set.def,
-  1819		       &data[sma1307->set.header_size],
-  1820		       sma1307->set.def_size * sizeof(int));
-  1821	
-  1822		/* MODE */
-  1823		offset = sma1307->set.header_size + sma1307->set.def_size;
-  1824		sma1307->set.mode_size = DIV_ROUND_CLOSEST(size - offset, num_mode + 1);
-  1825		for (int i = 0; i < num_mode; i++) {
-  1826			sma1307->set.mode_set[i]
-  1827			    = devm_kzalloc(sma1307->dev,
-  1828					   sma1307->set.mode_size * 2 * sizeof(int),
-  1829					   GFP_KERNEL);
-  1830			for (int j = 0; j < sma1307->set.mode_size; j++) {
-  1831				sma1307->set.mode_set[i][2 * j]
-  1832				    = data[offset + ((num_mode + 1) * j)];
-  1833				sma1307->set.mode_set[i][2 * j + 1]
-  1834				    = data[offset + ((num_mode + 1) * j + i + 1)];
-  1835			}
-  1836		}
-  1837	
-  1838		kfree(data);
-  1839		sma1307->set.status = true;
-  1840	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
