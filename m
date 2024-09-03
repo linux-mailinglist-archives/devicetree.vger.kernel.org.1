@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-99532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D327E96A174
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:00:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D4596A18B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 17:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 893391F26216
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:00:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F2BE28206F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 15:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E8DB17E00C;
-	Tue,  3 Sep 2024 14:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D2915666D;
+	Tue,  3 Sep 2024 15:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eH/0t4OP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JiGr66dR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF3817D377;
-	Tue,  3 Sep 2024 14:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378A92AE66;
+	Tue,  3 Sep 2024 15:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725375585; cv=none; b=ogjUSkShX/eGPIrORDLj7q8pr0svM+tlPD9XoxO6mew5D2vw/XWgIfgrL5s2jASxzZGdyHd6mp0/uN87rJAKCZuoK5yaZ/MQnPdmrunpE6hAQtMt+Y7cQI8EzSGzJMQznpf1yH/MB1DoCtalZnxqEMDYnrt/rgtNZZGJG5wK7BY=
+	t=1725375880; cv=none; b=i42NxPMGhSzdvk9zjZfN3RN19CJ8gY5sTplZ1umT352N2Ccfg9WhegNPOpPyOo5wzQ8lZKtn4rrTWrGfTkg91dYqIe20tE76XRXRd5hSckq3TyulexbRwOI3O50VYp8QdKp2xgauowdrfMShZCS+fgr+N1tS3OQpaM0ASbMpIz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725375585; c=relaxed/simple;
-	bh=y0N35nBfJ/THUgvtJXQMUmozSu8LBTvwkQivhfsaVGw=;
+	s=arc-20240116; t=1725375880; c=relaxed/simple;
+	bh=sf3xNg203/lr8nt9OtokONsd4BgI7GDuvGcxFo78X+o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TnOoMbJMPdmbRBSIvhwYa0s0GksWLbrONoA5WONssQvGM799p3oS00dShfZYJbdymSeVyVZrXgBQ6aYRxaY0D+1Tp/rgl8w3uFwakT3YCsnmqTLoB1kxPvY5Y9jWxhJg9eyFAhyyNGdy8D7ciM09JhAHWeUmj2VrKnytblX/8cE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eH/0t4OP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F0C5C4CEC6;
-	Tue,  3 Sep 2024 14:59:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ilq462CgPvM8G42VYuAiHoFmHO5+vO8hzE6OEtRWmiUX5CEc1JJTXLC6RtHS9NowwKJAj0uz/sDp3WCB7HKmJib5iI9kcvuGCc1+2kFQDdp5Zx4jAMsiFJYT4DXCajz3sKoI22LeAjFcm42kgpBPvgysTeAjA+VIaLrJaBPPsjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JiGr66dR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F2FBC4CEC4;
+	Tue,  3 Sep 2024 15:04:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725375584;
-	bh=y0N35nBfJ/THUgvtJXQMUmozSu8LBTvwkQivhfsaVGw=;
+	s=k20201202; t=1725375879;
+	bh=sf3xNg203/lr8nt9OtokONsd4BgI7GDuvGcxFo78X+o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eH/0t4OPEf7XTPyNlFsI5qDz/CARORolMtQ542tvolIsIJsLZDsCuIaO6+8YYIxKQ
-	 PLJhW1SkZdQdojRs6QjlemFV0kLuCIYxilaObwzWXUY5gicDSrMfAiHR0wpLuJXqRH
-	 o9XJ8OWRrhtC1GQkeF3ImiWmw/4KsFfBD0S5YcUz2pA0vNqq96JwI7t5c5Dq0SWLYR
-	 ek8rGb/K6HJ0CVx6GdFKW5vS5O5TtWJnZOxWY9W23PgCFmbxeRF3E/PXKZDAZ/zqRG
-	 caLGIYd2oJG9nGFq4qdjKai4/IJImEEgUnG+ez76hTfxT6BMgH3LRf5XwpUMZy4L+p
-	 aSSaXlUo6ztyw==
-Date: Tue, 3 Sep 2024 09:59:43 -0500
+	b=JiGr66dRo72VmOAc29W41ELqSFMOOqKgnA1OPWzIih5KTat9VKMC91k50pdB65QDc
+	 yiVJn6AuPC8CPVBxQUqri90qDBy3D4CdfqqoFfuriBmycV0Ah8PWaRtOnz8J83Z1va
+	 7Rmuhm1r3E8w+4G2d10XXLNsG2dl1tF1ckLXa6k4qv6f7MQlME3sETQAhKWlhQNYOJ
+	 3BzYzrf6+ruGFfgs0FtIWtQsWWY4We2rNdQrA2BNMHQZ4TR5Zj/OvhLyffF4xkKuRO
+	 daiNlB8OF+jPEP0mU9lSPRhsXAG+AC6Jwd3L/jl3SqqObpMFDBOHd7atGc0twCdCl/
+	 wDPFqRC5hoo8Q==
+Date: Tue, 3 Sep 2024 10:04:38 -0500
 From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	cyril.jean@microchip.com, valentina.fernandezalanis@microchip.com,
-	nitin.deshpande@microchip.com,
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [RFC v1] dt-bindings: add IP versioning document for Microchip
- FPGAs
-Message-ID: <20240903145943.GA1002295-robh@kernel.org>
-References: <20240830-culinary-cautious-2c2c19902dcb@spud>
+	Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 1/7] dt-bindings: clock: airoha: update reg mapping for
+ EN7581 SoC.
+Message-ID: <20240903150438.GA1008227-robh@kernel.org>
+References: <20240831-clk-en7581-syscon-v1-0-5c2683541068@kernel.org>
+ <20240831-clk-en7581-syscon-v1-1-5c2683541068@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,54 +66,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240830-culinary-cautious-2c2c19902dcb@spud>
+In-Reply-To: <20240831-clk-en7581-syscon-v1-1-5c2683541068@kernel.org>
 
-On Fri, Aug 30, 2024 at 05:00:40PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Sat, Aug 31, 2024 at 09:18:43AM +0200, Lorenzo Bianconi wrote:
+> clk-en7523 driver for EN7581 SoC is mapping all the scu memory region
+> while it is configuring the chip-scu one via a syscon. Update the reg
+> mapping definition for this device. This patch does not introduce any
+> backward incompatibility since the dts for EN7581 SoC is not public yet.
 > 
-> This is a pretty rough document I conjured up in 5 minutes, to document
-> my expectations for compatible strings for both our FPGA IP blocks and
-> reference designs that we ship, a la the one that exists for SiFive IPs.
-> There's been some internal conversations lately about this naming etc,
-> so good to have something written down.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> cc: cyril.jean@microchip.com
-> CC: valentina.fernandezalanis@microchip.com
-> CC: nitin.deshpande@microchip.com
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> ---
->  .../bindings/microchip/ip-versioning.txt      | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/microchip/ip-versioning.txt
+>  .../devicetree/bindings/clock/airoha,en7523-scu.yaml         | 12 +++---------
+>  1 file changed, 3 insertions(+), 9 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/microchip/ip-versioning.txt b/Documentation/devicetree/bindings/microchip/ip-versioning.txt
-> new file mode 100644
-> index 000000000000..4a4e0e74c4e6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/microchip/ip-versioning.txt
-> @@ -0,0 +1,34 @@
-> +Devicetree compatible string versioning for Microchip FPGA IP blocks and reference designs
-> +
-> +This document describes the versioning guidelines for compatible strings
-> +used on Microchip FPGA IP blocks and reference designs.
-> +
-> +IP block-specific compatible strings are in the form:
-> +"microchip,<ip-block-name>-rtl-v<major version number>"
-> +or optionally:
-> +"microchip,<ip-block-name>-rtl-v<major version number>.<minor version number>"
-> +
-> +<ip-block-name> should be the name of the IP in Libero's IP catalog.
-> +In most cases a major version should be sufficient, as breaking changes are
-> +intended to be accompanied by a version update, but if not, the optional minor
-> +version should be used,
+> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> index 84353fd09428..ca426c328535 100644
+> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> @@ -34,8 +34,8 @@ properties:
+>            - airoha,en7581-scu
+>  
+>    reg:
+> -    minItems: 2
+> -    maxItems: 4
+> +    minItems: 1
+> +    maxItems: 2
 
-Please cover where do version numbers come from?
+This should really have the 'items' list here instead of in the if/then 
+schemas.
+>  
+>    "#clock-cells":
+>      description:
+> @@ -75,9 +75,6 @@ allOf:
+>          reg:
+>            items:
+>              - description: scu base address
+> -            - description: misc scu base address
+> -            - description: reset base address
+> -            - description: pb scu base address
+
+And then this would be just 'maxItems: 1' and the other if 'minItems: 
+2'.
 
 Rob
 
