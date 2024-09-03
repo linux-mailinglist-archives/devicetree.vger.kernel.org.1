@@ -1,167 +1,104 @@
-Return-Path: <devicetree+bounces-99164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B2396911A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 03:53:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C8B96911E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 03:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73B781F2265F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 01:53:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B965282062
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 01:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EDAD1581F8;
-	Tue,  3 Sep 2024 01:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="Z9mXTYKS";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="tBNgqY6m"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B391CCEED;
+	Tue,  3 Sep 2024 01:53:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh2-smtp.messagingengine.com (fhigh2-smtp.messagingengine.com [103.168.172.153])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D391A4E6B
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 01:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20E191CCEDD;
+	Tue,  3 Sep 2024 01:53:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725328384; cv=none; b=CxDcs9fVsObwZS0lWxDovT0xHsTU855MOrFogkHAdouDOc+wLe5qP2UdU7YgtuX9JMZfJehlbPeVjPhDAlqpQuWc1za2kwwy4HdH7GwVYf55ypDU+BASs871koDgIq9k8nIN4y+lLrOsezOvUl7Zmd9kZFSt9MvB2VkIfX7ESLw=
+	t=1725328427; cv=none; b=AiAgCsOCI9lTchoTAiAkgG7OWZHdv3U9ElidgzMhR+HovsyZf4apiIDUTn9k7wfswPnarSMVSWedFB1O40n2dahJZ+Ds+QFJ09gpFWJzQUU58bRiSQrIbe3L0YwfqTaWg/v4M+XCJBKaNw+9rbno0GVNOm0Bnzx9nFFQdmQe4kI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725328384; c=relaxed/simple;
-	bh=7ulVwEyOK49fvq6nYlabowd606MGll6rr8Z4xKikYPQ=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=uzB18tbcpqnOF0k79ZZFl0zDKGGAdqvd4yw0MNk3anECtC3IShG7BQ25fam2/Ozi6K3FnGYt64WtqHDwn5S789RgnFItv6YpwkWk3z26lY3eyVK8/oQ4v1i25EMKDlGne1ZKpoIK9eea/bu2TIush3Kexc8w0TP7v5ygTH82zVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=Z9mXTYKS; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=tBNgqY6m; arc=none smtp.client-ip=103.168.172.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-02.internal (phl-compute-02.nyi.internal [10.202.2.42])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 492831140187;
-	Mon,  2 Sep 2024 21:53:01 -0400 (EDT)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-02.internal (MEProxy); Mon, 02 Sep 2024 21:53:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1725328381; x=1725414781; bh=eDbi4gWSWJjjOV7pKTumnIfA9DfLYr7+
-	Xf9PEudOE90=; b=Z9mXTYKSJMM0Ru0OoAhiZ+v8EKlo81YHrN6sFEgwhQZtt3Si
-	ISW6nOaeF/YtLojwW69YmQL9+VdzqzjthYPvnEbdeYTN//XqvLMVtNsazWH+Gtrf
-	EFRSjLWgHXe42alK8rbSsqbiM1fTYnYOetfI/5p0EXS8zkTYYToHkDZnbpIt1XYT
-	5i1MW69C1otTVI0M+SFQeC7JCYfGLxtgsqNq1Wdcw7BQiVcgHYmJrIHdf3OiuPvb
-	PGCoojYyzS37C2nFPJb0OVMaCpNJcIPWxwX+UweXc3ASqrNQs2Dy/sN8W/dAwS/P
-	nWh+PgVp1CCPNP3n9VfgDAmP5ynBtfTYyhS/3g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1725328381; x=
-	1725414781; bh=eDbi4gWSWJjjOV7pKTumnIfA9DfLYr7+Xf9PEudOE90=; b=t
-	BNgqY6mamGsbVwkySJH0MRBfm6ValSEAwSn3rP7+R2IC2aafzRhAovQXomCtOl4m
-	kFPtzSMvIuAu16zbTEZB+N1J2O22XoJFbOav0ii+HSS9tW01z4jMPKNRNwJsPfaZ
-	yKCSJ2WM+AedgZCyxYIc+Yd1rpZTzQIVhFmzreLxZEH9JDj0MVMxxdT3V92aavF0
-	QqhTMgRvOtCbxG0HchdQu6qc8R66xK/HQtrEr45892J6TSWl72lx509M0PqwPi8Y
-	Sl6idqNcMnp/PZpGTJ46Tohb7IE/L7krZLy/WdRZf8zjAvVfZTThrot9oLDlBWKp
-	kBjv2YjS079zpyjnuFqSw==
-X-ME-Sender: <xms:_GvWZuL-sC5I_dI5MqbAEIiGFhHeRuM2kC7HvoX4tpPy51u5iG1X4g>
-    <xme:_GvWZmKuqSKmY_8jyrQXr-nu7fGVCPBChz3F0buP058D6l-8p6zwoiNd3euk8Ij_e
-    mHuNxYJkndQjgwlhQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudehgedgheefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
-    necuhfhrohhmpedftfihrghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorg
-    hsthdrtghomheqnecuggftrfgrthhtvghrnhepjefhueekjeejgfduvdffheevveejhfdt
-    uddthfduuddvveefjeffgfdvleefuefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
-    hrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggp
-    rhgtphhtthhopeduiedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepuggrnhhivg
-    hlsehffhiflhhlrdgthhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhm
-    pdhrtghpthhtohepkhhikhhutghhrghnleeksehgmhgrihhlrdgtohhmpdhrtghpthhtoh
-    epmhgrtghrohgrlhhphhgrkedvsehgmhgrihhlrdgtohhmpdhrtghpthhtoheptghonhho
-    rhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrsehkvghrnhgvlh
-    drohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphht
-    thhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskh
-    gvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:_GvWZuujo-rHBHGdOjBmE3Cd-C_9JA83yBHsgJTPWj54n4BY6fcBPg>
-    <xmx:_GvWZjZZeRgoWYnCtnSO7SWEUCjEW16x8IBr7AJIxfAmqUGkQ8J8Uw>
-    <xmx:_GvWZlZE3b-yiNFNClf4gaP5IVKBaalBKcXRxhksecNZmkj5celPNw>
-    <xmx:_GvWZvD4yZC0xLDpJS5GvP2T8WwXS7lYYlO0uYtUDNpjTXV3tlTcHQ>
-    <xmx:_WvWZuLmh_DzVJkx1Gp9GndfK7oQhG2BJA7hbKE5aTtebdJ4xa967_Rn>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 62404BA006E; Mon,  2 Sep 2024 21:53:00 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1725328427; c=relaxed/simple;
+	bh=B5l1hCo3L8RsrFKWtMuR8cEUXTuA9Rv/yNP8X5gM8MY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rs4K/JBWn99qK9NOD8Bl9KTmN6uy4hGrjC1fhpCFAwg7hJf9WUqCqUg31FoQ3WTwPdXmWDvvXpax2Kb1gV+EAc7fsF+0zx0+7Q2sJ0pMTdwaZsQtG/WOollr+JzcxN8GImjxfu7A0cHAhX6d9685vUBDfAk+z7B+dX0BQ1odxHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [10.40.54.90])
+	by gateway (Coremail) with SMTP id _____8AxHusfbNZmmL4oAA--.14281S3;
+	Tue, 03 Sep 2024 09:53:35 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.40.54.90])
+	by front2 (Coremail) with SMTP id qciowMDxvscdbNZmRXYEAA--.13550S2;
+	Tue, 03 Sep 2024 09:53:33 +0800 (CST)
+From: Zhao Qunqin <zhaoqunqin@loongson.cn>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	chenhuacai@kernel.org
+Cc: linux-edac@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	kernel@xen0n.name,
+	bp@alien8.de,
+	tony.luck@intel.com,
+	james.morse@arm.com,
+	mchehab@kernel.org,
+	rric@kernel.org,
+	loongarch@lists.linux.dev,
+	Zhao Qunqin <zhaoqunqin@loongson.cn>
+Subject: [PATCH v2 0/2] Add EDAC driver for ls3a5000 memory controller
+Date: Tue,  3 Sep 2024 09:53:52 +0800
+Message-Id: <20240903015354.9443-1-zhaoqunqin@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 03 Sep 2024 13:52:00 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Maxime Ripard" <mripard@kernel.org>
-Cc: "Conor Dooley" <conor@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, "Jessica Zhang" <quic_jesszhan@quicinc.com>,
- "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Chris Morgan" <macroalpha82@gmail.com>
-Message-Id: <6ab54fb5-8723-457d-b5e6-483f82faf30e@app.fastmail.com>
-In-Reply-To: <e9f5f554-b773-4a16-97b7-331fa3c179d9@linaro.org>
-References: <20240828-aboriginal-vivid-goldfish-3ee4fc@houat>
- <8490347B-2729-4B79-869B-FFCE41E0A7F9@testtoast.com>
- <e9f5f554-b773-4a16-97b7-331fa3c179d9@linaro.org>
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8 panel
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qciowMDxvscdbNZmRXYEAA--.13550S2
+X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj9xXoW7JFyDuFWUurWDZryUAryktFc_yoWxtwb_Cw
+	17Aay8Jr4vkFyDCFW2vF18ZFWjyF48tF95CF1Dtw45Xr43Zry3Xas7WasrA34UJw1DuFy3
+	ArZ5KF97Aw1UtosvyTuYvTs0mTUanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvT
+	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+	cSsGvfJTRUUUbfkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8
+	JVW8Jr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2
+	x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1D
+	McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr4
+	1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_
+	Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67
+	AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8I
+	cVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI
+	8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v2
+	6r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUceOJUUUUU
 
-On Fri, 30 Aug 2024, at 7:56 PM, Neil Armstrong wrote:
+Add a simple EDAC driver which report single bit errors (CE) only on
+ls3a5000 platform.
 
-Thanks Neil,
+Zhao Qunqin (2):
+  dt-bindings: EDAC for ls3a5000 memory controller
+  Loongarch: EDAC driver for loongson memory controller
 
->
-> The only valid compatible with anbernic would be to use the exact 
-> device in use and not a wildcard,
+ .../edac/loongson,ls3a5000-mc-edac.yaml       |  44 +++++
+ MAINTAINERS                                   |   7 +
+ arch/loongarch/Kconfig                        |   1 +
+ drivers/edac/Kconfig                          |   8 +
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/ls3a5000_edac.c                  | 187 ++++++++++++++++++
+ 6 files changed, 248 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
+ create mode 100644 drivers/edac/ls3a5000_edac.c
 
-> so you said the 3 devices using this panel are:
->   anbernic,rg35xx-2024
->   anbernic,rg35xx-plus
->   anbernic,rg35xx-h
-> you should introduce 3 compatibles:
->   anbernic,rg35xx-2024-panel
->   anbernic,rg35xx-plus-panel
->   anbernic,rg35xx-h-panel
->
-> but it's duplicating for nothing, to you should use fallbacks for 2 of 
-> them to have in DT :
->
->   anbernic,rg35xx-2024-panel
->   anbernic,rg35xx-plus-panel, anbernic,rg35xx-2024-panel
->   anbernic,rg35xx-h-panel, anbernic,rg35xx-2024-panel
->
-> and only use anbernic,rg35xx-2024-panel in the driver.
->
-> In this case bindings should be like:
->    properties:
->      compatible:
->        oneOf:
->          - const: anbernic,rg35xx-2024-panel
->          - items:
->              - enum:
->                  - anbernic,rg35xx-plus-panel
->                  - anbernic,rg35xx-h-panel
->              - const: anbernic,rg35xx-2024-panel
->
-> (of course I selected rg35xx-2024 as the primary one, it could be 
-> another, usually the older one)
->
 
-If all are happy with this approach I will resubmit a V2 with that change this evening.
+base-commit: 090786479325d85cf9f8565ef802cd6dc62c5321
+-- 
+2.43.0
 
-Regards,
-
-Ryan
 
