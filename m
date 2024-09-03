@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-99296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA44E969653
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:59:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45516969667
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 10:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF0F91C233F5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:59:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA224B22211
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFA120010E;
-	Tue,  3 Sep 2024 07:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF98205E07;
+	Tue,  3 Sep 2024 08:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RV7tkW9H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="spnDgZCq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3AF1AB6C0;
-	Tue,  3 Sep 2024 07:58:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3C220127B;
+	Tue,  3 Sep 2024 08:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725350338; cv=none; b=f0iUgmBYO82X3bz8S2E4k2bCg2wmZFUqAeY0FPydxPmqFR4nkWB6FNIDx8t+ClbxV5hjM+Pr9M8MtwXGJLcwXuPm4AFUtLUOk4BLDoH4b2b4PyqUmZ/fwvM7dFg4vT6hbdBtg3QgAfLW8qiIzgvb5Osrj7I4J6HJ57wDTsEauCQ=
+	t=1725350452; cv=none; b=W1v3gKcTaCYNDNsM5UJnZU24PRiX4Kuq0amWIGwrq+KpUc1LHNvx2ovt5YH1N1jgZs0wcAFP355wgcuNJAvQ3br46gr7oX6zv5R+yCr6OAP51Jak4xEQ2mbTVuj+7+4ytkwe4k0HSezTl5Y6KiZe2ggIvkL2FbdW00xI5/V1AnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725350338; c=relaxed/simple;
-	bh=jMBF1eJfkRU7cRnclh+rfEYRcO0cRqD85aPEPxx1qoA=;
+	s=arc-20240116; t=1725350452; c=relaxed/simple;
+	bh=bY9rS+9Le+E+V2ifcZVbT3PeCL4VZOcHAM6oxFLCdI4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tPYJXzTb/Jn8BuO6bZGad6WEw2i34dO8oIwzgBvfhkRpB29cZqlh7iLQRM7Y4c9z+LYqZkd5UG46E87eR0+tkLM2Uw5LSwLi5/F6EnaEL82DkKFcTgFyJwbZzgbWUvNZrWaN7YBXzmiRxYcXWy8UIXxdsqXXUx2oheYYi58osyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RV7tkW9H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32D07C4CEC6;
-	Tue,  3 Sep 2024 07:58:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Qaq5C7duKWVHcFBcGXZJID/n83hvsHryjL9clBeeJxtY2rxFKRFmfJaPOKs9pJEULYmjavTKuZ2tsVvkRg5txMPBzXFYJFbulrFqZdVDWeZTOxDI2St+B3UZbmzt9SYkNqsKLEeLOij1IMXBZyZVrDH9YuGIfSaQOCJiJBSq+H4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=spnDgZCq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D56FC4CEC5;
+	Tue,  3 Sep 2024 08:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725350337;
-	bh=jMBF1eJfkRU7cRnclh+rfEYRcO0cRqD85aPEPxx1qoA=;
+	s=k20201202; t=1725350451;
+	bh=bY9rS+9Le+E+V2ifcZVbT3PeCL4VZOcHAM6oxFLCdI4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RV7tkW9HQoE1wYSK7zusNyEsAnvWl17yJ76l6NbfdP26mFWaR2gClX4GLjHROoxdL
-	 osFLbvwjYR1WtVHn+Gha22gqzpEHZO+fZ3beNWuP17qhk+UPUPCm8bZBvKFALO2qy6
-	 lR/eHr8OBIiK+dtiUY4vc0z589h5HpcUoWfpP+0sDh7685EKu22xdAQzZYPacLs/+P
-	 sChQyHKRXAfrSY9BEmDYUyOaS+pFfBmi0HlXFe0ZFjK0Ru4tQsUBtWiDJWnsxTeAIf
-	 ux42pjZXBiHxspK/M7v3T1DnSIkLjIp10A8HnXt4x4LkmsrXJrfh9MYMQFe8P3W2j6
-	 04C7QMX6nT8eQ==
-Message-ID: <979d67cc-cbd2-408c-a8ca-a063030bcec2@kernel.org>
-Date: Tue, 3 Sep 2024 09:58:48 +0200
+	b=spnDgZCqKfHOtePmDd287D8BqAjtjBNpdzS2KFqpX17id08/HPXEQ25WxUiDMh+Io
+	 1UcE5g1ZdWxkL7uyvHWsSlHAwdsuJR79FQtMcHajJDeovRgLExda+s5OErIwYl5AG6
+	 n36UOvDgNlLL3gULu9gIutGKw+qncSKw3taVG/Rrr8McI3daz+wljJ/X6jDxr3EZuy
+	 rVza9NbWC+Z9MIcffihrOL2A7pry3m8EEJMEzu5IdDkLrhii2Aj/ThLzUVQhsnbQ4j
+	 Fln/4KuOCBXHimVLQuWLitN0cv45a7xvxdis9L1NBLj9G3V7czM6TVJe5v1RgPVjn+
+	 9wQPFRwYZg3sg==
+Message-ID: <21715065-c48a-4172-98ec-ce48c6a1126e@kernel.org>
+Date: Tue, 3 Sep 2024 10:00:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] Loongarch: EDAC driver for loongson memory
- controller
-To: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- chenhuacai@kernel.org, linux-edac@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@xen0n.name,
- bp@alien8.de, tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
- rric@kernel.org, loongarch@lists.linux.dev
-References: <20240903015354.9443-1-zhaoqunqin@loongson.cn>
- <20240903015354.9443-3-zhaoqunqin@loongson.cn>
- <jkdyayyjrzuhhfaueiessntfdof2m55xjxedkl3zp2jalf4sii@3fo65j64c6rv>
- <549969b7-26c4-a203-b5a0-2e89ab7e7d79@loongson.cn>
+Subject: Re: [PATCH 1/4] dt-bindings: cache: qcom,llcc: add num-banks property
+To: Jingyi Wang <quic_jingyw@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com>
+ <20240903-qcs8300_llcc_driver-v1-1-228659bdf067@quicinc.com>
+ <g7fyt57kzynzpux5nea2v22gcuu24asbr54axzms7mhdh4jq5a@xdyqifloofbk>
+ <ac1b3ba2-ac57-411c-acdb-69d288d88355@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,106 +106,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <549969b7-26c4-a203-b5a0-2e89ab7e7d79@loongson.cn>
+In-Reply-To: <ac1b3ba2-ac57-411c-acdb-69d288d88355@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/09/2024 09:24, Zhao Qunqin wrote:
+On 03/09/2024 09:30, Jingyi Wang wrote:
 > 
-> 在 2024/9/3 下午2:47, Krzysztof Kozlowski 写道:
->> On Tue, Sep 03, 2024 at 09:53:54AM +0800, Zhao Qunqin wrote:
->>> Report single bit errors (CE) only.
+> 
+> On 9/3/2024 3:10 PM, Krzysztof Kozlowski wrote:
+>> On Tue, Sep 03, 2024 at 02:21:29PM +0800, Jingyi Wang wrote:
+>>> Add a property "num-banks" for errata.
+>>
+>> This you said in commit subject and we see in the diff. You *MUST*
+>> explain why.
+>>
 >>>
->>> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
+>>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
 >>> ---
->>>   MAINTAINERS                  |   1 +
->>>   arch/loongarch/Kconfig       |   1 +
->>>   drivers/edac/Kconfig         |   8 ++
->>>   drivers/edac/Makefile        |   1 +
->>>   drivers/edac/ls3a5000_edac.c | 187 +++++++++++++++++++++++++++++++++++
->>>   5 files changed, 198 insertions(+)
->>>   create mode 100644 drivers/edac/ls3a5000_edac.c
+>>>  Documentation/devicetree/bindings/cache/qcom,llcc.yaml | 5 +++++
+>>>  1 file changed, 5 insertions(+)
 >>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 6cc8cfc8f..b43f82279 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -13242,6 +13242,7 @@ M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
->>>   L:	linux-edac@vger.kernel.org
->>>   S:	Maintained
->>>   F:	Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
->>> +F:	drivers/edac/ls3a5000_edac.c
->>>   
->>>   LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->>>   M:	Sathya Prakash <sathya.prakash@broadcom.com>
->>> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
->>> index 70f169210..348030c24 100644
->>> --- a/arch/loongarch/Kconfig
->>> +++ b/arch/loongarch/Kconfig
->>> @@ -182,6 +182,7 @@ config LOONGARCH
->>>   	select PCI_QUIRKS
->>>   	select PERF_USE_VMALLOC
->>>   	select RTC_LIB
->>> +	select EDAC_SUPPORT
->> I think you got here comment before. How did you address it?
-> I just randomly found a spot, and I will put it at the end(next version 
-> patch).
-
-No, the comment was different. You must not select user-visible symbols.
-
+>>> diff --git a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+>>> index 68ea5f70b75f..03241b719c98 100644
+>>> --- a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+>>> +++ b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+>>> @@ -56,6 +56,11 @@ properties:
+>>>      items:
+>>>        - const: multi-chan-ddr
+>>>  
+>>> +  num-banks:
 >>
->>>   	select SPARSE_IRQ
->>>   	select SYSCTL_ARCH_UNALIGN_ALLOW
->>>   	select SYSCTL_ARCH_UNALIGN_NO_WARN
->>> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
->>> index 16c8de505..2d10256f0 100644
->>> --- a/drivers/edac/Kconfig
->>> +++ b/drivers/edac/Kconfig
->>> @@ -573,5 +573,13 @@ config EDAC_VERSAL
->>>   	  Support injecting both correctable and uncorrectable errors
->>>   	  for debugging purposes.
->>>   
->> ...
+>> No vendor prefix? So this is generic property? Then add to some common
+>> schema with proper explanation WHY.
 >>
->>   +
->>> +static int loongson_edac_probe(struct platform_device *pdev)
->>> +{
->>> +	struct resource *rs;
->>> +	struct mem_ctl_info *mci;
->>> +	struct edac_mc_layer layers[2];
->>> +	struct loongson_edac_pvt *pvt;
->>> +	u64 *vbase = NULL;
->>> +
->>> +	rs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +	/* not return if can not find resource or resource start equals NULL */
->> Why?
-> 
-> Because there are multiple memory controllers in the ls3x soc,
-> 
-> but the ECC function of some memory controllers cannot be used.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      The num of llcc banks
+>>
+>> And what are llcc (or LLCC?) banks?
+>>
+>>
+> Will add the vendor prefix and description in the next series.
 
-Then what does the driver do for such memory controllers? Your binding
-is quite clear here that above code is just bogus. It is not possible to
-have node without reg.
-
-Please point us to your DTS and results of dtbs_check.
-
-> 
-> But in any case, a node must be created in /sys/devices/system/edac/mc/  
-> through edac_mc_add_mc(mci).
-> 
-> Then if the ECC function of the memory controller cannot be used, set 
-> start to NULL or do not pass mem resource,
-> 
-> which is equivalent to enumeration of memory controller, and the CE 
-> count will always be zero.
-> 
->>> +	if (rs && rs->start) {
->>> +		vbase = devm_ioremap_resource(&pdev->dev, rs);
->>> +		if (IS_ERR(vbase))
->>> +			return PTR_ERR(vbase);
->>> +	}
-
+You did not provide rationale nor answer to concerns so far.
 
 Best regards,
 Krzysztof
