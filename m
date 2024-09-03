@@ -1,131 +1,162 @@
-Return-Path: <devicetree+bounces-99684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D4296AC1D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:22:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0003996AC2C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:26:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A90DB20CAD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:22:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8034FB23D76
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205511D2230;
-	Tue,  3 Sep 2024 22:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0057F1D460A;
+	Tue,  3 Sep 2024 22:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Og8rOcYB"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MEXBPFRg";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="EkqoBtoD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from a7-49.smtp-out.eu-west-1.amazonses.com (a7-49.smtp-out.eu-west-1.amazonses.com [54.240.7.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3EF1865F0;
-	Tue,  3 Sep 2024 22:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B541EBFE4;
+	Tue,  3 Sep 2024 22:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725402153; cv=none; b=t9bTInej3abMdh0HDriGmEdrdRQD8netN0JKGhxsok/o/uKsKUxgXvDwEZrSjhq3vJF/KQbKnpKzwgec99/KH/oOppRxXR9gjGt7pwo4iD2ZS7TrR0LEvRTr+/0eS9MGq6Uj/ayLkbgH1o6gmTtqySLmw2GWcUqnQtjkdK+41Ro=
+	t=1725402372; cv=none; b=cpAjIhgjNSycgI8VMs3fIX7w5B7eUs4cYwSmEKFpia+7VX0/6iZYjcFoYNCunssLbUhSM+m0zs6nWoTj38PXOYUAUM74yeeJskS7VGX6PPVqdFKquI6A2LjXRhrQW4BkMmJn4zqrynAe7zyZNMKV0Y6Wn8QXXKyJWz7Su3sOkyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725402153; c=relaxed/simple;
-	bh=IrSk1o8ushhaKuCvXST63SQs3d3u8Ubc1CdP9PDsQnw=;
+	s=arc-20240116; t=1725402372; c=relaxed/simple;
+	bh=J75C0zW3aFD9/wWABSs9a0MGOHQsWYII8iomrBYquwQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=arKEZlRTIhFoaO20aciRPFsm/Ue5dN/PGtWClFrrNRd+koTHcuSDTkJ4wCIzb+kvgyGvO0lFgxcWlxlP6NeHnQ4yquLkSHZ17kyHxUYfjqVY/iPzEa4rBH+yzaeQazSSnz0iQNhvIgKYQzMrXQX0+2d2nrEnfNcZGuy8TicMvhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Og8rOcYB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91259C4CEC4;
-	Tue,  3 Sep 2024 22:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725402151;
-	bh=IrSk1o8ushhaKuCvXST63SQs3d3u8Ubc1CdP9PDsQnw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Og8rOcYBdixWlepQIzpJrspZ7kvoBiWT9LsKHvHXdyqJnRTlEjcgASXjE0aIvGykw
-	 AQfbliE++ETMY9X7AOG6J2TFpaNvCDNEpp9MNun0oeM+psjoMgY96zId6s0664dq0d
-	 hn/bhwss9gwn1Wp122WLGZTLFlK5MEsXs46AMnntrzptdAndYxVS3upeGqjGbo4sFP
-	 OZucNOaD7N6rvHfqICq4jG8/kucsZbT59gHbpY42ugqwhsZgV8AqwCHezoDbQfi3eB
-	 1tDZ5kVS1QwS4o97nug1h82No8RNSvZTUNVc3SfkUjOO7F4J9D6bpSOeW0zomg/5Vp
-	 vrjoeDIpf3Agg==
-Date: Wed, 4 Sep 2024 00:22:27 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: Detlev Casanova <detlev.casanova@collabora.com>, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Chris Morgan <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, 
-	Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>, 
-	Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>, 
-	Michael Riesch <michael.riesch@wolfvision.net>, Jimmy Hon <honyuenkwun@gmail.com>, 
-	Elon Zhang <zhangzj@rock-chips.com>, Alexey Charkov <alchark@gmail.com>, 
-	Elaine Zhang <zhangqing@rock-chips.com>, Yifeng Zhao <yifeng.zhao@rock-chips.com>, 
-	Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>, Jamie Iles <jamie@jamieiles.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	kernel@collabora.com, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 3/9] dt-bindings: i2c: i2c-rk3x: Add rk3576 compatible
-Message-ID: <jqrcyl6whje7y4wdxdcul2kvncm7zrbqux7jmb56hvhf2r2c47@rw5g32dznqbw>
-References: <20240903152308.13565-1-detlev.casanova@collabora.com>
- <12506188.O9o76ZdvQC@bootstrap>
- <ycbhqmkwz2hirnvp6j47kz3cxnli3db3i5ah76gngrezs5ww2r@57x2gxnr5hyk>
- <23007922.5W6oEpyPa8@diego>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cygvHyDJ3UYjOf3vkNW0+5TtH9aSfH73H1EjogbiCbHmtsGHRSdedrbqAzBk75Gs+BVNxXSqxqniEegtYpMtN7USvAkZEg6orBVfXpjiPqZP5m1MoEa8Nsxtx8rn+59BDKMJPD3JC2y0SvdalH1C/HHhsWvtFuItV1U97o7jCpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MEXBPFRg; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=EkqoBtoD; arc=none smtp.client-ip=54.240.7.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725402367;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To;
+	bh=J75C0zW3aFD9/wWABSs9a0MGOHQsWYII8iomrBYquwQ=;
+	b=MEXBPFRgWQzDuhb4aVPME+9Kz2deQ65lINz1o1mGUKLs32qYu18Mrn9xFasjDxaP
+	3+RL2g1YU6QKnBGHi5GAVMrN8jcFd+yYBNMB9k39HDTXwNd9wnFrvsgCyY1eoVrDlVz
+	gnp21UzehZ/c74v9AXGD6YiwBn/pUnovJfykY0/g2lYbjwoIRQwHoPDqIOPoRmXQKwX
+	qB5LQKNmcJtJC7Sl7BnomSp+sKYaiE24GnClGQAJEosT8Y8zpiPMmTNuhUSkixF9LEw
+	c1gvnZGViAKu9U9wt2t531g8AaLrfvE5QNUWR9MHH/HCJ3KXWb2yhpy6cWYdz1enPV4
+	1MvtoSWdZA==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725402367;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Feedback-ID;
+	bh=J75C0zW3aFD9/wWABSs9a0MGOHQsWYII8iomrBYquwQ=;
+	b=EkqoBtoDhy7s0jSAZhVw5zM0N10sN2c5ethkUQsDhM5fhjrGzto4Z3RloidOQO78
+	7VFdFxnOfiFVnDIwZrUNbsTLXrGgQsNZjhUzV2WKyQj/R0LDjpzPjHbouW6e7jFQ2fX
+	SHYv+atVdMhujose+YekUUYPOfwxdzb9rgUQ53N0=
+Date: Tue, 3 Sep 2024 22:26:07 +0000
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chris Morgan <macromorgan@hotmail.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev, 
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
+	quentin.schulz@free-electrons.com, mripard@kernel.org, 
+	tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com, 
+	u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org, 
+	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org, 
+	krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de, 
+	jic23@kernel.org, jonathan.cameron@huawei.com, 
+	Philippe Simons <simons.philippe@gmail.com>
+Subject: Re: [PATCH V4 14/15] power: supply: axp20x_battery: add support for
+ AXP717
+Message-ID: <01020191b9fec51a-2b9bc6b4-37b6-4651-9127-b0ab066262b3-000000@eu-west-1.amazonses.com>
+References: <20240821215456.962564-1-macroalpha82@gmail.com>
+ <20240821215456.962564-15-macroalpha82@gmail.com>
+ <kpcnvalhcfzludd6ifjn4mkeipihkselgr3e4bzog2zfyap4jz@ib7cg2drpd4p>
+ <MN2PR16MB2941BBB5A36AE70195F3D1B2A5972@MN2PR16MB2941.namprd16.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="f3sncq3laka6j44d"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <23007922.5W6oEpyPa8@diego>
+In-Reply-To: <MN2PR16MB2941BBB5A36AE70195F3D1B2A5972@MN2PR16MB2941.namprd16.prod.outlook.com>
+Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
+X-SES-Outgoing: 2024.09.03-54.240.7.49
 
-Hi Heiko,
 
-On Tue, Sep 03, 2024 at 11:59:12PM GMT, Heiko Stübner wrote:
-> Am Dienstag, 3. September 2024, 18:47:17 CEST schrieb Andi Shyti:
-> > On Tue, Sep 03, 2024 at 11:59:34AM GMT, Detlev Casanova wrote:
-> > > On Tuesday, 3 September 2024 11:46:00 EDT Andi Shyti wrote:
-> > > > Hi,
-> > > > 
-> > > > On Tue, Sep 03, 2024 at 11:22:33AM GMT, Detlev Casanova wrote:
-> > > > > Just like RK356x and RK3588, RK3576 is compatible to the existing
-> > > > > rk3399 binding.
-> > > > > 
-> > > > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > > Acked-by: Heiko Stuebner <heiko@sntech.de>
-> > > > 
-> > > > I will apply this after 1 and 2 have been merged.
-> > > 
-> > > Sure, although it is not really dependent on 1 and 2.
-> > 
-> > yes, but I want to be sure that everything is coming in.
-> > 
-> > > > BTW, who is maintaining rockchip.yaml?
-> > > 
-> > > Heiko Stuebner is the maintainer of Rockchip SoC support.
-> > 
-> > I would guess so, but I think we should also add the entry to
-> > the maintainer's file :-)
-> 
-> now you made me doubt the wildcards we have in place ;-)
-> 
-> # scripts/get_maintainer.pl -f Documentation/devicetree/bindings/arm/rockchip.yaml
-> [...]
-> Heiko Stuebner <heiko@sntech.de> (maintainer:ARM/Rockchip SoC support)
-> [...]
-> linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
-> 
-> So Maintainers seems to be correct ... *phew* :-)
+--f3sncq3laka6j44d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Normally I check the MAINTAINERS file where the rockchip.yaml is
-not listed. There is an "N: rockchip" under your name, but having
-it explicitely stated wouldn't hurt (as it is in other arm/*yaml
-file. That's why I got confused at first.
+Hi,
 
-Anyway, sorry for the noise.
+On Thu, Aug 29, 2024 at 08:11:09PM GMT, Chris Morgan wrote:
+> On Tue, Aug 27, 2024 at 06:24:42PM +0200, Sebastian Reichel wrote:
+> > On Wed, Aug 21, 2024 at 04:54:55PM GMT, Chris Morgan wrote:
+> > > +	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+> > > +		ret =3D iio_read_channel_processed(axp20x_batt->batt_v,
+> > > +						 &val->intval);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +
+> > > +		/* IIO framework gives mV but Power Supply framework gives uV */
+> > > +		val->intval *=3D 1000;
+> > > +		return 0;
+> >=20
+> > I see you followed the existing pattern for these two drivers. Can
+> > you please add another patch, which converts both drivers to the
+> > following pattern:
+> >=20
+> > return iio_read_channel_processed_scale(adc_chan, &val->intval, 1000);
+>=20
+> Would it be okay if I sent a patch series on top of this one (rather
+> than rebasing now that some of these are starting to get pulled)?
+>=20
+> It's probably a simple enough change so I don't mind.
 
-Thanks,
-Andi
+Yes, please make this a follow-up patch and update all occurances of
+the pattern in axp20x_ac_power.c, axp20x_battery.c and
+axp20x_usb_power.c.
+
+Thanks!
+
+> > > +		 * AXP717 can go up to 4.35, 4.4, and 5.0 volts which
+> > > +		 * seem too high for lithium batteries, so do not allow.
+> >=20
+> > 4.35V and 4.4V batteries exists. You can find them when you search
+> > for LiHV (Lithium High Voltage).
+>=20
+> Do you think I should add it then? Full disclosure, I basically opted
+> to not add this because while this series was written more or less
+> exclusively off of the datasheet I did peek at the BSP implementation
+> and I think they restricted these voltages. Again, as a fast-follow
+> once these patches finish getting pulled (I can start work on it now
+> though).
+
+Feel free to ignore that information. Support can always be added later
+once somebody needs to use the chip with a LiHV battery.
+
+-- Sebastian
+
+--f3sncq3laka6j44d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbXjPwACgkQ2O7X88g7
++pqfNQ//b9NVzVqyM1E6kjRdA9UPORt9gmyCNkVelM/Azk9IISpM9rsV+glJ0qcr
+l/6Y1b9kYMG4aEf0h52WeXVh7lAutxPTwrW13KqmWuj7Kv5aE2dhUAOWN07RhC4w
+P3cA2y1nP9lOrS4NR4Pc1NXU1PxkQW9BPSF/UessK9h2lkWVNw3BQJhGrcblnvZi
+k+qDB0k801cuWaraHvVrU5RgpVSl4GS8d9HTIpnoag3BIIgBVGZShMLxSEGNHKis
+MWTNRWC1ZTHfyM8hpIECmYEjuOaaOTyY48iuhEHO4h1yQLxGCNhyQYl+CnnM9ntF
+sgTAsWAywAulpUb5clG50ewC66SZrGTfud7Nbo943Js4H0cs1L351KlkFVXaZ9m5
+iXAjFpPreH+9EFtBRBzg45k6JfJObXbZAKxWwMNhtckmh2Y9qHmBXL6LykYxpWut
+iCP7SlUjPAyWLJb/h0BG4fItRZebmb+dTyALl2xdceTDUvv5RicBA+GCyIcIINLb
+ak536WLkIgM16VfHA3qL1xI7wlEXBSSJfSL4TBFNMR0UMIaVs6mgLFh/sq3dh66H
+t0mNAshlYlYbnp9C9HNY2GdV9h/m8VPWNetiOpf6hKDZItUEoGvx0kLnvCckbsLo
+5hePZpjMpBd5iFnNprVA9kp3BryXybT84Wz78Iazq4Qdg2YzOjY=
+=c/Zb
+-----END PGP SIGNATURE-----
+
+--f3sncq3laka6j44d--
 
