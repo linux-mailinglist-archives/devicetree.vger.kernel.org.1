@@ -1,80 +1,95 @@
-Return-Path: <devicetree+bounces-99242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815D6969471
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:01:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10ABC96946D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 09:01:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E90DEB233A1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:01:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B01051F23D90
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 07:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FED1DAC72;
-	Tue,  3 Sep 2024 06:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08A821D61A3;
+	Tue,  3 Sep 2024 06:59:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IwJdRubT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QE/aQmHJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230A41D6185
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 06:59:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50031D6182;
+	Tue,  3 Sep 2024 06:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725346783; cv=none; b=D8vPmJqQYamCALK7OZBf2aPNFXFp+Hmk3whQHE69rYgNURf7VTcvPRtBGVM42bGnpHAK6/hjuMcHgtu3568msXvYEXF0SUl4MCs1Q4QnoiCEX2G5qHVEe2mbWfl07+LNcUiYBlK3XDpStBXrFMLxO99r+jh/pCv3f2lxsjy5rok=
+	t=1725346769; cv=none; b=AFbyn2euJnSXxtjC0J066gK+MUqp65vKugEngnvG40ww1arPQPEOetLRdDpszLTY52VASu5FSexvhP7eY9fUOh653dy/0hknL+jHJfkk3n7d30E5QEpDxOVyTUKBONtHmlrvAHMbKFUO64uPZvin3uMRkRkJh6mB8tcjqjeIZls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725346783; c=relaxed/simple;
-	bh=13hTXJBOUaHkpft0WgtH3Lgjq3FE4hbFwAehR9W1beM=;
+	s=arc-20240116; t=1725346769; c=relaxed/simple;
+	bh=JNtXEBV6t/Ur+CoAftaJeKqF0v5X7Y8stmeb2ra32hc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fEIs32gcqY3yyTFQh7Qcjd221vB/sg6/KXUgYRx3WiydQKydgfkLEs1mLvmhxElg7Uh9bRCSdBAkJP4NuuPfYSxqAVOLcx4OjJY7zxKBjAjJshnawYPgeO7O265DxnNu8ENNjzcMDdtgCoV86kRw016crNcb+aylgeBJiB5jITI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IwJdRubT; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Xzdx2PlkgXu/ukcJYsdXxV7bCTw3dgWJdAMWL0imyRM=;
-	b=IwJdRubTv9IJwtRX9NdE7QK3X0o2HwzOro7gcjCM6P8+Nv7s8xoo6xtNJD4Ax0
-	cME9upOQv/MdzXULv1irqFmtefaJrlNF6qdQJxQfqPim47W6oIBFX9IlCkafMR3B
-	RU5VymbXkBQm/plUXmqxzetRiuuXCVZr+JYHkiuakOrY4=
-Received: from dragon (unknown [114.216.210.89])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDnzwK6s9Zm+DxaAA--.426S3;
-	Tue, 03 Sep 2024 14:59:07 +0800 (CST)
-Date: Tue, 3 Sep 2024 14:59:05 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, LW@karo-electronics.de,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] ARM: dts: imx28-tx28: Fix the fsl,saif-master usage
-Message-ID: <ZtazuUOj0Ag6N23T@dragon>
-References: <20240902181036.924188-1-festevam@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iSFbYYAe2nQab4YcOOJr1LHbXA0liB+UF10i1C2hKaGjIscUzJqkCbrGYX1edQsx219FqjCMUGwfWUtKajHwnM8CrEYpMk/rxywA/640Hp+jCVlgR0NlmlvLuhQsHUr87iWKW2ByvCZ7punrnoZ/PT/snUgUlNWs/VoeIxW4clc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QE/aQmHJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F8F0C4CEC5;
+	Tue,  3 Sep 2024 06:59:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725346769;
+	bh=JNtXEBV6t/Ur+CoAftaJeKqF0v5X7Y8stmeb2ra32hc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QE/aQmHJ+zVpDV5boPwwYuT63zREd59/h8vxKHTaTTq3W9Z7SLSfpkTbxUvuqXbvP
+	 VJu5fLGtycdEbb90lD5X2JhzOtEfcSe1MvHL4kSd01cEw+Tq3s14zNOGPGxTT6VPvJ
+	 2cAS8V9Gf/VzvVX9xBlK+dikTdTN6O7xu6RKxinEfP2jI6yc/KLDS4UdrJhbpXAby2
+	 pPXwG2W/h7+k1fWMAlKxY63k38ceOknutaoNI0m+P1LeSMV3XQHKfBb1De/+v/z3rh
+	 7RX/37leBziWWnY9CpkY1kmT9CaVSRBusAuDypA8aGI6CI4Zgss5Ou3S6TENeRtc1v
+	 Pcb9LRjFdZZTA==
+Date: Tue, 3 Sep 2024 08:59:25 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+Cc: angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, knoxchiou@google.com, 
+	hsinyi@google.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: mediatek: Add MT8186 Ponyta
+ Chromebook
+Message-ID: <a2jklrd7ozek6n3rhjby5pck5yho4g6ckxkii4toxf3s3k3pbi@mfvdaoz2ki6a>
+References: <20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com>
+ <20240903061603.3007289-2-cengjianeng@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240902181036.924188-1-festevam@gmail.com>
-X-CM-TRANSID:M88vCgDnzwK6s9Zm+DxaAA--.426S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcR6zUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRpPZWbWeZS49wAAsr
+In-Reply-To: <20240903061603.3007289-2-cengjianeng@huaqin.corp-partner.google.com>
 
-On Mon, Sep 02, 2024 at 03:10:36PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Tue, Sep 03, 2024 at 02:16:02PM +0800, Jianeng Ceng wrote:
+> Add an entry for the MT8186 based Ponyta Chromebook (custom lable).
 > 
-> According to fsl,saif.yaml, fsl,saif-master is a phandle to the master
-> SAIF.
+> Signed-off-by: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> Change it accordingly, to fix the following dt-schema warnings:
-> 
-> saif@80042000: fsl,saif-master: True is not of type 'array'
-> saif@80042000: Unevaluated properties are not allowed ('fsl,saif-master' was unexpected)
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 1d4bb50fcd8d..410145976272 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -257,6 +257,17 @@ properties:
+>            - const: google,steelix-sku393218
+>            - const: google,steelix
+>            - const: mediatek,mt8186
+> +      - description: Google Ponyta (Custom lable)
 
-Applied, thanks!
+lable? label? What is this?
+
+> +        items:
+> +          - const: google,ponyta-sku0
+> +          - const: google,ponyta-sku2147483647
+
+maxint? Really?
+
+Best regards,
+Krzysztof
 
 
