@@ -1,106 +1,117 @@
-Return-Path: <devicetree+bounces-99207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8E29693BA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:34:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 560159693C2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 08:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1730C280D58
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:34:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F38381F245CD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 06:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7206C1D54FA;
-	Tue,  3 Sep 2024 06:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40CA1D3195;
+	Tue,  3 Sep 2024 06:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="i4Lt/3da"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U20Mecf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6441D54D2;
-	Tue,  3 Sep 2024 06:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72424315D;
+	Tue,  3 Sep 2024 06:34:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725345226; cv=none; b=EW70vryCAUGiGAWu8ZpZUDjPXam5rmN8N5BELLn2Iy20i5irgX6rpzFq6QoJ8QZaPqVGsNfHy7B1C6EIKUoJztYXS3WW3rDos9FBSp4vtjHFOEmfAPGFY2sQ5V0dbfElU9U7EPjbL/7bkqkchcPHiMaiwPcPYblDe8a8CXrN/Vo=
+	t=1725345266; cv=none; b=PfO8fO5PEx6CRQN9f6DI4/GSwi0gP9r94CAGDhwuVBizny035gyJB8VtusZUTnwTydy5oJlGMtw6JkTdn8GLGHS8XZFthqFjoFJzO8MVN9fm2lhoBhx63W24ADj7+FZSuMMrCHsHnI8lG9h6eFFRlV0KWmrfZiQhJ420EvFC5zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725345226; c=relaxed/simple;
-	bh=0X5JD1dKXlRjMro9PE7Xoxlt20rlpE2CIb0nggH/kC4=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=fr1CmuzXibTWrZhpoecRh7l8wG65G9oY0TZM3uQwdINBpQE0xYMY2TuOKVGBGu1Vt041vEDFu7kW15ut68zAk7JCDnpm264LW3mgK6asPyG9JexTovgG6eIjdOFJQ+jY1YE3JHqOF420jIRoUWSYzsVEj3upIrawF2XgDHb6LcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=i4Lt/3da; arc=none smtp.client-ip=212.227.15.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1725345194; x=1725949994; i=markus.elfring@web.de;
-	bh=0X5JD1dKXlRjMro9PE7Xoxlt20rlpE2CIb0nggH/kC4=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=i4Lt/3daxsTzXVqbQcdzqz4DeWpUFHPsA67NnLaf06eVWIzQ39hEszelNn7kSFWR
-	 AZ4RE+mL+OtuKCtYS1ZvQnbqP698Xd6ZfCwDipxu/qmKtLGtGgetD3Fkwsq3p6F+e
-	 eHO9Dw6Xw5pq+2kL8VyDzez4h0GB7+9y14KdeHtMy4PRf/EnCX8C0I36s5LUVg/Ef
-	 90QEOxl+Bmra2r5V1cgKfi96IHpqizKevnPDAempffsObjx2fCCPJ2ZjBmyBDPz9d
-	 N5y+DQJeYkAv/nONzXjq/u5Phv13xn77YhhqiL1cv4U1ypN0KamUpKtNGUfyd94eh
-	 I1M4c7F9jTwFEcluCw==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.84.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1N45xt-1s3Xq705ib-00yDDw; Tue, 03
- Sep 2024 08:33:14 +0200
-Message-ID: <f338a355-4ce6-4d63-8659-21b9d6c7eebc@web.de>
-Date: Tue, 3 Sep 2024 08:33:00 +0200
+	s=arc-20240116; t=1725345266; c=relaxed/simple;
+	bh=ykvQKbVww2Pw3qyF6VdYZp/tM+a7MHm/vrFWiPtbsLk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g1umUX5gLGTwhvTIrwms/LmTD935D+2mk5sbRJxTlErmXD0HM6K+Oc7qk9360ROO944Ti8Aq/gbyN5RAiFapsmbIF5Qby5IrejKV91nVP91Dp7goCXuMdDZZkUF2F/GWAu6oKgq/ncG+4OvFeCnb0dckdXe5FRHjpdgP6Xi9oqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U20Mecf9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 464FCC4CEC5;
+	Tue,  3 Sep 2024 06:34:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725345266;
+	bh=ykvQKbVww2Pw3qyF6VdYZp/tM+a7MHm/vrFWiPtbsLk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U20Mecf9A0iMms5Km6GEmVgPwsX2TZKhNHZbTUlG9hoPKowpZ9q/pGcWPOqd1vuYC
+	 D/KaHdf+OJVpgDqm8YgzYBSt6STVPLhPgie+3H0JtLeiVIdDWanEgrAQuvXp9ICZvA
+	 2kxF56/fd+95qwf9FaPHuiaN3vD45H2w1ngMKzgxSIQYU6HqlGBfIMOpR5JmiUN2nt
+	 9StK46jDWEDBvgOw8xej3/rqp3dqLLuLclZnzlwrR/QfuKC1lE+9rFcyGxk2NldIcs
+	 Gxwtf8ghu3QN9RG5IsED2ei3Ags2V1/y3WVhx5HruP7gP/py+cePehAE3+VzreiEbX
+	 k0ObWsWP976Zg==
+Date: Tue, 3 Sep 2024 08:34:22 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com, ang.iglesiasg@gmail.com, 
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com, 
+	semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v5 5/7] dt-bindings: iio: pressure: bmp085: Add
+ interrupts for BMP3xx and BMP5xx devices
+Message-ID: <mdxfwawym2tn3afsbq4jmygfkdokpleb7p2deomraqwjc6k5qu@laj4j3fw7k2x>
+References: <20240902184222.24874-1-vassilisamir@gmail.com>
+ <20240902184222.24874-6-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Zhao Qunqin <zhaoqunqin@loongson.cn>, loongarch@lists.linux.dev,
- linux-edac@vger.kernel.org, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Borislav Petkov <bp@alien8.de>,
- James Morse <james.morse@arm.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Robert Richter <rric@kernel.org>,
- Tony Luck <tony.luck@intel.com>, Wang Xuerui <kernel@xen0n.name>
-References: <20240903015354.9443-3-zhaoqunqin@loongson.cn>
-Subject: Re: [PATCH v2 2/2] Loongarch: EDAC driver for loongson memory
- controller
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240903015354.9443-3-zhaoqunqin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:4Hlp5eHDrSoTYVZtwFAtDx/TeawGpx05iO1xdWvBpc/dEbAIHHb
- mk2GdAM/RmmWc8X2mjY65VmHrH/pdO58GL5cLR+XpGcVFS7ja2Ebf0gDRBLzivF1YWpBFrP
- VTuafOk2YhupyuIGmEM44aLOZc5XeazfatyjqEHLohUZQXy3zWnW81ye5qwwb6pzTGK0jQm
- QyZ9BhllqMAtHliWSZRCw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:kkAEESP15LY=;CORj+QSknKwLWZYgR2mUgJt54FQ
- sgHt+w/sx+JlcCyaoE9dOyagoLj74/2W3vHOBTeD4sMPNSXBwYe9W0JOcMslPC0EgkbrwOqJT
- Yqmy8QmFlgJM+8DvJv9dCuoZT9X9yvQSD6E9V3xT2SD3UYeg5hmLXK/5kYW9FevcfdZgZja/o
- NaSXxJchzRmefuxJFeA7uLqCP2DAC1rxNCxu/U5UEOOkfkqkbs7NCugRylpJEfXe9YOMzOIaR
- CftXgqR1+//tEX1NMz2L9ghVekTkxdI6X963+ZnQ1RmHhbE6delAOF8tZwtEaACsE678D8VBG
- R6ZO5dK0N93cZLA8hYb1Ypgw9Q4qiZCpX3r236CuJNTe7BRMBpmlO6hwm2NSYGkOCgS64hAoT
- FhYEefxqOZy6CTzZ8Wac/bLSUgXXsCuYnPVa0NrLRYN9/2iPP435aS4Ll1dWSv39f9Dw6xw42
- RDG04lHXxuzYK/prJASUiM/YtfVF57MfaQrfo1Ow8aUmo+5dfaZKPT8BrdU7Vs2jNwpxX5gcw
- dg1/tbNQc/Lcehz1yhbJizpnoK6It98WKlOh5yyU7aSfIt0KSvhtVHr1ajR5mRh8tiYz2NGSx
- g4asoFM47jCWO+oJ84DD3nNilGOfpGMu7pPDlDTc9fW72OqxtrkOEnrlxxDYLmhYMVDr+ac1j
- 8jUdLH+pPPZGyGvMPJvw2gmUQyVGsoA5cICWAnmUeNTnaNIsRrmGArYavtPWqVIffho5p46HX
- Y9FGVLM+CBzg8mfaR5sBinWABjv6O8NOzeyZzwS/wjv3C028g+E+tPQgvZTy6H/J6QVcvsGbN
- jVAjhWYcrj0/ACoyjda8j1uQ==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240902184222.24874-6-vassilisamir@gmail.com>
 
-=E2=80=A6
-> +++ b/drivers/edac/ls3a5000_edac.c
-> @@ -0,0 +1,187 @@
-=E2=80=A6
-> +MODULE_AUTHOR("Zhao Qunqin <zhaoqunqin@loongson.cn>\n");
+On Mon, Sep 02, 2024 at 08:42:20PM +0200, Vasileios Amoiridis wrote:
+> Add interrupt options for BMP3xx and BMP5xx devices as well.
+> 
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> ---
+>  .../bindings/iio/pressure/bmp085.yaml         | 22 ++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+> index 6fda887ee9d4..20b75865e02f 100644
+> --- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+> +++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+> @@ -48,14 +48,34 @@ properties:
+>  
+>    interrupts:
+>      description:
+> -      interrupt mapping for IRQ (BMP085 only)
+> +      interrupt mapping for IRQ. Supported in BMP085, BMP3xx, BMP5xx
+>      maxItems: 1
+>  
+> +  drive-open-drain:
+> +    description:
+> +      set if the interrupt pin should be configured as open drain.
+> +      If not set, defaults to push-pull configuration.
+> +    type: boolean
+> +
+> +
 
-How do you think about to omit a line break character from such a string l=
-iteral?
+Just one blank liine.
 
-Regards,
-Markus
+>  required:
+>    - compatible
+>    - vddd-supply
+>    - vdda-supply
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            enum:
+> +              - bosch,bmp085
+> +              - bosch,bmp380
+> +              - bosch,bmp580
+
+Are you sure you tested this patch?
+
+Best regards,
+Krzysztof
+
 
