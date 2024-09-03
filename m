@@ -1,143 +1,130 @@
-Return-Path: <devicetree+bounces-99582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A483296A442
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:27:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A62A96A44E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 18:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6A181C22BF5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:27:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E99AF1F24E73
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 16:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53B718B499;
-	Tue,  3 Sep 2024 16:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C11A18BB9F;
+	Tue,  3 Sep 2024 16:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UOtWxojh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="obYyIdBi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB8B18A951
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 16:27:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92EB18A94E;
+	Tue,  3 Sep 2024 16:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725380862; cv=none; b=ceWiQQDdBzK+B5iEhzg6Xyaw8lPpuqPVxpt02T5O+9Lenua17kHLIpf6ao7dsPjhjUk9lJ1s0/a4oM5CzuB7JCa/njs5rkBSN9QLHClQeravwAdZc/umjHgha6lDWZoNLWq4zs3CZSyaFPkpHJ6rYB+MP10UWNtznvp4TsacImQ=
+	t=1725381005; cv=none; b=lwscdmrWhaVNOf3wsAX4ZoR6uildN6iFy6G1a6plCR/inbwzw7KkMvG4cqAaSc9gudvyE/Odxpcl5mS2lj5iK90rtnPdoPwYJRS6GbjFl1NCXHj8GAeNn4kxtRGRs1Fdb8tVOCfvm+rfmXo3xjdjtgLyrVuRmgylpeV9KjDcVRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725380862; c=relaxed/simple;
-	bh=y4lqeonZkRRoG/8McwnrcegzTshsZjBbdKfCusayZxA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hohHD72G7V8xgWJZSDSSshZFdRkRIDfuIjV0/0l+qlsVq0U/Z3hu4QZnwna86zW60/BuNZWMBgTSqWTvi7Naj2JIRgbnraBC3iAY4NG1TDqEJeE2UL7awPU9uTMW/3VVU35PAJZAUacBtZrldhD5IgFXkIUGzdD/hE9rg4InAqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UOtWxojh; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2053616fa36so34270935ad.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 09:27:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725380860; x=1725985660; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ViZ2Qk+Vtw2VzGYfDD4Bo4v3B7DoDiJQtKRYgmWotpA=;
-        b=UOtWxojhBO3e4vmRfp2/zG14z/p4m90JO3I3RSV2/R38ma633Eme1KUEGv3pyiqMa/
-         c5gPkbJlZio67ASTs8h7DFuyCGA7X0Z+meu3VB65Jf2B7TcirNI5llzaIH1knP1j2U9x
-         RMQzDDEglmWarwXh55IY1HLjOC/HlBozRc3bNB8NBjcK8MjoNihjIOavliVLJXl6gItv
-         k1H2tYHFbzNNSelgZEU2yPbcqif84xgvsSAnvjG8fXXlNjdkB34pcCD7EarHojbnLuEY
-         +3gJA7+117KdOiX81yMTPKSjeTdD4Tzm9wMMw2yPROK6/gankWID0O8B6i1GVdc4yhPH
-         t9YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725380860; x=1725985660;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ViZ2Qk+Vtw2VzGYfDD4Bo4v3B7DoDiJQtKRYgmWotpA=;
-        b=cuhDu6qryBtpfYTmENV4ShG4PUz9mxZZhrdi3ivyoNX1qiMOEgwVPfJuP4uMb5L4F/
-         Xuw9ybnbHf8EwwjKqXEEG1e27wBbOEvfpNjhZRhcNvEFIcSaq+hgbAkM1Ow346/qvWz/
-         Z5escoi5c/IgdcK4KDZ1gIFdXxTqwWL9iY/EdjGwVgJYgjbJLWlzwojl2H2SPSHyED+/
-         mSir2OS5x6Q0JWrya9gPZMQ9SqUn6O2KqaSOA/bn8Qv03sLI29Qvcji/RwgrevGrLeGT
-         mMmRWfGu6WNa8PLTHfIQZIPbFrAjfxq0vpN+q7RaTmgHSV1omr2Zm/oRdjDZ5YJRHMHh
-         FXqg==
-X-Forwarded-Encrypted: i=1; AJvYcCU7WNui+duSU7KfaoCnAU6iKIT8/VrgZgCwjJu8j+X2oHEidyIJUKSfBfXs7bFDJi0IgPPgfs938BbA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYl+BIO4KMBRLBy9I+4Z9Hjt2IK1E+QNRo9v5pdkpq07FVy6Qh
-	IaTsGcUMdw9Q9B3abTVty5n1dsvUpGNu76C+DBl+9w7HJkUHLCBXdZrZpg==
-X-Google-Smtp-Source: AGHT+IFWoAsi71mQ5SIl33bBxgwV2NfZspH9Nu1mtON226BSC45BsRnCT2jmiAIN44wzjafp79E0Zw==
-X-Received: by 2002:a17:902:d48a:b0:205:968b:31ab with SMTP id d9443c01a7336-205968b34cbmr33233955ad.58.1725380860399;
-        Tue, 03 Sep 2024 09:27:40 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:ec5f:2356:2bac:7d11])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-206aea37cc2sm466115ad.160.2024.09.03.09.27.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2024 09:27:39 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: mripard@kernel.org
-Cc: marex@denx.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: lcdif: Document the dmas/dma-names properties
-Date: Tue,  3 Sep 2024 13:27:29 -0300
-Message-Id: <20240903162729.1151134-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1725381005; c=relaxed/simple;
+	bh=ZB0ZGid7oYvX+NEZ2K4bE2HWU1BmgbIDt4uG0XbOQ00=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=TtbNDjkIHuRntod45Cwbp+0Vx0bZ7GwSbuZkz8AH0lFE8XH56Pw9ocq//GWcOuCZZyHN59P/xVD+UIYCbyvOrkuKmHkxKwGZJ7CDyf6bY7GY60bcr80uK7miUdv1O8dql70xCq9FCf9boea36fCH1seXlJtV+6n6b9w6NISLTRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=obYyIdBi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C65EC4CEC4;
+	Tue,  3 Sep 2024 16:30:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725381005;
+	bh=ZB0ZGid7oYvX+NEZ2K4bE2HWU1BmgbIDt4uG0XbOQ00=;
+	h=From:Date:Subject:To:Cc:From;
+	b=obYyIdBi0lHyyRze0F9LXfG3EYfQ3K2Ec2vQyalVmEezN0wqQ645aFB/1OqMgJle1
+	 O2TpvXlGt8N2LpVsrG5vH2y6JCNTNhPIek2dVQHOhCWATjfGLXCtwxvSanqPh/sAyj
+	 nHd4J7n5SxJLL0vo34KObKKHHH1x3jFl0WD4u+V13WC3uHLoXuxZXX+6eJMFN00kEn
+	 gCSkyTbUiA+HJRqKe4r272tzHMsttb/Xcm81pKSNsderfddwX2XHWpNJI2NCqrs7Xf
+	 gPZv+s8FORKHdv2tJXoFlnlBd+CdIo/vbOO3tLLxndb61nmLQgg0WzJyvwWGa95D+D
+	 f4QzY23Lpn6wA==
+From: Roger Quadros <rogerq@kernel.org>
+Date: Tue, 03 Sep 2024 19:29:57 +0300
+Subject: [PATCH v2] dt-bindings: mtd: ti, gpmc-nand: support partitions
+ node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240903-gpmc-dtb-v2-1-8046c1915b96@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAIQ512YC/23MQQ7CIBCF4as0sxYD1Gh11XuYLugwUKLSZmiIp
+ uHuYtcu/5eXb4NEHCjBrdmAKYcU5lhDHxrAyURPItjaoKU+ya6Vwi8vFHYdhSWNpDuDbjxDvS9
+ MLrx36j7UnkJaZ/7scla/9Q+SlVDictVoUJFrEfsHcaTncWYPQynlCyBjt9WhAAAA
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ Nishanth Menon <nm@ti.com>, Enric Balletbo i Serra <eballetbo@gmail.com>, 
+ Javier Martinez Canillas <javier@dowhile0.org>
+Cc: srk@ti.com, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@kernel.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1396; i=rogerq@kernel.org;
+ h=from:subject:message-id; bh=ZB0ZGid7oYvX+NEZ2K4bE2HWU1BmgbIDt4uG0XbOQ00=;
+ b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBm1zmJbaVP/ewIJ9pyrYDtWXsaHySvmZFudVp4y
+ qiaMKE3kUKJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZtc5iQAKCRDSWmvTvnYw
+ k921D/9P8/VEILXiD9ZI1cn1LOZMD27ku1ZqmP9k0r3XFDDrmuuJhm7DKSetMG6jU7HEVEEDYvU
+ qIjK5KlIY6XJfWcrvo5eVhPXrUD3NChWFYdOz8Os1TIxlsP153tC50xZ7vJ/1HtHJk94zR6cYhX
+ wZ9zB9aWQqe8u78Fn9KFovJlmpmn2ABDIbNBuW/l6nljG9QOwWhNRm8KgcmcERfIkof0RQUl6st
+ oni8LAqlLfaUkH69B0nd/PotqKpvGsr5xv0/W5TDvqLLj4WtFBMEVk/9dzxm0MUqnxm1czWtezT
+ Y47sbwzn9gCcgBEV/ZJ9vpxCJalNnAa3kigTmf0Kr/j/8ptmsNYVo46CQrxFbbqXxfvLMjSZ/dA
+ WT9zLxy2ji0hCHYBl6h80EiwfijSLT0Dx7yCz/PYQFLV10WOr9UiHJIDqY9o0RRw3oXkZj/JpBH
+ Ygeo0wpv5+fbxUx8igsC5Z2oa/PXzfsnw5EEGtz2gY5gU1Y2gNMXfcwXglIq+AHx3CoMJJvUbsu
+ foZkWHPL1OXkIf6tTEb0WeEeehAzYrJ2ggLBWGk13hzqth0WWBYKyMqugAsLXCK8fQ3TtMTILw+
+ SuMa1Vyks4q9F60ELtKmqK0yXbO1gtC1G2kxDbuLpJO/u0wofmC3eEpKyiOrAdch1gyyVlQhxzV
+ I+QnRMJUTQ1DEJw==
+X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
+ fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
 
-From: Fabio Estevam <festevam@denx.de>
+Allow fixed-partitions to be specified through a partitions
+node.
 
-i.MX28 has an RX DMA channel associated with the LCDIF controller.
+Fixes the below dtbs_check warning:
 
-Document the 'dmas' and 'dma-names' properties to fix the following
-dt-schema warnings:
+arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: nand@0,0: Unevaluated properties are not allowed ('partitions' was unexpected)
 
-lcdif@80030000: 'dma-names', 'dmas' do not match any of the regexes: 'pinctrl-[0-9]+'
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
 ---
- .../bindings/display/fsl,lcdif.yaml           | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Changes in v2:
+- reference mtd.yaml for standard mtd properties like partition as
+  suggested by Rob Herring.
+- Link to v1: https://lore.kernel.org/r/20240830-gpmc-dtb-v1-1-792cac1ef3cc@kernel.org
+---
+ Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index 0681fc49aa1b..dd462abd61f8 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -50,6 +50,14 @@ properties:
-       - const: disp_axi
-     minItems: 1
+diff --git a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+index 115682fa81b7..00540302bcae 100644
+--- a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
++++ b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+@@ -61,12 +61,9 @@ properties:
+       GPIO connection to R/B signal from NAND chip
+     maxItems: 1
  
-+  dmas:
-+    items:
-+      - description: DMA specifier for the RX DMA channel.
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+
-   interrupts:
-     items:
-       - description: LCDIF DMA interrupt
-@@ -156,6 +164,17 @@ allOf:
-         interrupts:
-           maxItems: 1
+-patternProperties:
+-  "@[0-9a-f]+$":
+-    $ref: /schemas/mtd/partitions/partition.yaml
+-
+ allOf:
+   - $ref: /schemas/memory-controllers/ti,gpmc-child.yaml
++  - $ref: mtd.yaml#
  
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - fsl,imx28-lcdif
-+    then:
-+      properties:
-+        dmas: false
-+        dma-names: false
- examples:
-   - |
-     #include <dt-bindings/clock/imx6sx-clock.h>
+ required:
+   - compatible
+
+---
+base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
+change-id: 20240830-gpmc-dtb-de2ce28acfb6
+
+Best regards,
 -- 
-2.34.1
+Roger Quadros <rogerq@kernel.org>
 
 
