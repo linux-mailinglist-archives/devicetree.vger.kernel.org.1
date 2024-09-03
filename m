@@ -1,146 +1,111 @@
-Return-Path: <devicetree+bounces-99687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6840C96AC41
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:35:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF6D96AC62
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:43:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 206EC285544
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:35:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91FAD1F259D8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 22:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971481D58AC;
-	Tue,  3 Sep 2024 22:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAFB1D58AC;
+	Tue,  3 Sep 2024 22:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lm1jVuAH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QRKJTb+x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7D541A4E82
-	for <devicetree@vger.kernel.org>; Tue,  3 Sep 2024 22:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A411A4E82;
+	Tue,  3 Sep 2024 22:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725402947; cv=none; b=u8+fS47rqhlEnju+I28pJarWjGRssJo7nvFfuiR6FEwN11OhXyx9T50cSkglUzARtY8WmGmei5oKD88sG0q4yW+owkDO75bFdLs25rXxy7vdYFaRk51W3VBolBbejE6+MOnH6nohiWhr50xIGRAZ+v/M1EMhuz3f+RAAryCuO7Q=
+	t=1725403392; cv=none; b=VI2OLNyXiA9/eTW/MMVvvTH3GM08zU5QXRTcjAz2QjNpLfNBu2fA8QCTokzmr2lmEUJPHKoSAMxgMZJ1zMEcNytGfzC/y2/pRvFF7mKiC5I6qPusTs7Y3Jr2zZqhTP9dzKzjEZ2Q6ECoNQKzE+ONvsKzNV2prQPJNO8w4Nlupeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725402947; c=relaxed/simple;
-	bh=Np+Q0wHOCgirMFjVPl8Z6i7/K3O+RkvC3vKi9xQ+BOA=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gyd2Fh4n9et1bnYaDx6DMT2c6S6BOrCEuvCbd2DvyYH7nX1IEsqkg3KACP8gc2aDGc/HtdV7JMy33J7EoMnr4VUJvE2E3aKecDxluUKxlBias2EBf2GjF8wL+WtHZJMlsTHXIiVAIby142QmC0tEIJvWs2HrGK06fOD5642HsAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lm1jVuAH; arc=none smtp.client-ip=209.85.222.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7a81309072dso288730485a.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2024 15:35:45 -0700 (PDT)
+	s=arc-20240116; t=1725403392; c=relaxed/simple;
+	bh=4O38kzP1C4mwq/te7kWRdexD5d0cJoNNawdVsQIDiD4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iNi4bcGWpXOPinyRm2sfh8UJFdrlJHDXPcnnV4rzyWBEHZ61mj/Ff4/+y4ohLVGqr40TLacbq3cUiWFV8j+SgWIvEt0cvz8ECKcVKGBrH984kp9e9F/W9C+YLq65G/Tn0VN5kmtlmyH4LhZI+2OwstZ49B7r9bqp2bRcIBKXDvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QRKJTb+x; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42ba9b47f4eso588675e9.1;
+        Tue, 03 Sep 2024 15:43:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1725402944; x=1726007744; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Np+Q0wHOCgirMFjVPl8Z6i7/K3O+RkvC3vKi9xQ+BOA=;
-        b=lm1jVuAH2pFMPzHxtGzV+WNdlwFrpY5gjA/JLR95yM3WWoKr/HkJvVpdhDMOr2UWUt
-         Cy2dqItUtK2a+DuFQMqvmArShpAQO3aqWp7sbWN7kjm2tCABSIOadrLNsoPb2cHostjR
-         Law3Q1kIib6qsOl/qn5WpjVr+h8IHVgHTxk8k=
+        d=gmail.com; s=20230601; t=1725403390; x=1726008190; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sqPUpjbIID/Lp1J8+i504K1c9trTsq7CBv5b90KNbCk=;
+        b=QRKJTb+x5sF1oOSWqTfU+qLFFA6ECuhL3Ck09vfKuJtsoZ3ggmyRLz0elAiLkR3Wid
+         t1EkLgdEbNnK7ZhQCT1Tr0eutEnlxWk9qtMrtK5y74tVBE2wJX2Fd5bTz4xQvFNhskzy
+         mtLapsx7oAS4f1rzMsSlLUt0gTNqa7uuC5bEcDhIISbwME/ezp/5TwpamdCD54yo4y2n
+         AsYpB/qhBJ4k3gfIOoc5UiMHca/xV/XzIWD0alK69uXCLQ8gPKRq069OT95b6fAA77Bl
+         gHWgsHHJEsJqZKUlzaW7FmDq94JSjZkjAAEkDD9flIPpa4LyLWEQocSDjrbHGPGaogEP
+         pI3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725402944; x=1726007744;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Np+Q0wHOCgirMFjVPl8Z6i7/K3O+RkvC3vKi9xQ+BOA=;
-        b=jDp/jqQ3sAb+efc47BhJ+IH/zY0CtAO+DiecBUhzU+lDxkyX0jPLZWOp9fftVWANcv
-         9QZxwLpOD2KT2jbuh/OkI22nUOTtLAFPGY3bo6Isup+GYNJut2PgSiU4gp7EnH/4SNEj
-         7LdXDWaJfqNEFad78W+A0y1DDCwj15csHW0mpliTMXNYP5Rzmah1eXm6DkzSofUfI1rQ
-         G5aP21vrX05oVgSwib3sxMmXE9iNczudCA98nf4lU9nEmNbM30IxuQ0TesNfPQpzwRQH
-         XGTMvoLPCfxxRrNcHKruPOk0EIykaJi13z7ig9PVF6MdZrbr8pvde1YisSBD6AYml6Du
-         AGwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbAFtrfeyJQ/mjDv89QfZCLixA3t3TTXKay5L+xp9rHE8AZbgFCoE1498FCDVd/Pi66IXpr7rFiI8R@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy50QLolpfqFm0383JAk3h5aFlNzc/KiyiWd/Whb/WjPcm6CKzB
-	oZC62O/88jWqXytVMKmMfmefSzJFWtgxKPX0Q2iUv/XX7nDuupknECS2wg1NDX0Ff/Dp/9UNg1g
-	Ip+s9+RKVdWY184tMmpGmboH8Eqz4bEXMNUPJ
-X-Google-Smtp-Source: AGHT+IHROkfnEqJwyKjhAgQRGsJgxkFB29+Yc6u1MFfoALprduJBtTl2Q7hk3LAUymLuEO32wO/aAKlH5269r5m9+pM=
-X-Received: by 2002:a05:620a:28c8:b0:7a6:6fd6:9d6a with SMTP id
- af79cd13be357-7a8f6b767cemr1583962985a.5.1725402944498; Tue, 03 Sep 2024
- 15:35:44 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 3 Sep 2024 15:35:44 -0700
+        d=1e100.net; s=20230601; t=1725403390; x=1726008190;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sqPUpjbIID/Lp1J8+i504K1c9trTsq7CBv5b90KNbCk=;
+        b=J3tPaPX0R9z/gF/96tEI6dc7CjHb+JGX2ih1nNWMMzFhEpfbHKhkzGgiO0pdwhYFcg
+         SkWHyuNsqKIp/uEuJuWN+SGycPHo9pSLf1RzipJczt3OLaq2JULrRIkUgWVsrKZjrsFN
+         lq4u+JA9qvpSDv1i+2xd/rwEqDPyzJvPPDlVtE3XcDI0M61LxMECwDrLtxFNJA5ZXJtf
+         3WR1KDYuUKgyceNckoehSRxLvRRsotWtyOZolr8+I8ZahcvqV+F5w6leD9hw1JSnJwf7
+         uUqlJ6K0czm5H3ehgmH9U9kTLekc+tf8VFEFVBvDMaxeopCLOeQl9gp9hickFbgu6JEb
+         77Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCU8kQR1soFeHHkFGho7hV45FqAWYyRURtWtGzPOcsLQmS/n8N++S4QY+64TmK4goVeGsyhH1T0d0oej@vger.kernel.org, AJvYcCWs6VQ4TJsB0aLq4VZRIUPvAX408HAYqkmOZWFpZbTVBl0LTLSKXOWqfhnXmK6NbHBXPvOjf8Lj0jK19Kij@vger.kernel.org, AJvYcCXkvY1RLtIjColwTqIfpNE+r8ZELEV3RGebLwU+nP5rTlXqY6S/lCdHQQNWc7VaII/0Pu72usZ3te51VpT8Zg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI98Egyp7gmZoJYCd4MxpWQZXfpXZ5aPyt7Re3CcwYQGD3qEEE
+	gEaH3lIguhaLR/OK4bA7P3dz00f5hW4uqhRUdgilIzQjDhy8irBJ2KmMCKI=
+X-Google-Smtp-Source: AGHT+IFpK/x+tIbXbbtUAjVQAIdFm3v5tPEpFRbtKXVk91hMUadO3Owzbyc9WTdozncpRInHUF6MLQ==
+X-Received: by 2002:a05:600c:5125:b0:426:698b:791f with SMTP id 5b1f17b1804b1-42c95ac1917mr353365e9.3.1725403389464;
+        Tue, 03 Sep 2024 15:43:09 -0700 (PDT)
+Received: from surface.home (2a01cb080508df00ca9665fffed23409.ipv6.abo.wanadoo.fr. [2a01:cb08:508:df00:ca96:65ff:fed2:3409])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ba6396516sm222955115e9.4.2024.09.03.15.43.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2024 15:43:09 -0700 (PDT)
+From: =?UTF-8?q?J=C3=A9r=C3=B4me=20de=20Bretagne?= <jerome.debretagne@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Microsoft Surface Pro 9 5G support
+Date: Wed,  4 Sep 2024 00:42:48 +0200
+Message-ID: <20240903224252.6207-1-jerome.debretagne@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <ZtWeuFUEgnF9e2S4@smile.fi.intel.com>
-References: <20240901040658.157425-1-swboyd@chromium.org> <20240901040658.157425-11-swboyd@chromium.org>
- <ZtWeuFUEgnF9e2S4@smile.fi.intel.com>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Tue, 3 Sep 2024 15:35:44 -0700
-Message-ID: <CAE-0n51nLCNJxhxMr3EmqoWz=3dLU-ckfSwgEUtrhBRZchLu_w@mail.gmail.com>
-Subject: Re: [PATCH v4 10/18] devcon property: Document devcon_match_fn_t
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, devicetree@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
-	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Scally <djrscally@gmail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
-	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Quoting Andy Shevchenko (2024-09-02 04:17:12)
-> On Sat, Aug 31, 2024 at 09:06:48PM -0700, Stephen Boyd wrote:
-> > The usage of this match function is hard to understand at a glance.
-> > Document the arguments and the return value so it is clear how to
-> > implement the function.
->
-> Thank you for the patch!
->
-> ...
->
-> I believe we still use "device property:" in the subject for this header file changes.
-> $ git log --oneline --no-merges -- include/linux/property.h
->
+This series brings support for the SC8280XP-based Microsoft Surface
+Pro 9 5G.
 
-Ok.
+Jérôme de Bretagne (4):
+  dt-bindings: arm: qcom: Document Microsoft Surface Pro 9 5G
+  firmware: qcom: scm: Allow QSEECOM on Microsoft Surface Pro 9 5G
+  arm64: dts: qcom: sc8280xp: Add uart18
+  arm64: dts: qcom: sc8280xp: Add Microsoft Surface Pro 9 5G
 
->
-> > +/**
-> > + * devcon_match_fn_t - device connection match function
-> > + * @fwnode: Remote connection's device node
-> > + * @con_id: Identifier for the connection
-> > + * @data: Match function caller specific data
-> > + *
-> > + * Implement a callback with this function signature to search a fwnode's
-> > + * connections for a match with a function like device_connection_find_match().
-> > + * This function will be called possibly multiple times, once for each
-> > + * connection. The match function should inspect the @fwnode to look for a
-> > + * match. The @con_id and @data provided are the same as the @con_id and @data
-> > + * arguments passed to the functions that take a devcon_match_fn_t argument.
->
-> > + * Note: This function can be called multiple times.
->
-> As noted in the next patch, this would be nice to elaborate (at least to me
-> this sounds like declaration of idempotency which is unlikely what is
-> meant, or am I mistaken?).
+ .../devicetree/bindings/arm/qcom.yaml         |    1 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ .../sc8280xp-microsoft-surface-pro-9-5G.dts   | 1099 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |   14 +
+ drivers/firmware/qcom/qcom_scm.c              |    1 +
+ 5 files changed, 1116 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-microsoft-surface-pro-9-5G.dts
 
-I based this on something that I've already forgotten! :)
+-- 
+2.45.2
 
-It's saying that the function you implement shouldn't have side-effects
-because it will be called many times. I actually wrote above that it
-will be called "possibly multiple times, once for each connection". Let
-me try to remove "multiple times".
 
