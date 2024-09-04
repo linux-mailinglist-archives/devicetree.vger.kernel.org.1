@@ -1,112 +1,156 @@
-Return-Path: <devicetree+bounces-100129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4AE96C544
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:22:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94DD396C54F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:23:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CF58B24A49
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:22:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C77AD1C251B3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621131E1326;
-	Wed,  4 Sep 2024 17:19:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4681E4102;
+	Wed,  4 Sep 2024 17:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vCcOIJJ4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BBPUbpMM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3401C4778C;
-	Wed,  4 Sep 2024 17:19:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6850D1E2018;
+	Wed,  4 Sep 2024 17:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725470386; cv=none; b=CCLh3VZ8oadn6lvnpKxqCMnvmzf0GzCTbJW3v165gXl5PI+M2GdDrqrHx1ET/Gcw4fjM6QffaJLHzW8Q/r9E6kp3+HJbcikH4W5qzoGSNwInprpuk2zw1Rnf8S0WieHtCd0/UhPcGSPnxzxU7vXayrXJXIHa9Ee/lf6+Q6B/Bvg=
+	t=1725470462; cv=none; b=O0JWtnhPha6HObWgxzWeIduhN8c9/uvZuSiSWEMyMQfEIiWTmp3SphhI5Li7Y7qIogZ/BwCewgA3Hp+dCni48oU4UDAq7JVAA6chs1tWYt6bG3dolVLgUQWXwqgnD43omp8uDYipzLa4JDxVVyUVfhkI0PdSRCIzp6i80dWZCog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725470386; c=relaxed/simple;
-	bh=7nt55skf5MkG+zn3hZ1jtUoFubnt7KYqSZXWSb3JOBA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=SZktgk0z1Xn3FtIGrKsSbDjvyC7HZ+ihSqAjTd8fgcFZJoDLISWlOBPH9UCIo/jHXR+EMc3ey5BAhcI2K9K7RmqMey/2o4KW5UQzn4yqgBXhR/OKAa4oJ3OJDTcDBl9K/CF3MhYaYWiBMVtlJDfoAsNkTjRMjKalvc1zGPugqN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vCcOIJJ4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E9C5C4CEC2;
-	Wed,  4 Sep 2024 17:19:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725470385;
-	bh=7nt55skf5MkG+zn3hZ1jtUoFubnt7KYqSZXWSb3JOBA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=vCcOIJJ4KxgpPQAZGfnIzSSSWzE5M5l45tKNYeGP02oYvr5QSyk7ynT74CPgrJXN8
-	 VHt5yWMgLdnNCjnFKfNeXitJqjdsBUxD4r3TLo0gDk4JC0asko3RJbtJLtJ7ATulMJ
-	 cIJVYZFYdtWgswn6/GxmHkNYUxvDyAaSnUR8wq1knAw8shughKHPVjgnGuJD671PXM
-	 n9WmSiYlUWdR/nhOLgGR4TyWzUM9BGBr18sUJGrvkrLMhhur/WvOf7uX51Dmctsqrg
-	 reUMJ/cB4bWNGlaYhjwhFzD3o+wgwMdxGey/yEvDxOwCdNtzBPgW27bmMyS5KKvDlt
-	 wRShNRiUxwlVQ==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>, 
- Tzung-Bi Shih <tzungbi@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
- Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- linux-i2c@vger.kernel.org
-In-Reply-To: <20240904090016.2841572-1-wenst@chromium.org>
-References: <20240904090016.2841572-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH v6 00/12] platform/chrome: Introduce DT
- hardware prober
-Message-Id: <172547038191.87336.8695106953397068225.b4-ty@kernel.org>
-Date: Wed, 04 Sep 2024 18:19:41 +0100
+	s=arc-20240116; t=1725470462; c=relaxed/simple;
+	bh=CxoE9+EKENyfL1mcnA/KnEiQyWVNN9QNA8F3rKPR1S0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pBNJbjU8w/o+blaI4dctXiJLt+pqw89XHGneZ7BhZf1DwvG/AnXSMfNnAgN8rlDgynY+NpRh5F+BXS/OCeQ1g46b5gjIpLYUeu1ZhlG5WHHU75ptCdeVTCAdOiyRCQaM2UW9GNEc1vVpmbSR/GElv80I7cdyWgliv35WVV/Oyic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BBPUbpMM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484Akds6026179;
+	Wed, 4 Sep 2024 17:20:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eNn/39zt7ybLVISg8iNP715VpPtzk/C5TNhg4bfMq/k=; b=BBPUbpMMULWDph5A
+	fSGB5AMcLKLAd0xMpn0IMMpbKWNvktJGHPPjpZ1pXHejsORzHRy7+7HtZaUskixs
+	jiZ3Xc4hBngGnPl3t7H+11/pzkXsU9JvNOUiwKEWrMg7GyohYxXNBLC5qF9B8XZM
+	vAZLkDzxSuwi1VyrT8b4+uhhdQWXLvYgHnribVZUPsxuhrL0ynDDRS+R8BGallKO
+	Dr6fKh24Tad4PqbNzS2p1GDsnCKzZ7lThayevBqveDIEknhA/1VAJXMl+8hBwo9r
+	Gkl99wGuzbix+9J1z+xHToI0EaIVAwHgu239sNxchPY7JcHFAnExTVea8RZpzFll
+	ckYAHw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41bt673n95-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Sep 2024 17:20:34 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 484HKVSt016510
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Sep 2024 17:20:31 GMT
+Received: from [10.50.7.129] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
+ 10:20:22 -0700
+Message-ID: <de17d37f-ed0c-4e73-91d5-fc902573212a@quicinc.com>
+Date: Wed, 4 Sep 2024 22:50:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 1/6] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe
+ uniphy
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <p.zabel@pengutronix.de>, <dmitry.baryshkov@linaro.org>,
+        <quic_nsekar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <robimarko@gmail.com>
+References: <20240830081132.4016860-1-quic_srichara@quicinc.com>
+ <20240830081132.4016860-2-quic_srichara@quicinc.com>
+ <e2qgpvfccpo2sd4mbrynxruvt5attqmtd5oik26of7tv7u4lq6@kvb63sglwa5b>
+Content-Language: en-US
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <e2qgpvfccpo2sd4mbrynxruvt5attqmtd5oik26of7tv7u4lq6@kvb63sglwa5b>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-99b12
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gBpkfBhrm5cPj714kocbIlQR-cZtFLfW
+X-Proofpoint-GUID: gBpkfBhrm5cPj714kocbIlQR-cZtFLfW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-04_15,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ bulkscore=0 mlxscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 lowpriorityscore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409040132
 
-On Wed, 04 Sep 2024 17:00:02 +0800, Chen-Yu Tsai wrote:
-> This is v6 of my "of: Introduce hardware prober driver" [1] series.
-> v6 mainly addresses comments from Andy.
+
+
+On 8/30/2024 1:53 PM, Krzysztof Kozlowski wrote:
+> On Fri, Aug 30, 2024 at 01:41:27PM +0530, Sricharan R wrote:
+>> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+>>
+>> Document the Qualcomm UNIPHY PCIe 28LP present in IPQ5018.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> ---
+>>   [v3] Added reviewed-by tags
+>>
+>>   .../phy/qcom,ipq5018-uniphy-pcie.yaml         | 70 +++++++++++++++++++
+>>   1 file changed, 70 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
+>> new file mode 100644
+>> index 000000000000..c04dd179eb8b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
+>> @@ -0,0 +1,70 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/qcom,ipq5018-uniphy-pcie.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm UNIPHY PCIe 28LP PHY controller for genx1, genx2
+>> +
+>> +maintainers:
+>> +  - Nitheesh Sekar <quic_nsekar@quicinc.com>
+>> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,ipq5018-uniphy-pcie-gen2x1
+>> +      - qcom,ipq5018-uniphy-pcie-gen2x2
 > 
-> v2 continued Doug's "of: device: Support 2nd sources of probeable but
-> undiscoverable devices" [2] series, but follows the scheme suggested by
-> Rob, marking all second source component device nodes as "fail-needs-probe",
-> and having a hardware prober driver enable the one of them.
-> 
-> [...]
+> ... and now I wonder why there are two compatibles. Isn't the phy the
+> same? We talk about the same hardware?
+  We have 2 different physical phys. One with single lane and another
+  with dual lane. Its same IP, but for 2 lanes, 2 sets of the phy
+  specific registers needs to configured. So differentiating that here.
 
-Applied to
+Regards,
+  Sricharan
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Thanks!
-
-[03/12] regulator: Move OF-specific regulator lookup code to of_regulator.c
-        commit: b8c3255457147162cd713a319a8e2274335449b9
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
