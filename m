@@ -1,159 +1,438 @@
-Return-Path: <devicetree+bounces-99747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2840D96B147
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:12:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F9A96B131
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:12:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3A071F233CA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:12:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5C59281AF1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C31812C474;
-	Wed,  4 Sep 2024 06:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E194E12C81F;
+	Wed,  4 Sep 2024 06:11:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="CHRcpr6s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010057.outbound.protection.outlook.com [52.101.229.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E4D84A5B
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 06:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725430335; cv=none; b=pcNPdv8TqJK9izxDw2oE1HYCOWTMNW1f6KgoXa+biKa8/5i/tgzB6v4D8q8lRacFn2ARpDOpGuCveuNoSV2pc0IgOPTivIfwLByW6s2K0VuBePGn19d8dv9yJjs5U96jylb7Ji9uHjhsb6FR742l4B0H9zGeMUdfaFzt0223eQs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725430335; c=relaxed/simple;
-	bh=uFqKU2u26RsMVaHxZCgg4NS943JlrwihnRUqYYObpxA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P4eGt9wJ8e2gz95bDJSXCMO5hZJQT3qN7/V2dRFkrQuAGmm8bRY077xgdAM0/MB8hlxsmizzebsJoGjZlPTsV4RVLtkpK93RP4nGGz+iSWKo028jUHiZyeMQJ30JKqilTg0OZ6pex86vnfHGL3jZgJ6XqxRn2NoPe1sKjo2NOpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sljEw-0000oC-JK; Wed, 04 Sep 2024 08:11:38 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sljEt-005NS9-6K; Wed, 04 Sep 2024 08:11:35 +0200
-Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id BA7E7331CC9;
-	Wed, 04 Sep 2024 06:11:34 +0000 (UTC)
-Date: Wed, 4 Sep 2024 08:11:33 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: kernel test robot <lkp@intel.com>
-Cc: kernel@pengutronix.de, Alibek Omarov <a1ba.omarov@gmail.com>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Elaine Zhang <zhangqing@rock-chips.com>, David Jander <david.jander@protonic.nl>, 
-	oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org, Simon Horman <horms@kernel.org>, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH can-next v4 01/20] dt-bindings: can: rockchip_canfd: add
- rockchip CAN-FD controller
-Message-ID: <20240904-impressive-centipede-of-science-ae5cbd-mkl@pengutronix.de>
-References: <20240903-rockchip-canfd-v4-1-1dc3f3f32856@pengutronix.de>
- <202409040039.TNDhtsSe-lkp@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87DE84E0A;
+	Wed,  4 Sep 2024 06:11:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725430299; cv=fail; b=hMBSz6WExU5OZUx+6LdHPZFxRzPfK0rzxVxlgXnWn1gJye3UjFZLlm7wmK0CQA12TSO3SiEkGZHY+qXfpfVYGbZxHRv4xUMUgW3Oj4l+Khwg+smdvO5oyiuEcDrCUZ13ylyMEMPueDu3avqCLGBsSS6bX6ilXzJHgwmKsMjOrNg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725430299; c=relaxed/simple;
+	bh=5qD4LPklMp/SOzWG1FB5EjL5PfFnM1YTZdxSHcJWAAk=;
+	h=Message-ID:To:In-Reply-To:References:From:Subject:Content-Type:
+	 Date:MIME-Version; b=TPR7sgC/L3kxNzM3tV2Z3F/Utqxe6KuGFsy2nE0efiUvE/l9WPZ5WbVYUhgw7O9TIjibeamXG77MpEQS9bIzxlpivQinK4U7Tb4PrayFTEwqj8H3fHdOFfyXd+AXtTJpXAkhm7R/DwIHWh0AMgQEz7sYjhy6+dqAeXBG/rQvvN0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=CHRcpr6s; arc=fail smtp.client-ip=52.101.229.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=y7H61GiuOP+Wd68XOH/XYbeWgz5Bm/QtKNalKJyNkVKzNrJtVgZR8kNrPoZCsZavoHrFpKCiAbz+bCNE2aic2n50Qbk/7AGR1itcFT/vT2WkaUISP67mhGS6rPN65ZV8VnjQJT/eL44SHaL/iak0VEm7e/yUEBP+KVlm1yyDrGW7pHl2kHzh9rT0UKz6LxxpGWVNkeEhzq67UUC0v4pAtFjK1J9XpTtfyBeTnsTbz+qg4CMmhFft1W5hjfAtgpEP71t1NdWgcgmIvaRslBCtE4w18fOyWa/AcVpA6a/1d70a6aygBTTYgU2zLL0BY7V15p4KFuCTpPDqErpQHBnCNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Hp4n9zD26Pjr3suPV3xZ/lwMpWsgUaeqizfk9RGR8Ns=;
+ b=Y4OSKSWh0j6sApmdgoza3gtAkUY/NDHag5zvjCtrUl3PAAHfZ80H7kcEnvKvHB8CEkuOWDWQWcYXH3SQy13aC/n5QVasyJ83MVY7BCcIOe9jVGHXD7kUm+ZY2GS8Q4U0k12xmTOXbxOPyFcoThBCm6N0Afbl4HA0JuXh7paj5D9uJJCCG+DCA3EQB0hoGHK8vcI1N13jYHIbwytOFdIL3TuvWpd9KaeHE6pc+U2izALx8ewEfxPls6dUYbxPL3Z7wmKSdpbltqyk8p1IyCrjvpsdsBCiI2KvGbiG4sT3tuF7sb39pAwB66rxMg4J3jKkr+mdLF1IORxt3fZeXLBJLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hp4n9zD26Pjr3suPV3xZ/lwMpWsgUaeqizfk9RGR8Ns=;
+ b=CHRcpr6sKZcptMUQX84B04W2sIw0C7n0+bbzI30qCWE4Pcy6/YdM0Nq3CNHVMrVWgFMKlbApFthlLYT8FtRFiTyqHTwrjWDyd0zJfRKflVKWPJEeg5aYROVH+afRAzavBKeqR6xC5zuJ0h5dnCS+efcttOAbGgBXBZRpOkIxfDU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OS3PR01MB7309.jpnprd01.prod.outlook.com
+ (2603:1096:604:11e::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Wed, 4 Sep
+ 2024 06:11:35 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7918.024; Wed, 4 Sep 2024
+ 06:11:35 +0000
+Message-ID: <87ikvc6j8p.wl-kuninori.morimoto.gx@renesas.com>
+To: Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Sakari Ailus <sakari.ailus@iki.fi>
+In-Reply-To: <87r0a06ja1.wl-kuninori.morimoto.gx@renesas.com>
+References: <87r0a06ja1.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v5 6/9] ASoC: audio-graph-card2: use new of_graph functions
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Wed, 4 Sep 2024 06:11:34 +0000
+X-ClientProxiedBy: TYCP301CA0067.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:405:7d::20) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lg5lfpbtzitx4wuf"
-Content-Disposition: inline
-In-Reply-To: <202409040039.TNDhtsSe-lkp@intel.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS3PR01MB7309:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3e4d3e85-ba83-4a01-f7e8-08dccca86e04
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?o0q7Gv5Uz4CGyhRIkSwHx57Ix7/IEPLoDEf1h7oW9OuUpxttCHdwUYbWrrAq?=
+ =?us-ascii?Q?sLy0dtNvjTYW5+YCxiVts7Aqka+xCeoEAprqTR4e4DJ30ATcuAlahHeoZuvS?=
+ =?us-ascii?Q?ThBTd3J1Zw+VNVYGS9ymIq6oVkXifoSOs4du5k7L/viG3HZrPsR8BJ7CjG27?=
+ =?us-ascii?Q?VqZ6Wc0NE4NRRsS6y5qcuK6Z0D6BdWJj1SzbLXqqNDx67APJ6rF4B/mzSw/f?=
+ =?us-ascii?Q?2e6667lEcEMlalHR4iWipLYjIdCYh7OP/nvnCIfTRiL/1WIIrfDTXKek5zyk?=
+ =?us-ascii?Q?Kuj7+Ai/L3mNcIASotLpJqfvovVD38xRDTfYapO73pmW7uDCn/0cP6Ee77zu?=
+ =?us-ascii?Q?RDIOoERqyL8cOniBNPmmusJhjtHfB+ODEAcMtHyixLL0aLPJFEP3hmfazHg+?=
+ =?us-ascii?Q?3XJCs7ucFpI8au2/lx7jqo+1Yknq9RTONqpx4ksay8H5r3XHqaEeXlNCidn0?=
+ =?us-ascii?Q?URJkS8fhKvqMVCmUTxC/SqtJI78rZxQiVgHZcc0KGhWCwRlGpBwLUnrDHO82?=
+ =?us-ascii?Q?RDHyAmRnNp+jbRFZPbzzWHKMu6M0lW07Ajffo52t4RrLsYX8kV2KANMb+2dB?=
+ =?us-ascii?Q?MCcObQJDO5QujYau+K+NvdaLR7Kza6Gswa4EAMBzsrCl7pJPSx8mbnFW9iHn?=
+ =?us-ascii?Q?Z1S9Vd5I7ac6JasfHPlkEVkn/myodVqO3xy4iDXVygY05u9oiopYBrSsD92N?=
+ =?us-ascii?Q?Gj3BLB7xELkeZhuNAOgsRK7PCw1fa0PwVIDTDSib9Al/fD5KfF5FToOv1pC8?=
+ =?us-ascii?Q?nf3c+1kcIIJOZ0xoVG29nJApPx5VxG44TYI0ekxaptAOcAobv9ozZGdqbhrC?=
+ =?us-ascii?Q?ay7p+8ezBpQh9m/0nCCDQDGk9lMLPeqdieUNaVASia5UoMW8/IvcbKQKbjAy?=
+ =?us-ascii?Q?vx6cfd6msaBTgsdCroMIJUAjlddzCLKusowX3J13+0qkxZB3X8st47lkahf/?=
+ =?us-ascii?Q?mYyA1oPjeSnXD9EVUu+FQ4kI0f5nRhgQ9vnbnmlb8H8/pBzeK3c+uOUPMOCI?=
+ =?us-ascii?Q?PMGPIkkXft91MyaxJh9AYb4lQTcYBoBUiEfJ3vXEjSxLadW6/4jtQ4T9AEyK?=
+ =?us-ascii?Q?u3OV6nb340UJjlVYYIeUfL/CnSP9mh7jNWKR5UUi7EU1NQamzbJWjOAzp/BB?=
+ =?us-ascii?Q?SxKqtLUaBj/I8mtkd8IdT0ahDhjgCyT8k4yicBBWc30g2KTatC75/mE+T6+D?=
+ =?us-ascii?Q?fc/CBBGHJQO+Bfy9f7uWDVudhrWMSsPO5dCgBoEgGCeN5LXGuaA40THeQoZg?=
+ =?us-ascii?Q?zd5EFifyD3W3X3JsWYyza0frRbzFnsVjAeIXQAHUQEYC5Hug84G26+EZTmE8?=
+ =?us-ascii?Q?GMq2C3j+c8CuvWWyKBQQJdowxEuBHREi9lATQMGA2kJ1zEkG+9Rmj1hvekSM?=
+ =?us-ascii?Q?ovn70B0TVssg7MQScUpOEL3Ftb2WkYqyvfl2WEhJUk98GyVzJfbN+fT7jNXM?=
+ =?us-ascii?Q?nL93GMI5af0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?W95IqluxMr9g0MgguYHUctcAmu6dJLoC+sQn7Y/HSthspwN/qPBZG3ptYjaL?=
+ =?us-ascii?Q?EPaDJ+Qg8rHX4ugh0vFAu3HuiNEvKX1rYM/zMInmbU6oe3u8icNK7dyRarSW?=
+ =?us-ascii?Q?Q1XZ2SVLf7kuVXMjI0Qy3PV21THexUJyd+5V+aazYDrfHrbahjgTgCb2zoFz?=
+ =?us-ascii?Q?7b4EKbXNBVKxru3pjbbVPYM/mdl1CT/YBuG+K+fIl90zzV41ZFpCEee7MIBZ?=
+ =?us-ascii?Q?5t2pshrx9bCZaBg9adE/2VIyLKtfU30CMH51qYYFQNKSWU03XXqdPq7TsJaF?=
+ =?us-ascii?Q?P3D/kJAB7fCtPjd9X2/VtwBhlWV01EZkKYWVsZut39LOZ8J7nVN+vLklPlNR?=
+ =?us-ascii?Q?KwU6IyoT/4xNLyqOa5rqMWc6vRRle/HX5euB9MapMA269sw3cv+iNWjvxbFn?=
+ =?us-ascii?Q?Tye1jacY7SemjXb2pw5LdnP5b0XkcVVu4yz6YJrKP3CZb+18v3FUK17nQ3O/?=
+ =?us-ascii?Q?a7pn4yYgDOHJ2aiXYVtI5vbuMebdvVr8azmTcUHKBVcYbkO/114XYzvnEETn?=
+ =?us-ascii?Q?1S3eZczxyI+SrHNb8E3zNMvliC1CD6bIMyL89ew4cn+I7AiKhPDT2nO/gVGG?=
+ =?us-ascii?Q?sX61kd9BrVkzVKmD8Ogfx8S7yx33AE5+lLutbVHR2LhduGMM5ZKF8jyvRorP?=
+ =?us-ascii?Q?veZTDrmhbLliUuPphivl4x5dIwvb3QyckpO8UemxebC0ojXyXtyl2jwVgVdV?=
+ =?us-ascii?Q?Q9PeDFzkpoIaFfcvMA0aBicfkqahI89g7h2qxLa7yVO7RvCGVHZB9yDyXI25?=
+ =?us-ascii?Q?94WRbx2hWNCg5z1dlI4HSm9aSmQZpTmh2GNvIVPOg8BNfXk86hdRV48+wZWR?=
+ =?us-ascii?Q?ZnBDSiGJuiVQ/q03juV52UVITXkiU4jbWjWkvbyBALjeyxuL+Z6+l2reyTYR?=
+ =?us-ascii?Q?jQq6eFCORCopYdSVPUNFCOO7QMbenXtPnL+BdnZP4/aOhTkSO4LCPH5bdIzB?=
+ =?us-ascii?Q?izBgXQwr/6+hNUVsBe9lmMy/jYOgvIiRpUb01p6BIPNwTnshETsN+JNELYtF?=
+ =?us-ascii?Q?+m2YmWkrPyqDqyP25Aj74/9HpRXjim0mXakyH+yqw54X80bbAXcF8skQ4Fym?=
+ =?us-ascii?Q?Uko5spkSJWfhWFmyy9szLQQifsB0hPV5CL0aN7O3u+ublWpVF2EupYBLNefu?=
+ =?us-ascii?Q?R8FbzS8qVSQQzS/NI+pQ62BCDa8GF7bvnyP6npP7cEUsAvULNwnio0IU3r+6?=
+ =?us-ascii?Q?1YYJZX4cI5HsIWH43ZF2oJozbXe4OCQJpZhD4GFi/L0/Wzs8yuwdn0Ufy2qf?=
+ =?us-ascii?Q?85whpsD9K0ROal8K0XlEwXnJygID6L28pCNC1Y5ZEOmclSn87quxLHAqAPcl?=
+ =?us-ascii?Q?ZUk3ypJ36BuVENeWkVJGuxZDuAgfHCNQ034GuPZwAsXo7kqNFmZ/+GSx4m1K?=
+ =?us-ascii?Q?MtDukww9L8Ftn5oXSqgGaON2ypqnDGxuQqukj+u8U+c5gW2sMn0QKepCMYka?=
+ =?us-ascii?Q?OL59uon+kbJu1ITRQ7spwyefnGnc6DXZ6s5wCUB/R/ClLZ7ZsT81h5ZyYMjg?=
+ =?us-ascii?Q?xRGjGDwhJhD6WucDU+7wFHTapX1I1Zm+65C7ebs7oa3/y88tAEB6IjOpFDaG?=
+ =?us-ascii?Q?L+iS3yDiG1v60211auROMl9ROrNn6WF6jBs/hVtc69HYKiyRIRRquPq+BxOr?=
+ =?us-ascii?Q?OtkhzLNWdRC/db5/2EWm6Gk=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e4d3e85-ba83-4a01-f7e8-08dccca86e04
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2024 06:11:35.3097
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZW/QMZl3fABB3uFx/AXmUBJJ3fmw2ViVbBeOcrueBIjrDBlfKqubt5JqyU9Glq1hL+9papZ1SOxoj7OCTid8dMU0tHaVb/ctAIC2Sp8VSMNDUWli/CI+hYWSRIhKSuSx
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB7309
 
+Now we can use new port related functions for port parsing. Use it.
 
---lg5lfpbtzitx4wuf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Acked-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/generic/audio-graph-card2.c | 113 +++++++++++---------------
+ 1 file changed, 48 insertions(+), 65 deletions(-)
 
-On 04.09.2024 01:09:26, kernel test robot wrote:
-> kernel test robot noticed the following build warnings:
->=20
-> [auto build test WARNING on da4f3b72c8831975a06eca7e1c27392726f54d20]
->=20
-> url:    https://github.com/intel-lab-lkp/linux/commits/Marc-Kleine-Budde/=
-dt-bindings-can-rockchip_canfd-add-rockchip-CAN-FD-controller/20240903-1732=
-43
-> base:   da4f3b72c8831975a06eca7e1c27392726f54d20
-> patch link:    https://lore.kernel.org/r/20240903-rockchip-canfd-v4-1-1dc=
-3f3f32856%40pengutronix.de
-> patch subject: [PATCH can-next v4 01/20] dt-bindings: can: rockchip_canfd=
-: add rockchip CAN-FD controller
-> reproduce: (https://download.01.org/0day-ci/archive/20240904/202409040039=
-=2ETNDhtsSe-lkp@intel.com/reproduce)
->=20
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202409040039.TNDhtsSe-lkp=
-@intel.com/
->=20
-> All warnings (new ones prefixed by >>):
+diff --git a/sound/soc/generic/audio-graph-card2.c b/sound/soc/generic/audio-graph-card2.c
+index 051adb5673972..90babed0f02e4 100644
+--- a/sound/soc/generic/audio-graph-card2.c
++++ b/sound/soc/generic/audio-graph-card2.c
+@@ -234,8 +234,6 @@ enum graph_type {
+ #define GRAPH_NODENAME_DPCM	"dpcm"
+ #define GRAPH_NODENAME_C2C	"codec2codec"
+ 
+-#define port_to_endpoint(port) of_get_child_by_name(port, "endpoint")
+-
+ #define ep_to_port(ep)	of_get_parent(ep)
+ static struct device_node *port_to_ports(struct device_node *port)
+ {
+@@ -351,14 +349,9 @@ static struct device_node *graph_get_next_multi_ep(struct device_node **port)
+ 	 *	port@1 { rep1 };
+ 	 * };
+ 	 */
+-	do {
+-		*port = of_get_next_child(ports, *port);
+-		if (!*port)
+-			break;
+-	} while (!of_node_name_eq(*port, "port"));
+-
++	*port = of_graph_get_next_port(ports, *port);
+ 	if (*port) {
+-		ep  = port_to_endpoint(*port);
++		ep  = of_graph_get_next_port_endpoint(*port, NULL);
+ 		rep = of_graph_get_remote_endpoint(ep);
+ 	}
+ 
+@@ -530,67 +523,66 @@ static int graph_parse_node_multi_nm(struct snd_soc_dai_link *dai_link,
+ 	 *	};
+ 	 * };
+ 	 */
+-	struct device_node *mcpu_ep		= port_to_endpoint(mcpu_port);
+-	struct device_node *mcpu_ep_n		= mcpu_ep;
+-	struct device_node *mcpu_port_top	= of_get_next_child(port_to_ports(mcpu_port), NULL);
+-	struct device_node *mcpu_ep_top		= port_to_endpoint(mcpu_port_top);
++	struct device_node *mcpu_ep		= of_graph_get_next_port_endpoint(mcpu_port, NULL);
++	struct device_node *mcpu_ports		= port_to_ports(mcpu_port);
++	struct device_node *mcpu_port_top	= of_graph_get_next_port(mcpu_ports, NULL);
++	struct device_node *mcpu_ep_top		= of_graph_get_next_port_endpoint(mcpu_port_top, NULL);
+ 	struct device_node *mcodec_ep_top	= of_graph_get_remote_endpoint(mcpu_ep_top);
+ 	struct device_node *mcodec_port_top	= ep_to_port(mcodec_ep_top);
+ 	struct device_node *mcodec_ports	= port_to_ports(mcodec_port_top);
+ 	int nm_max = max(dai_link->num_cpus, dai_link->num_codecs);
+-	int ret = -EINVAL;
++	int ret = 0;
+ 
+-	if (cpu_idx > dai_link->num_cpus)
++	if (cpu_idx > dai_link->num_cpus) {
++		ret = -EINVAL;
+ 		goto mcpu_err;
++	}
+ 
+-	while (1) {
++	for_each_of_graph_port_endpoint(mcpu_port, mcpu_ep_n) {
+ 		struct device_node *mcodec_ep_n;
+-		struct device_node *mcodec_port_i;
+ 		struct device_node *mcodec_port;
+ 		int codec_idx;
+ 
+-		if (*nm_idx > nm_max)
+-			break;
++		/* ignore 1st ep which is for element */
++		if (mcpu_ep_n == mcpu_ep)
++			continue;
+ 
+-		mcpu_ep_n = of_get_next_child(mcpu_port, mcpu_ep_n);
+-		if (!mcpu_ep_n) {
+-			ret = 0;
++		if (*nm_idx > nm_max)
+ 			break;
+-		}
+ 
+ 		mcodec_ep_n	= of_graph_get_remote_endpoint(mcpu_ep_n);
+ 		mcodec_port	= ep_to_port(mcodec_ep_n);
+ 
+-		if (mcodec_ports != port_to_ports(mcodec_port))
++		if (mcodec_ports != port_to_ports(mcodec_port)) {
++			ret = -EINVAL;
+ 			goto mcpu_err;
++		}
+ 
+ 		codec_idx = 0;
+-		mcodec_port_i = of_get_next_child(mcodec_ports, NULL);
+-		while (1) {
+-			if (codec_idx > dai_link->num_codecs)
+-				goto mcodec_err;
+-
+-			mcodec_port_i = of_get_next_child(mcodec_ports, mcodec_port_i);
++		ret = -EINVAL;
++		for_each_of_graph_port(mcodec_ports, mcodec_port_i) {
+ 
+-			if (!mcodec_port_i)
+-				goto mcodec_err;
++			/* ignore 1st port which is for pair connection */
++			if (mcodec_port_top == mcodec_port_i)
++				continue;
+ 
+-			if (mcodec_port_i == mcodec_port)
++			if (codec_idx > dai_link->num_codecs)
+ 				break;
+ 
++			if (mcodec_port_i == mcodec_port) {
++				dai_link->ch_maps[*nm_idx].cpu	 = cpu_idx;
++				dai_link->ch_maps[*nm_idx].codec = codec_idx;
++
++				(*nm_idx)++;
++				ret = 0;
++				break;
++			}
+ 			codec_idx++;
+ 		}
+-
+-		dai_link->ch_maps[*nm_idx].cpu		= cpu_idx;
+-		dai_link->ch_maps[*nm_idx].codec	= codec_idx;
+-
+-		(*nm_idx)++;
+-
+-		of_node_put(mcodec_port_i);
+-mcodec_err:
+ 		of_node_put(mcodec_port);
+-		of_node_put(mcpu_ep_n);
+ 		of_node_put(mcodec_ep_n);
++		if (ret < 0)
++			break;
+ 	}
+ mcpu_err:
+ 	of_node_put(mcpu_ep);
+@@ -674,7 +666,7 @@ static int graph_parse_node_single(struct simple_util_priv *priv,
+ 				   struct device_node *port,
+ 				   struct link_info *li, int is_cpu)
+ {
+-	struct device_node *ep = port_to_endpoint(port);
++	struct device_node *ep = of_graph_get_next_port_endpoint(port, NULL);
+ 	int ret = __graph_parse_node(priv, gtype, ep, li, is_cpu, 0);
+ 
+ 	of_node_put(ep);
+@@ -769,7 +761,7 @@ static void graph_link_init(struct simple_util_priv *priv,
+ 		of_node_put(port_cpu);
+ 		port_cpu = ep_to_port(ep_cpu);
+ 	} else {
+-		ep_cpu = port_to_endpoint(port_cpu);
++		ep_cpu = of_graph_get_next_port_endpoint(port_cpu, NULL);
+ 	}
+ 	ports_cpu = port_to_ports(port_cpu);
+ 
+@@ -779,7 +771,7 @@ static void graph_link_init(struct simple_util_priv *priv,
+ 		of_node_put(port_cpu);
+ 		port_codec = ep_to_port(ep_codec);
+ 	} else {
+-		ep_codec = port_to_endpoint(port_codec);
++		ep_codec = of_graph_get_next_port_endpoint(port_codec, NULL);
+ 	}
+ 	ports_codec = port_to_ports(port_codec);
+ 
+@@ -850,7 +842,7 @@ int audio_graph2_link_normal(struct simple_util_priv *priv,
+ 			     struct link_info *li)
+ {
+ 	struct device_node *cpu_port = lnk;
+-	struct device_node *cpu_ep = port_to_endpoint(cpu_port);
++	struct device_node *cpu_ep = of_graph_get_next_port_endpoint(cpu_port, NULL);
+ 	struct device_node *codec_port = of_graph_get_remote_port(cpu_ep);
+ 	int ret;
+ 
+@@ -883,7 +875,7 @@ int audio_graph2_link_dpcm(struct simple_util_priv *priv,
+ 			   struct device_node *lnk,
+ 			   struct link_info *li)
+ {
+-	struct device_node *ep = port_to_endpoint(lnk);
++	struct device_node *ep = of_graph_get_next_port_endpoint(lnk, NULL);
+ 	struct device_node *rep = of_graph_get_remote_endpoint(ep);
+ 	struct device_node *cpu_port = NULL;
+ 	struct device_node *codec_port = NULL;
+@@ -1007,7 +999,7 @@ int audio_graph2_link_c2c(struct simple_util_priv *priv,
+ 	of_node_get(lnk);
+ 	port0 = lnk;
+ 	ports = port_to_ports(port0);
+-	port1 = of_get_next_child(ports, lnk);
++	port1 = of_graph_get_next_port(ports, port0);
+ 
+ 	/*
+ 	 * Card2 can use original Codec2Codec settings if DT has.
+@@ -1037,8 +1029,8 @@ int audio_graph2_link_c2c(struct simple_util_priv *priv,
+ 		dai_link->num_c2c_params	= 1;
+ 	}
+ 
+-	ep0 = port_to_endpoint(port0);
+-	ep1 = port_to_endpoint(port1);
++	ep0 = of_graph_get_next_port_endpoint(port0, NULL);
++	ep1 = of_graph_get_next_port_endpoint(port1, NULL);
+ 
+ 	codec0_port = of_graph_get_remote_port(ep0);
+ 	codec1_port = of_graph_get_remote_port(ep1);
+@@ -1139,21 +1131,12 @@ static int graph_counter(struct device_node *lnk)
+ 	 */
+ 	if (graph_lnk_is_multi(lnk)) {
+ 		struct device_node *ports = port_to_ports(lnk);
+-		struct device_node *port = NULL;
+-		int cnt = 0;
+ 
+ 		/*
+ 		 * CPU/Codec = N:M case has many endpoints.
+ 		 * We can't use of_graph_get_endpoint_count() here
+ 		 */
+-		while(1) {
+-			port = of_get_next_child(ports, port);
+-			if (!port)
+-				break;
+-			cnt++;
+-		}
+-
+-		return cnt - 1;
++		return of_graph_get_port_count(ports) - 1;
+ 	}
+ 	/*
+ 	 * Single CPU / Codec
+@@ -1167,7 +1150,7 @@ static int graph_count_normal(struct simple_util_priv *priv,
+ 			      struct link_info *li)
+ {
+ 	struct device_node *cpu_port = lnk;
+-	struct device_node *cpu_ep = port_to_endpoint(cpu_port);
++	struct device_node *cpu_ep = of_graph_get_next_port_endpoint(cpu_port, NULL);
+ 	struct device_node *codec_port = of_graph_get_remote_port(cpu_ep);
+ 
+ 	/*
+@@ -1195,7 +1178,7 @@ static int graph_count_dpcm(struct simple_util_priv *priv,
+ 			    struct device_node *lnk,
+ 			    struct link_info *li)
+ {
+-	struct device_node *ep = port_to_endpoint(lnk);
++	struct device_node *ep = of_graph_get_next_port_endpoint(lnk, NULL);
+ 	struct device_node *rport = of_graph_get_remote_port(ep);
+ 
+ 	/*
+@@ -1237,9 +1220,9 @@ static int graph_count_c2c(struct simple_util_priv *priv,
+ {
+ 	struct device_node *ports = port_to_ports(lnk);
+ 	struct device_node *port0 = lnk;
+-	struct device_node *port1 = of_get_next_child(ports, of_node_get(lnk));
+-	struct device_node *ep0 = port_to_endpoint(port0);
+-	struct device_node *ep1 = port_to_endpoint(port1);
++	struct device_node *port1 = of_graph_get_next_port(ports, of_node_get(port0));
++	struct device_node *ep0 = of_graph_get_next_port_endpoint(port0, NULL);
++	struct device_node *ep1 = of_graph_get_next_port_endpoint(port1, NULL);
+ 	struct device_node *codec0 = of_graph_get_remote_port(ep0);
+ 	struct device_node *codec1 = of_graph_get_remote_port(ep1);
+ 
+-- 
+2.43.0
 
-Good bot!
-
-I had already found the issue myself and fixed it in my tree. Will send
-a new series today.
-
->=20
->    Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm57=
-03-regulator.yaml references a file that doesn't exist: Documentation/devic=
-etree/bindings/mfd/siliconmitus,sm5703.yaml
->    Warning: Documentation/hwmon/g762.rst references a file that doesn't e=
-xist: Documentation/devicetree/bindings/hwmon/g762.txt
->    Warning: MAINTAINERS references a file that doesn't exist: Documentati=
-on/devicetree/bindings/reserved-memory/qcom
->    Warning: MAINTAINERS references a file that doesn't exist: Documentati=
-on/devicetree/bindings/display/exynos/
->    Warning: MAINTAINERS references a file that doesn't exist: Documentati=
-on/devicetree/bindings/misc/fsl,qoriq-mc.txt
-> >> Warning: MAINTAINERS references a file that doesn't exist: Documentati=
-on/devicetree/bindings/net/can/rockchip,rk3568-canfd.yaml
->    Using alabaster theme
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---lg5lfpbtzitx4wuf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbX+hEACgkQKDiiPnot
-vG/ddAf6AqyRDaYjUbvLjXaEMxYi3esfREOpspdABp9dMmJ/OImBDH2FzAgBhH42
-YIBrbQ2XL2zOIqiZrM9+jyAAbUbSrEjUnyN/S4ZNK69ige8y6arn1hgXSO1NkuQy
-fyw/3NvCn2/5zKrsMjDrb3xFrD/12qI95HFA9UV7bTNDMBEECkmNHb8U39kJI7YJ
-RZKh16KH2FDDFoMt9tkrArYFIR2YGmRaNtI3kJX8w8Ea2p3Do6boM9C56arzazNm
-K1Zzo4xQM7Cf6hvdJ3E+hu5xmVLcAWvf6mfchWU/k3N4uOr3HoXexMSKq5TLC66I
-gQVIbs0EF04Byp3Q+W0smKV2CLeJug==
-=M+8x
------END PGP SIGNATURE-----
-
---lg5lfpbtzitx4wuf--
 
