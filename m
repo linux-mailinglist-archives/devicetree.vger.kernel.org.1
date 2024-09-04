@@ -1,189 +1,248 @@
-Return-Path: <devicetree+bounces-100007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8726A96BD82
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:01:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F8B96BD91
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:03:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FBD2281F5F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:01:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87FDE1C24D9F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9021D79B4;
-	Wed,  4 Sep 2024 13:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7C11D9D6A;
+	Wed,  4 Sep 2024 13:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="B4XpwumY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QNBkZDMh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F381D0491;
-	Wed,  4 Sep 2024 13:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BB51D88CC
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 13:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725454902; cv=none; b=mL0LnuESfhjsZfzr5Pnd/CPjGfbaPSlHq1iQfSdjEspMggWcd+dDp52NlSoj3L522sAEBw4HYUcTlRFf56TlH1YAbRrK/4SAKskAs1Y3QSKRBCkr9Kk8Iip4BnAed8wba3IozBv/6e8NTS16Q922SSZ84lU+X/TZfToZmD4CyjE=
+	t=1725454969; cv=none; b=ehAMZKak7WKs02wRrZJOSpdHCF0RM/68MBP8qFl86nss8ekp+hF+UMht6lEA8K3B8bjlHHD31lfTtOMqmXw5UTM8CEfwKprkFG011H1zvfar6uG6ejOyoD/KD69y5FQf890tU2mhnj3yHZ5GWY67b8YFrL12q8vYhgSlTlB+Yc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725454902; c=relaxed/simple;
-	bh=6Kw6B3185mdUtc47auQpHWY0ReGfCqoefhPtw0as7VY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m4RcAeVMw8NiBvQNzfwLTBfthf41+TQxJRekPcrv55Yd9mN/ijouNEc33ECZQEe3f1I4iBDkLQCuZD1CTRu9c45iNhUEexd198shqDABIuktMZ2IyTq+IzAWM0NemJeslOntHiIWECDiKS/+zwBP68GFIQ9J/wTd0n0wzBUjaTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=B4XpwumY; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725454901; x=1756990901;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6Kw6B3185mdUtc47auQpHWY0ReGfCqoefhPtw0as7VY=;
-  b=B4XpwumYDwR0jjGaaENm24F7X3p4EIefa4XPryHzw3ZYvCZ8oOUBbrFf
-   vx1lri9KyYADUqttSypYEgQ4UPkQqJOa8X7ufGiCo7BfiNVGEB6Y4uIQN
-   1ZFgbRt5UtUz8i+4DpQuo1R/S+5SNLzcP7OJvl9CuU6H58CGjSoeN5sof
-   YtaIGZs0axcjxjoPQuZ2r9US/QAVneSx31QBzt877b2iuJxXzbQtwJenG
-   0kRCKIPw+/ozKhwFXWSpnUcebYQg+MoCR5pUyAfEBmBLh04VIDqPEhSsQ
-   /EIcKLEcGccs4Z3dZqIF+F/f12TP1byaOX6/RfYkuJ5AVyhU139s1H7c2
-   g==;
-X-CSE-ConnectionGUID: uyaKw6Q2QtORT7ikjRCQJw==
-X-CSE-MsgGUID: 059JZ4ohQ5GE3NDm4UUkLA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="34713859"
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; 
-   d="scan'208";a="34713859"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 06:01:40 -0700
-X-CSE-ConnectionGUID: zt+H+du4TBWU8QDtHMqVYQ==
-X-CSE-MsgGUID: jdxwf08QTkW9tnDCY81T8w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; 
-   d="scan'208";a="95996608"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 06:01:30 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1slpd3-000000054Ce-3bap;
-	Wed, 04 Sep 2024 16:00:57 +0300
-Date: Wed, 4 Sep 2024 16:00:57 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v4 06/18] drm/bridge: aux-hpd: Support USB Type-C DP
- altmodes via DRM lane assignment
-Message-ID: <ZthaCQel2aHhyIu4@smile.fi.intel.com>
-References: <20240901040658.157425-1-swboyd@chromium.org>
- <20240901040658.157425-7-swboyd@chromium.org>
- <ZtWjEudmlR51zkU9@smile.fi.intel.com>
- <CAE-0n51eSxxvnJXwnfPrXx1=rei=8OGGEtCAgw6nhCktZ0iQDw@mail.gmail.com>
+	s=arc-20240116; t=1725454969; c=relaxed/simple;
+	bh=+FjBNCFfIpfb5Si6eAO7PZp1GV3OdKhG/HDGkDFPrGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kzv47IEpm1YqrdrIw/lUX9A9lHQkKuFU6kt1/vkgg6DVkPKOWKijlTS/S6EdSgV10gfpXYxz4AN11/21ncxPhssh5h7IbUNWOnC2vBXUIR37h0ucHmJAqvyhlIxTeEzWi7eEFcWaApvRVDKAFug5KnQdjdc1lSQCpafhE2t34rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QNBkZDMh; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53346424061so1327685e87.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 06:02:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725454965; x=1726059765; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZtYWncFU/TUpnWR9nR6aQ7AxX6rK7y4tKEhZ81nCBhI=;
+        b=QNBkZDMh/n+EWMwVhgnOtMn6OukeiPeKo53dHdKsRHjfBQp8jh1ht9Nj3UevorOAnY
+         XHf0lNlb5YlMQfZcYwrdpZtkAMUUsqyJXgRGwPbP4H9Shr3ylTADCAE4hc1xeZ2KRWZ9
+         IIqUacfbimwJTn7/Di5tcLd+IHqNBO4fCFvAQSH7lvbKmz87VdzMUGhfOXWshWrMpV2T
+         2nrtcJ/NnFm/wwQPVadZh+P5yPsmkVmOV/fDVqqx8++1bs4YargSIVPOseH92QK0afJ9
+         k34rxwS2XsJXfPqV2sInL5TT91DbJT85hBjAtX7pfohgmApVEx2aRV3Yc/daaYdfhhDc
+         liAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725454965; x=1726059765;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZtYWncFU/TUpnWR9nR6aQ7AxX6rK7y4tKEhZ81nCBhI=;
+        b=L7M8ts/oMJJAOiY6ZQJXjGOVQ8qx9SfVGLplFEce+fmqpdv1ndbbxy9uWyMlweMTTs
+         Fq3aFqUmstFhNkUj22xeUsyS53PKqrce7lGU2663H8LSWBvI1wK8vJlfeN4qbUAocCey
+         6Bah7PTYWrp0Di/8J0ny8HJWf+D4sUhhW2E45HN7Nb/MNLg5JuRWQq6NQrWcYh1+wrsy
+         FKh23VxweEuSgcZka0c4RoxFTSIC/Jz9ZHx49MQCHoWOhAielILmfM4i9059PMkQtqHx
+         fPTgNBuBT/UkAbcs/LlLB2kGqQQmMeTDQBKbytgvrczYJ8hOC8VWlK7xduusrRm3JM2D
+         4ENQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU+lJ1XEqZcZ8hLtLIjopK8qOGsZ5Ku7TQt/8ag38QzRovTBMnkotqFi2hEomsaxU01RQaVTcyrhRVs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxnj7ih/5A8UiuL24uLBI5Ge21pjlAOjF9Mgzy/oEQrmP+kqyeC
+	8/N9t/sgiKPw4KhbFmerR7z5eTlzn7jjFmGcV93C0qSS6jwl3p735T382PWFn2Y=
+X-Google-Smtp-Source: AGHT+IHB5OQx2TRFRrZchnBllj8v9C9YH3OX/H8dJQsivrnIOs8zZFmRq2vDbZo3P3cTWXKZV2DaAg==
+X-Received: by 2002:a05:6512:334e:b0:535:4d89:5b52 with SMTP id 2adb3069b0e04-5354d895d38mr3679602e87.1.1725454964676;
+        Wed, 04 Sep 2024 06:02:44 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374b9d54f98sm13458385f8f.69.2024.09.04.06.02.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Sep 2024 06:02:44 -0700 (PDT)
+Message-ID: <0d4d40cc-9885-4933-a6d6-933e4705a68c@linaro.org>
+Date: Wed, 4 Sep 2024 15:02:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n51eSxxvnJXwnfPrXx1=rei=8OGGEtCAgw6nhCktZ0iQDw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] dt-bindings: mmc: Add support for rk3576 eMMC
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, kernel@collabora.com
+References: <20240903145615.9302-1-detlev.casanova@collabora.com>
+ <20240903145615.9302-2-detlev.casanova@collabora.com>
+ <ag7hzh4crzuqkvborkqz4elastaodaq6e63xbssztfgoz5dhka@6bsjq3v37u54>
+ <6077666.lOV4Wx5bFT@trenzalore>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <6077666.lOV4Wx5bFT@trenzalore>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 03, 2024 at 06:20:14PM -0400, Stephen Boyd wrote:
-> Quoting Andy Shevchenko (2024-09-02 04:35:46)
-> > On Sat, Aug 31, 2024 at 09:06:44PM -0700, Stephen Boyd wrote:
-
-> > > Extend the aux-hpd bridge driver to support assigning DP lanes to USB
-> > > type-c pins based on typec mux state entry. Existing users of this
-> > > driver only need the HPD signaling support, so leave that in place and
-> > > wrap the code with a variant that supports more features of USB type-c
-> >
-> > Isn't the proper spelling "USB Type-C"?
+On 04/09/2024 14:56, Detlev Casanova wrote:
+> On Wednesday, 4 September 2024 02:00:27 EDT Krzysztof Kozlowski wrote:
+>> On Tue, Sep 03, 2024 at 10:51:36AM -0400, Detlev Casanova wrote:
+>>> The device is compatible with rk3588, so add an entry for the 2
+>>> compatibles together.
+>>>
+>>> The rk3576 device has a power-domain that needs to be on for the eMMC to
+>>> be used. Add it as a requirement.
+>>>
+>>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> NAK
+>>
+>> Drop fake tag. It is impossible to receive a review-tag from me on THE
+>> FIRST version.  I almost never provide reviews out of mailing lists.
+>>
+>> And since there is no changelog here and no versioning, this obviously
+>> is not v2 or v3.
 > 
-> Perhaps in a title?
-
-I am talking about the commit message :-)
-
-> > > DP altmode, i.e. pin configurations. Prefix that code with
-> > > 'drm_dp_typec_bridge' to differentiate it from the existing
-> > > 'drm_aux_hpd_bridge' code.
-> > >
-> > > Parse the struct typec_mux_state members to determine if DP altmode has
-> > > been entered and if HPD is asserted or not. Signal HPD to the drm bridge
-> > > chain when HPD is asserted. Similarly, parse the pin assignment and map
-> > > the DP lanes to the usb-c output lanes, taking into account any lane
-> > > remapping from the data-lanes endpoint property. Pass that lane mapping
-> > > to the previous drm_bridge in the bridge chain during the atomic check
-> > > phase.
-
-...
-
-> > > +     adev->dev.of_node = of_node_get(parent->of_node);
-> >
-> > device_set_node() ?
+> That's because the patch was from another patchset[0]. Only this patch needed
+> a rebase on the mmc tree, so I sent it separately. You reviewed it here [1].
 > 
-> Or device_set_of_node_from_dev()?
+> [0]: https://lore.kernel.org/all/010201919989e3de-60b56341-85e0-4869-89d1-362407c4f2ec-000000@eu-west-1.amazonses.com/
+> [1]: https://lore.kernel.org/all/m5ua5jnbv4u36glqt2qrps35asuqfycxedgjrfhodi5bvs2r2h@xvy4qxt4gx74/
 
-This is quite unclear to me. The second one bumps the reference count IIRC
-for no reason (in usual cases). Also only few drivers use that, I would hear
-what OF people can tell about this API and its usage scope.
+Hm, ok, changelog should explained this and the versioning should
+continue, including history of this patch.
 
-...
-
-> > > +static int dp_lane_to_typec_lane(enum dp_lane lane)
-> > > +{
-> > > +     switch (lane) {
-> > > +     case DP_ML0:
-> > > +             return USB_SSTX2;
-> > > +     case DP_ML1:
-> > > +             return USB_SSRX2;
-> > > +     case DP_ML2:
-> > > +             return USB_SSTX1;
-> > > +     case DP_ML3:
-> > > +             return USB_SSRX1;
-> > > +     }
-> >
-> > > +     return -EINVAL;
-> >
-> > Hmm... This can be simply made as default case.
 > 
-> And then the enum is always "covered" and the compiler doesn't complain
-> about missing cases (I don't think we have -Wswitch-enum)? Seems worse.
+>>> ---
+>>>
+>>>  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 34 ++++++++++++++-----
+>>>  1 file changed, 26 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>>> b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml index
+>>> 80d50178d2e3..84a667f0c526 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>>>
+>>> @@ -12,14 +12,18 @@ maintainers:
+>>>  properties:
+>>>    compatible:
+>>> -    enum:
+>>> -      - rockchip,rk3568-dwcmshc
+>>> -      - rockchip,rk3588-dwcmshc
+>>> -      - snps,dwcmshc-sdhci
+>>> -      - sophgo,cv1800b-dwcmshc
+>>> -      - sophgo,sg2002-dwcmshc
+>>> -      - sophgo,sg2042-dwcmshc
+>>> -      - thead,th1520-dwcmshc
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - const: rockchip,rk3576-dwcmshc
+>>> +          - const: rockchip,rk3588-dwcmshc
+>>> +      - enum:
+>>> +          - rockchip,rk3568-dwcmshc
+>>> +          - rockchip,rk3588-dwcmshc
+>>> +          - snps,dwcmshc-sdhci
+>>> +          - sophgo,cv1800b-dwcmshc
+>>> +          - sophgo,sg2002-dwcmshc
+>>> +          - sophgo,sg2042-dwcmshc
+>>> +          - thead,th1520-dwcmshc
+>>>
+>>>    reg:
+>>>      maxItems: 1
+>>>
+>>> @@ -35,6 +39,9 @@ properties:
+>>>      minItems: 1
+>>>      maxItems: 5
+>>>
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>>
+>>>    resets:
+>>>      maxItems: 5
+>>>
+>>> @@ -97,6 +104,17 @@ allOf:
+>>>              - const: block
+>>>              - const: timer
+>>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: rockchip,rk3576-dwcmshc
+>>> +
+>>> +    then:
+>>> +      properties:
+>>> +        power-domains:
+>>> +          minItems: 1
+>>
+>> Why minItems? This does not look right. I don't get what you are trying
+>> to say here.
+> 
+> I'm saying that for the rockchip,rk3576-dwcmshc compatible, 1 power-domain
+> node has to be set.
 
-Hmm... You mean if I remove one of the above cases I will get the warning?
+The top-level property already says this. You need to disallow it for
+other variants (:false).
 
-> > > +}
 
--- 
-With Best Regards,
-Andy Shevchenko
 
+Best regards,
+Krzysztof
 
 
