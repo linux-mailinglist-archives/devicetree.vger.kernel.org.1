@@ -1,137 +1,126 @@
-Return-Path: <devicetree+bounces-99898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10DAF96B7AB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 12:01:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72AA596B7D4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 12:07:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B13C5B24A4E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:01:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3150D2853A7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848B41CF7D3;
-	Wed,  4 Sep 2024 10:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E3E1CF287;
+	Wed,  4 Sep 2024 10:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="CXPPA8ph"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z36tg/QI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-228.siemens.flowmailer.net (mta-64-228.siemens.flowmailer.net [185.136.64.228])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C297C1CEEBA
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 10:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.228
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC111BD4E9;
+	Wed,  4 Sep 2024 10:07:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725444035; cv=none; b=mZsn8+9bdgERy3l3GUdjEIChV53xyoXzxsx7nlV+6ruwpFiNByKqSEldrVAg33fR/AVooYUT5pPuAvoJ4u/DMv4meVdTesCDeR/5AnTbdbrpPCt4eQanUb/RZ5NrjbWaUfWYQ3x3Gw3Kb6XKaPNbktY7JhjBtyJgmJXhohFHiCc=
+	t=1725444445; cv=none; b=Wo1cz1xZHWFWjkM0iIHLRetr+fTEAZPGBPr+r2LhpGG2SLujDxLyEmXRfL7ncRNXOAB8pkMeICMgVBfZOO7CZhx8Dp4SW4HtI5fyZ3p5AASliF38BGa33U2d30O4IO4drSyAgG9j5Ag3FYibEtitTHyuHndo9VqULoFYSyFL9R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725444035; c=relaxed/simple;
-	bh=/fX9b/A9nXIbGFSSM7QtrSW1aqgADOgQHQnYVDzRgXo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LezwuuDQmJGCVJOwaAkdRKm/cmn4Cx8ndnASmh9WiWT02LfqOhpahRdN4j/5G86N8JYzMRp3WoGTKs99TKNrh5wz52nxHhPvMwBLMEkuiSERe6B2mHM+HiizJFrKX39cvc8eMlUMe+qZ5TQo9YqarGPSa0qQnqhnKbMMD3rrjdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b=CXPPA8ph; arc=none smtp.client-ip=185.136.64.228
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-228.siemens.flowmailer.net with ESMTPSA id 20240904100029fcb2d0726ff8a67b9b
-        for <devicetree@vger.kernel.org>;
-        Wed, 04 Sep 2024 12:00:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=jan.kiszka@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=IMjvXkR2et0GfXj5KTooParfgTgH6azkWUIJJLU1FK8=;
- b=CXPPA8phomGv/pVwygg2mkoKMI4dKVKC0XmZ2SpQD3pbOJHFBtSBQnkfgGgP8b6I1UwGgs
- YVgGpdPU61l+pmAOBLC7Sf7Kkzj8zcUuEbtDb5oHcHx2HMA+SUlDd3ITtfEeVHloPoDoPTZG
- af7dXffQb9sHiUYYRRxGCAes86H0y/29AgDogZfzImRVYOA1Yjx6vzsHm70GWZxLk4CX2jB7
- 3yLCz3AfLR4ClhK2f8C/r7yFu1YFj3rBhEFw/EfuzNeTbjNFujbCnOAduSBS7a7a8JshhYB8
- EK+xuKeA/8AwwcqgK4XVgY5TvX8nGQp6M5BYGwsvoT0tA/1J/jV4GJjQ==;
-From: Jan Kiszka <jan.kiszka@siemens.com>
-To: Nishanth Menon <nm@ti.com>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Bao Cheng Su <baocheng.su@siemens.com>,
-	Hua Qian Li <huaqian.li@siemens.com>,
-	Diogo Ivo <diogo.ivo@siemens.com>
-Subject: [PATCH v4 7/7] arm64: dts: ti: iot2050: Enforce DMA isolation for devices behind PCI RC on Advanced
-Date: Wed,  4 Sep 2024 12:00:16 +0200
-Message-ID: <fd15a66b19691fbd38fd8491b2622f417fc3c71a.1725444016.git.jan.kiszka@siemens.com>
-In-Reply-To: <cover.1725444016.git.jan.kiszka@siemens.com>
-References: <cover.1725444016.git.jan.kiszka@siemens.com>
+	s=arc-20240116; t=1725444445; c=relaxed/simple;
+	bh=3j04vpiHxm3qldw/gVkz+eXyx+hMgIY4U95fgEcETvM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lNTvo2a4vnDCuLEWQnPEetNCiSbldXWwKwARNHYfyeIUYPQrpbZ42bgHoGRuWsL2P1tP9TQsp5PvD8ZKZg9ZQa2wXWpjJEAs3WP7pNOJfMh7sRTxVhOBfCzOnu8yCD0GRl8c6i5hK8IDV+Dnjm6VCq+ULDttGaXAl0gyXATePQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z36tg/QI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 709ADC4CEC6;
+	Wed,  4 Sep 2024 10:07:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725444444;
+	bh=3j04vpiHxm3qldw/gVkz+eXyx+hMgIY4U95fgEcETvM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z36tg/QIYQwgHt5hLJvoCZe76y4qUDqYhof0zxWtITF/s4mEBKeW3UnSXEJgap8YU
+	 RGyQgyXqinVHWTBC1J3bnX4tN0I87Sj3N6Z1JBIMJAGphAg2zqbKLyMBSatnGtUiAH
+	 h7uRaBbbgVyIZ6LbMuN1iT2k8GcZG4CxpTA4JwpkfsyyYjFoNR1qXvzziKXIk3AQbJ
+	 Ok6yXgpwYyy6lm0FxQMz49Tx/eizrJacziY1Mc3Nzij58g7g6gbhtaPUm6wlZ4Y9Wz
+	 o95ttTR8rW/i3nYqgpJR+AJDMOW8NhOT1WQa1DiYDtDZzLBCQKfGzlPtpmvfFhpOtU
+	 97Z2bx5KsPhFw==
+Message-ID: <77a75021-bb84-416b-9eb2-254724e77b86@kernel.org>
+Date: Wed, 4 Sep 2024 12:07:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-294854:519-21489:flowmailer
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/4] dt-bindings: remoteproc: qcom: document hexagon
+ based WCSS secure PIL
+To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
+ andersson@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: quic_viswanat@quicinc.com, quic_mmanikan@quicinc.com,
+ quic_varada@quicinc.com, quic_srichara@quicinc.com, quic_gokulsri@quiconc.com
+References: <20240829134021.1452711-1-quic_gokulsri@quicinc.com>
+ <20240829134021.1452711-2-quic_gokulsri@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240829134021.1452711-2-quic_gokulsri@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+On 29/08/2024 15:40, Gokul Sriram Palanisamy wrote:
+> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> 
+> Add new binding document for hexagon based WCSS secure PIL remoteproc.
+> IPQ5332, IPQ9574 follows secure PIL remoteproc.
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
 
-Reserve a 64M memory region and ensure that all PCI devices do their DMA
-only inside that region. This is configured via a restricted-dma-pool
-and enforced with the help of the first PVU.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The pool size may be adjusted via DT fixup during boot by the firmware.
-The location is chosen to allow up to 512M for special needs without
-causing conflicts.
-
-Applying this isolation which is not totally free in terms of overhead
-and memory consumption makes only sense for variants that support secure
-booting. These are the advanced-class variants.
-
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
----
- .../ti/k3-am6548-iot2050-advanced-common.dtsi | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-index ae842b85b70d..dc75e3ea9a6b 100644
---- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /*
-- * Copyright (c) Siemens AG, 2018-2021
-+ * Copyright (c) Siemens AG, 2018-2024
-  *
-  * Authors:
-  *   Le Jin <le.jin@siemens.com>
-@@ -20,6 +20,25 @@ memory@80000000 {
- 		/* 2G RAM */
- 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
- 	};
-+
-+	reserved-memory {
-+		pci_restricted_dma_region: restricted-dma@c0000000 {
-+			compatible = "restricted-dma-pool";
-+			reg = <0 0xc0000000 0 0x4000000>;
-+		};
-+	};
-+};
-+
-+&pcie0_rc {
-+	memory-region = <&pci_restricted_dma_region>;
-+};
-+
-+&pcie1_rc {
-+	memory-region = <&pci_restricted_dma_region>;
-+};
-+
-+&ti_pvu0 {
-+	status = "okay";
- };
- 
- &main_pmx0 {
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
