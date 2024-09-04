@@ -1,136 +1,173 @@
-Return-Path: <devicetree+bounces-100156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 972BD96C784
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 21:28:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F8196C7DC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 21:46:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5439C28806F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:28:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E1DFB2173E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1981E6DE7;
-	Wed,  4 Sep 2024 19:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A0C13D51B;
+	Wed,  4 Sep 2024 19:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ZJ7Kblpv"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l4NlHtMR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494541E6DE5
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 19:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CFC613AA2B;
+	Wed,  4 Sep 2024 19:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725477967; cv=none; b=g82JNti3dunad5sCkBHFd9gxR7kSKoiXEdD/B8CgQjB9WKXQeyLlGT2cyi7p3d+tTR82AbdJfT308hMYxAvwb8cmrBXouV+ZKeKlpZBNfOaEM8GXOTTDogiXXVgLYXhWJbWlA77W8AsOvAgIbpI9WHtKSvrdoQqea8Bf/b7YgNc=
+	t=1725479192; cv=none; b=mzDIZF9BFRlEv6ITKhNv7SlpOkQxMLb6medvfZa31ozxWlWc780Q1kwTCHlT3vu0icvghG3LGKJS572Om3Q8BbONkLFgMlpetimmSgtuLv9mluhEohrx52yGyWYQNZtXn65w+BTRNd+DdwcA8Y5MbjfDvCz41mddabR1WolPqE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725477967; c=relaxed/simple;
-	bh=JbQEdJAfSaefhmwrzdBsb6aNoET+uqf7VVTcNlnZrFA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hYjBTpUT5Sudoysle5fdFwRb7AARgkua+VZGFaye/JxQZRVNwF33kvU7+BjcnQhY3iiTiuQLGvNwewUp7gmgbRT3UmukGNqOwwhrg3B4oZOSLLZxxNmeCVe+UC6J4OLPd61GSGu0ITSB09MK3N5JDoCG7J+mTn4acM0GoGSNN00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ZJ7Kblpv; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2055a3f80a4so29356025ad.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 12:26:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1725477965; x=1726082765; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QzgXI30XIm8oNOmE6GpllOlVvkUGWlkzjWvspomrRUU=;
-        b=ZJ7Kblpv13AIQgpQQCupsawJpvWS1CLUU6WOzeMMMEFedVvG8ISwF30qg+ba5NnC32
-         dzKlGp9uGF5EjQW2zZ0CJ7J4q49m6fopaS7T8grrxqxQ+VcvXoQqpJvJYZMqNotGe/5G
-         mlum5+nnnFgJd+8jH75Kc/1jsMcNp4qv/Z/Kdp6OQvC9jTuORXPA0D9pRqti5AkfRBAm
-         wk6POoaIQm2HNj+0uFcDsiVFLHwWLyZGpKaOsiI0mvjRghhei1D9GcPTZCfVgT3kMM0s
-         HOUB9qFugRBwEAT7RS0fWUN0otsw0sFXPZYBdut0kZB8bMmA0ukFrLTPvGxP3k40ZkNL
-         AwIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725477965; x=1726082765;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QzgXI30XIm8oNOmE6GpllOlVvkUGWlkzjWvspomrRUU=;
-        b=iG8UfkCPxlbF3Rmjla0rifNO6pG1/mos8MC6BOrsVgZCwabNzjdfSkRNQxjKJ7FPJJ
-         1+/DydUoiIMcTzdYRvpq2ZN9WYi82VARf4liGC6yTAOXs8tmPcSFj/k+0LtKt+SY8f0J
-         V8oJ/ifLt8Tzb1PM/YsUuiLyCwCwWy3hFkj9QKtlRNoZx9PcyTbnLerLjuanu5BVJOSn
-         1uhMhgr3V1uYWxdpHg2b4+NWDlOF+UBjCowPx7hkrzpHNwTK2BGNd46hv1X6IPyIr9vZ
-         nekgyCxAXmCYymHHfCQgr3xkWQsWX8yKCVSWHnJfS6VQvrURshDUaraRNQaIpOxjqaiM
-         ZszA==
-X-Forwarded-Encrypted: i=1; AJvYcCWa+yaTZetuAxM0tyxhJ+t08gmwFVH5Zxw9TpnhuVwAO1jxFqkZHQmbzIZJCebpTH5QnzrtFGSCMz9p@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiQg/nJDdsOfVTmDy3cBmom2k8IWLw3r1bG89qsWgs83/4oJQi
-	VV0SpPhp/Vmh14zHFGoLAzfl2mrLboGnn6ck3pnvTpREtlqIzk37u/VmLyCSDrMTmEno4D5NEed
-	RYZrhJfohuYjgXJQEZOCMbHC1nB1g/Tr4iPJ6
-X-Google-Smtp-Source: AGHT+IFA5vuSQfHjZv43KDRTRUBUxTC4QgFsJOO7wbJ9AKy9YCTUxhNxS/R4q49PuebEPHSlqF9tAuQmPi0RJOXj1AI=
-X-Received: by 2002:a17:902:f682:b0:206:b7b8:1f0e with SMTP id
- d9443c01a7336-206b7b82ed2mr27612835ad.1.1725477965110; Wed, 04 Sep 2024
- 12:26:05 -0700 (PDT)
+	s=arc-20240116; t=1725479192; c=relaxed/simple;
+	bh=e5YRCfHcSxajoDuqX351heIe3Wzdm2U2L0IQCNWWeXQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AMpCSQfFOixEFdoOYSCH0ZMu8UCDLW+yBjF7XdBqvMTEl99MEc0GP4iiWzLZnbTe4a5CO9yN2H6F9m5lk91693J+sBXSN/A7UWPlduXzgpF4o5Fl9hBkxahrvO7fFPhKXc1m4U4qK7Y2tIqtCSNEeroXNKPh7egU1lTJ/9TRXqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=l4NlHtMR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484IoaCp028269;
+	Wed, 4 Sep 2024 19:46:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4L5/ijFquyhl43s4ge7n4rzdYP9Bspig+YmhsVPizDQ=; b=l4NlHtMRF8vNO7MP
+	nOQCFcFhJ2p34IS3ayCQypwnosMjNNcY1PKjL2lmN+4U6e52LGqMnttmJHnMZ6Sk
+	tprRbJDmIDPf1A7LIrtMXJkT/SLsVAIWKE/3iqWfY/mJK0AHJ7syVBy7HwXAW+3P
+	k/YsDqdmGUX0MjtBMA8Okxj9PO5NZu13f0hJ0Ptl2vb7YPPRYGPfIFl2LvbiqU+8
+	z/3WnSZ+/k+LeqBkSYJFkT5y2J8LczrwNup0TWjbkAJowbTOnPLVtW3Ul3fmLvG+
+	YrieTiYgDm999u0Y9qoZYtf9XqKdE4Z/I+6FLDV6L8kFZEZl7q8YDrmdBHeVLUXx
+	lINI9g==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41btrxuu79-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Sep 2024 19:46:06 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 484Jk4kw023645
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Sep 2024 19:46:04 GMT
+Received: from [10.71.114.155] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
+ 12:46:03 -0700
+Message-ID: <93d2eecf-ed79-41cf-b38b-ede432093aec@quicinc.com>
+Date: Wed, 4 Sep 2024 12:46:03 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87cylj7ul2.wl-kuninori.morimoto.gx@renesas.com> <20240904150720.GA2578755-robh@kernel.org>
-In-Reply-To: <20240904150720.GA2578755-robh@kernel.org>
-From: Saravana Kannan <saravanak@google.com>
-Date: Wed, 4 Sep 2024 12:25:28 -0700
-Message-ID: <CAGETcx8SuPjzukN6WwuGJAFNoe57avNU=qtw9SCkydH0snr6ew@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: renesas,rsnd: add post-init-providers property
-To: Rob Herring <robh@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Mark Brown <broonie@kernel.org>, 
-	Linux-ALSA <alsa-devel@alsa-project.org>, devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v26 30/33] ALSA: usb-audio: qcom: Use card and PCM index
+ from QMI request
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <tiwai@suse.com>, <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240829194105.1504814-1-quic_wcheng@quicinc.com>
+ <20240829194105.1504814-31-quic_wcheng@quicinc.com>
+ <f8090415-e0ae-4923-bdc8-58622623fc9d@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <f8090415-e0ae-4923-bdc8-58622623fc9d@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: r8piAAQeh2qxXzfDR-ckpRBOOeNMPYga
+X-Proofpoint-ORIG-GUID: r8piAAQeh2qxXzfDR-ckpRBOOeNMPYga
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-04_17,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ clxscore=1015 suspectscore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 mlxscore=0 mlxlogscore=999 spamscore=0
+ lowpriorityscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2407110000 definitions=main-2409040149
 
-On Wed, Sep 4, 2024 at 8:07=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Sep 04, 2024 at 07:21:14AM +0000, Kuninori Morimoto wrote:
-> > sometimes, fwnode dependency cycles can be broken, and in such case,
-> > rsnd driver will never be probed. To avoid such case, we would like to
-> > use post-init-providers to avoid it.
-> > Enable post-init-providers property on rsnd.
+Hi Pierre,
 
-fwnode or fw_devlink cycles isn't broken. It's detecting the cycle
-correctly. But it doesn't know one of the dependencies isn't an
-initialization dependency. So you are providing additional information
-to break the cycle. Please say something along those lines.
+On 8/30/2024 2:58 AM, Pierre-Louis Bossart wrote:
+>
+> On 8/29/24 21:41, Wesley Cheng wrote:
+>> Utilize the card and PCM index coming from the USB QMI stream request.
+>> This field follows what is set by the ASoC USB backend, and could
+>> potentially carry information about a specific device selected through the
+>> ASoC USB backend.  The backend also has information about the last USB
+>> sound device plugged in, so it can choose to select the last device plugged
+>> in, accordingly.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>  sound/usb/qcom/qc_audio_offload.c | 8 ++------
+>>  1 file changed, 2 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
+>> index 0bd533f539e4..a7ad15404fd1 100644
+>> --- a/sound/usb/qcom/qc_audio_offload.c
+>> +++ b/sound/usb/qcom/qc_audio_offload.c
+>> @@ -106,8 +106,6 @@ struct uaudio_qmi_dev {
+>>  	bool er_mapped;
+>>  	/* reference count to number of possible consumers */
+>>  	atomic_t qdev_in_use;
+>> -	/* idx to last udev card number plugged in */
+>> -	unsigned int last_card_num;
+>>  };
+>>  
+>>  struct uaudio_dev {
+>> @@ -1261,7 +1259,7 @@ static int prepare_qmi_response(struct snd_usb_substream *subs,
+>>  
+>>  	pcm_dev_num = (req_msg->usb_token & QMI_STREAM_REQ_DEV_NUM_MASK) >> 8;
+>>  	xfer_buf_len = req_msg->xfer_buff_size;
+>> -	card_num = uaudio_qdev->last_card_num;
+>> +	card_num = (req_msg->usb_token & QMI_STREAM_REQ_CARD_NUM_MASK) >> 16;
+>>  
+>>  	if (!uadev[card_num].ctrl_intf) {
+>>  		dev_err(&subs->dev->dev, "audio ctrl intf info not cached\n");
+>> @@ -1455,8 +1453,7 @@ static void handle_uaudio_stream_req(struct qmi_handle *handle,
+>>  
+>>  	direction = (req_msg->usb_token & QMI_STREAM_REQ_DIRECTION);
+>>  	pcm_dev_num = (req_msg->usb_token & QMI_STREAM_REQ_DEV_NUM_MASK) >> 8;
+>> -	pcm_card_num = req_msg->enable ? uaudio_qdev->last_card_num :
+>> -				ffs(uaudio_qdev->card_slot) - 1;
+>> +	pcm_card_num = (req_msg->usb_token & QMI_STREAM_REQ_CARD_NUM_MASK) >> 16;
+>>  	if (pcm_card_num >= SNDRV_CARDS) {
+>>  		ret = -EINVAL;
+>>  		goto response;
+>> @@ -1706,7 +1703,6 @@ static void qc_usb_audio_offload_probe(struct snd_usb_audio *chip)
+>>  		sdev->card_idx = chip->card->number;
+>>  		sdev->chip_idx = chip->index;
+>>  
+>> -		uaudio_qdev->last_card_num = chip->card->number;
+>>  		snd_soc_usb_connect(usb_get_usb_backend(udev), sdev);
+>>  	}
+> This entire path seems like a bad split/merge, it removes stuff that was
+> done earlier. Also it's not clear what this has to do with 'QMI', card
+> and PCM device management is usually done at a higher level.
+>
+> not following, please be mindful of reviewer fatigue when adding such
+> changes in patch 30/33....
 
-Here's a suggestion:
+I'll just add this as part of patch#28.  I think before I did the reordering of the series, this made a bit more sense to have as a patch on its own.  Now that the entire framework for the audio dsp to know about the card and pcm index is already done in previous patches, the plumbing is done for the qc_audio_offload to utilize the fields coming from the audio DSP, as they will carry valid values.
 
-fw_devlink doesn't have enough information to break the cycle between
-<list the device names>. Add post-init-providers property to <insert
-the right device name> to indicate which link in the cycle to break.
+Thanks
 
--Saravana
+Wesley Cheng
 
-> >
-> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > ---
-> >  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml =
-b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> > index 07ec6247d9def..cb44478d9e420 100644
-> > --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> > @@ -112,6 +112,10 @@ properties:
-> >      description: List of necessary clock names.
-> >      # details are defined below
-> >
-> > +  post-init-providers:
-> > +    description: ignore fw_devlink dependency cycles and avoid driver =
-probe dead-lock
->
-> Drop. Don't need to describe (again) what a common property is. If you
-> want to say what your dependency cycle is, that would be good.
->
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
->
-> Already has a type, don't define one again.
->
-> What you need, if you know, is how many entries (maxItems).
->
-> Rob
 
