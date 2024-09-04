@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD1DC96C063
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:27:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F73C96C074
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:30:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B1CF1C21FDC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:27:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78469B2194F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:30:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C84D1DC1AE;
-	Wed,  4 Sep 2024 14:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD0C2BD0D;
+	Wed,  4 Sep 2024 14:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lBozVtzi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gw5+6Lru"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E30031DC198;
-	Wed,  4 Sep 2024 14:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4A15C96;
+	Wed,  4 Sep 2024 14:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725459962; cv=none; b=qFTbWHbw8Gu8ddYKUm/6dtmqU5T9urHwMEmC+wmeXpTXRO0rd2pEMf3lCqhRCKGGYMYABQMr+0RfOOPU+TjrwKik9CG0iC+Y83jHyvAMpDKJrYZdl9QEH7S1MMjGNYTwgwT2Em5HegJhNhNgGZmWUkfziX2z6EDGLmkbhvpd/Jo=
+	t=1725460207; cv=none; b=me18HeMv54gU0GLRlFxyhD9PAQcn6zotz6QAeOjuF+BW9GRsje7/ZRGo6mEc9TVJcYEHLXC1E+kAORKobbtcS9PeNaDNFXd8wJtHEB//r8pFoMcszK5Xj5YmKC9sK/sqrgYHnGe1pDWScDXPoJU2NF6Xg64W6Z8LrkAiNjnOAlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725459962; c=relaxed/simple;
-	bh=IWU/5vUW/co70eztiWwvLMjG3Rr6wvuy04MQhdILmFA=;
+	s=arc-20240116; t=1725460207; c=relaxed/simple;
+	bh=IGbzTX5KEMiOqp/btvJ1ccQvnyeDHf44Oxf/FGejqvI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jmcv51kUDmflYC2vLXh2G5MH27i4Vic8/2RW7ajCPLPaWUo6EpjGi28NGXevlF571sGScRsOomcb7NxOZrSmzKNmWtoXUUrznXqFmA2GaaT54rcEUe9iDN99Rw93MMDNbRBSG4oCcTtZ+6YK1hzvXAbNl1cK/x7IEkk6y5wxyjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lBozVtzi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C796C4CEC2;
-	Wed,  4 Sep 2024 14:25:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WRHYE0L6C4sOLIdV5AHD7QNnFcePc+p8lQ/CSmEmVqoL6dq6yZPHw5hInxNgas9I5Apr+lxM8rlNOFLR0wsnwQf8Gst2IX2zrqNsiQZUeAJgvKYTIn6vWrqB5aNq5/plLiZVWHgmwn6zs8+A8vCC2u+EzZJMTHDJ+C2PisZKUNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gw5+6Lru; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF92EC4CEC2;
+	Wed,  4 Sep 2024 14:29:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725459961;
-	bh=IWU/5vUW/co70eztiWwvLMjG3Rr6wvuy04MQhdILmFA=;
+	s=k20201202; t=1725460206;
+	bh=IGbzTX5KEMiOqp/btvJ1ccQvnyeDHf44Oxf/FGejqvI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lBozVtzive0diJ/t/qMDqf/mXXvlmnA48DTrNJYvgqkkbvffLerAvZYhyJvTePFhk
-	 rEmHm7FOfnp/RPbgt2CjTfvjbo1ulSeo5lrRCgTItSDJJLClmBzLChD60UPa4ni6X+
-	 g2b7SX3kjvpIvtDZIEkTS+cjlMOlVmyM+12QjqKZ8MtEUF2MK3eyzmZ0zf8mK57WWe
-	 IGIt/RMejt6+0z1cp0+XsWUXcQ6A6+8kLiPH7SmOG15431iiOT3oMc7xGIurMG+yhg
-	 g7T8FQsJ7vsMh/UlIDJdCejRwBC76xGC+abrjn2QpSwwSGyS0TX540deIU1DhENHjQ
-	 USM/q+fF0Lvdw==
-Message-ID: <26d8ecbe-0d85-4be2-a142-861088e43918@kernel.org>
-Date: Wed, 4 Sep 2024 16:25:54 +0200
+	b=Gw5+6LrupMCviKvLpbyxwQl6v/VPtEtiCInsUzN21yDLYNvAh2KUEHQH2txBVglAo
+	 Bk+eOg5sZgyG7I0KR4rzFmIEUhJRQ/Q12D3hI3cyiJZVVUd8OzL63w8FFWtzImM7RT
+	 WcN+SP8JJT+Om8z05RBN4wfGSVT3UWfiIegxoPdzHEDNhNabk+128mWyfAvYKMbBHo
+	 XGg6IBIp/bkR3O7YKhmhqAmCqpXxKew2wOm6id79OZdMKaRtv6Ey7StboL101Mf8pU
+	 xUJxeZ0H98YDzFet19o2GdTx5kI9PMulaDv9g3R1YIOuit0PxbEgRUbAy8iBRAd3Hp
+	 80+WccgKKSBSg==
+Message-ID: <51e9fa5a-ac6f-42e8-85e5-7c5c02075a56@kernel.org>
+Date: Wed, 4 Sep 2024 16:29:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: mmc: Add support for rk3576 eMMC
-To: Detlev Casanova <detlev.casanova@collabora.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, kernel@collabora.com
-References: <20240903145615.9302-1-detlev.casanova@collabora.com>
- <6077666.lOV4Wx5bFT@trenzalore>
- <0d4d40cc-9885-4933-a6d6-933e4705a68c@linaro.org>
- <1896150.tdWV9SEqCh@trenzalore>
+Subject: Re: [PATCH v2 14/21] dt-bindings: cpufreq: qcom-hw: document support
+ for SA8255p
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
+ viresh.kumar@linaro.org, herbert@gondor.apana.org.au, davem@davemloft.net,
+ sudeep.holla@arm.com, andi.shyti@kernel.org, tglx@linutronix.de,
+ will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
+ jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
+ amitk@kernel.org, thara.gopinath@gmail.com, broonie@kernel.org,
+ cristian.marussi@arm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
+ wim@linux-watchdog.org, linux@roeck-us.net, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, iommu@lists.linux.dev,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel@quicinc.com, quic_psodagud@quicinc.com
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-15-quic_nkela@quicinc.com>
+ <odg5ssqu2soaqp6m4rambj7qhqiyp7othkvu4v6fu6xtuhbdho@vccya6qcwgoz>
+ <1b831fc1-9360-4038-91b2-b2c0cea513ed@quicinc.com>
+ <baf00e50-10b2-410b-9c56-713564a2d1b9@kernel.org>
+ <c163149b-bdf1-423b-ab51-f734d00277fe@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,42 +121,83 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <1896150.tdWV9SEqCh@trenzalore>
+In-Reply-To: <c163149b-bdf1-423b-ab51-f734d00277fe@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2024 16:20, Detlev Casanova wrote:
+On 04/09/2024 16:19, Nikunj Kela wrote:
+> 
+> On 9/4/2024 6:17 AM, Krzysztof Kozlowski wrote:
+>> On 04/09/2024 14:27, Nikunj Kela wrote:
+>>> On 9/3/2024 11:26 PM, Krzysztof Kozlowski wrote:
+>>>> On Tue, Sep 03, 2024 at 03:02:33PM -0700, Nikunj Kela wrote:
+>>>>> Add compatible for the cpufreq engine representing support on SA8255p.
+>>>>>
+>>>>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>>>>> ---
+>>>>>  .../bindings/cpufreq/cpufreq-qcom-hw.yaml        | 16 ++++++++++++++++
+>>>>>  1 file changed, 16 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>>>>> index 1e9797f96410..84865e553c8b 100644
+>>>>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>>>>> @@ -34,6 +34,7 @@ properties:
+>>>>>          items:
+>>>>>            - enum:
+>>>>>                - qcom,qdu1000-cpufreq-epss
+>>>>> +              - qcom,sa8255p-cpufreq-epss
+>>>>>                - qcom,sa8775p-cpufreq-epss
+>>>>>                - qcom,sc7280-cpufreq-epss
+>>>>>                - qcom,sc8280xp-cpufreq-epss
+>>>>> @@ -206,6 +207,21 @@ allOf:
+>>>>>          interrupt-names:
+>>>>>            minItems: 2
+>>>>>  
+>>>>> +  - if:
 >>>>> +      properties:
->>>>> +        power-domains:
->>>>> +          minItems: 1
+>>>>> +        compatible:
+>>>>> +          contains:
+>>>>> +            enum:
+>>>>> +              - qcom,sa8255p-cpufreq-epss
+>>>>> +    then:
+>>>>> +      properties:
+>>>>> +        reg:
+>>>>> +          minItems: 2
+>>>>> +          maxItems: 2
+>>>>> +
+>>>>> +        reg-names:
+>>>>> +          minItems: 2
+>>>>> +          maxItems: 2
+>>>> What about interrupts? You need to constrain each of such lists.
 >>>>
->>>> Why minItems? This does not look right. I don't get what you are trying
->>>> to say here.
->>>
->>> I'm saying that for the rockchip,rk3576-dwcmshc compatible, 1 power-domain
->>> node has to be set.
->>
->> The top-level property already says this. You need to disallow it for
->> other variants (:false).
+>>>> Best regards,
+>>>> Krzysztof
+>>> Interrupts are not required, I still need to put constraints for
+>> It's irrelevant whether they are required or not. Each property should
+>> be narrowed.
 > 
-> Ok, something like this:
-> 
-> allOf:
->   - if:
->       properties:
->         compatible:
->           contains:
->             const: rockchip,rk3576-dwcmshc
-> 
->     then:
->       required:
->         - power-domains
-> 
->     else:
->       properties:
->         power-domains: false
+> So evenif we don't use interrupts property in our DT(patch#21), we need
+> to mention interrupts here? You suggest we put interrupts with maxItems: 0?
 
-Yes, if they are required. Otherwise use "if: not:" and just disallow them.
+I don't understand. You use three quite separate statements. "Not
+required", "don't use" and here "maxItems: 0" which means not allowed.
+
+All of these mean something else and I keep guessing and responding
+according to what you write. Probably half of my advises are just trash,
+because it turns out it is something entirely else than what I read.
+
+Make a decision how the hardware looks like.
+
+> 
+> I wonder why SA8775p compatible is not in constraint list..
+> 
+>>> interrupts? BTW, there is no if block for SA8775p binding in this file.
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
 
 Best regards,
 Krzysztof
