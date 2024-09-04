@@ -1,237 +1,139 @@
-Return-Path: <devicetree+bounces-99959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1B5396BA64
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:26:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0AC096BA75
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:26:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B729B2763D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 11:26:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 719AB1F221AD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 11:26:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E112D1DB55F;
-	Wed,  4 Sep 2024 11:19:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QpCutlmt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 909DF1D0482;
+	Wed,  4 Sep 2024 11:20:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E121D1F5B;
-	Wed,  4 Sep 2024 11:19:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C142B1D0150
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 11:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725448786; cv=none; b=gmqFxEiyhRK8oPcbOwiU2dVwyjURjvh5+V6NHi7++w0+vlfeKp8HzTZM9uH3WFIXwZUrb5lrueuqGLXaM/xw4hy+ovTW/cjFhai9xG6xweu991JTt4jXHhUbmXGKAdMD5/VbsJK3t1S8X0CHeUgBn0byz264tN8DE12WnQl/HO4=
+	t=1725448859; cv=none; b=otjGEsRKwQPnXr2qbK/3xPphgAxX5X3rWyWQHNOkGr21Wr8RzLoab46K8g7/+ZLWWJjEjsdKiXoZRLat7ON/tDdg1tcHpn6bUtz8e5Y7SxFFDJl07POEqjVlAMWLdVc97FlNF6xeCxuNtUDLa0h0ju8v/mGoQYdLU9E+fDf2Gu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725448786; c=relaxed/simple;
-	bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KhvgczaN9zV6NGWhl0KSoxteIgYKh/krufey2KC5IYu8ncFnNKxmVhDs8qdvS9S0HtZB359AzwrCYmv0vssm+xyLSzoAbJQA/cDQ7O2JnlUayEipXl8/Vgd/QhIbyoPBiwHGAxyCBwydl0zn2G+ckCxnalGX+qtALee3xdq6DdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QpCutlmt; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [127.0.1.1] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DFF741667;
-	Wed,  4 Sep 2024 13:18:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725448707;
-	bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=QpCutlmt1xgUwjUGOCQVvDLpiTzz68H4+zRrdi+Q3E0EC4L72NUM/FhxVyu/qQexL
-	 Jc1/hkO0/2tmZoa9srWrmnYp9uxtsk9UyIW/Vj7YPKYEzxLhbY7K3mhnVrvk9KKdw0
-	 2Xhukyxq5RBY9cvw/8XQUtNy63zZR2epGu78Nt9E=
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Date: Wed, 04 Sep 2024 14:19:12 +0300
-Subject: [PATCH v4 4/4] media: admin-guide: Document the Raspberry Pi CFE
- (rp1-cfe)
+	s=arc-20240116; t=1725448859; c=relaxed/simple;
+	bh=TftL3iSBmRYXaP1isB4MihdnO9S9c/Serawns1g+mEA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TKEmkbQEMagWyVoMppPTQxvBVnZJhfjmfOqqNOk/x9Hl5hoPuA9cxhVZi/e1r+/T477Lu6PYWzP7Xw+75/w4egANvX7W0gfkR/JrkBBM6+rh/fYhXYQdzGBL3g01TsvjETr5Wwnb0UGZG8/YvlK2S7WU6QGx7hHUIEjlVzbulqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1slo41-00024s-Dq; Wed, 04 Sep 2024 13:20:41 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1slo40-005RJT-Un; Wed, 04 Sep 2024 13:20:40 +0200
+Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 79257332619;
+	Wed, 04 Sep 2024 11:20:40 +0000 (UTC)
+Date: Wed, 4 Sep 2024 13:20:39 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: haibo.chen@nxp.com
+Cc: han.xu@nxp.com, yogeshgaur.83@gmail.com, broonie@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, devicetree@vger.kernel.org, singh.kuldeep87k@gmail.com, 
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, 
+	kernel@pengutronix.de, hs@denx.de, festevam@gmail.com, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/6] spi: nxp-fspi: remove the imx8mp compatible string
+Message-ID: <20240904-free-chowchow-of-endeavor-9c3f8b-mkl@pengutronix.de>
+References: <20240904111727.1834935-1-haibo.chen@nxp.com>
+ <20240904111727.1834935-3-haibo.chen@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240904-rp1-cfe-v4-4-f1b5b3d69c81@ideasonboard.com>
-References: <20240904-rp1-cfe-v4-0-f1b5b3d69c81@ideasonboard.com>
-In-Reply-To: <20240904-rp1-cfe-v4-0-f1b5b3d69c81@ideasonboard.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Naushir Patuck <naush@raspberrypi.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6375;
- i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
- bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
- b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBm2EJES1LdfUszMvchzvm+GMvfWmS7d4n9Sy5+I
- pTCILBELBaJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZthCRAAKCRD6PaqMvJYe
- 9X3/D/9K21Z2vx7Gl2+IuakDPfT6CClfYMu1w3SioxKx17J7OfpXt1yK1O3ACI4KhhQnpc74mMF
- 6RM8lvGujL0GJexuAKcO4y5An+XTJ77E5hejnPFy1cTToNkCM3NVuxdhbE30XY2c0QZ1vfzmezB
- rUxCBBaV49lsSfYy+fZbbtCAq4EU1EkoVIzF1iXf37I94X1MlDvREuYmXoo492I3Rr5DBNHDpKY
- H3ZJD+vCCib8x1YguyOLPGb+zi51r97SM9GwU71/E+RRFM01OdnNflNZ1RGq7Mjf5ZuWTU9J7jB
- awotjqKhsy5HJxBPIcJznOw6qPq1Dkvqf9grQ7hNbpzlmwzBrsIPn4kGFVCma6PjxVra/CUg4Gz
- XuJPLTwZhVQZIEWLzoixoqswcYB3/OFp56Mj3K2ddnzscrsRY+I+vX5hMyO/2w4rxPkv6OomGR5
- hrFvfLcHpY0B0cJFo2AvkHTQ/DumlG+L5zj+FZzA1mvfyPpNBJtgDF66Wp8W6WfilRfrzBoyhAm
- 6GfTlW79VIcg/6rShAyL6yteeeuATPjxUHMjKiPl2oP5LEtir0OsZ26nKO09PCuyTExUcxQKlmJ
- cEqesBswmfo45a02tgxNEnc+KsBmFPgNPfiKDswvndVZ7TtSw50RYeAIUqsLhAk+2v9R5HBTc8R
- KCnNJ4h7X6I1fzw==
-X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
- fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fqyfxuqjctwfsa3a"
+Content-Disposition: inline
+In-Reply-To: <20240904111727.1834935-3-haibo.chen@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add documentation for rp1-cfe driver.
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
- .../admin-guide/media/raspberrypi-rp1-cfe.dot      | 27 ++++++++
- .../admin-guide/media/raspberrypi-rp1-cfe.rst      | 78 ++++++++++++++++++++++
- Documentation/admin-guide/media/v4l-drivers.rst    |  1 +
- 3 files changed, 106 insertions(+)
+--fqyfxuqjctwfsa3a
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot
-new file mode 100644
-index 000000000000..7717f2291049
---- /dev/null
-+++ b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot
-@@ -0,0 +1,27 @@
-+digraph board {
-+	rankdir=TB
-+	n00000001 [label="{{<port0> 0} | csi2\n/dev/v4l-subdev0 | {<port1> 1 | <port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000001:port1 -> n00000011 [style=dashed]
-+	n00000001:port1 -> n00000007:port0
-+	n00000001:port2 -> n00000015
-+	n00000001:port2 -> n00000007:port0 [style=dashed]
-+	n00000001:port3 -> n00000019 [style=dashed]
-+	n00000001:port3 -> n00000007:port0 [style=dashed]
-+	n00000001:port4 -> n0000001d [style=dashed]
-+	n00000001:port4 -> n00000007:port0 [style=dashed]
-+	n00000007 [label="{{<port0> 0 | <port1> 1} | pisp-fe\n/dev/v4l-subdev1 | {<port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000007:port2 -> n00000021
-+	n00000007:port3 -> n00000025 [style=dashed]
-+	n00000007:port4 -> n00000029
-+	n0000000d [label="{imx219 6-0010\n/dev/v4l-subdev2 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000d:port0 -> n00000001:port0 [style=bold]
-+	n00000011 [label="rp1-cfe-csi2-ch0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-+	n00000015 [label="rp1-cfe-csi2-ch1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-+	n00000019 [label="rp1-cfe-csi2-ch2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-+	n0000001d [label="rp1-cfe-csi2-ch3\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-+	n00000021 [label="rp1-cfe-fe-image0\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-+	n00000025 [label="rp1-cfe-fe-image1\n/dev/video5", shape=box, style=filled, fillcolor=yellow]
-+	n00000029 [label="rp1-cfe-fe-stats\n/dev/video6", shape=box, style=filled, fillcolor=yellow]
-+	n0000002d [label="rp1-cfe-fe-config\n/dev/video7", shape=box, style=filled, fillcolor=yellow]
-+	n0000002d -> n00000007:port1
-+}
-diff --git a/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst
-new file mode 100644
-index 000000000000..668d978a9875
---- /dev/null
-+++ b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst
-@@ -0,0 +1,78 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+============================================
-+Raspberry Pi PiSP Camera Front End (rp1-cfe)
-+============================================
-+
-+The PiSP Camera Front End
-+=========================
-+
-+The PiSP Camera Front End (CFE) is a module which combines a CSI-2 receiver with
-+a simple ISP, called the Front End (FE).
-+
-+The CFE has four DMA engines and can write frames from four separate streams
-+received from the CSI-2 to the memory. One of those streams can also be routed
-+directly to the FE, which can do minimal image processing, write two versions
-+(e.g. non-scaled and downscaled versions) of the received frames to memory and
-+provide statistics of the received frames.
-+
-+The FE registers are documented in the `Raspberry Pi Image Signal Processor
-+(ISP) Specification document
-+<https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf>`_,
-+and example code for FE can be found in `libpisp
-+<https://github.com/raspberrypi/libpisp>`_.
-+
-+The rp1-cfe driver
-+==================
-+
-+The Raspberry Pi PiSP Camera Front End (rp1-cfe) driver is located under
-+drivers/media/platform/raspberrypi/rp1-cfe. It uses the `V4L2 API` to register
-+a number of video capture and output devices, the `V4L2 subdev API` to register
-+subdevices for the CSI-2 received and the FE that connects the video devices in
-+a single media graph realized using the `Media Controller (MC) API`.
-+
-+The media topology registered by the `rp1-cfe` driver, in this particular
-+example connected to an imx219 sensor, is the following one:
-+
-+.. _rp1-cfe-topology:
-+
-+.. kernel-figure:: raspberrypi-rp1-cfe.dot
-+    :alt:   Diagram of an example media pipeline topology
-+    :align: center
-+
-+The media graph contains the following video device nodes:
-+
-+- rp1-cfe-csi2-ch0: capture device for the first CSI-2 stream
-+- rp1-cfe-csi2-ch1: capture device for the second CSI-2 stream
-+- rp1-cfe-csi2-ch2: capture device for the third CSI-2 stream
-+- rp1-cfe-csi2-ch3: capture device for the fourth CSI-2 stream
-+- rp1-cfe-fe-image0: capture device for the first FE output
-+- rp1-cfe-fe-image1: capture device for the second FE output
-+- rp1-cfe-fe-stats: capture device for the FE statistics
-+- rp1-cfe-fe-config: output device for FE configuration
-+
-+rp1-cfe-csi2-chX
-+----------------
-+
-+The rp1-cfe-csi2-chX capture devices are normal V4L2 capture devices which
-+can be used to capture video frames or metadata received from the CSI-2.
-+
-+rp1-cfe-fe-image0, rp1-cfe-fe-image1
-+------------------------------------
-+
-+The rp1-cfe-fe-image0 and rp1-cfe-fe-image1 capture devices are used to write
-+the processed frames to memory.
-+
-+rp1-cfe-fe-stats
-+----------------
-+
-+The format of the FE statistics buffer is defined by
-+:c:type:`pisp_statistics` C structure and the meaning of each parameter is
-+described in the `PiSP specification` document.
-+
-+rp1-cfe-fe-config
-+-----------------
-+
-+The format of the FE configuration buffer is defined by
-+:c:type:`pisp_fe_config` C structure and the meaning of each parameter is
-+described in the `PiSP specification` document.
-diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
-index b6af448b9fe9..61da154e079a 100644
---- a/Documentation/admin-guide/media/v4l-drivers.rst
-+++ b/Documentation/admin-guide/media/v4l-drivers.rst
-@@ -26,6 +26,7 @@ Video4Linux (V4L) driver-specific documentation
- 	raspberrypi-pisp-be
- 	rcar-fdp1
- 	rkisp1
-+	raspberrypi-rp1-cfe
- 	saa7134
- 	si470x
- 	si4713
+On 04.09.2024 19:17:23, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+>=20
+> According to imx8mp RM, the fspi is compatible with the fspi on
+> imx8mm. So remove this redundant imx8mp compatible string here.
+>=20
+> Fixes: 0467a97367d4 ("spi: fspi: enable fspi driver for on imx8mp")
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  drivers/spi/spi-nxp-fspi.c | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/drivers/spi/spi-nxp-fspi.c b/drivers/spi/spi-nxp-fspi.c
+> index fd1816befcd8..da110188bfed 100644
+> --- a/drivers/spi/spi-nxp-fspi.c
+> +++ b/drivers/spi/spi-nxp-fspi.c
+> @@ -1286,7 +1286,6 @@ static int nxp_fspi_resume(struct device *dev)
+>  static const struct of_device_id nxp_fspi_dt_ids[] =3D {
+>  	{ .compatible =3D "nxp,lx2160a-fspi", .data =3D (void *)&lx2160a_data, =
+},
+>  	{ .compatible =3D "nxp,imx8mm-fspi", .data =3D (void *)&imx8mm_data, },
+> -	{ .compatible =3D "nxp,imx8mp-fspi", .data =3D (void *)&imx8mm_data, },
 
--- 
-2.43.0
+I think this breaks old DT with new driver, doesn't it?
 
+>  	{ .compatible =3D "nxp,imx8qxp-fspi", .data =3D (void *)&imx8qxp_data, =
+},
+>  	{ .compatible =3D "nxp,imx8dxl-fspi", .data =3D (void *)&imx8dxl_data, =
+},
+>  	{ /* sentinel */ }
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--fqyfxuqjctwfsa3a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbYQoQACgkQKDiiPnot
+vG/lkwf/U0AwRwCtRAjI/wFFBk3Pwcp0wSfCBNraW/3ZQ6e5J07JIhVh6lUbLcdO
+SpJcVczbyhIrtVbLp3qczodFMNVN0SplPUrTlQs9pvRDdLTIhDEoDzmjalJFG+rZ
+nXfTWgTF58UQdv2ya6k/xrs/SyislM6bGGdyWAX/+tyURXAJe2tt+cjTPCfgpEEW
+PSTviaGoGKlFkwi3OKQ0UYtxBIJE0wV2r2YMQOzXaaqVqZ0K9Hh6bDo0tpRo//O7
+srlfOyH9LsQaN3TnVxzoRSA7z5RqDvetWU2rBto6JdjS0nbI5otGgbOtmLGlhCAJ
+v2hxFKgdk6Gkx7moLTLvXuDWXbIXxQ==
+=Ejr1
+-----END PGP SIGNATURE-----
+
+--fqyfxuqjctwfsa3a--
 
