@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-99783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F0F96B313
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 09:42:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19AE996B334
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 09:46:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBDA11F21852
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 07:42:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3A2E284C0C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 07:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4891474DA;
-	Wed,  4 Sep 2024 07:42:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B03146588;
+	Wed,  4 Sep 2024 07:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QzJfclFr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R+UiyguN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D32C1474B8;
-	Wed,  4 Sep 2024 07:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C142823DE;
+	Wed,  4 Sep 2024 07:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725435738; cv=none; b=Gp/CJlTfx3skDipNX39pGnq0MxDuie+Oxh66GgigMpcHuKIRIqDdrFi9KqVVpM6bLlsfLWVQblk43TuZqM2HiSwYwM/+5HhX4aT4ieBwWBpQ15ZKOcrNytYujLwM233qyJE5sHfD46ApJ2+d/GlcYtQdeBhtWKYERVrJA7F9hhk=
+	t=1725435975; cv=none; b=O9M41Ie+pjY3wojLr0DBkWydFkTKstqgDiU3uwI0sp6YekkbqxJBZB6ybQcJf7bdWxQNorEFCalrSUQNjgsfoYmi3J+mqhFLZybs76g3qbyclHCLUV3/LC/R/nN6JHrjxZQ3AcTzHTne0sHFy+umHqcQ1FXEzo6W119LGWmQMP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725435738; c=relaxed/simple;
-	bh=w/IC7wOtGINb3uFhfGVrdUEZ+tDXBUxvlITe0KVPQ58=;
+	s=arc-20240116; t=1725435975; c=relaxed/simple;
+	bh=fKem71+e4185IwFYS10I37wk8xRt5F8UjqvaVikFVBE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pPU/nXGiF7iD2GHXZnuNtemTws+RiC5/TQkNXhxThLNzBj4o5B9Z15Ata+NqWyZqlZCmZ83co4Uw1B9IBQPwszfjCVlCQRcjmZ0DDtdOS7GpfzvrO1JOYGVz7TuOB+qUQSqnDBVIgD1Rlb+F7laZBZd7UWnwHaDzl0RAT60Txx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QzJfclFr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DB31C4CEC2;
-	Wed,  4 Sep 2024 07:42:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=QlrtJHZDw6PYWLveDDzN2ya6hIZMckrvgxNX9a719UcIEnJkEMEVR/TYO/xOJ68YghEk5lesB8RQImaYsQEW4svB22zhTI5tZP/EYJoaFc3XK/1QLvl20jiN2Rn2reN5yEYE1YyYva7nO3P/ycs0WlYjhsPijU3IL6tbtquYZio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R+UiyguN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04326C4CEC2;
+	Wed,  4 Sep 2024 07:46:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725435737;
-	bh=w/IC7wOtGINb3uFhfGVrdUEZ+tDXBUxvlITe0KVPQ58=;
+	s=k20201202; t=1725435974;
+	bh=fKem71+e4185IwFYS10I37wk8xRt5F8UjqvaVikFVBE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QzJfclFrAaDKV06wz4uXz4TQh0OpudiX92SP6Aq5w8iLYPJO5RlS3SggIS+WexUXy
-	 zI0bofFE+8OHfzhc6qIwaWl5LQ5ior8BbIm9hWBz5fMlvDAPMoceJWOvjvUjJsn7mG
-	 mOstac1e8C7emkM05dTullvcsWIrjWLe+3vcj4ycFYSkkkbpMYVFhmqd+m7YnpN9rE
-	 ftu+Vn1ifJeVIcWcH5k8apFqJTNTEWymHURFm2CdqcNslEQuwI8XqqLchu146qQCWN
-	 j4+gXvwgAvyQ2MOZ1Va4DP8pxwXcMVBdZxJtc639VhkVN7na7DDZXCLtF2tNJeiIis
-	 4mYJLxOBn0wCw==
-Message-ID: <f27dc213-e5a0-41d7-9522-ed29567f0097@kernel.org>
-Date: Wed, 4 Sep 2024 09:42:10 +0200
+	b=R+UiyguNmzX7E9c/x0Bf023yRk1S+3wv7SuRDdHXocV1pIjTn6znVmBK0CzAf8jQm
+	 e6WQH2Tjx8PsWap4earLT/MV8pcBKLDLkdp9T5+qO8S2/wiQxhxRYSSJVPy1c6RQOP
+	 EFFR974PcO40pHubGYmMQy3g1h7QYSJwxmRxr432JlQuEzjSmru2fqrZ2ab3DmWsgH
+	 NdSSQqyUFpQv9QHKGFHQDmWWiydYyQ+GfoCxMYiMVSk/pi3Artge+5JpgbVAtDITwA
+	 Wopp6pqbv3afOyjpraVzFs/v43wKB3qkPZjmM3a9VgkB1VG71oiN28JfanlaR3kaGU
+	 0GSAQC3wdaXkA==
+Message-ID: <9a2b9e55-2bbb-4b91-8d81-1f1f82347125@kernel.org>
+Date: Wed, 4 Sep 2024 09:46:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: gpio: spacemit: add support for K1 SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>,
- Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>,
- Meng Zhang <zhangmeng.kevin@spacemit.com>, Meng Zhang
- <kevin.z.m@hotmail.com>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org>
- <20240904-03-k1-gpio-v1-1-6072ebeecae0@gentoo.org>
- <ttvqw3hncprtshhdgsnvlfopobqcxtsraxevgxqgnlt6orftkr@ktahud64cczd>
- <20240904070520-GYA107481@gentoo>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc8280xp: Add Microsoft Surface Pro
+ 9 5G
+To: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240903224252.6207-1-jerome.debretagne@gmail.com>
+ <20240903224252.6207-5-jerome.debretagne@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,31 +105,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240904070520-GYA107481@gentoo>
+In-Reply-To: <20240903224252.6207-5-jerome.debretagne@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/09/2024 09:05, Yixun Lan wrote:
-> Hi Krzysztof 
+On 04/09/2024 00:42, Jérôme de Bretagne wrote:
+> Add an initial devicetree for the Microsoft Surface Pro 9 5G, based
+> on SC8280XP.
+> 
+> It enables the support for Wi-Fi, NVMe, the two USB Type-C ports,
+> Bluetooth, 5G cellular modem, audio output (via Bluetooth headsets),
+> external display via DisplayPort over Type-C (only the bottom USB
+> Type-C port is working so far, corresponding to the usb1 / dp1 nodes),
+> charging, the Surface Aggregator Module (SAM) to get keyboard and
+> touchpad working with the Surface Type Cover accessories.
+> 
+> Some key features not supported yet:
+> - built-in display (but software fallback is working with efifb
+>   when blacklisting the msm module)
+> - built-in display touchscreen
+> - external display with the top USB Type-C port
+> - speakers and microphones
+> - physical volume up and down keys
+> - LID switch detection
+> 
+> This devicetree is based on the other SC8280XP ones, for the Lenovo
+> ThinkPad X13s and the Qualcomm CRD.
+> 
 
->>> +  "#interrupt-cells":
->>> +    const: 2
->>> +    description: |
->>> +      The first cell is the GPIO number, the second should specify
->>> +      flags.  The following subset of flags is supported:
->>> +      - bits[3:0] trigger type flags (no level trigger type support)
->>> +        1 = low-to-high edge triggered
->>> +        2 = high-to-low edge triggered
->>> +      Valid combinations are 1, 2, 3
->>
->> Hm? No, you must use standard interrupt flags, not custom ones.
->>
-> It should be same as standard flags, my intention here was try to say
-> the controller support edge trigger only, but no level trigger flags (4, 8)
-> should I just replace number to macro, and put it like this:
+...
 
-Then just say that level interrupts are not supported. Do not refer to
-some bits (bits of what?).
+> +
+> +&swr0 {
+> +	status = "okay";
+> +};
+> +
+> +&swr1 {
+> +	status = "okay";
+> +
+> +	wcd_rx: wcd9380-rx@0,4 {
+
+codec@
+
+> +		compatible = "sdw20217010d00";
+> +		reg = <0 4>;
+> +		qcom,rx-port-mapping = <1 2 3 4 5>;
+> +	};
+> +};
+> +
+> +&swr2 {
+> +	status = "okay";
+> +
+> +	wcd_tx: wcd9380-tx@0,3 {
+
+codec@
+
+
+Rest looks good, except ordering of nodes/overrides/phandles. They
+should go alphabetically, AFAIR, so your &tlmm is placed in wrong spot.
 
 Best regards,
 Krzysztof
