@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-100078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E63596C175
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:57:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3B9296C17F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:58:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D3CD2886CC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:57:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85328280C09
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80A31DC75F;
-	Wed,  4 Sep 2024 14:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364FC1DC187;
+	Wed,  4 Sep 2024 14:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="slYBU2hT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCd1uN4G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0B71DC1AA;
-	Wed,  4 Sep 2024 14:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 085081DC04A;
+	Wed,  4 Sep 2024 14:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725461841; cv=none; b=V7WCFOOnDHRcYWiaWQ/W4/mtE0GRrVADU+3XsFz8H2cs5B8LhgbymODW5UgLVNMJPwpQ4tgCI8Pd4L14M0eSe5oJOPTGBO/C9e4SzEh6pQiUtfJl52IoZB2SGKQKok/cIvbZbWuz9QjqDk18uRyANeWrOZo9izH1PfsUCXOqBxs=
+	t=1725461885; cv=none; b=BfljD7tt/YbY/DLyAvZA4Hi62JusfIsGrW87e1smNwnbW79bYpvRzAArB3ugE67eOneM2gLGeyhbivD5YvvBTS61NXURtsfnaonCYxJjsaBAIonWWqww86M6YC8qm8Mc/lVOOeN/CiaZtVx4bfU10Wc45ic03vvkJr4Y14iHX6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725461841; c=relaxed/simple;
-	bh=TAz7vuE1pT0x1essE0kvodzC3Y7fNz6Qr5sydvrjB1Y=;
+	s=arc-20240116; t=1725461885; c=relaxed/simple;
+	bh=oGZHZwM6HjGaDxnYT+XVCkxdCNgyq0qFSfTnY4Dp+kk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pxMcw3X9jxlDDNYTROpaSYotC0TNsaJ2u//k7zmTmJkFObMzd9vRJ+6c0hdSWr/KGUdBlItvgG0rdJND8oNreUk8rWxFDG8vuEGUS3eJUoUt4jjzRSPWpnK3eVpIxPENIXRYRkVQMDs3OD4Mc4kQfH/7gN06IfHYl82NSekqncE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=slYBU2hT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 184E0C4CEC2;
-	Wed,  4 Sep 2024 14:57:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SDfq4qjfro8zxrtom5LxX9KJD7Yx7VaMwfTJLu+TTKoWJ7AhXgm32+n1e6tU2ueAs7t+nkfS0e1VBBlph4VEk4+MESQTfbfJ6SdNA/0dHbQp7YpzhD5lY7KpF+7NK8HevRp/p6O/MhG+wFxYYtxv5lnqgbWacRNRHD/Sye96Sm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCd1uN4G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6760CC4CEC2;
+	Wed,  4 Sep 2024 14:58:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725461841;
-	bh=TAz7vuE1pT0x1essE0kvodzC3Y7fNz6Qr5sydvrjB1Y=;
+	s=k20201202; t=1725461884;
+	bh=oGZHZwM6HjGaDxnYT+XVCkxdCNgyq0qFSfTnY4Dp+kk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=slYBU2hTNBNhpCwj0R5h5E77GQxvONIOzrNx2Ub/f5/XGZYVtOGCWUnp0P3Izl9Tl
-	 Is1zq2HIDY0ABfQZwzfbypqHhdFBiHkmhkQzTxpwy8cOtPz9M2Cu96DNiS7KTYNlDu
-	 lmXBAo3aNblYqJG00zl6O1HptKd6VVr9tCNONf+iXGU85XyrAxXdIhJPeIlFolbI40
-	 hcrOeqgAp6s471Cb6mi41e8cYKGCeyxSwM3T5Jh332u7hphrBVnl6x5fBov1zHx4gF
-	 IpBFbfpa8Uf67cCuwQZ4+bXr1/VhBpMhzADIu6J5334X0vj3C4fPfq31z+4hhx3N6d
-	 d22NQNXTG++Mg==
-Date: Wed, 4 Sep 2024 09:57:20 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, pabeni@redhat.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
-	hkallweit1@gmail.com, netdev@vger.kernel.org,
+	b=SCd1uN4GDdY9vbNIDR+7eKQmL6a1gLuRFCfEJ97YTLF+RuEVhVUi3Y9UWaZ/wSZZr
+	 gQTfBqVSuLNlgge847wbYelcVggWYxx6/XUca1o1LIki1jp1knTuaEx7XnbR6Kcnw0
+	 bX5M0aaNTRS5M5FK2WgpGhw3FaE89tWVPA5ohBOkrFiT2Pw9Q3Og7Ga6jas8GLvhFa
+	 mUx/hKd76CziOQvZDtHASQ5UzximKG8CTelpcfX3PDdSmEJ8nr3PeuBz+iUAQJUycF
+	 W9zL3+7HrBFnXn0VVXKUa28CRt9V7M8Zldy7iI4A6qqBmAloqahzS1Q04Zgg0+DBIY
+	 P5kcX/8H6YZIw==
+Date: Wed, 4 Sep 2024 09:58:03 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: srinivas.kandagatla@linaro.org
+Cc: sboyd@kernel.org, linux-arm-msm@vger.kernel.org, conor+dt@kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH net] dt-bindings: net: tja11xx: fix the broken binding
-Message-ID: <20240904145720.GA2552590-robh@kernel.org>
-References: <20240902063352.400251-1-wei.fang@nxp.com>
+	mturquette@baylibre.com, andersson@kernel.org, krzk+dt@kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH] clk: qcom: drop sm8250 lpass gfm driver
+Message-ID: <172546188216.2558140.18362854925367403125.robh@kernel.org>
+References: <20240902145203.72628-1-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,103 +59,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240902063352.400251-1-wei.fang@nxp.com>
+In-Reply-To: <20240902145203.72628-1-srinivas.kandagatla@linaro.org>
 
-On Mon, Sep 02, 2024 at 02:33:52PM +0800, Wei Fang wrote:
-> As Rob pointed in another mail thread [1], the binding of tja11xx PHY
-> is completely broken, the schema cannot catch the error in the DTS. A
-> compatiable string must be needed if we want to add a custom propety.
-> So extract known PHY IDs from the tja11xx PHY drivers and convert them
-> into supported compatible string list to fix the broken binding issue.
+
+On Mon, 02 Sep 2024 15:52:03 +0100, srinivas.kandagatla@linaro.org wrote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > 
-> [1]: https://lore.kernel.org/netdev/31058f49-bac5-49a9-a422-c43b121bf049@kernel.org/T/
+> There is no real use for this driver on this platform for below reasons.
 > 
-> Fixes: 52b2fe4535ad ("dt-bindings: net: tja11xx: add nxp,refclk_in property")
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> - codec drivers can directly use dsp clocks using the static mux setting.
+> - none of the consumers really switch parents and do not handle low power usecases.
+> - all users of this drivers are now removed in next
+> 
+> Remove this driver and associated device tree bindings to aviod any
+> confusion.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  .../devicetree/bindings/net/nxp,tja11xx.yaml  | 50 +++++++++++++------
->  1 file changed, 34 insertions(+), 16 deletions(-)
+>  .../bindings/clock/qcom,aoncc-sm8250.yaml     |  61 ----
+>  .../bindings/clock/qcom,audiocc-sm8250.yaml   |  61 ----
+>  drivers/clk/qcom/Kconfig                      |   7 -
+>  drivers/clk/qcom/Makefile                     |   1 -
+>  drivers/clk/qcom/lpass-gfm-sm8250.c           | 318 ------------------
+>  .../clock/qcom,sm8250-lpass-aoncc.h           |  11 -
+>  .../clock/qcom,sm8250-lpass-audiocc.h         |  13 -
+>  7 files changed, 472 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
+>  delete mode 100644 drivers/clk/qcom/lpass-gfm-sm8250.c
+>  delete mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+>  delete mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
 > 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> index 85bfa45f5122..c2a1835863e1 100644
-> --- a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> +++ b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> @@ -14,8 +14,41 @@ maintainers:
->  description:
->    Bindings for NXP TJA11xx automotive PHYs
->  
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ethernet-phy-id0180.dc40
-> +      - ethernet-phy-id0180.dd00
-> +      - ethernet-phy-id0180.dc80
-> +      - ethernet-phy-id001b.b010
-> +      - ethernet-phy-id001b.b031
-> +
->  allOf:
->    - $ref: ethernet-phy.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - ethernet-phy-id0180.dc40
-> +              - ethernet-phy-id0180.dd00
-> +    then:
-> +      properties:
-> +        nxp,rmii-refclk-in:
-> +          type: boolean
-> +          description: |
-> +            The REF_CLK is provided for both transmitted and received data
-> +            in RMII mode. This clock signal is provided by the PHY and is
-> +            typically derived from an external 25MHz crystal. Alternatively,
-> +            a 50MHz clock signal generated by an external oscillator can be
-> +            connected to pin REF_CLK. A third option is to connect a 25MHz
-> +            clock to pin CLK_IN_OUT. So, the REF_CLK should be configured
-> +            as input or output according to the actual circuit connection.
-> +            If present, indicates that the REF_CLK will be configured as
-> +            interface reference clock input when RMII mode enabled.
-> +            If not present, the REF_CLK will be configured as interface
-> +            reference clock output when RMII mode enabled.
-> +            Only supported on TJA1100 and TJA1101.
->  
->  patternProperties:
->    "^ethernet-phy@[0-9a-f]+$":
-> @@ -32,22 +65,6 @@ patternProperties:
->          description:
->            The ID number for the child PHY. Should be +1 of parent PHY.
->  
-> -      nxp,rmii-refclk-in:
-> -        type: boolean
-> -        description: |
-> -          The REF_CLK is provided for both transmitted and received data
-> -          in RMII mode. This clock signal is provided by the PHY and is
-> -          typically derived from an external 25MHz crystal. Alternatively,
-> -          a 50MHz clock signal generated by an external oscillator can be
-> -          connected to pin REF_CLK. A third option is to connect a 25MHz
-> -          clock to pin CLK_IN_OUT. So, the REF_CLK should be configured
-> -          as input or output according to the actual circuit connection.
-> -          If present, indicates that the REF_CLK will be configured as
-> -          interface reference clock input when RMII mode enabled.
-> -          If not present, the REF_CLK will be configured as interface
-> -          reference clock output when RMII mode enabled.
-> -          Only supported on TJA1100 and TJA1101.
-> -
->      required:
->        - reg
->  
-> @@ -60,6 +77,7 @@ examples:
->          #size-cells = <0>;
->  
->          tja1101_phy0: ethernet-phy@4 {
-> +            compatible = "ethernet-phy-id0180.dc40";
->              reg = <0x4>;
->              nxp,rmii-refclk-in;
 
-Are child phy devices optional? Either way, would be good to show a 
-child device. IOW, make examples as complete as possible showing 
-optional properties/nodes.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
