@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-99969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F8496BAD1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:34:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1DF96BAD7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08516281CEA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 11:34:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFD5F1C24731
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 11:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D551CFECB;
-	Wed,  4 Sep 2024 11:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF40C1CFED1;
+	Wed,  4 Sep 2024 11:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzdlSS5d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MKrLppXg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAFDF1CF7DA;
-	Wed,  4 Sep 2024 11:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C50CC1CF5D2;
+	Wed,  4 Sep 2024 11:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725449635; cv=none; b=aJdH5DoYchFkvAJ1cLzXXebnrEx9UE/FeFTdp65YuYcWYKsw5IQbmAbGFvAE6a/5TfnApaT7Adk2aX0TobrbVI7Y0djRa2rM6Dz5oBg+UKG3sP281DXu9i/sFM01rGhaWhTdZBLCjwIcH7Y/rwE+bTXEswmR1c7Vqy8FtokIanw=
+	t=1725449728; cv=none; b=quAZcd8SpXriR1h9QUz8GrKUS88VxVCuou6PyqWka+s0TV5ApAViSY0KSEyu2DI3vwOC6TEb4jPCjO2NwNPYmFMkZ5xkSqHRzJeWTgdkCjKae2S1xBAftn5FuGECtRrVVo32ZEtyb1ccl6IRWmYsN3LR3WPkZFSSjSeV30Q7WiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725449635; c=relaxed/simple;
-	bh=pwSBD279VF47G8IPijBpgG4p2clFZJo5DPZkqrcseM8=;
+	s=arc-20240116; t=1725449728; c=relaxed/simple;
+	bh=1bW5bC/XdfuE0zwNHSWhTcQsKVJejp/biIQZQ/D4Ix0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TwiClH3PJ84YNsSlMU1R0Y+Sqk8uWat7uUFexE0prPpAhrcOHBs+t2sJbPds0da0BmE2yYo5Amyv78pwhFbco5bI+SJbpE/+Pc1yknuh5VgL2m0FWHcz2eY9J+iFN9PcOoTon6TXq4V+73f2NwtFv7DQaN6YP8MblYQDmb3Ues4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fzdlSS5d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7EF9C4CEC2;
-	Wed,  4 Sep 2024 11:33:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VFvMkbOgeahqvkFZ0KP5MLZz74sNyx51TfJRFwQEZcGhVDUOc3T5oc9ly5gFMIwaOd7BiKinMMDjxHm/lPHJzPMJwYnFjCQnBlrwp70d1KeZFIz3OvwE6fMH8FXp2Sma+KPY7oZDWzprC1rdsJ2XhFeFqUuc+Ahju2BEWCFR0hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MKrLppXg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D703C4CEC2;
+	Wed,  4 Sep 2024 11:35:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725449635;
-	bh=pwSBD279VF47G8IPijBpgG4p2clFZJo5DPZkqrcseM8=;
+	s=k20201202; t=1725449728;
+	bh=1bW5bC/XdfuE0zwNHSWhTcQsKVJejp/biIQZQ/D4Ix0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fzdlSS5deb0ehpfg6EDdgN2/q/fjJNgIBMhus21EEFMZzqhni0Mj1cOpBH3lGKPq6
-	 /rQz6iAB2STWjba9bBMJ+SseGlGvU2Q0aEzTF0/euyxrHaOI15BnCd1euUQgnZjCIZ
-	 iGRiJhe6sGxwz2/nx0oaJje9dwm9c7YlLb0/DqxXrQbIt207piGl/Sbr32Kgz6v3pI
-	 cZv5m5v3/5+bcPhAPRhB7g+rJbDEGyKuIh03+pi13h/1KUk4DUMSYVrHpliO9AgseF
-	 y7N2Wmd09aeh4w2m8WoXQxtETOtcIIncsC4g3OAHB0GzaSLLmbDfSUw5rgcCfabgUQ
-	 b5smCnY+1IN4w==
-Message-ID: <5f86496c-a7dc-48cc-b592-32066d41895a@kernel.org>
-Date: Wed, 4 Sep 2024 13:33:49 +0200
+	b=MKrLppXgc0FA/lvBKGQ74pPw3C1iLYOX+BMoXbxbSNkxOVXguOxL18fMngPGwsV4M
+	 jkTviv/GDGPoKaOmJYB7RlUYNP45yP+N3szI+2hNPxY6ucCQfENgh73oioS7oGDs5J
+	 LkO+Iy407nfLDyq7HMwlM0ZsBhZG76Twm7uLCLVWGll0B/qctPdqN8mnjQLIBbah6V
+	 Syx47sFeN8bGvIt/lcvHaMlCaM01qaxOzaZ9bG13EFBM25J4HPP7iBUpC7qAxYv/M1
+	 UB64/9gNK8s+xmXWvHGW+F/jUCAqojyjKYLJ+zjWssZKdawTzFmVuk3rmoHM0gA1SM
+	 rGDMaV2koeSZw==
+Message-ID: <b9e5389f-8492-425e-bc15-35ea55c0e3b5@kernel.org>
+Date: Wed, 4 Sep 2024 13:35:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/10] arm64: dts: qcom: sc7280: Add default and suspend
- states for GPIO
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, Robert Foss
- <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>,
- Hariram Purushothaman <hariramp@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- cros-qcom-dts-watchers@chromium.org,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Hariram Purushothaman <quic_hariramp@quicinc.com>,
- Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
-References: <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com>
- <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-9-b18ddcd7d9df@quicinc.com>
-Content-Language: en-US
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Shanghai Novotech
+ Ariaboard
+To: Junhao Xie <bigfoot@classfun.cn>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240904111456.87089-1-bigfoot@classfun.cn>
+ <20240904111456.87089-2-bigfoot@classfun.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -116,24 +106,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-9-b18ddcd7d9df@quicinc.com>
+In-Reply-To: <20240904111456.87089-2-bigfoot@classfun.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2024 13:10, Vikram Sharma wrote:
-> Add default and suspend states for GPIO 67 and 78 on the SC7280.
+On 04/09/2024 13:14, Junhao Xie wrote:
+> Add an entry for Shanghai Novotech Ariaboard (https://ariaboard.com/)
 > 
-> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
-> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
 > ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index a70ce43b3dc0..58d1a2e8b212 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -145,6 +145,8 @@ patternProperties:
+>      description: Arctic Sand
+>    "^arcx,.*":
+>      description: arcx Inc. / Archronix Inc.
+> +  "^ariaboard,.*":
+> +    description: Shanghai Novotech Co., Ltd.
 
-Please stop sending the same buggy patches.
-
-You received comment that this is broken and what you must fix. You keep
-sending the same patches over and over and expect different feedback.
-
-NAK.
+This is confusing. Prefix is entirely different than company name. I
+would expect prefix like shanghainovotech.
 
 Best regards,
 Krzysztof
