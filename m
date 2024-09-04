@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB9496C626
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:16:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505F096C643
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:22:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BD4C283AE4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:16:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 805481C25264
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49051E1330;
-	Wed,  4 Sep 2024 18:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DACD1E2037;
+	Wed,  4 Sep 2024 18:22:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s8gHIkcz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7ru79Ku"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB411DC1A2;
-	Wed,  4 Sep 2024 18:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A711E2032;
+	Wed,  4 Sep 2024 18:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725473790; cv=none; b=rIGv1obDIMfVYCMsA4dvAia2YtyArp/fuze0g6T95cTDBiUXiKtsg51XMkR+wp9WCwFDkkK86H2DlVx6FtVoauuM2LrixiyUPSOttuMGsdrt3c+fKh+DATpWOMHnU8kQ4c8GwscyhC7HdQroViCS6+SFnblsJDKTG6w+qzj33hY=
+	t=1725474139; cv=none; b=FIY89iZJ0aDVRqYvv0vBV4gJ5sFF/zGKhswrcDtgD6HRyek1qqcNhZKQcNYXbsdZbKxUQEzH89mXBN1Gb4slmSVXyDeou62i25u00BxmYM1suc78Fx7Y2NwlT/3RAmvUbHv5lkjXd1RepQ/Mi/5u3UsGWtg/B5QM5Kayuh5NTCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725473790; c=relaxed/simple;
-	bh=mtx1u1ixv5Azx4m3nJAArYmfaHcyt0YeqfamjYc1Nks=;
+	s=arc-20240116; t=1725474139; c=relaxed/simple;
+	bh=QmFZVfZDVaORt+Bm1h6YKbMQW7lnHExaFKvFCcc4BgI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lBZpzFPFUKOrgOLqu4UHBz6Du+aNFEMlSB8R+hSqUQBRNOOH/NG0siJ7j9Q9zN0RrZj2zf1T8GeHXifcaG17Yg/Dtem6J3ja5/uo3HvsPQnW3BH9Z+Dk2fis6qL7ez9UNFnmihaPI7C0iEnrir7pTw8xdI5hkQ2uRH0QGCQI2Qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s8gHIkcz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B8C8C4CEC2;
-	Wed,  4 Sep 2024 18:16:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=W/8zOrQG84mey/5stBTx+P1ndZKopqtLW21OmUELKmduK9R17KxoeS0UxuKJUIg/hebNyFgKzVyYuNIK0NOJvX1kw7VdW7e8t7A16TnRc9R7BJkChhm6PJbSJ9ApdEmFJ8NwUTOIPTkic9IBH9jWYPPR6zGA/cteeSN9LOeL/jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k7ru79Ku; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDD92C4CEC5;
+	Wed,  4 Sep 2024 18:22:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725473790;
-	bh=mtx1u1ixv5Azx4m3nJAArYmfaHcyt0YeqfamjYc1Nks=;
+	s=k20201202; t=1725474138;
+	bh=QmFZVfZDVaORt+Bm1h6YKbMQW7lnHExaFKvFCcc4BgI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s8gHIkcz2xOM4HbTOVNS3t/CSjJuiz/SquZcIAE4+9oFfraveIyH7bnKzDde+xfRh
-	 57GCS6SzxY/QRQKZEfwoaGEJjA+ieEV6OhJ39RHOCeH7+Z/kxMSD0yVemGs24qowkI
-	 RPrlQVIUL5Kf251NRVS0Y2lulCFuO1SGzasQc9Z7ioivIoOaJhzfKRtIxGWfspEUDG
-	 Ehbu/9BrafykCwSNTNvL+zGLnqbbQsVP/CPIX4O8vKH3gSqYLPkl4F6bObRUxSAKSs
-	 ihJRipmGJUx0IIJeeaNIJNe61zF/Or7jzmrwF+sw+SJ5tr+EJ4SUCmJypfCXzaMniW
-	 mBtDUTzN+a4rw==
-Message-ID: <ec59c6d0-0ef9-482f-8aa6-42d36c3420e5@kernel.org>
-Date: Wed, 4 Sep 2024 20:16:19 +0200
+	b=k7ru79KucKu5rSCzg7ss3t5IK89Gu/7I4h/HI4hIThgUssWZ0WDk6NL2j6qKwlcMZ
+	 lQcX0B1IRwLKXogtW5gUiqCFBRjy+OLSuNGOUiKmyRYnUnuhqplJPFJeyrAncJgZdo
+	 b8KWM4ILYF4fnyOrs204mOA/NTqA3CpMXiyLAJYCP2Ei67MIxy6J2sTgT5q259j/83
+	 m1D2/nPC41CI5TWcSKHrrBzlfLOB6Iuv9O2f3rY9ofI26Syfm852+lro13Yr8cfLF/
+	 kfkZAXZW8k9VjXPUquvE8mHpzgb/57Yje7eqnjwl+29s5PJhS3Bx0mQrEAtz3zYBqk
+	 DAizaW4iR0uGA==
+Message-ID: <c3efb01d-2138-4b79-97a1-653b7bd531d0@kernel.org>
+Date: Wed, 4 Sep 2024 20:22:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/6] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe
- uniphy
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, p.zabel@pengutronix.de,
- dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, robimarko@gmail.com
-References: <20240830081132.4016860-1-quic_srichara@quicinc.com>
- <20240830081132.4016860-2-quic_srichara@quicinc.com>
- <e2qgpvfccpo2sd4mbrynxruvt5attqmtd5oik26of7tv7u4lq6@kvb63sglwa5b>
- <de17d37f-ed0c-4e73-91d5-fc902573212a@quicinc.com>
+Subject: Re: [PATCH 3/3] interconnect: qcom: Add EPSS L3 support on SA8775P
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240904171209.29120-1-quic_rlaggysh@quicinc.com>
+ <20240904171209.29120-4-quic_rlaggysh@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,61 +107,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <de17d37f-ed0c-4e73-91d5-fc902573212a@quicinc.com>
+In-Reply-To: <20240904171209.29120-4-quic_rlaggysh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2024 19:20, Sricharan Ramabadhran wrote:
-> 
-> 
-> On 8/30/2024 1:53 PM, Krzysztof Kozlowski wrote:
->> On Fri, Aug 30, 2024 at 01:41:27PM +0530, Sricharan R wrote:
->>> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
->>>
->>> Document the Qualcomm UNIPHY PCIe 28LP present in IPQ5018.
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
->>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> ---
->>>   [v3] Added reviewed-by tags
->>>
->>>   .../phy/qcom,ipq5018-uniphy-pcie.yaml         | 70 +++++++++++++++++++
->>>   1 file changed, 70 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
->>> new file mode 100644
->>> index 000000000000..c04dd179eb8b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
->>> @@ -0,0 +1,70 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/phy/qcom,ipq5018-uniphy-pcie.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm UNIPHY PCIe 28LP PHY controller for genx1, genx2
->>> +
->>> +maintainers:
->>> +  - Nitheesh Sekar <quic_nsekar@quicinc.com>
->>> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - qcom,ipq5018-uniphy-pcie-gen2x1
->>> +      - qcom,ipq5018-uniphy-pcie-gen2x2
->>
->> ... and now I wonder why there are two compatibles. Isn't the phy the
->> same? We talk about the same hardware?
->   We have 2 different physical phys. One with single lane and another
->   with dual lane. Its same IP, but for 2 lanes, 2 sets of the phy
->   specific registers needs to configured. So differentiating that here.
+On 04/09/2024 19:12, Raviteja Laggyshetty wrote:
+> +
+>  static const struct qcom_osm_l3_desc epss_l3_l3_vote = {
+>  	.nodes = epss_l3_nodes,
+>  	.num_nodes = ARRAY_SIZE(epss_l3_nodes),
+> @@ -284,6 +307,10 @@ static const struct of_device_id osm_l3_of_match[] = {
+>  	{ .compatible = "qcom,sm8150-osm-l3", .data = &osm_l3 },
+>  	{ .compatible = "qcom,sc8180x-osm-l3", .data = &osm_l3 },
+>  	{ .compatible = "qcom,sm8250-epss-l3", .data = &epss_l3_perf_state },
+> +	{ .compatible = "qcom,sa8775p-epss-l3-cl0",
+> +	  .data = &epss_l3_perf_state },
 
-What you described, suggests using phy mode or num-lanes in PCI
-controller, not separate compatible. It's the same IP.
+Don't grow it but express compatibility.
 
 Best regards,
 Krzysztof
