@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B507A96C420
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:28:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 045A896C42A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:32:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A3A31F27B04
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:28:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C0CF1F27D6A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:32:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBD91E0080;
-	Wed,  4 Sep 2024 16:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A671E009E;
+	Wed,  4 Sep 2024 16:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dHGxyzGe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b/ItfO5K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055451DC735;
-	Wed,  4 Sep 2024 16:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D081DA319;
+	Wed,  4 Sep 2024 16:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725467319; cv=none; b=j8xGU7mpi7UUVYXE/ZgdYypRljS9UmDqHU4wHOrjcqwUPiZojvuHGC8PIlJYlfHM6Vz8wBSHJhQXm3iHs58gogkW+QdarDn5221gIj3ekQAOGCxB5Hx33O0rTsqthWN+jy4FYce4GDklTXW7g5MhJ75XfkRk5HrkZHdMnXsOXYI=
+	t=1725467516; cv=none; b=OO1UvHm4fB8LgB8u3bucO/L1kF6Vds/l1mSvQILIuIn1JxUYr/Nk8tVqPWUMbm+9U+YFeD4ftpWYV9QaRyLdWmC5aCANwKjpeZR0xzMt3VRyQV/89X8zNReQxVGzj4HmuydNJFdkC6PEjX1UN+AFUMnLZYLPxS4IxINcjg0uHA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725467319; c=relaxed/simple;
-	bh=sJcYEs3VQtGA758HYWadaicKsZrFJot8bAkIMxi92bM=;
+	s=arc-20240116; t=1725467516; c=relaxed/simple;
+	bh=LK2ujuWothVygygRXR08zkzjhP8bxZaz0wR53zBdGQU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g1oStqRmAyah5OQ+LhN3w1lKbP+MEQZOXsJrYiFW8WkyxySdFQ+8iC8FktNJ7YUk9hJeXTB0+YQwtHpyNMOBC6+wFhqNXljgD8gb9jqFqAGZVdXbk8r7zMzaJkXLTrZlygyXCEgW//+KwxUq+A44zi9XXJ4XTtCTpygvVIf1GP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dHGxyzGe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29AB4C4CEC6;
-	Wed,  4 Sep 2024 16:28:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rIXpZ4bMY7f0PvoQ99NNN6YtV57vbeE3fqHgcVGf7PIWS7sQQTIRlrrlvIGZEU3GmRJPd+iiwphjsmPp5bokAJyvKrd/xhyQLs4TnzBEAKo2ETkfgWnXsbhroxY+7FPMg0HWXQPSfR3FeNKtH0cAQChV++s3pC7/2NcHCnkiG88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b/ItfO5K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEC1DC4CEC2;
+	Wed,  4 Sep 2024 16:31:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725467318;
-	bh=sJcYEs3VQtGA758HYWadaicKsZrFJot8bAkIMxi92bM=;
+	s=k20201202; t=1725467516;
+	bh=LK2ujuWothVygygRXR08zkzjhP8bxZaz0wR53zBdGQU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dHGxyzGeUZ6iww89netraUv5YwPM1UhYG+8ldjb9DGFpGKbcMr33qQUQxqMxzC/Mr
-	 9iDQFVcnu8k7tDHQbPri1Qi4UIbEx+594ROgnTd7YjK4UfA23p2R9Omv29G4y0LE1/
-	 51eCBXmQ9YHe7EvBcE/NlNNCqTmBM8f3jwXjqkOrw2c4VWxRb7YDVxDXuEWmEUUJny
-	 O3qGq32Ntix5f5k8oMfBIBLrfQp1Tv5BppFkpfIUswZzgSy8vLdG7zpUqpa2reklrR
-	 4RK90U8YX3UAz4aqTXLJq8L/lqi+jv1xmPqdV0Rv/r9YbQ6tEmPGTtp0BIUV7A30EM
-	 hkEUp+SMrx2oA==
-Message-ID: <51d29fdd-68af-4641-8a4a-dd1cafbc8bac@kernel.org>
-Date: Wed, 4 Sep 2024 18:28:31 +0200
+	b=b/ItfO5K/CIp7K96HEcZE9NXAamgsV3O9Gi0eRKkXQDBHg98UgJPX0KJHecNAStIp
+	 jaxOZx5btHJwy5iemWtcaHV7vSR+KO5EetfHV8HX5M1tlVDHPib7tLQ8T7D+WFiUAd
+	 1R+GHI7Wa5puB8KmHEzCNIrDp8mJDB4+dOjs+kllrV0En7O10Oa8B1SuDPTrLd0Egd
+	 AjU3KKJmpNrFrLDhLpv1CjqkFzfmMjxUSriaZlhFlcm0n+sRpcS97Lkmm8SeXtRa5d
+	 v0cIGbYeCsAjtXHrTj67b02UvstPE+yKvvk69zFlu2rbXWBKSZ+ugpVH6S0GfCZLJh
+	 UFg9WCQ9+yXsw==
+Message-ID: <4664d1fe-eeb0-45fb-8f4a-8299febab3eb@kernel.org>
+Date: Wed, 4 Sep 2024 18:31:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] dt-bindings: Fix various typos
-To: Yu-Chun Lin <eleanor15x@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, broonie@kernel.org,
- angelogioacchino.delregno@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, laurent.pinchart@ideasonboard.com,
- visitorckw@gmail.com
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>
-References: <20240904160118.2773055-1-eleanor15x@gmail.com>
+Subject: Re: [PATCH 2/6] spi: nxp-fspi: remove the imx8mp compatible string
+To: haibo.chen@nxp.com, han.xu@nxp.com, yogeshgaur.83@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de, festevam@gmail.com, singh.kuldeep87k@gmail.com,
+ hs@denx.de, linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20240904111727.1834935-1-haibo.chen@nxp.com>
+ <20240904111727.1834935-3-haibo.chen@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,21 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240904160118.2773055-1-eleanor15x@gmail.com>
+In-Reply-To: <20240904111727.1834935-3-haibo.chen@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2024 18:01, Yu-Chun Lin wrote:
-> Corrected several typos in Documentatin/devicetree/bindings files.
+On 04/09/2024 13:17, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> Signed-off-by: Yu-Chun Lin <eleanor15x@gmail.com>
+> According to imx8mp RM, the fspi is compatible with the fspi on
+> imx8mm. So remove this redundant imx8mp compatible string here.
+> 
+> Fixes: 0467a97367d4 ("spi: fspi: enable fspi driver for on imx8mp")
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 > ---
-> v3->v4
-> I squashed all previous version commits. 
-> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+This breaks users.
+
+NAK
 
 Best regards,
 Krzysztof
