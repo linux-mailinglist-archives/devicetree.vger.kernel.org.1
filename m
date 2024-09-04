@@ -1,151 +1,109 @@
-Return-Path: <devicetree+bounces-100061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B943E96C0B0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:34:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1DD96C0D9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:37:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08580B2A38F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:33:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 708FA1C24965
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F2F1DC724;
-	Wed,  4 Sep 2024 14:32:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VqVNIVqU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73041DB53B;
+	Wed,  4 Sep 2024 14:37:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DD51DC07E;
-	Wed,  4 Sep 2024 14:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F2B1DA61C;
+	Wed,  4 Sep 2024 14:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725460342; cv=none; b=ZNwjb5KzdyXU3NoxCI/hSL5cDryXcHUJNXidT7sZnbUrn/mALU3BvrC9Xk7lKEeVPqsZPhK2O43hVaj3+rfNN6RSzPLOi94NwmQ9JFbCjm20SKCTKi0CIzNjZSwrBRDetlO7Pym0lZjPr2bzcq8UcgKZgy+p93iGL8dbWVkMPfE=
+	t=1725460658; cv=none; b=UOzb1Y9EPcbzcHoaPw+Drn3O1hKUX7pwiTezTsDj3sEbxUjqbXHqwX8ynPVvwhlt/KZQZMaOF6bxOv5M6JTOj9gqtdz7MrKYioGSQAkUtlVBgT3fSiSpkglYxKsJYx/c1+gv+8iL0qq8kpWTuk9Dm8OG2MqBEULUj+HbnukDeDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725460342; c=relaxed/simple;
-	bh=Yro6c6PmezwPavyduv1RlKWA15hTf9IKGGuvHCMw8x4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rKReLiknL6a9jTIKHeYOH/ST9UPPIEI7W5EYymbpwjb9PzK0GWZIgdavDbEI1/1zcyYod5J7FthFA4qHcPJQ7w6ju0pLB3qfVA9SRe7hGT69uIIwRlJWWTLAnGBxvCZRSj3ZHE+pnLosBUsgoVM0523GmvakuvlxvIQwcqg2W+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VqVNIVqU; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 088F4FF803;
-	Wed,  4 Sep 2024 14:32:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1725460337;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1gHbIC9zWHgKFfK6RJ+EjBW+ThiCH2NjY3SZ4ktPpSk=;
-	b=VqVNIVqUZl8c8Naw3DjPBeA4A8fEELsws3oUvlnA+JvSZsBn3kTZ4s6sjg6gNcL93FPjdp
-	QgiWNRDdkfhWmHJ6wivhfUlCSsmCdNK7VIz8/U+O4zVxRr7LmTWcp7P/o8L5kdOUgAbKMQ
-	oCSc86SAv6bqXSzm+LgmCnA8zJ5fgQhECGLQctLb69W/DYvV2KbasauDnITanFYWuEwfli
-	0E+a97rXr2mHyuRiEHccUK1XFp1UR8sKTsCsGwyN4RA4wpw9SA51jSapYsGOCqmNgoKHI9
-	VSfgRrsZj01QGEcOqdGpOU4FI/VLpvbM4XRlN/ChwVC19NdjQodhZwFSkRpdsw==
-Message-ID: <f7572a63-73e0-4d1c-af04-6930e4bdc84f@bootlin.com>
-Date: Wed, 4 Sep 2024 16:32:15 +0200
+	s=arc-20240116; t=1725460658; c=relaxed/simple;
+	bh=8FBaJR3/i5iho+H6LO/jm9p/DpWHmVIC7QJH1el3y2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uwSXqGUeCOet9R08gllCDHBzriZ/eQb9qInx5j+0yX1SjaplI+PY+Upn6xvx1NZYazOEAJgRH4ILaoCPEAgyTMpigF2ZMGRh/aMkttkWXnHBgiYA1SKdX3/apf2tEht8/cIMRce0g2d9QtEFyfHNenNBW5am+SF28GHfxmqFqpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-7cb3db0932cso5013844a12.1;
+        Wed, 04 Sep 2024 07:37:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725460657; x=1726065457;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XeTNdvUSWx7HJEOyqeFtoigbheBAm0ccbTjqgX0Hr8w=;
+        b=l8Pe/765z+pbH8NoRXbf2DA9X6A6sbz5pmwBtMu/8/gFq248DmVAmHqJeBVwnkco7Y
+         UO8JeyFhScwQLozP4Ye43ffbB4zvqWPppDhqdTwyg2gDeXINmRGo8AHsHHcGkdDw1pUA
+         yxcQBNCNTVu7RBwjY7l3yaiV4IIM336y96Tqzr+ML9eovVKm0l/VxtEw/+OGMFan0y5t
+         J4SSK/jQl1W6GRuZ1fWfDwMrcN/YCADhYkFQtGGdseoJiC4oEXCCBFHlS/74hFDb6ZdF
+         w86yaSGR65gK1GLlM8kRnkqmBemjweSn8Wxl4TOjXZHNPrLjfJ+nY0Vg9+mlttQx5xdX
+         rD4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUV/hjxxZLzhzUfr4oUOuxjOCwFYeEyzFvS5xhm/2m8MR8e8y2cnH1gcumKTGr87QASK1iEhPm/gmZ+Wkzf@vger.kernel.org, AJvYcCVYPaBH8bRslE57uY/HH+TgFxax5Oveiyeu1oxKLUQfSH1LBq9HKuRCpTX/xrmyIypWsHabtKTpa22KILxPE1rW2lM=@vger.kernel.org, AJvYcCWHmfnn59rvlsxTNq91fo2XuTImyYRX9MEb2VmnzUQ8YcFw9MLAw+fhPS5y452/4fvUYoNyvI3OicEG@vger.kernel.org, AJvYcCX0QN6McTMZ7WGaQBhQX9QpByJT7rV/B248xCWSPsTDqe6h5xehLNGN/VNbTROJy4laq3T+vn5VHNeC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgmVcbpYtyxcTrzAhb7XmScm2GNhVTehLOW+Oq+s42nVHQzq8R
+	fQGl8OFhISvwUypk3EZPecq7lFhSMDcJmbTL+iFaZNEmyb5G/oRD
+X-Google-Smtp-Source: AGHT+IGFm3a6nIytISSTxdeWLXJD9PZzc11mSxiB8yoFNa+9OMf68AqsNjBgX2pnazA24lTCn9MZ5g==
+X-Received: by 2002:a05:6a20:d80b:b0:1ca:ccd0:1bf6 with SMTP id adf61e73a8af0-1cce0ffe3cemr20844080637.8.1725460656582;
+        Wed, 04 Sep 2024 07:37:36 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d4fbd8c61asm1526789a12.25.2024.09.04.07.37.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Sep 2024 07:37:35 -0700 (PDT)
+Date: Wed, 4 Sep 2024 23:37:34 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Xiaowei Song <songxiaowei@hisilicon.com>,
+	Binghui Wang <wangbinghui@hisilicon.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: hisilicon,kirin-pcie: add
+ top-level constraints
+Message-ID: <20240904143734.GA3032973@rocinante>
+References: <20240818172843.121787-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: wireless: wilc1000: Document WILC3000
- compatible string
-To: Krzysztof Kozlowski <krzk@kernel.org>, Marek Vasut <marex@denx.de>,
- linux-wireless@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240829004510.178016-1-marex@denx.de>
- <52e7b6d2-5d31-4ae1-bf1d-44e63a22774d@bootlin.com>
- <c84b783a-0118-43d8-8f03-a98fdf5bd8c5@kernel.org>
-From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <c84b783a-0118-43d8-8f03-a98fdf5bd8c5@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240818172843.121787-1-krzysztof.kozlowski@linaro.org>
 
-Hi Krzysztof,
+Hello,
 
-On 9/3/24 20:47, Krzysztof Kozlowski wrote:
-> On 03/09/2024 18:09, Alexis Lothoré wrote:
+> Properties with variable number of items per each device are expected to
+> have widest constraints in top-level "properties:" block and further
+> customized (narrowed) in "if:then:".  Add missing top-level constraints
+> for clock-names and reset-names.
 
-[...]
+Applied to dt-bindings, thank you!
 
->> After considering multiple solutions to try to share this bus between existing
->> wlan driver and a new bt driver (mfd device, auxiliary bus, device link + some
-> 
-> Driver design should not have impact on bindings.
-> 
->> handles, etc), my current best guess is to convert wilc driver to a MFD driver
->> for wilc3000. I guess some work can be done so that the driver can still be
->> shared between wilc1000 and wilc3000 _while_ remaining compatible with current
->> wilc1000 description, but it would impact the DT description for wilc3000, which
->> would need to switch from this:
->>
->>   spi {
->>     wifi@0 {
->>       compatible = "microchip,wilc3000";
->>       [...]
->>     };
->>   };
->>
->> To something like this:
->>
->>   spi {
->>     wilc@0 {
->>       compatible = "microchip,wilc3000"; /* mfd driver */
-> 
-> I do not see any reason why... or rather: What is MFD here? MFD is Linux
-> stuff and we talk about hardware.
-> 
->>       wifi {
->>         compatible = "microchip,wilc3000-wlan";
-> 
-> Why? Just merge it to parent...
-> 
->>         [...]
->>       };
->>       bt {
->>         compatible = "microchip,wilc3000-bt";
->>         XXXX; /* some link to the uart controller connected to the chip */
-> 
-> That's not how we represent UART devices. I don't understand why do you
-> need these - if for power sequencing, then use power sequencing
-> framework and describe associated hardware (there are some talks coming
-> about it in 2 weeks). If for something else, then for what?
+[01/03] dt-bindings: PCI: hisilicon,kirin-pcie: Add top-level constraints
+        https://git.kernel.org/pci/pci/c/ac44be2155cd
 
-I have to check more for this power sequencing framework, it look likes it could
-handle parts of the wifi/bt shared power management, but it will not cover
-everything. The need for this bus on the BT side is not only for power
-sequencing, there is some chip initialization to be performed over this bus,
-like firmware upload to the chip (not the wifi firmware, it is an additional
-bluetooth firmware).
+[02/03] dt-bindings: PCI: renesas,pci-rcar-gen2: Add top-level constraints
+        https://git.kernel.org/pci/pci/c/c62a0b8fe8bf
 
-I guess you are referring to Bartosz Golaszewski's talk at Plumbers.
-Unfortunately I can not attend, but I'll make sure to check the materials once
-available :)
+[03/03] dt-bindings: PCI: socionext,uniphier-pcie-ep: Add top-level constraints
+        https://git.kernel.org/pci/pci/c/a5c1bf7e9a46
 
-Thanks,
-
-Alexis
-
--- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+	Krzysztof
 
