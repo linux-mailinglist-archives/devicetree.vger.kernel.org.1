@@ -1,152 +1,138 @@
-Return-Path: <devicetree+bounces-100160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2362496C89E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 22:33:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C17E896C8AB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 22:38:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 986D0B227B3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:32:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78E6F1F28524
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467E214B06E;
-	Wed,  4 Sep 2024 20:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382CB1487CE;
+	Wed,  4 Sep 2024 20:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TPVYrQ3k"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hDyX45ku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F39C148304;
-	Wed,  4 Sep 2024 20:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF52C1EBFEC;
+	Wed,  4 Sep 2024 20:38:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725481927; cv=none; b=JKG4dT93amceIEPl7NLOl4ktdJh1Pfmin761D8VWm5Tb63yddwjxOr0RB6/mWEKFtvLsY3vOtuQdVK6N0Db8sVMhxCDoAk8LelgLXKTw1X8X5ZCdp/GnoihAYB7bsQiZ7YtQ4DxftpwtuvuIr54qMJaVvAx+imhJWjxXFTTOSzs=
+	t=1725482309; cv=none; b=FJzaaRaM7GrjGW2FviAU7E/uRfz21E/yLEZ33/Z+OmB0jxCqfkuvMsfPvxzEnj0RLQUpO43lwg/TsWjiw6aMf16QgJeTFwhfuKcj4WoxKguEKxL8yZUrYctypPt+IZL+c/4CwntGhBoTqvvgdGGURBLTOgYzDtH8316Lm455gTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725481927; c=relaxed/simple;
-	bh=BOpPOteOgOAfROk0/u+2xBJl3CQ/Rfkyo13BDvqI1CE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TvaSqvWb6jDBfI/EUxehJeppQNqA2EyFLBCeoMNe9HzoA9RttoimJGgAtxfkU4xBEAYrdymuMaNjnNjjjrV7+lpObE86Sdty5JIPbgSXQuvjqiU5gTYczl1TLTAVbrB01N7bzL15NkBSgDW2/gOMb6uHlXoamKx9ZdK7uC/dxaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TPVYrQ3k; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1725481923;
-	bh=BOpPOteOgOAfROk0/u+2xBJl3CQ/Rfkyo13BDvqI1CE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=TPVYrQ3kORi5yxgH2XtCdkiuEIH5Y5ct3xeWBiy3qLVdynDBIc6yxIXxnuQJ9Pih7
-	 Duq3LiFy1BSVunjPem9jDvPVCfF4cPzizi2FOQvxtfjK3MpjhXk3odmRikEeezHco6
-	 e5bvlGX1zb5qb5ve2VUvMQX9W8bgpmyhp0Yt11jjK0iw/qGIiyxidS/xrBS4TWRSgS
-	 4k63VWtHTVhqkyDl5IM6YIA6HlpDU3QDcnAuWEggv8tedyhSUqtmXuWsdSfd3c8+Ey
-	 M+6p4by8KriklxuxvxyER2M0RVUs+J9FGzZhLh+pDhE3Jcs2HCw+dfIHzgLU5FTF1U
-	 fxvRsue5tijcQ==
-Received: from bootstrap.hitronhub.home (unknown [23.233.251.139])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EFE1217E0B18;
-	Wed,  4 Sep 2024 22:32:01 +0200 (CEST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kernel@collabora.com,
-	Detlev Casanova <detlev.casanova@collabora.com>
-Subject: [PATCH v4 1/1] dt-bindings: mmc: Add support for rk3576 eMMC
-Date: Wed,  4 Sep 2024 16:30:58 -0400
-Message-ID: <20240904203154.253655-2-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240904203154.253655-1-detlev.casanova@collabora.com>
-References: <20240904203154.253655-1-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1725482309; c=relaxed/simple;
+	bh=fb++RZOclHuyJv8Cvo2Mncb1oUjSopSg8sCCDhGKtZc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fILsp3h+VhRSNPG8+ChyhXgTiteXzDoREep1T9FZNnTCstqWAJEV2lou17A6pnbvG+JLGBbwut2l/shu/RV+hChj+E6dJ0sourHck7pRu528zDS8wCryXIaBSSh0pwHw1aQYqDrCgTO+syH5B+rmScA6LTM9l9iqPDiY/43v27k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hDyX45ku; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0D16A1BF203;
+	Wed,  4 Sep 2024 20:38:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725482304;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=eIswLtOfZtf2hkYmMprySdT0sIt7a6+fv7isRSExRY8=;
+	b=hDyX45kuNseqYmR1xNb2I+QSwtW32sZzTAu0n79JH5zh02JZAigAOLaZ6wAMwC45sdsXEF
+	l2z6nfx3DR08UlCNKXOo8yAViMitC0yih7g0juMcxUVT2h0QuSxznqa1PL5NpDOqgeZl0a
+	i+PnbUUINAUJ/LBLMyJ5Z58fIhm1pPqQjBZo6Q9Vn914dTZVAdpdzwF2hOrvQS+zA0k9fD
+	Nq+ESIaGYc8rr+6wW/h1AjD8NjzWLPlhxEbFgBzmORdpLgNR/l8vaQ9kjtIdwkNyo6Mibn
+	Tb+MFIntj8BKRvubKT+31bHe193VEBveBrBON6ZPh7GDBlon9bcmlMRpw3k7mw==
+Message-ID: <b0849f3a-ddd3-4e6a-9f1f-1c5c9ab3e613@bootlin.com>
+Date: Wed, 4 Sep 2024 22:38:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] iio: adc: sophgo-saradc: Add driver for Sophgo
+ CV1800B SARADC
+To: Jonathan Cameron <jic23@kernel.org>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20240829-sg2002-adc-v5-0-aacb381e869b@bootlin.com>
+ <20240829-sg2002-adc-v5-2-aacb381e869b@bootlin.com>
+ <ZtYh6xUcP8zo3xMj@surfacebook.localdomain>
+ <20240903200526.0734945b@jic23-huawei>
+From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Content-Language: fr, en-US
+In-Reply-To: <20240903200526.0734945b@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-The device is compatible with rk3588, so add an entry for the 2
-compatibles together.
+Hello, thank you for these fixes, I just wanted to add something below.
 
-The rk3576 device has a power-domain that needs to be on for the eMMC to
-be used. Add it as a requirement.
+Le 03/09/2024 à 9:05 PM, Jonathan Cameron a écrit :
+> On Mon, 2 Sep 2024 23:36:59 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> 
+>> Thu, Aug 29, 2024 at 02:31:51PM +0200, Thomas Bonnefille kirjoitti:
+>>> This adds a driver for the Sophgo CV1800B SARADC.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 37 +++++++++++++++----
- 1 file changed, 29 insertions(+), 8 deletions(-)
+...
 
-diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-index 80d50178d2e3..c3d5e0230af1 100644
---- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-@@ -12,14 +12,18 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - rockchip,rk3568-dwcmshc
--      - rockchip,rk3588-dwcmshc
--      - snps,dwcmshc-sdhci
--      - sophgo,cv1800b-dwcmshc
--      - sophgo,sg2002-dwcmshc
--      - sophgo,sg2042-dwcmshc
--      - thead,th1520-dwcmshc
-+    oneOf:
-+      - items:
-+          - const: rockchip,rk3576-dwcmshc
-+          - const: rockchip,rk3588-dwcmshc
-+      - enum:
-+          - rockchip,rk3568-dwcmshc
-+          - rockchip,rk3588-dwcmshc
-+          - snps,dwcmshc-sdhci
-+          - sophgo,cv1800b-dwcmshc
-+          - sophgo,sg2002-dwcmshc
-+          - sophgo,sg2042-dwcmshc
-+          - thead,th1520-dwcmshc
- 
-   reg:
-     maxItems: 1
-@@ -35,6 +39,9 @@ properties:
-     minItems: 1
-     maxItems: 5
- 
-+  power-domains:
-+    maxItems: 1
-+
-   resets:
-     maxItems: 5
- 
-@@ -97,6 +104,20 @@ allOf:
-             - const: block
-             - const: timer
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3576-dwcmshc
-+
-+    then:
-+      required:
-+        - power-domains
-+
-+    else:
-+      properties:
-+        power-domains: false
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.46.0
+>>> +		init_completion(&saradc->completion);
+>>> +		ret = devm_request_irq(&pdev->dev, saradc->irq,
+>>> +				       cv1800b_adc_interrupt_handler, 0,
+>>> +				       dev_name(&pdev->dev), saradc);
+>>> +		if (ret)
+>>> +			return ret;
+>>> +
+>>> +		writel(1, saradc->regs + CV1800B_ADC_INTR_EN_REG);
+>>
+>> BIT(0)
+> 
+> Maybe on that - would need to compare with datasheet to know how it's
+> described. In theory that might not be a mask.
 
+Indeed, in this case "CV1800B_ADC_INTR_EN_REG" is the register that 
+enables the interrupts.
+So here what I dis is to set this register to 1 (ON).
+
+> 
+>>
+>>> +	}
+>>> +
+>>> +	ret = devm_mutex_init(&pdev->dev, &saradc->lock);
+>>> +	if (ret)
+>>> +		return ret;
+>>
+>> + blank line?
+> That one I'd done already.
+> Anyhow tweaked and pushed out again.
+> 
+> 
+> Jonathan
+> 
+>>
+>>> +	writel(FIELD_PREP(CV1800B_MASK_STARTUP_CYCLE, 15) |
+>>> +	       FIELD_PREP(CV1800B_MASK_SAMPLE_WINDOW, 15) |
+>>> +	       FIELD_PREP(CV1800B_MASK_CLKDIV, 1) |
+>>> +	       FIELD_PREP(CV1800B_MASK_COMPARE_CYCLE, 15),
+>>> +	       saradc->regs + CV1800B_ADC_CYC_SET_REG);
+>>> +
+>>> +	return devm_iio_device_register(&pdev->dev, indio_dev);
+>>> +}
+>>
+> 
+Thomas
 
