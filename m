@@ -1,138 +1,144 @@
-Return-Path: <devicetree+bounces-100161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C17E896C8AB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 22:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CFDA96C8CA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 22:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78E6F1F28524
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:38:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 423491F2167B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:44:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382CB1487CE;
-	Wed,  4 Sep 2024 20:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED8B14B08E;
+	Wed,  4 Sep 2024 20:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hDyX45ku"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ppfX9umW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF52C1EBFEC;
-	Wed,  4 Sep 2024 20:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE7214A4E0;
+	Wed,  4 Sep 2024 20:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725482309; cv=none; b=FJzaaRaM7GrjGW2FviAU7E/uRfz21E/yLEZ33/Z+OmB0jxCqfkuvMsfPvxzEnj0RLQUpO43lwg/TsWjiw6aMf16QgJeTFwhfuKcj4WoxKguEKxL8yZUrYctypPt+IZL+c/4CwntGhBoTqvvgdGGURBLTOgYzDtH8316Lm455gTw=
+	t=1725482560; cv=none; b=OB6QPsAr1IMdSRvRRraSTTbEy56bYFaMg0G5yjTYA/jrlnk9KYNSRJtMOD9ZbNjP3vXTbQbAGxsR7WV6fIH0TA2a8rztgGJ4juPv/BH3j0RCfmFONv9MRt/Pp9hniY9OnreeDxXZolq5CMX9Enm6GLz2CFFo038PVuRIwJuMWZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725482309; c=relaxed/simple;
-	bh=fb++RZOclHuyJv8Cvo2Mncb1oUjSopSg8sCCDhGKtZc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fILsp3h+VhRSNPG8+ChyhXgTiteXzDoREep1T9FZNnTCstqWAJEV2lou17A6pnbvG+JLGBbwut2l/shu/RV+hChj+E6dJ0sourHck7pRu528zDS8wCryXIaBSSh0pwHw1aQYqDrCgTO+syH5B+rmScA6LTM9l9iqPDiY/43v27k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hDyX45ku; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0D16A1BF203;
-	Wed,  4 Sep 2024 20:38:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1725482304;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eIswLtOfZtf2hkYmMprySdT0sIt7a6+fv7isRSExRY8=;
-	b=hDyX45kuNseqYmR1xNb2I+QSwtW32sZzTAu0n79JH5zh02JZAigAOLaZ6wAMwC45sdsXEF
-	l2z6nfx3DR08UlCNKXOo8yAViMitC0yih7g0juMcxUVT2h0QuSxznqa1PL5NpDOqgeZl0a
-	i+PnbUUINAUJ/LBLMyJ5Z58fIhm1pPqQjBZo6Q9Vn914dTZVAdpdzwF2hOrvQS+zA0k9fD
-	Nq+ESIaGYc8rr+6wW/h1AjD8NjzWLPlhxEbFgBzmORdpLgNR/l8vaQ9kjtIdwkNyo6Mibn
-	Tb+MFIntj8BKRvubKT+31bHe193VEBveBrBON6ZPh7GDBlon9bcmlMRpw3k7mw==
-Message-ID: <b0849f3a-ddd3-4e6a-9f1f-1c5c9ab3e613@bootlin.com>
-Date: Wed, 4 Sep 2024 22:38:18 +0200
+	s=arc-20240116; t=1725482560; c=relaxed/simple;
+	bh=AdJMAOlfl60fpsBCc8xQ0+D+qfwEF1pp6GLq+DwA2yk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pw8N9Dp6UE6Fp2eqmhtcpIPnttn4NVreJiFZ+KQHL+mWuQt7MV4N4cFnWu2Tl7p6TGPw398jMba9vacXaDRLgTUOu9A5HNAaufAjbJkWNXY0G0m9AJg8rjQtHs8w8KeXqO2Cci3mHpXkJrwceQSY6vyTTqP/6cYgL2ZNEzAcK0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ppfX9umW; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1725482557;
+	bh=AdJMAOlfl60fpsBCc8xQ0+D+qfwEF1pp6GLq+DwA2yk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ppfX9umWo4Ww90ByqRMBy7KxNM0cdWtemMx2s6ioS25w8KfFXtnleY5qyi8eGlQTg
+	 anV0MLrjXJUwraPCsbKKozT1whuDyJXJfDKst2yjScniMcjbdif8ZoiErBL6W63tjH
+	 lIPzDaB1JyKHiyqpkztF6YHuU0s4u58wT7BLvqMsv1TT7mtJSHdEYhSEeJlcBvl9eB
+	 GCTHW490RC0yaY9NM2Lco96MI6/jfKb5sLqxO/pYPqHhHKm21uLzcmyZU1cAORgHY1
+	 R9imraqwWJuVLc3bt59o77oiY1jZZCaDN2/OJAY2ikDTcnE7t/eIHSUYasZAlmUCG7
+	 eTs8FaaY8PQ+A==
+Received: from notapiano (pool-100-2-116-133.nycmny.fios.verizon.net [100.2.116.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4746B17E0B18;
+	Wed,  4 Sep 2024 22:42:36 +0200 (CEST)
+Date: Wed, 4 Sep 2024 16:42:34 -0400
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt: dt-extract-compatibles: Extract compatibles from
+ function parameters
+Message-ID: <80c61f1d-5bae-4288-b868-b25d48d679a6@notapiano>
+References: <20240903200753.2097911-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] iio: adc: sophgo-saradc: Add driver for Sophgo
- CV1800B SARADC
-To: Jonathan Cameron <jic23@kernel.org>,
- Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240829-sg2002-adc-v5-0-aacb381e869b@bootlin.com>
- <20240829-sg2002-adc-v5-2-aacb381e869b@bootlin.com>
- <ZtYh6xUcP8zo3xMj@surfacebook.localdomain>
- <20240903200526.0734945b@jic23-huawei>
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Content-Language: fr, en-US
-In-Reply-To: <20240903200526.0734945b@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+In-Reply-To: <20240903200753.2097911-1-robh@kernel.org>
 
-Hello, thank you for these fixes, I just wanted to add something below.
+On Tue, Sep 03, 2024 at 03:07:52PM -0500, Rob Herring (Arm) wrote:
+> Various DT and fwnode functions take a compatible string as a parameter.
+> These are often used in cases which don't have a driver, so they've been
+> missed.
+> 
+> The additional checks add about 400 more undocumented compatible
+> strings.
+> 
+> Cc: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  scripts/dtc/dt-extract-compatibles | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-compatibles
+> index 5ffb2364409b..13ea66d49e6c 100755
+> --- a/scripts/dtc/dt-extract-compatibles
+> +++ b/scripts/dtc/dt-extract-compatibles
+> @@ -46,6 +46,15 @@ def parse_of_match_table(data):
+>  	return match_table_list
+>  
+>  
+> +def parse_of_functions(data, func_name):
+> +	""" Find all (device|machine)_is_compatible() arguments """
 
-Le 03/09/2024 Ã  9:05 PM, Jonathan Cameron a Ã©critÂ :
-> On Mon, 2 Sep 2024 23:36:59 +0300
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> 
->> Thu, Aug 29, 2024 at 02:31:51PM +0200, Thomas Bonnefille kirjoitti:
->>> This adds a driver for the Sophgo CV1800B SARADC.
+This comment looks outdated.
 
-...
+"Find all compatibles in the last argument of a given function"?
 
->>> +		init_completion(&saradc->completion);
->>> +		ret = devm_request_irq(&pdev->dev, saradc->irq,
->>> +				       cv1800b_adc_interrupt_handler, 0,
->>> +				       dev_name(&pdev->dev), saradc);
->>> +		if (ret)
->>> +			return ret;
->>> +
->>> +		writel(1, saradc->regs + CV1800B_ADC_INTR_EN_REG);
->>
->> BIT(0)
-> 
-> Maybe on that - would need to compare with datasheet to know how it's
-> described. In theory that might not be a mask.
+> +	match_table_list = []
 
-Indeed, in this case "CV1800B_ADC_INTR_EN_REG" is the register that 
-enables the interrupts.
-So here what I dis is to set this register to 1 (ON).
+A better name would be compat_list like in the other functions that return lists
+of compatibles.
 
+> +	for m in re.finditer(rf'{func_name}\(([a-zA-Z0-9_>\(\)"\-]+,\s)*"([a-zA-Z0-9_,-]+)"\)', data):
+> +		match_table_list.append(m[2])
+> +
+> +	return match_table_list
+> +
+> +
+>  def parse_compatibles(file, compat_ignore_list):
+>  	with open(file, 'r', encoding='utf-8') as f:
+>  		data = f.read().replace('\n', '')
+> @@ -60,6 +69,10 @@ def parse_compatibles(file, compat_ignore_list):
+>  	else:
+>  		compat_list = parse_of_declare_macros(data)
+>  		compat_list += parse_of_device_id(data)
+> +		compat_list += parse_of_functions(data, "_is_compatible")
+
+This pattern seems very broad and bound to generate false-positives. That said,
+I glanced over the results and didn't see any string clearly wrong, so I guess
+it's fine. There were a couple suspicious strings like "B5221" but they were
+indeed used in the of functions, so it's working correctly.
+
+> +		compat_list += parse_of_functions(data, "of_find_compatible_node")
+> +		compat_list += parse_of_functions(data, "for_each_compatible_node")
+> +		compat_list += parse_of_functions(data, "of_get_compatible_child")
+>  
+>  	return compat_list
+>  
+> -- 
+> 2.45.2
 > 
->>
->>> +	}
->>> +
->>> +	ret = devm_mutex_init(&pdev->dev, &saradc->lock);
->>> +	if (ret)
->>> +		return ret;
->>
->> + blank line?
-> That one I'd done already.
-> Anyhow tweaked and pushed out again.
-> 
-> 
-> Jonathan
-> 
->>
->>> +	writel(FIELD_PREP(CV1800B_MASK_STARTUP_CYCLE, 15) |
->>> +	       FIELD_PREP(CV1800B_MASK_SAMPLE_WINDOW, 15) |
->>> +	       FIELD_PREP(CV1800B_MASK_CLKDIV, 1) |
->>> +	       FIELD_PREP(CV1800B_MASK_COMPARE_CYCLE, 15),
->>> +	       saradc->regs + CV1800B_ADC_CYC_SET_REG);
->>> +
->>> +	return devm_iio_device_register(&pdev->dev, indio_dev);
->>> +}
->>
-> 
-Thomas
+
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+On a related note, I'm wondering if you haven't had time to see
+https://lore.kernel.org/all/20240729-dt-kselftest-parent-disabled-v2-1-d7a001c4930d@collabora.com
+or if that patch didn't make it to you somehow.
+
+Thanks,
+Nícolas
+
 
