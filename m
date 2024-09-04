@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CDBF96BEAF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:37:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BB096BE9B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:36:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19389B22245
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:29:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC2E31F2408D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE501E884;
-	Wed,  4 Sep 2024 13:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF9B185948;
+	Wed,  4 Sep 2024 13:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J8vPKjmH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LnugFP+G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558C71DA101;
-	Wed,  4 Sep 2024 13:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974B74C96
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 13:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725456549; cv=none; b=duOFTbF1wmdtpVVSas5AJyAL+FAFyVwGuYqWa8QnUKA5PdOBrw4rSJCqOi/iFk9x12xqh15PUCvSw18jRRArltMn/tU6gfcSJX6DGr2vRR50GuRIXP5spQmNFzatxb4OLfrspXH72CUuS4Kgcngd5e4acHA35iYA2iVyITlWgEk=
+	t=1725456983; cv=none; b=BnF3fgAW3vXONv5UtgzGRVntW2oS99ozKdWrnMXy15qHRFNk8rAUvc/DS6FAfFhmyRLfTjNZKvvyXjVs8eYOtvAjjtEVazmpNsjt2DwwnYe+W66MKrMLgzEqoJuIY6CBQLWge+7zypsk1KHz4qWf8ClDVLSjz+MJCjzPG8B7Pos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725456549; c=relaxed/simple;
-	bh=pB4IJtC8E2/PPZkXHjRfsoD2HoTi/FWu1c480YZGCTw=;
+	s=arc-20240116; t=1725456983; c=relaxed/simple;
+	bh=EzcEOhlPYx4lpeiPOu0oZZYEY3bTuGC3xMbZcjDcNYQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pq8i2fgGx0vFZHv+Nw6L7tJ50iI21Gfj0PNU35hnAjTP9WnYlp4Fy2DIuuHVUIfHSYdqg7z69DmmyH3c12x/kYHgYBoIItH0ewCmtumW2d6uLGOPABxc8z0F509gI4HSeGIeEWyoAYmlDpGLr+s+WYuMaBigr5773CH5ufJUC4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J8vPKjmH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 648D5C4CEC2;
-	Wed,  4 Sep 2024 13:29:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=usqpUZ1Xijrz9X+sPpDKcncZCz6zJUYdalre8JvwyIaEWd3zm3ccb4wlWTjgT7mV3IUdgEy9CCm1iv/C0rsbwv93U6IXVtbY5Bt+Xmj+XXVIAMPzArXnp6tVZwNivFcK9am7HzJpKhjh/B5qb4noqEAxuUyvEfJahoXkcpPJBHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LnugFP+G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42ECBC4CEC6;
+	Wed,  4 Sep 2024 13:36:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725456548;
-	bh=pB4IJtC8E2/PPZkXHjRfsoD2HoTi/FWu1c480YZGCTw=;
+	s=k20201202; t=1725456983;
+	bh=EzcEOhlPYx4lpeiPOu0oZZYEY3bTuGC3xMbZcjDcNYQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J8vPKjmH9zIS5l///kgnQ93IvmozRBW2QaARk5JqkQB1u7LX/GNl/AUC/QCzUBPfx
-	 0JXZMydz1xxwKzF7pVMOLefwSSjesoQ9AaJ44TEWigHKR7PRga7ouUrCC3FW2IO9o3
-	 qLQZyPUhhdXjzw98KeweRLaYVRNj1/+FCm4aAjW5drfcu73xyktjMyo9vOejtvAxhx
-	 jiCC8kPth4fsqAUvlthXQNS7d6mAB5On3/IdZIjbZisexi/lXySqqxO7hdDUlU46h3
-	 lmSjA33AZ6of1v6sD0JoJvK/bwJqvZchIjKIg5xZCrVqx3V9VCEqxsF1I4WFHOCS1Z
-	 BJdD/HCnFMkCg==
-Message-ID: <c2390181-d736-4691-9bb1-0383c506bb1b@kernel.org>
-Date: Wed, 4 Sep 2024 15:29:00 +0200
+	b=LnugFP+G9AEVppVzJzDCzToB4zM6/EJUP3lWgI16w/5dATZNJHPCgEg1Um6uTekjP
+	 0hCmxKYeidrVDpst6FdilhgzoBpa7UFCaRnR6XQPqwZzkT7blf9xn/4Sn+T0yUarCE
+	 +C8GqRkG76N7kKIEtYIX7YufiG4A44EQm3bTvwqWS0bMqklXkrF+y2oKj5sF1nFrr/
+	 renw8IxF6s15mHl1gJLPGhNpeX7OI9ftxb6LdI5y0BmmjHR1fphqMCcusA79v0EK00
+	 /ZfU0IbYBjMUvO35jQ5ooQ24xHEttkhG9fU8I3kHmRDxeV4e+c4CxwpJCu09oQcn9J
+	 sNetwEUmgUMfQ==
+Message-ID: <c3445a6c-aca1-470c-bdd9-06e23ad14253@kernel.org>
+Date: Wed, 4 Sep 2024 15:36:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Shanghai Novotech
- Ariaboard
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
- FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240904111456.87089-1-bigfoot@classfun.cn>
- <20240904111456.87089-2-bigfoot@classfun.cn>
- <b9e5389f-8492-425e-bc15-35ea55c0e3b5@kernel.org>
- <2ec7de72-8560-430c-a6b6-5ef7ad5f5e00@classfun.cn>
+Subject: Re: [PATCH v2 09/11] dt-bindings: display: vop2: Add rk3576 support
+To: Andy Yan <andyshrk@163.com>, detlev.casanova@collabora.com
+Cc: sjoerd@collabora.com, sebastian.reichel@collabora.com, heiko@sntech.de,
+ hjc@rock-chips.com, cristian.ciocaltea@collabora.com, mripard@kernel.org,
+ dri-devel@lists.freedesktop.org, krzk+dt@kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org,
+ linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
+References: <20240904120238.3856782-1-andyshrk@163.com>
+ <20240904120238.3856782-10-andyshrk@163.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,50 +104,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2ec7de72-8560-430c-a6b6-5ef7ad5f5e00@classfun.cn>
+In-Reply-To: <20240904120238.3856782-10-andyshrk@163.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2024 14:14, Junhao Xie wrote:
-> On 2024/9/4 19:35, Krzysztof Kozlowski wrote:
->> On 04/09/2024 13:14, Junhao Xie wrote:
->>> Add an entry for Shanghai Novotech Ariaboard (https://ariaboard.com/)
->>>
->>> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
->>> ---
->>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> index a70ce43b3dc0..58d1a2e8b212 100644
->>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> @@ -145,6 +145,8 @@ patternProperties:
->>>      description: Arctic Sand
->>>    "^arcx,.*":
->>>      description: arcx Inc. / Archronix Inc.
->>> +  "^ariaboard,.*":
->>> +    description: Shanghai Novotech Co., Ltd.
->>
->> This is confusing. Prefix is entirely different than company name. I
->> would expect prefix like shanghainovotech.
->>
->> Best regards,
->> Krzysztof
->>
+On 04/09/2024 14:02, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Thank you for your reply.
-> Ariaboard is a subsidiary of Shanghai Novotech, maybe it would
-> be better to change description to "Ariaboard"?
+> Add vop found on rk3576.
 > 
-> Shanghai Novotech: https://shanghainovotech.com/
-> Ariaboard: https://ariaboard.com/
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
+> ---
+> 
+> Changes in v2:
+> - Add dt bindings
+> 
+>  .../devicetree/bindings/display/rockchip/rockchip-vop2.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> index 2531726af306..23b2371aea46 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> @@ -21,6 +21,7 @@ properties:
+>        - rockchip,rk3566-vop
+>        - rockchip,rk3568-vop
+>        - rockchip,rk3588-vop
+> +      - rockchip,rk3576-vop
 
-This does not sound like subsidiary but just name of the board family or
-product family. Their about page suggests "affiliation" but all contact
-points are for Shanghai Novotech.
-
-I am fine with ariaboard prefix, but please provide context in commit msg.
+Keep things ordered. Same applies to your other patches.
 
 Best regards,
 Krzysztof
