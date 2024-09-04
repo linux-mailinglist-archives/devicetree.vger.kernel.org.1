@@ -1,681 +1,141 @@
-Return-Path: <devicetree+bounces-99781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE77696B2DF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 09:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6B7396B311
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 09:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55A2D1F28EC8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 07:29:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B8991F21081
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 07:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD9D155A4F;
-	Wed,  4 Sep 2024 07:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2108E146A7B;
+	Wed,  4 Sep 2024 07:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RwvF9YMF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vqFFYwJJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EF70155308
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 07:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561AF4AEF5
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 07:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725434862; cv=none; b=MZKvnZPYkgeMmW29ofDVtz9zRMeyzLUUxPX0n8Qwx3zQ2cVdEpGzvtChJUF2fu87kPaTkHt4f7UEVxDaJQXQEeki4uIAUzvZ7apkn0ZIfQGECf7cESaar8j/yUn/QLLUKWr/rK9pOBRXj4rMibnoReb7frAeiJ6Sq3txOHlOdjI=
+	t=1725435697; cv=none; b=Sfz7+8hGtLxmFtBdvdjhsDFguTpG0cs0K4ilB0G1/pQEMlAyNjVZfu3Y9zITrKxednbVl2EGUXMeN8KIGdTD8nnCa4TikOn08mz0MWiK9ItuOR0QlTpU5DBpidzy0vyxludTcd/saStNgvcpmrCvUMZ7lUdk/SCP0axmTmbvKAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725434862; c=relaxed/simple;
-	bh=FCEF3DQauLwbuelWiyzYnUIiAJ4YoV06Rw2ecOgc+g4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TavPBnelTnRev715LD9uPNwZMb+/Ccs10C3pOFUTgDwgrlPTwry8vZRKWDfihla1fUKYbUGraJiNaLJTZmm2243Zcpj+CmByCTCeDr+/JJmuXlCCdwskx5eJflLFry5ulyrlxZ0Kfn/ds+ZpHPfF0n6CBYBf5WwEO+sHkIS4jv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RwvF9YMF; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5353cd18c20so639559e87.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 00:27:39 -0700 (PDT)
+	s=arc-20240116; t=1725435697; c=relaxed/simple;
+	bh=Qid8qxN4GgXSoeK9U8lFaZNfbor92P0uuXWDtdswoBI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iyqSByqEg5kh0ZS2XKgUCM16buiDGHmihRuulqghc2Lg4sNEv16/01IDUGIX2OraPq7+K6GMYRWyFaYKthrZMcYFWOmkyCnPU3rAQbhoAzzx0/lPx2Nrch506SUrR0Ns7X155gaDo80yx1LFqScSoOEVK9vzWA6OIoC4GlW+Fkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vqFFYwJJ; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42c7a49152aso43505515e9.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 00:41:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725434858; x=1726039658; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lkYpWjHYFCY/21i91aWFXpsfKLY9KsXjMcsmRZHcUxA=;
-        b=RwvF9YMFxnL1DacrbDSmYJc04zxtwwfb+iwKMgS+XnxpbEEPxucQGLrR9lhgIRBZex
-         9dXCFFQNHcszbMgu3jT7zd1o93XtbqOazzQM6z/Y5C3K0craZJbwh7ly/bPAEfytLVDp
-         zDF1QqIn4OPkcfpCe1VDsKDMqcaUZAauwfkTuzbdKhJoRbc+BTK5FKmley9m2NoLXU6y
-         AnzNVNqmDLNFmx+6ZjgkpFKRh5sDLOAcmxe30Poc2I32zxUUNrXB4U5YDL3xPQ0FbOi0
-         gqWktDMemT3xz/mI2eLjqgLMp3b5jlYmyA1ILjIpmQ29wxdNogdtW27E+Ha6PS0MkK2j
-         fzvw==
+        d=linaro.org; s=google; t=1725435694; x=1726040494; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ktJv7V7BsrY6lxWQLsF6JOBPSNpEG+StF/aANqrJ2c=;
+        b=vqFFYwJJ1upLyQlXFk+WQlTLlWh5AoCHh0uoT5b7nGIGkY945oOtGnqZ5SXKtW4zPd
+         8azSniXLWffQNLlEH99cQrJEZZ0HMu3xf1kh7Wy8hmFcZot5yt2fb6uzBLQiMpkZOZWv
+         DK3BSL4bq0AkFT1stZ0+Iumct6O48S7QYOLxAA+D001DZOZvP/OVEMtyrNy0536pIjUs
+         7hUaPaLCrAZG2UJ30gAyDClU5xSwGc0CqlZGrGKH4esceVYTyB4ovsfn+M2dN/+d3vsl
+         YX4XFq76muojZh38CSVNnj48XEhMJnR5uxj8ftICfGmuWzdveXELzgiPQlE+PAI5hkIu
+         FrSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725434858; x=1726039658;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lkYpWjHYFCY/21i91aWFXpsfKLY9KsXjMcsmRZHcUxA=;
-        b=G5doTkuip6nmLGCXczttDJvADnZrmwCrnHFwHQk1GVumvceM3018/EKi3eHqpIOgBZ
-         ssLPSA2c30+3ifIkGGDkz3p+6KjsnmxJDlTg1RkB6Vb69WZ5d3bEP4N7IU4waR/Bn8V6
-         qU7RYsmNyyp7X2Jn85MOd/IaDBF0qa5fl/H7Fl9sEd1/F5sqxS4Y9Rtdh/NKTcx9MZcd
-         zqT0CCnxqXVM/qB88EF9IWTyP0UglxuTet5ZPFSwMW05C5Neik3HfoX93qnJchJqaT6F
-         +ZXYg5H+YEqjC4d5z8Zdcca0VALrVHWbRVsVLChVDjUEf4s3ThCn0eTrwo4Xd9g+a8aA
-         R5Zw==
-X-Forwarded-Encrypted: i=1; AJvYcCWskWnoxJBuHeNpjuVwUn2UXzgpnsCFR/U7y9zCMJX1NfFelqHshLcnMbMmkb2eVUXA78m+uEqX00Mw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXk2Yba4RU6zpkaxQH26cyYJ5fMBFZqvjwRkLTRAoT9bl3TPh0
-	oqDmyj39PgfCFMQuYmg1AhdwEQYbMazanqRWFb5aDyAHpAq49tSxEhEuO9+c9Kw=
-X-Google-Smtp-Source: AGHT+IFGKDKsdRlLIymAbs9bTeD+K3K5MI9AgZFw0RkI/G11MIQC7qMpJ9TZUrHeA5x2pKP+psVDbQ==
-X-Received: by 2002:a05:6512:1248:b0:531:4c6d:b8ef with SMTP id 2adb3069b0e04-53565f0f8bcmr1299859e87.6.1725434858157;
-        Wed, 04 Sep 2024 00:27:38 -0700 (PDT)
-Received: from localhost.localdomain ([188.27.130.242])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a89891d77fasm771151766b.167.2024.09.04.00.27.36
+        d=1e100.net; s=20230601; t=1725435694; x=1726040494;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5ktJv7V7BsrY6lxWQLsF6JOBPSNpEG+StF/aANqrJ2c=;
+        b=Xht06SiOAengI2asDGNOZ1XfYashk9JkkXKkBeIHf1yO+WOwK0IjZTEfM3mSFefpLU
+         sA3MB8RSCm8nNFlHAPiXzwBxJZ4lMPIJAStlZzB/eq45Uk9NL1JUFuLHTJQHZPJFAGcX
+         a8VIGJQ9BxdX/pm5XyiNrU1c+LbpTSAcvHJcOyoM6mREZVW/FSrCajEBV21uLUb3hcmW
+         UAWfRa5gz0I36BbBWxdC1e1SXAeMoglgeBpVTxRJuL35au/FFqJuFnQtanry3SSoPnk1
+         2FzEIeoJpLFN6lK/g8lPAt42Xl8zVyO9WaYsoTnGFcpBClm5wk3fvXhHwdWSNyvYSm0+
+         Nvxw==
+X-Gm-Message-State: AOJu0YzNqUdTrH7UwKMVVZpbErHONmGBmENQsDq8iXEupfil1/O+Tk2U
+	NFpU+Bvdaju21poubw7OL4Q9tTEG/tZ7l4qpjC4vowsskR2shtPNIYkjr/ts4KI=
+X-Google-Smtp-Source: AGHT+IEUGTueck2wFIO2xgQtM82YXoUnrNJGV14z+9hEAlfrmGF1YjQsrCNhTbaVg6SSg7pq7AvOuA==
+X-Received: by 2002:a05:6000:d8e:b0:374:ca1d:85ad with SMTP id ffacd0b85a97d-374ca1d8830mr8037393f8f.56.1725435693139;
+        Wed, 04 Sep 2024 00:41:33 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ef812cbsm16229212f8f.83.2024.09.04.00.41.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Sep 2024 00:27:37 -0700 (PDT)
-From: Alexandru Ardelean <aardelean@baylibre.com>
-To: linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: jic23@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	lars@metafoo.de,
-	michael.hennerich@analog.com,
-	gstols@baylibre.com,
-	Alexandru Ardelean <aardelean@baylibre.com>
-Subject: [PATCH v3 8/8] iio: adc: ad7606: add support for AD7606C-{16,18} parts
-Date: Wed,  4 Sep 2024 10:27:16 +0300
-Message-ID: <20240904072718.1143440-9-aardelean@baylibre.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240904072718.1143440-1-aardelean@baylibre.com>
-References: <20240904072718.1143440-1-aardelean@baylibre.com>
+        Wed, 04 Sep 2024 00:41:32 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 04 Sep 2024 09:41:31 +0200
+Subject: [PATCH] arm64: dts: amlogic: gxlx-s905l-p271: drop saradc gxlx
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240904-topic-amlogic-upstream-gxlx-drop-iio-compat-v1-1-89ad63aad915@linaro.org>
+X-B4-Tracking: v=1; b=H4sIACoP2GYC/x2NQQrDIBAAvxL23AVjLLT9SulBzMYuxOyitgghf
+ 4/kNMxlZodCmanAa9gh058Ly9ZlvA0Qvn6LhDx3B2usM0/jsIpyQJ9WiZ0/LTWTTxjb2nDOosg
+ sGCSpr2gf4W5GQ4ubJuhFzbRwu27vz3GcJfBl7H0AAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Christian Hewitt <christianshewitt@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1150;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Qid8qxN4GgXSoeK9U8lFaZNfbor92P0uuXWDtdswoBI=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm2A8rsr7kWhI533NglBEyxt/ZYZF5X3Z0vo5qlyQe
+ z2dbrYiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZtgPKwAKCRB33NvayMhJ0QMKEA
+ Cj01D+2OgeAg3xlMyNviRxY2UQbi/fm7Q+wEUMp3BO4NuW8b13oXsNDx1q+diX5VEtd7wfHu31zeW/
+ BraOC+zjRejMBanfZFvqO2QIR8NRrFwoLAJMRN43ZyRNKwFN9kkP8t9opQpZ085sUJ0Yj5R12fus6R
+ M6zEQwWBvIMAJueicPd41m1ts4QnuTXLawJI1RyhCsbV0crquH3g6ImRSOcxvqEXqg60hj9U1HnscI
+ wP8ZlhrfkIPfXqaMykmo7MkbV/i/tQViBH6o12Y1kfIlaJFPjZaLkC6gSSUuORXqtg+naZXbcYd6Ii
+ fedAibH1RAp0yzoWFGiNf8Xs5a9aYmBkhxj80xLF3xn+oztrSmRJVoOsFIGMr9MJA7XIkfsa/bTElq
+ jl7YnG8vUJiZbPAtf6Y3IODLrE0qnPnv7pJ5aIZjhuIL5gGd0HfOg/mjpqj3fImNgfQqNLpmzOa7RT
+ Va8Q/zv4CVKS88BUesKUYT3Dnm7bPuo0VVH7Q6WDUTb0wQ0Gu2c8ukS4OvSDpajKewU3OsXgMZlMKh
+ MH7ZuPyYSXOHIE5Dj7kZ44xzcfsWvwhw3ZccSC63esxffBI+u0R+jl8OFaovE5IE+Bxofn8H5BnbIR
+ 8Kao5DjzHE/qZmOjkYScUKwDLLdCPvPcXBPjQisRVb+9QC2tFx3mdGT2xqYQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
-The main difference between AD7606C-16 & AD7606C-18 is the precision in
-bits (16 vs 18).
-Because of that, some scales need to be defined for the 18-bit variants, as
-they need to be computed against 2**18 (vs 2**16 for the 16 bit-variants).
+Drop the undocumented amlogic,meson-gxlx-saradc compatible, and fix the
+following DTBs check:
+/soc/bus@c1100000/adc@8680: failed to match any schema with compatible: ['amlogic,meson-gxlx-saradc', 'amlogic,meson-saradc']
 
-Because the AD7606C-16,18 also supports bipolar & differential channels,
-for SW-mode, the default range of 10 V or ±10V should be set at probe.
-On reset, the default range (in the registers) is set to value 0x3 which
-corresponds to '±10 V single-ended range', regardless of bipolar or
-differential configuration.
-
-Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
-
-The AD7606C-18 variant offers 18-bit precision. Because of this, the
-requirement to use this chip is that the SPI controller supports padding
-of 18-bit sequences to 32-bit arrays.
-
-Datasheet links:
-  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-16.pdf
-  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf
-
-Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
+Fixes: f6386b5afa81 ("arm64: dts: meson: add GXLX/S905L/p271 support")
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/iio/adc/ad7606.c     | 266 +++++++++++++++++++++++++++++++----
- drivers/iio/adc/ad7606.h     |  17 ++-
- drivers/iio/adc/ad7606_spi.c |  55 ++++++++
- 3 files changed, 309 insertions(+), 29 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index 4c3fbb28f790..999c4411859e 100644
---- a/drivers/iio/adc/ad7606.c
-+++ b/drivers/iio/adc/ad7606.c
-@@ -28,14 +28,44 @@
- 
- #include "ad7606.h"
- 
-+typedef void (*ad7606c_chan_setup_cb_t)(struct ad7606_state *st, int ch,
-+					bool bipolar, bool differential);
-+
- /*
-  * Scales are computed as 5000/32768 and 10000/32768 respectively,
-  * so that when applied to the raw values they provide mV values
-  */
--static const unsigned int ad7606_scale_avail[2] = {
-+static const unsigned int ad7606_16bit_hw_scale_avail[2] = {
- 	152588, 305176
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
+index 1221f4545130..8af50afea860 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
+@@ -39,7 +39,7 @@ mali: gpu@c0000 {
  };
  
-+static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
-+	38147, 76294
-+};
-+
-+static const unsigned int ad7606c_16_scale_single_ended_unipolar_avail[3] = {
-+	76294, 152588, 190735,
-+};
-+
-+static const unsigned int ad7606c_16_scale_single_ended_bipolar_avail[5] = {
-+	76294, 152588, 190735, 305176, 381470
-+};
-+
-+static const unsigned int ad7606c_16_scale_differential_bipolar_avail[4] = {
-+	152588, 305176, 381470, 610352
-+};
-+
-+static const unsigned int ad7606c_18_scale_single_ended_unipolar_avail[3] = {
-+	19073, 38147, 47684
-+};
-+
-+static const unsigned int ad7606c_18_scale_single_ended_bipolar_avail[5] = {
-+	19073, 38147, 47684, 76294, 95367
-+};
-+
-+static const unsigned int ad7606c_18_scale_differential_bipolar_avail[4] = {
-+	38147, 76294, 95367, 152588
-+};
- 
- static const unsigned int ad7616_sw_scale_avail[3] = {
- 	76293, 152588, 305176
-@@ -82,11 +112,19 @@ static int ad7606_reg_access(struct iio_dev *indio_dev,
- 	}
- }
- 
--static int ad7606_read_samples(struct ad7606_state *st)
-+static int ad7606_read_samples(struct ad7606_state *st, bool sign_extend_samples)
- {
-+	unsigned int storagebits = st->chip_info->channels[1].scan_type.storagebits;
- 	unsigned int num = st->chip_info->num_channels - 1;
--	u16 *data = st->data;
--	int ret;
-+	u32 *data32 = st->data.d32;
-+	u16 *data16 = st->data.d16;
-+	void *data;
-+	int i, ret;
-+
-+	if (storagebits > 16)
-+		data = data32;
-+	else
-+		data = data16;
- 
- 	/*
- 	 * The frstdata signal is set to high while and after reading the sample
-@@ -108,11 +146,25 @@ static int ad7606_read_samples(struct ad7606_state *st)
- 			return -EIO;
- 		}
- 
--		data++;
-+		if (storagebits > 16)
-+			data32++;
-+		else
-+			data16++;
- 		num--;
- 	}
- 
--	return st->bops->read_block(st->dev, num, data);
-+	ret = st->bops->read_block(st->dev, num, data);
-+	if (ret)
-+		return ret;
-+
-+	if (storagebits == 16 || !sign_extend_samples)
-+		return 0;
-+
-+	/* For 18 bit samples, we need to sign-extend samples to 32 bits */
-+	for (i = 0; i < num; i++)
-+		data32[i] = sign_extend32(data32[i], 17);
-+
-+	return 0;
- }
- 
- static irqreturn_t ad7606_trigger_handler(int irq, void *p)
-@@ -124,11 +176,11 @@ static irqreturn_t ad7606_trigger_handler(int irq, void *p)
- 
- 	guard(mutex)(&st->lock);
- 
--	ret = ad7606_read_samples(st);
-+	ret = ad7606_read_samples(st, true);
- 	if (ret)
- 		goto error_ret;
- 
--	iio_push_to_buffers_with_timestamp(indio_dev, st->data,
-+	iio_push_to_buffers_with_timestamp(indio_dev, st->data.d16,
- 					   iio_get_time_ns(indio_dev));
- error_ret:
- 	iio_trigger_notify_done(indio_dev->trig);
-@@ -142,6 +194,7 @@ static int ad7606_scan_direct(struct iio_dev *indio_dev, unsigned int ch,
- 			      int *val)
- {
- 	struct ad7606_state *st = iio_priv(indio_dev);
-+	unsigned int storagebits = st->chip_info->channels[1].scan_type.storagebits;
- 	int ret;
- 
- 	gpiod_set_value(st->gpio_convst, 1);
-@@ -152,9 +205,13 @@ static int ad7606_scan_direct(struct iio_dev *indio_dev, unsigned int ch,
- 		goto error_ret;
- 	}
- 
--	ret = ad7606_read_samples(st);
--	if (ret == 0)
--		*val = sign_extend32(st->data[ch], 15);
-+	ret = ad7606_read_samples(st, false);
-+	if (ret == 0) {
-+		if (storagebits > 16)
-+			*val = sign_extend32(st->data.d32[ch], 17);
-+		else
-+			*val = sign_extend32(st->data.d16[ch], 15);
-+	}
- 
- error_ret:
- 	gpiod_set_value(st->gpio_convst, 0);
-@@ -267,7 +324,7 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
- 			ch = chan->address;
- 		cs = &st->chan_scales[ch];
- 		i = find_closest(val2, cs->scale_avail, cs->num_scales);
--		ret = st->write_scale(indio_dev, ch, i);
-+		ret = st->write_scale(indio_dev, ch, i + cs->reg_offset);
- 		if (ret < 0)
- 			return ret;
- 		cs->range = i;
-@@ -350,6 +407,18 @@ static const struct iio_chan_spec ad7606_channels_16bit[] = {
- 	AD7606_CHANNEL(7, 16),
+ &saradc {
+-	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
++	compatible = "amlogic,meson-saradc";
  };
  
-+static const struct iio_chan_spec ad7606_channels_18bit[] = {
-+	IIO_CHAN_SOFT_TIMESTAMP(8),
-+	AD7606_CHANNEL(0, 18),
-+	AD7606_CHANNEL(1, 18),
-+	AD7606_CHANNEL(2, 18),
-+	AD7606_CHANNEL(3, 18),
-+	AD7606_CHANNEL(4, 18),
-+	AD7606_CHANNEL(5, 18),
-+	AD7606_CHANNEL(6, 18),
-+	AD7606_CHANNEL(7, 18),
-+};
-+
- /*
-  * The current assumption that this driver makes for AD7616, is that it's
-  * working in Hardware Mode with Serial, Burst and Sequencer modes activated.
-@@ -410,6 +479,18 @@ static const struct ad7606_chip_info ad7606_chip_info_tbl[] = {
- 		.oversampling_avail = ad7606_oversampling_avail,
- 		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
- 	},
-+	[ID_AD7606C_16] = {
-+		.channels = ad7606_channels_16bit,
-+		.num_channels = 9,
-+		.oversampling_avail = ad7606_oversampling_avail,
-+		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
-+	},
-+	[ID_AD7606C_18] = {
-+		.channels = ad7606_channels_18bit,
-+		.num_channels = 9,
-+		.oversampling_avail = ad7606_oversampling_avail,
-+		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
-+	},
- 	[ID_AD7616] = {
- 		.channels = ad7616_channels,
- 		.num_channels = 17,
-@@ -581,7 +662,122 @@ static const struct iio_trigger_ops ad7606_trigger_ops = {
- 	.validate_device = iio_trigger_validate_own_device,
- };
- 
--static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
-+static void ad7606c_18_chan_setup(struct ad7606_state *st, int ch,
-+				  bool bipolar, bool differential)
-+{
-+	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+
-+	if (differential) {
-+		cs->scale_avail =
-+			ad7606c_18_scale_differential_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_18_scale_differential_bipolar_avail);
-+		/* Bipolar differential ranges start at 8 (b1000) */
-+		cs->reg_offset = 8;
-+		cs->range = 1;
-+	} else if (bipolar) {
-+		cs->scale_avail =
-+			ad7606c_18_scale_single_ended_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_18_scale_single_ended_bipolar_avail);
-+		cs->range = 3;
-+	} else {
-+		cs->scale_avail =
-+			ad7606c_18_scale_single_ended_unipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_18_scale_single_ended_unipolar_avail);
-+		/* Unipolar single-ended ranges start at 5 (b0101) */
-+		cs->reg_offset = 5;
-+		cs->range = 1;
-+	}
-+}
-+
-+static void ad7606c_16_chan_setup(struct ad7606_state *st, int ch,
-+				  bool bipolar, bool differential)
-+{
-+	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+
-+	if (differential) {
-+		cs->scale_avail =
-+			ad7606c_16_scale_differential_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_16_scale_differential_bipolar_avail);
-+		/* Bipolar differential ranges start at 8 (b1000) */
-+		cs->reg_offset = 8;
-+		cs->range = 1;
-+	} else if (bipolar) {
-+		cs->scale_avail =
-+			ad7606c_16_scale_single_ended_bipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_16_scale_single_ended_bipolar_avail);
-+		cs->range = 3;
-+	} else {
-+		cs->scale_avail =
-+			ad7606c_16_scale_single_ended_unipolar_avail;
-+		cs->num_scales =
-+			ARRAY_SIZE(ad7606c_16_scale_single_ended_unipolar_avail);
-+		/* Unipolar single-ended ranges start at 5 (b0101) */
-+		cs->reg_offset = 5;
-+		cs->range = 1;
-+	}
-+}
-+
-+static int ad7606c_sw_mode_setup_channels(struct iio_dev *indio_dev,
-+					  ad7606c_chan_setup_cb_t chan_setup_cb)
-+{
-+	unsigned int num_channels = indio_dev->num_channels - 1;
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+	bool chan_configured[AD760X_MAX_CHANNELS] = {};
-+	struct device *dev = st->dev;
-+	int ret;
-+	u32 ch;
-+
-+	/* We need to hook this first */
-+	ret = st->bops->sw_mode_config(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	device_for_each_child_node_scoped(dev, child) {
-+		bool bipolar, differential;
-+		u32 pins[2];
-+
-+		ret = fwnode_property_read_u32(child, "reg", &ch);
-+		if (ret)
-+			continue;
-+
-+		/* channel number (here) is from 1 to num_channels */
-+		if (ch == 0 || ch > num_channels) {
-+			dev_warn(st->dev,
-+				 "Invalid channel number (ignoring): %d\n", ch);
-+			continue;
-+		}
-+
-+		bipolar = fwnode_property_present(child, "bipolar");
-+
-+		ret = fwnode_property_read_u32_array(child, "diff-channels",
-+						     pins, ARRAY_SIZE(pins));
-+		/* Channel is differential, if pins are the same as 'reg' */
-+		if (ret == 0 && pins[0] == ch && pins[1] == ch)
-+			differential = true;
-+		else
-+			differential = false;
-+
-+		ch--;
-+
-+		chan_setup_cb(st, ch, bipolar, differential);
-+		chan_configured[ch] = true;
-+	}
-+
-+	/* Apply default configuration to unconfigured (via DT) channels */
-+	for (ch = 0; ch < num_channels; ch++) {
-+		if (!chan_configured[ch])
-+			chan_setup_cb(st, ch, false, false);
-+	}
-+
-+	return 0;
-+}
-+
-+static int ad7606_sw_mode_setup(struct iio_dev *indio_dev, unsigned int id)
- {
- 	unsigned int num_channels = indio_dev->num_channels - 1;
- 	struct ad7606_state *st = iio_priv(indio_dev);
-@@ -596,17 +792,30 @@ static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
- 
- 	indio_dev->info = &ad7606_info_sw_mode;
- 
--	/* Scale of 0.076293 is only available in sw mode */
--	/* After reset, in software mode, ±10 V is set by default */
--	for (ch = 0; ch < num_channels; ch++) {
--		struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+	switch (id) {
-+	case ID_AD7606C_18:
-+		ret = ad7606c_sw_mode_setup_channels(indio_dev,
-+						     ad7606c_18_chan_setup);
-+		break;
-+	case ID_AD7606C_16:
-+		ret = ad7606c_sw_mode_setup_channels(indio_dev,
-+						     ad7606c_16_chan_setup);
-+		break;
-+	default:
-+		/* Scale of 0.076293 is only available in sw mode */
-+		/* After reset, in software mode, ±10 V is set by default */
-+		for (ch = 0; ch < num_channels; ch++) {
-+			struct ad7606_chan_scale *cs = &st->chan_scales[ch];
-+
-+			cs->scale_avail = ad7616_sw_scale_avail;
-+			cs->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
-+			cs->range = 2;
-+		}
- 
--		cs->scale_avail = ad7616_sw_scale_avail;
--		cs->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
--		cs->range = 2;
-+		ret = st->bops->sw_mode_config(indio_dev);
-+		break;
- 	}
- 
--	ret = st->bops->sw_mode_config(indio_dev);
- 	if (ret)
- 		return ret;
- 
-@@ -655,9 +864,16 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 	st->oversampling = 1;
- 
- 	cs = &st->chan_scales[0];
--	cs->range = 0;
--	cs->scale_avail = ad7606_scale_avail;
--	cs->num_scales = ARRAY_SIZE(ad7606_scale_avail);
-+	switch (id) {
-+	case ID_AD7606C_18:
-+		cs->scale_avail = ad7606_18bit_hw_scale_avail;
-+		cs->num_scales = ARRAY_SIZE(ad7606_18bit_hw_scale_avail);
-+		break;
-+	default:
-+		cs->scale_avail = ad7606_16bit_hw_scale_avail;
-+		cs->num_scales = ARRAY_SIZE(ad7606_16bit_hw_scale_avail);
-+		break;
-+	}
- 
- 	ret = devm_regulator_get_enable(dev, "avcc");
- 	if (ret)
-@@ -706,7 +922,7 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 	st->write_scale = ad7606_write_scale_hw;
- 	st->write_os = ad7606_write_os_hw;
- 
--	ret = ad7606_sw_mode_setup(indio_dev);
-+	ret = ad7606_sw_mode_setup(indio_dev, id);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-index 2113ad460c0f..6b0897aa2dc7 100644
---- a/drivers/iio/adc/ad7606.h
-+++ b/drivers/iio/adc/ad7606.h
-@@ -22,7 +22,7 @@
- 		.scan_type = {					\
- 			.sign = 's',				\
- 			.realbits = (bits),			\
--			.storagebits = (bits),			\
-+			.storagebits = (bits) > 16 ? 32 : 16,	\
- 			.endianness = IIO_CPU,			\
- 		},						\
- }
-@@ -45,7 +45,7 @@
- 		.scan_type = {					\
- 			.sign = 's',				\
- 			.realbits = (bits),			\
--			.storagebits = (bits),			\
-+			.storagebits = (bits) > 16 ? 32 : 16,	\
- 			.endianness = IIO_CPU,			\
- 		},						\
- }
-@@ -88,6 +88,8 @@ struct ad7606_chip_info {
-  *			such that it can be read via the 'read_avail' hook
-  * @num_scales		number of elements stored in the scale_avail array
-  * @range		voltage range selection, selects which scale to apply
-+ * @reg_offset		offset for the register value, to be applied when
-+ *			writing the value of 'range' to the register value
-  */
- struct ad7606_chan_scale {
- #define AD760X_MAX_SCALE_SHOW		(AD760X_MAX_CHANNELS * 2)
-@@ -95,6 +97,7 @@ struct ad7606_chan_scale {
- 	int				scale_avail_show[AD760X_MAX_SCALE_SHOW];
- 	unsigned int			num_scales;
- 	unsigned int			range;
-+	unsigned int			reg_offset;
- };
- 
- /**
-@@ -151,9 +154,13 @@ struct ad7606_state {
- 	/*
- 	 * DMA (thus cache coherency maintenance) may require the
- 	 * transfer buffers to live in their own cache lines.
--	 * 16 * 16-bit samples + 64-bit timestamp
-+	 * 16 * 16-bit samples + 64-bit timestamp - for AD7616
-+	 * 8 * 32-bit samples + 64-bit timestamp - for AD7616C-18 (and similar)
- 	 */
--	unsigned short			data[20] __aligned(IIO_DMA_MINALIGN);
-+	union {
-+		unsigned short d16[20];
-+		unsigned int d32[10];
-+	} data __aligned(IIO_DMA_MINALIGN);
- 	__be16				d16[2];
- };
- 
-@@ -192,6 +199,8 @@ enum ad7606_supported_device_ids {
- 	ID_AD7606_6,
- 	ID_AD7606_4,
- 	ID_AD7606B,
-+	ID_AD7606C_16,
-+	ID_AD7606C_18,
- 	ID_AD7616,
- };
- 
-diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
-index e00f58a6a0e9..b8d630ad156d 100644
---- a/drivers/iio/adc/ad7606_spi.c
-+++ b/drivers/iio/adc/ad7606_spi.c
-@@ -77,6 +77,18 @@ static const struct iio_chan_spec ad7606b_sw_channels[] = {
- 	AD7606_SW_CHANNEL(7, 16),
- };
- 
-+static const struct iio_chan_spec ad7606c_18_sw_channels[] = {
-+	IIO_CHAN_SOFT_TIMESTAMP(8),
-+	AD7606_SW_CHANNEL(0, 18),
-+	AD7606_SW_CHANNEL(1, 18),
-+	AD7606_SW_CHANNEL(2, 18),
-+	AD7606_SW_CHANNEL(3, 18),
-+	AD7606_SW_CHANNEL(4, 18),
-+	AD7606_SW_CHANNEL(5, 18),
-+	AD7606_SW_CHANNEL(6, 18),
-+	AD7606_SW_CHANNEL(7, 18),
-+};
-+
- static const unsigned int ad7606B_oversampling_avail[9] = {
- 	1, 2, 4, 8, 16, 32, 64, 128, 256
- };
-@@ -120,6 +132,19 @@ static int ad7606_spi_read_block(struct device *dev,
- 	return 0;
- }
- 
-+static int ad7606_spi_read_block18to32(struct device *dev,
-+				       int count, void *buf)
-+{
-+	struct spi_device *spi = to_spi_device(dev);
-+	struct spi_transfer xfer = {
-+		.bits_per_word = 18,
-+		.len = count,
-+		.rx_buf = buf,
-+	};
-+
-+	return spi_sync_transfer(spi, &xfer, 1);
-+}
-+
- static int ad7606_spi_reg_read(struct ad7606_state *st, unsigned int addr)
- {
- 	struct spi_device *spi = to_spi_device(st->dev);
-@@ -283,6 +308,19 @@ static int ad7606B_sw_mode_config(struct iio_dev *indio_dev)
- 	return 0;
- }
- 
-+static int ad7606c_18_sw_mode_config(struct iio_dev *indio_dev)
-+{
-+	int ret;
-+
-+	ret = ad7606B_sw_mode_config(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->channels = ad7606c_18_sw_channels;
-+
-+	return 0;
-+}
-+
- static const struct ad7606_bus_ops ad7606_spi_bops = {
- 	.read_block = ad7606_spi_read_block,
- };
-@@ -305,6 +343,15 @@ static const struct ad7606_bus_ops ad7606B_spi_bops = {
- 	.sw_mode_config = ad7606B_sw_mode_config,
- };
- 
-+static const struct ad7606_bus_ops ad7606c_18_spi_bops = {
-+	.read_block = ad7606_spi_read_block18to32,
-+	.reg_read = ad7606_spi_reg_read,
-+	.reg_write = ad7606_spi_reg_write,
-+	.write_mask = ad7606_spi_write_mask,
-+	.rd_wr_cmd = ad7606B_spi_rd_wr_cmd,
-+	.sw_mode_config = ad7606c_18_sw_mode_config,
-+};
-+
- static int ad7606_spi_probe(struct spi_device *spi)
- {
- 	const struct spi_device_id *id = spi_get_device_id(spi);
-@@ -315,8 +362,12 @@ static int ad7606_spi_probe(struct spi_device *spi)
- 		bops = &ad7616_spi_bops;
- 		break;
- 	case ID_AD7606B:
-+	case ID_AD7606C_16:
- 		bops = &ad7606B_spi_bops;
- 		break;
-+	case ID_AD7606C_18:
-+		bops = &ad7606c_18_spi_bops;
-+		break;
- 	default:
- 		bops = &ad7606_spi_bops;
- 		break;
-@@ -333,6 +384,8 @@ static const struct spi_device_id ad7606_id_table[] = {
- 	{ "ad7606-6", ID_AD7606_6 },
- 	{ "ad7606-8", ID_AD7606_8 },
- 	{ "ad7606b",  ID_AD7606B },
-+	{ "ad7606c-16",  ID_AD7606C_16 },
-+	{ "ad7606c-18",  ID_AD7606C_18 },
- 	{ "ad7616",   ID_AD7616 },
- 	{ }
- };
-@@ -344,6 +397,8 @@ static const struct of_device_id ad7606_of_match[] = {
- 	{ .compatible = "adi,ad7606-6" },
- 	{ .compatible = "adi,ad7606-8" },
- 	{ .compatible = "adi,ad7606b" },
-+	{ .compatible = "adi,ad7606c-16" },
-+	{ .compatible = "adi,ad7606c-18" },
- 	{ .compatible = "adi,ad7616" },
- 	{ }
- };
+ &usb {
+
+---
+base-commit: 6804f0edbe7747774e6ae60f20cec4ee3ad7c187
+change-id: 20240904-topic-amlogic-upstream-gxlx-drop-iio-compat-28c5010ef433
+
+Best regards,
 -- 
-2.46.0
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
