@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-99748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B5C96B14B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:13:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D9C496B159
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:16:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AADB1F261C1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:13:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F6F22819CD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D32F139566;
-	Wed,  4 Sep 2024 06:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7A783A09;
+	Wed,  4 Sep 2024 06:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C62vbuEc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUZjIZWk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C3A12D1EA;
-	Wed,  4 Sep 2024 06:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F99D3D6B;
+	Wed,  4 Sep 2024 06:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725430353; cv=none; b=JFOCOQzrzV2NR0wBIbNnPCGaO3aS+p8rBlfWGQ1PjNeqS2gMSabNakbTDbSwqM9/aU+TiYcuyiiaExRssXRZ9h90LRDiwh1PNTng+Mf9Td15LjIwnLzFSgxGEBhx4u3dGurWyuth7Y00KIi5jHVoeLns5fvAKvwTJBdqmhOen3s=
+	t=1725430590; cv=none; b=qVEblmFjNYuc+830HcUj9tezvCT1pRz4/ZGQ2AM1rcrGIq5PpmdN0OKl6LaPC05JntPF0HgyvwSCHqMfbVhsiWQ7Gg3cN5vOLxhG0sU5Pi+/s9Ai7ptqtPOBqoYoLnJS0K0+SU0VZP3yPXbYY7SPQLz4maBN4N+KUdiwTr5xRts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725430353; c=relaxed/simple;
-	bh=BjUuXaXQrW9Z7retMtgXMDYtcLbQCjr9INb18zuY0MI=;
+	s=arc-20240116; t=1725430590; c=relaxed/simple;
+	bh=YbIPMLh3rIWjc+gxMHP7B5n5k2gZOyWWwegpaNGup5s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eyo2EZJCrbqQgSgxeEBTQ+v8eub7R4zsZ4y/gPgE5271A4z4XnC3ttJU1wY2zPFO8jX50vUWYhzBPrRu4m10oBeSN1IJhecRnhuo3sfrH2RvyLi+eltiyZu0/jjQGSvb/P3GileQCdfms1SR5s25drH4YGug4niw/75cXnZRVHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C62vbuEc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFDFC4CEC2;
-	Wed,  4 Sep 2024 06:12:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xl2CDfIFfU0wryCqcxbN8GXWduGFHk2Vnc8FSSZ8I/gs2mV+Gg0+5yOA1uBMpVVsqW1GReDKV8jExiQRJg1e+vWouLPNWz4HT8EBRngkT6iu1Zq8WtHeZ2Ej/ZzDceKQs8P7EEIVQaksb0Cm2EpM2sBapZit/GZQURNrF+Eayno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUZjIZWk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4713EC4CEC2;
+	Wed,  4 Sep 2024 06:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725430352;
-	bh=BjUuXaXQrW9Z7retMtgXMDYtcLbQCjr9INb18zuY0MI=;
+	s=k20201202; t=1725430590;
+	bh=YbIPMLh3rIWjc+gxMHP7B5n5k2gZOyWWwegpaNGup5s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C62vbuEcpz1qXYrvSp0n/n+UPrEUgrBze7JiI7gc1BuSw1Y33yewmhERib7mskT+j
-	 UXgO3qtubsPDUeEmNSwwSsi9x0VZ687x2k7hIJeHmxUoqc2W7kh9KFxV70fsgJeQ8/
-	 WgdsUHfNafWLHONFjT7eqpAThrSXaKOAS0rCA84LhrAvLF9w3zl1sTW1qbD11e7Clk
-	 ZMjAFo6Mf2Puem2Gu5zOPzhtlz0W3kyWb8AfJVyRMSW5TyKP0kZoNAtJCvM5F71gT4
-	 Ro6zOZEJX1JyHV9AmI3xMDqIj7+96C92lncFqFniqe7yhrsWWPYIlKwXUHecby5zaW
-	 5lshN2u7Ir8ew==
-Date: Wed, 4 Sep 2024 08:12:28 +0200
+	b=nUZjIZWkA8FaJG/HZqybk8K/5KrrLOpJqeHOFN+MrVCfPyX1dXDU6bMcPN8iyByBn
+	 hmbHx0drZcF1u6zvMp/gKPlj8tct+YKrFO+q37REH3+YAY+jGvjklSsAwlyyJVanAo
+	 kNERoyveIJbvAfe3Wtz0Yl3ut9Rt1SE0W8bDL1dcGuqO631Le2GjYAjsYfolP7PEi+
+	 qm1T5aWPbtkrssCOcqv1yjt8cCvk5U3/EEvuHsIqehO62SiH7TWpYg/hTyA+T+CfXU
+	 1hKiCXQYhyphNZMkCIzN30KPnvhbNu+C2bJiQdy6ARoTpHHS2R13ph4jWqcqXBtN6m
+	 r4k4m3GSve41w==
+Date: Wed, 4 Sep 2024 08:16:26 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-i2c@vger.kernel.org, linux-media@vger.kernel.org, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Subject: Re: [PATCH v4 2/7] dt-bindings: i2c: qcom-cci: Document SDM670
- compatible
-Message-ID: <vjbhybw3iso5cruwtczr74fh5tndbmpnod2tjq7tvrvcvd3qk4@r6rfsy3bko64>
-References: <20240904020448.52035-9-mailingradian@gmail.com>
- <20240904020448.52035-11-mailingradian@gmail.com>
+To: Mariel Tinaco <Mariel.Tinaco@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt1@gmail.com>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+Subject: Re: [PATCH v3 0/2] Add support to AD8460 Waveform Generator DAC
+Message-ID: <36nd2cbka2oeht73eadgsftpq6uq2de4ip4qddh46zo6fuwppn@ok7topfbmsys>
+References: <20240904023040.23352-1-Mariel.Tinaco@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,22 +62,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240904020448.52035-11-mailingradian@gmail.com>
+In-Reply-To: <20240904023040.23352-1-Mariel.Tinaco@analog.com>
 
-On Tue, Sep 03, 2024 at 10:04:51PM -0400, Richard Acayan wrote:
-> The CCI on the Snapdragon 670 is the interface for controlling camera
-> hardware over I2C. Add the compatible so it can be added to the SDM670
-> device tree.
+On Wed, Sep 04, 2024 at 10:30:38AM +0800, Mariel Tinaco wrote:
+> Apply comments for adding support to AD8460 Waveform Generator DAC
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../devicetree/bindings/i2c/qcom,i2c-cci.yaml | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> ad8460:
+>   * Fixed errors detected by test bot
+>   * Applied proper masking of fixed values
+>   * Applied proper wrapping to get close to 80 chars
+>   * Applied proper comment formatting
+>   * Applied proper placement of breaks in switch cases
+>   * Removed channel properties unused by IIO buffer interface
+>   * Simplified property getting on probe function
+>   * Fixed error handlings on probe function
+>   * Fixed setting of overvoltage, overcurrent and overtemperature ranges;
+>     If value provided is invalid, default state of the register will not
+>     be rewritten
 > 
+> Bindings:
+>   * Dropped unnecessary descriptions
+>   * Updated property descriptions to describe functionality properly
+>   * Added multiple selection of values for adi,range-microvolt property
+>   * Fixed formatting errors to follow DTS coding style
+>   * Lifted GPIO naming from gpio-consumer-common yaml
 
-I am going to skip this one, because previous patch was not tested. Let
-us know if this one was tested.
+This all happened in v3? Or v2? Please write accurate changelogs.
 
 Best regards,
 Krzysztof
