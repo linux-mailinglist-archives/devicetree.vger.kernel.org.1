@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB14796BE6D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:26:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CDBF96BEAF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:37:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 872321F2510F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:26:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19389B22245
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A11C1DA2FD;
-	Wed,  4 Sep 2024 13:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE501E884;
+	Wed,  4 Sep 2024 13:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="agLz6p4n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J8vPKjmH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B831EBFF7;
-	Wed,  4 Sep 2024 13:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558C71DA101;
+	Wed,  4 Sep 2024 13:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725456353; cv=none; b=Hj+EhKplX3yEuPsrvU4KdWbwt3xXsCpqvNtQpxigAC9xDefCbT+HvRdlXCK28c1nEvxICps+JqqRE1AjVSERSItruAEjLHYVwARW6jzlv+3ITY1v0RrbSyglszZanv2l67tPiP+vfBSIRqNU0qlxDj9klAJMVYgRk+UQyKvP7gA=
+	t=1725456549; cv=none; b=duOFTbF1wmdtpVVSas5AJyAL+FAFyVwGuYqWa8QnUKA5PdOBrw4rSJCqOi/iFk9x12xqh15PUCvSw18jRRArltMn/tU6gfcSJX6DGr2vRR50GuRIXP5spQmNFzatxb4OLfrspXH72CUuS4Kgcngd5e4acHA35iYA2iVyITlWgEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725456353; c=relaxed/simple;
-	bh=s4TZU8SzVbgk051SH2iJkWeFaMxXV6PkSuZ6njFLqRI=;
+	s=arc-20240116; t=1725456549; c=relaxed/simple;
+	bh=pB4IJtC8E2/PPZkXHjRfsoD2HoTi/FWu1c480YZGCTw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WfouHo47W4EiaznQyLDlf5VofJpTb41Wv87kMUp8PFq1q1JtIzSBL9tW7tFL+OP3qR3VkBzsmUdco8+h0NMD2hMe8sun8vF0r0lJFnRX07yYJdcT8jvtTyc8lRoYO85BnPEXiGUz+REOMjTJhR8p1vMbUDgmWH1aJqGh6XdxuJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=agLz6p4n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54046C4CEC9;
-	Wed,  4 Sep 2024 13:25:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pq8i2fgGx0vFZHv+Nw6L7tJ50iI21Gfj0PNU35hnAjTP9WnYlp4Fy2DIuuHVUIfHSYdqg7z69DmmyH3c12x/kYHgYBoIItH0ewCmtumW2d6uLGOPABxc8z0F509gI4HSeGIeEWyoAYmlDpGLr+s+WYuMaBigr5773CH5ufJUC4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J8vPKjmH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 648D5C4CEC2;
+	Wed,  4 Sep 2024 13:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725456352;
-	bh=s4TZU8SzVbgk051SH2iJkWeFaMxXV6PkSuZ6njFLqRI=;
+	s=k20201202; t=1725456548;
+	bh=pB4IJtC8E2/PPZkXHjRfsoD2HoTi/FWu1c480YZGCTw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=agLz6p4nnLsL+pTpdg4xfrk2a41rU7aByJM3c+Oyv6j8h/qjXInctBlBVa2vZWqmj
-	 8JJ6M0nQz6KtG1c3Gk523NFObVnAqQMl/phsvpsXWn3lP3vAwc06hhrAB/lPTDEwEO
-	 TAeYkFzGMtN1SIgX19KURYi8MWCJ80nfUYSo06/M95Xd0LylRTCgd+UYnUNbQaReV9
-	 NhoI5UyiALVJdZyD20GlNFDi0xLDknVhwhWcj0rd5Nj6UxCqsNdfRv3LuOv8wNoG4p
-	 2GRrlfmZ8H55olU4bQzTbanZrlG1s1bSvgzIM/9XNfvANvcRDpzKYEtMVFB0VP0x17
-	 apG9wBAIwGSGw==
-Message-ID: <4fdf4be8-f449-4f1a-a80c-3a788d4ade37@kernel.org>
-Date: Wed, 4 Sep 2024 15:25:43 +0200
+	b=J8vPKjmH9zIS5l///kgnQ93IvmozRBW2QaARk5JqkQB1u7LX/GNl/AUC/QCzUBPfx
+	 0JXZMydz1xxwKzF7pVMOLefwSSjesoQ9AaJ44TEWigHKR7PRga7ouUrCC3FW2IO9o3
+	 qLQZyPUhhdXjzw98KeweRLaYVRNj1/+FCm4aAjW5drfcu73xyktjMyo9vOejtvAxhx
+	 jiCC8kPth4fsqAUvlthXQNS7d6mAB5On3/IdZIjbZisexi/lXySqqxO7hdDUlU46h3
+	 lmSjA33AZ6of1v6sD0JoJvK/bwJqvZchIjKIg5xZCrVqx3V9VCEqxsF1I4WFHOCS1Z
+	 BJdD/HCnFMkCg==
+Message-ID: <c2390181-d736-4691-9bb1-0383c506bb1b@kernel.org>
+Date: Wed, 4 Sep 2024 15:29:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: Fix various typos
-To: Yu-Chun Lin <eleanor15x@gmail.com>, laurent.pinchart@ideasonboard.com,
- paul.elder@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.or, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: visitorckw@gmail.com, Matti Vaittinen <mazziesaccount@gmail.com>
-References: <20240904125812.2761993-1-eleanor15x@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Shanghai Novotech
+ Ariaboard
+To: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240904111456.87089-1-bigfoot@classfun.cn>
+ <20240904111456.87089-2-bigfoot@classfun.cn>
+ <b9e5389f-8492-425e-bc15-35ea55c0e3b5@kernel.org>
+ <2ec7de72-8560-430c-a6b6-5ef7ad5f5e00@classfun.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,21 +108,50 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240904125812.2761993-1-eleanor15x@gmail.com>
+In-Reply-To: <2ec7de72-8560-430c-a6b6-5ef7ad5f5e00@classfun.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2024 14:58, Yu-Chun Lin wrote:
-> Fixed a typo in media/i2c/thine,thp7312.yaml
+On 04/09/2024 14:14, Junhao Xie wrote:
+> On 2024/9/4 19:35, Krzysztof Kozlowski wrote:
+>> On 04/09/2024 13:14, Junhao Xie wrote:
+>>> Add an entry for Shanghai Novotech Ariaboard (https://ariaboard.com/)
+>>>
+>>> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
+>>> ---
+>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> index a70ce43b3dc0..58d1a2e8b212 100644
+>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> @@ -145,6 +145,8 @@ patternProperties:
+>>>      description: Arctic Sand
+>>>    "^arcx,.*":
+>>>      description: arcx Inc. / Archronix Inc.
+>>> +  "^ariaboard,.*":
+>>> +    description: Shanghai Novotech Co., Ltd.
+>>
+>> This is confusing. Prefix is entirely different than company name. I
+>> would expect prefix like shanghainovotech.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> Signed-off-by: Yu-Chun Lin <eleanor15x@gmail.com>
-> ---
-> v2->v3
-> Corrected "interlaved" to "interleaved"
+> Thank you for your reply.
+> Ariaboard is a subsidiary of Shanghai Novotech, maybe it would
+> be better to change description to "Ariaboard"?
+> 
+> Shanghai Novotech: https://shanghainovotech.com/
+> Ariaboard: https://ariaboard.com/
 
-You just dropped everything here... and Matti did not review this
-particular change.
+This does not sound like subsidiary but just name of the board family or
+product family. Their about page suggests "affiliation" but all contact
+points are for Shanghai Novotech.
+
+I am fine with ariaboard prefix, but please provide context in commit msg.
 
 Best regards,
 Krzysztof
