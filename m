@@ -1,58 +1,56 @@
-Return-Path: <devicetree+bounces-99764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0458296B242
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 09:01:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7704196B251
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 09:05:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3743E1C21478
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 07:01:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 346A1283D5E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 07:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02807146A62;
-	Wed,  4 Sep 2024 07:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="uUBbQ0qd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D050C13AD03;
+	Wed,  4 Sep 2024 07:05:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A1B6A8D2;
-	Wed,  4 Sep 2024 07:00:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521E91EC01C;
+	Wed,  4 Sep 2024 07:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725433248; cv=none; b=JVXN6oyAxygNNQRY3wvhxJcXHj7Bby+w8LMp4HIp6Lngfp/GxBbMHeJCX7bAatFj/NjN+ZApU/Jeuvijft5A+39XR2XTGeISPbjqHcGpXeF057ya1g0rAOlx9yr4bXaKoqyMh3xtxRbkvsePaP74GtjAqc0vQpGyNBSWnSLQGMA=
+	t=1725433526; cv=none; b=ihiG5W07Z52A5cfsDHFxLJg4RHEvHNRXfbEvuTp5cgEIfZub2L1n3UkDMXJ8QdbbVuxQTSDMDjYecvuUMAeAB7QhgDV1bz5hzK1f6lIroo9M40tjSmKcryFWgvxrFyYqGj/lgLPj3hoIxdiaNME7bLrYuJsU2x7J8+SL+DGFtes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725433248; c=relaxed/simple;
-	bh=cdxAWOOEytd3O6tuHVxZGPBLNWtxs7CiEOEjMXojNXo=;
+	s=arc-20240116; t=1725433526; c=relaxed/simple;
+	bh=c7qUXUOvGX+WYqEK4G2pw0HsJjV4YrvOvUOiIHnfWT0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=USnSZ2wgggETty8nPKTQinFq/Z6X40XX7U/gAxUcRTX1QAlMYOer3dDSFJjNxUD7TiKTtPNzjYYbGOqMqwDcSE0F1hCFesl1T4thWos8CNiEOGQiSiTevg23X7QgPbADbspwAxIvkyp0o3iHxc6V898KlSbXUZhrw+QoSBFrEMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=uUBbQ0qd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A050BC4CEC2;
-	Wed,  4 Sep 2024 07:00:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1725433248;
-	bh=cdxAWOOEytd3O6tuHVxZGPBLNWtxs7CiEOEjMXojNXo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uUBbQ0qdPCN+dt6qpOFPrgV1SpYObZeETsHyOEvOurNnEEawgkeU9g2BdtlOzUgpp
-	 QaAwBlgDYjhlQY3waZnpILn2LrpFnbvD5x9CfQnbPKITiRH9ZSKQSRRXai3HmLpVkA
-	 glMfBn9G/diqIfKb1o5N4ecW4Xl/Wl41pBAs48wM=
-Date: Wed, 4 Sep 2024 09:00:45 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] ARM: dts: imx7ulp: add "nxp,sim" property for
- usbphy1
-Message-ID: <2024090418-helpful-nearness-39ab@gregkh>
-References: <20240903075810.1196928-1-xu.yang_2@nxp.com>
- <20240903075810.1196928-2-xu.yang_2@nxp.com>
- <20240904063407.qjvevd4xhvohg4cd@hippo>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mKmAqgKUOEQel5pgb1LVKX56FZW0UZs+ehOdy7yFFXLfIkN6wuIs7Wv+xOIQuCGv+jgAyEdv6PelHfoZY0guCW0gh6CPx2Zo3SYbAAmowxwd9SV+lmKMlVR5j6GNElqT6idPfvXZUEGXX+ZGgBmx7w+v2+Yqr8YUDJsZ1xmjdZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Wed, 4 Sep 2024 07:05:20 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Meng Zhang <kevin.z.m@hotmail.com>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: gpio: spacemit: add support for K1 SoC
+Message-ID: <20240904070520-GYA107481@gentoo>
+References: <20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org>
+ <20240904-03-k1-gpio-v1-1-6072ebeecae0@gentoo.org>
+ <ttvqw3hncprtshhdgsnvlfopobqcxtsraxevgxqgnlt6orftkr@ktahud64cczd>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,45 +59,150 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240904063407.qjvevd4xhvohg4cd@hippo>
+In-Reply-To: <ttvqw3hncprtshhdgsnvlfopobqcxtsraxevgxqgnlt6orftkr@ktahud64cczd>
 
-On Wed, Sep 04, 2024 at 02:34:07PM +0800, Xu Yang wrote:
-> Hi Shawn,
-> 
-> On Tue, Sep 03, 2024 at 03:58:10PM +0800, Xu Yang wrote:
-> > i.MX7ULP need properly set System Integration Module(SIM) module to make
-> > usb wakeup work well. This will add a "nxp,sim" property for usbphy1.
+Hi Krzysztof 
+
+On 08:46 Wed 04 Sep     , Krzysztof Kozlowski wrote:
+> On Wed, Sep 04, 2024 at 12:27:23AM +0000, Yixun Lan wrote:
+> > The GPIO controller of K1 support basic functions as input/output,
+> > all pins can be used as interrupt which route to one IRQ line,
+> > trigger type can be select between rising edge, failing edge, or both.
+> > There are four GPIO banks, each consisting of 32 pins.
 > > 
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > 
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
 > > ---
-> > Changes in v2:
-> >  - no changes
-> > Changes in v3:
-> >  - no changes
-> > ---
-> >  arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
+> >  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml | 95 ++++++++++++++++++++++
+> >  1 file changed, 95 insertions(+)
 > > 
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-> > index ac338320ac1d..b093f2a447ae 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-> > @@ -214,6 +214,7 @@ usbphy1: usb-phy@40350000 {
-> >  			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> >  			clocks = <&pcc2 IMX7ULP_CLK_USB_PHY>;
-> >  			#phy-cells = <0>;
-> > +			nxp,sim = <&sim>;
-> >  		};
+> > diff --git a/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> > new file mode 100644
+> > index 0000000000000..db2e62fb452fd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> > @@ -0,0 +1,95 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/gpio/spacemit,k1-gpio.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: SpacemiT K1 GPIO controller
+> > +
+> > +description: >
 > 
-> The dtschema patch #1 has been picked by Greg. You can pick up patch #2
-> when you see this ping. 
+> Drop >
+> 
+> > +  The controller's registers are organized as sets of eight 32-bit
+> > +  registers with each set controlling a bank of up to 32 pins.  A single
+> > +  interrupt is shared for all of the banks handled by the controller.
+> > +
+> > +maintainers:
+> > +  - Yixun Lan <dlan@gentoo.org>
+> 
+> Maintainers go before description. Use example-schema as template.
+> 
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: '^gpio@[0-9a-f]+$'
+> 
+> 
+> No, why? Drop.
+> 
+> > +
+> > +  compatible:
+> > +    items:
+> 
+> and you can drop items as well.
+> 
+> > +      - const: spacemit,k1-gpio
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: >
+> 
+> Drop >. Everywhere.
+> 
+> > +      Define the base and range of the I/O address space containing
+> > +      the SpacemiT K1 GPIO controller registers
+> 
+> Redundant description, drop.
+> 
+> > +
+> > +  ranges: true
+> > +
+> > +  "#gpio-cells":
+> > +    const: 2
+> > +    description: >
+> > +      The first cell is the pin number (within the controller's
+> > +      pin space), and the second is used for the following:
+> > +      bit[0]: polarity (0 for active-high, 1 for active-low)
+> 
+> Rather refer to standard GPIO bindings header.
+> 
+> > +
+> > +  gpio-controller: true
+> > +
+> > +  gpio-ranges: true
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description:
+> > +      The interrupt shared by all GPIO lines for this controller.
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: gpio_mux
+> > +
+> > +  "#interrupt-cells":
+> > +    const: 2
+> > +    description: |
+> > +      The first cell is the GPIO number, the second should specify
+> > +      flags.  The following subset of flags is supported:
+> > +      - bits[3:0] trigger type flags (no level trigger type support)
+> > +        1 = low-to-high edge triggered
+> > +        2 = high-to-low edge triggered
+> > +      Valid combinations are 1, 2, 3
+> 
+> Hm? No, you must use standard interrupt flags, not custom ones.
+> 
+It should be same as standard flags, my intention here was try to say
+the controller support edge trigger only, but no level trigger flags (4, 8)
+should I just replace number to macro, and put it like this:
 
-Because our tools like to suck in entire patch series at once, you
-should really just resend this so that Shawn doesn't accidentally take
-patch 1/2 as well.
+The value is defined in <dt-bindings/interrupt-controller/irq.h>
+Only the following flags are supported:
+    IRQ_TYPE_EDGE_RISING
+    IRQ_TYPE_EDGE_FALLING
+    IRQ_TYPE_EDGE_BOTH
 
-thanks,
 
-greg k-h
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - gpio-controller
+> > +  - '#gpio-cells'
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - interrupt-controller
+> > +  - '#interrupt-cells'
+> 
+> Use consistent quotes. Either ' or ".
+> 
+> > +
+> > +additionalProperties: false
+> 
+> Best regards,
+> Krzysztof
+
+Ack for other comments, will address them in next version, thanks
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
