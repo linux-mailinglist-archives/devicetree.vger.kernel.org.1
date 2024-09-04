@@ -1,156 +1,120 @@
-Return-Path: <devicetree+bounces-99853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C1C96B596
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:55:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BB696B58E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98CE51F219B2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:55:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F31BE1C243BE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C42192586;
-	Wed,  4 Sep 2024 08:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB71193087;
+	Wed,  4 Sep 2024 08:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eu8AJDHQ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="GgfuF/Qp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B4918733B;
-	Wed,  4 Sep 2024 08:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E94BD8289A;
+	Wed,  4 Sep 2024 08:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725440103; cv=none; b=gncyzb7F+dbu8uAoxxQhDDYmvD1PBL5ExsIepzOuCmBZQTJYJekmTGSJDfdChcSdftWPWPD1CxGZqvUCoVqw0Gc+1UlfC14gAwcnh1z3VPTLt6Fu57N1P5kMtxpZgayFol8AYYBrWWN+R3yjtYmH4IpPIi8TkLU6OOWZ+gwDuCQ=
+	t=1725440029; cv=none; b=Pd0uIqP+qTriL/flV8tIep6uATlMBizA6GyGK/TXQ2USW4+CAghxXxEzYVzObDlX5mo98mOBSLaldrX5DL9+zc4+gJyWQg4W7dnMmIBUHz+eSi205+B6cH6RA3OjbbSbZec3MznOTS6gTMTrB7DlI3ATj0f1dzvLZymMGrabYN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725440103; c=relaxed/simple;
-	bh=u/8TadMuYKUFhKnQMeDmqC1qJ0hJ+/nvqfXJBcyj304=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=CDFlDrw8lGz1lA59JMcph3vEUHnbIPqpksxfKGbbEB79GvsGm808P8ARgUN1bxligBOdGrTL/sQofM4nesO3XQ+L1XqEtuQZzn6isJTpJwZRYT/KU8MwsT6fkDx/USDmReGqjv9jtkVGwGcGFwDIl0SMICciJa4wQqTy/9xmC7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eu8AJDHQ; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725440102; x=1756976102;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version:content-transfer-encoding;
-  bh=u/8TadMuYKUFhKnQMeDmqC1qJ0hJ+/nvqfXJBcyj304=;
-  b=eu8AJDHQU0qhRzq0mY8TdTwTxmdyV66Z2CHJ7XLXeZ96ZtXcmD2mJld2
-   ihsz6dXWNsGNwl8dIRk63whwc32yUA9/F7auXG77N0GK7eZyx1yEVFwwE
-   GEqsYDwXREHGOPT1ejfFi2FpyaRiucyXqn5MWrbMfaSSho0RgQaxFlCgJ
-   lplOEVQWcHzg5kx9rVDp2NSnN7SRPulHjhJDL2qxk9W+HP+INOoouYjt3
-   S+eQ+BTYOLpT2BDtW9ff1v1Y5iDh0z77GI5fGmqKICV+KwScU9ZTUJpXq
-   nieyBP/TgaKQW4xUh3TLnXqgajIJHhifgaep3jV15hNyv7NYalZnsE0hS
-   A==;
-X-CSE-ConnectionGUID: duepTFIFRWeymrsjqPB8Fg==
-X-CSE-MsgGUID: JO2jJ9XkThS8KO+DjchFPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="35244164"
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; 
-   d="scan'208";a="35244164"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 01:55:01 -0700
-X-CSE-ConnectionGUID: aIVjLDyjT3aNnpyvSWBI2Q==
-X-CSE-MsgGUID: ijdeOUFeRn65XMWUj9GN8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; 
-   d="scan'208";a="65444076"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.246.18])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 01:54:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Robert Foss <rfoss@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marc
- Gonzalez <mgonzalez@freebox.fr>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v5 0/2] Basic support for TI TDP158
-In-Reply-To: <87ikvcu54c.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240812-tdp158-v5-0-78684a84ec23@freebox.fr>
- <172536721812.2552069.2889737892670833119.b4-ty@kernel.org>
- <87ikvcu54c.fsf@intel.com>
-Date: Wed, 04 Sep 2024 11:54:34 +0300
-Message-ID: <87zfonsss5.fsf@intel.com>
+	s=arc-20240116; t=1725440029; c=relaxed/simple;
+	bh=xDOtixfDSwSBhOx7DpJOxwD5l4RYsjuHLQgoS2DZvwg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Bt+okKnXHYm0XWpymI8B64hBk/k04Cmoa/4m26LFsvjbH0R9KaNGyM/N0SDYIesORTOg5sm9rNuTKTfqbJiysyoqvCUtoyaripAZmGhw+gKSdFSx4TtuiRq1KndHonR8xxWcEIMFbZuSvXQlD+b3E+CW4NNP3993kvlZ4Ni6jM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=GgfuF/Qp; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=9PwaYbaAsjGodOj3kkWc4OgSwCX03oGVeuMglgQqXjg=; b=GgfuF/Qp4Y58HFKKkPnDohJ68c
+	K+xNOcFJFpXLdHbQTyUma8NIMfCmHTgaqhXY6itFYE6Sml2zgt4dsSlUgm+J4/PFp7lUi4y+44ilU
+	tLKy1ybsxi3uWRbYU0rOp5P0x6sS3u22nZXFgV9rgqzBv0OxT6FMR670dm2C2mj5rS8awYfQnSHsQ
+	xXswXRgc9l9YQAepWNfwlS95arLruzSXp29VbABCj4EIZopPGYBM+NUk7HnX1CWMgR3AiZUzsORcR
+	g0dExD9rp2u4sAtgNVF9DfpkSGOB8ANV/0DNm7d5zkrROF7kReZf2iD6GBZrige4/csy1pyjXkG9Y
+	AyCHc5ZA==;
+Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1slllh-0006c2-C9; Wed, 04 Sep 2024 10:53:37 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: kernel@pengutronix.de, Alibek Omarov <a1ba.omarov@gmail.com>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Elaine Zhang <zhangqing@rock-chips.com>,
+ David Jander <david.jander@protonic.nl>,
+ Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
+ David Jander <david@protonic.nl>
+Subject:
+ Re: [PATCH can-next v5 00/20] can: rockchip_canfd: add support for CAN-FD IP
+ core found on Rockchip RK3568
+Date: Wed, 04 Sep 2024 10:55:21 +0200
+Message-ID: <86274585.BzKH3j3Lxt@diego>
+In-Reply-To: <20240904-rockchip-canfd-v5-0-8ae22bcb27cc@pengutronix.de>
+References: <20240904-rockchip-canfd-v5-0-8ae22bcb27cc@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 03 Sep 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Tue, 03 Sep 2024, Robert Foss <rfoss@kernel.org> wrote:
->> On Mon, 12 Aug 2024 16:51:00 +0200, Marc Gonzalez wrote:
->>> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
->>>=20
->>> Like the TFP410, the TDP158 can be set up in 2 different ways:
->>> 1) hard-coding its configuration settings using pin-strapping resistors
->>> 2) placing it on an I2C bus, and defer set-up until run-time
->>>=20
->>> The mode is selected by pin 8 =3D I2C_EN
->>> I2C_EN =3D 1 =3D=3D> I2C Control Mode
->>> I2C_EN =3D 0 =3D=3D> Pin Strap Mode
->>>=20
->>> [...]
->>
->> Applied, thanks!
->>
->> [1/2] dt-bindings: display: bridge: add TI TDP158
->>       https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/887665792b=
-99
->> [2/2] drm/bridge: add support for TI TDP158
->>       https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/a15710027a=
-fb
->
-> Fails build with:
->
-> ../drivers/gpu/drm/bridge/ti-tdp158.c: In function =E2=80=98tdp158_enable=
-=E2=80=99:
-> ../drivers/gpu/drm/bridge/ti-tdp158.c:31:9: error: implicit declaration o=
-f function =E2=80=98gpiod_set_value_cansleep=E2=80=99 [-Werror=3Dimplicit-f=
-unction-declaration]
->    31 |         gpiod_set_value_cansleep(tdp158->enable, 1);
->       |         ^~~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/gpu/drm/bridge/ti-tdp158.c: In function =E2=80=98tdp158_probe=
-=E2=80=99:
-> ../drivers/gpu/drm/bridge/ti-tdp158.c:80:26: error: implicit declaration =
-of function =E2=80=98devm_gpiod_get_optional=E2=80=99; did you mean =E2=80=
-=98devm_regulator_get_optional=E2=80=99? [-Werror=3Dimplicit-function-decla=
-ration]
->    80 |         tdp158->enable =3D devm_gpiod_get_optional(dev, "enable",=
- GPIOD_OUT_LOW);
->       |                          ^~~~~~~~~~~~~~~~~~~~~~~
->       |                          devm_regulator_get_optional
-> ../drivers/gpu/drm/bridge/ti-tdp158.c:80:65: error: =E2=80=98GPIOD_OUT_LO=
-W=E2=80=99 undeclared (first use in this function)
->    80 |         tdp158->enable =3D devm_gpiod_get_optional(dev, "enable",=
- GPIOD_OUT_LOW);
->       |                                                                 ^=
-~~~~~~~~~~~~
-> ../drivers/gpu/drm/bridge/ti-tdp158.c:80:65: note: each undeclared identi=
-fier is reported only once for each function it appears in
+Hi Marc,
 
-Fix at [1].
+Am Mittwoch, 4. September 2024, 10:12:44 CEST schrieb Marc Kleine-Budde:
+> This series adds support for the CAN-FD IP core found on the Rockchip
+> RK3568.
+> 
+> The IP core is a bit complicated and has several documented errata.
+> The driver is added in several stages, first the base driver including
+> the RX-path. Then several workarounds for errata and the TX-path, and
+> finally features like hardware time stamping, loop-back mode and
+> bus error reporting.
+> 
+> regards,
+> Marc
+> 
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 
-BR,
-Jani.
+I have neither CAN knowledge, nor hardware to test, but the integration
+itself looks pretty easy and straight-forward.
+
+Not sure how much it helps, but at this moment I assume you know what
+you're doing with respect to the CAN controller ;-)
+
+Rest of the series (that hasn't got a Rb):
+
+Acked-by: Heiko Stuebner <heiko@sntech.de>
 
 
-[1] https://lore.kernel.org/r/20240904085206.3331553-1-jani.nikula@intel.com
+How/when are you planning on applying stuff?
+
+I.e. if you're going to apply things still for 6.12, you could simply take
+the whole series if the dts patches still apply to your tree ;-)
 
 
---=20
-Jani Nikula, Intel
+Heiko
+
+
+
 
