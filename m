@@ -1,151 +1,148 @@
-Return-Path: <devicetree+bounces-100054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D0896C03D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:24:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68BEE96C04F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:26:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59F1828EB7D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:24:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B88E1C251A0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE63E1DC18F;
-	Wed,  4 Sep 2024 14:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FEB1DEFFD;
+	Wed,  4 Sep 2024 14:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AwNyUZZS"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="TTG5uyMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from omta38.uswest2.a.cloudfilter.net (omta38.uswest2.a.cloudfilter.net [35.89.44.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702041386C9;
-	Wed,  4 Sep 2024 14:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9F81DEFF1
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 14:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.37
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725459713; cv=none; b=fxkBL1dZwqugyx9LUp6gg0wEPflpxMW/cZddf/uBwW0zefoc106QZU54NbEdJIYRyAoPMACcLryr/o8gDz3srwLbXUXeyICAKM67YBb+PooVBK/ZVe6cRWnm18UHBtDCWK3E7VTmxNa/GwiReEhq48kD2xcFgQWdeZKfrEeDbCI=
+	t=1725459829; cv=none; b=dJ9lGRxrfu8ydMoUovI1cH/HmMS1/IfsNjnGMZs6E2/ChmM2Ej3FEBTICrrmxKWNArnI/YqvwC+FhPLYPYZp8zgDTC6SrrQmJL0MdnDYP1ZgGzRJ9ss+uc3MsCc8ZedPhpQXq5AUkxnn5W0AFJWWA4+OJS+sJR41+aGU2awnVnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725459713; c=relaxed/simple;
-	bh=ngL98UXfE8sIVOA4xLAR7v1aB/yBJVOUhi4uMokF1Ak=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ue3VeMItLjP7Oa2N9/Mvazb66O1zU5NgNyxmo1/1i75oAn6fjQxLWYZKXiyPl9trS3ouyTKBHXYzQ3I4LRsR3feFch6S/+PIwu0tRLz8aKBIGns+Sgvo4mQpeBUL2Ycoqgj4P8jss825/cfx6PANPakmJjGoxYmDt/P79+25INc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AwNyUZZS; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725459713; x=1756995713;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ngL98UXfE8sIVOA4xLAR7v1aB/yBJVOUhi4uMokF1Ak=;
-  b=AwNyUZZSXCzkw5IL6eRjTLCJkGSRERS8dAFbRHhGICrx8Wp58bhO6sSx
-   I9rn0o3y0tCiU8scS/BPvZ+dwshOHgEGYRg/pIGuOGyz610FxhAdf+938
-   dMktLd48T1nuV08JnwBlPh6ncIgqCKF6ASFXiWfODq5QtWCaAjyljgYQP
-   mDi5/cno+55xoQhLufvOz1oLdlV7zbWMQiCrKJdYn3epMp/JCXw3TOcka
-   f39ubSrl5V2lEWyUWmIa2olAqicoFBNtK+I+/gQTCXGY6+EZ2/NV7uoZt
-   XFi1s9zA/dFlfGE9xleRU9xCzOu6+RGdqaEbQyHcIdbNTrffhDo0C17jL
-   g==;
-X-CSE-ConnectionGUID: bgmsJ/EkQk+aF677YkCwaQ==
-X-CSE-MsgGUID: g61wYNRsRCa2rJ7wqWDTvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="24267615"
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="24267615"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 07:21:52 -0700
-X-CSE-ConnectionGUID: 1H+GBePaSS+PnL4/6LFPUA==
-X-CSE-MsgGUID: 5Vq1EPPQRPO975GXu4M2TA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="65124778"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 07:21:48 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1slqtF-000000055V2-0Mvs;
-	Wed, 04 Sep 2024 17:21:45 +0300
-Date: Wed, 4 Sep 2024 17:21:44 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v5 4/7] iio: pressure: bmp280: Use sleep and forced mode
- for oneshot captures
-Message-ID: <Zths-IcwYyUV_kYk@smile.fi.intel.com>
-References: <20240902184222.24874-1-vassilisamir@gmail.com>
- <20240902184222.24874-5-vassilisamir@gmail.com>
- <ZtccnvhmcxyRQVuf@smile.fi.intel.com>
- <20240904102427.GA44250@vamoiridPC>
- <Zthr-bKR-jr7B2kc@smile.fi.intel.com>
+	s=arc-20240116; t=1725459829; c=relaxed/simple;
+	bh=jDxosuXrzcBbOxaPlz08zYKBFslvCTkiK84hKv76KGY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e1pOO7tzkr/NL+oCprF3bxPGmswUV9CgsQqGkAkJ3WrdngVF9K4wt2oFro2B9Mjr44zXUp36pM0uLCgyAha0j6UR8ZpnCXu7QQQbzpKzxJRu8JzxgoRuXHkC9q1cokaH25IF0uWOvd2kU5YEaTe1+sD0e87abK9IKMtJXzd6dnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=TTG5uyMG; arc=none smtp.client-ip=35.89.44.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-6009a.ext.cloudfilter.net ([10.0.30.184])
+	by cmsmtp with ESMTPS
+	id laTasbdyTumtXlqvDsSI3P; Wed, 04 Sep 2024 14:23:47 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id lqvAsj35XaPL1lqvBsdPnr; Wed, 04 Sep 2024 14:23:46 +0000
+X-Authority-Analysis: v=2.4 cv=OoFJyT/t c=1 sm=1 tr=0 ts=66d86d72
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=-pn6D5nKLtMA:10 a=VwQbUJbxAAAA:8
+ a=CDJ--hqRtXxyQu1MzM8A:9 a=QEXdDO2ut3YA:10 a=ZCPYImcxYIQFgLOT52_G:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=n9N1T1b3GYjcRtNdTA0eRt+BVdBxLA/iS8Tvd/9BiNg=; b=TTG5uyMGqpvP6hbpopOPtqgQYs
+	cnPjiMnM6MOsyRTDhg1Z6dGFL4C29Kq4yCHyz1grE8dHjgmcLKkPCZ7/RBPiarQhT9rwseT/l0c4g
+	Kj8zLuoyGys2GZIaRgCyE0FQnBcy3ufuB3vhuroQoUUA7HYe+v704KDRCedK3+l8i3M+BQddExODZ
+	tNqMs6s2/8JQWhVxFDAa0ddfLsZG4lbeY54qBne0+PPeki4fmdOqSPMZbaGr9dai+L9no7UuLijDt
+	EbhAEjiQDNi7dLcVrtuD68bENOpjc5SXgCR9QUzr0hiwrJSd8EuMSpJMtgqDBbNdErzBWFK41aFj6
+	QH/0ORRQ==;
+Received: from [122.165.245.213] (port=53602 helo=[192.168.1.106])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <karthikeyan@linumiz.com>)
+	id 1slqv9-003mnG-0R;
+	Wed, 04 Sep 2024 19:53:43 +0530
+Message-ID: <5023c87c-993f-4264-b950-5a47edd5e9d0@linumiz.com>
+Date: Wed, 4 Sep 2024 19:53:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zthr-bKR-jr7B2kc@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v2 0/8] Add support Relfor Saib board which is
+ based on Rockchip RV1109 SoC
+To: Heiko Stuebner <heiko@sntech.de>, conor+dt@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, alexandre.belloni@bootlin.com
+Cc: devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20240903105245.715899-1-karthikeyan@linumiz.com>
+ <172544170317.2587256.1675013741817340842.b4-ty@sntech.de>
+Content-Language: en-US
+From: karthikeyan <karthikeyan@linumiz.com>
+In-Reply-To: <172544170317.2587256.1675013741817340842.b4-ty@sntech.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1slqv9-003mnG-0R
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.106]) [122.165.245.213]:53602
+X-Source-Auth: karthikeyan@linumiz.com
+X-Email-Count: 25
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfA+/cD2/COBQ9v1I1NpG3pmynrXN53DQVK3NVyi5x67b455Tcv3reN/bvLKEkPurGFRm2Xdzj5JJD6v+GeGyl9K9U/IPm1TLGkcWWdWB74QjNwUdr9sS
+ 8uSGa4EPKj99yvbTbvot11Iw5EcgNIH/JRvAzRhMDIzCUAMSIj4HNgkcRkeIfzki4lg1maZnNc4VKgkDavLtxiee+MJeKf/jL0w=
 
-On Wed, Sep 04, 2024 at 05:17:29PM +0300, Andy Shevchenko wrote:
-> On Wed, Sep 04, 2024 at 12:24:27PM +0200, Vasileios Amoiridis wrote:
-> > On Tue, Sep 03, 2024 at 05:26:38PM +0300, Andy Shevchenko wrote:
-> > > On Mon, Sep 02, 2024 at 08:42:19PM +0200, Vasileios Amoiridis wrote:
 
-...
 
-> > > > +	if (!(reg & BMP380_STATUS_DRDY_PRESS_MASK) ||
-> > > > +	    !(reg & BMP380_STATUS_DRDY_TEMP_MASK)) {
-> > > > +		dev_err(data->dev, "Measurement cycle didn't complete.\n");
-> > > > +		return -EBUSY;
-> > > > +	}
-> > > 
-> > > Alternatively
-> > > 
-> > > 	if (!((reg & BMP380_STATUS_DRDY_PRESS_MASK) &&
-> > > 	    !(reg & BMP380_STATUS_DRDY_TEMP_MASK)) {
-> > > 		dev_err(data->dev, "Measurement cycle didn't complete.\n");
-> > > 		return -EBUSY;
-> > > 	}
-> > 
-> > Why would I use && instead of || ? I just need one of the 2 to be true
-> > (one of the 2 measurements is not complete) and I can trigger the error
-> > action.
+On 9/4/24 14:54, Heiko Stuebner wrote:
+> On Tue, 3 Sep 2024 16:22:37 +0530, Karthikeyan Krishnasamy wrote:
+>> Rockchip RV1109 is compatible with Rockchip RV1126.
+>> In this series, adding required missing peripheral in
+>> RV1126 and its pin mux.
+>>
+>> Relfor Saib board is equipped with 1GB of RAM and 4GB of eMMC
+>> Pheripherals like Bluetooth 4.2, Wifi 5G, audio-codec,
+>> ir transmitter and receiver, etc
+>>
+>> [...]
 > 
-> Oh, I messed up the logic inversion, but wouldn't it be simpler to read
-> "we return busy if neither press nor temp drdy bit set"?
+> Applied, thanks!
 > 
-> 	if (!((reg & BMP380_STATUS_DRDY_PRESS_MASK) && (reg & BMP380_STATUS_DRDY_TEMP_MASK))) {
-> 		dev_err(data->dev, "Measurement cycle didn't complete.\n");
-> 		return -EBUSY;
-> 	}
+> [1/8] ARM: dts: rockchip: Add i2c3 node for RV1126
+>        commit: 15db79e0bdcb883f0d7a678fe8701a270467a339
+> [2/8] ARM: dts: rockchip: Add i2s0 node for RV1126
+>        commit: 212cda94739b1644e38ef4f588bb580c12feb9a7
+> [3/8] ARM: dts: rockchip: Add pwm node for RV1126
+>        commit: 898eb75f443eaf6cb46facf52fc337fbdbdca079
 > 
-> (I left long line for the better understanding of my point, you may break it to
->  two if needed)
-
-Scratch below, it needs more thinking...
-
-> With that, you even may have
 > 
-> #define BMP380_STATUS_DRDY_PRESS_AND_TEMP_MASK ...
+> This means I applied a part of your series and you don't need to
+> resubmit the patches mentioned above in a next submission.
 > 
-> 	if (!(reg & BMP380_STATUS_DRDY_PRESS_AND_TEMP_MASK)) {
-
-Maybe ^, but I have no time to dive into this, you got the idea I believe.
-
-> 		dev_err(data->dev, "Measurement cycle didn't complete.\n");
-> 		return -EBUSY;
-> 	}
 > 
-> which makes it all obvious.
+> I re-sorted some properties and nodes according the alphabetical
+> sorting we use. Please see
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst
+> 
+> for the details.
+> 
+> 
+> Best regards,
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks, i will updated the other patches in next version.
 
-
+Best Regards,
+Karthikeyan
 
