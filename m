@@ -1,153 +1,267 @@
-Return-Path: <devicetree+bounces-100104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4969196C2F4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A25296C325
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:57:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B0261C21B33
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:51:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ED181C21523
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B431E00A8;
-	Wed,  4 Sep 2024 15:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B331DFE06;
+	Wed,  4 Sep 2024 15:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SH3uwh+O"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="mcZGtdJD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9098E1DFE35;
-	Wed,  4 Sep 2024 15:50:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFD51DEFF4
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 15:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725465031; cv=none; b=K6+RD/1zbuWKB/0NGWIjUUftQK2ptFUdc4SVBywoIgKNGqVW780Kpec3NPX7pLBE0h39fMHjDdirKRcPKIDAzDj80qkHjQjKp83YLgVdW/xwvgWqCWDkHcaj+qfMsrscyXNdmN4fHqgR//s2IQeFIs1h29ArN+ymMdBK3r4/hGY=
+	t=1725465347; cv=none; b=jAoiwSJryJ8TkcwLVB/VjC6xIkXzv/asot+ouyq0Dw1jhdg0WwKvyiAsMh9su65z5wBDhmrfX3WxKFtPnQuy0t5MoJ2LINeCxuP/02wF7LC8PAYKm8TH5HXb2AFFBAXaQTNwu8evaxMxpxZ0PydBaQdujehm9W/QcSs1miZ+VeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725465031; c=relaxed/simple;
-	bh=qwDHvWtGidi6YhwcnUq01LvlP4dVDYDAJ3vzEEDQ/qc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LW3JhXMAqakPGpVY/gKd7a1i5pMIrAOCdKM5pVDZoPMdLqkd3ZgIME7HdlsKjh638hpKLdJH4Oy2bkW2TicvVMKipHs6wajBR9gCs43bPJDlZ3faF5xrJs5LmKZDPPUlKUIa/7QSz0XMppXiDuMbzxXIoPs1YHF4IfavHGHje7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SH3uwh+O; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725465029; x=1757001029;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qwDHvWtGidi6YhwcnUq01LvlP4dVDYDAJ3vzEEDQ/qc=;
-  b=SH3uwh+O+wWaFS+/JTw1EzNDBOgwUxFRs/f2SDXb48skGpG7QjMfzHyy
-   MWNRMGG/15f1AxWj6ud2ge4pUM9TGGvsDovg44VNvcHhgD4g3y5yO/iHz
-   n9VRpl0Jv4MQebs8xv5GXThhxHN1tFQsJjeFwFJJM4lCp/ICosct2YeYn
-   M/zvE0mW4atdeujeRbrzbKQdbyOMcxAp952RDiZ1hLRxUhcJ+mdXgw8Sw
-   40/AZRoKZK9dJU6uOnMdd8I3D/uBQrMOpTzdZxmbKWyy0kHcMaVX01Byl
-   X035tWw0bJ6ZVzQlvEKEMtPskUyLTdZrvVTMpK3kL0epFYmlb1jtw+z0M
-   Q==;
-X-CSE-ConnectionGUID: NueMBSjCQmGrn7o3N0Q2RQ==
-X-CSE-MsgGUID: ajvxk2i7SOqT/93SSaMiCg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="41610189"
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="41610189"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 08:50:29 -0700
-X-CSE-ConnectionGUID: XtYPKgLFTxaZ66jBnCFSLg==
-X-CSE-MsgGUID: Bbz/TEkNRPidB7QjsTXrVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="69475698"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 04 Sep 2024 08:50:25 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1slsH1-0008HL-0j;
-	Wed, 04 Sep 2024 15:50:23 +0000
-Date: Wed, 4 Sep 2024 23:50:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mariel Tinaco <Mariel.Tinaco@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-	Dimitri Fedrau <dima.fedrau@gmail.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v3 2/2] iio: dac: support the ad8460 Waveform DAC
-Message-ID: <202409042318.7nwvZc3c-lkp@intel.com>
-References: <20240904023040.23352-3-Mariel.Tinaco@analog.com>
+	s=arc-20240116; t=1725465347; c=relaxed/simple;
+	bh=CkecVjIYNoe7NJxOPr5z1PU5WVX0/Q+Dm7XYnVNPMvY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YFdE4RG172VT9TgzhO4RcV0UxHv69urEA+QEYeyNRq9322TX3gXHsryssK5P3VdBoLL/pYcv+7lV+YPn/S0CFHqgF1DA4rtLc/Z5CoAzdgWTZSsTwwKUi+a1iJaIBPTxMX8MDkvt+QzYsUzNmMHKm5A7cX8R2Xw3ulESyalQe+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=mcZGtdJD; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5de8647f0d5so4327879eaf.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 08:55:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1725465344; x=1726070144; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IJfJhTqoZula3HvRr4vB1EKIVpNv9UMUTRfayiacVI8=;
+        b=mcZGtdJDrkqZVt7rj3akGcS1fHMGiicNF68D9d+iq7hjqBfMLe4hslVKCAaNA29xOv
+         ndaBBhLiSv7BW+dZpa2wdOXifLgyuzZqizwfs9B8fVqrgGxBjZ8sqaBSGkFRX//+ElGm
+         Jdcy1gqOhW9jboSyPnOOUzXeDyCG6vCz4cUVJ+J3m2lbT789+uNOuRWqceFSOzrJUKaX
+         +909TkHjoYNa+bS3nSju/mCqxLGlfiwKKf1AlhYhyUsBTTR4d1gWUWXpEm3LX5BRqFj5
+         djSJpfzTEPw00jWqCJGNFmpMZyk26sox/6Pyhi/Zgy9tSA6JOJmuCFx5OevSJo49l72H
+         Zj+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725465344; x=1726070144;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IJfJhTqoZula3HvRr4vB1EKIVpNv9UMUTRfayiacVI8=;
+        b=TJrHgOs0G4seeR8JB9mwxrR2veUkhyCAkJWIbIiTdwlwgqV0pP4v499N3XfkZfqmVC
+         aHtg5206taMhUCK1zmPwNP6YxOzSwSOfgyq/AtrFKJ8bwh4EQOVw985bK/1CbAXOIJE9
+         +kjTK3ggeBTmK+wAgWiH7kcpnegcyv4MOXUxk+Qj7FiDv3mE922Vbg7hTIAfmVbi0UGk
+         UTO2McgTP/ybWsWdX+7A4niwjGk4sVm7MrZdAUjddN9kFWRAE7BicFZUtzgXXaXQfFMX
+         WJGnH5BXQ2qPzi3FF7IXTRLughJIIEpi00rQgg3Ruff8PErPWHQVeewz/bfxy21CCfOv
+         e/tQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9P9ZRgCTcFgvVfGUdK5EzEx8kqgy8uFnxVbEdUyMA1CEiAjGzoYA74kHdmTrByh5jwbFH43EL9bi3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3sylch1fUuS/2V3j5G8CXiQFP9i+8f/V52/O1qi9RkFXJtshA
+	T7gEKQuoVH7smDBPUYJHc/c3qQ5lZ2xygO9g8Xw4WzXKCeKmRm/ZFASBBR18NrQ=
+X-Google-Smtp-Source: AGHT+IGSj2mjNP3cd8Y+Wq93jLDk/4D2+bETU3DRxxEgzsXQc26cqw387LSpclivH7vxPgGiROcLBA==
+X-Received: by 2002:a05:6808:1687:b0:3dc:15b9:334a with SMTP id 5614622812f47-3df1b6f43f7mr14003462b6e.6.1725465344248;
+        Wed, 04 Sep 2024 08:55:44 -0700 (PDT)
+Received: from [100.64.0.1] ([147.124.94.167])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3df117a63a5sm2850495b6e.1.2024.09.04.08.55.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Sep 2024 08:55:43 -0700 (PDT)
+Message-ID: <4c010cb1-b57c-427e-a241-1dd3ab15f2ce@sifive.com>
+Date: Wed, 4 Sep 2024 10:55:41 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240904023040.23352-3-Mariel.Tinaco@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 09/10] RISC-V: KVM: Allow Smnpm and Ssnpm extensions
+ for guests
+To: Anup Patel <anup@brainfault.org>
+Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+ kasan-dev@googlegroups.com, Atish Patra <atishp@atishpatra.org>,
+ Evgenii Stepanov <eugenis@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
+ kvm-riscv@lists.infradead.org
+References: <20240829010151.2813377-1-samuel.holland@sifive.com>
+ <20240829010151.2813377-10-samuel.holland@sifive.com>
+ <CAK9=C2WjraWjuQCeU2Y4Jhr-gKkOcP42Sza7wVp0FgeGaD923g@mail.gmail.com>
+ <b6de8769-7e4e-4a19-b239-a39fd424e0c8@sifive.com>
+ <CAAhSdy08SoDoZCii9R--BK7_NKLnRciW7V3mo2aQRKW1dbOgNg@mail.gmail.com>
+ <20ab0fa2-d5dd-446d-9fff-a3ef82e8db35@sifive.com>
+ <CAAhSdy1pZcEfajg3OZUCaFf9JMYcMzpRVogCT5VL2FHx__vDdA@mail.gmail.com>
+Content-Language: en-US
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <CAAhSdy1pZcEfajg3OZUCaFf9JMYcMzpRVogCT5VL2FHx__vDdA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Mariel,
+On 2024-09-04 10:20 AM, Anup Patel wrote:
+> On Wed, Sep 4, 2024 at 8:27 PM Samuel Holland <samuel.holland@sifive.com> wrote:
+>>
+>> Hi Anup,
+>>
+>> On 2024-09-04 9:45 AM, Anup Patel wrote:
+>>> On Wed, Sep 4, 2024 at 8:01 PM Samuel Holland <samuel.holland@sifive.com> wrote:
+>>>> On 2024-09-04 7:17 AM, Anup Patel wrote:
+>>>>> On Thu, Aug 29, 2024 at 6:32 AM Samuel Holland
+>>>>> <samuel.holland@sifive.com> wrote:
+>>>>>>
+>>>>>> The interface for controlling pointer masking in VS-mode is henvcfg.PMM,
+>>>>>> which is part of the Ssnpm extension, even though pointer masking in
+>>>>>> HS-mode is provided by the Smnpm extension. As a result, emulating Smnpm
+>>>>>> in the guest requires (only) Ssnpm on the host.
+>>>>>>
+>>>>>> Since the guest configures Smnpm through the SBI Firmware Features
+>>>>>> interface, the extension can be disabled by failing the SBI call. Ssnpm
+>>>>>> cannot be disabled without intercepting writes to the senvcfg CSR.
+>>>>>>
+>>>>>> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+>>>>>> ---
+>>>>>>
+>>>>>> (no changes since v2)
+>>>>>>
+>>>>>> Changes in v2:
+>>>>>>  - New patch for v2
+>>>>>>
+>>>>>>  arch/riscv/include/uapi/asm/kvm.h | 2 ++
+>>>>>>  arch/riscv/kvm/vcpu_onereg.c      | 3 +++
+>>>>>>  2 files changed, 5 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
+>>>>>> index e97db3296456..4f24201376b1 100644
+>>>>>> --- a/arch/riscv/include/uapi/asm/kvm.h
+>>>>>> +++ b/arch/riscv/include/uapi/asm/kvm.h
+>>>>>> @@ -175,6 +175,8 @@ enum KVM_RISCV_ISA_EXT_ID {
+>>>>>>         KVM_RISCV_ISA_EXT_ZCF,
+>>>>>>         KVM_RISCV_ISA_EXT_ZCMOP,
+>>>>>>         KVM_RISCV_ISA_EXT_ZAWRS,
+>>>>>> +       KVM_RISCV_ISA_EXT_SMNPM,
+>>>>>> +       KVM_RISCV_ISA_EXT_SSNPM,
+>>>>>>         KVM_RISCV_ISA_EXT_MAX,
+>>>>>>  };
+>>>>>>
+>>>>>> diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+>>>>>> index b319c4c13c54..6f833ec2344a 100644
+>>>>>> --- a/arch/riscv/kvm/vcpu_onereg.c
+>>>>>> +++ b/arch/riscv/kvm/vcpu_onereg.c
+>>>>>> @@ -34,9 +34,11 @@ static const unsigned long kvm_isa_ext_arr[] = {
+>>>>>>         [KVM_RISCV_ISA_EXT_M] = RISCV_ISA_EXT_m,
+>>>>>>         [KVM_RISCV_ISA_EXT_V] = RISCV_ISA_EXT_v,
+>>>>>>         /* Multi letter extensions (alphabetically sorted) */
+>>>>>> +       [KVM_RISCV_ISA_EXT_SMNPM] = RISCV_ISA_EXT_SSNPM,
+>>>>>
+>>>>> Why not use KVM_ISA_EXT_ARR() macro here ?
+>>>>
+>>>> Because the extension name in the host does not match the extension name in the
+>>>> guest. Pointer masking for HS mode is provided by Smnpm. Pointer masking for VS
+>>>> mode is provided by Ssnpm at the hardware level, but this needs to appear to the
+>>>> guest as if Smnpm was implemented, since the guest thinks it is running on bare
+>>>> metal.
+>>>
+>>> Okay, makes sense.
+>>>
+>>>>
+>>>>>>         KVM_ISA_EXT_ARR(SMSTATEEN),
+>>>>>>         KVM_ISA_EXT_ARR(SSAIA),
+>>>>>>         KVM_ISA_EXT_ARR(SSCOFPMF),
+>>>>>> +       KVM_ISA_EXT_ARR(SSNPM),
+>>>>>>         KVM_ISA_EXT_ARR(SSTC),
+>>>>>>         KVM_ISA_EXT_ARR(SVINVAL),
+>>>>>>         KVM_ISA_EXT_ARR(SVNAPOT),
+>>>>>> @@ -129,6 +131,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
+>>>>>>         case KVM_RISCV_ISA_EXT_M:
+>>>>>>         /* There is not architectural config bit to disable sscofpmf completely */
+>>>>>>         case KVM_RISCV_ISA_EXT_SSCOFPMF:
+>>>>>> +       case KVM_RISCV_ISA_EXT_SSNPM:
+>>>>>
+>>>>> Why not add KVM_RISCV_ISA_EXT_SMNPM here ?
+>>>>>
+>>>>> Disabling Smnpm from KVM user space is very different from
+>>>>> disabling Smnpm from Guest using SBI FWFT extension.
+>>>>
+>>>> Until a successful SBI FWFT call to KVM to enable pointer masking for VS mode,
+>>>> the existence of Smnpm has no visible effect on the guest. So failing the SBI
+>>>> call is sufficient to pretend that the hardware does not support Smnpm.
+>>>>
+>>>>> The KVM user space should always add Smnpm in the
+>>>>> Guest ISA string whenever the Host ISA string has it.
+>>>>
+>>>> I disagree. Allowing userspace to disable extensions is useful for testing and
+>>>> to support migration to hosts which do not support those extensions. So I would
+>>>> only add extensions to this list if there is no possible way to disable them.
+>>>
+>>> I am not saying to disallow KVM user space disabling Smnpm.
+>>
+>> Then I'm confused. This is the "return false;" switch case inside
+>> kvm_riscv_vcpu_isa_disable_allowed(). If I add KVM_RISCV_ISA_EXT_SMNPM here,
+>> then (unless I am misreading the code) I am disallowing KVM userspace from
+>> disabling Smnpm in the guest (i.e. preventing KVM userspace from removing Smnpm
+>> from the guest ISA string). If that is not desired, then why do you suggest I
+>> add KVM_RISCV_ISA_EXT_SMNPM here?
+> 
+> Yes, adding KVM_RISCV_ISA_EXT_SMNPM here means KVM
+> user space can't disable it using ONE_REG interface but KVM user
+> space can certainly not add it in the Guest ISA string.
 
-kernel test robot noticed the following build errors:
+Is there a problem with allowing KVM userspace to disable the ISA extension with
+the ONE_REG interface?
 
-[auto build test ERROR on c4b43d8336e52dce6d124e428aa3b71703e62647]
+If KVM userspace removes Smnpm from the ISA string without the host kernel's
+knowledge, that doesn't actually prevent the guest from successfully calling
+sbi_fwft_set(POINTER_MASKING_PMLEN, ...), so it doesn't guarantee that the VM
+can be migrated to a host without pointer masking support. So the ONE_REG
+interface still has value. (And that's my answer to your original question "Why
+not add KVM_RISCV_ISA_EXT_SMNPM here ?")
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mariel-Tinaco/dt-bindings-iio-dac-add-docs-for-ad8460/20240904-103413
-base:   c4b43d8336e52dce6d124e428aa3b71703e62647
-patch link:    https://lore.kernel.org/r/20240904023040.23352-3-Mariel.Tinaco%40analog.com
-patch subject: [PATCH v3 2/2] iio: dac: support the ad8460 Waveform DAC
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240904/202409042318.7nwvZc3c-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240904/202409042318.7nwvZc3c-lkp@intel.com/reproduce)
+>>> The presence of Smnpm in ISA only means that it is present in HW
+>>> but it needs to be explicitly configured/enabled using SBI FWFT.
+>>>
+>>> KVM user space can certainly disable extensions by not adding it to
+>>> ISA string based on the KVMTOOL/QEMU-KVM command line option.
+>>> Additionally, when SBI FWFT is added to KVM RISC-V. It will have its
+>>> own way to explicitly disable firmware features from KVM user space.
+>>
+>> I think we agree on this, but your explanation here appears to conflict with
+>> your suggested code change. Apologies if I'm missing something.
+> 
+> I think the confusion is about what does it mean when Smnpm is present
+> in the ISA string. We have two approaches:
+> 
+> 1) Presence of Smnpm in ISA string only means it is present in HW but
+>     says nothing about its enable/disable state. To configure/enable
+>     Smnpm, the supervisor must use SBI FWFT.
+> 
+> 2) Presence of Smnpm in ISA string means it is present in HW and
+>     enabled at boot-time. To re-configure/disable Smnpm, the supervisor
+>     must use SBI FWFT.
+> 
+> I am suggesting approach #1 but I am guessing you are leaning towards
+> approach #2 ?
+> 
+> For approach #2, additional hencfg.PMM configuration is required in
+> this patch based on the state of KVM_RISCV_ISA_EXT_SMNPM.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409042318.7nwvZc3c-lkp@intel.com/
+No, I am definitely suggesting only approach #1. My proposal for adding pointer
+masking to the SBI FWFT extension[1] specifies the feature as disabled by
+default, and this would apply both inside and ouside a VM.
 
-All errors (new ones prefixed by >>):
+But I am also suggesting that the ONE_REG interface is a useful way to
+completely hide the extension from the guest, like we do for other extensions
+such as Svpbmt. The only difference between something like Svpbmt and Smnpm is
+that instead of clearing a bit in henvcfg to hide the extension from the guest,
+we reject calls to sbi_fwft_set(POINTER_MASKING_PMLEN, ...) when the ISA
+extension is hidden from the guest.
 
-   drivers/iio/dac/ad8460.c: In function 'ad8460_get_hvdac_word':
->> drivers/iio/dac/ad8460.c:165:16: error: implicit declaration of function 'get_unaligned_le16' [-Wimplicit-function-declaration]
-     165 |         *val = get_unaligned_le16(state->spi_tx_buf);
-         |                ^~~~~~~~~~~~~~~~~~
-   drivers/iio/dac/ad8460.c: In function 'ad8460_set_hvdac_word':
->> drivers/iio/dac/ad8460.c:172:9: error: implicit declaration of function 'put_unaligned_le16' [-Wimplicit-function-declaration]
-     172 |         put_unaligned_le16(FIELD_PREP(AD8460_DATA_BYTE_FULL_MSK, val),
-         |         ^~~~~~~~~~~~~~~~~~
+Regards,
+Samuel
 
+[1]: https://github.com/riscv-non-isa/riscv-sbi-doc/pull/161
 
-vim +/get_unaligned_le16 +165 drivers/iio/dac/ad8460.c
-
-   155	
-   156	static int ad8460_get_hvdac_word(struct ad8460_state *state, int index, int *val)
-   157	{
-   158		int ret;
-   159	
-   160		ret = regmap_bulk_read(state->regmap, AD8460_HVDAC_DATA_WORD_LOW(index),
-   161				       &state->spi_tx_buf, AD8460_DATA_BYTE_WORD_LENGTH);
-   162		if (ret)
-   163			return ret;
-   164	
- > 165		*val = get_unaligned_le16(state->spi_tx_buf);
-   166	
-   167		return ret;
-   168	}
-   169	
-   170	static int ad8460_set_hvdac_word(struct ad8460_state *state, int index, int val)
-   171	{
- > 172		put_unaligned_le16(FIELD_PREP(AD8460_DATA_BYTE_FULL_MSK, val),
-   173					     &state->spi_tx_buf);
-   174	
-   175		return regmap_bulk_write(state->regmap, AD8460_HVDAC_DATA_WORD_LOW(index),
-   176					 state->spi_tx_buf, AD8460_DATA_BYTE_WORD_LENGTH);
-   177	}
-   178	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
