@@ -1,113 +1,177 @@
-Return-Path: <devicetree+bounces-100052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF2196C01E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:22:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6240E96C059
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:26:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64C8A1F26600
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:22:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E2341C2254A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDD71DC746;
-	Wed,  4 Sep 2024 14:19:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DDE1DB558;
+	Wed,  4 Sep 2024 14:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MprrJbni"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OZ/aWonB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB8B1DCB2D;
-	Wed,  4 Sep 2024 14:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E0361DA611;
+	Wed,  4 Sep 2024 14:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725459554; cv=none; b=EWchLRVfovAdc79SuVVPzvRcf8BQuwQlTWIji0GKH4MTTqnBW5TIixfZvD9nyWS9bX6dwbFjfoAHmoh6RZs2EC/SlRob5qj/lBHeZPVs/iYYVmNS/hR4I+UoVyzFfTTn49mEDZy+WlFlA55EctOd7Kdj4mv+Rwn9vZIwMTEo5sQ=
+	t=1725459935; cv=none; b=UgbZdhI5z3lAUCIUPnqnHmXQD1WTtAtmy1Pdswcg6WHWzIsNdWQkoBoQ61fCSv3yE6psVEnFIaZOUxMTFyOm//OrB/U0OmTGm8l2305aHUKeAYGFou7lboH9S+nu3DZ0MFTAbWskT1WnhIh58gQvQy8LsFsM3efd+tROB7SNJ5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725459554; c=relaxed/simple;
-	bh=uSLQCxe4IDaovCutek/xI4IU59+dVjLkoZhmTMkkGVE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fdd7K0Xl8Q8zFChg/Qp6fiDDsUPCEIZuhpGqa3rgTqhgXO/my4jaBc5H85YoNco6dcJqsE/VV+wla1w1inRL1VVjwDP8788VIVRfVq3kDJrM0tRKp4e797SfavO5dgh+RXUpS8IC/872SSwloL/2+Jkh/bkHSC5N8xxdk0f9PtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MprrJbni; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725459554; x=1756995554;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uSLQCxe4IDaovCutek/xI4IU59+dVjLkoZhmTMkkGVE=;
-  b=MprrJbnimcDNxj3TUjteHrU6OcS2MpU4mbBmV++0qIfuO1rrPsDbhaP/
-   T3qsFbyexFJw4b4l5HocHQ1qI/FPqfxnThMIuuZ1dt43dCA4nMHez3N5P
-   MxHFtPEWaUggWS0yG5eiD7YZMHglek87nivR35fUglxbybCQ+C+tYMm16
-   MaVQSrPUI/RC0YLiCcQwO92n7V1yS5mHxQLE++qpP4MhhUpymoAFgY9x5
-   6kaE9Ph5GVdhdNWknLIDts278cFdY04Ra0WP1nKxlSZh6KkbuNrep8mK/
-   wnIM7nnPWrTm4y2A65YdJHqp0uGEx7gCSYCkStDqIYk/ZTP9T/NkFyOTQ
-   Q==;
-X-CSE-ConnectionGUID: UTy740wqQgW7flANBDumrA==
-X-CSE-MsgGUID: Znz6GnSaTZmWwrH7f8zj3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="24077835"
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="24077835"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 07:19:13 -0700
-X-CSE-ConnectionGUID: 4fVMMdv4TKuvaHt9rmVPLg==
-X-CSE-MsgGUID: h/6hZmfdRZqP4bxpRhIcrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="96091784"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 07:19:08 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1slqqf-000000055SV-3W71;
-	Wed, 04 Sep 2024 17:19:05 +0300
-Date: Wed, 4 Sep 2024 17:19:05 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v5 6/7] iio: pressure: bmp280: Add data ready trigger
- support
-Message-ID: <ZthsWaBKR8D5qXrC@smile.fi.intel.com>
-References: <20240902184222.24874-1-vassilisamir@gmail.com>
- <20240902184222.24874-7-vassilisamir@gmail.com>
- <Ztce3XuXZ-hxwU8h@smile.fi.intel.com>
- <20240904102812.GB44250@vamoiridPC>
+	s=arc-20240116; t=1725459935; c=relaxed/simple;
+	bh=yId2XFcDum53FDLUrvJJqxl53SGALFaHo7PGfKocJpA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=T27GqZ/gtVGQw8Bcl4lvU+804WIZ+pM38ElJWEhLx9AYWjY/z6peNWzw8r72QHyPiMbkGjvNd+c6kBrDvsGonZyhVbqbwvqm+fRiMyGz/7pfiURuuqSG8S24WnFMwlodKy2Y//ox8WAFOmeIvP8S0utaxULjxqHKHVgDlKUcaTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OZ/aWonB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48479q8J021795;
+	Wed, 4 Sep 2024 14:19:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	r+HWRwR//pa8nxnPX/XXNKjHo7VyGMD3KsrkE9xrHQ8=; b=OZ/aWonBk+wqOZrE
+	rVBOE33PX7sgoLNRXFUJrywo6mqjOsyT6hK1zRby/g2IM0zHh67VfBo+IKAsIfuO
+	6Xi7dfLgfLpM/ofFVXImR0qO2frbBQJ6yA4kajMvC0hBPU1N4YPNyBEw5qBsXrJs
+	2uYFq7wTQfZ8j0XjiJI/jXoq8t0+UnKHs73QJYUP3xsFYTJRfb+Eb/BbpXe5nutQ
+	oeX+tsq5kr2xId75Uub7bgnnJM9NwBWE0vfdDEzHQ0PRBb4+82gJcTqDTdBkSWGG
+	tSyM2sKheoI7p5bIFVUBZ+UXjZPz/vPUdBjRYEJfgVk0Wf5XX2ZfXbGzfBtV9e3B
+	5oNZkg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41dxy24ddn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Sep 2024 14:19:57 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 484EJuD9018659
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Sep 2024 14:19:56 GMT
+Received: from [10.110.120.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
+ 07:19:52 -0700
+Message-ID: <c163149b-bdf1-423b-ab51-f734d00277fe@quicinc.com>
+Date: Wed, 4 Sep 2024 07:19:52 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240904102812.GB44250@vamoiridPC>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 14/21] dt-bindings: cpufreq: qcom-hw: document support
+ for SA8255p
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <herbert@gondor.apana.org.au>,
+        <davem@davemloft.net>, <sudeep.holla@arm.com>, <andi.shyti@kernel.org>,
+        <tglx@linutronix.de>, <will@kernel.org>, <robin.murphy@arm.com>,
+        <joro@8bytes.org>, <jassisinghbrar@gmail.com>, <lee@kernel.org>,
+        <linus.walleij@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
+        <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-15-quic_nkela@quicinc.com>
+ <odg5ssqu2soaqp6m4rambj7qhqiyp7othkvu4v6fu6xtuhbdho@vccya6qcwgoz>
+ <1b831fc1-9360-4038-91b2-b2c0cea513ed@quicinc.com>
+ <baf00e50-10b2-410b-9c56-713564a2d1b9@kernel.org>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <baf00e50-10b2-410b-9c56-713564a2d1b9@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ehT9Yu2c61CM5jE4p6KmfozbRKh_7JF8
+X-Proofpoint-ORIG-GUID: ehT9Yu2c61CM5jE4p6KmfozbRKh_7JF8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-04_11,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ lowpriorityscore=0 mlxlogscore=941 spamscore=0 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409040108
 
-On Wed, Sep 04, 2024 at 12:28:12PM +0200, Vasileios Amoiridis wrote:
-> On Tue, Sep 03, 2024 at 05:36:13PM +0300, Andy Shevchenko wrote:
-> > On Mon, Sep 02, 2024 at 08:42:21PM +0200, Vasileios Amoiridis wrote:
 
-...
+On 9/4/2024 6:17 AM, Krzysztof Kozlowski wrote:
+> On 04/09/2024 14:27, Nikunj Kela wrote:
+>> On 9/3/2024 11:26 PM, Krzysztof Kozlowski wrote:
+>>> On Tue, Sep 03, 2024 at 03:02:33PM -0700, Nikunj Kela wrote:
+>>>> Add compatible for the cpufreq engine representing support on SA8255p.
+>>>>
+>>>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>>>> ---
+>>>>  .../bindings/cpufreq/cpufreq-qcom-hw.yaml        | 16 ++++++++++++++++
+>>>>  1 file changed, 16 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>>>> index 1e9797f96410..84865e553c8b 100644
+>>>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>>>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>>>> @@ -34,6 +34,7 @@ properties:
+>>>>          items:
+>>>>            - enum:
+>>>>                - qcom,qdu1000-cpufreq-epss
+>>>> +              - qcom,sa8255p-cpufreq-epss
+>>>>                - qcom,sa8775p-cpufreq-epss
+>>>>                - qcom,sc7280-cpufreq-epss
+>>>>                - qcom,sc8280xp-cpufreq-epss
+>>>> @@ -206,6 +207,21 @@ allOf:
+>>>>          interrupt-names:
+>>>>            minItems: 2
+>>>>  
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - qcom,sa8255p-cpufreq-epss
+>>>> +    then:
+>>>> +      properties:
+>>>> +        reg:
+>>>> +          minItems: 2
+>>>> +          maxItems: 2
+>>>> +
+>>>> +        reg-names:
+>>>> +          minItems: 2
+>>>> +          maxItems: 2
+>>> What about interrupts? You need to constrain each of such lists.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> Interrupts are not required, I still need to put constraints for
+> It's irrelevant whether they are required or not. Each property should
+> be narrowed.
 
-> > > +	data->trig_open_drain =
-> > > +		fwnode_property_read_bool(fwnode, "int-open-drain");
-> > 
-> > Where do you initialise fwnode?
-> 
-> Ok, I need to retest this with the device-tree.
+So evenif we don't use interrupts property in our DT(patch#21), we need
+to mention interrupts here? You suggest we put interrupts with maxItems: 0?
 
-But don't you compile with `make W=1`? It must warn in such cases.
+I wonder why SA8775p compatible is not in constraint list..
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>> interrupts? BTW, there is no if block for SA8775p binding in this file.
+>
+>
+> Best regards,
+> Krzysztof
+>
 
