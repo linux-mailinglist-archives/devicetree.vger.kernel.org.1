@@ -1,354 +1,141 @@
-Return-Path: <devicetree+bounces-99700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B563396AD17
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 01:52:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F6A96AD46
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 02:28:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EB67B21469
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2024 23:52:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1B1EB237E3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146041D7992;
-	Tue,  3 Sep 2024 23:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pdBZZnyX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DB565C;
+	Wed,  4 Sep 2024 00:27:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8ED1EBFFA;
-	Tue,  3 Sep 2024 23:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534F7391;
+	Wed,  4 Sep 2024 00:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725407549; cv=none; b=n30M1jRz+XPUKwgcphFvgQctGoYyKdgnsWfQRrKbOD8DpY/e1bPAPIOxZ5VW/IrzM0oUIASEihWLTf8ARqAYhmGZzdY3XMjkSDTHanPw/1tu07ZjxHKq6ZfPjDgeYCxhf0IOIoNdb7FweAnW0y8TX8h73S0nHoPbUnkxJ7q/DXs=
+	t=1725409673; cv=none; b=W3hN3d2+NMwWQiqE+VYSgsYpR5roNTwuL0UHYO3512B6mcfNlckAAVzwonXSEobwXu6b7JK0EPGH9hCtpq07kEBcHlWfOTjGmNGqW/KlF0yg7CPZfMWAhSXIOc6sZbnn5yaNnkW5LmWJWYnffrBnIk21SwQgutW8WRlTr9LmSMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725407549; c=relaxed/simple;
-	bh=0XKmHDlWBsUkyTDYuieq/MwUxV+7GE7dgLDzIXruJtM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kt3moxwQpndLFUkPr3jwVhUfSwDD0BnsBjDoCQPe4oX5kZELeoFlB0zWI1NcS/yOCrkyulhH040oFgZkzV8459QxOYUvnW/rat3OKipNEeQWxg0ZasF+MpDOLuirN0x93cfQYGjlcWteTmkqN/IbZslQFJNkazo14gKdkJvSiWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pdBZZnyX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 483LVZEv000810;
-	Tue, 3 Sep 2024 23:52:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	95BPSr22aNtxxkLKJOon+5nTrYaFWvyv57TrPyiflHg=; b=pdBZZnyXcGnQglde
-	fWf/+6lf+TZ68nyFbs+mysF7ei+KL7kFUW395VCuDyNQ9aIQjVpf+rWYgeLtYUQ6
-	IOhEbSXwzAxZvQ0ka+f2vlyrvHVJ0Lo/08zPyw+Gjoq2XFzLgApKF7xy7OHGa6T9
-	pMpmb0fljYLgrq58pKqfOZekWDg5GMoxfhuBR9g5sR9jTBtq5akM0mIBtrRemCbo
-	6LrSZZFG5JbpdsJIxiMU2gtHhDSpvN7dND4Hd9ZqU5OS032AFyDqAncjrjI7muZ7
-	LYQ9cuM1TgGxyqlFsYmIoher/++bfhof3VW2EghL9oMx0Kt9qCrYnLXOat92buc3
-	kBoQrg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41drqe39ux-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Sep 2024 23:52:06 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 483Nq4Mt002628
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Sep 2024 23:52:04 GMT
-Received: from [10.71.114.155] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Sep 2024
- 16:52:04 -0700
-Message-ID: <02cbf2a1-f8e6-4d5a-9d46-5c21f593bcdd@quicinc.com>
-Date: Tue, 3 Sep 2024 16:52:03 -0700
+	s=arc-20240116; t=1725409673; c=relaxed/simple;
+	bh=6onhXgV1s1mDjlTMHyC+Ggv07yKIGjKsJnRg82UX0m0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DhQLnLjE5Y5o+PxkF3SMyaLv7EghHUq9pWQG5dQpzqTyHzDNbGT71wnbH5h/CbhiGQhlQssG6XBgB4KsR3lNyznJJibxFPVSnfOtzi7fxU9ciWk3zcV6rRqxaMXPpqmgzeC+IrENX7ZO9qtU2g4IZE2hiUkteBMLm8C/Qx4BfRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH 0/3] riscv: spacemit: add gpio support for K1 SoC
+Date: Wed, 04 Sep 2024 00:27:22 +0000
+Message-Id: <20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v26 31/33] ALSA: usb-audio: Add USB offload route kcontrol
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <tiwai@suse.com>, <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
-        <bgoswami@quicinc.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
-References: <20240829194105.1504814-1-quic_wcheng@quicinc.com>
- <20240829194105.1504814-32-quic_wcheng@quicinc.com>
- <b682bd8f-2743-42cf-b51f-1444faf4635f@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <b682bd8f-2743-42cf-b51f-1444faf4635f@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2RrMypqgf7f696ke8lsoslZaflVIykZD
-X-Proofpoint-ORIG-GUID: 2RrMypqgf7f696ke8lsoslZaflVIykZD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-03_11,2024-09-03_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- phishscore=0 adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
- impostorscore=0 spamscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2409030190
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGup12YC/02OQWrDMBBFr2K0rmBmJE9tX6VkIY1HqWhjO7JrC
+ iF3r5wU2uX78B7/ZlYtWVczNDdTdM9rnqcK+NIYeQ/TWW0eKxsC8tBRZ8HZD7TnJc+WMaaeUg+
+ OxFRhKZry9yP2dnpy0etXbW7P8S85NI8gEx81QBvDmsWOm8UQHKpqlJGGvTX/j/xar1Bv0CEue
+ ZKtfFoXKIIKOgQcdn9INahW5sslb0PjHQqyZ8XUcex9n4LjrtUkLURmqOSFIpvT/f4DGisaJxM
+ BAAA=
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>, 
+ Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+ Meng Zhang <zhangmeng.kevin@spacemit.com>, 
+ Meng Zhang <kevin.z.m@hotmail.com>, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3228; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=6onhXgV1s1mDjlTMHyC+Ggv07yKIGjKsJnRg82UX0m0=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBm16l2KunxRkOS7t5zOG8f0JH+VIHbba4RUAHEF
+ f7si38Obi+JApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZtepdl8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277ZL7EACG6R6SWRwmFXnCib
+ 1Xo0iAQSJZHYzudSqhQC3EXT1wuEThyod3yu+g+rzpSpX+tNpBOinudlJY0lYudYujiVxQI4jJr
+ 5hL5jiGZzbTUG2t6/XgYBaRd0JgZm0Cd0swGUghOH2Dp0blkHi9bHcQzmsPDplwi/HB+X5V4nJl
+ 2E9EaGZZySQ5RkK4mgY9cA+A7wt4WgGdFX6rmqwFuVZVeCQtmn9FyrfJrGtCqxApwe815anj3Fy
+ VeAwzFB8ZsgoaNheOubn5kwHnkK2nSEjFLabNPuYVJzdewmbRINOxWZcIWdHb2z6XF+JJQA8grR
+ PoZ0NbTHgahivcKYteEjZuAfvRPO/XnE6YsDPDPBEd763w0XvLpGBifa2J4k46WR54jYm49Y8ar
+ fyHbYZdnO6jzzVcI5dDAPqlH/bAKn9MnvWw9xxmqoSsUGOnvDfrB4hmq5QtaE+yyaVGOqPt1r4O
+ rLt5yoTfbNW+GSvBFPrvS6GYKd+L/msl4rmAisPsaC2TdnU6pTAsOoZJ6jnaUquRtbpqvVhI8/I
+ 086vjWh5yRFw7Afg+CnGgf5IlZOmjRENz+0LMfkDFQ3vHln5e9WI0XGHjXoRkhFQXolW/svfd2Y
+ JIkdTO2gTMDz/Cs+Y0A1DC6vyB2CZ4F6bVFdWHf4nRKAz2efDeKp2tpnS13hN0qJ53Fg==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-Hi Pierre,
+The gpio controller of K1 support basic GPIO functions,
+which capable of enabling as input, output. It can also be used
+as GPIO interrupt which able to detect rising edge, failing edge,
+or both. There are four GPIO banks, each consisting of 32 pins.
 
-On 8/30/2024 3:05 AM, Pierre-Louis Bossart wrote:
->
-> On 8/29/24 21:41, Wesley Cheng wrote:
->> In order to allow userspace/applications know about USB offloading status,
->> expose a sound kcontrol that fetches information about which sound card
->> and PCM index the USB device is mapped to for supporting offloading.  In
->> the USB audio offloading framework, the ASoC BE DAI link is the entity
->> responsible for registering to the SOC USB layer.
->>
->> It is expected for the USB SND offloading driver to add the kcontrol to the
->> sound card associated with the USB audio device.  An example output would
->> look like:
-> this is very odd, the offloading driver adds a control to another card?
->
-> That seems like a rather important layering violation.
->
-> I thought it was done the other way, the USB audio card created a
-> control that would point to the other card/device.
-The USB SND offloading vendor driver (qc_audio_offload), which technically co-exists with USB SND core, is the entity that will add the offload kcontrol to the USB audio device's sound card.  Initially, I had the kcontrol creation as part of the USB SND mixer, but I believe Takashi preferred if the vendor driver did it instead.
->
->> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
->> -1, -1 (range -1->255)
->>
->> This example signifies that there is no mapped ASoC path available for the
->> USB SND device.
-> but that control would not even exist if the ASoC-based driver isn't probed.
->
-> It's become really hard to follow, I've been on all this for 1.5hrs and
-> losing track of the design.
+The GPIO driver request one clock source from APBC block,
+In this series, I haven't added the clock support, instead plan
+to fix it after clock driver is implemented/merged.
 
-Hence why it probably is a good idea to leave it within the USB offload vendor driver.  There are checks to ensure that the ASoC based driver is probed/available before the kcontrols are created for a device.  If there are devices that were identified before the ASoC components were probed, then the snd_usb_rediscover_devices() is triggered as part of soc-usb, and that would call the connect_cb() callback to the USB SND vendor offload driver to create the kcontrol.
+The GPIO docs of K1 SoC can be found here, chapter 16.4 GPIO [1]
 
-Thanks
+Note, this patch need two prerequisite series, basic dt[2] and pinctrl[3]
 
-Wesley Cheng
+Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf [1]
+Link: https://lore.kernel.org/all/20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org [2]
+Link: https://lore.kernel.org/all/20240903-02-k1-pinctrl-v4-0-d76c00a33b2b@gentoo.org [3]
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
+---
+Yixun Lan (3):
+      dt-bindings: gpio: spacemit: add support for K1 SoC
+      gpio: spacemit: add support for K1 SoC
+      riscv: dts: spacemit: add gpio support for K1 SoC
 
->> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
->> 0, 0 (range -1->255)
->>
->> This example signifies that the offload path is available over ASoC sound
->> card index#0 and PCM device#0.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
->>  sound/usb/Kconfig                 |  10 +++
->>  sound/usb/Makefile                |   2 +
->>  sound/usb/mixer_usb_offload.c     | 102 ++++++++++++++++++++++++++++++
->>  sound/usb/mixer_usb_offload.h     |  17 +++++
->>  sound/usb/qcom/Makefile           |   2 +-
->>  sound/usb/qcom/qc_audio_offload.c |   2 +
->>  6 files changed, 134 insertions(+), 1 deletion(-)
->>  create mode 100644 sound/usb/mixer_usb_offload.c
->>  create mode 100644 sound/usb/mixer_usb_offload.h
->>
->> diff --git a/sound/usb/Kconfig b/sound/usb/Kconfig
->> index 5cc3eaf53e6b..e3fbf9541d0b 100644
->> --- a/sound/usb/Kconfig
->> +++ b/sound/usb/Kconfig
->> @@ -176,10 +176,20 @@ config SND_BCD2000
->>  	  To compile this driver as a module, choose M here: the module
->>  	  will be called snd-bcd2000.
->>  
->> +config SND_USB_OFFLOAD_MIXER
->> +	tristate "USB Audio Offload mixer control"
->> +	help
->> +	 Say Y to enable the USB audio offloading mixer controls.  This
->> +	 exposes an USB offload capable kcontrol to signal to applications
->> +	 about which platform sound card can support USB audio offload.
->> +	 The returning values specify the mapped ASoC card and PCM device
->> +	 the USB audio device is associated to.
->> +
->>  config SND_USB_AUDIO_QMI
->>  	tristate "Qualcomm Audio Offload driver"
->>  	depends on QCOM_QMI_HELPERS && SND_USB_AUDIO && USB_XHCI_SIDEBAND && SND_SOC_USB
->>  	select SND_PCM
->> +	select SND_USB_OFFLOAD_MIXER
->>  	help
->>  	  Say Y here to enable the Qualcomm USB audio offloading feature.
->>  
->> diff --git a/sound/usb/Makefile b/sound/usb/Makefile
->> index 54a06a2f73ca..2f19f854944c 100644
->> --- a/sound/usb/Makefile
->> +++ b/sound/usb/Makefile
->> @@ -36,3 +36,5 @@ obj-$(CONFIG_SND_USB_US122L) += snd-usbmidi-lib.o
->>  
->>  obj-$(CONFIG_SND) += misc/ usx2y/ caiaq/ 6fire/ hiface/ bcd2000/ qcom/
->>  obj-$(CONFIG_SND_USB_LINE6)	+= line6/
->> +
->> +obj-$(CONFIG_SND_USB_OFFLOAD_MIXER) += mixer_usb_offload.o
->> diff --git a/sound/usb/mixer_usb_offload.c b/sound/usb/mixer_usb_offload.c
->> new file mode 100644
->> index 000000000000..16e2fd634684
->> --- /dev/null
->> +++ b/sound/usb/mixer_usb_offload.c
->> @@ -0,0 +1,102 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <linux/usb.h>
->> +
->> +#include <sound/core.h>
->> +#include <sound/control.h>
->> +#include <sound/soc-usb.h>
->> +
->> +#include "usbaudio.h"
->> +#include "card.h"
->> +#include "helper.h"
->> +#include "mixer.h"
->> +
->> +#include "mixer_usb_offload.h"
->> +
->> +#define PCM_IDX(n)  ((n) & 0xffff)
->> +#define CARD_IDX(n) ((n) >> 16)
->> +
->> +static int
->> +snd_usb_offload_route_get(struct snd_kcontrol *kcontrol,
->> +			  struct snd_ctl_elem_value *ucontrol)
->> +{
->> +	struct device *sysdev = snd_kcontrol_chip(kcontrol);
->> +	int ret;
->> +
->> +	ret = snd_soc_usb_update_offload_route(sysdev,
->> +					       CARD_IDX(kcontrol->private_value),
->> +					       PCM_IDX(kcontrol->private_value),
->> +					       SNDRV_PCM_STREAM_PLAYBACK,
->> +					       ucontrol->value.integer.value);
->> +	if (ret < 0) {
->> +		ucontrol->value.integer.value[0] = -1;
->> +		ucontrol->value.integer.value[1] = -1;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int snd_usb_offload_route_info(struct snd_kcontrol *kcontrol,
->> +				      struct snd_ctl_elem_info *uinfo)
->> +{
->> +	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
->> +	uinfo->count = 2;
->> +	uinfo->value.integer.min = -1;
->> +	/* Arbitrary max value, as there is no 'limit' on number of PCM devices */
->> +	uinfo->value.integer.max = 0xff;
->> +
->> +	return 0;
->> +}
->> +
->> +static struct snd_kcontrol_new snd_usb_offload_mapped_ctl = {
->> +	.iface = SNDRV_CTL_ELEM_IFACE_CARD,
->> +	.access = SNDRV_CTL_ELEM_ACCESS_READ,
->> +	.info = snd_usb_offload_route_info,
->> +	.get = snd_usb_offload_route_get,
->> +};
->> +
->> +/**
->> + * snd_usb_offload_create_ctl() - Add USB offload bounded mixer
->> + * @chip - USB SND chip device
->> + *
->> + * Creates a sound control for a USB audio device, so that applications can
->> + * query for if there is an available USB audio offload path, and which
->> + * card is managing it.
->> + */
->> +int snd_usb_offload_create_ctl(struct snd_usb_audio *chip)
->> +{
->> +	struct usb_device *udev = chip->dev;
->> +	struct snd_kcontrol_new *chip_kctl;
->> +	struct snd_usb_substream *subs;
->> +	struct snd_usb_stream *as;
->> +	char ctl_name[37];
->> +	int ret;
->> +
->> +	list_for_each_entry(as, &chip->pcm_list, list) {
->> +		subs = &as->substream[SNDRV_PCM_STREAM_PLAYBACK];
->> +		if (!subs->ep_num)
->> +			continue;
->> +
->> +		chip_kctl = &snd_usb_offload_mapped_ctl;
->> +		chip_kctl->count = 1;
->> +		/*
->> +		 * Store the associated USB SND card number and PCM index for
->> +		 * the kctl.
->> +		 */
->> +		chip_kctl->private_value = as->pcm_index |
->> +					  chip->card->number << 16;
->> +		sprintf(ctl_name, "USB Offload Playback Route PCM#%d",
->> +			as->pcm_index);
->> +		chip_kctl->name = ctl_name;
->> +		ret = snd_ctl_add(chip->card, snd_ctl_new1(chip_kctl,
->> +				  udev->bus->sysdev));
->> +		if (ret < 0)
->> +			break;
->> +	}
->> +
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(snd_usb_offload_create_ctl);
->> diff --git a/sound/usb/mixer_usb_offload.h b/sound/usb/mixer_usb_offload.h
->> new file mode 100644
->> index 000000000000..3f6e2a8b19c8
->> --- /dev/null
->> +++ b/sound/usb/mixer_usb_offload.h
->> @@ -0,0 +1,17 @@
->> +/* SPDX-License-Identifier: GPL-2.0
->> + *
->> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#ifndef __USB_OFFLOAD_MIXER_H
->> +#define __USB_OFFLOAD_MIXER_H
->> +
->> +#if IS_ENABLED(CONFIG_SND_USB_OFFLOAD_MIXER)
->> +int snd_usb_offload_create_ctl(struct snd_usb_audio *chip);
->> +#else
->> +static inline int snd_usb_offload_create_ctl(struct snd_usb_audio *chip)
->> +{
->> +	return 0;
->> +}
->> +#endif
->> +#endif /* __USB_OFFLOAD_MIXER_H */
->> diff --git a/sound/usb/qcom/Makefile b/sound/usb/qcom/Makefile
->> index a81c9b28d484..4005e8391ab9 100644
->> --- a/sound/usb/qcom/Makefile
->> +++ b/sound/usb/qcom/Makefile
->> @@ -1,2 +1,2 @@
->>  snd-usb-audio-qmi-objs := usb_audio_qmi_v01.o qc_audio_offload.o
->> -obj-$(CONFIG_SND_USB_AUDIO_QMI) += snd-usb-audio-qmi.o
->> \ No newline at end of file
->> +obj-$(CONFIG_SND_USB_AUDIO_QMI) += snd-usb-audio-qmi.o
->> diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
->> index a7ad15404fd1..5b9262a116be 100644
->> --- a/sound/usb/qcom/qc_audio_offload.c
->> +++ b/sound/usb/qcom/qc_audio_offload.c
->> @@ -36,6 +36,7 @@
->>  #include "../helper.h"
->>  #include "../pcm.h"
->>  #include "../power.h"
->> +#include "../mixer_usb_offload.h"
->>  
->>  #include "usb_audio_qmi_v01.h"
->>  
->> @@ -1703,6 +1704,7 @@ static void qc_usb_audio_offload_probe(struct snd_usb_audio *chip)
->>  		sdev->card_idx = chip->card->number;
->>  		sdev->chip_idx = chip->index;
->>  
->> +		snd_usb_offload_create_ctl(chip);
->>  		snd_soc_usb_connect(usb_get_usb_backend(udev), sdev);
->>  	}
->>  
+ .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml |  95 +++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  13 +
+ drivers/gpio/Kconfig                               |   7 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-spacemit-k1.c                    | 454 +++++++++++++++++++++
+ 5 files changed, 570 insertions(+)
+---
+base-commit: 431c1646e1f86b949fa3685efc50b660a364c2b6
+change-id: 20240828-03-k1-gpio-61bf92f9032c
+prerequisite-change-id: 20240626-k1-01-basic-dt-1aa31eeebcd2:v5
+prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
+prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
+prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
+prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
+prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
+prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
+prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
+prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
+prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
+prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
+prerequisite-change-id: 20240708-02-k1-pinctrl-3a2b0ec13101:v4
+prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
+prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
+prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
+prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
+prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
+prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
+prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
+prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
+prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
+prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
+prerequisite-patch-id: 238db182251f2f79a947d16f0112a958d0837878
+prerequisite-patch-id: 75272e3a60f76c6dc417ecb3f56626e663918668
+prerequisite-patch-id: b93bb35db82d199d4d30deefbc34b8413539cf32
+
+Best regards,
+-- 
+Yixun Lan <dlan@gentoo.org>
+
 
