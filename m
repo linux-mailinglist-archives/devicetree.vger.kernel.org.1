@@ -1,144 +1,149 @@
-Return-Path: <devicetree+bounces-100142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A41696C647
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:23:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B655E96C65F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:28:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 113A81F25456
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:23:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73BEF28789B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF321E1A17;
-	Wed,  4 Sep 2024 18:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272261E2030;
+	Wed,  4 Sep 2024 18:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nXafei3N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VyjnTvYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B09E1E132C;
-	Wed,  4 Sep 2024 18:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFC01E4101
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 18:27:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725474191; cv=none; b=m1eci6FQ/F/H3YuMUUPym06bk/c4EG/sLC+cS4VDRCI7z8+kuMV8KOTwOQs7ETnMjaxq68MPRnjAjw+h0jKpjDewscUyOd3VQICMV+VMhFaCt3WQldh34U4GDl5mxlLUhG9TTcgGBUJX9Uzi4J+mEMWCCxu9Uzj/b8Sk3ZfsuuE=
+	t=1725474425; cv=none; b=mRGVKEM68CmDqA+2va6iSYY6YGOhp9SLaNZvWZjlT9zt8eTPCeIlnjHsXDZDpid8Pq1NQpXQfdh/wl5uR49JhIqbCZsovro5esb4ZZGeHuALthLZBNhg9YXR1nNiXoJTgRwYiTutL82E11pxWROxjvy5o0G24QRw7hPFIFNLihM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725474191; c=relaxed/simple;
-	bh=TTwRvU34CHb+ugQ5eoeWqunypcSj31/DtmbNpZuUN/I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ez5TrsApBr8VraKMHJtauDO4NfLErt35f6n1u7asqNYdNWlaEILB8IVqpS4HPp7PgIjIaKL6DZpJrEBKE4lisw58HIOHF8qvjcf2uqv99Yz7W+kCAgpYwb/GqoLdFocbbFDie0coEyhhi0vRExUQXy7+/V/5l/AIfw4Sq3LxEv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nXafei3N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AA48C4CEC2;
-	Wed,  4 Sep 2024 18:23:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725474191;
-	bh=TTwRvU34CHb+ugQ5eoeWqunypcSj31/DtmbNpZuUN/I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nXafei3NQIkr/i/Nu61DfTje1nHOw61D8Y8MFn1/Qg8bNmrsSzeSHwRPq767XMjC5
-	 wa1IIFcC+8ogXFjAlsLwkbNPp3xP9hXOSiMbs/lW4DTARJocL7/17UrWRXFLEOwC2T
-	 wmAAQ7SaTvUwp9wvlh/MHEM0Vsw1cIL1omuK74bb9d/JlGqXxDMXAjSxQnvx6mzFta
-	 /ThlrA+jUkptCdcsyAWLxX2nym94aBlpvzs8YtG9XvxJij0VzVh/zvEn/WO4rhyMq4
-	 WM2/Avs/SDwE32tZVJFtShfPw5UGFd8RltbjIGq/XTPLulkXMBqay4BdHCvf+x2aeH
-	 iROyhl2pQhUCg==
-Message-ID: <86fad872-ccfe-4aa2-906c-c938946af8b7@kernel.org>
-Date: Wed, 4 Sep 2024 20:23:03 +0200
+	s=arc-20240116; t=1725474425; c=relaxed/simple;
+	bh=4i4pYCDdnuvoC9I5jRbdWBqJ+VIMP5XqmpcmNhFgHRw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=LXISr3FzRrJ1t6jNaMEANtq7Pk05l2C9xUoxngLKmj7r5NEXtAkbsdW+66WchYzOK0kAEjw+jyS+eZjsDfLCqb537XkUhtSVu5PlGsX3Mv/fQvgM+eM0VwiCR6XEiJLgQc0ays82V3qLLCGolqwOFVhcW0MWX836ITYZk+++FFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VyjnTvYV; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-71774dcd09aso1598162b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 11:27:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725474423; x=1726079223; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kGkCTIAzVa1IW+ahJzXvZODyf0r3VDtzuI/PWkUEWZA=;
+        b=VyjnTvYVmP/wbN/+1NWzA2NyA11hUPf8A5FqRdCuYoFtVloe8b9cIuWLpFEvyA4ImT
+         aN9FTwzNd9XfwFNV23kp6C+cdrirELO4GCHqJDxVdwZ1TD9/81jTI8fb6QTw7CTKy58v
+         Au0DqGwD03RPWQeQiib/4OCrt/k/C0ZraI2UwYDabbVDn14SA8H94S6WdzMwujndz14B
+         ch7I5ehVcbkAaXDvRrWAwQ1IWRMT1+3wUnpSgKLp06HQwXJyf30beyr5EMZFXpcdszSU
+         u3FmBCNcinReBCdnpkRM1LPk5TUJDGF3aIT5pzy+j1MhwOnHvdLSbofzADVGQk+Eobe8
+         OSqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725474423; x=1726079223;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kGkCTIAzVa1IW+ahJzXvZODyf0r3VDtzuI/PWkUEWZA=;
+        b=ky0lFGOT6J2OiMQ5HRyzb/iw7ASIEnCOTZQlZjTbl1zdYpyGXz5fYcL2tz2273R57X
+         1RVl6bQ+9hnfK52YIk7j876iGhKnA2FxcIQMA0wPiFrrYAvdHXRZ7UCHMeuncFK8ixqp
+         kXzSfwvsHLoDpwx5viYH4nB2cumxhPYNwulBjrLZarBK6hGowEzN9xZ7A/Eij6+oAsAB
+         5a7dTlXWLa0noWk5GGaQoBVeaLHzxNyi2YXf4GwEmE3zv10Y9/sx6m1dZydPnIvpJHKC
+         g9z/CSOHEmtopDxDnh9DQXTzlJOs2QUvfH5qxh08alPpfTWkA5FNiknNKvIMtXxmx8L0
+         FqZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX7Tp000oaHRo8QqQc0emGd7+T+7/nNT4iiloF2G8KqmOgbzxlwayz4IO8d5bpIDmeCgHoVXZhSVetq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGg/441NX/xaF+pZnDZuBpM8PDTqQetOEeJeONbLBok79DvRyV
+	B69RB3n5UTNfegkMRTFgDzWi+VIwCzWN9q+/C/wv80JM8/YMKTLqgAz3GPh/gjjM1/zJeGtCBS6
+	+Z28=
+X-Google-Smtp-Source: AGHT+IG52B8BQjRrNv57uHEeOO2MVWNcL/3nwz38Ns+yt3hYyX35+L9xCIH8/3nref0E0a8VrRTDRA==
+X-Received: by 2002:a05:6a00:ccb:b0:70d:3337:7820 with SMTP id d2e1a72fcca58-7173fa40a69mr15553646b3a.8.1725474422642;
+        Wed, 04 Sep 2024 11:27:02 -0700 (PDT)
+Received: from [127.0.1.1] ([2001:569:fb4d:1a00:31ea:aefe:856f:94e1])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71778534921sm1919787b3a.76.2024.09.04.11.27.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Sep 2024 11:27:02 -0700 (PDT)
+From: Fabien Parent <fabien.parent@linaro.org>
+Date: Wed, 04 Sep 2024 11:26:55 -0700
+Subject: [PATCH] arm64: dts: qcom: msm8939: revert use of APCS mbox for RPM
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Add EPSS L3 compatible for
- SA8775P
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240904171209.29120-1-quic_rlaggysh@quicinc.com>
- <20240904171209.29120-2-quic_rlaggysh@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240904171209.29120-2-quic_rlaggysh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240904-msm8939-rpm-apcs-fix-v1-1-b608e7e48fe1@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAG+m2GYC/x2MSQqAMAwAvyI5G6itYuNXxINL1ByqpQERxL9bP
+ M7AzAPKSVihKx5IfInKeWSoygLmfTw2RlkygzW2NmQcBg2eHGGKAcc4K65yoydbT35q14Yc5DQ
+ mzvrf9sP7flW610ZmAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Luca Weiss <luca@lucaweiss.eu>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Fabien Parent <fabien.parent@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1424;
+ i=fabien.parent@linaro.org; h=from:subject:message-id;
+ bh=4i4pYCDdnuvoC9I5jRbdWBqJ+VIMP5XqmpcmNhFgHRw=;
+ b=owJ4nAFtApL9kA0DAAoBZODx/PMGSbYByyZiAGbYpnTqIesh9v/HtU5PVilt98a0lO6fsZmLU
+ Mnd6de0p7L4DYkCMwQAAQoAHRYhBP2jn9nT5J9GAA1rNWTg8fzzBkm2BQJm2KZ0AAoJEGTg8fzz
+ Bkm2vkgP/j6e8BszZSdMLWgtVN/lpEWATxCgv+jCPkifvn/53kOBGW/dfF+le+fFGHjn1gc+UQ9
+ NR30DoP97WRCuq348fvJ2maE1/kGJl6PumwjoTXB47jIx6QLBXKPzEHocsOuSd0m5oYTfy04U5s
+ r7ZrOgoIF93sFr1QZv259aIAyT2D9SQEneWgICyR0mwq0ySAMO6vQs/QmXeObCLEqEM/z/DxIdQ
+ hokL6/7PjR7YrrPaqXjqUa+OYGxfPV1VzLulqRfwIwIydaACfIVrGUuofMbUSAnnXmw8LPPZbW2
+ tMHJO7qNIZ+Idqny91vDh/O4Xh7gz2u8mOKTdDniwyXSrIVx63PhG7NYblxJC0wcDRGRJzb00Px
+ kf7eqfHPSz+grkI9svXltQor6kK0E5KSiqEGlPVO02H2ojtL/OuivvLQ0UBsFDaIkUMtHW/F2Ai
+ Y8jayM0ZAmclpUzteoJxuNqE9WTJPaGYQS3FYE9SaX6HPdYYaBi3XveWkO3xxNCOK99Yu0pb2Uy
+ Vs4BQKlPEgwrZSklu0G8/TtYqtWPmfR3IomT76FLVzvw5j8Lh/5lq/gOmpJuDBuwd06aY4BSxaJ
+ RGGVDyV6VFsIlGznNP0MBU3nDW74jv00EqOi/5a9Ao/gH783LJfT8XH0LNbC1Z5mjtVlcVyRoNs
+ H+yzl+Q/rbMR+nZmJPJI4dA==
+X-Developer-Key: i=fabien.parent@linaro.org; a=openpgp;
+ fpr=11A9B68923ED03CF691FD70BD87F4F8165D79CD7
 
-On 04/09/2024 19:12, Raviteja Laggyshetty wrote:
-> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on
-> SA8775P SoCs.
-> 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> index 21dae0b92819..de2c59ddc94a 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> @@ -33,6 +33,8 @@ properties:
->                - qcom,sm6375-cpucp-l3
->                - qcom,sm8250-epss-l3
->                - qcom,sm8350-epss-l3
-> +              - qcom,sa8775p-epss-l3-cl0
-> +              - qcom,sa8775p-epss-l3-cl1
+Commit 22e4e43484c4 ("arm64: dts: qcom: msm8939: Use mboxes
+properties for APCS") broke the boot on msm8939 platforms.
 
-Your device driver change suggests that cl0 is compatible with other
-variants.
+The issue comes from the SMD driver failing to request the mbox
+channel because of circular dependencies:
+	1. rpm -> apcs1_mbox -> rpmcc (RPM_SMD_XO_CLK_SRC) -> rpm.
+	2. rpm -> apcs1_mbox -> gcc -> rpmcc (RPM_SMD_XO_CLK_SRC) -> rpm
+	3. rpm -> apcs1_mbox -> apcs2 -> gcc -> rpmcc (RPM_SMD_XO_CLK_SRC) -> rpm
 
-And what about generic fallback here? Can it be used and device will be
-operating correctly?
+To fix this issue let's switch back to using the deprecated
+qcom,ipc property for the RPM node.
+
+Fixes: 22e4e43484c4 ("arm64: dts: qcom: msm8939: Use mboxes properties for APCS")
+Signed-off-by: Fabien Parent <fabien.parent@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+index 46d9480cd464..39405713329b 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+@@ -248,7 +248,7 @@ rpm: remoteproc {
+ 
+ 		smd-edge {
+ 			interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+-			mboxes = <&apcs1_mbox 0>;
++			qcom,ipc = <&apcs1_mbox 8 0>;
+ 			qcom,smd-edge = <15>;
+ 
+ 			rpm_requests: rpm-requests {
+
+---
+base-commit: d8abb73f584772eaafa95a447c90f1c02dba0dec
+change-id: 20240903-msm8939-rpm-apcs-fix-8924b8b7f593
 
 Best regards,
-Krzysztof
+-- 
+Fabien Parent <fabien.parent@linaro.org>
 
 
