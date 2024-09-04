@@ -1,194 +1,235 @@
-Return-Path: <devicetree+bounces-99977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630D596BB41
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:51:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0857896BB71
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:03:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB5C51F21696
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 11:51:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EE132850D7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 12:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 188DF1D2220;
-	Wed,  4 Sep 2024 11:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 040461D5898;
+	Wed,  4 Sep 2024 12:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iW/jHjbm"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aPBVrLlY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622611D2224;
-	Wed,  4 Sep 2024 11:51:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177A31CF294
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 12:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725450677; cv=none; b=Bt8ia0Re9hU+DIU3jPwPlZlX1KBExLiEC/DRFYNQgiM7D+F3lywzY6vHVVQfZSUiEJVKh80NUAFoFnONrMYOPWmob8d3NM/GqrwXVDp0bW7Wl7A7EAbqLFYNXoJLpiGhG7pz/q+M+TVmf21MXqDD+CRci7mOs4JcZ72VaNwRShA=
+	t=1725451382; cv=none; b=ZoStkVRY/VaerxiS/iy8eWGlPtdOAjLi65TrEqUtrTOcx7NFkMeu9JzcqfiL5CeM1n+b7HRMoLCM34tQX2JHfnh2/VxFcBQZlfnhKhY1jESdtuvMQFZFx3r1/G9FS1ZH8zSbqGqcxjUa3SETRDne7tEHM/jUxaxtinJ8esSfK0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725450677; c=relaxed/simple;
-	bh=mhvDv83fUvlG0cQcDPPbM7mplZGVm4T7Ax6vDiwUhj4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eX3zajQ725sA7HpZBN3W1ecIXCXKPtLow8OhQwJgoqGJDn9aLJbRRVCQQMMyM8A5PXeaPXJD6TfMdae0MG+TjebJq0n9yw/mdky9emjEMamaY1BgnC+DZHYDXtXXO5g1KRIUfv+CJZDWweFSbSV0EUai7O0OLa9K5LujauX+vR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iW/jHjbm; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725450675; x=1756986675;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mhvDv83fUvlG0cQcDPPbM7mplZGVm4T7Ax6vDiwUhj4=;
-  b=iW/jHjbmjlOcdjYHoHMpWi9SSSy+zR2KNOikUHfhs7l9RpgS06xPp2No
-   jBL0kWAtqf9BOb9/aue3RraIkGcLv0QpzES5I8LEUhUjoT0CeZ3sT8f3B
-   tjVh7zkO/dZyWaqYrLITFeNasXgnk4uWKlldQcmobsW3wvvZPO2y0EB7S
-   Ox45BzuEy0xyRrf0biGW5gx42P70jd3GQEoIIK6mu/oWjWIbD/zAXOlpz
-   09qFyidlr+ct7e4JqVqTcC8s2evv8udIZEEqG5aCcjJkKZsjeoZa7nnSH
-   7g1G2PVg96oJAill6CQuu/kIcwe+cKgYK5Hqyw3pPCWBZm6Lp10TYtXrl
-   Q==;
-X-CSE-ConnectionGUID: Un9MjzhsSGGCxMTRK8SwrA==
-X-CSE-MsgGUID: upNfyBRxRCi1EKSODS/+Pg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="35466288"
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; 
-   d="scan'208";a="35466288"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 04:51:14 -0700
-X-CSE-ConnectionGUID: 18+KqW5IQcqJSNRThSKdLw==
-X-CSE-MsgGUID: CpGFRzsKQFyyGQGoWy5zNg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; 
-   d="scan'208";a="95976479"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 04 Sep 2024 04:51:11 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sloXU-0007vj-2R;
-	Wed, 04 Sep 2024 11:51:08 +0000
-Date: Wed, 4 Sep 2024 19:50:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Bruel <christian.bruel@foss.st.com>, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	fabrice.gasnier@foss.st.com,
-	Christian Bruel <christian.bruel@foss.st.com>
-Subject: Re: [PATCH v5 2/5] phy: stm32: Add support for STM32MP25 COMBOPHY.
-Message-ID: <202409041913.v0xzfcJ2-lkp@intel.com>
-References: <20240903121303.2953150-3-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1725451382; c=relaxed/simple;
+	bh=DuwkdyX79hVNS4+oaIn+EcYGas76m4q5fKNzc1LrUl8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fVUtkIOgCM+Qkv7b3KOul/GeOOfNbWWdGf0JqAaBu8I5MTjZcXZu9fsZyYy9gUUoXlnFxMmvPrO4wloT/VxED2eTnqi7L2mWNj4INZMVnCgo2x+ROsYV6K9ScTOq7dhv08Nx/1c9gVbkOPUfDrRJVFj71eq6WRc9ET5lYYBRezg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aPBVrLlY; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42bb72a5e0bso56456245e9.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 05:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725451378; x=1726056178; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XvS627k5mguTl6HQhQd8bFFYU60r4VpnIC1+jtP2Fdw=;
+        b=aPBVrLlYN4C9FPAGy0rrkZ5y7IRxnfZvnCfWuU2ZFdaP9q0aIJ2G1Yiq2fLakhTYO5
+         /TMLpGpmOFp2LHHoNPYezjalG56ul5htl0SUHtyvNieZ16YNJXBk7bJDglOJtna7sGHO
+         krPbc9U/MmvEgpMvoyuZfhana31jbSAJURDwu3cQfdZwfB/7dv8IzSw0WXk9Z+bOlBWV
+         +imBw7B4+PlBCxgz/VGYhWGfEkd0H1dfIFdk8D4kAY236BAt+xTlH+fgjb+z3Qr9mNzV
+         zCmhlccnOCjNlszkkqD+fEvI57MC4P9EQmsvGgmzHHFoOMdoTKZc9sGAbPoGtYAgmEm2
+         /ARA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725451378; x=1726056178;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XvS627k5mguTl6HQhQd8bFFYU60r4VpnIC1+jtP2Fdw=;
+        b=AGPGh7nTdzoJELRFNz4zyFkYAV46Cq0DLQHHmMJ1qxO2On0Diva1bwYZ3wuj4IrbBa
+         cwOAYjt1WPwKn/IgX+dzh6L9qZTk4bxcPqA5wyNlhqI64qsZx6b5VIUlEb5aAkAOZqAr
+         SrbaJb3rGu4BRF6ErBoxZn5U/aMXBEw/tr1XyiCHzSHnVvodl71qQ/vue8Ehzi/Y+8HV
+         2rqEd7679WawDHYC1jsAJ9eWMpBVwNH9Ylhm9yMA/rNlt4nz5bh5JcchvW4LsPlTs1Nn
+         w7l0ZCj12KYQP1QdZiYTKLo4k+v0s022JVoDfDxW4hkxGEntYGAvXLVhXmwzk+Xpngp4
+         UFcw==
+X-Forwarded-Encrypted: i=1; AJvYcCXrrTs1Rk/DIV+xcds01Xy0eGcwsqnp9HyCjWxYG6GPhQfoBL8SUkV+olfWtAoIRIPMrFFi+Sga2z0M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2T4siLa5thHpTcYMFz2YXEQpHacnIr1fsdw0XLzHVLIb3fa/+
+	C8SZXuuhwAxcyhSqHUvDZAGQHQteQGLbm82J7qqCUXUxsTZ8TP6jP9AqtZMrlSI=
+X-Google-Smtp-Source: AGHT+IGk8WHoR74IDQuzsi8pl8eeSyosTrzQ54iEQJwg3b8v7wrrUdSm5Dt6azgUY8kcqM6OtW+/Hw==
+X-Received: by 2002:a05:600c:3b8e:b0:426:616e:db8d with SMTP id 5b1f17b1804b1-42bb01b556bmr160676335e9.15.1725451377986;
+        Wed, 04 Sep 2024 05:02:57 -0700 (PDT)
+Received: from [192.168.0.2] (host-95-233-232-76.retail.telecomitalia.it. [95.233.232.76])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee9ba8esm16758198f8f.50.2024.09.04.05.02.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Sep 2024 05:02:56 -0700 (PDT)
+Message-ID: <4826097d-b575-4895-9335-f587bbf3bc89@baylibre.com>
+Date: Wed, 4 Sep 2024 14:01:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240903121303.2953150-3-christian.bruel@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/8] iio: backend: extend features
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dlechner@baylibre.com
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+ <20240829-wip-bl-ad3552r-axi-v0-v1-2-b6da6015327a@baylibre.com>
+ <20240831122313.4d993260@jic23-huawei>
+ <0fbe1321-cc67-4ade-8cbb-cbbaa40d2ca1@baylibre.com>
+ <20240903201157.5352ec04@jic23-huawei>
+Content-Language: en-US
+From: Angelo Dureghello <adureghello@baylibre.com>
+In-Reply-To: <20240903201157.5352ec04@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Christian,
+Hi Jonathan,
 
-kernel test robot noticed the following build warnings:
+On 03/09/24 9:11 PM, Jonathan Cameron wrote:
+> On Mon, 2 Sep 2024 16:03:22 +0200
+> Angelo Dureghello <adureghello@baylibre.com> wrote:
+>
+>> Hi Jonathan,
+>>
+>> thanks for the feedbacks,
+>>
+>> On 31/08/24 1:23 PM, Jonathan Cameron wrote:
+>>> On Thu, 29 Aug 2024 14:32:00 +0200
+>>> Angelo Dureghello <adureghello@baylibre.com> wrote:
+>>>   
+>>>> From: Angelo Dureghello <adureghello@baylibre.com>
+>>>>
+>>>> Extend backend features with new calls needed later on this
+>>>> patchset from axi version of ad3552r.
+>>>>
+>>>> A bus type property has been added to the devicetree to
+>>>> inform the backend about the type of bus (interface) in use
+>>>> bu the IP.
+>>>>
+>>>> The follwoing calls are added:
+>>>>
+>>>> iio_backend_ext_sync_enable
+>>>> 	enable synchronize channels on external trigger
+>>>> iio_backend_ext_sync_disable
+>>>> 	disable synchronize channels on external trigger
+>>>> iio_backend_ddr_enable
+>>>> 	enable ddr bus transfer
+>>>> iio_backend_ddr_disable
+>>>> 	disable ddr bus transfer
+>>>> iio_backend_set_bus_mode
+>>>> 	select the type of bus, so that specific read / write
+>>>> 	operations are performed accordingly
+>>>> iio_backend_buffer_enable
+>>>> 	enable buffer
+>>>> iio_backend_buffer_disable
+>>>> 	disable buffer
+>>>> iio_backend_data_transfer_addr
+>>>> 	define the target register address where the DAC sample
+>>>> 	will be written.
+>>>> iio_backend_bus_reg_read
+>>>> 	generic bus read, bus-type dependent
+>>>> iio_backend_bus_read_write
+>>>> 	generic bus write, bus-type dependent
+>>>>
+>>>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+>>>> ---
+>>>>    drivers/iio/industrialio-backend.c | 151 +++++++++++++++++++++++++++++++++++++
+>>>>    include/linux/iio/backend.h        |  24 ++++++
+>>>>    2 files changed, 175 insertions(+)
+>>>>
+>>>> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+>>>> index a52a6b61c8b5..1f60c8626be7 100644
+>>>> --- a/drivers/iio/industrialio-backend.c
+>>>> +++ b/drivers/iio/industrialio-backend.c
+>>>> @@ -718,6 +718,157 @@ static int __devm_iio_backend_get(struct device *dev, struct iio_backend *back)
+>>>>    	return 0;
+>>>>    }
+>>>   
+>>>> +
+>>>> +/**
+>>>> + * iio_backend_buffer_enable - Enable data buffering
+>>> Data buffering is a very vague term.  Perhaps some more detail on what
+>>> this means?
+>> for this DAC IP, it is the dma buffer where i write the samples,
+>> for other non-dac frontends may be something different, so i kept it
+>> generic. Not sure what a proper name may be, maybe
+>>
+>> "Enable optional data buffer" ?
+> How do you 'enable' a buffer?  Enable writing into it maybe?
 
-[auto build test WARNING on atorgue-stm32/stm32-next]
-[also build test WARNING on robh/for-next linus/master v6.11-rc6 next-20240904]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+for the current case, this is done using the custom register
+of the AXI IP, enabling a "stream".
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Bruel/dt-bindings-phy-Add-STM32MP25-COMBOPHY-bindings/20240903-201737
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-next
-patch link:    https://lore.kernel.org/r/20240903121303.2953150-3-christian.bruel%40foss.st.com
-patch subject: [PATCH v5 2/5] phy: stm32: Add support for STM32MP25 COMBOPHY.
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240904/202409041913.v0xzfcJ2-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240904/202409041913.v0xzfcJ2-lkp@intel.com/reproduce)
+return regmap_set_bits(st->regmap, AXI_DAC_REG_CUSTOM_CTRL,
+                    AXI_DAC_STREAM_ENABLE);
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409041913.v0xzfcJ2-lkp@intel.com/
+Functionally, looks like dma data is processed (sent over qspi)
+when the stream is enabled.
 
-All warnings (new ones prefixed by >>):
+Maybe a name as "stream_enable" would me more appropriate ?
+"Stream" seems less generic btw.
 
->> drivers/phy/st/phy-stm32-combophy.c:524:10: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-     524 |                 return ret;
-         |                        ^~~
-   drivers/phy/st/phy-stm32-combophy.c:509:9: note: initialize the variable 'ret' to silence this warning
-     509 |         int ret, irq;
-         |                ^
-         |                 = 0
-   1 warning generated.
-
-
-vim +/ret +524 drivers/phy/st/phy-stm32-combophy.c
-
-   503	
-   504	static int stm32_combophy_probe(struct platform_device *pdev)
-   505	{
-   506		struct stm32_combophy *combophy;
-   507		struct device *dev = &pdev->dev;
-   508		struct phy_provider *phy_provider;
-   509		int ret, irq;
-   510	
-   511		combophy = devm_kzalloc(dev, sizeof(*combophy), GFP_KERNEL);
-   512		if (!combophy)
-   513			return -ENOMEM;
-   514	
-   515		combophy->dev = dev;
-   516	
-   517		dev_set_drvdata(dev, combophy);
-   518	
-   519		combophy->base = devm_platform_ioremap_resource(pdev, 0);
-   520		if (IS_ERR(combophy->base))
-   521			return PTR_ERR(combophy->base);
-   522	
-   523		if (stm32_combophy_get_clocks(combophy))
- > 524			return ret;
-   525	
-   526		combophy->phy_reset = devm_reset_control_get(dev, "phy");
-   527		if (IS_ERR(combophy->phy_reset))
-   528			return dev_err_probe(dev, PTR_ERR(combophy->phy_reset),
-   529					     "Failed to get PHY reset\n");
-   530	
-   531		combophy->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
-   532		if (IS_ERR(combophy->regmap))
-   533			return dev_err_probe(dev, PTR_ERR(combophy->regmap),
-   534					     "No syscfg specified\n");
-   535	
-   536		combophy->phy = devm_phy_create(dev, NULL, &stm32_combophy_phy_data);
-   537		if (IS_ERR(combophy->phy))
-   538			return dev_err_probe(dev, PTR_ERR(combophy->phy),
-   539					     "failed to create PCIe/USB3 ComboPHY\n");
-   540	
-   541		if (device_property_read_bool(dev, "wakeup-source")) {
-   542			irq = platform_get_irq(pdev, 0);
-   543			if (irq < 0)
-   544				return dev_err_probe(dev, irq, "failed to get IRQ\n");
-   545			combophy->irq_wakeup = irq;
-   546	
-   547			ret = devm_request_threaded_irq(dev, combophy->irq_wakeup, NULL,
-   548							stm32_combophy_irq_wakeup_handler, IRQF_ONESHOT,
-   549							NULL, NULL);
-   550			if (ret)
-   551				return dev_err_probe(dev, ret, "unable to request wake IRQ %d\n",
-   552							 combophy->irq_wakeup);
-   553		}
-   554	
-   555		ret = devm_pm_runtime_enable(dev);
-   556		if (ret)
-   557			return dev_err_probe(dev, ret, "Failed to enable pm runtime\n");
-   558	
-   559		phy_set_drvdata(combophy->phy, combophy);
-   560	
-   561		phy_provider = devm_of_phy_provider_register(dev, stm32_combophy_xlate);
-   562	
-   563		return PTR_ERR_OR_ZERO(phy_provider);
-   564	}
-   565	
-
+>>
+>>>> + * @back: Backend device
+>>>> + *
+>>>> + * RETURNS:
+>>>> + * 0 on success, negative error number on failure.
+>>>> + */
+>>>> +int iio_backend_buffer_enable(struct iio_backend *back)
+>>>> +{
+>>>> +	return iio_backend_op_call(back, buffer_enable);
+>>>> +}
+>>>> +EXPORT_SYMBOL_NS_GPL(iio_backend_buffer_enable, IIO_BACKEND);
+>>>> +
+>>>> +/**
+>>>> +/**
+>>>> + * iio_backend_bus_reg_read - Read from the interface bus
+>>>> + * @back: Backend device
+>>>> + * @reg: Register valule
+>>>> + * @val: Pointer to register value
+>>>> + * @size: Size, in bytes
+>>>> + *
+>>>> + * A backend may operate on a specific interface with a related bus.
+>>>> + * Read from the interface bus.
+>>> So this is effectively routing control plane data through the offloaded
+>>> bus?  That sounds a lot more like a conventional bus than IIO backend.
+>>> Perhaps it should be presented as that with the IIO device attached
+>>> to that bus? I don't fully understand what is wired up here.
+>>>   
+>> Mainly, an IP may include a bus as 16bit parallel, or LVDS, or similar
+>> to QSPI as in my case (ad3552r).
+> ok.
+>
+> If this is a bus used for both control and dataplane, then we should really
+> be presenting it as a bus (+ offload) similar to do for spi + offload.
+>
+>> In particular, the bus is physically as a QSPI bus, but the data format
+>> over it is a bit different.
+>>
+>> So ad3552r needs this 5 lanes bus + double data rate to reach 33MUPS.
+>>
+>> https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+>>
+> Jonathan
+>
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  ,,,      Angelo Dureghello
+:: :.     BayLibre -runtime team- Developer
+:`___:
+  `____:
+
 
