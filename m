@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-100028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6A2896BEAB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:37:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B3496BEAD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:37:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78C962849BE
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:37:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EE5F282B30
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5053C1DB930;
-	Wed,  4 Sep 2024 13:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A543F1DC040;
+	Wed,  4 Sep 2024 13:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Icl/vu/W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NrRlqAp/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2996E1DB929;
-	Wed,  4 Sep 2024 13:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE841DA0E5;
+	Wed,  4 Sep 2024 13:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725457005; cv=none; b=aGYsdfER0jcYnVi2sey7fq9yR9LppPKyel/5wf0c1oFtS/r9aLpOtMD4LWnJvVLkNCbruNhuHQQqjwIZK6b5l2iUsvpg+eNB5DcqEWh5/AJiJQtmq8xccAMoCvDLSfcth0K+v6qINBD6ewpjrBXSWGrUjYBGKOQqs7782tizrJ8=
+	t=1725457006; cv=none; b=Vu7B3XZ4n/2Di8/d5Zb9Ac2WkmKGDvcLTgLrj3Be148GQYx4xPHFHDgVp70j+sWBlUs/gg70bayAB43r50PddtEqOP16qLRhoZzdonJcLNc5+Ie8YoGAz6XW/1SNajpLILxYNX0/Wt69RfOmTSrQg/OPpyk8ubT0xFJ6gjeoK5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725457005; c=relaxed/simple;
-	bh=oDjE+vXredknBm8QeGQHFI6cPwk2C9o9aiXVHeKEOvk=;
+	s=arc-20240116; t=1725457006; c=relaxed/simple;
+	bh=DAx5yaNxbupsPmRr61ahZAIGEMX7CidLtwjScbEGCBM=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Ngf7sSMpZGHuL2rT8bgpbIhpmu+Grhw7U30bChGtOZxLl7MQVMZAbIRm+OlN/90InnYNG//tapFPrSSPVNPSwUzm4Nc6kLOgis2ANTV/T589sNRD/rlkAKHBJ2YzfvzH9AAEKJQ3yGOwW/WLraDC5dkC/+hsoW+G7eks1CaZFqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Icl/vu/W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78628C4CEC6;
-	Wed,  4 Sep 2024 13:36:44 +0000 (UTC)
+	 Message-Id:Subject; b=oI671fCMtyzesAnyUwZGZYgIGM7TY3KeAksUiAQpTzKvjBv+HgmbHgHbJVoJ1IZ7KKR53IK+j8N1az8HcPkDC+xtpvVapZoEGYL6cO95z5yyKA9XFwDCk2NWbX89jzg13XWDPyYDT/akxvMtkCPygNyf9a5kcbtNQB6iZK9IRO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NrRlqAp/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8E85C4CEC9;
+	Wed,  4 Sep 2024 13:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725457004;
-	bh=oDjE+vXredknBm8QeGQHFI6cPwk2C9o9aiXVHeKEOvk=;
+	s=k20201202; t=1725457006;
+	bh=DAx5yaNxbupsPmRr61ahZAIGEMX7CidLtwjScbEGCBM=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Icl/vu/Wf1RLsvO9UJzE8rJ+8YBop70OmuI36qqXKJKayH+tv06QweaS4bP4ZvccR
-	 1YpdAc+scFoqqiX/xBm0XAyYbGeDTFAecogVLZftdiSLbwaCxrdSoGtP8d0vytpA4p
-	 YFYgN0Luj2eR0ivVh/AC3uVrDdBhPZv4qVatD526JlS/6PwprLTOw9G0K/T12uMhSz
-	 RtnRGU7SAsdLnWeUVlXGNKDdFOBVMtylOpBC+UwEM364bx7Z2nw2b+XxF1NQjwlvkM
-	 0JwhukaJMDDZ8lucNpvIa/B+i2aG04xpYOGtFFpnWpk+gnh4N/Ij9eVnv11gq5vlxX
-	 t2Pj2hishU32A==
-Date: Wed, 04 Sep 2024 08:36:43 -0500
+	b=NrRlqAp/WFW+Oq2Ftat/A2P8I1VySWc85QHUUoRUcxYL6PjJDrjDiTnbz6SC+JAkF
+	 o2n5WIxMXEyHcUxt3OIAO5ohHONiBmIn5Kq/jM5y3eDMeHESG5z4lme87AN560brTX
+	 olb47aVkGd5yy7sYy1hxyzAQ25am23pF20/VdhUnQzFTNnAc7C3T+Q0jjEWh4NpqNl
+	 0k8eVrjOBjs/OTzCUs8T+sLTcaCxFh1IiNL5Lu+pOFV8nBp7fRD5inSV1nPmojxPDF
+	 eTKuRql5uDzhSQclcqZoS4gkQTslVvrPJCdB0F06ObO9IGlkr3zYLViyTw+JSrMtHV
+	 oXTYMH/ffANrg==
+Date: Wed, 04 Sep 2024 08:36:44 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,49 +51,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, Jonas Karlman <jonas@kwiboo.se>, 
- linux-kernel@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Caleb Connolly <caleb.connolly@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+ cros-qcom-dts-watchers@chromium.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Dragan Simic <dsimic@manjaro.org>, Chukun Pan <amadeus@jmu.edu.cn>
-In-Reply-To: <20240904111456.87089-1-bigfoot@classfun.cn>
-References: <20240904111456.87089-1-bigfoot@classfun.cn>
-Message-Id: <172545685977.2410524.10394848640957143488.robh@kernel.org>
-Subject: Re: [PATCH 0/3] Add support for Ariaboard Photonicat RK3568
+ Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240904-b4-rb3gen2-usb2-v1-0-b858e681195e@linaro.org>
+References: <20240904-b4-rb3gen2-usb2-v1-0-b858e681195e@linaro.org>
+Message-Id: <172545686071.2410562.12642857108140027043.robh@kernel.org>
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: rb3gen2: add second USB port
 
 
-On Wed, 04 Sep 2024 19:14:53 +0800, Junhao Xie wrote:
-> Add dts for Ariaboard Photonicat RK3568.
+On Wed, 04 Sep 2024 13:16:23 +0200, Caleb Connolly wrote:
+> Make the necessary adjustments to enable the secondary USB controller,
+> which is routed directly to a micro-USB port. This is intended for
+> debugging via EUD, and is otherwise useful as a host-facing port with
+> mass storage or network gadgets, allowing the type-c to be used with a
+> hub.
 > 
-> This series bring support for:
-> * Debug UART
-> * SDIO QCA9377 WiFi and Bluetooth
-> * M.2 E-Key PCIe WiFi and Bluetooth
-> * M.2 B-Key USB Modem WWAN
-> * Ethernet WAN Port
-> * MicroSD Card slot
-> * eMMC
-> * HDMI Output
-> * Mali GPU
-> * USB Type-A
+> Peripheral mode has been tested with a network gadget, but I don't have
+> the necessary hardware on hand to test host mode.
 > 
+> ---
+> Caleb Connolly (3):
+>       arm64: dts: qcom: sc7280: convert usb_2 to support multiple ports
+>       arm64: dts: qcom: qcs6490-rb3gen2: make node names consistent
+>       arm64: dts: qcom: qcs6490-rb3gen2: describe secondary USB port
 > 
-> Junhao Xie (3):
->   dt-bindings: vendor-prefixes: Add Shanghai Novotech Ariaboard
->   dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
->   arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 75 ++++++++++++++++++++++++++--
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi         | 18 +++++--
+>  2 files changed, 87 insertions(+), 6 deletions(-)
+> ---
+> base-commit: ecc768a84f0b8e631986f9ade3118fa37852fef0
 > 
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../rockchip/rk3568-ariaboard-photonicat.dts  | 598 ++++++++++++++++++
->  4 files changed, 606 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dts
-> 
-> --
-> 2.46.0
+> // Caleb (they/them)
 > 
 > 
 > 
@@ -113,12 +105,29 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y rockchip/rk3568-ariaboard-photonicat.dtb' for 20240904111456.87089-1-bigfoot@classfun.cn:
+New warnings running 'make CHECK_DTBS=y qcom/qcs6490-rb3gen2.dtb' for 20240904-b4-rb3gen2-usb2-v1-0-b858e681195e@linaro.org:
 
-arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dtb: phy@fe8c0000: 'phy-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
-arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dtb: rfkill-modem: 'reset-gpios' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/rfkill-gpio.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: usb@8cf8800: usb@8c00000:ports:port@1: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: usb@8cf8800: usb@8c00000: Unevaluated properties are not allowed ('ports' was unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: usb@8cf8800: usb@8c00000: Unevaluated properties are not allowed ('ports' was unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: usb@8c00000: ports:port@1: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: usb@8c00000: Unevaluated properties are not allowed ('ports' was unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: connector-usb2: compatible: 'oneOf' conditional failed, one must be fixed:
+	['gpio-usb-b-connector'] is too short
+	'gpio-usb-b-connector' is not one of ['usb-a-connector', 'usb-b-connector', 'usb-c-connector']
+	'samsung,usb-connector-11pin' was expected
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: connector-usb2: 'anyOf' conditional failed, one must be fixed:
+	'vbus-gpios' is a required property
+	'id-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: connector-usb2: Unevaluated properties are not allowed ('compatible', 'id-gpio', 'vbus-gpio' were unexpected)
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
 
 
 
