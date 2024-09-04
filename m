@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-100059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F73C96C074
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:30:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C761A96C0A5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 16:33:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78469B2194F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:30:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FDF528B117
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD0C2BD0D;
-	Wed,  4 Sep 2024 14:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B941DC05E;
+	Wed,  4 Sep 2024 14:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gw5+6Lru"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="gXMaL+Bl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4A15C96;
-	Wed,  4 Sep 2024 14:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5DB1DC061
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 14:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725460207; cv=none; b=me18HeMv54gU0GLRlFxyhD9PAQcn6zotz6QAeOjuF+BW9GRsje7/ZRGo6mEc9TVJcYEHLXC1E+kAORKobbtcS9PeNaDNFXd8wJtHEB//r8pFoMcszK5Xj5YmKC9sK/sqrgYHnGe1pDWScDXPoJU2NF6Xg64W6Z8LrkAiNjnOAlo=
+	t=1725460320; cv=none; b=NjWSvY8VdnTYN9ATVKO3VCWkDL3VzFC9Ay+8o/7lZ1lSTeAXsve/tQN84K/1/25GL5AXAE6pUO5VLiUatuBAOdPtDmFASiZnjO/Usj2AI21xItRkuQnr3rdR791rz+w2OXxI35sw/gGlNX7CJyAOI9a1eRXvK1oWxWtlHE2dv3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725460207; c=relaxed/simple;
-	bh=IGbzTX5KEMiOqp/btvJ1ccQvnyeDHf44Oxf/FGejqvI=;
+	s=arc-20240116; t=1725460320; c=relaxed/simple;
+	bh=/ahFHEGpsirSSTp4k1XZpAFQTxqOnQdGmuXxOX/+TQM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WRHYE0L6C4sOLIdV5AHD7QNnFcePc+p8lQ/CSmEmVqoL6dq6yZPHw5hInxNgas9I5Apr+lxM8rlNOFLR0wsnwQf8Gst2IX2zrqNsiQZUeAJgvKYTIn6vWrqB5aNq5/plLiZVWHgmwn6zs8+A8vCC2u+EzZJMTHDJ+C2PisZKUNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gw5+6Lru; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF92EC4CEC2;
-	Wed,  4 Sep 2024 14:29:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725460206;
-	bh=IGbzTX5KEMiOqp/btvJ1ccQvnyeDHf44Oxf/FGejqvI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gw5+6LrupMCviKvLpbyxwQl6v/VPtEtiCInsUzN21yDLYNvAh2KUEHQH2txBVglAo
-	 Bk+eOg5sZgyG7I0KR4rzFmIEUhJRQ/Q12D3hI3cyiJZVVUd8OzL63w8FFWtzImM7RT
-	 WcN+SP8JJT+Om8z05RBN4wfGSVT3UWfiIegxoPdzHEDNhNabk+128mWyfAvYKMbBHo
-	 XGg6IBIp/bkR3O7YKhmhqAmCqpXxKew2wOm6id79OZdMKaRtv6Ey7StboL101Mf8pU
-	 xUJxeZ0H98YDzFet19o2GdTx5kI9PMulaDv9g3R1YIOuit0PxbEgRUbAy8iBRAd3Hp
-	 80+WccgKKSBSg==
-Message-ID: <51e9fa5a-ac6f-42e8-85e5-7c5c02075a56@kernel.org>
-Date: Wed, 4 Sep 2024 16:29:52 +0200
+	 In-Reply-To:Content-Type; b=JPDYtZFvoAPF/nDCw71ZjcAlKoaRP43jBRnX8ozDXeJMgSk+QTEnYGgogzoTMOyXg6XFdNmNHOahP9lourpE3KDhm0bebC0Qdy7ftLgwn9ZUYj5Cey8z6ZGUvRm8mPpzqIzHLmTeQ4qCP2U41aFAaFsxxyfQorbJ00e/3BwK+94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=gXMaL+Bl; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-82a24dec9cbso29163439f.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 07:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1725460318; x=1726065118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7zATIwTHrXGiuEASzCytr2UxxMjPOWVj85mDZ7xtUWY=;
+        b=gXMaL+Bl6sZTwN9Vv7KsGRLMCNwSelpdWNRrQSAAsdiRznRbhh3qPgFk59mKUfpAIk
+         6K2UJHWSx1RlEoJXR60BAgMfVFJ1EuOHXpDEtfV6vYhIFRf+8EbtVOrjlTZHjQWk3ai4
+         r7ieVWJQtWoYesHOs3qONX9l13RTrWj2NMNGXRMF8MMeX2k3r19ADDNZtSFmwN/GygCv
+         3j0yCcU4dW3+36nCwUkGfVfvTg7zbh2L3ZAUsyLQ2vJaq6Fm5uhBIMaJbJAycsud5DRs
+         pBnPkgR5ze69JcNcX6rzWqwinJYtxKmMs4tnF+m/USe14gEDSDDvulNAtgmvCqZ4r4G4
+         GUwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725460318; x=1726065118;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7zATIwTHrXGiuEASzCytr2UxxMjPOWVj85mDZ7xtUWY=;
+        b=OqlURuOsJSmscs99pey1WXNTluryO1X7PfrEdXJIKN3+I/aHg7zn4yRHHjf+qtzXE+
+         gbUuNRuue0KvlcWYdQT0LeERb8UdPbBCC9zs4DNQY4+0klcFKtooIWlaEajBs74q0eDq
+         7we4ysz92Wr9gThVozT2fvyys3XTk1dcmQdytgwQpxcATz0612QcfImOauPJIbVC4JLi
+         k/owaZ52VTbdKVzzHZX6V5AqsW9z6lVsM0pu9hMoGo8RSTj5te6MuPJ2h/N3gGYleBCK
+         KNRTdXcF+QOnNly3541hIqO7lk8zZGbacqaTF+wnFW7UgLgc1CcGyd/foMwDt5qGtov2
+         IzTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVp0ojiNYWw2WmRE/v1EiGlW19kJ99b1Man7Pv8njACKbY8kkE4xY/Kw90Vdzvan1Owa1Ze/KWN05+O@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxTqVMjrDdcH7dqRjjnjThCaUKK+e48AFCYZMXx/cSpivRddQZ
+	+rSgY3LSSX/2EZMnwSZW3JD7YsXDvi9rTUzEclA00WyWNBivoi00UAiPcxoLkdE=
+X-Google-Smtp-Source: AGHT+IGm922K5aFjLbKMqisIulQGXLK1ylnjjkQghXfkGhr+kR8pZuYKfC5l0rEzVrrQHd7K7bQv8A==
+X-Received: by 2002:a6b:7e0c:0:b0:806:3dac:5081 with SMTP id ca18e2360f4ac-82a7920d595mr183512639f.7.1725460317814;
+        Wed, 04 Sep 2024 07:31:57 -0700 (PDT)
+Received: from [100.64.0.1] ([147.124.94.167])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ced2ee8559sm3114240173.174.2024.09.04.07.31.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Sep 2024 07:31:57 -0700 (PDT)
+Message-ID: <b6de8769-7e4e-4a19-b239-a39fd424e0c8@sifive.com>
+Date: Wed, 4 Sep 2024 09:31:55 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,156 +76,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/21] dt-bindings: cpufreq: qcom-hw: document support
- for SA8255p
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
- viresh.kumar@linaro.org, herbert@gondor.apana.org.au, davem@davemloft.net,
- sudeep.holla@arm.com, andi.shyti@kernel.org, tglx@linutronix.de,
- will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
- jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
- amitk@kernel.org, thara.gopinath@gmail.com, broonie@kernel.org,
- cristian.marussi@arm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
- wim@linux-watchdog.org, linux@roeck-us.net, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
- arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-i2c@vger.kernel.org, iommu@lists.linux.dev,
- linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
- kernel@quicinc.com, quic_psodagud@quicinc.com
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-15-quic_nkela@quicinc.com>
- <odg5ssqu2soaqp6m4rambj7qhqiyp7othkvu4v6fu6xtuhbdho@vccya6qcwgoz>
- <1b831fc1-9360-4038-91b2-b2c0cea513ed@quicinc.com>
- <baf00e50-10b2-410b-9c56-713564a2d1b9@kernel.org>
- <c163149b-bdf1-423b-ab51-f734d00277fe@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 09/10] RISC-V: KVM: Allow Smnpm and Ssnpm extensions
+ for guests
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ linux-kernel@vger.kernel.org, Anup Patel <anup@brainfault.org>,
+ Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
+ Atish Patra <atishp@atishpatra.org>, Evgenii Stepanov <eugenis@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
+ kvm-riscv@lists.infradead.org
+References: <20240829010151.2813377-1-samuel.holland@sifive.com>
+ <20240829010151.2813377-10-samuel.holland@sifive.com>
+ <CAK9=C2WjraWjuQCeU2Y4Jhr-gKkOcP42Sza7wVp0FgeGaD923g@mail.gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <c163149b-bdf1-423b-ab51-f734d00277fe@quicinc.com>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <CAK9=C2WjraWjuQCeU2Y4Jhr-gKkOcP42Sza7wVp0FgeGaD923g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/09/2024 16:19, Nikunj Kela wrote:
+Hi Anup,
+
+On 2024-09-04 7:17 AM, Anup Patel wrote:
+> On Thu, Aug 29, 2024 at 6:32 AM Samuel Holland
+> <samuel.holland@sifive.com> wrote:
+>>
+>> The interface for controlling pointer masking in VS-mode is henvcfg.PMM,
+>> which is part of the Ssnpm extension, even though pointer masking in
+>> HS-mode is provided by the Smnpm extension. As a result, emulating Smnpm
+>> in the guest requires (only) Ssnpm on the host.
+>>
+>> Since the guest configures Smnpm through the SBI Firmware Features
+>> interface, the extension can be disabled by failing the SBI call. Ssnpm
+>> cannot be disabled without intercepting writes to the senvcfg CSR.
+>>
+>> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+>> ---
+>>
+>> (no changes since v2)
+>>
+>> Changes in v2:
+>>  - New patch for v2
+>>
+>>  arch/riscv/include/uapi/asm/kvm.h | 2 ++
+>>  arch/riscv/kvm/vcpu_onereg.c      | 3 +++
+>>  2 files changed, 5 insertions(+)
+>>
+>> diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
+>> index e97db3296456..4f24201376b1 100644
+>> --- a/arch/riscv/include/uapi/asm/kvm.h
+>> +++ b/arch/riscv/include/uapi/asm/kvm.h
+>> @@ -175,6 +175,8 @@ enum KVM_RISCV_ISA_EXT_ID {
+>>         KVM_RISCV_ISA_EXT_ZCF,
+>>         KVM_RISCV_ISA_EXT_ZCMOP,
+>>         KVM_RISCV_ISA_EXT_ZAWRS,
+>> +       KVM_RISCV_ISA_EXT_SMNPM,
+>> +       KVM_RISCV_ISA_EXT_SSNPM,
+>>         KVM_RISCV_ISA_EXT_MAX,
+>>  };
+>>
+>> diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+>> index b319c4c13c54..6f833ec2344a 100644
+>> --- a/arch/riscv/kvm/vcpu_onereg.c
+>> +++ b/arch/riscv/kvm/vcpu_onereg.c
+>> @@ -34,9 +34,11 @@ static const unsigned long kvm_isa_ext_arr[] = {
+>>         [KVM_RISCV_ISA_EXT_M] = RISCV_ISA_EXT_m,
+>>         [KVM_RISCV_ISA_EXT_V] = RISCV_ISA_EXT_v,
+>>         /* Multi letter extensions (alphabetically sorted) */
+>> +       [KVM_RISCV_ISA_EXT_SMNPM] = RISCV_ISA_EXT_SSNPM,
 > 
-> On 9/4/2024 6:17 AM, Krzysztof Kozlowski wrote:
->> On 04/09/2024 14:27, Nikunj Kela wrote:
->>> On 9/3/2024 11:26 PM, Krzysztof Kozlowski wrote:
->>>> On Tue, Sep 03, 2024 at 03:02:33PM -0700, Nikunj Kela wrote:
->>>>> Add compatible for the cpufreq engine representing support on SA8255p.
->>>>>
->>>>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
->>>>> ---
->>>>>  .../bindings/cpufreq/cpufreq-qcom-hw.yaml        | 16 ++++++++++++++++
->>>>>  1 file changed, 16 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
->>>>> index 1e9797f96410..84865e553c8b 100644
->>>>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
->>>>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
->>>>> @@ -34,6 +34,7 @@ properties:
->>>>>          items:
->>>>>            - enum:
->>>>>                - qcom,qdu1000-cpufreq-epss
->>>>> +              - qcom,sa8255p-cpufreq-epss
->>>>>                - qcom,sa8775p-cpufreq-epss
->>>>>                - qcom,sc7280-cpufreq-epss
->>>>>                - qcom,sc8280xp-cpufreq-epss
->>>>> @@ -206,6 +207,21 @@ allOf:
->>>>>          interrupt-names:
->>>>>            minItems: 2
->>>>>  
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            enum:
->>>>> +              - qcom,sa8255p-cpufreq-epss
->>>>> +    then:
->>>>> +      properties:
->>>>> +        reg:
->>>>> +          minItems: 2
->>>>> +          maxItems: 2
->>>>> +
->>>>> +        reg-names:
->>>>> +          minItems: 2
->>>>> +          maxItems: 2
->>>> What about interrupts? You need to constrain each of such lists.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>> Interrupts are not required, I still need to put constraints for
->> It's irrelevant whether they are required or not. Each property should
->> be narrowed.
+> Why not use KVM_ISA_EXT_ARR() macro here ?
+
+Because the extension name in the host does not match the extension name in the
+guest. Pointer masking for HS mode is provided by Smnpm. Pointer masking for VS
+mode is provided by Ssnpm at the hardware level, but this needs to appear to the
+guest as if Smnpm was implemented, since the guest thinks it is running on bare
+metal.
+
+>>         KVM_ISA_EXT_ARR(SMSTATEEN),
+>>         KVM_ISA_EXT_ARR(SSAIA),
+>>         KVM_ISA_EXT_ARR(SSCOFPMF),
+>> +       KVM_ISA_EXT_ARR(SSNPM),
+>>         KVM_ISA_EXT_ARR(SSTC),
+>>         KVM_ISA_EXT_ARR(SVINVAL),
+>>         KVM_ISA_EXT_ARR(SVNAPOT),
+>> @@ -129,6 +131,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
+>>         case KVM_RISCV_ISA_EXT_M:
+>>         /* There is not architectural config bit to disable sscofpmf completely */
+>>         case KVM_RISCV_ISA_EXT_SSCOFPMF:
+>> +       case KVM_RISCV_ISA_EXT_SSNPM:
 > 
-> So evenif we don't use interrupts property in our DT(patch#21), we need
-> to mention interrupts here? You suggest we put interrupts with maxItems: 0?
-
-I don't understand. You use three quite separate statements. "Not
-required", "don't use" and here "maxItems: 0" which means not allowed.
-
-All of these mean something else and I keep guessing and responding
-according to what you write. Probably half of my advises are just trash,
-because it turns out it is something entirely else than what I read.
-
-Make a decision how the hardware looks like.
-
+> Why not add KVM_RISCV_ISA_EXT_SMNPM here ?
 > 
-> I wonder why SA8775p compatible is not in constraint list..
-> 
->>> interrupts? BTW, there is no if block for SA8775p binding in this file.
+> Disabling Smnpm from KVM user space is very different from
+> disabling Smnpm from Guest using SBI FWFT extension.
+
+Until a successful SBI FWFT call to KVM to enable pointer masking for VS mode,
+the existence of Smnpm has no visible effect on the guest. So failing the SBI
+call is sufficient to pretend that the hardware does not support Smnpm.
+
+> The KVM user space should always add Smnpm in the
+> Guest ISA string whenever the Host ISA string has it.
+
+I disagree. Allowing userspace to disable extensions is useful for testing and
+to support migration to hosts which do not support those extensions. So I would
+only add extensions to this list if there is no possible way to disable them.
+
+> The Guest must explicitly use SBI FWFT to enable
+> Smnpm only after it sees Smnpm in ISA string.
+
+Yes, exactly, and the purpose of not including Smnpm in the switch case here is
+so that KVM user space can control whether or not it appears in the ISA string.
+
+Regards,
+Samuel
+
+>>         case KVM_RISCV_ISA_EXT_SSTC:
+>>         case KVM_RISCV_ISA_EXT_SVINVAL:
+>>         case KVM_RISCV_ISA_EXT_SVNAPOT:
+>> --
+>> 2.45.1
 >>
 >>
->> Best regards,
->> Krzysztof
->>
-
-Best regards,
-Krzysztof
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
+> Regards,
+> Anup
 
 
