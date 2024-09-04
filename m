@@ -1,54 +1,48 @@
-Return-Path: <devicetree+bounces-100139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CB096C5FD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CB9496C626
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:16:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5F1C284F3A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:08:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BD4C283AE4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 18:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642511E1A04;
-	Wed,  4 Sep 2024 18:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49051E1330;
+	Wed,  4 Sep 2024 18:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="MHnz3neW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s8gHIkcz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED7E2AE9F;
-	Wed,  4 Sep 2024 18:08:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB411DC1A2;
+	Wed,  4 Sep 2024 18:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725473311; cv=none; b=ZbXh5O89hZ3UbPeNoO12Voj94T9u4Kz//K3s3f+saOxysghbByIxsBN051Im4K6AUNx9sZ7jh4l9rwnG4yY4U0FnbQ5GS/x4ALTbWTjcYv0c/0v5ap5lpdqWTB5KG4xvPTocnbYwgsHA4QF1NGG9lYvflMYrWvMRsvdsy3YSlVU=
+	t=1725473790; cv=none; b=rIGv1obDIMfVYCMsA4dvAia2YtyArp/fuze0g6T95cTDBiUXiKtsg51XMkR+wp9WCwFDkkK86H2DlVx6FtVoauuM2LrixiyUPSOttuMGsdrt3c+fKh+DATpWOMHnU8kQ4c8GwscyhC7HdQroViCS6+SFnblsJDKTG6w+qzj33hY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725473311; c=relaxed/simple;
-	bh=Crs52THU8yXegVqfzdcrWE1nNmneQ2UQDe+hTPfQh1M=;
+	s=arc-20240116; t=1725473790; c=relaxed/simple;
+	bh=mtx1u1ixv5Azx4m3nJAArYmfaHcyt0YeqfamjYc1Nks=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I1o9OTQgGCzekxklsn+F4b7P8Xnt0BBP15urEEfG50b1hJka36MelPzpnBUzmJvevqPPYtCSgh7J3KINcrLO6wqLU3sIh/epa9lm8ml7T/c5gdS7+TbZyNTYY/8gBC8DaxLUw6Mr3i2B5i+uq0mCK9knpUjM59Z88xdL6mgKyiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=MHnz3neW; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id B9D0888B67;
-	Wed,  4 Sep 2024 20:08:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1725473302;
-	bh=L18sf0D+NFLPea49QaTj6x+Tw7vEHatae6RqHf4EagU=;
+	 In-Reply-To:Content-Type; b=lBZpzFPFUKOrgOLqu4UHBz6Du+aNFEMlSB8R+hSqUQBRNOOH/NG0siJ7j9Q9zN0RrZj2zf1T8GeHXifcaG17Yg/Dtem6J3ja5/uo3HvsPQnW3BH9Z+Dk2fis6qL7ez9UNFnmihaPI7C0iEnrir7pTw8xdI5hkQ2uRH0QGCQI2Qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s8gHIkcz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B8C8C4CEC2;
+	Wed,  4 Sep 2024 18:16:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725473790;
+	bh=mtx1u1ixv5Azx4m3nJAArYmfaHcyt0YeqfamjYc1Nks=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MHnz3neWlfnxeOV9Xw46uLobn1Bnc104W0Lm3DX6ZnWYVpzABX3kAHuZImk+2b3mD
-	 5vI7fINA0tVbwvBDXhv+uDstOAWHRNgTfOK6Gc1KwVbvZcDEsBXpZEWZgUoAud70xp
-	 1/Tkbe7c0VN5REww/K9yNTDfdMzdZ8eZg3BndE3YCvTqoU7tJq279jST1vLddsKeqG
-	 32NVIBcDJKVohxmnysYHYnv9HdzLy4HmdeblUs9FkSaGUvTHTdW+kVdu7p9q/jZ6Br
-	 KWYZb0iR17gvRWSXgspu/l0++2rS9UN3pn911TSkHsJZSk9AfIw0teFTeT8ZehaFLk
-	 g9Jyd+54WjCuQ==
-Message-ID: <6d73f3da-315b-485c-a1d5-03d5ea378922@denx.de>
-Date: Wed, 4 Sep 2024 19:45:44 +0200
+	b=s8gHIkcz2xOM4HbTOVNS3t/CSjJuiz/SquZcIAE4+9oFfraveIyH7bnKzDde+xfRh
+	 57GCS6SzxY/QRQKZEfwoaGEJjA+ieEV6OhJ39RHOCeH7+Z/kxMSD0yVemGs24qowkI
+	 RPrlQVIUL5Kf251NRVS0Y2lulCFuO1SGzasQc9Z7ioivIoOaJhzfKRtIxGWfspEUDG
+	 Ehbu/9BrafykCwSNTNvL+zGLnqbbQsVP/CPIX4O8vKH3gSqYLPkl4F6bObRUxSAKSs
+	 ihJRipmGJUx0IIJeeaNIJNe61zF/Or7jzmrwF+sw+SJ5tr+EJ4SUCmJypfCXzaMniW
+	 mBtDUTzN+a4rw==
+Message-ID: <ec59c6d0-0ef9-482f-8aa6-42d36c3420e5@kernel.org>
+Date: Wed, 4 Sep 2024 20:16:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,71 +50,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: wireless: wilc1000: Document WILC3000
- compatible string
-To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
- linux-wireless@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240829004510.178016-1-marex@denx.de>
- <52e7b6d2-5d31-4ae1-bf1d-44e63a22774d@bootlin.com>
- <57a7eac4-23c7-42ac-ade5-233c24a288c6@denx.de>
- <95ae0eb6-72ec-4261-b9e1-8ee3e831452e@bootlin.com>
+Subject: Re: [PATCH V3 1/6] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe
+ uniphy
+To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, p.zabel@pengutronix.de,
+ dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, robimarko@gmail.com
+References: <20240830081132.4016860-1-quic_srichara@quicinc.com>
+ <20240830081132.4016860-2-quic_srichara@quicinc.com>
+ <e2qgpvfccpo2sd4mbrynxruvt5attqmtd5oik26of7tv7u4lq6@kvb63sglwa5b>
+ <de17d37f-ed0c-4e73-91d5-fc902573212a@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <95ae0eb6-72ec-4261-b9e1-8ee3e831452e@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <de17d37f-ed0c-4e73-91d5-fc902573212a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 9/4/24 4:50 PM, Alexis Lothoré wrote:
-> Hello Marek,
-
-Hi,
-
->>> It is only after those 3 steps that the chip can be used with standard hci
->>> commands over serial port. IMHO 1 is the biggest point, because it means that
->>> **a bluetooth driver for wilc3000 needs access to the bus used by wlan part**
->>> (so only describing the bluetooth part of the chip as a child node of an uart
->>> controller is not enough). Aside from bus access, I also expect some
->>> interactions between bluetooth and wifi (eg: power management, sleep/wakeup)
->>
->> Just a quick idea -- what about having a phandle to the BT UART node in the
->> wilc3000 node ? Then the wilc driver can check if the phandle is available and
->> valid, and attach the BT part to the UART, while also doing all the necessary
->> power sequencing and bus accesses via SDIO/SPI.
->>
->> Like this:
->>
->> &uart10 {
->>    status = "okay";
->> };
->>
->> &mmc20 {
->>    ...
->>    wifi@0 {
->>      compatible = "microchip,wilc1000";
->>      microchip,bt-uart = <&uart10>; // OPTIONAL
->>      ...
->>    };
->> };
+On 04/09/2024 19:20, Sricharan Ramabadhran wrote:
 > 
-> I thought about something like this too, indeed (but somehow inverted, a
-> reference to wilc node in the bt node under uart, to allow the bluetooth part to
-> ask wilc to perform operations over sdio/spi). The design would likely be
-> simpler in this case, but some internal discussions with colleagues raised some
-> concerns, for example with power management (but Krzysztof's suggestion about
-> power sequencing may help with this).
+> 
+> On 8/30/2024 1:53 PM, Krzysztof Kozlowski wrote:
+>> On Fri, Aug 30, 2024 at 01:41:27PM +0530, Sricharan R wrote:
+>>> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+>>>
+>>> Document the Qualcomm UNIPHY PCIe 28LP present in IPQ5018.
+>>>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>> ---
+>>>   [v3] Added reviewed-by tags
+>>>
+>>>   .../phy/qcom,ipq5018-uniphy-pcie.yaml         | 70 +++++++++++++++++++
+>>>   1 file changed, 70 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
+>>> new file mode 100644
+>>> index 000000000000..c04dd179eb8b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/phy/qcom,ipq5018-uniphy-pcie.yaml
+>>> @@ -0,0 +1,70 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/phy/qcom,ipq5018-uniphy-pcie.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm UNIPHY PCIe 28LP PHY controller for genx1, genx2
+>>> +
+>>> +maintainers:
+>>> +  - Nitheesh Sekar <quic_nsekar@quicinc.com>
+>>> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - qcom,ipq5018-uniphy-pcie-gen2x1
+>>> +      - qcom,ipq5018-uniphy-pcie-gen2x2
+>>
+>> ... and now I wonder why there are two compatibles. Isn't the phy the
+>> same? We talk about the same hardware?
+>   We have 2 different physical phys. One with single lane and another
+>   with dual lane. Its same IP, but for 2 lanes, 2 sets of the phy
+>   specific registers needs to configured. So differentiating that here.
 
-Maybe switching the current WILC power management to runtime PM would 
-simplify things greatly ?
+What you described, suggests using phy mode or num-lanes in PCI
+controller, not separate compatible. It's the same IP.
+
+Best regards,
+Krzysztof
+
 
