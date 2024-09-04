@@ -1,165 +1,120 @@
-Return-Path: <devicetree+bounces-99810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E5496B432
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:18:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF7196B454
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:21:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74A01F2750E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:18:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E20E1C24CC3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:21:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB17194122;
-	Wed,  4 Sep 2024 08:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2B412C81F;
+	Wed,  4 Sep 2024 08:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="oKaymwrX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BEE41898F4
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 08:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13194155333
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 08:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725437630; cv=none; b=EUK+KHco8qM7kf9REZvwt6X3FfIAv4te9GeHuNw6OtcE0pMWncJ5JwG/7nLC1nwm2OES0++6cLAOGb87HM8XrRoNjjf4oi9T8fCe+Jb7YFnqehMeMRgKXjoFeDjAR8Cw+HoNphUQMSv177FyiisuAZ6tm+V14SJBaQWgh8c9rDc=
+	t=1725437715; cv=none; b=seVv+jSbz6gqr3UefOfpkf5f40x2Cd+tIP/dgEz27nzf31Agsy5aa/ddpK52mK+OwPF6JPfF2g4a7/P2ScOy4KzGoSkCdodT13BJAsrqojM0XNU+mwdaGNzKAGJ4EiXQLZ3woqMVaDB/RRnVD9xkG/811kRGl9Vb9BGaInmXFR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725437630; c=relaxed/simple;
-	bh=xBf38Ut6AgnO7QgvTyCBnMcJKvzVlajQK72PcBHWEdY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R2n5VQktTnRKZIx1hlr7KvkhTGtnO+ogh9K3qPgnry2WBsUdUpurypU4z/OdUhlU4qy4IQL/UmUonPzOJqKWDccsS4H0OWFBS7slxYzO1rWzuVxuiT78qv4C3I+c1vY/ZzZO5TOidqWoT8WPV6dMs0Uf43x7Mf7gYrW8arY0+kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sll97-0007xM-Ho
-	for devicetree@vger.kernel.org; Wed, 04 Sep 2024 10:13:45 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sll90-005P5O-6P
-	for devicetree@vger.kernel.org; Wed, 04 Sep 2024 10:13:38 +0200
-Received: from dspam.blackshift.org (localhost [127.0.0.1])
-	by bjornoya.blackshift.org (Postfix) with SMTP id D7460332113
-	for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 08:13:37 +0000 (UTC)
-Received: from hardanger.blackshift.org (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by bjornoya.blackshift.org (Postfix) with ESMTPS id 169DC331F8C;
-	Wed, 04 Sep 2024 08:13:24 +0000 (UTC)
-Received: from [172.20.34.65] (localhost [::1])
-	by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 22c7e15c;
-	Wed, 4 Sep 2024 08:13:20 +0000 (UTC)
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-Date: Wed, 04 Sep 2024 10:13:04 +0200
-Subject: [PATCH can-next v5 20/20] can: rockchip_canfd: add support for
- CAN_CTRLMODE_BERR_REPORTING
+	s=arc-20240116; t=1725437715; c=relaxed/simple;
+	bh=Nj45w+G+TO1Z6Higf3RO95zlGzd8ecq4uKKPC6pMGDI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DixdZFo19t5u8iHaFeFPfER3ctHmWEBlDF0HU7sNaCwheBPXZTaKSGCDZRRY3sVIlq3Xc6awVA5Ptl5DalrmZRfxHMyQPhhWTON9VKjkLMKXEFrAz3/5NYqREy7PSgYhSrxd6wtkB/YOSgR2t22jSV+wLK0E9A8bGqZzXziKs2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=oKaymwrX; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7d4f2e1d11cso436810a12.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 01:15:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1725437713; x=1726042513; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Vg5PX8kGrMXGtA5vCBEf0DJJleopQ7dF/auLyYJl/E=;
+        b=oKaymwrXa0DSBFJ7DjiOm7WlWYpTszF0z+HvNzAizaBFNW7yr7tgD3qflMxX+6VxoS
+         wCXf297C74EvGt68DsFO+WZuYQ8h7Ybc0CRNiP7Si/ihrbQN7qIjONSw744Ec1YBB4zV
+         2l1fIQPs7aquLwXR6DSkXjP+BhYTvmmbuWjXeI1cbCegXRyz1RFCx2kfswjZX3umJ8oY
+         80LvK+3Kh/WrKHuQkrgXJrhL4gcf3B2rchIu4bCNvUR5YhXjaCgD6iZPbohFj+L67NpR
+         finLel+t4NgyZjhndnx4/PlFo6InehscB7bK/KUhDf+3EUjbIpQhgT7hOosbls1lr492
+         9D3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725437713; x=1726042513;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3Vg5PX8kGrMXGtA5vCBEf0DJJleopQ7dF/auLyYJl/E=;
+        b=tYOGbL+m5TMGzEa1hS3WcjFNpjiaa+Lr5KoIAlmyUZ9BucPPCRamGYXD43adhG6tJx
+         ToEkGmDYpF9dZzLEKkzn0c1LW0gKiGTI5+Dzg8XyQ8kQCH1O6HHe6hEAKPlzr4ShBP0f
+         sgwUxmYne3rA2finidPL85tBFlRHRR8Y7oGrIm4x9L1SF3ruGgg66cFHaGlsmuT3J+Sv
+         yPE+BIkYBalWENnKvjVC0t76e3GSdS6uRUbhPbtXu3xkEYDcjCOhkVQx6/MV1vBUQK8F
+         s1gY8U/IK4MwGtritSrHe5SBx3b03CLCf54uAJkJVYgCtv4J1Z3/7X06pK7nfHxqmbzZ
+         5GMA==
+X-Forwarded-Encrypted: i=1; AJvYcCU4EsawYB12pgHX7hIiQLn5NByLbn+SGfSR7gGt5Bwpc0FoKZ0tvhZBWiVOO/b5WNyCaDhBw5zXc9oi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPKU0nXEBRSYNRCYu9ziPvAcSjacuPmWN2gMfGnRLlCyHyIlg9
+	MAaLvy1NaI3yAHofoGKnhHWOjTZpt4KQIBuNpAHa+GeIQ9R61+EsStjbCmHPUIQ=
+X-Google-Smtp-Source: AGHT+IGQTuy3EdutFWgRY9ekGLsHfjdaIPiMHwuEXBmtWuFhcvhHmp0JqdGpR/97ULY3I9kGwoQ9PA==
+X-Received: by 2002:a05:6a21:78b:b0:1c4:7d53:bf76 with SMTP id adf61e73a8af0-1cce10aafe2mr19982244637.38.1725437713297;
+        Wed, 04 Sep 2024 01:15:13 -0700 (PDT)
+Received: from zjn.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-206ae94980esm9024145ad.84.2024.09.04.01.15.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Sep 2024 01:15:12 -0700 (PDT)
+From: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+To: angelogioacchino.delregno@collabora.com,
+	matthias.bgg@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	knoxchiou@google.com,
+	hsinyi@google.com
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+Subject: [PATCH v3 0/2] arm64: dts: mediatek: Add MT8186 Ponyta
+Date: Wed,  4 Sep 2024 16:14:59 +0800
+Message-Id: <20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240904-rockchip-canfd-v5-20-8ae22bcb27cc@pengutronix.de>
-References: <20240904-rockchip-canfd-v5-0-8ae22bcb27cc@pengutronix.de>
-In-Reply-To: <20240904-rockchip-canfd-v5-0-8ae22bcb27cc@pengutronix.de>
-To: kernel@pengutronix.de, Alibek Omarov <a1ba.omarov@gmail.com>, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Elaine Zhang <zhangqing@rock-chips.com>, 
- David Jander <david.jander@protonic.nl>
-Cc: Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2401; i=mkl@pengutronix.de;
- h=from:subject:message-id; bh=xBf38Ut6AgnO7QgvTyCBnMcJKvzVlajQK72PcBHWEdY=;
- b=owEBbQGS/pANAwAKASg4oj56LbxvAcsmYgBm2BafrLAzuXgHOioZ3Mmb696oK9t5SonNrQ9m+
- NKXlBGHS2SJATMEAAEKAB0WIQRQQLqG4LYE3Sm8Pl8oOKI+ei28bwUCZtgWnwAKCRAoOKI+ei28
- bysRB/0ThDndzsZQabu4VQlBp82sDn8MKeEPqx/IEbzyBqwX8WifbaV+VA/wUkmxTXueaJi3n/T
- OUOucEI0lQI3CuQUKhrKseqEKpXWSHw1RTtiWXQCb5m5fXymySAE4LRL6APx7NraaULfLuyODV7
- 6Vs1IzQT5DzfkorceYkYUo0K8u06cGOpb87EnTZ6I+pLW1z1WIxa9ptfzRyVpFRDbKxj9wR98JA
- SMPggVWW4oj7fFcWJLPoZdg6mpNsaK1HBqhfZXPLj1IwEGJMLnmAFB7MafATP6tevX9K77KEWii
- jZVw113ULNG5QXXfc8olFPA2XTK0Ikl9PeyB+npNbLf77UuW
-X-Developer-Key: i=mkl@pengutronix.de; a=openpgp;
- fpr=C1400BA0B3989E6FBC7D5B5C2B5EE211C58AEA54
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-Add support for Bus Error Reporting.
-
-Tested-by: Alibek Omarov <a1ba.omarov@gmail.com>
-Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+This is v3 of the MT8186 Chromebook device tree series.
 ---
- drivers/net/can/rockchip/rockchip_canfd-core.c | 25 +++++++++++++++++--------
- 1 file changed, 17 insertions(+), 8 deletions(-)
+Changes in v3:
+- PATCH 0/2: Add the modify records.
+- PATCH 1/2: Modify lable to label.
+- Link to v2:https://lore.kernel.org/all/20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com/
 
-diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
-index 8853f6a135da..6883153e8fc1 100644
---- a/drivers/net/can/rockchip/rockchip_canfd-core.c
-+++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
-@@ -293,6 +293,12 @@ static void rkcanfd_chip_start(struct rkcanfd_priv *priv)
- 		RKCANFD_REG_INT_OVERLOAD_INT |
- 		RKCANFD_REG_INT_TX_FINISH_INT;
- 
-+	/* Do not mask the bus error interrupt if the bus error
-+	 * reporting is requested.
-+	 */
-+	if (!(priv->can.ctrlmode & CAN_CTRLMODE_BERR_REPORTING))
-+		priv->reg_int_mask_default |= RKCANFD_REG_INT_ERROR_INT;
-+
- 	memset(&priv->bec, 0x0, sizeof(priv->bec));
- 
- 	rkcanfd_chip_fifo_setup(priv);
-@@ -533,14 +539,16 @@ static int rkcanfd_handle_error_int(struct rkcanfd_priv *priv)
- 	if (!reg_ec)
- 		return 0;
- 
--	skb = rkcanfd_alloc_can_err_skb(priv, &cf, &timestamp);
--	if (cf) {
--		struct can_berr_counter bec;
-+	if (priv->can.ctrlmode & CAN_CTRLMODE_BERR_REPORTING) {
-+		skb = rkcanfd_alloc_can_err_skb(priv, &cf, &timestamp);
-+		if (cf) {
-+			struct can_berr_counter bec;
- 
--		rkcanfd_get_berr_counter_corrected(priv, &bec);
--		cf->can_id |= CAN_ERR_PROT | CAN_ERR_BUSERROR | CAN_ERR_CNT;
--		cf->data[6] = bec.txerr;
--		cf->data[7] = bec.rxerr;
-+			rkcanfd_get_berr_counter_corrected(priv, &bec);
-+			cf->can_id |= CAN_ERR_PROT | CAN_ERR_BUSERROR | CAN_ERR_CNT;
-+			cf->data[6] = bec.txerr;
-+			cf->data[7] = bec.rxerr;
-+		}
- 	}
- 
- 	rkcanfd_handle_error_int_reg_ec(priv, cf, reg_ec);
-@@ -899,7 +907,8 @@ static int rkcanfd_probe(struct platform_device *pdev)
- 	priv->can.clock.freq = clk_get_rate(priv->clks[0].clk);
- 	priv->can.bittiming_const = &rkcanfd_bittiming_const;
- 	priv->can.data_bittiming_const = &rkcanfd_data_bittiming_const;
--	priv->can.ctrlmode_supported = CAN_CTRLMODE_LOOPBACK;
-+	priv->can.ctrlmode_supported = CAN_CTRLMODE_LOOPBACK |
-+		CAN_CTRLMODE_BERR_REPORTING;
- 	if (!(priv->devtype_data.quirks & RKCANFD_QUIRK_CANFD_BROKEN))
- 		priv->can.ctrlmode_supported |= CAN_CTRLMODE_FD;
- 	priv->can.do_set_mode = rkcanfd_set_mode;
+Changes in v2:
+- PATCH 2/2: Modify the dtb name without rev2.
+- Link to v1:https://lore.kernel.org/all/20240902125502.1844374-1-cengjianeng@huaqin.corp-partner.google.com/
+
+Jianeng Ceng (2):
+  dt-bindings: arm: mediatek: Add MT8186 Ponyta Chromebook
+  arm64: dts: mediatek: Add MT8186 Ponyta Chromebooks
+
+ .../devicetree/bindings/arm/mediatek.yaml     | 11 +++++
+ arch/arm64/boot/dts/mediatek/Makefile         |  2 +
+ .../mediatek/mt8186-corsola-ponyta-sku0.dts   | 24 ++++++++++
+ .../mediatek/mt8186-corsola-ponyta-sku1.dts   | 27 ++++++++++++
+ .../dts/mediatek/mt8186-corsola-ponyta.dtsi   | 44 +++++++++++++++++++
+ 5 files changed, 108 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
 
 -- 
-2.45.2
-
+2.34.1
 
 
