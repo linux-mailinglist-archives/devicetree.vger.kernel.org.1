@@ -1,223 +1,113 @@
-Return-Path: <devicetree+bounces-100134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D45D96C57B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:31:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B23096C583
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:35:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 315C81C21917
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:31:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99B2CB22CEB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2191E1329;
-	Wed,  4 Sep 2024 17:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H1hbp+hI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119DF1E1A03;
+	Wed,  4 Sep 2024 17:34:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA935464E;
-	Wed,  4 Sep 2024 17:31:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052315EE8D;
+	Wed,  4 Sep 2024 17:34:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725471080; cv=none; b=ep9NpZIIwjHdwSsR0iN47b/IchCTzhknVTZVpjoxkjycmVcLhRIWdUQ2oXqtBxGCmoaS33i++IVLQmIdSA7OzR9GLjbaQPPmqZ5inz+FGX/5OjfrlXC6m5XOlqi+eLq94Wc5SMsktV8CS5WylQcWA4kc0KFpwHHhorwhhrfbGBM=
+	t=1725471297; cv=none; b=C1wNn0o1pHEijDP7Aa6hoefpdaCGg+uXszrmHLo7rmLMzSSHcuMqfPDMMbrSZfVvGbaNxlGYdEen28m3EkAsmqEjoi8Od3S5sbKIpRWmH/20pAEBiRjyxC/MZhObvaVA6hZCUUgKpnAE1/ETam+8L/hyfp0CkmhijLCX8dcf11E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725471080; c=relaxed/simple;
-	bh=2uQKItW7vt8MX4buVgBQu2rd3/0LezlUPrICrlhrgag=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f7nwLdiO+ajQAyzq8ZWhWRj7YIWCz1o9f7T13tb6h5LeeK4RfMT+wFb9X/Yp/mXoWPjsngYwLKb/XwlkqOM3waw6n0hg655XYJiQ5cAOjgTNJc2JcBrT6FWDZa0GvW2TQS3C4YSrcNCyYxELTZlDnXn6t1kWKv4u70MYDNl4yGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H1hbp+hI; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725471080; x=1757007080;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2uQKItW7vt8MX4buVgBQu2rd3/0LezlUPrICrlhrgag=;
-  b=H1hbp+hIRVLunLt+HsD83Zbb7Uc+iC0J+xUBq+jCSqKeHfPbAIbGHC2+
-   DFLXWmpWO4qYyfY4Kfm/Uh5ZxYiwQydHGB1Sog0YTmmnCCmx8i5rIDsZ5
-   CxmGZy+nITbYXu3ioufPTUpGQaGpPixd2m7sFwCbz2RVyoQB/6TBjyjjk
-   /u98PiXDKHwvHOetChn+gLxG3nteHPn+ScyHta0cfec9sB/tUP4LkreNx
-   4tiA26bgoLxVwdrbZONJfVOX2lHTlCdByFjqIFXsy8yzHoDJTDkavBll5
-   1uLaMQQMabV2X/+hQYnlO+lCk0vMVtVkVHC1tysMwQUHY54tcP52Z5E2u
-   g==;
-X-CSE-ConnectionGUID: tF2BjtJRTWie222acjljZA==
-X-CSE-MsgGUID: Dul+PFW6QLyrGN0jFc+/9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="46680518"
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="46680518"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 10:31:19 -0700
-X-CSE-ConnectionGUID: B3fIZmSmRNu715JzRHLOiA==
-X-CSE-MsgGUID: bC1PYqJST9Sxw/suC6owEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; 
-   d="scan'208";a="69968846"
-Received: from unknown (HELO localhost) ([10.79.232.150])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2024 10:31:18 -0700
-Date: Wed, 4 Sep 2024 10:31:17 -0700
-From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-To: Michael Kelley <mhklinux@outlook.com>
-Cc: "tglx@linutronix.de" <tglx@linutronix.de>,
-	"mingo@redhat.com" <mingo@redhat.com>,
-	"bp@alien8.de" <bp@alien8.de>,
-	"dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
-	"x86@kernel.org" <x86@kernel.org>, "hpa@zytor.com" <hpa@zytor.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"kys@microsoft.com" <kys@microsoft.com>,
-	"haiyangz@microsoft.com" <haiyangz@microsoft.com>,
-	"wei.liu@kernel.org" <wei.liu@kernel.org>,
-	"decui@microsoft.com" <decui@microsoft.com>,
-	"rafael@kernel.org" <rafael@kernel.org>,
-	"lenb@kernel.org" <lenb@kernel.org>,
-	"kirill.shutemov@linux.intel.com" <kirill.shutemov@linux.intel.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
-	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>
-Subject: Re: [PATCH v2 4/9] x86/hyperv: Parse the ACPI wakeup mailbox
-Message-ID: <20240904173117.GA20992@yjiang5-mobl.amr.corp.intel.com>
-References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
- <20240823232327.2408869-5-yunhong.jiang@linux.intel.com>
- <BN7PR02MB4148CC3F9091BC2604E457CFD4922@BN7PR02MB4148.namprd02.prod.outlook.com>
- <20240903201917.GB105@yjiang5-mobl.amr.corp.intel.com>
- <SN6PR02MB4157963DE55041D0631188A4D49C2@SN6PR02MB4157.namprd02.prod.outlook.com>
+	s=arc-20240116; t=1725471297; c=relaxed/simple;
+	bh=RRXS+CMRVgV4wZdJhHA5ZS1hpb8sGKAALcTPRxdsah8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=sDM4iKGR8LsdYKg2LVe+XnIZG6hJhkWUakUgKrGfnWKwKlbmkn2xBWOI1SCBOn1DHe0Lxkov8IaiBS4kvGEaTmy3964jzxhvkPNNUixVPKWx3DBmT974+Xq6LGAAQEETwlyxCRLLmOiiTpZApWmADZrTlJGyAwlBsfURCQ+vh64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 87DC0FEC;
+	Wed,  4 Sep 2024 10:35:20 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 2762E3F73B;
+	Wed,  4 Sep 2024 10:34:53 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: will@kernel.org
+Cc: mark.rutland@arm.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	jialong.yang@shingroup.cn,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/3] dt-bindings/perf: Add Arm NI-700 PMU
+Date: Wed,  4 Sep 2024 18:34:02 +0100
+Message-Id: <5f86237580219116de37e5e54d8b7eb0c9ed580d.1725470837.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
+In-Reply-To: <cover.1725470837.git.robin.murphy@arm.com>
+References: <cover.1725470837.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN6PR02MB4157963DE55041D0631188A4D49C2@SN6PR02MB4157.namprd02.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 04, 2024 at 02:56:49PM +0000, Michael Kelley wrote:
-> From: Yunhong Jiang <yunhong.jiang@linux.intel.com> Sent: Tuesday, September 3, 2024 1:19 PM
-> > 
-> > On Mon, Sep 02, 2024 at 03:35:13AM +0000, Michael Kelley wrote:
-> > > From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> > > >
-> > > > Parse the wakeup mailbox VTL2 TDX guest. Put it to the guest_late_init, so
-> > > > that it will be invoked before hyperv_init() where the mailbox address is
-> > > > checked.
-> > >
-> > > Could you elaborate on the choice to set the wakeup_mailbox_address
-> > > in ms_hyperv_late_init()? The code in hv_common.c is intended to be
-> > > code that is architecture neutral (see the comment at the top of the module),
-> > > so it's a red flag to see #ifdef CONFIG_X86_64. Couldn't the
-> > > wakeup_mailbox_address be set in the x86 version of hyperv_init()
-> > > before it is needed?
-> > 
-> > Sure, will try to put it in hyperv_init() before it's needed.
-> > >
-> > > >
-> > > > Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> > > > ---
-> > > >  arch/x86/include/asm/mshyperv.h | 3 +++
-> > > >  arch/x86/kernel/cpu/mshyperv.c  | 2 ++
-> > > >  drivers/hv/hv_common.c          | 8 ++++++++
-> > > >  3 files changed, 13 insertions(+)
-> > > >
-> > > > diff --git a/arch/x86/include/asm/mshyperv.h b/arch/x86/include/asm/mshyperv.h
-> > > > index 390c4d13956d..5178b96c7fc9 100644
-> > > > --- a/arch/x86/include/asm/mshyperv.h
-> > > > +++ b/arch/x86/include/asm/mshyperv.h
-> > > > @@ -10,6 +10,7 @@
-> > > >  #include <asm/nospec-branch.h>
-> > > >  #include <asm/paravirt.h>
-> > > >  #include <asm/mshyperv.h>
-> > > > +#include <asm/madt_wakeup.h>
-> > > >
-> > > >  /*
-> > > >   * Hyper-V always provides a single IO-APIC at this MMIO address.
-> > > > @@ -49,6 +50,8 @@ extern u64 hv_current_partition_id;
-> > > >
-> > > >  extern union hv_ghcb * __percpu *hv_ghcb_pg;
-> > > >
-> > > > +extern u64 wakeup_mailbox_addr;
-> > > > +
-> > > >  bool hv_isolation_type_snp(void);
-> > > >  bool hv_isolation_type_tdx(void);
-> > > >  u64 hv_tdx_hypercall(u64 control, u64 param1, u64 param2);
-> > > > diff --git a/arch/x86/kernel/cpu/mshyperv.c b/arch/x86/kernel/cpu/mshyperv.c
-> > > > index 3d4237f27569..f6b727b4bd0b 100644
-> > > > --- a/arch/x86/kernel/cpu/mshyperv.c
-> > > > +++ b/arch/x86/kernel/cpu/mshyperv.c
-> > > > @@ -43,6 +43,8 @@ struct ms_hyperv_info ms_hyperv;
-> > > >  bool hyperv_paravisor_present __ro_after_init;
-> > > >  EXPORT_SYMBOL_GPL(hyperv_paravisor_present);
-> > > >
-> > > > +u64 wakeup_mailbox_addr;
-> > >
-> > > This value duplicates acpi_mp_wake_mailbox_paddr in
-> > > madt_wakeup.c. It looks like the duplicate value is used
-> > > for two things:
-> > >
-> > > 1) In hv_is_private_mmio_tdx() to control the encrypted
-> > > vs. decrypted mapping (Patch 5 of this series)
-> > >
-> > > 2) As a boolean in hv_vtl_early_init() to avoid overwriting
-> > > the wakeup_secondary_cpu_64 value when
-> > > dtb_parse_mp_wake() has set it to acpi_wakeup_cpu().
-> > > (Patch 9 of this series).
-> > >
-> > > Having a duplicate value is messy, and I'm wondering if
-> > > it can be avoided. For (1), hv_private_mmio_tdx() could call
-> > > into a function added to madt_wakeup.c to make the
-> > > check.  For (2), the check should probably be based on
-> > > hv_isolation_type_tdx() instead of whether the wakeup
-> > > mailbox address is set.  I'll note that Patch 5 of this series
-> > > is using hv_isolation_type_tdx(), so there's a bit of an
-> > > inconsistency in testing the wakeup_mailbox_addr in
-> > > Patch 9.
-> > 
-> > I think your comment includes two points, the duplicated variables and the
-> > incosistency in the testing.
-> > 
-> > Thank you for pointing out the duplication of wakeup_mailbox_addr with
-> > acpi_mp_wake_mailbox_paddr. I didn't realize it. Yes, such duplication should be
-> > avoided and will fix it in next submission.
-> > 
-> > Agree the inconsistency in testing wakeup_mailbox_addr and
-> > hv_isolation_type_tdx() is not good. IMHO, the wakeup_mailbox_addr (or the new
-> > function you proposed) is better than hv_isolation_type_tdx(), since the
-> > wakeup_mailbox_addr is more directly related.  But hv_vtl_init_platform()
-> > happens before DT parse, thus I have to use the hv_isolation_type_tdx() in it. I
-> > don't have a good idea on how to fix this.
-> > 
-> > Thanks
-> > --jyh
-> > 
-> 
-> I don't think there's a requirement to set the "is_private_mmio"
-> function in hv_vtl_init_platform(). It just needs to be set before
-> acpi_wakeup_cpu() is called, which does the memremap() that will
-> invoke the "is_private_mmio" function to decide whether to map
-> as encrypted or decrypted.
-> 
-> So maybe setting the "is_private_mmio" function could be
-> done after dtb_parse_mp_wake() is called in its new location, and
-> you know you have a valid wake mailbox address? Again, I haven't
-> worked out all the details, so this approach might be just as messy,
-> but in a different way. Use your judgment ... :-)
+Add an initial binding for the Arm NI-700 interconnect PMU. As with the
+Arm CMN family, there are already future NI products on the roadmap, so
+the overall binding is named generically just in case any
+non-discoverable incompatibility between generations crops up.
 
-Sorry that I didn't explain clearly. The testing in hv_vtl_init_platform() is
-not only for the is_private_mmio, but also for the realmode_reserve(), which
-happens before the DT parse.
+Cc: <devicetree@vger.kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
 
-BTW, I don't know why the trampoline_64.S is put into the real mode blob. I
-don't find any specific requirement in the code, but I'm not sure if I missed
-anything. If this dependency is removed, all the TDX guest will benefit.
+v4: No change
 
-Thank you
---jyh
+ .../devicetree/bindings/perf/arm,ni.yaml      | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,ni.yaml
 
-> 
-> Michael
+diff --git a/Documentation/devicetree/bindings/perf/arm,ni.yaml b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+new file mode 100644
+index 000000000000..d66fffa256d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/arm,ni.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Arm NI (Network-on-Chip Interconnect) Performance Monitors
++
++maintainers:
++  - Robin Murphy <robin.murphy@arm.com>
++
++properties:
++  compatible:
++    const: arm,ni-700
++
++  reg:
++    items:
++      - description: Complete configuration register space
++
++  interrupts:
++    minItems: 1
++    maxItems: 32
++    description: Overflow interrupts, one per clock domain, in order of domain ID
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
+-- 
+2.39.2.101.g768bb238c484.dirty
+
 
