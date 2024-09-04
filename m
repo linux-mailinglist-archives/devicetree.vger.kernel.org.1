@@ -1,177 +1,149 @@
-Return-Path: <devicetree+bounces-100127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AB1F96C508
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:13:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7460F96C517
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 19:17:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 359AB1F267D0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:13:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 995451C21AC7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE5F1E1303;
-	Wed,  4 Sep 2024 17:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6639C1DC733;
+	Wed,  4 Sep 2024 17:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DeEYKrM0"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XCUaIlk0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF66C1E0B9C;
-	Wed,  4 Sep 2024 17:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF3E261674
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 17:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725470001; cv=none; b=NVcU0n35t3O5YRwYAlORP1Y7av9h63L4Xp7LkQ9yCpH/aawpjy5OcvoiC2KXej/NK3HxosrIhhcI5PwR+V25D4o5za5bDOCIdpKkL7wsxzFatoE6EnK17C+s/3QnCXVMy4lfdCZ8oNQoFRY4DHxznbHSKWg0eGfc1VUrgsrDOfw=
+	t=1725470239; cv=none; b=E+1eryJ7Ohg+XUi/DHg6PDY47gO+IiqqPgjF1oFQtDQc7/DWO/4eevmCFcNNqlNueUOgDWwrR/QXudT4rDwP2ERXsvj+ezM20fregCj8azb2316p46DIAuc+8hgC1t0TbUsqymqY6orQUl8Dds1Kib4alCvf9zXUDr0htKn6Bf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725470001; c=relaxed/simple;
-	bh=zXOJQ/UCxU/X7YZ+JxOCpo43hPUlI/yPHWHnL1qk9AE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ag1642v+lDYmuXWNe8GaQQkejyGBV6bXySIilKLS1YAFhJtE6w38i2vZD5npjRyO8RYP7vkbsfOC0WYIjYJOXMwhctkGx+s7xtzEW/wrV8y6R+DRdpXvxUUeoZTzg5gHwaS9fsoRn8bjlSLZ1ScVwzWF7UoljW+vqmB/SyUSWzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DeEYKrM0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484CVMng015471;
-	Wed, 4 Sep 2024 17:13:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dDaBl3/YfLL5Qj4of6p4m4jPI9trNcvUzjdXfKtGh0U=; b=DeEYKrM0UtlkZzL9
-	hMBaYUv2LDXKw++M0I597WYL2NBqG0aUqa4YQmwv0bQUQzxOqxHkXeBsySmBWPqX
-	f8ADt0eqeCWY3l/5FClsMQkY8F1Il82zrvFP/x2H5+KQy3ke6fYE0A+EDdamF4Rr
-	s4FTqb59pe4WteHae5OA+jYTJzRyl84S/0kaDLignybpFDqqIaFo5esbBRCFNJ1a
-	QhseSNO5yvuoNY9BAiCJ0Lg4Blh9mhjTtOlcFxFu0B/nqAnsVLA1CpupBOJNs9U/
-	n6GbosjMmlBo1O6ga/EL43OQIz3ASMTkjU7kJqoxQzGKA7hedUe5n/nlPwAVHNLk
-	H4mlQA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41dt69dnch-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Sep 2024 17:13:15 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 484HClG3007421
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Sep 2024 17:12:47 GMT
-Received: from 0e63825dadb5.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 4 Sep 2024 10:12:43 -0700
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Sibi Sankar
-	<quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] interconnect: qcom: Add EPSS L3 support on SA8775P
-Date: Wed, 4 Sep 2024 17:12:09 +0000
-Message-ID: <20240904171209.29120-4-quic_rlaggysh@quicinc.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240904171209.29120-1-quic_rlaggysh@quicinc.com>
-References: <20240904171209.29120-1-quic_rlaggysh@quicinc.com>
+	s=arc-20240116; t=1725470239; c=relaxed/simple;
+	bh=t65s4nNcRGc9mCe7+o0bYGJaz4sl89r+MRqyyhR0kno=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WFm++diabmzULjaJGWCOc+gzXNQfPwxYFm3NMCYTjBPT2R9w3a6UdTQC8F44h7Mh3cvKsBTL3ckDfOOgAl4KRzJXmFS80eVCai5P43niJO6yQ3W0PMk4WmFS0BBBwmpSWqbmve/jUPWLMbCC7JGGVaeWkLW/da++InFvt12DCw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XCUaIlk0; arc=none smtp.client-ip=209.85.219.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6c36ff6e981so12259006d6.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 10:17:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1725470236; x=1726075036; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3OSNlGLBd8NLSWyCnfTJEaUwWihfhoQwqRJWu1zx2FI=;
+        b=XCUaIlk0mzow+kummcayugnMkOW5VeKhZXrVw2IwmWHNiZcLHkjXNZOEmny6FWwh1H
+         JO+DORkk9OAAKrybo0ZlXGYVukWOzufp8l4ujYAHNEvSi8Xv04ED7/cC0WTiUEBHBCJi
+         WjsFc3vv0waUyI48S7NEWwz1AtfnPfe6cP+Yw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725470236; x=1726075036;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3OSNlGLBd8NLSWyCnfTJEaUwWihfhoQwqRJWu1zx2FI=;
+        b=OmfLG/YG5JBxxHdAm4Ar/fvsmsLCeKGmGddGqmbsKLmLjMRPeuRbsWofZnORdlvg5V
+         dBvswf6hwceZg91asiszpKMWbMB9iXh1sMV8kbKxnOALloU8vi0Q07O4owy8E/rn3wxC
+         VXcT6WW3cyBz/6VzQ7z7/C8Tg4excGIzDVdcnYssWwxGjDHsmasSiN9DQsjt9Hrn3Nu7
+         svsI6Ejzqh6VJcqs532MJejiMplPwhXmwGEaJkfl32gbQ2WDVCzUCrhE8D928LpEWeFd
+         tKcFIoHrMw1F9flUTUmEgKLd17F2r1FhthiGU8udu9Fu2g2QKRnZRMcWDm+lxVM6vAkc
+         IvrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBr56Jaww0N24j0RxyxDMthv545ZsS9mi+gH6c7NmfZ17cdTTcS8KJkJAHuq0lyv4D11X/wnw5k9Zy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6yGvlw9UomsqMjK7tbDysoN1r1dyeDmr8bgaS+d2Ji+R2Uxo6
+	SNMftQomXY+EB9VyU/Hv4qGiwagK7CVCwICEUBF6D9hC2XUfHzBSNNPfLdCqNpylIsePdVeTBPZ
+	mBt2doMAFqkrVDsRwO/GvpnA3OoRSOGSOYvoG
+X-Google-Smtp-Source: AGHT+IEVE/zja0Ta9Tz96mzKz/L550YBB+VoIesNmcQXcpg7Z7ieAwebVwSfXt2IZeQcblS1lNC8BSuXnTTjD/SJFRM=
+X-Received: by 2002:a05:6214:3104:b0:6c3:5f8f:2745 with SMTP id
+ 6a1803df08f44-6c510a93bc4mr62896466d6.27.1725470236496; Wed, 04 Sep 2024
+ 10:17:16 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 4 Sep 2024 13:17:15 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nls1X0YWTswSdAw6t14ShnQQ4ROnKrP_
-X-Proofpoint-ORIG-GUID: nls1X0YWTswSdAw6t14ShnQQ4ROnKrP_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-04_15,2024-09-04_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 bulkscore=0 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
- phishscore=0 priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2409040131
+In-Reply-To: <ZthaCQel2aHhyIu4@smile.fi.intel.com>
+References: <20240901040658.157425-1-swboyd@chromium.org> <20240901040658.157425-7-swboyd@chromium.org>
+ <ZtWjEudmlR51zkU9@smile.fi.intel.com> <CAE-0n51eSxxvnJXwnfPrXx1=rei=8OGGEtCAgw6nhCktZ0iQDw@mail.gmail.com>
+ <ZthaCQel2aHhyIu4@smile.fi.intel.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date: Wed, 4 Sep 2024 13:17:15 -0400
+Message-ID: <CAE-0n52PxnSMGn3TVt3iiq_3Bimnd4JPoeZ1F6XB1o4itiykUQ@mail.gmail.com>
+Subject: Re: [PATCH v4 06/18] drm/bridge: aux-hpd: Support USB Type-C DP
+ altmodes via DRM lane assignment
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, devicetree@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
+	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Scally <djrscally@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
+	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Add Epoch Subsystem (EPSS) L3 interconnect provider support on
-SA8775P SoCs.
+Quoting Andy Shevchenko (2024-09-04 06:00:57)
+> On Tue, Sep 03, 2024 at 06:20:14PM -0400, Stephen Boyd wrote:
+> > Quoting Andy Shevchenko (2024-09-02 04:35:46)
+> > > On Sat, Aug 31, 2024 at 09:06:44PM -0700, Stephen Boyd wrote:
+>
+> > > > +     adev->dev.of_node = of_node_get(parent->of_node);
+> > >
+> > > device_set_node() ?
+> >
+> > Or device_set_of_node_from_dev()?
+>
+> This is quite unclear to me. The second one bumps the reference count IIRC
+> for no reason (in usual cases). Also only few drivers use that, I would hear
+> what OF people can tell about this API and its usage scope.
 
-Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
----
- drivers/interconnect/qcom/osm-l3.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Sure, but to be equivalent to the existing code from which this has been
+copied it should use device_set_of_node_from_dev(). Seems fine to just
+use that.
 
-diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
-index 61a8695a9adc..e97d61a9d8d7 100644
---- a/drivers/interconnect/qcom/osm-l3.c
-+++ b/drivers/interconnect/qcom/osm-l3.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/args.h>
-@@ -74,6 +75,11 @@ enum {
- 	OSM_L3_SLAVE_NODE,
- };
- 
-+enum {
-+	EPSS_L3_CL1_MASTER_NODE = 20000,
-+	EPSS_L3_CL1_SLAVE_NODE,
-+};
-+
- #define DEFINE_QNODE(_name, _id, _buswidth, ...)			\
- 	static const struct qcom_osm_l3_node _name = {			\
- 		.name = #_name,						\
-@@ -99,6 +105,15 @@ static const struct qcom_osm_l3_node * const epss_l3_nodes[] = {
- 	[SLAVE_EPSS_L3_SHARED] = &epss_l3_slave,
- };
- 
-+DEFINE_QNODE(epss_l3_cl1_master, EPSS_L3_CL1_MASTER_NODE, 32,
-+	     EPSS_L3_CL1_SLAVE_NODE);
-+DEFINE_QNODE(epss_l3_cl1_slave, EPSS_L3_CL1_SLAVE_NODE, 32);
-+
-+static const struct qcom_osm_l3_node * const epss_l3_cl1_nodes[] = {
-+	[MASTER_EPSS_L3_APPS] = &epss_l3_cl1_master,
-+	[SLAVE_EPSS_L3_SHARED] = &epss_l3_cl1_slave,
-+};
-+
- static const struct qcom_osm_l3_desc osm_l3 = {
- 	.nodes = osm_l3_nodes,
- 	.num_nodes = ARRAY_SIZE(osm_l3_nodes),
-@@ -115,6 +130,14 @@ static const struct qcom_osm_l3_desc epss_l3_perf_state = {
- 	.reg_perf_state = EPSS_REG_PERF_STATE,
- };
- 
-+static const struct qcom_osm_l3_desc epss_l3_cl1_perf_state = {
-+	.nodes = epss_l3_cl1_nodes,
-+	.num_nodes = ARRAY_SIZE(epss_l3_cl1_nodes),
-+	.lut_row_size = EPSS_LUT_ROW_SIZE,
-+	.reg_freq_lut = EPSS_REG_FREQ_LUT,
-+	.reg_perf_state = EPSS_REG_PERF_STATE,
-+};
-+
- static const struct qcom_osm_l3_desc epss_l3_l3_vote = {
- 	.nodes = epss_l3_nodes,
- 	.num_nodes = ARRAY_SIZE(epss_l3_nodes),
-@@ -284,6 +307,10 @@ static const struct of_device_id osm_l3_of_match[] = {
- 	{ .compatible = "qcom,sm8150-osm-l3", .data = &osm_l3 },
- 	{ .compatible = "qcom,sc8180x-osm-l3", .data = &osm_l3 },
- 	{ .compatible = "qcom,sm8250-epss-l3", .data = &epss_l3_perf_state },
-+	{ .compatible = "qcom,sa8775p-epss-l3-cl0",
-+	  .data = &epss_l3_perf_state },
-+	{ .compatible = "qcom,sa8775p-epss-l3-cl1",
-+	  .data = &epss_l3_cl1_perf_state },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, osm_l3_of_match);
--- 
-2.39.2
+> > > > +static int dp_lane_to_typec_lane(enum dp_lane lane)
+> > > > +{
+> > > > +     switch (lane) {
+> > > > +     case DP_ML0:
+> > > > +             return USB_SSTX2;
+> > > > +     case DP_ML1:
+> > > > +             return USB_SSRX2;
+> > > > +     case DP_ML2:
+> > > > +             return USB_SSTX1;
+> > > > +     case DP_ML3:
+> > > > +             return USB_SSRX1;
+> > > > +     }
+> > >
+> > > > +     return -EINVAL;
+> > >
+> > > Hmm... This can be simply made as default case.
+> >
+> > And then the enum is always "covered" and the compiler doesn't complain
+> > about missing cases (I don't think we have -Wswitch-enum)? Seems worse.
+>
+> Hmm... You mean if I remove one of the above cases I will get the warning?
+>
 
+Yes.
 
