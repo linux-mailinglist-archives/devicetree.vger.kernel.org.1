@@ -1,144 +1,143 @@
-Return-Path: <devicetree+bounces-100162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CFDA96C8CA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 22:44:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4224896C918
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 23:07:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 423491F2167B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 20:44:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C06AC28633B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 21:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED8B14B08E;
-	Wed,  4 Sep 2024 20:42:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE9D4148850;
+	Wed,  4 Sep 2024 21:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ppfX9umW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BPWYIsWy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE7214A4E0;
-	Wed,  4 Sep 2024 20:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C29738DD1;
+	Wed,  4 Sep 2024 21:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725482560; cv=none; b=OB6QPsAr1IMdSRvRRraSTTbEy56bYFaMg0G5yjTYA/jrlnk9KYNSRJtMOD9ZbNjP3vXTbQbAGxsR7WV6fIH0TA2a8rztgGJ4juPv/BH3j0RCfmFONv9MRt/Pp9hniY9OnreeDxXZolq5CMX9Enm6GLz2CFFo038PVuRIwJuMWZc=
+	t=1725484023; cv=none; b=tel8ntS72+Okbi+sW9pFdh2AdbsHKFM43ozXqh/RypgEZ4PFiXCBzSXT6i4Hnp0Imqu31T4Iei2WSo/d8LQO0AAgjrGd7tXjDAHUiU/3Pq6zU6KMK0/YFGyhWY79RO6JZg2pd2jrLfuMwyuO0SqVrbQTW9voxEselnBtQZA5E5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725482560; c=relaxed/simple;
-	bh=AdJMAOlfl60fpsBCc8xQ0+D+qfwEF1pp6GLq+DwA2yk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pw8N9Dp6UE6Fp2eqmhtcpIPnttn4NVreJiFZ+KQHL+mWuQt7MV4N4cFnWu2Tl7p6TGPw398jMba9vacXaDRLgTUOu9A5HNAaufAjbJkWNXY0G0m9AJg8rjQtHs8w8KeXqO2Cci3mHpXkJrwceQSY6vyTTqP/6cYgL2ZNEzAcK0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ppfX9umW; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1725482557;
-	bh=AdJMAOlfl60fpsBCc8xQ0+D+qfwEF1pp6GLq+DwA2yk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ppfX9umWo4Ww90ByqRMBy7KxNM0cdWtemMx2s6ioS25w8KfFXtnleY5qyi8eGlQTg
-	 anV0MLrjXJUwraPCsbKKozT1whuDyJXJfDKst2yjScniMcjbdif8ZoiErBL6W63tjH
-	 lIPzDaB1JyKHiyqpkztF6YHuU0s4u58wT7BLvqMsv1TT7mtJSHdEYhSEeJlcBvl9eB
-	 GCTHW490RC0yaY9NM2Lco96MI6/jfKb5sLqxO/pYPqHhHKm21uLzcmyZU1cAORgHY1
-	 R9imraqwWJuVLc3bt59o77oiY1jZZCaDN2/OJAY2ikDTcnE7t/eIHSUYasZAlmUCG7
-	 eTs8FaaY8PQ+A==
-Received: from notapiano (pool-100-2-116-133.nycmny.fios.verizon.net [100.2.116.133])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4746B17E0B18;
-	Wed,  4 Sep 2024 22:42:36 +0200 (CEST)
-Date: Wed, 4 Sep 2024 16:42:34 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt: dt-extract-compatibles: Extract compatibles from
- function parameters
-Message-ID: <80c61f1d-5bae-4288-b868-b25d48d679a6@notapiano>
-References: <20240903200753.2097911-1-robh@kernel.org>
+	s=arc-20240116; t=1725484023; c=relaxed/simple;
+	bh=odu6RoR3qtTtWweMGYFXbf4nuKSVJnn/jlrXrFQ+nm0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=G3F7XKEWK3iLcKyYCA30rO5Ox5gahatU/SyqTBPk8CCHZWvNOU93VkOHCsp2vNoiqYwKL8MhdU7z+1ovN8zFTKzLgZEkc0L7QF1M1Lg6mWqbACGh//kc9K/K9TXyjPdeSnAf1mcPUwIuIQrBGwSk+W9jp+ZWTNtm1ub14tQ4Hn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BPWYIsWy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484GrcYx009456;
+	Wed, 4 Sep 2024 21:06:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dDglSu69AeoOpMOFO6jbmEMEAsj/2CnT5VlnlR29lX8=; b=BPWYIsWyHDs+n5QA
+	0r3glsATHaHZfS3MlmPCkFL1D7dbQOp3mCOQvPb9pRMTPIDNMG6tc3hMI8BMJWR3
+	vjBaWEogng5eIH6/vfWWAfp5zSGbB/vrjSA6f60jlf1tsniFY82BiNYki+cdhKrS
+	gpTMrRbaj8fgTpa0piEIOhek2bVPpjNrX+TDxBTlMERnTFh8f3mHrC7sg360zDLM
+	eXWLNN16uMJ2rzgkYdDvGebjku8nJfqSDucVF9Ij/fuOWzb9bew8TBLT/qPjHrnO
+	1lZCwdUzk5nzmpIywfoihp2NAGACYy0qXkrqZcIm+0f9IJNGh4TdfrIqaxajsHqJ
+	KHhr6g==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41e0bhn93h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Sep 2024 21:06:24 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 484L6Mj0000645
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Sep 2024 21:06:22 GMT
+Received: from [10.110.102.234] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
+ 14:06:18 -0700
+Message-ID: <204f5cfe-d1ed-40dc-9175-d45f72395361@quicinc.com>
+Date: Wed, 4 Sep 2024 14:06:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240903200753.2097911-1-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 16/21] dt-bindings: spi: document support for SA8255p
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <sudeep.holla@arm.com>, <andi.shyti@kernel.org>, <tglx@linutronix.de>,
+        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
+        <jassisinghbrar@gmail.com>, <lee@kernel.org>,
+        <linus.walleij@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
+        <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>,
+        Praveen Talari
+	<quic_ptalari@quicinc.com>
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-17-quic_nkela@quicinc.com>
+ <sdxhnqvdbcpmbp3l7hcnsrducpa5zrgbmkykwfluhrthqhznxi@6i4xiqrre3qg>
+ <b369bd73-ce2f-4373-8172-82c0cca53793@quicinc.com>
+ <9a655c1c-97f6-4606-8400-b3ce1ed3c8bf@kernel.org>
+ <516f17e6-b4b4-4f88-a39f-cc47a507716a@quicinc.com>
+ <2f11f622-1a00-4558-bde9-4871cdc3d1a6@lunn.ch>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <2f11f622-1a00-4558-bde9-4871cdc3d1a6@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pquT8ry2dJOFwM1L5eqbhUs2RQGmgVaK
+X-Proofpoint-GUID: pquT8ry2dJOFwM1L5eqbhUs2RQGmgVaK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-04_19,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=978
+ priorityscore=1501 suspectscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ spamscore=0 lowpriorityscore=0 clxscore=1011 impostorscore=0 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409040160
 
-On Tue, Sep 03, 2024 at 03:07:52PM -0500, Rob Herring (Arm) wrote:
-> Various DT and fwnode functions take a compatible string as a parameter.
-> These are often used in cases which don't have a driver, so they've been
-> missed.
-> 
-> The additional checks add about 400 more undocumented compatible
-> strings.
-> 
-> Cc: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  scripts/dtc/dt-extract-compatibles | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-compatibles
-> index 5ffb2364409b..13ea66d49e6c 100755
-> --- a/scripts/dtc/dt-extract-compatibles
-> +++ b/scripts/dtc/dt-extract-compatibles
-> @@ -46,6 +46,15 @@ def parse_of_match_table(data):
->  	return match_table_list
->  
->  
-> +def parse_of_functions(data, func_name):
-> +	""" Find all (device|machine)_is_compatible() arguments """
 
-This comment looks outdated.
+On 9/4/2024 9:58 AM, Andrew Lunn wrote:
+>> Sorry, didn't realize SPI uses different subject format than other
+>> subsystems. Will fix in v3. Thanks
+> Each subsystem is free to use its own form. e.g for netdev you will
+> want the prefix [PATCH net-next v42] net: stmmac: dwmac-qcom-ethqos:
+of course they are! No one is disputing that.
+>
+> This is another reason why you should be splitting these patches per
+> subsystem, and submitting both the DT bindings and the code changes as
+> a two patch patchset. You can then learn how each subsystem names its
+> patches.
 
-"Find all compatibles in the last argument of a given function"?
+Qualcomm QUPs chips have serial engines that can be configured as
+UART/I2C/SPI so QUPs changes require to be pushed in one series for all
+3 subsystems as they all are dependent.
 
-> +	match_table_list = []
 
-A better name would be compat_list like in the other functions that return lists
-of compatibles.
-
-> +	for m in re.finditer(rf'{func_name}\(([a-zA-Z0-9_>\(\)"\-]+,\s)*"([a-zA-Z0-9_,-]+)"\)', data):
-> +		match_table_list.append(m[2])
-> +
-> +	return match_table_list
-> +
-> +
->  def parse_compatibles(file, compat_ignore_list):
->  	with open(file, 'r', encoding='utf-8') as f:
->  		data = f.read().replace('\n', '')
-> @@ -60,6 +69,10 @@ def parse_compatibles(file, compat_ignore_list):
->  	else:
->  		compat_list = parse_of_declare_macros(data)
->  		compat_list += parse_of_device_id(data)
-> +		compat_list += parse_of_functions(data, "_is_compatible")
-
-This pattern seems very broad and bound to generate false-positives. That said,
-I glanced over the results and didn't see any string clearly wrong, so I guess
-it's fine. There were a couple suspicious strings like "B5221" but they were
-indeed used in the of functions, so it's working correctly.
-
-> +		compat_list += parse_of_functions(data, "of_find_compatible_node")
-> +		compat_list += parse_of_functions(data, "for_each_compatible_node")
-> +		compat_list += parse_of_functions(data, "of_get_compatible_child")
->  
->  	return compat_list
->  
-> -- 
-> 2.45.2
-> 
-
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-On a related note, I'm wondering if you haven't had time to see
-https://lore.kernel.org/all/20240729-dt-kselftest-parent-disabled-v2-1-d7a001c4930d@collabora.com
-or if that patch didn't make it to you somehow.
-
-Thanks,
-Nícolas
-
+>
+> Please pick one victim subsystem and work on the patches for just that
+> subsystem. Once you have them correct, you can use everything you
+> learned to fixup all your other patches, one by one.
+>
+> 	Andrew      	 
 
