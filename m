@@ -1,385 +1,197 @@
-Return-Path: <devicetree+bounces-99705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCAAC96AD55
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 02:31:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52ADC96AD8E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 03:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 768AE286206
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 00:31:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C28151F25A9A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 01:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BB47F9;
-	Wed,  4 Sep 2024 00:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316DE63D;
+	Wed,  4 Sep 2024 01:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="twDkCD5D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2094.outbound.protection.outlook.com [40.92.103.94])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30CE12CA7
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 00:30:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.83
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725409839; cv=none; b=Sh4a2C8TvRiBt+kB5AcjniYLGdN693wVRNfcNlBbZuGqWQO9VyJtnldlpSra4Baa/Z5AcexaJ55eW1d1g0bI8w1A9UhjSAqiM0MhgfDSeJf7CxGqvK56qkJoxYbJ5puIvqqUJmDRdqYpGQXNVhg5FvknGPmIxiMjMp4nOoNqa3I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725409839; c=relaxed/simple;
-	bh=q1OPzRiBqf2s83WMT3Cm/d2xWVGIk+c7EBJrtdVY8qA=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=shg4n3LLj76hJfj/VHIQt3NDOkfKUBq0pHPraAvSEezbUbf2FOpxq+uKrBON/LceYbQlmfYLWmcdKcz0SholtZa4ekuAg61sleoVxDmJTRXllHUnX5Vo++d7qYorDGyObKOfzTDeRmwecit/yYVL13tjDzefWDlDKFBhBZEvcJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-25-87.elisa-laajakaista.fi [88.113.25.87])
-	by fgw21.mail.saunalahti.fi (Halon) with ESMTP
-	id e6097ca3-6a54-11ef-abaf-005056bdd08f;
-	Wed, 04 Sep 2024 03:30:34 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 4 Sep 2024 03:30:34 +0300
-To: wangshuaijie@awinic.com
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, kees@kernel.org, gustavoars@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	liweilei@awinic.com, kangjiajun@awinic.com
-Subject: Re: [PATCH V9 2/2] iio: proximity: aw96103: Add support for
- aw96103/aw96105 proximity sensor
-Message-ID: <ZteqKroYjYKETqn7@surfacebook.localdomain>
-References: <20240827080229.1431784-1-wangshuaijie@awinic.com>
- <20240827080229.1431784-3-wangshuaijie@awinic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F1D173;
+	Wed,  4 Sep 2024 01:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725411770; cv=fail; b=U2WWldTknZjpkZnqdfKX51BY6oOgEC1+3oBr51/jBfAt22PI1dSi5PNeNR5JOkzKfBb/iHEtpIonStHc4Zo1pwcBmsSZzTgnW33sGltY0VqNYmMwo+Flz/SHWTuZwOayEGH7Ky1nt/x+YX1nPOK3G3pJlkRfBLCuOapSkn5frtM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725411770; c=relaxed/simple;
+	bh=9LKLPCdmOv11xVnjs3CgSsiq0OaSZI+FdpCbzwsuEoo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=UvphxUNyEDuO+dEp3YbILagfHDdGjk2QhXYGQPZrUwduGyPsfhyjthetuHufvs2AaC0rN0RhtyxAePdxIFuzzMhbh6kPl0S2WkYJBcSLrdBIubuoxbkNDa+jOklTvCXVCbD3YAyN/ehugyzSEKb4FcjPaZtDFTWg/4VewyOwdS8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=twDkCD5D; arc=fail smtp.client-ip=40.92.103.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zOyWG9oevoPHoMn9icQtIoo9HpfurvkN0uHzgHFg8cBD8gFVugU4WhGWvl9rBU6aYElfGm9mWtEAUY0USiFkA0Y8Rtf0hPIskungA7R5R1Am0j8dZsmE0UpNz6ERnqBMme5KgSIGYgQ6M7UVKSpnsqPV6FwJQpQ1WRU5pjY9cNHAagMC0IRo6WP+qQQ9UmUGH6m76BxmUrH3o0yeGIBbgELQq1lKaPGSdv8HQjtdBkt92wfRLjXW+w3FlN7901Vr7WbtJNvPn5BXywFJuweZrWk+HWMQEPcYbessdAUfmfJWzysgJFtYq/ewLx+oJH7c7m+SjR3kbg5kPm5id6OGjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ulyFoPlsz+kwca/IhFxy8rvWwS2uPU8PbNeVxDZIKfg=;
+ b=L2/oMTJYQH6CitgsO3JPprD9yuyRk+TDd9A8kDMI7Ngdd9/jHCQAvcfynNPNMCbVIRaenDs3FOup8G8+Bj0dB/3Vp92y8gPA//4/o8C9OTf6QTa0kmI+W1S/wz+pLWDnBOcPmET4dwntWKUyoUdmoD4fvnDW+D/gmZOCqb7ECtFD21yB4B9MjClcLQCP5tTa4HOqmiknx8b34jL2Of2IFuiEXLoE0qyZEBeSVEFxMLEMlDa2VcrAUGlSO8WozAdysDh3urQkanT0PBABmkxNx1JjEqJ6fqIwEHqLDRFG3aQ/jL35c9hYqHNcjo6EL+CKTUfQutqviFjThQFw5bLJ2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ulyFoPlsz+kwca/IhFxy8rvWwS2uPU8PbNeVxDZIKfg=;
+ b=twDkCD5DX8sYopXxpEdICI+X0NeTrMyE6LDr3FZSUSWiw+VYc1LApQPM1Jngyo6H9yQBXijNcnViF5BSex8d9PkcxnSAu7qQAxy90HMKRQHSq6eEkf5MJ0vXNaWQV4+o/YUERO5dOGLEYLENlnJNG3J95OlDzDzVl49unFwzzEX4Vkqr3Mqn1jXy1jMKJ05CoAKusbeTxuOfdX1ll8GL2Sf3cpVqKuRnVPEsAh3/s28wyEkTSZAiCrAl5NrmaTtyo+hxxodoD7BK+SMNmzdIjvHu7EZdWC5QgvsJ7xg3go8+ARZnrsQdrSTcKr69ml572oty2VIv3JWabL/hU9tS0Q==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN0P287MB0946.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:146::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.27; Wed, 4 Sep
+ 2024 01:02:40 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%7]) with mapi id 15.20.7918.024; Wed, 4 Sep 2024
+ 01:02:40 +0000
+Message-ID:
+ <MA0P287MB282248B29F8F2028B29BB02DFE9C2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 4 Sep 2024 09:02:36 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] riscv: dts: sophgo: Add LicheeRV Nano board device
+ tree
+To: Inochi Amaoto <inochiama@outlook.com>,
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Chao Wei <chao.wei@sophgo.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
+ <20240711-sg2002-v4-4-d97ec2367095@bootlin.com>
+ <IA1PR20MB4953612773890B94FFD0C9EABB962@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <MA0P287MB2822AC58BC43FDE03802E773FE972@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <1b202582-0487-483c-ba80-47125551eb5d@bootlin.com>
+ <IA1PR20MB4953AB5F2E922EA4E1E74184BB972@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <IA1PR20MB4953AB5F2E922EA4E1E74184BB972@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [jcj90nHIJOPqYOdadg0DWD4T/BDjVvKH]
+X-ClientProxiedBy: SI2PR01CA0045.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::19) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <c99de627-5bc9-47d8-aa46-170d7d4b665e@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240827080229.1431784-3-wangshuaijie@awinic.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB0946:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3f6ea8e0-80f6-43e2-85c5-08dccc7d466f
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|5072599009|19110799003|461199028|8060799006|15080799006|6090799003|3412199025|440099028|4302099013|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	di9R+SZqeN1w0tjt9TPQATchIYGpLQmZckjRgh/EP4248e0QYF8XoTB/fG5lHCcWRRBNKJ6ph8x230Nq9qJmg6Evd+gn8yVhtrw4KY0ZQuBzKVbi6GMr2OIP3FgKK0kTSOBxse7rohid2SDE8QFC2MM8/yaZ5NgEzihPR7Wl4smJGXEXw24Etex4KDSH3R0ajuh20MYKTXQBcVc/b6qHKs0l0gj0iWmRQQo6l53Iam1hNI2WjQEDN0q5OkTtQBxzqtQhUnXkmxQ2wK5xCsZksMoN/rBp+7EZ+WkoZGJRkr2j6EbNvfiU2b1RXZgoMA8HF5Igiw406pxw+AM0JsDDPzp759cy5Ap9Ip6McSLmhkxiN1hyZNUAElBocH2y/DzmkoiiEgsbR2qhFuoDuA7iflf5y2u27RlIs8AHnmqTUrzuQ45ok85dotNHQ6+2HRrN/4aAt/NhCbYwZUbwYMCUAkuAy14V23bR3JeFwK+GaTGKrYxMLzEMmVwmAyuH0WRrh81UuPnYbrqimOTeeYFPQY/3UWP/6MdTKIJwvl/sdUN/+ID9Sfw3PPOy8uSxbClfTLM7eNMT9NfVCDbg1NSJfpimT73NhNgVjKJZ7WNCY3VP0ChsQUM11GkjKSDkIC+WUejgsIHcy2kPJCfCdTvYTsyi2RyC2wpAkfwvgIKJj/ww7pyNF/UYiUqYzdqFQtMLa+mUJoEzuSETudou7CFEEIIeqXaapDmg1xh7NtnKjb1puU8k930dnYPwqlKjOizYSYmsFO3fZw4mH5RwKSwCFSVl8H7daR/xujUEdbn1GFOt5h8yv2z30oqobeIEjwiVkJIp9r8KVU4T7bGswUUl8UGt16ez9lvooDCDHpbh0eeDLMviJRMfcmZeeTc0gJbnwnHi0zw9WMi0BmYJ+LhV0w==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NUFNZVdrWU44MjZTekt2Nm1ZSUFpZjI3YlRpNnAzemJiREZsWXFSL0lxcHVL?=
+ =?utf-8?B?WDE4Zll0ZWdHdzArUnZ3SlR0U0d2ZVNDNHZGQ0hVaDFGWXZTem5oQmNCUUJ6?=
+ =?utf-8?B?REU2YXVIMnZKTGZ4YW4zVFJYMzhxbEJVWWFYd2RDTll4UFlRQWlXQThqZ2xv?=
+ =?utf-8?B?WWFvUy9oVGl2RnRnT1hDUkI5VmpQTGdCYlRkQjc3Y0FoZUtOVVlicnQxK0xG?=
+ =?utf-8?B?R1RRQmVCWjlJdkU3MU9ObWRtSFJLQnRnMlBBZWp0TzFZbmZ4WEd0ZjcxaCs5?=
+ =?utf-8?B?dnA3L1hFUWhKM2hQNjd3c3ppbjlXVno5emRzRUtpbGxCcGM4SExvaHNOWFdN?=
+ =?utf-8?B?eWoxMTE2YTZham5KVlNWOTFxMUVScDJuVGUrUkJhbkJQY3ZGd0g5am9yZXNv?=
+ =?utf-8?B?UzBWYXhNSEV4ZGxVeDRTRHdzZk9LOVVleHNjS01rVVFBY3g4VnpHWjM4NkdW?=
+ =?utf-8?B?TGQ5UzNpbkh3SElTWkgwaVhmZEozUVByM05DTmJYaWMvdU9KczB2dmwvalUv?=
+ =?utf-8?B?dFBmeGJ4SEhkN0dtZDNNemgyaHc1TGF6aUVRZnZWNWtNc05oRUUyY2s3WGtE?=
+ =?utf-8?B?bStMRjZ6VnBkWHVWMWl6Ui9lTy9HNkpwTkluMytXaFExU0hOUVlSZkN2S2Nl?=
+ =?utf-8?B?cW1LQ1VleGdFSGU0SzAzV2E5K2xyQm40eXFqTTlUcU1DQzFEU3NPdVdaQ0wz?=
+ =?utf-8?B?Wm1tK1F4MFNFbUpJckd3MG5VU3JXVlUzcVcxMXRPYWNoQ2tuQVBXRkdVckNQ?=
+ =?utf-8?B?RytuQnBQdVM5bUY2cENsamNJcjFXN1ZvRTRFQU5TUDhHalduVGJNNWcxVm5B?=
+ =?utf-8?B?cVd6Z0l2WlcrLzNYTHdKZ1d4TDJIYXV2ckM3WmNIVUFQK0FNblFwM0xMT25t?=
+ =?utf-8?B?TGg5MER5ZmJVN2gyNENzUkNPOVp4OWhFR3pBUGdsZDdMTmxnSW9sVTBDRUpt?=
+ =?utf-8?B?SmkyT0crcXVrRktVczZtWkhTNWdBdTlObEJlUC96NXJPSU5aUWFhK3JKdm5G?=
+ =?utf-8?B?MVJuSThxM2lZSk04UU9TcVlDenlpR3BQSW1JbHJhaWdxTUpTWEdQTCtPR2Nn?=
+ =?utf-8?B?TnE4cnFucUE4WGtzbUQ1YVlRZUdITTAvazhBZlBJOVFDUS8ybnVERHlKWmJQ?=
+ =?utf-8?B?bUJjQTVOKzZiRmdDaW1iOXVnYWJlQ3NXRVR2ZlhaRWd2OFBnZDNGcTgzZXRs?=
+ =?utf-8?B?Mk5nVkFXL1dETC9wREZoTWNUcllGZU5YUzJlYXdzdmkxWEFVU2xIbXRlWTlE?=
+ =?utf-8?B?UlUyTDZJTkxDWVBGdER3NWU0bHNIeithS3loaWZUTU80NDdMUUNpelpTL0pO?=
+ =?utf-8?B?QWFxRUtvWEZ6ZDJVWE5JMlN4TWZxYUtKQ05iR0dTNW92dnNTL1ZhTkJrZVFJ?=
+ =?utf-8?B?aVFIbDV0ODk3Njl0YVY0ZmhmRWF6ZEd6UW1PV0xoYzNuSWNVM0NYVVBSdHdw?=
+ =?utf-8?B?MDByQWx2WEFPRjVjN1FsaGJhR1dWV2FaeTB5ZzFTd2VQSlF3Rlo4Z093QXJ3?=
+ =?utf-8?B?WWZ1MTJRREVCcFQ3Q1g1TFBENWo0ZzNvaUdGTjdQT09VU0p0SlR6cko4MjZH?=
+ =?utf-8?B?ZEV2cWs1czBWdW4wM0kxOWtkK2RhVVhNQmNJRFZvUURaODdnSkFKZm12blV0?=
+ =?utf-8?B?dlNFdjZxL1NCM0RBSGJHZlE4M21iSk03OXVZMyt4V2hJR3U5cDFPUC9uYUJi?=
+ =?utf-8?Q?QSqVV4KjQs7HZxxhI/0I?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f6ea8e0-80f6-43e2-85c5-08dccc7d466f
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2024 01:02:40.6856
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB0946
 
-Tue, Aug 27, 2024 at 08:02:29AM +0000, wangshuaijie@awinic.com kirjoitti:
-> From: shuaijie wang <wangshuaijie@awinic.com>
-> 
-> AW96103 is a low power consumption capacitive touch and proximity controller.
-> Each channel can be independently config as sensor input, shield output.
-> 
-> Channel Information:
->   aw96103: 3-channel
->   aw96105: 5-channel
 
-Instead of review the below is the diff that I think makes sense to apply
-(in any convenient form, e.g., squash to the existing commit, splitting
- and making followups)
+On 2024/8/30 19:20, Inochi Amaoto wrote:
+> On Fri, Aug 30, 2024 at 10:06:45AM GMT, Thomas Bonnefille wrote:
+[......]
+>>>> Have you test you patch with a real board? Especially
+>>>> for device "uart1" and "i2c0", I suspect your
+>>>> configuartion does not work by default.
+>>> Hi, Thomas Bonnefille,
+>>>
+>>> Can you please double check and feedback, I want to confirm this before
+>>> acking this change.
+>>>
+>>> As you know, rc6 will come next week and I'm planning a pr next week.
+>>>
+>>> Regards,
+>>>
+>>> Chen
+>>>
+>> Hello Chen and Inochi,
+>>
+>> I'm really sorry, indeed, those nodes certainly don't work, it was a mistake
+>> on my side introduced between v1 and v2.
+>> However, I can ensure that "uart0" and "sdhci0" are working fine.
+>> May I suggest to remove those two nodes? I can send a new iteration if it's
+>> easier for you to handle?
+> As you need a new version, please add pinctrl node and necessary pin
+> configuration. And I will take the first two binding patch. So there
+> is no need to add them anymore.
+>
+> The pinctrl patch (note it also needs a dependency):
+> https://lore.kernel.org/all/IA1PR20MB4953DC78BB0FE0C57EA94F91BBB32@IA1PR20MB4953.namprd20.prod.outlook.com/
+>
+> Regard,
+> Inochi
 
-diff --git a/drivers/iio/proximity/aw96103.c b/drivers/iio/proximity/aw96103.c
-index 89f7e1bde928..eabbb6b08e67 100644
---- a/drivers/iio/proximity/aw96103.c
-+++ b/drivers/iio/proximity/aw96103.c
-@@ -6,19 +6,24 @@
-  *
-  * Copyright (c) 2024 awinic Technology CO., LTD
-  */
-+#include <linux/array_size.h>
- #include <linux/bits.h>
- #include <linux/bitfield.h>
-+#include <linux/cleanup.h>
- #include <linux/delay.h>
- #include <linux/firmware.h>
- #include <linux/i2c.h>
- #include <linux/interrupt.h>
--#include <linux/iio/events.h>
--#include <linux/iio/iio.h>
- #include <linux/regulator/consumer.h>
- #include <linux/regmap.h>
- #include <linux/slab.h>
-+#include <linux/types.h>
-+
- #include <asm/unaligned.h>
- 
-+#include <linux/iio/events.h>
-+#include <linux/iio/iio.h>
-+
- #define AW_DATA_PROCESS_FACTOR			1024
- #define AW96103_CHIP_ID				0xa961
- #define AW96103_BIN_VALID_DATA_OFFSET		64
-@@ -94,8 +99,8 @@ enum aw96103_sensor_type {
- };
- 
- struct aw_channels_info {
--	bool used;
- 	unsigned int old_irq_status;
-+	bool used;
- };
- 
- struct aw_chip_info {
-@@ -254,8 +259,8 @@ static int aw96103_get_diff_raw(struct aw96103 *aw96103, unsigned int chan,
- 			  AW96103_REG_DIFF_CH0 + chan * 4, &data);
- 	if (ret)
- 		return ret;
--	*buf = (int)(data / AW_DATA_PROCESS_FACTOR);
- 
-+	*buf = data / AW_DATA_PROCESS_FACTOR;
- 	return 0;
- }
- 
-@@ -302,8 +307,8 @@ static int aw96103_read_out_debounce(struct aw96103 *aw96103,
- 			  AW96103_REG_PROXCTRL_CH(chan->channel), &reg_val);
- 	if (ret)
- 		return ret;
--	*val = FIELD_GET(AW96103_OUTDEB_MASK, reg_val);
- 
-+	*val = FIELD_GET(AW96103_OUTDEB_MASK, reg_val);
- 	return IIO_VAL_INT;
- }
- 
-@@ -317,8 +322,8 @@ static int aw96103_read_in_debounce(struct aw96103 *aw96103,
- 			  AW96103_REG_PROXCTRL_CH(chan->channel), &reg_val);
- 	if (ret)
- 		return ret;
--	*val = FIELD_GET(AW96103_INDEB_MASK, reg_val);
- 
-+	*val = FIELD_GET(AW96103_INDEB_MASK, reg_val);
- 	return IIO_VAL_INT;
- }
- 
-@@ -332,8 +337,8 @@ static int aw96103_read_hysteresis(struct aw96103 *aw96103,
- 			  AW96103_REG_PROXCTRL_CH(chan->channel), &reg_val);
- 	if (ret)
- 		return ret;
--	*val = FIELD_GET(AW96103_THHYST_MASK, reg_val);
- 
-+	*val = FIELD_GET(AW96103_THHYST_MASK, reg_val);
- 	return IIO_VAL_INT;
- }
- 
-@@ -454,11 +459,10 @@ static int aw96103_channel_scan_start(struct aw96103 *aw96103)
- 			    aw96103->hostirqen);
- }
- 
--static int aw96103_reg_version_comp(struct aw96103 *aw96103,
--				    struct aw_bin *aw_bin)
-+static int aw96103_reg_version_comp(struct aw96103 *aw96103, struct aw_bin *aw_bin)
- {
- 	u32 blfilt1_data, fw_ver;
--	unsigned char i;
-+	unsigned int i;
- 	int ret;
- 
- 	ret = regmap_read(aw96103->regmap, AW96103_REG_FWVER2, &fw_ver);
-@@ -474,16 +478,17 @@ static int aw96103_reg_version_comp(struct aw96103 *aw96103,
- 
- 	for (i = 0; i < aw96103->max_channels; i++) {
- 		ret = regmap_read(aw96103->regmap,
--			AW96103_REG_BLFILT_CH0 + (AW96103_BLFILT_CH_STEP * i),
-+			AW96103_REG_BLFILT_CH0 + AW96103_BLFILT_CH_STEP * i,
- 			&blfilt1_data);
- 		if (ret)
- 			return ret;
-+
- 		if (FIELD_GET(AW96103_BLERRTRIG_MASK, blfilt1_data) != 1)
- 			return 0;
- 
- 		return regmap_update_bits(aw96103->regmap,
--			AW96103_REG_BLRSTRNG_CH0 + (AW96103_BLFILT_CH_STEP * i),
--			AW96103_BLRSTRNG_MASK, 1 << i);
-+			AW96103_REG_BLRSTRNG_CH0 + AW96103_BLFILT_CH_STEP * i,
-+			AW96103_BLRSTRNG_MASK, BIT(i));
- 	}
- 
- 	return 0;
-@@ -493,25 +498,22 @@ static int aw96103_bin_valid_loaded(struct aw96103 *aw96103,
- 				    struct aw_bin *aw_bin_data_s)
- {
- 	unsigned int start_addr = aw_bin_data_s->valid_data_addr;
--	u32 i, reg_data;
-+	unsigned int i;
-+	u32 reg_data;
- 	u16 reg_addr;
- 	int ret;
- 
--	for (i = 0; i < aw_bin_data_s->valid_data_len;
--	     i += 6, start_addr += 6) {
-+	for (i = 0; i < aw_bin_data_s->valid_data_len; i += 6, start_addr += 6) {
- 		reg_addr = get_unaligned_le16(aw_bin_data_s->data + start_addr);
--		reg_data = get_unaligned_le32(aw_bin_data_s->data +
--					      start_addr + 2);
--		if ((reg_addr == AW96103_REG_EEDA0) ||
--		    (reg_addr == AW96103_REG_EEDA1))
-+		reg_data = get_unaligned_le32(aw_bin_data_s->data + start_addr + 2);
-+		if ((reg_addr == AW96103_REG_EEDA0) || (reg_addr == AW96103_REG_EEDA1))
- 			continue;
- 		if (reg_addr == AW96103_REG_IRQEN) {
- 			aw96103->hostirqen = reg_data;
- 			continue;
- 		}
- 		if (reg_addr == AW96103_REG_SCANCTRL0)
--			aw96103->chan_en = FIELD_GET(AW96103_CHAN_EN_MASK,
--						     reg_data);
-+			aw96103->chan_en = FIELD_GET(AW96103_CHAN_EN_MASK, reg_data);
- 
- 		ret = regmap_write(aw96103->regmap, reg_addr, reg_data);
- 		if (ret < 0)
-@@ -527,19 +529,21 @@ static int aw96103_bin_valid_loaded(struct aw96103 *aw96103,
- 
- static int aw96103_para_loaded(struct aw96103 *aw96103)
- {
--	int i, ret;
-+	unsigned int i;
-+	int ret;
- 
- 	for (i = 0; i < ARRAY_SIZE(aw96103_reg_default); i += 2) {
--		ret = regmap_write(aw96103->regmap,
--				   (u16)aw96103_reg_default[i],
--				   (u32)aw96103_reg_default[i + 1]);
-+		u16 offset = aw96103_reg_default[i];
-+		u32 value = aw96103_reg_default[i + 1];
-+
-+		ret = regmap_write(aw96103->regmap, offset, value);
- 		if (ret)
- 			return ret;
--		if (aw96103_reg_default[i] == AW96103_REG_IRQEN)
--			aw96103->hostirqen = aw96103_reg_default[i + 1];
--		else if (aw96103_reg_default[i] == AW96103_REG_SCANCTRL0)
--			aw96103->chan_en = FIELD_GET(AW96103_CHAN_EN_MASK,
--					   aw96103_reg_default[i + 1]);
-+
-+		if (offset == AW96103_REG_IRQEN)
-+			aw96103->hostirqen = value;
-+		else if (offset == AW96103_REG_SCANCTRL0)
-+			aw96103->chan_en = FIELD_GET(AW96103_CHAN_EN_MASK, value);
- 	}
- 
- 	return aw96103_channel_scan_start(aw96103);
-@@ -567,7 +571,8 @@ static int aw96103_cfg_all_loaded(const struct firmware *cont,
- static void aw96103_cfg_update(const struct firmware *fw, void *data)
- {
- 	struct aw96103 *aw96103 = data;
--	int ret, i;
-+	unsigned int i;
-+	int ret;
- 
- 	if (!fw || !fw->data) {
- 		dev_err(aw96103->dev, "No firmware.\n");
-@@ -588,12 +593,9 @@ static void aw96103_cfg_update(const struct firmware *fw, void *data)
- 		}
- 	}
- 
--	for (i = 0; i < aw96103->max_channels; i++) {
--		if ((aw96103->chan_en >> i) & 0x01)
--			aw96103->channels_arr[i].used = true;
--		else
-+	for (i = 0; i < aw96103->max_channels; i++)
-+		aw96103->channels_arr[i].used = aw96103->chan_en & BIT(i);
- 			aw96103->channels_arr[i].used = false;
--	}
- }
- 
- static int aw96103_sw_reset(struct aw96103 *aw96103)
-@@ -603,7 +605,7 @@ static int aw96103_sw_reset(struct aw96103 *aw96103)
- 	ret = regmap_write(aw96103->regmap, AW96103_REG_RESET, 0);
- 	/*
- 	 * After reset, the initialization process starts to perform and
--	 * it will last for a bout 20ms.
-+	 * it will last for about 20ms.
- 	 */
- 	msleep(20);
- 
-@@ -611,7 +613,7 @@ static int aw96103_sw_reset(struct aw96103 *aw96103)
- }
- 
- enum aw96103_irq_trigger_position {
--	FAR = 0,
-+	FAR         = 0x00,
- 	TRIGGER_TH0 = 0x01,
- 	TRIGGER_TH1 = 0x03,
- 	TRIGGER_TH2 = 0x07,
-@@ -623,7 +625,8 @@ static irqreturn_t aw96103_irq(int irq, void *data)
- 	unsigned int irq_status, curr_status_val, curr_status;
- 	struct iio_dev *indio_dev = data;
- 	struct aw96103 *aw96103 = iio_priv(indio_dev);
--	int ret, i;
-+	unsigned int i;
-+	int ret;
- 
- 	ret = regmap_read(aw96103->regmap, AW96103_REG_IRQSRC, &irq_status);
- 	if (ret)
-@@ -641,10 +644,12 @@ static irqreturn_t aw96103_irq(int irq, void *data)
- 		if (!aw96103->channels_arr[i].used)
- 			continue;
- 
--		curr_status = (((curr_status_val >> (24 + i)) & 0x1)) |
--			      (((curr_status_val >> (16 + i)) & 0x1) << 1) |
--			      (((curr_status_val >> (8 + i)) & 0x1) << 2) |
--			      (((curr_status_val >> i) & 0x1) << 3);
-+		curr_status = curr_status_val >> i;
-+		curr_status = ((curr_status >> 24 + 0) & BIT(0)) |
-+			      ((curr_status >> 16 + 1) & BIT(0)) |
-+			      ((curr_status >>  8 + 2) & BIT(0)) |
-+			      ((curr_status >>  0 + 3) & BIT(0));
-+
- 		if (aw96103->channels_arr[i].old_irq_status == curr_status)
- 			continue;
- 
-@@ -675,8 +680,7 @@ static irqreturn_t aw96103_irq(int irq, void *data)
- 	return IRQ_HANDLED;
- }
- 
--static int aw96103_interrupt_init(struct iio_dev *indio_dev,
--				  struct i2c_client *i2c)
-+static int aw96103_interrupt_init(struct iio_dev *indio_dev, struct i2c_client *i2c)
- {
- 	struct aw96103 *aw96103 = iio_priv(indio_dev);
- 	unsigned int irq_status;
-@@ -685,9 +689,11 @@ static int aw96103_interrupt_init(struct iio_dev *indio_dev,
- 	ret = regmap_write(aw96103->regmap, AW96103_REG_IRQEN, 0);
- 	if (ret)
- 		return ret;
-+
- 	ret = regmap_read(aw96103->regmap, AW96103_REG_IRQSRC, &irq_status);
- 	if (ret)
- 		return ret;
-+
- 	ret = devm_request_threaded_irq(aw96103->dev, i2c->irq, NULL,
- 					aw96103_irq, IRQF_ONESHOT,
- 					"aw96103_irq", indio_dev);
-@@ -700,26 +706,17 @@ static int aw96103_interrupt_init(struct iio_dev *indio_dev,
- 
- static int aw96103_wait_chip_init(struct aw96103 *aw96103)
- {
--	unsigned int cnt = 20;
- 	u32 reg_data;
- 	int ret;
- 
--	while (cnt--) {
--		/*
--		 * The device should generate an initialization completion
--		 * interrupt within 20ms.
--		 */
--		ret = regmap_read(aw96103->regmap, AW96103_REG_IRQSRC,
--				  &reg_data);
--		if (ret)
--			return ret;
--
--		if (FIELD_GET(AW96103_INITOVERIRQ_MASK, reg_data))
--			return 0;
--		fsleep(1000);
--	}
--
--	return -ETIMEDOUT;
-+	/*
-+	 * The device should generate an initialization completion
-+	 * interrupt within 20ms.
-+	 */
-+	return regmap_read_poll_timeout(aw96103->regmap, AW96103_REG_IRQSRC,
-+				       reg_data,
-+				       FIELD_GET(AW96103_INITOVERIRQ_MASK, reg_data),
-+				       1000, 20000);
- }
- 
- static int aw96103_read_chipid(struct aw96103 *aw96103)
+FYI, 
+https://lore.kernel.org/linux-riscv/MA0P287MB28228F4FC59B057DF57D9A11FE9C2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM/, 
+I have raised a PR and included the two bindings related patches.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thomas Bonnefille, for other DTS part, please go ahead and post new 
+version with your changes, I will raise PR after your update.
+
+Regards,
+
+Chen
 
 
 
