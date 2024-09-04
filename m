@@ -1,144 +1,191 @@
-Return-Path: <devicetree+bounces-99948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C057696BA25
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:20:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA29296BA28
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 13:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 262FAB250C8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 11:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 188ECB28C6E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 11:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260231D2210;
-	Wed,  4 Sep 2024 11:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A513D1D0158;
+	Wed,  4 Sep 2024 11:17:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KRVtWdg9"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="C5AA6T4m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2056.outbound.protection.outlook.com [40.107.21.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA4E1D016D;
-	Wed,  4 Sep 2024 11:16:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725448614; cv=none; b=ZEiRoos31J3zmjYsylpfNX9sf/a4G2UGiA8ylodqrLmFw21q91iQy7Xe96G/+9KoTmu5qFh04mZV86zY58ZAgyCx1Aly8uZqdMtlSx4gA5BMKW04D3n8tfvWphoJ8gnWZZ4nfX+q7i0BABlngKcYQgRKr144VctRT18qqqPogw0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725448614; c=relaxed/simple;
-	bh=SFWQxwybbR05p/JSlu2vfeQxyFVILJVtOStppUEw+xw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DBPn4XSL1p7xjouVPi9eD1oaJKiZaIYOLwLJEMKswf3m0MbVImc0/LQGhqWFRh6gNqaOWJ9D3IaxR2P0DJhNuyNqkUGtqWcuLPvZYIRtmlpdPFsn9jMa3o1S7DFAFVi2LN+sO9SjcnXiKwwyhG9a5bcguovCp6pzcyP0VSF2WUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KRVtWdg9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D711FC4CEC9;
-	Wed,  4 Sep 2024 11:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725448613;
-	bh=SFWQxwybbR05p/JSlu2vfeQxyFVILJVtOStppUEw+xw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KRVtWdg9D4xhd/xX3u5CgZSN5Sm0NZWjAaFc8R5UIZOvKvw7KgThuvHywHeB3MdGE
-	 kgA2xop/P1gXyrNDSdt9rkNvIKmYiSEpIzrKdCqUSl1RczLm9zXv5zRl4J+FummyAt
-	 Xi8bvs1g+F47UlxXsHpphN5OeHmq6pxpp0RWjA95epvKzdjasyrp2JgHw8t8e3Nosp
-	 VBomlo31XSnwYb0Cem8rEVFMAlnnrfrfSCfiFncF8c/X9VoNBp67c3eqHtvOrCoNxj
-	 q2KL+vVp0YtBLxLoISr+raawo46JGCCLhCqUxMAaeLNlbLagNf7BrjjDV86zzRJKmH
-	 Fw24bheSYB6OQ==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Nicolas Belin <nbelin@baylibre.com>
-In-Reply-To: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
-References: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
-Subject: Re: (subset) [PATCH v7 00/16] Add audio support for the MediaTek
- Genio 350-evk board
-Message-Id: <172544860860.19172.7052813450885034844.b4-ty@kernel.org>
-Date: Wed, 04 Sep 2024 12:16:48 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8368F1D017B;
+	Wed,  4 Sep 2024 11:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725448673; cv=fail; b=q93yqxTHXGzGMBbPFQ+dFAbKDv3IjLaktY8FYmUua9kyob/7mtDuFf7u4KY0z0PzsBgQhhyW6p0oGIZAP6iH4DF0RL2BN5Nx2/ph5tTkqVKUUcuvSVWFWag5kCSFIzeix9otGxnuh5fR4F0eKdR2MXy8cxeWtt8Nc++/jO59Ke0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725448673; c=relaxed/simple;
+	bh=63dcorRl1GooexrUpr/xKOgP+ebeNU+uTmZnKqe6pvg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=a5pobGj8JPp0HPc8uM/jCAOxIfqZaeYu3ey5YAEdlXkUMYmbmrxwepDROpE5gXX4uzcAW+A5m4vOU554ArwA71K8uCcAwggZ+QYf9kaMuvZUhfSTzi7/6vOUbuowXSVysBAbMDjWFPqZEGOUXyKeC6rAw9RSH9pJ8b34THrgoog=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=C5AA6T4m; arc=fail smtp.client-ip=40.107.21.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mkTMCj3LKzBoQ6PJrleO09KY8/snZlHVTiNFUHwFJYH4fzHu1hFHvcnX4UzVNT0Z5u/WaGujFoNoI6IT2yJz2YOjmzmQiWgxj4JExd8djVqQRXQCfht0hFqjOsX/ZAYftI6ed0Xw8aelwugmWIEt5yEbfR6PyP8HZBcnrxbCRtl6Ny3vP+/L0WMHtQqeLdhoh+Sv28pwvAVWzVsqg7gHXVPvB1SFeGzvfbPadVQCjdrtmB0lH+n6J58j4mHs4bGfhHzKa9+fK3+gLAqhcc0yrtSXzPFTCDCreKkyJE64y5tNtbSKbf2fE7dpCEwuGPP55jXF7Ho0iJYZWdPMsn0JnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uaes94WbseF+m8qXJsa7LnSmihuQgrahx8WWOXyfTxM=;
+ b=Kh8e7JtzyJHkpvidbBLUd6mY/mKP553pd9ecjMZiQn3rLrjQmnPMPQwArAXAIeOiscIsz++Nb1SLHA2LVh+UjgPtAnqoUbyNBeWjj1SP7FRvII6Lk9+xJFVD2nnKDs03722km7F9jbsYs9umj+3qljJ+QH9ViNkZhGlU3Jtwbcq5KD6wJsUiFfmeeXlIakESlg2elbV8eT+f3aoCncNQ8lwYa5l8TcWFlJDl2U16Ep+3mzcfAOCS0vOaCLUTC6+BGHQWnpoJOyPg4UpDzcv8FzZ12jIWUuaKO7LexPrnRi8KRH6oIDdtpE41R4MledNzhmVwW6CO7n3kDCpLn9NCmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uaes94WbseF+m8qXJsa7LnSmihuQgrahx8WWOXyfTxM=;
+ b=C5AA6T4mWaZEfm5ncuyFw8QLbfEZyPAMNQxldYLfMvuViitw7/fBMrJg/aMUI13b94rX9h9s/HfhHIJcL7KjDfJqi+CiYo/mU6cjptFf7hP/ij+6mbp2/4dCadH7WqhFI0TVQyB5ktb7NS+8upQybea/OHtgP5Gj6rBQc651Zvxh60J8NnAA7qPWi/youP8ykUW5r5yksmKj++X4QDaa0i9MO9O1DGy7KpXPt4IIM4tMzaX4XjAAHeB9dbXdDOa85ANQMp7r8xFLD/uehDyUEmg1bGP/JV+5QYqSgsBWnOaEeUhi06zQbuEqsL/9ZjG1OgoSUpRGMm/t7EJrT4lYgA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU0PR04MB9496.eurprd04.prod.outlook.com (2603:10a6:10:32d::19)
+ by GV1PR04MB10607.eurprd04.prod.outlook.com (2603:10a6:150:203::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Wed, 4 Sep
+ 2024 11:17:47 +0000
+Received: from DU0PR04MB9496.eurprd04.prod.outlook.com
+ ([fe80::4fa3:7420:14ed:5334]) by DU0PR04MB9496.eurprd04.prod.outlook.com
+ ([fe80::4fa3:7420:14ed:5334%4]) with mapi id 15.20.7918.020; Wed, 4 Sep 2024
+ 11:17:40 +0000
+From: haibo.chen@nxp.com
+To: han.xu@nxp.com,
+	yogeshgaur.83@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	singh.kuldeep87k@gmail.com,
+	hs@denx.de,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	haibo.chen@nxp.com
+Subject: [PATCH 0/6] few clean up for flexspi driver on imx8ulp and imx8mp
+Date: Wed,  4 Sep 2024 19:17:21 +0800
+Message-Id: <20240904111727.1834935-1-haibo.chen@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0005.apcprd02.prod.outlook.com
+ (2603:1096:4:194::6) To DU0PR04MB9496.eurprd04.prod.outlook.com
+ (2603:10a6:10:32d::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-99b12
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9496:EE_|GV1PR04MB10607:EE_
+X-MS-Office365-Filtering-Correlation-Id: 823c04f0-126e-46f8-17bb-08dcccd3302b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|376014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?A93XtteL1VaS+xTIeCKa+hmkTjgGvChE0gZdB0rag3qagnqoRqAxbkeu7BfI?=
+ =?us-ascii?Q?8rUD8+d5cqTGWHAHs04toyQC/9R6vgX0ENSTfqp9BlOGXnZZSLuGFOHOX/v8?=
+ =?us-ascii?Q?db7HmO6BmNy7jby05wrNn/nmQRbF42SHNhr2093JmjwZOeZRjih3qCg748Ld?=
+ =?us-ascii?Q?2UdccmrIQWuQUg0gUXNdgFYPMh97KygZq/ZMtkRaPhkc6tz3rB0rydOH0F1m?=
+ =?us-ascii?Q?ZqvjYCalXdJg0lEGv2sNJ8knJniyxoZwDKs2dJvtDkswYZnoDeSb591AuvHe?=
+ =?us-ascii?Q?5LGCHH1Wkh0OyCDa4fNOBeiTcsyscMPR2jgdS19K7d29rLBt76IEroK3QrpZ?=
+ =?us-ascii?Q?CnOqK4j+Aa7urkQBYgGetewL3XGvuN97K6P7ElW1cn3JL8+AWoQhZNMO7uk5?=
+ =?us-ascii?Q?zevvF7g5+Qrs8qDa6F6KLjNUATStZY+hf+auDou9wGDMaDhDSDN28HMKmWHV?=
+ =?us-ascii?Q?XPokciQlkHyorjgQrO4wfTR4eidzrgWao0gOFKyK/UwpU1PbjQS4BCJ+Pzks?=
+ =?us-ascii?Q?wXALOidxTBJSvDxMiIOhLYEu04gSMguZv1HwBaf0gzk+W8zFnIWVTe6a7Lta?=
+ =?us-ascii?Q?B+U+M5zoEyzvxn16/3hoe5ImdvbFcpBBv0QgiZ9rOGsyoZ1KvxhKNX/HhX0k?=
+ =?us-ascii?Q?J+ngS9L+rA9eXlJjflgr07dPxfSIADTO0wzqr5QXXN0siW4nTtDEvDcxzWLZ?=
+ =?us-ascii?Q?lltHJmUOJk3Lx488UY1y9HHgIXTjLyK8iZ5R+TQH6djhKhYOhXrrQIVdNAJb?=
+ =?us-ascii?Q?qobmJ1Bb8Ii35ZsrWeJ2PqqDCtgnn1qmy406blYlQEDALe3FmyLe/G9rKu7/?=
+ =?us-ascii?Q?BCPRj0k09zc6+qC2QNLu7OsFDyOvbNJmmgQ/cRK4El6UP2hMxHXXRVeMNjBW?=
+ =?us-ascii?Q?wh/vIreew3skcRV2JTOy1RpJ4Fzl0DxccEk5UShdEPg09Wlt0AT189xA8bjE?=
+ =?us-ascii?Q?WaDmIpt0/FvSC722pIC2UMGL1Rua1Egi+wvaGNaSptPBMkJHQOG/L8DIb6Wt?=
+ =?us-ascii?Q?sv93vm+eC+5rPzz+TCBP19B/TWYtM3115r7A3sKN/+cZnxvtWo7jxcEkoMq2?=
+ =?us-ascii?Q?6rQej7wKZlighREoPJsIlv5ZGDvQNrnBLMw+5A3nZzQaMGVW1dFBmOIyqqAz?=
+ =?us-ascii?Q?S5ONjBr50oAGeuALgeK/Bblx+k3eE85Xvd+OFRE2y5PaRHqLP0qGsb1nAs3q?=
+ =?us-ascii?Q?jrcydzgYZcmRFbY/LWU7F90mzNRVXssbxo6ltwn8BprLJtuVQhaW+F0NDj05?=
+ =?us-ascii?Q?Plt5p3EMwhmFrElBH+UiCyDzcdWygvv07ik0pe8Dp4VtMDIYuNF4F6pAvilb?=
+ =?us-ascii?Q?SwyTxl+MuSMgwDV4f3TJJemEGPoBcaEu5uBZEre/vcqQsNiFG55ER85Zb2tj?=
+ =?us-ascii?Q?sNvfCnZp5jRqtwuoTIlhrzR9skaLM+4K2hqnN6G/FYKr39Ss6Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9496.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?5SVKsWGoxlgvOEod3XA8+pwTWgk/T3/0nYnsXI492Rrgu81JvT/+34jUjHxs?=
+ =?us-ascii?Q?UOatEIPbUXZUFt9aMgYF4vEWcXFSNrzI5Rf+MqE/fZ6cWEj/dIyovGQTBLiL?=
+ =?us-ascii?Q?qchWKxCGsCPcJRAT6xIzmJn+RIps5pp3z0Hi16lzEJPIspDy4udo35SgcFRd?=
+ =?us-ascii?Q?eVohGGdDk+P3NvkOjM5FwFop8TzKzxK6Y6VfZU+x9DieYoTnExzVSbOq10fw?=
+ =?us-ascii?Q?VCbBcWZFPcg3jEgDCPz5fCSGf3jc0PeopDJ/QAehl8tYYVcCgG+zpxzoRIDn?=
+ =?us-ascii?Q?uOjY1t01WafT7UQvn8WQMcLWvzx2uKohnNp1ibhsRFQp05AFRZxLilXP0SCe?=
+ =?us-ascii?Q?5wuY7I4mXdr2T7z3bPR6JbHp/w75NiryFPilapXkM4//1OF6mFS1D+6fv7Vo?=
+ =?us-ascii?Q?GyBN+3pIXp6QzSVoBGlBzay54p+qV1z3I5ExT+J3oOpH9ZstgpFSTwfRPEzu?=
+ =?us-ascii?Q?a627uHB1/rMvQmwflmnrHF3SLnbJvBb5jwYKWOFuLANiV68enTdyQapYVXin?=
+ =?us-ascii?Q?QqJMaNUUoZYXSBxBUesGIaen9ITemo1t6yWmTYIp5kxMRjKLHsf+KmgArik1?=
+ =?us-ascii?Q?XO9rqkgc1mm/1Q9hsI8RpekvXOIzFwWX+gRIfWEXbfqRjG8xrM4DQ9vDxDd7?=
+ =?us-ascii?Q?n9InrxhY/ShkqTHTqSa+Z0/5cai0GHO4VC1FKwTHoRTVBDJjghA9268E965R?=
+ =?us-ascii?Q?ZhsWE7E0FqZ+ckmMXybgn6HLdf3mmnLkfhwvWEX7c3TKSCEmLRzu3LvBBY5X?=
+ =?us-ascii?Q?/BGxguRBDy0d7iGBlAiEbkXh7Uf8bWKnJTvSW8HnmsgABtqrYYIHsUxUBqyq?=
+ =?us-ascii?Q?nZP5+J5OKvYRiAWxlxdEvoSV0FZA98Ypm58PHSGRJYbTi5Z84bgfVX3Qa3LW?=
+ =?us-ascii?Q?cUsmmSguGs6PA29Gv1QUfa6TMWGKur+JNqOHO7xiOaREsFftUbBfFgHahQKY?=
+ =?us-ascii?Q?FtuD4wfBlOtiXdLUFG28NZTxuEIubscIUW+3E8khZmaLTq6Xt0CivKUARHtM?=
+ =?us-ascii?Q?eon/2vnrTdBoQ66D4/S+uKykNd7zCsbCjjg/TqcVyVr3GKjdgzOR2AEB1GPT?=
+ =?us-ascii?Q?KTcGY/nzHdU60kzChMnLKDahSisYohd5uQ1NB+0Qrmjpan8vjH7XFruCZJTE?=
+ =?us-ascii?Q?g+rlRXiTFgtBQ5jtgIz+7ZyolWkrFpr1mY8MWtajxAEVcbqSIqdRJdrjydct?=
+ =?us-ascii?Q?icJ4qh9V8Ozw2eb0W4K5uxyjnwCUfs8UlDhZn9t86bB5go1cB2WHgNrX41Eb?=
+ =?us-ascii?Q?kdRBYVYt1xDdM5Otq5T/ieEcDp/xjTDKGtRJVQvOBnxmQqULJHL6Y3sERCN4?=
+ =?us-ascii?Q?w0cuvQlaR9DA9JKSLb/jBLryOaXDlIbtqkPWXrz0lMjME2fMRPhmTUxOrmHT?=
+ =?us-ascii?Q?nJI6b0NgMIjTiDQgdGmjIB6xGmshY8bnHXnsgnbX8wQMT94d4G6g2o6fR/Jo?=
+ =?us-ascii?Q?zVbd2rXvxOVg46HNfi/hMGHoZw9MzNsbiDhR+ZXmwICUfgpAp6QwWQcZs3kM?=
+ =?us-ascii?Q?xxA/16+TbREXYb8dbBZEEmDzuEG1beaTMCjmOt2CwuHXajFfYZvcTXUhMzEp?=
+ =?us-ascii?Q?QMVxm6TnHM6DfjjPTJUNLEChBgen7sC7wvzcSJGA?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 823c04f0-126e-46f8-17bb-08dcccd3302b
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9496.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2024 11:17:40.2374
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I0H5lMPyOINKJkLdm8dewAyXFAl7AHe13kV+f2bT7SXuPdmqEumvYp7H4ZwxsQrNaynBNTojyp2gQX9mXpJ+zQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10607
 
-On Mon, 22 Jul 2024 08:53:29 +0200, Alexandre Mergnat wrote:
-> This serie aim to add the following audio support for the Genio 350-evk:
-> - Playback
->   - 2ch Headset Jack (Earphone)
->   - 1ch Line-out Jack (Speaker)
->   - 8ch HDMI Tx
-> - Capture
->   - 1ch DMIC (On-board Digital Microphone)
->   - 1ch AMIC (On-board Analogic Microphone)
->   - 1ch Headset Jack (External Analogic Microphone)
-> 
-> [...]
+From: Haibo Chen <haibo.chen@nxp.com>
 
-Applied to
+PATCH1~3 clean up the redundant imx8mp compatible string
+PATCH4~5 add support on imx8ulp. The flexspi on imx8ulp has a difference
+         with others, it only has 16 LUTs, while others all has upper to
+	 32 LUTs. so add this distinguish in the driver.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Haibo Chen (6):
+  dt-bindings: spi: nxp-fspi: adjust imx8mp to compatible with imx8mm
+  spi: nxp-fspi: remove the imx8mp compatible string
+  arm64: dts: imx8mp: add the compatible string for flexspi
+  dt-bindings: spi: nxp-fspi: add imx8ulp support
+  spi: fspi: add support for imx8ulp
+  arm64: dts: imx8ulp: correct the flexspi compatible string
 
-Thanks!
+ .../devicetree/bindings/spi/spi-nxp-fspi.yaml |  3 +-
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  2 +-
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi    |  2 +-
+ drivers/spi/spi-nxp-fspi.c                    | 55 ++++++++++++-------
+ 4 files changed, 39 insertions(+), 23 deletions(-)
 
-[01/16] ASoC: dt-bindings: mediatek,mt8365-afe: Add audio afe document
-        commit: ceb3ca2876243e3ea02f78b3d488b1f2d734de49
-[02/16] ASoC: dt-bindings: mediatek,mt8365-mt6357: Add audio sound card document
-        commit: 76d80dcdd55f70b28930edb97b96ee375e1cce5a
-[03/16] dt-bindings: mfd: mediatek: Add codec property for MT6357 PMIC
-        commit: 761cab667898d86c04867948f1b7aec1090be796
-[04/16] ASoC: mediatek: mt8365: Add common header
-        commit: 38c7c9ddc74033406461d64e541bbc8268e77f73
-[05/16] ASoC: mediatek: mt8365: Add audio clock control support
-        commit: ef307b40b7f0042d54f020bccb3e728ced292282
-[06/16] ASoC: mediatek: mt8365: Add I2S DAI support
-        commit: 402bbb13a195caa83b3279ebecdabfb11ddee084
-[07/16] ASoC: mediatek: mt8365: Add ADDA DAI support
-        commit: 7c58c88e524180e8439acdfc44872325e7f6d33d
-[08/16] ASoC: mediatek: mt8365: Add DMIC DAI support
-        commit: 1c50ec75ce6c0c6b5736499393e522f73e19d0cf
-[09/16] ASoC: mediatek: mt8365: Add PCM DAI support
-        commit: 5097c0c8634d703e3c59cfb89831b7db9dc46339
-[10/16] ASoc: mediatek: mt8365: Add a specific soundcard for EVK
-        commit: 1bf6dbd75f7603dd026660bebf324f812200dc1b
-[11/16] ASoC: mediatek: mt8365: Add the AFE driver support
-        commit: e1991d102bc2abb32331c462f8f3e77059c69578
-[12/16] ASoC: codecs: add MT6357 support
-        (no commit info)
-[13/16] ASoC: mediatek: Add MT8365 support
-        (no commit info)
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.34.1
 
 
