@@ -1,257 +1,234 @@
-Return-Path: <devicetree+bounces-99819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94AD996B49A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:33:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 075BE96B4A2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:34:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA0401C21BB2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:33:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87D201F231BD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF8691CC157;
-	Wed,  4 Sep 2024 08:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0651CC145;
+	Wed,  4 Sep 2024 08:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="AEbkVfIg"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jsz897Z3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7C11CB320
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 08:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A59381AB4;
+	Wed,  4 Sep 2024 08:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725438779; cv=none; b=WIiZbSK5TPEJmAGaq1z/mis8AMM/Gyj542nE75RpU7iLxUqhX9iHWkP7U0t6NyhFW9n6p17e9aUuw0HuNaYMTFXoLrH14UjOd1p75vrCuHe0Ar77FbUoNVOrR0xUhuqNr/AZCmNP3bYxEmlonUq8bBtY1Lz9n3i9vlICWwTl2Lo=
+	t=1725438885; cv=none; b=sTP88fGR7eny/iL0lvrIZOSRUQAAAKPj/pDSor2bLoaJ/SyziqFMwWgZTp0DHoahZQMv7PrVibdk2ZJ+ILwh3y4HiI/9lF5XQbZtd84fmhaE2eujawCd7U1f9nNDGYa9fazBbSzWJ6X3uNlxkvhLwvTBe3q13IeQWAWZJlu4lVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725438779; c=relaxed/simple;
-	bh=Xv0p+AJofBlCcpb3u4bgKBZYMhgzStHTHgFTPhmw1pE=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lmYj1L5cSi3PjSGnMHbYZHCysZXM8BKtD42qDv2pErqv/tdQP1BPizJeqkdxi5ckHn+7WBx2b+8ajUWo+kAj3U+0SWUiLK7lljsbb4RLgDZ2zo8BZhlD4lIYi/vhmHb3joae1QQ21AdhuGC4iANAvop0wnkStu/fZDKBU4u6Si0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=AEbkVfIg; arc=none smtp.client-ip=209.85.218.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-a80eab3945eso602506266b.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 01:32:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1725438775; x=1726043575; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=czuWwJfvtYwCI1yRbL1xXo5MWTUEx5+lgQqq8jdG4Bg=;
-        b=AEbkVfIgg41Etbmw1+4g5J0R5NmCwhfHwx23LU+LzIEk7m0E4mAqRG6jgZUsJFamgn
-         L+mOk9hNx0oQ8wypBYKuu6KvJCMQGWXUKkxULYzmg6o+0VJn5HTHqJRjekkFYxaLKCM1
-         hLG3RbpQ8/4y82I5tH9ONW8PpzQBn7JJW29XPtChfemnXe+ahNuXwfis2VOB7/rcd88v
-         gqNZXb93EJtHOyCG1yq4LzDFuRyfnmvZ86A9xDX+0TVqOXBU+g2NO5L6cpgwclT3eLmr
-         63KsmC6AVXKiuwwyi6gSHvZ7Rr9UV4fzYskeuZRaHhHpKlmeZ9yd2LgRDp1ZxKFCjV49
-         tt5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725438775; x=1726043575;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=czuWwJfvtYwCI1yRbL1xXo5MWTUEx5+lgQqq8jdG4Bg=;
-        b=XAH5/xoh0tQWPfg0ToSkJss6cter3Ru5NgkbLSd3IBwcdQQ9PH0JZwh8gtPeh1Ih+a
-         ikD6GHiGxYGVP1eOWvjiLTEKPE1tKQzhd9sOxDImjoIg9LEU6YmwtZMy771ccjRDxmZ5
-         6e4yzfa5NMAuFacfeGzLhitd/MC322UJqwH+CCnZLa5aSjkutdioC6oKuFYzrP0EH1dg
-         ZM+QmPSuOeRlmPwEve1hF5iwOvIbdpB9eF2Mld2Y26yHCZ5SN5DccRfwXN4A/dgI2gJl
-         VgeMY3R84mHIAtPmTdH5EQ31etpND/6wZNRz0BKvsCbnDv3CRbrsiLjDTzigGSrL9V4d
-         RMbg==
-X-Forwarded-Encrypted: i=1; AJvYcCXHiGh0DqcyGJ3uo+RQpMufE+T31jJ+2J6WQ4K53C/4knxCHiyzU8dtrnX2BSzEvHbA5bFmbh7GOoUj@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywlch9yaIIr5AWsicAEkp2nyFGsFlIeup8xknuB1KvOwL+cdoER
-	LFmYgX602+aJly9K/VI0QPZMv6plR1ctd24ydOHYiyTd+PMDcaBh7egKumcdXjU=
-X-Google-Smtp-Source: AGHT+IFsYrIc/8V6Dd0Wb4ac4K3yCfFqAZyqP0j4It4wu1Ti01Hf/Xj9KyshDVwvjUwn7G7BVIArrg==
-X-Received: by 2002:a17:907:1c94:b0:a7a:b643:654f with SMTP id a640c23a62f3a-a89a358274emr1229334866b.15.1725438774327;
-        Wed, 04 Sep 2024 01:32:54 -0700 (PDT)
-Received: from localhost (host-80-182-198-72.retail.telecomitalia.it. [80.182.198.72])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a3d3177basm69728966b.64.2024.09.04.01.32.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Sep 2024 01:32:53 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Wed, 4 Sep 2024 10:33:02 +0200
-To: Rob Herring <robh@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 04/11] of: address: Preserve the flags portion on 1:1
- dma-ranges mapping
-Message-ID: <ZtgbPtYXu0yOieou@apocalypse>
-References: <5ca13a5b01c6c737f07416be53eb05b32811da21.1724159867.git.andrea.porta@suse.com>
- <20240821001618.GA2309328-robh@kernel.org>
- <ZsWi86I1KG91fteb@apocalypse>
- <CAL_JsqKN0ZNMtq+_dhurwLR+FL2MBOmWujp7uy+5HzXxUb_qDQ@mail.gmail.com>
- <ZtBJ0jIq-QrTVs1m@apocalypse>
- <CAL_Jsq+_-m3cjTRsFZ0RwVpot3Pdcr1GWt-qiiFC8kQvsmV7VQ@mail.gmail.com>
- <ZtChPt4cD8PzfEkF@apocalypse>
- <CAL_JsqJNcZx-HH-TJhsNai2fqwPJ+dtcWTdPagRjgqM31wsJkA@mail.gmail.com>
- <Ztc2DadAnxLIYFj-@apocalypse>
- <CAL_Jsq+mpVEDthuViQZ6T7tDQ_krgxYSQ0Qg1pBMNW8Kpr+Qcw@mail.gmail.com>
+	s=arc-20240116; t=1725438885; c=relaxed/simple;
+	bh=TSbTlxmynJaa+3azrWecam5RAA/J2OsZiqLEu2rc0/A=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=IXJnIWWaS7bvk1CIsis/NoVe4vA/yBnRhmfY6WJCscg+0EJ9LWG+sLMTN7PrcM19Q1CozgL3OVeklPSNQ8fwc3QdpEInkrRpRYWvyKn1K++mlsKrFzpNb+34ee7A98hKcrQT8eZsB53DfMJ267aCYXww4aIgEvKC17uCfAy1m9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Jsz897Z3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 483K82GG008946;
+	Wed, 4 Sep 2024 08:34:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ZFB8Kbz1SyQHqfis6mv9oa
+	YLaY2wXicDsXVo/UQ/XXA=; b=Jsz897Z3U+4m/hf7K71SMJtBPibh2E//L6EZ2u
+	yUEQDyc164kEMMDCFqb+WNXMwiMiFqIdI17P14X4Av1K+//nINN3t2nrSO1Vltnh
+	tM9I/etgXSVtqglQ/6evAj7S8sKBFk+XFOm0K3LUXP5xkkfYO9U/KQ4R7pogM7Na
+	U4NbcnytewUy2QeqYGMUhpDxLUmIiQOC/GwqXjPNXZ0elHKXLLm/WvSZOe/R7FN8
+	4LG5hE5zXt8C4dbEEUb60THRF2oH+GTWLtpsP04spcYFhrOnNVn+XdcdmP9XKTEO
+	7GNyFGsM7V/2o4YHuUDDXUgNh8vIsEu0fQf8/0hPSkoIx28Q==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41bud2t4j6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Sep 2024 08:34:11 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4848YAjL001656
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Sep 2024 08:34:10 GMT
+Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 4 Sep 2024 01:34:01 -0700
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+Subject: [PATCH 00/19] Add initial support for QCS8300
+Date: Wed, 4 Sep 2024 16:33:41 +0800
+Message-ID: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+mpVEDthuViQZ6T7tDQ_krgxYSQ0Qg1pBMNW8Kpr+Qcw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGYb2GYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDCyNL3cLkYgtjA4P4zLzMkszEnPiUkuJMXcNEYwuz1CRjQ/MUYyWg1oK
+ i1LTMCrCx0bG1tQBX97wSZgAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bartosz
+ Golaszewski" <bartosz.golaszewski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, "Andy Gross" <agross@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>, Will Deacon <will@kernel.org>,
+        Robin
+ Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh
+	<quic_gurus@quicinc.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones
+	<lee@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-scsi@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux.dev>, Jingyi Wang <quic_jingyw@quicinc.com>,
+        Xin Liu
+	<quic_liuxin@quicinc.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        Tingguo Cheng <quic_tingguoc@quicinc.com>,
+        Zhenhua Huang
+	<quic_zhenhuah@quicinc.com>,
+        Kyle Deng <quic_chunkaid@quicinc.com>,
+        "Raviteja
+ Laggyshetty" <quic_rlaggysh@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725438840; l=4106;
+ i=quic_jingyw@quicinc.com; s=20240829; h=from:subject:message-id;
+ bh=TSbTlxmynJaa+3azrWecam5RAA/J2OsZiqLEu2rc0/A=;
+ b=pljMssqerWcs/iddcMjH4610nwwVlYPdgrso7lGrkJYZmSy9VyEegf+c9Qbq/0NUtpZoex7v0
+ rTLtTVzd7zoAMOuNoVgqH6ER65mNCiB25uwQyN3Wa5u0FPhje08Mamw
+X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
+ pk=3tHAHZsIl3cClXtU9HGR1okpPOs9Xyy1M0jzHw6A/qs=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MZ_8Z4fjhEJalyL95xmfS_Ekm-0cBv1H
+X-Proofpoint-ORIG-GUID: MZ_8Z4fjhEJalyL95xmfS_Ekm-0cBv1H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-04_05,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ clxscore=1011 spamscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0
+ bulkscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409040065
 
-Hi Rob,
+Add initial support for QCS8300 SoC and QCS8300 RIDE board.
 
-On 13:46 Tue 03 Sep     , Rob Herring wrote:
-> On Tue, Sep 3, 2024 at 11:15 AM Andrea della Porta
-> <andrea.porta@suse.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On 14:37 Fri 30 Aug     , Rob Herring wrote:
-> > > On Thu, Aug 29, 2024 at 11:26 AM Andrea della Porta
-> > > <andrea.porta@suse.com> wrote:
-> > > >
-> > > > Hi Rob,
-> > > >
-> >
-> > ...
-> >
-> > >
-> > > I think simple-bus where you have it is fine. It is really 1 level up
-> > > that needs to be specified. Basically something that's referenced from
-> > > the specific PCI device's schema (e.g. the RP1 schema (which you are
-> > > missing)).
-> > >
-> > > That schema needs to roughly look like this:
-> > >
-> > > properties:
-> > >   "#address-cells":
-> > >     const: 3
-> > >   "#size-cells":
-> > >     const: 2
-> > >   ranges:
-> > >     minItems: 1
-> > >     maxItems: 6
-> > >     items:
-> > >       additionalItems: true
-> > >       items:
-> > >         - maximum: 5  # The BAR number
-> > >         - const: 0
-> > >         - const: 0
-> > >         - # TODO: valid PCI memory flags
-> > >
-> > > patternProperties:
-> > >   "^bar-bus@[0-5]$":
-> > >     type: object
-> > >     additionalProperties: true
-> > >     properties:
-> > >       compatible:
-> > >         const: simple-bus
-> > >       ranges: true
-> > >
-> >
-> > Hmmm.. not sure how this is going to work. The PCI device (RP1) will
-> > havei, at runtime, a compatible like this:
-> >
-> > compatible = "pci1de4,1\0pciclass,0200000\0pciclass,0200";
-> >
-> > that is basically generated automatically by the OF framework. So, in the
-> > schema you proposed above, I can put something like:
-> >
-> > properties:
-> >   compatible:
-> >     contains:
-> >       pattern: '^pci1de4,1'
-> 
-> No, it should be like this:
-> 
-> compatible:
->   items:
->     - const: pci1de4,1
->     - const: pciclass,0200000
->     - const: pciclass,0200
-> 
-> or
-> 
-> compatible:
->   addtionalItems: true
->   maxItems: 3
->   items:
->     - const: pci1de4,1
->
+This revision brings support for:
+- CPUs with cpu idle
+- interrupt-controller with PDC wakeup support
+- gcc
+- TLMM
+- interconnect
+- qup with uart
+- smmu
+- pmic
+- ufs
+- ipcc
+- sram
+- remoteprocs including ADSP,CDSP and GPDSP
 
-Ack.
- 
-> 
-> Alternatively, we could instead only generate 'pciclass' compatibles
-> for bridge nodes. The reason being that being an ethernet controller
-> doesn't really tell us anything. There's no standard interface
-> associated with that class.
+Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+---
+patch series organized as:
+- 1-2: remoteproc binding and driver
+- 3-5: ufs binding and driver
+- 6-7: rpmhpd binding and driver
+- 8-15: bindings for other components found on the SoC
+- 16-19: changes to support the device tree
 
-I'd avoid this one, since the class is not representative in this case. RP1
-is an MFD and not an Ethernet controller. Also, it would prevent other similar
-PCI devices with differnt class from using this schema.
+dependencies:
+tlmm: https://lore.kernel.org/linux-arm-msm/20240819064933.1778204-1-quic_jingyw@quicinc.com/
+gcc: https://lore.kernel.org/all/20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com/
+interconnect: https://lore.kernel.org/linux-arm-msm/20240827151622.305-1-quic_rlaggysh@quicinc.com/
 
-> 
-> > or maybe I could omit the compatible entirely, like in:
-> 
-> No.
-> 
-> > https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pci/pci-iommu.yaml
-> 
-> That's not a device node, but just part of pci-host-bridge.yaml.
-> 
-> > that seems to refer to generic compatible values.
-> > In both cases though, I don't see how these binding could work with
-> > make dt_binding_check, since there's no compatible known at compile
-> > time (for the first approach), or no compatible at all (the second
-> > approach).
-> > Is it intended only as a loose documentation?
-> 
-> No, schemas define exactly what a binding can and can't contain. But
-> they are divided into device schemas and common schemas. The latter
-> are incomplete and are included by the former. Generally, "compatible"
-> goes in device schemas.
+dtb check got following err:
+/local/mnt/workspace/jingyi/aim500/linux/arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: interconnect@1680000: Unevaluated properties are not allowed ('reg' was unexpected)
+which is cause by "reg" compatible missing in dt binding, will be fixed in interconnect patch series.
 
-Ack.
+---
+Jingyi Wang (11):
+      dt-bindings: remoteproc: qcom,sa8775p-pas: Document QCS8300 remoteproc
+      remoteproc: qcom: pas: Add QCS8300 remoteproc support
+      dt-bindings: qcom,pdc: document QCS8300 Power Domain Controller
+      dt-bindings: soc: qcom: add qcom,qcs8300-imem compatible
+      dt-bindings: mailbox: qcom-ipcc: Document QCS8300 IPCC
+      dt-bindings: mfd: qcom,tcsr: Add compatible for QCS8300
+      dt-bindings: nvmem: qfprom: Add compatible for QCS8300
+      dt-bindings: arm: qcom: document QCS8275/QCS8300 SoC and reference board
+      arm64: defconfig: enable clock controller, interconnect and pinctrl for QCS8300
+      arm64: dts: qcom: add initial support for QCS8300 DTSI
+      arm64: dts: qcom: add base QCS8300 RIDE dts
 
-> 
-> > Or are you proposing that for a future new bus (hence with a new, specific,
-> > compatible) that could be described by the schema above?
-> 
-> The above schema would be the common schema included by a RP1 schema,
-> LAN966x schema, or any other device doing the same thing.
+Kyle Deng (1):
+      dt-bindings: soc: qcom,aoss-qmp: Document the QCS8300 AOSS channel
 
-Many thanks, I believe I've got it now :)
+Shazad Hussain (1):
+      dt-bindings: power: rpmpd: Add QCS8300 power domains
 
-Cheers,
-Andrea
+Tingguo Cheng (1):
+      pmdomain: qcom: rpmhpd: Add QCS8300 power domains
 
-> Rob
+Xin Liu (3):
+      dt-bindings: phy: Add QMP UFS PHY comptible for QCS8300
+      dt-bindings: ufs: qcom: Document the QCS8300 UFS Controller
+      phy: qcom-qmp-ufs: Add support for QCS8300
+
+Zhenhua Huang (2):
+      dt-bindings: arm-smmu: Add compatible for QCS8300 SoC
+      dt-bindings: firmware: qcom,scm: document SCM on QCS8300 SoCs
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    8 +
+ .../devicetree/bindings/firmware/qcom,scm.yaml     |    1 +
+ .../bindings/interrupt-controller/qcom,pdc.yaml    |    1 +
+ .../devicetree/bindings/iommu/arm,smmu.yaml        |    2 +
+ .../devicetree/bindings/mailbox/qcom-ipcc.yaml     |    1 +
+ .../devicetree/bindings/mfd/qcom,tcsr.yaml         |    1 +
+ .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |    1 +
+ .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    |    2 +
+ .../devicetree/bindings/power/qcom,rpmpd.yaml      |    1 +
+ .../bindings/remoteproc/qcom,sa8775p-pas.yaml      |    6 +
+ .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |    1 +
+ .../devicetree/bindings/sram/qcom,imem.yaml        |    1 +
+ .../devicetree/bindings/ufs/qcom,ufs.yaml          |    2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |  246 ++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi              | 1282 ++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |    3 +
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c            |    3 +
+ drivers/pmdomain/qcom/rpmhpd.c                     |   24 +
+ drivers/remoteproc/qcom_q6v5_pas.c                 |    3 +
+ include/dt-bindings/power/qcom-rpmpd.h             |   19 +
+ 21 files changed, 1609 insertions(+)
+---
+base-commit: eb8c5ca373cbb018a84eb4db25c863302c9b6314
+change-id: 20240829-qcs8300_initial_dtsi-1a386eb317d3
+
+Best regards,
+-- 
+Jingyi Wang <quic_jingyw@quicinc.com>
+
 
