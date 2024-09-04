@@ -1,142 +1,117 @@
-Return-Path: <devicetree+bounces-99904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF1C96B7E8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 12:09:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FDFB96B814
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 12:17:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C6541C225B5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:09:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A7B11F23405
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC371CEEA8;
-	Wed,  4 Sep 2024 10:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1828518890D;
+	Wed,  4 Sep 2024 10:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HI5ntC4D"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YV+mZJVh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E883A1CC16B;
-	Wed,  4 Sep 2024 10:08:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54A861EBFEB;
+	Wed,  4 Sep 2024 10:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725444540; cv=none; b=t1PEcb2RpafhHqAoqFpdm60TKMVvIMEY0GW5tcX9M2eKiqyXszvHAvLvkxU8ajCtzMVKH5ZqaHFty2j0stcuHe2wbNgilPb30wgY8+kQtinaF43uLVsAWyjnvrv2JTkno5+/RYUMFU9WNuvVbwHUZWvnuPpgBg1F0Nz7M9YOxZA=
+	t=1725445032; cv=none; b=hWZahFA84Wzlqkidc1JDj7tHyR8p/U5Q+wPcYXKyhOrcI3ns1k7MWPuGHNYhS3UDva3v93HqS3MMmgLoq1Di8Ikq/d4liEG1RMP+lTkpRhG91LIRnxa/E9TyaIj8WxKZPr61Xna2bB4uRxnO00g8ik7tVCOTTUXiAmD38HfD10Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725444540; c=relaxed/simple;
-	bh=YZWwkReZ49n9P8WkgOjbJ1s9CGRE6fuIwNZU5RAEIjA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z2FygyBxPs6OXYGqBYmRt34EQr3MkGlT7E0/1EKMYVR8T+w9msb2FyzEHk53+OhzYqKkaqFqI7Nn8e/dNtYZymdK4FVkvYln952p5zCWyJT1uZeiahBOrnqMi9kZPK2VYj6EQIMiqJOOIl5y5R3EMWpEOWRLPr2MAlciVnzE+YA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HI5ntC4D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 718D2C4CECA;
-	Wed,  4 Sep 2024 10:08:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725444539;
-	bh=YZWwkReZ49n9P8WkgOjbJ1s9CGRE6fuIwNZU5RAEIjA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HI5ntC4De7eUU1YL0En298CGSZaOi+x4vcB2YqRnGQvn0m6DMLWXM/vREwHqtGK+t
-	 5UtTpZBiR8QrGEI00rA5/gP9+mZ6sSVprnRxv9HunSni7S/QOu/pwwDmkWYrNaksRK
-	 mvbgvHun62O/+hGb0fxwBamJIX9O79RzKcVtugSgyDEp7+rum03IH1t4FWGOnSeCaW
-	 ZMnGsH80dtiGifGBem2ns+9lkKbw9yRXSQfzjn9ECICB4ELJAlfZjow21trJbmLWin
-	 HwIeb9FfC7M6iSCXUE+8On0ZX4+4WNO/RrBGiFCJh49lCGtVfbTVYb5C+0ffe05Bul
-	 S9R5c+JhCBBaw==
-Message-ID: <2fdcb1b1-3d60-4b46-8a9b-127a5950ea28@kernel.org>
-Date: Wed, 4 Sep 2024 12:08:51 +0200
+	s=arc-20240116; t=1725445032; c=relaxed/simple;
+	bh=FnEjqY4BG/8kvJMrNnmifTj76ikhWyHxBitrNTqF1K4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GfMWfXhd2T6pvHgO8f4emCELLvOpuixaYuVuu+J3GEutql628hNk8/UdcmtCeCAT7ZdM1gL1N8Z9Zyi40vwoz8lDWVnjS4OSIwG/z6x6O7to74mA3ns8SlOufiunhBGHIE2GOlbLBQruDkYeEdf27H/WPSa92C0sMCX5ZXx7YIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YV+mZJVh; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 484AGwMr021180;
+	Wed, 4 Sep 2024 05:16:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725445018;
+	bh=u4MwSTXsohCD+Bwq1qmj42jZwugtsKWFnbQOJvseaGo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=YV+mZJVhnAyqUI2XKuUDiaqi8JdCwHsZf4VaDoe8qqDXuscKYC5tqw1xqm7Eygh8Y
+	 82gMZvUYpPBx7L4vV0zbk6xqac3OSF7mWJMXp9rDmCgeA/JN4vHEunT/WlMy+Crcj7
+	 yuKyhnjAT7BrLO5+zVLk8qZDWYbb+N5ltv5HXDZc=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 484AGv32029998
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 4 Sep 2024 05:16:58 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
+ Sep 2024 05:16:57 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 4 Sep 2024 05:16:57 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 484AGuOH041850;
+	Wed, 4 Sep 2024 05:16:57 -0500
+Date: Wed, 4 Sep 2024 15:46:56 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Jan Kiszka <jan.kiszka@siemens.com>
+CC: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-pci@vger.kernel.org>, Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Bao
+ Cheng Su <baocheng.su@siemens.com>,
+        Hua Qian Li <huaqian.li@siemens.com>,
+        Diogo Ivo <diogo.ivo@siemens.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas
+	<bhelgaas@google.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: PCI: ti,am65: Extend for use with PVU
+Message-ID: <6d722868-271a-485b-a7af-e2449adc83ca@ti.com>
+References: <cover.1725444016.git.jan.kiszka@siemens.com>
+ <28d31a14fe9cc1867f023ebaddd6074459d15e40.1725444016.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/1] arm64: dts: qcom: Add coresight components for
- x1e80100
-To: JieGan <quic_jiegan@quicinc.com>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Jinlong Mao <quic_jinlmao@quicinc.com>, Tao Zhang <quic_taozha@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Song Chai <quic_songchai@quicinc.com>, Yushan Li <quic_yushli@quicinc.com>
-References: <20240827072724.2585859-1-quic_jiegan@quicinc.com>
- <f6813e5a-9b8e-4728-abb2-ad5926d6fa41@kernel.org>
- <ZtZmwVK8h//nDXm1@jiegan-gv.ap.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ZtZmwVK8h//nDXm1@jiegan-gv.ap.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <28d31a14fe9cc1867f023ebaddd6074459d15e40.1725444016.git.jan.kiszka@siemens.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 03/09/2024 03:30, JieGan wrote:
-> On Mon, Sep 02, 2024 at 05:27:32PM +0200, Konrad Dybcio wrote:
->> On 27.08.2024 9:27 AM, Jie Gan wrote:
->>> Add coresight components for x1e80100. This change includes CTI,
->>> dummy sink, dynamic Funnel, Replicator, STM, TPDM, TPDA and TMC ETF.
->>>
->>> Change in V1:
->>> Check the dtb with dtbs_check W=1, and fix the warnings for
->>> the change.
->>>
->>
->> Applying this series and enabling CORESIGHT=m (along with all the options
->> in menuconfig) breaks booting on my X1E Surface Laptop 7
->>
->> Konrad
+On Wed, Sep 04, 2024 at 12:00:11PM +0200, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
 > 
-> Did not observe any booting issues with our devices. Any relevant log to share?
-> This patch also tested by my colleague.
+> The PVU on the AM65 SoC is capable of restricting DMA from PCIe devices
+> to specific regions of host memory. Add the optional property
+> "memory-regions" to point to such regions of memory when PVU is used.
 > 
-> Can you successfully boot without the patch?
+> Since the PVU deals with system physical addresses, utilizing the PVU
+> with PCIe devices also requires setting up the VMAP registers to map the
+> Requester ID of the PCIe device to the CBA Virtual ID, which in turn is
+> mapped to the system physical address. Hence, describe the VMAP
+> registers which are optionally unless the PVU shall used for PCIe.
 
-I think that's the definition of "breaks booting"...
+The last line above seems to be accidentally modified when compared to
+the one at:
+https://lore.kernel.org/r/ada462d5-157a-4e11-ba25-d412a2bb678f@ti.com/
+"Hence, describe the VMAP registers which are optionally
+configured whenever PVU is used for PCIe."
 
-Best regards,
-Krzysztof
+If you intended to modify it, then the sentence appears distorted.
 
+Regards,
+Siddharth.
 
