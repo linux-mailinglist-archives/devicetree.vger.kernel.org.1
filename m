@@ -1,67 +1,56 @@
-Return-Path: <devicetree+bounces-99759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4EC96B1EF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:39:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA74796B1FC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:41:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FB9A1F26562
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:39:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C8711C209FC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39D2113AD0F;
-	Wed,  4 Sep 2024 06:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62372136E30;
+	Wed,  4 Sep 2024 06:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SrR2+7+0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QfntRqHh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC963126C0A;
-	Wed,  4 Sep 2024 06:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E70E126BE6
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 06:41:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725431966; cv=none; b=PHk2NaPvr8e8IDESY0k5GtQiAam5sjYxBACzZoMUn7o5GP4eKYsm7QcyMFhVHQxseznEs7uRwm0GKia1ONWiDBVKQ4hlmrqgjPWScswSepcYdhhFqCQErCER1/+cIJmHNpJ01iZWnfsIAMDGiZvcenlqoauvkQ9dxhxkyyjLEaw=
+	t=1725432062; cv=none; b=PhemMKLxcAnSXH9m2sF8+nmgQzXJj2cHvwiPb31uvboOW7fhfsSeQiJrSISohbshnG3Rr2BSED2yM+82tpIHTv/GXzUOZdApvatOOM1TWYQk6xESNMY6edDjoLRdbtP3UeJTAsWVbVvbv7E59d++tEXPAuT2qgnblJkXljTCWVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725431966; c=relaxed/simple;
-	bh=ZP9TvyABzJYjITastypfyV+ucNqY9wFIJmCo4iIBo08=;
+	s=arc-20240116; t=1725432062; c=relaxed/simple;
+	bh=eiq22ISFTh3GnEYkyoLA51ihfk67BUTzt69jnSPsNV4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u2zvvAGIQIZcgOO/Q4EnUKfT6uR/sZDLrH14xUR8r5VmazMg/L/D7rqUBW59r9MKzksLRczv3dQXoM4feQ5KjoVkmGGGywqfZookNblM2zpm9NZw5jfWTZPsUhV4Mqo9/O+KT9F6BcKcgaeC6nzNix/vK7aa9W1LMCXB49F0HQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SrR2+7+0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8A69C4CEC2;
-	Wed,  4 Sep 2024 06:39:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ruMNFIzTqQuH766aoTgpsPf6oCx1cSzhvkluav8m2km8Sq5I2pSuntsfW+KmvT+jyUsAXHNcnXaNr0Cgt+2czaepg/bbJrp0Nc+FKqFDl9DMxZcwGB9nAy/E1/0sTU7NkIS5Pe44scIR7b4PUvKsktEUWFokoIwGX9WBeAN3X/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QfntRqHh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4791C4CEC2;
+	Wed,  4 Sep 2024 06:41:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725431965;
-	bh=ZP9TvyABzJYjITastypfyV+ucNqY9wFIJmCo4iIBo08=;
+	s=k20201202; t=1725432061;
+	bh=eiq22ISFTh3GnEYkyoLA51ihfk67BUTzt69jnSPsNV4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SrR2+7+0rykbsWMW0lNInPQBuHBk4WNB2VPN69MlZKODkrcKLeXi23ntBZ3Y/Z6AM
-	 rgurIOM0+HHT/cpz1XV1CIzFSI27qUNTBmlgCu4oI2iAvBgWIFvDHYAwr5WtUW+vGo
-	 pez/LT9D47f1fHGRizhg0ufavHLDoQFkxQ6uTCI9oKDSUt9VSel2UBZYfq8ShShYfO
-	 I2mr+vwAotkryAKGJH5SVJ+Z6c7xD5CQcS61Iogtq29Ns4ZY0eyfEXwMBlg+1MX/lU
-	 +X6qrg437wxBpWwiMDYwkjq0a3SD+RhqW9xXGPLR8rZNK/TY4d3o5q51rb2j/4eFFr
-	 96Ugz5bHxhEqg==
-Date: Wed, 4 Sep 2024 08:39:21 +0200
+	b=QfntRqHhVlZQKTEmmXJG2IDX43TFrBfPq/UEPtSr5Pz1eN+Kn8ZmtXtrfoIcdCyOa
+	 U54LN6tTYMt4mVRXGqtdzeuziYV1CvMHS9OiAPaNfB5jTOLzKUkR7vOyOWMLGgZRBi
+	 pQy25Wi3EtwJUYXSz5MU8xvgjFULJA/7M4VLk9EMcXXaKS8pD740KT9fID/43rrIHj
+	 k6n6d9GKtA9sMNvDo4frzRaBnaLGSH0s0q2dU1nKLkyYnwc/Bw4qfSN9ghS4TDcHy3
+	 zeiYRZqNas6ay7yW/0hjy4ym49mP+1sYkRlrr2T6TT1IH20P8HFBW3IcC4bn7WWZel
+	 BhUlWv5LiN+BQ==
+Date: Wed, 4 Sep 2024 08:40:58 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, sudeep.holla@arm.com, andi.shyti@kernel.org, 
-	tglx@linutronix.de, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, 
-	jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org, amitk@kernel.org, 
-	thara.gopinath@gmail.com, broonie@kernel.org, cristian.marussi@arm.com, 
-	rui.zhang@intel.com, lukasz.luba@arm.com, wim@linux-watchdog.org, linux@roeck-us.net, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org, arm-scmi@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel@quicinc.com, quic_psodagud@quicinc.com
-Subject: Re: [PATCH v2 19/21] dt-bindings: firmware: arm,scmi: allow multiple
- virtual instances
-Message-ID: <yl4raseujkl4ccponowaonowjpmjiybv5yd56pds6ep2lj2kow@gxoaxqyt2ask>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-20-quic_nkela@quicinc.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: mripard@kernel.org, marex@denx.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] dt-bindings: lcdif: Document the dmas/dma-names
+ properties
+Message-ID: <laht7vjo23axdssodmn2fdd56vtxprahqenropjzkv6qs5he6k@p5emhlf2j6yt>
+References: <20240903162729.1151134-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,16 +59,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240903220240.2594102-20-quic_nkela@quicinc.com>
+In-Reply-To: <20240903162729.1151134-1-festevam@gmail.com>
 
-On Tue, Sep 03, 2024 at 03:02:38PM -0700, Nikunj Kela wrote:
-> This change extends scmi node name so as to allow multiple virtual
-> SCMI instances.
+On Tue, Sep 03, 2024 at 01:27:29PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> i.MX28 has an RX DMA channel associated with the LCDIF controller.
+> 
+> Document the 'dmas' and 'dma-names' properties to fix the following
+> dt-schema warnings:
+> 
+> lcdif@80030000: 'dma-names', 'dmas' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/display/fsl,lcdif.yaml           | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> index 0681fc49aa1b..dd462abd61f8 100644
+> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> @@ -50,6 +50,14 @@ properties:
+>        - const: disp_axi
+>      minItems: 1
+>  
+> +  dmas:
+> +    items:
+> +      - description: DMA specifier for the RX DMA channel.
+> +
+> +  dma-names:
+> +    items:
+> +      - const: rx
+> +
+>    interrupts:
+>      items:
+>        - description: LCDIF DMA interrupt
+> @@ -156,6 +164,17 @@ allOf:
+>          interrupts:
+>            maxItems: 1
+>  
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - fsl,imx28-lcdif
+> +    then:
+> +      properties:
+> +        dmas: false
+> +        dma-names: false
+
+Missing blank line.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
