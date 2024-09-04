@@ -1,117 +1,135 @@
-Return-Path: <devicetree+bounces-99850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2030496B593
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:54:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4582796B57D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 10:52:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C435B2AEC9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:53:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F02DE282705
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4404F1CC8AB;
-	Wed,  4 Sep 2024 08:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C4C1CC16A;
+	Wed,  4 Sep 2024 08:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="LbDdmHAW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46CD81CC8AD;
-	Wed,  4 Sep 2024 08:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D14198A20;
+	Wed,  4 Sep 2024 08:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725439952; cv=none; b=g8xO0Z5hW4TZQ8F00kkqCcEj40hf6lwzKvi8jyGgyXEF0Ps5Cgyq38uKSaSWjWD9fd2cf+kBl3lVRJO3kwiEQ4h7O5Md936kLXRz+z8uGdif2YXYrlE54ld3Ge59PUcntyLo7LmzdtdtTSSdb07m4r8vhVl1AxBnqBbXdRl9dgs=
+	t=1725439880; cv=none; b=Ww/yY8zbMjFsXjQjiPAYWKjYEf4DjqFZPYNDRZW1A/+Yq+a3Qwt7tWfEfI4ew/fCNO8ZV8vSgUoieMAblZ5J5E7nZrizMImHuFIGaF5VqYCifRdSCBw3nzQ/uGwwOFJzHxOW5u7HjSnrMOEedAy1TfLtbPz/MzfgB2mobq8PUzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725439952; c=relaxed/simple;
-	bh=IvkSCBt+3+2VjlsISB6I1MkJWO67OCf7/ELVtxu1nT8=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=kqVAJbQcs2cDzy4FGPOi91ue6Nan7z8LAQdPMKl58VFaNKMQimTaPgy6UUzK2XoD5nbVdokyv4hONGELP+xhrBDWCUfR5+TZsj8KNY/iqpZMXSsYuHkfDIEAfn05SSK0FtIPOZhXqmc0mdyNXCTvS9U/5+hZ6cY0O7f/HzPlSco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.20.42.164])
-	by gateway (Coremail) with SMTP id _____8BxmprFH9hmkRYqAA--.44894S3;
-	Wed, 04 Sep 2024 16:52:21 +0800 (CST)
-Received: from [10.20.42.164] (unknown [10.20.42.164])
-	by front2 (Coremail) with SMTP id qciowMCxH8bDH9hmi64FAA--.16454S2;
-	Wed, 04 Sep 2024 16:52:20 +0800 (CST)
-Subject: Re: [PATCH V3 1/2] dt-bindings: EDAC for ls3a5000 memory controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- chenhuacai@kernel.org, linux-edac@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@xen0n.name,
- bp@alien8.de, tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
- rric@kernel.org, loongarch@lists.linux.dev
-References: <20240903114714.11428-1-zhaoqunqin@loongson.cn>
- <20240903114714.11428-2-zhaoqunqin@loongson.cn>
- <c901ff6b-2e4d-4dd1-82da-e2e3d5db7988@kernel.org>
- <32aded46-86ce-59cf-e8b4-2621c0dd9ebe@loongson.cn>
- <c1508929-2e44-497d-b54a-285a3e74ba2d@kernel.org>
-From: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Message-ID: <3beb1cf3-c033-bdec-7d38-f43889d4dc2c@loongson.cn>
-Date: Wed, 4 Sep 2024 16:51:50 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	s=arc-20240116; t=1725439880; c=relaxed/simple;
+	bh=adT/SxLb1VcszbcNZfZzr4YWc+2gXp7g/jFbdzDTQ+M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XAWBiCxaYagn7ky/bOIcg/aGADEJyabQByCBn4639olIBP4hhrE8pW6SPFhgYeCARzkJWPGe0qHFqM96fqOnjf8lFiMburzJ0YJqH0/lgXk3lLYz6nEPY7MhzwyjuBG3FapNR1jBqCKWaNHVZlDzu55/4v6qAWc1FGRrlMbVoSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=LbDdmHAW; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+PEHLdA08PpGmacO7sjfbjoDVLRNrNK/UDyQKZ5It2I=; b=LbDdmHAWCqWq3XPZDDBvu8VSk5
+	fcbZrsCciUUIgMyPxvou0l7wVgO9v6cvOrfiTSRf4dt3DpRxyouHBVSTirDhNLQPwiMbSHAzaENC2
+	NjpMQbR63gG33QY5o2+IyOAKZXaeazEIwCDEeuP4+YueQWfpZo7mjgqyeOgUl1SeUJVNBxxob17yj
+	TXYvhYnQKs7W6cb2U24dwc4icutv9QlU6h3e8gaPmABIBzyWSHm//kg6P++4QFwTq+x76HQSvmOqw
+	tM8tvIKxUUf7R7kfFLVa59LOblChXMUZodBXn0sNDr+fIAvxXa7cJAVufwJXW2ZMquTjtN3oz5Y3r
+	7R6BMRzQ==;
+Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1slljJ-0006a3-Qe; Wed, 04 Sep 2024 10:51:09 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: kernel@pengutronix.de, Alibek Omarov <a1ba.omarov@gmail.com>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Elaine Zhang <zhangqing@rock-chips.com>,
+ David Jander <david.jander@protonic.nl>,
+ Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
+ David Jander <david@protonic.nl>
+Subject:
+ Re: [PATCH can-next v5 03/20] arm64: dts: rockchip: mecsbc: add CAN0 and CAN1
+ interfaces
+Date: Wed, 04 Sep 2024 10:52:54 +0200
+Message-ID: <8027881.qOBuL9xsDt@diego>
+In-Reply-To: <20240904-rockchip-canfd-v5-3-8ae22bcb27cc@pengutronix.de>
+References:
+ <20240904-rockchip-canfd-v5-0-8ae22bcb27cc@pengutronix.de>
+ <20240904-rockchip-canfd-v5-3-8ae22bcb27cc@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <c1508929-2e44-497d-b54a-285a3e74ba2d@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID:qciowMCxH8bDH9hmi64FAA--.16454S2
-X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj9xXoW7Jw4Uuw4DCF45XFW5ZFW7WrX_yoWDJwb_Kw
-	4YywnruwnFya4kGFsxJF4xJryvqw4UtrWUur1kXr1Fqw1FqFZrZr4rK34fZw15JFW3WFnr
-	CFZrWFWkCr9xuosvyTuYvTs0mTUanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvT
-	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
-	cSsGvfJTRUUUbqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
-	vaj40_Wr0E3s1l1IIY67AEw4v_JrI_Jryl8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
-	w2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
-	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
-	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y
-	6r17McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
-	1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxG
-	rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14
-	v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkG
-	c2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4U
-	MIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jruc_UUU
-	UU=
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Am Mittwoch, 4. September 2024, 10:12:47 CEST schrieb Marc Kleine-Budde:
+> From: David Jander <david@protonic.nl>
+> 
+> This patch adds support for the CAN0 and CAN1 interfaces to the board.
+> 
+> Signed-off-by: David Jander <david@protonic.nl>
+> Tested-by: Alibek Omarov <a1ba.omarov@gmail.com>
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts b/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts
+> index c2dfffc638d1..052ef03694cf 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts
+> @@ -117,6 +117,20 @@ &cpu3 {
+>  	cpu-supply = <&vdd_cpu>;
+>  };
+>  
+> +&can0 {
+> +	compatible = "rockchip,rk3568v3-canfd", "rockchip,rk3568v2-canfd";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&can0m0_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&can1 {
+> +	compatible = "rockchip,rk3568v3-canfd", "rockchip,rk3568v2-canfd";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&can1m1_pins>;
+> +	status = "okay";
+> +};
+> +
+
+cpu3 > can0 ... aka alphabetical sorting of phandles
+
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+
+No need to resend for that though.
 
 
-在 2024/9/4 下午1:51, Krzysztof Kozlowski 写道:
-> On 04/09/2024 03:15, Zhao Qunqin wrote:
->> 在 2024/9/3 下午8:29, Krzysztof Kozlowski 写道:
->>> On 03/09/2024 13:47, Zhao Qunqin wrote:
->>>> add device tree bindings for ls3a5000 EDAC driver.
->>>>
->>>> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
->>> So no improvements? No changes? Why do you send the same?
->> I'm sorry,  I thought if you hadn't raised any issues with the previous
->> version of dt binding, I wouldn't need to make any changes.
->>
->> For this version of the patch, I only changed the driver.
-> So what changed? Where is the changelog? Where is the tag? Did you get one?
->
-> Did you read submitting patches document?
-
-My apologies! I must have missed a part of the content in the document, 
-please forgive me for wasting your time.
-
-Will add tag and changelog in  patch v4.
-
-Thank you very much for taking the time to review.
+>  &gmac1 {
+>  	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+>  	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru CLK_MAC1_2TOP>;
+> 
+> 
 
 
-Best regards,
 
-Zhao Qunqin.
-
->
-> Best regards,
-> Krzysztof
 
 
