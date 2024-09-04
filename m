@@ -1,72 +1,66 @@
-Return-Path: <devicetree+bounces-100086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12CBB96C1AD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:03:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B36096C1B3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 17:04:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B06F01F2A604
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:03:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1905A28EDC1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 15:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27F51DB94B;
-	Wed,  4 Sep 2024 15:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68EE91DCB25;
+	Wed,  4 Sep 2024 15:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z/QKdb3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506761DA608;
-	Wed,  4 Sep 2024 15:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446FB1DCB22
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 15:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725462222; cv=none; b=scPgffH53yZHElvIacTzv/pB+MjdpJ2zYau+bKe7Toz3mwYatF08VDvEyVWke1u37CGDB7UbR/61p0o3Xhy6aozsGkPmDEBKuwemjeq1skAeNIWQgQ8JldiVYfswtrn4qOp7bXFn/86KAurAYyaaDWuDY9kI6JwaZoTpN3aGfjo=
+	t=1725462244; cv=none; b=kBJEbzLI4KbABeMTf9hTty/Onf24sG6ESFo8Spd4tleGXNPw5ONOba4w0IXQc2ruPolQbzGZUG8O+AQk6EZGqb+LlRsch/ZTbPrKtPUn/qCyFj5p09Rex02x5UcFKsrZQ75lBzJuYVTnJtY9wIYmSqh025BXfslLiU6OIpQW2u4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725462222; c=relaxed/simple;
-	bh=oAtw8QLJTfDJtAImTRmUn59QUaqixqWWWJkpAI+DRXs=;
+	s=arc-20240116; t=1725462244; c=relaxed/simple;
+	bh=drI8o1k89lc/ejPdOCGFMP5h2MQ41Z7/UYX+gc8hlzE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jyOuVNQmP3MYTZkhpJE/YyBFYHAeXXvNVKrNh1+Rz0zKJEdP22UaC1xQ3b9E/+NlYf7zGQE5s/CgmREQ844tJD99/AH4JB5t6HRix4sEKpp5fEwE+rtFCHOMDv6h0aBFB3gTHMrbtWGx5k9eSWewGbT23LMdRin4V+mw5XohtTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7d4fa972cbeso1215290a12.2;
-        Wed, 04 Sep 2024 08:03:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725462221; x=1726067021;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hOC7waCCkQoMQkhqz0PBH9fJGvLRMTZyncgnFWYy3E0=;
-        b=IOpwmYhsP7BkOU8JwhAVZDmdvr7XICnXXPxOsrkRGN0heZh9kFbqBEJlmwOs7zaT3Y
-         q4sVQk5/XF157+DMrjR841Zvv+KL9bHXvL4XUXVOwcL4dlXT9b3ejmM+0ewWEvyhwiQD
-         LFUkv/J8fsdEQZsBVuJjPm0GeY8HxVREOnQlD1tviGqhna/7U0h93uLnDIgOVhirb144
-         15CWb/u00VhT9wM+vTmmXmKPQh9EDJmtQKIzPclIXbQ5Wq+VXqeRlZdxOFDiTQmQ5cKL
-         gVm3wqfTj2+fKfV/FJQh4ymXAsrqQavvDZD2am8nLCdaXKnXieFfqIvEpSeC3BM05g7O
-         llEA==
-X-Forwarded-Encrypted: i=1; AJvYcCUEhlXWjuIL2ayDC4Ot6JXXyd9vhQJYpMv3OwRUHDies6GqvAmfZd/4rwpc6d4q6OI4AtkXUcsFDKGd@vger.kernel.org, AJvYcCVqqEMCRlhJt219RfpddcAFHKN7vI1kuBGVArxFKgdjsaIwiKKZUjzyFJNHXgGfn+s4MLekdZuaA+d1@vger.kernel.org, AJvYcCXmhxnzd4qgtineSk9fyIAOlcAYmvV2wrtQzLQpxJnkfBtcpEQXkxGbHi9dSdpmRM7y0K2YwgEFl9Od+mXg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnmfUgM10ZECj4lttJ0GTtg8uBP44p/P/S86AoDFp/o0D1YQ+x
-	/4V62qSlzzlKtJpQXMvMUBtFjf13ku6XwydJIXQWKWoKauWVyJYU
-X-Google-Smtp-Source: AGHT+IHyKUc0x9KM8r7gfcsXlK+gsn4eBpyS8muEMq8I3FrEpz0HjjpC7yuRyiiRAMxAoDlUNTSa1g==
-X-Received: by 2002:a05:6a21:4603:b0:1cc:e500:5f30 with SMTP id adf61e73a8af0-1cece517cd4mr15437085637.24.1725462220519;
-        Wed, 04 Sep 2024 08:03:40 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d4fbd8cccfsm1774651a12.22.2024.09.04.08.03.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Sep 2024 08:03:40 -0700 (PDT)
-Date: Thu, 5 Sep 2024 00:03:38 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=aavwjR9C/nJ/YB3uZwArB3NSod1pP5ZsTYeE91DcHHm0Nfe9GqhzAPV2APsvmbX6FqdnvJEzSlYlcEZb1Op2pPlxY9VAm4AWBiOaMk77qhBxlWdT6vuR12bgFbwv1ZrlluAkwf9fxCt9F1mvVOiUP4y9vsxnmaiMS1wK0WdWyJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z/QKdb3Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC14FC4CEC9;
+	Wed,  4 Sep 2024 15:04:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725462243;
+	bh=drI8o1k89lc/ejPdOCGFMP5h2MQ41Z7/UYX+gc8hlzE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z/QKdb3QCs3uh/m6bgul3rnDolnqqrYrsG6VrIepgHGhrN7irIxxjmKexYxNwor8g
+	 HmHeGXyop05ZXVj3qWkAOoSSgqtW0Rv43CMDPyS3P3mNaeaARodeatbUA1EGgpBNZw
+	 mf6vsL+58BHpjgdKmtGDHGq4hTmFtsGeKGxoD+MlAHiBMqb9S7EGUEx2KPdbDVNcts
+	 YuDzwIyNuDqmoDBFzySQJSjwe2vwcXSlPsYqzhkDy8oEp5EAkodfvukwemIcKfo50w
+	 eo2Sgt+XHze7WmKWudzD2khv8ozh1A5AILRPP2hW4lq2DkeqiundhqcfSAWRTCzNGu
+	 4GM8y73sPVKpg==
+Date: Wed, 4 Sep 2024 10:04:02 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maxime Ripard <mripard@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v3 1/1] dt-bindings: PCI: layerscape-pci: Fix property
- 'fsl,pcie-scfg' type
-Message-ID: <20240904150338.GD3032973@rocinante>
-References: <20240701221612.2112668-1-Frank.Li@nxp.com>
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
+	David Airlie <airlied@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Rename WL-355608-A8
+ panel to rg35xx-*-panel
+Message-ID: <172546224223.2575293.1986958934172474131.robh@kernel.org>
+References: <20240904012456.35429-1-ryan@testtoast.com>
+ <20240904012456.35429-2-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,23 +69,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240701221612.2112668-1-Frank.Li@nxp.com>
+In-Reply-To: <20240904012456.35429-2-ryan@testtoast.com>
 
-Hello,
 
-> fsl,pcie-scfg actually need an argument when there are more than one PCIe
-> instances. Change it to phandle-array and use items to describe each field
-> means.
+On Wed, 04 Sep 2024 13:23:21 +1200, Ryan Walklin wrote:
+> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unknown
+> OEM used in a number of handheld gaming devices made by Anbernic.
+> Previously committed using the OEM serial without a vendor prefix,
+> however following subsequent discussion the preference is to use the
+> integrating device vendor and name where the OEM is unknown.
 > 
-> Fix below warning.
+> There are 4 RG35XX series devices from Anbernic based on an Allwinner
+> H700 SoC using this panel, with the -Plus variant introduced first.
+> Therefore the -Plus is used as the fallback for the subsequent -H,
+> -2024, and -SP devices.
 > 
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: pcie@3400000: fsl,pcie-scfg:0: [22, 0] is too long
->         from schema $id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
+> Alter the filename and compatible string to reflect the convention.
+> 
+> Fixes: f08aac40639c ("drm: panel: nv3052c: Add WL-355608-A8 panel")
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> 
+> --
+> Changelog v1..v2:
+> - Use known panel serial for compatible name rather than referencing
+>   integrating devices as per feedback [1] from DT maintainers.
+> 
+>  Changelog v2..v3:
+>  - Use integrating device names rather than panel serial number for
+>    compatible string as per further maintainer feedback [2].
+> 
+>  [1] https://lore.kernel.org/linux-devicetree/8b4519fc-0fba-48fe-bfb4-318818b47a65@app.fastmail.com/#t
+> 
+>  [2] https://lore.kernel.org/dri-devel/6ab54fb5-8723-457d-b5e6-483f82faf30e@app.fastmail.com/
+> ---
+>  ...08-a8.yaml => anbernic,rg35xx-plus-panel.yaml} | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
+>  rename Documentation/devicetree/bindings/display/panel/{wl-355608-a8.yaml => anbernic,rg35xx-plus-panel.yaml} (67%)
+> 
 
-Applied to dt-bindings, thank you!
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-[1/1] dt-bindings: PCI: layerscape-pci: Change property 'fsl,pcie-scfg' type
-      https://git.kernel.org/pci/pci/c/f66b63ef10d6
-
-	Krzysztof
 
