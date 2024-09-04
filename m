@@ -1,146 +1,374 @@
-Return-Path: <devicetree+bounces-100164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2BCB96C957
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 23:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5296E96C9A8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 23:42:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54F30288DC3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 21:12:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C0652843B5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 21:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787D218661A;
-	Wed,  4 Sep 2024 21:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A79316C84B;
+	Wed,  4 Sep 2024 21:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eiPEcMAy"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="YEOC6V1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01E6154456;
-	Wed,  4 Sep 2024 21:10:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38FFD1F19A
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 21:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725484261; cv=none; b=JJ7jyReioGPYlTVUn6vO9XyMoJzaoBJobURAvdFclY2/CTtlz/A6VwHxup67CIMEOSc4bu6ZedZfZ4v0PYdSkWG7bf/bDevCGK1HiTcBFYqkAeDv13qcFS6mUsiVCJK39uDdD8CpkU/u5g9qyzCSdK99FsHeDwpfOvNVkPspJh0=
+	t=1725486165; cv=none; b=DT2tbm2qMtASZY47M8wubGjkcHNmkMAuAYnQpArxmRSNwxVmjM1aGs0HPrfXHLc6kag/DIt0AcdVpnKhQV0l1rOIYE5KeDrkgqF49/7ULZDrNaD4H6PSJXuEY+QAbcvMkr4Y/eOHxcoytGjOLoRHpk4v5dduR6kqjAfyd+Soryw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725484261; c=relaxed/simple;
-	bh=Apb16QQhUSwrfL++PWVYETzaYnBU4cK1qQk5EOBE37c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=C1+SLca3Mw2DHzMAvdt4kojd4qYFYyu0chO2BXAYJRtAN0Kvoijn/ooGcsBNmGn8ZDq0c/PExNMqkjhyM9vLkWYV8CY5FJSAaZ6vPJC1rH+fQZh2Smy4xz/YVc/YHOzlBSFKvvWDRNcRhtjdHlcf1I+jm7kDMvKXVYU3le06jKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eiPEcMAy; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484H1HIp020935;
-	Wed, 4 Sep 2024 21:10:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0xaHlela7QPPItCQWIDm0FfYJqVIV/L5MmRd2uE9Daw=; b=eiPEcMAy42BW8fAl
-	DjeBpowSj6aTGG/W91ubr/W+Lqt3Hr23c8eB8rVQw2njpeCvaxZkc7ONJCLdSivg
-	VnydvIfBBHP+wZSYbZzOgtQCuNYNLmsxr1v5CxhWHsqRFObwyVUyH4CMlVz7/bGw
-	LAJQyCUmyPqNzC+NQ+xTGm+C8E6nLQWf/rZFuJiRtNtIBxYnTQl6xBD4tvoviTnv
-	+ABcTdx9BZ3GT5sfP1kGza5mm65PS/iOcOcVdPKTU31wQocnV0ZhBNXZDq/1cKJj
-	rjpar+8+SdOLSVFjq8Q3h/bK4zZ+p2z21pPplZp4xY/xdr9BAOmm172M1+JusOea
-	zCs7NA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41dxy25dn4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Sep 2024 21:10:24 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 484LANe6022520
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Sep 2024 21:10:23 GMT
-Received: from [10.110.102.234] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
- 14:10:19 -0700
-Message-ID: <c9255fe1-dc62-44f4-a105-54e94abde915@quicinc.com>
-Date: Wed, 4 Sep 2024 14:10:19 -0700
+	s=arc-20240116; t=1725486165; c=relaxed/simple;
+	bh=KtTrjbXMm5Ep1uqcyAukOJBqnTT0O5VTFz1w8zRQVh4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EFaz7I/Kc1/jR29/3ab+PX3pKhTaZAhs3/SdRbk08TqZ16e38jpYba+MY/s4V3kBsk/IVtH/YGNjoDZoq7I2dm84KhiI2QLwknCWsVZAXElxawFYXBgdl7qOqOn6SvmyzLTD0xcbZr06YS9Y47k9aZjQW/xH8jtyGxflQkUZcKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=YEOC6V1b; arc=none smtp.client-ip=209.85.160.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-4567fe32141so42321cf.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 14:42:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1725486161; x=1726090961; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XUOw5lMiHDw0MiG7UAI15FhQeJ9HSg6Beuvp398enyw=;
+        b=YEOC6V1b9STIWCN0RxUV4cWor4ieyNwsugHs82oE7NkcPTeobYz//qs74/EQsB/l0+
+         0trT4T3BsyhSJN8Jxx8jcCwm2igpYoAB2qkUIa3vNN/1sK5ycvE1jiXHOPGzxtu72oVq
+         uAw0gQFKizjhzesvwRaXrmOh+OtbcNGy1IkYwwkAT5wNhZFRnDzOROGN2+x7LgqkJOtm
+         yJUo5xZqk4PQkRosrhmVPJhIZhPSFLl+Fod6OljKjwOrjYSrt2bVnWxP8NG4lpqPEXLp
+         jRX56kBIN+sxhWsw+GCyE7Xjavyix9ADEhV0c53UmQYLti8YDB58Reh+WWAh6MFORcDR
+         40Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725486161; x=1726090961;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XUOw5lMiHDw0MiG7UAI15FhQeJ9HSg6Beuvp398enyw=;
+        b=DFNo2HwSBjGoX5+y2GeWtvj8cX5nZ4QCWv7hUdBMyQCelcaPmBb9FwCKpYaYjOajTo
+         tdXfvTJR/MJbE7u23XoXfXsQa9wPnKuYSy2iFapRkkxSZ7vYk4OwZ/3nKAxgFQiZ5wTo
+         5IiQ1wySeC4RFYqreB2sMD/HqbRt1vGTuKlwUfpHbkIY7N8VT+JX6i+MrJxbFMKcsLjZ
+         B7l52te87S+bqBUPUTuSzgIwb+5xN9FXPE/nnqPXIrGgVgX7/6qUwdC7G2Z8b76ZynST
+         PoibiVh8DM9LvbJF7ZqQnjoM/AeX8AGRedEHr0WsXJDL9zG6kHqx3AsxQBk7OUpxaBC5
+         WbHA==
+X-Forwarded-Encrypted: i=1; AJvYcCVucfQm7JNuwBZO0PdOG2kz+m7L5cBXI4/CfUy0JnR6YnbZDagAzdgf482OqAWcwAY8811lA972IxUP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy83pvsx5SHYXlgCjDYfuZ0oQ1BP2mqQgO5zLVmpnTbuXef5npM
+	lr0Y/iN32Fg+w5ZlqM8FrsKorRlT0U0Uz97ppkFNjr5P46FPk/kGiWkwkvD4geHLO5tmt+aiIcA
+	gWoDosrF/rwh/MmRCkjSdYKVY/V5DhmhL6g8q
+X-Google-Smtp-Source: AGHT+IEpGF7+WsKzz/JrGdpbLM/PeRMTZKHHeKwab0nvhh64NIvNlNBwZyTBj3hwa0VujqMyfqFoFxJtF/XvbPvKPO0=
+X-Received: by 2002:a05:622a:6790:b0:456:7d9f:2af8 with SMTP id
+ d75a77b69052e-458033f9c82mr245311cf.7.1725486160847; Wed, 04 Sep 2024
+ 14:42:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 17/21] dt-bindings: serial: document support for
- SA8255p
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <sudeep.holla@arm.com>, <andi.shyti@kernel.org>, <tglx@linutronix.de>,
-        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
-        <jassisinghbrar@gmail.com>, <lee@kernel.org>,
-        <linus.walleij@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
-        <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
-        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>,
-        Praveen Talari
-	<quic_ptalari@quicinc.com>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-18-quic_nkela@quicinc.com>
- <db4cb31f-b219-4ee8-b519-fdec7f7b8760@kernel.org>
- <634ab05e-3b8c-4cc1-bf23-0c68c1d28484@quicinc.com>
- <f42fe73d-1579-4fa1-89ed-9d2a4b7c7f6e@lunn.ch>
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <f42fe73d-1579-4fa1-89ed-9d2a4b7c7f6e@lunn.ch>
+References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
+ <20240830070351.2855919-5-jens.wiklander@linaro.org> <CABdmKX2KzswmiDY4oWw69_rPWs8d_Cqp7OXouSeMQaYX1SDSmw@mail.gmail.com>
+ <CAHUa44FYYFVQWf0DGUXNHoOVQEC0-HRyYa0386dHNjo4y1qSiQ@mail.gmail.com>
+In-Reply-To: <CAHUa44FYYFVQWf0DGUXNHoOVQEC0-HRyYa0386dHNjo4y1qSiQ@mail.gmail.com>
+From: "T.J. Mercier" <tjmercier@google.com>
+Date: Wed, 4 Sep 2024 14:42:28 -0700
+Message-ID: <CABdmKX0qd0RoTn2TBQTs9zdf=_JP8pW8hFRUR_7n_t-sfxsGdg@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/4] dma-buf: heaps: add Linaro restricted dmabuf heap support
+To: Jens Wiklander <jens.wiklander@linaro.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linaro-mm-sig@lists.linaro.org, op-tee@lists.trustedfirmware.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Olivier Masse <olivier.masse@nxp.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	Yong Wu <yong.wu@mediatek.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sumit Garg <sumit.garg@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RmVFkQZYU-RpbGJzqKmvCrSyeNzMXzeN
-X-Proofpoint-ORIG-GUID: RmVFkQZYU-RpbGJzqKmvCrSyeNzMXzeN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-04_19,2024-09-04_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0 suspectscore=0
- lowpriorityscore=0 mlxlogscore=999 spamscore=0 clxscore=1015
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2409040160
+Content-Transfer-Encoding: quoted-printable
 
-
-On 9/4/2024 10:05 AM, Andrew Lunn wrote:
->> The driver changes will soon be posted. They are being reviewed
->> internally.
-> And what do you do when internal reviewers tell you that everything is
-> wrong and you need to change the binding? You just wasted a lot of
-> peoples time.
-
-Let me clarify here, the patches have already been through multiple
-rounds of review and since this is new architecture that we are using,
-we want to make sure this gets reviewed internally as much as possible.
-While, we will be posting them soon, they are available on public git
-repo for anyone to take a feel of the amount of changes. Let's not be
-judgemental here.
-
-
-> Please don't post patches until you know they are correct, complete,
-> build W=1, and pass all the standard static analysers.
+On Wed, Sep 4, 2024 at 2:44=E2=80=AFAM Jens Wiklander <jens.wiklander@linar=
+o.org> wrote:
 >
-> I suggest you try to find an experience Mainline developer who can
-> mentor you.
+> On Tue, Sep 3, 2024 at 7:50=E2=80=AFPM T.J. Mercier <tjmercier@google.com=
+> wrote:
+> >
+> > On Fri, Aug 30, 2024 at 12:04=E2=80=AFAM Jens Wiklander
+> > <jens.wiklander@linaro.org> wrote:
+> > >
+> > > Add a Linaro restricted heap using the linaro,restricted-heap binding=
+s
+> > > implemented based on the generic restricted heap.
+> > >
+> > > The bindings defines a range of physical restricted memory. The heap
+> > > manages this address range using genalloc. The allocated dma-buf file
+> > > descriptor can later be registered with the TEE subsystem for later u=
+se
+> > > via Trusted Applications in the secure world.
+> > >
+> > > Co-developed-by: Olivier Masse <olivier.masse@nxp.com>
+> > > Signed-off-by: Olivier Masse <olivier.masse@nxp.com>
+> > > Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
+> > > ---
+> > >  drivers/dma-buf/heaps/Kconfig                 |  10 ++
+> > >  drivers/dma-buf/heaps/Makefile                |   1 +
+> > >  .../dma-buf/heaps/restricted_heap_linaro.c    | 165 ++++++++++++++++=
+++
+> > >  3 files changed, 176 insertions(+)
+> > >  create mode 100644 drivers/dma-buf/heaps/restricted_heap_linaro.c
+> > >
+> > > diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kc=
+onfig
+> > > index 58903bc62ac8..82e2c5d09242 100644
+> > > --- a/drivers/dma-buf/heaps/Kconfig
+> > > +++ b/drivers/dma-buf/heaps/Kconfig
+> > > @@ -28,3 +28,13 @@ config DMABUF_HEAPS_RESTRICTED_MTK
+> > >         help
+> > >           Enable restricted dma-buf heaps for MediaTek platform. This=
+ heap is backed by
+> > >           TEE client interfaces. If in doubt, say N.
+> > > +
+> > > +config DMABUF_HEAPS_RESTRICTED_LINARO
+> > > +       bool "Linaro DMA-BUF Restricted Heap"
+> > > +       depends on DMABUF_HEAPS_RESTRICTED
+> > > +       help
+> > > +         Choose this option to enable the Linaro restricted dma-buf =
+heap.
+> > > +         The restricted heap pools are defined according to the DT. =
+Heaps
+> > > +         are allocated in the pools using gen allocater.
+> > > +         If in doubt, say N.
+> > > +
+> > > diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/M=
+akefile
+> > > index 0028aa9d875f..66b2f67c47b5 100644
+> > > --- a/drivers/dma-buf/heaps/Makefile
+> > > +++ b/drivers/dma-buf/heaps/Makefile
+> > > @@ -2,4 +2,5 @@
+> > >  obj-$(CONFIG_DMABUF_HEAPS_CMA)         +=3D cma_heap.o
+> > >  obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED)  +=3D restricted_heap.o
+> > >  obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_MTK)      +=3D restricted_heap_=
+mtk.o
+> > > +obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_LINARO)   +=3D restricted_heap_=
+linaro.o
+> > >  obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)      +=3D system_heap.o
+> > > diff --git a/drivers/dma-buf/heaps/restricted_heap_linaro.c b/drivers=
+/dma-buf/heaps/restricted_heap_linaro.c
+> > > new file mode 100644
+> > > index 000000000000..4b08ed514023
+> > > --- /dev/null
+> > > +++ b/drivers/dma-buf/heaps/restricted_heap_linaro.c
+> > > @@ -0,0 +1,165 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * DMABUF secure heap exporter
+> > > + *
+> > > + * Copyright 2021 NXP.
+> > > + * Copyright 2024 Linaro Limited.
+> > > + */
+> > > +
+> > > +#define pr_fmt(fmt)     "rheap_linaro: " fmt
+> > > +
+> > > +#include <linux/dma-buf.h>
+> > > +#include <linux/err.h>
+> > > +#include <linux/genalloc.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_fdt.h>
+> > > +#include <linux/of_reserved_mem.h>
+> > > +#include <linux/scatterlist.h>
+> > > +#include <linux/slab.h>
+> > > +
+> > > +#include "restricted_heap.h"
+> > > +
+> > > +#define MAX_HEAP_COUNT 2
+> >
+> > Are multiple supported because of what Cyrille mentioned here about per=
+missions?
+> > https://lore.kernel.org/lkml/DBBPR04MB7514E006455AEA407041E4F788709@DBB=
+PR04MB7514.eurprd04.prod.outlook.com/
+>
+> Yes, I kept that as is.
 
-No one is born with experience. You learn as you go. Please note that
-this series has gone through internal review before I posted it in
-upstream.
+Ok thanks.
 
+> > So this is just some arbitrary limit? I'd prefer to have some sort of
+> > documentation about this.
+>
+> How about removing the limit and using dynamic allocation instead?
 
-> 	Andrew
+That works too!
+
+>
+> Thanks,
+> Jens
+>
+> >
+> >
+> > > +#define HEAP_NAME_LEN  32
+> > > +
+> > > +struct resmem_restricted {
+> > > +       phys_addr_t base;
+> > > +       phys_addr_t size;
+> > > +
+> > > +       char name[HEAP_NAME_LEN];
+> > > +
+> > > +       bool no_map;
+> > > +};
+> > > +
+> > > +static struct resmem_restricted restricted_data[MAX_HEAP_COUNT] =3D =
+{0};
+> > > +static unsigned int restricted_data_count;
+> > > +
+> > > +static int linaro_restricted_memory_allocate(struct restricted_heap =
+*heap,
+> > > +                                            struct restricted_buffer=
+ *buf)
+> > > +{
+> > > +       struct gen_pool *pool =3D heap->priv_data;
+> > > +       unsigned long pa;
+> > > +       int ret;
+> > > +
+> > > +       buf->size =3D ALIGN(buf->size, PAGE_SIZE);
+> > > +       pa =3D gen_pool_alloc(pool, buf->size);
+> > > +       if (!pa)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       ret =3D sg_alloc_table(&buf->sg_table, 1, GFP_KERNEL);
+> > > +       if (ret) {
+> > > +               gen_pool_free(pool, pa, buf->size);
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       sg_set_page(buf->sg_table.sgl, phys_to_page(pa), buf->size, 0=
+);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static void linaro_restricted_memory_free(struct restricted_heap *he=
+ap,
+> > > +                                         struct restricted_buffer *b=
+uf)
+> > > +{
+> > > +       struct gen_pool *pool =3D heap->priv_data;
+> > > +       struct scatterlist *sg;
+> > > +       unsigned int i;
+> > > +
+> > > +       for_each_sg(buf->sg_table.sgl, sg, buf->sg_table.nents, i)
+> > > +               gen_pool_free(pool, page_to_phys(sg_page(sg)), sg->le=
+ngth);
+> > > +       sg_free_table(&buf->sg_table);
+> > > +}
+> > > +
+> > > +static const struct restricted_heap_ops linaro_restricted_heap_ops =
+=3D {
+> > > +       .alloc =3D linaro_restricted_memory_allocate,
+> > > +       .free =3D linaro_restricted_memory_free,
+> > > +};
+> > > +
+> > > +static int add_heap(struct resmem_restricted *mem)
+> > > +{
+> > > +       struct restricted_heap *heap;
+> > > +       struct gen_pool *pool;
+> > > +       int ret;
+> > > +
+> > > +       if (mem->base =3D=3D 0 || mem->size =3D=3D 0) {
+> > > +               pr_err("restricted_data base or size is not correct\n=
+");
+> > > +               return -EINVAL;
+> > > +       }
+> > > +
+> > > +       heap =3D kzalloc(sizeof(*heap), GFP_KERNEL);
+> > > +       if (!heap)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       pool =3D gen_pool_create(PAGE_SHIFT, -1);
+> > > +       if (!pool) {
+> > > +               ret =3D -ENOMEM;
+> > > +               goto err_free_heap;
+> > > +       }
+> > > +
+> > > +       ret =3D gen_pool_add(pool, mem->base, mem->size, -1);
+> > > +       if (ret)
+> > > +               goto err_free_pool;
+> > > +
+> > > +       heap->no_map =3D mem->no_map;
+> > > +       heap->priv_data =3D pool;
+> > > +       heap->name =3D mem->name;
+> > > +       heap->ops =3D &linaro_restricted_heap_ops;
+> > > +
+> > > +       ret =3D restricted_heap_add(heap);
+> > > +       if (ret)
+> > > +               goto err_free_pool;
+> > > +
+> > > +       return 0;
+> > > +
+> > > +err_free_pool:
+> > > +       gen_pool_destroy(pool);
+> > > +err_free_heap:
+> > > +       kfree(heap);
+> > > +
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static int __init rmem_restricted_heap_setup(struct reserved_mem *rm=
+em)
+> > > +{
+> > > +       size_t len =3D HEAP_NAME_LEN;
+> > > +       const char *s;
+> > > +       bool no_map;
+> > > +
+> > > +       if (WARN_ONCE(restricted_data_count >=3D MAX_HEAP_COUNT,
+> > > +                     "Cannot handle more than %u restricted heaps\n"=
+,
+> > > +                     MAX_HEAP_COUNT))
+> > > +               return -EINVAL;
+> > > +
+> > > +       no_map =3D of_get_flat_dt_prop(rmem->fdt_node, "no-map", NULL=
+);
+> > > +       s =3D strchr(rmem->name, '@');
+> > > +       if (s)
+> > > +               len =3D umin(s - rmem->name + 1, len);
+> > > +
+> > > +       restricted_data[restricted_data_count].base =3D rmem->base;
+> > > +       restricted_data[restricted_data_count].size =3D rmem->size;
+> > > +       restricted_data[restricted_data_count].no_map =3D no_map;
+> > > +       strscpy(restricted_data[restricted_data_count].name, rmem->na=
+me, len);
+> > > +
+> > > +       restricted_data_count++;
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +RESERVEDMEM_OF_DECLARE(linaro_restricted_heap, "linaro,restricted-he=
+ap",
+> > > +                      rmem_restricted_heap_setup);
+> > > +
+> > > +static int linaro_restricted_heap_init(void)
+> > > +{
+> > > +       unsigned int i;
+> > > +       int ret;
+> > > +
+> > > +       for (i =3D 0; i < restricted_data_count; i++) {
+> > > +               ret =3D add_heap(&restricted_data[i]);
+> > > +               if (ret)
+> > > +                       return ret;
+> > > +       }
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +module_init(linaro_restricted_heap_init);
+> > > +MODULE_DESCRIPTION("Linaro Restricted Heap Driver");
+> > > +MODULE_LICENSE("GPL");
+> > > --
+> > > 2.34.1
+> > >
 
