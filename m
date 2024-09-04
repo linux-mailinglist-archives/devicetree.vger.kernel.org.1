@@ -1,181 +1,166 @@
-Return-Path: <devicetree+bounces-99994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2EA96BBF7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:22:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 630C996BC6B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 14:33:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF92C1F23607
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 12:22:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E9FA1F2186B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 12:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847CF1D79B7;
-	Wed,  4 Sep 2024 12:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE801D9D77;
+	Wed,  4 Sep 2024 12:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="N/Y//2oE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b9SuzB/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BEF31D79BB
-	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 12:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1CEE18A95E;
+	Wed,  4 Sep 2024 12:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725452552; cv=none; b=QcusbMKMmlNB3Yzn4TGcz/JYyVS5NfhqeP5wdFM8RCKjgW9M9X3CTBX6vC4aGr+TuQ2vNFZwfIhEVGiOhrssy+NY6ADYQHKxc5T5JcdKBhD8SdODMn8zP7/PXoxmcoGl47lGV3tnnIeNf8iY6Ow8HXh1MvPmF8JpaaLgDVZoSiI=
+	t=1725453199; cv=none; b=TS48a+muqFZ7vxqs3fwm9QB68vPWuoSwt3+Jh1jRA2Uazv/t4eFV36/JwqujJSHkDFKFnVn3kLtA4GQxLx0bYbkSHZ9ZZPhwpwq1K2+RjlTbalHpxr5I36pGndlABVrASHMJexqa61WlBtT3LY2qLtefDfL98vLPn90t6LdCJ6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725452552; c=relaxed/simple;
-	bh=0Dt2TC1mWGZYIHxyeALqQ1TnRbbzwrfrV+DLAXHle1s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=I4cx0Q55+ZkmWLvxnFOiMiuVguznrTSx8ixHrmajiN12PiwxTKIG1rwn+CsHfWEjtLeaRcsZYOh0E5N7CPQ2uX3Ap7rKWlp8bcJnkou81cf2L0AOKbl5qoqwBqClbiSFbY7zlo+j4wFdT28tV/c5g356LDRFniYZ/DA8xwLdCzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=N/Y//2oE; arc=none smtp.client-ip=209.85.166.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-39f54ab8e69so2277015ab.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 05:22:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1725452550; x=1726057350; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ju9Hq+FgR4Nn2GcAcehqW18ZWQc9xC6Fkglr1yE5YOM=;
-        b=N/Y//2oE2B37UkoIYTQ2wY006zOzp137WpFvaklv/CUZuHbWu6Gm6CbSfoq++CsKxa
-         ZG2SQS1DpY98XTZIelTivz6DuJKSGYY55VRocIeFgXDAS89muHLE/WIjJH/dfMfkMJc8
-         u5FU4wxaI2534NxukBNBBPsh6bn+viA1A1JUXUG3edsu7khmWVl750eYlyXh2ezfRH9b
-         U3B8slJjrl3e/KAfle3pofQ7dAnMhQFePeEtk8Q0oH3zhfFIth4+L5zvPlKEpE/u0VKb
-         AVYtmzC8NjNKGMbYRvuADsw8x2Dx6JB1G/fqCfZv3jxQtql5ogdlbWVZ06BWAiNeLDxn
-         lOJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725452550; x=1726057350;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ju9Hq+FgR4Nn2GcAcehqW18ZWQc9xC6Fkglr1yE5YOM=;
-        b=T+ll1maCV4LUZLe9ozfniGnHT+6E8Yr0thanV6pFco48T2AuJJUHQ+70nM+Il5EXMr
-         zZzfIzQ4CfqzI89kT//eeB95akfw3f++tNuQtgE/6Vh4d+4haNAVvaTnDSyZBM+Dmg3o
-         xdrswAxLX/PK1ZSW/dj7e4bDiYeFsrNza2VWVK9giR6OJs92DP2dNoVubf+/qJi5xmzX
-         HhA+uu22RYej8DTVk2QJxIujJBuqk13078DhRXyZOD/R2JUEJcktmhlXO1O33lYdNljZ
-         QQGcX+nb4SzhoQTcmlxJCQ18FhIjIZW8HRrXduBCWvQaXgyFhYCNEL4usqtmd3DYCJIz
-         gaWA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnzxYeHPj1u1+WCM5ue81DNNG9rB1Nqcz90XL08cLrHOxUCa0F/G0YGYqZ7iOSZUIf0J/lGKNfzsVS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRS+FhPGBgsHqvtC1lDIRXt+ZJtMulL93uX5GHpcPQx3fVd8tw
-	hVm/18ZBOZdei0LuJbhL1yxCZkIcWHYL3TL/AW/IpHOzQVZMWjjk5wOUMkgds9Dj0UvYz66l94q
-	YKnwMUl/QGsHqwVA4fAwURUCI+a3rTTSBN5iY6Q==
-X-Google-Smtp-Source: AGHT+IHPjtXAXxUmHhn9hwmGB4/VcwV/vcS/lCwZ+rwRHq9HHhBtYsEB6Vwzvqfdu5MMGbv6xPJ7cpHsv2V3fV8GXEA=
-X-Received: by 2002:a05:6e02:1c46:b0:39d:4dab:a533 with SMTP id
- e9e14a558f8ab-39f74f88f94mr14510545ab.0.1725452549998; Wed, 04 Sep 2024
- 05:22:29 -0700 (PDT)
+	s=arc-20240116; t=1725453199; c=relaxed/simple;
+	bh=xa87nakc6XNq/4Neh8s4LIJHVttsOMH5ng2n83Z6g0A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gGtxpx1DzKCNCubXZrlw0urWl2YjuBQ7TkEdGYlCojPRzgjR7yz9tCgeyLW506uz6cjSVFBnSf/4YkeAxTCirJc3l3cW9oFBfMzEc5zWI4z+TSQ+5uhCDfABXPDPKkIFC9xhucwl0L0mP/K5Y3aEfPRstSKKIjX50IIfCsDY14A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b9SuzB/J; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4844XuRU010442;
+	Wed, 4 Sep 2024 12:27:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ACIP4yKZfQ7RqY1CWgZI/P153QRx9YXMYeXV5DGtfXo=; b=b9SuzB/J5IzF1PS8
+	FOfFvufwok8TKEtvQ2ooAAcJ6/F94hfMq6l34zrocUdnk3SLZs3UgKN2B5/fGoUt
+	Sqz2yTybzXT8IArJtFCjgXbBTauWhgON4YNO1T4b5N+g4s5/FhY0ARgS0SlmCk3Q
+	OSiFIBj+8UI2DLOkfhYTVGKRepN+6y5nP9tgQm0NFFqrwNhQPDmfIJlKOQnMwrHV
+	WHpjRdJJdq4wOcgHRCmiTHuh5d8h20kXFSlVv8p/AmmI126/id5RmuKE28Qw4H3H
+	ocIRT72wy14B4JrkD2De6KH9WHBXvPtJVfB3pGxpcbTkmMuKzUJ2oWXJNXKsY+rm
+	5dxJvQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41egmrh556-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Sep 2024 12:27:31 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 484CRUH4014575
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Sep 2024 12:27:30 GMT
+Received: from [10.110.120.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
+ 05:27:26 -0700
+Message-ID: <1b831fc1-9360-4038-91b2-b2c0cea513ed@quicinc.com>
+Date: Wed, 4 Sep 2024 05:27:25 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240829010151.2813377-1-samuel.holland@sifive.com> <20240829010151.2813377-11-samuel.holland@sifive.com>
-In-Reply-To: <20240829010151.2813377-11-samuel.holland@sifive.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Wed, 4 Sep 2024 17:52:19 +0530
-Message-ID: <CAAhSdy0P6Jxdr1+zQLuisMpMapHWHXkSkzEEBG+wWXbbzf7ASw@mail.gmail.com>
-Subject: Re: [PATCH v4 10/10] KVM: riscv: selftests: Add Smnpm and Ssnpm to
- get-reg-list test
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>, 
-	linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, 
-	Atish Patra <atishp@atishpatra.org>, Evgenii Stepanov <eugenis@google.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 14/21] dt-bindings: cpufreq: qcom-hw: document support
+ for SA8255p
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <herbert@gondor.apana.org.au>,
+        <davem@davemloft.net>, <sudeep.holla@arm.com>, <andi.shyti@kernel.org>,
+        <tglx@linutronix.de>, <will@kernel.org>, <robin.murphy@arm.com>,
+        <joro@8bytes.org>, <jassisinghbrar@gmail.com>, <lee@kernel.org>,
+        <linus.walleij@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
+        <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-15-quic_nkela@quicinc.com>
+ <odg5ssqu2soaqp6m4rambj7qhqiyp7othkvu4v6fu6xtuhbdho@vccya6qcwgoz>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <odg5ssqu2soaqp6m4rambj7qhqiyp7othkvu4v6fu6xtuhbdho@vccya6qcwgoz>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NbquHstL0bz40AbnilrRCvaiD2k-JG5t
+X-Proofpoint-ORIG-GUID: NbquHstL0bz40AbnilrRCvaiD2k-JG5t
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-04_10,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ suspectscore=0 lowpriorityscore=0 mlxlogscore=999 priorityscore=1501
+ spamscore=0 malwarescore=0 adultscore=0 bulkscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409040094
 
-On Thu, Aug 29, 2024 at 6:32=E2=80=AFAM Samuel Holland
-<samuel.holland@sifive.com> wrote:
->
-> Add testing for the pointer masking extensions exposed to KVM guests.
->
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 
-LGTM.
+On 9/3/2024 11:26 PM, Krzysztof Kozlowski wrote:
+> On Tue, Sep 03, 2024 at 03:02:33PM -0700, Nikunj Kela wrote:
+>> Add compatible for the cpufreq engine representing support on SA8255p.
+>>
+>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>> ---
+>>  .../bindings/cpufreq/cpufreq-qcom-hw.yaml        | 16 ++++++++++++++++
+>>  1 file changed, 16 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> index 1e9797f96410..84865e553c8b 100644
+>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> @@ -34,6 +34,7 @@ properties:
+>>          items:
+>>            - enum:
+>>                - qcom,qdu1000-cpufreq-epss
+>> +              - qcom,sa8255p-cpufreq-epss
+>>                - qcom,sa8775p-cpufreq-epss
+>>                - qcom,sc7280-cpufreq-epss
+>>                - qcom,sc8280xp-cpufreq-epss
+>> @@ -206,6 +207,21 @@ allOf:
+>>          interrupt-names:
+>>            minItems: 2
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,sa8255p-cpufreq-epss
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 2
+>> +          maxItems: 2
+>> +
+>> +        reg-names:
+>> +          minItems: 2
+>> +          maxItems: 2
+> What about interrupts? You need to constrain each of such lists.
+>
+> Best regards,
+> Krzysztof
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+Interrupts are not required, I still need to put constraints for
+interrupts? BTW, there is no if block for SA8775p binding in this file.
 
-Regards,
-Anup
+Thanks,
 
-> ---
->
-> (no changes since v2)
->
-> Changes in v2:
->  - New patch for v2
->
->  tools/testing/selftests/kvm/riscv/get-reg-list.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/tes=
-ting/selftests/kvm/riscv/get-reg-list.c
-> index 8e34f7fa44e9..54ab484d0000 100644
-> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> @@ -41,9 +41,11 @@ bool filter_reg(__u64 reg)
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_I:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_M:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_V:
-> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SMNPM:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SMSTATEEN:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SSAIA:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SSCOFPMF:
-> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SSNPM:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SSTC:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SVINVAL:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SVNAPOT:
-> @@ -414,9 +416,11 @@ static const char *isa_ext_single_id_to_str(__u64 re=
-g_off)
->                 KVM_ISA_EXT_ARR(I),
->                 KVM_ISA_EXT_ARR(M),
->                 KVM_ISA_EXT_ARR(V),
-> +               KVM_ISA_EXT_ARR(SMNPM),
->                 KVM_ISA_EXT_ARR(SMSTATEEN),
->                 KVM_ISA_EXT_ARR(SSAIA),
->                 KVM_ISA_EXT_ARR(SSCOFPMF),
-> +               KVM_ISA_EXT_ARR(SSNPM),
->                 KVM_ISA_EXT_ARR(SSTC),
->                 KVM_ISA_EXT_ARR(SVINVAL),
->                 KVM_ISA_EXT_ARR(SVNAPOT),
-> @@ -946,8 +950,10 @@ KVM_ISA_EXT_SUBLIST_CONFIG(aia, AIA);
->  KVM_ISA_EXT_SUBLIST_CONFIG(fp_f, FP_F);
->  KVM_ISA_EXT_SUBLIST_CONFIG(fp_d, FP_D);
->  KVM_ISA_EXT_SIMPLE_CONFIG(h, H);
-> +KVM_ISA_EXT_SIMPLE_CONFIG(smnpm, SMNPM);
->  KVM_ISA_EXT_SUBLIST_CONFIG(smstateen, SMSTATEEN);
->  KVM_ISA_EXT_SIMPLE_CONFIG(sscofpmf, SSCOFPMF);
-> +KVM_ISA_EXT_SIMPLE_CONFIG(ssnpm, SSNPM);
->  KVM_ISA_EXT_SIMPLE_CONFIG(sstc, SSTC);
->  KVM_ISA_EXT_SIMPLE_CONFIG(svinval, SVINVAL);
->  KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
-> @@ -1009,8 +1015,10 @@ struct vcpu_reg_list *vcpu_configs[] =3D {
->         &config_fp_f,
->         &config_fp_d,
->         &config_h,
-> +       &config_smnpm,
->         &config_smstateen,
->         &config_sscofpmf,
-> +       &config_ssnpm,
->         &config_sstc,
->         &config_svinval,
->         &config_svnapot,
-> --
-> 2.45.1
->
+-Nikunj
+
 
