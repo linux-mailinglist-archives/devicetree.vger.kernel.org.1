@@ -1,100 +1,103 @@
-Return-Path: <devicetree+bounces-100169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68D3496C9DD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 23:55:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D8F96C9E8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 23:57:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB7B1B24CEF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 21:55:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 135EA1F28781
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 21:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A2D16F908;
-	Wed,  4 Sep 2024 21:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D3F1714B5;
+	Wed,  4 Sep 2024 21:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="MhhBhRKG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZJqIymxa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE87913B7BE;
-	Wed,  4 Sep 2024 21:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456AB153812;
+	Wed,  4 Sep 2024 21:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725486907; cv=none; b=NIahj7Nk12rKoVC3aJtSyRJjYi43mXtYAY6La8v/b4WQAsGDRAxsSRvqmIIST9iRfLGMGmL3oL8vyvXqhT6Ews45FUVUT2SONCFQ3vmis2sAARFv0TGpOTvLdmWl0+DsWWcm/e+gwmPNBJftZDaYcwr/rsFiYqmrEGopC/aF3FI=
+	t=1725487039; cv=none; b=qBeE6sZ4UwZcjDuPlWsEvcxWJRyoX+itENxpHucV0RD8Dz/Vmok+RZTaPrptuF5rXXDU19gRexL+hIbwhLrZMKuNCdlJnGLW2eE3r4nUvSy30uKpc7dG70lPzz2ELP5D6vqaFGd9c9XkRQTXGys0/jIVpsDRqEPKv1rLNUclDio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725486907; c=relaxed/simple;
-	bh=xslog8XjIZI7isCnFHctxFpz2Mdpd5GZ2GUIQpbAZ3s=;
+	s=arc-20240116; t=1725487039; c=relaxed/simple;
+	bh=pWXLQi9HAt8TD80TUlEHOmmJNEUgzTpEdEY+qoZNg50=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TFJGrORvxD28Ky97zI7geGB2i6kzc5l00rf0hOmPwNqQ7mTVN1bgaUew96HoQgPL3+JoyBgA+YcUy/+Mj0fCRKCLwZO3FwPO+g4O7wZwxtQ14IXG53Cg/kpZwGwsfzH/XjIdkgZl0mu8uGZLbZG3RJsO8EEWLwG4lrimTECnh9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=MhhBhRKG; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ZPFlBqJcH08Jjxnq4snrrKR2XDfHTaWNnlnioXLkjWg=; b=MhhBhRKGy5SiJyei+w6QYCErKH
-	ocCiWSrlVM4bCqeucOBG9nvRKTA6AazQvtw9pfBuQLBEMVNpGt+eXxLcnWZ/kpTfizsaRZ09hJTjs
-	QCC47I+AcyGX79pRXK2lMyr2Srf7MX2rEu/vSOoXEp0EZXLs2fTj9z0iWxNBWryt/mug=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1slxxf-006bgE-JV; Wed, 04 Sep 2024 23:54:47 +0200
-Date: Wed, 4 Sep 2024 23:54:47 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	sudeep.holla@arm.com, andi.shyti@kernel.org, tglx@linutronix.de,
-	will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-	jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
-	amitk@kernel.org, thara.gopinath@gmail.com, broonie@kernel.org,
-	cristian.marussi@arm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
-	wim@linux-watchdog.org, linux@roeck-us.net,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-crypto@vger.kernel.org, arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
-	linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, kernel@quicinc.com,
-	quic_psodagud@quicinc.com,
-	Praveen Talari <quic_ptalari@quicinc.com>
-Subject: Re: [PATCH v2 17/21] dt-bindings: serial: document support for
- SA8255p
-Message-ID: <b64d3425-e7e9-4b28-bd47-ca6f99b39707@lunn.ch>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-18-quic_nkela@quicinc.com>
- <db4cb31f-b219-4ee8-b519-fdec7f7b8760@kernel.org>
- <634ab05e-3b8c-4cc1-bf23-0c68c1d28484@quicinc.com>
- <f42fe73d-1579-4fa1-89ed-9d2a4b7c7f6e@lunn.ch>
- <c9255fe1-dc62-44f4-a105-54e94abde915@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=o0YKnLFBumDlFymt7LolOBxGL1r/zNg3DxaHCprC2YwphvMN+U8jo/MYC4N8bIrlRf4rM+8O08yxwdVaTpWgBNfeW7+0vZljOIEry01cbFZSmP0JLDYQ3JWnFCqdCBbwfeuK7Of6m28K78d7ttIMlssgn/72zQCUoFAgNp3SBUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZJqIymxa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 872F2C4CEC2;
+	Wed,  4 Sep 2024 21:57:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725487038;
+	bh=pWXLQi9HAt8TD80TUlEHOmmJNEUgzTpEdEY+qoZNg50=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZJqIymxabVXbkQOwXq1ziARBYNlHVYEIFli6ezCLTtQrYsHGxeQrfzuEJP7L+0jO5
+	 1jIhVy48y1lwsSAfHq/hqW25vx1lgq8mKIeLehVcFHqN0ymW+XYuxp+FVtBW4nyRSC
+	 RYTuCETJEcvECcAzL5d5yHdIDKhUSge0OavrwZX/ff5Cxt9MUc4CthlKewvTriKquR
+	 4SsXDQtyiKMs8pCn9D3+EHlAj+yhQZfObGPNduqHFxFclpM7srQ4ZAvbJpvTyYSxb3
+	 dAGY63EZ6Pe7qlSZryCoaEcOHcaCWRgCrFCp2YwTLBFHUHnw5Nag9B8ZonPLerT2Co
+	 IqHU+CvNgoAXw==
+Date: Wed, 4 Sep 2024 16:57:17 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
+Cc: Saravana Kannan <saravanak@google.com>, Shuah Khan <shuah@kernel.org>,
+	kernel@collabora.com, Shuah Khan <skhan@linuxfoundation.org>,
+	devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] kselftest: dt: Ignore nodes that have ancestors
+ disabled
+Message-ID: <20240904215717.GA3398497-robh@kernel.org>
+References: <20240729-dt-kselftest-parent-disabled-v2-1-d7a001c4930d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <c9255fe1-dc62-44f4-a105-54e94abde915@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240729-dt-kselftest-parent-disabled-v2-1-d7a001c4930d@collabora.com>
 
-> No one is born with experience. You learn as you go. Please note that
-> this series has gone through internal review before I posted it in
-> upstream.
+On Mon, Jul 29, 2024 at 04:56:02PM -0400, Nícolas F. R. A. Prado wrote:
+> Filter out nodes that have one of its ancestors disabled as they aren't
+> expected to probe.
+> 
+> This removes the following false-positive failures on the
+> sc7180-trogdor-lazor-limozeen-nots-r5 platform:
+> 
+> /soc@0/geniqup@8c0000/i2c@894000/proximity@28
+> /soc@0/geniqup@ac0000/spi@a90000/ec@0
+> /soc@0/remoteproc@62400000/glink-edge/apr
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@3
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@4
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@4/clock-controller
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@4/dais
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@7
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@7/dais
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@8
+> /soc@0/remoteproc@62400000/glink-edge/apr/service@8/routing
+> /soc@0/remoteproc@62400000/glink-edge/fastrpc
+> /soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@3
+> /soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@4
+> /soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@5
+> /soc@0/spmi@c440000/pmic@0/pon@800/pwrkey
+> 
+> Fixes: 14571ab1ad21 ("kselftest: Add new test for detecting unprobed Devicetree devices")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+> Changes in v2:
+> - Rebased on v6.11-rc1
+> - Link to v1: https://lore.kernel.org/r/20240619-dt-kselftest-parent-disabled-v1-1-b8f7a8778906@collabora.com
+> ---
+>  tools/testing/selftests/dt/test_unprobed_devices.sh | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
 
-Then i'm surprise you were not told to submit lots of smaller
-patchsets, one per subsystem, which are complete.
+Applied. Sorry for missing this.
 
-I get nobody is born with experience, but for a company the size of
-Qualcomm, they can easily hire a few experienced mainline developers
-who can mentor you, rather than having overloaded Maintainers teach
-you the basics, and getting frustrated in the process.
-
-	Andrew
+Rob
 
