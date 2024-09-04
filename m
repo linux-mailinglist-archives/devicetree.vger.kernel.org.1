@@ -1,228 +1,159 @@
-Return-Path: <devicetree+bounces-99741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-99747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8348F96B12C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2840D96B147
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 08:12:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1208C1F261AA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:11:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3A071F233CA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2024 06:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7198512C46F;
-	Wed,  4 Sep 2024 06:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="UfL1yunI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C31812C474;
+	Wed,  4 Sep 2024 06:12:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010024.outbound.protection.outlook.com [52.101.229.24])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640BC84E11;
-	Wed,  4 Sep 2024 06:11:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725430294; cv=fail; b=I40xtPTat4mkjBjZJ4E51gBF+mV50CqujkKXg+F3ipPZhiAhJg8iRMD1Vd9VHeNLDIlYXloJlviUOQ5Ht+3nxYwHYqF7Sl6INnMl25hS+wfrxtyCK13MC+oAYO9wrm58gkHQsbvF0byDFmlqdOrfXvDdfkO/rAtqtLSOcq7ul9A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725430294; c=relaxed/simple;
-	bh=TCjP/TZDOiB2DgqkE1r5uNOd70c2q7ozNtqwzoGAphs=;
-	h=Message-ID:To:In-Reply-To:References:From:Subject:Content-Type:
-	 Date:MIME-Version; b=DWOzwfCVJjXjtNaFyzLcl6ujH0Cm9xYTNoQELNCh+/V6ARKL0eEQdT/GRW/ivLhTzJPz3x9NJTJd7H86c2u0S9MwmIMZ6OCpBjx2Jx5WFgL09mB2IG/9VcXcC5YAAwbAadnuG85hJH46Mj1O9od7TLlDC28jReEsJh/m64Tttjc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=UfL1yunI; arc=fail smtp.client-ip=52.101.229.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oqmj5F2F02DH4KB3rYFUgGv4LQiKnB5VNbSSrHLKK6ep8NzEFGhlKX6zcQ36YCDCtBI3ECfNR9vComL4AVrMpILkDQpU9jL03SPRHKNynjjNpv+qVb5v45C5b+qc5ZkDVFKEBWyHeOg0RkxfksPiR7GdmUBeFIXd7kndrimTpGTO46dWnuG26dt6R+uWL0KgwmT+ndFiwd5VHYDef3QOj+ywNx1eIWsNTEtnTJESkqBS2p0lDJMi62NyWWBnoLyD4py1hGyL8/vOGkss3mch3HHeJ5fB3DUneg87G3iQOcGa4h0nFzQ25dZK5Ehaw2RRxdyKhuIOa/tCZ/K667sljQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kkJ0ltVTSz196uhSee9Ig9BdLX9O4PwwW/k2og7b4lU=;
- b=qLbho+J/8b5DUWla+TzbNzesOYdFQ7Ksnw71DBDDqUGDkHY3HZJrRpa009CAbmzfMzWrCMajG606Bw36AfqkuBQWASE917/R9gwUirYb8pO9nsKtd2RLYlcAmSdXkhzMub/zqPvUzIjlSZ0ZDT6ilOcqN8Y6VoDl2AlEoF6GTkbJjzsfuE8+WdFleWY6One/IDmd6xYgfl+wE7x7/5NOFhOo2aRzg0tdnZ5Ncih06S32hcW1iG5qb46TjQ5b2cLJMbMIKtjRpXVvyXar4959GJ3bVr6l5nqlNfdhRqOBjHC+WI63NBoV5OBddhC8QpNMmoakw6AcPxP3A2pheVPmgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kkJ0ltVTSz196uhSee9Ig9BdLX9O4PwwW/k2og7b4lU=;
- b=UfL1yunIWjvGDBYuz8YJSRcyGd8dBYGUuNoG35qC4xVo12v2OCWPRX4BHdZoX1Dlb1w1IFCpZ9SRxXqAoEoYw3MwtnYcPFBRtlY5B1TcccIHPfJw/WrHPCMe+UJmpcCCxoBc1MmQ5GU/hHhqrtMW48mGgpX2z6YjCM0BNzNDfik=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OS3PR01MB7309.jpnprd01.prod.outlook.com
- (2603:1096:604:11e::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Wed, 4 Sep
- 2024 06:11:29 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7918.024; Wed, 4 Sep 2024
- 06:11:29 +0000
-Message-ID: <87jzfs6j8v.wl-kuninori.morimoto.gx@renesas.com>
-To: Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Sakari Ailus <sakari.ailus@iki.fi>
-In-Reply-To: <87r0a06ja1.wl-kuninori.morimoto.gx@renesas.com>
-References: <87r0a06ja1.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v5 5/9] ASoC: audio-graph-card: use new of_graph functions
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Wed, 4 Sep 2024 06:11:28 +0000
-X-ClientProxiedBy: TYCP286CA0277.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c9::7) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E4D84A5B
+	for <devicetree@vger.kernel.org>; Wed,  4 Sep 2024 06:12:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725430335; cv=none; b=pcNPdv8TqJK9izxDw2oE1HYCOWTMNW1f6KgoXa+biKa8/5i/tgzB6v4D8q8lRacFn2ARpDOpGuCveuNoSV2pc0IgOPTivIfwLByW6s2K0VuBePGn19d8dv9yJjs5U96jylb7Ji9uHjhsb6FR742l4B0H9zGeMUdfaFzt0223eQs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725430335; c=relaxed/simple;
+	bh=uFqKU2u26RsMVaHxZCgg4NS943JlrwihnRUqYYObpxA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P4eGt9wJ8e2gz95bDJSXCMO5hZJQT3qN7/V2dRFkrQuAGmm8bRY077xgdAM0/MB8hlxsmizzebsJoGjZlPTsV4RVLtkpK93RP4nGGz+iSWKo028jUHiZyeMQJ30JKqilTg0OZ6pex86vnfHGL3jZgJ6XqxRn2NoPe1sKjo2NOpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sljEw-0000oC-JK; Wed, 04 Sep 2024 08:11:38 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sljEt-005NS9-6K; Wed, 04 Sep 2024 08:11:35 +0200
+Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id BA7E7331CC9;
+	Wed, 04 Sep 2024 06:11:34 +0000 (UTC)
+Date: Wed, 4 Sep 2024 08:11:33 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: kernel test robot <lkp@intel.com>
+Cc: kernel@pengutronix.de, Alibek Omarov <a1ba.omarov@gmail.com>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Elaine Zhang <zhangqing@rock-chips.com>, David Jander <david.jander@protonic.nl>, 
+	oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org, Simon Horman <horms@kernel.org>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH can-next v4 01/20] dt-bindings: can: rockchip_canfd: add
+ rockchip CAN-FD controller
+Message-ID: <20240904-impressive-centipede-of-science-ae5cbd-mkl@pengutronix.de>
+References: <20240903-rockchip-canfd-v4-1-1dc3f3f32856@pengutronix.de>
+ <202409040039.TNDhtsSe-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS3PR01MB7309:EE_
-X-MS-Office365-Filtering-Correlation-Id: 625349f4-7eb5-40e2-c536-08dccca86a5f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?i1+rq76tDMQT2IbP7XKNuxWAufYjWNQ56RLcz7b+YA9/Two2H05wBEXb0KIS?=
- =?us-ascii?Q?6PXWS0iSJwdcYvA8GG5eVgyAbkki8coZ5HGM1bmwPLcQdYeIgC7PPUrDPqhq?=
- =?us-ascii?Q?mQSXLlgUqs/Ni5wo7CxMOgFBYKNDypnXRfY8MXa2Y+r2tyQwHkFS2gwd00Bb?=
- =?us-ascii?Q?DTtHY3u86SFmMCBJe5ko4cGwbjwg7CGBvhBELJi9gBCewjGSmhP+3d8jpY6j?=
- =?us-ascii?Q?RURt1ynpvNLDkC1y0GEOaHp/N5yuAoyyaD1P82oTWASKXanhu3R6DWF6dmhA?=
- =?us-ascii?Q?hqC5DA36rWffeuREk+ZYsfAYBCVCkvw+Jd9pCZaD1jjWbwZH9XYBSxlkjmKs?=
- =?us-ascii?Q?Ezwh6XR5T6lTROGiKy426M0hRWHszRO8LySLFXtRfaTq0n0lSElr+gNNktBl?=
- =?us-ascii?Q?WL5mFNLdtQLGe81B+0CwDRgWNCFbrdMskroD6EH7GRjN+beiKPxXOiHMmtKP?=
- =?us-ascii?Q?anlWuR0sb8y+6YZm6x9HB3zHXjE57jP2e1fSqjpHHJhsisRaUW8jakejFTVj?=
- =?us-ascii?Q?PzEnpj0zHW6Qmx5hoE+3c3jM5rFObySg5x8kUyOah7FSDncdWbNQHFnftRhd?=
- =?us-ascii?Q?nao/g7r/Y/rWYZrswLgc28JFOP4cqbH95GOh06Ms6ls4CmDzjAX34JEZV1WR?=
- =?us-ascii?Q?vmDs4tJW3EPpaDKRJAxt6nKLTeAFtEqWvy+AUFSr7KjmaMxxHwJyWkCtYF5x?=
- =?us-ascii?Q?pXiXK0CeAPlQxat0k7Skbu50thgkc3GAej1bc+PNsHF8RWlvCD1LWA4kq9FK?=
- =?us-ascii?Q?Ab/DyVJZIZ3EXdgXblE1YfeKBD32EV/+YtdeII8OLUlI6rLiQ7rXa/5lSn1P?=
- =?us-ascii?Q?HiKbVeRVC2l27FkM3dgQ1q/xX3T2XEwkwZbzU5FEnxfW1K4puqH2ywEyA52O?=
- =?us-ascii?Q?6pLBhc10Ub0zKKmzwDjCfeqvgirSEzLrwnIcCIWBjmGMmj7uaANj7jf9ilbt?=
- =?us-ascii?Q?cIDpaDSFxXEy3TIRzRdysh4r3/AiZo4wB2sdSO+kQX6rwZ9BX+55igTJbAjO?=
- =?us-ascii?Q?8BKAl8SrJO3G2n9niQpyz8mfkU8MlPTZcUuP1KZnShYhZaCnazTEjZW++vAY?=
- =?us-ascii?Q?c71IKQQPoMVTb8Mo0xtpzhFpa80+IjczSPypieO2Dgifm5EZiTndsqC2OgGq?=
- =?us-ascii?Q?K8iX7wIsr0nlAt3tfMh4JINvgRfyjspoDE9uXPgYvMMf1LFabFSwVH8umc60?=
- =?us-ascii?Q?KwOUmHlmaGmsxAm9UD+G0Jiyj11dAcxvsqCVGKDj+IufCryvStduU6MpNZr9?=
- =?us-ascii?Q?Qh6NHkehBLC7w+j3HFERooId3zL0KcfEbsMa8btQ/GRfTz6kJHkvnySH4bEF?=
- =?us-ascii?Q?j7s7jAFgFpowQ70EocmjNnyO6cA3zcL4qV0wvPeVA9Zhv5+4um0OHn3oIeSx?=
- =?us-ascii?Q?fJue+uiO16ZLtOXe7Po0LD7kCPuZLYVLtmY2AI8QVsezQ6GyDokXcE8qEd9p?=
- =?us-ascii?Q?yems7SpnY4c=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?RumwmWphBVA3nd04yJabYWeQTq5ehcVlEfZBB2+iuPYAiX9iuLdNA5TlfMM1?=
- =?us-ascii?Q?1t1X1B5iPVv03j5fGLtlhd2DonU05BhztOcQaT/joR40AYFlZNDyhiORkM33?=
- =?us-ascii?Q?uYlVV5ZN2x/+vqY4tmaK7Fz7wN64bXY/U3mnxO2VMM6UaOBZxkiEhSplzgrU?=
- =?us-ascii?Q?m0FLIQJdQVzpePUh1yQ6ouJZlsM9hLGlR6rz3z3wEuk43Ckl32ciRymEOy15?=
- =?us-ascii?Q?GeICjeKarNjz0jTSJ0CICxyO0HgLvcA5xWPi2V90S0RHTgSEhrhqzWs1u0ua?=
- =?us-ascii?Q?lMkpJFgljMKViljqGer+nWFWz9cE8JXE5G4KqY+OH3V3DrCkGRQ81ociqg39?=
- =?us-ascii?Q?kj9GmOFMgQQpIW9piXaNgW/V3EXsdVtz7oc4UhKDLnD3YgZS0xwHech/bL1/?=
- =?us-ascii?Q?zQo4lm4fhjvW6mLhA+BTp4uOO/Lbh1viHYEffLF4xQy3+q7V1t+CA57Iv1zi?=
- =?us-ascii?Q?i8eNZoOQT1aFvcrdYNohyPsc+G0KqIxkVXuZfU+A3Y4kZhJhn+orY+H+h80N?=
- =?us-ascii?Q?gy+TNHHnKPIGlYrE2UPPQMVZyANoa4oca5KlzgAqXXM8waB6LAmOvBFrxHfi?=
- =?us-ascii?Q?q+pxIV+chNLLPDrqYCbFJKdlTfjDL5BwNTy08wFtmj14SvRk3WmwQSdhwYbI?=
- =?us-ascii?Q?YEhjagqVYC+zpkv4BKgqB9PksisbVo+zTECd0WopTXoZdqdoibq8QTSdSRWr?=
- =?us-ascii?Q?bIDs1sEL24UTzgtJUMI0r8fgK1FPOha3JSqvBr65ADYAWdNnqPvbBJq/MG3k?=
- =?us-ascii?Q?0HBveAdo9Qixx/W9tmr9LHtYMx3Wbnzrw8E+UDDMGi4Y84qD+3gCe+WTpS4f?=
- =?us-ascii?Q?Jrwco2+o4sGayvuW+DEHk1EexY462/UP4XaIRWPQkvYtBPuf/Wz2IU3iCIGD?=
- =?us-ascii?Q?T5gsEwmV9WC88NmnWZyoPZ5RExjkFV8PioGvi+neRSRRqEnGtuOqovXEqguq?=
- =?us-ascii?Q?TUubAKr1LkpSj4JTD0WQ65RMcI/9lDREVViBedDnnfh3MCvi2mNvFlwmivgn?=
- =?us-ascii?Q?L5GbLjfU+bhjptN4JaUNHGFnT88MeAkGH6i1z9qkG/pgJ5Pt0icAAbRvcOZ1?=
- =?us-ascii?Q?vcNWikAGeTIPf0/mg1C/WkuKjzyobC07TqJjrJlADeuQ/z4qO/9uyq42wr6B?=
- =?us-ascii?Q?tfDH7c7wx318iU23WOe1H0+WTxSm0p7NWJa6ptgGPTudMqrL01PRu1wLw/S1?=
- =?us-ascii?Q?JQ86rEuevOg+WJovGEUod6wrkgRReL5S0B4r6401COE4/PKN/X/uHKV38zy0?=
- =?us-ascii?Q?VWScAhMZexg6TZAJFw56uRSXu7fc5y+iihId1yTTeRGHV+KUb6EK+lSHNQ6L?=
- =?us-ascii?Q?mo8Sm8GwnhUGFc5vacO3ZtT5O/OIU0t5bbOlWFikgi7jm6zhM6Rsf5t+KOhO?=
- =?us-ascii?Q?jpXzXknlUfGXcMejmau2Rs2UcVi9Ov7juB+W3wZYp4QouiF03jvwggreoRQp?=
- =?us-ascii?Q?BKt0bccuNOSnDXjJNkXOH16yvuSAjBQrDEzSQND6bCDxbUQI0JVfyKcG5ixG?=
- =?us-ascii?Q?JsBnh13djbZjyvDNRFgiYG3n/MVx0U2qqHIDM27aEYkIFJZvhFRjUQl+kFfm?=
- =?us-ascii?Q?KUkq67xypIRVjz6FVLqEKfLo9/iE5uM1GFCCEoYfSSyYgwJ1gvuWIUYECbT6?=
- =?us-ascii?Q?yljCF+mT9nbVWLhkNa4QKvA=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 625349f4-7eb5-40e2-c536-08dccca86a5f
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2024 06:11:29.2297
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LlqHHXx3lXzIUJ9N6reTFt9tjeTV2aae23StDOX4cQ6WU77N3McY59yTRA2eisp+gP4t6QmhizsgbZT2qUxyc2Mi0sspkL7/wY5imkGPn3ljr4EAFoYv8jxYB5iob3MK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB7309
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lg5lfpbtzitx4wuf"
+Content-Disposition: inline
+In-Reply-To: <202409040039.TNDhtsSe-lkp@intel.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Now we can use new port related functions for port parsing. Use it.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Acked-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/generic/audio-graph-card.c | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+--lg5lfpbtzitx4wuf
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/sound/soc/generic/audio-graph-card.c b/sound/soc/generic/audio-graph-card.c
-index 1bdcfc4d4222e..e7fd3d70ce091 100644
---- a/sound/soc/generic/audio-graph-card.c
-+++ b/sound/soc/generic/audio-graph-card.c
-@@ -361,7 +361,6 @@ static int __graph_for_each_link(struct simple_util_priv *priv,
- 	struct device *dev = simple_priv_to_dev(priv);
- 	struct device_node *node = dev->of_node;
- 	struct device_node *cpu_port;
--	struct device_node *cpu_ep;
- 	struct device_node *codec_ep;
- 	struct device_node *codec_port;
- 	struct device_node *codec_port_old = NULL;
-@@ -371,13 +370,9 @@ static int __graph_for_each_link(struct simple_util_priv *priv,
- 	/* loop for all listed CPU port */
- 	of_for_each_phandle(&it, rc, node, "dais", NULL, 0) {
- 		cpu_port = it.node;
--		cpu_ep	 = NULL;
- 
- 		/* loop for all CPU endpoint */
--		while (1) {
--			cpu_ep = of_get_next_child(cpu_port, cpu_ep);
--			if (!cpu_ep)
--				break;
-+		for_each_of_graph_port_endpoint(cpu_port, cpu_ep) {
- 
- 			/* get codec */
- 			codec_ep = of_graph_get_remote_endpoint(cpu_ep);
-@@ -408,10 +403,8 @@ static int __graph_for_each_link(struct simple_util_priv *priv,
- 			of_node_put(codec_ep);
- 			of_node_put(codec_port);
- 
--			if (ret < 0) {
--				of_node_put(cpu_ep);
-+			if (ret < 0)
- 				return ret;
--			}
- 
- 			codec_port_old = codec_port;
- 		}
--- 
-2.43.0
+On 04.09.2024 01:09:26, kernel test robot wrote:
+> kernel test robot noticed the following build warnings:
+>=20
+> [auto build test WARNING on da4f3b72c8831975a06eca7e1c27392726f54d20]
+>=20
+> url:    https://github.com/intel-lab-lkp/linux/commits/Marc-Kleine-Budde/=
+dt-bindings-can-rockchip_canfd-add-rockchip-CAN-FD-controller/20240903-1732=
+43
+> base:   da4f3b72c8831975a06eca7e1c27392726f54d20
+> patch link:    https://lore.kernel.org/r/20240903-rockchip-canfd-v4-1-1dc=
+3f3f32856%40pengutronix.de
+> patch subject: [PATCH can-next v4 01/20] dt-bindings: can: rockchip_canfd=
+: add rockchip CAN-FD controller
+> reproduce: (https://download.01.org/0day-ci/archive/20240904/202409040039=
+=2ETNDhtsSe-lkp@intel.com/reproduce)
+>=20
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202409040039.TNDhtsSe-lkp=
+@intel.com/
+>=20
+> All warnings (new ones prefixed by >>):
 
+Good bot!
+
+I had already found the issue myself and fixed it in my tree. Will send
+a new series today.
+
+>=20
+>    Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm57=
+03-regulator.yaml references a file that doesn't exist: Documentation/devic=
+etree/bindings/mfd/siliconmitus,sm5703.yaml
+>    Warning: Documentation/hwmon/g762.rst references a file that doesn't e=
+xist: Documentation/devicetree/bindings/hwmon/g762.txt
+>    Warning: MAINTAINERS references a file that doesn't exist: Documentati=
+on/devicetree/bindings/reserved-memory/qcom
+>    Warning: MAINTAINERS references a file that doesn't exist: Documentati=
+on/devicetree/bindings/display/exynos/
+>    Warning: MAINTAINERS references a file that doesn't exist: Documentati=
+on/devicetree/bindings/misc/fsl,qoriq-mc.txt
+> >> Warning: MAINTAINERS references a file that doesn't exist: Documentati=
+on/devicetree/bindings/net/can/rockchip,rk3568-canfd.yaml
+>    Using alabaster theme
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--lg5lfpbtzitx4wuf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbX+hEACgkQKDiiPnot
+vG/ddAf6AqyRDaYjUbvLjXaEMxYi3esfREOpspdABp9dMmJ/OImBDH2FzAgBhH42
+YIBrbQ2XL2zOIqiZrM9+jyAAbUbSrEjUnyN/S4ZNK69ige8y6arn1hgXSO1NkuQy
+fyw/3NvCn2/5zKrsMjDrb3xFrD/12qI95HFA9UV7bTNDMBEECkmNHb8U39kJI7YJ
+RZKh16KH2FDDFoMt9tkrArYFIR2YGmRaNtI3kJX8w8Ea2p3Do6boM9C56arzazNm
+K1Zzo4xQM7Cf6hvdJ3E+hu5xmVLcAWvf6mfchWU/k3N4uOr3HoXexMSKq5TLC66I
+gQVIbs0EF04Byp3Q+W0smKV2CLeJug==
+=M+8x
+-----END PGP SIGNATURE-----
+
+--lg5lfpbtzitx4wuf--
 
