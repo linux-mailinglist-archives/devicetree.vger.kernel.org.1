@@ -1,135 +1,112 @@
-Return-Path: <devicetree+bounces-100340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3A096D4A8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:54:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0015396D639
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 12:38:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BB3F284AC5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:54:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 331771C2491B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D80198850;
-	Thu,  5 Sep 2024 09:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25FD194A5B;
+	Thu,  5 Sep 2024 10:37:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425F3156225;
-	Thu,  5 Sep 2024 09:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 325A91990C2;
+	Thu,  5 Sep 2024 10:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725530079; cv=none; b=s1AcnxTIg2ENzeHneuMVspAYQI+rddR7koJ4Qrn6nVMmcdFH4l5CExYkWXuvdO2Uek8ULt+QEKFm36TTJNrBq+AGBkitadxMBNr6j3YnHkcUtmXvSFioUXqvqby57SAkaWhixCBpXWY0k2Vml5S/5OlnhX3gaIhKerMJo2LNk54=
+	t=1725532667; cv=none; b=DIp7myBjxvqoQ3jht+XQAjoAc33SpNVu1xN9nmiaQAUcDukkMLaFZ0fJ3MRa2Pxim74x0AJ3IsTTixgC+a8iQkXrXpTRJz/Fx4oYpR7/rTqhtGuX6UT76u3sCWVtmfmal4OkhfZxIHb7KllrccJBfZRGVxFirN/c7ygslPXn68o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725530079; c=relaxed/simple;
-	bh=CUa9olPq+AXLi4yjiXb01U/wLckCsRjgHnbju1lATbU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dpTyvv7VFiF2oikL6AQZXm2XyRsKttXd0c6GoJHzd7St8AM9wJrem4CIremoulmfcuQSi+NtW4oseZLzhSlrBOMd3xvF79bap8ajsZwjUg2Qx7M0AfKQPwEEcn3GouzHe4aFZcL7doX43FPXdunk9NkdJCpRKk7B7fuFGc8bQxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6bada443ffeso4396757b3.0;
-        Thu, 05 Sep 2024 02:54:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725530075; x=1726134875;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9diqHcpO/aE5+LW5NeGeZFj2mzo73WZhkkRkkfun7eI=;
-        b=M1HTyFxbpjnPYDI3A/JNE0D8snsSsYfr1nvHirSeGzggQyUWiHWhDHgQbBMR0nhbRM
-         rPAsjyzoD3V+NLkcvORuAb307h0NIsPpeEmXUxgIkTXK5JdnNkKcsOYWHsXT0A8vdBQ4
-         P5zBiX8cw58BQwGU3b5WYl7S8xQFDBy0o+DxPmxVeHdNEjj+WWtsjmbZ6iffrE5RkmOr
-         IkL5KhbzeVqML+t5aCgkU6ZXdpn9bn3uOilb0XNKu9HQevRcOcyVWVWF7u9KipIMR0OI
-         dcweto9rhs5L2C0h69e7jvWJKId/cHPeXC1vVZh+3OkwJMUuYJfuMJhP+HCI0wBTCnAx
-         o56A==
-X-Forwarded-Encrypted: i=1; AJvYcCUgqWR9t4BDpHtQaPVwAHowEB7HdJxkXBWer8ycxavO+meLYbPNwDGJ+6SkRaGFMNgHgj+2OOxxfyFr1w==@vger.kernel.org, AJvYcCUmT5M7BWOMJ2S6kPqMMdF9Z5p6DzHtPlFkDK6dIVQyHTKVWjHy9wb2L/3WXAbyVEcAXKfwqmdSpX1T@vger.kernel.org, AJvYcCV7xPJNbHwm2+hAQnqVl/L9gvMfTN0maTtZZO9NukNaA4Be3LDfiydRExgkQIiex1KG12TOzF9J7R4g@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsYNSXebRCxJ4+OrfxrNr8b2+TCtftXvme40Bl/nVDMlmA3TFK
-	j+ntgh0GDSMrbiypTZvc1LSldPcPewBM+ZSY7gen4ViJe44TbZjSxGwiu7Tw
-X-Google-Smtp-Source: AGHT+IEzYK4ChgIxHWbhgm2ro+sorU+2H3iZkR8YMryr4b8JZNEdrnuoBKcjn+OvwexdjAbRDL+Srw==
-X-Received: by 2002:a05:690c:6609:b0:6d7:3c0d:3adb with SMTP id 00721157ae682-6db25f5584cmr44724317b3.1.1725530074818;
-        Thu, 05 Sep 2024 02:54:34 -0700 (PDT)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d3cdc309e8sm24561847b3.108.2024.09.05.02.54.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Sep 2024 02:54:34 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6db2a9da800so9476767b3.0;
-        Thu, 05 Sep 2024 02:54:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUqUKjy6DUI1ht02qGIbB/iWY87KwdcLHPPMSudAonGUbnIbpxTFsjBetqNuE+vClnBHeMEbsGrirpD@vger.kernel.org, AJvYcCWSma4OzrIedxesHP8LCUSlZvJfj/c8DxOxXXuoMLUhXDQhTE8hBg6zz4kZfZj9Zo2yv2xQYeAJjQ95JQ==@vger.kernel.org, AJvYcCXAZvOj2aE3RUBs8FdfCzYs/2nnjg+Sm6rvl6xxf4tWvTp5QZGL1SeKokNyLm0RH1mUE3dCoV1hscrC@vger.kernel.org
-X-Received: by 2002:a05:6902:1785:b0:e1c:ff8a:68f9 with SMTP id
- 3f1490d57ef6-e1d1056a277mr4589641276.11.1725530073994; Thu, 05 Sep 2024
- 02:54:33 -0700 (PDT)
+	s=arc-20240116; t=1725532667; c=relaxed/simple;
+	bh=UKdFntwj2tZYLkndUiE61WGUx3Ut1uVqOBsBQZ/zs+I=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=R0aiGjMxb2cX17P+67QsNGUW5hw2robn2c64jbn+SdrG9O7UBpszfPB5xVjxJ6RlDdQOcWfAGBgT6hQYLofAi5k1qZ4wS7u26wwHavU1BCQ6+ZxOtnz7TDcKVVOf88NWdF1KF5i2tHBpginrsVEdIJFCTRPHfbeOC5YXaCU4uqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [119.122.212.181])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id CD08A7E01C6;
+	Thu,  5 Sep 2024 18:01:03 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: bigfoot@classfun.cn
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dsimic@manjaro.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+Date: Thu,  5 Sep 2024 18:01:00 +0800
+Message-Id: <20240905100100.348444-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <010a9c5e-205b-40b9-9655-9e168b2def97@classfun.cn>
+References: <010a9c5e-205b-40b9-9655-9e168b2def97@classfun.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240213105730.5287-1-tony@atomide.com> <20240213105730.5287-2-tony@atomide.com>
- <CAMuHMdXZTmn7R8GQWAMFL_9C+VGu4SDfFuMN-8MJmi0AbPMx-g@mail.gmail.com>
-In-Reply-To: <CAMuHMdXZTmn7R8GQWAMFL_9C+VGu4SDfFuMN-8MJmi0AbPMx-g@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 5 Sep 2024 11:54:21 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWb56RdBVOWysOm4CMUrsA85tk2Du-RNrMQA_Danv05ng@mail.gmail.com>
-Message-ID: <CAMuHMdWb56RdBVOWysOm4CMUrsA85tk2Du-RNrMQA_Danv05ng@mail.gmail.com>
-Subject: Re: [PATCH 1/4] clk: ti: Handle possible address in the node name
-To: Tony Lindgren <tony@atomide.com>
-Cc: =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tero Kristo <kristo@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andreas Kemnade <andreas@kemnade.info>, linux-omap@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Paul Walmsley <paul@pwsan.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaSExCVkNJGExPSk8dTU5IT1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSEpMTElVSktLVU
+	pCS0tZBg++
+X-HM-Tid: 0a91c1a15f7303a2kunmcd08a7e01c6
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PEk6ASo5DDIxSjopQzQMFxVN
+	GEwKCS9VSlVKTElOTkhLT01PTk5LVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpJVUpDSllXWQgBWUFJSU5DNwY+
 
-On Mon, Sep 2, 2024 at 4:03=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
-> On Tue, Feb 13, 2024 at 11:59=E2=80=AFAM Tony Lindgren <tony@atomide.com>=
- wrote:
-> > In order to use #address-cells =3D <1> and start making use of the
-> > standard reg property, let's prepare things to ignore the possible
-> > address in the clock node name.
-> >
-> > Unless the clock-output-names property is used, the legacy clocks still
-> > fall back to matching the clock data based on the node name.
-> >
-> > We use cleanup.h to simplify the return path for freeing tmp.
-> >
-> > Signed-off-by: Tony Lindgren <tony@atomide.com>
+Hi Junhao,
+
+>>> +	vcc5v0_usb_modem: regulator-5v0-vcc-usb-modem {
+>> 
+>> Are you sure this regulator is 5v?
+>> 
 >
-> Thanks for your patch, which is now commit 3516338543cafb65 ("clk: ti:
-> Handle possible address in the node name") in v6.9-rc1.
-> This causes an early boot crash on BeagleBone Black:
+> It should actually be 3.3V, I will fix it and rename
+> to vcc3v3_usb_modem
+
+I prefer vcc3v3_rf or vcc3v3_ngff,
+this is closer to the schematics.
+
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&pcie30x2m1_pins>;
+>> 
+>> These are actually pcie30x1m0_pins.
 >
->     ti_dt_clocks_register: failed to lookup clock node
-> clk-24mhz-clkctrl:0000:0, ret=3D-517
+> pcie30x1m0_pins seems to conflict with sdmmc0,
+> I changed it to pcie30x1m1_pins
 
-I found the culprit: after the move of .dts files to vendor
-sub-directories, I had updated my boot script to:
+This is obviously incorrect. I didn't notice that
+your pinctrl for sdmmc0 is wrong.
+(Because the cd pin are different)
+The sdmmc0 node should be like this:
 
-    DTB=3Darch/arm/boot/dts/ti/am335x-boneblack.dtb
-    if [ ! -e $DTB ]; then
-        DTB=3Darch/arm/boot/dts/am335x-boneblack.dtb
-    fi
+&sdmmc0 {
+	bus-width = <4>;
+	cap-sd-highspeed;
+	cd-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_LOW>;
+	disable-wp;
+	no-1-8-v;
+	pinctrl-names = "default";
+	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd>;
+	vmmc-supply = <&vcc3v3_sd>;
+	vqmmc-supply = <&vcc_3v3>;
+	status = "okay";
+};
 
-I.e. I missed the "/omap" part, causing the install to fall back to
-an old DTB file that no longer works with modern kernels.
+-- 
+2.25.1
 
-Sorry for the noise.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
