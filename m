@@ -1,198 +1,256 @@
-Return-Path: <devicetree+bounces-100555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 005F896E1EF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:23:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7FC96E1FE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BD001F26745
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:23:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F142E1C255EC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57B717ADFC;
-	Thu,  5 Sep 2024 18:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1726183CB8;
+	Thu,  5 Sep 2024 18:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lVXZ0Dxg"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Bf6L3a3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB4D1C2E;
-	Thu,  5 Sep 2024 18:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46EB516C84B;
+	Thu,  5 Sep 2024 18:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725560627; cv=none; b=GlpsuUoI7l0YTL9PpU+61qixcGjm0H1mZ1URzhC2yCefYT9b0yFirmdunas8n6V4Bmv9Z6BP6khNTd5GzsXnneVwpHsPG0LJzgS0HVy3UnMC2VLYzMFOW3fl4zMYGtOCS6kVcyLwT9YU20mKtE3kqNm5wtIJAXbGKmZSkG5BktA=
+	t=1725560944; cv=none; b=fyB8y/7YBq9JEtxIMgXFle4aUOeH52a8IKlx1doZQ84lGBaJVWe6fGMmHyTQLWNn0LEygGlE1qNdBKDTAQF2CbD868jAkJF2FHfsqhXLX/EgJ+dajpo338H72/5kehsibwozf8DdVQ4uEJyWzmiLWbHYH07J3RxZxBepNDxyGjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725560627; c=relaxed/simple;
-	bh=PtjNoe5jlMKiok2si2WsANBDKQGCK5KIJtAGL+Nf4m4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Py7j4uSgdBXVrge6wxjGyvQuiJD2iU5e0YnpLIrrso4xJ6I7sHpMxF2hWeyqm9LgN7iSvjP27u+YXCzq/AeqRYxqX2jjN/pwdI4PE7S8Ss4i3ErUHLwyUnTeCEI0KsOG1jCjvN/Yjtem4fzhZlRsl9dj0pD+5Ci0bW+TxCUUheE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lVXZ0Dxg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC58CC4CEC3;
-	Thu,  5 Sep 2024 18:23:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725560627;
-	bh=PtjNoe5jlMKiok2si2WsANBDKQGCK5KIJtAGL+Nf4m4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lVXZ0Dxg2Q/WBRBiLuFPMttb6g1ZOWYI5oYc9+ArGSvLC+PHsfph1NR02ouASez1M
-	 SIUvs3tTNL6IcQcjbE1b/Q3RAoMrIqz+UIGHzHC/mFIBuGNyBbUzz8hb71EdUvPpJH
-	 rFaE9QiHFhAat0pEs8xHkDhoBQQPK7ixQ8qC/1Gx+6QA82uKBGudZQQ1fsIjXbgY7t
-	 7k221q8HCT464QULZivP2OoABNpxqZefrQIPnu0A+0eIC9YucKPnWb9G4HorxkodbL
-	 fE0N0w8aRcvEE+2ioe7moNB6CyMrBmrU1BUlKTFYF9DIQgf7rq4oDJHsXU9wvgBAF7
-	 ZFnzI8LkN3W3g==
-Date: Thu, 5 Sep 2024 13:23:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-Cc: devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
-	linux-crypto@vger.kernel.org, Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com, bhoomikak@vayavyalabs.com
-Subject: Re: [PATCH v1 1/1] dt-bindings: crypto: Document support for SPAcc
-Message-ID: <20240905182345.GA2432714-robh@kernel.org>
-References: <20240905150910.239832-1-pavitrakumarm@vayavyalabs.com>
- <20240905150910.239832-2-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1725560944; c=relaxed/simple;
+	bh=RzH7YeQcOe3cwiGwu/SoGWjxyZNxZtjC5k/biggfzXk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fyxqaIJGaV7kcPqmKxVGUSgZJXJ2sxIZq9AEbLZBCbXam/GCjEfA4ewTEYUeiiK3QqI9E20bgn19gRb9yFYb8ArpOt3Sw7YQQHob8xo9WM/VPIBdNxqNhHUiq4n7ZJ3nwJ3NfL7zLigjhLaLs+EIHxu9U5r1USdC8PV01u+uYmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Bf6L3a3f; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 143EB88CC1;
+	Thu,  5 Sep 2024 20:28:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725560934;
+	bh=mnlOn+20C49szsiIT5w0NLtAJkZUlNBplzPPTN3aoqo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Bf6L3a3fxGvrFbeBlQVDD22e37MRnlF57PgHKTw++RlIWFVbUCPjOxI2XrCYjhwoZ
+	 aZLInovRZc3+5yj+OTid82sNwCuFlCzMF2Rizvg7PSj54C/c6QfGKS+vHNVFgusyJI
+	 PBjZlU81KAPhyRZtBW688tJ2mRhyNOsXx1MpGao8FRLLgq+JoOMZJrcvl5j/bXW7mB
+	 iY5scM0OWpc0pM2qX3nFqFMber/T7i+5b3SEUyXal9E+h8zoqlmAL72W9wqScYPSrn
+	 A1YZs5glMXfF2ozlz0AG8IlONkyLO9bn9AtBvprNiVlfJRpbpwfOcYC+ohL/MgcNe2
+	 bbbwz514h8l0w==
+Message-ID: <ac922fd5-9438-4f73-9a3d-08cceb1d7409@denx.de>
+Date: Thu, 5 Sep 2024 20:26:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240905150910.239832-2-pavitrakumarm@vayavyalabs.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] pwm: imx27: workaround of the pwm output bug when
+ decrease the duty cycle
+To: Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ pratikmanvar09@gmail.com, francesco@dolcini.it,
+ Clark Wang <xiaoning.wang@nxp.com>, Jun Li <jun.li@nxp.com>
+References: <20240715-pwm-v2-0-ff3eece83cbb@nxp.com>
+ <20240715-pwm-v2-3-ff3eece83cbb@nxp.com>
+ <CAOMZO5DNmHfHWbLoPj9P=_+JiLLQ4tiDd_90+UX+_psN2o+Knw@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <CAOMZO5DNmHfHWbLoPj9P=_+JiLLQ4tiDd_90+UX+_psN2o+Knw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Thu, Sep 05, 2024 at 08:39:10PM +0530, Pavitrakumar M wrote:
-> Add DT bindings related to the SPAcc driver for Documentation.
-> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
-> Engine is a crypto IP designed by Synopsys.
-
-This belongs with the rest of your driver series.
-
+On 9/5/24 7:12 PM, Fabio Estevam wrote:
+> Adding Marek.
 > 
-> Signed-off-by: Bhoomika K <bhoomikak@vayavyalabs.com>
-> Signed-off-by: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
+> On Mon, Jul 15, 2024 at 5:30 PM Frank Li <Frank.Li@nxp.com> wrote:
+>>
+>> From: Clark Wang <xiaoning.wang@nxp.com>
+>>
+>> Implement workaround for ERR051198
+>> (https://www.nxp.com/docs/en/errata/IMX8MN_0N14Y.pdf)
+>>
+>> PWM output may not function correctly if the FIFO is empty when a new SAR
+>> value is programmed
+>>
+>> Description:
+>>    When the PWM FIFO is empty, a new value programmed to the PWM Sample
+>>    register (PWM_PWMSAR) will be directly applied even if the current timer
+>>    period has not expired. If the new SAMPLE value programmed in the
+>>    PWM_PWMSAR register is less than the previous value, and the PWM counter
+>>    register (PWM_PWMCNR) that contains the current COUNT value is greater
+>>    than the new programmed SAMPLE value, the current period will not flip
+>>    the level. This may result in an output pulse with a duty cycle of 100%.
+>>
+>> Workaround:
+>>    Program the current SAMPLE value in the PWM_PWMSAR register before
+>>    updating the new duty cycle to the SAMPLE value in the PWM_PWMSAR
+>>    register. This will ensure that the new SAMPLE value is modified during
+>>    a non-empty FIFO, and can be successfully updated after the period
+>>    expires.
 
-There's 2 possibilities: Bhoomika is the author and you are just 
-submitting it, or you both developed it. The former needs the git author 
-fixed to be Bhoomika. The latter needs a Co-developed-by tag for 
-Bhoomika.
+Frank, could you submit this patch separately ? The 1/3 and 2/3 are 
+unrelated as far as I can tell ?
 
-> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-> ---
->  .../bindings/crypto/snps,dwc-spacc.yaml       | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> new file mode 100644
-> index 000000000000..a58d1b171416
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Crypto Engine
-> +
-> +maintainers:
-> +  - Ruud Derwig <Ruud.Derwig@synopsys.com>
-> +
-> +description:
-> +  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto Engine is
-> +  a crypto IP designed by Synopsys, that can accelerate cryptographic
-> +  operations.
-> +
-> +properties:
-> +  compatible:
-> +    contains:
+>> ---
+>> Change from v1 to v2
+>> - address comments in https://lore.kernel.org/linux-pwm/20211221095053.uz4qbnhdqziftymw@pengutronix.de/
+>>    About disable/enable pwm instead of disable/enable irq:
+>>    Some pmw periphal may sensitive to period. Disable/enable pwm will
+>> increase period, althouhg it is okay for most case, such as LED backlight
+>> or FAN speed. But some device such servo may require strict period.
+>>
+>> - address comments in https://lore.kernel.org/linux-pwm/d72d1ae5-0378-4bac-8b77-0bb69f55accd@gmx.net/
+>>    Using official errata number
+>>    fix typo 'filp'
+>>    add {} for else
+>>
+>> I supposed fixed all previous issues, let me know if I missed one.
+>> ---
+>>   drivers/pwm/pwm-imx27.c | 52 ++++++++++++++++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 51 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pwm/pwm-imx27.c b/drivers/pwm/pwm-imx27.c
+>> index 253afe94c4776..e12eaaebe3499 100644
+>> --- a/drivers/pwm/pwm-imx27.c
+>> +++ b/drivers/pwm/pwm-imx27.c
+>> @@ -27,6 +27,7 @@
+>>   #define MX3_PWMSR                      0x04    /* PWM Status Register */
+>>   #define MX3_PWMSAR                     0x0C    /* PWM Sample Register */
+>>   #define MX3_PWMPR                      0x10    /* PWM Period Register */
+>> +#define MX3_PWMCNR                     0x14    /* PWM Counter Register */
+>>
+>>   #define MX3_PWMCR_FWM                  GENMASK(27, 26)
+>>   #define MX3_PWMCR_STOPEN               BIT(25)
+>> @@ -232,8 +233,11 @@ static int pwm_imx27_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>>   {
+>>          unsigned long period_cycles, duty_cycles, prescale;
+>>          struct pwm_imx27_chip *imx = to_pwm_imx27_chip(chip);
+>> +       void __iomem *reg_sar = imx->mmio_base + MX3_PWMSAR;
+>>          unsigned long long c;
+>>          unsigned long long clkrate;
+>> +       unsigned long flags;
+>> +       int val;
+>>          int ret;
+>>          u32 cr;
+>>
+>> @@ -274,7 +278,53 @@ static int pwm_imx27_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>>                  pwm_imx27_sw_reset(chip);
+>>          }
+>>
+>> -       writel(duty_cycles, imx->mmio_base + MX3_PWMSAR);
+>> +       /*
+>> +        * This is a limited workaround. When the SAR FIFO is empty, the new
+>> +        * write value will be directly applied to SAR even the current period
+>> +        * is not over.
+>> +        *
+>> +        * If the new SAR value is less than the old one, and the counter is
+>> +        * greater than the new SAR value, the current period will not filp
+>> +        * the level. This will result in a pulse with a duty cycle of 100%.
+>> +        * So, writing the current value of the SAR to SAR here before updating
+>> +        * the new SAR value can avoid this issue.
+>> +        *
+>> +        * Add a spin lock and turn off the interrupt to ensure that the
+>> +        * real-time performance can be guaranteed as much as possible when
+>> +        * operating the following operations.
+>> +        *
+>> +        * 1. Add a threshold of 1.5us. If the time T between the read current
+>> +        * count value CNR and the end of the cycle is less than 1.5us, wait
+>> +        * for T to be longer than 1.5us before updating the SAR register.
+>> +        * This is to avoid the situation that when the first SAR is written,
+>> +        * the current cycle just ends and the SAR FIFO that just be written
+>> +        * is emptied again.
+>> +        *
+>> +        * 2. Use __raw_writel() to minimize the interval between two writes to
+>> +        * the SAR register to increase the fastest pwm frequency supported.
+>> +        *
+>> +        * When the PWM period is longer than 2us(or <500KHz), this workaround
+>> +        * can solve this problem.
+>> +        */
+>> +       val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + MX3_PWMSR));
+>> +       if (duty_cycles < imx->duty_cycle && val < MX3_PWMSR_FIFOAV_2WORDS) {
+>> +               c = clkrate * 1500;
+>> +               do_div(c, NSEC_PER_SEC);
+>> +
+>> +               local_irq_save(flags);
+>> +               if (state->period >= 2000)
+>> +                       readl_poll_timeout_atomic(imx->mmio_base + MX3_PWMCNR, val,
+>> +                                                 period_cycles - val >= c, 0, 10);
+>> +
+>> +               val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + MX3_PWMSR));
+>> +               if (!val)
+>> +                       writel_relaxed(imx->duty_cycle, reg_sar);
+>> +               writel_relaxed(duty_cycles, reg_sar);
+>> +               local_irq_restore(flags);
+>> +       } else {
+>> +               writel_relaxed(duty_cycles, reg_sar);
+>> +       }
 
-Drop contains. The list of compatible strings and order must be defined.
+Why so complicated ? Can't this be simplified to this ?
 
-> +      enum:
-> +        - snps,dwc-spacc
-> +        - snps,dwc-spacc-6.0
+const u32 sar[3] = { old_sar, old_sar, new_sar };
 
-What's the difference between these 2? The driver only had 1 compatible, 
-so this should too.
+val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + 
+MX3_PWMSR));
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    maxItems: 1
+switch (val) {
+case MX3_PWMSR_FIFOAV_EMPTY:
+case MX3_PWMSR_FIFOAV_1WORD:
+   writesl(duty_cycles, sar, 3);
+   break;
+case MX3_PWMSR_FIFOAV_2WORDS:
+   writesl(duty_cycles, sar + 1, 2);
+   break;
+default: // 3 words in FIFO
+   writel(new_sar, duty_cycles);
+}
 
-No, you must define the name. But really, just drop it because you don't 
-need names with only 1 name.
+The MX3_PWMSR_FIFOAV_EMPTY/MX3_PWMSR_FIFOAV_1WORD case will effectively 
+trigger three consecutive 'str' instructions:
 
-> +
-> +  little-endian: true
+1: str PWMSAR, old_sar
+2: str PWMSAR, old_sar
+3: str PWMSAR, new_sar
 
-Do you really need this? You have a BE CPU this is used with?
+If the PWM cycle ends before 1:, then PWM will reload old value, then 
+pick old value from 1:, 2: and then new value from 3: -- the FIFO will 
+never be empty.
 
-> +
-> +  vspacc-priority:
+If the PWM cycle ends after 1:, then PWM will pick up old value from 1: 
+which is now in FIFO, 2: and then new value from 3: -- the FIFO will 
+never be empty.
 
-Custom properties need a vendor prefix (snps,).
+The MX3_PWMSR_FIFOAV_2WORDS and default: case is there to prevent FIFO 
+overflow which may lock up the PWM. In case of MX3_PWMSR_FIFOAV_2WORDS 
+there are two words in the FIFO, write two more, old SAR value and new 
+SAR value. In case of default, there must be at least one free slot in 
+the PWM FIFO because pwm_imx27_wait_fifo_slot() which polled the FIFO 
+for free slot above, so there is no danger of FIFO being empty or FIFO 
+overflow.
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Set priority mode on the Virtual SPAcc. This is Virtual SPAcc priority
-> +      weight. Its used in priority arbitration of the Virtual SPAccs.
-> +    minimum: 0
-> +    maximum: 15
-> +    default: 0
-> +
-> +  vspacc-index:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Virtual spacc index for validation and driver functioning.
+Maybe this can still be isolated to "if (duty_cycles < imx->duty_cycle)" .
 
-We generally don't do indexes in DT. Need a better description of why 
-this is needed.
+What do you think ?
 
-> +    minimum: 0
-> +    maximum: 7
-> +
-> +  spacc-wdtimer:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Watchdog timer count to replace the default value in driver.
-> +    minimum: 0x19000
-> +    maximum: 0xFFFFF
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spacc@40000000 {
-
-crypto@40000000
-
-> +        compatible = "snps,dwc-spacc";
-> +        reg = <0x40000000 0x3FFFF>;
-> +        interrupt-parent = <&gic>;
-> +        interrupts = <0 89 4>;
-> +        clocks = <&clock>;
-> +        clock-names = "ref_clk";
-> +        vspacc-priority = <4>;
-> +        spacc-wdtimer = <0x20000>;
-> +        vspacc-index = <0>;
-> +        little-endian;
-> +    };
-> -- 
-> 2.25.1
-> 
+>>          writel(period_cycles, imx->mmio_base + MX3_PWMPR);
 
