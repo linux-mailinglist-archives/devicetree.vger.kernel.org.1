@@ -1,71 +1,73 @@
-Return-Path: <devicetree+bounces-100297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 092E096D1EF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:24:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4557196D1F2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27D501C2264C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:24:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2D601F24A4F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BAF1925BB;
-	Thu,  5 Sep 2024 08:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF771194149;
+	Thu,  5 Sep 2024 08:24:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="N+2b2ltn"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="g3E33VzH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE4D189518
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 08:24:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A65178F66
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 08:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725524653; cv=none; b=AMjQTVNJHQu+jh0zZeZPUpYu+RiN9uGEciHYZgcny7cCtxkNgbXa3Ds+VDJujPPC7Fzo1GpVv+OrEv6PXavKmj0GfZ0PG8v066vuXxuFpTMa6+bRl84sAR+NGrMKqz9HMEJCn//FxYP+SjuCqyXVmXd5sY5i5TxMRJL0W5NOwGY=
+	t=1725524654; cv=none; b=r564CfkCnlPK5h+54JWaYXmHRZA3iJxnVGhGS+7vyD+2Rux+7cbAzQimYNNs/dHnIW22E4ICL+BhQwXYW5qTV+mfGAq6hwA0r6coQ8lQv1fsXS0kVgqVOmOS8aOKCwdOuN1vYbDwe3996qJi/y8Naq6D3eEW+tl83DxqmGCzQrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725524653; c=relaxed/simple;
-	bh=R539Ju1qXW5ADus09BQSC8fgycQdVIoULWQe8Z8Bzpk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f10ph97oYNnzXzQvWs2DALwybaDTV7mC0Gj2UfyCVQ3RnBMm7wA5RvILCaqUXc8JN5zPpIT8s9l/GFzk6M3Q6EJmqGNVihq/HYBCo3wn/uRq+boHP7QTaCnFKVMpddCHCuvCgXRq7omjnDmHL+rPIjhrlinR4mAwBUQv/7EAVWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=N+2b2ltn; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1725524654; c=relaxed/simple;
+	bh=m+JDUAFze61TKUmqgjZi4kJQBJPi7r7Nl0ZvyJY2pOo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=SWiLSsWTCspWzRDJ/tZ/SDznuuN0oQ72XKhfMcHDdzYizuLE4FUYNvwfzhgxKav8AjIw6TQpP49+PMmXYJuCzzLxKpFYLXmxQwwzo7iUTlEokbK5TfblA4Njce7ZtiH3dxyVJzIzg2B9iwraHVxqnRaeOZamH6p1zYIYwxlhUBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=g3E33VzH; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a83597ce5beso81112666b.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 01:24:10 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a7a81bd549eso56867166b.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 01:24:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725524649; x=1726129449; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4guFQrzA4tbu4dZba8ySxZ/hRLzXBVX/8Kywlah1Q1A=;
-        b=N+2b2ltni6CPVDfWnCAR+Csfj+I8+e6lzsiC53KQdeRgZqH3TJivzMu2yvIDNMYPDW
-         WDRAOfDwpTgSJl+JVlGJbevjIFFJPS7mo5+EbQYeCdXsXs0Af743HMTMruBJalm5Yln2
-         h3vFo7N0jRMpojPTXMcs9eX28VWI21u0tsV5Wle+O3mmHa64gAPJPgwvQUPwYnN1Qgfn
-         beF6OA3AKNXgI2Dicxg7dI+XJXQjqUEdXKL2ggDCoVMtvrxWNjHlXcHVceX9wC4WHaoR
-         CBDvaiV+ICsgiuSkNtzKiwFnqv8vY8EjiorrVqa3MV0S4X3PoVgB8oEnclZRfyPTc+Dv
-         b46g==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725524651; x=1726129451; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zwFKX15TuB+lP2XuqgSDKuPw5N2dTeJWzE8YjtBx2Ck=;
+        b=g3E33VzHzhbbD7jExnMOV2NP756Geve0GMk1Zty81+0+2H7Qgp4xjyAWmU2HAHEky0
+         Kv22J5k+I9GWjC3QYwwAEbyherzivdtDAlDjG5Yith082zQz4NVkdsStZ5FtqgyoMco/
+         Yaf62tLUYAAYZAMkrfBTNOf2JawiCK3NPWq1K5jOtJYg9wpdZVOClScXj82H/y1U6UJG
+         FQFXKhqY7TCe884tUeq3mgADmiuO3Rc26zTm2zC//3YTCe09UAO8+VeVgrkjZkgQ3Ulk
+         ZCXNFvqrgVu59gZnz7JmTWWj6pXqlVEclzpUotXKah2JxL9ZWFF+HmX+2koY/MEcIGrz
+         4tlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725524649; x=1726129449;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4guFQrzA4tbu4dZba8ySxZ/hRLzXBVX/8Kywlah1Q1A=;
-        b=FCObJAI2wSFf+16fiHcsTbs0++dWx5mEMQuoTM/KOlG3dnDGvpWPMpDvUMqfiJcAdt
-         CFYVZOz9cPSPAu76he45JXx7ZTBcBzkMLUvqXQQ10m3JPeKHLPWvVGXPwG8NXq9R2aAY
-         UWnKvqsrk0DpUQKDH/WBbq9d4kRdSUqfKEjgZtmwIxD6GC2emPJZ5k75J3gzh3rqZ1Ld
-         JnwmjXt0Pr85XTeFqpls9GzDTfIN5F49w/wdPVVwJR8XRrVsmpMYDoKWewCu/vQJt3dZ
-         2MLqInfMGgrw24sPS+z6hPYRGtbigrrBirr+Rn1AwlQ+iyHSJXSAly/tz3PaoVLAuJSP
-         d6yw==
-X-Forwarded-Encrypted: i=1; AJvYcCXn7w5WF2f6tZwtu2ltiA5mgKtdIoL3DJXx3AwK+Oc+z0i60kXKn4ecJ95ghvyi0VZJQUzx/Qcsoeth@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWs0rQFDuVBCFViaMveEEAD3wPdW6CAx8g43W+4S2dUF+7eD7M
-	iKb2hmHRL4WiSKe8L85krt1SKJVT2DqY8KK6ragR6SgwKiJR0GdXYBAZEYYtWT8uzeJHYQuKFrI
-	nmJI=
-X-Google-Smtp-Source: AGHT+IHwgWwaIoImdADHHsZVEdYOr3B4Uh6j6J0eLHmCKUYBnZnaEM8dhgBZXsJnqtFSLimaEM8OIw==
-X-Received: by 2002:a17:907:7ea4:b0:a87:370:8dfc with SMTP id a640c23a62f3a-a8a43038072mr506615366b.14.1725524648430;
-        Thu, 05 Sep 2024 01:24:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725524651; x=1726129451;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zwFKX15TuB+lP2XuqgSDKuPw5N2dTeJWzE8YjtBx2Ck=;
+        b=g5YLIw60XhV+na4zSmWO/Z3ZcG8qWeuwF4hrn2IV/gDqokm1dbGMHgcbQShqG09vlb
+         66WFbxYYFqPUTXjGK+FWiWVNAmsJPABi//zx3wmIRTEo5GpytL3JiIC2R5kF1R787Kjf
+         AqcM2WReJ55pTHII96g7bCTzdki0EIAlI554pfBkFTklmd63KfvlNzHgfBDcqd/FwS+X
+         L9L7AnOefEcWwAkFoHdC9pWDHrk16XsU/L3Fb276BE99Jpq7R0jvuTmwieGR+eDAAcLf
+         K+H9URPHb8zikxqAQNn+lJiKu7KgkfnFMMBNJ2PBpbMa7M99VyC1L7jmXqS58jp8zKwn
+         wH7A==
+X-Forwarded-Encrypted: i=1; AJvYcCV396b6F9g+B7jh5NA5dhSj/TwH0+oUyvZ2pPBM4OK7hwFkC8RB06wh6x2EgTp+CEYQlnLHlbDcpC//@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNrHLIx1JsTfZoQDg/wbhkWPkPqoyUY/Zf6OB/DmCxq6+NfP3X
+	yPTeduJWdN/vzdEly3O1S5eFEGTDXMxA54m6tsWFSEN3TeDJGgksEsBQ+jXaSJN4b5CF4kP8Ibt
+	mn20=
+X-Google-Smtp-Source: AGHT+IFtitYuRZTUOW9czyZovn6Ss5VJ1XOnQFXqGurB7hkDMfVYYYtanDt3+TNDH8s7SXGorJPUjQ==
+X-Received: by 2002:a17:907:7ea3:b0:a86:82da:2c3c with SMTP id a640c23a62f3a-a8a1d32e2femr761128766b.40.1725524650265;
+        Thu, 05 Sep 2024 01:24:10 -0700 (PDT)
 Received: from localhost.localdomain ([188.27.130.242])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a623a6c80sm102300366b.174.2024.09.05.01.24.06
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a623a6c80sm102300366b.174.2024.09.05.01.24.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 01:24:07 -0700 (PDT)
+        Thu, 05 Sep 2024 01:24:09 -0700 (PDT)
 From: Alexandru Ardelean <aardelean@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
@@ -77,107 +79,210 @@ Cc: jic23@kernel.org,
 	michael.hennerich@analog.com,
 	gstols@baylibre.com,
 	Alexandru Ardelean <aardelean@baylibre.com>
-Subject: [PATCH v4 0/8] iio: adc: ad7606: add support for AD7606C-{16,18} parts
-Date: Thu,  5 Sep 2024 11:23:54 +0300
-Message-ID: <20240905082404.119022-1-aardelean@baylibre.com>
+Subject: [PATCH v4 1/8] iio: adc: ad7606: add 'bits' parameter to channels macros
+Date: Thu,  5 Sep 2024 11:23:55 +0300
+Message-ID: <20240905082404.119022-2-aardelean@baylibre.com>
 X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20240905082404.119022-1-aardelean@baylibre.com>
+References: <20240905082404.119022-1-aardelean@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
-The main difference between AD7606C-16 & AD7606C-18 is the precision in
-bits (16 vs 18).
-Because of that, some scales need to be defined for the 18-bit variants, as
-they need to be computed against 2**18 (vs 2**16 for the 16 bit-variants).
+There are some newer additions to the AD7606 family, which support 18 bit
+precision.
+Up until now, all chips were 16 bit.
 
-Because the AD7606C-16,18 also supports bipolar & differential channels,
-for SW-mode, the default range of 10 V or ±10V should be set at probe.
-On reset, the default range (in the registers) is set to value 0x3 which
-corresponds to '±10 V single-ended range', regardless of bipolar or
-differential configuration.
+This change adds a 'bits' parameter to the AD760X_CHANNEL macro and renames
+'ad7606_channels' -> 'ad7606_channels_16bit' for the current devices.
 
-Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
+The AD7606_SW_CHANNEL() macro is also introduced, as a short-hand for IIO
+channels in SW mode.
 
-This changeset, does a bit of rework to the existing ad7606 driver and then
-adds support for the AD7606C-16 & AD7606C-18 parts.
+Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
+---
+ drivers/iio/adc/ad7606.c     | 58 ++++++++++++++++++------------------
+ drivers/iio/adc/ad7606.h     | 18 ++++++-----
+ drivers/iio/adc/ad7606_spi.c | 16 +++++-----
+ 3 files changed, 47 insertions(+), 45 deletions(-)
 
-Datasheet links:
-  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-16.pdf
-  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf
-
-Changelog v3 -> v4:
-  - v3: https://lore.kernel.org/linux-iio/20240904072718.1143440-1-aardelean@baylibre.com/
-  - For patch 'dt-bindings: iio: adc: document diff-channels corner case
-    for some ADCs'
-    - Added 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
-  - Renamed patch 'dt-bindings: iio: adc: add adi,ad7606c-{16,18} compatible strings'
-    to 'dt-bindings: iio: adc: add docs for AD7606C-{16,18} parts'
-    - Updated based on notes from Krzysztof Kozlowski (from v3)
-      - Dropped ()
-      - Re-ordered the patternProperties:oneOf:required specification
-      - Unified match-pattern to '^channel@[1-8]$'
-
-Changelog v2 -> v3:
-  - v2: https://lore.kernel.org/linux-iio/20240902103638.686039-1-aardelean@baylibre.com/
-  - Applied checkpatch.pl changes
-  - Managed to setup and run 'make dt_binding_check DT_SCHEMA_FILES=adi,ad7606.yaml'
-    - Found the winning combination for this setup
-    - David Lechner also helped
-  - For patch 'iio: adc: ad7606: rework available attributes for SW channels'
-    - Removed an extra space that checkpatch found
-  - For patch 'dt-bindings: iio: adc: document diff-channels corner case
-    for some ADCs'
-    - Removed 'the the' stutter (that I did in writing)
-  - For patch 'dt-bindings: iio: adc: add adi,ad7606c-{16,18} compatible strings'
-    - Updated binding with some description for 'diff-channels' & 'bipolar'
-      properties
-    - Channel definitions are counted from 1 to 8 to match datasheet
-    - Added more bindings rules for 'diff-channels' & 'bipolar' for AD7606C
-      - Adapted some ideas from adi,ad7192.yaml
-  - For patch 'iio: adc: ad7606: add support for AD7606C-{16,18} parts'
-    - Updated 'diff-channels' property with channel numbers (from 1 to 8)
-      handling
-
-Changelog v1 -> v2:
-  - v1: https://lore.kernel.org/linux-iio/20240819064721.91494-1-aardelean@baylibre.com/
-  - Fixed description in 'iio: adc: ad7606: add 'bits' parameter to channels macros'
-  - Added patch 'dt-bindings: iio: adc: document diff-channels corner case
-    for some ADCs'
-    - diff-channels = <reg reg> can be used to define differential channels
-      with dedicated positive + negative pins
-  - Re-worked patch 'dt-bindings: iio: adc: add adi,ad7606c-{16,18} compatible strings'
-    - Using standard 'diff-channels' & 'bipolar' properties from adc.yaml
-  - Re-worked patch 'iio: adc: ad7606: add support for AD7606C-{16,18} parts'
-    - Reading 18-bit samples now relies on SPI controllers being able to
-      pad 18-bits to 32-bits.
-    - Implemented 'diff-channels = <reg reg>' setting
-    - Removed some bad/left-over channel configuration code which I forgot
-      during development and rebasing.
-
-Alexandru Ardelean (8):
-  iio: adc: ad7606: add 'bits' parameter to channels macros
-  iio: adc: ad7606: move 'val' pointer to ad7606_scan_direct()
-  iio: adc: ad7606: split a 'ad7606_sw_mode_setup()' from probe
-  iio: adc: ad7606: wrap channel ranges & scales into struct
-  iio: adc: ad7606: rework available attributes for SW channels
-  dt-bindings: iio: adc: document diff-channels corner case for some
-    ADCs
-  dt-bindings: iio: adc: add docs for AD7606C-{16,18} parts
-  iio: adc: ad7606: add support for AD7606C-{16,18} parts
-
- .../devicetree/bindings/iio/adc/adc.yaml      |   4 +
- .../bindings/iio/adc/adi,ad7606.yaml          | 109 +++++
- drivers/iio/adc/ad7606.c                      | 433 +++++++++++++++---
- drivers/iio/adc/ad7606.h                      |  78 +++-
- drivers/iio/adc/ad7606_spi.c                  |  71 ++-
- 5 files changed, 599 insertions(+), 96 deletions(-)
-
+diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+index 539e4a8621fe..dba1f28782e4 100644
+--- a/drivers/iio/adc/ad7606.c
++++ b/drivers/iio/adc/ad7606.c
+@@ -333,16 +333,16 @@ static const struct iio_chan_spec ad7605_channels[] = {
+ 	AD7605_CHANNEL(3),
+ };
+ 
+-static const struct iio_chan_spec ad7606_channels[] = {
++static const struct iio_chan_spec ad7606_channels_16bit[] = {
+ 	IIO_CHAN_SOFT_TIMESTAMP(8),
+-	AD7606_CHANNEL(0),
+-	AD7606_CHANNEL(1),
+-	AD7606_CHANNEL(2),
+-	AD7606_CHANNEL(3),
+-	AD7606_CHANNEL(4),
+-	AD7606_CHANNEL(5),
+-	AD7606_CHANNEL(6),
+-	AD7606_CHANNEL(7),
++	AD7606_CHANNEL(0, 16),
++	AD7606_CHANNEL(1, 16),
++	AD7606_CHANNEL(2, 16),
++	AD7606_CHANNEL(3, 16),
++	AD7606_CHANNEL(4, 16),
++	AD7606_CHANNEL(5, 16),
++	AD7606_CHANNEL(6, 16),
++	AD7606_CHANNEL(7, 16),
+ };
+ 
+ /*
+@@ -357,22 +357,22 @@ static const struct iio_chan_spec ad7606_channels[] = {
+  */
+ static const struct iio_chan_spec ad7616_channels[] = {
+ 	IIO_CHAN_SOFT_TIMESTAMP(16),
+-	AD7606_CHANNEL(0),
+-	AD7606_CHANNEL(1),
+-	AD7606_CHANNEL(2),
+-	AD7606_CHANNEL(3),
+-	AD7606_CHANNEL(4),
+-	AD7606_CHANNEL(5),
+-	AD7606_CHANNEL(6),
+-	AD7606_CHANNEL(7),
+-	AD7606_CHANNEL(8),
+-	AD7606_CHANNEL(9),
+-	AD7606_CHANNEL(10),
+-	AD7606_CHANNEL(11),
+-	AD7606_CHANNEL(12),
+-	AD7606_CHANNEL(13),
+-	AD7606_CHANNEL(14),
+-	AD7606_CHANNEL(15),
++	AD7606_CHANNEL(0, 16),
++	AD7606_CHANNEL(1, 16),
++	AD7606_CHANNEL(2, 16),
++	AD7606_CHANNEL(3, 16),
++	AD7606_CHANNEL(4, 16),
++	AD7606_CHANNEL(5, 16),
++	AD7606_CHANNEL(6, 16),
++	AD7606_CHANNEL(7, 16),
++	AD7606_CHANNEL(8, 16),
++	AD7606_CHANNEL(9, 16),
++	AD7606_CHANNEL(10, 16),
++	AD7606_CHANNEL(11, 16),
++	AD7606_CHANNEL(12, 16),
++	AD7606_CHANNEL(13, 16),
++	AD7606_CHANNEL(14, 16),
++	AD7606_CHANNEL(15, 16),
+ };
+ 
+ static const struct ad7606_chip_info ad7606_chip_info_tbl[] = {
+@@ -382,25 +382,25 @@ static const struct ad7606_chip_info ad7606_chip_info_tbl[] = {
+ 		.num_channels = 5,
+ 	},
+ 	[ID_AD7606_8] = {
+-		.channels = ad7606_channels,
++		.channels = ad7606_channels_16bit,
+ 		.num_channels = 9,
+ 		.oversampling_avail = ad7606_oversampling_avail,
+ 		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
+ 	},
+ 	[ID_AD7606_6] = {
+-		.channels = ad7606_channels,
++		.channels = ad7606_channels_16bit,
+ 		.num_channels = 7,
+ 		.oversampling_avail = ad7606_oversampling_avail,
+ 		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
+ 	},
+ 	[ID_AD7606_4] = {
+-		.channels = ad7606_channels,
++		.channels = ad7606_channels_16bit,
+ 		.num_channels = 5,
+ 		.oversampling_avail = ad7606_oversampling_avail,
+ 		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
+ 	},
+ 	[ID_AD7606B] = {
+-		.channels = ad7606_channels,
++		.channels = ad7606_channels_16bit,
+ 		.num_channels = 9,
+ 		.oversampling_avail = ad7606_oversampling_avail,
+ 		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
+diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+index 0c6a88cc4695..771121350f98 100644
+--- a/drivers/iio/adc/ad7606.h
++++ b/drivers/iio/adc/ad7606.h
+@@ -8,7 +8,7 @@
+ #ifndef IIO_ADC_AD7606_H_
+ #define IIO_ADC_AD7606_H_
+ 
+-#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all) {	\
++#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all, bits) {	\
+ 		.type = IIO_VOLTAGE,				\
+ 		.indexed = 1,					\
+ 		.channel = num,					\
+@@ -19,24 +19,26 @@
+ 		.scan_index = num,				\
+ 		.scan_type = {					\
+ 			.sign = 's',				\
+-			.realbits = 16,				\
+-			.storagebits = 16,			\
++			.realbits = (bits),			\
++			.storagebits = (bits),			\
+ 			.endianness = IIO_CPU,			\
+ 		},						\
+ }
+ 
+ #define AD7605_CHANNEL(num)				\
+ 	AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW),	\
+-		BIT(IIO_CHAN_INFO_SCALE), 0)
++		BIT(IIO_CHAN_INFO_SCALE), 0, 16)
+ 
+-#define AD7606_CHANNEL(num)				\
++#define AD7606_CHANNEL(num, bits)			\
+ 	AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW),	\
+ 		BIT(IIO_CHAN_INFO_SCALE),		\
+-		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
++		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), bits)
+ 
+-#define AD7616_CHANNEL(num)	\
++#define AD7606_SW_CHANNEL(num, bits)	\
+ 	AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),\
+-		0, BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
++		0, BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), bits)
++
++#define AD7616_CHANNEL(num)	AD7606_SW_CHANNEL(num, 16)
+ 
+ /**
+  * struct ad7606_chip_info - chip specific information
+diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
+index 62ec12195307..e00f58a6a0e9 100644
+--- a/drivers/iio/adc/ad7606_spi.c
++++ b/drivers/iio/adc/ad7606_spi.c
+@@ -67,14 +67,14 @@ static const struct iio_chan_spec ad7616_sw_channels[] = {
+ 
+ static const struct iio_chan_spec ad7606b_sw_channels[] = {
+ 	IIO_CHAN_SOFT_TIMESTAMP(8),
+-	AD7616_CHANNEL(0),
+-	AD7616_CHANNEL(1),
+-	AD7616_CHANNEL(2),
+-	AD7616_CHANNEL(3),
+-	AD7616_CHANNEL(4),
+-	AD7616_CHANNEL(5),
+-	AD7616_CHANNEL(6),
+-	AD7616_CHANNEL(7),
++	AD7606_SW_CHANNEL(0, 16),
++	AD7606_SW_CHANNEL(1, 16),
++	AD7606_SW_CHANNEL(2, 16),
++	AD7606_SW_CHANNEL(3, 16),
++	AD7606_SW_CHANNEL(4, 16),
++	AD7606_SW_CHANNEL(5, 16),
++	AD7606_SW_CHANNEL(6, 16),
++	AD7606_SW_CHANNEL(7, 16),
+ };
+ 
+ static const unsigned int ad7606B_oversampling_avail[9] = {
 -- 
 2.46.0
 
