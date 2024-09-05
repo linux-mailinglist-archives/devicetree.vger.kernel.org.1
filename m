@@ -1,123 +1,120 @@
-Return-Path: <devicetree+bounces-100437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC6C96D98B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:00:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A659696D999
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:01:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FE34B217C0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:00:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 242AF1F22828
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E16019CCFC;
-	Thu,  5 Sep 2024 13:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6703E19B5AA;
+	Thu,  5 Sep 2024 13:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N1WULtDB"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="UPDZPeyi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C98C19AD7B;
-	Thu,  5 Sep 2024 13:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D792E198E84
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 13:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725541203; cv=none; b=ebyRJn0ZitWxYbtfDWpg53Bq+u6HzwGJ5iefJbbluMedOBBBqLJeO1KKk5ZoxePGrgy4EsnrPXtIoPu7c1F4SMJK7vyxvWROVGQgaMwpQ7jRSutBC0R8mjn8a/yOYDr5SO2RnhmAncWXuAz+yUd7zzMhxH1kamnfkqNaFaYJIMQ=
+	t=1725541257; cv=none; b=QBm45kpXw48R8lzftoZiYkaFoCNPE3tczaRubJ3ljE6afx8dClVI1VCQCY83T198GmyJTvEWavkOUgieS6y4wlreFulNLBGomEI+zdEUmohRmfvt2e6w+q53xDsuH0bZU0g5bBACqxku5n8XH/QDbC971bOyOqrAtTkQcG0ghhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725541203; c=relaxed/simple;
-	bh=4uY2WQgSivZ2VQhFIdlGE0xY62rtVvkAX6QFj3t2Dqg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qVvrJ4xM9TqAuHL8ZIO3/Qj8Msk0ryvx0HB7uemD3fCcTFbLue9zRPv1YeYq+N3y7YYxmxVckUmltjJrNYuJYoYDV459Ve9J0vLUe2RrN0R0Yjt8WcLa5nAea5BttRWJYM6BhuzLIGGvKFGwWa/JeRIBCrv1j6LCH5DHBovPCAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N1WULtDB; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53568ffc525so973970e87.0;
-        Thu, 05 Sep 2024 06:00:01 -0700 (PDT)
+	s=arc-20240116; t=1725541257; c=relaxed/simple;
+	bh=H62HkzGbpUesjFTP4vNGYXdw2q2nWXplLeqQxuLZrUo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BWyEfvw7Lgdrsl0UCXSMjz/cWsfzB6gRrJYlzgCxDxc4+PWQ2rJ9ZKgWRzejGlTNETDdgwTeQbcCmlzvIQsoh778RmLprj1E4xY6SSxI851Ia2gFA5iAI9yvqWZbzuxBIoX+ZuWZKXlREsP/9z3pFSJK+5C8Dic/D7YmpxfW5a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=UPDZPeyi; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f406034874so9114581fa.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 06:00:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725541200; x=1726146000; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M8aymMdGqVKINPmql7jmoZbSERwTF4J4EhSuMd5HKKg=;
-        b=N1WULtDBQSfmjlOvqE4MV/55XWIVIuvKAL6gN7icausgHiGwTI21OmUcSImpr55a0J
-         jzqwnVGPG+zFx9ovsu5TntBD812UQwdyvrrDLwIGVbfN6bJvOYNqUFjpRTrRSJtSygT3
-         GtRSZBYjcmo9yJwNCzYHOndXDnOb/dziYktJt6D1vm6hEPhuRrNAFxUylJe3jxglyhi2
-         tj6gJHlAWIFchzg4lLj3Lde38wQzMHVxu3drXzwNDRAnWsrQMkpdujAlY/u+3qPsare7
-         OXdVC6Ag/cmZovfbfv5k+88NmfqUBrj2dNMkjzPx2pFN/NvlU1ucOOM0hL01AzwPcLZE
-         VfEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725541200; x=1726146000;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725541254; x=1726146054; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=M8aymMdGqVKINPmql7jmoZbSERwTF4J4EhSuMd5HKKg=;
-        b=HRGXQZSqd0nzBLQVHlnHUBxag6+smE5qgoFtfFAKGNK517BywET/iFInro9Yt0gORt
-         TmyPTCOYxrX9lhJbvDudmJbPryfJpwTFFGpc8BYgCj1hmaPGa8WMWgT9ChkSrtRucNQT
-         RwgkOhLJR3IdksppCCv5NBvgYH1FiP6X/m919sg59sOVGArGpDIjoFcRTnEDI80vL5Bc
-         25WnP4kIIMZWT6HoO6Q4vqIp7sBOPYuzmpXit+hlFy3TOTPVqRgQJnGLQlqGWgrjA0JF
-         /4xqbLoEFGb1QDKhPa3KGDG/dH3eUXsKewxuSqgmomDA7Vqwwv5pOEd7zEOk+EEHIen2
-         Y4vw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1BesVHSF8o17YoFfIJyODvNKemVmoVMllct3NKuLOeI3844BlxaqafIyv2fhP1elKVmOixLYAVi2u@vger.kernel.org, AJvYcCUUYNHR7XP6/zSxk2TC1K4izRZayFMaiVPznsqmJnimi2USRxDlSK2UO6gnGFVkb0qL8HbOk8ZueiG8Ki9EHeg=@vger.kernel.org, AJvYcCV1biotWukQUt58KZ6Zbhl5xID0laHbwcQtE3NRk2/Ed/FmjnMueFcBxT/X9xfi3AaLLOyLz2L2L38=@vger.kernel.org, AJvYcCV4yTc8CLN5/VLr9GG9tjEChQXc1c07MvbHbCVB/jwTZzpB0d1onkZjjy3wk4Wb1F3DlG7ZTNqrQ/+lwMMc@vger.kernel.org, AJvYcCVUtWuc8R4XKjFJQyt5BwIV7kFwkcpfM3tVbx6z1Gz7YvEatFZYegmlebl4XI73aN8/RB+cN/M29A==@vger.kernel.org, AJvYcCVwuFXCdhzb40YdSiPxuaMmLnOxuSwvombtUKU5Sr7CMsbb+Ui1f61kv0RSQJZU500KOo86vVGMJYqG@vger.kernel.org, AJvYcCW6nkqaPXIN4LnVpf7mN3DXpI/MA1xoevRlGrsvpMkz1FUd/20RlUl7FJdMVLQBfXgphFCigGa3pyWtrde0@vger.kernel.org, AJvYcCWEecFgdqKzTvhSxrrWGWQ/OrsJyOEooA7lBacr9ioiGwBhxpVf/3P1gastEbywTjJhBQnAQUiSRn6nlT0Z@vger.kernel.org, AJvYcCWmszh4Yu7QYE7Egay+QeV7/WontReBCGcz/8KLuOE89kAcZU58n5uZzbY7j5Ozc4DUTR7NWiFV+fZeXdNw/Q==@vger.kernel.org, AJvYcCWyg27QU2Nl7cTXh2AI
- 9wmt30uhahZ8FxtIVNwqmb/3C4ca+Ad0ESkRid9o1HN2SeQ8lkWLRPuFj0tgcw==@vger.kernel.org, AJvYcCXH3KoZtiPO9PCVq7yB7q559oPnkp5qnuWqzSCxut54Ne3+jtdkfP7cGUgImfHTNfgff9euNGBAYUvnJg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyjn9Nn2jss0jyaki2jhQiKY7KwSX1l52bTbd5wXZ94oZfqWvcZ
-	GAXR3QsysrhS5VJp6Xomj039Efd7JeZPzBWvBTygIyCCvNV4oOPk
-X-Google-Smtp-Source: AGHT+IF9QchVfib2TGNl44/PzgjS0URPqGUjbcmYR3mRhZSVqTrRZTQB8Yjb9zSWYe+zZesnRPDrWw==
-X-Received: by 2002:ac2:4c4e:0:b0:52c:9f9e:d8e3 with SMTP id 2adb3069b0e04-53546b40c79mr12956646e87.31.1725541199344;
-        Thu, 05 Sep 2024 05:59:59 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5356cbbbe15sm242758e87.211.2024.09.05.05.59.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 05:59:59 -0700 (PDT)
-Date: Thu, 5 Sep 2024 15:59:57 +0300
-From: Dmitry Baryshkov <dbaryshkov@gmail.com>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, sudeep.holla@arm.com, andi.shyti@kernel.org, 
-	tglx@linutronix.de, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, 
-	jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org, amitk@kernel.org, 
-	thara.gopinath@gmail.com, broonie@kernel.org, cristian.marussi@arm.com, 
-	rui.zhang@intel.com, lukasz.luba@arm.com, wim@linux-watchdog.org, linux@roeck-us.net, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org, arm-scmi@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel@quicinc.com, quic_psodagud@quicinc.com
-Subject: Re: [PATCH v2 00/21] arm64: qcom: Introduce SA8255p Ride platform
-Message-ID: <rcr6bphq6qojq2cchv2vurymcio5utgaa63a5p7pry5pslab6d@q4fi2pkdxg3r>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
+        bh=fvX5LhsKt0yPVXIiiRUeNnUqB7Sn1CnGbkl7cLPC1hU=;
+        b=UPDZPeyiIztbPMSnNnursXpi8ibtNa9Vms+ngdHXQ8LvnGo8RVpqoY5upTBGZCVKZM
+         53DYdJCT60WP/+8j8rf/+kZ/wNzbmlNEtgmSn1GiOyWk6TaZEWCSOEnxSM1hal6HwLPn
+         SMlPNFvz8AhBxEP5kLUfsHi+iYxW4BM5g6MOSHWR9dhybn67TDlB6cdidJtzMkae1feQ
+         /FU1Tew/TzhFElX5aMeBVyLQJqM0Wxi3PK+T0t2o2iihSXvj9NCE2JzW7M49a/x0EcAZ
+         US9NZU+hXmXaTL9ydQLObBQaB6iRs/tc6OVZyN2IlkUZJwGVEgyKtveL6UY0j/RP/Qlh
+         eUTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725541254; x=1726146054;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fvX5LhsKt0yPVXIiiRUeNnUqB7Sn1CnGbkl7cLPC1hU=;
+        b=h9q/7Iup5GHfV5wvSuGkEAgCl2TAjjBYDCzZLqe6P65seDeyEg03ACeVZ58wO5kmHQ
+         e0sSkgV4KyNtCZntuV9n+33dXjmJYWRPDG2WZCa/HT+Z9vP8LCWcn9LQvZmpceUYN3va
+         SgmGrXUhiFbflFSUtZ/8LxV4vf9N4rMl+6GuTjEjl7Pu/kK/iI+mTO/+nwbUf2on0Z5D
+         70Ho/HBPUv4SNvM9SauCmWSPFOc8QdfxmHze5x/kKWQkTzcEEjWucbAohCmIurzlTz/0
+         uS+ZXZ+PfdbQvuqALnEOfo5BLCFFoxq19J6mcRytycK8xfxQnjt95+DzdO4GoOkK7rAC
+         nu5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXQvfbEFjPe14Iobe/wJGtX3FPOyZMtPZt7RkcIE8ab1UFkqmFiouE2nsh5lWkUtgDO3DXS1PHnKj1+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxL07+sRbfeR++vwm2xHLO7FNJLmE3H11Y4lrE80rHhx0UPJwOl
+	sUje4HL2bKhnra8PIzZS7ljvJo551cnIN+Ousiu6RWZeT76hs8u/jIrgQSTokpfYZxTJU47jAs5
+	69wbEpaEFYGsq3zzCo7Z0eoTpzsZfi/i82bI9Vw==
+X-Google-Smtp-Source: AGHT+IEQXzk8r71FGV4TT/9xQ+LnzpJLAomuikseXPDLCmA8Cef3NfFKbL6iW/zApYVy7QOcvAIZqKXrFE3r15xXQcs=
+X-Received: by 2002:a05:6512:159f:b0:52c:d753:2829 with SMTP id
+ 2adb3069b0e04-53546b36b1dmr16588869e87.19.1725541252177; Thu, 05 Sep 2024
+ 06:00:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240903220240.2594102-1-quic_nkela@quicinc.com>
+References: <20240905122023.47251-1-brgl@bgdev.pl> <20240905122023.47251-2-brgl@bgdev.pl>
+ <6vikrqhdnkefzpahhhtz2hpi62jvcwnzclm7touwtnpxdzvgrf@uc7r6a7bbjek>
+ <CAMRc=MeijX2by+MS_vq_OVx25JO6z=zNfymta35h11mbm=vmtQ@mail.gmail.com> <CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
+In-Reply-To: <CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 5 Sep 2024 15:00:41 +0200
+Message-ID: <CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc8280xp-crd: model the PMU of
+ the on-board wcn6855
+To: Dmitry Baryshkov <dbaryshkov@gmail.com>, Johan Hovold <johan@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Kalle Valo <kvalo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 03, 2024 at 03:02:19PM GMT, Nikunj Kela wrote:
-> This series enables the support for SA8255p Qualcomm SoC and Ride
-> platform. This platform uses SCMI power, reset, performance, sensor
-> protocols for resources(e.g. clocks, regulator, interconnect, phy etc.)
-> management. SA8255p is a virtual platforms that uses Qualcomm smc/hvc
-> transport driver.
-> 
-> Multiple virtual SCMI instances are being used to achieve the parallelism.
-> SCMI platform stack runs in SMP enabled VM hence allows platform to service
-> multiple resource requests in parallel. Each device is assigned its own
-> dedicated SCMI channel and Tx/Rx doorbells.
-> 
-> Resource operations are grouped together to achieve better abstraction
-> and to reduce the number of requests being sent to SCMI platform(server)
-> thus improving boot time KPIs. This design approach was presented during
-> LinaroConnect 2024 conference[1].
+On Thu, Sep 5, 2024 at 2:56=E2=80=AFPM Dmitry Baryshkov <dbaryshkov@gmail.c=
+om> wrote:
+>
+> > >
+> > > As you are going to post another revision, please also add
+> > >
+> > > qcom,ath11k-calibration-variant
+> > >
+> >
+> > I had it in earlier revisions. The only one we could add here would be
+> > the one from X13s as QCom has not yet released the data for the CRD.
+> > Johan and Konrad were against adding this here if it doesn't refer to
+> > the correct one so I dropped it.
+>
+> As Kalle usually merges data with some delay it's not infrequent to
+> have DTS which names calibration variant, but board-2.bin doesn't have
+> corresponding data. The driver safely falls back to the data without
+> variant if it can find it. Als  usually it's us who supply the
+> calibration name.
+>
 
-Please don't send new revisions as a reply to the previous patchset.
-Always start new thread for new submission. This is documented in your
-internal 'upstreaming' documents. If it is not, please update them.
+Johan, Konrad,
 
--- 
-With best wishes
-Dmitry
+What do you think? Do we know the exact name and should I add it or
+should we wait until it's in board-2.bin?
+
+Bart
 
