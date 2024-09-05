@@ -1,107 +1,124 @@
-Return-Path: <devicetree+bounces-100441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B1396D9ED
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:13:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36CEF96D9F3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10CAD283AE9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:13:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D49F31F21E05
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B77F719CCE2;
-	Thu,  5 Sep 2024 13:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41BE019AD93;
+	Thu,  5 Sep 2024 13:15:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hZ9kSqVf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nBlaSm6k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8747E1CFBC;
-	Thu,  5 Sep 2024 13:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BA5189518;
+	Thu,  5 Sep 2024 13:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725542033; cv=none; b=Ng22uE6dsclmE8QZgcgr1mujXmXxtwvKQgQd1hN8QwdkYLvi1tyjJe47QhOjMLWMkFcwU7jMVrc/aIRrGSmXyaM0JoN+rffDgGSvaedoUyGM8lU8wCwq1eCysdtAGeXXXm+Z8QykGlmeUI7Y44Re2J7OXYqB+7oyYOXiVZ12lyg=
+	t=1725542155; cv=none; b=mhtiuORjIvGJFXGqlOWViLluivFrSMzUK1STIZKa5O0guxfwLN8Fu0MwWhLSzSinvUcRXE6YsED/JGpXcAZt8ThCe3bFKfR6MA1gyqtuhmfckBjIiGqykkg1vI/Muc8L9gSMZw39ScEpMtYCi9QVvp6AWMSQi/Nmm4HsZ8CORVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725542033; c=relaxed/simple;
-	bh=wW0ff2EldvqC/GcrU2aNtVQMYEYXhK4WpgRcXeEhjAY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CtmLxTn9HpM2mR/jAEGzAGkERKmtlMzSQQ3zaW0GxxVm8JwGQDUI+tUBhc9SQ5rU6isq1GOfSiRDkcbT7xx/cAZeAgi6RvSJHZFxtGZEklxHBQDI4xW+0WXs/iNCCHV5l2GILqbKKTGXrTrUz2YOxWhOdI4CfLXAy3exyrADkM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hZ9kSqVf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84140C4CEC3;
-	Thu,  5 Sep 2024 13:13:48 +0000 (UTC)
+	s=arc-20240116; t=1725542155; c=relaxed/simple;
+	bh=Lf2xQW1ofXEMIE9aLfyIWBIYBuE6JOqUklSS1JNkfRc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=isoG2HN0WWsf38odM+WciJu9z5F/BG08xYCsm1pp89hke/XSdKWqwG5ellcWefvzR9muPQn2NwimKGqNnfIYIf+kyju6dhIhjNXD2FvzidTk4FNZElRzmLM+Si0dmJWhEcX1wK425SG9gMIqaVi0qJ1nVFy2YvkG2Bh+hlvlvvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nBlaSm6k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E8B3C4CEC3;
+	Thu,  5 Sep 2024 13:15:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725542033;
-	bh=wW0ff2EldvqC/GcrU2aNtVQMYEYXhK4WpgRcXeEhjAY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hZ9kSqVfLciBWuBH9zxa2bUru4yHZCf5bFVq7czfAdtifBOCZwuhvjmUWEIiCLs2r
-	 rroBcO0+m5kRDp7uag957dwhHw7v2ixo51IUm8DZVC7Upvv1fyrZGnE4C/70miQ5if
-	 iZblQMiVn3wROVVjzY0c/dA+YcgnkoBeJ9UpClujgFeJZltxbwln806Fg82LOmAdis
-	 YE3/GhiFxMgCrv4sSiVzY68L2ljU3eW9PE2jVTGyPQnB+CWe37oJAvdcgUKQhdfrZu
-	 WUpGNI8qkfrOVM4L7/QXEwSD4y7r9RaNQ0UmHPXjbut0+eh9oSBl3dw0sURRekHsuk
-	 Fqshxy0UKvvUA==
-Message-ID: <d6d5a943-ab29-4034-b465-b62d9d1efa61@kernel.org>
-Date: Thu, 5 Sep 2024 15:13:45 +0200
+	s=k20201202; t=1725542154;
+	bh=Lf2xQW1ofXEMIE9aLfyIWBIYBuE6JOqUklSS1JNkfRc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=nBlaSm6kpDzLUDxCZ71M6xQhbnx76/gsUW2GfJcOST0V1Iga4wCMOfuoQ73srgmuP
+	 L6vphRtnHgPwGiSeNPY+9CvpMwGw2FX/2Okbd15Eqj6TysW7ssIhM/syMMigVSiG3N
+	 ogXUeLYIEBtDToSzdvm06Yos9aZgT742UKn7xcv+L+H23Aw74A7zir/1wmPno145GT
+	 Qn4F8sE2XD3o5TkJt6hyBluyuLIO+bO3g9tOEYcC2MTt4X21wUSIviHCNStBOg2Yv7
+	 O+yR97gmEtDm81qxx9nGZprRM8IPE5CUy+wQcOoQzL5AHIo5ka7y5Nkh6U0gV06i+7
+	 1/JalMq/MU9+A==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-533461323cdso864887e87.2;
+        Thu, 05 Sep 2024 06:15:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWHz3jMQ05/nQ/Kqe57a23apjbMITNtSzypFqDal4hXYnFHufUPrDPvtddEbVL1oi5nSekgXOjVycTE@vger.kernel.org, AJvYcCWlD68tGXzk7nNxK2qrKpuN3RL3ImNWQ8/9An86dX+Ain8/i5entphbm9qspzwTt56GrN0Ih2GgGEAgZISL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9JtJLzyevgaWe2MJeFWarGUNr+BVV3jGIOxVfUnsXqOvmqAjc
+	QjRnRbnF2WurVrCvVlatKGHBLUDl2GncgbIWamuIPvuy2G7jRT2LrT/xo/XHyoysd4xIKnmntaH
+	pKOYC4o59ct4snkuhIuVkcIKYPQ==
+X-Google-Smtp-Source: AGHT+IGU5DPvcNbP2W6NzPukJioHxIAJmFJkA9MqD/JGq2c/Acyj73ET0Fu5aoBNoss4Zsr+y1VT8eBngeqeqV4+vH4=
+X-Received: by 2002:ac2:4e07:0:b0:530:d088:233f with SMTP id
+ 2adb3069b0e04-53546b69383mr13680962e87.40.1725542153018; Thu, 05 Sep 2024
+ 06:15:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc8280xp-crd: model the PMU of
- the on-board wcn6855
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
- Dmitry Baryshkov <dbaryshkov@gmail.com>, Johan Hovold <johan@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Kalle Valo <kvalo@kernel.org>
-References: <20240905122023.47251-1-brgl@bgdev.pl>
- <20240905122023.47251-2-brgl@bgdev.pl>
- <6vikrqhdnkefzpahhhtz2hpi62jvcwnzclm7touwtnpxdzvgrf@uc7r6a7bbjek>
- <CAMRc=MeijX2by+MS_vq_OVx25JO6z=zNfymta35h11mbm=vmtQ@mail.gmail.com>
- <CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
- <CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240905-of-resource-overflow-v1-1-0cd8bb92cc1f@linutronix.de>
+In-Reply-To: <20240905-of-resource-overflow-v1-1-0cd8bb92cc1f@linutronix.de>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 5 Sep 2024 08:15:40 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ=7kX6DL_HBJMrWuhjZEmPUL++BvJ9tg3BDD9-e+b6Xw@mail.gmail.com>
+Message-ID: <CAL_JsqJ=7kX6DL_HBJMrWuhjZEmPUL++BvJ9tg3BDD9-e+b6Xw@mail.gmail.com>
+Subject: Re: [PATCH] of: address: Report error on resource bounds overflow
+To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Nam Cao <namcao@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5.09.2024 3:00 PM, Bartosz Golaszewski wrote:
-> On Thu, Sep 5, 2024 at 2:56 PM Dmitry Baryshkov <dbaryshkov@gmail.com> wrote:
->>
->>>>
->>>> As you are going to post another revision, please also add
->>>>
->>>> qcom,ath11k-calibration-variant
->>>>
->>>
->>> I had it in earlier revisions. The only one we could add here would be
->>> the one from X13s as QCom has not yet released the data for the CRD.
->>> Johan and Konrad were against adding this here if it doesn't refer to
->>> the correct one so I dropped it.
->>
->> As Kalle usually merges data with some delay it's not infrequent to
->> have DTS which names calibration variant, but board-2.bin doesn't have
->> corresponding data. The driver safely falls back to the data without
->> variant if it can find it. Als  usually it's us who supply the
->> calibration name.
->>
-> 
-> Johan, Konrad,
-> 
-> What do you think? Do we know the exact name and should I add it or
-> should we wait until it's in board-2.bin?
+On Thu, Sep 5, 2024 at 2:46=E2=80=AFAM Thomas Wei=C3=9Fschuh
+<thomas.weissschuh@linutronix.de> wrote:
+>
+> The members "start" and "end" of struct resource are of type
+> "resource_size_t" which can be 32bit wide.
+> Values read from OF however are always 64bit wide.
+> Avoid silently truncating the value and instead return an error value.
+>
+> This can happen on real systems when the DT was created for a
+> PAE-enabled kernel and a non-PAE kernel is actually running.
+> For example with an arm defconfig and "qemu-system-arm -M virt".
 
-If we can agree on the string identifier with Kalle in advance, we can
-add it even before the boardfile drops
+A nice follow-up would be to make of_pci_range_to_resource() use
+overflows_type() as well instead of open coding it.
 
-Konrad
+> Link: https://bugs.launchpad.net/qemu/+bug/1790975
+> Signed-off-by: Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutronix.de>
+> Tested-by: Nam Cao <namcao@linutronix.de>
+> Reviewed-by: Nam Cao <namcao@linutronix.de>
+> ---
+>  drivers/of/address.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index d669ce25b5f9..7e59283a4472 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/logic_pio.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+> +#include <linux/overflow.h>
+>  #include <linux/pci.h>
+>  #include <linux/pci_regs.h>
+>  #include <linux/sizes.h>
+> @@ -1061,7 +1062,11 @@ static int __of_address_to_resource(struct device_=
+node *dev, int index, int bar_
+>         if (of_mmio_is_nonposted(dev))
+>                 flags |=3D IORESOURCE_MEM_NONPOSTED;
+>
+> +       if (overflows_type(taddr, r->start))
+> +               return -EOVERFLOW;
+>         r->start =3D taddr;
+
+It looks odd that "r->start" is used before it is set, but I guess
+overflows_type isn't using the value and the compiler would warn
+otherwise.
+
+Applied, thanks.
+
+Rob
 
