@@ -1,149 +1,138 @@
-Return-Path: <devicetree+bounces-100411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D2496D86B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56EF896D878
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:27:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 312971F260C4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 12:26:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00A2D1F22B16
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 12:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44ED419AD9B;
-	Thu,  5 Sep 2024 12:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9655D19DF9C;
+	Thu,  5 Sep 2024 12:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="sjnpjkLu"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NTLxT0LD";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pgblQ76n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A858019B3D7
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 12:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C94817AE1C;
+	Thu,  5 Sep 2024 12:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725538906; cv=none; b=EPpA8sK6v3X48yBrJE3PYK9dSufQscZ/31awar72J8U6oRVizNk4aWCXyuIbzD2gpitZmIGhF3Dig4V7D9/QfDTE4Ta1HKrxU9kdzjRUKucBOezqU0XqPqsjQ6J4vTmQXtnE1zmEVrVcUFjYZnfILgPTThCoUNHqbbrVWJ9Us+E=
+	t=1725539063; cv=none; b=m8u5xQx8+gJCLflNuy0FdQDheSXw0S9+RSodqXqJQWHRZ7sqCqp4i0cLTAI3MltO9YCTPnkbpYdLn8g7+3yK5CQ3+4RnJejsrZ4Fj1KwQozj5RpzZUmacpU8t8eofA9hcH0NZIhANXn7Xtat7YgFYtHNG8x18qNDvrR/5tTtfYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725538906; c=relaxed/simple;
-	bh=F01XbYYcnFz3IrGJAZEt/h6KlLzKcoJy+krrnv7pnJo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UPbtfnR9tn8+/ZpIEAPMpw6dv1qdYjzQGsY/4I/ZjmlpDT/tqU2mzpyqezzNh4mnVAfrixzrvq0s5IYlrBveVn1tKJ4R/8APsncZdPIXqPgU/W/kYYsOrwfOYefR6pXikafqbtPSD9o9kyWefOq6wwXG6vPQuFQ+7F1mOzDBHk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=sjnpjkLu; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5343e75c642so802748e87.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 05:21:44 -0700 (PDT)
+	s=arc-20240116; t=1725539063; c=relaxed/simple;
+	bh=ORe+nGeojFGS93jL8TIXAvrBhqYIikB++xOBbHbsStw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GHE38fccexo93OD5jalYIIwUJBstCQn5BJFThMjsQYva6TmrplpaAnWnFJfwkevL7WuJIXXLGQNWZDo0X2Lt7HoEe7K1Ohh1zi+6d6Lru9WKhlNWpbXXzgaYDglkvSUzzT7tqe7XKtdDAe6w1iUQs0tdKlIbyTCLtOLndhjR4C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=NTLxT0LD; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pgblQ76n reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725538903; x=1726143703; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TACxCNrG/DopYef41PGhbtqig8LKMsOnKp3kgyqsYHs=;
-        b=sjnpjkLuw1INmoHTo4VwdOPWr86OrPYTHyFc/HZSTGlqSL6+lE7mj9xYlg75bPN8HZ
-         kzEjJLRDJiWSdnIN1+h+vysHjaN0eg5g+8sesDdqTd/0SCR2K8aCH0mCk++/fKkYUlvK
-         Kn3QfRNFsEpaMbjYffJiYlj/lCGEZ2wrhRMOeVV/oduW6/CQozNRJmqwitRz/1FF/JZ8
-         NoH7rVr1owoHGNkcpNCl2fSlAmznjPLahN+AK70aQCYIzrM/V4E7Yw6OmgzKejP5ahIx
-         TnrL547DbyQFevjgVs4vF/oPJObQD2oKnGr9Gyd8XWe1t2kcYzq4FT12R9hYGL70Rw0Z
-         zo1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725538903; x=1726143703;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TACxCNrG/DopYef41PGhbtqig8LKMsOnKp3kgyqsYHs=;
-        b=n2PfyljGJC3NnaF8XnMiDRUqY05E+094jTexfdI74fG4mi1Aik6BUN9Sagh6mjQ6Hb
-         UM9zEHh68N5qK5d9YXHxp3w89XccNwKqkLyEhFqdxXt8U9lsP5pv3wAKIhcdPFqQHGxM
-         w+1XIAoY8s+3Z2BMGQPpmzS3KTRHv7rrZ03A2JqFFT2o2UB+SAmzbWiYt17JE83zm6iz
-         i+qi0vE+FhXc/VkbSC9jjhZjZeTzrPMuoE10pOX3I7SW5itvRaXvHeuV1zqyk2VlCayN
-         hj57xIJe1lDtWmvLQxP8acNI/hZIHQB7CDuJTmN3zZILUkp0Fv28AAOxQLsrykenzZzw
-         xGDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhpKeshToIoQ4Km8d9WoE4CxA6QbV2isg1GKHqpC/l0JyeXLx4OIkQ1IjXhJArt/Ki1grvaR+NvG+O@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDKBoHiSL1OJdZk7qV33q8EDgMfDEOqY1sUJoYzAwUJrwWnD2t
-	o+pUD3K8haF8uWnEEkfzw1GBoO+oPmW+eCvKVeWb2KA0pCy0wYV7kc69WVZU01Kl7G9bMPE/0jo
-	J7tCFegd8gq5u+nBPXXiyznoBGqenfDwlngGJxw==
-X-Google-Smtp-Source: AGHT+IFcMMTAuv+S+5/9hcRxIAh41Pmij3mBunr6XibOfsaQXElI+A3yPmhY2q3bx6emgGpGca4XjRlTGGn+3XPVLNc=
-X-Received: by 2002:a05:6512:3e06:b0:52c:dfa0:dca0 with SMTP id
- 2adb3069b0e04-53546ba0eabmr12703593e87.43.1725538901776; Thu, 05 Sep 2024
- 05:21:41 -0700 (PDT)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1725539061; x=1757075061;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=/A+189mhNbtv/u38KE9rtkmb5PippzrNIWSdIiKCgTA=;
+  b=NTLxT0LDH9Atksj8Vikjspt2fYvTnBK3lojVX5gbDDRsjHziRbFkqMmZ
+   jU/2jgPafc419oceC+qK/0iH4zq4YLKl90bAAilzBU39bDjLXTs2JGLeL
+   KI1sxSpuDMYau/BlxlAKIX7s4mFJ4rnNBHbknogpiU26Kb0OPfXPWRtz8
+   aEwgF1fVtIllHpQ27x0LgWctlyNTujvlJKIoVucSIMIcXrnAbau8yTyns
+   FPkMjrIMFx0SC88ZvoEem3WngQxNJtOwzQl21TcQFtoWqBnaOZ+8pznm7
+   CoOGHV9NskpSoLm915ABKMFM9D+VrV2fKr5PwutUGGixwtcFHN+4Z4ZZV
+   A==;
+X-CSE-ConnectionGUID: rxT9gy72RZ65/l28WT6jOw==
+X-CSE-MsgGUID: YXTD4FepRMOXZY0Cg44WHg==
+X-IronPort-AV: E=Sophos;i="6.10,204,1719871200"; 
+   d="scan'208";a="38787660"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 05 Sep 2024 14:24:18 +0200
+X-CheckPoint: {66D9A2F2-25-5FF8EC80-F6CEE9F8}
+X-MAIL-CPID: 3DF7ED1CB9DD42C81279A41760AB2AF1_0
+X-Control-Analysis: str=0001.0A782F1F.66D9A2F2.0120,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6ADD216AB67;
+	Thu,  5 Sep 2024 14:24:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1725539054;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=/A+189mhNbtv/u38KE9rtkmb5PippzrNIWSdIiKCgTA=;
+	b=pgblQ76nhBwf0K4ZOoScOfVQAFiXz551ec7EO0DAKPXgxK3K7kBxRAgLRH0vT2SBsbwPzE
+	nQAOXrWV18Az8ehcwThjPBHdj8ymiQv13l/8ZsS792b4fweo95aYXQLtctfsnXRAUQ8Edm
+	zEyRc7mHtg7ADo/oBGrHPLjxkvNlLVHwcPFcKavI2tmwFu+XWuIugdzzBuPETxAoi5Yoxs
+	f+G/qEOKTvQV/o6WrxRSPiS3BmO/cxm2FI2AKBs8904mNF5A8V3/OaVuZ/vPx4HMSsdaaS
+	2ZLHUoUAqSXRcMkNhA5vpINf+agMtUNaH7m2wM6FFQd+pHzf6CoNkj4teKGEYQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: Re: [PATCH v2 3/7] arm64: dts: freescale: imx95: update a55 thermal trip points
+Date: Thu, 05 Sep 2024 14:24:13 +0200
+Message-ID: <3587078.iIbC2pHGDl@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240903-imx95-dts-new-v2-3-8ed795d61358@nxp.com>
+References: <20240903-imx95-dts-new-v2-0-8ed795d61358@nxp.com> <20240903-imx95-dts-new-v2-3-8ed795d61358@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240903093629.16242-1-brgl@bgdev.pl> <20240903093629.16242-4-brgl@bgdev.pl>
- <lpjfpgnbhrp3u4rqczoouf2kvktdigisi3sjhfstanw4t5g2sc@fvqana5gftds>
-In-Reply-To: <lpjfpgnbhrp3u4rqczoouf2kvktdigisi3sjhfstanw4t5g2sc@fvqana5gftds>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 5 Sep 2024 14:21:30 +0200
-Message-ID: <CAMRc=McmnXe83bsRf+uivV05Z_dv8V9ox5Rx3kGH9O1eDpka1A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of
- the on-board wcn6855
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Steev Klimaszewski <steev@kali.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Sep 3, 2024 at 4:18=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Tue, Sep 03, 2024 at 11:36:28AM GMT, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
-> > and bluetooth nodes to consume the PMU's outputs.
-> >
-> > Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 98 ++++++++++++++++---
-> >  1 file changed, 86 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts=
- b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > index 6a28cab97189..88b31550f9df 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > @@ -400,6 +400,67 @@ usb1_sbu_mux: endpoint {
-> >                       };
-> >               };
-> >       };
-> > +
-> > +     wcn6855-pmu {
-> > +             compatible =3D "qcom,wcn6855-pmu";
-> > +
-> > +             pinctrl-0 =3D <&wlan_en>;
-> > +             pinctrl-names =3D "default";
-> > +
-> > +             wlan-enable-gpios =3D <&tlmm 134 GPIO_ACTIVE_HIGH>;
-> > +             bt-enable-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> > +
-> > +             vddio-supply =3D <&vreg_s10b>;
-> > +             vddaon-supply =3D <&vreg_s12b>;
-> > +             vddpmu-supply =3D <&vreg_s12b>;
-> > +             vddrfa0p95-supply =3D <&vreg_s12b>;
-> > +             vddrfa1p3-supply =3D <&vreg_s11b>;
-> > +             vddrfa1p9-supply =3D <&vreg_s1c>;
-> > +             vddpcie1p3-supply =3D <&vreg_s11b>;
-> > +             vddpcie1p9-supply =3D <&vreg_s1c>;
->
-> As the WiFi is now properly using the PMU, should we also remove some of
-> the regulator-always-on properties?
->
+Am Dienstag, 3. September 2024, 09:17:48 CEST schrieb Peng Fan (OSS):
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> Update the thermal trip points for automotive and extended industrial
+> temperature qualification processors.
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx95.dtsi
+> index 314a45e82c38..2cba7a889030 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -347,13 +347,13 @@ a55-thermal {
+> =20
+>  			trips {
+>  				cpu_alert0: trip0 {
+> -					temperature =3D <85000>;
+> +					temperature =3D <105000>;
+>  					hysteresis =3D <2000>;
+>  					type =3D "passive";
+>  				};
+> =20
+>  				cpu_crit0: trip1 {
+> -					temperature =3D <95000>;
+> +					temperature =3D <125000>;
 
-I added a separate patch that doesn't seem to impact anything with the
-PMU changes applied but will be easy to revert if something does
-break.
+What about commercial and industrial temperature ranges? Can you detected
+this at runtime? Is the bootloader supposed to correct these settings?
 
-Bart
+Best regards,
+Alexander
 
-> > +
->
-> --
-> With best wishes
-> Dmitry
+>  					hysteresis =3D <2000>;
+>  					type =3D "critical";
+>  				};
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
