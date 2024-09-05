@@ -1,193 +1,263 @@
-Return-Path: <devicetree+bounces-100339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A9096D432
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:49:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D00FA96D3F1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:47:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA5E6B279BF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:49:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60E741F22ACA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327C8198A3E;
-	Thu,  5 Sep 2024 09:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D366E1991AC;
+	Thu,  5 Sep 2024 09:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hitbfVy8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lK0bb7+M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662D514A08E
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 09:49:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7627194AC7;
+	Thu,  5 Sep 2024 09:46:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725529769; cv=none; b=lqjG5t4Tc+HIjzLDeM8VI321BaML94UJLHLGRM2sCUQ7cuZnPzXP6r+a8xSPjOf+ufF2tKxkGiNKUE2lLEd91td8v3SR5HovZnPGzewZrM1GmeX8D97bVHBOBILDC0ZaTVCQ7PwdRqPzP4Par4QeMB5Daf0XUCj/Ym3ltyX3j88=
+	t=1725529603; cv=none; b=j3hVVTvQR9k7GJ1hc2wzqNEY+mzb/URTl+SgfqaI8tksh+IiCxBn6dwiHeVRbUVB/baMDAS85E60caw1cfPSHAsfnXDdY90pzTpBV4nY67rJ1QhNP8H7TGA9dI62SLcrIF1rS7mUt47CxMfnK2SdaDL7jzpFIUebs8dVnDbxyao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725529769; c=relaxed/simple;
-	bh=nH8Atn3L+aPW8XuxA02/FDlH3BF6dLRVbi4LLnqDeFc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UNvMC7RNAWcKdv7r6331LWK8YEDWx7ijOAgcOvdPH2GEwX3LbZI97qsHyX+Q0UfIhGgcW91aVlaFeANDs0jLr6OJCUk+Q9FS3VEaFdlzSBFEoHfZ9GymJQk32lpfNBQRjA6mvP/Ajb/jfx5gviGLgOZl+KZk5YOgnwkJOSlWByo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hitbfVy8; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-374c326c638so367754f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 02:49:26 -0700 (PDT)
+	s=arc-20240116; t=1725529603; c=relaxed/simple;
+	bh=hfyLaFfMkYpNRtL4fR5wRcnbCnNmAquAnd9wooE+JoY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QA6km7BvSm3+shaLs39Ug4fig5eQTS4ZnMUDdUPoz+FGGv1atFmhLwyU9Vt0yP9eZTXCXlKo9YZrqeJ6a6BS1//2HZE2pCSeCgEvPIrqCTCVZTuBuu8W+mGKg596ijQ0lThUtMzxfTwk6Z53rGc25lH6gDkHBAGYmn9qrBYMD3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lK0bb7+M; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-533de5a88f8so411052e87.3;
+        Thu, 05 Sep 2024 02:46:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725529765; x=1726134565; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ajsi2J0ggLeyG252quBxawrZ5p8Nah60ezK6XPT3tHQ=;
-        b=hitbfVy8oUXqFGq8GNyZj2lhha2aUl6SA6C+cCspCIPUzEOe+zNXXw1NkUu3LeVnYN
-         8mWfTwmQm98dVS0cHAwQBbx4yXR7rK/JaVbdAB/+BH6/gGe98SAGSMXcqqSBH9GI43uc
-         fI+Mi3BkQIx8SJMTRkSGRJhh///og+ob5xf4XszgwZD0GleC/RsrVVbASfhSHGVhtPt2
-         NMxhnPB6+MERi1UhybSSOmm1jFoRoAafOgKRJuybY7J5WGAf54LTTDRwZ054dOW0Q25s
-         jmD/vJvzYuULKCxwG+u5bOaTbBviFKdfqkhCZQEUiT7pQK6e27kZ5TR4j2e/MSDFKNPh
-         vnCw==
+        d=gmail.com; s=20230601; t=1725529600; x=1726134400; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hfyLaFfMkYpNRtL4fR5wRcnbCnNmAquAnd9wooE+JoY=;
+        b=lK0bb7+MkXqw+yoSznoZF5ONQGHdIvLO7gUKa48JDDLwqVV0DK9zErn3sxf3IvSRQB
+         X3MRtQ1Xuih1AAotKvu5nwKryGwrrCOvf/S34OQh29Ra7sUOJiAVwHxVeKXMCGTuggTI
+         C4VlTWJ0jdDJoKbZ/GG9+xzogAKf8XvvJsmcfe/8m7PLfsNb7urIcBVZ4YBp90G1semf
+         kE8ww1wPEoy5V4FinB9OpRhKZ/8R2QTIdKP0ItKWPej8SN3N1oscUUuvAwPVsT2iC/xM
+         7FJ1bwAebLeejgV6/AW3seLmMhcw+m/G5r3VIdVpJW+I4wLUFfmFYDcGPdJ2TVYoEcyj
+         g4/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725529765; x=1726134565;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ajsi2J0ggLeyG252quBxawrZ5p8Nah60ezK6XPT3tHQ=;
-        b=jlXHEK+Ilu7kFSFAEhpG7LNexQfKmrWYYG2RUmP8Rvs+VoIt1XhiimZ6Q6s/EXYAro
-         RhyEicBfwfA32xH8ZBtxZRhCyJubOxhVkUVSwLENtvF/+dJ88cUUzxbi6bKn4ADW0sH/
-         9WRbHVWWu1fqexDVVmlh6qobrxE1MSTUlsitJqz8aT3MGz1UVg58cKm4RjNFJXSI9yLj
-         SToslbQh17f054JxjGSv/cRlQ2KsX75YVHMY91c/fgRqb9wEuq6TVWX9mGOYQoePBmxi
-         42Pk3Gsg0ixsYrEwYEZcbFv+kTKhlPIU2uDdKwnVFlp0JX0PP5WaXFRhhrUaT1cfdCrr
-         THRg==
-X-Forwarded-Encrypted: i=1; AJvYcCVinaxIaEWtKHp4ABeLUlkEgLxX+kuCujt2SEE7wnc9jgZsnZhWLOj9eSo4OijeZrIGrnOzpHkUCrVD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2INS4o0y3kXgRJnGs/gBy3g/btU3N0Jy97+kwoQsSdY/a2z+K
-	tQJ7Gig2xcllDI/30Eoa2YKZuD61jZTDMGu3HamDBMqrTJbAIPzVrixgC2wWzBIYDQdIT/BpAvQ
-	z
-X-Google-Smtp-Source: AGHT+IHDFmIV1wFMjjwEtr/Qx3K4SulTMcfQCQfKJ/zC+fCZq/1r6s2lg+nXTHZKCRKIlMAyyclWcw==
-X-Received: by 2002:adf:f98a:0:b0:36b:bb84:33e2 with SMTP id ffacd0b85a97d-374bf184398mr11819525f8f.37.1725529764578;
-        Thu, 05 Sep 2024 02:49:24 -0700 (PDT)
-Received: from blmsp ([2001:4091:a247:83d8:caa7:e645:3612:56b6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ee4ddc8sm18872157f8f.21.2024.09.05.02.49.23
+        d=1e100.net; s=20230601; t=1725529600; x=1726134400;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hfyLaFfMkYpNRtL4fR5wRcnbCnNmAquAnd9wooE+JoY=;
+        b=b67m8CTqYH890D+p5+oBBiUGzxq1TTCCylH13DacGGmStdQkaxbKzOYKo1cuoxTo0A
+         qcxJrpZ1/z8SbekCVOsmxjTijjxSaIpnFvvc9XTxLE5KhJ+7DrkgR/3I3D/Zr8lbf3AL
+         h6DRGtZaAvMWvdVDvNJf103/7rDhXJvVaKMyXrlyOn1Ir9dFLuui9J+gWUYuC+q70UUF
+         zYyG2Jq+/rl/sWyBgVcg9NN0Q9+LMse2HIPftGB/dN98gVussmQlD7ZxzI737Ut2523T
+         D8PHGrU+Sg9/S5CpC7sYin083u2JK+i9SChGWcvl9BvmAcjAyjSRnFWabqKNxQwdfx9j
+         RGXg==
+X-Forwarded-Encrypted: i=1; AJvYcCVzUn0iB9tOv/c4qAKkl0oa2nmzu+ClhH55fWOxIDCJtHJOdfeq9a4J8Jh5QGXW5yN1qF7KdyZPKdy/@vger.kernel.org, AJvYcCXe6TFWPnWX3HNjVKB3pD0HJXdAoysGmNX5NFQvmySLsvpwjyvhXFFxSwtD9NZ87c0MdBI7xgG2LiYzPXD7@vger.kernel.org, AJvYcCXyrhY1ijd8nbRe/yK3c9b8CEWL+NUVU3S7nbx0kPpfcC02f4+9sTw4SDwsCBBMFs1hOYCwNo3bPlY7@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy29fuLilkIOr4b3iEBfpoi2H+L9U47qXKrAk/uhVrAFVWrZEm
+	kJt3MvdR3oAPQ264gPFhV2ziEIyQUpAuQ126sFATvCFXLm0Ws1WZ
+X-Google-Smtp-Source: AGHT+IFo1Up3OyHVy39h81UAR8Z2KOYVfLj1evigl5cnWjFtkgT8ubvK5n+0l8M/bVE8AJc4AjVq0Q==
+X-Received: by 2002:ac2:568f:0:b0:536:14a1:d645 with SMTP id 2adb3069b0e04-53614a1d756mr1333730e87.44.1725529598877;
+        Thu, 05 Sep 2024 02:46:38 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:994e:fbde:478:1ce1? (p200300f6ef1cc500994efbde04781ce1.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:994e:fbde:478:1ce1])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a6236d290sm111882666b.116.2024.09.05.02.46.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 02:49:23 -0700 (PDT)
-Date: Thu, 5 Sep 2024 11:49:22 +0200
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Santosh Shilimkar <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Vibhore Vardhan <vibhore@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: ti, sci: Add property for
- partial-io-wakeup-sources
-Message-ID: <h4kapqs5vpparh5b3tter54fbnxubq6gpnb4yrqjdio66tj37w@l3xzum2bq5sz>
-References: <20240729080101.3859701-1-msp@baylibre.com>
- <20240729080101.3859701-2-msp@baylibre.com>
- <f0f60af7-8561-433a-a027-811015fc5e16@kernel.org>
- <ti4ffymrixcpptlrn3o5bytoyc4w5oovdrzgu442ychai2fjet@wtdhrmwrozee>
- <44feed5a-95a7-4baa-b17e-514c0f50dae6@kernel.org>
- <sf2pklbnlkpgnkemv3wevldpj55kk2xqh4fabbmkcbh2tvnbzr@gg3gxgztq6pt>
- <d2eb4faf-c723-453b-a9d8-68693c96fb42@kernel.org>
- <fa11631e-48f9-4e95-95c4-20b77cb0a1be@kernel.org>
+        Thu, 05 Sep 2024 02:46:38 -0700 (PDT)
+Message-ID: <642d61b23c58d9b846e42badb2f2d97691c92144.camel@gmail.com>
+Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
+ property
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Angelo Dureghello
+	 <adureghello@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
+ linux-iio@vger.kernel.org,  devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dlechner@baylibre.com
+Date: Thu, 05 Sep 2024 11:50:45 +0200
+In-Reply-To: <20240830-quilt-appointee-4a7947e84988@spud>
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+	 <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
+	 <20240829-stopwatch-morality-a933abb4d688@spud>
+	 <d4eddc24-9192-4a4a-ac67-4cfbd429a6a9@baylibre.com>
+	 <20240830-quilt-appointee-4a7947e84988@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <fa11631e-48f9-4e95-95c4-20b77cb0a1be@kernel.org>
 
-On Thu, Sep 05, 2024 at 11:25:48AM GMT, Krzysztof Kozlowski wrote:
-> On 05/09/2024 11:15, Krzysztof Kozlowski wrote:
-> > On 05/09/2024 11:08, Markus Schneider-Pargmann wrote:
-> >> On Tue, Aug 06, 2024 at 10:03:00AM GMT, Krzysztof Kozlowski wrote:
-> >>> On 06/08/2024 09:11, Markus Schneider-Pargmann wrote:
-> >>>> Hi Krzysztof,
-> >>>>
-> >>>> On Tue, Aug 06, 2024 at 08:18:01AM GMT, Krzysztof Kozlowski wrote:
-> >>>>> On 29/07/2024 10:00, Markus Schneider-Pargmann wrote:
-> >>>>>> Partial-IO is a very low power mode in which nearly everything is
-> >>>>>> powered off. Only pins of a few hardware units are kept sensitive and
-> >>>>>> are capable to wakeup the SoC. The device nodes are marked as
-> >>>>>> 'wakeup-source' but so are a lot of other device nodes as well that are
-> >>>>>> not able to do a wakeup from Partial-IO. This creates the need to
-> >>>>>> describe the device nodes that are capable of wakeup from Partial-IO.
-> >>>>>>
-> >>>>>> This patch adds a property with a list of these nodes defining which
-> >>>>>> devices can be used as wakeup sources in Partial-IO.
-> >>>>>>
-> >>>>>
-> >>>>> <form letter>
-> >>>>> This is a friendly reminder during the review process.
-> >>>>>
-> >>>>> It seems my or other reviewer's previous comments were not fully
-> >>>>> addressed. Maybe the feedback got lost between the quotes, maybe you
-> >>>>> just forgot to apply it. Please go back to the previous discussion and
-> >>>>> either implement all requested changes or keep discussing them.
-> >>>>>
-> >>>>> Thank you.
-> >>>>> </form letter>
-> >>>>
-> >>>> I tried to address your comment from last version by explaining more
-> >>>> thoroughly what the binding is for as it seemed that my previous
-> >>>> explanation wasn't really good.
-> >>>>
-> >>>> You are suggesting to use 'wakeup-source' exclusively. Unfortunately
-> >>>> wakeup-source is a boolean property which covers two states. I have at
-> >>>> least three states I need to describe:
-> >>>>
-> >>>>  - wakeup-source for suspend to memory and other low power modes
-> >>>>  - wakeup-source for Partial-IO
-> >>>>  - no wakeup-source
-> >>>
-> >>> Maybe we need generic property or maybe custom TI would be fine, but in
-> >>> any case - whether device is wakeup and what sort of wakeup it is, is a
-> >>> property of the device.
-> >>
-> >> To continue on this, I currently only know of this Partial-IO mode that
-> >> would require a special flag like this. So I think a custom TI property
-> >> would work. For example a bool property like
-> >>
-> >>   ti,partial-io-wakeup-source;
-> >>
-> >> in the device nodes for which it is relevant? This would be in addition
-> >> to the 'wakeup-source' property.
-> > 
-> > Rather oneOf. I don't think having two properties in a node brings any
-> > more information.
-> > 
-> > I would suggest finding one more user of this and making the
-> > wakeup-source an enum - either string or integer with defines in a header.
-> 
-> I am going through this thread again to write something in DT BoF but
-> this is confusing:
-> 
-> "Partial-IO is a very low power mode"
-> "not able to do a wakeup from Partial-IO."
-> "wakeup-source for Partial-IO"
-> 
-> Are you waking up from Partial-IO or are you waking up into Partial-IO?
-> 
-> And why the devices which are configured as wakeup-source cannot wake up
-> from or for Partial-IO?
+On Fri, 2024-08-30 at 16:33 +0100, Conor Dooley wrote:
+> On Fri, Aug 30, 2024 at 10:19:49AM +0200, Angelo Dureghello wrote:
+> > Hi Conor,
+> >=20
+> > On 29/08/24 5:46 PM, Conor Dooley wrote:
+> > > On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello wrote:
+> > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > >=20
+> > > > Add bus property.
+> > > RFC it may be, but you do need to explain what this bus-type actually
+> > > describes for commenting on the suitability of the method to be
+> > > meaningful.
+> >=20
+> > thanks for the feedbacks,
+> >=20
+> > a "bus" is intended as a generic interface connected to the target,
+> > may be used from a custom IP (fpga) to communicate with the target
+> > device (by read/write(reg and value)) using a special custom interface.
+> >=20
+> > The bus could also be physically the same of some well-known existing
+> > interfaces (as parallel, lvds or other uncommon interfaces), but using
+> > an uncommon/custom protocol over it.
+> >=20
+> > In concrete, actually bus-type is added to the backend since the
+> > ad3552r DAC chip can be connected (for maximum speed) by a 5 lanes DDR
+> > parallel bus (interface that i named QSPI, but it's not exactly a QSPI
+> > as a protocol), so it's a device-specific interface.
+> >=20
+> > With additions in this patchset, other frontends, of course not only
+> > DACs, will be able to add specific busses and read/wrtie to the bus
+> > as needed.
+> >=20
+> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > > ---
+> > > > =C2=A0 Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml |=
+ 9
+> > > > +++++++++
+> > > > =C2=A0 1 file changed, 9 insertions(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.=
+yaml
+> > > > b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > > > index a55e9bfc66d7..a7ce72e1cd81 100644
+> > > > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > > > @@ -38,6 +38,15 @@ properties:
+> > > > =C2=A0=C2=A0=C2=A0 clocks:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > You mentioned about new compatible strings, does the one currently
+> > > listed in this binding support both bus types?
+>=20
+> You didn't answer this, and there's insufficient explanation of the
+> "hardware" in this RFC, but I found this which is supposedly the
+> backend:
+> https://github.com/analogdevicesinc/hdl/tree/main/library/axi_ad3552r
+> adi,axi-dac.yaml has a single compatible, and that compatible has
+> nothing to do with "axi_ad3552r" as it is "adi,axi-dac-9.1.b". I would
+> expect either justification for reuse of the compatible, or a brand new
+> compatible for this backend, even if the driver can mostly be reused.
+>=20
 
-Sorry if this is confusing. Let me try again.
+Hi Conor,
 
-Partial-IO is a very low power mode. Only a small IO unit is switched on
-to be sensitive on a small set of pins for any IO activity. The rest of
-the SoC is powered off, including DDR. Any activity on these pins
-switches on the power for the remaining SoC. This leads to a fresh boot,
-not a resume of any kind. On am62 the pins that are sensitive and
-therefore wakeup-source from this Partial-IO mode, are the pins of a few
-CAN and UARTs from the MCU and Wkup section of the SoC.
+So most of these designs have some changes (even if minimal) in the registe=
+r map
+and the idea (mine actually) with this backend stuff was to keep the backen=
+d
+driver (axi-dac/adc) with the generic compatible since all the (different)
+functionality is basically defined by the frontend they connect too and tha=
+t
+functionality is modeled by IIO backend ops. For some more
+significant/fundamental differences in the IP like this bus controller kind=
+ of
+thing, we would add have proper FW properties. The main idea was kind of us=
+ing
+the frontend + generic backend combo so no need for new compatibles for eve=
+ry
+new design.
 
-These CAN and UART wakeup-sources are also wakeup-sources for other low
-power suspend to ram modes. But wakeup-sources for suspend to ram modes
-are typically not a wakeup-source for Partial-IO as they are not powered
-in Partial-IO.
+It's still early days (at least upstream) for these IP cores and the backen=
+d
+code so if you say that we should have new compatibles for every new design=
+ that
+has some differences in the register map (even if minimal), I'm of course f=
+ine
+with it. I've done it like this because I was (am) kind of afraid for thing=
+s to
+get complicated fairly quickly both in the bindings and driver (well maybe =
+not
+in the driver). OTOH, it can simplify things a lot as it's way easier to
+identify different implementations of the IP directly in the driver so we h=
+ave
+way more flexibility.
 
-I hope this explains it better.
+> Could you please link to whatever ADI wiki has detailed information on
+> how this stuff works so that I can look at it to better understand the
+> axes of configuration here?
+>=20
+> > >=20
+> > > Making the bus type decision based on compatible only really makes se=
+nse
+> > > if they're different versions of the IP, but not if they're different
+> > > configuration options for a given version.
+> > >=20
+> > > > +=C2=A0 bus-type:
+> >=20
+> > DAC IP on fpga actually respects same structure and register set, excep=
+t
+> > for a named "custom" register that may use specific bitfields depending
+> > on the application of the IP.
+>=20
+> To paraphrase:
+> "The register map is the same, except for the bit that is different".
+> If ADI is shipping several different configurations of this IP for
+> different DACs, I'd be expecting different compatibles for each backend
+> to be honest.
 
-Best
-Markus
+Yes, pretty much we have a generic core with most of the designs being base=
+d on
+it but with some slight differences. At least for the new ones, almost all =
+of
+them have slight deviations from the generic/base core.
+
+> If each DAC specific backend was to have a unique compatible, would the
+> type of bus used be determinable from it? Doesn't have to work for all
+> devices from now until the heath death of the universe, but at least for
+> the devices that you're currently aware of?
+>=20
+
+My original idea was to have a bus controller boolean for this core at leas=
+t for
+now that we only have one bus type (so we could assume qspi in the driver).=
+ If
+the time comes we need to add support for something else, then we would nee=
+d
+another property to identify the type.
+
+> > > If, as you mentioned, there are multiple bus types, a non-flag proper=
+ty
+> > > does make sense. However, I am really not keen on these "forced" nume=
+rical
+> > > properties at all, I'd much rather see strings used here.
+>=20
+> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > +=C2=A0=C2=A0=C2=A0 description: |
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Configure bus type:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 0: none
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1: qspi
+>=20
+> Also, re-reading the cover letter, it says "this platform driver uses a 4
+> lanes parallel bus, plus a clock line, similar to a qspi."
+> I don't think we should call this "qspi" if it is not actually qspi,
+> that's just confusing.
+>=20
+
+Just by looking at the datasheet it feels like typical qspi to be honest. A=
+nd,
+fwiw, even if not really qspi, this is how the datasheet names the interfac=
+e.
+
+- Nuno S=C3=A1
+> >=20
+
 
