@@ -1,190 +1,228 @@
-Return-Path: <devicetree+bounces-100485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C5096DD87
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 17:12:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D93FF96DD9D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 17:13:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D3C61F242D0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:12:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0F7E1C25A00
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3841A19FA87;
-	Thu,  5 Sep 2024 15:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88981A070D;
+	Thu,  5 Sep 2024 15:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="csFAmD5+"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="irx+YzsE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB87C19FA64
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 15:09:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A219519D89E
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 15:10:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725548967; cv=none; b=bdGZmYjczyG7JAHhRKksy3QpRQpttzw3EDvctzQst62X2XC/9W8hoYRsbeOQbROKqLOQUlmJPdYCkNanGyIjnMZpMKNVQN+tL3Vlkhl4bGp38F0N5yXHDJIHHLT5AAPVWtAfU2NiJauVfXRRKP7a6pDlmNzqHmyOY55nrcUtMHg=
+	t=1725549050; cv=none; b=TLdHhopvBBCFvBn67SqZJ8WA50dKPK6KaHOuSOv8+mVTsauBr61c1anPrE4S9dorG4ZHacWjX9ApX1OKqHWBSe9LLpMtunphu3n9U/6ukQzJ1hMLdQYf4c4gql9RJBV48tjaST7IExgGG4HrjZbSvNSFhUKBCm8ckZA4WRESRYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725548967; c=relaxed/simple;
-	bh=P9RokBVbyl/jxIL39jzH27oNSYIsI3t6ZGlI2++0Mzw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=r66l8qniOr90VlFczuWHc56VV/Nma927X5fFGjPMEW2fvo848tmSAZdnefND7WSywJ88jLGZGbHaHblFBnV1WHeO9e/OS6MkJlX/bU/aCbedOimyohg7AqAKK4x+np3n31YKRzlPNPYkwjs0YeW11AS5Mx7rkwswU8kIkZWRSKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=csFAmD5+; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20551e2f1f8so9301105ad.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 08:09:25 -0700 (PDT)
+	s=arc-20240116; t=1725549050; c=relaxed/simple;
+	bh=Jg419JiaVpr39nxDzhXqFqCEex8GnrqdC99ZhI00XOI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DqsYMUgKpVazqsJHkYPa8tQD9jPTALMmkOJ5PHsiPrut+27reT7izN+gLnNQ6SxEIaVQ8gMyynSn25ZEOmhHtHi3/NNbVgJ18AbBV2wbIPPRDjRimevJq1dafJKCZp1tO5Kq+UA0MqxlF66Yd+JJZ5EKkVwSLbRSzes/vW+bxm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=irx+YzsE; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f4f2868783so11397161fa.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 08:10:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1725548965; x=1726153765; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1725549047; x=1726153847; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WeKZzC3h8KzAK+YZsDD+0U9LzB2BKdgLrWi7Aw3zIhI=;
-        b=csFAmD5+PjSd6hEss/J37zJwBQiLLF1piIM1M8nU8jSUT7tZ2FMvNxj2YDTkyWiFD9
-         jUoVCUf2IHQDaWb3qHkJnmifdcjen1n2D1ynbI5hcGjq45B+QZJ4ChZiem2QlTxq8XU0
-         Vcj02QqBACiFIwAcEGbjbu9qeUMkN2S6POYOo=
+        bh=lbZG96yCjg3dP1dRLPb67mYWLsYBymVv/aX2fCRRjEc=;
+        b=irx+YzsEk/aIPL7RCnfn9yvgdduNyYInq+jtgInIwpoH4G51G0Z0aNztvxfLqZ93jx
+         +k9hwFBZtcXRt98dzBfXiQ9fO5P/tFVnH9yQ0P/gOGVGeGgItvEiikCqx67sst//nSDH
+         hPNwydwMfHYqGT3P0JcYVgHvGDAtywkbUCmiM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725548965; x=1726153765;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1725549047; x=1726153847;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WeKZzC3h8KzAK+YZsDD+0U9LzB2BKdgLrWi7Aw3zIhI=;
-        b=TFSfAss27nW8HMQLrdie75mCZAZNDfQ/QIRu0+fwk7Z4WJIb2xom4Q9epN5JI96Zo3
-         EhOxSckmfyKotYzXucgkIWzSTQU/AJhX1Luefx/XbBh+Caob+5EahdmDdmqwOrhKvQaP
-         KjXlCQDMz8nsOnWJ/HgNeO+TfRdJ+gAuPaRrV2VHxohALqF85zXnfmkQpzHuAFe27D9g
-         0SAKyytTPEOfGmhmVnei4K1mBT+1qmVs518iYBV/Rkm5C75+ua90rnkWNeid6kb5zt7p
-         NuWqwXiMLtZrN7VcC8YKlq192oGikFIwT30JVoaG8sOoxHR7+oV3yRO/HIZedwYaNvEq
-         srCA==
-X-Gm-Message-State: AOJu0YxebEJGb5FSi2rTm4ZIF+OnQvhhAAdrtZ9cFxbdTiLF3IVkYE4V
-	wMtHfYbiz4ambyJ/9Z19kp2V/z5NNqDFB5uHO8a7nlbVphPsdFXgIJSCYkoe4O690nNOOGkUNuk
-	k
-X-Google-Smtp-Source: AGHT+IFlXOW31SFSYAlBQYsmF3FsrTGoFB/cAT+OIPXRNyueFf7y0Siho6jxscGlNXwJVpnUXckjLw==
-X-Received: by 2002:a17:902:ced2:b0:1fd:791d:1437 with SMTP id d9443c01a7336-2058417b1d9mr194337195ad.6.1725548964908;
-        Thu, 05 Sep 2024 08:09:24 -0700 (PDT)
-Received: from localhost.localdomain ([103.108.57.9])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-206aea556f8sm29779855ad.198.2024.09.05.08.09.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 08:09:24 -0700 (PDT)
-From: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-To: devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	linux-crypto@vger.kernel.org,
-	robh@kernel.org
-Cc: Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	bhoomikak@vayavyalabs.com,
-	Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-Subject: [PATCH v1 1/1] dt-bindings: crypto: Document support for SPAcc
-Date: Thu,  5 Sep 2024 20:39:10 +0530
-Message-Id: <20240905150910.239832-2-pavitrakumarm@vayavyalabs.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240905150910.239832-1-pavitrakumarm@vayavyalabs.com>
-References: <20240905150910.239832-1-pavitrakumarm@vayavyalabs.com>
+        bh=lbZG96yCjg3dP1dRLPb67mYWLsYBymVv/aX2fCRRjEc=;
+        b=keLdFvGBbCLESbSwGUv0WpZm8SkUyKiVCrcVl3J4cX6h9n+jg1+Sc/ThXH/0tZ2joR
+         ichmuskR4+93pFbj3yeHqgDaXfrnDyoqwYaQ/WBMwfNEqUcAgUvSlCkvDI0VtOHXzrP9
+         ialCwfi2rHIzo++v2FBeTv1YGBESRTxgOq4BByl8enY96QUSnWKTY+TlnJZSdhjbYmmq
+         7EIaz2hvB3Tj+W+k2UHvK1w/cIliw/Wy1vmkBqXqRmMXJB4QSt7G1OSJMwbW5SEB4MI6
+         ydqZmHqrYAOkEF7djMLpmGj/AQPDj0r9yFUeNIo4BmN+ht8l+pskJ3BPhagSwb0Mha9Z
+         LGuA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVKT5MBjL+y9U9isVWspScymJKOPhHKcOi1mr8XjlcMeqAY+JyrHdnZhf0g6hwjDTuif2scLFH03jw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKFjInp3Ncu1ui8jKVnzFIlgz0dnaTd4BFDvk09OusIGYi5O30
+	X8cteS311FvFgXZNiTXFWiIHwA/4ckfqgpVHc1S0vgHzytls7A6JJmYz+v8A9SLI+GNaXSifBGu
+	1qpmYvFZ0xekIYrOZEeDWyaKluUHmpnkbzZp5
+X-Google-Smtp-Source: AGHT+IEoyY9FAQCs2QvyohjteVuKx8qEJUbTxgD4g5/TL4wAkdAbEbByYe9g569nCl27ndm/hY5F+Ctp+XibXgbNBjM=
+X-Received: by 2002:a2e:f1a:0:b0:2f6:5f7b:e5e0 with SMTP id
+ 38308e7fff4ca-2f65f7be680mr30625541fa.21.1725549046375; Thu, 05 Sep 2024
+ 08:10:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240904090016.2841572-1-wenst@chromium.org> <20240904090016.2841572-10-wenst@chromium.org>
+ <CAD=FV=UGOz3Xzg7reJKP=tA1LqTxszv5w-CL9krmoXQtXdJLaQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=UGOz3Xzg7reJKP=tA1LqTxszv5w-CL9krmoXQtXdJLaQ@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 5 Sep 2024 23:10:34 +0800
+Message-ID: <CAGXv+5F27K76t=ht5v75jKsNF-J+C0r5+m=czHz6PtV3t5DxcQ@mail.gmail.com>
+Subject: Re: [PATCH v6 09/12] i2c: of-prober: Add regulator support
+To: Doug Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Jiri Kosina <jikos@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add DT bindings related to the SPAcc driver for Documentation.
-DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
-Engine is a crypto IP designed by Synopsys.
+On Thu, Sep 5, 2024 at 6:57=E2=80=AFAM Doug Anderson <dianders@chromium.org=
+> wrote:
+>
+> Hi,
+>
+> On Wed, Sep 4, 2024 at 2:01=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> =
+wrote:
+> >
+> > This adds regulator management to the I2C OF component prober.
+> > Components that the prober intends to probe likely require their
+> > regulator supplies be enabled, and GPIOs be toggled to enable them or
+> > bring them out of reset before they will respond to probe attempts.
+> > GPIOs will be handled in the next patch.
+> >
+> > Without specific knowledge of each component's resource names or
+> > power sequencing requirements, the prober can only enable the
+> > regulator supplies all at once, and toggle the GPIOs all at once.
+> > Luckily, reset pins tend to be active low, while enable pins tend to
+> > be active high, so setting the raw status of all GPIO pins to high
+> > should work. The wait time before and after resources are enabled
+> > are collected from existing drivers and device trees.
+> >
+> > The prober collects resources from all possible components and enables
+> > them together, instead of enabling resources and probing each component
+> > one by one. The latter approach does not provide any boot time benefits
+> > over simply enabling each component and letting each driver probe
+> > sequentially.
+> >
+> > The prober will also deduplicate the resources, since on a component
+> > swap out or co-layout design, the resources are always the same.
+> > While duplicate regulator supplies won't cause much issue, shared
+> > GPIOs don't work reliably, especially with other drivers. For the
+> > same reason, the prober will release the GPIOs before the successfully
+> > probed component is actually enabled.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> > Changes since v5:
+> > - Split of_regulator_bulk_get_all() return value check and explain
+> >   "ret =3D=3D 0" case
+> > - Switched to of_get_next_child_with_prefix_scoped() where applicable
+> > - Used krealloc_array() instead of directly calculating size
+> > - copy whole regulator array in one memcpy() call
+> > - Drop "0" from struct zeroing initializer
+> > - Split out regulator helper from i2c_of_probe_enable_res() to keep
+> >   code cleaner when combined with the next patch
+> > - Added options for customizing power sequencing delay
+> > - Rename i2c_of_probe_get_regulator() to i2c_of_probe_get_regulators()
+> > - Add i2c_of_probe_free_regulator() helper
+> >
+> > Changes since v4:
+> > - Split out GPIO handling to separate patch
+> > - Rewrote using of_regulator_bulk_get_all()
+> > - Replaced "regulators" with "regulator supplies" in debug messages
+> >
+> > Changes since v3:
+> > - New patch
+> >
+> > This change is kept as a separate patch for now since the changes are
+> > quite numerous.
+> > ---
+> >  drivers/i2c/i2c-core-of-prober.c | 154 +++++++++++++++++++++++++++++--
+> >  include/linux/i2c.h              |  10 +-
+> >  2 files changed, 155 insertions(+), 9 deletions(-)
+>
+> I never jumped back into looking at this since you started sending new
+> versions last month (sorry), but I finally did...
+>
+> At a high level, I have to say I'm not really a fan of the "reach into
+> all of the devices, jam their regulators on, force their GPIOs high,
+> and hope for the best" approach. It just feels like it's going to
+> break at the first bit of slightly different hardware and cause power
+> sequence violations left and right. If nothing else, regulators often
+> need delays between when one regulator is enabled and the next. There
+> may also be complex relationships between regulators and GPIOs, GPIOs,
+> GPIOs that need to be low, or even GPIO "toggle sequences" (power on
+> rail 1, wait 1 ms, assert reset, wait 10 ms, deassert reset, power on
+> rail 2).
+>
+> IMO the only way to make this reliable is to have this stuff be much
+> less automatic and much more driven by the board.
+>
+> I think that, in general, before the board prober checks i2c address
+> then the prober should be in charge of setting up pinctrl and turning
+> on regulators / GPIOs. Given that the same regulator(s) and GPIO(s)
+> may be specified by different children, the prober will just have to
+> pick one child to find those resources. It should have enough
+> board-specific knowledge to make this choice. Then the prober should
+> turn them on via a board-specific power-on sequence that's known to
+> work for all the children. Then it should start probing.
+>
+> I think there can still be plenty of common helper functions that the
+> board-specific prober can leverage, but overall I'd expect the actual
+> power-on and power-off code to be board-specific.
+>
+> If many boards have in common that we need to turn on exactly one
+> regulator + one GPIO, or just one regulator, or whatever then having a
+> helper function that handles these cases is fine. ...but it should be
+> one of many choices that a board proper could use and not the only
+> one.
 
-Signed-off-by: Bhoomika K <bhoomikak@vayavyalabs.com>
-Signed-off-by: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
----
- .../bindings/crypto/snps,dwc-spacc.yaml       | 79 +++++++++++++++++++
- 1 file changed, 79 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
+IIUC we could have the "options" data structure have much more board
+specific information:
 
-diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-new file mode 100644
-index 000000000000..a58d1b171416
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Crypto Engine
-+
-+maintainers:
-+  - Ruud Derwig <Ruud.Derwig@synopsys.com>
-+
-+description:
-+  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto Engine is
-+  a crypto IP designed by Synopsys, that can accelerate cryptographic
-+  operations.
-+
-+properties:
-+  compatible:
-+    contains:
-+      enum:
-+        - snps,dwc-spacc
-+        - snps,dwc-spacc-6.0
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    maxItems: 1
-+
-+  little-endian: true
-+
-+  vspacc-priority:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Set priority mode on the Virtual SPAcc. This is Virtual SPAcc priority
-+      weight. Its used in priority arbitration of the Virtual SPAccs.
-+    minimum: 0
-+    maximum: 15
-+    default: 0
-+
-+  vspacc-index:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Virtual spacc index for validation and driver functioning.
-+    minimum: 0
-+    maximum: 7
-+
-+  spacc-wdtimer:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Watchdog timer count to replace the default value in driver.
-+    minimum: 0x19000
-+    maximum: 0xFFFFF
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spacc@40000000 {
-+        compatible = "snps,dwc-spacc";
-+        reg = <0x40000000 0x3FFFF>;
-+        interrupt-parent = <&gic>;
-+        interrupts = <0 89 4>;
-+        clocks = <&clock>;
-+        clock-names = "ref_clk";
-+        vspacc-priority = <4>;
-+        spacc-wdtimer = <0x20000>;
-+        vspacc-index = <0>;
-+        little-endian;
-+    };
--- 
-2.25.1
+  - name of node to fetch resources (regulator supplies and GPIOs) from
+  - names of the resources for the node given from the previous item
+  - delay time after each resource is toggled
+  - polarity in the case of GPIOs
+  - prober callback to do power sequencing
 
+The "resource collection" step would use the first two items to retrieve
+the regulator supplies and GPIOS instead of the bulk APIs used right now.
+
+The power sequencing callback would use the resources combined with the
+given delays to enable the supplies and toggle the GPIOs.
+
+For now I would probably only implement a generic one regulator supply
+plus one GPIO helper. That is the common case for touchscreens and
+trackpads connected over a ribbon cable.
+
+Does that sound like what you have in mind?
+
+
+This next item would be a later enhancement (which isn't implemented in
+this series anyway):
+
+  - optional prober callback that does actual probing
+
+In our case it would only be used for cases where an HID-over-I2C
+component shares the same address as a non-HID one, and some extra
+work is needed to determine which type it is. I still need to think
+about the structure of this.
+
+
+Thanks
+ChenYu
 
