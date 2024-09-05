@@ -1,242 +1,130 @@
-Return-Path: <devicetree+bounces-100217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D2996CD82
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:57:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86EC196CD7F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 652B91C229D5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:57:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1482DB20E3F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:52:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0657E143C7E;
-	Thu,  5 Sep 2024 03:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F94914601F;
+	Thu,  5 Sep 2024 03:52:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RFQew6v2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m102.netease.com (mail-m102.netease.com [154.81.10.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E5C710E9;
-	Thu,  5 Sep 2024 03:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=154.81.10.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4AC3131E38
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 03:52:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725508669; cv=none; b=Nrx47o90Vb/kJ1xYmGQfkSDXdvDA+LZORzQnrMkR4WljHSvgHcCH457Qtjf2Q8wgyUgZoHnxd0cayyEEHbZh5m73EiP+nJh1WrEsRjFWB2Zuv0vxkH2OgCVq4tJvWm/90W+eXImmYWVdfJ4uHM6yZVSheQsRbL2ixNMH9G8xsYg=
+	t=1725508367; cv=none; b=NJ5cDSHIVvdruEL8VeLT3VBZGPcbAoxugLiM2uOTDW5qLHlGb2jndFOBsvWYN9wUQ7n6osN1zZM3d6aWvRPQ1u77bANM28w4A0zM1v/iq49qRrM6uGyRkdqD3oNhxTb1i469MaILIs2uDlOJ+OfhrgLNZ208vv3COrOhm7Q0k50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725508669; c=relaxed/simple;
-	bh=d7rDZxzeOZ7ybHx7fCJfeza0Hj8Jzsr7IIcsy0otlGU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mDlgiVlPtP+KoudIcWHBQx5OVUH8fxYsoyN5MRVN4N8NpXkzOhr0L2ZDCnVLeOqddfUXBILGgxgykW0VVDgmsqaOGEB96hQjdnHsfKELnOObhj7MzJ4jkB/zCZeQfndEmBuMQWuNCbIdAZ5HPmeIY+ysmguoFv3nqF/lxlDQU4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=154.81.10.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [119.122.212.181])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 1A1F47E018A;
-	Thu,  5 Sep 2024 11:40:12 +0800 (CST)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: bigfoot@classfun.cn
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dsimic@manjaro.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
-Date: Thu,  5 Sep 2024 11:40:09 +0800
-Message-Id: <20240905034009.28124-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240904111456.87089-4-bigfoot@classfun.cn>
-References: <20240904111456.87089-4-bigfoot@classfun.cn>
+	s=arc-20240116; t=1725508367; c=relaxed/simple;
+	bh=su/8gj6ks5K85/I3PIYZHz4bzmuYkE7mRyHvpRMnZhg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PUwS3+/7h3MoYpcb+eb83i0p5jgqDWGeFZn+41eu713j3CXmM1ByJyJZnsdKFUdKc3U4CyBh81h0W13VmE4kYmwqaGi9nSzgV3KVZbpm1zO8EG4r2ZrwiCvtZ+HorVN8co71G8kesHXvHFzxiX/yRwYW33iTsw03UzFwAjx6TMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RFQew6v2; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5353cd2fa28so236808e87.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 20:52:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1725508364; x=1726113164; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QRIIgJ7S3hsBk6289/S+wOJS+zjzXBK17nuyOQXg1gQ=;
+        b=RFQew6v2H2RSVsC5zXcTD6NPoVUP8rC4ngRO26FnEtEXE33zWqplCFXsAojoxCDk9w
+         3jKXMjTvIWiDfBjZwGOtERjZmGe79jhk4jXmbQ1YGWP3zUHPs8ABv0uqZSY67QOYzk/B
+         GUUu82pqiF1qtQbMBvsiHC9N7CNp/owZhwEqY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725508364; x=1726113164;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QRIIgJ7S3hsBk6289/S+wOJS+zjzXBK17nuyOQXg1gQ=;
+        b=ZZimQ/T9ak22DKHGjXTvefUS78JsnazqRcSO5Utb+tFVuSyaVKovSDpQVPJmadLs6l
+         QDYAINPXzdT4gLcaM36bMfkdaV2hAM/vJTskFd3TJ3XWn7aQvZaKbe6atpUpSXHRxx0k
+         TabkrClSKh8/oOrrg7FRnOkVNmmydI+7VKPDeun1UTOFqa4c4ltVXoWI/LA2T6w5SP8n
+         AhFEIUQftIUTOjwxH0JtXKAsntGoUAWxK+Ega3jpUt4p7o/EfodlvTOU1whREdqQCYmS
+         p7E/L9XkDrwkTZIebOUnedP8v2WDpNkw5XrwKGfiCbfotA/jCQOwG6lViJalFk4aOnnn
+         jnVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfT9HfJa0tmqq3IXcIlXyIV04FUw6F1TPhpHuh3Y+TDGa8eOQU4Zt0/BpomuW4dhezru8J+4PaIGIa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6Mlf1FWoR79c8+TA9PHcIyvQxteY1Hw97MPHj6Xcu53qURrAz
+	ZdKO6193+pKVTImQsA/8hMIk/dmE5Z45oPqtigWWqAIYKtrNWFfz/4sB3oYz7RVHJVmvsyLLEtm
+	7Fscon5wAJmw8OZZx1DZBZjpOCqBFbw1FMhhb
+X-Google-Smtp-Source: AGHT+IFf4LunjDbLMZ4JbahUyowVfro0pxQijuaHaPzJX7btNK9HgFjL//PjfHIonl230ee/BtNVKcZVy4RESHnFt3A=
+X-Received: by 2002:a05:6512:350e:b0:535:66ff:c681 with SMTP id
+ 2adb3069b0e04-53566ffc733mr2025998e87.48.1725508363601; Wed, 04 Sep 2024
+ 20:52:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSk0ZVkseH04dTRpISUkdTFYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSEpMTElVSktLVU
-	pCS0tZBg++
-X-HM-Tid: 0a91c044aed003a2kunm1a1f47e018a
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6KxQ6Myo6PjIzOEI4AhkqUSwY
-	IQxPCzNVSlVKTElOTktMTUpJQ0tDVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpJVUpDSllXWQgBWUFPTExJNwY+
+References: <20240904090016.2841572-1-wenst@chromium.org> <20240904090016.2841572-12-wenst@chromium.org>
+ <Ztgxlmhnkn7NVC81@google.com>
+In-Reply-To: <Ztgxlmhnkn7NVC81@google.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 5 Sep 2024 11:52:32 +0800
+Message-ID: <CAGXv+5GpKu-b4_dbRcuSG4NxQi_FKh9p7iMh6DfgavkLFdLLdQ@mail.gmail.com>
+Subject: Re: [PATCH v6 11/12] platform/chrome: Introduce device tree hardware prober
+To: Tzung-Bi Shih <tzungbi@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Mark Brown <broonie@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, chrome-platform@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Junhao,
+On Wed, Sep 4, 2024 at 6:08=E2=80=AFPM Tzung-Bi Shih <tzungbi@kernel.org> w=
+rote:
+>
+> On Wed, Sep 04, 2024 at 05:00:13PM +0800, Chen-Yu Tsai wrote:
+> > diff --git a/drivers/platform/chrome/chromeos_of_hw_prober.c b/drivers/=
+platform/chrome/chromeos_of_hw_prober.c
+> [...]
+> > +static int chromeos_of_hw_prober_probe(struct platform_device *pdev)
+> > +{
+> > +     for (size_t i =3D 0; i < ARRAY_SIZE(hw_prober_platforms); i++) {
+> > +             int ret;
+> > +
+> > +             if (!of_machine_is_compatible(hw_prober_platforms[i].comp=
+atible))
+> > +                     continue;
+> > +
+> > +             ret =3D hw_prober_platforms[i].prober(&pdev->dev, hw_prob=
+er_platforms[i].data);
+> > +             /* Ignore unrecoverable errors and keep going through oth=
+er probers */
+> > +             if (ret =3D=3D -EPROBE_DEFER)
+> > +                     return ret;
+>
+> Is it harmless if some of the components get probed multiple times?  E.g.=
+:
+> comp1 probed -> comp2 probed -> comp3 returned -EPROBE_DEFER -> some time
+> later, chromeos_of_hw_prober_probe() gets called again.
 
-> ...
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dts
+Yes it is harmless. Components already enabled will not get disabled
+in the error path. And the prober that enabled that component will see
+that a component was enabled, and skip doing the whole process again.
 
-This should be 'rk3568-photonicat.dts',
-e.g. "Radxa ROCK 3A" -> rk3568-rock-3a.dts
+So something like:
 
-> ...
-> +	model = "Ariaboard Photonicat RK3568";
-> +	compatible = "ariaboard,photonicat", "rockchip,rk3568";
+    comp1 probed -> comp2 probed -> comp3 -EPROBE_DEFER ->
+        comp1 skip -> comp2 skip -> comp3 probed
 
-The official model name does not include 'RK3568'.
 
-> ...
-> +	firmware {
-> +		optee: optee {
-> +			compatible = "linaro,optee-tz";
-> +			method = "smc";
-> +		};
-> +	};
-> +
-> ...
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		ramoops: ramoops@110000 {
-> +			compatible = "ramoops";
-> +			reg = <0 0x110000 0 0xf0000>;
-> +			console-size = <0x80000>;
-> +			ftrace-size = <0x00000>;
-> +			pmsg-size = <0x50000>;
-> +			record-size = <0x20000>;
-> +		};
-> +	};
-
-Maybe these can be moved to rk356x.dtsi?
-
-> ...
-> +	vcca1v8: regulator-1v8-vcca {
-
-schematics: VCCA_1V8
-
-> ...
-+	vcc3v3_pcie: regulator-3v3-vcc-pcie {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pcie_enable_h>;
-
-schematics: pcie_pwren_h
-vcc_syson -> vcc3v3_pi6c
-vcc_syson -> vcc3v3_pcie
-
-> +		regulator-always-on;
-> +		regulator-boot-on;
-
-No need.
-
-> ...
-> +	vcc5v0_sys: regulator-5v0-vcc-sys {
-
-There is no vcc5v0_sys, but vcc_syson.
-
-vcc_syson (5v) -> vcc3v3_sys
-vcc_sysin (5v) - (mcu) -> vcc_syson
-vccin_5v -> vcc_sysin
-
-> ...
-> +	vcc5v0_usb_host: regulator-5v0-vcc-usb-host {
-
-schematics: VCC5V0_USB30_OTG0 and usb_host_pwren_h
-It's a little weird, but that's what they're calling it.
-Also: VCCIN_5V -> VCC5V0_USB30_OTG0
-
-> ...
-> +	vcc5v0_usb_modem: regulator-5v0-vcc-usb-modem {
-
-Are you sure this regulator is 5v?
-
-> ...
-> +	vdda0v9: regulator-0v9-vdda {
-
-schematics: VDDA_0V9
-
-> +	wifi_pwrseq: wifi-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wifi_enable_h>;
-
-schematics: wifi_reg_on_h
-Also you need to enable the clk:
-
-		clocks = <&pmucru CLK_RTC_32K>;
-		clock-names = "ext_clock";
-		pinctrl-names = "default";
-		pinctrl-0 = <&wifi_reg_on_h &clk32k_out1>;
-
-> +		post-power-on-delay-ms = <200>;
-> +		reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
-> +	};
-
-> ...
-> +&pcie30phy {
-> +	phy-supply = <&vcc3v3_pcie>;
-
-phy-supply = <&vcc3v3_pi6c>;
-
-> ...
-> +&pcie3x2 {
-> +	max-link-speed = <1>;
-> +	num-lanes = <1>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie30x2m1_pins>;
-
-These are actually pcie30x1m0_pins.
-
-> ...
-> +&pmugrf {
-> +	reboot-mode {
-
-Maybe these can be moved to rk356x.dtsi?
-
-> ...
-> +&sdhci {
-
-Missing mmc-hs200-1_8v;
-
-> ...
-> +&sdmmc0 {
-> +	bus-width = <4>;
-> +	cap-mmc-highspeed;
-
-Why does sdcard need cap-mmc-highspeed?
-
-> +	max-frequency = <150000000>;
-> +	sd-uhs-sdr104;
-
-The sdcard does not have 1.8v io voltage,
-so this is wrong, please add no-1-8-v;
-
-> +&sdmmc1 {
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	cap-sdio-irq;
-> +	disable-wp;
-
-sdio wifi does not need disable-wp.
-
-> +	qca_wifi: qca-wifi@1 {
-> +		compatible = "qcom,ath10k";
-
-ath10k does not need compatible.
-
-> ...
-> +&uart1 {
-> ...
-> +		clocks = <&pmucru CLK_RTC_32K>;
-> +		enable-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_enable_h>;
-
-schematics: bt_reg_on_h
-Missing clock-names = "lpo";
-
--- 
-2.25.1
-
+ChenYu
 
