@@ -1,124 +1,116 @@
-Return-Path: <devicetree+bounces-100547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A9796E168
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:00:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8DF796E17E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2207B28719E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:00:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EB401F25160
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A7417BA7;
-	Thu,  5 Sep 2024 18:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF9216C84B;
+	Thu,  5 Sep 2024 18:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="jjvBAqam"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fN1m8IJ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from classfun.cn (unknown [129.204.178.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1013D7464;
-	Thu,  5 Sep 2024 18:00:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75441C2E;
+	Thu,  5 Sep 2024 18:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725559222; cv=none; b=uwZRkA2DnwJ/oSY7WyGqWDyAoIXYDFfx/aaPNYpnHJj4INBqU593dn+LiSZ8/SlFVpmKL5hG7PPicqPv3Ptuo1UmsJ4aMHGxZ41xvTzyFUMiaI5nn0MHE+Yn/hreDEaMlIRtFTYULBW6gI8TKXW8dAT5Bx3lVhYJNa8cv1Gc3Gw=
+	t=1725559595; cv=none; b=EtbpZ57u2JdifRnXXPNy/gBJobmWOvKmw+Yc4cjqcRj9/RtoGcBeuQq+5p8DMdnSVZIz4cPrSvKiaxQqvkLFWLoxOh2tlaMVVfh+YSC8CiuXkXBqX8qXL/gM6dGVfTAvvBkGEsO9BU55Aykax+57qRC6XBovlJKRW9v+MVEdLGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725559222; c=relaxed/simple;
-	bh=tcPJ3ojW634v/zUaVsG8PGOkuxZ+rC2Arp2kPscCRcw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=hGH4OHoGoAkq3jkzBI569JZIYnrCmVn5SMKvMjqcTGGCZBMg1dWtwCiIYyvixJPjmB56rUgnP8rEEum2IME5ngCm1P2kEe0DLFozAlJtqBorSfpkpWwwFdl8AZ1cMW9c5iebFHn/CEL7PPBhnLvWHbpNjd5IWGpUCJrIlh07ZEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=jjvBAqam; arc=none smtp.client-ip=129.204.178.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
-Received: from [192.168.0.160] (unknown [14.155.100.110])
-	(Authenticated sender: bigfoot)
-	by classfun.cn (Postfix) with ESMTPSA id 6073D789EF;
-	Fri,  6 Sep 2024 02:00:11 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 6073D789EF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
-	s=default; t=1725559213;
-	bh=IehJ7vYaR/acTX/sHMWsvwZTff/S0qCnA1igWLTgxpU=;
-	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
-	b=jjvBAqamn4voe/zLDC5EjIJVOsceiErcyffHhgCuRpF1u+6nzqji1jwgcb22URs/2
-	 24rLvCkbDxAenXtSkdUSH+bd49BV+/SOhirwrxNE++Sldkud0Q37NmSn83jQHKLrMk
-	 eAotb02AjTReCEyIsSWcMrBfTKS8iY/ZakcEgSuc=
-Message-ID: <fd4fc7a0-7def-4f91-a64c-71689ff71d1c@classfun.cn>
-Date: Fri, 6 Sep 2024 02:01:32 +0800
+	s=arc-20240116; t=1725559595; c=relaxed/simple;
+	bh=3oEzgN+dyaaIsu2U/WHl2Pv34y+McqVjSPxZyvbVgk0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ep/j27NRSb6AOfDkXRPu4/Ppz9pQ3DnuhVj5v3SfzhD7jYgh3nVeG5GpFsQFXsHZOMQgbIn3KGQlk2TayKg+JOMqBSSJ31cis2u5MKVmAQQ29hC4of8ABNEDvBQvQHLlNSVIC2kODj9IE7zZEKhn97Nt5qzdnqokA7WEaR5QRsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fN1m8IJ7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485973mi016135;
+	Thu, 5 Sep 2024 18:06:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=B+/sMp0kcLMp95ORzvfWS1
+	UqCl9q+KWtHsX5fROP7fQ=; b=fN1m8IJ7FQUD+7IW8al6/TLKUR2AF2MsGEQVNW
+	CFHiZJJyQVwvriXhplNUG26VUoGgbc6XvIUPHHkX+okY2ET9cxma/fTsVBfqJng2
+	DNkNjwU1HB5WR8fd8W/s2rdpVkoXT93yZVg/FcXg9nCsWa7M4qTE2KPuWwshdAjR
+	KS6i0MXdOPBmtJ+jWZkP1x9eZdl3uLc3sVYVhw48gNpxSrm+AXFiQlW2OZdgQo7M
+	xF8KjyXwPHFAHIUqKNsfHdRvHBnkq7+Av+26OPhbiaV24aOcuQtfGLuW/8vty3vS
+	RBh4ezJW8/McvF5ipooLrpEGHv7oCqiv2rDLF/WYa4qC7XDg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41egmrnbew-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Sep 2024 18:06:30 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485I6Tw3013117
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Sep 2024 18:06:29 GMT
+Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 5 Sep 2024 11:06:26 -0700
+From: Nikunj Kela <quic_nkela@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>, Nikunj Kela <quic_nkela@quicinc.com>
+Subject: [PATCH v3 0/2] Add support for Qualcomm SA8255p SoC
+Date: Thu, 5 Sep 2024 11:05:54 -0700
+Message-ID: <20240905180556.3737896-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-To: Andrew Lunn <andrew@lunn.ch>
-References: <20240904111456.87089-1-bigfoot@classfun.cn>
- <20240904111456.87089-4-bigfoot@classfun.cn>
- <6030542f-070d-4d76-9a5a-fbfc6bd433e6@lunn.ch>
- <1e189c70-e677-453d-9e31-6637196c2b5c@classfun.cn>
- <3f5bcc6c-5ee0-4fef-bb58-f7acf9551fc1@lunn.ch>
-Content-Language: en-US
-From: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
- FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <3f5bcc6c-5ee0-4fef-bb58-f7acf9551fc1@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: he0LnfuIpGFght9jSg9yjfPK14BiMD5g
+X-Proofpoint-ORIG-GUID: he0LnfuIpGFght9jSg9yjfPK14BiMD5g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_12,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ suspectscore=0 lowpriorityscore=0 mlxlogscore=598 priorityscore=1501
+ spamscore=0 malwarescore=0 adultscore=0 bulkscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409050134
 
-On 2024/9/5 20:53, Andrew Lunn wrote:
-> On Thu, Sep 05, 2024 at 07:17:03PM +0800, Junhao Xie wrote:
->> On 2024/9/5 01:25, Andrew Lunn wrote:
->>>> +&gmac1 {
->> [...]
->>> This has been discussed a few times. You should be using phy-mode
->>> rgmii-id.
->>
->> After I changed phy-mode to rgmii-id, it seemed to work,
->> but it didn't transmit any data.
->> Maybe I made a mistake or should I continue to use phy-mode rgmii?
-> 
-> How did you change the rx_delay and tx_delay?
-> 
-> In general, we want the PHY to add the delay, not the MAC. Most boards
-> in Linux do that. But boards using the motocomm PHY have got into a
-> cargo cult copy/paste of using the MAC to add the delays.
+This series adds support for Qualcomm SA8255p SoC.
 
-I have tried rgmii-id with tx_delay/rx_delay 0x38/0x15, or 0x0/0x0,
-or directly removed tx_delay/rx_delay, they all didn't transmit data.
+These patches were originally sent with other patches in series[1], 
+which was advised to be split per subsystem basis.
 
-I saw in dwmac-rk.c that when using rgmii-id, the tx_delay/rx_delay
-properties in dt are ignored?
+[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
 
-arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts also
-uses YT8521. I added rx-internal-delay-ps and tx-internal-delay-ps
-to rgmii_phy1 of mdio1 according to the prompts, and it now works
-well using rgmii-id!
+---
+Changes in v3:
+	- Removed the patches from original series
+Changes in v2:
+	- Added Reviewed-by tag
 
-&mdio1 {
-	rgmii_phy1: ethernet-phy@0 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <0x0>;
-		rx-internal-delay-ps = <1500>;
-		tx-internal-delay-ps = <1500>;
-	};
-};
+Nikunj Kela (2):
+  dt-bindings: arm: qcom: add the SoC ID for SA8255P
+  soc: qcom: socinfo: add support for SA8255P
 
-&gmac1 {
-	[...]
-	phy-mode = "rgmii-id";
-	[...]
-	tx_delay = <0x0>;
-	rx_delay = <0x0>;
-	status = "okay";
-	/* Motorcomm YT8521SC WAN port */
-};
+ drivers/soc/qcom/socinfo.c         | 1 +
+ include/dt-bindings/arm/qcom,ids.h | 1 +
+ 2 files changed, 2 insertions(+)
 
-Best regards,
-Junhao
+
+base-commit: ad40aff1edffeccc412cde93894196dca7bc739e
+-- 
+2.34.1
+
 
