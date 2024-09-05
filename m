@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-100625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74CC096E553
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 23:54:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA29D96E574
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 00:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00DAB1F24087
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:54:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62615282624
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14FFB1AB6CE;
-	Thu,  5 Sep 2024 21:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983C1156676;
+	Thu,  5 Sep 2024 22:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="00dnFIal"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SyPfJR2j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B1E1AB52C
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 21:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E538F8F54;
+	Thu,  5 Sep 2024 22:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725573249; cv=none; b=le6+9IjkcOggdTj9e3cM7byVV51Uh5wwIJsucvAtQM45vYOwx7Y8ah0wV7CiltD5Bvg1EPYR3Xs3iMuuMBMAMIhUNjG0yBvRkiZxWqQVzPS6+Cm4HA6m1NCTItBUVkTeg+mesZ0rU14nkOU+7zMJXcqqDtoPKIBr2y5gy6lFvbw=
+	t=1725573668; cv=none; b=py87a2wcqoDuYn2Co+Q3n7DYA3Mg2wy6Oh0u5QgcYPbzy7RoapCcaaxuiPfrIK5S2dHdqk97mMw/VDGJUKaYt60u9vSYeZur1YOBTtcGJQ33O2pIwijjsyv+xsTa2j8EJ0+TSNHiRqHsteoyOjcgBMsYMeOhSXRyJr5msTqd4v8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725573249; c=relaxed/simple;
-	bh=2be7+SAEsXZEHHbsITHBviHjHD1nBNMd/+akYCgd/xU=;
+	s=arc-20240116; t=1725573668; c=relaxed/simple;
+	bh=5DUKoWWZsoqa5ZtblM/R88RkHT6xFXhtGpUvygTRRZw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AIh4KkcpPRJ0tM4k+PnUTaSsCYzX1c6KzTh4zwbJjE4hkzI2r8chYv8AetAdYWR14hR6cBiELN3AkFN+JLm6nLih4G6ikZLStn1eZLoslQhSeb2N4P+kkujW/uesukqp/pGRfJ1Elq1sFSyvem4IWlCB29ieVq2kSIP/g3rfuQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=00dnFIal; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3e0047fcb3aso1359298b6e.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 14:54:06 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=jKQRqhHCDkLyNfefoUCVTQJUn+FApMNIZnso0Y5ffPkoZk801l5S1zOIAiIazn/6c8hTYZFNdtnZLa6Hafaum73KDreEXQa8lCBIBX3hT9hwTsAsDSldkVP+pBdV4jJXHIRkQsT3jDNeP5I8k1Wp9NuDRkRfPyJLAYFnMLfFYg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SyPfJR2j; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42bbffe38e6so9833625e9.0;
+        Thu, 05 Sep 2024 15:01:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725573246; x=1726178046; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j5PXpqr7I3C1dpRV4jeptr83ssBb8rr0BKLDBjsIpqo=;
-        b=00dnFIalQHkAZX9XaVfHAzrSZAxPylPqstEGNYyBBui5BJX+UMqJ6OVV44kp1k1rHr
-         XRDy6W5IoC7tFC4KIYakcllQeh+LIhmM6rRfzqnENo72L0MnGLTYJ4pe0IUeU4cQJjrH
-         pOYLvdyvxPfVITi/BtRNpxXp/jRq80sYb5ZxZ2752jN53X8NInbKSv9hXLRZTOOUNY18
-         SWwIv9kd1nl7D4GYPmJHQswprkQ1qwXDPEQnON/lv9IwgTYfkxDmpbPEMj9CyaDhd3s9
-         Bpn4wbw8vNFoMnyxLWykp7T579Q99580MxEWdIxhELX6q1SUq7Mp9RYyFSrVcMl5AzG6
-         MRZQ==
+        d=gmail.com; s=20230601; t=1725573665; x=1726178465; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=5HUUgDpFpg7CH7B/u64K6gdMfWIHArY9NWamcfsBl4o=;
+        b=SyPfJR2ja2XGvkeqp+Og7yqE5ktNgea4qz4pvZfF3kyIVOVxgRvjv27iUxuRhXMmqs
+         wJiTlrh/Dt6vYzOnvlhFA38NxfJixZEU2V2RA2yMhKZClIQfEPl5opjTLbrdUkb4fBAy
+         qcwzycpDIqr/zh0yFiNbglQtvW6wWHKfN9c8gFW9Oj3+h9uU8NHitucY1UaP/NwjaNZh
+         5PmeXwykp46m9NIp9oVCQi5kVdY5A807dXgiAR91TXCWzfy/uu7X0WxI9f8Yd6ND4bVd
+         QveZ9q/QScRHT4c4H1liHopJY7/ifgQBpDruTza2mhS8rarUKmdW+oAiN8/5XyykIj1m
+         XxJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725573246; x=1726178046;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j5PXpqr7I3C1dpRV4jeptr83ssBb8rr0BKLDBjsIpqo=;
-        b=eHj19Uo2ePYDijlF5CUB2c9ovjgciHIjBL7BiMFbaIVz+Rogq/IsF1uyP9SjHWbqro
-         mujQqGX2UuSmghP3jiVZToo9dCS3cBu3HUpYYTwa0w6rfdDY4nMn3KhGJSkyTdMqASZd
-         UzkWPEC8clBOU8fRTMwDZR2ydy0JUOrlUTujzNHXfqt3x3UlWZt7CujzxnttJwKMjYaR
-         n3TmzaD0Cj/56JSnS1hRxB0+VF0FKDg1/WpLAxWoU970ahOUBM4cMUOu0I1rt6djprLI
-         31dUmU2Vi/JpcNmLP1Oyk4+3RF/Rj2WWeRpf53xIFTT9fbNiKmpBZ6tYoMBHWPthWNal
-         2RGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUNPY+MLsLAOM8eh/vPsT6iGmhGTw3cZgI5O39KRHe1UMcrR9VmSTYwzkiqXQvsyHwy9oHl/vehW9ok@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxTJm01s6POziHekuqOHT8IAq0QhgRTgJ16GFNMxfPE4R6WrC5
-	GtTgwbRh1EGvbqyANJyVVVx2IB4ncsSFMwuOk4Eyllf4C212FCTb16vJSY/nmhE=
-X-Google-Smtp-Source: AGHT+IFINzzmQn5LG/KJc+I+Z8f9j4UVRPr0mAD92YX73mUUr5FWrlhp5t4SIuOPmueRdVpzgiaEZQ==
-X-Received: by 2002:a05:6808:14c3:b0:3dd:43c3:2c3c with SMTP id 5614622812f47-3e0134155bamr3355381b6e.8.1725573245756;
-        Thu, 05 Sep 2024 14:54:05 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3df11865deesm3375153b6e.46.2024.09.05.14.54.05
+        d=1e100.net; s=20230601; t=1725573665; x=1726178465;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5HUUgDpFpg7CH7B/u64K6gdMfWIHArY9NWamcfsBl4o=;
+        b=tfNxqTIr3yOqElaLR3I27r2dYjfSFMgbi4chwOGUK2cLB4hl46USNM6bn5LN9gjeDE
+         ZMULhq6hlymgxM9oVXWC48iz1/pAde4HTsVwRtp3RiAqRn2AGrAEpqgPLzpzkIihLMVI
+         hslDG/x8f79yBCvJndr5EEksTNg9wBEIqi2rie4Kk/w8U36eIPUSBxejJtLHgWnVB2yJ
+         SCjPsTxMjt9YQXKmvsoOE41UbnmvVktH9Tuqw+FmygEy+i4MvK4r8GoktDKSDMNNU0We
+         qm8Jdpkg/3l9iKavpGUyxJuQezdnWq4cKTYhw4OkewwjcFGq0m2Twv3KWEac+UiZxYmq
+         8oug==
+X-Forwarded-Encrypted: i=1; AJvYcCUQqv0OriCNswtmrklOpqCNuGwXpmnqpE8Me2F5i/UM8JajutO7ikMs1Lij7MHB4GVg3PBmzXpiZ1NQ@vger.kernel.org, AJvYcCVO1WQpHEUDb97KB+FAOMezhy9CCqfolRhNak8ResBT+RYpG4Mjkut9EWBVmWZhYIIlEudKC3P8rXk7heI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YysDR+WLylp9Y5TlbaBSLkY7Tla8mUDdNGXQLs4GAl+28QSHEYq
+	VuBMdxTJcUG1104CFAx5Ar9jRJnTmqcn3uJfozGTdD0Ra7qZRWXL
+X-Google-Smtp-Source: AGHT+IElmqtoaM4ugIP0F84FqbTkzYo43tKuoYe27gwYhYG+/JbVKL3d4EHnf4sLbNRkLnSCI011IQ==
+X-Received: by 2002:a5d:5388:0:b0:376:27b7:da81 with SMTP id ffacd0b85a97d-37627b7e3a3mr7200895f8f.22.1725573664211;
+        Thu, 05 Sep 2024 15:01:04 -0700 (PDT)
+Received: from [192.168.2.177] ([81.0.7.156])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ca05ca70fsm194115e9.16.2024.09.05.15.01.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Sep 2024 14:54:05 -0700 (PDT)
-Message-ID: <4f522d0c-7ed8-4dd4-83ae-f400d6958c6f@baylibre.com>
-Date: Thu, 5 Sep 2024 16:54:04 -0500
+        Thu, 05 Sep 2024 15:01:03 -0700 (PDT)
+Message-ID: <72b3ddc2-1c56-402b-a58a-cfe7e9f4aaa7@gmail.com>
+Date: Fri, 6 Sep 2024 00:01:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,207 +77,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/8] dt-bindings: iio: adc: add docs for
- AD7606C-{16,18} parts
-To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
- michael.hennerich@analog.com, gstols@baylibre.com
-References: <20240905082404.119022-1-aardelean@baylibre.com>
- <20240905082404.119022-8-aardelean@baylibre.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240905082404.119022-8-aardelean@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v8 3/5] arm64: defconfig: enable mt8365 sound
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20240226-audio-i350-v8-0-e80a57d026ce@baylibre.com>
+ <20240226-audio-i350-v8-3-e80a57d026ce@baylibre.com>
+Content-Language: en-US, ca-ES, es-ES
+From: Matthias Brugger <matthias.bgg@gmail.com>
+Autocrypt: addr=matthias.bgg@gmail.com; keydata=
+ xsFNBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
+ fL3eT7ZsYV5nur7zctmJ+vbszoOASXUpfq8M+S5hU2w7sBaVk5rpH9yW8CUWz2+ZpQXPJcFa
+ OhLZuSKB1F5JcvLbETRjNzNU7B3TdS2+zkgQQdEyt7Ij2HXGLJ2w+yG2GuR9/iyCJRf10Okq
+ gTh//XESJZ8S6KlOWbLXRE+yfkKDXQx2Jr1XuVvM3zPqH5FMg8reRVFsQ+vI0b+OlyekT/Xe
+ 0Hwvqkev95GG6x7yseJwI+2ydDH6M5O7fPKFW5mzAdDE2g/K9B4e2tYK6/rA7Fq4cqiAw1+u
+ EgO44+eFgv082xtBez5WNkGn18vtw0LW3ESmKh19u6kEGoi0WZwslCNaGFrS4M7OH+aOJeqK
+ fx5dIv2CEbxc6xnHY7dwkcHikTA4QdbdFeUSuj4YhIZ+0QlDVtS1QEXyvZbZky7ur9rHkZvP
+ ZqlUsLJ2nOqsmahMTIQ8Mgx9SLEShWqD4kOF4zNfPJsgEMB49KbS2o9jxbGB+JKupjNddfxZ
+ HlH1KF8QwCMZEYaTNogrVazuEJzx6JdRpR3sFda/0x5qjTadwIW6Cl9tkqe2h391dOGX1eOA
+ 1ntn9O/39KqSrWNGvm+1raHK+Ev1yPtn0Wxn+0oy1tl67TxUjQARAQABzSlNYXR0aGlhcyBC
+ cnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29tPsLBkgQTAQIAPAIbAwYLCQgHAwIGFQgC
+ CQoLBBYCAwECHgECF4AWIQTmuZIYwPLDJRwsOhfZFAuyVhMC8QUCWt3scQIZAQAKCRDZFAuy
+ VhMC8WzRD/4onkC+gCxG+dvui5SXCJ7bGLCu0xVtiGC673Kz5Aq3heITsERHBV0BqqctOEBy
+ ZozQQe2Hindu9lasOmwfH8+vfTK+2teCgWesoE3g3XKbrOCB4RSrQmXGC3JYx6rcvMlLV/Ch
+ YMRR3qv04BOchnjkGtvm9aZWH52/6XfChyh7XYndTe5F2bqeTjt+kF/ql+xMc4E6pniqIfkv
+ c0wsH4CkBHqoZl9w5e/b9MspTqsU9NszTEOFhy7p2CYw6JEa/vmzR6YDzGs8AihieIXDOfpT
+ DUr0YUlDrwDSrlm/2MjNIPTmSGHH94ScOqu/XmGW/0q1iar/Yr0leomUOeeEzCqQtunqShtE
+ 4Mn2uEixFL+9jiVtMjujr6mphznwpEqObPCZ3IcWqOFEz77rSL+oqFiEA03A2WBDlMm++Sve
+ 9jpkJBLosJRhAYmQ6ey6MFO6Krylw1LXcq5z1XQQavtFRgZoruHZ3XlhT5wcfLJtAqrtfCe0
+ aQ0kJW+4zj9/So0uxJDAtGuOpDYnmK26dgFN0tAhVuNInEVhtErtLJHeJzFKJzNyQ4GlCaLw
+ jKcwWcqDJcrx9R7LsCu4l2XpKiyxY6fO4O8DnSleVll9NPfAZFZvf8AIy3EQ8BokUsiuUYHz
+ wUo6pclk55PZRaAsHDX/fNr24uC6Eh5oNQ+v4Pax/gtyyc7BTQRd1TlIARAAm78mTny44Hwd
+ IYNK4ZQH6U5pxcJtU45LLBmSr4DK/7er9chpvJ5pgzCGuI25ceNTEg5FChYcgfNMKqwCAekk
+ V9Iegzi6UK448W1eOp8QeQDS6sHpLSOe8np6/zvmUvhiLokk7tZBhGz+Xs5qQmJPXcag7AMi
+ fuEcf88ZSpChmUB3WflJV2DpxF3sSon5Ew2i53umXLqdRIJEw1Zs2puDJaMqwP3wIyMdrfdI
+ H1ZBBJDIWV/53P52mKtYQ0Khje+/AolpKl96opi6o9VLGeqkpeqrKM2cb1bjo5Zmn4lXl6Nv
+ JRH/ZT68zBtOKUtwhSlOB2bE8IDonQZCOYo2w0opiAgyfpbij8uiI7siBE6bWx2fQpsmi4Jr
+ ZBmhDT6n/uYleGW0DRcZmE2UjeekPWUumN13jaVZuhThV65SnhU05chZT8vU1nATAwirMVeX
+ geZGLwxhscduk3nNb5VSsV95EM/KOtilrH69ZL6Xrnw88f6xaaGPdVyUigBTWc/fcWuw1+nk
+ GJDNqjfSvB7ie114R08Q28aYt8LCJRXYM1WuYloTcIhRSXUohGgHmh7usl469/Ra5CFaMhT3
+ yCVciuHdZh3u+x+O1sRcOhaFW3BkxKEy+ntxw8J7ZzhgFOgi2HGkOGgM9R03A6ywc0sPwbgk
+ gF7HCLirshP2U/qxWy3C8DkAEQEAAcLBdgQYAQgAIBYhBOa5khjA8sMlHCw6F9kUC7JWEwLx
+ BQJd1TlIAhsMAAoJENkUC7JWEwLxtdcP/jHJ9vI8adFi1HQoWUKCQbZdZ5ZJHayFKIzU9kZE
+ /FHzzzMDZYFgcCTs2kmUVyGloStXpZ0WtdCMMB31jBoQe5x9LtICHEip0irNXm80WsyPCEHU
+ 3wx91QkOmDJftm6T8+F3lqhlc3CwJGpoPY7AVlevzXNJfATZR0+Yh9NhON5Ww4AjsZntqQKx
+ E8rrieLRd+he57ZdRKtRRNGKZOS4wetNhodjfnjhr4Z25BAssD5q+x4uaO8ofGxTjOdrSnRh
+ vhzPCgmP7BKRUZA0wNvFxjboIw8rbTiOFGb1Ebrzuqrrr3WFuK4C1YAF4CyXUBL6Z1Lto//i
+ 44ziQUK9diAgfE/8GhXP0JlMwRUBlXNtErJgItR/XAuFwfO6BOI43P19YwEsuyQq+rubW2Wv
+ rWY2Bj2dXDAKUxS4TuLUf2v/b9Rct36ljzbNxeEWt+Yq4IOY6QHnE+w4xVAkfwjT+Vup8sCp
+ +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
+ 7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
+ a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
+In-Reply-To: <20240226-audio-i350-v8-3-e80a57d026ce@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 9/5/24 3:24 AM, Alexandru Ardelean wrote:
-> The driver will support the AD7606C-16 and AD7606C-18.
-> This change adds the compatible strings for these devices.
+
+
+On 05/09/2024 11:07, Alexandre Mergnat wrote:
+> Enable the MediaTek MT8365-EVK sound support.
 > 
-> The AD7606C-16,18 channels also support these (individually configurable)
-> types of channels:
->  - bipolar single-ended
->  - unipolar single-ended
->  - bipolar differential
+> The audio feature is handled by the MT8365 SoC and
+> the MT6357 PMIC codec audio.
 > 
-> Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+Applied, thanks.
+
 > ---
->  .../bindings/iio/adc/adi,ad7606.yaml          | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
+>   arch/arm64/configs/defconfig | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-> index 69408cae3db9..57537ab0ec82 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-> @@ -14,6 +14,8 @@ description: |
->    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7605-4.pdf
->    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606_7606-6_7606-4.pdf
->    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7606B.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-16.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf
->    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7616.pdf
->  
->  properties:
-> @@ -24,11 +26,19 @@ properties:
->        - adi,ad7606-6
->        - adi,ad7606-8  # Referred to as AD7606 (without -8) in the datasheet
->        - adi,ad7606b
-> +      - adi,ad7606c-16
-> +      - adi,ad7606c-18
->        - adi,ad7616
->  
->    reg:
->      maxItems: 1
->  
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
->    spi-cpha: true
->  
->    spi-cpol: true
-> @@ -114,6 +124,46 @@ properties:
->        assumed that the pins are hardwired to VDD.
->      type: boolean
->  
-> +patternProperties:
-> +  "^channel@[1-8]$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        description:
-> +          The channel number, as specified in the datasheet (from 1 to 8).
-> +        minimum: 1
-> +        maximum: 8
-> +
-> +      diff-channels:
-> +        description:
-> +          Each channel can be configured as a differential bipolar channel.
-> +          The ADC uses the same positive and negative inputs for this.
-> +          This property must be specified as 'reg' (or the channel number) for
-> +          both positive and negative inputs (i.e. diff-channels = <reg reg>).
-> +        items:
-> +          minimum: 1
-> +          maximum: 8
-> +
-> +      bipolar:
-> +        description:
-> +          Each channel can be configured as a unipolar or bipolar single-ended.
-> +          When this property is not specified, it's unipolar, so the ADC will
-> +          have only the positive input wired.
-> +          For this ADC the 'diff-channels' & 'bipolar' properties are mutually
-> +          exclusive.
-> +
-> +    required:
-> +      - reg
-> +
-> +    oneOf:
-> +      - required:
-> +          - diff-channels
-> +      - required:
-> +          - bipolar
-
-The datasheet (ad7606c-18.pdf) lists the following combinations:
-
-* Bipolar single-ended
-* Unipolar single-ended
-* Bipolar differential
-
-The logic in the oneOf: doesn't match this.
-
-This I think this would be sufficient:
-
-- if:
-    required: [diff-channels]
-  then:
-    required: [bipolar]
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -170,6 +220,17 @@ allOf:
->          adi,conversion-start-gpios:
->            maxItems: 1
->  
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            enum:
-> +              - adi,ad7606c-16
-> +              - adi,ad7606c-18
-> +    then:
-> +      patternProperties:
-> +        "^channel@[1-8]$": false
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> @@ -202,4 +263,52 @@ examples:
->              standby-gpios = <&gpio 24 GPIO_ACTIVE_LOW>;
->          };
->      };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +            compatible = "adi,ad7606c-18";
-> +            reg = <0>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            spi-max-frequency = <1000000>;
-> +            spi-cpol;
-> +            spi-cpha;
-> +
-> +            avcc-supply = <&adc_vref>;
-> +            vdrive-supply = <&vdd_supply>;
-> +
-> +            interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-> +            interrupt-parent = <&gpio>;
-> +
-> +            adi,conversion-start-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
-> +            reset-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
-> +            adi,first-data-gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
-> +            standby-gpios = <&gpio 24 GPIO_ACTIVE_LOW>;
-> +
-> +            adi,sw-mode;
-> +
-> +            channel@1 {
-> +                reg = <1>;
-> +                diff-channels = <1 1>;
-
-                   bipolar;
-
-> +            };
-> +
-> +            channel@3 {
-> +                reg = <3>;
-> +                bipolar;
-> +            };
-> +
-> +            channel@8 {
-> +                reg = <8>;
-> +                diff-channels = <8 8>;
-
-                   bipolar;
-
-> +            };
-> +
-> +        };
-> +    };
->  ...
-
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 7d32fca64996..111ca3abd651 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -960,6 +960,8 @@ CONFIG_SND_SOC_MT8192=m
+>   CONFIG_SND_SOC_MT8192_MT6359_RT1015_RT5682=m
+>   CONFIG_SND_SOC_MT8195=m
+>   CONFIG_SND_SOC_MT8195_MT6359=m
+> +CONFIG_SND_SOC_MT8365=m
+> +CONFIG_SND_SOC_MT8365_MT6357=m
+>   CONFIG_SND_MESON_AXG_SOUND_CARD=m
+>   CONFIG_SND_MESON_GX_SOUND_CARD=m
+>   CONFIG_SND_SOC_QCOM=m
+> 
 
