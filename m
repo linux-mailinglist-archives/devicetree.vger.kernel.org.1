@@ -1,103 +1,88 @@
-Return-Path: <devicetree+bounces-100276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E0C96D042
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:18:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E810896D0C7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:51:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DBD2281319
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:18:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6510283916
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:50:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB0D193064;
-	Thu,  5 Sep 2024 07:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D85193412;
+	Thu,  5 Sep 2024 07:50:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBCD1925BD;
-	Thu,  5 Sep 2024 07:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947AD146A72;
+	Thu,  5 Sep 2024 07:50:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725520700; cv=none; b=PF5DUP5nicthNRrCnvEMIiTQOlcsj40i0/bK5ocYOyYGb10gl2nxiRuOv1FCuE3oVLW7rbSZ7oEwMl33yz+iQCgq5VQZVtRifMRBZtQQ7vGmWxZCri/usfnx5Slx0YUhRQxLVWakCM7vHnMMOG5/H1BIIGe+nRQNDCn6ebVTf5o=
+	t=1725522659; cv=none; b=HOrwtt8Yz0c50vO/LvKhufgdVxkXoW5AE/QGHO39QwXQKEcS3OvcZhDkX6yE738/VrsSxQvrQw9AsmexMH6cQJgRzQ5sQBgwK86hxDY1zfLSvPlESqtWWQsLewrc3UprkQydklCR5nxzANx1hMdXungsgG23NruPi5oboy+wPAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725520700; c=relaxed/simple;
-	bh=1E0nu+zy1Da39Rv7vl30O4gnnIIoPGX+hr0l70RcZoo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B6xC3sU39ii+ydpcmYdkHj2p0fsGTrp1+fzgfe6TwghPAYkU6kn6xBnWNhDkY11+VmRI+tE/EXRsLWAo8MMch8YC9hvKeO5BYkynGIJUtKjKI8LFSSlJDJ+y+2YiK4pQsUe6N0PpDiYXd4cBNaVtf55whqbcrZXuMqNzLe3W5io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.10,203,1719846000"; 
-   d="scan'208";a="217606061"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Sep 2024 16:18:10 +0900
-Received: from localhost.localdomain (unknown [10.226.93.27])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id A95AA4007543;
-	Thu,  5 Sep 2024 16:18:06 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>,
-	Pavel Machek <pavel@denx.de>
-Subject: [PATCH] media: dt-bindings: renesas,rzg2l-cru: Improve documentation
-Date: Thu,  5 Sep 2024 08:18:01 +0100
-Message-ID: <20240905071803.8920-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1725522659; c=relaxed/simple;
+	bh=FnWTv0eJs1f2rm6jPuY/lIQjCuwZd7OyZXJGMJDIDtw=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=AX+0VDnB+OHhsOXNkj1XK//exeYaa+Nr1g8SJsTXiv4PwNHVz09NWo4F62E0Lan/a82hEIT4tlm6cDAOQKeKvLYxBkOztESP7Qnb5gcxn1U4D/SEuHVeCvuG+f0GeUd6lVFmWj8j3TFgglL+S05QUEEHmVdEnMU7NOJmMWgLe0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EED9F1A0097;
+	Thu,  5 Sep 2024 09:50:55 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B6F331A183B;
+	Thu,  5 Sep 2024 09:50:55 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id CB140180031E;
+	Thu,  5 Sep 2024 15:50:53 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	abelvesa@kernel.org,
+	peng.fan@nxp.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@pengutronix.de
+Subject: [PATCH v3 0/2] Add one clock gate for i.MX95 HSIO block
+Date: Thu,  5 Sep 2024 15:29:35 +0800
+Message-Id: <1725521377-22645-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Fix the documentation issues pointed by Pavel while backporting
-it to 6.1.y-cip.
- - Replace 'input'->'inputs' in main description
- - Replace 'Main'->'main' in CRU main clock description
- - Replace 'Register'-> 'register' in CRU Register access clock
-   description
+CREF_EN (Bit6) of LFAST_IO_REG control i.MX95 PCIe REF clock out
+enable/disable.
+Add one clock gate for i.MX95 HSIO block to support PCIe REF clock
+out gate.
 
-Reported-by: Pavel Machek <pavel@denx.de>
-Closes: https://lore.kernel.org/all/ZtWJqOdRxkBkUb9y@duo.ucw.cz/
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../devicetree/bindings/media/renesas,rzg2l-cru.yaml        | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+v3 changes:
+- Squash first two dt-binding patches into one.
+- Add Krzysztof's Acked-by tag, and Frank's Reviewed-by tag.
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-index bc1245127025..d3c74341febc 100644
---- a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-@@ -13,7 +13,7 @@ maintainers:
- description:
-   The CRU image processing module is a data conversion module equipped with pixel
-   color space conversion, LUT, pixel format conversion, etc. An MIPI CSI-2 input and
--  parallel (including ITU-R BT.656) input are provided as the image sensor interface.
-+  parallel (including ITU-R BT.656) inputs are provided as the image sensor interface.
- 
- properties:
-   compatible:
-@@ -38,8 +38,8 @@ properties:
- 
-   clocks:
-     items:
--      - description: CRU Main clock
--      - description: CRU Register access clock
-+      - description: CRU main clock
-+      - description: CRU register access clock
-       - description: CRU image transfer clock
- 
-   clock-names:
--- 
-2.43.0
+v2 changes:
+- Correct the compatible entries by alphabetical order
+- Include all necessary To/Cc entried reminderd by Krzysztof.
+Thanks.
 
+[PATCH v3 1/2] dt-bindings: clock: nxp,imx95-blk-ctl: Add compatible
+[PATCH v3 2/2] clk: imx95-blk-ctl: Add one clock gate for HSIO block
+
+Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml |  5 +++--
+drivers/clk/imx/clk-imx95-blk-ctl.c                            | 20 ++++++++++++++++++++
+2 files changed, 23 insertions(+), 2 deletions(-)
 
