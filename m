@@ -1,124 +1,133 @@
-Return-Path: <devicetree+bounces-100557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0DE996E1FC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:28:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6603496E205
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:30:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60DE8B24457
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:28:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92ABB1C2561A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C7217C9B5;
-	Thu,  5 Sep 2024 18:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F181415887C;
+	Thu,  5 Sep 2024 18:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RGjxyBNW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HAn9v7zF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDFCD1803D;
-	Thu,  5 Sep 2024 18:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746A08821;
+	Thu,  5 Sep 2024 18:30:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725560922; cv=none; b=jZDFKACzBp8feSe/tSzU+FipVPOGFFtRSUO36FbuKxYP2lJ2dyQbcYS1H3I1WvEmUdECLcGeS9BoIGcesCamqs6X9jOaFeNIE7bkIG+0gu8vmK2u2q+vZLPMzcbXyPIgygyc9IZm8QZACUHUk6gwEQOeehi15TyLG3u0pme3ONs=
+	t=1725561043; cv=none; b=ujGbOPjp8ESizaUpTnbxgnQs+meZlkuEZFlqbK3Pw/ERMPC6VJPpIoTXc/V5q8PrOCNH67O6LxSrNWXLQhLXN+vUZu5nbzIAgoaCi76ssBVpNrwzxVSxiZ2EeAbuGE/pHGdzfl/l5/WgL+CTtm7xuyGWjbbvaIw7msd4EVIU21E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725560922; c=relaxed/simple;
-	bh=f7E3AztuRKMZ28p4LyFuIOxzMggsHH+GtAi8Hcdna/o=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=lD1PtZklZfqteyo4ZqOAKwxWWIfNngv+LK6qMYWoFRX6E0nOOu3/m0bsmtmmoK9+l7EaK/4uZ+SLypLiXcVUCd90NnY+BnW3VlCN9BBg39Ae+fZ8Ro/hqzM5x6m6KvD3DKsveLtwNrG7TmVO2EM25g5X1IgnBv9pZPQhPRVKmKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RGjxyBNW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6951FC4CEC3;
-	Thu,  5 Sep 2024 18:28:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725560920;
-	bh=f7E3AztuRKMZ28p4LyFuIOxzMggsHH+GtAi8Hcdna/o=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=RGjxyBNWFIjT0UV3k85KNMQ/C8AmP1eZPymbVkmmAeHO+w9izHOhUHUbt6IdZjUsX
-	 Em7OWJPKgEi0qYauywdcZE5zP1W+HBk0KVfG+kxWfzIu6fQ69oKZryVf0cMduv8MD5
-	 /vaAjz7ThafuSkdFPJ+J/c3RCXax/c9OdNPz1N9cDnMmwRYgy1Ni9y1zp85eJxNVGK
-	 ocORw5/Vj2GSKuXf3ChkJ4YzMCnezms/KgokuHTEV854SPtDaIwoxqPP28g9iEOwe5
-	 h95lzF9t/6XyA65YcxpSX5vVsnyMEHxigBsFVDOzcDkCVQ+226l9MzpcRkXUqtoF2T
-	 lYHR2RzLUVGiw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: "David S . Miller" <davem@davemloft.net>,  Eric Dumazet
- <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
- <pabeni@redhat.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Jeff Johnson
- <jjohnson@kernel.org>,  linux-wireless@vger.kernel.org,
-  netdev@vger.kernel.org,  devicetree@vger.kernel.org,
-  ath11k@lists.infradead.org,  linux-kernel@vger.kernel.org,  Bartosz
- Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the
- inputs of the ath11k on WCN6855
-References: <20240814082301.8091-1-brgl@bgdev.pl> <87a5hcyite.fsf@kernel.org>
-	<CAMRc=Mcr7E0dxG09_gYPxg57gYAS4j2+-3x9GCS3wOcM46O=NQ@mail.gmail.com>
-	<87y146ayrm.fsf@kernel.org>
-	<CAMRc=Mfes+=59WP8dcMsiUApqjsFrY9iVFEdKU6FbTKAFP1k_A@mail.gmail.com>
-Date: Thu, 05 Sep 2024 21:28:35 +0300
-In-Reply-To: <CAMRc=Mfes+=59WP8dcMsiUApqjsFrY9iVFEdKU6FbTKAFP1k_A@mail.gmail.com>
-	(Bartosz Golaszewski's message of "Thu, 5 Sep 2024 20:19:34 +0200")
-Message-ID: <878qw6hs4s.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1725561043; c=relaxed/simple;
+	bh=fxHMu2N5hdVBD9qAE8xGbq8KqtZLqQr+bI/uKSVf7QE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=q8v/BvDCl/MgUe9KxIlJMswF9bhigkoa9VdUV1USpfF2BxT2ryfuFe+hUsK7TThL+UKWCWttmQiq69ELcEb5JDMVY2SZRJia4j4YHXkDSID9wSIOv7L14dsC/IyiKLTCfY3hq1vCnpTrmQ2K0qUF2BR6B1teew2YIH9Amjle57o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HAn9v7zF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IQ3FF021768;
+	Thu, 5 Sep 2024 18:30:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=cCAWQgpWPzQfAzsGmKl+nr
+	m4pjFAtmkpOTeM2++UzCA=; b=HAn9v7zF61X4xOZQf8HT4VPnOhZ1Iq/8FEbUr/
+	4SFnQLozxfInT3NJOEukduFstTzlZgMM2E46QCc0783GflYA+YZigeACefc8fRtI
+	y7ZZCQqd5XXzsN8sS40tWj+C6FhTynDGW7J7+eZUm8YXFH756hd3KYmJnzl1XJN9
+	XWcb2YXddLv9NNo0S6M7A2BXmUruWU1ipqCcC5OzV7vTImRRWqlXk0jjO7U/8mbz
+	xqGnBX5Yk9Um/m+duWetvsmEbNXptd0rWY6OaOkZSvYpWy/8Xi0PXdJSVXSeQgD1
+	Lrc1RxmF8jAJ5beNJwDBOG8K35wFhaIkZh393H0ZOyFVvX9A==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwu0095-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Sep 2024 18:30:34 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485IUXpQ013997
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Sep 2024 18:30:33 GMT
+Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 5 Sep 2024 11:30:29 -0700
+From: Nikunj Kela <quic_nkela@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>, Nikunj Kela <quic_nkela@quicinc.com>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3] dt-bindings: firmware: qcom,scm: document support for SA8255p
+Date: Thu, 5 Sep 2024 11:30:16 -0700
+Message-ID: <20240905183016.3742735-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: B7Dwgm8y67CDJY-3F_OGYC_qOGpoikYf
+X-Proofpoint-ORIG-GUID: B7Dwgm8y67CDJY-3F_OGYC_qOGpoikYf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_12,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=999 adultscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 phishscore=0 suspectscore=0
+ impostorscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409050137
 
-Bartosz Golaszewski <brgl@bgdev.pl> writes:
+Add a compatible for the SA8255p platform's Secure Channel Manager
+firmware interface.
 
-> On Thu, Sep 5, 2024 at 5:47=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrot=
-e:
->>
->> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->>
->> >> > +  - if:
->> >> > +      properties:
->> >> > +        compatible:
->> >> > +          contains:
->> >> > +            const: pci17cb,1103
->> >> > +    then:
->> >> > +      required:
->> >> > +        - vddrfacmn-supply
->> >> > +        - vddaon-supply
->> >> > +        - vddwlcx-supply
->> >> > +        - vddwlmx-supply
->> >> > +        - vddrfa0p8-supply
->> >> > +        - vddrfa1p2-supply
->> >> > +        - vddrfa1p8-supply
->> >> > +        - vddpcie0p9-supply
->> >> > +        - vddpcie1p8-supply
->> >>
->> >> Like we discussed before, shouldn't these supplies be optional as not
->> >> all modules need them?
->> >>
->> >
->> > The answer is still the same: the ATH11K inside a WCN6855 does - in
->> > fact - always need them. The fact that the X13s doesn't define them is
->> > bad representation of HW and I'm fixing it in a subsequent DTS patch.
->>
->> But, like we discussed earlier, M.2 boards don't need these so I think
->> this should be optional.
->>
->
-> If they are truly dynamic, plug-and-play M.2 boards then they
-> shouldn't need any description in device-tree. If they are M.2 sockets
-> that use custom, vendor-specific pins (like what is the case on
-> sc8280xp-crd and X13s) then the HW they carry needs to be described
-> correctly. We've discussed that before.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+---
 
-Sigh. Please reread the previous discussion. In some cases we need to
-set qcom,ath11k-calibration-variant even for M.2 boards.
+Changes in v3:
+	- Removed the patch from original series[1]
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+Changes in v2:
+	- Added Reviewed-by tag
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+---
+ Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+index 2cc83771d8e7..65057f5c8972 100644
+--- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
++++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+@@ -43,6 +43,7 @@ properties:
+           - qcom,scm-msm8998
+           - qcom,scm-qcm2290
+           - qcom,scm-qdu1000
++          - qcom,scm-sa8255p
+           - qcom,scm-sa8775p
+           - qcom,scm-sc7180
+           - qcom,scm-sc7280
+@@ -204,6 +205,7 @@ allOf:
+           compatible:
+             contains:
+               enum:
++                - qcom,scm-sa8255p
+                 - qcom,scm-sa8775p
+     then:
+       properties:
+-- 
+2.34.1
+
 
