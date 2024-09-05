@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-100621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE87296E505
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 23:24:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EE396E508
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 23:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFD451C228E1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:24:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12D77B215A1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1A21A4F13;
-	Thu,  5 Sep 2024 21:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791941AD27F;
+	Thu,  5 Sep 2024 21:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Twk1vTSj"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2zveC6n1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0125E56E;
-	Thu,  5 Sep 2024 21:24:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537CC1A4E6F
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 21:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725571491; cv=none; b=AsFHtUPJWFRrX76/p4MRRXeUSSosT/OI4xmWcY7ayTrIz5r6LYVL8mdu3ZK4b8IEInB5R68AIqFgkl432/05YJT7OiiGQyK+LNr0uZqVEgCg5Yk7xGARai298WzElFDERhuev0Yp8EvMKFe4X5mw5gsGPZwRJiWYFuyh+sWH92o=
+	t=1725571544; cv=none; b=Ev4L+Mew/fXDc4XJrkGWvnaNpaJ7EBlZDElwsqGLWgL9gvaFBpKS8h1OXsxGt4BsU0on/Bblbfy/jWljsNShSztKm6NbXApN7JK59GDbeSxzRM7SRu0k1FkbGh854NkSi1khudnWDZ8bFbKKGw4CunLkCwDG5v58kgUAUu3wWsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725571491; c=relaxed/simple;
-	bh=iczN0xwyi9XKG0AABw4GW1BOx4Vco7z3WMqm0R+NJq0=;
+	s=arc-20240116; t=1725571544; c=relaxed/simple;
+	bh=HSVdh6DlK/bUQYWwhJ/DOlVdKX73tkTLOVCP3lGqjOw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EEtesUiIkLUBet6u1a/pZo53tIgkPzmSAPmTR8mdpA+OCBdB3AgUBYnKmDODExXgAkxvmEfsl7UhMZ4zEGXf2KA+ufeAbyalU4YWAqBvQjhkfM/WRQlSTrXbjjvnKjLsVxqRSOckaBv7Kp0oyQEypmxn340xwmq3PxmZN8+to/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Twk1vTSj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5AC9C4CEC3;
-	Thu,  5 Sep 2024 21:24:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725571491;
-	bh=iczN0xwyi9XKG0AABw4GW1BOx4Vco7z3WMqm0R+NJq0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Twk1vTSjqPS5Ya/B59unFPNIVF/jPfUvzEx+In+T1zb8hO16h9lOtvGHXvsrw7lRQ
-	 VumV0uN+i04T6H2eIGXbmbL46XAAQjmOryamGzM3HKlOAO03cyrCJCa5p5c6A+mGaW
-	 7UznuBwin/ZGJFsTkpgTdAImDUfLOAgZP2S9NHdsIPKgvIFrgGbMgHgEL5n8vDDtCv
-	 crceQeB4tbm/fgQhyMO0LG5JXpd0pUkUbYFFBFSSazbDIITse8J1WWfSJisbUaNPpo
-	 p1c1l1fu5DQ2eq6iKppEr7cdJxNRZgr+p1fqyeaEdDxDqz/qYc/QN3sgAsU9Pf+FGK
-	 xIp7vcadZTlYA==
-Message-ID: <5583af24-1f35-4979-8ad6-60a0b2d0580e@kernel.org>
-Date: Thu, 5 Sep 2024 23:24:44 +0200
+	 In-Reply-To:Content-Type; b=anaokyuSOIC6M/UDB+P2NBmK45P3uaSmsH+Zf2naPpGuVDyMzAkdsiCMtx28Nc5Zea5YY1htKAC/Q3BUCgfKnpEFBVW7Qbc8k3+Q+q3qowhB/+VtkH6U22H5xtxXqurzmA5NROuSGIJPMMRf/B+05u/LYeTTMn726f//RAOsfyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2zveC6n1; arc=none smtp.client-ip=209.85.167.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3df0519a3ceso889970b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 14:25:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725571540; x=1726176340; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Fu2LBq0wr4uCbYcpOIyALHAwFgwtVHbOrzj2MNQAIS8=;
+        b=2zveC6n1qxVQJfTD0IhUJl/vozcEBRcM8NzyyhwH43dAdeU2BzKnFfEW58h12ABgij
+         TCcjRBM24hSiXFKpTMzzq71Mf9Fah/jdFbtx14/72Pp4KAuN/DCZLERnJ71ZCGVzzgTU
+         SSR33BpV8vg0uAYDqUQUDGp3N29zp4Ujk6G9Gmrlv7jpxewitFA7ij+5Xj/prdNFj7nS
+         jybUArGsegRehyZtrlmKsBXLcHAxSOcnQWi1El1L4+5SIcF5XkC+uyB71twaGqj65BFs
+         d+OvsdmX7LZ/jW3zHu7Qx+2JgCfper9zAuA/+w6nWU+Gd2uCfRItvYqy6XmHhnanXyhc
+         xzNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725571540; x=1726176340;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fu2LBq0wr4uCbYcpOIyALHAwFgwtVHbOrzj2MNQAIS8=;
+        b=f2RtoXErKGOVypPcC7m/dceg7DVc9ez7UBG1+6NKDyeWmEsvaIAmUTuZ6vMvzj32Ju
+         2v1iLEFGlLX3/KZMKMF6SXOFrYxZzHcAhSHUoAEB9SEMIY8AnwFBJ42yCSBR5DGQgXlF
+         RB2Hw7jsA19Ef9NL/ljQEH/vZKXFqrV11nTwzAUOu3GQ0zeyNjkZNsRePPg2eV8N/QOo
+         EZAa9VmB4lQbNqV8YV/IoJj1GVoG/xoIM6VS+W1MnKxroJJV+V1d8xCIuASWQ0CaegHp
+         dNr7PbmKlePWdih0sc3kJOmYd7Vsn2aZcSqtnuLeMfVrdeJEzt4des7QOMfIHSoO/h0R
+         +enQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXUkd855N5Qke18HKKHG4WW/YqdTgXRsyeIJFq3YFDn9+9XAE1/Kn29BrvJVC00yHAuaoRKgCl2ZjTg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPeFjcLlMVIbVSTlpVCUVmLFqyIK5DZCMh1rx7ztDGsunBRQYy
+	Q4vz8qSQVVFa4BSpC5Ia+xHb26bm4m54t+prV92NdfBXF40H4oJV5fAzJLFKfQU=
+X-Google-Smtp-Source: AGHT+IHdv/EbugAmJ7r5iwyOeKbvpTXIU+mFHAGXNUh55QcJGCrv3aFVWa6nJ0A/HsvDo91d7GHtsg==
+X-Received: by 2002:a05:6808:2110:b0:3d9:4163:654f with SMTP id 5614622812f47-3e029f27515mr810531b6e.32.1725571540508;
+        Thu, 05 Sep 2024 14:25:40 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3df11865deesm3363718b6e.46.2024.09.05.14.25.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Sep 2024 14:25:40 -0700 (PDT)
+Message-ID: <7ba70132-e661-4f4f-a0e3-0ed1efc1aecb@baylibre.com>
+Date: Thu, 5 Sep 2024 16:25:39 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,86 +76,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: soc: qcom: aoss-qmp: document support for
- SA8255p
-To: Nikunj Kela <quic_nkela@quicinc.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_psodagud@quicinc.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240905192328.3778542-1-quic_nkela@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 1/8] iio: adc: ad7606: add 'bits' parameter to channels
+ macros
+To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+ michael.hennerich@analog.com, gstols@baylibre.com
+References: <20240905082404.119022-1-aardelean@baylibre.com>
+ <20240905082404.119022-2-aardelean@baylibre.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240905192328.3778542-1-quic_nkela@quicinc.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20240905082404.119022-2-aardelean@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/09/2024 21:23, Nikunj Kela wrote:
-> Add compatible for AOSS QMP representing support on SA8255p.
+On 9/5/24 3:23 AM, Alexandru Ardelean wrote:
+> There are some newer additions to the AD7606 family, which support 18 bit
+> precision.
+> Up until now, all chips were 16 bit.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> This change adds a 'bits' parameter to the AD760X_CHANNEL macro and renames
+> 'ad7606_channels' -> 'ad7606_channels_16bit' for the current devices.
+> 
+> The AD7606_SW_CHANNEL() macro is also introduced, as a short-hand for IIO
+> channels in SW mode.
+> 
+> Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
 > ---
-> 
-> Changes in v3:
-> 	- Removed the patch from original series[1]
-> 
-> Changes in v2:
-> 	- Added Reviewed-by tag
-> 
-> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
-> ---
->  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
 
-Why are you splitting same subsystem patches into multiple patchsets? I
-asked you to split per subsystem. Not per file. How subsystem maintainer
-is supposed to pick it up?
+...
 
-Best regards,
-Krzysztof
+> diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+> index 0c6a88cc4695..771121350f98 100644
+> --- a/drivers/iio/adc/ad7606.h
+> +++ b/drivers/iio/adc/ad7606.h
+> @@ -8,7 +8,7 @@
+>  #ifndef IIO_ADC_AD7606_H_
+>  #define IIO_ADC_AD7606_H_
+>  
+> -#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all) {	\
+> +#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all, bits) {	\
+>  		.type = IIO_VOLTAGE,				\
+>  		.indexed = 1,					\
+>  		.channel = num,					\
+> @@ -19,24 +19,26 @@
+>  		.scan_index = num,				\
+>  		.scan_type = {					\
+>  			.sign = 's',				\
+> -			.realbits = 16,				\
+> -			.storagebits = 16,			\
+> +			.realbits = (bits),			\
+> +			.storagebits = (bits),			\
 
+Technically OK in this patch since bits is still always 16 but we
+can avoid changing the same line again later to:
+
+	(bits) > 16 ? 32 : 16
+
+if we just do that in this patch.
+
+
+>  			.endianness = IIO_CPU,			\
+>  		},						\
+>  }
 
