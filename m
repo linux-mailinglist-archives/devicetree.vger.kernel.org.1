@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-100618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8B496E4A4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 23:08:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA7696E4AE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 23:13:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92AA32833F9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:08:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22DE11F24561
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4071A1A4F13;
-	Thu,  5 Sep 2024 21:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73DD1A726E;
+	Thu,  5 Sep 2024 21:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XF2XeRGA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o52ZorO+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3AB1A4E6F
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 21:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A0B165F0E;
+	Thu,  5 Sep 2024 21:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725570508; cv=none; b=JaDLe2LM0DRRqMC7eS3+gKSJRpGw8DbDZaYlql4a0jWtqnfqntRwtdantCd/P4Ri7vVStFqe4LvwQ7cVmgY4xrPwfBgJnLyp1Z6lWndfoNPKYEk7LAhUjVXgzQ3hq6DT1m9JMH3mS8wyEYxBCC5SQkFd7gGfy0q+XskFzfMiueI=
+	t=1725570776; cv=none; b=EYPy1kBERfFRbXTEhFa7Gt0AYK/srbcx4ROGACr4dH0A/3EqMq1QiIDddTku3SPQzNqd4Ad9Ed269/90RHpgPm9vf8GSPQw+IU7w+EK2QctqNkzywSkvjXEsp67G+nAswXfTKryyO3zBfQj1QGwO3X2ZHVEw70L55pfGThKLCfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725570508; c=relaxed/simple;
-	bh=wpb8DxW+hJmtiCSJgNbW4Sdqzkl+nYgI/PNGRVeXpow=;
+	s=arc-20240116; t=1725570776; c=relaxed/simple;
+	bh=0Vatl0sKmjO6YyUR+Mh5z2EsnIjTTv3H9NsCxF/acl8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=da3IaR1OePHPi+cJXSy6KD5GMzYuasKTnW9mzHtevnYF4cmUlOwv6C+3Db5VX6JM2yvosZZTkAl3bZQ4EypgpF+ZzODnDTZQdlBz0XRHXA26ugRb4iCD3/lCwkgeI8uJVLrQqH1QPXIBfSANaKA8MZqbnmFeEXgPjDrrS6Whb5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XF2XeRGA; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-70f782d6ba8so676489a34.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 14:08:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725570504; x=1726175304; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m6GNe3xBrOr3LoM9ELz/Obj2T7F9ShEUEMbETP31FHo=;
-        b=XF2XeRGArXBirK5x3AeLMceV0XNhcCcMOfYZONoDTkQ3mnIVre1k1y3zzJ8+txNQPJ
-         UB4sR8Q8mImL3c2HEfxSOlt7dNnyVOwlI2qCXprtsY4hkUzo/Ltvg1J52Aq46KB1kn4T
-         Hcu0tIqf4RFVA6h3oNA+VptfIBwblplRXE3DGSZe/qCcgiS2Ftdw+HMseecl8cshrQcX
-         gfPc2PHhB9eKDf94vmu6K2kXMs33odJn+pxnfwriGC2BYOu6rrk0352a9CBFeaevqJJn
-         Wnrr0xWxvSSyumvFUN8p8y05mRJE1dw+wwNrlbst/MpdBc/R2tRcBOX7l4AAGKVTa+t4
-         ffnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725570504; x=1726175304;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m6GNe3xBrOr3LoM9ELz/Obj2T7F9ShEUEMbETP31FHo=;
-        b=BmTH/xEjXCRXujSr4qhEE3TYubf6zarrbkIZ6NuWlRqd64c0dNXOZyY0Jt910RaFT2
-         d519V73NrTD1nBg08vpKRxh/hsmtHS+ZWyJMqEUo1Gyhonjf3D7tqS3vBFg43ghnfIwx
-         oHeQvxwCNAB4Pza/2aBsk0QF+ud1f7bwnGOs8/A1SmpfuvQKLIWJA9oel+vGAlSsg3ky
-         z4NY7oEZm6mYF1l3ss6M+5ygRQnL+F/KY/pT6+SxS+n3itCrd2h9zIZL5OweA3PQtTRq
-         XXvtMzTMLYydGqx5QWYU5clUhbGwlBwrpu6rFcghVwu7nIkbMrlYx0QDk65e40wcWMlG
-         417Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX5AnSZJ23+/qv9mW3THXhD9ZVKsWRi9wT7csfvrSy+35OubjcpB5sZgzEbfwFS4saN6W7Lra/D99Pu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqUOVCXTsHbLPMxBlzA4yXIoGboCwgoBuNlPzY29Uq61OePsJs
-	1G5M6K612pozwyixTbV+1Kl8Fokrx6ityvFSr5kz2exuPjaC2qh30E/4O7+DaKM=
-X-Google-Smtp-Source: AGHT+IGQmYOTmQwmJjJJEnrdvZQo9B/4avsrkb7ySIzy4kK18kK6CB4KbDRpi3mJIMZH62isrmxU5A==
-X-Received: by 2002:a05:6830:7190:b0:70b:2999:2d7e with SMTP id 46e09a7af769-70f5c3a239bmr26141362a34.1.1725570504192;
-        Thu, 05 Sep 2024 14:08:24 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-70f671a8938sm3388221a34.53.2024.09.05.14.08.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Sep 2024 14:08:23 -0700 (PDT)
-Message-ID: <0f33d3be-ad3a-412e-9314-2c71692d6d1d@baylibre.com>
-Date: Thu, 5 Sep 2024 16:08:23 -0500
+	 In-Reply-To:Content-Type; b=RVVx5P5M0/9X9JdoNKIbMo4coVbvzy3IKmDmLgkS/uahOqjKXJvltrJrwCDe11MbnHMFWN8hWDj2MWugeeaR74P0GOTMm78kf5rmkQvwmq596DfcXk9Hqqt3/LonEtsyfdJf3OFnzQWulilbuoMn98wpPSzQJVYH44RnHNFG+NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o52ZorO+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A749DC4CEC3;
+	Thu,  5 Sep 2024 21:12:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725570776;
+	bh=0Vatl0sKmjO6YyUR+Mh5z2EsnIjTTv3H9NsCxF/acl8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o52ZorO+e6QTl1uKF/WKDmmlV6Z2YYdNKO4cKkdOj51LvNUCJPvJzCA/6YvpmDStO
+	 uofK3AP+Sf7KC17qM+iqenIdP7e/u24m27YIBPW00zoQS3jCOB3h4eERMX+NPxPBl4
+	 J+O3FNZC/h94sLow7hPaGpBA9im8mRSt4G355tx9qv3U7C7PiYbxOCohLtT5WTW7zG
+	 iL08k+S2esPvbRwg75fcye2UpaaVC1cpxTAETXijYiv6twGnt3XNYNbi2Xrszlztk1
+	 6JMYkPeZXKe2sv3REtY9jkG4bbStxUqg9ItSVroPuYeJQeBKusRLan4RQEKeWidXct
+	 7MZUNNmgU5qIQ==
+Message-ID: <8bab34a9-0fe4-4c69-b12b-7ad663bde2d0@kernel.org>
+Date: Thu, 5 Sep 2024 23:12:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,79 +50,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/9] dt-bindings: iio: dac: add ad3552r axi-dac
- compatible
-To: Angelo Dureghello <adureghello@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
- <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-5-87d669674c00@baylibre.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: display: Add Sharp Memory LCD
+ bindings
+To: Alex Lanzano <lanzano.alex@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>,
+ christophe.jaillet@wanadoo.fr, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+References: <20240905124432.834831-1-lanzano.alex@gmail.com>
+ <20240905124432.834831-2-lanzano.alex@gmail.com>
+ <a4520c05-d64b-4ef0-823c-6c568b459e21@kernel.org>
+ <trlyhlclf74itbgj4x6baj6ga6yipdicw3c6odtjgxtbw3cjyl@lyfiny2yiz35>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-5-87d669674c00@baylibre.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <trlyhlclf74itbgj4x6baj6ga6yipdicw3c6odtjgxtbw3cjyl@lyfiny2yiz35>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 9/5/24 10:17 AM, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
+On 05/09/2024 22:27, Alex Lanzano wrote:
+> On Thu, Sep 05, 2024 at 03:23:20PM GMT, Krzysztof Kozlowski wrote:
+>> On 05/09/2024 14:43, Alex Lanzano wrote:
+>>> Add device tree bindings for the monochrome Sharp Memory LCD
+>>>
+>>> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
+>>> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+>>> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+>>
+>> I don't understand what happened here. Your process of handling patches
+>> is odd. Tags do not disappear, you had to remove them, right? So where
+>> is the explanation for this?
 > 
-> Add a new compatible for the ad3552r variant of the generic DAC IP.
-> 
-> The ad3552r DAC IP variant is very similar to the generic DAC IP,
-> register map is the same, but some register fields are specific to
-> this IP, and also, a DDR QSPI bus has been included in the IP.
-> 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> index a55e9bfc66d7..c0cccb7a99a4 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> @@ -24,6 +24,7 @@ properties:
->    compatible:
->      enum:
->        - adi,axi-dac-9.1.b
-> +      - adi,axi-dac-ad3552r
->  
->    reg:
->      maxItems: 1
-> 
+> Whoops! My apologies for wasting time. Nothing changed in this patch
+> I forgot to add in your reviewed-by tag.
 
-I think we will also need more for child nodes:
+Tag was there before, so you removed it...
 
-patternProperties:
-  "^dac@[0-9a-f]+$":
-    type: object
-    additionalProperties: true
+Best regards,
+Krzysztof
 
-    reg:
-      # add more rules for reg here
-
-    required:
-      - compatible
-      - reg
-
-allOf:
-  - if:
-      not:
-        properties:
-          compatible:
-            contains:
-              - adi,axi-dac-ad3552r
-    then:
-      patternProperties:
-        "^dac@[0-9a-f]+$": false
-
----
-
-Or use existing SPI bindings.
 
