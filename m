@@ -1,65 +1,55 @@
-Return-Path: <devicetree+bounces-100254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2735C96CFA9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:48:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C17FB96CFBF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:50:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0E66B218B9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:48:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8277A283A3B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:50:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94EF1925A6;
-	Thu,  5 Sep 2024 06:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9243191F8D;
+	Thu,  5 Sep 2024 06:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duUoEs6H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1hPa81X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A962842C0B;
-	Thu,  5 Sep 2024 06:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F58C191F79;
+	Thu,  5 Sep 2024 06:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725518881; cv=none; b=Oy9r+vRYWqjBWoO85k7tcGM/gghoF/K/OgIR4nx+FTkY13md0grOxUraVL0rVT855W5++WcM0/NyEPRkEvV9NA20odVsDJZIs1x7u3xOlNy9kYLQ0ETct9B79+Xgx5aQTTAaEa5elwj7MKyP1QltTzxBaJgJYteEVH1xWfjlZaU=
+	t=1725519010; cv=none; b=Gr1lZKIg2XvmMnoaW2IHArxhOzd8BloyZiF/q+lOdki4yxUQtyeWW6/3Di65nPusyWXuOknfEQNFdrusR1wkZ8Avzj0iIHwuWy+43Mg+nXTIIAjZ3LdUAFHcB5qeWVoY5E5tc/C0Ts3zQXTRJ5AAEBkBTpVBf0/TBplNHbsofCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725518881; c=relaxed/simple;
-	bh=Njmcixp/WFQ1K49ru/lsO056x3RbOFYKJXcQ0Q4keZQ=;
+	s=arc-20240116; t=1725519010; c=relaxed/simple;
+	bh=x+NxVdAMdu6LVDj01TH+tZKYV4CGqjlkMgUaqOir44w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tG+pyhSNwN/s6NVRwavzEE7UQAkmfGdSquA09nwHyiHSFzWulXs0CoLK5oW4S+bToatvKEXQxFmy9r8NEZWTuWRYXjEDl7mY0hKeFcvenfkukag3MutMBrgFTtH3X110pgMbi8enKlWqW0gbpcpUsUV3PaofSwaPCJXt63QEeV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duUoEs6H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92548C4CEC5;
-	Thu,  5 Sep 2024 06:48:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z++R9MIabi6E5ZKaiYhOrV88UJ7vwwrg/aRGgSlmlaEzQvlzy8dUXOdE6YtOuLeoiIbvyWWcFy50e7FTeH0okmzI4DjcpP8k8snEsZoOVk5hPLAwI1dLncoOTGhXhFBnMwEq+KqvCNHL1alswzIvydKDiqXhSznqtQKYLcE+B4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1hPa81X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68A8EC4CEC4;
+	Thu,  5 Sep 2024 06:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725518881;
-	bh=Njmcixp/WFQ1K49ru/lsO056x3RbOFYKJXcQ0Q4keZQ=;
+	s=k20201202; t=1725519010;
+	bh=x+NxVdAMdu6LVDj01TH+tZKYV4CGqjlkMgUaqOir44w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=duUoEs6Hd1u6uJGJe+vLlGXNL978OGr5qOmgnYGcHCXWUEZgEU9TN9dV3Mp/639Ax
-	 Pid/joQx2Zxr4G5uLOyABA6Ke3vCQh1BeW1nssV4y2phnfzM6e0SDDgGyic2Dzx8C0
-	 JNCPbQhgB6YKdj7Qw98r+jt55hS9dRnrhai6pFs4SjZ/KUusRgFzLiZHhmShrsQaJc
-	 0SqZ8PPEIl9juYSUDUj+S3FULb/Ukk1YA4Ge+cLLisrd3jr6VZogZswvsCkFvyP9sB
-	 TG/+cl6b9CHUrjsRklnTRwjEVp11MVQHEv8tfF2oSD3TJGGcnFWMcjBMJvwKzphtmm
-	 RhOPBoLgvd8Gg==
-Date: Thu, 5 Sep 2024 08:47:57 +0200
+	b=Q1hPa81XeUSrGVlvKHbi0BNDsi7o38g+a3VXwQNEsdKeZQXFpOtYl7NOdwSmMg2l3
+	 LgVgwvZwAGDRvS/s0RRb0lgIQCbcZ67UlirkVxKj4AS8OHuWMTmUAPZ1eLGPeSP5I1
+	 PmH6+QipbLDJKFGqbdJqM1o4+Tsoj/ivuIn3ZTs5PkLAeREEAr0lxYZLYTjZZ9ZmfY
+	 5bzxcHCClnxLeazFvCF875NzeF6kFnSDtcdKzU2ghmoZ5Ti3Qz7wp9x5PhazlafENO
+	 3cCVgR7Xlfn/2VyrNUQGTqYRvXHzs+HUOCpOd/sV3inkREt00K75s63/IARhlunWfx
+	 kawnGa+HeRYsw==
+Date: Thu, 5 Sep 2024 08:50:06 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vikram Sharma <quic_vikramsa@quicinc.com>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>, 
-	Hariram Purushothaman <hariramp@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	cros-qcom-dts-watchers@chromium.org, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Suresh Vankadara <quic_svankada@quicinc.com>, 
-	Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
-Subject: Re: [PATCH 01/10] media: dt-bindings: media: camss: Add
- qcom,sc7280-camss binding
-Message-ID: <2m4dmdsivqwo45bxvuhashrlfki3akzzc3qp2vp32nrhvairyq@uibybei3fsco>
-References: <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com>
- <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-1-b18ddcd7d9df@quicinc.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: incomplete-devices: And another batch of
+ compatibles
+Message-ID: <o4uoinuuj33d5w342ex27aoofjobtsq6m75u67ufyxrmlzyplp@mjwcreewfpiu>
+References: <20240904200253.3112699-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,29 +58,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-1-b18ddcd7d9df@quicinc.com>
+In-Reply-To: <20240904200253.3112699-1-robh@kernel.org>
 
-On Wed, Sep 04, 2024 at 04:40:07PM +0530, Vikram Sharma wrote:
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,camcc-sc7280.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
-> +    #include <dt-bindings/interconnect/qcom,sc7280.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      camss: camss@acaf000 {
-> +        compatible = "qcom,sc7280-camss";
-> +
+On Wed, Sep 04, 2024 at 03:02:52PM -0500, Rob Herring (Arm) wrote:
+> Another batch of compatibles unlikely to ever be documented. It's
+> mostly old PowerMAC stuff found in DT compatible API calls.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/incomplete-devices.yaml          | 101 ++++++++++++++++++
+>  1 file changed, 101 insertions(+)
 
-Alignment, indentation and properties order is completely wrong here.
-But maybe because you keep sending the same and expect different
-review?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
