@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-100228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCFCA96CE72
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:29:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B02AA96CE7A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:36:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DA3D1C21DA2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:29:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C7EA1F230C4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:36:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4F617C995;
-	Thu,  5 Sep 2024 05:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E092D188A1F;
+	Thu,  5 Sep 2024 05:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IdydUlej"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="BEpbo9Gx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9612186E40;
-	Thu,  5 Sep 2024 05:29:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D16A79F5;
+	Thu,  5 Sep 2024 05:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725514180; cv=none; b=Y3czjvybOI4aPx/i7aLPrTF8/vkyALhqWx3GLK0BucU0dVyzx/n++6q/TyNA8yfC/8VKfLpxzaU7tFYGYvmysSLCjYzS9huvOU5zugYTlMC8sVzaNmx1AtwSz/2/3lC4xwlVqr7/9QfdRfe7g4N+tULi8TxKCR+26Hg/UdpNPDo=
+	t=1725514559; cv=none; b=ouE53cA8i5SOUIRmEJjklgqUzpUQiA+a4SvIyXwbHbmMfCUFWi1LzW7oKKz+QwY/JS8eC53zrhC6J5/zj3Pn1rl+/o+/Oh71yUWsSZLyx9rKdR2BzFMbmBrJCD3Kj/RAcNeRUkLr3XG0ffasa4z7KU7vvBMo0Qvay5MGKkKp9so=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725514180; c=relaxed/simple;
-	bh=/Rhq3bcvhDCY1UoEacLynJ+6olDrrMFt7zADnn7EHPw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=s1tPVea+I/npgTCvHObzzKAjR7U1EToBsGLib1JXpnDiPvDBoCWGURRWWg3908v6l94pyyXBffph/MCjdN/buJYvugdRrmRdkv69frNGKl9zw9S+kZum3lXBAfzCdaA+SEb+4WHGIEWmP10uJZIwenzl55I1PYritPKRxShJVTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IdydUlej; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484MNFtl006359;
-	Thu, 5 Sep 2024 05:29:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/FldfljLyXuI4lAm/Zqq6fjxP/R364/OKwHtuXRjqMc=; b=IdydUlejU9DNatqb
-	B+oTikCTGDkfTiKI+aZOLGSTP/gebc6sJGdfxSmvM0pdFL6FymLG6oCeNIgp3SE0
-	JK8uY4E4JhN10ZqnR8Pok/W6piUK4m4CrKJHDkmdHbppsZdn36UlLu4X7ay7xcpm
-	FqgnYgrMxKsOgEVK4y523j9LHSAKX2QE96zdeotwUJ0VhGNPDT5y6kB53YPe4VmL
-	f0EUdict6/E0CUy90ODnJcqEmWrbobSaltw+tsG7EUln64ak1shPx1mPsSqInIOD
-	5UhkHXw4ghtz/hczZen5uv1SYcRKOvDVSIS94fzc1zSSQhNdQxzGEqIcywH7/QPt
-	L2GfNQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41enbwjkvf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Sep 2024 05:29:32 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4855TVeJ001937
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Sep 2024 05:29:31 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
- 22:29:25 -0700
-Message-ID: <ded66421-9425-4b9d-9922-dacc66777b83@quicinc.com>
-Date: Thu, 5 Sep 2024 13:29:23 +0800
+	s=arc-20240116; t=1725514559; c=relaxed/simple;
+	bh=osc/smiOWFFNrU4OiWoZZ3YpfJzqbUUrBExgfChP/RE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=dboa5yiNrODzylbMPciWNs5QOdeExAvJP2yFIHQIRY8+zkTNE+/XNIpIB+FFaNV8pUcKEOrVQ+LTceN4IIhC79R16TqZw30P5ilsfh+xFhh/wLWl+iQxbbwti2sv9aByT5CFUKq5cxwrpXYnJPtGIVnBH01m5G530CdKguxmVTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=BEpbo9Gx; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [14.155.100.110])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 9BB38789E6;
+	Thu,  5 Sep 2024 13:35:51 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 9BB38789E6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1725514552;
+	bh=Hyq7RqSAoGC1rJ0dAnU4OWaWJgGE8rjFiQIsdvKZxrE=;
+	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
+	b=BEpbo9Gxr0f/JzpbESCFyy+vrgyiztBYy3YF9ldf8uy/I7cfJRoPr/SQ4Y0I+lPva
+	 dF2Gl8+FxzzowZOAGFiQ/h6WCyKA7TJaI8UylOzC82VVCzZZXksxxBbDRaoGhVX0Ei
+	 4COSwaqLPQHkTp7A8dOz/olPzxiwDB7pDCimUlaE=
+Message-ID: <f8a5018f-113d-4d9d-9223-954d054796a6@classfun.cn>
+Date: Thu, 5 Sep 2024 13:37:17 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,169 +50,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: add base QCS615 RIDE dts
-To: Konrad Dybcio <konradybcio@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>,
-        Lijuan Gao <quic_lijuang@quicinc.com>
-CC: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
- <20240828-add_initial_support_for_qcs615-v1-6-5599869ea10f@quicinc.com>
- <22qkvfravm6sxiq3xfavahg2u6b2pwlyzqbqvd55zym5zef3gi@m4bsqkdvggty>
- <17d0017e-b55d-4b32-9fd3-1a1a84e5ebf9@quicinc.com>
- <0ec92d59-0648-40ed-a522-307152b5c37d@kernel.org>
- <148451f2-6b1b-4616-b703-fd52e7afa2be@quicinc.com>
- <90c98fee-770c-4b83-9e05-6f04866094c2@kernel.org>
- <729deff2-d5df-4409-b941-af22de408521@quicinc.com>
- <9ded31cf-5b14-426a-a10c-694f20d4fb9e@kernel.org>
- <22657edf-5df9-44dc-b2a8-134ae613d819@kernel.org>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Subject: Re: [PATCH 0/3] Add support for Ariaboard Photonicat RK3568
+To: "Rob Herring (Arm)" <robh@kernel.org>
+References: <20240904111456.87089-1-bigfoot@classfun.cn>
+ <172545685977.2410524.10394848640957143488.robh@kernel.org>
 Content-Language: en-US
-In-Reply-To: <22657edf-5df9-44dc-b2a8-134ae613d819@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 79xC2Ticx_-2CQVYrO3Qd1FO4IpF0QkN
-X-Proofpoint-GUID: 79xC2Ticx_-2CQVYrO3Qd1FO4IpF0QkN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-05_04,2024-09-04_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- priorityscore=1501 impostorscore=0 clxscore=1011 bulkscore=0
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 spamscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2409050038
+From: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <172545685977.2410524.10394848640957143488.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 9/4/2024 6:23 PM, Konrad Dybcio wrote:
-> On 4.09.2024 11:32 AM, Krzysztof Kozlowski wrote:
->> On 04/09/2024 10:35, Lijuan Gao wrote:
->>>
->>>
->>> 在 8/28/2024 5:34 PM, Krzysztof Kozlowski 写道:
->>>> On 28/08/2024 11:31, Lijuan Gao wrote:
->>>>>>>>> +/ {
->>>>>>>>> +	model = "Qualcomm Technologies, Inc. QCS615 Ride";
->>>>>>>>> +	compatible = "qcom,qcs615-ride", "qcom,qcs615";
->>>>>>>>> +
->>>>>>>>> +	chosen {
->>>>>>>>> +		bootargs = "console=hvc0";
->>>>>>>>
->>>>>>>> Noooo, last time I agreed on this, you told me later it is different.
->>>>>>>>
->>>>>>> In the early stages, enabling HVC is to more easily verify clock and
->>>>>>> PMIC related functions, as it’s difficult to debug without the console
->>>>>>> log. After the clock and PMIC are ready, we will enable the UART console.
->>>>>>
->>>>>> Working serial is supposed to be part of the early submission.
->>>>>>
->>>>> Okay, I will remove it in the next patch.
->>>>
->>>> Can you post next version with proper serial device?
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>> Hi Krzysztof,
->>>
->>> Can we use the dts without console enabled as the first version? When 
->>> the clock is ready, we will submit new changes to enable the UART console.
+On 2024/9/4 21:36, Rob Herring (Arm) wrote> On Wed, 04 Sep 2024 19:14:53 +0800, Junhao Xie wrote:
+>> Add dts for Ariaboard Photonicat RK3568.
 >>
->> It is very surprising not to have console available in the first, early
->> submission, but it is not a blocker for me.
+[...]
 > 
-> Lijuan,
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
 > 
-> I see that the initial submission is very slim. GCC+UART+TLMM is
-> usually the smallest we tend to accept.
-
-We are exploring various ways to improve the efficiency of the upstream
-change merge process. In the current QCS615 project, we are
-experimenting with a slim "HVC console" verified base device tree to
-minimize dependencies and enhance parallel work efficiency.
-
-Currently, different developers are working on the same QCS615 project.
-One developer is focusing on clock support for QCS615, another is
-working on interconnect support, and a third is handling TLMM pinctrl
-support. Additionally, the QUP UART validation depends on above soc
-specific GCC clock/TLMM support.
-
-Here is the proposed process chart for reference, Clock/TLMM, even other
-functionality like LLCC can be validated apart from current Base support
-with HVC console enabled:
-                               +---------------+
-
-                               | Clock         |
-
-                               |               |
-
-                               +---------------+
-
-+---------------------+
-
-|    Base support:    |        +---------------+       +-----+
-
-| HVC console enabled |------> | TLMM          | ----->| UART|
-
-+---------------------+        +---------------+       +-----+
-
-
-
-                               +---------------+
-
-                               | Interconnect  |
-
-                               +---------------+
-
-
-It is suggested to have process like this:
-1. Have hvc console enabled base device tree support.
-2. TLMM/GCC/Interconnect/LLCC/etc drivers can be pushed along with the
-needful dt changes.
-3. QUP uart support change after TLMM/GCC dependency uploaded.
-
-Here is an original example of qcs8300 project that the base device tree
-wait until have all qup uart enabled support for reference:
-1. The first soc support[1] pushed at 08/14.
-2. TLMM support[2] pushed at 08/19.
-3. GCC clock support[3] pushed at 08/20.
-4. Interconnect support[4] pushed at 08/27.
-5. LLCC support[5] pushed at 09/03.
-6. Initial device tree support[6] pushed at 09/04. And it have 5
-co-developer in the initial device tree support.
-
-
-[1]https://lore.kernel.org/all/20240814072806.4107079-1-quic_jingyw@quicinc.com/
-[2]https://lore.kernel.org/all/20240819064933.1778204-1-quic_jingyw@quicinc.com/
-[3]https://lore.kernel.org/all/20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com/
-[4]https://lore.kernel.org/all/20240827151622.305-1-quic_rlaggysh@quicinc.com/
-[5]https://lore.kernel.org/all/20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com/
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
 > 
-> While hooking up these drivers may take some time, please consider
-> at least describing a subset of the clocks and the QUP UART, as
-> everything non-SoC-specific is already in place.
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y rockchip/rk3568-ariaboard-photonicat.dtb' for 20240904111456.87089-1-bigfoot@classfun.cn:
+> 
+> arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dtb: phy@fe8c0000: 'phy-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
 
-To be more specific, are you suggesting like adding the base device tree
-describing with current nodes subset which only have non-soc-specific
-info, like:
-1. "apps_rsc" nodes without info of
-"qcom,qcs615-rpmh-clk","qcom,qcs615-gcc"?
-2."qcom,geni-debug-uart" nodes description without the clock properties?
+I will remove it in PATCH v2
+
+> arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dtb: rfkill-modem: 'reset-gpios' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/net/rfkill-gpio.yaml#
+
+The modem in Photonicat must have a reset signal to work properly.
+I can find reset-gpios in net/rfkill/rfkill-gpio.c, but it is not in the schema.
+Maybe reset-gpios is missing in rfkill-gpio.yaml? or this property cannot be used in dts?
 
 > 
-> Konrad
 
--- 
-Thx and BRs,
-Aiqun(Maria) Yu
+Thanks for your reply, I will fix them in PATCH v2.
 
+Best regards,
+Junhao
 
