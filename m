@@ -1,128 +1,99 @@
-Return-Path: <devicetree+bounces-100604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FBE396E3C2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF52296E3DE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:18:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C34CE2820DC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:12:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B454287E4D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B0A16F831;
-	Thu,  5 Sep 2024 20:12:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3F7193414;
+	Thu,  5 Sep 2024 20:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qwe48Cl8"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="VjVLeKRq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CE9158DC0;
-	Thu,  5 Sep 2024 20:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE691917DA;
+	Thu,  5 Sep 2024 20:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725567163; cv=none; b=iS237tQp57QA6tm4cmOLJA7+UuoIJByp4+sp7FJsEHdx5IsbQgtyPcQuxV0UbKc8eDPgnBxDvP1c1GFM8uzqUGUcjN1U75VdFki28RE1kXoUlkpNIDV4PZOdQJYks/r+NsOWCyLxqQcqC50mVB19v/blgMjneacDELDyeCdeNiw=
+	t=1725567371; cv=none; b=bLxQgjlYGFp4X5e14YUXF3x7HGNYgf9WqPSnF2GkLDr/biAgJahWJPaibD5YBL+5Wlk4XtvJdx+43VtUo3DAY/8I/nD6Y8fzNw4bb4FPC30sWrK20GfmFvCbK8DeM06BXACSAX2WUa1K96BdcsQzYVCGrx/Ebt3Q7YM90/PsRIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725567163; c=relaxed/simple;
-	bh=w/ZWoZWSJ2oywbAuMrgFd7l5yRBfaFpUWObRn3hGLoQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZM1IIVnyj5vag0Qgggxq8mCmE2QwhI9FL2dDeHYer/00WtnCyrNgEPX7krq/3MI3fhNeRVZhXXd1/jHaiLEEkT2SJVdAXawf21soYh9XpJ4aSfMBMHheVWUMeKrQT+xpKMa+FoVhkKMMOxT9p4WP/TFk0PdxSNPS8euxqwRI9fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qwe48Cl8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IPwSt021611;
-	Thu, 5 Sep 2024 20:12:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=WdZmBG0Qn3m95qrKq0kN7i
-	SjKHyqrRrZ0qphiCEjm1g=; b=Qwe48Cl8BW9yHU49Gphh6hojXTaMv73jJbyB/d
-	FpQKFkBHwVr9UZMWN02rHDp3zSHHVIBJd3qSJGeOzyqj6zLi/2j3IaFXg/U1ckwm
-	EJjKDy94cLZz8p7G/JVt00/csiuCOzIH85GSYiBo0jZ6Awba2cURcXnuf0YuYPgm
-	Hi6/K1TKJfi41sisYaW88Eh8Hu9KhyJDNuwubaq9fCdeJKf1hPgY4EUU2EjHxvIX
-	5E8VuP+Olkkh9kh5HVWRxHsctTDoLqRl1XBiXsz37nCjX9hOOayfQC9DYrU9oUoY
-	25BqfTgaSUN7iS1KsVffdQ1FoedTnDRiC4tM04RAMZxiyg4w==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwu06rx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Sep 2024 20:12:32 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485KCWpB014182
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Sep 2024 20:12:32 GMT
-Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 5 Sep 2024 13:12:29 -0700
-From: Nikunj Kela <quic_nkela@quicinc.com>
-To: <sudeep.holla@arm.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <cristian.marussi@arm.com>, <arm-scmi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>, Nikunj Kela <quic_nkela@quicinc.com>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple virtual instances
-Date: Thu, 5 Sep 2024 13:12:17 -0700
-Message-ID: <20240905201217.3815113-1-quic_nkela@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1725567371; c=relaxed/simple;
+	bh=m0ulFfp0c0qmGfSBo0V7rj/VU29TQ7f0r+ZleaWqHRg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=J2MxKYB+GQZWEk5wZQxl+VQ/AoMLUG1q4VS0UvFuUAPkxP3H4GST7qR/F4AcNmiMN91C3gX3h5yzyr0TjKRSVZHX73moMGgWa73NXfjSXGs2ojUYBJh5Wtl/2awbNDS7xlE3gaHgOVIQAH47O4LEOdZPIqu1EsQDtMvd6ZnVP0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=VjVLeKRq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=CFKa3QArvI4ZsME8fxVIP0fQhge8CdtbHTdaKcYYbxA=; b=VjVLeKRq8dDevG/Pgf82iMjFHW
+	d3SlhMsrctomJpOXWlFl7C2HRwkWxfzBf+602tm4Ks5+MRNQT1U2GWgQVZ4vK3XR2zdgqDm8FjHHO
+	D08O2OI4zPU1tAAgb6m+gJOiXzqiIWH3Zu9E2OvO8LRtioujWJqUr6IxiUFssa7n6RXzDUzblaz5w
+	PeaXS5i1M1Jc37QrhHoCFTKjdK4j7Yw+BVou4FJ+1Pq9SuL0aqvSTjeTGu6wBMOVIGiXcD1hWrEue
+	WCItGnFcePwUCOKn7qwzQ2WAzKBeigEClVfBSVVtNo2DtRriDuaqFvFzhU4muD8i2rbIbgd3FcA9Q
+	Ns39419Q==;
+Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1smItd-0004Ph-Vj; Thu, 05 Sep 2024 22:16:02 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Alibek Omarov <a1ba.omarov@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH 0/2] arm64: dts: rockchip: rk3568: add CAN-FD controller
+Date: Thu,  5 Sep 2024 22:15:59 +0200
+Message-ID: <172556734994.2907703.16804162938733944876.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240904-rk3568-canfd-v1-0-73bda5fb4e03@pengutronix.de>
+References: <20240904-rk3568-canfd-v1-0-73bda5fb4e03@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4KeDDcMrcS9i_kO9O45S30M87pN3ANkh
-X-Proofpoint-ORIG-GUID: 4KeDDcMrcS9i_kO9O45S30M87pN3ANkh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-05_15,2024-09-05_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 adultscore=0
- priorityscore=1501 bulkscore=0 mlxscore=0 phishscore=0 suspectscore=0
- impostorscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2408220000 definitions=main-2409050149
 
-This change extends scmi node name so as to allow multiple virtual
-SCMI instances.
+On Wed, 04 Sep 2024 16:07:55 +0200, Marc Kleine-Budde wrote:
+> This series first adds the CAN-FD controllers nodes to the rk3568
+> devicetree, then it enables the CAN-FD controllers on the
+> rk3568-mecsbc board.
+> 
+> The DT bindings for this series are going upstream via
+> can-next/net-next into v6.12 with this PR:
+> 
+> [...]
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
----
+Applied, thanks!
 
-Changes in v3:
-	- Added Reviewed-by tag
-	- Removed the patch from original series[1]
+[1/2] arm64: dts: rockchip: add CAN-FD controller nodes to rk3568
+      commit: 687d6009ae28d51a081c3d6f66c29d195a5cda2f
+[2/2] arm64: dts: rockchip: mecsbc: add CAN0 and CAN1 interfaces
+      commit: e00bf11185033456f3d4345bcd366df1f7cc7255
 
-Changes in v2:
-	- Fixed scmi nodename pattern
-
-[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
----
- Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 54d7d11bfed4..5d79b15a1610 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -27,7 +27,7 @@ anyOf:
- 
- properties:
-   $nodename:
--    const: scmi
-+    pattern: '^scmi(-[0-9]+)?$'
- 
-   compatible:
-     oneOf:
+Best regards,
 -- 
-2.34.1
-
+Heiko Stuebner <heiko@sntech.de>
 
