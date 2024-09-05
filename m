@@ -1,131 +1,292 @@
-Return-Path: <devicetree+bounces-100524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0939496DFD3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:33:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D47DB96DFD9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:34:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB4FF28CEEB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:33:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BF0928D8CA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:34:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F0A1A08A9;
-	Thu,  5 Sep 2024 16:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00D21A0722;
+	Thu,  5 Sep 2024 16:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ip5oX0CT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gW+wBkXH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19681A073A
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 16:32:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD1F50271;
+	Thu,  5 Sep 2024 16:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725553951; cv=none; b=ugCZAWUTlvt4m7PmV8H4ApqETNyWx1hVCRhQJYBlrv8K8KaeKXMVrxVgyiru6Us3nzyQQuaM/fACs37NAciuccCtOZApv6DLITovLrM5HAKPpK7iLKzTBeawP5pW93g/fsQdUu0y7Rwz9eMwrz4CB74chlA+h35yTEeB1m0+j3A=
+	t=1725554013; cv=none; b=PpZVmzPyqZSflds2OMDBwPjjFXeku22J136wovz+dWBUShBJxcnAgKsweZSU1euHXT+KEAzRY/vfXEHDoTt2f/rNqqlS0BxymT36+pWUTbAl5pxz35xEArXcu7z2Y5e9KOqAhCQ0A4XKAKdgSboLXCeGrho6NuReaQ96cZ9kZCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725553951; c=relaxed/simple;
-	bh=LJxf2I+qDEKWcF/MHgukLX50wTfnukOCB0ZkYL4/G7w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZMMNy8ul2ECmtxweSFSOu4aerZRhfWnx0wqM82MCwiBKzCq+GGm+m9EBUSG6ph0FW+NjF4LTCj+9k+jWQCp5YtvmTFqCD0rhwZngdXkprF4SftJfbXM9wdvaSP7N83LTeL3YmMCFcnvEDMoLktApPIByBkM5siqgTRCYGYgLnwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ip5oX0CT; arc=none smtp.client-ip=209.85.166.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-82a29c11f05so37894339f.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 09:32:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725553948; x=1726158748; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LJxf2I+qDEKWcF/MHgukLX50wTfnukOCB0ZkYL4/G7w=;
-        b=ip5oX0CTQai1QHiEqVhFIdHFsZb6qf1FDLp9vEtJZziouIxA6LSUWMdQ3PwozvC8/x
-         Bljb2DcuHe/2AaR7UZClmu52ImTbAyWYYHgdMSeSSX+aHNjdPertdCQWOij3+jl7+bGm
-         abcftyfjdZ/D5aX7oiaSrS3agGXcsbSqklgQkPqESlIMXAZ8jUEWRFc0Igx5TsRBfoRy
-         8Y3WDP+SUR7OZQ8W8wBOcd2sd8apnw348Ru4zXaWpr0DJ9CURgNhjO3T7A/wVzFyU8cr
-         FAn6W8ieyaGQ+LQ7iCpmFDMFTODXmfQwU/MOI4RhvjUaAAIf+kWUBSg9YETScXnnJcBK
-         N3DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725553948; x=1726158748;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJxf2I+qDEKWcF/MHgukLX50wTfnukOCB0ZkYL4/G7w=;
-        b=pm1HgLoEtW+ahYzSSpxATrKFrjBfGiaXNMjQYN98ebLOiMu1LoP86ptR20iRtK6tjF
-         MTqEnZJ0Iak6srfluRQt+j/9t78ZeGj22jw3FIy3beJ5+RYQfZXJXInH9WToaorkQvWe
-         nhvQ86eYPxzsE6qwSPLMF3vXGPtQlhXdzhRs9kZtxMSWX3AIjWE9Hdt/ulsns4A/6NIF
-         Ir9cVqPybqR0R7Ton4PCBpZ/FwONfKGGpLuwisqt934ABHmDolOBnr6fppLvwbISOuP7
-         eyTvyMjEM+4MHQplFHoJV66km4h4+YWqmgsvK7yMLC/r/9RBBA8qrOgx6UJbNiVGZOsc
-         Hoqg==
-X-Forwarded-Encrypted: i=1; AJvYcCXn/WUAZ52hBj5My8zrwbVOFa3MaX5kUgeHeS1gFIEPXlby0NCZzD/tXypbNW7Lkx+ZhhAEehcXIXkH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyO6RV5kdpBUgsKyzrjBHUPbC0XhCPveA+XrxSnGAPjTMDsZaEd
-	A9TelaK2Nyoqez3CZY+FsXRvOZtuiMIjtMQYO0n0+Bbykh0d51vhrqt9Je5Ol3Y=
-X-Google-Smtp-Source: AGHT+IHLXHN533tm5TH7tUvxq+IeFjjRqnOq284J4kEiNtv3uK/fJkUwLvtz9f9jhxc51r33P1fF3A==
-X-Received: by 2002:a05:6602:1595:b0:82a:3dc3:cfc6 with SMTP id ca18e2360f4ac-82a88ca2f9bmr345501939f.8.1725553948029;
-        Thu, 05 Sep 2024 09:32:28 -0700 (PDT)
-Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-82a1a42664esm411072739f.19.2024.09.05.09.32.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Sep 2024 09:32:27 -0700 (PDT)
-Message-ID: <37535a4e-e121-4824-aad6-f169b2442e0f@baylibre.com>
-Date: Thu, 5 Sep 2024 12:32:26 -0400
+	s=arc-20240116; t=1725554013; c=relaxed/simple;
+	bh=9Tk0qytElXOqijUu2mwaQ/iNQpnr3HTIkzbW8O/Fgio=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=uRoJxA+1zfwc/jR8tnYOhb+cWSurTV8ftSnO1fnTgqbSWf/XPXYfpBS/dBGqyzEMcEPomDoGKjYrArjspPmqW4RcrToiobSfkXvF2dMjcBoUuu7NmWDU8+LvPBg3uIXagxu5YLLbRNXYr8gFM4c6yB0K1sWlEa8lCWribUX8JW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gW+wBkXH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2B71C4CEC3;
+	Thu,  5 Sep 2024 16:33:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725554012;
+	bh=9Tk0qytElXOqijUu2mwaQ/iNQpnr3HTIkzbW8O/Fgio=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=gW+wBkXHJDhGVXXAfJCPQj2kpceVBR+QWpc5EB5VaM3VbU5KzSYjuyS+kU0KHYUgr
+	 Vbw7YD74hyIp9ASlVYw9i/S5T5hvkcMNS9g/sUfc0qUDPsWVcUe83qD/tkw+3Zopkl
+	 gakIRnJo3HMLUH5yZ4lTGGxnc6tViQlacP8tMH8RsMzC0ubDQA5nzKrqqDH95p5brW
+	 cxYC6wohcOlvlYD7LAPD+Eg0h5S+xtyw++MGlyUy5KeL/zsq62UTBqy+mp8R6fB01I
+	 piX0p5So+agRaK10NXmxRvxmrVanNSNsu9iQFOQ7iTY653UNcqqm8TUNkQVWBoRWym
+	 eScmz75uH8lrg==
+Date: Thu, 5 Sep 2024 11:33:29 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org, Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Bao Cheng Su <baocheng.su@siemens.com>,
+	Hua Qian Li <huaqian.li@siemens.com>,
+	Diogo Ivo <diogo.ivo@siemens.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [PATCH v4 4/7] PCI: keystone: Add supported for PVU-based DMA
+ isolation on AM654
+Message-ID: <20240905163329.GA389144@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] iio: adc: add new ad7625 driver
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- David Lechner <dlechner@baylibre.com>,
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20240904-ad7625_r1-v4-0-78bc7dfb2b35@baylibre.com>
- <123c8bff-6623-4a3b-a49e-69b3ab6f8ab5@baylibre.com>
- <4d156c5a-daea-4e9a-8623-8042b5fe7911@kernel.org>
-Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <4d156c5a-daea-4e9a-8623-8042b5fe7911@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <361441d35d781b3c474b05921634bcae08d1a7b4.1725444016.git.jan.kiszka@siemens.com>
 
+[+cc Kishon, just in case you have time/interest ;)]
 
-On 2024-09-05 4:01 a.m., Krzysztof Kozlowski wrote:
-> On 04/09/2024 21:16, Trevor Gamblin wrote:
->> On 2024-09-04 3:14 p.m., Trevor Gamblin wrote:
->>> This series adds a new driver for the Analog Devices Inc. AD7625,
->>> AD7626, AD7960, and AD7961. These chips are part of a family of
->>> LVDS-based SAR ADCs. The initial driver implementation does not support
->>> the devices' self-clocked mode, although that can be added later.
->>>
->>> The devices make use of two offset PWM signals, one to trigger
->>> conversions and the other as a burst signal for transferring data to the
->>> host. These rely on the new PWM waveform functionality being
->>> reviewed in [1] and also available at [2].
->>>
->>> This work is being done by BayLibre and on behalf of Analog Devices
->>> Inc., hence the maintainers are @analog.com.
->>>
->>> Special thanks to David Lechner for his guidance and reviews.
->>>
->>> [1]: https://lore.kernel.org/linux-pwm/cover.1722261050.git.u.kleine-koenig@baylibre.com
->>> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git/log/?h=pwm/chardev
->>>
->>> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
->> Realizing that I forgot to pick up Conor's Reviewed-by on the v3 binding
->> before sending. Can that be picked up?
-> Only you can run `b4 ty -u`. We cannot.
-My mistake. I'll make sure they're there for the next revision.
->
-> Best regards,
-> Krzysztof
->
+On Wed, Sep 04, 2024 at 12:00:13PM +0200, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
+> 
+> The AM654 lacks an IOMMU, thus does not support isolating DMA requests
+> from untrusted PCI devices to selected memory regions this way. Use
+> static PVU-based protection instead.
+> 
+> For this, we use the availability of restricted-dma-pool memory regions
+> as trigger and register those as valid DMA targets with the PVU.
+
+I guess the implication is that DMA *outside* the restricted-dma-pool
+just gets dropped, and the Requester would see Completion Timeouts or
+something for reads?
+
+> In
+> addition, we need to enable the mapping of requester IDs to VirtIDs in
+> the PCI RC. We only use a single VirtID so far, catching all devices.
+> This may be extended later on.
+> 
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> ---
+> CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> CC: "Krzysztof Wilczyński" <kw@linux.com>
+> CC: Bjorn Helgaas <bhelgaas@google.com>
+> CC: linux-pci@vger.kernel.org
+
+Regrettably we don't really have anybody taking care of pci-keystone.c
+(at least per MAINTAINERS).
+
+> ---
+>  drivers/pci/controller/dwc/pci-keystone.c | 101 ++++++++++++++++++++++
+>  1 file changed, 101 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> index 2219b1a866fa..96b871656da4 100644
+> --- a/drivers/pci/controller/dwc/pci-keystone.c
+> +++ b/drivers/pci/controller/dwc/pci-keystone.c
+> @@ -19,6 +19,7 @@
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/msi.h>
+>  #include <linux/of.h>
+> +#include <linux/of_address.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/phy/phy.h>
+> @@ -26,6 +27,7 @@
+>  #include <linux/regmap.h>
+>  #include <linux/resource.h>
+>  #include <linux/signal.h>
+> +#include <linux/ti-pvu.h>
+>  
+>  #include "../../pci.h"
+>  #include "pcie-designware.h"
+> @@ -111,6 +113,16 @@
+>  
+>  #define PCI_DEVICE_ID_TI_AM654X		0xb00c
+>  
+> +#define KS_PCI_VIRTID			0
+> +
+> +#define PCIE_VMAP_xP_CTRL		0x0
+> +#define PCIE_VMAP_xP_REQID		0x4
+> +#define PCIE_VMAP_xP_VIRTID		0x8
+> +
+> +#define PCIE_VMAP_xP_CTRL_EN		BIT(0)
+> +
+> +#define PCIE_VMAP_xP_VIRTID_VID_MASK	0xfff
+> +
+>  struct ks_pcie_of_data {
+>  	enum dw_pcie_device_mode mode;
+>  	const struct dw_pcie_host_ops *host_ops;
+> @@ -1125,6 +1137,89 @@ static const struct of_device_id ks_pcie_of_match[] = {
+>  	{ },
+>  };
+>  
+> +#ifdef CONFIG_TI_PVU
+> +static const char *ks_vmap_res[] = {"vmap_lp", "vmap_hp"};
+> +
+> +static int ks_init_restricted_dma(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct of_phandle_iterator it;
+> +	bool init_vmap = false;
+> +	struct resource phys;
+> +	struct resource *res;
+> +	void __iomem *base;
+> +	unsigned int n;
+> +	u32 val;
+> +	int err;
+> +
+> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region",
+> +			    NULL, 0) {
+> +		if (!of_device_is_compatible(it.node, "restricted-dma-pool"))
+> +			continue;
+> +
+> +		err = of_address_to_resource(it.node, 0, &phys);
+> +		if (err < 0) {
+> +			dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> +				it.node, err);
+> +			continue;
+> +		}
+> +
+> +		err = ti_pvu_create_region(KS_PCI_VIRTID, &phys);
+> +		if (err < 0)
+> +			return err;
+> +
+> +		init_vmap = true;
+> +	}
+
+  if (!init_vmap)
+    return 0;
+
+would unindent the following.
+
+> +
+> +	if (init_vmap) {
+> +		for (n = 0; n < ARRAY_SIZE(ks_vmap_res); n++) {
+
+Since the only use of ks_vmap_res is here, this might be more readable
+if there were a helper that would be called twice with the constant
+strings, e.g.,
+
+  helper(pdev, "vmap_lp");
+  helper(pdev, "vmap_hp");
+
+> +			res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> +							   ks_vmap_res[n]);
+
+Seems like we should check "res" for error before using it?
+
+> +			base = devm_pci_remap_cfg_resource(dev, res);
+> +			if (IS_ERR(base))
+> +				return PTR_ERR(base);
+> +
+> +			writel(0, base + PCIE_VMAP_xP_REQID);
+> +
+> +			val = readl(base + PCIE_VMAP_xP_VIRTID);
+> +			val &= ~PCIE_VMAP_xP_VIRTID_VID_MASK;
+> +			val |= KS_PCI_VIRTID;
+> +			writel(val, base + PCIE_VMAP_xP_VIRTID);
+> +
+> +			val = readl(base + PCIE_VMAP_xP_CTRL);
+> +			val |= PCIE_VMAP_xP_CTRL_EN;
+> +			writel(val, base + PCIE_VMAP_xP_CTRL);
+
+Since there's no explicit use of "restricted-dma-pool" elsewhere in
+this patch, I assume the setup above causes the controller to drop any
+DMA accesses outside that pool?  I think a comment about how the
+controller behavior is being changed would be useful.  Basically the
+same comment as for the commit log.
+
+Would there be any value in a dmesg note about a restriction being
+enforced?  Seems like it's dependent on both CONFIG_TI_PVU and some DT
+properties, and since those are invisible in the log, maybe a note
+would help understand/debug any issues?
+
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void ks_release_restricted_dma(struct platform_device *pdev)
+> +{
+> +	struct of_phandle_iterator it;
+> +	struct resource phys;
+> +	int err;
+> +
+> +	of_for_each_phandle(&it, err, pdev->dev.of_node, "memory-region",
+> +			    NULL, 0) {
+> +		if (of_device_is_compatible(it.node, "restricted-dma-pool") &&
+> +		    of_address_to_resource(it.node, 0, &phys) == 0)
+> +			ti_pvu_remove_region(KS_PCI_VIRTID, &phys);
+
+I guess it's not important to undo the PCIE_VMAP_xP_CTRL_EN and
+related setup that was done by ks_init_restricted_dma()?
+
+> +	}
+> +}
+> +#else
+> +static inline int ks_init_restricted_dma(struct platform_device *pdev)
+> +{
+> +	return 0;
+> +}
+> +
+> +static inline void ks_release_restricted_dma(struct platform_device *pdev)
+> +{
+> +}
+> +#endif
+> +
+>  static int ks_pcie_probe(struct platform_device *pdev)
+>  {
+>  	const struct dw_pcie_host_ops *host_ops;
+> @@ -1273,6 +1368,10 @@ static int ks_pcie_probe(struct platform_device *pdev)
+>  	if (ret < 0)
+>  		goto err_get_sync;
+>  
+> +	ret = ks_init_restricted_dma(pdev);
+> +	if (ret < 0)
+> +		goto err_get_sync;
+> +
+>  	switch (mode) {
+>  	case DW_PCIE_RC_TYPE:
+>  		if (!IS_ENABLED(CONFIG_PCI_KEYSTONE_HOST)) {
+> @@ -1354,6 +1453,8 @@ static void ks_pcie_remove(struct platform_device *pdev)
+>  	int num_lanes = ks_pcie->num_lanes;
+>  	struct device *dev = &pdev->dev;
+>  
+> +	ks_release_restricted_dma(pdev);
+> +
+>  	pm_runtime_put(dev);
+>  	pm_runtime_disable(dev);
+>  	ks_pcie_disable_phy(ks_pcie);
+> -- 
+> 2.43.0
+> 
 
