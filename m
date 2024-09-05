@@ -1,141 +1,145 @@
-Return-Path: <devicetree+bounces-100236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91AA996CF0B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5517696CF1C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:23:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CAD9281A46
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:19:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D608D28360B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6139E188CD5;
-	Thu,  5 Sep 2024 06:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021BD1891A3;
+	Thu,  5 Sep 2024 06:23:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WehjcMOe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F369126C1C
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 06:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F762BB15;
+	Thu,  5 Sep 2024 06:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725517184; cv=none; b=Tu578az1pp4aj0aQdiIPZmz36yii0TOcRbM6zMeei0h/mpYYcT1Yq9Cm/SAyKIqI+bqqPNi88I6Te2trfccEr5/OG8DXGuK5ComRVJ328CoxOKCQT9tg1/X1Z2hbhnvd+XL0OAtMTUpB4X1WyJyL2Qp8EGyJk+duVASRf2n4eJk=
+	t=1725517405; cv=none; b=R0aq6oNguD/sPsmkU5KU3SJ23I0YLy2CypWK+QoTB23w6apDY2j3PIOU8xJFIIv+PckYlAd35xcFU4VI5APunDGc4Q9RfFtsfIme7lDP5JZBqQUieDaKT9VevCUR3WEdUj270q3VuCQWsbHBbs4hS3Ny3tdl6DF6TkNy9i9xvyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725517184; c=relaxed/simple;
-	bh=bRtFhROfyecNoXowVVEaoxV1CtMmwYGrUMt2lCkMoz4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TdiP76xlyCUq5PvF1wateGGd+GBzjq0320F6H/ugDUwttIgcRa+OVNsrOBhEvXcPJAQFqQpQDsw+VUBG9cgspYA8CMKufKfTatYuxHuZjVfvVJwZDfLhLsLrHqtNKSCw+/D8G0rYlV9gUj3cP8LvuCaGQtRgve6KEEk9MagSvJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sm5pq-0007Na-VN; Thu, 05 Sep 2024 08:19:14 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sm5po-005dZX-2p; Thu, 05 Sep 2024 08:19:12 +0200
-Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id AC96E33307A;
-	Thu, 05 Sep 2024 06:19:11 +0000 (UTC)
-Date: Thu, 5 Sep 2024 08:19:10 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: kernel@pengutronix.de, Alibek Omarov <a1ba.omarov@gmail.com>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Elaine Zhang <zhangqing@rock-chips.com>, 
-	David Jander <david.jander@protonic.nl>, Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, David Jander <david@protonic.nl>
-Subject: Re: [PATCH can-next v5 00/20] can: rockchip_canfd: add support for
- CAN-FD IP core found on Rockchip RK3568
-Message-ID: <20240905-galago-of-unmatched-development-cc97ac-mkl@pengutronix.de>
-References: <20240904-rockchip-canfd-v5-0-8ae22bcb27cc@pengutronix.de>
- <86274585.BzKH3j3Lxt@diego>
- <20240904-imposing-determined-mayfly-ba6402-mkl@pengutronix.de>
- <4091366.iTQEcLzFEP@diego>
+	s=arc-20240116; t=1725517405; c=relaxed/simple;
+	bh=qGvK0wCPGic+2o44R/ACnW5fY+LDJgBf2A10C3O3pH4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ElrKtx0sccmPUaUVRpghKOKO3PXlLh5l854nnl1mSvo5ier7QaiYkapTSVb0uYu8sU18IyI64a6FQh99nhpnW0mPJLT197NYHKtjjO0G4Bz5TnGXrB/7fGbxJx50V6d9OLVAxnpjyYRGzLxId+FW4mH0IyPgwQZC9QsiRvCvv4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WehjcMOe; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4856N8Pp022957;
+	Thu, 5 Sep 2024 01:23:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1725517388;
+	bh=UgRkeRKo8aNhdHkE0OeVuJXjkmkbfZJTnFKZwGbwR5s=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=WehjcMOesFtvniK+MasRNdZKuTAopEcpXylop2YAgZe7K6yD2pKCoz7cPIrhKFtYY
+	 bGk7/DhwBE+SBUkQ9IstbmEvLGwpyIw1v9jqURnUujd/GZmWg/LVe8DH9gHGTcIkOy
+	 hS/HhYYm7pNcvdB8RvP6PRUTWCUzpXvg72B+Ccco=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4856N8CS076053;
+	Thu, 5 Sep 2024 01:23:08 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
+ Sep 2024 01:23:07 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 5 Sep 2024 01:23:07 -0500
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.68] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4856N7MK068122;
+	Thu, 5 Sep 2024 01:23:07 -0500
+Date: Thu, 5 Sep 2024 11:53:06 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Ayush Singh <ayush@beagleboard.org>
+CC: <lorforlinux@beagleboard.org>, <jkridner@beagleboard.org>,
+        <robertcnelson@beagleboard.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon
+	<nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>, Johan Hovold <johan@kernel.org>,
+        Alex Elder
+	<elder@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <greybus-dev@lists.linaro.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Conor Dooley
+	<conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: ti,cc1352p7: Add
+ bootloader-backdoor-gpios
+Message-ID: <20240905062306.lm4jgr7yp2enldt3@lcpd911>
+References: <20240903-beagleplay_fw_upgrade-v4-0-526fc62204a7@beagleboard.org>
+ <20240903-beagleplay_fw_upgrade-v4-1-526fc62204a7@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jb2uxtxhgm4xkjdb"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <4091366.iTQEcLzFEP@diego>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240903-beagleplay_fw_upgrade-v4-1-526fc62204a7@beagleboard.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On Sep 03, 2024 at 15:02:18 +0530, Ayush Singh wrote:
+> bootloader-backdoor-gpio (along with reset-gpio) is used to enable
+> bootloader backdoor for flashing new firmware.
+> 
+> The pin and pin level to enable bootloader backdoor is configured using
+> the following CCFG variables in cc1352p7:
+> - SET_CCFG_BL_CONFIG_BL_PIN_NO
+> - SET_CCFG_BL_CONFIG_BL_LEVEL
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+> ---
+>  Documentation/devicetree/bindings/net/ti,cc1352p7.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> index 3dde10de4630..4f4253441547 100644
+> --- a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> @@ -29,6 +29,12 @@ properties:
+>    reset-gpios:
+>      maxItems: 1
+>  
+> +  bootloader-backdoor-gpios:
+> +    maxItems: 1
+> +    description: |
+> +      gpios to enable bootloader backdoor in cc1352p7 bootloader to allow
+> +      flashing new firmware.
+> +
+>    vdds-supply: true
+>  
+>  required:
+> @@ -46,6 +52,7 @@ examples:
+>          clocks = <&sclk_hf 0>, <&sclk_lf 25>;
+>          clock-names = "sclk_hf", "sclk_lf";
+>          reset-gpios = <&pio 35 GPIO_ACTIVE_LOW>;
+> +        bootloader-backdoor-gpios = <&pio 36 GPIO_ACTIVE_LOW>;
 
---jb2uxtxhgm4xkjdb
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Did you mean &gpio here and even in reset part?
+Looks good otherwise,
+Reviewed-by: Dhruva Gole <d-gole@ti.com>
 
-On 04.09.2024 18:43:52, Heiko St=C3=BCbner wrote:
-> Am Mittwoch, 4. September 2024, 17:10:08 CEST schrieb Marc Kleine-Budde:
-> > On 04.09.2024 10:55:21, Heiko St=C3=BCbner wrote:
-> > [...]
-> > > How/when are you planning on applying stuff?
-> > >=20
-> > > I.e. if you're going to apply things still for 6.12, you could simply=
- take
-> > > the whole series if the dts patches still apply to your tree ;-)
-> >=20
-> > The DTS changes should not go via any driver subsystem upstream, so
-> > here's a dedicated PR:
-> >=20
-> > https://patch.msgid.link/20240904-rk3568-canfd-v1-0-73bda5fb4e03@pengut=
-ronix.de
->=20
-> I wasn't on Cc for the pull-request so I'll probably not get a notificati=
-on
-> when it gets merged?
->=20
-> So if you see your PR with the binding and driver getting merged to
-> next-next, can you provide a ping please?
-  ^^^^^^^^^
-  net-next?
-
-Will do.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---jb2uxtxhgm4xkjdb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbZTVsACgkQKDiiPnot
-vG96tQf/SxmDdp97bb66tXlUCf9x3X4Dory7Liw54EAzczBg1ycKNhJJojalvMoP
-aDuJOZ2Zmh3ho31TiRZ2oYkEvW11tK8Ep5/EBNGP2vergWFxZLe0+h+NLN93CXxB
-9gfLvz4AA0SwE+MdgPuK0TUwjDcl7tX0kRFzMWyuV+K9ARq9FRv7LzXZwaTEauYU
-+Yx/jrkm2Z3RHGIr85yhS//6/KeS9G8Nzd9D3k9cBfZVMgRbWr2W8bR5ebNkB02w
-U2HUuaOwbGIsQDTDoC+7m72hMOdkrdSneMDvI0Ww4PFeml+KmSNr9s3uc8J5uTWi
-9liZ+iO4DMqQ80xIfnjQutSg8Ww33Q==
-=y7mx
------END PGP SIGNATURE-----
-
---jb2uxtxhgm4xkjdb--
+-- 
+Best regards,
+Dhruva Gole
+Texas Instruments Incorporated
 
