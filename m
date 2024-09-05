@@ -1,172 +1,139 @@
-Return-Path: <devicetree+bounces-100271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A7096D019
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:07:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8340A96D020
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:11:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E0491F259B7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:07:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B58DA1C2290D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F29192B94;
-	Thu,  5 Sep 2024 07:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8AA192B79;
+	Thu,  5 Sep 2024 07:11:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C376218BC2D;
-	Thu,  5 Sep 2024 07:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998D8188A37
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 07:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725520065; cv=none; b=VkvbEYUXsmhov+Nbs+2mpdlTPe1NCso2iQOgy5qjd79nOnS0o74MnRZNwa0sEas0tkx6b2x6Ncapy1Q903I3BBAApchhssbe8JmGrhTmzmZClUhEFt/hPnvUCM84FNLT6qDz+GxpoIK54pgusETsGzUI85SN7J84FaZV3vFJMXw=
+	t=1725520275; cv=none; b=thiKjxmoIV6vHW62a5QWGoeeEFbCMkd2/v56F7wTo/K1a1LWIiliqnx6rOoIO6r5VGMd8O2uk3i6+/433RxSVPHMJG9bgufj3j/kXXCNzED7DLGVKeaDVBGIpft1L78UEbFirg9LrY0AE2dNJtQXKPoMMPpIolG8+9Ev07tGSec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725520065; c=relaxed/simple;
-	bh=MF3Y0CzgDsFpC7wFl5LNuW07mCgfBqWYRf36whn2acA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SVLZcPrNyn8031Y2IOwsL3xEe60n3G8gs7vXyZRkq2SnUXLBvb891SnwVUjjRNiya+Tzj/8o7DjqKiSM0ldaaRWCaluRjOJETYd4eE8JpBJtrzNMBi3BY6A/1MNuchusgLzUHN20B51hM9o0ENyPGSzxzh8WdB1SRW/XrGc19ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.71])
-	by gateway (Coremail) with SMTP id _____8DxOJq+WNlmNBsrAA--.45907S3;
-	Thu, 05 Sep 2024 15:07:42 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.71])
-	by front1 (Coremail) with SMTP id qMiowMAx3ty7WNlmfMQEAA--.23872S2;
-	Thu, 05 Sep 2024 15:07:40 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v1 10/10] LoongArch: dts: Add I2S support to Loongson-2K2000
-Date: Thu,  5 Sep 2024 15:07:38 +0800
-Message-ID: <2c488201cd704d312bd9586e7bccea0179ad920f.1725518229.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1725518229.git.zhoubinbin@loongson.cn>
-References: <cover.1725518229.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1725520275; c=relaxed/simple;
+	bh=RgJEml5hu5SSXojD1nCIyf2PpwF864B7WXZRWFZa1ys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=njWvd+APE9VYin/WlYlST/Nsn37zPkTf9Eqx2iVn/8vTPCbwZTC/jTlEEeKtaeAEYNLVW2ofDIY9G7hH/U4VIyCfk6uhHYJhWffe4NJYE8YdT8UoBR5wUeaHUY0Z92+dtURyQWmfLrvFemzYqplekE0vccW+kSofnSdr8blm8Vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sm6dw-0002sW-V8; Thu, 05 Sep 2024 09:11:00 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sm6dt-005e23-37; Thu, 05 Sep 2024 09:10:57 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sm6ds-0085D2-38;
+	Thu, 05 Sep 2024 09:10:56 +0200
+Date: Thu, 5 Sep 2024 09:10:56 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: detlev.casanova@collabora.com, sjoerd@collabora.com,
+	sebastian.reichel@collabora.com, heiko@sntech.de,
+	hjc@rock-chips.com, cristian.ciocaltea@collabora.com,
+	mripard@kernel.org, dri-devel@lists.freedesktop.org,
+	krzk+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v2 05/11] drm/rockchip: vop2: Introduce vop hardware
+ version
+Message-ID: <ZtlZgKcDQFF_WnCn@pengutronix.de>
+References: <20240904120238.3856782-1-andyshrk@163.com>
+ <20240904120238.3856782-6-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowMAx3ty7WNlmfMQEAA--.23872S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7ArWrJryDCF1fXrWDWr47Jrc_yoW8CFWUpF
-	Zru3yDJr4FqF42ka15JFWUJr1rJF9YkF93W3ZIy3y8Gw4qgw1jvr48tF92vF1xWrZ5X3y2
-	qrnYkryjka1UJwcCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBCb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E
-	14v26r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6x
-	kI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v2
-	6Fy26r45twAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0x
-	vY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
-	7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-	0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-	cVC0I7IYx2IY67AKxVWDJVCq3wCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42
-	IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2
-	jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjxUxNeODUUUU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240904120238.3856782-6-andyshrk@163.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The module is supported, enable it.
+Hi Andy,
 
-Not all Loongson-2K2000 development boards have an i2s interface, here
-is an example of adding one:
+On Wed, Sep 04, 2024 at 08:02:32PM +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> There is a version number hardcoded in the VOP VERSION_INFO
+> register, and the version number increments sequentially based
+> on the production order of the SOC.
+> 
+> So using this version number to distinguish different VOP features
+> will simplify the code.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
+> ---
+> 
+> Changes in v2:
+> - Introduce vop hardware version
+> 
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c |  7 ++++---
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h | 11 +++++++++++
+>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c |  3 +++
+>  3 files changed, 18 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> index 9b269f6e576e..871d9bcd1d80 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> @@ -13,6 +13,15 @@
+>  #include "rockchip_drm_drv.h"
+>  #include "rockchip_drm_vop.h"
+>  
+> +#define VOP2_VERSION(major, minor, build)	((major) << 24 | (minor) << 16 | (build))
+> +
+> +/* The new SOC VOP version is bigger than the old */
+> +#define VOP_VERSION_RK3568	VOP2_VERSION(0x40, 0x15, 0x8023)
+> +#define VOP_VERSION_RK3588	VOP2_VERSION(0x40, 0x17, 0x6786)
+> +#define VOP_VERSION_RK3528	VOP2_VERSION(0x50, 0x17, 0x1263)
+> +#define VOP_VERSION_RK3562	VOP2_VERSION(0x50, 0x17, 0x4350)
+> +#define VOP_VERSION_RK3576	VOP2_VERSION(0x50, 0x19, 0x9765)
 
-sound {
-	compatible = "loongson,ls-audio-card";
-	model = "Loongson-ASoC";
-	mclk-fs = <512>;
+What about the RK3566? Does it have the same version code as the RK3568?
 
-	cpu {
-		sound-dai = <&i2s>;
-	};
+This new version field replaces the soc_id mechanism we had before to
+99%. You keep the soc_id around just for distinguishing between RK3566
+and RK3568. It would be nice to fully replace it.
 
-	codec {
-		sound-dai = <&es8323>;
-	};
-};
+I see that the VOP_VERSION_RK* numbers are the same as found in the
+VOP2_SYS_VERSION_INF registers. On the other hand you never read the
+value from the register which make the VOP_VERSION_RK* just arbitrary
+numbers. Wouldn't it be possible to make something up for RK3566, like
+VOP2_VERSION(0x40, 0x15, 0x8022) to get rid of the soc_id thingy?
 
-&i2c1 {
-	status = "okay";
-	#address-cells = <1>;
-	#size-cells = <0>;
+Sascha
 
-	es8323:es8323@10 {
-		compatible = "everest,es8323";
-		reg = <0x10>;
-		#sound-dai-cells = <0>;
-	};
-};
-
-&i2s {
-	status = "okay";
-
-	clock-frequency = <175000000>;
-	#sound-dai-cells = <0>;
- };
-
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/loongarch/boot/dts/loongson-2k2000.dtsi | 22 ++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
-
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000.dtsi b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-index 0953c5707825..b4ff55a33e90 100644
---- a/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-@@ -173,6 +173,22 @@ rtc0: rtc@100d0100 {
- 			status = "disabled";
- 		};
- 
-+		i2c@1fe00120 {
-+			compatible = "loongson,ls2k-i2c";
-+			reg = <0x0 0x1fe00120 0x0 0x8>;
-+			interrupt-parent = <&liointc>;
-+			interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		i2c@1fe00130 {
-+			compatible = "loongson,ls2k-i2c";
-+			reg = <0x0 0x1fe00130 0x0 0x8>;
-+			interrupt-parent = <&liointc>;
-+			interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
- 		uart0: serial@1fe001e0 {
- 			compatible = "ns16550a";
- 			reg = <0x0 0x1fe001e0 0x0 0x10>;
-@@ -243,9 +259,11 @@ display@6,1 {
- 				status = "disabled";
- 			};
- 
--			hda@7,0 {
-+			i2s@7,0 {
- 				reg = <0x3800 0x0 0x0 0x0 0x0>;
--				interrupts = <58 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <78 IRQ_TYPE_LEVEL_HIGH>,
-+					     <79 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "tx", "rx";
- 				interrupt-parent = <&pic>;
- 				status = "disabled";
- 			};
 -- 
-2.43.5
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
