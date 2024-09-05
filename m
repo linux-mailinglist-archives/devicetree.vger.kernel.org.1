@@ -1,129 +1,118 @@
-Return-Path: <devicetree+bounces-100455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CED396DAAB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:47:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 961E596DAB6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:48:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC452288711
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:47:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 534272886FF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E487219D891;
-	Thu,  5 Sep 2024 13:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A52B19DF47;
+	Thu,  5 Sep 2024 13:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hG3XYGg+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ic4Ek1ZW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFE817C9AE;
-	Thu,  5 Sep 2024 13:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25AA019D8B2;
+	Thu,  5 Sep 2024 13:47:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725544025; cv=none; b=SlQ1MdEdeCltKV0AvzUx/JXa4+QTA9EjV463p5oiQTW1+XyWXUAf3L3ply8tPz1DMXK4X8JT/T4iqwPGpq+U7eatOuhy4GHRyb6RCquzFlQcHHn2HKXh9eDQO5jDodNdDyUbE+0+iu55I+1GCyvPeTiM1mIdQS6xRHFwH9pOXBU=
+	t=1725544064; cv=none; b=OAoIUjFlDTshlmo3Te0WRJGzJLfQ8LiwSrB8pPkF69hAkqjsYCDhLrMwH6qJM/wk9HoW8ChkkSsbDqAtcpu0fhKSP8cfUVj35VkK0flvgJYwCpyunxI6QKde9SzuJkbr1VfOvlAYZ44Ibas0P5Oomz7/tgtqtqjR5n7OxYjfvGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725544025; c=relaxed/simple;
-	bh=sI5y1eSjN/a3YRMxRNTDqjn+umUQqLG8Dfm4wjCbFBU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d8IU/M9USb6jtvWHkk/7QvSGidObTrWhtIH73F1ESDAA5l+EOBPHBj16HqdDtxDGh2KTy81I0o/lJ4bXKDRVgzdce0i1uemBwDJTgDi0wRz0PuUIn+zelyfbwb+OFGVjpmkuH6RvGonzZi3OAvA47g/5bI8zvfzEr6+nHi3TgLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hG3XYGg+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46A2AC4CEC3;
-	Thu,  5 Sep 2024 13:47:05 +0000 (UTC)
+	s=arc-20240116; t=1725544064; c=relaxed/simple;
+	bh=71k1Ochv2FC5okt+9RprHRdYfaZu9bLcTVyeNCoL8r0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=KOoLhUkrH9YS4RQ9Z+xE3ZUQcP0JdJEf2YOTMMeJnqjiHXB6l5MmNPtGYz/BYVCWUQemepY2UA3wtHpxFai4Pu8XLUlPJrpLfb1pjfINTdjvzgBojffIwMY4vjXHmZpMIYisg/yBjBnmyUNP+bWkoGqicp+OLOAgvAjMod4MLUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ic4Ek1ZW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A9B8C4CEC3;
+	Thu,  5 Sep 2024 13:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725544025;
-	bh=sI5y1eSjN/a3YRMxRNTDqjn+umUQqLG8Dfm4wjCbFBU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hG3XYGg+PqbEtyngI9vHEb6I1j0nyAJYiHN5ILgGHvGp+2OlXYGrewuoVaVqMTf2w
-	 Lrac4i91ypCHaxArChDtDfvVKJV9Rf7A7V5w9XBUM3sVb6Wo/2lqJGKD7f+byYFrW2
-	 STFmhKuuciQNq4dMNXkvcJqO9fur6POG6X49W71ELClXa1rZE7uJyYCsT+1ZrDRwef
-	 uZYTH9DFlfShePSHrtyT5B5gzy6SLOxa+h9JUvemcOmi3BCieaPOMlC2Fl5tFtNqpR
-	 f1emNRzha4d12ghwG30AmwYtkWQmc+ShIX80S0tMxvoZCxmCAwu7T2I/K7hAsut9n5
-	 3RTZ2d3yZvAEQ==
-Date: Thu, 5 Sep 2024 08:47:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org,
-	Dinh Nguyen <dinguyen@kernel.org>
-Subject: Re: [PATCH 03/15] kbuild: move non-boot builtin DTBs to .init.rodata
- section
-Message-ID: <20240905134704.GB1517132-robh@kernel.org>
-References: <20240904234803.698424-1-masahiroy@kernel.org>
- <20240904234803.698424-4-masahiroy@kernel.org>
+	s=k20201202; t=1725544063;
+	bh=71k1Ochv2FC5okt+9RprHRdYfaZu9bLcTVyeNCoL8r0=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Ic4Ek1ZWVl2lJ8st6GLtIkODrTBG+tf6NAuQKe0HntNEZtlPOU3NhnbxBEqQsxEeO
+	 lojnuwiLsh4fDvhuRdQ3RNPP9n0j1LUmqXE9Qa5p94Dl7aVI1DUSU/eb+VD2kiVKDR
+	 nqLceoTE0a2E4rrvsOVxdOF1xtjNfyAoYv2fQ5owncvVeq56Jyi50hLnUSBUkAb+8D
+	 9bJub1/7+0vLx17fpJxoJ2twc9u/YJ3tcXmpR1afOUaUni6SYKwcglEg9B6h+F/cVB
+	 lFKYgWngayZyCwCJzcHx+jea01T583hMuwAhVq4qsqkyCt9fHmnYmYZKZZpV26P54B
+	 sArasEpU95tMA==
+Message-ID: <bf114807-c56c-4209-ab26-9e90ac00cedf@kernel.org>
+Date: Thu, 5 Sep 2024 15:47:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240904234803.698424-4-masahiroy@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 3/6] phy: qcom: Introduce PCIe UNIPHY 28LP driver
+To: Sricharan R <quic_srichara@quicinc.com>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+ kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org,
+ quic_nsekar@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ robimarko@gmail.com
+References: <20240830081132.4016860-1-quic_srichara@quicinc.com>
+ <20240830081132.4016860-4-quic_srichara@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240830081132.4016860-4-quic_srichara@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 05, 2024 at 08:47:39AM +0900, Masahiro Yamada wrote:
-> Some architectures support embedding boot DTB(s) in vmlinux. These
-> architectures, except MIPS and MicroBlaze, expect a single DTB in
-> the .dtb.init.rodata section. MIPS embeds multiple DTBs in vmlinux.
-> MicroBlaze embeds a DTB in its own __fdt_blob section instead of the
-> .dtb.init.rodata section.
+On 30.08.2024 10:11 AM, Sricharan R wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > 
-> For example, RISC-V previously allowed embedding multiple DTBs, but
-> only the first DTB in the .dtb.init.rodata section was used. Commit
-> 2672031b20f6 ("riscv: dts: Move BUILTIN_DTB_SOURCE to common Kconfig")
-> ensured only one boot DTB is embedded.
+> Add Qualcomm PCIe UNIPHY 28LP driver support present
+> in Qualcomm IPQ5018 SoC and the phy init sequence.
 > 
-> Meanwhile, commit 7b937cc243e5 ("of: Create of_root if no dtb provided
-> by firmware") introduced another DTB into the .dtb.init.rodata section.
-> 
-> The symbol dump (sorted by address) for ARCH=riscv nommu_k210_defconfig
-> is now as follows:
-> 
->     00000000801290e0 D __dtb_start
->     00000000801290e0 D __dtb_k210_generic_begin
->     000000008012b571 D __dtb_k210_generic_end
->     000000008012b580 D __dtb_empty_root_begin
->     000000008012b5c8 D __dtb_empty_root_end
->     000000008012b5e0 D __dtb_end
-> 
-> The .dtb.init.rodata section contains the following two DTB files:
-> 
->     arch/riscv/boot/dts/canaan/k210_generic.dtb
->     drivers/of/empty_root.dtb
-> 
-> This is not an immediate problem because the boot code chooses the
-> first DTB, k210_generic.dtb. The second one, empty_root.dtb is ignored.
-> However, relying on the link order (i.e., the order in Makefiles) is
-> fragile.
-> 
-> Only the boot DTB should be placed in the .dtb.init.rodata because the
-> arch boot code generally does not know the DT name, thus it uses the
-> __dtb_start symbol to find it.
-> 
-> empty_root.dtb is looked up by name, so it can be moved to the generic
-> .init.rodata section.
-> 
-> When CONFIG_OF_UNITTEST is enabled, more unittest DTBOs are embedded in
-> the .dtb.init.rodata section. These are also looked up by name, so can
-> be moved to the .init.rodata section.
-> 
-> I added the __initdata annotation to the overlay_info data array because
-> modpost knows the .init.rodata section is discarded, and would otherwise
-> warn about it.
-> 
-> The implementation is kind of cheesy; the section is .dtb.init.rodata
-> under the arch/ directory, and .init.rodata section otherwise. This will
-> be refactored later.
-> 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > ---
-> 
->  drivers/of/unittest.c | 2 +-
->  scripts/Makefile.dtbs | 4 +++-
->  2 files changed, 4 insertions(+), 2 deletions(-)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+[...]
+
+> +static const struct qcom_uniphy_pcie_data ipq5018_2x1_data = {
+> +	.lanes		= 1,
+> +	.lane_offset	= 0x800,
+> +	.phy_type	= PHY_TYPE_PCIE_GEN2,
+> +	.init_seq	= ipq5018_regs,
+> +	.init_seq_num	= ARRAY_SIZE(ipq5018_regs),
+> +};
+> +
+> +static const struct qcom_uniphy_pcie_data ipq5018_2x2_data = {
+> +	.lanes		= 2,
+> +	.lane_offset	= 0x800,
+> +	.phy_type	= PHY_TYPE_PCIE_GEN2,
+> +	.init_seq	= ipq5018_regs,
+> +	.init_seq_num	= ARRAY_SIZE(ipq5018_regs),
+> +};
+
+As krzk suggested, the difference is just num-lanes
+
+[...]
+
+> +static int qcom_uniphy_pcie_power_off(struct phy *x)
+> +{
+> +	struct qcom_uniphy_pcie *phy = phy_get_drvdata(x);
+> +	
+> +	reset_control_assert(phy->resets);
+
+Is the reset line supposed to be kept asserted?
+
+[...]
+
+> +MODULE_LICENSE("Dual BSD/GPL");
+
+Was that intended?
+
+Konrad
 
