@@ -1,106 +1,116 @@
-Return-Path: <devicetree+bounces-100381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB0396D76C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:43:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 263A596D772
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44AF81F271CD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:43:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C45E41F270CF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AB4119995E;
-	Thu,  5 Sep 2024 11:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADC11990BB;
+	Thu,  5 Sep 2024 11:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="QPQLjAG3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l2jMAYtW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA41A1922F9;
-	Thu,  5 Sep 2024 11:43:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C9114D703
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 11:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725536615; cv=none; b=DLbg4CCG3ftS/vN/yC/rq1CPL4b4e5ldp6TOylbqBXvwGiZPcRTWMnjk7KsvP5WNjQ26UKWKq40qWYUc28DcKGkCZ5BC+BUsJo2JbKEcq9YykoVAESBLixEJjzZ8k38nTjZasFBXgb2enws+sOEvnzsYHOvvgqRqzPAD8mo4Yao=
+	t=1725536811; cv=none; b=HN3ctcK1QdMn5p9hN0QO/Xl/deehs92BEM1eryl0qi8NLs7SnmNM60Gz9g4b9dXVUzKlU7JscIaDeYjV+aviZaiutGSunwszjkM4+KOmX7erdJRtbFRar4sdKKW9rUpJEtFh+yPapQowIQqXge/b9KS1NV8dJr2k9R2Prk858yI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725536615; c=relaxed/simple;
-	bh=35/ZddT9DwSfIBCt1+negDNWmVYYzBZtFuHckYVDwHQ=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=GxLfSQGwmmmsoW5u22ndO1NaJv6PeAteR13iBvUTUY8xbSC1w0y2pLsAATLipIoh5+B9csOv3nUYTdJaPVxrfXUBjBrOfdKaDliv88kCj2ypgMx1fYHSmryobdJphdbAxFZ2gtjaq7moEobE6WRkwVZ8QHvxGkah+K4sL4ZTI1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=QPQLjAG3; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1725536811; c=relaxed/simple;
+	bh=BM+w7SmS+M15Gzb2t7Xs/YrBp02BDmfc8gIF88Qzt5g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UM6uZRmV9zgnHCF42Y5uePcHeJKdl3cySsqCOo5T2WDhDMqK5idhcDGUu1625fo3oyloevsdIj08B2tMxMFyKzDgoqhBywDHXQzyjQN27nfBsCgSf+pEO6oYGbcsCWuYKyv/tOTWuCEFv2+yQt35wM6UhffuH1I4BgysBYJEcvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l2jMAYtW; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2f406034874so8083581fa.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 04:46:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725536808; x=1726141608; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BM+w7SmS+M15Gzb2t7Xs/YrBp02BDmfc8gIF88Qzt5g=;
+        b=l2jMAYtWRxIU2e6Wr+E3jt2NqmTzjGHXBYcGG2j93KfScnUG+uLeMNwSqEOSS4fIxX
+         oQuQMg6lrnp6Z+mKTInH2E8Ap/Q5RTFRfRN/phWFDBvGHNP3hGtUUBKobdpqnQNfdSA3
+         /4Ct3KEi6fSrvZtoB0TIyLgzu1XSY+T4c24Djt8MXbeIRRV2WhSRD/LY6LJoaIlV231x
+         MIoOC3Zqs8RrM7KEAa22FWGFHcWhZihDNl5oxSTVirBDfR8CaaYixwqMLgLPM+9z8ZXo
+         CwvLuAGd97Bq1Rb9cY0WiMls3/rZYa6jysXh+9ncOgSwOaRtbMXrspJXCykQRJbCn+qb
+         yBZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725536808; x=1726141608;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BM+w7SmS+M15Gzb2t7Xs/YrBp02BDmfc8gIF88Qzt5g=;
+        b=ZCd5PxzXVFvasRAs3Yu1dzbINLW1wGJwXRkClRC/VPSTEbaFg8llYeT/MSQQ4pECLv
+         xok+HrRH9zW+ClMhjwA1yaCO2trFpPd9Ghcr7bDmOgjyafdNsnCwpVRDong9S36ON6c8
+         t+cJVaN3NLYF+8ApFQhs2xHpZCWBa/URDB2oW7gEkCL6NenQq7wsMuEjiJEGQLi9sFhM
+         wJwgfMWbRbu0f6SaJ2CL1wQunz5QcRPsy9ka2GH9IvppF3GmVpXgYcvABAUbUjBwojlY
+         31VA2bcWvJPwBc9nFyODJcHdSLeiEWzBcROlioCI1j6WAbKq/+Y7cxPRiZmKWv1wGaVe
+         Eg/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUzKg0Pwx0bCOXXstixZ4urC7dxyUzZh5t6suvd0SO/lNZ7CjClZHqamBJYIfzbdr9SVN9qnifDJMGl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwaIiJPPuI8R3UlmTK7YhmRraayAQvefifhgl6zkDRb4OvjjRM
+	LgUVYqBeU4ckeSUT2D0WkVaC+C0MXKnesliOlcyH76FX//vb2PGoMQPQgqtc0su1m+lRBOKjZkP
+	r6+xnJGQ6z5XbO/zMhk2HJ9uyPVT+uGf0BhhV3BrGIMnNw1HP
+X-Google-Smtp-Source: AGHT+IHCsGQBYwg2ohwx5OLsJ3HR5XOoonPUOUhGDfgKfGVyaOU9Jfn9m+n8OOre+5olcGMI+3GJhnGkwebhcYZHI3g=
+X-Received: by 2002:a2e:b8c6:0:b0:2f3:e2f0:2b74 with SMTP id
+ 38308e7fff4ca-2f64d54ff96mr53248961fa.36.1725536806884; Thu, 05 Sep 2024
+ 04:46:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1725536609;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=P0Ur2BPImMA0ASLf+1LG8Tkzaux8tXdSw6YWPA1hiac=;
-	b=QPQLjAG3dBUqXqxYSNytajB1xh++6w2NDLVV+q196vOaXJSQRcdm6/3JSRJXxocJI7UKl4
-	tBfT05ynWkc0jLqQ77bxv6U1+Di5InRimdFVfT7YsPCR/+eULog3x5BmXmsBpZ6adJQlNL
-	57qCDyDyfY+qFrBGI1PSri1LqIISlpkvGTJ4zaiuxpGdRaRy+wr+kgb/NhIj2eMboFSDIE
-	87L1vSXQ5KxNZnxz07LOkUneWbs6/BDgQ/VvcugCHrYBr2PFCa7AOOLaho7ANYQR/DqTmj
-	2Ml3kTWB7jBe66qhe7O8BFtv+wEq0XqOG3nN5tUb9vYcWn5ggT8rusmV4vwljA==
-Date: Thu, 05 Sep 2024 13:43:29 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, Diederik de Haas <didi.debian@cknow.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Add a few aliases to the PineTab2
- dtsi
-In-Reply-To: <c820085c-a4f4-4d03-9df8-733a79e911c0@kernel.org>
-References: <987e68d1c5e9a0cc56d730aec87246aa5ab8ea14.1725535770.git.dsimic@manjaro.org>
- <c820085c-a4f4-4d03-9df8-733a79e911c0@kernel.org>
-Message-ID: <946b8248f5b282a8532c8532a3eda98e@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20240902-th1520-pinctrl-v1-0-639bf83ef50a@tenstorrent.com>
+In-Reply-To: <20240902-th1520-pinctrl-v1-0-639bf83ef50a@tenstorrent.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 5 Sep 2024 13:46:35 +0200
+Message-ID: <CACRpkdbNwpiaXKgkZfq6cw5LuW7RGxCuQvF4n3F0YCcUqKSf0A@mail.gmail.com>
+Subject: Re: [PATCH 0/8] pinctrl: Add T-Head TH1520 SoC pin controllers
+To: Drew Fustini <dfustini@tenstorrent.com>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Krzysztof,
+On Tue, Sep 3, 2024 at 6:08=E2=80=AFAM Drew Fustini <dfustini@tenstorrent.c=
+om> wrote:
 
-On 2024-09-05 13:39, Krzysztof Kozlowski wrote:
-> On 05/09/2024 13:32, Dragan Simic wrote:
->> Sprinkle a few commonly used aliases onto the PineTab2 dtsi file, to 
->> improve
->> its readability a bit, to make it easier to refer to the actual nodes 
->> later,
->> if needed, and to add a bit more detail to some of the labels.
->> 
->> No functional changes are introduced, which was validated by 
->> decompiling and
->> comparing all affected board dtb files before and after these changes. 
->>  When
->> compared with the decompiled original dtb files, some of the phandles 
->> in the
->> updated dtb files have different values, and the updated dtb files 
->> contain
->> some additional phandles and additional symbols that come from the 
->> introduced
->> aliases, but they still effectively remain the same as the originals.
->> 
->> Suggested-by: Diederik de Haas <didi.debian@cknow.org>
->> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> ---
-> 
-> Unused aliases do not improve readability, so for me this change is
-> making code worse without valid reason.
+> This adds a pin control driver created by Emil for the T-Head TH1520
+> RISC-V SoC used on the Lichee Pi 4A and BeagleV Ahead boards and
+> updates the device trees to make use of it.
+>
+> Emil's series from January used separate compatibles for each pin
+> controller instance. Rob did not think this was appropriate because the
+> programming model is the same for each instance.
+>
+> This series takes a different approach. There is now only a single
+> compatible for all pin controller instances. The pinctrl driver checks
+> the unit address to identity which pin controller instance is being
+> probed.
 
-Then why do we already have, for example, unused "rk817_charger: 
-charger"
-aliases in quite a few board dts(i) files?  If those are actually seen 
-as
-redundant, we should remove all of them.
+I don't know if that is a good way to do it, the unit name could change
+for some reason and then the driver will not work, it seems fragile.
+
+Can't we just add a custom property such as:
+thead,pin-group-number =3D <2>;
+to the device node?
+
+Yours,
+Linus Walleij
 
