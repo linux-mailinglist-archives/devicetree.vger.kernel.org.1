@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-100251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6872396CF89
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:42:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D190596CF95
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 214BE289942
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:41:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 886F81F25D1A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFBB318BC10;
-	Thu,  5 Sep 2024 06:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4A719006E;
+	Thu,  5 Sep 2024 06:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f89lTJeW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DpQ05TOp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C4418950D;
-	Thu,  5 Sep 2024 06:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020CE4C8E;
+	Thu,  5 Sep 2024 06:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725518514; cv=none; b=GIk5hLgJAbk1u2wfHQ6b+kx4LOd7U2h3fNdm25y4+7hwrbkeEGiUmANL5jYsNscKiykkjqXYDZAK/+Ln3g1cW2Mr92LUfj4d7TdA23jPVeF9yBhNw3TvI3IMxuzyZrpmJsti0uycUwrA2bL0RX4XXpUyPdBdEXprww9P0Zdy3nM=
+	t=1725518617; cv=none; b=cfIg3yAF1K2ksUIkaQi0NbSvKnXW7KC6PleO0TvQ74Xt+S5Y7gnOwe44dn51SzqaymRddRn0FHDBULg/L5pSA4DWSRmgu+KPwxN6Bxs9rYL24UidN67IVcVO+Rh4LwTi3d34PlQT/X3OTvnFm9pb/kKxkkC2yES/ulMGl1K1NRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725518514; c=relaxed/simple;
-	bh=GyWi3SHv7+gICo/vkZSaYtwIGxkwHjXVRugMXx0AV/4=;
+	s=arc-20240116; t=1725518617; c=relaxed/simple;
+	bh=ZP9qkq3X6bx8KcZVPnpDkhxe1BRBqd2XkWPEnqT2Jpk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CoyXEyw3jfVhdQ5PxO+aMMxgMNgybl7eaUG32uoPivucojRRKFtz2XNhsQ45U1U8PHwnw/t2qj1oOvfX9D1nBZAd2JMiv2D2s+e3kUMKjqg6I4JJme3HneEgxRM5p449MLlGcUPwVZ/FV/vYKxaGnMZpUQHcx1mK9RS1PvL99cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f89lTJeW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F087CC4CEC4;
-	Thu,  5 Sep 2024 06:41:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GC3BCyyUE1rD4Y7zOogZA3MBly9Q3aHqJQ2yKIEfkF0MeMbb21p7pbqXJTnV7J9UjE4SNCozgqxqG8sxj7dP+5Wyxghl6sd1EPEOXD9uSuWNcYvuuWCyfHeK6cmLjxWR2xhziMCHM4YcPs4/KjCO8wdTMcS8bXb9GxItrYdRO/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DpQ05TOp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7FC9C4CEC5;
+	Thu,  5 Sep 2024 06:43:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725518514;
-	bh=GyWi3SHv7+gICo/vkZSaYtwIGxkwHjXVRugMXx0AV/4=;
+	s=k20201202; t=1725518616;
+	bh=ZP9qkq3X6bx8KcZVPnpDkhxe1BRBqd2XkWPEnqT2Jpk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=f89lTJeW+jL7WscKtMeXpedOjIJ6CMHOrjzWvqoNk3e/bbTBBjXzS+w9d2iwFjOe+
-	 WYhjHKOaebLkj/WmMjyovl+XM4BcsNCTrrEtjp9urrlM2U9vE/3FAXsqS02Yq7tDN3
-	 fRSJqIRL9GFHJ0UkwUKI5NR/MW6jMcBtCAW7P02kgfF0GsYK07dWxpoQ4j0wCIgFyg
-	 5v4uVdmeUMZ5slpXfT31i+QlmqSHeyCy6XLQ3GaNYmFTN7aHU0A4d1qthHmFhqXBKh
-	 FKOgouNoN3FEOZp5ZIucCO6dG5vcuctDXwC8qUEYiqvTa9AczhjM0/LxnrnU9wzvA2
-	 W6/UjJm7Uq5Rw==
-Date: Thu, 5 Sep 2024 08:41:50 +0200
+	b=DpQ05TOpDUQxkf9MHz0+88deQpQH9WgXn1CKXwZxgybOYlXKEZgek6CA/1UQzepEq
+	 zz3O8VVtCOZz2p1s4UmfEDZHpkHmuUqN0T1o2Tc7ZaonfCCB2qk0S4Sr4zb6ov5XI4
+	 mI756tBadT84iR6ic0F9ZNyV+yHCn/BFl9I46p7G0c9/unZos+ZthftSuTsuQEulrZ
+	 tMSvyBriTG+NQ3I3hSoHef8ADKh6zyuPZW9CPLhliQQwdZ0YKIMxouRxquI2NExkOa
+	 dk5eZrAFlUMRQSjO558yCaMIJdjBg1LZoupvezwQuEyyOKuOaEaO2JOE14kAo9Qbvv
+	 dqwxwr+yROGMw==
+Date: Thu, 5 Sep 2024 08:43:32 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sylvain Petinot <sylvain.petinot@foss.st.com>
-Cc: benjamin.mugnier@foss.st.com, mchehab@kernel.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, sakari.ailus@linux.intel.com, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH v3 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
-Message-ID: <64mhzrr4c33uzqacbai2x2c3dekbomezenbmjowwtdtiqt43ad@d6bhvpwabimq>
-References: <20240904145238.21099-1-sylvain.petinot@foss.st.com>
- <20240904145238.21099-2-sylvain.petinot@foss.st.com>
+To: haibo.chen@nxp.com
+Cc: han.xu@nxp.com, yogeshgaur.83@gmail.com, broonie@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	singh.kuldeep87k@gmail.com, hs@denx.de, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: nxp-fspi: add imx8ulp support
+Message-ID: <kgm2ytcwxs2dpszljpmuoyjpuf36tjyccpr4stp2dw5miygvl6@3qckkqdgxrmu>
+References: <20240905012617.1864997-1-haibo.chen@nxp.com>
+ <20240905012617.1864997-2-haibo.chen@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,57 +62,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240904145238.21099-2-sylvain.petinot@foss.st.com>
+In-Reply-To: <20240905012617.1864997-2-haibo.chen@nxp.com>
 
-On Wed, Sep 04, 2024 at 04:52:37PM +0200, Sylvain Petinot wrote:
-> Add devicetree bindings Documentation for ST VD56G3 & ST VD66GY camera
-> sensors. Update MAINTAINERS file.
+On Thu, Sep 05, 2024 at 09:26:15AM +0800, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
+> The flexspi on imx8ulp only has 16 number of LUTs, it is different
+> with flexspi on other imx SoC which has 32 number of LUTs.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-> +            port {
-> +                endpoint {
-> +                    data-lanes = <1 2>;
-> +                    link-frequencies = /bits/ 64 <402000000>;
-> +                    remote-endpoint = <&csiphy0_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e6d77bea5db5..e58deb5b3047 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21561,6 +21561,14 @@ S:	Maintained
->  F:	Documentation/hwmon/stpddc60.rst
->  F:	drivers/hwmon/pmbus/stpddc60.c
->  
-> +ST VD56G3 IMAGE SENSOR DRIVER
-> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/st,vd56g3.yaml
-> +F:	drivers/media/i2c/vd56g3.c
-
-There is no such file.
-
-
-> +
->  ST VGXY61 DRIVER
->  M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
->  M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-> @@ -23947,6 +23955,7 @@ F:	drivers/media/i2c/mt*
->  F:	drivers/media/i2c/og*
->  F:	drivers/media/i2c/ov*
->  F:	drivers/media/i2c/s5*
-> +F:	drivers/media/i2c/vd56g3.c
-
-Neither this one.
-
-After fixing the paths:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
