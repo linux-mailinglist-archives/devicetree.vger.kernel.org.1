@@ -1,73 +1,72 @@
-Return-Path: <devicetree+bounces-100300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A727D96D1F9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:25:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0207896D1FD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:25:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9F9E1C24E8F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:24:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82CDD1F2891E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C302A1957FC;
-	Thu,  5 Sep 2024 08:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6E4197A6C;
+	Thu,  5 Sep 2024 08:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vR0KxDxd"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mlozzLxg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F30194A5C
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 08:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89445194C95
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 08:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725524658; cv=none; b=HR0MgkfnjJu9ELZOp+xMx0QPPLrYQ/c8HEULdECMfE5kmDp/WJYWFXlynl5mnX+w5AfZlRpOvOZP1DShlt27ZMG+RbRIhmszRDDZu7r6GUrFhQwYe5dkhg/bng+8UK+T5AzCXk24bvfcGzqAGRT1G2o6d5dlmswB7AZSQb8fh08=
+	t=1725524662; cv=none; b=rUeS2MOv/ZDW+iafH2dVdeeIlIErJZiephKhVp9BpIK7QvPFYg37yJVs/3/QAl198bInc9ejG52ji9DR0bU/Wj6yg96Ch0HMhlFygkJLZ1u2EJvaI2to059gaXpeXhhk4GxvccYLa0BSqi7ZtzXr2it3wWxXLEwm5fo/dZ1Dff0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725524658; c=relaxed/simple;
-	bh=9wWTe2RhHwvr6CPLWLyUmFQssffTJWZ48+UUgVNgMfA=;
+	s=arc-20240116; t=1725524662; c=relaxed/simple;
+	bh=ZK9Z1/Q4filbKX1kKWRghKSgUBwXpAJI26eeyznAt94=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a7soazxpbyvVs4Zz077nBcKcVO1M8dULnI17cE+nupdPdGPz9xxD2ICk/2otTlgrZBkBzhOVi59AO47gfBvUM2hwFL4KXlM2M9Dd6wpzRZ/q/cPCqG8cD9TB0czISsK5K30wertk7gROHbbol7casMhm4w6FcHD/U0xF1wYwztM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vR0KxDxd; arc=none smtp.client-ip=209.85.218.44
+	 MIME-Version:Content-Type; b=dbGvo4seKDRTTBkICK2Lk36atKu8CsMUl19vE0xYN8S0XY3tsTXv/vFrAYNWo5lBl58b2tI6XE7dbt8JLt1RwG0FJXYq9GRPah8yxH4clqurE+BSWwiqPrYm91+IqsPt5vl6gd/ycBXZEF5QN4oq3leAqaBJCbc9QIVmY6dVsiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mlozzLxg; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8692bbec79so74947366b.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 01:24:15 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a8684c31c60so78368866b.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 01:24:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725524654; x=1726129454; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725524656; x=1726129456; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WRucj7sLZEUBkFzhvRqpr3JKNs6+16Ez8lks/iAJ3Xo=;
-        b=vR0KxDxdQ77x0HcgiwxAV6eJwsx97UxYlez2UKMSNBEIoQTZU6sq/t0u4cX/uVdr23
-         Dz2pg2B5opjkyW5cvvv4SBuw3QtVo7eWu3v9npQN492SzUf/WkJudObmBxAc3oyPiOJ1
-         /FNSZHr81CoTKsGIWRNzRTY7qxj35lNyZbKaLGejx/rx3k+Uko/zIxfRW/38RAImye/p
-         MSbysA3Glsn47VUJ9tPvD9/y55X+r3IcsWow2YcNVZ828T/O/0+fENT4Ag4slh/KKMve
-         evst4mE8EmsvVD+1Sj0ALwGPSht0iJdLNw0s763Aml4kEaTJd2lab//babVn5clbiCyl
-         VcVg==
+        bh=OMjsY+V8C+xpLeayM52S92PbmAJB3Osj5meZbpqVaZk=;
+        b=mlozzLxg/WO/yqOo9AkgO7x+HZy2vJHBqZ9sX2gyfjWiUlIzFVQkXinqXGSLomQ8IH
+         Jt9CBKa8S1W8v4HhO+2Oc/Fq6EPiR4JKS+3ix4D532ege8jZYEbY2LRaiRwo4O0ax8Qe
+         iUDEUAeYxS/oBg4eRwDp6tnIBBy9ytjM/cI+3vgUyKKh//NCNWvNytiji3Lj0aTQpq7+
+         5QJCdCWRrot5KVbOReyU6KbtjA5SNPfVsdk4tQekdYCiIkzLByB2atMWpZy7aAfCfKTx
+         5nGk6CpABlLE2512WvOR0fL+yxdVmpw+rh6kUbWo/7HKdFxa6Bo2K8AEzlD21lLfUWUo
+         IRHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725524654; x=1726129454;
+        d=1e100.net; s=20230601; t=1725524656; x=1726129456;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WRucj7sLZEUBkFzhvRqpr3JKNs6+16Ez8lks/iAJ3Xo=;
-        b=Ysa7h7gObHFXNHY16ztXFjJe4zk30/7kjo0nMW/M+5AiWHv/6AvDPP4SWyJM1nowMO
-         6yP+A8W8bD7UyJfvHXgBKeDUF78OgYxcp6m4fuyEZiEKeoS72DeRWx06mLv7mIu2Vgjs
-         i38sohxyXC/v/XlVRVAN7h4g0ZDRtjO2bbJVxFp0/GDpSrkl6DB8JdS/QcbKU2Js1syh
-         topSsHm5pAk0sEMXVTRlvcS6LAsIGIrXcR0kadJUs/AxY/vFilvZERezhQQM14ntgl9v
-         XhlP2+eUb24aD0Eb+2ZX87ri5Ma4L6th3TLLocsOwJhul5jxyg6xghqRQ+41C3g0pp9u
-         19zw==
-X-Forwarded-Encrypted: i=1; AJvYcCXd0lahi8Anhy9ysLyKyHnMCg17UapGQY5l3SnYLXfbr3pVvbLLVWRgIkf+GZ3HN9Cwcrp9HMord96G@vger.kernel.org
-X-Gm-Message-State: AOJu0YznauqulhdPxbbJ4uwGwB1ysIhi75n44DZmoQaBujkKNrZU3PFs
-	ktua16w/B2WaRx7n/6BoLTZaNXOSy01c55m4tEPRSvozmD5DAc+Jo3S7LWGygrOJFIo0qLKtTLL
-	GwGA=
-X-Google-Smtp-Source: AGHT+IGysHzpaI/D+IHLYDFtgbkl4iiw0+CnPgXwvIIR+LDXrAkqivGsmmQIUYkaxNsMKt0GYadSBA==
-X-Received: by 2002:a17:907:72d6:b0:a80:788e:176c with SMTP id a640c23a62f3a-a89a35ceef6mr1707691766b.23.1725524653974;
-        Thu, 05 Sep 2024 01:24:13 -0700 (PDT)
+        bh=OMjsY+V8C+xpLeayM52S92PbmAJB3Osj5meZbpqVaZk=;
+        b=R2e8Tw+4ak9GVyI2SxZLwnLCmbmAVPA5YlH63fyfIUUm4Dz2ThKSJecbz2tPE1xBZW
+         nk/ZEbKHP6xvbar3kc4mBuL4w2SX50QD3YEGxxu2YZOdMJILKi6nM9T4WZi2kWoBQ7LZ
+         DP8XoScfn3M7OQk98RVpoWmUmzrnuGPLovcWP/iWmAGQHT0HlPtFcfRjYaHcjCuZVEAX
+         CIboxktfomNvi2jyT2r/CpzHFS/WE5xfiWn6uZaaAi00rBSjIcz0XaDTMDaeoK+vzpHO
+         Uzjv10V80kkLdoxwW21wM2lLOF4GmBekuAHB+WUQC3wUwBrIwLDFNszGGk73dDC/ZjXX
+         4aqw==
+X-Forwarded-Encrypted: i=1; AJvYcCXetY5fgIrekSPbUTN2tb1wiELkO+W/m3WiHyn52hL8oJLqwzULXbOqH6u/f9KweglsCn8Roo/GgQYF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyryfYNZT4j0/88S/r86A+3/hHO8S+E4IYuQdy63R1BgwU4SItn
+	+zQT43wsTMOjC3lFb3bmCZlL8Qdqh7FxN1WfvyWuOJYWy9K7n7DaTt1rrg3xnS0=
+X-Google-Smtp-Source: AGHT+IHoCqOCL74ppbS/1Wf7oaHt9Td74TK/ayaJ7yQiB+XjDAXmmXLXT6yqIaQV9Ts+xV16haOFDw==
+X-Received: by 2002:a17:907:3d8a:b0:a86:a90f:3025 with SMTP id a640c23a62f3a-a897fad45cdmr1612932766b.59.1725524655831;
+        Thu, 05 Sep 2024 01:24:15 -0700 (PDT)
 Received: from localhost.localdomain ([188.27.130.242])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a623a6c80sm102300366b.174.2024.09.05.01.24.12
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a623a6c80sm102300366b.174.2024.09.05.01.24.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 01:24:13 -0700 (PDT)
+        Thu, 05 Sep 2024 01:24:15 -0700 (PDT)
 From: Alexandru Ardelean <aardelean@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
@@ -79,9 +78,9 @@ Cc: jic23@kernel.org,
 	michael.hennerich@analog.com,
 	gstols@baylibre.com,
 	Alexandru Ardelean <aardelean@baylibre.com>
-Subject: [PATCH v4 3/8] iio: adc: ad7606: split a 'ad7606_sw_mode_setup()' from probe
-Date: Thu,  5 Sep 2024 11:23:57 +0300
-Message-ID: <20240905082404.119022-4-aardelean@baylibre.com>
+Subject: [PATCH v4 4/8] iio: adc: ad7606: wrap channel ranges & scales into struct
+Date: Thu,  5 Sep 2024 11:23:58 +0300
+Message-ID: <20240905082404.119022-5-aardelean@baylibre.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240905082404.119022-1-aardelean@baylibre.com>
 References: <20240905082404.119022-1-aardelean@baylibre.com>
@@ -94,79 +93,202 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-This change moves the logic for setting up SW mode (during probe) into it's
-own function.
+With the addition of AD7606C-16,18 which have differential & bipolar
+channels (and ranges), which can vary from channel to channel, we'll need
+to keep more information about each channel range.
 
-With the addition of some newer parts, the SW-mode part can get a little
-more complicated.
-So it's a bit better to have a separate function for this.
+To do that, we'll add a 'struct ad7606_chan_scale' type to hold just
+configuration for each channel.
+This includes the scales per channel (which can be different with
+AD7606C-16,18), as well as the range for each channel.
+This driver was already keeping the range value for each channel before,
+and since this is couple with the scales, it also makes sense to put them
+in the same struct.
 
 Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
 ---
- drivers/iio/adc/ad7606.c | 43 ++++++++++++++++++++++++----------------
- 1 file changed, 26 insertions(+), 17 deletions(-)
+ drivers/iio/adc/ad7606.c | 37 +++++++++++++++++++++++++------------
+ drivers/iio/adc/ad7606.h | 22 ++++++++++++++++------
+ 2 files changed, 41 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index 5049e37f8393..b400c9b2519d 100644
+index b400c9b2519d..2554a4a4a9c0 100644
 --- a/drivers/iio/adc/ad7606.c
 +++ b/drivers/iio/adc/ad7606.c
-@@ -545,6 +545,29 @@ static const struct iio_trigger_ops ad7606_trigger_ops = {
- 	.validate_device = iio_trigger_validate_own_device,
- };
+@@ -170,6 +170,7 @@ static int ad7606_read_raw(struct iio_dev *indio_dev,
+ {
+ 	int ret, ch = 0;
+ 	struct ad7606_state *st = iio_priv(indio_dev);
++	struct ad7606_chan_scale *cs;
  
-+static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
+ 	switch (m) {
+ 	case IIO_CHAN_INFO_RAW:
+@@ -183,8 +184,9 @@ static int ad7606_read_raw(struct iio_dev *indio_dev,
+ 	case IIO_CHAN_INFO_SCALE:
+ 		if (st->sw_mode_en)
+ 			ch = chan->address;
++		cs = &st->chan_scales[ch];
+ 		*val = 0;
+-		*val2 = st->scale_avail[st->range[ch]];
++		*val2 = cs->scale_avail[cs->range];
+ 		return IIO_VAL_INT_PLUS_MICRO;
+ 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+ 		*val = st->oversampling;
+@@ -214,8 +216,9 @@ static ssize_t in_voltage_scale_available_show(struct device *dev,
+ {
+ 	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+ 	struct ad7606_state *st = iio_priv(indio_dev);
++	struct ad7606_chan_scale *cs = &st->chan_scales[0];
+ 
+-	return ad7606_show_avail(buf, st->scale_avail, st->num_scales, true);
++	return ad7606_show_avail(buf, cs->scale_avail, cs->num_scales, true);
+ }
+ 
+ static IIO_DEVICE_ATTR_RO(in_voltage_scale_available, 0);
+@@ -253,19 +256,21 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
+ 			    long mask)
+ {
+ 	struct ad7606_state *st = iio_priv(indio_dev);
++	struct ad7606_chan_scale *cs;
+ 	int i, ret, ch = 0;
+ 
+ 	guard(mutex)(&st->lock);
+ 
+ 	switch (mask) {
+ 	case IIO_CHAN_INFO_SCALE:
+-		i = find_closest(val2, st->scale_avail, st->num_scales);
+ 		if (st->sw_mode_en)
+ 			ch = chan->address;
++		cs = &st->chan_scales[ch];
++		i = find_closest(val2, cs->scale_avail, cs->num_scales);
+ 		ret = st->write_scale(indio_dev, ch, i);
+ 		if (ret < 0)
+ 			return ret;
+-		st->range[ch] = i;
++		cs->range = i;
+ 
+ 		return 0;
+ 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+@@ -547,7 +552,9 @@ static const struct iio_trigger_ops ad7606_trigger_ops = {
+ 
+ static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
+ {
++	unsigned int num_channels = indio_dev->num_channels - 1;
+ 	struct ad7606_state *st = iio_priv(indio_dev);
++	int ch;
+ 
+ 	if (!st->bops->sw_mode_config)
+ 		return 0;
+@@ -559,11 +566,14 @@ static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
+ 	indio_dev->info = &ad7606_info_os_range_and_debug;
+ 
+ 	/* Scale of 0.076293 is only available in sw mode */
+-	st->scale_avail = ad7616_sw_scale_avail;
+-	st->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
+-
+ 	/* After reset, in software mode, ±10 V is set by default */
+-	memset32(st->range, 2, ARRAY_SIZE(st->range));
++	for (ch = 0; ch < num_channels; ch++) {
++		struct ad7606_chan_scale *cs = &st->chan_scales[ch];
 +
-+	if (!st->bops->sw_mode_config)
-+		return 0;
-+
-+	st->sw_mode_en = device_property_present(st->dev, "adi,sw-mode");
-+	if (!st->sw_mode_en)
-+		return 0;
-+
-+	indio_dev->info = &ad7606_info_os_range_and_debug;
-+
-+	/* Scale of 0.076293 is only available in sw mode */
-+	st->scale_avail = ad7616_sw_scale_avail;
-+	st->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
-+
-+	/* After reset, in software mode, ±10 V is set by default */
-+	memset32(st->range, 2, ARRAY_SIZE(st->range));
-+
-+	return st->bops->sw_mode_config(indio_dev);
-+}
-+
- int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
++		cs->scale_avail = ad7616_sw_scale_avail;
++		cs->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
++		cs->range = 2;
++	}
+ 
+ 	return st->bops->sw_mode_config(indio_dev);
+ }
+@@ -572,6 +582,7 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
  		 const char *name, unsigned int id,
  		 const struct ad7606_bus_ops *bops)
-@@ -617,23 +640,9 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 	st->write_scale = ad7606_write_scale_hw;
- 	st->write_os = ad7606_write_os_hw;
+ {
++	struct ad7606_chan_scale *cs;
+ 	struct ad7606_state *st;
+ 	int ret;
+ 	struct iio_dev *indio_dev;
+@@ -588,10 +599,12 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+ 	st->bops = bops;
+ 	st->base_address = base_address;
+ 	/* tied to logic low, analog input range is +/- 5V */
+-	st->range[0] = 0;
+ 	st->oversampling = 1;
+-	st->scale_avail = ad7606_scale_avail;
+-	st->num_scales = ARRAY_SIZE(ad7606_scale_avail);
++
++	cs = &st->chan_scales[0];
++	cs->range = 0;
++	cs->scale_avail = ad7606_scale_avail;
++	cs->num_scales = ARRAY_SIZE(ad7606_scale_avail);
  
--	if (st->bops->sw_mode_config)
--		st->sw_mode_en = device_property_present(st->dev,
--							 "adi,sw-mode");
--
--	if (st->sw_mode_en) {
--		/* Scale of 0.076293 is only available in sw mode */
--		st->scale_avail = ad7616_sw_scale_avail;
--		st->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
--
--		/* After reset, in software mode, ±10 V is set by default */
--		memset32(st->range, 2, ARRAY_SIZE(st->range));
--		indio_dev->info = &ad7606_info_os_range_and_debug;
--
--		ret = st->bops->sw_mode_config(indio_dev);
--		if (ret < 0)
--			return ret;
--	}
-+	ret = ad7606_sw_mode_setup(indio_dev);
-+	if (ret)
-+		return ret;
+ 	ret = devm_regulator_get_enable(dev, "avcc");
+ 	if (ret)
+@@ -698,7 +711,7 @@ static int ad7606_resume(struct device *dev)
+ 	struct ad7606_state *st = iio_priv(indio_dev);
  
- 	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
- 					  indio_dev->name,
+ 	if (st->gpio_standby) {
+-		gpiod_set_value(st->gpio_range, st->range[0]);
++		gpiod_set_value(st->gpio_range, st->chan_scales[0].range);
+ 		gpiod_set_value(st->gpio_standby, 1);
+ 		ad7606_reset(st);
+ 	}
+diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+index 771121350f98..afe6a4030e0e 100644
+--- a/drivers/iio/adc/ad7606.h
++++ b/drivers/iio/adc/ad7606.h
+@@ -8,6 +8,8 @@
+ #ifndef IIO_ADC_AD7606_H_
+ #define IIO_ADC_AD7606_H_
+ 
++#define AD760X_MAX_CHANNELS	16
++
+ #define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all, bits) {	\
+ 		.type = IIO_VOLTAGE,				\
+ 		.indexed = 1,					\
+@@ -60,17 +62,27 @@ struct ad7606_chip_info {
+ 	unsigned long			init_delay_ms;
+ };
+ 
++/**
++ * struct ad7606_chan_scale - channel scale configuration
++ * @scale_avail		pointer to the array which stores the available scales
++ * @num_scales		number of elements stored in the scale_avail array
++ * @range		voltage range selection, selects which scale to apply
++ */
++struct ad7606_chan_scale {
++	const unsigned int		*scale_avail;
++	unsigned int			num_scales;
++	unsigned int			range;
++};
++
+ /**
+  * struct ad7606_state - driver instance specific data
+  * @dev		pointer to kernel device
+  * @chip_info		entry in the table of chips that describes this device
+  * @bops		bus operations (SPI or parallel)
+- * @range		voltage range selection, selects which scale to apply
++ * @chan_scales		scale configuration for channels
+  * @oversampling	oversampling selection
+  * @base_address	address from where to read data in parallel operation
+  * @sw_mode_en		software mode enabled
+- * @scale_avail		pointer to the array which stores the available scales
+- * @num_scales		number of elements stored in the scale_avail array
+  * @oversampling_avail	pointer to the array which stores the available
+  *			oversampling ratios.
+  * @num_os_ratios	number of elements stored in oversampling_avail array
+@@ -94,12 +106,10 @@ struct ad7606_state {
+ 	struct device			*dev;
+ 	const struct ad7606_chip_info	*chip_info;
+ 	const struct ad7606_bus_ops	*bops;
+-	unsigned int			range[16];
++	struct ad7606_chan_scale	chan_scales[AD760X_MAX_CHANNELS];
+ 	unsigned int			oversampling;
+ 	void __iomem			*base_address;
+ 	bool				sw_mode_en;
+-	const unsigned int		*scale_avail;
+-	unsigned int			num_scales;
+ 	const unsigned int		*oversampling_avail;
+ 	unsigned int			num_os_ratios;
+ 	int (*write_scale)(struct iio_dev *indio_dev, int ch, int val);
 -- 
 2.46.0
 
