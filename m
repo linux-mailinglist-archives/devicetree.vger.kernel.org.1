@@ -1,185 +1,167 @@
-Return-Path: <devicetree+bounces-100479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 711E096DC53
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD2C96DC4C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:48:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEF97B217D1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:49:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CC49B2115B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FAE14C634;
-	Thu,  5 Sep 2024 14:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5301D551;
+	Thu,  5 Sep 2024 14:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rCgnBeg/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="w/b4diqw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6C343169;
-	Thu,  5 Sep 2024 14:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13808179BF;
+	Thu,  5 Sep 2024 14:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725547760; cv=none; b=q5U4jeY7p8tdYCLH5Jte20fC74SQZ4jitrqTqOv3qciVs2QqGD90k/w1mUqhE3TB3Z5dDCdKy1e7ofdTWyjPB2moq4NZxZVOFJ5aIYqCNLgyhY6FgieWe12Iloru/ORfQUfbMhE7a4LeokJMVoqlOMw/7cJAmnoUZFT0dcWmLQo=
+	t=1725547725; cv=none; b=dO8ul8/V6RZJOasWSvWJBgwC2d4VEDvSY/IBwFhoVoCWcjmLfVoGii5/SyLfmOURN3iMgCnHXMOP32XySpUTlVjb4jrofVlzIW0PsQ/OyzpPdtZYjPRTIzXEA0carIfO+LsagFcvEZB3db+E1EtcmEm9PlhPIxnnotShVgDV+EY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725547760; c=relaxed/simple;
-	bh=z9r0NxcFekK09jKFvUY4vj72duAS7qn2qglDPPI4PLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=loZTUiNWXSw7+rjaAoMRXg/YB9bytGQaCKJJUACdDiy3Xskm5WTYaPGyRYXxlu0D15gTlLvRokaXMwBDX18r8dSOCZ94FMNXcPTikpKr+4BCz3qQJTBZZYSSBimCZP4e3ruBex/JE35ixLplKXylPhaTm8qntSbln7A1DdZ7SfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rCgnBeg/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D68AC4CEC3;
-	Thu,  5 Sep 2024 14:49:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725547759;
-	bh=z9r0NxcFekK09jKFvUY4vj72duAS7qn2qglDPPI4PLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rCgnBeg/2QCYhFtf0Uy4Rf0QMQd2VIyVYz3/sRkVSci1e96UTATiMm/ws9WoKeynB
-	 T49qs+s6WuUW2mszeaD3bazikT8Dl2FI1Ku1sQvnfHfgF74rZymjC34+lis8nyGX0P
-	 ItehwgG2Ue7MlNlmLSi3UrAUEw2Sek90HQHhX4LrLAiUo7fLSwgyIbuXfVp7PCjhRz
-	 8YBBd1Q1rUwp8f5T14sECowNTvz8to0Q2Och1rd67oMEL0OY7BiFbYaxoQSuSc0vjh
-	 m0cgsleMCKGC/q58QJ1h3aBM9yI22Y4DUGedudgZb7cxBmOtGfUUoP3AmpAImLvEuP
-	 5mP7hTkF/SbgA==
-Message-ID: <a2c2e365-7e47-4ad1-87dc-b5603a927cc6@kernel.org>
-Date: Thu, 5 Sep 2024 16:49:08 +0200
+	s=arc-20240116; t=1725547725; c=relaxed/simple;
+	bh=0ommqQRWmdehvN0o6pbfhCcsZNj04TF1UHTEwGE5yDM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=j3ez7wsb/1ApqH+94ZSJ7MpY+Wc6GIDtaLnrHA8LZz9w+6e4pt28cDZRanlykN7wNXiJAEVkBkjK7KE3f/S91Rpm7MmJ25tyAudcwEFZGnh2IiEExlwT/z4SY4NNMlDZMVjCZIULEuKh784ioAnCevBXw5eyZwzNBYdEltIykDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=w/b4diqw; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Z9IgYD/2bP3HwiWDe9m6U4cOpfzwTsOumgc5N6zAYJA=; b=w/b4diqw5J8ZIWZLi5djL0KZax
+	oYskcatg6UJKVdLpBuSCCoPxb857ufeJN9eshcmsi68J/7ptbzWk043BsCHcRZ+oXflAwquP5rcoA
+	MV40is1liBi9d8axQSJHuIhypek6r9Lvz4WU8t+VItpygoIB3Qrdq4VKamWkE7HBi7vMET96xV0oC
+	yyF4mAvu0ThWEjYfLULsTtkVHc3A6s7wx5yRnUz9WjN0FdjUpRdKbQ0bD/gnSFwMp9guoDc2fL3HW
+	4iE5WgDR4IijnID5sLC2t6JfrtyLyvB2hFOMLYI26aTLd/qZk5RdFq5LFYVTydBQ05sXM6fHcZQsu
+	0P35Q/gw==;
+Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1smDmd-0002HD-Hx; Thu, 05 Sep 2024 16:48:27 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Lee Jones <lee@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jdelvare@suse.com, linux@roeck-us.net, dmitry.torokhov@gmail.com,
+ pavel@ucw.cz, ukleinek@debian.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v6 3/7] leds: add driver for LEDs from qnap-mcu devices
+Date: Thu, 05 Sep 2024 16:50:22 +0200
+Message-ID: <3627679.ZzFAyJQhcr@diego>
+In-Reply-To: <20240829162705.GR6858@google.com>
+References:
+ <20240825203235.1122198-1-heiko@sntech.de>
+ <20240825203235.1122198-4-heiko@sntech.de> <20240829162705.GR6858@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 16/21] dt-bindings: spi: document support for SA8255p
-To: Nikunj Kela <quic_nkela@quicinc.com>, Andrew Lunn <andrew@lunn.ch>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
- viresh.kumar@linaro.org, herbert@gondor.apana.org.au, davem@davemloft.net,
- sudeep.holla@arm.com, andi.shyti@kernel.org, tglx@linutronix.de,
- will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
- jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
- amitk@kernel.org, thara.gopinath@gmail.com, broonie@kernel.org,
- cristian.marussi@arm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
- wim@linux-watchdog.org, linux@roeck-us.net, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-crypto@vger.kernel.org,
- arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-i2c@vger.kernel.org, iommu@lists.linux.dev,
- linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
- kernel@quicinc.com, quic_psodagud@quicinc.com,
- Praveen Talari <quic_ptalari@quicinc.com>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-17-quic_nkela@quicinc.com>
- <sdxhnqvdbcpmbp3l7hcnsrducpa5zrgbmkykwfluhrthqhznxi@6i4xiqrre3qg>
- <b369bd73-ce2f-4373-8172-82c0cca53793@quicinc.com>
- <9a655c1c-97f6-4606-8400-b3ce1ed3c8bf@kernel.org>
- <516f17e6-b4b4-4f88-a39f-cc47a507716a@quicinc.com>
- <2f11f622-1a00-4558-bde9-4871cdc3d1a6@lunn.ch>
- <204f5cfe-d1ed-40dc-9175-d45f72395361@quicinc.com>
- <70c75241-b6f1-4e61-8451-26839ec71317@kernel.org>
- <75768451-4c85-41fa-82b0-8847a118ea0a@quicinc.com>
- <ce4d6ea9-0ba7-4587-b4a7-3dcb2d6bb1a6@kernel.org>
- <4896510e-6e97-44e0-b3d7-7a7230f935ec@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <4896510e-6e97-44e0-b3d7-7a7230f935ec@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 05/09/2024 16:15, Nikunj Kela wrote:
+Am Donnerstag, 29. August 2024, 18:27:05 CEST schrieben Sie:
+> On Sun, 25 Aug 2024, Heiko Stuebner wrote:
 > 
-> On 9/5/2024 7:09 AM, Krzysztof Kozlowski wrote:
->> On 05/09/2024 16:03, Nikunj Kela wrote:
->>> On 9/5/2024 1:04 AM, Krzysztof Kozlowski wrote:
->>>> On 04/09/2024 23:06, Nikunj Kela wrote:
->>>>> On 9/4/2024 9:58 AM, Andrew Lunn wrote:
->>>>>>> Sorry, didn't realize SPI uses different subject format than other
->>>>>>> subsystems. Will fix in v3. Thanks
->>>>>> Each subsystem is free to use its own form. e.g for netdev you will
->>>>>> want the prefix [PATCH net-next v42] net: stmmac: dwmac-qcom-ethqos:
->>>>> of course they are! No one is disputing that.
->>>>>> This is another reason why you should be splitting these patches per
->>>>>> subsystem, and submitting both the DT bindings and the code changes as
->>>>>> a two patch patchset. You can then learn how each subsystem names its
->>>>>> patches.
->>>>> Qualcomm QUPs chips have serial engines that can be configured as
->>>>> UART/I2C/SPI so QUPs changes require to be pushed in one series for all
->>>>> 3 subsystems as they all are dependent.
->>>> No, they are not dependent. They have never been. Look how all other
->>>> upstreaming process worked in the past.
->>> Top level QUP node(patch#18) includes i2c,spi,uart nodes.
->>> soc/qcom/qcom,geni-se.yaml validate those subnodes against respective
->>> yaml. The example that is added in YAML file for QUP node will not find
->>> sa8255p compatibles if all 4 yaml(qup, i2c, spi, serial nodes) are not
->>> included in the same series.
->>>
->> So where is the dependency? I don't see it. 
-> 
-> Ok, what is your suggestion on dt-schema check failure in that case as I
-> mentioned above? Shall we remove examples from yaml that we added?
-> 
-> 
->> Anyway, if you insist,
->> provide reasons why this should be the only one patchset - from all
->> SoCs, all companies, all developers - getting an exception from standard
->> merging practice and from explicit rule about driver change. See
->> submitting bindings.
->>
->> This was re-iterated over and over, but you keep claiming you need some
->> sort of special treatment. If so, please provide arguments WHY this
->> requires special treatment and *all* other contributions are fine with it.
+> > This adds a driver that connects to the qnap-mcu mfd driver and provides
+> > access to the LEDs on it.
+> > 
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-You did not respond to above about explaining why this patchset needs
-special treatment, so I assume there is no exception here to be granted
-so any new version will follow standard process (see submitting bindings
-/ writing bindings).
+[...]
 
-Best regards,
-Krzysztof
+> > +{
+> > +	struct qnap_mcu_err_led *err_led = cdev_to_qnap_mcu_err_led(led_cdev);
+> > +	u8 cmd[] = { 0x40, 0x52, 0x30 + err_led->num, 0x30 };
+> 
+> Really not fan of these magic values being used raw like this.
+
+Me neither, I tried my luck with QNAP support to get some sort of
+documentation on what these magic characters mean, and it did
+even get up to some "product team" but ultimately they decided
+against providing any help.
+
+But ok, if it makes you feel more at ease, I'll switch to at least
+replaying ascii-values where possible :-) .
+
+
+> > +static int qnap_mcu_err_led_blink_set(struct led_classdev *led_cdev,
+> > +				      unsigned long *delay_on,
+> > +				      unsigned long *delay_off)
+> > +{
+> > +	struct qnap_mcu_err_led *err_led = cdev_to_qnap_mcu_err_led(led_cdev);
+> > +	u8 cmd[] = { 0x40, 0x52, 0x30 + err_led->num, 0x30 };
+> > +
+> > +	/* LED is off, nothing to do */
+> > +	if (err_led->mode == QNAP_MCU_ERR_LED_OFF)
+> > +		return 0;
+> > +
+> > +	if (*delay_on < 500) {
+> 
+> Setting delay_on based on the current value of delay_on sounds sketchy.
+
+As far as I understood the API, the parameter should indicated the wanted
+blink time, while the function then should set in those variables the delay
+the driver actually set.
+
+So if the delay_on is < 500, select the fast blink mode, which is this
+100/100 variant and for everything >= 500 the slow blink mode.
+
+I.e. you set the trigger to "timer" and this creates the delay_on and
+delay_off sysfs files, where you put you wish into and can read the
+actually set delays out of.
+
+
+> > +		*delay_on = 100;
+> > +		*delay_off = 100;
+> > +		err_led->mode = QNAP_MCU_ERR_LED_BLINK_FAST;
+> > +	} else {
+> > +		*delay_on = 500;
+> > +		*delay_off = 500;
+> > +		err_led->mode = QNAP_MCU_ERR_LED_BLINK_SLOW;
+> > +	}
+> 
+> How do you change from a fast to a slow blinking LED and back again?
+
+echo timer > /sys/class/leds/hdd4:red:status/trigger
+## creates delay_on + delay_off sysfs files
+
+echo 150 > /sys/class/leds/hdd4:red:status/delay_on
+cat /sys/class/leds/hdd4:red:status/delay_on --> 100
+
+echo 250 > /sys/class/leds/hdd4:red:status/delay_on
+cat /sys/class/leds/hdd4:red:status/delay_on --> 100
+
+## switch to slow blink
+
+echo 500 > /sys/class/leds/hdd4:red:status/delay_on
+cat /sys/class/leds/hdd4:red:status/delay_on --> 500
+
+echo 600 > /sys/class/leds/hdd4:red:status/delay_on
+cat /sys/class/leds/hdd4:red:status/delay_on --> 500
+
+## switch to fast blink again
+
+echo 150 > /sys/class/leds/hdd4:red:status/delay_on
+cat /sys/class/leds/hdd4:red:status/delay_on --> 100
+
+echo heartbeat > /sys/class/leds/hdd4:red:status/trigger
+## removes the delay_on + delay_off files again
+
+
+Heiko
+
 
 
