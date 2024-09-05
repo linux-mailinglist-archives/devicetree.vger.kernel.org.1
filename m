@@ -1,60 +1,65 @@
-Return-Path: <devicetree+bounces-100253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD82D96CF9B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:44:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2735C96CFA9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:48:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8266A28A92A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:44:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0E66B218B9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94011917D9;
-	Thu,  5 Sep 2024 06:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94EF1925A6;
+	Thu,  5 Sep 2024 06:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MB4oAB5b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duUoEs6H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A0E18F2C3;
-	Thu,  5 Sep 2024 06:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A962842C0B;
+	Thu,  5 Sep 2024 06:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725518694; cv=none; b=VowoiB8IFYNabacDw09mOpMuKeAsr6FtmrAwbZDdT+PVFYSPlxGaG/IwzSU/52CnqAIBJEd88pvqbUpJ9ncHZ+OdHTD52TYbSJCSbQgxjxVuzX94NI5QlTEkQKrhEpMKhy1VH8LCMP9MIFsDCb3P2BGPUPGhwmmFny0N/tqJtbs=
+	t=1725518881; cv=none; b=Oy9r+vRYWqjBWoO85k7tcGM/gghoF/K/OgIR4nx+FTkY13md0grOxUraVL0rVT855W5++WcM0/NyEPRkEvV9NA20odVsDJZIs1x7u3xOlNy9kYLQ0ETct9B79+Xgx5aQTTAaEa5elwj7MKyP1QltTzxBaJgJYteEVH1xWfjlZaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725518694; c=relaxed/simple;
-	bh=WmzPeAppOYGxw2pBZvSCYqbt+9JNVBVF+BuOfIdFGkc=;
+	s=arc-20240116; t=1725518881; c=relaxed/simple;
+	bh=Njmcixp/WFQ1K49ru/lsO056x3RbOFYKJXcQ0Q4keZQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AUfX6PU9+307rFEKjzX1v4gSVqB4CQn6lkZATouwN5LMGRYhBjbh8nh4E0XwDOIRipsqeg7O+PyIhAJMfubLCR8oAia13nRJbT0jxlMc9Q6RGAwv0j1jQTvJc6y8yQWohpgcH1B9BOPklEiXCFp4WVGK1s8fN/+KiWVeq+Jo5RU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MB4oAB5b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA010C4CEC4;
-	Thu,  5 Sep 2024 06:44:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tG+pyhSNwN/s6NVRwavzEE7UQAkmfGdSquA09nwHyiHSFzWulXs0CoLK5oW4S+bToatvKEXQxFmy9r8NEZWTuWRYXjEDl7mY0hKeFcvenfkukag3MutMBrgFTtH3X110pgMbi8enKlWqW0gbpcpUsUV3PaofSwaPCJXt63QEeV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duUoEs6H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92548C4CEC5;
+	Thu,  5 Sep 2024 06:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725518694;
-	bh=WmzPeAppOYGxw2pBZvSCYqbt+9JNVBVF+BuOfIdFGkc=;
+	s=k20201202; t=1725518881;
+	bh=Njmcixp/WFQ1K49ru/lsO056x3RbOFYKJXcQ0Q4keZQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MB4oAB5bspDlg/3ddcsF3JbDbp2dSDH9wHLkExf3zfRms5OFlvh1uzCycCC/IaQwo
-	 ghaOJGqPxG1tXm/zKfbSK/RPg/Fnf6uULoaAmIo5FBy2dsmE08vTeRnZmubl73Quww
-	 qCKtoWqIkb5WkAUKAQj4WBskD6C/Dgk/nVIl21h7wn0zzy6rOTGCYNxWdG7jUqcsiz
-	 rV6Nvxr+QoZflZmQ2A9Z0r08h2uHbh7LpCzGAQ8RekbGMwVPgHkviWTCxW63WGjnf4
-	 abKnlYRtinZgm+tb6Vw6r3DG6CmbJAFo10ZIPvb3eklVVQH+uNX9ePxHjWdqaSqEQx
-	 1WqH9DAzI1ijA==
-Date: Thu, 5 Sep 2024 08:44:50 +0200
+	b=duUoEs6Hd1u6uJGJe+vLlGXNL978OGr5qOmgnYGcHCXWUEZgEU9TN9dV3Mp/639Ax
+	 Pid/joQx2Zxr4G5uLOyABA6Ke3vCQh1BeW1nssV4y2phnfzM6e0SDDgGyic2Dzx8C0
+	 JNCPbQhgB6YKdj7Qw98r+jt55hS9dRnrhai6pFs4SjZ/KUusRgFzLiZHhmShrsQaJc
+	 0SqZ8PPEIl9juYSUDUj+S3FULb/Ukk1YA4Ge+cLLisrd3jr6VZogZswvsCkFvyP9sB
+	 TG/+cl6b9CHUrjsRklnTRwjEVp11MVQHEv8tfF2oSD3TJGGcnFWMcjBMJvwKzphtmm
+	 RhOPBoLgvd8Gg==
+Date: Thu, 5 Sep 2024 08:47:57 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
+To: Vikram Sharma <quic_vikramsa@quicinc.com>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>, 
+	Hariram Purushothaman <hariramp@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
+	cros-qcom-dts-watchers@chromium.org, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
-	kernel@pengutronix.de
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: nxp,imx95-blk-ctl: Add
- compatible string for i.MX95 HSIO BLK CTRL
-Message-ID: <e24uioplsxa4iu5m2ecn7apkpkmz3lukfyypngmsmp27ikxnbc@4cwxk2hoeo2r>
-References: <1725503468-22105-1-git-send-email-hongxing.zhu@nxp.com>
- <1725503468-22105-3-git-send-email-hongxing.zhu@nxp.com>
+	linux-arm-kernel@lists.infradead.org, Suresh Vankadara <quic_svankada@quicinc.com>, 
+	Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+Subject: Re: [PATCH 01/10] media: dt-bindings: media: camss: Add
+ qcom,sc7280-camss binding
+Message-ID: <2m4dmdsivqwo45bxvuhashrlfki3akzzc3qp2vp32nrhvairyq@uibybei3fsco>
+References: <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com>
+ <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-1-b18ddcd7d9df@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +68,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1725503468-22105-3-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-1-b18ddcd7d9df@quicinc.com>
 
-On Thu, Sep 05, 2024 at 10:31:07AM +0800, Richard Zhu wrote:
-> Add compatible string "nxp,imx95-hsio-blk-ctl" for i.MX95.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
+On Wed, Sep 04, 2024 at 04:40:07PM +0530, Vikram Sharma wrote:
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,camcc-sc7280.h>
+> +    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+> +    #include <dt-bindings/interconnect/qcom,sc7280.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      camss: camss@acaf000 {
+> +        compatible = "qcom,sc7280-camss";
+> +
 
-This one here is so trivial, you can squash both patches.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Alignment, indentation and properties order is completely wrong here.
+But maybe because you keep sending the same and expect different
+review?
 
 Best regards,
 Krzysztof
