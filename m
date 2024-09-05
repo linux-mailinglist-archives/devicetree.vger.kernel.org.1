@@ -1,182 +1,186 @@
-Return-Path: <devicetree+bounces-100512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9702796DED9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 17:49:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB2996DEA8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 17:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EE25285A48
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:49:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E910AB20AF9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9EE19EEC4;
-	Thu,  5 Sep 2024 15:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC8119DF5B;
+	Thu,  5 Sep 2024 15:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SRKNY7WE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RSi45fZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E19A4AEF5;
-	Thu,  5 Sep 2024 15:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288AF19DF4D
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 15:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725551339; cv=none; b=NopyIYzgXLLV/D/gcoS8tqcgLc6CxKYTdD1BYjpKrVyrszeLn6Ie6QUKBTl+qiSko8sT0m7yeePuWdacNJz1e7itaMt9gVj9njbG9JfYcTZ6V9IWG1piULaWcnoExq5I+FbFqnVu0++gNZCGHV/ylT4oOm2k0TgK+Hjif1pV2vE=
+	t=1725551056; cv=none; b=D3ayvsGk32pX4/ur8LxZhdl0LUj9UOjxCpHA9m6FybF+LkvhWz/o1UmIiaf/iaLNBmysB+TyRm2+9BJSAjLCWSeg4tG8ZeY4rEUC87oWdRNupnvm8u3dY9bfHUwEn6FXWPl76JdFUQhN8Uq/ELVRqAOpv3Z3WEYp8NxfRyexrgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725551339; c=relaxed/simple;
-	bh=m/pB0sJ7Gyv748YYaN0YtwoYSb5DqmbagoUoIra4JbM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KvbiJoLwuvRganUxkBUp9I8DZyrkcrXcnifQmTT2nZcM4fDA/8bS9VMDv8s+383RueNaLwPyERsRVR6lzR23nFhjjlvgwZUCY1v1Wq2/p1uqifsYc6yH2lemYZo9uVHs4Ec+Gs3seUBr83Wprbk0cpTVXqBTy38u0pRo72E2MAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SRKNY7WE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48597DbB008927;
-	Thu, 5 Sep 2024 15:43:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nCnjjnDa8vTEgHpesvRhD6MywdZNlhEYt2stisCgDec=; b=SRKNY7WE8cgJorSm
-	Mvhle6mI7MicldWpQn9i8u/5KxQ9/zQ2XNNgj5OG5aCUPbKRgp8IhcNScyofgOQt
-	zTYJOEnh6PDvvr1DwRf2BpASOGwP9r5XEzxyvQmWniUMUFMN4CNqoAt6P4PtjNL8
-	bpKhrtT+UtLdDUgRDZ/wsNZlbNhFlOXlHFW6jFhuLMdleNZU4cGsFcO/svoZlRsW
-	xuQbp1pVUSS1o4Bgj6krM+KWfvThyJtTOLCmghvmJ/mbmsaSZPdLy6FcvrI0ORmT
-	my3BnegqJ5bCoqD4uYzgUn8Cm/6pelhRTrWR0YnBQ6DgOumpaJFjSrSi9pqmsf3I
-	9lbQQg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41f91r173x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Sep 2024 15:43:10 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485Fh9lm021067
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Sep 2024 15:43:09 GMT
-Received: from [10.110.102.234] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Sep 2024
- 08:43:05 -0700
-Message-ID: <efb2a776-d9c3-44bd-ab27-b66779dea85b@quicinc.com>
-Date: Thu, 5 Sep 2024 08:43:05 -0700
+	s=arc-20240116; t=1725551056; c=relaxed/simple;
+	bh=kVHucip9iuBiEd53Vq2p/XquN6XA0tIzFSrHpuUQiLE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DHONCTaJngFaVFZ5r+b+cf+OYgPQcgMIzhmjPnznjh5gAosDdUzIax4/5u00H1yZ6gG95XtCGfPs/JSqXDG0uV3mBM7SEGQnh0bT4/saG4IWL33E0xfj6yBshzyBAyOkm73uM2Gb4hdvOQSm/jZM8oPu3dYKvWpP+9ezeJIVf5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RSi45fZO; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a868b4d67c6so5653066b.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 08:44:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725551053; x=1726155853; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iqi65QfaP95CNJyR6Va4WBN+o1z2XcxCEgZA0A1M7nA=;
+        b=RSi45fZOgKaMKgZnr0L0VU8chAW0+WqgWLTQlo7V2ku32J0v+rZeyf/Y2zLJAxttlj
+         bhb9dnDKwx1tFXlSR2Cjk/5suZ0qEwmFIkfd/5kZBXX09kDS/Oyc5M0DLl9+Nzple6n2
+         f3cTrwH7i+eKWWIMLOmnVZUlgYoGYzd/IoXreniPNNPl+dIs1UGyyZlkifYhyjgAeaXo
+         ZfENlSrSj+BPaNFmASgxLLGb5rUhRANN7ihy72n4/PT48NYLu0YV7u44A+sWpoSG7C+P
+         sToJrYRLbiqo8KSJoHaWhExEHVKg3q1BqGuO+zw8CJE9kqH9iKtF2NUg4c97MSA7FK1l
+         wRvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725551053; x=1726155853;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iqi65QfaP95CNJyR6Va4WBN+o1z2XcxCEgZA0A1M7nA=;
+        b=KFzdenJUbLc32age+kV81B6vFb3ipegOEKTD16NSazkJxashT5LGEfsaP3MAb6iGfi
+         dJuUho/MokXR36l/1IFQiAg4kuIf+jnkhnh0jFqZ5AXgzOWNOF3YVNZFkmmCm7uX+Y1l
+         I7xtuqhd88a27vfl3guvQGq/5ZdpiwhNPim0hM6XETQkAVNnxFzOpDKgSnhSoAzoSrP+
+         FEbW9vsUuxQX9g2VU/9YpC0YnhWIZtkznkOLR4g4pzItb9CYpj2sVW5vZz7N9a0peDUA
+         kl12hEBfbCd5Unma4s6uSO6vXWi5y4dNxWCMpnpJVG0PtwKVg5WePwi87i4JDi98FBa2
+         nIJg==
+X-Forwarded-Encrypted: i=1; AJvYcCX6Wd5mSxJfMl9T7ch6uRIkd37SHPtZxGEM6TIaaKnRgV3YgTpNaUaKMk12mnYR1QeBzUb1N4jWpMza@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+gezBsn/LAUP+2ApOtYFjVHBtxcIW4yk8n6+Zj4LwbQkDaQCl
+	GN0Cb/fv6bA3OlQOC+9XpkVgh4t/WQZWF/StKvU0No2pmLEHyyBcJ9HMugp1mcQ=
+X-Google-Smtp-Source: AGHT+IHX+C4MbO/LsDmFFyfXxLAhaaorECoyZRHzh6xPFmaFoT+NdzZ7FPM591/lDkqiw7J7rS29pg==
+X-Received: by 2002:a17:907:9689:b0:a7a:a2e3:3736 with SMTP id a640c23a62f3a-a89a37675f5mr830109266b.5.1725551053278;
+        Thu, 05 Sep 2024 08:44:13 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a623e2f7dsm150265966b.210.2024.09.05.08.44.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2024 08:44:12 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: freescale: minor whitespace cleanup
+Date: Thu,  5 Sep 2024 17:44:10 +0200
+Message-ID: <20240905154410.423991-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 16/21] dt-bindings: spi: document support for SA8255p
-To: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <herbert@gondor.apana.org.au>,
-        <davem@davemloft.net>, <sudeep.holla@arm.com>, <andi.shyti@kernel.org>,
-        <tglx@linutronix.de>, <will@kernel.org>, <robin.murphy@arm.com>,
-        <joro@8bytes.org>, <jassisinghbrar@gmail.com>, <lee@kernel.org>,
-        <linus.walleij@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
-        <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
-        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>, Praveen Talari <quic_ptalari@quicinc.com>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-17-quic_nkela@quicinc.com>
- <sdxhnqvdbcpmbp3l7hcnsrducpa5zrgbmkykwfluhrthqhznxi@6i4xiqrre3qg>
- <b369bd73-ce2f-4373-8172-82c0cca53793@quicinc.com>
- <9a655c1c-97f6-4606-8400-b3ce1ed3c8bf@kernel.org>
- <516f17e6-b4b4-4f88-a39f-cc47a507716a@quicinc.com>
- <2f11f622-1a00-4558-bde9-4871cdc3d1a6@lunn.ch>
- <204f5cfe-d1ed-40dc-9175-d45f72395361@quicinc.com>
- <70c75241-b6f1-4e61-8451-26839ec71317@kernel.org>
- <75768451-4c85-41fa-82b0-8847a118ea0a@quicinc.com>
- <ce4d6ea9-0ba7-4587-b4a7-3dcb2d6bb1a6@kernel.org>
- <4896510e-6e97-44e0-b3d7-7a7230f935ec@quicinc.com>
- <a2c2e365-7e47-4ad1-87dc-b5603a927cc6@kernel.org>
-Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <a2c2e365-7e47-4ad1-87dc-b5603a927cc6@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2QnZU4PHRT-Lwqj32_uEGXZJO-VAJ1eh
-X-Proofpoint-GUID: 2QnZU4PHRT-Lwqj32_uEGXZJO-VAJ1eh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-05_10,2024-09-04_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- malwarescore=0 clxscore=1015 spamscore=0 priorityscore=1501 suspectscore=0
- adultscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2409050116
+Content-Transfer-Encoding: 8bit
 
+The DTS code coding style expects exactly one space before '{'
+character.
 
-On 9/5/2024 7:49 AM, Krzysztof Kozlowski wrote:
-> On 05/09/2024 16:15, Nikunj Kela wrote:
->> On 9/5/2024 7:09 AM, Krzysztof Kozlowski wrote:
->>> On 05/09/2024 16:03, Nikunj Kela wrote:
->>>> On 9/5/2024 1:04 AM, Krzysztof Kozlowski wrote:
->>>>> On 04/09/2024 23:06, Nikunj Kela wrote:
->>>>>> On 9/4/2024 9:58 AM, Andrew Lunn wrote:
->>>>>>>> Sorry, didn't realize SPI uses different subject format than other
->>>>>>>> subsystems. Will fix in v3. Thanks
->>>>>>> Each subsystem is free to use its own form. e.g for netdev you will
->>>>>>> want the prefix [PATCH net-next v42] net: stmmac: dwmac-qcom-ethqos:
->>>>>> of course they are! No one is disputing that.
->>>>>>> This is another reason why you should be splitting these patches per
->>>>>>> subsystem, and submitting both the DT bindings and the code changes as
->>>>>>> a two patch patchset. You can then learn how each subsystem names its
->>>>>>> patches.
->>>>>> Qualcomm QUPs chips have serial engines that can be configured as
->>>>>> UART/I2C/SPI so QUPs changes require to be pushed in one series for all
->>>>>> 3 subsystems as they all are dependent.
->>>>> No, they are not dependent. They have never been. Look how all other
->>>>> upstreaming process worked in the past.
->>>> Top level QUP node(patch#18) includes i2c,spi,uart nodes.
->>>> soc/qcom/qcom,geni-se.yaml validate those subnodes against respective
->>>> yaml. The example that is added in YAML file for QUP node will not find
->>>> sa8255p compatibles if all 4 yaml(qup, i2c, spi, serial nodes) are not
->>>> included in the same series.
->>>>
->>> So where is the dependency? I don't see it. 
->> Ok, what is your suggestion on dt-schema check failure in that case as I
->> mentioned above? Shall we remove examples from yaml that we added?
->>
->>
->>> Anyway, if you insist,
->>> provide reasons why this should be the only one patchset - from all
->>> SoCs, all companies, all developers - getting an exception from standard
->>> merging practice and from explicit rule about driver change. See
->>> submitting bindings.
->>>
->>> This was re-iterated over and over, but you keep claiming you need some
->>> sort of special treatment. If so, please provide arguments WHY this
->>> requires special treatment and *all* other contributions are fine with it.
-> You did not respond to above about explaining why this patchset needs
-> special treatment, so I assume there is no exception here to be granted
-> so any new version will follow standard process (see submitting bindings
-> / writing bindings).
->
-> Best regards,
-> Krzysztof
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi    | 2 +-
+ arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi | 4 ++--
+ arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts  | 4 ++--
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts    | 4 ++--
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
-Things will be clear after you see the driver changes. Without looking
-at the code, this discussion won't lead to anything constructive. So I
-deferred the QUP related discussion until driver patches are posted.
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+index a4a10ce03bfe..ce6ef160fd55 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+@@ -350,7 +350,7 @@ dma_apbh: dma-controller@5b810000 {
+ 		power-domains = <&pd IMX_SC_R_NAND>;
+ 	};
+ 
+-	gpmi: nand-controller@5b812000{
++	gpmi: nand-controller@5b812000 {
+ 		compatible = "fsl,imx8qxp-gpmi-nand";
+ 		reg = <0x5b812000 0x2000>, <0x5b814000 0x2000>;
+ 		reg-names = "gpmi-nand", "bch";
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi
+index 3036af49fc85..e24e639b98ee 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-audio.dtsi
+@@ -304,7 +304,7 @@ &dsp_ram_lpcg {
+ };
+ 
+ /* edma2 called in imx8qm RM with the same address in edma0 of imx8qxp */
+-&edma0{
++&edma0 {
+ 	reg = <0x591f0000 0x150000>;
+ 	dma-channels = <20>;
+ 	dma-channel-mask = <0>;
+@@ -351,7 +351,7 @@ &edma0{
+ };
+ 
+ /* edma3 called in imx8qm RM with the same address in edma1 of imx8qxp */
+-&edma1{
++&edma1 {
+ 	reg = <0x599f0000 0xc0000>;
+ 	dma-channels = <11>;
+ 	dma-channel-mask = <0xc0>;
+diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+index 8d036b3962e9..6ec37aac5ef1 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+@@ -273,7 +273,7 @@ buck2: BUCK2 {
+ 				regulator-ramp-delay = <3125>;
+ 			};
+ 
+-			buck4: BUCK4{
++			buck4: BUCK4 {
+ 				regulator-name = "BUCK4";
+ 				regulator-min-microvolt = <1620000>;
+ 				regulator-max-microvolt = <3400000>;
+@@ -281,7 +281,7 @@ buck4: BUCK4{
+ 				regulator-always-on;
+ 			};
+ 
+-			buck5: BUCK5{
++			buck5: BUCK5 {
+ 				regulator-name = "BUCK5";
+ 				regulator-min-microvolt = <1620000>;
+ 				regulator-max-microvolt = <3400000>;
+diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+index f8a73612fa05..d7ea2a86de5f 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+@@ -221,7 +221,7 @@ buck2: BUCK2 {
+ 				regulator-ramp-delay = <3125>;
+ 			};
+ 
+-			buck4: BUCK4{
++			buck4: BUCK4 {
+ 				regulator-name = "BUCK4";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <3400000>;
+@@ -229,7 +229,7 @@ buck4: BUCK4{
+ 				regulator-always-on;
+ 			};
+ 
+-			buck5: BUCK5{
++			buck5: BUCK5 {
+ 				regulator-name = "BUCK5";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <3400000>;
+-- 
+2.43.0
 
-Thanks,
-
--Nikunj
-
-
->
 
