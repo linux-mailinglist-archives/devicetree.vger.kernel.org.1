@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECFF96D265
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:44:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 531BD96D269
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:46:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E0AC1C23252
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:44:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 090C61F26D03
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7B8194ACD;
-	Thu,  5 Sep 2024 08:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6273719258A;
+	Thu,  5 Sep 2024 08:46:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kwIgyYcB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UO77BStg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0843188A1F;
-	Thu,  5 Sep 2024 08:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C52539A;
+	Thu,  5 Sep 2024 08:46:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725525863; cv=none; b=D4hiu3YR6q4d1N5Lc69GrkmCwSYWbJO8AfYoHjtqhozH9cBnPZaDEfOVevOgcaCyyp+sWdWWYpFWt57rdKMrRO/2c/Itq04q6sa1uUKC/fQvFGX2E4D3HOJRBDB9cuyXDlTik2ZkaRH8vil9xTD9nleb8H0gPENEYb+0wxyZKh0=
+	t=1725525968; cv=none; b=SHYU+XGEjToqJnNlK0rqb6AtQJbjZOEKT8tK6APQAoioKp6015V0dyzmRn8y2sdl7E9Mo2g7Dito4ZkPB7g0Tnx2KhuIvLOSgI47jQqniBrtoB+uwcicPvzYKb5cDQD//qr9v4KKGjKyG4BtUJ6WsrxXo6G4jDiwkibbvs5e+8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725525863; c=relaxed/simple;
-	bh=wZDfJKcN02F1JuFZskcSxH83wZEf2gVxr62h4eHUKUI=;
+	s=arc-20240116; t=1725525968; c=relaxed/simple;
+	bh=Y7iVD/QjKvwvPZ1+Ze+gyxwWEXK5EyodBiNStwdurpo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wygy9O6F1qQiM6tIiVlYQA/mu6QDON1TfVUok3HYIM+QTrHrLbxlR1KC+OTf6/HZxO+/2n98XnbJqD9l4166SV9bTo7kQpf9n50CzBpXHm0RgYR5NQdEHapN9GdEbeWM5peawniiF0ddnIvE7XI4TWKbuhJ72SPUZskFaBh9x5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kwIgyYcB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60331C4CEC3;
-	Thu,  5 Sep 2024 08:44:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oCTj0N6AK66LdvHKiygo0q413jdsV5cH1aPLDbm7MaDaOKMHYEU6RxgE2nKUoJ00mJpR1PpL7PDZfOG5tvBDhxirCkNILktcns7gcBisI45lM/lT2NNwtPvRbPF5GCIPnrssC+5vKxo4zbVScRPfLBLWW4YoJZDS+LaBa7P6Cvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UO77BStg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94209C4CEC4;
+	Thu,  5 Sep 2024 08:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725525863;
-	bh=wZDfJKcN02F1JuFZskcSxH83wZEf2gVxr62h4eHUKUI=;
+	s=k20201202; t=1725525967;
+	bh=Y7iVD/QjKvwvPZ1+Ze+gyxwWEXK5EyodBiNStwdurpo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kwIgyYcBsHANr0fl4YXm8E7M4MfWDU3vif5J0ZumHb9lLtZI7HXZa0GCEJOjnELeE
-	 /1McbMD8XZpI8lM0QdYptsBmKnuctZbjrF+ZkEveN6u+OAsP/5CVGwr8aCU6VQYeae
-	 /z7HgpBKJ6EU0nrKPb0QC+/77lXjzMLGi5K6w/Fpn+PmgAgyiM+h3DG/sadO9Lks4I
-	 7QbDNSEcEe1iph5/ybt2jc8dEB6tPJAPdyPs00W5y2n0gvVcBPdjShSF79YsmTXmqY
-	 YRZIZSyYBdE7IVcDB2obi2MgPULVOoa519G2wbpcj9quV0VrEBc7j4I4auNKunzp5O
-	 qySLlruQL2Zsw==
-Message-ID: <9c82cd9d-84ac-41eb-bceb-43a1a10d80fe@kernel.org>
-Date: Thu, 5 Sep 2024 10:44:16 +0200
+	b=UO77BStg9FERBJl5o74nsLd02eveiB0Kz5R1glJTZQW0Ew4Vw2qqwYctodhLUUcfB
+	 0lF1Lu24qxqSNmGKXV7P7fgShQx8HOgx0N9QqioYnYFjSGRo8tW6IhK5lLUsmr+MRg
+	 s+13A14baAPiqNQFqmx93UiIijEcmCtwE4uBTtLt0nBZ4odQmCQgN1jOFzoKaf3JlR
+	 b2BOd4F9e35BvGTFLVw08mxpKKA0jQ0xCkJf14cdWxD+Q3Dn7rugtiWCnvX7ubgsol
+	 Mdr8LTDmhayL4KTUhTWGV1s7CfpBYOqoxO04/J4lD5hRwdJM/1pzsH+nLzHU6Wet0t
+	 e3o6VQG6Wi97A==
+Message-ID: <46e4c658-9167-41d8-8eef-0761476dd15d@kernel.org>
+Date: Thu, 5 Sep 2024 10:46:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals
- Support
-To: Tarang Raval <tarang.raval@siliconsignals.io>,
- "Rob Herring (Arm)" <robh@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "imx@lists.linux.dev"
- <imx@lists.linux.dev>, Sascha Hauer <s.hauer@pengutronix.de>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240903091720.443091-1-tarang.raval@siliconsignals.io>
- <172537334994.875077.18308965320836312656.robh@kernel.org>
- <CAOMZO5BNYopFt=_o5qrK7piwxYwF4E10DzCKPW4oh0k4Yj0hUQ@mail.gmail.com>
- <20240903-amazing-shaggy-ant-6751f7-mkl@pengutronix.de>
- <PN3P287MB18295916174A4CC5121A90828B9D2@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH] dt-bindings: input: touchscreen: edt-ft5x06: Use generic
+ node name
+To: Fabio Estevam <festevam@gmail.com>, dmitry.torokhov@gmail.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>
+References: <20240829134428.3347075-1-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,30 +102,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <PN3P287MB18295916174A4CC5121A90828B9D2@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <20240829134428.3347075-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/09/2024 10:33, Tarang Raval wrote:
-> Hi,
+On 29/08/2024 15:44, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
->> On 03.09.2024 11:28:29, Fabio Estevam wrote:
->>> On Tue, Sep 3, 2024 at 11:26 AM Rob Herring (Arm) <robh@kernel.org> wrote:
->>>
->>>> New warnings running 'make CHECK_DTBS=y freescale/imx8mm-emtop-baseboard.dtb' for 20240903091720.443091-1->tarang.raval@siliconsignals.io:
->>>>
->>>> arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dtb: /soc@0/bus@30800000/spba->bus@30800000/spi@30830000/can@0: failed to match any schema with compatible: ['microchip,mcp2515']
->>>
->>> There is a patch from Frank to address this compatible:
->>>
->>> https://lore.kernel.org/lkml/20240814164407.4022211-1-Frank.Li@nxp.com/T/
->>
->> It's in net-next (for v6.12) with 09328600c2f9 ("dt-bindings: can:
->> convert microchip,mcp251x.txt to yaml").
+> Node names should be generic.
 > 
-> Should I remove the node from my DTS file until the YAML schema patch is applied, or is there an alternative approach you would recommend ?
+> Improve the binding example by using 'touchscreen' as the node name.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
 
-There is no need to do anything.
+There are other files in touschscreen with the same issue. This is
+trivial, non-functional change so do not do it one file per patch. It's
+way too much churn. Fix everything or just don't touch.
 
 Best regards,
 Krzysztof
