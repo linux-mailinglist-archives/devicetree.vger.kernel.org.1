@@ -1,138 +1,242 @@
-Return-Path: <devicetree+bounces-100215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F48096CD6F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:37:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D2996CD82
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:57:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AEC628842B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:37:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 652B91C229D5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D81D146D6A;
-	Thu,  5 Sep 2024 03:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LYqDrjzM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0657E143C7E;
+	Thu,  5 Sep 2024 03:57:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m102.netease.com (mail-m102.netease.com [154.81.10.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936C513D53F;
-	Thu,  5 Sep 2024 03:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E5C710E9;
+	Thu,  5 Sep 2024 03:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=154.81.10.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725507446; cv=none; b=kiRtJn4i1ebTwDD4B6L/qYGmQsd98PpW2M+iF3/+APIuDt1rr2YtNdgwCGn3/l025nfoIAHSgAkkZYeBbyynRb/dYHR3OISe07DXdBkD3FXlQdISxTJLsRLQ6NySnpVGyvU43CRMwkj41ZZl2NZU2oM0wPSXKnjiKYUMj5cqONs=
+	t=1725508669; cv=none; b=Nrx47o90Vb/kJ1xYmGQfkSDXdvDA+LZORzQnrMkR4WljHSvgHcCH457Qtjf2Q8wgyUgZoHnxd0cayyEEHbZh5m73EiP+nJh1WrEsRjFWB2Zuv0vxkH2OgCVq4tJvWm/90W+eXImmYWVdfJ4uHM6yZVSheQsRbL2ixNMH9G8xsYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725507446; c=relaxed/simple;
-	bh=1ECGnaD69MRMHboTXQmfOmKTMUCi5318XQVc7AmLE6M=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ufvqZ5crkuYyaXi6SWvMNrWAtrtiKOS3DZJUa47WsP8jZensUZUtmlw6u6YlnYUyC3lEk8a73AYCMtaC9ouk7u3PGPCixaDnVciDbTgsBO+6cDOnCQyWlogjQ2gPNvd7xFB24kABSpBsnkfwnNXN0n0oVJpsHXiCXhlU7JGqvTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LYqDrjzM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484MRZ4S008193;
-	Thu, 5 Sep 2024 03:37:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=CdglmC91JdSXvLOGKQvUO9RG
-	Ers2pICDzgc9MpH4XCM=; b=LYqDrjzMDrIIHEFzkb3buYN1YQUrJRNZ4Ct2hqr6
-	DtcrDs516UHG1eVVHzHScqzuY68Z0ltqitLemSBJIZqkaELFJnyi8XPcDLmKoj8/
-	HktjRh6Ty4j8VnFRvdmdPBibf9NbffERIFMWkNqNOaSeGzS2ODEWVZu5ntnAaAjv
-	BmFuwmikA+EsUoxC97kywJHgyYUH8mhUWPTjabd76ye/2f2IRfTubXuPtkKJvooM
-	Yl8c6/9+NZ2c3ZO5SAU9y64tN37TZG7kSPzkHliDIU3X6pMDKCntxiWxE8RpMCmC
-	Nk3xcXW9nIWubvF8wDcPsicPAeMdeOFRr7rp7CMr72AdCw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41bt674rru-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Sep 2024 03:37:21 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4853bJLs026017
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Sep 2024 03:37:19 GMT
-Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 4 Sep 2024 20:37:15 -0700
-Date: Thu, 5 Sep 2024 11:37:11 +0800
-From: JieGan <quic_jiegan@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Song Chai
-	<quic_songchai@quicinc.com>,
-        Yushan Li <quic_yushli@quicinc.com>
-Subject: Re: [PATCH v1 0/1] arm64: dts: qcom: Add coresight components for
- x1e80100
-Message-ID: <ZtknZ2zPoFi65kq8@jiegan-gv.ap.qualcomm.com>
-References: <20240827072724.2585859-1-quic_jiegan@quicinc.com>
- <f6813e5a-9b8e-4728-abb2-ad5926d6fa41@kernel.org>
- <ZtZmwVK8h//nDXm1@jiegan-gv.ap.qualcomm.com>
- <2fdcb1b1-3d60-4b46-8a9b-127a5950ea28@kernel.org>
+	s=arc-20240116; t=1725508669; c=relaxed/simple;
+	bh=d7rDZxzeOZ7ybHx7fCJfeza0Hj8Jzsr7IIcsy0otlGU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=mDlgiVlPtP+KoudIcWHBQx5OVUH8fxYsoyN5MRVN4N8NpXkzOhr0L2ZDCnVLeOqddfUXBILGgxgykW0VVDgmsqaOGEB96hQjdnHsfKELnOObhj7MzJ4jkB/zCZeQfndEmBuMQWuNCbIdAZ5HPmeIY+ysmguoFv3nqF/lxlDQU4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=154.81.10.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [119.122.212.181])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 1A1F47E018A;
+	Thu,  5 Sep 2024 11:40:12 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: bigfoot@classfun.cn
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dsimic@manjaro.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+Date: Thu,  5 Sep 2024 11:40:09 +0800
+Message-Id: <20240905034009.28124-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240904111456.87089-4-bigfoot@classfun.cn>
+References: <20240904111456.87089-4-bigfoot@classfun.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2fdcb1b1-3d60-4b46-8a9b-127a5950ea28@kernel.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: r5DfNZBZihsKXe0qC00XS5-O2s2jXGq9
-X-Proofpoint-GUID: r5DfNZBZihsKXe0qC00XS5-O2s2jXGq9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-05_02,2024-09-04_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- bulkscore=0 mlxscore=0 impostorscore=0 suspectscore=0 phishscore=0
- mlxlogscore=573 lowpriorityscore=0 spamscore=0 clxscore=1015
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2409050024
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSk0ZVkseH04dTRpISUkdTFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSEpMTElVSktLVU
+	pCS0tZBg++
+X-HM-Tid: 0a91c044aed003a2kunm1a1f47e018a
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6KxQ6Myo6PjIzOEI4AhkqUSwY
+	IQxPCzNVSlVKTElOTktMTUpJQ0tDVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpJVUpDSllXWQgBWUFPTExJNwY+
 
-On Wed, Sep 04, 2024 at 12:08:51PM +0200, Krzysztof Kozlowski wrote:
-> On 03/09/2024 03:30, JieGan wrote:
-> > On Mon, Sep 02, 2024 at 05:27:32PM +0200, Konrad Dybcio wrote:
-> >> On 27.08.2024 9:27 AM, Jie Gan wrote:
-> >>> Add coresight components for x1e80100. This change includes CTI,
-> >>> dummy sink, dynamic Funnel, Replicator, STM, TPDM, TPDA and TMC ETF.
-> >>>
-> >>> Change in V1:
-> >>> Check the dtb with dtbs_check W=1, and fix the warnings for
-> >>> the change.
-> >>>
-> >>
-> >> Applying this series and enabling CORESIGHT=m (along with all the options
-> >> in menuconfig) breaks booting on my X1E Surface Laptop 7
-> >>
-> >> Konrad
-> > 
-> > Did not observe any booting issues with our devices. Any relevant log to share?
-> > This patch also tested by my colleague.
-> > 
-> > Can you successfully boot without the patch?
-> 
-> I think that's the definition of "breaks booting"...
-> 
-> Best regards,
-> Krzysztof
->
+Hi Junhao,
 
-You are right. That's a clear expression. what a stupid question for me, lol.
+> ...
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dts
 
-Thanks,
-Jie 
+This should be 'rk3568-photonicat.dts',
+e.g. "Radxa ROCK 3A" -> rk3568-rock-3a.dts
+
+> ...
+> +	model = "Ariaboard Photonicat RK3568";
+> +	compatible = "ariaboard,photonicat", "rockchip,rk3568";
+
+The official model name does not include 'RK3568'.
+
+> ...
+> +	firmware {
+> +		optee: optee {
+> +			compatible = "linaro,optee-tz";
+> +			method = "smc";
+> +		};
+> +	};
+> +
+> ...
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		ramoops: ramoops@110000 {
+> +			compatible = "ramoops";
+> +			reg = <0 0x110000 0 0xf0000>;
+> +			console-size = <0x80000>;
+> +			ftrace-size = <0x00000>;
+> +			pmsg-size = <0x50000>;
+> +			record-size = <0x20000>;
+> +		};
+> +	};
+
+Maybe these can be moved to rk356x.dtsi?
+
+> ...
+> +	vcca1v8: regulator-1v8-vcca {
+
+schematics: VCCA_1V8
+
+> ...
++	vcc3v3_pcie: regulator-3v3-vcc-pcie {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pcie_enable_h>;
+
+schematics: pcie_pwren_h
+vcc_syson -> vcc3v3_pi6c
+vcc_syson -> vcc3v3_pcie
+
+> +		regulator-always-on;
+> +		regulator-boot-on;
+
+No need.
+
+> ...
+> +	vcc5v0_sys: regulator-5v0-vcc-sys {
+
+There is no vcc5v0_sys, but vcc_syson.
+
+vcc_syson (5v) -> vcc3v3_sys
+vcc_sysin (5v) - (mcu) -> vcc_syson
+vccin_5v -> vcc_sysin
+
+> ...
+> +	vcc5v0_usb_host: regulator-5v0-vcc-usb-host {
+
+schematics: VCC5V0_USB30_OTG0 and usb_host_pwren_h
+It's a little weird, but that's what they're calling it.
+Also: VCCIN_5V -> VCC5V0_USB30_OTG0
+
+> ...
+> +	vcc5v0_usb_modem: regulator-5v0-vcc-usb-modem {
+
+Are you sure this regulator is 5v?
+
+> ...
+> +	vdda0v9: regulator-0v9-vdda {
+
+schematics: VDDA_0V9
+
+> +	wifi_pwrseq: wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_enable_h>;
+
+schematics: wifi_reg_on_h
+Also you need to enable the clk:
+
+		clocks = <&pmucru CLK_RTC_32K>;
+		clock-names = "ext_clock";
+		pinctrl-names = "default";
+		pinctrl-0 = <&wifi_reg_on_h &clk32k_out1>;
+
+> +		post-power-on-delay-ms = <200>;
+> +		reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
+> +	};
+
+> ...
+> +&pcie30phy {
+> +	phy-supply = <&vcc3v3_pcie>;
+
+phy-supply = <&vcc3v3_pi6c>;
+
+> ...
+> +&pcie3x2 {
+> +	max-link-speed = <1>;
+> +	num-lanes = <1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie30x2m1_pins>;
+
+These are actually pcie30x1m0_pins.
+
+> ...
+> +&pmugrf {
+> +	reboot-mode {
+
+Maybe these can be moved to rk356x.dtsi?
+
+> ...
+> +&sdhci {
+
+Missing mmc-hs200-1_8v;
+
+> ...
+> +&sdmmc0 {
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+
+Why does sdcard need cap-mmc-highspeed?
+
+> +	max-frequency = <150000000>;
+> +	sd-uhs-sdr104;
+
+The sdcard does not have 1.8v io voltage,
+so this is wrong, please add no-1-8-v;
+
+> +&sdmmc1 {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	cap-sdio-irq;
+> +	disable-wp;
+
+sdio wifi does not need disable-wp.
+
+> +	qca_wifi: qca-wifi@1 {
+> +		compatible = "qcom,ath10k";
+
+ath10k does not need compatible.
+
+> ...
+> +&uart1 {
+> ...
+> +		clocks = <&pmucru CLK_RTC_32K>;
+> +		enable-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_enable_h>;
+
+schematics: bt_reg_on_h
+Missing clock-names = "lpo";
+
+-- 
+2.25.1
+
 
