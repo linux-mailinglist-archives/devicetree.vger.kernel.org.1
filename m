@@ -1,138 +1,105 @@
-Return-Path: <devicetree+bounces-100309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594DF96D23D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6507996D23F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:35:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F15641F2A646
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:34:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BB871F2A6E6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1950D194A42;
-	Thu,  5 Sep 2024 08:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 370F7194A49;
+	Thu,  5 Sep 2024 08:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mcfZhAfs"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dTmte3LV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4259819341E;
-	Thu,  5 Sep 2024 08:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84DE1898E4;
+	Thu,  5 Sep 2024 08:34:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725525268; cv=none; b=ElqYW20RkDXZcYixFyLMm6Z4fRi2MMBNW+IU7RB5uWs+wbPDie9AViOZ1vz4tbaSJET2fBmfXXH+tllS5bgZRA4yKOyrDB3KB0YMBeKqrhulpuqAGanMyi1E0HQ7Eq+2TnSMvqQ1qkOkKiVhZvsvdGJHMoJWpeO6N3/KkM6EP0U=
+	t=1725525301; cv=none; b=mQIxxHuY5gs9vyqjokPRl8Y42RRbdidhMiCB2bUn1FNJZr/QyRWS7LeHo1FQTiFxxn+B3kJardX5p5TyUXXI3BDNqHqsFY8JNeHsltS5Nk0J6uuiaXCVe4hRav6lRGh0b1v3y39Tsg2KUHFSFPli2GHFpNSfIQ5lCtIMTKLJ/2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725525268; c=relaxed/simple;
-	bh=VckIPtdfed8GjyudCjkRZ3LDyAZv0/6vNcZcmWw9JEE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QFj8HDAK9+GOP70XxzDmCxjKCpzJ+VZWL91iSaldKQHrD8ojKAwkbzeMOOga5qrmEUW7O1pAr85oS7hFvowkNi1dWIpjHh+dcMZ9Vv4KLve9KiriYoFEogoZlH1cRp0B391WemlaPFpZQqmuOy6kVD5lxdKkYy4t90Q3yV8JQ1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mcfZhAfs; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a86acbaddb4so67775566b.1;
-        Thu, 05 Sep 2024 01:34:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725525264; x=1726130064; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VckIPtdfed8GjyudCjkRZ3LDyAZv0/6vNcZcmWw9JEE=;
-        b=mcfZhAfsLuTlvIbtnwFA38sJuBcT25jzwoiSAi9PokY89dlZPzmMflRGal0Nx3h203
-         Ysk4XFGwNYOjBCiy2mSX4iVa3MmfLKfgQrkA0Gg7TGEjueCsf7TGhBZacu4jI2worDwO
-         TvzuZ7CFTFgqhbZW0gGgpzQHhxCDorh4pNhbR2/hEPIwsUPQlYJmvjH32z7cp/j4k7KY
-         UEuSVYBMqdpKdAEJ4UkBTz8X6GS2zakljHVXBTxzu/TlrRJ0Rh+KKpzlOuiEkl21KKZb
-         A7x479ywFS39DwTL2vYAISDaiCQmpK4oFy17v0zt9a28eV/fyD7bDU6z38ebmBFhjH+m
-         768g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725525264; x=1726130064;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VckIPtdfed8GjyudCjkRZ3LDyAZv0/6vNcZcmWw9JEE=;
-        b=eQ6FG5jSrUvJx6Gs8UePlGqisu3lRyaizF6sR7YXOfn8oLgTFJLzRFWRYfhdgQZ49H
-         OB0Vi7gQUUPfbK/wskZIjkI3ZO0BsnDeiQ0m4aYJQlOyqmdMCIo0+iZzsGT3GZ5fJn24
-         by17WY+ct6DFpuyOauqbUO8NU05YMEsnjp0dEhGlxSTc/xw0KsDTSfAW0qevoRVw3a6s
-         GZPofnBFCYDxmZACFCxYu42/BvvXgsxMUP0/sp9W7Yk2MMkTpdoftBpvTSLeZ0caEopL
-         x/E4eqt5QFWIM2JNp1QTo6G6/0Zf9KmY8Wto5dstXu1RoO3R8p312C9uTocgrHBmQIhM
-         wAXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW76e3h92UMnyy8XbBKDusb2U8M3MN+mFTjiYGFMzwtsS7flIYwFl4o74+6/uLcnuqwdVmOBAssLtK0guY=@vger.kernel.org, AJvYcCWVUeIcn+9AL9SQDX51GdwONukGSJN1YOocTUq+H5K6TyM4pq0LW5lKloj1B04ThymeAJtOTZjW0EOa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjIDOMRMIKHCNCt+UipX7bwLQTKhlgv6uSgaiwnhxvFSXJ10Tl
-	AhO2zc2YB76Mr3KxSXCLE12XJornhxZ2ViuHm8SYvPcA/BnzYlgmaVtQYSPLFzWOUweCS9b4Utb
-	R6pCPnbOkGYMxal03Aw5H76pA308=
-X-Google-Smtp-Source: AGHT+IHvV+aIbib5qEchTzia04VRhd80KuVjvWRdgg5ffoysV8XnGZaJsGq5V1QhKeXUroZD2jmRuq6BJYEVPV0WRro=
-X-Received: by 2002:a17:907:7251:b0:a86:7c5d:1856 with SMTP id
- a640c23a62f3a-a897fa744a8mr2068532266b.46.1725525264155; Thu, 05 Sep 2024
- 01:34:24 -0700 (PDT)
+	s=arc-20240116; t=1725525301; c=relaxed/simple;
+	bh=eLX05+8Pw9Of6l7EDVqXXg7yUi/nnzEjkju7SfOCP6A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EPQNVlbVMcvYRLbR+1Kz5Zu8Ye9qlInedR+UlRu3yLOcBlctOuRf3q6Nzw+Dl4W558NgdxYMaE1uj9fL40Dj0BO475ltJlIKOCmhJUxEnn8ZKufKeWLU5Vyk2jdUeI2xIElUsa225zSqXeYw7SpY8glEufFpMne5ojS6TcXAr9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dTmte3LV; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725525300; x=1757061300;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eLX05+8Pw9Of6l7EDVqXXg7yUi/nnzEjkju7SfOCP6A=;
+  b=dTmte3LVErMNxxJrg27ffhkBJHryAxkXOBfbg4cZBmAHeoJuLj+bUYn+
+   vYdRUzBpWch78jP07QZDGdfx5w2KVGnvWyqx9KahAYVHoudXqHutDPUfh
+   Itl1EfxN8JqBH4TCktSJUnnvLCEsDzHwGm2E6sXMT+x3CAXiTOtXK0g8p
+   rhwfhiL2fZkP1te2BKcSmZLc5drQT82kGb2ptz4tWRjwPKQp4zTPXtZRA
+   eQkYLAy/4MnLHhIP2f5U3tS6GQpd1MpSCUPeNmuxmm4O406fbi0h25h3g
+   KqKxbjSnZJw2vomBHQt+Q6SPOiJvZQZInS1faK3x9K1JNKs4LVnMNNldW
+   g==;
+X-CSE-ConnectionGUID: /jztXIhdRDylzJ/VFmGg2g==
+X-CSE-MsgGUID: YduOX6GmRny2ARpK1yqr+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="35612716"
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; 
+   d="scan'208";a="35612716"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 01:34:59 -0700
+X-CSE-ConnectionGUID: BodgJ0ElSzmUoe9rYN0Zaw==
+X-CSE-MsgGUID: Gjfv7NxeTbuX13W3dQspjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; 
+   d="scan'208";a="66070810"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 01:34:57 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sm7x9-00000005Kkq-0UAa;
+	Thu, 05 Sep 2024 11:34:55 +0300
+Date: Thu, 5 Sep 2024 11:34:54 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: robh@kernel.org, saravanak@google.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] of/irq: Use helper to define resources
+Message-ID: <ZtltLjZkFBWSbl2s@smile.fi.intel.com>
+References: <20240904160239.121301-1-vassilisamir@gmail.com>
+ <20240904160239.121301-3-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1725518229.git.zhoubinbin@loongson.cn> <f581c749-999f-44a3-94a8-a39d355c32c5@linaro.org>
-In-Reply-To: <f581c749-999f-44a3-94a8-a39d355c32c5@linaro.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Thu, 5 Sep 2024 14:34:10 +0600
-Message-ID: <CAMpQs4Jqx56NRkdVPztPe+xXcY-A=WDxGua-pc1OyYG8kD2Q0Q@mail.gmail.com>
-Subject: Re: [PATCH v1 00/10] ASoC: Some issues about loongson i2s
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>, 
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240904160239.121301-3-vassilisamir@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Thu, Sep 5, 2024 at 2:14=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 05/09/2024 09:02, Binbin Zhou wrote:
-> > Hi all:
-> >
-> > This patch set is mainly about Loongson i2s related issues.
-> >
-> > Please allow me to briefly explain this patch set:
-> > Patch 1-2: Add ES8323 codec required on Loongson-2K2000
-> > Patch 3-4: Add uda1342 codec required on Loongson-2K1000
-> > Patch 5: Improve code readability
-> > Patch 6: Fix the problem of unable to detect codec under FDT system.
-> > Patch 7-8: Add Loongson i2s platform device support
-> > Patch 9-10: Related DTS support.
->
-> This was based on some old tree... or you do not use get_maintainers.pl.
+On Wed, Sep 04, 2024 at 06:02:38PM +0200, Vasileios Amoiridis wrote:
+> Resources definition can become simpler and more organised by using the
+> dedicated helpers.
 
-Hi Krzysztof:
+Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-I used the following method to obtain the email address I need to copy:
+...
 
-scripts/get_maintainer.pl sound/soc/
-Liam Girdwood <lgirdwood@gmail.com> (supporter:SOUND - SOC LAYER /
-DYNAMIC AUDIO POWER MANAGEM...)
-Mark Brown <broonie@kernel.org> (supporter:SOUND - SOC LAYER / DYNAMIC
-AUDIO POWER MANAGEM...)
-Jaroslav Kysela <perex@perex.cz> (maintainer:SOUND)
-Takashi Iwai <tiwai@suse.com> (maintainer:SOUND)
-linux-sound@vger.kernel.org (open list:SOUND - SOC LAYER / DYNAMIC
-AUDIO POWER MANAGEM...)
-linux-kernel@vger.kernel.org (open list)
+> +		*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev))
 
-The code repository from MAINTAINERS:
+Just use Elvis to make this shorten.
+Btw, have you ever compiled this?
 
-https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/log/?h=3D=
-for-next
-base commit: 097a44db5747403b19d05a9664e8ec6adba27e3b
+> +		r->flags |= irq_get_trigger_type(irq);
 
-Is there anything I'm missing, or where I'm going wrong?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Thanks.
-Binbin
->
-> Best regards,
-> Krzysztof
->
+
 
