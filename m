@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-100530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145D596E003
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:42:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496E996E005
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:42:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B2E6B24086
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:42:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C07E51F25BF5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294B21A08BA;
-	Thu,  5 Sep 2024 16:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6334F1A0AF1;
+	Thu,  5 Sep 2024 16:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SVahjYkW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rARPfdUp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426501A072C
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 16:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3081A00F0
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 16:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725554516; cv=none; b=utC0vd1+AMhEdvPq9NTbM/YKVV33T/vr8nqtmYRcOtJfj0Dvk+gAIfjpxK64NDhqT8pYgiAjwXchSxPDpuHbMZuK/2E7WbXB/f7B23kgPLXi7kIhu1C1jx8L0mIIz5cn9H2aO9m5O2WBm2xYBnshKAUZ0hmubb4HrXwKgxBRkp0=
+	t=1725554517; cv=none; b=S+YKtY+Jt4uYZeWLTsW149Pj1nmJyQwPuqra1b+91cdf8VL7ZyaXg3JirZ/LwwRlWNSm6zG8j8Dfg2MMnHUjXWRinyLjSAGFK+KpFIz+bPLTN+bzgXwhg8fiOxIsOnM/puYwlHLbIwxQeYARiIpkJ09c2NWvwD3N8+okh5RcYN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725554516; c=relaxed/simple;
-	bh=DsDx5CJ8sVvg0bdNAIchzjjKVMlFDafd7rR1TSjgu4U=;
+	s=arc-20240116; t=1725554517; c=relaxed/simple;
+	bh=kFJB7f55yaQbNphw3oqY4Q81daCzBOTGC5lHQafHYvM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l6OcEGLt4Ka9zn77PGzoETA809RbE5ty4AihcoFahmZtHpTuDzUsx0KEv2JDTZ1Xlab26iTTLmLO+PH5lvyw/1XK9q2WgbH7S6jieDLxfFZ/xhqqdqOL9xeOOo31jHbciRSEBX7sTOD2Vnr8o3RN7865zmJM8pefrbD3PQWY1IA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SVahjYkW; arc=none smtp.client-ip=209.85.167.52
+	 MIME-Version; b=jo0He+API238Iu5jWBr1DbspP8puBiTcIu+kc4mispWwgW/ZBkEmOqRzGjftjCjl0wr0ZqJ5GMpFQGLA75/SOlgU3521QHZv8w8soWl4clDTc1synHY9nB18/FbUoyXwJKWhRZ19W45yO1gevBjV1dH4MXn8O6esmPyE+aBFK2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rARPfdUp; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53346424061so158084e87.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 09:41:53 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53568285c1aso149019e87.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 09:41:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725554512; x=1726159312; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1725554514; x=1726159314; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=10JqAFUlouZwAtz6h65XEPkJS0Kx/qqO/go+RptWyjI=;
-        b=SVahjYkWH7RBCU4mwV28wjKoNOW3SepwY+5fxUs3Rv3D20PtYskwUiGhZlapIY3aPC
-         nkWIOQBreE1tyyoj7a8+si68B/kRNPlK0+i81+7VELnkAo92RuDAt9Vx/nNgmaVadlhs
-         cP+IeAx7XFz57n5Tjj34LvDbVZHJCEohdCw4bxhwgvobfcFMVNvAo9TARdtMJ31ZTrGx
-         YS7I8DMHY/SzWnz7Nb/8x/XcA/oOU0PEjMb3cY41CbHEIGlMKM/jMk1p6KoKGPYTkNUa
-         PsErOan+ALhFZCvoso82c0eeb96Fj0ycORBHiZkdU2GfnH8LkuIufdqV0Z3A+aY3T9pR
-         /B6w==
+        bh=rNOPLJE4duWNY1Bx/F8u179uln33M2nSGOkrTYlRXcw=;
+        b=rARPfdUpqYmyJvxGlz2XRcwo4rn99sDvzNKyqblIZweClW/bkG4tip+8MA6oiW06m0
+         96En060AwZYh56k6Sy4SglFfEWdYvg9aVFr/xay55VKOOevPayr+/w07PpzrN/VEzSiQ
+         jtR+QWUv6tFNbNSXVhAY9TZxC6D9FpR6tgTs2zObhj8Yn+Fc+7buxAQgG5j0oC4ke4wR
+         PXDp0nrgyEbMke507/0s5F1OUa0BgKqDht5UeVuBnCQmfDwXNdazYFJxK2o5cv466887
+         WA8Sr1HML0MpAH7V0KGrmOGh6yqldC+yvg2L1guYOazrpYBrGiHMdxChLJdgvUwCYPOp
+         8mRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725554512; x=1726159312;
+        d=1e100.net; s=20230601; t=1725554514; x=1726159314;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=10JqAFUlouZwAtz6h65XEPkJS0Kx/qqO/go+RptWyjI=;
-        b=reVLmlV3cQUOfu7hTDoxAB4zwSCy8Ba/H4uwLtI1YS2zEhSiiS66gZneCqtfgvPi9w
-         2nmbyl25oD0PZOZito+954TI7HlAstLEnyGvuddtD3W8GBpDliZkuFHC5WPsaNIr9/J0
-         c2vSVqK7JbyGNkrPZhu4slFWXQlLx3XSlSB98U7bpmGzy93Umv4/MraXz9o8UC6PUi+o
-         Yc6p3ulvTJyTe3N4xrQbY9Ml3CvM+bk1HCqowCohNUjJkSScqbYK0E94JKi0U8QGz53g
-         mRsGldK1nD1jvH3bj4J5o3f8bHOLjwZp6MgRHwIJRwVr4sZCBEGq8s3bS9ufdAsOr5o0
-         G3XQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXXgtEhsni1MEo6bHkXzps3CRBfkmwO4MDSz29EwoR1pn4i4DjP4hCptUxRK0QosdlFL/fiSpdW6vkl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEZBZPW80de5EfpE2oGtEsYv3C0nq47YttDErFQnTEUckoaLIp
-	YXQiIXjKL+j+6l1id/pexOSwPZIMwxlPv3y9O27bRCCNmdGbJaDkbD/76PvgoDI=
-X-Google-Smtp-Source: AGHT+IGt8M6CLQEy6WXZX44HbR/RsFMp8WjudT1nkvTyWsRTBHGzXmkGDMAkL3OdnsZzIaWzYmgp+Q==
-X-Received: by 2002:a05:6512:2314:b0:52f:10b:666c with SMTP id 2adb3069b0e04-53546b4bb15mr8927846e87.5.1725554512123;
-        Thu, 05 Sep 2024 09:41:52 -0700 (PDT)
+        bh=rNOPLJE4duWNY1Bx/F8u179uln33M2nSGOkrTYlRXcw=;
+        b=bk1PeeXYik8NWbdXBTzvhpMCjXPVQlboh5MwjHuuWZy8KsAVsbv8V9XpdDDXoWZD+V
+         HaPYL7/EleWUw0r7k0RIkx3EdUOHNlcNfm651p182sA3C1am0qsBCIEmzf81c2ZNUtvI
+         AzhQAsf1zaeIBBTU/KfW/+4UVMvVWpQnJpcMlnPbJiqEkAtbMMFH5TsvfvTqj5oUKgFk
+         jEabTQNXGRnnRAhmZUV3qSxVOmjByj8t2QkhoOH1Tq8RV1GpQRvLr9Z1DjKx3G5r+Ze2
+         mr9gMkyXj2ZI+6zcjDZ6/ScvyONeF0gPjzf8eJ2pqQ1JWGS/ge7u5iO1s6Gr063H8bQq
+         cDSw==
+X-Forwarded-Encrypted: i=1; AJvYcCXVyvUuIwkWQxkH99vUvyRVXaqgOQ+V4H/YVkG7V4tVssa4UiKfnRJXQl5e1OMm7cZ+9BUHqjZbbhly@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxppon2JdvScXxe3D7wguXq9Q4xK7+iuVqYbDjopj262XhKVl6P
+	Z2hD3t/N19A+VS6+RZ+sSaAL7aCWFur8BcnHGCSE/tbF8ePa7SIZgJER2/Ucd/0=
+X-Google-Smtp-Source: AGHT+IFyikow6IjqDwxydm45MaAYDlfxHrgpdMFeSrYAryURJgLmes46M2fHvXabs9qAmtdGdyE94g==
+X-Received: by 2002:a05:6512:12d5:b0:52f:c22f:32a4 with SMTP id 2adb3069b0e04-53546bb9cd7mr7004911e87.6.1725554513681;
+        Thu, 05 Sep 2024 09:41:53 -0700 (PDT)
 Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53655182c91sm100674e87.306.2024.09.05.09.41.51
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53655182c91sm100674e87.306.2024.09.05.09.41.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 09:41:51 -0700 (PDT)
+        Thu, 05 Sep 2024 09:41:53 -0700 (PDT)
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To: Robert Foss <rfoss@kernel.org>,
 	Todor Tomov <todor.too@gmail.com>,
@@ -81,9 +81,9 @@ Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
 	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 2/6] media: dt-bindings: media: qcom,sdm845-camss: Fix interrupt types
-Date: Thu,  5 Sep 2024 19:41:38 +0300
-Message-ID: <20240905164142.3475873-3-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH 3/6] media: dt-bindings: media: qcom,sm8250-camss: Fix interrupt types
+Date: Thu,  5 Sep 2024 19:41:39 +0300
+Message-ID: <20240905164142.3475873-4-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240905164142.3475873-1-vladimir.zapolskiy@linaro.org>
 References: <20240905164142.3475873-1-vladimir.zapolskiy@linaro.org>
@@ -96,45 +96,53 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 The expected type of all CAMSS interrupts is edge rising, fix it in
-the documented example from CAMSS device tree bindings for sdm845.
+the documented example from CAMSS device tree bindings for SM8250.
 
-Fixes: d1d5ce260165 ("media: dt-bindings: media: camss: Add qcom,sdm845-camss binding")
+Fixes: 46f8ac8497c5 ("media: dt-bindings: media: camss: Add qcom,sm8250-camss binding")
 Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 ---
- .../bindings/media/qcom,sdm845-camss.yaml     | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ .../bindings/media/qcom,sm8250-camss.yaml     | 28 +++++++++----------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-index ec4380a0a03f..d32daaef1b50 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-@@ -296,16 +296,16 @@ examples:
-           "vfe_lite_cphy_rx",
-           "vfe_lite_src";
+diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+index fa5073c0fd1e..06db2c1e6079 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+@@ -329,20 +329,20 @@ examples:
+             vdda-phy-supply = <&vreg_l5a_0p88>;
+             vdda-pll-supply = <&vreg_l9a_1p2>;
  
--        interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
--          <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+          <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>;
- 
-         interrupt-names = "csid0",
-           "csid1",
+-            interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
++            interrupts = <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 86 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
++                         <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>;
+             interrupt-names = "csiphy0",
+                               "csiphy1",
+                               "csiphy2",
 -- 
 2.45.2
 
