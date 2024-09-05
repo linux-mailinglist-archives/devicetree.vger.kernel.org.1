@@ -1,129 +1,109 @@
-Return-Path: <devicetree+bounces-100610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B759F96E40D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:27:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC2B996E413
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:28:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41DB2B2345A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:27:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DE82B22AAC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445C31A255F;
-	Thu,  5 Sep 2024 20:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2AB192D8F;
+	Thu,  5 Sep 2024 20:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vQm0rNOz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EoKIsS1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB4B192D8F
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 20:27:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9953CD515;
+	Thu,  5 Sep 2024 20:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725568027; cv=none; b=CKotg95luv6SvHT7+5NlCC4hBuqRQvKFcvmW3Y5FkQZExwK82XMHzp/rYVnqq1nCZByFUUNFD8MpPvu4v0yLi144w5prN2fZmlxP1mKv9rkPIu6hJBRkiKSo16FQBIqzwH7SspoWwpGqqSQdHN4hEm8OuL3081qXbnUNPAr2DuE=
+	t=1725568074; cv=none; b=RD8yiEaxorkf9fdHGwHc3joVTa+HdDg/L0Nbm/oZ4kE0c+/2CQF5gzqWrhSyu4+thuwFwZC1fjhCtvTvCpPOQ2whnKdobagnbwaJyi/MoSOoJLtvDb8IYnk8K5UTKzHjvMIU7WFTfoBdbJugdy3j5CXZjKlGQRvrVJXG9dIlh80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725568027; c=relaxed/simple;
-	bh=p5DsupzSsGvvRpX1PPDFJLThxGvWqS+StMgVT3qE2ho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RtXQH1wln4nHfXr02FfS61PGDjGMQVwj1HgzpgwNerlHyygthdNqGlmY+xfvmVZa0bUJ8iwieulrWGjbstl/5HVUkCAN5mr3ySE1WBUE05EUpG9Z/0BjmWkvFZXcLj9UVR1UZbn7vcMVK8/AZSoZgpr5bAVau1uXfGDUQHm2i4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vQm0rNOz; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a86984e035aso182763566b.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 13:27:05 -0700 (PDT)
+	s=arc-20240116; t=1725568074; c=relaxed/simple;
+	bh=wg3v/Bzl6fHbsDe6vUK0VkO4iWopD9ovPVhR1LwUhPw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kF0IIm7IN6l9s8qwWVkm2IyIyH9qDuwzyhOEsiG2jlZBAoK39vGI7ZzhdBZk0tpuEvqdKtH9TfdzJwERM8nkYPL3wN/4YMshNuHkPY5pKbxnbb0hmR13ktw5Fm0XfJMLl4IWenmjL5SFxjD6fOw/w352//xdv8H2KUc38tNt7+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EoKIsS1F; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7a9782651bdso200435785a.1;
+        Thu, 05 Sep 2024 13:27:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725568024; x=1726172824; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=voy/WFgSekM1DOtV4ypJu5B6Ekd49v4BaFlj8CipYxA=;
-        b=vQm0rNOzi/meZsHKNO4aA3N8t8qmz0pkcLtnzWTQMI0kOftS9egRoZ3fTyKd8/wnfQ
-         DiwGFm1W2X4dc2kF9JAJGdMITpgDbHCHgqEux8kzcM45wY7IRdSLVL7CewWJaiH8ORku
-         VZg3HVUR2TFvPoLYeg9Z/r7uoBsTd+veR3c5FoGxMG2pUDTrUflptZVD4echDUYWBZyo
-         lV8Zifep/+t1HpoXUr1a7bay6241pVnDzZCKraw7m/UbX3SNzzRxrrcMjw4JymaJ/az8
-         BpEgBgT4FDfl8bqQ1wkZVAcckpffT8YjlRyy7fvd2xQuLJGoVnajwV5kUya/b9RSyFNf
-         Mjbg==
+        d=gmail.com; s=20230601; t=1725568071; x=1726172871; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1ID4h32vMpKJpRELS7Wjz6ZK11jdarXsZHBRZ7AsCm8=;
+        b=EoKIsS1FtNZ6D8HrFwabO/ZEs0jC+8RjHXQsJmZ2z3Q70XQ8K8HcZgWEQDAuN+vFq5
+         KJyI37Y0fU8RcQCLk0u0NljhLFpZftNCAaaPCk25ficqvXpmszVFy0gW/uyxR6nliw72
+         68zCUuG+xzUU6HWqK4ZztNO6x26ThLMi8S4eeht+903msIjaeZASAZBnazM+R6RdfX9f
+         FZzIcFMSyLPNgsvCtDUaxb1gRqOkbvfb7kbFQPZ1R5jBeUWH4tp1t+dmW14+UhWsc2iW
+         LBqLHV3GMnLAn+G02nvikKGMg+3xpt127xhEyJmH4Jj0eIN8C+6dB41TzJhOv6upptpw
+         kwIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725568024; x=1726172824;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=voy/WFgSekM1DOtV4ypJu5B6Ekd49v4BaFlj8CipYxA=;
-        b=YO+2MY0Z3MeTrM9EN2FH4UlaD29B7mbEfpKLr8zNRZTh0iEdTkIebiJslQ0pV9ZPm3
-         VNJcwVwZahyiYT3up27CWWZzI9DB0IGEQdL6n8Ohrci81eZsyCeLeZ6nzxjXJ6SE75IP
-         Wyernx21x7E7CqevOvfdYhs4xbMjZMJU5VMW0pWtql6iUwDIsn6j/GsxtBdcp3EnEB0R
-         uAYUmrMqpGD0LMMaioaWO/E2RsxTip7YmxM0146KPal3wOOZW3R6IjxJ9j/uKr2gyLj8
-         i8j/m51NsSzgS5i3CNoq8sBP/FsuTZD+gf+O5Ca8p/F9Txxup706vgQYdhPVNoM/zygC
-         1/Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCUw0A3EbxbIgzAJwCXBj70uDjf7a11dALaI1XZiXQcDCySTVkV7qGG1TgvbRJCoQU4ioX8ZCc5T2ZXG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoH7PE4eLBDh3zA6GB9eCgjYCKeF7DyKHrTwHIobby6mWZwa/S
-	VZP+EB7cyFlfkYgZMr6Ad909B6XQNcYc0DnNYYknCs6+6/3K+iazzZ4Tk2WoT6k=
-X-Google-Smtp-Source: AGHT+IFbTaFVXqXyWB+fZvkUz298Fesm8tPV4DO+WpHNCYmPOX5uK4AKFON0clkI5YRb+CNAzrIkUg==
-X-Received: by 2002:a17:906:c14e:b0:a86:ae37:63b1 with SMTP id a640c23a62f3a-a8a887fcb95mr17550466b.43.1725568023723;
-        Thu, 05 Sep 2024 13:27:03 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a61d08e22sm179795966b.0.2024.09.05.13.27.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Sep 2024 13:27:03 -0700 (PDT)
-Message-ID: <09d07962-1a1b-4df3-bbc1-649f9de7a70f@linaro.org>
-Date: Thu, 5 Sep 2024 21:27:01 +0100
+        d=1e100.net; s=20230601; t=1725568071; x=1726172871;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1ID4h32vMpKJpRELS7Wjz6ZK11jdarXsZHBRZ7AsCm8=;
+        b=kxcAiyC6Ae3VDUmVDUoktLA7VeUtI7K0yjztSGyRogt9RGSgaykNN9O228mP3eduJW
+         k2hx6HHfFMIc4xF6rgDwx/WKh3J31FTNaVOEy75Wi/cJRjE04yHOqEEPrY2oKmkGte6f
+         8WeCNR1Fqg/PpCTO3JyllKzHWNuWUz9Jvv066OgOqVlI9DCIrZs6R8tmAgKJSF23cZ7+
+         brTtdXK8ugySZUAziS5l/tPQuwQbg8I3tnyWmSTUgAbFUG8mo/yuWYBiLcKjTi91FDfp
+         GN7fZc5NiIbeYTRwaDxbiIjQtCMakiPgHOGmyHwwwSSLVSRnKyF4+lCptKz5eNu1gM09
+         Yg5A==
+X-Forwarded-Encrypted: i=1; AJvYcCVm1YU8Bf4mjGSKyQW6APGM44FYqtpBS1QxTFe9QwzxmuAGWM6L/DycOWk+Ty5xIZEopFY3ycdudV+U@vger.kernel.org, AJvYcCVsb5oJ457OI1wiaWPXCQ4jaxgV+h/RvThiSt6C8+PqS+eKVFNnsCj5cPCSYOupzJjEjT6UucY5lm3HxqCs@vger.kernel.org, AJvYcCXEUFZdFaegkz3DDw6nA21aWlx8XkhP1g6X6wsTb7jb6d/F9bZOkW27lbgLk22ze5z5hvX2umIgxMTT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVvgnSH2HsIr4ItW9K+Yh4oRSfocmp4yD1avIoINvTXb6xWFbz
+	edlAakdWhWfaiOVCc3zj4H2xDIPwOrwb/j70o94d6z/DHzRravRn
+X-Google-Smtp-Source: AGHT+IGbZB34qSMVQXaWXVGoFS+5k+r/7KenyVF92+5VxThGj7KDYCLvSxV5ux3DDhJjZvlE7MIaPA==
+X-Received: by 2002:a05:6214:dcf:b0:6b5:2062:dd5c with SMTP id 6a1803df08f44-6c518def647mr137814096d6.8.1725568071408;
+        Thu, 05 Sep 2024 13:27:51 -0700 (PDT)
+Received: from VM-Arch (239.sub-174-193-4.myvzw.com. [174.193.4.239])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6c5201dee67sm10610496d6.26.2024.09.05.13.27.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2024 13:27:50 -0700 (PDT)
+Date: Thu, 5 Sep 2024 16:27:42 -0400
+From: Alex Lanzano <lanzano.alex@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>, 
+	christophe.jaillet@wanadoo.fr, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: display: Add Sharp Memory LCD
+ bindings
+Message-ID: <trlyhlclf74itbgj4x6baj6ga6yipdicw3c6odtjgxtbw3cjyl@lyfiny2yiz35>
+References: <20240905124432.834831-1-lanzano.alex@gmail.com>
+ <20240905124432.834831-2-lanzano.alex@gmail.com>
+ <a4520c05-d64b-4ef0-823c-6c568b459e21@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
-To: Andi Shyti <andi.shyti@kernel.org>,
- Richard Acayan <mailingradian@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-media@vger.kernel.org,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20240904020448.52035-9-mailingradian@gmail.com>
- <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a4520c05-d64b-4ef0-823c-6c568b459e21@kernel.org>
 
-On 05/09/2024 21:09, Andi Shyti wrote:
-> Hi Richard,
+On Thu, Sep 05, 2024 at 03:23:20PM GMT, Krzysztof Kozlowski wrote:
+> On 05/09/2024 14:43, Alex Lanzano wrote:
+> > Add device tree bindings for the monochrome Sharp Memory LCD
+> > 
+> > Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
+> > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+> > Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
 > 
-> On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
->> This adds support for the camera subsystem on the Snapdragon 670.
->>
->> As of next-20240902, camss seems to be a bit broken, but the same series
->> works on stable (although it is much less reliable now that the CCI clock
->> frequency is not being assigned).
-> 
-> I am not understanding this bit: is this series making it better
-> or not? Can you please clarify what is broken, what is less
-> reliable and what works?
-> 
-> Besides, I'm reading that this series has not been tested and it
-> makes it difficult for me to take this in, considering that you
-> are adding a new support.
-> 
-> Thanks,
-> Andi
+> I don't understand what happened here. Your process of handling patches
+> is odd. Tags do not disappear, you had to remove them, right? So where
+> is the explanation for this?
 
-Actually I completely missed the statement about "much less reliable not 
-that the CCI clock frequency is not being assigned"
-
-@Richard - what does that mean ?
-
----
-bod
+Whoops! My apologies for wasting time. Nothing changed in this patch
+I forgot to add in your reviewed-by tag.
 
