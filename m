@@ -1,104 +1,129 @@
-Return-Path: <devicetree+bounces-100415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0438496D885
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:28:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3072F96D88D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2F6F1F27B27
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 12:28:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1B74B23FFC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 12:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329FC19D079;
-	Thu,  5 Sep 2024 12:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6624019ADAC;
+	Thu,  5 Sep 2024 12:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FLgjdM60"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="PCtmJgo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021B919D06D;
-	Thu,  5 Sep 2024 12:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7896C1372
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 12:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725539236; cv=none; b=UgWnNPZfGhO+hpycVsriLfMUHTcSdKAqLi+/OSii2yYl2NnuZScogylussbMeDN7txiDHaULMjTsrjgWG+7+NiUo2uqdQ/eREcf6meIt0QbN8XOzW4Vl0TdDda+MhTOftiDAULnFphX/sog+S8fRIZ+xeLkvTnED3+0qUO/1WNU=
+	t=1725539383; cv=none; b=tW2LqVO9S8nFKF/8Mv9Y9Ej8d+8lNHk97E5oj+sI9vqALKIWP5YJK1uphsTB9zSblGcdTnXKcB2jKnxqvMcbU/L6+xKTyGdhJUC2Z+PSUelL4GuK0FEc5cCsp87N/uXn9l4sCd/pxIHyM634VxMdNZeHmZOcvFRLUZDUpCWZrLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725539236; c=relaxed/simple;
-	bh=7pI3kD+n9FnYo4RHoeLXuB2a8jfBkevWaqeGhyenAFE=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=jHkA2YNMaPTozYBIpAfJxk0BoTvbwJ1fIxqP6ZSEylMJaRZa/LUFa76YxP2DzbKAz0L3+uXmw4pDlm4Cd4CEQqRrCVYOIR/S5OIo4Qm0r6LHf+RVz1ZbnB0J61DYUVGcu2rp4Z3c9tTB8OvylsRNMLtk03rN+3CIwFQOOIIUoMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FLgjdM60; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71384C4CEC3;
-	Thu,  5 Sep 2024 12:27:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725539235;
-	bh=7pI3kD+n9FnYo4RHoeLXuB2a8jfBkevWaqeGhyenAFE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=FLgjdM60RYrieY83wIhT7bLxNZTh6eysaZmch7+OBxDc7JSIqnGsl6xcfH22y+W7H
-	 fa//CFsStiqVqOkl1gjtY0rNpvlyDgaPr4jFDAhQYNaMG8zJ2NJ7zF+gcpiQZNL03P
-	 Z8jnfuLwdCEPcLbR3QsQnQxtQpwi5oCHJGa6CLeqE/+Ka6aSCMv6xE1AB4WJMSiUbd
-	 LQwqO1cns48k+uCYElDVuxRTowV44Fcs9B9E/wlan8pPEQjwgnS8Wn8TjB7iQCmmqK
-	 PBbt5tKosYYdr47zw2jo4053St7uzxYJv9/BP1b7ZDbYo/SlDugOdRdggESrmmii0v
-	 hny977EoUPz5A==
-Date: Thu, 05 Sep 2024 07:27:14 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1725539383; c=relaxed/simple;
+	bh=jovfnA/sLiRs7oZPBOhlwuC/A7Xo/vsKuc6XF/CfEsM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YszbdKVQL+HbS3wZr37qnvDjcjwfMrh3MxRfmQXrEAx5s1WPNDD/91bdzbZ98cXFMm24+CH/e8JmKKu4zlDNh6Qi6oQyhk46hg4vtsbfHiVaA820TZ2oU0tjcg2Cu9JH6ORKEatylaGnsmhRF9Icrof5Dw08k/ovXhse5KRpFic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=PCtmJgo7; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53654dbde59so256616e87.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 05:29:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725539379; x=1726144179; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fK76HDEi4aX/89LJo8UpuFQxmvfmza86TzqdAoWDznE=;
+        b=PCtmJgo71PzEX/hckEYV+KVeb7AYpEs74r2eDuoMtt6f8D6jNhnXtcTzIvbqrvvlKA
+         P3DLwK7eBlf67HE/hP2gORs33luZdcfKRP+sFbCq1tTk0sZC4JE8rjSvRC9t59R5dmY/
+         5OqOebSxPGIqhPJQP56xGuV473TV35un6euJ65/HF4jyIJT60r1sHAti0HSem+OvlRBR
+         ID4F8QVsSTfD4w0uQ6lJ6MR4okWsvrVt0OeQvZINBE997p7nKBNdeJLjtXqtlh8GXGIz
+         NrSOVmjr6dV3L/dxn8qg40BqR5rZrcRLoprQ9izSZh+b9WRPVu/CzTqtUHs2Sia+Sw6w
+         OAjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725539379; x=1726144179;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fK76HDEi4aX/89LJo8UpuFQxmvfmza86TzqdAoWDznE=;
+        b=dzXW0KYtIHzfqIf5ncw9s625R/mUQqQsXU2pmtwt1bs+9QUUgoavXZzp6UuION+Fd8
+         ul6w4wFUi4JgmdVy3KOX6nwNXKlYyP7PGkjpzw2hB1hB8uVtuSPSfpmSwvbrvT5aI6mo
+         reqbz1yDLKz4I/xEBRe/rzCDuPhSJ/p4NIqxbFZySxiMSmF4heQaWJCDc8UFv4e9LDql
+         SRqRoK1zcwmcqXa56hRoPfyCfiSngSkUZm6dvrJmmEuXOmdvVlobbMFWP5K4KECdJ6pJ
+         RPITbx0HDAmxL76O7h3QfvwOlvXpo0ySPDz6tt/gYQJiLJ6smf+WujUZQBEAZAp22m4t
+         kGZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVOIeh86y7sIR0Rgj9YQS4WKOlJCvDkle9YhxqF+8Q5/dQibCZcaNTTNKWZAnIdvCvgO2d89qSUJ/vo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqylxsFA5hzqQlN4tY7GESahbrAaPYT0/tnjgpDd3pBkJm51yx
+	hsg/1YzjfPcVnlStbwMKIudoczhGMyB3eOp8iSIlj0y3H3QI1CiN6n5TkOFEgkuoIIQYbqWpnxP
+	IW9iQm9HPId94p8iDnjwGtqnF3uYbvNJDP2D0Vw==
+X-Google-Smtp-Source: AGHT+IFlwyf2AQmKglWdLPgpR7ABMAwdEChx44kvPSTZUPxSNTNFWAxUZMKqkmDV46ZT+VfT36PQ4GQgXUyrMg+rgJs=
+X-Received: by 2002:a05:6512:2309:b0:534:53ce:54a8 with SMTP id
+ 2adb3069b0e04-5356779ac83mr1653495e87.30.1725539377827; Thu, 05 Sep 2024
+ 05:29:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-Cc: bhoomikak@vayavyalabs.com, devicetree@vger.kernel.org, 
- herbert@gondor.apana.org.au, manjunath.hadli@vayavyalabs.com, 
- Ruud.Derwig@synopsys.com, linux-crypto@vger.kernel.org
-In-Reply-To: <20240905112622.237681-2-pavitrakumarm@vayavyalabs.com>
-References: <20240905112622.237681-1-pavitrakumarm@vayavyalabs.com>
- <20240905112622.237681-2-pavitrakumarm@vayavyalabs.com>
-Message-Id: <172553923453.1303716.15154978947551936955.robh@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: crypto: Document support for SPAcc
+References: <20240905122023.47251-1-brgl@bgdev.pl> <20240905122023.47251-4-brgl@bgdev.pl>
+ <CAA8EJpo2-P8N92XFRYszbZwo1gDbRPe+O=THafxWSbk1ZH-BoQ@mail.gmail.com>
+In-Reply-To: <CAA8EJpo2-P8N92XFRYszbZwo1gDbRPe+O=THafxWSbk1ZH-BoQ@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 5 Sep 2024 14:29:27 +0200
+Message-ID: <CAMRc=MfcRXW51_xPYXesJctzo6-U3gm0fjJpG=-zAJewVnc7YQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sc8280xp-x13s: model the PMU of
+ the on-board wcn6855
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Steev Klimaszewski <steev@kali.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Sep 5, 2024 at 2:27=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Thu, 5 Sept 2024 at 15:20, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> >
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
+> > and bluetooth nodes to consume the PMU's outputs.
+> >
+> > Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 98 ++++++++++++++++---
+> >  1 file changed, 86 insertions(+), 12 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts=
+ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > index 6a28cab97189..88b31550f9df 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > @@ -400,6 +400,67 @@ usb1_sbu_mux: endpoint {
+> >                         };
+> >                 };
+> >         };
+> > +
+> > +       wcn6855-pmu {
+> > +               compatible =3D "qcom,wcn6855-pmu";
+> > +
+> > +               pinctrl-0 =3D <&wlan_en>;
+>
+> pinctrl for the bt-enable pin?
 
-On Thu, 05 Sep 2024 16:56:22 +0530, Pavitrakumar M wrote:
-> Add DT bindings related to the SPAcc driver for Documentation.
-> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
-> Engine is a crypto IP designed by Synopsys.
-> 
-> Signed-off-by: Bhoomika K <bhoomikak@vayavyalabs.com>
-> Signed-off-by: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-> ---
->  .../bindings/crypto/snps,dwc-spacc.yaml       | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> 
+Ah dammit. :(
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I'll resend tomorrow to avoid spamming the list. Thanks.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.example.dtb: spacc@40000000: spacc-wdtimer: 10000 is less than the minimum of 102400
-	from schema $id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240905112622.237681-2-pavitrakumarm@vayavyalabs.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Bart
 
