@@ -1,104 +1,160 @@
-Return-Path: <devicetree+bounces-100363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524F496D6B0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:05:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBA896D6BB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 069C11F2656A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:05:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41F781C221D8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED4F1991B0;
-	Thu,  5 Sep 2024 11:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F841991DB;
+	Thu,  5 Sep 2024 11:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="TUAvXYNd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rWy8oBaC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from classfun.cn (unknown [129.204.178.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA549195B37;
-	Thu,  5 Sep 2024 11:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A4E9189913
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 11:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725534335; cv=none; b=tdCqFipGYYw2LU35ho2UMaVUhrLzOLWJVFhvBZbSQql1zaIG1aFgX4xlncAM+AW4AHPFz5aCLQpNiPy4UKGn2KrWfrlxNSOQbGS9yRxk3Up/wrpQD4mg0WsWBrBkl/+6sCGbH2av5fQ/EqKr9lAg0ob+Xbp/WsnqeOIhcivzq5o=
+	t=1725534489; cv=none; b=aX8vgywnzcws+clF/mcb+Li7cMiwMp6J9B1oNAe74wq+E3gq2tAPHlmX6r/XrUCUkoTTl4x+OKe1FPAswiZy44IPNLR9ZXUTrS2GLhJ+PkF2QQ+K9x2wAUvP8NaVpJqK0L270ou0E5ezfjR52l9YB9Ly99EsClT0TcSt/5BFlTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725534335; c=relaxed/simple;
-	bh=jh9R+58gp0EaUpQ0MtSEHWV+UrVP5s4/LQSZNzCl8Ic=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=QXwIST7F7tVEiOUUkScjJNNrlx1JnbJ/DF9bh8SV6VWrIqMNQ5711RyZRNM7dRFRNArevxOwno/eIGG/aZAoLUh1Ng69ionnt2eRGxk2vbdRzvhykE2ybiVcY2S8sWJNviAHHGVfTsoBVnCSqok/6dxsx1i1IpRxoZ3Hsqph/AQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=TUAvXYNd; arc=none smtp.client-ip=129.204.178.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
-Received: from [192.168.0.160] (unknown [14.155.100.110])
-	(Authenticated sender: bigfoot)
-	by classfun.cn (Postfix) with ESMTPSA id 8DB27789EE;
-	Thu,  5 Sep 2024 19:05:27 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 8DB27789EE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
-	s=default; t=1725534328;
-	bh=pJfwzVFsBxD8QgeCLnJpuG01Hv3jSe19yTLA9YcFox4=;
-	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
-	b=TUAvXYNdg2ZrNCB9GNG9exshtyxtjwaz1qS6De3IEaR2MCp8GfQaAXr75zrEMRb3y
-	 NuPmSkAKHBieMFrdosT8AmUP7XZzW+/S0kDqMezq2ti0NzJfy916AHHNe6G335XLHy
-	 bwN3tedJGfx7ZQp8VM4gyLk6lvJIJvjKECDnBwAk=
-Message-ID: <61bccef8-8cb1-4224-accd-0468e8892b91@classfun.cn>
-Date: Thu, 5 Sep 2024 19:06:53 +0800
+	s=arc-20240116; t=1725534489; c=relaxed/simple;
+	bh=LjNVW2t4fx6M3KhMjZkbWuFnRp1gmQfRp9GsPw5jOlI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FJnNrXpwKgItm8l6v2qgkSaNHw2Klr5Svani0C0Z+FZE7tKLXTWiKJ8jERTfikMIylHLhY8eDORwVwbb37Dh7hY0s+00kxBLvMWBs0MrUvxHBGGJamk8uRUV3SbHIJI2chJkIATF/UqdpFM9D2FVkZG6oY7i87P6TPambvZorI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rWy8oBaC; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6d3f4218081so6427577b3.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 04:08:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725534487; x=1726139287; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HLrWheA/uzPL842yXk9I+vlIRzYAG2p0JR2tMx/QCJY=;
+        b=rWy8oBaCGoslJjxlJLT4XP07WqJPGsg0IWSSPMiGl9CZj0tz6OPS4UcBCQoboYQdyS
+         QGiTWleIE2EpK67WDIl3XntWZop0njTpWhpBni6ULXp6L8+Bk6LEFpfydNln5d/fhiy9
+         1DWKAMVxv12r1cMVdAa6GoP9QayTOFpgSgIEcTK7mlyPQ45wEW4aj3lpcBZQEOggE5C/
+         jxVYRx1/lwYBJMla9vZp4Vk/dbfI1x7pAs6D3aNFuTZCk7R3dS0mLHCh6zNfAgO6fV85
+         vVSomh1GqNfBRvMWcNM5Z33IlNeCXwnEuLjfeVQo/Z0v/MqlXA8ts1R9OD4JwHWJ3r2l
+         F1VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725534487; x=1726139287;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HLrWheA/uzPL842yXk9I+vlIRzYAG2p0JR2tMx/QCJY=;
+        b=rC/A6hIrzbXzhUXgpQzLQ4hViFF9mGWCmXFEExftHSDD0y/nYlWTC8YvQt/eLHERSt
+         SMrI2TZqdnQXvslhnoh5xNGkZkVo+6PZkwGhTil8oC3DQ9cLqVfwyXfz42qKf2mbZZvj
+         QGIbj7ceLuU1mEcAbGXHg2LyZdqWc8TV6uPU8QfYvtBqOi/yT8d0+ZkmmBYsEwGmjuJF
+         NQefcZmdxjOIidixf8b47bLicMpIkjTzp+LwL3tiBExA3X1s92CnOk8BQLFgT3Gs5cK7
+         NRwOCfADdhBtZNao78vm99qKnLPUrzLoBEcl61AboXsZf1B6SWRi2Lok3fUohLNJmnHx
+         9Y3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXESWDzTlsFK8Iex7SbJ4qpdWmj9McOGFpw+SGC3aOUcUzcr6VL2x3J1440ZxCWTtjW1zlBFfxxh9eL@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgDj1/cw3gaAOMER/rfRgRgNxy+MO8z6w9Ytyi/VO42/QJiA/3
+	1/KyUQmBjV2pKIb3wPWCOG9IWHJ5Lw+uf3LnOQkYXjwHK2o3q0IbXNBezSjOvYHpcuflOhRGYVw
+	hYMBBkWbDdwVreaHixd/FmTy5mF/bEXb6gyOo3A==
+X-Google-Smtp-Source: AGHT+IGljMR2FuGqpIquRAyHFIE5n6Dy1ErNi4U6Mj6X5eeEczgYFADvJ6drwPqPMiVgjZwm2fm1F1g0Y+MriMT7lOE=
+X-Received: by 2002:a05:690c:16:b0:6bd:8b0a:98e8 with SMTP id
+ 00721157ae682-6db236c8840mr77162967b3.24.1725534486926; Thu, 05 Sep 2024
+ 04:08:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-To: Chukun Pan <amadeus@jmu.edu.cn>
-References: <010a9c5e-205b-40b9-9655-9e168b2def97@classfun.cn>
- <20240905100100.348444-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
- FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <20240905100100.348444-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+ <20240827-iris_v3-v3-3-c5fdbbe65e70@quicinc.com> <74126160-57f9-4abf-a26c-3491c8f3dd78@linaro.org>
+ <zfltcl5x4hol2foftyvr4oigxus4hnequd74zi7bdd7tsdv56q@3nphukr4zgmm>
+ <fa674301-9c4e-c4de-361a-1d1abf413ffc@quicinc.com> <adb2eed8-8d5e-a052-81b3-cde705c3503b@quicinc.com>
+ <ydah7lm6ov26fy5odqc6u6vlfu2w5gzqxquplimhbdamw3gdpj@dmgdr52pvm5g> <bcfdeaf6-58c7-1c53-035b-07ae4bfa37f0@quicinc.com>
+In-Reply-To: <bcfdeaf6-58c7-1c53-035b-07ae4bfa37f0@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 5 Sep 2024 14:07:54 +0300
+Message-ID: <CAA8EJpp75N0OHZZ+dLnKXXDk7AksJjYkKP0uwJ+da3zA+60KgA@mail.gmail.com>
+Subject: Re: [PATCH v3 03/29] media: iris: add platform driver for iris video device
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Dmitry Baryshkov <dbaryshkov@gmail.com>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
+	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 2024/9/5 18:01, Chukun Pan wrote:
-> Hi Junhao,
-> 
->>>> +	vcc5v0_usb_modem: regulator-5v0-vcc-usb-modem {
->>>
->>> Are you sure this regulator is 5v?
->>>
->>
->> It should actually be 3.3V, I will fix it and rename
->> to vcc3v3_usb_modem
-> 
-> I prefer vcc3v3_rf or vcc3v3_ngff,
-> this is closer to the schematics.
-> 
+On Thu, 5 Sept 2024 at 13:59, Dikshita Agarwal
+<quic_dikshita@quicinc.com> wrote:
+>
+>
+>
+> On 9/5/2024 3:41 PM, Dmitry Baryshkov wrote:
+> > On Thu, Sep 05, 2024 at 11:45:25AM GMT, Dikshita Agarwal wrote:
+> >>
+> >>
+> >> On 9/5/2024 11:42 AM, Dikshita Agarwal wrote:
+> >>>
+> >>>
+> >>> On 8/29/2024 2:43 PM, Dmitry Baryshkov wrote:
+> >>>> On Tue, Aug 27, 2024 at 03:08:03PM GMT, Bryan O'Donoghue wrote:
+> >>>>> On 27/08/2024 11:05, Dikshita Agarwal via B4 Relay wrote:
+> >>>>>> +static const struct of_device_id iris_dt_match[] = {
+> >>>>>> +        { .compatible = "qcom,sm8550-iris", },
+> >>>>>> +        { .compatible = "qcom,sm8250-venus", },
+> >>>>>> +        { },
+> >>>>>> +};
+> >>>>>> +MODULE_DEVICE_TABLE(of, iris_dt_match);
+> >>>>>
+> >>>>> The enabling patch for the compat strings should come last - if its first
+> >>>>> then the time between the compat add and the last patch is a dead zone where
+> >>>>> things are bound to break on a booting board.
+> >>>>
+> >>>> But then it's impossible to test the driver in the interim state.
+> >>>> Moreover enabling it at the end only makes it hard to follow platform
+> >>>> data changes. What about adding sm8550 at this point and adding sm8250
+> >>>> at the end? Or enabling qcom,sm8550-iris and the fake qcom,sm8250-iris
+> >>>> now (and clearly documenting it as fake) and as the last patch change it
+> >>>> to qcom,sm8250-venus.
+> >>>
+> >>> Sure, we will add qcom,sm8250-iris at this point so that it enables the
+> >>> testing of the driver, and will add one patch at the last to add
+> >>> qcom,sm8250-venus.
+> >> Sorry fixing the typos. what I meant was,
+> >> we will add qcom,sm8550-iris at this point so that it enables the
+> >> testing of the driver, and will add one patch at the last to add
+> >> qcom,sm8250-venus.
+> >
+> > I hope you meant 'to change qcom,sm8250-iris to qcom,sm8250-venus'. Also
+> > please clearly document that qcom,sm8250-iris is a temporary thing just
+> > to facilitate documentation and testing of the driver to be removed as a
+> > last patch.
+> >
+> I was agreeing to follow this suggestion of yours
+> "What about adding sm8550 at this point and adding sm8250
+> at the end?"
+> Where we will add sm8550(qcom,sm8550-iris) first so driver can be tested on
+> sm8550 and add sm8250(qcom,sm8250-venus) in the last patch.
+> I think Bryan also agreed to the same.
 
-Yes, I changed it to vcc3v3_rf, this is the name used in the schematics.
+To point out, qcom,sm8250-iris can not stay.
 
->>>> +	pinctrl-names = "default";
->>>> +	pinctrl-0 = <&pcie30x2m1_pins>;
->>>
->>> These are actually pcie30x1m0_pins.
->>
->> pcie30x1m0_pins seems to conflict with sdmmc0,
->> I changed it to pcie30x1m1_pins
-> 
-> This is obviously incorrect. I didn't notice that
-> your pinctrl for sdmmc0 is wrong.
-> (Because the cd pin are different)
+> >>>
+> >>> Thanks,
+> >>> Dikshita
+> >>>>
+> >>>
+> >
 
-After fixing sdmmc0, using pcie30x1m0_pins can work normally.
 
-Best regards,
-Junhao
+
+-- 
+With best wishes
+Dmitry
 
