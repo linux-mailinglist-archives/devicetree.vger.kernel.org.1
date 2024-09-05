@@ -1,167 +1,112 @@
-Return-Path: <devicetree+bounces-100478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD2C96DC4C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:48:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9396B96DCAE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:56:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CC49B2115B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:48:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C67371C21AAA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5301D551;
-	Thu,  5 Sep 2024 14:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DCB419F475;
+	Thu,  5 Sep 2024 14:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="w/b4diqw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GZsoqf4y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13808179BF;
-	Thu,  5 Sep 2024 14:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D644619F469;
+	Thu,  5 Sep 2024 14:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725547725; cv=none; b=dO8ul8/V6RZJOasWSvWJBgwC2d4VEDvSY/IBwFhoVoCWcjmLfVoGii5/SyLfmOURN3iMgCnHXMOP32XySpUTlVjb4jrofVlzIW0PsQ/OyzpPdtZYjPRTIzXEA0carIfO+LsagFcvEZB3db+E1EtcmEm9PlhPIxnnotShVgDV+EY=
+	t=1725548061; cv=none; b=Tm0yVFf+anp8B9WjDSLtlZovMJnaKI2AAZa3p47T7HHUQBFPapSriVmekUJ78TD1673YVrxTeNUm3/TuXJE7uc4KpvJvyR6c0cynI7p9AbR4KhFIC+qYsD080ULJtH5aCV50Zsw4PgHXp07xP5D53Jrv6Q1ylvk5+YWaxZC82Eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725547725; c=relaxed/simple;
-	bh=0ommqQRWmdehvN0o6pbfhCcsZNj04TF1UHTEwGE5yDM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j3ez7wsb/1ApqH+94ZSJ7MpY+Wc6GIDtaLnrHA8LZz9w+6e4pt28cDZRanlykN7wNXiJAEVkBkjK7KE3f/S91Rpm7MmJ25tyAudcwEFZGnh2IiEExlwT/z4SY4NNMlDZMVjCZIULEuKh784ioAnCevBXw5eyZwzNBYdEltIykDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=w/b4diqw; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Z9IgYD/2bP3HwiWDe9m6U4cOpfzwTsOumgc5N6zAYJA=; b=w/b4diqw5J8ZIWZLi5djL0KZax
-	oYskcatg6UJKVdLpBuSCCoPxb857ufeJN9eshcmsi68J/7ptbzWk043BsCHcRZ+oXflAwquP5rcoA
-	MV40is1liBi9d8axQSJHuIhypek6r9Lvz4WU8t+VItpygoIB3Qrdq4VKamWkE7HBi7vMET96xV0oC
-	yyF4mAvu0ThWEjYfLULsTtkVHc3A6s7wx5yRnUz9WjN0FdjUpRdKbQ0bD/gnSFwMp9guoDc2fL3HW
-	4iE5WgDR4IijnID5sLC2t6JfrtyLyvB2hFOMLYI26aTLd/qZk5RdFq5LFYVTydBQ05sXM6fHcZQsu
-	0P35Q/gw==;
-Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1smDmd-0002HD-Hx; Thu, 05 Sep 2024 16:48:27 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Lee Jones <lee@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jdelvare@suse.com, linux@roeck-us.net, dmitry.torokhov@gmail.com,
- pavel@ucw.cz, ukleinek@debian.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v6 3/7] leds: add driver for LEDs from qnap-mcu devices
-Date: Thu, 05 Sep 2024 16:50:22 +0200
-Message-ID: <3627679.ZzFAyJQhcr@diego>
-In-Reply-To: <20240829162705.GR6858@google.com>
-References:
- <20240825203235.1122198-1-heiko@sntech.de>
- <20240825203235.1122198-4-heiko@sntech.de> <20240829162705.GR6858@google.com>
+	s=arc-20240116; t=1725548061; c=relaxed/simple;
+	bh=UUHnewB4h6BjmuvU1iEeBkQiipuPVS6T5jBbdXQDBYo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cuQZP2Vr+PKOioJ3BW+eAdWsJdmTQ9FYDHWZ8IHjzx+xeE1g8TRxL/hIakqNCzi4u51lOKAvYRoMQBemm01KgNtb3x5Q/kMaG5Rt8QLAnh7xcPuuh8ZhRtXTvb1JWZTZAcKlwjmHe6jtRfFcGyAjI/eHYk8H1onRDc5ahzvHT14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GZsoqf4y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78527C4CEC9;
+	Thu,  5 Sep 2024 14:54:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725548061;
+	bh=UUHnewB4h6BjmuvU1iEeBkQiipuPVS6T5jBbdXQDBYo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=GZsoqf4yr7M8DNN/H/mRUifQnEWOrUoFXE5sat8Gtxp5sqKHS4aR9ERPuXdjUhCNt
+	 BwDF9YI7241GkzPCLKSSA5OFTXPlrUYxmEEH0JPAe05kbZ7Lt+uB2ATRdThvINa4tT
+	 TIf6GibIdS3azAhohptf2Jd/itIzz6jMDuNWzniOQcVcrH9YMbJWbPlr+o3oYgSdi6
+	 SMpn6ZyzhKlAkQA3hDvspANz9QyYu522oUYZqZ052YAcdr/S7znaaNyp2/mNfAhPYO
+	 b0i0jizyrxIaWfpGj5+X1Ju2DaxzFjrLo3iyczRTTvqg3qX5qHjII7leXn3OEAejJu
+	 /NsCRG0FH2GJQ==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5356bb55224so1106513e87.0;
+        Thu, 05 Sep 2024 07:54:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUn5PlQMt9HByYYGZPqrIbxADcpGlCIbtnU3CzPubhjjo+n25YDPV7F5wvs/79gpqkDwj/anEl69+LjraDa@vger.kernel.org, AJvYcCX58aon35Bd5GgaVYJma1z5jvtDheE15XlAY/J6wQDcYu8CsLQ6fQPXp7SMIdjjHWOI0PmMDc+3dNns@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8EFE0HqFV1ZzNlpzi92NE1nrDoijdy4Nm1um+i2MZitJkZ4uM
+	3ga2K43tAy7DDsYqsuj5OBNVR3k6xr1RUEx7OIUeGvIfx+qsP0dvTJgZEmNFqZWaZ4hpB/f/J+0
+	0dg8UE53urC+UV7ub9LzsWT+nww==
+X-Google-Smtp-Source: AGHT+IFlSeFYMNSm1QKxRra9izZe4ohmwyETHeZy0yKrKZnqSLZ2jfK2gIAtZdWXH8SqtlzBvOVv3uuWe3uVZdR03Ts=
+X-Received: by 2002:a05:6512:3d27:b0:52f:288:5664 with SMTP id
+ 2adb3069b0e04-53546bc399cmr14867395e87.51.1725548059816; Thu, 05 Sep 2024
+ 07:54:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20240905-of-resource-overflow-v1-1-0cd8bb92cc1f@linutronix.de>
+ <CAL_JsqJ=7kX6DL_HBJMrWuhjZEmPUL++BvJ9tg3BDD9-e+b6Xw@mail.gmail.com> <20240905153318-ef305b5f-7987-410b-8256-aa6d01574fc9@linutronix.de>
+In-Reply-To: <20240905153318-ef305b5f-7987-410b-8256-aa6d01574fc9@linutronix.de>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 5 Sep 2024 09:54:07 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKu2yC_xaq6SY472XRxJr-pMp8msFQ2HeqppZ-16yhRzw@mail.gmail.com>
+Message-ID: <CAL_JsqKu2yC_xaq6SY472XRxJr-pMp8msFQ2HeqppZ-16yhRzw@mail.gmail.com>
+Subject: Re: [PATCH] of: address: Report error on resource bounds overflow
+To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Nam Cao <namcao@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Donnerstag, 29. August 2024, 18:27:05 CEST schrieben Sie:
-> On Sun, 25 Aug 2024, Heiko Stuebner wrote:
-> 
-> > This adds a driver that connects to the qnap-mcu mfd driver and provides
-> > access to the LEDs on it.
-> > 
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+On Thu, Sep 5, 2024 at 8:41=E2=80=AFAM Thomas Wei=C3=9Fschuh
+<thomas.weissschuh@linutronix.de> wrote:
+>
+> On Thu, Sep 05, 2024 at 08:15:40AM GMT, Rob Herring wrote:
+> > On Thu, Sep 5, 2024 at 2:46=E2=80=AFAM Thomas Wei=C3=9Fschuh
+> > <thomas.weissschuh@linutronix.de> wrote:
+> > >
+> > > The members "start" and "end" of struct resource are of type
+> > > "resource_size_t" which can be 32bit wide.
+> > > Values read from OF however are always 64bit wide.
+> > > Avoid silently truncating the value and instead return an error value=
+.
+> > >
+> > > This can happen on real systems when the DT was created for a
+> > > PAE-enabled kernel and a non-PAE kernel is actually running.
+> > > For example with an arm defconfig and "qemu-system-arm -M virt".
+> >
+> > A nice follow-up would be to make of_pci_range_to_resource() use
+> > overflows_type() as well instead of open coding it.
+>
+> Good catch.
+>
+> There are some differences though, it
+> * returns -EINVAL on overflow instead of -EOVERFLOW
 
-[...]
+I think that is safe to change. I don't see any cases looking at the
+specific errno. Note that of_range_to_resource() kerneldoc would need
+updating too.
 
-> > +{
-> > +	struct qnap_mcu_err_led *err_led = cdev_to_qnap_mcu_err_led(led_cdev);
-> > +	u8 cmd[] = { 0x40, 0x52, 0x30 + err_led->num, 0x30 };
-> 
-> Really not fan of these magic values being used raw like this.
+> * sets ->start and ->end to OF_BAD_ADDR on overflow
 
-Me neither, I tried my luck with QNAP support to get some sort of
-documentation on what these magic characters mean, and it did
-even get up to some "product team" but ultimately they decided
-against providing any help.
+Don't need to do that. No user accesses the resource on error.
 
-But ok, if it makes you feel more at ease, I'll switch to at least
-replaying ascii-values where possible :-) .
+> * does not check ->end for overflow
 
+Obviously we want to do that.
 
-> > +static int qnap_mcu_err_led_blink_set(struct led_classdev *led_cdev,
-> > +				      unsigned long *delay_on,
-> > +				      unsigned long *delay_off)
-> > +{
-> > +	struct qnap_mcu_err_led *err_led = cdev_to_qnap_mcu_err_led(led_cdev);
-> > +	u8 cmd[] = { 0x40, 0x52, 0x30 + err_led->num, 0x30 };
-> > +
-> > +	/* LED is off, nothing to do */
-> > +	if (err_led->mode == QNAP_MCU_ERR_LED_OFF)
-> > +		return 0;
-> > +
-> > +	if (*delay_on < 500) {
-> 
-> Setting delay_on based on the current value of delay_on sounds sketchy.
-
-As far as I understood the API, the parameter should indicated the wanted
-blink time, while the function then should set in those variables the delay
-the driver actually set.
-
-So if the delay_on is < 500, select the fast blink mode, which is this
-100/100 variant and for everything >= 500 the slow blink mode.
-
-I.e. you set the trigger to "timer" and this creates the delay_on and
-delay_off sysfs files, where you put you wish into and can read the
-actually set delays out of.
-
-
-> > +		*delay_on = 100;
-> > +		*delay_off = 100;
-> > +		err_led->mode = QNAP_MCU_ERR_LED_BLINK_FAST;
-> > +	} else {
-> > +		*delay_on = 500;
-> > +		*delay_off = 500;
-> > +		err_led->mode = QNAP_MCU_ERR_LED_BLINK_SLOW;
-> > +	}
-> 
-> How do you change from a fast to a slow blinking LED and back again?
-
-echo timer > /sys/class/leds/hdd4:red:status/trigger
-## creates delay_on + delay_off sysfs files
-
-echo 150 > /sys/class/leds/hdd4:red:status/delay_on
-cat /sys/class/leds/hdd4:red:status/delay_on --> 100
-
-echo 250 > /sys/class/leds/hdd4:red:status/delay_on
-cat /sys/class/leds/hdd4:red:status/delay_on --> 100
-
-## switch to slow blink
-
-echo 500 > /sys/class/leds/hdd4:red:status/delay_on
-cat /sys/class/leds/hdd4:red:status/delay_on --> 500
-
-echo 600 > /sys/class/leds/hdd4:red:status/delay_on
-cat /sys/class/leds/hdd4:red:status/delay_on --> 500
-
-## switch to fast blink again
-
-echo 150 > /sys/class/leds/hdd4:red:status/delay_on
-cat /sys/class/leds/hdd4:red:status/delay_on --> 100
-
-echo heartbeat > /sys/class/leds/hdd4:red:status/trigger
-## removes the delay_on + delay_off files again
-
-
-Heiko
-
-
+Rob
 
