@@ -1,112 +1,338 @@
-Return-Path: <devicetree+bounces-100501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C26A96DDF7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 17:23:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0011796DE6D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 17:33:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E69D1C22F69
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:23:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AEC6C282002
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED6319D895;
-	Thu,  5 Sep 2024 15:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FCA19D8AF;
+	Thu,  5 Sep 2024 15:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FTxpR8Vu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fMRg+EmM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F28194AC7;
-	Thu,  5 Sep 2024 15:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8CC19B5BE;
+	Thu,  5 Sep 2024 15:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725549770; cv=none; b=WUyiruQS/C09UUmoyNVF77oHqfOR0sjb/xLkw1sIfmJZRBaMUzFO9hKcSVwQim7sShMGgsl2bnOJKUETWOkLpTcLEAPCaKfbPFCKNViA4wYqO4G3aEYbFA8OEO65ii4B0h5dUeXidFWKlwBYHM4umSvTVCJL8vIr685Kh5acfFg=
+	t=1725550389; cv=none; b=RwzV+fiqbMMa4aiGQJ3wTHGPGhHWvqWKP0sO8N0OxiLNtiX/PMlm72K83Bq/kvTc+zp8v1a1yBUUk1PTi8YL5BPt4sJ/9vW2STa6hJ71I5zmpDrXWCxp9jZCj5bYjbvFr8h+c4CxO49GbcrEA61/zbjcSymPIZ6laZKFdh0DBDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725549770; c=relaxed/simple;
-	bh=3hpaZRK/ZZSFn7LzGeNNeWHg5Sy6bZhsK7TnJ4G1OaY=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=b1i2W5yBv4P6VtGNeo979R/MfjVow5eNCgtyfSQtX1/kLV6b3MbGkV/NzdYesPWkXQCuPlHz+FclRtgwtZzzytRCXrcwPU1ltrWx1RFVPMYIcGwNyt0j7+kjBbohXqAzU6Yn2NRF3gSsRGM2a5rOyDDBA46MasXPxl+PKI+XF/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FTxpR8Vu; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725549770; x=1757085770;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=3hpaZRK/ZZSFn7LzGeNNeWHg5Sy6bZhsK7TnJ4G1OaY=;
-  b=FTxpR8VuhsetPMLS5U/mzffjI04icn7YdUhAMwKJ69H+MzeMZwavgXib
-   FhEBU1Ekc5sg4QDf7eQihwdYFtHC2uNhg13zIGBWhjFdv1I+l4uOOW8Ug
-   Y7qEMVOvmdsBRUnbA5wl5iyaYFk9oBUKUPivZHvppeWxa0myu6Btvilh+
-   8WpbFJhbUMNshAcMuomGLhxTzYtW/rT7kvUmUyLwfcNGGjFWRX16tIP26
-   R0cCkGPSv6iGi87mKxwoBfkWdd5GrD9M+lOIQiDtkyONCyLMT22V4rwML
-   hrTaImpQwiiq+9enoi+fxV4rm95i+zR/vujYf1j0/Hl5oRixhEdX8GDr1
-   w==;
-X-CSE-ConnectionGUID: UD0YTVajReaInRlqFbnQqA==
-X-CSE-MsgGUID: 2U3+rILITjSpkKXzdjoe6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="34879316"
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; 
-   d="scan'208";a="34879316"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 08:22:49 -0700
-X-CSE-ConnectionGUID: L7Bh2tysS1uSP32f+AazuQ==
-X-CSE-MsgGUID: FNNThPIQTDKegB0POK+icA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; 
-   d="scan'208";a="70236666"
-Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 08:22:49 -0700
-Date: Thu, 5 Sep 2024 08:22:48 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-To: =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>
-cc: Conor Dooley <conor@kernel.org>, lpieralisi@kernel.org, robh@kernel.org, 
-    bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-    joyce.ooi@intel.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: altera: msi: Convert to YAML
-In-Reply-To: <20240904161053.GH3032973@rocinante>
-Message-ID: <e8a5522-de9b-68e8-a24-e07fc06d4944@linux.intel.com>
-References: <20240717181756.2177553-1-matthew.gerlach@linux.intel.com> <20240718-pounce-ferocity-d397d43e3a3f@spud> <20240904161053.GH3032973@rocinante>
+	s=arc-20240116; t=1725550389; c=relaxed/simple;
+	bh=WHiwuLVen3PKlDbNvBjj34sq4l3+Mmohw3vZtu3ZGgM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=k5NpYZbdXZxSx6IoLE+hmN7bDoJBYDsxtca2j/cQmTyAiwSBGmyxaZKBwoqXoORpgDzp+gZAef6SrhQDF9cOM7oJ7pq1SYFTQwpjuJbqPp0hjxALStsziF/jxbBv5fTQ5bON5kKXEtOE4GIuKXh5XGrx5wi/5fIK2dJj77FtC68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fMRg+EmM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48597l4w004502;
+	Thu, 5 Sep 2024 15:32:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jT0Zr199HyLlj66U5T7JnMsSyMHx/rO+1YN/dr1/Y5c=; b=fMRg+EmML35TDi+B
+	UPCXsCg7DrJIqsho2jpZsgl5zZumchIYPDOKb5AZ57/Uj1B5BsGtTgCeL9oKX+Qd
+	aWVAnjHiS8f6h5QzhcZ0bB3yie8IblZt7VfZEVvVpJe8hZO+/2EgfLkTEbZNy1w7
+	SnbRizPNTCO9mlr5W7YBiqh/JdNXpb57slMbBAqe6zMy/tI7SE8oalf1zo2AoYn4
+	5tsjghzX5zipEFo5l6cboV+j2YAhQXkFYhjWibxcWo+mZinwZD8KmnpVYIry3UCi
+	KLM+3+lRHLUP9sMBO2LtOPa0EwBxW8rIjKmZDUn0iyiq8bXCuniQ5kwkwHMNvuVL
+	MEAW9g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41bt676h8y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Sep 2024 15:32:50 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485FWnd4008926
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Sep 2024 15:32:49 GMT
+Received: from [10.253.14.7] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Sep 2024
+ 08:32:44 -0700
+Message-ID: <4107dfca-7beb-403c-880b-bf1df20cae1f@quicinc.com>
+Date: Thu, 5 Sep 2024 23:32:42 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1679348232-1725549768=:3658588"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] clk: qcom: Add CMN PLL clock controller driver for
+ IPQ SoC
+To: Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Michael
+ Turquette" <mturquette@baylibre.com>,
+        Rob Herring <robh@kernel.org>, "Will
+ Deacon" <will@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>
+References: <20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com>
+ <20240827-qcom_ipq_cmnpll-v3-2-8e009cece8b2@quicinc.com>
+ <d7b374670eb2f6d442f351106ab1221a.sboyd@kernel.org>
+ <7f4d41a0-b1b9-4b63-8590-63f4fcf1a359@quicinc.com>
+ <7736d0d0-634d-403d-b70f-f33b7402456c@quicinc.com>
+ <04944b77ce6327ba5f4ec96348a9cda2.sboyd@kernel.org>
+ <ecc34401-68c2-463f-b630-6a81ad95625e@quicinc.com>
+ <6sk7sx4pz2gnne2tg3d5lsphmnp6vqjj2tjogqcop7fwn3yk3r@ftevsz77w6pt>
+ <492e3c19-c06d-4faa-8064-e6b73c46b13e@quicinc.com>
+ <CAA8EJpqSFp_cETNE_3iiC1viLhPD5TE+H1F=m8UksybEpAvKHQ@mail.gmail.com>
+ <c9ffecd72199926fc3d8a8e57208818c.sboyd@kernel.org>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <c9ffecd72199926fc3d8a8e57208818c.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -P7TH9z9Il1S3VIybf2Cxu578SD4aTLu
+X-Proofpoint-GUID: -P7TH9z9Il1S3VIybf2Cxu578SD4aTLu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_10,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ bulkscore=0 mlxscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 lowpriorityscore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409050115
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-1679348232-1725549768=:3658588
-Content-Type: text/plain; charset=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
 
 
+On 9/4/2024 5:36 AM, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2024-09-03 07:08:07)
+>> On Tue, 3 Sept 2024 at 17:00, Jie Luo <quic_luoj@quicinc.com> wrote:
+>>>
+>>>
+>>>
+>>> On 9/3/2024 2:39 AM, Dmitry Baryshkov wrote:
+>>>> On Mon, Sep 02, 2024 at 11:33:57PM GMT, Jie Luo wrote:
+>>>>>
+>>>>>
+>>>>> On 8/31/2024 6:24 AM, Stephen Boyd wrote:
+>>>>>> Quoting Jie Luo (2024-08-30 09:14:28)
+>>>>>>> Hi Stephen,
+>>>>>>> Please find below a minor update to my earlier message on clk_ops usage.
+>>>>>>
+>>>>>> Ok. Next time you can trim the reply to save me time.
+>>>>>
+>>>>> OK.
+>>>>>
+>>>>>>
+>>>>>>> On 8/28/2024 1:44 PM, Jie Luo wrote:
+>>>>>>>> On 8/28/2024 7:50 AM, Stephen Boyd wrote:
+>>>>>>>>> Quoting Luo Jie (2024-08-27 05:46:00)
+>>>>>>>>>> +       case 48000000:
+>>>>>>>>>> +               val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+>>>>>>>>>> +               break;
+>>>>>>>>>> +       case 50000000:
+>>>>>>>>>> +               val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 8);
+>>>>>>>>>> +               break;
+>>>>>>>>>> +       case 96000000:
+>>>>>>>>>> +               val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+>>>>>>>>>> +               val &= ~CMN_PLL_REFCLK_DIV;
+>>>>>>>>>> +               val |= FIELD_PREP(CMN_PLL_REFCLK_DIV, 2);
+>>>>>>>>>> +               break;
+>>>>>>>>>> +       default:
+>>>>>>>>>> +               return -EINVAL;
+>>>>>>>>>> +       }
+>>>>>>>>>
+>>>>>>>>> Why isn't this done with struct clk_ops::set_rate() or clk_ops::init()?
+>>>>>>>>
+>>>>>>>> OK, I will move this code into the clk_ops::init().
+>>>>>>>
+>>>>>>> This code is expected to be executed once for initializing the CMN PLL
+>>>>>>> to enable output clocks, and requires the parent clock rate to be
+>>>>>>> available. However the parent clock rate is not available in the
+>>>>>>> clk_ops::init(). Hence clk_ops::set_rate() seems to be the right option
+>>>>>>> for this. Please let us know if this approach is fine. Thanks.
+>>>>>>
+>>>>>> Sure. It actually sounds like the PLL has a mux to select different
+>>>>>> reference clks. Is that right? If so, it seems like there should be
+>>>>>> multiple 'clocks' for the DT property and many parents possible. If
+>>>>>> that's the case then it should be possible to have something like
+>>>>>>
+>>>>>>      clocks = <0>, <&refclk>, <0>;
+>>>>>>
+>>>>>> in the DT node and then have clk_set_rate() from the consumer actually
+>>>>>> set the parent index in hardware. If that's all static then it can be
+>>>>>> done with assigned-clock-parents or assigned-clock-rates.
+>>>>>
+>>>>> Thanks Stephen. The CMN PLL block always uses a single input reference
+>>>>> clock pin on any given IPQ SoC, however its rate may be different on
+>>>>> different IPQ SoC. For example, its rate is 48MHZ on IPQ9574 and 96MHZ
+>>>>> on IPQ5018.
+> 
+> How many input pins are there on the hardware block? It makes sense that
+> only one pin would be used in practice, but I'm wondering if there are
+> multiple pins in general. Why is the field called CMN_PLL_REFCLK_INDEX
+> if it's not picking the reference clk desired (i.e. the pin that is
+> actually connected)?
 
-On Thu, 5 Sep 2024, Krzysztof Wilczyñski wrote:
+We double confirmed with our HW design team today, there is only one
+input PIN to CMN PLL hardware block which is always sourced from the
+internal Wi-Fi hardware block.
 
-> Hello,
->
-> [...]
->>>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    msi0: msi@ff200000 {
+Let me provide more details below on the function of this block, to
+provide a clear picture of the clock functions involved.
+
+Input clock
+-----------
+This input clock rate at the pin is usually 48 MHZ, but an input rate of
+96 MHZ at this pin is also supported by the block. Below is a picture
+showing how input clocks are used in CMNPLL.
+
+48mhz(or 96mhz)--->IN-clk-pin--->IN-clk-divider->(final-IN-clk)-->
+CMNPLL HW logic-->out-clks
+
+As per the input reference clock at the pin, the divider value is
+configured on it. The register field CMN_PLL_REFCLK_INDEX is only used
+to configure the final input clock rate (after the divider is applied)
+to the CMNPLL HW logic.
+
+So in summary, there is only one input clock pin. The register field
+name CMN_PLL_REFCLK_INDEX (from hardware register description) may be
+confusing, but it is actually only used to indicate the final input
+clock rate to the CMNPLL hardware logic. I will clarify this with
+additional comments in the code.
+
+Core clock
+-----------
+The CMNPLL hardware block runs at 12 GHZ clock. It is automatically
+derived from the input clock and no configuration required.
+
+Output clock
+------------
+The CMNPLL block generates the all the output clocks (For ex: the 353
+MHZ clock to PPE) without any software configuration required. The
+driver only configures the input clock rate as described above.
+
+> 
+>>>>>
+>>>>> Your second suggestion seems more apt for this device. I can define the
+>>>>> DT property 'assigned-clock-parents' to configure the clock parent of
+>>>>> CMN PLL. The code for reference clock selection will be added in
+>>>>> clk_ops::set_parent(). Please let us know if this approach is fine.
+>>>>
+>>>> What is the source of this clock? Can you call clk_get_rate() on this
+>>>> input?
+>>>>
+>>>
+>>> The source (parent clock) for CMN PLL is always from on-board Wi-Fi
+>>> block for any given IPQ SoC.
+>>>
+>>>   From the discussion so far, it seems there are two approaches possible
+>>> which I would like to summarize below to be clear. Please let us know
+>>> if this understanding or approach needs correction. Thanks.
+>>>
+>>> 1. clk_get_rate() requires the parent clock instance to be acquired by
+>>> devm_clk_get(). Per our understanding from Stephen's previous comment,
+>>> it is preferred that a clock provider driver (this) does not use the
+>>> _get_ APIs on the parent clock to get the rate. Instead the parent rate
+>>> should be passed to the clk_ops using parent data.
+> 
+> struct clk_parent_data doesn't pass parent rate information to the
+> clk_ops. I'd like you to not use any clk consumer APIs (clk.h) if
+> possible.
+
+OK.
+
+> 
+>> So the parent clock
+>>> should be specified in the DT using assigned-clock-parents property, and
+>>> can be accessed from the clk_ops::set_parent(). This seems like a more
+>>> reasonable method.
+> 
+> Yes, this makes sense if the clk actually has multiple possible parents.
+> Don't read the rate of the clk in the clk_ops::set_parent() callback
+> though. The callback should only program the hardware to select the
+> parent based on the index passed to the clk_op.
+
+OK, understand. However it seems like set_parent() method may not be an
+option since there is only one parent clock input pin.
+
+> 
+> If the clk only has one possible parent then it's different. I'd do it
+> through clk_ops::set_rate() and use assigned-clock-rates or just let the
+> first child clk of the PLL set the rate and configure the PLL by having
+> the PLL's determine_rate() callback figure out if the parent rate is
+> valid.
+
+Given the description above on the input clock function and the fact
+that there is a single parent clock, could you suggest whether the
+clk_ops::set_rate()/'assigned-clock-rates' method can be used to
+configure the input clock rate?
+
+We also looked at the determine_rate() method suggested, and felt that
+this may not be feasible for this hardware model. This is because there
+are more than one possible input clock rates (48 MHZ and 96 MHZ), and
+hence it would not be feasible to derive a required input clock rate
+from the core clock rate (12 GHZ).
+
+> 
+> That register field with "index" makes me suspicious that this is a mux
+> that we're trying to hide behind the parent rate. Quite possibly that's
+> actually a hardware multiplier, i.e. l-val, and we need to set the index
+> to pick which multiplier is used to achieve whatever frequency is
+> desired for the PLL itself. I assume the 353MHz output clk is actually
+> the one that is deciding what the index should be, and the other ones
+> all fall out of the PLL somewhere else through a post-divider or
+> something.
+
+As described previously, there is only input clock pin with two possible
+input clock rates (48 MHZ and 96 MHZ), and the index field only selects
+the final input clock rate after applying the divider. There is no mux
+function in the hardware.
+
+The CMNPLL block generates the all the output clocks for a given SoC
+without any software configuration required. The output clocks and their
+rates are different on the different IPQ SoC. For example, the output
+clock to PPE (Packet Process Engine hardware block) is 353 MHZ on
+IPQ9574 and 200 MHZ on IPQ5332. The input clock rate of CMN PLL on
+these two IPQ SoC is the same, but the internal logic of CMN PLL
+which differs per SoC type ensures that the right output clocks are
+generated for the given SoC. There is no provision or need for
+multiplier configuration by software, to generate the output clocks.
+
+> 
+> What frequency does the PLL run at?
+
+The CMN PLL core clock runs at 12 GHZ.
+
+> 
 >>
->> nit: label is not used and should be dropped.
->
-> Which bit specifically do you want amended?  I will do it on the branch so
-> we merge the final version.
->
-> 	Krzysztof
->
-The label, "msi0: " should be removed.
+>> assigned-clock-parents is necessary if there are multiple possible
+>> parents. As you wrote that there is just one possible parent, then
+>> there is no need to use it.
+>> Stephen, your opinion?
+>>
+>>> 2. Alternatively, if it is architecturally acceptable to use
+>>> devm_clk_get() and clk_get_rate() in this clock provider driver, we can
+>>> save this parent clock rate into a local driver data structure and then
+>>> access it from clk_ops::init() for configuring the PLL.
+>>
+> 
+> No, it isn't acceptable.
 
-Thanks,
-Matthew
---8323329-1679348232-1725549768=:3658588--
 
