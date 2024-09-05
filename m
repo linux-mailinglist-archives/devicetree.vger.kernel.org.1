@@ -1,87 +1,84 @@
-Return-Path: <devicetree+bounces-100611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC2B996E413
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:28:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0618996E41D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:31:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DE82B22AAC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:27:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 240961C23786
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2AB192D8F;
-	Thu,  5 Sep 2024 20:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD84191F87;
+	Thu,  5 Sep 2024 20:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EoKIsS1F"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kR9IxBaD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9953CD515;
-	Thu,  5 Sep 2024 20:27:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A3B316BE15;
+	Thu,  5 Sep 2024 20:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725568074; cv=none; b=RD8yiEaxorkf9fdHGwHc3joVTa+HdDg/L0Nbm/oZ4kE0c+/2CQF5gzqWrhSyu4+thuwFwZC1fjhCtvTvCpPOQ2whnKdobagnbwaJyi/MoSOoJLtvDb8IYnk8K5UTKzHjvMIU7WFTfoBdbJugdy3j5CXZjKlGQRvrVJXG9dIlh80=
+	t=1725568315; cv=none; b=cgReOPvs/4xqNzUOhquj4IGw2IZ4whfydyzr0kVEAOAN0E3iiruxGm/y04LEvNqZdPewq0zUpcwxDru6dlSGIq74bpyM3iiKaOTPc0ovKNAscCyWXleKKrQ/btxXIap+/ZoaqU1n3sIwTDfEFGIX5ScElVf+NqH34jBqv01Eoto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725568074; c=relaxed/simple;
-	bh=wg3v/Bzl6fHbsDe6vUK0VkO4iWopD9ovPVhR1LwUhPw=;
+	s=arc-20240116; t=1725568315; c=relaxed/simple;
+	bh=5ylFWuf2Xbu91p6fl7AUsu4kYqMyJufe/dYoary0pno=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kF0IIm7IN6l9s8qwWVkm2IyIyH9qDuwzyhOEsiG2jlZBAoK39vGI7ZzhdBZk0tpuEvqdKtH9TfdzJwERM8nkYPL3wN/4YMshNuHkPY5pKbxnbb0hmR13ktw5Fm0XfJMLl4IWenmjL5SFxjD6fOw/w352//xdv8H2KUc38tNt7+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EoKIsS1F; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7a9782651bdso200435785a.1;
-        Thu, 05 Sep 2024 13:27:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725568071; x=1726172871; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1ID4h32vMpKJpRELS7Wjz6ZK11jdarXsZHBRZ7AsCm8=;
-        b=EoKIsS1FtNZ6D8HrFwabO/ZEs0jC+8RjHXQsJmZ2z3Q70XQ8K8HcZgWEQDAuN+vFq5
-         KJyI37Y0fU8RcQCLk0u0NljhLFpZftNCAaaPCk25ficqvXpmszVFy0gW/uyxR6nliw72
-         68zCUuG+xzUU6HWqK4ZztNO6x26ThLMi8S4eeht+903msIjaeZASAZBnazM+R6RdfX9f
-         FZzIcFMSyLPNgsvCtDUaxb1gRqOkbvfb7kbFQPZ1R5jBeUWH4tp1t+dmW14+UhWsc2iW
-         LBqLHV3GMnLAn+G02nvikKGMg+3xpt127xhEyJmH4Jj0eIN8C+6dB41TzJhOv6upptpw
-         kwIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725568071; x=1726172871;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1ID4h32vMpKJpRELS7Wjz6ZK11jdarXsZHBRZ7AsCm8=;
-        b=kxcAiyC6Ae3VDUmVDUoktLA7VeUtI7K0yjztSGyRogt9RGSgaykNN9O228mP3eduJW
-         k2hx6HHfFMIc4xF6rgDwx/WKh3J31FTNaVOEy75Wi/cJRjE04yHOqEEPrY2oKmkGte6f
-         8WeCNR1Fqg/PpCTO3JyllKzHWNuWUz9Jvv066OgOqVlI9DCIrZs6R8tmAgKJSF23cZ7+
-         brTtdXK8ugySZUAziS5l/tPQuwQbg8I3tnyWmSTUgAbFUG8mo/yuWYBiLcKjTi91FDfp
-         GN7fZc5NiIbeYTRwaDxbiIjQtCMakiPgHOGmyHwwwSSLVSRnKyF4+lCptKz5eNu1gM09
-         Yg5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVm1YU8Bf4mjGSKyQW6APGM44FYqtpBS1QxTFe9QwzxmuAGWM6L/DycOWk+Ty5xIZEopFY3ycdudV+U@vger.kernel.org, AJvYcCVsb5oJ457OI1wiaWPXCQ4jaxgV+h/RvThiSt6C8+PqS+eKVFNnsCj5cPCSYOupzJjEjT6UucY5lm3HxqCs@vger.kernel.org, AJvYcCXEUFZdFaegkz3DDw6nA21aWlx8XkhP1g6X6wsTb7jb6d/F9bZOkW27lbgLk22ze5z5hvX2umIgxMTT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVvgnSH2HsIr4ItW9K+Yh4oRSfocmp4yD1avIoINvTXb6xWFbz
-	edlAakdWhWfaiOVCc3zj4H2xDIPwOrwb/j70o94d6z/DHzRravRn
-X-Google-Smtp-Source: AGHT+IGbZB34qSMVQXaWXVGoFS+5k+r/7KenyVF92+5VxThGj7KDYCLvSxV5ux3DDhJjZvlE7MIaPA==
-X-Received: by 2002:a05:6214:dcf:b0:6b5:2062:dd5c with SMTP id 6a1803df08f44-6c518def647mr137814096d6.8.1725568071408;
-        Thu, 05 Sep 2024 13:27:51 -0700 (PDT)
-Received: from VM-Arch (239.sub-174-193-4.myvzw.com. [174.193.4.239])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6c5201dee67sm10610496d6.26.2024.09.05.13.27.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 13:27:50 -0700 (PDT)
-Date: Thu, 5 Sep 2024 16:27:42 -0400
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>, 
-	christophe.jaillet@wanadoo.fr, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: display: Add Sharp Memory LCD
- bindings
-Message-ID: <trlyhlclf74itbgj4x6baj6ga6yipdicw3c6odtjgxtbw3cjyl@lyfiny2yiz35>
-References: <20240905124432.834831-1-lanzano.alex@gmail.com>
- <20240905124432.834831-2-lanzano.alex@gmail.com>
- <a4520c05-d64b-4ef0-823c-6c568b459e21@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJ/H6qGThZlTjyKV5cq4X5MFqUoCHBnDBF4BYpgBzWam+zPLgdlkY5hnizUTras61UHNruitKFVVAv/lxiA/ggP8rybSkxcjv71OHv9eqpmytS+LMxzcMlG8lY3sz7jCYnw51vuMqTZUYnB44eaWL/76Z/MiaOXsWpoXvvZwaEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kR9IxBaD; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725568312; x=1757104312;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5ylFWuf2Xbu91p6fl7AUsu4kYqMyJufe/dYoary0pno=;
+  b=kR9IxBaDcNnOFfuzy4Xa0lvqO3WBRH8X/kFzhg2lMGyLhVWCqz0OI88Q
+   siGVmG6PU8kYByFpW4Ox97K02lCDVhwnpD2jIxZp3POVfMC2W5bmEwGeC
+   kBWqT+E0jf7eurralIV67pDh5QskezN58O9mhItuDsA3/2HbEMhJR1iT7
+   QR3OO5fNbY4X1+5nfW3bFV2BFOZW2EFHWvKSxsb2uxfFrXk2nBychzmzn
+   3GeYchJrFxCwBQ7QYUNDHDLNPUcTLFhMOWSemJQN1Zw5o65HXq0GXSAI0
+   ZUQdYL166EYRuJU5LL8a/UPha6REGQvmXxwk57w9CQXsMDXpYNUBf5ury
+   g==;
+X-CSE-ConnectionGUID: zlU2uO3rRBuj2FS+fGN+ow==
+X-CSE-MsgGUID: 4RpBCBKFQX2S3TsRm9jw/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="24476450"
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; 
+   d="scan'208";a="24476450"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 13:31:51 -0700
+X-CSE-ConnectionGUID: O9sNw/MWSjWmfUR4g3/YRw==
+X-CSE-MsgGUID: Y6y+wGCCQD67NyTRkqM/OA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; 
+   d="scan'208";a="66072224"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 05 Sep 2024 13:31:48 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1smJ8r-000AI3-1m;
+	Thu, 05 Sep 2024 20:31:45 +0000
+Date: Fri, 6 Sep 2024 04:31:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 02/10] ASoC: codecs: Add support for ES8323
+Message-ID: <202409060459.dJs4SsBG-lkp@intel.com>
+References: <c44a6525d77941ef235825a58a9ea91f9f7d7042.1725518229.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,20 +87,112 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a4520c05-d64b-4ef0-823c-6c568b459e21@kernel.org>
+In-Reply-To: <c44a6525d77941ef235825a58a9ea91f9f7d7042.1725518229.git.zhoubinbin@loongson.cn>
 
-On Thu, Sep 05, 2024 at 03:23:20PM GMT, Krzysztof Kozlowski wrote:
-> On 05/09/2024 14:43, Alex Lanzano wrote:
-> > Add device tree bindings for the monochrome Sharp Memory LCD
-> > 
-> > Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> > Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
-> 
-> I don't understand what happened here. Your process of handling patches
-> is odd. Tags do not disappear, you had to remove them, right? So where
-> is the explanation for this?
+Hi Binbin,
 
-Whoops! My apologies for wasting time. Nothing changed in this patch
-I forgot to add in your reviewed-by tag.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on 097a44db5747403b19d05a9664e8ec6adba27e3b]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/ASoC-dt-bindings-Add-Everest-ES8323-Codec/20240905-150958
+base:   097a44db5747403b19d05a9664e8ec6adba27e3b
+patch link:    https://lore.kernel.org/r/c44a6525d77941ef235825a58a9ea91f9f7d7042.1725518229.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH v1 02/10] ASoC: codecs: Add support for ES8323
+config: parisc-randconfig-r071-20240906 (https://download.01.org/0day-ci/archive/20240906/202409060459.dJs4SsBG-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240906/202409060459.dJs4SsBG-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409060459.dJs4SsBG-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> sound/soc/codecs/es8323.c:173:38: warning: 'es8323_right_pga_controls' defined but not used [-Wunused-const-variable=]
+     173 | static const struct snd_kcontrol_new es8323_right_pga_controls =
+         |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+   In file included from include/sound/tlv.h:10,
+                    from sound/soc/codecs/es8323.c:25:
+>> sound/soc/codecs/es8323.c:114:35: warning: 'pga_tlv' defined but not used [-Wunused-const-variable=]
+     114 | static const DECLARE_TLV_DB_SCALE(pga_tlv, 0, 300, 0);
+         |                                   ^~~~~~~
+   include/uapi/sound/tlv.h:53:22: note: in definition of macro 'SNDRV_CTL_TLVD_DECLARE_DB_SCALE'
+      53 |         unsigned int name[] = { \
+         |                      ^~~~
+   sound/soc/codecs/es8323.c:114:14: note: in expansion of macro 'DECLARE_TLV_DB_SCALE'
+     114 | static const DECLARE_TLV_DB_SCALE(pga_tlv, 0, 300, 0);
+         |              ^~~~~~~~~~~~~~~~~~~~
+
+
+vim +/es8323_right_pga_controls +173 sound/soc/codecs/es8323.c
+
+   113	
+ > 114	static const DECLARE_TLV_DB_SCALE(pga_tlv, 0, 300, 0);
+   115	static const DECLARE_TLV_DB_SCALE(adc_tlv, -9600, 50, 1);
+   116	static const DECLARE_TLV_DB_SCALE(dac_tlv, -9600, 50, 1);
+   117	static const DECLARE_TLV_DB_SCALE(out_tlv, -4500, 150, 0);
+   118	static const DECLARE_TLV_DB_SCALE(bypass_tlv, 0, 300, 0);
+   119	static const DECLARE_TLV_DB_SCALE(bypass_tlv2, -15, 300, 0);
+   120	
+   121	static const struct snd_kcontrol_new es8323_snd_controls[] = {
+   122		SOC_ENUM("3D Mode", es8323_enum[4]),
+   123		SOC_ENUM("ALC Capture Function", es8323_enum[5]),
+   124		SOC_SINGLE("ALC Capture ZC Switch", ES8323_ADCCONTROL13, 6, 1, 0),
+   125		SOC_SINGLE("ALC Capture Decay Time", ES8323_ADCCONTROL12, 4, 15, 0),
+   126		SOC_SINGLE("ALC Capture Attack Time", ES8323_ADCCONTROL12, 0, 15, 0),
+   127		SOC_SINGLE("ALC Capture NG Threshold", ES8323_ADCCONTROL14, 3, 31, 0),
+   128		SOC_ENUM("ALC Capture NG Type", es8323_enum[6]),
+   129		SOC_SINGLE("ALC Capture NG Switch", ES8323_ADCCONTROL14, 0, 1, 0),
+   130		SOC_SINGLE("ZC Timeout Switch", ES8323_ADCCONTROL13, 6, 1, 0),
+   131		SOC_DOUBLE_R_TLV("Capture Digital Volume", ES8323_LADC_VOL,
+   132				 ES8323_RADC_VOL, 0, 192, 1, adc_tlv),
+   133		SOC_SINGLE("Capture Mute", ES8323_ADC_MUTE, 2, 1, 0),
+   134		SOC_SINGLE_TLV("Left Channel Capture Volume", ES8323_ADCCONTROL1, 4, 8,
+   135			       0, bypass_tlv),
+   136		SOC_SINGLE_TLV("Right Channel Capture Volume", ES8323_ADCCONTROL1, 0,
+   137			       8, 0, bypass_tlv),
+   138		SOC_ENUM("Playback De-emphasis", es8323_enum[7]),
+   139		SOC_ENUM("Capture Polarity", es8323_enum[8]),
+   140		SOC_DOUBLE_R_TLV("PCM Volume", ES8323_LDAC_VOL, ES8323_RDAC_VOL,
+   141				 0, 192, 1, dac_tlv),
+   142		SOC_SINGLE_TLV("Left Mixer Left Bypass Volume", ES8323_DACCONTROL17, 3,
+   143			       7, 1, bypass_tlv2),
+   144		SOC_SINGLE_TLV("Right Mixer Right Bypass Volume", ES8323_DACCONTROL20,
+   145			       3, 7, 1, bypass_tlv2),
+   146		SOC_DOUBLE_R_TLV("Output 1 Playback Volume", ES8323_LOUT1_VOL,
+   147				 ES8323_ROUT1_VOL, 0, 33, 0, out_tlv),
+   148		SOC_DOUBLE_R_TLV("Output 2 Playback Volume", ES8323_LOUT2_VOL,
+   149				 ES8323_ROUT2_VOL, 0, 33, 0, out_tlv),
+   150	};
+   151	
+   152	static const struct snd_kcontrol_new es8323_left_dac_mux_controls =
+   153		SOC_DAPM_ENUM("Route", es8323_left_dac_enum);
+   154	
+   155	static const struct snd_kcontrol_new es8323_right_dac_mux_controls =
+   156		SOC_DAPM_ENUM("Route", es8323_right_dac_enum);
+   157	
+   158	static const struct snd_kcontrol_new es8323_left_line_controls =
+   159		SOC_DAPM_ENUM("LLIN Mux", es8323_llin_enum);
+   160	
+   161	static const struct snd_kcontrol_new es8323_right_line_controls =
+   162		SOC_DAPM_ENUM("RLIN Mux", es8323_rlin_enum);
+   163	
+   164	/* Differential Mux */
+   165	static const struct snd_kcontrol_new es8323_diffmux_controls =
+   166		SOC_DAPM_ENUM("Route2", es8323_diff_enum);
+   167	
+   168	/* Mono ADC Mux */
+   169	static const struct snd_kcontrol_new es8323_monomux_controls =
+   170		SOC_DAPM_ENUM("Mono Mux", es8323_mono_enum);
+   171	
+   172	/* Right PGA Mux */
+ > 173	static const struct snd_kcontrol_new es8323_right_pga_controls =
+   174		SOC_DAPM_ENUM("Route", es8323_enum[3]);
+   175	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
