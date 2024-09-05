@@ -1,133 +1,116 @@
-Return-Path: <devicetree+bounces-100553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E146896E1C5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5192296E1C9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:20:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ABBC285B4F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:19:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B4CF289099
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43EC17A938;
-	Thu,  5 Sep 2024 18:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789BF170A0E;
+	Thu,  5 Sep 2024 18:20:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="C8Bh7oqr"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Rw1yGOFT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18EBA172760
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 18:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB1B14F125;
+	Thu,  5 Sep 2024 18:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725560390; cv=none; b=SvU5R3X7lphbcIfQPl0zDTWpcdSYCaJI3qMrPgqqCOYgcCHstRGFT3iQ25C/JOXE4RjVxLjXEnCI8Nbtk4Sc18Bd/J1Ybdf5NFF6TAZ1dnHpjLMIV0WHPc4q0YuL1XQA8/TxqM+rpw+tVFqQSVoQ40/1sKIH+qew6kJW4v01ITE=
+	t=1725560430; cv=none; b=pZLYu4q0qrYHF8iIpeULASD/K00NUXxMxb1Ra+qWfV4p2o/jjBlIxjg7z+oxj/9D7Ib1Y3j0iA+ra/5JpvWrV5HS+z2lt/pqWoA4/y/+CpUQjbpOrlFTBCtL2nAJ5EP6sbwez//Kdt7PUSSXdApRKHdMcSoBRqH6bW7KUrFO7xM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725560390; c=relaxed/simple;
-	bh=DEcRTH4Ksx3HqcRZk39EA6SSP0yZhl3amYb4gGAKjSw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iEBDjF609zWu82XQ9rtqPhSOQPUGH2ypB8ysiVZSRhriVQ+Q0WjLpZskx1ECQKiQFhmA3dtzppCTtPvtssjU0DvJiBeLIHP8MVMaI6vUEHoYs9hG6lT/xlFBxOf5JRNRn4YAVWWPGWT9WOJzrQ8XKirrDVg3OwiK8ydiG1xJpwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=C8Bh7oqr; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2f3e9fb6ee9so15174311fa.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 11:19:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725560387; x=1726165187; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WtLGB7A2P30eTe38aKz83I8MagUAeBQdY4kLOW9iG00=;
-        b=C8Bh7oqrWIgMZ2zoZq5olIW051cgItRHSx32mybhIXDB737qIPuJ3gyn/E2dVGN/TO
-         AZNGhMxITOUkQLLlmPNm7FW/x9MrbNeY8vYOuAzXYQCCRyVScgfcAdlbl868erkDgmuD
-         CCvfdsPh8KeJtwHqn25cP2NSqyjKyptCWZ2RRsN7QWDKyOLV74sr5cxw0sfc+WuSvRun
-         fH0L8WRw8wLPOJNiN96vKq3PcgFEU1CkMIZSVScFiTnJlBzK0o9qqO/IIfCG6KBVUYgj
-         Qp62S6meXhu/LQgcOFAJz5wWvWbbGN+/7KeSCKPoHCYOxATR4BsxiJcDAAMnivqZv0nm
-         mmQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725560387; x=1726165187;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WtLGB7A2P30eTe38aKz83I8MagUAeBQdY4kLOW9iG00=;
-        b=dBsJpb/dqmbBfU0xy0LIQjp0bvLbvdc5OhFJVJRwPAmLDbLwZ2s7/M7EIQBxPzE42O
-         lFzd3Nefqp6jHKZjTBuUUg1j32/IcU35WnaO5u1C891pEwPk5kh2ANRjLlnfaKLf9VCV
-         B8L9TKzge8F94oWJfHzWcM+sDjcdGQNr65ducwLTn90yL7bCYT5zt1yME2UBJqj3wdb8
-         lQjoiLyDhnf3WiD6JWD8ovup6Z15W4xgb3Pu2ARNvci9th93EBVFEAFj3IvjqEGBnDuU
-         ORRl8R8sOVKeKyAHYGCjU5NRRVQXfRfkK9d3S0kBGXQUqwd2RZenu1WuuniITqqXzS7l
-         jafw==
-X-Forwarded-Encrypted: i=1; AJvYcCV3CCEUGPIS1xQZgSRgLmUY7chdE1ZWWGdMc/e2UtXW4EBItrpcOwdkQ5N2B18ba5eapiJfeFHTmhFX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBy/OsMfcVIpsTUq8XLXNgmyCl+Bi0nXazFP/d/uYyPLNywqby
-	kM0+AHMD53LgjorP16S+JaK7GhVuF/gJoX9DxhXcdTQFv0vXcrOw5uN7Tue/AIqwJcdAemYG+Jw
-	iiRllcyETrwy8o7FnE/LcU6geIe7XTemObLb2Ig==
-X-Google-Smtp-Source: AGHT+IGO7FS+EJM8t1Z0R7LnnK3tpz34UapBrYrk0FGwJ34Y7Hp9Wg/QTQV1SbaJDUTpykBxZNv37DoXB5odh9EO2F4=
-X-Received: by 2002:a05:6512:104f:b0:536:54d6:e6d6 with SMTP id
- 2adb3069b0e04-53654d6e81bmr1544176e87.17.1725560386293; Thu, 05 Sep 2024
- 11:19:46 -0700 (PDT)
+	s=arc-20240116; t=1725560430; c=relaxed/simple;
+	bh=eYDL/kpipnRxEEdIRfMrtMtgh+v5Hdg5X2Ofbi4YqDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RD4OmqrP5Ktss4Vj7r6frfMWmGMlx68Xz8qgQFTQ8cGhT+9BmAJ6dozMChTrqHH7uQZDj3a3moZgtBc0UqwKBsQWHhLRmtVfQr0MLg8XxwELGgbyK6I20WXNM8nfQ/PurcFhMRBia51zQrN1P62AyrYPU6eq9QTcpUlBoAKDrtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Rw1yGOFT; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=WYk12iEsbdnlW331g4DNApKiQCHyaZpFj0H6XOnYFho=; b=Rw1yGOFTRlHggJlQrMRp8CtgMF
+	kDHVEeMezbUMAT11yNSIyaVD1FdupgVQ31ZQxBJQ+uX1Br5NtwbsTrfgNvHpgaLSU0MZ7d/7t8+Sq
+	fRxQeJVdJf4mzFs7qIGI8viq0bQpnJNPJxaGLdwyK3zuKiw4lWNUIGca9HN4jCylIN0E=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1smH5T-006i0Z-B1; Thu, 05 Sep 2024 20:20:07 +0200
+Date: Thu, 5 Sep 2024 20:20:07 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki <naoki@radxa.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+Message-ID: <668ac08e-5bba-43cc-82ec-12af1848d528@lunn.ch>
+References: <20240904111456.87089-1-bigfoot@classfun.cn>
+ <20240904111456.87089-4-bigfoot@classfun.cn>
+ <6030542f-070d-4d76-9a5a-fbfc6bd433e6@lunn.ch>
+ <1e189c70-e677-453d-9e31-6637196c2b5c@classfun.cn>
+ <3f5bcc6c-5ee0-4fef-bb58-f7acf9551fc1@lunn.ch>
+ <fd4fc7a0-7def-4f91-a64c-71689ff71d1c@classfun.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814082301.8091-1-brgl@bgdev.pl> <87a5hcyite.fsf@kernel.org>
- <CAMRc=Mcr7E0dxG09_gYPxg57gYAS4j2+-3x9GCS3wOcM46O=NQ@mail.gmail.com> <87y146ayrm.fsf@kernel.org>
-In-Reply-To: <87y146ayrm.fsf@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 5 Sep 2024 20:19:34 +0200
-Message-ID: <CAMRc=Mfes+=59WP8dcMsiUApqjsFrY9iVFEdKU6FbTKAFP1k_A@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fd4fc7a0-7def-4f91-a64c-71689ff71d1c@classfun.cn>
 
-On Thu, Sep 5, 2024 at 5:47=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrote:
->
-> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->
-> >> > +  - if:
-> >> > +      properties:
-> >> > +        compatible:
-> >> > +          contains:
-> >> > +            const: pci17cb,1103
-> >> > +    then:
-> >> > +      required:
-> >> > +        - vddrfacmn-supply
-> >> > +        - vddaon-supply
-> >> > +        - vddwlcx-supply
-> >> > +        - vddwlmx-supply
-> >> > +        - vddrfa0p8-supply
-> >> > +        - vddrfa1p2-supply
-> >> > +        - vddrfa1p8-supply
-> >> > +        - vddpcie0p9-supply
-> >> > +        - vddpcie1p8-supply
-> >>
-> >> Like we discussed before, shouldn't these supplies be optional as not
-> >> all modules need them?
-> >>
-> >
-> > The answer is still the same: the ATH11K inside a WCN6855 does - in
-> > fact - always need them. The fact that the X13s doesn't define them is
-> > bad representation of HW and I'm fixing it in a subsequent DTS patch.
->
-> But, like we discussed earlier, M.2 boards don't need these so I think
-> this should be optional.
->
+> arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts also
+> uses YT8521. I added rx-internal-delay-ps and tx-internal-delay-ps
+> to rgmii_phy1 of mdio1 according to the prompts, and it now works
+> well using rgmii-id!
+> 
+> &mdio1 {
+> 	rgmii_phy1: ethernet-phy@0 {
+> 		compatible = "ethernet-phy-ieee802.3-c22";
+> 		reg = <0x0>;
+> 		rx-internal-delay-ps = <1500>;
+> 		tx-internal-delay-ps = <1500>;
+> 	};
+> };
+> 
+> &gmac1 {
+> 	[...]
+> 	phy-mode = "rgmii-id";
+> 	[...]
+> 	tx_delay = <0x0>;
+> 	rx_delay = <0x0>;
+> 	status = "okay";
+> 	/* Motorcomm YT8521SC WAN port */
+> };
 
-If they are truly dynamic, plug-and-play M.2 boards then they
-shouldn't need any description in device-tree. If they are M.2 sockets
-that use custom, vendor-specific pins (like what is the case on
-sc8280xp-crd and X13s) then the HW they carry needs to be described
-correctly. We've discussed that before.
+That looks O.K.
 
-Bart
+The YT8521SC seems to have issues with delays.
+jh7100-starfive-visionfive-v1.dts says
+
+/*
+ * The board uses a Motorcomm YT8521 PHY supporting RGMII-ID, but requires
+ * manual adjustment of the RX internal delay to work properly.  The default
+ * RX delay provided by the driver (1.95ns) is too high, but applying a 50%
+ * reduction seems to mitigate the issue.
+ *
+ * It is worth noting the adjustment is not necessary on BeagleV Starlight SBC,
+ * which uses a Microchip PHY.  Hence, most likely the Motorcomm PHY is the one
+ * responsible for the misbehaviour, not the GMAC.
+ */
+
+	Andrew
 
