@@ -1,147 +1,150 @@
-Return-Path: <devicetree+bounces-100399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A8A96D807
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:12:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE22F96D802
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:12:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E9ABB2195B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 12:12:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D83AB24379
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 12:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBC819AD94;
-	Thu,  5 Sep 2024 12:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E7F19AD81;
+	Thu,  5 Sep 2024 12:12:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CLuInnLe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VucrNuGc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA7219AA5D;
-	Thu,  5 Sep 2024 12:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0291991B1;
+	Thu,  5 Sep 2024 12:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725538347; cv=none; b=DDXlcKxr83lGAKZkYPKY7JaCI3sTCc+bYRNX+xQQ6zfKa9NOnEYRwLS59aDHSLm7kaYlRfue+mlztuUBeqVmcI7Ytm2Frry0nI/ZFDgsUMcVTf7OX/AeZ9Z1OhVIIrQnz1cOk8jeLG9wevTa/358i1/vlzRjzU3ZZdiTA6bR7Vk=
+	t=1725538324; cv=none; b=BMibIZoeR5AlQtri/FCPwcVaYdxo9ChAxj+4ZvEoUFHXCJr8uipJXs1AlDe3gigLycU1f9loO+wJUcXft43RK8c95yXEtcfD2sRwtt9PLrBxVJInK48fLrJBvqbAFiFdJOWIn8tY0kj1SwuZxI7vR+ymB4V0FKiZiJUcJB7mxt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725538347; c=relaxed/simple;
-	bh=FONOtkrHn9wffb60g9bCFmD5Ce6Mpzm24koAoepUZFQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fUECrZRafxLwprvJ1GUdXM/RxVyGiIsGFuapYPbd2PuxN6NEr+I3MwXUuF3za0VxZBQpWH+2RWaQEcnD2LsfENC/4JjYV02VPMer+tx0X+kvasdXEpJ4BWwOV3zbiKoyA5eKnrx56KIdc0TP9+jHpG9vqCT/LcVE8rPTYhnx44k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CLuInnLe; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-501274e2c29so10878e0c.3;
-        Thu, 05 Sep 2024 05:12:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725538345; x=1726143145; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9gZAyTtY3aoGNNDzIbl+ioueHhEM4J2F6ba4GcLwUm8=;
-        b=CLuInnLegHd+XHPSVPghafie3UQqCrew+zqk0jBidVXsiJWTlSRxxdHf3u/3wOT5dP
-         DU/IV5j4AP8rQKqeJOEyO1bUiX70hPNpDsd//gajwRYph0pQCMovSgxX4NzLTCnWJHXG
-         SgsfLC/7ODYsYrVIEav8G48iHKbmsS4r4I45w27Pa1hYuZDVqxsW86gVLP7gd4ni2aox
-         pvy8Q0RCOMJnM9mc7KGUmOemJURBq4XgMCIHWoU50TcwhKmQGTZgyfBabfMygmnSR52e
-         cV/01Sx9MseL0bIhAVo3vGtuWgBfRUgaGFQSQve22OZ/US/AeGgakV0vn+wT5d3kLrld
-         xZOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725538345; x=1726143145;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9gZAyTtY3aoGNNDzIbl+ioueHhEM4J2F6ba4GcLwUm8=;
-        b=vN5p5r7jhdMk5fYx1cc+DG1kuMzNeBaEpKhKlaL1YjPWgE0wL7uhfIqrhvRzblSrpu
-         LJj6wlJ2KHkP6Mj9sOp1NIHWmsrW5yMJtiDmWVb2u9xnewb3vJScqrnjZ07ooAklT9BA
-         3rjPV9w57lurVPdYLGSbU+zVawEyZhBGRq/sPl9qsTmwBzStW4VMcUfE1WWsq6uPrjxR
-         DiFL8vYGFSZID9C/HniE8UC9E1U/z9neyXO1Tmrr2DG/Fy9TbIrr5yV21NydeDdM2VjN
-         dGaIY2Uqd6RiOKhSYbQ2HihxcDIhhnsXl64KdxAbrwZgQja4w8B/mHqhOK/2BVf3V966
-         w9eQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU0SOatdL9lwsYOtMrDx8f2VqVGKFCwyBhdBRhaAJfulErAhyRPXD7ZW9x2ghMtcbQKxBz5/1hoNlPAVVxIxB4=@vger.kernel.org, AJvYcCUIyS2LrF4ZRM87PVA50vgfzUVq6RGhGP36mkaD7nyszIidtXVyr89nG2dsgpHbNzHIaTJTiTb8lh4BB0UUzLSsmzU=@vger.kernel.org, AJvYcCVngW5Pc/z4y++SYszOywSS2BpCvQK7Rc4pBm9AHIY1ltRA1KXhfvgMdCR2iUlcX+FXmze5koUTRVjQRnqf@vger.kernel.org, AJvYcCXnJgbLGA9cNl9rD5mbpovVj7NVH5V8WOUHankVSOL261M4mb5rvyCkl7wU8ee1t+81Nb1D075jquMh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfuY4KgeTMBzNKH+3n7bPeYqoKsHnnv89d7Pclg8OGt83l3mTK
-	qPUr+6VakIRDlg/qf6MPMAFrYu2zBCnfqOVtBrdHG7puKQdkHo+8FvihAIE9Zm5qR8YG1BQJWZr
-	zdRibrzcpOsrZ0ANZrOePAauu4M+Vf7zH/P8=
-X-Google-Smtp-Source: AGHT+IHXyw2RxkWhPsZxpmqiSi/213b8QWfi+5HjtH7I9tuPHtt3kLBnh3OYZTkw1Y8/ZGUBwriigeoD0h16GDmtUJg=
-X-Received: by 2002:a05:6122:2a05:b0:4f6:a7f7:164d with SMTP id
- 71dfb90a1353d-5009ac7a8a8mr21097634e0c.8.1725538344968; Thu, 05 Sep 2024
- 05:12:24 -0700 (PDT)
+	s=arc-20240116; t=1725538324; c=relaxed/simple;
+	bh=g+Nm2FH3wvs+9Bs57AnpoIOXa+w/84ItjvqRPCFkp0c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s9a/UgzTP54Uh6Z9gNThiKvYJVTJdyPX7Bb+yBhtTiLn5o7ivDYdy4/ueYkTfkT8xVbQcNQAvSOMSQt6rldqFRgdJBISfWB3xIWtKoq/GYV2RUphLTsqUr0R7ZG3Rl4Ex5FuSH2G7SVQZr/kv40442HOjtkQv4YXWWsFjK4I+UE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VucrNuGc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0D64C4CEC3;
+	Thu,  5 Sep 2024 12:12:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725538323;
+	bh=g+Nm2FH3wvs+9Bs57AnpoIOXa+w/84ItjvqRPCFkp0c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VucrNuGcK32IUyfFhZo6RGEzRGUH+byEargLc5wt5F9VDSOqZ1IJ5WnCaFeDzx64j
+	 QweuvqX6D4kLZ1E5fG9Jd5Wrzvbarg33B6qAUoeDZQeY02HtCZ6O5JKXVlrn10CgZ5
+	 cx6UOLgJtfpYKZwSaEmEgeIHebE1ZoYnTMB5z/Gc/qkK4ZGGqM9CotYYcIyssSLHhe
+	 Sb0U0iu00bGsnkJtPCGDlP+EJ7KAXWlS1e00aRqgy0eT83MeymJJijjVikWzmpeUcG
+	 jsnIo/SgoYYFkdAmmJip7mys2DeOHFf6GzB5szurNcIJjW/UoKo1UPArmtvZd/DNXi
+	 Buxs49IYnXe3A==
+Message-ID: <7f98c987-0f9a-4ff5-9296-c6fdfc37e4c1@kernel.org>
+Date: Thu, 5 Sep 2024 14:11:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240829193831.80768-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240829193831.80768-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 5 Sep 2024 13:11:58 +0100
-Message-ID: <CA+V-a8tzZPkdxiivuRvOQoo8ayFttzXBWGoMufDXtdGg9477Yw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] Add Watchdog Timer driver for Renesas RZ/V2H(P) SoC
-To: Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcs6490-rb3gen2: describe secondary
+ USB port
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Caleb Connolly <caleb.connolly@linaro.org>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240904-b4-rb3gen2-usb2-v1-0-b858e681195e@linaro.org>
+ <20240904-b4-rb3gen2-usb2-v1-3-b858e681195e@linaro.org>
+ <01ec1a78-4fe9-42d9-9ed2-8f6b8cb2e8fa@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <01ec1a78-4fe9-42d9-9ed2-8f6b8cb2e8fa@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Wim,
+On 05/09/2024 14:05, Konrad Dybcio wrote:
+> On 4.09.2024 1:16 PM, Caleb Connolly wrote:
+>> The secondary USB controller on the rb3gen2 is routed directly to a
+>> mico-USB port where it can be used for EUD debugging or in OTG mode.
+>>
+>> Configure the controller to prefer peripheral mode (as this is almost
+>> always more useful) and describe the connector, vbus supply, and ID pin.
+>>
+>> OTG/Host mode is untested as I don't have micro-USB OTG cables to hand.
+>>
+>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 69 ++++++++++++++++++++++++++++
+>>  1 file changed, 69 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> index 513d5265bb13..fe66f589cb5b 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> @@ -62,8 +62,30 @@ hdmi_con: endpoint {
+>>  			};
+>>  		};
+>>  	};
+>>  
+>> +	connector-usb2 {
+>> +		compatible = "gpio-usb-b-connector";
+>> +		vbus-gpio = <&pm7325_gpios 9 GPIO_ACTIVE_HIGH>;
+>> +		id-gpio = <&tlmm 61 GPIO_ACTIVE_HIGH>;
+> 
+> I don't think this is right, what's the revision of the board you have?
 
-On Thu, Aug 29, 2024 at 8:38=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Hi All,
->
-> This patch series aims to add WDT support to Renesas RZ/V2H(P) SoC.
->
-> v4->v5
-> - Updated commit description for patch 1/2
-> - Collated RB tags from Geert and Guenter
->
-> v3->v4
-> - Simplified calculation of max_hw_heartbeat_ms
-> - Turn on the clocks first before reset operation in start & restart
->   callbacks
-> - Added checks in restart callback before turning ON clocks/resets
-> - Dropped udelay after every ping operation
-> - Added comments
->
-> v2->v3
-> - Fixed dependency, ARCH_R9A09G011->ARCH_R9A09G057
-> - Added dependency for PM
-> - Added delay after de-assert operation as clks are halted temporarily
->   after de-assert operation
-> - Clearing WDTSR register
->
-> v1->v2
-> - Included RB tag for binding patch
-> - Fixed review comments from Claudiu
-> - Stopped using PM runtime calls in restart handler
-> - Dropped rstc deassert from probe
->
-> Cheers,
-> Prabhakar
->
-> Lad Prabhakar (2):
->   dt-bindings: watchdog: renesas,wdt: Document RZ/V2H(P) SoC
->   watchdog: Add Watchdog Timer driver for RZ/V2H(P)
->
->  .../bindings/watchdog/renesas,wdt.yaml        |  17 +-
->  drivers/watchdog/Kconfig                      |   9 +
->  drivers/watchdog/Makefile                     |   1 +
->  drivers/watchdog/rzv2h_wdt.c                  | 272 ++++++++++++++++++
->  4 files changed, 298 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/watchdog/rzv2h_wdt.c
->
-Gentle ping.
+For sure any 'gpio' property is NAK and there is no way this passed
+checks...
 
-Cheers,
-Prabhakar
+Best regards,
+Krzysztof
+
 
