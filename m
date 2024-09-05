@@ -1,224 +1,157 @@
-Return-Path: <devicetree+bounces-100466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3267D96DB8A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:18:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 022F096DB9B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D4711C2345E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:18:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC0BE28CCA2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67D419DFB6;
-	Thu,  5 Sep 2024 14:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B36319D8AF;
+	Thu,  5 Sep 2024 14:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dFlSoz8r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P3SxArMm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F712FC0A;
-	Thu,  5 Sep 2024 14:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806B619D097
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 14:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725545845; cv=none; b=tJJLkgLyLpLO+OFLIShffs/u95gnNcjqA89ukedIUb8eRbi2rQ6YckKl+LGnri6h99StPYBt0jt+VNs2971iZd26Hc9yYKMEU0L+n80+rMOxuTt2gVVVBD/lGWFo7ZNJvfXXZPOERbMwrYl2M/BZGwPg/2r0mAur5uke96m1ZXg=
+	t=1725545955; cv=none; b=PkTnztTsJPekHdtTy5LTzKY0/HHLHKMm+utGfRqDgJ9f/EjQK+6LlLEtlTZ1TfsBJ9WymTEoaEdlxVHKmNzwUtOXu4XYLfsZuq3Lj6H0ZqiIt9jofCoAechGXpX3uePu7cJAU9lpYIiJpqZ3sU3Pc0zqzJFI/g40eGxeSa//s6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725545845; c=relaxed/simple;
-	bh=VAsU1NPVx46+oHGO/6plAI5dIfBi0YcOt0DaaDbKjLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qpcI8brAgetiBJ9ER35l+Wkb1Cs6QC91PDLFK3YSigr0y5tU5kKI16dC58mQNec8KH6rD7uuEQpe/jf+SfEe9a12YJySHSgZCYjCGJyfrRnJgXQn6nmPZU+vaI+rlbTu9vAP7qSJlOyvVHGdouJNio3voUHNlmjebmTMuLp0aVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dFlSoz8r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE8CEC4CEC5;
-	Thu,  5 Sep 2024 14:17:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725545845;
-	bh=VAsU1NPVx46+oHGO/6plAI5dIfBi0YcOt0DaaDbKjLM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dFlSoz8rkTTbo6bRypczPyDGNTAdcHGaNe4+ud1iEdvPScL5zsY6gXuQwI6CvpKrf
-	 kb4ihMVDldhscSSsfHbmhoH/PWpMTKph+bqm6rpV5JhbXLyJsaKdgKQ2SY6GOkOv+V
-	 jbhcXI0cJlzZlU930yYV0HyVmXnTQgBECu8rdgv1h1q1pENqG3MNrEk6YDvB8mzSOM
-	 o6wcO2ZrgYztEMzYZbC5na7z7I4/F+VeCGjxgN9Li2p7NzDtlgOZ5M1rr5RGK94SKB
-	 l2ETcB3SXFO01fzOF5U6dc9ITgDjmzWK9zC6yK8p1DOG30XqDsBBbrvDE4t9gCYr5F
-	 kHF1NRLmB71LA==
-Date: Thu, 5 Sep 2024 09:17:23 -0500
-From: Rob Herring <robh@kernel.org>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org,
-	Dinh Nguyen <dinguyen@kernel.org>
-Subject: Re: [PATCH 04/15] kbuild: add generic support for built-in boot DTBs
-Message-ID: <20240905141723.GC1517132-robh@kernel.org>
-References: <20240904234803.698424-1-masahiroy@kernel.org>
- <20240904234803.698424-5-masahiroy@kernel.org>
+	s=arc-20240116; t=1725545955; c=relaxed/simple;
+	bh=Ud4dErg7kUeYKM8I36u+Hb2zRUhNAByigclHGaJbarY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=A2RwQaN+Wmlw+ZwImR47iZzON2lfkVCtMAQhT3u5DAtJ8CwIBt5mtGr1q/uyDlUUXYxCFx53ZTkgVy2FmhCPMY+GobJIBXuJrFeyCuGplrcIejB4tT+rmOwQ37ETecVtMek4Mh2JWt+SeqdNDnaHQ3TAsFdUE7nMLYoXSP5uIgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P3SxArMm; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53654d716d1so62379e87.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 07:19:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725545952; x=1726150752; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qxVu4PuIdpnH7Y7EIddXVWOHJTc9XnXktin7tU2lfUQ=;
+        b=P3SxArMme93WQe45oq9WkqXOTjPrEVZUjRW9KqinfqRUUxpPSG6PyJDtB4k4rZXj3C
+         rzEOFCqCWZxCkE1vDqoups+YnUBACL10HNC1aE+nsxjawm/6HWkN6Jc7KcgejyltnF9N
+         sVvnxiCbAf2+Ml5aaDtTkM5x7tR5OpEXwRBEtVmEdFSDbZgOykMU4e2+kcUyqd7iDUn5
+         nFs132uVuDE2nvuz0M+PlD/KD6hgIpXoOO26JZL59Az0pQBXqLmELpgImH6kUov4JYgu
+         t97qUCCHxtkmKLiAdJLkSSJSK79qu072ryH49daAWMiITrxqCmAQFrU4ukouFkfFSEI5
+         eAPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725545952; x=1726150752;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qxVu4PuIdpnH7Y7EIddXVWOHJTc9XnXktin7tU2lfUQ=;
+        b=UsXidPGwGAciQ6cME2WjFQMnjFV+nV0OvOjrKATZ37kNFrK9ubJPofmCBGQiZg+nO6
+         MbMbYBwa8eJA86P2jFZFNMZS74fPWBhLGQiBlg5fyjo1yIQIUJ8mgUH4cGe8KpmlK9oE
+         8C29SykHF2eACxqIJ1Np1qxVry0vX500tnwb3TalVjocGE1kFB2mCDRdnlq4qCHsR6Kz
+         8yWLGl2wm1J/lhaKai8a8lTDcUxZSKsuu8wPwNzD5dCTLtCskdhn+eR32o6d1I3zH4Nw
+         l17g+e3FOdDHlFejpfCV/nP8GS8qgCpO9FUZ6qedxGhA1uTp43EV3uzcG4K/nDpyAkv6
+         JOpA==
+X-Forwarded-Encrypted: i=1; AJvYcCVYIRyccZvbGVNh1Cu7T7su26RwDof5IiXz9x/Xksq6iOyHnhIiMW/xK6JmtgJGx/jhL+XeIsccssGL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/GmxamDp5EPcedw7dcJZseA2ZZOk+ANCkVpVrksBRjKoT9Gl5
+	cGyH+RwiZHvmcn4L9bUuKrM5aDe5ut29HIv0uAhHXuX+fZYsmPCfohvQA0aDtew=
+X-Google-Smtp-Source: AGHT+IEPzvSfGbGRlHZcDR7zpj9bpmHt/0UXxWTZxE7FgbeOOJdYj80lQwxR//F8qBJ5xma5kh03fw==
+X-Received: by 2002:a05:6512:33c5:b0:52e:9daa:25f4 with SMTP id 2adb3069b0e04-53546aeaadbmr8347316e87.2.1725545951494;
+        Thu, 05 Sep 2024 07:19:11 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5356a28c01csm356135e87.271.2024.09.05.07.19.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Sep 2024 07:19:11 -0700 (PDT)
+Message-ID: <c494152d-d4d1-45db-941a-df99b0f11e77@linaro.org>
+Date: Thu, 5 Sep 2024 17:18:50 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240904234803.698424-5-masahiroy@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/7] i2c: qcom-cci: Stop complaining about DT set clock
+ rate
+Content-Language: en-US
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-media@vger.kernel.org
+References: <20240904020448.52035-9-mailingradian@gmail.com>
+ <20240904020448.52035-12-mailingradian@gmail.com>
+ <917917cc-3e78-4ab6-8fa4-82d9a6fe3fdd@kernel.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <917917cc-3e78-4ab6-8fa4-82d9a6fe3fdd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 05, 2024 at 08:47:40AM +0900, Masahiro Yamada wrote:
-> Some architectures embed boot DTBs in vmlinux. A potential issue for
-> these architectures is a race condition during parallel builds because
-> Kbuild descends into arch/*/boot/dts/ twice.
-> 
-> One build thread is initiated by the 'dtbs' target, which is a
-> prerequisite of the 'all' target in the top-level Makefile:
-> 
->   ifdef CONFIG_OF_EARLY_FLATTREE
->   all: dtbs
->   endif
-> 
-> For architectures that support the embedded boot dtb, arch/*/boot/dts/
-> is visited also during the ordinary directory traversal in order to
-> build obj-y objects that wrap DTBs.
-> 
-> Since these build threads are unaware of each other, they can run
-> simultaneously during parallel builds.
-> 
-> This commit introduces a generic build rule to scripts/Makefile.vmlinux
-> to support embedded boot DTBs in a race-free way. Architectures that
-> want to use this rule need to select CONFIG_GENERIC_BUILTIN_DTB.
-> 
-> After the migration, Makefiles under arch/*/boot/dts/ will be visited
-> only once to build only *.dtb files.
-> 
-> This change also aims to unify the CONFIG options used for embedded DTBs
-> support. Currently, different architectures use different CONFIG options
-> for the same purposes.
-> 
-> The CONFIG options are unified as follows:
-> 
->  - CONFIG_GENERIC_BUILTIN_DTB
-> 
->    This enables the generic rule for embedded boot DTBs. This will be
->    renamed to CONFIG_BUILTIN_DTB after all architectures migrate to the
->    generic rule.
-> 
->  - CONFIG_BUILTIN_DTB_NAME
-> 
->    This specifies the path to the embedded DTB.
->    (relative to arch/*/boot/dts/)
-> 
->  - CONFIG_BUILTIN_DTB_ALL
-> 
->    If this is enabled, all DTB files compiled under arch/*/boot/dts/ are
->    embedded into vmlinux. Only used by MIPS.
+Hi Konrad,
 
-I started to do this a long time ago, but then decided we didn't want to 
-encourage this feature. IMO it should only be for legacy bootloaders or 
-development/debug. And really, appended DTB is more flexible for the 
-legacy bootloader case.
-
-In hindsight, a common config would have been easier to limit new 
-arches...
-
+On 9/5/24 16:57, Konrad Dybcio wrote:
+> On 4.09.2024 4:04 AM, Richard Acayan wrote:
+>> From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>
+>> It is common practice in the downstream and upstream CCI dt to set CCI
+>> clock rates to 19.2 MHz. It appears to be fairly common for initial code to
+>> set the CCI clock rate to 37.5 MHz.
+>>
+>> Applying the widely used CCI clock rates from downstream ought not to cause
+>> warning messages in the upstream kernel where our general policy is to
+>> usually copy downstream hardware clock rates across the range of Qualcomm
+>> drivers.
+>>
+>> Drop the warning it is pervasive across CAMSS users but doesn't add any
+>> information or warrant any changes to the DT to align the DT clock rate to
+>> the bootloader clock rate.
+>>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> Link: https://lore.kernel.org/linux-arm-msm/20240824115900.40702-1-bryan.odonoghue@linaro.org
+>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>> ---
 > 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
+> I.. am not sure this is really a problem? On some platforms the core
+> clock is only 19.2 Mhz, but e.g. on sdm845 we have:
 > 
->  Makefile                 |  7 ++++++-
->  drivers/of/Kconfig       |  6 ++++++
->  scripts/Makefile.vmlinux | 44 ++++++++++++++++++++++++++++++++++++++++
->  scripts/link-vmlinux.sh  |  4 ++++
->  4 files changed, 60 insertions(+), 1 deletion(-)
+> static const struct freq_tbl ftbl_cam_cc_cci_clk_src[] = {
+>          F(19200000, P_BI_TCXO, 1, 0, 0),
+>          F(37500000, P_CAM_CC_PLL0_OUT_EVEN, 16, 0, 0),
+>          F(50000000, P_CAM_CC_PLL0_OUT_EVEN, 12, 0, 0),
+>          F(100000000, P_CAM_CC_PLL0_OUT_EVEN, 6, 0, 0),
+>          { }
+> };
 > 
-> diff --git a/Makefile b/Makefile
-> index 145112bf281a..1c765c12ab9e 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1417,6 +1417,10 @@ ifdef CONFIG_OF_EARLY_FLATTREE
->  all: dtbs
->  endif
->  
-> +ifdef CONFIG_GENERIC_BUILTIN_DTB
-> +vmlinux: dtbs
-> +endif
-> +
->  endif
->  
->  PHONY += scripts_dtc
-> @@ -1483,7 +1487,8 @@ endif # CONFIG_MODULES
->  CLEAN_FILES += vmlinux.symvers modules-only.symvers \
->  	       modules.builtin modules.builtin.modinfo modules.nsdeps \
->  	       compile_commands.json rust/test \
-> -	       rust-project.json .vmlinux.objs .vmlinux.export.c
-> +	       rust-project.json .vmlinux.objs .vmlinux.export.c \
-> +               .builtin-dtbs-list .builtin-dtb.S
->  
->  # Directories & files removed with 'make mrproper'
->  MRPROPER_FILES += include/config include/generated          \
-> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> index dd726c7056bf..5142e7d7fef8 100644
-> --- a/drivers/of/Kconfig
-> +++ b/drivers/of/Kconfig
-> @@ -2,6 +2,12 @@
->  config DTC
->  	bool
->  
-> +config GENERIC_BUILTIN_DTB
-> +	bool
+> Shouldn't this be somehow dynamically calculated?
+> 
 
-So that we don't add new architectures to this, I would like something 
-like:
+I believe the problem fixed by the change is an unnecessary dev_warn(), in
+addition it's unclear why the CCI clock rate shall be strictly 37500000 for
+all "CCI v2" platforms.
 
-# Do not add new architectures to this list
-depends on MIPS || RISCV || MICROBLAZE ...
+If the latter is a necessity, then it would be better to set the rate
+explicitly, however since it's not done for any such platforms, I would say
+that it is not needed.
 
-Yes, it's kind of odd since the arch selects the option...
+And if it is not needed, or a default and universal 19.2MHz rate is good
+enough, then I would suggest to remove everything 'cci_clk_rate' related
+from the driver, and this makes the change incomplete...
 
-For sure, we don't want this option on arm64. For that, I can rely on 
-Will and Catalin rejecting a select, but on some new arch I can't.
-
-> +
-> +config BUILTIN_DTB_ALL
-> +	bool
-
-Can this be limited to MIPS?
-
-> +
->  menuconfig OF
->  	bool "Device Tree and Open Firmware support"
->  	help
-> diff --git a/scripts/Makefile.vmlinux b/scripts/Makefile.vmlinux
-> index 5ceecbed31eb..4626b472da49 100644
-> --- a/scripts/Makefile.vmlinux
-> +++ b/scripts/Makefile.vmlinux
-> @@ -17,6 +17,50 @@ quiet_cmd_cc_o_c = CC      $@
->  %.o: %.c FORCE
->  	$(call if_changed_dep,cc_o_c)
->  
-> +quiet_cmd_as_o_S = AS      $@
-> +      cmd_as_o_S = $(CC) $(a_flags) -c -o $@ $<
-> +
-> +%.o: %.S FORCE
-> +	$(call if_changed_dep,as_o_S)
-> +
-> +# Built-in dtb
-> +# ---------------------------------------------------------------------------
-> +
-> +quiet_cmd_wrap_dtbs = WRAP    $@
-> +      cmd_wrap_dtbs = {							\
-> +	echo '\#include <asm-generic/vmlinux.lds.h>';			\
-> +	echo '.section .dtb.init.rodata,"a"';				\
-> +	while read dtb; do						\
-> +		symbase=__dtb_$$(basename -s .dtb "$${dtb}" | tr - _);	\
-> +		echo '.balign STRUCT_ALIGNMENT';			\
-
-Is this always guaranteed to be at least 8 bytes? That's the required 
-alignment for dtbs and assumed by libfdt.
-
-> +		echo ".global $${symbase}_begin";			\
-> +		echo "$${symbase}_begin:";				\
-> +		echo '.incbin "'$$dtb'" ';				\
-> +		echo ".global $${symbase}_end";				\
-> +		echo "$${symbase}_end:";				\
-> +	done < $<;							\
-> +	} > $@
+--
+Best wishes,
+Vladimir
 
