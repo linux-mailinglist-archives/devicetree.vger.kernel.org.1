@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CD396D739
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:33:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D9F96D759
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:39:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E1CC1F240F1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:33:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BD8EB244E3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF3219939E;
-	Thu,  5 Sep 2024 11:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B62FE199E9F;
+	Thu,  5 Sep 2024 11:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtT6+K7P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8KB/YPS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB2A194A52;
-	Thu,  5 Sep 2024 11:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86683199E80;
+	Thu,  5 Sep 2024 11:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725536024; cv=none; b=H4p1HUeWNzkUeCAIgqgKH4Rl3xVkF6Kc/xPNfh5Pwqb19rB4z1PKNC340G1w/K4a7mJe21yUM8ZVbG6wjjfVoh0SgLkEIujjchzo2Ss5d5UVPH5+nvY+3awjAfw7OmLzpIu/KN4+v1iWes21aVhqvaREljuAYy3T39xBC1xXQXQ=
+	t=1725536372; cv=none; b=Nn0x67KHxZaDmZfQC0gG9fXR4QGq5WwOPbNGvRhmQMo5S/3OnxyMFBTB6bWE8JAaef/wZSRgOeVixtT3ITEVL8MYVg4XKzVBHiyWSpuelYIhhNWozlvE4BTaEX9OGJIosl7Bg05rEFPSWi9JC57prZQPf/GH/bMHlh9mLDgY4KE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725536024; c=relaxed/simple;
-	bh=LXkNK7tbZpK9Bwrdl5kfMRV9eTB9+L844J1TGRnWWrc=;
+	s=arc-20240116; t=1725536372; c=relaxed/simple;
+	bh=5x1hlAgvU8AbloA6ue5k5qo2Rkfl5qA5rF00efVSuo4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mHLc5zyLZ8mTTzbo1oRYxWm7RCeCQVWz6Rd5wIUY6118TcdGeUim9fawbVzALslxbf7BBOq/d77/+iKlq4RX3aSi/L6NLAFWYPOVjt3qc3ObRWkK8wpwqovZg3P0GDux3gLmKOAs/9w4l96BP+fvYylwj9vRPe5uwJDxbi5KgNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtT6+K7P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A25CC4CEC4;
-	Thu,  5 Sep 2024 11:33:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OfAl0BVWrLkE6DgX72Nc86bwl2HkYueJEKDD8Ksf0P0ktbDkBepQipRkPo8i+Yw6tIG9JoaKU0I2auGRnT+SKG0U+63PjtxINWxH4NvzpUWi13puB5JhZSiDZNHuLe/mt3wl26ZsYmWiuXWKhk1tLWXK7gAuELs07m9ztOT20sQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8KB/YPS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDFDBC4CEC3;
+	Thu,  5 Sep 2024 11:39:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725536024;
-	bh=LXkNK7tbZpK9Bwrdl5kfMRV9eTB9+L844J1TGRnWWrc=;
+	s=k20201202; t=1725536371;
+	bh=5x1hlAgvU8AbloA6ue5k5qo2Rkfl5qA5rF00efVSuo4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KtT6+K7PIGT336TLuzd8AEw9SgB6Yk9RPpWk5wKPtuk2CNKfP3Sk2tPwKhojg0z+B
-	 655Qu7DlqaSi17ysvw2+xZlyDpLZ5roo85vMJ8DY1tWz9BGuubtIoxlTa3Ec6LKczS
-	 yYJgqvVZ2W9rOYHFrBBfyTbjnTGpJ+DtOm5kFRO71sJ60QfXvIsVUjo1BE0ch38mlU
-	 oFNd0prIr00Qi7Ae1MCsGhAu7roUpFCdZsdrit8Fi1XGQ+Uojh4XVO751Aei6rFLlN
-	 OZyTFVoLDdLRkszY1T13/RUOzjCm2LyaW3ngC8JGpEJgolFAP7HSn2AF2G1wIqBXOQ
-	 GTZRK6RRdp2Ug==
-Message-ID: <3878b8e1-00c5-4761-bb1f-c9aa853ec501@kernel.org>
-Date: Thu, 5 Sep 2024 13:33:37 +0200
+	b=Z8KB/YPSQ+Cj5s7G+dY7Cl6TbL05MXER0YralS9cwd7ZeXdSV6Qf1Neh938Xwut2B
+	 CR8UNmdEkmhExBvL4qkqvMDkFjPc3N+dBAMQGm1mMsslgBhOjDHHdgXvYjbBI6pbse
+	 OTD1aDW3R5R9JnHSm9QArUVfZ9EFpGr2/Si9sgoZi0qe9Jm7QtW09zHOQ3H3ZMSa1X
+	 keCv/uU1oeZ43BB5leXmMKFD8RPVf6rCj+hkQYvK/aIzYDyM0Ue24+aTk9ESrAFoJD
+	 yie1rSABWm6lDXpQanCbngrdk2BeLjgP/xmEenCsH9+FwKSUEKkb+ofSk/Ju4sgj16
+	 ufVBwfNuuJWNw==
+Message-ID: <c820085c-a4f4-4d03-9df8-733a79e911c0@kernel.org>
+Date: Thu, 5 Sep 2024 13:39:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,98 +50,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/19] Add initial support for QCS8300
-To: Jingyi Wang <quic_jingyw@quicinc.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson
- <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Xin Liu <quic_liuxin@quicinc.com>,
- Tingguo Cheng <quic_tingguoc@quicinc.com>,
- Zhenhua Huang <quic_zhenhuah@quicinc.com>,
- Kyle Deng <quic_chunkaid@quicinc.com>
-References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
- <fcfaeed3-8544-4e98-9f95-f43346dc83e8@kernel.org>
- <3535a897-8708-463d-b931-fa344a967f18@kernel.org>
- <aa74f55b-7e14-4ca4-bd79-2104d81a0660@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add a few aliases to the PineTab2
+ dtsi
+To: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+ Diederik de Haas <didi.debian@cknow.org>
+References: <987e68d1c5e9a0cc56d730aec87246aa5ab8ea14.1725535770.git.dsimic@manjaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <aa74f55b-7e14-4ca4-bd79-2104d81a0660@quicinc.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <987e68d1c5e9a0cc56d730aec87246aa5ab8ea14.1725535770.git.dsimic@manjaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 5.09.2024 7:08 AM, Jingyi Wang wrote:
-> Hi Krzysztof,
+On 05/09/2024 13:32, Dragan Simic wrote:
+> Sprinkle a few commonly used aliases onto the PineTab2 dtsi file, to improve
+> its readability a bit, to make it easier to refer to the actual nodes later,
+> if needed, and to add a bit more detail to some of the labels.
 > 
-> On 9/4/2024 6:19 PM, Krzysztof Kozlowski wrote:
->> On 04/09/2024 11:34, Krzysztof Kozlowski wrote:
->>> On 04/09/2024 10:33, Jingyi Wang wrote:
->>>> Add initial support for QCS8300 SoC and QCS8300 RIDE board.
->>>>
->>>> This revision brings support for:
->>>> - CPUs with cpu idle
->>>> - interrupt-controller with PDC wakeup support
->>>> - gcc
->>>> - TLMM
->>>> - interconnect
->>>> - qup with uart
->>>> - smmu
->>>> - pmic
->>>> - ufs
->>>> - ipcc
->>>> - sram
->>>> - remoteprocs including ADSP,CDSP and GPDSP
->>>>
->>>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->>>> ---
->>>> patch series organized as:
->>>> - 1-2: remoteproc binding and driver
->>>> - 3-5: ufs binding and driver
->>>> - 6-7: rpmhpd binding and driver
->>>> - 8-15: bindings for other components found on the SoC
->>>
->>> Limit your CC list. I found like 8 unnecessary addresses for already
->>> huge Cc list. Or organize your patches per subsystem, as we usually expect.
->>>
->>>> - 16-19: changes to support the device tree
->>>>
->>>> dependencies:
->>>> tlmm: https://lore.kernel.org/linux-arm-msm/20240819064933.1778204-1-quic_jingyw@quicinc.com/
->>>> gcc: https://lore.kernel.org/all/20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com/
->>>> interconnect: https://lore.kernel.org/linux-arm-msm/20240827151622.305-1-quic_rlaggysh@quicinc.com/
->>>
->>> Why? UFS cannot depend on pinctrl for example.
->>>
->>> This blocks testing and merging.
->>>
->>> Please organize properly (so decouple) your patches, so that there is no
->>> fake dependency.
->>
->> Let me also add here one more thought. That's like fourth or fifth
->> QCS/SA patchset last two weeks from Qualcomm and they repeat the same
->> mistakes. Not correctly organized, huge cc list, same problems with
->> bindings or drivers.
->>
->> I am giving much more comments to fix than review/ack tags.
->>
->> I am not going to review this. I will also slow down with reviewing
->> other Qualcomm patches. Why? Because you post simultaneously, apparently
->> you do not learn from other review, so I have to keep repeating the same.
->>
->> I am overwhelmed with this, so please expect two week review time from me.
->>
->> Best regards,
->> Krzysztof
->>
-> The CC list is generated from B4 tool, however, thanks for your advice and we
-> will decouple the changes to avoid this. And could you please help us to confirm
-> the better way to handle binding changes which just add one compatible, should
-> it be submitted as a single patch or submmitted together with dts patch series?
+> No functional changes are introduced, which was validated by decompiling and
+> comparing all affected board dtb files before and after these changes.  When
+> compared with the decompiled original dtb files, some of the phandles in the
+> updated dtb files have different values, and the updated dtb files contain
+> some additional phandles and additional symbols that come from the introduced
+> aliases, but they still effectively remain the same as the originals.
+> 
+> Suggested-by: Diederik de Haas <didi.debian@cknow.org>
+> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> ---
 
-The tool did its job here, it's just that this series is very long and a ton
-of people ended up being involved due to bindings oneliners
+Unused aliases do not improve readability, so for me this change is
+making code worse without valid reason.
 
-Konrad
+Best regards,
+Krzysztof
+
 
