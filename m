@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA7696E4AE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 23:13:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E6396E4F2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 23:21:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22DE11F24561
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:13:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 529331C20F2B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73DD1A726E;
-	Thu,  5 Sep 2024 21:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 012CD1AB6D9;
+	Thu,  5 Sep 2024 21:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o52ZorO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xonpj9Hz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A0B165F0E;
-	Thu,  5 Sep 2024 21:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4BE31A4E6F;
+	Thu,  5 Sep 2024 21:21:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725570776; cv=none; b=EYPy1kBERfFRbXTEhFa7Gt0AYK/srbcx4ROGACr4dH0A/3EqMq1QiIDddTku3SPQzNqd4Ad9Ed269/90RHpgPm9vf8GSPQw+IU7w+EK2QctqNkzywSkvjXEsp67G+nAswXfTKryyO3zBfQj1QGwO3X2ZHVEw70L55pfGThKLCfk=
+	t=1725571269; cv=none; b=avCcOIFybHUR6WDFLAcGxbjbi3AzreqUMckBGPHoka/GLH/N8zN/gxemTrWo0E3RyE4O2nWzZ9gmroI5n4b2GN2f4jyGKWHziHBYGWiL9eOfKy7t5wKtejLkMCQhOTQERbHL4t09ZXe/5Rnp4Np0xSqIqA8LySEcppo1auUEPaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725570776; c=relaxed/simple;
-	bh=0Vatl0sKmjO6YyUR+Mh5z2EsnIjTTv3H9NsCxF/acl8=;
+	s=arc-20240116; t=1725571269; c=relaxed/simple;
+	bh=pu745UfD6nFeM4JKfJBuPPz6wiYc0c0r/+Z5uAO5/C4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RVVx5P5M0/9X9JdoNKIbMo4coVbvzy3IKmDmLgkS/uahOqjKXJvltrJrwCDe11MbnHMFWN8hWDj2MWugeeaR74P0GOTMm78kf5rmkQvwmq596DfcXk9Hqqt3/LonEtsyfdJf3OFnzQWulilbuoMn98wpPSzQJVYH44RnHNFG+NY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o52ZorO+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A749DC4CEC3;
-	Thu,  5 Sep 2024 21:12:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eVuhV9E3MUZWmZlCZ8BvZ2k8Un401S7s/wfoQaCPmfLX74Y5Jey6N8wTR8lw1mgVNEfwJpzYGLZNgXCaWoqFF9vFsjZf5dEc57b5C8C3kcXQSC5ct8co4MYGogLHov11xko6ORUAti2ORdIGtauslX5O040TCa4khLxbAJjOvT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xonpj9Hz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09384C4CEC3;
+	Thu,  5 Sep 2024 21:20:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725570776;
-	bh=0Vatl0sKmjO6YyUR+Mh5z2EsnIjTTv3H9NsCxF/acl8=;
+	s=k20201202; t=1725571269;
+	bh=pu745UfD6nFeM4JKfJBuPPz6wiYc0c0r/+Z5uAO5/C4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o52ZorO+e6QTl1uKF/WKDmmlV6Z2YYdNKO4cKkdOj51LvNUCJPvJzCA/6YvpmDStO
-	 uofK3AP+Sf7KC17qM+iqenIdP7e/u24m27YIBPW00zoQS3jCOB3h4eERMX+NPxPBl4
-	 J+O3FNZC/h94sLow7hPaGpBA9im8mRSt4G355tx9qv3U7C7PiYbxOCohLtT5WTW7zG
-	 iL08k+S2esPvbRwg75fcye2UpaaVC1cpxTAETXijYiv6twGnt3XNYNbi2Xrszlztk1
-	 6JMYkPeZXKe2sv3REtY9jkG4bbStxUqg9ItSVroPuYeJQeBKusRLan4RQEKeWidXct
-	 7MZUNNmgU5qIQ==
-Message-ID: <8bab34a9-0fe4-4c69-b12b-7ad663bde2d0@kernel.org>
-Date: Thu, 5 Sep 2024 23:12:47 +0200
+	b=Xonpj9Hz1TwRC0/VLPThd2398ncy6DzNG9LWiNdpJJVfcYZLj5M48GBD7vLE12gCI
+	 gEexAMyQm2sjRBxDETT83rcY+1iLGIakuC9pECOBsDw3OARuJSjnRUGjE46irwDvYn
+	 4jrWOjHPFCxqr3Xl1o3f+n2cPnntzKvIl23qXb/3xpRjcZmcHfYE5JzQnuIVtn9+1o
+	 Ei+SGQ6XItUEctLgbQKtcozAh5eSwRlItRWOdjWRF/S/VIze/hT6/VrjUdF95uw129
+	 bFiI9BxHu9rHTcfi5/9Uu7eiTupTHNiBi/kr6SAW85Z3xZqJis/OZMxD5spJJLX3zS
+	 F/wevBVGGCHUw==
+Message-ID: <50546635-1870-499d-8cdc-eb4e9fa1a510@kernel.org>
+Date: Thu, 5 Sep 2024 23:20:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: display: Add Sharp Memory LCD
- bindings
-To: Alex Lanzano <lanzano.alex@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>,
- christophe.jaillet@wanadoo.fr, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org
-References: <20240905124432.834831-1-lanzano.alex@gmail.com>
- <20240905124432.834831-2-lanzano.alex@gmail.com>
- <a4520c05-d64b-4ef0-823c-6c568b459e21@kernel.org>
- <trlyhlclf74itbgj4x6baj6ga6yipdicw3c6odtjgxtbw3cjyl@lyfiny2yiz35>
+Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arch@vger.kernel.org, Lee Jones <lee@kernel.org>,
+ Andrew Lunn <andrew@lunn.ch>, Stefan Wahren <wahrenst@gmx.net>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+ <lrv7cpbt2n7eidog5ydhrbyo5se5l2j23n7ljxvojclnhykqs2@nfeu4wpi2d76>
+ <ZtHN0B8VEGZFXs95@apocalypse>
+ <b74327b8-43f6-47cf-ba9d-cc9a4559767b@kernel.org>
+ <ZtcoFmK6NPLcIwVt@apocalypse>
+ <39735704-ae94-4ff8-bf4d-d2638b046c8e@kernel.org>
+ <ZtndaYh2Faf6t3fC@apocalypse>
+ <f39edf3d-aa9e-43a0-8997-762d76c9c248@kernel.org>
+ <Ztn-XOvtk_d3U6XJ@apocalypse>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,27 +129,146 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <trlyhlclf74itbgj4x6baj6ga6yipdicw3c6odtjgxtbw3cjyl@lyfiny2yiz35>
+In-Reply-To: <Ztn-XOvtk_d3U6XJ@apocalypse>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/09/2024 22:27, Alex Lanzano wrote:
-> On Thu, Sep 05, 2024 at 03:23:20PM GMT, Krzysztof Kozlowski wrote:
->> On 05/09/2024 14:43, Alex Lanzano wrote:
->>> Add device tree bindings for the monochrome Sharp Memory LCD
->>>
->>> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
->>> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
->>> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
->>
->> I don't understand what happened here. Your process of handling patches
->> is odd. Tags do not disappear, you had to remove them, right? So where
->> is the explanation for this?
+On 05/09/2024 20:54, Andrea della Porta wrote:
+> Hi Krzysztof,
 > 
-> Whoops! My apologies for wasting time. Nothing changed in this patch
-> I forgot to add in your reviewed-by tag.
+> On 18:52 Thu 05 Sep     , Krzysztof Kozlowski wrote:
+>> On 05/09/2024 18:33, Andrea della Porta wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 20:27 Tue 03 Sep     , Krzysztof Kozlowski wrote:
+>>>> On 03/09/2024 17:15, Andrea della Porta wrote:
+>>>>>>>>> +
+>>>>>>>>> +				rp1_clocks: clocks@c040018000 {
+>>>>>>>>
+>>>>>>>> Why do you mix MMIO with non-MMIO nodes? This really does not look
+>>>>>>>> correct.
+>>>>>>>>
+>>>>>>>
+>>>>>>> Right. This is already under discussion here:
+>>>>>>> https://lore.kernel.org/all/ZtBzis5CzQMm8loh@apocalypse/
+>>>>>>>
+>>>>>>> IIUC you proposed to instantiate the non-MMIO nodes (the three clocks) by
+>>>>>>> using CLK_OF_DECLARE.
+>>>>>>
+>>>>>> Depends. Where are these clocks? Naming suggests they might not be even
+>>>>>> part of this device. But if these are part of the device, then why this
+>>>>>> is not a clock controller (if they are controllable) or even removed
+>>>>>> (because we do not represent internal clock tree in DTS).
+>>>>>
+>>>>> xosc is a crystal connected to the oscillator input of the RP1, so I would
+>>>>> consider it an external fixed-clock. If we were in the entire dts, I would have
+>>>>> put it in root under /clocks node, but here we're in the dtbo so I'm not sure
+>>>>> where else should I put it.
+>>>>
+>>>> But physically, on which PCB, where is this clock located?
+>>>
+>>> xosc is a crystal, feeding the reference clock oscillator input pins of the RP1,
+>>> please see page 12 of the following document:
+>>> https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
+>>
+>> That's not the answer. Where is it physically located?
+> 
+> Please see below.
+> 
+>>
+>>> On Rpi5, the PCB is the very same as the one on which the BCM2712 (SoC) and RP1
+>>> are soldered. Would you consider it external (since the crystal is outside the RP1)
+>>> or internal (since the oscillator feeded by the crystal is inside the RP1)?
+>>
+>> So it is on RPi 5 board? Just like every other SoC and every other
+>> vendor? Then just like every other SoC and every other vendor it is in
+>> board DTS file.
+> 
+> Yes it's on the Rpi5 board. These are two separate thing, though: one is where
 
-Tag was there before, so you removed it...
+Finally.
+
+> to put it (DTS, DTSO) and another is in what target path relative to root. I
+> was trying to understand the latter.
+
+It is already or should be part of DTS, not DTSO. You are duplicating
+device nodes.
+
+> The clock node should be put in the DTBO since we are loading this driver at
+> runtime and we probably don't want to depend on some specific node name to be
+> present in the DTS. This is also true because this driver should possibly work
+> also on ACPI system and on hypothetical PCI card on which the RP1 could be mounted
+
+Not really. ACPI and thus DT in such case will take it as clock input.
+Basically what you need here is to provide clock inputs to this device.
+It's then firmware independent.
+
+> in the future, and in that case a DTS could be not even there. 
+
+No problem. Whatever firmware mechanism you have, it will provide you clock.
+
+> After all, those clocks must be in the immediate proximity to the RP1, and on the
+> same board, which may or may not be the main board as the Rpi5 case.
+> I think that, since this application is a little bit peculiar, maybe some
+> compromises could be legit.
+
+Application is not peculiar but completely standard. You have standard
+PCI device which has some inputs. One of these inputs, maybe on some
+reserved M.2 pins or whatver connector you have there, is the clock.
+
+...
+
+>>>
+>>> If externals, I would place them in the same position as xosc, so root node
+>>> or some other node under root (eg.: /rp1-clocks)
+>>
+>> Just like /clocks, /rp1-clocks is not better. Neither /rp1-foo-clocks.
+> 
+> Right. So in this case, since xosc seems to be on the same level and on the same
+> board of the RP1 and the SoC, and it's also external to the RP1, can I assume that
+> placing xosc node in root is ok?
+
+root node of the DTS yes. Root node of DTSO of course not, because it is
+not part of DTSO and you are duplicating DTS. It would not even work.
+
+That's why you need to apply the overlay to proper target as I asked
+long time ago.
+
+> 
+>>
+>> I think there is some sort of big misunderstanding here. Is this RP1
+>> co-processor on the RP board, connected over PCI to Broadcom SoC?
+> 
+> Yes. 
+> 
+>  ---------------Rpi5 board---------------------
+>  |                                            |
+>  |    SoC ==pci bus==> RP1 <== xosc crystal   |
+>  |                                            |
+>  ----------------------------------------------
+> 
+>>
+>>>
+>>> If internals, I would leave them just where they are, i.e. inside the rp1 node
+>>>
+>>> Does it make sense?
+>>
+>> No, because you do not have xosc there, according to my knowledge.
+> 
+> Hmmm sorry, not sure what this negation was referring to... I was talking about
+> hclk and pclk, not xosc here. Could you please add some details?
+
+If considering hclk and pclk, then depends where are they. If they come
+as inputs, then same as xosc. If they are not, then it is also obvious -
+we do not represent internal device clocks as fixed clocks in DTS,
+because it makes absolutely no sense at all. No benefits, no help,
+nothing at all.
+
+It's just device's internal clock.
+
+This is again nothing peculiar. Many other devices have some internal
+stuff. Do we add fixed clocks for these? Fixed regulators? No, of course
+not.
 
 Best regards,
 Krzysztof
