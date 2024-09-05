@@ -1,120 +1,92 @@
-Return-Path: <devicetree+bounces-100438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A659696D999
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:01:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E59396DA8D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 242AF1F22828
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:01:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C97371F23C17
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6703E19B5AA;
-	Thu,  5 Sep 2024 13:00:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600E719C56D;
+	Thu,  5 Sep 2024 13:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="UPDZPeyi"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="o6yhS0gf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D792E198E84
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 13:00:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDDDF19D885;
+	Thu,  5 Sep 2024 13:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725541257; cv=none; b=QBm45kpXw48R8lzftoZiYkaFoCNPE3tczaRubJ3ljE6afx8dClVI1VCQCY83T198GmyJTvEWavkOUgieS6y4wlreFulNLBGomEI+zdEUmohRmfvt2e6w+q53xDsuH0bZU0g5bBACqxku5n8XH/QDbC971bOyOqrAtTkQcG0ghhs=
+	t=1725543694; cv=none; b=F+Y9CNoLQz7jW0zxTfDW/qEbi1XkXvgeP4CK0OxNE4Td1z4UffAO+W1ehs5JyObI4vxT+qXjqCkZ2tjl0cdUyydgEmDd49QNT47VWlQPuywylvz80XIVyTTrMldmf/hROOczipvJlwTPdwItvtv3AZL6q21Pr+zzsif9RUofNEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725541257; c=relaxed/simple;
-	bh=H62HkzGbpUesjFTP4vNGYXdw2q2nWXplLeqQxuLZrUo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BWyEfvw7Lgdrsl0UCXSMjz/cWsfzB6gRrJYlzgCxDxc4+PWQ2rJ9ZKgWRzejGlTNETDdgwTeQbcCmlzvIQsoh778RmLprj1E4xY6SSxI851Ia2gFA5iAI9yvqWZbzuxBIoX+ZuWZKXlREsP/9z3pFSJK+5C8Dic/D7YmpxfW5a4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=UPDZPeyi; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f406034874so9114581fa.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 06:00:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725541254; x=1726146054; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fvX5LhsKt0yPVXIiiRUeNnUqB7Sn1CnGbkl7cLPC1hU=;
-        b=UPDZPeyiIztbPMSnNnursXpi8ibtNa9Vms+ngdHXQ8LvnGo8RVpqoY5upTBGZCVKZM
-         53DYdJCT60WP/+8j8rf/+kZ/wNzbmlNEtgmSn1GiOyWk6TaZEWCSOEnxSM1hal6HwLPn
-         SMlPNFvz8AhBxEP5kLUfsHi+iYxW4BM5g6MOSHWR9dhybn67TDlB6cdidJtzMkae1feQ
-         /FU1Tew/TzhFElX5aMeBVyLQJqM0Wxi3PK+T0t2o2iihSXvj9NCE2JzW7M49a/x0EcAZ
-         US9NZU+hXmXaTL9ydQLObBQaB6iRs/tc6OVZyN2IlkUZJwGVEgyKtveL6UY0j/RP/Qlh
-         eUTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725541254; x=1726146054;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fvX5LhsKt0yPVXIiiRUeNnUqB7Sn1CnGbkl7cLPC1hU=;
-        b=h9q/7Iup5GHfV5wvSuGkEAgCl2TAjjBYDCzZLqe6P65seDeyEg03ACeVZ58wO5kmHQ
-         e0sSkgV4KyNtCZntuV9n+33dXjmJYWRPDG2WZCa/HT+Z9vP8LCWcn9LQvZmpceUYN3va
-         SgmGrXUhiFbflFSUtZ/8LxV4vf9N4rMl+6GuTjEjl7Pu/kK/iI+mTO/+nwbUf2on0Z5D
-         70Ho/HBPUv4SNvM9SauCmWSPFOc8QdfxmHze5x/kKWQkTzcEEjWucbAohCmIurzlTz/0
-         uS+ZXZ+PfdbQvuqALnEOfo5BLCFFoxq19J6mcRytycK8xfxQnjt95+DzdO4GoOkK7rAC
-         nu5A==
-X-Forwarded-Encrypted: i=1; AJvYcCXQvfbEFjPe14Iobe/wJGtX3FPOyZMtPZt7RkcIE8ab1UFkqmFiouE2nsh5lWkUtgDO3DXS1PHnKj1+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL07+sRbfeR++vwm2xHLO7FNJLmE3H11Y4lrE80rHhx0UPJwOl
-	sUje4HL2bKhnra8PIzZS7ljvJo551cnIN+Ousiu6RWZeT76hs8u/jIrgQSTokpfYZxTJU47jAs5
-	69wbEpaEFYGsq3zzCo7Z0eoTpzsZfi/i82bI9Vw==
-X-Google-Smtp-Source: AGHT+IEQXzk8r71FGV4TT/9xQ+LnzpJLAomuikseXPDLCmA8Cef3NfFKbL6iW/zApYVy7QOcvAIZqKXrFE3r15xXQcs=
-X-Received: by 2002:a05:6512:159f:b0:52c:d753:2829 with SMTP id
- 2adb3069b0e04-53546b36b1dmr16588869e87.19.1725541252177; Thu, 05 Sep 2024
- 06:00:52 -0700 (PDT)
+	s=arc-20240116; t=1725543694; c=relaxed/simple;
+	bh=1uYaiX6bFTG0wzTHhjTW5g+OiwYm/81ayeQIaXdTTsc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h0LZfB7Vd3v0LnpwgYMHL2DFd39wJtUflhdmMIrS4ityrc2MZ7aM8+AIRxV4x9sIxIChqT8g8Gkb8ESWMSF5cSekUr3ClmD/Ln1k9Eha0w54u2q6YvFgVCWE7QXUDHDiswTcGXh5YHF4yx/2l1oHZXaj6nZUcbuu6NDkfvSGx44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=o6yhS0gf; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 2290D88BBC;
+	Thu,  5 Sep 2024 15:41:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725543690;
+	bh=xK6a48OIHXRWC6vnsA0HEz2fohBA/zvNxkzg+jmPZ8U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o6yhS0gfaz8fgAMohhFULwaAdU4NkugjM0uFQ7O0C0jHG2HUfznb7vgSLg4VEOB3e
+	 Gn0UQpAL3kC4u3bd/8rHg5QuA+5uGQTJlTsYlbBtpw8ZoZ0CdrlxUjxsR5vCYs1npu
+	 dzX5oVgL6glA36rWolkK7AEzJkdCsHIwYjttBcWyUagkDmLSp1IEorVkDjCi0Ytn7w
+	 aF37WNrGNCXMDWRCVl3eYg/fSdftCY3rYUQpTm0BO9cl1xlgFsOlvqbgvU6BdQzWgk
+	 FOjf/lOgXmOIDWDqrsUMnnVXkUWNbB3CAgxo8c7gZL+yjPJfCovkL6yp27ABh4ifIE
+	 s6I36O6x0PhHQ==
+Message-ID: <686c36e4-bb3c-4a5f-bdb9-1bf1accf1632@denx.de>
+Date: Thu, 5 Sep 2024 15:09:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240905122023.47251-1-brgl@bgdev.pl> <20240905122023.47251-2-brgl@bgdev.pl>
- <6vikrqhdnkefzpahhhtz2hpi62jvcwnzclm7touwtnpxdzvgrf@uc7r6a7bbjek>
- <CAMRc=MeijX2by+MS_vq_OVx25JO6z=zNfymta35h11mbm=vmtQ@mail.gmail.com> <CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
-In-Reply-To: <CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 5 Sep 2024 15:00:41 +0200
-Message-ID: <CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc8280xp-crd: model the PMU of
- the on-board wcn6855
-To: Dmitry Baryshkov <dbaryshkov@gmail.com>, Johan Hovold <johan@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Kalle Valo <kvalo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: watchdog: stm32-iwdg: Document interrupt and
+ wakeup properties
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-watchdog@vger.kernel.org
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Christophe Roullier <christophe.roullier@foss.st.com>,
+ Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20240705115052.116705-1-marex@denx.de>
+ <975dca14-de9c-4bbb-bf4f-e52f7f52c83a@kernel.org>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <975dca14-de9c-4bbb-bf4f-e52f7f52c83a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Thu, Sep 5, 2024 at 2:56=E2=80=AFPM Dmitry Baryshkov <dbaryshkov@gmail.c=
-om> wrote:
->
-> > >
-> > > As you are going to post another revision, please also add
-> > >
-> > > qcom,ath11k-calibration-variant
-> > >
-> >
-> > I had it in earlier revisions. The only one we could add here would be
-> > the one from X13s as QCom has not yet released the data for the CRD.
-> > Johan and Konrad were against adding this here if it doesn't refer to
-> > the correct one so I dropped it.
->
-> As Kalle usually merges data with some delay it's not infrequent to
-> have DTS which names calibration variant, but board-2.bin doesn't have
-> corresponding data. The driver safely falls back to the data without
-> variant if it can find it. Als  usually it's us who supply the
-> calibration name.
->
+On 7/8/24 12:48 PM, Krzysztof Kozlowski wrote:
+> On 05/07/2024 13:50, Marek Vasut wrote:
+>> The watchdog IP can generate pre-timeout interrupt and can be used as
+>> a wake up source. Document both properties.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Can someone please pick this up ?
 
-Johan, Konrad,
-
-What do you think? Do we know the exact name and should I add it or
-should we wait until it's in board-2.bin?
-
-Bart
+It is now blocking addition of the property to STM32 DTs.
 
