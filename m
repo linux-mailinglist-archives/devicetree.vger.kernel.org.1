@@ -1,130 +1,149 @@
-Return-Path: <devicetree+bounces-100216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86EC196CD7F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D630296CDFF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1482DB20E3F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:52:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66875B21E1B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 04:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F94914601F;
-	Thu,  5 Sep 2024 03:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E88148823;
+	Thu,  5 Sep 2024 04:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RFQew6v2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Up5Ehn6C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4AC3131E38
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 03:52:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D6220E6;
+	Thu,  5 Sep 2024 04:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725508367; cv=none; b=NJ5cDSHIVvdruEL8VeLT3VBZGPcbAoxugLiM2uOTDW5qLHlGb2jndFOBsvWYN9wUQ7n6osN1zZM3d6aWvRPQ1u77bANM28w4A0zM1v/iq49qRrM6uGyRkdqD3oNhxTb1i469MaILIs2uDlOJ+OfhrgLNZ208vv3COrOhm7Q0k50=
+	t=1725510678; cv=none; b=BN/6dhpvq2Mx9rtTo6uY3dg3+seAR7IpDJeCW9+9g4KtueQotG5IjM3ApTNFsEQ9mHi8UH6S++Ezv4EVU1uUCj8KuDUmAWTriLUDX0+kKEBAX3ArIqHX07L1jfuP6P/vVtldeGWHKey5/WP4f7HEK/2a5yOaLiU5qjGX7On1Res=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725508367; c=relaxed/simple;
-	bh=su/8gj6ks5K85/I3PIYZHz4bzmuYkE7mRyHvpRMnZhg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PUwS3+/7h3MoYpcb+eb83i0p5jgqDWGeFZn+41eu713j3CXmM1ByJyJZnsdKFUdKc3U4CyBh81h0W13VmE4kYmwqaGi9nSzgV3KVZbpm1zO8EG4r2ZrwiCvtZ+HorVN8co71G8kesHXvHFzxiX/yRwYW33iTsw03UzFwAjx6TMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RFQew6v2; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5353cd2fa28so236808e87.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 20:52:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1725508364; x=1726113164; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QRIIgJ7S3hsBk6289/S+wOJS+zjzXBK17nuyOQXg1gQ=;
-        b=RFQew6v2H2RSVsC5zXcTD6NPoVUP8rC4ngRO26FnEtEXE33zWqplCFXsAojoxCDk9w
-         3jKXMjTvIWiDfBjZwGOtERjZmGe79jhk4jXmbQ1YGWP3zUHPs8ABv0uqZSY67QOYzk/B
-         GUUu82pqiF1qtQbMBvsiHC9N7CNp/owZhwEqY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725508364; x=1726113164;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QRIIgJ7S3hsBk6289/S+wOJS+zjzXBK17nuyOQXg1gQ=;
-        b=ZZimQ/T9ak22DKHGjXTvefUS78JsnazqRcSO5Utb+tFVuSyaVKovSDpQVPJmadLs6l
-         QDYAINPXzdT4gLcaM36bMfkdaV2hAM/vJTskFd3TJ3XWn7aQvZaKbe6atpUpSXHRxx0k
-         TabkrClSKh8/oOrrg7FRnOkVNmmydI+7VKPDeun1UTOFqa4c4ltVXoWI/LA2T6w5SP8n
-         AhFEIUQftIUTOjwxH0JtXKAsntGoUAWxK+Ega3jpUt4p7o/EfodlvTOU1whREdqQCYmS
-         p7E/L9XkDrwkTZIebOUnedP8v2WDpNkw5XrwKGfiCbfotA/jCQOwG6lViJalFk4aOnnn
-         jnVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfT9HfJa0tmqq3IXcIlXyIV04FUw6F1TPhpHuh3Y+TDGa8eOQU4Zt0/BpomuW4dhezru8J+4PaIGIa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6Mlf1FWoR79c8+TA9PHcIyvQxteY1Hw97MPHj6Xcu53qURrAz
-	ZdKO6193+pKVTImQsA/8hMIk/dmE5Z45oPqtigWWqAIYKtrNWFfz/4sB3oYz7RVHJVmvsyLLEtm
-	7Fscon5wAJmw8OZZx1DZBZjpOCqBFbw1FMhhb
-X-Google-Smtp-Source: AGHT+IFf4LunjDbLMZ4JbahUyowVfro0pxQijuaHaPzJX7btNK9HgFjL//PjfHIonl230ee/BtNVKcZVy4RESHnFt3A=
-X-Received: by 2002:a05:6512:350e:b0:535:66ff:c681 with SMTP id
- 2adb3069b0e04-53566ffc733mr2025998e87.48.1725508363601; Wed, 04 Sep 2024
- 20:52:43 -0700 (PDT)
+	s=arc-20240116; t=1725510678; c=relaxed/simple;
+	bh=bN9Fq1ft45JvfI5jIyNzkE4a7BGFF7N2Lx4btHWmg2Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=r9UtAffdpWHccMbwJP2xRkeRWyYZMY5zulFpMvE1KlDP5tYT5E6it43Ewt0Z4LSMjOfNF4vz11kVGJ/2UbzxDrZQ5+o972exG9btkARFILmV2eB6/4e3eWOpnL4ikDl/VTHVcdDjSayfBL2GwG6ICSKBXl6UHmTIJc3hAXlqw8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Up5Ehn6C; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4851hpMJ005471;
+	Thu, 5 Sep 2024 04:31:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5/xCQVHD57yk2LrnCzuJn9xrmDwsidUddYV1q7OkqOY=; b=Up5Ehn6Cl4NrSk5t
+	FGGhR2RSo3MMq1pjbFuPP7GUtmWjzlCw83DRDhCXtKUrlUYshSPMwfrHFPyT3t9r
+	rfrw4YauBWGF99KZIN77wxFqHOb118UO4tHdXn+hqEfAo4WPW2tC/fSvwpHyrCLt
+	/uaNirUSLVtGuKcaFcd6n7AWusk/Bhjov5oderzQNJF4a9eotPvj4UTGvQQeaaKV
+	c7P4DI9DG0kNeaoxaJMOixCphs9uE9zmjk7tZUOKIcgwf/tkkkdjvsNMpVbhhOM9
+	KSbja1+HAaMvGKaaFwkI678fpWmHKuWblBP6PdJNwHCGsTpYexcx85rF/TmPPGp6
+	BrK5Pw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41epwe26fy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Sep 2024 04:31:01 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4854V0P0032515
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Sep 2024 04:31:00 GMT
+Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
+ 21:30:57 -0700
+Message-ID: <a0f3176d-9b2a-4fb9-9a7b-f8e778e3b427@quicinc.com>
+Date: Thu, 5 Sep 2024 12:30:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240904090016.2841572-1-wenst@chromium.org> <20240904090016.2841572-12-wenst@chromium.org>
- <Ztgxlmhnkn7NVC81@google.com>
-In-Reply-To: <Ztgxlmhnkn7NVC81@google.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 5 Sep 2024 11:52:32 +0800
-Message-ID: <CAGXv+5GpKu-b4_dbRcuSG4NxQi_FKh9p7iMh6DfgavkLFdLLdQ@mail.gmail.com>
-Subject: Re: [PATCH v6 11/12] platform/chrome: Introduce device tree hardware prober
-To: Tzung-Bi Shih <tzungbi@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Mark Brown <broonie@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, chrome-platform@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, linux-i2c@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/19] remoteproc: qcom: pas: Add QCS8300 remoteproc
+ support
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Xin Liu
+	<quic_liuxin@quicinc.com>
+References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
+ <20240904-qcs8300_initial_dtsi-v1-2-d0ea9afdc007@quicinc.com>
+ <ecd95f82-ea98-4279-ad01-dc73d361180a@kernel.org>
+Content-Language: en-US
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+In-Reply-To: <ecd95f82-ea98-4279-ad01-dc73d361180a@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Sep 4, 2024 at 6:08=E2=80=AFPM Tzung-Bi Shih <tzungbi@kernel.org> w=
-rote:
->
-> On Wed, Sep 04, 2024 at 05:00:13PM +0800, Chen-Yu Tsai wrote:
-> > diff --git a/drivers/platform/chrome/chromeos_of_hw_prober.c b/drivers/=
-platform/chrome/chromeos_of_hw_prober.c
-> [...]
-> > +static int chromeos_of_hw_prober_probe(struct platform_device *pdev)
-> > +{
-> > +     for (size_t i =3D 0; i < ARRAY_SIZE(hw_prober_platforms); i++) {
-> > +             int ret;
-> > +
-> > +             if (!of_machine_is_compatible(hw_prober_platforms[i].comp=
-atible))
-> > +                     continue;
-> > +
-> > +             ret =3D hw_prober_platforms[i].prober(&pdev->dev, hw_prob=
-er_platforms[i].data);
-> > +             /* Ignore unrecoverable errors and keep going through oth=
-er probers */
-> > +             if (ret =3D=3D -EPROBE_DEFER)
-> > +                     return ret;
->
-> Is it harmless if some of the components get probed multiple times?  E.g.=
-:
-> comp1 probed -> comp2 probed -> comp3 returned -EPROBE_DEFER -> some time
-> later, chromeos_of_hw_prober_probe() gets called again.
-
-Yes it is harmless. Components already enabled will not get disabled
-in the error path. And the prober that enabled that component will see
-that a component was enabled, and skip doing the whole process again.
-
-So something like:
-
-    comp1 probed -> comp2 probed -> comp3 -EPROBE_DEFER ->
-        comp1 skip -> comp2 skip -> comp3 probed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: NS3d9gifhVEWGS-r9NoqxWGMZ2sJt8Q7
+X-Proofpoint-GUID: NS3d9gifhVEWGS-r9NoqxWGMZ2sJt8Q7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_03,2024-09-04_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ spamscore=0 mlxscore=0 phishscore=0 mlxlogscore=999 lowpriorityscore=0
+ suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2409050030
 
 
-ChenYu
+
+On 9/4/2024 5:36 PM, Krzysztof Kozlowski wrote:
+> On 04/09/2024 10:33, Jingyi Wang wrote:
+>> Add support for PIL loading on ADSP, CDSP and GPDSP on QCS8300
+>> platform.
+>>
+>> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+>> ---
+>>  drivers/remoteproc/qcom_q6v5_pas.c | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+>> index ef82835e98a4..f92ccd4921b7 100644
+>> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+>> @@ -1416,6 +1416,9 @@ static const struct of_device_id adsp_of_match[] = {
+>>  	{ .compatible = "qcom,qcs404-adsp-pas", .data = &adsp_resource_init },
+>>  	{ .compatible = "qcom,qcs404-cdsp-pas", .data = &cdsp_resource_init },
+>>  	{ .compatible = "qcom,qcs404-wcss-pas", .data = &wcss_resource_init },
+>> +	{ .compatible = "qcom,qcs8300-adsp-pas", .data = &sa8775p_adsp_resource},
+>> +	{ .compatible = "qcom,qcs8300-cdsp-pas", .data = &sa8775p_cdsp0_resource},
+>> +	{ .compatible = "qcom,qcs8300-gpdsp-pas", .data = &sa8775p_gpdsp0_resource},
+> 
+> What's the point of this? You have entire commit msg to explain such
+> weird duplication. Otherwise sorry, don't duplicate unnecessarily.
+> Devices are compatible, aren't they?
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+I will drop this, could you please help us to understand what is the correct way to
+deal such situation, do we need to update the yaml and add qcs8300 bindings or just
+reference to sa8775p bindings in the device tree?
+
+Thanks,
+Jingyi
 
