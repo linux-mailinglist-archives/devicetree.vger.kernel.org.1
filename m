@@ -1,102 +1,87 @@
-Return-Path: <devicetree+bounces-100451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DDE96DA89
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:41:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A66296DA95
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46C8B1C21F8A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:41:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB83E28867E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06D819D885;
-	Thu,  5 Sep 2024 13:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D3619D895;
+	Thu,  5 Sep 2024 13:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="R89+ySB9";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ntjYy1bk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uIVMffKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFDD19C56D;
-	Thu,  5 Sep 2024 13:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A9B419925B;
+	Thu,  5 Sep 2024 13:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725543679; cv=none; b=lmD7HxHCl2ZTPfpckz0K7KKBCNc3h8/SrxiW+jF7R41bBb22G4Fo/z4l0t0tq63YnoPm2PDpvnS7YueevSKtZHYQJj4yyzQxLD3GPYDMB6sX9GpC45ImGNwfBnqTacR1xdwdtOy9tKqJPxPZ3VmGoaMD1xrkJrozYLOAdt+M1ew=
+	t=1725543872; cv=none; b=ZeYXJW6NXZ1UyNZFWvg9wzEDD8xCV9AkgMLBaE4M7jJI6ZKcDp6Rs0snKV6I7qHmx9/veNUVsuh0OOBuMI9uTVOb4mtw9kh7n46wx9qDzD6AW4Oxmd8+1McEAXgRwdkGpfjrCsvBXtfkcN0AQESrx6Xy067WD5JBhAiq7ccHzMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725543679; c=relaxed/simple;
-	bh=5P2OM2n+bCPQ2pZuFcpMTIhN9z+UlRaRb3D6hOdyXBs=;
+	s=arc-20240116; t=1725543872; c=relaxed/simple;
+	bh=b9acX5IhkohSbskqXXvGeItLmD2/cfBjvS2Wfhcu7XM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f3X4y4gSbzLgm4Zv/aD6Vqa1xK2xoONeCK3JZz9pWqVn5bR+KliC8+lj8HnGLqByK3F+qNH99RYKrSD+mNppYa26Gvxfyfdh8OWzKLX4rhncE92uC9yP3FQanPC+eaby61tXEmzmmeTKmL1s4RYYSP1LuG/gkLYWyssTaaJZp2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=R89+ySB9; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ntjYy1bk; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-Date: Thu, 5 Sep 2024 15:41:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1725543676;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mVuPy5ibhq9HNeDwCgZS+Bfii/7ZPF86r5AeWFTRydE=;
-	b=R89+ySB92OOV3NIcInoGxt27RH76uzDrg4SKSjk110Kj1CWBgPxn2phHYTN8kT0Ykc2Doh
-	AmaR9rGlDqUEhbOrq82cMbZ+THbqSjoIg9T2Wem+R3zd7MJh4BxxfclkHV0ZoK0PuLSKA0
-	r+peEJeFHGRc7IqAnzfa4ncoCC5pvJNM9ee5IPSMVh3hz5LfARvBulMzw1E3f/DY7AiahO
-	z2/IIZYjACe/EZB4UODnl7OM/363mgdIrVF1aJeGXH3Z/0o2mkhV1ZmrTySRWthmpR0Eau
-	0IyeHYIrXufXPOqzNrK7BSLPIAcBmKBs4Ob9pvBXXyHNzet/uwaI5efw+VC8zA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1725543676;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mVuPy5ibhq9HNeDwCgZS+Bfii/7ZPF86r5AeWFTRydE=;
-	b=ntjYy1bk2ydt7/H1Uk4rxuXy4/XBspNQUn6xmeWYR/MyZJkKm8nyjkVf0nwSU9r1sjyhRF
-	Goc3kgxF5+awyDBg==
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Nam Cao <namcao@linutronix.de>
-Subject: Re: [PATCH] of: address: Report error on resource bounds overflow
-Message-ID: <20240905153318-ef305b5f-7987-410b-8256-aa6d01574fc9@linutronix.de>
-References: <20240905-of-resource-overflow-v1-1-0cd8bb92cc1f@linutronix.de>
- <CAL_JsqJ=7kX6DL_HBJMrWuhjZEmPUL++BvJ9tg3BDD9-e+b6Xw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IwLj1OPqk+p8eJugqALldeKyexpH2ncpwjc72/+LNZV82fgA2WBPj0CnOc+sqMzpR7NOM4VJGlPDTBsoNMR8GspOVfzDIcCMKToJ/Iuh5XVDg45oBAnmFnBX1mWgnXVEr/LjVttG38Z+VLORamWGqhHVXX7xmgIOt2pTI9quXe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uIVMffKc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2709C4CEC3;
+	Thu,  5 Sep 2024 13:44:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725543870;
+	bh=b9acX5IhkohSbskqXXvGeItLmD2/cfBjvS2Wfhcu7XM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uIVMffKcqsMxDOvKmpQ/o52EIXtFaMD2p2GliETZD9N0Dk4ATVa7h8aY7R3arCYMp
+	 6PEOjR1bq/MdcLyU9jcyTwzMWMRPlsX+J/UIMUYK7RKvPwFssxhdY4iVx2DY4c0Z7s
+	 uue4s4wk1gtXDdxkJet5ojFq8gd9VObkCdj0dTyHH57NfvWZ5V2GcbYjNN4Zn+06uQ
+	 EzMbC3xKlj7V45GE7t/TPviuOx7NkOFlIil6D3lPT+VE0ZjrR6uPchXtQ0cvPHDUyH
+	 wdIw6zQPG6/KSBHdFcAAp18fvvQcsOIsAXX2GSUbcoLchhW8ng4EhXQUVAUZ21rsoH
+	 CzGYdGtYtvYfQ==
+Date: Thu, 5 Sep 2024 08:44:28 -0500
+From: Rob Herring <robh@kernel.org>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org,
+	Dinh Nguyen <dinguyen@kernel.org>
+Subject: Re: [PATCH 02/15] kbuild: split device tree build rules into
+ scripts/Makefile.dtbs
+Message-ID: <20240905134428.GA1517132-robh@kernel.org>
+References: <20240904234803.698424-1-masahiroy@kernel.org>
+ <20240904234803.698424-3-masahiroy@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJ=7kX6DL_HBJMrWuhjZEmPUL++BvJ9tg3BDD9-e+b6Xw@mail.gmail.com>
+In-Reply-To: <20240904234803.698424-3-masahiroy@kernel.org>
 
-On Thu, Sep 05, 2024 at 08:15:40AM GMT, Rob Herring wrote:
-> On Thu, Sep 5, 2024 at 2:46 AM Thomas Weißschuh
-> <thomas.weissschuh@linutronix.de> wrote:
-> >
-> > The members "start" and "end" of struct resource are of type
-> > "resource_size_t" which can be 32bit wide.
-> > Values read from OF however are always 64bit wide.
-> > Avoid silently truncating the value and instead return an error value.
-> >
-> > This can happen on real systems when the DT was created for a
-> > PAE-enabled kernel and a non-PAE kernel is actually running.
-> > For example with an arm defconfig and "qemu-system-arm -M virt".
+On Thu, Sep 05, 2024 at 08:47:38AM +0900, Masahiro Yamada wrote:
+> scripts/Makefile.lib is included not only from scripts/Makefile.build
+> but also from scripts/Makefile.{modfinal,package,vmlinux,vmlinux_o},
+> where DT build rules are not required.
 > 
-> A nice follow-up would be to make of_pci_range_to_resource() use
-> overflows_type() as well instead of open coding it.
+> Split the DT build rules out to scripts/Makefile.dtbs, and include it
+> only when necessary.
+> 
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+> 
+>  drivers/of/fdt.c       |   2 +-
+>  drivers/of/unittest.c  |   4 +-
+>  scripts/Makefile.build |  25 +++-----
+>  scripts/Makefile.dtbs  | 142 +++++++++++++++++++++++++++++++++++++++++
+>  scripts/Makefile.lib   | 115 ---------------------------------
+>  5 files changed, 153 insertions(+), 135 deletions(-)
+>  create mode 100644 scripts/Makefile.dtbs
 
-Good catch.
-
-There are some differences though, it
-* returns -EINVAL on overflow instead of -EOVERFLOW
-* sets ->start and ->end to OF_BAD_ADDR on overflow
-* does not check ->end for overflow
-
-I don't have much experience with OF, so I'm not sure which of these are
-important and if overflow checks on intermediate calculations are also
-necessary.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
