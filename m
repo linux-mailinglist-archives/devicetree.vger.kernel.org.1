@@ -1,101 +1,147 @@
-Return-Path: <devicetree+bounces-100376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5744A96D736
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:33:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CD396D739
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:33:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 937832878AF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:33:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E1CC1F240F1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454B6199956;
-	Thu,  5 Sep 2024 11:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF3219939E;
+	Thu,  5 Sep 2024 11:33:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cn4rPZlm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtT6+K7P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17966199938;
-	Thu,  5 Sep 2024 11:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB2A194A52;
+	Thu,  5 Sep 2024 11:33:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725535997; cv=none; b=ZoIMjakvLtnOldYeC1uBaG4KUgp+wwsEni3PsCd1X8ESsMIacby0VrhArI0TQlcOFxAxDO9r81SBF7/DcFRzvm82cwfHDQ/+nyTMsKDzvXBwKDRlHOSLD/+JK+AXHaWddwwrRDa1xwHYffx+mwR1BTkAjmjdEFiKs5y7uxX2Hok=
+	t=1725536024; cv=none; b=H4p1HUeWNzkUeCAIgqgKH4Rl3xVkF6Kc/xPNfh5Pwqb19rB4z1PKNC340G1w/K4a7mJe21yUM8ZVbG6wjjfVoh0SgLkEIujjchzo2Ss5d5UVPH5+nvY+3awjAfw7OmLzpIu/KN4+v1iWes21aVhqvaREljuAYy3T39xBC1xXQXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725535997; c=relaxed/simple;
-	bh=VWk0KKM+pEC2Fxd/uZoZaHJwBnxhNaByHYWWjXspupw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e+PZ5eul//gCaIfKjWRzaSk4PvEL49YSCXVa5V2D8Pf8h2EV6wVH8dSKZD4WXIkXmwiPacQaYuQI6v0eqgXSNBxwI/RdIL6SrYPu62aMYmRQUi3LyaPQQ090U7eDVqhn8/Mnbz1QoV9AHg6U5RCLPm+XXuvpipg5OrCymStmxzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cn4rPZlm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C9D5C4CEC3;
-	Thu,  5 Sep 2024 11:33:11 +0000 (UTC)
+	s=arc-20240116; t=1725536024; c=relaxed/simple;
+	bh=LXkNK7tbZpK9Bwrdl5kfMRV9eTB9+L844J1TGRnWWrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mHLc5zyLZ8mTTzbo1oRYxWm7RCeCQVWz6Rd5wIUY6118TcdGeUim9fawbVzALslxbf7BBOq/d77/+iKlq4RX3aSi/L6NLAFWYPOVjt3qc3ObRWkK8wpwqovZg3P0GDux3gLmKOAs/9w4l96BP+fvYylwj9vRPe5uwJDxbi5KgNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtT6+K7P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A25CC4CEC4;
+	Thu,  5 Sep 2024 11:33:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725535996;
-	bh=VWk0KKM+pEC2Fxd/uZoZaHJwBnxhNaByHYWWjXspupw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cn4rPZlmwgMcVVU+MrRIC0Yjz3jTout7qWJji7d3q+7Y7YqTAyEcMW/f3hDXdtPSJ
-	 RTETa4ysBQk9weJrSdjM5qSQfU/UX35eT9DKaz6M79YTVXtTy+aAVWejiZckaiLw03
-	 K5tqZONOWD9SX2Bl+C3M2Jf1i11KxGyFiY1LITuE97vzWZfVCaoQRhGnqlVsEpxYrM
-	 TBGqJ0fTuBxxkSdo68FbuIH1DqOMQAYzxYoGTRWsUnIZX5KFkFdl7r2dC8schnl7el
-	 7c3pivYAM+o4q6/SUIKg9pYAz3XDmgOolIvFegh9O1ZGXGm5+EYz9294l9Up8AwswX
-	 erdM46Mn8OGNQ==
-Date: Thu, 5 Sep 2024 12:33:08 +0100
-From: Mark Brown <broonie@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH RFC v3 0/9] spi: axi-spi-engine: add offload support
-Message-ID: <52894eda-f484-43b2-b9db-04bd14fe6e18@sirena.org.uk>
-References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+	s=k20201202; t=1725536024;
+	bh=LXkNK7tbZpK9Bwrdl5kfMRV9eTB9+L844J1TGRnWWrc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KtT6+K7PIGT336TLuzd8AEw9SgB6Yk9RPpWk5wKPtuk2CNKfP3Sk2tPwKhojg0z+B
+	 655Qu7DlqaSi17ysvw2+xZlyDpLZ5roo85vMJ8DY1tWz9BGuubtIoxlTa3Ec6LKczS
+	 yYJgqvVZ2W9rOYHFrBBfyTbjnTGpJ+DtOm5kFRO71sJ60QfXvIsVUjo1BE0ch38mlU
+	 oFNd0prIr00Qi7Ae1MCsGhAu7roUpFCdZsdrit8Fi1XGQ+Uojh4XVO751Aei6rFLlN
+	 OZyTFVoLDdLRkszY1T13/RUOzjCm2LyaW3ngC8JGpEJgolFAP7HSn2AF2G1wIqBXOQ
+	 GTZRK6RRdp2Ug==
+Message-ID: <3878b8e1-00c5-4761-bb1f-c9aa853ec501@kernel.org>
+Date: Thu, 5 Sep 2024 13:33:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="SQPEeGKFbXTry+H6"
-Content-Disposition: inline
-In-Reply-To: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
-X-Cookie: The horror... the horror!
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/19] Add initial support for QCS8300
+To: Jingyi Wang <quic_jingyw@quicinc.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson
+ <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Xin Liu <quic_liuxin@quicinc.com>,
+ Tingguo Cheng <quic_tingguoc@quicinc.com>,
+ Zhenhua Huang <quic_zhenhuah@quicinc.com>,
+ Kyle Deng <quic_chunkaid@quicinc.com>
+References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
+ <fcfaeed3-8544-4e98-9f95-f43346dc83e8@kernel.org>
+ <3535a897-8708-463d-b931-fa344a967f18@kernel.org>
+ <aa74f55b-7e14-4ca4-bd79-2104d81a0660@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <aa74f55b-7e14-4ca4-bd79-2104d81a0660@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 5.09.2024 7:08 AM, Jingyi Wang wrote:
+> Hi Krzysztof,
+> 
+> On 9/4/2024 6:19 PM, Krzysztof Kozlowski wrote:
+>> On 04/09/2024 11:34, Krzysztof Kozlowski wrote:
+>>> On 04/09/2024 10:33, Jingyi Wang wrote:
+>>>> Add initial support for QCS8300 SoC and QCS8300 RIDE board.
+>>>>
+>>>> This revision brings support for:
+>>>> - CPUs with cpu idle
+>>>> - interrupt-controller with PDC wakeup support
+>>>> - gcc
+>>>> - TLMM
+>>>> - interconnect
+>>>> - qup with uart
+>>>> - smmu
+>>>> - pmic
+>>>> - ufs
+>>>> - ipcc
+>>>> - sram
+>>>> - remoteprocs including ADSP,CDSP and GPDSP
+>>>>
+>>>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+>>>> ---
+>>>> patch series organized as:
+>>>> - 1-2: remoteproc binding and driver
+>>>> - 3-5: ufs binding and driver
+>>>> - 6-7: rpmhpd binding and driver
+>>>> - 8-15: bindings for other components found on the SoC
+>>>
+>>> Limit your CC list. I found like 8 unnecessary addresses for already
+>>> huge Cc list. Or organize your patches per subsystem, as we usually expect.
+>>>
+>>>> - 16-19: changes to support the device tree
+>>>>
+>>>> dependencies:
+>>>> tlmm: https://lore.kernel.org/linux-arm-msm/20240819064933.1778204-1-quic_jingyw@quicinc.com/
+>>>> gcc: https://lore.kernel.org/all/20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com/
+>>>> interconnect: https://lore.kernel.org/linux-arm-msm/20240827151622.305-1-quic_rlaggysh@quicinc.com/
+>>>
+>>> Why? UFS cannot depend on pinctrl for example.
+>>>
+>>> This blocks testing and merging.
+>>>
+>>> Please organize properly (so decouple) your patches, so that there is no
+>>> fake dependency.
+>>
+>> Let me also add here one more thought. That's like fourth or fifth
+>> QCS/SA patchset last two weeks from Qualcomm and they repeat the same
+>> mistakes. Not correctly organized, huge cc list, same problems with
+>> bindings or drivers.
+>>
+>> I am giving much more comments to fix than review/ack tags.
+>>
+>> I am not going to review this. I will also slow down with reviewing
+>> other Qualcomm patches. Why? Because you post simultaneously, apparently
+>> you do not learn from other review, so I have to keep repeating the same.
+>>
+>> I am overwhelmed with this, so please expect two week review time from me.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> The CC list is generated from B4 tool, however, thanks for your advice and we
+> will decouple the changes to avoid this. And could you please help us to confirm
+> the better way to handle binding changes which just add one compatible, should
+> it be submitted as a single patch or submmitted together with dts patch series?
 
---SQPEeGKFbXTry+H6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The tool did its job here, it's just that this series is very long and a ton
+of people ended up being involved due to bindings oneliners
 
-On Mon, Jul 22, 2024 at 04:57:07PM -0500, David Lechner wrote:
-> There is a recap at the end of this cover letter for those not familiar
-> with the previous discussions. For those that are, we'll get right to
-> the changes since the last version.
-
-I didn't reply on this mainly because I don't have anything super
-substantial to say that wasn't already covered.
-
---SQPEeGKFbXTry+H6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbZlvMACgkQJNaLcl1U
-h9B4rAf/ZoKEQN8Ha9T7PIsTC+93EBkvUTESMJz+87Yt8sXAwKjxCQyi8uUB8CNZ
-nXIsSzqp4bZS3nhAuQovxgJwoZ7/TA0RdlzT2aE5WxJL4diRUaQpPvJpwmGKRnHB
-qqC+w+b7QBpnp8LaQnxAc2Sqyp08GQavoGgPpL4CggM+wh7v2LihCCZEg1+Fv4R0
-hGhMF3ZKNp8v1yvIungM8leb/ooqY8fhKQoVjf4HVXngZLl4qQI7Jk+b66MeSWrV
-yOGB5unNKl9zGFr+Pma0F5NlEhC7/H6PwKts2skY3+heBw4WNnkrZgY++0m8uJvk
-Dx5B0OmMI2x8J5WiAcULkVIW+TOQWA==
-=JKTd
------END PGP SIGNATURE-----
-
---SQPEeGKFbXTry+H6--
+Konrad
 
