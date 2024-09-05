@@ -1,156 +1,129 @@
-Return-Path: <devicetree+bounces-100454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC7396DAA3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:46:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CED396DAAB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 15:47:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 653251F23379
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:46:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC452288711
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5058619D891;
-	Thu,  5 Sep 2024 13:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E487219D891;
+	Thu,  5 Sep 2024 13:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7ZP1P0W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hG3XYGg+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17EB31991A9;
-	Thu,  5 Sep 2024 13:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFE817C9AE;
+	Thu,  5 Sep 2024 13:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725543985; cv=none; b=GV+TBPCO6vVRbQBj0Jt0QjuLOaCv7OaPd7NuHQVLqGXEKrl39CPHMTZJecDaiF7SG6JQDE2oIfTsLaV6xiP8KTQWoO3Krym2vVQszRmEgJPhqh62bKZCVv/YvZRYRvzncXrYwFGGetcJWFIZyRi0k8VhcCDFawlRAU3Gq2iG8UQ=
+	t=1725544025; cv=none; b=SlQ1MdEdeCltKV0AvzUx/JXa4+QTA9EjV463p5oiQTW1+XyWXUAf3L3ply8tPz1DMXK4X8JT/T4iqwPGpq+U7eatOuhy4GHRyb6RCquzFlQcHHn2HKXh9eDQO5jDodNdDyUbE+0+iu55I+1GCyvPeTiM1mIdQS6xRHFwH9pOXBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725543985; c=relaxed/simple;
-	bh=GQZAEp8fjoyPw58mOjAfHRzea9bsP3cmexcWmvk/rmo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t0R9DyJ1tnSU0sAqb1R3hFe/s2tesEwdMnbOTEYxK5ku5TYJIhG6fA2R3fjYGTxnzKD/y73uxBCuJcL1sLytccdv1OHcw/dXT9WYQKmqH1bYrKSdbAJ0zA8gRhhiGHEXa3FRNR/x5zH4PVQ5MhtyuAozQpaxAl54r3oO8dIjneE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7ZP1P0W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1942C4CEC3;
-	Thu,  5 Sep 2024 13:46:20 +0000 (UTC)
+	s=arc-20240116; t=1725544025; c=relaxed/simple;
+	bh=sI5y1eSjN/a3YRMxRNTDqjn+umUQqLG8Dfm4wjCbFBU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d8IU/M9USb6jtvWHkk/7QvSGidObTrWhtIH73F1ESDAA5l+EOBPHBj16HqdDtxDGh2KTy81I0o/lJ4bXKDRVgzdce0i1uemBwDJTgDi0wRz0PuUIn+zelyfbwb+OFGVjpmkuH6RvGonzZi3OAvA47g/5bI8zvfzEr6+nHi3TgLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hG3XYGg+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46A2AC4CEC3;
+	Thu,  5 Sep 2024 13:47:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725543984;
-	bh=GQZAEp8fjoyPw58mOjAfHRzea9bsP3cmexcWmvk/rmo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i7ZP1P0WGaLa5SlSkdum2to6VyUfztq00fNfKcYjQHL2Ynw/BuDuGb4NvZTssQShn
-	 ea58Xqz2qKmInPEhR8NKQegOEqnJirnA/z2rfV9fmqpXwDaAhPGG01/bD4ndanoz7q
-	 bBkMYrXGZD9igz0vPYBBWWUq484cXzsnQP38zweZYMneor6olCbLu4Son6TBqxzKtX
-	 PqhHQGcBJZr9ybPCiJp4YWArFXVFXYKr6k2ptvXr047i/AUSLp60NuQTYHx7jm+tf9
-	 RxOgzDAMg807O0oLq4HLcEPrCtAb2G49IYIjHAmQCQgDRvpjLFT5sULimMoyxRPwD+
-	 +Jdw6fLmUZpmw==
-Message-ID: <c3ad5248-fe47-4622-a53b-386e556a0add@kernel.org>
-Date: Thu, 5 Sep 2024 15:46:18 +0200
+	s=k20201202; t=1725544025;
+	bh=sI5y1eSjN/a3YRMxRNTDqjn+umUQqLG8Dfm4wjCbFBU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hG3XYGg+PqbEtyngI9vHEb6I1j0nyAJYiHN5ILgGHvGp+2OlXYGrewuoVaVqMTf2w
+	 Lrac4i91ypCHaxArChDtDfvVKJV9Rf7A7V5w9XBUM3sVb6Wo/2lqJGKD7f+byYFrW2
+	 STFmhKuuciQNq4dMNXkvcJqO9fur6POG6X49W71ELClXa1rZE7uJyYCsT+1ZrDRwef
+	 uZYTH9DFlfShePSHrtyT5B5gzy6SLOxa+h9JUvemcOmi3BCieaPOMlC2Fl5tFtNqpR
+	 f1emNRzha4d12ghwG30AmwYtkWQmc+ShIX80S0tMxvoZCxmCAwu7T2I/K7hAsut9n5
+	 3RTZ2d3yZvAEQ==
+Date: Thu, 5 Sep 2024 08:47:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org,
+	Dinh Nguyen <dinguyen@kernel.org>
+Subject: Re: [PATCH 03/15] kbuild: move non-boot builtin DTBs to .init.rodata
+ section
+Message-ID: <20240905134704.GB1517132-robh@kernel.org>
+References: <20240904234803.698424-1-masahiroy@kernel.org>
+ <20240904234803.698424-4-masahiroy@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/29] media: iris: implement power management
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, quic_dikshita@quicinc.com,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
- <20240827-iris_v3-v3-10-c5fdbbe65e70@quicinc.com>
- <d3679f2f-f177-494e-b68d-2a67b423d0cb@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <d3679f2f-f177-494e-b68d-2a67b423d0cb@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240904234803.698424-4-masahiroy@kernel.org>
 
-On 05/09/2024 15:23, Bryan O'Donoghue wrote:
-> On 27/08/2024 11:05, Dikshita Agarwal via B4 Relay wrote:
->> From: Dikshita Agarwal <quic_dikshita@quicinc.com>
->>
->> Implement runtime power management for iris including
->> platform specific power on/off sequence.
->>
->> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+On Thu, Sep 05, 2024 at 08:47:39AM +0900, Masahiro Yamada wrote:
+> Some architectures support embedding boot DTB(s) in vmlinux. These
+> architectures, except MIPS and MicroBlaze, expect a single DTB in
+> the .dtb.init.rodata section. MIPS embeds multiple DTBs in vmlinux.
+> MicroBlaze embeds a DTB in its own __fdt_blob section instead of the
+> .dtb.init.rodata section.
 > 
->> +int iris_hfi_pm_suspend(struct iris_core *core)
->> +{
->> +	int ret;
->> +
->> +	if (!mutex_is_locked(&core->lock))
->> +		return -EINVAL;
->> +
->> +	if (core->state != IRIS_CORE_INIT)
->> +		return -EINVAL;
+> For example, RISC-V previously allowed embedding multiple DTBs, but
+> only the first DTB in the .dtb.init.rodata section was used. Commit
+> 2672031b20f6 ("riscv: dts: Move BUILTIN_DTB_SOURCE to common Kconfig")
+> ensured only one boot DTB is embedded.
 > 
-> Reiterating a previous point
+> Meanwhile, commit 7b937cc243e5 ("of: Create of_root if no dtb provided
+> by firmware") introduced another DTB into the .dtb.init.rodata section.
 > 
-> Are these checks realistic or defensive coding ?
-
-Well, this one:
-
-if (!mutex_is_locked(&core->lock))
-
-is clear bug or someone is reinventing lockdep.
-
->> +
->> +	if (!core->power_enabled) {
->> +		dev_err(core->dev, "power not enabled\n");
->> +		return 0;
->> +	}
+> The symbol dump (sorted by address) for ARCH=riscv nommu_k210_defconfig
+> is now as follows:
 > 
-> Similarly is this a real check an error that can happen and if so how ?
+>     00000000801290e0 D __dtb_start
+>     00000000801290e0 D __dtb_k210_generic_begin
+>     000000008012b571 D __dtb_k210_generic_end
+>     000000008012b580 D __dtb_empty_root_begin
+>     000000008012b5c8 D __dtb_empty_root_end
+>     000000008012b5e0 D __dtb_end
+> 
+> The .dtb.init.rodata section contains the following two DTB files:
+> 
+>     arch/riscv/boot/dts/canaan/k210_generic.dtb
+>     drivers/of/empty_root.dtb
+> 
+> This is not an immediate problem because the boot code chooses the
+> first DTB, k210_generic.dtb. The second one, empty_root.dtb is ignored.
+> However, relying on the link order (i.e., the order in Makefiles) is
+> fragile.
+> 
+> Only the boot DTB should be placed in the .dtb.init.rodata because the
+> arch boot code generally does not know the DT name, thus it uses the
+> __dtb_start symbol to find it.
+> 
+> empty_root.dtb is looked up by name, so it can be moved to the generic
+> .init.rodata section.
+> 
+> When CONFIG_OF_UNITTEST is enabled, more unittest DTBOs are embedded in
+> the .dtb.init.rodata section. These are also looked up by name, so can
+> be moved to the .init.rodata section.
+> 
+> I added the __initdata annotation to the overlay_info data array because
+> modpost knows the .init.rodata section is discarded, and would otherwise
+> warn about it.
+> 
+> The implementation is kind of cheesy; the section is .dtb.init.rodata
+> under the arch/ directory, and .init.rodata section otherwise. This will
+> be refactored later.
+> 
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+> 
+>  drivers/of/unittest.c | 2 +-
+>  scripts/Makefile.dtbs | 4 +++-
+>  2 files changed, 4 insertions(+), 2 deletions(-)
 
-And here re-inventing runtime PM.
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
