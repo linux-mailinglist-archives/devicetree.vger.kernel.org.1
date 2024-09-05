@@ -1,135 +1,124 @@
-Return-Path: <devicetree+bounces-100546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24EC96E146
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 19:37:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73A9796E168
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:00:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D587E1C20895
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 17:37:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2207B28719E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 18:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25841A7279;
-	Thu,  5 Sep 2024 17:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A7417BA7;
+	Thu,  5 Sep 2024 18:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cf9l6VGh"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="jjvBAqam"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C5D1A704E;
-	Thu,  5 Sep 2024 17:37:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1013D7464;
+	Thu,  5 Sep 2024 18:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725557847; cv=none; b=LH19TTWWbqzt3q0J1aGT1ZzKlCDKRqb523mGUIKYUXNkdu0lxUl+SrfOdzghQlXSW3GQz9fbJvIoNQ6dAebW2Htrp3QmuEYxrS6y2HiCYOiivfWKcO6zH7XxnwjcPIdSfAedI/juUU+V17GhTFGVUX3OU3ehyMaSLqHykH+gC1E=
+	t=1725559222; cv=none; b=uwZRkA2DnwJ/oSY7WyGqWDyAoIXYDFfx/aaPNYpnHJj4INBqU593dn+LiSZ8/SlFVpmKL5hG7PPicqPv3Ptuo1UmsJ4aMHGxZ41xvTzyFUMiaI5nn0MHE+Yn/hreDEaMlIRtFTYULBW6gI8TKXW8dAT5Bx3lVhYJNa8cv1Gc3Gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725557847; c=relaxed/simple;
-	bh=ZUQNvjzepWA4pCK8RLWIXzlmS349ucRwrxxaYBZS3Do=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Hzz4JM3sIVQ2gKal/A9A8oN+oq0NoMKSfheadg+s6JkwB98H0T2eRfLAdqppMHpr6UkZhO54q+6iW0fyY6Me+Yau30BzBDCfckWn2Vbg6ciJr7GCpDJicNbD4FLiDuOs/Asw476qGec6IyPxfhru/zeiA3CcJ13FFZOO9k6fwKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cf9l6VGh; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42bbffe38e6so8437835e9.0;
-        Thu, 05 Sep 2024 10:37:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725557844; x=1726162644; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=557eQ0nrkCY+/ANVkKP3VQXQ7163oT4FiuaAuauOfKc=;
-        b=Cf9l6VGhQs/Vl8ZO3QVU2VZHJNBixy8fSm0etdt6fVmpEteLMCuwq6ZEEadJ/nKEJc
-         nI8RYuwYQpfndwGDkmzqFPfddRu013GaV5LvNkEJshVNOoEk9egb4ycjgDYewuIRe4qJ
-         zgUSRCQvo1DtkRv2tT5a4przqznH9rfoROq6WQX3cYXmlO1h3PHZrKq2PG94Hl0KE0s6
-         l59aynadlhywVgxANviFC+a8FGVaril1qDmc/S3YYl7XakycFgPvGCVBn78I0kEEyKMc
-         jQ+i4Su8DHyP+SPoUBxp5bjTEZ3HdfF3ALwPe9fZ4ooMMuT+rtz3zxBJlhUNW3PtJMVU
-         a2UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725557844; x=1726162644;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=557eQ0nrkCY+/ANVkKP3VQXQ7163oT4FiuaAuauOfKc=;
-        b=Oq+9IOH+oM7dkuoVt1np+gEGViAmInrVIxxU8aoC0s7IU9W6LaFwLg48+p3KxnBOKG
-         mhOxTzES95jPKytcM1AaomXeZVSY8bXpMpgWh4YHyF//NF/w9oPlPw4W9F6MqGqxvPuF
-         FbJmQzafsGLE8aC/UGz0ekzVwYJO4aBMVhV8EJGTUgOG3yMYCgbYjbPaiqRvhGqhNNVy
-         Gvopcu6sNRJaHkdkenb0dUpbBVOrdkUFar74GRD9zM9qmsYZJXf93JUSA5Xye5y3tpN7
-         pkDlM90bajh63H18ioW+fAtLsD9RmgMAot2HG6FhGXZcIg1p9Vo0FgGbrlCRihSzDQ7t
-         DxqA==
-X-Forwarded-Encrypted: i=1; AJvYcCX4qaLKPqsrDWWRTa9Vhax4i6x6pcgyxTzY/37awO33EwwYDPrce2ljzorfYzg+XZR8kssVV1Lisj8fF4M=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+cr1WXaxdZptKkVwRrSUp6bXby36HayR0BEp/0ixr623WF2Lh
-	Emn8t7oYb8cOMxjOP2mRqEY/bcwBFtzEG3U1QvNJZbmFAJWXxLHgev1sb1/xX60=
-X-Google-Smtp-Source: AGHT+IHG7cIYEiQK4CjUWPerdwh6CKrVoOAyBG3msAvSCV3Qn00TYv6w1O7L2+TkplQKEGL8B3Og9w==
-X-Received: by 2002:a05:600c:3596:b0:426:66e9:b844 with SMTP id 5b1f17b1804b1-42bb02c0711mr192660435e9.8.1725557844242;
-        Thu, 05 Sep 2024 10:37:24 -0700 (PDT)
-Received: from cleve-worktop. (85-193-33-185.rib.o2.cz. [85.193.33.185])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42bb37f7849sm245704605e9.7.2024.09.05.10.37.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 10:37:23 -0700 (PDT)
-From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-Date: Thu, 05 Sep 2024 19:37:11 +0200
-Subject: [PATCH v3 2/2] arm64: dts: allwinner: H5: NanoPi NEO Plus2: Use
- regulators for pio
+	s=arc-20240116; t=1725559222; c=relaxed/simple;
+	bh=tcPJ3ojW634v/zUaVsG8PGOkuxZ+rC2Arp2kPscCRcw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=hGH4OHoGoAkq3jkzBI569JZIYnrCmVn5SMKvMjqcTGGCZBMg1dWtwCiIYyvixJPjmB56rUgnP8rEEum2IME5ngCm1P2kEe0DLFozAlJtqBorSfpkpWwwFdl8AZ1cMW9c5iebFHn/CEL7PPBhnLvWHbpNjd5IWGpUCJrIlh07ZEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=jjvBAqam; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [14.155.100.110])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 6073D789EF;
+	Fri,  6 Sep 2024 02:00:11 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 6073D789EF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1725559213;
+	bh=IehJ7vYaR/acTX/sHMWsvwZTff/S0qCnA1igWLTgxpU=;
+	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
+	b=jjvBAqamn4voe/zLDC5EjIJVOsceiErcyffHhgCuRpF1u+6nzqji1jwgcb22URs/2
+	 24rLvCkbDxAenXtSkdUSH+bd49BV+/SOhirwrxNE++Sldkud0Q37NmSn83jQHKLrMk
+	 eAotb02AjTReCEyIsSWcMrBfTKS8iY/ZakcEgSuc=
+Message-ID: <fd4fc7a0-7def-4f91-a64c-71689ff71d1c@classfun.cn>
+Date: Fri, 6 Sep 2024 02:01:32 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240905-nanopi-neo-plus2-regfix-v3-2-1895dff59598@gmail.com>
-References: <20240905-nanopi-neo-plus2-regfix-v3-0-1895dff59598@gmail.com>
-In-Reply-To: <20240905-nanopi-neo-plus2-regfix-v3-0-1895dff59598@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725557840; l=958;
- i=cleverline1mc@gmail.com; s=20240824; h=from:subject:message-id;
- bh=ZUQNvjzepWA4pCK8RLWIXzlmS349ucRwrxxaYBZS3Do=;
- b=HR9gGVSIHOvwivYhckB8+lKbHqe+U0NuPSVXQyZHFvG79aOdTUJqu593cgFwNB7Tm+0Wxox4m
- GvATeaSEke+ALXSM3Dxy21o3ZbF5vQNIEpWqEBoAD5294oLrtCJ2zZu
-X-Developer-Key: i=cleverline1mc@gmail.com; a=ed25519;
- pk=CQifx5FUgTQKAoj5VCYrwYHi235AkXQ5yT1P6gkaBxM=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+To: Andrew Lunn <andrew@lunn.ch>
+References: <20240904111456.87089-1-bigfoot@classfun.cn>
+ <20240904111456.87089-4-bigfoot@classfun.cn>
+ <6030542f-070d-4d76-9a5a-fbfc6bd433e6@lunn.ch>
+ <1e189c70-e677-453d-9e31-6637196c2b5c@classfun.cn>
+ <3f5bcc6c-5ee0-4fef-bb58-f7acf9551fc1@lunn.ch>
+Content-Language: en-US
+From: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <3f5bcc6c-5ee0-4fef-bb58-f7acf9551fc1@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Pin controllers pio and r_pio will have proper regulators assigned.
+On 2024/9/5 20:53, Andrew Lunn wrote:
+> On Thu, Sep 05, 2024 at 07:17:03PM +0800, Junhao Xie wrote:
+>> On 2024/9/5 01:25, Andrew Lunn wrote:
+>>>> +&gmac1 {
+>> [...]
+>>> This has been discussed a few times. You should be using phy-mode
+>>> rgmii-id.
+>>
+>> After I changed phy-mode to rgmii-id, it seemed to work,
+>> but it didn't transmit any data.
+>> Maybe I made a mistake or should I continue to use phy-mode rgmii?
+> 
+> How did you change the rx_delay and tx_delay?
+> 
+> In general, we want the PHY to add the delay, not the MAC. Most boards
+> in Linux do that. But boards using the motocomm PHY have got into a
+> cargo cult copy/paste of using the MAC to add the delays.
 
-Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+I have tried rgmii-id with tx_delay/rx_delay 0x38/0x15, or 0x0/0x0,
+or directly removed tx_delay/rx_delay, they all didn't transmit data.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-index dee4cd82636b..526443bb736c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-@@ -171,6 +171,18 @@ &ohci3 {
- 	status = "okay";
- };
- 
-+&pio {
-+	vcc-pa-supply = <&reg_vcc3v3>;
-+	vcc-pc-supply = <&reg_vcc3v3>;
-+	vcc-pd-supply = <&reg_gmac_2v5>;
-+	vcc-pf-supply = <&reg_vcc3v3>;
-+	vcc-pg-supply = <&reg_vcc3v3>;
-+};
-+
-+&r_pio {
-+	vcc-pl-supply = <&reg_vcc3v3>;
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pa_pins>;
+I saw in dwmac-rk.c that when using rgmii-id, the tx_delay/rx_delay
+properties in dt are ignored?
 
--- 
-2.39.2
+arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts also
+uses YT8521. I added rx-internal-delay-ps and tx-internal-delay-ps
+to rgmii_phy1 of mdio1 according to the prompts, and it now works
+well using rgmii-id!
 
+&mdio1 {
+	rgmii_phy1: ethernet-phy@0 {
+		compatible = "ethernet-phy-ieee802.3-c22";
+		reg = <0x0>;
+		rx-internal-delay-ps = <1500>;
+		tx-internal-delay-ps = <1500>;
+	};
+};
+
+&gmac1 {
+	[...]
+	phy-mode = "rgmii-id";
+	[...]
+	tx_delay = <0x0>;
+	rx_delay = <0x0>;
+	status = "okay";
+	/* Motorcomm YT8521SC WAN port */
+};
+
+Best regards,
+Junhao
 
