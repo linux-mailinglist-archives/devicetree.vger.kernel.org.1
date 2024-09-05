@@ -1,120 +1,137 @@
-Return-Path: <devicetree+bounces-100633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373EB96E5C0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 00:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ACAA96E5DB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 00:46:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4DAF2814F0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:31:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A6502870FB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5000815687C;
-	Thu,  5 Sep 2024 22:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3621A76DE;
+	Thu,  5 Sep 2024 22:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LHSo3hdV"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="uSJGTGQH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDFD113D638;
-	Thu,  5 Sep 2024 22:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6655197A9F;
+	Thu,  5 Sep 2024 22:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725575502; cv=none; b=ez0tORwow61hIsu4wWd3uSPOBEtKR589Hu6Xhk0L0ASXMKiEtLLj7gosNuLgTocCTTfMAS4wc4MUJfIs9TBpn8R8wqCy84jhRonQRlupvxu4g1pF4zTCZnj+M6NqNGfzL63FHIg6ve/2NFb+fYqtHSVDQgLqwvOeYMF66lcZtSg=
+	t=1725576402; cv=none; b=debU1z/DuIyt5My6UeRuQuWbkalNBI6UORBuN9sdJ2vLaTLeuiwpr2OBJ/8eZ+h1GUugGsywbg7F8McOtOzNB8t42/ieVSZCYGwxIx62nbDRiTE/M3zJ2v9B17SVNhtQ6ER6DqJ8/9syRsbsCJ9+uC4dGU+vynBlm0gQ9nry20s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725575502; c=relaxed/simple;
-	bh=ImZuOxNJ7EmSvzdj7PGLyzPv1nqU1DZZ2z7TkryXsMU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dNuwn73pKyu81mo7I0WzhAHzQILgBgnBDqgT7sfH0gdcn5h+1PEWYdzl+wCO3qN9HrfFuFFlu+2e+4wBhb2ldApEMJMPa2YiGWuwJNkcgszGix0ADSW/DhC++PiAndQkVLnvENFeobAj1xwGpaC4GjgxUqHXq/ayTl/ol9Pq9bQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LHSo3hdV; arc=none smtp.client-ip=209.85.160.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-26fda13f898so863948fac.1;
-        Thu, 05 Sep 2024 15:31:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725575498; x=1726180298; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ByTGY4/YW1oFlLnwGbDA1qTS9L9gMEUay1+a7RZYMwo=;
-        b=LHSo3hdVfBxT6eHUF+HUyKIYtlKAJ3uugys6HH9h1WlKUqj+VN7wOs2IQnCrm0XSEk
-         9wWx7OyorOAHLOc4C2tPw/vCVLebgtVze5Rj14qz7mMMeM61I3zF5P/iGIGGj6w/7CnU
-         RhiceLaYy+dkXi6MzGxSNXo9QKQ/1HPd3amLveL/+ZUWdAUG78qdRaYYuiKLHzNvb/tA
-         DvrJLJLY07EkIQF4fU0m6YTB1L56m0JiAtVWF2uE5I5m+xmCENI6ahqZCr4tUgavjzER
-         FAcnXRmiM6xHON02AMCM5NNr3UuXn9oHkY0ILXD5GTXt2UlCkbbY3Ws4mu3pzI0btt6T
-         gl2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725575498; x=1726180298;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ByTGY4/YW1oFlLnwGbDA1qTS9L9gMEUay1+a7RZYMwo=;
-        b=kDBNrhrZ0dkD5v7IRJtiAjFyg09tm371FaJvR5yU/OENc65R/fRaWdWX2nQKUyKRDL
-         IV5PskFurRtqv0yoj+Dg5wlSrvnpMNfGtU1efb+lfs4c5QymTv1SiEW2aPG/VrDLTxLp
-         I1zKLuDFxJx++g5AHHLS1FGq+T/Ci8z2pnt3HV2Zg/XDF/Gb1ah1884saiOBDYyyv6i6
-         +VY1a+/EsAaHPgNv4iHe6wzKhlIqkb7ZFvXEqSIMa7AOSVWGiz0QXQL1E9FT5Wrp/Wgl
-         i4t1C/V9md5Qc38ekhL5z/ZHwlkBDoaJz7Y4cfM9jNosl3TJmuj9fqr69Sluh2ZCuRcf
-         JZ6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUDdmkxU7PBAmowRFLnuwDhSJyVL/Lmq/Ic3BFgJZk1r3LgAHnO2FOxhr0VRIApvD4ups9hjj4DdjpK@vger.kernel.org, AJvYcCUg6NASX53OBDbKYLyT5b0uZjmHOQLrhDNzZqFdYtDci0dCfTsEmZ44uGxaGKzbQFLy+OG9oMqc7GnC@vger.kernel.org, AJvYcCXHlkLSeX8kVz6NcgwjKhNjw8doNcQv1/zjZ1kvS/T5JKcMHIHoAsBV0qTH4iCfeKjFqu3ZrSzlc08QNAtD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwokCqJobPkmoUthU+f7iSBmZU8EDk0w7C5+INs3Kx8/DagDn36
-	MLbSGj9snnbLsNxNq75wU8V8vnlk3IMVMe2KLb/mZHFjzfiOI/v8
-X-Google-Smtp-Source: AGHT+IElrwBYH/D0EmLH69uk3BJrH7NaeKR2pAOqLsxRNAM44HDm9e8DYGn+wJTGKzyP8BcdCGua7w==
-X-Received: by 2002:a05:6870:ac14:b0:277:d8ee:6dda with SMTP id 586e51a60fabf-27b82ed99acmr842093fac.23.1725575498562;
-        Thu, 05 Sep 2024 15:31:38 -0700 (PDT)
-Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a98ef1e6efsm115978685a.23.2024.09.05.15.31.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 15:31:38 -0700 (PDT)
-Date: Thu, 5 Sep 2024 18:31:35 -0400
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>, 
-	christophe.jaillet@wanadoo.fr, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: display: Add Sharp Memory LCD
- bindings
-Message-ID: <w6izw3nv35zhquqipv5elp7hqf5pdtu6b2ss2infh4mmxr4aop@cxypawy5rufr>
-References: <20240905124432.834831-1-lanzano.alex@gmail.com>
- <20240905124432.834831-2-lanzano.alex@gmail.com>
- <a4520c05-d64b-4ef0-823c-6c568b459e21@kernel.org>
- <trlyhlclf74itbgj4x6baj6ga6yipdicw3c6odtjgxtbw3cjyl@lyfiny2yiz35>
- <8bab34a9-0fe4-4c69-b12b-7ad663bde2d0@kernel.org>
+	s=arc-20240116; t=1725576402; c=relaxed/simple;
+	bh=dD91Dh4EHgzPc17u4Z0m/j6eDaluADVRos9DOnh2HKg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ot4Y0XHJnYR6b0DlbdtVGC00x/U+Er0opVkQPr9c/DIeCfQwLZhyaHW2tulVa1crovKEdCy9QDu4uw5u5ERzHseaoPYRNwoA/yVzsp0cP74qckRSwtSurNbYd7ctz7MvO55ihPQXMRF5jaL6j6pDPkitZTLjerS9XT4X95wRT/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=uSJGTGQH; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=5te1QcV9bMTGPWXtf57Xlf2pr7w3M9wbPF0XwPSIHhc=; b=uSJGTGQHos+M+bmj9p1/ltqkie
+	+MK+EkuHbcoifynj+z9mrAF9eebJHRy+YRy0z4hE5LEPRnKDN+39pEp117kgMo7BCoVrsGsI1EFB5
+	yE2eSOYPXCHZoWlcqBCUyA8OG8ijrHjlIj6xdAuH7b2KyVJ0pS7MpiD5uhC611wqMV2DPrwJCQVcT
+	jRAW0dGAy3GWm6SAuo25ct70l3fAubQrWimfoZwaX6d/aa+AJZC9WtzoVyXeSFmDceaLpVA+CxLcb
+	o5sQSScP//0lWEPLtMQJ7oMxat2n9gEAHiaS2y921PTYUy6CCbtx3LtBmG/X1yJKURCFHIKOh0IA0
+	Exflxsog==;
+Received: from i5e860d0f.versanet.de ([94.134.13.15] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1smLFL-0005IK-W6; Fri, 06 Sep 2024 00:46:36 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: mturquette@baylibre.com, Stephen Boyd <sboyd@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 4/5] clk: clk-gpio: add driver for gated-fixed-clocks
+Date: Fri, 06 Sep 2024 00:48:35 +0200
+Message-ID: <5168975.haC6HkEk0m@diego>
+In-Reply-To: <9b92b5f03632e8793253ba75fc00f6e3.sboyd@kernel.org>
+References:
+ <20240828101503.1478491-1-heiko@sntech.de>
+ <20240828101503.1478491-5-heiko@sntech.de>
+ <9b92b5f03632e8793253ba75fc00f6e3.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8bab34a9-0fe4-4c69-b12b-7ad663bde2d0@kernel.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, Sep 05, 2024 at 11:12:47PM GMT, Krzysztof Kozlowski wrote:
-> On 05/09/2024 22:27, Alex Lanzano wrote:
-> > On Thu, Sep 05, 2024 at 03:23:20PM GMT, Krzysztof Kozlowski wrote:
-> >> On 05/09/2024 14:43, Alex Lanzano wrote:
-> >>> Add device tree bindings for the monochrome Sharp Memory LCD
-> >>>
-> >>> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> >>> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> >>> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
-> >>
-> >> I don't understand what happened here. Your process of handling patches
-> >> is odd. Tags do not disappear, you had to remove them, right? So where
-> >> is the explanation for this?
-> > 
-> > Whoops! My apologies for wasting time. Nothing changed in this patch
-> > I forgot to add in your reviewed-by tag.
+Am Mittwoch, 28. August 2024, 20:30:51 CEST schrieb Stephen Boyd:
+> Quoting Heiko Stuebner (2024-08-28 03:15:02)
+
+[leaving out all the "will fix" parts :-) ]
+
+> > +static struct platform_driver gated_fixed_clk_driver = {
+> > +       .probe          = clk_gated_fixed_probe,
+> > +       .driver         = {
+> > +               .name   = "gated-fixed-clk",
+> > +               .of_match_table = gated_fixed_clk_match_table,
+> > +       },
+> > +};
+> > +builtin_platform_driver(gated_fixed_clk_driver);
 > 
-> Tag was there before, so you removed it...
+> The comment above builtin_platform_driver says "Each driver may only use
+> this macro once". Seems that we need to expand the macro.
 
-In prior versions I was manually adding the tag to the patch file. But I
-have since added it to the commit message like I should have from the
-beginning. Again, I apologize for any time wasted and appreciate the
-review.
+each _driver_, not each file is the important point I think.
+
+Looking at the code generation, it just wants to use the name of the
+driver struct for generating the init functions.
+
+So in the builtin_driver macro [0] it wants to use the
+gated_fixed_clk_driver to create the init-function as
+gated_fixed_clk_driver_init() hence anybody using the macro a second time
+for the same driver would create that function two times.
+
+Also as can be seen with the imx gpc driver [1], the two-drivers in the
+same file is already in use.
+
+I've also done a practical test with that and did [2], which resulted in
+both drivers getting registered as expected:
+[    0.132087] ----init gpio_clk_driver
+[    0.132160] ----init gated_fixed_clk_driver
+
+
+So not sure, if I misinterpreted your comment, but I don't think changes
+are necessary for this portion.
+
+Heiko
+
+
+[0] https://elixir.bootlin.com/linux/v6.10.8/source/include/linux/device/driver.h#L284
+[1]
+https://elixir.bootlin.com/linux/v6.10.8/source/drivers/pmdomain/imx/gpc.c#L239
+https://elixir.bootlin.com/linux/v6.10.8/source/drivers/pmdomain/imx/gpc.c#L556
+
+[2]
+diff --git a/include/linux/device/driver.h b/include/linux/device/driver.h
+index 1fc8b68786de..e306f554cd0f 100644
+--- a/include/linux/device/driver.h
++++ b/include/linux/device/driver.h
+@@ -284,6 +284,7 @@ module_exit(__driver##_exit);
+ #define builtin_driver(__driver, __register, ...) \
+ static int __init __driver##_init(void) \
+ { \
++       printk("----init %s\n", __stringify(__driver)); \
+        return __register(&(__driver) , ##__VA_ARGS__); \
+ } \
+ device_initcall(__driver##_init);
+
+
+
 
