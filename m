@@ -1,109 +1,105 @@
-Return-Path: <devicetree+bounces-100211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFCEC96CD46
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C83FC96CD59
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F4991F256C5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:33:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 778071F22F53
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32583145B3F;
-	Thu,  5 Sep 2024 03:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FE0153BC1;
+	Thu,  5 Sep 2024 03:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wFDha7Fy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u7hP0Q24"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB6713D291
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 03:33:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7B8D14B06A
+	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 03:33:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725507223; cv=none; b=GfJNM0lMrB7nNKwvw28p4kdUsyyvPxXuCSV0hNE6ixsandjNUxhMcZLsfc/E7L9Y3248rU09vNQ19sLG7hoKMWXEOGvN5/RsKlIwFsmGMbRvOogfaFMuXxWuSzozhLDogqqqCWtyZA5VhLvF7XMO8+zIGnFzwh49td3QUJutLNo=
+	t=1725507226; cv=none; b=abx2thjcK5TBqkvnC7eziCI4rM4WpBCLq+Es0PfS1VWbFrtAki+opiP9j+YJlrPZarJzDy/npqVlB3RKjqHemACxQ0UAEj+kUEudrmPO9gOgjmEHPfZjXszdi8qyptXVdSdKUNDxIBGkA5IRvyOXtPs6ao+jK43aT2yrUFFRrMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725507223; c=relaxed/simple;
-	bh=Zk7CuvNCGglePje0MWpioiCBoDt5MfGEPMscrIFpuTY=;
+	s=arc-20240116; t=1725507226; c=relaxed/simple;
+	bh=0Xscc7W52Ng2WjLBWxkIOJyZm9I/N2cPcyQy74enodg=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LmO4tWJ+4kNO0JfQaMzkOGSk1kSyuXE0hIaC4g6x9U89M9gISYoQVq6gGQd4RPjQ2kWR1tlterG1MHQdMes0aNHDmS/kIzomRtIm6mnYi6TsAfs+oP60uTM2swU3GP57YnFo2OKJ3Nuq+/9A2ZSa8unjnWu595OnTboId4QGNtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wFDha7Fy; arc=none smtp.client-ip=209.85.208.173
+	 MIME-Version:Content-Type; b=Us+jXf5Stxrbb6HXxmYgi2+dxq6r6Mo/SGG3rEx3FXXb0gnNepQRjgR3Z2cLnubCvwtbdvR8LDKsum51iVwgWTrbXQPZKu0Q7LxkNaZYmEYeIkNTDklgRnCGxicry44t3EXTg74Q6n7hixiTsf8nyNyTNATrCJSdxHtGDA4JqbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u7hP0Q24; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f51e5f0656so2633021fa.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 20:33:41 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5334879ba28so273670e87.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2024 20:33:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725507220; x=1726112020; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1725507223; x=1726112023; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gHqDfVFz4e4ch7Qvu8SgYzoITxtA7TzKSa28k2tmaC0=;
-        b=wFDha7FyDuKPJM+JrWv9DM85Xje5HVQw7oYYTxV3ihWImY6n/yRPeDbhIDbgT0mzm/
-         kFZiZzP8Ut3+YXRiQ5h218CKKPuy9jKcPeyksr8kSNLnC6w0Sc1blx9H5P7qlyZ60ZHu
-         825q5j+1qh40VCy0msXOwAo8RqkFJnRz7YAFWcxOjZCSq2dB9f5QUHGUDoyb6PUSujcG
-         2H764iDGQolxXaKt+y5GiHBP/+tBbK5ybnjWNNishnYVvumiy08gj7gybZ15VQ2628/K
-         LTrh08/LNNMUA/7cpTHHcg2ovvX17qPMmTlD9dnOXua1VBsr6WgqfL+mNkM4pUPdy+Fb
-         VpUw==
+        bh=dGI49nIoainLFaa1TPUEgnROODaXfiT1w+95Y7KXH0A=;
+        b=u7hP0Q24aJImNJvblX3xJmDh42bwbyPiXPSngBVA37dmWvvh79vg5uG+dZm+ppUq2o
+         vBG5Y4IccxgL5EPaVVYR5u/LXC1tueFFQ6bEUs5iLigeTKiyrykWFneOfUZZk8ONJN/W
+         a5F7EhryauH5kvOezFZsQZscViF21IqnV5Z81/wHNZK1UXWhd5h+ExyHt3sbiOKEvKim
+         jpCoPrO2Kyi/y2bjs2Lrl5YnpNul2IGECYRChh8I5NlHxcWVtiKO/VArsHtSrnHsTcmp
+         13b7KDCYZIAmiYxVGb2DfidUJurukxjnAT2sKvhYl3hc5NFGFNQB6/S0mtYIoYVaP8bw
+         S8Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725507220; x=1726112020;
+        d=1e100.net; s=20230601; t=1725507223; x=1726112023;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gHqDfVFz4e4ch7Qvu8SgYzoITxtA7TzKSa28k2tmaC0=;
-        b=e3Edhc4NP0ZvcK6lag52HnKBbM+KW0ReKLUNm0A826HkJVZIeJkDfLAO1ChSaQJmnx
-         eumfiKGtItJL5s7AKmUQdnzN79oLvKE6OOsbmtlhVqouGN2DShCs0lwhOUAqn8tbrJql
-         9UL5CHO42h8N8vlqWIGv06IvXbJN31zqguiV0nmchlB8YGJZUs+SCydDjGUk0GHlFuul
-         lbb9WvJWiGwFNHBpr1RhZiJJTr+j39w3yEXxO1dseWBeB/Es6TR6ajgu9ZCuFZ8qpYbP
-         nehOg6XVsydojmC1CE+TSqPLjPGm2npnIdCMKYmcLCsd2g6TJPFjeO6mKl/QX6RhWaP3
-         h6sA==
-X-Forwarded-Encrypted: i=1; AJvYcCWI932axdnNE+tk4H30TWbQ+6P8RiQaXimukAmN0KHpNeJUMbRbT34S8pl6Pe8JuQozG8PLCsBSHix5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2ReEdmzYVf34pmb30D2XUW1PduhB/35e06Sqod+axBdSUwVEx
-	0Cbp1bwL4dnRBLqra2PlxkWlg2xKNIPxcfEUyg5zDiuKTZ95Zl4cEFz6iY8Fetk=
-X-Google-Smtp-Source: AGHT+IF8RYrZhm6Rb+d5KJJUucAgU85MelFmmJWy0tHStryL1PjwkJENosRYCfI0WLW1G2JNywVluQ==
-X-Received: by 2002:ac2:4e0d:0:b0:52f:d69e:bb38 with SMTP id 2adb3069b0e04-53546afd7c6mr13901020e87.2.1725507219347;
-        Wed, 04 Sep 2024 20:33:39 -0700 (PDT)
+        bh=dGI49nIoainLFaa1TPUEgnROODaXfiT1w+95Y7KXH0A=;
+        b=hYWp2H9ckyETfkp01de5r0VHWgJGF7LxS340XLvhAWZv1oqaDfdA1dFhXhz+awDNAL
+         CM+wxrDaAl9LOr4nN2fQW7J6oP/bP58++/5hYtFlj2KiH6TMb5CI84lr3gzXiK4gdzs/
+         p85fn4x8/CKWlMKWsTzR2NHLoM4VzhfsrnFoKsmcND7HqhbJR/Q8RS42S/ugqL3c787K
+         FdacIl85xcXqUyfwkT7kkKszl5oSX0mK4WWxsoKItpFPcES6GbCHNvOw3QYoV9xQDzlA
+         vp6Q76x4c7sY2/AH2sGE0koMJywxyorSVym+iCoGU3kyTVY+GMl+sjqCKJCIzsA787VI
+         6XsA==
+X-Forwarded-Encrypted: i=1; AJvYcCX56CsITLzdYeZX9wMVJ1tvw/9r84BluKjMdeoV1P6WP+Hs9T8VOcjCN57c9hQ8Ax5uFW7xnEaGlGEE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMk7+26qSAsjho3TtZn3U051vnnys9NlH/m0F7HZ3F6MqTC0fp
+	/u9Hl9PdCj6zc/jGvt8FuEcO2vx06IXo8Iwc+nmZoV4m/qMDzjKdkbeJqOVAwS8=
+X-Google-Smtp-Source: AGHT+IGI1ThGNwiYzgjZpB38Gzh3Kii8Shn3E44t5s6JycEWNTDgK8ZwOGUE8abD1/FHADwkhMcSXg==
+X-Received: by 2002:a05:6512:6d2:b0:533:44c6:1ef1 with SMTP id 2adb3069b0e04-53546baacc4mr12832555e87.56.1725507222640;
+        Wed, 04 Sep 2024 20:33:42 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53565f6d409sm389165e87.35.2024.09.04.20.33.38
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53565f6d409sm389165e87.35.2024.09.04.20.33.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Sep 2024 20:33:38 -0700 (PDT)
+        Wed, 04 Sep 2024 20:33:41 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Robert Foss <rfoss@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
+To: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Rob Clark <robdclark@gmail.com>,
 	Abhinav Kumar <quic_abhinavk@quicinc.com>,
 	Sean Paul <sean@poorly.run>,
 	Marijn Suijten <marijn.suijten@somainline.org>,
 	David Airlie <airlied@gmail.com>,
 	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mike Tipton <quic_mdtipton@quicinc.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+	Marc Gonzalez <mgonzalez@freebox.fr>
 Cc: linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	freedreno@lists.freedesktop.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH 00/11] arm64: qcom: set of fixes for SM8350 platform
-Date: Thu,  5 Sep 2024 06:33:33 +0300
-Message-Id: <172550712140.3299484.13498001864474908780.b4-ty@linaro.org>
+	Arnaud Vrac <avrac@freebox.fr>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Jeffrey Hugo <quic_jhugo@quicinc.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 0/6] HDMI TX support in msm8998
+Date: Thu,  5 Sep 2024 06:33:36 +0300
+Message-Id: <172550712143.3299484.1580127137460046609.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240804-sm8350-fixes-v1-0-1149dd8399fe@linaro.org>
-References: <20240804-sm8350-fixes-v1-0-1149dd8399fe@linaro.org>
+In-Reply-To: <20240724-hdmi-tx-v7-0-e44a20553464@freebox.fr>
+References: <20240724-hdmi-tx-v7-0-e44a20553464@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,15 +110,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sun, 04 Aug 2024 08:40:04 +0300, Dmitry Baryshkov wrote:
-> A set of fixes that target stability of the SM8350 platform.
-> 
+On Wed, 24 Jul 2024 17:01:33 +0200, Marc Gonzalez wrote:
+> DT bits required for HDMI TX support in qcom APQ8098 (MSM8998 cousin)
 > 
 
 Applied, thanks!
 
-[03/11] drm/msm/dsi: correct programming sequence for SM8350 / SM8450
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/1328cb7c34bf
+[1/6] dt-bindings: phy: add qcom,hdmi-phy-8998
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/8886def25eef
+[2/6] dt-bindings: display/msm: hdmi: add qcom,hdmi-tx-8998
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/656810411b1d
+[3/6] drm/msm/hdmi: add "qcom,hdmi-tx-8998" compatible
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/a61eb17f40e8
+[4/6] drm/msm: add msm8998 hdmi phy/pll support
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/caedbf17c48d
 
 Best regards,
 -- 
