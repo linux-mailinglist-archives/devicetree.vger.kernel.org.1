@@ -1,166 +1,155 @@
-Return-Path: <devicetree+bounces-100240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9C596CF34
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:26:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0EB96CF4C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:32:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951091C21AB8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:26:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16E96282A21
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15460189BAE;
-	Thu,  5 Sep 2024 06:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2707A14F9FB;
+	Thu,  5 Sep 2024 06:32:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YXHvLjfD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VHNm/R6k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26662BB15;
-	Thu,  5 Sep 2024 06:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F073E8172D;
+	Thu,  5 Sep 2024 06:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725517601; cv=none; b=b+c2Ny1i+KyZsoIj9a/kI+YaSxzyuLHX5hyXUyEmfQJ6SVn3wUM5C4IA81SCbX5PLQJ+7WjUK7Mbf3ypqGUiFgmKEJu79RecUH6jam41aCwDXm084bhZH6aOadRa08yBIVJ9/w3IHt5VQ0ubzSnNra8TKnfNW/Rz62rs20onj2M=
+	t=1725517939; cv=none; b=lqnO9heRgIgRiwOAk9rr9I88DOg6xuCMxhf8Rhd8v3ibvxg8eLlmOkxlEPsuIPQZ1iMnTjSV2Poh/w4jIQfezjO0XMH7duxOYGgdk1ijZ95odqZq8v+vwXEt9DIKHcutDiPsmaP1okgE74WX6qdAJIh+TW8Pm4p+l1VyqVMgG3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725517601; c=relaxed/simple;
-	bh=BGFma2iNzibNnELTMCi1x18GZK48vIfSHUgg1v/+hH0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UxEo7V+LeGGJVbjPBWUTuf01lzfUB2v4D/8shrGXYbjkMlZ8UuDuRRPMy+WxNtdSN1Qeq605ckB4sdHj/dplGsl+908O+uV+I5QDZRkfC0WlBrSOR/gOYSnE6ipVFF7dIx74JEm4ExFdcDLvOw1DP8WTdZPTh7G9dNIGSrFYcgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YXHvLjfD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D71FAC4CEC4;
-	Thu,  5 Sep 2024 06:26:36 +0000 (UTC)
+	s=arc-20240116; t=1725517939; c=relaxed/simple;
+	bh=bswJI0INa4QP0cOD6yGYJrJgq5RpJomBx8ZpD0WO+jM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BYADfIWwpttqljLh2axk+wqF3KYuwT4DB0u6mCRBsGKAtmxtCDSlLYrBIc4hjI5yPtGgdBm84moMtie0+Br5WkqfEub5jw7bS1Wt7xa6Lk3o1mEDfpl7Ij4Sh+FbAMlxtqEy7a6UYtNrY+nIKKY6T1HWJQ9uQzeQkQc6HnhvDTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VHNm/R6k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE5D6C4CEC4;
+	Thu,  5 Sep 2024 06:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725517600;
-	bh=BGFma2iNzibNnELTMCi1x18GZK48vIfSHUgg1v/+hH0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YXHvLjfD5+uOx8FyC4MSdwkxtVIMLFA0NgPaC50flBVoAjyMuprf6dgFsOTok6Y/g
-	 DC/ao1BUYqVEoqJklSRBDvtk6fEnVhSefRZ+mUhj8M+xvw1JLySl45B6TLFV7gHBmr
-	 YTGCjfaLePv456XH7qV/wJEWr7zmOq7du1hYAzmimzX0ruWZBR1rOzJeEc8/wvuvDJ
-	 Ennk8qDxMCII+ylIJQ1gs9Wq2CEgSP08WrSRqL/oJL9y1/5IEMGrw7HXgD0hRxCzXy
-	 ORy+Z6m56H5LYKYLbDfqukTtyEXmUPC6+UDaBTih3ZYNCzdsygLBGFlxrQBa3cY2iv
-	 KkxowRI4wtPjg==
-Message-ID: <25f5e650-5471-49eb-9518-49668e0e9e93@kernel.org>
-Date: Thu, 5 Sep 2024 08:26:34 +0200
+	s=k20201202; t=1725517938;
+	bh=bswJI0INa4QP0cOD6yGYJrJgq5RpJomBx8ZpD0WO+jM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VHNm/R6keVImrgjyT9SHPou0b3eQrjzYQusCfft71QGcv+qSAinstwpUt5SGRo8BG
+	 IDNdwSeIeJ/PepplDf/vM1IcwkVZzwQtPtcyhACryyKG7KJnQGYBJ1XmevukMm++Al
+	 YXKdL4xv235AXFXwJk7g3Gm1KJFPVH7gU12AG2JupDQSo/ghdc/SRo8hv+xvtHqADd
+	 IIpVEYDnWttxbS8hffQS7IG38wOMBRm7OBYKT4WhfCWYfGCiKV/szzGS//G3+yOPAQ
+	 BVYWFKyO8tdVhFiozKPIbrJt97QL8K14feyHnG2oajiAzjz43I4TV9W2uKzfImxKxv
+	 ns30VYLjN/VUg==
+Date: Thu, 5 Sep 2024 08:32:15 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	Siddharth Vadapalli <s-vadapalli@ti.com>, Bao Cheng Su <baocheng.su@siemens.com>, 
+	Hua Qian Li <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: PCI: ti,am65: Extend for use with PVU
+Message-ID: <t2mqfu62xx5uztlintofp4pquv6jalzace6w5jpymyyarb2wmn@vvo23e4cmu57>
+References: <cover.1725444016.git.jan.kiszka@siemens.com>
+ <28d31a14fe9cc1867f023ebaddd6074459d15e40.1725444016.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 16/19] dt-bindings: arm: qcom: document QCS8275/QCS8300
- SoC and reference board
-To: Jingyi Wang <quic_jingyw@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
- <20240904-qcs8300_initial_dtsi-v1-16-d0ea9afdc007@quicinc.com>
- <0627fd69-f7d8-48ae-bbba-3a2d9bbaa5b1@kernel.org>
- <161a0b3d-457e-4164-a33e-5897efd529c6@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <161a0b3d-457e-4164-a33e-5897efd529c6@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <28d31a14fe9cc1867f023ebaddd6074459d15e40.1725444016.git.jan.kiszka@siemens.com>
 
-On 05/09/2024 06:42, Jingyi Wang wrote:
-> 
-> 
-> On 9/4/2024 5:38 PM, Krzysztof Kozlowski wrote:
->> On 04/09/2024 10:33, Jingyi Wang wrote:
->>> Document the QCS8275/QCS8300 SoC and its reference board QCS8300 RIDE.
->>> QCS8300 is an Industrial Safe SoC, while QCS8275 is the Industrial
->>> Non-Safe version which can share the same SoC dtsi and board DTS.
->>>
->>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
->>>  1 file changed, 8 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->>> index c0529486810f..ccf9a166368f 100644
->>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->>> @@ -42,6 +42,8 @@ description: |
->>>          msm8996
->>>          msm8998
->>>          qcs404
->>> +        qcs8275
->>> +        qcs8300
->>>          qcs8550
->>>          qcm2290
->>>          qcm6490
->>> @@ -895,6 +897,12 @@ properties:
->>>            - const: qcom,qcs404-evb
->>>            - const: qcom,qcs404
->>>  
->>> +      - items:
->>> +          - enum:
->>> +              - qcom,qcs8300-ride
->>> +          - const: qcom,qcs8275
->>
->> So the qcs8300 ride comes with non-safe SoC?
->>
->> Best regards,
->> Krzysztof
->>
-> Both QCS8275 and QCS8300 SoC can reference qcs8300 ride board. Could you
-> describe your suggestion in more detail?
+On Wed, Sep 04, 2024 at 12:00:11PM +0200, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
+>=20
+> The PVU on the AM65 SoC is capable of restricting DMA from PCIe devices
+> to specific regions of host memory. Add the optional property
+> "memory-regions" to point to such regions of memory when PVU is used.
+>=20
+> Since the PVU deals with system physical addresses, utilizing the PVU
+> with PCIe devices also requires setting up the VMAP registers to map the
+> Requester ID of the PCIe device to the CBA Virtual ID, which in turn is
+> mapped to the system physical address. Hence, describe the VMAP
+> registers which are optionally unless the PVU shall used for PCIe.
+>=20
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> ---
+> CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> CC: "Krzysztof Wilczy=C5=84ski" <kw@linux.com>
+> CC: Bjorn Helgaas <bhelgaas@google.com>
+> CC: linux-pci@vger.kernel.org
+> ---
+>  .../bindings/pci/ti,am65-pci-host.yaml        | 52 ++++++++++++++-----
+>  1 file changed, 40 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml =
+b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> index 0a9d10532cc8..d8182bad92de 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> @@ -19,16 +19,6 @@ properties:
+>        - ti,am654-pcie-rc
+>        - ti,keystone-pcie
+> =20
+> -  reg:
+> -    maxItems: 4
+> -
+> -  reg-names:
+> -    items:
+> -      - const: app
+> -      - const: dbics
+> -      - const: config
+> -      - const: atu
 
-I did not suggest anything. I am confused that you claim that every
-qcs8300 is using the non-safe flavor of the SoC. I am fine with this but
-I want to understand it and be sure you will not change it next month
-when you learn what this means.
+
+Nothing improved here.
+
+> -
+>    interrupts:
+>      maxItems: 1
+> =20
+> @@ -84,12 +74,48 @@ if:
+>        enum:
+>          - ti,am654-pcie-rc
+>  then:
+> +  properties:
+> +    reg:
+> +      minItems: 4
+> +      maxItems: 6
+> +
+> +    reg-names:
+> +      minItems: 4
+> +      items:
+> +        - const: app
+> +        - const: dbics
+> +        - const: config
+> +        - const: atu
+> +        - const: vmap_lp
+> +        - const: vmap_hp
+> +
+> +    memory-region:
+> +      minItems: 1
+
+Missing maxItems
+
+> +      description: |
+> +        phandle to one or more restricted DMA pools to be used for all d=
+evices
+> +        behind this controller. The regions should be defined according =
+to
+> +        reserved-memory/shared-dma-pool.yaml.
+> +      items:
+> +        maxItems: 1
+
+And this feels redundant.
 
 Best regards,
 Krzysztof
