@@ -1,105 +1,91 @@
-Return-Path: <devicetree+bounces-100310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6507996D23F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 10:35:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B4596D2A2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:00:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BB871F2A6E6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:35:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CC7B1F23B9D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 370F7194A49;
-	Thu,  5 Sep 2024 08:35:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dTmte3LV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB061957E1;
+	Thu,  5 Sep 2024 09:00:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84DE1898E4;
-	Thu,  5 Sep 2024 08:34:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16A768F66;
+	Thu,  5 Sep 2024 09:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725525301; cv=none; b=mQIxxHuY5gs9vyqjokPRl8Y42RRbdidhMiCB2bUn1FNJZr/QyRWS7LeHo1FQTiFxxn+B3kJardX5p5TyUXXI3BDNqHqsFY8JNeHsltS5Nk0J6uuiaXCVe4hRav6lRGh0b1v3y39Tsg2KUHFSFPli2GHFpNSfIQ5lCtIMTKLJ/2Q=
+	t=1725526821; cv=none; b=MHi5jGSGdkj1wXMi/qr5LXcJFD+CPo+7KolQqN85A6ZlXrAQ/1LMQOnd3Y//OvxVSGdG81na2Et7GX6G/+t0idRkPlz5ENS5YLqGHMJcytPdnEIjdIvL0+1cEn2oXLhjlLsWf49BYJlkk4gaAspNphHNSKG9VeUM8HmwZivFXoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725525301; c=relaxed/simple;
-	bh=eLX05+8Pw9Of6l7EDVqXXg7yUi/nnzEjkju7SfOCP6A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EPQNVlbVMcvYRLbR+1Kz5Zu8Ye9qlInedR+UlRu3yLOcBlctOuRf3q6Nzw+Dl4W558NgdxYMaE1uj9fL40Dj0BO475ltJlIKOCmhJUxEnn8ZKufKeWLU5Vyk2jdUeI2xIElUsa225zSqXeYw7SpY8glEufFpMne5ojS6TcXAr9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dTmte3LV; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725525300; x=1757061300;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eLX05+8Pw9Of6l7EDVqXXg7yUi/nnzEjkju7SfOCP6A=;
-  b=dTmte3LVErMNxxJrg27ffhkBJHryAxkXOBfbg4cZBmAHeoJuLj+bUYn+
-   vYdRUzBpWch78jP07QZDGdfx5w2KVGnvWyqx9KahAYVHoudXqHutDPUfh
-   Itl1EfxN8JqBH4TCktSJUnnvLCEsDzHwGm2E6sXMT+x3CAXiTOtXK0g8p
-   rhwfhiL2fZkP1te2BKcSmZLc5drQT82kGb2ptz4tWRjwPKQp4zTPXtZRA
-   eQkYLAy/4MnLHhIP2f5U3tS6GQpd1MpSCUPeNmuxmm4O406fbi0h25h3g
-   KqKxbjSnZJw2vomBHQt+Q6SPOiJvZQZInS1faK3x9K1JNKs4LVnMNNldW
-   g==;
-X-CSE-ConnectionGUID: /jztXIhdRDylzJ/VFmGg2g==
-X-CSE-MsgGUID: YduOX6GmRny2ARpK1yqr+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="35612716"
-X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; 
-   d="scan'208";a="35612716"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 01:34:59 -0700
-X-CSE-ConnectionGUID: BodgJ0ElSzmUoe9rYN0Zaw==
-X-CSE-MsgGUID: Gjfv7NxeTbuX13W3dQspjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; 
-   d="scan'208";a="66070810"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 01:34:57 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sm7x9-00000005Kkq-0UAa;
-	Thu, 05 Sep 2024 11:34:55 +0300
-Date: Thu, 5 Sep 2024 11:34:54 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: robh@kernel.org, saravanak@google.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of/irq: Use helper to define resources
-Message-ID: <ZtltLjZkFBWSbl2s@smile.fi.intel.com>
-References: <20240904160239.121301-1-vassilisamir@gmail.com>
- <20240904160239.121301-3-vassilisamir@gmail.com>
+	s=arc-20240116; t=1725526821; c=relaxed/simple;
+	bh=AKgKjIn31Ungx9gGBJeP+TPt0S1fD8k6qBlckelFmDI=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=IYkHsOdUAqMxWpbLU6IIM7fER1VNoHZmwKLaF6Iq3HFKpFNZ5CcPPdZqmIdXFasJ9QHDpt/dEzitRAcdLL2By82RZ7FC5fjwcpMeYh3A4I6MDk75zHzhps4+pbGSh7S0e/vrdx9Nge/+73YgdUQ7q406mzBPXJmHOrcleppwOLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7DCD1202357;
+	Thu,  5 Sep 2024 11:00:17 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4320E202348;
+	Thu,  5 Sep 2024 11:00:17 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 43203183AC0A;
+	Thu,  5 Sep 2024 17:00:15 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	abelvesa@kernel.org,
+	peng.fan@nxp.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@pengutronix.de
+Subject: [PATCH v4 0/2] Add one clock gate for i.MX95 HSIO block
+Date: Thu,  5 Sep 2024 16:38:53 +0800
+Message-Id: <1725525535-22924-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240904160239.121301-3-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Sep 04, 2024 at 06:02:38PM +0200, Vasileios Amoiridis wrote:
-> Resources definition can become simpler and more organised by using the
-> dedicated helpers.
+CREF_EN (Bit6) of LFAST_IO_REG control i.MX95 PCIe REF clock out
+enable/disable.
+Add one clock gate for i.MX95 HSIO block to support PCIe REF clock
+out gate.
 
-Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+v4 changes:
+- Correct typo in commit message of #2 patch.
 
-...
+v3 changes:
+- Squash first two dt-binding patches into one.
+- Add Krzysztof's Acked-by tag, and Frank's Reviewed-by tag.
 
-> +		*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev))
+v2 changes:
+- Correct the compatible entries by alphabetical order
+- Include all necessary To/Cc entried reminderd by Krzysztof.
+Thanks.
 
-Just use Elvis to make this shorten.
-Btw, have you ever compiled this?
+[PATCH v4 1/2] dt-bindings: clock: nxp,imx95-blk-ctl: Add compatible
+[PATCH v4 2/2] clk: imx95-blk-ctl: Add one clock gate for HSIO block
 
-> +		r->flags |= irq_get_trigger_type(irq);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml |  5 +++--
+drivers/clk/imx/clk-imx95-blk-ctl.c                            | 20 ++++++++++++++++++++
+2 files changed, 23 insertions(+), 2 deletions(-)
 
