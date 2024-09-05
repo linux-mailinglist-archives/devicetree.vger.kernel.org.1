@@ -1,69 +1,58 @@
-Return-Path: <devicetree+bounces-100279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D436F96D0A5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:43:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6096296D0B1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C6E21F25B9B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:43:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26497287C18
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 07:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AE419340B;
-	Thu,  5 Sep 2024 07:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F89192D79;
+	Thu,  5 Sep 2024 07:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MO6og5gZ"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="j2UhqnQJ";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="InRPQ1rX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A8018A94F
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 07:43:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428CD1925A4;
+	Thu,  5 Sep 2024 07:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725522201; cv=none; b=n/CBplF6im2Rh8ZTrt06LyvUYBfCKtnbVWYfnM/4XdctirkgRGmdhi/9K0vw5ylWz7bbO5Gz9I6ekAfHq8iZ+yxZP93Lvh28QN7Ao+WJo76qudJcyuGAhS7DRgGnq0a/e9hhsFfPf+MlSCMcnmam1gHXEo+W0MnTIryJLJvAtHo=
+	t=1725522380; cv=none; b=aTWL1tqJUNE9j+eL1XZbPbcqFugq4ocfB/N68v/rKf0GqffeF/kwcb2jFbdrpKwL+BW4zaWuyENum621biBzKwOoY15+bjmqk+P3dtTfe69hdt5pVMjLPGqRpxQZh1JoOtAHSPIhu55txvG/lsc07FMq3ZGz7Gs56aAqmF+l8bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725522201; c=relaxed/simple;
-	bh=2ywi2ABrKwj13e2om25ul5oQoXN4HOJZfN35u/fSyhE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O/JWUFB4mYzWwfaEAuQrimLwjJ0dbFd8PI2RGY90Qv5FKXeOh0yKbntaTPdVEBJa5EKMkbyVkQUkd1dJ5rv2vnN4z0JIQMRkDlDZLAVyNQAREm6bZ+WJMOpgHTNB3kdkkAFFMaMP98mu1R1QmcQBbzeWZ0JINCpahM7fW5qC4wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MO6og5gZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 489CBC4CEC4;
-	Thu,  5 Sep 2024 07:43:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725522200;
-	bh=2ywi2ABrKwj13e2om25ul5oQoXN4HOJZfN35u/fSyhE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MO6og5gZ6EstvJSCXUtF02tNnWU0mFhi4rrSzIyf088/j5GrSEyvjabPytVfJxN6Z
-	 4MPAmW545PLoz9H0Cub9XW4uRT1WkSJXg/lnNNMBvh6UGFI2fNmmIdwTFb3eOh4TjP
-	 biAFTRO3ntP/yUun5rMPX6WRzrbk8T9W4QfMduQ1BKz6gI3dv0pPfjl3FtOzVVpnEf
-	 rIiMXAcTi2bEvtbFd7zNfmGmfHs3+TFhv+jFTTUsEecjzoGoNXsf5XILfPbDR/kh4C
-	 xkNjM18H4EpBBhLctiLiCWEkDt5q1eclH0NqoATDhgUYUPZ7XN0K8Mn2UIyjpJc041
-	 HVqezAJLhWLUw==
-From: Maxime Ripard <mripard@kernel.org>
-To: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: (subset) [PATCH v3 2/2] drm: panel: nv3052c: Correct WL-355608-A8 panel compatible
-Date: Thu,  5 Sep 2024 09:43:11 +0200
-Message-ID: <172552218878.2901646.2731877216171955845.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240904012456.35429-3-ryan@testtoast.com>
-References: <20240904012456.35429-1-ryan@testtoast.com> <20240904012456.35429-3-ryan@testtoast.com>
+	s=arc-20240116; t=1725522380; c=relaxed/simple;
+	bh=TmUzoCdbSCV5aEd205SdY6LquMO5Z/Fn+tyF86fSqs4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oFv2+B+f9Vo7gIUwIM9syiP7pYpByoDw2DqU30tlnytdrTh5dbsXQJQAW4y1EXOZXsLYhcV3t3u81H9MSGN/iF94GBBVUkoAva2wpimBH1uMOfIGB0HiVe8YTUKLiPFk+6NLejarepIEzr+nBKzpssDUyRPmn3npqvu4P8DMRNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=j2UhqnQJ; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=InRPQ1rX; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1725522377;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=6LKL0/QK0gIRCRpoCTVqV6rP//YYB+U0+zsnqyQITdE=;
+	b=j2UhqnQJlycxYUAh6wsgJW1ktRrcFZotSdxspZNWSa/fEXrOkFPWAvEDqDdzL9r9SN06kB
+	KKKNq/o6MNqzxTtJ1OfjB1HjYS6hic0yQpF9qE2scvRcjmx85H+GyKpWoxqPpVrVNsFQb9
+	IqSx7IJ7wtpoZXT4OjX8sQr/kQOAExwwy3lmOmyplH69Vss2P4CkusNdKmXvJbOY9iIRU/
+	Dsh7uqYdAizHddZC5G5ZmNrHj3eRfnal7YdTKnTdD30hMty/cEde+XzuOsmcNPh3fvKrNa
+	1OW/iYbZm91Lg4H6Mp67Bl3kgdiawD+dqkFs9qizcmjHxwTwvHXv1BI3vSBmGA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1725522377;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=6LKL0/QK0gIRCRpoCTVqV6rP//YYB+U0+zsnqyQITdE=;
+	b=InRPQ1rX1p/vBfDxvBM+Pn7c0nxhWWvKST3DbNUv6MboLdEwgH9vPBFxzi3Qa3Lp8T0tLA
+	yy+M2jmU85QbNzAg==
+Date: Thu, 05 Sep 2024 09:46:01 +0200
+Subject: [PATCH] of: address: Report error on resource bounds overflow
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,22 +61,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20240905-of-resource-overflow-v1-1-0cd8bb92cc1f@linutronix.de>
+X-B4-Tracking: v=1; b=H4sIALlh2WYC/4WNQQ6CMBBFr0JmbU1bagRX3MOwwDLIJKRjplAxh
+ LtbuYD5q/eT//4GEYUwwq3YQDBRJA4ZzKkAP3bhiYr6zGC1dbrWTvGgBCMv4lFxQhkmfqvyWmF
+ nTI++ekCevgQHWg/tvc08UpxZPsdLMr/2jzAZlWNr72zVXZwum4nCMgsHWs89Qrvv+xcPhO1Cv
+ AAAAA==
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
+ Nam Cao <namcao@linutronix.de>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725522376; l=1705;
+ i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
+ bh=TmUzoCdbSCV5aEd205SdY6LquMO5Z/Fn+tyF86fSqs4=;
+ b=adSGxAt5d+2qrZkScnuspwFpVFKGXk9lMuyLtyDlsJU0CWD0z19c40UnUsOXHbIA8dgiE4omP
+ agV4RNJa72kCUQdgwMytMVsWX/Pga4ZhYauIO1fO3VVZl7gyoW+y/kJ
+X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
+ pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 
-On Wed, 04 Sep 2024 13:23:22 +1200, Ryan Walklin wrote:
-> As per the previous dt-binding commit, update the WL-355608-A8 panel
-> compatible to reflect the the integrating device vendor and name as the
-> panel OEM is unknown.
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> 
-> --
-> Changelog v2..v3:
-> - Use integrating device name with vendor prefix instead of OEM serial.
-> 
-> [...]
+The members "start" and "end" of struct resource are of type
+"resource_size_t" which can be 32bit wide.
+Values read from OF however are always 64bit wide.
+Avoid silently truncating the value and instead return an error value.
 
-Applied to misc/kernel.git (drm-misc-fixes).
+This can happen on real systems when the DT was created for a
+PAE-enabled kernel and a non-PAE kernel is actually running.
+For example with an arm defconfig and "qemu-system-arm -M virt".
 
-Thanks!
-Maxime
+Link: https://bugs.launchpad.net/qemu/+bug/1790975
+Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+Tested-by: Nam Cao <namcao@linutronix.de>
+Reviewed-by: Nam Cao <namcao@linutronix.de>
+---
+ drivers/of/address.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index d669ce25b5f9..7e59283a4472 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -8,6 +8,7 @@
+ #include <linux/logic_pio.h>
+ #include <linux/module.h>
+ #include <linux/of_address.h>
++#include <linux/overflow.h>
+ #include <linux/pci.h>
+ #include <linux/pci_regs.h>
+ #include <linux/sizes.h>
+@@ -1061,7 +1062,11 @@ static int __of_address_to_resource(struct device_node *dev, int index, int bar_
+ 	if (of_mmio_is_nonposted(dev))
+ 		flags |= IORESOURCE_MEM_NONPOSTED;
+ 
++	if (overflows_type(taddr, r->start))
++		return -EOVERFLOW;
+ 	r->start = taddr;
++	if (overflows_type(taddr + size - 1, r->end))
++		return -EOVERFLOW;
+ 	r->end = taddr + size - 1;
+ 	r->flags = flags;
+ 	r->name = name ? name : dev->full_name;
+
+---
+base-commit: 67784a74e258a467225f0e68335df77acd67b7ab
+change-id: 20240904-of-resource-overflow-378ea11dec8b
+
+Best regards,
+-- 
+Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+
 
