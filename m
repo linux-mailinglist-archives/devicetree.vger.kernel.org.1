@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E539896D2EF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:16:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 466FC96D30C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:26:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D56C287D99
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:16:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A6A91C21737
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 09:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3208193427;
-	Thu,  5 Sep 2024 09:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D01119755A;
+	Thu,  5 Sep 2024 09:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="QFXaWlQP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQsfoCCS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from classfun.cn (unknown [129.204.178.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BB6194AE8;
-	Thu,  5 Sep 2024 09:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5332F195803;
+	Thu,  5 Sep 2024 09:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725527788; cv=none; b=jPkUtxbOjBmn7iTkZk3pbXCZ5BkKvvekQYZalz6ZXBr6qEFKJIQp6LyTYU2ghqa7pmKBZ4YdxWckoqqM2AlTU34p7IM6qDLtNSwTqSW51TGjofGOXRBZPo2gIsg6nOTSDBrmjZpOsgYBCm/B/a6Cu3EdC5FSAByqO1hQdyE+Sf0=
+	t=1725528356; cv=none; b=OWsRwLgXy+IwO+iQmPqGNqwOgyiwHuG1siTPChoMc0QHbTOPc3YY5PQTNEcK69NL9neHlQCGggCkHDwyguT2Iwi1SLe3GgGC8WeYr7WfLRcDChflYnMPnvHChQCHd5alfnqaikyo3AMO5uRT64y0Yy8G9RshIuPS8fPMaEV1Ezs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725527788; c=relaxed/simple;
-	bh=bW18jNOC6wDN7uQsEQY3l359bMLCFUVAAihKgW5biJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=miwE7zLYt99JITGs1w9azZaUmk8xDnGYihVqjA8CV1l2pRhrQzN0/KiIrmw3TbyzQZvr5o+3kSE8aMd11EXup+6skPjaG5hvHXzBXo6NwK5DSXh7MFuoxdPBi5h+dGGy04AGNTHKUVuzuDMCl1Hkp+p49k32sWZMKbETOAkR6qY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=QFXaWlQP; arc=none smtp.client-ip=129.204.178.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
-Received: from [192.168.0.160] (unknown [14.155.100.110])
-	(Authenticated sender: bigfoot)
-	by classfun.cn (Postfix) with ESMTPSA id 09625789EC;
-	Thu,  5 Sep 2024 17:16:21 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 09625789EC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
-	s=default; t=1725527783;
-	bh=ke2XF0xsg9GelOC16/EoyH6BBkHyFP+ObV61vAzVb0M=;
-	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
-	b=QFXaWlQPLabeJN60N9sDnMULE/Coewl/FV37MFmAZ/QeQPP6cbklBCVj+lPZMFqJT
-	 HDOLH8TjYU2pczhX0UFluoJWaV/AmBd13GssEfIZG0X8Ne9IhgxQ2ArTP9weinqyLr
-	 ZgaOr4tD9SPcJ8NYenbd0cVWmXP8AgyzR+iKX1tc=
-Message-ID: <010a9c5e-205b-40b9-9655-9e168b2def97@classfun.cn>
-Date: Thu, 5 Sep 2024 17:17:38 +0800
+	s=arc-20240116; t=1725528356; c=relaxed/simple;
+	bh=S3hBFml/rGa81thzGNM4AN2SWCtaRe/D7OE5yRnkjQs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UaSSiDz+w+6JbCcXe5BbxkZGGpvYf5ngF2TSJnZ9cAxotjT9GqvX339UksUPsd09b3eMX5rpDx+Mh2FgmWilDhUzcffIskqUuwwUNwT8vUYpXWOXQUA2U9P/S+f30uRRByHXO+TJmNBe9NWiN+eHSRbuUUSyA3kg2iPs+eMn0t4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dQsfoCCS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6A14C4CEC4;
+	Thu,  5 Sep 2024 09:25:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725528355;
+	bh=S3hBFml/rGa81thzGNM4AN2SWCtaRe/D7OE5yRnkjQs=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=dQsfoCCSfCLppT0QCh4Kul2CjXMUnKIzVmCFYoeJD/Bj1y+gaMY60BvP0vqjY++qV
+	 BPmrVzF/6bgg5W8EgR6kzq2+SzUt22bJ+tdOtUDHa9UzuiBVxlb0TAs5Q6A4ATBYgh
+	 n4XorVvu1v3Mk9mmiBxqlwvv4KjliQZpzSI2mnB++Xta+eONnQu6NzbIwj7w2IZ8e6
+	 /DH7E7xyfXO+iFmT2LmXVZwOmbeDxIlL+i3xEk3WF2Uf33jU+7tO67bIBjB3u0JNZN
+	 dJxM3mMooG0U9nKAf7DajotyNPyGHFGH+3I33B4XBcxDZDSrM3k7BBPdrt2A5wI+yJ
+	 bRp4rmUzrntvQ==
+Message-ID: <fa11631e-48f9-4e95-95c4-20b77cb0a1be@kernel.org>
+Date: Thu, 5 Sep 2024 11:25:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,205 +50,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-To: Chukun Pan <amadeus@jmu.edu.cn>
-References: <20240904111456.87089-4-bigfoot@classfun.cn>
- <20240905034009.28124-1-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v2 1/6] dt-bindings: ti, sci: Add property for
+ partial-io-wakeup-sources
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Santosh Shilimkar <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Vibhore Vardhan <vibhore@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+ Dhruva Gole <d-gole@ti.com>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240729080101.3859701-1-msp@baylibre.com>
+ <20240729080101.3859701-2-msp@baylibre.com>
+ <f0f60af7-8561-433a-a027-811015fc5e16@kernel.org>
+ <ti4ffymrixcpptlrn3o5bytoyc4w5oovdrzgu442ychai2fjet@wtdhrmwrozee>
+ <44feed5a-95a7-4baa-b17e-514c0f50dae6@kernel.org>
+ <sf2pklbnlkpgnkemv3wevldpj55kk2xqh4fabbmkcbh2tvnbzr@gg3gxgztq6pt>
+ <d2eb4faf-c723-453b-a9d8-68693c96fb42@kernel.org>
 Content-Language: en-US
-From: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
- FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <20240905034009.28124-1-amadeus@jmu.edu.cn>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <d2eb4faf-c723-453b-a9d8-68693c96fb42@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2024/9/5 11:40, Chukun Pan wrote:
-> Hi Junhao,
+On 05/09/2024 11:15, Krzysztof Kozlowski wrote:
+> On 05/09/2024 11:08, Markus Schneider-Pargmann wrote:
+>> On Tue, Aug 06, 2024 at 10:03:00AM GMT, Krzysztof Kozlowski wrote:
+>>> On 06/08/2024 09:11, Markus Schneider-Pargmann wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On Tue, Aug 06, 2024 at 08:18:01AM GMT, Krzysztof Kozlowski wrote:
+>>>>> On 29/07/2024 10:00, Markus Schneider-Pargmann wrote:
+>>>>>> Partial-IO is a very low power mode in which nearly everything is
+>>>>>> powered off. Only pins of a few hardware units are kept sensitive and
+>>>>>> are capable to wakeup the SoC. The device nodes are marked as
+>>>>>> 'wakeup-source' but so are a lot of other device nodes as well that are
+>>>>>> not able to do a wakeup from Partial-IO. This creates the need to
+>>>>>> describe the device nodes that are capable of wakeup from Partial-IO.
+>>>>>>
+>>>>>> This patch adds a property with a list of these nodes defining which
+>>>>>> devices can be used as wakeup sources in Partial-IO.
+>>>>>>
+>>>>>
+>>>>> <form letter>
+>>>>> This is a friendly reminder during the review process.
+>>>>>
+>>>>> It seems my or other reviewer's previous comments were not fully
+>>>>> addressed. Maybe the feedback got lost between the quotes, maybe you
+>>>>> just forgot to apply it. Please go back to the previous discussion and
+>>>>> either implement all requested changes or keep discussing them.
+>>>>>
+>>>>> Thank you.
+>>>>> </form letter>
+>>>>
+>>>> I tried to address your comment from last version by explaining more
+>>>> thoroughly what the binding is for as it seemed that my previous
+>>>> explanation wasn't really good.
+>>>>
+>>>> You are suggesting to use 'wakeup-source' exclusively. Unfortunately
+>>>> wakeup-source is a boolean property which covers two states. I have at
+>>>> least three states I need to describe:
+>>>>
+>>>>  - wakeup-source for suspend to memory and other low power modes
+>>>>  - wakeup-source for Partial-IO
+>>>>  - no wakeup-source
+>>>
+>>> Maybe we need generic property or maybe custom TI would be fine, but in
+>>> any case - whether device is wakeup and what sort of wakeup it is, is a
+>>> property of the device.
+>>
+>> To continue on this, I currently only know of this Partial-IO mode that
+>> would require a special flag like this. So I think a custom TI property
+>> would work. For example a bool property like
+>>
+>>   ti,partial-io-wakeup-source;
+>>
+>> in the device nodes for which it is relevant? This would be in addition
+>> to the 'wakeup-source' property.
 > 
->> ...
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-ariaboard-photonicat.dts
+> Rather oneOf. I don't think having two properties in a node brings any
+> more information.
 > 
-> This should be 'rk3568-photonicat.dts',
-> e.g. "Radxa ROCK 3A" -> rk3568-rock-3a.dts
-> 
->> ...
->> +	model = "Ariaboard Photonicat RK3568";
->> +	compatible = "ariaboard,photonicat", "rockchip,rk3568";
-> 
-> The official model name does not include 'RK3568'.
+> I would suggest finding one more user of this and making the
+> wakeup-source an enum - either string or integer with defines in a header.
 
-I will rename it.
+I am going through this thread again to write something in DT BoF but
+this is confusing:
 
-> 
->> ...
->> +	firmware {
->> +		optee: optee {
->> +			compatible = "linaro,optee-tz";
->> +			method = "smc";
->> +		};
->> +	};
->> +
->> ...
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		ramoops: ramoops@110000 {
->> +			compatible = "ramoops";
->> +			reg = <0 0x110000 0 0xf0000>;
->> +			console-size = <0x80000>;
->> +			ftrace-size = <0x00000>;
->> +			pmsg-size = <0x50000>;
->> +			record-size = <0x20000>;
->> +		};
->> +	};
-> 
-> Maybe these can be moved to rk356x.dtsi?
+"Partial-IO is a very low power mode"
+"not able to do a wakeup from Partial-IO."
+"wakeup-source for Partial-IO"
 
-Yes, I will split them.
+Are you waking up from Partial-IO or are you waking up into Partial-IO?
 
-> 
->> ...
->> +	vcca1v8: regulator-1v8-vcca {
-> 
-> schematics: VCCA_1V8
-> 
->> ...
-> +	vcc3v3_pcie: regulator-3v3-vcc-pcie {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pcie_enable_h>;
-> 
-> schematics: pcie_pwren_h
-> vcc_syson -> vcc3v3_pi6c
-> vcc_syson -> vcc3v3_pcie
-> 
->> +		regulator-always-on;
->> +		regulator-boot-on;
-> 
-> No need.
-> 
->> ...
->> +	vcc5v0_sys: regulator-5v0-vcc-sys {
-> 
-> There is no vcc5v0_sys, but vcc_syson.
-> 
-> vcc_syson (5v) -> vcc3v3_sys
-> vcc_sysin (5v) - (mcu) -> vcc_syson
-> vccin_5v -> vcc_sysin
-> 
->> ...
->> +	vcc5v0_usb_host: regulator-5v0-vcc-usb-host {
-> 
-> schematics: VCC5V0_USB30_OTG0 and usb_host_pwren_h
-> It's a little weird, but that's what they're calling it.
-> Also: VCCIN_5V -> VCC5V0_USB30_OTG0
-> 
->> ...
->> +	vcc5v0_usb_modem: regulator-5v0-vcc-usb-modem {
-> 
-> Are you sure this regulator is 5v?
-> 
-
-It should actually be 3.3V, I will fix it and rename to vcc3v3_usb_modem
-
-> 
->> ...
->> +	vdda0v9: regulator-0v9-vdda {
-> 
-> schematics: VDDA_0V9
-> 
->> +	wifi_pwrseq: wifi-pwrseq {
->> +		compatible = "mmc-pwrseq-simple";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&wifi_enable_h>;
-> 
-> schematics: wifi_reg_on_h
-> Also you need to enable the clk:
-> 
-> 		clocks = <&pmucru CLK_RTC_32K>;
-> 		clock-names = "ext_clock";
-> 		pinctrl-names = "default";
-> 		pinctrl-0 = <&wifi_reg_on_h &clk32k_out1>;
-> 
->> +		post-power-on-delay-ms = <200>;
->> +		reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
->> +	};
-> 
->> ...
->> +&pcie30phy {
->> +	phy-supply = <&vcc3v3_pcie>;
-> 
-> phy-supply = <&vcc3v3_pi6c>;
-
-I will change it to vcc3v3_pi6c.
-But there seems to be a warning here, maybe phy-supply is missing in rockchip,pcie3-phy.yaml?
-
-/tmp/build/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: phy@fe8c0000: 'phy-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
-
-> 
->> ...
->> +&pcie3x2 {
->> +	max-link-speed = <1>;
->> +	num-lanes = <1>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pcie30x2m1_pins>;
-> 
-> These are actually pcie30x1m0_pins.
-
-pcie30x1m0_pins seems to conflict with sdmmc0, I changed it to pcie30x1m1_pins
-
-> 
->> ...
->> +&pmugrf {
->> +	reboot-mode {
-> 
-> Maybe these can be moved to rk356x.dtsi?
-> 
->> ...
->> +&sdhci {
-> 
-> Missing mmc-hs200-1_8v;
-> 
-[...]> 
-> ath10k does not need compatible.
-
-I will remove them
-
-> 
->> ...
->> +&uart1 {
->> ...
->> +		clocks = <&pmucru CLK_RTC_32K>;
->> +		enable-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&bt_enable_h>;
-> 
-> schematics: bt_reg_on_h
-> Missing clock-names = "lpo";
-
-When I add clocks-name, check_dtbs gives me a warning
-
-/tmp/build/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: bluetooth: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-
-Maybe clock-name is missing in qualcomm-bluetooth.yaml?
-
-> 
-
-Thanks for your review, I will fix all problems in PATCH v2.
+And why the devices which are configured as wakeup-source cannot wake up
+from or for Partial-IO?
 
 Best regards,
-Junhao
+Krzysztof
+
 
