@@ -1,246 +1,108 @@
-Return-Path: <devicetree+bounces-100200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF68996CCC3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 04:45:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5891696CCE3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 05:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94D8B287AB9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 02:45:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ADF71C2231D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 03:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE8C42AA5;
-	Thu,  5 Sep 2024 02:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44FD25476B;
+	Thu,  5 Sep 2024 03:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JY1yAQvd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lvq9r3Wa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1960D1FB4;
-	Thu,  5 Sep 2024 02:45:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B7F25634;
+	Thu,  5 Sep 2024 03:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725504353; cv=none; b=SyDD6e9xpTTPRIGae9sz0pkT8UJUohSRZyPTsoA4z1In7nyAszDTcDPvZmuzfO2IgLfu5oQVuySCM/rE8nSKiIdvsUwD7hhRce3iF8/PiPkHQBcTy9aMxffQm2liSc36B+ULd6ZkpX42EEmkielyj9VO6ibJps/x9bmyeeXcysM=
+	t=1725505442; cv=none; b=WZC/O5mZQRuHBf82poSfrbMkG1887+tDGQ+RsuFvkLN4mD06ePo+pXRRKI8Dz2YBuDIwuEQLm5lfkdobPjp6pX/Ul+sgFTHj0FayNf9v60qbb360U4JFH/jNESHfpXDD+Artm/bo8vuS8KsijVdPUyjeaTPwRtn21FwepB4Z3iY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725504353; c=relaxed/simple;
-	bh=aKEtYUXQLqikNODrnijo1YTsFV3NZJNU2cYaaRrxQa0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=R2ciw/8pCFeI313Duwq7mvbKHwn1726p5yf/Qi+cfGIcFDpScIjWGucm3jANcOpiy01evDWLk+Pticnb1g5b09Px5/36NFA3GFBODzZA/4UITFNchCHrzeCJZ/WocvBrYXeKIV/6Y6ObVZI+xESgp9ArDJ3iSGGQQE0qACoA+ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JY1yAQvd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 484L48tt024309;
-	Thu, 5 Sep 2024 02:45:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rQrbhMR/CE4iptIhLzZS/lBVwTvylcrdfrjZy3BjVu8=; b=JY1yAQvd1DXTsjX9
-	YOvxz3ox5cnAoC/yoU2qrz6UK4scoKmAr3wTR4xu1S0vipsmKM2/r+V0LQhYkB19
-	k0i3fdNITyEF4l16F8VYGLuzhRXbCThau8oxuTs4KJzh0HvU/KrKvnlsiHmZuaMU
-	2LPmr7IT+n+oVoXCA4ZtJGLlT/ocDxv5Kg/QQWNLBY3sPu1qsfzIS547TkE63Ujh
-	EF/UoSczWCXQ9KOKGc94t7sFiCFBO0DqgIeX9dSrpEBGSd8wzzHkJtxcbV3j2ZhY
-	PAi14DBQlm8w3z3ZAOklqFGhvaNon2UZD4ie8oazz6x4lzA/FwTwkwEcLmeV08G8
-	EbSgZg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41btrxvhf9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Sep 2024 02:45:43 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4852jUkZ026124
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Sep 2024 02:45:30 GMT
-Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Sep 2024
- 19:45:27 -0700
-Message-ID: <8c97b94a-b688-4843-9b90-bbd78d1b8db9@quicinc.com>
-Date: Thu, 5 Sep 2024 10:45:25 +0800
+	s=arc-20240116; t=1725505442; c=relaxed/simple;
+	bh=/11NuV3J13AVBCNEHJBd61OCL7273nbkmFMzpmsJ/3M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FC3OY8dQCHt7e2QqZ0qKDtxCSBIzcdYGf8qK5PSvLzcRxP4hNMW7g4LhI/tf1TtoEBlFBs4skZdOQHDCNf9djvX3eStm1ttYn4XseEPgVPPLy53qFNFgrCHOb8wZOnEcwU24gwP48hPuPQMu4JWeBpo5QO3lBiqEYWolcTMIB78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lvq9r3Wa; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f50966c478so2895161fa.1;
+        Wed, 04 Sep 2024 20:04:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725505439; x=1726110239; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/11NuV3J13AVBCNEHJBd61OCL7273nbkmFMzpmsJ/3M=;
+        b=lvq9r3WacqscNpeOUd84ooGy6VX4SaMtVLXQxJpRnGkZO/z82wg/EJnzp0zPfaDu3k
+         /CKUPNltrCQGKB3Bg2eAS1TfJh06d6/nKUeSnVVq5OM8+voRFdtyyJpAGL1GcSVeR7rA
+         3o7uyi5qte7CLUs4hn5Lo9HW41cNavq1SE+5BbYahNjYDW42rex7TaRtrbdxqfzEFB++
+         +JgHET6Iq3Xr40xv0b1m3bqMEsLsbLiW6v7iUi+jpqJpLTnkxI7wATJXxaNOWZjlncsx
+         Y0Ak62xIx4+RnLYONz05/VUn6FMLdQ3E6Pm+f71xrX9MaBCClebGkkLEeVFTF5sXjI1k
+         RhmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725505439; x=1726110239;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/11NuV3J13AVBCNEHJBd61OCL7273nbkmFMzpmsJ/3M=;
+        b=b0Z9gMGceSzV/RBi8PS8FH7gtzCAuyW6B1R+GCgh2/GiveBbkcRtV7CxPkr8zcEoBZ
+         qH2NBgSIKCJt0eQe8uxA5mygl8Hz5JAQ5W0R6iYnwhLmAlQ9GtIeO9Br/5NC8daWZMYM
+         +qjZK3abvK6TwAi8kNJ0NVyetcSsQq/mWtCiq27AbdvlhbyQC84fTO+2Snd30w9WbLdL
+         DJW5jV3MnJ+ISdjttoOta47GHEmKlqzgdrexnZEKnloQHvCMPJnXpXgctezjciitKGUj
+         z9WFND+hRkNV/stfasNWzAL/v1+1cZUZEADF8cgnrhG3Eq6+vEilkRRznJAoXtTn2Nwo
+         iszg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0mv0Mgaw5MJqSoiJzhQpZERGIMlfzm+wyYHqlA11fyy5ald+7QC51KD4kfO3xh0UQ4Vp2sBRQ+IRXPvpg@vger.kernel.org, AJvYcCUrcI+1d6i6rJOVW0hWNonpozsh/I1o5NX6TOXoh4q2mt5kDw7N7/bgP3a6xF3aNwExf7YzdZ/nzQqB@vger.kernel.org, AJvYcCWnbgmhOy8LWg+h2eYkSVCD3t1uwUUymz9Te7r2nxSNy9klPMMIAmDm7wp7uwkta7OiQcxBfwR9iu8Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzN42U+qEMNLVWJid9OerXtq2rxF1z3MWeUcduZDWhkWBkP6CYL
+	9U+2RqnZvOVAJObLj409FD0EeImB9TniyXw6KJ/vQI2FzOkYGtvFdSJ/VIiQ3bamxSNY9Ecg86q
+	FfQiECH0OZ+BtY9sqDXmh8ASA9kE=
+X-Google-Smtp-Source: AGHT+IFKoW5NyQxeBL8rXaoBWYykLj0w4swcnGUHWTlZ90Pbf5D/BbEifa8Bhjzs4iwGhbX2BuMSl4V40wWz0QQoSEY=
+X-Received: by 2002:a05:651c:198c:b0:2f3:d560:ed9f with SMTP id
+ 38308e7fff4ca-2f61e025823mr141143101fa.5.1725505438583; Wed, 04 Sep 2024
+ 20:03:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/19] Add initial support for QCS8300
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Xin Liu <quic_liuxin@quicinc.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
- <172545686260.2410635.12324465724634886770.robh@kernel.org>
-Content-Language: en-US
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-In-Reply-To: <172545686260.2410635.12324465724634886770.robh@kernel.org>
+References: <20240905012617.1864997-1-haibo.chen@nxp.com> <20240905012617.1864997-3-haibo.chen@nxp.com>
+ <CAOMZO5ALKfz-w3taJBwCLu+pAnrcGaa-9=EtLH6FFJWBkq=t2g@mail.gmail.com> <DU0PR04MB9496D185069B3F9D3422BDAE909D2@DU0PR04MB9496.eurprd04.prod.outlook.com>
+In-Reply-To: <DU0PR04MB9496D185069B3F9D3422BDAE909D2@DU0PR04MB9496.eurprd04.prod.outlook.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 5 Sep 2024 00:03:46 -0300
+Message-ID: <CAOMZO5CCP9urCFixBtF17DaQ2mpno43mprj8hXP70R3-1MvU5g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] spi: fspi: add support for imx8ulp
+To: Bough Chen <haibo.chen@nxp.com>
+Cc: Han Xu <han.xu@nxp.com>, "yogeshgaur.83@gmail.com" <yogeshgaur.83@gmail.com>, 
+	"broonie@kernel.org" <broonie@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, 
+	"singh.kuldeep87k@gmail.com" <singh.kuldeep87k@gmail.com>, "hs@denx.de" <hs@denx.de>, 
+	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9Dpttvwml2x3qpHlenMKTHv35F2d-uqX
-X-Proofpoint-ORIG-GUID: 9Dpttvwml2x3qpHlenMKTHv35F2d-uqX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-05_02,2024-09-04_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- clxscore=1015 suspectscore=0 phishscore=0 impostorscore=0
- priorityscore=1501 mlxscore=0 mlxlogscore=999 spamscore=0
- lowpriorityscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2409050019
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+On Wed, Sep 4, 2024 at 10:49=E2=80=AFPM Bough Chen <haibo.chen@nxp.com> wro=
+te:
 
-On 9/4/2024 9:36 PM, Rob Herring (Arm) wrote:
-> 
-> On Wed, 04 Sep 2024 16:33:41 +0800, Jingyi Wang wrote:
->> Add initial support for QCS8300 SoC and QCS8300 RIDE board.
->>
->> This revision brings support for:
->> - CPUs with cpu idle
->> - interrupt-controller with PDC wakeup support
->> - gcc
->> - TLMM
->> - interconnect
->> - qup with uart
->> - smmu
->> - pmic
->> - ufs
->> - ipcc
->> - sram
->> - remoteprocs including ADSP,CDSP and GPDSP
->>
->> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->> ---
->> patch series organized as:
->> - 1-2: remoteproc binding and driver
->> - 3-5: ufs binding and driver
->> - 6-7: rpmhpd binding and driver
->> - 8-15: bindings for other components found on the SoC
->> - 16-19: changes to support the device tree
->>
->> dependencies:
->> tlmm: https://lore.kernel.org/linux-arm-msm/20240819064933.1778204-1-quic_jingyw@quicinc.com/
->> gcc: https://lore.kernel.org/all/20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com/
->> interconnect: https://lore.kernel.org/linux-arm-msm/20240827151622.305-1-quic_rlaggysh@quicinc.com/
->>
->> dtb check got following err:
->> /local/mnt/workspace/jingyi/aim500/linux/arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: interconnect@1680000: Unevaluated properties are not allowed ('reg' was unexpected)
->> which is cause by "reg" compatible missing in dt binding, will be fixed in interconnect patch series.
->>
->> ---
->> Jingyi Wang (11):
->>       dt-bindings: remoteproc: qcom,sa8775p-pas: Document QCS8300 remoteproc
->>       remoteproc: qcom: pas: Add QCS8300 remoteproc support
->>       dt-bindings: qcom,pdc: document QCS8300 Power Domain Controller
->>       dt-bindings: soc: qcom: add qcom,qcs8300-imem compatible
->>       dt-bindings: mailbox: qcom-ipcc: Document QCS8300 IPCC
->>       dt-bindings: mfd: qcom,tcsr: Add compatible for QCS8300
->>       dt-bindings: nvmem: qfprom: Add compatible for QCS8300
->>       dt-bindings: arm: qcom: document QCS8275/QCS8300 SoC and reference board
->>       arm64: defconfig: enable clock controller, interconnect and pinctrl for QCS8300
->>       arm64: dts: qcom: add initial support for QCS8300 DTSI
->>       arm64: dts: qcom: add base QCS8300 RIDE dts
->>
->> Kyle Deng (1):
->>       dt-bindings: soc: qcom,aoss-qmp: Document the QCS8300 AOSS channel
->>
->> Shazad Hussain (1):
->>       dt-bindings: power: rpmpd: Add QCS8300 power domains
->>
->> Tingguo Cheng (1):
->>       pmdomain: qcom: rpmhpd: Add QCS8300 power domains
->>
->> Xin Liu (3):
->>       dt-bindings: phy: Add QMP UFS PHY comptible for QCS8300
->>       dt-bindings: ufs: qcom: Document the QCS8300 UFS Controller
->>       phy: qcom-qmp-ufs: Add support for QCS8300
->>
->> Zhenhua Huang (2):
->>       dt-bindings: arm-smmu: Add compatible for QCS8300 SoC
->>       dt-bindings: firmware: qcom,scm: document SCM on QCS8300 SoCs
->>
->>  Documentation/devicetree/bindings/arm/qcom.yaml    |    8 +
->>  .../devicetree/bindings/firmware/qcom,scm.yaml     |    1 +
->>  .../bindings/interrupt-controller/qcom,pdc.yaml    |    1 +
->>  .../devicetree/bindings/iommu/arm,smmu.yaml        |    2 +
->>  .../devicetree/bindings/mailbox/qcom-ipcc.yaml     |    1 +
->>  .../devicetree/bindings/mfd/qcom,tcsr.yaml         |    1 +
->>  .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |    1 +
->>  .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    |    2 +
->>  .../devicetree/bindings/power/qcom,rpmpd.yaml      |    1 +
->>  .../bindings/remoteproc/qcom,sa8775p-pas.yaml      |    6 +
->>  .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |    1 +
->>  .../devicetree/bindings/sram/qcom,imem.yaml        |    1 +
->>  .../devicetree/bindings/ufs/qcom,ufs.yaml          |    2 +
->>  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |  246 ++++
->>  arch/arm64/boot/dts/qcom/qcs8300.dtsi              | 1282 ++++++++++++++++++++
->>  arch/arm64/configs/defconfig                       |    3 +
->>  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c            |    3 +
->>  drivers/pmdomain/qcom/rpmhpd.c                     |   24 +
->>  drivers/remoteproc/qcom_q6v5_pas.c                 |    3 +
->>  include/dt-bindings/power/qcom-rpmpd.h             |   19 +
->>  21 files changed, 1609 insertions(+)
->> ---
->> base-commit: eb8c5ca373cbb018a84eb4db25c863302c9b6314
->> change-id: 20240829-qcs8300_initial_dtsi-1a386eb317d3
->>
->> Best regards,
->> --
->> Jingyi Wang <quic_jingyw@quicinc.com>
->>
->>
->>
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y qcom/qcs8300-ride.dtb' for 20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com:
-> 
-> In file included from arch/arm64/boot/dts/qcom/qcs8300-ride.dts:11:
-> arch/arm64/boot/dts/qcom/qcs8300.dtsi:6:10: fatal error: dt-bindings/clock/qcom,qcs8300-gcc.h: No such file or directory
->     6 | #include <dt-bindings/clock/qcom,qcs8300-gcc.h>
->       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[3]: *** [scripts/Makefile.lib:434: arch/arm64/boot/dts/qcom/qcs8300-ride.dtb] Error 1
-> make[2]: *** [scripts/Makefile.build:490: arch/arm64/boot/dts/qcom] Error 2
-> make[2]: Target 'arch/arm64/boot/dts/qcom/qcs8300-ride.dtb' not remade because of errors.
-> make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1390: qcom/qcs8300-ride.dtb] Error 2
-> make: *** [Makefile:224: __sub-make] Error 2
-> make: Target 'qcom/qcs8300-ride.dtb' not remade because of errors.
-> 
-> 
-> 
-> 
-> 
-As mentioned in the cover letter, the dtsi is depend on the gcc patch series:
-https://lore.kernel.org/all/20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com/
-which includes the qcom,qcs8300-gcc.h file.
+> Hi Fabio,
+>
+> I only add the .lut_num here, do not touch .lettle_endian here, and I add=
+ another 8ulp in the follow line, but format patch show in this way. Anythi=
+ng I can do to adjust how to format patch?
 
-Thanks,
-Jingyi
+Now that I look at the original code, I see that imx8dl already has
+little_endian =3D true.
+
+Sorry for the noise.
 
