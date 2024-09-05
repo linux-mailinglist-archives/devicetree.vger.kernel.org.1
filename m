@@ -1,88 +1,128 @@
-Return-Path: <devicetree+bounces-100603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD88896E3B5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:09:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBE396E3C2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78A51B2120E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:09:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C34CE2820DC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BA918D64B;
-	Thu,  5 Sep 2024 20:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B0A16F831;
+	Thu,  5 Sep 2024 20:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVjiq0Eo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qwe48Cl8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B873D6D;
-	Thu,  5 Sep 2024 20:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CE9158DC0;
+	Thu,  5 Sep 2024 20:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725566980; cv=none; b=V6gaXIjKpeKTwwa1XWBe4sceFnr1YnxkZ9g+L2rBWU1ErhgaQR8/WM04TeKH1G4rVn7FvtiQJJeRaQe7JN4Ms9pYlMf0tMJsP7GIf1bF+NKOBe+5RQAwoucrjS+QFVWMQmAfANUQxnjIgVGBqWSivNucqCZaVQXwC8ZzUsFr/cU=
+	t=1725567163; cv=none; b=iS237tQp57QA6tm4cmOLJA7+UuoIJByp4+sp7FJsEHdx5IsbQgtyPcQuxV0UbKc8eDPgnBxDvP1c1GFM8uzqUGUcjN1U75VdFki28RE1kXoUlkpNIDV4PZOdQJYks/r+NsOWCyLxqQcqC50mVB19v/blgMjneacDELDyeCdeNiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725566980; c=relaxed/simple;
-	bh=jrefzNA12FzJQQjCFsScSB7l/AHuNdpw7rAO4rexBss=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IalLGkvdGRber4KLZ5e4SXGBtINwDUz+JuapBCypXv2LN0YWS/N6jSxqFdwXPpmMrRJxcICnIy3q5P5Vvkqozczmf/BtNzBcIXC6RkLNHFeaPChFPWmZeZRzs57Fu+qhf/VzHzH4TpgQ3/X1rckiQ+RgyxpoFUG9Q/z8M5a2S2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVjiq0Eo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BD13C4CEC3;
-	Thu,  5 Sep 2024 20:09:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725566979;
-	bh=jrefzNA12FzJQQjCFsScSB7l/AHuNdpw7rAO4rexBss=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WVjiq0Eoo8PEtv4vfrCu+ImU8p1dBUkoja81MxiBrpUUGMe2KL6SCKlpyjN+mKLoG
-	 F/RmqOe7qin159/60Z2PHlz7gbiMhohYZgKgsbchKFdkhB3D2xawWhy4kES5SCtuZi
-	 PNz+RsVzAx4TqxaM9RuxMaM2QxVGwEktUSs8d/sk96rSGo68MSeI+jOEDuIKbxMl7R
-	 VaHSg1ybPkoOZ13nwQ1iviNdXX4/uu7pvMXFUKVCjzRGTycC+xIWBQTEtIoG9gMpw0
-	 7fiTPzUdbmIkZuXC3/1QRUFqDCpV2nbGFxbX4LfJ/zSLaRTF7aB43i401q+4RGxSXU
-	 0HHuiIxSDBz1w==
-Date: Thu, 5 Sep 2024 22:09:34 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Todor Tomov <todor.too@gmail.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-media@vger.kernel.org, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
-Message-ID: <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
-References: <20240904020448.52035-9-mailingradian@gmail.com>
+	s=arc-20240116; t=1725567163; c=relaxed/simple;
+	bh=w/ZWoZWSJ2oywbAuMrgFd7l5yRBfaFpUWObRn3hGLoQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZM1IIVnyj5vag0Qgggxq8mCmE2QwhI9FL2dDeHYer/00WtnCyrNgEPX7krq/3MI3fhNeRVZhXXd1/jHaiLEEkT2SJVdAXawf21soYh9XpJ4aSfMBMHheVWUMeKrQT+xpKMa+FoVhkKMMOxT9p4WP/TFk0PdxSNPS8euxqwRI9fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qwe48Cl8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IPwSt021611;
+	Thu, 5 Sep 2024 20:12:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=WdZmBG0Qn3m95qrKq0kN7i
+	SjKHyqrRrZ0qphiCEjm1g=; b=Qwe48Cl8BW9yHU49Gphh6hojXTaMv73jJbyB/d
+	FpQKFkBHwVr9UZMWN02rHDp3zSHHVIBJd3qSJGeOzyqj6zLi/2j3IaFXg/U1ckwm
+	EJjKDy94cLZz8p7G/JVt00/csiuCOzIH85GSYiBo0jZ6Awba2cURcXnuf0YuYPgm
+	Hi6/K1TKJfi41sisYaW88Eh8Hu9KhyJDNuwubaq9fCdeJKf1hPgY4EUU2EjHxvIX
+	5E8VuP+Olkkh9kh5HVWRxHsctTDoLqRl1XBiXsz37nCjX9hOOayfQC9DYrU9oUoY
+	25BqfTgaSUN7iS1KsVffdQ1FoedTnDRiC4tM04RAMZxiyg4w==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwu06rx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Sep 2024 20:12:32 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485KCWpB014182
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Sep 2024 20:12:32 GMT
+Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 5 Sep 2024 13:12:29 -0700
+From: Nikunj Kela <quic_nkela@quicinc.com>
+To: <sudeep.holla@arm.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <cristian.marussi@arm.com>, <arm-scmi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>, Nikunj Kela <quic_nkela@quicinc.com>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple virtual instances
+Date: Thu, 5 Sep 2024 13:12:17 -0700
+Message-ID: <20240905201217.3815113-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240904020448.52035-9-mailingradian@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4KeDDcMrcS9i_kO9O45S30M87pN3ANkh
+X-Proofpoint-ORIG-GUID: 4KeDDcMrcS9i_kO9O45S30M87pN3ANkh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_15,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=999 adultscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 phishscore=0 suspectscore=0
+ impostorscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409050149
 
-Hi Richard,
+This change extends scmi node name so as to allow multiple virtual
+SCMI instances.
 
-On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
-> This adds support for the camera subsystem on the Snapdragon 670.
-> 
-> As of next-20240902, camss seems to be a bit broken, but the same series
-> works on stable (although it is much less reliable now that the CCI clock
-> frequency is not being assigned).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+---
 
-I am not understanding this bit: is this series making it better
-or not? Can you please clarify what is broken, what is less
-reliable and what works?
+Changes in v3:
+	- Added Reviewed-by tag
+	- Removed the patch from original series[1]
 
-Besides, I'm reading that this series has not been tested and it
-makes it difficult for me to take this in, considering that you
-are adding a new support.
+Changes in v2:
+	- Fixed scmi nodename pattern
 
-Thanks,
-Andi
+[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+---
+ Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index 54d7d11bfed4..5d79b15a1610 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -27,7 +27,7 @@ anyOf:
+ 
+ properties:
+   $nodename:
+-    const: scmi
++    pattern: '^scmi(-[0-9]+)?$'
+ 
+   compatible:
+     oneOf:
+-- 
+2.34.1
+
 
