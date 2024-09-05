@@ -1,214 +1,149 @@
-Return-Path: <devicetree+bounces-100472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6E496DBF3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFEB96DC18
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 16:41:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63EBF2817C3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:37:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B30B28A6E2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 14:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB4A168B1;
-	Thu,  5 Sep 2024 14:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2443617BA7;
+	Thu,  5 Sep 2024 14:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Q4vyRurz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2YOjheR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CB317548;
-	Thu,  5 Sep 2024 14:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB741E521;
+	Thu,  5 Sep 2024 14:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725547017; cv=none; b=Pii/kFk8IPuqZr0jv5MksZ69X1c0cu5kLxnjRmVpbDMzrVQjz4XD2RxenTyrJlQHHdyV7rgezJo3wQFxt72xLRQNWFVViH0grSv5q8UQvzOc12m8rhR7/QC/FEZqmdU3kOVr/9XZSykvnJHg+nb4JX3tjJIurHaSSQqim/CfboM=
+	t=1725547132; cv=none; b=C++PBvB53atCBbYz4CtHUDywqjbKfYwLcx941+F02z8MvICIFYWpPZbagG7HE3pSOEU1RqHshFSmoRtYmWF1yAM4Y76EiTBldK4NKv2JZEdxq685BU7htVdUlduETnQ+piQEJ2NOk37H4h0wGZCyOc+7jkXCTRySfXbXzagmGsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725547017; c=relaxed/simple;
-	bh=ioOxBTL+YcNfqfyxlm1LH+AxreuQgTq5diXJPly0R9M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TbX2brEELHcE5v7oqV3HEmgJSdMHuYzQ2MUR16+kAc9m5fqyJxQGdmF847Koy8friFQGQbtdSuPP5dUbre8rC74fYfnS0iYVxM6SnXf/EpbSwC+jUA9WflZ1loecTY72xRB55LGbw5V5ruapwCaC1ItXs+I7pPLCeknW+/+pA6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Q4vyRurz; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725547015; x=1757083015;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ioOxBTL+YcNfqfyxlm1LH+AxreuQgTq5diXJPly0R9M=;
-  b=Q4vyRurzI69r0085c/Lj7p65qevqMGslOIc4ef710eccPSBCad5ks8my
-   9KaJW8/bVzKi94L3WSE/QZef6L4TyUMhOKSYPTCK5EXnXyqDRktEjeBYS
-   3z8X2CcNNdJdbhCC8wzL6C/uf1D5NFZpkUtMoQrS5wiiqkQoQuK2Hz3um
-   fMEpPwBbyjYRLmEAMyZ9HXFNr9WV2u+w1wg7T+CNgMfUXsE213ToCAyQt
-   n28Z4SG8Fiupf/GFWJ1UlPSHy0xb1OQrj08xxhX8i053Nc1Yf5E9v12K8
-   TpGVBqPA/rHP2IFeLemWVQgicqT873bmn0QkIxdFz5VIWUDIlbuwyejYo
-   Q==;
-X-CSE-ConnectionGUID: iZMzHRBARyy75LFHdHopJA==
-X-CSE-MsgGUID: pYc4MCd7RVaRERYpNZN8uA==
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; 
-   d="scan'208";a="34471301"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Sep 2024 07:36:54 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 5 Sep 2024 07:36:44 -0700
-Received: from [10.180.116.241] (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Thu, 5 Sep 2024 07:36:41 -0700
-Message-ID: <e477ba59-36e8-4021-b32c-4db10fccea6e@microchip.com>
-Date: Thu, 5 Sep 2024 16:37:01 +0200
+	s=arc-20240116; t=1725547132; c=relaxed/simple;
+	bh=vcauXydy8x37ftyhjB4duujVq1w/VunfLD6enxt17oM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PjNGqlGhHuK5H14XX5rfPfMOwGY4rpfoxGZkgBh0LM1upL1BqRtPIl3R1eVp/D/vCpP1RbJ9EfPmMoDA89IKoXJzMVjXhsBU0WoUKGO+6xyFMKO/G6B2uiscqczmTt9zD+Tvr3msHIYYqr++uu9tztnxgC6B1bKvbXfvrB2N9Ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2YOjheR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D0BEC4CEC3;
+	Thu,  5 Sep 2024 14:38:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725547131;
+	bh=vcauXydy8x37ftyhjB4duujVq1w/VunfLD6enxt17oM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c2YOjheRb949eFSbuKXatjy28tUv9s5L8nDgQqSRsR17dQMJ+g7E7wkszTSL9zpl5
+	 oTl+nCCqjPxADrqKB+bPsOJp/UizpTcTQqyTd4neL2n6RVQk53ty0mfWT3IcffRER8
+	 qxl3ktDVdKrJxSUHAssEYPPLPdSs8hB7uPIcX5NLfG+9xH+Jky46UPdfRkFOp0J7QA
+	 zFRdgQyb9nO6bY7FFOjUApbFIrskY566QAcadTzw5xJq7C15ti1B0iTPLFF6cXPPVw
+	 UI8TeWIaEK+rE31kEj1fNKmr59fODTo5ayUwL9UzF2f++VtPFasU2RDc+NQEQ/AoMN
+	 7ja30u6a9UiYw==
+Date: Thu, 5 Sep 2024 09:38:50 -0500
+From: Rob Herring <robh@kernel.org>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org,
+	Dinh Nguyen <dinguyen@kernel.org>
+Subject: Re: [PATCH 14/15] kbuild: rename CONFIG_GENERIC_BUILTIN_DTB to
+ CONFIG_BUILTIN_DTB
+Message-ID: <20240905143850.GD1517132-robh@kernel.org>
+References: <20240904234803.698424-1-masahiroy@kernel.org>
+ <20240904234803.698424-15-masahiroy@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: microchip: sam9x60: Add missing property
- atmel,usart-mode
-Content-Language: en-US, fr-FR
-To: Andrei Simion <andrei.simion@microchip.com>, <claudiu.beznea@tuxon.dev>,
-	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-References: <20240905093046.23428-1-andrei.simion@microchip.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20240905093046.23428-1-andrei.simion@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240904234803.698424-15-masahiroy@kernel.org>
 
-On 05/09/2024 at 11:30, Andrei Simion wrote:
-> ~: make dtbs_check DT_SCHEMA_FILES=atmel,at91-usart.ymal
-> -> for all boards which inherit sam9x60.dtsi: serial@200: $nodename:0:
-> 'serial@200' does not match '^spi(@.*|-([0-9]|[1-9][0-9]+))?$
-> serial@200: atmel,use-dma-rx: False schema does not allow True
-> serial@200: atmel,use-dma-tx: False schema does not allow True
-> serial@200: atmel,fifo-size: False schema does not allow [[16]]
-> -> Means : atmel,usart-mode = <AT91_USART_MODE_SERIAL> misses for uart:
-> 0,1,2,3,4,6,7,8,9,10,11,12
+On Thu, Sep 05, 2024 at 08:47:50AM +0900, Masahiro Yamada wrote:
+> Now that all architectures have migrated to the generic built-in
+> DTB support, the GENERIC_ prefix is no longer necessary.
 > 
-> Add to uart nodes the property atmel,usart-mode to specify the driver to be
-> used in serial mode to be compliant to atmel,at91-usart.yaml.
-> 
-> Fixes: 99c808335877 ("ARM: dts: at91: sam9x60: Add missing flexcom definitions")
-> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
-
-Thanks Andrei:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-Best regards,
-   Nicolas
-
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > ---
->   arch/arm/boot/dts/microchip/sam9x60.dtsi | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> index 04a6d716ecaf..0ba424bba7cc 100644
-> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> @@ -174,6 +174,7 @@ flx4: flexcom@f0000000 {
->   				uart4: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <13 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -376,6 +377,7 @@ flx11: flexcom@f0020000 {
->   				uart11: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <32 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -427,6 +429,7 @@ flx12: flexcom@f0024000 {
->   				uart12: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <33 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -586,6 +589,7 @@ flx6: flexcom@f8010000 {
->   				uart6: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <9 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -637,6 +641,7 @@ flx7: flexcom@f8014000 {
->   				uart7: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <10 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -688,6 +693,7 @@ flx8: flexcom@f8018000 {
->   				uart8: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <11 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -739,6 +745,7 @@ flx0: flexcom@f801c000 {
->   				uart0: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <5 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -809,6 +816,7 @@ flx1: flexcom@f8020000 {
->   				uart1: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <6 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -879,6 +887,7 @@ flx2: flexcom@f8024000 {
->   				uart2: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <7 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -949,6 +958,7 @@ flx3: flexcom@f8028000 {
->   				uart3: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <8 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -1074,6 +1084,7 @@ flx9: flexcom@f8040000 {
->   				uart9: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <15 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> @@ -1125,6 +1136,7 @@ flx10: flexcom@f8044000 {
->   				uart10: serial@200 {
->   					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
->   					reg = <0x200 0x200>;
-> +					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
->   					interrupts = <16 IRQ_TYPE_LEVEL_HIGH 7>;
->   					dmas = <&dma0
->   						(AT91_XDMAC_DT_MEM_IF(0) |
-> 
-> base-commit: fdadd93817f124fd0ea6ef251d4a1068b7feceba
+>  Makefile                             | 2 +-
+>  arch/arc/Kconfig                     | 2 +-
+>  arch/loongarch/Kconfig               | 1 -
+>  arch/microblaze/Kconfig              | 2 +-
+>  arch/mips/Kconfig                    | 1 -
+>  arch/nios2/platform/Kconfig.platform | 1 -
+>  arch/openrisc/Kconfig                | 2 +-
+>  arch/riscv/Kconfig                   | 1 -
+>  arch/sh/Kconfig                      | 1 -
+>  arch/xtensa/Kconfig                  | 2 +-
+>  drivers/of/Kconfig                   | 2 +-
+>  scripts/Makefile.vmlinux             | 2 +-
+>  scripts/link-vmlinux.sh              | 2 +-
+>  13 files changed, 8 insertions(+), 13 deletions(-)
 
+> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+> index e1d3e5fb6fd2..70f169210b52 100644
+> --- a/arch/loongarch/Kconfig
+> +++ b/arch/loongarch/Kconfig
+> @@ -388,7 +388,6 @@ endchoice
+>  config BUILTIN_DTB
+>  	bool "Enable built-in dtb in kernel"
+>  	depends on OF
+> -	select GENERIC_BUILTIN_DTB
+>  	help
+>  	  Some existing systems do not provide a canonical device tree to
+>  	  the kernel at boot time. Let's provide a device tree table in the
+
+> diff --git a/arch/nios2/platform/Kconfig.platform b/arch/nios2/platform/Kconfig.platform
+> index c75cadd92388..5f0cf551b5ca 100644
+> --- a/arch/nios2/platform/Kconfig.platform
+> +++ b/arch/nios2/platform/Kconfig.platform
+> @@ -38,7 +38,6 @@ config NIOS2_DTB_PHYS_ADDR
+>  config BUILTIN_DTB
+>  	bool "Compile and link device tree into kernel image"
+>  	depends on !COMPILE_TEST
+> -	select GENERIC_BUILTIN_DTB
+
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -1110,7 +1110,6 @@ config RISCV_ISA_FALLBACK
+>  config BUILTIN_DTB
+>  	bool "Built-in device tree"
+>  	depends on OF && NONPORTABLE
+
+Humm, maybe this NONPORTABLE option could be common and used to 
+accomplish what I want here...
+
+> -	select GENERIC_BUILTIN_DTB
+
+> diff --git a/arch/sh/Kconfig b/arch/sh/Kconfig
+> index 3b772378773f..b09019cd87d4 100644
+> --- a/arch/sh/Kconfig
+> +++ b/arch/sh/Kconfig
+> @@ -648,7 +648,6 @@ config BUILTIN_DTB
+>  	bool "Use builtin DTB"
+>  	default n
+>  	depends on SH_DEVICE_TREE
+> -	select GENERIC_BUILTIN_DTB
+
+> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> index 5142e7d7fef8..53a227ca3a3c 100644
+> --- a/drivers/of/Kconfig
+> +++ b/drivers/of/Kconfig
+> @@ -2,7 +2,7 @@
+>  config DTC
+>  	bool
+>  
+> -config GENERIC_BUILTIN_DTB
+> +config BUILTIN_DTB
+>  	bool
+
+I'm confused. We can't have the same config option twice, can we?
+
+Rob
 
