@@ -1,151 +1,101 @@
-Return-Path: <devicetree+bounces-100375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C094796D731
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:32:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5744A96D736
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:33:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F37D81C232BC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:32:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 937832878AF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8238199954;
-	Thu,  5 Sep 2024 11:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454B6199956;
+	Thu,  5 Sep 2024 11:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="kw16o/JK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cn4rPZlm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40BF199934;
-	Thu,  5 Sep 2024 11:32:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17966199938;
+	Thu,  5 Sep 2024 11:33:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725535954; cv=none; b=XjlVmTJKIC7rLDoBVCylnPWCH00zSWVtGvQtZYUWU/iDVTjexkAzHvtN+u9Gs8YtHgGtGjPcGYMngxhTzYv3JS+H0BE2DklGu1JxZB2/km3A6FEOEcY2F3bgCe8mJlmLO8hueha4I5yGJ5K3fBcIqbtu+xCAH9gCZTFAF1iRnjw=
+	t=1725535997; cv=none; b=ZoIMjakvLtnOldYeC1uBaG4KUgp+wwsEni3PsCd1X8ESsMIacby0VrhArI0TQlcOFxAxDO9r81SBF7/DcFRzvm82cwfHDQ/+nyTMsKDzvXBwKDRlHOSLD/+JK+AXHaWddwwrRDa1xwHYffx+mwR1BTkAjmjdEFiKs5y7uxX2Hok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725535954; c=relaxed/simple;
-	bh=8pgTWXKFnVm36YkNjWt4EqpXaxerwdD3Y7wKt9GJCn8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nzbuYSoVtTx643F4835IdGd/gdjYFGBPVZadKUpgt+7AcBE4xki1zWR6SUkSstfxPD6kLNBM2RyeZJeEKmEXmEdioBPd5Oucm29K723+xIY2AHq8UiCVdvBP8paLUfEdGJlQF+phH07bd09N4i6FT+4E7+IujpblTcPOZPEwiq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=kw16o/JK; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1725535949;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=MITZUtkw5bagB0eVerd/j8Yzb+fVQlvaPcZds1xrZjs=;
-	b=kw16o/JKlg5aGkXHHhhG/ITTlNiWvRjaihOKX5D3/SmPXrmaTcP0xsYTJ93b8yTd5iDKWV
-	GN+sqCUIuV8VZOPPQxFamoBWhiVocioLwOiAygfY5NFtEpJwwz7VEfynjeGBFOA2U5Bwna
-	VP3Ppa9xhu/2IsEL2Oy1st0XivEfx5TAIW0dqn1l4x0mYQ/wl67mLESlZ9pJm2P5ezyWQJ
-	FaTb0YAG6m3LSx1/kZ328AJ/cr/bf3KQ68K6QLxmMIYkIrNg9S9d6gDJpyl5khC4jY0dDC
-	9HZBwTiimAv54ojebZqvJlK0PxmzDHKBhuLRHkkWaVNdqlwcbtS4JwLey+7FMQ==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH] arm64: dts: rockchip: Add a few aliases to the PineTab2 dtsi
-Date: Thu,  5 Sep 2024 13:32:19 +0200
-Message-Id: <987e68d1c5e9a0cc56d730aec87246aa5ab8ea14.1725535770.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1725535997; c=relaxed/simple;
+	bh=VWk0KKM+pEC2Fxd/uZoZaHJwBnxhNaByHYWWjXspupw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e+PZ5eul//gCaIfKjWRzaSk4PvEL49YSCXVa5V2D8Pf8h2EV6wVH8dSKZD4WXIkXmwiPacQaYuQI6v0eqgXSNBxwI/RdIL6SrYPu62aMYmRQUi3LyaPQQ090U7eDVqhn8/Mnbz1QoV9AHg6U5RCLPm+XXuvpipg5OrCymStmxzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cn4rPZlm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C9D5C4CEC3;
+	Thu,  5 Sep 2024 11:33:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725535996;
+	bh=VWk0KKM+pEC2Fxd/uZoZaHJwBnxhNaByHYWWjXspupw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cn4rPZlmwgMcVVU+MrRIC0Yjz3jTout7qWJji7d3q+7Y7YqTAyEcMW/f3hDXdtPSJ
+	 RTETa4ysBQk9weJrSdjM5qSQfU/UX35eT9DKaz6M79YTVXtTy+aAVWejiZckaiLw03
+	 K5tqZONOWD9SX2Bl+C3M2Jf1i11KxGyFiY1LITuE97vzWZfVCaoQRhGnqlVsEpxYrM
+	 TBGqJ0fTuBxxkSdo68FbuIH1DqOMQAYzxYoGTRWsUnIZX5KFkFdl7r2dC8schnl7el
+	 7c3pivYAM+o4q6/SUIKg9pYAz3XDmgOolIvFegh9O1ZGXGm5+EYz9294l9Up8AwswX
+	 erdM46Mn8OGNQ==
+Date: Thu, 5 Sep 2024 12:33:08 +0100
+From: Mark Brown <broonie@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH RFC v3 0/9] spi: axi-spi-engine: add offload support
+Message-ID: <52894eda-f484-43b2-b9db-04bd14fe6e18@sirena.org.uk>
+References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SQPEeGKFbXTry+H6"
+Content-Disposition: inline
+In-Reply-To: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+X-Cookie: The horror... the horror!
 
-Sprinkle a few commonly used aliases onto the PineTab2 dtsi file, to improve
-its readability a bit, to make it easier to refer to the actual nodes later,
-if needed, and to add a bit more detail to some of the labels.
 
-No functional changes are introduced, which was validated by decompiling and
-comparing all affected board dtb files before and after these changes.  When
-compared with the decompiled original dtb files, some of the phandles in the
-updated dtb files have different values, and the updated dtb files contain
-some additional phandles and additional symbols that come from the introduced
-aliases, but they still effectively remain the same as the originals.
+--SQPEeGKFbXTry+H6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Suggested-by: Diederik de Haas <didi.debian@cknow.org>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
+On Mon, Jul 22, 2024 at 04:57:07PM -0500, David Lechner wrote:
+> There is a recap at the end of this cover letter for those not familiar
+> with the previous discussions. For those that are, we'll get right to
+> the changes since the last version.
 
-Notes:
-    This patch wasn't tested on a PineTab2 before it was submitted to the
-    mailing list, because I don't have that device, but Diederik has already
-    agreed to test this patch on his PineTab2 and provide feedback.
+I didn't reply on this mainly because I don't have anything super
+substantial to say that wasn't already covered.
 
- arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+--SQPEeGKFbXTry+H6
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-index db40281eafbe..04d98715ae6e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-@@ -41,7 +41,7 @@ button-vol-down {
- 		};
- 	};
- 
--	backlight: backlight {
-+	backlight: backlight-dsi {
- 		compatible = "pwm-backlight";
- 		pwms = <&pwm4 0 25000 0>;
- 		brightness-levels = <20 220>;
-@@ -551,20 +551,20 @@ regulator-state-mem {
- 			};
- 		};
- 
--		charger {
-+		rk817_charger: charger {
- 			monitored-battery = <&battery>;
- 			rockchip,resistor-sense-micro-ohms = <10000>;
- 			rockchip,sleep-enter-current-microamp = <300000>;
- 			rockchip,sleep-filter-current-microamp = <100000>;
- 		};
- 	};
- };
- 
- &i2c1 {
- 	clock-frequency = <400000>;
- 	status = "okay";
- 
--	touchscreen@5d {
-+	touchscreen: touchscreen@5d {
- 		compatible = "goodix,gt911";
- 		reg = <0x5d>;
- 		interrupt-parent = <&gpio0>;
-@@ -583,13 +583,13 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2m1_xfer>;
- 	status = "okay";
- 
--	vcm@c {
-+	vcm: vcm@c {
- 		compatible = "dongwoon,dw9714";
- 		reg = <0x0c>;
- 		vcc-supply = <&vcc1v8_dvp>;
- 	};
- 
--	camera@36 {
-+	camerab: camera@36 {
- 		compatible = "ovti,ov5648";
- 		reg = <0x36>;
- 		pinctrl-names = "default";
-@@ -619,7 +619,7 @@ &i2c5 {
- 	clock-frequency = <400000>;
- 	status = "okay";
- 
--	accelerometer@18 {
-+	accelerometer: accelerometer@18 {
- 		compatible = "silan,sc7a20";
- 		reg = <0x18>;
- 		interrupt-parent = <&gpio3>;
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbZlvMACgkQJNaLcl1U
+h9B4rAf/ZoKEQN8Ha9T7PIsTC+93EBkvUTESMJz+87Yt8sXAwKjxCQyi8uUB8CNZ
+nXIsSzqp4bZS3nhAuQovxgJwoZ7/TA0RdlzT2aE5WxJL4diRUaQpPvJpwmGKRnHB
+qqC+w+b7QBpnp8LaQnxAc2Sqyp08GQavoGgPpL4CggM+wh7v2LihCCZEg1+Fv4R0
+hGhMF3ZKNp8v1yvIungM8leb/ooqY8fhKQoVjf4HVXngZLl4qQI7Jk+b66MeSWrV
+yOGB5unNKl9zGFr+Pma0F5NlEhC7/H6PwKts2skY3+heBw4WNnkrZgY++0m8uJvk
+Dx5B0OmMI2x8J5WiAcULkVIW+TOQWA==
+=JKTd
+-----END PGP SIGNATURE-----
+
+--SQPEeGKFbXTry+H6--
 
