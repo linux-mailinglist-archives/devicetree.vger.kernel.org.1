@@ -1,174 +1,232 @@
-Return-Path: <devicetree+bounces-100606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C13096E3E2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:18:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F14B896E3EA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:19:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A13E11C231A5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:18:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B9761C2323F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 20:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1BA19CD12;
-	Thu,  5 Sep 2024 20:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F348A1AD9DD;
+	Thu,  5 Sep 2024 20:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FsjR3g/7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7pFJdCN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507CC1946B5;
-	Thu,  5 Sep 2024 20:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB25C19DFAE;
+	Thu,  5 Sep 2024 20:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725567419; cv=none; b=HqFD3+8bWTTaEQKbeGopBuAqkr2GXHdsRfSCUNRAXT9CE8PeLKxB9DXjTNa4g+57LyWPKForQkbSSVbIP7P3wxqcK+gSA/yjbWJ/L0vOdLHtr3y50cCMR8M27jaRQLnFD97YDM6Dnp6CUk2OehTO3DgY6YxF2WE8G1mVbNHEEho=
+	t=1725567472; cv=none; b=D4p5wvPqobAMWCG/fUBGruSJsgzma66grpywLoGbzhVDNn6B8Kdb1s/6pD05ifKGqPJMKkgA5QxRwdNvz+ICH5P43fQv9Zanb62O7GPrMlWK7o2Cd/AsPiG9Pr1MY7rN06oSe7jZMFXWbG9+lCh3XaQZ1nXrcHarvHhsqMEZM08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725567419; c=relaxed/simple;
-	bh=oOrc4XFmXO7UWLqnMJyq0ZtqgmmLYbyMcYG1L7W+7R8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Wwo9rK1G3NEb+bc918QKubKDeN93Nm5gutn05abBToNJwxGGGgXHD6B2bZncdWUKAvnVGJ5U7AFlBk4zaWkkazPnf7/OMhJZ2tvr3TCmmFfWvyFZDVZEWz/szb866EYeffACCVyimOHzyyKk/F/9RefKs2ObFaXNLSexvEd/JG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FsjR3g/7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F4C0C4CEC3;
-	Thu,  5 Sep 2024 20:16:58 +0000 (UTC)
+	s=arc-20240116; t=1725567472; c=relaxed/simple;
+	bh=PqF86rgHSwVUXJ2XaWvB0y7i6D95Qb9KbyajzS44B0c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jj1KYERSFQDztiZnt7gUnuDCsuA6DJS5wg3wqJ49mJj+thgEb1kUOT9SySBWkrmivPNO5t6QAnUDo3BKIwWwV8V62+U9RExxAPecELUjQa0Hj1QfP6bAvfX5fTgBeChc+0M+mh80U0a7g0DHQ5Ov+7oqQ7U7/6oOzrEVIxibQx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7pFJdCN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6129AC4CEC9;
+	Thu,  5 Sep 2024 20:17:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725567418;
-	bh=oOrc4XFmXO7UWLqnMJyq0ZtqgmmLYbyMcYG1L7W+7R8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=FsjR3g/7qQB4gi6gQ9RJe09XF0lhU9RDIS65EF9eR8pufSZx3XUVXFcKuAsN5vCTg
-	 YbIXCDluUqqPGFG5RDUHS39Rc0LUd5lZ3O6jDmROgqjuueAKjiVHDxcRxRiQvtWj2h
-	 fqWmWUbDLI0jkK876ryQqsAtOf/5h/5j+X1+bsDS9LXLzGS1UbDVgsqJ9+P+PDtK6S
-	 LIzAK4mda7NISRizuFn0Pnr07uFs7DTNRHEN0rLNQXQVsP6nAWBEjpbGEjcWCNp8+V
-	 FDUcU22Dz/kT2d/cCZI5EsnUHqN5kodzOLqI0GZoscnBGoJNrcirN87tzj7Z4uc6f7
-	 8DJglFSaWIiYg==
-Date: Thu, 5 Sep 2024 15:16:56 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>, Lizhi Hou <lizhi.hou@amd.com>
-Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
- parsed from DT
-Message-ID: <20240905201656.GA391855@bhelgaas>
+	s=k20201202; t=1725567472;
+	bh=PqF86rgHSwVUXJ2XaWvB0y7i6D95Qb9KbyajzS44B0c=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=s7pFJdCN8DlHiFmW7XdSif5gBYorELMSo13D/FeCAauNaUTqqro3QjXeOIHu3nIkp
+	 AvPUYiUvI9jN0+qVqCiOiBV+pz7Jm7/zFraq/nzSa4JgHJq0WttZsRyuEMB0MXmckY
+	 T8njBycV3oMHGAtw/Cce4XgLdNm+uQP67lh0BINfObJ8+qdQ7iAAVRnXyh92w5EJoo
+	 WvRjd83jPKLuWFh5wNvCM1/T3HZAsYaqgfUsTPKbSVgh2TYxL++B7B3oqseP9iZNBQ
+	 5ZBtLDoaXu9VtX39oTaSOVU6L9OTNY4CZV4ZcKAF9suL1KkHsQWe0ysBTfdHb+8fWR
+	 YN/p6/eMhaamA==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f74b6e1810so10077551fa.2;
+        Thu, 05 Sep 2024 13:17:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVOyQHdoRdmgXWpvdL3gAVHpnGPtE+CgJL3/QZpaJGscGmWjA79ICdlnQUYGWR0ruTrAwRN9xXPuAkXiYk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YynonH7LESm1fh5NoMCDlHLJ2rPmRn2aCyyECwoekmStClLnZNU
+	JAV27NKY90w57kSshoMn30mqs8dMJ7tGyZkbogg8pbq6XD32DR3cNyLhf1PMsLZDiHP/sKgBAn8
+	wJq1mwrmYiYqCZ2VVs9jT9Pm7DA==
+X-Google-Smtp-Source: AGHT+IFIaTOIm6wDjFY/K9qo1vtqPJMW2DOHGqE9tPQJ/qWCBIKjFfGykiOEPXKVyp0tqMpqB/Z4sNOgLMW9mHfmgms=
+X-Received: by 2002:a05:651c:506:b0:2f7:4fac:f69f with SMTP id
+ 38308e7fff4ca-2f751ec9751mr1769511fa.12.1725567470696; Thu, 05 Sep 2024
+ 13:17:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ztnft3p3tb_kP1jc@apocalypse>
+References: <20240905150910.239832-1-pavitrakumarm@vayavyalabs.com>
+ <20240905150910.239832-2-pavitrakumarm@vayavyalabs.com> <20240905182345.GA2432714-robh@kernel.org>
+ <CALxtO0mkmyaDYta0tfx9Q1qi_GY0OwUoFDDVmcL15UH_fEZ25w@mail.gmail.com>
+In-Reply-To: <CALxtO0mkmyaDYta0tfx9Q1qi_GY0OwUoFDDVmcL15UH_fEZ25w@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 5 Sep 2024 15:17:37 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJKi56z2xUfkrTa3xRKFhSo3P=269Yq_bw3tnxgpV+_eA@mail.gmail.com>
+Message-ID: <CAL_JsqJKi56z2xUfkrTa3xRKFhSo3P=269Yq_bw3tnxgpV+_eA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] dt-bindings: crypto: Document support for SPAcc
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Cc: devicetree@vger.kernel.org, herbert@gondor.apana.org.au, 
+	linux-crypto@vger.kernel.org, Ruud.Derwig@synopsys.com, 
+	manjunath.hadli@vayavyalabs.com, bhoomikak@vayavyalabs.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[+cc Lizhi]
+On Thu, Sep 5, 2024 at 2:28=E2=80=AFPM Pavitrakumar Managutte
+<pavitrakumarm@vayavyalabs.com> wrote:
+>
+> HI Rob,
+>   Thanks for the review and feedback.
+>
+> On Thu, Sep 5, 2024 at 11:53=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
+te:
+> >
+> > On Thu, Sep 05, 2024 at 08:39:10PM +0530, Pavitrakumar M wrote:
+> > > Add DT bindings related to the SPAcc driver for Documentation.
+> > > DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
+> > > Engine is a crypto IP designed by Synopsys.
+> >
+> > This belongs with the rest of your driver series.
+> PK: I will club this with the SPAcc driver patch-set.
+>
+> >
+> > >
+> > > Signed-off-by: Bhoomika K <bhoomikak@vayavyalabs.com>
+> > > Signed-off-by: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
+> >
+> > There's 2 possibilities: Bhoomika is the author and you are just
+> > submitting it, or you both developed it. The former needs the git autho=
+r
+> > fixed to be Bhoomika. The latter needs a Co-developed-by tag for
+> > Bhoomika.
+> PK:  Its co-developed. I will add co-developed-by tag for Bhoomika in
+> all the patches.
 
-On Thu, Sep 05, 2024 at 06:43:35PM +0200, Andrea della Porta wrote:
-> On 17:26 Tue 03 Sep     , Bjorn Helgaas wrote:
-> > On Mon, Aug 26, 2024 at 09:51:02PM +0200, Andrea della Porta wrote:
-> > > On 10:24 Wed 21 Aug     , Bjorn Helgaas wrote:
-> > > > On Tue, Aug 20, 2024 at 04:36:05PM +0200, Andrea della Porta wrote:
-> > > > > The of_pci_set_address() function parses devicetree PCI range
-> > > > > specifier assuming the address is 'sanitized' at the origin,
-> > > > > i.e. without checking whether the incoming address is 32 or 64
-> > > > > bit has specified in the flags.  In this way an address with no
-> > > > > OF_PCI_ADDR_SPACE_MEM64 set in the flags could leak through and
-> > > > > the upper 32 bits of the address will be set too, and this
-> > > > > violates the PCI specs stating that in 32 bit address the upper
-> > > > > bit should be zero.
-> > 
-> > > > I don't understand this code, so I'm probably missing something.  It
-> > > > looks like the interesting path here is:
-> > > > 
-> > > >   of_pci_prop_ranges
-> > > >     res = &pdev->resource[...];
-> > > >     for (j = 0; j < num; j++) {
-> > > >       val64 = res[j].start;
-> > > >       of_pci_set_address(..., val64, 0, flags, false);
-> > > >  +      if (OF_PCI_ADDR_SPACE_MEM64)
-> > > >  +        prop[1] = upper_32_bits(val64);
-> > > >  +      else
-> > > >  +        prop[1] = 0;
-> ...
-> > However, the CPU physical address space and the PCI bus address are
-> > not the same.  Generic code paths should account for that different by
-> > applying an offset (the offset will be zero on many platforms where
-> > CPU and PCI bus addresses *look* the same).
-> > 
-> > So a generic code path like of_pci_prop_ranges() that basically copies
-> > a CPU physical address to a PCI bus address looks broken to me.
-> 
-> Hmmm, I'd say that a translation from one bus type to the other is
-> going on nonetheless, and this is done in the current upstream function
-> as well. This patch of course does not add the translation (which is
-> already in place), just to do it avoiding generating inconsistent address.
+Also, please use full names.
 
-I think I was looking at this backwards.  I assumed we were *parsing"
-a "ranges" property, but I think in fact we're *building* a "ranges"
-property to describe an existing PCI device (either a PCI-to-PCI
-bridge or an endpoint).  For such devices there is no address
-translation.
+> > > Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
+> > > ---
+> > >  .../bindings/crypto/snps,dwc-spacc.yaml       | 79 +++++++++++++++++=
+++
+> > >  1 file changed, 79 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc=
+-spacc.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.=
+yaml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
+> > > new file mode 100644
+> > > index 000000000000..a58d1b171416
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
+> > > @@ -0,0 +1,79 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Cryp=
+to Engine
+> > > +
+> > > +maintainers:
+> > > +  - Ruud Derwig <Ruud.Derwig@synopsys.com>
+> > > +
+> > > +description:
+> > > +  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto =
+Engine is
+> > > +  a crypto IP designed by Synopsys, that can accelerate cryptographi=
+c
+> > > +  operations.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    contains:
+> >
+> > Drop contains. The list of compatible strings and order must be defined=
+.
+> PK: Will drop it as the SPAcc driver is using just "snps,dwc-spacc".
+> >
+> > > +      enum:
+> > > +        - snps,dwc-spacc
+> > > +        - snps,dwc-spacc-6.0
+> >
+> > What's the difference between these 2? The driver only had 1 compatible=
+,
+> > so this should too.
+> PK: Will fix this to "snps,dwc-spacc"
+> >
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  clock-names:
+> > > +    maxItems: 1
+> >
+> > No, you must define the name. But really, just drop it because you don'=
+t
+> > need names with only 1 name.
+> PK: Will remove it.
+> >
+> > > +
+> > > +  little-endian: true
+> >
+> > Do you really need this? You have a BE CPU this is used with?
+> PK: Its a configurable IP. Can be used in little and big-endian configura=
+tions.
+>        We have tested it on Little-endian CPUs only. (Xilinx Zynq
+> Ultrascale ZCU104)
 
-Any address translation would only occur at a PCI host bridge that has
-CPU address space on the upstream side and PCI address space on the
-downstream side.
+Not testing BE is clear from reading the driver...
 
-Since (IIUC), we're building "ranges" for a device in the interior of
-a PCI hierarchy where address translation doesn't happen, I think both
-the parent and child addresses in "ranges" should be in the PCI
-address space.
+It's probably safe to assume the IP will be configured to match the
+processor. The endian properties are for the exceptions where the
+peripherals don't match the CPU's endianness. This property can be
+added when and if there's a platform needing it. Any specific platform
+should have a specific compatible added as well.
 
-But right now, I think they're both in the CPU address space, and we
-basically do this:
+> >
+> > > +
+> > > +  vspacc-priority:
+> >
+> > Custom properties need a vendor prefix (snps,).
+> PK: Will add vendor prefix.
+> >
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description:
+> > > +      Set priority mode on the Virtual SPAcc. This is Virtual SPAcc =
+priority
+> > > +      weight. Its used in priority arbitration of the Virtual SPAccs=
+.
+> > > +    minimum: 0
+> > > +    maximum: 15
+> > > +    default: 0
+> > > +
+> > > +  vspacc-index:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: Virtual spacc index for validation and driver funct=
+ioning.
+> >
+> > We generally don't do indexes in DT. Need a better description of why
+> > this is needed.
+> PK: This is NOT for indexing into DT but more like an ID of a virtual SPA=
+cc.
+>        The SPAcc IP can be configured as virtual SPAccs for
+> multi-processor support,
+>        where they appear to be dedicated to each processor.
+>        The SPAcc hardware supports 2-8 virtual SPAccs (each vSPAcc has
+> its Register
+>        bank and context-memory for crypto operations). The index here
+> represents the
+>        vSPAcc to be referenced.
 
-  of_pci_prop_ranges(struct pci_dev *pdev, ...)
-    res = &pdev->resource[...];
-    for (j = 0; j < num; j++) {   # iterate through BARs or windows
-      val64 = res[j].start;       # CPU physical address
-      # <convert to PCI address space>
-      of_pci_set_address(..., rp[i].parent_addr, val64, ...)
-        rp[i].parent_addr = val64
-      if (pci_is_bridge(pdev))
-        memcpy(rp[i].child_addr, rp[i].parent_addr)
-      else
-        rp[i].child_addr[0] = j   # child addr unset/unused
+Okay, I'd use 'id' rather than 'index' in that case.
 
-Here "res" is a PCI BAR or bridge window, and it contains CPU physical
-addresses, so "val64" is a CPU physical address.  It looks to me like
-we should convert to a PCI bus address at the point noted above, based
-on any translation described by the PCI host bridge.  That *should*
-naturally result in a 32-bit value if OF_PCI_ADDR_SPACE_MEM64 is not
-set.
-
-> > Maybe my expectation of this being described in DT is mistaken.
-> 
-> Not sure what you mean here, the address being translated are coming from
-> DT, in fact they are described by "ranges" properties.
-
-Right, for my own future reference since I couldn't find a generic
-description of "ranges" in Documentation/devicetree/:
-
-[1] https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#ranges
+Rob
 
