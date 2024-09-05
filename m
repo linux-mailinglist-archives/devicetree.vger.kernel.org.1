@@ -1,190 +1,146 @@
-Return-Path: <devicetree+bounces-100372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD3D96D70C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:26:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBE496D719
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 13:31:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9844F1F230A0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:26:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4240E28765B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 11:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C22199397;
-	Thu,  5 Sep 2024 11:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D2C199E8F;
+	Thu,  5 Sep 2024 11:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="PJHlilPF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X7GKr78v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7593C1993B2
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 11:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC827199E88;
+	Thu,  5 Sep 2024 11:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725535599; cv=none; b=XPx6skxkmkoFIb8sDCmdgu0iSEz9EdkE3rh5Q0hsIIW/KbhCmzdbg5bYBzSPlQ5zSx93TlzTmKooKxXY2UpVsTGURaLC5AGvKhCkZ0ZVro6Q5nu5BUA8ByzZSymceX3lsdnQYcuY99hj0I06vJ9KzMLsMgJEUyySRoznLksQf2c=
+	t=1725535861; cv=none; b=P3iGQPd6weBtBghUi3vOJRrsovJaddphKTdrq6R+AibnbMafsA82ojtyQ+GBKPQUDjDzHYDyM0Gv3uph/sbIbi3g3Kq5SK5ZRE8hg5HGKZfE/Dj0bQKFbDVzsSCBfwwya6CviSF+Xg/LJs2rskaCCVxd8cZENfqiczMAegNYAg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725535599; c=relaxed/simple;
-	bh=uPKZajMj0+4NDMXOog9v35p92NDX8Zmoqti6dst4Gcw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=n2mNoxMCH5rgxKVGhpD3iPVdFESXMv2x6/2Se0KjhObuqSGAQeR5VAqnpeLDpcPzZ7UT9zyGnRfzKmPHRJspXOOUCIom1W/y2xbjzSzaOSqVjBBvyl/9LA52MuGr0hCp3ill4uz5OcnqjlW0S14ES0l9LhC2NG039H10X3LdSpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=PJHlilPF; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2068acc8a4fso6934915ad.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 04:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1725535597; x=1726140397; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6E6kzqN7sw0Bm/x9wPsmhlMXiVbetaL6tQQYNOBhsTk=;
-        b=PJHlilPFtUFptyZYWqb1zp+47wMREy3qr8tVM31O1fUzzZnjoSKePLk1asTS0JXmm8
-         Arux5+Yzd7duw6x7eyUgdlsH71DdSCqgLqsJpUOHPBsFSofTDTDa66ToP/cBWIZCitfU
-         lmt9lER5n/cBeqc3t5mOW69SEtmuuNcmdXESI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725535597; x=1726140397;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6E6kzqN7sw0Bm/x9wPsmhlMXiVbetaL6tQQYNOBhsTk=;
-        b=umXbkNW8/bENnQeuOXJFgDBDaRc+5fXeISpufDhotfJPDffh1a4BRbFaho4mYyyMC1
-         s+G/6EvMmkFi5xddz1h+2iOwIaWJIwqoGvuAQ+sVqpco1nLJy8jsEamHpNMIyjIPFi1k
-         IBOBXw+LZVFQPKbP2S8eo5r+cT4/sUn9UwV+/QUBoDqHy1Mjg8PzOC/DBEUC8aJbDBGK
-         JBTCiTL/m+Nv8NOlbENf3Qe27euJ5wfhIxkLy8NTvLT4EdbnOjju86e7oz114r5KLWkq
-         VuWWLv+0xT+iPZAMbscv2dj7/NGC5vHoQF3zclffaoKurJi8h0WibdZTqQTBBZnKiVxB
-         lF3w==
-X-Gm-Message-State: AOJu0YwRhhOUE3P/mBOfTyBOHpP1lEueCfIbQFXjrMm++OFiqH2WbBS5
-	CCP3LH3sPEUWp/gPRO6pr88x1nq0K8vg2Rh4MgM4hwb7qqEK/dF6YAXVuNdM8feG8HqFF+5myq5
-	z
-X-Google-Smtp-Source: AGHT+IGDiAam5e5vgT9ZHTVv+6stZBUzL5d+scDc2Ygdburm03QlPWrwuyEUEv/WOqY+DXJe9IiFRA==
-X-Received: by 2002:a17:903:2285:b0:205:4e15:54c8 with SMTP id d9443c01a7336-2054e15577fmr186548705ad.61.1725535597501;
-        Thu, 05 Sep 2024 04:26:37 -0700 (PDT)
-Received: from localhost.localdomain ([103.108.57.9])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-206ae9138c0sm27445395ad.9.2024.09.05.04.26.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 04:26:37 -0700 (PDT)
-From: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-To: devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	linux-crypto@vger.kernel.org,
-	robh@kernel.org
-Cc: Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	bhoomikak@vayavyalabs.com,
-	Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-Subject: [PATCH 1/1] dt-bindings: crypto: Document support for SPAcc
-Date: Thu,  5 Sep 2024 16:56:22 +0530
-Message-Id: <20240905112622.237681-2-pavitrakumarm@vayavyalabs.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240905112622.237681-1-pavitrakumarm@vayavyalabs.com>
-References: <20240905112622.237681-1-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1725535861; c=relaxed/simple;
+	bh=aTcY6lnCeCXuN+hBR/lTjApexCcG5nl9Skw7Ca45bF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NxM+GTcKCpfZZQRk46TPSy+x5CAnSQyk9C+mGLA7QzJQ1tmWAKVSDQEwah3IvS176UztJZ2qG2k29bCn6NpIBSaoz3KpAPpZz53vrLGyw/wL4QKkbWXsPOIpHVTW8Umm+FZDlfizfY8bDvAjqyLC+OgqbuG1qyzaGue6FJJYL4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X7GKr78v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E207C4CEC3;
+	Thu,  5 Sep 2024 11:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725535860;
+	bh=aTcY6lnCeCXuN+hBR/lTjApexCcG5nl9Skw7Ca45bF0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X7GKr78v0KZSNjtPief4MGOvOX4Z7dQlMmWRBIpTU1p13LSzit5Su1pTaielep1O7
+	 nFVcp3oxh6jjpSMAIINYxPiRmE+AKjLiCo1KluI7uRmpH8IM8bjm+5uOgWvRRrW34Q
+	 SEIl6tqmJE+99KgmZZBjoJXm5YYjbvB9/+xlkE6SVOSYibxY33HZlmGVFMhg/ePM25
+	 AqHzGdkKE2cumqW4AGDK7UMY1dK/zM/1MfbPQGBPXFfTi/LMxxRJ22WQ+u97zxcsUS
+	 PT/P9fsSxWW9VT8MvPSPcrSawtpyg+Eaqh7U5bZdYSpr5RcoMaiZaDa94gU6n0rCC2
+	 J4BIvJw8awzOQ==
+Message-ID: <d5e338fe-bd38-49f7-b69f-fc27f9f87495@kernel.org>
+Date: Thu, 5 Sep 2024 13:30:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/19] dt-bindings: power: rpmpd: Add QCS8300 power
+ domains
+To: Jingyi Wang <quic_jingyw@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, Shazad Hussain <quic_shazhuss@quicinc.com>,
+ Tingguo Cheng <quic_tingguoc@quicinc.com>
+References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
+ <20240904-qcs8300_initial_dtsi-v1-6-d0ea9afdc007@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240904-qcs8300_initial_dtsi-v1-6-d0ea9afdc007@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add DT bindings related to the SPAcc driver for Documentation.
-DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
-Engine is a crypto IP designed by Synopsys.
+On 4.09.2024 10:33 AM, Jingyi Wang wrote:
+> From: Shazad Hussain <quic_shazhuss@quicinc.com>
+> 
+> Add compatible and constants for the power domains exposed by the RPMH
+> in the Qualcomm QCS8300 platform.
+> 
+> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+> ---
+>  .../devicetree/bindings/power/qcom,rpmpd.yaml         |  1 +
+>  include/dt-bindings/power/qcom-rpmpd.h                | 19 +++++++++++++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> index 929b7ef9c1bc..be1a9cb71a9b 100644
+> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> @@ -32,6 +32,7 @@ properties:
+>            - qcom,msm8998-rpmpd
+>            - qcom,qcm2290-rpmpd
+>            - qcom,qcs404-rpmpd
+> +          - qcom,qcs8300-rpmhpd
+>            - qcom,qdu1000-rpmhpd
+>            - qcom,qm215-rpmpd
+>            - qcom,sa8155p-rpmhpd
+> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> index 608087fb9a3d..7dd7b9ebc480 100644
+> --- a/include/dt-bindings/power/qcom-rpmpd.h
+> +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> @@ -4,6 +4,25 @@
+>  #ifndef _DT_BINDINGS_POWER_QCOM_RPMPD_H
+>  #define _DT_BINDINGS_POWER_QCOM_RPMPD_H
+>  
+> +/* QCS8300 Power Domain Indexes */
+> +#define QCS8300_CX	0
+> +#define QCS8300_CX_AO	1
+> +#define QCS8300_DDR	2
+> +#define QCS8300_EBI	3
+> +#define QCS8300_GFX	4
+> +#define QCS8300_LCX	5
+> +#define QCS8300_LMX	6
+> +#define QCS8300_MMCX	7
+> +#define QCS8300_MMCX_AO	8
+> +#define QCS8300_MSS	9
+> +#define QCS8300_MX	10
+> +#define QCS8300_MX_AO	11
+> +#define QCS8300_MXC	12
+> +#define QCS8300_MXC_AO	13
+> +#define QCS8300_NSP0	14
+> +#define QCS8300_NSP1	15
+> +#define QCS8300_XO	16
 
-Signed-off-by: Bhoomika K <bhoomikak@vayavyalabs.com>
-Signed-off-by: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
----
- .../bindings/crypto/snps,dwc-spacc.yaml       | 79 +++++++++++++++++++
- 1 file changed, 79 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
+Some time ago we moved RPM*h*pd to common defines.. we should
+definitely do the same here. Please reuse the RPMPD_xxx definitions
+from [1] and credit Rohit in the commit message, as he did some
+processing on that to make sure they're ordered based on usage
 
-diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-new file mode 100644
-index 000000000000..dc5b38cd5e1e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Crypto Engine
-+
-+maintainers:
-+  - Ruud Derwig <Ruud.Derwig@synopsys.com>
-+
-+description:
-+  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto Engine is
-+  a crypto IP designed by Synopsys, that can accelerate cryptographic
-+  operations.
-+
-+properties:
-+  compatible:
-+    contains:
-+      enum:
-+        - snps,dwc-spacc
-+        - snps,dwc-spacc-6.0
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    maxItems: 1
-+
-+  little-endian: true
-+
-+  vspacc-priority:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Set priority mode on the Virtual SPAcc. This is Virtual SPAcc priority
-+      weight. Its used in priority arbitration of the Virtual SPAccs.
-+    minimum: 0
-+    maximum: 15
-+    default: 0
-+
-+  vspacc-index:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Virtual spacc index for validation and driver functioning.
-+    minimum: 0
-+    maximum: 7
-+
-+  spacc-wdtimer:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Watchdog timer count to replace the default value in driver.
-+    minimum: 0x19000
-+    maximum: 0xFFFFF
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spacc@40000000 {
-+        compatible = "snps,dwc-spacc";
-+        reg = <0x40000000 0x3FFFF>;
-+        interrupt-parent = <&gic>;
-+        interrupts = <0 89 4>;
-+        clocks = <&clock>;
-+        clock-names = "ref_clk";
-+        vspacc-priority = <4>;
-+        spacc-wdtimer = <10000>;
-+        vspacc-index = <0>;
-+        little-endian;
-+    };
--- 
-2.25.1
+Konrad
 
+[1] https://lore.kernel.org/all/1688647793-20950-2-git-send-email-quic_rohiagar@quicinc.com/
 
