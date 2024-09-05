@@ -1,175 +1,124 @@
-Return-Path: <devicetree+bounces-100592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BA2396E301
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:19:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017B296E315
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 21:23:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59D6C1C238B2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 19:19:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADF792891E6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 19:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C9318DF81;
-	Thu,  5 Sep 2024 19:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7743318D621;
+	Thu,  5 Sep 2024 19:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Zw+VJ3zR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iScUXFLO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACEE154C0D
-	for <devicetree@vger.kernel.org>; Thu,  5 Sep 2024 19:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E5A18037;
+	Thu,  5 Sep 2024 19:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725563965; cv=none; b=srgM5aSfp3EsSBffmAzEvuC9qCk9Bs5yot6OuBkDwT7L43QY56LpE2O92+T5xAdsq6t8kaM2qKnIcIgL4jLhkTU0ivsSFFr4RxTtG5cqPTJOIUwkDWQb5p3YitIXwwjN6dNE5mIJV3bopMDZSgjzpZGIqDYEeeCk6s+SOXtPYhg=
+	t=1725564226; cv=none; b=J+RV/wmL1Gu7KpQ89CIbv+vkjCbk5g7y2m7BeWVO33N2XqdaLyzS8nuO4jPoxCMRr0RS07T0T5puAzJPkuqirgXgLjJhgh8A8HoOrX1nmOHcK5jH1NC3OYJMpI2zFQczr9vmL0Gl4ARAiUFgrceA1C+ytYlek0JNwApTebqfmZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725563965; c=relaxed/simple;
-	bh=XkIZG7ovIrbjuw3op4BVEREfqbUEEO14cCEXB6FApTU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UD5JeNYYzPvkcQVVB7bsHUZfAiEwYkg61TNDFoCns/SPhLc9F6gvnm5k0u76aJm8epNHwYZLZ7sNGnRG+Yq7jo/eHIpkRvR08/+8BDJYi+QLm7LRoZTQ23VWZgVcZkAQieLfTTZzdXKElUHSZ0i6M6SovvJyEoiVIrRl6d3+yNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Zw+VJ3zR; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3df0ad9c791so667720b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 12:19:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725563960; x=1726168760; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DKI175OvUgk2/hVEXHdZ/ZCtyuF+3PlpxqWpXuSByso=;
-        b=Zw+VJ3zRfIE1utls28rYHZ8OB9VMjPKiRDPvhVGMpJLacej/xEprkhx7Tm0na3BcJp
-         TM4W0YTmWbm9Q27aX+V8kpQi7dDfPWEHlHxuBzFNh+vK60CDd2000QZd9ITWEA8KvHW6
-         9ANAA1C1Lq75my1g60zojt5RyknYv3w4x+VmeZJ2aDxH8zEHdPruomi0mVHhpq6t98L2
-         m0PcKKJvUYlfmsXjRxiX72V6fu9paDPAy4uGVhV9bxq1/r1jPlHforKVUAShfuYebAbY
-         mBq2Sjtu6RAFQreAeQ9r2yPemgCCPtMq+XxDvCispe+wMihPPSw1qP6PUKNFHmkNV3Jd
-         hT3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725563960; x=1726168760;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DKI175OvUgk2/hVEXHdZ/ZCtyuF+3PlpxqWpXuSByso=;
-        b=bhHl6BeNHmWCuewgR39FwOnjaurxlSvkEjqSFOmS+QslLsnQAwwYXCFyKdd6RPbyZP
-         x6IwyhJGIyd0kaC2nTB78/gGxPUbnf7JxotxwvHgJsWMx23r+cqnoXhZHK5bqu8qDTrx
-         khQ+BBdaZufemctS5iidR89vqeMiQuSNA3gXwJNSt8hAnYbBAzd4ixnhP8nBhu4ZlN2l
-         uu7gGo5dcI/U5m34pSDWoY2zraOhNh2d5n4HiU+uHvx+9p9BYU0S2TwcTyaA6BTV9AvU
-         ADkbUGWJDoEOeNdWzKU0R2mA1Og/Kec4lw0rVeayC8RcwrKnw6zoF+leQUVLCzBM2anw
-         PMXA==
-X-Forwarded-Encrypted: i=1; AJvYcCV7D7h2ystlv02I2RWx663Rc5J4fPBWweVdOROJo2dBzjUrhptvBx3tyfHdzRG5YbWi5ZwHpmMUCj3T@vger.kernel.org
-X-Gm-Message-State: AOJu0YziR6SZQ7ZGkXNxKm0qSLiGKZLPBmWiqjCh3DNF9MgFLfI5DcJX
-	+9BjODUxjVbSdpapiY2Vdzub/StpAbSr8XMo8I+b9h+aQzVtrjVAq6xzCurJFVI=
-X-Google-Smtp-Source: AGHT+IFqFdkvkFKkfaD7b8Xx4D7Lpe8EI0i2NfBtPzhi06qyf8Nobt4f4horoUF8GOfQ8LSac3fhsA==
-X-Received: by 2002:a05:6808:1705:b0:3db:15a9:4a1f with SMTP id 5614622812f47-3df05eb021fmr26126208b6e.49.1725563960297;
-        Thu, 05 Sep 2024 12:19:20 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3df1188612fsm3335300b6e.58.2024.09.05.12.19.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Sep 2024 12:19:19 -0700 (PDT)
-Message-ID: <7bd162bb-dce8-4aff-9f56-1ab73b091a28@baylibre.com>
-Date: Thu, 5 Sep 2024 14:19:19 -0500
+	s=arc-20240116; t=1725564226; c=relaxed/simple;
+	bh=99Aayfwr64C8h/uSTsDHwgjTG3uwPXVeNP+Xr7sRXh8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ijmKZO+4+eHgDfqTjzqWRf437U59f+v8XdpW/L4dP7JlM0UtDxUgq2oPJjWWcvDT2fa35wbUOtYHfnjHasxXGK0rI/48Vnafv4sHFKHd4qEfJL2AfnkaL6YkQ+KZO0WTMB6OMjcfk0LcVWCxEP/Y1/WquQ6Z/hLm4wD6y2m83WM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iScUXFLO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IPvit019634;
+	Thu, 5 Sep 2024 19:23:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=S0UiDBMYHSMboXZOqz10Ss
+	rAQ9QSZA1WieMfCAzgYxE=; b=iScUXFLOZpdt4AoyNaqmxjMhQd4AT/661vZlHB
+	fgreGcBx/665B/YRzls2WAcWFOfRVdNWkEgyCTJd9N+UBx0VsMV41gVAcm5RA6EW
+	+x34CxtNN+qJKTk0d3AHzcMs8zhnHH+NjAoRn2VtJA7ehHHfAKwB2UA6kRboD0cp
+	luH4dodKJdDTuw7xA0RZpmALepNYfuCmZ4bEeUfd3VOs1wBYYFZ2L6N8EN84Znpv
+	+dJRttn+auY0AGG/H8S/9Baa23FLWHPtKo0bvU5tj7QE1+dYGjbWUwjavp0zOdwv
+	EmrmSKORHHhiFjYyg3nN9s0NfjAG6rWFKpkuEIDgvaTUV87A==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwu03gs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Sep 2024 19:23:41 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 485JNekK009671
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Sep 2024 19:23:40 GMT
+Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 5 Sep 2024 12:23:37 -0700
+From: Nikunj Kela <quic_nkela@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>, Nikunj Kela <quic_nkela@quicinc.com>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3] dt-bindings: soc: qcom: aoss-qmp: document support for SA8255p
+Date: Thu, 5 Sep 2024 12:23:28 -0700
+Message-ID: <20240905192328.3778542-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] iio: backend adi-axi-dac: add registering of child
- fdt node
-To: Angelo Dureghello <adureghello@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
- <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-4-87d669674c00@baylibre.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-4-87d669674c00@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ww9bIEgp-xtPlqW2drt0EgJWhea22cT7
+X-Proofpoint-GUID: ww9bIEgp-xtPlqW2drt0EgJWhea22cT7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_15,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0
+ clxscore=1015 mlxscore=0 mlxlogscore=966 phishscore=0 impostorscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409050144
 
-On 9/5/24 10:17 AM, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
-> 
-> Change to obtain the fdt use case as reported in the
-> adi,ad3552r.yaml file in this patchset, with the DAC device that
-> is actually using the backend set as a child node of the backend.
-> 
-> To obtain this, registering all the child fdt nodes as platform
-> devices.
-> 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> Co-developed-by: David Lechner <dlechner@baylibre.com>
-> Co-developed-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  drivers/iio/dac/adi-axi-dac.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.c
-> index cc31e1dcd1df..e883cd557b6a 100644
-> --- a/drivers/iio/dac/adi-axi-dac.c
-> +++ b/drivers/iio/dac/adi-axi-dac.c
-> @@ -783,6 +783,7 @@ static int axi_dac_probe(struct platform_device *pdev)
->  {
->  	struct axi_dac_state *st;
->  	const struct axi_dac_info *info;
-> +	struct platform_device *child_pdev;
->  	void __iomem *base;
->  	unsigned int ver;
->  	struct clk *clk;
-> @@ -862,6 +863,20 @@ static int axi_dac_probe(struct platform_device *pdev)
->  		return dev_err_probe(&pdev->dev, ret,
->  				     "failed to register iio backend\n");
->  
-> +	device_for_each_child_node_scoped(&pdev->dev, child) {
+Add compatible for AOSS QMP representing support on SA8255p.
 
-This should use fwnode_for_each_available_child_node() so that it skips
-nodes with status != "okay".
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+---
 
-Would be nice to introduce a scoped version of this function too.
+Changes in v3:
+	- Removed the patch from original series[1]
 
-Also, if we are allowing multiple devices on the bus, the DT bindings
-need to have a reg property that is unique for each child.
+Changes in v2:
+	- Added Reviewed-by tag
 
-> +		struct platform_device_info pi;
-> +
-> +		memset(&pi, 0, sizeof(pi));
+[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-struct platform_device_info pi = { };
-
-avoids the need for memset().
-
-> +
-> +		pi.name = fwnode_get_name(child);
-> +		pi.id = PLATFORM_DEVID_AUTO;
-> +		pi.fwnode = child;
-
-Need to have pi.parent = &pdev->dev;
-
-It could also make sense to have all of the primary bus functions
-(reg read/write, ddr enable/disable, etc.) passed here as platform
-data instead of having everything go through the IIO backend.
-
-> +
-> +		child_pdev = platform_device_register_full(&pi);
-> +		if (IS_ERR(child_pdev))
-> +			return PTR_ERR(child_pdev);
-
-These devices need to be unregistered on any error return and when
-the parent device is removed.
-
-> +	}
-> +
->  	dev_info(&pdev->dev, "AXI DAC IP core (%d.%.2d.%c) probed\n",
->  		 ADI_AXI_PCORE_VER_MAJOR(ver),
->  		 ADI_AXI_PCORE_VER_MINOR(ver),
-> 
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+index 7afdb60edb22..bd873e7e4ae5 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+@@ -26,6 +26,7 @@ properties:
+     items:
+       - enum:
+           - qcom,qdu1000-aoss-qmp
++          - qcom,sa8255p-aoss-qmp
+           - qcom,sa8775p-aoss-qmp
+           - qcom,sc7180-aoss-qmp
+           - qcom,sc7280-aoss-qmp
+-- 
+2.34.1
 
 
