@@ -1,272 +1,174 @@
-Return-Path: <devicetree+bounces-100631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EFDC96E5AC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 00:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9FB296E5BD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 00:28:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A39F1C238A1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:11:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF66D1C23759
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 22:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8B01B12CD;
-	Thu,  5 Sep 2024 22:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0833A1A4AA0;
+	Thu,  5 Sep 2024 22:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="UIeRQDbG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pz6ehap5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2048.outbound.protection.outlook.com [40.107.241.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D89B19EEC8;
-	Thu,  5 Sep 2024 22:10:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725574243; cv=fail; b=VThoItHp0i482jOJNVfOWXkCk4qFO52kfBkCGdKACAK0AbNSTI/A3i4NPK7PKYr6h96aA0vdK7VE6ZE29HpkQxNrwcw+8h4+9QfJF19y6pP1Igg0qzUjonXjRtVTVlwiGplfojhrKIFV8y13dD9QKTutPfpb5kYxFO3ujXszv8w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725574243; c=relaxed/simple;
-	bh=XL7Qg1dI48svMJz8B1VBnk4DZzBlj0y+D50zjXBlCS4=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=tmAhQ6FSgDzDeqiTItneZPdK8olM/JfMgg4DoMNBRhzp0cvH2ykvM9dLoq7QPJw4WbYlodHRjvC8B4W0rz4JnEdg3es2DbRms7EMt86ZKrkEsw4pl4CRFUZ171eBkpxWqegPn0VSgTndabT4ge/NtrvoJk4W000bkCHq4OIpWrA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=UIeRQDbG; arc=fail smtp.client-ip=40.107.241.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S/DIOgJIiBFgMGtFqk8nZymCY3XF3Mgk2OT8cdDWSpnMCYq4+qq4+83gdRJXoqlKqoIznl5hBAaoAUrR93OfGJ6NWrSHuhyc1XIvfBgJcprUVuIsj7E6/2mD1BdyPQ5M7x2oB4fCRyrZf2zI6RWwq5+ZgTwwT4O8x1rkA53HPJPOlmZ0zeScz/rklW5jtWTNm8f0lkNFXtMiCp3zwjpbx6BwNsbTcuVSKWssHxZ/2DbcSsyxOtOoDGbYSKp67d3nS/FbPbf3kBqlQEdryQTbFkmRVDlSnH4Va6teDG1eol1AyDzSAq5TQCyAJEztsJrATR5jIbMfq9613p1lKtdpQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Tb+bx446XLoxss8DGaUlAJZE8tYWpxRHGo/z+6KSJys=;
- b=liWOm0DkuEc3KdjRo1ZMbWwVyc7Y9przF85SEASX3pde19LUTN+JAM3Qn0qLRIOpsI8X+9CoILDDVotMVlncWwPsHf94djVKI/G13TeJhIRZ+ELBVM3kjHgVs16naxsMeYaelsQjohiIMnLOUYOfN6tSydJBvrh2VntvCcppqGFcbIadBq1v+bqugYMMWYgIjO0caIEp7/PYiDR+0qiMtIMI74qpMFjaZXAwcLugMLHtd3aVT3+V6XtjB0HGpZD2tKTd1m3q/0vTMr4djg1tvmwGHWZK3nUoo6onWYJ+NSRnYRoF5wsCbhMoVfipRlHZpgXEn/2iUOJjrB1t21EGRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tb+bx446XLoxss8DGaUlAJZE8tYWpxRHGo/z+6KSJys=;
- b=UIeRQDbGsqaS5gjcIB1kmw1oeDccLmwplIjT0S/E2a4qFJT9wF79ui7SwriHmPpoK7yd6p3QnVjV/gVBR8EzxP510nc1UJx5LqXA3h/pJDEQkkYfMkcsRZdd0rvCSPMvcyjEWj430gAiICIBaO/DbBsKsB6R3nPv1F3jruQZ4wg0TNZwLGs3hQgVL6j5uBd0I4zZBT7JmsPHpWjl6zCQxBNPeB9MCigoui6//1jql7x2PTR+BI5vJSTy//yfPgMRQF60JuBpbRiEK6VjitNhatGNRe7ZgBgtoTZrW2KGcZNz2BJZWWLYOpvzxuCZWVuoI7uORtg+YUL34LkfECGH7Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8959.eurprd04.prod.outlook.com (2603:10a6:102:20e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Thu, 5 Sep
- 2024 22:10:36 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7918.024; Thu, 5 Sep 2024
- 22:10:36 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] arm64: dts: imx93-9x9-qsb: add I3C overlay file
-Date: Thu,  5 Sep 2024 18:10:19 -0400
-Message-Id: <20240905221020.2159230-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR10CA0008.namprd10.prod.outlook.com
- (2603:10b6:a03:255::13) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BF83E56E;
+	Thu,  5 Sep 2024 22:28:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725575314; cv=none; b=lUpZGDtDus1d7W/HopfLbWbTEHaNtg64bcube20dQrzZHd0Xqwaq5Z2XEqWtgbtYcMAHgH8b9NWFgoV02V+3vAx8jzcrUa4Wdt/VAkoc6rRX4yym5CoP97IyM7yxgZX1mAyHmPNCMn75bLVa2kEOPytomqWXuNanKnuOwi9bm+U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725575314; c=relaxed/simple;
+	bh=3vtuWZAHpgMJNojpVqTgyfgmxFPOj4/J7AKpfH9Iv+c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BVIr/05MQwG1jPVXHKuWh5+FrOeLQJLCZaOmZxNKYH04cdOg1sNEwH7Zq5tUazpbrta2EnDppgXq8NgIz9BXz1p17doUrX2+gwl6gCZEgDPX5S74UWelO2pV6ut4/07xqUFtQss7TV683WFcK8D45QrxnOtNBu3uLdk/lvJ+nno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pz6ehap5; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42bbd0a40faso11446095e9.1;
+        Thu, 05 Sep 2024 15:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725575311; x=1726180111; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=J8bsFvi274Z1/0//LbJLrnJX6Kj0fdqJNvlLX9twL68=;
+        b=Pz6ehap5d2QUV7aq5yicMwWA78JO+peEO/c6xkly6DDJaTn0fNAgrzCx+o8ATZR9iz
+         jel9ru//od5Tr2QCYg2WEjYgyx23LIJSrksq8/BAD9o+WwRa4JR4oKaZdMdmmcYFNEDE
+         3U5Xbgt94QJ6hqAltcIYK98Y1JvHaCmJPGswShafHoyr2o31l2+HGtXTLowmV37oYqFp
+         JwE6wvRCJ8sy9/WQMfRhynNMjnJBuKCTeEuugr73Fez72fVHwC1WDlm5csnhtWuoMJwh
+         buvu9JbULGUefKdmI3OZEyaDHVv2QyT/LNugZOMPvh8dIXptYj4S0V/UaGbmLauR+xXJ
+         Jvvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725575311; x=1726180111;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J8bsFvi274Z1/0//LbJLrnJX6Kj0fdqJNvlLX9twL68=;
+        b=YrU4uKw163SXVvc1FmzJpUxn74ML5IM9e0lRAIWKe65OVXxeGSJAt6TcWqDlOso8S4
+         c0nwUp27TCjYsCqloYjUuyBsuCHAZSYL/I7VQWgGwvGwLntG2/+bwe1d84onNfPPVLyN
+         2zWjuLORcPAPAfqJUCXSWzHiSQC7B9kiKwXVQpDbN/qtsncMowpzYbn66isFmn78/FI3
+         kLTpdgCYAkphfTB5yVju2ok/p+O1MOJOcbaBWBAbGsgwuDdu4islItzoYf2lTucmysBx
+         NciB8iYYt6GInJ7qGtuMEVBGoybk5iu9Yu8AAzjbniZgcpUmoj2WS8c/9/x/pJAGcKxT
+         BPCw==
+X-Forwarded-Encrypted: i=1; AJvYcCVLPbERlhfum5FzTwKqsGd/xNB0UTKpe3qwkiyLVV4TWWmK8eiVK1f+++HXunUWlh/5S3wIA8rHplp9gLoK@vger.kernel.org, AJvYcCW+qzxL4OO5epM6M43eNip/Cd7rWlxnSpLIRbb3e9AmyamMtg6Gys4gGPtzVgQwKn9WbBWZJ8ODYhZO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaTA0z3EAH0VsHqucyLP1DhMxgfE3CbH9BTGzd35enGNvXJRLO
+	l8fghUqLSp5RwnsQK15dXJ10mOwPcbI/+xXvfxdAHzzk3AMwgqvx
+X-Google-Smtp-Source: AGHT+IG76TGZrQuFkLyAWbX5VvJXhIHiBLmreTJqK6O6LTzwG4AxcmxhJGyEUvCTmRyQUMq0pOX0MQ==
+X-Received: by 2002:a5d:6743:0:b0:374:93c4:2f61 with SMTP id ffacd0b85a97d-378895c4851mr335843f8f.5.1725575310703;
+        Thu, 05 Sep 2024 15:28:30 -0700 (PDT)
+Received: from [192.168.2.177] ([81.0.7.156])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374ba30d5b8sm16525567f8f.15.2024.09.05.15.28.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Sep 2024 15:28:29 -0700 (PDT)
+Message-ID: <3d85b40b-bcb1-430f-89d5-739ad6f907d4@gmail.com>
+Date: Fri, 6 Sep 2024 00:28:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8959:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12aa5864-fdfa-40f9-0c6c-08dccdf79159
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|7416014|376014|1800799024|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Xbt2SH0jBGD1OKvHd+ynMXt9qBUAuUyLYreEtTMf+N1Nku5MgWlT3PJAGv1M?=
- =?us-ascii?Q?Nx0ZjSMXENIohJbLatTYzfjhMau3gU6G713C9zzjL70h2uK5XfAoxVR70v13?=
- =?us-ascii?Q?A308AhHc/MKycGZQDg5U64DyxCzi5IbX4SHu5T/BWz3t/l2qDCSHhns7/8GE?=
- =?us-ascii?Q?agAQIhTpMfGfq0jrFbQuxmQkC3ANdEZzUH10lCLo5L5+4ztc+r2fhAlYqw2L?=
- =?us-ascii?Q?bFv/cZIogx9WpsSLXfNAHKmVqBWpi5y5PurhlrGGAANigqLxYs3ZNYPGNEFw?=
- =?us-ascii?Q?mKZELtzKKdnQ6LOL67i95mDuwclCNUv1PQjjC8g/rWFV6AuNA13ZLqsz7M6b?=
- =?us-ascii?Q?oRG66+2lc2u1PXNlACXH2yGP0iP3N/CoCE7evS/HKFhuiZLdFWzMyRwxUE3k?=
- =?us-ascii?Q?NrelRo5W5cfeP/N2xJRdMQcRqJRQE8d8SJVGq741loQ9tsde3wpHxMGIfxjr?=
- =?us-ascii?Q?COQ4jsp4xu05FloTbbwFXJKPQHO9dOOt1Z/H8eyy74LfEPtlExKGG16J0t8s?=
- =?us-ascii?Q?UpBSNwJM65pcicsppn043Mw8yie2czkzHN2IkbtkHHhRPxSGKXYr8gFRsYuq?=
- =?us-ascii?Q?YdroYiywRlOxST8187QxcvEW6ovZiXmXw64e4l1M1cma5YY752jvb3Ee9owR?=
- =?us-ascii?Q?/5RyHBW/HlYjYpF421WS1FfEcr9WimpxAweCBNi1UWmsuvUDpBwNytVE7pLt?=
- =?us-ascii?Q?m0/6CmSnpHYzt65dGeq6IV6taM89cxES6jdxguv+jR0K1NNShFRJ4vDOgPQH?=
- =?us-ascii?Q?6513FTbIBjMwRbKKGi7Ey0ZkcyayHL6+4Io4Lg6KYvZc/qC7klr2N989v22/?=
- =?us-ascii?Q?+xk2c3LvuUFNE9mXC8Bs5t+YKzePSBzMFfJLl7xCbL95SScAN2hSETycMDJc?=
- =?us-ascii?Q?s3blqwLEj+7W93Eb5PzqonMmGaOo2lNiGKe2k1bXZnjae0K+I1eyD1i7A3qp?=
- =?us-ascii?Q?RjtFTO7ZNHKmmt43bpgwjkg/3JZd4E82W+e0//aZISZzn28dM1DSHh+yp2T3?=
- =?us-ascii?Q?/JiURqmQ/dRmMQzvC1T/bIH3FTFIr8Ov6Y9T/Co1dZXzpmim0qR7/TElo5+H?=
- =?us-ascii?Q?4F22/FAs0kJVOFHo+WmLcQuJZAEbk7RYQLf9sF9OUdmud+kOHk2tZ2jxXOO1?=
- =?us-ascii?Q?FFXtjj+mNgPBwKG8E2v6V2MA5YkqvetrvBv7XXyCAhFmyMpdtQYBOI6DJ8Dw?=
- =?us-ascii?Q?WWHryQtLSj6wbwSQJXv6mUaEGEm5jVzX36nS/n8qTRWV76cpFhUD85qTRwi8?=
- =?us-ascii?Q?3tHxf/nCVVX2zdBztCd6XWzMsxkepdgJ9pqTkNfxC81qhd0dxmTHI3jvXYRh?=
- =?us-ascii?Q?WG22vUKhRv5jvkeRnRQAnThMYfR+FQ3PBLRGoMh6sD3FRRQmtgopkD18wpCZ?=
- =?us-ascii?Q?k5A2Va3WH5F2JfYT/shMzHITtLUDANNLrY1tO/TxA+Ulr/4RVjnk6GcxcBTZ?=
- =?us-ascii?Q?fIZ7vK/zhSM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(1800799024)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?CYLi4mFOSIugTS73lzphBO1L46OTn1y7geeK6ewQZ9fNdMuV4j8V1PQwepmd?=
- =?us-ascii?Q?ANFCUYtuD0gOLkdEJekHpmoSE36ccWneuNBJwR8f6PParbjRILzeSfQOckdU?=
- =?us-ascii?Q?EVVfHbCf4oo1hHycb5TPNfBa/ZoJx0lR1wnj+usMvBP74TpCcHH0Inh9yQbH?=
- =?us-ascii?Q?LZf+3SG824wvA8JUAAgPFNryezvQJuxVsCVR1Q38PZGUjxy/I1J2F/SQRKU7?=
- =?us-ascii?Q?cwqlOWWQ2yRrPTSZ3MiWTwH2T8bNstXWELW+bOQoB1XA/DZovApk0K24qoOn?=
- =?us-ascii?Q?ESKUVzm5N9/a02wPM0kMXDRHCHTmfV3s6WGkjCN0VHpNCUq/5xg1NcZKXMV2?=
- =?us-ascii?Q?O+DYu4wt9Ycn1FpVkqFWl5iKgSorEmQ3iMeZIn9do1+oI3JigQO6NmmMRtCJ?=
- =?us-ascii?Q?ltTq8HJxg60e6YO87mCRFPL/E11CXnvtN3gTYJMdVkBu7gNxUOyzeeB87vKI?=
- =?us-ascii?Q?SnNZ6XUGzy6kdt3UVTbdfg8WjAw0tutPV54kDsiiNW3TGdOaNRsXRMEqT3rs?=
- =?us-ascii?Q?NNFsiyQkyZQ4t2VQQh+A6Qz1QrU2ArX8A7vfFPkQnq4UojJcbRSlYovHZKF7?=
- =?us-ascii?Q?KXoBkdHUK54+cVZbZtTYw2ac6VHD7WQ99QHoUmfOBIOnfvciRFWGBxi4LKfm?=
- =?us-ascii?Q?nSzIxDwIv4l18haej05Zjc/F77deUj28gb6EF/s7/ZoR7EmoTsVqv80ewYgq?=
- =?us-ascii?Q?fbx59bzgD3ahNDV/4tCvLMqQfbK8Q4fLXj+M6YjDv6jZGPSjYpljC+ryzGE0?=
- =?us-ascii?Q?YExZxYmRwbAiUCTtJbwU1WDmHoTuWQnSMYDo8MkNMrrqHDFGMZB5YFGvug8g?=
- =?us-ascii?Q?Ftmthz/J/GQBWvcXqd6u62eVU7++Rww19u6vx8MKtm6qJWsfKtxV8lzheK00?=
- =?us-ascii?Q?5WWcVfAftFk99Ke28yW4NdhLv4/eOjDqoG2Kz1ch9cJJQX9fUJUU2zvfE4KL?=
- =?us-ascii?Q?WClOhmWiJjoIRA/va10cBeZDIbjByTSm+Pi4jYdw2kQYHjxRvXrUNYe5j8Hm?=
- =?us-ascii?Q?1GDuREH3UaS4g+eihKaFL1wGh5rslsxO9NjS8axZfz495UuJONUnN4/t3qsF?=
- =?us-ascii?Q?l5Iy5jqmEdSBfCBMdjKd7Yg3ulGI6UMQHX8TDuFTtKHcrJtvDx7vC7/dIvO3?=
- =?us-ascii?Q?ZIeZRsXKAtHxjurxY9wOsxvkUNhW48fIHuOQKkqk4x7tZrddBWP0VuZVayw9?=
- =?us-ascii?Q?KqzGRtOAOemSKjUpIolhOdRnyMDOhXEL0PrR03woAeQXNVB5yZ4j5TwbK1sd?=
- =?us-ascii?Q?9sohXKR1YhitW6fsW8+w8OQRnh72qhBlQq2ezN7xG/+ducrbEFKy/RvSrxLZ?=
- =?us-ascii?Q?2Hd8n1ZiWB/oZVjf48iirA2rqZeitc8Ag5Qyg5AELa4E1VeIyWZyd7jtfttv?=
- =?us-ascii?Q?rvpMm00FXFUpf1amhEU+ML3JESJb37Tt+QqmQCErMa540ykfz4yXzO4Atd2V?=
- =?us-ascii?Q?p6l1tXhQq8AZ6X9qcYgIWOsgISlt+uuQLw28Ozap67QR4+gvAc9sBc71xtkk?=
- =?us-ascii?Q?rsw9gRPV7dwa5DnWRamfNjQ79p6VJReVWjiQX9USFXD/WaZW8u+IdDGOVU6J?=
- =?us-ascii?Q?FfFfx2Hg4LDGVz0EGX0=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12aa5864-fdfa-40f9-0c6c-08dccdf79159
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2024 22:10:36.1438
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Z8vsDDnV4BI2Z0ZMq+vKq+x9in7arh58vn2aJmg62MJHzVGazqUmSuTQdB4UOEHQxi0Sb3n7kKDKMC5Eis5AIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8959
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] arm64: dts: mediatek: Add MT8186 Ponyta
+To: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>,
+ angelogioacchino.delregno@collabora.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, knoxchiou@google.com,
+ hsinyi@google.com
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>
+References: <20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com>
+Content-Language: en-US, ca-ES, es-ES
+From: Matthias Brugger <matthias.bgg@gmail.com>
+Autocrypt: addr=matthias.bgg@gmail.com; keydata=
+ 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
+In-Reply-To: <20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add an overlay file to enable I3C support on the i.MX93, replacing I2C1
-with I3C. I3C is compatible with I2C, but it has not yet been enabled in
-arm64's defconfig. This overlay allows users to conveniently utilize I3C
-on the imx93-9x9-qsb platform until I3C and its driver become more mature
-and ready for full switch to I3C.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  4 +
- .../boot/dts/freescale/imx93-9x9-qsb-i3c.dtso | 73 +++++++++++++++++++
- 2 files changed, 77 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-9x9-qsb-i3c.dtso
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 9d3df8b218a2e..032f07adc0c53 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -240,6 +240,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqp-mba8xx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
-+
-+imx93-9x9-qsb-i3c-dtbs += imx93-9x9-qsb.dtb imx93-9x9-qsb-i3c.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
-+
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb-i3c.dtso b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb-i3c.dtso
-new file mode 100644
-index 0000000000000..94d562fa8077d
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb-i3c.dtso
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 NXP
-+ */
-+
-+#include <dt-bindings/clock/imx93-clock.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/i3c/i3c.h>
-+#include <dt-bindings/usb/pd.h>
-+
-+#include "imx93-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&lpi2c1 {
-+	status = "disabled";
-+};
-+
-+&i3c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i3c1>;
-+	#address-cells = <3>;
-+	#size-cells = <0>;
-+	i2c-scl-hz = <400000>;
-+	status = "okay";
-+
-+	tcpc@50 {
-+		compatible = "nxp,ptn5110", "tcpci";
-+		reg = <0x50 0x00 (I2C_FM | I2C_NO_FILTER_LOW_FREQUENCY)>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			data-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+				     PDO_VAR(5000, 20000, 3000)>;
-+			op-sink-microwatt = <15000000>;
-+			self-powered;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					typec1_dr_sw: endpoint {
-+						remote-endpoint = <&usb1_drd_sw>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&usb1_drd_sw {
-+	remote-endpoint = <&typec1_dr_sw>;
-+};
-+
-+&iomuxc {
-+	pinctrl_i3c1: i3c1grp {
-+		fsl,pins = <
-+			MX93_PAD_I2C1_SCL__I3C1_SCL	0x40000186
-+			MX93_PAD_I2C1_SDA__I3C1_SDA	0x40000186
-+		>;
-+	};
-+};
--- 
-2.34.1
+On 04/09/2024 10:14, Jianeng Ceng wrote:
+> This is v3 of the MT8186 Chromebook device tree series.
 
+Please send this kind of patches also to the mediatek mailinglist:
+moderated list:ARM/Mediatek SoC support <linux-mediatek@lists.infradead.org>
+
+Thanks
+Matthias
+
+> ---
+> Changes in v3:
+> - PATCH 0/2: Add the modify records.
+> - PATCH 1/2: Modify lable to label.
+> - Link to v2:https://lore.kernel.org/all/20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com/
+> 
+> Changes in v2:
+> - PATCH 2/2: Modify the dtb name without rev2.
+> - Link to v1:https://lore.kernel.org/all/20240902125502.1844374-1-cengjianeng@huaqin.corp-partner.google.com/
+> 
+> Jianeng Ceng (2):
+>    dt-bindings: arm: mediatek: Add MT8186 Ponyta Chromebook
+>    arm64: dts: mediatek: Add MT8186 Ponyta Chromebooks
+> 
+>   .../devicetree/bindings/arm/mediatek.yaml     | 11 +++++
+>   arch/arm64/boot/dts/mediatek/Makefile         |  2 +
+>   .../mediatek/mt8186-corsola-ponyta-sku0.dts   | 24 ++++++++++
+>   .../mediatek/mt8186-corsola-ponyta-sku1.dts   | 27 ++++++++++++
+>   .../dts/mediatek/mt8186-corsola-ponyta.dtsi   | 44 +++++++++++++++++++
+>   5 files changed, 108 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
+> 
 
