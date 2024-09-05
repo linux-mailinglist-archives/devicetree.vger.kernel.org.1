@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-100237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5517696CF1C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:23:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFCD96CF2E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 08:25:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D608D28360B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:23:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD0AEB25EAC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2024 06:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021BD1891A3;
-	Thu,  5 Sep 2024 06:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3829918E059;
+	Thu,  5 Sep 2024 06:24:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WehjcMOe"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KWB7lLrl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F762BB15;
-	Thu,  5 Sep 2024 06:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3975F18D629;
+	Thu,  5 Sep 2024 06:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725517405; cv=none; b=R0aq6oNguD/sPsmkU5KU3SJ23I0YLy2CypWK+QoTB23w6apDY2j3PIOU8xJFIIv+PckYlAd35xcFU4VI5APunDGc4Q9RfFtsfIme7lDP5JZBqQUieDaKT9VevCUR3WEdUj270q3VuCQWsbHBbs4hS3Ny3tdl6DF6TkNy9i9xvyY=
+	t=1725517494; cv=none; b=NKipS10q12wsH4H/X8bjWmMH8vPwEy1dT4umeq10xhWR9p1ktqZLVKTg2JN1s1Uv24SJBiRJ1j2OtATgp67O7fprSV37/yksQjHaKNDKtZYUZDO2t9fuWJWVBPRY6PFaDNonvnM7C7wl5iooADYHNTZLdDsu88efI5ehhTbjpXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725517405; c=relaxed/simple;
-	bh=qGvK0wCPGic+2o44R/ACnW5fY+LDJgBf2A10C3O3pH4=;
+	s=arc-20240116; t=1725517494; c=relaxed/simple;
+	bh=UesfbDNKmg44Mag5pVOM/JMASQ8rNSFLidWBuXvGgPY=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ElrKtx0sccmPUaUVRpghKOKO3PXlLh5l854nnl1mSvo5ier7QaiYkapTSVb0uYu8sU18IyI64a6FQh99nhpnW0mPJLT197NYHKtjjO0G4Bz5TnGXrB/7fGbxJx50V6d9OLVAxnpjyYRGzLxId+FW4mH0IyPgwQZC9QsiRvCvv4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WehjcMOe; arc=none smtp.client-ip=198.47.23.249
+	 Content-Type:Content-Disposition:In-Reply-To; b=XdivGbybYpE4pd+otC6Xw7gARunLrv6hkUqh05ac0DWfHdE4yWDs2vQYjEmKL0v7yoOxse/jEMI8N/F7i2vQLCXrgV2Z/nbmybGKCsLd/WJibtWP55twNYwdmAjC2nYeEtpJ9rW4UJv1PPgYQpVv50LFY70eESDUgosKMWr4pFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KWB7lLrl; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4856N8Pp022957;
-	Thu, 5 Sep 2024 01:23:08 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4856OdQ0126456;
+	Thu, 5 Sep 2024 01:24:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725517388;
-	bh=UgRkeRKo8aNhdHkE0OeVuJXjkmkbfZJTnFKZwGbwR5s=;
+	s=ti-com-17Q1; t=1725517479;
+	bh=QHY7aIQgu0/LpQAFB21rB6xj4hPz2sP1c8vqFpug2ks=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=WehjcMOesFtvniK+MasRNdZKuTAopEcpXylop2YAgZe7K6yD2pKCoz7cPIrhKFtYY
-	 bGk7/DhwBE+SBUkQ9IstbmEvLGwpyIw1v9jqURnUujd/GZmWg/LVe8DH9gHGTcIkOy
-	 hS/HhYYm7pNcvdB8RvP6PRUTWCUzpXvg72B+Ccco=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4856N8CS076053;
-	Thu, 5 Sep 2024 01:23:08 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	b=KWB7lLrldCMcrA4sDY8xo25+lfJ1OgStwEVc0EleuOBM8OqBM0NSTdyvIwX4lsyw5
+	 AWZc1+ApAKUNYZaHMLgJRmnIifcsbFTlyCawmbqL/NcJ35ypKxWWqMVvsd0ypVf16l
+	 2ZcCi/ZCqi5ni4z5USjIuDowtjwujIYNQ7SmC0ak=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4856OdEd026537
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 5 Sep 2024 01:24:39 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Sep 2024 01:23:07 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2024 01:24:39 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Sep 2024 01:23:07 -0500
+ Frontend Transport; Thu, 5 Sep 2024 01:24:39 -0500
 Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.68] (may be forged))
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4856N7MK068122;
-	Thu, 5 Sep 2024 01:23:07 -0500
-Date: Thu, 5 Sep 2024 11:53:06 +0530
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4856OcOX069679;
+	Thu, 5 Sep 2024 01:24:39 -0500
+Date: Thu, 5 Sep 2024 11:54:38 +0530
 From: Dhruva Gole <d-gole@ti.com>
 To: Ayush Singh <ayush@beagleboard.org>
 CC: <lorforlinux@beagleboard.org>, <jkridner@beagleboard.org>,
@@ -76,14 +77,12 @@ CC: <lorforlinux@beagleboard.org>, <jkridner@beagleboard.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         <greybus-dev@lists.linaro.org>, <netdev@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Conor Dooley
-	<conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: ti,cc1352p7: Add
- bootloader-backdoor-gpios
-Message-ID: <20240905062306.lm4jgr7yp2enldt3@lcpd911>
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-am625-beagleplay: Add
+ bootloader-backdoor-gpios to cc1352p7
+Message-ID: <20240905062438.ae2rajmcoiukjefm@lcpd911>
 References: <20240903-beagleplay_fw_upgrade-v4-0-526fc62204a7@beagleboard.org>
- <20240903-beagleplay_fw_upgrade-v4-1-526fc62204a7@beagleboard.org>
+ <20240903-beagleplay_fw_upgrade-v4-2-526fc62204a7@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,50 +91,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240903-beagleplay_fw_upgrade-v4-1-526fc62204a7@beagleboard.org>
+In-Reply-To: <20240903-beagleplay_fw_upgrade-v4-2-526fc62204a7@beagleboard.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sep 03, 2024 at 15:02:18 +0530, Ayush Singh wrote:
-> bootloader-backdoor-gpio (along with reset-gpio) is used to enable
-> bootloader backdoor for flashing new firmware.
+On Sep 03, 2024 at 15:02:19 +0530, Ayush Singh wrote:
+> Add bootloader-backdoor-gpios which is required for enabling bootloader
+> backdoor for flashing firmware to cc1352p7.
 > 
-> The pin and pin level to enable bootloader backdoor is configured using
-> the following CCFG variables in cc1352p7:
-> - SET_CCFG_BL_CONFIG_BL_PIN_NO
-> - SET_CCFG_BL_CONFIG_BL_LEVEL
+> Also fix the incorrect reset-gpio.
+
+A Fixes tag please?
+
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 > Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 > ---
->  Documentation/devicetree/bindings/net/ti,cc1352p7.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> index 3dde10de4630..4f4253441547 100644
-> --- a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> @@ -29,6 +29,12 @@ properties:
->    reset-gpios:
->      maxItems: 1
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> index 70de288d728e..a1cd47d7f5e3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> @@ -888,7 +888,8 @@ &main_uart6 {
 >  
-> +  bootloader-backdoor-gpios:
-> +    maxItems: 1
-> +    description: |
-> +      gpios to enable bootloader backdoor in cc1352p7 bootloader to allow
-> +      flashing new firmware.
-> +
->    vdds-supply: true
->  
->  required:
-> @@ -46,6 +52,7 @@ examples:
->          clocks = <&sclk_hf 0>, <&sclk_lf 25>;
->          clock-names = "sclk_hf", "sclk_lf";
->          reset-gpios = <&pio 35 GPIO_ACTIVE_LOW>;
-> +        bootloader-backdoor-gpios = <&pio 36 GPIO_ACTIVE_LOW>;
+>  	mcu {
+>  		compatible = "ti,cc1352p7";
+> -		reset-gpios = <&main_gpio0 72 GPIO_ACTIVE_LOW>;
+> +		bootloader-backdoor-gpios = <&main_gpio0 13 GPIO_ACTIVE_HIGH>;
+> +		reset-gpios = <&main_gpio0 14 GPIO_ACTIVE_HIGH>;
+>  		vdds-supply = <&vdd_3v3>;
 
-Did you mean &gpio here and even in reset part?
-Looks good otherwise,
 Reviewed-by: Dhruva Gole <d-gole@ti.com>
 
 -- 
