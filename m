@@ -1,150 +1,220 @@
-Return-Path: <devicetree+bounces-100773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB60496EED6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:12:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC22996EF0A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:24:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 887562815E6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 09:12:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED9D7B207EF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 09:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6B01C7B89;
-	Fri,  6 Sep 2024 09:12:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0034F158A3D;
+	Fri,  6 Sep 2024 09:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Yb8Oxr65"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="038rEfWG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2073.outbound.protection.outlook.com [40.107.215.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBAF1C7B82
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 09:12:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725613973; cv=none; b=R+/XhaLsWEyodV9OrJujPaBSKmGA1Una/w1umIGFvQmFN+jvCkhaaduFOdMmdrgIxqS0uHxQxL2n5bwQH0fQNLH7rQbsCk3jdeUwUqoLcb6x7Jol9dSWamMaluS0yVUM8MfFF3CbBUVVp/1Z7MFM+Tz2sTIAjaOEkywG4ck7I20=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725613973; c=relaxed/simple;
-	bh=3P4U2c/xG3RMaKJu/FZmMqv7gk2YDpQyenJgLHL65qY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tZji/2BumjMT2kHZrDgVV6db8A5VMsZn6RE+jTFw0pkVQyJeo9ei1Tb+oXzVar1uQiKaVD7ikVvHwguxQwm5t+EBnyEhmPte1P3Vft7b25MrGvvPj5dEQENugCLFvHuga4G8b/L5UHchqo1wgmsjvqJo+iQ/lBw5SFc9cTCLcXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Yb8Oxr65; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-371941bbfb0so1122744f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 02:12:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725613969; x=1726218769; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8s+UppKbAeqOL7Uk1qqGcQjsJvrUCCT+GeLwSOaPGy8=;
-        b=Yb8Oxr659fNszjDv80UTSEkMADBUHAq4S6pyztDn/p1j3W6tmS5vwkb63yzL+YzacQ
-         zWWfR78zykAv+9BG8MELVfq4CMFk7BNZlMDjjREquFAmhfe6ZKrW8TmF9+InA7554VLI
-         C/pUsNxnDenTDX5dc1/haFcoGhPtG8Law6dov8X+9XPmcWn248NlJygArB6lNaA5/GXH
-         liLfIgV4Y5eM1woBkJ+cWClESoj+XTwe94Zc5WLbg7gcwZsQgCD9Cz8mpDwVbVhe6Ino
-         1gjFhAnSmWpjsCb9vx2sOW/zZF/L/Ax2TyjuzM5RfoB9qACLwY36+Q7zKQeaaRHGKa9f
-         2LyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725613969; x=1726218769;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8s+UppKbAeqOL7Uk1qqGcQjsJvrUCCT+GeLwSOaPGy8=;
-        b=Rd+hAXpbMmt8tBnX+t5CYmXQPtwz+HP57HNH9mKjtHiKUVtqMtwMkxKM5F0SVap/H+
-         56ax+PfXNPiH4wX4vG03ORiuqrbuqJIgHpHxDmg0eudubqYjbuzbRBtF7g2/h562s+ja
-         JCQKl/rRKbUek4qnx3nNliI7Im9v7P7OIxxqx8+j/XF/4ehmBNmvc5bDMsEAFT//wloz
-         HYFw3+rvd4kztyxjxKenBYEqMuHmO4MOFLlBkgxHz9RuJzICf3ghxcLCQg7npWJFTpd+
-         gflVe8I0iiTlwcGjKh1Ce4PgF6EuK3PwGBw1LUUM21HxP3ggxvsu3seiFGBTJDl31pxh
-         C/Pg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZA5CqniV9tyhqa9I6aKaeVhPp1psQ1tbbWKehkNNy9dPiSjMF7/zCtfCG3qAMK6FPQkGiU4XW45On@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRCxq+A60Goe01O/+rfg18xRYk7tgB0AM4Cwy+MktPVPUnBIHI
-	ts54QX3YZYzV80sVxPw8L3RvaVhI+Usi9Rc/BNniD1QzlD97m+cI19nK5u0v0EtGn1PC3pEYQmZ
-	s
-X-Google-Smtp-Source: AGHT+IFb8h9Am+OxujV9k6mxhWxZfBdfSFD5yvzHGeIL2yjli1dhEsNM1lVw5wVFjsaybqLmFMEcNg==
-X-Received: by 2002:a05:6000:1fa7:b0:374:c847:85e with SMTP id ffacd0b85a97d-374c8470bbamr14020255f8f.13.1725613969139;
-        Fri, 06 Sep 2024 02:12:49 -0700 (PDT)
-Received: from [192.168.0.2] (host-95-233-232-76.retail.telecomitalia.it. [95.233.232.76])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3749ef81146sm21321686f8f.82.2024.09.06.02.12.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Sep 2024 02:12:48 -0700 (PDT)
-Message-ID: <fd3f4874-b410-4e98-acba-d0fac041a40e@baylibre.com>
-Date: Fri, 6 Sep 2024 11:11:36 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F71248CFC;
+	Fri,  6 Sep 2024 09:24:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.73
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725614690; cv=fail; b=XJToGBcWNekCXO6o1fKujFMvlcL8sqcQfrgxWvcmeuVNdth4n10x4LPPLBcji7d2RsmqDskMz0XnXH/UHhTTemgZ15NrPLVTuyowSPgspzjZ9eJDNMWe5EqmLpyBnR2UeBsshad+Ye3tjlewOzFHxxMoS6SKeTdEwRJ5sEffefw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725614690; c=relaxed/simple;
+	bh=dPQeFs93Q+eSYrhCW8+3iho7PCagjXGT+uamF3p38jk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Odq+DmdjIQXf97hu0ViqoFy8kAMJTva/Pq6rEhHIPisXEgjVfppzb/g2DpTcGYSOR7rGRmZO0XnczmGOjRnwNQPVmCj5bB2TFirpuD03+rf/kogamAty8Fd5fqONgSnnHuvSNjwVxHf4S6+1mf2KJ8pSSx3IkyGcnXAM6/h05no=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=038rEfWG; arc=fail smtp.client-ip=40.107.215.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iIm1QnBLvprcm6H5UQK9AktYsT6noRgSERmdWlPEnR9tN4vYfAkdonbGEiGR4Kd1WVHbmCEZq15GuFQwDRiDhwx6r1lmnQzSwPMVM6JSXcXNOqXu/QWrvb5aI4yZctPkSK4iypncG1c3g+wvNiAaECnwqJ9+1DNdKOhECckG6yjnTI6ZYunAuMrTpbVpeX329V0eI0Nfhz9kcATsmYJncZ891mm80EJZdGB93PTHHqiGV4koGfuwSjN0cB/4ngX8uCRLgMJl5QHWZEFq1aIxCUno02e0W7FAIiQqRDYdogeivgszzLCAC+w1Jj0K9up13u3sVOMFwL9rjiMhoBvkdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2hI7+xEttF9Yn1v7vJLp69QaRV+Te1Nj2rUrMt/ApZU=;
+ b=kzC4Ih2gTkLua6Wduy3QiRK4Cpj6hNMl9x3OCXiKVgZYnvOzLc7rdhDGbtoe3/QMDkSZNOAlMMOxWiKDm4xcyqggsBmfR8OgJ1IRARwUtpwOfsKbVXfdFzswX9PK8WtBuwiL/zzSm82P2zWM6bz5M/e3zS4DmS/rZ52gonbmBRRW8VTz2LutiFo6EH5yPP2Nwka9qpPUgUIJceQ5iqbVYsV3DHANfi1Ri52bXNzA9OVsdUPG6m3JHW5zOg+wSss+urF2wEyOROekazrEbWkWOK7vg66bCNh+kUUwF1gyA7JD++/AdivJRo3CQCdsNKE3D9XuOsU5FWlImIreQ6KhdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2hI7+xEttF9Yn1v7vJLp69QaRV+Te1Nj2rUrMt/ApZU=;
+ b=038rEfWG8qf4twZaP8nZIJKVC//Ty8P7SvP0zj4OL/HknSNs0s/q/jHarlKCK7gu4r445khgdqLB8v6Ho0L+o/VLa+qDthpSB4fWqNCUINRlNnVKQQkv3tGtqCD7kJH8ghsXhJpIUHZhjb9eagXNCwySYLvtkvd4In4XI8pxtzhu2mq5+kHXQ0cBu4Kx6t93aO1Cp69Z5XacBjlsWjaUcmYmSQmkvHuxjmXxnYGVBQbFFVd0txbjwnDOpNHULCL5u/aw7G0HLP79CNQC0PxLCoDxUs0FeKTylQilEVGZ82W/99jijEJ1UmHbhA1fecNTEJLL3iNRjjgSerE1jhLdvA==
+Received: from SI1PR02CA0028.apcprd02.prod.outlook.com (2603:1096:4:1f4::6) by
+ TYZPR04MB7456.apcprd04.prod.outlook.com (2603:1096:405:3c::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7918.28; Fri, 6 Sep 2024 09:24:41 +0000
+Received: from SG2PEPF000B66C9.apcprd03.prod.outlook.com
+ (2603:1096:4:1f4:cafe::46) by SI1PR02CA0028.outlook.office365.com
+ (2603:1096:4:1f4::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.17 via Frontend
+ Transport; Fri, 6 Sep 2024 09:24:40 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ SG2PEPF000B66C9.mail.protection.outlook.com (10.167.240.20) with Microsoft
+ SMTP Server id 15.20.7918.13 via Frontend Transport; Fri, 6 Sep 2024 09:24:39
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v16 0/3] Add i2c-mux and eeprom devices for Meta Yosemite4
+Date: Fri,  6 Sep 2024 17:24:34 +0800
+Message-Id: <20240906092438.1047225-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/9] dt-bindings: iio: dac: add ad3552r axi-dac
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
- <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-5-87d669674c00@baylibre.com>
- <boahpvyzzmocnnpae2u6meub34yvqr2q3v5pzf2egp2fretlwk@ibas62hdypwo>
-Content-Language: en-US
-From: Angelo Dureghello <adureghello@baylibre.com>
-In-Reply-To: <boahpvyzzmocnnpae2u6meub34yvqr2q3v5pzf2egp2fretlwk@ibas62hdypwo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66C9:EE_|TYZPR04MB7456:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 712c8d26-cb06-47cb-51ae-08dcce55bc47
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|7416014|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?E9d+UFUxyWNGQcUUfZXNCmk9izp7XROozvZK5RKnCgZtLO+f6pJx6ipIuS9X?=
+ =?us-ascii?Q?MprqQT8ANkmQy0LYmI0+hqDafcJkPynZIAw+TvTB1MTu/pkx36113TFuS0oI?=
+ =?us-ascii?Q?F0lYu3uUkg4uiISxqK5xh0An5irI1M6woH1wztEbF2o31H7bLZEFQWjskxJ8?=
+ =?us-ascii?Q?AwtLs5K2OA6pZQN9C2oBDAJ64z3rFHFXrFnxIgNUKMuWUv3Ii7COLPqH2es5?=
+ =?us-ascii?Q?L+143G1z1jYbCA/21E4Ns8KqE7Y+mDaLs045keU64Vp7sF6d5wOEn2K53X5u?=
+ =?us-ascii?Q?4xwDy0eGbdjcvDt6Ps9GNNE2pVSZjoChZIDOdyEyXkIIH9hpQJ89j9hUohkF?=
+ =?us-ascii?Q?k1fhGXCDCsls5BUs6JwKJsZiNNsrxhqy8gD5u/qfW0hAvNrlyTxi18YLlMjX?=
+ =?us-ascii?Q?ayAuymV9PL8CsECdUvm5bggnb+XNp0yOO8pTD1GCZw180qT8qVq780KBENVr?=
+ =?us-ascii?Q?AmVJ2SUl5hHAmbAvVp8+TXLbzT8XjC6tSVs64q00YA+8hwEmUTLznrsGLDnI?=
+ =?us-ascii?Q?Ux+44c4Jc9PeLecuZYqrpMxHBnYe8cXHq2r9cHdYHX6Kt9Z5+IAO6dyNS0gc?=
+ =?us-ascii?Q?paHe7xTZtry8HTl/grhmNoWGlIMPfS02XnxYCRDpdVmPB0h8OcngBzHB6o/X?=
+ =?us-ascii?Q?YvTvNXdT2oy+Yz/tawtKud1d74kegcDL1aJLMvtuIxxT0JR9yhIAO4yr4Ryq?=
+ =?us-ascii?Q?CwUEkJpbjeRO6F9eRowMNA+SC49gGFFmgabadfES7K/E1TYJn67saDqvCOXg?=
+ =?us-ascii?Q?88+LgxaAWMOP3+/hlNSwOgDZJ+QrqU05lZvqsWT1HU5ejHoY9hXBZaVPFYBH?=
+ =?us-ascii?Q?zsG/5hRmO5gA5bzkR0uhGqu0oLRFlkaEtlevLenOGa2ikg5Mz/LXyDXKECS/?=
+ =?us-ascii?Q?AUs0roPDG/AlAFIGKplddcLQoXfSdy8eOYNWZYdc/QA1Aj5U68abAcx+VF5/?=
+ =?us-ascii?Q?+KuJEbv4XiGMxxGBh+g85xV5X6Ubk5wT0X6plyeQpd8fmDhsbh08tH3+7Nao?=
+ =?us-ascii?Q?wiAd03Mrt+5hO/s565He6jpsvN4s6KO8j0pNzIe/OJWuoZXqnVGOSfSF4XUQ?=
+ =?us-ascii?Q?d2tEU6Q+URAuXi4PYkhB4r8Yok+YUp4L4sUgQVqnvS6t9/fvYZNgcc2YPtrc?=
+ =?us-ascii?Q?r1qRUhPMFqZcolHJCrKiHDCi7NoOtaU7HvW4G+1rHngSuIImAnahOyWkzI3B?=
+ =?us-ascii?Q?Fa+awwR7/V6Y6mhZUz/+0z6SaFDOVp704CWX7PtHsXTscCh19uYhY/6pVx5q?=
+ =?us-ascii?Q?v3yqbOqxSOKPimoKi2XKOcIiTUdgli2Nd2edFEdLB5f5sbTRzgavB5Q1X4Wt?=
+ =?us-ascii?Q?aGFHM0vNWMyoEzAG2jAyg+xseVELNj3ik8PUZeoxWTB4hUNpHuYtuu0UY2he?=
+ =?us-ascii?Q?xfROiNxSNnfv6Vk72A10qZVF+7p+Zb9olJWfLQlnRwDlApO5zwlDLKm8rfnZ?=
+ =?us-ascii?Q?e0BpVfmxnHEOu/CwvwbrabwEs+ioGVbq?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(7416014)(376014)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2024 09:24:39.9851
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 712c8d26-cb06-47cb-51ae-08dcce55bc47
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66C9.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB7456
 
-Hi Krzysztof,
+From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 
-On 06/09/24 9:22 AM, Krzysztof Kozlowski wrote:
-> On Thu, Sep 05, 2024 at 05:17:35PM +0200, Angelo Dureghello wrote:
->> From: Angelo Dureghello <adureghello@baylibre.com>
->>
->> Add a new compatible for the ad3552r variant of the generic DAC IP.
->>
->> The ad3552r DAC IP variant is very similar to the generic DAC IP,
->> register map is the same, but some register fields are specific to
->> this IP, and also, a DDR QSPI bus has been included in the IP.
->>
->> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
->> ---
->>   Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->> index a55e9bfc66d7..c0cccb7a99a4 100644
->> --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->> +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->> @@ -24,6 +24,7 @@ properties:
->>     compatible:
->>       enum:
->>         - adi,axi-dac-9.1.b
->> +      - adi,axi-dac-ad3552r
-> I am sorry, but what is the product here? It looks like either wrong
-> order or even completely redundant. What is ad3552r?
->
-> And why versions are mixed with real products but without any
-> compatibility. What does the version express in such case?
+Changelog:
+  - v16
+    - Reorganized the patches.
+    - Add i2c-mux and resolve the dt-validate errors.
+    - Revise Yosemite 4 devicetree for devices behind i2c-mux.
+    - Add mctp config and sensors for NIC after i2c-mux on bus 15.
+    - Add fan led config for BMC to control according the status of fan.
+  - v15
+    - Add ISL28022 support
+  - v14
+    - Add SQ52205 support
+    - Add GPIO I6 pin
+  - v13
+    - Add RTQ6056-support-on-bus-11 
+  - v12
+    - Fix GPIO linename typo and add missing GPIO pin initial state.
+  - v11
+    - Revise all GPIO line name with bottom line
+  - v10
+    - adjust mgm cpld ioexp bus
+    - add GPIOO7 name
+    - remove mctp driver
+  - v9
+    - add XDP710 support
+    - add RTQ6056 support
+    - add MP5990 support
+  - v8
+    - add fan led config
+  - v7
+    - Revise pca9506 i2c address
+  - v6
+    - Revise i2c duty-cycle for meeting 400khz spec
+  - v5
+    - Support medusa board adc sensors
+    - support NIC eeprom
+  - v4
+    - Re-format gpio linename
+    - Revise i2c device node names
+    - Split patches by logic changes
+  - v3
+    - Correct patch for revising gpio name
+  - v2
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
+  - v1
+    - Add gpio and eeprom behind i2c-mux
+    - Remove redundant idle-state setting for i2c-mux
+    - Enable adc 15, wdt2,spi gpio for yosemite4 use
+    - Revise quad mode to dual mode to avoid WP pin influnece the SPI
+    - Revise power sensor adm1281 for yosemite4 schematic change
+    - Add gpio pca9506 I/O expander for yosemite4 use
+    - remove space for adm1272 compatible
+    - enable interrupt setting for pca9555
+    - add eeprom for yosemite4 medusa board/BSM use
+    - remove temperature sensor for yosemite4 schematic change
+    - add power sensor for power module reading
+    - Revise adc128d818 adc mode for yosemite4 schematic change
+    - Revise ina233 for yosemite4 schematic change
+    - Remove idle state setting for yosemite4 NIC connection
+    - Initialize bmc gpio state
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
 
-dac-ad3552r IP (fpga) is a variant of the dac IP, very similar,
-about the version, it still reads as 9.1.b
+Ricky CX Wu (3):
+  ARM: dts: aspeed: yosemite4: Revise i2c-mux devices
+  ARM: dts: aspeed: yosemite4: add mctp config and sensors for NIC
+  ARM: dts: aspeed: yosemite4: add fan led config
 
-so i can eventually change it to:
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 650 ++++++++++++++++--
+ 1 file changed, 609 insertions(+), 41 deletions(-)
 
-adi,axi-dac-ad3552-9.1.b
-
-Should be more correct.
-
-> Best regards,
-> Krzysztof
->
 -- 
-  ,,,      Angelo Dureghello
-:: :.     BayLibre -runtime team- Developer
-:`___:
-  `____:
+2.25.1
 
 
