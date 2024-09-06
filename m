@@ -1,163 +1,130 @@
-Return-Path: <devicetree+bounces-100958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DDC696F98D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 18:50:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4371B96F99C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 18:53:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A5451C217F0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:50:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5386A1C21680
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79461D27A6;
-	Fri,  6 Sep 2024 16:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901661D4179;
+	Fri,  6 Sep 2024 16:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tqp2lsMf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2RWdYHw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848D01C9DE7;
-	Fri,  6 Sep 2024 16:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1048B1CBE8A;
+	Fri,  6 Sep 2024 16:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725641398; cv=none; b=nD3fhmCKcIGf2tg9QP6Ur50ej+4UqOAQX0rd6oM1P30XM60KaU8pSZ2988bdNGXXU3oe8dMKQ50G8HldTKH97MtVOw7Wriw6+l768F5+FcXbx2tm4jV3+Df01FAOmAwDqBVYo1iQ6TN+E5eBkwuxhXGURy1n73zMCSz5dwMFanI=
+	t=1725641613; cv=none; b=XC+RA456r/g5iyg5PEwiZZoCx2NTqkzxU25ODwRJHJB7SarNsvKDilu+aY7SJAh/aC7cvUkWnO4wdeu6UXaf1qav8N0EoMQ4fpVrgvNQaryJATURhaR5Jb75EH7j3uHQsLDdNh8CPSLaEYJAXR8HjF8GRySMZbaMQ3val7S9LVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725641398; c=relaxed/simple;
-	bh=rvkOObMwKZqhY0B7qN9MKTKZ1iNMcgZ3QwdiGBh3uHk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fO2l3Tzi22AenqjrR3qB3vZijQtmHvBiVGXGLrwxI6kX1t1rH22drox0xkeHP8jXCkYX0Iq/undk8Wdabv0GPULgIDsNzsubFnjVH+tVocB13z4YXlqzVcYvULGE0pcngj1wKngN/GpQo5DoIF/W/ToCMDLrGtI55o+2XsFwLXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tqp2lsMf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74475C4CEC4;
-	Fri,  6 Sep 2024 16:49:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725641398;
-	bh=rvkOObMwKZqhY0B7qN9MKTKZ1iNMcgZ3QwdiGBh3uHk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Tqp2lsMfWHUl05YPaWjs2VmwbihaBBdqGw1repcS3Yego+7CC2pnuGQoKV6YmSfxf
-	 Iue3HcsfEjwRMKk5Od9xEKl+9pE71pU8xv2GIMEiNrIXr/mLUaJDTbT46IOrDjwK7i
-	 wx2vSxbINrcYfVdxAYUyLKTSI6zulP0k9u5dolkRZuHT7zviyG7tFB6qm1rEfgSRM8
-	 c2ejz8PiQzWH0nyqkATjLb9tAvg8hIgutsjKZr17UAAwJdX15t991iwEVgVFaSjl4b
-	 tmEPOKdT+5jj5ARekHwkLVCaJscY86eMNOMY+2tId1IGwL1deieLtmsrEBCg/XX2Po
-	 jxQHWA/5qE/9A==
-Message-ID: <f649c854-a250-43cf-ae01-82bbb011e7e0@kernel.org>
-Date: Fri, 6 Sep 2024 18:49:49 +0200
+	s=arc-20240116; t=1725641613; c=relaxed/simple;
+	bh=rRq9yjHCDKXbXbcrMKCuvNOIdIvhE6xLqdVGFeoQR3c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bfK4fIiOWWtKNOrtC69x55KOs18MFwVuoEUrESaLdcetvU6p6jKGV3UVDvu0B8s4g/3bp2e/IeAnuJJXjLVn6WW0gX6oZGrtj+rdoTVEWqujzYoudYWd4703ykcA21tX2RMhUxp3knW7cT6vw7+FhzhNLPHxP20Q3mat4uapOqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2RWdYHw; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3df06040fa6so1422317b6e.3;
+        Fri, 06 Sep 2024 09:53:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725641611; x=1726246411; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cWEQHOwaM5Wfsp4uoZCh9UcLUSiGupjYGoV/bAUl0fM=;
+        b=W2RWdYHw2YzNPpN+ibPlyh6r0VnHdE2l3vDyQEYPTQbCFkPhoojPA7hOzrf2jvTh0g
+         QPd/zSR30uRpUUGoHWX5XPIaacL1r9okTs5K26DLG4nL/0WZwtuhuXCJNy1zelmbj2JI
+         +9WAoFbJaGKZfsh0sQc52PvcPT3FYROrtdUA/fWOZqiNrx9HydQh4QWPpq0susR31bZJ
+         ieGlkwJU8Tlh2uZ+oZD+gcupH8Qg6nBGDm3rPJJrzKqqufUiQpA+5OK6dZlfNknf5Xll
+         5pEz6bJQfz0G47fpZaP2dp53sk/H11P3jXiGy/FLz75Mp7lxNkojGtErfJ+fsk15cmRv
+         8oxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725641611; x=1726246411;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cWEQHOwaM5Wfsp4uoZCh9UcLUSiGupjYGoV/bAUl0fM=;
+        b=dmCWh5lFUmNOty85oO79Ze8Xs1DqnMQirkMXaLrWnLQ+Wv/QvPVzIWqDVf0huOJCRX
+         DDEXRbx008dBEZeu0unwSA1baseXL35JCHWKonFKM8GMIoWALVKVEOcIOXRtaeAEaFYP
+         XLvkGesXxk9HtQ3wm6YH16TchLhraxGb3KCqtSzDVwgyom/RwadYtJfvSOEM3KyKybYP
+         mksh4FxITJFt8SqtDUp6C9Q386nHOHksSVmU+yQtjbA0SlGYS0Dg1zUMz6fd9snP0mav
+         gC3zlJCYIT5RwyWOBBAo+/S36LW5LdZstRdyvP1+S0jvtpsIcc6/fo9fCYWGrg8cAEuu
+         YfvA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3ZPNarToj4IndBff4K2r9BzGkoX7U53hz7MsvNjxNms74VdDCd3EqCCyXoJlw4+O0tnJzYRMogHsN@vger.kernel.org, AJvYcCXScPZVXCjUDL2ZVjYaBTTogn90JuMBgjq7rDGEJDSHluVw8rEZQ+QZNESNCGgm9B6gc1Gche00eHcgC5w4@vger.kernel.org, AJvYcCXWEdG2zQ65IXf/VjUjeHOVAxREuTxg5wTX0/xmzJfv7JlarsN0w1spPgphStiQ0W9tESUWxM/2LdYg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaSpxrQT2EZfA8Q8fr47GliHKbnhmb9rVd5Fpy6bYNfSlkHb+q
+	V0MO7wQ9kGQCj3glruuX9zUktTM/kwW2wBnxGPs43tdeoAnnrNwy9YreRybg
+X-Google-Smtp-Source: AGHT+IFOxp9AoAp0J+gOTuRtfB85p8n1UEoxGS5Tn3GWYTeQb9Wc7Ggan9i1Vo4vK7du8MiwGdeynQ==
+X-Received: by 2002:a05:6808:221c:b0:3da:aac7:43b2 with SMTP id 5614622812f47-3e029f2baf6mr3936589b6e.34.1725641610993;
+        Fri, 06 Sep 2024 09:53:30 -0700 (PDT)
+Received: from localhost.localdomain (ool-1826d901.dyn.optonline.net. [24.38.217.1])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45801b36206sm17580121cf.29.2024.09.06.09.53.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Sep 2024 09:53:28 -0700 (PDT)
+From: Alex Lanzano <lanzano.alex@gmail.com>
+To: Alex Lanzano <lanzano.alex@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Jagath Jog J <jagathjog1996@gmail.com>,
+	Ramona Gradinariu <ramona.bolboaca13@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add I2C driver for Bosch BMI270 IMU
+Date: Fri,  6 Sep 2024 12:52:49 -0400
+Message-ID: <20240906165322.1745328-1-lanzano.alex@gmail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: interconnect: Add compatibles for
- QCS8300 SoC
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
- Vladimir Lypak <vladimir.lypak@gmail.com>,
- Adam Skladowski <a39.skl@gmail.com>, Danila Tikhonov <danila@jiaxyga.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Andrew Halaney <ahalaney@redhat.com>,
- Odelu Kukatla <quic_okukatla@quicinc.com>,
- Mike Tipton <quic_mdtipton@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240906151534.6418-1-quic_rlaggysh@quicinc.com>
- <20240906151534.6418-2-quic_rlaggysh@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240906151534.6418-2-quic_rlaggysh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/09/2024 17:15, Raviteja Laggyshetty wrote:
-> QCS8300 SoC has several bus fabrics that could be controlled
-> and tuned dynamically according to the bandwidth demand.
+Add basic I2C support for the Bosch BMI270 IMU.
 
-You got quite precise review about subject, which you partially
-implemented and then added something more redundant. Look, this is
-supposed to be device name. Add QCS8300 RPMh NoC. Drop redundant
-information.
+References:
+https://www.bosch-sensortec.com/products/motion-sensors/imus/bmi270/
 
+Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+---
+Changes in v2:
+- Remove spi example in binding documentation
+- Add more properties to i2c example in binding documentation
+---
 
+Alex Lanzano (2):
+  dt-bindings: iio: imu: add bmi270 bindings
+  iio: imu: Add i2c driver for bmi270 imu
 
-> 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> ---
->  .../interconnect/qcom,qcs8300-rpmh.yaml       |  72 +++++++
->  .../interconnect/qcom,qcs8300-rpmh.h          | 189 ++++++++++++++++++
->  2 files changed, 261 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml
->  create mode 100644 include/dt-bindings/interconnect/qcom,qcs8300-rpmh.h
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml
-> new file mode 100644
-> index 000000000000..2759b003ebcf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/qcom,qcs8300-rpmh.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. RPMh Network-On-Chip Interconnect on QCS8300
+ .../bindings/iio/imu/bosch,bmi270.yaml        |  77 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/imu/Kconfig                       |   1 +
+ drivers/iio/imu/Makefile                      |   1 +
+ drivers/iio/imu/bmi270/Kconfig                |  22 ++
+ drivers/iio/imu/bmi270/Makefile               |   6 +
+ drivers/iio/imu/bmi270/bmi270.h               |  18 +
+ drivers/iio/imu/bmi270/bmi270_core.c          | 322 ++++++++++++++++++
+ drivers/iio/imu/bmi270/bmi270_i2c.c           |  56 +++
+ 9 files changed, 510 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
+ create mode 100644 drivers/iio/imu/bmi270/Kconfig
+ create mode 100644 drivers/iio/imu/bmi270/Makefile
+ create mode 100644 drivers/iio/imu/bmi270/bmi270.h
+ create mode 100644 drivers/iio/imu/bmi270/bmi270_core.c
+ create mode 100644 drivers/iio/imu/bmi270/bmi270_i2c.c
 
-Isn't this just "Qualcomm"? How is in most of other bindings?
-
-I asked not to send us your downstream stuff. I said it about driver,
-though... so repeat here: Do not send downstream code, but work on
-upstream and use upstream style. This applies to all patches: drivers,
-DTS, bindings, everything. So which upstream binding was used as
-template for this one here?
-
-Best regards,
-Krzysztof
+-- 
+2.46.0
 
 
