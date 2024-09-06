@@ -1,184 +1,240 @@
-Return-Path: <devicetree+bounces-100860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E789D96F3C6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:56:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83FF496F3D3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:57:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C51EB26839
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:56:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A207D1C215E4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:57:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C081CE6F5;
-	Fri,  6 Sep 2024 11:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F491CBE9A;
+	Fri,  6 Sep 2024 11:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="FaRbn/+8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCMbPwgt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A671CDFBC;
-	Fri,  6 Sep 2024 11:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2874317C9B;
+	Fri,  6 Sep 2024 11:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725623738; cv=none; b=cinj6bIusbHrsnowOmfS7J/RiAYUud+YkXUIfdWGLKrTKyhpk/cTSEzkNvfsglGPiRJwyvMHr5wSJfEdaVBdO+LDdsPW6KYaVDykT1L65ammSniaMfrGPprDSmsY6OF3sTsvEb9Lfgh4ejAt5QPykcIpD7RLXavlTKNkbbWGbds=
+	t=1725623855; cv=none; b=p5EgA5WX3PZQ5WVB7GE6a3DJeU9Tp72hKLpPTb9tVzWr7U01nnPYpw2F7ehtbwwdHm+QGcAPMbv4dCfSx89wvCfUbKA8EjQXma6jrptjOalYZdfa+eB1I0/SS3N/Jlq54wxYK+pL9DBhED/OsjnpUwpH5Ee1frjBVof/CBZuD2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725623738; c=relaxed/simple;
-	bh=M8CTVmoRvxULSkyhlQwl7B01sbJxbPheVsswpFvSKNo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=chrqRucotRfQ4dr0hvhqWFzDUBAUPQiU3rqfFTt7eFufYV6U0gVoitbQKUzOcjG82d3e7LVeSFeVYSQ8O81seLfYOtTeu+dw1kjQYbpKSnFWu6bls+7duni/Wxc1Zhm9lRAcMEStc/r2/RAQDWKbcNArPK+vnojWXAl+Uv06SNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=FaRbn/+8; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7449145B;
-	Fri,  6 Sep 2024 13:54:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725623660;
-	bh=M8CTVmoRvxULSkyhlQwl7B01sbJxbPheVsswpFvSKNo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FaRbn/+8pDV9pWLNcM0Z2dami7oO1NDdiRyLpQG8sOQTSmJgiN5WNO4745myBN4nH
-	 Te2NE0q2ExucISDC37fIlAHD1BlUhgGUB5jH9aiMoahmTFy72pP3myXL2DDWtFOK+5
-	 a+DnmYJchOch346f3/Kr+AsQQ4Att/yD5kzHOWik=
-Date: Fri, 6 Sep 2024 14:55:32 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH/RFC v2 8/9] media: v4l: ctrls: Add a control for
- companding
-Message-ID: <20240906115532.GA12683@pendragon.ideasonboard.com>
-References: <20240905225308.11267-1-laurent.pinchart@ideasonboard.com>
- <20240905225308.11267-9-laurent.pinchart@ideasonboard.com>
- <3690e2f3-17e7-4758-a3c9-05320cc92f1d@xs4all.nl>
+	s=arc-20240116; t=1725623855; c=relaxed/simple;
+	bh=b0CLLIv2PemEsUX45ms2pF+n3IYnuwP5pc8KKcHdHk4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VQcKzl5ZI+BttPd5QWghsFPdlWjdvGCG1N04hGY1aHHnPXEBvhtTAtbc27nsII+GCA+moQiU0P+XdMMnpjK1zzflZC3qAbkCj3bAGRaXbcaaOhwExkBE69cwVlYytFxEZvLOmEyxkPzSxK2OriMQrMGJQ2V1ASqN9ZCbgQNgiak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jCMbPwgt; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20570b42f24so24964325ad.1;
+        Fri, 06 Sep 2024 04:57:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725623853; x=1726228653; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=dzB5LBCMYuANzhHIIbc6CB10MPsKWXZD/kQlK4XkFtM=;
+        b=jCMbPwgtRbowthknry7yFlWr7OFSsuMfzzyR26f2SzISSgUGw7nNiAyEFppst+doqS
+         I3tDGRsXaG5XPrwMQoTNNPSMX0KW3mEL1tlAiubTyf0Cz9iHl8e13kZL6i2wirMmaMtY
+         IAnmhJleZYD0YVZ3klLvIvsnWMy0RWE0qUVGjcx+shqJzt3is3L+/BxuUZK6WrOjYZga
+         Jj9w/aTyMrpv9X5rAwexSDLSRlYV2/y4SZoWvv1tJ37vK4PcusSSCVDzwgD4JBoWMqzq
+         ROkMNxoz5dPL8PFa3Ji9CfHJ76CiTUw+NmVB5cxYBQnxSGg4QpFs+D0YFtZmyfzAv88X
+         hQjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725623853; x=1726228653;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dzB5LBCMYuANzhHIIbc6CB10MPsKWXZD/kQlK4XkFtM=;
+        b=sw5Kn2LL1H5BujzlQX0ICpqrrXNLLqVJffpqXSdU+gdu3hp9E39Umgy0vqrcNapOMV
+         gG/SA/4hSoF0SEuednK6xksMqQyXewe5EXgfed/1oJR3ZmIPROKCmsNRvMMF2oTafXxn
+         usGzHCQNhFz4wd1x9uOZ1BmxKrBBGpvDMORnJc4plx6ptmUXCzOTML0I5Ym+B3wxa6TH
+         ADJ4bRjPGmiN/th+kjUaFnjNHy+paLMghdnrZmYHDtXWWCZXwOgnzQFBIvxU939Un48+
+         i6B8k4gAoNmvJusr1qNAneXE+qOCLQedreBzCZDflRfSm1U/w/+q+m3BW0RTeabwUWUc
+         SUCw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2L1+q+0Rw1/Jkcp3kZJHTMygWOa7dfXnuEWkpPMU11VMSyZX8dY2nMniW3wguhMb1+LyGgYfkDbV3XHzsqEfs3PQ=@vger.kernel.org, AJvYcCV6p6ps6cWMFFoAUq1UEDmfdnvNzZ567zC71FRMbY+eVES5ErxgjgPwjWoaV8Ax1jqeCAHl86ChKs3gYg15@vger.kernel.org, AJvYcCV7qSH7r1H3MZ32jBXCtSPkYyOhRRcRIVrlT1tQGNv03kxmor0ns2iYOmTuBdIMxdzo2cs5YydBiVKenLU=@vger.kernel.org, AJvYcCXWk01cJt3F0/tvSSDF7f/ZTcmoJlGdz8A7Ay42hQvzHOai1Yx36X27qnJHqUJW9Y+9s27b24XMnGCo@vger.kernel.org, AJvYcCXYIoBPk96Ld4udQD/VpCoj4q7ePxy3T6tDzX7DO38Bxjpq9Kz3sicVXw3rvnWZ2vNjRVhNTvF4naBg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjVm/T0rrbhVU1CCLME8QzHlMD7bj7j8QodNgFvJJV7AppkNpZ
+	tlCKgZCGGdbEBIAg0mvdtI6yJ3jqoTGuEDIFOyjTtYgfXaCYPeNmsMr7Tg==
+X-Google-Smtp-Source: AGHT+IGUxm3sEDjh74gWioKlJTNrpqFlzbVW9aixMNI5nXyCNfH6HSe+7PKOz73Ts03fHqGyhSEERw==
+X-Received: by 2002:a17:902:e892:b0:206:8d6e:cff9 with SMTP id d9443c01a7336-206f04c9f2amr18439395ad.4.1725623853253;
+        Fri, 06 Sep 2024 04:57:33 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-206aea6707csm41942875ad.255.2024.09.06.04.57.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Sep 2024 04:57:32 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <6eae121b-3b0e-4938-8527-ec9a8a0b9aba@roeck-us.net>
+Date: Fri, 6 Sep 2024 04:57:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3690e2f3-17e7-4758-a3c9-05320cc92f1d@xs4all.nl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] hwmon: (isl28022) support shunt voltage for
+ ISL28022 power monitor
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+ =?UTF-8?Q?Carsten_Spie=C3=9F?= <mail@carsten-spiess.de>,
+ Jean Delvare <jdelvare@suse.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20240906061421.9392-1-Delphine_CC_Chiu@wiwynn.com>
+ <20240906061421.9392-4-Delphine_CC_Chiu@wiwynn.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240906061421.9392-4-Delphine_CC_Chiu@wiwynn.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Hans,
-
-On Fri, Sep 06, 2024 at 07:44:05AM +0200, Hans Verkuil wrote:
-> On 06/09/2024 00:53, Laurent Pinchart wrote:
-> > Companding refers to compression and expansion of pixel data to fit in a
-> > smaller range. The control is named V4L2_CID_COMPANDING, and only
-> > supports compression initially.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > Changes since v1:
-> > 
-> > - Rename V4L2_COMPANDING_ALAW to V4L2_COMPANDING_COMPRESS
-> > - Document V4L2_COMPANDING_LINEAR and V4L2_COMPANDING_COMPRESS
-> > ---
-> >  .../media/v4l/ext-ctrls-image-process.rst        | 16 ++++++++++++++++
-> >  drivers/media/v4l2-core/v4l2-ctrls-defs.c        |  9 +++++++++
-> >  include/uapi/linux/v4l2-controls.h               |  5 +++++
-> >  3 files changed, 30 insertions(+)
-> > 
-> > diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-image-process.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-image-process.rst
-> > index b1c2ab2854af..d529b0a8cd41 100644
-> > --- a/Documentation/userspace-api/media/v4l/ext-ctrls-image-process.rst
-> > +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-image-process.rst
-> > @@ -55,3 +55,19 @@ Image Process Control IDs
-> >      control value divided by e.g. 0x100, meaning that to get no
-> >      digital gain the control value needs to be 0x100. The no-gain
-> >      configuration is also typically the default.
-> > +
-> > +``V4L2_CID_COMPANDING (menu)``
-> > +    Companding refers to compression and expansion of pixel data to fit in a
-> > +    smaller range.
-> > +
-> > +
-> > +.. tabularcolumns:: |p{5.7cm}|p{11.8cm}|
-> > +
-> > +.. flat-table::
-> > +    :header-rows:  0
-> > +    :stub-columns: 0
-> > +
-> > +    * - ``V4L2_COMPANDING_LINEAR``
-> > +      - No companding.
-> > +    * - ``V4L2_COMPANDING_COMPRESS``
+On 9/5/24 23:14, Delphine CC Chiu wrote:
+> Added support reading shunt voltage in mV and revise code
+> for Renesas ISL28022.
 > 
-> It's weird that this is called 'COMPRESS',
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>   drivers/hwmon/isl28022.c | 93 ++++++++++++++++++++++++++++------------
+>   1 file changed, 66 insertions(+), 27 deletions(-)
 > 
-> > +      - Compress the data using a device-specific curve.
-> > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > index 1ea52011247a..841e415a88ae 100644
-> > --- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > +++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > @@ -611,6 +611,11 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
-> >  		"Cyclic",
-> >  		NULL,
-> >  	};
-> > +	static const char * const companding[] = {
-> > +		"Linear",
-> > +		"A-Law",
-> 
-> but it is called 'A-Law' here. I think the same name should be used for both
-> as this is confusing.
+> diff --git a/drivers/hwmon/isl28022.c b/drivers/hwmon/isl28022.c
+> index f0494c3bd483..01220fad813d 100644
+> --- a/drivers/hwmon/isl28022.c
+> +++ b/drivers/hwmon/isl28022.c
+> @@ -85,8 +85,6 @@ struct isl28022_data {
+>   	u32			shunt;
+>   	u32			gain;
+>   	u32			average;
+> -	u16			config;
+> -	u16			calib;
 
-I forgot to change this. I'll use "Compress".
+I don't see the point of separating this part of the driver from the first patch
+in the series. It makes me review code only to be replaced later. I am not going
+to do that.
 
-> > +		NULL
-> > +	};
-> >  
-> >  	switch (id) {
-> >  	case V4L2_CID_MPEG_AUDIO_SAMPLING_FREQ:
-> > @@ -750,6 +755,8 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
-> >  		return camera_orientation;
-> >  	case V4L2_CID_MPEG_VIDEO_INTRA_REFRESH_PERIOD_TYPE:
-> >  		return intra_refresh_period_type;
-> > +	case V4L2_CID_COMPANDING:
-> > +		return companding;
-> >  	default:
-> >  		return NULL;
-> >  	}
-> > @@ -1164,6 +1171,7 @@ const char *v4l2_ctrl_get_name(u32 id)
-> >  	case V4L2_CID_TEST_PATTERN:		return "Test Pattern";
-> >  	case V4L2_CID_DEINTERLACING_MODE:	return "Deinterlacing Mode";
-> >  	case V4L2_CID_DIGITAL_GAIN:		return "Digital Gain";
-> > +	case V4L2_CID_COMPANDING:		return "Companding";
-> >  
-> >  	/* DV controls */
-> >  	/* Keep the order of the 'case's the same as in v4l2-controls.h! */
-> > @@ -1421,6 +1429,7 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
-> >  	case V4L2_CID_CAMERA_ORIENTATION:
-> >  	case V4L2_CID_MPEG_VIDEO_INTRA_REFRESH_PERIOD_TYPE:
-> >  	case V4L2_CID_HDR_SENSOR_MODE:
-> > +	case V4L2_CID_COMPANDING:
-> >  		*type = V4L2_CTRL_TYPE_MENU;
-> >  		break;
-> >  	case V4L2_CID_LINK_FREQ:
-> > diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-> > index 974fd254e573..ca9e25f72886 100644
-> > --- a/include/uapi/linux/v4l2-controls.h
-> > +++ b/include/uapi/linux/v4l2-controls.h
-> > @@ -1225,6 +1225,11 @@ enum v4l2_jpeg_chroma_subsampling {
-> >  #define V4L2_CID_TEST_PATTERN			(V4L2_CID_IMAGE_PROC_CLASS_BASE + 3)
-> >  #define V4L2_CID_DEINTERLACING_MODE		(V4L2_CID_IMAGE_PROC_CLASS_BASE + 4)
-> >  #define V4L2_CID_DIGITAL_GAIN			(V4L2_CID_IMAGE_PROC_CLASS_BASE + 5)
-> > +#define V4L2_CID_COMPANDING			(V4L2_CID_IMAGE_PROC_CLASS_BASE + 6)
-> > +enum v4l2_companding {
-> > +	V4L2_COMPANDING_LINEAR		= 0,
-> > +	V4L2_COMPANDING_COMPRESS	= 1,
-> > +};
-> >  
-> >  /*  DV-class control IDs defined by V4L2 */
-> >  #define V4L2_CID_DV_CLASS_BASE			(V4L2_CTRL_CLASS_DV | 0x900)
+>   };
+>   
+>   static int isl28022_read(struct device *dev, enum hwmon_sensor_types type,
+> @@ -95,20 +93,61 @@ static int isl28022_read(struct device *dev, enum hwmon_sensor_types type,
+>   	struct isl28022_data *data = dev_get_drvdata(dev);
+>   	unsigned int regval;
+>   	int err;
+> +	u16 sign_bit;
+>   
+>   	switch (type) {
+>   	case hwmon_in:
+> -		switch (attr) {
+> -		case hwmon_in_input:
+> -			err = regmap_read(data->regmap,
+> -					  ISL28022_REG_BUS, &regval);
+> -			if (err < 0)
+> -				return err;
+> -			/* driver supports only 60V mode (BRNG 11) */
+> -			*val = (long)(((u16)regval) & 0xFFFC);
+> +		switch (channel) {
+> +		case 0:
+> +			switch (attr) {
+> +			case hwmon_in_input:
+> +				err = regmap_read(data->regmap,
+> +						  ISL28022_REG_BUS, &regval);
+> +				if (err < 0)
+> +					return err;
+> +				/* driver supports only 60V mode (BRNG 11) */
+> +				*val = (long)(((u16)regval) & 0xFFFC);
+> +				break;
+> +			default:
+> +				return -EOPNOTSUPP;
+> +			}
+> +			break;
+> +		case 1:
+> +			switch (attr) {
+> +			case hwmon_in_input:
+> +				err = regmap_read(data->regmap,
+> +						  ISL28022_REG_SHUNT, &regval);
+> +				if (err < 0)
+> +					return err;
+> +			switch (data->gain) {
+> +			case 8:
+> +				sign_bit = (regval >> 15) & 0x01;
+> +				*val = (long)((((u16)regval) & 0x7FFF) -
+> +					   (sign_bit * 32768)) / 100;
+> +				break;
+> +			case 4:
+> +				sign_bit = (regval >> 14) & 0x01;
+> +				*val = (long)((((u16)regval) & 0x3FFF) -
+> +					   (sign_bit * 16384)) / 100;
+> +				break;
+> +			case 2:
+> +				sign_bit = (regval >> 13) & 0x01;
+> +				*val = (long)((((u16)regval) & 0x1FFF) -
+> +					   (sign_bit * 8192)) / 100;
+> +				break;
+> +			case 1:
+> +				sign_bit = (regval >> 12) & 0x01;
+> +				*val = (long)((((u16)regval) & 0x0FFF) -
+> +					   (sign_bit * 4096)) / 100;
+> +				break;
+> +			}
+> +			break;
+> +			default:
+> +				return -EOPNOTSUPP;
+> +			}
 
--- 
-Regards,
+Separate into its own voltage read function, and also provide separate functions
+for current and power.
 
-Laurent Pinchart
+Guenter
+
 
