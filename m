@@ -1,167 +1,124 @@
-Return-Path: <devicetree+bounces-100742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CDF696EC74
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 09:48:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48ABC96EC7B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 09:48:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E007D1F27B4E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 07:48:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A6F8B255D5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 07:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15AEC14F9FA;
-	Fri,  6 Sep 2024 07:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="FwzpELgo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F7114E2ED;
+	Fri,  6 Sep 2024 07:45:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE1E14F124
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 07:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431E213DB9F;
+	Fri,  6 Sep 2024 07:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725608688; cv=none; b=tx/GI7q2664+EKcHGaTELlBzaI5+iiCEmViRpdqCDkNF1XdsSyxycMD5rSzFuYMKeoDN5sxvstnw2V9e3O9d3OgqxnHmFvYL2dwa7Al2CfzXEC45foFj0VgwrynqbTlguYhUjJD5wANBN2L0yj4uP0n6VsqBPY3mvxyQhJn0w8w=
+	t=1725608744; cv=none; b=L7qM+WYH17F1T2FaLo9VCR6OCTX4nuFZkMCRV02mOtSuE4r5MF+PCLfrhqm56GWfuY++w2K8Vmz4wnkx+rGACcujz+eQFllJvfmKDKy3SgtQsqHlyZU4k/J37jSLRI35yOH3eaN1TBBNHNRjOocvwQzPOuwdXVqa8vcpaLFu6nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725608688; c=relaxed/simple;
-	bh=07b0IMeSMwgMzjCtM2DsBnr3riDLhDHjvKXOx8+lQuQ=;
+	s=arc-20240116; t=1725608744; c=relaxed/simple;
+	bh=gfSLypdzrJOpelCcvm/VOpFxQRieJuT2vV9QrhMbim8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O8+3eQLdvGwDI0cBfhhUhVepoMXVXw4hDWq5RmKzU6Yzx/a37uKX97An4Lr8+EIpIHBTq0DCUhHkt7OwxUBUBXbrB+CbxLVGxdCP74jTOLJKPZvZme2CAkOvnaTUFrcNzWWHdM9lY0rQ/s0xAX9HRT8bGEAXM+7zk4cjkY30oG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=FwzpELgo; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f50966c448so20514991fa.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 00:44:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725608685; x=1726213485; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g2iWgb97T7hXzF6zuXBGICV8UKLvinMfR+RbHOd+dQ4=;
-        b=FwzpELgoHJC9THi2bUeB2ndw3/6JOEDtdFAJALrB4oexXzw3rdvVi8LhcapOZ/Udvq
-         rqP9rF+tp8Lq6rR3C+EZ0xnYjAeiD90B/cqBpnABujIyYUQ/hnuJ3sb16LmNNKsjm37M
-         e93Iu6rnKhX6fH9KYD3f/rTs/uo8lTtrilq32E68dE2fwRN7T2PHNTrjbgt42aDlOntz
-         lP6prAedjWVPtCPIxwSFOYhHGH93+m6nDwSlFtPcxNCJVHVtSiNRL8y+s3NQAJySKAls
-         duYqvWFNMjoy5Bo21iVIPl/l9vEQFJzUg2aEReOh1DlGaES0i29XtimxmhLKte2lCZM8
-         J4Qg==
+	 To:Cc:Content-Type; b=Hr3DtyEVz3xKODI1SH/l/QD6XWthYJVNCyKGuUZLV81QLsqrOh4HByFfAo0/2D8mbELPucWDjrU4NydH0zeX3pfHNbIxjMLNQjEXHiFWlD1yWBjCsdvGiizaDNtn6wNxycUjb6XvKNwSp6g9ta1pgim+tw63q6z1L+jJ7TaqVro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6b5b65b1b9fso13840217b3.2;
+        Fri, 06 Sep 2024 00:45:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725608685; x=1726213485;
+        d=1e100.net; s=20230601; t=1725608739; x=1726213539;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=g2iWgb97T7hXzF6zuXBGICV8UKLvinMfR+RbHOd+dQ4=;
-        b=JFln4DjKlZTVG+Do5VNbhwdV1bsV1zAioKkEmQ3umlQLAxBg5Q5WOgP6jShIsn+zU/
-         8rCQIgH18STlkAqcX0DfAwotM2Pu2FtZeUBCUX0EHvSr6toAnWTRTfZHSuopQftvF+aP
-         X5BaWAxGzFgWVpiC5RE+uoAjQN+5ZernxGSDntz3lTtGWTahp3JarMVnNCHVpT7w0dbU
-         HvmvzmL7zD0vvmlguxTCrlcXZ8m0EA+coAT0mafzLah6T+Qbns6BZTVclyZW6sDLWd0S
-         OemQ7ghVIAxHBO1EGpYucdMtTv74hofz+3pN3tHt1YrbOvSfgm2E2KbQYmeeN/pZe1HI
-         8Ldw==
-X-Forwarded-Encrypted: i=1; AJvYcCWFKRIX/3cq/QrXmklQppvDjXAC2MDy+JfPLaAsBHIO73ilDqGcJVhjr7dRL55y3zoH9RrIxIAf4NKT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMMrY1IFIqgpGCI/5taqA7uktHFYqh36Qm27qV7+gfRCq55WHd
-	BUyh5kCb2BU7oE6FTRijLcU1ikeQ1Z2qHcMsxbYNyNThjPM89YuvlFy5FWlK15hGNtKx+qcMPmC
-	gd+4dEsh1GU+1TvQMSVpInT7trG4Uho3sL1Ad4mXxsaf3MJXZ744=
-X-Google-Smtp-Source: AGHT+IELjdXPrNR2ftHe5XllcZ3pyQfKCzq7O/b2xjHbW9q9Q4+MDzmZTA0vD6TNGPaxV5kp8/BSGDK9jb01VsONIG4=
-X-Received: by 2002:a2e:819:0:b0:2f7:4c9d:7a87 with SMTP id
- 38308e7fff4ca-2f75232641cmr10706661fa.21.1725608683728; Fri, 06 Sep 2024
- 00:44:43 -0700 (PDT)
+        bh=BGCloBLuKJNuQjTKYududIzGAVIj/P9FIhi0OmowDEI=;
+        b=XZ3Ra8WcEySIrZsDAlT319i2YXKUm4G2+nzFI/bG+tXcfWFK88braiVUXzkgKZgkTu
+         loj5TgosdsCOxjig7SI8fqCmhikcXkBLLIi8n2CO272RlXYWKccJu4hTJjs0BHzbtTuh
+         sbWu0PbVOs22aj42ouHN/9V17epTLF+BlA4bObRHWlif8zLVWVyjLBwm0A7KcXPi4glT
+         IQMOyDhRfQo80EA4fByfx3y2v68fk/A+crkj2XziAqgZmkzYD4DyMoSYnQRamZsMhRVi
+         OJXDKNh5Vc9hpQQbCtUgI/2zaQVGVJK39P9QnIpk3QaOm0M/7TclLiYOOKTRQZTpfzaI
+         Gx7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUdLWO654U23Pz+J8at3yj1pxF6dpPesq8sOqsHY3rhoUZPLz9XQTA+NjLLylXZghN/aqzti8Z3fjoe+Rv97+E0rq8=@vger.kernel.org, AJvYcCUrsf6CnVlBvCS6J0tIu3fHjGwkdQZs417OLHDVZ6r0/z9zNGByMoK1H/9bKaFroYoYyu9XQ6G3LriUrJ5E@vger.kernel.org, AJvYcCV4sfc+gVCvzuqpRrWvQtZvIa9/jMiiWthzBEIICPDqxMtzb6IR5z11+R33hELWhJCZPFn3UpoOC0ON@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1JkJeRuT04k9/wkmULGFWko07uTsHcs0k2yy1+HaETzwiGYHw
+	8C5QX85yvxlCDKHWatflMDvGfO2GkrZhqNovmM/tT9lOxYpgYN+TvHAXEYSO
+X-Google-Smtp-Source: AGHT+IH+Sd/fFjlwFdv9WXkRs/APf6a0NqXbrVbFI7Qi1GjHO1zCd7R+K2DcEJqXtpbtR3aUZlcZmQ==
+X-Received: by 2002:a05:690c:6887:b0:6d6:88a1:2e55 with SMTP id 00721157ae682-6db4516c24cmr22466117b3.30.1725608739206;
+        Fri, 06 Sep 2024 00:45:39 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d3ea308dsm32407727b3.43.2024.09.06.00.45.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Sep 2024 00:45:38 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6d4f1d9951fso16101097b3.1;
+        Fri, 06 Sep 2024 00:45:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUGaBkmRTp3hNvxhI2HcUgIMZGZFRz4r4gqk9tusTTuM3T+yIi0Ob9qccymbXjCWm/1fJAg83hsJq/0RTNd@vger.kernel.org, AJvYcCURr4OtT5XpNK0O98JzEOu+dytz6KZI/Ys2hsLV3o3ZfhlKYB57zy6AgKygBdi665wrEsbjlr5JPnuw1uOFnnoPTl8=@vger.kernel.org, AJvYcCVEgR4q9l2zyrzsp5VEvnFzLWe+bLpgyf8GtRxROFhVFyS/fN3lpg++wPVS3+InpkiWuCVJYuyHycKY@vger.kernel.org
+X-Received: by 2002:a05:690c:1b:b0:6b5:916d:5a8 with SMTP id
+ 00721157ae682-6db44f2f48amr21186587b3.23.1725608738264; Fri, 06 Sep 2024
+ 00:45:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814082301.8091-1-brgl@bgdev.pl> <87a5hcyite.fsf@kernel.org>
- <CAMRc=Mcr7E0dxG09_gYPxg57gYAS4j2+-3x9GCS3wOcM46O=NQ@mail.gmail.com>
- <87y146ayrm.fsf@kernel.org> <CAMRc=Mfes+=59WP8dcMsiUApqjsFrY9iVFEdKU6FbTKAFP1k_A@mail.gmail.com>
- <878qw6hs4s.fsf@kernel.org>
-In-Reply-To: <878qw6hs4s.fsf@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 6 Sep 2024 09:44:32 +0200
-Message-ID: <CAMRc=Mc_Qy6-Rgsw_uOweUXtoiZGMR0D22Ou9nXUJDDdPCZqLw@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240906062701.37088-1-Delphine_CC_Chiu@wiwynn.com> <20240906062701.37088-24-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <20240906062701.37088-24-Delphine_CC_Chiu@wiwynn.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 6 Sep 2024 09:45:26 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXs=hOgzorsh=Ezf65-3STVtBHrTaM2o==cUm9H_ftCSg@mail.gmail.com>
+Message-ID: <CAMuHMdXs=hOgzorsh=Ezf65-3STVtBHrTaM2o==cUm9H_ftCSg@mail.gmail.com>
+Subject: Re: [PATCH v15 23/32] ARM: dts: aspeed: yosemite4: add fan led config
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 5, 2024 at 8:28=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrote:
+Hi Delphine,
+
+On Fri, Sep 6, 2024 at 8:28=E2=80=AFAM Delphine CC Chiu
+<Delphine_CC_Chiu@wiwynn.com> wrote:
+> Set fan led config in yosemite4 DTS.
 >
-> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->
-> > On Thu, Sep 5, 2024 at 5:47=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wr=
-ote:
-> >>
-> >> Bartosz Golaszewski <brgl@bgdev.pl> writes:
-> >>
-> >> >> > +  - if:
-> >> >> > +      properties:
-> >> >> > +        compatible:
-> >> >> > +          contains:
-> >> >> > +            const: pci17cb,1103
-> >> >> > +    then:
-> >> >> > +      required:
-> >> >> > +        - vddrfacmn-supply
-> >> >> > +        - vddaon-supply
-> >> >> > +        - vddwlcx-supply
-> >> >> > +        - vddwlmx-supply
-> >> >> > +        - vddrfa0p8-supply
-> >> >> > +        - vddrfa1p2-supply
-> >> >> > +        - vddrfa1p8-supply
-> >> >> > +        - vddpcie0p9-supply
-> >> >> > +        - vddpcie1p8-supply
-> >> >>
-> >> >> Like we discussed before, shouldn't these supplies be optional as n=
-ot
-> >> >> all modules need them?
-> >> >>
-> >> >
-> >> > The answer is still the same: the ATH11K inside a WCN6855 does - in
-> >> > fact - always need them. The fact that the X13s doesn't define them =
-is
-> >> > bad representation of HW and I'm fixing it in a subsequent DTS patch=
-.
-> >>
-> >> But, like we discussed earlier, M.2 boards don't need these so I think
-> >> this should be optional.
-> >>
-> >
-> > If they are truly dynamic, plug-and-play M.2 boards then they
-> > shouldn't need any description in device-tree. If they are M.2 sockets
-> > that use custom, vendor-specific pins (like what is the case on
-> > sc8280xp-crd and X13s) then the HW they carry needs to be described
-> > correctly. We've discussed that before.
->
-> Sigh. Please reread the previous discussion. In some cases we need to
-> set qcom,ath11k-calibration-variant even for M.2 boards.
->
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 
-Maybe instead of posting patronizing comments and forcing me to
-reiterate all my previous points, you should reread the discussion as
-well?
+Thanks for your patch!
 
-DT describes hardware and the WNC6855 package is composed of several
-modules which we represent as separate DT nodes - currently: PMU,
-WLAN, Bluetooth. The WLAN module takes inputs from the PMU so it
-*DOES* need the supplies. The fact that you only want to specify the
-qcom,ath11k-calibration-variant property is irrelevant because the HW
-is what it is. Device-tree source is not a configuration file - it's a
-description of hardware.
+> @@ -75,6 +75,154 @@ tpmdev@0 {
+>                         reg =3D <0>;
+>                 };
+>         };
+> +
+> +       leds {
+> +               compatible =3D "gpio-leds";
+> +
+> +               fan0_blue {
 
-For upstream - if you're using the WCN6855, you must specify the
-inputs for the WLAN module so it's only fair they be described as
-"required". For out-of-tree DTS I couldn't care less.
+Please no underscores in node names.
+LED node names should follow the pattern in
+Documentation/devicetree/bindings/leds/leds-gpio.yaml.
+LED color should be described using the "color" property, cfr.
+Documentation/devicetree/bindings/leds/common.yaml.
 
-You are not correct saying that "M.2 boards don't need these" because
-as a matter of fact: the WLAN module on your M.2 card takes these
-inputs from the PMU inside the WCN6855 package.
+Gr{oetje,eeting}s,
 
-Bartosz
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
