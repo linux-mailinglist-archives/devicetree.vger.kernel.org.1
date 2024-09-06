@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66C8196F06B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:55:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EBFC96F098
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:57:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8478C1C238EC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 09:55:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C12811F21E84
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 09:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E775A1C8FAF;
-	Fri,  6 Sep 2024 09:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0215814A4D1;
+	Fri,  6 Sep 2024 09:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OjfpPnVp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWOSnZWs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC01B13CFB6;
-	Fri,  6 Sep 2024 09:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E491C8FBE;
+	Fri,  6 Sep 2024 09:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725616446; cv=none; b=E4F29TMEI0GLZMQN4HyJIfxnTWAnE4xXPH+uyMP77Ep2v5aGb9Jwla2BKDKy2vnE/rOWfaSnzcm+uH2N+i93hKQxB2pajOqxKABkt7tTcaJk3UMZEAz5j9SkgdKw1vtlO66YlxyWXogqqRqRdU82P4CiF+GznCFiIdIgwDZNpRI=
+	t=1725616591; cv=none; b=HFZEph6XlSVQ+ebxudBAj2N0Y9i+vRjtGmAmlRsy+Nh2J+8720JFTg9iUK6AqG3qBw3VMBLYeh9aUZTU2MDIswfO3Z8mW9dZCCiuACJs7FO0AjQD4sEYM8WY0GXJjcx9h/vMxduUv42L3fBkGrzKCm9z1zpXfqNcl70HWQQt52g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725616446; c=relaxed/simple;
-	bh=0GAwWux2Waq9c7WyP1vw7CKt/kx9RR5Wr4x5nyAISsE=;
+	s=arc-20240116; t=1725616591; c=relaxed/simple;
+	bh=fRb6iA5CazlU8a/FnHVGObboncCPam7WcbstuDBqWJs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dTkapkg021EvTGQFS35JJdmZ7KKWUINpSKn7e6fArNgBK+1nQWHUKM1/snt/uyXDEfQRkpf4uTszjZysPRVPXoCoI/bCGFFkptJrj4V2O+i/UCTT4q5IMrZrJRLrrU+d2xuqsqvZSN7TDtTRpxzc+hmPko3bgzpvZQT8AcS7eIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OjfpPnVp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96AA3C4CEC5;
-	Fri,  6 Sep 2024 09:54:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bYhzDjEXoGfhq+1k92zvBCbxBx/YHBnkjdesTBz4Iy0Y1ZbTpDEyK+zEMqEnp0PFfR7wyeHNfABLOS5JtZRvfEQ4ialwm6tieONFTX4b+gaWOaX+bufRdi1VdoD6ThiiY4rzTMr2dgXXWKBKwXuquXlzASdusRhVk3DeYXQ7Xf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWOSnZWs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2964DC4CEC4;
+	Fri,  6 Sep 2024 09:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725616446;
-	bh=0GAwWux2Waq9c7WyP1vw7CKt/kx9RR5Wr4x5nyAISsE=;
+	s=k20201202; t=1725616591;
+	bh=fRb6iA5CazlU8a/FnHVGObboncCPam7WcbstuDBqWJs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OjfpPnVp4JUcf0LUfBAUe3tBQilABUegt3zEGR/dD1u6yRwQUAHpFUkfnffp8DEi3
-	 GnAycqnGQnJWHQqPH/VRqCma7kAUbAvxQdlS31LYxomlFQqXv4bjpjqj9Og7bh7z0y
-	 Q0W4cYWkqzfdTj35dRcTRzG5O8eVqMshNslOMvDKONNoG1P/T/vIechZt2BriW8GmE
-	 GwC+E4j8H07wMP3Rkn5ZvoI2BkR0VhE7VvqhEo8++wHEXOfMN/scO8aUGzCaI6lCzt
-	 ODSHV8HhQbaSS7+PU2bIKkKIOsCkhJmDRC7xuG2OQCdbVFCeXhYXveYB/DI26LFvhO
-	 SGoq08EECQ8GA==
-Message-ID: <d1f9d323-0f66-484b-a5dd-3ea1fc690c6d@kernel.org>
-Date: Fri, 6 Sep 2024 11:53:58 +0200
+	b=PWOSnZWsgVAJrRh7NZN4vjWEkfLd/GxXf+4qmIcqLIEok22/5V+RZTVqr5mE2pH5h
+	 E63Bn4R2efuNX2Lkd4Z1i2p0OE8F0hZl1RmRbeR9Zmw/wxoaiSZ9ZWwMekrCOLRoH2
+	 zYtVMuZzX+wLuKZKr+lQP+LsQtjFZemooTRzF5L2EIqnjGkoDYExd8A0oh3uT6WEPJ
+	 GNtcqwzlVJOctp06RkG5UHR9mWQGD4wB3jbmzx1ApiaB2nUbwK4THIaYoBMlZ5WysU
+	 Q+aLJqUqujGV1fALaAPUaM4oM/fTBmUL2ojGBubae9XlMF2UQiPCJ0pfh8H50uW6Q7
+	 c8gav+BntVuXw==
+Message-ID: <e2f45f58-621f-4390-9595-723c3e829b05@kernel.org>
+Date: Fri, 6 Sep 2024 11:56:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drivers: gpio: siul2-s32g2: add NXP S32G2/S32G3 SoCs
- support
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chester Lin <chester62515@gmail.com>,
- Matthias Brugger <mbrugger@suse.com>,
- Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
- Larisa Grigore <larisa.grigore@nxp.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- NXP S32 Linux Team <s32@nxp.com>
-References: <20240826084214.2368673-1-andrei.stefanescu@oss.nxp.com>
- <20240826084214.2368673-3-andrei.stefanescu@oss.nxp.com>
- <fd18295c-6544-4da6-aab0-6d6b9c12581a@kernel.org>
- <6a65f608-7ca4-44f1-865c-6a1b9891b275@oss.nxp.com>
- <3ab4c235-c513-4dce-8061-b8831ea548a3@kernel.org>
- <0ba90fcf-60b8-478c-bd9d-487acacdc988@oss.nxp.com>
+Subject: Re: [PATCH 2/2] PCI: xilinx-cpm: Add support for Versal CPM5 Root
+ Port controller-1
+To: Thippeswamy Havalige <thippesw@amd.com>,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org,
+ linux-pci@vger.kernel.org, bhelgaas@google.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: bharat.kumar.gogada@amd.com, michal.simek@amd.com, lpieralisi@kernel.org,
+ kw@linux.com
+References: <20240906093148.830452-1-thippesw@amd.com>
+ <20240906093148.830452-3-thippesw@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,50 +106,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <0ba90fcf-60b8-478c-bd9d-487acacdc988@oss.nxp.com>
+In-Reply-To: <20240906093148.830452-3-thippesw@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/09/2024 11:45, Andrei Stefanescu wrote:
-> On 06/09/2024 12:39, Krzysztof Kozlowski wrote:
->> On 06/09/2024 10:43, Andrei Stefanescu wrote:
->>> Hi Krzysztof,
->>>
->>>
->>>>> +static struct regmap *common_regmap_init(struct platform_device *pdev,
->>>>> +					 struct regmap_config *conf,
->>>>> +					 const char *name)
->>>>> +{
->>>>> +	struct device *dev = &pdev->dev;
->>>>> +	struct resource *res;
->>>>> +	resource_size_t size;
->>>>> +	void __iomem *base;
->>>>> +
->>>>> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, name);
->>>>> +	if (!res) {
->>>>> +		dev_err(&pdev->dev, "Failed to get MEM resource: %s\n", name);
->>>>> +		return ERR_PTR(-EINVAL);
->>>>> +	}
->>>>> +
->>>>> +	base = devm_ioremap_resource(dev, res);
->>>>
->>>> There is a wrapper for both calls above, so use it.
->>>
->>> I am not sure I can change this because I also use the `resource_size`
->>> call below in order to initialize the regmap_config. 
->>> Unfortunately, `devm_platform_ioremap_resource_byname` doesn't also retrieve
->>> the resource via a pointer.
->>>
->>> I saw the `devm_platform_get_and_ioremap_resource` function but that one
->>> retrieves the resource based on the index. I would like to keep identifying
->>> the resource by its name instead of its index.
->>
->> So add the wrapper. Or explain what's wrong with indices?
+On 06/09/2024 11:31, Thippeswamy Havalige wrote:
+> In the CPM5, controller-1 has platform-specific error interrupt bits
+> located at different offsets compared to controller-0.
 > 
-> There's nothing wrong but I prefer to not force an order. I will
-> add a wrapper then.
+> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
+> ---
+>  drivers/pci/controller/pcie-xilinx-cpm.c | 39 +++++++++++++++++++-----
+>  1 file changed, 32 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
+> index a0f5e1d67b04..d672f620bc4c 100644
+> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
+> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
+> @@ -30,10 +30,13 @@
+>  #define XILINX_CPM_PCIE_REG_IDRN_MASK	0x00000E3C
+>  #define XILINX_CPM_PCIE_MISC_IR_STATUS	0x00000340
+>  #define XILINX_CPM_PCIE_MISC_IR_ENABLE	0x00000348
+> -#define XILINX_CPM_PCIE_MISC_IR_LOCAL	BIT(1)
+> +#define XILINX_CPM_PCIE0_MISC_IR_LOCAL	BIT(1)
+> +#define XILINX_CPM_PCIE1_MISC_IR_LOCAL	BIT(2)
+>  
+> -#define XILINX_CPM_PCIE_IR_STATUS       0x000002A0
+> -#define XILINX_CPM_PCIE_IR_ENABLE       0x000002A8
+> +#define XILINX_CPM_PCIE0_IR_STATUS       0x000002A0
+> +#define XILINX_CPM_PCIE1_IR_STATUS       0x000002B4
+> +#define XILINX_CPM_PCIE0_IR_ENABLE       0x000002A8
+> +#define XILINX_CPM_PCIE1_IR_ENABLE       0x000002BC
+>  #define XILINX_CPM_PCIE_IR_LOCAL        BIT(0)
+>  
+>  #define IMR(x) BIT(XILINX_PCIE_INTR_ ##x)
+> @@ -280,10 +283,17 @@ static void xilinx_cpm_pcie_event_flow(struct irq_desc *desc)
+>  	pcie_write(port, val, XILINX_CPM_PCIE_REG_IDR);
+>  
+>  	if (port->variant->version == CPM5) {
+> -		val = readl_relaxed(port->cpm_base + XILINX_CPM_PCIE_IR_STATUS);
+> +		val = readl_relaxed(port->cpm_base + XILINX_CPM_PCIE0_IR_STATUS);
+>  		if (val)
+>  			writel_relaxed(val, port->cpm_base +
+> -					    XILINX_CPM_PCIE_IR_STATUS);
+> +					    XILINX_CPM_PCIE0_IR_STATUS);
+> +	}
+> +
 
-Order is forced. You cannot change it. I don't understand your rationale.
+There are no blank lines allowed between arms of conditional statements.
+Please follow coding style. This case is explained there.
 
 Best regards,
 Krzysztof
