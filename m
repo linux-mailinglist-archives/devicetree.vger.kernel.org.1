@@ -1,176 +1,123 @@
-Return-Path: <devicetree+bounces-100685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C18C696E9EB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 08:16:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B9C96E9FA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 08:19:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDDEF1C21F48
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 06:16:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EF5F28AE4E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 06:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D251482E8;
-	Fri,  6 Sep 2024 06:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F42C13CFB6;
+	Fri,  6 Sep 2024 06:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nFs5R4G1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QfkN9vlO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A2A84A2F;
-	Fri,  6 Sep 2024 06:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A35574BF5;
+	Fri,  6 Sep 2024 06:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725603353; cv=none; b=ZASt0Y4Y1tk+KffHi+BPXy8N2USK5H7wovxfqjPxbOhExrbUUH/eGro/NsUlD0WNNVi9bgf9ugNG+rFygO/UwWY7LMrtSRPrNHVjHnlh2QFVg5NzxbpLaeBT4iPJGYF1YltCJ9+AhfdDWaouSKOe+QkQQnSUmst7xVrNna+y5B8=
+	t=1725603575; cv=none; b=AcAXKX/1zPo88QOcqMuXQ99mSUgDzuxq4RrgyVE8tDnjeJDW82iKLyyBudZq/jNlUV/TYdLeFEPnsXLIwICacw47ARGj4emN2PUCwYDYC0ICcA0ksdEcQWmcWeQD6XT+Vq/4AAyWxk+BNWRgWg3+RZhD7mb/oBZs71tXxDoCEpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725603353; c=relaxed/simple;
-	bh=79bP+9tenPT4X0zt0R10ccVUIVlPRZl8Fv567FS8JjM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uiIMmglm5l41KER4qRF11fDSgX/jP/k3w9WRjEz0F6jXaR7MtegO+PGN6sjuJjZh/ycfI8eW7CSpoZ2PKmPLLnJm/Wa1s54pJz0FBOBU6rduc0tgHPr29oXAJhZCj4fsy4Cd3a0zkOzrs6oVBaclGatpXe9rj43pUHS4uLM8ve8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nFs5R4G1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IQ5JF021772;
-	Fri, 6 Sep 2024 06:15:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dYIfT0L1Gyqdy6+UGfAcsvvhKADQqx8n0cQq/HMS2ys=; b=nFs5R4G1TxawjxbT
-	4lndhX6mST0QBgdRZK1///T7cMQHtFxIV4/iKrcOF5RGBEOef/1rBZeIfi1ijEgN
-	fNaKblQwzCs5PkrMMeF2XQUTrBiojB0I0rsOReUovo+B71yftdubdilKWgNk4c0m
-	Zj4DiggA1QjyzAC7JTBpwkKwnKPX/N/ZHQKbbZ4KQmQUVhMNEAbRZbTlk/SWIdJm
-	La7dLDS2Kq47i/HFTs+1VJOTLioyyDZw7VRxJul6MCSSq01VX5tPPVy357ydP1VJ
-	vg12m25pc13hyu4u3EDfdB/MoK4LeyqpYZcnKauVEsL1UfvB4QuuodoZ6r7Xz/Dg
-	HUhkqQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwu195q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Sep 2024 06:15:44 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4866FiCZ026158
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Sep 2024 06:15:44 GMT
-Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Sep 2024
- 23:15:41 -0700
-Message-ID: <c674b8ff-6fdb-419d-86f4-69a940eccc2f@quicinc.com>
-Date: Fri, 6 Sep 2024 14:15:38 +0800
+	s=arc-20240116; t=1725603575; c=relaxed/simple;
+	bh=831UncUWZ3oaS4W+PiWNkt0Cc0LIJ95Zae6HcMcBaPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FJDxSq4gtrddW59o/hqe/Kl7JTHxHtCrD6VW+EVFh/nOFyefDOi/Cv8cmaH2n/4andkWStkj7LhxkRjKQlAFMc++xq/vLIOJNXFg10L6ExNwZQfSjsLZBrQtL2i+DE7Ppd7u9wel4UwXjo42cdYMiIhm7zQBSo8AUE1hUAXnl+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QfkN9vlO; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725603573; x=1757139573;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=831UncUWZ3oaS4W+PiWNkt0Cc0LIJ95Zae6HcMcBaPo=;
+  b=QfkN9vlONdM3Qy3wAbTVEwCkLcFs2RNysEutzCvbTgSil6So4vZjteTZ
+   /JlJ5jkT+vn7Ghynk/LWijsV72/9jVHqh07kGj4ttYz7JELBolppLb4Qg
+   hCF5h8kdXAxeO1+GfVJvC5m8JSXeIYuRvDY5zs4wFtC6WiEVpjRw+eAD1
+   wUMKrJwps6wMg+A8Zul8BkQkIQrIuidQcClxjoJb7OB7SqQgYdipuMjag
+   dZCfJJnpBbL3GAmDx2cNBPhoWt4pEh4KyA0OsaEWsIFhXsthagkF0FBta
+   IssryvviCv40dBqlPQLzoFNM8IF7NmZpOoCKwm1djYKlZFigzcJ/ochLx
+   Q==;
+X-CSE-ConnectionGUID: gFQrKa5HQXeFcLLKemi+RQ==
+X-CSE-MsgGUID: bIP/4DKBRMGq7t2wL4Fmbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="24225155"
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; 
+   d="scan'208";a="24225155"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2024 23:19:32 -0700
+X-CSE-ConnectionGUID: HjbrCDkSRYCrpW2OYslynw==
+X-CSE-MsgGUID: djT8ieuJTmifr9cWJv/QeQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; 
+   d="scan'208";a="70660743"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 05 Sep 2024 23:19:28 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1smSJa-000AkH-18;
+	Fri, 06 Sep 2024 06:19:26 +0000
+Date: Fri, 6 Sep 2024 14:18:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v1 08/10] ASoC: loongson: Add I2S controller driver as
+ platform device
+Message-ID: <202409061419.RBYUF8ou-lkp@intel.com>
+References: <282dadefdaac7917fd681a6e84a5f0f07d0557bc.1725518229.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/19] arm64: defconfig: enable clock controller,
- interconnect and pinctrl for QCS8300
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob
- Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Bartosz
- Golaszewski <bartosz.golaszewski@linaro.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
- <20240904-qcs8300_initial_dtsi-v1-17-d0ea9afdc007@quicinc.com>
- <851566fe-4802-41c7-bb35-d6d1e9cf9bdf@kernel.org>
- <d5b13f14-ce66-496c-8182-aad840e0d5cb@quicinc.com>
- <wzjv6xvthoz3z4fimxfc6gzm6ptepkuwlzjm6xy3klmtpr3bvf@k7yxdc7hryju>
-Content-Language: en-US
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-In-Reply-To: <wzjv6xvthoz3z4fimxfc6gzm6ptepkuwlzjm6xy3klmtpr3bvf@k7yxdc7hryju>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: WEk1eTDzyk_2E7aKgddkZQNpWt8FuMpZ
-X-Proofpoint-ORIG-GUID: WEk1eTDzyk_2E7aKgddkZQNpWt8FuMpZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-05_17,2024-09-05_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 adultscore=0
- priorityscore=1501 bulkscore=0 mlxscore=0 phishscore=0 suspectscore=0
- impostorscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2408220000 definitions=main-2409060045
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <282dadefdaac7917fd681a6e84a5f0f07d0557bc.1725518229.git.zhoubinbin@loongson.cn>
 
-Hi Dmitry,
+Hi Binbin,
 
-On 9/6/2024 11:18 AM, Dmitry Baryshkov wrote:
-> On Thu, Sep 05, 2024 at 12:54:35PM GMT, Jingyi Wang wrote:
->>
->>
->> On 9/4/2024 5:39 PM, Krzysztof Kozlowski wrote:
->>> On 04/09/2024 10:33, Jingyi Wang wrote:
->>>> Enable clock controller, interrconnect and pinctrl for QCS8300.
->>>
->>> NXP QCS8300? What is QCS8300? Which products use it? That's a defconfig
->>> for entire kernel, not your Qualcomm one.
->>>
->> Will describe it in more detail.
->>>> It needs to be built-in for UART to provide a console.
->>>>
->>>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->>>> ---
->>>>  arch/arm64/configs/defconfig | 3 +++
->>>>  1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
->>>> index 81ca46e3ab4b..a9ba6b25a0ed 100644
->>>> --- a/arch/arm64/configs/defconfig
->>>> +++ b/arch/arm64/configs/defconfig
->>>> @@ -606,6 +606,7 @@ CONFIG_PINCTRL_MSM8996=y
->>>>  CONFIG_PINCTRL_MSM8998=y
->>>>  CONFIG_PINCTRL_QCM2290=y
->>>>  CONFIG_PINCTRL_QCS404=y
->>>> +CONFIG_PINCTRL_QCS8300=y
->>>>  CONFIG_PINCTRL_QDF2XXX=y
->>>>  CONFIG_PINCTRL_QDU1000=y
->>>>  CONFIG_PINCTRL_SA8775P=y
->>>> @@ -1317,6 +1318,7 @@ CONFIG_MSM_MMCC_8998=m
->>>>  CONFIG_QCM_GCC_2290=y
->>>>  CONFIG_QCM_DISPCC_2290=m
->>>>  CONFIG_QCS_GCC_404=y
->>>> +CONFIG_QCS_GCC_8300=y
->>>>  CONFIG_QDU_GCC_1000=y
->>>>  CONFIG_SC_CAMCC_8280XP=m
->>>>  CONFIG_SC_DISPCC_7280=m
->>>> @@ -1618,6 +1620,7 @@ CONFIG_INTERCONNECT_QCOM_MSM8996=y
->>>>  CONFIG_INTERCONNECT_QCOM_OSM_L3=m
->>>>  CONFIG_INTERCONNECT_QCOM_QCM2290=y
->>>>  CONFIG_INTERCONNECT_QCOM_QCS404=m
->>>> +CONFIG_INTERCONNECT_QCOM_QCS8300=y
->>>
->>> Why this cannot be a module?
->>>
->>>
->> I think the commit-msg "It needs to be built-in for UART to provide a console." can
->> explain that, could you please help to share your insights on that?
-> 
-> Unless loading these modules from initramfs doesn't work, please use =m.
-> The drivers that are enabled here are going to be enabled for everybody
-> using arm64 defconfig, taking up memory on their platforms, etc.
->
-We had previous discussion here about why these drivers needs to be built-in to support
-debug-uart:
-https://lore.kernel.org/linux-arm-msm/c11fd3c2-770a-4d40-8cf3-d8bc81f7c480@kernel.org/
-I will mention more details in the commit message of this patch.
+kernel test robot noticed the following build warnings:
 
-Thanks,
-Jingyi
+[auto build test WARNING on 097a44db5747403b19d05a9664e8ec6adba27e3b]
 
- 
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/ASoC-dt-bindings-Add-Everest-ES8323-Codec/20240905-150958
+base:   097a44db5747403b19d05a9664e8ec6adba27e3b
+patch link:    https://lore.kernel.org/r/282dadefdaac7917fd681a6e84a5f0f07d0557bc.1725518229.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH v1 08/10] ASoC: loongson: Add I2S controller driver as platform device
+config: i386-kismet-CONFIG_SND_SOC_LOONGSON_I2S_PCI-CONFIG_SND_SOC_LOONGSON_CARD-0-0 (https://download.01.org/0day-ci/archive/20240906/202409061419.RBYUF8ou-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20240906/202409061419.RBYUF8ou-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409061419.RBYUF8ou-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for SND_SOC_LOONGSON_I2S_PCI when selected by SND_SOC_LOONGSON_CARD
+   WARNING: unmet direct dependencies detected for SND_SOC_LOONGSON_I2S_PCI
+     Depends on [n]: SOUND [=y] && SND [=y] && SND_SOC [=y] && (LOONGARCH || COMPILE_TEST [=y]) && PCI [=n]
+     Selected by [y]:
+     - SND_SOC_LOONGSON_CARD [=y] && SOUND [=y] && SND [=y] && SND_SOC [=y] && (LOONGARCH || COMPILE_TEST [=y])
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
