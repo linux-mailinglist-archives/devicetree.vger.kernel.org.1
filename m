@@ -1,151 +1,227 @@
-Return-Path: <devicetree+bounces-100744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A11096EC81
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 09:48:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAB6796ED07
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:02:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 072E72896F7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 07:48:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9A501C23722
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 08:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B68158862;
-	Fri,  6 Sep 2024 07:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF052156F3F;
+	Fri,  6 Sep 2024 08:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="qhazo7wO"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DlxzZf3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A1F1586CF
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 07:45:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE24514BF8A
+	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 08:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725608758; cv=none; b=I2btT3OEXgS8SLQxraEmJ2P0TYfL0ekLPfFRI+ga5RFMRBAIF2AbqembspgcrrEZ2ObSMjIthGPeIHdjzQBwudcoOi133wnRnzJxzA6ONVly0KD+JYmHpgQYWczdHq5ut4aZ14MZ5u9ZfBwAkPTJWRuwLxO5oxlnFiWJiC41sRg=
+	t=1725609704; cv=none; b=pImmjWG9v/vCJd8NZ9jfhCj7h8UAzmFa0dqg2TDMq/NqLmx4PuXcs8vh09Yot5Mq3I+94xXtLcg9YAo7JvDYK7BZGNwrHYJvjroUlSCEaNZRiocpM9dlpiGCXiJZS50xHDeVMqZc0O1Alc8feH8IvXwX1ddfObn2D7kX3ZCM2Vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725608758; c=relaxed/simple;
-	bh=KbzNibm01vEuz+vcZi+szQJVhYdE5ymS7WVjaeo/64c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m+5W3OkaZfrfKfQylZCPyTF8JAAnFUoFx3yXuSeNRfoTdifqtBGhgvMaJqTygBXYVXiaMjENQdP+uQiQliublOLLRiVRxAJeywMuZJiV1h0aXANcixmQ/YTaTJAw0xqtE1Rtrv7BQT9YFrQEwf69NF5WNkZfZh0GjC+2YswSE0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=qhazo7wO; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-536584f6c84so664212e87.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 00:45:56 -0700 (PDT)
+	s=arc-20240116; t=1725609704; c=relaxed/simple;
+	bh=8gfjGT48Cv3oP3lHzZmSB96jJj+PzOxNCFzvs0HpDY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hhpZmnxQp1nEw+0RuKj8M4uA/YzekgU9uzKYbnRpYsDxjcMTU7KBQeF+1n4NpjhqJIwUd8UeIWBMY22TZCQGvxLlGYc0J9vNQvQVnzdC7jJDoO8ZtEGF187onpELn9OM9RPHZFEFIFP75hzNjL6x2ZJpgCxKIX/UVqlFfC5p9GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=DlxzZf3l; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a86b46c4831so241198566b.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 01:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1725608755; x=1726213555; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=peA5Xi46r5KS8PibplJ1gJDlcVPnc6AYKPt9afJyua8=;
-        b=qhazo7wOKlMZ8PkAEoRFbO7dih961/MiFZ15aQLstoXIpa8rTbeel/XJc8n8H9dbpt
-         KbO4rJavHhLG7oLe4FggdAJ+SZ2wGF7OP2Ip0fCZNuS17fYNvULTz6pM/n1sXnZAU5yt
-         1kAQuw/CZ1nSzOgrX+kFdyFJ/vM8j5tK4Jkp/DmAMvg8t8Tvqv8ZYDA6UV7bwObJL7+C
-         18I0g67OdOx55AzshcwFAQPhrS0UgEsFWDtdZCRdCLZl3TCPshZ299niqBhwKIGmDRhs
-         +5YaoO/DG6lIwRspEZTcyCV70WYYI5NO8CUHUOGYBwYyaXfjiXSgGHjwVV6HwmZxV8rK
-         MaQQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725609701; x=1726214501; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jQvbYq6pNLNyrzB6hmoKjly+61yzZeAqFNQbX336muU=;
+        b=DlxzZf3ls8sfuFYpRhdVY5IsBTG1zwUVjRVorpaFTSxDEOK9jg3ax4CbQGP6WXZw6z
+         4FAL06IqgLI6jKtxm361UW7GO5YRhUUzW3W4huLuVtGWYx2yh9++VB1ef81p2RJoR3OF
+         G6pJPTH1VNsERIKSgoKGTW/vuH1ZYnd93kBtK9lISSzRuvETrkMHKRFOVSuHuOkcyAH5
+         oE86nB7+LNvAAukhbnsdSVeMtzjNjDzX9sh2+OB6OwtpDPhfJ9O7SYXOzkmRt0rm1UuV
+         4qFmfqRMe0lg9hZSVptCmvvDpF9kDxGJaykv5NZROb75yfowIIMyLLJEIkzZo06rnZpc
+         /Bjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725608755; x=1726213555;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=peA5Xi46r5KS8PibplJ1gJDlcVPnc6AYKPt9afJyua8=;
-        b=Jct33xllDhVbZ+sCd+I6wNALAqMaWA3lccucBZnxs6svx94oyL63+m1aOE/P/Kkb7e
-         Bf0+0wWwJSH7eLmJ09AL3JP/sPZbVz0eKYWEwpKJdNgqTPc5ptxNyGbEkqOFBhZLK4NI
-         W+5w37LgPlUsYyJ+KnahjZ4xec6807EnHbgFw4jpxWx72NYDt8hX7FllljWkjZibYmBf
-         wgPZFiM23fdHCJi3dEoo841mrvc/jYOkZeSTCDl0OLa4Lvmz+/sSiMRFPqh8BLNUb2J7
-         qzSKdG6sCtDh99N56b4SRZs+7IGFL6KAa2u6lHFCe/b+MJEwqp8QShN0rMWr6+tXjQq4
-         amFA==
-X-Forwarded-Encrypted: i=1; AJvYcCXzW+2BHi5/0NTYHkn3LDxOgjm/tl+4cLPqqVAsr9/L6OblLCVyb5fg5dq2TCG2vVij5INlvr0byLGu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwkWsrB5tNPlZhBlvHSx1OBMQaa7U0H6cNHj42FhAiK1unfpG+
-	uDDKfzD3nP1SgCZiaYABm/4vOz8Dr+YYpNCRtaTZV39tzi9PMeaS3HMtVERzzeJP7Le1GmUPVmf
-	q3/4Pf3ILwqaeb4jGOhwZGik1TTStY4UkOE/bCA==
-X-Google-Smtp-Source: AGHT+IH7dwNJCKos7PVubwaAvDIO1NYtb95CRhl5tKSoU8mWk4qIkkXILHsFMkiSHJVV6H+U3A4hzabLSWXMZi8hh5A=
-X-Received: by 2002:a05:6512:398d:b0:532:ef22:eb4e with SMTP id
- 2adb3069b0e04-5365880a275mr688996e87.54.1725608755113; Fri, 06 Sep 2024
- 00:45:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725609701; x=1726214501;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jQvbYq6pNLNyrzB6hmoKjly+61yzZeAqFNQbX336muU=;
+        b=Oq0EH6m67XwIDcR6bxS0w+97NG+IZhBKxA+AhnS6K3MMpX/m8Tc1ILICO45motc+PE
+         AFmTcygQQmL3kUOuWgJSzcmQ81LWn9T9hZHKBrq6WAmsvhGSu58NdeWDQJAULqRHmDmw
+         iOOmEcSujA0fNALgYksfDFeA8UTp+tXiqh5fCsFzkvkEh6Y7JUExx+LjH38lWdnc01UD
+         dpaNQzG9LwNF0nLeDz0DF39BI2rIPU5M86HMvbdH/ibPHIYxOGY7XPQv/lcVncaho56H
+         W+mDavuVF7EufLddSoxWL1tOQS/Q1lNfkUItNuV3agb9Ojswc8XHIK5grX9mTe/oAMHq
+         S5sg==
+X-Forwarded-Encrypted: i=1; AJvYcCV8FhyMgnEWwj+Uz8yyYXapus6T7FG3M9p9p3bMQk5GKz4fY4o9NcbOrfuRG5T7AaeoKOlCvJtVm0n2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yze1pyrEJYo/J/YWuhQ8+hI1YM81JCCc1ixmLUzrdENG7hQ89Gi
+	4Q200ZN4K5dhZW3TKOTA9Q6yNmUiNZarewHlXtd0o+SSO7hSt+mOk00QPTnXoOA=
+X-Google-Smtp-Source: AGHT+IG8E3LOoiGm9tm0UMDa+bzSBffhey9xpittTq7KTbZV46TsbWgu10IWTfbVHXWDDgolB9jGjw==
+X-Received: by 2002:a17:906:c156:b0:a80:bf0f:2256 with SMTP id a640c23a62f3a-a8a885c01admr130622566b.8.1725609700793;
+        Fri, 06 Sep 2024 01:01:40 -0700 (PDT)
+Received: from localhost (p5dc68d3d.dip0.t-ipconnect.de. [93.198.141.61])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a623a6ca1sm243488366b.173.2024.09.06.01.01.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Sep 2024 01:01:40 -0700 (PDT)
+Date: Fri, 6 Sep 2024 10:01:38 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sean Wang <sean.wang@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	upstream@airoha.com, ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <e53ye6cu5debj2jn5uv4vxdujedwf4gu3ocuk5ccbhzkhosk66@hovtzgbqhesm>
+References: <20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org>
+ <20240831-en7581-pinctrl-v3-5-98eebfb4da66@kernel.org>
+ <yfqmlca6cnhrghpo5s6tml36tngmekcfbyjakxs7or7wtap3ka@7qlrxjowo4ou>
+ <d9298199-fe10-4b28-8e28-dc252bd6832c@genexis.eu>
+ <t2f5kockuvfi66qqumda6jxf5a4c4zf35ld5ainsnksavkchyj@kdueaqlhjoar>
+ <b7e44fb2-6cf6-4530-a271-9e1730d4f431@genexis.eu>
+ <xmlta4za6malgthd6cmt5fcipxgyzwmqwxqdg5e4qahcuqzcrt@eidsf6mexrkz>
+ <a0a14b57-cc4e-43ef-984f-fb405949b41d@genexis.eu>
+ <64zfjgmc2dutmsukg2bxhb44k3wu2y7tt3h26hej7d4fx5nc7z@5zvo3hsucipc>
+ <2e8806fa-c476-4cfa-bc2e-dc02754830d1@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240905122023.47251-1-brgl@bgdev.pl> <20240905122023.47251-2-brgl@bgdev.pl>
- <6vikrqhdnkefzpahhhtz2hpi62jvcwnzclm7touwtnpxdzvgrf@uc7r6a7bbjek>
- <CAMRc=MeijX2by+MS_vq_OVx25JO6z=zNfymta35h11mbm=vmtQ@mail.gmail.com>
- <CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
- <CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
- <d6d5a943-ab29-4034-b465-b62d9d1efa61@kernel.org> <87v7zagcyf.fsf@kernel.org> <ywn7bq6j6jgokwmm3vsumkuwijplezmery5tr6z5yeblnpyjh7@djkwdbt4sl3q>
-In-Reply-To: <ywn7bq6j6jgokwmm3vsumkuwijplezmery5tr6z5yeblnpyjh7@djkwdbt4sl3q>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 6 Sep 2024 09:45:44 +0200
-Message-ID: <CAMRc=Mfj3gpgV0N__oB8kF5pk4PrDwP1CqeUgUbvTwyo7p=7bQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc8280xp-crd: model the PMU of
- the on-board wcn6855
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Kalle Valo <kvalo@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Dmitry Baryshkov <dbaryshkov@gmail.com>, Johan Hovold <johan@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, ath11k@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="65osrcmfvpzrxq5g"
+Content-Disposition: inline
+In-Reply-To: <2e8806fa-c476-4cfa-bc2e-dc02754830d1@genexis.eu>
+
+
+--65osrcmfvpzrxq5g
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 5, 2024 at 9:26=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Thu, Sep 05, 2024 at 09:41:44PM GMT, Kalle Valo wrote:
-> > Konrad Dybcio <konradybcio@kernel.org> writes:
-> >
-> > > On 5.09.2024 3:00 PM, Bartosz Golaszewski wrote:
-> > >> On Thu, Sep 5, 2024 at 2:56=E2=80=AFPM Dmitry Baryshkov <dbaryshkov@=
-gmail.com> wrote:
-> > >>>
-> > >>>>>
-> > >>>>> As you are going to post another revision, please also add
-> > >>>>>
-> > >>>>> qcom,ath11k-calibration-variant
-> > >>>>>
-> > >>>>
-> > >>>> I had it in earlier revisions. The only one we could add here woul=
-d be
-> > >>>> the one from X13s as QCom has not yet released the data for the CR=
-D.
-> > >>>> Johan and Konrad were against adding this here if it doesn't refer=
- to
-> > >>>> the correct one so I dropped it.
-> > >>>
-> > >>> As Kalle usually merges data with some delay it's not infrequent to
-> > >>> have DTS which names calibration variant, but board-2.bin doesn't h=
-ave
-> > >>> corresponding data. The driver safely falls back to the data withou=
-t
-> > >>> variant if it can find it. Als  usually it's us who supply the
-> > >>> calibration name.
-> > >>>
-> > >>
-> > >> Johan, Konrad,
-> > >>
-> > >> What do you think? Do we know the exact name and should I add it or
-> > >> should we wait until it's in board-2.bin?
-> > >
-> > > If we can agree on the string identifier with Kalle in advance, we ca=
-n
-> > > add it even before the boardfile drops
-> >
-> > There have not been really any naming rules for the variant string, it
-> > just needs to be unique so that it doesn't conflict with other variant
-> > strings. What have you been thinking?
->
-> QC_8380_CRD (following DMI / Windows name) or QC_X1E80100_CRD (following
-> marketing name). Or maybe QTI_ instead of QC_. WDYT?
->
+Hello Benjamin,
 
-Is there any central authority listing these names? Or are they just
-agreed upon on the mailing list? I honestly don't know where they come
-from.
+On Thu, Sep 05, 2024 at 08:35:17PM +0200, Benjamin Larsson wrote:
+> On 05/09/2024 17:39, Uwe Kleine-K=F6nig wrote:
+> > On Thu, Sep 05, 2024 at 02:18:41PM +0200, Benjamin Larsson wrote:
+> > > On 2024-09-05 11:30, Uwe Kleine-K=F6nig wrote:
+> > > > 1 second long pulses with a period size of 1 second, so a constant =
+high
+> > > > signal?
+> > > Hi, I think I was unclear. The SoC documentation is not that detailed=
+=2E But I
+> > > think I understand how it works now.
+> > >=20
+> > > One register contains the minimum duration (d_min). And then there is=
+ one 8
+> > > bit register for the signal low period (lp) and then another 8bit reg=
+ister
+> > > for the high period (hp). Per my understanding a change of polarity i=
+s then
+> > > just a swap of lp and hp.
+> > that doesn't sound right.
+> >=20
+> > A "normal" waveform with period =3D 10 ns and duty_cycle =3D 2 ns looks=
+ as
+> > follows:
+> >=20
+> >     _         _         _
+> >    / \_______/ \_______/ \_______/
+> >    ^         ^         ^         ^
+> >=20
+> > assuming a monospace font that's 1 char per ns, the ^ marking the period
+> > start.
+> >=20
+> > Ignoring scaling, your hardware needs to have hp =3D 2 and lp =3D 8. If=
+ you
+> > switch that (assuming you mean switching in the same way as I do) to hp
+> > =3D 8 and lp =3D 2, you get:
+> >=20
+> >     _______   _______   _______
+> >    /       \_/       \_/       \_/
+> >    ^         ^         ^         ^
+> >=20
+> > which is still a "normal" polarity output as a period starts with the
+> > active part.
+> >=20
+> > I admit that's a bit artificial, because the waveform for
+> >=20
+> > 	period =3D 10 ns
+> > 	duty_cycle =3D 2 ns
+> > 	polarity =3D inversed
+> >=20
+> > looks as follows:
+> >=20
+> >       _______   _______   _______
+> >    \_/       \_/       \_/       \_/
+> >    ^         ^         ^         ^
+> >=20
+> > which isn't any different from the 2nd waveform above if you ignore the
+> > period start markers (which are not observable apart from the moments
+> > where you reconfigure the output).
+> >=20
+> > However it matters if you have a chip with >1 output that are not
+> > independent.
+>=20
+>=20
+> Ok that was a clear explanation,
 
-Bart
+\o/
+
+> anyway the pwm hardware is then not capable
+> of a polarity change. It is possible to change the polarity via other mea=
+ns
+> but there is no way for the pwm block (and driver) to handle this.
+
+That's ok. Just do something like
+
+	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+		return -EINVAL;
+
+It's quite usual that drivers only support a single polarity.
+
+> > > This means that when requesting a period and duty cycle you need to s=
+earch
+> > > through the configuration space to find the optimal value.
+> > Or restrict yourself consistently to something simpler than a exhaustive
+> > search through the complete configuration space.
+>=20
+> Is there a recommendation on what is more important? Period duration or d=
+uty
+> cycle percentage?
+
+That really depends on your usage domain. Just pick an algorithm that is
+sound, ideally easy to review and serves your purpose. If you pick
+something that is too simple for the next consumer, we can add the
+needed complexity still later.
+
+So in my book even something like restricting the period to a single
+fixed value and just modify the duty cycle is fine. In that case add a
+comment that there is room for improvement and I'm happy.
+
+Best regards
+Uwe
+
+--65osrcmfvpzrxq5g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmbatt8ACgkQj4D7WH0S
+/k73SQgAsrvkq9kEh8aH3RvAEdsHuYA0ZIv7Ihe7JrjpgcbDe5blnQv651GAUjTa
+zgJsSFmOJuktvsRM0j9G1dh544VxasDLkDRcVhb4nQYPrap8QgmKRtUPHY0EN8TG
++wWZmiqWJktR0RN8ph01Z25wSGwFbWIKV36Sl5fWzZl/jrUJXIQPF2RO1LeLuEci
+bqMy893GGCkB4j0n8a1lLmRD/T8EakqXFB5Jc8eKhTGId/9BprtcXS+6n2u3cS+M
+K6/mYB2/VUmm7JuSH117572R6cbsvlSqJ3Sk2yIPPxIgLvdG7+NVltvktsxjlV4t
+OWDu+/QQl5PTldkXvIsm6PZKvXw3cQ==
+=5qTG
+-----END PGP SIGNATURE-----
+
+--65osrcmfvpzrxq5g--
 
