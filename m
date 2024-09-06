@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-100890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B9996F4E5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:00:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C861696F4FF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:05:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F7E21F25627
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:00:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BA621F2397E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020BF1CDA35;
-	Fri,  6 Sep 2024 13:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9868A1CDA37;
+	Fri,  6 Sep 2024 13:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GCc2uuLa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CskNCFjJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D56E1CBE90
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 13:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17D01CDA1D
+	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 13:05:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725627637; cv=none; b=qWPQ8O0O1RnhcfF5+/q28yiLCk7ihRsez8sC8+O1Gyqpm1vbbED43+979h73cYR9SMQnlvusm/CX3If0ytWcGC7906iGABbni2NGVScNEEvJBEP9p6wK+fcsRyzUA+EjyOV1/q7HpB8mvRkSyngAPnivG3JIuoWJJhGq81XYX4M=
+	t=1725627906; cv=none; b=Dat12or26NtO47wsfy//SE49/KjK68ncSlxQG/6wk/uPe2rBon4xyxEfkDJ2PSbZP1ew84ZoGEm47lqlMuVt5Fl5u4Kr7ohFIPbmPbI1JjGJYzm6zu98YFp5E4dDeGfTcmsKYilvG3HDfNQVIRTuYBXlWJxHn8kaENt0wcuGK1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725627637; c=relaxed/simple;
-	bh=a3n6h+tmjlmVA4Afuyy01EvnM6vGCqk59VkMNlPDoxA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rKfimJG4VUjqsFB1DH8rGCBUoZhFuhS21IiEN/9HiXv1rOsSWHQ7UT6qy0NqQuiBhijbiSnfcyoCybV9ds+c/BtvnngQ5V/N0qHw3Lag4EySpDtCAlHKAKDKrOSANx+ScHyfzdCZ/X84SzGElRKsZGUOH3wPAI5GrotoRaRPc/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GCc2uuLa; arc=none smtp.client-ip=209.85.167.41
+	s=arc-20240116; t=1725627906; c=relaxed/simple;
+	bh=kHPUgSS7y4wKJJKvqetjLfpPMKxSaGvMGGqoPNqinnQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Yyo1SBzlzFCkD0R0ng5MKjWKwuDGfrIZa46lYjHXx1b5vYb7fSaF0ZWtT+H3/5MQgpLGDMTKNi9MPe6vLc5Kr8teLwXcKFhmex6QXREuIttZCJ9ECz19QD9naCpR2VimZ0BmX6NzVpiRYA2B8Gnl7WzFxpBa8u+aXPz6CqQMyKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CskNCFjJ; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53653c23c3bso269198e87.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 06:00:35 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5c27067b81aso2188443a12.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 06:05:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725627634; x=1726232434; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+HldWfppnPmR7E3ewI2SdbP6fmafd7q2H7imYAtRaLo=;
-        b=GCc2uuLa1lVY4mSDdkzNUD9eoBqS3S8LqAsSF9IjfTVrHsby10gmkQggMhho5X6NxV
-         HoUTf10QmGnofQl/R+V98RLhFGEAO1y4hfGomvNLCqRNSzf6scn8AEJuDMXF0EvyiHIy
-         lx/XJurbyttNVmnWDlCIy4Ia2Tif4ItRiVIORYbzFa0CQuupxGjzeuAxFMevhuSh4OGG
-         Q+Y1+51ulq2EEzqMJ1GbJlAM6eYIgUDjRWPGA/pMc1MF1idyaVrYZ7VB6yPW1N4YJ/jD
-         TQLThgFhR8IwlHPvxfTsZn2TiUYiirJKAWMMzdlLZx4q5ykDp0lgyCzVV6qX5y48/o/S
-         yzQw==
+        d=linaro.org; s=google; t=1725627903; x=1726232703; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2biXSgPbe5V6ORrh7PNdt46gktVjsh+O8XvfdWRahfs=;
+        b=CskNCFjJvn9jTjXxq/J4Z4W/CtRhHdmT/a2nF9hOlcy1gBJyn0WaBnmDMXO5rt7z92
+         a6mBg4RnYz/iMZ2ngpbCt2MsoTOSdU60DQ+5ujwzlv2eLnS98YBTZuq1Nb3qajds5qHh
+         GphokZ7j+MxeZR/YSJtsAZLmQxgJlWQoBPpASH2fAFryk2TpwLkbRnQ+b7CY/1MPz+k2
+         VgEs52qvyEzpbEghdFsi365N2/fPJCNxVsErqHCjN0E54ijBf1m46QzVEHh1dJqBXRtJ
+         GrYqBzJwkPMvlVMxBWnT7Tsq1v0ryvC8Ma8MHTUNvtJzeezDZGzg6dw4tsD26ez1f7su
+         PmdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725627634; x=1726232434;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1725627903; x=1726232703;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+HldWfppnPmR7E3ewI2SdbP6fmafd7q2H7imYAtRaLo=;
-        b=YN5hFk2N3h5eb1ATHlQgt0jyz+Dt+xEL8qxyoT08BATc5XHttkvmAlXFUy6eO0EAID
-         bpyckzJrDpr5B+OAs7rKDkWbq2rVE1Uku89Hl23N/xtFQh5v/Gwfe+zrrZvSNkhreHOk
-         7IfXlPbQEZIagzUADWwg08bzbD53YzbI4Tv4y9SwlfMykLaRBIc+8bGj/yaS+ZJCM7Si
-         MAICGvnG35/zPBnoayKl2TyehTTbc4biWUznGae4AAPttP8hwgRnTjKAutBha4VWH+rE
-         eTC3xFC+eqABsmXMUtXQyV2oTGQzPC0kIZPqru/lUBrEVholQG/RWF3TZZyT5+k6Fzdr
-         Iduw==
-X-Forwarded-Encrypted: i=1; AJvYcCWZmR5TYYJ4xXrkK1bPgngiZ/86hBF/ag6u+dqCqD/3s7pyN5qNBNJsJ3sMaNl86iL3SVsINNqb050X@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWM34BxLlD6v6vLNB6UHJ0JUc68PHVcQ3ubEsAcOPqfwtQGpv+
-	MJmml5WETx+eIau4UK9yQSABRGFGDzDhk+FLrndI7+doHFGqjDdYU5mBgR8h/VsBYVPuKWSK+ZN
-	R
-X-Google-Smtp-Source: AGHT+IEPgCZe7nIoVPCspseu508VwlLQFUeA/X0Be0jNtg/3vmAW2na6nGzOrDVGstjDu5h3e861tg==
-X-Received: by 2002:a05:6512:3d1b:b0:536:55f2:2ad0 with SMTP id 2adb3069b0e04-53658814568mr887069e87.9.1725627634001;
-        Fri, 06 Sep 2024 06:00:34 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53569ee732fsm624590e87.156.2024.09.06.06.00.32
+        bh=2biXSgPbe5V6ORrh7PNdt46gktVjsh+O8XvfdWRahfs=;
+        b=T7ZicL67NRqDW0P8fNSDYKE/5rwoptbyq7tm7a3F8gHJWKZ/go6n1m0TYWIyQ9GmRF
+         ebKhvjjrODSSF0jQXR7U1YRpTSK6f4fmjKcEWrI1OpXSERHYP3aMuTpALPkXtO99VwDG
+         SCG44jLO8kwfZqsZNCKVT8BqEFA4rYjkIJYAGlvcOGSTFvMgXoaT84J5SPc48VcqIral
+         gTOYToQ+ZbcKW0jUlNnAJYhgNKJJuUm31sYG8ULgkXBDLTGrds595Dq5jZnU255Rx8pm
+         BgEDBF1dnaCvKn65aW4va5JYGa82QGbTo1mHDxKlGP7WtmL5UpO+JXpcPoqIXpVhvWdl
+         Rl6w==
+X-Forwarded-Encrypted: i=1; AJvYcCWwHCM8OZAcZfnxcdae0vOjkBHlErZyh9xIH7hgzlxEtLjPVBXqiLcGfN8uzRQQ8p4V04E4gfe6KsfN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOtB/YTvtwoCqHY2H7B3Kp2HJUMGmkxkWtChSkRXKb9AkYAxlk
+	HyjGT0Gju0wh/3GseGQ9JzI1RYzuXAKhACXO5/qqMm7mXtSAXEG9KbPL4NHfucQ=
+X-Google-Smtp-Source: AGHT+IFLq6fUbmBU5M9RjFFDJBfMNmPqHQHtoysjI8LimYd6nUyFyIFupPiGWr72sr1eMcOUSdqfxg==
+X-Received: by 2002:a05:6402:5250:b0:5c2:6a7a:578e with SMTP id 4fb4d7f45d1cf-5c26a7a6193mr8670813a12.18.1725627902950;
+        Fri, 06 Sep 2024 06:05:02 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c3cc698132sm2410085a12.76.2024.09.06.06.05.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Sep 2024 06:00:33 -0700 (PDT)
-Message-ID: <a27adb94-5280-4213-a532-0dcc907f80b7@linaro.org>
-Date: Fri, 6 Sep 2024 16:00:32 +0300
+        Fri, 06 Sep 2024 06:05:02 -0700 (PDT)
+Message-ID: <62c8d25f-b8d2-4364-94e8-4de33b61a52b@linaro.org>
+Date: Fri, 6 Sep 2024 14:05:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,95 +76,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Richard Acayan <mailingradian@gmail.com>, Andi Shyti <andi.shyti@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 11/29] media: iris: implement reqbuf ioctl with
+ vb2_queue_setup
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-media@vger.kernel.org
-References: <20240904020448.52035-9-mailingradian@gmail.com>
- <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
- <ZtpqrANbJurWNOzV@radian> <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+ <20240827-iris_v3-v3-11-c5fdbbe65e70@quicinc.com>
+ <fe16671f-0fd8-4c21-a6ee-7e821b6316ce@linaro.org>
+Content-Language: en-US
+In-Reply-To: <fe16671f-0fd8-4c21-a6ee-7e821b6316ce@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Bryan, Richard,
-
-On 9/6/24 15:19, Bryan O'Donoghue wrote:
-> On 06/09/2024 03:36, Richard Acayan wrote:
->> On Thu, Sep 05, 2024 at 10:09:34PM +0200, Andi Shyti wrote:
->>> Hi Richard,
->>>
->>> On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
->>>> This adds support for the camera subsystem on the Snapdragon 670.
->>>>
->>>> As of next-20240902, camss seems to be a bit broken, but the same series
->>>> works on stable (although it is much less reliable now that the CCI clock
->>>> frequency is not being assigned).
->>>
->>> I am not understanding this bit: is this series making it better
->>> or not? Can you please clarify what is broken, what is less
->>> reliable and what works?
->>
->> When applying this camss series and some camera sensor patches on
->> linux-next, the Pixel 3a seems to hang when camera capture starts.
->>
->> When applying the same patches on stable, the camera does not cause the
->> Pixel 3a to hang.
+On 06/09/2024 13:50, Bryan O'Donoghue wrote:
+>> +
+>> +        ret = core->hfi_ops->session_open(inst);
+>> +        if (ret) {
+>> +            ret = -EINVAL;
+>> +            dev_err(core->dev, "session open failed\n");
+>> +            goto unlock;
+>> +        }
 > 
-> Right so -next isn't stable that's not exactly a revelation.
+> I don't understand the lifetime of the core->lock mutex here.
 > 
+> It has verified the state as !ISIR_CORE_ERROR and then _released_ the 
+> lock so by the time you get to core->hfi_ops->session_open() you've not 
+> guaranteed the state at all.
 > 
->> When these device tree properties from the previous series were removed:
->>
->> 			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
->> 			assigned-clock-rates = <37500000>;
->>
->> the CCI would sometimes fail to probe with the error:
+> Shouldn't you continue to hold the core mutex for the duration of the 
+> core->does_stuff() operation ?
 > 
-> Right, we don't have clk_set_rate in the cci driver.
+> i.e. the state was not !IRIS_CORE_ERROR at an indeterminate time prior 
+> to the next use of core-> ...
 > 
-> Maybe just leave the assigned clock for this submission and we can do a
-> sweep of fixes to CCI at a later stage including setting the clock
-> instead of having it be assigned.
+> Perhaps this is all very obvious but, I'm not immediately understanding 
+> what the mutex gurantees nor for how long it does that.
 
-first of all it would be nice to confirm that the setting of a particular
-clock frequency is actually needed.
+You'd probably be better off
 
-Fortunately it's pretty trivial to check it in runtime with a temporary
-modification in the board dts file, namely disable CAMSS in board dts file,
-but keep CCI enabled, then simply scan the bus with a regular "i2cdetect"
-tool in runtime.
+- taking the mutex at the external facing API
+- validating state if you must
+- doing all of your core ops
+- dropping
 
-If i2cdetect on the CCI bus works only for 37.5MHz clock frequency, then it
-is needed, otherwise (and this is my expectation) it is not needed neither
-in the dtsi files nor in the driver.
+If I'm interpreting your code right, there's alot of checking state in 
+function a -> lock/check/unlock with function a then calling function b 
+- which again verifies core->state and then optionally modifies say the 
+linked list.
 
->>
->> 	[   51.572732] i2c-qcom-cci ac4a000.cci: deferred probe timeout, ignoring dependency
->> 	[   51.572769] i2c-qcom-cci ac4a000.cci: probe with driver i2c-qcom-cci failed with error -110
->>
->> On further testing, the rate can be set to 19.2 MHz, and there would be
->> no failure (or rather, it wouldn't happen often enough for me to witness
->> it).
-> 
-> That's expected 19.2 and 37.5 MHz are supported by CAMCC for your part.
->
+But since function b is called by function a, and function b requires 
+the core->lock - you may as well have held that lock from a through b.
 
-I read it as the setting of 37.5MHz clock frequency is not needed, please
-correct me.
+Moreover - what's the use case of the very granular core->stat lock 
+checking ?
 
---
-Best wishes,
-Vladimir
+When is it valid for example for iris_vb2_queue_setup() to have 
+core->state change state during the lifetime of iris_vb2_queue_setup() ?
+
+iris_vb2_queue_setup() checks core->state
+	-> locks - checks - release
+		-> calls iris_hfi_gen1_session_open or
+		         iris_hfi_gen2_session_open
+			-> what is the assumed core->state @ that point?
+
+So that's what I mean, I'm not immediately understanding why this 
+granular locking scheme is in use, seems way, way, way too granular ?
+
+---
+bod
 
