@@ -1,75 +1,63 @@
-Return-Path: <devicetree+bounces-100951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1103696F92F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 18:22:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EC896F947
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 18:29:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EEE91C22B06
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:22:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B7C1B21DB2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D45F1D31B4;
-	Fri,  6 Sep 2024 16:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309181D4163;
+	Fri,  6 Sep 2024 16:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R/xytK1+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K/HfAobu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147B5130E57;
-	Fri,  6 Sep 2024 16:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D431D365D;
+	Fri,  6 Sep 2024 16:29:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725639754; cv=none; b=WT1U0p6b+ZPwXenOGuM7MGs9ITVd17mq6bKI6fOh/nxe0OOBjQt4R9okrEcqe52bd6qN6r8PnGvCJayqpo33gSbirwdmG4/qIigXr9/n4N0rBWGshClcOm5efn82yumirBybyK9rQrpvcLc4q2TxD1/XKNwH9foEE7lLSlBZf0w=
+	t=1725640164; cv=none; b=gPCfwEsSA14WX78FL4nuyt15zEplBfxH1WzznMFOGw9SkgbxFMDPv8HeeawiQy6ITfGZVyTijhbiGCjHIdye0avpxGWnDM4Xlxi2V+leMRMeY5VPiVW2uMRFN0dgN1yh/EJzxep0CLJonPQq3xVGpIekwOJuXUAb0QP/gq/mLlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725639754; c=relaxed/simple;
-	bh=7xZRqQZFYMicKr7Y7HxECuRVtEF/RNP7D+JPQ6I9uuo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bje+EDGuV90t8hdUPUuWH+/QCfYH302nZ0Gomi3RHxdCmR2ChICLyvCDgtb2hBCWTIQL02dCcbBzNQ7eQ+UYCmPPzO1A2adrKwsX3G/A2KoKmOASIUxBtjFue6copDdpuKYP053WUU0Q7kLmlwhb4eipRConSawmNI3/NYFAq98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R/xytK1+; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7cd8803fe0aso1656261a12.0;
-        Fri, 06 Sep 2024 09:22:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725639751; x=1726244551; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=D+wuDR3NGTxq+kb130tcJ/AlmaENXx8g9XCBaYcUzas=;
-        b=R/xytK1+KqF0KQcnxbHTtKhJ5XM6Bccc8Witz4MTNZSvNrtz31MpStr0eA72RoqkKU
-         BaGLUX3j4g4Wwpz2MyM9tAxuxd+kYaxC2tbM7jmUqVsCE2T4E39rDs5q05iMC571B2ft
-         aBsi1kO7pRu3UGe/peH2B2boMYfuDAapDk+oI2YeiIDH5UqD9E+6qeC0y710HmpkOqPv
-         saA9mE4EphnF27RnhramATwCfRNo8XcatVnW2S70rt+xI1i8ciL/RDx7eGq0ivmuhmvi
-         L8infC8iJNsozITSTymlOAY2VvjxM33B7XdEtny+DuZXrpsz/OSfKT5+UlF2gyXR5eUy
-         uDPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725639751; x=1726244551;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D+wuDR3NGTxq+kb130tcJ/AlmaENXx8g9XCBaYcUzas=;
-        b=IiZVheNKISgF6ueCSwVaw+BNqJMr9ntGHyxZTBAIb0b7LDMHDCR6aoHpCG/hqmnYr/
-         NYIXSS4f+db7TE9iqQ/mgusdijqU7RNxpsV2nxIdhjUFMG8k/x/ivLuPaA6MTLakIZjG
-         n8gRR7D/TNCVu0YpdUhfC7dyMtIu26SwQonCXeLGOCF/9A6AgeHIMQccvGTF3z5gqI68
-         RfSx+UwjoAw5QdX62MGKDTgnHnRoNwghEMPdAitnRxF/qcLaZPJPUCTxUsRN++8zkHHm
-         g2iYh3w0OY9qDSsupuELMbzxRSid665bK3T2vGshWpTx5yWKrwU+DdGUSI6+r8C+lm87
-         Avow==
-X-Forwarded-Encrypted: i=1; AJvYcCUH+2sE5FEgNN+a/o7AV2JVjIq4qBzN7ZRkGh+fn6HxP1JHNOyXuzLtNt2nQ32k+ouRLM8D5j9Z@vger.kernel.org, AJvYcCVIkzpyQ2xdCRrbVM78jn1dsjkxzMRx5LnbigyhX+omaNA653ifZXwcGRVxAqmT688E8ZQ5quLpb+VB@vger.kernel.org, AJvYcCXSgV1cTVlRPvQM/lkC6XdRXBeBdg9aWFLfHcPyLawFrsWXRsrqFW8LVsHb6tpz49EpjOmFP3etCbsa7jSU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyf1ceQKVB/lNglfEMcYxW88uAVTl/CnjDsuI1jn6oqNHZnjkT9
-	EcV6ePe9DnS6xM77W7EeFA1cNPLaPfohLiQSdB/+pkWzzo8csecW
-X-Google-Smtp-Source: AGHT+IGe4A3pYTMGxO58fRzZ7SNKtNwWxcQtKJfBK/Gfpm4JWBqg3flxaje5e1XRd6yAqMwUJGv/cA==
-X-Received: by 2002:a05:6a21:151a:b0:1c6:f9ea:f2df with SMTP id adf61e73a8af0-1cce100dc0fmr27669262637.12.1725639751192;
-        Fri, 06 Sep 2024 09:22:31 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7178ee9cc99sm2888395b3a.31.2024.09.06.09.22.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Sep 2024 09:22:30 -0700 (PDT)
-Message-ID: <24097072-1d54-4a24-aaf3-c6b28f31a6cb@gmail.com>
-Date: Fri, 6 Sep 2024 09:22:29 -0700
+	s=arc-20240116; t=1725640164; c=relaxed/simple;
+	bh=tgrMaFjyIw7IX4ux4Go/30dmOzrurB83EDc3BdqbTWA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cgGRTC6b8Rj4rEf4NK9+xUZDNSPR+E9pB27K27xYG+LTmNpYgNCuvT9aApEDhATBU4Z322AkR66/mmlMYhmJCTmWJGekr41wlhbSNd/eW8EPrbNmHJ4Wj7Kc7Dl7MOMrOBlZp/svkRmMALcJJYxWP0Yx0t+kb2k141GProCkf/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K/HfAobu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 486A6r6h000495;
+	Fri, 6 Sep 2024 16:29:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	STIBMfriypcCxXo3heZSjYUYtLO2sq/904jtEBjYL94=; b=K/HfAobuD/JGCKa6
+	/dn0yLWNxeeVrmechsayQm/rLcAVEsKrjDFhoNJBWM6Gk9Jtsh/phbJwEYZs9w97
+	3qSguVn7mWss9BMnlhuuvnp9WBqrGi42fnmfCFY5lkouQjTDLgV3tpb8Pmr4IOC3
+	NBOUWK6CmbpyR2Acj942/3HpkGvPGbhKax+SxZEotIx+LfbY1cgWHL3xiBTAqfzk
+	BdAdMdeofLlJifnGr/3dleyRbfvXUwiW07k8VbETj/YERu+4xr3WMsMxTP7OdQFd
+	TztBrQ5SBq0D3xqBYuqmcwjUAIBrXXE+IoNp6pwcjMp4SS8feFdhSMQhJHCykw0A
+	3xY1aQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fj09tvra-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Sep 2024 16:29:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 486GTDwW011734
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Sep 2024 16:29:13 GMT
+Received: from [10.110.36.55] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Sep 2024
+ 09:29:12 -0700
+Message-ID: <4c5a5d30-5ee0-4d5e-ab9f-a0277fe8796a@quicinc.com>
+Date: Fri, 6 Sep 2024 09:28:54 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,102 +65,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: net: ethernet-phy: Add
- forced-master/slave properties for SPE PHYs
-To: Andrew Lunn <andrew@lunn.ch>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
- Heiner Kallweit <hkallweit1@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org
-References: <20240906144905.591508-1-o.rempel@pengutronix.de>
- <c08ac9b7-08e1-4cde-979c-ed66d4a252f1@lunn.ch>
- <20240906175430.389cf208@device-28.home>
- <fde0f28d-3147-4a69-8be5-98e1d578a133@lunn.ch>
+Subject: Re: [PATCH v3 00/29] Qualcomm iris video decoder driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>
+CC: <quic_dikshita@quicinc.com>, Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vedang Nagar <quic_vnagar@quicinc.com>
+References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+ <3a62b4cb-5c41-4c76-a957-af8e594ca8b1@linaro.org>
+ <xwkibtfakensuzrj4ycmyh4nqjr4nwkgqr63og7n6ejiw3hjqo@rvl3hhznfftx>
 Content-Language: en-US
-From: Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; keydata=
- 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
- HGuUuzv+GKZ6nsysJw==
-In-Reply-To: <fde0f28d-3147-4a69-8be5-98e1d578a133@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <xwkibtfakensuzrj4ycmyh4nqjr4nwkgqr63og7n6ejiw3hjqo@rvl3hhznfftx>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: IaXLEYkoPVi3LhOmDIfgZyGFEDeoaD6Q
+X-Proofpoint-ORIG-GUID: IaXLEYkoPVi3LhOmDIfgZyGFEDeoaD6Q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_03,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=946
+ impostorscore=0 malwarescore=0 mlxscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 lowpriorityscore=0 clxscore=1011 adultscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409060120
 
-On 9/6/24 09:11, Andrew Lunn wrote:
->>> 10Base-T1 often does not have autoneg, so preferred-master &
->>> preferred-slave make non sense in this context, but i wounder if
->>> somebody will want these later. An Ethernet switch is generally
->>> preferred-master for example, but the client is preferred-slave.
+
+
+On 9/1/2024 5:02 PM, Dmitry Baryshkov wrote:
+> On Sat, Aug 31, 2024 at 04:18:35PM GMT, Bryan O'Donoghue wrote:
+>>> The result of v4l2-compliance test on SM8250:
 >>>
->>> Maybe make the property a string with supported values 'forced-master'
->>> and 'forced-slave', leaving it open for the other two to be added
->>> later.
+>>> v4l2-compliance 1.29.0-5239, 64 bits, 64-bit time_t
+>>> v4l2-compliance SHA: a1ebb4dad512 2024-08-08 20:00:17
+>>>
+>>> Compliance test for iris_driver device /dev/video0:
+>>>
+>>> Driver Info:
+>>>           Driver name      : iris_driver
+>>>           Card type        : iris_decoder
 >>
->> My two cents, don't take it as a nack or any strong disagreement, my
->> experience with SPE is still limited. I agree that for SPE, it's
->> required that PHYs get their role assigned as early as possible,
->> otherwise the link can't establish. I don't see any other place but DT
->> to put that info, as this would be required for say, booting over the
->> network. This to me falls under 'HW representation', as we could do the
->> same with straps.
+>> Hmm, so this is decoder only ?
 >>
->> However for preferred-master / preferred-slave, wouldn't we be crossing
->> the blurry line of "HW description => system configuration in the DT" ?
+>> What's the intention here for encoding support ?
+>>
+>> I've verified your results on the test branch but I just noticed that sm8250
+>> with the iris driver is decoder only - whereas the venus driver does both,
+>> which strikes me as a bit odd.
 > 
-> Yes, we are somewhere near the blurry line. This is why i gave the
-> example of an Ethernet switch, vs a client. Again, it could be done
-> with straps, so following your argument, it could be considered HW
-> representation. But if it is set wrong, it probably does not matter,
-> auto-neg should still work. Except for a very small number of PHYs
-> whos random numbers are not random...
+> I think we all have discussed this during the review of the previous
+> series: complete driver becomes very huge and complicated to review. So
+> the recommendation was to submit the limited features driver (decoding,
+> 1 codec) and get more features (more codecs, encoding support, etc)
+> after getting the Iris driver in. Of course sm8250 support in Venus
+> driver will stay in until Iris driver reaches feature parity.
+> 
 
-Having had to deal with an Ethernet PHY that requires operating in slave 
-mode "preferably" in order to have a correct RXC duty cycle, if you 
-force both sides of the link to "slave", auto-negotiation will fail, 
-however thanks to auto-negotiation you can tell that there was a 
-master/slave resolution failure. (This reminds me I need to send the 
-patch for that PHY errata at some point).
+Ack and +1 to this.
 
-In the case that Oleksij seems to be after, there is no auto-negotiation 
-(is that correct?), so it seems to me that the Device Tree is coming to 
-the rescue of an improperly strapped HW, and is used as a way to change 
-the default HW configuration so as to have a fighting chance of having a 
-functional link. That is not unprecedented, but it is definitively a bit 
-blurry...
--- 
-Florian
+Lets first review and conclude on the driver with the limited feature 
+set and incrementally build the driver to be feature compatible with 
+venus as we had agreed upon earlier.
+
+>>
+>> Is your intention to publish more patches to enable the encoder in another
+>> series ?
+>>
+>> ---
+>> bod
+> 
 
