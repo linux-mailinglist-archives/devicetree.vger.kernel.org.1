@@ -1,120 +1,150 @@
-Return-Path: <devicetree+bounces-100853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1968396F321
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:33:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87EB296F32D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:37:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C41CB21D97
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:33:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 470F62886F0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 11:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BC61CB31D;
-	Fri,  6 Sep 2024 11:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iT7na9vS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C98C1CB325;
+	Fri,  6 Sep 2024 11:37:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE841B3757
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 11:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE67364A9;
+	Fri,  6 Sep 2024 11:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725622408; cv=none; b=bl0y9oYxSRqEjYSSz2NwAlCOYIHQC9qA+0E6jXK/M4YRzw89vruqD19h6WM5XXtH2Pb17LQJkWO8V3HS8UruGc/PCvWtFkTL0vJt4KIpQvy8pOjaKNsAFiaqhRUJ6wWpzSi9j55NY57/LF5MZj/zsyeZlr6prf68Znz5LiJuu/M=
+	t=1725622638; cv=none; b=oTaGB2JBTyuaEAnsBhrG3k7dpgtO7Zu9vsGwYV79BueBdi+PhTwJdmNGh5ASH3sCspG3j1aa5ouEbV03pbc+yxRNIMsycSfiqjUwsDa2oS4fhgHO26v03GSuT22bbUnILfzsaq/xmCKuagDpfLeh3B0hlQzyx6rMlKITBmbECdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725622408; c=relaxed/simple;
-	bh=a1oiwHXhTP5k1qDN8Kz5shKpgHS7gkdYtvq/dlluG9A=;
+	s=arc-20240116; t=1725622638; c=relaxed/simple;
+	bh=lqxOlJQgWQl22rUCJh2s6jVJRGmlJQYQOFRPj2vMNII=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k5VPSaXVtrs5qwbzJCIt94woth9CZF4qcuIjaPwVVW220fIDAdh5ytci1ME/5jqnN1lRu6LjCa8qENYmvcLYCahydfj4gWfF9od9UlqnxbKH7Smsv7w0V8zi4m/i0tzgVipSK8vjgTqXWoTyYpfzD1nr5/4IZlqH5/3jt+olj7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iT7na9vS; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6d6891012d5so17118977b3.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 04:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725622406; x=1726227206; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a1oiwHXhTP5k1qDN8Kz5shKpgHS7gkdYtvq/dlluG9A=;
-        b=iT7na9vSVMNMOa4G0amg5V2y+C3JlFr5Dz0ewo8hhVHtJ0l68SilcsGyW/t2RwOauC
-         NExXmexDyAe0HVgooQO2lIYOEXCOQJJQE6gM/KZrwncqI761m4EkYJgOJBKwxag6nBog
-         rjPKoR+/pr4qnqTRS6I6GgXMa0Jzzm6ECGGtlhvYiRt5agiiA1Xr69p1Goti2GnRm4R4
-         6fe+4fTh7acfuSjwjls+PETbbMa3pTyH1Yiw1DWZ7jA/P+nk6qKF5cSuSbNie5txJeaL
-         TDosmEygY5hRYdWX+W8zHFuMEsXRhtNXjadAXlff9g3wyZvdjfBkpDM8juXtKPJagaVS
-         aEAg==
+	 To:Cc:Content-Type; b=WEDMY+NIpBXKiO6fv/CcOW5RxFQ9NVIip5Ie4dYpvlrLCxABE4PBZ60hPxonPUpv7fDktTEkfYQs9VBriV/sel4ftnqdayjDlmG78TM4TxyLKzJN5Bx4DGXjzrGTB/r/bMszBH3l55fQGkYajamH7K/zRs9a5pvfpqvrVQtRWhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6daf46ee332so18843757b3.0;
+        Fri, 06 Sep 2024 04:37:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725622406; x=1726227206;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a1oiwHXhTP5k1qDN8Kz5shKpgHS7gkdYtvq/dlluG9A=;
-        b=RNbtEExqnjwnhbEgYBI9IBJxMrWd0Qv6+v2pTqLbPgFx78uK/lRL0M1FKKxZAYVHj9
-         yiNjJNiPEvSyDkOkwIDr/d4jcQsGEvSHWab9jn3UTRxQGS5IKAIvZ6ZeRiA5aiEhcyfz
-         K7H7qxEgoz/CAW8nYMKPhfLy+QQnax0GnxF8c98Q/uZqsLIs6dV596dTaaLWKtv+CTk0
-         SgF99wAsqSGagTcsLYlFc/98SZpW2z/dUHVGf6zWopeouHxcA5/eWvnZqwIcMrJZDCMH
-         gOUrb7mwMFUwXv9waCuSrNt5TFSwadyn8gFpEgszxGiKtIiRoEMQsMLYdIggjBxCJONy
-         MV6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXAH9VVQCCByxAVrwrYeOQ57yNS12wXlBoPxewkKXqKY2Ce0hKD131KTtp7K2xwiPZaP+GE9cGOCIEp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjTy/HMlGFviF/iKOUIw+z2O7jdhOzrbyoG/rGJSpVYgGlX11o
-	bxZfeVeHQCbhwKmmppcZCw89Y6UMLbBW4gVL4dvvyEp9iJfHofwJ/aTSvVi9d3a/8mMITVU/czH
-	0zEU9JEPddr+hURlRA/pKkCMc4Ubr8KShAKdzOw==
-X-Google-Smtp-Source: AGHT+IGkcx0LnZHoHukMiwPH2fOzPIp/adODmKyPix5sHHzkQiP21pFZVgYcCTOOmpTmXp2A5oULIb0ksyDmO2p8kGw=
-X-Received: by 2002:a05:690c:6384:b0:6af:125a:1c6a with SMTP id
- 00721157ae682-6db452d6a58mr25663227b3.41.1725622406397; Fri, 06 Sep 2024
- 04:33:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725622634; x=1726227434;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Kjnr2492P/BcID81zdCH2qFdKNtp4VQucHhzLNMBu9w=;
+        b=NJ/6B4nNrWSJRLeLmVu3pw6UO9pgoWRmgK0L1U/38M7lt+iWmLZH6WPNgdokK1UViX
+         anlB48qzAK44Fb3fNIbkksG7w698frGnABSMMgumhzkAbZONWZ3q0xTgM8oE++FXZAZP
+         xgQ+P2KUrY/O65ks2cXDDV/Sskncm2yhzEzTPrX4hkC3CAdqEGyOhl1l6qu6vaFa9puN
+         HsrZH0CvZxL4HvZ39IjBJbgbv4ZIxgXyIOaWdj1Q8y1RavLoHXDNgtX5slIw1pm5XQ+M
+         r75qBMNXY5FkCw1gMrxdpd2iwSdzS9K/Q8UQP610gQ4atfJxlPWsdzUcAzTyDQxhupb+
+         dpcA==
+X-Forwarded-Encrypted: i=1; AJvYcCU93sQ8n3tDPfPgXw927yuwTnj3u6adWvwF+p/huNasEJF8KEooL/jlvzv76yUUof1yzRIkK+c8c2uw@vger.kernel.org, AJvYcCVh3ovil/fgDAfdX5nljDy+npfjZ/XAde1kMjmdCsV55FRYQbXrEluWnviNVIxH4jsLcQbaNnymo1+AKXk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyE9JmdXlymALcxfS5pul3t2N0pGrAxRlUc2sjlRJCKVu1H4ht
+	g/bHTlF2+JgsGUF6vb4EI3/ME0+9FVDg3hORW/05Dio/W17a94F3X/JDFsx0
+X-Google-Smtp-Source: AGHT+IHIYVM/fx6Sxo2Yy7Qop4e1v7TRMseSR85+8d2TpidMRFGl+OTsM7kZPNmsckacmxW/ugyMdg==
+X-Received: by 2002:a05:690c:48c6:b0:664:badf:5a80 with SMTP id 00721157ae682-6db4515496emr29428947b3.28.1725622634136;
+        Fri, 06 Sep 2024 04:37:14 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6d2d40a7588sm32298647b3.57.2024.09.06.04.37.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Sep 2024 04:37:13 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6daf46ee332so18843277b3.0;
+        Fri, 06 Sep 2024 04:37:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUtwNMEGntWotqvBLKQ0oyXXGVsdjP71cpevqAlWSckCVeuk+zOppS0/5TYSpbqk6U+XExqF6gpRrOT@vger.kernel.org, AJvYcCXTBCoJx3zQO96cfWRkQNtfzJWg9B0pRJCNsWPMJhv9vHgR3WPnuU9K7pFXggfyY2efKDH1QO4Nu7Q2RXI=@vger.kernel.org
+X-Received: by 2002:a05:690c:fd4:b0:62c:e939:2ffe with SMTP id
+ 00721157ae682-6db44d6c68fmr28000367b3.7.1725622633634; Fri, 06 Sep 2024
+ 04:37:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <692cfe9a-8c05-4ce4-813e-82b3f310019a@gmail.com>
-In-Reply-To: <692cfe9a-8c05-4ce4-813e-82b3f310019a@gmail.com>
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date: Fri, 6 Sep 2024 13:33:15 +0200
-Message-ID: <CACMJSes4cnCNUHiZUr4CF-K2c8-1VYzuh=T8JDi_erqfShkuZA@mail.gmail.com>
-Subject: Re: [REGRESSION] firmware: qcom: scm: smc: switch to using the SCM allocator
-To: Rudraksha Gupta <guptarud@gmail.com>
-Cc: regressions@lists.linux.dev, brgl@bgdev.pl, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, robimarko@gmail.com, quic_gurus@quicinc.com, 
-	luzmaximilian@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	srinivas.kandagatla@linaro.org, arnd@arndb.de, quic_eberman@quicinc.com, 
-	elder@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@quicinc.com, ahalaney@redhat.com, quic_djaggi@quicinc.com
+References: <cover.1725518229.git.zhoubinbin@loongson.cn> <282dadefdaac7917fd681a6e84a5f0f07d0557bc.1725518229.git.zhoubinbin@loongson.cn>
+In-Reply-To: <282dadefdaac7917fd681a6e84a5f0f07d0557bc.1725518229.git.zhoubinbin@loongson.cn>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 6 Sep 2024 13:37:01 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVLErqWPDs27yeRc96Ly1ukds1-id1KNy=aWvNmffWicg@mail.gmail.com>
+Message-ID: <CAMuHMdVLErqWPDs27yeRc96Ly1ukds1-id1KNy=aWvNmffWicg@mail.gmail.com>
+Subject: Re: [PATCH v1 08/10] ASoC: loongson: Add I2S controller driver as
+ platform device
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>, 
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 25 Aug 2024 at 08:51, Rudraksha Gupta <guptarud@gmail.com> wrote:
->
-> Hello all,
->
->
-> Found a regression with a platform that has the msm8960 SoC. Was hoping
-> to code up a fix myself, but I'm not adept in ARM architecture or the
-> Linux kernel, so I'm just reporting it here. Reverting this commit seems
-> to fix it as well. Please let me know if there is anything else I should
-> provide for this regression report.
->
-> #regzbot introduced 449d0d84bcd8246b508d07995326d13c54488b8c
->
-> Error: https://pastebin.com/SDRENUGk
->
-> Defconfig: https://pastebin.com/CRDjC39a
->
+Hi Binbin,
 
-Looks like qcom_scm_get_tzmem_pool() returns NULL. Not sure how this
-happens. Can you confirm that the QCom SCM driver probed correctly?
+On Thu, Sep 5, 2024 at 9:07=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.cn>=
+ wrote:
+> The Loongson I2S controller exists not only in PCI form (LS7A bridge
+> chip), but also in platform device form (Loongson-2K1000 SoC).
+>
+> This patch adds support for platform device I2S controller.
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 
-Bart
+Thanks for your patch!
 
-> Platform:
-> https://wiki.postmarketos.org/wiki/Samsung_Galaxy_Express_SGH-I437_(samsung-expressatt)
+> --- a/sound/soc/loongson/Kconfig
+> +++ b/sound/soc/loongson/Kconfig
+> @@ -13,10 +13,20 @@ config SND_SOC_LOONGSON_I2S_PCI
+>           The controller is found in loongson bridge chips or SoCs,
+>           and work as a PCI device.
 >
->
-> Thanks,
-> Rudraksha
->
+> +config SND_SOC_LOONGSON_I2S_PLATFORM
+> +       tristate "Loongson I2S controller as platform device"
+
+depends on LOONGARCH || COMPILE_TEST
+
+> +       select SND_SOC_GENERIC_DMAENGINE_PCM
+> +       help
+> +         Say Y or M if you want to add support for I2S driver for
+> +         Loongson I2S controller.
+> +
+> +         The controller work as a platform device, found in loongson
+> +         SoCs.
+> +
+>  config SND_SOC_LOONGSON_CARD
+>         tristate "Loongson Sound Card Driver"
+>         select SND_SOC_LOONGSON_I2S_PCI
+> -       depends on PCI
+
+"select SND_SOC_LOONGSON_I2S_PCI if PCI"?
+
+> +       select SND_SOC_LOONGSON_I2S_PLATFORM
+
+Or perhaps do it the other way around, i,e. let
+SND_SOC_LOONGSON_I2S_{PCI,PLATFORM} select SND_SOC_LOONGSON_CARD?
+That would be similar to SPI_LOONGSON_{PCI,PLATFORM}, which select
+SPI_LOONGSON_CORE.
+
+>         help
+>           Say Y or M if you want to add support for SoC audio using
+>           loongson I2S controller.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
