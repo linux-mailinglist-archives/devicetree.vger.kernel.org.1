@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-100903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3CA96F645
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:06:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6200896F65E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DE69282547
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:06:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0C01B2401D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014421D0494;
-	Fri,  6 Sep 2024 14:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF6AF1D015C;
+	Fri,  6 Sep 2024 14:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YWv/zv3M"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="Xk0YC814"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5257F1CF5FF;
-	Fri,  6 Sep 2024 14:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964BE1D1741;
+	Fri,  6 Sep 2024 14:11:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725631602; cv=none; b=oIVwF5rhu2nqLF0OGfBfYQeu/kZsBhV/r21jEkHSVMbB5B4gnTkVbuuaLo3I+5VWdi4eoyw7uPjK6ry+ZSlRupkLjhqeju3J5dO5111zA5m2mL+kb8h1AgJ1ETmsFl1kb6YX9Lc3qLqBtWOUNnR4v5x4PFQlXI0j6xE2KP5NifU=
+	t=1725631882; cv=none; b=hpY9JEA3GlLL4IIIj9gER+5l13m0IpIVb7KdzG0sLBlnis1diWKRtaRcNMc/5ML6YggBXoc1VAi5/rgnFAPJp1xQZEcnKce5T+KvVVfZzEnTUs3jukVbSF37jI2ApeGXoipwOxGtQi6bmAVIoDTb21qyjyhUjcx65srUplqdLnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725631602; c=relaxed/simple;
-	bh=7BY0KsRzbfrQl2HXhQScIpRDlVROHVq+3QPlEz808xE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hNvr0u0xgl4LNh0KYbZpIyVeI3wAA7vtpDsEyLqfqAULTyweVn5H5qgL+Y8FQkIndaBDzNYyPoQTqQMF2eqAt52ZiYuIAUXFBydFBBW1gUVnQnPAB6VrKTb76cMQcy8CvFZxxtCakI9L2TUV4ajYLsOILsVA7qcK6sEckVlK34w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YWv/zv3M; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4868MZjP001273;
-	Fri, 6 Sep 2024 14:06:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7BY0KsRzbfrQl2HXhQScIpRDlVROHVq+3QPlEz808xE=; b=YWv/zv3MQx5VwaWr
-	C5s/bR6GbUZednTceb0NAEHsGpV1GvfrBUhTnWd7osIBvI6MZhwYbnJ3qujgNFKd
-	XdVrEOqfu/TWebzlTlyheK0ESGtmzi8QAcRjklZTZZB7v44BD0cncRUhXe5krV6m
-	1HLozO9CxO43QI0w7PT7RUUmWlEdP9YMd7gb9NlbCvAuVcbd1tYwcm1cy8cAZEgb
-	1NII8iBHvzPsAbbrQWv9lHhrb9w0XM5XQB4nGHASWj4WOUP56kFloNMuzugGj2wI
-	yM+U/VnOAdUGaKrCWWg2Pbz2KhSB2zhYq95kLhV2G6Z/BqBQQJcocn7pQj7W4YxY
-	N+Qtdw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwtah36-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Sep 2024 14:06:27 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 486E6QiY027660
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Sep 2024 14:06:26 GMT
-Received: from [10.110.102.234] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Sep 2024
- 07:06:23 -0700
-Message-ID: <e01d2a02-8985-4fd8-90c2-87a31e800698@quicinc.com>
-Date: Fri, 6 Sep 2024 07:06:22 -0700
+	s=arc-20240116; t=1725631882; c=relaxed/simple;
+	bh=41LSjH9fL1APCWgZDuap4GRdxIJs/YJdpe2tR3ss5+g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=SeUe8OH3PWypcwN++zHdcIkoQWOkyciLBjd85mQSviFDVXWlxVfr1TbKjhMqk3kcOgvQNyAGyZWJOHaZtFLsVycmuJj+k3WXNMx8IZL/6GRkgGZfEnueH79AHinzB1HbAHDzVq+WxwGusOGv8sfyYfgiKYrjgNjlA3I6gm3PXz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=Xk0YC814; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [14.155.100.110])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id BE252789F5;
+	Fri,  6 Sep 2024 22:11:15 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn BE252789F5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1725631877;
+	bh=k0VLcrFTCAtKxfm0iaob131MuzN5vsg7K8XcHnszFKg=;
+	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
+	b=Xk0YC8148UlSEJD35KJNHCvQUpDUCFvmWY6AdrJJlKZZW+Kd3pHAG4dNyArU7FAkB
+	 EEyQn/yWr1arab7gSL3iYHHTUnulcBhY3ZJQgkKY9OKdLMGYhd9UYpkDcEGdocWnGs
+	 9hYQFu9vNEOVt4xfb4eAgydZPuX7ES5uJGIzDuGI=
+Message-ID: <53784a02-087b-4912-94a9-aead49d7abea@classfun.cn>
+Date: Fri, 6 Sep 2024 22:12:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,70 +50,194 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple
- virtual instances
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Peng Fan <peng.fan@nxp.com>,
-        "sudeep.holla@arm.com"
-	<sudeep.holla@arm.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        "cristian.marussi@arm.com" <cristian.marussi@arm.com>,
-        "arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "kernel@quicinc.com" <kernel@quicinc.com>,
-        "quic_psodagud@quicinc.com" <quic_psodagud@quicinc.com>
-References: <20240905201217.3815113-1-quic_nkela@quicinc.com>
- <PAXPR04MB84593380F220DEC7974058D9889E2@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <9930c7b8-cddb-4c70-a283-8f0a09d6c30d@quicinc.com>
- <4p6rknakoojsjunwbakwzsyyymufhvim2kctdkexcrqfcphe2a@k7epaxvxmgn3>
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+To: Chukun Pan <amadeus@jmu.edu.cn>
+References: <20240906045706.1004813-4-bigfoot@classfun.cn>
+ <20240906081005.69334-1-amadeus@jmu.edu.cn>
 Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <4p6rknakoojsjunwbakwzsyyymufhvim2kctdkexcrqfcphe2a@k7epaxvxmgn3>
-Content-Type: text/plain; charset="UTF-8"
+From: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <20240906081005.69334-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: obrfNXiNwfgTpT8TEcvamr_P3lhBgYG4
-X-Proofpoint-ORIG-GUID: obrfNXiNwfgTpT8TEcvamr_P3lhBgYG4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_03,2024-09-05_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 clxscore=1015 priorityscore=1501 malwarescore=0
- adultscore=0 mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=601
- phishscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2408220000 definitions=main-2409060103
 
+On 2024/9/6 16:10, Chukun Pan wrote:
+> Hi Junhao,
+> 
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+>> @@ -0,0 +1,595 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/leds/common.h>
+>> +#include <dt-bindings/pinctrl/rockchip.h>
+>> +#include <dt-bindings/soc/rockchip,vop2.h>
+>> +#include <dt-bindings/soc/rockchip,boot-mode.h>
+> 
+> No need for input.h, leds/common.h and boot-mode.h.
 
-On 9/6/2024 12:32 AM, Krzysztof Kozlowski wrote:
-> On Thu, Sep 05, 2024 at 05:33:04PM -0700, Nikunj Kela wrote:
->> On 9/5/2024 5:25 PM, Peng Fan wrote:
->>>> Subject: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple
->>>> virtual instances
->>> Just wonder, what do you mean virtual?
->> Just a term to indicate that these are different SCMI instances within
->> the same OS. In one of the series from Cristian, he used the term
->> 'virtual SCMI instances' so I used the same term here.
-> That's indeed confusing. Virtual means not a real thing...
+I will remove them.
 
-IIUC, SCMI instance mean single instance within an OS however we are
-using multiple instances within single OS. That being said, happy to
-drop virtual if people find it confusing. I tried to use the same term
-which SCMI reviewer's patch series used.
+> 
+>> +#include "rk3568.dtsi"
+>> ...
+>> +	vcc3v3_sd: regulator-3v3-vcc-sd {
+>> +		pinctrl-0 = <&vcc_sd_h>;
+> 
+> schematics: sdmmc0_pwren
 
+I will rename vcc_sd_h to sdmmc0_pwren.
 
->
-> Best regards,
-> Krzysztof
->
+> 
+>> ...
+>> +	vcc3v3_rf: regulator-3v3-vcc-rf {
+> 
+> schematics: VCC3V4_RF
+
+I will change it to "vcc3v4_rf: regulator-3v4-vcc-rf {"
+
+> VCCIN_5V -> VCC3V4_RF
+
+Is vccin_5v a new regulator or is it actually vcc_sysin?
+
+> 
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&vcc3v3_rf_pwren_en>;
+> 
+> schematics: RF_PWR_EN
+> 
+>> ...
+>> +	vcc5v0_sysin: regulator-5v0-vcc-sysin {
+> 
+> schematics: VCC_SYSIN
+> 
+>> ...
+>> +	vcc5v0_syson: regulator-5v0-vcc-syson {
+> 
+> schematics: VCC_SYSON
+
+I will rename them.
+
+> 
+>> ...
+>> +	vcc5v0_usb30_otg0: regulator-5v0-vcc-usb-host {
+>> ...
+>> +		vin-supply = <&vcc5v0_syson>;
+> 
+> VCCIN_5V -> VCC5V0_USB30_OTG0
+> 
+>> ...
+>> +&gmac1 {
+>> ...
+>> +	tx_delay = <0x0>;
+>> +	rx_delay = <0x0>;
+> 
+> Please remove the tx_delay and rx_delay, it's useless.
+> I know there is an error log, but please ignore it first.
+
+OK, I will remove them.
+
+> 
+>> ...
+>> +&pinctrl {
+>> ...
+>> +		bt_reg_on_h: bt-enable-h {
+>> +		pcie_pwren_h: pcie-enable-h {
+>> +		wifi_reg_on_h: wifi-enable-h {
+>> +		vcc3v3_rf_pwren_en: vcc5v0-modem-en {
+>> +		usb_host_pwren_h: vcc5v0-host-en {
+> 
+> obviously (
+
+Yes, I forgot to modify them, it looks better like this:
+bt_reg_on_h: bt-reg-on-h {
+pcie_pwren_h: pcie-pwren-h {
+wifi_reg_on_h: wifi-reg-on-h {
+sdmmc0_pwren: sdmmc0-pwren {
+rf_pwren_en: rf-pwren-en {
+usb_host_pwren_h: usb-host-pwren-h {
+
+> 
+>> +	wifi_pwrseq: wifi-pwrseq {
+>> +		compatible = "mmc-pwrseq-simple";
+>> ...
+>> +&pinctrl {
+>> ...
+>> +	sdio-pwrseq {
+> 
+> I tend to write like this:
+
+I will rename them.
+
+> 
+> ```
+> &pinctrl {
+> 	wifi {
+> 		wifi_reg_on_h: wifi-reg-on-h {
+> ```
+> 
+>> +	vcc_sd {
+>> +		vcc_sd_h: vcc-sd-h {
+> 
+> Overwrite original to match `sdmmc0_pwren`
+> 
+> sdmmc0 {
+> 	sdmmc0_pwren: sdmmc0-pwren {
+> 
+>> +			rockchip,pins = <0 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+>> +		};
+>> +	};
+>> +
+> 
+> Extra blank lines.
+> 
+>> +};
+>> ...
+>> &sdmmc1 {
+>> ...
+>> 	max-frequency = <150000000>;
+> 
+> `max-frequency = <150000000>;` already defined in rk356x.dtsi
+
+Yes, I will remove them.
+
+> 
+>> ...
+>> +&usb_host0_ohci {
+>> ...
+>> +&usb_host0_ehci {
+> 
+> &usb_host0_ehci {
+> &usb_host0_ohci {
+> 
+> Same for usb_host1
+> 
+>> ...
+>> &usb2phy1_host {
+>> 	phy-supply = <&vcc3v3_rf>;
+>> 	status = "okay";
+>> };
+> 
+> Is usb2phy1_host connected?
+
+It looks like usb_host1_ehci, usb_host1_ohci, usb2phy1_host
+are not used by any device.
+I removed them and it still works fine.
+
+> 
+Thanks for your review, I will fix all problems in next version!
+
+Best regards,
+Junhao
 
