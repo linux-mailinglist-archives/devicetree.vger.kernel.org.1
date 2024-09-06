@@ -1,140 +1,189 @@
-Return-Path: <devicetree+bounces-100870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 324C296F43A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F4B96F440
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:25:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBE1A1F252CA
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:25:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6689F1F2591B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAB31CDA12;
-	Fri,  6 Sep 2024 12:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A920C1CCB28;
+	Fri,  6 Sep 2024 12:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fbrBMMFF"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="fiu9Ygcv";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="l56V+fy7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00EC156C5E;
-	Fri,  6 Sep 2024 12:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F25EE1CB313;
+	Fri,  6 Sep 2024 12:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725625485; cv=none; b=OZ5gqxpypqOAxYIy+WZzzj+CUYUXiJ46I1Ezbiat9zqbVraC1p/UwLHdRy1bDimcqPLHTRX1t39iaO1zm9mob3Fbjo1eFtv4gTe1xmB88m0jIG4HVuwRLNIIvocNarl1+Cb4M9G/9p/fDX0zZcO/lbJ6zVX3zk5+Lt8y8SSw3yI=
+	t=1725625532; cv=none; b=NgQrXRro7J4jCqvaE+eWinWLW+pWBH88UWXeINljQMdcl7r/92qjWRHOSad8uaLVowezo5AaOltcCjHXd5deRMaekxmHaiV7oePiWM/undqiq24QdyxPpamwnsCZnjEercUCWFNxhEY7xZk9M+u6JiA6KWxPV7UFulfS+Jom5MU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725625485; c=relaxed/simple;
-	bh=uBH201Q/uQoLc1MasN4OKlmUhjw6E1tFIlXSjdcH8AM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ThLOG7Hosh1JX1ad6/hlFO2hnvU50bBh7NN4GtJw1Vk6p/nCDomTGpoSh665E3kGKbh4MhP9gRdH0mx3G7MqIPzUDQN3HEq1A72hAyCdlnesrkPacAZmVBDif4393broFg+WV+kpfzU5mtxywOLp4h39mSdy1w9HLWf7t97VFRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fbrBMMFF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61548C4CEC4;
-	Fri,  6 Sep 2024 12:24:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725625484;
-	bh=uBH201Q/uQoLc1MasN4OKlmUhjw6E1tFIlXSjdcH8AM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=fbrBMMFFcDUI0Kc0aXofipA9eFiBm3bZSuang8EauPYN7dGXR2KqIBk0H6cGvMhdZ
-	 iY7ZOdw2TQ+hOCKKCmS2W73HE4RYP0+HGk06v5VgD8/S6tN2770czwI98YTgKtazoR
-	 5PKOpdcNbFRn/Aa3TaqnRxEkF+sWlk8OKepSpnIhzTEUuoWCEZqEZ7k6LP6UfNiIet
-	 aRtKEt0AcsINR8GoXoIzQVycdZvFQG+nQiB1flYPpsuLNVeHKdgF6Km0N+/R8zgL+4
-	 b8iXySp69UILpJZS1uVX2cP/EqBvO45fQ05BcjtScNaEMrP9ISvcPpN1NpFWv6Gj23
-	 t7R3qsqgn3KCA==
-Message-ID: <65d129b5-088e-4cdb-a2fa-62448cfd2ad6@kernel.org>
-Date: Fri, 6 Sep 2024 14:24:36 +0200
+	s=arc-20240116; t=1725625532; c=relaxed/simple;
+	bh=+C6ipNRSGJMg4T1Z7D2l1pRQmlxz20cz9JFqPOXbTnk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KDuZoLIZf1XNBFFYvs8J4OldvsnR+S0+8dtxf6BpPIocoXjhovLcKnWSU5X5eOwofN1Eq9ZjCiw4L6nyVuaa6EASUVxdhYAcUckX+hhswELfie3BT3tyf55Xs+ssvrWQatbeg+UFzDFbRYW+CqXHoCLJ+vtEHV/J05+dPn5Ksb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=fiu9Ygcv; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=l56V+fy7; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1725625523;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=nDQ2tLfEofWacJeelfN9WDqgTJPBAbVjNTJ91yu2ScU=;
+	b=fiu9YgcvQ0tZkLKHt26AV4XsJxCKhWBX5yIUEX7W2CnbA59NeYD3RsoA9h0ssGw4smeYQi
+	Wm08kJEQwWDYiCfidJcWS2fOqSLJAYNfBjGefwJj2PTX5kXgr2BmrzEmR0W+43sxNYDfPg
+	bTlkNS4khNOu1Uq+xECY1skADv4aDp9MV8FObqo+tm4mwHQd3SG/ok233CP+MYR0ktZmUi
+	diUeUdBEX/mxJCnC9kPpsWcyTWPZPDECKO1tGkwLpVTS08M1pRLQNN5nMv9jI3HLszDrAq
+	drir2btwLuWdwYOOxH/FHGQoict2w8D+T7kWnZJFJ8QLAVNfd9zjLsPPn9YOLQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1725625523;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=nDQ2tLfEofWacJeelfN9WDqgTJPBAbVjNTJ91yu2ScU=;
+	b=l56V+fy7JGi6VBf7jcjNfmTVO6AJZgLa1EiZ24Wqtqr4MZrK4qSJknzF4u8XyZSe0dwGXl
+	Y6UHXONp+QVgWNCg==
+Date: Fri, 06 Sep 2024 14:25:19 +0200
+Subject: [PATCH] of: address: Unify resource bounds overflow checking
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/8] dt-bindings: clock: qcom: Add SA8775P display
- clock controllers
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- quic_imrashai@quicinc.com, quic_jkona@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240816-sa8775p-mm-v3-v1-0-77d53c3c0cef@quicinc.com>
- <20240816-sa8775p-mm-v3-v1-5-77d53c3c0cef@quicinc.com>
- <5kaz5wcvxhjtny5yy5i2e63ylzpor74lknvtvdkgpygxkf7yim@m6p5zof755lp>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <5kaz5wcvxhjtny5yy5i2e63ylzpor74lknvtvdkgpygxkf7yim@m6p5zof755lp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240906-of-address-overflow-v1-1-19567aaa61da@linutronix.de>
+X-B4-Tracking: v=1; b=H4sIAK702mYC/y3MywqDMBCF4VeRWXcgisbWVyldRDPRgWLqTL2A+
+ O4G2+V34Pw7KAmTQpPtILSwchwT8lsG3eDGnpB9MhSmKM3DWIwBnfdCqhgXkvCOKxrb5tbX96p
+ 1NaTnRyjwdlWfr5+FpjnFv//xOE5vlHGRegAAAA==
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725625519; l=3419;
+ i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
+ bh=+C6ipNRSGJMg4T1Z7D2l1pRQmlxz20cz9JFqPOXbTnk=;
+ b=y7F2X76XFvONA8Uer9mEwzkMbyvs1hsHNSt1jwZ1sitFZcGiEmF6183eS/LtQa5Wb3QZJQMM0
+ sJ2GbmGP+L5AthxghUpYFUCsXJBas2GyvF0v8630TNhDJYf00KPSEig
+X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
+ pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 
-On 18/08/2024 20:02, Krzysztof Kozlowski wrote:
-> On Fri, Aug 16, 2024 at 12:01:47PM +0530, Taniya Das wrote:
->> Add device tree bindings for the display clock controllers
->> on Qualcomm SA8775P platform.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
->>  .../bindings/clock/qcom,sa8775p-dispcc.yaml        | 79 ++++++++++++++++++++
->>  include/dt-bindings/clock/qcom,sa8775p-dispcc.h    | 87 ++++++++++++++++++++++
->>  2 files changed, 166 insertions(+)
->>
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The members "start" and "end" of struct resource are of type
+"resource_size_t" which can be 32bit wide.
+Values read from OF however are always 64bit wide.
 
-Un-reviewed.
+Refactor the diff overflow checks into a helper function.
+Also extend the checks to validate each calculation step.
 
-We achieved consensus allowing sa8775p to stay, but now Qualcomm changes
-point of view and insists on new approach of dropping sa8775p. Therefore
-this change does not make much sense in the new approach.
+Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+---
+ drivers/of/address.c | 45 ++++++++++++++++++++++++++-------------------
+ 1 file changed, 26 insertions(+), 19 deletions(-)
+
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index 7e59283a4472..df854bb427ce 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -198,6 +198,25 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
+ 
+ #endif /* CONFIG_PCI */
+ 
++static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
++{
++	u64 end = start;
++
++	if (overflows_type(start, r->start))
++		return -EOVERFLOW;
++	if (size == 0)
++		return -EOVERFLOW;
++	if (check_add_overflow(end, size - 1, &end))
++		return -EOVERFLOW;
++	if (overflows_type(end, r->end))
++		return -EOVERFLOW;
++
++	r->start = start;
++	r->end = end;
++
++	return 0;
++}
++
+ /*
+  * of_pci_range_to_resource - Create a resource from an of_pci_range
+  * @range:	the PCI range that describes the resource
+@@ -216,6 +235,7 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
+ int of_pci_range_to_resource(struct of_pci_range *range,
+ 			     struct device_node *np, struct resource *res)
+ {
++	u64 start;
+ 	int err;
+ 	res->flags = range->flags;
+ 	res->parent = res->child = res->sibling = NULL;
+@@ -232,18 +252,11 @@ int of_pci_range_to_resource(struct of_pci_range *range,
+ 			err = -EINVAL;
+ 			goto invalid_range;
+ 		}
+-		res->start = port;
++		start = port;
+ 	} else {
+-		if ((sizeof(resource_size_t) < 8) &&
+-		    upper_32_bits(range->cpu_addr)) {
+-			err = -EINVAL;
+-			goto invalid_range;
+-		}
+-
+-		res->start = range->cpu_addr;
++		start = range->cpu_addr;
+ 	}
+-	res->end = res->start + range->size - 1;
+-	return 0;
++	return __of_address_resource_bounds(res, start, range->size);
+ 
+ invalid_range:
+ 	res->start = (resource_size_t)OF_BAD_ADDR;
+@@ -259,8 +272,8 @@ EXPORT_SYMBOL(of_pci_range_to_resource);
+  * @res:	pointer to a valid resource that will be updated to
+  *              reflect the values contained in the range.
+  *
+- * Returns ENOENT if the entry is not found or EINVAL if the range cannot be
+- * converted to resource.
++ * Returns -ENOENT if the entry is not found or -EOVERFLOW if the range
++ * cannot be converted to resource.
+  */
+ int of_range_to_resource(struct device_node *np, int index, struct resource *res)
+ {
+@@ -1062,16 +1075,10 @@ static int __of_address_to_resource(struct device_node *dev, int index, int bar_
+ 	if (of_mmio_is_nonposted(dev))
+ 		flags |= IORESOURCE_MEM_NONPOSTED;
+ 
+-	if (overflows_type(taddr, r->start))
+-		return -EOVERFLOW;
+-	r->start = taddr;
+-	if (overflows_type(taddr + size - 1, r->end))
+-		return -EOVERFLOW;
+-	r->end = taddr + size - 1;
+ 	r->flags = flags;
+ 	r->name = name ? name : dev->full_name;
+ 
+-	return 0;
++	return __of_address_resource_bounds(r, taddr, size);
+ }
+ 
+ /**
+
+---
+base-commit: 20e5e74b91e99d57059d783e910d08a65573458f
+change-id: 20240906-of-address-overflow-06b16d785ba7
 
 Best regards,
-Krzysztof
+-- 
+Thomas Weißschuh <thomas.weissschuh@linutronix.de>
 
 
