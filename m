@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-100889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B991D96F4DF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:00:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B9996F4E5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:00:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44BAA287A54
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:00:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F7E21F25627
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 13:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354311CDA20;
-	Fri,  6 Sep 2024 13:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020BF1CDA35;
+	Fri,  6 Sep 2024 13:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GVE9ds3H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GCc2uuLa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2E91CCB37;
-	Fri,  6 Sep 2024 13:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D56E1CBE90
+	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 13:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725627604; cv=none; b=kMi7e8OA9jjvbx3JDTDZbSatrNDRYuPyyhsj5TXS8zCtOfxuI2/wFLYQqXfFZqmpsUeW/+UxhO5lShXZzOuU+zmMbq+uWvafNoRs28yL4qKK1DMCj54R8PMMjB4aTXHS3Oxq1cpT4SkvJ00Bbr6sycIIARKUD9Em1lKiX5bbAME=
+	t=1725627637; cv=none; b=qWPQ8O0O1RnhcfF5+/q28yiLCk7ihRsez8sC8+O1Gyqpm1vbbED43+979h73cYR9SMQnlvusm/CX3If0ytWcGC7906iGABbni2NGVScNEEvJBEP9p6wK+fcsRyzUA+EjyOV1/q7HpB8mvRkSyngAPnivG3JIuoWJJhGq81XYX4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725627604; c=relaxed/simple;
-	bh=oefV0SX3omS4xfk61TQppF8i4Kw29y+8gVPlyvNH1Og=;
+	s=arc-20240116; t=1725627637; c=relaxed/simple;
+	bh=a3n6h+tmjlmVA4Afuyy01EvnM6vGCqk59VkMNlPDoxA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZNC0/pNzWUPNHzgCF9U93Yr1godAvRBufsIK7oYw51CZq9ER7RUqIisto3fRIA5Na+2gnE9vSToGZlwTsVtUh7YuvC5p6GEDDm/rxzrQ4ArCZty5m8knBxKtRvbNFD1S36wxww6Z9La6cujqYHo66m3+1v8B5HIglSO2iuvwLAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GVE9ds3H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AABF2C4CEC4;
-	Fri,  6 Sep 2024 12:59:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725627603;
-	bh=oefV0SX3omS4xfk61TQppF8i4Kw29y+8gVPlyvNH1Og=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GVE9ds3HQyRwRvxLUc3pdXTEquCNSGPmqpcsD8JopyKVrtaZt+dNwOGiy4MiWK/np
-	 UYQkHEIWeKkYvUoGC7uOKz+WQcfGR1rlRNbhHnRD/JS4iG33nbworDbD0GX/Tyn6bk
-	 ZFbjWBTRuXDLwtmLKWhCeUFk+sdqDZH57bl4TOKA7dp8Fzq5qea2scdqdl1UFr3fWw
-	 5LzZ7TtPf+RldzD4rNCzM6Xw9QiLc7IV0z6a9HRRff11gXrTDep6059icuVlJmvzcr
-	 4yRj8ATIVjjT4QJb6w5h3FfO5QH/PU//DH2e4aduV2ZIWGRVFXNcqSvFHMrCm9F2LY
-	 794jA8xHubmtw==
-Message-ID: <c0aa5342-a2af-4ac4-bc33-b6dbfff77f63@kernel.org>
-Date: Fri, 6 Sep 2024 14:59:57 +0200
+	 In-Reply-To:Content-Type; b=rKfimJG4VUjqsFB1DH8rGCBUoZhFuhS21IiEN/9HiXv1rOsSWHQ7UT6qy0NqQuiBhijbiSnfcyoCybV9ds+c/BtvnngQ5V/N0qHw3Lag4EySpDtCAlHKAKDKrOSANx+ScHyfzdCZ/X84SzGElRKsZGUOH3wPAI5GrotoRaRPc/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GCc2uuLa; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53653c23c3bso269198e87.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 06:00:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725627634; x=1726232434; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+HldWfppnPmR7E3ewI2SdbP6fmafd7q2H7imYAtRaLo=;
+        b=GCc2uuLa1lVY4mSDdkzNUD9eoBqS3S8LqAsSF9IjfTVrHsby10gmkQggMhho5X6NxV
+         HoUTf10QmGnofQl/R+V98RLhFGEAO1y4hfGomvNLCqRNSzf6scn8AEJuDMXF0EvyiHIy
+         lx/XJurbyttNVmnWDlCIy4Ia2Tif4ItRiVIORYbzFa0CQuupxGjzeuAxFMevhuSh4OGG
+         Q+Y1+51ulq2EEzqMJ1GbJlAM6eYIgUDjRWPGA/pMc1MF1idyaVrYZ7VB6yPW1N4YJ/jD
+         TQLThgFhR8IwlHPvxfTsZn2TiUYiirJKAWMMzdlLZx4q5ykDp0lgyCzVV6qX5y48/o/S
+         yzQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725627634; x=1726232434;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+HldWfppnPmR7E3ewI2SdbP6fmafd7q2H7imYAtRaLo=;
+        b=YN5hFk2N3h5eb1ATHlQgt0jyz+Dt+xEL8qxyoT08BATc5XHttkvmAlXFUy6eO0EAID
+         bpyckzJrDpr5B+OAs7rKDkWbq2rVE1Uku89Hl23N/xtFQh5v/Gwfe+zrrZvSNkhreHOk
+         7IfXlPbQEZIagzUADWwg08bzbD53YzbI4Tv4y9SwlfMykLaRBIc+8bGj/yaS+ZJCM7Si
+         MAICGvnG35/zPBnoayKl2TyehTTbc4biWUznGae4AAPttP8hwgRnTjKAutBha4VWH+rE
+         eTC3xFC+eqABsmXMUtXQyV2oTGQzPC0kIZPqru/lUBrEVholQG/RWF3TZZyT5+k6Fzdr
+         Iduw==
+X-Forwarded-Encrypted: i=1; AJvYcCWZmR5TYYJ4xXrkK1bPgngiZ/86hBF/ag6u+dqCqD/3s7pyN5qNBNJsJ3sMaNl86iL3SVsINNqb050X@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWM34BxLlD6v6vLNB6UHJ0JUc68PHVcQ3ubEsAcOPqfwtQGpv+
+	MJmml5WETx+eIau4UK9yQSABRGFGDzDhk+FLrndI7+doHFGqjDdYU5mBgR8h/VsBYVPuKWSK+ZN
+	R
+X-Google-Smtp-Source: AGHT+IEPgCZe7nIoVPCspseu508VwlLQFUeA/X0Be0jNtg/3vmAW2na6nGzOrDVGstjDu5h3e861tg==
+X-Received: by 2002:a05:6512:3d1b:b0:536:55f2:2ad0 with SMTP id 2adb3069b0e04-53658814568mr887069e87.9.1725627634001;
+        Fri, 06 Sep 2024 06:00:34 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53569ee732fsm624590e87.156.2024.09.06.06.00.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Sep 2024 06:00:33 -0700 (PDT)
+Message-ID: <a27adb94-5280-4213-a532-0dcc907f80b7@linaro.org>
+Date: Fri, 6 Sep 2024 16:00:32 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,144 +77,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] dt-bindings: phy: sparx5: document lan969x in sparx5
- dt-bindings
-To: Daniel Machon <daniel.machon@microchip.com>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>, UNGLinuxDriver@microchip.com,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240906-sparx5-lan969x-serdes-driver-v1-0-8d630614c58a@microchip.com>
- <20240906-sparx5-lan969x-serdes-driver-v1-8-8d630614c58a@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240906-sparx5-lan969x-serdes-driver-v1-8-8d630614c58a@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Richard Acayan <mailingradian@gmail.com>, Andi Shyti <andi.shyti@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-media@vger.kernel.org
+References: <20240904020448.52035-9-mailingradian@gmail.com>
+ <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
+ <ZtpqrANbJurWNOzV@radian> <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 06/09/2024 14:52, Daniel Machon wrote:
-> Document lan969x in the existing Sparx5 dt-bindings.
+Hi Bryan, Richard,
+
+On 9/6/24 15:19, Bryan O'Donoghue wrote:
+> On 06/09/2024 03:36, Richard Acayan wrote:
+>> On Thu, Sep 05, 2024 at 10:09:34PM +0200, Andi Shyti wrote:
+>>> Hi Richard,
+>>>
+>>> On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
+>>>> This adds support for the camera subsystem on the Snapdragon 670.
+>>>>
+>>>> As of next-20240902, camss seems to be a bit broken, but the same series
+>>>> works on stable (although it is much less reliable now that the CCI clock
+>>>> frequency is not being assigned).
+>>>
+>>> I am not understanding this bit: is this series making it better
+>>> or not? Can you please clarify what is broken, what is less
+>>> reliable and what works?
+>>
+>> When applying this camss series and some camera sensor patches on
+>> linux-next, the Pixel 3a seems to hang when camera capture starts.
+>>
+>> When applying the same patches on stable, the camera does not cause the
+>> Pixel 3a to hang.
 > 
-
-Say something useful, not copy of subject.
-
-> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-
-A nit, subject: drop second/last, redundant "dt-bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> ---
->  .../bindings/phy/microchip,sparx5-serdes.yaml          | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
+> Right so -next isn't stable that's not exactly a revelation.
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> index bdbdb3bbddbe..1e07a311e8a5 100644
-> --- a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> +++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> @@ -8,6 +8,7 @@ title: Microchip Sparx5 Serdes controller
->  
->  maintainers:
->    - Steen Hegelund <steen.hegelund@microchip.com>
-> +  - Daniel Machon <daniel.machon@microchip.com>
->  
->  description: |
->    The Sparx5 SERDES interfaces share the same basic functionality, but
-> @@ -62,12 +63,17 @@ description: |
->    * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
->    * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
->  
-> +  lan969x has ten SERDES10G interfaces that share the same features, operating
-> +  modes and data rates as the equivalent Sparx5 SERDES10G interfaces.
-> +
->  properties:
->    $nodename:
->      pattern: "^serdes@[0-9a-f]+$"
->  
->    compatible:
-> -    const: microchip,sparx5-serdes
-> +    enum:
-> +      - microchip,sparx5-serdes
-> +      - microchip,lan969x-serdes
+> 
+>> When these device tree properties from the previous series were removed:
+>>
+>> 			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
+>> 			assigned-clock-rates = <37500000>;
+>>
+>> the CCI would sometimes fail to probe with the error:
+> 
+> Right, we don't have clk_set_rate in the cci driver.
+> 
+> Maybe just leave the assigned clock for this submission and we can do a
+> sweep of fixes to CCI at a later stage including setting the clock
+> instead of having it be assigned.
 
-It seems there is no lan969x SoC/chip. Are you sure you are using
-correct naming, matching what kernel is using? Maybe you just sent
-whatever you had in downstream (hint: that's never a good idea).
+first of all it would be nice to confirm that the setting of a particular
+clock frequency is actually needed.
 
->  
->    reg:
->      minItems: 1
-> @@ -90,11 +96,19 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    serdes: serdes@10808000 {
-> +    serdes@10808000 {
->        compatible = "microchip,sparx5-serdes";
->        #phy-cells = <1>;
->        clocks = <&sys_clk>;
->        reg = <0x10808000 0x5d0000>;
->      };
->  
-> +  - |
-> +    serdes@e3410000 {
-> +      compatible = "microchip,lan969x-serdes";
-> +      #phy-cells = <1>;
-> +      clocks = <&fabric_clk>;
+Fortunately it's pretty trivial to check it in runtime with a temporary
+modification in the board dts file, namely disable CAMSS in board dts file,
+but keep CCI enabled, then simply scan the bus with a regular "i2cdetect"
+tool in runtime.
 
-No differences so no need for new example. Also please follow DTS coding
-style in case of any DTS code.
+If i2cdetect on the CCI bus works only for 37.5MHz clock frequency, then it
+is needed, otherwise (and this is my expectation) it is not needed neither
+in the dtsi files nor in the driver.
 
-Best regards,
-Krzysztof
+>>
+>> 	[   51.572732] i2c-qcom-cci ac4a000.cci: deferred probe timeout, ignoring dependency
+>> 	[   51.572769] i2c-qcom-cci ac4a000.cci: probe with driver i2c-qcom-cci failed with error -110
+>>
+>> On further testing, the rate can be set to 19.2 MHz, and there would be
+>> no failure (or rather, it wouldn't happen often enough for me to witness
+>> it).
+> 
+> That's expected 19.2 and 37.5 MHz are supported by CAMCC for your part.
+>
 
+I read it as the setting of 37.5MHz clock frequency is not needed, please
+correct me.
+
+--
+Best wishes,
+Vladimir
 
