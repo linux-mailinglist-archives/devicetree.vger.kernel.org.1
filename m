@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-100902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F0596F636
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:04:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE3CA96F645
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:06:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC73A1F24DD2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:04:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DE69282547
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0911CF7AD;
-	Fri,  6 Sep 2024 14:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014421D0494;
+	Fri,  6 Sep 2024 14:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3BUe9rnu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YWv/zv3M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A8A1D014A
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 14:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5257F1CF5FF;
+	Fri,  6 Sep 2024 14:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725631480; cv=none; b=H9V+SPz5bVvNTTZCNQLlLN0+0+QL/yHBN3aiObTI6OTydSuMz98BRAlR3mzpZ0u0AAJvSMtuXqBy1j5PdFuabKKoS0eXOCu+Y4pFusaXDM9+yTcOGtVUdh2iE2aOw0M4BvAoEaemXtFZuA756WBf/ravosVNnUatGdh63ZrMSac=
+	t=1725631602; cv=none; b=oIVwF5rhu2nqLF0OGfBfYQeu/kZsBhV/r21jEkHSVMbB5B4gnTkVbuuaLo3I+5VWdi4eoyw7uPjK6ry+ZSlRupkLjhqeju3J5dO5111zA5m2mL+kb8h1AgJ1ETmsFl1kb6YX9Lc3qLqBtWOUNnR4v5x4PFQlXI0j6xE2KP5NifU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725631480; c=relaxed/simple;
-	bh=bozoCpCN7VNizi6fYIXxvy9kovuAsx/0HPcnsKGc9S8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dhBqXykL6q9YqwWuS3pJuMqKdilQYVKAirgHg/a3xt2MqS4l4uB27fKwnAs/3da4ch1pL6x3qrBW0zdY2Vv21ES6KprCbtCQgPHdh6CIdxQwV++dqmoppyFIxhZrGC342Xflu0caSRkSdFk8Izq/cvCfnyyUjUo6fMqsArl+AnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3BUe9rnu; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3df06040fa6so1290006b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 07:04:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725631478; x=1726236278; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IbvGWboAt/dTEq1gD2V5k8emDQaAfQAupylVV7SCoEg=;
-        b=3BUe9rnuK8kqw/0Fthqt5mueSJg7NXqW+f3lQlsZNxetYkU8x9Q35aGJwe/Ay8Mcby
-         gufQK3MWBdC7g+Q3gaR21yjfsThnIrk8AF63c9oKUi2iOI23GCBINQflhszcRBINRHkP
-         6DQgfxJ+AvPQxu1o23/siWW3Np6bve5r0ppZ0mDYQS2E/htfFIdP6721CibGrezkGY15
-         XKzzStvc00uBYGbdYd2ORleb2KDoj/XYkgHAHFtAG4fLyury2LMFDwc0sLlmcErcuADh
-         QAaEBHnG1Y5TTsXOjm1RDZR6OPlijPOjJRKrgvfLMkW9q+tsnTDL316vRRYeelMkgxkx
-         MhHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725631478; x=1726236278;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IbvGWboAt/dTEq1gD2V5k8emDQaAfQAupylVV7SCoEg=;
-        b=r4zCZBsH3rXooKKFZ3zXPFoYdKVYsZTkSgAVRJKdgR0pLfbuxuY3wzfUU7uo0685f5
-         kOHGk131JC63rNuyQ8d/yteTrpe4EibQfSBzGo6awEZDvHlWJVuf3w9UpS862d6dM9gQ
-         ksoSN9cdCEf+yGCuW9O5E29bOajmPDAOEXRAoPiUK1ceWTkM2CrU2ncrNsSCx9B8iTvG
-         66hVojMJtCCuMZqBi6zWZztKz6x8ay5gSnAcM8ZHiK8D5IYBuwX94bHBt1Qlm3i66Au9
-         nBEUfNMnldtuZwmmEh+i94SBfAJVS6gGjTcol+CZBDSHLTwKbFxLbLgW+sn1HViD5Z6E
-         Nb0g==
-X-Forwarded-Encrypted: i=1; AJvYcCXjoI77UJsVnMy85/vC048D8vszOFfl6Q886F7dI+IRCWdXHVyBHv5N62LP4sW1kF/y7SiXk8UzjDEZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQlRcHOe7LbIAE+cPUjMFNE/bV2WFu8uTsqlpW/KBtHVBXB1MS
-	JAGtb4402MO5A0DDP3dle57eFvYb0Di3jLkweilzPLVM02E7WD2TelRx0P6goRs=
-X-Google-Smtp-Source: AGHT+IFK9/4OL7nm7O7NBZ579F2/SvR1lDAVknbSPts5/rPSjp1vwADNXiIfNSJ+u0CxXV8DPB7tyQ==
-X-Received: by 2002:a05:6808:221c:b0:3da:aac7:43b2 with SMTP id 5614622812f47-3e029f2baf6mr3255446b6e.34.1725631478015;
-        Fri, 06 Sep 2024 07:04:38 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e0355bf88dsm414b6e.21.2024.09.06.07.04.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Sep 2024 07:04:37 -0700 (PDT)
-Message-ID: <de4718f5-a36f-4e5c-b5e1-f1c6e2484420@baylibre.com>
-Date: Fri, 6 Sep 2024 09:04:36 -0500
+	s=arc-20240116; t=1725631602; c=relaxed/simple;
+	bh=7BY0KsRzbfrQl2HXhQScIpRDlVROHVq+3QPlEz808xE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hNvr0u0xgl4LNh0KYbZpIyVeI3wAA7vtpDsEyLqfqAULTyweVn5H5qgL+Y8FQkIndaBDzNYyPoQTqQMF2eqAt52ZiYuIAUXFBydFBBW1gUVnQnPAB6VrKTb76cMQcy8CvFZxxtCakI9L2TUV4ajYLsOILsVA7qcK6sEckVlK34w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YWv/zv3M; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4868MZjP001273;
+	Fri, 6 Sep 2024 14:06:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7BY0KsRzbfrQl2HXhQScIpRDlVROHVq+3QPlEz808xE=; b=YWv/zv3MQx5VwaWr
+	C5s/bR6GbUZednTceb0NAEHsGpV1GvfrBUhTnWd7osIBvI6MZhwYbnJ3qujgNFKd
+	XdVrEOqfu/TWebzlTlyheK0ESGtmzi8QAcRjklZTZZB7v44BD0cncRUhXe5krV6m
+	1HLozO9CxO43QI0w7PT7RUUmWlEdP9YMd7gb9NlbCvAuVcbd1tYwcm1cy8cAZEgb
+	1NII8iBHvzPsAbbrQWv9lHhrb9w0XM5XQB4nGHASWj4WOUP56kFloNMuzugGj2wI
+	yM+U/VnOAdUGaKrCWWg2Pbz2KhSB2zhYq95kLhV2G6Z/BqBQQJcocn7pQj7W4YxY
+	N+Qtdw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwtah36-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Sep 2024 14:06:27 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 486E6QiY027660
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Sep 2024 14:06:26 GMT
+Received: from [10.110.102.234] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Sep 2024
+ 07:06:23 -0700
+Message-ID: <e01d2a02-8985-4fd8-90c2-87a31e800698@quicinc.com>
+Date: Fri, 6 Sep 2024 07:06:22 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,111 +65,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/9] dt-bindings: iio: dac: add ad3552r axi-dac
- compatible
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
- <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-5-87d669674c00@baylibre.com>
- <boahpvyzzmocnnpae2u6meub34yvqr2q3v5pzf2egp2fretlwk@ibas62hdypwo>
- <fd3f4874-b410-4e98-acba-d0fac041a40e@baylibre.com>
- <1928d0ce-cad9-4737-880e-3759c47fddbc@kernel.org>
- <058937fa93d484f3e81807d08a39bd8dfd3358e8.camel@gmail.com>
- <47c56239-51a0-4ff2-9db2-0e0184cfb086@kernel.org>
- <a0d213442b4de0b06991be2be1d7b2bb091f2b52.camel@gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple
+ virtual instances
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Peng Fan <peng.fan@nxp.com>,
+        "sudeep.holla@arm.com"
+	<sudeep.holla@arm.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+        "cristian.marussi@arm.com" <cristian.marussi@arm.com>,
+        "arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "kernel@quicinc.com" <kernel@quicinc.com>,
+        "quic_psodagud@quicinc.com" <quic_psodagud@quicinc.com>
+References: <20240905201217.3815113-1-quic_nkela@quicinc.com>
+ <PAXPR04MB84593380F220DEC7974058D9889E2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <9930c7b8-cddb-4c70-a283-8f0a09d6c30d@quicinc.com>
+ <4p6rknakoojsjunwbakwzsyyymufhvim2kctdkexcrqfcphe2a@k7epaxvxmgn3>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <a0d213442b4de0b06991be2be1d7b2bb091f2b52.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <4p6rknakoojsjunwbakwzsyyymufhvim2kctdkexcrqfcphe2a@k7epaxvxmgn3>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: obrfNXiNwfgTpT8TEcvamr_P3lhBgYG4
+X-Proofpoint-ORIG-GUID: obrfNXiNwfgTpT8TEcvamr_P3lhBgYG4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_03,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 clxscore=1015 priorityscore=1501 malwarescore=0
+ adultscore=0 mlxscore=0 spamscore=0 bulkscore=0 mlxlogscore=601
+ phishscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409060103
 
-On 9/6/24 8:52 AM, Nuno Sá wrote:
-> On Fri, 2024-09-06 at 14:13 +0200, Krzysztof Kozlowski wrote:
->> On 06/09/2024 13:53, Nuno Sá wrote:
->>> On Fri, 2024-09-06 at 11:37 +0200, Krzysztof Kozlowski wrote:
->>>> On 06/09/2024 11:11, Angelo Dureghello wrote:
->>>>> Hi Krzysztof,
->>>>>
->>>>> On 06/09/24 9:22 AM, Krzysztof Kozlowski wrote:
->>>>>> On Thu, Sep 05, 2024 at 05:17:35PM +0200, Angelo Dureghello wrote:
->>>>>>> From: Angelo Dureghello <adureghello@baylibre.com>
->>>>>>>
->>>>>>> Add a new compatible for the ad3552r variant of the generic DAC IP.
->>>>>>>
->>>>>>> The ad3552r DAC IP variant is very similar to the generic DAC IP,
->>>>>>> register map is the same, but some register fields are specific to
->>>>>>> this IP, and also, a DDR QSPI bus has been included in the IP.
->>>>>>>
->>>>>>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
->>>>>>> ---
->>>>>>>   Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 1 +
->>>>>>>   1 file changed, 1 insertion(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>>>> b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>>>> index a55e9bfc66d7..c0cccb7a99a4 100644
->>>>>>> --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>>>> @@ -24,6 +24,7 @@ properties:
->>>>>>>     compatible:
->>>>>>>       enum:
->>>>>>>         - adi,axi-dac-9.1.b
->>>>>>> +      - adi,axi-dac-ad3552r
->>>>>> I am sorry, but what is the product here? It looks like either wrong
->>>>>> order or even completely redundant. What is ad3552r?
->>>>>>
->>>>>> And why versions are mixed with real products but without any
->>>>>> compatibility. What does the version express in such case?
->>>>>
->>>>> dac-ad3552r IP (fpga) is a variant of the dac IP, very similar,
->>>>> about the version, it still reads as 9.1.b
->>>>>
->>>>> so i can eventually change it to:
->>>>>
->>>>> adi,axi-dac-ad3552-9.1.b
->>>>>
->>>>> Should be more correct.
->>>>
->>>> No. First ad3552r is the product, so axi-dac is redundant. Second why
->>>> adding versions if you have product names? Versioning was allowed
->>>> because apparently that's how these are called, but now it turns out it
->>>> is not version but names.
->>>>
->>>
->>> Let me try to explain on how this whole thing works...
->>>
->>> We have a generic FPGA IP called axi-dac (same story is true for the other axi-
->>> adc
->>> IP) which adds some basic and generic capabilities like DDS (Direct digital
->>> synthesis) and the generic one is the compatible existing now. This IP is a so
->>> called
->>> IIO backend because it then connects to a real converter (in this case DACs)
->>> extending it's capabilities and also serving as an interface between another
->>> block
->>> (typical DMA as this is used for really high speed stuff) and the device. Now,
->>> depending on the actual device, we may need to add/modify some features of the IP
->>> and
->>> this is what's happening for the ad3552r DAC (it's still build on top of the 
->>
->> What is "ad3552"? DAC right? Then as I said axi-dac is redundant. We do
->> not call ti,tmp451 a ti,sensor-tmp451, right?
->>
-> 
-> Yes, I agree the DAC part is redundant. But I think the axi prefix (or suffix) is
-> meaningful to differentiate it from the bindings for the device itself.
-> 
-The binding is for this [1] IP core. The documentation calls the core
-"AXI AD3552R", so I agree that "adi,axi-ad2552r" is the most sensible
-compatible name.
 
-http://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+On 9/6/2024 12:32 AM, Krzysztof Kozlowski wrote:
+> On Thu, Sep 05, 2024 at 05:33:04PM -0700, Nikunj Kela wrote:
+>> On 9/5/2024 5:25 PM, Peng Fan wrote:
+>>>> Subject: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple
+>>>> virtual instances
+>>> Just wonder, what do you mean virtual?
+>> Just a term to indicate that these are different SCMI instances within
+>> the same OS. In one of the series from Cristian, he used the term
+>> 'virtual SCMI instances' so I used the same term here.
+> That's indeed confusing. Virtual means not a real thing...
+
+IIUC, SCMI instance mean single instance within an OS however we are
+using multiple instances within single OS. That being said, happy to
+drop virtual if people find it confusing. I tried to use the same term
+which SCMI reviewer's patch series used.
+
+
+>
+> Best regards,
+> Krzysztof
+>
 
