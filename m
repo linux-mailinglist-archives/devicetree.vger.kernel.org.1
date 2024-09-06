@@ -1,129 +1,164 @@
-Return-Path: <devicetree+bounces-100986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC3F96FC11
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 21:23:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4205896FC22
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 21:27:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 691DA1F24797
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 19:23:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE69C285253
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 19:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33CB1D0DC6;
-	Fri,  6 Sep 2024 19:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF251D365D;
+	Fri,  6 Sep 2024 19:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/2tmJK0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KPK1leiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A940A1B85D5;
-	Fri,  6 Sep 2024 19:23:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809671D3634;
+	Fri,  6 Sep 2024 19:27:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725650606; cv=none; b=PBD8p6BKSkXR1ktfUBQI/kM5rqMs8T3u4v5Q9kVN1pfFUAa79AI7bP6UyGUezl/eR4qkGXMzNM43/fSBhO7YfAXHqSdmR+UiSBw8z7u8bzsGPi2vxsybLPX0c9hHLb1DdswtYnSLcDZw3HllNUkq51gieSTh15VgcOodfbaSmKg=
+	t=1725650825; cv=none; b=Vcao8NcvTLPI8lt/wqrl75mbc4jORpJvHrrDCmU0KO3srge6Y/bUo7NflxbasQ5QykQxlv67Xp9N4Ei+jUlFL4D4Sdcd4RW0luvZQWzeQ4YdD5fADiFDJGAVFsnInVJ2r8LYxDoDf5pcPoLRy1h/xWLHxg1zGOLHhjTet6zxsAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725650606; c=relaxed/simple;
-	bh=/n96Kto0JZug0XlU6wzixOGIsRQmVNlzwkTH7ThriiM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gjlSO/ur/artC2ydh4z500qb9wfrJBJTY3DFZmylfjyw6W5AJoh2eyKWd/52250142tatr/2KruXnAYS81BIRGXyDAd5CMEZAeBJz6RC4AVeAz4omTH3lL7xbbEkchskd9VfkaG7PzRCS+7QbbqnMYj76GGwqKrqwESi4ykpk78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/2tmJK0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB13C4CEC4;
-	Fri,  6 Sep 2024 19:23:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725650606;
-	bh=/n96Kto0JZug0XlU6wzixOGIsRQmVNlzwkTH7ThriiM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k/2tmJK0ZIGo88O1HE1+DTpj1x8V/ZUa4loaN18gbxhwGafooIAqA0snN6lcl3BnD
-	 tHGE/I27eRUfMvwbykJyJz4R5y41Et/JERKNFdNNQwHmMIeHki8cANYcXazZnf5bFQ
-	 AE9wie939zT1oHWDiUVa8OHBh0oQyXZ8xyRTob6KHrC7StGbvtaImoy5BYCRh4/U5I
-	 9eTWosx5C2OjaGnyRbPv2SM6zvdG01EPnLVnA89qjv14/y1d9VyD33syg1md8p3YOm
-	 xPuHIAUAEc5KRrU3fHSddFxZOPySfzxiUImK1OTpqXdwpxgdHvplkDXMmvWA71/DcN
-	 rKlzHB0YmkzPg==
-Date: Fri, 6 Sep 2024 12:23:23 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Alexandre Mergnat <amergnat@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Nicolas Belin <nbelin@baylibre.com>
-Subject: Re: (subset) [PATCH v7 00/16] Add audio support for the MediaTek
- Genio 350-evk board
-Message-ID: <20240906192323.GA3160860@thelio-3990X>
-References: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
- <172544860860.19172.7052813450885034844.b4-ty@kernel.org>
- <20240906180348.GA1239602@thelio-3990X>
- <ZttJdexQFOq2Q9iQ@finisterre.sirena.org.uk>
+	s=arc-20240116; t=1725650825; c=relaxed/simple;
+	bh=IyGlgoAIgc2nbHZX75Pfi7i2HDK+fbfoW+6w8T3/JmY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D59wwcBnMXGDijODVEh72p1yZC0f9eJwNZ63srWHL1QuWEiLBFab+5Y2bvq5Odw/MrKMkI7KSUIBs5rukJ2NGgr1HRNiqrEExhbz31QsYV91LP4+oS4SF1zl1wUI6ouPV65QAX9JOhAiWLwE6BqLUzdIAhjsSC5+5VHZnrdhvQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KPK1leiM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4868kf5a029428;
+	Fri, 6 Sep 2024 19:26:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Ds/mupH9CQGdrp5u+QWgQw90jXpQ3rhwZoBEwvxPlws=; b=KPK1leiMpx5vfLZl
+	dqAWZzY4NILuKoX5ta3g5xHhIj0MhnKIZb/lhD6b5eC4XYGnUrEkue51LfzwJdjT
+	/GIro1KsB3JYQVchPrnUEtp4+zMDMyQgw8QU9xQf8Gos1LtQaKj3KtI+pRFyKCqe
+	RFbJszBd8a6PCyBTb4RYRA1/H1Ahw1/P9OOkF1juYSN+b0X9FzfG15YPZAWCOex/
+	NlvXyJxdAnyiPrYYzxrq8fraS/ACON1xpLB52gVkqC9A09aX1tNkurqKgtOeCckk
+	cj45myu5PZoBC1rtl+gC/yI5uE8KXLs5gD4z+uYu9zyFXSJ0iSe+Dscl7BVeJIaf
+	+SF3RA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhwtu8u2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Sep 2024 19:26:54 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 486JQrD0024454
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Sep 2024 19:26:53 GMT
+Received: from [10.216.47.237] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Sep 2024
+ 12:26:48 -0700
+Message-ID: <ebf47b36-1d19-9061-358e-88b8c750d54c@quicinc.com>
+Date: Sat, 7 Sep 2024 00:56:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZttJdexQFOq2Q9iQ@finisterre.sirena.org.uk>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 00/29] Qualcomm iris video decoder driver
+Content-Language: en-US
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+CC: <quic_dikshita@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vedang Nagar <quic_vnagar@quicinc.com>
+References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+ <3a62b4cb-5c41-4c76-a957-af8e594ca8b1@linaro.org>
+ <xwkibtfakensuzrj4ycmyh4nqjr4nwkgqr63og7n6ejiw3hjqo@rvl3hhznfftx>
+ <149c25c05a5a59890ade38fdd4c8c0b65c13a916.camel@ndufresne.ca>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <149c25c05a5a59890ade38fdd4c8c0b65c13a916.camel@ndufresne.ca>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: e9eXJ2tFpCnDy35CmbGaWiyfCgtZf6aW
+X-Proofpoint-ORIG-GUID: e9eXJ2tFpCnDy35CmbGaWiyfCgtZf6aW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_05,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ impostorscore=0 suspectscore=0 priorityscore=1501 adultscore=0
+ clxscore=1011 mlxscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409060143
 
-On Fri, Sep 06, 2024 at 07:27:01PM +0100, Mark Brown wrote:
-> Are these just warnings introduced by recent versions of the toolchains?
-> These commits passed an x86 allmodconfig with GCC 12 at each step (I did
-> catch one warning there with another patch in the series that didn't get
-> applied) and 0day didn't say anything at any point.
+Hi Nicolas,
 
-Not sure, I did not look too hard. At cursory glance, I am not sure x86
-allmodconfig would catch these, as this code depends on ARCH_MEDIATEK
-(not COMPILE_TEST), which only exists for arm and arm64.
-
-> > Clang 19:
+On 9/6/2024 7:49 PM, Nicolas Dufresne wrote:
+> Hi,
 > 
-> That's relatively modern, though some of the warnings don't look
-> particularly new and exciting.
-
-Fair although I still see some of them on old versions too:
-
-https://github.com/ClangBuiltLinux/continuous-integration2/actions/runs/10738441894
-
-> >   sound/soc/mediatek/mt8365/mt8365-dai-adda.c:93:8: error: implicit conversion from 'unsigned long' to 'unsigned int' changes value from 18446744073709551614 to 4294967294 [-Werror,-Wconstant-conversion]
-> >      91 |                 regmap_update_bits(afe->regmap, AFE_ADDA_UL_DL_CON0,
-> >         |                 ~~~~~~~~~~~~~~~~~~
-> >      92 |                                    AFE_ADDA_UL_DL_ADDA_AFE_ON,
-> >      93 |                                    ~AFE_ADDA_UL_DL_ADDA_AFE_ON);
-> >         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >   1 error generated.
+> Le lundi 02 septembre 2024 à 03:02 +0300, Dmitry Baryshkov a écrit :
+>> On Sat, Aug 31, 2024 at 04:18:35PM GMT, Bryan O'Donoghue wrote:
+>>>> The result of v4l2-compliance test on SM8250:
+>>>>
+>>>> v4l2-compliance 1.29.0-5239, 64 bits, 64-bit time_t
+>>>> v4l2-compliance SHA: a1ebb4dad512 2024-08-08 20:00:17
+>>>>
+>>>> Compliance test for iris_driver device /dev/video0:
+>>>>
+>>>> Driver Info:
+>>>>          Driver name      : iris_driver
+>>>>          Card type        : iris_decoder
+>>>
+>>> Hmm, so this is decoder only ?
+>>>
+>>> What's the intention here for encoding support ?
+>>>
+>>> I've verified your results on the test branch but I just noticed that sm8250
+>>> with the iris driver is decoder only - whereas the venus driver does both,
+>>> which strikes me as a bit odd.
+>>
+>> I think we all have discussed this during the review of the previous
+>> series: complete driver becomes very huge and complicated to review. So
+>> the recommendation was to submit the limited features driver (decoding,
+>> 1 codec) and get more features (more codecs, encoding support, etc)
+>> after getting the Iris driver in. Of course sm8250 support in Venus
+>> driver will stay in until Iris driver reaches feature parity.
 > 
-> That's a bit surprising, regmap_update_bits() takes an unsigned long?  I
-> suspect the constants need to be defined as unsigned.
+> And demonstrated backward compatibility. Just mentioning, since flipping default
+> driver could theoretically break userspace, and that is a big no no. As
+> maintainers won't run your HW, it will work on trust, and users report. But you
+> have to be convincing.
+We are committed to bring this driver at feature parity with venus. This will be
+in phased approach and started with (single codec)decoder.
+>>>
+>>> Is your intention to publish more patches to enable the encoder in another
+>>> series ?
+> 
+> I think this was the real question, any reason not immediately replying ? What
+> I'm hoping is an answer in the form "yes" + some ETA.
+Encoder changes were already available and were dropped from this series to make
+it easier to review. ETA would be as soon as this series which adds the decoder
+part, gets accepted.
+> 
+> Nicolas
+> 
+>>>
+>>> ---
+>>> bod
+>>
 
-Does it? I see it taking 'unsigned int' for all of its parameters.
-
-$ sed -n '1242,1250p' include/linux/regmap.h
-int regmap_update_bits_base(struct regmap *map, unsigned int reg,
-                            unsigned int mask, unsigned int val,
-                            bool *change, bool async, bool force);
-
-static inline int regmap_update_bits(struct regmap *map, unsigned int reg,
-                                     unsigned int mask, unsigned int val)
-{
-        return regmap_update_bits_base(map, reg, mask, val, NULL, false, false);
-}
-
-Cheers,
-Nathan
+Regards,
+Vikash
 
