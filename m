@@ -1,86 +1,139 @@
-Return-Path: <devicetree+bounces-100833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F420696F18D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:32:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B1A96F1A8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:39:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8959AB2080D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:32:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EA481C21BC8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9EC1C8FCE;
-	Fri,  6 Sep 2024 10:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49CB1C9ECF;
+	Fri,  6 Sep 2024 10:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XbrzkNo1"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="FNFMKHya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F356D13AD2F;
-	Fri,  6 Sep 2024 10:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356BB1C8FC7;
+	Fri,  6 Sep 2024 10:38:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725618746; cv=none; b=J9CqI18/YR0qivJ2RtS1X3MWBPJjpeMjyJyBtZjYZSNOEKCdADUdxnjtTj/0jvV3Wcob9ufRC4FFV3hjzzPHe5ghXVGAjj7bCj0/K+G6fjd880cTCeewGAdD8YbCnVXCy3f18DzqWjKFp9QRQmaPir2x4J+DjnFFnkRA+WH6MdQ=
+	t=1725619141; cv=none; b=R4oT5lTdZpy49s7vr9QH/Jfy1ZLirtqpY1tdhSL/60cDPzjfBrJJlOY8fatpg+R16u8lgwW7e8QhcXATaNi00YpIaTU2LozaMP8XRryNpooJxWehBNmsww4Pg1oMXqFvSWXDUdf5AmrGHP0sB3bj/hI1ZnOpMdgiThJjJR6z6Vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725618746; c=relaxed/simple;
-	bh=bizvIhSeAyzfO4lD+XWX21/Zqs23bS2hRyHKfLLdRDE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sYqqtnQCYtJoS7/t1WBOaqBbn7jXPLwt8PK/RopaPozmc2dhkXz17kXmeiXR/wAXi8DDX0CSvm8D3V0N9MDY/yi8koSOUcCv7aV/d0TziJ7TyNIQesac8lhrent/12IwYKlgMbGm344gGVR8CYE8piVPu/W9Kb4GqYC/IF7OAZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XbrzkNo1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14F78C4CEC4;
-	Fri,  6 Sep 2024 10:32:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725618745;
-	bh=bizvIhSeAyzfO4lD+XWX21/Zqs23bS2hRyHKfLLdRDE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XbrzkNo1QBmntu1QkmKPYKtcy9LWW4Fk4seZ5Tgn1HwH0Xv5HQlK6p9KS82AVISsr
-	 Cx9TLycf5XM+eHMCg9/meJWiVYtafYsizVe3NpWR/hMveOong94RXxUhKWkZQ3c0Wi
-	 nvTeMlzEwsYcnkT6OoROwDpXUDI6PlxmowjMCv9SZEAOUHEa1yc9WC0/r5w312D6Ez
-	 UroyuoK4lVZbVk1eIHighVnMVY/T7jxiADq3k8nrGRMmD4m7IRimoxVIaMq+22Y34a
-	 DMcsicBvF5puphaLfBHJq8GkYysW3AIHBS0px1HCodY0f9mm2WQ8wmF5ICVhATTgA/
-	 0M4KrOfd/lFlw==
-Date: Fri, 6 Sep 2024 12:32:22 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/6] media: dt-bindings: media: qcom,sdm845-camss: Fix
- interrupt types
-Message-ID: <duhhfglxtrouphuvv6emvtqgvrj5sfqwzd37r5skxdsbdbtbbo@daijselrkosf>
-References: <20240905164142.3475873-1-vladimir.zapolskiy@linaro.org>
- <20240905164142.3475873-3-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1725619141; c=relaxed/simple;
+	bh=05KjF2XPr/hICg9p1IUhg3U7t26HXoWZBUdtqY6Tsx0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
+	 In-Reply-To:Content-Type; b=o2Pn0fLh0MjFzmH/Wkaj1eO6djF+FSEDSQZLgm5TbVTnFjOCFX/Z9G/bPPSVLoeE5nVziYBwao+UeGtWi0sM5gO21w1X/bHyNeoXrv3+9CSgvr8HD6w+oq0L24gFlC2nnn6lh+7SveumjvxttONuF0r7bNW4t14pk37Ht4dcU54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=FNFMKHya; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [14.155.100.110])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id B0B1F78A00;
+	Fri,  6 Sep 2024 18:38:55 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn B0B1F78A00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1725619136;
+	bh=8rF690V9mxP9B5MKXF/MRXog3KWCE9DsM6auRSLOXzk=;
+	h=Date:Subject:To:References:Cc:From:In-Reply-To:From;
+	b=FNFMKHyau1cg/FaXUCYgUv0fzbUE2FHQRJlL5jYLYwVzGyaJ2vRMQXyt61NzmpH8v
+	 PCpi1+bahB9oEv0ktn1DEbTVKpfrumG60lLdvBjqbyRa3ptauqaQd4//b+cr/Ox1I4
+	 vsMjjLL+oFDBXc1aPncIrFVsMZB4udQ3HeB2DL4o=
+Message-ID: <f538ee4b-82ed-4ee1-b4e8-768a4500283e@classfun.cn>
+Date: Fri, 6 Sep 2024 18:40:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240905164142.3475873-3-vladimir.zapolskiy@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] mfd: Add driver for Photonicat power management MCU
+To: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20240906093630.2428329-1-bigfoot@classfun.cn>
+ <20240906093630.2428329-2-bigfoot@classfun.cn>
+ <e4ee504b-98a8-4b35-9e1a-195395cdacf8@kernel.org>
+Content-Language: en-US
+Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor Dooley,"
+ <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Junhao Xie <bigfoot@classfun.cn>
+From: Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <e4ee504b-98a8-4b35-9e1a-195395cdacf8@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 05, 2024 at 07:41:38PM +0300, Vladimir Zapolskiy wrote:
-> The expected type of all CAMSS interrupts is edge rising, fix it in
-> the documented example from CAMSS device tree bindings for sdm845.
+On 2024/9/6 17:43, Krzysztof Kozlowski wrote:
+> On 06/09/2024 11:36, Junhao Xie wrote:
+>> Add a driver for Photonicat power management MCU, which
+[...]>> +void *pcat_data_get_data(struct pcat_data *data)
+>> +{
+>> +	if (!data)
+>> +		return NULL;
+>> +	return data->data;
+>> +}
+>> +EXPORT_SYMBOL_GPL(pcat_data_get_data);
 > 
-> Fixes: d1d5ce260165 ("media: dt-bindings: media: camss: Add qcom,sdm845-camss binding")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../bindings/media/qcom,sdm845-camss.yaml     | 20 +++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
+> You need kerneldoc... or just drop it. Looks a bit useless as an
+> export... Is it because you want to hide from your own driver pcat_data?
+> What for? It's your driver...
+
+Now struct pcat_data is in mfd-photonicat.c,
+I will move it to photonicat-pmu.h and remove pcat_data_get_data.
+
+> 
+[...]
+>> +void pcat_pmu_unregister_notify(struct pcat_pmu *pmu, struct notifier_block *nb)
+> 
+> You need kerneldoc.
+
+I will add missing kernel documentation for all exported functions.
+
+> 
+[...]
+>> +
+>> +static const struct of_device_id pcat_pmu_dt_ids[] = {
+>> +	{ .compatible = "ariaboard,photonicat-pmu", },
+> 
+> Undocumented compatible.
+> 
+> Remember about correct order of patches. ABI documentation is before users.
 > 
 
-Same issues with subject.
+I will adjust order of patches.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+[...]
+>> +
+>> +MODULE_ALIAS("platform:photonicat-pmu");
+> 
+> You should not need MODULE_ALIAS() in normal cases. If you need it,
+> usually it means your device ID table is wrong (e.g. misses either
+> entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+> for incomplete ID table.
+> 
+> And it is not even correct. This is not a platform driver!
+> 
+
+Yes, I will remove MODULE_ALIAS line
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks for your review, I will fix all problems in next version!
 
 Best regards,
-Krzysztof
-
+Junhao
 
