@@ -1,180 +1,269 @@
-Return-Path: <devicetree+bounces-100657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0137E96E748
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 03:25:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F04396E769
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 03:57:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5DE01F23ECE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 01:25:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DAB7284951
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 01:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496BA1B95B;
-	Fri,  6 Sep 2024 01:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E211DA21;
+	Fri,  6 Sep 2024 01:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="I0z8MhFo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="as6MXblP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F50BE6C;
-	Fri,  6 Sep 2024 01:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0647D1BDE6;
+	Fri,  6 Sep 2024 01:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725585953; cv=none; b=Mzh8C4xndMMT+c+dW96Zz9Wv1n6pxUsNJ+seuCeS6w2o45XpdrWPdo7cGC9YINU83bxjLy9F0HDg/4ggbN6AkMPMbKMmqAYSXj3HqKuVwZIHpidt3ul+gfxCnWhMShEgqBOrF3dO8bvajOGGxkoHFkEXjoCTmeSbTNo/L1qRMaQ=
+	t=1725587836; cv=none; b=puIb3ksZNQ0D/cB24JlYvEUp/t0G/VAvwkAqul/VBX2n2mBGX/nz1Mh2CGHhp2QxfNH153lCknJDWhObfvqMiSGhIwlmHf7/Zxjw1V2P8rzxHpaVZ4bEDAnkab/IqoQLaY67q2VFV9m6qVDxEzu4Jd+Y90k4MUqEYDbO0dLff/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725585953; c=relaxed/simple;
-	bh=twD2+guI6vGmeVSCxuwshV4bdnrlz1eKgsdVK6G0nz8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fnNWFeqNjtNU5IOzocUwFdktNR60PNt4vmyFECEnjCkWFPRiG0QhCMeD7+EVe8SI1oSDgtOZcKTzlAJE4e9DWL0xNG5XqMy5ZXQH2jrMZNjEjAvoIrBSnwSP/vbUyeaNrVfn/1+c2xgK0NqkVI+hlVn85/d4VX5D8KOvDzrOD9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=I0z8MhFo; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1725585949;
-	bh=twD2+guI6vGmeVSCxuwshV4bdnrlz1eKgsdVK6G0nz8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I0z8MhFot0zBmV2E1zZE4VX6eHdN1ywxA7go0CGWS0kueNouEbeZyAX5hE4S4RRwy
-	 VHnrMk8pkVCJBWWcqh4HHkmujEfYaLP60JVpF4pBCTBl4w42FpMRpdVxlcWwmkeC1E
-	 sS0Klb/CKczuQqsfnlFk2KI+87zMeCCk97kAUzU0dROm+UjmZhMM5TOLgE8fy5+Nwx
-	 RlIIHyxnnS+jszl+f0krWB9vCk1ys3/RR8FGDEkb+bIZOKQSn3G1TFEhfpRt/Rym8g
-	 aNCmk5lGJQIVL4KwAlvNNMqmC1khf4uDATgN3bqDOxkZN1PRjBkvvGelHKzgu6sS6f
-	 xjYnqt815ISjQ==
-Received: from [192.168.1.90] (unknown [188.27.55.48])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9289417E0E95;
-	Fri,  6 Sep 2024 03:25:48 +0200 (CEST)
-Message-ID: <fa265088-5bf4-420f-9456-44051f913164@collabora.com>
-Date: Fri, 6 Sep 2024 04:25:48 +0300
+	s=arc-20240116; t=1725587836; c=relaxed/simple;
+	bh=8GSouxZA15dzrjJlHlKZLXCIMbilzZC4xgwf3qtb3bE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=koMJfnEJqqiSl6JVy8d+kvF6i6dpan23RH3pJi5tZ5BBlo60fgZr8eJqb05LfzVIGyWf7TN0DUV/Cs37hBYYllZS99k/R663L01coQ2//ZMEJGTunUSXcdmFvffC83Cn9JpCkJKcOp5lHAjf+WMZju8yp+R6kKUt5UJVjdOGvbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=as6MXblP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8298CC4CEC5;
+	Fri,  6 Sep 2024 01:57:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725587835;
+	bh=8GSouxZA15dzrjJlHlKZLXCIMbilzZC4xgwf3qtb3bE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=as6MXblP0yNOMTRazIuivP5C+O+n+8YswubSIkUSW8DgCoMr8L1pcRGcUP3568lm+
+	 a3X/gifiDx/o2kwjtcC+MhtkCsM0aXpYUIcAbfU+EednoSPbuFKmTXEHyS+EF61B3W
+	 tFhjXrguURs2eDdL9daoche4qvwDCxGED9GOC9ULUCdffXbzFNtx7COa0r6joJ561I
+	 wQNIIdqQ6Had7RDDPjofRp5qIqwthJe7jK/Nw1gFQAwem9ph9kFC4XkzhhcqM2iUdU
+	 tXAWMtoCmaJEd0QcEQJAz5o10sbBqVBoi9ILhg6+NpZrWQLM2L4k7Bt9bDLyImvDo9
+	 GrRZmZmGVJmJg==
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53436e04447so1264061e87.1;
+        Thu, 05 Sep 2024 18:57:15 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUWSr35u8+BxUQlRqR4VKJ5dyGmiSzqqhzbY0ggS4BupzQOjZHWPXgcumEqIbDqrGVFK4oR8rrUXR3lSg==@vger.kernel.org, AJvYcCUjwfyBcISTinXoip/y5RP9iQSGFoOgU1b5VUmU0QII1WhbBBd2lT0nhNC97R4B+tYLL8vKh5VC/w3O@vger.kernel.org, AJvYcCVQgXPdepP0OYOgBX90YFL/9qcYXlTr/7/zIwFHtg4Qna9jzgVQnoyNIxrdYW8aPmJoNbYSTXJfYPg1udMNERs=@vger.kernel.org, AJvYcCXSt6gyg4DCSwFjF3SGsDNX9vgStDibEKwVtgIE5Hei+SW0D2iiLkkpN42L3boP/ah+Qggu0cPts1hSFw==@vger.kernel.org, AJvYcCXlVb6JTIcFexEQvXJjhfkWNfe5A8jOcBtBZlukCZrGvn3flhTZbH5z39+h/Umk7zV5u+iM9NoupPFIR11+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzwr53nDmwpI0f2eZfiUwnGo5jzSvDToMCYXp09e/wxhXbqp9nv
+	+DTehJ/xEMc8HGlaYX6us5H5LHcc0tFwYY+SB0dzlm95mv6GisRRGZ1bYBOMTiOKPNfCZLu79/a
+	UlteuWSHSKCLpLxQBt6lYchxSDws=
+X-Google-Smtp-Source: AGHT+IEyHAyF5odK5wNGdrU91US5ikWBw7iV5drivufpH4J1DDqUMcH1u85P5o28YcdYFP088Ih/883620s0jcsYKJA=
+X-Received: by 2002:a05:6512:2806:b0:52f:1b08:d2d8 with SMTP id
+ 2adb3069b0e04-53657dbb114mr374742e87.7.1725587834140; Thu, 05 Sep 2024
+ 18:57:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] drm/bridge: synopsys: Add DW HDMI QP TX Controller
- support library
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <20240819-b4-rk3588-bridge-upstream-v4-2-6417c72a2749@collabora.com>
- <20240827-armored-magnificent-badger-ffb025@houat>
- <34422b7a-ce70-445d-a574-60ac36322119@collabora.com>
- <20240902-turtle-of-major-glory-efb4e8@houat>
- <6e20410a-a24d-4454-8577-2cff65319a2a@collabora.com>
- <20240903-archetypal-soft-wildebeest-b5ea68@houat>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240903-archetypal-soft-wildebeest-b5ea68@houat>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240904234803.698424-1-masahiroy@kernel.org> <20240904234803.698424-5-masahiroy@kernel.org>
+ <20240905141723.GC1517132-robh@kernel.org>
+In-Reply-To: <20240905141723.GC1517132-robh@kernel.org>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Fri, 6 Sep 2024 10:56:37 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASRtTDkVC7rBz6EEsu64LykMVRqyDODUCycGD1deLC9pw@mail.gmail.com>
+Message-ID: <CAK7LNASRtTDkVC7rBz6EEsu64LykMVRqyDODUCycGD1deLC9pw@mail.gmail.com>
+Subject: Re: [PATCH 04/15] kbuild: add generic support for built-in boot DTBs
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org, 
+	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
+	linux-openrisc@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/3/24 11:09 AM, Maxime Ripard wrote:
-> On Tue, Sep 03, 2024 at 12:12:02AM GMT, Cristian Ciocaltea wrote:
->> On 9/2/24 10:36 AM, Maxime Ripard wrote:
->>> On Sat, Aug 31, 2024 at 01:21:48AM GMT, Cristian Ciocaltea wrote:
->>>> On 8/27/24 11:58 AM, Maxime Ripard wrote:
->>>>> On Mon, Aug 19, 2024 at 01:29:29AM GMT, Cristian Ciocaltea wrote:
->>>>>> +static irqreturn_t dw_hdmi_qp_main_hardirq(int irq, void *dev_id)
->>>>>> +{
->>>>>> +	struct dw_hdmi_qp *hdmi = dev_id;
->>>>>> +	struct dw_hdmi_qp_i2c *i2c = hdmi->i2c;
->>>>>> +	u32 stat;
->>>>>> +
->>>>>> +	stat = dw_hdmi_qp_read(hdmi, MAINUNIT_1_INT_STATUS);
->>>>>> +
->>>>>> +	i2c->stat = stat & (I2CM_OP_DONE_IRQ | I2CM_READ_REQUEST_IRQ |
->>>>>> +			    I2CM_NACK_RCVD_IRQ);
->>>>>> +
->>>>>> +	if (i2c->stat) {
->>>>>> +		dw_hdmi_qp_write(hdmi, i2c->stat, MAINUNIT_1_INT_CLEAR);
->>>>>> +		complete(&i2c->cmp);
->>>>>> +	}
->>>>>> +
->>>>>> +	if (stat)
->>>>>> +		return IRQ_HANDLED;
->>>>>> +
->>>>>> +	return IRQ_NONE;
->>>>>> +}
->>>>>
->>>>> If the scrambler is enabled, you need to deal with hotplug. On hotplug,
->>>>> the monitor will drop its TMDS ratio and scrambling status, but the
->>>>> driver will keep assuming it's been programmed.
->>>>>
->>>>> If you don't have a way to deal with hotplug yet, then I'd suggest to
->>>>> just drop the scrambler setup for now.
->>>>
->>>> Thanks for the heads up!
->>>>
->>>> HPD is partially handled by the RK platform driver, which makes use of
->>>> drm_helper_hpd_irq_event(). Since the bridge sets DRM_BRIDGE_OP_DETECT
->>>> flag, the dw_hdmi_qp_bridge_detect() callback gets executed, which in turn
->>>> verifies the PHY status via ->read_hpd() implemented as
->>>> dw_hdmi_qp_rk3588_read_hpd() in the platform driver.
->>>
->>> It's not only about hotplug detection, it's also about what happens
->>> after you've detected a disconnection / reconnection.
->>>
->>> The framework expects to keep the current mode as is, despite the
->>> monitor not being setup to use the scrambler anymore, and the display
->>> remains black.
->>
->> AFAICS, the ->atomic_enable() callback is always invoked upon
->> reconnection, hence the scrambler gets properly (re)enabled via
->> dw_hdmi_qp_setup().
-> 
-> No, it's not.
-> 
->>>> During my testing so far it worked reliably when switching displays with
->>>> different capabilities.  I don't have a 4K@60Hz display at the moment, but
->>>> used the HDMI RX port on the Rock 5B board in a loopback connection to
->>>> verify this mode, which triggered the high TMDS clock ratio and scrambling
->>>> setup as well.
->>>
->>> How did you test exactly?
->>
->> I initially tested with Sway/wlroots having an app running
->> (eglgears_wayland) while unplugging/replugging the HDMI connectors in
->> every possible sequence I could think of (e.g. several times per
->> display, switching to a different one, repeating, switching again, etc).
->>
->> I've just retested the whole stuff with Weston and confirm it works as
->> expected, i.e. no black screen (or bad capture stream for the 4K@60Hz
->> case) after any of the reconnections.
-> 
-> Then I guess both sway and weston handle uevent and will change the
-> connector mode on reconnection.
-> 
-> It's not mandatory, and others will just not bother and still expect the
-> output to work.
-> 
-> I guess the easier you can test this with is modetest.
+On Thu, Sep 5, 2024 at 11:17=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Thu, Sep 05, 2024 at 08:47:40AM +0900, Masahiro Yamada wrote:
+> > Some architectures embed boot DTBs in vmlinux. A potential issue for
+> > these architectures is a race condition during parallel builds because
+> > Kbuild descends into arch/*/boot/dts/ twice.
+> >
+> > One build thread is initiated by the 'dtbs' target, which is a
+> > prerequisite of the 'all' target in the top-level Makefile:
+> >
+> >   ifdef CONFIG_OF_EARLY_FLATTREE
+> >   all: dtbs
+> >   endif
+> >
+> > For architectures that support the embedded boot dtb, arch/*/boot/dts/
+> > is visited also during the ordinary directory traversal in order to
+> > build obj-y objects that wrap DTBs.
+> >
+> > Since these build threads are unaware of each other, they can run
+> > simultaneously during parallel builds.
+> >
+> > This commit introduces a generic build rule to scripts/Makefile.vmlinux
+> > to support embedded boot DTBs in a race-free way. Architectures that
+> > want to use this rule need to select CONFIG_GENERIC_BUILTIN_DTB.
+> >
+> > After the migration, Makefiles under arch/*/boot/dts/ will be visited
+> > only once to build only *.dtb files.
+> >
+> > This change also aims to unify the CONFIG options used for embedded DTB=
+s
+> > support. Currently, different architectures use different CONFIG option=
+s
+> > for the same purposes.
+> >
+> > The CONFIG options are unified as follows:
+> >
+> >  - CONFIG_GENERIC_BUILTIN_DTB
+> >
+> >    This enables the generic rule for embedded boot DTBs. This will be
+> >    renamed to CONFIG_BUILTIN_DTB after all architectures migrate to the
+> >    generic rule.
+> >
+> >  - CONFIG_BUILTIN_DTB_NAME
+> >
+> >    This specifies the path to the embedded DTB.
+> >    (relative to arch/*/boot/dts/)
+> >
+> >  - CONFIG_BUILTIN_DTB_ALL
+> >
+> >    If this is enabled, all DTB files compiled under arch/*/boot/dts/ ar=
+e
+> >    embedded into vmlinux. Only used by MIPS.
+>
+> I started to do this a long time ago, but then decided we didn't want to
+> encourage this feature. IMO it should only be for legacy bootloaders or
+> development/debug. And really, appended DTB is more flexible for the
+> legacy bootloader case.
 
-Indeed, modetest doesn't trigger a mode change on reconnection.
-This is handled now in v6:
 
-https://lore.kernel.org/all/20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com/
+I learned CONFIG_ARM_APPENDED_DTB today.
 
-Thanks,
-Cristian
+
+
+> In hindsight, a common config would have been easier to limit new
+> arches...
+>
+> >
+> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> > ---
+> >
+> >  Makefile                 |  7 ++++++-
+> >  drivers/of/Kconfig       |  6 ++++++
+> >  scripts/Makefile.vmlinux | 44 ++++++++++++++++++++++++++++++++++++++++
+> >  scripts/link-vmlinux.sh  |  4 ++++
+> >  4 files changed, 60 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Makefile b/Makefile
+> > index 145112bf281a..1c765c12ab9e 100644
+> > --- a/Makefile
+> > +++ b/Makefile
+> > @@ -1417,6 +1417,10 @@ ifdef CONFIG_OF_EARLY_FLATTREE
+> >  all: dtbs
+> >  endif
+> >
+> > +ifdef CONFIG_GENERIC_BUILTIN_DTB
+> > +vmlinux: dtbs
+> > +endif
+> > +
+> >  endif
+> >
+> >  PHONY +=3D scripts_dtc
+> > @@ -1483,7 +1487,8 @@ endif # CONFIG_MODULES
+> >  CLEAN_FILES +=3D vmlinux.symvers modules-only.symvers \
+> >              modules.builtin modules.builtin.modinfo modules.nsdeps \
+> >              compile_commands.json rust/test \
+> > -            rust-project.json .vmlinux.objs .vmlinux.export.c
+> > +            rust-project.json .vmlinux.objs .vmlinux.export.c \
+> > +               .builtin-dtbs-list .builtin-dtb.S
+> >
+> >  # Directories & files removed with 'make mrproper'
+> >  MRPROPER_FILES +=3D include/config include/generated          \
+> > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> > index dd726c7056bf..5142e7d7fef8 100644
+> > --- a/drivers/of/Kconfig
+> > +++ b/drivers/of/Kconfig
+> > @@ -2,6 +2,12 @@
+> >  config DTC
+> >       bool
+> >
+> > +config GENERIC_BUILTIN_DTB
+> > +     bool
+>
+> So that we don't add new architectures to this, I would like something
+> like:
+>
+> # Do not add new architectures to this list
+> depends on MIPS || RISCV || MICROBLAZE ...
+>
+> Yes, it's kind of odd since the arch selects the option...
+>
+> For sure, we don't want this option on arm64. For that, I can rely on
+> Will and Catalin rejecting a select, but on some new arch I can't.
+>
+> > +
+> > +config BUILTIN_DTB_ALL
+> > +     bool
+>
+> Can this be limited to MIPS?
+
+
+I am fine with hard-coded "depends on"
+if this feature is discouraged.
+
+
+
+
+> > +
+> >  menuconfig OF
+> >       bool "Device Tree and Open Firmware support"
+> >       help
+> > diff --git a/scripts/Makefile.vmlinux b/scripts/Makefile.vmlinux
+> > index 5ceecbed31eb..4626b472da49 100644
+> > --- a/scripts/Makefile.vmlinux
+> > +++ b/scripts/Makefile.vmlinux
+> > @@ -17,6 +17,50 @@ quiet_cmd_cc_o_c =3D CC      $@
+> >  %.o: %.c FORCE
+> >       $(call if_changed_dep,cc_o_c)
+> >
+> > +quiet_cmd_as_o_S =3D AS      $@
+> > +      cmd_as_o_S =3D $(CC) $(a_flags) -c -o $@ $<
+> > +
+> > +%.o: %.S FORCE
+> > +     $(call if_changed_dep,as_o_S)
+> > +
+> > +# Built-in dtb
+> > +# --------------------------------------------------------------------=
+-------
+> > +
+> > +quiet_cmd_wrap_dtbs =3D WRAP    $@
+> > +      cmd_wrap_dtbs =3D {                                             =
+         \
+> > +     echo '\#include <asm-generic/vmlinux.lds.h>';                   \
+> > +     echo '.section .dtb.init.rodata,"a"';                           \
+> > +     while read dtb; do                                              \
+> > +             symbase=3D__dtb_$$(basename -s .dtb "$${dtb}" | tr - _); =
+ \
+> > +             echo '.balign STRUCT_ALIGNMENT';                        \
+>
+> Is this always guaranteed to be at least 8 bytes? That's the required
+> alignment for dtbs and assumed by libfdt.
+
+
+I think so.
+
+
+include/asm-generic/vmlinux.lds.h defines it as 32.
+
+
+We can loosen the alignment to 8, but for safety,
+I just copied this from scripts/Makefile.lib
+because 32-byte alignment is what we do now.
+
+
+
+
+
+
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
