@@ -1,148 +1,106 @@
-Return-Path: <devicetree+bounces-100672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB54896E8FD
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 07:11:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2471896E944
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 07:31:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65AFCB20C61
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 05:11:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C05741F2480F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 05:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7786A357;
-	Fri,  6 Sep 2024 05:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 573B54962B;
+	Fri,  6 Sep 2024 05:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0dbrYDEx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jBpUlW94"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72A0B28370
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 05:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6460819;
+	Fri,  6 Sep 2024 05:31:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725599458; cv=none; b=qefJH6GaoUMWfGgOEqPqnkmZmN4K96L4KGy7QV1/L55r1317OSr0l62b4WLyihzM4Vjq+LdrqYt0mxHsZl0KaWjvTO6HS1Oj4+sAzuXT3XdaAwuTqhY4A2ErRMJztxJzKibj6cm7RNOeeuG2HZbWH7mumceflCIxg7BuD+wxJFU=
+	t=1725600664; cv=none; b=Lz4VoRFGtIyGxdvkY+0cqq0Y4gz75bVVXVq7tgwChElNmhGPfoac5xuIgPmdPASuZTJv+YcsuDgPZ7g9lLJpKL8wh2yS8/BvRsgUJpCmSLlbYkUnm9Qhvy3rssKeVNUaMusC7U5qIKNhV5CZ/UnJxeGksallZMfBHlN91dwpmKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725599458; c=relaxed/simple;
-	bh=cox6Nxc7egq7AZwig73/QCORN5Qr52T6ViOyEhlj3O8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QJ2Jk1WOddxHnrhm4/SYTNHpjoy+JXMSfy8Vs9DCNgf54wmphwalo6i/GThuGIfq7z+GhOz3csPF2T+Pg4Be8HEUwNZMtNQSfdbNiys/pViGnC+1blnA+cmsC9dVI8eUyg+EfLrZa+UmIGJpktEjw5cWKNGTE3J9Cn3TTpJsuDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0dbrYDEx; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-500fcf0b32fso454919e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 22:10:56 -0700 (PDT)
+	s=arc-20240116; t=1725600664; c=relaxed/simple;
+	bh=xYRDfR7w4cvg0JE/SSRywsqcsK0ZVzCAWzanLbugdKA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ozeSsn/uQUIKJytVJvS3nCEOJ+sarkK8UQuuoMS8qlZvo2OSmZsVVdac3ZLrsn/1pCBIT9EYl9ZkAIVs0B5kq2KXnQ1j4GnfRW/lgYJab3uBwPIpMo1KyH01Mdfa4nPzeDwlz1wEBKRel9TK8i7VCX5wlF8I6Aj30sDQ2/qFnto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jBpUlW94; arc=none smtp.client-ip=209.85.160.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-27051f63018so807246fac.3;
+        Thu, 05 Sep 2024 22:31:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725599455; x=1726204255; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wtfXwtPAreobELFhytY+AFMWjfhxEApMqwxtGAQPF5w=;
-        b=0dbrYDExodw5q7EDMLIShbzIwomA2I0yPOB3ohTD3RoOxGmuD/OGGCghTkVH0PPAj4
-         9ivPhju8s80+UJPxswRnSUoWQusFIzJuQprvAqRB9aZkp0yTT1L2i0xRRS7teJBaYdvE
-         dJ+m1iNYRTSqo72H6y64BRAp6yfecZ0NVAxdSultcJ5GLHVI0YBfX/vpGkXjtBkGGden
-         Cmbp7kvbEbFnZUe6PfCj9HUt//cisgoyqiEKAbgVSafzxMJWLKMCZMC5c/Q4FUUfQY0O
-         X9tdDOZfzWEYY7V2t66KJRrEy8Peg9n1t0PhU/ZXwpuSlE3BsTG9g/8EQLNyd5ljFaTz
-         WBfA==
+        d=gmail.com; s=20230601; t=1725600662; x=1726205462; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6rlojunx8GHInoLGCMntB+ZOAAQdHr69FYIGEn6wPK4=;
+        b=jBpUlW94u2O00FJBeUjV2kg8BXGjxNNslSyhgHzr3RO8etnGQnxEMFC/8pW4CpemXR
+         yORi4qbRdk252AITaiWtlkpchRMr8H6S/uAuI8MsQyKJapTntKiXcnZv3jCm14yl+8lX
+         +Nc9OZSNGlQUzG0W1ygjpoJqMWl9i1GCYwtcxl3KktCdrEx6Z6tpgYyxYqz0j3h94VwJ
+         oPg/xQv1uzQLFrxh4BIj75wGAPL6APXnlKKJH/Xn2FA6zPNovGjV11COnZg34Fk3MN1a
+         iHjNDqYS6yI8li5pDtKlLzy+NmxyJ9xFsaDVWdB7K5NZ4euK5TAUiXqUNSSkjLRFzO68
+         Wa0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725599455; x=1726204255;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wtfXwtPAreobELFhytY+AFMWjfhxEApMqwxtGAQPF5w=;
-        b=Y1iGHAttkGXbc0+Tq17yz3mpml+6XmXETxcvYQWak0pnydAi3p1qF4tqAoj/dg66Sq
-         FrG3LbX6ePuVwv0YmeQkex4n0nzWGGFtC8TA8GoqrauJjRQrFj+M50qoeH1B4NF5Th7S
-         hXLXBW5JaSJp4Vz0zKDYnfT8jUEVJc/aa9R3d3U0gwmJbdDADgYi+94dwR+8nCSEWnRk
-         iTFApZW4tInFRZdr4SQqp6R8u+yfV7piaalNxMSa+ivxhM4zXn1jsmU5Pa8/AXRsq4F/
-         jiH+XHyicY3XoQmut3vBcfR+WHOKt9zbj1azAdkwdxQ3Y0iWTqO4cCAol/s2Sw9lgSPb
-         iN/g==
-X-Forwarded-Encrypted: i=1; AJvYcCXMfRdbw3wQ53szC0u8+aSsrMRdECODmsDwPYjkpRnOKrluuAtkaFHTQ4vLvFrSBOFuf5og0qMfCtnq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzroca04gSEEinLYMiMQWQTztGywLg7LBQzAjoiofeEwtTDWEsS
-	8Xr7SRGTC3kU8fA8B55cQwdYHi7YIBtRowJYc7J7vHQaajH47r6wa7mh79tMXMCw461izax0azF
-	YdQSoV9y2XkYhMejnBtuFcCauilYhgNtlsY0GEg==
-X-Google-Smtp-Source: AGHT+IEqVjx1uqswLtj04+06JSwnBwvixcQ6zE4PjuQ1mK8KKr5zEv9HB8xSLkouZcGTEIYAbRmMs9ehQ/l1tT2eMuw=
-X-Received: by 2002:a05:6122:470f:b0:4fc:eda5:634f with SMTP id
- 71dfb90a1353d-50207c2e984mr1486839e0c.4.1725599455053; Thu, 05 Sep 2024
- 22:10:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725600662; x=1726205462;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6rlojunx8GHInoLGCMntB+ZOAAQdHr69FYIGEn6wPK4=;
+        b=a82bvOdAnp12TFRuTF+EIYjROxRyLL52xKj9aWWmhJ4mdwcZUK5bj82M/yiXdKoMLM
+         22LEKXIUChCaHmYeMFwDyFyCIh9bCM//051i2PJCJ2+FILfxmPJHSNgxnQYI1XWAvXBd
+         ajNEmPZDWygonpyV/Sd2NKTb9r4Sg1Kwh4l+8br5KtbPhfrI/5z2A3iX77XIqEVe7sIB
+         ZN5f5VmFQGQ+kfuDDu9qluALgDXNSmIX51x1ml3cEnZ3hlhP5lF8Evxaypif3RGi0zud
+         MI2Bss3ryIDVG2T0elAEM2fvH7HRuMFTlSw3zOginmhFtFeqVkdgaz4DnJ/UHXb+hLmN
+         KarQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9YS5PTcJZfn1NQBuFoD+FBAoUApf5HPRBCJnLANkjb4FaE2VC4QgP+B1s0OMY7iox1SqUARFA08L+IPmh@vger.kernel.org, AJvYcCWMhiOFukfpPSTydgS6WKCKGRgrg6a9m8fZQ5tyQ2HyviDfOcdKZMzcF/80J1EFUniIn4YpVO94DnDR1Z4=@vger.kernel.org, AJvYcCWVTqoKx0lcXMDP4XQ0PdTwEZnFRhV+RSkryuBzgZBYPnGQ3ap0KgLJJVDq9zr1QJKSXUY9ah1n5B0Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1qi9YulzCGmo30zNECKEoegWiD4kQsLIWukBrGy/ZSqebTXCr
+	FGCFDmChosqIlbx20nVDgLshrvW7K9GSLAn/VHd/JWIFAbzy3Sf9
+X-Google-Smtp-Source: AGHT+IGJhDHSeGSMTpCmO/BHOqkArJRSxKtV4pDbBAprpmrun6J+Xrj7nn6JiGoluHx0bZKiryy6YA==
+X-Received: by 2002:a05:6871:580f:b0:260:e4ac:72e5 with SMTP id 586e51a60fabf-27b82edbfb5mr244718fac.25.1725600661782;
+        Thu, 05 Sep 2024 22:31:01 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:1de8:3062:3230:1a45])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d770499e7asm532882a12.91.2024.09.05.22.31.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2024 22:31:01 -0700 (PDT)
+Date: Thu, 5 Sep 2024 22:30:58 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: input: convert rotary-encoder to yaml
+Message-ID: <ZtqTklejytV9n74t@google.com>
+References: <20240811214656.3773098-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240905082404.119022-1-aardelean@baylibre.com>
- <20240905082404.119022-2-aardelean@baylibre.com> <7ba70132-e661-4f4f-a0e3-0ed1efc1aecb@baylibre.com>
-In-Reply-To: <7ba70132-e661-4f4f-a0e3-0ed1efc1aecb@baylibre.com>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Fri, 6 Sep 2024 08:10:44 +0300
-Message-ID: <CA+GgBR8H1TP1Ux8Fgohx0SkctxdvmtBZfqW+-k4cZsram5yScA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/8] iio: adc: ad7606: add 'bits' parameter to channels macros
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
-	gstols@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240811214656.3773098-1-Frank.Li@nxp.com>
 
-On Fri, Sep 6, 2024 at 12:25=E2=80=AFAM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> On 9/5/24 3:23 AM, Alexandru Ardelean wrote:
-> > There are some newer additions to the AD7606 family, which support 18 b=
-it
-> > precision.
-> > Up until now, all chips were 16 bit.
-> >
-> > This change adds a 'bits' parameter to the AD760X_CHANNEL macro and ren=
-ames
-> > 'ad7606_channels' -> 'ad7606_channels_16bit' for the current devices.
-> >
-> > The AD7606_SW_CHANNEL() macro is also introduced, as a short-hand for I=
-IO
-> > channels in SW mode.
-> >
-> > Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
-> > ---
->
-> ...
->
-> > diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-> > index 0c6a88cc4695..771121350f98 100644
-> > --- a/drivers/iio/adc/ad7606.h
-> > +++ b/drivers/iio/adc/ad7606.h
-> > @@ -8,7 +8,7 @@
-> >  #ifndef IIO_ADC_AD7606_H_
-> >  #define IIO_ADC_AD7606_H_
-> >
-> > -#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all) { \
-> > +#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all, bits) {   \
-> >               .type =3D IIO_VOLTAGE,                            \
-> >               .indexed =3D 1,                                   \
-> >               .channel =3D num,                                 \
-> > @@ -19,24 +19,26 @@
-> >               .scan_index =3D num,                              \
-> >               .scan_type =3D {                                  \
-> >                       .sign =3D 's',                            \
-> > -                     .realbits =3D 16,                         \
-> > -                     .storagebits =3D 16,                      \
-> > +                     .realbits =3D (bits),                     \
-> > +                     .storagebits =3D (bits),                  \
->
-> Technically OK in this patch since bits is still always 16 but we
-> can avoid changing the same line again later to:
->
->         (bits) > 16 ? 32 : 16
->
-> if we just do that in this patch.
+On Sun, Aug 11, 2024 at 05:46:55PM -0400, Frank Li wrote:
+> Convert binding doc rotary-encoder.txt to yaml format.
+> 
+> Additional change:
+> - Only keep one example.
+> 
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/imx8mn-dimonoff-gateway-evk.dtb: /rotary-encoder:
+>     failed to match any schema with compatible: ['rotary-encoder']
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-sure
-will update
+Applied, thank you.
 
->
->
-> >                       .endianness =3D IIO_CPU,                  \
-> >               },                                              \
-> >  }
+-- 
+Dmitry
 
