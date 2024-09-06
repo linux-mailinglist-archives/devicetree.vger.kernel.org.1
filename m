@@ -1,186 +1,174 @@
-Return-Path: <devicetree+bounces-100649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EFDE96E6D3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 02:27:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D37496E6DF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 02:33:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E90F7286591
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 00:27:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 979B9B21FEE
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 00:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05372C8CE;
-	Fri,  6 Sep 2024 00:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39C810A0C;
+	Fri,  6 Sep 2024 00:33:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOwVxMUD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eUrPZAbV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD53711CA0;
-	Fri,  6 Sep 2024 00:27:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A819460;
+	Fri,  6 Sep 2024 00:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725582472; cv=none; b=H1Zlz56OMFhosKJRflU+IAjMOHLGWRAKlLjKpgJN4pJMQcyDm5jDDkmgB5LoTd38CUEdS2B+TQ3qgPsgfcTfobwyO9UnhZ0izL5ppBUqiBX75uUQOr28lcuqPPCjBHcyzGpsfQjARWOtqDOpxhKz5tqf47s6fG3ZVZ4EWjyacY0=
+	t=1725582804; cv=none; b=BvEI514iELDU5b3VlMD2EKcVYWvqfN42BZoYcPjL2aM0ziCupHV3ve3dsHPRQP5fSYJ8AiiX3R1lATEg/kyY/lGYDvpc7uNfGCUlfr7v4N6utRKb+dt5BtB3XqROUInRTc4LNfCGm/I3yEDFukSO/4ONdzXkC+b/rM7+fMi++m8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725582472; c=relaxed/simple;
-	bh=K6wrMA4NMaFGP3Sp4vPuMOOJ9z42CsYsjU+yH0k9ZpI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fPcebXaHVrWzJLv+seXy56sYciXc3bZ/sNxDsjIubeXhAnOMwLx5ckZ11R8uSAS20t4Q0rfzgXI/IFJaeASu4psk1fi5vGM6q0X5w3IT80cNpBWP466nrP76GlZyDFh/aCEA2JmAdIh7F+PfNHlJK/OZwhoNMJPdoXCqDLFlC0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOwVxMUD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D0E1C4CEC3;
-	Fri,  6 Sep 2024 00:27:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725582472;
-	bh=K6wrMA4NMaFGP3Sp4vPuMOOJ9z42CsYsjU+yH0k9ZpI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=rOwVxMUDAoXw5SklKVcoMdydUgoE4tk0T3VLu7rhVnOSII9MTQcVpt3Mq6X4bZb7v
-	 kPPu+HWw2WxGF6UXBpC1fYcQJutF4XD3aOFuan5GSAy529cwBq5zVYnkR+4D5IKnOO
-	 e9MkFI1cRjZ6hUGQyqoPDKY0lZYN6sc8x/WafGh1wdi1HeK6e7LjylwpwqyIXvG0kQ
-	 6RVVoymO+D6WddBCPvgSzjuK609lqstj+BXismhUT9t4LjLH+N83RdD+7DM0sJckxD
-	 S5+vrNVSBlDc23DA3kJYxXe44ac1DgPer1vZCDMOehUT7w7r4NZGHb405u28pWxdTX
-	 6jYGs3ZXqn7kA==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f3fea6a0a9so13492721fa.0;
-        Thu, 05 Sep 2024 17:27:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUt8xl16IemRnq1Qbx5vm1/bL5WufGwQ7aEvbpCgx2SKbzWUlk1XHql9WnExx4oKQp/92naiPZrkLtl4w==@vger.kernel.org, AJvYcCVe7prjHu/DOJkKOQCqkHKAoBHIpxc98UA4f0PWlRAxkQZIdIIDdj5RIPXIp5udvvCLDNs169OhR/0fljbpZEw=@vger.kernel.org, AJvYcCVh4w85pFU+o5Ci/0/W93YzYCgygdzOp6Kjm0wdQicFJlMOwXahNLBOQSWk+aAYRnEd3OUHlADz1uK+@vger.kernel.org, AJvYcCWfDMwFf2ZAeJ48Hc7jmOD01/WYJ2Hxo8kmsuJynC7q3Bf3CYa/SYvZTf79cD4o7D9fkQZPJJLGi7t/8syc@vger.kernel.org, AJvYcCWwYARhhnWq17GGFnjgpDwccmPq/GlNlDS6J3pAk9jkiCrB8NFNkTl8YYEMq70WcGIxIcjRlmAGwN7g6g==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAzh53mDklLi6ijIq+3Tegk/ctDAyjsxseroSBMy9Q7e5vev8s
-	V1jI+l+iig2D5O9svf5Zf+OLGICxn9yQf5kZPJD0Hkec81shcGt+k4JofAYPKNxHiMGxc8bPVZ1
-	EC3Pw2V75sYJ7pszKd+QiLNTxe+I=
-X-Google-Smtp-Source: AGHT+IECEJXsJFKh8FBdQC2eV1kk62AdTyv6v0z/HVmN55+fHGg4x6UhGG8hEo+Rv28CTDwPO53RFRQNS5OnAybvF2s=
-X-Received: by 2002:a05:651c:545:b0:2f5:66a:627 with SMTP id
- 38308e7fff4ca-2f657a9793emr24818091fa.0.1725582471070; Thu, 05 Sep 2024
- 17:27:51 -0700 (PDT)
+	s=arc-20240116; t=1725582804; c=relaxed/simple;
+	bh=+SaG3HdyFFS6K9MpKkI9hXwABspq9K6Y/xEfFlNjwaQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=d+TpEWifA1KAHo/nHMvnmkyKHFlfzzDwhzMDRyFAa5szaT7Jbg5JlkhpZxAK8+rlpYm5iywm9AG24YordQOrY6E/TYkdcxO7yuVLEVtgHfIp6epKnWm0TCSooOLG7G2jxVvBIYqtrLUGZFaij5BKrH2M7pPZWo5DnQ5OYNf6MKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eUrPZAbV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 485IPqe9021679;
+	Fri, 6 Sep 2024 00:33:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SwknKDa+lL+CY82EpJaY5gO6oLbM8Im90CEUllwVcbA=; b=eUrPZAbVGIVTJTzI
+	49Q8/TnFwsTTfT+Tpp+9FLYp+yK+Kujfx/F9kC34Z8dry3Ocg2B8VMnacer6wIut
+	5vibmOPsPKK62Ndw0ksJsl3gSrurkTagsxuuCFeg6jdx+MwOZRI+JtMbPiHuWq+x
+	33QN6Yojju+xQoMgqtTn7jk4E24fJLf+BIWYbboOk0rvcnLfCu+h2odyOy7v7l1H
+	UvDPL2EbN5aBATa/4+7dDi4PbqG5UU0UbWxwB62d5KLWHASmqF2a6924EOrsKJQS
+	PPaicy9St3aUUHz5McWeTHB9Flhdm0syqR0PpnKvAHAZoN3dLwsaVRPI4CPoXotv
+	1KcYDA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41fhws0m55-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Sep 2024 00:33:08 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4860X8Pk000975
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Sep 2024 00:33:08 GMT
+Received: from [10.110.102.234] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Sep 2024
+ 17:33:04 -0700
+Message-ID: <9930c7b8-cddb-4c70-a283-8f0a09d6c30d@quicinc.com>
+Date: Thu, 5 Sep 2024 17:33:04 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240904234803.698424-1-masahiroy@kernel.org> <20240904234803.698424-15-masahiroy@kernel.org>
- <20240905143850.GD1517132-robh@kernel.org>
-In-Reply-To: <20240905143850.GD1517132-robh@kernel.org>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Fri, 6 Sep 2024 09:27:13 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASbhsgMyo--WrvLaUyaJQdAFrpS48L_E=T1MVgvZhB4Bw@mail.gmail.com>
-Message-ID: <CAK7LNASbhsgMyo--WrvLaUyaJQdAFrpS48L_E=T1MVgvZhB4Bw@mail.gmail.com>
-Subject: Re: [PATCH 14/15] kbuild: rename CONFIG_GENERIC_BUILTIN_DTB to CONFIG_BUILTIN_DTB
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org, 
-	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
-	linux-openrisc@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple
+ virtual instances
+To: Peng Fan <peng.fan@nxp.com>,
+        "sudeep.holla@arm.com"
+	<sudeep.holla@arm.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+CC: "cristian.marussi@arm.com" <cristian.marussi@arm.com>,
+        "arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "kernel@quicinc.com" <kernel@quicinc.com>,
+        "quic_psodagud@quicinc.com" <quic_psodagud@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <20240905201217.3815113-1-quic_nkela@quicinc.com>
+ <PAXPR04MB84593380F220DEC7974058D9889E2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <PAXPR04MB84593380F220DEC7974058D9889E2@PAXPR04MB8459.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 5FU7gNIv7pcATW_JWxF4Eeg1uiw2XcEQ
+X-Proofpoint-GUID: 5FU7gNIv7pcATW_JWxF4Eeg1uiw2XcEQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-05_17,2024-09-05_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ impostorscore=0 mlxlogscore=999 adultscore=0 bulkscore=0 clxscore=1011
+ suspectscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409060002
 
-On Thu, Sep 5, 2024 at 11:38=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+
+On 9/5/2024 5:25 PM, Peng Fan wrote:
+>> Subject: [PATCH v3] dt-bindings: firmware: arm,scmi: allow multiple
+>> virtual instances
+> Just wonder, what do you mean virtual?
+
+Just a term to indicate that these are different SCMI instances within
+the same OS. In one of the series from Cristian, he used the term
+'virtual SCMI instances' so I used the same term here.
+
+Thanks,
+
+-Nikunj
+
 >
-> On Thu, Sep 05, 2024 at 08:47:50AM +0900, Masahiro Yamada wrote:
-> > Now that all architectures have migrated to the generic built-in
-> > DTB support, the GENERIC_ prefix is no longer necessary.
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > ---
-> >
-> >  Makefile                             | 2 +-
-> >  arch/arc/Kconfig                     | 2 +-
-> >  arch/loongarch/Kconfig               | 1 -
-> >  arch/microblaze/Kconfig              | 2 +-
-> >  arch/mips/Kconfig                    | 1 -
-> >  arch/nios2/platform/Kconfig.platform | 1 -
-> >  arch/openrisc/Kconfig                | 2 +-
-> >  arch/riscv/Kconfig                   | 1 -
-> >  arch/sh/Kconfig                      | 1 -
-> >  arch/xtensa/Kconfig                  | 2 +-
-> >  drivers/of/Kconfig                   | 2 +-
-> >  scripts/Makefile.vmlinux             | 2 +-
-> >  scripts/link-vmlinux.sh              | 2 +-
-> >  13 files changed, 8 insertions(+), 13 deletions(-)
+> Thanks,
+> Peng.
 >
-> > diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
-> > index e1d3e5fb6fd2..70f169210b52 100644
-> > --- a/arch/loongarch/Kconfig
-> > +++ b/arch/loongarch/Kconfig
-> > @@ -388,7 +388,6 @@ endchoice
-> >  config BUILTIN_DTB
-> >       bool "Enable built-in dtb in kernel"
-> >       depends on OF
-> > -     select GENERIC_BUILTIN_DTB
-> >       help
-> >         Some existing systems do not provide a canonical device tree to
-> >         the kernel at boot time. Let's provide a device tree table in t=
-he
->
-> > diff --git a/arch/nios2/platform/Kconfig.platform b/arch/nios2/platform=
-/Kconfig.platform
-> > index c75cadd92388..5f0cf551b5ca 100644
-> > --- a/arch/nios2/platform/Kconfig.platform
-> > +++ b/arch/nios2/platform/Kconfig.platform
-> > @@ -38,7 +38,6 @@ config NIOS2_DTB_PHYS_ADDR
-> >  config BUILTIN_DTB
-> >       bool "Compile and link device tree into kernel image"
-> >       depends on !COMPILE_TEST
-> > -     select GENERIC_BUILTIN_DTB
->
-> > --- a/arch/riscv/Kconfig
-> > +++ b/arch/riscv/Kconfig
-> > @@ -1110,7 +1110,6 @@ config RISCV_ISA_FALLBACK
-> >  config BUILTIN_DTB
-> >       bool "Built-in device tree"
-> >       depends on OF && NONPORTABLE
->
-> Humm, maybe this NONPORTABLE option could be common and used to
-> accomplish what I want here...
-
-
-
-I do not know how this can prevent new architectures from enabling
-BUILTIN_DTB.
-
-New architectures can select BUILTIN_DTB together with NONPORTABLE.
-
-
-
-> > -     select GENERIC_BUILTIN_DTB
->
-> > diff --git a/arch/sh/Kconfig b/arch/sh/Kconfig
-> > index 3b772378773f..b09019cd87d4 100644
-> > --- a/arch/sh/Kconfig
-> > +++ b/arch/sh/Kconfig
-> > @@ -648,7 +648,6 @@ config BUILTIN_DTB
-> >       bool "Use builtin DTB"
-> >       default n
-> >       depends on SH_DEVICE_TREE
-> > -     select GENERIC_BUILTIN_DTB
->
-> > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> > index 5142e7d7fef8..53a227ca3a3c 100644
-> > --- a/drivers/of/Kconfig
-> > +++ b/drivers/of/Kconfig
-> > @@ -2,7 +2,7 @@
-> >  config DTC
-> >       bool
-> >
-> > -config GENERIC_BUILTIN_DTB
-> > +config BUILTIN_DTB
-> >       bool
->
-> I'm confused. We can't have the same config option twice, can we?
-
-
-We can.
-
-
-Documentation/kbuild/kconfig-language.rst says:
-
-  A config option can be defined multiple times with the same
-  name, but every definition can have only a single input prompt and the
-  type must not conflict.
-
-
-
---=20
-Best Regards
-Masahiro Yamada
+>> This change extends scmi node name so as to allow multiple virtual
+>> SCMI instances.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>> ---
+>>
+>> Changes in v3:
+>> 	- Added Reviewed-by tag
+>> 	- Removed the patch from original series[1]
+>>
+>> Changes in v2:
+>> 	- Fixed scmi nodename pattern
+>>
+>> [1]:
+>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2F
+>> lore.kernel.org%2Fall%2F20240903220240.2594102-1-
+>> quic_nkela%40quicinc.com%2F&data=05%7C02%7Cpeng.fan%40nxp.c
+>> om%7C350f57ac3042490bed0808dccde71b35%7C686ea1d3bc2b4c6f
+>> a92cd99c5c301635%7C0%7C0%7C638611639683033003%7CUnknow
+>> n%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI
+>> 6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=zYYNSdVovTG
+>> h5BBUqW%2BRNyxoO7EXrUtTppk4MiywowU%3D&reserved=0
+>> ---
+>>  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git
+>> a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> index 54d7d11bfed4..5d79b15a1610 100644
+>> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> @@ -27,7 +27,7 @@ anyOf:
+>>
+>>  properties:
+>>    $nodename:
+>> -    const: scmi
+>> +    pattern: '^scmi(-[0-9]+)?$'
+>>
+>>    compatible:
+>>      oneOf:
+>> --
+>> 2.34.1
+>>
 
