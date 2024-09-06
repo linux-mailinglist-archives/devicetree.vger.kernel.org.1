@@ -1,139 +1,80 @@
-Return-Path: <devicetree+bounces-101000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A1696FD6B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 23:33:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D1896FD72
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 23:34:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45EB5288D8B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 21:33:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47BA228327A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 21:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF56E1581F9;
-	Fri,  6 Sep 2024 21:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E08715A876;
+	Fri,  6 Sep 2024 21:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ti3Zt129"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SH4bQPVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DD6B1586C8;
-	Fri,  6 Sep 2024 21:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C9815A873;
+	Fri,  6 Sep 2024 21:34:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725658383; cv=none; b=NJUgEdIkOZz4cBlloi1vp1n53Osvf0Deo7sUpc/XJPAGMVf4xTL+leh9qgKpj3of6ufu+g1iXh5WLYCjFVFTIPdh/l8OVESAGktS1PEM+/WdaECpgJH1DswrtLfojK9yKK8zeU4Mfh+fxKdWPhxRasfS3BalV7oarexOX4kTV7s=
+	t=1725658456; cv=none; b=CYiWFFHdXO/b72Q+6OefscjiDcC/h5AbOmrTT4DSJqAo2nAm2nFhzhnIFga+uzZ/Rgu4lPQmHKi/tvMhtGRMFkfviAP1/9zeHX/taeQDaYpRLhJni/hswDNC2YvB7qUctHB9g+wgLbkmr2WBSfPTKesPo3qwH68p/PtQtfEaock=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725658383; c=relaxed/simple;
-	bh=yk7jDSXoYMEFlecMrN6Gvifr3ubzAVcFiHCdMz8wE+g=;
+	s=arc-20240116; t=1725658456; c=relaxed/simple;
+	bh=LsqIGW0rsV7PA/R0xtnA8cvL6IwTl0TYb2NNhWWD+gQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hWX761b4hGo4k1GBSkoro6mBgaPLUbaPctTx4QtAsjlQfKa/shvl1elUXxIqxsvl/44OtsBnUWfS1hmKuMBlUL0dxyWsqfveTAIIP1gWo69p6HkcL0QuIiutUsSr1e5nw3uf2/l4P4Zh3Le7gwa7/75SOTVAerqi9vPmL3IoQ/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ti3Zt129; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725658382; x=1757194382;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yk7jDSXoYMEFlecMrN6Gvifr3ubzAVcFiHCdMz8wE+g=;
-  b=Ti3Zt129ICIraj9Ah8VzjeCK+vFG0lkJ3wzd9Hzv0iSSGy0vAQMsiBiq
-   6DDWtalPQZxxWHz1JW+ilBiugFgzzmhRVkfuG/j0UrC687wFXGf9Sjnjt
-   Hs3Nxfgym/6ju4x5CesiWNP0E8XDWl6Q3J3h7sEPT7lg4E2vqvKMVdOE7
-   EIS8I4xgC1tlk8uBmrhSbuYPWZ8c29f44l5QercpQZhbStuMQgaddveLA
-   Qa3rcUo6hqW8KP0ht/86HjGwKOxjE6lKxq/86DnzNkx0poak/LbI404kN
-   pVohMgy2N3gwwj0tiW3d9WVdhVaMWOXqzbcQIOtDyBYRjlQEwQrvyZFiw
-   w==;
-X-CSE-ConnectionGUID: W7o7MBgwQaKEZNAR4q2ifg==
-X-CSE-MsgGUID: no5hwR0LQ1mQecpn/FnzFg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24295246"
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; 
-   d="scan'208";a="24295246"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2024 14:33:02 -0700
-X-CSE-ConnectionGUID: LiCxS02BSiWxEySkjhdZNw==
-X-CSE-MsgGUID: 070hv0L6SyuFFre0c2YfuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,209,1719903600"; 
-   d="scan'208";a="66618472"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 06 Sep 2024 14:32:59 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1smgZc-000BkJ-1p;
-	Fri, 06 Sep 2024 21:32:56 +0000
-Date: Sat, 7 Sep 2024 05:32:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Emil Gedenryd <emil.gedenryd@axis.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andreas Dannenberg <dannenberg@ti.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Emil Gedenryd <emil.gedenryd@axis.com>,
-	kernel@axis.com
-Subject: Re: [PATCH 2/3] iio: light: opt3001: add support for TI's opt3002
- light sensor
-Message-ID: <202409070539.HDm71PcK-lkp@intel.com>
-References: <20240905-add_opt3002-v1-2-a5ae21b924fb@axis.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AcczQJgCZXiMA8aI4pEqO4klO7XtUbGGuEDr3ga3uqWemguBwLKyhnd5YMLJZJHdYNsLbbpafW8sUIixLcNCyU7fZ/EgR/nWHU8Cb1BK+Rsyv9+Dt6dv+02mhlwcBx8EuXUzJPg1YMgzz1qZJug1OfRmA9fV+b6ktc0zkKi+dYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SH4bQPVF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A537BC4CEC4;
+	Fri,  6 Sep 2024 21:34:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725658455;
+	bh=LsqIGW0rsV7PA/R0xtnA8cvL6IwTl0TYb2NNhWWD+gQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SH4bQPVFOKoVzj9dZ63y9w5QXlawr7DaSYhk3RX5UC4WCNyIs7igo96lsO8ceFvSB
+	 OL2odBd59sT2FBH2cr09PwheO27x2Nc8vfPVuP44u0tvI43U+eUC1ezadra5UPS9Tf
+	 8mHglVvvVxeSNC54ChoLfEZkyxDlbG/TcsKCizkkK6Ub7eMvEXMNOuRAnWbdKcgam9
+	 o9PDe+ydof0uukLOND0NAZcgy8yLmp6wxRQ/N5jAOso/iqfIgI3bOgfaWPoEEJhnyu
+	 SazBDQ6JLW2H+wbTLqFLdWI+fFHIVQCmJ5FFDJpZP0iPyChd6kbkONotC4d2yg7F71
+	 szhnMD6OAAUVg==
+Date: Fri, 6 Sep 2024 16:34:14 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Saravana Kannan <saravanak@google.com>
+Subject: Re: [PATCH] of: address: Unify resource bounds overflow checking
+Message-ID: <172565841388.2236408.1589932943840066610.robh@kernel.org>
+References: <20240906-of-address-overflow-v1-1-19567aaa61da@linutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240905-add_opt3002-v1-2-a5ae21b924fb@axis.com>
-
-Hi Emil,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 5be63fc19fcaa4c236b307420483578a56986a37]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Emil-Gedenryd/iio-light-opt3001-add-missing-full-scale-range-value/20240905-182748
-base:   5be63fc19fcaa4c236b307420483578a56986a37
-patch link:    https://lore.kernel.org/r/20240905-add_opt3002-v1-2-a5ae21b924fb%40axis.com
-patch subject: [PATCH 2/3] iio: light: opt3001: add support for TI's opt3002 light sensor
-config: arm-randconfig-004-20240907 (https://download.01.org/0day-ci/archive/20240907/202409070539.HDm71PcK-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240907/202409070539.HDm71PcK-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409070539.HDm71PcK-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/iio/light/opt3001.c:313:29: error: initializer element is not a compile-time constant
-                   .type = opt3001_chip_info.chan_type,
-                           ~~~~~~~~~~~~~~~~~~^~~~~~~~~
-   drivers/iio/light/opt3001.c:324:29: error: initializer element is not a compile-time constant
-                   .type = opt3002_chip_info.chan_type,
-                           ~~~~~~~~~~~~~~~~~~^~~~~~~~~
-   2 errors generated.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240906-of-address-overflow-v1-1-19567aaa61da@linutronix.de>
 
 
-vim +313 drivers/iio/light/opt3001.c
+On Fri, 06 Sep 2024 14:25:19 +0200, Thomas Weiﬂschuh wrote:
+> The members "start" and "end" of struct resource are of type
+> "resource_size_t" which can be 32bit wide.
+> Values read from OF however are always 64bit wide.
+> 
+> Refactor the diff overflow checks into a helper function.
+> Also extend the checks to validate each calculation step.
+> 
+> Signed-off-by: Thomas Weiﬂschuh <thomas.weissschuh@linutronix.de>
+> ---
+>  drivers/of/address.c | 45 ++++++++++++++++++++++++++-------------------
+>  1 file changed, 26 insertions(+), 19 deletions(-)
+> 
 
-   310	
-   311	static const struct iio_chan_spec opt3001_channels[] = {
-   312		{
- > 313			.type = opt3001_chip_info.chan_type,
-   314			.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED) |
-   315					BIT(IIO_CHAN_INFO_INT_TIME),
-   316			.event_spec = opt3001_event_spec,
-   317			.num_event_specs = ARRAY_SIZE(opt3001_event_spec),
-   318		},
-   319		IIO_CHAN_SOFT_TIMESTAMP(1),
-   320	};
-   321	
+Applied, thanks!
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
