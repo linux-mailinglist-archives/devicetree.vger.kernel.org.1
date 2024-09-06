@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55D096F1D5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:46:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01D1196F1DB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:47:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B4A5283B06
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:46:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EF1A1C20C65
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC57B158866;
-	Fri,  6 Sep 2024 10:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975171C9EB1;
+	Fri,  6 Sep 2024 10:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5r0Gg/A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lGL+AT2N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8572E81745;
-	Fri,  6 Sep 2024 10:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC711C9DDB;
+	Fri,  6 Sep 2024 10:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725619570; cv=none; b=sG5/+pumciowtWwbmL3W0q/zDvMHUdaMy3nmSguW9lxH0tWh0Sdc9b5CJmpXA3yjRq4xMFLltfbjUwS8iaLOteuHFezUMGCkDYRvop6hCUZPd0EWrGzeI3OpnABfL5HK+UDvqmyfm9ZSYX0qRNZndDLFRsnkV2bO/VvD8SRP+RY=
+	t=1725619626; cv=none; b=gsiP7uvJX0RBOjqtWDpgOPinJAM+r3xunx0uzuamnzirfg4pjc+73dA5E6CnZgwHJdZq1/4fnz53VUME/3LdcCbgtI/4kz42UG91TjDNDjuTYf0f+RmSKMUDUl31frqBrPxy0jVf0qzfOPjAAv9pYNhxtwo4DA2RpBKpTSYJYiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725619570; c=relaxed/simple;
-	bh=iaE8y5YoYhfpFba1YseRGylErwoiRZhZF3rHOSka+6g=;
+	s=arc-20240116; t=1725619626; c=relaxed/simple;
+	bh=1DW9iAORIxp+PoH96CkXOy9qP351Hb9iFxHasCFudmM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HF5ZW17om0VgZ7MX5VwzGI6HisDZMSueW+i2ySCQs7upsMMQyu6CzWHQ8tFoyv1O2m1SeBr2htz+O6QYCPM4PZbhS8XWTVamX9IMm4ztN6kIjwz6ARArdNmV0cDz3g0Szx4V43gpqBPByJrGsh7mezZ4PxXiAZKH9jData0nMRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5r0Gg/A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F6C4C4CEC4;
-	Fri,  6 Sep 2024 10:46:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bcThRWUdWfByPcwzdGSU0ickzgyPjrqxsQZY7soo3ismuVRbnxkD799P64S/K9aYUWPAQ6KZLQd4ewM8glPvqZDeUMOiAICGJajOjfW9s26UoigEkchIMO3caGvdi4AXS7XoVe7bnwgCOqqeCmldJVobg4Ayce6w7g6TUwg2eVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lGL+AT2N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D837C4CEC4;
+	Fri,  6 Sep 2024 10:47:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725619570;
-	bh=iaE8y5YoYhfpFba1YseRGylErwoiRZhZF3rHOSka+6g=;
+	s=k20201202; t=1725619625;
+	bh=1DW9iAORIxp+PoH96CkXOy9qP351Hb9iFxHasCFudmM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M5r0Gg/AvwxzzI9pVcVFx26Bq6V+WfPe8iOiKpjWsOkB/nT68OzOssni2GmRNSqza
-	 bt4nx05gvgg4SbsWrUEzW/zWgFD/Hcb3KYuOMEYIwQxReX64knEpdx9t0Z2IwM5nQD
-	 xEjbB/qCOCpdzQqoaJ3BcD7bCdqHwLzrLG0p4Dffyewrg1LBy6AVWf2du/UKk0KgEt
-	 sSNlIhe8hESwzoJuo2mxD46gEpSgcs85Mt2BVlV2ZsIuD7NJfUszhFldhVvoNVeyHb
-	 0Br7QGda8V1bmjDRturSdv/ZF+QksB/dw8GFfhUbGsnvB8FM0JTyoqTfDfFKkWGbbz
-	 pPsfyfNxHy9KQ==
-Message-ID: <7ebc9676-d66c-4d82-902b-e824bcb2c921@kernel.org>
-Date: Fri, 6 Sep 2024 12:46:03 +0200
+	b=lGL+AT2NojmOMYMF2+/9iiYfi/oHQbTtbCbCd4qWyHk8USkAe2aXGGZLHlYWuJcea
+	 kap1xsUUdkZg9ttPMNCiEYM7IrcVZTrysDds2Qljj0m60uwZ8SICJF+Ret+rsUn+Xo
+	 tubLNXfQiMxgRHE1X66WjDPDdzKjylOOUEG2fPtqJ7/PgDAV9U+ZFMIcIFsKGrOIET
+	 QpIdfF8/h5NwvpLo5nXj0eQFQI2NbexH4EcQS8LQ39l/6B6QhXSZGUX+CMDPwXJHPp
+	 ZJbnQX4KsL1nKW5EWavfTBcyJuahbE1PJNwXcRzXfgQGxLgvLi/oZCv/xiFyaQkIF+
+	 9j6LEqxh0kJFg==
+Message-ID: <6d6070e7-ce2a-4f73-8901-eb0492084bf6@kernel.org>
+Date: Fri, 6 Sep 2024 12:46:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible string
- for CPM5 controller-1.
-To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
- "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>,
- "Simek, Michal" <michal.simek@amd.com>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
- <kw@linux.com>
-References: <20240906093148.830452-1-thippesw@amd.com>
- <20240906093148.830452-2-thippesw@amd.com>
- <e985a9d4-b398-4290-a4b9-08999c6a9f71@kernel.org>
- <SN7PR12MB7201F82C9BC29ACEE7E209028B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: sophgo: add bindings for sg2042
+To: Yixun Lan <dlan@gentoo.org>, Chen Wang <unicornxw@gmail.com>
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, unicorn_wang@outlook.com, inochiama@outlook.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+ chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
+ chunzhi.lin@sophgo.com
+References: <cover.1725536870.git.unicorn_wang@outlook.com>
+ <6e5fb37472b916cb9d9abfbe3bea702d8d0d9737.1725536870.git.unicorn_wang@outlook.com>
+ <20240906024435-GYA153340@gentoo>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,64 +106,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <SN7PR12MB7201F82C9BC29ACEE7E209028B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+In-Reply-To: <20240906024435-GYA153340@gentoo>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/09/2024 12:43, Havalige, Thippeswamy wrote:
-> Hi Krzysztof
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Friday, September 6, 2024 3:26 PM
->> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>;
->> manivannan.sadhasivam@linaro.org; robh@kernel.org; linux-
->> pci@vger.kernel.org; bhelgaas@google.com; linux-arm-
->> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
->> krzk+dt@kernel.org; conor+dt@kernel.org; devicetree@vger.kernel.org
->> Cc: Gogada, Bharat Kumar <bharat.kumar.gogada@amd.com>; Simek,
->> Michal <michal.simek@amd.com>; lpieralisi@kernel.org; kw@linux.com
->> Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible string
->> for CPM5 controller-1.
->>
->> On 06/09/2024 11:31, Thippeswamy Havalige wrote:
->>> The Xilinx Versal premium series has CPM5 block which supports two
->>> typeA Root Port controller functionality at Gen5 speed.
->>>
->>> Add compatible string to distinguish between two CPM5 rootport
->> controller1.
->>
->> Subjects NEVER end with full stops.
-> Thanks, Update in the next patch series.
->>>
->>> Error interrupt register and bits for both the controllers are at
->>> different.
->>>
->>> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
->>> ---
->>>  Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>> b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>> index 989fb0fa2577..b63a759ec2d7 100644
->>> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>> @@ -17,6 +17,7 @@ properties:
->>>      enum:
->>>        - xlnx,versal-cpm-host-1.00
->>>        - xlnx,versal-cpm5-host
->>> +      - xlnx,versal-cpm5-host1
->>
->> That's poor naming. "-1.00" and now "1". Get your naming reasonable...
-> Here 1.00 represents the IP versioning and host1 represents controller-1. 
+On 06/09/2024 04:44, Yixun Lan wrote:
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+> also "#pwm-cells"?
 
-I understand but you repeating the same is not helping. Make it better
-and next time upstream "host1-1" compatible.
-
-Number of ports, BTW, comes from ports, right? So no need for the
-compatible.
+pwm.yaml has it?
 
 Best regards,
 Krzysztof
