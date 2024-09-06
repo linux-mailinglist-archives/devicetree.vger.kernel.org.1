@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-100866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53FD196F421
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:19:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1330896F425
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1E421F25576
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:19:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82B49B23EF6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 941DF15530C;
-	Fri,  6 Sep 2024 12:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9AD1CB313;
+	Fri,  6 Sep 2024 12:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vs9z3/VQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZE+5Lhbt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60871CC163
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 12:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11A113AA38;
+	Fri,  6 Sep 2024 12:19:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725625149; cv=none; b=e54xwSLXZEO7/RHH9dcQd+gbJZCV0icZWN7aJSbKRpUpdqLj/k2jK5zxoz/stejYEvVbpwZ+043A2ghUQQUcM0cfSEELvXUnfkaa5fq6mP1POxSbceacfxoLuYx+p1Tf8SCTC0RgsKNu09pzeGu8HSeG+O+uWyzJBMgj+ibY448=
+	t=1725625168; cv=none; b=i0LjxT3PDCCKlAYzzcrzbpSA8eYMVY24RAdYK6m6ZxhO/FATG5jiQNlUVUo7TB2DaPKUjpjbCAxAwdu4GBNEqEerQpNBZ7QBvdd8DF/nTNiq5p2Ln41n/It5ea0rW9p2zMFmpsL62M3ItiHOABDEOFW/wDj1Xlb8Ib3Rs9eFtvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725625149; c=relaxed/simple;
-	bh=HqOSDRzaUnhGRLIxiVCdBa6LDvnvu4v5GyRQUYJsm/U=;
+	s=arc-20240116; t=1725625168; c=relaxed/simple;
+	bh=ONhmdxT2raMlQ/0JmCNJK7yka2owPt7Lfw0uw4wEsvQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LoXtVoyfYZGvfXphqFEVHWQqVWiNtWAdHu18IkDuG9OdFg7MxpJrMTVBR/Dsm1AtIdPVVQjDf7xdW/hpj1QO2bJaxu48KwamPzI7l6FrZiJznyZP+UyQHbXCdeZ7NodvjgQCmpoz+mJ0tjEz5+hNgQ43daSQO1xJj4IVR8lwnT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vs9z3/VQ; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53659867cbdso862013e87.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 05:19:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725625146; x=1726229946; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qZnagyoqEY/AkJWYldk9pxOfEXujNgZibP5iAapvYX0=;
-        b=vs9z3/VQWSG+WBTY9jfLRmKAy1vxB3i/pq/dugye5DTrHoHdP8afzUbnF/7nVdGPtG
-         4FQT6T4TQ+U7cXqUalUxnk0K5u63OWwvIH9eTjxteO9O059pGtfCae0iG3P9M6KCb2EH
-         LBdhxyPkxRmcK3aak/g3Sxu9yGuSiJQN9Kgo1EwMuD+Lu+FoZDBp58q4u/p2fqgRGTCK
-         vBTyUaiWP6X804KARU8LiOpw4GFnb61ikgVK1FDT7w/JHviwDktHCiLjOVpv2TrIo0aa
-         PfgUWc99xTIo/ffMZbdCpu6Ry49ouGD9hinnG9Xj2Ia4DoBLtQuo366Tkg1tFxwIM1ma
-         22sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725625146; x=1726229946;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qZnagyoqEY/AkJWYldk9pxOfEXujNgZibP5iAapvYX0=;
-        b=baquz1Op0Aa+xtdMa9kW0FT25IGIJWrcIp6Cvjfu/1Y+2aDG1Gd3/xoGmhApJeAtRv
-         dnWMhFN8ISQObt9I9lXI09G7wfYvxpZTugmiylpRdAGnphPxAspfwS4B1C+ijloCuyYa
-         xtIWezCPcqdcgvKbZKzEWSO+bL/uR8Hu8Q7vJ1Soc1gh2v3D4xppe8s6s7crLgJ42uG0
-         gK/Ekb716lgrwMDq8NCRwnOcf+3bWsBB8284BmY3/Xu9FoaClnCpr3/UL9cUzvDDQ1Lk
-         FAEKzJaJ2SN9jXBHuGwwIwXRyYPLCR4Ww3K6FKgQ61A4zjdvkJ9vqrq10FMOatGmHzc4
-         VoBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVfnR3GYIy9AaxDcuUiv47c916VO6/WglTLCTCOj0sRWT+KnzvPlhzAUNALSQqGN6dEzPKjodSutOT3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVPoHNGE2LaJhbTYTsgr0zGacmA8hEjvdAc/UUiCQvw04bYvDz
-	T3B+3Q/S4TRg0zlgEulxxOuB5NKnNYbd9yHEOLK1BZSyrCuznQLS0/bdlJgB/Uk=
-X-Google-Smtp-Source: AGHT+IG74zIVOWX6bQluN94U4nrkIyRLMi3pWfBQY/TtSYoHYIc0SP1Bhu1/uDRSooGa/P5qsj690Q==
-X-Received: by 2002:a05:6512:3e02:b0:52e:9921:6dff with SMTP id 2adb3069b0e04-536587b54efmr2266960e87.26.1725625145620;
-        Fri, 06 Sep 2024 05:19:05 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a83ed05c9sm117085866b.114.2024.09.06.05.19.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Sep 2024 05:19:05 -0700 (PDT)
-Message-ID: <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
-Date: Fri, 6 Sep 2024 13:19:03 +0100
+	 In-Reply-To:Content-Type; b=i6voob+JCJ9IKwa7xNE3iyR9QagF/a+e2RlYp95Cvb2u7GdZ2Iq2vCBjTiEov1e8z1/RETfH84RsvJg5D2yijVTec72kxYb+3H86Mhgd/MoQLKM1P8x0veMOyTkxnqJxplfq2kTGEvJ+ESIs2S+LrddHRG/dGhut+Bn7xn0p088=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZE+5Lhbt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBB55C4CEC4;
+	Fri,  6 Sep 2024 12:19:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725625167;
+	bh=ONhmdxT2raMlQ/0JmCNJK7yka2owPt7Lfw0uw4wEsvQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZE+5LhbtNwwiZOcCHnJY6R2kxNDAnIXEJeeW7FqDAwL3+L0zSOtopdsEyDFoxO3xz
+	 /gWiJhlke0/Z0QVfmvwVFSDe7jDZ2BaxB5yZ6kUQ5cdxcCrfgBLMOqFRG4OetqDEmj
+	 laZnKMZutd9AAAcBcnVGEVgED0pY9XL8HDaxtiaibGLuXNw4a+PfU6P4HLeUr+GEwD
+	 pRmOlJrMnF4I5GTg+/S1w90UFIMhPVJ1h0yQyUvxOnVSlKMTUCUZuNqYxWOotjwz7E
+	 m3x4/LltrLaUr5l7NIcOAVBKFVFS4wsDx0iIMJlBzG8HS6GciOtb3pfVRfVaZl46fw
+	 B6TgH5xndGTog==
+Message-ID: <958c52de-e77d-451c-93e9-e87373f4ae50@kernel.org>
+Date: Fri, 6 Sep 2024 14:19:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,77 +50,161 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
-To: Richard Acayan <mailingradian@gmail.com>,
- Andi Shyti <andi.shyti@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-media@vger.kernel.org,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20240904020448.52035-9-mailingradian@gmail.com>
- <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
- <ZtpqrANbJurWNOzV@radian>
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible string
+ for CPM5 controller-1.
+To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "bhelgaas@google.com" <bhelgaas@google.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc: "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>,
+ "Simek, Michal" <michal.simek@amd.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+ <kw@linux.com>
+References: <20240906093148.830452-1-thippesw@amd.com>
+ <20240906093148.830452-2-thippesw@amd.com>
+ <e985a9d4-b398-4290-a4b9-08999c6a9f71@kernel.org>
+ <SN7PR12MB7201F82C9BC29ACEE7E209028B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+ <7ebc9676-d66c-4d82-902b-e824bcb2c921@kernel.org>
+ <SN7PR12MB7201E4EB5370AFFE8FCAB56A8B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <ZtpqrANbJurWNOzV@radian>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <SN7PR12MB7201E4EB5370AFFE8FCAB56A8B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/09/2024 03:36, Richard Acayan wrote:
-> On Thu, Sep 05, 2024 at 10:09:34PM +0200, Andi Shyti wrote:
->> Hi Richard,
+On 06/09/2024 12:50, Havalige, Thippeswamy wrote:
+> Hi Krzysztof,
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Friday, September 6, 2024 4:16 PM
+>> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>;
+>> manivannan.sadhasivam@linaro.org; robh@kernel.org; linux-
+>> pci@vger.kernel.org; bhelgaas@google.com; linux-arm-
+>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>> krzk+dt@kernel.org; conor+dt@kernel.org; devicetree@vger.kernel.org
+>> Cc: Gogada, Bharat Kumar <bharat.kumar.gogada@amd.com>; Simek,
+>> Michal <michal.simek@amd.com>; lpieralisi@kernel.org; kw@linux.com
+>> Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible string
+>> for CPM5 controller-1.
 >>
->> On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
->>> This adds support for the camera subsystem on the Snapdragon 670.
+>> On 06/09/2024 12:43, Havalige, Thippeswamy wrote:
+>>> Hi Krzysztof
 >>>
->>> As of next-20240902, camss seems to be a bit broken, but the same series
->>> works on stable (although it is much less reliable now that the CCI clock
->>> frequency is not being assigned).
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>>>> Sent: Friday, September 6, 2024 3:26 PM
+>>>> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>;
+>>>> manivannan.sadhasivam@linaro.org; robh@kernel.org; linux-
+>>>> pci@vger.kernel.org; bhelgaas@google.com; linux-arm-
+>>>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>>>> krzk+dt@kernel.org; conor+dt@kernel.org; devicetree@vger.kernel.org
+>>>> Cc: Gogada, Bharat Kumar <bharat.kumar.gogada@amd.com>; Simek,
+>> Michal
+>>>> <michal.simek@amd.com>; lpieralisi@kernel.org; kw@linux.com
+>>>> Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible
+>>>> string for CPM5 controller-1.
+>>>>
+>>>> On 06/09/2024 11:31, Thippeswamy Havalige wrote:
+>>>>> The Xilinx Versal premium series has CPM5 block which supports two
+>>>>> typeA Root Port controller functionality at Gen5 speed.
+>>>>>
+>>>>> Add compatible string to distinguish between two CPM5 rootport
+>>>> controller1.
+>>>>
+>>>> Subjects NEVER end with full stops.
+>>> Thanks, Update in the next patch series.
+>>>>>
+>>>>> Error interrupt register and bits for both the controllers are at
+>>>>> different.
+>>>>>
+>>>>> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml | 1 +
+>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+>>>>> b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+>>>>> index 989fb0fa2577..b63a759ec2d7 100644
+>>>>> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+>>>>> @@ -17,6 +17,7 @@ properties:
+>>>>>      enum:
+>>>>>        - xlnx,versal-cpm-host-1.00
+>>>>>        - xlnx,versal-cpm5-host
+>>>>> +      - xlnx,versal-cpm5-host1
+>>>>
+>>>> That's poor naming. "-1.00" and now "1". Get your naming reasonable...
+>>> Here 1.00 represents the IP versioning and host1 represents controller-1.
 >>
->> I am not understanding this bit: is this series making it better
->> or not? Can you please clarify what is broken, what is less
->> reliable and what works?
+>> I understand but you repeating the same is not helping. Make it better and
+>> next time upstream "host1-1" compatible.
+>>
+>> Number of ports, BTW, comes from ports, right? So no need for the
+>> compatible.
 > 
-> When applying this camss series and some camera sensor patches on
-> linux-next, the Pixel 3a seems to hang when camera capture starts.
+> To differentiate between the registers for Controller-0 and Controller-1, I am utilizing a compatible string in the driver. This approach enables the driver to identify and manage the registers associated with each controller based on the specified compatible string.
 > 
-> When applying the same patches on stable, the camera does not cause the
-> Pixel 3a to hang.
 
-Right so -next isn't stable that's not exactly a revelation.
+Please don't state the obvious... I know how Linux kernel works. But
+maybe I wasn't clear - do you have ports property there? I guess not, as
+it is PCI.
 
+What I claim here, is that you have exactly the same hardware. Same
+hardware, same compatible.
 
-> When these device tree properties from the previous series were removed:
-> 
-> 			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
-> 			assigned-clock-rates = <37500000>;
-> 
-> the CCI would sometimes fail to probe with the error:
+Best regards,
+Krzysztof
 
-Right, we don't have clk_set_rate in the cci driver.
-
-Maybe just leave the assigned clock for this submission and we can do a 
-sweep of fixes to CCI at a later stage including setting the clock 
-instead of having it be assigned.
-
-> 
-> 	[   51.572732] i2c-qcom-cci ac4a000.cci: deferred probe timeout, ignoring dependency
-> 	[   51.572769] i2c-qcom-cci ac4a000.cci: probe with driver i2c-qcom-cci failed with error -110
-> 
-> On further testing, the rate can be set to 19.2 MHz, and there would be
-> no failure (or rather, it wouldn't happen often enough for me to witness
-> it).
-
-That's expected 19.2 and 37.5 MHz are supported by CAMCC for your part.
-
----
-bod
 
