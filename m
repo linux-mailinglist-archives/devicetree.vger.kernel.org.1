@@ -1,101 +1,100 @@
-Return-Path: <devicetree+bounces-100909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C947D96F759
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:49:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2306C96F773
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 16:52:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 721871F21076
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:49:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BE251C212D6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 214D11D1F75;
-	Fri,  6 Sep 2024 14:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 325A41D1757;
+	Fri,  6 Sep 2024 14:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OaD/ctsQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W1a7U9Qa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92B81D1F70;
-	Fri,  6 Sep 2024 14:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01138172BA9;
+	Fri,  6 Sep 2024 14:52:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725634152; cv=none; b=rEkNlnsmU7ew8HVwI+49lNFiGwFNKM1QAmfB5wExmrV5YPY2QyJr05G27ph6MVrfTd9sO3ZXSJt9Xvat+0mNn+rX22fhzXnnDvc4jsDNx01DKFpnxRx4oGFcpbYDUW+1yxwTJQVha3YoT4j6pjadMHzwtaUX14li7jOnjpvFE0w=
+	t=1725634368; cv=none; b=SopD/R8wY56JkTOEOsHFFqX9Xk2s/gOgKJpZly1Q9xLT/Py6eYlF2yIwArCKc0s95c8s2MgyqlYHtAM+9dnA6tqHCvQjwIZpmT2jWa/ArTzjD0dXA968GNP42bDA75Jiofdk6Cbst1xwMzfa/xjASywulYwIjCR0Nz6TwUsR21A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725634152; c=relaxed/simple;
-	bh=q8NFAWndytiAyShc0RsLlL4YDsYpowOBThyUoQqO95s=;
+	s=arc-20240116; t=1725634368; c=relaxed/simple;
+	bh=3kB8JTs7MpRpTKnwYyM1DCNjyPquzyUbSpH6JXUZUnM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SCW5WKJ2quooCRxmma8vpaxZAUhNAB/RHJ3JNnAdhg9jZoXBglFybMAyD8i5rRFeqTWtlvkLrrWJwHEJvl0LfeIuNNkRZbPJ0irvmNVtLyjbP3z0PiPG/lfOrbL42bUd/EjbxxAn4UDdPW9Rt5N+9M3w5XphYGeK60k2CvKueZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OaD/ctsQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C872C4CEC6;
-	Fri,  6 Sep 2024 14:49:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rRO2IXt5Mleji8tRudjYk8cgaDbBdJKbDklZM1IfoNAT/+QWODkqgZBfU7gUGVnHYZhtke7veJf0rXAUrVsu5aGlXp2rTONP2gwKFaf1MjlK2LpGme91QWEAkv0vMrsqKAO8iIVGnoEuAJiltNI4vHyBUnZJbG96ypBL1ZU+cgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W1a7U9Qa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 693ABC4CEC4;
+	Fri,  6 Sep 2024 14:52:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725634151;
-	bh=q8NFAWndytiAyShc0RsLlL4YDsYpowOBThyUoQqO95s=;
+	s=k20201202; t=1725634367;
+	bh=3kB8JTs7MpRpTKnwYyM1DCNjyPquzyUbSpH6JXUZUnM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OaD/ctsQ4iXV0nrrBeprUpDNN1sNKukqG5wifippuTa4rHRjuJpdK/TrFPcXxzTAJ
-	 0j0FCL9XPfj6DfxlvbrdEArx5OeRhJv9PxUGM0ywA0hBFpnNyxLV9ipG/H6UxfN5mw
-	 LOYgISlNE1Evk+Ele42Te9tlIDrAiwQuLN601Gv1S3nDTfYxz6zwtMZDIGaHlDfitK
-	 tu9xxdAN4w06DN04yZDy6Cbn2WJkteUm73zD/iawT+h//cohpXHZJEhwHwxN7YUZZ/
-	 +kzppUP86j/FZbLB5Hbni2hADgcU2PTdZWGcojSto3Ye0ZU/KT8NpeR6VyGf3kONoP
-	 eTv7flitAbWsg==
+	b=W1a7U9QaAMgphGBt51CclHTBBa3dFP2CS/XL8IxjXjBp91XcNnaWySmhmI6cP3whm
+	 tnM8/gWUFzuQgQS3YjhimhFkDG5aqjDQHpW3I7eKlKYwOWwUSyrtTNshvhvggP8KYB
+	 BqTvkU7usoAr+9z+BTwYVuLbapL2wgDc/sHVgrReqStFvsVHCDIHxYN4oZJkZTcvie
+	 T7W+nh2nqHjpzXsr+tKUdnbX+vT20GmFYGQvFvHFWE6bL1vtmngRyUc9w8PDJdgVhz
+	 960XEXIBvD+s4b03eTmJNzbnwsHydcXss0tRRgDp5GOpGL/DtmY1BOXOM1qWrjNRm/
+	 3dnMfjW/2ZFJw==
 Received: from johan by xi.lan with local (Exim 4.97.1)
 	(envelope-from <johan@kernel.org>)
-	id 1smaHD-000000005ly-40G9;
-	Fri, 06 Sep 2024 16:49:32 +0200
-Date: Fri, 6 Sep 2024 16:49:31 +0200
+	id 1smaKh-000000005HB-4529;
+	Fri, 06 Sep 2024 16:53:08 +0200
+Date: Fri, 6 Sep 2024 16:53:07 +0200
 From: Johan Hovold <johan@kernel.org>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+Cc: Kalle Valo <kvalo@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Baryshkov <dbaryshkov@gmail.com>,
 	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sc8280xp-x13s: keep less
- regulators always-on
-Message-ID: <ZtsWe6IDKU4rvHIT@hovoldconsulting.com>
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	ath11k@lists.infradead.org
+Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc8280xp-crd: model the PMU of
+ the on-board wcn6855
+Message-ID: <ZtsXUyBRV9yDeq1P@hovoldconsulting.com>
 References: <20240905122023.47251-1-brgl@bgdev.pl>
- <20240905122023.47251-5-brgl@bgdev.pl>
- <Ztm6fzmoeWcCpqvi@hovoldconsulting.com>
- <CAMRc=McDHi5EVpBjsuFE+JHgBhh84tsT6xr5PWO5yeU8zbS99Q@mail.gmail.com>
- <n7scbcdbse4m4rilkegqsinallgkryayjzqojnxtr7qozgxwp7@7mgropizypbz>
+ <20240905122023.47251-2-brgl@bgdev.pl>
+ <6vikrqhdnkefzpahhhtz2hpi62jvcwnzclm7touwtnpxdzvgrf@uc7r6a7bbjek>
+ <CAMRc=MeijX2by+MS_vq_OVx25JO6z=zNfymta35h11mbm=vmtQ@mail.gmail.com>
+ <CALT56yOP+un5nkxuirJVg=gr7fo4Hqjt1ew3z-=F2J_Y_RcTqg@mail.gmail.com>
+ <CAMRc=Mci-8R1Oe3Fe+1E+K-7khzwBPgn_8SQSUPXthpE4032Pw@mail.gmail.com>
+ <d6d5a943-ab29-4034-b465-b62d9d1efa61@kernel.org>
+ <87v7zagcyf.fsf@kernel.org>
+ <ywn7bq6j6jgokwmm3vsumkuwijplezmery5tr6z5yeblnpyjh7@djkwdbt4sl3q>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <n7scbcdbse4m4rilkegqsinallgkryayjzqojnxtr7qozgxwp7@7mgropizypbz>
+In-Reply-To: <ywn7bq6j6jgokwmm3vsumkuwijplezmery5tr6z5yeblnpyjh7@djkwdbt4sl3q>
 
-On Thu, Sep 05, 2024 at 10:27:24PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Sep 05, 2024 at 08:23:39PM GMT, Bartosz Golaszewski wrote:
-> > On Thu, Sep 5, 2024 at 4:04 PM Johan Hovold <johan@kernel.org> wrote:
-> > > On Thu, Sep 05, 2024 at 02:20:22PM +0200, Bartosz Golaszewski wrote:
-> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > >
-> > > > Remove the regulator-always-on property from the ones that used to be
-> > > > implicitly needed by the on-board WCN6855 now that its PMU is modeled in
-> > > > device-tree.
+On Thu, Sep 05, 2024 at 10:26:04PM +0300, Dmitry Baryshkov wrote:
+> On Thu, Sep 05, 2024 at 09:41:44PM GMT, Kalle Valo wrote:
 
-> > > What makes you think s10b is only used by wcn6855?
-> > 
-> > I didn't say that. It's used by many components but they seem to be
-> > all described in DT. But I get it, the schematics show it in so many
-> > places, it would be risky to not keep it on.
+> > There have not been really any naming rules for the variant string, it
+> > just needs to be unique so that it doesn't conflict with other variant
+> > strings. What have you been thinking?
 > 
-> Well, that depends on the consumers. If all consumers are good and
-> voting, then it should be safe.
+> QC_8380_CRD (following DMI / Windows name) or QC_X1E80100_CRD (following
+> marketing name). Or maybe QTI_ instead of QC_. WDYT?
 
-Right. But in this case, not all consumers are described in DT (e.g.
-ddr) and this is effectively an always-on rail.
+The x1e80100 uses ath12k and the calibration data was recently pushed to
+linux firmware (and does not use a calibration variant).
+
+This thread is about sc8280xp and ath11k as I guess you've noticed by
+now.
 
 Johan
 
