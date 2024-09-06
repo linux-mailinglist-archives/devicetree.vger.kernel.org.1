@@ -1,152 +1,334 @@
-Return-Path: <devicetree+bounces-100663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F0E96E81C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 05:18:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B4BD96E860
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 05:45:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B1021C233F0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 03:18:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B98581F24A9A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 03:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A6241760;
-	Fri,  6 Sep 2024 03:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4991D4174C;
+	Fri,  6 Sep 2024 03:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P7LN+1Lu"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dbdVFCKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C199334CC4
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 03:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105332F855
+	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 03:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725592719; cv=none; b=DXQ37IXMXQCeO+7IOkf6UnFUttioNjxDVAVAez0gnmjew8BKewce4F8mAjW4r2R/GkRY/tt5/norhRA1pZ1CVDtaQOUPgE3NIGvF8qOjuihxrD0RPgTUgfbt6bneZ2NHiFtaKTRDJm/UCpbJmW1sDMkwdQtqGOykavecATjcDDM=
+	t=1725594349; cv=none; b=bBhpYcor7XfhPf5SP0V2HGlSEzwbxtQeFEZ+AYO3D8JUmM6FbMppWSFd1vdz8Ye/2Pd3kvEFR0X1aRoCe1hSaahc3ZCBuxxSIM/jAiqjT3HrwGyl5ZYvh7ajw6mlkkciwbZyyiMKos3xm6ggpRvvDX5/rXn6GJI/gHwxZiQql94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725592719; c=relaxed/simple;
-	bh=Ifixl/lUYJadk0T5vvio2ek8q8koCwCnm7N/KSfhcWE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EJVy0cCJyamDGx92Ae8oo/T7jaJPowWQ26Xo16fMtFIGiplArLzivq7OkMnkzIAV/YaX5fOJEDy1OZqHFVG2H7hvtLoV2KuKZy3Fk1kx4ZuA8WZ6yZvA40OuWMSBnfDrLWz2fP1p3/VlxedXgOwJUoW3RLQ577gz1E0wx6J8dsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P7LN+1Lu; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53655b9bbcdso992132e87.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 20:18:36 -0700 (PDT)
+	s=arc-20240116; t=1725594349; c=relaxed/simple;
+	bh=Y5loWRXWbahmV7nqTNvR3j2wD04YWClhrnUeryXAWXI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kj8ODuWD/rCjLg7EgZLpQfxqoC1dHJbUJ37JWRyDctQj3/GjPNvrdFHeKMj19VZ6NHLOe447ntVWNuKDoJhuDWtUnh3pMzmcVkJerRu07hSpW0loL+dxvu045f992GpZOS0+UzbF5kZ0vZfC+FCu/D/H4Qn05mmZ1pE7wTWmHws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dbdVFCKg; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5356bb55224so1833729e87.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2024 20:45:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725592715; x=1726197515; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pDvRjyy1T5DsSdRtv+m8fD20ZSlRWWhrpdZb23KAVTk=;
-        b=P7LN+1LuWxSCizcaLFZBvaqG4CIGEkJ1Z6AyiIHH4h8Nv2ToHYkgKlAp5LSEcggN/h
-         2rglfzlb+fpFiBUkWaDBmvRcV5N5CRj2pjkK6J/zQM3NjqzvDIYSJCkB1VWbH7m9OqkI
-         Bwxsxq9sC0sFvNmcg36ROQaB0fMPbVS9mHWL/La7vQ1ABIbysBppagYhuLULAHwp9Ez5
-         L8sSvgqkfpSGa27AGeTC+mVWK96G1O4uF80cK8O3cOWxYgzo/nRgc7fuqg36ethJvj1S
-         LrHNefRWwDKU6VtQXy6VKDgm9XTeCoGkg5CSUNM57e2l3Xx6JxP4+XtkvgrKqz4dWyDB
-         1a4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725592715; x=1726197515;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1725594345; x=1726199145; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pDvRjyy1T5DsSdRtv+m8fD20ZSlRWWhrpdZb23KAVTk=;
-        b=tVo09k7T8cXSQuheH/p2R0SCKQ090f8D3nX0SPFeoBtp+i5qBVZOBML+pwZNCn6iAO
-         41ZX8dBLkJwwmIND3hq/korH68X2BVRQAuspTm0pzGrGgAu9JuRpNsumc3lklpaKNHmd
-         07yTZBeH8ad3QByM5b+phlVbqotVgz5X7IP6n8Ux/63c1gqChe/RSayhhjyJWpcvtnoC
-         fO6Py1XVE00NmBNA6+SLAVwMwOX+tzECDX/ThdVfKkvZX79oQBM3htXPvCHeIwYbSxeL
-         G+LdmHSrO99PmF5vv/aIwMiqyVSM3c9CuFnwSnsadZSpoU7ye4oxXffhZZWuvHQuj6cG
-         rvbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUS4WM16OXnrHayYe8GnMWVCKvALzNVLqggXGom71N5IbbAy/UQEZWnGch0odpmYWR5QKy/Y/nc8go4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP7geUpR3yid8ropTQ1ADAeA2vLjQfCioEUxdMAjwnDZaysEVm
-	MH2WjlGzQLBlBGzFcSFMYQOdy/4b1hF8l7rVnSFE/XCVRVIQ2Z5/hz7C8c2ck+s=
-X-Google-Smtp-Source: AGHT+IGzhFXkem2JdXn1T6zzrKRCxyCynxhuA83gNnU2hU8RzpvNhtruuel61+ka1mwQI60PiIL/5g==
-X-Received: by 2002:a05:6512:3503:b0:530:daeb:c1d4 with SMTP id 2adb3069b0e04-536587a55d3mr510319e87.12.1725592714492;
-        Thu, 05 Sep 2024 20:18:34 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5356a354961sm479217e87.8.2024.09.05.20.18.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 20:18:34 -0700 (PDT)
-Date: Fri, 6 Sep 2024 06:18:32 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 17/19] arm64: defconfig: enable clock controller,
- interconnect and pinctrl for QCS8300
-Message-ID: <wzjv6xvthoz3z4fimxfc6gzm6ptepkuwlzjm6xy3klmtpr3bvf@k7yxdc7hryju>
-References: <20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com>
- <20240904-qcs8300_initial_dtsi-v1-17-d0ea9afdc007@quicinc.com>
- <851566fe-4802-41c7-bb35-d6d1e9cf9bdf@kernel.org>
- <d5b13f14-ce66-496c-8182-aad840e0d5cb@quicinc.com>
+        bh=gQg6ZHV3OdQlAidOiVD+50gKZuem+V/huVxuvPthNh0=;
+        b=dbdVFCKgGnxqbphFl/yng0t4e8l7AmUdFGIcVgKmdymLLcdcq0u7IMig6aZ2a0XiYX
+         B75udrLv64nznzykwJM/SheWjIMo9UulzN3bQ07aZZMjAZTZrJscky3YGvbit3K8ZA/8
+         Fhd3iev27C1+Y/zb1En4Xcj5bozOuD+KFWCko=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725594345; x=1726199145;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gQg6ZHV3OdQlAidOiVD+50gKZuem+V/huVxuvPthNh0=;
+        b=wkos8K9C4ytLTo/i/ddkmkBxEj1NCVgDzEA7J/uSlQxCinQRn+qHbs728sORJ/FR3y
+         BmEVQvXyselyLY11+uKLpFvC36ssB8ElDpetTY1tWtlF8V8eCIhtdHr1r5Sq9l3nN8sQ
+         cCcKDgSgwXWwhW/M6jfHqb0bn7o5akvPMU6s/uxmabq52qDhuKmcQOtM1lo51bwop+is
+         WNtVQ7uPoIK4ty3uggHIBaZ6Bz5rAI1f/d2KQ0HOyOQaltAoENNc7m/d3dtUHOUwneiV
+         YJEo8lcue+BxbC2fKY9PL7gs1oV6/jlTbt73zLKZpJkOc35p1FPZcakun6t9dCCw+bZm
+         fDag==
+X-Forwarded-Encrypted: i=1; AJvYcCXzwtch0HcaFq9duJvUvXnrTwz7HyS2E+dredWH/AL7mWoV9kcQCVIgwsuyTC2jsN63szxOwcq+xfhl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNVPglYkGhEbBscEBT6XiWzIJvKB5RbqP7sbXtraertCjARA4m
+	aN6jF3jZHUan9oms/YN0o5lJPLiygEWvozFNMD/7Hsm6VI7gCgKJ5dQaWOeIdonKvqdkFF/Og9j
+	kZL0uJ3WpsuDXRHzsF9ASsiORKLgqXpFy+X/y
+X-Google-Smtp-Source: AGHT+IG243ompPdx0bSLx60HLWBy1dMFQGFZ33UY1sxTQVuYCfEAueQxhuwkLwa9fvxCvh+SDZnngn0Tw4cydJcut8A=
+X-Received: by 2002:a05:6512:3c96:b0:536:54bd:8375 with SMTP id
+ 2adb3069b0e04-536587c54bcmr603777e87.33.1725594344775; Thu, 05 Sep 2024
+ 20:45:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d5b13f14-ce66-496c-8182-aad840e0d5cb@quicinc.com>
+References: <20240904090016.2841572-1-wenst@chromium.org> <20240904090016.2841572-10-wenst@chromium.org>
+ <CAD=FV=UGOz3Xzg7reJKP=tA1LqTxszv5w-CL9krmoXQtXdJLaQ@mail.gmail.com>
+ <CAGXv+5F27K76t=ht5v75jKsNF-J+C0r5+m=czHz6PtV3t5DxcQ@mail.gmail.com> <CAD=FV=XVrAdQN8p9QJtt3Ah_YQAG7Y-D4wDx8_+qb1EGN7+Uig@mail.gmail.com>
+In-Reply-To: <CAD=FV=XVrAdQN8p9QJtt3Ah_YQAG7Y-D4wDx8_+qb1EGN7+Uig@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 6 Sep 2024 11:45:32 +0800
+Message-ID: <CAGXv+5HO=POHNL_tQHCsy+8=a0gPLMDVHcWMguferahVU+BnZA@mail.gmail.com>
+Subject: Re: [PATCH v6 09/12] i2c: of-prober: Add regulator support
+To: Doug Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Jiri Kosina <jikos@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 05, 2024 at 12:54:35PM GMT, Jingyi Wang wrote:
-> 
-> 
-> On 9/4/2024 5:39 PM, Krzysztof Kozlowski wrote:
-> > On 04/09/2024 10:33, Jingyi Wang wrote:
-> >> Enable clock controller, interrconnect and pinctrl for QCS8300.
-> > 
-> > NXP QCS8300? What is QCS8300? Which products use it? That's a defconfig
-> > for entire kernel, not your Qualcomm one.
-> > 
-> Will describe it in more detail.
-> >> It needs to be built-in for UART to provide a console.
-> >>
-> >> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> >> ---
-> >>  arch/arm64/configs/defconfig | 3 +++
-> >>  1 file changed, 3 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> >> index 81ca46e3ab4b..a9ba6b25a0ed 100644
-> >> --- a/arch/arm64/configs/defconfig
-> >> +++ b/arch/arm64/configs/defconfig
-> >> @@ -606,6 +606,7 @@ CONFIG_PINCTRL_MSM8996=y
-> >>  CONFIG_PINCTRL_MSM8998=y
-> >>  CONFIG_PINCTRL_QCM2290=y
-> >>  CONFIG_PINCTRL_QCS404=y
-> >> +CONFIG_PINCTRL_QCS8300=y
-> >>  CONFIG_PINCTRL_QDF2XXX=y
-> >>  CONFIG_PINCTRL_QDU1000=y
-> >>  CONFIG_PINCTRL_SA8775P=y
-> >> @@ -1317,6 +1318,7 @@ CONFIG_MSM_MMCC_8998=m
-> >>  CONFIG_QCM_GCC_2290=y
-> >>  CONFIG_QCM_DISPCC_2290=m
-> >>  CONFIG_QCS_GCC_404=y
-> >> +CONFIG_QCS_GCC_8300=y
-> >>  CONFIG_QDU_GCC_1000=y
-> >>  CONFIG_SC_CAMCC_8280XP=m
-> >>  CONFIG_SC_DISPCC_7280=m
-> >> @@ -1618,6 +1620,7 @@ CONFIG_INTERCONNECT_QCOM_MSM8996=y
-> >>  CONFIG_INTERCONNECT_QCOM_OSM_L3=m
-> >>  CONFIG_INTERCONNECT_QCOM_QCM2290=y
-> >>  CONFIG_INTERCONNECT_QCOM_QCS404=m
-> >> +CONFIG_INTERCONNECT_QCOM_QCS8300=y
-> > 
-> > Why this cannot be a module?
-> > 
-> > 
-> I think the commit-msg "It needs to be built-in for UART to provide a console." can
-> explain that, could you please help to share your insights on that?
+On Fri, Sep 6, 2024 at 2:15=E2=80=AFAM Doug Anderson <dianders@chromium.org=
+> wrote:
+>
+> Hi,
+>
+> On Thu, Sep 5, 2024 at 8:10=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> =
+wrote:
+> >
+> > On Thu, Sep 5, 2024 at 6:57=E2=80=AFAM Doug Anderson <dianders@chromium=
+.org> wrote:
+> > >
+> > > Hi,
+> > >
+> > > On Wed, Sep 4, 2024 at 2:01=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.o=
+rg> wrote:
+> > > >
+> > > > This adds regulator management to the I2C OF component prober.
+> > > > Components that the prober intends to probe likely require their
+> > > > regulator supplies be enabled, and GPIOs be toggled to enable them =
+or
+> > > > bring them out of reset before they will respond to probe attempts.
+> > > > GPIOs will be handled in the next patch.
+> > > >
+> > > > Without specific knowledge of each component's resource names or
+> > > > power sequencing requirements, the prober can only enable the
+> > > > regulator supplies all at once, and toggle the GPIOs all at once.
+> > > > Luckily, reset pins tend to be active low, while enable pins tend t=
+o
+> > > > be active high, so setting the raw status of all GPIO pins to high
+> > > > should work. The wait time before and after resources are enabled
+> > > > are collected from existing drivers and device trees.
+> > > >
+> > > > The prober collects resources from all possible components and enab=
+les
+> > > > them together, instead of enabling resources and probing each compo=
+nent
+> > > > one by one. The latter approach does not provide any boot time bene=
+fits
+> > > > over simply enabling each component and letting each driver probe
+> > > > sequentially.
+> > > >
+> > > > The prober will also deduplicate the resources, since on a componen=
+t
+> > > > swap out or co-layout design, the resources are always the same.
+> > > > While duplicate regulator supplies won't cause much issue, shared
+> > > > GPIOs don't work reliably, especially with other drivers. For the
+> > > > same reason, the prober will release the GPIOs before the successfu=
+lly
+> > > > probed component is actually enabled.
+> > > >
+> > > > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > > > ---
+> > > > Changes since v5:
+> > > > - Split of_regulator_bulk_get_all() return value check and explain
+> > > >   "ret =3D=3D 0" case
+> > > > - Switched to of_get_next_child_with_prefix_scoped() where applicab=
+le
+> > > > - Used krealloc_array() instead of directly calculating size
+> > > > - copy whole regulator array in one memcpy() call
+> > > > - Drop "0" from struct zeroing initializer
+> > > > - Split out regulator helper from i2c_of_probe_enable_res() to keep
+> > > >   code cleaner when combined with the next patch
+> > > > - Added options for customizing power sequencing delay
+> > > > - Rename i2c_of_probe_get_regulator() to i2c_of_probe_get_regulator=
+s()
+> > > > - Add i2c_of_probe_free_regulator() helper
+> > > >
+> > > > Changes since v4:
+> > > > - Split out GPIO handling to separate patch
+> > > > - Rewrote using of_regulator_bulk_get_all()
+> > > > - Replaced "regulators" with "regulator supplies" in debug messages
+> > > >
+> > > > Changes since v3:
+> > > > - New patch
+> > > >
+> > > > This change is kept as a separate patch for now since the changes a=
+re
+> > > > quite numerous.
+> > > > ---
+> > > >  drivers/i2c/i2c-core-of-prober.c | 154 +++++++++++++++++++++++++++=
+++--
+> > > >  include/linux/i2c.h              |  10 +-
+> > > >  2 files changed, 155 insertions(+), 9 deletions(-)
+> > >
+> > > I never jumped back into looking at this since you started sending ne=
+w
+> > > versions last month (sorry), but I finally did...
+> > >
+> > > At a high level, I have to say I'm not really a fan of the "reach int=
+o
+> > > all of the devices, jam their regulators on, force their GPIOs high,
+> > > and hope for the best" approach. It just feels like it's going to
+> > > break at the first bit of slightly different hardware and cause power
+> > > sequence violations left and right. If nothing else, regulators often
+> > > need delays between when one regulator is enabled and the next. There
+> > > may also be complex relationships between regulators and GPIOs, GPIOs=
+,
+> > > GPIOs that need to be low, or even GPIO "toggle sequences" (power on
+> > > rail 1, wait 1 ms, assert reset, wait 10 ms, deassert reset, power on
+> > > rail 2).
+> > >
+> > > IMO the only way to make this reliable is to have this stuff be much
+> > > less automatic and much more driven by the board.
+> > >
+> > > I think that, in general, before the board prober checks i2c address
+> > > then the prober should be in charge of setting up pinctrl and turning
+> > > on regulators / GPIOs. Given that the same regulator(s) and GPIO(s)
+> > > may be specified by different children, the prober will just have to
+> > > pick one child to find those resources. It should have enough
+> > > board-specific knowledge to make this choice. Then the prober should
+> > > turn them on via a board-specific power-on sequence that's known to
+> > > work for all the children. Then it should start probing.
+> > >
+> > > I think there can still be plenty of common helper functions that the
+> > > board-specific prober can leverage, but overall I'd expect the actual
+> > > power-on and power-off code to be board-specific.
+> > >
+> > > If many boards have in common that we need to turn on exactly one
+> > > regulator + one GPIO, or just one regulator, or whatever then having =
+a
+> > > helper function that handles these cases is fine. ...but it should be
+> > > one of many choices that a board proper could use and not the only
+> > > one.
+> >
+> > IIUC we could have the "options" data structure have much more board
+> > specific information:
+> >
+> >   - name of node to fetch resources (regulator supplies and GPIOs) from
+> >   - names of the resources for the node given from the previous item
+> >   - delay time after each resource is toggled
+> >   - polarity in the case of GPIOs
+> >   - prober callback to do power sequencing
+> >
+> > The "resource collection" step would use the first two items to retriev=
+e
+> > the regulator supplies and GPIOS instead of the bulk APIs used right no=
+w.
+> >
+> > The power sequencing callback would use the resources combined with the
+> > given delays to enable the supplies and toggle the GPIOs.
+> >
+> > For now I would probably only implement a generic one regulator supply
+> > plus one GPIO helper. That is the common case for touchscreens and
+> > trackpads connected over a ribbon cable.
+> >
+> > Does that sound like what you have in mind?
+>
+> I guess I'd have to see how the code looks to know for sure, but if I
+> understand it sounds a little awkward. Specifically, the "options"
+> sound like they might become complicated enough that you're inventing
+> your own little programming language (with delays, abilities to drive
+> pins low and high, abilities to turn on/off clocks, and abilities to
+> turn off/on regulators) and then probers need to code up their
+> programs in this language. You also need to handle undoing things
+> properly if there is a failure in the middle. Like your "program"
+> would look like this (obviously you'd have to play with enums more,
+> but you get the idea):
+>
+> {
+>    { OPCODE_TURN_REGULATOR_ON, "vdd" },
+>    { OPCODE_DELAY, 10 },
+>    { OPCODE_GPIO_ASSERT, "reset" },
+>    { OPCODE_DELAY, 5 },
+>    { OPCODE_GPIO_DEASSERT "reset" },
+>    { OPCODE_DELAY, 100 },
+>    { OPCODE_TURN_REGULATOR_ON, "vddIO" },
+> }
+>
+> Why not just expect the board probers to write C code to turn things
+> on before looking for i2c devices, then provide helpers to the C code?
+>
+> So there wouldn't be some generic "resource collection" API, but you'd
+> provide a helper to make it easy to grab regulators from one of the
+> nodes by name. If you think bulk enabling regulators is common then
+> you could make a helper that grabs all of the regulators from a node
+> in a way that is consistent with the bulk APIs, but I wouldn't expect
+> every driver to use that since devices I've seen expect regulators to
+> be enabled in a very specific order even if they don't need a delay
+> between them.
+>
+> I wouldn't expect a "collect all GPIOs" API because it seems really
+> weird to me that we'd ever want to jam multiple GPIOs in a state
+> without knowing exactly which GPIO was what and asserting them in the
+> right sequence.
 
-Unless loading these modules from initramfs doesn't work, please use =m.
-The drivers that are enabled here are going to be enabled for everybody
-using arm64 defconfig, taking up memory on their platforms, etc.
+So I'm slightly confused, as it sounds like at this point the i2c prober
+would be litter more than just a framework, and the heavy lifting is to
+be all done by callbacks provided by the board-specific driver?
 
--- 
-With best wishes
-Dmitry
+So the framework becomes something like:
+
+1. find i2c bus node
+2. call provided callback with i2c bus node to gather resources;
+   let callback handle specifics
+3. call provided callback to enable resources
+4. for each i2c component, call provided callback to probe
+
+  If the probe succeeded:
+
+    5. call provided callback for early release of resources (GPIOs)
+    6. set "status" to "okay"
+    7. call provided callback for late release of resources (regulators)
+
+  Otherwise at the end of the loop
+
+8. release resources
+
+The current code can be reworked into helpers for steps 2, 3, 5, 7 for
+the single regulator single GPIO case.
+
+> > This next item would be a later enhancement (which isn't implemented in
+> > this series anyway):
+> >
+> >   - optional prober callback that does actual probing
+> >
+> > In our case it would only be used for cases where an HID-over-I2C
+> > component shares the same address as a non-HID one, and some extra
+> > work is needed to determine which type it is. I still need to think
+> > about the structure of this.
+>
+> IMO _that_ would be a great option to the i2c prober. It feels like
+> you could have an optional register read that needs to match to have
+> the i2c prober succeed. Most people would leave it blank (just the i2c
+> device existing is enough) but probably a single register read would
+> be enough to confirm you got the right device. Most i2c devices have
+> some sort of "version" / "vendor" / "id" type register somewhere.
+
+At least for the stuff that we have (touchscreens and trackpads) such
+registers typically don't exist, unless it's an HID-over-I2C device,
+in which case there's the standard HID descriptor at some address.
+But, yeah, reading the HID descriptor was the use case I had in mind.
+
+At least for one Chromebooks it's a bit more tricky because that one
+HID-over-I2C component shares the same address as a non-HID one. We
+currently have different SKU IDs and thus different device trees for
+them, but we could make the prober work with this. It just has be able
+to tell if the component it's currently probing needs the special
+prober and is it responding correctly. This bit I need to think about.
+
+
+ChenYu
 
