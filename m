@@ -1,166 +1,244 @@
-Return-Path: <devicetree+bounces-100754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1588D96ED9C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:18:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB96696EDA4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:20:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C14E1C23163
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 08:18:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20A3AB22671
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 08:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA2115747A;
-	Fri,  6 Sep 2024 08:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC95014D282;
+	Fri,  6 Sep 2024 08:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="db5hdR/o"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Zfq2mLRV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010036.outbound.protection.outlook.com [52.101.69.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24BDE156C40;
-	Fri,  6 Sep 2024 08:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725610709; cv=none; b=L675XjJKkgTxUXe3UKAe/QcrZHeYNJ6q5A+Lq15HkPUbxD+OYP3mGVBiu3q729zpRFzb4tVSJwatBAwnWiwb0KpmCNOrHaeivdUytScVzZB2+y8zdv88CnNJ25KHvl1SFm0hGIbWLGQ0/SKxzv/q5c1llxffVKSYkwhXidjS6wE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725610709; c=relaxed/simple;
-	bh=P9ijqIiAgO/MrBm843x3Xs7+rP6/2wpXmDlmyoVM9dw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q+NFdUKE8qB26SqynCbYrV+bo/R3X4Pdxkut8qFUZ1X3RYmtflouT4C34QRMUjsypjHyqwfnWN3NgAYc5dHUNbgY7QOCmnmUgamBYk1mr1iUo3nPIruL+FSA+Ooy2G7eUbQZ965H78vCKstdXrk57g8zqfQDJNCLyaKPIV9e5HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=db5hdR/o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2301EC4CEC4;
-	Fri,  6 Sep 2024 08:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725610708;
-	bh=P9ijqIiAgO/MrBm843x3Xs7+rP6/2wpXmDlmyoVM9dw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=db5hdR/o5UoYbI2b7BscGrpbq9xRl/AdUrPSlA/8fOZxDBR1QdSNxnkUtd9QrwnYQ
-	 6pQtPdpljx4ztREQGI0fUOu7ElhyluT3ouzQDIDl7B4k1JJA3nLP2WF6yw2VnRse+4
-	 WbQ7KdTqpR80IKFv3Ktw1YT/pOxcAID/Sbkj9+6IaVE9GZRxTFPxCwgqPXfRrmzMvF
-	 CUXEEoKFKUvVt3XayK9lBqBdEbRKeOOLa33STCZCrXjw1r/joD50JkYuCVKMXSwwjf
-	 kekuTfnzGTCIsKf4wyU4EcQvvHRVXT0de/rhtGwZorbh485sthvIKXxw1T+vNc7jzH
-	 O0Vg4PR9q+y/Q==
-Date: Fri, 6 Sep 2024 08:18:21 +0000
-From: Tzung-Bi Shih <tzungbi@kernel.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v4 18/18] platform/chrome: cros_ec_typec: Handle lack of
- HPD information
-Message-ID: <Ztq6zf8n09ZcJNjT@google.com>
-References: <20240901040658.157425-1-swboyd@chromium.org>
- <20240901040658.157425-19-swboyd@chromium.org>
- <ZtgqLZXbJbpG65vD@google.com>
- <CAE-0n51w3AAtLPq5M-i8F6z2jSOT3xFw3g8HM1h48xXBSeoZnA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD4E45028;
+	Fri,  6 Sep 2024 08:19:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.36
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725610798; cv=fail; b=aDapjmsBTvlKNBnmUopTH3R2GVtJjXl9Yj4Nr0iMYqqXUefgNhiCxl05XSb73VhqOHwR9H8uaohfp1yiwb3y33fXnv1LMS1BtxthU7c4cqcosmIVD69kM+IKpEzVox4QmJjK0d+nn6WGMYZmu3FM3AVKNBeWqWcFRxnLdIUtN6Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725610798; c=relaxed/simple;
+	bh=GV1GfE4yc6PQppnRwFf6SmPXKVITGXVxKvlGoo8pxuY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=OlufznlukouBir7kX6/Q+zUglOBAwfkOKxS280pk31U9m33j63n5xnepz1g6XrkMI6PyJDrth+g5BYE95vYYgMZlGD1qUQlVh/ncwtlvtk/NkXAZqujK0aNuTOwm3XYdHj0YxVD3eo2cQlCvyvbl+2XRyBrH71JKAnVx5u3pAP8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Zfq2mLRV; arc=fail smtp.client-ip=52.101.69.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cfSuHr+VfMfJdonxHa4zMDupXGh5pEnaB9Epulg06/WZ+Vncp5wyPX4AiUGSKnpuoT2tay51ZlW0LxpyGn1wYvGK40szkvnM9BKvNYn8IZOk38LS+U5Ws0mFSktTvAdYTTSNq1atMs38Kg3kqwWWRl19JF3V8JqkNN7whjc28sDCcvZ50IDTQD/WwkfwrWZc5or862NvHuEWvS06eEQG+s4BqNE7dSXq1NCt+og8hydLYlpUDOWIK9cImQ3vRM6Tm3glAFecuy+g+Y5zkw+mVS0MHRuIxLKoAZ+0pq3662Tg/ykuJodrYkFmVRI0+ZM3J8kdxm3OtaN0hMbt0K0S5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+xw26pdpcdTSncFq87h2Elxv6bgISCUA44TEmAD3sVQ=;
+ b=nI6s/gNvJbomXWxsUNUL8FG2I9g5pz8An9rmaY1UM7Sv8BihXHxPDLsydEhI3QaD9og1mFXH1DHMIm599+CDxvajfqX2jQioSkp0XBFO3sIbk/9PrvuGHHgqkJh7/0lD8ba8eGB9Y9mOie3j9lIm0ujAdmaPjyVzX8slcXLsJAcssTcdnPNN9rdT/0MbYOAvNuq+Q0aZSJW25zpf1xysicS11yj55zQaDCWFufQ20MiTtndYXVK+I+FZ4qg8lKdGH1RPjKuWMLTLj5Xcm5bEm55wWloY+tLlBei43t4C25DbUVDjlXzeDPnR8p8fsKcUBOUMs2DBnE44vXRBBb+NWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+xw26pdpcdTSncFq87h2Elxv6bgISCUA44TEmAD3sVQ=;
+ b=Zfq2mLRVW+IPlFGBE+wHStkx9YYSo3Rt9VCIaOzLl8B+6vmQL+W/0hspYELVTpMSmyPzqeZuqU7OBndg8CCXEgKIJPvEfbNz+1ZP8eI2awpkmisewyrm6uzlEgLXqTTO6bwhYnZzLeIne8kkzbHskIayTqu76mFqxNax4u3RPIvdUJU8rRNPWUGjLSsomQadH91OAc3JCIngCeVZZeaulBoubeecwYG9frlqwWgmxeOsbGcTvGizzM9Qme/ul9UrJC6e5S7wCzIxCZtWcFZ2/JNbDq9EVx3miew1PezRtBokM9AxqERPEPWCwFcLLktO11yQRzAKKWAWAaXU3mr0Pw==
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by PA4PR04MB7711.eurprd04.prod.outlook.com (2603:10a6:102:e1::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.28; Fri, 6 Sep
+ 2024 08:19:53 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%6]) with mapi id 15.20.7939.017; Fri, 6 Sep 2024
+ 08:19:53 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: RE: [PATCH v2 3/7] arm64: dts: freescale: imx95: update a55 thermal
+ trip points
+Thread-Topic: [PATCH v2 3/7] arm64: dts: freescale: imx95: update a55 thermal
+ trip points
+Thread-Index: AQHa/dArnYvJQvD7jU6GTifRv4mAXbJJIWiAgAFNX3A=
+Date: Fri, 6 Sep 2024 08:19:53 +0000
+Message-ID:
+ <PAXPR04MB8459114481B327DE1065ECF5889E2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+References: <20240903-imx95-dts-new-v2-0-8ed795d61358@nxp.com>
+ <20240903-imx95-dts-new-v2-3-8ed795d61358@nxp.com>
+ <3587078.iIbC2pHGDl@steina-w>
+In-Reply-To: <3587078.iIbC2pHGDl@steina-w>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|PA4PR04MB7711:EE_
+x-ms-office365-filtering-correlation-id: e7b03740-b711-4114-3a2d-08dcce4caf92
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?oVy7BCsbUurUzLSwTnWIh+fex5lWWPSDmjlQwhkA43BG+Otmbq5x9T7QZu?=
+ =?iso-8859-1?Q?3SKZZfM/zyUs5OQ0YnXT8jy4i4Tnrb/PqVbR69n/QCmZO5GJX1TdmLMqpZ?=
+ =?iso-8859-1?Q?+W4GDzoXGhujlr2g12GuZ0ZRZ5L4VIr8I2mtenmTfIpZYImteSKFWGUhTE?=
+ =?iso-8859-1?Q?AtVNUvQBqMXz9m5jtwWwQaWJO8Qxnac2caN+chyeeCEnIWjnryocNotdPB?=
+ =?iso-8859-1?Q?ECeeeKG2+mTueUjQF0wKqnaAJc90cBeTg4P2A4QcuHgbqCB/7L+qH4oa7G?=
+ =?iso-8859-1?Q?raGWOSUSrV1GCB9qv3J/i65Gpn1XCjwi/FCAMsjXeECLhRyDtYo2N418Ha?=
+ =?iso-8859-1?Q?fYtTX+WYBTflcw2Y/hiFq/+ggeq76iC/45lHp/BPx3ilVX7K5YP5eSidiG?=
+ =?iso-8859-1?Q?AHBJLg8vssxeEdZFQ/rbG8i4WX6D6oVespTzhbbMbQlflzqIz5lGquj089?=
+ =?iso-8859-1?Q?jPagFHIq1USLb1fMHNCnFCHgvMHLEIPqMFNa33EdR3hjhiowwi4XDTWO5I?=
+ =?iso-8859-1?Q?wvErhkO9Lpu/cr1Boi5N0CzBt7V7N6GOvuCff6rUCh04VIurI8uTkYgBPI?=
+ =?iso-8859-1?Q?UlOnagOcLrTxUd8tXos1w7+snSB4ZeuQ8bxG6MeaFwpplTQisWycMv5Ju4?=
+ =?iso-8859-1?Q?LCvXn4BEPFvHOQ0NzYJk+qPh1hwS+npml8UlbMwqHoFPUbxCYy+Aa0YpMb?=
+ =?iso-8859-1?Q?tzM71VoGRNCo4gclkLzsf7NxoXOwvQpcnUgTNS6j8YEvvZ2Z9e57Y1CnG/?=
+ =?iso-8859-1?Q?+1EGUCPbyhg5acvVHp9o6mD5rmQpoVW+EI6adcaXB5BuX5PUqsuYdTgt9+?=
+ =?iso-8859-1?Q?zIhW1eS0GlR4lfWYE7ETxLLWjXgjF+WulsI8jmOm+ibS9+sKuyKR+YaHTh?=
+ =?iso-8859-1?Q?uktIZfeaA0+EiudoV2/sIsHvGDG588hVFMK75+wOCg54F+yQ+XZVMLHu8e?=
+ =?iso-8859-1?Q?4wW2AWy+eVQvc9zYdn+Cwrq8QH4drXLs4J4cCY+3BlKpzJHAKX8P8Wwpz3?=
+ =?iso-8859-1?Q?WXn76L6cqIaBiB/zCpehcwEEFi5pkuI10Ws7spxvh/GiMJCMS3JhLjto0G?=
+ =?iso-8859-1?Q?ZGGObltVVUmDon7y9/UtxPNodXCZwXF6h/SzV6EBXM6l3sNYMvf7UrpvdU?=
+ =?iso-8859-1?Q?0Be1URA2Cpzd9g6thp9Qk6ArCqJ5fggNjNcRWmYguFZDDHginZiisNq5VY?=
+ =?iso-8859-1?Q?9jcobWui/p54tu8+t3tpQ5l9jwsSXpZyZjFMzcEb5yaNXC17Usb3e20AYf?=
+ =?iso-8859-1?Q?dmh/QBMKcfMaPAj9SQa2w08xGwE7H34hrC2zVJuccK44aO+zx0/oyRLVOL?=
+ =?iso-8859-1?Q?o9WGPWxpTzxRFdwMZqp5PXbX36XpTGNwh6dqGU06C5iwQ42e02Ly9xnDde?=
+ =?iso-8859-1?Q?aPlLiZNIQBLNcJju74KzS1psHiasUuqnoC+HqLbmBBg4L3Kqkm9CI=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?uRhxRm0xesgxGdlPfhR1yxWz5RWaTFKA6QEDEUnSD253DksgmH/DxeQ4UI?=
+ =?iso-8859-1?Q?DDmTQ3uYo7XeJIM6p1qBmiCqMZzqUndeDy63dFdNpEPnHlz65klJU4bRKY?=
+ =?iso-8859-1?Q?yPMEQU3TAsp0frVto45PLBpNyp5DvvOz71l9T0O9dLx3DvitVRpQb4OKF7?=
+ =?iso-8859-1?Q?79fsiqczekUFOiza8gOYl8AX55rzQlC+LvigaLNnmWLaCW660KA2tLprpO?=
+ =?iso-8859-1?Q?Roy3uL4lpEwvJBShBZehFb74+huTLRoD9tDx6M7J5KZXX2d1eL2Bu59MEn?=
+ =?iso-8859-1?Q?Rsr1h+DSsd//HqeV/GobjIrQH3aATBxVifphbLolFaD1K0psxYciVD5Ubi?=
+ =?iso-8859-1?Q?RXcgANbyFGoz33p8Ebx2K+x6lIZI0tsGXeDfm2rfdX7Uq3++isnpVD38Lx?=
+ =?iso-8859-1?Q?ZYFs7OzDb7ydOG3Nz1ZpMvguts3VHy6VlpCO14uTSST+eKqRuNRD3ZoMGD?=
+ =?iso-8859-1?Q?uonxJiXJ+k/PhkxXV88O88pcA9Jz98zZhn0HVSGaynNE2cdLo3al9na7VH?=
+ =?iso-8859-1?Q?m3LiQUNuM+2Yep6B2Nkv1MYD//EADi5uGkHigufyjd0Ip1kyXr6Yy1LrlH?=
+ =?iso-8859-1?Q?hONxYOKRG5hCBrxDzMhtlHP8c98yEEGbBGLjL4Yzov0xRWxyMWkQIzRAFn?=
+ =?iso-8859-1?Q?RpQFJV0W7/orPcxA0+v7Bzeziohprxs8rR/9Fc4LJYjgI0QJA/KJWrpmCC?=
+ =?iso-8859-1?Q?On+qgOoN6+uWBOlLBoVd5p3WaXph7zQRlftOb/6P6enHANQyASnlftQC5I?=
+ =?iso-8859-1?Q?o72wlL1F1iOGCYkk4PLFy1Sw/CAgtLO4el4L0KLxKKmTwLko9rCjJzXH4e?=
+ =?iso-8859-1?Q?DHLgg0AUIIysoY19rnr4VHqmcGskwfdDNVrlqs2L2MghDsQknzNGLEF6BZ?=
+ =?iso-8859-1?Q?2pNTJ+3iSC/qktfk7N9xaJpsUU/HJ5hff4vCksNRKpn3N1nJ+Xzog9OLSo?=
+ =?iso-8859-1?Q?mmGfFtrrPKCPqH6/P5JW/gMuhRz7f168njWFLrVsSsn7FG3zMHRehVqr6o?=
+ =?iso-8859-1?Q?qRPdfG0Jw9LrZzLlYvho2rcAr6lKceDaZaIdoGpQDnf++vjwVNGN2VHfMO?=
+ =?iso-8859-1?Q?LsZIuvspo8t05/Z9mTkQHOSLaDUEmgdNIVCBDvQS3LSOkkyKHG1NpcGrT3?=
+ =?iso-8859-1?Q?QyMT/T+2D6/nyK4RmQWDeuFNV/vBH/Pbmph/pJVhcHROJPKX2ajQW9ADaY?=
+ =?iso-8859-1?Q?T7TQrCUcZszM5f0LcP5nvoXGkVQiMwBAkTDJjP/ARsXHIjPh55YNg41vAV?=
+ =?iso-8859-1?Q?5AtLuyi+fcVVRAM6gMjprIHNDkaKBzDD9MC0kKmPo/fett3HoUbJSjT9aM?=
+ =?iso-8859-1?Q?8CxoEwZ7A4TRYCmcRK+EtU9K0Y30FjVzRcVbpN9+e2dI70mg5sHZ8NVGj4?=
+ =?iso-8859-1?Q?djT4NjCQOudE1VLKD6BC8ShLKy41AEcgIuO9HOrr2hBclakdAsOCDprCII?=
+ =?iso-8859-1?Q?RS1LBNRPjVAUtWk3itZ0ubtUUSRpe+O40txgWzHOXXEwUE2DPLkItenJaZ?=
+ =?iso-8859-1?Q?kSKUvo4vd9vq6xsG2n0DvXJe+PoBH4ZLP/RU1tl7Fke+Bs+pDSIGMNFKcX?=
+ =?iso-8859-1?Q?ymNMhgcIjxCeS22wTUHMMFTauVQLL32Bkfv7nDZmlInbRtGGJj7mnIhYfc?=
+ =?iso-8859-1?Q?1jx1OU4Zijbf0=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n51w3AAtLPq5M-i8F6z2jSOT3xFw3g8HM1h48xXBSeoZnA@mail.gmail.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7b03740-b711-4114-3a2d-08dcce4caf92
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Sep 2024 08:19:53.7682
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fyfdPl5W/9jfBbGmMb9iYzEPy4eqj0xPGjPjuZMuX7lbFplOVxx4RtslCf9Mjsg57+aQBTTtDwfI9pDzoKP9FA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7711
 
-On Wed, Sep 04, 2024 at 02:45:36PM -0700, Stephen Boyd wrote:
-> Quoting Tzung-Bi Shih (2024-09-04 02:36:45)
-> > On Sat, Aug 31, 2024 at 09:06:56PM -0700, Stephen Boyd wrote:
-> > > +static void cros_typec_inject_hpd(struct cros_typec_data *typec,
-> > > +                               struct ec_response_usb_pd_mux_info *resp,
-> > > +                               struct cros_typec_port *port)
-> > > +{
-> > [...]
-> > > +     /*
-> > > +      * Only read the mux GPIO setting if we need to change the active port.
-> > > +      * Otherwise, an active port is already set and HPD going high or low
-> > > +      * doesn't change the muxed port until DP mode is exited.
-> > > +      */
-> > > +     if (!typec->active_dp_port) {
+> Subject: Re: [PATCH v2 3/7] arm64: dts: freescale: imx95: update a55
+> thermal trip points
+>=20
+> Am Dienstag, 3. September 2024, 09:17:48 CEST schrieb Peng Fan
+> (OSS):
+> > From: Peng Fan <peng.fan@nxp.com>
 > >
-> > Given that cros_typec_inject_hpd() is called before `typec->active_dp_port`
-> > would be set (from previous patch "platform/chrome: ...  Support DP muxing"),
-> > would it possibly wrongly fall into here at the beginning?  (E.g.:
-> > cros_typec_probe() -> cros_typec_port_update() -> cros_typec_configure_mux()
-> > -> cros_typec_inject_hpd().)
-> 
-> We wouldn't get here if 'hpd_asserted' is false though. We want to fall
-
-Ack, I overlooked that.
-
-> > > [...]
-> > > +     /* Inject HPD from the GPIO state if EC firmware is broken. */
-> > > +     if (typec->hpd_asserted)
-> > > +             resp->flags |= USB_PD_MUX_HPD_LVL;
+> > Update the thermal trip points for automotive and extended
+> industrial
+> > temperature qualification processors.
 > >
-> > `typec->hpd_asserted` is shared between all typec->ports[...].  Would it be
-> > possible that a HPD is asserted for another port but not current `port`?
-> > E.g.: cros_typec_inject_hpd() for port 2 and cros_typec_dp_bridge_hpd_notify()
-> > gets called due to port 1 at the same time?
-> 
-> I'd like to avoid synchronizing the hpd notify and this injection code,
-> if that's what you're asking. Thinking about this though, I've realized
-> that it's broken even when HPD is working on the EC. Consider this
-> scenario with two type-c ports C0 and C1:
->
-> [...]
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > index 314a45e82c38..2cba7a889030 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > @@ -347,13 +347,13 @@ a55-thermal {
+> >
+> >  			trips {
+> >  				cpu_alert0: trip0 {
+> > -					temperature =3D <85000>;
+> > +					temperature =3D <105000>;
+> >  					hysteresis =3D <2000>;
+> >  					type =3D "passive";
+> >  				};
+> >
+> >  				cpu_crit0: trip1 {
+> > -					temperature =3D <95000>;
+> > +					temperature =3D <125000>;
+>=20
+> What about commercial and industrial temperature ranges? Can you
+> detected this at runtime? Is the bootloader supposed to correct these
+> settings?
 
-I understood it more: originally, I was wondering if it needs an array
-`typec->hpd_asserted[...]` for storing HPD for each port.  But, no.
+Bootloader is supposed to update or people could overwrite in their
+board device tree per which chip grade is being used.
 
-What cros_typec_dp_bridge_hpd_notify() get is just a connected/disconnected
-signal.  It kicks off cros_typec_port_work() for finding which port is
-supposed to trigger the event (with some logic with `active_dp_port`,
-`mux_gpio`, and `hpd_asserted`).
+It would be better if there is runtime update by kernel, but no as
+of now. We may use nvmem to do runtime in future, but need check.
 
+Regards,
+Peng.
 
-Curious about one more scenario, is it possible:
+>=20
+> Best regards,
+> Alexander
+>=20
+> >  					hysteresis =3D <2000>;
+> >  					type =3D "critical";
+> >  				};
+> >
+> >
+>=20
+>=20
+> --
+> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld,
+> Germany Amtsgericht M=FCnchen, HRB 105018
+> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2F
+> www.tq-
+> group.com%2F&data=3D05%7C02%7Cpeng.fan%40nxp.com%7C1787566
+> 643e742d9965508dccda5ad2d%7C686ea1d3bc2b4c6fa92cd99c5c301
+> 635%7C0%7C0%7C638611358666637887%7CUnknown%7CTWFpbGZ
+> sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJX
+> VCI6Mn0%3D%7C0%7C%7C%7C&sdata=3DvL3HTTjWm6F6dRQD4Oek0nj
+> UiY%2FNnkqDv5z3k846EdY%3D&reserved=3D0
+>=20
 
-Initially, no DP port and no mux is using:
-  active_dp_port = NULL
-  hpd_asserted = false
-  mux_gpio = NULL
-
-CPU A                                        CPU B
-------------------------------------------------------------------------------
-cros_typec_port_work()
-  cros_typec_port_update(port_num=0)
-                                             [C0 connected]
-                                             cros_typec_dp_bridge_hpd_notify()
-                                               hpd_asserted = true
-  cros_typec_port_update(port_num=1)
-    cros_typec_configure_mux(port_num=1)
-      cros_typec_inject_hpd()
-      active_dp_port = C1
 
