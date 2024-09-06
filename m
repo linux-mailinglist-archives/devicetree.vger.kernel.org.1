@@ -1,221 +1,149 @@
-Return-Path: <devicetree+bounces-100935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56FB896F860
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 17:36:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B90196F8A8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 17:51:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFE331F23E43
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:36:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B3FD2821B0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:51:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F83B1D4161;
-	Fri,  6 Sep 2024 15:34:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CYmx4SLl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378581D3647;
+	Fri,  6 Sep 2024 15:51:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 829C71D31A1;
-	Fri,  6 Sep 2024 15:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC937374F1
+	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 15:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725636895; cv=none; b=UOlgB4+sUAQtaqeWMK5SEtn+hHDCVlCyBawcDZCobwvIm5aUwXnxXPFVjrZWsiS6w77TJCYZ688ZkZJ4glOPDVtaBIbnF/7bLwhPf+Klarp/rLrgPXk8zSMOy2+RrQDiaOALJXwXuP8yVA1M/S1ALKCmVoM4EEeEEYh5k9j0hpc=
+	t=1725637876; cv=none; b=So0xsMoGTvY9JziI+KN30ZsIN6CZIEgPtWP/918jUFtHrgrTwDL9WimVIU74sbRDjneo7jJE6t1OxxQCaxbuv0DmeR/t1I0Jz2eRd6EsBnshv+OtX8+qllcuGP/1AbAUAOMkHg7qXn9tWJcXgi2UTgZjy+jvZZXbRQrLMFfN2Ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725636895; c=relaxed/simple;
-	bh=Vi3fsROfimMKj6sR53H/FLJ11ByZ17qbkkmgwj1Luvk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=PvbrGPVK5plvoU7dmdR4wXAKMl8jRw9fRIum2I3ErF2CsqaTckVHnVDodiSBOBr2RnW4HDNaSUuGlfuLInWDJ/7qY0HVnTrF1826nk+lC/7+l4WMuyzlqR8g/aQgC3bdXmb2sQTTt9wr8XQNk10dke9hqBOXLa72WEyeQeJhuwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=CYmx4SLl; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C9E11EF3;
-	Fri,  6 Sep 2024 17:33:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725636799;
-	bh=Vi3fsROfimMKj6sR53H/FLJ11ByZ17qbkkmgwj1Luvk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CYmx4SLloQyVhpYNiFS+wE4+KisHYt1KMZEG2tm1tmYx5YUAzKsl9aRWmndQznXTP
-	 Mv/ev4NrKyRT6iUmwJxl+GXA9A5/76TLmdxt0K0DuCUQM88ugjGIU4fCTx9fnczNke
-	 +5okiV1uCjduh1pLV4MaUcNphgJrYO9DFdo8h9Rk=
-From: Daniel Scally <dan.scally@ideasonboard.com>
-To: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com,
-	robh+dt@kernel.org,
-	mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jerome.forissier@linaro.org,
-	kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com,
-	sakari.ailus@iki.fi,
-	Daniel Scally <dan.scally@ideasonboard.com>
-Subject: [PATCH v7 17/17] Documentation: mali-c55: Document the mali-c55 parameter setting
-Date: Fri,  6 Sep 2024 16:34:06 +0100
-Message-Id: <20240906153406.650105-18-dan.scally@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240906153406.650105-1-dan.scally@ideasonboard.com>
-References: <20240906153406.650105-1-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1725637876; c=relaxed/simple;
+	bh=qo8O1h2lAqqv1CX/RzBNtMvvKqsJQzhgLJn7r2wlNX4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tPPXQfgDY0sauubxi/LiXMB33hXwq8aT3dDHfII6EznM9BJkKXJmFEnBwvrHC//zUMw5RP9jS+XEppnI7ZVejV51hBtFyTdmoUpcpj31Xzo7a+A4uFwmIBh73Q+Nau0L8/Q6ZWh9H6Io9F4vRMYtx78DDmb/09+E9CvOGeyeO4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1smbEb-0007zn-CX; Fri, 06 Sep 2024 17:50:53 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1smbEZ-005ysl-Jh; Fri, 06 Sep 2024 17:50:51 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1smbEZ-00A9vb-1b;
+	Fri, 06 Sep 2024 17:50:51 +0200
+Date: Fri, 6 Sep 2024 17:50:51 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: net: ethernet-phy: Add
+ forced-master/slave properties for SPE PHYs
+Message-ID: <Ztsk23X_0p57KGSS@pengutronix.de>
+References: <20240906144905.591508-1-o.rempel@pengutronix.de>
+ <c08ac9b7-08e1-4cde-979c-ed66d4a252f1@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c08ac9b7-08e1-4cde-979c-ed66d4a252f1@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Document the mali-c55 parameter setting by expanding the relevant
-pages in both admin-guide/ and userspace-api/.
+On Fri, Sep 06, 2024 at 05:11:54PM +0200, Andrew Lunn wrote:
+> On Fri, Sep 06, 2024 at 04:49:05PM +0200, Oleksij Rempel wrote:
+> > Add two new properties, `forced-master` and `forced-slave`, to the
+> > ethernet-phy binding. These properties are intended for Single Pair
+> > Ethernet (1000/100/10Base-T1) PHYs, where each PHY and product may have
+> > a predefined link role (master or slave). Typically, these roles are set
+> > by hardware strap pins, but in some cases, device tree configuration is
+> > necessary.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/net/ethernet-phy.yaml | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index d9b62741a2259..af7a1eb6ceff6 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -158,6 +158,28 @@ properties:
+> >        Mark the corresponding energy efficient ethernet mode as
+> >        broken and request the ethernet to stop advertising it.
+> > 
+> > +  forced-master:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      If set, forces the PHY to operate as a master. This is used in Single Pair
+> > +      Ethernet (1000/100/10Base-T1) where each PHY and product has a predefined
+> > +      link role (master or slave). This property is board-specific, as the role
+> > +      is usually configured by strap pins but can be set through the device tree
+> > +      if needed.
+> > +      This property is mutually exclusive with 'forced-slave'; only one of them
+> > +      should be used.
+> 
+> DT reviewers tend to complain about such mutually exclusive
+> properties.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Nayden Kanchev  <nayden.kanchev@arm.com>
-Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
----
-Changes in v7:
+Yes, at this point i was uncertain.
 
-	- None
+> What you are effectively adding is support for the ethtool:
+> 
+> ethtool -s [master-slave preferred-master|preferred-slave|forced-master|forced-slave]
 
-Changes in v7:
+ack
 
-	- None
+> 10Base-T1 often does not have autoneg, so preferred-master &
+> preferred-slave make non sense in this context, but i wounder if
+> somebody will want these later. An Ethernet switch is generally
+> preferred-master for example, but the client is preferred-slave.
 
-Changes in v6:
+Good point.
 
-	- Minor rewording
+> Maybe make the property a string with supported values 'forced-master'
+> and 'forced-slave', leaving it open for the other two to be added
+> later.
+> 
+> I've not seen the implementation yet, but i don't think there is much
+> driver specific here. We already have phydev->master_slave_set, it
+> just needs to be set from this property. Can it be done in phylib core
+> somewhere?
 
-Changes in v5:
+Yes, this is the idea.
 
-	- New patch
-
- Documentation/admin-guide/media/mali-c55.rst  | 19 +++++-
- .../media/v4l/metafmt-arm-mali-c55.rst        | 66 ++++++++++++++++++-
- 2 files changed, 80 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/admin-guide/media/mali-c55.rst b/Documentation/admin-guide/media/mali-c55.rst
-index 7eaeac63ddf7..dbed5179d5f8 100644
---- a/Documentation/admin-guide/media/mali-c55.rst
-+++ b/Documentation/admin-guide/media/mali-c55.rst
-@@ -387,9 +387,24 @@ the processing flow the statistics can be drawn from::
-                        +-------------+   |    +-------------+
-                                          +-->  AWB-1
- 
--At present all statistics are drawn from the 0th tap point for each algorithm;
-+By default all statistics are drawn from the 0th tap point for each algorithm;
- I.E. AEXP statistics from AEXP-0 (A), AWB statistics from AWB-0 and AF
--statistics from AF-0. In the future this will be configurable.
-+statistics from AF-0. This is configurable for AEXP and AWB statsistics through
-+programming the ISP's parameters.
-+
-+.. _mali-c55-3a-params:
-+
-+Programming ISP Parameters
-+==========================
-+
-+The ISP can be programmed with various parameters from userspace to apply to the
-+hardware before and during video stream. This allows userspace to dynamically
-+change values such as black level, white balance and lens shading gains and so
-+on.
-+
-+The buffer format and how to populate it are described by the
-+:ref:`V4L2_META_FMT_MALI_C55_PARAMS <v4l2-meta-fmt-mali-c55-params>` format,
-+which should be set as the data format for the `mali-c55 3a params` video node.
- 
- References
- ==========
-diff --git a/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst b/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
-index 186e0deb9ece..c0948b41fb0c 100644
---- a/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
-+++ b/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
-@@ -1,10 +1,11 @@
- .. SPDX-License-Identifier: GPL-2.0
- 
-+.. _v4l2-meta-fmt-mali-c55-params:
- .. _v4l2-meta-fmt-mali-c55-3a-stats:
- 
--*************************************
--V4L2_META_FMT_MALI_C55_STATS ('C55S')
--*************************************
-+*****************************************************************************
-+V4L2_META_FMT_MALI_C55_STATS ('C55S'), V4L2_META_FMT_MALI_C55_PARAMS ('C55P')
-+*****************************************************************************
- 
- 3A Statistics
- =============
-@@ -23,6 +24,65 @@ of the C structure :c:type:`mali_c55_stats_buffer` defined in
- 
- For details of the statistics see :c:type:`mali_c55_stats_buffer`.
- 
-+Configuration Parameters
-+========================
-+
-+The configuration parameters are passed to the
-+:ref:`mali-c55 3a params <mali-c55-3a-params>` metadata output video node, using
-+the :c:type:`v4l2_meta_format` interface. Rather than a single struct containing
-+sub-structs for each configurable area of the ISP, parameters for the Mali-C55
-+are defined as distinct structs or "blocks" which may be added to the data
-+member of :c:type:`mali_c55_params_buffer`. Userspace is responsible for
-+populating the data member with the blocks that need to be configured by the driver, but
-+need not populate it with **all** the blocks, or indeed with any at all if there
-+are no configuration changes to make. Populated blocks **must** be consecutive
-+in the buffer. To assist both userspace and the driver in identifying the
-+blocks each block-specific struct embeds
-+:c:type:`mali_c55_params_block_header` as its first member and userspace
-+must populate the type member with a value from
-+:c:type:`mali_c55_param_block_type`. Once the blocks have been populated
-+into the data buffer, the combined size of all populated blocks shall be set in
-+the total_size member of :c:type:`mali_c55_params_buffer`. For example:
-+
-+.. code-block:: c
-+
-+	struct mali_c55_params_buffer *params =
-+		(struct mali_c55_params_buffer *)buffer;
-+
-+	params->version = MALI_C55_PARAM_BUFFER_V1;
-+	params->total_size = 0;
-+
-+	void *data = (void *)params->data;
-+
-+	struct mali_c55_params_awb_gains *gains =
-+		(struct mali_c55_params_awb_gains *)data;
-+
-+	gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
-+	gains->header.enabled = true;
-+	gains->header.size = sizeof(struct mali_c55_params_awb_gains);
-+
-+	gains->gain00 = 256;
-+	gains->gain00 = 256;
-+	gains->gain00 = 256;
-+	gains->gain00 = 256;
-+
-+	data += sizeof(struct mali_c55_params_awb_gains);
-+	params->total_size += sizeof(struct mali_c55_params_awb_gains);
-+
-+	struct mali_c55_params_sensor_off_preshading *blc =
-+		(struct mali_c55_params_sensor_off_preshading *)data;
-+
-+	blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
-+	blc->header.enabled = true;
-+	blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
-+
-+	blc->chan00 = 51200;
-+	blc->chan01 = 51200;
-+	blc->chan10 = 51200;
-+	blc->chan11 = 51200;
-+
-+	params->total_size += sizeof(struct mali_c55_params_sensor_off_preshading);
-+
- Arm Mali-C55 uAPI data types
- ============================
- 
 -- 
-2.34.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
