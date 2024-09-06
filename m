@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-100828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3515096F178
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:29:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D4896F181
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:31:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AF29B233AC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:29:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 976A61F22BF8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:31:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6F31C9DED;
-	Fri,  6 Sep 2024 10:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496491B1D58;
+	Fri,  6 Sep 2024 10:31:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MwgJf3L9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mgJJBX9y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06722D600;
-	Fri,  6 Sep 2024 10:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 200F513AD2F;
+	Fri,  6 Sep 2024 10:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725618542; cv=none; b=BhZRexnJR6gR59igHgpsZy8LmvjMMwWAMvcr6u3jgbhxoYwekJ3ppc2mY8o1QR1jN59mg/FPoay850iJb2oa33uLLfo7FLtlBCYLldz3uSHuZJ3HvXB0TmuQ2O7LkxaSAFdeblgqthobq+QJOONhxy8OMTR7Q5IqT/FbE2pS0YU=
+	t=1725618684; cv=none; b=o20q/Kkymcy3ssVi7WEiMoIwgKwvaBCMbYMdnLNGhYpN4VvNdtunfD3eobPwXUKd2V0YNct940SigQVCV+wv2AYjdSqh7KEvQliYCzcscixXnAgk27m/8jlWrSTRQYv42XEQwEx5Prk51SFgUiYfM+y6zSHwyL3s+YcKs2isnfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725618542; c=relaxed/simple;
-	bh=ewoUSpD+jsuG97f6zhJYRHrylPQTOxOQQpBb+FirDiI=;
+	s=arc-20240116; t=1725618684; c=relaxed/simple;
+	bh=A4c7deV6ZIknQWmVX7wV7TaEk2v1931J+nZxYnmgi2A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kv45sCrEcjwHwAC0ufGBczF5mALx7pbfREnyzHMTVWI7zA04iASI25F7/Das7Ru3obm/ZME3OttplKXQc32T23bXsVrztYI7in/KHdkdBOc/wZTmPR0ABrEdnBTvSstDWlpY9QcEE+YehNpLkHu35G57vOUnvFOOy4fHzJ0wiXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MwgJf3L9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3DFEC4CEC4;
-	Fri,  6 Sep 2024 10:29:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFCoWEUweDIJiBYPBVipkIRL4o2cZJolFhv2DXDYzj9cKc8g7Oe1T37mnXcQXggEe0QeYeeeHcT/4YCwWqtF24cPOzlPv5VSq86+mdrarIqRxyVLnsmWaOshFLBnwszziRVRnZz0bgLoL4Cv++D2YiIs/4rpT+wAU/ZPf5vzfaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mgJJBX9y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80830C4CEC4;
+	Fri,  6 Sep 2024 10:31:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725618542;
-	bh=ewoUSpD+jsuG97f6zhJYRHrylPQTOxOQQpBb+FirDiI=;
+	s=k20201202; t=1725618683;
+	bh=A4c7deV6ZIknQWmVX7wV7TaEk2v1931J+nZxYnmgi2A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MwgJf3L9wQWge9t74ekAwke2UNtQDao/ymn+JSUdslmBr3jmD9lgXomYimyYCwOs5
-	 jYtZVpm+8KMSsLqLzNHBpPdHMTvluz58r7wNtXiEZVcIHwtEya6IHJP9ctS0JA/kdu
-	 nYZLEUMCra17fOm0ZWlVSygIE6tOJwoYAepBoMLp9BpTvCIeb82++UKw2mO1xv5Oik
-	 MAsYrVKlG3hCK1nuJEVzhh2aBZCZKCNA3ZgAJMF4iuog/eqJFjS3xXJgQ3DTA632AX
-	 t88ydsHhihZJZUYE3lAPNpymDZX8urCOwXJud6SuqfzVviYcO5YznRDQ/8aUmzOQkt
-	 IZ3Fz8FNhOf2w==
-Date: Fri, 6 Sep 2024 12:28:58 +0200
+	b=mgJJBX9yutVEx2zdLpiQZ2XQR223NBTCKqOzD/EVInroPSXC0eiTARgNwfrTqntzP
+	 WlA6C8USra4b3+cTyHa7+mEpqse4xOvnlX/XWmKYDcnjH0Yy4/BkZQApgM77iAfUYZ
+	 SWOxV8pFHG98kEc0zsyhcDaxiylu5sUbORDBj6eiN2bXod5OgU8PVch4zKlDbkjbVE
+	 FRmisOnwqWp6RLolWa0UjhJbibizzbvfx4KbkHSaVEBAiI/snda7N8fALES0FFCxUm
+	 xfLuLGrQQx2qzfGmAjlz+Ud4baHyszNeuzsMOU2KJVeDOqlGzDYn8/p6YJbK4HGKYL
+	 0BX2kWu7UoUiQ==
+Date: Fri, 6 Sep 2024 12:31:19 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 06/10] ASoC: loongson: Fix codec detection failure on
- FDT systems
-Message-ID: <x2vcgpjlamobnlsj7ty5aekj35kjzpraizqd2zhvbwi7mhputx@snxtfb3hgznb>
-References: <cover.1725518229.git.zhoubinbin@loongson.cn>
- <f9111564acc6c9ac011318a7eb3c6843ea0529ce.1725518229.git.zhoubinbin@loongson.cn>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, unicorn_wang@outlook.com, inochiama@outlook.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, chao.wei@sophgo.com, haijiao.liu@sophgo.com, 
+	xiaoguang.xing@sophgo.com, chunzhi.lin@sophgo.com
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: sophgo: add bindings for sg2042
+Message-ID: <clq2dwmsks56553cythofgd3x5sw4t6pss7cxup2hrvj2n563g@3ishagojtabx>
+References: <cover.1725536870.git.unicorn_wang@outlook.com>
+ <6e5fb37472b916cb9d9abfbe3bea702d8d0d9737.1725536870.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,148 +61,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f9111564acc6c9ac011318a7eb3c6843ea0529ce.1725518229.git.zhoubinbin@loongson.cn>
+In-Reply-To: <6e5fb37472b916cb9d9abfbe3bea702d8d0d9737.1725536870.git.unicorn_wang@outlook.com>
 
-On Thu, Sep 05, 2024 at 03:02:55PM +0800, Binbin Zhou wrote:
-> When the Codec is compiled into a module, we can't use
-> snd_soc_of_get_dlc() to get the codec dai_name, use
-> snd_soc_get_dai_name() instead.
+On Thu, Sep 05, 2024 at 08:10:25PM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> Also, for the cpu dailink, its dai_name is already defined as
-> "loongson-i2s", so just get the corresponding of_node attribute here.
+> Add binding document for sophgo,sg2042-pwm.
+
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+Say something useful about hardware instead. The same in commit msg -
+you keep saying obvious and duplicated commit subject.
+
 > 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 > ---
->  sound/soc/loongson/loongson_card.c | 89 +++++++++++++++++++++---------
->  1 file changed, 63 insertions(+), 26 deletions(-)
+>  .../bindings/pwm/sophgo,sg2042-pwm.yaml       | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
 > 
-> diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loongson_card.c
-> index a25287efdd5c..d45a3e77cb90 100644
-> --- a/sound/soc/loongson/loongson_card.c
-> +++ b/sound/soc/loongson/loongson_card.c
-> @@ -119,44 +119,81 @@ static int loongson_card_parse_acpi(struct loongson_card_data *data)
->  	return 0;
->  }
->  
-> -static int loongson_card_parse_of(struct loongson_card_data *data)
-> +static int loongson_parse_cpu(struct device *dev, struct device_node **dai_node)
->  {
-> -	struct snd_soc_card *card = &data->snd_card;
-> -	struct device_node *cpu, *codec;
-> -	struct device *dev = card->dev;
-> -	int ret, i;
-> +	struct device_node *cpu;
-> +	int ret = 0;
->  
->  	cpu = of_get_child_by_name(dev->of_node, "cpu");
-> -	if (!cpu) {
-> -		dev_err(dev, "platform property missing or invalid\n");
-> +	if (!cpu)
->  		return -EINVAL;
-> -	}
+> diff --git a/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
+> new file mode 100644
+> index 000000000000..10212694dd41
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/sophgo,sg2042-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	*dai_node = of_parse_phandle(cpu, "sound-dai", 0);
-> +	if (!*dai_node)
-> +		ret = -EINVAL;
+> +title: Sophgo SG2042 PWM controller
 > +
-> +	of_node_put(cpu);
-
-This goes just after of_parse_phandle, which simplifies your code.
-
-> +	return ret;
-> +}
+> +maintainers:
+> +  - Chen Wang <unicorn_wang@outlook.com>
 > +
-> +static int loongson_parse_codec(struct device *dev, struct device_node **dai_node,
-> +				const char **dai_name)
-> +{
-> +	struct of_phandle_args args;
-> +	struct device_node *codec;
-> +	int ret = 0;
->  
->  	codec = of_get_child_by_name(dev->of_node, "codec");
-> -	if (!codec) {
-> -		dev_err(dev, "audio-codec property missing or invalid\n");
-> +	if (!codec)
+> +description: |
 
-Hm? So you exit here and then caller does of_node_put on stack value.
-This is buggy.
+drop |
 
-> +		return -EINVAL;
+> +  This controller contains 4 channels which can generate PWM waveforms.
 > +
-> +	ret = of_parse_phandle_with_args(codec, "sound-dai", "#sound-dai-cells", 0, &args);
-> +	if (ret)
-> +		goto free_codec;
+> +allOf:
+> +  - $ref: pwm.yaml#
 > +
-> +	ret = snd_soc_get_dai_name(&args, dai_name);
-> +	if (ret)
-
-Your error paths should clean here. Each function is responsible to
-clean up after itself in case of errors, not rely on caller.
-
-> +		goto free_codec;
+> +properties:
+> +  compatible:
+> +    const: sophgo,sg2042-pwm
 > +
-> +	*dai_node = of_parse_phandle(codec, "sound-dai", 0);
-> +	if (!*dai_node)
->  		ret = -EINVAL;
-> -		goto free_cpu;
+> +  reg:
+> +    maxItems: 1
 > +
-> +free_codec:
-
-You are not freeing any resources here (at least not directly). You are
-dropping reference. Use matching label name. free is associated with
-kalloc()..
-
-
-> +	of_node_put(codec);
-> +	return ret;
-> +}
+> +  clocks:
+> +    maxItems: 1
 > +
-> +static int loongson_card_parse_of(struct loongson_card_data *data)
-> +{
-> +	struct device_node *codec_dai_node, *cpu_dai_node;
-> +	struct snd_soc_card *card = &data->snd_card;
-> +	struct device *dev = card->dev;
-> +	const char *codec_dai_name;
-> +	int ret = 0, i;
+> +  clock-names:
+> +    items:
+> +      - const: apb
 > +
-> +	ret = loongson_parse_cpu(dev, &cpu_dai_node);
-> +	if (ret) {
-> +		dev_err(dev, "cpu property missing or invalid.\n");
-> +		goto out;
-> +	}
-> +
-> +	ret = loongson_parse_codec(dev, &codec_dai_node, &codec_dai_name);
-> +	if (ret) {
-> +		dev_err(dev, "audio-codec property missing or invalid.\n");
-> +		goto out;
->  	}
->  
->  	for (i = 0; i < card->num_links; i++) {
-> -		ret = snd_soc_of_get_dlc(cpu, NULL, loongson_dai_links[i].cpus, 0);
-> -		if (ret) {
-> -			dev_err(dev, "getting cpu dlc error (%d)\n", ret);
-> -			goto free_codec;
-> -		}
-> -
-> -		ret = snd_soc_of_get_dlc(codec, NULL, loongson_dai_links[i].codecs, 0);
-> -		if (ret) {
-> -			dev_err(dev, "getting codec dlc error (%d)\n", ret);
-> -			goto free_codec;
-> -		}
-> +		loongson_dai_links[i].platforms->of_node = cpu_dai_node;
-> +		loongson_dai_links[i].cpus->of_node = cpu_dai_node;
-> +		loongson_dai_links[i].codecs->of_node = codec_dai_node;
-> +		loongson_dai_links[i].codecs->dai_name = codec_dai_name;
->  	}
->  
-> -free_codec:
-> -	of_node_put(codec);
-> -free_cpu:
-> -	of_node_put(cpu);
-> +out:
-> +	of_node_put(codec_dai_node);
+> +  "#pwm-cells":
+> +    # See pwm.yaml in this directory for a description of the cells format.
 
-Yeah, so here we see drop of reference from stack-based pointer...
+Drop
+
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+
+unevaluatedProperties instead
 
 Best regards,
 Krzysztof
