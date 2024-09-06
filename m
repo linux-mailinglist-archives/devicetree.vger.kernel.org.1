@@ -1,167 +1,202 @@
-Return-Path: <devicetree+bounces-100748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB21B96ED31
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:09:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCADA96ED96
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 10:18:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D80161C23845
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 08:09:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98732283350
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 08:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398BD145A11;
-	Fri,  6 Sep 2024 08:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hvtHqYIs";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="FvEBveOv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C55156F54;
+	Fri,  6 Sep 2024 08:17:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-31.smtp-out.eu-west-1.amazonses.com (a7-31.smtp-out.eu-west-1.amazonses.com [54.240.7.31])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343393C463;
-	Fri,  6 Sep 2024 08:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.31
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6391158A00;
+	Fri,  6 Sep 2024 08:17:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725610175; cv=none; b=A7ikblz1pVLLlDhTQ2vS+RrnmYVz+nONzxJXHjSqe51MRCIcS2nwhkxidzitBvEqusavNjM55TpoIEKpLV+MjtGUYm/zOWk+cmM4haCoJjAdqieCiQVnnaUXmnj9m7cxXyrcbswuq4pXTeF2jGHagzJrKS1oE1prwDic3KfGIEM=
+	t=1725610675; cv=none; b=cFZVKexSIMfoPbmWllxcjjDpkPWMRpqJZblj9H/hVU3HBOeCHsYMVDlZj4K4Nag88XqAOC/yyc77gqiJ4DmmU+If0ZJILLwlMUDPLazkCylFv6yld/H6swCOvbsvh0Gj2yt8lLZP83OGw+Hpfo3M8ZigIRqySUrYY+922zs58ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725610175; c=relaxed/simple;
-	bh=d2LTvAUD73W6H0PO0+ppRV5eODWlqhokYf0EPpLmO1Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OW3sgzimkjAyzxNnL55Hbb3uxVH1WLo89bl+w5rh57bNfg6RBHMRttcUdMH/RA+LlX6hHweqkc4GzAft1zr6rAgDSWcMxfjBMSL6iyv8hK+X9o158gkrEcMMQhQuoySokNh1aSaRvp4YsxF6LD3cpKDcka9wZa/Ys/tN3rOgevw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hvtHqYIs; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=FvEBveOv; arc=none smtp.client-ip=54.240.7.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725610171;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=d2LTvAUD73W6H0PO0+ppRV5eODWlqhokYf0EPpLmO1Q=;
-	b=hvtHqYIsN1LHSFz/I3+79Xl2J7ynM7CbbXjY/i/+GU37GtFt5YFGc78rDX6zpCb8
-	YWDK+vL58wDBybNZKe9wHNlmW30/cvd6eiR2AXQJV0x1zv5KYaS6GdLghNieAhYkH4A
-	fxRhOw93Ro2YDHqdsVibNl3ieUFjJyksjyvEEFpErDG/ilsktiXXNnn9oLlrDKSrQPj
-	NIpB0fE7EFYQKdz3cf9SVrjr1mP2E+/MG3Hw1SLK+cgezPwesEsw4ip94oNmS+PqER4
-	wePQ1YPYIlgbI6iAJMIwNU72vO7uJOak6DNVWFGA8ohSNDYRCNc12KqMX0SdA4fG76J
-	Yk+4/TiLBw==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725610171;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=d2LTvAUD73W6H0PO0+ppRV5eODWlqhokYf0EPpLmO1Q=;
-	b=FvEBveOvYs0V7K/ZbTWOigQcdyphONs8KWEIpmWwnRnQJH6K3BwulfwmVgECm/u5
-	6Vi7hIyAtQae0lNSJUkyV/EQNm11afexP6D9+HRXgkWHbeo7AwJCYuNP2dUQpXWWXQD
-	67oAWNU9w5okwpa2WBjgvbkt0wgEOkW7IEHQj/ok=
-Message-ID: <01020191c6619a72-e5b5627b-9094-4737-8333-28d2e0837303-000000@eu-west-1.amazonses.com>
-Date: Fri, 6 Sep 2024 08:09:31 +0000
+	s=arc-20240116; t=1725610675; c=relaxed/simple;
+	bh=Vo9LU6QDb8aoSpr8SmuWlxjZN7aPvw1PXzFw8rq1QT0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Sd4pUW8npq44V0RhmJGYZ6bAIZa5e1DmRmZiZrRePyd+N5yunGE+PiJRIL7zS2fPGBTI6qmTqhbdk7CYp2LNnASG6PLDb6mwuP4caMeaqGfK9ZC6HpAiwkEghTUK5SNGv9S7oyCVURkoecO0I17qPY4YAAP95D1ukX1tvi+9k5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [119.122.212.181])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 80F117E016D;
+	Fri,  6 Sep 2024 16:10:10 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: bigfoot@classfun.cn
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dsimic@manjaro.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+Date: Fri,  6 Sep 2024 16:10:05 +0800
+Message-Id: <20240906081005.69334-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240906045706.1004813-4-bigfoot@classfun.cn>
+References: <20240906045706.1004813-4-bigfoot@classfun.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8186: Fix supported-hw mask for
- GPU OPPs
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
-	linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	wenst@chromium.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@collabora.com
-References: <20240725072243.173104-1-angelogioacchino.delregno@collabora.com>
- <9aec2480-5b49-4fd0-8ad0-9fd87c865630@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <9aec2480-5b49-4fd0-8ad0-9fd87c865630@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.06-54.240.7.31
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTE9CVkoZQh1LGhhLGE9ISVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSEpMTElVSktLVU
+	pCS0tZBg++
+X-HM-Tid: 0a91c66235eb03a2kunm80f117e016d
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PFE6KRw6QjI4HT4wIzE2FR8L
+	AUoKCxRVSlVKTElOTUpLSUpKSEJIVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpJVUpDSllXWQgBWUFITEpJNwY+
 
-Il 02/09/24 18:07, Matthias Brugger ha scritto:
-> 
-> 
-> On 25/07/2024 09:22, AngeloGioacchino Del Regno wrote:
->> The speedbin eFuse reads a value 'x' from 0 to 7 and, in order to
->> make that compatible with opp-supported-hw, it gets post processed
->> as BIT(x).
->>
->> Change all of the 0x30 supported-hw to 0x20 to avoid getting
->> duplicate OPPs for speedbin 4, and also change all of the 0x8 to
->> 0xcf because speedbins different from 4 and 5 do support 900MHz,
->> 950MHz, 1000MHz with the higher voltage of 850mV, 900mV, 950mV
->> respectively.
->>
->> Fixes: f38ea593ad0d ("arm64: dts: mediatek: mt8186: Wire up GPU voltage/frequency 
->> scaling")
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Patch got applied and is queued for v6.12 (v6.11-next/dts64 branch).
-> Somehow no email was send to inform about this.
-> 
-> Angelo, not sure if it's worth investigating what happened.
-> 
+Hi Junhao,
 
-Thanks for that, yes I checked and I know what went wrong - shouldn't happen
-anymore :-)
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+> @@ -0,0 +1,595 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+> +#include <dt-bindings/soc/rockchip,boot-mode.h>
 
-Cheers!
-Angelo
+No need for input.h, leds/common.h and boot-mode.h.
 
-> Regards,
-> Matthias
-> 
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 12 ++++++------
->>   1 file changed, 6 insertions(+), 6 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi 
->> b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
->> index 4763ed5dc86c..d63a9defe73e 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
->> @@ -731,7 +731,7 @@ opp-850000000 {
->>           opp-900000000-3 {
->>               opp-hz = /bits/ 64 <900000000>;
->>               opp-microvolt = <850000>;
->> -            opp-supported-hw = <0x8>;
->> +            opp-supported-hw = <0xcf>;
->>           };
->>           opp-900000000-4 {
->> @@ -743,13 +743,13 @@ opp-900000000-4 {
->>           opp-900000000-5 {
->>               opp-hz = /bits/ 64 <900000000>;
->>               opp-microvolt = <825000>;
->> -            opp-supported-hw = <0x30>;
->> +            opp-supported-hw = <0x20>;
->>           };
->>           opp-950000000-3 {
->>               opp-hz = /bits/ 64 <950000000>;
->>               opp-microvolt = <900000>;
->> -            opp-supported-hw = <0x8>;
->> +            opp-supported-hw = <0xcf>;
->>           };
->>           opp-950000000-4 {
->> @@ -761,13 +761,13 @@ opp-950000000-4 {
->>           opp-950000000-5 {
->>               opp-hz = /bits/ 64 <950000000>;
->>               opp-microvolt = <850000>;
->> -            opp-supported-hw = <0x30>;
->> +            opp-supported-hw = <0x20>;
->>           };
->>           opp-1000000000-3 {
->>               opp-hz = /bits/ 64 <1000000000>;
->>               opp-microvolt = <950000>;
->> -            opp-supported-hw = <0x8>;
->> +            opp-supported-hw = <0xcf>;
->>           };
->>           opp-1000000000-4 {
->> @@ -779,7 +779,7 @@ opp-1000000000-4 {
->>           opp-1000000000-5 {
->>               opp-hz = /bits/ 64 <1000000000>;
->>               opp-microvolt = <875000>;
->> -            opp-supported-hw = <0x30>;
->> +            opp-supported-hw = <0x20>;
->>           };
->>       };
+> +#include "rk3568.dtsi"
+> ...
+> +	vcc3v3_sd: regulator-3v3-vcc-sd {
+> +		pinctrl-0 = <&vcc_sd_h>;
 
+schematics: sdmmc0_pwren
+
+> ...
+> +	vcc3v3_rf: regulator-3v3-vcc-rf {
+
+schematics: VCC3V4_RF
+VCCIN_5V -> VCC3V4_RF
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcc3v3_rf_pwren_en>;
+
+schematics: RF_PWR_EN
+
+> ...
+> +	vcc5v0_sysin: regulator-5v0-vcc-sysin {
+
+schematics: VCC_SYSIN
+
+> ...
+> +	vcc5v0_syson: regulator-5v0-vcc-syson {
+
+schematics: VCC_SYSON
+
+> ...
+> +	vcc5v0_usb30_otg0: regulator-5v0-vcc-usb-host {
+> ...
+> +		vin-supply = <&vcc5v0_syson>;
+
+VCCIN_5V -> VCC5V0_USB30_OTG0
+
+> ...
+> +&gmac1 {
+> ...
+> +	tx_delay = <0x0>;
+> +	rx_delay = <0x0>;
+
+Please remove the tx_delay and rx_delay, it's useless.
+I know there is an error log, but please ignore it first.
+
+> ...
+> +&pinctrl {
+> ...
+> +		bt_reg_on_h: bt-enable-h {
+> +		pcie_pwren_h: pcie-enable-h {
+> +		wifi_reg_on_h: wifi-enable-h {
+> +		vcc3v3_rf_pwren_en: vcc5v0-modem-en {
+> +		usb_host_pwren_h: vcc5v0-host-en {
+
+obviously (
+
+> +	wifi_pwrseq: wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> ...
+> +&pinctrl {
+> ...
+> +	sdio-pwrseq {
+
+I tend to write like this:
+
+```
+&pinctrl {
+	wifi {
+		wifi_reg_on_h: wifi-reg-on-h {
+```
+
+> +	vcc_sd {
+> +		vcc_sd_h: vcc-sd-h {
+
+Overwrite original to match `sdmmc0_pwren`
+
+sdmmc0 {
+	sdmmc0_pwren: sdmmc0-pwren {
+
+> +			rockchip,pins = <0 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+
+Extra blank lines.
+
+> +};
+> ...
+> &sdmmc1 {
+> ...
+> 	max-frequency = <150000000>;
+
+`max-frequency = <150000000>;` already defined in rk356x.dtsi
+
+> ...
+> +&usb_host0_ohci {
+> ...
+> +&usb_host0_ehci {
+
+&usb_host0_ehci {
+&usb_host0_ohci {
+
+Same for usb_host1
+
+> ...
+> &usb2phy1_host {
+> 	phy-supply = <&vcc3v3_rf>;
+> 	status = "okay";
+> };
+
+Is usb2phy1_host connected?
+
+-- 
+2.25.1
 
 
