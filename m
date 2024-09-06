@@ -1,127 +1,129 @@
-Return-Path: <devicetree+bounces-101003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D3A796FD7B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 23:37:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 748A496FD85
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 23:43:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A2AA1F24C83
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 21:37:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16B001F24BF3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 21:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0318A159571;
-	Fri,  6 Sep 2024 21:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D0E15958D;
+	Fri,  6 Sep 2024 21:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="idCJht0F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bUSSF14Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FCEB159582
-	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 21:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CD9214883B
+	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 21:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725658650; cv=none; b=Wr7Spt45lWTI1mOak+EZ+3oAwCs/suzkfxnBgtUKQxLgWwULYKLNzCbDebpT+8H8JcSsUk/g4Lzhxcy6yt13gmNLBn9s7j4VBBy387N2tH9l6Z3Y/64Wna9yOUSuSptX81qASFUukYTRmwWowHlB/C4nWEJ6EWo1Wd+bWXkSQB4=
+	t=1725658984; cv=none; b=M7AzuhU09RXsn2KoZV/yOKj7DunKJ6eJaonUAcc2+q2yPd5YBOXuFCOy3NVBWuHFkDXZuG0UTKAaW1A6te7NrS/xub3wyHGtsVQ0EjF45f+mG3aF1oMdDwrPYrO3roQeoeyuBAWV9Q3hbuo40m8xsaYE3YFFDUWhQR5NSmXggrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725658650; c=relaxed/simple;
-	bh=UOZpUSrIHZDHiID5YAN1vbCnx/v+7sFB/F7sEe547R8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G3lo6TW+PN3OjfB0MnNGiIhDmroYJBipXEVlJz6/YpHR0vMZGe5jqY8OfzngIu2AhpuntzdO+xAK+CuDj6RbijcfNuAMsg0UMmN7FPRN9vyBYBudj0mBKXKjoIRobG6VmPPHP/TFTvbXtns2YSAVbHfcKNlyfICo1W4Erca+BSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=idCJht0F; arc=none smtp.client-ip=209.85.208.182
+	s=arc-20240116; t=1725658984; c=relaxed/simple;
+	bh=VuX4Jn656SyN3lFhlYF+3sJWBSxZXV1d8YF9Qq7gn+A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OkOZ1sn6LWVXJHOBIY4cg6dKyXsMB9dzb8wWm2PvNwXeu9ceVE8GRekrOa+RrD+1c9e3JThi7CH16xHjBjWMH9FEf/C99DsDuWxHo049nIcRSeL8J4dkGgFRGq494wcpOiiIsOBro7cQa6+sBYi+t5AftaX5E7xlPwU7Ogml4pQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bUSSF14Q; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f758f84dfbso4110081fa.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 14:37:29 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53652c3bffdso334060e87.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 14:43:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725658647; x=1726263447; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PbdUTNfwkoA3gOzlylClMfmRKbNDpBIhjentZdlbaOM=;
-        b=idCJht0FaxDqYGTGG6YZB0FYrTRCk/Ms8QFtR0SD4I273vBxKL9VC9/agChr3CoeuV
-         PIQRxuCJZzPKvZ5HCMFFgRo3ATKYImYxOv/SljuscgYwGXAcFy0JwArPOnwsNmu4uDNg
-         X/4IucTgTwp1If+2DxvR6pFjRRpsWG2Gmo9k2HUtB4wW551VTswyodxPcFiESkytW+vT
-         2aCHHQ9DasW2WTmkLIjc06auNXK6hsGsdRsO+ywWV7nirSJlGDhYdO8A4KTMfcwMnz4o
-         6gDBlkH+TnFJUGwyNeA+Gv87IrTW7H2auntD6BUsL8e748hIbZ2g8reYoe06jp/rnVZb
-         HU9w==
+        d=linaro.org; s=google; t=1725658981; x=1726263781; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QMJVvz0JpBRvUB5FSNKq4yW1CoRz1HX38oGPUb4Dv+4=;
+        b=bUSSF14QtEcolpbcFn7m+kNaM7cbgdqChLWVJL2WpLCebj0d0nJQH/vxgIcKpotPgZ
+         qIYbcnPec1PWBOreNnLPZAtEOu4yPTFzHg3Y1FdwF0Xo5lKM8t4EcDsuJJXd6/xO8W+I
+         phujWRFzzdud0ZPFsZoZATsqCFLzoV4LhbLVh6/YlZOkuFGcfP0Y0KDEgM4DlI+Gdtm8
+         LoehIp0Ty8gg5+jw5Cx3U9mWe55LEJYLGaBnZapYWKXHMEbUGm/fT/YTEaJ0lWzTvLEI
+         xfwhidB1oCJg71lfb3YxBg1oqQsoxcLHORtz1jX6N/gC+PYqfICCRUKwRiI4B67cd9Uz
+         YjEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725658647; x=1726263447;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1725658981; x=1726263781;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PbdUTNfwkoA3gOzlylClMfmRKbNDpBIhjentZdlbaOM=;
-        b=mSxwanMSTgH3fGcNMK4NIBDwSjEFZhepDYVL2yTEegLvJ5pGHm4h13RX3+tDbHpTiY
-         OzzM05sQH4QCLFL2QaeXanCFsyx+q+WcijBv2/P/Rdf/FrkAZdu6dsGxxwl5BC6lkYNC
-         H/ASrmroaheXlLcIP6AupkTm5t9j6YiG6YweeXtoM/GFcDMUEuja0OVf+9E1RGa4rqn/
-         I7JcEpU/lLmZA2rDgaGekOveJ+zaXMJ6aCHT3d8qX8Q8arvUSdwc+qfgaCYB4+rtDqv7
-         3vDlwQPpxpF4+161gSvrDUmKJtwusAm5sNk5GnjuD9ZLT7XYtlZwpwiXb/iWVaBx70xk
-         Mimw==
-X-Forwarded-Encrypted: i=1; AJvYcCUSWvkKNE4P2UkiBXGfksvrZs5UyC+AsKuADG23CPgze8vDirc5NctEMFgO92eBBvd07GP7YiaYjo45@vger.kernel.org
-X-Gm-Message-State: AOJu0YzooMTRgCZLP+nnZmtrKbmAVjXjfRBczsRYG3VIooXhIgNvjcN9
-	SP39BvmRdBCp9t7caASXGlvm7OwkEwTTQZ5Ut2jaPnWTK0DzbSNL0XIWJ0NUgU8kFHtSJlURxy8
-	x
-X-Google-Smtp-Source: AGHT+IFSOl6x4rvgC3wxuREweSTuezpFUPH+fzYpFHfu4pXnQMX7AdlkVgsIOPaJYbD+Vq+qdudlKQ==
-X-Received: by 2002:a05:6512:1092:b0:535:6992:f2cb with SMTP id 2adb3069b0e04-536587ef18amr2256004e87.42.1725658647167;
-        Fri, 06 Sep 2024 14:37:27 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53566a2fd5esm828097e87.249.2024.09.06.14.37.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Sep 2024 14:37:26 -0700 (PDT)
-Date: Sat, 7 Sep 2024 00:37:25 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sc8280xp-x13s: keep less
- regulators always-on
-Message-ID: <b7hjve5oqfjenmu4jvh5i5firnyts47t5trl6s4acpxvwmhvth@rpuwqx5mwfnf>
-References: <20240905122023.47251-1-brgl@bgdev.pl>
- <20240905122023.47251-5-brgl@bgdev.pl>
- <Ztm6fzmoeWcCpqvi@hovoldconsulting.com>
- <CAMRc=McDHi5EVpBjsuFE+JHgBhh84tsT6xr5PWO5yeU8zbS99Q@mail.gmail.com>
- <n7scbcdbse4m4rilkegqsinallgkryayjzqojnxtr7qozgxwp7@7mgropizypbz>
- <ZtsWe6IDKU4rvHIT@hovoldconsulting.com>
+        bh=QMJVvz0JpBRvUB5FSNKq4yW1CoRz1HX38oGPUb4Dv+4=;
+        b=ZkHo1Qp5exTi8pdaQX480XVT+pN6AcGHUw+jimX0KCCCd2ZQTtclYE73Z8ezVzpMf4
+         sFJvY/lwjYawaQz44PmNBnM7PFqMtmmTvG/QkQ1npEFLTGaVaZtGgYbze9mD9twXKAg7
+         SgUOPGySuMbjXbwEDMFKt7skgbz9kAsZWdVB9TqfKq/HJoZTi/4am2+c/5ClSPB7z8mQ
+         VYFaXC+3Vnw3nc4bTKU0rbHOx4AZ94HommqQ8g/esd9LcIo9917b7w1ZHvX0CxTTJ+oN
+         tXtC/p/JfHYh7G413mKAgLsy4QjReMDqcfLTxK48oXIqHdJHhHE8BKl3hVyXP9xALWwc
+         OmGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXh5M8Rs7Zv7mMj4sTw077oE90j/3WlF2/3R/RRtBW/N8+Uy7DOYMa2m/D95zCSPPqgjPqDIRLMH/To@vger.kernel.org
+X-Gm-Message-State: AOJu0Yymr/WL2zBcHgi1c0qy9OX8LsOFVG8shrIs3Wc/N0rv7BuKeh5b
+	a3tX7Xnt39matuHfpzH/wrA1rNrdIdw80xbZR1DwT+fuhObJgQ9/DXKLejhrQrujYwwdGTAZavu
+	w
+X-Google-Smtp-Source: AGHT+IE/D+5ba+1hDZr0V2IYH3UjMXEOuRVLlJRqu+mfaEn6EiITN40Eds9AruP0dsVxsMAjPuEB/w==
+X-Received: by 2002:a05:6512:3b24:b0:535:3dfb:a51a with SMTP id 2adb3069b0e04-536587b818emr1498588e87.5.1725658981064;
+        Fri, 06 Sep 2024 14:43:01 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53655aa72adsm384248e87.304.2024.09.06.14.43.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Sep 2024 14:43:00 -0700 (PDT)
+Message-ID: <8d3e4ad1-82e3-42ad-80c2-dacd863e8e3e@linaro.org>
+Date: Sat, 7 Sep 2024 00:42:59 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZtsWe6IDKU4rvHIT@hovoldconsulting.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: sc8280xp: Fix interrupt type of
+ camss interrupts
+Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240905164142.3475873-1-vladimir.zapolskiy@linaro.org>
+ <20240905164142.3475873-5-vladimir.zapolskiy@linaro.org>
+ <ZtsSTsSsOas0hVNg@hovoldconsulting.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <ZtsSTsSsOas0hVNg@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 06, 2024 at 04:49:31PM GMT, Johan Hovold wrote:
-> On Thu, Sep 05, 2024 at 10:27:24PM +0300, Dmitry Baryshkov wrote:
-> > On Thu, Sep 05, 2024 at 08:23:39PM GMT, Bartosz Golaszewski wrote:
-> > > On Thu, Sep 5, 2024 at 4:04 PM Johan Hovold <johan@kernel.org> wrote:
-> > > > On Thu, Sep 05, 2024 at 02:20:22PM +0200, Bartosz Golaszewski wrote:
-> > > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > > >
-> > > > > Remove the regulator-always-on property from the ones that used to be
-> > > > > implicitly needed by the on-board WCN6855 now that its PMU is modeled in
-> > > > > device-tree.
+Hi Johan,
+
+On 9/6/24 17:31, Johan Hovold wrote:
+> On Thu, Sep 05, 2024 at 07:41:40PM +0300, Vladimir Zapolskiy wrote:
+>> The expected type of all CAMSS interrupts is edge rising, fix it in
+>> the CAMSS device tree node for sc8280xp platform.
+>>
+>> Fixes: 5994dd60753e ("arm64: dts: qcom: sc8280xp: camss: Add CAMSS block definition")
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > 
-> > > > What makes you think s10b is only used by wcn6855?
-> > > 
-> > > I didn't say that. It's used by many components but they seem to be
-> > > all described in DT. But I get it, the schematics show it in so many
-> > > places, it would be risky to not keep it on.
-> > 
-> > Well, that depends on the consumers. If all consumers are good and
-> > voting, then it should be safe.
+> Camera still works on the X13s. Didn't try to reproduce the probe
+> deferral issue.
 > 
-> Right. But in this case, not all consumers are described in DT (e.g.
-> ddr) and this is effectively an always-on rail.
+> Tested-by: Johan Hovold <johan+linaro@kernel.org>
 
-Ack.
+thank you for testing!
 
--- 
-With best wishes
-Dmitry
+One of the simplest ways to reproduce the fixed problem would be to
+unbind/bind the camss device:
+
+% echo -n ac5a000.camss > /sys/bus/platform/drivers/qcom-camss/unbind
+% echo -n ac5a000.camss > /sys/bus/platform/drivers/qcom-camss/bind
+
+I don't have access to the X13s, but I believe that it should display the issue.
+
+--
+Best wishes,
+Vladimir
 
