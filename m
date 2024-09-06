@@ -1,112 +1,97 @@
-Return-Path: <devicetree+bounces-100912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD64396F79A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 17:00:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E9596F7DB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 17:09:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E62601C236A1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:00:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 100FD1C213EA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 15:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 952F41C9ECA;
-	Fri,  6 Sep 2024 15:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8677A1D1F73;
+	Fri,  6 Sep 2024 15:08:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XKd4XzP2"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nxej4J1s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692791C8FBC;
-	Fri,  6 Sep 2024 15:00:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C41E1CCB2C;
+	Fri,  6 Sep 2024 15:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725634816; cv=none; b=YtwHTW+OSIufnsPqydk4Uqd6/EbB+ev+BakDlhkplKMJq4s3c7Ifzapi/5yqLWgQi/FwmYQWSQYnv0z02n1ndyLSxY/woBDNX7rsahAcjkWUzTQCxeMRlLwU0h1K3EPOXRSa+H/akJ8pWzE4QTtnk81fg/59ZVIWkFQZC/EXv+Y=
+	t=1725635337; cv=none; b=CTT+eF4LK6ut0xFjguoEddOjlukretr6kY9A97HF7nLIY287AJ8qx+dLKPxMZjJHj+fZ7ol/P1GQIAzN7aXNL0bSc72/g777vJoRR4Jne+/Bmk2q6dPs2o6MbzOHvL3emm2zMZJsoLcsgeLB4IHFmimxnywwmRTWfG5ArqEhSFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725634816; c=relaxed/simple;
-	bh=p7yIq8PH1I2bwijZSVcZji0ntexjWrnsPzKDcLBZnP4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VBfvjJRwmWJ9cg6YAQsu95OMXBqOBDV8iZe+xY+vCH4nfDtb+7NfQrGfk7TdUTPgVrpW9lId5rCKzw001SSzaqehgdVSa4aNB2ijpAKLRhptHt+Arn3XrEQmwGHJSKmZNXVrvWKQ9oQNGBIIE6ALbNPJJ7AhsIGG2NaQajoQwFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XKd4XzP2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00AD5C4CEC7;
-	Fri,  6 Sep 2024 15:00:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725634816;
-	bh=p7yIq8PH1I2bwijZSVcZji0ntexjWrnsPzKDcLBZnP4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XKd4XzP23CGtaHOa12wc0BIwvz3XjJBGpEOHqCvAj1bnyaDUZRBTLTETK5L4FM//y
-	 quLufcrgQuJWc5CRjHR0Os28CbbUbzciRTV6UR6cPLUmX/d/Dyk5wDxCQNYul4V1Kt
-	 AMAMTqidJvxT+CNify+iaAL0fGA/a+RlFQCZUEBqpeSTb3FwaaByNrF31C0Wm3jPlY
-	 DUn+A3JTy7l78PEx/D2hLOpmslbAVpws3rCHPFf7m1wLvwF+NWm6YyUFgK+IsbZl1J
-	 HS/D4sp1hs5FmwldgiRs5Of/wxJ4Z4M+WceKJU5D8AlLgTDwUhzMQNOGAttNy5dRIX
-	 Poaz1kq0/y1pg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1smaRw-000000005OM-3LOU;
-	Fri, 06 Sep 2024 17:00:36 +0200
-Date: Fri, 6 Sep 2024 17:00:36 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Andersson <andersson@kernel.org>,
+	s=arc-20240116; t=1725635337; c=relaxed/simple;
+	bh=2SiaE3425A5JdlZpx8dNd6y6LVvenS+3fNMJQ4tbrKs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=P9kXqyvY3xbb0IQvTVw9XT4PxJnLZRt86uFR8a/jLgOOpeeIi05nswxa+S3j/J/6CfEzhBdKCtZMYn1j71pOzghOVaXMtWaFJf7rNGVMzO9uUs1saMa0QLJQ+IRbRyltuStLP3x7ELd9wChOPbAZdH8FK4KGR2aytSc2SCVG9hU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nxej4J1s; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BC05EE000A;
+	Fri,  6 Sep 2024 15:08:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725635333;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9Ly2d9EwxQYn8DsfJBD5rt/wTDTZaYNKWP55jAE7dZA=;
+	b=nxej4J1szwQNb1526tnOEqIYdaSYKyTg99r7lIAHy+8jraW2VD1gInuPLTh7TYgx1JR1dO
+	49sUgcOl5cp/jMtfQP8+x6Sv/K3bYaa7akahCPO5igBULKjfrDdZQTG+cehBvOss+9IjSJ
+	9nx+8alEBf9roHUCupZEq74/iYz1H4Qju5ZEHbOhlcqcYJ0JKt7EJGEfnTUNATFZ+ntZkV
+	94KKc3q0ZBQqcfHevFK0EKtPPaJG2i3AQclVd0R6k97iQys6HdlrbRT17UPinIAPPp/mjD
+	6hPMD0x34ZLlIfD9FdBwJ2dWnLrgsOVdILs8QTxurFHuk7P7Xr06xK1nNOQ8+A==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Roger Quadros <rogerq@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8280xp-crd: enable wifi
-Message-ID: <ZtsZFKJgSaghf9HH@hovoldconsulting.com>
-References: <20240813190639.154983-1-brgl@bgdev.pl>
- <20240813190639.154983-2-brgl@bgdev.pl>
- <ZsdRrHK7kCYs7MJF@hovoldconsulting.com>
- <62ac051e-f462-4a98-9c80-2229d1bf16be@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Nishanth Menon <nm@ti.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>,
+	Javier Martinez Canillas <javier@dowhile0.org>
+Cc: srk@ti.com,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: mtd: ti, gpmc-nand: support partitions node
+Date: Fri,  6 Sep 2024 17:08:52 +0200
+Message-ID: <20240906150852.735663-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240903-gpmc-dtb-v2-1-8046c1915b96@kernel.org>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <62ac051e-f462-4a98-9c80-2229d1bf16be@kernel.org>
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'9e1a23aa86fc404af953e2ae8b1149a31f743f72'
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Tue, Aug 27, 2024 at 01:26:40PM +0200, Konrad Dybcio wrote:
-> On 22.08.2024 4:56 PM, Johan Hovold wrote:
-> > On Tue, Aug 13, 2024 at 09:06:36PM +0200, Bartosz Golaszewski wrote:
-> >> From: Konrad Dybcio <konradybcio@kernel.org>
-
-> >> +	vreg_s10b: regulator-s10b {
-> >> +		compatible = "regulator-fixed";
-> > 
-> > I don't think this is a fixed regulator.
+On Tue, 2024-09-03 at 16:29:57 UTC, Roger Quadros wrote:
+> Allow fixed-partitions to be specified through a partitions
+> node.
 > 
-> It effectively is
-
-If it's an output of one of the pmic as the name suggests and as it is
-on the X13s, I think it should be described as such.
- 
-> >> +
-> >> +		regulator-name = "VREG_S10B";
-> >> +		regulator-min-microvolt = <1800000>;
-> >> +		regulator-max-microvolt = <1800000>;
-> >> +
-> >> +		regulator-always-on;
-> >> +		regulator-boot-on;
-> >> +	};
- 
-> >> +	wlan_en: wlan-en-state {
-> >> +		pins = "gpio134";
-> >> +		function = "gpio";
-> >> +		drive-strength = <8>;
-> > 
-> > Why increase the drive strength?
+> Fixes the below dtbs_check warning:
 > 
-> This is what's used on Windows, for lack of a better idea, not sure
-> if this is actually necessary
+> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb: nand@0,0: Unevaluated properties are not allowed ('partitions' was unexpected)
+> 
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-If this indeed is what the fw configures it as then I guess it's fine to
-keep as-is for now.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
-Johan
+Miquel
 
