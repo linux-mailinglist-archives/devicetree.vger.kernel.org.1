@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-100867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1330896F425
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:19:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD6396F42C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:22:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82B49B23EF6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:19:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8876B21BC1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9AD1CB313;
-	Fri,  6 Sep 2024 12:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B2D1CB313;
+	Fri,  6 Sep 2024 12:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZE+5Lhbt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L4pM93fq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11A113AA38;
-	Fri,  6 Sep 2024 12:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00241C8FA6;
+	Fri,  6 Sep 2024 12:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725625168; cv=none; b=i0LjxT3PDCCKlAYzzcrzbpSA8eYMVY24RAdYK6m6ZxhO/FATG5jiQNlUVUo7TB2DaPKUjpjbCAxAwdu4GBNEqEerQpNBZ7QBvdd8DF/nTNiq5p2Ln41n/It5ea0rW9p2zMFmpsL62M3ItiHOABDEOFW/wDj1Xlb8Ib3Rs9eFtvk=
+	t=1725625371; cv=none; b=OrrdQc1fuS+GJJxsrNb87e6r2h0ErjstTW90hV4g1Df7KUTIfx00JyJdBPbNZlLiBIJIAPpd1ULO1iHWQQ7yzLa6OzmBS7BB+1Js2cg+hJcrbg8G+ecDJjAQii1+SAyAL4L2UL4HFaR+KNXWWa7rhObevxBE53Zn5ssNYJ7VoaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725625168; c=relaxed/simple;
-	bh=ONhmdxT2raMlQ/0JmCNJK7yka2owPt7Lfw0uw4wEsvQ=;
+	s=arc-20240116; t=1725625371; c=relaxed/simple;
+	bh=903Y2/P42uqE8vhBIvO5wIN2QsMnZgv3YNQ/YWSAn7Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i6voob+JCJ9IKwa7xNE3iyR9QagF/a+e2RlYp95Cvb2u7GdZ2Iq2vCBjTiEov1e8z1/RETfH84RsvJg5D2yijVTec72kxYb+3H86Mhgd/MoQLKM1P8x0veMOyTkxnqJxplfq2kTGEvJ+ESIs2S+LrddHRG/dGhut+Bn7xn0p088=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZE+5Lhbt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBB55C4CEC4;
-	Fri,  6 Sep 2024 12:19:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oji7I7r/PI5XutN7zIO40oXMQbr9vb/OX3R66qbPMf8n8wA0dXJeSEalCgnOieXyg949ryiGUc6KNSfYApZ9w27W2gcl62ciXmxezAnTOK6bdeB8y5bKYbzDFvsIGtlGfmnDhSwNtSHHAovcBRqjwFYa9urMMVfcdtdBHh8taYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L4pM93fq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81E0BC4CEC4;
+	Fri,  6 Sep 2024 12:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725625167;
-	bh=ONhmdxT2raMlQ/0JmCNJK7yka2owPt7Lfw0uw4wEsvQ=;
+	s=k20201202; t=1725625370;
+	bh=903Y2/P42uqE8vhBIvO5wIN2QsMnZgv3YNQ/YWSAn7Y=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZE+5LhbtNwwiZOcCHnJY6R2kxNDAnIXEJeeW7FqDAwL3+L0zSOtopdsEyDFoxO3xz
-	 /gWiJhlke0/Z0QVfmvwVFSDe7jDZ2BaxB5yZ6kUQ5cdxcCrfgBLMOqFRG4OetqDEmj
-	 laZnKMZutd9AAAcBcnVGEVgED0pY9XL8HDaxtiaibGLuXNw4a+PfU6P4HLeUr+GEwD
-	 pRmOlJrMnF4I5GTg+/S1w90UFIMhPVJ1h0yQyUvxOnVSlKMTUCUZuNqYxWOotjwz7E
-	 m3x4/LltrLaUr5l7NIcOAVBKFVFS4wsDx0iIMJlBzG8HS6GciOtb3pfVRfVaZl46fw
-	 B6TgH5xndGTog==
-Message-ID: <958c52de-e77d-451c-93e9-e87373f4ae50@kernel.org>
-Date: Fri, 6 Sep 2024 14:19:20 +0200
+	b=L4pM93fqNdZdIxxMxpEXrG3FQPjrvPCP40RlhNqsSNuCK0i/Yje8DlYZjzUqdUWPg
+	 do3/n8OFC69685YL8hEB1G+UxkKTlMVCv/60g7F7bCTMqKa22DSNi8ARcLWtOdNLQo
+	 EspFFStIt8SEMTt/WS/WjUdm8hHpDwoINJ/v0V/SRK9msYmYjVLL454R006ChVRdJ+
+	 4wuQjgAqnMUsAoKCEHRbLMK+wy7gmsq+O7hQ4S9HfCTG8PQSgUfsBtUxfAbRfCTDHv
+	 YDQKtSihgyQ+WvGbmg1gu0L96oAPJ8Sis+53SXEXBOIvnHHgqXI8I46fLPm0UychTK
+	 TbOXM8OBD4cKA==
+Message-ID: <f5b768b3-37ad-4bdf-9cb6-b39b14c8ee45@kernel.org>
+Date: Fri, 6 Sep 2024 14:22:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible string
- for CPM5 controller-1.
-To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
- "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>,
- "Simek, Michal" <michal.simek@amd.com>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
- <kw@linux.com>
-References: <20240906093148.830452-1-thippesw@amd.com>
- <20240906093148.830452-2-thippesw@amd.com>
- <e985a9d4-b398-4290-a4b9-08999c6a9f71@kernel.org>
- <SN7PR12MB7201F82C9BC29ACEE7E209028B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
- <7ebc9676-d66c-4d82-902b-e824bcb2c921@kernel.org>
- <SN7PR12MB7201E4EB5370AFFE8FCAB56A8B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: pmic: enable rtc
+To: Tingguo Cheng <quic_tingguoc@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_kotarake@quicinc.com,
+ quic_kamalw@quicinc.com, quic_skakitap@quicinc.com, quic_fenglinw@quicinc.com
+References: <20240902104302.3959670-1-quic_tingguoc@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,91 +103,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <SN7PR12MB7201E4EB5370AFFE8FCAB56A8B9E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+In-Reply-To: <20240902104302.3959670-1-quic_tingguoc@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/09/2024 12:50, Havalige, Thippeswamy wrote:
-> Hi Krzysztof,
+On 02/09/2024 12:43, Tingguo Cheng wrote:
+> Add RTC node, the RTC is controlled by PMIC device via spmi bus.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Friday, September 6, 2024 4:16 PM
->> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>;
->> manivannan.sadhasivam@linaro.org; robh@kernel.org; linux-
->> pci@vger.kernel.org; bhelgaas@google.com; linux-arm-
->> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
->> krzk+dt@kernel.org; conor+dt@kernel.org; devicetree@vger.kernel.org
->> Cc: Gogada, Bharat Kumar <bharat.kumar.gogada@amd.com>; Simek,
->> Michal <michal.simek@amd.com>; lpieralisi@kernel.org; kw@linux.com
->> Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible string
->> for CPM5 controller-1.
->>
->> On 06/09/2024 12:43, Havalige, Thippeswamy wrote:
->>> Hi Krzysztof
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>> Sent: Friday, September 6, 2024 3:26 PM
->>>> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>;
->>>> manivannan.sadhasivam@linaro.org; robh@kernel.org; linux-
->>>> pci@vger.kernel.org; bhelgaas@google.com; linux-arm-
->>>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
->>>> krzk+dt@kernel.org; conor+dt@kernel.org; devicetree@vger.kernel.org
->>>> Cc: Gogada, Bharat Kumar <bharat.kumar.gogada@amd.com>; Simek,
->> Michal
->>>> <michal.simek@amd.com>; lpieralisi@kernel.org; kw@linux.com
->>>> Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible
->>>> string for CPM5 controller-1.
->>>>
->>>> On 06/09/2024 11:31, Thippeswamy Havalige wrote:
->>>>> The Xilinx Versal premium series has CPM5 block which supports two
->>>>> typeA Root Port controller functionality at Gen5 speed.
->>>>>
->>>>> Add compatible string to distinguish between two CPM5 rootport
->>>> controller1.
->>>>
->>>> Subjects NEVER end with full stops.
->>> Thanks, Update in the next patch series.
->>>>>
->>>>> Error interrupt register and bits for both the controllers are at
->>>>> different.
->>>>>
->>>>> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>>>> b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>>>> index 989fb0fa2577..b63a759ec2d7 100644
->>>>> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>>>> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
->>>>> @@ -17,6 +17,7 @@ properties:
->>>>>      enum:
->>>>>        - xlnx,versal-cpm-host-1.00
->>>>>        - xlnx,versal-cpm5-host
->>>>> +      - xlnx,versal-cpm5-host1
->>>>
->>>> That's poor naming. "-1.00" and now "1". Get your naming reasonable...
->>> Here 1.00 represents the IP versioning and host1 represents controller-1.
->>
->> I understand but you repeating the same is not helping. Make it better and
->> next time upstream "host1-1" compatible.
->>
->> Number of ports, BTW, comes from ports, right? So no need for the
->> compatible.
+> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> To differentiate between the registers for Controller-0 and Controller-1, I am utilizing a compatible string in the driver. This approach enables the driver to identify and manage the registers associated with each controller based on the specified compatible string.
-> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+> index 1369c3d43f86..47d05b897d5a 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
 
-Please don't state the obvious... I know how Linux kernel works. But
-maybe I wasn't clear - do you have ports property there? I guess not, as
-it is PCI.
-
-What I claim here, is that you have exactly the same hardware. Same
-hardware, same compatible.
+We achieved consensus allowing sa8775p to stay, but now Qualcomm changes
+point of view and insists on new approach of dropping sa8775p. Therefore
+this change does not make much sense in the new approach.
 
 Best regards,
 Krzysztof
