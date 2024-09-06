@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-100865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-100866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBEB596F40C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:13:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53FD196F421
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 14:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A43752870BF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:13:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1E421F25576
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2024 12:19:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11D01CC163;
-	Fri,  6 Sep 2024 12:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 941DF15530C;
+	Fri,  6 Sep 2024 12:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lCAFJP+o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vs9z3/VQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C0115530C;
-	Fri,  6 Sep 2024 12:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60871CC163
+	for <devicetree@vger.kernel.org>; Fri,  6 Sep 2024 12:19:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725624792; cv=none; b=lm1X9DPGYdTJKVnEI/fuCoVh/RcWNGn62XQbdiQIUnQeSeOBfu/A7raEfcn/RTKrRp625VwwetrBHRt5evbWkkRGJrpEPeAwv+suumlYiDEdDVpN18PMLsko6zmshX3/eZ25J1+WKcGQNwEo61Mqu1AwRTdJNyYisiz6cDq2tKg=
+	t=1725625149; cv=none; b=e54xwSLXZEO7/RHH9dcQd+gbJZCV0icZWN7aJSbKRpUpdqLj/k2jK5zxoz/stejYEvVbpwZ+043A2ghUQQUcM0cfSEELvXUnfkaa5fq6mP1POxSbceacfxoLuYx+p1Tf8SCTC0RgsKNu09pzeGu8HSeG+O+uWyzJBMgj+ibY448=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725624792; c=relaxed/simple;
-	bh=O4IbQuILTK1wgitJEe6nd9DP8Z9lwZP+g95dPwuV4ZQ=;
+	s=arc-20240116; t=1725625149; c=relaxed/simple;
+	bh=HqOSDRzaUnhGRLIxiVCdBa6LDvnvu4v5GyRQUYJsm/U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a5GbfDRV7l8ZoEmqC7NFdwm3Wb8llMVGeobYdT+Py3W4h6VDntwomO/9O/0VSTQ6ZOve0s22qAkFLUfz4LrsQLsolYdlrPe1LGGRRiTQQ5003mN3/7sNgSrR1j7o1Y5LygHQg9DDQLsHyx3xsvbt0tw5r4FHFZnquFGZ+hBcsu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lCAFJP+o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D359C4CEC4;
-	Fri,  6 Sep 2024 12:13:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725624792;
-	bh=O4IbQuILTK1wgitJEe6nd9DP8Z9lwZP+g95dPwuV4ZQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lCAFJP+o/aE/K4L43qu+EBP6kCnL0ycLmBdBpAakvJrt4Q5+ohOggJ5kLF4Z+0QKt
-	 WFhATz70OyfvLMQC/fxORVtklFnrMguCgM4HYFVtWZeSrZ/XI11Lqy6ZVveuR5pcIj
-	 0sgLlG4uTCzqnmdFFPqRjVfK+qsVEAHuVe6IHd/eSUsfkCwxFkEEfT3ybuvmzDZJdw
-	 mILSRsm/wzV9XkZ/96Vk/r5IFl0VcrXFeq9Kdn/3YZMCmTgG9joRvV3FSnobqKmqNH
-	 tQh+x9VQj8HQniZpyHoKLjX+CKO2mMpKh3/Um82nf9l2TnyOLolM/ZbKnIRQkMjh5B
-	 jnPJYUvvA+MEQ==
-Message-ID: <47c56239-51a0-4ff2-9db2-0e0184cfb086@kernel.org>
-Date: Fri, 6 Sep 2024 14:13:04 +0200
+	 In-Reply-To:Content-Type; b=LoXtVoyfYZGvfXphqFEVHWQqVWiNtWAdHu18IkDuG9OdFg7MxpJrMTVBR/Dsm1AtIdPVVQjDf7xdW/hpj1QO2bJaxu48KwamPzI7l6FrZiJznyZP+UyQHbXCdeZ7NodvjgQCmpoz+mJ0tjEz5+hNgQ43daSQO1xJj4IVR8lwnT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vs9z3/VQ; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53659867cbdso862013e87.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 05:19:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725625146; x=1726229946; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qZnagyoqEY/AkJWYldk9pxOfEXujNgZibP5iAapvYX0=;
+        b=vs9z3/VQWSG+WBTY9jfLRmKAy1vxB3i/pq/dugye5DTrHoHdP8afzUbnF/7nVdGPtG
+         4FQT6T4TQ+U7cXqUalUxnk0K5u63OWwvIH9eTjxteO9O059pGtfCae0iG3P9M6KCb2EH
+         LBdhxyPkxRmcK3aak/g3Sxu9yGuSiJQN9Kgo1EwMuD+Lu+FoZDBp58q4u/p2fqgRGTCK
+         vBTyUaiWP6X804KARU8LiOpw4GFnb61ikgVK1FDT7w/JHviwDktHCiLjOVpv2TrIo0aa
+         PfgUWc99xTIo/ffMZbdCpu6Ry49ouGD9hinnG9Xj2Ia4DoBLtQuo366Tkg1tFxwIM1ma
+         22sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725625146; x=1726229946;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qZnagyoqEY/AkJWYldk9pxOfEXujNgZibP5iAapvYX0=;
+        b=baquz1Op0Aa+xtdMa9kW0FT25IGIJWrcIp6Cvjfu/1Y+2aDG1Gd3/xoGmhApJeAtRv
+         dnWMhFN8ISQObt9I9lXI09G7wfYvxpZTugmiylpRdAGnphPxAspfwS4B1C+ijloCuyYa
+         xtIWezCPcqdcgvKbZKzEWSO+bL/uR8Hu8Q7vJ1Soc1gh2v3D4xppe8s6s7crLgJ42uG0
+         gK/Ekb716lgrwMDq8NCRwnOcf+3bWsBB8284BmY3/Xu9FoaClnCpr3/UL9cUzvDDQ1Lk
+         FAEKzJaJ2SN9jXBHuGwwIwXRyYPLCR4Ww3K6FKgQ61A4zjdvkJ9vqrq10FMOatGmHzc4
+         VoBg==
+X-Forwarded-Encrypted: i=1; AJvYcCVfnR3GYIy9AaxDcuUiv47c916VO6/WglTLCTCOj0sRWT+KnzvPlhzAUNALSQqGN6dEzPKjodSutOT3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVPoHNGE2LaJhbTYTsgr0zGacmA8hEjvdAc/UUiCQvw04bYvDz
+	T3B+3Q/S4TRg0zlgEulxxOuB5NKnNYbd9yHEOLK1BZSyrCuznQLS0/bdlJgB/Uk=
+X-Google-Smtp-Source: AGHT+IG74zIVOWX6bQluN94U4nrkIyRLMi3pWfBQY/TtSYoHYIc0SP1Bhu1/uDRSooGa/P5qsj690Q==
+X-Received: by 2002:a05:6512:3e02:b0:52e:9921:6dff with SMTP id 2adb3069b0e04-536587b54efmr2266960e87.26.1725625145620;
+        Fri, 06 Sep 2024 05:19:05 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8a83ed05c9sm117085866b.114.2024.09.06.05.19.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Sep 2024 05:19:05 -0700 (PDT)
+Message-ID: <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
+Date: Fri, 6 Sep 2024 13:19:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,182 +76,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/9] dt-bindings: iio: dac: add ad3552r axi-dac
- compatible
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
+To: Richard Acayan <mailingradian@gmail.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
- <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-5-87d669674c00@baylibre.com>
- <boahpvyzzmocnnpae2u6meub34yvqr2q3v5pzf2egp2fretlwk@ibas62hdypwo>
- <fd3f4874-b410-4e98-acba-d0fac041a40e@baylibre.com>
- <1928d0ce-cad9-4737-880e-3759c47fddbc@kernel.org>
- <058937fa93d484f3e81807d08a39bd8dfd3358e8.camel@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-media@vger.kernel.org,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20240904020448.52035-9-mailingradian@gmail.com>
+ <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
+ <ZtpqrANbJurWNOzV@radian>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <058937fa93d484f3e81807d08a39bd8dfd3358e8.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <ZtpqrANbJurWNOzV@radian>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 06/09/2024 13:53, Nuno Sá wrote:
-> On Fri, 2024-09-06 at 11:37 +0200, Krzysztof Kozlowski wrote:
->> On 06/09/2024 11:11, Angelo Dureghello wrote:
->>> Hi Krzysztof,
->>>
->>> On 06/09/24 9:22 AM, Krzysztof Kozlowski wrote:
->>>> On Thu, Sep 05, 2024 at 05:17:35PM +0200, Angelo Dureghello wrote:
->>>>> From: Angelo Dureghello <adureghello@baylibre.com>
->>>>>
->>>>> Add a new compatible for the ad3552r variant of the generic DAC IP.
->>>>>
->>>>> The ad3552r DAC IP variant is very similar to the generic DAC IP,
->>>>> register map is the same, but some register fields are specific to
->>>>> this IP, and also, a DDR QSPI bus has been included in the IP.
->>>>>
->>>>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
->>>>> ---
->>>>>   Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml | 1 +
->>>>>   1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>> b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>> index a55e9bfc66d7..c0cccb7a99a4 100644
->>>>> --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>> +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
->>>>> @@ -24,6 +24,7 @@ properties:
->>>>>     compatible:
->>>>>       enum:
->>>>>         - adi,axi-dac-9.1.b
->>>>> +      - adi,axi-dac-ad3552r
->>>> I am sorry, but what is the product here? It looks like either wrong
->>>> order or even completely redundant. What is ad3552r?
->>>>
->>>> And why versions are mixed with real products but without any
->>>> compatibility. What does the version express in such case?
->>>
->>> dac-ad3552r IP (fpga) is a variant of the dac IP, very similar,
->>> about the version, it still reads as 9.1.b
->>>
->>> so i can eventually change it to:
->>>
->>> adi,axi-dac-ad3552-9.1.b
->>>
->>> Should be more correct.
+On 06/09/2024 03:36, Richard Acayan wrote:
+> On Thu, Sep 05, 2024 at 10:09:34PM +0200, Andi Shyti wrote:
+>> Hi Richard,
 >>
->> No. First ad3552r is the product, so axi-dac is redundant. Second why
->> adding versions if you have product names? Versioning was allowed
->> because apparently that's how these are called, but now it turns out it
->> is not version but names.
+>> On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
+>>> This adds support for the camera subsystem on the Snapdragon 670.
+>>>
+>>> As of next-20240902, camss seems to be a bit broken, but the same series
+>>> works on stable (although it is much less reliable now that the CCI clock
+>>> frequency is not being assigned).
 >>
+>> I am not understanding this bit: is this series making it better
+>> or not? Can you please clarify what is broken, what is less
+>> reliable and what works?
 > 
-> Let me try to explain on how this whole thing works...
+> When applying this camss series and some camera sensor patches on
+> linux-next, the Pixel 3a seems to hang when camera capture starts.
 > 
-> We have a generic FPGA IP called axi-dac (same story is true for the other axi-adc
-> IP) which adds some basic and generic capabilities like DDS (Direct digital
-> synthesis) and the generic one is the compatible existing now. This IP is a so called
-> IIO backend because it then connects to a real converter (in this case DACs)
-> extending it's capabilities and also serving as an interface between another block
-> (typical DMA as this is used for really high speed stuff) and the device. Now,
-> depending on the actual device, we may need to add/modify some features of the IP and
-> this is what's happening for the ad3552r DAC (it's still build on top of the 
+> When applying the same patches on stable, the camera does not cause the
+> Pixel 3a to hang.
 
-What is "ad3552"? DAC right? Then as I said axi-dac is redundant. We do
-not call ti,tmp451 a ti,sensor-tmp451, right?
-
-If ad3552 is something else, then the order of naming is not correct.
-Product name is always the first.
+Right so -next isn't stable that's not exactly a revelation.
 
 
-> generic axi-adc). And in this design the IP is also acting as a qspi controller for
-> actually controlling the configuration of the device while, typically, IIO backends
-> are meant to only care about the dataplane. With all of this, there are discussions
-> still happening on the RFC (Angelo was too fast with this version) between using
-> different properties or new compatibles for changes so significant like this on the
-> generic IP. See the thread where Conor is also involved.
+> When these device tree properties from the previous series were removed:
+> 
+> 			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
+> 			assigned-clock-rates = <37500000>;
+> 
+> the CCI would sometimes fail to probe with the error:
 
-1. Then what does it mean for "adi,axi-dac-9.1.b"?
+Right, we don't have clk_set_rate in the cci driver.
 
-2. Is there any real customer product which uses this compatible alone?
-
-If you need to come up with customized compatibles, it means versioned
-one is not enough.
-
-If this is 9.1.b but not usable as 9.1.b ("for changes so significant
-like this on"), then I claim 9.1.b compatible is useless.
+Maybe just leave the assigned clock for this submission and we can do a 
+sweep of fixes to CCI at a later stage including setting the clock 
+instead of having it be assigned.
 
 > 
->> Third, versions are useless if you do not use them as fallbacks.
->>
+> 	[   51.572732] i2c-qcom-cci ac4a000.cci: deferred probe timeout, ignoring dependency
+> 	[   51.572769] i2c-qcom-cci ac4a000.cci: probe with driver i2c-qcom-cci failed with error -110
 > 
-> In this particular case we can't use the generic IP as a fallback since without the
-> bus controller feature the device can't really work. But it can happen we increase
-> the version on the generic core and use the existing version as fallback 
-> 
->> Something this is really broken and I don't know if the binding or this
->> patch.
-> 
-> Having said the above, I'm really not sure if what we have is the best approach but
-> these are also early days (upstream) for this so we should still be able to change
-> things if we need too. I'm fairly sure there's still no one relying on this so we
-> should be able to change things in a breaking way (if we need to be that extreme).
+> On further testing, the rate can be set to 19.2 MHz, and there would be
+> no failure (or rather, it wouldn't happen often enough for me to witness
+> it).
 
-DT maintainers consistently (before someone here calls me inconsistent)
-propose not to use versioned compatibles if they map one-to-one to
-products or if they cannot be used alone. Several generic IP blocks like
-Synopsys or Cadence, match the latter - the customization from customer
-is needed, thus snps/cdns IP-block compatible is not usable.
+That's expected 19.2 and 37.5 MHz are supported by CAMCC for your part.
 
-Best regards,
-Krzysztof
-
+---
+bod
 
