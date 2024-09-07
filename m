@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-101085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BE19703B1
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CCD29703B3
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B105B22F81
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:48:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3ED8B230EF
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB202165F08;
-	Sat,  7 Sep 2024 18:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9881F166312;
+	Sat,  7 Sep 2024 18:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lrSf4eKe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XqcJIg4V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F242E54652
-	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 18:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7285315F323
+	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 18:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725734903; cv=none; b=ucugq3fxVle8GJgNQKC6KnXfdgjIBoXHlXX0sfxEaOCgdOg9+gpC6lxb60DcQENHsTgLzeoYS9eKusrbDt1H/yqF70IKS/ccrmxARZTh1yzGr+SScNo5BP6SgDfYetBF2VM636+bi4TV95D6DQ17YFTI6GUxN6lRRhcxd5FpfD4=
+	t=1725734904; cv=none; b=ZJSh5cn3I3v2FHTEFPv3EkW0kYdnRlXWDk+rNqdj7vPn76Z452VyEGgx2tSR5l7DD11J/1Ppc6RttcX0O3abEutdz5fEKEhycN4xW80gLr97kRC7FePLuwBpEA0r4/cf9egQhQE0v8HXDp4/LsTJHqRFtNkA4wIjs32gPnXf9Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725734903; c=relaxed/simple;
-	bh=j2MGhLcuLoVLWg4I2MuE84ebYpICQobwJaU/0pV8mPM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Pr6P5vZECtsRZkAFZzBHEun3+UOKa+s9faU71pB5TnqUFKaIFHczDngqtT7B387O0lvncRvN1PxJd2PzJaqbSyTgrLWi7Rf/s7N9hAi1VI+nPHTzM2Fn0dEWzI2zz3UopUJoS8Yg6SvgLZFQi+eW+u6nUrYOz9UwdNE3AXfRey0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lrSf4eKe; arc=none smtp.client-ip=209.85.208.169
+	s=arc-20240116; t=1725734904; c=relaxed/simple;
+	bh=4jg/7UcRjOk5Aa8PYPjFu4S06h+6mU5cJuLQp0/H3QE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=mlFLYXCvEmbnyNpgMmBz4kRLSSL+w8ZsgDRbDCwm5xSXZcZj+xauAViQ9oeZ++3FCNkVG4DxkHe700ype311nuTiwoE0pUexmuHyw5p8p/CVHe0fl9uINVVxK7O115eds6vDDcEZHBhnZKU0JM9hZpP/iAGhJYT0Fd/e9ncZUDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XqcJIg4V; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f75a81b6d5so7986281fa.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 11:48:21 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2f75d044201so4438881fa.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 11:48:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725734900; x=1726339700; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bp2f3Cd3xUZZx5mV8or2w5DKaQxEUtdkX4okocf5JKQ=;
-        b=lrSf4eKeCGw0Zbt9xC6Ytpy9WweIfTbF0LE9YUJF3knYkZoIf92YhVPTjIasxJEywT
-         uVI8f64tnmx6Y8y4WgVBmtGjyAeHAbvjsqcyzii7N/YUIrPmGedJ3ooh9rbTl+XDu5QA
-         4Lzgmw/7AkVXaS2ZKIGDvdNbNL+8gjj0s/83IweZtq48F3seUjrpxxkxZ+Cg0PDcB/DW
-         d8oXE3dX8+CZYkGRaM1IKmi8rzKYdJSuYkz17UakWFLkOsfkNdgNbCcAXXr7BDx3/fmm
-         EwhzXBH7nPrSdNA6IXHwva5FQhpc4dW4Q+YWcPrImzP5FDjmMI5PJQOo1JkKq/puRUro
-         Kxng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725734900; x=1726339700;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1725734901; x=1726339701; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Bp2f3Cd3xUZZx5mV8or2w5DKaQxEUtdkX4okocf5JKQ=;
-        b=IZyTxJVWQNJb6vQty8CeG8BRneFjV75p2w8/0g6DCD9lqNQZ9fJATUbjlgCmzgSE3A
-         tuk3y9M3YJDg6WO9k43AoSF+FsFhtcUYB5QXzDIT1Wmb2mX2q9kOqii5iGZ+uNO7Smiu
-         wzFK+OFUbs/vze6SZ/bJ4/4BqaVIimZXf1S/QH4eQb487oz+yu7rOaVRp4oYw+EAmDvV
-         l2CSEvuBbD7YCVj6zxeh5XbRa23YCrzp0eeBIlB+TboZ6VcZKudkk7pDCrZwwepFKGDL
-         3k2oFL1V1A347URIXOqah4js0VQvsfaal7tZIanq2QruYNK1ri9eIwdY2xiNIpdju4F2
-         klhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVB4HX1ieebnKQRU9K+rS74rjMZ8SRK/9IC+LUkSOIelRKV/GHupjCf3G/FNLll0w258H4JSolRQhlS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwNNQbvSfrxoZfj3u/O55IxADOQurt09cnzeVVAg96TKozwcul
-	se9UCSrPDx2DQ710spVn11eLTIv4XI+gUTz0+l04RAR8syBoxRb39Ii7/fkc8EA=
-X-Google-Smtp-Source: AGHT+IGO0WNu0PFOcRrTUtNd5FKi2izDYAt1p3P/Gtjx0bVcVZuQjc3v0I9yiOFDdx9qV8/gFlWDQg==
-X-Received: by 2002:a2e:4c19:0:b0:2ef:2c0f:283e with SMTP id 38308e7fff4ca-2f751ec89bamr35682181fa.12.1725734899190;
+        bh=ASoLCFAFth+L/RYaTTbW4gr5zkHU8LUy6gZz0L/32b0=;
+        b=XqcJIg4Vv2R/LYWFmpWlPJpQ8Amphkwz2vbwTd9s4WV1QtnSpfmUPmo8xhX0hwYTTH
+         3ftMbhLQPK5RYSg7ouQBMyrgw14JJvhNwJvLO4YPNaz4jaPhzyJEnKZKY52BxuxqFLup
+         p6ILcQ30Lov0W8HHsMiU35WpVu5o4LBpQ3cabpg1vYQYYrPZcVEzPh+Gu7OpIcYUrzpq
+         rPTCwi1l3Ll2fFdcD1hNBTD+gL1pBVwlOTWmUK+q41PXc+YQJoo3EQg8s/8AmgWfL3cL
+         MWcyLmIywgDpKemgTL92Ns8S7k3iPHO32y9+eNHSjcxuwn1oqmXh+8y/a51C8tB/lv+D
+         35Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725734901; x=1726339701;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ASoLCFAFth+L/RYaTTbW4gr5zkHU8LUy6gZz0L/32b0=;
+        b=uJq3KyYoUUGheg1IAV9h7oebo8qhoY+7WDtjakNDjs4WcOtAZ7r9Ud50gi2WznFEAy
+         p6LjnZnSIgS+bbvQtIFjShrUecQcIGsGmWec5qBBn7AnqOTp1Lf/PJioBJTyxfwefQlR
+         yjoitLBL74I2/fm47eTyv2O27OrXqxfHJy8MeD/c4drmi6LCgWuz9FrScud+fGkGLm1/
+         Its+eKN63IfajrcJhQvEvWNKjI9x/arRtYXh2u2j2Qh/0/eM+2FiyHu6lrmZEpG7YNQA
+         NGB+iCw+j1BiD0jWdsJikhx1d/3Hg5oZaDwpQDPBSoRCQK3AQblERjZvHRANFftFNtuf
+         38pw==
+X-Forwarded-Encrypted: i=1; AJvYcCWeTQ6SyPjPY+gTfEbvtQDZH0CmChdDLtWCtVkZ31lg3P+9h3pIPBZjwWVMd1ewjD6lUlgSZhAaZXF6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQRm/Of8UaJxcZt8/jtQbu0Hb/S1mO6gPz+DiW7R3L/mp1Kn1x
+	OjcwXLPwUjNuCJA31RCs5F9fIMg7LAyOqq0hRaMzMbj1KuS1496xnohOZVwrv9M=
+X-Google-Smtp-Source: AGHT+IHT9NJuhuG4AamvpeXk9LoAYFX1Rx0Iy7N0kMWiubohIUwXALW2N+6wWLpExdHwsDiK/BRP1g==
+X-Received: by 2002:a05:651c:19a3:b0:2f7:586d:e5e7 with SMTP id 38308e7fff4ca-2f7586de6f4mr12201981fa.5.1725734899905;
         Sat, 07 Sep 2024 11:48:19 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.18
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Sep 2024 11:48:18 -0700 (PDT)
+        Sat, 07 Sep 2024 11:48:19 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH 0/7] arm64: qcom: sda660-ifc6560: enable GPU and WiFi
- support
-Date: Sat, 07 Sep 2024 21:48:11 +0300
-Message-Id: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+Date: Sat, 07 Sep 2024 21:48:12 +0300
+Subject: [PATCH 1/7] iommu/arm-smmu-qcom: apply num_context_bank fixes for
+ SDM630 / SDM660
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,9 +79,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOuf3GYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDEwNj3eKUXDMzA93yzLRM3URTi1QL8ySLNPMUQyWgjoKi1LTMCrBp0bG
- 1tQAf8W+jXQAAAA==
+Message-Id: <20240907-sdm660-wifi-v1-1-e316055142f8@linaro.org>
+References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
  Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
  AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, 
@@ -90,58 +91,65 @@ To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, ath11k@lists.infradead.org, 
- Kalle Valo <kvalo@kernel.org>
+ devicetree@vger.kernel.org
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1756;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1917;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=j2MGhLcuLoVLWg4I2MuE84ebYpICQobwJaU/0pV8mPM=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/s3aD3giiWStxq0Uq71R3ZAHngRAI9exh4S
- gvabAQfWrKJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf7AAKCRCLPIo+Aiko
- 1WpICAClKoPTaFjA24SOWFpGheQP76MScFD8h1Cc7JoNZyGlm/c9t3JtblTAopntkVLPeWJ3e/R
- weoly+63q++LVTgHBNDieyj/sKCanLvE/GbQdmsaQfZUhorPpYC2nivqtNLjxEduVwDZNQ0Oivd
- e2g9mjU/97PGn+LIx9M4O8IzAYqd5z125QWqX2An9MwNmzZZkfYd1NsuKzQMFqXSPl0oSU8CnfQ
- RdgDEKYZJQfPFWInCTMpMc6D68DYCBhrkvC/z0jyFvcOeuXdAGl2xFzObLWF4eK4cWmETcQseuC
- NgOMqyDQ4aXXsSqhzTnVB0VWFvFE5f7tVAq6VeA9Z2nrxz51
+ bh=4jg/7UcRjOk5Aa8PYPjFu4S06h+6mU5cJuLQp0/H3QE=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/xHjCopDQPiYASMPf01hRA68yz6IxH2T4eL
+ eC6cfgV0lyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8QAKCRCLPIo+Aiko
+ 1Q9uB/0ag1ZGlUF+StHNMO5RSRr8jbA8TML029hF2MBiqykw2lDs8s8+suyKE9WYe4KswcqvVgN
+ 4bLu2KGe0WcbuoHG/wD/0SUKHISGgj5Anq4r23QlfVb2bxp4eyH5lJGlFpX19EANfZl3+VaMWyY
+ 9heRsRGZ3eCyB+Lbo0qZGCWzU7Stf3ugs2tVW/KpgpE+RU64fzV2B+hAZRoqrH/SSzcvZ0qR1tL
+ NzKtpFdruw/1UcKNwMKoQJV9xo58sMiOz6W2+uJB9Md+VVFGfmCFmjQ1uK0VdwVnpwVVxQgT9Jo
+ vCdHx4iMWcz8ZKPEMLUY7mTi4Uw0ad36gbt2aAtXUl6jX6xT
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Follow the MSM8998 example and limit num_context_banks on SDM630 /
-SDM660 platforms. This allows Linux to make use of the A2NOC and KGSL
-SMMU, making it possible to enable GPU and WiFi on those platforms, and,
-in particular, Inforce IFC6560 SBC.
+The Qualcomm SDM630 / SDM660 platform requires the same kind of
+workaround as MSM8998: some IOMMUs have context banks reserved by
+firmware / TZ, touching those banks resets the board.
 
-Note, while WiFI starts up and can work for a short amount of time, MSS
-starts crashing with the following message:
+Apply the num_context_bank workaround to those two SMMU devices in order
+to allow them to be used by Linux.
 
-qcom-q6v5-mss 4080000.remoteproc: fatal error received: dog_hb.c:266:Task starvation: diag, ping: 4, triage with owner(d.dump 0xde5825
-
-Note2: DTS changes should be applied only after IOMMU chages get merged.
-If it is not possible to get IOMMU changes into 6.12 in its last days of
-the merge window, I'd kindly ask for the immutable branch from the iommu
-subsys to be submerged into MSM tree.
-
+Fixes: b812834b5329 ("iommu: arm-smmu-qcom: Add sdm630/msm8998 compatibles for qcom quirks")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
-Dmitry Baryshkov (7):
-      iommu/arm-smmu-qcom: apply num_context_bank fixes for SDM630 / SDM660
-      arm64: dts: qcom: sdm630: enable GPU SMMU and GPUCC
-      arm64: dts: qcom: sda660-ifc6560: enable GPU
-      arm64: dts: qcom: sda660-ifc6560: fix l10a voltage ranges
-      arm64: dts: qcom: sdm630: enable A2NOC and LPASS SMMU
-      arm64: dts: qcom: sdm630: add WiFI device node
-      arm64: dts: qcom: sda660-ifc6560: enable mDSP and WiFi devices
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- .../arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 32 +++++++++++++++++-
- arch/arm64/boot/dts/qcom/sdm630.dtsi               | 38 ++++++++++++++++++----
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c         | 11 +++++++
- 3 files changed, 73 insertions(+), 8 deletions(-)
----
-base-commit: f70cb2e8ce3f8883a526a28f93b7744d1a1a9ce0
-change-id: 20240403-sdm660-wifi-a58e87b8f7d1
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+index 087fb4f6f4d3..13a3e3585c89 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+@@ -288,6 +288,12 @@ static int qcom_smmu_cfg_probe(struct arm_smmu_device *smmu)
+ 	 */
+ 	if (of_device_is_compatible(smmu->dev->of_node, "qcom,msm8998-smmu-v2") && smmu->num_context_banks == 13)
+ 		smmu->num_context_banks = 12;
++	else if (of_device_is_compatible(smmu->dev->of_node, "qcom,sdm630-smmu-v2")) {
++		if (smmu->num_context_banks == 21) /* SDM630 / SDM660 A2NOC SMMU */
++			smmu->num_context_banks = 7;
++		else if (smmu->num_context_banks == 14) /* SDM630 / SDM660 LPASS SMMU */
++			smmu->num_context_banks = 13;
++	}
+ 
+ 	/*
+ 	 * Some platforms support more than the Arm SMMU architected maximum of
+@@ -350,6 +356,11 @@ static int qcom_adreno_smmuv2_cfg_probe(struct arm_smmu_device *smmu)
+ 	/* Support for 16K pages is advertised on some SoCs, but it doesn't seem to work */
+ 	smmu->features &= ~ARM_SMMU_FEAT_FMT_AARCH64_16K;
+ 
++	/* TZ protects several last context banks, hide them from Linux */
++	if (of_device_is_compatible(smmu->dev->of_node, "qcom,sdm630-smmu-v2") &&
++	    smmu->num_context_banks == 5)
++		smmu->num_context_banks = 2;
++
+ 	return 0;
+ }
+ 
 
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.39.2
 
 
