@@ -1,76 +1,77 @@
-Return-Path: <devicetree+bounces-101093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56D8F9703E7
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 21:23:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64DFB970408
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 22:16:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4CB3B2297E
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 19:23:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0B6928387D
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B5C15F418;
-	Sat,  7 Sep 2024 19:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F60915DBAE;
+	Sat,  7 Sep 2024 20:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CODpXA8v"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WeJ8XttG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD0E3B1A2;
-	Sat,  7 Sep 2024 19:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8034E49634;
+	Sat,  7 Sep 2024 20:16:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725737008; cv=none; b=Pkoa7vO5Thu/pVQiA2al/0Ir6KYFc9jbpqm+NH0jChbPKFHBD6wTUVl394AO38mn4NeTjjPBg+n+Pd75PWF8RRDUcaOUVpJa6TZzzImZwnftm4I0ncR82BP/T5P/mnSQLiew2KLpQ5SxzvmOlS6Q8/sZdSyRtxKWHu/HgpCumJo=
+	t=1725740199; cv=none; b=Yx6vb6+uu9Y7xfg3fcqcJAMECx+0crmGc888tHALhX+ze8UfZfLywSunEXhKiBb6CRmXYGzd8Pf8BS86NFx6Oq13gJeao4d5MfrpG+4uM1WWmGqv8kfPKrVcbgPdvSXuNQje4XFwYt5theWINBgCtiuJVfU3rSTuyfS3eYxj3so=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725737008; c=relaxed/simple;
-	bh=zNLjwJ2Out8iwiXehFnnzK2Uej5uxW5m5QOSXtuoZ/E=;
+	s=arc-20240116; t=1725740199; c=relaxed/simple;
+	bh=WMVQMzLE9Xqb8q7ZuUfOhRebecLvcZqfXpcB1wDdFrE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fMKqPvgSK3Y2fK7V8ZlX19ascjOy16BTdTWF7bIRV9FQ7vJ9DCZhDzz4iaaPZtdGMKNzVS0/OEZ+Fkjq/HIrX2ifuyHoMwzxjTdmJrmClSDzVs9S1xb9m+sGQAiD6FOZKLXZuYrvNgY7hHSrnWDp6XnNUV1oRGXX8rIXEQCULa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CODpXA8v; arc=none smtp.client-ip=198.175.65.20
+	 Content-Type:Content-Disposition:In-Reply-To; b=NOPYMU21od6SV7iE4I07vWWgEnQrzcLWuzfkMKXMMrnqznFUg4C6Lci6axFv9dHKs2VHbiyoj3Q3h8HEnBT0+fkY7l9A9WjXrXH51YRiA4yT8bIOlabiSmgS3fWjr1C9TDzPUzmXFvh5QYZFIYGIkmQviOdM1guScJxvq7feI2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WeJ8XttG; arc=none smtp.client-ip=192.198.163.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725737006; x=1757273006;
+  t=1725740196; x=1757276196;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=zNLjwJ2Out8iwiXehFnnzK2Uej5uxW5m5QOSXtuoZ/E=;
-  b=CODpXA8vxUB40+Ov72mjc6bZGa1BonxyqW92/RFJLQ48/E87KfDE6mQY
-   bBpuKnXdGj1/dtO3r0F2zNmDEhoYAjwYnLG4q4+UDNh5YH79qs0T9rwpH
-   gb8gM+e6NvO8088jsLnkHOmQfFQgq+TgxlFC2S09TKLlXpep8YSsm2cNI
-   LNnnWifYVaixKOmCAm22XDHA3RHhHYaEocJq+7zH5zZKrOuTIIXbUN6pH
-   DtrJA7FGX5klsMcvO7GzhrqpcU7nnTxqxdFb7JQ2472KK0ptLVWTxMDT+
-   5AjrC+HWmoiR6QpQWyULkd99nvqljoQmKSR9DxDe7EeJMynrjsiNMConT
-   g==;
-X-CSE-ConnectionGUID: Ep1otddwRPCYNbsLLtcaXQ==
-X-CSE-MsgGUID: ZRBOkqqcR8GlVRQRYyssAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11188"; a="24267735"
+  bh=WMVQMzLE9Xqb8q7ZuUfOhRebecLvcZqfXpcB1wDdFrE=;
+  b=WeJ8XttGHQy+tkbuJ6/7M45+lm5PPBxFGU67O0E4/AmF87/2+p78ZWNt
+   YDXqv2IK906rJxSI1VVxsT49rELPyUDMGRtHrTDWgfJX2fTdPsOtCfWn1
+   4oPBCy69fpPJ+aFNjYJe1iKDT5uA9wWhNZ3NaDboo3vUeHdtS8iMwhiKR
+   uKFls7ftOBN4XbwzbpX/QX9Zc7HxH6+kDZ4gK2L99vzrE0xv2Us9hNABo
+   +tXnmT+iWrzmL4IuRF/EtBavt2afwHH242c2ewYwiyUzIAFKo6obBZnrw
+   RB8n9GAwxkHvcpKcJ1fJRg6RQg6T5whwqrrti4W7eij5LJa1wmWyq2MCl
+   A==;
+X-CSE-ConnectionGUID: TrvT7H8MQMiUlHdD/lLMfg==
+X-CSE-MsgGUID: t5KV7F/HSumSm8KSKME+rQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11188"; a="13424235"
 X-IronPort-AV: E=Sophos;i="6.10,211,1719903600"; 
-   d="scan'208";a="24267735"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2024 12:23:25 -0700
-X-CSE-ConnectionGUID: 8z0OKbeuS9K+48qhtfWp+w==
-X-CSE-MsgGUID: KCcSKXYtTNivB2u+QPFQHA==
+   d="scan'208";a="13424235"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2024 13:16:35 -0700
+X-CSE-ConnectionGUID: sB+7M0u9T22JZWBAuo/AcQ==
+X-CSE-MsgGUID: PaXA9fJ2SUSKXdN51vEzzA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.10,211,1719903600"; 
-   d="scan'208";a="66244282"
+   d="scan'208";a="71055438"
 Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 07 Sep 2024 12:23:22 -0700
+  by orviesa003.jf.intel.com with ESMTP; 07 Sep 2024 13:16:34 -0700
 Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1sn11k-000Ctp-0t;
-	Sat, 07 Sep 2024 19:23:20 +0000
-Date: Sun, 8 Sep 2024 03:22:59 +0800
+	id 1sn1rD-000Cxv-0p;
+	Sat, 07 Sep 2024 20:16:31 +0000
+Date: Sun, 8 Sep 2024 04:16:02 +0800
 From: kernel test robot <lkp@intel.com>
 To: Vasileios Amoiridis <vassilisamir@gmail.com>, robh@kernel.org,
 	saravanak@google.com, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, andriy.shevchenko@linux.intel.com,
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	andriy.shevchenko@linux.intel.com,
 	Vasileios Amoiridis <vassilisamir@gmail.com>
 Subject: Re: [PATCH v2 2/2] of/irq: Use helper to define resources
-Message-ID: <202409080202.QLS8E1DK-lkp@intel.com>
+Message-ID: <202409080407.JLfgI8Fr-lkp@intel.com>
 References: <20240904160239.121301-3-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -92,21 +93,22 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Vasileios-Amoiridis/of-ir
 base:   ecc768a84f0b8e631986f9ade3118fa37852fef0
 patch link:    https://lore.kernel.org/r/20240904160239.121301-3-vassilisamir%40gmail.com
 patch subject: [PATCH v2 2/2] of/irq: Use helper to define resources
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20240908/202409080202.QLS8E1DK-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240908/202409080202.QLS8E1DK-lkp@intel.com/reproduce)
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240908/202409080407.JLfgI8Fr-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240908/202409080407.JLfgI8Fr-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409080202.QLS8E1DK-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409080407.JLfgI8Fr-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
-   drivers/of/irq.c: In function 'of_irq_to_resource':
->> drivers/of/irq.c:433:17: error: expected ';' before 'r'
-     433 |                 r->flags |= irq_get_trigger_type(irq);
-         |                 ^
+>> drivers/of/irq.c:432:71: error: expected ';' after expression
+     432 |                 *r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev))
+         |                                                                                     ^
+         |                                                                                     ;
+   1 error generated.
 
 Kconfig warnings: (for reference only)
    WARNING: unmet direct dependencies detected for OMAP2PLUS_MBOX
@@ -115,7 +117,7 @@ Kconfig warnings: (for reference only)
    - TI_K3_M4_REMOTEPROC [=y] && REMOTEPROC [=y] && (ARCH_K3 || COMPILE_TEST [=y])
 
 
-vim +433 drivers/of/irq.c
+vim +432 drivers/of/irq.c
 
    405	
    406	/**
@@ -144,8 +146,8 @@ vim +433 drivers/of/irq.c
    429			of_property_read_string_index(dev, "interrupt-names", index,
    430						      &name);
    431	
-   432			*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev))
- > 433			r->flags |= irq_get_trigger_type(irq);
+ > 432			*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev))
+   433			r->flags |= irq_get_trigger_type(irq);
    434		}
    435	
    436		return irq;
