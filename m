@@ -1,153 +1,123 @@
-Return-Path: <devicetree+bounces-101044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D721A970180
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 12:02:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B659701CA
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 13:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D809B21B12
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 10:02:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9DF11C21612
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 11:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343DC15821A;
-	Sat,  7 Sep 2024 10:02:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365B7155CBD;
+	Sat,  7 Sep 2024 11:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="icZ0i5RP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iayyeep4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2104A158541;
-	Sat,  7 Sep 2024 10:02:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3A93A8F0;
+	Sat,  7 Sep 2024 11:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725703347; cv=none; b=TFDQR+uDgHdChofvnT3If+Pj11dCSCAqXrRE7EAvdCz0TjFJqsgyJf9uGDReVTd28W8G+weZom2sId61Z/cAXbQmKPXw2YtZ5cgxO9gE/Rimo2aqg8+LNYFnJGXb4bm3S7FxvXv6OP+PLqg77goTPmunKiljn7IyR2PYFk/srwQ=
+	t=1725707270; cv=none; b=jgA/hSbhWq7tvOr6ttsH+WA4nsd2whi7IavTpFjLJcGBby12pfeYtVXWLDZTuNzGwDWXmG1nyNm45l5yBqUrKouYXj1/+Wh+Zzz/skAVJZwhZmHTLn8LXVPc4pPcaW2Sot5jsjc5/qt2xFAX2UsLtAiUgS7A26S3uBQhNJ0GXWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725703347; c=relaxed/simple;
-	bh=+8ndftcpr710lyIszgV8c95AAh8cy/KDHvOC47Z5jY8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IU2OViJOrjpv9T2agmo6zSN6hmP4+qAjhsl2x7tOkj7v6VXXU5a47gfvZRwzc7plZUQ+oAyyS74EWC7fCUMNqsM4h+8Gm/RwmBElefkaRPJYfZ4nMVNy76uwzia6wHWuP3vFi1rbSXCJwS7Ka9KLd5OMyEejjLIfObRDvhPC2m8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=icZ0i5RP; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725703344; x=1757239344;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+8ndftcpr710lyIszgV8c95AAh8cy/KDHvOC47Z5jY8=;
-  b=icZ0i5RPJV4LsP52qy3QMQQ9V7YhiuECIuZ4w+i50Dbr9bZVtDbP2RAH
-   BSCqsPnT4AuBnM3Ud/+e8Rjg+e2NXQ0ORKZ4kwxbCjJ+JWu13RyEy7AgC
-   dZe3/zPeKMqBAa8XmlAmLbWvLfaVmaTw1/MH4Trazx/DZ19aD//IY+ZFd
-   7UEoJ6oD+Va3ZaJkBw01zbho9n0J2FskVFP3+E1vlGGtsYo8nGrHyWsuP
-   E0jkBvBrAYPtKjQWCXHKg+TPPFHg4lneqQ0wx9LvKW+M0ZF7zRnp1G5wb
-   6bBlf/039+FPFiP3ic4aN8e5jZBpX+mwTz96/3tWDVvfahv4RBC00TvLc
-   A==;
-X-CSE-ConnectionGUID: mOk0M4ySSimtUg4k2QUIxw==
-X-CSE-MsgGUID: d+0cU98WRxeBWCWoYxEjQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24323050"
-X-IronPort-AV: E=Sophos;i="6.10,210,1719903600"; 
-   d="scan'208";a="24323050"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2024 03:02:24 -0700
-X-CSE-ConnectionGUID: /y7E0xneQa+1lRbk+cY5dw==
-X-CSE-MsgGUID: 5pZQbW8lSiai6JaiI7i3Sg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,210,1719903600"; 
-   d="scan'208";a="103648425"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 07 Sep 2024 03:02:20 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1smsGn-000CPb-2j;
-	Sat, 07 Sep 2024 10:02:17 +0000
-Date: Sat, 7 Sep 2024 18:01:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thippeswamy Havalige <thippesw@amd.com>,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	linux-pci@vger.kernel.org, bhelgaas@google.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, bharat.kumar.gogada@amd.com,
-	michal.simek@amd.com, lpieralisi@kernel.org, kw@linux.com,
-	Thippeswamy Havalige <thippesw@amd.com>
-Subject: Re: [PATCH 2/2] PCI: xilinx-cpm: Add support for Versal CPM5 Root
- Port controller-1
-Message-ID: <202409071713.wrAI0UuK-lkp@intel.com>
-References: <20240906093148.830452-3-thippesw@amd.com>
+	s=arc-20240116; t=1725707270; c=relaxed/simple;
+	bh=FpEIF7mSgDnmtGiiZjz4Ru5xyoFoTmh7WQiXbDIcEe8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n6YvH/8R5BWHO/FLrmXCF2yrXh3SXNDwqUv3V6aNW0oZeFeV5g7T2oCM6tLnr6NpX3BBCd4GUQzjwxvUtabJt3wQuHHrllnEc6BYzE26LrQj9JIeNvG6NhUy8Ye6AzgszEd3fFDtbqtIhgTkAy0FVkaX//NYkZYS0HbkvWjZk4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iayyeep4; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-428e0d184b4so21931605e9.2;
+        Sat, 07 Sep 2024 04:07:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725707267; x=1726312067; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AAdj4+txngEBzraLv7siZVwgO3LNyZXhr3alHS/CCMM=;
+        b=iayyeep4seSNftz3+RdA9f3N9etzxkTtCsBSlg0BYIGN93uMV12mbaE51omVxjS0uW
+         OThNqp2DI1Qo5ynUKIeSZ7vlsKd6xFs6zhzLfKkTZh9D4grcR0scO6LPnEQO2nEfYEGF
+         0CXBDNvprC13uvGn2N3OqcXX08Fi+nzdCdCmI2eS1hIg239yO/L3Qn044ndC5o2U6W3p
+         3potCOnirav6osW+epmtsJnh3xT+PFVLaTRv6QDtSFghaDQcghkcYecDJmWTS7ylaHPN
+         f/x+ir9xkhpmEnhI/JwUAk+nHc2561zGfcnIp381/C2K6d7bXgdJqrjXFYzQiWg0T6Jh
+         XiMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725707267; x=1726312067;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AAdj4+txngEBzraLv7siZVwgO3LNyZXhr3alHS/CCMM=;
+        b=BiqYQZlp9ZJgXGlE5Dtrw2LNUGmi06BV1j0PABiZ93JJW2DKBK3U9l2h7vg9sFHrGo
+         8i2d5SEEtjMN1cnt0Jc1M/7U7wva4xP6Wy6YSXVyeWQWRlfVj7rHiDSBVzQLhyOb8DvF
+         0TOtezvh8nam0B+YRbfCM/KIVYRbYXIsr049jO0xHU88YKxQgit+ZMjfG7MzyCvFco+X
+         DEvWr0fkCWFXqbERvMbr11VbBFpLvlzFJZIbDnp34gYb/KTQVn6/VxOqgfkQIXwZgFow
+         gvbTCkbe6h0Gew/XPYYRFnRFDpT8JqPnSRwVLR+0XwzqOoFwquD0OnNvuG4qFzK/1cvt
+         A7og==
+X-Forwarded-Encrypted: i=1; AJvYcCU9dwOBCiK6WKyhuVdjg3Q4xl9DLkXjz4mVXr3JZ0QlrINH+wFDIsa70WC+1GSwgk3FHdvHYA94seAhYvy0@vger.kernel.org, AJvYcCXxrkW8aCvsaU4BNY6uzgfZ6LSISmTWJrKe2+kWanHBgEGjH8qMJE+6ShGL5P9mlIL/npc+e5EYXuDM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+rOXytl7OqeWNFPneIFeyzKRd+2NHBjR1hYBdtdBX4RdkSHTr
+	UTWcVWBV/44VATKILWhpG6nawHzz8w8DjFH9X5OE+RNLX4MFonPwjCC+a4aC
+X-Google-Smtp-Source: AGHT+IGUkg0RAB9UCpVoVpQEJKyg0k0eVE9hU1xdyLNLFy0E7O8LBBS1exgBHAnOv3Ol1KyMpGpi2g==
+X-Received: by 2002:a05:600c:1c9c:b0:426:6688:2421 with SMTP id 5b1f17b1804b1-42c9f97de02mr37642775e9.11.1725707266689;
+        Sat, 07 Sep 2024 04:07:46 -0700 (PDT)
+Received: from [192.168.1.130] (51B6DC2A.dsl.pool.telekom.hu. [81.182.220.42])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42caeb444b0sm13719415e9.21.2024.09.07.04.07.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Sep 2024 04:07:46 -0700 (PDT)
+From: "=?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?=" <trabarni@gmail.com>
+X-Google-Original-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH 0/2] Add omit-battery-class property for bq256xxx
+Date: Sat, 07 Sep 2024 13:07:44 +0200
+Message-Id: <20240907-bq256xx-omit-battery-class-v1-0-45f6d8dbd1e5@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240906093148.830452-3-thippesw@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAA03GYC/x3MTQ6CMBAG0KuQWTtJLYI/VzEs2voVJ1HQTkNKC
+ He3cfk2byNFEijdmo0SFlGZp4rjoaHwdNMIlkc1WWNP5mrO7L+260vh+S2ZvcsZaeXwcqoMG2L
+ sL74NANXgkxCl/PP7sO8/pXQ5ymwAAAA=
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725707265; l=963;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=FpEIF7mSgDnmtGiiZjz4Ru5xyoFoTmh7WQiXbDIcEe8=;
+ b=0D620IMUmvxI77KT2E2Xt6qEKqRKo2I7VJap2tM7jxKMbRnfxqpASPsIMJzVS7nluHvyAdiIL
+ /Nke/hOHF2ICKehMCFUFlpkYtIIU97OP/TxUv4PW/eY2awxPO7wTaPQ
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-Hi Thippeswamy,
+Add new omit-battery-class property for bq256xxx for avoid creating
+a battery device when a fuel gauge make one.
 
-kernel test robot noticed the following build warnings:
+In my case i have a Redmi Note 5A with bq25601 charger and bq27426 fg
+and two battery device is created one for the charger and one for the fg
+It seems battery device created by fg would be enough.
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus mani-mhi/mhi-next robh/for-next linus/master v6.11-rc6 next-20240906]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Barnabás Czémán (2):
+      dt-bindings: power: supply: bq256xx: Add omit-battery-class property
+      power: supply: bq256xx: Add ability to omit battery class
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thippeswamy-Havalige/dt-bindings-PCI-xilinx-cpm-Add-compatible-string-for-CPM5-controller-1/20240906-173446
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20240906093148.830452-3-thippesw%40amd.com
-patch subject: [PATCH 2/2] PCI: xilinx-cpm: Add support for Versal CPM5 Root Port controller-1
-config: um-allyesconfig (https://download.01.org/0day-ci/archive/20240907/202409071713.wrAI0UuK-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240907/202409071713.wrAI0UuK-lkp@intel.com/reproduce)
+ .../devicetree/bindings/power/supply/bq256xx.yaml          |  6 ++++++
+ drivers/power/supply/bq256xx_charger.c                     | 14 ++++++++------
+ 2 files changed, 14 insertions(+), 6 deletions(-)
+---
+base-commit: 9aaeb87ce1e966169a57f53a02ba05b30880ffb8
+change-id: 20240907-bq256xx-omit-battery-class-e2cff68b3cee
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409071713.wrAI0UuK-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/pci/controller/pcie-xilinx-cpm.c: In function 'xilinx_cpm_pcie_event_flow':
-   drivers/pci/controller/pcie-xilinx-cpm.c:292:44: error: 'CPM5_HOST1' undeclared (first use in this function)
-     292 |         else if (port->variant->version == CPM5_HOST1) {
-         |                                            ^~~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c:292:44: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/pci/controller/pcie-xilinx-cpm.c: In function 'xilinx_cpm_pcie_init_port':
-   drivers/pci/controller/pcie-xilinx-cpm.c:504:44: error: 'CPM5_HOST1' undeclared (first use in this function)
-     504 |         else if (port->variant->version == CPM5_HOST1) {
-         |                                            ^~~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c: At top level:
-   drivers/pci/controller/pcie-xilinx-cpm.c:635:40: error: redefinition of 'cpm5_host'
-     635 | static const struct xilinx_cpm_variant cpm5_host = {
-         |                                        ^~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c:631:40: note: previous definition of 'cpm5_host' with type 'const struct xilinx_cpm_variant'
-     631 | static const struct xilinx_cpm_variant cpm5_host = {
-         |                                        ^~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c:636:20: error: 'CPM5_HOST1' undeclared here (not in a function)
-     636 |         .version = CPM5_HOST1,
-         |                    ^~~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c:650:26: error: 'cpm5_host1' undeclared here (not in a function); did you mean 'cpm5_host'?
-     650 |                 .data = &cpm5_host1,
-         |                          ^~~~~~~~~~
-         |                          cpm5_host
->> drivers/pci/controller/pcie-xilinx-cpm.c:631:40: warning: 'cpm5_host' defined but not used [-Wunused-const-variable=]
-     631 | static const struct xilinx_cpm_variant cpm5_host = {
-         |                                        ^~~~~~~~~
-
-
-vim +/cpm5_host +631 drivers/pci/controller/pcie-xilinx-cpm.c
-
-51f1ffc00d95e3 Bharat Kumar Gogada 2022-07-05  630  
-51f1ffc00d95e3 Bharat Kumar Gogada 2022-07-05 @631  static const struct xilinx_cpm_variant cpm5_host = {
-51f1ffc00d95e3 Bharat Kumar Gogada 2022-07-05  632  	.version = CPM5,
-51f1ffc00d95e3 Bharat Kumar Gogada 2022-07-05  633  };
-51f1ffc00d95e3 Bharat Kumar Gogada 2022-07-05  634  
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Barnabás Czémán <barnabas.czeman@mainlining.org>
+
 
