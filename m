@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-101089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D1779703BC
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:48:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8419703C1
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:49:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CCC3283FBB
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:48:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 995601C2033F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2DB1684A0;
-	Sat,  7 Sep 2024 18:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9043316A95C;
+	Sat,  7 Sep 2024 18:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o2/Dinxu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vIo8xpzJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D86D166311
-	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 18:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFA5166F1A
+	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 18:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725734906; cv=none; b=gA4dMM05+7YdBRhX/pQC7icmGbmcDF15NJS2Ot+FaZCFIlhQiJGUDun0UHaTGtO8hsPa3xrjEwo/gXDcE2wpkeGdHAstchNVqedu9sFxpMn2JSrH5tRjiDVz0s/tBmfhINiE4zUXVIcChEi32rK7LhHqBtvIBE/o8OXMqt0wgoM=
+	t=1725734907; cv=none; b=bJw2OARcn+5ljXAD7tYSBaSRG4IZ/b+GbnVG0eIjmBNzVH/bX13fmEAymsXifqkmLZCIE0+PhpMjE39CQnLFhJpAgh9W0U12Zt+C/B4ZQgacgURhKyuvXOK8Oux9GUYbiUXR664IBjYqD1mp9IqB7e/DWldoUZlQJfKs581PTpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725734906; c=relaxed/simple;
-	bh=6TCDPpBkY5pK/ecMFCBKg6KyrCqiL2Nwxp1MC/3FL0Y=;
+	s=arc-20240116; t=1725734907; c=relaxed/simple;
+	bh=gth7VehLLAYczDDqOTK1mioSLmcntX+IjHSeS1+PsRg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FcCl7jj/mKvAn0opcqDbkWO8FsHVzA1dqyJyC11nQASHOVz/7ZRSFCn7XuyzNcvu2p0lC69SA+t3SRWJinpjQXokrti4UNX8DNKxnaKhpDbsHhPItIBzLW4Yysqa/tPuhi/r/GDvu1R7n2yLGf/e6qRMvvZh9PjlRZ9G6dKaJ+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o2/Dinxu; arc=none smtp.client-ip=209.85.208.170
+	 In-Reply-To:To:Cc; b=gv0ppzwc3b9WvcuJwfRfO3FcoTwEUtaHNrcY8cSkbw7zZyJmEklAVAF8F9yapvWJUyR0rodxHU/+mVQTOmowiVMpzSStN3NoTD2WrAcSokosKdVUZUfhhEF0azwcxhUcnDoTWKvCcTHEWSjpkfgNRuPFdwCRIGCc/+EP6rfBmOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vIo8xpzJ; arc=none smtp.client-ip=209.85.208.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f74e468aa8so31806581fa.1
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f762de00e5so243391fa.3
         for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 11:48:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1725734903; x=1726339703; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Rm1chB3YeV/rbRF4sUAZL0Reqk72Eb44oLJJOE10AxM=;
-        b=o2/DinxuiNLO9bPGDLhnAmyLnEno7TrrrNLvQUpC5lDqNo46XLOMdYEEwrpo0yEsbT
-         HYDd4ZwmIAbnsAQNfsTCfrIhxj3BX/rMTRLLIgR8GoF5BGAA5WL+pvzQCshyAhfHYBel
-         bxKbyJTaskrrh2OOYjxk+X8X3wOEhzEXIylpOdB87yhOyPcBACjcXnQFliaRsphGhlFy
-         vo34DWADOqK16j1e3CTLoedhx3URW+D5VmPkmKG+DjZDD50bK4Ukug7x5tMUiWewEmfD
-         HdHpXUSlfTRtu7aVltXvD5mghONWBiaUVCvmpEcDKfI0wsrEAj8TH6eIW4kRs3IKvwLN
-         sYNw==
+        bh=u7LsuAqj5Yv+PzKysRic0Rp3tIs0Hiyq7Bki4F0WIhU=;
+        b=vIo8xpzJ0CMt9KjDhrSe1ZLfTESnJfCqq5iGMC1yxfHA59BLqPiObuVyVoGNBjQZSn
+         9g7c7LKiapWkrktibx4g2iBySq6kfrMa3yk8pBEWjfbmnTwGkZUTyMPTEOgzszMSbiba
+         fOBbODHvZHOP8vXQr80N4jYnXskEQFDqS0wGqifzaWBjzqpWz2oF4xBOh8oy1gyrlDVT
+         d0F8tLXRYSylhQTM/i3ct0UECtxLi/hERZEL8yVzFf/y3obz97jGvr1zlvdnPq7rI8DJ
+         XHwRpE9YxaCMzfeTDN9aHtoNoB/xIEsclvffTt04LpuCyssRlrikC2W6WPyeLNtkQdRD
+         Mr0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1725734903; x=1726339703;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Rm1chB3YeV/rbRF4sUAZL0Reqk72Eb44oLJJOE10AxM=;
-        b=OwIM3GLOv/ZOpWTW6yuYYhLRGVGe/BNpi7ueO1qf24a05p5noWYDeTKNTZqpXY9G9Y
-         RZBuvwRmyZMiXe7ER4pX24BNfj/e8NqbmjPt0ham6KcCeJdZb8jTEqx3raGdVQ2LcIAq
-         S2oU7hUN4SeJm8FZjcrZ07oQ2SWqDgKhgqbdsiB0mY7eRQvTWzBNrXefqfsXs+j3vErp
-         0lbe2m58zpF1WdpmhGRDDkzKD/ucRp2fJQGvFDwOcan8+Nr/WAhTO75eD7ktkW46v76M
-         tjt6tghZgBxyPN8iskrrWirS6i2JP78JXMwftFF2+hil/ejLPNB4nwxQleAbkoCLU8Jt
-         rY5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWOERCxrh63xLmOZrXyIVctoSkK81R4gY+SDuWLL7kfVzUS3u88RsmNuw9G0Cl4vqLBI+8cCnczXyaJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSR/4ZG7TubhRx8h8gYmRSB6Dh/5BCuj32iJSvZTV+EvR3kQnk
-	8q9oGRSYx9yEXMYzPMoUNc9mJ3BJLg3IwFV6fMhWgrs91gjlv4aNDH8EkQ0QM1s=
-X-Google-Smtp-Source: AGHT+IHu563+x1ywd7U+RrDE+KW3K25LUY98BF0NdOnVsnzEUTN6YUx2CDuriBbnNOmez6VMCEAmJw==
-X-Received: by 2002:a2e:819:0:b0:2f7:4c9d:7a87 with SMTP id 38308e7fff4ca-2f75232641cmr33900971fa.21.1725734902386;
-        Sat, 07 Sep 2024 11:48:22 -0700 (PDT)
+        bh=u7LsuAqj5Yv+PzKysRic0Rp3tIs0Hiyq7Bki4F0WIhU=;
+        b=rQfBAEw8LHgUgtW2lvtH8v6aVBeXa3cP9foMNI/AfN4l+/xNbppJNQecCHCf5T3tJr
+         yT09cbvKw/nGlK14KoRPZjbbZAgW86Cez+zp7fTnqgdVtkBwx1UX/ia1l0ybXGCAxXki
+         QtI7+fR1gBa7rS5DD6JrZRPV+2MlMu5oLh6+tyTCRwPmVmTgY6g/TqCHWl0H1QHQ2Rml
+         Q5jqQ7Agf9ZdJ3Z4NrOxPDXuuraTS/RzPm5iY0L0/1Orywzr2l5EBpVVYCP/gPOeToIm
+         9YdbnUkbHV0MEpzQzDAwCliEMoU/K0EDeC6aLpSF7Bef9Kv3c20caupOsy7Uosv3DyZf
+         YC4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWcxaXgY9HXfD5HRTm7RDIEW787NA+tbKLmgWsyaoyEO0MjGwzfe570XUDJZAP+lPK0YHeptF7lKDYU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZiBfymIJkkonRqILIFwXj1J19zIKrBmrBcGvJkmE2ALnUVqt/
+	bUgwyRRscioBf8WnEU/Wr+76acrHqH3UQZJLdUl5HdwTWHZrOBj9jZZHTdtScPk=
+X-Google-Smtp-Source: AGHT+IG6Er2WTTB9ykLtsnwLJMIhAvVqgLPtZjGk+LCEAz8mWM1M2LvXxH2Ll6NQE9F97hNSetaCCQ==
+X-Received: by 2002:a2e:be83:0:b0:2ee:8453:5164 with SMTP id 38308e7fff4ca-2f751db7570mr44719081fa.0.1725734903101;
+        Sat, 07 Sep 2024 11:48:23 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.21
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Sep 2024 11:48:21 -0700 (PDT)
+        Sat, 07 Sep 2024 11:48:22 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 07 Sep 2024 21:48:15 +0300
-Subject: [PATCH 4/7] arm64: dts: qcom: sda660-ifc6560: fix l10a voltage
- ranges
+Date: Sat, 07 Sep 2024 21:48:16 +0300
+Subject: [PATCH 5/7] arm64: dts: qcom: sdm630: enable A2NOC and LPASS SMMU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240907-sdm660-wifi-v1-4-e316055142f8@linaro.org>
+Message-Id: <20240907-sdm660-wifi-v1-5-e316055142f8@linaro.org>
 References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
@@ -93,42 +92,49 @@ Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1040;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=980;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=6TCDPpBkY5pK/ecMFCBKg6KyrCqiL2Nwxp1MC/3FL0Y=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/yYgngcJjUMb3ImAgjjHipMpb3WTf93cRNT
- iQYHXaOttKJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8gAKCRCLPIo+Aiko
- 1QQ1B/9bAfy4pGc7ZPqq1iHOoY3bTcWAcmd7v2Qz79lyDxIMcv6LmE7qVWnxa3xXBT9FzGon5UF
- 9mVlaNnMAPckOLbCL5rLh1e+ipDAycCXla3X8iPEmzZsLdvzdSsNjm7SJ403+kB0JkBoBmLzQEE
- 5c7OuYEkLOhNkb90pSzBBV/UgmfvZoAGSEaes2pf4FwH+R4Qz7cFFCj/iHI5AY8JGVKr89eFJH8
- 9i1ITgZ4uEXit1VxxeEba8+y9wW1wlGe4yXolhk9o8pOSifAYL1qWLjEGoUZSfMXxgthP6yN+7/
- GpgBONEmhzqQy9Mkb0GsjthGtQu0xfaLV1COcEVd8ObQS6jc
+ bh=gth7VehLLAYczDDqOTK1mioSLmcntX+IjHSeS1+PsRg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/yK0Kr6gfauwYtKBj2YifOOoYasEb2/KJQy
+ oQEzjAtvuWJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8gAKCRCLPIo+Aiko
+ 1eXDB/9YMK3v0BNnzKGqm5xYDSjWyN0LHPfuoGLoxqF11BB6jzZ6HjSdbB6BPi6n8/uMcF2CYCU
+ pUhc1bXjxfVuHGaf6cHWqtrnm7QnBYbY9S7oexm20BZreHSMx1mnvyugF1faew9zNq1i2P1VmaW
+ tewDNsm9c7RZhrMo8cO/oHOa9PCy0u9yKVQlnBYbWFEdjODYF+LEK4HQTo3Nz/eca3UAyniGYYK
+ NoyD5wvdIVIhaTLstIx19dmx4DHhmbkyOR5XRyfpvPD6mMbJJQd3pK9+vtPWua3amdHbpfVaJaS
+ UyTHeyQAsEcjpl2psOw4Yjpzg+Yj+fS2DFCA/EGPiMz/yeke
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-L10A, being a fixed regulator, should have min_voltage = max_voltage,
-otherwise fixed rulator fails to probe. Fix the max_voltage range to be
-equal to minimum.
+Now as the arm-smmu-qcom driver gained workarounds for the A2NOC and
+LPASS SMMU devices, enable those two devices.
 
-Fixes: 4edbcf264fe2 ("arm64: dts: qcom: sda660-ifc6560: document missing USB PHY supplies")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-index ac0197624c09..09bc010ce56a 100644
---- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-+++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-@@ -104,7 +104,7 @@ vreg_l10a_1p8: vreg-l10a-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vreg_l10a_1p8";
- 		regulator-min-microvolt = <1804000>;
--		regulator-max-microvolt = <1896000>;
-+		regulator-max-microvolt = <1804000>;
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 92695375a63b..dc8bc63bdc70 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -665,8 +665,6 @@ anoc2_smmu: iommu@16c0000 {
+ 				<GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
+ 				<GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
+ 				<GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
+-
+-			status = "disabled";
+ 		};
+ 
+ 		a2noc: interconnect@1704000 {
+@@ -1234,8 +1232,6 @@ lpass_smmu: iommu@5100000 {
+ 				<GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
+ 				<GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+ 				<GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>;
+-
+-			status = "disabled";
+ 		};
+ 
+ 		sram@290000 {
 
 -- 
 2.39.2
