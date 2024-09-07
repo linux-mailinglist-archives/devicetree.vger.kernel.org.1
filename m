@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-101040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F73970148
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 11:08:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A29970152
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 11:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F33551C21D89
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 09:07:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E315F1C21311
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 09:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9080F1537A5;
-	Sat,  7 Sep 2024 09:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68AB6148FF7;
+	Sat,  7 Sep 2024 09:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dAzINJ6h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ehkT6tbd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A8014B094;
-	Sat,  7 Sep 2024 09:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3418E1BC23;
+	Sat,  7 Sep 2024 09:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725700075; cv=none; b=GBWlFJ0hSF6qUtm5VBye/dkAiP0KEnduDpg+haMd2bmwWWu+/9zuPnkGBPWHAP4QeOLmvjQo8jiP8BFQNyo4OPZ+MPK5rWP0lVaqpbeq837oH58Jf+yprPkDL9543EckCIlUnsPITA9rbQQolnExMhDadGvC4VFF6rwiqPsOhj4=
+	t=1725701082; cv=none; b=AvHxqjmKP9qBVNugJ43PfwQjkRcQ28t2Q4kCOsLnySmL0XxbdT30VDJZjUT9rVcgNrI/tK4fPi4PdzOgDij+gemw2h+PEQdXlyMjLwCrm1ymbtCw9K9OuW1pEyFib46kh6tFcE1SDDblfq2pRK2vThCEtxriZGRW63GHbNMdE6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725700075; c=relaxed/simple;
-	bh=DxFZRsW+AZZBSAZT0A4Mpaler5iftVr7G/9wqCUcvWc=;
+	s=arc-20240116; t=1725701082; c=relaxed/simple;
+	bh=/dGREid6NJ6G8oGBWSZaB1aagZDW3GpGDbBlAewwQEs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cj6Ft5+ADxRSnoWJMp+6aRILaCgDg7iUkWWNR4PhrZmDZf48wAxcnlPyJJOGYY6GnQo0sVsDLjPbI1oYWdPX6em1E3i8GtcgDi1snRgrgDEZjkQZr08Z8xF05UK7h4hppgDWkO5Gq3dmBHkKxOnaYG4E5/nqPWSWTBSPWGuIJrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dAzINJ6h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36230C4CEC2;
-	Sat,  7 Sep 2024 09:07:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kPaSjnxCTHhwLbJ810hJNBFCM87wSsvDrYlswLqIR09PeRUJUnNv7cVc5C14ktBoEkKzYGyhjwMQMS0Cf675M5zUFs4K2MFRYlJiZ05tZbCxBeDO5yneLnZ1FhX6wp5OJr1/v9q8XI7niY8Rf4Pa0RCygfBYYDNfCfVxT5YIqUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ehkT6tbd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27746C4CEC2;
+	Sat,  7 Sep 2024 09:24:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725700074;
-	bh=DxFZRsW+AZZBSAZT0A4Mpaler5iftVr7G/9wqCUcvWc=;
+	s=k20201202; t=1725701081;
+	bh=/dGREid6NJ6G8oGBWSZaB1aagZDW3GpGDbBlAewwQEs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dAzINJ6heOeB9/94GaOk8W36pYTm8ATvlD0bf7pgR5hea4me2txh/b7YM5DKFift6
-	 xA/svDW62YSHeHxXKg9hERQrw9h5RSa0RS3KXt5tdBYfvySM8XxAFXiVFtMU785jDk
-	 twJwtm0gP+Z8fAYZ8pMFUadGTkk1czR0f0l8xvUXddhepjMNTDCh4d3kNjnn116uGX
-	 oNGFnAwevnp1NSegmIOYAhhScH7RYtnufAblqdQ7Jyfhl5Am//581BPG2rOBHDhwo0
-	 SE6FPeUY59F3U9cGn3t9WdmcVqDqUO9xtwc7xFQGUvBE2xtiTjwIWyBATVj6GZruAV
-	 ifS5x7BlpU9VA==
-Message-ID: <75c7baa9-1403-42bc-9034-192d53adb95c@kernel.org>
-Date: Sat, 7 Sep 2024 11:07:47 +0200
+	b=ehkT6tbdt2KGYnQ4qbmUOHEGHQCN6DF0l3ISVlCFVvZ8wk2n/FtFpue5IUXH0pjvZ
+	 jl2vxVy5wbu9XdxV883hw78oTGs0RXidIR0Od7pZ+c2BFeBg8FXVTWbTYlqxN7Gabq
+	 Q9f+WNm5R8hofRfBwMqAFOW/cbABqRWY+EKp8JGq/c5K9+z79dtk4DffguUfI5LJ4I
+	 /xK4uG3ezI5glAJVqDa72XpDnWE9nQSpcjHF1x6s4YVDq6PF63JfyVngJ9LL1UqsJM
+	 CG6LASyv4R24VuNqjW4EW1q9kbIQRxsM7bwCIr4HKyuxIRg75ywRzi5OwNHglUA8oR
+	 CiYT6uzamf2vw==
+Message-ID: <a8eba34d-941a-4912-a612-6e5e36cae0c8@kernel.org>
+Date: Sat, 7 Sep 2024 11:24:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/29] media: iris: initialize power resources
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
- <20240827-iris_v3-v3-4-c5fdbbe65e70@quicinc.com>
- <81fd218f-aa0f-4710-b832-cab927bfab9d@kernel.org>
- <ba747923-38de-5c05-9220-762c5272ec74@quicinc.com>
- <76ffb882-10f9-4737-afa2-9bb60248835d@kernel.org>
- <f88d8596-c6a0-356e-060e-81d68f038995@quicinc.com>
- <c7fd8c50-d5d9-4210-8253-457d7523eb30@kernel.org>
- <463caa4f-c32c-d74c-a8c6-1afbc22a877d@quicinc.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: add bmi270 bindings
+To: Alex Lanzano <lanzano.alex@gmail.com>, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Ramona Gradinariu <ramona.bolboaca13@gmail.com>, Nuno Sa
+ <nuno.sa@analog.com>, Jagath Jog J <jagathjog1996@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240906165322.1745328-1-lanzano.alex@gmail.com>
+ <20240906165322.1745328-2-lanzano.alex@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,57 +107,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <463caa4f-c32c-d74c-a8c6-1afbc22a877d@quicinc.com>
+In-Reply-To: <20240906165322.1745328-2-lanzano.alex@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/09/2024 21:47, Vikash Garodia wrote:
-> Hi,
+On 06/09/2024 18:52, Alex Lanzano wrote:
+> Add device tree bindings for the bmi270 IMU
 > 
-> On 9/6/2024 5:34 PM, Krzysztof Kozlowski wrote:
->> On 06/09/2024 13:21, Vikash Garodia wrote:
->>>>>>
->>>>>>> +	}
->>>>>>> +
->>>>>>>  	ret = v4l2_device_register(dev, &core->v4l2_dev);
->>>>>>>  	if (ret)
->>>>>>>  		return ret;
->>>>>>> @@ -88,8 +101,14 @@ static int iris_probe(struct platform_device *pdev)
->>>>>>>  }
->>>>>>>  
->>>>>>>  static const struct of_device_id iris_dt_match[] = {
->>>>>>> -	{ .compatible = "qcom,sm8550-iris", },
->>>>>>> -	{ .compatible = "qcom,sm8250-venus", },
->>>>>>> +	{
->>>>>>> +		.compatible = "qcom,sm8550-iris",
->>>>>>> +		.data = &sm8550_data,
->>>>>>> +	},
->>>>>>> +	{
->>>>>>> +		.compatible = "qcom,sm8250-venus",
->>>>>>> +		.data = &sm8250_data,
->>>>>>
->>>>>> You just added this. No, please do not add code which is immediatly
->>>>>> incorrect.
->>>>> It's not incorrect, in earlier patch we only added the compatible strings
->>>>> and with this patch introducing the platform data and APIs to get it.
->>>>
->>>> It is incorrect to immediately remove it. You keep arguing on basic
->>>> stuff. Sorry, but that is not how it works. If you add code and
->>>> IMMEDIATELY remove it, then it means the code was not needed. Or was not
->>>> correct. Choose one.
->>> I think it is not removing it. It is adding platform data to compatibles
->>> introduced in previous patch. Maybe it appears as if it is removing it.
->>
->> I know how the diff works.
-> Perhaps, i have misunderstood. Are you suggesting to add compat data and
-> compatible string together in single patch rather than splitting it in 2 patches
-> ? If so, that would essentially end up squashing patch #3 and #4. Let me know if
-> that would address your comment and we will plan to do that.
+> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+> ---
 
-You are supposed to organize your patches so they have logical order. I
-already explained why this order is wrong. What's more, previous patch
-of two equal compatibles does not have much value. Devices cannot work
-and code is confusing.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
