@@ -1,186 +1,229 @@
-Return-Path: <devicetree+bounces-101014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E87FB970048
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 08:16:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2483397005F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 08:50:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 982532849CC
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 06:16:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A54471F23787
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 06:50:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE6554652;
-	Sat,  7 Sep 2024 06:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92FDB146D7E;
+	Sat,  7 Sep 2024 06:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iwEff2QT"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MArLBWK3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3971B819;
-	Sat,  7 Sep 2024 06:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE28449624
+	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 06:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725689799; cv=none; b=MalQ/ait8Mhp50OwHIWt/ckZLZY8XcmPlG7XzvNmSrpdnp5/ONTbmukR2pFYMaD7+txn6nmueJ1IyxhP1jJIKp9Nu4JEMmLRHj5Mv77kaf8ueMd/o75b0F604fYVyslhy5YE2OFjhVnLVh0GJlbnL44Cz1BtqyTqLvANykQzm5I=
+	t=1725691853; cv=none; b=sFNq1aJp7OWxitzPKBcCgVESa6iFfa51iZyU0VvbOygjx9QzoXwDxYaNVsIMgbqE/rVGr9W8qOK7Ua/4GRmfYE5xN4R/LXZZ7xrQd+9Vc7pzuWjM/V9Q69yJWZaQKTwU6/iZ88XzMmbfVazONtMrQKeCOPQXW6Lr574VzqNM0D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725689799; c=relaxed/simple;
-	bh=4/pmOwkHsvDS28u1eab2x3LlPPbazNatOexhtKCxpt4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A1nBjUWyBsIdh/OYLho6hOn8wfi/PxUqWPi1FY9SDL4n+YUVaHjfy9HZbOkNSDd3JMefap7H3ZrSg9gN1NiSotGQsl4DN3Ew4wnkBzH6vjBMRcBWNKIA+AWV915TYtfUBcxX0UTGzZVQH9yBFjAYSNnNoS8DenrtKB24ZCJsKdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iwEff2QT; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725689798; x=1757225798;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4/pmOwkHsvDS28u1eab2x3LlPPbazNatOexhtKCxpt4=;
-  b=iwEff2QTNbWhgaXCJN5mfyL8oG4EpszaGryPFGiWKqbpBTRYuXWmXwci
-   /B3pKzu/sY+MFkTlHlz8sXh88/Lm9AFVAUzN3HZS0D+zvKB3BUYYL88A5
-   3ndCOCABc7BkBQxkTOKItC88sWaRN4lwUSZlv+83FwIrWNr6nsO8PgDbp
-   ImZPzlcJFsfeFfo3MKYzWF9+JiWG68CcLluilvF4T8YGMyh5rZITWUngp
-   KLAgbTd1q03ASUdUtWa9mXC56NR/vCU9QRIFWL27qNOg0Ctm6+mh/bTio
-   r30EwrI4Fa+LZcCBDWmSvmN/FsUI4OrYf8VJngASwMvSTugR9Ch1LFFH9
-   A==;
-X-CSE-ConnectionGUID: r7htrl3oQrOtgR95f12hvw==
-X-CSE-MsgGUID: 5Dyu14RsRoqhNF9G6P9ULQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24249556"
-X-IronPort-AV: E=Sophos;i="6.10,210,1719903600"; 
-   d="scan'208";a="24249556"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2024 23:16:37 -0700
-X-CSE-ConnectionGUID: SNZuxHtYRPSOvfznDo14vg==
-X-CSE-MsgGUID: NS3+0j0WQK+rB7qxA6dzaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,210,1719903600"; 
-   d="scan'208";a="70280677"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 06 Sep 2024 23:16:33 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1smokI-000CAh-3C;
-	Sat, 07 Sep 2024 06:16:30 +0000
-Date: Sat, 7 Sep 2024 14:15:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thippeswamy Havalige <thippesw@amd.com>,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	linux-pci@vger.kernel.org, bhelgaas@google.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, bharat.kumar.gogada@amd.com,
-	michal.simek@amd.com, lpieralisi@kernel.org, kw@linux.com,
-	Thippeswamy Havalige <thippesw@amd.com>
-Subject: Re: [PATCH 2/2] PCI: xilinx-cpm: Add support for Versal CPM5 Root
- Port controller-1
-Message-ID: <202409071415.6WivnBm0-lkp@intel.com>
-References: <20240906093148.830452-3-thippesw@amd.com>
+	s=arc-20240116; t=1725691853; c=relaxed/simple;
+	bh=leWSQje+ukEc8agXDt91UFlYTYx+/7CTkDdZc0d+tPU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OpawDaX9WNpE/l/80/iAEOkKx4GECXz9kV3a1uVLsgxFnOBZOhZ7J+Pf06EEgg/iT0hQmN6e6t7FBOlhRgUTvk6N7oJ/9rpKmDeQwTaol1qffdFwlCczvvsAT9KabsHEJOQzgwq51ifN0gXDJQ6emcWXy1k2gZpHcKX2L639++w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MArLBWK3; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53653ff0251so3065346e87.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2024 23:50:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725691849; x=1726296649; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+JqF7PWi3iax7JPq5MD9TNOmdUBUg/2y2TKvAmNZk64=;
+        b=MArLBWK31xi+jHODwAmflN4qWltATI6c6Efn93n0U7+2AfQWB8fuTYXx1EBexF8dYD
+         ECdLh5YfPKYHW/lW1lM5Gs5uJ6g6Z0ri2Thu0lqjlgG6LCmVZbi//P8Q54f+NuJioVlp
+         PiSQICvF3zaGJyfCP64uYqekmlySc/KXZwsHEkNn4caEWb1fVU2zJ3HuLkv9jkJhrahI
+         1ED2hg9+Nug/wk/4J/6gjSz/J92oJAeCr6cmTYd9G9h8nO3AJ+I15XlqMlcQNClSDP+h
+         LD61u57UPlvA/xoxkR4d/mQ4WVIlMWLJTWy2hLSSro5mHZOgflb+W3+zudwo4OVe3aeW
+         adzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725691849; x=1726296649;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+JqF7PWi3iax7JPq5MD9TNOmdUBUg/2y2TKvAmNZk64=;
+        b=BC7OOb7LkKzrwEYgM+hSV/nHT/MrPaQXSmr5z4FkJfV5m4fCHGINgZ1C4EqaXxEzr5
+         6qfvdp20G3A7d7YMMuHZYOMiwbyjowmrI3g12su+L3PHap98H+mXlMdQRMHDeFkuARS/
+         7Td0ZC584yfg67hcyEnb+SrHQ4azLL4yOOzONF2lifCFUomd3apFvayvDdRGksvlQpfG
+         CbmzW2PYShno9xO0lDFl1ykNulNdNFXFg5lj4jBHaagF+3d5SAmoNgoY0tfjCQR9cngQ
+         sb4qIAugy7Dwe3sHGzyWwnsnhV2I5Kcss6Pnhz3oab3jWDqQHPuGN8k0JmTTFs/biKzx
+         3Gnw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6MMukxJKQXojfOSRpmaZlBfJbLxpNdQnlc34ze4SvwoFwHNnnee90DawQI0K2pARRxZrr34XKSuzE@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo9JYiTmxYE1KSUz5QU1BzOm1I7lF+B08M2K60ejgZrmBU4L9x
+	1M6DfOfC2e+RrpH0c0VmHb5CxhNjti3wJwzCtJjp+X/5khL2cch55aDP883rSAw=
+X-Google-Smtp-Source: AGHT+IGaZymJr/vP+UZobOPpVdjUAMoict+okKsDPTRXN5mqf7+99tIgikuVmr+VFtqEKMj2jmBtdQ==
+X-Received: by 2002:a05:6512:1191:b0:536:5515:e9bc with SMTP id 2adb3069b0e04-536587fc7a7mr2720792e87.46.1725691847823;
+        Fri, 06 Sep 2024 23:50:47 -0700 (PDT)
+Received: from localhost.localdomain ([188.27.130.242])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8d25835a76sm36539266b.39.2024.09.06.23.50.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Sep 2024 23:50:47 -0700 (PDT)
+From: Alexandru Ardelean <aardelean@baylibre.com>
+To: linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: jic23@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	lars@metafoo.de,
+	michael.hennerich@analog.com,
+	gstols@baylibre.com,
+	Alexandru Ardelean <aardelean@baylibre.com>
+Subject: [PATCH v5 0/9] iio: adc: ad7606: add support for AD7606C-{16,18} parts
+Date: Sat,  7 Sep 2024 09:50:33 +0300
+Message-ID: <20240907065043.771364-1-aardelean@baylibre.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240906093148.830452-3-thippesw@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Thippeswamy,
+The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
+The main difference between AD7606C-16 & AD7606C-18 is the precision in
+bits (16 vs 18).
+Because of that, some scales need to be defined for the 18-bit variants, as
+they need to be computed against 2**18 (vs 2**16 for the 16 bit-variants).
 
-kernel test robot noticed the following build errors:
+Because the AD7606C-16,18 also supports bipolar & differential channels,
+for SW-mode, the default range of 10 V or ±10V should be set at probe.
+On reset, the default range (in the registers) is set to value 0x3 which
+corresponds to '±10 V single-ended range', regardless of bipolar or
+differential configuration.
 
-[auto build test ERROR on pci/next]
-[also build test ERROR on pci/for-linus mani-mhi/mhi-next robh/for-next linus/master v6.11-rc6 next-20240906]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thippeswamy-Havalige/dt-bindings-PCI-xilinx-cpm-Add-compatible-string-for-CPM5-controller-1/20240906-173446
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20240906093148.830452-3-thippesw%40amd.com
-patch subject: [PATCH 2/2] PCI: xilinx-cpm: Add support for Versal CPM5 Root Port controller-1
-config: alpha-randconfig-r051-20240907 (https://download.01.org/0day-ci/archive/20240907/202409071415.6WivnBm0-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240907/202409071415.6WivnBm0-lkp@intel.com/reproduce)
+This changeset, does a bit of rework to the existing ad7606 driver and then
+adds support for the AD7606C-16 & AD7606C-18 parts.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409071415.6WivnBm0-lkp@intel.com/
+Datasheet links:
+  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-16.pdf
+  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf
 
-All errors (new ones prefixed by >>):
+Changelog v4 -> v5:
+  - v4: https://lore.kernel.org/linux-iio/20240905082404.119022-1-aardelean@baylibre.com/
+  - Not all topics from v4 have been fully resolved; but I created a v5 in
+    case it helps to spot other (new) topics
+  - Added patch 'iio: adc: ad7606: remove frstdata check for serial mode'
+    - This is from the 'fixes-togreg' branch
+    - It should be ignored
+    - Should help with a bit of context for this series
+  - For patch 'iio: adc: ad7606: add 'bits' parameter to channels macros'
+    - Added '.storagebits = (bits) > 16 ? 32 : 16'
+    - Reduces the final patch a bit
+      - i.e. 'iio: adc: ad7606: add support for AD7606C-{16,18} parts'
+  - For patch 'iio: adc: ad7606: move 'val' pointer to ad7606_scan_direct() '
+    - Added 'Reviewed-by: David Lechner <dlechner@baylibre.com>'
+  - For patch 'iio: adc: ad7606: rework available attributes for SW channels'
+    - Added '.storagebits = (bits) > 16 ? 32 : 16'
+    - Reduces the final patch a bit
+      - i.e. 'iio: adc: ad7606: add support for AD7606C-{16,18} parts'
+  - For patch 'dt-bindings: iio: adc: add docs for AD7606C-{16,18} parts'
+    - Added '"^channel@[1-8]$": false' if not 'adi,sw-mode'
+    - Added 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+    - Given the change, I would need confirmation that the Krzysztof's
+      Reviewed-by tag is still valid
+    - There is still an open topic about using
+      'oneOf:required:{diff-channels,bipolar}' vs 
+      'if:required: [diff-channels]then:required: [bipolar]'
+      - I'm leaning towards 'oneOf:required:{diff-channels,bipolar}'
+      - Let's see what a discussio will yield
+  - For patch 'iio: adc: ad7606: add support for AD7606C-{16,18} parts'
+    - In 'ad7606_spi_read_block18to32()' fixed 
+       '.len = count * sizeof(uint32_t)' in 'struct spi_transfer xfer'
+    - In 'ad7606_read_samples()' changed 'u16 *data = st->data;' to
+      'void *data = st->data.d16;' ; both would compile though ;
+      converting 'data' to 'void *' may show that it's not just 16 bits
+    - In ad7606c_18_chan_setup() & ad7606c_16_chan_setup()
+      - Added explicit 'cs->reg_offset = 0;'
+    - In 'ad7606c_sw_mode_setup_channels()' :
+      - If pins are specified incorrectly, an error is triggered (vs
+        ignoring it before)
+      - Updated comment about why 'st->bops->sw_mode_config()' is called
+        first
 
-   drivers/pci/controller/pcie-xilinx-cpm.c: In function 'xilinx_cpm_pcie_event_flow':
->> drivers/pci/controller/pcie-xilinx-cpm.c:292:44: error: 'CPM5_HOST1' undeclared (first use in this function)
-     292 |         else if (port->variant->version == CPM5_HOST1) {
-         |                                            ^~~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c:292:44: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/pci/controller/pcie-xilinx-cpm.c: In function 'xilinx_cpm_pcie_init_port':
-   drivers/pci/controller/pcie-xilinx-cpm.c:504:44: error: 'CPM5_HOST1' undeclared (first use in this function)
-     504 |         else if (port->variant->version == CPM5_HOST1) {
-         |                                            ^~~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c: At top level:
->> drivers/pci/controller/pcie-xilinx-cpm.c:635:40: error: redefinition of 'cpm5_host'
-     635 | static const struct xilinx_cpm_variant cpm5_host = {
-         |                                        ^~~~~~~~~
-   drivers/pci/controller/pcie-xilinx-cpm.c:631:40: note: previous definition of 'cpm5_host' with type 'const struct xilinx_cpm_variant'
-     631 | static const struct xilinx_cpm_variant cpm5_host = {
-         |                                        ^~~~~~~~~
->> drivers/pci/controller/pcie-xilinx-cpm.c:636:20: error: 'CPM5_HOST1' undeclared here (not in a function)
-     636 |         .version = CPM5_HOST1,
-         |                    ^~~~~~~~~~
->> drivers/pci/controller/pcie-xilinx-cpm.c:650:26: error: 'cpm5_host1' undeclared here (not in a function); did you mean 'cpm5_host'?
-     650 |                 .data = &cpm5_host1,
-         |                          ^~~~~~~~~~
-         |                          cpm5_host
+Changelog v3 -> v4:
+  - v3: https://lore.kernel.org/linux-iio/20240904072718.1143440-1-aardelean@baylibre.com/
+  - For patch 'dt-bindings: iio: adc: document diff-channels corner case
+    for some ADCs'
+    - Added 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+  - Renamed patch 'dt-bindings: iio: adc: add adi,ad7606c-{16,18} compatible strings'
+    to 'dt-bindings: iio: adc: add docs for AD7606C-{16,18} parts'
+    - Updated based on notes from Krzysztof Kozlowski (from v3)
+      - Dropped ()
+      - Re-ordered the patternProperties:oneOf:required specification
+      - Unified match-pattern to '^channel@[1-8]$'
 
+Changelog v2 -> v3:
+  - v2: https://lore.kernel.org/linux-iio/20240902103638.686039-1-aardelean@baylibre.com/
+  - Applied checkpatch.pl changes
+  - Managed to setup and run 'make dt_binding_check DT_SCHEMA_FILES=adi,ad7606.yaml'
+    - Found the winning combination for this setup
+    - David Lechner also helped
+  - For patch 'iio: adc: ad7606: rework available attributes for SW channels'
+    - Removed an extra space that checkpatch found
+  - For patch 'dt-bindings: iio: adc: document diff-channels corner case
+    for some ADCs'
+    - Removed 'the the' stutter (that I did in writing)
+  - For patch 'dt-bindings: iio: adc: add adi,ad7606c-{16,18} compatible strings'
+    - Updated binding with some description for 'diff-channels' & 'bipolar'
+      properties
+    - Channel definitions are counted from 1 to 8 to match datasheet
+    - Added more bindings rules for 'diff-channels' & 'bipolar' for AD7606C
+      - Adapted some ideas from adi,ad7192.yaml
+  - For patch 'iio: adc: ad7606: add support for AD7606C-{16,18} parts'
+    - Updated 'diff-channels' property with channel numbers (from 1 to 8)
+      handling
 
-vim +/CPM5_HOST1 +292 drivers/pci/controller/pcie-xilinx-cpm.c
+Changelog v1 -> v2:
+  - v1: https://lore.kernel.org/linux-iio/20240819064721.91494-1-aardelean@baylibre.com/
+  - Fixed description in 'iio: adc: ad7606: add 'bits' parameter to channels macros'
+  - Added patch 'dt-bindings: iio: adc: document diff-channels corner case
+    for some ADCs'
+    - diff-channels = <reg reg> can be used to define differential channels
+      with dedicated positive + negative pins
+  - Re-worked patch 'dt-bindings: iio: adc: add adi,ad7606c-{16,18} compatible strings'
+    - Using standard 'diff-channels' & 'bipolar' properties from adc.yaml
+  - Re-worked patch 'iio: adc: ad7606: add support for AD7606C-{16,18} parts'
+    - Reading 18-bit samples now relies on SPI controllers being able to
+      pad 18-bits to 32-bits.
+    - Implemented 'diff-channels = <reg reg>' setting
+    - Removed some bad/left-over channel configuration code which I forgot
+      during development and rebasing.
 
-   270	
-   271	static void xilinx_cpm_pcie_event_flow(struct irq_desc *desc)
-   272	{
-   273		struct xilinx_cpm_pcie *port = irq_desc_get_handler_data(desc);
-   274		struct irq_chip *chip = irq_desc_get_chip(desc);
-   275		unsigned long val;
-   276		int i;
-   277	
-   278		chained_irq_enter(chip, desc);
-   279		val =  pcie_read(port, XILINX_CPM_PCIE_REG_IDR);
-   280		val &= pcie_read(port, XILINX_CPM_PCIE_REG_IMR);
-   281		for_each_set_bit(i, &val, 32)
-   282			generic_handle_domain_irq(port->cpm_domain, i);
-   283		pcie_write(port, val, XILINX_CPM_PCIE_REG_IDR);
-   284	
-   285		if (port->variant->version == CPM5) {
-   286			val = readl_relaxed(port->cpm_base + XILINX_CPM_PCIE0_IR_STATUS);
-   287			if (val)
-   288				writel_relaxed(val, port->cpm_base +
-   289						    XILINX_CPM_PCIE0_IR_STATUS);
-   290		}
-   291	
- > 292		else if (port->variant->version == CPM5_HOST1) {
-   293			val = readl_relaxed(port->cpm_base + XILINX_CPM_PCIE1_IR_STATUS);
-   294			if (val)
-   295				writel_relaxed(val, port->cpm_base +
-   296						    XILINX_CPM_PCIE1_IR_STATUS);
-   297		}
-   298	
-   299		/*
-   300		 * XILINX_CPM_PCIE_MISC_IR_STATUS register is mapped to
-   301		 * CPM SLCR block.
-   302		 */
-   303		val = readl_relaxed(port->cpm_base + XILINX_CPM_PCIE_MISC_IR_STATUS);
-   304		if (val)
-   305			writel_relaxed(val,
-   306				       port->cpm_base + XILINX_CPM_PCIE_MISC_IR_STATUS);
-   307	
-   308		chained_irq_exit(chip, desc);
-   309	}
-   310	
+Alexandru Ardelean (8):
+  iio: adc: ad7606: add 'bits' parameter to channels macros
+  iio: adc: ad7606: move 'val' pointer to ad7606_scan_direct()
+  iio: adc: ad7606: split a 'ad7606_sw_mode_setup()' from probe
+  iio: adc: ad7606: wrap channel ranges & scales into struct
+  iio: adc: ad7606: rework available attributes for SW channels
+  dt-bindings: iio: adc: document diff-channels corner case for some
+    ADCs
+  dt-bindings: iio: adc: add docs for AD7606C-{16,18} parts
+  iio: adc: ad7606: add support for AD7606C-{16,18} parts
+
+Guillaume Stols (1):
+  iio: adc: ad7606: remove frstdata check for serial mode
+
+ .../devicetree/bindings/iio/adc/adc.yaml      |   4 +
+ .../bindings/iio/adc/adi,ad7606.yaml          | 117 +++++
+ drivers/iio/adc/ad7606.c                      | 432 ++++++++++++++----
+ drivers/iio/adc/ad7606.h                      |  80 +++-
+ drivers/iio/adc/ad7606_par.c                  |  48 +-
+ drivers/iio/adc/ad7606_spi.c                  |  71 ++-
+ 6 files changed, 633 insertions(+), 119 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.46.0
+
 
