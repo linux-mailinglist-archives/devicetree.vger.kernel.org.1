@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-101070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 035999702E6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 17:20:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96EB6970305
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 17:47:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2ABFB20CF3
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 15:20:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F12D2821D1
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 15:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F671591E3;
-	Sat,  7 Sep 2024 15:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D68BC15ECC8;
+	Sat,  7 Sep 2024 15:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FCpRlgkA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t4Eu53F2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67668134B1;
-	Sat,  7 Sep 2024 15:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A987715B559;
+	Sat,  7 Sep 2024 15:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725722440; cv=none; b=gsctSJuSOrC6U0XJ0e0ftn6Zj5E23T53zMAgcibI3WJfYAMDs88JoCP76GvdU8PPQBk1ALliKd6Leze9WQym+nitHPIjpBB9vRMG63AiXqSRGtxUtXOitdvZUEk7gSmhLMACJkneK8rCOG6rwyuS1k8vK7pvEIm9LmdpYiwZI+k=
+	t=1725724072; cv=none; b=ei2AFqD3AHL35/AZGtQuCajniEXWqrE0zHu4R8iliQwEs0gieyc7kW0/iDoIOSZ6pZdiWXucr4367QZCVtsm1VZxBVyw/yqHX/Hf2WgEdxMI98QOvFCrxjeeL6VoZjojsnGRja+N+MXsvud1iB6JVUtOLcKhEZVdL1FH9hiRbzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725722440; c=relaxed/simple;
-	bh=9nQXR/rPe1X+biEun+Z0YdaucIHSi8blyuiK/ARCKmQ=;
+	s=arc-20240116; t=1725724072; c=relaxed/simple;
+	bh=Ni1/gHGT/qBIxRvpd9x87loODs4Q4AzVe+rcMgSLif0=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IZPijx6Yr1zuj+Z3ozN+lYGDZZ1kJ+cIEF/u0SGWzC2eT/o2J46MJSuLlkRFnakWIqQq3FKS7az99iihTaMmep7R65kXPTLNYB/rDIrYLBDozsN23lbVzdXkFDUgITvXuMPq5GlpdTI0w+rARlm4lR9cs6ZMbKAzbv/LCXjU8AQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FCpRlgkA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0E13C4CEC2;
-	Sat,  7 Sep 2024 15:20:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ExiwgZltSd0YE9IK6eqkv+gCngGq4oX3klyJyrXzl5N55R9PFdDXwDmeMamaBnrnw/1xxNzUPCJfhrqLerM5hLplB0ffcRcjLQOi/ytjlrCNlsobe4IcYxcx8f91YIw7A3ioDmHF+5sjtyKOyCSc8kn17xMIgN+r1PDHFGTpG50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t4Eu53F2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA246C4CEC2;
+	Sat,  7 Sep 2024 15:47:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725722439;
-	bh=9nQXR/rPe1X+biEun+Z0YdaucIHSi8blyuiK/ARCKmQ=;
+	s=k20201202; t=1725724072;
+	bh=Ni1/gHGT/qBIxRvpd9x87loODs4Q4AzVe+rcMgSLif0=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=FCpRlgkAZDYp/cU3p/XNjiuFfTT4IdTtUpBr8cwKZ9nKWrOVkmtQllXdfci3vuaAy
-	 X6eWFdQk+DYtDEppbaymCurpclub+m7prpD5ZGT0PK2pJrb6l2HLo+h0zOAp/gZA2N
-	 kULIM2lz0ygfaOfGgj5jqJbbI9WZcJBNkecP8w/05Lg9L92zvZY5XMcPDmSjr1Xbcu
-	 b9NAxYDvXKT7lpZYiKFZuZSw/xKtbGCF6wsYPWk7n1zzZ/oZXGHxW1oYO6tWnbrGJb
-	 E+Oc+z/mmgftRDdw4es1dFPcEADclomiWKLUNbSe3ehXk7UAFbkwxs2jd8moHWpXec
-	 pNSYYwisU1KYA==
-Date: Sat, 7 Sep 2024 16:20:32 +0100
+	b=t4Eu53F2QnaYtVu7Qm+tcO5Ofp1pxVYqW7oi+LuHMm033YOD0tl47RSi2Bvx+Paq5
+	 G9at/Bt7+siQUisOL4SSh1UCCKBNaIzhOv5wV8McV+n3dmTY0xLLp963VpE7ke1ze7
+	 4STDz5ghfeVlhF/RbZQ4LU9NSHPsdPIPv13unTcwVu1xAr7iX3IbfCKp5bYfNgdFtC
+	 9QFj+Tt3thNrxBW90Y/zZhAavYsWAraoxCCSJ8B3l5dULblWfHJirZFMVDVxqHcgGx
+	 oJNu7fR4DkdGzQWLpd/vhNJtfGCPPybbS4V1wSpklt5sma7Ua8RzH9JJhXrddOIA6L
+	 udZ6MTO0FP4oA==
+Date: Sat, 7 Sep 2024 16:47:43 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Alexandru Ardelean <aardelean@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- lars@metafoo.de, michael.hennerich@analog.com, gstols@baylibre.com
-Subject: Re: [PATCH v5 9/9] iio: adc: ad7606: add support for
- AD7606C-{16,18} parts
-Message-ID: <20240907162032.3cca0a17@jic23-huawei>
-In-Reply-To: <20240907065043.771364-10-aardelean@baylibre.com>
-References: <20240907065043.771364-1-aardelean@baylibre.com>
-	<20240907065043.771364-10-aardelean@baylibre.com>
+To: Alex Lanzano <lanzano.alex@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
+ Nuno Sa <nuno.sa@analog.com>, Jagath Jog J <jagathjog1996@gmail.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: add bmi270 bindings
+Message-ID: <20240907164743.1cb7070e@jic23-huawei>
+In-Reply-To: <20240906165322.1745328-2-lanzano.alex@gmail.com>
+References: <20240906165322.1745328-1-lanzano.alex@gmail.com>
+	<20240906165322.1745328-2-lanzano.alex@gmail.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -60,226 +62,117 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat,  7 Sep 2024 09:50:42 +0300
-Alexandru Ardelean <aardelean@baylibre.com> wrote:
+On Fri,  6 Sep 2024 12:52:50 -0400
+Alex Lanzano <lanzano.alex@gmail.com> wrote:
 
-> The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
-> The main difference between AD7606C-16 & AD7606C-18 is the precision in
-> bits (16 vs 18).
-> Because of that, some scales need to be defined for the 18-bit variants, =
-as
-> they need to be computed against 2**18 (vs 2**16 for the 16 bit-variants).
->=20
-> Because the AD7606C-16,18 also supports bipolar & differential channels,
-> for SW-mode, the default range of 10 V or =C2=B110V should be set at prob=
-e.
-> On reset, the default range (in the registers) is set to value 0x3 which
-> corresponds to '=C2=B110 V single-ended range', regardless of bipolar or
-> differential configuration.
->=20
-> Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
->=20
-> The AD7606C-18 variant offers 18-bit precision. Because of this, the
-> requirement to use this chip is that the SPI controller supports padding
-> of 18-bit sequences to 32-bit arrays.
->=20
-> Datasheet links:
->   https://www.analog.com/media/en/technical-documentation/data-sheets/ad7=
-606c-16.pdf
->   https://www.analog.com/media/en/technical-documentation/data-sheets/ad7=
-606c-18.pdf
->=20
+> Add device tree bindings for the bmi270 IMU
+> 
+> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+Hi Alex 
 
-Keep automation happy and make these official tags.
-
-Datasheet: https://www.analog.com/media/en/technical-documentation/data-she=
-ets/ad7606c-16.pdf
-Datasheet: https://www.analog.com/media/en/technical-documentation/data-she=
-ets/ad7606c-18.pdf
-> Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
-
-A few other things inline.
+One totally trivial thing inline. If nothing comes up in
+driver I'll tidy this up whilst applying
 
 Jonathan
 
 > ---
->  drivers/iio/adc/ad7606.c     | 237 ++++++++++++++++++++++++++++++++---
->  drivers/iio/adc/ad7606.h     |  13 +-
->  drivers/iio/adc/ad7606_spi.c |  55 ++++++++
->  3 files changed, 284 insertions(+), 21 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-> index 364f16fb96bf..67bac6c97fff 100644
-> --- a/drivers/iio/adc/ad7606.c
-> +++ b/drivers/iio/adc/ad7606.c
+>  .../bindings/iio/imu/bosch,bmi270.yaml        | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
+> new file mode 100644
+> index 000000000000..7de35b9bfa2e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/imu/bosch,bmi270.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bosch BMI270 6-Axis IMU
+> +
+> +maintainers:
+> +  - Alex Lanzano <lanzano.alex@gmail.com>
+> +
+> +description: |
+> +  BMI270 is a 6-axis inertial measurement unit that can measure acceleration and
+> +  angular velocity. The sensor also supports configurable interrupt events such
+> +  as motion, step counter, and wrist motion gestures. The sensor can communicate
+> +  I2C or SPI.
+> +  https://www.bosch-sensortec.com/products/motion-sensors/imus/bmi270/
+> +
+> +properties:
+> +  compatible:
+> +    const: bosch,bmi270
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +  vddio-supply: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
+> +
+> +  drive-open-drain:
+> +    description:
+> +      set if the specified interrupt pin should be configured as
 
-> +static int ad7606c_sw_mode_setup_channels(struct iio_dev *indio_dev,
-> +					  ad7606c_chan_setup_cb_t chan_setup_cb)
-> +{
-> +	unsigned int num_channels =3D indio_dev->num_channels - 1;
-> +	struct ad7606_state *st =3D iio_priv(indio_dev);
-> +	bool chan_configured[AD760X_MAX_CHANNELS] =3D {};
-Maybe use a bitmap as then...
-> +	struct device *dev =3D st->dev;
-> +	int ret;
-> +	u32 ch;
-> +
-> +	/* We call this first, so that the proper SW scales get assigned */
-> +	ret =3D st->bops->sw_mode_config(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		bool bipolar, differential;
-> +		u32 pins[2];
-> +
-> +		ret =3D fwnode_property_read_u32(child, "reg", &ch);
-> +		if (ret)
-> +			continue;
-> +
-> +		/* channel number (here) is from 1 to num_channels */
-> +		if (ch =3D=3D 0 || ch > num_channels) {
-> +			dev_warn(st->dev,
-> +				 "Invalid channel number (ignoring): %d\n", ch);
-> +			continue;
-> +		}
-> +
-> +		bipolar =3D fwnode_property_read_bool(child, "bipolar");
-> +
-> +		ret =3D fwnode_property_read_u32_array(child, "diff-channels",
-> +						     pins, ARRAY_SIZE(pins));
-> +		/* Channel is differential, if pins are the same as 'reg' */
-> +		if (ret =3D=3D 0 && (pins[0] !=3D ch || pins[1] !=3D ch)) {
-> +			dev_err(st->dev,
-> +				"Differential pins must be the same as 'reg'");
-> +			return -EINVAL;
-> +		}
-> +
-> +		differential =3D (ret =3D=3D 0);
-> +
-> +		ch--;
-> +
-> +		chan_setup_cb(st, ch, bipolar, differential);
-> +		chan_configured[ch] =3D true;
-> +	}
-> +
-> +	/* Apply default configuration to unconfigured (via DT) channels */
-> +	for (ch =3D 0; ch < num_channels; ch++) {
-this can be for_each_clear_bit()
+pins
 
-> +		if (!chan_configured[ch])
-> +			chan_setup_cb(st, ch, false, false);
-> +	}
+Even if they are configurable separately we've previously argued that
+it is very unlikely a board designer would want one open drain
+and the other push-pull.  So simply making the description plural
+should be enough.
+
+> +      open drain. If not set, defaults to push-pull.
 > +
-> +	return 0;
-> +}
+> +  mount-matrix:
+> +    description:
+> +      an optional 3x3 mounting rotation matrix.
 > +
-> +static int ad7606_sw_mode_setup(struct iio_dev *indio_dev, unsigned int =
-id)
->  {
->  	unsigned int num_channels =3D indio_dev->num_channels - 1;
->  	struct ad7606_state *st =3D iio_priv(indio_dev);
-> @@ -572,17 +751,30 @@ static int ad7606_sw_mode_setup(struct iio_dev *ind=
-io_dev)
-> =20
->  	indio_dev->info =3D &ad7606_info_sw_mode;
-> =20
-> -	/* Scale of 0.076293 is only available in sw mode */
-> -	/* After reset, in software mode, =C2=B110 V is set by default */
-> -	for (ch =3D 0; ch < num_channels; ch++) {
-> -		struct ad7606_chan_scale *cs =3D &st->chan_scales[ch];
-> +	switch (id) {
-> +	case ID_AD7606C_18:
-> +		ret =3D ad7606c_sw_mode_setup_channels(indio_dev,
-> +						     ad7606c_18_chan_setup);
-
-As below, a callback in chip info that can be called directly=20
-would be preferable here.
-
-> +		break;
-> +	case ID_AD7606C_16:
-> +		ret =3D ad7606c_sw_mode_setup_channels(indio_dev,
-> +						     ad7606c_16_chan_setup);
-> +		break;
-> +	default:
-> +		/* Scale of 0.076293 is only available in sw mode */
-> +		/* After reset, in software mode, =C2=B110 V is set by default */
-> +		for (ch =3D 0; ch < num_channels; ch++) {
-> +			struct ad7606_chan_scale *cs =3D &st->chan_scales[ch];
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vddio-supply
 > +
-> +			cs->scale_avail =3D ad7616_sw_scale_avail;
-> +			cs->num_scales =3D ARRAY_SIZE(ad7616_sw_scale_avail);
-> +			cs->range =3D 2;
-> +		}
-> =20
-> -		cs->scale_avail =3D ad7616_sw_scale_avail;
-> -		cs->num_scales =3D ARRAY_SIZE(ad7616_sw_scale_avail);
-> -		cs->range =3D 2;
-> +		ret =3D st->bops->sw_mode_config(indio_dev);
-> +		break;
->  	}
-> =20
-> -	ret =3D st->bops->sw_mode_config(indio_dev);
->  	if (ret)
->  		return ret;
-> =20
-> @@ -631,9 +823,16 @@ int ad7606_probe(struct device *dev, int irq, void _=
-_iomem *base_address,
->  	st->oversampling =3D 1;
-> =20
->  	cs =3D &st->chan_scales[0];
-> -	cs->range =3D 0;
-> -	cs->scale_avail =3D ad7606_scale_avail;
-> -	cs->num_scales =3D ARRAY_SIZE(ad7606_scale_avail);
-> +	switch (id) {
-> +	case ID_AD7606C_18:
-> +		cs->scale_avail =3D ad7606_18bit_hw_scale_avail;
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        imu@68 {
+> +            compatible = "bosch,bmi270";
+> +            reg = <0x68>;
+> +            vdd-supply = <&vdd>;
+> +            vddio-supply = <&vddio>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <16 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-names = "INT1";
+> +        };
+> +    };
 
-Can we push this into the chip_info structure?
-Ideally we'd get away form any ID based code selection but if there is
-some already in the driver that can be for another day.
-Let's not make it worse though.
-
-> +		cs->num_scales =3D ARRAY_SIZE(ad7606_18bit_hw_scale_avail);
-> +		break;
-> +	default:
-> +		cs->scale_avail =3D ad7606_16bit_hw_scale_avail;
-> +		cs->num_scales =3D ARRAY_SIZE(ad7606_16bit_hw_scale_avail);
-> +		break;
-> +	}
-
-> diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-> index fa175cff256c..c2cb536ecef1 100644
-> --- a/drivers/iio/adc/ad7606.h
-> +++ b/drivers/iio/adc/ad7606.h
-
-
->  /**
-> @@ -151,9 +154,13 @@ struct ad7606_state {
->  	/*
->  	 * DMA (thus cache coherency maintenance) may require the
->  	 * transfer buffers to live in their own cache lines.
-> -	 * 16 * 16-bit samples + 64-bit timestamp
-> +	 * 16 * 16-bit samples + 64-bit timestamp - for AD7616
-> +	 * 8 * 32-bit samples + 64-bit timestamp - for AD7616C-18 (and similar)
->  	 */
-> -	unsigned short			data[20] __aligned(IIO_DMA_MINALIGN);
-> +	union {
-> +		unsigned short d16[20];
-> +		unsigned int d32[10];
-
-Can we use fixed sizes for these?
-u16 and u32 for instance?
-
-> +	} data __aligned(IIO_DMA_MINALIGN);
->  	__be16				d16[2];
-That's odd.  You have a d16 inside the union and another one right next to =
-it.
-Maybe rename the new one?  The other is a bounce buffer used in the spi
-paths I think.
-
->  };
 
