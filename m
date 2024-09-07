@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-101090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8419703C1
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:49:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D7A09703C2
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 995601C2033F
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:49:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA3D11C213CD
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9043316A95C;
-	Sat,  7 Sep 2024 18:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07BB416B3B5;
+	Sat,  7 Sep 2024 18:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vIo8xpzJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F2OW4QDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFA5166F1A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D735A165F14
 	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 18:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725734907; cv=none; b=bJw2OARcn+5ljXAD7tYSBaSRG4IZ/b+GbnVG0eIjmBNzVH/bX13fmEAymsXifqkmLZCIE0+PhpMjE39CQnLFhJpAgh9W0U12Zt+C/B4ZQgacgURhKyuvXOK8Oux9GUYbiUXR664IBjYqD1mp9IqB7e/DWldoUZlQJfKs581PTpQ=
+	t=1725734907; cv=none; b=s5GKVc/jcM3RydZYO8+pIGoISWX2X5aOSZZbyPhpx5Uji07smIcHxj0GwjEpsA5lPltkpQcmhXG4U3D2h9rjH8lEZW9q0PmixQN9/feMXmYwqjKBSpnt2gV26gKyZ/eoCnkJ7jkHC9R700zpF7GEqxkNyPf7zQk81QvkmtztZKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1725734907; c=relaxed/simple;
-	bh=gth7VehLLAYczDDqOTK1mioSLmcntX+IjHSeS1+PsRg=;
+	bh=m8Zi+I7r4mzRkaQx4Q0uAvjUN8Er2tlAYnR9jC1UHiY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gv0ppzwc3b9WvcuJwfRfO3FcoTwEUtaHNrcY8cSkbw7zZyJmEklAVAF8F9yapvWJUyR0rodxHU/+mVQTOmowiVMpzSStN3NoTD2WrAcSokosKdVUZUfhhEF0azwcxhUcnDoTWKvCcTHEWSjpkfgNRuPFdwCRIGCc/+EP6rfBmOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vIo8xpzJ; arc=none smtp.client-ip=209.85.208.169
+	 In-Reply-To:To:Cc; b=nvXDPQubSMm/QN1EIUS+NsYlDu1oBa7cTnGztL5tiJGUxGAV7RWdbrz6UyAMjF95mj6T8o5fqtcn/K763fOIvrKUxhlH3TTmZMQU0RnGQzqf/0+Eorrs1SQXQVZbYof97qmgNrapD87FSQtA23RyOmWJJtLWxZzyaZbs/xO1t+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F2OW4QDQ; arc=none smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f762de00e5so243391fa.3
-        for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 11:48:24 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f75e5f3debso4053851fa.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 11:48:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725734903; x=1726339703; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1725734904; x=1726339704; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=u7LsuAqj5Yv+PzKysRic0Rp3tIs0Hiyq7Bki4F0WIhU=;
-        b=vIo8xpzJ0CMt9KjDhrSe1ZLfTESnJfCqq5iGMC1yxfHA59BLqPiObuVyVoGNBjQZSn
-         9g7c7LKiapWkrktibx4g2iBySq6kfrMa3yk8pBEWjfbmnTwGkZUTyMPTEOgzszMSbiba
-         fOBbODHvZHOP8vXQr80N4jYnXskEQFDqS0wGqifzaWBjzqpWz2oF4xBOh8oy1gyrlDVT
-         d0F8tLXRYSylhQTM/i3ct0UECtxLi/hERZEL8yVzFf/y3obz97jGvr1zlvdnPq7rI8DJ
-         XHwRpE9YxaCMzfeTDN9aHtoNoB/xIEsclvffTt04LpuCyssRlrikC2W6WPyeLNtkQdRD
-         Mr0w==
+        bh=hL1dl2amOVSJoO70LsDuP43oRXVn+WYe2abWDJx9WBc=;
+        b=F2OW4QDQQHDhtnUmOQolvCbBFVIpg+FVfuWCqYm0wmtSJvSEBPzc1JAPSewtb2UMc/
+         JnxchQrEhnGFUz/uzMwoyeQAadTIov45F77s2ghgV4Al1RkMlYg2bEcnJMRfGMZLcqct
+         teJ7HYyzwe9tLvL4/HHWBQ66GXfoxsPz34K+yGqFwFTyZsPcqlNS3LIywYhYT9hW1owj
+         i3ZRCeBdEmEVvC1DZZIUX2VMMe7IsiqaDu3rF+rpFtl1vufLTiYiA+cKoHTGSoDJORfz
+         g/DehRAjU02F+xgaWNLJhTQjElbFu5U6yuNWiCYElosVhfSoE1+Larun77dtwp3c1aNb
+         uzMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725734903; x=1726339703;
+        d=1e100.net; s=20230601; t=1725734904; x=1726339704;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=u7LsuAqj5Yv+PzKysRic0Rp3tIs0Hiyq7Bki4F0WIhU=;
-        b=rQfBAEw8LHgUgtW2lvtH8v6aVBeXa3cP9foMNI/AfN4l+/xNbppJNQecCHCf5T3tJr
-         yT09cbvKw/nGlK14KoRPZjbbZAgW86Cez+zp7fTnqgdVtkBwx1UX/ia1l0ybXGCAxXki
-         QtI7+fR1gBa7rS5DD6JrZRPV+2MlMu5oLh6+tyTCRwPmVmTgY6g/TqCHWl0H1QHQ2Rml
-         Q5jqQ7Agf9ZdJ3Z4NrOxPDXuuraTS/RzPm5iY0L0/1Orywzr2l5EBpVVYCP/gPOeToIm
-         9YdbnUkbHV0MEpzQzDAwCliEMoU/K0EDeC6aLpSF7Bef9Kv3c20caupOsy7Uosv3DyZf
-         YC4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWcxaXgY9HXfD5HRTm7RDIEW787NA+tbKLmgWsyaoyEO0MjGwzfe570XUDJZAP+lPK0YHeptF7lKDYU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZiBfymIJkkonRqILIFwXj1J19zIKrBmrBcGvJkmE2ALnUVqt/
-	bUgwyRRscioBf8WnEU/Wr+76acrHqH3UQZJLdUl5HdwTWHZrOBj9jZZHTdtScPk=
-X-Google-Smtp-Source: AGHT+IG6Er2WTTB9ykLtsnwLJMIhAvVqgLPtZjGk+LCEAz8mWM1M2LvXxH2Ll6NQE9F97hNSetaCCQ==
-X-Received: by 2002:a2e:be83:0:b0:2ee:8453:5164 with SMTP id 38308e7fff4ca-2f751db7570mr44719081fa.0.1725734903101;
+        bh=hL1dl2amOVSJoO70LsDuP43oRXVn+WYe2abWDJx9WBc=;
+        b=uqfjPRTwtvOqWkYhUHBODZ9dpA4KKifUnOeVtKbR0kmrlf/KDwbyScGOwaASgo1pqx
+         gOJtFiDluKk0mSA1jAKE/hLAN+GupYR4HJuEFXWkZtgM+sCqh12qYNtCgITbrNX6NbgL
+         qC+8GaQhgg6RLHnoUkQHlrV6lIwCy5s2gzxj495jSkReQD9jF0ZUfiP0VsFPrc99oyqs
+         xzojTZm838EerAeNpckgtC35D70+GA6m+6mktN0auw6biK5Gp+N9N7vM8vJUBgbHHeym
+         F6zE4CUKgc+zFWTcoNHqhAyOF7bMqpn0phItsiGxClRnfwwgeF3goIFVKz9WBYXl4lve
+         S4NA==
+X-Forwarded-Encrypted: i=1; AJvYcCVUA+K6QapJ0qngM5WwsHi6lnbsWSvhqm8Vhc1yzNPLa4UYsTfyjSro5vr5fG/5RFo9OJS/7vcsYBQQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQVdahsxJ+t4ZI2EkUQay2fj5BWPP/awRMbCzXlkN8ThAvyqqp
+	n5vVKa7nbXwrhWLaeW3G+nT4J3PhjxM2m7bBdzc9RDw6rxVys0y2wLe6PuLa/Zc=
+X-Google-Smtp-Source: AGHT+IG58gmWVk9fhlraqb5aPvd2mdHJvcE/HBMUnVruL6uhb+sYPDa968ikGXxOgKNrOey3AJXC2A==
+X-Received: by 2002:a2e:be9e:0:b0:2f7:5914:c22e with SMTP id 38308e7fff4ca-2f75b87ec72mr17930011fa.6.1725734903789;
         Sat, 07 Sep 2024 11:48:23 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.22
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Sep 2024 11:48:22 -0700 (PDT)
+        Sat, 07 Sep 2024 11:48:23 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 07 Sep 2024 21:48:16 +0300
-Subject: [PATCH 5/7] arm64: dts: qcom: sdm630: enable A2NOC and LPASS SMMU
+Date: Sat, 07 Sep 2024 21:48:17 +0300
+Subject: [PATCH 6/7] arm64: dts: qcom: sdm630: add WiFI device node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240907-sdm660-wifi-v1-5-e316055142f8@linaro.org>
+Message-Id: <20240907-sdm660-wifi-v1-6-e316055142f8@linaro.org>
 References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
@@ -92,49 +92,65 @@ Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=980;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1627;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=gth7VehLLAYczDDqOTK1mioSLmcntX+IjHSeS1+PsRg=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/yK0Kr6gfauwYtKBj2YifOOoYasEb2/KJQy
- oQEzjAtvuWJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8gAKCRCLPIo+Aiko
- 1eXDB/9YMK3v0BNnzKGqm5xYDSjWyN0LHPfuoGLoxqF11BB6jzZ6HjSdbB6BPi6n8/uMcF2CYCU
- pUhc1bXjxfVuHGaf6cHWqtrnm7QnBYbY9S7oexm20BZreHSMx1mnvyugF1faew9zNq1i2P1VmaW
- tewDNsm9c7RZhrMo8cO/oHOa9PCy0u9yKVQlnBYbWFEdjODYF+LEK4HQTo3Nz/eca3UAyniGYYK
- NoyD5wvdIVIhaTLstIx19dmx4DHhmbkyOR5XRyfpvPD6mMbJJQd3pK9+vtPWua3amdHbpfVaJaS
- UyTHeyQAsEcjpl2psOw4Yjpzg+Yj+fS2DFCA/EGPiMz/yeke
+ bh=m8Zi+I7r4mzRkaQx4Q0uAvjUN8Er2tlAYnR9jC1UHiY=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/ySmr6XcpVpgukwQyVFouN74yoqzLc+oHg4
+ jmtygX/pVqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8gAKCRCLPIo+Aiko
+ 1dPwCACKHKRnAYP+o0a7nDiomZPJ1StU5CG1h4B+3pdo2s5q7n4Cbpk91b5RsdifWtVHW4QQO4K
+ vnX2NV+OIvBQhHNbNCSANijMPk8Hf4DbIinGV1I9G1ShIdGjvv7rfq9Su2OPFFg1WOussGxre+E
+ 6hGbLT2YrlZKtO5HKTYhEC7IrlftsXKHlCPxZeld61nTxWJZNvzJoifbqZMCT3UCIy8SWngE7j2
+ YOKLzOU67j4Li2c1yO/AaIGhjx1DYnn9rOP6hAe+cmgxifCW0XjMTv4uEqV06Ulh8b2qFaSWHZh
+ QCeOWE4asT4+t9tcQaVmspLRVXYSq5CtCSAJNYxAMMUcHmts
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Now as the arm-smmu-qcom driver gained workarounds for the A2NOC and
-LPASS SMMU devices, enable those two devices.
+Add device node for the WiFi device being a part of the integrated
+SDM660 / SDM630 platforms.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 92695375a63b..dc8bc63bdc70 100644
+index dc8bc63bdc70..4536fa45869a 100644
 --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -665,8 +665,6 @@ anoc2_smmu: iommu@16c0000 {
- 				<GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
- 				<GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
- 				<GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
--
--			status = "disabled";
+@@ -2412,6 +2412,33 @@ intc: interrupt-controller@17a00000 {
+ 			redistributor-stride = <0x0 0x20000>;
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
  		};
++
++		wifi: wifi@18800000 {
++			compatible = "qcom,wcn3990-wifi";
++			reg = <0x18800000 0x800000>;
++			reg-names = "membase";
++			memory-region = <&wlan_msa_mem>;
++			clocks = <&rpmcc RPM_SMD_RF_CLK1_PIN>;
++			clock-names = "cxo_ref_clk_pin";
++			interrupts =
++				<GIC_SPI 413 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&anoc2_smmu 0x1a00>,
++				 <&anoc2_smmu 0x1a01>;
++			qcom,snoc-host-cap-8bit-quirk;
++			qcom,no-msa-ready-indicator;
++			status = "disabled";
++		};
+ 	};
  
- 		a2noc: interconnect@1704000 {
-@@ -1234,8 +1232,6 @@ lpass_smmu: iommu@5100000 {
- 				<GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
- 				<GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
- 				<GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>;
--
--			status = "disabled";
- 		};
- 
- 		sram@290000 {
+ 	sound: sound {
 
 -- 
 2.39.2
