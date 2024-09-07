@@ -1,352 +1,264 @@
-Return-Path: <devicetree+bounces-101062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B849702A2
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 16:12:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BC69702B5
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 16:28:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FCEEB23168
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 14:12:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5DB9B2129E
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 14:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCEF015D5B8;
-	Sat,  7 Sep 2024 14:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABE315CD41;
+	Sat,  7 Sep 2024 14:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tggMVg0y"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="ED2ZPh7x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE04615C149;
-	Sat,  7 Sep 2024 14:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66F81E4AE;
+	Sat,  7 Sep 2024 14:27:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725718345; cv=none; b=PCfVzty6rGdyzEXgRih3Sf9U3ikKjB4TmrW0rBp/tyOT3CMus8wFYro6SWOpIz7ZvPFcs4jjdnc17fNS5l+l6978SJk/z7/U3w3ekC9Rmdb0l1X45mohkwPmUlZD9XViFZqaVV98sXuZlXqHiaKS5p9yLV+bFLSJFQVgsZLZ1ag=
+	t=1725719284; cv=none; b=SB6EZTKDQR1Q/VRDugY17un2mK+vEMlgNzjXY2T8k6ciCWFS5Xft0EUOB4d0vE8YbVHSg/5h7bc7BL0WMm9JG3FgCptvYBs/lb+o0qi2ONc+Mdsc2SCwepDaxUBrk/N7KZA1EwjOiKEWtch1UReDzZxK3Ugo3nqmPWjP+yZ4RZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725718345; c=relaxed/simple;
-	bh=yCmFsqiyDxCFANDBHRAgeG9l8Ixj8AVG+HUqIL7RNS4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mby8erMJ6/UXPJn1VHlFKn7d5F4I44j7K3/lKbGSi2NTdZY5ZIf60nVnmoArldlFCacDv095Ph6EGAuAUEdtYN0onDB7mlpZTnSi7mcM/AdULMuKeWHiXSeM6ZfWpa2AYrQHWLU7pCpRwJMPqNHRC5EILnx+qC4SzpS3AtmjtAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tggMVg0y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C1EC4CEC2;
-	Sat,  7 Sep 2024 14:12:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725718345;
-	bh=yCmFsqiyDxCFANDBHRAgeG9l8Ixj8AVG+HUqIL7RNS4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tggMVg0yXCp9G9d5MdeE8/y2CP8wvtVZ0dubePvUP00SbiQZah0l08R9g+e5PXSq+
-	 NaJ4C0Lqh3eQyUDsfDdGPldOxskv2ets9fT0ozxX9InhZUChlCM9xNXxL9LCYQcIoM
-	 GzR3BeCXrMb85LwvRSPv9EGOAF5VGSPN8LkCEuQr6eLfh8Xjmom/qcmm8IvlRhZ48D
-	 JndcpVekd+X9iIZHPcn9UHqT0ND2fFrsWkxMs0mLZMEMR2QSkbp/r2SXXyLZgH7Fe9
-	 k2yzdX4zVQ7G66qIaKK+eiYMI4zf2iq2CVFghf+Ojtvsl2KlIt5Zjc7w7CdMkh8ubk
-	 +KYsrvPtTddFA==
-Date: Sat, 7 Sep 2024 15:12:15 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Angelo Dureghello
- <adureghello@baylibre.com>, Lars-Peter Clausen  <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= 
- <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski 
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan 
- <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mark Brown 
- <broonie@kernel.org>
-Subject: Re: [RFC PATCH 0/8] iio: dac: introducing ad3552r-axi
-Message-ID: <20240907151215.6f4c829c@jic23-huawei>
-In-Reply-To: <4bb5722003936371a661938d7238db195d2c0ad3.camel@gmail.com>
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
-	<20240831123837.26a1070a@jic23-huawei>
-	<74e0b200-d4c0-4aa3-9ee6-f49ac3f1467d@baylibre.com>
-	<4a62ea7b-a8af-49e0-9718-30d927a69038@baylibre.com>
-	<20240903203935.358a1423@jic23-huawei>
-	<4bb5722003936371a661938d7238db195d2c0ad3.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1725719284; c=relaxed/simple;
+	bh=e5dX7QksYM5QgGDSKhEO2HZhpOjniPBi8ARplLhfpfM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=DsvfzwlBpLouHYu6+oR8m5W69iqYiJcFSVZ1jIxwQ07GgXttwPvUDsLPGsnsKkCFrznY9pX4NxiL6TnI0WCvk3/4K36qli6RlvuDIVotClH06StRhizca5RMoY2fmsCljHdIkyshvlaZPCtUIZ+eIPgotwJtgTV+LG8ylA96kCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=ED2ZPh7x; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [14.155.100.110])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 81D3378A01;
+	Sat,  7 Sep 2024 22:27:41 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 81D3378A01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1725719267;
+	bh=pXuvREj+1sdfcnTVSFVdtNeed2YvMG01TbfaFiPG+Ec=;
+	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
+	b=ED2ZPh7xAnWkoiSr/Tx8HAW02FcKkQ5sX5Hsn5+y1d+Foo+MQVS+UPFczjyTjIme1
+	 C+uR0opV7ZQ7daW9p3cPJOC9zu6rh8zXawTRqAsFCqXLFycy12FcpcFDx6nLEpfQ4F
+	 AV+vPQdx0m2xlgozPrPYOEeFtJo3lPi7v//ruhrQ=
+Message-ID: <cd0b36f4-f31d-4a65-868c-72b3c7021f14@classfun.cn>
+Date: Sat, 7 Sep 2024 22:27:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 8/9] dt-bindings: Add documentation for Photonicat PMU
+To: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20240906093630.2428329-1-bigfoot@classfun.cn>
+ <20240906093630.2428329-9-bigfoot@classfun.cn>
+ <dbc6af20-886a-46fb-a16c-dbcb5861478c@kernel.org>
+Content-Language: en-US
+From: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ "\"Conor Dooley,\"," <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <dbc6af20-886a-46fb-a16c-dbcb5861478c@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Thu, 05 Sep 2024 11:16:03 +0200
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+On 2024/9/6 17:51, Krzysztof Kozlowski wrote:
+> On 06/09/2024 11:36, Junhao Xie wrote:
+>> Add device tree binding documentation for Photonicat PMU MFD, LEDs,
+>> hardware monitor, power off, power supply, real-time clock watchdog.
+[...]
+>> diff --git a/Documentation/devicetree/bindings/hwmon/ariaboard,photonicat-pmu-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/ariaboard,photonicat-pmu-hwmon.yaml
+[...]>> +  label:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: Label for hwmon device
+> 
+> No resources here. Fold it into parent binding.
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - label
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +      serial {
+>> +          mcu {
+>> +              compatible = "ariaboard,photonicat-pmu";
+> 
+> Drop, no need.
+> 
+>> +
+> 
+> Messed indentation.
+> 
+> Entire example is redundant. Merge it to parent binding.
+> 
 
-> On Tue, 2024-09-03 at 20:39 +0100, Jonathan Cameron wrote:
-> > On Tue, 3 Sep 2024 11:17:24 -0500
-> > David Lechner <dlechner@baylibre.com> wrote:
-> >  =20
-> > > On 9/3/24 3:34 AM, Angelo Dureghello wrote: =20
-> > > > Hi Jonathan and all,
-> > > >=20
-> > > >=20
-> > > > On 31/08/24 1:38 PM, Jonathan Cameron wrote:=C2=A0  =20
-> > > > > On Thu, 29 Aug 2024 14:31:58 +0200
-> > > > > Angelo Dureghello <adureghello@baylibre.com> wrote:
-> > > > > =C2=A0 =20
-> > > > > > Hi, asking for comments for this patchset, that is mostly
-> > > > > > ready, at least feature-complete and functionally tested.
-> > > > > >=20
-> > > > > > I am introducing ad3552r-axi variant, controlled from a fpga-ba=
-sed
-> > > > > > AXI IP, as a platform driver, using the DAC backend. The patchs=
-et is
-> > > > > > actually based on linux-iio, since some needed DAC backend feat=
-ures
-> > > > > > was already there on that repo only, still to be merged in main=
-line.
-> > > > > >=20
-> > > > > > Comments i would like to ask are:
-> > > > > >=20
-> > > > > > - i added some devicetree bindings inside current ad3552r yaml,
-> > > > > > =C2=A0=C2=A0 device is the same, so i wouldn't create a differe=
-nt yaml file.=C2=A0  =20
-> > > > > Agreed. If same device, it's usually better to keep it in one fil=
-e.
-> > > > > =C2=A0 =20
-> > > > > > - if it's ok adding the bus-type property in the DAC backend:
-> > > > > > =C2=A0=C2=A0 actually, this platform driver uses a 4 lanes para=
-llel bus, plus
-> > > > > > =C2=A0=C2=A0 a clock line, similar to a qspi. This to read an w=
-rite registers
-> > > > > > =C2=A0=C2=A0 and as well to send samples at double data rate. O=
-ther DAC may
-> > > > > > =C2=A0=C2=A0 need "parallel" or "lvds" in the future.=C2=A0  =20
-> > > > > If it is for register read + write as well, sounds to me like you=
- need
-> > > > > to treat this as a new bus type, possibly then combined with a
-> > > > > backend, or something similar to spi offload?
-> > > > >=20
-> > > > > What bus does this currently sit on in your DT bindings?
-> > > > > (add an example)=C2=A0  =20
-> > > >=20
-> > > >=20
-> > > > &amba {
-> > > >=20
-> > > > =C2=A0=C2=A0 =C2=A0ref_clk: clk@44B00000 {
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-clkge=
-n-2.00.a";
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44B00000 0x10000>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 #clock-cells =3D <0>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&clkc 15>, <&clkc=
- 15>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "s_axi_aclk",=
- "clkin1";
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 clock-output-names =3D "ref_c=
-lk";
-> > > > =C2=A0=C2=A0 =C2=A0};
-> > > >=20
-> > > > =C2=A0=C2=A0 =C2=A0dac_tx_dma: dma-controller@0x44a30000 {
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-dmac-=
-1.00.a";
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44a30000 0x10000>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 #dma-cells =3D <1>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 interrupt-parent =3D <&intc>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <0 57 IRQ_TYPE=
-_LEVEL_HIGH>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&clkc 15>;
-> > > >=20
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 adi,channels {
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 #size-cell=
-s =3D <0>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 #address-c=
-ells =3D <1>;
-> > > >=20
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 dma-channe=
-l@0 {
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
-=A0=C2=A0 reg =3D <0>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
-=A0=C2=A0 adi,source-bus-width =3D <32>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
-=A0=C2=A0 adi,source-bus-type =3D <0>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
-=A0=C2=A0 adi,destination-bus-width =3D <32>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
-=A0=C2=A0 adi,destination-bus-type =3D <1>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 };
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > > =C2=A0=C2=A0 =C2=A0};
-> > > >=20
-> > > > =C2=A0=C2=A0 =C2=A0backend: controller@44a70000 {
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-dac-9=
-.1.b";
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44a70000 0x1000>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 dmas =3D <&dac_tx_dma 0>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 dma-names =3D "tx";
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 #io-backend-cells =3D <0>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&ref_clk>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 bus-type =3D <1>;=C2=A0 /* II=
-O QSPI */
-> > > > =C2=A0=C2=A0 =C2=A0};
-> > > >=20
-> > > > =C2=A0=C2=A0 =C2=A0axi-ad3552r {
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,ad3552r";
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 reset-gpios =3D <&gpio0 92 GP=
-IO_ACTIVE_LOW>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 io-backends =3D <&backend>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 channel@0 {
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 reg =3D <0=
->;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 adi,output=
--range-microvolt =3D <(-10000000) (10000000)>;
-> > > > =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > > =C2=A0=C2=A0 =C2=A0};=C2=A0  =20
-> > >=20
-> > > Shouldn't the axi-ad3552r node be one level higher since it isn't
-> > > a memory-mapped device, but rather an external chip? =20
-> > Definitely not where it currently is.. =20
-> > >=20
-> > > But based on the other feedback we got in this series and some
-> > > #devicetree IRC chat here is an alternate binding suggestion we
-> > > could consider.
-> > >=20
-> > > First, even though the FPGA IP block for use with AD3225R uses
-> > > the same register map as the AXI DAC IP block, some of the
-> > > registers behave differently, so it makes sense to have a
-> > > different compatible string rather than using the bus-type
-> > > property to tell the difference between the two IP blocks.
-> > > There are likely more differences than just the bus type. =20
-> >=20
-> > I'd be amazed if they managed to keep things that similar
-> > given totally different buses.
-> >  =20
->=20
-> Yeah, I was trying to avoid new compatibles as much as I can because thin=
-gs can
-> get pretty confusing (with lots of new compatibles and quirks) pretty qui=
-ckly.
-> Typically yes, most designs have slight differences between them (with new
-> features and so on) but so far I was trying (thinking) to have those as a
-> generic new backend op (plus a matching binding property if needed). For =
-this
-> particular case, I'm fairly sure we could get away with the bus controller
-> property and having different implementations depending on the bus being
-> implemented. For the other bits that might differ between designs (eg: DDR
-> support) is up to frontends to call it or not (depending on they having t=
-hat
-> feature or not).=20
+I will fix them.
 
-That breaks down if the backend you happen to be using (maybe a new
-one hasn't been written yet) is missing the DDR feature but the front end
-device can run with or without it.
-Unless the hardware makes this discoverable you'll have the backend driver
-writing some enable bit that does nothing.
+> 
+[...]
+>> diff --git a/Documentation/devicetree/bindings/leds/ariaboard,photonicat-pmu-leds.yaml b/Documentation/devicetree/bindings/leds/ariaboard,photonicat-pmu-leds.yaml
+[...]
+>> +properties:
+>> +  compatible:
+>> +    const: ariaboard,photonicat-pmu-leds
+> 
+> Your compatibles per device do not make much sense. You organized
+> bindings per drivers, but that's not what we want.
+> 
+>> +
+>> +  label: true
+> 
+> Drop
 
-Maybe it's a case of using fallback compatibles - so define more specific
-ones but with a fallback to one that doesn't provide the fancy features
-and only covers thins all IPs support.
+I will drop it.
 
-> Naturally we need that the IPs having DDR support to not have
-> the same thing supported in different registers but we do control that si=
-nce
-> these are FPGA cores.
->=20
-> All the above said, I'm fine with new compatibles but we need to draw a l=
-ine
-> when we add new ones. If the reasoning is the IP has some new bits or new
-> registers, then things can get very confusing (even more if we think about
-> fallback compatibles) as most of the new designs have some quirks (even if
-> minimal). So I would say to add new compatibles when things get different=
- enough
-> that a sane/generic API is not doable.
+> 
+[...]
+>> diff --git a/Documentation/devicetree/bindings/mfd/ariaboard,photonicat-pmu.yaml b/Documentation/devicetree/bindings/mfd/ariaboard,photonicat-pmu.yaml
+[...]
+>> +description:
+>> +  Driver for the Power Management MCU in the Ariaboard Photonicat,
+> 
+> Bindings are for hardware, not drivers. Drop it everywhere and explain
+> hardware.
+> 
 
-If you can influence the IP designers, the usual solution to this is
-discoverability of features. So standard register that all IP carries that
-has flags for each feature that has ever been implemented.
+I will edit it.
+Maybe the following looks better?
+  The Power Management MCU in Ariaboard Photonicat, which
+  provides battery and charger power supply real-time clock,
+  watchdog, hardware shutdown, status LEDs.
 
-If not, best option is each IP gets a compatible but we assume fallbacks
-are fine until they aren't.
+>> +  which provides battery and charger power supply, real-time clock,
+>> +  watchdog, hardware shutdown.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ariaboard,photonicat-pmu
+> 
+> That's the only compatible you should have. Drop all others.
+> 
+>> +
+[...]
+>> +  local-address:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    maximum: 127
+>> +    default: 1
+>> +    description: CPU board address
+> 
+> Address of what? In which notation? It's part of this hardware.
+> 
 
-Jonathan
+Photonicat's MCU protocol documentation says it supports multiple hosts.
+But Photonicat only uses one.
+Is it necessary to remove local-address and use a fixed address?
 
->=20
-> > >=20
-> > > Second, technically, the AXI DAC IP block can't be used as
-> > > a generic SPI controller, so it wouldn't make sense to put
-> > > it in drivers/spi. =20
-> >=20
-> > I wonder if there is any precedence of restricted controllers
-> > for SPI?=C2=A0 (For i2c we have the smbus ones as a vaguely similar
-> > example). +CC Mark.
-> >  =20
-> > > =C2=A0But, from wiring point of view, it could
-> > > still make sense to use SPI DT bindings since we have SPI
-> > > wiring. At the same time, the AXI DAC IP block is also
-> > > providing extra functionality in addition to the SPI bus
-> > > so it makes sense to keep the io-backend bindings for those
-> > > extra bits.
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0 backend: spi@44a70000 {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-da=
-c-ad3225r";
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44a70000 0x1000=
->;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dmas =3D <&dac_tx_dma 0>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-names =3D "tx";
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #io-backend-cells =3D <0>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&ref_clk>;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dac@0 {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 co=
-mpatible =3D "adi,ad3552r";
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
-g =3D <0>;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*=
-=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 * Not sure how right this is - attempting to say that
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 * the QSPI select pin is hardwired high, so the 4 SPI I/O
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 * pins on the DAC are always functioning as SDIO0/1/2/3
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 * as opposed to the usual 2 SDI/SDO pins and 2 unused.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 */
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sp=
-i-3-wire;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sp=
-i-tx-bus-width =3D <4>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sp=
-i-rx-bus-width =3D <4>;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
-set-gpios =3D <&gpio0 92 GPIO_ACTIVE_LOW>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 io=
--backends =3D <&backend>;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #a=
-ddress-cells =3D <1>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #s=
-ize-cells =3D <0>;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ch=
-annel@0 {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 reg =3D <0>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 adi,output-range-microvolt =3D <(-10000000) (10000000=
-)>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > =C2=A0=C2=A0=C2=A0 }; =20
-> >=20
-> > That's definitely an improvement.=C2=A0 It's a little strange to have
-> > a reference back to the parent but I'm fine with that.
-> >  =20
->=20
-> Agreed...
->=20
-> - Nuno S=C3=A1
->=20
+> 
+>> +
+>> +  remote-address:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    maximum: 127
+>> +    default: 1
+>> +    description: PMU board address
+> 
+> Eee, no. Your board knows its address. You do not have to tell it.
 
+I will remove remote-address.
+
+> 
+[...]
+>> +
+>> +patternProperties:
+>> +  '^leds-(status)':
+> 
+> That's not a pattern.
+> 
+
+I originally wanted to keep it for extensions, but it didn't seem like a good idea.
+I will move it to properties.
+
+>> +    $ref: /schemas/leds/ariaboard,photonicat-pmu-leds.yaml
+>> +
+>> +  '^supply-(battery|charger)$':
+>> +    $ref: /schemas/power/supply/ariaboard,photonicat-pmu-supply.yaml
+> 
+> Why two nodes?
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +      serial {
+>> +          photonicat-pmu {
+>> +              compatible = "ariaboard,photonicat-pmu";
+>> +              current-speed = <115200>;
+>> +              local-address = <1>;
+>> +              remote-address = <1>;
+>> +
+>> +              supply-battery {
+>> +                  compatible = "ariaboard,photonicat-pmu-supply";
+>> +                  label = "battery";
+> 
+> Nope, drop label.
+> 
+>> +                  type = "battery";
+> 
+> No, there is no type property.
+
+There are two supplies here, one is the charger and the other is the battery.
+Is it necessary to change to use different compatible ones like
+ariaboard,photonicat-pmu-battery and ariaboard,photonicat-pmu-charger?
+
+> 
+> Missing monitored battery.
+> 
+
+I will add it.
+
+>> +              };
+>> +
+[...]
+>> +
+>> +              watchdog {
+>> +                  compatible = "ariaboard,photonicat-pmu-watchdog";
+>> +              };
+> 
+> These are seriously redundant and useless nodes.  There is nothing
+> beneficial from the nodes above - they are all empty, without resources.
+> Drop all of them.
+
+How should I describe these devices? Using mfd_cell?
+
+> 
+> I finish the review here.
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks for your review, I will fix all problems in next version!
+
+Best regards,
+Junhao
 
