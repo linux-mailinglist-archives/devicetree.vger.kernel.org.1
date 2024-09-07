@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-101088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAE19703B9
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:48:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D1779703BC
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 20:48:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FB6A283C75
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:48:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CCC3283FBB
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 18:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD0B166F37;
-	Sat,  7 Sep 2024 18:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2DB1684A0;
+	Sat,  7 Sep 2024 18:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UFrPGh2h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o2/Dinxu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9840165F17
-	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 18:48:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D86D166311
+	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 18:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725734905; cv=none; b=s9t5uIy7oxtRSb8HwKabiwA/kWDm5lVyQRQg9A2Aandx90GVhsGnAjxUuGepqz5MqSI41Lg8PuFbq8zOD3KuR99W8FspkZXAx3ifJHhqLQA+/u7VdWfHxz8eJJS6AJzsVSnl3/6KIScvIfa6mI6LP7T1c33GV3rO5OjPiC6NuF0=
+	t=1725734906; cv=none; b=gA4dMM05+7YdBRhX/pQC7icmGbmcDF15NJS2Ot+FaZCFIlhQiJGUDun0UHaTGtO8hsPa3xrjEwo/gXDcE2wpkeGdHAstchNVqedu9sFxpMn2JSrH5tRjiDVz0s/tBmfhINiE4zUXVIcChEi32rK7LhHqBtvIBE/o8OXMqt0wgoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725734905; c=relaxed/simple;
-	bh=czZ7T+mf6XqWzU6Vf6WURi7MEzoc/X2h0XJq3zPX//0=;
+	s=arc-20240116; t=1725734906; c=relaxed/simple;
+	bh=6TCDPpBkY5pK/ecMFCBKg6KyrCqiL2Nwxp1MC/3FL0Y=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rHtVD/DIjNEzdMalNsZE1w4S0AVewXHJdCpHbqh5FiwR0XB9lQaQR2ibio5FXS8wvDs+XiKVoo3z/dXq0G1Y0lbhPNn0sntXuEhMooR/RDh9nb1jmr6yacBvZxo72a+K5pF6aDiqdefEG2dSp/c57l9ZFIYsDrU9mU3aSnns63Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UFrPGh2h; arc=none smtp.client-ip=209.85.208.177
+	 In-Reply-To:To:Cc; b=FcCl7jj/mKvAn0opcqDbkWO8FsHVzA1dqyJyC11nQASHOVz/7ZRSFCn7XuyzNcvu2p0lC69SA+t3SRWJinpjQXokrti4UNX8DNKxnaKhpDbsHhPItIBzLW4Yysqa/tPuhi/r/GDvu1R7n2yLGf/e6qRMvvZh9PjlRZ9G6dKaJ+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o2/Dinxu; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f759b87f83so7922471fa.2
-        for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 11:48:23 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f74e468aa8so31806581fa.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 11:48:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725734902; x=1726339702; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1725734903; x=1726339703; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+MQl+w+EtPc0//xS+aXieS9CbUw0+8xjxLVKoHk7Lo0=;
-        b=UFrPGh2hYyiK2hGTk3ermZMm4NYSFvKJIW5h4BzKXwQzBiEtlM4N1S57kptuI66Wds
-         DEuWq21kG+bpwPKxjwPglw3IDnT/59T336MEruiZk9ZAUz0BiGd18m7qggUoIUNYVCpt
-         HXpR60xL2ZqgMsGQ04rvHIpTyV3EUn9mWIunmbvInpQ9UyZuM7NRcSYUcx6PTS59z80m
-         YUtSfCYMASV+iQzV17z9BZS1cFEPWwVPFsWscSk8VwBckKdGW++TqdJMnDr0Jvqsx8bx
-         ClkdUzVfncUMARNSkH/dCur6wjIrL5YDV7PgMpWVGQvERxUQqv+PnjDIRSsfmuBXYRHc
-         tWEg==
+        bh=Rm1chB3YeV/rbRF4sUAZL0Reqk72Eb44oLJJOE10AxM=;
+        b=o2/DinxuiNLO9bPGDLhnAmyLnEno7TrrrNLvQUpC5lDqNo46XLOMdYEEwrpo0yEsbT
+         HYDd4ZwmIAbnsAQNfsTCfrIhxj3BX/rMTRLLIgR8GoF5BGAA5WL+pvzQCshyAhfHYBel
+         bxKbyJTaskrrh2OOYjxk+X8X3wOEhzEXIylpOdB87yhOyPcBACjcXnQFliaRsphGhlFy
+         vo34DWADOqK16j1e3CTLoedhx3URW+D5VmPkmKG+DjZDD50bK4Ukug7x5tMUiWewEmfD
+         HdHpXUSlfTRtu7aVltXvD5mghONWBiaUVCvmpEcDKfI0wsrEAj8TH6eIW4kRs3IKvwLN
+         sYNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725734902; x=1726339702;
+        d=1e100.net; s=20230601; t=1725734903; x=1726339703;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+MQl+w+EtPc0//xS+aXieS9CbUw0+8xjxLVKoHk7Lo0=;
-        b=c5OrrrMyJMivOPRiROgP2CVBoG3UXCK00yG3oi7/dBtoGhrDeTGpmoQeUENiL6KuXe
-         SA2fWzxN/nP0UmB0gmHVzy/gOiax9rBCS1V1pjaVTdB7X39pW146oJNZlN04EWlhj2Hr
-         k7mzo2/B8/MVJXePUIe8mY9dM6bYw56SfokJKkWDnML7NBdb8cgUkxbuDDo2cMXrEtje
-         KvuZMQnsEuzGyjNSic9JZeJb07HanlRqM54QzvUm/laQfHZAPNPT4PdSONsmw6jvPoy4
-         XErYkm+HWqiY6Q9WFwShnIfzaH/yxUKfu6Rz70ehrThxOThbNMsYZ5dghU+l0shzS1Vu
-         ZejQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfI7Idijzg5NPwtfElYVm1Ulj/XCVSKawBGkrQuiJIVpii2yu8KBIJYtKz+94U4rvSqUI4f0YC1l+f@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyr6UeS8QVcDtQN51nDJgTOjMHucQeKe+FIFL0hd85oD1hyH+RP
-	cT7q0MpfA3i6XlLK98o+UEpThLf5rJ0nwYZDo+BGDd8hL/PNjPuh0gVrRTdVXbY=
-X-Google-Smtp-Source: AGHT+IFt/F9gdcOgwpNi7fafKgTp/rZCPURIU7Ulv5ZyfJmoQN15S9LX022Fh+nYO3YABMxPYuOVhw==
-X-Received: by 2002:a2e:d02:0:b0:2f6:5d4e:bead with SMTP id 38308e7fff4ca-2f751f2b131mr30255761fa.21.1725734901592;
-        Sat, 07 Sep 2024 11:48:21 -0700 (PDT)
+        bh=Rm1chB3YeV/rbRF4sUAZL0Reqk72Eb44oLJJOE10AxM=;
+        b=OwIM3GLOv/ZOpWTW6yuYYhLRGVGe/BNpi7ueO1qf24a05p5noWYDeTKNTZqpXY9G9Y
+         RZBuvwRmyZMiXe7ER4pX24BNfj/e8NqbmjPt0ham6KcCeJdZb8jTEqx3raGdVQ2LcIAq
+         S2oU7hUN4SeJm8FZjcrZ07oQ2SWqDgKhgqbdsiB0mY7eRQvTWzBNrXefqfsXs+j3vErp
+         0lbe2m58zpF1WdpmhGRDDkzKD/ucRp2fJQGvFDwOcan8+Nr/WAhTO75eD7ktkW46v76M
+         tjt6tghZgBxyPN8iskrrWirS6i2JP78JXMwftFF2+hil/ejLPNB4nwxQleAbkoCLU8Jt
+         rY5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWOERCxrh63xLmOZrXyIVctoSkK81R4gY+SDuWLL7kfVzUS3u88RsmNuw9G0Cl4vqLBI+8cCnczXyaJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSR/4ZG7TubhRx8h8gYmRSB6Dh/5BCuj32iJSvZTV+EvR3kQnk
+	8q9oGRSYx9yEXMYzPMoUNc9mJ3BJLg3IwFV6fMhWgrs91gjlv4aNDH8EkQ0QM1s=
+X-Google-Smtp-Source: AGHT+IHu563+x1ywd7U+RrDE+KW3K25LUY98BF0NdOnVsnzEUTN6YUx2CDuriBbnNOmez6VMCEAmJw==
+X-Received: by 2002:a2e:819:0:b0:2f7:4c9d:7a87 with SMTP id 38308e7fff4ca-2f75232641cmr33900971fa.21.1725734902386;
+        Sat, 07 Sep 2024 11:48:22 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.20
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c0b1af3sm2271861fa.129.2024.09.07.11.48.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Sep 2024 11:48:20 -0700 (PDT)
+        Sat, 07 Sep 2024 11:48:21 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 07 Sep 2024 21:48:14 +0300
-Subject: [PATCH 3/7] arm64: dts: qcom: sda660-ifc6560: enable GPU
+Date: Sat, 07 Sep 2024 21:48:15 +0300
+Subject: [PATCH 4/7] arm64: dts: qcom: sda660-ifc6560: fix l10a voltage
+ ranges
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240907-sdm660-wifi-v1-3-e316055142f8@linaro.org>
+Message-Id: <20240907-sdm660-wifi-v1-4-e316055142f8@linaro.org>
 References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
@@ -92,62 +93,42 @@ Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1341;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1040;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=czZ7T+mf6XqWzU6Vf6WURi7MEzoc/X2h0XJq3zPX//0=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/x7F2PoifzzkkFHxz2+pRkYLt9ML0xZEW+o
- 3DWhVRfPlCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8QAKCRCLPIo+Aiko
- 1bLJCACJMd8jResuMsuhYfRhbO4DeTthTfGRK4rkPdDurx7rNtoeMvbbUL5rG3y2eVui87VLDfN
- EUAEwA6xXp4405PqYaI4rFWM0vWw5e4NEETlX0rgWjkglYhwNw5kN7xAA9SNakt27ds/M6MuN3L
- tJUM4EdZkcZfx4LF9qOlqX+JYa8SL+KidSHFtDbqK/3XYBqaIDYNWQUPwiUkbTbdqwgCGJrO+/J
- 3zWN7oDuWEH6MUsiyP9+fryFrqlDqZhw4/Ru3fQAias+d6YtPv/AT9ZEuLLrBKzyb1XV0t9g0mV
- dx6JraJkMAwruTpCoJiLcV8qTA2QHCIeT1IO2T8HP7OBYSqA
+ bh=6TCDPpBkY5pK/ecMFCBKg6KyrCqiL2Nwxp1MC/3FL0Y=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3J/yYgngcJjUMb3ImAgjjHipMpb3WTf93cRNT
+ iQYHXaOttKJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtyf8gAKCRCLPIo+Aiko
+ 1QQ1B/9bAfy4pGc7ZPqq1iHOoY3bTcWAcmd7v2Qz79lyDxIMcv6LmE7qVWnxa3xXBT9FzGon5UF
+ 9mVlaNnMAPckOLbCL5rLh1e+ipDAycCXla3X8iPEmzZsLdvzdSsNjm7SJ403+kB0JkBoBmLzQEE
+ 5c7OuYEkLOhNkb90pSzBBV/UgmfvZoAGSEaes2pf4FwH+R4Qz7cFFCj/iHI5AY8JGVKr89eFJH8
+ 9i1ITgZ4uEXit1VxxeEba8+y9wW1wlGe4yXolhk9o8pOSifAYL1qWLjEGoUZSfMXxgthP6yN+7/
+ GpgBONEmhzqQy9Mkb0GsjthGtQu0xfaLV1COcEVd8ObQS6jc
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Enable Adreno GPU on the Inforce IFC6560 SBC. It requires the Zap shader
-binary that was provided by the vendor.
+L10A, being a fixed regulator, should have min_voltage = max_voltage,
+otherwise fixed rulator fails to probe. Fix the max_voltage range to be
+equal to minimum.
 
+Fixes: 4edbcf264fe2 ("arm64: dts: qcom: sda660-ifc6560: document missing USB PHY supplies")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 8 ++++++++
- arch/arm64/boot/dts/qcom/sdm630.dtsi                | 4 ++++
- 2 files changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-index 60412281ab27..ac0197624c09 100644
+index ac0197624c09..09bc010ce56a 100644
 --- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
 +++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-@@ -110,6 +110,14 @@ vreg_l10a_1p8: vreg-l10a-regulator {
+@@ -104,7 +104,7 @@ vreg_l10a_1p8: vreg-l10a-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vreg_l10a_1p8";
+ 		regulator-min-microvolt = <1804000>;
+-		regulator-max-microvolt = <1896000>;
++		regulator-max-microvolt = <1804000>;
+ 		regulator-always-on;
+ 		regulator-boot-on;
  	};
- };
- 
-+&adreno_gpu {
-+	status = "okay";
-+};
-+
-+&adreno_gpu_zap {
-+	firmware-name = "qcom/sda660/a512_zap.mbn";
-+};
-+
- &adsp_pil {
- 	firmware-name = "qcom/sda660/adsp.mbn";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 40ad99d75738..92695375a63b 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1150,6 +1150,10 @@ opp-160000000 {
- 					opp-supported-hw = <0xff>;
- 				};
- 			};
-+
-+			adreno_gpu_zap: zap-shader {
-+				memory-region = <&zap_shader_region>;
-+			};
- 		};
- 
- 		kgsl_smmu: iommu@5040000 {
 
 -- 
 2.39.2
